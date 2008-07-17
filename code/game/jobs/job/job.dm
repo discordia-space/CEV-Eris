@@ -44,6 +44,8 @@
 
 	var/list/perks = list()
 
+	var/only_human = FALSE
+
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()
 	if(!outfit)

@@ -49,8 +49,8 @@ var/list/mannequins_
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					// Table of say codes for all languages
-var/global/list/whitelisted_species = list("Human") // Species that require a whitelist check.
-var/global/list/playable_species = list("Human")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+var/global/list/whitelisted_species = list("Human", "Kidan") // Species that require a whitelist check.
+var/global/list/playable_species = list("Human", "Kidan")    // A list of ALL playable species, whitelisted, latejoin or otherwise.
 
 // Posters
 var/global/list/poster_designs = list()
@@ -77,6 +77,11 @@ GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's coold
 	//Hairstyles
 GLOBAL_LIST_EMPTY(hair_styles_list)        //stores /datum/sprite_accessory/hair indexed by name
 GLOBAL_LIST_EMPTY(facial_hair_styles_list) //stores /datum/sprite_accessory/facial_hair indexed by name
+	//Head accessory styles
+GLOBAL_LIST_INIT(head_accessory_styles_list, list()) //stores /datum/sprite_accessory/head_accessory indexed by name
+	//Marking styles
+GLOBAL_LIST_INIT(marking_styles_list, list()) //stores /datum/sprite_accessory/body_markings indexed by name
+
 
 GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
 
@@ -159,7 +164,18 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	for(var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		GLOB.facial_hair_styles_list[H.name] = H
+	
+	//BODY MARKIGNS
+	paths = subtypesof(/datum/sprite_accessory/body_markings)
+	for(var/path in paths)
+		var/datum/sprite_accessory/body_markings/H = new path()
+		GLOB.marking_styles_list[H.name] = H
 
+	//HEAD_ACCESSORY
+	paths = subtypesof(/datum/sprite_accessory/head_accessory)
+	for(var/path in paths)
+		var/datum/sprite_accessory/head_accessory/H = new path()
+		GLOB.head_accessory_styles_list[H.name] = H
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = subtypesof(/datum/surgery_step)

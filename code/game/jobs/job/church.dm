@@ -4,6 +4,7 @@
 	head_position = 1
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH | COMMAND
+	only_human = TRUE
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -71,6 +72,7 @@
 	flag = ACOLYTE
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
+	only_human = TRUE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -114,6 +116,7 @@
 	flag = BOTANIST
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
+	only_human = TRUE
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
@@ -153,6 +156,7 @@
 	flag = JANITOR
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
+	only_human = TRUE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
