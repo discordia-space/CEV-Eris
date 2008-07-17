@@ -1,0 +1,51 @@
+/datum/species/kidan
+	name = "Kidan"
+	name_plural = "Kidan"
+	icobase = 'icons/mob/human_races/r_kidan.dmi'
+	deform = 'icons/mob/human_races/r_def_kidan.dmi'
+	blurb = "The Kidan are ant-like creatures who posses an exoskeleton. \
+	They originate from the world of Aurum, a harsh world with a poor atmosphere now lost with the destruction of the Milky Way. \
+	The last Kidan Empress was killed and their planets conquered at least a century ago in a war with humanity. \
+	After unconditional surrender the kidan were strictly controlled and under sanctions. \
+	Most of the kidan in Canis Major are now refugees."
+	name_language = LANGUAGE_KIDAN
+	spawn_flags = CAN_JOIN
+	num_alternate_languages = 1
+	min_age = 18
+	max_age = 60
+	unarmed_types = list(/datum/unarmed_attack/claws, /datum/unarmed_attack/stomp,  /datum/unarmed_attack/kick, /datum/unarmed_attack/bite)
+	reagent_tag = IS_KIDAN
+	breath_pressure = 10 //deafault 16
+	brute_mod = 0.8
+	burn_mod = 1.5
+	radiation_mod = 0.5
+	toxins_mod = 0.5
+
+	appearance_flags = HAS_HEAD_ACCESSORY | HAS_HEAD_MARKINGS | HAS_BODY_MARKINGS | HAS_LIPS | HAS_EYE_COLOR
+	eyes = "kidan_eyes_s"
+	flesh_color = "#ba7814"
+	blood_color = "#FB9800"
+
+	has_organ = list(
+		BP_HEART =    /obj/item/organ/internal/heart/kidan,
+		BP_LUNGS =    /obj/item/organ/internal/lungs/kidan,
+		BP_LIVER =    /obj/item/organ/internal/liver/kidan,
+		BP_KIDNEYS =  /obj/item/organ/internal/kidneys/kidan,
+		BP_BRAIN =    /obj/item/organ/internal/brain/kidan,
+		BP_APPENDIX = /obj/item/organ/internal/appendix,
+		BP_EYES =     /obj/item/organ/internal/eyes/kidan, //Default darksight of 2.
+		)
+
+	allowed_jobs = list(/datum/job/rd, /datum/job/hop, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/ihc,
+						/datum/job/gunserg, /datum/job/inspector, /datum/job/medspec, /datum/job/ihoper,
+						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/psychiatrist,
+						/datum/job/technomancer,
+						/datum/job/cargo_tech, /datum/job/mining, /datum/job/merchant,
+						/datum/job/clubworker, /datum/job/clubmanager, /datum/job/actor,
+						/datum/job/scientist, /datum/job/roboticist,
+						/datum/job/ai, /datum/job/cyborg,
+						/datum/job/assistant
+						)
+
+/datum/species/kidan/get_bodytype()
+	return "Kidan"
