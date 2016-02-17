@@ -201,3 +201,145 @@
 	name = "\improper Escape Arm"
 	desc = "A direction sign, pointing out which way the escape shuttle dock is."
 	icon_state = "direction_evac"
+
+//Eris signs
+
+/obj/structure/sign/ironhammer
+	name = "Ironhammer Security"
+	desc = "Sign depicts the symbolic of Ironhammer Security, the largest security provider within Trade Union of Hansa."
+	icon_state = "ironhammer"
+
+/obj/structure/sign/atmos_co2
+	name = "CO2 warning sign"
+	desc = "WARNING! CO2 flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_co2"
+
+/obj/structure/sign/atmos_n2o
+	name = "N2O warning sign"
+	desc = "WARNING! N2O flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_n2o"
+
+/obj/structure/sign/atmos_phoron
+	name = "Phoron warning sign"
+	desc = "WARNING! Phoron flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_phoron"
+
+/obj/structure/sign/atmos_n2
+	name = "N2 warning sign"
+	desc = "WARNING! N2 flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_n2"
+
+/obj/structure/sign/atmos_o2
+	name = "O2 warning sign"
+	desc = "WARNING! O2 flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_o2"
+
+/obj/structure/sign/atmos_air
+	name = "Air warning sign"
+	desc = "WARNING! Air flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_air"
+
+/obj/structure/sign/atmos_waste
+	name = "Atmos waste warning sign"
+	desc = "WARNING! Waste flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_waste"
+
+/obj/structure/sign/deck1
+	desc = "A silver sign which reads 'DECK I'."
+	name = "DECK I"
+	icon_state = "deck1"
+
+/obj/structure/sign/deck2
+	desc = "A silver sign which reads 'DECK II'."
+	name = "DECK II"
+	icon_state = "deck2"
+
+/obj/structure/sign/deck3
+	desc = "A silver sign which reads 'DECK III'."
+	name = "DECK III"
+	icon_state = "deck3"
+
+/obj/structure/sign/deck4
+	desc = "A silver sign which reads 'DECK IV'."
+	name = "DECK IV"
+	icon_state = "deck4"
+
+/obj/structure/sign/nanotrasen
+	name = "\improper NanoTrasen"
+	desc = "An old metal sign which reads 'NanoTrasen'."
+	icon_state = "NT"
+
+/obj/structure/sign/signnew/biohazard
+	name = "BIOLOGICAL HAZARD"
+	desc = "Warning: Biological and-or toxic hazards present in this area!"
+	icon_state = "biohazard"
+
+/obj/structure/sign/signnew/corrosives
+	name = "CORROSIVE SUBSTANCES"
+	desc = "Warning: Corrosive substances prezent in this area!"
+	icon_state = "corrosives"
+
+/obj/structure/sign/signnew/explosives
+	name = "EXPLOSIVE SUBSTANCES"
+	desc = "Warning: Explosive substances present in this area!"
+	icon_state = "explosives"
+
+/obj/structure/sign/signnew/flammables
+	name = "FLAMMABLE SUBSTANCES"
+	desc = "Warning: Flammable substances present in this area!"
+	icon_state = "flammable"
+
+/obj/structure/sign/signnew/laserhazard
+	name = "LASER HAZARD"
+	desc = "Warning: High powered laser emitters operating in this area!"
+	icon_state = "laser"
+
+/obj/structure/sign/signnew/danger
+	name = "DANGEROUS AREA"
+	desc = "Warning: Generally hazardous area! Exercise caution."
+	icon_state = "danger"
+
+/obj/structure/sign/signnew/magnetics
+	name = "MAGNETIC FIELD HAZARD"
+	desc = "Warning: Extremely powerful magnetic fields present in this area!"
+	icon_state = "magnetics"
+
+/obj/structure/sign/signnew/opticals
+	name = "OPTICAL HAZARD"
+	desc = "Warning: Optical hazards present in this area!"
+	icon_state = "optical"
+
+/obj/structure/sign/signnew/radiation
+	name = "RADIATION HAZARD"
+	desc = "Warning: Significant levels of radiation present in this area!"
+	icon_state = "radiation"
+
+/obj/structure/sign/signnew/secure
+	name = "SECURE AREA"
+	desc = "Warning: Secure Area! Do not enter without authorization!"
+	icon_state = "secure"
+
+/obj/structure/sign/signnew/electrical
+	name = "ELECTRICAL HAZARD"
+	desc = "Warning: Electrical hazards! Wear protective equipment."
+	icon_state = "electrical"
+
+/obj/structure/sign/signnew/cryogenics
+	name = "CRYOGENIC TEMPERATURES"
+	desc = "Warning: Extremely low temperatures in this area."
+	icon_state = "cryogenics"
+
+/obj/structure/sign/signnew/canisters
+	name = "PRESSURIZED CANISTERS"
+	desc = "Warning: Highly pressurized canister storage."
+	icon_state = "canisters"
+
+/obj/structure/sign/signnew/oxidants
+	name = "OXIDIZING AGENTS"
+	desc = "Warning: Oxidizing agents in this area, do not start fires!"
+	icon_state = "oxidants"
+
+/obj/structure/sign/signnew/memetic
+	name = "MEMETIC HAZARD"
+	desc = "Warning: Memetic hazard, wear meson goggles!"
+	icon_state = "memetic"
