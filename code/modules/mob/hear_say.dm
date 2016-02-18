@@ -44,7 +44,7 @@
 	var/speaker_name = speaker.name
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
-		speaker_name = H.GetVoice()
+		speaker_name = H.rank_prefix_name(H.GetVoice())
 
 	if(italics)
 		message = "<i>[message]</i>"
@@ -123,6 +123,10 @@
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
+		for(var/datum/data/record/G in data_core.general)
+			if(G.fields["name"] == speaker_name)
+				speaker_name = H.rank_prefix_name(speaker_name)
+				break
 
 	if(hard_to_hear)
 		speaker_name = "unknown"
