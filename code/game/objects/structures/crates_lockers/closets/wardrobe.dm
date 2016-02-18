@@ -86,6 +86,7 @@
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/deck/tarot(src)
+	new /obj/item/weapon/talkingcrystal(src)
 	return
 
 
