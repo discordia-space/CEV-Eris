@@ -21,7 +21,7 @@
 	//var/chem_is_open_container = 0
 	// replaced by OPENCONTAINER flags and atom/proc/is_open_container()
 	///Chemistry.
-
+	var/allow_spin = 1
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 

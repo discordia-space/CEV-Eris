@@ -1,7 +1,7 @@
 /mob/living/carbon/human/say(var/message)
 	var/alt_name = ""
-	if(name != GetVoice())
-		alt_name = "(as [get_id_name("Unknown")])"
+	if(name != rank_prefix_name(GetVoice()))
+		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
 	message = sanitize(message)
 	..(message, alt_name = alt_name)
