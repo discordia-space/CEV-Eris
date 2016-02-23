@@ -154,6 +154,8 @@
 
 	var/rigged = 0				// true if rigged to explode
 
+	var/firealarmed = 0
+	var/atmosalarmed = 0
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
@@ -218,10 +220,15 @@
 	..()
 
 /obj/machinery/light/update_icon()
-
+	//var/area/checkalarm = get_area(src
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
-			icon_state = "[base_state][on]"
+			if(firealarmed && on && cmptext(base_state,"tube"))
+				icon_state = "[base_state]_alert"
+			else if(atmosalarmed && on && cmptext(base_state,"tube"))
+				icon_state = "[base_state]_alert_atmos"
+			else
+				icon_state = "[base_state][on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 			on = 0
@@ -232,6 +239,31 @@
 			icon_state = "[base_state]-broken"
 			on = 0
 	return
+
+/obj/machinery/light/proc/set_blue()
+	if(on)
+		if(cmptext(base_state,"tube"))
+			atmosalarmed = 1
+			firealarmed = 0
+			brightness_color = "#3333FF"
+		update()
+
+/obj/machinery/light/proc/set_red()
+	if(on)
+		if(cmptext(base_state,"tube"))
+			firealarmed = 1
+			atmosalarmed = 0
+			brightness_color = "#FF3030"
+		update()
+
+/obj/machinery/light/proc/reset_color()
+	if(on)
+		if(cmptext(base_state,"tube"))
+			firealarmed = 0
+			atmosalarmed = 0
+			brightness_color = "#FFFFFF"
+		update()
+
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(var/trigger = 1)

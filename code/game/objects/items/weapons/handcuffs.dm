@@ -64,14 +64,14 @@
 		user << "<span class='danger'>\The [src] won't fit around \the [H.gloves]!</span>"
 		return 0
 
-	user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
+	//user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
 
 	if(!do_after(user,0))
 		return 0
 
-	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [H.name] ([H.ckey])</font>")
-	msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
+	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed by [user.name] ([user.ckey])</font>")
+	user.attack_log += text("\[[time_stamp()]\] <font color='red'>handcuff [H.name] ([H.ckey])</font>")
+	msg_admin_attack("[key_name(user)] handcuff [key_name(H)]")
 	feedback_add_details("handcuffs","H")
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)

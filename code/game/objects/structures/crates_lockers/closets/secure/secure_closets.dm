@@ -89,6 +89,21 @@
 			playsound(src.loc, "sparks", 50, 1)
 	else if(istype(W,/obj/item/weapon/packageWrap) || istype(W,/obj/item/weapon/weldingtool))
 		return ..(W,user)
+	else if(istype(W,/obj/item/device/multitool))
+		//if (!src.locked)
+			//return ..(W,user)
+		if (can_open())
+			return ..(W,user)
+		user << "You start hack a locker"
+		for (var/i=1, i <= 3 , i++)
+			user << "Pick [i] of 3"
+			playsound(src.loc, 'sound/machines/lockreset.ogg', 50, 1)
+			if(!do_after(user,300))
+				return
+		playsound(src.loc, "sparks", 50, 1)
+		user << "Done!"
+		src.locked = 0
+		update_icon()
 	else
 		togglelock(user)
 

@@ -1,4 +1,3 @@
-
 /obj/item/weapon/bluespace_harpoon
 	name = "bluespace harpoon"
 	desc = "For climbing on bluespace mountains!"
@@ -14,14 +13,14 @@
 	var/transforming = 0
 
 
-/obj/item/weapon/bluespace_harpoon/afterattack(atom/A as turf, mob/user as mob)
+/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
 	var/current_fire = world.time
 	if(!user || !A || user.machine)
 		return
 	if(transforming)
 		user << "<span class = 'warning'>You can't fire while [src] transforming!</span>"
 		return
-	if(!(current_fire - last_fire >= 300))
+	if(!(current_fire - last_fire >= 50))
 		user << "<span class = 'warning'>[src] is recharging</span>"
 		return
 
@@ -38,9 +37,9 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(4, 1, A)
 	s.start()
-	var/datum/effect/effect/system/spark_spread/S = new /datum/effect/effect/system/spark_spread
-	S.set_up(4, 1, user)
-	S.start()
+	//var/datum/effect/effect/system/spark_spread/S = new /datum/effect/effect/system/spark_spread
+	s.set_up(4, 1, user)
+	s.start()
 
 	if(mode)
 		for(var/obj/O in get_turf(user))
@@ -48,12 +47,19 @@
 				if(prob(10))
 					O.loc = pick(orange(24,user))
 				else
-					O.loc = A.loc
+					//O.Move(A.x, A.y)//A.loc
+					//world << O
+					O.loc = get_turf(A)
+					//O.Move(TA)
+
 		for(var/mob/M in get_turf(user))
 			if(prob(10))
 				M.loc = pick(orange(24,user))
 			else
-				M.loc = A.loc
+				//M.Move(A.x, A.y)
+				//world << M
+				M.loc = get_turf(A)
+				//M.Move(TA)
 
 	else
 		for(var/obj/O in get_turf(A))
@@ -61,12 +67,19 @@
 				if(prob(10))
 					O.loc = pick(orange(24,user))
 				else
-					O.loc = user.loc
+					//O.Move(user.x, user.y)
+					//world << O
+					O.loc = get_turf(user)
+					//O.Move(TU)
+
 		for(var/mob/M in get_turf(A))
 			if(prob(10))
 				M.loc = pick(orange(24,user))
 			else
-				M.loc = user.loc
+				//M.Move(user.x, user.y)
+				//world << M
+				M.loc = get_turf(user)
+				//M.Move(TU)
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return chande_fire_mode(user)

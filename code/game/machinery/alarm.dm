@@ -442,7 +442,7 @@
 /obj/machinery/alarm/proc/apply_danger_level(var/new_danger_level)
 	if (report_danger_level && alarm_area.atmosalert(new_danger_level, src))
 		post_alert(new_danger_level)
-
+	alarm_area.updateicon()
 	update_icon()
 
 /obj/machinery/alarm/proc/post_alert(alert_level)
