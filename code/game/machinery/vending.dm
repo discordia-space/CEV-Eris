@@ -204,14 +204,26 @@
 		attack_hand(user)
 		return
 	else if(istype(W, /obj/item/weapon/screwdriver))
-		src.panel_open = !src.panel_open
-		user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
-		src.overlays.Cut()
-		if(src.panel_open)
-			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+		if (src.panel_open)
+			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
+			src.panel_open = !src.panel_open
+			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
+			src.overlays.Cut()
+			if(src.panel_open)
+				src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
+			return
+		else
+			playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
+			src.panel_open = !src.panel_open
+			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
+			src.overlays.Cut()
+			if(src.panel_open)
+				src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
+			return
 
-		nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
-		return
+
 	else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/weapon/wirecutters))
 		if(src.panel_open)
 			attack_hand(user)
