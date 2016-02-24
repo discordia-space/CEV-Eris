@@ -584,7 +584,7 @@ About the new airlock wires panel:
 			if(density && src.arePowerSystemsOn())
 				flick("door_deny", src)
 				if(secured_wires)
-					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+					playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
@@ -806,8 +806,10 @@ About the new airlock wires panel:
 				usr << "<span class='warning'>The panel is broken and cannot be closed.</span>"
 			else
 				src.p_open = 0
+				playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
 		else
 			src.p_open = 1
+			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
 		src.update_icon()
 	else if(istype(C, /obj/item/weapon/wirecutters))
 		return src.attack_hand(user)
@@ -1024,6 +1026,7 @@ About the new airlock wires panel:
 	if (operating && !forced) return 0
 
 	src.locked = 1
+	playsound(src.loc, 'sound/machines/Custom_bolts.ogg', 50, 1, 7)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -1037,6 +1040,7 @@ About the new airlock wires panel:
 		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS)) return
 
 	src.locked = 0
+	playsound(src.loc, 'sound/machines/Custom_boltsup.ogg', 50, 1, 7)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()

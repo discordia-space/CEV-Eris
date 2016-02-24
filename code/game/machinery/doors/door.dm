@@ -29,6 +29,8 @@
 	var/obj/item/stack/material/steel/repairing
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
+	var/obj/machinery/filler_object/f5
+	var/obj/machinery/filler_object/f6
 
 	//Multi-tile doors
 	dir = EAST
@@ -383,7 +385,7 @@
 		if("deny")
 			if(density && !(stat & (NOPOWER|BROKEN)))
 				flick("door_deny", src)
-				playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
 	return
 
 
@@ -403,6 +405,10 @@
 	explosion_resistance = 0
 	update_icon()
 	set_opacity(0)
+	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
+		f5.set_opacity(0)
+		f6.set_opacity(0)
+	update_nearby_tiles()
 	operating = 0
 
 	if(autoclose)
@@ -429,6 +435,10 @@
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!
+	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
+		f5.set_opacity(1)
+		f6.set_opacity(1)
+	update_nearby_tiles()
 	operating = 0
 
 	//I shall not add a check every x ticks if a door has closed over some fire.
