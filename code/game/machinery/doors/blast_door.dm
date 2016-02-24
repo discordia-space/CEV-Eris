@@ -135,6 +135,7 @@
 	if (src.operating || (stat & BROKEN || stat & NOPOWER))
 		return
 	force_open()
+	playsound(src.loc, 'sound/machines/Custom_blastdooropen.ogg', 65, 0)
 	if(autoclose)
 		spawn(150)
 			close()
@@ -147,7 +148,7 @@
 	if (src.operating || (stat & BROKEN || stat & NOPOWER))
 		return
 	force_close()
-
+	playsound(src.loc, 'sound/machines/Custom_blastdoorclose.ogg', 65, 0)
 
 // Proc: repair()
 // Parameters: None
