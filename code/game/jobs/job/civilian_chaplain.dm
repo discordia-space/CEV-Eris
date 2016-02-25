@@ -55,7 +55,6 @@
 					B.name = pick("Principle of Relativity", "Quantum Enigma: Physics Encounters Consciousness", "Programming the Universe", "Quantum Physics and Theology", "String Theory for Dummies", "How To: Build Your Own Warp Drive", "The Mysteries of Bluespace", "Playing God: Collector's Edition")
 				else
 					B.name = "The Holy Book of [new_religion]"
-			feedback_set_details("religion_name","[new_religion]")
 
 		spawn(1)
 			var/deity_name = "Space Jesus"
@@ -147,6 +146,4 @@
 				ticker.Bible_item_state = B.item_state
 				ticker.Bible_name = B.name
 				ticker.Bible_deity_name = B.deity_name
-			feedback_set_details("religion_deity","[new_deity]")
-			feedback_set_details("religion_book","[new_book_style]")
 		return 1

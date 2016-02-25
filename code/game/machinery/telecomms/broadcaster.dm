@@ -360,7 +360,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/blackbox_msg = "[part_a][name][part_blackbox_b][quotedmsg][part_c]"
 		//var/blackbox_admin_msg = "[part_a][M.name] (Real name: [M.real_name])[part_blackbox_b][quotedmsg][part_c]"
 
-		//BR.messages_admin += blackbox_admin_msg
 		if(istype(blackbox))
 			switch(display_freq)
 				if(PUB_FREQ)
@@ -544,7 +543,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		var/blackbox_msg = "[part_a][source][part_blackbox_b]\"[text]\"[part_c]"
 
-		//BR.messages_admin += blackbox_admin_msg
 		if(istype(blackbox))
 			switch(display_freq)
 				if(PUB_FREQ)

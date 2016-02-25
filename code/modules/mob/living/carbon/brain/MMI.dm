@@ -64,8 +64,6 @@
 
 			locked = 1
 
-			feedback_inc("cyborg_mmis_filled",1)
-
 			return
 
 		if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/device/pda)) && brainmob)

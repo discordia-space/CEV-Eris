@@ -6,7 +6,6 @@
 	prefs.toggles ^= CHAT_GHOSTEARS
 	src << "As a ghost, you will now [(prefs.toggles & CHAT_GHOSTEARS) ? "see all speech in the world" : "only see speech from nearby mobs"]."
 	prefs.save_preferences()
-	feedback_add_details("admin_verb","TGE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_sight()
 	set name = "Show/Hide GhostSight"
@@ -15,7 +14,6 @@
 	prefs.toggles ^= CHAT_GHOSTSIGHT
 	src << "As a ghost, you will now [(prefs.toggles & CHAT_GHOSTSIGHT) ? "see all emotes in the world" : "only see emotes from nearby mobs"]."
 	prefs.save_preferences()
-	feedback_add_details("admin_verb","TGS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_radio()
 	set name = "Enable/Disable GhostRadio"
@@ -24,7 +22,6 @@
 	prefs.toggles ^= CHAT_GHOSTRADIO
 	src << "As a ghost, you will now [(prefs.toggles & CHAT_GHOSTRADIO) ? "hear all radio chat in the world" : "only hear from nearby speakers"]."
 	prefs.save_preferences()
-	feedback_add_details("admin_verb","TGR")
 
 /client/proc/toggle_hear_radio()
 	set name = "Show/Hide RadioChatter"
@@ -34,7 +31,6 @@
 	prefs.toggles ^= CHAT_RADIO
 	prefs.save_preferences()
 	usr << "You will [(prefs.toggles & CHAT_RADIO) ? "now" : "no longer"] see radio chatter from radios or speakers"
-	feedback_add_details("admin_verb","THR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggleadminhelpsound()
 	set name = "Hear/Silence Adminhelps"
@@ -44,7 +40,6 @@
 	prefs.toggles ^= SOUND_ADMINHELP
 	prefs.save_preferences()
 	usr << "You will [(prefs.toggles & SOUND_ADMINHELP) ? "now" : "no longer"] hear a sound when adminhelps arrive."
-	feedback_add_details("admin_verb","AHS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/deadchat() // Deadchat toggle is usable by anyone.
 	set name = "Show/Hide Deadchat"
@@ -58,7 +53,6 @@
 	else
 		src << "As a ghost, you will [(prefs.toggles & CHAT_DEAD) ? "now" : "no longer"] see deadchat."
 
-	feedback_add_details("admin_verb","TDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggleprayers()
 	set name = "Show/Hide Prayers"
@@ -67,7 +61,6 @@
 	prefs.toggles ^= CHAT_PRAYER
 	prefs.save_preferences()
 	src << "You will [(prefs.toggles & CHAT_PRAYER) ? "now" : "no longer"] see prayerchat."
-	feedback_add_details("admin_verb","TP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggletitlemusic()
 	set name = "Hear/Silence LobbyMusic"
@@ -83,7 +76,6 @@
 		src << "You will no longer hear music in the game lobby."
 		if(istype(mob, /mob/new_player))
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jamsz
-	feedback_add_details("admin_verb","TLobby") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/togglemidis()
 	set name = "Hear/Silence Midis"
@@ -98,7 +90,6 @@
 		src << break_sound	//breaks the client's sound output on channel 777
 	else
 		src << "You will no longer hear sounds uploaded by admins; any currently playing midis have been disabled."
-	feedback_add_details("admin_verb","TMidi") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/listen_ooc()
 	set name = "Show/Hide OOC"
@@ -107,7 +98,6 @@
 	prefs.toggles ^= CHAT_OOC
 	prefs.save_preferences()
 	src << "You will [(prefs.toggles & CHAT_OOC) ? "now" : "no longer"] see messages on the OOC channel."
-	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /client/verb/listen_looc()
@@ -118,7 +108,6 @@
 	prefs.save_preferences()
 
 	src << "You will [(prefs.toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel."
-	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /client/verb/toggle_chattags()
@@ -129,7 +118,6 @@
 	prefs.save_preferences()
 
 	src << "You will [!(prefs.toggles & CHAT_NOICONS) ? "now" : "no longer"] see chat tag icons."
-	feedback_add_details("admin_verb","TCTAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /client/verb/Toggle_Soundscape() //All new ambience should be added here so it works with this verb until someone better at things comes up with a fix that isn't awful
@@ -144,4 +132,3 @@
 		src << "You will no longer hear ambient sounds."
 		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 1)
 		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 2)
-	feedback_add_details("admin_verb","TAmbi") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
