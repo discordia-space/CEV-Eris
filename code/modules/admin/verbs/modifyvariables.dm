@@ -1,7 +1,6 @@
 var/list/forbidden_varedit_object_types = list(
 										/datum/admins,						//Admins editing their own admin-power object? Yup, sounds like a good idea.,
 										/obj/machinery/blackbox_recorder,	//Prevents people messing with feedback gathering,
-										/datum/feedback_variable				//Prevents people messing with feedback gathering
 									)
 
 var/list/VVlocked = list("vars", "holder", "client", "virus", "viruses", "cuffed", "last_eaten", "unlock_content", "bound_x", "bound_y", "step_x", "step_y", "force_ending")
@@ -14,7 +13,6 @@ var/list/VVckey_edit = list("key", "ckey")
 	set name = "Edit Variables"
 	set desc="(target) Edit a target item's variables"
 	src.modify_variables(O)
-	feedback_add_details("admin_verb","EDITV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 */
 
 /client/proc/cmd_modify_ticker_variables()
@@ -25,7 +23,6 @@ var/list/VVckey_edit = list("key", "ckey")
 		src << "Game hasn't started yet."
 	else
 		src.modify_variables(ticker)
-		feedback_add_details("admin_verb","ETV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/mod_list_add_ass() //haha
 
