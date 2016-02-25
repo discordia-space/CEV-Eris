@@ -304,16 +304,34 @@
 		else
 			return if_no_id
 
+//Trust me I'm an engineer
+//I think we'll put this shit right here
+var/list/rank_prefix = list(\
+	"Security Officer" = "Oper.",\
+	"Detective" = "Insp.",\
+	"Warden" = "Sgt.",\
+	"Head of Security" = "Lt.",\
+	"Captain" = "Capt.",\
+	)
+
+/mob/living/carbon/human/proc/rank_prefix_name(name)
+	if(get_id_rank())
+		if(findtext(name, " "))
+			name = copytext(name, findtext(name, " "))
+		name = get_id_rank() + name
+	return name
+
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
-	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
-		return get_id_name("Unknown")
-	if( head && (head.flags_inv&HIDEFACE) )
-		return get_id_name("Unknown")		//Likewise for hats
+	if((wear_mask && (wear_mask.flags_inv&HIDEFACE)) || (head && (head.flags_inv&HIDEFACE)))	//Wearing a mask which hides our face, use id-name if possible	//Likewise for hats
+		return rank_prefix_name(get_id_name())
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
-	if(id_name && (id_name != face_name))
-		return "[face_name] (as [id_name])"
+	if(id_name)
+		if(id_name != face_name)
+			return "[face_name] (as [rank_prefix_name(id_name)])"
+		else
+			return rank_prefix_name(id_name)
 	return face_name
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
@@ -335,6 +353,18 @@
 		if(I)
 			return I.registered_name
 	return
+
+/mob/living/carbon/human/proc/get_id_rank()
+	var/rank
+	if(istype(wear_id,/obj/item/device/pda))
+		var/obj/item/device/pda/P = wear_id
+		rank = P.ownjob
+	else if(wear_id)
+		var/obj/item/weapon/card/id/I = wear_id.GetID()
+		rank = I.rank
+	if(rank_prefix[rank])
+		return rank_prefix[rank]
+	return ""
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()

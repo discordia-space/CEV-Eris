@@ -219,6 +219,50 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 	glass = 1
 
+/* NEW AIRLOCKS BLOCK */
+
+/obj/machinery/door/airlock/maintenance_cargo
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_cargo.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_cargo
+
+/obj/machinery/door/airlock/maintenance_command
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_command.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_command
+
+/obj/machinery/door/airlock/maintenance_engineering
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_engi.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_engi
+
+/obj/machinery/door/airlock/maintenance_medical
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_med.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_med
+
+/obj/machinery/door/airlock/maintenance_rnd
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_rnd.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_rnd
+
+/obj/machinery/door/airlock/maintenance_security
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_sec.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_sec
+
+/obj/machinery/door/airlock/maintenance_common
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_common.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_common
+
+/obj/machinery/door/airlock/maintenance_interior
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/Doormaint_int.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_maint_int
+
+/* NEW AIRLOCKS BLOCK END */
+
 /obj/machinery/door/airlock/gold
 	name = "Gold Airlock"
 	icon = 'icons/obj/doors/Doorgold.dmi'
@@ -540,7 +584,7 @@ About the new airlock wires panel:
 			if(density && src.arePowerSystemsOn())
 				flick("door_deny", src)
 				if(secured_wires)
-					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+					playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
@@ -762,8 +806,10 @@ About the new airlock wires panel:
 				usr << "<span class='warning'>The panel is broken and cannot be closed.</span>"
 			else
 				src.p_open = 0
+				playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
 		else
 			src.p_open = 1
+			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
 		src.update_icon()
 	else if(istype(C, /obj/item/weapon/wirecutters))
 		return src.attack_hand(user)
@@ -980,6 +1026,7 @@ About the new airlock wires panel:
 	if (operating && !forced) return 0
 
 	src.locked = 1
+	playsound(src.loc, 'sound/machines/Custom_bolts.ogg', 50, 1, 7)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -993,6 +1040,7 @@ About the new airlock wires panel:
 		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS)) return
 
 	src.locked = 0
+	playsound(src.loc, 'sound/machines/Custom_boltsup.ogg', 50, 1, 7)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
