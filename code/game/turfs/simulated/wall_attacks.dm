@@ -309,6 +309,7 @@
 
 	if(istype(W,/obj/item/frame))
 		var/obj/item/frame/F = W
+		//world<<"click on wall"
 		F.try_build(src)
 		return
 
