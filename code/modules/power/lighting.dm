@@ -275,7 +275,7 @@
 		if(cmptext(base_state,"tube"))
 			atmosalarmed = 1
 			firealarmed = 0
-			brightness_color = "#3333FF"
+			brightness_color = "#6D6DFC"
 		update()
 
 /obj/machinery/light/proc/set_red()
