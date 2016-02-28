@@ -72,7 +72,6 @@
 	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>handcuff [H.name] ([H.ckey])</font>")
 	msg_admin_attack("[key_name(user)] handcuff [key_name(H)]")
-	feedback_add_details("handcuffs","H")
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(H)

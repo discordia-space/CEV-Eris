@@ -158,6 +158,7 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	var/needsound
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
 	var/brightness_range = 8	// luminosity when on, also used in power calculation
@@ -298,6 +299,14 @@
 /obj/machinery/light/proc/update(var/trigger = 1)
 
 	update_icon()
+
+	if(on == 1)
+		if(needsound == 1)
+			playsound(src.loc, 'sound/effects/Custom_lights.ogg', 65, 1)
+			needsound = 0
+	else
+		needsound = 1
+
 	if(on)
 		if(light_range != brightness_range || light_power != brightness_power || light_color != brightness_color)
 			switchcount++
