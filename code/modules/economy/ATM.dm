@@ -33,6 +33,7 @@ log transactions
 	var/editing_security_level = 0
 	var/view_screen = NO_SCREEN
 	var/datum/effect/effect/system/spark_spread/spark_system
+	var/updateflag = 0
 
 /obj/machinery/atm/New()
 	..()
@@ -43,6 +44,7 @@ log transactions
 
 /obj/machinery/atm/process()
 	if(stat & NOPOWER)
+		update_icon()
 		return
 
 	if(ticks_left_timeout > 0)
@@ -56,11 +58,23 @@ log transactions
 
 	for(var/obj/item/weapon/spacecash/S in src)
 		S.loc = src.loc
-		if(prob(50))
-			playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
-		else
-			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+		playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
 		break
+	update_icon()
+
+/obj/machinery/atm/power_change()
+	..()
+	update_icon()
+
+/obj/machinery/atm/update_icon()
+	if(stat & NOPOWER)
+		icon_state = "atm_off"
+		return
+	else if (held_card)
+		icon_state = "atm_cardin"
+	else
+		icon_state = "atm"
+
 
 /obj/machinery/atm/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
@@ -90,19 +104,17 @@ log transactions
 
 		var/obj/item/weapon/card/id/idcard = I
 		if(!held_card)
-			usr.drop_item()
-			idcard.loc = src
+			usr.unEquip(I,0,src)
+			//idcard.loc = src
 			held_card = idcard
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
 				authenticated_account = null
+		update_icon()
 	else if(authenticated_account)
 		if(istype(I,/obj/item/weapon/spacecash))
 			//consume the money
 			authenticated_account.money += I:worth
-			if(prob(50))
-				playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
-			else
-				playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+			playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
 
 			//create a transaction log entry
 			var/datum/transaction/T = new()
@@ -123,6 +135,8 @@ log transactions
 /obj/machinery/atm/attack_hand(mob/user as mob)
 	if(istype(user, /mob/living/silicon))
 		user << "\red \icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per system banking regulation #1005."
+		return
+	if (..())
 		return
 	if(get_dist(src,user) <= 1)
 
@@ -219,6 +233,8 @@ log transactions
 		user << browse(null,"window=atm")
 
 /obj/machinery/atm/Topic(var/href, var/href_list)
+	if (..())
+		return
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("transfer")
@@ -379,10 +395,7 @@ log transactions
 					R.overlays += stampoverlay
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
-				if(prob(50))
-					playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
-				else
-					playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+				playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
 			if ("print_transaction")
 				if(authenticated_account)
 					var/obj/item/weapon/paper/R = new(src.loc)
@@ -421,10 +434,7 @@ log transactions
 					R.overlays += stampoverlay
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
-				if(prob(50))
-					playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
-				else
-					playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+				playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
 
 			if("insert_card")
 				if(!held_card)
@@ -482,11 +492,4 @@ log transactions
 	if(ishuman(human_user) && !human_user.get_active_hand())
 		human_user.put_in_hands(held_card)
 	held_card = null
-
-
-/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
-	var/obj/item/weapon/spacecash/ewallet/E = new /obj/item/weapon/spacecash/ewallet(loc)
-	if(ishuman(human_user) && !human_user.get_active_hand())
-		human_user.put_in_hands(E)
-	E.worth = sum
-	E.owner_name = authenticated_account.owner_name
+	update_icon()
