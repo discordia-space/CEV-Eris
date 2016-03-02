@@ -161,10 +161,3 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	..(user)
 	if (!(user in view(2)) && user!=src.loc) return
 	user << "\blue Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth]."
-
-proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
-	var/obj/item/weapon/spacecash/ewallet/E = new /obj/item/weapon/spacecash/ewallet(loc)
-	if(ishuman(human_user) && !human_user.get_active_hand())
-		human_user.put_in_hands(E)
-	E.worth = sum
-	E.owner_name = authenticated_account.owner_name

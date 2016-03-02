@@ -64,6 +64,10 @@ log transactions
 
 /obj/machinery/atm/power_change()
 	..()
+	if (held_card && !powered(0))
+		held_card.loc = src.loc
+		authenticated_account = null
+		held_card = null
 	update_icon()
 
 /obj/machinery/atm/update_icon()
@@ -94,7 +98,9 @@ log transactions
 
 /obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/card))
-		if(emagged > 0)
+		if(stat & NOPOWER)
+			return
+		if(emagged)
 			//prevent inserting id into an emagged ATM
 			user << "\red \icon[src] CARD READER ERROR. This system has been compromised!"
 			return
@@ -111,6 +117,8 @@ log transactions
 				authenticated_account = null
 		update_icon()
 	else if(authenticated_account)
+		if(stat & NOPOWER)
+			return
 		if(istype(I,/obj/item/weapon/spacecash))
 			//consume the money
 			authenticated_account.money += I:worth
@@ -493,3 +501,10 @@ log transactions
 		human_user.put_in_hands(held_card)
 	held_card = null
 	update_icon()
+
+/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
+	var/obj/item/weapon/spacecash/ewallet/E = new /obj/item/weapon/spacecash/ewallet(loc)
+	if(ishuman(human_user) && !human_user.get_active_hand())
+		human_user.put_in_hands(E)
+	E.worth = sum
+	E.owner_name = authenticated_account.owner_name
