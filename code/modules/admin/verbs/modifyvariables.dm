@@ -1,4 +1,4 @@
-var/list/forbidden_varedit_object_types = list(
+/client/var/global/list/forbidden_varedit_object_types = list(
 										/datum/admins,						//Admins editing their own admin-power object? Yup, sounds like a good idea.,
 										/obj/machinery/blackbox_recorder,	//Prevents people messing with feedback gathering,
 									)
@@ -583,6 +583,6 @@ var/list/VVckey_edit = list("key", "ckey")
 		if("marked datum")
 			O.vars[variable] = holder.marked_datum
 
-	world.log << "### VarEdit by [src]: [O.type] [variable]=[html_encode("[O.vars[variable]]")]"
+	world.log << "### VarEdit by [src]: [O.type] [variable]=[rhtml_encode("[O.vars[variable]]")]"
 	log_admin("[key_name(src)] modified [original_name]'s [variable] to [O.vars[variable]]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s [variable] to [O.vars[variable]]")

@@ -39,6 +39,7 @@ REAGENT SCANNER
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
+	flick("health2", src)
 	user.visible_message("<span class='notice'>[user] has analyzed [M]'s vitals.</span>","<span class='notice'>You have analyzed [M]'s vitals.</span>")
 
 	if (!istype(M,/mob/living/carbon/human) || M.isSynthetic())
@@ -207,7 +208,7 @@ REAGENT SCANNER
 	var/air = user.return_air()
 	if (!air)
 		return
-
+	flick("atmos2", src)
 	return atmosanalyzer_scan(src, air, user)
 
 /obj/item/device/analyzer/attack_self(mob/user as mob)
