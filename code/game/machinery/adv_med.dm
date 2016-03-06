@@ -3,6 +3,7 @@
 
 /obj/machinery/bodyscanner
 	var/mob/living/carbon/occupant
+	var/obj/machinery/body_scanconsole/connected
 	var/locked
 	name = "Body Scanner"
 	icon = 'icons/obj/Cryogenic2.dmi'
@@ -167,9 +168,9 @@
 
 /obj/machinery/body_scanconsole/New()
 	..()
-	spawn( 5 )
+	spawn(5)
 		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
-		return
+		connected.connected = src
 	return
 
 
@@ -418,19 +419,21 @@
 
 /obj/machinery/bodyscanner/update_icon()
 	if(stat & (NOPOWER|BROKEN))
-		icon_state = "scanner_open"
+		icon_state = "scanner_off"
 	else
+		if(connected)
+			connected.update_icon()
 		if(occupant)
 			if(occupant.health>=100)
 				icon_state = "scanner_green"
 			else if(occupant.health>=0)
 				icon_state = "scanner_yellow"
-			else if(occupant.health>=-190)
+			else if(occupant.health>=-90)
 				icon_state = "scanner_red"
-			else if(occupant.health<=190)
+			else
 				icon_state = "scanner_death"
-			else icon_state = "scanner_off"
-		else icon_state = "scanner_open"
+		else
+			icon_state = "scanner_open"
 
 /obj/machinery/body_scanconsole/update_icon()
 	if(stat & (NOPOWER|BROKEN))
@@ -438,13 +441,11 @@
 	else
 		if(connected)
 			if(connected.occupant)
-				if(connected.occupant.health>=0)
-					icon_state = "scanner_terminal_green"
 				if(connected.occupant.health>=100)
-					icon_state = "scanner_terminal_blue"
-				if(connected.occupant.health<0)
+					icon_state = "scanner_terminal_green"
+				else if(connected.occupant.health>=-90)
 					icon_state = "scanner_terminal_red"
-				if(connected.occupant.health<=-190)
+				else
 					icon_state = "scanner_terminal_dead"
 			else
 				icon_state = "scanner_terminal_blue"
