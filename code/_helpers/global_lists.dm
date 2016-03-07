@@ -37,6 +37,9 @@ var/global/list/poster_designs = list()
 var/list/obj/item/device/uplink/world_uplinks = list()
 
 //Preferences stuff
+	//Bodybuilds
+var/global/list/male_body_builds = list()
+var/global/list/female_body_builds = list()
 	//Hairstyles
 var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
 var/global/list/hair_styles_male_list = list()
