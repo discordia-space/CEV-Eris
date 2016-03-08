@@ -206,7 +206,7 @@
 		return
 	else if(istype(W, /obj/item/weapon/screwdriver))
 		if (src.panel_open)
-			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
+			playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
 			src.panel_open = !src.panel_open
 			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
 			src.overlays.Cut()
@@ -215,7 +215,7 @@
 			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 			return
 		else
-			playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
+			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
 			src.panel_open = !src.panel_open
 			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
 			src.overlays.Cut()
