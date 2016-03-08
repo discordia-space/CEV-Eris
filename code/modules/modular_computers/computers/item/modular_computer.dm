@@ -304,7 +304,6 @@
 	if(..())
 		return 1
 	keyboardsound(usr)
-	usr << "deb1"
 	if( href_list["PC_exit"] )
 		kill_program()
 		return 1
