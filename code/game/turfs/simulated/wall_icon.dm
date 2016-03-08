@@ -47,13 +47,13 @@
 
 	if(!density)
 		I = image('icons/turf/wall_masks.dmi', "[material.icon_base]fwall_open")
-		I.color = material.icon_colour
+		I.color = istype(material, /material/plasteel) ? "#636769" : material.icon_colour
 		overlays += I
 		return
 
 	for(var/i = 1 to 4)
 		I = image('icons/turf/wall_masks.dmi', "[material.icon_base][wall_connections[i]]", dir = 1<<(i-1))
-		I.color = material.icon_colour
+		I.color = istype(material, /material/plasteel) ? "#636769" : material.icon_colour
 		overlays += I
 
 	if(reinf_material)

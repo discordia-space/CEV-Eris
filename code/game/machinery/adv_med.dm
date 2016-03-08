@@ -3,6 +3,7 @@
 
 /obj/machinery/bodyscanner
 	var/mob/living/carbon/occupant
+	var/obj/machinery/body_scanconsole/connected
 	var/locked
 	name = "Body Scanner"
 	icon = 'icons/obj/Cryogenic2.dmi'
@@ -50,7 +51,7 @@
 	usr.loc = src
 	src.occupant = usr
 	update_use_power(2)
-	src.icon_state = "body_scanner_1"
+	update_icon()
 	for(var/obj/O in src)
 		//O = null
 		qdel(O)
@@ -70,7 +71,7 @@
 	src.occupant.loc = src.loc
 	src.occupant = null
 	update_use_power(1)
-	src.icon_state = "body_scanner_0"
+	update_icon()
 	return
 
 /obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
@@ -89,7 +90,9 @@
 	M.loc = src
 	src.occupant = M
 	update_use_power(2)
-	src.icon_state = "body_scanner_1"
+	playsound(src.loc, 'sound/machines/medbayscanner1.ogg', 75, 0)
+	update_icon()
+
 	for(var/obj/O in src)
 		O.loc = src.loc
 		//Foreach goto(154)
@@ -97,6 +100,9 @@
 	//G = null
 	qdel(G)
 	return
+
+/obj/machinery/bodyscanner/process() //govnocode
+	update_icon()
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
@@ -146,14 +152,7 @@
 
 /obj/machinery/body_scanconsole/power_change()
 	..()
-	if(stat & BROKEN)
-		icon_state = "body_scannerconsole-p"
-	else
-		if (stat & NOPOWER)
-			spawn(rand(0, 15))
-				src.icon_state = "body_scannerconsole-p"
-		else
-			icon_state = initial(icon_state)
+	update_icon()
 
 /obj/machinery/body_scanconsole
 	var/obj/machinery/bodyscanner/connected
@@ -169,33 +168,11 @@
 
 /obj/machinery/body_scanconsole/New()
 	..()
-	spawn( 5 )
+	spawn(5)
 		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
-		return
+		connected.connected = src
 	return
 
-/*
-
-/obj/machinery/body_scanconsole/process() //not really used right now
-	if(stat & (NOPOWER|BROKEN))
-		return
-	//use_power(250) // power stuff
-
-//	var/mob/M //occupant
-//	if (!( src.status )) //remove this
-//		return
-//	if ((src.connected && src.connected.occupant)) //connected & occupant ok
-//		M = src.connected.occupant
-//	else
-//		if (istype(M, /mob))
-//		//do stuff
-//		else
-///			src.temphtml = "Process terminated due to lack of occupant in scanning chamber."
-//			src.status = null
-//	src.updateDialog()
-//	return
-
-*/
 
 /obj/machinery/body_scanconsole/attack_ai(user as mob)
 	return src.attack_hand(user)
@@ -436,3 +413,41 @@
 	if(occ["sdisabilities"] & NEARSIGHTED)
 		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat
+
+
+
+
+/obj/machinery/bodyscanner/update_icon()
+	if(stat & (NOPOWER|BROKEN))
+		icon_state = "scanner_off"
+	else
+		if(connected)
+			connected.update_icon()
+		if(occupant)
+			if(occupant.health>=100)
+				icon_state = "scanner_green"
+			else if(occupant.health>=0)
+				icon_state = "scanner_yellow"
+			else if(occupant.health>=-90)
+				icon_state = "scanner_red"
+			else
+				icon_state = "scanner_death"
+		else
+			icon_state = "scanner_open"
+
+/obj/machinery/body_scanconsole/update_icon()
+	if(stat & (NOPOWER|BROKEN))
+		icon_state = "scanner_terminal_off"
+	else
+		if(connected)
+			if(connected.occupant)
+				if(connected.occupant.health>=100)
+					icon_state = "scanner_terminal_green"
+				else if(connected.occupant.health>=-90)
+					icon_state = "scanner_terminal_red"
+				else
+					icon_state = "scanner_terminal_dead"
+			else
+				icon_state = "scanner_terminal_blue"
+		else
+			icon_state = "scanner_terminal_off"

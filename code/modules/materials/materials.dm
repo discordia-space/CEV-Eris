@@ -351,7 +351,7 @@ var/list/name_to_material
 	melting_point = 6000
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
-	icon_colour = "#636769"
+	icon_colour = "#777777"
 	explosion_resistance = 25
 	hardness = 80
 	weight = 23
