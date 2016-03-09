@@ -263,6 +263,7 @@ obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	..()
 
 obj/machinery/access_button/attack_hand(mob/user)
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	add_fingerprint(usr)
 	if(!allowed(user))
 		user << "<span class='warning'>Access Denied</span>"

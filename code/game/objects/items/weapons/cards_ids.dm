@@ -289,10 +289,10 @@ var/const/NO_EMAG_ACT = -50
 	icon_state = "id_cmo"
 
 /obj/item/weapon/card/id/det
-	icon_state = "id_det"
+	icon_state = "id_inspector"
 
 /obj/item/weapon/card/id/sec
-	icon_state = "id_sec"
+	icon_state = "id_operative"
 
 /obj/item/weapon/card/id/hos
 	icon_state = "id_hos"

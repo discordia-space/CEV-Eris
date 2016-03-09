@@ -119,3 +119,14 @@
 			qdel(src)
 	else
 		..()
+
+/obj/machinery/computer/Topic(href, href_list)
+	if(..())
+		return 1
+	keyboardsound(usr)
+	return 0
+
+/obj/proc/keyboardsound(mob/user as mob)
+	var/music = pick('sound/effects/keyboard/keyboard1.ogg','sound/effects/keyboard/keyboard2.ogg', 'sound/effects/keyboard/keyboard3.ogg', 'sound/effects/keyboard/keyboard4.ogg')
+	if(!issilicon(user))
+		playsound(src, music, 100, 1, 0)

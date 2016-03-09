@@ -31,7 +31,8 @@
 	var/secured_wires = 0
 	var/datum/wires/airlock/wires = null
 
-	var/open_sound_powered = 'sound/machines/airlock.ogg'
+	var/open_sound_powered = 'sound/machines/airlock_open.ogg'
+	var/close_sound = 'sound/machines/airlock_close.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
 
 	var/_wifi_id
@@ -84,7 +85,9 @@
 /obj/machinery/door/airlock/external
 	name = "External Airlock"
 	icon = 'icons/obj/doors/Doorext.dmi'
+	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_ext
+	glass = 1
 
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
@@ -1013,7 +1016,7 @@ About the new airlock wires panel:
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(arePowerSystemsOn())
-		playsound(src.loc, open_sound_powered, 100, 1)
+		playsound(src.loc, close_sound, 100, 1)
 	else
 		playsound(src.loc, open_sound_unpowered, 100, 1)
 

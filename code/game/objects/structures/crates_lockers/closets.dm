@@ -93,7 +93,7 @@
 
 	src.icon_state = src.icon_opened
 	src.opened = 1
-	playsound(src.loc, open_sound, 15, 1, -3)
+	playsound(src.loc, open_sound, 100, 1, -3)
 	density = 0
 	return 1
 
@@ -115,7 +115,7 @@
 	src.icon_state = src.icon_closed
 	src.opened = 0
 
-	playsound(src.loc, close_sound, 15, 1, -3)
+	playsound(src.loc, close_sound, 100, 1, -3)
 	density = 1
 	return 1
 

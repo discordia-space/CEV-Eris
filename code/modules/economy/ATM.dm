@@ -112,6 +112,7 @@ log transactions
 		if(!held_card)
 			usr.unEquip(I,0,src)
 			//idcard.loc = src
+			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
 			held_card = idcard
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
 				authenticated_account = null
@@ -460,7 +461,7 @@ log transactions
 			if("logout")
 				authenticated_account = null
 				//usr << browse(null,"window=atm")
-
+	playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
 	src.attack_hand(usr)
 
 //stolen wholesale and then edited a bit from newscasters, which are awesome and by Agouri
