@@ -28,9 +28,40 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 	level = 1
-    
+
 /turf/simulated/shuttle/plating/is_plating()
 	return 1
+
+/turf/simulated/floor/plating/under
+	name = "underplating"
+	icon = 'icons/turf/un.dmi'
+	icon_state = "4,6"
+	//style = "underplating"
+
+/turf/simulated/floor/plating/under/New()
+	..()
+	spawn(4)
+		if(src)
+			update_icon()
+			for(var/direction in alldirs)
+				if(istype(get_step(src,direction),/turf/simulated/floor))
+					var/turf/simulated/floor/FF = get_step(src,direction)
+					FF.update_icon() //so siding get updated properly
+
+/turf/simulated/floor/plating/under/Entered(mob/living/M as mob)
+	..()
+	for(var/obj/structure/catwalk/C in get_turf(src))
+		return
+
+	if(!ishuman(M) || !has_gravity(src))
+		return
+	if(M.m_intent == "run")
+		if(prob(75))
+			M.adjustBruteLoss(5)
+			M.weakened += 3
+			M << "<span class='warning'>You tripped over!</span>"
+			return
+
 
 /turf/simulated/shuttle/plating/vox //Skipjack plating
 	oxygen = 0

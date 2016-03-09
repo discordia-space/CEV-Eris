@@ -81,6 +81,31 @@
 	throw_range = 20
 	flags = CONDUCT
 
+/obj/item/stack/tile/techgrey
+	name = "grey techfloor tile"
+	singular_name = "grey techfloor tile"
+	desc = "Those could work as a pretty decent throwing weapon" //why?
+	icon_state = "techtile_grey"
+	force = 6.0
+	matter = list(DEFAULT_WALL_MATERIAL = 937.5)
+	throwforce = 15.0
+	throw_speed = 5
+	throw_range = 20
+	flags = CONDUCT
+
+/obj/item/stack/tile/techgrid
+	name = "grid techfloor tile"
+	singular_name = "grid techfloor tile"
+	icon_state = "techtile_grid"
+	desc = "Those could work as a pretty decent throwing weapon" //why?
+	force = 6.0
+	matter = list(DEFAULT_WALL_MATERIAL = 937.5)
+	throwforce = 15.0
+	throw_speed = 5
+	throw_range = 20
+	flags = CONDUCT
+
+
 /obj/item/stack/tile/floor_red
 	name = "red floor tile"
 	singular_name = "red floor tile"

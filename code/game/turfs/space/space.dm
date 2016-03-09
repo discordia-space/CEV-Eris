@@ -56,6 +56,20 @@
 			return
 		else
 			user << "<span class='warning'>The plating is going to need some support.</span>"
+			return
+	if (istype(C, /obj/item/stack/tile/techgrey) || istype(C, /obj/item/stack/tile/techgrid))// андерплайтинг строится тут
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			var/obj/item/stack/tile/S = C
+			if (S.get_amount() < 1)
+				return
+			qdel(L)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			S.use(1)
+			ChangeTurf(/turf/simulated/floor/plating/under)
+			return
+		else
+			user << "<span class='warning'>The plating is going to need some support.</span>"
 	return
 
 

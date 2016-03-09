@@ -899,7 +899,8 @@ FIRE ALARM
 		icon_state = "firep"
 		set_light(0)
 	else
-		if(!src.detecting)
+		var/area/area = get_area(src)
+		if(area.fire)
 			icon_state = "fire1"
 			set_light(l_range = 4, l_power = 2, l_color = COLOR_RED)
 		else

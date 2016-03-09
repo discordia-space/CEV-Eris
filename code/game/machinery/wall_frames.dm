@@ -70,7 +70,7 @@
 		return
 
 	var/turf/loc = get_turf(on_floor)
-	var/area/A = loc.loc
+	//var/area/A = loc.loc
 	/*if (!istype(loc, /turf/simulated/floor)) //TODO rework this
 		usr << "<span class='danger'>\The [src] Alarm cannot be placed on this spot.</span>"
 		return

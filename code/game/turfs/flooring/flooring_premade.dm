@@ -44,6 +44,17 @@
 	icon_state = "steel"
 	initial_flooring = /decl/flooring/tiling
 
+/turf/simulated/floor/tiled/techfloor
+	name = "techfloor gray"
+	icon = 'icons/turf/flooring/techfloor.dmi'
+	icon_state = "techfloor_gray"
+	initial_flooring = /decl/flooring/tiling/tech
+
+/turf/simulated/floor/tiled/techfloor/grid
+	name = "techfloor grid"
+	icon_state = "techfloor_grid"
+	initial_flooring = /decl/flooring/tiling/tech/grid
+
 /turf/simulated/floor/reinforced
 	name = "reinforced floor"
 	icon = 'icons/turf/flooring/tiles.dmi'

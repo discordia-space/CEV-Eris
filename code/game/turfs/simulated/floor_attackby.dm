@@ -58,14 +58,19 @@
 				return
 			var/obj/item/stack/S = C
 			var/decl/flooring/use_flooring
+			//world << S
 			for(var/flooring_type in flooring_types)
 				var/decl/flooring/F = flooring_types[flooring_type]
+				//world << "type: [F.type]"
+				//world << "build: [F.build_type]"
 				if(!F.build_type)
 					continue
 				if(ispath(S.type, F.build_type) || ispath(S.build_type, F.build_type))
 					use_flooring = F
+					//world << "[use_flooring]"
 					break
 			if(!use_flooring)
+				//world << "no usefl"
 				return
 			// Do we have enough?
 			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)
