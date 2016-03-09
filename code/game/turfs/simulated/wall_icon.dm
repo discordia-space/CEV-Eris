@@ -59,18 +59,18 @@
 	if(reinf_material)
 		if(construction_stage != null && construction_stage < 6)
 			I = image('icons/turf/wall_masks.dmi', "reinf_construct-[construction_stage]")
-			I.color = istype(material, /material/plasteel) ? "#636769" : reinf_material.icon_colour
+			I.color = istype(reinf_material, /material/plasteel) ? "#636769" : reinf_material.icon_colour
 			overlays += I
 		else
 			if("[reinf_material.icon_reinf]0" in icon_states('icons/turf/wall_masks.dmi'))
 				// Directional icon
 				for(var/i = 1 to 4)
 					I = image('icons/turf/wall_masks.dmi', "[reinf_material.icon_reinf][wall_connections[i]]", dir = 1<<(i-1))
-					I.color = istype(material, /material/plasteel) ? "#636769" : reinf_material.icon_colour
+					I.color = istype(reinf_material, /material/plasteel) ? "#636769" : reinf_material.icon_colour
 					overlays += I
 			else
 				I = image('icons/turf/wall_masks.dmi', reinf_material.icon_reinf)
-				I.color = istype(material, /material/plasteel) ? "#636769" : reinf_material.icon_colour
+				I.color = istype(reinf_material, /material/plasteel) ? "#636769" : reinf_material.icon_colour
 				overlays += I
 
 	if(damage != 0)
