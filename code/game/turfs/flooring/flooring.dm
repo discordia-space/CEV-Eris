@@ -65,11 +65,36 @@ var/list/flooring_types
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
-/decl/flooring/carpet/blue
+/decl/flooring/carpet/bcarpet
 	name = "carpet"
 	icon_base = "bcarpet"
-	build_type = null
-	flags = TURF_HAS_EDGES
+	build_type = /obj/item/stack/tile/carpet/bcarpet
+	//flags = TURF_HAS_EDGES
+
+/decl/flooring/carpet/blucarpet
+	icon_base = "blucarpet"
+	build_type = /obj/item/stack/tile/carpet/blucarpet
+
+/decl/flooring/carpet/turcarpet
+	icon_base = "turcarpet"
+	build_type = /obj/item/stack/tile/carpet/turcarpet
+
+/decl/flooring/carpet/sblucarpet
+	icon_base = "sblucarpet"
+	build_type = /obj/item/stack/tile/carpet/sblucarpet
+
+/decl/flooring/carpet/gaycarpet
+	icon_base = "gaycarpet"
+	build_type = /obj/item/stack/tile/carpet/gaycarpet
+
+/decl/flooring/carpet/purcarpet
+	icon_base = "purcarpet"
+	build_type = /obj/item/stack/tile/carpet/purcarpet
+
+/decl/flooring/carpet/oracarpet
+	icon_base = "oracarpet"
+	build_type = /obj/item/stack/tile/carpet/oracarpet
+
 
 /decl/flooring/tiling
 	name = "floor"

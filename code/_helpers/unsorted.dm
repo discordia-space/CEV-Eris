@@ -1313,7 +1313,7 @@ var/list/FLOORITEMS = list(
 			if(istype(O, text2path(item)))
 				if(O.pixel_x == 0 && O.pixel_y == 0)
 					return 1*/
-	world << "no item on floor!"
+	//world << "no item on floor!"
 	return 0
 
 

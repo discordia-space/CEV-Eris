@@ -65,7 +65,7 @@
 				//world << "build: [F.build_type]"
 				if(!F.build_type)
 					continue
-				if(ispath(S.type, F.build_type) || ispath(S.build_type, F.build_type))
+				if((ispath(S.type, F.build_type) || ispath(S.build_type, F.build_type)) && ((S.type == F.build_type) || (S.build_type == F.build_type)))
 					use_flooring = F
 					//world << "[use_flooring]"
 					break

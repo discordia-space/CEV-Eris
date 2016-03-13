@@ -69,6 +69,21 @@
 	throw_range = 20
 	flags = 0
 
+/obj/item/stack/tile/carpet/bcarpet
+	icon_state = "tile-bcarpet"
+/obj/item/stack/tile/carpet/blucarpet
+	icon_state = "tile-blucarpet"
+/obj/item/stack/tile/carpet/turcarpet
+	icon_state = "tile-turcarpet"
+/obj/item/stack/tile/carpet/sblucarpet
+	icon_state = "tile-sblucarpet"
+/obj/item/stack/tile/carpet/gaycarpet
+	icon_state = "tile-gaycarpet"
+/obj/item/stack/tile/carpet/purcarpet
+	icon_state = "tile-purcarpet"
+/obj/item/stack/tile/carpet/oracarpet
+	icon_state = "tile-oracarpet"
+
 /obj/item/stack/tile/floor
 	name = "floor tile"
 	singular_name = "floor tile"

@@ -143,7 +143,7 @@
 /obj/machinery/light_construct/floor //floorlight
 	name = "floorlight fixture frame"
 	icon_state = "floortube-construct-stage1"
-	layer = 2
+	layer = 2.5
 
 // the standard tube light fixture
 /obj/machinery/light
@@ -181,7 +181,7 @@
 	name = "floorlight fixture"
 	base_state = "floortube"
 	icon_state = "floortube1"
-	layer = 2
+	layer = 2.5
 
 /obj/machinery/light/small
 	icon_state = "bulb1"
