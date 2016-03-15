@@ -23,6 +23,7 @@
 	name = "floor"
 	icon_state = "floor"
 
+
 /turf/simulated/shuttle/plating
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'

@@ -55,6 +55,16 @@ var/list/flooring_types
 	icon_base = "asteroid"
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
+	//has_base_range = 3
+
+/decl/flooring/hull
+	name = "hull"
+	icon = 'icons/turf/flooring/hull.dmi'
+	icon_base = "hullcenter"
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON
+	build_type = null
+	has_base_range = 35
+	//try_update_icon = 0
 
 /decl/flooring/carpet
 	name = "carpet"

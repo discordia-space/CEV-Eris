@@ -68,6 +68,11 @@
 	icon = 'icons/turf/flooring/dirt.dmi'
 	icon_state = "dirt"
 
+/turf/simulated/floor/hull
+	name = "hull"
+	icon = 'icons/turf/flooring/hull.dmi'
+	icon_state = "hullcenter0"
+	initial_flooring = /decl/flooring/hull
 
 /turf/simulated/floor/tiled
 	name = "floor"
