@@ -268,4 +268,130 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/all_access/New()
 	access = get_access_ids()
 	..()
-    
+
+
+/obj/item/weapon/card/id/gold
+	name = "identification card"
+	icon_state = "gold"
+	item_state = "gold_id"
+
+/obj/item/weapon/card/id/sci
+	name = "identification card"
+	icon_state = "id_sci"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/gene
+	name = "identification card"
+	icon_state = "id_gene"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/chem
+	name = "identification card"
+	icon_state = "id_chem"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/med
+	name = "identification card"
+	icon_state = "id_med"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/sci
+	name = "identification card"
+	icon_state = "id_sci"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/viro
+	name = "identification card"
+	icon_state = "id_viro"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/heatlab
+	name = "identification card"
+	icon_state = "id_heatlab"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/rd
+	name = "identification card"
+	icon_state = "id_rd"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/cmo
+	name = "identification card"
+	icon_state = "id_cmo"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/det
+	name = "identification card"
+	icon_state = "id_det"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/sec
+	name = "identification card"
+	icon_state = "id_sec"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/hos
+	name = "identification card"
+	icon_state = "id_hos"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/hop
+	name = "identification card"
+	icon_state = "id_hop"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/ce
+	name = "identification card"
+	icon_state = "id_ce"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/engie
+	name = "identification card"
+	icon_state = "id_engie"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/atmos
+	name = "identification card"
+	icon_state = "id_atmos"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/qm
+	name = "identification card"
+	icon_state = "id_qm"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/hydro
+	name = "identification card"
+	icon_state = "id_hydro"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/chaplain
+	name = "identification card"
+	icon_state = "id_chaplain"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/black
+	name = "identification card"
+	icon_state = "id_black"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/dkgrey
+	name = "identification card"
+	icon_state = "id_dkgrey"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/ltgrey
+	name = "identification card"
+	icon_state = "id_ltgrey"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/white
+	name = "identification card"
+	icon_state = "id_white"
+	item_state = "card-id"
+
+/obj/item/weapon/card/id/blankwhite
+	name = "identification card"
+	icon_state = "id_blankwhite"
+	item_state = "card-id"
+
