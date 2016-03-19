@@ -37,6 +37,9 @@ var/global/list/poster_designs = list()
 var/list/obj/item/device/uplink/world_uplinks = list()
 
 //Preferences stuff
+	//Bodybuilds
+var/global/list/male_body_builds = list()
+var/global/list/female_body_builds = list()
 	//Hairstyles
 var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
 var/global/list/hair_styles_male_list = list()
@@ -72,6 +75,15 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 
 /proc/makeDatumRefLists()
 	var/list/paths
+
+	//Bodybuilds
+	paths = typesof(/datum/body_build)
+	for(var/path in paths)
+		var/datum/body_build/B = new path()
+		if (B.gender == FEMALE)
+			female_body_builds[B.name] = B
+		else
+			male_body_builds[B.name] = B
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
 	paths = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair

@@ -55,6 +55,7 @@ var/global/list/default_medbay_channels = list(
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
 	proc/set_frequency(new_frequency)
+
 		radio_controller.remove_object(src, frequency)
 		frequency = new_frequency
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
@@ -227,6 +228,7 @@ var/global/list/default_medbay_channels = list(
 
 	if(.)
 		nanomanager.update_uis(src)
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 /obj/item/device/radio/proc/autosay(var/message, var/from, var/channel) //BS12 EDIT
 	var/datum/radio_frequency/connection = null

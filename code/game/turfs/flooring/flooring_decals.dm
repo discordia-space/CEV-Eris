@@ -392,3 +392,27 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/sign/p
 	icon_state = "white_p"
+
+/obj/effect/floor_decal/techfloor
+	name = "techfloor edges"
+	icon_state = "techfloor_edges"
+
+/obj/effect/floor_decal/techfloor/corner
+	name = "techfloor corner"
+	icon_state = "techfloor_corners"
+
+/obj/effect/floor_decal/techfloor/orange
+	name = "techfloor edges"
+	icon_state = "techfloororange_edges"
+
+/obj/effect/floor_decal/techfloor/orange/corner
+	name = "techfloor corner"
+	icon_state = "techfloororange_corners"
+
+/obj/effect/floor_decal/techfloor/hole
+	name = "hole left"
+	icon_state = "techfloor_hole_left"
+
+/obj/effect/floor_decal/techfloor/hole/right
+	name = "hole right"
+	icon_state = "techfloor_hole_right"

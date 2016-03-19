@@ -57,6 +57,7 @@
 			user << "<span class='notice'>You put [I] in [src].</span>"
 			if(oxygentanks < 5)
 				update_icon()
+			playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 		else
 			user << "<span class='notice'>[src] is full.</span>"
 		updateUsrDialog()
@@ -70,6 +71,7 @@
 			user << "<span class='notice'>You put [I] in [src].</span>"
 			if(oxygentanks < 6)
 				update_icon()
+			playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 		else
 			user << "<span class='notice'>[src] is full.</span>"
 		updateUsrDialog()
@@ -99,6 +101,7 @@
 				O.loc = loc
 				usr << "<span class='notice'>You take [O] out of [src].</span>"
 				oxygentanks--
+				playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 				update_icon()
 		if(href_list["phoron"])
 			if(phorontanks > 0)
@@ -111,6 +114,7 @@
 				P.loc = loc
 				usr << "<span class='notice'>You take [P] out of [src].</span>"
 				phorontanks--
+				playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 				update_icon()
 		add_fingerprint(usr)
 		updateUsrDialog()

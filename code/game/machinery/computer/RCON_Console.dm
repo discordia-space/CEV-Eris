@@ -28,7 +28,8 @@
 // Parameters: 1 (user - Person which clicked this computer)
 // Description: Opens UI of this machine.
 /obj/machinery/computer/rcon/attack_hand(var/mob/user as mob)
-	..()
+	if(..())
+		return
 	ui_interact(user)
 
 // Proc: ui_interact()

@@ -162,7 +162,7 @@
 
 /mob/proc/is_physically_disabled()
 	return incapacitated(INCAPACITATION_DISABLED)
-	
+
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if ((incapacitation_flags & INCAPACITATION_DISABLED) && (stat || paralysis || stunned || weakened || resting || sleeping || (status_flags & FAKEDEATH)))
 		return 1
@@ -355,7 +355,7 @@
 	set src in usr
 	if(usr != src)
 		usr << "No."
-	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)
+	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",rhtml_decode(flavor_text)) as message|null, extra = 0)
 
 	if(msg != null)
 		flavor_text = msg
@@ -367,7 +367,8 @@
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
-		var/msg = replacetext(flavor_text, "\n", " ")
+		var/msg = trim(replacetext(flavor_text, "\n", " "))
+		if(!msg) return ""
 		if(lentext(msg) <= 40)
 			return "\blue [msg]"
 		else
@@ -394,7 +395,8 @@
 		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
 		return
 	else if(!MayRespawn(1, config.respawn_delay))
-		return
+		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
+			return
 
 	usr << "You can respawn now, enjoy your new life!"
 
@@ -548,8 +550,9 @@
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(usr, "[name]")
+		if(src in view(usr))
+			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, cp1251_to_utf8(replacetext(flavor_text, "\n", "<BR>"))), text("window=[];size=500x200", name))
+			onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
 //	..()
@@ -995,13 +998,13 @@ mob/proc/yank_out_object()
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U
 			human_user.bloody_hands(H)
-			
+
 	else if(issilicon(src))
 		var/mob/living/silicon/robot/R = src
 		R.embedded -= selection
 		R.adjustBruteLoss(5)
 		R.adjustFireLoss(10)
-	
+
 	selection.forceMove(get_turf(src))
 	if(!(U.l_hand && U.r_hand))
 		U.put_in_hands(selection)

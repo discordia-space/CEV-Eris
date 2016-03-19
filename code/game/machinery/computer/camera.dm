@@ -92,8 +92,8 @@
 		if (src.z > 6)
 			user << "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!"
 			return
-		if(stat & (NOPOWER|BROKEN))	return
-
+		if(..())
+			return
 		if(!isAI(user))
 			user.set_machine(src)
 		ui_interact(user)

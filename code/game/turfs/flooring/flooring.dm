@@ -55,6 +55,16 @@ var/list/flooring_types
 	icon_base = "asteroid"
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
+	//has_base_range = 3
+
+/decl/flooring/hull
+	name = "hull"
+	icon = 'icons/turf/flooring/hull.dmi'
+	icon_base = "hullcenter"
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON
+	build_type = null
+	has_base_range = 35
+	//try_update_icon = 0
 
 /decl/flooring/carpet
 	name = "carpet"
@@ -65,11 +75,36 @@ var/list/flooring_types
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
-/decl/flooring/carpet/blue
+/decl/flooring/carpet/bcarpet
 	name = "carpet"
 	icon_base = "bcarpet"
-	build_type = null
-	flags = TURF_HAS_EDGES
+	build_type = /obj/item/stack/tile/carpet/bcarpet
+	//flags = TURF_HAS_EDGES
+
+/decl/flooring/carpet/blucarpet
+	icon_base = "blucarpet"
+	build_type = /obj/item/stack/tile/carpet/blucarpet
+
+/decl/flooring/carpet/turcarpet
+	icon_base = "turcarpet"
+	build_type = /obj/item/stack/tile/carpet/turcarpet
+
+/decl/flooring/carpet/sblucarpet
+	icon_base = "sblucarpet"
+	build_type = /obj/item/stack/tile/carpet/sblucarpet
+
+/decl/flooring/carpet/gaycarpet
+	icon_base = "gaycarpet"
+	build_type = /obj/item/stack/tile/carpet/gaycarpet
+
+/decl/flooring/carpet/purcarpet
+	icon_base = "purcarpet"
+	build_type = /obj/item/stack/tile/carpet/purcarpet
+
+/decl/flooring/carpet/oracarpet
+	icon_base = "oracarpet"
+	build_type = /obj/item/stack/tile/carpet/oracarpet
+
 
 /decl/flooring/tiling
 	name = "floor"
@@ -82,6 +117,18 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
+
+/decl/flooring/tiling/tech
+	name = "techfloor"
+	desc = "Scuffed from the passage of countless greyshirts."
+	icon = 'icons/turf/flooring/techfloor.dmi'
+	icon_base = "techfloor_gray"
+	build_type = /obj/item/stack/tile/techgrey
+	can_paint = null
+
+/decl/flooring/tiling/tech/grid
+	icon_base = "techfloor_grid"
+	build_type = /obj/item/stack/tile/techgrid
 
 /decl/flooring/linoleum
 	name = "linoleum"

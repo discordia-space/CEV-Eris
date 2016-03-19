@@ -11,6 +11,8 @@
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
+	body_build = get_body_build(gender)
+
 	if(!dna)
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
@@ -670,12 +672,12 @@ var/list/rank_prefix = list(\
 				src << browse(null, "window=flavor_changes")
 				return
 			if("general")
-				var/msg = sanitize(input(usr,"Update the general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]])) as message, extra = 0)
-				flavor_texts[href_list["flavor_change"]] = msg
+				var/msg = input(usr,"Update the general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",rhtml_decode(edit_cp1251(flavor_texts["general"]))) as message
+				flavor_texts[href_list["flavor_change"]] = post_edit_cp1251(sanitize(msg, extra = 0))
 				return
 			else
-				var/msg = sanitize(input(usr,"Update the flavor text for your [href_list["flavor_change"]].","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]])) as message, extra = 0)
-				flavor_texts[href_list["flavor_change"]] = msg
+				var/msg = input(usr,"Update the flavor text for your [href_list["flavor_change"]].","Flavor Text",rhtml_decode(edit_cp1251(flavor_texts[href_list["flavor_change"]]))) as message
+				flavor_texts[href_list["flavor_change"]] = post_edit_cp1251(sanitize(msg, extra = 0))
 				set_flavor()
 				return
 	..()
@@ -1269,37 +1271,45 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
-	var/head_exposed = 1
-	var/face_exposed = 1
-	var/eyes_exposed = 1
-	var/torso_exposed = 1
-	var/arms_exposed = 1
-	var/legs_exposed = 1
-	var/hands_exposed = 1
-	var/feet_exposed = 1
+	var/list/exposed = list( \
+	"head" = 1,\
+	"face" = 1,\
+	"eyes" = 1,\
+	"torso" = 1,\
+	"arms" = 1,\
+	"legs" = 1,\
+	"hands" = 1,\
+	"feet" = 1\
+	)
 
 	for(var/obj/item/clothing/C in equipment)
 		if(C.body_parts_covered & HEAD)
-			head_exposed = 0
+			exposed["head"] = 0
 		if(C.body_parts_covered & FACE)
-			face_exposed = 0
+			exposed["face"] = 0
 		if(C.body_parts_covered & EYES)
-			eyes_exposed = 0
+			exposed["eyes"] = 0
+			exposed["mech_eyes"] = 0
+		else
+			var/obj/item/organ/eyes/E = src.internal_organs_by_name["eyes"]
+			if( E && E.robotic >= 2 ) 	exposed["eyes"] = 0
+			else					exposed["mech_eyes"] = 0
 		if(C.body_parts_covered & UPPER_TORSO)
-			torso_exposed = 0
+			exposed["torso"] = 0
 		if(C.body_parts_covered & ARMS)
-			arms_exposed = 0
+			exposed["arms"] = 0
 		if(C.body_parts_covered & HANDS)
-			hands_exposed = 0
+			exposed["hands"] = 0
 		if(C.body_parts_covered & LEGS)
-			legs_exposed = 0
+			exposed["legs"] = 0
 		if(C.body_parts_covered & FEET)
-			feet_exposed = 0
+			exposed["feet"] = 0
 
-	flavor_text = ""
+	flavor_text = flavor_texts["general"]
+	flavor_text += "\n\n"
 	for (var/T in flavor_texts)
 		if(flavor_texts[T] && flavor_texts[T] != "")
-			if((T == "general") || (T == "head" && head_exposed) || (T == "face" && face_exposed) || (T == "eyes" && eyes_exposed) || (T == "torso" && torso_exposed) || (T == "arms" && arms_exposed) || (T == "hands" && hands_exposed) || (T == "legs" && legs_exposed) || (T == "feet" && feet_exposed))
+			if( exposed[T] )
 				flavor_text += flavor_texts[T]
 				flavor_text += "\n\n"
 	if(!shrink)

@@ -46,6 +46,8 @@
 	ui_interact(user)
 
 /obj/machinery/computer/station_alert/attack_hand(mob/user)
+	if(..())
+		return
 	ui_interact(user)
 
 /obj/machinery/computer/station_alert/ui_interact(mob/user)

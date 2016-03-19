@@ -20,7 +20,7 @@
 	if(transforming)
 		user << "<span class = 'warning'>You can't fire while [src] transforming!</span>"
 		return
-	if(!(current_fire - last_fire >= 50))
+	if(!(current_fire - last_fire >= 200))
 		user << "<span class = 'warning'>[src] is recharging</span>"
 		return
 
@@ -41,44 +41,46 @@
 	s.set_up(4, 1, user)
 	s.start()
 
+	var/turf/AtomTurf = get_turf(A)
+	var/turf/UserTurf = get_turf(user)
 	if(mode)
-		for(var/obj/O in get_turf(user))
+		for(var/obj/O in UserTurf)
 			if(!O.anchored)
 				if(prob(10))
 					O.loc = pick(orange(24,user))
 				else
 					//O.Move(A.x, A.y)//A.loc
 					//world << O
-					O.loc = get_turf(A)
+					O.loc = AtomTurf
 					//O.Move(TA)
 
-		for(var/mob/M in get_turf(user))
+		for(var/mob/M in UserTurf)
 			if(prob(10))
 				M.loc = pick(orange(24,user))
 			else
 				//M.Move(A.x, A.y)
 				//world << M
-				M.loc = get_turf(A)
+				M.loc = AtomTurf
 				//M.Move(TA)
 
 	else
-		for(var/obj/O in get_turf(A))
+		for(var/obj/O in AtomTurf)
 			if(!O.anchored)
 				if(prob(10))
 					O.loc = pick(orange(24,user))
 				else
 					//O.Move(user.x, user.y)
 					//world << O
-					O.loc = get_turf(user)
+					O.loc = UserTurf
 					//O.Move(TU)
 
-		for(var/mob/M in get_turf(A))
+		for(var/mob/M in AtomTurf)
 			if(prob(10))
 				M.loc = pick(orange(24,user))
 			else
 				//M.Move(user.x, user.y)
 				//world << M
-				M.loc = get_turf(user)
+				M.loc = UserTurf
 				//M.Move(TU)
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)

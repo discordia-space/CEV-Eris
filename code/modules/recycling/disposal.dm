@@ -312,6 +312,7 @@
 		usr << browse(null, "window=disposal")
 		usr.unset_machine()
 		return
+	playsound(usr.loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return
 
 // eject the contents of the disposal unit

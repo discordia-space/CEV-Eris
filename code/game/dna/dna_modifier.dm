@@ -268,7 +268,7 @@
 	for(var/i=0;i<3;i++)
 		buffers[i+1]=new /datum/dna2/record
 	spawn(5)
-		for(dir in list(NORTH,EAST,SOUTH,WEST))
+		for(var/dir in list(NORTH,EAST,SOUTH,WEST))
 			connected = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
 			if(!isnull(connected))
 				break

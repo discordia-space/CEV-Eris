@@ -27,7 +27,7 @@
 
 /obj/machinery/computer/operating/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(..())
 		return
 	interact(user)
 
@@ -81,3 +81,4 @@
 /obj/machinery/computer/operating/process()
 	if(..())
 		src.updateDialog()
+

@@ -322,7 +322,7 @@ var/list/name_to_material
 	integrity = 150
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
-	icon_colour = "#666666"
+	icon_colour = "#636769"
 
 /material/diona
 	name = "biomass"

@@ -62,7 +62,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "the captain"
 	selection_color = "#ddddff"
-	idtype = /obj/item/weapon/card/id/silver
+	idtype = /obj/item/weapon/card/id/hop
 	req_admin_notify = 1
 	minimal_player_age = 10
 	economic_modifier = 10

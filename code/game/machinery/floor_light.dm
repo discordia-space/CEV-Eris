@@ -44,7 +44,7 @@ var/list/floor_light_cache = list()
 		if(on)
 			user << "<span class='warning'>\The [src] must be turn off to change a color.</span>"
 			return
-		var/new_light_colour = input("Please select color.", "Facial Hair Color", rgb(255,255,255)) as color|null
+		var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
 		default_light_colour = new_light_colour
 		update_brightness()
 	else if(W.force && user.a_intent == "hurt")
