@@ -23,19 +23,18 @@
 	minimal_player_age = 14
 	ideal_character_age = 50
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/rd(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/research_director(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/rd(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/weapon/clipboard(H), slot_l_hand)
-		switch(H.backbag)
-			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/toxins(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_tox(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
-		return 1
+	uniform = /obj/item/clothing/under/rank/research_director
+	pda = /obj/item/device/pda/heads/rd
+	ear = /obj/item/device/radio/headset/heads/rd
+	shoes = /obj/item/clothing/shoes/brown
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat
+	hand = /obj/item/weapon/clipboard
+
+	backpacks = list(
+		/obj/item/weapon/storage/backpack/toxins,\
+		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack/satchel
+		)
 
 
 
@@ -57,18 +56,18 @@
 
 	minimal_player_age = 14
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/science(H), slot_belt)
-		switch(H.backbag)
-			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/toxins(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_tox(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/science(H), slot_wear_suit)
-		return 1
+	uniform = /obj/item/clothing/under/rank/scientist
+	pda = /obj/item/device/pda/science
+	ear = /obj/item/device/radio/headset/headset_sci
+	shoes = /obj/item/clothing/shoes/white
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
+
+	backpacks = list(
+		/obj/item/weapon/storage/backpack/toxins,\
+		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack/satchel
+		)
+
 
 /datum/job/xenobiologist
 	title = "Xenobiologist"
@@ -87,18 +86,18 @@
 
 	minimal_player_age = 14
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H) return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/science(H), slot_belt)
-		switch(H.backbag)
-			if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/toxins(H), slot_back)
-			if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_tox(H), slot_back)
-			if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/science(H), slot_wear_suit)
-		return 1
+	uniform = /obj/item/clothing/under/rank/scientist
+	pda = /obj/item/device/pda/science
+	ear = /obj/item/device/radio/headset/headset_sci
+	shoes = /obj/item/clothing/shoes/white
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
+
+	backpacks = list(
+		/obj/item/weapon/storage/backpack/toxins,\
+		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack/satchel
+		)
+
 
 /datum/job/roboticist
 	title = "Roboticist"
@@ -118,14 +117,8 @@
 
 	minimal_player_age = 7
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), slot_l_ear)
-		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
-		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/roboticist(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/roboticist(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/toolbox/mechanical(H), slot_l_hand)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
-		return 1
+	uniform = /obj/item/clothing/under/rank/roboticist
+	pda = /obj/item/device/pda/roboticist
+	ear = /obj/item/device/radio/headset/headset_sci
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat
+	hand = /obj/item/weapon/storage/toolbox/mechanical

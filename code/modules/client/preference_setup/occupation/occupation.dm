@@ -54,7 +54,7 @@
 		if(alt_title && !(alt_title in job.alt_titles))
 			pref.player_alt_titles -= job.title
 
-/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 16, list/splitJobs = list("Chief Medical Officer"))
+/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 18, list/splitJobs = list("Chief Medical Officer"))
 	if(!job_master)
 		return
 
@@ -204,6 +204,7 @@
 			pref.job_civilian_high = 0
 			pref.job_medsci_high = 0
 			pref.job_engsec_high = 0
+			pref.high_job_title = ""
 			return 1
 		if(2)//Set current highs to med, then reset them
 			pref.job_civilian_med |= pref.job_civilian_high
@@ -212,6 +213,7 @@
 			pref.job_civilian_high = 0
 			pref.job_medsci_high = 0
 			pref.job_engsec_high = 0
+			pref.high_job_title = job.title
 
 	switch(job.department_flag)
 		if(CIVILIAN)

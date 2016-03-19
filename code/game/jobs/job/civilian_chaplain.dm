@@ -13,16 +13,14 @@
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	minimal_access = list(access_morgue, access_chapel_office, access_crematorium)
 	alt_titles = list("Counselor")
-
+	uniform = /obj/item/clothing/under/rank/chaplain
+	pda = /obj/item/device/pda/chaplain
 
 	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
+		if(!..())	return 0
 
 		var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT
 		H.equip_to_slot_or_del(B, slot_l_hand)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/chaplain(H), slot_belt)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 		spawn(0)
 			var/religion_name = "Christianity"
 			var/new_religion = sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Christianity, in SPACE.", "Name change", religion_name), MAX_NAME_LEN)

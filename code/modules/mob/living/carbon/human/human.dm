@@ -181,6 +181,21 @@
 	L.part = affected
 	L.implanted(src)
 
+/mob/living/carbon/human/proc/implant(var/implant_type = /obj/item/weapon/implant/loyalty)
+	var/obj/item/weapon/implant/L = new implant_type(src)
+	if(!istype(L, /obj/item/weapon/implant))
+		del(L)
+		return 0
+
+// TODO: replace with    L.implanted(src, "head")
+
+	L.imp_in = src
+	L.implanted = 1
+	var/obj/item/organ/external/affected = get_organ("head")
+	affected.implants += L
+	L.part = affected
+	L.implanted(src)
+
 /mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
 	for(var/L in M.contents)
 		if(istype(L, /obj/item/weapon/implant/loyalty))
