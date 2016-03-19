@@ -934,7 +934,7 @@
 			else
 				locked = !locked
 				update_icon()
-
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 0
 
 /obj/machinery/power/apc/proc/toggle_breaker()

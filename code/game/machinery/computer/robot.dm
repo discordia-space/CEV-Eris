@@ -14,6 +14,8 @@
 	ui_interact(user)
 
 /obj/machinery/computer/robotics/attack_hand(var/mob/user as mob)
+	if(..())
+		return
 	ui_interact(user)
 
 /obj/machinery/computer/robotics/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)

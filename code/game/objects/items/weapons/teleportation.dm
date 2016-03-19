@@ -163,6 +163,7 @@ Frequency:
 		if(PO.creator == src)	count++
 	if(count >= 3)
 		user.show_message("<span class='notice'>\The [src] is recharging!</span>")
+		flick("hand_tele_recharging",src)
 		return
 	var/T = L[t1]
 	for(var/mob/O in hearers(user, null))

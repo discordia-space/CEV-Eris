@@ -77,6 +77,7 @@
 		user << "<span class='danger'>[src] can tell you nothing about \the [target].</span>"
 		return
 
+	flick("hydro2", src)
 	form_title = "[grown_seed.seed_name] (#[grown_seed.uid])"
 	var/dat = "<h3>Plant data for [form_title]</h3>"
 	user.visible_message("<span class='notice'>[user] runs the scanner over \the [target].</span>")

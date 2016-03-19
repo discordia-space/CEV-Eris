@@ -190,7 +190,7 @@
 	del(src)
 
 
-/obj/structure/table/hatton_act()
+/obj/structure/table/hatton_act()// ядекюрэ опнбепйс хг йюйнцн люрепхюкю ядекюм ярнк ???
 	new /obj/item/stack/material/steel(src.loc)
 	qdel(src)
 

@@ -29,6 +29,7 @@
 		user << "This device is not powered."
 		return
 	if(istype(W,/obj/item/weapon/card/id))
+		playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		var/obj/item/weapon/card/id/ID = W
 		if(access_keycard_auth in ID.access)
 			if(active == 1)
@@ -94,6 +95,7 @@
 		reset()
 
 	updateUsrDialog()
+	playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
 	add_fingerprint(usr)
 	return
 

@@ -317,6 +317,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
 	new /obj/item/weapon/pen(src)
+	update_icon()
 
 /obj/item/device/pda/proc/can_use()
 
@@ -872,6 +873,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	overlays.Cut()
 	if(new_message || new_news)
 		overlays += image('icons/obj/pda.dmi', "pda-r")
+	if(locate(/obj/item/weapon/pen) in src)
+		overlays += image('icons/obj/pda.dmi', "pda_pen")
 
 /obj/item/device/pda/proc/detonate_act(var/obj/item/device/pda/P)
 	//TODO: sometimes these attacks show up on the message server
@@ -1107,8 +1110,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				if(M.get_active_hand() == null)
 					M.put_in_hands(O)
 					usr << "<span class='notice'>You remove \the [O] from \the [src].</span>"
+					update_icon()
 					return
 			O.loc = get_turf(src)
+			usr << "<span class='notice'>You remove \the [O] from \the [src], but you hands full and it drop on floor.</span>"
+			update_icon()
 		else
 			usr << "<span class='notice'>This PDA does not have a pen in it.</span>"
 	else
@@ -1205,6 +1211,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			user.drop_item()
 			C.loc = src
 			user << "<span class='notice'>You slide \the [C] into \the [src].</span>"
+			update_icon()
 	return
 
 /obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)

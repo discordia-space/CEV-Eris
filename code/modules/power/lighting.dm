@@ -10,7 +10,9 @@
 #define LIGHT_BURNED 3
 #define LIGHT_BULB_TEMPERATURE 400 //K - used value for a 60W bulb
 
-/obj/machinery/light_construct
+
+
+/obj/machinery/light_construct// Добавить понятие "базовая иконка"
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -22,10 +24,12 @@
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
 
-/obj/machinery/light_construct/New()
+/obj/machinery/light_construct/New()// УЖАСНОЕ ГОВНО! НУЖНО ПЕРЕДЕЛАТЬ
 	..()
 	if (fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
+	else if (istype(src, /obj/machinery/light_construct/floor))
+		icon_state = "floortube-construct-stage1"
 
 /obj/machinery/light_construct/examine(mob/user)
 	if(!..(user, 2))
@@ -68,7 +72,10 @@
 		src.stage = 1
 		switch(fixture_type)
 			if ("tube")
-				src.icon_state = "tube-construct-stage1"
+				if (!istype(src, /obj/machinery/light_construct/floor)) // TODO Переделать это
+					src.icon_state = "tube-construct-stage1"
+				else
+					src.icon_state = "floortube-construct-stage1"
 			if("bulb")
 				src.icon_state = "bulb-construct-stage1"
 		new /obj/item/stack/cable_coil(get_turf(src.loc), 1, "red")
@@ -83,7 +90,10 @@
 		if (coil.use(1))
 			switch(fixture_type)
 				if ("tube")
-					src.icon_state = "tube-construct-stage2"
+					if (!istype(src, /obj/machinery/light_construct/floor)) // TODO Переделать это
+						src.icon_state = "tube-construct-stage2"
+					else
+						src.icon_state = "floortube-construct-stage2"
 				if("bulb")
 					src.icon_state = "bulb-construct-stage2"
 			src.stage = 2
@@ -106,7 +116,10 @@
 			switch(fixture_type)
 
 				if("tube")
-					newlight = new /obj/machinery/light/built(src.loc)
+					if (!istype(src, /obj/machinery/light_construct/floor))
+						newlight = new /obj/machinery/light/built(src.loc)
+					else
+						newlight = new /obj/machinery/light/floor/built(src.loc)
 				if ("bulb")
 					newlight = new /obj/machinery/light/small/built(src.loc)
 
@@ -126,6 +139,11 @@
 	stage = 1
 	fixture_type = "bulb"
 	sheets_refunded = 1
+
+/obj/machinery/light_construct/floor //floorlight
+	name = "floorlight fixture frame"
+	icon_state = "floortube-construct-stage1"
+	layer = 2.5
 
 // the standard tube light fixture
 /obj/machinery/light
@@ -159,6 +177,12 @@
 	var/atmosalarmed = 0
 // the smaller bulb light fixture
 
+/obj/machinery/light/floor
+	name = "floorlight fixture"
+	base_state = "floortube"
+	icon_state = "floortube1"
+	layer = 2.5
+
 /obj/machinery/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
@@ -186,12 +210,17 @@
 	brightness_range = 12
 	brightness_power = 4
 
-/obj/machinery/light/built/New()
+/obj/machinery/light/built/New()//WHAT IT IS?!?!??!?!?
 	status = LIGHT_EMPTY
 	update(0)
 	..()
 
-/obj/machinery/light/small/built/New()
+/obj/machinery/light/small/built/New()//WHAT IT IS?!?!??!?!?
+	status = LIGHT_EMPTY
+	update(0)
+	..()
+
+/obj/machinery/light/floor/built/New() //WHAT IT IS?!?!??!?!?
 	status = LIGHT_EMPTY
 	update(0)
 	..()
@@ -246,7 +275,7 @@
 		if(cmptext(base_state,"tube"))
 			atmosalarmed = 1
 			firealarmed = 0
-			brightness_color = "#3333FF"
+			brightness_color = "#6D6DFC"
 		update()
 
 /obj/machinery/light/proc/set_red()
