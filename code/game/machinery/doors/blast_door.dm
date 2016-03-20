@@ -149,6 +149,7 @@
 	if (src.operating || (stat & BROKEN || stat & NOPOWER))
 		return
 	force_close()
+	crush()
 
 // Proc: repair()
 // Parameters: None
@@ -189,3 +190,16 @@ obj/machinery/door/blast/regular/open
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
+
+
+obj/machinery/door/proc/crush()
+	for(var/mob/living/L in get_turf(src))
+		if(ishuman(L)) //For humans
+			var/mob/living/carbon/human/H = L
+			H.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
+			H.emote("scream")
+			H.Weaken(5)
+		else //for simple_animals & borgs
+			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
+	for(var/obj/mecha/M in get_turf(src))
+		M.take_damage(DOOR_CRUSH_DAMAGE)
