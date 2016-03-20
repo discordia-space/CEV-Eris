@@ -35,6 +35,7 @@
 	. += "(<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a>)"
 	. += "<br>"
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[capitalize(lowertext(pref.gender))]</b></a><br>"
+	. += "<b>Body Shape:</b> <a href='?src=\ref[src];body_build=1'><b>[pref.body_build]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	if(config.allow_Metadata)
@@ -63,6 +64,10 @@
 	else if(href_list["gender"])
 		pref.gender = next_in_list(pref.gender, valid_player_genders)
 		return TOPIC_REFRESH
+
+	else if(href_list["body_build"])
+		pref.body_build = input("Body Shape", "Body") in list("Default", "Slim", "Fat")
+		pref.body = get_body_build(pref.gender, pref.body_build)
 
 	else if(href_list["age"])
 		var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference", pref.age) as num|null
