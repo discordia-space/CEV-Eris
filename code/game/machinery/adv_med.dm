@@ -7,7 +7,7 @@
 	var/locked
 	name = "Body Scanner"
 	icon = 'icons/obj/Cryogenic2.dmi'
-	icon_state = "body_scanner_0"
+	icon_state = "scanner_off"
 	density = 1
 	anchored = 1
 
@@ -161,7 +161,7 @@
 	var/temphtml
 	name = "Body Scanner Console"
 	icon = 'icons/obj/Cryogenic2.dmi'
-	icon_state = "body_scannerconsole"
+	icon_state = "scanner_terminal_off"
 	density = 1
 	anchored = 1
 
