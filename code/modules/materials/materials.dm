@@ -322,7 +322,7 @@ var/list/name_to_material
 	integrity = 150
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
-	icon_colour = "#636769"
+	icon_colour = "#666666"
 
 /material/diona
 	name = "biomass"
@@ -494,8 +494,8 @@ var/list/name_to_material
 	created_window = /obj/structure/window/phoronreinforced
 	hardness = 40
 	weight = 30
-	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list() //todo
+	//stack_origin_tech = list(TECH_MATERIAL = 2)
+	//composite_material = list() //todo
 	rod_product = null
 
 /material/plastic

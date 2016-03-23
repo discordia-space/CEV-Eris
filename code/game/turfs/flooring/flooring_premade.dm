@@ -86,6 +86,21 @@
 	icon_state = "techfloor_gray"
 	initial_flooring = /decl/flooring/tiling/tech
 
+/turf/simulated/floor/tiled/tile_full
+	name = "tile full"
+	icon_state = "tile_full"
+	initial_flooring = /decl/flooring/tiling/new_tile
+
+/turf/simulated/floor/tiled/cargo_one_full
+	name = "cargo_one_full"
+	icon_state = "cargo_one_full"
+	initial_flooring = /decl/flooring/tiling/new_tile/cargo_one
+
+/turf/simulated/floor/tiled/kafel_full
+	name = "kafel_full"
+	icon_state = "kafel_full"
+	initial_flooring = /decl/flooring/tiling/new_tile/kafel
+
 //turf/simulated/floor/tiled/techfloor/edges
 	//special_overlay = image('icons/turf/flooring/techfloor.dmi',"techfloor_edges")
 

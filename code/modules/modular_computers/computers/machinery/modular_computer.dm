@@ -63,8 +63,12 @@
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/machinery/modular_computer/attack_hand(mob/user)
-	if(cpu)
-		cpu.attack_self(user) // CPU is an item, that's why we route attack_hand to attack_self
+	if(!(..()))
+		if (CheckFace(src,user))
+			if(cpu)
+				cpu.attack_self(user) // CPU is an item, that's why we route attack_hand to attack_self
+		else
+			user << "you need stay face to [src.name]"
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
 /obj/machinery/modular_computer/process()

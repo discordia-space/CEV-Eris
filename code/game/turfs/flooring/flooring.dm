@@ -130,6 +130,20 @@ var/list/flooring_types
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/techgrid
 
+/decl/flooring/tiling/new_tile
+	name = "tile full"
+	icon_base = "tile_full"
+	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
+	build_type = null
+
+/decl/flooring/tiling/new_tile/cargo_one
+	name = "cargo one"
+	icon_base = "cargo_one_full"
+
+/decl/flooring/tiling/new_tile/kafel
+	name = "kafel"
+	icon_base = "kafel_full"
+
 /decl/flooring/linoleum
 	name = "linoleum"
 	desc = "It's like the 2390's all over again."

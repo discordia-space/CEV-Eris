@@ -53,7 +53,7 @@
 
 /obj/structure/table/initialize()
 	..()
-	
+
 	// One table per turf.
 	for(var/obj/structure/table/T in loc)
 		if(T != src)
@@ -304,11 +304,20 @@
 
 		// Standard table image
 		if(material)
-			for(var/i = 1 to 4)
-				I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
-				if(material.icon_colour) I.color = material.icon_colour
-				I.alpha = 255 * material.opacity
-				overlays += I
+			if (istype(material, /material/glass))
+				for(var/i = 1 to 4)
+					I = image(icon, "glass_[connections[i]]", dir = 1<<(i-1))
+					overlays += I
+			else if (istype(material, /material/wood))
+				for(var/i = 1 to 4)
+					I = image(icon, "wood_[connections[i]]", dir = 1<<(i-1))
+					overlays += I
+			else
+				for(var/i = 1 to 4)
+					I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
+					if(material.icon_colour) I.color = material.icon_colour
+					I.alpha = 255 * material.opacity
+					overlays += I
 
 		// Reinforcements
 		if(reinforced)
@@ -341,10 +350,17 @@
 
 		icon_state = "flip[type]"
 		if(material)
-			var/image/I = image(icon, "[material.icon_base]_flip[type]")
-			I.color = material.icon_colour
-			I.alpha = 255 * material.opacity
-			overlays += I
+			if (istype(material, /material/wood))
+				var/image/I = image(icon, "wood_flip[type]")
+				overlays += I
+			else if (istype(material, /material/glass))
+				var/image/I = image(icon, "glass_flip[type]")
+				overlays += I
+			else
+				var/image/I = image(icon, "[material.icon_base]_flip[type]")
+				I.color = material.icon_colour
+				I.alpha = 255 * material.opacity
+				overlays += I
 			name = "[material.display_name] table"
 		else
 			name = "table frame"

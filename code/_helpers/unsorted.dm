@@ -46,6 +46,14 @@
 	return 1
 
 
+/proc/CheckFace(var/atom/Obj1, var/atom/Obj2)
+	var/CurrentDir = get_dir(Obj1, Obj2)
+	if ((Obj1.loc == Obj2.loc) || (CurrentDir == Obj1.dir) || (CurrentDir == turn(Obj1.dir, 45)) || (CurrentDir == turn(Obj1.dir, -45)))
+	//if(get_dir(Obj1, Obj2) & (Obj1.dir | turn(Obj1.dir, 45) | turn(Obj1.dir, -45)) )
+		return 1
+	else
+		return 0
+
 /proc/Get_Angle(atom/movable/start,atom/movable/end)//For beams.
 	if(!start || !end) return 0
 	var/dy

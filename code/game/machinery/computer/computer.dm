@@ -123,33 +123,50 @@
 /obj/machinery/computer/Topic(href, href_list)
 	if(..())
 		return 1
-	keyboardsound(usr)
-	return 0
+	//var/CurrentDir = get_dir(src, usr)
+	//if ((CurrentDir == src.dir) || (CurrentDir == turn(src.dir, 45)) || (CurrentDir == turn(src.dir, -45)))
+	if (CheckFace(src,usr))
+		keyboardsound(usr)
+		return 0
+	else
+		usr << "you need stay face to console"
+		return 1
 
 /obj/proc/keyboardsound(mob/user as mob)
-	var/music = pick('sound/effects/keyboard/keyboard1.ogg','sound/effects/keyboard/keyboard2.ogg', 'sound/effects/keyboard/keyboard3.ogg', 'sound/effects/keyboard/keyboard4.ogg')
 	if(!issilicon(user))
-		playsound(src, music, 100, 1, 0)
+		playsound(src, "keyboard", 100, 1, 0)
+
 /obj/machinery/computer/attack_hand(mob/user as mob)//check mob direction
 	if(..())
 		return 1
 	if(istype(user, /mob/living/silicon))
 		return 0
-	if((src.dir == 1) && (user.y - src.y == 1)) //NORTH
-		if(src.x == user.x || src.x - user.x == 1 || user.x - src.x == 1)
+	/*if((src.dir == 1) && (user.y - src.y == 1)) //NORTH
+		if((src.x == user.x) || (src.x - user.x == 1) || (user.x - src.x == 1))
 			keyboardsound(user)
+			world << "N"
 			return 0
-	else if(src.dir == 2 && src.y - user.y == 1) //SOUTH
-		if(src.x == user.x || src.x - user.x == 1 || user.x - src.x == 1)
+	else if(src.dir == 2 && (src.y - user.y == 1)) //SOUTH
+		if((src.x == user.x) || (src.x - user.x == 1) || (user.x - src.x == 1))
 			keyboardsound(user)
+			world << "S"
 			return 0
-	else if(src.dir == 4 && user.x - src.x == 1) //EAST
-		if(src.y == user.y || src.y - user.y == 1 || user.y - src.y == 1)
+	else if(src.dir == 4 && (user.x - src.x == 1)) //EAST
+		if((src.y == user.y) || (src.y - user.y == 1) || (user.y - src.y == 1))
 			keyboardsound(user)
+			world << "E"
 			return 0
-	else if(src.dir == 8 && src.x - user.x == 1) //WEST
-		if(src.y == user.y || src.y - user.y == 1 || user.y - src.y == 1)
+	else if(src.dir == 8 && (src.x - user.x == 1)) //WEST
+		if((src.y == user.y) || (src.y - user.y == 1) || (user.y - src.y == 1))
 			keyboardsound(user)
-			return 0
+			world << "W"
+			return 0*/
+	//var/CurrentDir = get_dir(src, user)
+	//if ((CurrentDir == src.dir) || (CurrentDir == turn(src.dir, 45)) || (CurrentDir == turn(src.dir, -45)))
+	//if(get_dir(src, user) & (src.dir | turn(src.dir, 45) | turn(src.dir, -45)) )
+	if (CheckFace(src,user))
+		keyboardsound(user)
+		return 0
 	else
+		user << "you need stay face to console"
 		return 1
