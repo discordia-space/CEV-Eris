@@ -202,8 +202,7 @@ var/const/POWER = 8
 /datum/wires/proc/PulseIndex(var/index)
 	if(IsIndexCut(index))
 		return
-	if(istype(holder, /obj/machinery/door/airlock/))
-		playsound(holder.loc, 'sound/items/multitool_pulse.ogg', 100, 1)
+	playsound(holder.loc, 'sound/items/multitool_pulse.ogg', 100, 1)
 	UpdatePulsed(index)
 
 
@@ -245,8 +244,7 @@ var/const/POWER = 8
 			signallers[colour] = S
 			S.loc = holder
 			S.connected = src
-			if(istype(holder, /obj/machinery/door/airlock/))
-				playsound(holder.loc, 'sound/machines/Custom_screwdriverclose.ogg', 100, 1)
+			playsound(holder.loc, 'sound/machines/Custom_screwdriverclose.ogg', 100, 1)
 			return S
 
 /datum/wires/proc/Detach(var/colour)
@@ -256,6 +254,8 @@ var/const/POWER = 8
 			signallers -= colour
 			S.connected = null
 			S.loc = holder.loc
+			if(istype(holder, /obj/machinery/door/airlock/))
+				playsound(holder.loc, 'sound/machines/Custom_screwdriverclose.ogg', 100, 1)
 			return S
 
 
@@ -282,8 +282,8 @@ var/const/POWER = 8
 	else
 		wires_status |= index
 		UpdateCut(index, 0)
-		if(istype(holder, /obj/machinery/door/airlock/))
-			playsound(holder.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+	playsound(holder.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+
 
 /datum/wires/proc/RandomCut()
 	var/r = rand(1, wires.len)

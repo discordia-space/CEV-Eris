@@ -461,7 +461,7 @@ log transactions
 			if("logout")
 				authenticated_account = null
 				//usr << browse(null,"window=atm")
-	playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	src.attack_hand(usr)
 
 //stolen wholesale and then edited a bit from newscasters, which are awesome and by Agouri

@@ -111,6 +111,7 @@
 		user.drop_item()
 		T.loc = src
 		src.holding = T
+		playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 		update_icon()
 		return
 

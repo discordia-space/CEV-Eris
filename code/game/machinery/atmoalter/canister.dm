@@ -335,6 +335,7 @@ update_flag
 			if(istype(holding, /obj/item/weapon/tank))
 				holding.manipulated_by = usr.real_name
 			holding.loc = loc
+			playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 			holding = null
 
 	if (href_list["pressure_adj"])
