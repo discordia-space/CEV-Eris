@@ -4,6 +4,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	circuit = /obj/item/weapon/circuitboard/curefab
+	CheckFaceFlag = 0
 	var/curing
 	var/virusing
 

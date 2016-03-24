@@ -12,8 +12,8 @@
 	var/broken = 0
 	var/health=30
 	var/maxhealth=30
-	var/LeftSide = list(0,0,0)// Нужны для хранения данных
-	var/RightSide = list(0,0,0)
+	//var/LeftSide = list(0,0,0)// Нужны для хранения данных
+	//var/RightSide = list(0,0,0)
 	var/check = 0
 
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
@@ -37,25 +37,25 @@
 
 	for(var/obj/structure/railing/R in src.loc)// Анализ клетки, где находится сам объект
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
-			src.LeftSide[1] = 1
+			//src.LeftSide[1] = 1
 			check |= 32
 			if (UpdateNeighbors)
 				R.update_icon(0)
 		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
-			src.RightSide[1] = 1
+			//src.RightSide[1] = 1
 			check |= 4
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
 	for (var/obj/structure/railing/R in get_step(src, Lturn))//Анализ левой клетки от направления объекта
 		if ((R.dir == src.dir) && R.anchored)
-			src.LeftSide[2] = 1
+			//src.LeftSide[2] = 1
 			check |= 16
 			if (UpdateNeighbors)
 				R.update_icon(0)
 	for (var/obj/structure/railing/R in get_step(src, Rturn))//Анализ правой клетки от направления объекта
 		if ((R.dir == src.dir) && R.anchored)
-			src.RightSide[2] = 1
+			//src.RightSide[2] = 1
 			check |= 2
 			if (UpdateNeighbors)
 				R.update_icon(0)
@@ -65,9 +65,9 @@
 			src.LeftSide[3] = 1
 		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
 			src.RightSide[3] = 1*/
-	check <<"check: [check]"
-	world << "dir = [src.dir]"
-	world << "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
+	//check <<"check: [check]"
+	//world << "dir = [src.dir]"
+	//world << "railing[LeftSide[1]][LeftSide[2]][LeftSide[3]]-[RightSide[1]][RightSide[2]][RightSide[3]]"
 
 /obj/structure/railing/update_icon(var/UpdateNeighgors = 1)
 	NeighborsCheck(UpdateNeighgors)

@@ -16,6 +16,8 @@
 	var/light_power_on = 1
 	var/overlay_layer
 
+	var/CheckFaceFlag = 1 //for direction check
+
 /obj/machinery/computer/New()
 	overlay_layer = layer
 	..()
@@ -125,7 +127,7 @@
 		return 1
 	//var/CurrentDir = get_dir(src, usr)
 	//if ((CurrentDir == src.dir) || (CurrentDir == turn(src.dir, 45)) || (CurrentDir == turn(src.dir, -45)))
-	if (CheckFace(src,usr))
+	if (!CheckFaceFlag || CheckFace(src,usr))
 		keyboardsound(usr)
 		return 0
 	else
@@ -164,7 +166,7 @@
 	//var/CurrentDir = get_dir(src, user)
 	//if ((CurrentDir == src.dir) || (CurrentDir == turn(src.dir, 45)) || (CurrentDir == turn(src.dir, -45)))
 	//if(get_dir(src, user) & (src.dir | turn(src.dir, 45) | turn(src.dir, -45)) )
-	if (CheckFace(src,user))
+	if (!CheckFaceFlag || CheckFace(src,user))
 		keyboardsound(user)
 		return 0
 	else

@@ -3,6 +3,7 @@
 	desc = "Used to separate things with different weight. Spin 'em round, round, right round."
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "centrifuge"
+	CheckFaceFlag = 0
 	var/curing
 	var/isolating
 

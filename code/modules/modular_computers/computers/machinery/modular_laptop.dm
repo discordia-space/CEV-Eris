@@ -60,7 +60,7 @@
 	base_idle_power_usage = 25
 	base_active_power_usage = 200
 	max_hardware_size = 2
-
+	CheckFaceFlag = 0
 /obj/machinery/modular_computer/laptop/buildable/New()
 	..()
 	// User-built consoles start as empty frames.
