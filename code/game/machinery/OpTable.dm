@@ -15,7 +15,7 @@
 
 /obj/machinery/optable/New()
 	..()
-	for(dir in list(NORTH,EAST,SOUTH,WEST))
+	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
 		computer = locate(/obj/machinery/computer/operating, get_step(src, dir))
 		if (computer)
 			computer.table = src
