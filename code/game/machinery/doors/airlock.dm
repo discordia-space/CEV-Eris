@@ -585,8 +585,7 @@ About the new airlock wires panel:
 		if("deny")
 			if(density && src.arePowerSystemsOn())
 				flick("door_deny", src)
-				if(secured_wires)
-					playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
+				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
