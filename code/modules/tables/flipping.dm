@@ -99,9 +99,8 @@
 			G.place_shard(src.loc)
 			if (G.is_reinforced())
 				PoolOrNew(/obj/item/stack/rods, src.loc)
+			playsound(src, "shatter", 70, 1)
 			material = null
-			update_icon()
-			//break_to_parts()
 	update_connections(1)
 	update_icon()
 
