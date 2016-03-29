@@ -363,9 +363,6 @@
 			if (istype(material, /material/wood))
 				var/image/I = image(icon, "wood_flip[type]")
 				overlays += I
-			else if (istype(material, /material/glass))
-				var/image/I = image(icon, "glass_flip[type]")
-				overlays += I
 			else
 				var/image/I = image(icon, "[material.icon_base]_flip[type]")
 				I.color = material.icon_colour
