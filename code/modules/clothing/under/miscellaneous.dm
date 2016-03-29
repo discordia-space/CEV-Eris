@@ -22,12 +22,6 @@
 	icon_state = "scratch"
 	item_state = "scratch"
 
-/obj/item/clothing/under/sl_suit
-	desc = "It's a very amish looking suit."
-	name = "amish suit"
-	icon_state = "sl_suit"
-	item_state = "sl_suit"
-
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
 	desc = "It's a very smart uniform with a special pocket for tip."
@@ -52,28 +46,6 @@
 	desc = "It's the standard issue pretty-boy outfit, as seen on Holo-Vision."
 	icon_state = "vice"
 	item_state = "gy_suit"
-
-//This set of uniforms looks fairly fancy and is generally used for high-ranking NT personnel from what I've seen, so lets give them appropriate ranks.
-/obj/item/clothing/under/rank/centcom
-	desc = "Gold trim on space-black cloth, this uniform displays the rank of \"Captain.\""
-	name = "\improper Officer's Dress Uniform"
-	icon_state = "officer"
-	item_state = "lawyer_black"
-	displays_id = 0
-
-/obj/item/clothing/under/rank/centcom_officer
-	desc = "Gold trim on space-black cloth, this uniform displays the rank of \"Admiral.\""
-	name = "\improper Officer's Dress Uniform"
-	icon_state = "officer"
-	item_state = "lawyer_black"
-	displays_id = 0
-
-/obj/item/clothing/under/rank/centcom_captain
-	desc = "Gold trim on space-black cloth, this uniform displays the rank of \"Admiral-Executive.\""
-	name = "\improper Officer's Dress Uniform"
-	icon_state = "centcom"
-	item_state = "lawyer_black"
-	displays_id = 0
 
 /obj/item/clothing/under/ert
 	name = "ERT tactical uniform"
@@ -112,11 +84,6 @@
 	icon_state = "owl"
 	item_state = "owl"
 
-/obj/item/clothing/under/johnny
-	name = "johnny~~ jumpsuit"
-	desc = "Johnny~~"
-	icon_state = "johnny"
-	item_state = "johnny"
 
 /obj/item/clothing/under/rainbow
 	name = "rainbow"
@@ -142,11 +109,11 @@
 	icon_state = "gentlesuit"
 	item_state = "gy_suit"
 
-/obj/item/clothing/under/gimmick/rank/captain/suit
+/*/obj/item/clothing/under/gimmick/rank/captain/suit
 	name = "captain's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
-	item_state = "dg_suit"
+	item_state = "dg_suit"*/
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
 	name = "head of personnel's suit"
@@ -202,7 +169,7 @@
 	name = "pirate outfit"
 	desc = "Yarr."
 	icon_state = "pirate"
-	item_state = "sl_suit"
+	//item_state = "sl_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/soviet

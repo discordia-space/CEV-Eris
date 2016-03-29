@@ -80,7 +80,7 @@
 
 /obj/item/clothing/under/det/black
 	icon_state = "detective3"
-	item_state = "sl_suit"
+	//item_state = "sl_suit"
 	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal vest."
 
 /obj/item/clothing/head/det

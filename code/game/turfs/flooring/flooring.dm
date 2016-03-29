@@ -130,6 +130,8 @@ var/list/flooring_types
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/techgrid
 
+
+
 /decl/flooring/tiling/new_tile
 	name = "tile full"
 	icon_base = "tile_full"
@@ -143,6 +145,14 @@ var/list/flooring_types
 /decl/flooring/tiling/new_tile/kafel
 	name = "kafel"
 	icon_base = "kafel_full"
+
+/decl/flooring/tiling/new_tile/techmaint
+	name = "techmaint"
+	icon_base = "techmaint"
+
+/decl/flooring/tiling/new_tile/monofloor
+	name = "monofloor"
+	icon_base = "monofloor"
 
 /decl/flooring/linoleum
 	name = "linoleum"

@@ -131,7 +131,7 @@
 	name = "Old Man's Suit"
 	desc = "A classic suit for the older gentleman with built in back support."
 	icon_state = "oldman"
-	item_state = "johnny"
+	//item_state = "johnny"
 
 
 /obj/item/clothing/under/librarian

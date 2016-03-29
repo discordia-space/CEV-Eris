@@ -48,8 +48,8 @@
 
 /proc/CheckFace(var/atom/Obj1, var/atom/Obj2)
 	var/CurrentDir = get_dir(Obj1, Obj2)
-	if ((Obj1.loc == Obj2.loc) || (CurrentDir == Obj1.dir) || (CurrentDir == turn(Obj1.dir, 45)) || (CurrentDir == turn(Obj1.dir, -45)))
-	//if(get_dir(Obj1, Obj2) & (Obj1.dir | turn(Obj1.dir, 45) | turn(Obj1.dir, -45)) )
+	//if ((Obj1.loc == Obj2.loc) || (CurrentDir == Obj1.dir) || (CurrentDir == turn(Obj1.dir, 45)) || (CurrentDir == turn(Obj1.dir, -45)))
+	if((CurrentDir & Obj1.dir) || (CurrentDir == 0))
 		return 1
 	else
 		return 0
