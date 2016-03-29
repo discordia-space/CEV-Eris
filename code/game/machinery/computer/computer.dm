@@ -131,7 +131,7 @@
 		keyboardsound(usr)
 		return 0
 	else
-		usr << "you need stay face to console"
+		usr << "You need to stand in front of console's keyboard!"
 		return 1
 
 /obj/proc/keyboardsound(mob/user as mob)
