@@ -30,7 +30,7 @@
 
 /obj/machinery/door/airlock/multi_tile/metal
 	name = "Airlock"
-	icon = 'icons/obj/doors/Door2x1glass.dmi'
+	icon = 'icons/obj/doors/Door2x1metal.dmi'
 	assembly_type = /obj/structure/door_assembly/multi_tile
 
 
@@ -58,3 +58,7 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = ""
 	density = 0
+
+
+/obj/machinery/door/airlock/multi_tile/metal/mait
+	icon = 'icons/obj/doors/Door2x1_Maint.dmi'
