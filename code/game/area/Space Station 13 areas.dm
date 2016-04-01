@@ -925,6 +925,16 @@ area/space/atmosalert()
 	name = "\improper Mint"
 	icon_state = "green"
 
+/area/propulsion
+	name = "Propulsion Hangar"
+	icon_state = "propulsion"
+
+/area/propulsion/left
+	name = "Left Propulsion Hangar"
+
+/area/propulsion/right
+	name = "Right Propulsion Hangar"
+
 /area/comms
 	name = "\improper Communications Relay"
 	icon_state = "tcomsatcham"
@@ -1107,6 +1117,10 @@ area/space/atmosalert()
 	name = "\improper Engineering"
 	icon_state = "engineering"
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
+
+/area/engineering/gravity_generator
+	name = "Gravity Generator Room"
+	icon_state = "blue"
 
 /area/engineering/atmos
  	name = "\improper Atmospherics"
