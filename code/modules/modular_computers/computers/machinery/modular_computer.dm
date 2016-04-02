@@ -12,7 +12,7 @@
 	// Modular computers can run on various devices. Each DEVICE (Laptop, Console, Tablet,..)
 	// must have it's own DMI file. Icon states must be called exactly the same in all files, but may look differently
 	// If you create a program which is limited to Laptops and Consoles you don't have to add it's icon_state overlay for Tablets too, for example.
-
+	var/CheckFaceFlag = 1
 	icon = null
 	icon_state = null
 	var/icon_state_unpowered = null									// Icon state when the computer is turned off
@@ -63,8 +63,12 @@
 
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/machinery/modular_computer/attack_hand(mob/user)
-	if(cpu)
-		cpu.attack_self(user) // CPU is an item, that's why we route attack_hand to attack_self
+	if(!(..()))
+		if (!CheckFaceFlag || CheckFace(src,user))
+			if(cpu)
+				cpu.attack_self(user) // CPU is an item, that's why we route attack_hand to attack_self
+		else
+			user << "you need stay face to [src.name]"
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
 /obj/machinery/modular_computer/process()

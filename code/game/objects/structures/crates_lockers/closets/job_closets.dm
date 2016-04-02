@@ -21,8 +21,8 @@
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/clothing/head/hairflower
-	new /obj/item/clothing/under/sl_suit(src)
-	new /obj/item/clothing/under/sl_suit(src)
+	//new /obj/item/clothing/under/sl_suit(src)
+	//new /obj/item/clothing/under/sl_suit(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/under/dress/dress_saloon(src)

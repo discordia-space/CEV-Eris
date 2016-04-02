@@ -53,7 +53,7 @@
 
 /obj/structure/table/initialize()
 	..()
-	
+
 	// One table per turf.
 	for(var/obj/structure/table/T in loc)
 		if(T != src)
@@ -142,7 +142,7 @@
 				return
 			user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>",
 			                              "<span class='notice'>You repair some damage to \the [src].</span>")
-			health = max(health+(maxhealth/5), maxhealth) // 20% repair per application
+			health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
 			return 1
 
 	if(!material && can_plate && istype(W, /obj/item/stack/material))
@@ -203,7 +203,9 @@
 	if(!istype(M))
 		user << "<span class='warning'>You cannot [verb]e \the [src] with \the [S].</span>"
 		return null
-
+	if (src.flipped && istype(M, /material/glass))
+		user << "<span class='warning'>You cannot [verb]e \the [src] with \the [S] when [src] flipped!.</span>"
+		return null
 	if(manipulating) return M
 	manipulating = 1
 	user << "<span class='notice'>You begin [verb]ing \the [src] with [M.display_name].</span>"
@@ -304,11 +306,28 @@
 
 		// Standard table image
 		if(material)
-			for(var/i = 1 to 4)
-				I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
-				if(material.icon_colour) I.color = material.icon_colour
-				I.alpha = 255 * material.opacity
-				overlays += I
+			if (istype(material, /material/glass))
+				for(var/i = 1 to 4)
+					I = image(icon, "glass_[connections[i]]", dir = 1<<(i-1))
+					if(material.icon_colour)
+						I.color = material.icon_colour
+					overlays += I
+					var/material/glass/G = material
+					if (G.is_reinforced())
+						I = image(icon, "rglass_[connections[i]]", dir = 1<<(i-1))
+						overlays += I
+
+			else if (istype(material, /material/wood))
+				for(var/i = 1 to 4)
+					I = image(icon, "wood_[connections[i]]", dir = 1<<(i-1))
+					overlays += I
+
+			else
+				for(var/i = 1 to 4)
+					I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
+					if(material.icon_colour) I.color = material.icon_colour
+					I.alpha = 255 * material.opacity
+					overlays += I
 
 		// Reinforcements
 		if(reinforced)
@@ -341,10 +360,14 @@
 
 		icon_state = "flip[type]"
 		if(material)
-			var/image/I = image(icon, "[material.icon_base]_flip[type]")
-			I.color = material.icon_colour
-			I.alpha = 255 * material.opacity
-			overlays += I
+			if (istype(material, /material/wood))
+				var/image/I = image(icon, "wood_flip[type]")
+				overlays += I
+			else
+				var/image/I = image(icon, "[material.icon_base]_flip[type]")
+				I.color = material.icon_colour
+				I.alpha = 255 * material.opacity
+				overlays += I
 			name = "[material.display_name] table"
 		else
 			name = "table frame"

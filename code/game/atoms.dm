@@ -21,7 +21,7 @@
 	//var/chem_is_open_container = 0
 	// replaced by OPENCONTAINER flags and atom/proc/is_open_container()
 	///Chemistry.
-
+	var/allow_spin = 1
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
@@ -203,6 +203,7 @@ its easier to just keep the beam vertical.
 		else
 			f_name += "oil-stained [name][infix]."
 
+	user.visible_message("<font size=1>[user.name] looks at [src].</font>")
 	user << "\icon[src] That's [f_name] [suffix]"
 	user << desc
 

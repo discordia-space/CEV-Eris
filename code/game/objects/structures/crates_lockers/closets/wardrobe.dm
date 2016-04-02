@@ -417,7 +417,7 @@
 	new /obj/item/clothing/under/suit_jacket/burgundy(src)
 	new /obj/item/clothing/under/suit_jacket/checkered(src)
 	new /obj/item/clothing/under/suit_jacket/tan(src)
-	new /obj/item/clothing/under/sl_suit(src)
+	//new /obj/item/clothing/under/sl_suit(src)
 	new /obj/item/clothing/under/suit_jacket(src)
 	new /obj/item/clothing/under/suit_jacket/female(src)
 	new /obj/item/clothing/under/suit_jacket/really_black(src)

@@ -50,7 +50,7 @@
 		L.Add(turn(src.dir,90))
 	for(var/new_dir in L)
 		var/obj/structure/table/T = locate() in get_step(src.loc,new_dir)
-		if(T && T.material.name == material.name)
+		if(T && T.material && T.material.name == material.name)
 			if(T.flipped == 1 && T.dir == src.dir && !T.unflipping_check(new_dir))
 				return 0
 	return 1
@@ -93,6 +93,14 @@
 		if(T && T.flipped == 0 && material && T.material && T.material.name == material.name)
 			T.flip(direction)
 	take_damage(rand(5, 10))
+	if (material)
+		if (istype(material, /material/glass))
+			var/material/glass/G = material
+			G.place_shard(src.loc)
+			if (G.is_reinforced())
+				PoolOrNew(/obj/item/stack/rods, src.loc)
+			playsound(src, "shatter", 70, 1)
+			material = null
 	update_connections(1)
 	update_icon()
 

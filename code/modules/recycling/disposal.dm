@@ -312,6 +312,7 @@
 		usr << browse(null, "window=disposal")
 		usr.unset_machine()
 		return
+	playsound(usr.loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return
 
 // eject the contents of the disposal unit
@@ -360,7 +361,6 @@
 		if( contents.len )
 			if(mode == 2)
 				spawn(0)
-					feedback_inc("disposal_auto_flush",1)
 					flush()
 		flush_count = 0
 

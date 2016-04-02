@@ -117,14 +117,14 @@
 	delete_me = 1
 
 /obj/effect/landmark/costume/madscientist/New()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
+	//new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/mad(src.loc)
 	new /obj/item/clothing/glasses/gglasses(src.loc)
 	delete_me = 1
 
 /obj/effect/landmark/costume/elpresidente/New()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
+	//new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/mask/smokable/cigarette/cigar/havana(src.loc)
 	new /obj/item/clothing/shoes/jackboots(src.loc)
@@ -168,7 +168,7 @@
 	new CHOICE(src.loc)
 	new /obj/item/clothing/shoes/black(src.loc)
 	new /obj/item/weapon/cane(src.loc)
-	new /obj/item/clothing/under/sl_suit(src.loc)
+	//new /obj/item/clothing/under/sl_suit(src.loc)
 	new /obj/item/clothing/mask/fakemoustache(src.loc)
 	delete_me = 1
 

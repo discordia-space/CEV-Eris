@@ -44,7 +44,7 @@
 	var/speaker_name = speaker.name
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
-		speaker_name = H.GetVoice()
+		speaker_name = H.rank_prefix_name(H.GetVoice())
 
 	if(italics)
 		message = "<i>[message]</i>"
@@ -123,6 +123,10 @@
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
+		for(var/datum/data/record/G in data_core.general)
+			if(G.fields["name"] == speaker_name)
+				speaker_name = H.rank_prefix_name(speaker_name)
+				break
 
 	if(hard_to_hear)
 		speaker_name = "unknown"
@@ -171,11 +175,11 @@
 
 		if(changed_voice)
 			if(impersonating)
-				track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
+				track = "<a href='byond://?src=\ref[src];trackname=[rhtml_encode(speaker_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
 			else
 				track = "[speaker_name] ([jobname])"
 		else
-			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+			track = "<a href='byond://?src=\ref[src];trackname=[rhtml_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
 
 	if(istype(src, /mob/dead/observer))
 		if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.

@@ -3,6 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
+	CheckFaceFlag = 0
 
 	var/datum/disease2/effectholder/memorybank = null
 	var/list/species_buffer = null

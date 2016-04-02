@@ -18,7 +18,7 @@ var/global/list/image/splatter_cache=list()
 	var/list/viruses = list()
 	blood_DNA = list()
 	var/basecolor="#A10808" // Color when wet.
-	var/list/datum/disease2/disease/virus2 = list()
+	var/list/virus2 = list()
 	var/amount = 5
 	var/drytime
 

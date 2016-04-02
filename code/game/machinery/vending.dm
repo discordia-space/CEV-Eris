@@ -176,7 +176,6 @@
 /obj/machinery/vending/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	var/obj/item/weapon/card/id/I = W.GetID()
-
 	if (currently_vending && vendor_account && !vendor_account.suspended)
 		var/paid = 0
 		var/handled = 0
@@ -184,10 +183,12 @@
 		if (I) //for IDs and PDAs and wallets with IDs
 			paid = pay_with_card(I,W)
 			handled = 1
+			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		else if (istype(W, /obj/item/weapon/spacecash/ewallet))
 			var/obj/item/weapon/spacecash/ewallet/C = W
 			paid = pay_with_ewallet(C)
 			handled = 1
+			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		else if (istype(W, /obj/item/weapon/spacecash))
 			var/obj/item/weapon/spacecash/C = W
 			paid = pay_with_cash(C, user)
@@ -204,14 +205,26 @@
 		attack_hand(user)
 		return
 	else if(istype(W, /obj/item/weapon/screwdriver))
-		src.panel_open = !src.panel_open
-		user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
-		src.overlays.Cut()
-		if(src.panel_open)
-			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+		if (src.panel_open)
+			playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
+			src.panel_open = !src.panel_open
+			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
+			src.overlays.Cut()
+			if(src.panel_open)
+				src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
+			return
+		else
+			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
+			src.panel_open = !src.panel_open
+			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
+			src.overlays.Cut()
+			if(src.panel_open)
+				src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
+			return
 
-		nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
-		return
+
 	else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/weapon/wirecutters))
 		if(src.panel_open)
 			attack_hand(user)
@@ -502,6 +515,7 @@
 			src.shut_up = !src.shut_up
 
 		src.add_fingerprint(usr)
+		playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
 		nanomanager.update_uis(src)
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
@@ -541,6 +555,7 @@
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay)
 		new R.product_path(get_turf(src))
+		playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
 		src.status_message = ""
 		src.status_error = 0
 		src.vend_ready = 1

@@ -365,8 +365,6 @@ var/global/datum/controller/occupations/job_master
 			//Equip job items.
 			job.equip(H)
 			job.setup_account(H)
-			job.equip_backpack(H)
-			job.equip_survival(H)
 			job.apply_fingerprints(H)
 
 			//If some custom items could not be equipped before, try again now.
@@ -482,7 +480,7 @@ var/global/datum/controller/occupations/job_master
 		return H
 
 
-	proc/spawnId(var/mob/living/carbon/human/H, rank, title)
+	proc/spawnId(var/mob/living/carbon/human/H, rank, title, idtype)
 		if(!H)	return 0
 		var/obj/item/weapon/card/id/C = null
 
@@ -496,7 +494,8 @@ var/global/datum/controller/occupations/job_master
 			if(job.title == "Cyborg")
 				return
 			else
-				C = new job.idtype(H)
+				idtype = idtype ? idtype : job.idtype
+				C = new idtype(H)
 				C.access = job.get_access()
 		else
 			C = new /obj/item/weapon/card/id(H)
@@ -585,7 +584,6 @@ var/global/datum/controller/occupations/job_master
 				else level4++ //not selected
 
 			tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
-			feedback_add_details("job_preferences",tmp_str)
 
 /datum/controller/occupations/proc/LateSpawn(var/mob/living/carbon/human/H, var/rank)
 	//spawn at one of the latespawn locations

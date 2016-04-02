@@ -925,6 +925,16 @@ area/space/atmosalert()
 	name = "\improper Mint"
 	icon_state = "green"
 
+/area/propulsion
+	name = "Propulsion Hangar"
+	icon_state = "propulsion"
+
+/area/propulsion/left
+	name = "Left Propulsion Hangar"
+
+/area/propulsion/right
+	name = "Right Propulsion Hangar"
+
 /area/comms
 	name = "\improper Communications Relay"
 	icon_state = "tcomsatcham"
@@ -1107,6 +1117,10 @@ area/space/atmosalert()
 	name = "\improper Engineering"
 	icon_state = "engineering"
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
+
+/area/engineering/gravity_generator
+	name = "Gravity Generator Room"
+	icon_state = "blue"
 
 /area/engineering/atmos
  	name = "\improper Atmospherics"
@@ -1645,6 +1659,334 @@ area/space/atmosalert()
 	requires_power = 0
 	name = "\improper Test Room"
 	icon_state = "storage"
+
+//Eris
+
+/area/eris/bridgebar
+	name = "V.I.P. Bar"
+	icon_state = "erisblue"
+
+/area/eris/barbackroom
+	name = "Bar Backroom"
+	icon_state = "erisgreen"
+
+/area/eris/librarybackroom
+	name = "Library Backroom"
+	icon_state = "erisgreen"
+
+/area/eris/chapelmassdriver
+	name = "Chapel Mass Driver"
+	icon_state = "erisgreen"
+
+/area/eris/clothingstorage
+	name = "Clothing Storage"
+	icon_state = "erisyellow"
+
+/area/eris/medeva
+	name = "Medical E.V.A. Storage"
+	icon_state = "erisblue"
+
+/area/eris/pubeva
+	name = "Public E.V.A. Storage"
+	icon_state = "erisblue"
+
+/area/eris/engeva
+	name = "Engineering E.V.A. Storage"
+	icon_state = "erisblue"
+
+/area/eris/publichydro
+	name = "Public Hydroponics"
+	icon_state = "erisblue"
+
+/area/eris/clownoffice
+	name = "Clown Office"
+	icon_state = "erisblue"
+
+/area/eris/scient
+	name = "Science Department Entrance"
+	icon_state = "erisblue"
+
+/area/eris/disposaldrop
+	name = "Disposal and Delivery"
+	icon_state = "erisred"
+
+/area/eris/toilet/public
+	name = "Public Toilet"
+	icon_state = "erisyellow"
+
+/area/eris/toilet/medbay
+	name = "Medbay Toilet"
+	icon_state = "erisyellow"
+
+//Eris Medbay
+
+/area/eris/medbay/iso
+	name = "Isolation Wing"
+	icon_state = "erisgreen"
+
+/area/eris/medbay/seconddeck
+	name = "Medbay Deck 2"
+	icon_state = "erisgreen"
+
+//Eris Hallways
+
+/area/eris/hallway/main/section1
+	name = "First Section Hallway"
+	icon_state = "erisgreen"
+
+/area/eris/hallway/main/section2
+	name = "Second Section Hallway"
+	icon_state = "erisgreen"
+
+/area/eris/hallway/main/section3
+	name = "Third Section Hallway"
+	icon_state = "erisgreen"
+
+/area/eris/hallway/main/section4
+	name = "Fourth Section Hallway"
+	icon_state = "erisgreen"
+
+/area/eris/hallway/side/section3port
+	name = "Third Section Port Hallway"
+	icon_state = "erisgreen"
+
+/area/eris/hallway/side/section3starboard
+	name = "Third Section Starboard Hallway"
+	icon_state = "erisgreen"
+
+/area/eris/hallway/side/hydroponicshallway
+	name = "Hydroponics Hallway"
+	icon_state = "erisyellow"
+
+/area/eris/hallway/side/morguehallway
+	name = "Morgue Hallway"
+	icon_state = "erisgreen"
+
+//Eris Security
+
+/area/eris/security/inspectors_office
+	name = "Inspectors Office"
+	icon_state = "hammerblue"
+
+/area/eris/security/disposal
+	name = "Security Disposal"
+	icon_state = "hammerblue"
+
+/area/eris/security/barracks
+	name = "Ironhammer Barracks"
+	icon_state = "hammerblue"
+
+/area/eris/security/prisoncells
+	name = "Prison Cells"
+	icon_state = "hammerblue"
+
+/area/eris/security/evidencestorage
+	name = "Evidence Storage"
+	icon_state = "hammerred"
+
+/area/eris/security/commander
+	name = "Ironhammer Commander's Office"
+	icon_state = "hammerred"
+
+/area/eris/security/armory
+	name = "Armory"
+	icon_state = "hammerred"
+
+/area/eris/security/exerooms
+	name = "Executive Rooms"
+	icon_state = "hammerred"
+
+/area/eris/security/maintpost
+	name = "Maintenance Post"
+	icon_state = "hammerred"
+
+//Eris Engineering
+
+/area/eris/engineering/starboardhallway
+	name = "Engineering Starboard Hallway"
+	icon_state = "erisgreen"
+
+/area/eris/engineering/wastingroom
+	name = "Wasting Room"
+	icon_state = "erisred"
+
+/area/eris/engineering/post
+	name = "Engineering Post"
+	icon_state = "erisred"
+
+/area/eris/engineering/wastingroom
+	name = "Wasting Room"
+	icon_state = "erisred"
+
+/area/eris/engineering/techstorage
+	name = "Tools Storage"
+	icon_state = "erisred"
+
+/area/eris/engineering/telecommonitor
+	name = "Telecommunications Monitor Room"
+	icon_state = "erisred"
+
+/area/eris/engineering/breakroom
+	name = "Engineering Break Room"
+	icon_state = "erisred"
+
+/area/eris/engineering/freezercontrol
+	name = "Freezer Control"
+	icon_state = "erisred"
+
+/area/eris/engineering/atmoscontrol
+	name = "Atmospherics Control"
+	icon_state = "erisred"
+
+//Eris Maint
+
+/area/eris/maintenance/oldtele
+	name = "Reserve Teleporter"
+	icon_state = "erisblue"
+
+/area/eris/maintenance/oldbridge
+	name = "Old Bridge"
+	icon_state = "erisblue"
+
+/area/eris/maintenance/fueltankstorage
+	name = "Fueltank Storage"
+	icon_state = "erisblue"
+
+/area/eris/maintenance/fore1
+	name = "Bridge Deck 5 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/fore2
+	name = "Bridge Deck 4 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/fore3
+	name = "Bridge Deck 3 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/fore4
+	name = "Security Deck 2 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/fore5
+	name = "Security Deck 1 Fore Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec1port
+	name = "Second Section Deck 5 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec1starboard
+	name = "Second Section Deck 5 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec2port
+	name = "Second Section Deck 4 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec2starboard
+	name = "Second Section Deck 4 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec3port
+	name = "Second Section Deck 3 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec3starboard
+	name = "Second Section Deck 3 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec4port
+	name = "Second Section Deck 2 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec4starboard
+	name = "Second Section Deck 2 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec4central
+	name = "Second Section Deck 2 Central Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec5port
+	name = "Second Section Deck 1 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/secsec5starboard
+	name = "Second Section Deck 1 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec1
+	name = "Third Section Deck 5 Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec2port
+	name = "Third Section Deck 4 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec2starboard
+	name = "Third Section Deck 4 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec3port
+	name = "Third Section Deck 3 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec3starboard
+	name = "Third Section Deck 3 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec4port
+	name = "Third Section Deck 2 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec4starboard
+	name = "Third Section Deck 2 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec4central
+	name = "Third Section Deck 2 Central Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec5port
+	name = "Third Section Deck 1 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/thirdsec5starboard
+	name = "Third Section Deck 1 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/aft1
+	name = "Aft Section Deck 5 Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/aft2port
+	name = "Aft Deck 4 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/aft2starboard
+	name = "Aft 4 Starboard Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/aft3port
+	name = "Aft Deck 3 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/aft4port
+	name = "Aft Section Deck 2 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/aft4central
+	name = "Aft Section Deck 2 Central Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/aftsec5port
+	name = "Aft Section Deck 1 Port Maintenance"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/aftsec5starboard
+	name = "Aft Section Deck 1 Starboard Maintenance"
+	icon_state = "erisyellow"
 
 //DJSTATION
 

@@ -4,6 +4,41 @@
 	icon_state = "carpet"
 	initial_flooring = /decl/flooring/carpet
 
+/turf/simulated/floor/carpet/bcarpet
+	name = "black carpet"
+	icon_state = "bcarpet"
+	initial_flooring = /decl/flooring/carpet/bcarpet
+
+/turf/simulated/floor/carpet/blucarpet
+	name = "blue carpet"
+	icon_state = "blucarpet"
+	initial_flooring = /decl/flooring/carpet/blucarpet
+
+/turf/simulated/floor/carpet/turcarpet
+	name = "tur carpet"
+	icon_state = "turcarpet"
+	initial_flooring = /decl/flooring/carpet/turcarpet
+
+/turf/simulated/floor/carpet/sblucarpet
+	name = "sblue carpet"
+	icon_state = "sblucarpet"
+	initial_flooring = /decl/flooring/carpet/sblucarpet
+
+/turf/simulated/floor/carpet/gaycarpet
+	name = "clown carpet"
+	icon_state = "gaycarpet"
+	initial_flooring = /decl/flooring/carpet/gaycarpet
+
+/turf/simulated/floor/carpet/purcarpet
+	name = "purple carpet"
+	icon_state = "purcarpet"
+	initial_flooring = /decl/flooring/carpet/purcarpet
+
+/turf/simulated/floor/carpet/oracarpet
+	name = "orange carpet"
+	icon_state = "oracarpet"
+	initial_flooring = /decl/flooring/carpet/oracarpet
+
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
@@ -33,16 +68,71 @@
 	icon = 'icons/turf/flooring/dirt.dmi'
 	icon_state = "dirt"
 
-/turf/simulated/floor/carpet/blue
-	name = "blue carpet"
-	icon_state = "bcarpet"
-	initial_flooring = /decl/flooring/carpet/blue
+/turf/simulated/floor/hull
+	name = "hull"
+	icon = 'icons/turf/flooring/hull.dmi'
+	icon_state = "hullcenter0"
+	initial_flooring = /decl/flooring/hull
 
 /turf/simulated/floor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
 	initial_flooring = /decl/flooring/tiling
+
+/turf/simulated/floor/tiled/techmaint
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles.dmi'
+	icon_state = "techmaint"
+	initial_flooring = /decl/flooring/tiling/new_tile/techmaint
+
+/turf/simulated/floor/tiled/monofloor
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles.dmi'
+	icon_state = "monofloor"
+	initial_flooring = /decl/flooring/tiling/new_tile/monofloor
+
+/turf/simulated/floor/tiled/techfloor
+	name = "techfloor gray"
+	icon = 'icons/turf/flooring/techfloor.dmi'
+	icon_state = "techfloor_gray"
+	initial_flooring = /decl/flooring/tiling/tech
+
+/turf/simulated/floor/tiled/tile_full
+	name = "tile full"
+	icon_state = "tile_full"
+	initial_flooring = /decl/flooring/tiling/new_tile
+
+/turf/simulated/floor/tiled/cargo_one_full
+	name = "cargo_one_full"
+	icon_state = "cargo_one_full"
+	initial_flooring = /decl/flooring/tiling/new_tile/cargo_one
+
+/turf/simulated/floor/tiled/kafel_full
+	name = "kafel_full"
+	icon_state = "kafel_full"
+	initial_flooring = /decl/flooring/tiling/new_tile/kafel
+
+//turf/simulated/floor/tiled/techfloor/edges
+	//special_overlay = image('icons/turf/flooring/techfloor.dmi',"techfloor_edges")
+
+//turf/simulated/floor/tiled/techfloor/edges/New()
+//	..()
+//	overlays += image("icon"='icons/turf/flooring/techfloor.dmi',"icon_state"="techfloor_edges")
+
+/*/turf/simulated/floor/tiled/techfloor/edges/set_flooring(var/decl/flooring/newflooring)
+	make_plating(defer_icon_update = 1)
+	flooring = newflooring
+	update_icon(0)
+	levelupdate()*/
+
+//turf/simulated/floor/tiled/techfloor/corners
+	//special_overlay = image('icons/turf/flooring/techfloor.dmi',"techfloor_corners")
+
+/turf/simulated/floor/tiled/techfloor/grid
+	name = "techfloor grid"
+	icon_state = "techfloor_grid"
+	initial_flooring = /decl/flooring/tiling/tech/grid
 
 /turf/simulated/floor/reinforced
 	name = "reinforced floor"

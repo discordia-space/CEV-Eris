@@ -46,7 +46,7 @@
 		atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
 		atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
-
+	//updateicon()
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
 	for (var/obj/machinery/alarm/AA in src)
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
@@ -149,20 +149,31 @@
 	return
 
 /area/proc/updateicon()
-	if ((fire || eject || party) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
-		if(fire && !eject && !party)
-			icon_state = "blue"
-		/*else if(atmosalm && !fire && !eject && !party)
-			icon_state = "bluenew"*/
-		else if(!fire && eject && !party)
+	if ((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
+		if(fire)
+			//icon_state = "blue"
+			for(var/obj/machinery/light/L in src)
+				if(istype(L, /obj/machinery/light/small))
+					continue
+				L.set_red()
+		else if (atmosalm == 2)
+			for(var/obj/machinery/light/L in src)
+				if(istype(L, /obj/machinery/light/small))
+					continue
+				L.set_blue()
+		else if(!fire && eject && !party && !(atmosalm == 2))
 			icon_state = "red"
-		else if(party && !fire && !eject)
+		else if(party && !fire && !eject && !(atmosalm == 2))
 			icon_state = "party"
-		else
-			icon_state = "blue-red"
+		//else
+			//icon_state = "blue-red"
 	else
 	//	new lighting behaviour with obj lights
 		icon_state = null
+		for(var/obj/machinery/light/L in src)
+			if(istype(L, /obj/machinery/light/small))
+				continue
+			L.reset_color()
 
 
 /*

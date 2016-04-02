@@ -153,7 +153,7 @@
 
 	if(length(message) >= 2 && is_language_prefix(prefix))
 		var/language_prefix = lowertext(copytext(message, 2 ,3))
-		var/datum/language/L = language_keys[language_prefix]
+		var/datum/language/L = language_keys[rkey2key(language_prefix)]
 		if (can_speak(L))
 			return L
 

@@ -496,7 +496,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
 		usr.set_machine(src)
 		if(href_list["set_channel_name"])
-			src.channel_name = sanitizeSafe(input(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""), MAX_LNAME_LEN)
+			src.channel_name = cp1251_to_utf8(sanitizeSafe(input(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""), MAX_LNAME_LEN))
 			src.updateUsrDialog()
 			//src.update_icon()
 
@@ -535,11 +535,11 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			for(var/datum/feed_channel/F in news_network.network_channels)
 				if( (!F.locked || F.author == scanned_user) && !F.censored)
 					available_channels += F.channel_name
-			src.channel_name = input(usr, "Choose receiving Feed Channel", "Network Channel Handler") in available_channels
+			src.channel_name = cp1251_to_utf8(input(usr, "Choose receiving Feed Channel", "Network Channel Handler") in available_channels)
 			src.updateUsrDialog()
 
 		else if(href_list["set_new_message"])
-			src.msg = sanitize(input(usr, "Write your Feed story", "Network Channel Handler", ""))
+			src.msg = cp1251_to_utf8(sanitize(input(usr, "Write your Feed story", "Network Channel Handler", "")))
 			src.updateUsrDialog()
 
 		else if(href_list["set_attachment"])
@@ -551,7 +551,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 				src.screen=6
 			else
 				var/image = photo_data ? photo_data.photo : null
-				feedback_inc("newscaster_stories",1)
 				news_network.SubmitArticle(src.msg, src.scanned_user, src.channel_name, image, 0)
 				src.screen=4
 
@@ -596,11 +595,11 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			src.updateUsrDialog()
 
 		else if(href_list["set_wanted_name"])
-			src.channel_name = sanitizeSafe(input(usr, "Provide the name of the Wanted person", "Network Security Handler", ""), MAX_LNAME_LEN)
+			src.channel_name = cp1251_to_utf8(sanitizeSafe(input(usr, "Provide the name of the Wanted person", "Network Security Handler", ""), MAX_LNAME_LEN))
 			src.updateUsrDialog()
 
 		else if(href_list["set_wanted_desc"])
-			src.msg = sanitize(input(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", ""))
+			src.msg = cp1251_to_utf8(sanitize(input(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", "")))
 			src.updateUsrDialog()
 
 		else if(href_list["submit_wanted"])
@@ -937,7 +936,7 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(src.scribble_page == src.curr_page)
 			user << "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>"
 		else
-			var/s = sanitize(input(user, "Write something", "Newspaper", ""))
+			var/s = cp1251_to_utf8(sanitize(input(user, "Write something", "Newspaper", "")))
 			s = sanitize(s)
 			if (!s)
 				return
@@ -975,7 +974,6 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 
 /obj/machinery/newscaster/proc/print_paper()
-	feedback_inc("newscaster_newspapers_printed",1)
 	var/obj/item/weapon/newspaper/NEWSPAPER = new /obj/item/weapon/newspaper
 	for(var/datum/feed_channel/FC in news_network.network_channels)
 		NEWSPAPER.news_content += FC

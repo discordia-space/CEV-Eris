@@ -514,15 +514,12 @@ BLIND     // can't see anything
 		3 = Report location
 		*/
 	var/displays_id = 1
-	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/uniform.dmi',
 		"Resomi" = 'icons/mob/species/resomi/uniform.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
-	//Also used by rolling/unrolling.
-	var/worn_state = null
 	valid_accessory_slots = list("utility","armband","decor")
 	restricted_accessory_slots = list("utility", "armband")
 
@@ -536,40 +533,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/under/New()
 	..()
-	if(worn_state)
-		if(!item_state_slots)
-			item_state_slots = list()
-		item_state_slots[slot_w_uniform_str] = worn_state
-	else
-		worn_state = icon_state
-
-	//autodetect rollability
-	if(rolled_down < 0)
-		if((worn_state + "_d_s") in icon_states('icons/mob/uniform.dmi'))
-			rolled_down = 0
-
-/obj/item/clothing/under/proc/update_rolldown_status()
-	var/mob/living/carbon/human/H
-	if(istype(src.loc, /mob/living/carbon/human))
-		H = src.loc
-
-	var/icon/under_icon
-	if(icon_override)
-		under_icon = icon_override
-	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype()])
-		under_icon = sprite_sheets[H.species.get_bodytype()]
-	else if(item_icons && item_icons[slot_w_uniform_str])
-		under_icon = item_icons[slot_w_uniform_str]
-	else
-		under_icon = INV_W_UNIFORM_DEF_ICON
-
-	// The _s is because the icon update procs append it.
-	if(("[worn_state]_d_s") in icon_states(under_icon))
-		if(rolled_down != 1)
-			rolled_down = 0
-	else
-		rolled_down = -1
-	if(H) update_clothing_icon()
+	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
 
 /obj/item/clothing/under/update_clothing_icon()
 	if (ismob(src.loc))
@@ -638,28 +602,6 @@ BLIND     // can't see anything
 	set src in usr
 	set_sensors(usr)
 	..()
-
-/obj/item/clothing/under/verb/rollsuit()
-	set name = "Roll Down Jumpsuit"
-	set category = "Object"
-	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
-
-	update_rolldown_status()
-	if(rolled_down == -1)
-		usr << "<span class='notice'>You cannot roll down [src]!</span>"
-		return
-
-	rolled_down = !rolled_down
-	if(rolled_down)
-		body_parts_covered &= LOWER_TORSO|LEGS|FEET
-		item_state_slots[slot_w_uniform_str] = "[worn_state]_d"
-	else
-		body_parts_covered = initial(body_parts_covered)
-		item_state_slots[slot_w_uniform_str] = "[worn_state]"
-	update_clothing_icon()
-
 
 /obj/item/clothing/under/rank/New()
 	sensor_mode = pick(0,1,2,3)
