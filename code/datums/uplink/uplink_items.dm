@@ -97,7 +97,7 @@ var/datum/uplink/uplink = new()
 	return
 
 /datum/uplink_item/proc/purchase_log(obj/item/device/uplink/U)
-	feedback_add_details("traitor_uplink_items_bought", "[src]")
+
 	log_and_message_admins("used \the [U.loc] to buy \a [src]")
 	U.purchase_log[src] = U.purchase_log[src] + 1
 

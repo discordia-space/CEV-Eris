@@ -41,6 +41,11 @@
 		else if(istype(C, /obj/item/stack/cable_coil))
 			user << "<span class='warning'>You must remove the [flooring.descriptor] first.</span>"
 			return
+		else if (istype(C, /obj/item/frame))
+			var/obj/item/frame/F = C
+			//world<<"click on floor"
+			F.try_floorbuild(src)
+			return
 	else
 
 		if(istype(C, /obj/item/stack))
@@ -53,7 +58,7 @@
 				var/decl/flooring/F = flooring_types[flooring_type]
 				if(!F.build_type)
 					continue
-				if(ispath(S.type, F.build_type) || ispath(S.build_type, F.build_type))
+				if((ispath(S.type, F.build_type) || ispath(S.build_type, F.build_type)) && ((S.type == F.build_type) || (S.build_type == F.build_type)))
 					use_flooring = F
 					break
 			if(!use_flooring)
@@ -85,6 +90,11 @@
 					else
 						user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 					return
+		else if(istype(C,/obj/item/frame))
+			var/obj/item/frame/F = C
+			//world<<"click on floor"
+			F.try_floorbuild(src)
+			return
 	return ..()
 
 

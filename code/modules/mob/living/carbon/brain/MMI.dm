@@ -64,7 +64,7 @@
 
 			locked = 1
 
-			feedback_inc("cyborg_mmis_filled",1)
+
 
 			return
 

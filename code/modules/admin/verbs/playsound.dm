@@ -19,7 +19,7 @@ var/list/sounds_cache = list()
 		if(M.is_preference_enabled(/datum/client_preference/play_admin_midis))
 			M << uploaded_sound
 
-	feedback_add_details("admin_verb","PGS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/play_local_sound(S as sound)
 	set category = "Fun"
@@ -29,7 +29,7 @@ var/list/sounds_cache = list()
 	log_admin("[key_name(src)] played a local sound [S]")
 	message_admins("[key_name_admin(src)] played a local sound [S]", 1)
 	playsound(get_turf(src.mob), S, 50, 0, 0)
-	feedback_add_details("admin_verb","PLS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 
 /client/proc/play_server_sound()
@@ -46,7 +46,7 @@ var/list/sounds_cache = list()
 	if(melody == "--CANCEL--")	return
 
 	play_sound(melody)
-	feedback_add_details("admin_verb","PSS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /*
 /client/proc/cuban_pete()

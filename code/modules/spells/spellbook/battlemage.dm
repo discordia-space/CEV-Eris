@@ -2,7 +2,6 @@
 //Things like utility and mobility come second.
 /datum/spellbook/battlemage
 	name = "\improper Battlemage's Bible"
-	feedback = "BM"
 	desc = "Smells like blood."
 	title = "The Art of Magical Combat"
 	title_desc = "Buy spells using your available spell slots. Artefacts may also be bought however their cost is permanent."

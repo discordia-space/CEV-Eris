@@ -26,6 +26,8 @@ datum/preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
+	var/body_build = "Default"			//character body build name
+	var/datum/body_build/body = null	//body_build object
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
@@ -61,6 +63,8 @@ datum/preferences
 	var/icon/preview_icon = null
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null
+
+	var/high_job_title = ""
 
 		//Jobs, uses bitflags
 	var/job_civilian_high = 0
@@ -114,6 +118,7 @@ datum/preferences
 /datum/preferences/New(client/C)
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
+	body = get_body_build(gender, body_build)
 	real_name = random_name(gender,species)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
@@ -277,6 +282,8 @@ datum/preferences
 	character.flavor_texts["hands"] = flavor_texts["hands"]
 	character.flavor_texts["legs"] = flavor_texts["legs"]
 	character.flavor_texts["feet"] = flavor_texts["feet"]
+
+	character.body_build = get_body_build(gender, body_build)
 
 	character.med_record = med_record
 	character.sec_record = sec_record

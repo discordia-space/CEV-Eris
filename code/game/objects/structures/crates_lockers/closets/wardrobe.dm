@@ -86,6 +86,7 @@
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/deck/tarot(src)
+	new /obj/item/weapon/talkingcrystal(src)
 	return
 
 
@@ -416,7 +417,7 @@
 	new /obj/item/clothing/under/suit_jacket/burgundy(src)
 	new /obj/item/clothing/under/suit_jacket/checkered(src)
 	new /obj/item/clothing/under/suit_jacket/tan(src)
-	new /obj/item/clothing/under/sl_suit(src)
+	//new /obj/item/clothing/under/sl_suit(src)
 	new /obj/item/clothing/under/suit_jacket(src)
 	new /obj/item/clothing/under/suit_jacket/female(src)
 	new /obj/item/clothing/under/suit_jacket/really_black(src)

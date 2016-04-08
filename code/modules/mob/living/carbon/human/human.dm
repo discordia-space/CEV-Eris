@@ -11,6 +11,8 @@
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 
+	body_build = get_body_build(gender)
+
 	if(!dna)
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
@@ -179,6 +181,21 @@
 	L.part = affected
 	L.implanted(src)
 
+/mob/living/carbon/human/proc/implant(var/implant_type = /obj/item/weapon/implant/loyalty)
+	var/obj/item/weapon/implant/L = new implant_type(src)
+	if(!istype(L, /obj/item/weapon/implant))
+		del(L)
+		return 0
+
+// TODO: replace with    L.implanted(src, "head")
+
+	L.imp_in = src
+	L.implanted = 1
+	var/obj/item/organ/external/affected = get_organ("head")
+	affected.implants += L
+	L.part = affected
+	L.implanted(src)
+
 /mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
 	for(var/L in M.contents)
 		if(istype(L, /obj/item/weapon/implant/loyalty))
@@ -304,16 +321,35 @@
 		else
 			return if_no_id
 
+//Trust me I'm an engineer
+//I think we'll put this shit right here
+var/list/rank_prefix = list(\
+	"Security Officer" = "Oper.",\
+	"Detective" = "Insp.",\
+	"Warden" = "Sgt.",\
+	"Head of Security" = "Lt.",\
+	"Captain" = "Capt.",\
+	)
+
+/mob/living/carbon/human/proc/rank_prefix_name(name)
+	if(get_id_rank())
+		if(findtext(name, " "))
+			name = copytext(name, findtext(name, " "))
+		name = get_id_rank() + name
+	return name
+
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
-	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
-		return get_id_name("Unknown")
-	if( head && (head.flags_inv&HIDEFACE) )
-		return get_id_name("Unknown")		//Likewise for hats
+	if((wear_mask && (wear_mask.flags_inv&HIDEFACE)) || (head && (head.flags_inv&HIDEFACE)))	//Wearing a mask which hides our face, use id-name if possible	//Likewise for hats
+		return rank_prefix_name(get_id_name())
+
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
-	if(id_name && (id_name != face_name))
-		return "[face_name] (as [id_name])"
+	if(id_name)
+		if(id_name != face_name)
+			return "[face_name] (as [rank_prefix_name(id_name)])"
+		else
+			return rank_prefix_name(id_name)
 	return face_name
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
@@ -335,6 +371,18 @@
 		if(I)
 			return I.registered_name
 	return
+
+/mob/living/carbon/human/proc/get_id_rank()
+	var/rank
+	if(istype(wear_id,/obj/item/device/pda))
+		var/obj/item/device/pda/P = wear_id
+		rank = P.ownjob
+	else if(wear_id)
+		var/obj/item/weapon/card/id/I = wear_id.GetID()
+		rank = I.rank
+	if(rank_prefix[rank])
+		return rank_prefix[rank]
+	return ""
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()
@@ -1243,37 +1291,45 @@
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
-	var/head_exposed = 1
-	var/face_exposed = 1
-	var/eyes_exposed = 1
-	var/torso_exposed = 1
-	var/arms_exposed = 1
-	var/legs_exposed = 1
-	var/hands_exposed = 1
-	var/feet_exposed = 1
+	var/list/exposed = list( \
+	"head" = 1,\
+	"face" = 1,\
+	"eyes" = 1,\
+	"torso" = 1,\
+	"arms" = 1,\
+	"legs" = 1,\
+	"hands" = 1,\
+	"feet" = 1\
+	)
 
 	for(var/obj/item/clothing/C in equipment)
 		if(C.body_parts_covered & HEAD)
-			head_exposed = 0
+			exposed["head"] = 0
 		if(C.body_parts_covered & FACE)
-			face_exposed = 0
+			exposed["face"] = 0
 		if(C.body_parts_covered & EYES)
-			eyes_exposed = 0
+			exposed["eyes"] = 0
+			exposed["mech_eyes"] = 0
+		else
+			var/obj/item/organ/eyes/E = src.internal_organs_by_name["eyes"]
+			if( E && E.robotic >= 2 ) 	exposed["eyes"] = 0
+			else  exposed["mech_eyes"] = 0
 		if(C.body_parts_covered & UPPER_TORSO)
-			torso_exposed = 0
+			exposed["torso"] = 0
 		if(C.body_parts_covered & ARMS)
-			arms_exposed = 0
+			exposed["arms"] = 0
 		if(C.body_parts_covered & HANDS)
-			hands_exposed = 0
+			exposed["hands"] = 0
 		if(C.body_parts_covered & LEGS)
-			legs_exposed = 0
+			exposed["legs"] = 0
 		if(C.body_parts_covered & FEET)
-			feet_exposed = 0
+			exposed["feet"] = 0
 
-	flavor_text = ""
+	flavor_text = flavor_texts["general"]
+	flavor_text += "\n\n"
 	for (var/T in flavor_texts)
 		if(flavor_texts[T] && flavor_texts[T] != "")
-			if((T == "general") || (T == "head" && head_exposed) || (T == "face" && face_exposed) || (T == "eyes" && eyes_exposed) || (T == "torso" && torso_exposed) || (T == "arms" && arms_exposed) || (T == "hands" && hands_exposed) || (T == "legs" && legs_exposed) || (T == "feet" && feet_exposed))
+			if( exposed[T] )
 				flavor_text += flavor_texts[T]
 				flavor_text += "\n\n"
 	if(!shrink)

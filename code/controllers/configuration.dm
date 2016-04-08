@@ -220,7 +220,6 @@ var/list/gamemode_cache = list()
 	var/list/language_prefixes = list(",","#","-")//Default language prefixes
 
 	var/ghosts_can_possess_animals = 0
-	var/delist_when_no_admins = FALSE
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -711,9 +710,6 @@ var/list/gamemode_cache = list()
 
 				if ("lobby_screens")
 					config.lobby_screens = splittext(value, ";")
-
-				if("delist_when_no_admins")
-					config.delist_when_no_admins = TRUE
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

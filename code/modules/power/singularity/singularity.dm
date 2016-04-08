@@ -10,7 +10,7 @@
 	layer = 6
 	light_range = 6
 	unacidable = 1 //Don't comment this out.
-
+	allow_spin = 0
 	var/current_size = 1
 	var/allowed_size = 1
 	var/contained = 1 //Are we going to move around?

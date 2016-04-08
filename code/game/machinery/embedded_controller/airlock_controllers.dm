@@ -121,7 +121,7 @@
 
 	if(clean)
 		program.receive_user_command(href_list["command"])
-
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1
 
 
@@ -185,5 +185,5 @@
 
 	if(clean)
 		program.receive_user_command(href_list["command"])
-
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1

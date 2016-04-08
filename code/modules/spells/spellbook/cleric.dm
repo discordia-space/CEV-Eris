@@ -4,7 +4,6 @@
 
 /datum/spellbook/cleric
 	name = "\improper Cleric's Tome"
-	feedback = "CR"
 	desc = "For those who do not harm, or at least feel sorry about it."
 	title = "Cleric's Tome of Healing"
 	title_desc = "Buy spells using your available spell slots. Artefacts may also be bought however their cost is permanent."

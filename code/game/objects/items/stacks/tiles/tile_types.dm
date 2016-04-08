@@ -70,11 +70,50 @@
 	throw_range = 20
 	flags = 0
 
+/obj/item/stack/tile/carpet/bcarpet
+	icon_state = "tile-bcarpet"
+/obj/item/stack/tile/carpet/blucarpet
+	icon_state = "tile-blucarpet"
+/obj/item/stack/tile/carpet/turcarpet
+	icon_state = "tile-turcarpet"
+/obj/item/stack/tile/carpet/sblucarpet
+	icon_state = "tile-sblucarpet"
+/obj/item/stack/tile/carpet/gaycarpet
+	icon_state = "tile-gaycarpet"
+/obj/item/stack/tile/carpet/purcarpet
+	icon_state = "tile-purcarpet"
+/obj/item/stack/tile/carpet/oracarpet
+	icon_state = "tile-oracarpet"
+
 /obj/item/stack/tile/floor
 	name = "floor tile"
 	singular_name = "floor tile"
 	desc = "Those could work as a pretty decent throwing weapon" //why?
 	icon_state = "tile"
+	force = 6.0
+	matter = list(DEFAULT_WALL_MATERIAL = 937.5)
+	throwforce = 15.0
+	throw_speed = 5
+	throw_range = 20
+	flags = CONDUCT
+
+/obj/item/stack/tile/techgrey
+	name = "grey techfloor tile"
+	singular_name = "grey techfloor tile"
+	desc = "Those could work as a pretty decent throwing weapon" //why?
+	icon_state = "techtile_grey"
+	force = 6.0
+	matter = list(DEFAULT_WALL_MATERIAL = 937.5)
+	throwforce = 15.0
+	throw_speed = 5
+	throw_range = 20
+	flags = CONDUCT
+
+/obj/item/stack/tile/techgrid
+	name = "grid techfloor tile"
+	singular_name = "grid techfloor tile"
+	icon_state = "techtile_grid"
+	desc = "Those could work as a pretty decent throwing weapon" //why?
 	force = 6.0
 	matter = list(DEFAULT_WALL_MATERIAL = 937.5)
 	throwforce = 15.0

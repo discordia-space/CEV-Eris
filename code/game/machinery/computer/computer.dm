@@ -9,7 +9,7 @@
 	active_power_usage = 300
 	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = 0
-
+	var/CheckFaceFlag = 1 //for direction check
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
 	var/light_range_on = 2
@@ -119,3 +119,28 @@
 			qdel(src)
 	else
 		..()
+/obj/machinery/computer/Topic(href, href_list)
+	if(..())
+		return 1
+	if (!CheckFaceFlag || CheckFace(src,usr))
+		keyboardsound(usr)
+		return 0
+	else
+		usr << "You need to stand in front of console's keyboard!"
+		return 1
+
+/obj/proc/keyboardsound(mob/user as mob)
+	if(!issilicon(user))
+		playsound(src, "keyboard", 100, 1, 0)
+
+/obj/machinery/computer/attack_hand(mob/user as mob)//check mob direction
+	if(..())
+		return 1
+	if(!issilicon(user))
+		return 0
+	if (!CheckFaceFlag || CheckFace(src,user))
+		keyboardsound(user)
+		return 0
+	else
+		user << "you need stay face to console"
+		return 1

@@ -311,6 +311,7 @@
 /obj/item/modular_computer/Topic(href, href_list)
 	if(..())
 		return 1
+	keyboardsound(usr)
 	if( href_list["PC_exit"] )
 		kill_program()
 		return 1
@@ -375,6 +376,7 @@
 			update_icon()
 		return 1
 	if(.)
+		keyboardsound(usr)
 		update_uis()
 
 // Used in following function to reduce copypaste

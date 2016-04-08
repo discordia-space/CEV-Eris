@@ -5,6 +5,7 @@
 	icon_state = "fire_bitem"
 	flags = CONDUCT
 	var/build_machine_type
+	var/build_floormachine_type
 	var/refund_amt = 2
 	var/refund_type = /obj/item/stack/material/steel
 	var/reverse = 0 //if resulting object faces opposite its dir (like light fixtures)
@@ -46,6 +47,41 @@
 		return
 
 	var/obj/machinery/M = new build_machine_type(loc, ndir, 1)
+	M.fingerprints = src.fingerprints
+	M.fingerprintshidden = src.fingerprintshidden
+	M.fingerprintslast = src.fingerprintslast
+	qdel(src)
+
+/obj/item/frame/proc/try_floorbuild(turf/on_floor) // For build machines on floor
+	if(!build_floormachine_type)
+		return
+
+	if (get_dist(on_floor,usr)>1)
+		return
+
+	var/ndir
+	if(reverse)
+		ndir = get_dir(usr,on_floor)
+	else
+		ndir = get_dir(on_floor,usr)
+
+	if (!(ndir in cardinal))
+		return
+
+	var/turf/loc = get_turf(on_floor)
+	//var/area/A = loc.loc
+	/*if (!istype(loc, /turf/simulated/floor)) //TODO rework this
+		usr << "<span class='danger'>\The [src] Alarm cannot be placed on this spot.</span>"
+		return
+	if (A.requires_power == 0 || A.name == "Space")
+		usr << "<span class='danger'>\The [src] Alarm cannot be placed in this area.</span>"
+		return*/
+
+	if(gotflooritem(loc, ndir))
+		usr << "<span class='danger'>There's already an item on this floor!</span>"
+		return
+
+	var/obj/machinery/M = new build_floormachine_type(loc, ndir, 1)
 	M.fingerprints = src.fingerprints
 	M.fingerprintshidden = src.fingerprintshidden
 	M.fingerprintslast = src.fingerprintslast

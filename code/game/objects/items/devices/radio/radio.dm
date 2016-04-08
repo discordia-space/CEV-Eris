@@ -227,6 +227,7 @@ var/global/list/default_medbay_channels = list(
 
 	if(.)
 		nanomanager.update_uis(src)
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 /obj/item/device/radio/proc/autosay(var/message, var/from, var/channel) //BS12 EDIT
 	var/datum/radio_frequency/connection = null

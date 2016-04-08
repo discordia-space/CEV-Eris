@@ -67,17 +67,26 @@
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
 	name = "watertank"
-	desc = "A watertank"
+	desc = "A watertank. It is used to store high amounts of water."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
 	New()
 		..()
-		reagents.add_reagent("water",1000)
+		reagents.add_reagent("water",500)
+
+/obj/structure/reagent_dispensers/watertank/huge
+	name = "high-volume watertank"
+	desc = "A high-volume watertank. It is used to store HUGE amounts of water."
+	icon_state = "hvwatertank"
+	New()
+		..()
+		reagents.add_reagent("water",500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
+
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
-	desc = "A fueltank"
+	desc = "A fueltank. It is used to store high amounts of fuel."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
@@ -85,7 +94,15 @@
 	var/obj/item/device/assembly_holder/rig = null
 	New()
 		..()
-		reagents.add_reagent("fuel",1000)
+		reagents.add_reagent("fuel",500)
+
+/obj/structure/reagent_dispensers/fueltank/huge
+	name = "high-volume fueltank"
+	desc = "A high-volume fueltank. It is used to store HUGE amounts of fuel."
+	icon_state = "hvweldtank"
+	New()
+		..()
+		reagents.add_reagent("fuel",500)		//Adds 500 units to the amount, that already is inside. It'll be 1000.
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))

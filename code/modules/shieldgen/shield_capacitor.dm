@@ -54,12 +54,14 @@
 		if(anchored)
 			spawn(0)
 				for(var/obj/machinery/shield_gen/gen in range(1, src))
-					if(get_dir(src, gen) == src.dir && !gen.owned_capacitor)
+					if(get_dir(src, gen) == src.dir && !gen.owned_capacitor && gen.anchored)
 						owned_gen = gen
 						owned_gen.owned_capacitor = src
 						owned_gen.updateDialog()
+						owned_gen.update_icon()
 		else
 			if(owned_gen && owned_gen.owned_capacitor == src)
+				owned_gen.update_icon()
 				owned_gen.owned_capacitor = null
 			owned_gen = null
 	else

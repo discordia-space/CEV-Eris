@@ -75,15 +75,17 @@
 				for(var/obj/machinery/shield_capacitor/cap in range(1, src))
 					if(cap.owned_gen)
 						continue
-					if(get_dir(cap, src) == cap.dir && src.anchored)
+					if(get_dir(cap, src) == cap.dir && cap.anchored)
 						owned_capacitor = cap
 						owned_capacitor.owned_gen = src
 						updateDialog()
+						update_icon()
 						break
 		else
 			if(owned_capacitor && owned_capacitor.owned_gen == src)
 				owned_capacitor.owned_gen = null
 			owned_capacitor = null
+			update_icon()
 	else
 		..()
 
@@ -235,6 +237,10 @@
 			icon_state = "generator1"
 		else
 			icon_state = "generator0"
+		overlays.Cut()
+		if (owned_capacitor)
+			var/I = image(icon,"capacitor_connected", dir = turn(owned_capacitor.dir, 180))
+			overlays += I
 
 //TODO MAKE THIS MULTIZ COMPATIBLE
 //grab the border tiles in a circle around this machine

@@ -2,18 +2,7 @@
 #define CAN_MAKE_CONTRACTS	4
 //spells/spellbooks have a variable for this but as artefacts are literal items they do not.
 //so we do this instead.
-var/list/artefact_feedback = list(/obj/structure/closet/wizard/armor = 		"HS",
-								/obj/item/weapon/gun/energy/staff/focus = 	"MF",
-								/obj/item/weapon/monster_manual = 			"MA",
-								/obj/item/weapon/magic_rock = 				"RA",
-								/obj/item/weapon/contract/apprentice = 		"CP",
-								/obj/structure/closet/wizard/souls = 		"SS",
-								/obj/item/weapon/contract/wizard/tk = 		"TK",
-								/obj/structure/closet/wizard/scrying = 		"SO",
-								/obj/item/weapon/teleportation_scroll = 	"TS",
-								/obj/item/weapon/gun/energy/staff = 		"ST",
-								/obj/item/weapon/gun/energy/staff/animate =	"SA",
-								/obj/item/weapon/dice/d20/cursed = 			"DW")
+
 
 /obj/item/weapon/spellbook
 	name = "master spell book"
@@ -133,7 +122,7 @@ var/list/artefact_feedback = list(/obj/structure/closet/wizard/armor = 		"HS",
 			usr << "<span class='notice'>You do not have enough spell slots to purchase this.</span>"
 			return
 		uses -= spellbook.spells[path]
-		send_feedback(path) //feedback stuff
+
 		if(ispath(path,/datum/spellbook))
 			src.set_spellbook(path)
 			temp = "You have chosen a new spellbook."
@@ -159,22 +148,14 @@ var/list/artefact_feedback = list(/obj/structure/closet/wizard/armor = 		"HS",
 			uses = spellbook.max_uses
 			H.spellremove()
 			temp = "All spells have been removed. You may now memorize a new set of spells."
-			feedback_add_details("wizard_spell_learned","UM") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
+
 		else
 			usr << "<span class='warning'>You must be in the wizard academy to re-memorize your spells.</span>"
 
 	src.interact(usr)
 
 
-/obj/item/weapon/spellbook/proc/send_feedback(var/path)
-	if(ispath(path,/datum/spellbook))
-		var/datum/spellbook/S = path
-		feedback_add_details("wizard_spell_learned","[initial(S.feedback)]")
-	else if(ispath(path,/spell))
-		var/spell/S = path
-		feedback_add_details("wizard_spell_learned","[initial(S.feedback)]")
-	else if(ispath(path,/obj))
-		feedback_add_details("wizard_spell_learned","[artefact_feedback[path]]")
+
 
 
 /obj/item/weapon/spellbook/proc/add_spell(var/mob/user, var/spell_path)
@@ -205,7 +186,7 @@ var/list/artefact_feedback = list(/obj/structure/closet/wizard/armor = 		"HS",
 	var/name = "\improper Book of Tomes"
 	var/desc = "The legendary book of spells of the wizard."
 	var/book_desc = "Holds information on the various tomes available to a wizard"
-	var/feedback = "" //doesn't need one.
+	//var/feedback = "" //doesn't need one.
 	var/book_flags = 0
 	var/max_uses = 1
 	var/title = "Book of Tomes"

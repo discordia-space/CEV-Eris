@@ -122,9 +122,9 @@
 	path = /obj/item/clothing/under/rank/roboticist/skirt
 	allowed_roles = list("Roboticist")
 
-/datum/gear/uniform/suit  //amish
-	display_name = "suit, amish"
-	path = /obj/item/clothing/under/sl_suit
+///datum/gear/uniform/suit  //amish
+	//display_name = "suit, amish"
+	//path = /obj/item/clothing/under/sl_suit
 
 /datum/gear/uniform/suit/black
 	display_name = "suit, black"

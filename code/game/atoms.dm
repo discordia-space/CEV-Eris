@@ -14,6 +14,7 @@
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = 1 //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
+	var/allow_spin = 1
 
 	///Chemistry.
 	var/datum/reagents/reagents = null
@@ -209,6 +210,7 @@ its easier to just keep the beam vertical.
 		else
 			f_name += "oil-stained [name][infix]."
 
+	user.visible_message("<font size=1>[user.name] looks at [src].</font>")
 	user << "\icon[src] That's [f_name] [suffix]"
 	user << desc
 

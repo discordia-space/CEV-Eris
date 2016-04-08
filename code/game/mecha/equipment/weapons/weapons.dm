@@ -260,6 +260,7 @@
 	icon_state = "missile"
 	var/primed = null
 	throwforce = 15
+	allow_spin = 0
 
 	throw_impact(atom/hit_atom)
 		if(primed)

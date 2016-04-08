@@ -195,6 +195,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		silent = !silent
 
 	updateUsrDialog()
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	return
 
 					//err... hacking code, which has no reason for existing... but anyway... it was once supposed to unlock priority 3 messanging on that console (EXTREME priority...), but the code for that was removed.

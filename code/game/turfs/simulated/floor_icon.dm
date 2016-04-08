@@ -10,8 +10,9 @@ var/list/flooring_cache = list()
 		name = flooring.name
 		desc = flooring.desc
 		icon = flooring.icon
-
-		if(flooring_override)
+		if(!isnull(set_update_icon) && istext(set_update_icon))
+			icon_state = set_update_icon
+		else if(flooring_override)
 			icon_state = flooring_override
 		else
 			icon_state = flooring.icon_base
@@ -22,12 +23,14 @@ var/list/flooring_cache = list()
 		// Apply edges, corners, and inner corners.
 		overlays.Cut()
 		var/has_border = 0
-		if(flooring.flags & TURF_HAS_EDGES)
+		if(isnull(set_update_icon) && (flooring.flags & TURF_HAS_EDGES))
 			for(var/step_dir in cardinal)
 				var/turf/simulated/floor/T = get_step(src, step_dir)
 				if(!istype(T) || !T.flooring || T.flooring.name != flooring.name)
 					has_border |= step_dir
 					overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir)
+			if ((flooring.flags & TURF_USE0ICON) && has_border)
+				icon_state = flooring.icon_base+"0"
 
 			// There has to be a concise numerical way to do this but I am too noob.
 			if((has_border & NORTH) && (has_border & EAST))

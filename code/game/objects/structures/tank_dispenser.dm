@@ -112,6 +112,7 @@
 				usr << "<span class='notice'>You take [P] out of [src].</span>"
 				phorontanks--
 				update_icon()
+		playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 		add_fingerprint(usr)
 		updateUsrDialog()
 	else

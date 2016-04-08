@@ -398,3 +398,55 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/sign/p
 	icon_state = "white_p"
+
+/obj/effect/floor_decal/techfloor
+	name = "techfloor edges"
+	icon_state = "techfloor_edges"
+
+/obj/effect/floor_decal/techfloor/corner
+	name = "techfloor corner"
+	icon_state = "techfloor_corners"
+
+/obj/effect/floor_decal/techfloor/orange
+	name = "techfloor edges"
+	icon_state = "techfloororange_edges"
+
+/obj/effect/floor_decal/techfloor/orange/corner
+	name = "techfloor corner"
+	icon_state = "techfloororange_corners"
+
+/obj/effect/floor_decal/techfloor/hole
+	name = "hole left"
+	icon_state = "techfloor_hole_left"
+
+/obj/effect/floor_decal/techfloor/hole/right
+	name = "hole right"
+	icon_state = "techfloor_hole_right"
+
+/obj/effect/floor_decal/new_corner
+	name = "corner"
+	icon_state = "corner"
+
+/obj/effect/floor_decal/new_corner/diagonal
+	name = "corner diagonal"
+	icon_state = "corner_diagonal"
+
+/obj/effect/floor_decal/new_corner/full
+	name = "corner full"
+	icon_state = "corner_full"
+
+/obj/effect/floor_decal/cargo_one
+	name = "cargo one"
+	icon_state = "cargo_one"
+
+/obj/effect/floor_decal/corner_kafel
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+
+/obj/effect/floor_decal/corner_kafel/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"

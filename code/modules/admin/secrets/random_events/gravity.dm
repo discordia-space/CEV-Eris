@@ -19,8 +19,7 @@
 	for(var/area/A in world)
 		A.gravitychange(gravity_is_on,A)
 
-	feedback_inc("admin_secrets_fun_used",1)
-	feedback_add_details("admin_secrets_fun_used","Grav")
+
 	if(gravity_is_on)
 		log_admin("[key_name(user)] toggled gravity on.", 1)
 		message_admins("<span class='notice'>[key_name_admin(user)] toggled gravity on.", 1)

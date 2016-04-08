@@ -23,6 +23,7 @@
 	//Sorting Variables
 	var/sortBy = "name"
 	var/order = 1 // -1 = Descending - 1 = Ascending
+	CheckFaceFlag = 0
 
 /obj/machinery/computer/skills/attackby(obj/item/O as obj, var/mob/user)
 	if(istype(O, /obj/item/weapon/card/id) && !scan && user.unEquip(O))

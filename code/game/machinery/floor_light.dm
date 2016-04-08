@@ -40,6 +40,13 @@ var/list/floor_light_cache = list()
 		stat &= ~BROKEN
 		damaged = null
 		update_brightness()
+	else if (istype(W, /obj/item/device/multitool))
+		if(on)
+			user << "<span class='warning'>\The [src] must be turn off to change a color.</span>"
+			return
+		var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
+		default_light_colour = new_light_colour
+		update_brightness()
 	else if(W.force && user.a_intent == "hurt")
 		attack_hand(user)
 	return
@@ -155,3 +162,43 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/cultify()
 	default_light_colour = "#FF0000"
 	update_brightness()
+//techlight neon
+/obj/machinery/floor_light/neon
+	name = "techlight neon"
+	icon = 'icons/obj/machines/tech_floor_neon.dmi'
+
+/obj/machinery/floor_light/neon/attack_hand(var/mob/user)
+	if(user.a_intent == I_HURT && !issmall(user))
+		if(!isnull(damaged) && !(stat & BROKEN))
+			visible_message("<span class='danger'>\The [user] smashes \the [src]!</span>")
+			playsound(src, "shatter", 70, 1)
+			stat |= BROKEN
+		else
+			visible_message("<span class='danger'>\The [user] attacks \the [src]!</span>")
+			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			if(isnull(damaged)) damaged = 0
+		update_brightness()
+		return
+	return
+
+/obj/machinery/floor_light/neon/process()
+	if(!(use_power || idle_power_usage || active_power_usage))
+		return PROCESS_KILL
+	var/need_update
+	if((!anchored || broken() || !has_power()) && on)
+		use_power = 0
+		on = 0
+		need_update = 1
+	else if(use_power && !on)
+		use_power = 0
+		need_update = 1
+	else if (anchored && !broken() && has_power() && !on )
+		use_power = 2
+		on = 1
+		need_update = 1
+	if(need_update)
+		update_brightness()
+
+/obj/machinery/floor_light/neon/proc/has_power()
+	var/area/A = get_area(src)
+	return A && A.lightswitch && (!A.requires_power || A.power_light)

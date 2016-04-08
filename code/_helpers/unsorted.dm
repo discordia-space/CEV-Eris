@@ -1201,7 +1201,8 @@ var/list/WALLITEMS = list(
 	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",
 	"/obj/machinery/computer/security/telescreen", "/obj/machinery/embedded_controller/radio/simple_vent_controller",
 	"/obj/item/weapon/storage/secure/safe", "/obj/machinery/door_timer", "/obj/machinery/flasher", "/obj/machinery/keycard_auth",
-	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet", "/obj/machinery/computer/security/telescreen/entertainment"
+	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet", "/obj/machinery/computer/security/telescreen/entertainment",
+	"/obj/machinery/light_construct", "/obj/machinery/light"
 	)
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
@@ -1233,6 +1234,45 @@ var/list/WALLITEMS = list(
 			if(istype(O, text2path(item)))
 				if(O.pixel_x == 0 && O.pixel_y == 0)
 					return 1
+	return 0
+
+var/list/FLOORITEMS = list(
+	"/obj/machinery/atmospherics/unary/vent_pump", "/obj/machinery/atmospherics/unary/vent_scrubber",
+	"/obj/machinery/light_construct/floor", "/obj/machinery/light/floor"
+	)
+
+/proc/gotflooritem(loc, dir)
+	for(var/obj/O in loc)
+		for(var/item in FLOORITEMS)
+			if(istype(O, text2path(item)))
+				return 1
+				//Direction works sometimes
+				//if(O.dir == dir)
+				//	return 1
+
+				/*//Some stuff doesn't use dir properly, so we need to check pixel instead
+				switch(dir)
+					if(SOUTH)
+						if(O.pixel_y > 10)
+							return 1
+					if(NORTH)
+						if(O.pixel_y < -10)
+							return 1
+					if(WEST)
+						if(O.pixel_x > 10)
+							return 1
+					if(EAST)
+						if(O.pixel_x < -10)
+							return 1
+
+
+	//Some stuff is placed directly on the wallturf (signs)
+	for(var/obj/O in get_step(loc, dir))
+		for(var/item in FLOORITEMS)
+			if(istype(O, text2path(item)))
+				if(O.pixel_x == 0 && O.pixel_y == 0)
+					return 1*/
+	//world << "no item on floor!"
 	return 0
 
 /proc/format_text(text)
@@ -1295,3 +1335,12 @@ var/mob/dview/dview_mob = new
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)
 	CRASH(msg)
+/proc/CheckFace(var/atom/Obj1, var/atom/Obj2)
+	var/CurrentDir = get_dir(Obj1, Obj2)
+	//if ((Obj1.loc == Obj2.loc) || (CurrentDir == Obj1.dir) || (CurrentDir == turn(Obj1.dir, 45)) || (CurrentDir == turn(Obj1.dir, -45)))
+	if((CurrentDir & Obj1.dir) || (CurrentDir == 0))
+		return 1
+	else
+		return 0
+
+

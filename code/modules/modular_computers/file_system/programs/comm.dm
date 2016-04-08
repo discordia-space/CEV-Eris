@@ -209,11 +209,6 @@
 					if(security_level != old_level)
 						log_game("[key_name(usr)] has changed the security level to [get_security_level()].")
 						message_admins("[key_name_admin(usr)] has changed the security level to [get_security_level()].")
-						switch(security_level)
-							if(SEC_LEVEL_GREEN)
-								feedback_inc("alert_comms_green",1)
-							if(SEC_LEVEL_BLUE)
-								feedback_inc("alert_comms_blue",1)
 			else
 				usr << "You press button, but red light flashes and nothing happens." //This should never happen
 			current_status = STATE_DEFAULT

@@ -1092,7 +1092,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/nun,
 					/obj/item/clothing/suit/imperium_monk,
 					/obj/item/clothing/suit/ianshirt,
-					/obj/item/clothing/under/gimmick/rank/captain/suit,
+					///obj/item/clothing/under/gimmick/rank/captain/suit,
 					/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
 					/obj/item/clothing/under/lawyer/purpsuit,
 					/obj/item/clothing/under/rank/mailman,

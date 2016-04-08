@@ -56,6 +56,15 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
 
+/decl/flooring/hull
+	name = "hull"
+	icon = 'icons/turf/flooring/hull.dmi'
+	icon_base = "hullcenter"
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON
+	build_type = null
+	has_base_range = 35
+	//try_update_icon = 0
+
 /decl/flooring/carpet
 	name = "carpet"
 	desc = "Imported and comfy."
@@ -65,22 +74,81 @@ var/list/flooring_types
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
-/decl/flooring/carpet/blue
+/decl/flooring/carpet/bcarpet
 	name = "carpet"
 	icon_base = "bcarpet"
-	build_type = null
-	flags = TURF_HAS_EDGES
+	build_type = /obj/item/stack/tile/carpet/bcarpet
+
+/decl/flooring/carpet/blucarpet
+	icon_base = "blucarpet"
+	build_type = /obj/item/stack/tile/carpet/blucarpet
+
+/decl/flooring/carpet/turcarpet
+	icon_base = "turcarpet"
+	build_type = /obj/item/stack/tile/carpet/turcarpet
+
+/decl/flooring/carpet/sblucarpet
+	icon_base = "sblucarpet"
+	build_type = /obj/item/stack/tile/carpet/sblucarpet
+
+/decl/flooring/carpet/gaycarpet
+	icon_base = "gaycarpet"
+	build_type = /obj/item/stack/tile/carpet/gaycarpet
+
+/decl/flooring/carpet/purcarpet
+	icon_base = "purcarpet"
+	build_type = /obj/item/stack/tile/carpet/purcarpet
+
+/decl/flooring/carpet/oracarpet
+	icon_base = "oracarpet"
+	build_type = /obj/item/stack/tile/carpet/oracarpet
 
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "steel"
-	has_damage_range = 4
+	has_damage_range = 4 //RECHECK THIS. MAYBE MISTAKE
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
+
+/decl/flooring/tiling/tech
+	name = "techfloor"
+	desc = "Scuffed from the passage of countless greyshirts."
+	icon = 'icons/turf/flooring/techfloor.dmi'
+	icon_base = "techfloor_gray"
+	build_type = /obj/item/stack/tile/techgrey
+	can_paint = null
+
+/decl/flooring/tiling/tech/grid
+	icon_base = "techfloor_grid"
+	build_type = /obj/item/stack/tile/techgrid
+
+
+
+/decl/flooring/tiling/new_tile
+	name = "tile full"
+	icon_base = "tile_full"
+	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
+	build_type = null
+
+/decl/flooring/tiling/new_tile/cargo_one
+	name = "cargo one"
+	icon_base = "cargo_one_full"
+
+/decl/flooring/tiling/new_tile/kafel
+	name = "kafel"
+	icon_base = "kafel_full"
+
+/decl/flooring/tiling/new_tile/techmaint
+	name = "techmaint"
+	icon_base = "techmaint"
+
+/decl/flooring/tiling/new_tile/monofloor
+	name = "monofloor"
+	icon_base = "monofloor"
 
 /decl/flooring/linoleum
 	name = "linoleum"

@@ -190,6 +190,7 @@ var/list/global/tank_gauge_cache = list()
 				if(can_open_valve)
 					location.internal = src
 					usr << "<span class='notice'>You open \the [src] valve.</span>"
+					playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
 					if (location.internals)
 						location.internals.icon_state = "internal1"
 				else

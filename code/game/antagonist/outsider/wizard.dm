@@ -99,7 +99,7 @@ var/datum/antagonist/wizard/wizards
 		survivor = 1
 		break
 	if(!survivor)
-		feedback_set_details("round_end_result","loss - wizard killed")
+
 		world << "<span class='danger'><font size = 3>The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew! The Space Wizards Federation has been taught a lesson they will not soon forget!</font></span>"
 
 //To batch-remove wizard spells. Linked to mind.dm.

@@ -25,6 +25,7 @@
 	icon_keyboard = "laptop_key"
 	icon_screen = "atmoslaptop"
 	density = 0
+	CheckFaceFlag = 0
 
 /obj/machinery/computer/atmoscontrol/attack_ai(var/mob/user as mob)
 	ui_interact(user)

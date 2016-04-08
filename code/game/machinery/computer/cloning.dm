@@ -34,7 +34,7 @@
 	var/obj/machinery/dna_scannernew/scannerf = null
 
 	//Try to find scanner on adjacent tiles first
-	for(dir in list(NORTH,EAST,SOUTH,WEST))
+	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
 		scannerf = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
 		if (scannerf)
 			return scannerf
@@ -106,6 +106,8 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/cloning/attack_hand(mob/user as mob)
+	if(..())
+		return
 	user.set_machine(src)
 	add_fingerprint(user)
 

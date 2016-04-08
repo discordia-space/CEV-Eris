@@ -442,7 +442,7 @@
 /obj/machinery/alarm/proc/apply_danger_level(var/new_danger_level)
 	if (report_danger_level && alarm_area.atmosalert(new_danger_level, src))
 		post_alert(new_danger_level)
-
+	alarm_area.updateicon()
 	update_icon()
 
 /obj/machinery/alarm/proc/post_alert(alert_level)
@@ -628,6 +628,7 @@
 
 	// hrefs that can always be called -walter0o
 	if(href_list["rcon"])
+		playsound(loc, 'sound/machines/button.ogg', 100, 1)
 		var/attempted_rcon_setting = text2num(href_list["rcon"])
 
 		switch(attempted_rcon_setting)
@@ -649,6 +650,7 @@
 				usr << "Temperature must be between [min_temperature]C and [max_temperature]C"
 			else
 				target_temperature = input_temperature + T0C
+		playsound(loc, 'sound/machines/button.ogg', 100, 1)
 		return 1
 
 	// hrefs that need the AA unlocked -walter0o
@@ -658,12 +660,14 @@
 			var/device_id = href_list["id_tag"]
 			switch(href_list["command"])
 				if("set_external_pressure")
+					playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 					var/input_pressure = input("What pressure you like the system to mantain?", "Pressure Controls") as num|null
 					if(isnum(input_pressure))
 						send_signal(device_id, list(href_list["command"] = input_pressure))
 					return 1
 
 				if("reset_external_pressure")
+					playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 					send_signal(device_id, list(href_list["command"] = ONE_ATMOSPHERE))
 					return 1
 
@@ -677,11 +681,12 @@
 					"n2o_scrub",
 					"panic_siphon",
 					"scrubbing")
-
+					playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 					send_signal(device_id, list(href_list["command"] = text2num(href_list["val"]) ) )
 					return 1
 
 				if("set_threshold")
+					playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 					var/env = href_list["env"]
 					var/threshold = text2num(href_list["var"])
 					var/list/selected = TLV[env]
@@ -733,10 +738,12 @@
 					return 1
 
 		if(href_list["screen"])
+			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			screen = text2num(href_list["screen"])
 			return 1
 
 		if(href_list["atmos_unlock"])
+			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			switch(href_list["atmos_unlock"])
 				if("0")
 					alarm_area.air_doors_close()
@@ -745,18 +752,21 @@
 			return 1
 
 		if(href_list["atmos_alarm"])
+			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			if (alarm_area.atmosalert(2, src))
 				apply_danger_level(2)
 			update_icon()
 			return 1
 
 		if(href_list["atmos_reset"])
+			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			if (alarm_area.atmosalert(0, src))
 				apply_danger_level(0)
 			update_icon()
 			return 1
 
 		if(href_list["mode"])
+			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			mode = text2num(href_list["mode"])
 			apply_mode()
 			return 1
@@ -770,6 +780,8 @@
 				//user << "You pop the Air Alarm's maintence panel open."
 				wiresexposed = !wiresexposed
 				user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+				var/sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' : 'sound/machines/Custom_screwdriverclose.ogg'
+				playsound(src.loc, sound, 100, 1)
 				update_icon()
 				return
 
@@ -899,7 +911,8 @@ FIRE ALARM
 		icon_state = "firep"
 		set_light(0)
 	else
-		if(!src.detecting)
+		var/area/area = get_area(src)
+		if(area.fire)
 			icon_state = "fire1"
 			set_light(l_range = 4, l_power = 2, l_color = COLOR_RED)
 		else
@@ -933,6 +946,8 @@ FIRE ALARM
 	src.add_fingerprint(user)
 
 	if (istype(W, /obj/item/weapon/screwdriver) && buildstage == 2)
+		var/sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' : 'sound/machines/Custom_screwdriverclose.ogg'
+		playsound(src.loc, sound, 100, 1)
 		wiresexposed = !wiresexposed
 		update_icon()
 		return
@@ -1085,6 +1100,7 @@ FIRE ALARM
 	else
 		usr << browse(null, "window=firealarm")
 		return
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return
 
 /obj/machinery/firealarm/proc/reset()

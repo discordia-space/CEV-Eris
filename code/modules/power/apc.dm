@@ -70,6 +70,7 @@
 	anchored = 1
 	use_power = 0
 	req_access = list(access_engine_equip)
+	var/needsound
 	var/area/area
 	var/areastring = null
 	var/obj/item/weapon/cell/cell
@@ -511,6 +512,8 @@
 		else
 			wiresexposed = !wiresexposed
 			user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+			var/sound = wiresexposed ?'sound/machines/Custom_screwdriveropen.ogg' : 'sound/machines/Custom_screwdriverclose.ogg'
+			playsound(src.loc, sound, 100, 1)
 			update_icon()
 
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
@@ -929,7 +932,7 @@
 			else
 				locked = !locked
 				update_icon()
-
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 0
 
 /obj/machinery/power/apc/proc/toggle_breaker()
@@ -1017,6 +1020,13 @@
 		main_status = 1
 	else
 		main_status = 2
+
+	if(cell.charge <= 0)
+		if (needsound == 1)
+			playsound(src.loc, 'sound/machines/Custom_apcnopower.ogg', 75, 0)
+			needsound = 0
+	else
+		needsound = 1
 
 	if(debug)
 		log_debug("Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light] - Longterm: [longtermpower]")
