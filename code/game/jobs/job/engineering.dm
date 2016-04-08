@@ -42,7 +42,6 @@
 		)
 
 
-
 /datum/job/engineer
 	title = "Vessel Engineer"
 	flag = ENGINEER
@@ -53,12 +52,11 @@
 	spawn_positions = 5
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	idtype = /obj/item/weapon/card/id/engie
 	economic_modifier = 5
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics)
 	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction)
 	alt_titles = list("Maintenance Technician","Engine Technician","Electrician")
-
+	idtype = /obj/item/weapon/card/id/engie
 
 	uniform = /obj/item/clothing/under/rank/engineer
 	shoes = /obj/item/clothing/shoes/orange
@@ -79,8 +77,6 @@
 		)
 
 
-
-
 /datum/job/atmos
 	title = "Atmospheric Technician"
 	flag = ATMOSTECH
@@ -91,10 +87,10 @@
 	spawn_positions = 2
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	idtype = /obj/item/weapon/card/id/atmos
 	economic_modifier = 5
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_external_airlocks)
 	minimal_access = list(access_eva, access_engine, access_atmospherics, access_maint_tunnels, access_emergency_storage, access_construction, access_external_airlocks)
+	idtype = /obj/item/weapon/card/id/atmos
 
 	survival_gear = /obj/item/weapon/storage/box/engineer
 

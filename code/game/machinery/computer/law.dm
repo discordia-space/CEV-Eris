@@ -40,6 +40,8 @@
 		if(..())
 			return
 
+
+
 		src.current = select_active_ai(user)
 
 		if (!src.current)

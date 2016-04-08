@@ -19,13 +19,13 @@
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
-	var/minimum_character_age = 17
+	var/minimum_character_age = 0
 	var/ideal_character_age = 30
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
-	//job equipment
+//job equipment
 	var/implanted = null
 	var/uniform = /obj/item/clothing/under/color/grey
 	var/shoes = /obj/item/clothing/shoes/black
@@ -162,6 +162,7 @@
 		H.mind.initial_account = M
 
 	H << "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>"
+
 
 /datum/job/proc/get_access()
 	if(!config || config.jobs_have_minimal_access)

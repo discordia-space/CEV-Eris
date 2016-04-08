@@ -64,6 +64,8 @@
 
 			locked = 1
 
+
+
 			return
 
 		if((istype(O,/obj/item/weapon/card/id)||istype(O,/obj/item/device/pda)) && brainmob)

@@ -9,14 +9,12 @@
 	active_power_usage = 300
 	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = 0
-
+	var/CheckFaceFlag = 1 //for direction check
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
 	var/light_range_on = 2
 	var/light_power_on = 1
 	var/overlay_layer
-
-	var/CheckFaceFlag = 1 //for direction check
 
 /obj/machinery/computer/New()
 	overlay_layer = layer
@@ -101,7 +99,7 @@
 /obj/machinery/computer/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
+		if(do_after(user, 20, src))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 			var/obj/item/weapon/circuitboard/M = new circuit( A )
 			A.circuit = M
@@ -121,12 +119,9 @@
 			qdel(src)
 	else
 		..()
-
 /obj/machinery/computer/Topic(href, href_list)
 	if(..())
 		return 1
-	//var/CurrentDir = get_dir(src, usr)
-	//if ((CurrentDir == src.dir) || (CurrentDir == turn(src.dir, 45)) || (CurrentDir == turn(src.dir, -45)))
 	if (!CheckFaceFlag || CheckFace(src,usr))
 		keyboardsound(usr)
 		return 0
@@ -141,31 +136,8 @@
 /obj/machinery/computer/attack_hand(mob/user as mob)//check mob direction
 	if(..())
 		return 1
-	if(istype(user, /mob/living/silicon))
+	if(!issilicon(user))
 		return 0
-	/*if((src.dir == 1) && (user.y - src.y == 1)) //NORTH
-		if((src.x == user.x) || (src.x - user.x == 1) || (user.x - src.x == 1))
-			keyboardsound(user)
-			world << "N"
-			return 0
-	else if(src.dir == 2 && (src.y - user.y == 1)) //SOUTH
-		if((src.x == user.x) || (src.x - user.x == 1) || (user.x - src.x == 1))
-			keyboardsound(user)
-			world << "S"
-			return 0
-	else if(src.dir == 4 && (user.x - src.x == 1)) //EAST
-		if((src.y == user.y) || (src.y - user.y == 1) || (user.y - src.y == 1))
-			keyboardsound(user)
-			world << "E"
-			return 0
-	else if(src.dir == 8 && (src.x - user.x == 1)) //WEST
-		if((src.y == user.y) || (src.y - user.y == 1) || (user.y - src.y == 1))
-			keyboardsound(user)
-			world << "W"
-			return 0*/
-	//var/CurrentDir = get_dir(src, user)
-	//if ((CurrentDir == src.dir) || (CurrentDir == turn(src.dir, 45)) || (CurrentDir == turn(src.dir, -45)))
-	//if(get_dir(src, user) & (src.dir | turn(src.dir, 45) | turn(src.dir, -45)) )
 	if (!CheckFaceFlag || CheckFace(src,user))
 		keyboardsound(user)
 		return 0

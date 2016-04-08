@@ -16,7 +16,7 @@ var/global/floorIsLava = 0
 	var/rendered = "<span class=\"log_message\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
-			if(C.prefs.toggles & CHAT_ATTACKLOGS)
+			if(C.is_preference_enabled(/datum/client_preference/admin/show_attack_logs))
 				var/msg = rendered
 				C << msg
 
@@ -203,6 +203,7 @@ proc/admin_notice(var/message, var/rights)
 	"}
 
 	usr << browse(body, "window=adminplayeropts;size=550x515")
+
 
 
 /datum/player_info/var/author // admin who authored the information
@@ -636,6 +637,7 @@ proc/admin_notice(var/message, var/rights)
 		world << "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>"
 		log_admin("[key_name(usr)] initiated a reboot.")
 
+
 		sleep(50)
 		world.Reboot()
 
@@ -646,13 +648,14 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Announce your desires to the world"
 	if(!check_rights(0))	return
 
-	var/message = russian_to_cp1251(input("Global message to send:", "Admin Announce", null, null)  as message)
+	var/message = russian_to_cp1251(input("Global message to send:", "Admin Announce", null, null))  as message
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
 		world << "<span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p></span>"
 		log_admin("Announce: [key_name(usr)] : [message]")
+
 
 /datum/admins/proc/toggleooc()
 	set category = "Server"
@@ -669,6 +672,7 @@ proc/admin_notice(var/message, var/rights)
 		world << "<B>The OOC channel has been globally disabled!</B>"
 	log_and_message_admins("toggled OOC.")
 
+
 /datum/admins/proc/togglelooc()
 	set category = "Server"
 	set desc="Globally Toggles LOOC"
@@ -683,6 +687,7 @@ proc/admin_notice(var/message, var/rights)
 	else
 		world << "<B>The LOOC channel has been globally disabled!</B>"
 	log_and_message_admins("toggled LOOC.")
+
 
 
 /datum/admins/proc/toggledsay()
@@ -701,6 +706,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 
+
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
 	set desc="Toggle Dead OOC."
@@ -713,6 +719,8 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled Dead OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 
+
+
 /datum/admins/proc/toggletraitorscaling()
 	set category = "Server"
 	set desc="Toggle traitor scaling"
@@ -720,6 +728,7 @@ proc/admin_notice(var/message, var/rights)
 	config.traitor_scaling = !config.traitor_scaling
 	log_admin("[key_name(usr)] toggled Traitor Scaling to [config.traitor_scaling].")
 	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [config.traitor_scaling ? "on" : "off"].", 1)
+
 
 /datum/admins/proc/startnow()
 	set category = "Server"
@@ -732,6 +741,7 @@ proc/admin_notice(var/message, var/rights)
 		ticker.current_state = GAME_STATE_SETTING_UP
 		log_admin("[usr.key] has started the game.")
 		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
+
 		return 1
 	else
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
@@ -750,6 +760,7 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("\blue [key_name_admin(usr)] toggled new player game entering.", 1)
 	world.update_status()
 
+
 /datum/admins/proc/toggleAI()
 	set category = "Server"
 	set desc="People can't be AI"
@@ -761,6 +772,7 @@ proc/admin_notice(var/message, var/rights)
 		world << "<B>The AI job is chooseable now.</B>"
 	log_admin("[key_name(usr)] toggled AI allowed.")
 	world.update_status()
+
 
 /datum/admins/proc/toggleaban()
 	set category = "Server"
@@ -775,6 +787,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 
+
 /datum/admins/proc/toggle_aliens()
 	set category = "Server"
 	set desc="Toggle alien mobs"
@@ -783,6 +796,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled Aliens to [config.aliens_allowed].")
 	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
 
+
 /datum/admins/proc/toggle_space_ninja()
 	set category = "Server"
 	set desc="Toggle space ninjas spawning."
@@ -790,6 +804,7 @@ proc/admin_notice(var/message, var/rights)
 	config.ninjas_allowed = !config.ninjas_allowed
 	log_admin("[key_name(usr)] toggled Space Ninjas to [config.ninjas_allowed].")
 	message_admins("[key_name_admin(usr)] toggled Space Ninjas [config.ninjas_allowed ? "on" : "off"].", 1)
+
 
 /datum/admins/proc/delay()
 	set category = "Server"
@@ -810,12 +825,14 @@ proc/admin_notice(var/message, var/rights)
 		world << "<b>The game will start soon.</b>"
 		log_admin("[key_name(usr)] removed the delay.")
 
+
 /datum/admins/proc/adjump()
 	set category = "Server"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
 	config.allow_admin_jump = !(config.allow_admin_jump)
 	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
+
 
 /datum/admins/proc/adspawn()
 	set category = "Server"
@@ -824,12 +841,14 @@ proc/admin_notice(var/message, var/rights)
 	config.allow_admin_spawning = !(config.allow_admin_spawning)
 	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
 
+
 /datum/admins/proc/adrev()
 	set category = "Server"
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
 	config.allow_admin_rev = !(config.allow_admin_rev)
 	message_admins("\blue Toggled reviving to [config.allow_admin_rev].")
+
 
 /datum/admins/proc/immreboot()
 	set category = "Server"
@@ -840,6 +859,11 @@ proc/admin_notice(var/message, var/rights)
 		return
 	world << "\red <b>Rebooting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
+
+
+
+
+
 
 	world.Reboot()
 
@@ -855,6 +879,7 @@ proc/admin_notice(var/message, var/rights)
 			alert("Admin jumping disabled")
 	else
 		alert("[M.name] is not prisoned.")
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
@@ -978,6 +1003,7 @@ proc/admin_notice(var/message, var/rights)
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
 
+
 /datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
@@ -991,6 +1017,7 @@ proc/admin_notice(var/message, var/rights)
 		return
 
 	M.mind.edit_memory()
+
 
 /datum/admins/proc/show_game_mode()
 	set category = "Admin"
@@ -1065,6 +1092,7 @@ proc/admin_notice(var/message, var/rights)
 	usr << browse(out, "window=edit_mode[src]")
 
 
+
 /datum/admins/proc/toggletintedweldhelmets()
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
@@ -1077,6 +1105,7 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 
+
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"
@@ -1088,6 +1117,7 @@ proc/admin_notice(var/message, var/rights)
 		world << "<B>Guests may now enter the game.</B>"
 	log_admin("[key_name(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.")
 	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.", 1)
+
 
 /datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
@@ -1209,7 +1239,7 @@ proc/admin_notice(var/message, var/rights)
 
 //Returns 1 to let the dragdrop code know we are trapping this event
 //Returns 0 if we don't plan to trap the event
-/datum/admins/proc/cmd_ghost_drag(var/mob/dead/observer/frommob, var/mob/living/tomob)
+/datum/admins/proc/cmd_ghost_drag(var/mob/observer/ghost/frommob, var/mob/living/tomob)
 	if(!istype(frommob))
 		return //Extra sanity check to make sure only observers are shoved into things
 
@@ -1231,6 +1261,7 @@ proc/admin_notice(var/message, var/rights)
 		tomob.ghostize(0)
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
+
 	tomob.ckey = frommob.ckey
 	qdel(frommob)
 	return 1

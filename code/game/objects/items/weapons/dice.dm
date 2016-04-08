@@ -10,7 +10,7 @@
 /obj/item/weapon/dice/New()
 	icon_state = "[name][rand(1,sides)]"
 
-obj/item/weapon/dice/d2
+/obj/item/weapon/dice/d2
 	name = "d2"
 	desc = "A dice with two sides. Coins are undignified!"
 	icon_state = "d2"
@@ -57,7 +57,6 @@ obj/item/weapon/dice/d2
 	desc = "A dice with hundred sides. Can be used as a golfball."
 	icon_state = "d100"
 	sides = 100
-
 
 /obj/item/weapon/dice/attack_self(mob/user as mob)
 	var/result = rand(1, sides)

@@ -6,6 +6,7 @@
 		src << "Only administrators may use this command."
 		return
 
+
 	if(alert("WARNING: This command should not be run on a live server. Do you want to continue?", "Check Piping", "No", "Yes") == "No")
 		return
 
@@ -45,6 +46,7 @@
 	if(!src.holder)
 		src << "Only administrators may use this command."
 		return
+
 
 	for (var/datum/powernet/PN in powernets)
 		if (!PN.nodes || !PN.nodes.len)

@@ -289,7 +289,7 @@ What a mess.*/
 					return
 				Perp = new/list()
 				t1 = lowertext(t1)
-				var/list/components = text2list(t1, " ")
+				var/list/components = splittext(t1, " ")
 				if(components.len > 5)
 					return //Lets not let them search too greedily.
 				for(var/datum/data/record/R in data_core.general)
@@ -430,7 +430,7 @@ What a mess.*/
 				switch(href_list["field"])
 					if("name")
 						if (istype(active1, /datum/data/record))
-							var/t1 = sanitizeName(cp1251_to_utf8(input("Please input name:", "Secure. records", active1.fields["name"], null)  as text))
+							var/t1 = cp1251_to_utf8(sanitizeName(input("Please input name:", "Secure. records", active1.fields["name"], null)  as text))
 							if (!t1 || active1 != a1)
 								return
 							active1.fields["name"] = t1

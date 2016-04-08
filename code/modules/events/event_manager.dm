@@ -292,4 +292,5 @@
 	set category = "Admin"
 	if(event_manager)
 		event_manager.Interact(usr)
+
 	return

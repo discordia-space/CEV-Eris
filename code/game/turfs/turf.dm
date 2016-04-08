@@ -78,7 +78,7 @@
 
 	..()
 
-	if (!mover || !isturf(mover.loc))
+	if (!mover || !isturf(mover.loc) || isobserver(mover))
 		return 1
 
 	//First, check objects to block exit that are not on the border
@@ -137,7 +137,7 @@ var/const/enterloopsanity = 100
 		else if(is_space())
 			M.inertia_dir = 0
 			M.make_floating(0)
-	..()
+
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
 		for(var/atom/movable/thing in range(1))

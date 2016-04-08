@@ -1,14 +1,14 @@
 //HTML ENCODE/DECODE + RUS TO CP1251 TODO: OVERRIDE html_encode after fix
 /proc/rhtml_encode(var/msg)
-	msg = list2text(text2list(msg, "<"), "&lt;")
-	msg = list2text(text2list(msg, ">"), "&gt;")
-	msg = list2text(text2list(msg, "ÿ"), "&#255;")
+	msg = jointext(splittext(msg, "<"), "&lt;")
+	msg = jointext(splittext(msg, ">"), "&gt;")
+	msg = jointext(splittext(msg, "ÿ"), "&#255;")
 	return msg
 
 /proc/rhtml_decode(var/msg)
-	msg = list2text(text2list(msg, "&gt;"), ">")
-	msg = list2text(text2list(msg, "&lt;"), "<")
-	msg = list2text(text2list(msg, "&#255;"), "ÿ")
+	msg = jointext(splittext(msg, "&gt;"), ">")
+	msg = jointext(splittext(msg, "&lt;"), "<")
+	msg = jointext(splittext(msg, "&#255;"), "ÿ")
 	return msg
 
 
@@ -53,28 +53,28 @@ sanitize_simple(var/t,var/list/repl_chars = list("\n"="#","\t"="#","ÿ"="&#255;",
 
 //RUS CONVERTERS
 /proc/russian_to_cp1251(var/msg)//CHATBOX
-	return list2text(text2list(msg, "ÿ"), "&#255;")
+	return jointext(splittext(msg, "ÿ"), "&#255;")
 
 /proc/russian_to_utf8(var/msg)//PDA PAPER POPUPS
-	return list2text(text2list(msg, "ÿ"), "&#1103;")
+	return jointext(splittext(msg, "ÿ"), "&#1103;")
 
 /proc/utf8_to_cp1251(msg)
-	return list2text(text2list(msg, "&#1103;"), "&#255;")
+	return jointext(splittext(msg, "&#1103;"), "&#255;")
 
 /proc/cp1251_to_utf8(msg)
-	return list2text(text2list(msg, "&#255;"), "&#1103;")
+	return jointext(splittext(msg, "&#255;"), "&#1103;")
 
 /proc/edit_cp1251(msg)
-	return list2text(text2list(msg, "&#255;"), "\\ß")
+	return jointext(splittext(msg, "&#255;"), "\\ß")
 
 /proc/edit_utf8(msg)
-	return list2text(text2list(msg, "&#1103;"), "\\ß")
+	return jointext(splittext(msg, "&#1103;"), "\\ß")
 
 /proc/post_edit_cp1251(msg)
-	return list2text(text2list(msg, "\\ß"), "&#255;")
+	return jointext(splittext(msg, "\\ß"), "&#255;")
 
 /proc/post_edit_utf8(msg)
-	return list2text(text2list(msg, "\\ß"), "&#1103;")
+	return jointext(splittext(msg, "\\ß"), "&#1103;")
 
 var/global/list/rkeys = list(
 	"à" = "f", "â" = "d", "ã" = "u", "ä" = "l",

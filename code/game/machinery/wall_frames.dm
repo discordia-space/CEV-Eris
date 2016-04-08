@@ -52,7 +52,6 @@
 	M.fingerprintslast = src.fingerprintslast
 	qdel(src)
 
-
 /obj/item/frame/proc/try_floorbuild(turf/on_floor) // For build machines on floor
 	if(!build_floormachine_type)
 		return
@@ -88,8 +87,6 @@
 	M.fingerprintslast = src.fingerprintslast
 	qdel(src)
 
-
-
 /obj/item/frame/fire_alarm
 	name = "fire alarm frame"
 	desc = "Used for building fire alarms."
@@ -106,7 +103,6 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-item"
 	build_machine_type = /obj/machinery/light_construct
-	build_floormachine_type = /obj/machinery/light_construct/floor
 	reverse = 1
 
 /obj/item/frame/light/small
@@ -114,4 +110,3 @@
 	icon_state = "bulb-construct-item"
 	refund_amt = 1
 	build_machine_type = /obj/machinery/light_construct/small
-	build_floormachine_type = null

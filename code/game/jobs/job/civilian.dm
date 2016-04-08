@@ -11,7 +11,6 @@
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_bar)
-
 	uniform = /obj/item/clothing/under/rank/bartender
 	pda = /obj/item/device/pda/bar
 	ear = /obj/item/device/radio/headset/headset_service
@@ -37,7 +36,6 @@
 			new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
 			new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
 			new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
-
 		return 1
 
 
@@ -52,11 +50,10 @@
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	idtype = /obj/item/weapon/card/id/ltgrey
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_kitchen)
 	alt_titles = list("Cook")
-
+	idtype = /obj/item/weapon/card/id/ltgrey
 
 	uniform = /obj/item/clothing/under/rank/chef
 	shoes = /obj/item/clothing/shoes/black
@@ -64,6 +61,8 @@
 	hat = /obj/item/clothing/head/chefhat
 	suit = /obj/item/clothing/suit/chef
 	ear = /obj/item/device/radio/headset/headset_service
+
+
 
 /datum/job/hydro
 	title = "Gardener"
@@ -75,11 +74,10 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	idtype = /obj/item/weapon/card/id/hydro
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_hydroponics)
 	alt_titles = list("Hydroponicist")
-
+	idtype = /obj/item/weapon/card/id/hydro
 
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	pda = /obj/item/device/pda/botanist
@@ -110,11 +108,10 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	idtype = /obj/item/weapon/card/id/qm
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
-
+	idtype = /obj/item/weapon/card/id/qm
 	ideal_character_age = 40
 
 
@@ -138,13 +135,14 @@
 	spawn_positions = 2
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dddddd"
-	idtype = /obj/item/weapon/card/id/qm
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
+	idtype = /obj/item/weapon/card/id/qm
 
 	uniform = /obj/item/clothing/under/rank/cargotech
 	pda = /obj/item/device/pda/cargo
 	ear = /obj/item/device/radio/headset/headset_cargo
+
 
 
 /datum/job/mining
@@ -157,11 +155,11 @@
 	spawn_positions = 3
 	supervisors = "the quartermaster and the head of personnel"
 	selection_color = "#dddddd"
-	idtype = /obj/item/weapon/card/id/engie
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
 	alt_titles = list("Drill Technician","Prospector")
+	idtype = /obj/item/weapon/card/id/engie
 
 	uniform = /obj/item/clothing/under/rank/miner
 	pda = /obj/item/device/pda/shaftminer
@@ -215,7 +213,6 @@
 		return 1
 
 
-
 /datum/job/mime
 	title = "Mime"
 	flag = MIME
@@ -253,6 +250,7 @@
 		H.miming = 1
 		return 1
 
+
 /datum/job/janitor
 	title = "Janitor"
 	flag = JANITOR
@@ -287,6 +285,7 @@
 	minimal_access = list(access_library)
 	alt_titles = list("Journalist")
 
+
 	uniform = /obj/item/clothing/under/suit_jacket/red
 	pda = /obj/item/device/pda/librarian
 	hand = /obj/item/weapon/barcodescanner
@@ -315,3 +314,4 @@
 	ear = /obj/item/device/radio/headset/headset_sec
 	hand = /obj/item/weapon/storage/briefcase
 	glasses = /obj/item/clothing/glasses/sunglasses/big
+

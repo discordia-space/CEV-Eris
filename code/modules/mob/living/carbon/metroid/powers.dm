@@ -154,6 +154,7 @@
 				M.Friends = Friends.Copy()
 				babies += M
 
+
 			var/mob/living/carbon/slime/new_slime = pick(babies)
 			new_slime.universal_speak = universal_speak
 			if(src.mind)

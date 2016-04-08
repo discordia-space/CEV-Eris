@@ -113,22 +113,6 @@
 	icon_state = "kafel_full"
 	initial_flooring = /decl/flooring/tiling/new_tile/kafel
 
-//turf/simulated/floor/tiled/techfloor/edges
-	//special_overlay = image('icons/turf/flooring/techfloor.dmi',"techfloor_edges")
-
-//turf/simulated/floor/tiled/techfloor/edges/New()
-//	..()
-//	overlays += image("icon"='icons/turf/flooring/techfloor.dmi',"icon_state"="techfloor_edges")
-
-/*/turf/simulated/floor/tiled/techfloor/edges/set_flooring(var/decl/flooring/newflooring)
-	make_plating(defer_icon_update = 1)
-	flooring = newflooring
-	update_icon(0)
-	levelupdate()*/
-
-//turf/simulated/floor/tiled/techfloor/corners
-	//special_overlay = image('icons/turf/flooring/techfloor.dmi',"techfloor_corners")
-
 /turf/simulated/floor/tiled/techfloor/grid
 	name = "techfloor grid"
 	icon_state = "techfloor_grid"
@@ -190,17 +174,10 @@
 	icon_state = "dark"
 	initial_flooring = /decl/flooring/tiling/dark
 
-/turf/simulated/floor/tiled/red
-	name = "red floor"
-	color = COLOR_RED_GRAY
-	icon_state = "white"
-	initial_flooring = /decl/flooring/tiling/red
-
 /turf/simulated/floor/tiled/steel
 	name = "steel floor"
 	icon_state = "steel_dirty"
 	initial_flooring = /decl/flooring/tiling/steel
-
 
 /turf/simulated/floor/tiled/steel/airless
 	oxygen = 0
@@ -210,12 +187,6 @@
 	name = "white floor"
 	icon_state = "white"
 	initial_flooring = /decl/flooring/tiling/white
-
-/turf/simulated/floor/tiled/yellow
-	name = "yellow floor"
-	color = COLOR_BROWN
-	icon_state = "white"
-	initial_flooring = /decl/flooring/tiling/yellow
 
 /turf/simulated/floor/tiled/freezer
 	name = "tiles"
@@ -305,3 +276,4 @@
 /turf/simulated/floor/beach/water/New()
 	..()
 	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+

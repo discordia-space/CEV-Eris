@@ -1,7 +1,7 @@
 /mob/proc/on_mob_jump()
 	return
 
-/mob/dead/observer/on_mob_jump()
+/mob/observer/ghost/on_mob_jump()
 	stop_following()
 
 /client/proc/Jump(var/area/A in return_sorted_areas())
@@ -17,6 +17,7 @@
 
 		log_admin("[key_name(usr)] jumped to [A]")
 		message_admins("[key_name_admin(usr)] jumped to [A]", 1)
+
 	else
 		alert("Admin jumping disabled")
 
@@ -30,6 +31,7 @@
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
 		usr.on_mob_jump()
 		usr.loc = T
+
 	else
 		alert("Admin jumping disabled")
 	return
@@ -48,6 +50,7 @@
 			var/mob/A = src.mob
 			var/turf/T = get_turf(M)
 			if(T && isturf(T))
+
 				A.on_mob_jump()
 				A.loc = T
 			else
@@ -69,6 +72,7 @@
 			A.x = tx
 			A.y = ty
 			A.z = tz
+
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
 	else
@@ -94,6 +98,7 @@
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		usr.on_mob_jump()
 		usr.loc = M.loc
+
 	else
 		alert("Admin jumping disabled")
 
@@ -108,6 +113,7 @@
 		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", 1)
 		M.on_mob_jump()
 		M.loc = get_turf(usr)
+
 	else
 		alert("Admin jumping disabled")
 
@@ -135,6 +141,7 @@
 		if(M)
 			M.on_mob_jump()
 			M.loc = get_turf(usr)
+
 	else
 		alert("Admin jumping disabled")
 
@@ -148,6 +155,7 @@
 		if(config.allow_admin_jump)
 			M.on_mob_jump()
 			M.loc = pick(get_area_turfs(A))
+
 
 			log_admin("[key_name(usr)] teleported [key_name(M)] to [A]")
 			message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)] to [A]", 1)

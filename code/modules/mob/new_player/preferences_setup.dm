@@ -11,12 +11,6 @@ datum/preferences
 				randomize_eyes_color()
 			if(current_species.appearance_flags & HAS_SKIN_COLOR)
 				randomize_skin_color()
-			if(current_species.appearance_flags & HAS_UNDERWEAR)
-				if(gender == FEMALE)
-					underwear = underwear_f[pick(underwear_f)]
-				else
-					underwear = underwear_m[pick(underwear_m)]
-				undershirt = undershirt_t[pick(undershirt_t)]
 
 		h_style = random_hair_style(gender, species)
 		f_style = random_facial_hair_style(gender, species)
@@ -24,7 +18,7 @@ datum/preferences
 		randomize_hair_color("facial")
 
 		backbag = 2
-		age = rand(AGE_MIN,AGE_MAX)
+		age = rand(current_species.min_age, current_species.max_age)
 		if(H)
 			copy_to(H,1)
 
@@ -248,22 +242,14 @@ datum/preferences
 			facial.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
 			eyes.Blend(facial, ICON_OVERLAY)
 
-		var/icon/underwear_s = null
-		if(underwear && current_species.appearance_flags & HAS_UNDERWEAR)
-			underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = underwear)
-
-		var/icon/undershirt_s = null
-		if(undershirt && current_species.appearance_flags & HAS_UNDERWEAR)
-			undershirt_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = undershirt)
-
 		var/icon/clothes = null
-		if(job_civilian_low & ASSISTANT || !job_master)//This gives the preview icon clothes depending on which job(if any) is set to 'high'
-			clothes = new /icon(body.uniform_icon, "grey_s")
-			clothes.Blend(new /icon(body.shoes_icon, "black"), ICON_UNDERLAY)
+		if(job_civilian_low & ASSISTANT)//This gives the preview icon clothes depending on which job(if any) is set to 'high'
+			clothes = new /icon('icons/mob/uniform.dmi', "grey_s")
+			clothes.Blend(new /icon('icons/mob/feet.dmi', "black"), ICON_UNDERLAY)
 			if(backbag == 2)
-				clothes.Blend(new /icon(body.backpack_icon, "backpack"), ICON_OVERLAY)
+				clothes.Blend(new /icon('icons/mob/back.dmi', "backpack"), ICON_OVERLAY)
 			else if(backbag == 3 || backbag == 4)
-				clothes.Blend(new /icon(body.backpack_icon, "satchel"), ICON_OVERLAY)
+				clothes.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
 		else
 			var/datum/job/J = job_master.GetJob(high_job_title)
@@ -282,8 +268,6 @@ datum/preferences
 					var/GL_state = initial(GL.item_state)
 					if(!GL_state) GL_state = initial(GL.icon_state)
 					clothes.Blend(new /icon(body.gloves_icon, ), ICON_UNDERLAY)
-
-
 				var/obj/item/weapon/storage/belt/BT = J.belt
 				if(BT)
 					var/BT_state = initial(BT.item_state)
@@ -301,20 +285,26 @@ datum/preferences
 					var/obj/item/weapon/storage/backpack/BP = J.backpacks[backbag-1]
 					clothes.Blend(new /icon(body.backpack_icon, initial(BP.icon_state)), ICON_OVERLAY)
 
+
 		if(disabilities & NEARSIGHTED)
 			preview_icon.Blend(new /icon('icons/mob/eyes.dmi', "glasses"), ICON_OVERLAY)
 
 		preview_icon.Blend(eyes, ICON_OVERLAY)
-		if(underwear)
-			preview_icon.Blend(underwear_s, ICON_OVERLAY)
-		if(undershirt)
-			preview_icon.Blend(undershirt_s, ICON_OVERLAY)
+		if(current_species.appearance_flags & HAS_UNDERWEAR)
+			for(var/underwear_category_name in all_underwear)
+				var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
+				if(underwear_category)
+					var/underwear_item_name = all_underwear[underwear_category_name]
+					var/datum/category_item/underwear/underwear_item = underwear_category.items_by_name[underwear_item_name]
+					underwear_item.apply_to_icon(preview_icon)
+				else
+					all_underwear -= underwear_category_name
+
 		if(clothes)
 			preview_icon.Blend(clothes, ICON_OVERLAY)
+
 		preview_icon_front = new(preview_icon, dir = SOUTH)
 		preview_icon_side = new(preview_icon, dir = WEST)
 
 		qdel(eyes)
-		qdel(underwear)
-		qdel(undershirt)
 		qdel(clothes)

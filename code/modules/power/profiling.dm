@@ -46,6 +46,7 @@ var/global/list/power_update_requests_by_area = list()
 		log_admin("[key_name(src)] toggled area power update profiling on.")
 
 
+
 /client/proc/view_power_update_stats_machines()
 	set name = "View Area Power Update Statistics By Machines"
 	set desc = "See which types of machines are triggering area power updates."

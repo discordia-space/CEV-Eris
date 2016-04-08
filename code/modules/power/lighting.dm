@@ -10,9 +10,7 @@
 #define LIGHT_BURNED 3
 #define LIGHT_BULB_TEMPERATURE 400 //K - used value for a 60W bulb
 
-
-
-/obj/machinery/light_construct// Добавить понятие "базовая иконка"
+/obj/machinery/light_construct // Добавить понятие "базовая иконка"
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -24,7 +22,7 @@
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
 
-/obj/machinery/light_construct/New()// УЖАСНОЕ ГОВНО! НУЖНО ПЕРЕДЕЛАТЬ
+/obj/machinery/light_construct/New()
 	..()
 	if (fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
@@ -51,8 +49,8 @@
 	if (istype(W, /obj/item/weapon/wrench))
 		if (src.stage == 1)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			usr << "You begin deconstructing [src]."
-			if (!do_after(usr, 30))
+			usr << "You begin deconstructing \a [src]."
+			if (!do_after(usr, 30,src))
 				return
 			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \
@@ -158,7 +156,6 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/needsound
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
 	var/brightness_range = 8	// luminosity when on, also used in power calculation
@@ -170,9 +167,8 @@
 	var/fitting = "tube"
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
-
+	var/needsound
 	var/rigged = 0				// true if rigged to explode
-
 	var/firealarmed = 0
 	var/atmosalarmed = 0
 // the smaller bulb light fixture
@@ -210,12 +206,12 @@
 	brightness_range = 12
 	brightness_power = 4
 
-/obj/machinery/light/built/New()//WHAT IT IS?!?!??!?!?
+/obj/machinery/light/built/New()
 	status = LIGHT_EMPTY
 	update(0)
 	..()
 
-/obj/machinery/light/small/built/New()//WHAT IT IS?!?!??!?!?
+/obj/machinery/light/small/built/New()
 	status = LIGHT_EMPTY
 	update(0)
 	..()
@@ -250,7 +246,7 @@
 	..()
 
 /obj/machinery/light/update_icon()
-	//var/area/checkalarm = get_area(src
+
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			if(firealarmed && on && cmptext(base_state,"tube"))
@@ -299,14 +295,12 @@
 /obj/machinery/light/proc/update(var/trigger = 1)
 
 	update_icon()
-
 	if(on == 1)
 		if(needsound == 1)
 			playsound(src.loc, 'sound/effects/Custom_lights.ogg', 65, 1)
 			needsound = 0
 	else
 		needsound = 1
-
 	if(on)
 		if(light_range != brightness_range || light_power != brightness_power || light_color != brightness_color)
 			switchcount++
@@ -343,7 +337,7 @@
 	if(!(status == LIGHT_OK||status == LIGHT_BURNED))
 		return
 	visible_message("<span class='danger'>[user] smashes the light!</span>")
-	user.do_attack_animation(src)
+	attack_animation(user)
 	broken()
 	return 1
 

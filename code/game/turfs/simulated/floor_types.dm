@@ -1,5 +1,6 @@
 /turf/simulated/floor/diona
 	name = "biomass flooring"
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "diona"
 
 /turf/simulated/floor/diona/attackby()
@@ -22,7 +23,6 @@
 /turf/simulated/shuttle/floor
 	name = "floor"
 	icon_state = "floor"
-
 
 /turf/simulated/shuttle/plating
 	name = "plating"
@@ -62,7 +62,6 @@
 			M.weakened += 3
 			M << "<span class='warning'>You tripped over!</span>"
 			return
-
 
 /turf/simulated/shuttle/plating/vox //Skipjack plating
 	oxygen = 0

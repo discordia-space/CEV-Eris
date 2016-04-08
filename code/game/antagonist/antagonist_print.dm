@@ -14,8 +14,10 @@
 				text += print_objective(O, num)
 				if(O.check_completion())
 					text += "<font color='green'><B>Success!</B></font>"
+
 				else
 					text += "<font color='red'>Fail.</font>"
+
 					failed = 1
 				num++
 				if(failed)

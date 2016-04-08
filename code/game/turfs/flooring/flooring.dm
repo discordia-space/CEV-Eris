@@ -55,7 +55,6 @@ var/list/flooring_types
 	icon_base = "asteroid"
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
-	//has_base_range = 3
 
 /decl/flooring/hull
 	name = "hull"
@@ -79,7 +78,6 @@ var/list/flooring_types
 	name = "carpet"
 	icon_base = "bcarpet"
 	build_type = /obj/item/stack/tile/carpet/bcarpet
-	//flags = TURF_HAS_EDGES
 
 /decl/flooring/carpet/blucarpet
 	icon_base = "blucarpet"
@@ -105,14 +103,12 @@ var/list/flooring_types
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
 
-
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "steel"
-	has_damage_range = 2
-	has_burn_range = 2
+	has_damage_range = 4 //RECHECK THIS. MAYBE MISTAKE
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
@@ -160,13 +156,8 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_base = "lino"
 	can_paint = 1
-
-/decl/flooring/tiling/red
-	name = "floor"
-	icon_base = "white"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_red
+	build_type = /obj/item/stack/tile/linoleum
+	flags = TURF_REMOVE_SCREWDRIVER
 
 /decl/flooring/tiling/steel
 	name = "floor"
@@ -182,13 +173,6 @@ var/list/flooring_types
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_white
-
-/decl/flooring/tiling/yellow
-	name = "floor"
-	icon_base = "white"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor_yellow
 
 /decl/flooring/tiling/dark
 	name = "floor"

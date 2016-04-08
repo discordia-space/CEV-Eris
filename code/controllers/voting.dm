@@ -239,7 +239,7 @@ datum/controller/vote
 							choices.Add(antag.role_text)
 					choices.Add("None")
 				if("custom")
-					question = cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
+					cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
 					if(!question)	return 0
 					for(var/i=1,i<=10,i++)
 						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))

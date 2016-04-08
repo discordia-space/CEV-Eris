@@ -131,10 +131,8 @@
     var/locked_frequency
 
 /obj/item/device/radio/intercom/locked/set_frequency(var/frequency)
-//	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	if(frequency == locked_frequency)
 		..(locked_frequency)
-//		playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 /obj/item/device/radio/intercom/locked/list_channels()
 	return ""

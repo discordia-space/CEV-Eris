@@ -121,9 +121,9 @@
 			usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
 			return
 		usr << "<span class='notice'>You begin repairing [src]...</span>"
-		if(do_after(usr, 30))
+		if(do_after(usr, 30, src))
 			if(P.use(amt))
-				usr << "<span class='notice'>You have repaired \The [src]</span>"
+				usr << "<span class='notice'>You have repaired \the [src]</span>"
 				src.repair()
 			else
 				usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
@@ -150,6 +150,7 @@
 		return
 	force_close()
 	crush()
+
 
 // Proc: repair()
 // Parameters: None
@@ -190,8 +191,6 @@ obj/machinery/door/blast/regular/open
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
-
-
 obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))
 		if(ishuman(L)) //For humans

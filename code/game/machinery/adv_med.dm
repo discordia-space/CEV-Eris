@@ -92,7 +92,6 @@
 	update_use_power(2)
 	playsound(src.loc, 'sound/machines/medbayscanner1.ogg', 75, 0)
 	update_icon()
-
 	for(var/obj/O in src)
 		O.loc = src.loc
 		//Foreach goto(154)
@@ -100,9 +99,6 @@
 	//G = null
 	qdel(G)
 	return
-
-/obj/machinery/bodyscanner/process() //govnocode
-	update_icon()
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
@@ -168,7 +164,7 @@
 
 /obj/machinery/body_scanconsole/New()
 	..()
-	spawn(5)
+	spawn( 5 )
 		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
 		connected.connected = src
 	return
@@ -233,7 +229,7 @@
 	var/list/occupant_data = list(
 		"stationtime" = worldtime2text(),
 		"stat" = H.stat,
-		"health" = H.health,
+		"health" = round(H.health/H.maxHealth)*100,
 		"virus_present" = H.virus2.len,
 		"bruteloss" = H.getBruteLoss(),
 		"fireloss" = H.getFireLoss(),
@@ -250,9 +246,8 @@
 		"stoxin_amount" = H.reagents.get_reagent_amount("stoxin"),
 		"bicaridine_amount" = H.reagents.get_reagent_amount("bicaridine"),
 		"dermaline_amount" = H.reagents.get_reagent_amount("dermaline"),
-		"blood_amount" = H.vessel.get_reagent_amount("blood"),
+		"blood_amount" = round((H.vessel.get_reagent_amount("blood") / H.species.blood_volume)*100),
 		"disabilities" = H.sdisabilities,
-		"tg_diseases_list" = H.viruses.Copy(),
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.organs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
@@ -289,17 +284,13 @@
 	if(occ["borer_present"])
 		dat += "Large growth detected in frontal lobe, possibly cancerous. Surgical removal is recommended.<br>"
 
-	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", ("<font color='[occ["blood_amount"] > 448  ? "blue" : "red"]'>"), occ["blood_amount"]*100 / 560, occ["blood_amount"])
+	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", ("<font color='[occ["blood_amount"] > 80  ? "blue" : "red"]'>"), occ["blood_amount"], occ["blood_amount"])
 
 	dat += text("Inaprovaline: [] units<BR>", occ["inaprovaline_amount"])
 	dat += text("Soporific: [] units<BR>", occ["stoxin_amount"])
 	dat += text("[]\tDermaline: [] units</FONT><BR>", ("<font color='[occ["dermaline_amount"] < 30  ? "black" : "red"]'>"), occ["dermaline_amount"])
 	dat += text("[]\tBicaridine: [] units</font><BR>", ("<font color='[occ["bicaridine_amount"] < 30  ? "black" : "red"]'>"), occ["bicaridine_amount"])
 	dat += text("[]\tDexalin: [] units</font><BR>", ("<font color='[occ["dexalin_amount"] < 30  ? "black" : "red"]'>"), occ["dexalin_amount"])
-
-	for(var/datum/disease/D in occ["tg_diseases_list"])
-		if(!D.hidden[SCANNER])
-			dat += text("<font color='red'><B>Warning: [D.form] Detected</B>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</FONT><BR>")
 
 	dat += "<HR><table border='1'>"
 	dat += "<tr>"
@@ -413,9 +404,6 @@
 	if(occ["sdisabilities"] & NEARSIGHTED)
 		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat
-
-
-
 
 /obj/machinery/bodyscanner/update_icon()
 	if(stat & (NOPOWER|BROKEN))

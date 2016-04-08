@@ -28,7 +28,7 @@
 
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
-/obj/machinery/modular_computer/attack_ghost(var/mob/dead/observer/user)
+/obj/machinery/modular_computer/attack_ghost(var/mob/observer/ghost/user)
 	if(cpu)
 		cpu.attack_ghost(user)
 
@@ -68,7 +68,7 @@
 			if(cpu)
 				cpu.attack_self(user) // CPU is an item, that's why we route attack_hand to attack_self
 		else
-			user << "you need stay face to [src.name]"
+			user << "You need to stand in front of [src.name]keyboard!"
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
 /obj/machinery/modular_computer/process()
@@ -90,8 +90,8 @@
 		if(cpu)
 			cpu.shutdown_computer(0)
 		battery_powered = 0
-		update_icon()
 	stat |= NOPOWER
+	update_icon()
 
 // Called by cpu item's process() automatically, handles our power interaction.
 /obj/machinery/modular_computer/proc/handle_power()
@@ -140,6 +140,7 @@
 		return
 	else
 		..()
+		update_icon()
 
 /obj/machinery/modular_computer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(cpu)

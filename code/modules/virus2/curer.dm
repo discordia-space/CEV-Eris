@@ -4,10 +4,9 @@
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	circuit = /obj/item/weapon/circuitboard/curefab
-	CheckFaceFlag = 0
 	var/curing
 	var/virusing
-
+	CheckFaceFlag = 0
 	var/obj/item/weapon/reagent_containers/container = null
 
 /obj/machinery/computer/curer/attackby(var/obj/I as obj, var/mob/user as mob)

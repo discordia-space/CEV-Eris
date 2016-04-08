@@ -946,9 +946,9 @@ FIRE ALARM
 	src.add_fingerprint(user)
 
 	if (istype(W, /obj/item/weapon/screwdriver) && buildstage == 2)
-		wiresexposed = !wiresexposed
 		var/sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' : 'sound/machines/Custom_screwdriverclose.ogg'
 		playsound(src.loc, sound, 100, 1)
+		wiresexposed = !wiresexposed
 		update_icon()
 		return
 

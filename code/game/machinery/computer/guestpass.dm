@@ -47,7 +47,6 @@
 	icon_screen = "pass"
 	density = 0
 	CheckFaceFlag = 0
-
 	var/obj/item/weapon/card/id/giver
 	var/list/accesses = list()
 	var/giv_name = "NOT SPECIFIED"

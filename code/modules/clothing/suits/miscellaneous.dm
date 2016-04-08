@@ -65,6 +65,7 @@
 	item_state = "nazi"
 
 
+
 /obj/item/clothing/suit/justice
 	name = "justice suit"
 	desc = "This pretty much looks ridiculous."

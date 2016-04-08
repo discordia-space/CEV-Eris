@@ -44,7 +44,7 @@
 		field.Remove(D)
 		D.loc = null
 	..()
-
+	
 /obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
 	if(prob(75))
 		src.locked = !src.locked
@@ -233,7 +233,6 @@
 	if(stat & BROKEN)
 		icon_state = "broke"
 	else
-
 		if (src.active)
 			icon_state = "generator1"
 		else

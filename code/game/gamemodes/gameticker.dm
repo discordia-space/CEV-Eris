@@ -37,18 +37,12 @@ var/global/datum/controller/gameticker/ticker
 	login_music = pick(\
 	/*'sound/music/halloween/skeletons.ogg',\
 	'sound/music/halloween/halloween.ogg',\
-	'sound/music/halloween/ghosts.ogg'
-	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
+	'sound/music/halloween/ghosts.ogg'*/
+	'sound/music/space.ogg',\
 	'sound/music/traitor.ogg',\
 	'sound/music/title2.ogg',\
 	'sound/music/clouds.s3m',\
-	'sound/music/space.ogg',\*/
-	'sound/music/tonspender_irritations.ogg',\
-	'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',\
-	'sound/music/paradise_cracked_skytown.ogg',\
-	'sound/music/nervous_testpilot _my_beautiful_escape.ogg',\
-	'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',\
-	'sound/music/paradise_cracked_title03.ogg')
+	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
 	do
 		pregame_timeleft = 180
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
@@ -59,7 +53,6 @@ var/global/datum/controller/gameticker/ticker
 				vote.process()
 			if(round_progressing)
 				pregame_timeleft--
-/*
 			if(pregame_timeleft == config.vote_autogamemode_timeleft)
 				if(!vote.time_remaining)
 					vote.autogamemode()	//Quit calling this over and over and over and over.
@@ -67,7 +60,6 @@ var/global/datum/controller/gameticker/ticker
 						for(var/i=0, i<10, i++)
 							sleep(1)
 							vote.process()
-*/
 			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
 	while (!setup())
@@ -150,13 +142,22 @@ var/global/datum/controller/gameticker/ticker
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
 
-/*
-	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
+	var/admins_number = 0
+	for(var/client/C)
+		if(C.holder)
+			admins_number++
+	if(admins_number == 0)
+		send2adminirc("Round has started with no admins online.")
+
+/*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
 	master_controller.process()		//Start master_controller.process()
 	lighting_controller.process()	//Start processing DynamicAreaLighting updates
 	*/
 
 	processScheduler.start()
+
+	if(config.sql_enabled)
+		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
 
 	return 1
 
@@ -332,6 +333,7 @@ var/global/datum/controller/gameticker/ticker
 					if(!delay_end)
 						world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
 
+
 				if(!delay_end)
 					sleep(restart_timeout)
 					if(!delay_end)
@@ -373,8 +375,8 @@ var/global/datum/controller/gameticker/ticker
 				else
 					Player << "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>"
 			else
-				if(istype(Player,/mob/dead/observer))
-					var/mob/dead/observer/O = Player
+				if(isghost(Player))
+					var/mob/observer/ghost/O = Player
 					if(!O.started_as_observer)
 						Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
 				else
@@ -404,9 +406,9 @@ var/global/datum/controller/gameticker/ticker
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>"
+				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>"
 			else
-				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>"
+				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>"
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)

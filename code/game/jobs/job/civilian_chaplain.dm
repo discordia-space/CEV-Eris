@@ -9,10 +9,10 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	idtype = /obj/item/weapon/card/id/chaplain
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	minimal_access = list(access_morgue, access_chapel_office, access_crematorium)
 	alt_titles = list("Counselor")
+	idtype = /obj/item/weapon/card/id/chaplain
 	uniform = /obj/item/clothing/under/rank/chaplain
 	pda = /obj/item/device/pda/chaplain
 
@@ -21,6 +21,7 @@
 
 		var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT
 		H.equip_to_slot_or_del(B, slot_l_hand)
+
 		spawn(0)
 			var/religion_name = "Christianity"
 			var/new_religion = sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Christianity, in SPACE.", "Name change", religion_name), MAX_NAME_LEN)
@@ -54,6 +55,7 @@
 					B.name = pick("Principle of Relativity", "Quantum Enigma: Physics Encounters Consciousness", "Programming the Universe", "Quantum Physics and Theology", "String Theory for Dummies", "How To: Build Your Own Warp Drive", "The Mysteries of Bluespace", "Playing God: Collector's Edition")
 				else
 					B.name = "The Holy Book of [new_religion]"
+
 
 		spawn(1)
 			var/deity_name = "Space Jesus"
@@ -145,4 +147,5 @@
 				ticker.Bible_item_state = B.item_state
 				ticker.Bible_name = B.name
 				ticker.Bible_deity_name = B.deity_name
+
 		return 1

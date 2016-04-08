@@ -164,6 +164,8 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	return
 
 
+
+
 var/obj/machinery/blackbox_recorder/blackbox
 
 /obj/machinery/blackbox_recorder
@@ -177,6 +179,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	active_power_usage = 100
 	var/list/messages = list()		//Stores messages of non-standard frequencies
 
+
 	var/list/msg_common = list()
 	var/list/msg_science = list()
 	var/list/msg_command = list()
@@ -187,6 +190,8 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/list/msg_syndicate = list()
 	var/list/msg_cargo = list()
 	var/list/msg_service = list()
+
+
 
 	//Only one can exist in the world!
 /obj/machinery/blackbox_recorder/New()
@@ -210,10 +215,13 @@ var/obj/machinery/blackbox_recorder/blackbox
 		BR.msg_syndicate = msg_syndicate
 		BR.msg_cargo = msg_cargo
 		BR.msg_service = msg_service
+
 		BR.messages = messages
+
 		if(blackbox != BR)
 			blackbox = BR
 	..()
+
 
 
 // Sanitize inputs to avoid SQL injection attacks

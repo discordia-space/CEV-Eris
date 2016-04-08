@@ -53,12 +53,12 @@
 	return 1
 
 // Free abilities.
-/mob/living/carbon/human/proc/transfer_plasma(mob/living/carbon/human/M as mob in oview())
+/mob/living/carbon/human/proc/transfer_plasma(mob/living/carbon/human/M as mob in oview(1))
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
 	set category = "Abilities"
 
-	if (get_dist(src,M) <= 1)
+	if (get_dist(src,M) > 1)
 		src << "<span class='alium'>You need to be closer.</span>"
 		return
 
@@ -212,7 +212,7 @@
 	visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
 	switch(choice)
 		if("resin door")
-			new /obj/structure/simple_door/resin(loc)
+			new /obj/machinery/door/unpowered/simple/resin(loc)
 		if("resin wall")
 			new /obj/structure/alien/resin/wall(loc)
 		if("resin membrane")
@@ -245,7 +245,7 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 
 	src.visible_message("<span class='danger'>\The [src] crouches over \the [M], extending a hideous protuberance from its head!</span>")
 
-	if(!do_after(src, 150))
+	if(!do_mob(src, M, 150))
 		return
 
 	if(!M || !M.Adjacent(src))

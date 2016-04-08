@@ -14,6 +14,7 @@
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = 1 //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
+	var/allow_spin = 1
 
 	///Chemistry.
 	var/datum/reagents/reagents = null
@@ -21,9 +22,15 @@
 	//var/chem_is_open_container = 0
 	// replaced by OPENCONTAINER flags and atom/proc/is_open_container()
 	///Chemistry.
-	var/allow_spin = 1
+
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
+
+/atom/Destroy()
+	if(reagents)
+		qdel(reagents)
+		reagents = null
+	. = ..()
 
 /atom/proc/reveal_blood()
 	return
@@ -216,8 +223,13 @@ its easier to just keep the beam vertical.
 
 //called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
-	. = new_dir != dir
+	var/old_dir = dir
+	if(new_dir == old_dir)
+		return FALSE
+
 	dir = new_dir
+	dir_set_event.raise_event(src, old_dir, new_dir)
+	return TRUE
 
 /atom/proc/ex_act()
 	return
@@ -489,3 +501,12 @@ its easier to just keep the beam vertical.
 		else if(ismob(I))
 			var/mob/M = I
 			M.show_message( message, 2, deaf_message, 1)
+
+/atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
+	if(loc && MOVED_DROP == special_event)
+		AM.forceMove(loc, MOVED_DROP)
+		return CANCEL_MOVE_EVENT
+	return ..()
+
+/turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
+	return ..(AM, old_loc, 0)

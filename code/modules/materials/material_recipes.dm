@@ -12,7 +12,7 @@
 	recipes += new/datum/stack_recipe("[display_name] spoon", /obj/item/weapon/material/kitchen/utensil/spoon/plastic, 1, on_floor = 1, supplied_material = "[name]")
 
 	if(integrity>=50)
-		recipes += new/datum/stack_recipe("[display_name] door", /obj/structure/simple_door, 10, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
+		recipes += new/datum/stack_recipe("[display_name] door", /obj/machinery/door/unpowered/simple, 10, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] barricade", /obj/structure/barricade, 5, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] stool", /obj/item/weapon/stool, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
 		recipes += new/datum/stack_recipe("[display_name] chair", /obj/structure/bed/chair, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
@@ -40,12 +40,12 @@
 		new/datum/stack_recipe("purple comfy chair", /obj/structure/bed/chair/comfy/purp, 2, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("green comfy chair", /obj/structure/bed/chair/comfy/green, 2, one_per_turf = 1, on_floor = 1), \
 		))
+
 	recipes += new/datum/stack_recipe_list("floor tile", list( \
 		new/datum/stack_recipe("regular floor tile", /obj/item/stack/tile/floor, 1, 4, 20), \
 		new/datum/stack_recipe("grey techfloor tile", /obj/item/stack/tile/techgrey, 1, 4, 20), \
 		new/datum/stack_recipe("grid techfloor tile", /obj/item/stack/tile/techgrid, 1, 4, 20), \
 		))
-
 
 	recipes += new/datum/stack_recipe("table frame", /obj/structure/table, 1, time = 10, one_per_turf = 1, on_floor = 1)
 	recipes += new/datum/stack_recipe("rack", /obj/structure/table/rack, 1, time = 5, one_per_turf = 1, on_floor = 1)
@@ -86,7 +86,6 @@
 	recipes += new/datum/stack_recipe("modular console frame", /obj/machinery/modular_computer/console/buildable, 20)
 	recipes += new/datum/stack_recipe("modular laptop frame", /obj/machinery/modular_computer/laptop/buildable, 10)
 	recipes += new/datum/stack_recipe("modular tablet frame", /obj/item/modular_computer/tablet, 5)
-	recipes += new/datum/stack_recipe("railing", /obj/structure/railing, 2, time = 15, on_floor = 1)
 
 /material/plasteel/generate_recipes()
 	..()

@@ -2,14 +2,13 @@
 
 	message = sanitize(message)
 	message = capitalize_cp1251(trim_left(message))
-
 	var/verb = say_quote(message)
 
 	if(copytext(message,1,2) == "*")
 		return emote(copytext(message,2))
 
 	if(stat)
-		if(stat == 2)
+		if(stat == DEAD)
 			return say_dead(message)
 		return
 
@@ -43,3 +42,4 @@
 		speech_buffer.Add(speaker)
 		speech_buffer.Add(lowertext(rhtml_decode(message)))
 	..()
+

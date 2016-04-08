@@ -2,7 +2,7 @@
 /mob/living/silicon/robot/drone/verb/set_mail_tag()
 	set name = "Set Mail Tag"
 	set desc = "Tag yourself for delivery through the disposals system."
-	set category = "Robot Commands"
+	set category = "Silicon Commands"
 
 	var/new_tag = input("Select the desired destination.", "Set Mail Tag", null) as null|anything in tagger_locations
 
@@ -24,7 +24,7 @@
 /mob/living/silicon/robot/drone/MouseDrop(atom/over_object)
 	var/mob/living/carbon/H = over_object
 	if(!istype(H) || !Adjacent(H)) return ..()
-	if(H.a_intent == "help")
+	if(H.a_intent == I_HELP)
 		get_scooped(H)
 		return
 	else if(H.a_intent == "grab" && hat && !(H.l_hand && H.r_hand))

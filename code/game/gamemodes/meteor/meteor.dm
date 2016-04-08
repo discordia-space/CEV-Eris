@@ -40,6 +40,7 @@
 	else
 		world << "<span class='notice'><B>Nobody survived the meteor storm!</B></span>"
 
+
 	..()
 	return 1
 

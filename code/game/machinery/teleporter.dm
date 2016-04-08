@@ -33,8 +33,10 @@
 	if(istype(station))
 		station.com = hub
 
+
 	if(istype(hub))
 		hub.com = src
+
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/weapon/card/data/))
@@ -89,7 +91,7 @@
 	if(..()) return
 
 	/* Ghosts can't use this one because it's a direct selection */
-	if(istype(user, /mob/dead/observer)) return
+	if(isobserver(user)) return
 
 	var/list/L = list()
 	var/list/areaindex = list()
