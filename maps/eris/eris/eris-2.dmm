@@ -1424,7 +1424,7 @@
 "Bt" = (/obj/structure/table,/obj/item/weapon/folder,/obj/item/weapon/pen,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{tag = "icon-darkbrown"; icon_state = "darkbrown"},/area/eris/maintenance/thirdsec2starboard)
 "Bu" = (/obj/structure/table,/obj/item/weapon/newspaper,/obj/item/device/flashlight,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor{tag = "icon-darkbrown"; icon_state = "darkbrown"},/area/eris/maintenance/thirdsec2starboard)
 "Bv" = (/obj/item/weapon/storage/box/lights/mixed,/turf/simulated/floor/plating,/area/eris/maintenance/thirdsec2starboard)
-"Bw" = (/obj/effect/decal/remains/robot{tag = "icon-gibdown"; icon_state = "gibdown"},/turf/simulated/floor/plating,/area/eris/maintenance/thirdsec2starboard)
+"Bw" = (/obj/item/remains/robot{tag = "icon-gibdown"; icon_state = "gibdown"},/turf/simulated/floor/plating,/area/eris/maintenance/thirdsec2starboard)
 "Bx" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access_txt = "12"},/turf/simulated/floor{tag = "icon-techfloor_grid"; icon_state = "techfloor_grid"},/area/eris/maintenance/thirdsec2port)
 "By" = (/turf/simulated/wall,/area/eris/maintenance/thirdsec2port)
 "Bz" = (/obj/machinery/door/firedoor{layer = 2.69; req_one_access = null},/obj/machinery/door/airlock{name = "Bar Backroom"; req_access_txt = "25"},/turf/simulated/floor/wood,/area/eris/barbackroom)
