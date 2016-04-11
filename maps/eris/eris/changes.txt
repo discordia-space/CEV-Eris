@@ -10,7 +10,7 @@
 /obj/item/device/radio/intercom/south = /obj/item/device/radio/intercom
 /obj/item/device/radio/intercom/north = /obj/item/device/radio/intercom
 /turf/simulated/floor/open = /turf/simulated/open
-/obj/machinery/atmospherics/pipe/simple/supply/hidden
+
 /obj/multiz/ladder = /obj/structure/ladder
 /obj/multiz/stairs/enter = /obj/structure/stairs
 /obj/multiz/stairs/active = /obj/structure/stairs
@@ -18,7 +18,7 @@
 /obj/item/weapon/shard = /obj/item/weapon/material/shard
 /obj/item/stack/sheet/cardboard = /obj/item/stack/material/cardboard
 /obj/structure/stool = /obj/item/weapon/stool
-/obj/structure/table/rack = /obj/structure/table/rack
+/obj/structure/rack = /obj/structure/table/rack
 /obj/machinery/atmospherics/pipe/simple/supply/hidden = /obj/machinery/atmospherics/pipe/simple/hidden/supply
 /obj/item/weapon/forensics = /obj/item/weapon/forensics
 /obj/structure/bed/chair = /obj/structure/bed/chair
@@ -78,7 +78,7 @@
 /area/propulsion/left = спижено
 /area/propulsion/right = спижено
 /area/engine/gravity_generator = /area/engineering/gravity_generator
-/turf/simulated/wall/heatshield = /obj/item/stack/material/glass/phoronrglass
+/turf/simulated/wall/heatshield = /obj/structure/window/phoronreinforced
 /obj/item/weapon/circuitboard/injector_control = /obj/item/weapon/circuitboard/air_management/injector_control
 /obj/effect/landmark/zcontroller = /obj/effect/landmark/map_data
 /obj/machinery/smartfridge/extract = /obj/machinery/smartfridge/secure/extract
