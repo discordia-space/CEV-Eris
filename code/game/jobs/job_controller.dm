@@ -331,7 +331,6 @@ var/global/datum/controller/occupations/job_master
 			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
 			var/list/custom_equip_leftovers = list()
 			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
-
 				for(var/thing in H.client.prefs.gear)
 					var/datum/gear/G = gear_datums[thing]
 					if(G)
@@ -353,10 +352,11 @@ var/global/datum/controller/occupations/job_master
 						if(G.slot && !(G.slot in custom_equip_slots))
 							// This is a miserable way to fix the loadout overwrite bug, but the alternative requires
 							// adding an arg to a bunch of different procs. Will look into it after this merge. ~ Z
+							var/metadata = H.client.prefs.gear[G.display_name]
 							if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 								custom_equip_leftovers += thing
-							else if(H.equip_to_slot_or_del(new G.path(H), G.slot))
-								H << "<span class='notice'>Equipping you with [thing]!</span>"
+							else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
+								H << "<span class='notice'>Equipping you with \the [thing]!</span>"
 								custom_equip_slots.Add(G.slot)
 							else
 								custom_equip_leftovers.Add(thing)
@@ -365,8 +365,7 @@ var/global/datum/controller/occupations/job_master
 			//Equip job items.
 			job.equip(H)
 			job.setup_account(H)
-			job.equip_backpack(H)
-			job.equip_survival(H)
+
 			job.apply_fingerprints(H)
 
 			//If some custom items could not be equipped before, try again now.
@@ -375,8 +374,9 @@ var/global/datum/controller/occupations/job_master
 				if(G.slot in custom_equip_slots)
 					spawn_in_storage += thing
 				else
-					if(H.equip_to_slot_or_del(new G.path(H), G.slot))
-						H << "<span class='notice'>Equipping you with [thing]!</span>"
+					var/metadata = H.client.prefs.gear[G.display_name]
+					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
+						H << "<span class='notice'>Equipping you with \the [thing]!</span>"
 						custom_equip_slots.Add(G.slot)
 					else
 						spawn_in_storage += thing
@@ -387,21 +387,23 @@ var/global/datum/controller/occupations/job_master
 
 		if(!joined_late)
 			var/obj/S = null
+			var/list/loc_list = new()
 			for(var/obj/effect/landmark/start/sloc in landmarks_list)
 				if(sloc.name != rank)	continue
 				if(locate(/mob/living) in sloc.loc)	continue
-				S = sloc
-				break
-			if(!S)
+				loc_list += sloc
+			if(loc_list.len)
+				S = pick(loc_list)
+			else
 				S = locate("start*[rank]") // use old stype
 			if(istype(S, /obj/effect/landmark/start) && istype(S.loc, /turf))
-				H.loc = S.loc
+				H.forceMove(S.loc)
 			else
-				LateSpawn(H, rank)
+				LateSpawn(H.client, rank)
 
 			// Moving wheelchair if they have one
 			if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
-				H.buckled.loc = H.loc
+				H.buckled.forceMove(H.loc)
 				H.buckled.set_dir(H.dir)
 
 		// If they're head, give them the account info for their department
@@ -439,9 +441,10 @@ var/global/datum/controller/occupations/job_master
 
 				if(!isnull(B))
 					for(var/thing in spawn_in_storage)
-						H << "<span class='notice'>Placing [thing] in your [B]!</span>"
+						H << "<span class='notice'>Placing \the [thing] in your [B.name]!</span>"
 						var/datum/gear/G = gear_datums[thing]
-						new G.path(B)
+						var/metadata = H.client.prefs.gear[G.display_name]
+						G.spawn_item(B, metadata)
 				else
 					H << "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
 
@@ -587,22 +590,39 @@ var/global/datum/controller/occupations/job_master
 
 			tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
 
-/datum/controller/occupations/proc/LateSpawn(var/mob/living/carbon/human/H, var/rank)
+
+/datum/controller/occupations/proc/LateSpawn(var/client/C, var/rank, var/return_location = 0)
 	//spawn at one of the latespawn locations
 
 	var/datum/spawnpoint/spawnpos
 
-	if(H.client.prefs.spawnpoint)
-		spawnpos = spawntypes[H.client.prefs.spawnpoint]
+	if(!C)
+		CRASH("Null client passed to LateSpawn() proc!")
+
+	var/mob/H = C.mob
+	if(C.prefs.spawnpoint)
+		spawnpos = spawntypes[C.prefs.spawnpoint]
 
 	if(spawnpos && istype(spawnpos))
 		if(spawnpos.check_job_spawning(rank))
-			H.loc = pick(spawnpos.turfs)
-			. = spawnpos.msg
+			if(return_location)
+				return pick(spawnpos.turfs)
+			else
+				if(H)
+					H.forceMove(pick(spawnpos.turfs))
+				return spawnpos.msg
 		else
-			H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."
-			H.loc = pick(latejoin)
-			. = "has arrived on the station"
+			if(return_location)
+				return pick(latejoin)
+			else
+				if(H)
+					H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the default spawn point instead."
+					H.forceMove(pick(latejoin))
+				return "has arrived on the station"
 	else
-		H.loc = pick(latejoin)
-		. = "has arrived on the station"
+		if(return_location)
+			return pick(latejoin)
+		else
+			if(H)
+				H.forceMove(pick(latejoin))
+			return "has arrived on the station"

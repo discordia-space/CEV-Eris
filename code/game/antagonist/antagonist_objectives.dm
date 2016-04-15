@@ -25,6 +25,8 @@
 				result = 0
 		if(result && victory_text)
 			world << "<span class='danger'><font size = 3>[victory_text]</font></span>"
+
 		else if(loss_text)
 			world << "<span class='danger'><font size = 3>[loss_text]</font></span>"
+
 

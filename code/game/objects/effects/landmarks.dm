@@ -5,12 +5,12 @@
 	anchored = 1.0
 	unacidable = 1
 	simulated = 0
+	invisibility = 101
 	var/delete_me = 0
 
 /obj/effect/landmark/New()
 	..()
 	tag = text("landmark*[]", name)
-	invisibility = 101
 
 	switch(name)			//some of these are probably obsolete
 		if("monkey")
@@ -88,12 +88,11 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
 	anchored = 1.0
+	invisibility = 101
 
 /obj/effect/landmark/start/New()
 	..()
 	tag = "start*[name]"
-	invisibility = 101
-
 	return 1
 
 //Costume spawner landmarks
@@ -117,14 +116,14 @@
 	delete_me = 1
 
 /obj/effect/landmark/costume/madscientist/New()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
+	//new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/mad(src.loc)
 	new /obj/item/clothing/glasses/gglasses(src.loc)
 	delete_me = 1
 
 /obj/effect/landmark/costume/elpresidente/New()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
+	//new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/mask/smokable/cigarette/cigar/havana(src.loc)
 	new /obj/item/clothing/shoes/jackboots(src.loc)
@@ -168,7 +167,7 @@
 	new CHOICE(src.loc)
 	new /obj/item/clothing/shoes/black(src.loc)
 	new /obj/item/weapon/cane(src.loc)
-	new /obj/item/clothing/under/sl_suit(src.loc)
+	//new /obj/item/clothing/under/sl_suit(src.loc)
 	new /obj/item/clothing/mask/fakemoustache(src.loc)
 	delete_me = 1
 

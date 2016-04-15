@@ -11,7 +11,6 @@
 	if(prob(50))
 		icon_state = "crystal2"
 
-
 //Talk crystal
 
 /obj/item/weapon/talkingcrystal

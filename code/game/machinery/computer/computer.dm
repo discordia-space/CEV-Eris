@@ -9,7 +9,7 @@
 	active_power_usage = 300
 	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = 0
-
+	var/CheckFaceFlag = 1 //for direction check
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
 	var/light_range_on = 2
@@ -99,7 +99,7 @@
 /obj/machinery/computer/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
+		if(do_after(user, 20, src))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 			var/obj/item/weapon/circuitboard/M = new circuit( A )
 			A.circuit = M
@@ -119,37 +119,28 @@
 			qdel(src)
 	else
 		..()
-
 /obj/machinery/computer/Topic(href, href_list)
 	if(..())
 		return 1
-	keyboardsound(usr)
-	return 0
+	if (!CheckFaceFlag || CheckFace(src,usr))
+		keyboardsound(usr)
+		return 0
+	else
+		usr << "You need to stand in front of console's keyboard!"
+		return 1
 
 /obj/proc/keyboardsound(mob/user as mob)
-	var/music = pick('sound/effects/keyboard/keyboard1.ogg','sound/effects/keyboard/keyboard2.ogg', 'sound/effects/keyboard/keyboard3.ogg', 'sound/effects/keyboard/keyboard4.ogg')
 	if(!issilicon(user))
-		playsound(src, music, 100, 1, 0)
+		playsound(src, "keyboard", 100, 1, 0)
+
 /obj/machinery/computer/attack_hand(mob/user as mob)//check mob direction
 	if(..())
 		return 1
-	if(istype(user, /mob/living/silicon))
+	if(!issilicon(user))
 		return 0
-	if((src.dir == 1) && (user.y - src.y == 1)) //NORTH
-		if(src.x == user.x || src.x - user.x == 1 || user.x - src.x == 1)
-			keyboardsound(user)
-			return 0
-	else if(src.dir == 2 && src.y - user.y == 1) //SOUTH
-		if(src.x == user.x || src.x - user.x == 1 || user.x - src.x == 1)
-			keyboardsound(user)
-			return 0
-	else if(src.dir == 4 && user.x - src.x == 1) //EAST
-		if(src.y == user.y || src.y - user.y == 1 || user.y - src.y == 1)
-			keyboardsound(user)
-			return 0
-	else if(src.dir == 8 && src.x - user.x == 1) //WEST
-		if(src.y == user.y || src.y - user.y == 1 || user.y - src.y == 1)
-			keyboardsound(user)
-			return 0
+	if (!CheckFaceFlag || CheckFace(src,user))
+		keyboardsound(user)
+		return 0
 	else
+		user << "you need stay face to console"
 		return 1

@@ -12,7 +12,7 @@
 
 /obj/machinery/computer/operating/New()
 	..()
-	for(dir in list(NORTH,EAST,SOUTH,WEST))
+	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
 		table = locate(/obj/machinery/optable, get_step(src, dir))
 		if (table)
 			table.computer = src
@@ -81,4 +81,3 @@
 /obj/machinery/computer/operating/process()
 	if(..())
 		src.updateDialog()
-

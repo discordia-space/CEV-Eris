@@ -19,7 +19,6 @@ datum/preferences
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/list/be_special_role = list()		//Special role selection
 	var/UI_style = "Midnight"
-	var/toggles = TOGGLES_DEFAULT
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 
@@ -27,11 +26,11 @@ datum/preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
+	var/body_build = "Default"			//character body build name
+	var/datum/body_build/body = null	//body_build object
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
-	var/underwear						//underwear type
-	var/undershirt						//undershirt type
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type
 	var/r_hair = 0						//Hair color
@@ -64,6 +63,8 @@ datum/preferences
 	var/icon/preview_icon = null
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null
+
+	var/high_job_title = ""
 
 		//Jobs, uses bitflags
 	var/job_civilian_high = 0
@@ -108,6 +109,7 @@ datum/preferences
 	var/metadata = ""
 
 	var/client/client = null
+	var/client_ckey = null
 
 	var/savefile/loaded_preferences
 	var/savefile/loaded_character
@@ -116,6 +118,7 @@ datum/preferences
 /datum/preferences/New(client/C)
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
+	body = get_body_build(gender, body_build)
 	real_name = random_name(gender,species)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
@@ -123,6 +126,7 @@ datum/preferences
 
 	if(istype(C))
 		client = C
+		client_ckey = C.ckey
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
 			load_preferences()
@@ -188,6 +192,12 @@ datum/preferences
 
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user || !user.client)	return
+
+	if(!get_mob_by_key(client_ckey))
+		user << "<span class='danger'>No mob exists for the given client!</span>"
+		close_load_dialog(user)
+		return
+
 	var/dat = "<html><body><center>"
 
 	if(path)
@@ -205,7 +215,7 @@ datum/preferences
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	user << browse(dat, "window=preferences;size=625x736")
+	user << browse(dat, "window=preferences;size=635x736")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
@@ -272,6 +282,8 @@ datum/preferences
 	character.flavor_texts["hands"] = flavor_texts["hands"]
 	character.flavor_texts["legs"] = flavor_texts["legs"]
 	character.flavor_texts["feet"] = flavor_texts["feet"]
+
+	character.body_build = get_body_build(gender, body_build)
 
 	character.med_record = med_record
 	character.sec_record = sec_record
@@ -340,9 +352,15 @@ datum/preferences
 				else if(status == "mechanical")
 					I.robotize()
 
-	character.underwear = underwear
+	character.all_underwear.Cut()
 
-	character.undershirt = undershirt
+	for(var/underwear_category_name in all_underwear)
+		var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
+		if(underwear_category)
+			var/underwear_item_name = all_underwear[underwear_category_name]
+			character.all_underwear[underwear_category_name] = underwear_category.items_by_name[underwear_item_name]
+		else
+			all_underwear -= underwear_category_name
 
 	if(backbag > 4 || backbag < 1)
 		backbag = 1 //Same as above

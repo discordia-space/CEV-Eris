@@ -45,6 +45,7 @@
 	return bought_items
 
 /datum/uplink_item/item/badassery/random_many/purchase_log(obj/item/device/uplink/U)
+
 	log_and_message_admins("used \the [U.loc] to buy \a [src]")
 
 /****************

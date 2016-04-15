@@ -1040,6 +1040,8 @@
 					holder.icon_state = "durand18"
 		return 1
 
+
+
 /datum/construction/mecha/phazon_chassis
 	result = "/obj/mecha/combat/phazon"
 	steps = list(list("key"=/obj/item/mecha_parts/part/phazon_torso),//1

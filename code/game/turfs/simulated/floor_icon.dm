@@ -10,7 +10,6 @@ var/list/flooring_cache = list()
 		name = flooring.name
 		desc = flooring.desc
 		icon = flooring.icon
-
 		if(!isnull(set_update_icon) && istext(set_update_icon))
 			icon_state = set_update_icon
 		else if(flooring_override)

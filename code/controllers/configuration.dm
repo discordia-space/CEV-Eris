@@ -178,6 +178,7 @@ var/list/gamemode_cache = list()
 	var/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
 	var/main_irc = ""
 	var/admin_irc = ""
+	var/announce_shuttle_dock_to_irc = FALSE
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
@@ -265,7 +266,7 @@ var/list/gamemode_cache = list()
 		if(type == "config")
 			switch (name)
 				if ("resource_urls")
-					config.resource_urls = text2list(value, " ")
+					config.resource_urls = splittext(value, " ")
 
 				if ("admin_legacy_system")
 					config.admin_legacy_system = 1
@@ -611,6 +612,9 @@ var/list/gamemode_cache = list()
 				if("admin_irc")
 					config.admin_irc = value
 
+				if("announce_shuttle_dock_to_irc")
+					config.announce_shuttle_dock_to_irc = TRUE
+
 				if("python_path")
 					if(value)
 						config.python_path = value
@@ -689,7 +693,7 @@ var/list/gamemode_cache = list()
 					config.starlight = value >= 0 ? value : 0
 
 				if("ert_species")
-					config.ert_species = text2list(value, ";")
+					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
 						config.ert_species += "Human"
 
@@ -700,12 +704,12 @@ var/list/gamemode_cache = list()
 					config.aggressive_changelog = 1
 
 				if("default_language_prefixes")
-					var/list/values = text2list(value, " ")
+					var/list/values = splittext(value, " ")
 					if(values.len > 0)
 						language_prefixes = values
 
 				if ("lobby_screens")
-					config.lobby_screens = text2list(value, ";")
+					config.lobby_screens = splittext(value, ";")
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

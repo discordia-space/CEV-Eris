@@ -73,6 +73,9 @@
 /obj/item/modular_computer/processor/CanUseTopic(user, state)
 	if(!machinery_computer)
 		return 0
+	if (istype(machinery_computer, /obj/machinery/modular_computer/console))// Change to check CheckFaceFlag???
+		if (!CheckFace(machinery_computer,user))
+			return 0
 	return machinery_computer.CanUseTopic(user, state)
 
 /obj/item/modular_computer/processor/shutdown_computer()

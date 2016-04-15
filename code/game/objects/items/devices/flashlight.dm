@@ -13,6 +13,7 @@
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
+	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
 
 /obj/item/device/flashlight/initialize()
 	..()
@@ -31,10 +32,7 @@
 		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
 		return 0
 	on = !on
-	if(istype(src, /obj/item/device/flashlight/flare))
-		playsound(src.loc, 'sound/effects/Custom_flare.ogg', 75, 1)
-	else
-		playsound(src.loc, 'sound/effects/Custom_flashlight.ogg', 75, 1)
+	playsound(src.loc, turn_on_sound, 75, 1)
 	update_icon()
 	user.update_action_buttons()
 	return 1
@@ -44,7 +42,7 @@
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == "eyes")
 
-		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
+		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
@@ -108,6 +106,23 @@
 	brightness_on = 2
 	w_class = 1
 
+/obj/item/device/flashlight/heavy
+	name = "heavy duty flashlight"
+	desc = "A hand-held heavy-duty light."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "heavyduty"
+	item_state = "heavyduty"
+	brightness_on = 6
+
+/obj/item/device/flashlight/seclite
+	name = "security flashlight"
+	desc = "A hand-held security flashlight. Very robust."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "seclite"
+	item_state = "seclite"
+	brightness_on = 5
+	force = 10.0
+	hitsound = 'sound/weapons/genhit1.ogg'
 
 // the desk lamps are a bit special
 /obj/item/device/flashlight/lamp
@@ -153,6 +168,7 @@
 	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500
+	turn_on_sound = 'sound/effects/Custom_flare.ogg'
 
 /obj/item/device/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
@@ -176,21 +192,22 @@
 	update_icon()
 
 /obj/item/device/flashlight/flare/attack_self(mob/user)
+	if(turn_on(user))
+		user.visible_message("<span class='notice'>\The [user] activates \the [src].</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 
-	// Usual checks
-	if(!fuel)
-		user << "<span class='notice'>It's out of fuel.</span>"
-		return
+/obj/item/device/flashlight/flare/proc/turn_on(var/mob/user)
 	if(on)
-		return
-
-	. = ..()
-	// All good, turn it on.
-	if(.)
-		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
-		src.force = on_damage
-		src.damtype = "fire"
-		processing_objects += src
+		return FALSE
+	if(!fuel)
+		if(user)
+			user << "<span class='notice'>It's out of fuel.</span>"
+		return FALSE
+	on = TRUE
+	force = on_damage
+	damtype = "fire"
+	processing_objects += src
+	update_icon()
+	return 1
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

@@ -63,6 +63,7 @@ var/intercom_range_display_status = 0
 
 
 
+
 /client/proc/sec_camera_report()
 	set category = "Mapping"
 	set name = "Camera Report"
@@ -102,6 +103,7 @@ var/intercom_range_display_status = 0
 	output += "</ul>"
 	usr << browse(output,"window=airreport;size=1000x500")
 
+
 /client/proc/intercom_view()
 	set category = "Mapping"
 	set name = "Intercom Range Display"
@@ -121,6 +123,7 @@ var/intercom_range_display_status = 0
 				if (!(F in view(7,I.loc)))
 					qdel(F)
 
+
 var/list/debug_verbs = list (
         /client/proc/do_not_use_these
         ,/client/proc/camera_view
@@ -137,7 +140,6 @@ var/list/debug_verbs = list (
         ,/client/proc/ticklag
         ,/client/proc/cmd_admin_grantfullaccess
         ,/client/proc/kaboom
-        ,/client/proc/splash
         ,/client/proc/cmd_admin_areatest
         ,/client/proc/cmd_admin_rejuvenate
         ,/datum/admins/proc/show_traitor_panel
@@ -172,6 +174,7 @@ var/list/debug_verbs = list (
 	verbs += debug_verbs
 
 
+
 /client/proc/hide_debug_verbs()
 	set category = "Debug"
 	set name = "Hide Debug verbs"
@@ -179,6 +182,7 @@ var/list/debug_verbs = list (
 	if(!check_rights(R_DEBUG)) return
 
 	verbs -= debug_verbs
+
 
 
 
@@ -320,6 +324,7 @@ var/list/debug_verbs = list (
 
 	world << "There are [count] objects of type [type_path] on z-level [num_level]"
 
+
 /client/proc/count_objects_all()
 	set category = "Mapping"
 	set name = "Count Objects All"
@@ -345,6 +350,7 @@ var/list/debug_verbs = list (
 		world << line*/
 
 	world << "There are [count] objects of type [type_path] in the game world"
+
 
 
 var/global/prevent_airgroup_regroup = 0

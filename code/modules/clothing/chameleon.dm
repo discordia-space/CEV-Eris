@@ -2,7 +2,9 @@
 //**Cham Jumpsuit**
 //*****************
 
-/obj/item/proc/disguise(var/newtype)
+/obj/item/proc/disguise(var/newtype, var/mob/user)
+	if(!user || user.incapacitated())
+		return
 	//this is necessary, unfortunately, as initial() does not play well with list vars
 	var/obj/item/copy = new newtype(null) //so that it is GCed once we exit
 
@@ -38,6 +40,7 @@
 	name = "black jumpsuit"
 	icon_state = "black"
 	item_state = "bl_suit"
+
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -64,7 +67,7 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked])
+	disguise(clothing_choices[picked], usr)
 	update_clothing_icon()	//so our overlays update.
 
 //*****************
@@ -100,7 +103,7 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked])
+	disguise(clothing_choices[picked], usr)
 	update_clothing_icon()	//so our overlays update.
 
 //******************
@@ -136,7 +139,7 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked])
+	disguise(clothing_choices[picked], usr)
 	update_clothing_icon()	//so our overlays update.
 
 //*******************
@@ -172,7 +175,7 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked])
+	disguise(clothing_choices[picked], usr)
 	update_clothing_icon()	//so our overlays update.
 
 //**********************
@@ -210,7 +213,7 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked])
+	disguise(clothing_choices[picked], usr)
 
 	//so our overlays update.
 	if (ismob(src.loc))
@@ -249,7 +252,7 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked])
+	disguise(clothing_choices[picked], usr)
 	update_clothing_icon()	//so our overlays update.
 
 //******************
@@ -284,7 +287,7 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked])
+	disguise(clothing_choices[picked], usr)
 	update_clothing_icon()	//so our overlays update.
 
 //*********************
@@ -319,7 +322,7 @@
 	if(!ispath(clothing_choices[picked]))
 		return
 
-	disguise(clothing_choices[picked])
+	disguise(clothing_choices[picked], usr)
 	update_clothing_icon()	//so our overlays update.
 
 //*****************
@@ -399,7 +402,7 @@
 	if(!ispath(gun_choices[picked]))
 		return
 
-	disguise(gun_choices[picked])
+	disguise(gun_choices[picked], usr)
 
 	//so our overlays update.
 	if (ismob(src.loc))

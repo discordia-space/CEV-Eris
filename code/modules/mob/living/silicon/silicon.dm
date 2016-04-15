@@ -66,10 +66,10 @@
 			Stun(rand(5,10))
 		if(2)
 			src.take_organ_damage(0,10,emp=1)
-			Stun(rand(1,5))
-	flick("noise", src:flash)
-	src << "\red <B>*BZZZT*</B>"
-	src << "\red Warning: Electromagnetic pulse detected."
+			confused = (min(confused + 2, 30))
+	flick("noise", src.flash)
+	src << "<span class='danger'><B>*BZZZT*</B></span>"
+	src << "<span class='danger'>Warning: Electromagnetic pulse detected.</span>"
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
@@ -166,7 +166,7 @@
 		show_emergency_shuttle_eta()
 		show_system_integrity()
 		show_malf_ai()
-	..()
+	. = ..()
 
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()

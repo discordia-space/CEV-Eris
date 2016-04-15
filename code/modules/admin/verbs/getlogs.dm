@@ -91,6 +91,7 @@
 	else
 		src << "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>"
 		return
+
 	return
 
 //Shows today's attack log
@@ -106,4 +107,5 @@
 		src << "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>"
 		return
 	usr << run( file(path) )
+
 	return

@@ -1,3 +1,4 @@
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Formerly talking crystals - these procs are now modular so that you can make any /obj/item/weapon 'parrot' player speech back to them
 // This could be extended to atoms, but it's bad enough as is
@@ -43,7 +44,7 @@
 		/*var/l = lentext(msg)
 		if(findtext(msg," ",l,l+1)==0)
 			msg+=" "*/
-		seperate = text2list(msg, " ")
+		seperate = splittext(msg, " ")
 
 	for(var/Xa = 1,Xa<seperate.len,Xa++)
 		var/next = Xa + 1
@@ -84,7 +85,7 @@
 	if(!word)
 		text = "[pick(heard_words)]"
 	else
-		text = pick(text2list(word, " "))
+		text = pick(splittext(word, " "))
 	if(lentext(text)==1)
 		text=uppertext(text)
 	else
@@ -120,7 +121,7 @@
 			continue //skip monkeys and leavers
 		if (istype(M, /mob/new_player))
 			continue
-		if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
+		if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 			listening|=M
 
 	for(var/mob/M in listening)

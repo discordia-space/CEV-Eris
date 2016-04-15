@@ -1,4 +1,4 @@
-/obj/item/device/radio/intercom/*
+/*
  * Holds procs designed to help with filtering text
  * Contains groups:
  *			SQL sanitization
@@ -175,13 +175,6 @@
 /*
  * Text modification
  */
-#if DM_VERSION < 510
-/proc/replacetext(text, find, replacement)
-	return list2text(text2list(text, find), replacement)
-
-/proc/replacetextEx(text, find, replacement)
-	return list2text(text2listEx(text, find), replacement)
-#endif
 
 /proc/replace_characters(var/t,var/list/repl_chars)
 	for(var/char in repl_chars)
@@ -312,7 +305,7 @@ proc/TextPreview(var/string,var/len=40)
 //	to always create it and then throw it out.
 /var/icon/text_tag_icons = new('./icons/chattags.dmi')
 /proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
-	if(C && (C.prefs.toggles & CHAT_NOICONS))
+	if(!(C && C.is_preference_enabled(/datum/client_preference/chat_tags)))
 		return tagdesc
 	return "<IMG src='\ref[text_tag_icons.icon]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 

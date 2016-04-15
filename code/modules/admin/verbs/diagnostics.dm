@@ -69,6 +69,7 @@
 	message_admins("[key_name_admin(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [largest_move_time/10] seconds!", 1)
 	message_admins("[key_name_admin(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time/10] seconds!", 1)
 	message_admins("world.time = [world.time]", 1)
+
 	return
 
 /client/proc/radio_report()
@@ -96,6 +97,7 @@
 
 	usr << browse(output,"window=radioreport")
 
+
 /client/proc/reload_admins()
 	set name = "Reload Admins"
 	set category = "Debug"
@@ -104,6 +106,7 @@
 
 	message_admins("[usr] manually reloaded admins")
 	load_admins()
+
 
 /client/proc/reload_mentors()
 	set name = "Reload Mentors"
@@ -133,6 +136,7 @@
 			dead_groups += group
 	var/datum/air_group/dest_group = pick(dead_groups)
 	usr.loc = pick(dest_group.members)
+
 	return
 	*/
 
@@ -156,6 +160,7 @@
 		AG.group_processing = 0
 	else
 		usr << "Local airgroup is unsimulated!"
+
 	*/
 
 /client/proc/print_jobban_old()

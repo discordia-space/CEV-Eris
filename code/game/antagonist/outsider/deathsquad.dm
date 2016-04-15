@@ -15,6 +15,8 @@ var/datum/antagonist/deathsquad/deathsquad
 	initial_spawn_req = 4
 	initial_spawn_target = 6
 
+	faction = "deathsquad"
+
 	var/deployed = 0
 
 /datum/antagonist/deathsquad/New(var/no_reference)
@@ -31,7 +33,7 @@ var/datum/antagonist/deathsquad/deathsquad
 		return
 
 	if (player.mind == leader)
-		player.equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(player), slot_w_uniform)
+		//player.equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(player), slot_w_uniform)
 	else
 		player.equip_to_slot_or_del(new /obj/item/clothing/under/color/green(player), slot_w_uniform)
 

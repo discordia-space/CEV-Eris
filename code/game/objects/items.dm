@@ -16,6 +16,9 @@
 	pass_flags = PASSTABLE
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
+	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
+	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/force = 0
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
@@ -71,6 +74,16 @@
 	// Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
 	var/list/sprite_sheets_obj = list()
 
+/obj/item/equipped()
+	..()
+	var/mob/M = loc
+	if(!istype(M))
+		return
+	if(M.l_hand)
+		M.l_hand.update_held_icon()
+	if(M.r_hand)
+		M.r_hand.update_held_icon()
+
 /obj/item/Destroy()
 	if(ismob(loc))
 		var/mob/m = loc
@@ -89,7 +102,7 @@
 		var/mob/M = src.loc
 		if(M.l_hand == src)
 			M.update_inv_l_hand()
-		if(M.r_hand == src)
+		else if(M.r_hand == src)
 			M.update_inv_r_hand()
 
 /obj/item/ex_act(severity)

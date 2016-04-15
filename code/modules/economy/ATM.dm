@@ -34,7 +34,6 @@ log transactions
 	var/view_screen = NO_SCREEN
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/updateflag = 0
-
 /obj/machinery/atm/New()
 	..()
 	machine_id = "[station_name()] RT #[num_financial_terminals++]"
@@ -79,7 +78,6 @@ log transactions
 	else
 		icon_state = "atm"
 
-
 /obj/machinery/atm/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		return
@@ -111,7 +109,6 @@ log transactions
 		var/obj/item/weapon/card/id/idcard = I
 		if(!held_card)
 			usr.unEquip(I,0,src)
-			//idcard.loc = src
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
 			held_card = idcard
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
@@ -461,7 +458,7 @@ log transactions
 			if("logout")
 				authenticated_account = null
 				//usr << browse(null,"window=atm")
-	playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	src.attack_hand(usr)
 
 //stolen wholesale and then edited a bit from newscasters, which are awesome and by Agouri

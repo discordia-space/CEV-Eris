@@ -16,8 +16,9 @@ var/list/sounds_cache = list()
 	log_admin("[key_name(src)] played sound [S]")
 	message_admins("[key_name_admin(src)] played sound [S]", 1)
 	for(var/mob/M in player_list)
-		if(M.client.prefs.toggles & SOUND_MIDI)
+		if(M.is_preference_enabled(/datum/client_preference/play_admin_midis))
 			M << uploaded_sound
+
 
 
 /client/proc/play_local_sound(S as sound)
@@ -28,6 +29,7 @@ var/list/sounds_cache = list()
 	log_admin("[key_name(src)] played a local sound [S]")
 	message_admins("[key_name_admin(src)] played a local sound [S]", 1)
 	playsound(get_turf(src.mob), S, 50, 0, 0)
+
 
 
 /client/proc/play_server_sound()
@@ -44,6 +46,7 @@ var/list/sounds_cache = list()
 	if(melody == "--CANCEL--")	return
 
 	play_sound(melody)
+
 
 /*
 /client/proc/cuban_pete()

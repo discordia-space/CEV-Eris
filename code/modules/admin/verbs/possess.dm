@@ -25,6 +25,7 @@
 	usr.client.eye = O
 	usr.control_object = O
 
+
 /proc/release(obj/O as obj in range(world.view))
 	set name = "Release Obj"
 	set category = "Object"
@@ -41,6 +42,7 @@
 	usr.loc = O.loc // Appear where the object you were controlling is -- TLE
 	usr.client.eye = usr
 	usr.control_object = null
+
 
 /proc/givetestverbs(mob/M as mob in mob_list)
 	set desc = "Give this guy possess/release verbs"

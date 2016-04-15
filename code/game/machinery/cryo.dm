@@ -63,10 +63,9 @@
 	return 1
 
 /obj/machinery/atmospherics/unary/cryo_cell/relaymove(mob/user as mob)
-	if(user.stat)
-		return
-	go_out()
-	return
+	// note that relaymove will also be called for mobs outside the cell with UI open
+	if(src.occupant == user && !user.stat)
+		go_out()
 
 /obj/machinery/atmospherics/unary/cryo_cell/attack_hand(mob/user)
 	ui_interact(user)
@@ -168,6 +167,7 @@
 		go_out()
 
 	add_fingerprint(usr)
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1 // update UIs attached to this object
 
 /obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)

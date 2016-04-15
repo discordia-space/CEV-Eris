@@ -144,16 +144,20 @@
 	switch(event)
 		if("Red alert")
 			set_security_level(SEC_LEVEL_RED)
+
 		if("Grant Emergency Maintenance Access")
 			make_maint_all_access()
+
 		if("Revoke Emergency Maintenance Access")
 			revoke_maint_all_access()
+
 		if("Emergency Response Team")
 			if(is_ert_blocked())
 				usr << "\red All emergency response teams are dispatched and can not be called at this time."
 				return
 
 			trigger_armed_response_team(1)
+
 
 /obj/machinery/keycard_auth/proc/is_ert_blocked()
 	if(config.ert_admin_call_only) return 1

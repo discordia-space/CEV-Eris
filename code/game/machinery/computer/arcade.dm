@@ -203,6 +203,7 @@
 			src.temp = "[src.enemy_name] has fallen! Rejoice!"
 
 			if(emagged)
+
 				new /obj/effect/spawner/newbomb/timer/syndicate(src.loc)
 				new /obj/item/clothing/head/collectable/petehat(src.loc)
 				message_admins("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
@@ -231,7 +232,9 @@
 			sleep(10)
 			src.temp = "You have been drained! GAME OVER"
 			if(emagged)
+
 				usr.gib()
+
 
 	else if ((src.enemy_hp <= 10) && (src.enemy_mp > 4))
 		src.temp = "[src.enemy_name] heals for 4 health!"
@@ -247,7 +250,9 @@
 		src.gameover = 1
 		src.temp = "You have been crushed! GAME OVER"
 		if(emagged)
+
 			usr.gib()
+
 
 	src.blocked = 0
 	return

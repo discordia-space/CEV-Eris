@@ -410,12 +410,6 @@ var/global/list/gear_datums = list()
 	cost = 1
 	allowed_roles = list("Roboticist")
 
-/datum/gear/amishsuit
-	display_name = "suit, amish"
-	path = /obj/item/clothing/under/sl_suit
-	slot = slot_w_uniform
-	cost = 1
-
 /datum/gear/blacksuit
 	display_name = "suit, black"
 	path = /obj/item/clothing/under/suit_jacket

@@ -22,6 +22,7 @@
 	src.massmodify_variables(A, var_name, method)
 
 
+
 /client/proc/massmodify_variables(var/atom/O, var/var_name = "", var/method = 0)
 	if(!check_rights(R_VAREDIT))	return
 

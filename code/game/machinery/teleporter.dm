@@ -4,7 +4,6 @@
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
 	circuit = /obj/item/weapon/circuitboard/teleporter
-	dir = 4
 	var/obj/item/locked = null
 	var/id = null
 	var/one_time_use = 0 //Used for one-time-use teleport cards (such as clown planet coordinates.)
@@ -19,18 +18,25 @@
 
 /obj/machinery/computer/teleporter/initialize()
 	..()
-	var/obj/machinery/teleport/station/station = locate(/obj/machinery/teleport/station, get_step(src, dir))
+	var/obj/machinery/teleport/station/station
+	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
+		station = locate(/obj/machinery/teleport/station, get_step(src, dir))
+		if(!isnull(station))
+			break
 	var/obj/machinery/teleport/hub/hub
 	if(station)
-		hub = locate(/obj/machinery/teleport/hub, get_step(station, dir))
+		for(var/dir in list(NORTH,EAST,SOUTH,WEST))
+			hub = locate(/obj/machinery/teleport/hub, get_step(station, dir))
+			if(!isnull(hub))
+				break
 
 	if(istype(station))
 		station.com = hub
-		station.set_dir(dir)
+
 
 	if(istype(hub))
 		hub.com = src
-		hub.set_dir(dir)
+
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/weapon/card/data/))
@@ -85,7 +91,7 @@
 	if(..()) return
 
 	/* Ghosts can't use this one because it's a direct selection */
-	if(istype(user, /mob/dead/observer)) return
+	if(isobserver(user)) return
 
 	var/list/L = list()
 	var/list/areaindex = list()
@@ -165,7 +171,6 @@
 	name = "teleporter hub"
 	desc = "It's the hub of a teleporting machine."
 	icon_state = "tele0"
-	dir = 4
 	var/accurate = 0
 	use_power = 1
 	idle_power_usage = 10
@@ -301,7 +306,6 @@
 	name = "station"
 	desc = "It's the station thingy of a teleport thingy." //seriously, wtf.
 	icon_state = "controller"
-	dir = 4
 	var/active = 0
 	var/engaged = 0
 	use_power = 1

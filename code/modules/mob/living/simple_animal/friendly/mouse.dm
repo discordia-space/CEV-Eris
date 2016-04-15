@@ -55,6 +55,10 @@
 		else if(prob(5))
 			audible_emote("snuffles.")
 
+/mob/living/simple_animal/mouse/lay_down()
+	..()
+	icon_state = resting ? "mouse_[body_color]_sleep" : "mouse_[body_color]"
+
 /mob/living/simple_animal/mouse/New()
 	..()
 
@@ -84,7 +88,7 @@
 	var/mob/living/carbon/H = over_object
 	if(!istype(H) || !Adjacent(H)) return ..()
 
-	if(H.a_intent == "help")
+	if(H.a_intent == I_HELP)
 		get_scooped(H)
 		return
 	else

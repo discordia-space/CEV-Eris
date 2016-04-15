@@ -303,7 +303,7 @@ BLIND     // can't see anything
 		return ..()
 
 /obj/item/clothing/head/attack_generic(var/mob/user)
-	if(!mob_wear_hat(user))
+	if(!istype(user) || !mob_wear_hat(user))
 		return ..()
 
 /obj/item/clothing/head/proc/mob_wear_hat(var/mob/user)
@@ -514,12 +514,14 @@ BLIND     // can't see anything
 		3 = Report location
 		*/
 	var/displays_id = 1
+
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/uniform.dmi',
 		"Resomi" = 'icons/mob/species/resomi/uniform.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
+
 	valid_accessory_slots = list("utility","armband","decor")
 	restricted_accessory_slots = list("utility", "armband")
 
@@ -555,7 +557,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/under/proc/set_sensors(mob/usr as mob)
 	var/mob/M = usr
-	if (istype(M, /mob/dead/)) return
+	if (isobserver(M)) return
 	if (usr.stat || usr.restrained()) return
 	if(has_sensor >= 2)
 		usr << "The controls are locked."
@@ -602,6 +604,9 @@ BLIND     // can't see anything
 	set src in usr
 	set_sensors(usr)
 	..()
+
+
+
 
 /obj/item/clothing/under/rank/New()
 	sensor_mode = pick(0,1,2,3)

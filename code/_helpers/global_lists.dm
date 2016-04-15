@@ -48,12 +48,9 @@ var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessor
 var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
-	//Underwear
-var/global/list/underwear_m = list("White" = "m1", "Grey" = "m2", "Green" = "m3", "Blue" = "m4", "Black" = "m5", "Mankini" = "m6", "None") //Curse whoever made male/female underwear diffrent colours
-var/global/list/underwear_f = list("Red" = "f1", "White" = "f2", "Yellow" = "f3", "Blue" = "f4", "Black" = "f5", "Thong" = "f6", "Black Sports" = "f7","White Sports" = "f8","None")
-	//undershirt
-var/global/list/undershirt_t = list("White Tank top" = "u1", "Black Tank top" = "u2", "Black shirt" = "u3", "White shirt" = "u4", "None")
-	//Backpacks
+
+var/datum/category_collection/underwear/global_underwear = new()
+
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
@@ -69,6 +66,37 @@ var/global/list/endgame_exits = list()
 var/global/list/endgame_safespawns = list()
 
 var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
+
+// Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
+var/global/list/string_part_flags = list(
+	"head" = HEAD,
+	"face" = FACE,
+	"eyes" = EYES,
+	"upper body" = UPPER_TORSO,
+	"lower body" = LOWER_TORSO,
+	"legs" = LEGS,
+	"feet" = FEET,
+	"arms" = ARMS,
+	"hands" = HANDS
+)
+
+// Strings which corraspond to slot flags, useful for outputting what slot something is.
+var/global/list/string_slot_flags = list(
+	"back" = SLOT_BACK,
+	"face" = SLOT_MASK,
+	"waist" = SLOT_BELT,
+	"ID slot" = SLOT_ID,
+	"ears" = SLOT_EARS,
+	"eyes" = SLOT_EYES,
+	"hands" = SLOT_GLOVES,
+	"head" = SLOT_HEAD,
+	"feet" = SLOT_FEET,
+	"exo slot" = SLOT_OCLOTHING,
+	"body" = SLOT_ICLOTHING,
+	"uniform" = SLOT_TIE,
+	"holster" = SLOT_HOLSTER
+)
+
 //////////////////////////
 /////Initial Building/////
 //////////////////////////

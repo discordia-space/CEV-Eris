@@ -32,6 +32,7 @@
 
 /obj/machinery/button/attack_hand(mob/living/user)
 	if(..()) return 1
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	activate(user)
 
 /obj/machinery/button/proc/activate(mob/living/user)

@@ -146,20 +146,7 @@ Please contact me on #coderbus IRC. ~Carn x
 	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
 
-	var/stealth = 0
-	//cloaking devices. //TODO: get rid of this :<
-	for(var/obj/item/weapon/cloaking_device/S in list(l_hand,r_hand,belt,l_store,r_store))
-		if(S.active)
-			stealth = 1
-			break
-	if(stealth)
-		icon = 'icons/mob/human.dmi'
-		icon_state = "body_cloaked"
-		var/image/I	= overlays_standing[L_HAND_LAYER]
-		if(istype(I))	overlays += I
-		I 			= overlays_standing[R_HAND_LAYER]
-		if(istype(I))	overlays += I
-	else if (icon_update)
+	if (icon_update)
 		icon = stand_icon
 		for(var/image/I in overlays_standing)
 			overlays += I
@@ -189,9 +176,6 @@ var/global/list/damage_icon_parts = list()
 	for(var/obj/item/organ/external/O in organs)
 		if(O.is_stump())
 			continue
-		//if(O.status & ORGAN_DESTROYED) damage_appearance += "d" //what is this?
-		//else
-		//	damage_appearance += O.damage_state
 		damage_appearance += O.damage_state
 
 	if(damage_appearance == previous_damage_appearance)
@@ -200,16 +184,14 @@ var/global/list/damage_icon_parts = list()
 
 	previous_damage_appearance = damage_appearance
 
-	var/icon/standing = new /icon(species.damage_overlays, "00")
-
-	var/image/standing_image = new /image("icon" = standing)
+	var/image/standing_image = image(species.damage_overlays, icon_state = "00")
 
 	// blend the individual damage states with our icons
 	for(var/obj/item/organ/external/O in organs)
 		if(O.is_stump())
 			continue
 
-		O.update_icon()
+		O.update_damstate()
 		if(O.damage_state == "00") continue
 		var/icon/DI
 		var/cache_index = "[O.damage_state]/[O.icon_name]/[species.blood_color]/[species.get_bodytype()]"
@@ -334,13 +316,10 @@ var/global/list/damage_icon_parts = list()
 	stand_icon.Blend(base_icon,ICON_OVERLAY)
 
 	//Underwear
-	if(underwear && species.appearance_flags & HAS_UNDERWEAR)
-		if(!body_build.index)
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear[underwear]_[g]_s"), ICON_OVERLAY)
-
-	if(undershirt && species.appearance_flags & HAS_UNDERWEAR)
-		if(!body_build.index)
-			stand_icon.Blend(new /icon('icons/mob/human.dmi', "undershirt[undershirt]_s"), ICON_OVERLAY)
+	if(species.appearance_flags & HAS_UNDERWEAR)
+		for(var/category in all_underwear)
+			var/datum/category_item/underwear/UW = all_underwear[category]
+			UW.apply_to_icon(stand_icon) // TODO:ÇÀÏÈËÈÒÜ: ÀÍÀËÈÇ ÆÈÐÀ
 
 	if(update_icons)
 		update_icons()
@@ -469,17 +448,8 @@ var/global/list/damage_icon_parts = list()
 	if(w_uniform && istype(w_uniform, /obj/item/clothing/under) )
 		w_uniform.screen_loc = ui_iclothing
 
-		//determine the icon to use
-		var/icon/under_icon
-		if(w_uniform.icon_override)
-			under_icon = w_uniform.icon_override
-		else if(w_uniform.item_icons && w_uniform.item_icons[slot_w_uniform_str])
-			under_icon = w_uniform.item_icons[slot_w_uniform_str]
-		else
-			under_icon = body_build.uniform_icon
-
 		//determine state to use
-		var/under_state
+		var/under_state //switched determining state first so we can make a check in icon.
 		if(w_uniform.item_state_slots && w_uniform.item_state_slots[slot_w_uniform_str])
 			under_state = w_uniform.item_state_slots[slot_w_uniform_str]
 		else if(w_uniform.icon_state)
@@ -487,8 +457,19 @@ var/global/list/damage_icon_parts = list()
 		else
 			under_state = w_uniform.item_state
 
+
+		//determine the icon to use
+		var/icon/under_icon
+		if(w_uniform.icon_override)
+			under_icon = w_uniform.icon_override
+
+		else if(w_uniform.item_icons && w_uniform.item_icons[slot_w_uniform_str])
+			under_icon = w_uniform.item_icons[slot_w_uniform_str]
+		else
+			under_icon = body_build.uniform_icon
+
 		//need to append _s to the icon state for legacy compatibility
-		var/image/standing = image(icon = under_icon, icon_state = under_state)
+		var/image/standing = image(icon = under_icon, icon_state = "[under_state]_s")
 		standing.color = w_uniform.color
 
 		//apply blood overlay
@@ -517,6 +498,7 @@ var/global/list/damage_icon_parts = list()
 			var/image/standing
 			if(wear_id.icon_override)
 				standing = image("icon" = wear_id.icon_override, "icon_state" = "[icon_state]")
+
 			else
 				standing = image("icon" = 'icons/mob/mob.dmi', "icon_state" = "id")
 			overlays_standing[ID_LAYER] = standing
@@ -538,6 +520,7 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(gloves.icon_override)
 			standing = image(icon = gloves.icon_override, icon_state = t_state)
+
 		else
 			standing = image(icon = body_build.gloves_icon, icon_state = t_state)
 
@@ -560,10 +543,13 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_glasses(var/update_icons=1)
 	if(glasses)
+
 		if(glasses.icon_override)
 			overlays_standing[GLASSES_LAYER] = image(icon = glasses.icon_override,   icon_state = glasses.icon_state)
+
 		else
 			overlays_standing[GLASSES_LAYER] = image(icon = body_build.glasses_icon, icon_state = glasses.icon_state)
+
 	else
 		overlays_standing[GLASSES_LAYER]	= null
 	if(update_icons)   update_icons()
@@ -581,6 +567,7 @@ var/global/list/damage_icon_parts = list()
 			if(l_ear.icon_override)
 				t_type = "[t_type]_l"
 				overlays_standing[EARS_LAYER] = image(icon = l_ear.icon_override, icon_state = t_type)
+
 			else
 				overlays_standing[EARS_LAYER] = image(icon = body_build.ears_icon, icon_state = t_type)
 
@@ -590,6 +577,7 @@ var/global/list/damage_icon_parts = list()
 			if(r_ear.icon_override)
 				t_type = "[t_type]_r"
 				overlays_standing[EARS_LAYER] = image(icon = r_ear.icon_override, icon_state = t_type)
+
 			else
 				overlays_standing[EARS_LAYER] = image(icon = body_build.ears_icon, icon_state = t_type)
 
@@ -603,6 +591,7 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(shoes.icon_override)
 			standing = image(icon = shoes.icon_override,   icon_state = shoes.icon_state)
+
 		else
 			standing = image(icon = body_build.shoes_icon, icon_state = shoes.icon_state)
 
@@ -636,15 +625,6 @@ var/global/list/damage_icon_parts = list()
 	if(head)
 		head.screen_loc = ui_head		//TODO
 
-		//Determine the icon to use
-		var/t_icon
-		if(head.icon_override)
-			t_icon = head.icon_override
-		else if(head.item_icons && (slot_head_str in head.item_icons))
-			t_icon = head.item_icons[slot_head_str]
-		else
-			t_icon = body_build.hat_icon
-
 		//Determine the state to use
 		var/t_state
 		if(istype(head, /obj/item/weapon/paper))
@@ -658,6 +638,17 @@ var/global/list/damage_icon_parts = list()
 				t_state = head.item_state
 			else
 				t_state = head.icon_state
+		//Determine the icon to use
+		var/t_icon
+		if(head.icon_override)
+			t_icon = head.icon_override
+
+		else if(head.item_icons && (slot_head_str in head.item_icons))
+			t_icon = head.item_icons[slot_head_str]
+		else
+			t_icon = body_build.hat_icon
+
+
 
 		//Create the image
 		var/image/standing = image(icon = t_icon, icon_state = t_state)
@@ -688,9 +679,10 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing	= image(icon_state = t_state)
 
 		if(belt.icon_override)
-			standing.icon = belt.icon_override
-		else
 			standing.icon = body_build.belt_icon
+
+		else
+			standing.icon = 'icons/mob/belt.dmi'
 
 		var/belt_layer = BELT_LAYER
 		if(istype(belt, /obj/item/weapon/storage/belt))
@@ -773,6 +765,7 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(wear_mask.icon_override)
 			standing = image(icon = wear_mask.icon_override, icon_state = wear_mask.icon_state)
+
 		else
 			standing = image(icon = body_build.mask_icon, icon_state = wear_mask.icon_state)
 		standing.color = wear_mask.color
@@ -799,6 +792,7 @@ var/global/list/damage_icon_parts = list()
 			//If this is a rig and a mob_icon is set, it will take species into account in the rig update_icon() proc.
 			var/obj/item/weapon/rig/rig = back
 			overlay_icon = rig.mob_icon
+
 		else if(back.item_icons && (slot_back_str in back.item_icons))
 			overlay_icon = back.item_icons[slot_back_str]
 		else
@@ -808,6 +802,7 @@ var/global/list/damage_icon_parts = list()
 		var/overlay_state = back.icon_state
 		if(back.item_state_slots && back.item_state_slots[slot_back_str])
 			overlay_state = back.item_state_slots[slot_back_str]
+
 
 		//apply color
 		var/image/standing = image(icon = overlay_icon, icon_state = overlay_state)
@@ -838,6 +833,7 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(handcuffed.icon_override)
 			standing = image(icon = handcuffed.icon_override, icon_state = "handcuff1")
+
 		else
 			standing = image(icon = body_build.misk_icon, icon_state = "handcuff1")
 		overlays_standing[HANDCUFF_LAYER] = standing
@@ -852,6 +848,7 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing
 		if(legcuffed.icon_override)
 			standing = image(icon = legcuffed.icon_override, icon_state = "legcuff1")
+
 		else
 			standing = image(icon = body_build.misk_icon, icon_state = "legcuff1")
 		overlays_standing[LEGCUFF_LAYER] = standing

@@ -18,6 +18,8 @@ var/datum/antagonist/raider/raiders
 
 	id_type = /obj/item/weapon/card/id/syndicate
 
+	faction = "pirate"
+
 	// Heist overrides check_victory() and doesn't need victory or loss strings/tags.
 	var/list/raider_uniforms = list(
 		/obj/item/clothing/under/soviet,
@@ -181,6 +183,7 @@ var/datum/antagonist/raider/raiders
 
 	world << "<span class='danger'><font size = 3>[win_type] [win_group] victory!</font></span>"
 	world << "[win_msg]"
+
 
 /datum/antagonist/raider/proc/is_raider_crew_safe()
 
