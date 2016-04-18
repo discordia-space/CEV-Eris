@@ -93,13 +93,13 @@
 	initial_flooring = /decl/flooring/tiling/new_tile/monofloor
 
 /turf/simulated/floor/tiled/techfloor
-	name = "techfloor gray"
+	name = "floor"
 	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_gray"
 	initial_flooring = /decl/flooring/tiling/tech
 
 /turf/simulated/floor/tiled/old_tile
-	name = "old tile"
+	name = "floor"
 	icon_state = "tile_full"
 	initial_flooring = /decl/flooring/tiling/new_tile
 /turf/simulated/floor/tiled/old_tile/white
@@ -122,7 +122,7 @@
 
 
 /turf/simulated/floor/tiled/old_cargo
-	name = "old cargo"
+	name = "floor"
 	icon_state = "cargo_one_full"
 	initial_flooring = /decl/flooring/tiling/new_tile/cargo_one
 /turf/simulated/floor/tiled/old_cargo/white
@@ -144,7 +144,7 @@
 
 
 /turf/simulated/floor/tiled/kafel_full
-	name = "kafel"
+	name = "floor"
 	icon_state = "kafel_full"
 	initial_flooring = /decl/flooring/tiling/new_tile/kafel
 /turf/simulated/floor/tiled/kafel_full/white
@@ -166,7 +166,7 @@
 
 
 /turf/simulated/floor/tiled/techfloor/grid
-	name = "techfloor grid"
+	name = "floor"
 	icon_state = "techfloor_grid"
 	initial_flooring = /decl/flooring/tiling/tech/grid
 
@@ -222,12 +222,12 @@
 	return
 
 /turf/simulated/floor/tiled/dark
-	name = "dark floor"
+	name = "floor"
 	icon_state = "dark"
 	initial_flooring = /decl/flooring/tiling/dark
 
 /turf/simulated/floor/tiled/steel
-	name = "steel floor"
+	name = "floor"
 	icon_state = "steel_dirty"
 	initial_flooring = /decl/flooring/tiling/steel
 
@@ -236,12 +236,12 @@
 	nitrogen = 0
 
 /turf/simulated/floor/tiled/white
-	name = "white floor"
+	name = "floor"
 	icon_state = "white"
 	initial_flooring = /decl/flooring/tiling/white
 
 /turf/simulated/floor/tiled/freezer
-	name = "tiles"
+	name = "floor"
 	icon_state = "freezer"
 	initial_flooring = /decl/flooring/tiling/freezer
 
@@ -253,31 +253,31 @@
 
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
-	name = "vacuum floor"
+	name = "reinforced floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/airless
-	name = "airless plating"
+	name = "plating"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/tiled/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/bluegrid/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/greengrid/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
@@ -286,7 +286,7 @@
 	oxygen = 0
 
 /turf/simulated/floor/tiled/white/airless
-	name = "airless floor"
+	name = "floor"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB

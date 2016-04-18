@@ -1963,4 +1963,9 @@
 #include "maps\exodus-4.dmm"
 #include "maps\exodus-5.dmm"
 #include "maps\exodus-6.dmm"
+#include "maps\eris\CEV_Eris-1.dmm"
+#include "maps\eris\CEV_Eris-2.dmm"
+#include "maps\eris\CEV_Eris-3.dmm"
+#include "maps\eris\CEV_Eris-4.dmm"
+#include "maps\eris\CEV_Eris-5.dmm"
 // END_INCLUDE

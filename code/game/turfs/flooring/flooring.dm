@@ -75,31 +75,37 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
 /decl/flooring/carpet/bcarpet
-	name = "carpet"
+	name = "black carpet"
 	icon_base = "bcarpet"
 	build_type = /obj/item/stack/tile/carpet/bcarpet
 
 /decl/flooring/carpet/blucarpet
+	name = "blue carpet"
 	icon_base = "blucarpet"
 	build_type = /obj/item/stack/tile/carpet/blucarpet
 
 /decl/flooring/carpet/turcarpet
+	name = "tur carpet"
 	icon_base = "turcarpet"
 	build_type = /obj/item/stack/tile/carpet/turcarpet
 
 /decl/flooring/carpet/sblucarpet
+	name = "silver blue carpet"
 	icon_base = "sblucarpet"
 	build_type = /obj/item/stack/tile/carpet/sblucarpet
 
 /decl/flooring/carpet/gaycarpet
+	name = "clown carpet"
 	icon_base = "gaycarpet"
 	build_type = /obj/item/stack/tile/carpet/gaycarpet
 
 /decl/flooring/carpet/purcarpet
+	name = "purple carpet"
 	icon_base = "purcarpet"
 	build_type = /obj/item/stack/tile/carpet/purcarpet
 
 /decl/flooring/carpet/oracarpet
+	name = "orange carpet"
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
 
