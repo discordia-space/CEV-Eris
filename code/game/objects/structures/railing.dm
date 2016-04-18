@@ -5,16 +5,21 @@
 	density = 1
 	layer = 3.2//Just above doors
 	//pressure_resistance = 4*ONE_ATMOSPHERE
-	anchored = 0
+	anchored = 1
 	flags = ON_BORDER
 	icon_state = "railing0"
-	layer = 4.1
+	//layer = 4.1
 	var/broken = 0
 	var/health=30
 	var/maxhealth=30
 	//var/LeftSide = list(0,0,0)// Нужны для хранения данных
 	//var/RightSide = list(0,0,0)
 	var/check = 0
+
+obj/structure/railing/New()
+	if(src.anchored)
+		spawn(5)
+			update_icon(0)
 
 /obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(!mover)
@@ -43,7 +48,7 @@
 				R.update_icon(0)
 		if ((R.dir == Rturn) && R.anchored)//Проверка правой стороны
 			//src.RightSide[1] = 1
-			check |= 4
+			check |= 2
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
@@ -56,9 +61,21 @@
 	for (var/obj/structure/railing/R in get_step(src, Rturn))//Анализ правой клетки от направления объекта
 		if ((R.dir == src.dir) && R.anchored)
 			//src.RightSide[2] = 1
-			check |= 2
+			check |= 1
 			if (UpdateNeighbors)
 				R.update_icon(0)
+
+	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))//Анализ передней-левой диагонали относительно направления объекта.
+		if ((R.dir == Rturn) && R.anchored)
+			check |= 64
+			if (UpdateNeighbors)
+				R.update_icon(0)
+	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))//Анализ передней-правой диагонали относительно направления объекта.
+		if ((R.dir == Lturn) && R.anchored)
+			check |= 4
+			if (UpdateNeighbors)
+				R.update_icon(0)
+
 
 /*	for(var/obj/structure/railing/R in get_step(src, src.dir))
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
@@ -79,14 +96,26 @@
 		icon_state = "railing1"
 		//левая сторона
 		if (check & 32)
-			overlays +=image ('icons/obj/railing.dmi', src, "corneroverlay", src.layer + 0.02)
-			world << "32 check"
-		if ((check & 16) || !(check & 32))
-			overlays +=image ('icons/obj/railing.dmi', src, "frontoverlay_l", src.layer + 0.01)
-			world << "16 check"
-		if (!(check & 4) || (check & 2))
-			overlays +=image ('icons/obj/railing.dmi', src, "frontoverlay_r", src.layer + 0.01)
-			world << "no 4 or 2 check"
+			overlays += image ('icons/obj/railing.dmi', src, "corneroverlay", src.layer + 0.02)
+			//world << "32 check"
+		if ((check & 16) || !(check & 32) || (check & 64))
+			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_l", src.layer + 0.01)
+			//world << "16 check"
+		if (!(check & 2) || (check & 1) || (check & 4))
+			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_r", src.layer + 0.01)
+			//world << "no 4 or 2 check"
+			if(check & 4)
+				switch (src.dir)
+					if (NORTH)
+						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", src.layer + 0.02, pixel_x = 32)
+					if (SOUTH)
+						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", src.layer + 0.02, pixel_x = -32)
+					if (EAST)
+						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", src.layer + 0.02, pixel_y = -32)
+					if (WEST)
+						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", src.layer + 0.02, pixel_y = 32)
+
+
 //obj/structure/railing/proc/NeighborsCheck2()
 
 /obj/structure/railing/verb/rotate()
@@ -256,222 +285,4 @@
 				visible_message("<span class='warning'>[user] slipped off the edge of the [src].</span>")
 				usr.weakened += 3
 
-/obj/structure/railing/corner
-	desc = "A railing corner."
-	icon_state = "railing-2corner"
-
-
-/obj/structure/railing/corner/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!mover)
-		return 1
-
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-
-	if(dir == EAST)
-		if(mover.loc != src.loc)
-			if((get_dir(loc, target) == WEST) || (get_dir(loc, target) == NORTH))
-				return 1
-
-	else if(dir == WEST)
-		if(mover.loc != src.loc)
-			if((get_dir(loc, target) == EAST) || (get_dir(loc, target) == NORTH))
-				return 1
-
-	else if(dir == NORTH)
-		if(mover.loc != src.loc)
-			if((get_dir(loc, target) == WEST) || (get_dir(loc, target) == SOUTH))
-				return 1
-
-	else if(dir == SOUTH)
-		if(mover.loc != src.loc)
-			if((get_dir(loc, target) == EAST) || (get_dir(loc, target) == SOUTH))
-				return 1
-	else
-		return 0
-
-/obj/structure/railing/corner/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-
-	if(dir == EAST)
-		if(O.loc == src.loc)
-			if(get_dir(loc, target) == SOUTH)
-				return 0
-			if((get_dir(loc, target) == WEST) || (get_dir(loc, target) == NORTH))
-				return 1
-
-	else if(dir == WEST)
-		if(O.loc == src.loc)
-			if(get_dir(loc, target) == SOUTH)
-				return 0
-			if((get_dir(loc, target) == EAST) || (get_dir(loc, target) == NORTH))
-				return 1
-
-	else if(dir == NORTH)
-		if(O.loc == src.loc)
-			if(get_dir(loc, target) == EAST)
-				return 0
-			if((get_dir(loc, target) == WEST) || (get_dir(loc, target) == SOUTH))
-				return 1
-
-	else if(dir == SOUTH)
-		if(O.loc == src.loc)
-			if(get_dir(loc, target) == WEST)
-				return 0
-			if((get_dir(loc, target) == EAST) || (get_dir(loc, target) == SOUTH))
-				return 1
-
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
-
-
-
-/obj/structure/railing/full
-	icon_state = "railing-full"
-
-/obj/structure/railing/full/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!mover)
-		return 1
-
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	else return 0
-
-
-/obj/structure/railing/full/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-	else
-		return 0
-
-
-/obj/structure/railing/triple
-	icon_state = "railing-3corner"
-
-
-/obj/structure/railing/triple/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!mover)
-		return 1
-
-	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	if(dir == EAST)
-		if(mover.loc != src.loc)
-			if(get_dir(loc, target) == WEST)
-				return 1
-
-	else if(dir == WEST)
-		if(mover.loc != src.loc)
-			if(get_dir(loc, target) == EAST)
-				return 1
-
-	else if(dir == NORTH)
-		if(mover.loc != src.loc)
-			if(get_dir(loc, target) == SOUTH)
-				return 1
-
-	else if(dir == SOUTH)
-		if(mover.loc != src.loc)
-			if(get_dir(loc, target) == NORTH)
-				return 1
-
-	else
-		return 0
-
-/obj/structure/railing/triple/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-
-	if(dir == EAST)
-		if(O.loc == src.loc)
-			if((get_dir(loc, target) == SOUTH) || (get_dir(loc, target) == NORTH) || (get_dir(loc, target) == EAST))
-				return 0
-			if(get_dir(loc, target) == WEST)
-				return 1
-
-	else if(dir == WEST)
-		if(O.loc == src.loc)
-			if((get_dir(loc, target) == SOUTH) || (get_dir(loc, target) == NORTH) || (get_dir(loc, target) == WEST))
-				return 0
-			if(get_dir(loc, target) == EAST)
-				return 1
-
-	else if(dir == NORTH)
-		if(O.loc == src.loc)
-			if((get_dir(loc, target) == EAST) || (get_dir(loc, target) == NORTH) || (get_dir(loc, target) == WEST))
-				return 0
-			if(get_dir(loc, target) == SOUTH)
-				return 1
-
-	else if(dir == SOUTH)
-		if(O.loc == src.loc)
-			if((get_dir(loc, target) == EAST) || (get_dir(loc, target) == SOUTH) || (get_dir(loc, target) == WEST))
-				return 0
-			if(get_dir(loc, target) == NORTH)
-				return 1
-
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
-
-
-
-
-
-/*/obj/structure/railing/attackby(obj/item/weapon/W as obj,mob/user as mob) // Старый код, поотм пересмотреть.
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
-		if(G.state<2)
-			if(ishuman(G.affecting))
-				G.affecting.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been smashed on a [src] by [G.assailant.name] ([G.assailant.ckey])</font>")
-				G.assailant.attack_log += text("\[[time_stamp()]\] <font color='red'>Smashed [G.affecting.name] ([G.affecting.ckey]) on a [src].</font>")
-
-				//log_admin("ATTACK: [G.assailant] ([G.assailant.ckey]) smashed [G.affecting] ([G.affecting.ckey]) on a table.", 2)
-				message_admins("ATTACK: [G.assailant] ([G.assailant.ckey])(<A HREF='?_src_=holder;adminplayerobservejump=\ref[G]'>JMP</A>) smashed [G.affecting] ([G.affecting.ckey]) on a [src].", 2)
-				log_attack("[G.assailant] ([G.assailant.ckey]) smashed [G.affecting] ([G.affecting.ckey]) on a [src].")
-
-				var/mob/living/carbon/human/H = G.affecting
-				var/datum/organ/external/affecting = H.get_organ("head")
-				if(prob(25))
-					add_blood(G.affecting, 1) //Forced
-					affecting.take_damage(rand(10,15), 0)
-					H.Weaken(2)
-					if(prob(20)) // One chance in 20 to DENT THE TABLE
-						affecting.take_damage(rand(5,10), 0) //Extra damage
-					else if(prob(50))
-						G.assailant.visible_message("\red [G.assailant] smashes \the [H]'s head on \the [src], [H.get_visible_gender() == MALE ? "his" : H.get_visible_gender() == FEMALE ? "her" : "their"] bone and cartilage making a loud crunch!",\
-						"\red You smash \the [H]'s head on \the [src], [H.get_visible_gender() == MALE ? "his" : H.get_visible_gender() == FEMALE ? "her" : "their"] bone and cartilage making a loud crunch!",\
-						"\red You hear the nauseating crunch of bone and gristle on solid metal, the noise echoing through the room.")
-					else
-						G.assailant.visible_message("\red [G.assailant] smashes \the [H]'s head on \the [src], [H.get_visible_gender() == MALE ? "his" : H.get_visible_gender() == FEMALE ? "her" : "their"] nose smashed and face bloodied!",\
-						"\red You smash \the [H]'s head on \the [src], [H.get_visible_gender() == MALE ? "his" : H.get_visible_gender() == FEMALE ? "her" : "their"] nose smashed and face bloodied!",\
-						"\red You hear the nauseating crunch of bone and gristle on solid metal and the gurgling gasp of someone who is trying to breathe through their own blood.")
-				else
-					affecting.take_damage(rand(5,10), 0)
-					G.assailant.visible_message("\red [G.assailant] smashes \the [H]'s head on \the [src]!",\
-					"\red You smash \the [H]'s head on \the [src]!",\
-					"\red You hear the nauseating crunch of bone and gristle on solid metal.")
-				H.UpdateDamageIcon()
-				H.updatehealth()
-				playsound(src.loc, 'sound/weapons/tablehit1.ogg', 50, 1, -3)
-			return
-		if(!G.affecting.buckled)
-			G.affecting.loc = src.loc
-			G.affecting.Weaken(5)
-			for(var/mob/O in viewers(world.view, src))
-				if (O.client)
-					O << "\red [G.assailant] puts [G.affecting] on the [src]."
-			del(W)
-		return
-	return*/
-
-
-
-/obj/structure/railing/fake
-	icon_state = "railing-1corner"
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		return 1
-	CheckExit(atom/movable/O as mob|obj, target as turf)
-		return 1
+/obj/structure/railing/

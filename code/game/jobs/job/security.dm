@@ -129,8 +129,6 @@
 	minimal_player_age = 3
 	idtype = /obj/item/weapon/card/id/sec
 
-	var/global/list/sec_departments = list("engineering", "supply", "medical", "science")
-
 	uniform = /obj/item/clothing/under/rank/security
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
@@ -148,59 +146,3 @@
 		/obj/item/weapon/storage/backpack/satchel_sec,\
 		/obj/item/weapon/storage/backpack/satchel
 	)
-
-	equip(var/mob/living/carbon/human/H)
-		if(!H) return 0
-		assign_sec_to_department(H)
-		return ..()
-
-/datum/job/officer/proc/assign_sec_to_department(var/mob/living/carbon/human/H as mob)
-	if(sec_departments.len)
-		var/department = pick(sec_departments)
-		sec_departments -= department
-		/*switch(department)
-			if("supply")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec/department/supply(H), slot_l_ear)
-				H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/cargo, slot_tie)
-				minimal_access += list(access_mailsorting, access_mining)
-			if("engineering")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec/department/engi(H), slot_l_ear)
-				H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/engine, slot_tie)
-				minimal_access += list(access_construction, access_engine)
-			if("medical")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec/department/med(H), slot_l_ear)
-				H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/med, slot_tie)
-				minimal_access += list(access_medical)
-			if("science")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec/department/sci(H), slot_l_ear)
-				H.equip_to_slot_or_del(new /obj/item/clothing/accessory/armband/science, slot_tie)
-				minimal_access += list(access_research, access_tox)
-			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_l_ear)*/
-
-
-/obj/item/device/radio/headset/headset_sec/department/New()
-	if(radio_controller)
-		initialize()
-	recalculateChannels()
-
-/obj/item/device/radio/headset/headset_sec/department/engi
-	keyslot1 = new /obj/item/device/encryptionkey/headset_sec
-	keyslot2 = new /obj/item/device/encryptionkey/headset_eng
-
-/obj/item/device/radio/headset/headset_sec/department/supply
-	keyslot1 = new /obj/item/device/encryptionkey/headset_sec
-	keyslot2 = new /obj/item/device/encryptionkey/headset_cargo
-
-/obj/item/device/radio/headset/headset_sec/department/med
-	keyslot1 = new /obj/item/device/encryptionkey/headset_sec
-	keyslot2 = new /obj/item/device/encryptionkey/headset_med
-
-/obj/item/device/radio/headset/headset_sec/department/sci
-	keyslot1 = new /obj/item/device/encryptionkey/headset_sec
-	keyslot2 = new /obj/item/device/encryptionkey/headset_sci
