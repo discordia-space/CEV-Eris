@@ -462,9 +462,6 @@ var/global/list/damage_icon_parts = list()
 		var/icon/under_icon
 		if(w_uniform.icon_override)
 			under_icon = w_uniform.icon_override
-
-		else if(w_uniform.item_icons && w_uniform.item_icons[slot_w_uniform_str])
-			under_icon = w_uniform.item_icons[slot_w_uniform_str]
 		else
 			under_icon = body_build.uniform_icon
 
