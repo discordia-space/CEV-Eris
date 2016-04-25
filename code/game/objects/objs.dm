@@ -10,6 +10,19 @@
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_penetration = 0
+	var/corporation = null
+
+/obj/examine(mob/user)
+	if(..(user,2))
+		if (corporation)
+			if (corporation in global.global_corporations)
+				var/datum/copropation/C = global_corporations[corporation]
+				user << "You think this [src] create a \
+				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
+				<font color='[C.textcolor]'>[C.name]</font>."
+			else
+				user << "You think this [src] create a [corporation]."
+
 
 /obj/Destroy()
 	processing_objects -= src
