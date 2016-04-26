@@ -21,6 +21,9 @@ var/global/list/side_effects = list()				//list of all medical sideeffects types
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
+var/global/list/global_corporations = list()
+
+
 var/global/list/turfs = list()						//list of all turfs
 
 //Languages/species/whitelist.
@@ -180,6 +183,12 @@ var/global/list/string_slot_flags = list(
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		poster_designs += P
+
+	//Corporations
+	paths = typesof(/datum/copropation) - /datum/copropation
+	for(var/T in paths)
+		var/datum/copropation/C = new T
+		global.global_corporations[C.name] = C
 
 	return 1
 
