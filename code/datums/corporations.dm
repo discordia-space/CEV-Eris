@@ -3,18 +3,22 @@
 	var/textcolor = "black"
 	var/icon = 'icons/obj/card.dmi'
 	var/icon_state
+	var/about
 
 /datum/copropation/redcorp
 	name = "redcorp"
 	textcolor = "red"
 	icon_state = "syndicate"
+	about = "Funny, but his hate a red color."
 
 /datum/copropation/greencorp
 	name = "greencorp"
 	textcolor = "green"
 	icon_state = "id_hydro"
+	about = "Hippy love his production."
 
 /datum/copropation/bluecorp
 	name = "bluecorp"
 	textcolor = "blue"
 	icon_state = "id_commander"
+	about = "His slogan: don't make a singulo too close a supermatter."
