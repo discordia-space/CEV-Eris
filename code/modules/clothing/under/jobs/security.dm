@@ -42,11 +42,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/under/rank/security2
-	name = "security officer's uniform"
-	desc = "It's made of a slightly sturdier material, to allow for robust protection."
-	icon_state = "redshirt2"
-	item_state = "r_suit"
 
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -174,23 +169,5 @@
  * Navy uniforms
  */
 
-/obj/item/clothing/under/rank/security/navyblue
-	name = "security officer's uniform"
-	desc = "The latest in fashionable security outfits."
-	icon_state = "officerblueclothes"
-	item_state = "ba_suit"
 
-
-/obj/item/clothing/under/rank/head_of_security/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
-	name = "head of security's uniform"
-	icon_state = "hosblueclothes"
-	item_state = "ba_suit"
-
-
-/obj/item/clothing/under/rank/warden/navyblue
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
-	name = "warden's uniform"
-	icon_state = "wardenblueclothes"
-	item_state = "ba_suit"
 
