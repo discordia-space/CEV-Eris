@@ -16,7 +16,7 @@
 	if(..(user,2))
 		if (corporation)
 			if (corporation in global.global_corporations)
-				var/datum/copropation/C = global_corporations[corporation]
+				var/datum/corporation/C = global_corporations[corporation]
 				user << "<font color='[C.textcolor]'>You think this [src.name] create a \
 				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
 				[C.name]. [C.about]</font>"

@@ -185,9 +185,9 @@ var/global/list/string_slot_flags = list(
 		poster_designs += P
 
 	//Corporations
-	paths = typesof(/datum/copropation) - /datum/copropation
+	paths = typesof(/datum/corporation) - /datum/corporation
 	for(var/T in paths)
-		var/datum/copropation/C = new T
+		var/datum/corporation/C = new T
 		global.global_corporations[C.name] = C
 
 	return 1
