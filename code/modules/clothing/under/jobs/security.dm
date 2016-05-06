@@ -32,28 +32,6 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/under/rank/dispatch
-	name = "dispatcher's uniform"
-	desc = "A dress shirt and khakis with a security patch sewn on."
-	icon_state = "dispatch"
-	//item_state = "dispatch"
-
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	siemens_coefficient = 0.9
-
-
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.9
-
-/obj/item/clothing/under/rank/security/corp
-	icon_state = "sec_corporate"
-	//item_state = "sec_corporate"
-
-
-/obj/item/clothing/under/rank/warden/corp
-	icon_state = "warden_corporate"
-	//item_state = "warden_corporate"
 
 
 /obj/item/clothing/under/tactical
@@ -78,10 +56,6 @@
 	siemens_coefficient = 0.9
 
 
-/obj/item/clothing/under/det/grey
-	icon_state = "detective2"
-
-	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie."
 
 /obj/item/clothing/under/det/black
 	icon_state = "detective3"
@@ -118,10 +92,6 @@
 
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.8
-
-/obj/item/clothing/under/rank/head_of_security/corp
-	icon_state = "hos_corporate"
-	//item_state = "hos_corporate"
 
 
 /obj/item/clothing/head/HoS

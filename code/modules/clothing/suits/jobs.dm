@@ -12,23 +12,6 @@
 	body_parts_covered = 0
 	allowed = list (/obj/item/weapon/reagent_containers/spray/plantbgone,/obj/item/device/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/weapon/reagent_containers/glass/fertilizer,/obj/item/weapon/material/minihoe)
 
-//Captain
-/obj/item/clothing/suit/captunic
-	name = "captain's parade tunic"
-	desc = "Worn by a Captain to show their class."
-	icon_state = "captunic"
-	item_state = "captunic"
-	body_parts_covered = UPPER_TORSO|ARMS
-	flags_inv = HIDEJUMPSUIT
-
-/obj/item/clothing/suit/captunic/capjacket
-	name = "captain's uniform jacket"
-	desc = "A less formal jacket for everyday captain use."
-	icon_state = "capjacket"
-	item_state = "capjacket"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEJUMPSUIT
-
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
 	name = "chaplain hoodie"
@@ -66,28 +49,6 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
 
-//Security
-/obj/item/clothing/suit/security/navyofficer
-	name = "security officer's jacket"
-	desc = "This jacket is for those special occasions when a security officer actually feels safe."
-	icon_state = "officerbluejacket"
-	item_state = "officerbluejacket"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
-/obj/item/clothing/suit/security/navywarden
-	name = "warden's jacket"
-	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
-	icon_state = "wardenbluejacket"
-	item_state = "wardenbluejacket"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
-/obj/item/clothing/suit/security/navyhos
-	name = "head of security's jacket"
-	desc = "This piece of clothing was specifically designed for asserting superior authority."
-	icon_state = "hosbluejacket"
-	item_state = "hosbluejacket"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
 //Detective
 /obj/item/clothing/suit/storage/det_trench
 	name = "brown trenchcoat"
@@ -102,25 +63,6 @@
 /obj/item/clothing/suit/storage/det_trench/grey
 	name = "grey trenchcoat"
 	icon_state = "detective2"
-
-//Forensics
-/obj/item/clothing/suit/storage/forensics
-	name = "jacket"
-	desc = "A forensics technician jacket."
-	item_state = "det_suit"
-	body_parts_covered = UPPER_TORSO|ARMS
-	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/taperecorder)
-	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
-
-/obj/item/clothing/suit/storage/forensics/red
-	name = "red jacket"
-	desc = "A red forensics technician jacket."
-	icon_state = "forensics_red"
-
-/obj/item/clothing/suit/storage/forensics/blue
-	name = "blue jacket"
-	desc = "A blue forensics technician jacket."
-	icon_state = "forensics_blue"
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
@@ -152,46 +94,3 @@
 	item_state = "suitjacket_purp"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
-
-//Internal Affairs
-/obj/item/clothing/suit/storage/toggle/internalaffairs
-	name = "Internal Affairs Jacket"
-	desc = "A smooth black jacket."
-	icon_state = "ia_jacket_open"
-	item_state = "ia_jacket"
-	icon_open = "ia_jacket_open"
-	icon_closed = "ia_jacket"
-	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
-
-
-
-//Medical
-/obj/item/clothing/suit/storage/toggle/fr_jacket
-	name = "first responder jacket"
-	desc = "A high-visibility jacket worn by medical first responders."
-	icon_state = "fr_jacket_open"
-	item_state = "fr_jacket"
-	icon_open = "fr_jacket_open"
-	icon_closed = "fr_jacket"
-	blood_overlay_type = "armor"
-	allowed = list(/obj/item/stack/medical, /obj/item/weapon/reagent_containers/dropper, /obj/item/weapon/reagent_containers/hypospray, /obj/item/weapon/reagent_containers/syringe, \
-	/obj/item/device/healthanalyzer, /obj/item/device/flashlight, /obj/item/device/radio, /obj/item/weapon/tank/emergency_oxygen)
-	body_parts_covered = UPPER_TORSO|ARMS
-
-/obj/item/clothing/suit/storage/toggle/fr_jacket/ems
-	name = "\improper EMS jacket"
-	desc = "A dark blue, martian-pattern, EMS jacket. It sports high-visibility reflective stripes and a star of life on the back."
-	icon_state = "ems_jacket_closed"
-	item_state = "ems_jacket_closed"
-	icon_open = "ems_jacket_open"
-	icon_closed = "ems_jacket_closed"
-
-//Mime
-/obj/item/clothing/suit/suspenders
-	name = "suspenders"
-	desc = "They suspend the illusion of the mime's play."
-	icon = 'icons/obj/clothing/belts.dmi'
-	icon_state = "suspenders"
-	blood_overlay_type = "armor" //it's the less thing that I can put here
-	body_parts_covered = 0

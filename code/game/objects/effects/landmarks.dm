@@ -118,7 +118,6 @@
 /obj/effect/landmark/costume/madscientist/New()
 	//new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
-	new /obj/item/clothing/suit/storage/toggle/labcoat/mad(src.loc)
 	new /obj/item/clothing/glasses/gglasses(src.loc)
 	delete_me = 1
 
@@ -135,7 +134,6 @@
 	delete_me = 1
 
 /obj/effect/landmark/costume/maid/New()
-	new /obj/item/clothing/under/blackskirt(src.loc)
 	var/CHOICE = pick( /obj/item/clothing/head/beret , /obj/item/clothing/head/rabbitears )
 	new CHOICE(src.loc)
 	new /obj/item/clothing/glasses/sunglasses/blindfold(src.loc)
@@ -143,7 +141,6 @@
 
 /obj/effect/landmark/costume/butler/New()
 	new /obj/item/clothing/suit/wcoat(src.loc)
-	new /obj/item/clothing/under/suit_jacket(src.loc)
 	new /obj/item/clothing/head/that(src.loc)
 	delete_me = 1
 
@@ -197,10 +194,6 @@
 	new /obj/item/clothing/suit/imperium_monk(src.loc)
 	if (prob(25))
 		new /obj/item/clothing/mask/gas/cyborg(src.loc)
-	delete_me = 1
-
-/obj/effect/landmark/costume/holiday_priest/New()
-	new /obj/item/clothing/suit/holidaypriest(src.loc)
 	delete_me = 1
 
 /obj/effect/landmark/costume/marisawizard/fake/New()
