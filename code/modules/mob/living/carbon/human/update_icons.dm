@@ -466,7 +466,7 @@ var/global/list/damage_icon_parts = list()
 			under_icon = body_build.uniform_icon
 
 		//need to append _s to the icon state for legacy compatibility
-		var/image/standing = image(icon = under_icon, icon_state = "[under_state]_s")
+		var/image/standing = image(icon = under_icon, icon_state = under_state)
 		standing.color = w_uniform.color
 
 		//apply blood overlay
