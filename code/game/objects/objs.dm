@@ -12,16 +12,17 @@
 	var/armor_penetration = 0
 	var/corporation = null
 
-/obj/examine(mob/user)
+/obj/examine(mob/user,distance=-1)
 	if(..(user,2))
 		if (corporation)
 			if (corporation in global.global_corporations)
-				var/datum/copropation/C = global_corporations[corporation]
-				user << "You think this [src] create a \
+				var/datum/corporation/C = global_corporations[corporation]
+				user << "<font color='[C.textcolor]'>You think this [src.name] create a \
 				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
-				<font color='[C.textcolor]'>[C.name]</font>."
+				[C.name]. [C.about]</font>"
 			else
-				user << "You think this [src] create a [corporation]."
+				user << "You think this [src.name] create a [corporation]."
+	return distance == -1 || (get_dist(src, user) <= distance)
 
 
 /obj/Destroy()

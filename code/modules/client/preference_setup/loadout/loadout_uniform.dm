@@ -101,7 +101,7 @@
 	display_name = "jumpsuit, darkred"
 	path = /obj/item/clothing/under/darkred
 
-/datum/gear/uniform/skirt
+/*/datum/gear/uniform/skirt
 	display_name = "plaid skirt, blue"
 	path = /obj/item/clothing/under/dress/plaid_blue
 
@@ -111,7 +111,7 @@
 
 /datum/gear/uniform/skirt/red
 	display_name = "plaid skirt, red"
-	path = /obj/item/clothing/under/dress/plaid_red
+	path = /obj/item/clothing/under/dress/plaid_red*/
 
 /datum/gear/uniform/skirt/black
 	display_name = "skirt, black"
@@ -150,14 +150,6 @@
 	display_name = "suit, charcoal"
 	path = /obj/item/clothing/under/suit_jacket/charcoal
 
-/datum/gear/uniform/suit/exec
-	display_name = "suit, executive"
-	path = /obj/item/clothing/under/suit_jacket/really_black
-
-/datum/gear/uniform/suit/femaleexec
-	display_name = "suit, female-executive"
-	path = /obj/item/clothing/under/suit_jacket/female
-
 /datum/gear/uniform/suit/gentle
 	display_name = "suit, gentlemen"
 	path = /obj/item/clothing/under/gentlesuit
@@ -186,10 +178,6 @@
 	display_name = "suit, tan"
 	path = /obj/item/clothing/under/suit_jacket/tan
 
-/datum/gear/uniform/suit/white
-	display_name = "suit, white"
-	path = /obj/item/clothing/under/scratch
-
 /datum/gear/uniform/suit/whiteblue
 	display_name = "suit, white-blue"
 	path = /obj/item/clothing/under/lawyer/bluesuit
@@ -211,32 +199,15 @@
 	display_name = "scrubs, green"
 	path = /obj/item/clothing/under/rank/medical/green
 
-/datum/gear/uniform/sundress
-	display_name = "sundress"
-	path = /obj/item/clothing/under/sundress
-
-/datum/gear/uniform/sundress/white
-	display_name = "sundress, white"
-	path = /obj/item/clothing/under/sundress_white
-
-/datum/gear/uniform/dress_fire
-	display_name = "flame dress"
-	path = /obj/item/clothing/under/dress/dress_fire
-
-/datum/gear/uniform/uniform_captain
-	display_name = "uniform, captain's dress"
-	path = /obj/item/clothing/under/dress/dress_cap
-	allowed_roles = list("Captain")
-
 /datum/gear/uniform/corpsecsuit
 	display_name = "uniform, corporate (Security)"
 	path = /obj/item/clothing/under/rank/security/corp
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
-/datum/gear/uniform/uniform_hop
+/*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list("Head of Personnel")*/
 
 /datum/gear/uniform/uniform_hr
 	display_name = "uniform, HR director (HoP)"
@@ -244,7 +215,3 @@
 
 	allowed_roles = list("Head of Personnel")
 
-/datum/gear/uniform/navysecsuit
-	display_name = "uniform, navyblue (Security)"
-	path = /obj/item/clothing/under/rank/security/navyblue
-	allowed_roles = list("Security Officer","Head of Security","Warden")

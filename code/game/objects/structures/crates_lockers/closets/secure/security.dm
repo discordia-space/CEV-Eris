@@ -27,7 +27,6 @@
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/clothing/suit/armor/captain(src)
 		new /obj/item/weapon/melee/telebaton(src)
-		new /obj/item/clothing/under/dress/dress_cap(src)
 		new /obj/item/clothing/head/caphat/formal(src)
 		new /obj/item/clothing/under/captainformal(src)
 		return
@@ -70,7 +69,6 @@
 	New()
 		..()
 		new /obj/item/clothing/under/rank/head_of_personnel(src)
-		new /obj/item/clothing/under/dress/dress_hop(src)
 		new /obj/item/clothing/under/dress/dress_hr(src)
 		new /obj/item/clothing/under/lawyer/female(src)
 		new /obj/item/clothing/under/lawyer/black(src)
