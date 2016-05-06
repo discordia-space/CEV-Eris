@@ -64,13 +64,6 @@
 	item_state = "b_suit"
 
 
-/obj/item/clothing/under/rank/head_of_personnel_whimsy
-	desc = "A blue jacket and red tie, with matching red cuffs! Snazzy. Wearing this makes you feel more important than your job title does."
-	name = "head of personnel's suit"
-	icon_state = "hopwhimsy"
-	item_state = "b_suit"
-
-
 
 /obj/item/clothing/under/rank/hydroponics
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
@@ -143,13 +136,6 @@
 	name = "Purple Suit"
 	icon_state = "lawyer_purp"
 	item_state = "ba_suit"
-
-
-/obj/item/clothing/under/lawyer/oldman
-	name = "Old Man's Suit"
-	desc = "A classic suit for the older gentleman with built in back support."
-	icon_state = "oldman"
-	//item_state = "johnny"
 
 
 

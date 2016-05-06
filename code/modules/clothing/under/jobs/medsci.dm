@@ -9,22 +9,7 @@
 
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 
-/obj/item/clothing/under/rank/research_director/rdalt
-	desc = "A dress suit and slacks stained with hard work and dedication to science. Perhaps other things as well, but mostly hard work and dedication."
-	name = "head researcher uniform"
-	icon_state = "rdalt"
-	item_state = "lb_suit"
 
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-
-/obj/item/clothing/under/rank/research_director/dress_rd
-	name = "research director dress uniform"
-	desc = "Feminine fashion for the style concious RD. Its fabric provides minor protection from biological contaminants."
-	icon_state = "dress_rd"
-	item_state = "lb_suit"
-
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/rank/scientist
 	desc = "It's made of a special fiber that provides minor protection against biohazards. It has markings that denote the wearer as a scientist."
@@ -75,34 +60,7 @@
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 
-/obj/item/clothing/under/rank/nursesuit
-	desc = "It's a jumpsuit commonly worn by nursing staff in the medical department."
-	name = "nurse's suit"
-	icon_state = "nursesuit"
-	item_state = "nursesuit"
 
-	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/rank/nurse
-	desc = "A dress commonly worn by the nursing staff in the medical department."
-	name = "nurse's dress"
-	icon_state = "nurse"
-	item_state = "nursesuit"
-
-	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/rank/orderly
-	desc = "A white suit to be worn by medical attendants."
-	name = "orderly's uniform"
-	icon_state = "orderly"
-	item_state = "nursesuit"
-
-	permeability_coefficient = 0.50
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 
 /obj/item/clothing/under/rank/medical
 	desc = "It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel."
@@ -134,12 +92,6 @@
 	icon_state = "scrubspurple"
 	item_state = "p_suit"
 
-
-/obj/item/clothing/under/rank/medical/black
-	name = "medical scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in black."
-	icon_state = "scrubsblack"
-	item_state = "bl_suit"
 
 
 /obj/item/clothing/under/rank/psych
