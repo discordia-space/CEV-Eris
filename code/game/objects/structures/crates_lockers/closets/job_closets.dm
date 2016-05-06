@@ -25,7 +25,6 @@
 	//new /obj/item/clothing/under/sl_suit(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/under/rank/bartender(src)
-	new /obj/item/clothing/under/dress/dress_saloon(src)
 	new /obj/item/clothing/suit/wcoat(src)
 	new /obj/item/clothing/suit/wcoat(src)
 	new /obj/item/clothing/shoes/black(src)
@@ -42,7 +41,6 @@
 
 /obj/structure/closet/chefcloset/New()
 	..()
-	new /obj/item/clothing/under/sundress(src)
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/device/radio/headset/headset_service(src)
