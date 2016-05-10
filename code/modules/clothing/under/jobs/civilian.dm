@@ -15,17 +15,8 @@
 	item_state = "b_suit"
 
 
-
-/obj/item/clothing/under/rank/cargo
-	name = "quartermaster's jumpsuit"
-	desc = "It's a jumpsuit worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
-	icon_state = "qm"
-	item_state = "lb_suit"
-
-
-
 /obj/item/clothing/under/rank/cargotech
-	name = "cargo technician's jumpsuit"
+	name = "cargo worker's jumpsuit"
 	desc = "It's a jeans and turtleneck worn by the cargo workers."
 	icon_state = "cargotech"
 	item_state = "lb_suit"
