@@ -26,7 +26,7 @@
 
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo technician's jumpsuit"
-	desc = "Shooooorts! They're comfy and easy to wear!"
+	desc = "It's a jeans and turtleneck worn by the cargo workers."
 	icon_state = "cargotech"
 	item_state = "lb_suit"
 
