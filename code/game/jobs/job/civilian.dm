@@ -115,7 +115,7 @@
 	ideal_character_age = 40
 
 
-	uniform = /obj/item/clothing/under/rank/cargo
+	uniform = /obj/item/clothing/under/rank/cargotech
 	shoes = /obj/item/clothing/shoes/brown
 	pda = /obj/item/device/pda/quartermaster
 //	gloves = /obj/item/clothing/gloves/black
