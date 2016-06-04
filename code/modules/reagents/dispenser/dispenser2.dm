@@ -164,6 +164,7 @@
 			B.loc = loc
 			container = null
 
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 

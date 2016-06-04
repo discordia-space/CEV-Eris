@@ -135,7 +135,7 @@
 	if(href_list["setPower"]) //setting power to 0 is redundant anyways
 		var/new_setting = between(0, text2num(href_list["setPower"]), 100)
 		set_power_level(new_setting)
-
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	add_fingerprint(usr)
 
 //upgrading parts

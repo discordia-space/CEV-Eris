@@ -57,6 +57,7 @@
 			S.amount = machine.stack_storage[href_list["release_stack"]]
 			machine.stack_storage[href_list["release_stack"]] = 0
 
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 

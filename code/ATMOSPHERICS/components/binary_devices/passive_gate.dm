@@ -231,6 +231,7 @@
 			var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[air1.volume]kPa)","Flow Rate Control",src.set_flow_rate) as num
 			src.set_flow_rate = between(0, new_flow_rate, air1.volume)
 
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	usr.set_machine(src)	//Is this even needed with NanoUI?
 	src.update_icon()
 	src.add_fingerprint(usr)
