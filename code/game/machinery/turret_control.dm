@@ -86,6 +86,7 @@
 
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
 		if(src.allowed(usr))
+			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 			if(emagged)
 				user << "<span class='notice'>The turret control is unresponsive.</span>"
 			else
@@ -162,6 +163,7 @@
 		else if(href_list["command"] == "check_anomalies")
 			check_anomalies = value
 
+		playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 		updateTurrets()
 		return 1
 

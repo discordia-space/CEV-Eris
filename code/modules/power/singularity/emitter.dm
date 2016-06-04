@@ -26,7 +26,7 @@
 
 	var/_wifi_id
 	var/datum/wifi/receiver/button/emitter/wifi_receiver
-	
+
 /obj/machinery/power/emitter/anchored
 	anchored = 1
 	state = 2
@@ -87,6 +87,7 @@
 				message_admins("Emitter turned on by [key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("Emitter turned on by [user.ckey]([user]) in ([x],[y],[z])")
 				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
+			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			update_icon()
 		else
 			user << "<span class='warning'>The controls are locked!</span>"

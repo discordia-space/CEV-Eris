@@ -115,6 +115,7 @@
 			if(href_list["chemical"] in available_chemicals) // Your hacks are bad and you should feel bad
 				inject_chemical(usr, href_list["chemical"], text2num(href_list["amount"]))
 
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	return 1
 
 /obj/machinery/sleeper/attack_ai(var/mob/user)

@@ -52,6 +52,7 @@
 			"You turn on the shield generator.", \
 			"You hear heavy droning.")
 	src.add_fingerprint(user)
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
 /obj/machinery/shieldwallgen/proc/power()
 	if(!anchored)

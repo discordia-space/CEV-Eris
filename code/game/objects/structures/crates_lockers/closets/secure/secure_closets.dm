@@ -59,6 +59,7 @@
 		for(var/mob/O in viewers(user, 3))
 			if((O.client && !( O.blinded )))
 				O << "<span class='notice'>The locker has been [locked ? null : "un"]locked by [user].</span>"
+				playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		update_icon()
 	else
 		user << "<span class='notice'>Access Denied</span>"

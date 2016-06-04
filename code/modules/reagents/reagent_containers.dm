@@ -47,6 +47,7 @@
 
 	var/trans = target.reagents.trans_to_obj(src, target:amount_per_transfer_from_this)
 	user << "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>"
+	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 	return 1
 
 /obj/item/weapon/reagent_containers/proc/standard_splash_mob(var/mob/user, var/mob/target) // This goes into afterattack
