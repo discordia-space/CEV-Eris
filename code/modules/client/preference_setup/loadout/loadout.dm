@@ -134,7 +134,6 @@ var/list/gear_datums = list()
 		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		. += "<td><font size=2><i>[initial(temp.desc)]</i></font></td></tr>"
 	. += "</table>"
-	. = jointext(.)
 
 /datum/category_item/player_setup_item/loadout/OnTopic(href, href_list, user)
 	if(href_list["toggle_gear"])
