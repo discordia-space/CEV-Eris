@@ -1,6 +1,6 @@
 // If you add a more comprehensive system, just untick this file.
 // WARNING: Only works for up to 17 z-levels!
-var/z_levels = 0 // Each bit represents a connection between adjacent levels.  So the first bit means levels 1 and 2 are connected.
+var/z_levels = 2**5+2**6+2**7 // Each bit represents a connection between adjacent levels.  So the first bit means levels 1 and 2 are connected.
 
 // If the height is more than 1, we mark all contained levels as connected.
 /obj/effect/landmark/map_data/New()
@@ -17,8 +17,13 @@ proc/HasAbove(var/z)
 	return z_levels & (1 << (z - 1))
 
 proc/HasBelow(var/z)
+	world << "Check HasBelow"
+	world << "current z: [z]"
+	world << "world.maxz: [world.maxz]"
 	if(z > world.maxz || z > 17 || z < 2)
 		return 0
+	world << "z_levels: [z_levels]"
+	world << "SMTH: 1 << (z - 2)"
 	return z_levels & (1 << (z - 2))
 
 // Thankfully, no bitwise magic is needed here.
@@ -29,7 +34,9 @@ proc/GetAbove(var/atom/atom)
 	return HasAbove(turf.z) ? get_step(turf, UP) : null
 
 proc/GetBelow(var/atom/atom)
+	world << "Check GetBelow"
 	var/turf/turf = get_turf(atom)
 	if(!turf)
+		world << "No turf"
 		return null
 	return HasBelow(turf.z) ? get_step(turf, DOWN) : null

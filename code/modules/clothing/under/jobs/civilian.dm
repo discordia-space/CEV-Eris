@@ -15,18 +15,9 @@
 	item_state = "b_suit"
 
 
-
-/obj/item/clothing/under/rank/cargo
-	name = "quartermaster's jumpsuit"
-	desc = "It's a jumpsuit worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
-	icon_state = "qm"
-	item_state = "lb_suit"
-
-
-
 /obj/item/clothing/under/rank/cargotech
-	name = "cargo technician's jumpsuit"
-	desc = "Shooooorts! They're comfy and easy to wear!"
+	name = "cargo worker's jumpsuit"
+	desc = "It's a jeans and turtleneck worn by the cargo workers."
 	icon_state = "cargotech"
 	item_state = "lb_suit"
 
@@ -61,13 +52,6 @@
 	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	name = "head of personnel's jumpsuit"
 	icon_state = "hop"
-	item_state = "b_suit"
-
-
-/obj/item/clothing/under/rank/head_of_personnel_whimsy
-	desc = "A blue jacket and red tie, with matching red cuffs! Snazzy. Wearing this makes you feel more important than your job title does."
-	name = "head of personnel's suit"
-	icon_state = "hopwhimsy"
 	item_state = "b_suit"
 
 
@@ -143,13 +127,6 @@
 	name = "Purple Suit"
 	icon_state = "lawyer_purp"
 	item_state = "ba_suit"
-
-
-/obj/item/clothing/under/lawyer/oldman
-	name = "Old Man's Suit"
-	desc = "A classic suit for the older gentleman with built in back support."
-	icon_state = "oldman"
-	//item_state = "johnny"
 
 
 

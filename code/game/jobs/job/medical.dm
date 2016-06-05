@@ -53,7 +53,7 @@
 	economic_modifier = 7
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology)
-	alt_titles = list("Surgeon","Emergency Physician","Nurse","Virologist")
+	alt_titles = list("Surgeon","Emergency Physician","Virologist")
 	idtype = /obj/item/weapon/card/id/med
 
 	uniform = /obj/item/clothing/under/rank/medical
@@ -76,7 +76,6 @@
 			switch(H.mind.role_alt_title)
 				if("Emergency Physician")
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/fr_jacket(H), slot_wear_suit)
 				if("Surgeon")
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/blue(H), slot_w_uniform)
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
@@ -90,16 +89,6 @@
 						if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_vir(H), slot_back)
 						if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 					job_master.spawnId(H, H.mind.assigned_role, H.mind.role_alt_title, /obj/item/weapon/card/id/viro)
-				if("Nurse")
-					if(H.gender == FEMALE)
-						if(prob(50))
-							H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/nursesuit(H), slot_w_uniform)
-						else
-							H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/nurse(H), slot_w_uniform)
-						H.equip_to_slot_or_del(new /obj/item/clothing/head/nursehat(H), slot_head)
-					else
-						H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/purple(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 		return ..()
 
 
@@ -244,13 +233,10 @@
 	economic_modifier = 4
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_eva, access_maint_tunnels, access_external_airlocks)
-	alt_titles = list("Emergency Medical Technician")
 
-	uniform = /obj/item/clothing/under/rank/medical/black
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
 	shoes = /obj/item/clothing/shoes/jackboots
-	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	hand = /obj/item/weapon/storage/firstaid/adv
 
@@ -259,12 +245,3 @@
 		/obj/item/weapon/storage/backpack/satchel_med,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
-
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		if (H.mind && H.mind.role_alt_title)
-			switch(H.mind.role_alt_title)
-				if("Emergency Medical Technician")
-					//H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/paramedic(H), slot_w_uniform)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/fr_jacket(H), slot_wear_suit)
-		return ..()

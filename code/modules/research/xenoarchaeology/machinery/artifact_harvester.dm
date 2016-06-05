@@ -251,4 +251,5 @@
 		usr << browse(null, "window=artharvester")
 		usr.unset_machine(src)
 
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	updateDialog()

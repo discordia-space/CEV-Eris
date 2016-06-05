@@ -19,7 +19,6 @@
 		var/item_name = UWI ? UWI.name : "None"
 		dat += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'>[item_name]</a> <a href='?src=\ref[src];remove_underwear=[UWC.name]'>(Remove)</a><br>"
 
-	dat = jointext(dat)
 	H << browse(dat, "window=wardrobe;size=400x200")
 
 /obj/structure/undies_wardrobe/proc/human_who_can_use_underwear(var/mob/living/carbon/human/H)

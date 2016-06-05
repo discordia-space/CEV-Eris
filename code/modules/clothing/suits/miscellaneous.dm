@@ -39,15 +39,6 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 
-/obj/item/clothing/suit/hgpirate
-	name = "pirate captain coat"
-	desc = "Yarr."
-	icon_state = "hgpirate"
-	item_state = "hgpirate"
-	flags_inv = HIDEJUMPSUIT
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-
-
 /obj/item/clothing/suit/cyborg_suit
 	name = "cyborg suit"
 	desc = "Suit for a cyborg costume."
@@ -56,23 +47,6 @@
 	flags = CONDUCT
 	fire_resist = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-
-
-/obj/item/clothing/suit/greatcoat
-	name = "great coat"
-	desc = "A heavy great coat"
-	icon_state = "nazi"
-	item_state = "nazi"
-
-
-
-/obj/item/clothing/suit/justice
-	name = "justice suit"
-	desc = "This pretty much looks ridiculous."
-	icon_state = "justice"
-	item_state = "justice"
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
 
 
 /obj/item/clothing/suit/judgerobe
@@ -94,14 +68,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 
-/obj/item/clothing/suit/apron/overalls
-	name = "coveralls"
-	desc = "A set of denim overalls."
-	icon_state = "overalls"
-	item_state = "overalls"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-
-
 /obj/item/clothing/suit/syndicatefake
 	name = "red space suit replica"
 	icon_state = "syndicate"
@@ -111,14 +77,6 @@
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
-
-/obj/item/clothing/suit/hastur
-	name = "Hastur's Robes"
-	desc = "Robes not meant to be worn by man"
-	icon_state = "hastur"
-	item_state = "hastur"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/imperium_monk
@@ -150,15 +108,6 @@
 	siemens_coefficient = 2.0
 
 
-/obj/item/clothing/suit/holidaypriest
-	name = "Holiday Priest"
-	desc = "This is a nice holiday my son."
-	icon_state = "holidaypriest"
-	item_state = "holidaypriest"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv = HIDEJUMPSUIT
-
-
 /obj/item/clothing/suit/cardborg
 	name = "cardborg suit"
 	desc = "An ordinary cardboard box with holes cut in the sides."
@@ -179,12 +128,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 
-/obj/item/clothing/suit/ianshirt
-	name = "worn shirt"
-	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
-	icon_state = "ianshirt"
-	item_state = "ianshirt"
-	body_parts_covered = UPPER_TORSO|ARMS
 
 //pyjamas
 //originally intended to be pinstripes >.>
@@ -203,60 +146,6 @@
 	item_state = "red_pyjamas"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
-//coats
-
-/obj/item/clothing/suit/leathercoat
-	name = "leather coat"
-	desc = "A long, thick black leather coat."
-	icon_state = "leathercoat"
-	item_state = "leathercoat"
-
-/obj/item/clothing/suit/browncoat
-	name = "brown leather coat"
-	desc = "A long, brown leather coat."
-	icon_state = "browncoat"
-	item_state = "browncoat"
-
-/obj/item/clothing/suit/neocoat
-	name = "black coat"
-	desc = "A flowing, black coat."
-	icon_state = "neocoat"
-	item_state = "neocoat"
-
-//stripper
-/obj/item/clothing/under/stripper
-	body_parts_covered = 0
-
-/obj/item/clothing/under/stripper/stripper_pink
-	name = "pink swimsuit"
-	desc = "A rather skimpy pink swimsuit."
-	icon_state = "stripper_p_under"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/stripper/stripper_green
-	name = "green swimsuit"
-	desc = "A rather skimpy green swimsuit."
-	icon_state = "stripper_g_under"
-	siemens_coefficient = 1
-
-/obj/item/clothing/suit/stripper/stripper_pink
-	name = "pink skimpy dress"
-	desc = "A rather skimpy pink dress."
-	icon_state = "stripper_p_over"
-	siemens_coefficient = 1
-
-/obj/item/clothing/suit/stripper/stripper_green
-	name = "green skimpy dress"
-	desc = "A rather skimpy green dress."
-	icon_state = "stripper_g_over"
-	item_state = "stripper_g"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/stripper/mankini
-	name = "mankini"
-	desc = "No honest man would wear this abomination"
-	icon_state = "mankini"
-	siemens_coefficient = 1
 
 /obj/item/clothing/suit/xenos
 	name = "xenos suit"
@@ -266,6 +155,8 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2.0
+
+
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
@@ -343,32 +234,6 @@
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 
-/obj/item/clothing/suit/storage/leather_jacket
-	name = "leather jacket"
-	desc = "A black leather coat."
-	icon_state = "leather_jacket"
-	item_state = "leather_jacket"
-	body_parts_covered = UPPER_TORSO|ARMS
-
-/obj/item/clothing/suit/storage/leather_jacket/nanotrasen
-	desc = "A black leather coat. A corporate logo is proudly displayed on the back."
-	icon_state = "leather_jacket_nt"
-
-//This one has buttons for some reason
-/obj/item/clothing/suit/storage/toggle/brown_jacket
-	name = "leather jacket"
-	desc = "A brown leather coat."
-	icon_state = "brown_jacket"
-	item_state = "brown_jacket"
-	icon_open = "brown_jacket_open"
-	icon_closed = "brown_jacket"
-	body_parts_covered = UPPER_TORSO|ARMS
-
-/obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
-	desc = "A brown leather coat. A corporate logo is proudly displayed on the back."
-	icon_state = "brown_jacket_nt"
-	icon_open = "brown_jacket_nt_open"
-	icon_closed = "brown_jacket_nt"
 
 /obj/item/clothing/suit/storage/toggle/hoodie
 	name = "grey hoodie"

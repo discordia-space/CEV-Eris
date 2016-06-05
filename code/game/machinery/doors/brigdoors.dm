@@ -43,6 +43,10 @@
 			if(F.id == src.id)
 				targets += F
 
+		for(var/obj/machinery/cellshower/S in world)
+			if(S.id == src.id)
+				targets += S
+
 		for(var/obj/structure/closet/secure_closet/brig/C in world)
 			if(C.id == src.id)
 				targets += C
@@ -203,6 +207,15 @@
 		else
 			dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
 
+	for(var/obj/machinery/cellshower/S in targets)
+		dat += "<br/>Shower: <A href='?src=\ref[src];se=1'>[S.on ? "On" : "Off"]</A>"
+		dat += "<br/><b>WARNING: Changing shower temperature is EXTREMELY dangerous!</b>"
+		dat += "<br/>Temperature: <A href='?src=\ref[src];st=1'>[S.watertemp]</A>"
+		if(S.last_spray && (S.last_spray + 3000) > world.time)
+			dat += "<br/><A href='?src=\ref[src];sp=1'>Spray Charging</A><br/>"
+		else
+			dat += "<br/><A href='?src=\ref[src];sp=1'>Activate Spray</A><br/>"
+
 	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
 	dat += "</TT></BODY></HTML>"
 
@@ -249,6 +262,20 @@
 
 		if(href_list["change"])
 			src.timer_start()
+
+		if(href_list["se"])
+			for(var/obj/machinery/cellshower/S in targets)
+				S.toggle()
+
+		if(href_list["st"])
+			for(var/obj/machinery/cellshower/S in targets)
+				S.switchtemp()
+
+		if(href_list["sp"])
+			for(var/obj/machinery/cellshower/S in targets)
+				if(S.last_spray && (S.last_spray + 3000) > world.time)
+					continue
+				S.spray()
 
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()

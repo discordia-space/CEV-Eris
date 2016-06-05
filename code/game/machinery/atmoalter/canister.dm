@@ -362,6 +362,7 @@ update_flag
 				src.icon_state = colors[label]
 				src.name = "Canister: [label]"
 
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	src.add_fingerprint(usr)
 	update_icon()
 

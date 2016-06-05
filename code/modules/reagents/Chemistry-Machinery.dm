@@ -218,6 +218,7 @@
 		else if(href_list["bottle_sprite"])
 			bottlesprite = href_list["bottle_sprite"]
 
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	src.updateUsrDialog()
 	return
 
@@ -449,6 +450,7 @@
 			eject()
 		if ("detach")
 			detach()
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	src.updateUsrDialog()
 	return 1
 

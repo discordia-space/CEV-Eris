@@ -139,6 +139,7 @@
 		if(M == user)
 			continue
 		M.show_message("[user.name] places \the [I] into the [src].", 3)
+		playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
 
 	update()
 
