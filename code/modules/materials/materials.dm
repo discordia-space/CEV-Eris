@@ -361,7 +361,7 @@ var/list/name_to_material
 	weight = 23
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(DEFAULT_WALL_MATERIAL = 3750, "platinum" = 3750) //todo
-	hitsound = 'sound/effects/blobattack.ogg'
+	hitsound = 'sound/effects/smash.ogg'
 
 /material/plasteel/titanium
 	name = "titanium"
