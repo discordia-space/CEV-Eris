@@ -1,5 +1,11 @@
 //Alphabetical order of civilian jobs.
 
+/obj/item/clothing/under/rank/assistant
+	desc = "Filled with hatred and envy."
+	name = "assistant's uniform"
+	icon_state = "assistant"
+	item_state = "assistant"
+
 /obj/item/clothing/under/rank/bartender
 	desc = "It looks like it could use some more flair."
 	name = "bartender's uniform"
