@@ -27,7 +27,7 @@
 	minimal_player_age = 7
 
 	uniform = /obj/item/clothing/under/rank/chief_engineer
-	shoes = /obj/item/clothing/shoes/brown
+	shoes = /obj/item/clothing/shoes/jackboots
 	pda = /obj/item/device/pda/heads/ce
 	hat = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/black
@@ -59,7 +59,7 @@
 	idtype = /obj/item/weapon/card/id/engie
 
 	uniform = /obj/item/clothing/under/rank/engineer
-	shoes = /obj/item/clothing/shoes/orange
+	shoes = /obj/item/clothing/shoes/jackboots
 	pda = /obj/item/device/pda/engineering
 	hat = /obj/item/clothing/head/hardhat
 	belt = /obj/item/weapon/storage/belt/utility/full
