@@ -1,6 +1,6 @@
-/datum/job/hos
-	title = "Head of Security"
-	flag = HOS
+/datum/job/ihc
+	title = "Ironhammer Commander"
+	flag = IHC
 	head_position = 1
 	department = "Security"
 	department_flag = ENGSEC
@@ -23,7 +23,9 @@
 	minimal_player_age = 14
 
 	implanted = 1
-	uniform = /obj/item/clothing/under/rank/head_of_security
+	uniform = /obj/item/clothing/under/rank/ih_commander
+	suit = /obj/item/clothing/suit/armor/hos
+	hat = /obj/item/clothing/head/beret/sec/navy/hos
 	pda = /obj/item/device/pda/heads/hos
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -42,15 +44,15 @@
 	)
 
 
-/datum/job/warden
-	title = "Warden"
-	flag = WARDEN
+/datum/job/gunserg
+	title = "Gunnery Sergeant"
+	flag = GUNSERG
 	department = "Security"
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of security"
+	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
@@ -60,6 +62,8 @@
 
 	implanted = 1
 	uniform = /obj/item/clothing/under/rank/warden
+	suit = /obj/item/clothing/suit/armor/vest/serg
+	hat = /obj/item/clothing/head/beret/sec/navy/warden
 	pda = /obj/item/device/pda/warden
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -78,15 +82,15 @@
 	)
 
 
-/datum/job/detective
-	title = "Detective"
-	flag = DETECTIVE
+/datum/job/inspector
+	title = "Inspector"
+	flag = INSPECTOR
 	department = "Security"
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of security"
+	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	alt_titles = list("Forensic Technician")
 	economic_modifier = 5
@@ -96,13 +100,13 @@
 	idtype = /obj/item/weapon/card/id/det
 
 	implanted = 1
-	uniform = /obj/item/clothing/under/det
+	uniform = /obj/item/clothing/under/inspector
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/black
-	hat = /obj/item/clothing/head/det
-	suit = /obj/item/clothing/suit/storage/det_trench
+	hat = /obj/item/clothing/head/bowler
+	suit = /obj/item/clothing/suit/storage/insp_trench
 	hand = /obj/item/weapon/storage/briefcase/crimekit
 
 	put_in_backpack = list(\
@@ -112,15 +116,15 @@
 
 
 
-/datum/job/officer
-	title = "Security Officer"
-	flag = OFFICER
+/datum/job/ihoper
+	title = "Ironhammer Operative"
+	flag = IHOPER
 	department = "Security"
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the head of security"
+	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	alt_titles = list("Junior Officer")
 	economic_modifier = 4
@@ -130,6 +134,8 @@
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/security
+	suit = /obj/item/clothing/suit/armor/vest/security
+	hat = /obj/item/clothing/head/beret/sec/navy/officer
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots

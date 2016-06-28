@@ -80,7 +80,7 @@
 
 
 /obj/structure/closet/secure_closet/hos
-	name = "head of security's locker"
+	name = "Ironhammer Commander locker"
 	req_access = list(access_hos)
 	icon_state = "hossecure1"
 	icon_closed = "hossecure"
@@ -98,7 +98,7 @@
 		new /obj/item/clothing/head/HoS(src)
 		new /obj/item/clothing/suit/armor/vest/security(src)
 		new /obj/item/clothing/suit/storage/vest/hos(src)
-		new /obj/item/clothing/under/rank/head_of_security/jensen(src)
+		new /obj/item/clothing/under/rank/ih_commander/jensen(src)
 		new /obj/item/clothing/suit/armor/hos/jensen(src)
 		new /obj/item/clothing/suit/armor/hos(src)
 		new /obj/item/clothing/head/HoS/dermal(src)
@@ -121,7 +121,7 @@
 
 
 /obj/structure/closet/secure_closet/warden
-	name = "warden's locker"
+	name = "Gunnery Sergeant's locker"
 	req_access = list(access_armory)
 	icon_state = "wardensecure1"
 	icon_closed = "wardensecure"
@@ -140,7 +140,7 @@
 		new /obj/item/clothing/suit/armor/vest/security(src)
 		new /obj/item/clothing/suit/storage/vest/warden(src)
 		new /obj/item/clothing/under/rank/warden(src)
-		new /obj/item/clothing/suit/armor/vest/warden(src)
+		new /obj/item/clothing/suit/armor/vest/serg(src)
 		new /obj/item/clothing/head/warden(src)
 		new /obj/item/weapon/cartridge/security(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
@@ -160,7 +160,7 @@
 
 
 /obj/structure/closet/secure_closet/security
-	name = "security officer's locker"
+	name = "ironhammer operative's locker"
 	req_access = list(access_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"

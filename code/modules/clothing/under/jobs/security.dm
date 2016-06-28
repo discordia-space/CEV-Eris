@@ -2,7 +2,7 @@
  * Contains:
  *		Security
  *		Detective
- *		Head of Security
+ *		Ironhammer Commander
  */
 
 /*
@@ -24,7 +24,7 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/under/rank/security
-	name = "security officer's jumpsuit"
+	name = "ironhammer operative's jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "security"
 	item_state = "r_suit"
@@ -46,6 +46,17 @@
 /*
  * Detective
  */
+/obj/item/clothing/under/inspector
+	name = "inspector's suit"
+	desc = "Casual turtleneck and jeans, civilian clothes of Ironhammer Inspector."
+	icon_state = "insp_under"
+	item_state = "insp_under"
+
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
+
+
+
 /obj/item/clothing/under/det
 	name = "detective's suit"
 	desc = "A rumpled white dress shirt paired with well-worn grey slacks, complete with a blue striped tie and a faux-gold tie clip."
@@ -72,7 +83,7 @@
 		slot_r_hand_str = "det_hat",
 		)
 	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
-	armor = list(melee = 50, bullet = 5, laser = 25,energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 20, bullet = 5, laser = 10,energy = 5, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
@@ -82,11 +93,11 @@
 
 
 /*
- * Head of Security
+ * Ironhammer Commander
  */
-/obj/item/clothing/under/rank/head_of_security
-	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
-	name = "head of security's jumpsuit"
+/obj/item/clothing/under/rank/ih_commander
+	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Ironhammer Commander\". It has additional armor to protect the wearer."
+	name = "Ironhammer Commander's jumpsuit"
 	icon_state = "hos"
 	item_state = "r_suit"
 
@@ -95,8 +106,8 @@
 
 
 /obj/item/clothing/head/HoS
-	name = "Head of Security Hat"
-	desc = "The hat of the Head of Security. For showing the officers who's in charge."
+	name = "Ironhammer Commander Hat"
+	desc = "The hat of the Ironhammer Commander. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	body_parts_covered = 0
 	siemens_coefficient = 0.8
@@ -118,9 +129,9 @@
 	siemens_coefficient = 0.6
 
 //Jensen cosplay gear
-/obj/item/clothing/under/rank/head_of_security/jensen
+/obj/item/clothing/under/rank/ih_commander/jensen
 	desc = "You never asked for anything that stylish."
-	name = "head of security's jumpsuit"
+	name = "Ironhammer Commander's jumpsuit"
 	icon_state = "jensen"
 	item_state = "jensen"
 

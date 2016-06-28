@@ -19,17 +19,17 @@
 /datum/gear/head/beret/bsec
 	display_name = "beret, navy (officer)"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
 
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, navy (warden)"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
-	allowed_roles = list("Head of Security","Warden")
+	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")
 
 /datum/gear/head/beret/bsec_hos
 	display_name = "beret, navy (hos)"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list("Ironhammer Commander")
 
 /datum/gear/head/beret/eng
 	display_name = "beret, engie-orange"
@@ -42,7 +42,7 @@
 /datum/gear/head/beret/sec
 	display_name = "beret, red (security)"
 	path = /obj/item/clothing/head/beret/sec
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
 
 /datum/gear/head/cap/blue
 	display_name = "cap, blue"
@@ -59,7 +59,7 @@
 /datum/gear/head/cap/corp
 	display_name = "cap, corporate (Security)"
 	path = /obj/item/clothing/head/soft/sec/corp
-	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant", "Inspector")
 
 /datum/gear/head/cap/green
 	display_name = "cap, green"
@@ -88,7 +88,7 @@
 /datum/gear/head/cap/sec
 	display_name = "cap, security (Security)"
 	path = /obj/item/clothing/head/soft/sec
-	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant", "Inspector")
 
 /datum/gear/head/cap/yellow
 	display_name = "cap, yellow"

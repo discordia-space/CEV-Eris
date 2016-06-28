@@ -13,7 +13,7 @@
 
 /obj/item/clothing/suit/armor/vest
 	name = "armor"
-	desc = "An armored vest that protects against some damage."
+	desc = "An armored vest that protects against some damage. Not designed for serious operations."
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -21,14 +21,14 @@
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
-	desc = "An armored vest that protects against some damage. This one has a corporate badge."
+	desc = "An armored vest that protects against some damage. This one have Ironhammer Security signs. Not designed for serious operations."
 	icon_state = "armorsec"
 	item_state = "armorsec"
 
-/obj/item/clothing/suit/armor/vest/warden
-	name = "Warden's jacket"
-	desc = "An armoured jacket with silver rank pips and livery."
-	icon_state = "warden_jacket"
+/obj/item/clothing/suit/armor/vest/serg
+	name = "Gunnery Sergeant's light armor"
+	desc = "Light armor of Ironhammer Security forces. Not designed for serious operations."
+	icon_state = "serg_armor"
 	item_state = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
