@@ -99,7 +99,7 @@
 	uniform = /obj/item/clothing/under/det
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
-	shoes = /obj/item/clothing/shoes/brown
+	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/black
 	hat = /obj/item/clothing/head/det
 	suit = /obj/item/clothing/suit/storage/det_trench

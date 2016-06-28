@@ -23,7 +23,7 @@
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer
-	shoes = /obj/item/clothing/shoes/brown
+	shoes = /obj/item/clothing/shoes/laceup
 	pda = /obj/item/device/pda/heads/cmo
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	ear = /obj/item/device/radio/headset/heads/cmo
@@ -57,7 +57,7 @@
 	idtype = /obj/item/weapon/card/id/med
 
 	uniform = /obj/item/clothing/under/rank/medical
-	shoes = /obj/item/clothing/shoes/white
+	shoes = /obj/item/clothing/shoes/laceup
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
@@ -112,7 +112,7 @@
 
 
 	uniform = /obj/item/clothing/under/rank/chemist
-	shoes = /obj/item/clothing/shoes/white
+	shoes = /obj/item/clothing/shoes/laceup
 	pda = /obj/item/device/pda/chemist
 	ear = /obj/item/device/radio/headset/headset_med
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
@@ -144,7 +144,7 @@
 	pda = /obj/item/device/pda/geneticist
 	ear = /obj/item/device/radio/headset/headset_medsci
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/genetics
-	shoes = /obj/item/clothing/shoes/white
+	shoes = /obj/item/clothing/shoes/laceup
 
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/genetics,\
@@ -206,7 +206,7 @@
 	pda = /obj/item/device/pda/viro
 	ear = /obj/item/device/radio/headset/headset_med
 	mask = /obj/item/clothing/mask/surgical
-	shoes = /obj/item/clothing/shoes/white
+	shoes = /obj/item/clothing/shoes/laceup
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/virologist
 
 	backpacks = list(

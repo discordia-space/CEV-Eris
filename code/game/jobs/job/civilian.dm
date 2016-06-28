@@ -116,9 +116,10 @@
 
 
 	uniform = /obj/item/clothing/under/rank/cargotech
+	suit = /obj/item/clothing/suit/storage/qm_coat
 	shoes = /obj/item/clothing/shoes/brown
 	pda = /obj/item/device/pda/quartermaster
-//	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/black
 	ear = /obj/item/device/radio/headset/headset_cargo
 	hand = /obj/item/weapon/clipboard
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -140,6 +141,7 @@
 	idtype = /obj/item/weapon/card/id/qm
 
 	uniform = /obj/item/clothing/under/rank/cargotech
+	suit = /obj/item/clothing/suit/storage/cargo_jacket
 	pda = /obj/item/device/pda/cargo
 	ear = /obj/item/device/radio/headset/headset_cargo
 

@@ -26,7 +26,7 @@
 	uniform = /obj/item/clothing/under/rank/research_director
 	pda = /obj/item/device/pda/heads/rd
 	ear = /obj/item/device/radio/headset/heads/rd
-	shoes = /obj/item/clothing/shoes/brown
+	shoes = /obj/item/clothing/shoes/laceup
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	hand = /obj/item/weapon/clipboard
 
@@ -58,7 +58,7 @@
 	uniform = /obj/item/clothing/under/rank/scientist
 	pda = /obj/item/device/pda/science
 	ear = /obj/item/device/radio/headset/headset_sci
-	shoes = /obj/item/clothing/shoes/white
+	shoes = /obj/item/clothing/shoes/jackboots
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 	backpacks = list(
