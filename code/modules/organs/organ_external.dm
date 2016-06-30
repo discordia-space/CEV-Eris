@@ -28,7 +28,7 @@
 	var/max_size = 0
 	var/last_dam = -1
 	var/icon/mob_icon
-	var/gendered_icon = 0
+//	var/gendered_icon = 0
 	var/limb_name
 	var/disfigured = 0
 	var/cannot_amputate
@@ -1134,7 +1134,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	amputation_point = "spine"
 	joint = "neck"
 	dislocated = -1
-	gendered_icon = 1
+//	gendered_icon = 1
 	cannot_amputate = 1
 	parent_organ = null
 	encased = "ribcage"
@@ -1152,7 +1152,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	amputation_point = "lumbar"
 	joint = "hip"
 	dislocated = -1
-	gendered_icon = 1
+//	gendered_icon = 1
 
 /obj/item/organ/external/arm
 	limb_name = "l_arm"
@@ -1262,7 +1262,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	parent_organ = "chest"
 	joint = "jaw"
 	amputation_point = "neck"
-	gendered_icon = 1
+//	gendered_icon = 1
 	encased = "skull"
 
 /obj/item/organ/external/head/removed()
