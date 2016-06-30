@@ -65,8 +65,16 @@ In short:
 
 /datum/universal_state/hell/OverlayAndAmbientSet()
 	spawn(0)
-		for(var/atom/movable/lighting_overlay/L in world)
-			L.update_lumcount(1, 0, 0)
+		var/count = 0
+		for(var/datum/lighting_corner/C in global.all_lighting_corners)
+			if (!C.active)
+				continue
+			count++
+			if(!(count % 200000))
+				sleep(world.tick_lag)
+
+			C.update_lumcount(0.5, 0, 0)
+//			tcheck(80,1)
 
 		for(var/turf/space/T in turfs)
 			OnTurfChange(T)

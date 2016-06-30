@@ -80,8 +80,10 @@
 	affecting_lights = old_affecting_lights
 	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
 		reconsider_lights()
+/*
 	if(dynamic_lighting != old_dynamic_lighting)
 		if(dynamic_lighting)
 			lighting_build_overlays()
 		else
 			lighting_clear_overlays()
+*/
