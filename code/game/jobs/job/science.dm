@@ -87,7 +87,7 @@
 	uniform = /obj/item/clothing/under/rank/scientist
 	pda = /obj/item/device/pda/science
 	ear = /obj/item/device/radio/headset/headset_sci
-	shoes = /obj/item/clothing/shoes/white
+	shoes = /obj/item/clothing/shoes/jackboots
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 	backpacks = list(
@@ -115,6 +115,8 @@
 
 	uniform = /obj/item/clothing/under/rank/roboticist
 	pda = /obj/item/device/pda/roboticist
+	gloves = /obj/item/clothing/gloves/black
 	ear = /obj/item/device/radio/headset/headset_sci
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat
+	suit = /obj/item/clothing/suit/storage/robotech_jacket
 	hand = /obj/item/weapon/storage/toolbox/mechanical
+	shoes = /obj/item/clothing/shoes/jackboots

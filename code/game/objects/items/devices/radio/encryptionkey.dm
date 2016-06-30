@@ -77,7 +77,7 @@
 	channels = list("Science" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/heads/hos
-	name = "head of security's encryption key"
+	name = "ironhammer commander's encryption key"
 	icon_state = "hos_cypherkey"
 	channels = list("Security" = 1, "Command" = 1)
 

@@ -89,14 +89,15 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/update_icon(var/regenerate = 0)
 	var/gender = "_m"
-	if(!gendered_icon)
+/*	if(!gendered_icon)
 		gender = null
-	else if (dna && dna.GetUIState(DNA_UI_GENDER))
+	else */
+	if (dna && dna.GetUIState(DNA_UI_GENDER))
 		gender = "_f"
 	else if(owner && owner.gender == FEMALE)
 		gender = "_f"
 
-	icon_state = "[icon_name][gender]"
+	icon_state = "[icon_name][gender][owner.body_build.index]"
 	if(force_icon)
 		icon = force_icon
 	else if (!dna)
