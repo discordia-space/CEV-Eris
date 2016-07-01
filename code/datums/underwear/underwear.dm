@@ -39,7 +39,7 @@ datum/category_group/underwear/dd_SortValue()
 /datum/category_item/underwear
 	var/always_last = FALSE          // Should this entry be sorte last?
 	var/is_default = FALSE           // Should this entry be considered the default for its type?
-	var/icon = 'icons/mob/human.dmi' // Which icon to get the underwear from
+	var/icon = 'icons/mob/undervear.dmi' // Which icon to get the underwear from
 	var/icon_state                   // And the particular item state
 
 /datum/category_item/underwear/dd_SortValue()
@@ -53,4 +53,4 @@ datum/category_group/underwear/dd_SortValue()
 /datum/category_item/underwear/proc/apply_to_icon(var/icon/I)
 	if(!icon_state)
 		return
-	I.Blend(new /icon('icons/mob/human.dmi', icon_state), ICON_OVERLAY)
+	I.Blend(new /icon(icon, icon_state), ICON_OVERLAY)
