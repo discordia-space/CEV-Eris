@@ -242,20 +242,6 @@
 	item_state = "b_suit"
 
 
-/obj/item/clothing/under/hosformalmale
-	name = "Ironhammer Commander's formal uniform"
-	desc = "A male Ironhammer Commander's formal-wear, for special occasions."
-	icon_state = "hos_formal_male"
-	item_state = "r_suit"
-
-
-/obj/item/clothing/under/hosformalfem
-	name = "Ironhammer Commander's formal uniform"
-	desc = "A female Ironhammer Commander's formal-wear, for special occasions."
-	icon_state = "hos_formal_fem"
-	item_state = "r_suit"
-
-
 /obj/item/clothing/under/assistantformal
 	name = "assistant's formal uniform"
 	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."

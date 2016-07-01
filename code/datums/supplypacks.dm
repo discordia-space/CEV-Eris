@@ -765,10 +765,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/clothing/suit/armor/vest,
 					/obj/item/clothing/suit/armor/vest/security,
 					/obj/item/clothing/suit/armor/vest/detective,
-					/obj/item/clothing/suit/storage/vest/hos,
-					/obj/item/clothing/suit/storage/vest/pcrc,
-					/obj/item/clothing/suit/storage/vest/warden,
-					/obj/item/clothing/suit/storage/vest/officer,
 					/obj/item/clothing/suit/storage/vest)
 
 	name = "Armor crate"

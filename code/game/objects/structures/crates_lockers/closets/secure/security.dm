@@ -97,7 +97,6 @@
 			new /obj/item/weapon/storage/backpack/satchel_sec(src)
 		new /obj/item/clothing/head/HoS(src)
 		new /obj/item/clothing/suit/armor/vest/security(src)
-		new /obj/item/clothing/suit/storage/vest/hos(src)
 		new /obj/item/clothing/under/rank/ih_commander/jensen(src)
 		new /obj/item/clothing/suit/armor/hos/jensen(src)
 		new /obj/item/clothing/suit/armor/hos(src)
@@ -138,7 +137,6 @@
 		else
 			new /obj/item/weapon/storage/backpack/satchel_sec(src)
 		new /obj/item/clothing/suit/armor/vest/security(src)
-		new /obj/item/clothing/suit/storage/vest/warden(src)
 		new /obj/item/clothing/under/rank/warden(src)
 		new /obj/item/clothing/suit/armor/vest/serg(src)
 		new /obj/item/clothing/head/warden(src)
