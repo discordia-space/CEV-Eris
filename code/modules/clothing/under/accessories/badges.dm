@@ -5,14 +5,14 @@
 */
 
 /obj/item/clothing/accessory/badge
-	name = "detective's badge"
-	desc = "A corporate security badge, made from gold and set on false leather."
+	name = "Inspector's badge"
+	desc = "A Ironhammer Security badge, made from gold and set on false leather."
 	icon_state = "badge"
 	item_state = "marshalbadge"
 	slot_flags = SLOT_BELT | SLOT_TIE
 
 	var/stored_name
-	var/badge_string = "Corporate Security"
+	var/badge_string = "Ironhammer Security"
 
 /obj/item/clothing/accessory/badge/old
 	name = "faded badge"
@@ -43,7 +43,7 @@
 //.Holobadges.
 /obj/item/clothing/accessory/badge/holo
 	name = "holobadge"
-	desc = "This glowing blue badge marks the holder as a member of corporate security."
+	desc = "This glowing blue badge marks the holder as a member of Ironhammer Security."
 	icon_state = "holobadge"
 	item_state = "holobadge"
 	var/emagged //Emagging removes Sec check.
@@ -101,15 +101,15 @@
 
 
 /obj/item/clothing/accessory/badge/warden
-	name = "warden's badge"
-	desc = "A silver corporate security badge. Stamped with the words 'Brig Officer.'"
+	name = "Gunnery Sergeant badge"
+	desc = "A silver Ironhammer Security badge. Stamped with the words 'Sergeant.'"
 	icon_state = "silverbadge"
 	slot_flags = SLOT_TIE
 
 
 /obj/item/clothing/accessory/badge/hos
-	name = "commander's badge"
-	desc = "An immaculately polished gold security badge. Labeled 'Commander.'"
+	name = "Commander's badge"
+	desc = "An immaculately polished gold Ironhammer Security badge. Labeled 'Commander.'"
 	icon_state = "goldbadge"
 	slot_flags = SLOT_TIE
 

@@ -10,7 +10,7 @@
  */
 /obj/item/clothing/under/rank/warden
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the word \"Warden\" written on the shoulders."
-	name = "warden's jumpsuit"
+	name = "Gunnery Sergeant jumpsuit"
 	icon_state = "warden"
 	item_state = "r_suit"
 
@@ -18,13 +18,13 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/head/warden
-	name = "warden's hat"
+	name = "Gunnery Sergeant hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force."
 	icon_state = "policehelm"
 	body_parts_covered = 0
 
 /obj/item/clothing/under/rank/security
-	name = "ironhammer operative's jumpsuit"
+	name = "Ironhammer Operative's jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "security"
 	item_state = "r_suit"

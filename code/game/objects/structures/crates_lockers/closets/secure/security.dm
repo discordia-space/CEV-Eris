@@ -158,7 +158,7 @@
 
 
 /obj/structure/closet/secure_closet/security
-	name = "ironhammer operative's locker"
+	name = "Ironhammer Operative locker"
 	req_access = list(access_brig)
 	icon_state = "sec1"
 	icon_closed = "sec"
@@ -185,7 +185,6 @@
 		new /obj/item/taperoll/police(src)
 		new /obj/item/device/hailer(src)
 		new /obj/item/clothing/accessory/storage/black_vest(src)
-		new /obj/item/clothing/head/soft/sec/corp(src)
 		new /obj/item/weapon/gun/energy/taser(src)
 		return
 
