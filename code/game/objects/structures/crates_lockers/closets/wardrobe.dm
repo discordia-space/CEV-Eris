@@ -17,15 +17,9 @@
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/head/soft/sec(src)
-	new /obj/item/clothing/head/soft/sec(src)
-	new /obj/item/clothing/head/soft/sec(src)
-	new /obj/item/clothing/head/beret/sec(src)
-	new /obj/item/clothing/head/beret/sec(src)
-	new /obj/item/clothing/head/beret/sec(src)
-	new /obj/item/clothing/head/beret/sec/corporate/officer(src)
-	new /obj/item/clothing/head/beret/sec/corporate/officer(src)
-	new /obj/item/clothing/head/beret/sec/corporate/officer(src)
+	new /obj/item/clothing/head/beret/sec/navy/officer(src)
+	new /obj/item/clothing/head/beret/sec/navy/officer(src)
+	new /obj/item/clothing/head/beret/sec/navy/officer(src)
 	return
 
 

@@ -113,7 +113,7 @@
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/weapon/melee/telebaton(src)
-		new /obj/item/clothing/head/beret/sec/corporate/hos(src)
+		new /obj/item/clothing/head/beret/sec/navy/hos(src)
 		new /obj/item/clothing/accessory/badge/hos(src)
 		return
 
@@ -151,7 +151,7 @@
 		new /obj/item/weapon/melee/baton/loaded(src)
 		new /obj/item/weapon/gun/energy/gun(src)
 		new /obj/item/weapon/storage/box/holobadge(src)
-		new /obj/item/clothing/head/beret/sec/corporate/warden(src)
+		new /obj/item/clothing/head/beret/sec/navy/warden(src)
 		new /obj/item/clothing/accessory/badge/warden(src)
 		return
 
@@ -175,6 +175,7 @@
 			new /obj/item/weapon/storage/backpack/satchel_sec(src)
 		new /obj/item/clothing/suit/armor/vest/security(src)
 		new /obj/item/clothing/head/helmet(src)
+		new /obj/item/clothing/head/beret/sec/navy/officer(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)
