@@ -114,6 +114,35 @@
 	)
 
 
+/datum/job/medspec
+	title = "Medical Specialist"
+	flag = MEDSPEC
+	department = "Security"
+	department_flag = ENGSEC
+	faction = "Station"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Ironhammer Commander"
+	selection_color = "#ffeeee"
+	economic_modifier = 5
+	access = list(access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
+	minimal_access = list(access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
+	minimal_player_age = 3
+	idtype = /obj/item/weapon/card/id/medcpec
+
+	implanted = 1
+	uniform = /obj/item/clothing/under/rank/medspec
+	pda = /obj/item/device/pda/detective
+	ear = /obj/item/device/radio/headset/headset_sec
+	shoes = /obj/item/clothing/shoes/jackboots
+	gloves = /obj/item/clothing/gloves/black
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
+	hand = /obj/item/weapon/storage/briefcase/crimekit
+
+	put_in_backpack = list(\
+		/obj/item/weapon/storage/box/evidence,\
+	)
+
 
 /datum/job/ihoper
 	title = "Ironhammer Operative"

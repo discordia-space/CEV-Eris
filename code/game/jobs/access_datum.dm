@@ -384,6 +384,12 @@
 	desc = "Medical Equipment"
 	region = ACCESS_REGION_MEDBAY
 
+/var/const/access_medspec = 67
+/datum/access/medspec
+	id = access_medspec
+	desc = "Medical Specialist"
+	region = ACCESS_REGION_SECURITY
+
 /******************
 * Central Command *
 ******************/
