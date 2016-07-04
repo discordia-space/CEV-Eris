@@ -109,6 +109,7 @@ var/list/civilian_positions = list(
 var/list/security_positions = list(
 	"Ironhammer Commander",
 	"Gunnery Sergeant",
+	"Medical Specialist",
 	"Inspector",
 	"Ironhammer Operative"
 )
