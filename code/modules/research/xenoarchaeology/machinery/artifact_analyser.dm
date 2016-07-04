@@ -125,6 +125,7 @@
 		usr << browse(null, "window=artanalyser")
 
 	..()
+	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	updateDialog()
 
 //hardcoded responses, oh well

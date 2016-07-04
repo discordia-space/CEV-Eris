@@ -185,8 +185,8 @@ datum/preferences
 		qdel(preview_icon_side)
 		qdel(preview_icon)
 
-		var/g = "m"
-		if(gender == FEMALE)	g = "f"
+		var/g = "_m"
+		if(gender == FEMALE)	g = "_f"
 
 		var/icon/icobase
 		var/datum/species/current_species = all_species[species]
@@ -196,9 +196,9 @@ datum/preferences
 		else
 			icobase = 'icons/mob/human_races/r_human.dmi'
 
-		preview_icon = new /icon(icobase, "torso_[g]")
-		preview_icon.Blend(new /icon(icobase, "groin_[g]"), ICON_OVERLAY)
-		preview_icon.Blend(new /icon(icobase, "head_[g]"), ICON_OVERLAY)
+		preview_icon = new /icon(icobase, "torso[g][body.index]")
+		preview_icon.Blend(new /icon(icobase, "groin[g][body.index]"), ICON_OVERLAY)
+		preview_icon.Blend(new /icon(icobase, "head[g][body.index]"), ICON_OVERLAY)
 
 		for(var/name in list("r_arm","r_hand","r_leg","r_foot","l_leg","l_foot","l_arm","l_hand"))
 			if(organ_data[name] == "amputated") continue
@@ -206,9 +206,9 @@ datum/preferences
 				var/datum/robolimb/R
 				if(rlimb_data[name]) R = all_robolimbs[rlimb_data[name]]
 				if(!R) R = basic_robolimb
-				preview_icon.Blend(icon(R.icon, "[name]"), ICON_OVERLAY) // This doesn't check gendered_icon. Not an issue while only limbs can be robotic.
+				preview_icon.Blend(icon(R.icon, "[name][g][body.index]"), ICON_OVERLAY) // This doesn't check gendered_icon. Not an issue while only limbs can be robotic.
 				continue
-			preview_icon.Blend(new /icon(icobase, "[name]"), ICON_OVERLAY)
+			preview_icon.Blend(new /icon(icobase, "[name][g][body.index]"), ICON_OVERLAY)
 
 		//Tail
 		if(current_species && (current_species.tail))

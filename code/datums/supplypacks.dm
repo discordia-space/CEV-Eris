@@ -765,10 +765,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/clothing/suit/armor/vest,
 					/obj/item/clothing/suit/armor/vest/security,
 					/obj/item/clothing/suit/armor/vest/detective,
-					/obj/item/clothing/suit/storage/vest/hos,
-					/obj/item/clothing/suit/storage/vest/pcrc,
-					/obj/item/clothing/suit/storage/vest/warden,
-					/obj/item/clothing/suit/storage/vest/officer,
 					/obj/item/clothing/suit/storage/vest)
 
 	name = "Armor crate"
@@ -1087,29 +1083,19 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/clothing/suit/pirate,
 					/obj/item/clothing/suit/judgerobe,
 					/obj/item/clothing/suit/wcoat,
-					/obj/item/clothing/suit/hastur,
-					/obj/item/clothing/suit/holidaypriest,
 					/obj/item/clothing/suit/nun,
 					/obj/item/clothing/suit/imperium_monk,
-					/obj/item/clothing/suit/ianshirt,
 					///obj/item/clothing/under/gimmick/rank/captain/suit,
 					/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
 					/obj/item/clothing/under/lawyer/purpsuit,
-					/obj/item/clothing/under/rank/mailman,
-					/obj/item/clothing/under/dress/dress_saloon,
-					/obj/item/clothing/suit/suspenders,
-					/obj/item/clothing/suit/storage/toggle/labcoat/mad,
 					/obj/item/clothing/suit/bio_suit/plaguedoctorsuit,
 					/obj/item/clothing/under/schoolgirl,
 					/obj/item/clothing/under/owl,
 					/obj/item/clothing/under/waiter,
 					/obj/item/clothing/under/gladiator,
 					/obj/item/clothing/under/soviet,
-					/obj/item/clothing/under/scratch,
 					/obj/item/clothing/under/wedding/bride_white,
 					/obj/item/clothing/suit/chef,
-					/obj/item/clothing/suit/apron/overalls,
-					/obj/item/clothing/under/redcoat,
 					/obj/item/clothing/under/kilt)
 	name = "Costumes crate"
 	cost = 10
@@ -1122,10 +1108,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/that,
 					/obj/item/clothing/suit/storage/toggle/lawyer/bluejacket,
 					/obj/item/clothing/suit/storage/lawyer/purpjacket,
-					/obj/item/clothing/under/suit_jacket,
-					/obj/item/clothing/under/suit_jacket/female,
-					/obj/item/clothing/under/suit_jacket/really_black,
-					/obj/item/clothing/under/suit_jacket/red,
 					/obj/item/clothing/under/lawyer/bluesuit,
 					/obj/item/clothing/under/lawyer/purpsuit,
 					/obj/item/clothing/shoes/black,
@@ -1467,8 +1449,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet
 	cost = 10
 	num_contained = 2
-	contains = list(/obj/item/clothing/head/redcoat,
-					/obj/item/clothing/head/mailman,
+	contains = list(/obj/item/clothing/head/mailman,
 					/obj/item/clothing/head/plaguedoctorhat,
 					/obj/item/clothing/head/pirate,
 					/obj/item/clothing/head/hasturhood,
@@ -1508,17 +1489,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet
 	cost = 15
 	num_contained = 1
-	contains = list(/obj/item/clothing/under/wedding/bride_orange,
-					/obj/item/clothing/under/wedding/bride_purple,
-					/obj/item/clothing/under/wedding/bride_blue,
-					/obj/item/clothing/under/wedding/bride_red,
-					/obj/item/clothing/under/wedding/bride_white,
-					/obj/item/clothing/under/sundress,
-					/obj/item/clothing/under/dress/dress_green,
-					/obj/item/clothing/under/dress/dress_pink,
-					/obj/item/clothing/under/dress/dress_orange,
-					/obj/item/clothing/under/dress/dress_yellow,
-					/obj/item/clothing/under/dress/dress_saloon)
+	contains = list(/obj/item/clothing/under/wedding/bride_white,
+					/obj/item/clothing/under/dress/dress_yellow,)
 	group = "Miscellaneous"
 
 /datum/supply_packs/painters

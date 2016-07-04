@@ -378,6 +378,16 @@ area/space/atmosalert()
 /area/centcom/holding
 	name = "\improper Holding Facility"
 
+
+/area/testing/first
+	name = "testing one"
+
+/area/testing/second
+	name = "testing two"
+
+/area/testing/third
+	name = "testing three"
+
 //SYNDICATES
 
 /area/syndicate_mothership

@@ -75,7 +75,7 @@
 	if(output)
 		output.air.volume = ATMOS_DEFAULT_VOLUME_MIXER * 0.75 * inputs.len
 		output.concentration = 1
-	
+
 	rebuild_mixing_inputs()
 
 /obj/machinery/atmospherics/omni/mixer/proc/mapper_set()
@@ -198,6 +198,7 @@
 			if("switch_conlock")
 				con_lock(dir_flag(href_list["dir"]))
 
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	update_icon()
 	nanomanager.update_uis(src)
 	return

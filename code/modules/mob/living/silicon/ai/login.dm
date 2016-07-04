@@ -12,7 +12,9 @@
 	blind.icon_state = "black"
 	blind.name = " "
 	blind.screen_loc = ui_entire_screen
-	blind.layer = 0
+	blind.mouse_opacity = 0
+	blind.layer = 18
+	blind.alpha = 0
 	client.screen.Add( blind, flash )
 
 	if(stat != DEAD)

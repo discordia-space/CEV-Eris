@@ -3,6 +3,8 @@
 /obj/effect/damagedfloor/fire
 
 /obj/effect/damagedfloor/rust
+	icon = 'icons/turf/flooring/tiles.dmi'
+	icon_state = "steel_broken2"
 
 /obj/effect/damagedfloor/New(loc)
 	var/turf/simulated/floor/F = loc
