@@ -115,10 +115,11 @@
 	ideal_character_age = 40
 
 
-	uniform = /obj/item/clothing/under/rank/cargo
+	uniform = /obj/item/clothing/under/rank/cargotech
+	suit = /obj/item/clothing/suit/storage/qm_coat
 	shoes = /obj/item/clothing/shoes/brown
 	pda = /obj/item/device/pda/quartermaster
-//	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/black
 	ear = /obj/item/device/radio/headset/headset_cargo
 	hand = /obj/item/weapon/clipboard
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -140,6 +141,7 @@
 	idtype = /obj/item/weapon/card/id/qm
 
 	uniform = /obj/item/clothing/under/rank/cargotech
+	suit = /obj/item/clothing/suit/storage/cargo_jacket
 	pda = /obj/item/device/pda/cargo
 	ear = /obj/item/device/radio/headset/headset_cargo
 
@@ -227,7 +229,6 @@
 	minimal_access = list(access_maint_tunnels)
 
 	uniform = /obj/item/clothing/under/mime
-	suit = /obj/item/clothing/suit/suspenders
 	pda = /obj/item/device/pda/mime
 	hat = /obj/item/clothing/head/beret
 	gloves = /obj/item/clothing/gloves/white
@@ -286,7 +287,7 @@
 	alt_titles = list("Journalist")
 
 
-	uniform = /obj/item/clothing/under/suit_jacket/red
+	uniform = /obj/item/clothing/under/librarian
 	pda = /obj/item/device/pda/librarian
 	hand = /obj/item/weapon/barcodescanner
 
@@ -310,7 +311,6 @@
 	uniform = /obj/item/clothing/under/rank/internalaffairs
 	shoes = /obj/item/clothing/shoes/brown
 	pda = /obj/item/device/pda/lawyer
-	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
 	ear = /obj/item/device/radio/headset/headset_sec
 	hand = /obj/item/weapon/storage/briefcase
 	glasses = /obj/item/clothing/glasses/sunglasses/big

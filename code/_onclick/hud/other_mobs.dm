@@ -11,13 +11,15 @@
 //mob/living/carbon/brain/instantiate_hud(var/datum/hud/HUD)
 //	HUD.brain_hud()
 
-//datum/hud/proc/brain_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
-//	mymob.blind = new /obj/screen()
-//	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
-//	mymob.blind.icon_state = "blackimageoverlay"
-//	mymob.blind.name = " "
-//	mymob.blind.screen_loc = "1,1"
-//	mymob.blind.layer = 0
+/*/datum/hud/proc/brain_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
+	mymob.blind = new /obj/screen()
+	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
+	mymob.blind.icon_state = "blackimageoverlay"
+	mymob.blind.name = " "
+	mymob.blind.screen_loc = "1,1"
+	mymob.blind.mouse_opacity = 0
+	mymob.blind.layer = 18
+	mymob.blind.alpha = 0*/
 
 //mob/living/silicon/ai/instantiate_hud(var/datum/hud/HUD)
 //	HUD.ai_hud()

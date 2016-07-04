@@ -204,6 +204,7 @@ Thus, the two variables affect pump operation are set in New():
 			var/new_pressure = input(usr,"Enter new output pressure (0-[max_pressure_setting]kPa)","Pressure control",src.target_pressure) as num
 			src.target_pressure = between(0, new_pressure, max_pressure_setting)
 
+	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 

@@ -271,8 +271,7 @@ var/global/list/damage_icon_parts = list()
 		base_icon = human_icon_cache[icon_key]
 	else
 		//BEGIN CACHED ICON GENERATION.
-		var/obj/item/organ/external/chest = get_organ("chest")
-		base_icon = chest.get_icon()
+		base_icon = new('icons/mob/human.dmi',"blank")
 
 		for(var/obj/item/organ/external/part in organs)
 			var/icon/temp = part.get_icon(skeleton)
@@ -478,7 +477,7 @@ var/global/list/damage_icon_parts = list()
 			under_icon = body_build.uniform_icon
 
 		//need to append _s to the icon state for legacy compatibility
-		var/image/standing = image(icon = under_icon, icon_state = "[under_state]_s")
+		var/image/standing = image(icon = under_icon, icon_state = under_state)
 		standing.color = w_uniform.color
 
 		//apply blood overlay

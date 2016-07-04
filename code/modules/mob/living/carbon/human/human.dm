@@ -332,11 +332,11 @@
 //Trust me I'm an engineer
 //I think we'll put this shit right here
 var/list/rank_prefix = list(\
-	"Security Officer" = "Oper.",\
-	"Detective" = "Insp.",\
-	"Warden" = "Sgt.",\
-	"Head of Security" = "Lt.",\
-	"Captain" = "Capt.",\
+	"Ironhammer Operative" = "Operative",\
+	"Inspector" = "Inspector",\
+	"Gunnery Sergeant" = "Sergeant",\
+	"Ironhammer Commander" = "Lieutenant",\
+	"Captain" = "Captain",\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)

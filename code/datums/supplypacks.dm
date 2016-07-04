@@ -765,10 +765,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/clothing/suit/armor/vest,
 					/obj/item/clothing/suit/armor/vest/security,
 					/obj/item/clothing/suit/armor/vest/detective,
-					/obj/item/clothing/suit/storage/vest/hos,
-					/obj/item/clothing/suit/storage/vest/pcrc,
-					/obj/item/clothing/suit/storage/vest/warden,
-					/obj/item/clothing/suit/storage/vest/officer,
 					/obj/item/clothing/suit/storage/vest)
 
 	name = "Armor crate"
@@ -1087,16 +1083,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/clothing/suit/pirate,
 					/obj/item/clothing/suit/judgerobe,
 					/obj/item/clothing/suit/wcoat,
-					/obj/item/clothing/suit/hastur,
-					/obj/item/clothing/suit/holidaypriest,
 					/obj/item/clothing/suit/nun,
 					/obj/item/clothing/suit/imperium_monk,
-					/obj/item/clothing/suit/ianshirt,
 					///obj/item/clothing/under/gimmick/rank/captain/suit,
 					/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
 					/obj/item/clothing/under/lawyer/purpsuit,
-					/obj/item/clothing/suit/suspenders,
-					/obj/item/clothing/suit/storage/toggle/labcoat/mad,
 					/obj/item/clothing/suit/bio_suit/plaguedoctorsuit,
 					/obj/item/clothing/under/schoolgirl,
 					/obj/item/clothing/under/owl,
@@ -1105,7 +1096,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/under/soviet,
 					/obj/item/clothing/under/wedding/bride_white,
 					/obj/item/clothing/suit/chef,
-					/obj/item/clothing/suit/apron/overalls,
 					/obj/item/clothing/under/kilt)
 	name = "Costumes crate"
 	cost = 10
@@ -1118,8 +1108,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/that,
 					/obj/item/clothing/suit/storage/toggle/lawyer/bluejacket,
 					/obj/item/clothing/suit/storage/lawyer/purpjacket,
-					/obj/item/clothing/under/suit_jacket,
-					/obj/item/clothing/under/suit_jacket/red,
 					/obj/item/clothing/under/lawyer/bluesuit,
 					/obj/item/clothing/under/lawyer/purpsuit,
 					/obj/item/clothing/shoes/black,

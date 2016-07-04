@@ -30,7 +30,7 @@
 
 	New()
 		..()
-		new /obj/item/clothing/under/rank/cargo(src)
+		new /obj/item/clothing/under/rank/cargotech(src)
 		new /obj/item/clothing/shoes/brown(src)
 		new /obj/item/device/radio/headset/headset_cargo(src)
 		new /obj/item/clothing/gloves/black(src)
