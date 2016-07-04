@@ -258,6 +258,9 @@ datum/hud/New(mob/owner)
 /mob/proc/HUD_create()
 	return
 
+/mob/proc/HUD_check()
+	return
+
 /mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
 	return
 

@@ -9,7 +9,8 @@
 	var/hud_updateflag = 0
 
 	var/list/HUDneed = list() // What HUD object need see
-	var/list/HUDnames = list() // Fast link to HUD objects
+	var/list/HUDinventory = list()
+	var/list/HUDfrippery = list()
 	var/list/HUDprocess = list() //What HUD object need process
 	var/defaultHUD = "" //Defauld mob hud
 

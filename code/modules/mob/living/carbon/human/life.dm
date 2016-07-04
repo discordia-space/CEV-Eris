@@ -35,83 +35,98 @@
 	var/global/list/overlays_cache = null
 
 
-/mob/living/carbon/human/HUD_create() //EKUDZA HAS HERE
-	if(!usr.client)
+/mob/living/carbon/human/HUD_check()
+	var/mob/living/carbon/human/H = src
+	if(!H.client)
 		return
-//	usr.client.screen.Cut()
-	if(istype(usr, /mob/living/carbon/human) && (usr.client.prefs.UI_style != null))
-		if (!global.HUDdatums.Find(usr.client.prefs.UI_style)) // Проверка наличии данных
-			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
+	if(istype(H, /mob/living/carbon/human) && (H.client.prefs.UI_style != null) && (H.defaultHUD == null || H.defaultHUD == ""))
+		if (!(global.HUDdatums.Find(H.client.prefs.UI_style))) // Проверка наличии данных
+			log_debug("[H] try update a HUD, but HUDdatums not have [H.client.prefs.UI_style]!")
+			H << "Some problem hase accure, use default HUD type"
+			H.defaultHUD = "ErisStyle"
 		else
-			var/mob/living/carbon/human/H = usr
-			var/datum/hud/human/HUDdatum = global.HUDdatums[usr.client.prefs.UI_style]
-			if (!H.HUDneed.len)
-				//for(var/HUDname in HUDdatum.HUDneed)
-				for(var/HUDname in species.hud.ProcessHUD)
-					if (!HUDdatum.HUDneed.Find(HUDname))
-						log_debug("[usr] try create a [HUDname], bit it no have in HUDdatum [HUDdatum.name]")
-					else
-						var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-						var/obj/screen/HUD = new HUDtype()
-						H.HUDneed += HUD
-						if (HUD.process_flag)
-							H.HUDprocess += HUD
-						if(HUD.name)
-							H.HUDnames[HUD.name] = HUD
-						HUD.icon = HUDdatum.icon
-						HUD.screen_loc = HUDdatum.HUDneed[HUDname]["loc"]
-				for (var/gear_slot in species.hud.gear)
-					if (!HUDdatum.slot_data.Find(gear_slot))
-						log_debug("[usr] try take inventory data for [gear_slot], but HUDdatum not have it!")
-						usr << "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins"
-					else
-						var/obj/screen/inventory/inv_box = new /obj/screen/inventory()
-						//var/list/slot_data =  hud_data.gear[gear_slot]
-						inv_box.name =        HUDdatum.slot_data[gear_slot]["name"]
-						inv_box.screen_loc =  HUDdatum.slot_data[gear_slot]["loc"]
-						inv_box.slot_id =     species.hud.gear[gear_slot]
-						inv_box.icon_state =  HUDdatum.slot_data[gear_slot]["state"]
-						if (HUDdatum.icon)
-							inv_box.icon = HUDdatum.icon
-						else
-							log_debug("HUDdatum [HUDdatum.name] no have icon data!")
-						if(HUDdatum.slot_data[gear_slot]["dir"])
-							inv_box.set_dir(HUDdatum.slot_data[gear_slot]["dir"])
-						H.HUDneed += inv_box
-						/*if(slot_data["toggle"])
-							src.other += inv_box
-							has_hidden_gear = 1
-						else
-							src.adding += inv_box*/
+			H.defaultHUD = H.client.prefs.UI_style
+
+	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+
+	var/recreate_flag = 0
+	if ((H.HUDneed.len != 0) && (H.HUDneed.len == species.hud.ProcessHUD.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
+		for (var/i=1,i<=HUDneed.len,i++)
+			if(!(HUDdatum.HUDneed.Find(HUDneed[i]) && species.hud.ProcessHUD.Find(HUDneed[i]))) //Если данного худа нет в датуме худа и в датуме расы.
+				recreate_flag = 1
+				break //то нахуй это дерьмо
+	else
+		recreate_flag = 1
+
+	if ((H.HUDinventory.len != 0) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
+		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
+			if(!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
+				recreate_flag = 1
+				break //то нахуй это дерьмо
+	else
+		recreate_flag = 1
+
+	if (recreate_flag)
+		H.destroy_HUD()
+		H.HUD_create()
+		H.show_HUD()
+	else
+		H.show_HUD()
 
 
+	world << "HUD_check... [recreate_flag]"
+	return recreate_flag
 
+/*
+				if(HUDdatum.HUDneed[HUDelement.name]["icon"])
+					HUDelement.icon = HUDdatum.HUDneed[HUDelement.name]["icon"]
+				else
+					HUDelement.icon = HUDdatum.icon
+				HUDelement.screen_loc = HUDdatum.HUDneed[HUDelement.name]["loc"]
+*/
 
-/*	var/has_hidden_gear
-	for(var/gear_slot in hud_data.gear)
+/mob/living/carbon/human/HUD_create() //EKUDZA HAS HERE
+	var/mob/living/carbon/human/H = src
+	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 
-		inv_box = new /obj/screen/inventory()
-		inv_box.icon = ui_style
-		inv_box.layer = 19
-		inv_box.color = ui_color
-		inv_box.alpha = ui_alpha
-
-		var/list/slot_data =  hud_data.gear[gear_slot]
-		inv_box.name =        gear_slot
-		inv_box.screen_loc =  slot_data["loc"]
-		inv_box.slot_id =     slot_data["slot"]
-		inv_box.icon_state =  slot_data["state"]
-
-		if(slot_data["dir"])
-			inv_box.set_dir(slot_data["dir"])
-
-		if(slot_data["toggle"])
-			src.other += inv_box
-			has_hidden_gear = 1
+	for(var/HUDname in species.hud.ProcessHUD) //Добавляем Элементы ХУДа (не инвентарь)
+		if (!(HUDdatum.HUDneed.Find(HUDname))) //Ищем такой в датуме
+			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
-			src.adding += inv_box*/
+			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
+			var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], src)
+			if(HUDdatum.HUDneed[HUDname]["icon"])//Анализ на овверайд icon
+				HUD.icon = HUDdatum.HUDneed[HUDname]["icon"]
+			else
+				HUD.icon = HUDdatum.icon
+			if(HUDdatum.HUDneed[HUDname]["icon_state"])//Анализ на овверайд icon_state
+				HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]
+			H.HUDneed[HUD.name] += HUD//Добавляем в список худов
+			if (HUD.process_flag)//Если худ нужно процессить
+				H.HUDprocess += HUD//Вливаем в соотвествующий список
 
+	for (var/gear_slot in species.hud.gear)//Добавляем Элементы ХУДа (инвентарь)
+		if (!HUDdatum.slot_data.Find(gear_slot))
+			log_debug("[usr] try take inventory data for [gear_slot], but HUDdatum not have it!")
+			src << "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins"
+			return
+		else
+			var/HUDtype
+			if(HUDdatum.slot_data[gear_slot]["type"])
+				HUDtype = HUDdatum.slot_data[gear_slot]["type"]
+			else
+				HUDtype = /obj/screen/inventory
 
+			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"], HUDdatum.slot_data[gear_slot]["loc"], species.hud.gear[gear_slot], HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], src)
+			if(HUDdatum.slot_data[gear_slot]["dir"])
+				inv_box.set_dir(HUDdatum.slot_data[gear_slot]["dir"])
+			H.HUDinventory += inv_box
+			/*if(slot_data["toggle"])
+				src.other += inv_box
+				has_hidden_gear = 1
+			else
+				src.adding += inv_box*/
+	//Добавляем Элементы ХУДа (украшения)
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0

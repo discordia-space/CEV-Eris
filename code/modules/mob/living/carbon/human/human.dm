@@ -50,8 +50,8 @@
 		dna.real_name = real_name
 		sync_organ_dna()
 	make_blood()
-	spawn(5)
-		HUD_create()
+//	spawn(5)
+//		HUD_check()
 //		if(usr.client)
 //			for (var/H in HUDneeds)
 //				var/obj/screen/B = new H()

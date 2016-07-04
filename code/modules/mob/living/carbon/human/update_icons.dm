@@ -416,7 +416,7 @@ var/global/list/damage_icon_parts = list()
 	update_mutations(0)
 	update_body(0)
 	update_hair(0)
-	//HUD_create()
+	HUD_check()
 	update_inv_w_uniform(0)
 	update_inv_wear_id(0)
 	update_inv_gloves(0)
@@ -444,7 +444,7 @@ var/global/list/damage_icon_parts = list()
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
 /mob/living/carbon/human/proc/find_inv_position(var/slot_id) //Find HUD position on screen
-	for(var/obj/screen/inventory/HUDinv in HUDneed)
+	for(var/obj/screen/inventory/HUDinv in HUDinventory)
 		if (HUDinv.slot_id == slot_id)
 			//world << "[slot_id] [HUDinv.screen_loc]"
 			return HUDinv.screen_loc

@@ -873,14 +873,14 @@ default behaviour is:
 
 /mob/living/throw_mode_off()
 	src.in_throw_mode = 0
-	if (HUDnames.Find("throw"))
-		var/obj/screen/HUDthrow/HUD = HUDnames["throw"]
+	if (HUDneed.Find("throw"))
+		var/obj/screen/HUDthrow/HUD = HUDneed["throw"]
 		HUD.update_icon()
 
 /mob/living/throw_mode_on()
 	src.in_throw_mode = 1
-	if (HUDnames.Find("throw"))
-		var/obj/screen/HUDthrow/HUD = HUDnames["throw"]
+	if (HUDneed.Find("throw"))
+		var/obj/screen/HUDthrow/HUD = HUDneed["throw"]
 		HUD.update_icon()
 
 	/*if (var/obj/screen/HUDthrow/HUD in src.client.screen)
@@ -899,8 +899,8 @@ default behaviour is:
 		pulling = null
 /*		if(pullin)
 			pullin.icon_state = "pull0"*/
-		if (HUDnames.Find("pull"))
-			var/obj/screen/HUDthrow/HUD = HUDnames["pull"]
+		if (HUDneed.Find("pull"))
+			var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 			HUD.update_icon()
 
 /mob/living/start_pulling(var/atom/movable/AM)
@@ -954,8 +954,8 @@ default behaviour is:
 
 	/*if(pullin)
 		pullin.icon_state = "pull1"*/
-	if (HUDnames.Find("pull"))
-		var/obj/screen/HUDthrow/HUD = HUDnames["pull"]
+	if (HUDneed.Find("pull"))
+		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 		HUD.update_icon()
 
 	if(ishuman(AM))
@@ -967,3 +967,26 @@ default behaviour is:
 	if(ismob(AM))
 		var/mob/pulled = AM
 		pulled.inertia_dir = 0
+
+/mob/living/proc/destroy_HUD()
+	var/mob/living/H = src
+	src.client.screen.Cut()
+	H.HUDprocess.Cut()
+	for (var/i=1,i<=H.HUDneed.len,i++)
+		var/p = H.HUDneed[i]
+		qdel(H.HUDneed[p])
+	for (var/HUDelement in H.HUDinventory)
+		qdel(HUDelement)
+	H.HUDneed.Cut()
+	H.HUDinventory.Cut()
+
+/mob/living/proc/show_HUD()
+	if(src.client)
+		src.client.screen.Cut()
+		if (src.HUDneed.len)
+			for (var/i=1,i<=HUDneed.len,i++)
+				var/p = HUDneed[i]
+				src.client.screen += HUDneed[p]
+		if (src.HUDinventory.len)
+			for (var/obj/screen/inventory/HUDinv in src.HUDinventory)
+				src.client.screen += HUDinv

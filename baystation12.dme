@@ -14,6 +14,7 @@
 #include "code\global.dm"
 #include "code\hub.dm"
 #include "code\names.dm"
+#include "code\New_Hud_Manual.dm"
 #include "code\stylesheet.dm"
 #include "code\world.dm"
 #include "code\__defines\_compile_options.dm"

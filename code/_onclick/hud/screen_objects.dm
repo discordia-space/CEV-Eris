@@ -12,22 +12,24 @@
 	layer = 20.0
 	unacidable = 1
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
-//	var/x_pos
-//	var/y_pos
 	var/mob/living/parentmob
 	var/process_flag = 0
 
+/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob)
+	src.parentmob = _parentmob
+	src.name = _name
+	src.screen_loc = _screen_loc
 
-/obj/screen/New()
+
+///obj/screen/New()
 //	set in usr.client.screen
-	//screen_loc = "[x_pos],[y_pos]"
-	if(usr)
-		parentmob = usr
-		if(usr.client)
-			usr.client.screen += src
-		return 1
-	else
-		return 0
+//screen_loc = "[x_pos],[y_pos]"
+//	world << "usr:[usr] src:[src]"
+//	if(usr)
+//		parentmob = usr
+//		return 1
+//	else
+//		return 0
 
 //	usr << hud_state
 	//world << "src: [src], parent [parentmob]"
@@ -396,6 +398,10 @@
 		update_icon()
 	return 1
 
+/obj/screen/zone_sel/New()
+	..()
+	update_icon()
+
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[parentmob.targeted_organ]")
@@ -432,6 +438,14 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	layer = 19
 
+/obj/screen/inventory/New(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
+	src.name = _name
+	src.screen_loc = _screen_loc
+	src.icon = _icon
+	src.slot_id = _slot_id
+	src.icon_state = _icon_state
+	src.parentmob = _parentmob
+
 /obj/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
@@ -442,14 +456,14 @@
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1
 	switch(name)
-		if("r_hand")
+/*		if("r_hand")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("r")
 		if("l_hand")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
-				C.activate_hand("l")
+				C.activate_hand("l")*/
 		if("swap")
 			usr:swap_hand()
 		if("hand")
@@ -459,6 +473,26 @@
 				usr.update_inv_l_hand(0)
 				usr.update_inv_r_hand(0)
 	return 1
+
+/obj/screen/inventory/hand
+	name = "nonamehand"
+
+/obj/screen/inventory/hand/New()
+	..()
+	update_icon()
+
+/obj/screen/inventory/hand/Click()
+	var/mob/living/carbon/C = parentmob
+	if (src.slot_id == slot_l_hand)
+		C.activate_hand("l")
+	else
+		C.activate_hand("r")
+
+/obj/screen/inventory/hand/update_icon()
+	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+		src.icon_state = "act_hand"
+	else
+		src.icon_state = "hand"
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------
@@ -776,8 +810,8 @@
 	screen_loc = "14,2"
 
 /obj/screen/pull/New()
-	if (..())
-		update_icon()
+	..()
+	update_icon()
 
 /obj/screen/pull/Click()
 	usr.stop_pulling()
@@ -802,14 +836,14 @@
 		//usr.verbs += /obj/screen/HUDthrow/verb/toggle_throw_mode()
 		if(usr.client)
 			usr.client.screen += src*/
-	if (..())
-		update_icon()
+	..()
+	update_icon()
 
 /obj/screen/HUDthrow/Click()
 	parentmob.toggle_throw_mode()
 
 /obj/screen/HUDthrow/update_icon()
-	if (usr.in_throw_mode)
+	if (parentmob.in_throw_mode)
 		icon_state = "act_throw_on"
 	else
 		icon_state = "act_throw_off"
@@ -864,8 +898,8 @@
 	update_icon()
 
 /obj/screen/mov_intent/New()
-	if (..())
-		update_icon()
+	..()
+	update_icon()
 
 /obj/screen/mov_intent/update_icon()
 	var/mob/living/carbon/C = parentmob
@@ -896,8 +930,8 @@
 	screen_loc = "8,2"
 
 /obj/screen/intent/New()
-	if(..())
-		update_icon()
+	..()
+	update_icon()
 
 /obj/screen/intent/Click()
 	switch (parentmob.a_intent)
