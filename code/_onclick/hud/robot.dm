@@ -1,9 +1,9 @@
 var/obj/screen/robot_inventory
 
-/mob/living/silicon/robot/instantiate_hud(var/datum/hud/HUD)
-	HUD.robot_hud()
+//mob/living/silicon/robot/instantiate_hud(var/datum/hud/HUD)
+//	HUD.robot_hud()
 
-/datum/hud/proc/robot_hud()
+/*/datum/hud/proc/robot_hud()
 
 	src.adding = list()
 	src.other = list()
@@ -164,10 +164,10 @@ var/obj/screen/robot_inventory
 	mymob.client.screen += list( mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.fire, mymob.hands, mymob.healths, mymob:cells, mymob.pullin, mymob.blind, mymob.flash, robot_inventory, mymob.gun_setting_icon)
 	mymob.client.screen += src.adding + src.other
 
-	return
+	return*/
 
 
-/datum/hud/proc/toggle_show_robot_modules()
+/*/datum/hud/proc/toggle_show_robot_modules()
 	if(!isrobot(mymob))
 		return
 
@@ -238,4 +238,5 @@ var/obj/screen/robot_inventory
 				//Module is not currently active
 				r.client.screen -= A
 		r.shown_robot_modules = 0
-		r.client.screen -= r.robot_modules_background
+		r.client.screen -= r.robot_modules_background*/
+

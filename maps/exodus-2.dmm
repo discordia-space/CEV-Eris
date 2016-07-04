@@ -74,7 +74,7 @@
 "bv" = (/obj/structure/window/reinforced/crescent{dir = 4},/obj/structure/window/reinforced/crescent{dir = 8},/turf/unsimulated/wall,/area/space)
 "bw" = (/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/holofloor/grass,/area/holodeck/source_picnicarea)
 "bx" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/simulated/floor/holofloor/grass,/area/holodeck/source_picnicarea)
-"by" = (/obj/structure/table/rack/holorack,/obj/item/clothing/under/dress/dress_saloon,/obj/item/clothing/head/hairflower,/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_theatre)
+"by" = (/obj/structure/table/rack/holorack,/obj/item/clothing/head/hairflower,/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_theatre)
 "bz" = (/obj/effect/landmark/costume,/obj/structure/table/rack/holorack,/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_theatre)
 "bA" = (/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_courtroom)
 "bB" = (/obj/structure/window/reinforced/holowindow{dir = 4},/obj/structure/flora/pottedplant{tag = "icon-plant-10"; icon_state = "plant-10"},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_courtroom)

@@ -150,7 +150,7 @@
 		Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
+	if (A == user && user.targeted_organ == "mouth" && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)
@@ -197,7 +197,7 @@
 		if(pointblank)
 			process_point_blank(projectile, user, target)
 
-		if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
+		if(process_projectile(projectile, user, target, user.targeted_organ, clickparams))
 			handle_post_fire(user, target, pointblank, reflex)
 			update_icon()
 

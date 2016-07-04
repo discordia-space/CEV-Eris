@@ -45,7 +45,7 @@
 	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
 
-	if(!(user.zone_sel.selecting == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
+	if(!(user.targeted_organ == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
 		if(prob(33))
 			src.add_blood(H)
 			var/turf/location = H.loc
@@ -79,7 +79,7 @@
 		if(istype(protection) && (protection.body_parts_covered & FACE))
 			protected = 1
 			break
-	
+
 	if(protected)
 		M << "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>"
 		if(prob(33))

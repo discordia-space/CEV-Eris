@@ -1,28 +1,28 @@
 
-/datum/hud/proc/unplayer_hud()
-	return
+//datum/hud/proc/unplayer_hud()
+//	return
 
-/mob/observer/ghost/instantiate_hud(var/datum/hud/HUD)
-	HUD.ghost_hud()
+//mob/observer/ghost/instantiate_hud(var/datum/hud/HUD)
+//	HUD.ghost_hud()
 
-/datum/hud/proc/ghost_hud()
-	return
+//datum/hud/proc/ghost_hud()
+//	return
 
-/mob/living/carbon/brain/instantiate_hud(var/datum/hud/HUD)
-	HUD.brain_hud()
+//mob/living/carbon/brain/instantiate_hud(var/datum/hud/HUD)
+//	HUD.brain_hud()
 
-/datum/hud/proc/brain_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
-	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
-	mymob.blind.icon_state = "blackimageoverlay"
-	mymob.blind.name = " "
-	mymob.blind.screen_loc = "1,1"
-	mymob.blind.layer = 0
+//datum/hud/proc/brain_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
+//	mymob.blind = new /obj/screen()
+//	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
+//	mymob.blind.icon_state = "blackimageoverlay"
+//	mymob.blind.name = " "
+//	mymob.blind.screen_loc = "1,1"
+//	mymob.blind.layer = 0
 
-/mob/living/silicon/ai/instantiate_hud(var/datum/hud/HUD)
-	HUD.ai_hud()
+//mob/living/silicon/ai/instantiate_hud(var/datum/hud/HUD)
+//	HUD.ai_hud()
 
-/datum/hud/proc/ai_hud()
+/*/datum/hud/proc/ai_hud()
 	return
 
 /datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
@@ -112,12 +112,12 @@
 	mymob.client.screen = null
 	mymob.client.screen += src.adding
 
-	return
+	return*/
 
-/mob/living/simple_animal/construct/instantiate_hud(var/datum/hud/HUD)
-	HUD.construct_hud()
+///mob/living/simple_animal/construct/instantiate_hud(var/datum/hud/HUD)
+//	HUD.construct_hud()
 
-/datum/hud/proc/construct_hud()
+/*/datum/hud/proc/construct_hud()
 	var/constructtype
 
 	if(istype(mymob,/mob/living/simple_animal/construct/armoured) || istype(mymob,/mob/living/simple_animal/construct/behemoth))
@@ -168,4 +168,5 @@
 
 	mymob.client.screen = null
 
-	mymob.client.screen += list(mymob.fire, mymob.healths, mymob.pullin, mymob.zone_sel, mymob.purged, mymob.flash)
+	mymob.client.screen += list(mymob.fire, mymob.healths, mymob.pullin, mymob.zone_sel, mymob.purged, mymob.flash)*/
+

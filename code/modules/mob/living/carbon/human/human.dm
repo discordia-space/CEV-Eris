@@ -10,7 +10,7 @@
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-
+	world << "new"
 	body_build = get_body_build(gender)
 
 	if(!dna)
@@ -40,6 +40,8 @@
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
 
+
+
 	human_mob_list |= src
 	..()
 
@@ -48,6 +50,12 @@
 		dna.real_name = real_name
 		sync_organ_dna()
 	make_blood()
+	spawn(5)
+		HUD_create()
+//		if(usr.client)
+//			for (var/H in HUDneeds)
+//				var/obj/screen/B = new H()
+//				HUDprocesses += B
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
@@ -1126,7 +1134,7 @@ var/list/rank_prefix = list(\
 		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
-
+	world << "set species"
 	if(!dna)
 		if(!new_species)
 			new_species = "Human"
@@ -1193,11 +1201,11 @@ var/list/rank_prefix = list(\
 
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
-	if(client && client.screen)
-		client.screen.len = null
-		if(hud_used)
-			qdel(hud_used)
-		hud_used = new /datum/hud(src)
+	if(client && client.screen)//HUD HERE!!!!!!!!!!
+		client.screen.Cut()
+//		if(hud_used)
+//			qdel(hud_used)
+//		hud_used = new /datum/hud(src)
 
 	if(species)
 		return 1
@@ -1266,7 +1274,7 @@ var/list/rank_prefix = list(\
 		if(!user)
 			target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
 		else
-			target_zone = user.zone_sel.selecting
+			target_zone = user.targeted_organ
 
 	var/obj/item/organ/external/affecting = get_organ(target_zone)
 	var/fail_msg

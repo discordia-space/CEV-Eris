@@ -113,7 +113,7 @@ var/list/global_huds = list(
 	including inventories and item quick actions.
 */
 
-/datum/hud
+/*/datum/hud
 	var/mob/mymob
 
 	var/hud_shown = 1			//Used for the HUD toggle (F12)
@@ -252,8 +252,11 @@ datum/hud/New(mob/owner)
 	var/ui_style = ui_style2icon(mymob.client.prefs.UI_style)
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
-
 	mymob.instantiate_hud(src, ui_style, ui_color, ui_alpha)
+	mymob.HUD_create()
+*/
+/mob/proc/HUD_create()
+	return
 
 /mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
 	return
@@ -274,7 +277,7 @@ datum/hud/New(mob/owner)
 	if(!client) return
 	if(client.view != world.view)
 		return
-	if(hud_used.hud_shown)
+	/*if(hud_used.hud_shown)
 		hud_used.hud_shown = 0
 		if(src.hud_used.adding)
 			src.client.screen -= src.hud_used.adding
@@ -315,9 +318,9 @@ datum/hud/New(mob/owner)
 
 		src.hud_used.action_intent.screen_loc = ui_acti //Restore intent selection to the original position
 		src.client.screen += src.zone_sel				//This one is a special snowflake
-
-	hud_used.hidden_inventory_update()
-	hud_used.persistant_inventory_update()
+*/
+//	hud_used.hidden_inventory_update()
+//	hud_used.persistant_inventory_update()
 	update_action_buttons()
 
 //Similar to button_pressed_F12() but keeps zone_sel, gun_setting_icon, and healths.
@@ -331,7 +334,7 @@ datum/hud/New(mob/owner)
 	if(client.view != world.view)
 		return
 
-	if(hud_used.hud_shown)
+/*	if(hud_used.hud_shown)
 		hud_used.hud_shown = 0
 		if(src.hud_used.adding)
 			src.client.screen -= src.hud_used.adding
@@ -354,5 +357,6 @@ datum/hud/New(mob/owner)
 		src.hud_used.action_intent.screen_loc = ui_acti //Restore intent selection to the original position
 
 	hud_used.hidden_inventory_update()
-	hud_used.persistant_inventory_update()
+	hud_used.persistant_inventory_update()*/
 	update_action_buttons()
+

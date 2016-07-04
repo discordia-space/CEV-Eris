@@ -130,7 +130,7 @@
 			return 0
 
 	else
-		O.attack(src, user, user.zone_sel.selecting)
+		O.attack(src, user, user.targeted_organ)
 
 /mob/living/simple_animal/spiderbot/emag_act(var/remaining_charges, var/mob/user)
 	if (emagged)

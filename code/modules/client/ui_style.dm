@@ -1,13 +1,14 @@
 
 
 /var/all_ui_styles = list(
-	"Midnight"     = 'icons/mob/screen/midnight.dmi',
+	"ErisStyle" = 'icons/mob/screen/ErisStyle.dmi',
+	"ErisStyle-noborder" = 'icons/mob/screen/ErisStyle.dmi',
+	)
+	/*"Midnight"     = 'icons/mob/screen/midnight.dmi',
 	"Orange"       = 'icons/mob/screen/orange.dmi',
 	"old"          = 'icons/mob/screen/old.dmi',
 	"White"        = 'icons/mob/screen/white.dmi',
-	"old-noborder" = 'icons/mob/screen/old-noborder.dmi'
-	)
-
+	"old-noborder" = 'icons/mob/screen/old-noborder.dmi'*/
 /proc/ui_style2icon(ui_style)
 	if(ui_style in all_ui_styles)
 		return all_ui_styles[ui_style]
@@ -23,7 +24,7 @@
 		usr << "<span class='warning'>You must be human to use this verb.</span>"
 		return
 
-	var/UI_style_new = input(usr, "Select a style. White is recommended for customization") as null|anything in all_ui_styles
+	/*var/UI_style_new = input(usr, "Select a style. White is recommended for customization") as null|anything in all_ui_styles
 	if(!UI_style_new) return
 
 	var/UI_style_alpha_new = input(usr, "Select a new alpha (transparency) parameter for your UI, between 50 and 255") as null|num
@@ -33,12 +34,12 @@
 	if(!UI_style_color_new) return
 
 	//update UI
-	var/list/icons = usr.hud_used.adding + usr.hud_used.other + usr.hud_used.hotkeybuttons
-	icons.Add(usr.zone_sel)
-	icons.Add(usr.gun_setting_icon)
-	icons.Add(usr.item_use_icon)
-	icons.Add(usr.gun_move_icon)
-	icons.Add(usr.radio_use_icon)
+	//var/list/icons = usr.hud_used.adding + usr.hud_used.other + usr.hud_used.hotkeybuttons
+	//icons.Add(usr.zone_sel)
+	//icons.Add(usr.gun_setting_icon)
+	//icons.Add(usr.item_use_icon)
+	//icons.Add(usr.gun_move_icon)
+	//icons.Add(usr.radio_use_icon)
 
 	var/icon/ic = all_ui_styles[UI_style_new]
 
@@ -54,4 +55,5 @@
 		prefs.UI_style_alpha = UI_style_alpha_new
 		prefs.UI_style_color = UI_style_color_new
 		prefs.save_preferences()
-		usr << "UI was saved"
+		usr << "UI was saved"*/
+

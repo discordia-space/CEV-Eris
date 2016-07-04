@@ -191,7 +191,7 @@
 
 	src.timeofdeath = M.timeofdeath
 
-	var/obj/item/organ/external/S = M.get_organ(user.zone_sel.selecting)
+	var/obj/item/organ/external/S = M.get_organ(user.targeted_organ)
 	if(!S)
 		usr << "<span class='warning'>You can't scan this body part.</span>"
 		return

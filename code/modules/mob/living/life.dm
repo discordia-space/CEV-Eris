@@ -184,3 +184,32 @@
 
 /mob/living/proc/handle_hud_icons_health()
 	return
+
+/*/mob/living/proc/HUD_create()
+	if (!usr.client)
+		return
+	usr.client.screen.Cut()
+	if(istype(usr, /mob/living/carbon/human) && (usr.client.prefs.UI_style != null))
+		if (!global.HUDdatums.Find(usr.client.prefs.UI_style))
+			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
+		else
+			var/mob/living/carbon/human/H = usr
+			var/datum/hud/human/HUDdatum = global.HUDdatums[usr.client.prefs.UI_style]
+			if (!H.HUDneed.len)
+				if (H.HUDprocess.len)
+					log_debug("[usr] have object in HUDprocess list, but HUDneed is empty.")
+					for(var/obj/screen/health/HUDobj in H.HUDprocess)
+						H.HUDprocess -= HUDobj
+						qdel(HUDobj)
+				for(var/HUDname in HUDdatum.HUDneed)
+					if(!H.species.hud.ProcessHUD.Find(HUDname))
+						continue
+					var/HUDtype = HUDdatum.HUDneed[HUDname]
+					var/obj/screen/HUD = new HUDtype()
+					world << "[HUD] added"
+					H.HUDneed += HUD
+					if (HUD.type in HUDdatum.HUDprocess)
+						world << "[HUD] added in process"
+						H.HUDprocess += HUD
+					world << "[HUD] added in screen"
+*/

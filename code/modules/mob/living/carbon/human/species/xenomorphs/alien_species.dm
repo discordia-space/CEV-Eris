@@ -287,7 +287,7 @@
 /datum/hud_data/alien
 
 	icon = 'icons/mob/screen1_alien.dmi'
-	has_a_intent =  1
+/*	has_a_intent =  1
 	has_m_intent =  1
 	has_warnings =  1
 	has_hands =     1
@@ -296,7 +296,7 @@
 	has_resist =    1
 	has_pressure =  0
 	has_nutrition = 0
-	has_bodytemp =  0
+	has_bodytemp =  0*/
 	has_internals = 0
 
 	gear = list(

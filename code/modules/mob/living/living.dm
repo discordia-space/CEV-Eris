@@ -356,7 +356,7 @@ default behaviour is:
 
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
-	var/t = shooter:zone_sel.selecting
+	var/t = shooter:targeted_organ
 	if ((t in list( "eyes", "mouth" )))
 		t = "head"
 	var/obj/item/organ/external/def_zone = ran_zone(t)
@@ -870,3 +870,100 @@ default behaviour is:
 	src << "<b>You are now \the [src]!</b>"
 	src << "<span class='notice'>Remember to stay in character for a mob of this type!</span>"
 	return 1
+
+/mob/living/throw_mode_off()
+	src.in_throw_mode = 0
+	if (HUDnames.Find("throw"))
+		var/obj/screen/HUDthrow/HUD = HUDnames["throw"]
+		HUD.update_icon()
+
+/mob/living/throw_mode_on()
+	src.in_throw_mode = 1
+	if (HUDnames.Find("throw"))
+		var/obj/screen/HUDthrow/HUD = HUDnames["throw"]
+		HUD.update_icon()
+
+	/*if (var/obj/screen/HUDthrow/HUD in src.client.screen)
+		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
+			HUD.toggle_throw_mode()
+			break*/
+
+/mob/living/stop_pulling()
+
+	set name = "Stop Pulling"
+	set category = "IC"
+
+
+	if(pulling)
+		pulling.pulledby = null
+		pulling = null
+/*		if(pullin)
+			pullin.icon_state = "pull0"*/
+		if (HUDnames.Find("pull"))
+			var/obj/screen/HUDthrow/HUD = HUDnames["pull"]
+			HUD.update_icon()
+
+/mob/living/start_pulling(var/atom/movable/AM)
+
+	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+		return
+
+	if (AM.anchored)
+		src << "<span class='warning'>It won't budge!</span>"
+		return
+
+	var/mob/M = AM
+	if(ismob(AM))
+
+		if(!can_pull_mobs || !can_pull_size)
+			src << "<span class='warning'>It won't budge!</span>"
+			return
+
+		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
+			src << "<span class='warning'>It won't budge!</span>"
+			return
+
+		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
+			src << "<span class='warning'>It won't budge!</span>"
+			return
+
+		// If your size is larger than theirs and you have some
+		// kind of mob pull value AT ALL, you will be able to pull
+		// them, so don't bother checking that explicitly.
+
+		if(!iscarbon(src))
+			M.LAssailant = null
+		else
+			M.LAssailant = usr
+
+	else if(isobj(AM))
+		var/obj/I = AM
+		if(!can_pull_size || can_pull_size < I.w_class)
+			src << "<span class='warning'>It won't budge!</span>"
+			return
+
+	if(pulling)
+		var/pulling_old = pulling
+		stop_pulling()
+		// Are we pulling the same thing twice? Just stop pulling.
+		if(pulling_old == AM)
+			return
+
+	src.pulling = AM
+	AM.pulledby = src
+
+	/*if(pullin)
+		pullin.icon_state = "pull1"*/
+	if (HUDnames.Find("pull"))
+		var/obj/screen/HUDthrow/HUD = HUDnames["pull"]
+		HUD.update_icon()
+
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		if(H.pull_damage())
+			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
+
+	//Attempted fix for people flying away through space when cuffed and dragged.
+	if(ismob(AM))
+		var/mob/pulled = AM
+		pulled.inertia_dir = 0

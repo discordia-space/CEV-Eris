@@ -26,7 +26,7 @@
 	var/obj/screen/throw_icon = null
 	var/obj/screen/nutrition_icon = null
 	var/obj/screen/pressure = null
-	var/obj/screen/damageoverlay = null
+	//var/obj/screen/damageoverlay = null
 	var/obj/screen/pain = null
 	var/obj/screen/gun/item/item_use_icon = null
 	var/obj/screen/gun/radio/radio_use_icon = null
@@ -107,6 +107,8 @@
 	var/in_throw_mode = 0
 
 	var/inertia_dir = 0
+
+	var/targeted_organ = "chest"
 
 //	var/job = null//Living
 

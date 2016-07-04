@@ -1,7 +1,7 @@
-/mob/living/carbon/alien/instantiate_hud(var/datum/hud/HUD)
-	HUD.larva_hud()
+//mob/living/carbon/alien/instantiate_hud(var/datum/hud/HUD)
+//	HUD.larva_hud()
 
-/datum/hud/proc/larva_hud()
+/*/datum/hud/proc/larva_hud()
 
 	src.adding = list()
 	src.other = list()
@@ -46,4 +46,4 @@
 
 	mymob.client.screen = null
 	mymob.client.screen += list( mymob.healths, mymob.blind, mymob.flash, mymob.fire) //, mymob.rest, mymob.sleep, mymob.mach )
-	mymob.client.screen += src.adding + src.other
+	mymob.client.screen += src.adding + src.other*/

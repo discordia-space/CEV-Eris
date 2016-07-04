@@ -51,7 +51,7 @@
 	var/def_zone
 	if(chassis && istype(chassis.occupant,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = chassis.occupant
-		def_zone = H.zone_sel.selecting
+		def_zone = H.targeted_organ
 	P.launch(target, def_zone)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy

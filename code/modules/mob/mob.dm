@@ -16,7 +16,7 @@
 	ghostize()
 	..()
 
-/mob/proc/remove_screen_obj_references()
+/mob/proc/remove_screen_obj_references()//FIX THIS SHIT
 	flash = null
 	blind = null
 	hands = null
@@ -33,7 +33,7 @@
 	throw_icon = null
 	nutrition_icon = null
 	pressure = null
-	damageoverlay = null
+//	damageoverlay = null
 	pain = null
 	item_use_icon = null
 	gun_move_icon = null
@@ -571,8 +571,8 @@
 	if(pulling)
 		pulling.pulledby = null
 		pulling = null
-		if(pullin)
-			pullin.icon_state = "pull0"
+		/*if(pullin)
+			pullin.icon_state = "pull0"*/
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 
@@ -623,8 +623,8 @@
 	src.pulling = AM
 	AM.pulledby = src
 
-	if(pullin)
-		pullin.icon_state = "pull1"
+	/*if(pullin)
+		pullin.icon_state = "pull1"*/
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
@@ -1120,10 +1120,21 @@ mob/proc/yank_out_object()
 
 /mob/proc/throw_mode_off()
 	src.in_throw_mode = 0
-	if(src.throw_icon) //in case we don't have the HUD and we use the hotkey
-		src.throw_icon.icon_state = "act_throw_off"
+	/*for (var/obj/screen/HUDthrow/HUD in src.client.screen.)
+		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
+			//src.throw_icon.icon_state = "act_throw_off"
+			HUD.toggle_throw_mode()
+			break*/
 
 /mob/proc/throw_mode_on()
 	src.in_throw_mode = 1
-	if(src.throw_icon)
-		src.throw_icon.icon_state = "act_throw_on"
+	/*if(src.throw_icon)
+		src.throw_icon.icon_state = "act_throw_on"*/
+	/*for (var/obj/screen/HUDthrow/HUD in src.client.screen.)
+		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
+			//src.throw_icon.icon_state = "act_throw_off"
+			HUD.toggle_throw_mode()
+			break*/
+
+/mob/proc/swap_hand()
+	return

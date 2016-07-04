@@ -22,7 +22,7 @@ var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mob
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 var/global/list/global_corporations = list()
-
+var/global/list/HUDdatums = list()
 
 var/global/list/turfs = list()						//list of all turfs
 
@@ -189,6 +189,11 @@ var/global/list/string_slot_flags = list(
 	for(var/T in paths)
 		var/datum/corporation/C = new T
 		global.global_corporations[C.name] = C
+
+	paths = typesof(/datum/hud) - /datum/hud
+	for(var/T in paths)
+		var/datum/hud/C = new T
+		global.HUDdatums[C.name] = C
 
 	return 1
 

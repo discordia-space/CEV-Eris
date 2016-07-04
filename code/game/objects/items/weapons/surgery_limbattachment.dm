@@ -10,20 +10,20 @@
 	if(!istype(M, /mob/living/carbon/human))
 		return ..()
 
-	if((user.zone_sel.selecting == "l_arm") && (istype(src, /obj/item/robot_parts/l_arm)))
+	if((user.targeted_organ == "l_arm") && (istype(src, /obj/item/robot_parts/l_arm)))
 		limbloc = "l_hand"
-	else if((user.zone_sel.selecting == "r_arm") && (istype(src, /obj/item/robot_parts/r_arm)))
+	else if((user.targeted_organ == "r_arm") && (istype(src, /obj/item/robot_parts/r_arm)))
 		limbloc = "r_hand"
-	else if((user.zone_sel.selecting == "r_leg") && (istype(src, /obj/item/robot_parts/r_leg)))
+	else if((user.targeted_organ == "r_leg") && (istype(src, /obj/item/robot_parts/r_leg)))
 		limbloc = "r_foot"
-	else if((user.zone_sel.selecting == "l_leg") && (istype(src, /obj/item/robot_parts/l_leg)))
+	else if((user.targeted_organ == "l_leg") && (istype(src, /obj/item/robot_parts/l_leg)))
 		limbloc = "l_foot"
 	else
 		user << "<span class='warning'>That doesn't fit there!</span>"
 		return ..()
 
 	var/mob/living/carbon/human/H = M
-	var/datum/organ/external/S = H.organs[user.zone_sel.selecting]
+	var/datum/organ/external/S = H.organs[user.targeted_organ]
 	if(S.status & ORGAN_DESTROYED)
 		if(!(S.status & ORGAN_ATTACHABLE))
 			user << "<span class='warning'>The wound is not ready for a replacement!</span>"

@@ -34,6 +34,85 @@
 	var/heartbeat = 0
 	var/global/list/overlays_cache = null
 
+
+/mob/living/carbon/human/HUD_create() //EKUDZA HAS HERE
+	if(!usr.client)
+		return
+//	usr.client.screen.Cut()
+	if(istype(usr, /mob/living/carbon/human) && (usr.client.prefs.UI_style != null))
+		if (!global.HUDdatums.Find(usr.client.prefs.UI_style)) // Проверка наличии данных
+			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
+		else
+			var/mob/living/carbon/human/H = usr
+			var/datum/hud/human/HUDdatum = global.HUDdatums[usr.client.prefs.UI_style]
+			if (!H.HUDneed.len)
+				//for(var/HUDname in HUDdatum.HUDneed)
+				for(var/HUDname in species.hud.ProcessHUD)
+					if (!HUDdatum.HUDneed.Find(HUDname))
+						log_debug("[usr] try create a [HUDname], bit it no have in HUDdatum [HUDdatum.name]")
+					else
+						var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
+						var/obj/screen/HUD = new HUDtype()
+						H.HUDneed += HUD
+						if (HUD.process_flag)
+							H.HUDprocess += HUD
+						if(HUD.name)
+							H.HUDnames[HUD.name] = HUD
+						HUD.icon = HUDdatum.icon
+						HUD.screen_loc = HUDdatum.HUDneed[HUDname]["loc"]
+				for (var/gear_slot in species.hud.gear)
+					if (!HUDdatum.slot_data.Find(gear_slot))
+						log_debug("[usr] try take inventory data for [gear_slot], but HUDdatum not have it!")
+						usr << "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins"
+					else
+						var/obj/screen/inventory/inv_box = new /obj/screen/inventory()
+						//var/list/slot_data =  hud_data.gear[gear_slot]
+						inv_box.name =        HUDdatum.slot_data[gear_slot]["name"]
+						inv_box.screen_loc =  HUDdatum.slot_data[gear_slot]["loc"]
+						inv_box.slot_id =     species.hud.gear[gear_slot]
+						inv_box.icon_state =  HUDdatum.slot_data[gear_slot]["state"]
+						if (HUDdatum.icon)
+							inv_box.icon = HUDdatum.icon
+						else
+							log_debug("HUDdatum [HUDdatum.name] no have icon data!")
+						if(HUDdatum.slot_data[gear_slot]["dir"])
+							inv_box.set_dir(HUDdatum.slot_data[gear_slot]["dir"])
+						H.HUDneed += inv_box
+						/*if(slot_data["toggle"])
+							src.other += inv_box
+							has_hidden_gear = 1
+						else
+							src.adding += inv_box*/
+
+
+
+
+/*	var/has_hidden_gear
+	for(var/gear_slot in hud_data.gear)
+
+		inv_box = new /obj/screen/inventory()
+		inv_box.icon = ui_style
+		inv_box.layer = 19
+		inv_box.color = ui_color
+		inv_box.alpha = ui_alpha
+
+		var/list/slot_data =  hud_data.gear[gear_slot]
+		inv_box.name =        gear_slot
+		inv_box.screen_loc =  slot_data["loc"]
+		inv_box.slot_id =     slot_data["slot"]
+		inv_box.icon_state =  slot_data["state"]
+
+		if(slot_data["dir"])
+			inv_box.set_dir(slot_data["dir"])
+
+		if(slot_data["toggle"])
+			src.other += inv_box
+			has_hidden_gear = 1
+		else
+			src.adding += inv_box*/
+
+
+
 /mob/living/carbon/human/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
@@ -759,6 +838,9 @@
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()
+	for (var/obj/screen/H in HUDprocess)
+//		var/obj/screen/B = H
+		H.process()
 	if(!overlays_cache)
 		overlays_cache = list()
 		overlays_cache.len = 23
@@ -794,10 +876,10 @@
 	if(!..())
 		return
 
-	if(damageoverlay.overlays)
-		damageoverlay.overlays = list()
+//	if(damageoverlay.overlays)
+//		damageoverlay.overlays = list()
 
-	if(stat == UNCONSCIOUS)
+/*	if(stat == UNCONSCIOUS)
 		//Critical damage passage overlay
 		if(health <= 0)
 			var/image/I
@@ -862,9 +944,9 @@
 					I = overlays_cache[22]
 				if(85 to INFINITY)
 					I = overlays_cache[23]
-			damageoverlay.overlays += I
+			damageoverlay.overlays += I*/
 
-		if(healths  && stat != DEAD) // They are dead, let death() handle their hud update on this.
+/*		if(healths  && stat != DEAD) // They are dead, let death() handle their hud update on this.
 			if (analgesic > 100)
 				healths.icon_state = "health_numb"
 			else
@@ -952,6 +1034,7 @@
 						bodytemp.icon_state = "temp-1"
 					else
 						bodytemp.icon_state = "temp0"
+*/
 	return 1
 
 /mob/living/carbon/human/handle_random_events()
