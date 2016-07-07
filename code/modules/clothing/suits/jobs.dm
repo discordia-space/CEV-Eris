@@ -88,8 +88,8 @@
 
 //Detective
 /obj/item/clothing/suit/storage/insp_trench
-	name = "inspector trenchcoat"
-	desc = "Black and armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
+	name = "Inspector's armored trenchcoat"
+	desc = "Brown and armored trenchcoat, designed and created by Ironhammer Security. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "insp_coat"
 	item_state = "insp_coat"
 	blood_overlay_type = "coat"

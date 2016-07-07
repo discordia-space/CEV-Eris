@@ -102,9 +102,9 @@
 	uniform = /obj/item/clothing/under/inspector
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/inspector
 	gloves = /obj/item/clothing/gloves/black
-	hat = /obj/item/clothing/head/bowler
+	hat = /obj/item/clothing/head/det
 	suit = /obj/item/clothing/suit/storage/insp_trench
 	hand = /obj/item/weapon/storage/briefcase/crimekit
 
