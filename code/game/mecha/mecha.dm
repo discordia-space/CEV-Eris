@@ -388,20 +388,20 @@
 
 /obj/mecha/proc/mechturn(direction)
 	set_dir(direction)
-	playsound(src,'sound/mecha/mechturn.ogg',40,1)
+	playsound(src,'sound/mecha/Mech_Rotation.wav',35,1)
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
-		playsound(src,'sound/mecha/mechstep.ogg',40,1)
+		playsound(src,'sound/mecha/Mech_Step.wav',40,1)
 	return result
 
 
 /obj/mecha/proc/mechsteprand()
 	var/result = step_rand(src)
 	if(result)
-		playsound(src,'sound/mecha/mechstep.ogg',40,1)
+		playsound(src,'sound/mecha/Mech_Step.wav',40,1)
 	return result
 
 /obj/mecha/Bump(var/atom/obstacle)
