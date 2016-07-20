@@ -187,6 +187,7 @@
 // update the icon depending on the position
 
 /obj/machinery/conveyor_switch/proc/update()
+
 	if(position<0)
 		icon_state = "switch-rev"
 	else if(position>0)
@@ -224,6 +225,7 @@
 		last_pos = position
 		position = 0
 
+	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
 	operated = 1
 	update()
 

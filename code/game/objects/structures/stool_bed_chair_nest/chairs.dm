@@ -76,6 +76,7 @@
 	if(config.ghost_interaction)
 		src.set_dir(turn(src.dir, 90))
 		return
+
 	else
 		if(istype(usr,/mob/living/simple_animal/mouse))
 			return

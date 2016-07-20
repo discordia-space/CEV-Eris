@@ -232,11 +232,6 @@
 	desc = "A set of armor worn by medical members of the Emergency Response Team. Has red and white highlights."
 	icon_state = "ertarmor_med"
 
-/obj/item/clothing/suit/armor/vest/security
-	name = "security vest"
-	desc = "A synthetic armor vest. This one is marked with the crest of NanoTrasen."
-	icon_state = "secvest"
-
 /obj/item/clothing/suit/armor/vest/detective
 	name = "detective armor vest"
 	desc = "An synthetic armor vest colored in a vintage brown."
