@@ -237,7 +237,7 @@
 		return
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
-
+	playsound(src,'sound/machines/PAPER_Fold_01_mono.wav',100,1)
 
 	if (istype(target, /obj/item) && !(istype(target, /obj/item/weapon/storage) && !istype(target,/obj/item/weapon/storage/box)))
 		var/obj/item/O = target

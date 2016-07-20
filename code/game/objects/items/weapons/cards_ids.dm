@@ -248,7 +248,7 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/all_access/New()
 	access = get_access_ids()
 	..()
-    
+
 /obj/item/weapon/card/id/centcom
 	name = "\improper CentCom. ID"
 	desc = "An ID straight from Cent. Com."
@@ -292,6 +292,9 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/det
 	icon_state = "id_inspector"
+
+/obj/item/weapon/card/id/medcpec
+	icon_state = "id_medspec"
 
 /obj/item/weapon/card/id/sec
 	icon_state = "id_operative"
