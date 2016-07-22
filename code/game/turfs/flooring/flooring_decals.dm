@@ -104,7 +104,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/yellow/three_quarters
 	icon_state = "corner_white_three_quarters"
-	
+
 /obj/effect/floor_decal/corner/yellow/full
 	icon_state = "corner_white_full"
 
@@ -127,7 +127,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/red/three_quarters
 	icon_state = "corner_white_three_quarters"
-	
+
 /obj/effect/floor_decal/corner/red/full
 	icon_state = "corner_white_full"
 
@@ -450,3 +450,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/corner_kafel/full
 	name = "corner kafel full"
 	icon_state = "corner_kafel_full"
+
+/obj/effect/floor_decal/rust
+	name = "rust"
+	icon_state = "rust"
