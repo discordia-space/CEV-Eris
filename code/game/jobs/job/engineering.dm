@@ -63,6 +63,7 @@
 	suit = /obj/item/clothing/suit/storage/hazardvest
 	shoes = /obj/item/clothing/shoes/jackboots
 	pda = /obj/item/device/pda/engineering
+	gloves = /obj/item/clothing/gloves/black
 	hat = /obj/item/clothing/head/hardhat
 	belt = /obj/item/weapon/storage/belt/utility/full
 	ear = /obj/item/device/radio/headset/headset_eng
@@ -98,6 +99,9 @@
 
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
 	suit = /obj/item/clothing/suit/storage/hazardvest
+	hat = /obj/item/clothing/head/hardhat
 	pda = /obj/item/device/pda/atmos
+	gloves = /obj/item/clothing/gloves/black
 	belt = /obj/item/weapon/storage/belt/utility/atmostech
 	ear = /obj/item/device/radio/headset/headset_eng
+	shoes = /obj/item/clothing/shoes/jackboots
