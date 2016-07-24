@@ -16,7 +16,7 @@
 	icon_state = "stamp-cap"
 
 /obj/item/weapon/stamp/hop
-	name = "head of personnel's rubber stamp"
+	name = "first officer's rubber stamp"
 	icon_state = "stamp-hop"
 
 /obj/item/weapon/stamp/hos
