@@ -1517,32 +1517,87 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/stock_parts/subspace/crystal,
 					/obj/item/weapon/storage/toolbox/electrical)
 
-/datum/supply_packs/randomised/exosuit_mod
-	num_contained = 1
+/datum/supply_packs/exosuit_mod
 	contains = list(
-		/obj/item/device/kit/paint/ripley,
-		/obj/item/device/kit/paint/ripley/death,
-		/obj/item/device/kit/paint/ripley/flames_red,
-		/obj/item/device/kit/paint/ripley/flames_blue
+		/obj/item/device/kit/paint/ripley
 		)
-	name = "Random APLU modkit"
-	cost = 200
+	name = "APLU classic modkit"
+	cost = 50
 	containertype = /obj/structure/closet/crate
-	containername = "\improper heavy crate"
+	containername = "heavy crate"
 	group = "Miscellaneous"
 
-/datum/supply_packs/randomised/exosuit_mod/durand
+/datum/supply_packs/exosuit_mod/apludeath
 	contains = list(
-		/obj/item/device/kit/paint/durand,
-		/obj/item/device/kit/paint/durand/seraph,
+		/obj/item/device/kit/paint/ripley/death
+		)
+	name = "APLU death modkit"
+	cost = 60
+	containertype = /obj/structure/closet/crate
+	containername = "heavy crate"
+
+
+/datum/supply_packs/exosuit_mod/aplured
+	contains = list(
+		/obj/item/device/kit/paint/ripley/flames_red
+		)
+	name = "APLU flames red modkit"
+	cost = 60
+	containertype = /obj/structure/closet/crate
+	containername = "heavy crate"
+
+
+/datum/supply_packs/exosuit_mod/aplublue
+	contains = list(
+		/obj/item/device/kit/paint/ripley/flames_blue
+		)
+	name = "APLU flames blue modkit"
+	cost = 60
+	containertype = /obj/structure/closet/crate
+	containername = "heavy crate"
+
+
+/datum/supply_packs/exosuit_mod/durand
+	contains = list(
+		/obj/item/device/kit/paint/durand
+		)
+	name = "Durand classic exosuit modkit"
+	cost = 75
+
+/datum/supply_packs/exosuit_mod/durand/seraph
+	contains = list(
+		/obj/item/device/kit/paint/durand/seraph
+		)
+	name = "Durand seraph exosuit modkit"
+	cost = 80
+
+/datum/supply_packs/exosuit_mod/durand/phazon
+	contains = list(
 		/obj/item/device/kit/paint/durand/phazon
 		)
-	name = "Random Durand exosuit modkit"
+	name = "Durand phazon exosuit modkit"
+	cost = 80
 
-/datum/supply_packs/randomised/exosuit_mod/gygax
+
+/datum/supply_packs/exosuit_mod/gygax
 	contains = list(
-		/obj/item/device/kit/paint/gygax,
-		/obj/item/device/kit/paint/gygax/darkgygax,
+		/obj/item/device/kit/paint/gygax
+		)
+	name = "Gygax classic exosuit modkit"
+	cost = 75
+
+
+/datum/supply_packs/exosuit_mod/gygax/darkgygax
+	contains = list(
+		/obj/item/device/kit/paint/gygax/darkgygax
+		)
+	name = "Gygax darkgygax exosuit modkit"
+	cost = 80
+
+
+/datum/supply_packs/exosuit_mod/gygax/recitence
+	contains = list(
 		/obj/item/device/kit/paint/gygax/recitence
 		)
-	name = "Random Gygax exosuit modkit"
+	name = "Gygax recitence exosuit modkit"
+	cost = 80
