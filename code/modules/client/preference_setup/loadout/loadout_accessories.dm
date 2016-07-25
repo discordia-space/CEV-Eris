@@ -31,7 +31,7 @@
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	allowed_roles = list("Captain", "Head of Personnel", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander","Inspector")
+	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander","Inspector")
 
 /datum/gear/accessory/holster/hip
 	display_name = "holster, hip"

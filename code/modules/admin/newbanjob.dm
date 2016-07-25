@@ -62,7 +62,7 @@ var/savefile/Banlistjob
 		UpdateTime()
 		bantimestamp = CMinutes + minutes
 	if(rank == "Heads")
-		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Head of Personnel")
+		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "First Officer")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Captain")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Ironhammer Commander")
 		AddBanjob(ckey, computerid, reason, bannedby, temp, minutes, "Chief Engineer")
