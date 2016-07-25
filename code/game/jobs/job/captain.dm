@@ -52,7 +52,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 
 /datum/job/hop
-	title = "Head of Personnel"
+	title = "First Officer"
 	flag = HOP
 	department = "Civilian"
 	head_position = 1
@@ -70,7 +70,9 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	implanted = 1
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
-	shoes = /obj/item/clothing/shoes/brown
+	shoes = /obj/item/clothing/shoes/laceup
+	suit = /obj/item/clothing/suit/armor/vest
+	gloves = /obj/item/clothing/gloves/black
 	pda = /obj/item/device/pda/heads/hop
 	ear = /obj/item/device/radio/headset/heads/hop
 

@@ -53,7 +53,7 @@ var/list/assistant_occupations = list(
 
 var/list/command_positions = list(
 	"Captain",
-	"Head of Personnel",
+	"First Officer",
 	"Ironhammer Commander",
 	"Chief Engineer",
 	"Research Director",
@@ -94,7 +94,7 @@ var/list/cargo_positions = list(
 )
 
 var/list/civilian_positions = list(
-	"Head of Personnel",
+	"First Officer",
 	"Internal Affairs Agent",
 	"Bartender",
 	"Gardener",
