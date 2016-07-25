@@ -71,9 +71,9 @@ var/list/flooring_cache = list()
 		icon_state = "dmg[rand(1,4)]"
 	else if(flooring)
 		if(!isnull(broken) && (flooring.flags & TURF_CAN_BREAK))
-			overlays |= get_flooring_overlay("broken-[broken]","broken[broken]")
+			overlays |= get_flooring_overlay("[flooring.icon_base]-broken-[broken]", "broken[broken]")
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
-			overlays |= get_flooring_overlay("burned-[burnt]","burned[burnt]")
+			overlays |= get_flooring_overlay("[flooring.icon_base]-burned-[burnt]", "burned[burnt]")
 
 	if(update_neighbors)
 		for(var/turf/simulated/floor/F in range(src, 1))
