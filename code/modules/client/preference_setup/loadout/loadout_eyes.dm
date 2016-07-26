@@ -32,7 +32,7 @@
 /datum/gear/eyes/security
 	display_name = "Security HUD"
 	path = /obj/item/clothing/glasses/hud/security
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
 
 /datum/gear/eyes/medical
 	display_name = "Medical HUD"
@@ -42,7 +42,7 @@
 /datum/gear/eyes/shades
 	display_name = "Sunglasses, fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
-	allowed_roles = list("Security Officer","Head of Security","Warden","Captain","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Captain","First Officer","Quartermaster","Internal Affairs Agent","Inspector")
 
 /datum/gear/eyes/shades/prescriptionsun
 	display_name = "sunglasses, presciption"

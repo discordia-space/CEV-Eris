@@ -187,6 +187,7 @@
 // update the icon depending on the position
 
 /obj/machinery/conveyor_switch/proc/update()
+
 	if(position<0)
 		icon_state = "switch-rev"
 	else if(position>0)
@@ -213,6 +214,7 @@
 		user << "<span class='warning'>Access denied.</span>"
 		return
 
+	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
 	if(position == 0)
 		if(last_pos < 0)
 			position = 1
@@ -223,6 +225,7 @@
 	else
 		last_pos = position
 		position = 0
+
 
 	operated = 1
 	update()
@@ -248,6 +251,7 @@
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/oneway/attack_hand(mob/user)
+	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
 	if(position == 0)
 		position = convdir
 	else

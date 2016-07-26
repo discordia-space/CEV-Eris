@@ -29,8 +29,8 @@ var/datum/antagonist/revolutionary/revs
 	faction_invisible = 1
 	faction = "revolutionary"
 
-	restricted_jobs = list("Internal Affairs Agent", "AI", "Cyborg","Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
-	protected_jobs = list("Security Officer", "Warden", "Detective")
+	restricted_jobs = list("Internal Affairs Agent", "AI", "Cyborg","Captain", "First Officer", "Ironhammer Commander", "Chief Engineer", "Research Director", "Chief Medical Officer")
+	protected_jobs = list("Ironhammer Operative", "Gunnery Sergeant", "Inspector")
 
 
 /datum/antagonist/revolutionary/New()

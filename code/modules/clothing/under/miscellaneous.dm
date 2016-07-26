@@ -109,7 +109,7 @@
 
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
-	name = "head of personnel's suit"
+	name = "First Officer's suit"
 	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
 	icon_state = "teal_suit"
 	item_state = "g_suit"
@@ -240,20 +240,6 @@
 	desc = "A captain's formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state = "b_suit"
-
-
-/obj/item/clothing/under/hosformalmale
-	name = "head of security's formal uniform"
-	desc = "A male head of security's formal-wear, for special occasions."
-	icon_state = "hos_formal_male"
-	item_state = "r_suit"
-
-
-/obj/item/clothing/under/hosformalfem
-	name = "head of security's formal uniform"
-	desc = "A female head of security's formal-wear, for special occasions."
-	icon_state = "hos_formal_fem"
-	item_state = "r_suit"
 
 
 /obj/item/clothing/under/assistantformal

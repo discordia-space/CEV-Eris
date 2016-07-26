@@ -30,6 +30,7 @@
 	if(climbable)
 		structure_shaken()
 
+	playsound(src,'sound/machines/Table_Fall.wav',100,1)
 	return
 
 /obj/structure/table/proc/unflipping_check(var/direction)

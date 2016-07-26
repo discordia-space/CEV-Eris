@@ -137,6 +137,19 @@
 	new_desc = "A standard APLU exosuit with stylish blue flame decals."
 	new_icon = "ripley_flames_blue"
 
+/obj/item/device/kit/paint/ripley/syndieripley
+	name = "\"Syndie\" APLU customisation kit"
+	new_name = "Syndicate APLU"
+	new_desc = "A painted in red APLU exosuit."
+	new_icon = "syndieripley"
+
+/obj/item/device/kit/paint/ripley/titan
+	name = "\"Titan\" APLU customisation kit"
+	new_name = "\"Titan\" APLU"
+	new_desc = "A standard APLU exosuit decorated with skull decal and Firefighter arm."
+	new_icon = "titan"
+
+
 // Durand kits.
 /obj/item/device/kit/paint/durand
 	name = "\"Classic\" Durand customisation kit"

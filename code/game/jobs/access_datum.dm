@@ -327,13 +327,13 @@
 /var/const/access_hop = 57
 /datum/access/hop
 	id = access_hop
-	desc = "Head of Personnel"
+	desc = "First Officer"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_hos = 58
 /datum/access/hos
 	id = access_hos
-	desc = "Head of Security"
+	desc = "Ironhammer Commander"
 	region = ACCESS_REGION_SECURITY
 
 /var/const/access_RC_announce = 59 //Request console announcements
@@ -383,6 +383,12 @@
 	id = access_medical_equip
 	desc = "Medical Equipment"
 	region = ACCESS_REGION_MEDBAY
+
+/var/const/access_medspec = 67
+/datum/access/medspec
+	id = access_medspec
+	desc = "Medical Specialist"
+	region = ACCESS_REGION_SECURITY
 
 /******************
 * Central Command *

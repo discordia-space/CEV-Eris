@@ -1,5 +1,11 @@
 //Alphabetical order of civilian jobs.
 
+/obj/item/clothing/under/rank/assistant
+	desc = "Filled with hatred and envy."
+	name = "assistant's uniform"
+	icon_state = "assistant"
+	item_state = "assistant"
+
 /obj/item/clothing/under/rank/bartender
 	desc = "It looks like it could use some more flair."
 	name = "bartender's uniform"
@@ -49,8 +55,8 @@
 
 
 /obj/item/clothing/under/rank/head_of_personnel
-	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
-	name = "head of personnel's jumpsuit"
+	desc = "It's a jumpsuit worn by someone who works in the position of \"First Officer\"."
+	name = "First Officer's jumpsuit"
 	icon_state = "hop"
 	item_state = "b_suit"
 
