@@ -233,7 +233,7 @@
 	icon_state = "ertarmor_med"
 
 /obj/item/clothing/suit/armor/vest/detective
-	name = "detective armor vest"
+	name = "inspector armor vest"
 	desc = "An synthetic armor vest colored in a vintage brown."
 	icon_state = "detvest"
 
