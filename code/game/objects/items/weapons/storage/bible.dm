@@ -1,12 +1,15 @@
 /obj/item/weapon/storage/bible
-	name = "bible"
+	name = "Testament of Terra"
 	desc = "Apply to head repeatedly."
 	icon_state ="bible"
+	item_state = "bible"
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
 	var/mob/affecting = null
-	var/deity_name = "Christ"
+	var/deity_name = "God"
+	var/religion_name = "Monochristianity"
+
 
 /obj/item/weapon/storage/bible/booze
 	name = "bible"
