@@ -1334,6 +1334,10 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/skills
 	sort_string = "LAAAC"
 
+///////////////////////////////////
+////////////Mecha Modules//////////
+///////////////////////////////////
+
 /datum/design/circuit/mecha
 	req_tech = list(TECH_DATA = 3)
 
@@ -1341,6 +1345,8 @@ CIRCUITS BELOW
 	name = "Exosuit module circuit design ([name])"
 /datum/design/circuit/mecha/AssembleDesignDesc()
 	desc = "Allows for the construction of \a [name] module."
+
+//Ripley ==============================================
 
 /datum/design/circuit/mecha/ripley_main
 	name = "APLU 'Ripley' central control"
@@ -1353,6 +1359,8 @@ CIRCUITS BELOW
 	id = "ripley_peri"
 	build_path = /obj/item/weapon/circuitboard/mecha/ripley/peripherals
 	sort_string = "NAAAB"
+
+//Odysseus ==============================================
 
 /datum/design/circuit/mecha/odysseus_main
 	name = "'Odysseus' central control"
@@ -1367,6 +1375,8 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/odysseus/peripherals
 	sort_string = "NAABB"
+
+//Gygax ==============================================
 
 /datum/design/circuit/mecha/gygax_main
 	name = "'Gygax' central control"
@@ -1389,6 +1399,8 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/mecha/gygax/targeting
 	sort_string = "NAACC"
 
+//Durand ==============================================
+
 /datum/design/circuit/mecha/durand_main
 	name = "'Durand' central control"
 	id = "durand_main"
@@ -1409,6 +1421,31 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/targeting
 	sort_string = "NAADC"
+
+//Phazon ==============================================
+
+/datum/design/circuit/mecha/phazon_main
+	name = "'Phazon' central control"
+	id = "phazon_main"
+	req_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 2)
+	build_path = /obj/item/weapon/circuitboard/mecha/phazon/main
+	sort_string = "NAAEA"
+
+/datum/design/circuit/mecha/phazon_peri
+	name = "'Phazon' peripherals control"
+	id = "phazon_peri"
+	req_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 2)
+	build_path = /obj/item/weapon/circuitboard/mecha/phazon/peripherals
+	sort_string = "NAAEB"
+
+/datum/design/circuit/mecha/phazon_targ
+	name = "'Phazon' weapon control and targeting"
+	id = "phazon_targ"
+	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 3, TECH_BLUESPACE = 5)
+	build_path = /obj/item/weapon/circuitboard/mecha/phazon/targeting
+	sort_string = "NAAEC"
+
+
 
 /datum/design/circuit/tcom
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)

@@ -1556,6 +1556,24 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	containername = "heavy crate"
 
+/datum/supply_packs/exosuit_mod/syndieripley
+	contains = list(
+		/obj/item/device/kit/paint/ripley/syndieripley
+		)
+	name = "APLU syndieripley modkit"
+	cost = 60
+	containertype = /obj/structure/closet/crate
+	containername = "heavy crate"
+
+	/datum/supply_packs/exosuit_mod/titan
+	contains = list(
+		/obj/item/device/kit/paint/ripley/titan
+		)
+	name = "APLU Titan modkit"
+	cost = 60
+	containertype = /obj/structure/closet/crate
+	containername = "heavy crate"
+
 
 /datum/supply_packs/exosuit_mod/durand
 	contains = list(
