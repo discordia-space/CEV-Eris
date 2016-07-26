@@ -21,18 +21,4 @@
 
 		var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT
 		H.equip_to_slot_or_del(B, slot_l_hand)
-
-		spawn(0)
-			var/religion_name = "Monochristianity"
-			B.name = "Testament of Terra"
-			var/deity_name = "God"
-			B.icon_state = "bible"
-			B.item_state = "bible"
-			
-			if(ticker)
-				ticker.Bible_icon_state = B.icon_state
-				ticker.Bible_item_state = B.item_state
-				ticker.Bible_name = B.name
-				ticker.Bible_deity_name = B.deity_name
-
 		return 1
