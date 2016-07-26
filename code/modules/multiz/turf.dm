@@ -2,7 +2,6 @@
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "black"
-	alpha = 16
 	layer = 0
 	density = 0
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
