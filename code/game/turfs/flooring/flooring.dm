@@ -114,7 +114,7 @@ var/list/flooring_types
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "steel"
-	has_damage_range = 4 //RECHECK THIS. MAYBE MISTAKE
+	has_damage_range = 2 //RECHECK THIS. MAYBE MISTAKE
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
@@ -131,8 +131,6 @@ var/list/flooring_types
 /decl/flooring/tiling/tech/grid
 	icon_base = "techfloor_grid"
 	build_type = /obj/item/stack/tile/techgrid
-
-
 
 /decl/flooring/tiling/new_tile
 	name = "tile full"
@@ -168,32 +166,24 @@ var/list/flooring_types
 /decl/flooring/tiling/steel
 	name = "floor"
 	icon_base = "steel"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_steel
 
 /decl/flooring/tiling/white
 	name = "floor"
 	desc = "How sterile."
 	icon_base = "white"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_white
 
 /decl/flooring/tiling/dark
 	name = "floor"
 	desc = "How ominous."
 	icon_base = "dark"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_dark
 
 /decl/flooring/tiling/freezer
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "freezer"
-	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor_freezer
 
 /decl/flooring/wood
