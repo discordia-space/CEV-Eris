@@ -524,8 +524,13 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/passenger
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
 
+/datum/design/item/mecha/jetpack
+	name = "jetpack module"
+	id = "mech_jetpack"
+	build_path = /obj/item/mecha_parts/mecha_equipment/jetpack
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
+
 //obj/item/mecha_parts/mecha_equipment/repair_droid,
-//obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
 
 /datum/design/item/mecha/taser
 	name = "PBT \"Pacifier\" mounted taser"
