@@ -66,7 +66,7 @@
 
 
 /obj/item/clothing/under/det
-	name = "detective's suit"
+	name = "inspector's suit"
 	desc = "A rumpled white dress shirt paired with well-worn grey slacks, complete with a blue striped tie and a faux-gold tie clip."
 	icon_state = "detective"
 	item_state = "det"
