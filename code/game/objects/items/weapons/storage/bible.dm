@@ -7,9 +7,6 @@
 	throw_range = 5
 	w_class = 3.0
 	var/mob/affecting = null
-	var/deity_name = "God"
-	var/religion_name = "Monochristianity"
-
 
 /obj/item/weapon/storage/bible/booze
 	name = "bible"
