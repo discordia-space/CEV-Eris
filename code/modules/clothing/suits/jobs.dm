@@ -51,7 +51,7 @@
 
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
-	name = "chaplain hoodie"
+	name = "preacher hoodie"
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"

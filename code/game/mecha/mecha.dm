@@ -217,7 +217,9 @@
 
 
 /obj/mecha/proc/check_for_support()
-	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/obj/structure/catwalk, orange(1, src)) || locate(/turf/simulated, orange(1, src)) || locate(/turf/unsimulated, orange(1, src)))
+	if( locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) ||\
+		locate(/obj/structure/catwalk, orange(1, src)) || locate(/turf/simulated, orange(1, src)) ||\
+		locate(/turf/unsimulated, orange(1, src)))
 		return 1
 	else
 		return 0
@@ -361,6 +363,10 @@
 	return do_move(direction)
 
 /obj/mecha/proc/do_move(direction)
+	var/obj/item/mecha_parts/mecha_equipment/jetpack/J = locate() in equipment
+	if(J && J.do_move(direction))
+		return 1
+
 	if(!can_move)
 		return 0
 	if(src.pr_inertial_movement.active())
