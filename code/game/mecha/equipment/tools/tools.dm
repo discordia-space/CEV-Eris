@@ -1145,3 +1145,92 @@
 
 #undef LOCKED
 #undef OCCUPIED
+
+/obj/item/mecha_parts/mecha_equipment/jetpack
+	name = "jetpack"
+	desc = "Using directed ion bursts and cunning solar wind reflection technique, this device enables controlled space flight."
+	icon_state = "mecha_equip"
+	equip_cooldown = 5
+	energy_drain = 50
+	var/wait = 0
+	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+
+
+	can_attach(obj/mecha/M as obj)
+		if(!locate(src.type) in M.equipment)
+			return ..()
+
+	attach(obj/mecha/M as obj)
+		..()
+		if(!ion_trail)
+			ion_trail = new
+		ion_trail.set_up(chassis)
+		return
+
+	proc/toggle()
+		if(!chassis)
+			return
+		!equip_ready? turn_off() : turn_on()
+		return equip_ready
+
+	proc/turn_on()
+		set_ready_state(0)
+		ion_trail.start()
+		occupant_message("Activated")
+		log_message("Activated")
+
+	proc/turn_off()
+		set_ready_state(1)
+		ion_trail.stop()
+		occupant_message("Deactivated")
+		log_message("Deactivated")
+
+	proc/do_move(direction)
+		if(!action_checks())
+			return chassis.do_move(direction)
+		var/move_result = 0
+		if(chassis.hasInternalDamage(MECHA_INT_CONTROL_LOST))
+			move_result = step_rand(chassis)
+		else if(chassis.dir!=direction)
+			chassis.set_dir(direction)
+			move_result = 1
+		else
+			move_result	= step(chassis,direction)
+			if(chassis.occupant)
+				for(var/obj/effect/speech_bubble/B in range(1, chassis))
+					if(B.parent == chassis.occupant)
+						B.loc = chassis.loc
+		if(move_result)
+			wait = 1
+			chassis.use_power(energy_drain)
+			if(!chassis.pr_inertial_movement.active())
+				chassis.pr_inertial_movement.start(list(chassis,direction))
+			else
+				chassis.pr_inertial_movement.set_process_args(list(chassis,direction))
+			do_after_cooldown()
+			return 1
+		return 0
+
+	action_checks()
+		if(equip_ready || wait)
+			return 0
+		if(energy_drain && !chassis.has_charge(energy_drain))
+			return 0
+		if(chassis.check_for_support())
+			return 0
+		return 1
+
+	get_equip_info()
+		if(!chassis) return
+		return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] \[<a href=\"?src=\ref[src];toggle=1\">Toggle</a>\]"
+
+
+	Topic(href,href_list)
+		..()
+		if(href_list["toggle"])
+			toggle()
+
+	do_after_cooldown()
+		sleep(equip_cooldown)
+		wait = 0
+		return 1
