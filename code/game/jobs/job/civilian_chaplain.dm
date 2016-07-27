@@ -1,6 +1,6 @@
 //Due to how large this one is it gets its own file
 /datum/job/chaplain
-	title = "Chaplain"
+	title = "Monochurch Preacher"
 	flag = CHAPLAIN
 	department = "Civilian"
 	department_flag = CIVILIAN
@@ -11,7 +11,6 @@
 	selection_color = "#dddddd"
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	minimal_access = list(access_morgue, access_chapel_office, access_crematorium)
-	alt_titles = list("Counselor")
 	idtype = /obj/item/weapon/card/id/chaplain
 	uniform = /obj/item/clothing/under/rank/chaplain
 	pda = /obj/item/device/pda/chaplain

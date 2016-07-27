@@ -119,17 +119,17 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	var/blocked = ..()
-	
+
 	if(user.a_intent != I_HURT)
 		return
 	if(!smash_check(1))
 		return //won't always break on the first hit
-	
+
 	// You are going to knock someone out for longer if they are not wearing a helmet.
 	var/weaken_duration = 0
 	if(blocked < 2)
 		weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
-	
+
 	var/mob/living/carbon/human/H = target
 	if(istype(H) && H.headcheck(hit_zone))
 		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
@@ -235,7 +235,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/holywater
 	name = "Flask of Holy Water"
-	desc = "A flask of the chaplain's holy water."
+	desc = "A flask of the preacher's holy water."
 	icon_state = "holyflask"
 	center_of_mass = list("x"=17, "y"=10)
 	New()
