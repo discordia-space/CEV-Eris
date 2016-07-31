@@ -90,6 +90,7 @@
 	set name = "Rename paper"
 	set category = "Object"
 	set src in usr
+	playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav',40,1)
 
 	if((CLUMSY in usr.mutations) && prob(50))
 		usr << "<span class='warning'>You cut yourself on the paper.</span>"
@@ -453,7 +454,7 @@
 		if(icon_state == "scrap")
 			usr << "<span class='warning'>\The [src] is too crumpled to write on.</span>"
 			return
-
+		playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav',40,1)
 		var/obj/item/weapon/pen/robopen/RP = P
 		if ( istype(RP) && RP.mode == 2 )
 			RP.RenamePaper(user,src)
