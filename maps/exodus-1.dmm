@@ -1719,7 +1719,7 @@
 "aHc" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk,/turf/simulated/floor/wood,/area/library)
 "aHd" = (/turf/simulated/wall,/area/library)
 "aHe" = (/obj/machinery/door/airlock/maintenance{name = "Crematorium Maintenance"; req_access = list(27)},/obj/structure/disposalpipe/segment,/obj/machinery/door/firedoor,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/dark,/area/chapel/office)
-"aHf" = (/obj/structure/closet/wardrobe/chaplain_black,/obj/item/device/radio/intercom{dir = 2; pixel_y = 22},/turf/simulated/floor/lino,/area/chapel/office)
+"aHf" = (/obj/item/device/radio/intercom{dir = 2; pixel_y = 22},/obj/structure/closet/secure_closet/chaplain,/turf/simulated/floor/lino,/area/chapel/office)
 "aHg" = (/obj/machinery/light/small{dir = 1},/obj/machinery/requests_console{department = "Chapel"; departmentType = 2; pixel_y = 30},/obj/machinery/atmospherics/unary/vent_pump/on,/turf/simulated/floor/lino,/area/chapel/office)
 "aHh" = (/obj/machinery/light_switch{pixel_y = 28},/obj/machinery/camera/network/civilian_east{c_tag = "Chapel Office"},/turf/simulated/floor/lino,/area/chapel/office)
 "aHi" = (/obj/machinery/button/remote/blast_door{id = "chapel"; name = "Privacy Shutters"; pixel_y = 25},/turf/simulated/floor/lino,/area/chapel/office)

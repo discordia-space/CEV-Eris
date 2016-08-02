@@ -466,7 +466,7 @@
 "aiX" = (/turf/simulated/wall,/area/eris/librarybackroom)
 "aiY" = (/obj/machinery/door/firedoor{layer = 2.69; req_one_access = null},/obj/machinery/door/airlock{name = "Library"},/turf/simulated/floor/tiled/dark,/area/eris/librarybackroom)
 "aiZ" = (/turf/simulated/wall,/area/chapel/office)
-"aja" = (/obj/structure/closet/wardrobe/chaplain_black,/obj/item/weapon/storage/fancy/crayons,/obj/item/weapon/storage/fancy/candle_box,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/tiled/dark,/area/chapel/office)
+"aja" = (/obj/structure/closet/secure_closet/chaplain,/turf/simulated/floor/tiled/dark,/area/chapel/office)
 "ajb" = (/turf/simulated/floor/tiled/dark,/area/chapel/office)
 "ajc" = (/obj/structure/bed/chair/comfy/black,/turf/simulated/floor/tiled/dark,/area/chapel/office)
 "ajd" = (/obj/structure/cult/tome,/turf/simulated/floor/tiled/dark,/area/chapel/office)
