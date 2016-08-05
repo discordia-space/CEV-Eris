@@ -32,7 +32,7 @@
 
 
 /obj/structure/closet/secure_closet/hop
-	name = "head of personnel's locker"
+	name = "First Officer's locker"
 	req_access = list(access_hop)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
@@ -44,6 +44,8 @@
 	New()
 		..()
 		new /obj/item/clothing/glasses/sunglasses(src)
+		new /obj/item/clothing/under/rank/head_of_personnel(src)
+		new /obj/item/clothing/head/caphat/hop(src)
 		new /obj/item/clothing/suit/armor/vest(src)
 		new /obj/item/clothing/head/helmet(src)
 		new /obj/item/weapon/cartridge/hop(src)
@@ -52,29 +54,6 @@
 		new /obj/item/weapon/storage/box/ids( src )
 		new /obj/item/weapon/gun/projectile/sec/flash(src)
 		new /obj/item/device/flash(src)
-		return
-
-/obj/structure/closet/secure_closet/hop2
-	name = "head of personnel's attire"
-	req_access = list(access_hop)
-	icon_state = "hopsecure1"
-	icon_closed = "hopsecure"
-	icon_locked = "hopsecure1"
-	icon_opened = "hopsecureopen"
-	icon_broken = "hopsecurebroken"
-	icon_off = "hopsecureoff"
-
-	New()
-		..()
-		new /obj/item/clothing/under/rank/head_of_personnel(src)
-		new /obj/item/clothing/under/lawyer/female(src)
-		new /obj/item/clothing/under/lawyer/black(src)
-		new /obj/item/clothing/under/lawyer/red(src)
-		new /obj/item/clothing/shoes/brown(src)
-		new /obj/item/clothing/shoes/black(src)
-		new /obj/item/clothing/shoes/leather(src)
-		new /obj/item/clothing/shoes/white(src)
-		new /obj/item/clothing/head/caphat/hop(src)
 		return
 
 
@@ -237,8 +216,10 @@
 		..()
 		new /obj/item/clothing/under/det(src)
 		new /obj/item/clothing/under/det/black(src)
+		new /obj/item/clothing/under/inspector(src)
 		new /obj/item/clothing/suit/storage/det_trench(src)
 		new /obj/item/clothing/suit/storage/det_trench/grey(src)
+		new /obj/item/clothing/suit/storage/insp_trench(src)
 		new /obj/item/clothing/gloves/black(src)
 		new /obj/item/clothing/head/det(src)
 		new /obj/item/clothing/head/det/grey(src)

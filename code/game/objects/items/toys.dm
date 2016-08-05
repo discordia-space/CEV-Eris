@@ -556,8 +556,8 @@
 	icon_state = "ce"
 
 /obj/item/toy/figure/chaplain
-	name = "Chaplain action figure"
-	desc = "A \"Space Life\" brand Chaplain action figure."
+	name = "Monochurch Preacher action figure"
+	desc = "A \"Space Life\" brand Monochurch Preacher action figure."
 	icon_state = "chaplain"
 
 /obj/item/toy/figure/chef

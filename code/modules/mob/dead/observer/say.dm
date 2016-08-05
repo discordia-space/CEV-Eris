@@ -41,7 +41,7 @@
 /*
 	for (var/mob/M in hearers(null, null))
 		if (!M.stat)
-			if(M.job == "Chaplain")
+			if(M.job == "Monochurch Preacher")
 				if (prob (49))
 					M.show_message("<span class='game'><i>You hear muffled speech... but nothing is there...</i></span>", 2)
 					if(prob(20))

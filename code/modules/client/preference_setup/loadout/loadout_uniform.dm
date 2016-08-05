@@ -148,4 +148,4 @@
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
-	allowed_roles = list("Head of Personnel")*/
+	allowed_roles = list("First Officer")*/

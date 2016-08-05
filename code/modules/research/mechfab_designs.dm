@@ -96,6 +96,8 @@
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
 
+//Ripley ====================================
+
 /datum/design/item/mechfab/ripley
 	category = "Ripley"
 
@@ -145,6 +147,9 @@
 	build_path = /obj/item/mecha_parts/part/ripley_right_leg
 	time = 15
 	materials = list(DEFAULT_WALL_MATERIAL = 30000)
+
+
+//Odysseus =====================================================
 
 /datum/design/item/mechfab/odysseus
 	category = "Odysseus"
@@ -197,6 +202,8 @@
 	build_path = /obj/item/mecha_parts/part/odysseus_right_leg
 	time = 13
 	materials = list(DEFAULT_WALL_MATERIAL = 15000)
+
+//Gygax =========================================
 
 /datum/design/item/mechfab/gygax
 	category = "Gygax"
@@ -256,6 +263,69 @@
 	build_path = /obj/item/mecha_parts/part/gygax_armour
 	time = 60
 	materials = list(DEFAULT_WALL_MATERIAL = 50000, "diamond" = 10000)
+
+//Phazon ======================================================================
+
+/datum/design/item/mechfab/phazon
+	category = "Phazon"
+
+/datum/design/item/mechfab/phazon/chassis
+	name = "Phazon chassis"
+	id = "phazon_chassis"
+	build_path = /obj/item/mecha_parts/chassis/phazon
+	time = 10
+	materials = list(DEFAULT_WALL_MATERIAL = 25000)
+
+/datum/design/item/mechfab/phazon/torso
+	name = "Phazon torso"
+	id = "phazon_torso"
+	build_path = /obj/item/mecha_parts/part/phazon_torso
+	time = 10
+	materials = list(DEFAULT_WALL_MATERIAL=35000,"glass"=10000,"phoron"=20000)
+
+/datum/design/item/mechfab/phazon/head
+	name = "Phazon head"
+	id = "phazon_head"
+	build_path = /obj/item/mecha_parts/part/phazon_head
+	time = 10
+	materials = list(DEFAULT_WALL_MATERIAL=15000,"glass"=5000,"phoron"=10000,"silver"=3000)
+
+/datum/design/item/mechfab/phazon/left_arm
+	name = "Phazon left arm"
+	id = "phazon_left_arm"
+	build_path = /obj/item/mecha_parts/part/phazon_left_arm
+	time = 10
+	materials = list(DEFAULT_WALL_MATERIAL=20000,"phoron"=10000,"silver"=3000)
+
+/datum/design/item/mechfab/phazon/right_arm
+	name = "Phazon right arm"
+	id = "phazon_right_arm"
+	build_path = /obj/item/mecha_parts/part/phazon_right_arm
+	time = 10
+	materials = list(DEFAULT_WALL_MATERIAL=20000,"phoron"=10000,"silver"=3000)
+
+/datum/design/item/mechfab/phazon/left_leg
+	name = "Phazon left leg"
+	id = "phazon_left_leg"
+	build_path = /obj/item/mecha_parts/part/phazon_left_leg
+	time = 10
+	materials = list(DEFAULT_WALL_MATERIAL=20000,"phoron"=10000,"silver"=3000)
+
+/datum/design/item/mechfab/phazon/right_leg
+	name = "Phazon right leg"
+	id = "phazon_right_leg"
+	build_path = /obj/item/mecha_parts/part/phazon_right_leg
+	time = 10
+	materials = list(DEFAULT_WALL_MATERIAL=20000,"phoron"=10000,"silver"=3000)
+
+/datum/design/item/mechfab/phazon/armour
+	name = "Phazon armour plates"
+	id = "phazon_armour"
+	build_path = /obj/item/mecha_parts/part/phazon_armor
+	time = 20
+	materials = list(DEFAULT_WALL_MATERIAL=20000,"phoron"=10000,"uranium"=10000,"silver"=3000,"diamond"=1000)
+
+//Durand ======================================================================
 
 /datum/design/item/mechfab/durand
 	category = "Durand"
@@ -420,7 +490,7 @@
 	name = "Cable layer"
 	id = "mech_cable_layer"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/cable_layer
-	
+
 /datum/design/item/mecha/flaregun
 	name = "Flare launcher"
 	id = "mecha_flare_gun"
@@ -454,8 +524,13 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/passenger
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
 
+/datum/design/item/mecha/jetpack
+	name = "jetpack module"
+	id = "mech_jetpack"
+	build_path = /obj/item/mecha_parts/mecha_equipment/jetpack
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
+
 //obj/item/mecha_parts/mecha_equipment/repair_droid,
-//obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
 
 /datum/design/item/mecha/taser
 	name = "PBT \"Pacifier\" mounted taser"

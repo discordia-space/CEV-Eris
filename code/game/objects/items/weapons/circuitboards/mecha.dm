@@ -10,7 +10,7 @@
 	item_state = "electronic"
 	board_type = "other"
 
-
+//Ripley ====================================
 /obj/item/weapon/circuitboard/mecha/ripley
 		origin_tech = list(TECH_DATA = 3)
 
@@ -22,7 +22,7 @@
 		name = T_BOARD_MECHA("Ripley central control")
 		icon_state = "mainboard"
 
-
+//Gygax ====================================
 /obj/item/weapon/circuitboard/mecha/gygax
 		origin_tech = list(TECH_DATA = 4)
 
@@ -39,7 +39,7 @@
 		name = T_BOARD_MECHA("Gygax central control")
 		icon_state = "mainboard"
 
-
+//Durand ====================================
 /obj/item/weapon/circuitboard/mecha/durand
 		origin_tech = list(TECH_DATA = 4)
 
@@ -57,6 +57,25 @@
 		icon_state = "mainboard"
 
 
+//Phazon ====================================
+/obj/item/weapon/circuitboard/mecha/phazon
+		origin_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 2)
+
+/obj/item/weapon/circuitboard/mecha/phazon/peripherals
+		name = T_BOARD_MECHA("Phazon peripherals control")
+		icon_state = "mcontroller"
+
+/obj/item/weapon/circuitboard/mecha/phazon/targeting
+		name = T_BOARD_MECHA("Phazon weapon control and targeting")
+		icon_state = "mcontroller"
+		origin_tech = list(TECH_DATA = 4, TECH_COMBAT = 3, TECH_BLUESPACE = 5)
+
+/obj/item/weapon/circuitboard/mecha/phazon/main
+		name = T_BOARD_MECHA("Phazon central control")
+		icon_state = "mainboard"
+
+
+//honker ====================================
 /obj/item/weapon/circuitboard/mecha/honker
 		origin_tech = list(TECH_DATA = 4)
 
