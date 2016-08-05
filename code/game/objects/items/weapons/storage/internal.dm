@@ -47,15 +47,24 @@
 		if (!(master_item.loc == user) || (master_item.loc && master_item.loc.loc == user))
 			return 0
 
-		if (!( user.restrained() ) && !( user.stat ))
-			switch(over_object.name)
+		if (!( user.restrained() ) && !( user.stat ) && (istype(over_object, /obj/screen/inventory/hand)))
+			var/obj/screen/inventory/hand/H = over_object
+			switch(H.slot_id)
+				if(slot_r_hand)
+					user.u_equip(master_item)
+					user.put_in_r_hand(master_item)
+				if(slot_l_hand)
+					user.u_equip(master_item)
+					user.put_in_l_hand(master_item)
+			/*switch(over_object.name)
 				if("r_hand")
 					user.u_equip(master_item)
 					user.put_in_r_hand(master_item)
 				if("l_hand")
 					user.u_equip(master_item)
-					user.put_in_l_hand(master_item)
+					user.put_in_l_hand(master_item)*/
 			master_item.add_fingerprint(user)
+
 			return 0
 	return 0
 

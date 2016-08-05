@@ -21,7 +21,7 @@
 	var/obj/screen/m_select = null
 	var/obj/screen/toxin = null
 	var/obj/screen/fire = null
-	var/obj/screen/bodytemp = null
+/*	var/obj/screen/bodytemp = null
 	var/obj/screen/healths = null
 	var/obj/screen/throw_icon = null
 	var/obj/screen/nutrition_icon = null
@@ -32,7 +32,7 @@
 	var/obj/screen/gun/radio/radio_use_icon = null
 	var/obj/screen/gun/move/gun_move_icon = null
 	var/obj/screen/gun/run/gun_run_icon = null
-	var/obj/screen/gun/mode/gun_setting_icon = null
+	var/obj/screen/gun/mode/gun_setting_icon = null*/
 
 	//spells hud icons - this interacts with add_spell and remove_spell
 	var/list/obj/screen/movable/spell_master/spell_masters = null

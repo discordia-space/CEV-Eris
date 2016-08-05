@@ -20,7 +20,6 @@
 	src.name = _name
 	src.screen_loc = _screen_loc
 
-
 ///obj/screen/New()
 //	set in usr.client.screen
 //screen_loc = "[x_pos],[y_pos]"
@@ -62,131 +61,8 @@
 				var/mob/living/carbon/human/H = usr
 				H.quick_equip()
 
-		/*if("resist")
-			if(isliving(usr))
-				var/mob/living/L = usr
-				L.resist()
-
-		if("mov_intent")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
-				if(C.legcuffed)
-					C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
-					C.m_intent = "walk"	//Just incase
-					//C.hud_used.move_intent.icon_state = "walking"
-					return 1
-				switch(usr.m_intent)
-					if("run")
-						usr.m_intent = "walk"
-						usr.hud_used.move_intent.icon_state = "walking"
-					if("walk")
-						usr.m_intent = "run"
-						usr.hud_used.move_intent.icon_state = "running"*/
-
 		if("Reset Machine")
 			usr.unset_machine()
-/*		if("internal")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
-				if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
-					if(C.internal)
-						C.internal = null
-						C << "<span class='notice'>No longer running on internals.</span>"
-						if(C.internals)
-							C.internals.icon_state = "internal0"
-					else
-
-						var/no_mask
-						if(!(C.wear_mask && C.wear_mask.item_flags & AIRTIGHT))
-							var/mob/living/carbon/human/H = C
-							if(!(H.head && H.head.item_flags & AIRTIGHT))
-								no_mask = 1
-
-						if(no_mask)
-							C << "<span class='notice'>You are not wearing a suitable mask or helmet.</span>"
-							return 1
-						else
-							var/list/nicename = null
-							var/list/tankcheck = null
-							var/breathes = "oxygen"    //default, we'll check later
-							var/list/contents = list()
-							var/from = "on"
-
-							if(ishuman(C))
-								var/mob/living/carbon/human/H = C
-								breathes = H.species.breath_type
-								nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
-								tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
-							else
-								nicename = list("right hand", "left hand", "back")
-								tankcheck = list(C.r_hand, C.l_hand, C.back)
-
-							// Rigs are a fucking pain since they keep an air tank in nullspace.
-							if(istype(C.back,/obj/item/weapon/rig))
-								var/obj/item/weapon/rig/rig = C.back
-								if(rig.air_supply)
-									from = "in"
-									nicename |= "hardsuit"
-									tankcheck |= rig.air_supply
-
-							for(var/i=1, i<tankcheck.len+1, ++i)
-								if(istype(tankcheck[i], /obj/item/weapon/tank))
-									var/obj/item/weapon/tank/t = tankcheck[i]
-									if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc,breathes))
-										contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
-										continue					//in it, so we're going to believe the tank is what it says it is
-									switch(breathes)
-																		//These tanks we're sure of their contents
-										if("nitrogen") 							//So we're a bit more picky about them.
-
-											if(t.air_contents.gas["nitrogen"] && !t.air_contents.gas["oxygen"])
-												contents.Add(t.air_contents.gas["nitrogen"])
-											else
-												contents.Add(0)
-
-										if ("oxygen")
-											if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["phoron"])
-												contents.Add(t.air_contents.gas["oxygen"])
-											else
-												contents.Add(0)
-
-										// No races breath this, but never know about downstream servers.
-										if ("carbon dioxide")
-											if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["phoron"])
-												contents.Add(t.air_contents.gas["carbon_dioxide"])
-											else
-												contents.Add(0)
-
-
-								else
-									//no tank so we set contents to 0
-									contents.Add(0)
-
-							//Alright now we know the contents of the tanks so we have to pick the best one.
-
-							var/best = 0
-							var/bestcontents = 0
-							for(var/i=1, i <  contents.len + 1 , ++i)
-								if(!contents[i])
-									continue
-								if(contents[i] > bestcontents)
-									best = i
-									bestcontents = contents[i]
-
-
-							//We've determined the best container now we set it as our internals
-
-							if(best)
-								C << "<span class='notice'>You are now running on internals from [tankcheck[best]] [from] your [nicename[best]].</span>"
-								playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
-								C.internal = tankcheck[best]
-
-
-							if(C.internal)
-								if(C.internals)
-									C.internals.icon_state = "internal1"
-							else
-								C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"*/
 		if("act_intent")
 			usr.a_intent_change("right")
 		/*if(I_HELP)
@@ -201,12 +77,6 @@
 		if(I_DISARM)
 			usr.a_intent = I_DISARM
 			usr.hud_used.action_intent.icon_state = "intent_disarm"*/
-
-/*		if("pull")
-			usr.stop_pulling()
-		if("drop")
-			if(usr.client)
-				usr.client.drop_item()*/
 
 		if("module")
 			if(isrobot(usr))
@@ -464,8 +334,6 @@
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("l")*/
-		if("swap")
-			usr:swap_hand()
 		if("hand")
 			usr:swap_hand()
 		else
@@ -922,7 +790,20 @@
 	if(ishuman(parentmob))
 		var/mob/living/carbon/human/H = parentmob
 		H.quick_equip()
+//-----------------------swap------------------------------
+/obj/screen/swap
+	name = "swap hand"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "swap-l"
 
+/obj/screen/swap/New()
+	..()
+	overlays += image(icon = src.icon, icon_state =  "swap-r", pixel_x = 32)
+
+/obj/screen/swap/Click()
+	parentmob.swap_hand()
+//-----------------------swap END------------------------------
+//-----------------------intent------------------------------
 /obj/screen/intent
 	name = "intent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
@@ -934,15 +815,7 @@
 	update_icon()
 
 /obj/screen/intent/Click()
-	switch (parentmob.a_intent)
-		if(I_HELP)
-			parentmob.a_intent = I_HELP
-		if(I_HURT)
-			parentmob.a_intent = I_GRAB
-		if(I_GRAB)
-			parentmob.a_intent = I_DISARM
-		if(I_DISARM)
-			parentmob.a_intent = I_HURT
+	parentmob.a_intent_change("right")
 	update_icon()
 
 /obj/screen/intent/update_icon()
@@ -955,6 +828,47 @@
 			icon_state = "grab"
 		if(I_DISARM)
 			icon_state = "disarm"
+//-----------------------intent END------------------------------
+/obj/screen/fastintent
+	name = "fastintent"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+
+/obj/screen/fastintent/Click()
+	if (parentmob.HUDneed.Find("intent"))
+		var/obj/screen/intent/I = parentmob.HUDneed["intent"]
+		I.update_icon()
+
+
+/obj/screen/fastintent/help
+	icon_state = "intent_help"
+
+/obj/screen/fastintent/help/Click()
+	parentmob.a_intent_change(I_HELP)
+	..()
+
+/obj/screen/fastintent/harm
+	icon_state = "intent_harm"
+
+/obj/screen/fastintent/harm/Click()
+	parentmob.a_intent_change(I_HURT)
+	..()
+
+/obj/screen/fastintent/grab
+	icon_state = "intent_grab"
+
+/obj/screen/fastintent/grab/Click()
+	parentmob.a_intent_change(I_GRAB)
+	..()
+
+/obj/screen/fastintent/disarm
+	icon_state = "intent_disarm"
+
+/obj/screen/fastintent/disarm/Click()
+	parentmob.a_intent_change(I_DISARM)
+	..()
+
+
+
 
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
@@ -1035,3 +949,146 @@
 				if(85 to INFINITY)
 					I = H.overlays_cache[23]
 			overlays += I
+
+
+
+/obj/screen/frippery
+	name = ""
+
+/obj/screen/frippery/New(_icon_state,_screen_loc = "7,7",_dir, mob/living/_parentmob)
+	src.parentmob = _parentmob
+	src.screen_loc = _screen_loc
+	src.icon_state = _icon_state
+	src.dir = _dir
+
+
+
+/*	if(owner.gun_move_icon)
+		if(!(target_permissions & TARGET_CAN_MOVE))
+			owner.gun_move_icon.icon_state = "no_walk0"
+			owner.gun_move_icon.name = "Allow Movement"
+		else
+			owner.gun_move_icon.icon_state = "no_walk1"
+			owner.gun_move_icon.name = "Disallow Movement"
+
+	if(owner.item_use_icon)
+		if(!(target_permissions & TARGET_CAN_CLICK))
+			owner.item_use_icon.icon_state = "no_item0"
+			owner.item_use_icon.name = "Allow Item Use"
+		else
+			owner.item_use_icon.icon_state = "no_item1"
+			owner.item_use_icon.name = "Disallow Item Use"
+
+	if(owner.radio_use_icon)
+		if(!(target_permissions & TARGET_CAN_RADIO))
+			owner.radio_use_icon.icon_state = "no_radio0"
+			owner.radio_use_icon.name = "Allow Radio Use"
+		else
+			owner.radio_use_icon.icon_state = "no_radio1"
+			owner.radio_use_icon.name = "Disallow Radio Use"*/
+//-----------------------Gun Mod------------------------------
+/obj/screen/gun
+	name = "gun"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	master = null
+	dir = 2
+
+/obj/screen/gun/Click(location, control, params)
+	if(!usr)
+		return
+	return 1
+
+/obj/screen/gun/New()
+	..()
+	if(!parentmob.aiming)
+		parentmob.aiming = new(parentmob)
+	update_icon()
+
+/obj/screen/gun/mode
+	name = "Toggle Gun Mode"
+	icon_state = "gun0"
+	screen_loc = "15,2"
+
+
+/obj/screen/gun/mode/Click(location, control, params)
+	if(..())
+		var/mob/living/user = parentmob
+		if(istype(user))
+			if(!user.aiming) user.aiming = new(user)
+			user.aiming.toggle_active()
+			update_icon()
+		return 1
+	return 0
+
+/obj/screen/gun/mode/update_icon()
+	icon_state = "gun[parentmob.aiming.active]"
+
+/obj/screen/gun/move
+	name = "Allow Movement"
+	icon_state = "no_walk0"
+	screen_loc = "15,3"
+
+/obj/screen/gun/move/Click(location, control, params)
+	if(..())
+		var/mob/living/user = parentmob
+		if(istype(user))
+			if(!user.aiming) user.aiming = new(user)
+			user.aiming.toggle_permission(TARGET_CAN_MOVE)
+			update_icon()
+		return 1
+	return 0
+
+/obj/screen/gun/move/update_icon()
+	if(!(parentmob.aiming.target_permissions & TARGET_CAN_MOVE))
+		icon_state = "no_walk0"
+//			owner.gun_move_icon.name = "Allow Movement"
+	else
+		icon_state = "no_walk1"
+//			owner.gun_move_icon.name = "Disallow Movement"
+
+/obj/screen/gun/item
+	name = "Allow Item Use"
+	icon_state = "no_items0"
+	screen_loc = "14,2"
+
+/obj/screen/gun/item/Click(location, control, params)
+	if(..())
+		var/mob/living/user = parentmob
+		if(istype(user))
+			if(!user.aiming) user.aiming = new(user)
+			user.aiming.toggle_permission(TARGET_CAN_CLICK)
+			update_icon()
+		return 1
+	return 0
+
+/obj/screen/gun/item/update_icon()
+	if(!(parentmob.aiming.target_permissions & TARGET_CAN_CLICK))
+		icon_state = "no_items0"
+//			owner.item_use_icon.name = "Allow Item Use"
+	else
+		icon_state = "no_items1"
+//			owner.item_use_icon.name = "Disallow Item Use"
+
+/obj/screen/gun/radio
+	name = "Allow Radio Use"
+	icon_state = "no_radio0"
+	screen_loc = "14,3"
+
+/obj/screen/gun/radio/Click(location, control, params)
+	if(..())
+		var/mob/living/user = parentmob
+		if(istype(user))
+			if(!user.aiming) user.aiming = new(user)
+			user.aiming.toggle_permission(TARGET_CAN_RADIO)
+			update_icon()
+		return 1
+	return 0
+
+/obj/screen/gun/radio/update_icon()
+	if(!(parentmob.aiming.target_permissions & TARGET_CAN_RADIO))
+		icon_state = "no_radio0"
+//			owner.radio_use_icon.name = "Allow Radio Use"
+	else
+		icon_state = "no_radio1"
+//			owner.radio_use_icon.name = "Disallow Radio Use"
+//-----------------------Gun Mod End------------------------------

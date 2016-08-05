@@ -194,7 +194,7 @@
 			if (MED_HUD)
 				process_med_hud(src,0)
 
-	if (src.healths)
+/*	if (src.healths)
 		if (src.stat != 2)
 			if(istype(src,/mob/living/silicon/robot/drone))
 				switch(health)
@@ -229,7 +229,7 @@
 					else
 						src.healths.icon_state = "health6"
 		else
-			src.healths.icon_state = "health7"
+			src.healths.icon_state = "health7"*/
 
 	if (src.syndicate && src.client)
 		for(var/datum/mind/tra in traitors.current_antagonists)
@@ -261,7 +261,7 @@
 		else
 			src.cells.icon_state = "charge-empty"
 
-	if(bodytemp)
+/*	if(bodytemp)
 		switch(src.bodytemperature) //310.055 optimal body temp
 			if(335 to INFINITY)
 				src.bodytemp.icon_state = "temp2"
@@ -272,7 +272,7 @@
 			if(260 to 300)
 				src.bodytemp.icon_state = "temp-1"
 			else
-				src.bodytemp.icon_state = "temp-2"
+				src.bodytemp.icon_state = "temp-2"*/
 
 //Oxygen and fire does nothing yet!!
 //	if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"

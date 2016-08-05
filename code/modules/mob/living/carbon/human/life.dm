@@ -73,8 +73,6 @@
 	else
 		H.show_HUD()
 
-
-	world << "HUD_check... [recreate_flag]"
 	return recreate_flag
 
 /*
@@ -94,7 +92,7 @@
 			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
 			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-			var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], src)
+			var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
 			if(HUDdatum.HUDneed[HUDname]["icon"])//Анализ на овверайд icon
 				HUD.icon = HUDdatum.HUDneed[HUDname]["icon"]
 			else
@@ -117,16 +115,30 @@
 			else
 				HUDtype = /obj/screen/inventory
 
-			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"], HUDdatum.slot_data[gear_slot]["loc"], species.hud.gear[gear_slot], HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], src)
+			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"], HUDdatum.slot_data[gear_slot]["loc"], species.hud.gear[gear_slot], HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], H)
 			if(HUDdatum.slot_data[gear_slot]["dir"])
 				inv_box.set_dir(HUDdatum.slot_data[gear_slot]["dir"])
 			H.HUDinventory += inv_box
-			/*if(slot_data["toggle"])
-				src.other += inv_box
-				has_hidden_gear = 1
-			else
-				src.adding += inv_box*/
+
 	//Добавляем Элементы ХУДа (украшения)
+	for (var/list/whistle in HUDdatum.HUDfrippery)
+		var/obj/screen/frippery/perdelka = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
+		perdelka.icon = HUDdatum.icon
+		H.HUDfrippery += perdelka
+
+	//Добавляем технические элементы(damage,flash,pain... оверлеи)
+	for (var/techobject in HUDdatum.HUDoverlays)
+		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
+		var/obj/screen/HUD = new HUDtype(techobject, HUDdatum.HUDoverlays[techobject]["loc"], H)
+		if(HUDdatum.HUDoverlays[techobject]["icon"])//Анализ на овверайд icon
+			HUD.icon = HUDdatum.HUDoverlays[techobject]["icon"]
+		else
+			HUD.icon = HUDdatum.icon
+		if(HUDdatum.HUDoverlays[techobject]["icon_state"])//Анализ на овверайд icon_state
+			HUD.icon_state = HUDdatum.HUDoverlays[techobject]["icon_state"]
+		H.HUDtech[HUD.name] += HUD//Добавляем в список худов
+		if (HUD.process_flag)//Если худ нужно процессить
+			H.HUDprocess += HUD//Вливаем в соотвествующий список
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0

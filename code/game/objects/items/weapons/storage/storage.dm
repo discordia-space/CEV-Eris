@@ -65,18 +65,30 @@
 
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
-	
+
 
 		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
 
-		switch(over_object.name)
+/*		switch(over_object.name)
 			if("r_hand")
 				usr.u_equip(src)
 				usr.put_in_r_hand(src)
 			if("l_hand")
 				usr.u_equip(src)
-				usr.put_in_l_hand(src)
+				usr.put_in_l_hand(src)*/
+
+		if (istype(over_object, /obj/screen/inventory/hand))
+			var/obj/screen/inventory/hand/H = over_object
+			switch(H.slot_id)
+				if(slot_r_hand)
+					usr.u_equip(src)
+					usr.put_in_r_hand(src)
+				if(slot_l_hand)
+					usr.u_equip(src)
+					usr.put_in_l_hand(src)
+
+
 		src.add_fingerprint(usr)
 
 

@@ -12,6 +12,7 @@
 	var/list/HUDinventory = list()
 	var/list/HUDfrippery = list()
 	var/list/HUDprocess = list() //What HUD object need process
+	var/list/HUDtech = list()
 	var/defaultHUD = "" //Defauld mob hud
 
 

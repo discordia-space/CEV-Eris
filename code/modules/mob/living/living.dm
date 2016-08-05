@@ -977,16 +977,26 @@ default behaviour is:
 		qdel(H.HUDneed[p])
 	for (var/HUDelement in H.HUDinventory)
 		qdel(HUDelement)
+	for (var/HUDelement in H.HUDfrippery)
+		qdel(HUDelement)
+	for (var/i=1,i<=H.HUDtech.len,i++)
+		var/p = H.HUDtech[i]
+		qdel(H.HUDtech[p])
+	H.HUDtech.Cut()
 	H.HUDneed.Cut()
 	H.HUDinventory.Cut()
+	H.HUDfrippery.Cut()
 
 /mob/living/proc/show_HUD()
 	if(src.client)
 		src.client.screen.Cut()
-		if (src.HUDneed.len)
-			for (var/i=1,i<=HUDneed.len,i++)
-				var/p = HUDneed[i]
-				src.client.screen += HUDneed[p]
-		if (src.HUDinventory.len)
-			for (var/obj/screen/inventory/HUDinv in src.HUDinventory)
-				src.client.screen += HUDinv
+		for (var/i=1,i<=HUDneed.len,i++)
+			var/p = HUDneed[i]
+			src.client.screen += HUDneed[p]
+		for (var/obj/screen/inventory/HUDinv in src.HUDinventory)
+			src.client.screen += HUDinv
+		for (var/obj/screen/frippery/HUDfri in src.HUDfrippery)
+			src.client.screen += HUDfri
+		for (var/i=1,i<=HUDtech.len,i++)
+			var/p = HUDtech[i]
+			src.client.screen += HUDtech[p]

@@ -28,16 +28,16 @@
 	m_select = null
 	toxin = null
 	fire = null
-	bodytemp = null
-	healths = null
-	throw_icon = null
-	nutrition_icon = null
-	pressure = null
+//	bodytemp = null
+//	healths = null
+//	throw_icon = null
+//	nutrition_icon = null
+//	pressure = null
 //	damageoverlay = null
-	pain = null
-	item_use_icon = null
-	gun_move_icon = null
-	gun_setting_icon = null
+//	pain = null
+//	item_use_icon = null
+//	gun_move_icon = null
+//	gun_setting_icon = null
 	spell_masters = null
 	zone_sel = null
 
@@ -894,7 +894,9 @@
 	return ""
 
 /mob/proc/flash_weak_pain()
-	flick("weak_pain",pain)
+	if(istype(src,/mob/living))
+		var/mob/living/L = src
+		flick("weak_pain",L.HUDneed["damageoverlay"])
 
 /mob/proc/get_visible_implants(var/class = 0)
 	var/list/visible_implants = list()
