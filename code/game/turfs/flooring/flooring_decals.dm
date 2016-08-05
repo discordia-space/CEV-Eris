@@ -104,7 +104,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/yellow/three_quarters
 	icon_state = "corner_white_three_quarters"
-	
+
 /obj/effect/floor_decal/corner/yellow/full
 	icon_state = "corner_white_full"
 
@@ -127,7 +127,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/red/three_quarters
 	icon_state = "corner_white_three_quarters"
-	
+
 /obj/effect/floor_decal/corner/red/full
 	icon_state = "corner_white_full"
 
@@ -399,6 +399,257 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/sign/p
 	icon_state = "white_p"
 
+/obj/effect/floor_decal/rust
+	name = "rust"
+	icon_state = "rust"
+
+
+//Old tile
+
+/obj/effect/floor_decal/corner_oldtile
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+
+/obj/effect/floor_decal/corner_oldtile/white
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+	color = "#d9d9d9"
+
+/obj/effect/floor_decal/corner_oldtile/white/diagonal
+	name = "corner oldtile diagonal"
+	icon_state = "corner_oldtile_diagonal"
+
+/obj/effect/floor_decal/corner_oldtile/white/full
+	name = "corner oldtile full"
+	icon_state = "corner_oldtile_full"
+
+/obj/effect/floor_decal/corner_oldtile/blue
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+	color = "#8ba7ad"
+
+/obj/effect/floor_decal/corner_oldtile/blue/diagonal
+	name = "corner oldtile diagonal"
+	icon_state = "corner_oldtile_diagonal"
+
+/obj/effect/floor_decal/corner_oldtile/blue/full
+	name = "corner oldtile full"
+	icon_state = "corner_oldtile_full"
+
+/obj/effect/floor_decal/corner_oldtile/yellow
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+	color = "#8c6d46"
+
+/obj/effect/floor_decal/corner_oldtile/yellow/diagonal
+	name = "corner oldtile diagonal"
+	icon_state = "corner_oldtile_diagonal"
+
+/obj/effect/floor_decal/corner_oldtile/yellow/full
+	name = "corner oldtile full"
+	icon_state = "corner_oldtile_full"
+
+/obj/effect/floor_decal/corner_oldtile/gray
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+	color = "#687172"
+
+/obj/effect/floor_decal/corner_oldtile/gray/diagonal
+	name = "corner oldtile diagonal"
+	icon_state = "corner_oldtile_diagonal"
+
+/obj/effect/floor_decal/corner_oldtile/gray/full
+	name = "corner oldtile full"
+	icon_state = "corner_oldtile_full"
+
+/obj/effect/floor_decal/corner_oldtile/beige
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+	color = "#385e60"
+
+/obj/effect/floor_decal/corner_oldtile/beige/diagonal
+	name = "corner oldtile diagonal"
+	icon_state = "corner_oldtile_diagonal"
+
+/obj/effect/floor_decal/corner_oldtile/beige/full
+	name = "corner oldtile full"
+	icon_state = "corner_oldtile_full"
+
+/obj/effect/floor_decal/corner_oldtile/red
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+	color = "#964e51"
+
+/obj/effect/floor_decal/corner_oldtile/red/diagonal
+	name = "corner oldtile diagonal"
+	icon_state = "corner_oldtile_diagonal"
+
+/obj/effect/floor_decal/corner_oldtile/red/full
+	name = "corner oldtile full"
+	icon_state = "corner_oldtile_full"
+
+/obj/effect/floor_decal/corner_oldtile/purple
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+	color = "#906987"
+
+/obj/effect/floor_decal/corner_oldtile/purple/diagonal
+	name = "corner oldtile diagonal"
+	icon_state = "corner_oldtile_diagonal"
+
+/obj/effect/floor_decal/corner_oldtile/purple/full
+	name = "corner oldtile full"
+	icon_state = "corner_oldtile_full"
+
+/obj/effect/floor_decal/corner_oldtile/green
+	name = "corner oldtile"
+	icon_state = "corner_oldtile"
+	color = "#46725c"
+
+/obj/effect/floor_decal/corner_oldtile/green/diagonal
+	name = "corner oldtile diagonal"
+	icon_state = "corner_oldtile_diagonal"
+
+/obj/effect/floor_decal/corner_oldtile/green/full
+	name = "corner oldtile full"
+	icon_state = "corner_oldtile_full"
+
+//Kafel
+
+/obj/effect/floor_decal/corner_kafel
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+
+/obj/effect/floor_decal/corner_kafel/white
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+	color = "#d9d9d9"
+
+/obj/effect/floor_decal/corner_kafel/white/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/white/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"
+
+/obj/effect/floor_decal/corner_kafel/blue
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+	color = "#8ba7ad"
+
+/obj/effect/floor_decal/corner_kafel/blue/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/blue/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"
+
+/obj/effect/floor_decal/corner_kafel/yellow
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+	color = "#8c6d46"
+
+/obj/effect/floor_decal/corner_kafel/yellow/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/yellow/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"
+
+/obj/effect/floor_decal/corner_kafel/gray
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+	color = "#687172"
+
+/obj/effect/floor_decal/corner_kafel/gray/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/gray/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"
+
+/obj/effect/floor_decal/corner_kafel/beige
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+	color = "#385e60"
+
+/obj/effect/floor_decal/corner_kafel/beige/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/beige/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"
+
+/obj/effect/floor_decal/corner_kafel/red
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+	color = "#964e51"
+
+/obj/effect/floor_decal/corner_kafel/red/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/red/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"
+
+/obj/effect/floor_decal/corner_kafel/purple
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+	color = "#906987"
+
+/obj/effect/floor_decal/corner_kafel/purple/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/purple/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"
+
+/obj/effect/floor_decal/corner_kafel/green
+	name = "corner kafel"
+	icon_state = "corner_kafel"
+	color = "#46725c"
+
+/obj/effect/floor_decal/corner_kafel/green/diagonal
+	name = "corner kafel diagonal"
+	icon_state = "corner_kafel_diagonal"
+
+/obj/effect/floor_decal/corner_kafel/green/full
+	name = "corner kafel full"
+	icon_state = "corner_kafel_full"
+
+//Techfloor
+
+/obj/effect/floor_decal/corner_techfloor_gray
+	name = "corner techfloorgray"
+	icon_state = "corner_techfloor_gray"
+
+/obj/effect/floor_decal/corner_techfloor_gray/diagonal
+	name = "corner techfloorgray diagonal"
+	icon_state = "corner_techfloor_gray_diagonal"
+
+/obj/effect/floor_decal/corner_techfloor_gray/full
+	name = "corner techfloorgray full"
+	icon_state = "corner_techfloor_gray_full"
+
+/obj/effect/floor_decal/corner_techfloor_grid
+	name = "corner techfloorgrid"
+	icon_state = "corner_techfloor_grid"
+
+/obj/effect/floor_decal/corner_techfloor_grid/diagonal
+	name = "corner techfloorgrid diagonal"
+	icon_state = "corner_techfloor_grid_diagonal"
+
+/obj/effect/floor_decal/corner_techfloor_grid/full
+	name = "corner techfloorgrid full"
+	icon_state = "corner_techfloor_grid_full"
+
 /obj/effect/floor_decal/techfloor
 	name = "techfloor edges"
 	icon_state = "techfloor_edges"
@@ -422,31 +673,3 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/techfloor/hole/right
 	name = "hole right"
 	icon_state = "techfloor_hole_right"
-
-/obj/effect/floor_decal/new_corner
-	name = "corner"
-	icon_state = "corner"
-
-/obj/effect/floor_decal/new_corner/diagonal
-	name = "corner diagonal"
-	icon_state = "corner_diagonal"
-
-/obj/effect/floor_decal/new_corner/full
-	name = "corner full"
-	icon_state = "corner_full"
-
-/obj/effect/floor_decal/cargo_one
-	name = "cargo one"
-	icon_state = "cargo_one"
-
-/obj/effect/floor_decal/corner_kafel
-	name = "corner kafel"
-	icon_state = "corner_kafel"
-
-/obj/effect/floor_decal/corner_kafel/diagonal
-	name = "corner kafel diagonal"
-	icon_state = "corner_kafel_diagonal"
-
-/obj/effect/floor_decal/corner_kafel/full
-	name = "corner kafel full"
-	icon_state = "corner_kafel_full"

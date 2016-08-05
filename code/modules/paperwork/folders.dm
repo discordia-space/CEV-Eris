@@ -31,6 +31,7 @@
 	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo) || istype(W, /obj/item/weapon/paper_bundle))
 		user.drop_item()
 		W.loc = src
+		playsound(src,'sound/effects/Paper_Shake.wav',40,1)
 		user << "<span class='notice'>You put the [W] into \the [src].</span>"
 		update_icon()
 	else if(istype(W, /obj/item/weapon/pen))
@@ -64,10 +65,12 @@
 			var/obj/item/P = locate(href_list["remove"])
 			if(P && (P.loc == src) && istype(P))
 				P.loc = usr.loc
+				playsound(src,'sound/effects/Paper_Remove.wav',40,1)
 				usr.put_in_hands(P)
 
 		else if(href_list["read"])
 			var/obj/item/weapon/paper/P = locate(href_list["read"])
+			playsound(src,'sound/effects/Paper_Shake.wav',40,1)
 			if(P && (P.loc == src) && istype(P))
 				if(!(istype(usr, /mob/living/carbon/human) || isghost(usr) || istype(usr, /mob/living/silicon)))
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
@@ -86,20 +89,20 @@
 				onclose(usr, "[P.name]")
 		else if(href_list["rename"])
 			var/obj/item/weapon/O = locate(href_list["rename"])
-			
+
 			if(O && (O.loc == src))
 				if(istype(O, /obj/item/weapon/paper))
 					var/obj/item/weapon/paper/to_rename = O
 					to_rename.rename()
-					
+
 				else if(istype(O, /obj/item/weapon/photo))
 					var/obj/item/weapon/photo/to_rename = O
 					to_rename.rename()
-					
+
 				else if(istype(O, /obj/item/weapon/paper_bundle))
 					var/obj/item/weapon/paper_bundle/to_rename = O
 					to_rename.rename()
-					
+
 		//Update everything
 		attack_self(usr)
 		update_icon()

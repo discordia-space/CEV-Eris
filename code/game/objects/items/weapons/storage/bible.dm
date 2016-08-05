@@ -1,12 +1,12 @@
 /obj/item/weapon/storage/bible
-	name = "bible"
+	name = "Testament of Terra"
 	desc = "Apply to head repeatedly."
 	icon_state ="bible"
+	item_state = "bible"
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
 	var/mob/affecting = null
-	var/deity_name = "Christ"
 
 /obj/item/weapon/storage/bible/booze
 	name = "bible"
@@ -23,7 +23,7 @@
 
 /obj/item/weapon/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return
-	if(user.mind && (user.mind.assigned_role == "Chaplain"))
+	if(user.mind && (user.mind.assigned_role == "Monochurch Preacher"))
 		if(A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
 			user << "<span class='notice'>You bless [A].</span>"
 			var/water2holy = A.reagents.get_reagent_amount("water")

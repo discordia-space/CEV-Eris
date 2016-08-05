@@ -6,10 +6,10 @@ var/list/dreams = list(
 	"a hat","the Luna","a ruined station","a planet","phoron","air","the medical bay","the bridge","blinking lights",
 	"a blue light","an abandoned laboratory","NanoTrasen","mercenaries","blood","healing","power","respect",
 	"riches","space","a crash","happiness","pride","a fall","water","flames","ice","melons","flying","the eggs","money",
-	"the head of personnel","the Ironhammer Commander","a chief engineer","a research director","a chief medical officer",
+	"the First Officer","the Ironhammer Commander","a chief engineer","a research director","a chief medical officer",
 	"the inspector","the gunnery sergeant","a member of the internal affairs","a station engineer","the janitor","atmospheric technician",
 	"the quartermaster","a cargo technician","the botanist","a shaft miner","the psychologist","the chemist","the geneticist",
-	"the virologist","the roboticist","the chef","the bartender","the chaplain","the librarian","a mouse","an ert member",
+	"the virologist","the roboticist","the chef","the bartender","the preacher","the librarian","a mouse","an ert member",
 	"a beach","the holodeck","a smokey room","a voice","the cold","a mouse","an operating table","the bar","the rain","a skrell",
 	"a unathi","a tajaran","the ai core","the mining station","the research station","a beaker of strange liquid",
 	)

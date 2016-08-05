@@ -325,14 +325,14 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/glasses/sunglasses/big
 	cost = 1
 	slot = slot_glasses
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Internal Affairs Agent","Quartermaster","Head of Personnel","Captain")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Internal Affairs Agent","Quartermaster","First Officer","Captain")
 
 /datum/gear/prescriptionsun
 	display_name = "sunglasses, presciption"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
 	cost = 2
 	slot = slot_glasses
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Internal Affairs Agent","Quartermaster","Head of Personnel","Captain")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Internal Affairs Agent","Quartermaster","First Officer","Captain")
 
 // Mask
 
@@ -543,14 +543,14 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/under/dress/dress_hop
 	slot = slot_w_uniform
 	cost = 1
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list("First Officer")
 
 /datum/gear/uniform_hr
 	display_name = "uniform, HR director (HoP)"
 	path = /obj/item/clothing/under/dress/dress_hr
 	slot = slot_w_uniform
 	cost = 1
-	allowed_roles = list("Head of Personnel")
+	allowed_roles = list("First Officer")
 
 /datum/gear/navysecsuit
 	display_name = "uniform, navyblue (Security)"
@@ -645,21 +645,21 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/accessory/holster/armpit
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "Head of Personnel", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander","Inspector")
+	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander","Inspector")
 
 /datum/gear/hip
 	display_name = "holster, hip"
 	path = /obj/item/clothing/accessory/holster/hip
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "Head of Personnel", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander", "Inspector")
+	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander", "Inspector")
 
 /datum/gear/waist
 	display_name = "holster, waist"
 	path = /obj/item/clothing/accessory/holster/waist
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "Head of Personnel", "Ironhammer Operative", "Warden", "Ironhammer Commander", "Inspector")
+	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Warden", "Ironhammer Commander", "Inspector")
 
 /datum/gear/tie_blue
 	display_name = "tie, blue"
