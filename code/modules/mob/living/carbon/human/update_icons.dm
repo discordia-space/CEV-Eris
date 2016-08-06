@@ -524,6 +524,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_gloves(var/update_icons=1)
 	if(gloves)
+
 		var/t_state = gloves.icon_state
 		if(!t_state)	t_state = gloves.item_state
 
@@ -555,7 +556,9 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_glasses(var/update_icons=1)
 	if(glasses)
-
+		var/new_screen_loc = find_inv_position(slot_glasses)
+		if(new_screen_loc)
+			glasses.screen_loc = new_screen_loc	//TODO
 		if(glasses.icon_override)
 			overlays_standing[GLASSES_LAYER] = image(icon = glasses.icon_override,   icon_state = glasses.icon_state)
 
@@ -574,6 +577,9 @@ var/global/list/damage_icon_parts = list()
 
 	if(l_ear || r_ear)
 		if(l_ear)
+			var/new_screen_loc = find_inv_position(slot_l_ear)
+			if(new_screen_loc)
+				l_ear.screen_loc = new_screen_loc	//TODO
 
 			var/t_type = l_ear.icon_state
 			if(l_ear.icon_override)
@@ -584,7 +590,9 @@ var/global/list/damage_icon_parts = list()
 				overlays_standing[EARS_LAYER] = image(icon = body_build.ears_icon, icon_state = t_type)
 
 		if(r_ear)
-
+			var/new_screen_loc = find_inv_position(slot_r_ear)
+			if(new_screen_loc)
+				r_ear.screen_loc = new_screen_loc	//TODO
 			var/t_type = r_ear.icon_state
 			if(r_ear.icon_override)
 				t_type = "[t_type]_r"
@@ -599,7 +607,9 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_shoes(var/update_icons=1)
 	if(shoes && !(wear_suit && wear_suit.flags_inv & HIDESHOES))
-
+		var/new_screen_loc = find_inv_position(slot_shoes)
+		if(new_screen_loc)
+			shoes.screen_loc = new_screen_loc	//TODO
 		var/image/standing
 		if(shoes.icon_override)
 			standing = image(icon = shoes.icon_override,   icon_state = shoes.icon_state)

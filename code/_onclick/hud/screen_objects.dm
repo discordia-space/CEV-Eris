@@ -143,6 +143,9 @@
 /obj/screen/close
 	name = "close"
 
+/obj/screen/close/New()
+	return
+
 /obj/screen/close/Click()
 	if(master)
 		if(istype(master, /obj/item/weapon/storage))
