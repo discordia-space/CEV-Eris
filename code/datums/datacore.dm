@@ -199,6 +199,7 @@
 		var/datum/data/record/M = CreateMedicalRecord(H.real_name, id)
 		M.fields["b_type"]		= H.b_type
 		M.fields["b_dna"]		= H.dna.unique_enzymes
+		//M.fields["id_gender"]	= gender2text(H.identifying_gender)
 		if(H.med_record && !jobban_isbanned(H, "Records"))
 			M.fields["notes"] = H.med_record
 
@@ -215,6 +216,7 @@
 		L.fields["age"]			= H.age
 		L.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		L.fields["sex"]			= H.gender
+		///L.fields["id_gender"]	= gender2text(H.identifying_gender)
 		L.fields["b_type"]		= H.b_type
 		L.fields["b_dna"]		= H.dna.unique_enzymes
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning

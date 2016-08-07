@@ -1,7 +1,14 @@
+datum/preferences
+	var/identifying_gender = MALE
+
 /datum/category_item/player_setup_item/general/basic
 	name = "Basic"
 	sort_order = 1
 	var/list/valid_player_genders = list(MALE, FEMALE)
+
+datum/preferences/proc/set_biological_gender(var/set_gender)
+	gender = set_gender
+	identifying_gender = set_gender
 
 /datum/category_item/player_setup_item/general/basic/load_character(var/savefile/S)
 	S["real_name"]				>> pref.real_name
@@ -23,6 +30,7 @@
 	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
 	pref.age			= sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
 	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, pick(valid_player_genders))
+	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
 	if(!pref.real_name)
 		pref.real_name	= random_name(pref.gender, pref.species)
