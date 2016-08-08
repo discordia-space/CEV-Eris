@@ -23,6 +23,7 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 var/global/list/global_corporations = list()
 
+#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
 
 var/global/list/turfs = list()						//list of all turfs
 
