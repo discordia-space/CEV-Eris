@@ -80,20 +80,6 @@
 	item_state = "rainbow"
 
 
-/obj/item/clothing/under/cloud
-	name = "cloud"
-	desc = "cloud"
-	icon_state = "cloud"
-
-
-/obj/item/clothing/under/psysuit
-	name = "dark undersuit"
-	desc = "A thick, layered grey undersuit lined with power cables. Feels a little like wearing an electrical storm."
-	icon_state = "psysuit"
-	item_state = "bl_suit"
-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-
 /obj/item/clothing/under/gentlesuit
 	name = "gentlemans suit"
 	desc = "A silk black shirt with a white tie and a matching gray vest and slacks. Feels proper."
@@ -187,25 +173,6 @@
 
 	body_parts_covered = LOWER_TORSO
 
-//dress
-/obj/item/clothing/under/dress
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/dress/dress_yellow
-	name = "yellow dress"
-	desc = "A flirty, little yellow dress."
-	icon_state = "dress_yellow"
-	item_state = "y_suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
-/obj/item/clothing/under/dress/dress_hr
-	name = "human resources director uniform"
-	desc = "Superior class for the nosy H.R. Director."
-	icon_state = "huresource"
-	item_state = "y_suit"
-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
 //wedding stuff
 /obj/item/clothing/under/wedding/
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
@@ -219,20 +186,6 @@
 
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/sundress_white
-	name = "white sundress"
-	desc = "A white sundress decorated with purple lilies."
-	icon_state = "sundress_white"
-	item_state = "sundress_white"
-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/blackjumpskirt
-	name = "black jumpskirt"
-	desc = "A black jumpskirt, Sol size 0."
-	icon_state = "blackjumpskirt"
-	item_state = "bl_suit"
 
 
 /obj/item/clothing/under/captainformal
@@ -290,14 +243,6 @@
 	icon_state = "mechanic"
 	item_state = "lb_suit"
 
-
-/obj/item/clothing/under/cheongsam
-	name = "white cheongsam"
-	desc = "It is a white cheongsam dress."
-	icon_state = "mai_yang"
-	item_state = "mai_yang"
-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
 /obj/item/clothing/under/blazer
 	name = "blue blazer"

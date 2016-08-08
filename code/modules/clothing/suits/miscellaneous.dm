@@ -79,15 +79,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
 
 
-/obj/item/clothing/suit/imperium_monk
-	name = "Imperium monk"
-	desc = "Have YOU killed a xenos today?"
-	icon_state = "imperium_monk"
-	item_state = "imperium_monk"
-	body_parts_covered = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
-	flags_inv = HIDESHOES|HIDEJUMPSUIT
-
-
 /obj/item/clothing/suit/chickensuit
 	name = "Chicken Suit"
 	desc = "A suit made long ago by the ancient empire KFC."
@@ -197,30 +188,6 @@
 	desc = "A simple, comfortable poncho."
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
-
-/obj/item/clothing/suit/poncho/green
-	name = "green poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is green."
-	icon_state = "greenponcho"
-	item_state = "greenponcho"
-
-/obj/item/clothing/suit/poncho/red
-	name = "red poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is red."
-	icon_state = "redponcho"
-	item_state = "redponcho"
-
-/obj/item/clothing/suit/poncho/purple
-	name = "purple poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is purple."
-	icon_state = "purpleponcho"
-	item_state = "purpleponcho"
-
-/obj/item/clothing/suit/poncho/blue
-	name = "blue poncho"
-	desc = "A simple, comfortable cloak without sleeves. This one is blue."
-	icon_state = "blueponcho"
-	item_state = "blueponcho"
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"

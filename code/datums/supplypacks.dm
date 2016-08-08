@@ -1084,7 +1084,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/judgerobe,
 					/obj/item/clothing/suit/wcoat,
 					/obj/item/clothing/suit/nun,
-					/obj/item/clothing/suit/imperium_monk,
 					///obj/item/clothing/under/gimmick/rank/captain/suit,
 					/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
 					/obj/item/clothing/under/lawyer/purpsuit,
@@ -1489,8 +1488,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet
 	cost = 15
 	num_contained = 1
-	contains = list(/obj/item/clothing/under/wedding/bride_white,
-					/obj/item/clothing/under/dress/dress_yellow,)
+	contains = list(/obj/item/clothing/under/wedding/bride_white)
 	group = "Miscellaneous"
 
 /datum/supply_packs/painters
