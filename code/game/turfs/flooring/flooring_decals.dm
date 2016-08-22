@@ -47,7 +47,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/black
 	name = "black corner"
-	color = "#333333"
+	color = "#505050"
 
 /obj/effect/floor_decal/corner/black/diagonal
 	icon_state = "corner_white_diagonal"
