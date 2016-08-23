@@ -877,6 +877,10 @@ area/space/atmosalert()
 	name = "\improper Construction Area"
 	icon_state = "construction"
 
+/area/hallway/secondary/entry
+	name = "\improper Arrival Shuttle Hallway"
+	icon_state = "entry_1"
+
 /area/hallway/secondary/entry/fore
 	name = "\improper Arrival Shuttle Hallway - Fore"
 	icon_state = "entry_1"
@@ -1731,6 +1735,22 @@ area/space/atmosalert()
 	name = "Medbay Toilet"
 	icon_state = "erisyellow"
 
+/area/eris/hangarsupply
+	name = "Supply Shuttle Hangar"
+	icon_state = "erisblue"
+
+/area/eris/podbay
+	name = "Pod Bay"
+	icon_state = "erisblue"
+
+/area/eris/eschangara
+	name = "Escape Hangar A"
+	icon_state = "erisred"
+
+/area/eris/eschangarb
+	name = "Escape Hangar B"
+	icon_state = "erisred"
+
 //Eris Medbay
 
 /area/eris/medbay/iso
@@ -1774,6 +1794,14 @@ area/space/atmosalert()
 /area/eris/hallway/side/morguehallway
 	name = "Morgue Hallway"
 	icon_state = "erisgreen"
+
+/area/eris/hallway/side/atmosphericshallway
+	name = "Atmospherics Hallway"
+	icon_state = "erisgreen"
+
+/area/eris/hallway/side/bridgehallway
+	name = "Bridge Hallway"
+	icon_state = "erisblue"
 
 //Eris Security
 
