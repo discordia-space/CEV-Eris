@@ -1763,25 +1763,24 @@ area/space/atmosalert()
 
 //Eris Hallways
 
+/area/eris/hallway
+	sound_env = LARGE_ENCLOSED
+	icon_state = "erisgreen"
+
 /area/eris/hallway/main/section1
 	name = "First Section Hallway"
-	icon_state = "erisgreen"
 
 /area/eris/hallway/main/section2
 	name = "Second Section Hallway"
-	icon_state = "erisgreen"
 
 /area/eris/hallway/main/section3
 	name = "Third Section Hallway"
-	icon_state = "erisgreen"
 
 /area/eris/hallway/main/section4
 	name = "Fourth Section Hallway"
-	icon_state = "erisgreen"
 
 /area/eris/hallway/side/section3port
 	name = "Third Section Port Hallway"
-	icon_state = "erisgreen"
 
 /area/eris/hallway/side/section3starboard
 	name = "Third Section Starboard Hallway"
@@ -1793,11 +1792,9 @@ area/space/atmosalert()
 
 /area/eris/hallway/side/morguehallway
 	name = "Morgue Hallway"
-	icon_state = "erisgreen"
 
 /area/eris/hallway/side/atmosphericshallway
 	name = "Atmospherics Hallway"
-	icon_state = "erisgreen"
 
 /area/eris/hallway/side/bridgehallway
 	name = "Bridge Hallway"
@@ -1878,6 +1875,34 @@ area/space/atmosalert()
 /area/eris/engineering/atmoscontrol
 	name = "Atmospherics Control"
 	icon_state = "erisred"
+
+//Eris substations
+
+/area/eris/engineering/substation
+	name = "Substation"
+	icon_state = "substation"
+	sound_env = SMALL_ENCLOSED
+
+/area/eris/engineering/substation/engineering
+	name = "Engineering Substation"
+
+/area/eris/engineering/substation/section1
+	name = "First Section Substation"
+
+/area/eris/engineering/substation/section2
+	name = "Second Section Substation"
+
+/area/eris/engineering/substation/section3
+	name = "Third Section Substation"
+
+/area/eris/engineering/substation/section4
+	name = "Fourth Section Substation"
+
+/area/eris/engineering/substation/security
+	name = "Security Substation"
+
+/area/eris/engineering/substation/bridge
+	name = "Bridge Substation"
 
 //Eris Maint
 
