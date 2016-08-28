@@ -47,7 +47,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/corner/black
 	name = "black corner"
-	color = "#333333"
+	color = "#505050"
 
 /obj/effect/floor_decal/corner/black/diagonal
 	icon_state = "corner_white_diagonal"
@@ -683,3 +683,13 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/techfloor/hole/right
 	name = "hole right"
 	icon_state = "techfloor_hole_right"
+
+//Grass for ship garden
+
+/obj/effect/floor_decal/grass_edge
+	name = "grass edge"
+	icon_state = "grass_edge"
+
+/obj/effect/floor_decal/grass_edge/corner
+	name = "grass edge"
+	icon_state = "grass_edge_corner"
