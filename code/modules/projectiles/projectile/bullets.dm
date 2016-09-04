@@ -237,3 +237,13 @@
 /obj/item/projectile/bullet/pistol/cap/process()
 	loc = null
 	qdel(src)
+
+/* Ironhammer stuff */
+
+/obj/item/projectile/bullet/SMG/rubber
+	damage = 7
+	stun = 3
+	weaken = 3
+
+/obj/item/projectile/bullet/SMG/brute
+	damage = 20
