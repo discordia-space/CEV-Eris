@@ -77,6 +77,7 @@
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
 	var/caliber = "357"
+	var/ammo_mag = "default"
 	var/max_ammo = 7
 
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded

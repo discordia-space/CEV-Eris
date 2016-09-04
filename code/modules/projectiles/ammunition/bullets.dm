@@ -165,3 +165,15 @@
 	caliber = "caps"
 	color = "#FF0000"
 	projectile_type = /obj/item/projectile/bullet/pistol/cap
+
+/* Ironhammer stuff */
+
+/obj/item/ammo_casing/ironhammer/rubber
+	desc = "A 9mm Ironhammer rubber bullet casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/SMG/rubber
+
+/obj/item/ammo_casing/ironhammer/brute
+	desc = "A 9mm Ironhammer bullet casing."
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/SMG/brute
