@@ -240,10 +240,10 @@
 
 /* Ironhammer stuff */
 
-/obj/item/projectile/bullet/SMG/rubber
+/obj/item/projectile/bullet/SMG_sinner/rubber
 	damage = 7
 	stun = 3
 	weaken = 3
 
-/obj/item/projectile/bullet/SMG/brute
+/obj/item/projectile/bullet/SMG_sinner/brute
 	damage = 20
