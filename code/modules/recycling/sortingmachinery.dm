@@ -52,6 +52,7 @@
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
 				"You hear someone scribbling a note.")
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
 					nameset = 1
@@ -71,6 +72,7 @@
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
 				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
 				"You hear someone scribbling a note.")
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
 	return
 
 /obj/structure/bigDelivery/update_icon()
@@ -144,6 +146,7 @@
 				else
 					src.sortTag = O.currTag
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+				playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.wav',100,2)
 			else
 				user << "<span class='warning'>The package is already labeled for [O.currTag].</span>"
 		else
@@ -159,6 +162,7 @@
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
 				"You hear someone scribbling a note.")
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
 					nameset = 1
@@ -179,6 +183,7 @@
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
 				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
 				"You hear someone scribbling a note.")
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
 	return
 
 /obj/item/smallDelivery/update_icon()
