@@ -1743,6 +1743,26 @@ area/space/atmosalert()
 	name = "Pod Bay"
 	icon_state = "erisblue"
 
+/area/eris/anomal
+	name = "Anomalous Research Laboratory"
+	icon_state = "erisblue"
+
+/area/eris/anomalisolone
+	name = "Anomalous Research Isolation One"
+	icon_state = "erisgreen"
+
+/area/eris/anomalisoltwo
+	name = "Anomalous Research Isolation Two"
+	icon_state = "erisgreen"
+
+/area/eris/anomalisolthree
+	name = "Anomalous Research Isolation Three"
+	icon_state = "erisgreen"
+
+/area/eris/chemstor
+	name = "Chemical Storage"
+	icon_state = "erisblue"
+
 /area/eris/eschangara
 	name = "Escape Hangar A"
 	icon_state = "erisred"
