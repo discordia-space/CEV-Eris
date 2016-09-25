@@ -1918,9 +1918,6 @@ area/space/atmosalert()
 /area/eris/engineering/substation/section4
 	name = "Fourth Section Substation"
 
-/area/eris/engineering/substation/security
-	name = "Security Substation"
-
 /area/eris/engineering/substation/bridge
 	name = "Bridge Substation"
 
