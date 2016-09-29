@@ -31,22 +31,6 @@
 	path = /obj/item/clothing/suit/poncho
 	cost = 1
 
-/datum/gear/suit/poncho/blue
-	display_name = "poncho, blue"
-	path = /obj/item/clothing/suit/poncho/blue
-
-/datum/gear/suit/poncho/green
-	display_name = "poncho, green"
-	path = /obj/item/clothing/suit/poncho/green
-
-/datum/gear/suit/poncho/purple
-	display_name = "poncho, purple"
-	path = /obj/item/clothing/suit/poncho/purple
-
-/datum/gear/suit/poncho/red
-	display_name = "poncho, red"
-	path = /obj/item/clothing/suit/poncho/red
-
 /datum/gear/suit/blue_lawyer_jacket
 	display_name = "suit jacket, blue"
 	path = /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket

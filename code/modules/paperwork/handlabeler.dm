@@ -47,7 +47,7 @@
 		tray.labelled = label
 		spawn(1)
 			tray.update_icon()
-
+	playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.wav',100,1)
 	user.visible_message("<span class='notice'>[user] labels [A] as [label].</span>", \
 						 "<span class='notice'>You label [A] as [label].</span>")
 	A.name = "[A.name] ([label])"

@@ -75,6 +75,7 @@
 
 	if(config.ghost_interaction)
 		src.set_dir(turn(src.dir, 90))
+
 		return
 
 	else
@@ -86,6 +87,7 @@
 			return
 
 		src.set_dir(turn(src.dir, 90))
+		playsound(src,'sound/effects/CREAK_Wood_Tree_Creak_10_Bright_Very_Subtle_mono.wav',100,1)
 		return
 
 // Leaving this in for the sake of compilation.

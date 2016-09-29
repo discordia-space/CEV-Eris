@@ -1,6 +1,7 @@
 /datum/body_build
 	var/name			= "Default"
 	var/gender 			= MALE
+	var/identifying_gender = MALE
 	var/index			= "" 					// For icon_ovveride body_build supply
 	var/uniform_icon	= 'icons/mob/uniform.dmi'
 	var/suit_icon		= 'icons/mob/suit.dmi'

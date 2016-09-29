@@ -41,11 +41,9 @@
 	if(magazine)
 		if(magazine.charge)
 			icon_state="Hatton_Hammer_1"
-			overlays += image(icon=icon,icon_state="3/3", pixel_x = 1, pixel_y = 7)
 			overlays += icon(icon, "3/3")
 		else
 			icon_state="Hatton_Hammer_1_empty"
-			overlays += image(icon=icon,icon_state="1/3", pixel_x = 1, pixel_y = 7)
 			overlays += icon(icon, "1/3")
 	else
 		icon_state="Hatton_Hammer_0"
@@ -142,6 +140,7 @@
 	for(var/atom/A in target_turf.contents)
 		A.hatton_act()
 	target_turf.hatton_act()
+	new /obj/effect/effect/smoke(src.loc)
 
 
 
@@ -158,15 +157,18 @@
 
 
 /mob/hatton_act()
-	ex_act(2)
-
+	if(istype(src, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		H.take_overall_damage(35, 10)
+	else
+		ex_act(2)
 //turfs
 
 /turf/simulated/wall/hatton_act()
-	take_damage(120)
+	src.ChangeTurf("/turf/simulated/floor")
 
 /turf/simulated/wall/r_wall/hatton_act()
-	take_damage(55)
+	take_damage(1000)
 
 /turf/simulated/mineral/hatton_act()
 	ex_act(1)
@@ -187,7 +189,7 @@
 
 /obj/structure/grille/hatton_act()
 	new /obj/item/stack/rods(loc)
-	del(src)
+	qdel(src)
 
 
 /obj/structure/table/hatton_act()// —ƒ≈À¿“‹ œ–Œ¬≈– ” »«  ¿ Œ√Œ Ã¿“≈–»¿À¿ —ƒ≈À¿Õ —“ŒÀ ???
