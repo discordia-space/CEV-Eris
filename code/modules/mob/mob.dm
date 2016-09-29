@@ -896,7 +896,7 @@
 /mob/proc/flash_weak_pain()
 	if(istype(src,/mob/living))
 		var/mob/living/L = src
-		flick("weak_pain",L.HUDneed["damageoverlay"])
+		flick("weak_pain",L.flash["pain"])
 
 /mob/proc/get_visible_implants(var/class = 0)
 	var/list/visible_implants = list()

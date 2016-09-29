@@ -64,6 +64,8 @@
 			lights_on = 0
 			set_light(0)
 
+
+
 /mob/living/silicon/robot/handle_regular_status_updates()
 
 	if(src.camera && !scrambledcodes)
@@ -194,6 +196,10 @@
 			if (MED_HUD)
 				process_med_hud(src,0)
 
+	for (var/obj/screen/H in HUDprocess)
+//		var/obj/screen/B = H
+		H.process()
+
 /*	if (src.healths)
 		if (src.stat != 2)
 			if(istype(src,/mob/living/silicon/robot/drone))
@@ -244,7 +250,7 @@
 				src.mind.special_role = "traitor"
 				traitors.current_antagonists |= src.mind
 
-	if (src.cells)
+/*	if (src.cells)
 		if (src.cell)
 			var/cellcharge = src.cell.charge/src.cell.maxcharge
 			switch(cellcharge)
@@ -259,7 +265,7 @@
 				else
 					src.cells.icon_state = "charge0"
 		else
-			src.cells.icon_state = "charge-empty"
+			src.cells.icon_state = "charge-empty"*/
 
 /*	if(bodytemp)
 		switch(src.bodytemperature) //310.055 optimal body temp
@@ -311,11 +317,11 @@
 			if(I && !(istype(I,/obj/item/weapon/cell) || istype(I,/obj/item/device/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/device/mmi)))
 				src.client.screen += I
 	if(src.module_state_1)
-		src.module_state_1:screen_loc = ui_inv1
+		src.module_state_1:screen_loc = find_inv_position(1)
 	if(src.module_state_2)
-		src.module_state_2:screen_loc = ui_inv2
+		src.module_state_2:screen_loc = find_inv_position(2)
 	if(src.module_state_3)
-		src.module_state_3:screen_loc = ui_inv3
+		src.module_state_3:screen_loc = find_inv_position(3)
 	updateicon()
 
 /mob/living/silicon/robot/proc/process_killswitch()

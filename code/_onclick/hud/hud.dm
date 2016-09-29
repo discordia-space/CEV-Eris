@@ -255,12 +255,6 @@ datum/hud/New(mob/owner)
 	mymob.instantiate_hud(src, ui_style, ui_color, ui_alpha)
 	mymob.HUD_create()
 */
-/mob/proc/HUD_create()
-	return
-
-/mob/proc/HUD_check()
-	return
-
 /mob/proc/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
 	return
 

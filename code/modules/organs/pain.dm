@@ -1,7 +1,7 @@
 mob/proc/flash_pain()
 	if(istype(src,/mob/living))
 		var/mob/living/L = src
-		flick("pain",L.HUDneed["damageoverlay"])
+		flick("pain",L.HUDtech["pain"])
 
 mob/var/list/pain_stored = list()
 mob/var/last_pain_message = ""

@@ -1,4 +1,4 @@
-var/obj/screen/robot_inventory
+//var/obj/screen/robot_inventory
 
 //mob/living/silicon/robot/instantiate_hud(var/datum/hud/HUD)
 //	HUD.robot_hud()

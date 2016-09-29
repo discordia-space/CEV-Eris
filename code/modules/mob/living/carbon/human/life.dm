@@ -35,7 +35,7 @@
 	var/global/list/overlays_cache = null
 
 
-/mob/living/carbon/human/HUD_check()
+/mob/living/carbon/human/check_HUD()
 	var/mob/living/carbon/human/H = src
 	if(!H.client)
 		return
@@ -68,7 +68,7 @@
 
 	if (recreate_flag)
 		H.destroy_HUD()
-		H.HUD_create()
+		H.create_HUD()
 		H.show_HUD()
 	else
 		H.show_HUD()
@@ -83,7 +83,7 @@
 				HUDelement.screen_loc = HUDdatum.HUDneed[HUDelement.name]["loc"]
 */
 
-/mob/living/carbon/human/HUD_create() //EKUDZA HAS HERE
+/mob/living/carbon/human/create_HUD() //EKUDZA HAS HERE
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 

@@ -411,12 +411,12 @@ var/global/list/damage_icon_parts = list()
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
 	..()
-	if(transforming)		return
-	world << "regenerate_icons"
+	if(transforming)
+		return
 	update_mutations(0)
 	update_body(0)
 	update_hair(0)
-	HUD_check()
+	check_HUD()
 	update_inv_w_uniform(0)
 	update_inv_wear_id(0)
 	update_inv_gloves(0)

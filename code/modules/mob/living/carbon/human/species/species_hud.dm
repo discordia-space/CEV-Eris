@@ -2,7 +2,7 @@
 
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 	var/list/ProcessHUD = list("health","nutrition","bodytemp","pressure","toxin","oxygen","fire", "throw","pull",
-	"resist","drop","m_intent","equip","intent","help","harm","grab","disarm","damage zone", "internal", "damageoverlay","swap hand",
+	"resist","drop","m_intent","equip","intent","help","harm","grab","disarm","damage zone", "internal","swap hand",
 	"toggle gun mode","allow movement","allow item use","allow radio use")
 	var/icon              // If set, overrides ui_style.
 	//var/has_a_intent = 1  // Set to draw intent box.
@@ -58,7 +58,7 @@
 
 	equip_slots |= slot_legcuffed
 
-/datum/hud_data/diona
+/*/datum/hud_data/diona
 	has_internals = 0
 	gear = list(
 		"i_clothing" =   list("loc" = ui_iclothing, "name" = "Uniform",      "slot" = slot_w_uniform, "state" = "center", "toggle" = 1),
@@ -72,9 +72,12 @@
 		"storage2" =     list("loc" = ui_storage2,  "name" = "Right Pocket", "slot" = slot_r_store,   "state" = "pocket"),
 		"belt" =         list("loc" = ui_belt,      "name" = "Belt",         "slot" = slot_belt,      "state" = "belt")
 		)
-
+*/
 /datum/hud_data/monkey
+
 	gear = list(
-		"mask" =         list("loc" = ui_shoes,     "name" = "Mask", "slot" = slot_wear_mask, "state" = "mask",  "toggle" = 1),
-		"back" =         list("loc" = ui_sstore1,   "name" = "Back", "slot" = slot_back,      "state" = "back")
+		"l_hand" =       slot_l_hand,
+		"r_hand" =       slot_r_hand,
+		"mask" =         slot_wear_mask,
+		"back" =         slot_back
 		)

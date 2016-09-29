@@ -968,35 +968,3 @@ default behaviour is:
 		var/mob/pulled = AM
 		pulled.inertia_dir = 0
 
-/mob/living/proc/destroy_HUD()
-	var/mob/living/H = src
-	src.client.screen.Cut()
-	H.HUDprocess.Cut()
-	for (var/i=1,i<=H.HUDneed.len,i++)
-		var/p = H.HUDneed[i]
-		qdel(H.HUDneed[p])
-	for (var/HUDelement in H.HUDinventory)
-		qdel(HUDelement)
-	for (var/HUDelement in H.HUDfrippery)
-		qdel(HUDelement)
-	for (var/i=1,i<=H.HUDtech.len,i++)
-		var/p = H.HUDtech[i]
-		qdel(H.HUDtech[p])
-	H.HUDtech.Cut()
-	H.HUDneed.Cut()
-	H.HUDinventory.Cut()
-	H.HUDfrippery.Cut()
-
-/mob/living/proc/show_HUD()
-	if(src.client)
-		src.client.screen.Cut()
-		for (var/i=1,i<=HUDneed.len,i++)
-			var/p = HUDneed[i]
-			src.client.screen += HUDneed[p]
-		for (var/obj/screen/inventory/HUDinv in src.HUDinventory)
-			src.client.screen += HUDinv
-		for (var/obj/screen/frippery/HUDfri in src.HUDfrippery)
-			src.client.screen += HUDfri
-		for (var/i=1,i<=HUDtech.len,i++)
-			var/p = HUDtech[i]
-			src.client.screen += HUDtech[p]
