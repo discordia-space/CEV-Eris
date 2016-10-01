@@ -89,21 +89,16 @@ proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
 
 	var/protected = 0
 
-	//anomaly suits give best protection, but excavation suits are almost as good
 	if(istype(H.back,/obj/item/weapon/rig/hazmat))
 		var/obj/item/weapon/rig/hazmat/rig = H.back
 		if(rig.suit_is_deployed() && !rig.offline)
 			protected += 1
 
-	if(istype(H.wear_suit,/obj/item/clothing/suit/bio_suit/anomaly))
+	if(istype(H.wear_suit,/obj/item/clothing/suit/space/anomaly))
 		protected += 0.6
-	else if(istype(H.wear_suit,/obj/item/clothing/suit/space/anomaly))
-		protected += 0.5
 
-	if(istype(H.head,/obj/item/clothing/head/bio_hood/anomaly))
+	if(istype(H.head,/obj/item/clothing/head/helmet/space/anomaly))
 		protected += 0.3
-	else if(istype(H.head,/obj/item/clothing/head/helmet/space/anomaly))
-		protected += 0.2
 
 	//latex gloves and science goggles also give a bit of bonus protection
 	if(istype(H.gloves,/obj/item/clothing/gloves/latex))
