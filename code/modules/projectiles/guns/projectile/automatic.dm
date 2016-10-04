@@ -230,7 +230,7 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/projectile/automatic/SMG
+/obj/item/weapon/gun/projectile/automatic/SMG_sinner
 	name = "FS SMG 9x19 \"Sinner\""
 	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "SMG-IS"
@@ -242,7 +242,7 @@
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	ammo_type = /obj/item/ammo_casing/ironhammer/rubber
+	ammo_type = /obj/item/ammo_casing/ironhammer/SMG_sinner/rubber
 	multi_aim = 1
 	burst_delay = 2
 
@@ -250,7 +250,7 @@
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
 		)
-/obj/item/weapon/gun/projectile/automatic/SMG/proc/update_charge()
+/obj/item/weapon/gun/projectile/automatic/SMG_sinner/proc/update_charge()
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
@@ -258,6 +258,7 @@
 	overlays += "smg_[ratio]"
 
 
-/obj/item/weapon/gun/projectile/automatic/SMG/update_icon()
+/obj/item/weapon/gun/projectile/automatic/SMG_sinner/update_icon()
+	icon_state = (ammo_magazine)? "SMG-IS" : "SMG-IS-empty"
 	overlays.Cut()
 	update_charge()
