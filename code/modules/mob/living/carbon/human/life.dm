@@ -34,6 +34,112 @@
 	var/heartbeat = 0
 	var/global/list/overlays_cache = null
 
+
+/mob/living/carbon/human/check_HUD()
+	var/mob/living/carbon/human/H = src
+	if(!H.client)
+		return
+	if(istype(H, /mob/living/carbon/human) && (H.client.prefs.UI_style != null) && (H.defaultHUD == null || H.defaultHUD == ""))
+		if (!(global.HUDdatums.Find(H.client.prefs.UI_style))) // Проверка наличии данных
+			log_debug("[H] try update a HUD, but HUDdatums not have [H.client.prefs.UI_style]!")
+			H << "Some problem hase accure, use default HUD type"
+			H.defaultHUD = "ErisStyle"
+		else
+			H.defaultHUD = H.client.prefs.UI_style
+
+	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+
+	var/recreate_flag = 0
+	if ((H.HUDneed.len != 0) && (H.HUDneed.len == species.hud.ProcessHUD.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
+		for (var/i=1,i<=HUDneed.len,i++)
+			if(!(HUDdatum.HUDneed.Find(HUDneed[i]) && species.hud.ProcessHUD.Find(HUDneed[i]))) //Если данного худа нет в датуме худа и в датуме расы.
+				recreate_flag = 1
+				break //то нахуй это дерьмо
+	else
+		recreate_flag = 1
+
+	if ((H.HUDinventory.len != 0) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
+		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
+			if(!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
+				recreate_flag = 1
+				break //то нахуй это дерьмо
+	else
+		recreate_flag = 1
+
+	if (recreate_flag)
+		H.destroy_HUD()
+		H.create_HUD()
+		H.show_HUD()
+	else
+		H.show_HUD()
+
+	return recreate_flag
+
+/*
+				if(HUDdatum.HUDneed[HUDelement.name]["icon"])
+					HUDelement.icon = HUDdatum.HUDneed[HUDelement.name]["icon"]
+				else
+					HUDelement.icon = HUDdatum.icon
+				HUDelement.screen_loc = HUDdatum.HUDneed[HUDelement.name]["loc"]
+*/
+
+/mob/living/carbon/human/create_HUD() //EKUDZA HAS HERE
+	var/mob/living/carbon/human/H = src
+	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+
+	for(var/HUDname in species.hud.ProcessHUD) //Добавляем Элементы ХУДа (не инвентарь)
+		if (!(HUDdatum.HUDneed.Find(HUDname))) //Ищем такой в датуме
+			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
+		else
+			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
+			var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
+			if(HUDdatum.HUDneed[HUDname]["icon"])//Анализ на овверайд icon
+				HUD.icon = HUDdatum.HUDneed[HUDname]["icon"]
+			else
+				HUD.icon = HUDdatum.icon
+			if(HUDdatum.HUDneed[HUDname]["icon_state"])//Анализ на овверайд icon_state
+				HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]
+			H.HUDneed[HUD.name] += HUD//Добавляем в список худов
+			if (HUD.process_flag)//Если худ нужно процессить
+				H.HUDprocess += HUD//Вливаем в соотвествующий список
+
+	for (var/gear_slot in species.hud.gear)//Добавляем Элементы ХУДа (инвентарь)
+		if (!HUDdatum.slot_data.Find(gear_slot))
+			log_debug("[usr] try take inventory data for [gear_slot], but HUDdatum not have it!")
+			src << "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins"
+			return
+		else
+			var/HUDtype
+			if(HUDdatum.slot_data[gear_slot]["type"])
+				HUDtype = HUDdatum.slot_data[gear_slot]["type"]
+			else
+				HUDtype = /obj/screen/inventory
+
+			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"], HUDdatum.slot_data[gear_slot]["loc"], species.hud.gear[gear_slot], HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], H)
+			if(HUDdatum.slot_data[gear_slot]["dir"])
+				inv_box.set_dir(HUDdatum.slot_data[gear_slot]["dir"])
+			H.HUDinventory += inv_box
+
+	//Добавляем Элементы ХУДа (украшения)
+	for (var/list/whistle in HUDdatum.HUDfrippery)
+		var/obj/screen/frippery/perdelka = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
+		perdelka.icon = HUDdatum.icon
+		H.HUDfrippery += perdelka
+
+	//Добавляем технические элементы(damage,flash,pain... оверлеи)
+	for (var/techobject in HUDdatum.HUDoverlays)
+		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
+		var/obj/screen/HUD = new HUDtype(techobject, HUDdatum.HUDoverlays[techobject]["loc"], H)
+		if(HUDdatum.HUDoverlays[techobject]["icon"])//Анализ на овверайд icon
+			HUD.icon = HUDdatum.HUDoverlays[techobject]["icon"]
+		else
+			HUD.icon = HUDdatum.icon
+		if(HUDdatum.HUDoverlays[techobject]["icon_state"])//Анализ на овверайд icon_state
+			HUD.icon_state = HUDdatum.HUDoverlays[techobject]["icon_state"]
+		H.HUDtech[HUD.name] += HUD//Добавляем в список худов
+		if (HUD.process_flag)//Если худ нужно процессить
+			H.HUDprocess += HUD//Вливаем в соотвествующий список
+
 /mob/living/carbon/human/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
@@ -759,6 +865,9 @@
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()
+	for (var/obj/screen/H in HUDprocess)
+//		var/obj/screen/B = H
+		H.process()
 	if(!overlays_cache)
 		overlays_cache = list()
 		overlays_cache.len = 23
@@ -794,10 +903,10 @@
 	if(!..())
 		return
 
-	if(damageoverlay.overlays)
-		damageoverlay.overlays = list()
+//	if(damageoverlay.overlays)
+//		damageoverlay.overlays = list()
 
-	if(stat == UNCONSCIOUS)
+/*	if(stat == UNCONSCIOUS)
 		//Critical damage passage overlay
 		if(health <= 0)
 			var/image/I
@@ -862,9 +971,9 @@
 					I = overlays_cache[22]
 				if(85 to INFINITY)
 					I = overlays_cache[23]
-			damageoverlay.overlays += I
+			damageoverlay.overlays += I*/
 
-		if(healths  && stat != DEAD) // They are dead, let death() handle their hud update on this.
+/*		if(healths  && stat != DEAD) // They are dead, let death() handle their hud update on this.
 			if (analgesic > 100)
 				healths.icon_state = "health_numb"
 			else
@@ -952,6 +1061,7 @@
 						bodytemp.icon_state = "temp-1"
 					else
 						bodytemp.icon_state = "temp0"
+*/
 	return 1
 
 /mob/living/carbon/human/handle_random_events()

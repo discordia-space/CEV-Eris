@@ -88,6 +88,9 @@ var/global/list/limb_icon_cache = list()
 	return mob_icon
 
 /obj/item/organ/external/update_icon(var/regenerate = 0)
+	if (!owner)//special check
+		qdel(src)
+		return
 	var/gender = "_m"
 /*	if(!gendered_icon)
 		gender = null

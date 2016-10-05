@@ -7,7 +7,7 @@
 
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
-		if(user.zone_sel.selecting == "eyes")
+		if(user.targeted_organ == "eyes")
 
 			if(!H.organs_by_name["head"])
 				user << "<span class='warning'>\The [H] doesn't have a head.</span>"
@@ -33,7 +33,7 @@
 			user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s eyes!</span>")
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
 
-		else if(user.zone_sel.selecting == "mouth" || user.zone_sel.selecting == "head")
+		else if(user.targeted_organ == "mouth" || user.targeted_organ == "head")
 			if(!H.organs_by_name["head"])
 				user << "<span class='warning'>\The [H] doesn't have a head.</span>"
 				return
@@ -58,7 +58,7 @@
 			user.visible_message("<span class='danger'>\The [user] has taped up \the [H]'s mouth!</span>")
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
 
-		else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
+		else if(user.targeted_organ == "r_hand" || user.targeted_organ == "l_hand")
 			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
 			if(!T.place_handcuffs(H, user))
 				user.unEquip(T)
