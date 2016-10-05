@@ -503,7 +503,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
+		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
 		if (!S) return
 		if(!(S.status & ORGAN_ROBOT) || user.a_intent != I_HELP)

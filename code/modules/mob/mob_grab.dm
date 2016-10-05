@@ -123,7 +123,7 @@
 		affecting.drop_r_hand()
 
 		if(iscarbon(affecting))
-			handle_eye_mouth_covering(affecting, assailant, assailant.zone_sel.selecting)
+			handle_eye_mouth_covering(affecting, assailant, assailant.targeted_organ)
 
 		if(force_down)
 			if(affecting.loc != assailant.loc)
@@ -294,7 +294,7 @@
 	//clicking on the victim while grabbing them
 	if(M == affecting)
 		if(ishuman(affecting))
-			var/hit_zone = assailant.zone_sel.selecting
+			var/hit_zone = assailant.targeted_organ
 			flick(hud.icon_state, hud)
 			switch(assailant.a_intent)
 				if(I_HELP)

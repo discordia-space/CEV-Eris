@@ -1,7 +1,7 @@
-/mob/living/carbon/human/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
-	HUD.human_hud(ui_style, ui_color, ui_alpha, src)
+//mob/living/carbon/human/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
+//	HUD.human_hud(ui_style, ui_color, ui_alpha, src)
 
-/datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/carbon/human/target)
+/*/datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/carbon/human/target)
 	var/datum/hud_data/hud_data
 	if(!istype(target))
 		hud_data = new()
@@ -245,7 +245,7 @@
 		mymob.internals.screen_loc = ui_internal
 		hud_elements |= mymob.internals
 
-	if(hud_data.has_warnings)
+/*	if(hud_data.has_warnings)
 		mymob.oxygen = new /obj/screen()
 		mymob.oxygen.icon = ui_style
 		mymob.oxygen.icon_state = "oxy0"
@@ -296,7 +296,7 @@
 		mymob.nutrition_icon.icon_state = "nutrition0"
 		mymob.nutrition_icon.name = "nutrition"
 		mymob.nutrition_icon.screen_loc = ui_nutrition
-		hud_elements |= mymob.nutrition_icon
+		hud_elements |= mymob.nutrition_icon*/
 
 	mymob.blind = new /obj/screen()
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
@@ -363,7 +363,7 @@
 	mymob.client.screen += src.adding + src.hotkeybuttons
 	inventory_shown = 0;
 
-	return
+	return*/
 
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
@@ -371,12 +371,12 @@
 	set name = "Toggle hotkey buttons"
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
 
-	if(hud_used.hotkey_ui_hidden)
+/*	if(hud_used.hotkey_ui_hidden)
 		client.screen += hud_used.hotkeybuttons
 		hud_used.hotkey_ui_hidden = 0
 	else
 		client.screen -= hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 1
+		hud_used.hotkey_ui_hidden = 1*/
 
 //Used for new human mobs created by cloning/goleming/etc.
 /mob/living/carbon/human/proc/set_cloned_appearance()
@@ -385,3 +385,4 @@
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 	all_underwear.Cut()
 	regenerate_icons()
+

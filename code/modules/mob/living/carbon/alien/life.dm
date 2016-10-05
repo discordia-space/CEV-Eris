@@ -107,7 +107,7 @@
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
 
-	if (healths)
+/*	if (healths)
 		if (stat != 2)
 			switch(health)
 				if(100 to INFINITY)
@@ -125,7 +125,7 @@
 				else
 					healths.icon_state = "health6"
 		else
-			healths.icon_state = "health7"
+			healths.icon_state = "health7"*/
 
 	if (client)
 		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)

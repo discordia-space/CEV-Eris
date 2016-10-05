@@ -159,28 +159,28 @@
 /obj/item/weapon/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
 		return
-		
-	if(M == user && user.zone_sel.selecting == "mouth")
+
+	if(M == user && user.targeted_organ == "mouth")
 		// Find ourselves a cig. Note that we could be full of lighters.
-		var/obj/item/clothing/mask/smokable/cigarette/cig = null		
+		var/obj/item/clothing/mask/smokable/cigarette/cig = null
 		for(var/obj/item/clothing/mask/smokable/cigarette/C in contents)
 			cig = C
 			break
-		
+
 		if(cig == null)
 			user << "<span class='notice'>Looks like the packet is out of cigarettes.</span>"
 			return
-		
+
 		// Instead of running equip_to_slot_if_possible() we check here first,
 		// to avoid dousing cig with reagents if we're not going to equip it
 		if(!cig.mob_can_equip(user, slot_wear_mask))
-			return 
-			
-		// We call remove_from_storage first to manage the reagent transfer and 
+			return
+
+		// We call remove_from_storage first to manage the reagent transfer and
 		// UI updates.
 		remove_from_storage(cig, null)
 		user.equip_to_slot(cig, slot_wear_mask)
-		
+
 		reagents.maximum_volume = 15 * contents.len
 		user << "<span class='notice'>You take a cigarette out of the pack.</span>"
 		update_icon()

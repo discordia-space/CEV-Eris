@@ -175,7 +175,7 @@
 	//primitive_form = "Nymph"
 	slowdown = 7
 	rarity_value = 3
-	hud_type = /datum/hud_data/diona
+//	hud_type = /datum/hud_data/diona
 	siemens_coefficient = 0.3
 	eyes = "blank_eyes"
 	show_ssd = "completely quiescent"

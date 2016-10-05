@@ -22,7 +22,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(affecting.name == "head")
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -62,7 +62,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(affecting.open == 0)
 			if(affecting.is_bandaged())
@@ -124,7 +124,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
@@ -161,7 +161,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(affecting.open == 0)
 			if(affecting.is_bandaged() && affecting.is_disinfected())
@@ -223,7 +223,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
@@ -260,7 +260,7 @@
 
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 		var/limb = affecting.name
 		if(!(affecting.limb_name in list("l_arm","r_arm","l_leg","r_leg")))
 			user << "<span class='danger'>You can't apply a splint there!</span>"
