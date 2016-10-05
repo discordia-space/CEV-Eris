@@ -12,8 +12,8 @@
 /obj/item/clothing/suit/fire
 	name = "firesuit"
 	desc = "A suit that protects against fire and heat."
-	icon_state = "fire"
-	item_state = "fire_suit"
+	icon_state = "firesuit"
+	item_state = "firefighter"
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
