@@ -7,7 +7,7 @@
 	icon_state = "robot"
 	maxHealth = 200
 	health = 200
-
+	defaultHUD = "BorgStyle"
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = ~HEAVY //trundle trundle
@@ -31,10 +31,10 @@
 
 //Hud stuff
 
-	var/obj/screen/cells = null
+/*	var/obj/screen/cells = null
 	var/obj/screen/inv1 = null
 	var/obj/screen/inv2 = null
-	var/obj/screen/inv3 = null
+	var/obj/screen/inv3 = null*/
 
 	var/shown_robot_modules = 0 //Used to determine whether they have the module menu shown or not
 	var/obj/screen/robot_modules_background
@@ -156,6 +156,8 @@
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
+	create_HUD()
+
 /mob/living/silicon/robot/proc/recalculate_synth_capacities()
 	if(!module || !module.synths)
 		return
@@ -269,7 +271,7 @@
 	var/module_type = robot_modules[modtype]
 	new module_type(src)
 
-	hands.icon_state = lowertext(modtype)
+//	hands.icon_state = lowertext(modtype)
 
 	updatename()
 	recalculate_synth_capacities()

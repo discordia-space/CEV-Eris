@@ -32,7 +32,7 @@
 		target_permissions |= perm
 
 	// Update HUD icons.
-	if(owner.gun_move_icon)
+/*	if(owner.gun_move_icon)
 		if(!(target_permissions & TARGET_CAN_MOVE))
 			owner.gun_move_icon.icon_state = "no_walk0"
 			owner.gun_move_icon.name = "Allow Movement"
@@ -54,7 +54,7 @@
 			owner.radio_use_icon.name = "Allow Radio Use"
 		else
 			owner.radio_use_icon.icon_state = "no_radio1"
-			owner.radio_use_icon.name = "Disallow Radio Use"
+			owner.radio_use_icon.name = "Disallow Radio Use"*/
 
 	var/message = "no longer permitted to "
 	var/use_span = "warning"

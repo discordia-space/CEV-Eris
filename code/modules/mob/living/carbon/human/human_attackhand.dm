@@ -23,7 +23,7 @@
 
 	// Should this all be in Touch()?
 	if(istype(H))
-		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
+		if(H != src && check_shields(0, null, H, H.targeted_organ, H.name))
 			H.do_attack_animation(src)
 			return 0
 
@@ -34,7 +34,7 @@
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				visible_message("\red <B>[H] has attempted to punch [src]!</B>")
 				return 0
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.zone_sel.selecting))
+			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			if(HULK in H.mutations)
@@ -125,7 +125,7 @@
 			var/rand_damage = rand(1, 5)
 			var/block = 0
 			var/accurate = 0
-			var/hit_zone = H.zone_sel.selecting
+			var/hit_zone = H.targeted_organ
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
 
 			if(!affecting || affecting.is_stump())
@@ -236,7 +236,7 @@
 
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
-			var/obj/item/organ/external/affecting = get_organ(ran_zone(M.zone_sel.selecting))
+			var/obj/item/organ/external/affecting = get_organ(ran_zone(M.targeted_organ))
 
 			var/list/holding = list(get_active_hand() = 40, get_inactive_hand = 20)
 
@@ -311,7 +311,7 @@
 	if(!has_grab)
 		return 0
 
-	if(!def_zone) def_zone = user.zone_sel.selecting
+	if(!def_zone) def_zone = user.targeted_organ
 	var/target_zone = check_zone(def_zone)
 	if(!target_zone)
 		return 0

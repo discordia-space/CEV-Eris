@@ -159,7 +159,7 @@ proc/airborne_can_reach(turf/source, turf/target)
 
 		if (ishuman(victim))
 			var/mob/living/carbon/human/H = victim
-			var/obj/item/organ/external/select_area = H.get_organ(src.zone_sel.selecting)
+			var/obj/item/organ/external/select_area = H.get_organ(src.targeted_organ)
 			var/list/clothes = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform, H.gloves, H.shoes)
 			for(var/obj/item/clothing/C in clothes)
 				if(C && istype(C))

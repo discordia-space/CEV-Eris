@@ -185,7 +185,7 @@
 			return
 		var/mob/living/silicon/robot/R = user
 		R.activate_module(src)
-		R.hud_used.update_robot_modules_display()
+//		R.hud_used.update_robot_modules_display()
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -589,8 +589,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		cannotzoom = 1
 
 	if(!zoom && !cannotzoom)
-		if(usr.hud_used.hud_shown)
-			usr.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+		//if(usr.hud_used.hud_shown)
+			//usr.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 		usr.client.view = viewsize
 		zoom = 1
 
@@ -615,8 +615,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	else
 		usr.client.view = world.view
-		if(!usr.hud_used.hud_shown)
-			usr.toggle_zoom_hud()
+		//if(!usr.hud_used.hud_shown)
+			//usr.toggle_zoom_hud()
 		zoom = 0
 
 		usr.client.pixel_x = 0

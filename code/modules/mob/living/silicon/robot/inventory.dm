@@ -30,7 +30,7 @@
 		module_active = null
 		module_state_1:loc = module //So it can be used again later
 		module_state_1 = null
-		inv1.icon_state = "inv1"
+		//inv1.icon_state = "inv1"
 	else if(module_state_2 == module_active)
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
@@ -40,7 +40,7 @@
 		module_active = null
 		module_state_2:loc = module
 		module_state_2 = null
-		inv2.icon_state = "inv2"
+		//inv2.icon_state = "inv2"
 	else if(module_state_3 == module_active)
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
@@ -50,7 +50,7 @@
 		module_active = null
 		module_state_3:loc = module
 		module_state_3 = null
-		inv3.icon_state = "inv3"
+		//inv3.icon_state = "inv3"
 	updateicon()
 
 /mob/living/silicon/robot/proc/uneq_all()
@@ -64,7 +64,7 @@
 		contents -= module_state_1
 		module_state_1:loc = module
 		module_state_1 = null
-		inv1.icon_state = "inv1"
+		//inv1.icon_state = "inv1"
 	if(module_state_2)
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
@@ -73,7 +73,7 @@
 		contents -= module_state_2
 		module_state_2:loc = module
 		module_state_2 = null
-		inv2.icon_state = "inv2"
+		//inv2.icon_state = "inv2"
 	if(module_state_3)
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
@@ -82,7 +82,9 @@
 		contents -= module_state_3
 		module_state_3:loc = module
 		module_state_3 = null
-		inv3.icon_state = "inv3"
+		//inv3.icon_state = "inv3"
+	for (var/obj/screen/HUDelement in HUDinventory)
+		HUDelement.underlays.Cut()
 	updateicon()
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
@@ -139,25 +141,26 @@
 	switch(module)
 		if(1)
 			if(module_active != module_state_1)
-				inv1.icon_state = "inv1 +a"
-				inv2.icon_state = "inv2"
-				inv3.icon_state = "inv3"
+				//inv1.icon_state = "inv1 +a"
+				//inv2.icon_state = "inv2"
+				//inv3.icon_state = "inv3"
 				module_active = module_state_1
 				return
 		if(2)
 			if(module_active != module_state_2)
-				inv1.icon_state = "inv1"
+				/*inv1.icon_state = "inv1"
 				inv2.icon_state = "inv2 +a"
-				inv3.icon_state = "inv3"
+				inv3.icon_state = "inv3"*/
 				module_active = module_state_2
 				return
 		if(3)
 			if(module_active != module_state_3)
-				inv1.icon_state = "inv1"
+				/*inv1.icon_state = "inv1"
 				inv2.icon_state = "inv2"
-				inv3.icon_state = "inv3 +a"
+				inv3.icon_state = "inv3 +a"*/
 				module_active = module_state_3
 				return
+
 	return
 
 //deselect_module(module) - Deselects the module slot specified by "module"
@@ -167,17 +170,17 @@
 	switch(module)
 		if(1)
 			if(module_active == module_state_1)
-				inv1.icon_state = "inv1"
+				//inv1.icon_state = "inv1"
 				module_active = null
 				return
 		if(2)
 			if(module_active == module_state_2)
-				inv2.icon_state = "inv2"
+				//inv2.icon_state = "inv2"
 				module_active = null
 				return
 		if(3)
 			if(module_active == module_state_3)
-				inv3.icon_state = "inv3"
+				//inv3.icon_state = "inv3"
 				module_active = null
 				return
 	return
@@ -193,6 +196,8 @@
 			select_module(module)
 		else
 			deselect_module(get_selected_module()) //If we can't do select anything, at least deselect the current module.
+	for (var/obj/screen/inv in src.HUDinventory)
+		inv.update_icon()
 	return
 
 //cycle_modules() - Cycles through the list of selected modules.
@@ -216,6 +221,18 @@
 
 	return
 
+/mob/living/silicon/robot/proc/find_inv_position(var/invnum)
+	if (!src.HUDinventory.len)
+		return
+	var/obj/screen/silicon/module/inv
+
+	if(invnum in (1 to 3))
+		inv = src.HUDinventory[invnum]
+		return inv.screen_loc
+	else
+		log_admin("some error has been occure in /mob/living/silicon/robot/proc/find_inv_position, because invnum [invnum]")
+		return "7,7"
+
 /mob/living/silicon/robot/proc/activate_module(var/obj/item/O)
 	if(!(locate(O) in src.module.modules) && O != src.module.emag)
 		return
@@ -225,21 +242,21 @@
 	if(!module_state_1)
 		module_state_1 = O
 		O.layer = 20
-		O.screen_loc = inv1.screen_loc
+		O.screen_loc = find_inv_position(1)
 		contents += O
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode |= module_state_1:sight_mode
 	else if(!module_state_2)
 		module_state_2 = O
 		O.layer = 20
-		O.screen_loc = inv2.screen_loc
+		O.screen_loc = find_inv_position(2)
 		contents += O
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode |= module_state_2:sight_mode
 	else if(!module_state_3)
 		module_state_3 = O
 		O.layer = 20
-		O.screen_loc = inv3.screen_loc
+		O.screen_loc = find_inv_position(3)
 		contents += O
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode |= module_state_3:sight_mode

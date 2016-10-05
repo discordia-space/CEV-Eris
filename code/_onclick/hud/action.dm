@@ -156,9 +156,9 @@
 	var/hidden = 0
 
 /obj/screen/movable/action_button/hide_toggle/Click()
-	usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
+	//usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
 
-	hidden = usr.hud_used.action_buttons_hidden
+	//hidden = usr.hud_used.action_buttons_hidden
 	if(hidden)
 		name = "Show Buttons"
 	else

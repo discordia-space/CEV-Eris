@@ -8,6 +8,14 @@
 
 	var/hud_updateflag = 0
 
+	var/list/HUDneed = list() // What HUD object need see
+	var/list/HUDinventory = list()
+	var/list/HUDfrippery = list()//свестелки и перделки
+	var/list/HUDprocess = list() //What HUD object need process
+	var/list/HUDtech = list()
+	var/defaultHUD = "" //Defauld mob hud
+
+
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
 	var/bruteloss = 0.0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
 	var/oxyloss = 0.0	//Oxygen depravation damage (no air in lungs)

@@ -243,7 +243,7 @@ meteor_act
 	return 0
 
 /mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
-	var/obj/item/organ/external/affecting = get_organ(user.zone_sel.selecting)
+	var/obj/item/organ/external/affecting = get_organ(user.targeted_organ)
 	if(!affecting || !(affecting.status & ORGAN_ROBOT))
 		user << "<span class='warning'>That limb isn't robotic.</span>"
 		return -1
@@ -273,7 +273,7 @@ meteor_act
 		var/zone
 		if (istype(O.thrower, /mob/living))
 			var/mob/living/L = O.thrower
-			zone = check_zone(L.zone_sel.selecting)
+			zone = check_zone(L.targeted_organ)
 		else
 			zone = ran_zone("chest",75)	//Hits a random part of the body, geared towards the chest
 

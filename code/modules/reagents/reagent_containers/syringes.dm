@@ -146,7 +146,7 @@
 
 				var/mob/living/carbon/human/H = target
 				if(istype(H))
-					var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
+					var/obj/item/organ/external/affected = H.get_organ(user.targeted_organ)
 					if(!affected)
 						user << "<span class='danger'>\The [H] is missing that limb!</span>"
 						return
@@ -231,7 +231,7 @@
 
 			var/mob/living/carbon/human/H = target
 
-			var/target_zone = ran_zone(check_zone(user.zone_sel.selecting, target))
+			var/target_zone = ran_zone(check_zone(user.targeted_organ, target))
 			var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 
 			if (!affecting || affecting.is_stump())

@@ -61,7 +61,7 @@
 
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
-		var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
+		var/obj/item/organ/external/affected = H.get_organ(user.targeted_organ)
 		if(!affected)
 			user << "<span class='danger'>\The [H] is missing that limb!</span>"
 			return
