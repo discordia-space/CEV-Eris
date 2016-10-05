@@ -26,8 +26,7 @@
 	var/obj/item/ammo_magazine/ammo_magazine = null //stored magazine
 	var/auto_eject = 0			//if the magazine should automatically eject itself when empty.
 	var/auto_eject_sound = null
-	var/uses_mag_system = 0
-	var/ammo_mag = "default"
+	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
 	//TODO generalize ammo icon states for guns
 	//var/magazine_states = 0
 	//var/list/icon_keys = list()		//keys
@@ -103,7 +102,7 @@
 
 		switch(AM.mag_type)
 			if(MAGAZINE)
-				if(AM.ammo_mag != ammo_mag && uses_mag_system != 0)
+				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
 					user << "<span class='warning'>[src] requires another magazine.</span>" //wrong magazine
 					return
 				if(ammo_magazine)

@@ -96,3 +96,26 @@
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/cap
 
+
+/* Ironhammer stuff */
+
+/obj/item/weapon/gun/projectile/revolver/ironhammer/envoy
+	name = "FS REV .38 \"Envoy\""
+	desc = "FS REV .38 \"Envoy\" is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .38 ammo."
+	icon_state = "inspector"
+	item_state = "revolver"
+	caliber = ".38"
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
+	handle_casings = CYCLE_CASINGS
+	max_shells = 6
+
+/obj/item/weapon/gun/projectile/revolver/ironhammer/envoy/proc/update_charge()
+	if(loaded.len==0)
+		overlays += "inspector_off"
+	else
+		overlays += "inspector_on"
+
+
+/obj/item/weapon/gun/projectile/revolver/ironhammer/envoy/update_icon()
+	overlays.Cut()
+	update_charge()

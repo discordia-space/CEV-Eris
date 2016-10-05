@@ -195,3 +195,26 @@
 	var/obj/item/ammo_casing/ammo = ammo_type
 	caliber = initial(ammo.caliber)
 	..()
+
+/* Ironhammer stuff */
+
+/obj/item/weapon/gun/projectile/ironhammer/judge
+	name = "FS HG .38 \"Judge\""
+	desc = "FS HG .38 \"Judge\". Uses .38 rounds."
+	icon_state = "Headdeagle"
+	caliber = ".38"
+	ammo_mag = "mag_cl38"
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+	load_method = MAGAZINE
+
+/obj/item/weapon/gun/projectile/ironhammer/judge/proc/update_charge()
+	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
+	if(ratio < 0.33 && ratio != 0)
+		ratio = 0.33
+	ratio = round(ratio, 0.33) * 100
+	overlays += "deagle_[ratio]"
+
+
+/obj/item/weapon/gun/projectile/ironhammer/judge/update_icon()
+	overlays.Cut()
+	update_charge()
