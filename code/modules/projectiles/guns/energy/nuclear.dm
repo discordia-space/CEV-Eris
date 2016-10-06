@@ -72,3 +72,20 @@
 	update_charge()
 	update_reactor()
 	update_mode()
+
+/* Ironhammer stuff */
+
+/obj/item/weapon/gun/energy/gun/ironhammer/chance
+	name = "FS PDW E \"Chance\""
+	desc = "Last chance gun."
+	icon_state = "PLDW_"
+	item_state = "gun"
+	fire_sound = 'sound/weapons/Taser.ogg'
+	max_shots = 2
+	projectile_type = /obj/item/projectile/beam/stun
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+	modifystate = null
+	firemodes = list(
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg'),
+		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
+		)
