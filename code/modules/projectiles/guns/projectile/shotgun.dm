@@ -115,3 +115,5 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	w_class = 3
 	force = 5
+
+/* Ironhammer stuff */
