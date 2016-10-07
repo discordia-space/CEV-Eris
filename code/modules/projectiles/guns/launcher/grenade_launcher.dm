@@ -30,9 +30,9 @@
 	if(next)
 		grenades -= next //Remove grenade from loaded list.
 		chambered = next
-		M << "<span class='warning'>You pump [src], loading \a [next] into the chamber.</span>"
+		M << "<span class='warning'>Mechanism pumps [src], loading \a [next] into the chamber.</span>"
 	else
-		M << "<span class='warning'>You pump [src], but the magazine is empty.</span>"
+		M << "<span class='warning'>Mechanism pumps [src], but the magazine is empty.</span>"
 	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/examine(mob/user)
@@ -54,6 +54,7 @@
 	G.forceMove(src)
 	grenades.Insert(1, G) //add to the head of the list, so that it is loaded on the next pump
 	user.visible_message("\The [user] inserts \a [G] into \the [src].", "<span class='notice'>You insert \a [G] into \the [src].</span>")
+	pump(user)
 	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/proc/unload(mob/user)
@@ -91,6 +92,7 @@
 	message_admins("[key_name_admin(user)] fired a grenade ([chambered.name]) from a grenade launcher ([src.name]).")
 	log_game("[key_name_admin(user)] used a grenade ([chambered.name]).")
 	chambered = null
+	pump(user)
 
 //Underslung grenade launcher to be used with the Z8
 /obj/item/weapon/gun/launcher/grenade/underslung
@@ -140,10 +142,9 @@
 	recoil = 0
 	throw_distance = 10
 	release_force = 5
-	max_grenades = 6
 
 /obj/item/weapon/gun/launcher/grenade/ironhammer/missionary/proc/update_charge()
-	var/ratio = grenades.len / (max_grenades)
+	var/ratio = (grenades.len + (chambered? 1 : 0)) / (max_grenades + 1)
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
