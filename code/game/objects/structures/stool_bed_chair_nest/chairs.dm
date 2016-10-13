@@ -37,6 +37,7 @@
 /obj/structure/bed/chair/update_icon()
 	..()
 
+/*
 	var/cache_key = "[base_icon]-[material.name]-over"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image('icons/obj/furniture.dmi', "[base_icon]_over")
@@ -44,6 +45,7 @@
 		I.layer = FLY_LAYER
 		stool_cache[cache_key] = I
 	overlays |= stool_cache[cache_key]
+*/
 	// Padding overlay.
 	if(padding_material)
 		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]-over"
@@ -55,7 +57,7 @@
 		overlays |= stool_cache[padding_cache_key]
 
 	if(buckled_mob && padding_material)
-		cache_key = "[base_icon]-armrest-[padding_material.name]"
+		var/cache_key = "[base_icon]-armrest-[padding_material.name]"
 		if(isnull(stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
 			I.layer = MOB_LAYER + 0.1
@@ -65,6 +67,10 @@
 
 /obj/structure/bed/chair/set_dir()
 	..()
+	if(dir == NORTH)
+		layer = MOB_LAYER + 0.1
+	else
+		layer = initial(layer)
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
 
