@@ -33,8 +33,34 @@
 		for (var/i=1,i<=HUDtech.len,i++)
 			var/p = HUDtech[i]
 			src.client.screen += HUDtech[p]
+//For HUD checking needs
+/mob/living/proc/check_HUD()//Main HUD check process
+	return
 
-/mob/living/proc/check_HUD()
+/mob/living/proc/check_HUDdatum()//correct a datum?
+	return
+/mob/living/proc/check_HUDinventory()//correct a HUDinventory?
+	return
+/mob/living/proc/check_HUDneed()
+	return
+/mob/living/proc/check_HUDfrippery()
+	return
+/mob/living/proc/check_HUDprocess()
+	return
+/mob/living/proc/check_HUDtech()
+	return
+
+
+
+/mob/living/proc/create_HUDinventory()//correct a HUDinventory?
+	return
+/mob/living/proc/create_HUDneed()
+	return
+/mob/living/proc/create_HUDfrippery()
+	return
+///mob/living/proc/create_HUDprocess()
+//	return
+/mob/living/proc/create_HUDtech()
 	return
 
 /*/mob/living/proc/check_HUDdatum(default, target)// NEED REWORK
