@@ -30,16 +30,3 @@
 	display_name = "poncho, tan"
 	path = /obj/item/clothing/suit/poncho
 	cost = 1
-
-/datum/gear/suit/blue_lawyer_jacket
-	display_name = "suit jacket, blue"
-	path = /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
-
-/datum/gear/suit/purple_lawyer_jacket
-	display_name = "suit jacket, purple"
-	path = /obj/item/clothing/suit/storage/lawyer/purpjacket
-
-/datum/gear/suit/wcoat
-	display_name = "waistcoat"
-	path = /obj/item/clothing/suit/wcoat
-	cost = 1

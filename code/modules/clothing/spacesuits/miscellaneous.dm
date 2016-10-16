@@ -104,7 +104,7 @@
 
 /obj/item/clothing/suit/space/emergency
 	name = "Emergency Softsuit"
-	icon_state = "syndicate-orange"
-	item_state = "syndicate-orange"
+	icon_state = "emergency_suit"
+	item_state = "emergency_suit"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
 	slowdown = 4
