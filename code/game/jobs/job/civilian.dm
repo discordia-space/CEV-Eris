@@ -186,7 +186,7 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	access = list(access_maint_tunnels)
-	minimal_access = list(access_maint_tunnels)
+	minimal_access = list(access_maint_tunnels, access_theatre)
 
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -226,7 +226,7 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	access = list(access_maint_tunnels)
-	minimal_access = list(access_maint_tunnels)
+	minimal_access = list(access_maint_tunnels, access_theatre)
 
 	uniform = /obj/item/clothing/under/mime
 	pda = /obj/item/device/pda/mime
