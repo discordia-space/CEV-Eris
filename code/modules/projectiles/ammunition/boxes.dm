@@ -203,24 +203,65 @@
 	multiple_sprites = 1
 
 /* Ironhammer stuff */
-/obj/item/ammo_magazine/SMG_sinner/rubber
+
+/obj/item/ammo_magazine/ironhammer/SMG_sinner/rubber
 	name = "magazine (9mm rubber)"
-	icon_state = "SMG_Mag"
+	icon_state = "mg_ih_smg_9mm"
 	mag_type = MAGAZINE
 	ammo_mag = "ih_smg"
 	ammo_type = /obj/item/ammo_casing/ironhammer/SMG_sinner/rubber
-	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	matter = list(DEFAULT_WALL_MATERIAL = 1575) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = "9mm"
 	max_ammo = 21
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/SMG_sinner/brute
+/obj/item/ammo_magazine/ironhammer/SMG_sinner/brute
 	name = "magazine (9mm brute)"
-	icon_state = "SMG_Mag"
+	icon_state = "mg_ih_smg_9mm"
 	mag_type = MAGAZINE
 	ammo_mag = "ih_smg"
 	ammo_type = /obj/item/ammo_casing/ironhammer/SMG_sinner/brute
-	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	matter = list(DEFAULT_WALL_MATERIAL = 1575) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = "9mm"
 	max_ammo = 21
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/ironhammer/sl/cl38/rubber
+	name = "speed loader (.38 rubber)"
+	icon_state = "cl_ih_rv_38"
+	caliber = ".38"
+	ammo_type = /obj/item/ammo_casing/ironhammer/cl38/rubber
+	matter = list(DEFAULT_WALL_MATERIAL = 450)
+	max_ammo = 6
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/ironhammer/sl/cl38/brute
+	name = "speed loader (.38 brute)"
+	icon_state = "cl_ih_rv_38"
+	caliber = ".38"
+	ammo_type = /obj/item/ammo_casing/ironhammer/cl38/brute
+	matter = list(DEFAULT_WALL_MATERIAL = 450)
+	max_ammo = 6
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/ironhammer/mg/cl38/rubber
+	name = "magazine (.38 rubber)"
+	icon_state = "mg_ih_pst_38"
+	mag_type = MAGAZINE
+	ammo_mag = "mag_cl38"
+	ammo_type = /obj/item/ammo_casing/ironhammer/cl38/rubber
+	matter = list(DEFAULT_WALL_MATERIAL = 750) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	caliber = ".38"
+	max_ammo = 10
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/ironhammer/mg/cl38/brute
+	name = "magazine (.38 brute)"
+	icon_state = "mg_ih_pst_38"
+	mag_type = MAGAZINE
+	ammo_mag = "mag_cl38"
+	ammo_type = /obj/item/ammo_casing/ironhammer/cl38/brute
+	matter = list(DEFAULT_WALL_MATERIAL = 750) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	caliber = ".38"
+	max_ammo = 10
 	multiple_sprites = 1

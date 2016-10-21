@@ -262,7 +262,12 @@
 	desc = "Station Network"
 	region = ACCESS_REGION_RESEARCH
 
-// /var/const/free_access_id = 43
+/var/const/access_theatre = 43
+/datum/access/theatre
+	id = access_theatre
+	desc = "Theatre"
+	region = ACCESS_REGION_GENERAL
+
 // /var/const/free_access_id = 44
 
 /var/const/access_surgery = 45

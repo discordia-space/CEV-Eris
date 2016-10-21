@@ -71,7 +71,6 @@
 	name = "fragmentation grenade"
 	desc = "A military fragmentation grenade, designed to explode in a deadly shower of fragments."
 	icon_state = "frag"
-	loadable = FALSE
 
 	fragment_type = /obj/item/projectile/bullet/pellet/fragment/strong
 	num_fragments = 200  //total number of fragments produced by the grenade

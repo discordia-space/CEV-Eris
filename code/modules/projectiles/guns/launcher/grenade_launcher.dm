@@ -30,9 +30,9 @@
 	if(next)
 		grenades -= next //Remove grenade from loaded list.
 		chambered = next
-		M << "<span class='warning'>You pump [src], loading \a [next] into the chamber.</span>"
+		M << "<span class='warning'>Mechanism pumps [src], loading \a [next] into the chamber.</span>"
 	else
-		M << "<span class='warning'>You pump [src], but the magazine is empty.</span>"
+		M << "<span class='warning'>Mechanism pumps [src], but the magazine is empty.</span>"
 	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/examine(mob/user)
@@ -43,7 +43,7 @@
 			user << "\A [chambered] is chambered."
 
 /obj/item/weapon/gun/launcher/grenade/proc/load(obj/item/weapon/grenade/G, mob/user)
-	if(G.loadable)
+	if(!G.loadable)
 		user << "<span class='warning'>\The [G] doesn't seem to fit in \the [src]!</span>"
 		return
 
@@ -54,6 +54,8 @@
 	G.forceMove(src)
 	grenades.Insert(1, G) //add to the head of the list, so that it is loaded on the next pump
 	user.visible_message("\The [user] inserts \a [G] into \the [src].", "<span class='notice'>You insert \a [G] into \the [src].</span>")
+	pump(user)
+	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/proc/unload(mob/user)
 	if(grenades.len)
@@ -63,6 +65,7 @@
 		user.visible_message("\The [user] removes \a [G] from [src].", "<span class='notice'>You remove \a [G] from \the [src].</span>")
 	else
 		user << "<span class='warning'>\The [src] is empty.</span>"
+	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/attack_self(mob/user)
 	pump(user)
@@ -89,6 +92,7 @@
 	message_admins("[key_name_admin(user)] fired a grenade ([chambered.name]) from a grenade launcher ([src.name]).")
 	log_game("[key_name_admin(user)] used a grenade ([chambered.name]).")
 	chambered = null
+	pump(user)
 
 //Underslung grenade launcher to be used with the Z8
 /obj/item/weapon/gun/launcher/grenade/underslung
@@ -122,3 +126,29 @@
 		chambered = null
 	else
 		user << "<span class='warning'>\The [src] is empty.</span>"
+
+/* Ironhammer stuff */
+
+/obj/item/weapon/gun/launcher/grenade/ironhammer/missionary
+	name = "FS GL \"Missionary\""
+	desc = "A bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
+	icon_state = "Grenadelauncher_PMC"
+	item_state = "riotgun"
+	w_class = 4
+	force = 10
+	fire_sound = 'sound/weapons/empty.ogg'
+	fire_sound_text = "a metallic thunk"
+	recoil = 0
+	throw_distance = 10
+	release_force = 5
+
+/obj/item/weapon/gun/launcher/grenade/ironhammer/missionary/proc/update_charge()
+	var/ratio = (grenades.len + (chambered? 1 : 0)) / (max_grenades + 1)
+	if(ratio < 0.33 && ratio != 0)
+		ratio = 0.33
+	ratio = round(ratio, 0.33) * 100
+	overlays += "grenademag_[ratio]"
+
+/obj/item/weapon/gun/launcher/grenade/ironhammer/missionary/update_icon()
+	overlays.Cut()
+	update_charge()

@@ -115,3 +115,88 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	w_class = 3
 	force = 5
+
+/* Ironhammer stuff */
+
+/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator
+	name = "NTM SG \"Regulator 3000\""
+	desc = "A true classic."
+	icon_state = "PeaceWalker"
+	item_state = "dshotgun"
+	load_method = SINGLE_CASING|SPEEDLOADER
+	handle_casings = HOLD_CASINGS
+	max_shells = 6
+	w_class = 4
+	force = 10
+	flags =  CONDUCT
+	slot_flags = SLOT_BACK
+	caliber = "shotgun"
+	var/reload = 1
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
+	burst_delay = null
+	fire_delay = null
+	move_delay = null
+	firemodes = list(
+		list(mode_name="fire one barrel at a time", burst=1),
+		list(mode_name="fire both barrels at once", burst=2),
+		)
+
+/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/proc/pump(mob/M as mob)
+	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
+	if(chambered)
+		if(!chambered.BB)
+			chambered.loc = get_turf(src)//Eject casing
+			chambered = null
+	if(!chambered)
+		if(loaded.len)
+			var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
+			loaded -= AC //Remove casing from loaded list.
+			chambered = AC
+			if(chambered.BB != null)
+				reload = 0
+	update_icon()
+
+/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/consume_next_projectile()
+	if (chambered)
+		return chambered.BB
+	return null
+
+/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/handle_post_fire()
+	..()
+	if(chambered)
+		chambered.loc = get_turf(src)//Eject casing
+		chambered = null
+		if(reload == 0)
+			if(loaded.len)
+				var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
+				loaded -= AC //Remove casing from loaded list.
+				chambered = AC
+	reload = 1
+
+/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/unload_ammo(user, allow_dump)
+	if(chambered)
+		chambered.loc = get_turf(src)//Eject casing
+		chambered = null
+		reload = 1
+	..(user, allow_dump=1)
+
+/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/attack_self(mob/user as mob)
+	if(reload == 1)
+		pump(user)
+	else
+		if(firemodes.len > 1)
+			..()
+		else
+			unload_ammo(user)
+
+/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/proc/update_charge()
+	var/ratio = (loaded.len + (chambered? 1 : 0)) / max_shells
+	if(ratio < 0.25 && ratio != 0)
+		ratio = 0.25
+	ratio = round(ratio, 0.25) * 100
+	overlays += "[ratio]_shotgun"
+
+
+/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/update_icon()
+	overlays.Cut()
+	update_charge()
