@@ -27,6 +27,9 @@
 	if(area.name == "Space")
 		return
 
+	if (locate(/obj/structure/catwalk) in src)
+		return
+
 	// Prevent pipes from falling into the void... if there is a pipe to support it.
 	if(mover.anchored || istype(mover, /obj/item/pipe) && \
 		(locate(/obj/structure/disposalpipe/up) in below) || \
@@ -51,7 +54,7 @@
 	mover.Move(below)
 
 	if(!soft)
-		if(!istype(mover, /mob))
+		if(!isliving(mover))
 			if(istype(below, /turf/simulated/open))
 				mover.visible_message("\The [mover] falls from the deck above through \the [below]!", "You hear a whoosh of displaced air.")
 			else
