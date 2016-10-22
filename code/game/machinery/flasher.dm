@@ -75,12 +75,12 @@
 	src.last_flash = world.time
 	use_power(1500)
 
-	for (var/mob/O in viewers(src, null))
+	for (var/mob/living/O in viewers(src, null))
 		if (get_dist(src, O) > src.range)
 			continue
 
 		var/flash_time = strength
-		if (istype(O, /mob/living/carbon/human))
+		if (ishuman(O))
 			var/mob/living/carbon/human/H = O
 			if(!H.eyecheck() <= 0)
 				continue
@@ -89,11 +89,13 @@
 			if(!E)
 				return
 			if(E.is_bruised() && prob(E.damage + 50))
-				flick("e_flash", O:flash)
+				if (O.HUDtech.Find("flash"))
+					flick("e_flash", O.HUDtech["flash"])
 				E.damage += rand(1, 5)
 		else
 			if(!O.blinded)
-				flick("flash", O:flash)
+				if (O.HUDtech.Find("flash"))
+					flick("flash", O.HUDtech["flash"])
 		O.Weaken(flash_time)
 
 /obj/machinery/flasher/emp_act(severity)

@@ -46,7 +46,8 @@
 
 //Flashing everyone
 		if(eye_safety < FLASH_PROTECTION_MODERATE)
-			flick("e_flash", M.flash)
+			if (M.HUDtech.Find("flash"))
+				flick("e_flash", M.HUDtech["flash"])
 			M.Stun(2)
 			M.Weaken(10)
 
