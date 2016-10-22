@@ -1036,7 +1036,8 @@ var/list/sacrificed = list()
 				for(var/mob/living/L in viewers(src))
 					if(iscarbon(L))
 						var/mob/living/carbon/C = L
-						flick("e_flash", C.flash)
+						if (C.HUDtech.Find("flash"))
+							flick("e_flash", C.HUDtech["flash"])
 						if(C.stuttering < 1 && (!(HULK in C.mutations)))
 							C.stuttering = 1
 						C.Weaken(1)
@@ -1065,7 +1066,8 @@ var/list/sacrificed = list()
 						admin_attack_log(usr, T, "Used a stun rune.", "Was victim of a stun rune.", "used a stun rune on")
 					else if(iscarbon(T))
 						var/mob/living/carbon/C = T
-						flick("e_flash", C.flash)
+						if (C.HUDtech.Find("flash"))
+							flick("e_flash", C.HUDtech["flash"])
 						if (!(HULK in C.mutations))
 							C.silent += 15
 						C.Weaken(25)

@@ -1,7 +1,8 @@
 /mob/living/carbon/alien/ex_act(severity)
 
 	if(!blinded)
-		flick("flash", flash)
+		if (HUDtech.Find("flash"))
+			flick("flash", HUDtech["flash"])
 
 	var/b_loss = null
 	var/f_loss = null

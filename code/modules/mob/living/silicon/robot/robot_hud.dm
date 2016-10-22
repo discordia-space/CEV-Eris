@@ -1,8 +1,69 @@
+/mob/living/silicon/robot/update_hud()
+	check_HUD()
+	return
+
+/mob/living/silicon/robot/check_HUD()
+	var/mob/living/silicon/robot/H = src
+	if(!H.client)
+		return
+
+//	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/recreate_flag = 0
+
+	if(!check_HUDdatum())
+		H.defaultHUD = "BorgStyle"
+		++recreate_flag
+
+	if (recreate_flag)
+		H.destroy_HUD()
+		H.create_HUD()
+
+	H.show_HUD()
+	return recreate_flag
+
+
+/mob/living/silicon/robot/check_HUDdatum()//correct a datum?
+	var/mob/living/silicon/robot/H = src
+
+	if (H.defaultHUD == "BorgStyle") //если у клиента моба прописан стиль\тип ХУДа
+		if(global.HUDdatums.Find(H.defaultHUD))//Если существует такой тип ХУДА
+			return 1
+	return 0
+
+
+
+
 /mob/living/silicon/robot/create_HUD() //EKUDZA HAS HERE
+//	var/mob/living/silicon/robot/H = src
+//	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+
+	create_HUDneed()
+	create_HUDinventory()
+	create_HUDfrippery()
+	create_HUDtech()
+	show_HUD()
+	return
+
+
+
+
+
+
+/mob/living/silicon/robot/create_HUDinventory()
 	var/mob/living/silicon/robot/H = src
 	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
+	for (var/HUDname in HUDdatum.slot_data)
+		var/HUDtype
+		HUDtype = HUDdatum.slot_data[HUDname]["type"]
+		var/obj/screen/inventory/inv_box = new HUDtype(HUDname, HUDdatum.slot_data[HUDname]["loc"], HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon_state"],H, HUDdatum.slot_data.Find(HUDname))
+		H.HUDinventory += inv_box
+	return
 
 
+
+/mob/living/silicon/robot/create_HUDneed()
+	var/mob/living/silicon/robot/H = src
+	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
 	for (var/HUDname in HUDdatum.HUDneed)
 		var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
 		var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
@@ -15,37 +76,25 @@
 		H.HUDneed[HUD.name] += HUD//Добавляем в список худов
 		if (HUD.process_flag)//Если худ нужно процессить
 			H.HUDprocess += HUD//Вливаем в соотвествующий список
+	return
 
+
+
+/mob/living/silicon/robot/create_HUDfrippery()
+	var/mob/living/silicon/robot/H = src
+	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
 	//Добавляем Элементы ХУДа (украшения)
 	for (var/list/whistle in HUDdatum.HUDfrippery)
 		var/obj/screen/frippery/perdelka = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
 		perdelka.icon = HUDdatum.icon
 		H.HUDfrippery += perdelka
-
-	for (var/HUDname in HUDdatum.slot_data)
-		var/HUDtype
-		HUDtype = HUDdatum.slot_data[HUDname]["type"]
-		var/obj/screen/inventory/inv_box = new HUDtype(HUDname, HUDdatum.slot_data[HUDname]["loc"], HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon_state"],H, HUDdatum.slot_data.Find(HUDname))
-		H.HUDinventory += inv_box
-	/*for (var/gear_slot in species.hud.gear)//Добавляем Элементы ХУДа (инвентарь)
-		if (!HUDdatum.slot_data.Find(gear_slot))
-			log_debug("[usr] try take inventory data for [gear_slot], but HUDdatum not have it!")
-			src << "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins"
-			return
-		else
-			var/HUDtype
-			if(HUDdatum.slot_data[gear_slot]["type"])
-				HUDtype = HUDdatum.slot_data[gear_slot]["type"]
-			else
-				HUDtype = /obj/screen/inventory
-
-			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"], HUDdatum.slot_data[gear_slot]["loc"], species.hud.gear[gear_slot], HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], H)
-			if(HUDdatum.slot_data[gear_slot]["dir"])
-				inv_box.set_dir(HUDdatum.slot_data[gear_slot]["dir"])
-			H.HUDinventory += inv_box*/
+	return
 
 
 
+/mob/living/silicon/robot/create_HUDtech()
+	var/mob/living/silicon/robot/H = src
+	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
 	//Добавляем технические элементы(damage,flash,pain... оверлеи)
 	for (var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
@@ -59,7 +108,13 @@
 		H.HUDtech[HUD.name] += HUD//Добавляем в список худов
 		if (HUD.process_flag)//Если худ нужно процессить
 			H.HUDprocess += HUD//Вливаем в соотвествующий список
-	show_HUD()
+	return
+
+
+
+
+
+
 
 
 /mob/living/silicon/robot/proc/toggle_show_robot_modules()

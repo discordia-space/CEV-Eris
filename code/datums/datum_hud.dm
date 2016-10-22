@@ -104,6 +104,11 @@
 	icon = 'icons/mob/screen1_robot.dmi'
 
 
+	HUDoverlays = list(
+		"flash" =  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"blind" =  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+	)
+
 	HUDneed = list(
 		"cell"      = list("type" = /obj/screen/silicon/cell,     "loc" = "15,14"),
 		"health"      = list("type" = /obj/screen/health/cyborg,     "loc" = "15,6"),
