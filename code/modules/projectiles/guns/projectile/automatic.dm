@@ -250,6 +250,8 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sinner/proc/update_charge()
+	if(ammo_magazine.stored_ammo == null)
+		return
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
