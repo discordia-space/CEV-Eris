@@ -208,6 +208,8 @@
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/ironhammer/judge/proc/update_charge()
+	if(ammo_magazine.stored_ammo == null)
+		return
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
