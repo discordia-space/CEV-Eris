@@ -860,7 +860,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
 	if(client)
-		show_HUD()
+		check_HUD()
 		client.screen |= contents
 		//if(hud_used)
 			//hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
