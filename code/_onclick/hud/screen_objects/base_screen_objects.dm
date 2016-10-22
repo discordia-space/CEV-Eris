@@ -63,8 +63,8 @@
 
 		if("Reset Machine")
 			usr.unset_machine()
-		if("act_intent")
-			usr.a_intent_change("right")
+//		if("act_intent")
+//			usr.a_intent_change("right")
 		/*if(I_HELP)
 			usr.a_intent = I_HELP
 			usr.hud_used.action_intent.icon_state = "intent_help"
