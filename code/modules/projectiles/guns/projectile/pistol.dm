@@ -172,28 +172,28 @@
 	max_shells = 1 //literally just a barrel
 
 	var/global/list/ammo_types = list(
-		/obj/item/ammo_casing/a357              = ".357",
-		/obj/item/ammo_casing/c9mmf             = "9mm",
-		/obj/item/ammo_casing/c45f              = ".45",
-		/obj/item/ammo_casing/a10mm             = "10mm",
-		/obj/item/ammo_casing/shotgun           = "12 gauge",
-		/obj/item/ammo_casing/shotgun           = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/beanbag   = "12 gauge",
-		/obj/item/ammo_casing/shotgun/stunshell = "12 gauge",
-		/obj/item/ammo_casing/shotgun/flash     = "12 gauge",
-		/obj/item/ammo_casing/a762              = "7.62mm",
-		/obj/item/ammo_casing/a556              = "5.56mm"
+		/obj/item/ammo_casing/a357,
+		/obj/item/ammo_casing/c9mmf,
+		/obj/item/ammo_casing/c45f,
+		/obj/item/ammo_casing/a10mm,
+		/obj/item/ammo_casing/shotgun,
+		/obj/item/ammo_casing/shotgun,
+		/obj/item/ammo_casing/shotgun/pellet,
+		/obj/item/ammo_casing/shotgun/pellet,
+		/obj/item/ammo_casing/shotgun/pellet,
+		/obj/item/ammo_casing/shotgun/beanbag,
+		/obj/item/ammo_casing/shotgun/stunshell,
+		/obj/item/ammo_casing/shotgun/flash,
+		/obj/item/ammo_casing/a762,
+		/obj/item/ammo_casing/a556
 		)
 
 /obj/item/weapon/gun/projectile/pirate/New()
 	ammo_type = pick(ammo_types)
-	desc += " Uses [ammo_types[ammo_type]] rounds."
 
 	var/obj/item/ammo_casing/ammo = ammo_type
 	caliber = initial(ammo.caliber)
+	desc += " Uses [caliber] rounds."
 	..()
 
 /* Ironhammer stuff */
