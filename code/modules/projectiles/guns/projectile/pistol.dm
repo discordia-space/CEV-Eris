@@ -207,16 +207,10 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	load_method = MAGAZINE
 
-/obj/item/weapon/gun/projectile/ironhammer/judge/proc/update_charge()
-	if(ammo_magazine.stored_ammo == null)
-		return
-	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
-	if(ratio < 0.33 && ratio != 0)
-		ratio = 0.33
-	ratio = round(ratio, 0.33) * 100
-	overlays += "deagle_[ratio]"
-
-
 /obj/item/weapon/gun/projectile/ironhammer/judge/update_icon()
 	overlays.Cut()
-	update_charge()
+	if(!ammo_magazine)
+		return
+	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
+	ratio = round(ratio, 33)
+	overlays += "deagle_[ratio]"
