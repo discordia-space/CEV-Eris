@@ -72,9 +72,9 @@
 /obj/item/weapon/grab/proc/synch()
 	if(affecting)
 		if(assailant.r_hand == src)
-			hud.screen_loc = ui_rhand
+			hud.screen_loc = src.screen_loc
 		else
-			hud.screen_loc = ui_lhand
+			hud.screen_loc = src.screen_loc
 
 /obj/item/weapon/grab/process()
 	if(gcDestroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
