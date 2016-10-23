@@ -249,7 +249,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
 		)
 
-/*/obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sinner/proc/update_charge()
+/obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sinner/proc/update_charge()
 	if(!ammo_magazine)
 		return
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
@@ -262,4 +262,4 @@
 /obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sinner/update_icon()
 	icon_state = (ammo_magazine)? "SMG-IS" : "SMG-IS-empty"
 	overlays.Cut()
-	update_charge()*/
+	update_charge()
