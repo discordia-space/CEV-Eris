@@ -23,29 +23,12 @@ var/list/spawntypes = list()
 		return 1
 
 /datum/spawnpoint/arrivals
-	display_name = "Arrivals Shuttle"
-	msg = "has arrived on the station"
+	display_name = "Cryogenic Storage"
+	msg = "has completed cryogenic revival"
 
 /datum/spawnpoint/arrivals/New()
 	..()
 	turfs = latejoin
-
-/datum/spawnpoint/gateway
-	display_name = "Gateway"
-	msg = "has completed translation from offsite gateway"
-
-/datum/spawnpoint/gateway/New()
-	..()
-	turfs = latejoin_gateway
-
-/datum/spawnpoint/cryo
-	display_name = "Cryogenic Storage"
-	msg = "has completed cryogenic revival"
-	disallow_job = list("Cyborg")
-
-/datum/spawnpoint/cryo/New()
-	..()
-	turfs = latejoin_cryo
 
 /datum/spawnpoint/cyborg
 	display_name = "Cyborg Storage"
