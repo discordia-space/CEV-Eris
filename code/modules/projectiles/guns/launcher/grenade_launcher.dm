@@ -142,7 +142,7 @@
 	throw_distance = 10
 	release_force = 5
 
-/obj/item/weapon/gun/launcher/grenade/ironhammer/missionary/proc/update_charge()
+/*/obj/item/weapon/gun/launcher/grenade/ironhammer/missionary/proc/update_charge()
 	var/ratio = (grenades.len + (chambered? 1 : 0)) / (max_grenades + 1)
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
@@ -151,4 +151,4 @@
 
 /obj/item/weapon/gun/launcher/grenade/ironhammer/missionary/update_icon()
 	overlays.Cut()
-	update_charge()
+	update_charge()*/
