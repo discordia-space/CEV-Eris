@@ -158,7 +158,7 @@
 
 /proc/recursive_content_check(var/atom/O,  var/list/L = list(), var/recursion_limit = 3, var/client_check = 1, var/sight_check = 1, var/include_mobs = 1, var/include_objects = 1)
 
-	if(!recursion_limit)
+/*	if(!recursion_limit)
 		return L
 
 	for(var/I in O.contents)
@@ -180,7 +180,7 @@
 				if(include_objects)
 					L |= I
 
-	return L
+	return L*/
 
 // Returns a list of mobs and/or objects in range of R from source. Used in radio and say code.
 
