@@ -59,9 +59,6 @@
 		if(IS_SKRELL)
 			M.adjustToxLoss(0.5 * removed)
 			return
-		if(IS_RESOMI)
-			..(M, alien, removed*1.2) // Resomi get a bit more nutrition from meat.
-			return
 	..()
 
 /datum/reagent/nutriment/protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
