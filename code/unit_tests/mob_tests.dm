@@ -11,7 +11,7 @@
 #define SUCCESS 1
 #define FAILURE 0
 
-// 
+//
 // Tests Life() and mob breathing in space.
 //
 
@@ -23,7 +23,7 @@ datum/unit_test/human_breath
 	var/ending_oxyloss = null
 	var/mob/living/carbon/human/H
 	async = 1
-	
+
 
 datum/unit_test/human_breath/start_test()
 	var/turf/T = locate(20,20,1) //TODO:  Find better way.
@@ -48,7 +48,7 @@ datum/unit_test/human_breath/check_result()
 		pass("Oxyloss = [ending_oxyloss]")
 	else
 		fail("Mob is not taking oxygen damage.  Damange is [ending_oxyloss]")
-	
+
 	return 1	// return 1 to show we're done and don't want to recheck the result.
 
 // ============================================================================
@@ -62,7 +62,7 @@ datum/unit_test/human_breath/check_result()
 
 
 proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living/carbon/human)
-	var/list/test_result = list("result" = FAILURE, "msg"    = "", "mobref" = null)	
+	var/list/test_result = list("result" = FAILURE, "msg"    = "", "mobref" = null)
 
 	if(isnull(mobloc))
 		mobloc = pick(tdome1)
@@ -77,17 +77,17 @@ proc/create_test_mob_with_mind(var/turf/mobloc = null, var/mobtype = /mob/living
 	test_result["result"] = SUCCESS
 	test_result["msg"] = "Mob created"
 	test_result["mobref"] = "\ref[H]"
-	
+
 	return test_result
 
-//Generic Check 
+//Generic Check
 // TODO: Need to make sure I didn't just recreate the wheel here.
 
 proc/damage_check(var/mob/living/M, var/damage_type)
 	var/loss = null
 
 	switch(damage_type)
-		if(BRUTE)						 
+		if(BRUTE)
 			loss = M.getBruteLoss()
 		if(BURN)
 			loss = M.getFireLoss()
@@ -178,7 +178,7 @@ datum/unit_test/mob_damage/start_test()
 
 	if (ending_damage == 0)
 		damage_ratio = IMMUNE
-	
+
 	else if (ending_damage < damage_amount)
 		damage_ratio = ARMORED
 
@@ -189,7 +189,7 @@ datum/unit_test/mob_damage/start_test()
 		failure = 1
 
 	// Now generate the message for this test.
-	
+
 	var/expected_msg = null
 
 	switch(expected_vulnerability)
@@ -201,7 +201,7 @@ datum/unit_test/mob_damage/start_test()
 			expected_msg = "To take extra damage"
 		if(IMMUNE)
 			expected_msg = "To take no damage"
-		
+
 
 	var/msg = "Damage taken: [ending_damage] out of [damage_amount] || expected: [expected_msg] \[Overall Health:[ending_health] (Initial: [initial_health]\]"
 
@@ -247,12 +247,12 @@ datum/unit_test/mob_damage/halloss
 datum/unit_test/mob_damage/unathi
 	name = "MOB: Unathi damage check template"
 	mob_type = /mob/living/carbon/human/unathi
-	
+
 datum/unit_test/mob_damage/unathi/brute
 	name = "MOB: Unathi Brute Damage Check"
 	damagetype = BRUTE
 	expected_vulnerability = ARMORED
-	
+
 datum/unit_test/mob_damage/unathi/fire
 	name = "MOB: Unathi Fire Damage Check"
 	damagetype = BURN
@@ -342,7 +342,7 @@ datum/unit_test/mob_damage/resomi/halloss
 	damagetype = HALLOSS
 
 // =================================================================
-// Skrell 
+// Skrell
 // =================================================================
 
 datum/unit_test/mob_damage/skrell
@@ -371,40 +371,6 @@ datum/unit_test/mob_damage/skrell/clone
 
 datum/unit_test/mob_damage/skrell/halloss
 	name = "MOB: Skrell Halloss Damage Check"
-	damagetype = HALLOSS
-
-// =================================================================
-// Vox
-// =================================================================
-
-datum/unit_test/mob_damage/vox
-	name = "MOB: Vox damage check template"
-	mob_type = /mob/living/carbon/human/vox
-
-datum/unit_test/mob_damage/vox/brute
-	name = "MOB: Vox Brute Damage Check"
-	damagetype = BRUTE
-
-datum/unit_test/mob_damage/vox/fire
-	name = "MOB: Vox Fire Damage Check"
-	damagetype = BURN
-
-datum/unit_test/mob_damage/vox/tox
-	name = "MOB: Vox Toxins Damage Check"
-	damagetype = TOX
-
-datum/unit_test/mob_damage/vox/oxy
-	name = "MOB: Vox Oxygen Damage Check"
-	damagetype = OXY
-
-datum/unit_test/mob_damage/vox/clone
-	name = "MOB: Vox Clone Damage Check"
-	damagetype = CLONE
-	expected_vulnerability = IMMUNE
-
-
-datum/unit_test/mob_damage/vox/halloss
-	name = "MOB: Vox Halloss Damage Check"
 	damagetype = HALLOSS
 
 // =================================================================

@@ -87,9 +87,7 @@
 	scannable = 1
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 6)
-	else if(alien != IS_DIONA)
+	if(alien != IS_DIONA)
 		M.adjustOxyLoss(-15 * removed)
 
 	holder.remove_reagent("lexorin", 2 * removed)
@@ -105,9 +103,7 @@
 	scannable = 1
 
 /datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_VOX)
-		M.adjustToxLoss(removed * 9)
-	else if(alien != IS_DIONA)
+	if(alien != IS_DIONA)
 		M.adjustOxyLoss(-300 * removed)
 
 	holder.remove_reagent("lexorin", 3 * removed)
