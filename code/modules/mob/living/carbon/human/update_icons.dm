@@ -259,8 +259,6 @@ var/global/list/damage_icon_parts = list()
 			icon_key += "[part.dna.GetUIValue(DNA_UI_SKIN_TONE)]"
 			if(part.s_col && part.s_col.len >= 3)
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
-			if(part.body_hair && part.h_col && part.h_col.len >= 3)
-				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
 			else
 				icon_key += "#000000"
 
@@ -999,11 +997,6 @@ var/global/list/damage_icon_parts = list()
 		//generate a new one
 		tail_icon = new/icon(icon = (species.tail_animation? species.tail_animation : 'icons/effects/species.dmi'))
 		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-		// The following will not work with animated tails.
-		if(species.tail_hair)
-			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.tail]_[species.tail_hair]")
-			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-			tail_icon.Blend(hair_icon, ICON_OVERLAY)
 		tail_icon_cache[icon_key] = tail_icon
 
 	return tail_icon

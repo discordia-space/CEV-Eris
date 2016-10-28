@@ -243,7 +243,6 @@ var/global/list/additional_antag_types = list()
 		"suspected criminal operatives",
 		"malfunctioning von Neumann probe swarms",
 		"shadowy interlopers",
-		"a stranded Vox arkship",
 		"haywire IPC constructs",
 		"rogue Unathi exiles",
 		"artifacts of eldritch horror",

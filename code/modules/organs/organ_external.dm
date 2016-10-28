@@ -56,7 +56,6 @@
 	var/dislocated = 0    // If you target a joint, you can dislocate the limb, causing temporary damage to the organ.
 	var/can_grasp //It would be more appropriate if these two were named "affects_grasp" and "affects_stand" at this point
 	var/can_stand
-	var/body_hair
 
 /obj/item/organ/external/Destroy()
 	if(parent && parent.children)
@@ -934,8 +933,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(company)
 		model = company
 		var/datum/robolimb/R = all_robolimbs[company]
-		if(species && (species.name in R.species_cannot_use))
-			R = basic_robolimb
 		if(R)
 			force_icon = R.icon
 			name = "[R.company] [initial(name)]"

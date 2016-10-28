@@ -1,10 +1,6 @@
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
 	status_flags = GODMODE|CANPUSH
-    
-/mob/living/carbon/human/resomi/New(var/new_loc)
-	h_style = "Resomi Plumage"
-	..(new_loc, "Resomi")
 
 /mob/living/carbon/human/skrell/New(var/new_loc)
 	h_style = "Skrell Male Tentacles"
@@ -17,10 +13,6 @@
 /mob/living/carbon/human/unathi/New(var/new_loc)
 	h_style = "Unathi Horns"
 	..(new_loc, "Unathi")
-
-/mob/living/carbon/human/vox/New(var/new_loc)
-	h_style = "Short Vox Quills"
-	..(new_loc, "Vox")
 
 /mob/living/carbon/human/diona/New(var/new_loc)
 	..(new_loc, "Diona")

@@ -126,14 +126,6 @@ var/global/list/limb_icon_cache = list()
 		if(s_col && s_col.len >= 3)
 			mob_icon.Blend(rgb(s_col[1], s_col[2], s_col[3]), ICON_ADD)
 
-	if(body_hair && islist(h_col) && h_col.len >= 3)
-		var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
-		if(!limb_icon_cache[cache_key])
-			var/icon/I = icon(species.icobase, "[icon_name]_[body_hair]")
-			I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_ADD)
-			limb_icon_cache[cache_key] = I
-		mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
-
 	dir = EAST
 	icon = mob_icon
 
