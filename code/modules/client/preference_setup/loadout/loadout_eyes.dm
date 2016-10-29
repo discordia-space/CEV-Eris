@@ -42,7 +42,7 @@
 /datum/gear/eyes/shades
 	display_name = "Sunglasses, fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Captain","First Officer","Quartermaster","Internal Affairs Agent","Inspector")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Captain","First Officer","Quartermaster","Inspector")
 
 /datum/gear/eyes/shades/prescriptionsun
 	display_name = "sunglasses, presciption"
