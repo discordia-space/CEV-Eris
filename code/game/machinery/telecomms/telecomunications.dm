@@ -34,7 +34,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/long_range_link = 0	// Can you link it across Z levels or on the otherside of the map? (Relay & Hub)
 	var/circuitboard = null // string pointing to a circuitboard type
 	var/hide = 0				// Is it a hidden machine?
-	var/listening_level = 0	// 0 = auto set in New() - this is the z level that the machine is listening to.
+	var/list/listening_levels = list() // 0 = auto set in New() - this is the z level that the machine is listening to.
 
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
@@ -62,7 +62,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			continue
 		if(amount && send_count >= amount)
 			break
-		if(machine.loc.z != listening_level)
+		if(machine.loc.z in listening_levels)
 			if(long_range_link == 0 && machine.long_range_link == 0)
 				continue
 		// If we're sending a copy, be sure to create the copy for EACH machine and paste the data
@@ -116,11 +116,20 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	telecomms_list += src
 	..()
 
-	//Set the listening_level if there's none.
-	if(!listening_level)
+	//Set the listening_levels if there's none.
+	if(!listening_levels || !listening_levels.len)
 		//Defaults to our Z level!
 		var/turf/position = get_turf(src)
-		listening_level = position.z
+
+		listening_levels = list(position.z)
+		var/z_level = position.z
+		// UP
+		while(HasAbove(z_level++))
+			listening_levels |= z_level
+		// Down
+		z_level = position.z
+		while(HasBelow(z_level--))
+			listening_levels |= z_level
 
 /obj/machinery/telecomms/initialize()
 	if(autolinkers.len)
@@ -279,12 +288,12 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms/receiver/proc/check_receive_level(datum/signal/signal)
 
-	if(signal.data["level"] != listening_level)
+	if(!signal.data["level"] in listening_levels)
 		for(var/obj/machinery/telecomms/hub/H in links)
 			var/list/connected_levels = list()
 			for(var/obj/machinery/telecomms/relay/R in H.links)
 				if(R.can_receive(signal))
-					connected_levels |= R.listening_level
+					connected_levels |= R.listening_levels
 			if(signal.data["level"] in connected_levels)
 				return 1
 		return 0
@@ -356,7 +365,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	// Add our level and send it back
 	if(can_send(signal))
-		signal.data["level"] |= listening_level
+		signal.data["level"] |= listening_levels
 
 // Checks to see if it can send/receive.
 

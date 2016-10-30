@@ -48,7 +48,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(signal.data["slow"] > 0)
 			sleep(signal.data["slow"]) // simulate the network lag if necessary
 
-		signal.data["level"] |= listening_level
+		// TODO: CHECK THAT. >>> signal.data["level"] |= listening_levels
+		signal.data["level"] |= listening_levels
 
 	   /** #### - Normal Broadcast - #### **/
 
@@ -71,7 +72,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			/* ###### Broadcast a message using signal.data ###### */
 			Broadcast_SimpleMessage(signal.data["name"], signal.frequency,
 								  signal.data["message"],null, null,
-								  signal.data["compression"], listening_level)
+								  signal.data["compression"], listening_levels)
 
 
 	   /** #### - Artificial Broadcast - #### **/
@@ -86,7 +87,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
 							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], 4, signal.data["compression"], signal.data["level"], signal.frequency,
+							  signal.data["realname"], signal.data["vname"], 4,
+							  signal.data["compression"], signal.data["level"], signal.frequency,
 							  signal.data["verb"], signal.data["language"])
 
 		if(!message_delay)
@@ -417,7 +419,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	return 1
 
-/proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/level)
+/proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/list/levels)
 
   /* ###### Prepare the radio connection ###### */
 
@@ -437,8 +439,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	if(data == 1)
 		for (var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
-			if(position && position.z == level)
-				receive |= R.send_hear(display_freq, level)
+			if(position && position.z in levels)
+				receive |= R.send_hear(display_freq, position.z)
 
 
 	// --- Broadcast only to intercoms and station-bounced radios ---
@@ -449,7 +451,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			if(istype(R, /obj/item/device/radio/headset))
 				continue
 			var/turf/position = get_turf(R)
-			if(position && position.z == level)
+			if(position && position.z in levels)
 				receive |= R.send_hear(display_freq)
 
 
@@ -460,7 +462,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			var/datum/radio_frequency/antag_connection = radio_controller.return_frequency(freq)
 			for (var/obj/item/device/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				var/turf/position = get_turf(R)
-				if(position && position.z == level)
+				if(position && position.z in levels)
 					receive |= R.send_hear(freq)
 
 
@@ -469,7 +471,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	else
 		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
-			if(position && position.z == level)
+			if(position && position.z in levels)
 				receive |= R.send_hear(display_freq)
 
 
