@@ -192,7 +192,7 @@ REAGENT SCANNER
 	w_class = 2.0
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	throwforce = 5
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
 
@@ -226,7 +226,7 @@ REAGENT SCANNER
 	w_class = 2.0
 	flags = CONDUCT | OPENCONTAINER
 	slot_flags = SLOT_BELT
-	throwforce = 5
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
 
@@ -288,7 +288,7 @@ REAGENT SCANNER
 	w_class = 2.0
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	throwforce = 5
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
@@ -336,7 +336,7 @@ REAGENT SCANNER
 	origin_tech = list(TECH_BIO = 1)
 	w_class = 2.0
 	flags = CONDUCT
-	throwforce = 0
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 7
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)

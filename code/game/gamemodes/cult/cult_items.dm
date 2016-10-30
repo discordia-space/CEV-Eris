@@ -4,8 +4,8 @@
 	icon_state = "cultblade"
 	item_state = "cultblade"
 	w_class = 4
-	force = 30
-	throwforce = 10
+	force = WEAPON_FORCE_ROBUST
+	throwforce = WEAPON_FORCE_ROBUST
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 

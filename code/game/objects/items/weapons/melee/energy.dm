@@ -92,11 +92,11 @@
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "sword0"
-	active_force = 30
-	active_throwforce = 20
+	active_force = WEAPON_FORCE_LETHAL
+	active_throwforce = WEAPON_FORCE_LETHAL
 	active_w_class = 4
-	force = 3
-	throwforce = 5
+	force = WEAPON_FORCE_HARMLESS
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2
@@ -169,7 +169,7 @@
 	name = "energy blade"
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon_state = "blade"
-	force = 40 //Normal attacks deal very high damage - about the same as wielded fire axe
+	force = WEAPON_FORCE_LETHAL //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100
 	sharp = 1
 	edge = 1

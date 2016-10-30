@@ -21,7 +21,7 @@
 		w_class = 3
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
-		force = 3
+		force = WEAPON_FORCE_WEAK
 		edge = 0
 		sharp = 0
 		hitsound = initial(hitsound)

@@ -6,7 +6,7 @@
 	icon_state = "handcuff"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	throwforce = 5
+	throwforce = WEAPON_FORCE_WEAK
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5

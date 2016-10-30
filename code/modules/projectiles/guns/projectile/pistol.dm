@@ -63,7 +63,7 @@
 	desc = "A robust handgun that uses .50 AE ammo"
 	icon_state = "deagle"
 	item_state = "deagle"
-	force = 14.0
+	force = WEAPON_FORCE_PAINFULL
 	caliber = ".50"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a50

@@ -14,8 +14,8 @@
 	anchored = 0
 	w_class = 2.0
 	flags = CONDUCT
-	force = 5.0
-	throwforce = 5.0
+	force = WEAPON_FORCE_HARMLESS
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 15
 	var/build_path = null

@@ -6,7 +6,7 @@
 	flags = CONDUCT
 	w_class = 2.0
 	matter = list(DEFAULT_WALL_MATERIAL = 100)
-	throwforce = 2
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 10
 	origin_tech = list(TECH_MAGNET = 1)

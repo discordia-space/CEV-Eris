@@ -3,7 +3,7 @@
 	desc = "Used for blinding and being an asshole."
 	icon_state = "flash"
 	item_state = "flashtool"
-	throwforce = 5
+	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = 2
 	throw_speed = 4
 	throw_range = 10

@@ -4,7 +4,7 @@
 	icon_state = "riotgun"
 	item_state = "riotgun"
 	w_class = 4
-	force = 10
+	force = WEAPON_FORCE_NORMAL
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"

@@ -4,8 +4,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "red_phone"
 	flags = CONDUCT
-	force = 3.0
-	throwforce = 2.0
+	force = WEAPON_FORCE_HARMLESS
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 4
 	w_class = 2
@@ -56,7 +56,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
-	throwforce = 3
+	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = 2
 	throw_speed = 3
 	throw_range = 15
@@ -69,7 +69,7 @@
 	desc = "A tube... of cardboard."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "c_tube"
-	throwforce = 1
+	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = 2.0
 	throw_speed = 4
 	throw_range = 5
@@ -81,8 +81,8 @@
 	icon_state = "cane"
 	item_state = "stick"
 	flags = CONDUCT
-	force = 5.0
-	throwforce = 7.0
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_WEAK
 	w_class = 2.0
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
@@ -164,7 +164,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"
 	flags = CONDUCT
-	throwforce = 0
+	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = 3.0
 	origin_tech = list(TECH_MATERIAL = 1)
 	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
@@ -174,8 +174,8 @@
 	name = "wet floor sign"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "caution"
-	force = 1.0
-	throwforce = 3.0
+	force = WEAPON_FORCE_HARMLESS
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
@@ -218,7 +218,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "radio"
-	throwforce = 5
+	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = 2.0
 	throw_speed = 4
 	throw_range = 20
@@ -230,8 +230,8 @@
 	desc = "Apparently a staff used by the wizard."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "staff"
-	force = 3.0
-	throwforce = 5.0
+	force = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
@@ -256,8 +256,8 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "stick"
 	item_state = "stick"
-	force = 3.0
-	throwforce = 5.0
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0

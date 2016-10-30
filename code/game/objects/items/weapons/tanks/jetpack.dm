@@ -7,6 +7,7 @@
 	gauge_icon = null
 	w_class = 4.0
 	item_state = "jetpack"
+	force = WEAPON_FORCE_PAINFULL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail
 	var/on = 0.0

@@ -1,7 +1,7 @@
 // Stacked resources. They use a material datum for a lot of inherited values.
 /obj/item/stack/material
-	force = 5.0
-	throwforce = 5
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3

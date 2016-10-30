@@ -89,7 +89,7 @@
 	icon_state = "golden_cup"
 	item_state = "" //nope :(
 	w_class = 4
-	force = 14
+	force = WEAPON_FORCE_PAINFULL
 	throwforce = 10
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = null

@@ -44,8 +44,8 @@
 	icon_state = "wiredrod"
 	item_state = "rods"
 	flags = CONDUCT
-	force = 8
-	throwforce = 10
+	force = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_NORMAL
 	w_class = 3
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
 	force_divisor = 0.1

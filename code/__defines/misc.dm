@@ -154,6 +154,15 @@
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
 #define BOMBCAP_LIGHT_RADIUS max_explosion_range
 #define BOMBCAP_FLASH_RADIUS (max_explosion_range*1.5)
+
+#define WEAPON_FORCE_HARMLESS    3
+#define WEAPON_FORCE_WEAK        7
+#define WEAPON_FORCE_NORMAL      10
+#define WEAPON_FORCE_PAINFULL    15
+#define WEAPON_FORCE_DANGEROUS   20
+#define WEAPON_FORCE_ROBUST      26
+#define WEAPON_FORCE_LETHAL      51
+
 									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
 #define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
 #define NTNET_PEERTOPEER 2			// P2P transfers of files between devices

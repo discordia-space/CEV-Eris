@@ -16,7 +16,7 @@
 	var/list/timestamp = new/list()
 	var/canprint = 1
 	flags = CONDUCT
-	throwforce = 2
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
 

@@ -21,14 +21,14 @@
 		item_flags &= ~NOSLIP
 		magpulse = 0
 		set_slowdown()
-		force = 3
+		force = WEAPON_FORCE_WEAK
 		if(icon_base) icon_state = "[icon_base]0"
 		user << "You disable the mag-pulse traction system."
 	else
 		item_flags |= NOSLIP
 		magpulse = 1
 		set_slowdown()
-		force = 5
+		force = WEAPON_FORCE_PAINFULL
 		if(icon_base) icon_state = "[icon_base]1"
 		user << "You enable the mag-pulse traction system."
 	user.update_inv_shoes()	//so our mob-overlays update

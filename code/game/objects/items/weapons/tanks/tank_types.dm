@@ -14,6 +14,7 @@
 	name = "oxygen tank"
 	desc = "A tank of oxygen."
 	icon_state = "oxygen"
+	force = WEAPON_FORCE_PAINFULL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
 
@@ -63,6 +64,7 @@
 	name = "air tank"
 	desc = "Mixed anyone?"
 	icon_state = "oxygen"
+	force = WEAPON_FORCE_PAINFULL
 
 
 	examine(mob/user)
@@ -85,6 +87,7 @@
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon_state = "phoron"
+	force = WEAPON_FORCE_NORMAL
 	gauge_icon = null
 	flags = CONDUCT
 	slot_flags = null	//they have no straps!
@@ -120,7 +123,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = 2.0
-	force = 4.0
+	force = WEAPON_FORCE_NORMAL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	volume = 2 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
 
@@ -154,6 +157,7 @@
 /obj/item/weapon/tank/nitrogen
 	name = "nitrogen tank"
 	desc = "A tank of nitrogen."
+	force = WEAPON_FORCE_PAINFULL
 	icon_state = "oxygen_fr"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 

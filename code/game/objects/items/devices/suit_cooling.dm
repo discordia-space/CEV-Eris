@@ -8,8 +8,8 @@
 
 	//copied from tank.dm
 	flags = CONDUCT
-	force = 5.0
-	throwforce = 10.0
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4
 

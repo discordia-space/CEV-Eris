@@ -146,7 +146,7 @@
 	icon_state = "secure"
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
-	force = 8.0
+	force = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4
 	w_class = 4.0
@@ -175,7 +175,7 @@
 	icon_opened = "safe0"
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
-	force = 8.0
+	force = WEAPON_FORCE_NORMAL
 	w_class = 8.0
 	max_w_class = 8
 	anchored = 1.0

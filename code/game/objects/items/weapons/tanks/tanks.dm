@@ -16,7 +16,7 @@ var/list/global/tank_gauge_cache = list()
 	slot_flags = SLOT_BACK
 	w_class = 3
 
-	force = 5.0
+	force = WEAPON_FORCE_NORMAL
 	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 4
