@@ -7,7 +7,7 @@
 
 /obj/machinery/telecomms/relay/preset/station
 	id = "Station Relay"
-	listening_level = 1
+	listening_levels = list(1,2,3,4,5)
 	autolinkers = list("s_relay")
 
 /obj/machinery/telecomms/relay/preset/telecomms
