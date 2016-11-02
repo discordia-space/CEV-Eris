@@ -57,21 +57,6 @@
 		name = "Short Hair"	  // try to capatilize the names please~
 		icon_state = "hair_a" // you do not need to define _s or _l sub-states, game automatically does this for you
 
-	resomi
-		name = "Resomi Plumage"
-		icon_state = "resomi_default"
-		species_allowed = list("Resomi")
-
-	resomi_ears
-		name = "Resomi Ears"
-		icon_state = "resomi_ears"
-		species_allowed = list("Resomi")
-
-	resomi_excited
-		name = "Resomi Spiky"
-		icon_state = "resomi_spiky"
-		species_allowed = list("Resomi")
-
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
@@ -533,7 +518,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine")
+		species_allowed = list("Human","Unathi","Tajara","Skrell","Machine")
 
 	watson
 		name = "Watson Mustache"
@@ -709,11 +694,6 @@
 		name = "Tajara Messy"
 		icon_state = "hair_messy"
 		species_allowed = list("Tajara")
-
-	vox_quills_short
-		name = "Short Vox Quills"
-		icon_state = "vox_shortquills"
-		species_allowed = list("Vox")
 
 /datum/sprite_accessory/facial_hair
 

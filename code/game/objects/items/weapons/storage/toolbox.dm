@@ -5,8 +5,8 @@
 	icon_state = "red"
 	item_state = "toolbox_red"
 	flags = CONDUCT
-	force = 5
-	throwforce = 10
+	force = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 7
 	w_class = 4
@@ -68,7 +68,7 @@
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
 	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
-	force = 7.0
+	force = WEAPON_FORCE_DANGEROUS
 
 	New()
 		..()

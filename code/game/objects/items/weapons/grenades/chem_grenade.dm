@@ -4,7 +4,7 @@
 	item_state = "grenade"
 	desc = "A hand made chemical grenade."
 	w_class = 2.0
-	force = 2.0
+	force = WEAPON_FORCE_HARMLESS
 	det_time = null
 	unacidable = 1
 	var/stage = 0

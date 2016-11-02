@@ -5,10 +5,10 @@
 	icon_state = "stunbaton"
 	item_state = "baton"
 	slot_flags = SLOT_BELT
-	force = 15
+	force = WEAPON_FORCE_PAINFULL
 	sharp = 0
 	edge = 0
-	throwforce = 7
+	throwforce = WEAPON_FORCE_PAINFULL
 	w_class = 3
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
@@ -174,8 +174,8 @@
 	desc = "An improvised stun baton."
 	icon_state = "stunprod_nocell"
 	item_state = "prod"
-	force = 3
-	throwforce = 5
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	stunforce = 0
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
 	hitcost = 2500

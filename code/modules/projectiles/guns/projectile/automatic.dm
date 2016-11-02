@@ -35,7 +35,7 @@
 	icon_state = "c20r"
 	item_state = "c20r"
 	w_class = 3
-	force = 10
+	force = WEAPON_FORCE_PAINFULL
 	caliber = "10mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -105,7 +105,7 @@
 	icon_state = "carbine"
 	item_state = "z8carbine"
 	w_class = 4
-	force = 10
+	force = WEAPON_FORCE_PAINFULL
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	ammo_type = "/obj/item/ammo_casing/a556"
@@ -250,6 +250,8 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sinner/proc/update_charge()
+	if(!ammo_magazine)
+		return
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25

@@ -74,7 +74,7 @@
 	icon_state = "mecha_drill"
 	equip_cooldown = 30
 	energy_drain = 10
-	force = 15
+	force = WEAPON_FORCE_DANGEROUS
 	required_type = list(/obj/mecha/working/ripley, /obj/mecha/combat)
 
 	action(atom/target)

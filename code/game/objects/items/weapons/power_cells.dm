@@ -5,8 +5,8 @@
 	icon_state = "cell"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
-	force = 5.0
-	throwforce = 5.0
+	force = WEAPON_FORCE_WEAK
+	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5
 	w_class = 3.0
@@ -22,7 +22,7 @@
 	desc = "A small power cell designed to power handheld devices."
 	icon_state = "cell" //placeholder
 	w_class = 2
-	force = 0
+	force = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 7
 	maxcharge = 1000

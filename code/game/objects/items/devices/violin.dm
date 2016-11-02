@@ -6,7 +6,7 @@
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "violin"
 	item_state = "violin"
-	force = 10
+	force = WEAPON_FORCE_PAINFULL
 	var/datum/song/song
 	var/playing = 0
 	var/help = 0

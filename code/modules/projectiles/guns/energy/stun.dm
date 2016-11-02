@@ -53,6 +53,6 @@
 	name = "energy crossbow"
 	desc = "A weapon favored by mercenary infiltration teams."
 	w_class = 4
-	force = 10
+	force = WEAPON_FORCE_PAINFULL
 	matter = list(DEFAULT_WALL_MATERIAL = 200000)
 	projectile_type = /obj/item/projectile/energy/bolt/large

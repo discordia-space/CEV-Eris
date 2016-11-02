@@ -16,14 +16,10 @@ var/list/global/tank_gauge_cache = list()
 	slot_flags = SLOT_BACK
 	w_class = 3
 
-	force = 5.0
+	force = WEAPON_FORCE_NORMAL
 	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 4
-
-	sprite_sheets = list(
-		"Resomi" = 'icons/mob/species/resomi/back.dmi'
-		)
 
 	var/datum/gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE

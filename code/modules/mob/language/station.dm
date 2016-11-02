@@ -121,7 +121,6 @@
 	exclaim_verb = "trills"
 	colour = "alien"
 	key = "v"
-	flags = WHITELISTED
 	space_chance = 50
 	syllables = list(
 			"ca", "ra", "ma", "sa", "na", "ta", "la", "sha", "scha", "a", "a",
