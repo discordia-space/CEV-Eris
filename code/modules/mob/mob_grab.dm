@@ -71,10 +71,11 @@
 //This makes sure that the grab screen object is displayed in the correct hand.
 /obj/item/weapon/grab/proc/synch()
 	if(affecting)
-		if(assailant.r_hand == src)
-			hud.screen_loc = src.screen_loc
-		else
-			hud.screen_loc = src.screen_loc
+		hud.screen_loc = src.screen_loc
+//		if(assailant.r_hand == src)
+//			hud.screen_loc = src.screen_loc
+//		else
+//			hud.screen_loc = src.screen_loc
 
 /obj/item/weapon/grab/process()
 	if(gcDestroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC

@@ -108,6 +108,8 @@
 			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"], HUDdatum.slot_data[gear_slot]["loc"], species.hud.gear[gear_slot], HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], H)
 			if(HUDdatum.slot_data[gear_slot]["dir"])
 				inv_box.set_dir(HUDdatum.slot_data[gear_slot]["dir"])
+			if(HUDdatum.slot_data[gear_slot]["hideflag"])
+				inv_box.hideflag = HUDdatum.slot_data[gear_slot]["hideflag"]
 			H.HUDinventory += inv_box
 	return
 
@@ -127,6 +129,8 @@
 				HUD.icon = HUDdatum.icon
 			if(HUDdatum.HUDneed[HUDname]["icon_state"])//Анализ на овверайд icon_state
 				HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]
+			if(HUDdatum.HUDneed[HUDname]["hideflag"])
+				HUD.hideflag = HUDdatum.HUDneed[HUDname]["hideflag"]
 			H.HUDneed[HUD.name] += HUD//Добавляем в список худов
 			if (HUD.process_flag)//Если худ нужно процессить
 				H.HUDprocess += HUD//Вливаем в соотвествующий список
@@ -140,6 +144,8 @@
 	for (var/list/whistle in HUDdatum.HUDfrippery)
 		var/obj/screen/frippery/perdelka = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
 		perdelka.icon = HUDdatum.icon
+		if(whistle["hideflag"])
+			perdelka.hideflag = whistle["hideflag"]
 		H.HUDfrippery += perdelka
 	return
 
