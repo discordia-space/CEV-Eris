@@ -7,8 +7,8 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 125, "glass" = 375)
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
-	throwforce = 3
-	force = 3
+	throwforce = WEAPON_FORCE_WEAK
+	force = WEAPON_FORCE_WEAK
 	w_class = 1
 	var/obj/item/weapon/reagent_containers/syringe/syringe
 

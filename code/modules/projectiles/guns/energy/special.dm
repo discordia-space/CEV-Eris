@@ -6,7 +6,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 	w_class = 4
-	force = 10
+	force = WEAPON_FORCE_PAINFULL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	charge_cost = 300

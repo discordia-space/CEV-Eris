@@ -9,7 +9,7 @@
 	throw_speed = 1
 	throw_range = 3
 	force = 15
-	var/list/potentials = list("Resomi" = /spell/aoe_turf/conjure/summon/resomi, "Human" = /obj/item/weapon/storage/bag/cash/infinite, "Vox" = /spell/targeted/shapeshift/true_form,
+	var/list/potentials = list("Human" = /obj/item/weapon/storage/bag/cash/infinite,
 		"Tajara" = /spell/messa_shroud, "Unathi" = /spell/moghes_blessing, "Diona" = /spell/aoe_turf/conjure/grove/gestalt, "Skrell" = /obj/item/weapon/contract/apprentice/skrell,
 		"Machine" = /spell/camera_connection)
 
@@ -34,42 +34,6 @@
 		H.put_in_hands(a)
 	user << "\The [src] crumbles in your hands."
 	qdel(src)
-
-//RESOMI
-/spell/aoe_turf/conjure/summon/resomi
-	name = "Summon Nano Machines"
-	desc = "This spell summons nano machines from the wizard's body to help them."
-
-	school = "racial"
-	spell_flags = Z2NOCAST
-	invocation_type = SpI_EMOTE
-	invocation = "spasms a moment as nanomachines come out of a port on their back!"
-
-	level_max = list(Sp_TOTAL = 0, Sp_SPEED = 0, Sp_POWER = 0)
-
-	name_summon = 1
-
-	charge_type = Sp_HOLDVAR
-	holder_var_type = "shock_stage"
-	holder_var_amount = 15
-
-	hud_state = "wiz_resomi"
-
-	summon_amt = 1
-	summon_type = list(/mob/living/simple_animal/hostile/commanded/nanomachine)
-
-/spell/aoe_turf/conjure/summon/resomi/before_cast()
-	..()
-	newVars["master"] = holder
-
-/spell/aoe_turf/conjure/summon/resomi/take_charge(mob/user = user, var/skipcharge)
-	. = ..()
-	var/mob/living/carbon/human/H = user
-	if(H && H.shock_stage >= 30)
-		H.visible_message("<b>[user]</b> drops to the floor, thrashing wildly while foam comes from their mouth.")
-		H.Paralyse(20)
-		H.adjustBrainLoss(10)
-
 
 //HUMAN
 /obj/item/weapon/storage/bag/cash/infinite/remove_from_storage(obj/item/W as obj, atom/new_location)
@@ -113,32 +77,6 @@
 
 	spawn(duration)
 		qdel(O)
-
-//VOX
-/spell/targeted/shapeshift/true_form
-	name = "True Form"
-	desc = "Pay respect to your heritage. Become what you once were."
-
-	school = "racial"
-	spell_flags = INCLUDEUSER
-	invocation_type = SpI_EMOTE
-	range = -1
-	invocation = "begins to grow!"
-	charge_max = 1200 //2 minutes
-	duration = 300 //30 seconds
-
-	smoke_amt = 5
-	smoke_spread = 1
-
-	possible_transformations = list(/mob/living/simple_animal/armalis)
-
-	hud_state = "wiz_vox"
-
-	cast_sound = 'sound/voice/shriek1.ogg'
-	revert_sound = 'sound/voice/shriek1.ogg'
-
-	drop_items = 0
-
 
 //UNATHI
 /spell/moghes_blessing

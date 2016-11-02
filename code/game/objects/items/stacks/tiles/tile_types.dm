@@ -27,8 +27,8 @@
 	singular_name = "grass floor tile"
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "tile_grass"
-	force = 1.0
-	throwforce = 1.0
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 5
 	throw_range = 20
 	flags = 0
@@ -42,8 +42,8 @@
 	singular_name = "wood floor tile"
 	desc = "An easy to fit wooden floor tile."
 	icon_state = "tile-wood"
-	force = 1.0
-	throwforce = 1.0
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 5
 	throw_range = 20
 	flags = 0
@@ -64,8 +64,8 @@
 	singular_name = "carpet"
 	desc = "A piece of carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpet"
-	force = 1.0
-	throwforce = 1.0
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 5
 	throw_range = 20
 	flags = 0
@@ -90,9 +90,9 @@
 	singular_name = "floor tile"
 	desc = "Those could work as a pretty decent throwing weapon" //why?
 	icon_state = "tile"
-	force = 6.0
+	force = WEAPON_FORCE_NORMAL
 	matter = list(DEFAULT_WALL_MATERIAL = 937.5)
-	throwforce = 15.0
+	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 5
 	throw_range = 20
 	flags = CONDUCT
@@ -102,9 +102,9 @@
 	singular_name = "grey techfloor tile"
 	desc = "Those could work as a pretty decent throwing weapon" //why?
 	icon_state = "techtile_grey"
-	force = 6.0
+	force = WEAPON_FORCE_NORMAL
 	matter = list(DEFAULT_WALL_MATERIAL = 937.5)
-	throwforce = 15.0
+	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 5
 	throw_range = 20
 	flags = CONDUCT
@@ -114,9 +114,9 @@
 	singular_name = "grid techfloor tile"
 	icon_state = "techtile_grid"
 	desc = "Those could work as a pretty decent throwing weapon" //why?
-	force = 6.0
+	force = WEAPON_FORCE_NORMAL
 	matter = list(DEFAULT_WALL_MATERIAL = 937.5)
-	throwforce = 15.0
+	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 5
 	throw_range = 20
 	flags = CONDUCT

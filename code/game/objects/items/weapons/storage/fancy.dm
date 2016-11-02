@@ -69,7 +69,7 @@
 	icon_state = "candlebox5"
 	icon_type = "candle"
 	item_state = "candlebox5"
-	throwforce = 2
+	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 
 
@@ -131,7 +131,7 @@
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
 	w_class = 1
-	throwforce = 2
+	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 6
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter)
@@ -210,7 +210,7 @@
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = 1
-	throwforce = 2
+	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 7
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar)

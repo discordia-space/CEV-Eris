@@ -21,8 +21,8 @@
 	icon_state = "wrench"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	w_class = 2.0
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
@@ -39,9 +39,9 @@
 	icon_state = "screwdriver"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
-	force = 5.0
+	force = WEAPON_FORCE_NORMAL
 	w_class = 1.0
-	throwforce = 5.0
+	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 3
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
@@ -94,7 +94,7 @@
 	icon_state = "cutters"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 6.0
+	force = WEAPON_FORCE_WEAK
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2.0
@@ -134,8 +134,8 @@
 	slot_flags = SLOT_BELT
 
 	//Amount of OUCH when it's thrown
-	force = 3.0
-	throwforce = 5.0
+	force = WEAPON_FORCE_WEAK
+	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
@@ -299,7 +299,7 @@
 				M << "<span class='notice'>You switch the [src] on.</span>"
 			else if(T)
 				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
-			src.force = 15
+			src.force = WEAPON_FORCE_PAINFULL
 			src.damtype = "fire"
 			src.w_class = 4
 			welding = 1
@@ -316,7 +316,7 @@
 			M << "<span class='notice'>You switch \the [src] off.</span>"
 		else if(T)
 			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
-		src.force = 3
+		src.force = WEAPON_FORCE_WEAK
 		src.damtype = "brute"
 		src.w_class = initial(src.w_class)
 		src.welding = 0
@@ -402,8 +402,8 @@
 	icon_state = "crowbar"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
+	force = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_NORMAL
 	item_state = "crowbar"
 	w_class = 2.0
 	origin_tech = list(TECH_ENGINEERING = 1)

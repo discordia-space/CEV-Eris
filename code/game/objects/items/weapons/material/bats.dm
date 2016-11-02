@@ -4,7 +4,7 @@
 	icon_state = "metalbat0"
 	base_icon = "metalbat"
 	item_state = "metalbat"
-	throwforce = 7
+	throwforce = WEAPON_FORCE_WEAK
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'
 	default_material = "wood"

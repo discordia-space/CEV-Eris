@@ -30,7 +30,7 @@ datum/preferences
 	var/body_build = "Default"			//character body build name
 	var/datum/body_build/body = null	//body_build object
 	var/age = 30						//age of character
-	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
+	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type

@@ -465,7 +465,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	max_amount = MAXCOIL
 	color = COLOR_RED
 	desc = "A coil of power cable."
-	throwforce = 10
+	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5

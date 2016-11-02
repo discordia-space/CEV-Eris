@@ -125,10 +125,6 @@
 	if(holder)
 		admins += src
 		holder.owner = src
-	// Alert! ShitCode!
-	// Bad WhiteList is here!
-	else
-		return null
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]

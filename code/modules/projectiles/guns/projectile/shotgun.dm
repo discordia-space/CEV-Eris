@@ -5,7 +5,7 @@
 	item_state = "shotgun"
 	max_shells = 4
 	w_class = 4.0
-	force = 10
+	force = WEAPON_FORCE_PAINFULL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
@@ -59,7 +59,7 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 2
 	w_class = 4
-	force = 10
+	force = WEAPON_FORCE_PAINFULL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
@@ -97,7 +97,7 @@
 			icon_state = "sawnshotgun"
 			item_state = "sawnshotgun"
 			w_class = 3
-			force = 5
+			force = WEAPON_FORCE_PAINFULL
 			slot_flags &= ~SLOT_BACK	//you can't sling it on your back
 			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
 			name = "sawn-off shotgun"
@@ -114,7 +114,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	w_class = 3
-	force = 5
+	force = WEAPON_FORCE_PAINFULL
 
 /* Ironhammer stuff */
 
@@ -127,7 +127,7 @@
 	handle_casings = HOLD_CASINGS
 	max_shells = 6
 	w_class = 4
-	force = 10
+	force = WEAPON_FORCE_PAINFULL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"

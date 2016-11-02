@@ -5,8 +5,8 @@
 	item_state = "chain"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 10
-	throwforce = 7
+	force = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_PAINFULL
 	w_class = 3
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")

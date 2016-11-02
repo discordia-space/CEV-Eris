@@ -325,14 +325,14 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/glasses/sunglasses/big
 	cost = 1
 	slot = slot_glasses
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Internal Affairs Agent","Quartermaster","First Officer","Captain")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Quartermaster","First Officer","Captain")
 
 /datum/gear/prescriptionsun
 	display_name = "sunglasses, presciption"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
 	cost = 2
 	slot = slot_glasses
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Internal Affairs Agent","Quartermaster","First Officer","Captain")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Quartermaster","First Officer","Captain")
 
 // Mask
 
@@ -558,44 +558,6 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_w_uniform
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
-
-/datum/gear/resomi_grey
-	display_name = "Resomi uniform, grey"
-	path = /obj/item/clothing/under/resomi
-	cost = 1
-	slot = slot_w_uniform
-
-/datum/gear/resomi_rainbow
-	display_name = "Resomi uniform, rainbow"
-	path = /obj/item/clothing/under/resomi/rainbow
-	cost = 1
-	slot = slot_w_uniform
-
-/datum/gear/resomi_white
-	display_name = "Resomi uniform, white"
-	path = /obj/item/clothing/under/resomi/white
-	cost = 1
-	slot = slot_w_uniform
-
-/datum/gear/resomi_eng
-	display_name = "Resomi uniform, Engineering"
-	path = /obj/item/clothing/under/resomi/yellow
-	cost = 1
-	slot = slot_w_uniform
-	allowed_roles = list("Chief Engineer","Station Engineer","Atmospherics Technician")
-
-/datum/gear/resomi_sec
-	display_name = "Resomi uniform, Security"
-	path = /obj/item/clothing/under/resomi/red
-	cost = 1
-	slot = slot_w_uniform
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
-
-/datum/gear/resomi_med
-	display_name = "Resomi uniform, Medical"
-	path = /obj/item/clothing/under/resomi/medical
-	cost = 1
-	slot = slot_w_uniform
 
 // Attachments
 /datum/gear/armband_cargo

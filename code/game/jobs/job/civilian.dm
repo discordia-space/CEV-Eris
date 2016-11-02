@@ -294,24 +294,24 @@
 
 
 //var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
-/datum/job/lawyer
-	title = "Lawyer"
-	flag = LAWYER
-	department = "Civilian"
-	department_flag = CIVILIAN
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the captain"
-	selection_color = "#dddddd"
-	economic_modifier = 7
-	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
-	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
-
-	uniform = /obj/item/clothing/under/rank/internalaffairs
-	shoes = /obj/item/clothing/shoes/brown
-	pda = /obj/item/device/pda/lawyer
-	ear = /obj/item/device/radio/headset/headset_sec
-	hand = /obj/item/weapon/storage/briefcase
-	glasses = /obj/item/clothing/glasses/sunglasses/big
+///datum/job/lawyer
+//	title = "Lawyer"
+//	flag = LAWYER
+//	department = "Civilian"
+//	department_flag = CIVILIAN
+//	faction = "Station"
+//	total_positions = 1
+//	spawn_positions = 1
+//	supervisors = "the captain"
+//	selection_color = "#dddddd"
+//	economic_modifier = 7
+//	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
+//	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
+//
+//	uniform = /obj/item/clothing/under/rank/internalaffairs
+//	shoes = /obj/item/clothing/shoes/brown
+//	pda = /obj/item/device/pda/lawyer
+//	ear = /obj/item/device/radio/headset/headset_sec
+//	hand = /obj/item/weapon/storage/briefcase
+//	glasses = /obj/item/clothing/glasses/sunglasses/big
 

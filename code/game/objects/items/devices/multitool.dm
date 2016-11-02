@@ -9,9 +9,9 @@
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
 	icon_state = "multitool"
 	flags = CONDUCT
-	force = 5.0
+	force = WEAPON_FORCE_HARMLESS
 	w_class = 2.0
-	throwforce = 5.0
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_range = 15
 	throw_speed = 3
 	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."

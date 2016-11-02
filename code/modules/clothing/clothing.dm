@@ -107,7 +107,6 @@
 	w_class = 1.0
 	throwforce = 2
 	slot_flags = SLOT_EARS
-	sprite_sheets = list("Resomi" = 'icons/mob/species/resomi/ears.dmi')
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -189,10 +188,6 @@ BLIND     // can't see anything
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/eyes.dmi',
-		"Resomi" = 'icons/mob/species/resomi/eyes.dmi',
-		)
 
 /obj/item/clothing/glasses/update_clothing_icon()
 	if (ismob(src.loc))
@@ -213,11 +208,6 @@ BLIND     // can't see anything
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude","Unathi","Tajara", "Vox")
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/gloves.dmi',
-		"Resomi" = 'icons/mob/species/resomi/gloves.dmi',
-		)
 
 /obj/item/clothing/gloves/update_clothing_icon()
 	if (ismob(src.loc))
@@ -271,11 +261,6 @@ BLIND     // can't see anything
 	var/light_applied
 	var/brightness_on
 	var/on = 0
-
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/head.dmi',
-		"Resomi" = 'icons/mob/species/resomi/head.dmi'
-		)
 
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)
@@ -371,10 +356,6 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/masks.dmi',
-		"Resomi" = 'icons/mob/species/resomi/masks.dmi',
-		)
 
 	var/voicechange = 0
 	var/list/say_messages
@@ -406,11 +387,6 @@ BLIND     // can't see anything
 	slowdown = SHOES_SLOWDOWN
 	force = 2
 	var/overshoes = 0
-	species_restricted = list("exclude","Unathi","Tajara","Vox")
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/shoes.dmi',
-		"Resomi" = 'icons/mob/species/resomi/shoes.dmi',
-		)
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
@@ -482,11 +458,6 @@ BLIND     // can't see anything
 	siemens_coefficient = 0.9
 	w_class = 3
 
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/suit.dmi',
-		"Resomi" = 'icons/mob/species/resomi/suit.dmi'
-		)
-
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -514,11 +485,6 @@ BLIND     // can't see anything
 		3 = Report location
 		*/
 	var/displays_id = 1
-
-	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/uniform.dmi',
-		"Resomi" = 'icons/mob/species/resomi/uniform.dmi'
-		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 

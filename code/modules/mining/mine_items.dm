@@ -44,8 +44,8 @@
 	icon = 'icons/obj/items.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 15.0
-	throwforce = 4.0
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_WEAK
 	icon_state = "pickaxe"
 	item_state = "jackhammer"
 	w_class = 4.0
@@ -117,6 +117,7 @@
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
+	force = WEAPON_FORCE_ROBUST
 	digspeed = 10
 	origin_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 4)
 	desc = "A pickaxe with a diamond pick head."
@@ -148,8 +149,8 @@
 	icon_state = "shovel"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 8.0
-	throwforce = 4.0
+	force = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_WEAK
 	item_state = "shovel"
 	w_class = 3.0
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)

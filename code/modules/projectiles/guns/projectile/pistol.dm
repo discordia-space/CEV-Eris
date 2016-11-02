@@ -63,7 +63,7 @@
 	desc = "A robust handgun that uses .50 AE ammo"
 	icon_state = "deagle"
 	item_state = "deagle"
-	force = 14.0
+	force = WEAPON_FORCE_PAINFULL
 	caliber = ".50"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a50
@@ -172,28 +172,28 @@
 	max_shells = 1 //literally just a barrel
 
 	var/global/list/ammo_types = list(
-		/obj/item/ammo_casing/a357              = ".357",
-		/obj/item/ammo_casing/c9mmf             = "9mm",
-		/obj/item/ammo_casing/c45f              = ".45",
-		/obj/item/ammo_casing/a10mm             = "10mm",
-		/obj/item/ammo_casing/shotgun           = "12 gauge",
-		/obj/item/ammo_casing/shotgun           = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/pellet    = "12 gauge",
-		/obj/item/ammo_casing/shotgun/beanbag   = "12 gauge",
-		/obj/item/ammo_casing/shotgun/stunshell = "12 gauge",
-		/obj/item/ammo_casing/shotgun/flash     = "12 gauge",
-		/obj/item/ammo_casing/a762              = "7.62mm",
-		/obj/item/ammo_casing/a556              = "5.56mm"
+		/obj/item/ammo_casing/a357,
+		/obj/item/ammo_casing/c9mmf,
+		/obj/item/ammo_casing/c45f,
+		/obj/item/ammo_casing/a10mm,
+		/obj/item/ammo_casing/shotgun,
+		/obj/item/ammo_casing/shotgun,
+		/obj/item/ammo_casing/shotgun/pellet,
+		/obj/item/ammo_casing/shotgun/pellet,
+		/obj/item/ammo_casing/shotgun/pellet,
+		/obj/item/ammo_casing/shotgun/beanbag,
+		/obj/item/ammo_casing/shotgun/stunshell,
+		/obj/item/ammo_casing/shotgun/flash,
+		/obj/item/ammo_casing/a762,
+		/obj/item/ammo_casing/a556
 		)
 
 /obj/item/weapon/gun/projectile/pirate/New()
 	ammo_type = pick(ammo_types)
-	desc += " Uses [ammo_types[ammo_type]] rounds."
 
 	var/obj/item/ammo_casing/ammo = ammo_type
 	caliber = initial(ammo.caliber)
+	desc += " Uses [caliber] rounds."
 	..()
 
 /* Ironhammer stuff */
@@ -207,14 +207,10 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	load_method = MAGAZINE
 
-/obj/item/weapon/gun/projectile/ironhammer/judge/proc/update_charge()
-	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
-	if(ratio < 0.33 && ratio != 0)
-		ratio = 0.33
-	ratio = round(ratio, 0.33) * 100
-	overlays += "deagle_[ratio]"
-
-
 /obj/item/weapon/gun/projectile/ironhammer/judge/update_icon()
 	overlays.Cut()
-	update_charge()
+	if(!ammo_magazine)
+		return
+	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
+	ratio = round(ratio, 33)
+	overlays += "deagle_[ratio]"

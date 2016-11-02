@@ -6,7 +6,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "beartrap0"
 	desc = "A mechanically activated leg trap. Low-tech, but reliable. Looks like it could really hurt if you set it off."
-	throwforce = 0
+	throwforce = WEAPON_FORCE_WEAK
 	w_class = 3
 	origin_tech = "materials=1"
 	matter = list(DEFAULT_WALL_MATERIAL = 18750)
