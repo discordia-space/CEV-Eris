@@ -14,6 +14,7 @@
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
 	var/mob/living/parentmob
 	var/process_flag = 0
+	var/hideflag = 0
 
 /obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob)
 	src.parentmob = _parentmob
@@ -43,7 +44,7 @@
 /obj/screen/Click(location, control, params)
 	if(!usr)	return 1
 	switch(name)
-		if("toggle")
+/*		if("toggle")
 			//if(usr.hud_used.inventory_shown)
 			//	usr.hud_used.inventory_shown = 0
 			//	usr.client.screen -= usr.hud_used.other
@@ -52,7 +53,7 @@
 			//	usr.client.screen += usr.hud_used.other
 
 			//usr.hud_used.hidden_inventory_update()
-			return
+			return*/
 
 		if("equip")
 			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
@@ -1096,3 +1097,148 @@
 //			owner.radio_use_icon.name = "Disallow Radio Use"
 //-----------------------Gun Mod End------------------------------
 
+/obj/screen/toggle_invetory
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "b-open"
+	name = "toggle invetory"
+	screen_loc = "1,0"
+
+/obj/screen/toggle_invetory/proc/hideobjects()
+	for (var/obj/screen/HUDelement in parentmob.HUDinventory)
+		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
+			HUDelement.invisibility = 101
+			hidden_inventory_update(HUDelement)
+	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
+		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
+			HUDelement.invisibility = 101
+
+/obj/screen/toggle_invetory/proc/showobjects()
+	for (var/obj/screen/HUDelement in parentmob.HUDinventory)
+		HUDelement.invisibility = 0
+		hidden_inventory_update(HUDelement)
+	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
+		HUDelement.invisibility = 0
+
+/obj/screen/toggle_invetory/Click()
+
+	if(parentmob.inventory_shown)
+		parentmob.inventory_shown = 0
+		hideobjects()
+	else
+		parentmob.inventory_shown = 1
+		showobjects()
+
+	//parentmob.hud_used.hidden_inventory_update()
+	return
+
+
+
+
+
+/obj/screen/toggle_invetory/proc/hidden_inventory_update(obj/screen/inventory/inv_elem)
+	var/mob/living/carbon/human/H = parentmob
+	switch (inv_elem.slot_id)
+		if(slot_head)
+			if(H.head)      H.head.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_shoes)
+			if(H.shoes)     H.shoes.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_l_ear)
+			if(H.l_ear)     H.l_ear.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_r_ear)
+			if(H.r_ear)     H.r_ear.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_gloves)
+			if(H.gloves)    H.gloves.screen_loc =    (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_glasses)
+			if(H.glasses)   H.glasses.screen_loc =   (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_w_uniform)
+			if(H.w_uniform) H.w_uniform.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_wear_suit)
+			if(H.wear_suit) H.wear_suit.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_wear_mask)
+			if(H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+/*	for(var/obj/screen/inventory/inv_elem in parentmob.HUDinventory)
+		switch (inv_elem.slot_id)
+			if(slot_head)
+				if(H.head)      H.head.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+			if(slot_shoes)
+				if(H.shoes)     H.shoes.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+			if(slot_l_ear)
+				if(H.l_ear)     H.l_ear.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+			if(slot_r_ear)
+				if(H.r_ear)     H.r_ear.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+			if(slot_gloves)
+				if(H.gloves)    H.gloves.screen_loc =    (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+			if(slot_glasses)
+				if(H.glasses)   H.glasses.screen_loc =   (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+			if(slot_w_uniform)
+				if(H.w_uniform) H.w_uniform.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+			if(slot_wear_suit)
+				if(H.wear_suit) H.wear_suit.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+			if(slot_wear_mask)
+				if(H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc*/
+
+/*//	if(!mymob) return
+//	if(ishuman(mymob))
+	var/mob/living/carbon/human/H = parentmob
+	for(var/gear_slot in H.species.hud.gear)
+		var/list/hud_data = H.species.hud.gear[gear_slot]
+		if(H.inventory_shown)
+			switch(hud_data["slot"])
+				if(slot_head)
+					if(H.head)      H.head.screen_loc =      hud_data["loc"]
+				if(slot_shoes)
+					if(H.shoes)     H.shoes.screen_loc =     hud_data["loc"]
+				if(slot_l_ear)
+					if(H.l_ear)     H.l_ear.screen_loc =     hud_data["loc"]
+				if(slot_r_ear)
+					if(H.r_ear)     H.r_ear.screen_loc =     hud_data["loc"]
+				if(slot_gloves)
+					if(H.gloves)    H.gloves.screen_loc =    hud_data["loc"]
+				if(slot_glasses)
+					if(H.glasses)   H.glasses.screen_loc =   hud_data["loc"]
+				if(slot_w_uniform)
+					if(H.w_uniform) H.w_uniform.screen_loc = hud_data["loc"]
+				if(slot_wear_suit)
+					if(H.wear_suit) H.wear_suit.screen_loc = hud_data["loc"]
+				if(slot_wear_mask)
+					if(H.wear_mask) H.wear_mask.screen_loc = hud_data["loc"]
+		else
+			switch(hud_data["slot"])
+				if(slot_head)
+					if(H.head)      H.head.screen_loc =      null
+				if(slot_shoes)
+					if(H.shoes)     H.shoes.screen_loc =     null
+				if(slot_l_ear)
+					if(H.l_ear)     H.l_ear.screen_loc =     null
+				if(slot_r_ear)
+					if(H.r_ear)     H.r_ear.screen_loc =     null
+				if(slot_gloves)
+					if(H.gloves)    H.gloves.screen_loc =    null
+				if(slot_glasses)
+					if(H.glasses)   H.glasses.screen_loc =   null
+				if(slot_w_uniform)
+					if(H.w_uniform) H.w_uniform.screen_loc = null
+				if(slot_wear_suit)
+					if(H.wear_suit) H.wear_suit.screen_loc = null
+				if(slot_wear_mask)
+					if(H.wear_mask) H.wear_mask.screen_loc = null
+	update_inv_w_uniform(0)
+	update_inv_wear_id(0)
+	update_inv_gloves(0)
+	update_inv_glasses(0)
+	update_inv_ears(0)
+	update_inv_shoes(0)
+	update_inv_s_store(0)
+	update_inv_wear_mask(0)
+	update_inv_head(0)
+	update_inv_belt(0)
+	update_inv_back(0)
+	update_inv_wear_suit(0)
+	update_inv_r_hand(0)
+	update_inv_l_hand(0)
+	update_inv_handcuffed(0)
+	update_inv_legcuffed(0)
+	update_inv_pockets(0)
+	update_fire(0)
+	update_surgery(0)
+*/

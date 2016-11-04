@@ -197,3 +197,8 @@
 #define CAPTURE_MODE_REGULAR 0 //Regular polaroid camera mode
 #define CAPTURE_MODE_ALL 1 //Admin camera mode
 #define CAPTURE_MODE_PARTIAL 3 //Simular to regular mode, but does not do dummy check
+
+
+//HUD element hidings flags
+#define F12_FLAG 1 // 0001
+#define TOGGLE_INVENTORY_FLAG 2 //0010

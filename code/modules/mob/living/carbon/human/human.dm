@@ -10,7 +10,7 @@
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_canmove() call.
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-	world << "new"
+//	world << "new"
 	body_build = get_body_build(gender)
 
 	if(!dna)
@@ -1129,7 +1129,7 @@ var/list/rank_prefix = list(\
 		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
-	world << "set species"
+//	world << "set species"
 	if(!dna)
 		if(!new_species)
 			new_species = "Human"
