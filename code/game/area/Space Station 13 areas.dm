@@ -228,9 +228,11 @@ area/space/atmosalert()
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
+	requires_power = 1
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle"
+	requires_power = 1
 	base_turf = /turf/simulated/floor/asteroid
 
 /area/shuttle/transport1/centcom
