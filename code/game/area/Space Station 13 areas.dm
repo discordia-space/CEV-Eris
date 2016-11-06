@@ -326,9 +326,11 @@ area/space/atmosalert()
 
 /area/shuttle/research/station
 	icon_state = "shuttle2"
+	requires_power = 1
 
 /area/shuttle/research/outpost
 	icon_state = "shuttle"
+	requires_power = 1
 	base_turf = /turf/simulated/floor/asteroid
 
 /area/airtunnel1/      // referenced in airtunnel.dm:759

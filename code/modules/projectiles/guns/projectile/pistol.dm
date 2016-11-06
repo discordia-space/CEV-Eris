@@ -198,16 +198,16 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/projectile/ironhammer/judge
-	name = "FS HG .38 \"Judge\""
-	desc = "FS HG .38 \"Judge\". Uses .38 rounds."
+/obj/item/weapon/gun/projectile/ironhammer/lamia
+	name = "FS HG .38 \"Lamia\""
+	desc = "FS HG .38 \"Lamia\". Uses .38 rounds."
 	icon_state = "Headdeagle"
 	caliber = ".38"
 	ammo_mag = "mag_cl38"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	load_method = MAGAZINE
 
-/obj/item/weapon/gun/projectile/ironhammer/judge/update_icon()
+/obj/item/weapon/gun/projectile/ironhammer/lamia/update_icon()
 	overlays.Cut()
 	if(!ammo_magazine)
 		return

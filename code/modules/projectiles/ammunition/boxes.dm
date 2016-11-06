@@ -204,23 +204,23 @@
 
 /* Ironhammer stuff */
 
-/obj/item/ammo_magazine/ironhammer/SMG_sinner/rubber
+/obj/item/ammo_magazine/ironhammer/SMG_sol/rubber
 	name = "magazine (9mm rubber)"
 	icon_state = "mg_ih_smg_9mm"
 	mag_type = MAGAZINE
 	ammo_mag = "ih_smg"
-	ammo_type = /obj/item/ammo_casing/ironhammer/SMG_sinner/rubber
+	ammo_type = /obj/item/ammo_casing/ironhammer/SMG_sol/rubber
 	matter = list(DEFAULT_WALL_MATERIAL = 1575) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = "9mm"
 	max_ammo = 21
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ironhammer/SMG_sinner/brute
+/obj/item/ammo_magazine/ironhammer/SMG_sol/brute
 	name = "magazine (9mm brute)"
 	icon_state = "mg_ih_smg_9mm"
 	mag_type = MAGAZINE
 	ammo_mag = "ih_smg"
-	ammo_type = /obj/item/ammo_casing/ironhammer/SMG_sinner/brute
+	ammo_type = /obj/item/ammo_casing/ironhammer/SMG_sol/brute
 	matter = list(DEFAULT_WALL_MATERIAL = 1575) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = "9mm"
 	max_ammo = 21

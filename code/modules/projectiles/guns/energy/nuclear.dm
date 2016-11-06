@@ -75,14 +75,15 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/energy/gun/ironhammer/chance
-	name = "FS PDW E \"Chance\""
+/obj/item/weapon/gun/energy/gun/ironhammer/martin
+	name = "FS PDW E \"Martin\""
 	desc = "Last chance gun."
 	icon_state = "PDW"
 	item_state = "gun"
 	fire_sound = 'sound/weapons/Taser.ogg'
 	max_shots = 2
 	charge_meter = 0
+	w_class = 2
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	modifystate = null
@@ -92,12 +93,12 @@
 		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
 		)
 
-/obj/item/weapon/gun/energy/gun/ironhammer/chance/proc/update_mode()
+/obj/item/weapon/gun/energy/gun/ironhammer/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	switch(current_mode.name)
 		if("stun") overlays += "taser_pdw"
 		if("lethal") overlays += "lazer_pdw"
 
-/obj/item/weapon/gun/energy/gun/ironhammer/chance/update_icon()
+/obj/item/weapon/gun/energy/gun/ironhammer/martin/update_icon()
 	overlays.Cut()
 	update_mode()
