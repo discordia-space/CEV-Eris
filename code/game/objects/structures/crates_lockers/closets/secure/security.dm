@@ -52,7 +52,7 @@
 		new /obj/item/device/radio/headset/heads/hop(src)
 		new /obj/item/weapon/storage/box/ids(src)
 		new /obj/item/weapon/storage/box/ids( src )
-		new /obj/item/weapon/gun/projectile/sec/flash(src)
+		new /obj/item/weapon/gun/energy/gun/ironhammer/martin(src)
 		new /obj/item/device/flash(src)
 		return
 
@@ -89,7 +89,10 @@
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)
 		new /obj/item/weapon/melee/baton/loaded(src)
-		new /obj/item/weapon/gun/energy/gun(src)
+		new /obj/item/weapon/gun/projectile/ironhammer/lamia(src)
+		new /obj/item/ammo_magazine/ironhammer/mg/cl38/rubber(src)
+		new /obj/item/ammo_magazine/ironhammer/mg/cl38/rubber(src)
+		new /obj/item/ammo_magazine/ironhammer/mg/cl38/rubber(src)
 		new /obj/item/clothing/accessory/holster/waist(src)
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/beret/sec/navy/hos(src)
@@ -128,7 +131,10 @@
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/weapon/reagent_containers/spray/pepper(src)
 		new /obj/item/weapon/melee/baton/loaded(src)
-		new /obj/item/weapon/gun/energy/gun(src)
+		new /obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sol(src)
+		new /obj/item/ammo_magazine/ironhammer/SMG_sol/rubber(src)
+		new /obj/item/ammo_magazine/ironhammer/SMG_sol/rubber(src)
+		new /obj/item/ammo_magazine/ironhammer/SMG_sol/rubber(src)
 		new /obj/item/weapon/storage/box/holobadge(src)
 		new /obj/item/clothing/head/beret/sec/navy/warden(src)
 		new /obj/item/clothing/accessory/badge/warden(src)
@@ -165,7 +171,10 @@
 		new /obj/item/taperoll/police(src)
 		new /obj/item/device/hailer(src)
 		new /obj/item/clothing/accessory/storage/black_vest(src)
-		new /obj/item/weapon/gun/energy/taser(src)
+		new /obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sol(src)
+		new /obj/item/ammo_magazine/ironhammer/SMG_sol/rubber(src)
+		new /obj/item/ammo_magazine/ironhammer/SMG_sol/rubber(src)
+		new /obj/item/ammo_magazine/ironhammer/SMG_sol/rubber(src)
 		return
 
 
@@ -227,10 +236,12 @@
 		new /obj/item/weapon/storage/box/evidence(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/clothing/suit/armor/vest/detective(src)
-		new /obj/item/ammo_magazine/c45m/flash(src)
 		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/gun/projectile/colt/detective(src)
+		new /obj/item/weapon/gun/projectile/revolver/ironhammer/consul(src)
 		new /obj/item/clothing/accessory/holster/armpit(src)
+		new /obj/item/ammo_magazine/ironhammer/sl/cl38/rubber(src)
+		new /obj/item/ammo_magazine/ironhammer/sl/cl38/rubber(src)
+		new /obj/item/ammo_magazine/ironhammer/sl/cl38/rubber(src)
 		return
 
 /obj/structure/closet/secure_closet/detective/update_icon()

@@ -168,15 +168,15 @@
 
 /* Ironhammer stuff */
 
-/obj/item/ammo_casing/ironhammer/SMG_sinner/rubber
+/obj/item/ammo_casing/ironhammer/SMG_sol/rubber
 	desc = "A 9mm Ironhammer rubber bullet casing."
 	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/ironhammer/SMG_sinner/rubber
+	projectile_type = /obj/item/projectile/bullet/ironhammer/SMG_sol/rubber
 
-/obj/item/ammo_casing/ironhammer/SMG_sinner/brute
+/obj/item/ammo_casing/ironhammer/SMG_sol/brute
 	desc = "A 9mm Ironhammer bullet casing."
 	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/ironhammer/SMG_sinner/brute
+	projectile_type = /obj/item/projectile/bullet/ironhammer/SMG_sol/brute
 
 /obj/item/ammo_casing/ironhammer/cl38/rubber
 	desc = "A .38 Ironhammer rubber bullet casing."
