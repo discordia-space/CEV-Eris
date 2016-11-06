@@ -49,7 +49,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			sleep(signal.data["slow"]) // simulate the network lag if necessary
 
 		// TODO: CHECK THAT. >>> signal.data["level"] |= listening_levels
-		signal.data["level"] |= listening_levels
+		signal.data["level"] = listening_levels[1]
 
 	   /** #### - Normal Broadcast - #### **/
 
