@@ -96,6 +96,13 @@
 		playsound(src,'sound/effects/CREAK_Wood_Tree_Creak_10_Bright_Very_Subtle_mono.wav',100,1)
 		return
 
+/obj/structure/bed/chair/shuttle
+	name = "chair"
+	desc = "You sit in this. Either by will or force."
+	icon_state = "shuttle_chair"
+	color = null
+	base_icon = "shuttle_chair"
+
 // Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
 	desc = "It's a chair. It looks comfy."
