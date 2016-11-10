@@ -45,7 +45,7 @@ var/list/flooring_types
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL
 	build_type = /obj/item/stack/tile/grass
 
 /decl/flooring/asteroid
