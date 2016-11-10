@@ -53,6 +53,11 @@
 			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
+
+	if(!c_tag)
+		var/area/A = get_area(src)
+		c_tag = A.get_camera_tag(src)
+
 	..()
 
 /obj/machinery/camera/Destroy()
