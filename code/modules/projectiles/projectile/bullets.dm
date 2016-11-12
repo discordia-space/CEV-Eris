@@ -243,16 +243,19 @@
 
 /obj/item/projectile/bullet/ironhammer/SMG_sol/rubber
 	damage = 7
-	stun = 3
-	weaken = 3
+	agony = 20
+	embed = 0
+	sharp = 0
 
 /obj/item/projectile/bullet/ironhammer/SMG_sol/brute
 	damage = 20
+	sharp = 0
 
 /obj/item/projectile/bullet/ironhammer/cl38/rubber
 	damage = 10
-	stun = 3
-	weaken = 3
+	agony = 80
+	embed = 0
+	sharp = 0
 
 /obj/item/projectile/bullet/ironhammer/cl38/brute
 	damage = 40
