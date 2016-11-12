@@ -8,6 +8,10 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/a357
+	unload_sound 	= 'sound/weapons/guns/interact/rev_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/rev_cock.wav'
+	fire_sound = 'sound/weapons/guns/fire/revolver_fire.wav'
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()

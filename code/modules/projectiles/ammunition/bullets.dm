@@ -174,7 +174,7 @@
 	projectile_type = /obj/item/projectile/bullet/ironhammer/SMG_sol/rubber
 
 /obj/item/ammo_casing/ironhammer/SMG_sol/brute
-	desc = "A 9mm Ironhammer bullet casing."
+	desc = "A 9mm Ironhammer hollow pointbullet casing."
 	caliber = "9mm"
 	projectile_type = /obj/item/projectile/bullet/ironhammer/SMG_sol/brute
 
@@ -184,6 +184,6 @@
 	projectile_type = /obj/item/projectile/bullet/ironhammer/cl38/rubber
 
 /obj/item/ammo_casing/ironhammer/cl38/brute
-	desc = "A .38 Ironhammer rubber bullet casing."
+	desc = "A .38 Ironhammer hollow point bullet casing."
 	caliber = ".38"
 	projectile_type = /obj/item/projectile/bullet/ironhammer/cl38/brute
