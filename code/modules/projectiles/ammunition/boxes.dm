@@ -216,7 +216,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ironhammer/SMG_sol/brute
-	name = "magazine (9mm brute)"
+	name = "magazine (9mm hollow point)"
 	icon_state = "mg_ih_smg_9mm"
 	mag_type = MAGAZINE
 	ammo_mag = "ih_smg"
@@ -236,7 +236,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ironhammer/sl/cl38/brute
-	name = "speed loader (.38 brute)"
+	name = "speed loader (.38 hollow point)"
 	icon_state = "cl_ih_rv_38"
 	caliber = ".38"
 	ammo_type = /obj/item/ammo_casing/ironhammer/cl38/brute
@@ -256,7 +256,7 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/ironhammer/mg/cl38/brute
-	name = "magazine (.38 brute)"
+	name = "magazine (.38 hollow point)"
 	icon_state = "mg_ih_pst_38"
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl38"

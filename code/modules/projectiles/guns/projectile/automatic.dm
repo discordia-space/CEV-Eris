@@ -11,6 +11,10 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	multi_aim = 1
 	burst_delay = 2
+	fire_sound = 'sound/weapons/guns/fire/smg_fire.wav'
+	unload_sound = 'sound/weapons/guns/interact/smg_magout.wav'
+	reload_sound = 'sound/weapons/guns/interact/smg_magin.wav'
+	cocked_sound = 'sound/weapons/guns/interact/smg_cock.wav'
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
@@ -39,11 +43,13 @@
 	caliber = "10mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	slot_flags = SLOT_BELT|SLOT_BACK
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a10mm
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
+	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/sfrifle_cock.wav'
 
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
 	..()
@@ -65,6 +71,10 @@
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/c762
+	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.wav'
+	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.wav'
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
@@ -87,7 +97,6 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/c9mmr"
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/mc9mmt/rubber
 
@@ -109,12 +118,15 @@
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	ammo_type = "/obj/item/ammo_casing/a556"
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/guns/fire/batrifle_fire.wav'
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a556
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
+	unload_sound 	= 'sound/weapons/guns/interact/batrifle_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/batrifle_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.wav'
 
 	burst_delay = 4
 	firemodes = list(
@@ -178,9 +190,12 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 2)
 	slot_flags = SLOT_BACK
 	ammo_type = "/obj/item/ammo_casing/a762"
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a762
+	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.wav'
+	fire_sound = 'sound/weapons/guns/fire/lmg_fire.wav'
 
 	firemodes = list(
 		list(mode_name="short bursts",	burst=5, move_delay=6, burst_accuracy = list(0,-1,-1,-2,-2),          dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2)),
@@ -203,12 +218,14 @@
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
 	if(cover_open)
 		toggle_cover(user) //close the cover
+		playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.wav', 100, 1)
 	else
 		return ..() //once closed, behave like normal
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/attack_hand(mob/user as mob)
 	if(!cover_open && user.get_inactive_hand() == src)
 		toggle_cover(user) //open the cover
+		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.wav', 100, 1)
 	else
 		return ..() //once open, behave like normal
 
@@ -234,6 +251,7 @@
 	name = "FS SMG 9x19 \"Sol\""
 	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "SMG-IS"
+	item_state = "wt550"
 	w_class = 3
 	ammo_mag = "ih_smg"
 	load_method = MAGAZINE //yup. until someone sprites a magazine for it.

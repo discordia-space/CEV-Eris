@@ -1958,5 +1958,5 @@
 #include "interface\skin.dmf"
 #include "maps\eris\CEV_Eris-1.dmm"
 #include "maps\eris\CEV_Eris-2.dmm"
-#include "maps\eris\CEV_Eris-3dmm.dmm"
+#include "maps\eris\CEV_Eris-3.dmm"
 // END_INCLUDE

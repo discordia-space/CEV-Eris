@@ -16,6 +16,12 @@
 	var/load_method = SINGLE_CASING|SPEEDLOADER //1 = Single shells, 2 = box or quick loader, 3 = magazine
 	var/obj/item/ammo_casing/chambered = null
 
+	//gunporn stuff
+	var/unload_sound 	= 'sound/weapons/guns/interact/pistol_magout.wav'
+	var/reload_sound 	= 'sound/weapons/guns/interact/pistol_magin.wav'
+	var/cocked_sound 	= 'sound/weapons/guns/interact/pistol_cock.wav'
+	var/bulletinsert_sound 	= 'sound/weapons/guns/interact/bullet_insert.wav'
+
 	//For SINGLE_CASING or SPEEDLOADER guns
 	var/max_shells = 0			//the number of casings that will fit inside
 	var/ammo_type = null		//the type of ammo that the gun comes preloaded with
@@ -40,6 +46,12 @@
 	if(ispath(magazine_type) && (load_method & MAGAZINE))
 		ammo_magazine = new magazine_type(src)
 	update_icon()
+
+/obj/item/weapon/gun/projectile/proc/cock_gun(mob/user)
+	set waitfor = 0
+	if(cocked_sound)
+		sleep(3)
+		if(user && loc) playsound(src.loc, cocked_sound, 75, 1)
 
 /obj/item/weapon/gun/projectile/consume_next_projectile()
 	//get the next casing
@@ -82,6 +94,7 @@
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.
 			chambered.loc = get_turf(src)
+			playsound(src.loc, casing_sound, 50, 1)
 		if(CYCLE_CASINGS) //cycle the casing back to the end.
 			if(ammo_magazine)
 				ammo_magazine.stored_ammo += chambered
@@ -112,7 +125,8 @@
 				AM.loc = src
 				ammo_magazine = AM
 				user.visible_message("[user] inserts [AM] into [src].", "<span class='notice'>You insert [AM] into [src].</span>")
-				playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
+				cock_gun(user)
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
 					user << "<span class='warning'>[src] is full!</span>"
@@ -128,7 +142,8 @@
 						count++
 				if(count)
 					user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into [src].</span>")
-					playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
+					cock_gun(user)
 		AM.update_icon()
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
@@ -142,7 +157,7 @@
 		C.loc = src
 		loaded.Insert(1, C) //add to the head of the list
 		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 
 	update_icon()
 
@@ -151,7 +166,7 @@
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 		user.visible_message("[user] removes [ammo_magazine] from [src].", "<span class='notice'>You remove [ammo_magazine] from [src].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		if(unload_sound) playsound(src.loc, unload_sound, 75, 1)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 	else if(loaded.len)
@@ -166,11 +181,13 @@
 				loaded.Cut()
 			if(count)
 				user.visible_message("[user] unloads [src].", "<span class='notice'>You unload [count] round\s from [src].</span>")
+				if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 		else if(load_method & SINGLE_CASING)
 			var/obj/item/ammo_casing/C = loaded[loaded.len]
 			loaded.len--
 			user.put_in_hands(C)
 			user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 	else
 		user << "<span class='warning'>[src] is empty.</span>"
 	update_icon()
