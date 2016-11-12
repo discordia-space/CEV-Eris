@@ -46,6 +46,10 @@ var/list/swing_hit_sound = list('sound/weapons/genhit1.ogg', 'sound/weapons/genh
 var/list/hiss_sound = list('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
 var/list/page_sound = list('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 var/list/keyboard_sound = list ('sound/effects/keyboard/keyboard1.ogg','sound/effects/keyboard/keyboard2.ogg', 'sound/effects/keyboard/keyboard3.ogg', 'sound/effects/keyboard/keyboard4.ogg')
+var/list/miss_sound = list ('sound/weapons/guns/misc/miss.wav','sound/weapons/guns/misc/miss2.wav','sound/weapons/guns/misc/miss3.wav','sound/weapons/guns/misc/miss4.wav')
+var/list/ric_sound = list ('sound/weapons/guns/misc/ric1.wav','sound/weapons/guns/misc/ric2.wav','sound/weapons/guns/misc/ric3.wav','sound/weapons/guns/misc/ric4.wav','sound/weapons/guns/misc/ric5.wav')
+var/list/casing_sound = list ('sound/weapons/guns/misc/casingfall1.wav','sound/weapons/guns/misc/casingfall2.wav','sound/weapons/guns/misc/casingfall3.wav')
+var/list/bullet_hit_object_sound = list('sound/weapons/guns/misc/bullethit.wav')
 //var/list/gun_sound = list('sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg','sound/weapons/Gunshot4.ogg')
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global)
@@ -177,5 +181,9 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("hiss") soundin = pick(hiss_sound)
 			if ("pageturn") soundin = pick(page_sound)
 			if ("keyboard") soundin = pick(keyboard_sound)
+			if ("miss_sound") soundin = pick(miss_sound)
+			if ("ric_sound") soundin = pick(ric_sound)
+			if ("casing_sound") soundin = pick(casing_sound)
+			if ("hitobject") soundin = pick(bullet_hit_object_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin

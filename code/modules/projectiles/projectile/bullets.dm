@@ -7,6 +7,7 @@
 	check_armour = "bullet"
 	embed = 1
 	sharp = 1
+	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
 
 	muzzle_type = /obj/effect/projectile/bullet/muzzle

@@ -153,6 +153,7 @@
 
 		if (prob(miss_chance))
 			visible_message("\blue \The [O] misses [src] narrowly!")
+			playsound(src, "miss_sound", 50, 1, -6)
 			return
 
 		src.visible_message("\red [src] has been hit by [O].")
