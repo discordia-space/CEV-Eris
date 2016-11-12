@@ -38,6 +38,7 @@
 	icon = 'icons/turf/flooring/un.dmi'
 	icon_state = "un"
 	initial_flooring = /decl/flooring/un
+	level = 1
 	//style = "underplating"
 
 /turf/simulated/floor/plating/under/update_icon(var/update_neighbors)
