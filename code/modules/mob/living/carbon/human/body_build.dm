@@ -15,6 +15,7 @@
 	var/belt_icon		= 'icons/mob/belt.dmi'
 	var/s_store_icon	= 'icons/mob/belt_mirror.dmi'
 	var/backpack_icon	= 'icons/mob/back.dmi'
+	var/underwear_icon	= 'icons/mob/underwear.dmi'
 
 /datum/body_build/female
 	gender 			= FEMALE
@@ -36,6 +37,7 @@
 	belt_icon		= 'icons/mob/belt_slim.dmi'
 	s_store_icon	= 'icons/mob/belt_mirror_slim.dmi'
 	backpack_icon	= 'icons/mob/back_slim.dmi'
+	underwear_icon	= 'icons/mob/underwear_slim.dmi'
 
 /datum/body_build/slim/female
 	gender 			= FEMALE
@@ -57,6 +59,7 @@
 	belt_icon		= 'icons/mob/belt_fat.dmi'
 	s_store_icon	= 'icons/mob/belt_mirror_fat.dmi'
 	backpack_icon	= 'icons/mob/back_fat.dmi'
+	underwear_icon	= 'icons/mob/underwear_fat.dmi'
 
 /datum/body_build/fat/female
 	gender 			= FEMALE
