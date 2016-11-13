@@ -473,11 +473,11 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "NORTHEAST"
-		command = "Move Upwards"
+		command = "Move-Upwards"
 		is-disabled = false
 	elem 
 		name = "SOUTHEAST"
-		command = "Move Downwards"
+		command = "Move-Downwards"
 		is-disabled = false
 	elem 
 		name = "SOUTHWEST"
