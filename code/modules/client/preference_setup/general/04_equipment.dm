@@ -38,10 +38,12 @@
 	. = list()
 	. += "<b>Equipment:</b><br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
-		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
+		var/item_name = (UWC.name in pref.all_underwear) ? pref.all_underwear[UWC.name] : "None"
 		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a><br>"
 
 	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
+
+	return jointext(., "")
 
 /datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_backpack"])
