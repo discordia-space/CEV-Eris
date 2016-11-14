@@ -316,7 +316,9 @@ var/global/list/damage_icon_parts = list()
 	if(species.appearance_flags & HAS_UNDERWEAR)
 		for(var/category in all_underwear)
 			var/datum/category_item/underwear/UW = all_underwear[category]
-			UW.apply_to_icon(stand_icon) // TODO:«¿œ»À»“‹: ¿Õ¿À»« ∆»–¿
+			if(!UW.icon_state)
+				return
+			stand_icon.Blend(new /icon(body_build.underwear_icon, UW.icon_state), ICON_OVERLAY)
 
 	if(update_icons)
 		update_icons()
@@ -441,7 +443,7 @@ var/global/list/damage_icon_parts = list()
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
-/mob/living/carbon/human/proc/find_inv_position(var/slot_id) //Find HUD position on screen TO:DO ÏÓ„Û ÎË ˇ ÛÔÓÒÚËÚ¸???? species_hud?
+/mob/living/carbon/human/proc/find_inv_position(var/slot_id) //Find HUD position on screen TO:DO √¨√Æ√£√≥ √´√® √ø √≥√Ø√∞√Æ√±√≤√®√≤√º???? species_hud?
 	for(var/obj/screen/inventory/HUDinv in HUDinventory)
 		if (HUDinv.slot_id == slot_id)
 			//world << "[slot_id] [HUDinv.screen_loc]"
