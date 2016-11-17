@@ -175,6 +175,7 @@
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
+	gloves = /obj/item/clothing/gloves/black
 	belt = /obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sol
 
 	put_in_backpack = list(\
