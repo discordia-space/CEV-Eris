@@ -19,7 +19,7 @@
 		var/item_name = UWI ? UWI.name : "None"
 		dat += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'>[item_name]</a> <a href='?src=\ref[src];remove_underwear=[UWC.name]'>(Remove)</a><br>"
 
-	H << browse(dat, "window=wardrobe;size=400x200")
+	H << browse(jointext(dat, ""), "window=wardrobe;size=400x200")
 
 /obj/structure/undies_wardrobe/proc/human_who_can_use_underwear(var/mob/living/carbon/human/H)
 	if(!istype(H) || !H.species || !(H.species.appearance_flags & HAS_UNDERWEAR))
