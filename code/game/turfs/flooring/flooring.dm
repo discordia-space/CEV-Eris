@@ -45,7 +45,7 @@ var/list/flooring_types
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL
 	build_type = /obj/item/stack/tile/grass
 
 /decl/flooring/asteroid
@@ -54,6 +54,13 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	build_type = null
+
+/decl/flooring/un
+	name = "underplating"
+	icon = 'icons/turf/flooring/un.dmi'
+	icon_base = "un"
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	build_type = null
 
 /decl/flooring/hull

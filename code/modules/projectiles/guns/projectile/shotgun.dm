@@ -13,6 +13,8 @@
 	load_method = SINGLE_CASING
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	handle_casings = HOLD_CASINGS
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.wav'
+	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.wav'
 	var/recentpump = 0 // to prevent spammage
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
@@ -65,6 +67,8 @@
 	caliber = "shotgun"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.wav'
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.wav'
 
 	burst_delay = 0
 	firemodes = list(
@@ -122,7 +126,7 @@
 	name = "NTM SG \"Regulator 3000\""
 	desc = "A true classic."
 	icon_state = "PeaceWalker"
-	item_state = "dshotgun"
+	item_state = "cshotgun"
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = HOLD_CASINGS
 	max_shells = 6
@@ -135,6 +139,8 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	burst_delay = null
 	fire_delay = null
+	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.wav'
+	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.wav'
 	move_delay = null
 	firemodes = list(
 		list(mode_name="fire one barrel at a time", burst=1),

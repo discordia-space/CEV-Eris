@@ -8,6 +8,10 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	ammo_type = /obj/item/ammo_casing/a357
+	unload_sound 	= 'sound/weapons/guns/interact/rev_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/rev_cock.wav'
+	fire_sound = 'sound/weapons/guns/fire/revolver_fire.wav'
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
@@ -99,9 +103,9 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/projectile/revolver/ironhammer/envoy
-	name = "FS REV .38 \"Envoy\""
-	desc = "FS REV .38 \"Envoy\" is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .38 ammo."
+/obj/item/weapon/gun/projectile/revolver/ironhammer/consul
+	name = "FS REV .38 \"Consul\""
+	desc = "FS REV .38 \"Consul\" is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .38 ammo."
 	icon_state = "inspector"
 	item_state = "revolver"
 	caliber = ".38"
@@ -109,13 +113,13 @@
 	handle_casings = CYCLE_CASINGS
 	max_shells = 6
 
-/obj/item/weapon/gun/projectile/revolver/ironhammer/envoy/proc/update_charge()
+/obj/item/weapon/gun/projectile/revolver/ironhammer/consul/proc/update_charge()
 	if(loaded.len==0)
 		overlays += "inspector_off"
 	else
 		overlays += "inspector_on"
 
 
-/obj/item/weapon/gun/projectile/revolver/ironhammer/envoy/update_icon()
+/obj/item/weapon/gun/projectile/revolver/ironhammer/consul/update_icon()
 	overlays.Cut()
 	update_charge()

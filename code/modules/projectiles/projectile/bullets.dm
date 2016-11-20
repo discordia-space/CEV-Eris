@@ -7,6 +7,7 @@
 	check_armour = "bullet"
 	embed = 1
 	sharp = 1
+	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
 
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
@@ -240,18 +241,21 @@
 
 /* Ironhammer stuff */
 
-/obj/item/projectile/bullet/ironhammer/SMG_sinner/rubber
+/obj/item/projectile/bullet/ironhammer/SMG_sol/rubber
 	damage = 7
-	stun = 3
-	weaken = 3
+	agony = 20
+	embed = 0
+	sharp = 0
 
-/obj/item/projectile/bullet/ironhammer/SMG_sinner/brute
+/obj/item/projectile/bullet/ironhammer/SMG_sol/brute
 	damage = 20
+	sharp = 0
 
 /obj/item/projectile/bullet/ironhammer/cl38/rubber
 	damage = 10
-	stun = 3
-	weaken = 3
+	agony = 80
+	embed = 0
+	sharp = 0
 
 /obj/item/projectile/bullet/ironhammer/cl38/brute
 	damage = 40

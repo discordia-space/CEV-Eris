@@ -296,7 +296,8 @@ datum/preferences
 				if(underwear_category)
 					var/underwear_item_name = all_underwear[underwear_category_name]
 					var/datum/category_item/underwear/underwear_item = underwear_category.items_by_name[underwear_item_name]
-					underwear_item.apply_to_icon(preview_icon)
+					if(underwear_item.icon_state)
+						preview_icon.Blend(icon(body.underwear_icon, underwear_item.icon_state), ICON_OVERLAY)
 				else
 					all_underwear -= underwear_category_name
 

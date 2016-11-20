@@ -5,7 +5,7 @@
 	icon_state = "colt"
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/colt/detective
@@ -36,7 +36,7 @@
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/sec/flash
@@ -68,6 +68,10 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a50
 	auto_eject = 1
+	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.wav'
+	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.wav'
 
 /obj/item/weapon/gun/projectile/deagle/gold
 	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."
@@ -88,13 +92,16 @@
 	icon_state = "gyropistol"
 	max_shells = 8
 	caliber = "75"
-	fire_sound = 'sound/effects/Explosion1.ogg'
+	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.wav'
 	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a75
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
+	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.wav'
 
 /obj/item/weapon/gun/projectile/gyropistol/update_icon()
 	..()
@@ -112,7 +119,7 @@
 	caliber = "9mm"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
-	fire_sound = 'sound/weapons/Gunshot_light.ogg'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/mc9mm
 
@@ -169,6 +176,7 @@
 	item_state = "sawnshotgun"
 	handle_casings = CYCLE_CASINGS //player has to take the old casing out manually before reloading
 	load_method = SINGLE_CASING
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
 	max_shells = 1 //literally just a barrel
 
 	var/global/list/ammo_types = list(
@@ -198,16 +206,21 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/projectile/ironhammer/judge
-	name = "FS HG .38 \"Judge\""
-	desc = "FS HG .38 \"Judge\". Uses .38 rounds."
+/obj/item/weapon/gun/projectile/ironhammer/lamia
+	name = "FS HG .38 \"Lamia\""
+	desc = "FS HG .38 \"Lamia\". Uses .38 rounds."
 	icon_state = "Headdeagle"
+	item_state = "revolver"
+	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.wav'
 	caliber = ".38"
 	ammo_mag = "mag_cl38"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	load_method = MAGAZINE
+	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.wav'
+	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.wav'
+	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.wav'
 
-/obj/item/weapon/gun/projectile/ironhammer/judge/update_icon()
+/obj/item/weapon/gun/projectile/ironhammer/lamia/update_icon()
 	overlays.Cut()
 	if(!ammo_magazine)
 		return

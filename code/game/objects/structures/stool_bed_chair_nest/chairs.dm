@@ -65,12 +65,15 @@
 			stool_cache[cache_key] = I
 		overlays |= stool_cache[cache_key]
 
+/obj/structure/bed/chair/proc/update_layer()
+	if(src.dir == NORTH)
+		src.layer = FLY_LAYER
+	else
+		src.layer = OBJ_LAYER
+
 /obj/structure/bed/chair/set_dir()
 	..()
-	if(dir == NORTH)
-		layer = MOB_LAYER + 0.1
-	else
-		layer = initial(layer)
+	update_layer()
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
 
@@ -95,6 +98,13 @@
 		src.set_dir(turn(src.dir, 90))
 		playsound(src,'sound/effects/CREAK_Wood_Tree_Creak_10_Bright_Very_Subtle_mono.wav',100,1)
 		return
+
+/obj/structure/bed/chair/shuttle
+	name = "chair"
+	desc = "You sit in this. Either by will or force."
+	icon_state = "shuttle_chair"
+	color = null
+	base_icon = "shuttle_chair"
 
 // Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
