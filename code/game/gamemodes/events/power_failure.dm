@@ -1,7 +1,7 @@
 
 /proc/power_failure(var/announce = 1, var/severity = 2, var/list/affected_z_levels)
 	if(announce)
-		command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
+		command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
 
 	for(var/obj/machinery/power/smes/buildable/S in machines)
 		S.energy_fail(rand(15 * severity,30 * severity))
