@@ -67,7 +67,9 @@
 		if(2)
 			src.take_organ_damage(0,10,emp=1)
 			confused = (min(confused + 2, 30))
-	flick("noise", src.flash)
+//	flick("noise", src.flash)
+	if (HUDtech.Find("flash"))
+		flick("noise", HUDtech["flash"])
 	src << "<span class='danger'><B>*BZZZT*</B></span>"
 	src << "<span class='danger'>Warning: Electromagnetic pulse detected.</span>"
 	..()

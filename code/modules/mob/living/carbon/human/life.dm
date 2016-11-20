@@ -334,8 +334,11 @@
 
 		if(internal)
 			return internal.remove_air_volume(volume_needed)
-		else if(internals)
-			internals.icon_state = "internal0"
+		else if(HUDneed.Find("internal"))
+			var/obj/screen/HUDelm = HUDneed["internal"]
+			HUDelm.icon_state = "internal0"
+/*		else if(internals)
+			internals.icon_state = "internal0"*/
 	return null
 
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)

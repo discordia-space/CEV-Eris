@@ -210,7 +210,7 @@
 	if (client)
 		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
-	if (stat != 2)
+/*	if (stat != 2)
 		if (blind)
 			if ((blinded))
 				blind.alpha = 255
@@ -224,7 +224,7 @@
 					client.screen += global_hud.blurry
 
 				if (druggy)
-					client.screen += global_hud.druggy
+					client.screen += global_hud.druggy*/
 
 		if (machine)
 			if (!( machine.check_eye(src) ))

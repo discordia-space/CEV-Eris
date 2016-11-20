@@ -65,12 +65,15 @@
 			stool_cache[cache_key] = I
 		overlays |= stool_cache[cache_key]
 
+/obj/structure/bed/chair/proc/update_layer()
+	if(src.dir == NORTH)
+		src.layer = FLY_LAYER
+	else
+		src.layer = OBJ_LAYER
+
 /obj/structure/bed/chair/set_dir()
 	..()
-	if(dir == NORTH)
-		layer = MOB_LAYER + 0.1
-	else
-		layer = initial(layer)
+	update_layer()
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
 

@@ -125,7 +125,10 @@ var/datum/antagonist/ninja/ninjas
 
 	spawn(10)
 		if(player.internal)
-			player.internals.icon_state = "internal1"
+			//player.internals.icon_state = "internal1"
+			if(player.HUDneed.Find("internal"))
+				var/obj/screen/HUDelm = player.HUDneed["internal"]
+				HUDelm.icon_state = "internal1"
 		else
 			player << "<span class='danger'>You forgot to turn on your internals! Quickly, toggle the valve!</span>"
 

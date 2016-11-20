@@ -10,13 +10,14 @@
 /datum/hud/human
 	name = "ErisStyle"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-
+//to:do переместить все существующие оверлеи сюда, если возможно.
 	HUDoverlays = list(
 		"damageoverlay" = list("type" = /obj/screen/damageoverlay, "loc" = "1,1", "icon" =  'icons/mob/screen1_full.dmi'),
 		"flash" =  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-		"pain" = list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank")
+		"pain" = list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"drugeffect" = list("type" = /obj/screen/drugoverlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank")
 	)
-
+//"vision" = list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank")
 	HUDneed = list(
 		"health"      = list("type" = /obj/screen/health,     "loc" = "16,6"),
 		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "16,5"),

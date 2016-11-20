@@ -122,7 +122,7 @@
 /obj/machinery/computer/Topic(href, href_list)
 	if(..())
 		return 1
-	if (!CheckFaceFlag || CheckFace(src,usr))
+	if (issilicon(usr) || !CheckFaceFlag || CheckFace(src,usr))
 		keyboardsound(usr)
 		return 0
 	else
@@ -138,7 +138,7 @@
 		return 1
 	if(!issilicon(user))
 		return 0
-	if (!CheckFaceFlag || CheckFace(src,user))
+	if (issilicon(usr) || !CheckFaceFlag || CheckFace(src,user))
 		keyboardsound(user)
 		return 0
 	else

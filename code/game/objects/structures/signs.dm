@@ -264,6 +264,26 @@
 	name = "DECK IV"
 	icon_state = "deck4"
 
+/obj/structure/sign/sec1
+	desc = "A silver sign which reads 'SECTION I'."
+	name = "SECTION I"
+	icon_state = "sec1"
+
+/obj/structure/sign/sec2
+	desc = "A silver sign which reads 'SECTION II'."
+	name = "SECTION II"
+	icon_state = "sec2"
+
+/obj/structure/sign/sec3
+	desc = "A silver sign which reads 'SECTION III'."
+	name = "SECTION III"
+	icon_state = "sec3"
+
+/obj/structure/sign/sec4
+	desc = "A silver sign which reads 'SECTION IV'."
+	name = "SECTION IV"
+	icon_state = "sec4"
+
 /obj/structure/sign/nanotrasen
 	name = "\improper NanoTrasen"
 	desc = "An old metal sign which reads 'NanoTrasen'."
