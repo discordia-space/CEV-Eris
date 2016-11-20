@@ -299,7 +299,7 @@
 					Combined, an example is: <i>E-E4/4,/2,G#/8,B/8,E3-E4/4</i>
 					<br>
 					Lines may be up to 50 characters.<br>
-					A song may only contain up to 50 lines.<br>
+					A song may only contain up to 200 lines.<br>
 					"}
 		else
 			dat += "<A href='?src=\ref[src];help=2'>Show Help</A><BR>"
@@ -340,7 +340,7 @@
 			var/newline = rhtml_encode(input("Enter your line: ", "Piano") as text|null)
 			if(!newline)
 				return
-			if(song.lines.len > 50)
+			if(song.lines.len > 200)
 				return
 			if(lentext(newline) > 50)
 				newline = copytext(newline, 1, 50)
