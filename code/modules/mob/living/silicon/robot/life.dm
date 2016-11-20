@@ -286,7 +286,7 @@
 
 	client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
-	if ((src.blind && src.stat != 2))
+/*	if ((src.blind && src.stat != 2))
 		if(src.blinded)
 			src.blind.alpha = 255
 		else
@@ -298,7 +298,7 @@
 				src.client.screen += global_hud.blurry
 
 			if (src.druggy)
-				src.client.screen += global_hud.druggy
+				src.client.screen += global_hud.druggy*/
 
 	if (src.stat != 2)
 		if (src.machine)

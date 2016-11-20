@@ -123,7 +123,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			continue
 		if(M.current.stat!=2)
 			M.current.Weaken(10)
-			flick("e_flash", M.current.flash)
+//			flick("e_flash", M.current.flash)
 			if (M.current.HUDtech.Find("flash"))
 				flick("e_flash", M.current.HUDtech["flash"])
 

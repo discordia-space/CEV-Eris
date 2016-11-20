@@ -12,12 +12,12 @@ var/list/global_huds = list(
 		global_hud.thermal,
 		global_hud.meson,
 		global_hud.science)
-
+/*
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
 /datum/hud/var/obj/screen/disarm_intent
 /datum/hud/var/obj/screen/help_intent
-
+*/
 /datum/global_hud
 	var/obj/screen/druggy
 	var/obj/screen/blurry
