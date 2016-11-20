@@ -56,12 +56,6 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
 
-/decl/flooring/un
-	name = "underplating"
-	icon = 'icons/turf/flooring/un.dmi'
-	icon_base = "un"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
-	build_type = null
 
 /decl/flooring/hull
 	name = "hull"
