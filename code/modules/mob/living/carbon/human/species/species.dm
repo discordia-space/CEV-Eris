@@ -358,8 +358,8 @@
 	if(H.equipment_tint_total >= TINT_BLIND)
 		H.eye_blind = max(H.eye_blind, 1)
 
-	if(H.blind)
-		H.blind.alpha = (H.eye_blind ? 255 : 0)
+/*	if(H.blind)
+		H.blind.alpha = (H.eye_blind ? 255 : 0)*/
 
 	if(!H.client)//no client, no screen to update
 		return 1
@@ -367,8 +367,8 @@
 	if(config.welder_vision)
 		if((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
 			H.client.screen += global_hud.vimpaired
-	if(H.eye_blurry)	H.client.screen += global_hud.blurry
-	if(H.druggy)		H.client.screen += global_hud.druggy
+//	if(H.eye_blurry)	H.client.screen += global_hud.blurry
+//	if(H.druggy)		H.client.screen += global_hud.druggy
 
 	for(var/overlay in H.equipment_overlays)
 		H.client.screen |= overlay

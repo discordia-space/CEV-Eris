@@ -631,7 +631,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/card/emag(src)
 	var/jetpack = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack
-	R.internals = jetpack
+//	R.internals = jetpack
 
 	id = R.idcard
 	src.modules += id
@@ -678,8 +678,10 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
 
-	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
-	src.modules += robot.internals
+//	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
+//	src.modules += robot.internals
+
+	src.modules = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 
 	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.emag.name = "Plasma Cutter"

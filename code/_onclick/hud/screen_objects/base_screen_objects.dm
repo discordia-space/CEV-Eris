@@ -871,8 +871,27 @@
 	parentmob.a_intent_change(I_DISARM)
 	..()
 
+/obj/screen/drugoverlay
+	icon = 'icons/mob/screen1_full.dmi'
+	icon_state = "blank"
+	name = "drugs"
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	mouse_opacity = 0
+	process_flag = 1
+	layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+//	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
+/obj/screen/drugoverlay/process()
+	update_icon()
 
+/obj/screen/drugoverlay/update_icon()
+	underlays.Cut()
+	if (parentmob.disabilities & NEARSIGHTED)
+		underlays += global_hud.vimpaired
+	if (parentmob.eye_blurry)
+		underlays += global_hud.blurry
+	if (parentmob.druggy)
+		underlays += global_hud.druggy
 
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
@@ -882,11 +901,23 @@
 	mouse_opacity = 0
 	process_flag = 1
 	layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 /obj/screen/damageoverlay/process()
+	update_icon()
+	return
+
+/obj/screen/damageoverlay/update_icon()
+	overlays.Cut()
+	UpdateHealthState()
+
+	underlays.Cut()
+	UpdateVisionState()
+	return
+
+/obj/screen/damageoverlay/proc/UpdateHealthState()
 	var/mob/living/carbon/human/H = parentmob
-	if(overlays.len)
-		overlays.Cut()
+
 	if(H.stat == UNCONSCIOUS)
 		//Critical damage passage overlay
 		if(H.health <= 0)
@@ -954,7 +985,12 @@
 					I = H.overlays_cache[23]
 			overlays += I
 
-
+/obj/screen/damageoverlay/proc/UpdateVisionState()
+	if(parentmob.eye_blind)
+		underlays |= list(blind_icon)
+//	else
+//		underlays.Remove(list(blind_icon))
+//	world << underlays.len
 
 /obj/screen/frippery
 	name = ""
@@ -1097,6 +1133,7 @@
 //			owner.radio_use_icon.name = "Disallow Radio Use"
 //-----------------------Gun Mod End------------------------------
 
+//-----------------------toggle_invetory------------------------------
 /obj/screen/toggle_invetory
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "b-open"
@@ -1242,3 +1279,4 @@
 	update_fire(0)
 	update_surgery(0)
 */
+//-----------------------toggle_invetory End------------------------------

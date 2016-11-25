@@ -17,17 +17,17 @@
 	..()
 
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT
-	flash = null
-	blind = null
+//	flash = null
+//	blind = null
 	hands = null
 	pullin = null
 	purged = null
-	internals = null
-	oxygen = null
+//	internals = null
+//	oxygen = null
 	i_select = null
 	m_select = null
-	toxin = null
-	fire = null
+//	toxin = null
+//	fire = null
 //	bodytemp = null
 //	healths = null
 //	throw_icon = null
@@ -896,7 +896,10 @@
 /mob/proc/flash_weak_pain()
 	if(istype(src,/mob/living))
 		var/mob/living/L = src
-		flick("weak_pain",L.flash["pain"])
+//		flick("weak_pain",L.flash["pain"])
+		if (L.HUDtech.Find("pain"))
+			flick("weak_pain",L.HUDtech["pain"])
+
 
 /mob/proc/get_visible_implants(var/class = 0)
 	var/list/visible_implants = list()

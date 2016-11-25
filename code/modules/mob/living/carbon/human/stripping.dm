@@ -138,8 +138,9 @@
 	if(internal)
 		internal.add_fingerprint(user)
 		internal = null
-		if(internals)
-			internals.icon_state = "internal0"
+		if(HUDneed.Find("internal"))
+			var/obj/screen/HUDelm = HUDneed["internal"]
+			HUDelm.icon_state = "internal0"
 	else
 		// Check for airtight mask/helmet.
 		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
@@ -155,7 +156,10 @@
 	if(internal)
 		visible_message("<span class='warning'>\The [src] is now running on internals!</span>")
 		internal.add_fingerprint(user)
-		if (internals)
-			internals.icon_state = "internal1"
+/*		if (internals)
+			internals.icon_state = "internal1"*/
+		if(HUDneed.Find("internal"))
+			var/obj/screen/HUDelm = HUDneed["internal"]
+			HUDelm.icon_state = "internal1"
 	else
 		visible_message("<span class='danger'>\The [user] disables \the [src]'s internals!</span>")

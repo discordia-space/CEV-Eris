@@ -56,12 +56,6 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
 
-/decl/flooring/un
-	name = "underplating"
-	icon = 'icons/turf/flooring/un.dmi'
-	icon_base = "un"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
-	build_type = null
 
 /decl/flooring/hull
 	name = "hull"
@@ -79,7 +73,7 @@ var/list/flooring_types
 	icon_base = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | SMOOTH_ONLY_WITH_ITSELF
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
