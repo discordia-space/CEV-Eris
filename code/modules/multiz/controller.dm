@@ -1,0 +1,186 @@
+#define LIST_FAST 1
+#define LIST_NORM 2
+#define LIST_SLOW 3
+
+var/datum/controller/process/open_space/OS_controller = null
+
+/datum/controller/process/open_space
+	var/slow_time
+	var/normal_time
+	var/fast_time
+
+	var/levels
+
+/datum/controller/process/open_space/setup()
+	name = "openspace"
+	schedule_interval = 5 // every 1 seconds
+	start_delay = 12
+
+	OS_controller = src
+	levels = list()
+
+	slow_time   = world.time + 3000
+	normal_time = world.time + 600
+	fast_time   = world.time + 10
+
+
+
+/datum/controller/process/open_space/proc/add_z_level(var/z)
+	levels["[z]"] = new /datum/ospace_data(z)
+
+/datum/controller/process/open_space/doWork()
+	if (world.time > fast_time)
+		fast_time = world.time + 5
+		var/datum/ospace_data/current = null
+		for(var/i in levels)
+			current = levels[i]
+			current.calc(current.fast)
+
+	if (world.time > normal_time)
+		normal_time = world.time + 600
+		var/datum/ospace_data/current = null
+		for(var/i in levels)
+			current = levels[i]
+			current.calc(current.normal)
+
+/datum/controller/process/open_space/proc/add_turf(var/turf/T)
+	var/datum/ospace_data/OD = levels["[T.z]"]
+	OD.add(list(T), LIST_FAST, 1)
+
+/turf
+	var/list/z_overlays = list()
+
+/turf/New()
+	..()
+	OS_controller.add_turf(src)
+
+atom/movable/Move() //Hackish
+	. = ..()
+	OS_controller.add_turf(get_turf(src))
+
+
+
+/datum/ospace_data
+	var/z = 0
+	var/datum/ospace_data/up = null
+	var/datum/ospace_data/down = null
+	var/list/slow   = list()
+	var/list/normal = list()
+	var/list/fast   = list()
+
+/datum/ospace_data/New(var/new_level)
+	z = new_level
+	for (var/turf/T in world)
+		if (T.z == z)
+			fast += T
+	spawn(5)
+		up   = OS_controller.levels["[z+1]"]
+		down = OS_controller.levels["[z-1]"]
+
+/datum/ospace_data/proc/add(var/list/L, var/I, var/transfer)
+
+	for(var/turf/T in L)
+		slow   -= T
+		normal -= T
+		fast   -= T
+
+		switch (I)
+			if(LIST_SLOW) slow   += T
+			if(LIST_NORM) normal += T
+			if(LIST_FAST) fast   += T
+
+		if(transfer > 0)
+			if(up)
+				up.add(list(GetAbove(T)), I, transfer-1)
+			if(down)
+				down.add(list(GetBelow(T)), I, transfer-1)
+	return
+
+/datum/ospace_data/proc/calc(var/list/L)
+	var/list/slowholder = list()
+	var/list/normalholder = list()
+	var/list/fastholder = list()
+	var/new_list
+	var/down = HasBelow(z)
+
+	for(var/turf/T in L)
+		new_list = 0
+
+		T.overlays -= T.z_overlays
+		T.z_overlays.Cut()
+
+		if(down && (istype(T, /turf/space) || istype(T, /turf/simulated/open)))
+			var/turf/below = GetBelow(T)
+			if(below)
+				if(!(istype(below, /turf/space) || istype(below, /turf/simulated/open)))
+					var/image/t_img = list()
+					new_list = 1
+
+					var/image/temp = image(below, dir=below.dir, layer = TURF_LAYER + 0.04)
+
+					temp.color = below.color//rgb(127,127,127)
+					temp.overlays += below.overlays
+					t_img += temp
+					T.overlays   += t_img
+					T.z_overlays += t_img
+
+				// get objects
+				var/image/o_img = list()
+				for(var/obj/o in below)
+					// ingore objects that have any form of invisibility
+					if(o.invisibility || o.pixel_x || o.pixel_y) continue
+					new_list = 2
+					var/image/temp2 = image(o, dir=o.dir, layer = TURF_LAYER+0.05*o.layer)
+					temp2.color = o.color//rgb(127,127,127)
+					temp2.overlays += o.overlays
+					o_img += temp2
+					// you need to add a list to .overlays or it will not display any because space
+				T.overlays   += o_img
+				T.z_overlays += o_img
+
+				// get mobs
+				var/image/m_img = list()
+				for(var/mob/m in below)
+					// ingore mobs that have any form of invisibility
+					if(m.invisibility) continue
+					// only add this tile to fastprocessing if there is a living mob, not a dead one
+					if(istype(m, /mob/living)) new_list = 3
+					var/image/temp2 = image(m, dir=m.dir, layer = TURF_LAYER+0.05*m.layer)
+					temp2.color = m.color//rgb(127,127,127)
+					temp2.overlays += m.overlays
+					m_img += temp2
+					// you need to add a list to .overlays or it will not display any because space
+
+				T.overlays   += m_img
+				T.z_overlays += m_img
+
+				T.overlays   -= below.z_overlays
+				T.z_overlays -= below.z_overlays
+/*
+				T.overlays   += image('floors.dmi', "black_open", TURF_LAYER+0.3)
+				T.z_overlays += image('floors.dmi', "black_open", TURF_LAYER+0.3)
+*/
+		switch(new_list)
+			if(LIST_SLOW)
+				slowholder += T
+			if(LIST_NORM)
+				normalholder += T
+			if(LIST_FAST)
+				fastholder += T
+				for(var/d in cardinal)
+					var/turf/mT = get_step(T,d)
+					if(!(mT in fastholder))
+						fastholder += mT
+					for(var/f in cardinal)
+						var/turf/nT = get_step(mT,f)
+						if(!(nT in fastholder))
+							fastholder += nT
+
+	add(slowholder,   LIST_SLOW, 0)
+	add(normalholder, LIST_NORM, 0)
+	add(fastholder,   LIST_FAST, 0)
+	return
+
+#undef LIST_FAST
+#undef LIST_NORM
+#undef LIST_SLOW
