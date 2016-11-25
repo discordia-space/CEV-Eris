@@ -59,21 +59,6 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
-	//** These specify item/icon overrides for _species_
-
-	/* Species-specific sprites, concept stolen from Paradise//vg/.
-	ex:
-	sprite_sheets = list(
-		"Tajara" = 'icons/cat/are/bad'
-		)
-	If index term exists and icon_override is not set, this sprite sheet will be used.
-	*/
-	var/list/sprite_sheets = list()
-
-	// Species-specific sprite sheets for inventory sprites
-	// Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
-	var/list/sprite_sheets_obj = list()
-
 /obj/item/equipped()
 	..()
 	var/mob/M = loc

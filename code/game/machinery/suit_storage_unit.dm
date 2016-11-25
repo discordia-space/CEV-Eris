@@ -596,11 +596,8 @@
 
 	//Departments that the cycler can paint suits to look like.
 	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos")
-	//Species that the suits can be configured to fit.
-	var/list/species = list("Human","Skrell","Unathi","Tajara")
 
 	var/target_department
-	var/target_species
 
 	var/mob/living/carbon/human/occupant = null
 	var/obj/item/clothing/suit/space/void/suit = null
@@ -613,8 +610,7 @@
 
 	wires = new(src)
 	target_department = departments[1]
-	target_species = species[1]
-	if(!target_department || !target_species) qdel(src)
+	if(!target_department) qdel(src)
 
 /obj/machinery/suit_cycler/Destroy()
 	qdel(wires)
@@ -626,35 +622,30 @@
 	model_text = "Engineering"
 	req_access = list(access_construction)
 	departments = list("Engineering","Atmos")
-	species = list("Human","Tajara","Skrell","Unathi") //Add Unathi when sprites exist for their suits.
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	req_access = list(access_mining)
 	departments = list("Mining")
-	species = list("Human","Tajara","Skrell","Unathi")
 
 /obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
 	departments = list("Security")
-	species = list("Human","Tajara","Skrell","Unathi")
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	req_access = list(access_medical)
 	departments = list("Medical")
-	species = list("Human","Tajara","Skrell","Unathi")
 
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
 	departments = list("Mercenary")
-	species = list("Human","Tajara","Skrell","Unathi")
 	can_repair = 1
 
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
@@ -813,7 +804,7 @@
 		dat += "<A href='?src=\ref[src];select_rad_level=1'>\[select power level\]</a> <A href='?src=\ref[src];begin_decontamination=1'>\[begin decontamination cycle\]</a><br><hr>"
 
 		dat += "<h2>Customisation</h2>"
-		dat += "<b>Target product:</b> <A href='?src=\ref[src];select_department=1'>[target_department]</a>, <A href='?src=\ref[src];select_species=1'>[target_species]</a>."
+		dat += "<b>Target product:</b> <A href='?src=\ref[src];select_department=1'>[target_department]</a>."
 		dat += "<A href='?src=\ref[src];apply_paintjob=1'><br>\[apply customisation routine\]</a><br><hr>"
 
 	if(panel_open)
@@ -835,9 +826,6 @@
 	else if(href_list["select_department"])
 		var/choice = input("Please select the target department paintjob.","Suit cycler",null) as null|anything in departments
 		if(choice) target_department = choice
-	else if(href_list["select_species"])
-		var/choice = input("Please select the target species configuration.","Suit cycler",null) as null|anything in species
-		if(choice) target_species = choice
 	else if(href_list["select_rad_level"])
 		var/choices = list(1,2,3)
 		if(emagged)
@@ -977,12 +965,8 @@
 //There HAS to be a less bloated way to do this. TODO: some kind of table/icon name coding? ~Z
 /obj/machinery/suit_cycler/proc/apply_paintjob()
 
-	if(!target_species || !target_department)
+	if(!target_department)
 		return
-
-	if(target_species)
-		if(helmet) helmet.refit_for_species(target_species)
-		if(suit) suit.refit_for_species(target_species)
 
 	switch(target_department)
 		if("Engineering")
