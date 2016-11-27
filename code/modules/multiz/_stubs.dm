@@ -1,4 +1,4 @@
-#define USE_OPENSPACE
+//#define USE_OPENSPACE
 
 /obj/effect/landmark/map_data
 	name = "Unknown"
