@@ -77,6 +77,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	else if(href_list["body_build"])
 		pref.body_build = input("Body Shape", "Body") in list("Default", "Slim", "Fat")
 		pref.body = get_body_build(pref.gender, pref.body_build)
+		return TOPIC_REFRESH
 
 	else if(href_list["age"])
 		var/datum/species/S = all_species[pref.species]
