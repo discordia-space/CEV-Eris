@@ -1,3 +1,7 @@
+//#define USE_OPENSPACE
+
+#ifdef USE_OPENSPACE
+
 #define LIST_FAST 1
 #define LIST_NORM 2
 #define LIST_SLOW 3
@@ -162,10 +166,10 @@ atom/movable/Move() //Hackish
 
 				T.overlays   -= below.z_overlays
 				T.z_overlays -= below.z_overlays
-/*
-				T.overlays   += image('floors.dmi', "black_open", TURF_LAYER+0.3)
-				T.z_overlays += image('floors.dmi', "black_open", TURF_LAYER+0.3)
-*/
+
+				T.overlays   += image('icons/turf/floors.dmi', "black_open", TURF_LAYER+0.3)
+				T.z_overlays += image('icons/turf/floors.dmi', "black_open", TURF_LAYER+0.3)
+
 		switch(new_list)
 			if(LIST_SLOW)
 				slowholder += T
@@ -190,3 +194,5 @@ atom/movable/Move() //Hackish
 #undef LIST_FAST
 #undef LIST_NORM
 #undef LIST_SLOW
+
+#endif
