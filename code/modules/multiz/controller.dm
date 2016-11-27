@@ -1,5 +1,3 @@
-#define USE_OPENSPACE
-
 #ifdef USE_OPENSPACE
 
 #define LIST_FAST 1
