@@ -9,50 +9,52 @@ var/datum/controller/process/open_space/OS_controller = null
 	var/normal_time
 	var/fast_time
 
-	var/levels
+	var/list/levels
+	var/list/levels_by_name
 
 /datum/controller/process/open_space/setup()
 	name = "openspace"
-	schedule_interval = 5 // every 1 seconds
+	schedule_interval = 10 // every 2 seconds
 	start_delay = 12
 
 	OS_controller = src
 	levels = list()
+	levels_by_name = list()
 
 	slow_time   = world.time + 3000
 	normal_time = world.time + 600
 	fast_time   = world.time + 10
 
-
-
 /datum/controller/process/open_space/proc/add_z_level(var/z)
-	levels["[z]"] = new /datum/ospace_data(z)
+	levels_by_name["[z]"] = new /datum/ospace_data(z)
+	levels += levels_by_name["[z]"]
 
 /datum/controller/process/open_space/doWork()
 	if (world.time > fast_time)
 		fast_time = world.time + 5
 		var/datum/ospace_data/current = null
 		for(var/i in levels)
-			current = levels[i]
+			current = i
 			current.calc(current.fast)
 
 	if (world.time > normal_time)
 		normal_time = world.time + 600
 		var/datum/ospace_data/current = null
 		for(var/i in levels)
-			current = levels[i]
+			current = i
 			current.calc(current.normal)
 
 /datum/controller/process/open_space/proc/add_turf(var/turf/T)
 	var/datum/ospace_data/OD = levels["[T.z]"]
-	OD.add(list(T), LIST_FAST, 1)
+	if(OD) OD.add(list(T), LIST_FAST, 1)
 
 /turf
 	var/list/z_overlays = list()
 
 /turf/New()
 	..()
-	OS_controller.add_turf(src)
+	if(ticker)
+		OS_controller.add_turf(src)
 
 atom/movable/Move() //Hackish
 	. = ..()
@@ -79,7 +81,9 @@ atom/movable/Move() //Hackish
 
 /datum/ospace_data/proc/add(var/list/L, var/I, var/transfer)
 
-	for(var/turf/T in L)
+	var/turf/T = null
+	for(var/elem in L)
+		T = elem
 		slow   -= T
 		normal -= T
 		fast   -= T
@@ -103,7 +107,9 @@ atom/movable/Move() //Hackish
 	var/new_list
 	var/down = HasBelow(z)
 
-	for(var/turf/T in L)
+	var/turf/T = null
+	for(var/elem in L)
+		T = elem
 		new_list = 0
 
 		T.overlays -= T.z_overlays
