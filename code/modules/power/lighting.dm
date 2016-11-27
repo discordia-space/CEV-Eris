@@ -230,10 +230,10 @@
 
 		switch(fitting)
 			if("tube")
-				if(prob(2))
+				if(prob(1))
 					broken(1)
 			if("bulb")
-				if(prob(5))
+				if(prob(3))
 					broken(1)
 		spawn(1)
 			update(0)
