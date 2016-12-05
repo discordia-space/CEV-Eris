@@ -88,6 +88,16 @@
 		user << "You carefully place \the [I] into the cistern."
 		return
 
+/obj/structure/toilet/AltClick(var/mob/living/user)
+	if(!open)
+		return
+	var/H = user.get_active_hand()
+	if(istype(H,/obj/item/weapon/reagent_containers/glass) || istype(H,/obj/item/weapon/reagent_containers/food/drinks))
+		var/obj/item/weapon/reagent_containers/O = user.get_active_hand()
+		if(O.reagents && O.reagents.total_volume)
+			O.reagents.clear_reagents()
+			user << "<span class='notice'>You empty the [O] into the [src].</span>"
+
 
 
 /obj/structure/urinal
@@ -446,6 +456,14 @@
 	user.visible_message( \
 		"<span class='notice'>[user] washes \a [I] using \the [src].</span>", \
 		"<span class='notice'>You wash \a [I] using \the [src].</span>")
+
+/obj/structure/sink/AltClick(var/mob/living/user)
+	var/H = user.get_active_hand()
+	if(istype(H,/obj/item/weapon/reagent_containers/glass) || istype(H,/obj/item/weapon/reagent_containers/food/drinks))
+		var/obj/item/weapon/reagent_containers/O = user.get_active_hand()
+		if(O.reagents && O.reagents.total_volume)
+			O.reagents.clear_reagents()
+			user << "<span class='notice'>You empty the [O] into the [src].</span>"
 
 
 /obj/structure/sink/kitchen

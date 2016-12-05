@@ -1,3 +1,5 @@
+#ifdef USE_OPENSPACE
+
 #define LIST_FAST 1
 #define LIST_NORM 2
 #define LIST_SLOW 3
@@ -120,7 +122,7 @@ atom/movable/Move() //Hackish
 			if(below)
 				if(!(istype(below, /turf/space) || istype(below, /turf/simulated/open)))
 					var/image/t_img = list()
-					new_list = 1
+					new_list = LIST_SLOW
 
 					var/image/temp = image(below, dir=below.dir, layer = TURF_LAYER + 0.04)
 
@@ -135,7 +137,7 @@ atom/movable/Move() //Hackish
 				for(var/obj/o in below)
 					// ingore objects that have any form of invisibility
 					if(o.invisibility || o.pixel_x || o.pixel_y) continue
-					new_list = 2
+					new_list = LIST_NORM
 					var/image/temp2 = image(o, dir=o.dir, layer = TURF_LAYER+0.05*o.layer)
 					temp2.color = o.color//rgb(127,127,127)
 					temp2.overlays += o.overlays
@@ -150,7 +152,7 @@ atom/movable/Move() //Hackish
 					// ingore mobs that have any form of invisibility
 					if(m.invisibility) continue
 					// only add this tile to fastprocessing if there is a living mob, not a dead one
-					if(istype(m, /mob/living)) new_list = 3
+					if(istype(m, /mob/living)) new_list = LIST_FAST
 					var/image/temp2 = image(m, dir=m.dir, layer = TURF_LAYER+0.05*m.layer)
 					temp2.color = m.color//rgb(127,127,127)
 					temp2.overlays += m.overlays
@@ -162,10 +164,10 @@ atom/movable/Move() //Hackish
 
 				T.overlays   -= below.z_overlays
 				T.z_overlays -= below.z_overlays
-/*
-				T.overlays   += image('floors.dmi', "black_open", TURF_LAYER+0.3)
-				T.z_overlays += image('floors.dmi', "black_open", TURF_LAYER+0.3)
-*/
+
+				T.overlays   += image('icons/turf/floors.dmi', "black_open", TURF_LAYER+0.3)
+				T.z_overlays += image('icons/turf/floors.dmi', "black_open", TURF_LAYER+0.3)
+
 		switch(new_list)
 			if(LIST_SLOW)
 				slowholder += T
@@ -190,3 +192,5 @@ atom/movable/Move() //Hackish
 #undef LIST_FAST
 #undef LIST_NORM
 #undef LIST_SLOW
+
+#endif

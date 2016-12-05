@@ -1,3 +1,5 @@
+//#define USE_OPENSPACE
+
 /obj/effect/landmark/map_data
 	name = "Unknown"
 	desc = "An unknown location."
