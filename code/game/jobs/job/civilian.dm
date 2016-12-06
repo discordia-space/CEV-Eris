@@ -111,7 +111,7 @@
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
-	idtype = /obj/item/weapon/card/id/qm
+	idtype = /obj/item/weapon/card/id/car
 	ideal_character_age = 40
 
 
@@ -138,7 +138,7 @@
 	selection_color = "#dddddd"
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
-	idtype = /obj/item/weapon/card/id/qm
+	idtype = /obj/item/weapon/card/id/car
 
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
@@ -161,7 +161,7 @@
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
 	alt_titles = list("Drill Technician","Prospector")
-	idtype = /obj/item/weapon/card/id/engie
+	idtype = /obj/item/weapon/card/id/car
 
 	uniform = /obj/item/clothing/under/rank/miner
 	pda = /obj/item/device/pda/shaftminer
