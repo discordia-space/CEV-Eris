@@ -109,6 +109,7 @@
 	icon_state = "shuttle_chair"
 	color = null
 	base_icon = "shuttle_chair"
+	applies_material_colour = 0
 
 // Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
@@ -211,6 +212,7 @@
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
 	icon_state = "wooden_chair"
+	applies_material_colour = 0
 
 /obj/structure/bed/chair/wood/update_icon()
 	return

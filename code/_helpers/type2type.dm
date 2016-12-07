@@ -6,7 +6,7 @@
  *			file2list
  *			angle2dir
  *			angle2text
- *			worldtime2text
+ *			worldtime2stationtime
  */
 
 // Returns an integer given a hexadecimal number string as input.
