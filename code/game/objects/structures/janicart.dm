@@ -171,6 +171,7 @@
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/weapon/storage/bag/trash/mybag	= null
 	var/callme = "pimpin' ride"	//how do people refer to it?
+	applies_material_colour = 0
 
 
 /obj/structure/bed/chair/janicart/New()
