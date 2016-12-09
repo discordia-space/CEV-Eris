@@ -11,14 +11,13 @@ var/datum/controller/process/open_space/OS_controller = null
 /datum/controller/process/open_space
 	var/slow_time
 	var/normal_time
-	var/fast_time
 
 	var/list/levels
 	var/list/levels_by_name
 
 /datum/controller/process/open_space/setup()
 	name = "openspace"
-	schedule_interval = 10 // every 2 seconds
+	schedule_interval = 5 // every second
 	start_delay = 12
 
 	OS_controller = src
@@ -27,7 +26,6 @@ var/datum/controller/process/open_space/OS_controller = null
 
 	slow_time   = world.time + 3000
 	normal_time = world.time + 600
-	fast_time   = world.time + 10
 
 /datum/controller/process/open_space/proc/add_z_level(var/z)
 #ifdef DEBUG_OPENSPACE
@@ -38,24 +36,22 @@ var/datum/controller/process/open_space/OS_controller = null
 	levels += levels_by_name["[z]"]
 
 /datum/controller/process/open_space/doWork()
-	if (world.time > fast_time)
 #ifdef DEBUG_OPENSPACE
-		world << "Calc fast OS"
+	world << "Calc fast OS"
 #endif
-		fast_time = world.time + 5
-		var/datum/ospace_data/current = null
+	var/datum/ospace_data/current = null
+	for(var/i in levels)
+		current = i
+		current.calc_fast()
+
+	if (world.time > normal_time)
+#ifdef DEBUG_OPENSPACE
+		world << "Calc normal OS"
+#endif
+		normal_time = world.time + 600
 		for(var/i in levels)
 			current = i
-			current.calc_fast()
-
-		if (world.time > normal_time)
-#ifdef DEBUG_OPENSPACE
-			world << "Calc normal OS"
-#endif
-			normal_time = world.time + 600
-			for(var/i in levels)
-				current = i
-				current.calc(current.normal)
+			current.calc(current.normal)
 
 /datum/controller/process/open_space/proc/add_turf(var/turf/T)
 	var/datum/ospace_data/OD = levels["[T.z]"]
