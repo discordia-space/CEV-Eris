@@ -6,10 +6,15 @@
 	var/icon/icon = null
 	var/HUDfrippery = list()
 	var/list/HUDoverlays = list()
+	var/Xbags
+	var/Ybags
 
 /datum/hud/human
 	name = "ErisStyle"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
+
+	Xbags = 2
+	Ybags = 4
 //to:do переместить все существующие оверлеи сюда, если возможно.
 	HUDoverlays = list(
 		"damageoverlay" = list("type" = /obj/screen/damageoverlay, "loc" = "1,1", "icon" =  'icons/mob/screen1_full.dmi'),

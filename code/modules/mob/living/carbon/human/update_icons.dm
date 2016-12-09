@@ -143,7 +143,7 @@ Please contact me on #coderbus IRC. ~Carn x
 //I'll work on removing that stuff by rewriting some of the cloaking stuff at a later date.
 /mob/living/carbon/human/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	update_hud()		//TODO: remove the need for this
+//	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
 
 	if (icon_update)
@@ -416,7 +416,6 @@ var/global/list/damage_icon_parts = list()
 	update_mutations(0)
 	update_body(0)
 	update_hair(0)
-	check_HUD()
 	update_inv_w_uniform(0)
 	update_inv_wear_id(0)
 	update_inv_gloves(0)
@@ -452,8 +451,8 @@ var/global/list/damage_icon_parts = list()
 			else
 				return HUDinv.screen_loc*/
 			return (HUDinv.invisibility == 101) ? null : HUDinv.screen_loc
-	log_admin("[usr] try find_inv_position a [slot_id], but not have that slot!")
-	usr << "Some problem hase accure, change UI style pls or call admins."
+	log_admin("[src] try find_inv_position a [slot_id], but not have that slot!")
+	src << "Some problem hase accure, change UI style pls or call admins."
 	return "7,7"
 
 
@@ -876,12 +875,6 @@ var/global/list/damage_icon_parts = list()
 		update_icons()
 
 
-/mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
-	if(client)
-		check_HUD()
-		client.screen |= contents
-		//if(hud_used)
-			//hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
 
 
 /mob/living/carbon/human/update_inv_handcuffed(var/update_icons=1)

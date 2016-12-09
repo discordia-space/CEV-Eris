@@ -216,7 +216,7 @@
 	src.closer.screen_loc = "[4+cols+1]:16,2:16"
 	return
 
-/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
+/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents,var/Xcord = 4,var/Ycord = 2)
 
 	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
 	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
@@ -229,9 +229,9 @@
 	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
 	src.storage_continue.transform = M
 
-	src.storage_start.screen_loc = "4:16,2:16"
-	src.storage_continue.screen_loc = "4:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:16"
-	src.storage_end.screen_loc = "4:[19+storage_width-storage_cap_width],2:16"
+	src.storage_start.screen_loc = "[Xcord]:16,[Ycord]:16"
+	src.storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]:16"
+	src.storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]:16"
 
 	var/startpoint = 0
 	var/endpoint = 1
@@ -254,11 +254,11 @@
 		storage_start.overlays += src.stored_continue
 		storage_start.overlays += src.stored_end
 
-		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
+		O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
 		O.maptext = ""
 		O.layer = 20
 
-	src.closer.screen_loc = "4:[storage_width+19],2:16"
+	src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 	return
 
 /datum/numbered_display
@@ -275,6 +275,14 @@
 /obj/item/weapon/storage/proc/orient2hud(mob/user as mob)
 
 	var/adjusted_contents = contents.len
+
+	var/Xcor = 4
+	var/Ycor = 2
+
+	if(user)
+		var/datum/hud/HUDdatum = global.HUDdatums[user.defaultHUD]
+		Xcor = HUDdatum.Xbags
+		Ycor = HUDdatum.Ybags
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
@@ -293,7 +301,7 @@
 				numbered_contents.Add( new/datum/numbered_display(I) )
 
 	if(storage_slots == null)
-		src.space_orient_objs(numbered_contents)
+		src.space_orient_objs(numbered_contents,Xcor,Ycor)
 	else
 		var/row_num = 0
 		var/col_count = min(7,storage_slots) -1
