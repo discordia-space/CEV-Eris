@@ -760,6 +760,17 @@
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2)
 
 
+/obj/machinery/vending/weapon_machine
+	name = "%Name_of_vending%"
+	desc = "%message%"
+	product_slogans = "%slogan%"
+	product_ads = "%ads%"
+	icon_state = "weapon"
+	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 3)
+	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800)
+
+
 
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
