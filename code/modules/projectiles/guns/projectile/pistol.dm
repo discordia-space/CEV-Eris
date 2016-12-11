@@ -206,7 +206,7 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/projectile/ironhammer/lamia
+/obj/item/weapon/gun/projectile/lamia
 	name = "FS HG .38 \"Lamia\""
 	desc = "FS HG .38 \"Lamia\". Uses .38 rounds."
 	icon_state = "Headdeagle"
@@ -220,7 +220,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.wav'
 	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.wav'
 
-/obj/item/weapon/gun/projectile/ironhammer/lamia/update_icon()
+/obj/item/weapon/gun/projectile/lamia/update_icon()
 	overlays.Cut()
 	if(!ammo_magazine)
 		return
