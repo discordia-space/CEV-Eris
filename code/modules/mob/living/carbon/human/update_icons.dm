@@ -416,6 +416,7 @@ var/global/list/damage_icon_parts = list()
 	update_mutations(0)
 	update_body(0)
 	update_hair(0)
+	update_hud()//Hud Stuff
 	update_inv_w_uniform(0)
 	update_inv_wear_id(0)
 	update_inv_gloves(0)
@@ -437,8 +438,7 @@ var/global/list/damage_icon_parts = list()
 	update_surgery(0)
 	UpdateDamageIcon()
 	update_icons()
-	//Hud Stuff
-	update_hud()
+
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
