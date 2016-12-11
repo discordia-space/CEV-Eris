@@ -247,7 +247,7 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sol
+/obj/item/weapon/gun/projectile/automatic/SMG_sol
 	name = "FS SMG 9x19 \"Sol\""
 	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "SMG-IS"
@@ -267,7 +267,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
 		)
 
-/obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sol/proc/update_charge()
+/obj/item/weapon/gun/projectile/automatic/SMG_sol/proc/update_charge()
 	if(!ammo_magazine)
 		return
 	var/ratio = ammo_magazine.stored_ammo.len / ammo_magazine.max_ammo
@@ -277,7 +277,7 @@
 	overlays += "smg_[ratio]"
 
 
-/obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sol/update_icon()
+/obj/item/weapon/gun/projectile/automatic/SMG_sol/update_icon()
 	icon_state = (ammo_magazine)? "SMG-IS" : "SMG-IS-empty"
 	overlays.Cut()
 	update_charge()

@@ -75,7 +75,7 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/energy/gun/ironhammer/martin
+/obj/item/weapon/gun/energy/gun/martin
 	name = "FS PDW E \"Martin\""
 	desc = "Last chance gun."
 	icon_state = "PDW"
@@ -93,12 +93,12 @@
 		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, fire_sound='sound/weapons/Laser.ogg'),
 		)
 
-/obj/item/weapon/gun/energy/gun/ironhammer/martin/proc/update_mode()
+/obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
 	switch(current_mode.name)
 		if("stun") overlays += "taser_pdw"
 		if("lethal") overlays += "lazer_pdw"
 
-/obj/item/weapon/gun/energy/gun/ironhammer/martin/update_icon()
+/obj/item/weapon/gun/energy/gun/martin/update_icon()
 	overlays.Cut()
 	update_mode()
