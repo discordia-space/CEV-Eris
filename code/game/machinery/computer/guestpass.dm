@@ -20,15 +20,15 @@
 /obj/item/weapon/card/id/guest/examine(mob/user)
 	..(user)
 	if (world.time < expiration_time)
-		user << "<span class='notice'>This pass expires at [worldtime2text(expiration_time)].</span>"
+		user << "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>"
 	else
-		user << "<span class='warning'>It expired at [worldtime2text(expiration_time)].</span>"
+		user << "<span class='warning'>It expired at [worldtime2stationtime(expiration_time)].</span>"
 
 /obj/item/weapon/card/id/guest/read()
 	if (world.time > expiration_time)
-		usr << "<span class='notice'>This pass expired at [worldtime2text(expiration_time)].</span>"
+		usr << "<span class='notice'>This pass expired at [worldtime2stationtime(expiration_time)].</span>"
 	else
-		usr << "<span class='notice'>This pass expires at [worldtime2text(expiration_time)].</span>"
+		usr << "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>"
 
 	usr << "<span class='notice'>It grants access to following areas:</span>"
 	for (var/A in temp_access)
@@ -170,13 +170,13 @@
 			if ("issue")
 				if (giver)
 					var/number = add_zero("[rand(0,9999)]", 4)
-					var/entry = "\[[worldtime2text()]\] Pass #[number] issued by [giver.registered_name] ([giver.assignment]) to [giv_name]. Reason: [reason]. Grants access to following areas: "
+					var/entry = "\[[stationtime2text()]\] Pass #[number] issued by [giver.registered_name] ([giver.assignment]) to [giv_name]. Reason: [reason]. Grants access to following areas: "
 					for (var/i=1 to accesses.len)
 						var/A = accesses[i]
 						if (A)
 							var/area = get_access_desc(A)
 							entry += "[i > 1 ? ", [area]" : "[area]"]"
-					entry += ". Expires at [worldtime2text(world.time + duration*10*60)]."
+					entry += ". Expires at [worldtime2stationtime(world.time + duration*10*60)]."
 					internal_log.Add(entry)
 
 					var/obj/item/weapon/card/id/guest/pass = new(src.loc)

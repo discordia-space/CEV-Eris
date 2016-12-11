@@ -72,7 +72,12 @@
 	return*/
 
 
-
+/mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
+	if(client)
+		check_HUD()
+		client.screen |= contents
+		//if(hud_used)
+			//hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
 
 
 

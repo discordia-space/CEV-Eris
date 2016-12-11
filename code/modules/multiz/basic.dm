@@ -12,8 +12,6 @@ var/z_levels = 0 // Each bit represents a connection between adjacent levels.  S
 #ifdef USE_OPENSPACE
 	sleep(5)
 	for(var/i in 1 to height)
-		world << "Try ADD [z+i-1] z lelel"
-		world.log << "Try ADD [z+i-1] z lelel"
 		OS_controller.add_z_level(z+i-1)
 #endif
 	qdel(src)

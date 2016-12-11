@@ -373,6 +373,10 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				hud_used.action_intent.icon_state = I_HURT
 			else
 				hud_used.action_intent.icon_state = I_HELP*/
+	if (HUDneed.Find("intent"))
+		var/obj/screen/intent/I = HUDneed["intent"]
+		I.update_icon()
+
 
 proc/is_blind(A)
 	if(istype(A, /mob/living/carbon))

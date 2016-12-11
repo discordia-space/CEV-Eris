@@ -8,6 +8,10 @@
 	buckle_lying = 0 //force people to sit up in chairs when buckled
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
+/obj/structure/bed/chair/New()
+	..()
+	update_layer()
+
 /obj/structure/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
@@ -105,6 +109,7 @@
 	icon_state = "shuttle_chair"
 	color = null
 	base_icon = "shuttle_chair"
+	applies_material_colour = 0
 
 // Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
@@ -207,6 +212,7 @@
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
 	icon_state = "wooden_chair"
+	applies_material_colour = 0
 
 /obj/structure/bed/chair/wood/update_icon()
 	return
