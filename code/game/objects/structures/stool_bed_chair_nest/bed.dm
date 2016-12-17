@@ -48,7 +48,7 @@
 		var/image/I = image('icons/obj/furniture.dmi', base_icon)
 		if(applies_material_colour)
 			I.color = material.icon_colour
-			stool_cache[cache_key] = I
+		stool_cache[cache_key] = I
 	overlays |= stool_cache[cache_key]
 	// Padding overlay.
 	if(padding_material)
