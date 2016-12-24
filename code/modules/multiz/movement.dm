@@ -49,3 +49,19 @@
 
 	usr.Move(below)
 	usr << "<span class='notice'>You move downwards.</span>"
+
+
+/mob/observer/ghost/verb/moveup()
+	set name = "Move Upwards"
+	set category = null
+	var/turf/T = GetAbove(src)
+	if(T)
+		src.Move(T)
+
+
+/mob/observer/ghost/verb/movedown()
+	set name = "Move Downwards"
+	set category = null
+	var/turf/T = GetBelow(src)
+	if(T)
+		src.Move(T)
