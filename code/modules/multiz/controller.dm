@@ -26,11 +26,14 @@ var/datum/controller/process/open_space/OS_controller = null
 
 	slow_time   = world.time + 3000
 	normal_time = world.time + 600
+	for(var/level = 2 to 17)
+		if(HasBelow(level))
+			add_z_level(level)
 
 /datum/controller/process/open_space/proc/add_z_level(var/z)
 #ifdef DEBUG_OPENSPACE
-	world << "OPENSPACE: ADD [z+i-1] z lelel"
-	world.log << "OPENSPACE: ADD [z+i-1] z lelel"
+	world << "OPENSPACE: ADD [z] z lelel"
+	world.log << "OPENSPACE: ADD [z] z lelel"
 #endif
 	levels_by_name["[z]"] = new /datum/ospace_data(z)
 	levels += levels_by_name["[z]"]
@@ -43,6 +46,7 @@ var/datum/controller/process/open_space/OS_controller = null
 	for(var/i in levels)
 		current = i
 		current.calc_fast()
+		SCHECK
 
 	if (world.time > normal_time)
 #ifdef DEBUG_OPENSPACE
@@ -52,6 +56,8 @@ var/datum/controller/process/open_space/OS_controller = null
 		for(var/i in levels)
 			current = i
 			current.calc(current.normal)
+			SCHECK
+
 
 /datum/controller/process/open_space/proc/add_turf(var/turf/T)
 	var/datum/ospace_data/OD = levels["[T.z]"]
@@ -60,15 +66,20 @@ var/datum/controller/process/open_space/OS_controller = null
 /turf
 	var/list/z_overlays = list()
 
-/turf/New()
+/turf/Entered(atom/movable/Obj)
+	. = ..()
+	OS_controller.add_turf(src)
+
+/turf/simulated/open/New()
 	..()
 	if(ticker)
 		OS_controller.add_turf(src)
 
-atom/movable/Move() //Hackish
+/*
+/atom/movable/Move() //Hackish
 	. = ..()
 	OS_controller.add_turf(get_turf(src))
-
+*/
 
 
 /datum/ospace_data
@@ -81,7 +92,7 @@ atom/movable/Move() //Hackish
 
 /datum/ospace_data/New(var/new_level)
 	z = new_level
-	for (var/turf/T in world)
+	for (var/turf/simulated/open/T in world)
 		if (T.z == z)
 			fast += T
 	spawn(5)
