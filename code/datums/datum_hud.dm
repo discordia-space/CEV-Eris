@@ -1,20 +1,28 @@
 /datum/hud
 	var/name
-	var/list/HUDneed = list()//для "активных" элементов (прим. здоровье)
+	var/list/HUDneed//для "активных" элементов (прим. здоровье)
 //	var/list/HUDprocess = list()
-	var/list/slot_data = list()//для инвентаря
+	var/list/slot_data//для инвентаря
 	var/icon/icon = null
-	var/HUDfrippery = list()
-	var/list/HUDoverlays = list()
-	var/Xbags
-	var/Ybags
-
+	var/list/HUDfrippery
+	var/list/HUDoverlays
+//	var/Xbags
+//	var/Ybags
+	var/list/ConteinerData
 /datum/hud/human
 	name = "ErisStyle"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-
-	Xbags = 2
-	Ybags = 4
+	//Xbags,Ybags for space_orient_objs
+	//Others for slot_orient_objs
+	ConteinerData = list(
+		"Xspace" = 2,
+		"Yspace" = 4,
+		"ColCount" = 7,
+		"Xslot" = 5,
+		"Yslot" = 2
+	)
+//	Xbags = 2
+//	Ybags = 4
 //to:do переместить все существующие оверлеи сюда, если возможно.
 	HUDoverlays = list(
 		"damageoverlay" = list("type" = /obj/screen/damageoverlay, "loc" = "1,1", "icon" =  'icons/mob/screen1_full.dmi'),
@@ -70,40 +78,40 @@
 		"storage1" =     list("loc" = "10,0",  "name" = "Left Pocket",     "state" = "pocket_l"),
 		"storage2" =     list("loc" = "11,0", "name" = "Right Pocket",    "state" = "pocket_r"),
 		"belt" =         list("loc" = "6,0",  "name" = "Belt",            "state" = "belt"),
-		"l_hand" =       list("loc" = "9,0",  "name" = "Left Hand",       "state" = "hand", "dir" = NORTH, "type" = /obj/screen/inventory/hand),
-		"r_hand" =       list("loc" = "8,0",  "name" = "Right Hand",      "state" = "hand", "dir" = SOUTH, "type" = /obj/screen/inventory/hand)
+		"l_hand" =       list("loc" = "9,0",  "name" = "Left Hand",       "state" = "hand-l", "type" = /obj/screen/inventory/hand),
+		"r_hand" =       list("loc" = "8,0",  "name" = "Right Hand",      "state" = "hand-r", "type" = /obj/screen/inventory/hand)
 		)
 
 	HUDfrippery = list(
-		list("loc" = "1,0", "icon_state" = "frame0", "dir" = EAST),
-		list("loc" = "1,0", "icon_state" = "frame3", "dir" = EAST),
-		list("loc" = "1,1", "icon_state" = "frame2", "dir" = NORTH, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "1,2", "icon_state" = "frame2", "dir" = EAST, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "1,3", "icon_state" = "frame2", "dir" = SOUTH, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "1,1", "icon_state" = "frame1", "dir" = NORTHEAST, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "1,2", "icon_state" = "frame1", "dir" = EAST, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "1,3", "icon_state" = "frame1", "dir" = SOUTHEAST, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "2,3", "icon_state" = "display", "dir" = WEST, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "5,1", "icon_state" = "frame1", "dir" = NORTHWEST, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "5,2", "icon_state" = "frame1", "dir" = WEST, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "5,3", "icon_state" = "frame1", "dir" = SOUTHWEST, "hideflag" = TOGGLE_INVENTORY_FLAG),
-		list("loc" = "8,1:13", "icon_state" = "frame1", "dir" = NORTH),
-		list("loc" = "9,1:13", "icon_state" = "frame1", "dir" = SOUTH),
-		list("loc" = "12,0", "icon_state" = "frame3", "dir" = WEST),
-		list("loc" = "12,0", "icon_state" = "frame0", "dir" = EAST),
-		list("loc" = "12,0", "icon_state" = "frame0", "dir" = WEST),
-		list("loc" = "15,4", "icon_state" = "frame1", "dir" = NORTH),
-		list("loc" = "16,4", "icon_state" = "frame1", "dir" = SOUTH),
-		list("loc" = "16,4", "icon_state" = "frame3", "dir" = NORTH),
-		list("loc" = "16,4", "icon_state" = "frame0", "dir" = NORTH),
-		list("loc" = "16,8", "icon_state" = "frame0", "dir" = SOUTH),
-		list("loc" = "16,8", "icon_state" = "frame3", "dir" = NORTH),
-		list("loc" = "16,8", "icon_state" = "frame0", "dir" = NORTH),
-		list("loc" = "16,11", "icon_state" = "frame0", "dir" = SOUTH),
-		list("loc" = "16,11", "icon_state" = "frame3", "dir" = NORTH),
-		list("loc" = "16,11", "icon_state" = "frame0", "dir" = NORTH),
-		list("loc" = "16,15", "icon_state" = "frame0", "dir" = SOUTH),
-		list("loc" = "16,15", "icon_state" = "frame3", "dir" = SOUTH)
+		list("loc" = "1,0", "icon_state" = "frame0-3",),
+		list("loc" = "1,0", "icon_state" = "frame3-4",),
+		list("loc" = "1,1", "icon_state" = "frame2-2",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "1,2", "icon_state" = "frame2-3",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "1,3", "icon_state" = "frame2-1",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "1,1", "icon_state" = "frame1-3", "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "1,2", "icon_state" = "frame1-7",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "1,3", "icon_state" = "frame1-5",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "2,3", "icon_state" = "display",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "5,1", "icon_state" = "frame1-2",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "5,2", "icon_state" = "frame1-6",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "5,3", "icon_state" = "frame1-4", "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "8,1:13", "icon_state" = "frame1-8"),
+		list("loc" = "9,1:13", "icon_state" = "frame1-1"),
+		list("loc" = "12,0", "icon_state" = "frame3-2"),
+		list("loc" = "12,0", "icon_state" = "frame0-2"),
+		list("loc" = "12,0", "icon_state" = "frame0-3"),
+		list("loc" = "15,4", "icon_state" = "frame1-8"),
+		list("loc" = "16,4", "icon_state" = "frame1-1"),
+		list("loc" = "16,4", "icon_state" = "frame3-3"),
+		list("loc" = "16,4", "icon_state" = "frame0-4"),
+		list("loc" = "16,8", "icon_state" = "frame0-1"),
+		list("loc" = "16,8", "icon_state" = "frame3-3"),
+		list("loc" = "16,8", "icon_state" = "frame0-4"),
+		list("loc" = "16,11", "icon_state" = "frame0-1"),
+		list("loc" = "16,11", "icon_state" = "frame3-3"),
+		list("loc" = "16,11", "icon_state" = "frame0-4"),
+		list("loc" = "16,15", "icon_state" = "frame0-1"),
+		list("loc" = "16,15", "icon_state" = "frame3-1")
 		)
 
 /datum/hud/cyborg

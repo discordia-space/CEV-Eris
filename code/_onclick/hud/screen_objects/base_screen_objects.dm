@@ -1,4 +1,4 @@
-/*
+ /*
 	Screen objects
 	Todo: improve/re-implement
 
@@ -362,9 +362,9 @@
 
 /obj/screen/inventory/hand/update_icon()
 	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
-		src.icon_state = "act_hand"
+		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
-		src.icon_state = "hand"
+		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------

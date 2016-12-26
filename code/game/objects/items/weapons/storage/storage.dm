@@ -190,10 +190,10 @@
 	return
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/weapon/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
-	var/cx = 4
-	var/cy = 2+rows
-	src.boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
+/obj/item/weapon/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents, Xcord=4, Ycord=2)
+	var/cx = Xcord
+	var/cy = Ycord+rows
+	src.boxes.screen_loc = "[Xcord]:16,2:16 to [Xcord+cols]:16,[Ycord+rows]:16"
 
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
@@ -213,7 +213,7 @@
 			if (cx > (4+cols))
 				cx = 4
 				cy--
-	src.closer.screen_loc = "[4+cols+1]:16,2:16"
+	src.closer.screen_loc = "[Xcord+cols+1]:16,[Ycord]:16"
 	return
 
 /obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents,var/Xcord = 4,var/Ycord = 2)
@@ -278,11 +278,17 @@
 
 	var/Xcor = 4
 	var/Ycor = 2
+	var/ColCountDatum = 7
+	var/Xslot = 6
+	var/Yslot = 2
 
 	if(user)
 		var/datum/hud/HUDdatum = global.HUDdatums[user.defaultHUD]
-		Xcor = HUDdatum.Xbags
-		Ycor = HUDdatum.Ybags
+		Xcor = HUDdatum.ConteinerData["Xspace"]
+		Ycor = HUDdatum.ConteinerData["Yspace"]
+		ColCountDatum = HUDdatum.ConteinerData["ColCount"]
+		Xslot = HUDdatum.ConteinerData["Xslot"]
+		Yslot = HUDdatum.ConteinerData["Yslot"]
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
@@ -304,10 +310,10 @@
 		src.space_orient_objs(numbered_contents,Xcor,Ycor)
 	else
 		var/row_num = 0
-		var/col_count = min(7,storage_slots) -1
-		if (adjusted_contents > 7)
-			row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-		src.slot_orient_objs(row_num, col_count, numbered_contents)
+		var/col_count = min(ColCountDatum,storage_slots) -1
+		if (adjusted_contents > ColCountDatum)
+			row_num = round((adjusted_contents-1) / ColCountDatum) // ColCountDatum is the maximum allowed width.
+		src.slot_orient_objs(row_num, col_count, numbered_contents,Xslot,Yslot)
 	return
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
