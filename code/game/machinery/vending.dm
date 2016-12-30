@@ -119,7 +119,7 @@
 
 	// Stuff relating vocalizations
 	var/list/slogan_list = list()
-	var/shut_up = 1 //Stop spouting those godawful pitches!
+	var/shut_up = 0 //Let spouting those godawful pitches!
 	var/vend_reply //Thank you for shopping!
 	var/last_reply = 0
 	var/last_slogan = 0 //When did we last pitch?
