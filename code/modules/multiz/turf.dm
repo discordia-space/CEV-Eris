@@ -22,9 +22,8 @@
 		if(!below)
 			return
 
-	// No gravity in space, apparently.
-	var/area/area = get_area(src)
-	if(area.name == "Space")
+	// No gravit, No fall.
+	if(!has_gravity(src))
 		return
 
 	if (locate(/obj/structure/catwalk) in src)
