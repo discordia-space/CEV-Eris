@@ -444,7 +444,7 @@
 	shardtype = /obj/item/weapon/material/shard/phoron
 	glasstype = /obj/item/stack/material/glass/phoronrglass
 	reinf = 1
-	maximal_heat = T0C + 4000
+	maximal_heat = T0C + 9000
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
 	maxhealth = 80.0
 
