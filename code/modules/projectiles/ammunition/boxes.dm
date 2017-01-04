@@ -226,42 +226,64 @@
 	max_ammo = 21
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/sl/cl38/rubber
-	name = "speed loader (.38 rubber)"
+/obj/item/ammo_magazine/sl/cl44/rubber
+	name = "speed loader (.44 rubber)"
 	icon_state = "cl_ih_rv_38"
-	caliber = ".38"
-	ammo_type = /obj/item/ammo_casing/cl38/rubber
+	caliber = ".44"
+	ammo_type = /obj/item/ammo_casing/cl44/rubber
 	matter = list(DEFAULT_WALL_MATERIAL = 450)
 	max_ammo = 6
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/sl/cl38/brute
-	name = "speed loader (.38 hollow point)"
+/obj/item/ammo_magazine/sl/cl44/brute
+	name = "speed loader (.44 hollow point)"
 	icon_state = "cl_ih_rv_38"
-	caliber = ".38"
-	ammo_type = /obj/item/ammo_casing/cl38/brute
+	caliber = ".44"
+	ammo_type = /obj/item/ammo_casing/cl44/brute
 	matter = list(DEFAULT_WALL_MATERIAL = 450)
 	max_ammo = 6
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/mg/cl38/rubber
-	name = "magazine (.38 rubber)"
+/obj/item/ammo_magazine/mg/cl44/rubber
+	name = "magazine (.44 rubber)"
 	icon_state = "mg_ih_pst_38"
 	mag_type = MAGAZINE
-	ammo_mag = "mag_cl38"
-	ammo_type = /obj/item/ammo_casing/cl38/rubber
+	ammo_mag = "mag_cl44"
+	ammo_type = /obj/item/ammo_casing/cl44/rubber
 	matter = list(DEFAULT_WALL_MATERIAL = 750) //metal costs are very roughly based around 1 .45 casing = 75 metal
-	caliber = ".38"
+	caliber = ".44"
 	max_ammo = 10
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/mg/cl38/brute
-	name = "magazine (.38 hollow point)"
+/obj/item/ammo_magazine/mg/cl44/brute
+	name = "magazine (.44 hollow point)"
 	icon_state = "mg_ih_pst_38"
 	mag_type = MAGAZINE
-	ammo_mag = "mag_cl38"
-	ammo_type = /obj/item/ammo_casing/cl38/brute
+	ammo_mag = "mag_cl44"
+	ammo_type = /obj/item/ammo_casing/cl44/brute
 	matter = list(DEFAULT_WALL_MATERIAL = 750) //metal costs are very roughly based around 1 .45 casing = 75 metal
-	caliber = ".38"
+	caliber = ".44"
 	max_ammo = 10
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/mg/cl32/rubber
+	name = "magazine (.32 rubber)"
+	icon_state = "32trauma"
+	mag_type = MAGAZINE
+	ammo_mag = "mag_cl32"
+	ammo_type = /obj/item/ammo_casing/cl32/rubber
+	matter = list(DEFAULT_WALL_MATERIAL = 750)
+	caliber = ".32"
+	max_ammo = 7
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/mg/cl32/brute
+	name = "magazine (.32 hollow point)"
+	icon_state = "32trauma"
+	mag_type = MAGAZINE
+	ammo_mag = "mag_cl32"
+	ammo_type = /obj/item/ammo_casing/cl32/brute
+	matter = list(DEFAULT_WALL_MATERIAL = 750)
+	caliber = ".32"
+	max_ammo = 7
 	multiple_sprites = 1
