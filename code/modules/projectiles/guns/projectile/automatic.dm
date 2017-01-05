@@ -249,10 +249,10 @@
 
 /obj/item/weapon/gun/projectile/automatic/SMG_sol
 	name = "FS SMG 9x19 \"Sol\""
-	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
+	desc = "A standard-issued weapon used by Ironhammer operatives. Compact and reliable. Uses 9mm rounds."
 	icon_state = "SMG-IS"
 	item_state = "wt550"
-	w_class = 3
+	w_class = 4
 	ammo_mag = "ih_smg"
 	load_method = MAGAZINE //yup. until someone sprites a magazine for it.
 	max_shells = 21

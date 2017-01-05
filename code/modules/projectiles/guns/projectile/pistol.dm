@@ -207,13 +207,13 @@
 /* Ironhammer stuff */
 
 /obj/item/weapon/gun/projectile/lamia
-	name = "FS HG .38 \"Lamia\""
-	desc = "FS HG .38 \"Lamia\". Uses .38 rounds."
+	name = "FS HG .44 \"Lamia\""
+	desc = "FS HG .44 \"Lamia\". Uses .44 rounds."
 	icon_state = "Headdeagle"
 	item_state = "revolver"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.wav'
-	caliber = ".38"
-	ammo_mag = "mag_cl38"
+	caliber = ".44"
+	ammo_mag = "mag_cl44"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	load_method = MAGAZINE
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.wav'
@@ -227,3 +227,48 @@
 	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
 	ratio = round(ratio, 33)
 	overlays += "deagle_[ratio]"
+
+/obj/item/weapon/gun/projectile/giskard
+	name = "FS HG .32 \"Giskard\""
+	desc = "That's the 'Frozen Star' popular traumatic pistol. Can even fit into the pocket! Uses .32 rounds."
+	icon_state = "giskardcivil"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
+	caliber = ".32"
+	ammo_mag = "mag_cl32"
+	w_class = 2
+	fire_delay = 0.6
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
+	load_method = MAGAZINE
+	accuracy = 1
+
+/obj/item/weapon/gun/projectile/giskard/update_icon()
+	..()
+	if(ammo_magazine && ammo_magazine.stored_ammo.len)
+		icon_state = "giskardcivil"
+	else
+		icon_state = "giskardcivil_empty"
+
+/obj/item/weapon/gun/projectile/olivaw
+	name = "FS HG .32 \"Olivaw\""
+	desc = "That's the 'Frozen Star' popular traumatic pistol. This one seems to have a two-round burst-fire mode. Uses .32 rounds."
+	icon_state = "olivawcivil"
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
+	caliber = ".32"
+	ammo_mag = "mag_cl32"
+	fire_delay = 1.2
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
+	load_method = MAGAZINE
+	accuracy = 2
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
+		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-1),       dispersion=list(1.2, 1.8)),
+		)
+
+/obj/item/weapon/gun/projectile/olivaw/update_icon()
+	..()
+	if(ammo_magazine && ammo_magazine.stored_ammo.len)
+		icon_state = "olivawcivil"
+	else
+		icon_state = "olivawcivil_empty"
+
