@@ -188,6 +188,10 @@ datum/preferences
 		var/g = "_m"
 		if(gender == FEMALE)	g = "_f"
 
+		var/datum/body_build/body = get_body_build(gender, body_build)
+
+
+
 		var/icon/icobase
 		var/datum/species/current_species = all_species[species]
 

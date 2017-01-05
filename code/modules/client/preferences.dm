@@ -28,7 +28,6 @@ datum/preferences
 	var/be_random_name = 0				//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
 	var/body_build = "Default"			//character body build name
-	var/datum/body_build/body = null	//body_build object
 	var/age = 30						//age of character
 	var/spawnpoint = "Cryogenic Storage"//where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
@@ -119,7 +118,6 @@ datum/preferences
 /datum/preferences/New(client/C)
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
-	body = get_body_build(gender, body_build)
 	real_name = random_name(gender,species)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
