@@ -89,18 +89,25 @@ var/list/mechtoys = list(
 	name = "airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
 
-	New() //set the turf below the flaps to block air
-		var/turf/T = get_turf(loc)
-		if(T)
-			T.blocks_air = 1
+/obj/structure/plasticflaps/mining/New() //set the turf below the flaps to block air
+		update_turf_underneath(1)
 		..()
 
-	Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
-		var/turf/T = get_turf(loc)
-		if(T)
+/obj/structure/plasticflaps/mining/Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
+		update_turf_underneath(0)
+		..()
+
+/obj/structure/plasticflaps/mining/proc/update_turf_underneath(var/should_pass)
+	var/turf/T = get_turf(loc)
+	if(T)
+		if(should_pass)
+			T.blocks_air = 1
+		else
 			if(istype(T, /turf/simulated/floor))
 				T.blocks_air = 0
-		..()
+
+
+
 
 /*
 /obj/effect/marker/supplymarker
