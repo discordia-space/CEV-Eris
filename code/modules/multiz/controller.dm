@@ -1,5 +1,7 @@
 #ifdef USE_OPENSPACE
 
+//#define DEBUG_OPENSPACE
+
 #define LIST_FAST 1
 #define LIST_NORM 2
 #define LIST_SLOW 3
@@ -9,14 +11,13 @@ var/datum/controller/process/open_space/OS_controller = null
 /datum/controller/process/open_space
 	var/slow_time
 	var/normal_time
-	var/fast_time
 
 	var/list/levels
 	var/list/levels_by_name
 
 /datum/controller/process/open_space/setup()
 	name = "openspace"
-	schedule_interval = 10 // every 2 seconds
+	schedule_interval = 5 // every second
 	start_delay = 12
 
 	OS_controller = src
@@ -25,26 +26,38 @@ var/datum/controller/process/open_space/OS_controller = null
 
 	slow_time   = world.time + 3000
 	normal_time = world.time + 600
-	fast_time   = world.time + 10
+	for(var/level = 2 to 17)
+		if(HasBelow(level))
+			add_z_level(level)
 
 /datum/controller/process/open_space/proc/add_z_level(var/z)
+#ifdef DEBUG_OPENSPACE
+	world << "OPENSPACE: ADD [z] z lelel"
+	world.log << "OPENSPACE: ADD [z] z lelel"
+#endif
 	levels_by_name["[z]"] = new /datum/ospace_data(z)
 	levels += levels_by_name["[z]"]
 
 /datum/controller/process/open_space/doWork()
-	if (world.time > fast_time)
-		fast_time = world.time + 5
-		var/datum/ospace_data/current = null
-		for(var/i in levels)
-			current = i
-			current.calc(current.fast)
+#ifdef DEBUG_OPENSPACE
+	world << "Calc fast OS"
+#endif
+	var/datum/ospace_data/current = null
+	for(var/i in levels)
+		current = i
+		current.calc_fast()
+		SCHECK
 
 	if (world.time > normal_time)
+#ifdef DEBUG_OPENSPACE
+		world << "Calc normal OS"
+#endif
 		normal_time = world.time + 600
-		var/datum/ospace_data/current = null
 		for(var/i in levels)
 			current = i
 			current.calc(current.normal)
+			SCHECK
+
 
 /datum/controller/process/open_space/proc/add_turf(var/turf/T)
 	var/datum/ospace_data/OD = levels["[T.z]"]
@@ -53,15 +66,20 @@ var/datum/controller/process/open_space/OS_controller = null
 /turf
 	var/list/z_overlays = list()
 
-/turf/New()
+/turf/Entered(atom/movable/Obj)
+	. = ..()
+	OS_controller.add_turf(src)
+
+/turf/simulated/open/New()
 	..()
 	if(ticker)
 		OS_controller.add_turf(src)
 
-atom/movable/Move() //Hackish
+/*
+/atom/movable/Move() //Hackish
 	. = ..()
 	OS_controller.add_turf(get_turf(src))
-
+*/
 
 
 /datum/ospace_data
@@ -74,7 +92,7 @@ atom/movable/Move() //Hackish
 
 /datum/ospace_data/New(var/new_level)
 	z = new_level
-	for (var/turf/T in world)
+	for (var/turf/simulated/open/T in world)
 		if (T.z == z)
 			fast += T
 	spawn(5)
@@ -82,25 +100,34 @@ atom/movable/Move() //Hackish
 		down = OS_controller.levels["[z-1]"]
 
 /datum/ospace_data/proc/add(var/list/L, var/I, var/transfer)
-
-	var/turf/T = null
 	for(var/elem in L)
-		T = elem
-		slow   -= T
-		normal -= T
-		fast   -= T
+		slow   -= elem
+		normal -= elem
+		fast   -= elem
 
 		switch (I)
-			if(LIST_SLOW) slow   += T
-			if(LIST_NORM) normal += T
-			if(LIST_FAST) fast   += T
+			if(LIST_SLOW) slow   += elem
+			if(LIST_NORM) normal += elem
+			if(LIST_FAST) fast   += elem
 
 		if(transfer > 0)
 			if(up)
-				up.add(list(GetAbove(T)), I, transfer-1)
+				up.add(list(GetAbove(elem)),   I, transfer-1)
 			if(down)
-				down.add(list(GetBelow(T)), I, transfer-1)
+				down.add(list(GetBelow(elem)), I, transfer-1)
 	return
+
+/datum/ospace_data/proc/calc_fast()
+#ifdef DEBUG_OPENSPACE
+	world << "Calc [z] fast. total: [fast.len] turfs."
+#endif
+	calc(fast)
+
+/datum/ospace_data/proc/calc_normal()
+#ifdef DEBUG_OPENSPACE
+	world << "Calc [z] normal. total: [normal.len] turfs."
+#endif
+	calc(normal)
 
 /datum/ospace_data/proc/calc(var/list/L)
 	var/list/slowholder = list()
@@ -111,6 +138,7 @@ atom/movable/Move() //Hackish
 
 	var/turf/T = null
 	for(var/elem in L)
+		L -= elem
 		T = elem
 		new_list = 0
 
@@ -152,7 +180,8 @@ atom/movable/Move() //Hackish
 					// ingore mobs that have any form of invisibility
 					if(m.invisibility) continue
 					// only add this tile to fastprocessing if there is a living mob, not a dead one
-					if(istype(m, /mob/living)) new_list = LIST_FAST
+					if(istype(m, /mob/living))
+						new_list = LIST_FAST
 					var/image/temp2 = image(m, dir=m.dir, layer = TURF_LAYER+0.05*m.layer)
 					temp2.color = m.color//rgb(127,127,127)
 					temp2.overlays += m.overlays
@@ -168,21 +197,24 @@ atom/movable/Move() //Hackish
 				T.overlays   += image('icons/turf/floors.dmi', "black_open", TURF_LAYER+0.3)
 				T.z_overlays += image('icons/turf/floors.dmi', "black_open", TURF_LAYER+0.3)
 
-		switch(new_list)
-			if(LIST_SLOW)
-				slowholder += T
-			if(LIST_NORM)
-				normalholder += T
-			if(LIST_FAST)
-				fastholder += T
-				for(var/d in cardinal)
-					var/turf/mT = get_step(T,d)
-					if(!(mT in fastholder))
-						fastholder += mT
-					for(var/f in cardinal)
-						var/turf/nT = get_step(mT,f)
-						if(!(nT in fastholder))
-							fastholder += nT
+			switch(new_list)
+				if(LIST_SLOW)
+					slowholder += T
+				if(LIST_NORM)
+					normalholder += T
+				if(LIST_FAST)
+					fastholder += T
+					for(var/d in cardinal)
+						var/turf/mT = get_step(T,d)
+						fastholder |= mT
+						for(var/f in cardinal)
+							fastholder |= get_step(mT,f)
+
+#ifdef DEBUG_OPENSPACE
+	world << "- Slowholder: [slowholder.len]"
+	world << "- Normholder: [normalholder.len]"
+	world << "- Fastholder: [fastholder.len]"
+#endif
 
 	add(slowholder,   LIST_SLOW, 0)
 	add(normalholder, LIST_NORM, 0)

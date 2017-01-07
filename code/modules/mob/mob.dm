@@ -672,8 +672,8 @@
 
 	if(.)
 		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
-			stat("Station Time", worldtime2text())
-			stat("Round Duration", round_duration())
+			stat("Station Time", stationtime2text())
+			stat("Round Duration", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))

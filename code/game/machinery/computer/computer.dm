@@ -14,11 +14,6 @@
 	var/icon_screen = "generic"
 	var/light_range_on = 2
 	var/light_power_on = 1
-	var/overlay_layer
-
-/obj/machinery/computer/New()
-	overlay_layer = layer
-	..()
 
 /obj/machinery/computer/initialize()
 	power_change()
@@ -65,18 +60,18 @@
 	if(stat & NOPOWER)
 		set_light(0)
 		if(icon_keyboard)
-			overlays += image(icon,"[icon_keyboard]_off", overlay_layer)
+			overlays += image(icon,"[icon_keyboard]_off")
 		return
 	else
 		set_light(light_range_on, light_power_on)
 
 	if(stat & BROKEN)
-		overlays += image(icon,"[icon_state]_broken", overlay_layer)
+		overlays += image(icon,"[icon_state]_broken")
 	else
-		overlays += image(icon,icon_screen, overlay_layer)
+		overlays += image(icon,icon_screen)
 
 	if(icon_keyboard)
-		overlays += image(icon, icon_keyboard, overlay_layer)
+		overlays += image(icon, icon_keyboard)
 
 /obj/machinery/computer/power_change()
 	..()

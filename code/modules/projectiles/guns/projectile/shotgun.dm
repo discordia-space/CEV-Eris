@@ -122,7 +122,7 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator
+/obj/item/weapon/gun/projectile/shotgun/regulator
 	name = "NTM SG \"Regulator 3000\""
 	desc = "A true classic."
 	icon_state = "PeaceWalker"
@@ -147,7 +147,7 @@
 		list(mode_name="fire both barrels at once", burst=2),
 		)
 
-/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/proc/pump(mob/M as mob)
+/obj/item/weapon/gun/projectile/shotgun/regulator/proc/pump(mob/M as mob)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	if(chambered)
 		if(!chambered.BB)
@@ -162,12 +162,12 @@
 				reload = 0
 	update_icon()
 
-/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/consume_next_projectile()
+/obj/item/weapon/gun/projectile/shotgun/regulator/consume_next_projectile()
 	if (chambered)
 		return chambered.BB
 	return null
 
-/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/handle_post_fire()
+/obj/item/weapon/gun/projectile/shotgun/regulator/handle_post_fire()
 	..()
 	if(chambered)
 		chambered.loc = get_turf(src)//Eject casing
@@ -179,14 +179,14 @@
 				chambered = AC
 	reload = 1
 
-/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/unload_ammo(user, allow_dump)
+/obj/item/weapon/gun/projectile/shotgun/regulator/unload_ammo(user, allow_dump)
 	if(chambered)
 		chambered.loc = get_turf(src)//Eject casing
 		chambered = null
 		reload = 1
 	..(user, allow_dump=1)
 
-/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/attack_self(mob/user as mob)
+/obj/item/weapon/gun/projectile/shotgun/regulator/attack_self(mob/user as mob)
 	if(reload == 1)
 		pump(user)
 	else
@@ -195,7 +195,7 @@
 		else
 			unload_ammo(user)
 
-/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/proc/update_charge()
+/obj/item/weapon/gun/projectile/shotgun/regulator/proc/update_charge()
 	var/ratio = (loaded.len + (chambered? 1 : 0)) / max_shells
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
@@ -203,6 +203,6 @@
 	overlays += "[ratio]_shotgun"
 
 
-/obj/item/weapon/gun/projectile/shotgun/ironhammer/regulator/update_icon()
+/obj/item/weapon/gun/projectile/shotgun/regulator/update_icon()
 	overlays.Cut()
 	update_charge()

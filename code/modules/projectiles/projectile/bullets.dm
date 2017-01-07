@@ -241,21 +241,44 @@
 
 /* Ironhammer stuff */
 
-/obj/item/projectile/bullet/ironhammer/SMG_sol/rubber
+/obj/item/projectile/bullet/SMG_sol/rubber
 	damage = 7
 	agony = 20
 	embed = 0
 	sharp = 0
 
-/obj/item/projectile/bullet/ironhammer/SMG_sol/brute
+/obj/item/projectile/bullet/SMG_sol/brute
 	damage = 20
 	sharp = 0
 
-/obj/item/projectile/bullet/ironhammer/cl38/rubber
+/obj/item/projectile/bullet/cl44/rubber
 	damage = 10
 	agony = 80
 	embed = 0
 	sharp = 0
 
-/obj/item/projectile/bullet/ironhammer/cl38/brute
+/obj/item/projectile/bullet/cl44/brute
 	damage = 40
+
+/obj/item/projectile/bullet/cl38/brute
+	damage = 30
+	sharp = 0
+
+/obj/item/projectile/bullet/cl38/rubber
+	damage = 10
+	agony = 45
+	embed = 0
+	sharp = 0
+
+//gun vendors stuff
+
+/obj/item/projectile/bullet/cl32/brute
+	damage = 20
+	sharp = 0
+
+/obj/item/projectile/bullet/cl32/rubber
+	damage = 6
+	agony = 30
+	embed = 0
+	sharp = 0
+

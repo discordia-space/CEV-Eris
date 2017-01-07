@@ -82,12 +82,13 @@
 
 		var/dir_sum = 0
 
+		var/turf/T
 		for (var/direction in cardinal)
-			if(locate(/obj/structure/lattice, get_step(src, direction)))
+			T = get_step(src, direction)
+			if(locate(/obj/structure/lattice, T) || locate(/obj/structure/catwalk, T))
 				dir_sum += direction
-			else
-				if(!(istype(get_step(src, direction), /turf/space)))
-					dir_sum += direction
+			else if(!istype(T, /turf/space) && !istype(T, /turf/simulated/open))
+				dir_sum += direction
 
 		icon_state = "lattice[dir_sum]"
 		return

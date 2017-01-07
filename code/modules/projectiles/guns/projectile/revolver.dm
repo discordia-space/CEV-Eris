@@ -103,24 +103,24 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/projectile/revolver/ironhammer/consul
-	name = "FS REV .38 \"Consul\""
-	desc = "FS REV .38 \"Consul\" is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .38 ammo."
+/obj/item/weapon/gun/projectile/revolver/consul
+	name = "FS REV .44 \"Consul\""
+	desc = "FS REV .44 \"Consul\" is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .44 ammo."
 	icon_state = "inspector"
 	item_state = "revolver"
-	caliber = ".38"
+	caliber = ".44"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 6
-	ammo_type = /obj/item/ammo_casing/ironhammer/cl38/rubber
+	ammo_type = /obj/item/ammo_casing/cl44/rubber
 
-/obj/item/weapon/gun/projectile/revolver/ironhammer/consul/proc/update_charge()
+/obj/item/weapon/gun/projectile/revolver/consul/proc/update_charge()
 	if(loaded.len==0)
 		overlays += "inspector_off"
 	else
 		overlays += "inspector_on"
 
 
-/obj/item/weapon/gun/projectile/revolver/ironhammer/consul/update_icon()
+/obj/item/weapon/gun/projectile/revolver/consul/update_icon()
 	overlays.Cut()
 	update_charge()

@@ -1,4 +1,4 @@
-/*
+ /*
 	Screen objects
 	Todo: improve/re-implement
 
@@ -362,9 +362,9 @@
 
 /obj/screen/inventory/hand/update_icon()
 	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
-		src.icon_state = "act_hand"
+		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
-		src.icon_state = "hand"
+		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------
@@ -820,7 +820,7 @@
 
 /obj/screen/intent/Click()
 	parentmob.a_intent_change("right")
-	update_icon()
+//	update_icon()//update in a_intent_change, because macro
 
 /obj/screen/intent/update_icon()
 	switch (parentmob.a_intent)
@@ -836,11 +836,11 @@
 /obj/screen/fastintent
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-
-/obj/screen/fastintent/Click()
+//update in a_intent_change, because macro
+/*/obj/screen/fastintent/Click()
 	if (parentmob.HUDneed.Find("intent"))
 		var/obj/screen/intent/I = parentmob.HUDneed["intent"]
-		I.update_icon()
+		I.update_icon()*/
 
 
 /obj/screen/fastintent/help
@@ -848,28 +848,28 @@
 
 /obj/screen/fastintent/help/Click()
 	parentmob.a_intent_change(I_HELP)
-	..()
+//	..()
 
 /obj/screen/fastintent/harm
 	icon_state = "intent_harm"
 
 /obj/screen/fastintent/harm/Click()
 	parentmob.a_intent_change(I_HURT)
-	..()
+//	..()
 
 /obj/screen/fastintent/grab
 	icon_state = "intent_grab"
 
 /obj/screen/fastintent/grab/Click()
 	parentmob.a_intent_change(I_GRAB)
-	..()
+//	..()
 
 /obj/screen/fastintent/disarm
 	icon_state = "intent_disarm"
 
 /obj/screen/fastintent/disarm/Click()
 	parentmob.a_intent_change(I_DISARM)
-	..()
+//	..()
 
 /obj/screen/drugoverlay
 	icon = 'icons/mob/screen1_full.dmi'

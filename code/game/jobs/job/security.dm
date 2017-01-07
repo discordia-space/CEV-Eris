@@ -31,10 +31,10 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	belt = /obj/item/weapon/gun/projectile/ironhammer/lamia
+	belt = /obj/item/weapon/gun/projectile/lamia
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/ironhammer/mg/cl38/rubber,\
-		/obj/item/ammo_magazine/ironhammer/mg/cl38/rubber,\
+		/obj/item/ammo_magazine/mg/cl44/rubber,\
+		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/flashlight/seclite
 	)
@@ -71,10 +71,10 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	belt = /obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sol
+	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/ironhammer/SMG_sol/rubber,\
-		/obj/item/ammo_magazine/ironhammer/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/flashlight/seclite
@@ -112,11 +112,11 @@
 	hat = /obj/item/clothing/head/det
 	suit = /obj/item/clothing/suit/storage/insp_trench
 	hand = /obj/item/weapon/storage/briefcase/crimekit
-	belt = /obj/item/weapon/gun/projectile/revolver/ironhammer/consul
+	belt = /obj/item/weapon/gun/projectile/revolver/consul
 
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/ironhammer/sl/cl38/rubber,\
-		/obj/item/ammo_magazine/ironhammer/sl/cl38/rubber,\
+		/obj/item/ammo_magazine/sl/cl44/rubber,\
+		/obj/item/ammo_magazine/sl/cl44/rubber,\
 		/obj/item/weapon/flame/lighter/zippo,\
 		/obj/item/weapon/storage/box/evidence,\
 	)
@@ -146,7 +146,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
 	hand = /obj/item/weapon/storage/briefcase/crimekit
-	belt = /obj/item/weapon/gun/energy/gun/ironhammer/martin
+	belt = /obj/item/weapon/gun/energy/gun/martin
 
 	put_in_backpack = list(\
 		/obj/item/weapon/storage/box/evidence,\
@@ -176,13 +176,13 @@
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/black
-	belt = /obj/item/weapon/gun/projectile/automatic/ironhammer/SMG_sol
+	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
 
 	put_in_backpack = list(\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/ammo_magazine/ironhammer/SMG_sol/rubber,\
-		/obj/item/ammo_magazine/ironhammer/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/device/flashlight/seclite
 	)
