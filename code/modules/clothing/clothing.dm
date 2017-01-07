@@ -437,10 +437,7 @@ BLIND     // can't see anything
 		if(3)
 			user << "Its vital tracker and tracking beacon appear to be enabled."
 
-/obj/item/clothing/under/proc/set_sensors(mob/usr as mob)
-	var/mob/M = usr
-	if (isobserver(M)) return
-	if (usr.stat || usr.restrained()) return
+/obj/item/clothing/under/proc/set_sensors(var/mob/M)
 	if(has_sensor >= 2)
 		usr << "The controls are locked."
 		return 0
@@ -448,12 +445,10 @@ BLIND     // can't see anything
 		usr << "This suit does not have any sensors."
 		return 0
 
-	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
-	if(get_dist(usr, src) > 1)
-		usr << "You have moved too far away."
-		return
-	sensor_mode = modes.Find(switchMode) - 1
+	if(sensor_mode == 3)
+		sensor_mode = 0
+	else
+		sensor_mode++
 
 	if (src.loc == usr)
 		switch(sensor_mode)
@@ -480,16 +475,11 @@ BLIND     // can't see anything
 				for(var/mob/V in viewers(usr, 1))
 					V.show_message("[usr] sets [src.loc]'s sensors to maximum.", 1)
 
-/obj/item/clothing/under/verb/toggle()
-	set name = "Toggle Suit Sensors"
-	set category = "Object"
-	set src in usr
-	set_sensors(usr)
-	..()
-
-
-
 
 /obj/item/clothing/under/rank/New()
-	sensor_mode = pick(0,1,2,3)
+	sensor_mode = 3
 	..()
+
+/obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
+	if(istype(I, /obj/item/weapon/screwdriver) && istype(U, /mob/living/carbon/human))
+		set_sensors(U)
