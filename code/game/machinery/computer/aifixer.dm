@@ -134,8 +134,8 @@
 
 	if(occupant)
 		if(occupant.stat)
-			overlays += image('icons/obj/computer.dmi', "ai-fixer-404", overlay_layer)
+			overlays += image('icons/obj/computer.dmi', "ai-fixer-404")
 		else
-			overlays += image('icons/obj/computer.dmi', "ai-fixer-full", overlay_layer)
+			overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
 	else
-		overlays += image('icons/obj/computer.dmi', "ai-fixer-empty", overlay_layer)
+		overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")

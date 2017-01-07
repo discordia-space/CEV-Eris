@@ -33,8 +33,8 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	belt = /obj/item/weapon/gun/projectile/lamia
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/mg/cl38/rubber,\
-		/obj/item/ammo_magazine/mg/cl38/rubber,\
+		/obj/item/ammo_magazine/mg/cl44/rubber,\
+		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/flashlight/seclite
 	)
@@ -115,8 +115,8 @@
 	belt = /obj/item/weapon/gun/projectile/revolver/consul
 
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/sl/cl38/rubber,\
-		/obj/item/ammo_magazine/sl/cl38/rubber,\
+		/obj/item/ammo_magazine/sl/cl44/rubber,\
+		/obj/item/ammo_magazine/sl/cl44/rubber,\
 		/obj/item/weapon/flame/lighter/zippo,\
 		/obj/item/weapon/storage/box/evidence,\
 	)

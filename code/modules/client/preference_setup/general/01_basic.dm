@@ -14,6 +14,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["real_name"]				>> pref.real_name
 	S["name_is_always_random"]	>> pref.be_random_name
 	S["gender"]					>> pref.gender
+	S["body_build"]				>> pref.body_build
 	S["age"]					>> pref.age
 	S["spawnpoint"]				>> pref.spawnpoint
 	S["OOC_Notes"]				>> pref.metadata
@@ -22,6 +23,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	S["real_name"]				<< pref.real_name
 	S["name_is_always_random"]	<< pref.be_random_name
 	S["gender"]					<< pref.gender
+	S["body_build"]				<< pref.body_build
 	S["age"]					<< pref.age
 	S["spawnpoint"]				<< pref.spawnpoint
 	S["OOC_Notes"]				<< pref.metadata
@@ -30,6 +32,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	var/datum/species/S = all_species[pref.species ? pref.species : "Human"]
 	pref.age			= sanitize_integer(pref.age, S.min_age, S.max_age, initial(pref.age))
 	pref.gender 		= sanitize_inlist(pref.gender, valid_player_genders, pick(valid_player_genders))
+	pref.body_build 	= sanitize_inlist(pref.body_build, list("Slim", "Default", "Fat"), "Default")
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.gender
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
 	if(!pref.real_name)
@@ -76,7 +79,6 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	else if(href_list["body_build"])
 		pref.body_build = input("Body Shape", "Body") in list("Default", "Slim", "Fat")
-		pref.body = get_body_build(pref.gender, pref.body_build)
 		return TOPIC_REFRESH
 
 	else if(href_list["age"])
