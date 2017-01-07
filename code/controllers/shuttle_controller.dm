@@ -75,35 +75,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 	shuttles["Escape Pod 2"] = shuttle
 
-	shuttle = new/datum/shuttle/ferry/escape_pod()
-	shuttle.location = 0
-	shuttle.warmup_time = 0
-	shuttle.area_station = locate(/area/shuttle/escape_pod3/station)
-	shuttle.area_offsite = locate(/area/shuttle/escape_pod3/centcom)
-	shuttle.area_transition = locate(/area/shuttle/escape_pod3/transit)
-	shuttle.docking_controller_tag = "escape_pod_3"
-	shuttle.dock_target_station = "escape_pod_3_berth"
-	shuttle.dock_target_offsite = "escape_pod_3_recovery"
-	shuttle.transit_direction = EAST
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
-	process_shuttles += shuttle
-	shuttles["Escape Pod 3"] = shuttle
-
 	//There is no pod 4, apparently.
-
-	shuttle = new/datum/shuttle/ferry/escape_pod()
-	shuttle.location = 0
-	shuttle.warmup_time = 0
-	shuttle.area_station = locate(/area/shuttle/escape_pod5/station)
-	shuttle.area_offsite = locate(/area/shuttle/escape_pod5/centcom)
-	shuttle.area_transition = locate(/area/shuttle/escape_pod5/transit)
-	shuttle.docking_controller_tag = "escape_pod_5"
-	shuttle.dock_target_station = "escape_pod_5_berth"
-	shuttle.dock_target_offsite = "escape_pod_5_recovery"
-	shuttle.transit_direction = EAST //should this be WEST? I have no idea.
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
-	process_shuttles += shuttle
-	shuttles["Escape Pod 5"] = shuttle
 
 	//give the emergency shuttle controller it's shuttles
 	emergency_shuttle.shuttle = shuttles["Escape"]
@@ -127,45 +99,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	supply_controller.shuttle = shuttle
 
-	// Admin shuttles.
-	shuttle = new()
-	shuttle.location = 1
-	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/transport1/centcom)
-	shuttle.area_station = locate(/area/shuttle/transport1/station)
-	shuttle.docking_controller_tag = "centcom_shuttle"
-	shuttle.dock_target_station = "centcom_shuttle_dock_airlock"
-	shuttle.dock_target_offsite = "centcom_shuttle_bay"
-	shuttles["Centcom"] = shuttle
-	process_shuttles += shuttle
-
-	shuttle = new()
-	shuttle.location = 1
-	shuttle.warmup_time = 10	//want some warmup time so people can cancel.
-	shuttle.area_offsite = locate(/area/shuttle/administration/centcom)
-	shuttle.area_station = locate(/area/shuttle/administration/station)
-	shuttle.docking_controller_tag = "admin_shuttle"
-	shuttle.dock_target_station = "admin_shuttle_dock_airlock"
-	shuttle.dock_target_offsite = "admin_shuttle_bay"
-	shuttles["Administration"] = shuttle
-	process_shuttles += shuttle
-
-	shuttle = new()
-	shuttle.area_offsite = locate(/area/shuttle/alien/base)
-	shuttle.area_station = locate(/area/shuttle/alien/mine)
-	shuttles["Alien"] = shuttle
-	//process_shuttles += shuttle	//don't need to process this. It can only be moved using admin magic anyways.
-
 	// Public shuttles
-	shuttle = new()
-	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/constructionsite/site)
-	shuttle.area_station = locate(/area/shuttle/constructionsite/station)
-	shuttle.docking_controller_tag = "engineering_shuttle"
-	shuttle.dock_target_station = "engineering_dock_airlock"
-	shuttle.dock_target_offsite = "edock_airlock"
-	shuttles["Engineering"] = shuttle
-	process_shuttles += shuttle
 
 	shuttle = new()
 	shuttle.warmup_time = 10
