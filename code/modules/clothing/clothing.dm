@@ -483,3 +483,5 @@ BLIND     // can't see anything
 /obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
 	if(istype(I, /obj/item/weapon/screwdriver) && istype(U, /mob/living/carbon/human))
 		set_sensors(U)
+	else
+		return ..()
