@@ -753,6 +753,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					var/old_icon1 = T.icon
 					var/old_overlays = T.overlays.Copy()
 					var/old_underlays = T.underlays.Copy()
+					var/old_decals = T.decals
 
 					var/turf/X = B.ChangeTurf(T.type)
 					X.set_dir(old_dir1)
@@ -760,6 +761,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 					X.overlays = old_overlays
 					X.underlays = old_underlays
+					X.decals = old_decals
 
 					var/turf/simulated/ST = T
 					if(istype(ST) && ST.zone)

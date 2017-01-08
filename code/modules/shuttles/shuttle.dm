@@ -139,6 +139,7 @@
 
 	for(var/obj/structure/plasticflaps/mining/F in destination)
 		F.update_turf_underneath(1)	//костыли вы мои костылики
+
 	if(update_power)
 		makepowernets()
 	return
