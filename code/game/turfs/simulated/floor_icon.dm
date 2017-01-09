@@ -15,10 +15,15 @@ var/list/flooring_cache = list()
 		else if(flooring_override)
 			icon_state = flooring_override
 		else
-			icon_state = flooring.icon_base
-			if(flooring.has_base_range)
-				icon_state = "[icon_state][rand(0,flooring.has_base_range)]"
+			if(overrided_icon_state)
+				icon_state = overrided_icon_state
 				flooring_override = icon_state
+			else
+				icon_state = flooring.icon_base
+				if(flooring.has_base_range)
+					icon_state = "[icon_state][rand(0,flooring.has_base_range)]"
+					flooring_override = icon_state
+
 
 		// Apply edges, corners, and inner corners.
 		overlays.Cut()

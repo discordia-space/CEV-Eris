@@ -74,6 +74,11 @@
 	icon_state = "hullcenter0"
 	initial_flooring = /decl/flooring/hull
 
+/turf/simulated/floor/hull/New()
+	if(icon_state != "hullcenter0")
+		overrided_icon_state = icon_state
+	..()
+
 /turf/simulated/floor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
