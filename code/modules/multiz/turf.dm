@@ -26,7 +26,7 @@
 	if(!has_gravity(src))
 		return
 
-	if (locate(/obj/structure/catwalk) in src)
+	if(locate(/obj/structure/catwalk) in src)
 		return
 
 	// Prevent pipes from falling into the void... if there is a pipe to support it.
