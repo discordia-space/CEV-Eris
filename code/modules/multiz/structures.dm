@@ -115,7 +115,7 @@
 	name = "Stairs"
 	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
 	icon = 'icons/obj/stairs.dmi'
-	icon_state = "ramptop"
+	icon_state = "rampup"
 	layer = 2.4
 	density = 0
 	opacity = 0
@@ -125,7 +125,11 @@
 	CanPass(obj/mover, turf/source, height, airflow)
 		return airflow || !density
 
+/obj/structure/stairs/enter
+	icon_state = "ramptop"
+
 /obj/structure/stairs/enter/bottom
+	icon_state = "rampbottom"
 	istop = 0
 
 /obj/structure/stairs/active
@@ -147,6 +151,7 @@
 	usr.client.moving = 0
 
 /obj/structure/stairs/active/bottom
+	icon_state = "rampdark"
 	istop = 0
 	opacity = 1
 
