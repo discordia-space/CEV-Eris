@@ -15,6 +15,7 @@ env:
     - BYOND_MINOR="1366"
     matrix:
     - DM_MAPFILE="CEV_Eris-1"
+    - DM_BUILDFILE="baystation12.dme"
 
 cache:
   directories:
@@ -34,4 +35,4 @@ before_script:
 script:
   - (! grep 'step_[xy]' _maps/**/*.dmm)
   - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-  - bash dm.sh -M${DM_MAPFILE} baystation.dme
+  - bash dm.sh -M${DM_MAPFILE} {DM_BUILDFILE}
