@@ -4,7 +4,7 @@
 
 ## Что я тут делаю?
 
-Очевидно, ты хочешь пропихнуть свой охуенный кусок кода в репозиторий! [*(Хочешь напилить изменения карты? Сюда!)*](https://github.com/animusdev/green/blob/dev/CONTRIBUTING.md#%D0%AF-%D0%BF%D0%B8%D0%BB%D1%8E-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%87%D1%82%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D0%BA%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%BD%D0%BE%D1%87%D1%8C%D1%8E-%D0%BD%D0%B5-%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D0%B0-%D0%B2%D1%81%D1%8F-%D0%B3%D1%80%D0%B8%D0%BD%D0%BE%D0%B4%D0%B5%D0%B2%D1%82%D0%B8%D0%BC%D0%B0-%D0%B8-%D0%BD%D0%B5-%D0%B2%D1%8B%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0-%D0%BC%D0%B5%D0%BD%D1%8F)
+Очевидно, ты хочешь пропихнуть свой охуенный кусок кода в репозиторий! [*(Хочешь напилить изменения карты? Сюда!)*](https://github.com/Endless-Horizon/CEV-Eris/blob/dev/CONTRIBUTING.md#%D0%AF-%D0%BF%D0%B8%D0%BB%D1%8E-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%87%D1%82%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D0%BA%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%BD%D0%BE%D1%87%D1%8C%D1%8E-%D0%BD%D0%B5-%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D0%B0-%D0%B2%D1%81%D1%8F-%D0%B3%D1%80%D0%B8%D0%BD%D0%BE%D0%B4%D0%B5%D0%B2%D1%82%D0%B8%D0%BC%D0%B0-%D0%B8-%D0%BD%D0%B5-%D0%B2%D1%8B%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0-%D0%BC%D0%B5%D0%BD%D1%8F)
 Так вот. Для того, чтобы сделать это, тебе надо:
 
 1. Сделать себе форк;
@@ -14,7 +14,7 @@
 
 ## Делаем форк!
 
-Заходишь [сюда](https://github.com/animusdev/green) и жмешь вверху большую и красивую кнопочку Fork.
+Заходишь [сюда](https://github.com/Endless-Horizon/CEV-Eris) и жмешь вверху большую и красивую кнопочку Fork.
 Форк почти настроен, охуеть!
 
 ## Ставим гиты!
@@ -37,13 +37,13 @@ $ git config --global user.email "vasya@pupkins.org"
 ```bash
 $ git clone <вставь ссылочку>
 $ cd green
-$ git remote add upstream https://github.com/animusdev/green
+$ git remote add upstream https://github.com/Endless-Horizon/CEV-Eris
 ```
 Например:
 ```bash
-$ git clone https://github.com/vasyapupkin/green
+$ git clone https://github.com/vasyapupkin/CEV-Eris
 $ cd green
-$ git remote add upstream https://github.com/animusdev/green
+$ git remote add upstream https://github.com/Endless-Horizon/CEV-Eris
 ```
 Заебись. Твой гит настроен.
 
@@ -79,7 +79,7 @@ $ git push origin dev
 ## Пропихиваем говно в репозиторий
 
 Здесь всё куда проще. Открываешь страничку своего форка и жмешь кнопочку `New Pull Request`. Нажал?
-Выбирай `base-fork`'ом `animusdev/green`, а `head-fork`'ом - свой форк.
+Выбирай `base-fork`'ом `Endless-Horizon/CEV-Eris`, а `head-fork`'ом - свой форк.
 Вкратце опиши, какие фичи *(и баги)* были добавлены.
 Создавай ПР.
 
