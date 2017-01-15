@@ -4,7 +4,7 @@
 
 ## Что я тут делаю?
 
-Очевидно, ты хочешь пропихнуть свой охуенный кусок кода в репозиторий! [*(Хочешь напилить изменения карты? Сюда!)*](https://github.com/Endless-Horizon/CEV-Eris/blob/dev/CONTRIBUTING.md#%D0%AF-%D0%BF%D0%B8%D0%BB%D1%8E-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%87%D1%82%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D0%BA%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%BD%D0%BE%D1%87%D1%8C%D1%8E-%D0%BD%D0%B5-%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D0%B0-%D0%B2%D1%81%D1%8F-%D0%B3%D1%80%D0%B8%D0%BD%D0%BE%D0%B4%D0%B5%D0%B2%D1%82%D0%B8%D0%BC%D0%B0-%D0%B8-%D0%BD%D0%B5-%D0%B2%D1%8B%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0-%D0%BC%D0%B5%D0%BD%D1%8F)
+Очевидно, ты хочешь пропихнуть свой охуенный кусок кода в репозиторий! [*(Хочешь напилить изменения карты? Сюда!)*](https://github.com/Endless-Horizon/CEV-Eris/blob/master/CONTRIBUTING.md#%D0%AF-%D0%BF%D0%B8%D0%BB%D1%8E-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%87%D1%82%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D0%BA%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%BD%D0%BE%D1%87%D1%8C%D1%8E-%D0%BD%D0%B5-%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D0%B0-%D0%B2%D1%81%D1%8F-%D0%B3%D1%80%D0%B8%D0%BD%D0%BE%D0%B4%D0%B5%D0%B2%D1%82%D0%B8%D0%BC%D0%B0-%D0%B8-%D0%BD%D0%B5-%D0%B2%D1%8B%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0-%D0%BC%D0%B5%D0%BD%D1%8F)
 Так вот. Для того, чтобы сделать это, тебе надо:
 
 1. Сделать себе форк;
@@ -36,13 +36,13 @@ $ git config --global user.email "vasya@pupkins.org"
 Возвращайся к `Git Bash`.
 ```bash
 $ git clone <вставь ссылочку>
-$ cd green
+$ cd CEV-Eris
 $ git remote add upstream https://github.com/Endless-Horizon/CEV-Eris
 ```
 Например:
 ```bash
 $ git clone https://github.com/vasyapupkin/CEV-Eris
-$ cd green
+$ cd CEV-Eris
 $ git remote add upstream https://github.com/Endless-Horizon/CEV-Eris
 ```
 Заебись. Твой гит настроен.
@@ -86,7 +86,7 @@ $ git push origin dev
 Поздравляю, ты успешен! Жди мержа. Или комментариев с гайдлайном по изменению кода в лучшую сторону.
 Для более полного погружения в гит тебе [сюда](http://try.github.io).
 
-## Я пилю изменения карты, что мне делать, чтобы ко мне ночью не пришла вся гринодевтима и не выебала меня?
+## Я пилю изменения карты, что мне делать, чтобы ко мне ночью не пришла вся Эрисодевтима и не выебала меня?
 
 Используй мапмержер. Перед правкой карты запусти из репы `mapmerge/Prepare Maps.bat`. Оно подготовит карты.
 Внеси изменения и запусти `mapmerge/Run Map Merge - DMM.bat`. Выбери номера измененных карт. Молодец.
