@@ -47,38 +47,21 @@
 	Log(message, message_title)
 
 datum/announcement/proc/Message(message as text, message_title as text)
-	for(var/mob/M in player_list)
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
-			M << "<h2 class='alert'>[title]</h2>"
-			M << "<span class='alert'>[message]</span>"
-			if (announcer)
-				M << "<span class='alert'> -[rhtml_encode(announcer)]</span>"
+	global_announcer.autosay("<span class='warning'>[title]:</span> [message]", announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/minor/Message(message as text, message_title as text)
-	world << "<b>[message]</b>"
+	global_announcer.autosay(message, ANNOUNSER_NAME)
 
 datum/announcement/priority/Message(message as text, message_title as text)
-	world << "<h1 class='alert'>[message_title]</h1>"
-	world << "<span class='alert'>[message]</span>"
-	if(announcer)
-		world << "<span class='alert'> -[rhtml_encode(announcer)]</span>"
-	world << "<br>"
+	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/priority/command/Message(message as text, message_title as text)
-	var/command
-	command += "<h1 class='alert'>[command_name()] Update</h1>"
-	if (message_title)
-		command += "<br><h2 class='alert'>[message_title]</h2>"
-
-	command += "<br><span class='alert'>[message]</span><br>"
-	command += "<br>"
-	for(var/mob/M in player_list)
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
-			M << command
+	global_announcer.autosay("<span class='warning'>[command_name()] [message_title]:</span> [message]", ANNOUNSER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
 	world << "<font size=4 color='red'>[message_title]</font>"
 	world << "<font color='red'>[message]</font>"
+	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNSER_NAME)
 
 datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if(!newscast)
@@ -131,4 +114,4 @@ datum/announcement/proc/Log(message as text, message_title as text)
 		AnnounceArrivalSimple(character.real_name, rank, join_message)
 
 /proc/AnnounceArrivalSimple(var/name, var/rank = "visitor", var/join_message = "has arrived on the station")
-	global_announcer.autosay("[name], [rank], [join_message].", "Arrivals Announcement Computer")
+	global_announcer.autosay("[name], [rank], [join_message].", ANNOUNSER_NAME)

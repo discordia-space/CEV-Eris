@@ -202,3 +202,6 @@
 //HUD element hidings flags
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
+
+// Default name for announsment system
+#define ANNOUNSER_NAME
