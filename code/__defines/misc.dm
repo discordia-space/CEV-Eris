@@ -204,4 +204,4 @@
 #define TOGGLE_INVENTORY_FLAG 2 //0010
 
 // Default name for announsment system
-#define ANNOUNSER_NAME
+#define ANNOUNSER_NAME "CEV Eris System Announcer"
