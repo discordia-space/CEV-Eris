@@ -13,9 +13,9 @@ env:
     global:
     - BYOND_MAJOR="511"
     - BYOND_MINOR="1366"
+    - DM_BUILDFILE="baystation12.dme"
     matrix:
     - DM_MAPFILE="CEV_Eris-1"
-    - DM_BUILDFILE="baystation12.dme"
 
 cache:
   directories:
