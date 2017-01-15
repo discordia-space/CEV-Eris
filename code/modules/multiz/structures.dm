@@ -53,6 +53,9 @@
 	CanPass(obj/mover, turf/source, height, airflow)
 		return airflow || !density
 
+
+//old shitty stairs
+/*
 /obj/structure/stairs
 	name = "Stairs"
 	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
@@ -104,3 +107,56 @@
 	west
 		dir = WEST
 		bound_width = 64
+
+	*/
+
+//Spizjeno by guap and then by bo20202
+/obj/structure/stairs
+	name = "Stairs"
+	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
+	icon = 'icons/obj/stairs.dmi'
+	icon_state = "rampup"
+	layer = 2.4
+	density = 0
+	opacity = 0
+	anchored = 1
+	var/istop = 1
+
+	CanPass(obj/mover, turf/source, height, airflow)
+		return airflow || !density
+
+/obj/structure/stairs/enter
+	icon_state = "ramptop"
+
+/obj/structure/stairs/enter/bottom
+	icon_state = "rampbottom"
+	istop = 0
+
+/obj/structure/stairs/active
+	density = 1
+
+/obj/structure/stairs/active/Bumped(var/atom/movable/M)
+	if(istype(src, /obj/structure/stairs/active/bottom) && !locate(/obj/structure/stairs/enter) in M.loc)
+		return //If on bottom, only let them go up stairs if they've moved to the entry tile first.
+	//If it's the top, they can fall down just fine.
+	if(ismob(M) && M:client)
+		M:client.moving = 1
+	M.Move(locate(src.x, src.y, targetZ()))
+	if (ismob(M) && M:client)
+		M:client.moving = 0
+
+/obj/structure/stairs/active/Click()
+	usr.client.moving = 1
+	usr.Move(locate(src.x, src.y, targetZ()))
+	usr.client.moving = 0
+
+/obj/structure/stairs/active/bottom
+	icon_state = "rampdark"
+	istop = 0
+	opacity = 1
+
+/obj/structure/attack_tk(mob/user as mob)
+	return
+
+/obj/structure/stairs/proc/targetZ()
+	return src.z + (istop ? -1 : 1)
