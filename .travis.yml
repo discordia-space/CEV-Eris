@@ -35,4 +35,4 @@ before_script:
 script:
   - (! grep 'step_[xy]' _maps/**/*.dmm)
   - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-  - bash dm.sh -M${DM_MAPFILE} {DM_BUILDFILE}
+  - bash dm.sh -M${DM_MAPFILE} ${DM_BUILDFILE}
