@@ -59,8 +59,6 @@ datum/announcement/priority/command/Message(message as text, message_title as te
 	global_announcer.autosay("<span class='warning'>[command_name()] [message_title]:</span> [message]", ANNOUNSER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
-	world << "<font size=4 color='red'>[message_title]</font>"
-	world << "<font color='red'>[message]</font>"
 	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNSER_NAME)
 
 datum/announcement/proc/NewsCast(message as text, message_title as text)
