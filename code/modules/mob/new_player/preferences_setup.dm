@@ -230,7 +230,7 @@ datum/preferences
 			else
 				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 
-		var/icon/eyes = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
+		var/icon/eyes = new/icon('icons/mob/human_face.dmi', "eyes[body.index]")
 		if ((current_species && (current_species.appearance_flags & HAS_EYE_COLOR)))
 			eyes.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
