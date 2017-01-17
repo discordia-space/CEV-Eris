@@ -3,6 +3,7 @@ proc/sql_poll_population()
 		return
 	var/admincount = admins.len
 	var/playercount = 0
+	var/server = "[world.internet_address]:[world.port]"
 	for(var/mob/M in player_list)
 		if(M.client)
 			playercount += 1
@@ -11,7 +12,7 @@ proc/sql_poll_population()
 		log_game("SQL ERROR during population polling. Failed to connect.")
 	else
 		var/sqltime = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
-		var/DBQuery/query = dbcon_old.NewQuery("INSERT INTO `tgstation`.`population` (`playercount`, `admincount`, `time`) VALUES ([playercount], [admincount], '[sqltime]')")
+		var/DBQuery/query = dbcon_old.NewQuery("INSERT INTO population (`player_count`, `admin_count`, `time`, `server`) VALUES ([playercount], [admincount], '[sqltime]', '[server]')")
 		if(!query.Execute())
 			var/err = query.ErrorMsg()
 			log_game("SQL ERROR during population polling. Error : \[[err]\]\n")
@@ -25,6 +26,7 @@ proc/sql_report_round_end()
 	if(!sqllogging)
 		return
 
+// TODO: implement actual usage of this function, rework related table schema
 proc/sql_report_death(var/mob/living/carbon/human/H)
 	if(!sqllogging)
 		return
@@ -58,7 +60,7 @@ proc/sql_report_death(var/mob/living/carbon/human/H)
 			var/err = query.ErrorMsg()
 			log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
 
-
+// TODO: implement actual usage of this function, rework related table schema
 proc/sql_report_cyborg_death(var/mob/living/silicon/robot/H)
 	if(!sqllogging)
 		return
@@ -98,4 +100,4 @@ proc/statistic_cycle()
 		return
 	while(1)
 		sql_poll_population()
-		sleep(6000)
+		sleep(1800)
