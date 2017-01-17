@@ -118,6 +118,7 @@
 		icon_state = "medibots"
 	else
 		icon_state = "medibot[on]"
+	..()
 
 /mob/living/bot/medbot/attack_hand(var/mob/user)
 	var/dat

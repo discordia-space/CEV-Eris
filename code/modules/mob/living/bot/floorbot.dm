@@ -24,6 +24,7 @@
 		icon_state = "floorbot[on]"
 	else
 		icon_state = "floorbot[on]e"
+	..()
 
 /mob/living/bot/floorbot/attack_hand(var/mob/user)
 	user.set_machine(src)

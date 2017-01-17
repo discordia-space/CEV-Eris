@@ -10,3 +10,4 @@
 	overlays.Cut()
 	if(hat)
 		overlays |= get_hat_icon(hat, 0, -8)
+	..()

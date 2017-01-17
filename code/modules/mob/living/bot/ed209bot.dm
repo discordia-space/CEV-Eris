@@ -24,6 +24,7 @@
 		icon_state = "ed209-c"
 	else
 		icon_state = "ed209[on]"
+	..()
 
 /mob/living/bot/secbot/ed209/explode()
 	visible_message("<span class='warning'>[src] blows apart!</span>")

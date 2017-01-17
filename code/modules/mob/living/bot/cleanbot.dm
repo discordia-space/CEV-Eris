@@ -189,6 +189,7 @@
 		icon_state = "cleanbot-c"
 	else
 		icon_state = "cleanbot[on]"
+	..()
 
 /mob/living/bot/cleanbot/turn_off()
 	..()

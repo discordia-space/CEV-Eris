@@ -164,6 +164,7 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Scale(size_multiplier)
 		M.Translate(0, 16*(size_multiplier-1))
 		src.transform = M
+	..()
 
 var/global/list/damage_icon_parts = list()
 
