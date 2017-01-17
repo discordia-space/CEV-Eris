@@ -157,7 +157,7 @@ var/datum/controller/process/open_space/OS_controller = null
 					o_img += temp2
 				T.overlays   += o_img
 
-				T.overlays   += image('icons/turf/floors.dmi', "black_open", MOB_LAYER)
+				T.overlays   += image('icons/turf/floors.dmi', "black_open", layer = MOB_LAYER + 1)
 
 			switch(new_list)
 				if(LIST_SLOW)

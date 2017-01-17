@@ -1,5 +1,6 @@
 /atom
 	layer = 2
+	plane = 1
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints

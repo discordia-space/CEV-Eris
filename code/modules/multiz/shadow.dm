@@ -7,20 +7,32 @@
 	name = "shadow"
 	desc = "Z-level shadow"
 	layer = OPENSPACE_LAYER + 0.5
+	var/mob/owner = null
 
 /mob/shadow/New(var/mob/L)
 	if(!istype(L))
 		qdel(src)
 		return
-	..()
+	//..()
+	owner = L
 	sync_icon(L)
 
+/mob/Destroy()
+	qdel(shadow)
+	shadow = null
+	. = ..()
+
+/mob/shadow/examine(mob/user, distance, infix, suffix)
+	return owner.examine(user, distance, infix, suffix)
+
 /mob/shadow/proc/sync_icon(var/mob/M)
+	name = M.name
 	icon = M.icon
 	icon_state = M.icon_state
 	color = M.color
 	overlays = M.overlays
 	transform = M.transform
+	dir = M.dir
 	if(shadow)
 		shadow.sync_icon(src)
 
