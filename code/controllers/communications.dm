@@ -108,7 +108,7 @@ var/const/ERT_FREQ	= 1345
 var/const/AI_FREQ	= 1343
 var/const/DTH_FREQ	= 1341
 var/const/SYND_FREQ = 1213
-var/const/ENT_FREQ	= 1461 //entertainment frequency. This is not a diona exclusive frequency.
+var/const/ENT_FREQ	= 1461 //entertainment frequency.
 
 // department channels
 var/const/PUB_FREQ = 1459
