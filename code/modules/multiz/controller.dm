@@ -152,6 +152,7 @@ var/datum/controller/process/open_space/OS_controller = null
 					if(o.invisibility/* || o.pixel_x || o.pixel_y*/) continue
 					new_list = LIST_NORM
 					var/image/temp2 = image(o, dir=o.dir, layer = o.layer)
+					temp2.plane = T.plane
 					temp2.color = o.color//rgb(127,127,127)
 					temp2.overlays += o.overlays
 					o_img += temp2

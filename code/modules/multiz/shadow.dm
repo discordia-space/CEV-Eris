@@ -52,8 +52,8 @@
 			if(!M.shadow)
 				M.shadow = PoolOrNew(/mob/shadow, M)
 			M.shadow.forceMove(OS)
-			OS = GetAbove(M)
 			M = M.shadow
+			OS = GetAbove(M)
 
 	if(M.shadow)
 		qdel(M.shadow)
