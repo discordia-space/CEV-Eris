@@ -115,7 +115,7 @@
 
 	uniform = /obj/item/clothing/under/rank/roboticist
 	pda = /obj/item/device/pda/roboticist
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	ear = /obj/item/device/radio/headset/headset_sci
 	suit = /obj/item/clothing/suit/storage/robotech_jacket
 	hand = /obj/item/weapon/storage/toolbox/mechanical

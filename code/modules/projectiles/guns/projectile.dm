@@ -17,10 +17,10 @@
 	var/obj/item/ammo_casing/chambered = null
 
 	//gunporn stuff
-	var/unload_sound 	= 'sound/weapons/guns/interact/pistol_magout.wav'
-	var/reload_sound 	= 'sound/weapons/guns/interact/pistol_magin.wav'
-	var/cocked_sound 	= 'sound/weapons/guns/interact/pistol_cock.wav'
-	var/bulletinsert_sound 	= 'sound/weapons/guns/interact/bullet_insert.wav'
+	var/unload_sound 	= 'sound/weapons/guns/interact/pistol_magout.ogg'
+	var/reload_sound 	= 'sound/weapons/guns/interact/pistol_magin.ogg'
+	var/cocked_sound 	= 'sound/weapons/guns/interact/pistol_cock.ogg'
+	var/bulletinsert_sound 	= 'sound/weapons/guns/interact/bullet_insert.ogg'
 
 	//For SINGLE_CASING or SPEEDLOADER guns
 	var/max_shells = 0			//the number of casings that will fit inside

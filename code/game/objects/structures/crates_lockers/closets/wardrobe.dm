@@ -33,9 +33,9 @@
 	new /obj/item/clothing/under/color/pink(src)
 	new /obj/item/clothing/under/color/pink(src)
 	new /obj/item/clothing/under/color/pink(src)
-	new /obj/item/clothing/shoes/brown(src)
-	new /obj/item/clothing/shoes/brown(src)
-	new /obj/item/clothing/shoes/brown(src)
+	new /obj/item/clothing/shoes/color/brown(src)
+	new /obj/item/clothing/shoes/color/brown(src)
+	new /obj/item/clothing/shoes/color/brown(src)
 	return
 
 /obj/structure/closet/wardrobe/black
@@ -107,9 +107,9 @@
 	new /obj/item/clothing/under/color/orange(src)
 	new /obj/item/clothing/under/color/orange(src)
 	new /obj/item/clothing/under/color/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
+	new /obj/item/clothing/shoes/color/orange(src)
+	new /obj/item/clothing/shoes/color/orange(src)
+	new /obj/item/clothing/shoes/color/orange(src)
 	return
 
 
@@ -123,9 +123,9 @@
 	new /obj/item/clothing/under/color/yellow(src)
 	new /obj/item/clothing/under/color/yellow(src)
 	new /obj/item/clothing/under/color/yellow(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
+	new /obj/item/clothing/shoes/color/orange(src)
+	new /obj/item/clothing/shoes/color/orange(src)
+	new /obj/item/clothing/shoes/color/orange(src)
 	return
 
 
@@ -184,9 +184,9 @@
 	new /obj/item/clothing/under/color/white(src)
 	new /obj/item/clothing/under/color/white(src)
 	new /obj/item/clothing/under/color/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
 	return
 
 
@@ -201,8 +201,8 @@
 	new /obj/item/clothing/under/pj/red(src)
 	new /obj/item/clothing/under/pj/blue(src)
 	new /obj/item/clothing/under/pj/blue(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	return
@@ -221,9 +221,9 @@
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
@@ -243,8 +243,8 @@
 	new /obj/item/clothing/suit/storage/robotech_jacket(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/clothing/gloves/black(src)
+	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/gloves/thick(src)
 	return
 
 
@@ -257,8 +257,8 @@
 	..()
 	new /obj/item/clothing/under/rank/chemist(src)
 	new /obj/item/clothing/under/rank/chemist(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
 	return
@@ -273,8 +273,8 @@
 	..()
 	new /obj/item/clothing/under/rank/geneticist(src)
 	new /obj/item/clothing/under/rank/geneticist(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(src)
 	return
@@ -289,8 +289,8 @@
 	..()
 	new /obj/item/clothing/under/rank/virologist(src)
 	new /obj/item/clothing/under/rank/virologist(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/virologist(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/virologist(src)
 	new /obj/item/clothing/mask/surgical(src)
@@ -310,8 +310,8 @@
 	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/under/rank/medical/purple(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
@@ -352,12 +352,12 @@
 	new /obj/item/clothing/under/color/green(src)
 	new /obj/item/clothing/under/color/orange(src)
 	new /obj/item/clothing/under/color/pink(src)
-	new /obj/item/clothing/shoes/blue(src)
-	new /obj/item/clothing/shoes/yellow(src)
-	new /obj/item/clothing/shoes/green(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/purple(src)
-	new /obj/item/clothing/shoes/red(src)
+	new /obj/item/clothing/shoes/color/blue(src)
+	new /obj/item/clothing/shoes/color/yellow(src)
+	new /obj/item/clothing/shoes/color/green(src)
+	new /obj/item/clothing/shoes/color/orange(src)
+	new /obj/item/clothing/shoes/color/purple(src)
+	new /obj/item/clothing/shoes/color/red(src)
 	new /obj/item/clothing/shoes/leather(src)
 	return
 
@@ -376,7 +376,7 @@
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/weapon/storage/belt/security/tactical(src)
 	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/gloves/black(src)
+	new /obj/item/clothing/gloves/thick(src)
 	return
 
 /obj/structure/closet/wardrobe/suit

@@ -5,7 +5,7 @@
 	icon_state = "colt"
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/colt/detective
@@ -36,7 +36,7 @@
 	magazine_type = /obj/item/ammo_magazine/c45m/flash
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 
 /obj/item/weapon/gun/projectile/sec/flash
@@ -68,10 +68,10 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a50
 	auto_eject = 1
-	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.wav'
-	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.wav'
-	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.wav'
-	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.wav'
+	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
+	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
+	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
 
 /obj/item/weapon/gun/projectile/deagle/gold
 	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."
@@ -92,16 +92,16 @@
 	icon_state = "gyropistol"
 	max_shells = 8
 	caliber = "75"
-	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.wav'
+	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a75
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.wav'
-	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.wav'
-	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.wav'
+	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
+	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
 
 /obj/item/weapon/gun/projectile/gyropistol/update_icon()
 	..()
@@ -119,7 +119,7 @@
 	caliber = "9mm"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/mc9mm
 
@@ -176,7 +176,7 @@
 	item_state = "sawnshotgun"
 	handle_casings = CYCLE_CASINGS //player has to take the old casing out manually before reloading
 	load_method = SINGLE_CASING
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	max_shells = 1 //literally just a barrel
 
 	var/global/list/ammo_types = list(
@@ -211,14 +211,14 @@
 	desc = "FS HG .44 \"Lamia\". Uses .44 rounds."
 	icon_state = "Headdeagle"
 	item_state = "revolver"
-	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.wav'
+	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	caliber = ".44"
 	ammo_mag = "mag_cl44"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	load_method = MAGAZINE
-	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.wav'
-	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.wav'
-	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.wav'
+	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
+	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()
 	overlays.Cut()
@@ -232,7 +232,7 @@
 	name = "FS HG .32 \"Giskard\""
 	desc = "That's the 'Frozen Star' popular traumatic pistol. Can even fit into the pocket! Uses .32 rounds."
 	icon_state = "giskardcivil"
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = ".32"
 	ammo_mag = "mag_cl32"
 	w_class = 2
@@ -252,7 +252,7 @@
 	name = "FS HG .32 \"Olivaw\""
 	desc = "That's the 'Frozen Star' popular traumatic pistol. This one seems to have a two-round burst-fire mode. Uses .32 rounds."
 	icon_state = "olivawcivil"
-	fire_sound = 'sound/weapons/guns/fire/pistol_fire.wav'
+	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = ".32"
 	ammo_mag = "mag_cl32"
 	fire_delay = 1.2

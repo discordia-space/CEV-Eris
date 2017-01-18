@@ -134,7 +134,7 @@
 	if(prob(20))
 		new /obj/item/device/multitool(src)
 	if(prob(5))
-		new /obj/item/clothing/gloves/yellow(src)
+		new /obj/item/clothing/gloves/insulated(src)
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
 
@@ -185,7 +185,7 @@
 	..()
 	new /obj/item/clothing/suit/bomb_suit/security( src )
 	new /obj/item/clothing/under/rank/security( src )
-	new /obj/item/clothing/shoes/brown( src )
+	new /obj/item/clothing/shoes/color/brown( src )
 	new /obj/item/clothing/head/bomb_hood/security( src )
 
 /*

@@ -681,7 +681,7 @@ var/global/list/robot_modules = list(
 //	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 //	src.modules += robot.internals
 
-	src.modules = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
+	src.modules += new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 
 	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.emag.name = "Plasma Cutter"

@@ -17,8 +17,8 @@
 	//+2 accuracy over the LWAP because only one shot
 	accuracy = -1
 	scoped_accuracy = 2
-	fire_sound = 'sound/weapons/guns/fire/sniper_fire.wav'
-	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.wav'
+	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
+	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
 	var/bolt_open = 0
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
@@ -28,7 +28,7 @@
 		icon_state = "heavysniper"
 
 /obj/item/weapon/gun/projectile/heavysniper/attack_self(mob/user as mob)
-	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.wav', 75, 1)
+	playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
 	bolt_open = !bolt_open
 	if(bolt_open)
 		if(chambered)
@@ -40,7 +40,7 @@
 			user << "<span class='notice'>You work the bolt open.</span>"
 	else
 		user << "<span class='notice'>You work the bolt closed.</span>"
-		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.wav', 75, 1)
+		playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltforward.ogg', 75, 1)
 		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()

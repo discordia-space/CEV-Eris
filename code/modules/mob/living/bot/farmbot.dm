@@ -109,6 +109,7 @@
 		icon_state = "farmbot_[action]"
 	else
 		icon_state = "farmbot[on]"
+	..()
 
 /mob/living/bot/farmbot/Life()
 	..()
