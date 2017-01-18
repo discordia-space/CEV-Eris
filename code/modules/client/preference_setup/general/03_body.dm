@@ -481,11 +481,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "</table><center><hr/>"
 
 	var/restricted = 0
-	if(config.usealienwhitelist) //If we're using the whitelist, make sure to check it!
-		if(!(current_species.spawn_flags & CAN_JOIN))
-			restricted = 2
-		else if((current_species.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
-			restricted = 1
 
 	if(restricted)
 		if(restricted == 1)

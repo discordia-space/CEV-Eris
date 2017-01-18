@@ -1,47 +1,3 @@
-
-/mob/new_player/proc/handle_privacy_poll()
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		return
-	var/voted = 0
-
-	var/DBQuery/query = dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
-	query.Execute()
-	while(query.NextRow())
-		voted = 1
-		break
-
-	if(!voted)
-		privacy_poll()
-
-/mob/new_player/proc/privacy_poll()
-	var/output = "<div align='center'><B>Player poll</B>"
-	output +="<hr>"
-	output += "<b>We would like to expand our stats gathering.</b>"
-	output += "<br>This however involves gathering data about player behavior, play styles, unique player numbers, play times, etc. Data like that cannot be gathered fully anonymously, which is why we're asking you how you'd feel if player-specific data was gathered. Prior to any of this actually happening, a privacy policy will be discussed, but before that can begin, we'd preliminarily like to know how you feel about the concept."
-	output +="<hr>"
-	output += "How do you feel about the game gathering player-specific statistics? This includes statistics about individual players as well as in-game polling/opinion requests."
-
-	output += "<p><a href='byond://?src=\ref[src];privacy_poll=signed'>Signed stats gathering</A>"
-	output += "<br>Pick this option if you think usernames should be logged with stats. This allows us to have personalized stats as well as polls."
-
-	output += "<p><a href='byond://?src=\ref[src];privacy_poll=anonymous'>Anonymous stats gathering</A>"
-	output += "<br>Pick this option if you think only hashed (indecipherable) usernames should be logged with stats. This doesn't allow us to have personalized stats, as we can't tell who is who (hashed values aren't readable), we can however have ingame polls."
-
-	output += "<p><a href='byond://?src=\ref[src];privacy_poll=nostats'>No stats gathering</A>"
-	output += "<br>Pick this option if you don't want player-specific stats gathered. This does not allow us to have player-specific stats or polls."
-
-	output += "<p><a href='byond://?src=\ref[src];privacy_poll=later'>Ask again later</A>"
-	output += "<br>This poll will be brought up again next round."
-
-	output += "<p><a href='byond://?src=\ref[src];privacy_poll=abstain'>Don't ask again</A>"
-	output += "<br>Only pick this if you are fine with whatever option wins."
-
-	output += "</div>"
-
-	src << browse(output,"window=privacypoll;size=600x500")
-	return
-
 /datum/polloption
 	var/optionid
 	var/optiontext
@@ -53,7 +9,7 @@
 		if(src.client && src.client.holder)
 			isadmin = 1
 
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT id, question FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime")
+		var/DBQuery/select_query = dbcon.NewQuery("SELECT id, question FROM polls WHERE [(isadmin ? "" : "admin_only = false AND")] Now() BETWEEN start AND end")
 		select_query.Execute()
 
 		var/output = "<div align='center'><B>Player polls</B>"
@@ -84,15 +40,22 @@
 	establish_db_connection()
 	if(dbcon.IsConnected())
 
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid]")
+		var/DBQuery/select_query = dbcon.NewQuery("SELECT start, end, question, type, FROM polls WHERE id = [pollid]")
 		select_query.Execute()
+
+		var/DBQuery/get_user_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[usr.ckey]'")
+		var/user_id
+		if(get_user_id.NextRow())
+			user_id = get_user_id.item[1]
+		else
+			message_admins("<font color='red'>[usr.ckey] attempted to vote, but its player record does not exist in database.</font>",1)
+			return
 
 		var/pollstarttime = ""
 		var/pollendtime = ""
 		var/pollquestion = ""
 		var/polltype = ""
 		var/found = 0
-		var/multiplechoiceoptions = 0
 
 		while(select_query.NextRow())
 			pollstarttime = select_query.item[1]
@@ -109,7 +72,7 @@
 		switch(polltype)
 			//Polls that have enumerated options
 			if("OPTION")
-				var/DBQuery/voted_query = dbcon.NewQuery("SELECT optionid FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+				var/DBQuery/voted_query = dbcon.NewQuery("SELECT option_id FROM polls_votes WHERE poll_id = [pollid] AND player_id = [user_id]")
 				voted_query.Execute()
 
 				var/voted = 0
@@ -121,7 +84,7 @@
 
 				var/list/datum/polloption/options = list()
 
-				var/DBQuery/options_query = dbcon.NewQuery("SELECT id, text FROM erro_poll_option WHERE pollid = [pollid]")
+				var/DBQuery/options_query = dbcon.NewQuery("SELECT id, text FROM polls_options WHERE poll_id = [pollid]")
 				options_query.Execute()
 				while(options_query.NextRow())
 					var/datum/polloption/PO = new()
@@ -162,7 +125,7 @@
 
 			//Polls with a text input
 			if("TEXT")
-				var/DBQuery/voted_query = dbcon.NewQuery("SELECT replytext FROM erro_poll_textreply WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+				var/DBQuery/voted_query = dbcon.NewQuery("SELECT text FROM polls_text_reply WHERE poll_id = [pollid] AND player_id = [user_id]")
 				voted_query.Execute()
 
 				var/voted = 0
@@ -204,7 +167,7 @@
 
 			//Polls with a text input
 			if("NUMVAL")
-				var/DBQuery/voted_query = dbcon.NewQuery("SELECT o.text, v.rating FROM erro_poll_option o, erro_poll_vote v WHERE o.pollid = [pollid] AND v.ckey = '[usr.ckey]' AND o.id = v.optionid")
+				var/DBQuery/voted_query = dbcon.NewQuery("SELECT o.text, v.rating FROM polls_options o, erro_poll_vote v WHERE o.pollid = [pollid] AND v.ckey = '[usr.ckey]' AND o.id = v.optionid")
 				voted_query.Execute()
 
 				var/output = "<div align='center'><B>Player poll</B>"
@@ -273,7 +236,7 @@
 
 				src << browse(output,"window=playerpoll;size=500x500")
 			if("MULTICHOICE")
-				var/DBQuery/voted_query = dbcon.NewQuery("SELECT optionid FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+				var/DBQuery/voted_query = dbcon.NewQuery("SELECT option_id FROM polls_votes WHERE poll_id = [pollid] AND player_ckey = '[usr.ckey]'")
 				voted_query.Execute()
 
 				var/list/votedfor = list()
@@ -286,7 +249,7 @@
 				var/maxoptionid = 0
 				var/minoptionid = 0
 
-				var/DBQuery/options_query = dbcon.NewQuery("SELECT id, text FROM erro_poll_option WHERE pollid = [pollid]")
+				var/DBQuery/options_query = dbcon.NewQuery("SELECT id, text FROM polls_options WHERE poll_id = [pollid]")
 				options_query.Execute()
 				while(options_query.NextRow())
 					var/datum/polloption/PO = new()
@@ -298,13 +261,9 @@
 						minoptionid = PO.optionid
 					options += PO
 
-
-				if(select_query.item[5])
-					multiplechoiceoptions = text2num(select_query.item[5])
-
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
-				output += "<b>Question: [pollquestion]</b><br>You can select up to [multiplechoiceoptions] options. If you select more, the first [multiplechoiceoptions] will be saved.<br>"
+				output += "<b>Question: [pollquestion]</b>"
 				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
@@ -345,7 +304,7 @@
 	establish_db_connection()
 	if(dbcon.IsConnected())
 
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
+		var/DBQuery/select_query = dbcon.NewQuery("SELECT start, end, question, type, FROM polls WHERE id = [pollid] AND Now() BETWEEN start AND end")
 		select_query.Execute()
 
 		var/validpoll = 0
@@ -363,7 +322,7 @@
 			usr << "\red Poll is not valid."
 			return
 
-		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM erro_poll_option WHERE id = [optionid] AND pollid = [pollid]")
+		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM polls_options WHERE id = [optionid] AND poll_id = [pollid]")
 		select_query2.Execute()
 
 		var/validoption = 0
@@ -378,7 +337,7 @@
 
 		var/alreadyvoted = 0
 
-		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM polls_votes WHERE poll_id = [pollid] AND player_ckey = '[usr.ckey]'")
 		voted_query.Execute()
 
 		while(voted_query.NextRow())
@@ -394,12 +353,7 @@
 			usr << "\red You already have more than [multiplechoiceoptions] logged votes on this poll. Enough is enough. Contact the database admin if this is an error."
 			return
 
-		var/adminrank = "Player"
-		if(usr && usr.client && usr.client.holder)
-			adminrank = usr.client.holder.rank
-
-
-		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO erro_poll_vote (id ,datetime ,pollid ,optionid ,ckey ,ip ,adminrank) VALUES (null, Now(), [pollid], [optionid], '[usr.ckey]', '[usr.client.address]', '[adminrank]')")
+		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO polls_votes (time, option_id, poll_id player_ckey) VALUES (Now(), [optionid], [pollid] '[usr.ckey]')")
 		insert_query.Execute()
 
 		usr << "\blue Vote successful."
@@ -415,7 +369,7 @@
 	establish_db_connection()
 	if(dbcon.IsConnected())
 
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
+		var/DBQuery/select_query = dbcon.NewQuery("SELECT start, end, question, polltype FROM polls WHERE id = [pollid] AND Now() BETWEEN start AND end")
 		select_query.Execute()
 
 		var/validpoll = 0
@@ -432,7 +386,7 @@
 
 		var/alreadyvoted = 0
 
-		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM erro_poll_textreply WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM polls_text_reply WHERE poll_id = [pollid] AND player_ckey = '[usr.ckey]'")
 		voted_query.Execute()
 
 		while(voted_query.NextRow())
@@ -457,7 +411,7 @@
 			usr << "The text you entered was blank, contained illegal characters or was too long. Please correct the text and submit again."
 			return
 
-		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO erro_poll_textreply (id ,datetime ,pollid ,ckey ,ip ,replytext ,adminrank) VALUES (null, Now(), [pollid], '[usr.ckey]', '[usr.client.address]', '[replytext]', '[adminrank]')")
+		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO polls_text_reply (time, poll_id, player_ckey, text) VALUES (Now(), [pollid], '[usr.ckey]', '[replytext]')")
 		insert_query.Execute()
 
 		usr << "\blue Feedback logging successful."
@@ -473,7 +427,7 @@
 	establish_db_connection()
 	if(dbcon.IsConnected())
 
-		var/DBQuery/select_query = dbcon.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
+		var/DBQuery/select_query = dbcon.NewQuery("SELECT start, end, question, type FROM polls WHERE id = [pollid] AND Now() BETWEEN start AND end")
 		select_query.Execute()
 
 		var/validpoll = 0
@@ -488,7 +442,7 @@
 			usr << "\red Poll is not valid."
 			return
 
-		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM erro_poll_option WHERE id = [optionid] AND pollid = [pollid]")
+		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM polls_options WHERE id = [optionid] AND poll_id = [pollid]")
 		select_query2.Execute()
 
 		var/validoption = 0
@@ -503,7 +457,7 @@
 
 		var/alreadyvoted = 0
 
-		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM erro_poll_vote WHERE optionid = [optionid] AND ckey = '[usr.ckey]'")
+		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM polls_votes WHERE option_id = [optionid] AND player_ckey = '[usr.ckey]'")
 		voted_query.Execute()
 
 		while(voted_query.NextRow())
@@ -519,7 +473,7 @@
 			adminrank = usr.client.holder.rank
 
 
-		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO erro_poll_vote (id ,datetime ,pollid ,optionid ,ckey ,ip ,adminrank, rating) VALUES (null, Now(), [pollid], [optionid], '[usr.ckey]', '[usr.client.address]', '[adminrank]', [(isnull(rating)) ? "null" : rating])")
+		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO polls_votes (time, option_id, poll_id player_ckey) VALUES (Now(), [optionid], [pollid] '[usr.ckey]'")
 		insert_query.Execute()
 
 		usr << "\blue Vote successful."

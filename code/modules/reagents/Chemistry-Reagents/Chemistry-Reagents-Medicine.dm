@@ -12,9 +12,8 @@
 	scannable = 1
 
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.add_chemical_effect(CE_STABLE)
-		M.add_chemical_effect(CE_PAINKILLER, 25)
+	M.add_chemical_effect(CE_STABLE)
+	M.add_chemical_effect(CE_PAINKILLER, 25)
 	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/bicaridine
@@ -29,8 +28,7 @@
 	scannable = 1
 
 /datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.heal_organ_damage(6 * removed, 0)
+	M.heal_organ_damage(6 * removed, 0)
 
 /datum/reagent/kelotane
 	name = "Kelotane"
@@ -43,8 +41,7 @@
 	scannable = 1
 
 /datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 6 * removed)
+	M.heal_organ_damage(0, 6 * removed)
 
 /datum/reagent/dermaline
 	name = "Dermaline"
@@ -58,8 +55,7 @@
 	scannable = 1
 
 /datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.heal_organ_damage(0, 12 * removed)
+	M.heal_organ_damage(0, 12 * removed)
 
 /datum/reagent/dylovene
 	name = "Dylovene"
@@ -71,10 +67,9 @@
 	scannable = 1
 
 /datum/reagent/dylovene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.drowsyness = max(0, M.drowsyness - 6 * removed)
-		M.hallucination = max(0, M.hallucination - 9 * removed)
-		M.adjustToxLoss(-4 * removed)
+	M.drowsyness = max(0, M.drowsyness - 6 * removed)
+	M.hallucination = max(0, M.hallucination - 9 * removed)
+	M.adjustToxLoss(-4 * removed)
 
 /datum/reagent/dexalin
 	name = "Dexalin"
@@ -87,9 +82,7 @@
 	scannable = 1
 
 /datum/reagent/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-15 * removed)
-
+	M.adjustOxyLoss(-15 * removed)
 	holder.remove_reagent("lexorin", 2 * removed)
 
 /datum/reagent/dexalinp
@@ -103,9 +96,7 @@
 	scannable = 1
 
 /datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-300 * removed)
-
+	M.adjustOxyLoss(-300 * removed)
 	holder.remove_reagent("lexorin", 3 * removed)
 
 /datum/reagent/tricordrazine
@@ -118,10 +109,9 @@
 	scannable = 1
 
 /datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
-		M.adjustOxyLoss(-6 * removed)
-		M.heal_organ_damage(3 * removed, 3 * removed)
-		M.adjustToxLoss(-3 * removed)
+	M.adjustOxyLoss(-6 * removed)
+	M.heal_organ_damage(3 * removed, 3 * removed)
+	M.adjustToxLoss(-3 * removed)
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
@@ -229,8 +219,6 @@
 	scannable = 1
 
 /datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.drowsyness = max(M.drowsyness - 5, 0)
 	M.AdjustParalysis(-1)
 	M.AdjustStunned(-1)
@@ -252,8 +240,6 @@
 	scannable = 1
 
 /datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.adjustBrainLoss(-30 * removed)
 	M.add_chemical_effect(CE_PAINKILLER, 10)
 
@@ -327,8 +313,6 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
@@ -343,8 +327,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.dizziness = 0
 	M.drowsyness = 0
 	M.stuttering = 0
@@ -452,8 +434,6 @@
 	data = 0
 
 /datum/reagent/methylphenidate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
 		M << "<span class='warning'>You lose focus...</span>"
@@ -473,8 +453,6 @@
 	data = 0
 
 /datum/reagent/citalopram/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
 		M << "<span class='warning'>Your mind feels a little less stable...</span>"
@@ -493,8 +471,6 @@
 	data = 0
 
 /datum/reagent/paroxetine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
 		M << "<span class='warning'>Your mind feels much less stable...</span>"

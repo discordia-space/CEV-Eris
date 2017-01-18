@@ -12,7 +12,7 @@
 	var/strength = 4 // How much damage it deals per unit
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(strength && alien != IS_DIONA)
+	if(strength)
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 		M.adjustToxLoss(strength * removed)
 
@@ -138,8 +138,6 @@
 
 /datum/reagent/toxin/zombiepowder/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.status_flags |= FAKEDEATH
 	M.adjustOxyLoss(3 * removed)
 	M.Weaken(10)
@@ -196,16 +194,6 @@
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
 
-/datum/reagent/toxin/plantbgone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(alien == IS_DIONA)
-		M.adjustToxLoss(50 * removed)
-
-/datum/reagent/toxin/plantbgone/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(alien == IS_DIONA)
-		M.adjustToxLoss(50 * removed)
-
 /datum/reagent/acid/polyacid
 	name = "Polytrinic acid"
 	id = "pacid"
@@ -226,8 +214,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.take_organ_damage(3 * removed, 0)
 	if(M.losebreath < 15)
 		M.losebreath++
@@ -274,8 +260,6 @@
 	color = "#801E28"
 
 /datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(prob(10))
 		M << "<span class='danger'>Your insides are burning!</span>"
 		M.adjustToxLoss(rand(100, 300) * removed)
@@ -293,9 +277,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
-
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -325,9 +306,6 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
-
 	var/effective_dose = dose
 	if(issmall(M))
 		effective_dose *= 2
@@ -371,8 +349,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/space_drugs/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.druggy = max(M.druggy, 15)
 	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
 		step(M, pick(cardinal))
@@ -391,8 +367,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/serotrotium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(prob(7))
 		M.emote(pick("twitch", "drool", "moan", "gasp"))
 	return
@@ -408,8 +382,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/cryptobiolin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.make_dizzy(4)
 	M.confused = max(M.confused, 20)
 
@@ -423,8 +395,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/impedrezene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.jitteriness = max(M.jitteriness - 5, 0)
 	if(prob(80))
 		M.adjustBrainLoss(0.1 * removed)
@@ -444,8 +414,6 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/mindbreaker/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.hallucination = max(M.hallucination, 100)
 
 /datum/reagent/psilocybin
@@ -458,8 +426,6 @@
 	metabolism = REM * 0.5
 
 /datum/reagent/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.druggy = max(M.druggy, 30)
 
 	var/effective_dose = dose

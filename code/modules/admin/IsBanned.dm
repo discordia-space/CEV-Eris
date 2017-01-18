@@ -39,6 +39,11 @@ world/IsBanned(key,address,computer_id)
 			log_misc("Ban database connection failure. Key [ckeytext] not checked")
 			return
 
+		var/id
+		var/DBQuery/get_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[ckeytext]'")
+		if(get_id.NextRow())
+			id = get_id.item[1]
+
 		var/failedcid = 1
 		var/failedip = 1
 
@@ -50,28 +55,35 @@ world/IsBanned(key,address,computer_id)
 
 		if(computer_id)
 			failedcid = 0
-			cidquery = " OR computerid = '[computer_id]' "
+			cidquery = " OR cid = '[computer_id]' "
 
-		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
+		var/DBQuery/query = dbcon.NewQuery("SELECT target_id, ip, cid, banned_by_id, reason, expiration_time, duration, time, type FROM bans WHERE (target_id = [id] [ipquery] [cidquery]) AND (type = 'PERMABAN'  OR (type = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
 
 		query.Execute()
 
 		while(query.NextRow())
-			var/pckey = query.item[1]
-			//var/pip = query.item[2]
-			//var/pcid = query.item[3]
-			var/ackey = query.item[4]
+			var/target_id = query.item[1]
+			var/banned_by_id = query.item[4]
 			var/reason = query.item[5]
 			var/expiration = query.item[6]
 			var/duration = query.item[7]
 			var/bantime = query.item[8]
 			var/bantype = query.item[9]
 
+			var/banned_ckey
+			var/DBQuery/get_banned_ckey = dbcon.NewQuery("SELECT ckey FROM players WHERE id=[target_id]")
+			if(get_banned_ckey.NextRow())
+				banned_ckey = get_banned_ckey.item[1]
+			var/banned_by_ckey
+			var/DBQuery/get_banned_by_ckey = dbcon.NewQuery("SELECT ckey FROM players WHERE id=[banned_by_id]")
+			if(get_banned_ckey.NextRow())
+				banned_by_ckey = get_banned_by_ckey.item[1]
+
 			var/expires = ""
 			if(text2num(duration) > 0)
 				expires = " The ban is for [duration] minutes and expires on [expiration] (server time)."
 
-			var/desc = "\nReason: You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban was applied by [ackey] on [bantime], [expires]"
+			var/desc = "\nReason: You, or another user of this computer or connection ([banned_ckey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban was applied by [banned_by_ckey] on [bantime], [expires]"
 
 			return list("reason"="[bantype]", "desc"="[desc]")
 
