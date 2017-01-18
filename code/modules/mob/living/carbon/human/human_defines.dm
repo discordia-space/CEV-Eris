@@ -58,10 +58,6 @@
 	var/obj/item/l_store = null
 	var/obj/item/s_store = null
 
-	var/used_skillpoints = 0
-	var/skill_specialization = null
-	var/list/skills = list()
-
 	var/icon/stand_icon = null
 	var/icon/lying_icon = null
 

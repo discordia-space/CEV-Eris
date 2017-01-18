@@ -1328,12 +1328,6 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/communications
 	sort_string = "LAAAA"
 
-/datum/design/circuit/emp_data
-	name = "employment records console"
-	id = "emp_data"
-	build_path = /obj/item/weapon/circuitboard/skills
-	sort_string = "LAAAC"
-
 ///////////////////////////////////
 ////////////Mecha Modules//////////
 ///////////////////////////////////
