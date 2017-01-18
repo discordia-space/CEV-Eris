@@ -610,8 +610,6 @@ proc/setup_database_connection()
 		failed_db_connections++		//If it failed, increase the failed connections counter.
 		world.log << dbcon.ErrorMsg()
 
-	world.log << dbcon
-
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
