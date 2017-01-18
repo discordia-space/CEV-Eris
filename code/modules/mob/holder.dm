@@ -87,11 +87,6 @@ var/list/holder_mob_icon_cache = list()
 		else
 			H.regenerate_icons()
 
-//Mob specific holders.
-/obj/item/weapon/holder/diona
-	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
-	slot_flags = SLOT_HEAD | SLOT_OCLOTHING | SLOT_HOLSTER
-
 /obj/item/weapon/holder/drone
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 

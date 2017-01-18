@@ -159,9 +159,6 @@ BLIND     // can't see anything
 		clipped = 1
 		name = "modified [name]"
 		desc = "[desc]<br>They have had the fingertips cut off of them."
-		if("exclude" in species_restricted)
-			species_restricted -= "Unathi"
-			species_restricted -= "Tajara"
 		return
 
 ///////////////////////////////////////////////////////////////////////
@@ -217,13 +214,6 @@ BLIND     // can't see anything
 	var/success
 	if(istype(user, /mob/living/silicon/robot/drone))
 		var/mob/living/silicon/robot/drone/D = user
-		if(D.hat)
-			success = 2
-		else
-			D.wear_hat(src)
-			success = 1
-	else if(istype(user, /mob/living/carbon/alien/diona))
-		var/mob/living/carbon/alien/diona/D = user
 		if(D.hat)
 			success = 2
 		else
