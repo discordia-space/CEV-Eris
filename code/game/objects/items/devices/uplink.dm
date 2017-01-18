@@ -165,10 +165,6 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				nanoui_data["exploit"]["age"] =  rhtml_encode(L.fields["age"])
 				nanoui_data["exploit"]["species"] =  rhtml_encode(L.fields["species"])
 				nanoui_data["exploit"]["rank"] =  rhtml_encode(L.fields["rank"])
-				nanoui_data["exploit"]["home_system"] =  rhtml_encode(L.fields["home_system"])
-				nanoui_data["exploit"]["citizenship"] =  rhtml_encode(L.fields["citizenship"])
-				nanoui_data["exploit"]["faction"] =  rhtml_encode(L.fields["faction"])
-				nanoui_data["exploit"]["religion"] =  rhtml_encode(L.fields["religion"])
 				nanoui_data["exploit"]["fingerprint"] =  rhtml_encode(L.fields["fingerprint"])
 
 				nanoui_data["exploit_exists"] = 1
