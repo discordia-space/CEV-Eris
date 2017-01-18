@@ -837,7 +837,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/black_gloves
 	display_name = "gloves, black"
-	path = /obj/item/clothing/gloves/black
+	path = /obj/item/clothing/gloves/thick
 	cost = 2
 	slot = slot_gloves
 
@@ -904,7 +904,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/white_gloves
 	display_name = "gloves, white"
-	path = /obj/item/clothing/gloves/white
+	path = /obj/item/clothing/gloves/color/white
 	cost = 2
 	slot = slot_gloves
 
@@ -948,7 +948,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/brown_shoes
 	display_name = "shoes, brown"
-	path = /obj/item/clothing/shoes/brown
+	path = /obj/item/clothing/shoes/color/brown
 	cost = 1
 	slot = slot_shoes
 
@@ -978,7 +978,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/orange_shoes
 	display_name = "shoes, orange"
-	path = /obj/item/clothing/shoes/orange
+	path = /obj/item/clothing/shoes/color/orange
 	cost = 1
 	slot = slot_shoes
 
@@ -1002,7 +1002,7 @@ var/global/list/gear_datums = list()
 
 /datum/gear/white_shoes
 	display_name = "shoes, white"
-	path = /obj/item/clothing/shoes/white
+	path = /obj/item/clothing/shoes/color/white
 	cost = 1
 	slot = slot_shoes
 

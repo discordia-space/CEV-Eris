@@ -117,9 +117,9 @@
 
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/qm_coat
-	shoes = /obj/item/clothing/shoes/brown
+	shoes = /obj/item/clothing/shoes/color/brown
 	pda = /obj/item/device/pda/quartermaster
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	ear = /obj/item/device/radio/headset/headset_cargo
 	hand = /obj/item/weapon/clipboard
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -231,7 +231,7 @@
 	uniform = /obj/item/clothing/under/mime
 	pda = /obj/item/device/pda/mime
 	hat = /obj/item/clothing/head/beret
-	gloves = /obj/item/clothing/gloves/white
+	gloves = /obj/item/clothing/gloves/color/white
 	mask = /obj/item/clothing/mask/gas/mime
 	ear = /obj/item/device/radio/headset/headset_service
 
@@ -309,7 +309,7 @@
 //	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
 //
 //	uniform = /obj/item/clothing/under/rank/internalaffairs
-//	shoes = /obj/item/clothing/shoes/brown
+//	shoes = /obj/item/clothing/shoes/color/brown
 //	pda = /obj/item/device/pda/lawyer
 //	ear = /obj/item/device/radio/headset/headset_sec
 //	hand = /obj/item/weapon/storage/briefcase

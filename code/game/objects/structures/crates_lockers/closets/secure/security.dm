@@ -19,7 +19,7 @@
 		new /obj/item/clothing/suit/armor/vest(src)
 		new /obj/item/weapon/cartridge/captain(src)
 		new /obj/item/clothing/head/helmet(src)
-		new /obj/item/clothing/shoes/brown(src)
+		new /obj/item/clothing/shoes/color/brown(src)
 		new /obj/item/device/radio/headset/heads/captain(src)
 		new /obj/item/clothing/gloves/captain(src)
 		new /obj/item/weapon/gun/energy/gun(src)
@@ -229,7 +229,7 @@
 		new /obj/item/clothing/suit/storage/det_trench(src)
 		new /obj/item/clothing/suit/storage/det_trench/grey(src)
 		new /obj/item/clothing/suit/storage/insp_trench(src)
-		new /obj/item/clothing/gloves/black(src)
+		new /obj/item/clothing/gloves/thick(src)
 		new /obj/item/clothing/head/det(src)
 		new /obj/item/clothing/head/det/grey(src)
 		new /obj/item/clothing/shoes/laceup(src)
@@ -278,7 +278,7 @@
 	New()
 		..()
 		new /obj/item/clothing/under/color/orange( src )
-		new /obj/item/clothing/shoes/orange( src )
+		new /obj/item/clothing/shoes/color/orange( src )
 		return
 
 
@@ -289,7 +289,7 @@
 
 	New()
 		..()
-		new /obj/item/clothing/shoes/brown(src)
+		new /obj/item/clothing/shoes/color/brown(src)
 		new /obj/item/weapon/paper/Court (src)
 		new /obj/item/weapon/paper/Court (src)
 		new /obj/item/weapon/paper/Court (src)
