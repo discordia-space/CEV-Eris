@@ -491,8 +491,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Electrical maintenance crate"
 	contains = list(/obj/item/weapon/storage/toolbox/electrical,
 					/obj/item/weapon/storage/toolbox/electrical,
-					/obj/item/clothing/gloves/yellow,
-					/obj/item/clothing/gloves/yellow,
+					/obj/item/clothing/gloves/insulated,
+					/obj/item/clothing/gloves/insulated,
 					/obj/item/weapon/cell,
 					/obj/item/weapon/cell,
 					/obj/item/weapon/cell/high,
@@ -1264,7 +1264,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/glasses/sunglasses/sechud/tactical,
 					/obj/item/weapon/storage/belt/security/tactical,
 					/obj/item/clothing/shoes/jackboots,
-					/obj/item/clothing/gloves/black)
+					/obj/item/clothing/gloves/thick)
 
 /datum/supply_packs/carpet
 	name = "Imported carpet"

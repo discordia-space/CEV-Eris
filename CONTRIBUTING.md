@@ -1,5 +1,95 @@
-Baystation12 is licensed under the GNU Affero General Public License version 3, which can be found in full in LICENSE-AGPL3.txt.
+# A quick guide to CONTRIBUTING
 
-Commits with a git authorship date prior to `1420675200 +0000` (2015/01/08 00:00) are licensed under the GNU General Public License version 3, which can be found in full in LICENSE-GPL3.txt.
+В этом уникальном гуиде не будет никаких руководств "Как быстро научиться программировать и срать говном на бйонде". Готовьте ваши гиты.
 
-All commits whose authorship dates are not prior to `1420675200 +0000` are assumed to be licensed under AGPL v3, if you wish to license under GPL v3 please make this clear in the commit message and any added files.
+## Что я тут делаю?
+
+Очевидно, ты хочешь пропихнуть свой охуенный кусок кода в репозиторий! [*(Хочешь напилить изменения карты? Сюда!)*](https://github.com/Endless-Horizon/CEV-Eris/blob/master/CONTRIBUTING.md#%D0%AF-%D0%BF%D0%B8%D0%BB%D1%8E-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%87%D1%82%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D0%BA%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%BD%D0%BE%D1%87%D1%8C%D1%8E-%D0%BD%D0%B5-%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D0%B0-%D0%B2%D1%81%D1%8F-%D0%B3%D1%80%D0%B8%D0%BD%D0%BE%D0%B4%D0%B5%D0%B2%D1%82%D0%B8%D0%BC%D0%B0-%D0%B8-%D0%BD%D0%B5-%D0%B2%D1%8B%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0-%D0%BC%D0%B5%D0%BD%D1%8F)
+Так вот. Для того, чтобы сделать это, тебе надо:
+
+1. Сделать себе форк;
+2. Настроить гит на компьютере;
+3. Понять и запомнить 3 команды;
+4. Насрать пуллреквестом
+
+## Делаем форк!
+
+Заходишь [сюда](https://github.com/Endless-Horizon/CEV-Eris) и жмешь вверху большую и красивую кнопочку Fork.
+Форк почти настроен, охуеть!
+
+## Ставим гиты!
+
+Жми [сюда](https://git-scm.com/download/win). Молодец. Ты скачал гит.
+Установи его! *(Git Bash выбери супротив cmd.exe, остальное постанови стандартным)*
+
+Отлично. Открывай незабвенную `Git Bash` и вводи *(очевидно, заменяя name и email на реальные)*:
+```bash
+$ git config --global user.name "[name]"
+$ git config --global user.email "[email]"
+```
+Например:
+```bash
+$ git config --global user.name "Vasya Pupkin"
+$ git config --global user.email "vasya@pupkins.org"
+```
+Охуенно. Теперь открывай страничку своего форка, жми на **большую зеленую кнопку** `Clone or download` и копируй ебаную ссылку.
+Возвращайся к `Git Bash`.
+```bash
+$ git clone <вставь ссылочку>
+$ cd CEV-Eris
+$ git remote add upstream https://github.com/Endless-Horizon/CEV-Eris
+```
+Например:
+```bash
+$ git clone https://github.com/vasyapupkin/CEV-Eris
+$ cd CEV-Eris
+$ git remote add upstream https://github.com/Endless-Horizon/CEV-Eris
+```
+Заебись. Твой гит настроен.
+
+## Срем говном в свой форк
+
+Итак, у тебя есть гит и свой форк.
+Для начала перед работой, чтобы спиздить новейшие коммиты:
+```
+$ git pull upstream dev
+```
+Вносишь изменения и срешь говном. Сделал? Тогда убедись, что твои приключения повлияли только на те файлы, что ты хотел:
+```
+$ git status
+$ git diff --stat
+```
+Если в статистике изменённых строк слишком много - значит, ты сделал что-то не так. Выполни
+```
+$ git diff
+```
+и проверь все свои изменения построчно.
+Проверил? Никакого лишнего говна нет? Отлично, можно коммитить.
+```
+$ git add .
+$ git commit -m "Текст, ёмко описывающий, что ты вообще попытался сделать"
+$ git push origin dev
+```
+На всякий случай перед этим можно сделать `git pull upstream dev`, и если снова увидишь `vi` - можешь не вводить пояснений, это мерж-коммит.
+
+Постарайся умещать одну фичу в один коммит. Не больше и не меньше.
+
+Отлично, ты насрал своими коммитами. Время пропихнуть это в репу.
+
+## Пропихиваем говно в репозиторий
+
+Здесь всё куда проще. Открываешь страничку своего форка и жмешь кнопочку `New Pull Request`. Нажал?
+Выбирай `base-fork`'ом `Endless-Horizon/CEV-Eris`, а `head-fork`'ом - свой форк.
+Вкратце опиши, какие фичи *(и баги)* были добавлены.
+Создавай ПР.
+
+Поздравляю, ты успешен! Жди мержа. Или комментариев с гайдлайном по изменению кода в лучшую сторону.
+Для более полного погружения в гит тебе [сюда](http://try.github.io).
+
+## Я пилю изменения карты, что мне делать, чтобы ко мне ночью не пришла вся Эрисодевтима и не выебала меня?
+
+Используй мапмержер. Перед правкой карты запусти из репы `mapmerge/Prepare Maps.bat`. Оно подготовит карты.
+Внеси изменения и запусти `mapmerge/Run Map Merge - DMM.bat`. Выбери номера измененных карт. Молодец.
+
+На всякий случай проверь `git diff --stat`, там **не должно** быть около 2-5 тысяч измененных строк.
+Если этих 2-5к там нет - можно коммитить.

@@ -1,6 +1,6 @@
 /mob/living/carbon/human/proc/handle_strip(var/slot_to_strip,var/mob/living/user)
 
-	if(!slot_to_strip || !istype(user))
+	if(!slot_to_strip || !user.IsAdvancedToolUser())
 		return
 
 	if(user.incapacitated()  || !user.Adjacent(src))

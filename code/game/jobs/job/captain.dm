@@ -23,7 +23,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	implanted = 1
 	uniform = /obj/item/clothing/under/rank/captain
-	shoes = /obj/item/clothing/shoes/brown
+	shoes = /obj/item/clothing/shoes/color/brown
 	pda = /obj/item/device/pda/captain
 	hat = /obj/item/clothing/head/caphat
 	ear = /obj/item/device/radio/headset/heads/captain
@@ -72,7 +72,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	shoes = /obj/item/clothing/shoes/laceup
 	suit = /obj/item/clothing/suit/armor/vest
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	pda = /obj/item/device/pda/heads/hop
 	ear = /obj/item/device/radio/headset/heads/hop
 

@@ -4,6 +4,10 @@
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
+#define OPENSPACE_LAYER (TURF_LAYER - 0.5)
+
+#define OPENSPACE_PLANE -1
+
 // Invisibility constants.
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
@@ -202,3 +206,6 @@
 //HUD element hidings flags
 #define F12_FLAG 1 // 0001
 #define TOGGLE_INVENTORY_FLAG 2 //0010
+
+// Default name for announsment system
+#define ANNOUNSER_NAME "CEV Eris System Announcer"

@@ -63,24 +63,15 @@ var/datum/controller/process/open_space/OS_controller = null
 	var/datum/ospace_data/OD = levels["[T.z]"]
 	if(OD) OD.add(list(T), LIST_FAST, 1)
 
-/turf
-	var/list/z_overlays = list()
-
-/turf/Entered(atom/movable/Obj)
+/turf/simulated/open/Entered(atom/movable/Obj)
 	. = ..()
-	OS_controller.add_turf(src)
+	if(ticker)
+		OS_controller.add_turf(src)
 
 /turf/simulated/open/New()
 	..()
 	if(ticker)
 		OS_controller.add_turf(src)
-
-/*
-/atom/movable/Move() //Hackish
-	. = ..()
-	OS_controller.add_turf(get_turf(src))
-*/
-
 
 /datum/ospace_data
 	var/z = 0
@@ -142,60 +133,32 @@ var/datum/controller/process/open_space/OS_controller = null
 		T = elem
 		new_list = 0
 
-		T.overlays -= T.z_overlays
-		T.z_overlays.Cut()
+		T.overlays.Cut()
 
 		if(down && (istype(T, /turf/space) || istype(T, /turf/simulated/open)))
 			var/turf/below = GetBelow(T)
 			if(below)
 				if(!(istype(below, /turf/space) || istype(below, /turf/simulated/open)))
-					var/image/t_img = list()
 					new_list = LIST_SLOW
-
-					var/image/temp = image(below, dir=below.dir, layer = TURF_LAYER + 0.04)
-
-					temp.color = below.color//rgb(127,127,127)
-					temp.overlays += below.overlays
-					t_img += temp
-					T.overlays   += t_img
-					T.z_overlays += t_img
+					T.icon = below.icon
+					T.icon_state = below.icon_state
+					T.color = below.color//rgb(127,127,127)
+					T.overlays += below.overlays
 
 				// get objects
 				var/image/o_img = list()
 				for(var/obj/o in below)
 					// ingore objects that have any form of invisibility
-					if(o.invisibility || o.pixel_x || o.pixel_y) continue
+					if(o.invisibility/* || o.pixel_x || o.pixel_y*/) continue
 					new_list = LIST_NORM
-					var/image/temp2 = image(o, dir=o.dir, layer = TURF_LAYER+0.05*o.layer)
+					var/image/temp2 = image(o, dir=o.dir, layer = o.layer)
+					temp2.plane = T.plane
 					temp2.color = o.color//rgb(127,127,127)
 					temp2.overlays += o.overlays
 					o_img += temp2
-					// you need to add a list to .overlays or it will not display any because space
 				T.overlays   += o_img
-				T.z_overlays += o_img
 
-				// get mobs
-				var/image/m_img = list()
-				for(var/mob/m in below)
-					// ingore mobs that have any form of invisibility
-					if(m.invisibility) continue
-					// only add this tile to fastprocessing if there is a living mob, not a dead one
-					if(istype(m, /mob/living))
-						new_list = LIST_FAST
-					var/image/temp2 = image(m, dir=m.dir, layer = TURF_LAYER+0.05*m.layer)
-					temp2.color = m.color//rgb(127,127,127)
-					temp2.overlays += m.overlays
-					m_img += temp2
-					// you need to add a list to .overlays or it will not display any because space
-
-				T.overlays   += m_img
-				T.z_overlays += m_img
-
-				T.overlays   -= below.z_overlays
-				T.z_overlays -= below.z_overlays
-
-				T.overlays   += image('icons/turf/floors.dmi', "black_open", TURF_LAYER+0.3)
-				T.z_overlays += image('icons/turf/floors.dmi', "black_open", TURF_LAYER+0.3)
+				T.overlays   += image('icons/turf/floors.dmi', "black_open", layer = MOB_LAYER + 1)
 
 			switch(new_list)
 				if(LIST_SLOW)

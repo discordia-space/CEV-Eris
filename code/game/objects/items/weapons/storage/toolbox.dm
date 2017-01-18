@@ -59,7 +59,7 @@
 		new /obj/item/stack/cable_coil(src,30,color)
 		new /obj/item/stack/cable_coil(src,30,color)
 		if(prob(5))
-			new /obj/item/clothing/gloves/yellow(src)
+			new /obj/item/clothing/gloves/insulated(src)
 		else
 			new /obj/item/stack/cable_coil(src,30,color)
 
@@ -72,7 +72,7 @@
 
 	New()
 		..()
-		new /obj/item/clothing/gloves/yellow(src)
+		new /obj/item/clothing/gloves/insulated(src)
 		new /obj/item/weapon/screwdriver(src)
 		new /obj/item/weapon/wrench(src)
 		new /obj/item/weapon/weldingtool(src)

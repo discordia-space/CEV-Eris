@@ -22,6 +22,11 @@
 	var/gibs_ready = 0
 	var/obj/crayon
 
+/obj/machinery/washing_machine/Destroy()
+	qdel(crayon)
+	crayon = null
+	. = ..()
+
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
 	set category = "Object"
@@ -42,9 +47,14 @@
 	sleep(200)
 	for(var/atom/A in contents)
 		A.clean_blood()
-
-	for(var/obj/item/I in contents)
-		I.decontaminate()
+		if(istype(A, /obj/item))
+			var/obj/item/I = A
+			I.decontaminate()
+			if(istype(crayon,/obj/item/weapon/pen/crayon) && istype(I, /obj/item/clothing/gloves/color) || istype(I, /obj/item/clothing/head/soft) || istype(I, /obj/item/clothing/shoes/color) || istype(I, /obj/item/clothing/under/color))
+				var/obj/item/clothing/C = I
+				var/obj/item/weapon/pen/crayon/CR = crayon
+				C.color = CR.colour
+				C.name = "[CR.colourName] dyed [C.initial_name]"
 
 	//Tanning!
 	for(var/obj/item/stack/material/hairlesshide/HH in contents)
@@ -76,7 +86,7 @@
 	/*if(istype(W,/obj/item/weapon/screwdriver))
 		panel = !panel
 		user << "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>"*/
-	if(istype(W,/obj/item/weapon/pen/crayon) || istype(W,/obj/item/weapon/stamp))
+	if(istype(W,/obj/item/weapon/pen/crayon))
 		if( state in list(	1, 3, 6 ) )
 			if(!crayon)
 				user.drop_item()

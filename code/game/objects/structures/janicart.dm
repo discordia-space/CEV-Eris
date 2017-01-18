@@ -144,9 +144,14 @@
 	update_icon()
 	updateUsrDialog()
 
+/obj/structure/janitorialcart/on_reagent_change()
+	update_icon()
+
 
 /obj/structure/janitorialcart/update_icon()
-	overlays = null
+	overlays.Cut()
+	if(reagents.total_volume)
+		overlays += "water_cart"
 	if(mybag)
 		overlays += "cart_garbage"
 	if(mymop)

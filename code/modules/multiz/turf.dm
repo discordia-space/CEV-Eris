@@ -2,8 +2,8 @@
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "black"
-	layer = 0
 	density = 0
+	plane = OPENSPACE_PLANE
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 
 	var/turf/below
@@ -16,6 +16,10 @@
 	ASSERT(HasBelow(z))
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
+#ifdef USE_OPENSPACE
+	if(istype(mover, /mob/shadow))
+#endif USE_OPENSPACE
+		return
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
@@ -26,7 +30,7 @@
 	if(!has_gravity(src))
 		return
 
-	if (locate(/obj/structure/catwalk) in src)
+	if(locate(/obj/structure/catwalk) in src)
 		return
 
 	// Prevent pipes from falling into the void... if there is a pipe to support it.

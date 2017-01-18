@@ -32,7 +32,7 @@ var/datum/antagonist/raider/raiders
 	var/list/raider_shoes = list(
 		/obj/item/clothing/shoes/jackboots,
 		/obj/item/clothing/shoes/workboots,
-		/obj/item/clothing/shoes/brown,
+		/obj/item/clothing/shoes/color/brown,
 		/obj/item/clothing/shoes/laceup
 		)
 
