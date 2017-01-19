@@ -109,6 +109,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 		bantype_sql = "type = '[bantype_str]'"
 
 	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
+	query.Execute()
 	if(!query.NextRow())
 		message_admins("<font color='red'>[key_name_admin(usr)] attempted to unban [ckey], but [ckey] has not been seen yet.</font>",1)
 		return
@@ -172,6 +173,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		return
 
 	query = dbcon.NewQuery("SELECT ckey FROM players WHERE id = [target_id]")
+	query.Execute()
 	if(!query.NextRow())
 		message_admins("<font color='red'>[key_name_admin(usr)] attempted to edit [ckey]'s ban, but [ckey] has not been seen yet.</font>",1)
 		return
@@ -199,8 +201,8 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					usr << "Cancelled"
 					return
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET duration = [value], expiration_time = DATE_ADD(time, INTERVAL '[value]' MINUTE) WHERE id = [banid]")
-			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s duration from [duration] to [value]",1)
 			update_query.Execute()
+			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s duration from [duration] to [value]",1)
 
 		if("unban")
 			if(alert("Unban [ckey]?", "Unban?", "Yes", "No") == "Yes")
@@ -360,11 +362,13 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 			var/player_id
 			var/DBQuery/query = dbcon.NewQuery("SELECT id, FROM players WHERE ckey='[playerckey]'")
+			query.Execute()
 			if(query.NextRow())
 				player_id = query.item[1]
 
 			var/admin_id
 			query = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[adminckey]'")
+			query.Execute()
 			if(query.NextRow())
 				admin_id = query.item[1]
 

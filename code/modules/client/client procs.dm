@@ -266,6 +266,7 @@
 		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]')")
 		query_insert.Execute()
 		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[src.ckey]'")
+		get_player_id.Execute()
 		if(get_player_id.NextRow())
 			player_id = get_player_id.item[1]
 

@@ -41,6 +41,7 @@ world/IsBanned(key,address,computer_id)
 
 		var/id
 		var/DBQuery/get_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[ckeytext]'")
+		get_id.Execute()
 		if(get_id.NextRow())
 			id = get_id.item[1]
 
@@ -72,10 +73,13 @@ world/IsBanned(key,address,computer_id)
 
 			var/banned_ckey
 			var/DBQuery/get_banned_ckey = dbcon.NewQuery("SELECT ckey FROM players WHERE id=[target_id]")
+			get_banned_by_ckey.Execute()
 			if(get_banned_ckey.NextRow())
 				banned_ckey = get_banned_ckey.item[1]
+
 			var/banned_by_ckey
 			var/DBQuery/get_banned_by_ckey = dbcon.NewQuery("SELECT ckey FROM players WHERE id=[banned_by_id]")
+			get_banned_by_ckey.Execute()
 			if(get_banned_ckey.NextRow())
 				banned_by_ckey = get_banned_by_ckey.item[1]
 

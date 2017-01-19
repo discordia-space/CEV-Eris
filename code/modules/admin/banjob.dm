@@ -80,6 +80,7 @@ DEBUG
 			var/id = query.item[1]
 			var/job = query.item[2]
 			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = [id]")
+			get_ckey.Execute()
 			if(get_ckey.NextRow())
 				var/ckey = get_ckey.item[1]
 				jobban_keylist.Add("[ckey] - [job]")
