@@ -805,7 +805,7 @@ var/list/gamemode_cache = list()
 				sqllogin = value
 			if ("password")
 				sqlpass = value
-			if ("ENABLE")
+			if ("enable")
 				sqllogging = 1
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
