@@ -44,7 +44,6 @@ var/global/list/gear_datums = list()
 	var/cost               //Number of points used. Items in general cost 1 point, storage/armor/gloves/special use costs 2 points.
 	var/slot               //Slot to equip to.
 	var/list/allowed_roles //Roles that can spawn with this item.
-	var/whitelisted        //Term to check the whitelist for..
 	var/sort_category
 
 /datum/gear/New()
@@ -259,15 +258,6 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/ushanka
 	cost = 1
 	slot = slot_head
-
-// This was sprited and coded specifically for Zhan-Khazan characters. Before you
-// decide that it's 'not even Taj themed' maybe you should read the wiki, gamer. ~ Z
-/datum/gear/zhan_scarf
-	display_name = "Zhan headscarf"
-	path = /obj/item/clothing/head/tajaran/scarf
-	cost = 1
-	slot = slot_head
-	whitelisted = "Tajara"
 
 // Eyes
 
@@ -716,13 +706,6 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/suit/storage/toggle/hoodie/black
 	cost = 2
 
-/datum/gear/unathi_mantle
-	display_name = "hide mantle (Unathi)"
-	path = /obj/item/clothing/suit/unathi/mantle
-	cost = 1
-	slot = slot_wear_suit
-	whitelisted = "Unathi"
-
 /datum/gear/labcoat
 	display_name = "labcoat"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
@@ -795,13 +778,6 @@ var/global/list/gear_datums = list()
 	cost = 1
 	slot = slot_wear_suit
 
-/datum/gear/unathi_robe
-	display_name = "roughspun robe (Unathi)"
-	path = /obj/item/clothing/suit/unathi/robe
-	cost = 1
-	slot = slot_wear_suit
-//	whitelisted = "Unathi" // You don't have a monopoly on a robe!
-
 /datum/gear/blue_lawyer_jacket
 	display_name = "suit jacket, blue"
 	path = /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
@@ -825,13 +801,6 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/suit/wcoat
 	cost = 1
 	slot = slot_wear_suit
-
-/datum/gear/zhan_furs
-	display_name = "Zhan-Khazan furs (Tajaran)"
-	path = /obj/item/clothing/suit/tajaran/furs
-	cost = 1
-	slot = slot_wear_suit
-	whitelisted = "Tajara" // You do have a monopoly on a fur suit tho
 
 // Gloves
 
@@ -913,12 +882,6 @@ var/global/list/gear_datums = list()
 /datum/gear/jackboots
 	display_name = "jackboots"
 	path = /obj/item/clothing/shoes/jackboots
-	cost = 1
-	slot = slot_shoes
-
-/datum/gear/toeless_jackboots
-	display_name = "toe-less jackboots"
-	path = /obj/item/clothing/shoes/jackboots/unathi
 	cost = 1
 	slot = slot_shoes
 
@@ -1213,31 +1176,3 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/ears/earmuffs
 	cost = 1
 	sort_category = "ears"
-
-/datum/gear/skrell_chain
-	display_name = "skrell headtail-wear, female, chain"
-	path = /obj/item/clothing/ears/skrell/chain
-	cost = 1
-	sort_category = "ears"
-	whitelisted = "Skrell"
-
-/datum/gear/skrell_plate
-	display_name = "skrell headtail-wear, male, bands"
-	path = /obj/item/clothing/ears/skrell/band
-	cost = 1
-	sort_category = "ears"
-	whitelisted = "Skrell"
-
-/datum/gear/skrell_cloth_male
-	display_name = "skrell headtail-wear, male, cloth"
-	path = /obj/item/clothing/ears/skrell/cloth_male
-	cost = 1
-	sort_category = "ears"
-	whitelisted = "Skrell"
-
-/datum/gear/skrell_cloth_female
-	display_name = "skrell headtail-wear, female, cloth"
-	path = /obj/item/clothing/ears/skrell/cloth_female
-	cost = 1
-	sort_category = "ears"
-	whitelisted = "Skrell"

@@ -6,7 +6,7 @@
 #define NO_SLIP           0x10   // Cannot fall over.
 #define NO_POISON         0x20   // Cannot not suffer toxloss.
 #define IS_PLANT          0x40   // Is a treeperson.
-#define NO_MINOR_CUT      0x80   // Can step on broken glass with no ill-effects. Either thick skin (diona/vox), cut resistant (slimes) or incorporeal (shadows)
+#define NO_MINOR_CUT      0x80   // Can step on broken glass with no ill-effects. Either thick skin, cut resistant (slimes) or incorporeal (shadows)
 // unused: 0x8000 - higher than this will overflow
 
 // Species spawn flags
@@ -23,16 +23,7 @@
 #define HAS_HAIR_COLOR    0x20   // Hair colour selectable in chargen. (RGB)
 
 // Languages.
-#define LANGUAGE_EAL "Encoded Audio Language"
 #define LANGUAGE_SOL_COMMON "Sol Common"
-#define LANGUAGE_UNATHI "Sinta'unathi"
-#define LANGUAGE_SIIK_MAAS "Siik'maas"
-#define LANGUAGE_SIIK_TAJR "Siik'tajr"
-#define LANGUAGE_SKRELLIAN "Skrellian"
-#define LANGUAGE_RESOMI "Schechi"
-#define LANGUAGE_ROOTSPEAK "Rootspeak"
-#define LANGUAGE_TRADEBAND "Tradeband"
-#define LANGUAGE_GUTTER "Gutter"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

@@ -162,15 +162,12 @@ var/datum/antagonist/ninja/ninjas
 		if(13)
 			directive += "Some disgruntled [company_name] employees have been supportive of our operations. Be wary of any mistreatment by command staff."
 		if(14)
-			var/xenorace = pick("Unathi","Tajara", "Skrell")
-			directive += "A group of [xenorace] radicals have been loyal supporters of the Spider Clan. Favor [xenorace] crew whenever possible."
-		if(15)
 			directive += "The Spider Clan has recently been accused of religious insensitivity. Attempt to speak with the Monochurch Preacher and prove these accusations false."
-		if(16)
+		if(15)
 			directive += "The Spider Clan has been bargaining with a competing prosthetics manufacturer. Try to shine [company_name] prosthetics in a bad light."
-		if(17)
+		if(16)
 			directive += "The Spider Clan has recently begun recruiting outsiders. Consider suitable candidates and assess their behavior amongst the crew."
-		if(18)
+		if(17)
 			directive += "A cyborg liberation group has expressed interest in our serves. Prove the Spider Clan merciful towards law-bound synthetics."
 		else
 			directive += "There are no special supplemental instructions at this time."

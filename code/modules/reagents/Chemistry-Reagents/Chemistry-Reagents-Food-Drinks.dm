@@ -48,26 +48,14 @@
 
 	injectable = 1
 
-/datum/reagent/nutriment/protein // Bad for Skrell!
+/datum/reagent/nutriment/protein
 	name = "animal protein"
 	taste_description = "some sort of protein"
 	id = "protein"
 	color = "#440000"
 
-/datum/reagent/nutriment/protein/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	switch(alien)
-		if(IS_SKRELL)
-			M.adjustToxLoss(0.5 * removed)
-			return
-	..()
 
-/datum/reagent/nutriment/protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien && alien == IS_SKRELL)
-		M.adjustToxLoss(2 * removed)
-		return
-	..()
-
-/datum/reagent/nutriment/protein/egg // Also bad for skrell.
+/datum/reagent/nutriment/protein/egg
 	name = "egg yolk"
 	taste_description = "egg"
 	id = "egg"
@@ -245,8 +233,6 @@
 	color = "#B31008"
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(1))
 		M.emote("shiver")
@@ -268,13 +254,9 @@
 	var/slime_temp_adj = 10
 
 /datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	M.adjustToxLoss(0.5 * removed)
 
 /datum/reagent/capsaicin/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && (H.species.flags & (NO_PAIN)))
@@ -472,8 +454,6 @@
 
 /datum/reagent/drink/limejuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.adjustToxLoss(-0.5 * removed)
 
 /datum/reagent/drink/orangejuice
@@ -489,8 +469,6 @@
 
 /datum/reagent/drink/orangejuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.adjustOxyLoss(-2 * removed)
 
 /datum/reagent/toxin/poisonberryjuice // It has more in common with toxins than drinks... but it's a juice
@@ -530,8 +508,6 @@
 
 /datum/reagent/drink/tomatojuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.heal_organ_damage(0, 0.5 * removed)
 
 /datum/reagent/drink/watermelonjuice
@@ -560,8 +536,6 @@
 
 /datum/reagent/drink/milk/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.heal_organ_damage(0.5 * removed, 0)
 	holder.remove_reagent("capsaicin", 10 * removed)
 
@@ -604,8 +578,6 @@
 
 /datum/reagent/drink/tea/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.adjustToxLoss(-0.5 * removed)
 
 /datum/reagent/drink/tea/icetea
@@ -639,29 +611,12 @@
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	..()
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(0.5 * removed)
-		M.make_jittery(4) //extra sensitive to caffine
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 	M.add_chemical_effect(CE_PULSE, 1)
 
-/datum/reagent/nutriment/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(2 * removed)
-		M.make_jittery(4)
-		return
-
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
-	if(alien == IS_DIONA)
-		return
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(4 * REM)
-		M.apply_effect(3, STUTTER)
 	M.make_jittery(5)
 	M.add_chemical_effect(CE_PULSE, 2)
 
@@ -948,8 +903,6 @@
 
 /datum/reagent/drink/doctor_delight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.adjustOxyLoss(-4 * removed)
 	M.heal_organ_damage(2 * removed, 2 * removed)
 	M.adjustToxLoss(-2 * removed)
@@ -988,8 +941,6 @@
 
 /datum/reagent/drink/hell_ramen/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 
 /datum/reagent/drink/ice
@@ -1063,8 +1014,6 @@
 
 /datum/reagent/ethanol/beer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.jitteriness = max(M.jitteriness - 3, 0)
 
 /datum/reagent/ethanol/bluecuracao
@@ -1110,8 +1059,6 @@
 
 /datum/reagent/ethanol/deadrum/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.dizziness +=5
 
 /datum/reagent/ethanol/gin
@@ -1132,31 +1079,14 @@
 	overdose = 45
 
 /datum/reagent/ethanol/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_DIONA)
-		return
 	..()
 	M.dizziness = max(0, M.dizziness - 5)
 	M.drowsyness = max(0, M.drowsyness - 3)
 	M.sleeping = max(0, M.sleeping - 2)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(0.5 * removed)
-		M.make_jittery(4) //extra sensitive to caffine
-
-/datum/reagent/ethanol/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(2 * removed)
-		M.make_jittery(4)
-		return
-	..()
 
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
-	if(alien == IS_DIONA)
-		return
-	if(alien == IS_TAJARA)
-		M.adjustToxLoss(4 * REM)
-		M.apply_effect(3, STUTTER)
 	M.make_jittery(5)
 
 /datum/reagent/ethanol/coffee/kahlua
@@ -1241,8 +1171,6 @@
 
 /datum/reagent/ethanol/thirteenloko/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_DIONA)
-		return
 	M.drowsyness = max(0, M.drowsyness - 7)
 	if (M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))

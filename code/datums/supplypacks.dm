@@ -83,30 +83,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "\improper Monkey crate"
 	group = "Hydroponics"
 
-/datum/supply_packs/farwa
-	name = "Farwa crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/farwacubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper Farwa crate"
-	group = "Hydroponics"
-
-/datum/supply_packs/skrell
-	name = "Neaera crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/neaeracubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper Neaera crate"
-	group = "Hydroponics"
-
-/datum/supply_packs/stok
-	name = "Stok crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/stokcubes)
-	cost = 30
-	containertype = /obj/structure/closet/crate/freezer
-	containername = "\improper Stok crate"
-	group = "Hydroponics"
-
 /datum/supply_packs/beanbagammo
 	name = "Beanbag shells"
 	contains = list(/obj/item/weapon/storage/box/beanbags,
@@ -381,9 +357,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/exoticseeds
 	name = "Exotic seeds crate"
-	contains = list(/obj/item/seeds/replicapod,
-					/obj/item/seeds/replicapod,
-					/obj/item/seeds/libertymycelium,
+	contains = list(/obj/item/seeds/libertymycelium,
 					/obj/item/seeds/reishimycelium,
 					/obj/item/seeds/random,
 					/obj/item/seeds/random,

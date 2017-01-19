@@ -5,12 +5,6 @@
 	sharp = 1
 	edge = 1
 
-/datum/unarmed_attack/diona
-	attack_verb = list("lashed", "bludgeoned")
-	attack_noun = list("tendril")
-	eye_attack_text = "a tendril"
-	eye_attack_text_victim = "a tendril"
-
 /datum/unarmed_attack/claws
 	attack_verb = list("scratched", "clawed", "slashed")
 	attack_noun = list("claws")
