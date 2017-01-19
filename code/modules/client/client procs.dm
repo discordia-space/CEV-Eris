@@ -247,19 +247,21 @@
 		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', rank = '[sql_admin_rank]' WHERE ckey = '[src.ckey]'")
 		query_update.Execute()
 	else
+		var/registration_date = null
 		var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
-		if(!http)
-		world.log << "Failed to connect to byond age check for [src.ckey]"
-
-	var/F = file2text(http["CONTENT"])
-	if(F)
-		var/regex/R = regex("joined = \"(\\d{4})-(\\d{2})-(\\d{2})\"")
-		if(!R.Find(F))
-			world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
-		var/year = R.group[1]
-		var/month = R.group[2]
-		var/day = R.group[3]
-		var/registration_date = "[year]-[month]-[day]"
+		if(http)
+			var/F = file2text(http["CONTENT"])
+			if(F)
+				var/regex/R = regex("joined = \"(\\d{4})-(\\d{2})-(\\d{2})\"")
+				if(R.Find(F))
+					var/year = R.group[1]
+					var/month = R.group[2]
+					var/day = R.group[3]
+					registration_date = "[year]-[month]-[day]"
+				else
+					world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+		else
+			world.log << "Failed to connect to byond age check for [src.ckey]"
 
 		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]')")
 		query_insert.Execute()
