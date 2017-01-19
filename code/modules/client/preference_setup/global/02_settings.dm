@@ -1,6 +1,6 @@
 /datum/preferences
-	var/preferences_enabled = null
-	var/preferences_disabled = null
+	var/preferences_enabled = list()
+	var/preferences_disabled = list()
 
 /datum/category_item/player_setup_item/player_global/settings
 	name = "Settings"
