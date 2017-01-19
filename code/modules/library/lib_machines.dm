@@ -347,7 +347,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 							var/sqlcategory = sanitizeSQL(upload_category)
 
 							var/author_id = null
-							var/DBQuery/get_author_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[src.ckey]'")
+							var/DBQuery/get_author_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[usr.ckey]'")
 							get_author_id.Execute()
 							if(get_author_id.NextRow())
 								author_id = get_author_id.item[1]
