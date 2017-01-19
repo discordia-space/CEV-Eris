@@ -247,9 +247,21 @@
 		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', rank = '[sql_admin_rank]' WHERE ckey = '[src.ckey]'")
 		query_update.Execute()
 	else
-		// TODO: implement registration date retrieving from byond site
-		//New player!! Need to insert all the stuff
-		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, ip, cid, rank) VALUES ('[src.ckey]', Now(), Now(), '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]')")
+		var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
+		if(!http)
+		world.log << "Failed to connect to byond age check for [src.ckey]"
+
+	var/F = file2text(http["CONTENT"])
+	if(F)
+		var/regex/R = regex("joined = \"(\\d{4})-(\\d{2})-(\\d{2})\"")
+		if(!R.Find(F))
+			world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+		var/year = R.group[1]
+		var/month = R.group[2]
+		var/day = R.group[3]
+		var/registration_date = "[year]-[month]-[day]"
+
+		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]')")
 		query_insert.Execute()
 		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[src.ckey]'")
 		if(get_player_id.NextRow())
@@ -258,7 +270,7 @@
 
 	// Logging player access
 	var/server = "[world.internet_address]:[world.port]"
-	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO connections (`time`,`server`,`player_id`,`ip`,`cid`) VALUES(Now(),'[server]',[player_id],'[sql_ip]','[sql_computerid]');")
+	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO connections (time, server, player_id, ip, cid) VALUES(Now(), '[server]', [player_id], '[sql_ip]', '[sql_computerid]')")
 	query_accesslog.Execute()
 
 
