@@ -12,7 +12,7 @@ proc/sql_poll_population()
 		log_game("SQL ERROR during population polling. Failed to connect.")
 	else
 		var/sqltime = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
-		var/DBQuery/query = dbcon_old.NewQuery("INSERT INTO populations (`player_count`, `admin_count`, `time`, `server`) VALUES ([playercount], [admincount], '[sqltime]', '[server]')")
+		var/DBQuery/query = dbcon.NewQuery("INSERT INTO populations (player_count, admin_count, time, server) VALUES ([playercount], [admincount], '[sqltime]', '[server]')")
 		if(!query.Execute())
 			var/err = query.ErrorMsg()
 			log_game("SQL ERROR during population polling. Error : \[[err]\]\n")
