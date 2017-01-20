@@ -176,6 +176,20 @@
 		admins -= src
 	directory -= ckey
 	clients -= src
+
+	establish_db_connection()
+	if(dbcon.IsConnected())
+		var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
+		query.Execute()
+		if(query.NextRow())
+			var/player_id = query.item[1]
+			query = dbcon.NewQuery("SELECT id, time FROM connections ORDER BY id DESC LIMIT 1 WHERE player_id = [player_id]")
+			query.Execute()
+			if(query.NextRow())
+				var/connection_id = query.item[1]
+				var/connection_start = query.item[2]
+				query = dbcon.NewQuery("UPDATE connections SET duration = ROUND(time_to_sec(timediff(Now(), '[connection_start]'))/60) WHERE id = [connection_id]")
+
 	return ..()
 
 
@@ -216,35 +230,16 @@
 	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
 	while(query.NextRow())
 		player_id = query.item[1]
-		player_age = text2num(query.item[2])
+		player_age = text2num(query.item[3])
 		break
-
-	var/DBQuery/query_ip = dbcon.NewQuery("SELECT ckey FROM players WHERE ip = '[address]'")
-	query_ip.Execute()
-	related_accounts_ip = ""
-	while(query_ip.NextRow())
-		related_accounts_ip += "[query_ip.item[1]], "
-		break
-
-	var/DBQuery/query_cid = dbcon.NewQuery("SELECT ckey FROM players WHERE cid = '[computer_id]'")
-	query_cid.Execute()
-	related_accounts_cid = ""
-	while(query_cid.NextRow())
-		related_accounts_cid += "[query_cid.item[1]], "
-		break
-
-	var/admin_rank = "player"
-	if(src.holder)
-		admin_rank = src.holder.rank
 
 	var/sql_ip = sql_sanitize_text(src.address)
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
-	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
 
 	if(player_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', rank = '[sql_admin_rank]' WHERE ckey = '[src.ckey]'")
+		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', WHERE ckey = '[src.ckey]'")
 		query_update.Execute()
 	else
 		var/registration_date = null
