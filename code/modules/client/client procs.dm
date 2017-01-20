@@ -230,7 +230,7 @@
 	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
 	while(query.NextRow())
 		player_id = query.item[1]
-		player_age = text2num(query.item[3])
+		player_age = text2num(query.item[2])
 		break
 
 	var/sql_ip = sql_sanitize_text(src.address)

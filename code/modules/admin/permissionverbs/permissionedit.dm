@@ -79,7 +79,7 @@
 		new_admin = 0
 
 	if(new_admin)
-		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO players (`ckey`, `rank`, `flags`) VALUES ('[adm_ckey]', '[new_rank]', 0)")
+		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET rank = '[new_rank]' WHERE ckey = '[adm_ckey]'")
 		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] made [key_name_admin(adm_ckey)] an admin with the rank [new_rank]")
 		log_admin("[key_name(usr)] made [key_name(adm_ckey)] an admin with the rank [new_rank]")
