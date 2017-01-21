@@ -1,5 +1,6 @@
 /atom
 	layer = 2
+	appearance_flags = TILE_BOUND
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints
