@@ -166,7 +166,7 @@
 			stat_msg2 = reject_bad_text(sanitize(input("Line 2", "Enter Message Text", stat_msg2) as text|null, 40), 40)
 			src.updateDialog()
 
-		// OMG CENTCOMM LETTERHEAD
+//noway
 		if("MessageCentcomm")
 			if(src.authenticated==1)
 				if(centcomm_message_cooldown)
@@ -178,12 +178,9 @@
 				var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 				if(!input || !(usr in view(1,src)))
 					return
-				Centcomm_announce(input, usr)
-				usr << "<span class='notice'>Message transmitted.</span>"
+				usr << "<span class='notice'>No response from the remote server. Please, contact your system administrator.</span>"
 				log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
-				spawn(300)//30 second cooldown
-					centcomm_message_cooldown = 0
 
 
 		// OMG SYNDICATE ...LETTERHEAD
@@ -195,12 +192,10 @@
 				var/input = sanitize(input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 				if(!input || !(usr in view(1,src)))
 					return
-				Syndicate_announce(input, usr)
-				usr << "<span class='notice'>Message transmitted.</span>"
+				usr << "<span class='notice'>No response from the remote server. Please, contact your system administrator.</span>"
 				log_say("[key_name(usr)] has made an illegal announcement: [input]")
 				centcomm_message_cooldown = 1
-				spawn(300)//10 minute cooldown
-					centcomm_message_cooldown = 0
+
 
 		if("RestoreBackup")
 			usr << "Backup routing data restored!"
