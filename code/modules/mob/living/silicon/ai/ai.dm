@@ -390,8 +390,7 @@ var/list/ai_verbs_default = list(
 	var/input = sanitize(input(usr, "Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
-	Centcomm_announce(input, usr)
-	usr << "<span class='notice'>Message transmitted.</span>"
+	usr << "<span class='notice'>No response from the remote server. Please, contact your system administrator.</span>"
 	log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
