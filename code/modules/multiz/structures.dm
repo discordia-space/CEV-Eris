@@ -145,10 +145,22 @@
 	if (ismob(M) && M:client)
 		M:client.moving = 0
 
-/obj/structure/stairs/active/Click()
+/obj/structure/stairs/active/attack_ghost(mob/user)
+	. = ..()
+	src.attack_hand(user)
+
+/obj/structure/stairs/active/attackby(obj/item/I, mob/user)
+	. = ..()
+	src.attack_hand(user)
+
+/obj/structure/stairs/active/attack_hand(var/mob/M)
 	usr.client.moving = 1
 	usr.Move(locate(src.x, src.y, targetZ()))
 	usr.client.moving = 0
+
+/obj/structure/stairs/active/attack_ai(mob/living/silicon/ai/user)
+	var/turf/T = locate(src.x, src.y, targetZ())
+	T.move_camera_by_click()
 
 /obj/structure/stairs/active/bottom
 	icon_state = "rampdark"
