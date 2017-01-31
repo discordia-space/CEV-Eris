@@ -50,7 +50,7 @@
 				if(W.is_fulltile())
 					return
 		// Dont break here, since we still need to be sure that it isnt blocked
-		if(istype(A, /obj/structure/stairs))
+		if(istype(A, /obj/structure/multiz/stairs))
 			soft = 1
 
 	// We've made sure we can move, now.

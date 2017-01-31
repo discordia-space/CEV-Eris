@@ -2,173 +2,143 @@
 //Contents: Ladders, Stairs.//
 //////////////////////////////
 
-/obj/structure/ladder
+/obj/structure/multiz
 	name = "ladder"
-	desc = "A ladder.  You can climb it up and down."
-	icon_state = "ladderdown"
-	icon = 'icons/obj/structures.dmi'
 	density = 0
 	opacity = 0
 	anchored = 1
+	icon = 'icons/obj/stairs.dmi'
+	var/istop = 1
+	var/obj/structure/multiz/target
 
-	var/obj/structure/ladder/target
+	New()
+		. = ..()
+		for(var/obj/structure/multiz/M in loc)
+			if(M != src)
+				spawn(1)
+					world.log << "##MAP_ERROR: Multiple [initial(name)] at ([x],[y],[z])"
+					qdel(src)
+				return .
+
+	CanPass(obj/mover, turf/source, height, airflow)
+		return airflow || !density
+
+	proc/find_target()
+		return
 
 	initialize()
-		// the upper will connect to the lower
-		if(icon_state == "ladderup")
-			return
+		find_target()
 
-		for(var/obj/structure/ladder/L in GetBelow(src))
-			if(L.icon_state == "ladderup")
-				target = L
-				L.target = src
-				return
+	attack_tk(mob/user)
+		return
 
-	Destroy()
-		if(target && icon_state == "ladderdown")
-			qdel(target)
-		return ..()
+	attack_ghost(mob/user)
+		. = ..()
+		user.Move(get_turf(target))
 
-	attackby(obj/item/C as obj, mob/user as mob)
+	attack_ai(mob/living/silicon/ai/user)
+		var/turf/T = get_turf(target)
+		T.move_camera_by_click()
+
+	attackby(obj/item/C, mob/user)
 		. = ..()
 		attack_hand(user)
 		return
 
-	attack_hand(var/mob/M)
-		if(!target || !istype(target.loc, /turf))
-			M << "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>"
+
+
+////LADDER////
+
+/obj/structure/multiz/ladder
+	name = "ladder"
+	desc = "A ladder.  You can climb it up and down."
+	icon_state = "ladderdown"
+
+/obj/structure/multiz/ladder/find_target()
+	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
+	target = locate(/obj/structure/multiz/ladder) in targetTurf
+
+/obj/structure/multiz/ladder/up
+	icon_state = "ladderup"
+	istop = 0
+
+/obj/structure/multiz/ladder/Destroy()
+	if(target && istop)
+		qdel(target)
+	return ..()
+
+/obj/structure/multiz/ladder/attack_hand(var/mob/M)
+	if(!target || !istype(target.loc, /turf))
+		M << "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>"
+		return
+
+	var/turf/T = target.loc
+	for(var/atom/A in T)
+		if(A.density)
+			M << "<span class='notice'>\A [A] is blocking \the [src].</span>"
 			return
 
-		var/turf/T = target.loc
-		for(var/atom/A in T)
-			if(A.density)
-				M << "<span class='notice'>\A [A] is blocking \the [src].</span>"
-				return
+	M.visible_message(
+		"<span class='notice'>\A [M] climbs [istop ? "down" : "up"] \a [src]!</span>",
+		"You climb [istop ? "down" : "up"] \the [src]!",
+		"You hear the grunting and clanging of a metal ladder being used."
+	)
+	T.visible_message(
+		"<span class='warning'>Someone climbs [istop ? "down" : "up"] \a [src]!</span>",
+		"You hear the grunting and clanging of a metal ladder being used."
+	)
 
-		M.visible_message("<span class='notice'>\A [M] climbs [icon_state == "ladderup" ? "up" : "down"] \a [src]!</span>",
-			"You climb [icon_state == "ladderup"  ? "up" : "down"] \the [src]!",
-			"You hear the grunting and clanging of a metal ladder being used.")
+	if(do_after(M, 10, src))
 		M.Move(T)
 
-	CanPass(obj/mover, turf/source, height, airflow)
-		return airflow || !density
 
 
-//old shitty stairs
-/*
-/obj/structure/stairs
+////STAIRS////
+
+/obj/structure/multiz/stairs
 	name = "Stairs"
 	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
-	icon = 'icons/obj/stairs.dmi'
-	density = 0
-	opacity = 0
-	anchored = 1
-
-	initialize()
-		for(var/turf/turf in locs)
-			var/turf/simulated/open/above = GetAbove(turf)
-			if(!above)
-				warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
-				return qdel(src)
-			if(!istype(above))
-				above.ChangeTurf(/turf/simulated/open)
-
-	Uncross(atom/movable/A)
-		if(A.dir == dir)
-			// This is hackish but whatever.
-			var/turf/target = get_step(GetAbove(A), dir)
-			var/turf/source = A.loc
-			if(target.Enter(A, source))
-				A.loc = target
-				target.Entered(A, source)
-			return 0
-		return 1
-
-	CanPass(obj/mover, turf/source, height, airflow)
-		return airflow || !density
-
-	// type paths to make mapping easier.
-	north
-		dir = NORTH
-		bound_height = 64
-		bound_y = -32
-		pixel_y = -32
-
-	south
-		dir = SOUTH
-		bound_height = 64
-
-	east
-		dir = EAST
-		bound_width = 64
-		bound_x = -32
-		pixel_x = -32
-
-	west
-		dir = WEST
-		bound_width = 64
-
-	*/
-
-//Spizjeno by guap and then by bo20202
-/obj/structure/stairs
-	name = "Stairs"
-	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
-	icon = 'icons/obj/stairs.dmi'
 	icon_state = "rampup"
 	layer = 2.4
-	density = 0
-	opacity = 0
-	anchored = 1
-	var/istop = 1
 
-	CanPass(obj/mover, turf/source, height, airflow)
-		return airflow || !density
-
-/obj/structure/stairs/enter
+/obj/structure/multiz/stairs/enter
 	icon_state = "ramptop"
 
-/obj/structure/stairs/enter/bottom
+/obj/structure/multiz/stairs/enter/bottom
 	icon_state = "rampbottom"
 	istop = 0
 
-/obj/structure/stairs/active
+/obj/structure/multiz/stairs/active
 	density = 1
 
-/obj/structure/stairs/active/Bumped(var/atom/movable/M)
-	if(istype(src, /obj/structure/stairs/active/bottom) && !locate(/obj/structure/stairs/enter) in M.loc)
-		return //If on bottom, only let them go up stairs if they've moved to the entry tile first.
-	//If it's the top, they can fall down just fine.
-	if(ismob(M) && M:client)
-		M:client.moving = 1
-	M.Move(locate(src.x, src.y, targetZ()))
-	if (ismob(M) && M:client)
-		M:client.moving = 0
+/obj/structure/multiz/stairs/active/find_target()
+	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
+	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
 
-/obj/structure/stairs/active/attack_ghost(mob/user)
+/obj/structure/multiz/stairs/active/Bumped(var/atom/movable/M)
+	if(ismob(M))
+		usr.client.moving = 1
+		usr.Move(get_turf(target))
+		usr.client.moving = 0
+	else
+		M.Move(get_turf(target))
+
+/obj/structure/multiz/stairs/active/attack_robot(mob/user)
 	. = ..()
-	src.attack_hand(user)
+	if(Adjacent(user))
+		Bumped(user)
 
-/obj/structure/stairs/active/attackby(obj/item/I, mob/user)
+/obj/structure/multiz/stairs/active/attack_hand(mob/user)
 	. = ..()
-	src.attack_hand(user)
+	Bumped(user)
 
-/obj/structure/stairs/active/attack_hand(var/mob/M)
-	usr.client.moving = 1
-	usr.Move(locate(src.x, src.y, targetZ()))
-	usr.client.moving = 0
-
-/obj/structure/stairs/active/attack_ai(mob/living/silicon/ai/user)
-	var/turf/T = locate(src.x, src.y, targetZ())
-	T.move_camera_by_click()
-
-/obj/structure/stairs/active/bottom
+/obj/structure/multiz/stairs/active/bottom
 	icon_state = "rampdark"
 	istop = 0
 	opacity = 1
 
-/obj/structure/attack_tk(mob/user as mob)
-	return
-
-/obj/structure/stairs/proc/targetZ()
-	return src.z + (istop ? -1 : 1)
+/obj/structure/multiz/stairs/active/bottom/Bumped(var/atom/movable/M)
+	//If on bottom, only let them go up stairs if they've moved to the entry tile first.
+	if(!locate(/obj/structure/multiz/stairs/enter) in M.loc)
+		return
+	return ..()
