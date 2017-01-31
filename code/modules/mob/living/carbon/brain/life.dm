@@ -235,6 +235,11 @@
 
 		return 1
 
+	if(istype(src.client.eye, /obj/machinery/camera))
+		overlays += "camera0"
+	else
+		overlays.Cut()
+
 
 /*/mob/living/carbon/brain/emp_act(severity)
 	if(!(container && istype(container, /obj/item/device/mmi)))

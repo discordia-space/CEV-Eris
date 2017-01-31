@@ -1001,6 +1001,15 @@
 	src.icon_state = _icon_state
 	src.dir = _dir
 
+/obj/screen/camera
+	icon = 'icons/mob/screen1_full.dmi'
+	icon_state = "camera0"
+	name = "cam"
+	screen_loc = "1,1"
+	mouse_opacity = 0
+	process_flag = 0
+	layer = 18.1
+
 
 
 /*	if(owner.gun_move_icon)
