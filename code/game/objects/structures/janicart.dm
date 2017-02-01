@@ -27,9 +27,8 @@
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
-		user.drop_item()
+		user.drop_from_inventory(I, src)
 		mybag = I
-		I.loc = src
 		update_icon()
 		updateUsrDialog()
 		user << "<span class='notice'>You put [I] into [src].</span>"
@@ -44,33 +43,29 @@
 				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 				return
 		if(!mymop)
-			user.drop_item()
+			user.drop_from_inventory(I, src)
 			mymop = I
-			I.loc = src
 			update_icon()
 			updateUsrDialog()
 			user << "<span class='notice'>You put [I] into [src].</span>"
 
 	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && !myspray)
-		user.drop_item()
+		user.drop_from_inventory(I, src)
 		myspray = I
-		I.loc = src
 		update_icon()
 		updateUsrDialog()
 		user << "<span class='notice'>You put [I] into [src].</span>"
 
 	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
-		user.drop_item()
+		user.drop_from_inventory(I, src)
 		myreplacer = I
-		I.loc = src
 		update_icon()
 		updateUsrDialog()
 		user << "<span class='notice'>You put [I] into [src].</span>"
 
 	else if(istype(I, /obj/item/weapon/caution))
 		if(signs < 4)
-			user.drop_item()
-			I.loc = src
+			user.drop_from_inventory(I, src)
 			signs++
 			update_icon()
 			updateUsrDialog()
@@ -170,7 +165,7 @@
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
 	anchored = 1
-	density = 1
+	density = 0
 	flags = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
@@ -180,6 +175,7 @@
 
 
 /obj/structure/bed/chair/janicart/New()
+	..()
 	create_reagents(100)
 
 
