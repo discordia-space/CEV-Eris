@@ -40,6 +40,7 @@
 		if(vocal && prob(1))
 			var/message = pick("Radar, put a mask on!", "There's always a catch, and it's the best there is.", "I knew it, I should've been a plastic surgeon.", "What kind of medbay is this? Everyone's dropping like dead flies.", "Delicious!")
 			say(message)
+			playsound(loc, "robot_talk_light", 100, 0, 0)
 
 		if(patient)
 			if(Adjacent(patient))
@@ -67,6 +68,7 @@
 					if(last_newpatient_speak + 300 < world.time)
 						var/message = pick("Hey, [H.name]! Hold on, I'm coming.", "Wait [H.name]! I want to help!", "[H.name], you appear to be injured!")
 						say(message)
+						playsound(loc, "robot_talk_light", 100, 0, 0)
 						custom_emote(1, "points at [H.name].")
 						last_newpatient_speak = world.time
 					break
@@ -84,6 +86,7 @@
 	if(H.stat == DEAD)
 		var/death_message = pick("No! NO!", "Live, damnit! LIVE!", "I... I've never lost a patient before. Not today, I mean.")
 		say(death_message)
+		playsound(loc, "robot_talk_light", 100, 0, 0)
 		patient = null
 		return
 
@@ -91,6 +94,7 @@
 	if(!t)
 		var/message = pick("All patched up!", "An apple a day keeps me away.", "Feel better soon!")
 		say(message)
+		playsound(loc, "robot_talk_light", 100, 0, 0)
 		patient = null
 		return
 
@@ -226,6 +230,7 @@
 		if(user)
 			user << "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>"
 		visible_message("<span class='warning'>[src] buzzes oddly!</span>")
+		playsound(loc, "robot_talk_light", 100, 0, 0)
 		flick("medibot_spark", src)
 		patient = null
 		currently_healing = 0
@@ -238,6 +243,7 @@
 /mob/living/bot/medbot/explode()
 	on = 0
 	visible_message("<span class='danger'>[src] blows apart!</span>")
+	playsound(loc, "robot_talk_light", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/weapon/storage/firstaid(Tsec)
@@ -307,6 +313,7 @@
 	qdel(S)
 	user.put_in_hands(A)
 	user << "<span class='notice'>You add the robot arm to the first aid kit.</span>"
+	playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 	user.drop_from_inventory(src)
 	qdel(src)
 
@@ -343,6 +350,7 @@
 					qdel(W)
 					build_step++
 					user << "<span class='notice'>You add the health sensor to [src].</span>"
+					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 					name = "First aid/robot arm/health analyzer assembly"
 					overlays += image('icons/obj/aibots.dmi', "na_scanner")
 
@@ -351,6 +359,7 @@
 					user.drop_item()
 					qdel(W)
 					user << "<span class='notice'>You complete the Medibot! Beep boop.</span>"
+					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 					var/turf/T = get_turf(src)
 					var/mob/living/bot/medbot/S = new /mob/living/bot/medbot(T)
 					S.skin = skin

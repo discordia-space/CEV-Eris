@@ -55,6 +55,7 @@
 		emagged = 1
 		if(user)
 			user << "<span class='notice'>The [src] buzzes and beeps.</span>"
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		return 1
 
 /mob/living/bot/floorbot/Topic(href, href_list)
@@ -195,11 +196,17 @@
 		update_icons()
 		if(F.is_plating())
 			visible_message("<span class='warning'>[src] begins to tear the floor tile from the floor!</span>")
+			var/message = pick("Here we go!", "Let's do this!", "See, how is easy to anger an engineer with one simple trick!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			if(do_after(src, 50, F))
 				F.break_tile_to_plating()
 				addTiles(1)
 		else
 			visible_message("<span class='danger'>[src] begins to tear through the floor!</span>")
+			var/message = pick("DOWN WE GO, MY FRIEND!", "REACH FOR THE SKY!", "ABBYS AWAITS!", "I WAS BORN TO BE A MINER!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 200, 0, 0)
 			if(do_after(src, 150, F)) // Extra time because this can and will kill.
 				F.ReplaceWithLattice()
 				addTiles(1)
@@ -215,6 +222,9 @@
 		repairing = 1
 		update_icons()
 		visible_message("<span class='notice'>[src] begins to repair the hole.</span>")
+		var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
+		say(message)
+		playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		if(do_after(src, 50, A))
 			if(A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) // Make sure that it still needs repairs
 				var/obj/item/I
@@ -232,6 +242,9 @@
 			repairing = 1
 			update_icons()
 			visible_message("<span class='notice'>[src] begins to improve the floor.</span>")
+			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			if(do_after(src, 50, F))
 				if(!F.flooring)
 					F.set_flooring(get_flooring_data(floor_build_type))
@@ -242,6 +255,9 @@
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
 		visible_message("<span class='notice'>\The [src] begins to collect tiles.</span>")
+		var/message = pick("I can use this.")
+		say(message)
+		playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		repairing = 1
 		update_icons()
 		if(do_after(src, 20))
@@ -256,6 +272,9 @@
 		var/obj/item/stack/material/M = A
 		if(M.get_material_name() == DEFAULT_WALL_MATERIAL)
 			visible_message("<span class='notice'>\The [src] begins to make tiles.</span>")
+			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			repairing = 1
 			update_icons()
 			if(do_after(src, 50))
@@ -266,6 +285,7 @@
 /mob/living/bot/floorbot/explode()
 	turn_off()
 	visible_message("<span class='danger'>[src] blows apart!</span>")
+	playsound(loc, "robot_talk_heavy", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
 	var/obj/item/weapon/storage/toolbox/mechanical/N = new /obj/item/weapon/storage/toolbox/mechanical(Tsec)
@@ -302,6 +322,7 @@
 		var/obj/item/weapon/toolbox_tiles/B = new /obj/item/weapon/toolbox_tiles
 		user.put_in_hands(B)
 		user << "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>"
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
@@ -328,6 +349,7 @@
 		B.created_name = created_name
 		user.put_in_hands(B)
 		user << "<span class='notice'>You add the sensor to the toolbox and tiles!</span>"
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if (istype(W, /obj/item/weapon/pen))
@@ -358,6 +380,7 @@
 		var/mob/living/bot/floorbot/A = new /mob/living/bot/floorbot(T)
 		A.name = created_name
 		user << "<span class='notice'>You add the robot arm to the odd looking toolbox assembly! Boop beep!</span>"
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if(istype(W, /obj/item/weapon/pen))
