@@ -28,7 +28,8 @@
 		"damageoverlay" = list("type" = /obj/screen/damageoverlay, "loc" = "1,1", "icon" =  'icons/mob/screen1_full.dmi'),
 		"flash" =  list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
 		"pain" = list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-		"drugeffect" = list("type" = /obj/screen/drugoverlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank")
+		"drugeffect" = list("type" = /obj/screen/drugoverlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1", "icon_state" = "blank")
 	)
 //"vision" = list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank")
 	HUDneed = list(
@@ -71,7 +72,7 @@
 		"l_ear" =        list("loc" = "4,2",  "name" = "Left Ear",        "state" = "ears0",   "hideflag" = TOGGLE_INVENTORY_FLAG),
 		"r_ear" =        list("loc" = "4,3",  "name" = "Right Ear",       "state" = "ears1",   "hideflag" = TOGGLE_INVENTORY_FLAG),
 		"head" =         list("loc" = "3,3",  "name" = "Hat",             "state" = "hair",    "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"shoes" =        list("loc" = "3,0",  "name" = "Shoes",           "state" = "shoes",   "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"shoes" =        list("loc" = "3,0",  "name" = "Shoes",           "state" = "shoes"),
 		"suit storage" = list("loc" = "4,0",  "name" = "Suit Storage",    "state" = "suit-belt"),
 		"back" =         list("loc" = "7,0",  "name" = "Back",            "state" = "back"),
 		"id" =           list("loc" = "5,0",  "name" = "ID",              "state" = "id"),
