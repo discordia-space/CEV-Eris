@@ -878,7 +878,7 @@
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = 0
 	process_flag = 1
-	layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 /obj/screen/drugoverlay/process()
@@ -900,7 +900,7 @@
 	screen_loc = "1,1"
 	mouse_opacity = 0
 	process_flag = 1
-	layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 /obj/screen/damageoverlay/process()
@@ -1001,6 +1001,26 @@
 	src.icon_state = _icon_state
 	src.dir = _dir
 
+/obj/screen/glasses_overlay
+	icon = null
+	name = "glasses"
+	screen_loc = "1,1"
+	mouse_opacity = 0
+	process_flag = 1
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+
+
+/obj/screen/glasses_overlay/process()
+	update_icon()
+	return
+
+/obj/screen/glasses_overlay/update_icon()
+	overlays.Cut()
+	var/mob/living/carbon/human/H = parentmob
+	if(istype(H.glasses, /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/G = H.glasses
+		if (G.active && G.overlay)//check here need if someone want call this func directly
+			overlays |= G.overlay
 
 
 /*	if(owner.gun_move_icon)

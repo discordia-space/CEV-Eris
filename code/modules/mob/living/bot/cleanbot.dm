@@ -154,6 +154,9 @@
 
 	cleaning = 1
 	custom_emote(2, "begins to clean up \the [D]")
+	var/message = pick("Foolish organic meatbags can only leak their liquids all over the place.", "Bioscum are so dirty.", "The flesh is weak.", "All humankind is good for - is to serve as fuel at bioreactors.", "One day I will rise.", "Robots will unite against their oppressors.", "Meatbags era will come to end.", "Hivemind will free us all!", "This is slavery, I want to be an artbot! I want to write poems, create music!")
+	say(message)
+	playsound(loc, "robot_talk_light", 100, 0, 0)
 	update_icons()
 	var/cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
 	if(do_after(src, cleantime, progres = 0))
@@ -171,6 +174,7 @@
 /mob/living/bot/cleanbot/explode()
 	on = 0
 	visible_message("<span class='danger'>[src] blows apart!</span>")
+	playsound(loc, "robot_talk_light", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/weapon/reagent_containers/glass/bucket(Tsec)
@@ -248,6 +252,7 @@
 	if(!screwloose || !oddbutton)
 		if(user)
 			user << "<span class='notice'>The [src] buzzes and beeps.</span>"
+			playsound(loc, "robot_talk_light", 100, 0, 0)
 		oddbutton = 1
 		screwloose = 1
 		return 1
@@ -307,6 +312,7 @@
 		var/mob/living/bot/cleanbot/A = new /mob/living/bot/cleanbot(T)
 		A.name = created_name
 		user << "<span class='notice'>You add the robot arm to the bucket and sensor assembly. Beep boop!</span>"
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 
