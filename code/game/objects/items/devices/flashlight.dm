@@ -12,7 +12,7 @@
 
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
-	var/brightness_on = 4 //luminosity when on
+	var/brightness_on = 5 //luminosity when on
 	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
 
 /obj/item/device/flashlight/initialize()
@@ -131,7 +131,7 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	item_state = "lamp"
-	brightness_on = 5
+	brightness_on = 4
 	w_class = 4
 	flags = CONDUCT
 
@@ -143,7 +143,7 @@
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
-	brightness_on = 5
+	brightness_on = 4
 	light_color = "#FFC58F"
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
@@ -160,8 +160,8 @@
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 2.0
-	brightness_on = 8 // Pretty bright.
-	light_power = 3
+	brightness_on = 4 // Pretty bright.
+	light_power = 2
 	light_color = "#e58775"
 	icon_state = "flare"
 	item_state = "flare"

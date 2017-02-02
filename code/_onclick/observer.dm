@@ -26,7 +26,7 @@
 	// Otherwise jump
 	else
 		stop_following()
-		forceMove(get_turf(A))
+		forceMoveOld(get_turf(A))
 
 /mob/dead/observer/ClickOn(var/atom/A, var/params)
 	if(client.buildmode)

@@ -9,6 +9,7 @@
 
 	New()
 		..()
+		set_light(1.5)
 		spawn(4)
 			if(src)
 				for(var/obj/structure/catwalk/C in get_turf(src))

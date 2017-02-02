@@ -843,6 +843,7 @@
 	desc = "Wall-mounted Medical Equipment dispenser."
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
+	light_color = "#e6fff2"
 	icon_deny = "wallmed-deny"
 	req_access = list(access_medical)
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
@@ -853,6 +854,7 @@
 	name = "NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
 	icon_state = "wallmed"
+	light_color = "#e6fff2"
 	icon_deny = "wallmed-deny"
 	req_access = list(access_medical)
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
