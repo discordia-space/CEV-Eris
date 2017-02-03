@@ -157,14 +157,6 @@
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET
 
-/obj/item/clothing/under/sexymime
-	name = "sexy mime outfit"
-	desc = "The only time when you DON'T enjoy looking at someone's rack."
-	icon_state = "sexymime"
-	item_state = "w_suit"
-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
 	desc = "Are you not entertained? Is that not why you are here?"

@@ -406,18 +406,6 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 
-/datum/gear/shinyblacksuit
-	display_name = "suit, shiny-black"
-	path = /obj/item/clothing/under/lawyer/black
-	slot = slot_w_uniform
-	cost = 1
-
-/datum/gear/bluesuit
-	display_name = "suit, blue"
-	path = /obj/item/clothing/under/lawyer/blue
-	slot = slot_w_uniform
-	cost = 1
-
 /datum/gear/burgundysuit
 	display_name = "suit, burgundy"
 	path = /obj/item/clothing/under/suit_jacket/burgundy
@@ -466,24 +454,6 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 
-/datum/gear/redlawyer
-	display_name = "suit, lawyer-red"
-	path = /obj/item/clothing/under/lawyer/red
-	slot = slot_w_uniform
-	cost = 1
-
-/datum/gear/oldmansuit
-	display_name = "suit, old-man"
-	path = /obj/item/clothing/under/lawyer/oldman
-	slot = slot_w_uniform
-	cost = 1
-
-/datum/gear/purplesuit
-	display_name = "suit, purple"
-	path = /obj/item/clothing/under/lawyer/purpsuit
-	slot = slot_w_uniform
-	cost = 1
-
 /datum/gear/tansuit
 	display_name = "suit, tan"
 	path = /obj/item/clothing/under/suit_jacket/tan
@@ -493,12 +463,6 @@ var/global/list/gear_datums = list()
 /datum/gear/whitesuit
 	display_name = "suit, white"
 	path = /obj/item/clothing/under/scratch
-	slot = slot_w_uniform
-	cost = 1
-
-/datum/gear/whitebluesuit
-	display_name = "suit, white-blue"
-	path = /obj/item/clothing/under/lawyer/bluesuit
 	slot = slot_w_uniform
 	cost = 1
 
@@ -520,34 +484,6 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 	allowed_roles = list("Captain")
-
-/datum/gear/corpsecsuit
-	display_name = "uniform, corporate (Security)"
-	path = /obj/item/clothing/under/rank/security/corp
-	cost = 1
-	slot = slot_w_uniform
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
-
-/datum/gear/uniform_hop
-	display_name = "uniform, HoP's dress"
-	path = /obj/item/clothing/under/dress/dress_hop
-	slot = slot_w_uniform
-	cost = 1
-	allowed_roles = list("First Officer")
-
-/datum/gear/uniform_hr
-	display_name = "uniform, HR director (HoP)"
-	path = /obj/item/clothing/under/dress/dress_hr
-	slot = slot_w_uniform
-	cost = 1
-	allowed_roles = list("First Officer")
-
-/datum/gear/navysecsuit
-	display_name = "uniform, navyblue (Security)"
-	path = /obj/item/clothing/under/rank/security/navyblue
-	cost = 1
-	slot = slot_w_uniform
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
 
 // Attachments
 /datum/gear/armband_cargo

@@ -1060,7 +1060,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/nun,
 					///obj/item/clothing/under/gimmick/rank/captain/suit,
 					/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
-					/obj/item/clothing/under/lawyer/purpsuit,
 					/obj/item/clothing/suit/bio_suit/plaguedoctorsuit,
 					/obj/item/clothing/under/schoolgirl,
 					/obj/item/clothing/under/owl,
@@ -1079,8 +1078,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/formal_wear
 	contains = list(/obj/item/clothing/head/bowler,
 					/obj/item/clothing/head/that,
-					/obj/item/clothing/under/lawyer/bluesuit,
-					/obj/item/clothing/under/lawyer/purpsuit,
 					/obj/item/clothing/shoes/black,
 					/obj/item/clothing/shoes/black,
 					/obj/item/clothing/shoes/leather,
