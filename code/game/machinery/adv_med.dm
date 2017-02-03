@@ -408,34 +408,46 @@
 /obj/machinery/bodyscanner/update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_off"
+		set_light(0)
 	else
 		if(connected)
 			connected.update_icon()
 		if(occupant)
 			if(occupant.health>=100)
 				icon_state = "scanner_green"
+				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_LIME)
 			else if(occupant.health>=0)
 				icon_state = "scanner_yellow"
+				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_YELLOW)
 			else if(occupant.health>=-90)
 				icon_state = "scanner_red"
+				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 			else
 				icon_state = "scanner_death"
+				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 		else
 			icon_state = "scanner_open"
+			set_light(0)
 
 /obj/machinery/body_scanconsole/update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_terminal_off"
+		set_light(0)
 	else
 		if(connected)
 			if(connected.occupant)
 				if(connected.occupant.health>=100)
 					icon_state = "scanner_terminal_green"
+					set_light(l_range = 1.5, l_power = 2, l_color = COLOR_LIME)
 				else if(connected.occupant.health>=-90)
 					icon_state = "scanner_terminal_red"
+					set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 				else
 					icon_state = "scanner_terminal_dead"
+					set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 			else
 				icon_state = "scanner_terminal_blue"
+				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_BLUE)
 		else
 			icon_state = "scanner_terminal_off"
+			set_light(0)
