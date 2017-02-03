@@ -16,6 +16,7 @@
 	ASSERT(HasBelow(z))
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
+	. = ..()
 #ifdef USE_OPENSPACE
 	if(istype(mover, /mob/shadow))
 #endif USE_OPENSPACE

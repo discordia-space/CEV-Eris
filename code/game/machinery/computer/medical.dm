@@ -5,7 +5,7 @@
 	desc = "Used to view, edit and maintain medical records."
 	icon_keyboard = "med_key"
 	icon_screen = "medcomp"
-	light_color = "#315ab4"
+	light_color = COLOR_LIME
 	req_one_access = list(access_medical, access_forensics_lockers)
 	circuit = /obj/item/weapon/circuitboard/med_data
 	var/obj/item/weapon/card/id/scan = null
