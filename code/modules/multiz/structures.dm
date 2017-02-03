@@ -135,7 +135,6 @@
 /obj/structure/multiz/stairs/active/bottom
 	icon_state = "rampdark"
 	istop = 0
-	opacity = 1
 
 /obj/structure/multiz/stairs/active/bottom/Bumped(var/atom/movable/M)
 	//If on bottom, only let them go up stairs if they've moved to the entry tile first.
