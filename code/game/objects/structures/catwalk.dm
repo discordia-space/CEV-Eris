@@ -9,7 +9,7 @@
 
 	New()
 		..()
-		set_light(1.5)
+		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
 		spawn(4)
 			if(src)
 				for(var/obj/structure/catwalk/C in get_turf(src))
