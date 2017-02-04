@@ -599,7 +599,7 @@ var/list/sacrificed = list()
 				usr.whisper("O bidai nabora se[pick("'","`")]sma!")
 				usr.whisper("[input]")
 
-			input = sanitize(input)
+			input = capitalize_cp1251(sanitize(input))
 			log_and_message_admins("used a communicate rune to say '[input]'")
 			for(var/datum/mind/H in cult.current_antagonists)
 				if (H.current)
