@@ -95,6 +95,20 @@
 			return O
 	return 0
 
+/obj/structure/proc/neighbor_turf_passable()
+	var/turf/T = get_step(src, src.dir)
+	if(!T || !istype(T))
+		return 0
+	if(T.density == 1)
+		return 0
+	for(var/obj/O in T.contents)
+		if(istype(O,/obj/structure))
+			if(istype(O,/obj/structure/railing))
+				return 1
+			else if(O.density == 1)
+				return 0
+	return 1
+
 /obj/structure/proc/do_climb(var/mob/living/user)
 	if (!can_climb(user))
 		return
