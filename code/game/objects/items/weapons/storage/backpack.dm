@@ -114,31 +114,6 @@
 	icon_state = "engiepack"
 	item_state_slots = null
 
-/obj/item/weapon/storage/backpack/toxins
-	name = "laboratory backpack"
-	desc = "It's a light backpack modeled for use in laboratories and other scientific institutions."
-	icon_state = "toxpack"
-
-/obj/item/weapon/storage/backpack/hydroponics
-	name = "herbalist's backpack"
-	desc = "It's a green backpack with many pockets to store plants and tools in."
-	icon_state = "hydpack"
-
-/obj/item/weapon/storage/backpack/genetics
-	name = "geneticist backpack"
-	desc = "It's a backpack fitted with slots for diskettes and other workplace tools."
-	icon_state = "genpack"
-
-/obj/item/weapon/storage/backpack/virology
-	name = "sterile backpack"
-	desc = "It's a sterile backpack able to withstand different pathogens from entering its fabric."
-	icon_state = "viropack"
-
-/obj/item/weapon/storage/backpack/chemistry
-	name = "chemistry backpack"
-	desc = "It's an orange backpack which was designed to hold beakers, pill bottles and bottles."
-	icon_state = "chempack"
-
 /*
  * Satchel Types
  */
@@ -176,26 +151,6 @@
 		slot_r_hand_str = "medicalpack",
 		)
 
-/obj/item/weapon/storage/backpack/satchel_vir
-	name = "virologist satchel"
-	desc = "A sterile satchel with virologist colours."
-	icon_state = "satchel-vir"
-
-/obj/item/weapon/storage/backpack/satchel_chem
-	name = "chemist satchel"
-	desc = "A sterile satchel with chemist colours."
-	icon_state = "satchel-chem"
-
-/obj/item/weapon/storage/backpack/satchel_gen
-	name = "geneticist satchel"
-	desc = "A sterile satchel with geneticist colours."
-	icon_state = "satchel-gen"
-
-/obj/item/weapon/storage/backpack/satchel_tox
-	name = "scientist satchel"
-	desc = "Useful for holding research materials."
-	icon_state = "satchel-tox"
-
 /obj/item/weapon/storage/backpack/satchel_sec
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
@@ -204,11 +159,6 @@
 		slot_l_hand_str = "securitypack",
 		slot_r_hand_str = "securitypack",
 		)
-
-/obj/item/weapon/storage/backpack/satchel_hyd
-	name = "hydroponics satchel"
-	desc = "A green satchel for plant related work."
-	icon_state = "satchel_hyd"
 
 /obj/item/weapon/storage/backpack/satchel_cap
 	name = "captain's satchel"
