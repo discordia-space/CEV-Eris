@@ -11,14 +11,16 @@
 	flags = ON_BORDER
 	icon_state = "railing0"
 	var/broken = 0
-	var/health=30
-	var/maxhealth=30
+	var/health=70
+	var/maxhealth=70
 	//var/LeftSide = list(0,0,0)// Нужны для хранения данных
 	//var/RightSide = list(0,0,0)
 	var/check = 0
 
-/obj/structure/railing/New()
+/obj/structure/railing/New(loc, constructed=0)
 	..()
+	if (constructed)	//player-constructed railings
+		anchored = 0
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 	if(src.anchored)
@@ -192,8 +194,8 @@
 		usr << "It is fastened to the floor therefore you can't flip it!"
 		return 0
 
-	if(get_step(src, src.dir) == "turf/simulated/wall/")
-		usr << "You can't flip the [src] into the wall"
+	if(!neighbor_turf_passable())
+		usr << "You can't flip the [src] because something blocking it."
 		return 0
 
 	src.loc = get_step(src, src.dir)
@@ -269,7 +271,6 @@
 			return
 
 	else
-		user.visible_message("<span class='danger'>\The [src] has been hit by [user] with \the [W].</span>")
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 		take_damage(W.force)
 
@@ -304,7 +305,8 @@
 		climbers -= user
 		return
 
-	if(get_step(src, src.dir) == "turf/simulated/wall/")
+	if(!neighbor_turf_passable())
+		user << "<span class='danger'>You can't climb there, the way is blocked.</span>"
 		climbers -= user
 		return
 
