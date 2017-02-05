@@ -3,7 +3,7 @@
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
-	message = sanitize(message)
+	message = capitalize_cp1251(sanitize(message))
 	..(message, alt_name = alt_name)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
