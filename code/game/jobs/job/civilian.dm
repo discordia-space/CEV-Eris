@@ -87,8 +87,8 @@
 
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/,\
-		///obj/item/weapon/storage/backpack/hydroponics,\
-		/obj/item/weapon/storage/backpack/satchel_hyd,\
+		///obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 

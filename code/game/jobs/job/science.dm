@@ -31,8 +31,8 @@
 	hand = /obj/item/weapon/clipboard
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/toxins,\
-		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -62,8 +62,8 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/toxins,\
-		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -91,8 +91,8 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/toxins,\
-		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
