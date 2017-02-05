@@ -165,8 +165,8 @@
 		material.place_dismantled_product(src,devastated)
 
 	for(var/obj/O in src.contents) //Eject contents!
-		if(istype(O,/obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
+		if(istype(O,/obj/item/weapon/contraband/poster))
+			var/obj/item/weapon/contraband/poster/P = O
 			P.roll_and_drop(src)
 		else
 			O.loc = src
