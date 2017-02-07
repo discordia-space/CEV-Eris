@@ -13,7 +13,6 @@ var/global/list/additional_antag_types = list()
 	var/required_enemies = 0                 // Minimum antagonists for round to start.
 	var/newscaster_announcements = null
 	var/end_on_antag_death = 0               // Round will end when all antagonists are dead.
-	var/ert_disabled = 0                     // ERT cannot be called.
 	var/deny_respawn = 0	                 // Disable respawn during this round.
 
 	var/list/disabled_jobs = list()           // Mostly used for Malf.  This check is performed in job_controller so it doesn't spawn a regular AI.
@@ -49,9 +48,6 @@ var/global/list/additional_antag_types = list()
 		switch(href_list["toggle"])
 			if("respawn")
 				deny_respawn = !deny_respawn
-			if("ert")
-				ert_disabled = !ert_disabled
-				announce_ert_disabled()
 			if("shuttle_recall")
 				auto_recall_shuttle = !auto_recall_shuttle
 			if("autotraitor")
