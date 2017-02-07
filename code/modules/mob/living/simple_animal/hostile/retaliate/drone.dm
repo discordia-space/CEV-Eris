@@ -257,8 +257,8 @@
 
 		if(spawnees & 128)
 			C = new(src.loc)
-			C.name = "Drone phoron overcharge counter"
-			C.origin_tech = list(TECH_PHORON = rand(3,6))
+			C.name = "Drone plasma overcharge counter"
+			C.origin_tech = list(TECH_PLASMA = rand(3,6))
 
 		if(spawnees & 256)
 			C = new(src.loc)

@@ -714,7 +714,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /* This proc is DEFERRED. Does not do anything.
-/client/proc/cmd_admin_remove_phoron()
+/client/proc/cmd_admin_remove_plasma()
 	set category = "Debug"
 	set name = "Stabilize Atmos."
 	if(!holder)

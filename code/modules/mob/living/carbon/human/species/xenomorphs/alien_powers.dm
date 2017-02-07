@@ -35,7 +35,7 @@
 			return
 
 	if(P.stored_plasma < cost)
-		src << "\red You don't have enough phoron stored to do that."
+		src << "\red You don't have enough plasma stored to do that."
 		return 0
 
 	if(needs_foundation)

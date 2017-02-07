@@ -267,34 +267,34 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
-/material/phoron
-	name = "phoron"
-	stack_type = /obj/item/stack/material/phoron
-	ignition_point = PHORON_MINIMUM_BURN_TEMPERATURE
+/material/plasma
+	name = "plasma"
+	stack_type = /obj/item/stack/material/plasma
+	ignition_point = PLASMA_MINIMUM_BURN_TEMPERATURE
 	icon_base = "stone"
 	icon_colour = "#FC2BC5"
 	shard_type = SHARD_SHARD
 	hardness = 30
-	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_PHORON = 2)
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_PLASMA = 2)
 	door_icon_base = "stone"
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
-/material/phoron/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
+/material/plasma/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
 	if(isnull(ignition_point))
 		return 0
 	if(temperature < ignition_point)
 		return 0
-	var/totalPhoron = 0
+	var/totalPlasma = 0
 	for(var/turf/simulated/floor/target_tile in range(2,T))
-		var/phoronToDeduce = (temperature/30) * effect_multiplier
-		totalPhoron += phoronToDeduce
-		target_tile.assume_gas("phoron", phoronToDeduce, 200+T0C)
+		var/plasmaToDeduce = (temperature/30) * effect_multiplier
+		totalPlasma += plasmaToDeduce
+		target_tile.assume_gas("plasma", plasmaToDeduce, 200+T0C)
 		spawn (0)
 			target_tile.hotspot_expose(temperature, 400)
-	return round(totalPhoron/100)
+	return round(totalPlasma/100)
 */
 
 /material/stone
@@ -464,25 +464,25 @@ var/list/name_to_material
 	wire_product = null
 	rod_product = null
 
-/material/glass/phoron
+/material/glass/plasma
 	name = "borosilicate glass"
 	display_name = "borosilicate glass"
-	stack_type = /obj/item/stack/material/glass/phoronglass
+	stack_type = /obj/item/stack/material/glass/plasmaglass
 	flags = MATERIAL_BRITTLE
 	integrity = 100
 	icon_colour = "#FC2BC5"
 	stack_origin_tech = list(TECH_MATERIAL = 4)
-	created_window = /obj/structure/window/phoronbasic
+	created_window = /obj/structure/window/plasmabasic
 	wire_product = null
-	rod_product = /obj/item/stack/material/glass/phoronrglass
+	rod_product = /obj/item/stack/material/glass/plasmarglass
 
-/material/glass/phoron/reinforced
+/material/glass/plasma/reinforced
 	name = "reinforced borosilicate glass"
 	display_name = "reinforced borosilicate glass"
-	stack_type = /obj/item/stack/material/glass/phoronrglass
+	stack_type = /obj/item/stack/material/glass/plasmarglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
-	created_window = /obj/structure/window/phoronreinforced
+	created_window = /obj/structure/window/plasmareinforced
 	hardness = 40
 	weight = 30
 	//stack_origin_tech = list(TECH_MATERIAL = 2)

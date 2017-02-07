@@ -55,24 +55,24 @@
 	#ifdef ZLEVELS
 	return 0 //TODO generalize this to multiz.
 	#else
-	
+
 	if(!zone) return 1
-	
+
 	var/check_dirs = get_zone_neighbours(src)
 	var/unconnected_dirs = check_dirs
-	
+
 	for(var/dir in list(NORTHWEST, NORTHEAST, SOUTHEAST, SOUTHWEST))
-		
+
 		//for each pair of "adjacent" cardinals (e.g. NORTH and WEST, but not NORTH and SOUTH)
 		if((dir & check_dirs) == dir)
 			//check that they are connected by the corner turf
 			var/connected_dirs = get_zone_neighbours(get_step(src, dir))
 			if(connected_dirs && (dir & turn(connected_dirs, 180)) == dir)
 				unconnected_dirs &= ~dir //they are, so unflag the cardinals in question
-	
+
 	//it is safe to remove src from the zone if all cardinals are connected by corner turfs
 	return !unconnected_dirs
-	
+
 	#endif
 
 //helper for can_safely_remove_from_zone()
@@ -98,7 +98,7 @@
 		#endif
 		if(zone)
 			var/zone/z = zone
-			
+
 			if(can_safely_remove_from_zone()) //Helps normal airlocks avoid rebuilding zones all the time
 				z.remove(src)
 			else
@@ -161,7 +161,7 @@
 				//Might have assigned a zone, since this happens for each direction.
 				if(!zone)
 
-					//We do not merge if 
+					//We do not merge if
 					//    they are blocking us and we are not blocking them, or if
 					//    we are blocking them and not blocking ourselves - this prevents tiny zones from forming on doorways.
 					if(((block & ZONE_BLOCKED) && !(r_block & ZONE_BLOCKED)) || ((r_block & ZONE_BLOCKED) && !(s_block & ZONE_BLOCKED)))
@@ -232,7 +232,7 @@
 	//Create gas mixture to hold data for passing
 	var/datum/gas_mixture/GM = new
 
-	GM.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, "phoron", phoron)
+	GM.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, "plasma", plasma)
 	GM.temperature = temperature
 
 	return GM
@@ -240,12 +240,12 @@
 /turf/remove_air(amount as num)
 	var/datum/gas_mixture/GM = new
 
-	var/sum = oxygen + carbon_dioxide + nitrogen + phoron
+	var/sum = oxygen + carbon_dioxide + nitrogen + plasma
 	if(sum>0)
 		GM.gas["oxygen"] = (oxygen/sum)*amount
 		GM.gas["carbon_dioxide"] = (carbon_dioxide/sum)*amount
 		GM.gas["nitrogen"] = (nitrogen/sum)*amount
-		GM.gas["phoron"] = (phoron/sum)*amount
+		GM.gas["plasma"] = (plasma/sum)*amount
 
 	GM.temperature = temperature
 	GM.update_values()
@@ -288,7 +288,7 @@
 /turf/proc/make_air()
 	air = new/datum/gas_mixture
 	air.temperature = temperature
-	air.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, "phoron", phoron)
+	air.adjust_multi("oxygen", oxygen, "carbon_dioxide", carbon_dioxide, "nitrogen", nitrogen, "plasma", plasma)
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 

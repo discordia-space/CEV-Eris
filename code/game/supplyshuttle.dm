@@ -132,7 +132,7 @@ var/list/mechtoys = list(
 	var/points_per_slip = 2
 	var/points_per_crate = 5
 	var/points_per_platinum = 5 // 5 points per sheet
-	var/points_per_phoron = 5
+	var/points_per_plasma = 5
 	//control
 	var/ordernum
 	var/list/shoppinglist = list()
@@ -175,7 +175,7 @@ var/list/mechtoys = list(
 		var/area/area_shuttle = shuttle.get_location_area()
 		if(!area_shuttle)	return
 
-		var/phoron_count = 0
+		var/plasma_count = 0
 		var/plat_count = 0
 
 		for(var/atom/movable/MA in area_shuttle)
@@ -198,16 +198,16 @@ var/list/mechtoys = list(
 							find_slip = 0
 						continue
 
-					// Sell phoron and platinum
+					// Sell plasma and platinum
 					if(istype(A, /obj/item/stack))
 						var/obj/item/stack/P = A
 						switch(P.get_material_name())
-							if("phoron") phoron_count += P.get_amount()
+							if("plasma") plasma_count += P.get_amount()
 							if("platinum") plat_count += P.get_amount()
 			qdel(MA)
 
-		if(phoron_count)
-			points += phoron_count * points_per_phoron
+		if(plasma_count)
+			points += plasma_count * points_per_plasma
 
 		if(plat_count)
 			points += plat_count * points_per_platinum

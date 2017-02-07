@@ -218,7 +218,7 @@
 	icon_state = "flaming"
 	hits = 5
 	heavy = 1
-	meteordrop = /obj/item/weapon/ore/phoron
+	meteordrop = /obj/item/weapon/ore/plasma
 
 /obj/effect/meteor/flaming/meteor_effect()
 	..(heavy)
@@ -247,7 +247,7 @@
 	hits = 30
 	hitpwr = 1
 	heavy = 1
-	meteordrop = /obj/item/weapon/ore/phoron
+	meteordrop = /obj/item/weapon/ore/plasma
 
 /obj/effect/meteor/tunguska/meteor_effect()
 	..(heavy)
