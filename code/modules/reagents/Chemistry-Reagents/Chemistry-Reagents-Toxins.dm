@@ -43,29 +43,29 @@
 	color = "#003333"
 	strength = 10
 
-/datum/reagent/toxin/phoron
-	name = "Phoron"
-	id = "phoron"
-	description = "Phoron in its liquid form."
+/datum/reagent/toxin/plasma
+	name = "Plasma"
+	id = "plasma"
+	description = "Plasma in its liquid form."
 	taste_mult = 1.5
 	reagent_state = LIQUID
 	color = "#9D14DB"
 	strength = 30
 	touch_met = 5
 
-/datum/reagent/toxin/phoron/touch_mob(var/mob/living/L, var/amount)
+/datum/reagent/toxin/plasma/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/toxin/phoron/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	M.take_organ_damage(0, removed * 0.1) //being splashed directly with phoron causes minor chemical burns
+/datum/reagent/toxin/plasma/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	M.take_organ_damage(0, removed * 0.1) //being splashed directly with plasma causes minor chemical burns
 	if(prob(50))
 		M.pl_effects()
 
-/datum/reagent/toxin/phoron/touch_turf(var/turf/simulated/T)
+/datum/reagent/toxin/plasma/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return
-	T.assume_gas("phoron", volume, T20C)
+	T.assume_gas("plasma", volume, T20C)
 	remove_self(volume)
 
 /datum/reagent/toxin/cyanide //Fast and Lethal

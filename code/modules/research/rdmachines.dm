@@ -2,7 +2,7 @@
 
 //All devices that link into the R&D console fall into thise type for easy identification and some shared procs.
 
-var/list/default_material_composition = list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "phoron" = 0, "uranium" = 0, "diamond" = 0)
+var/list/default_material_composition = list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "plasma" = 0, "uranium" = 0, "diamond" = 0)
 /obj/machinery/r_n_d
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
@@ -27,8 +27,8 @@ var/list/default_material_composition = list("steel" = 0, "glass" = 0, "gold" = 
 			return /obj/item/stack/material/gold
 		if("silver")
 			return /obj/item/stack/material/silver
-		if("phoron")
-			return /obj/item/stack/material/phoron
+		if("plasma")
+			return /obj/item/stack/material/plasma
 		if("uranium")
 			return /obj/item/stack/material/uranium
 		if("diamond")
@@ -45,8 +45,8 @@ var/list/default_material_composition = list("steel" = 0, "glass" = 0, "gold" = 
 			return "gold"
 		if(/obj/item/stack/material/silver)
 			return "silver"
-		if(/obj/item/stack/material/phoron)
-			return "phoron"
+		if(/obj/item/stack/material/plasma)
+			return "plasma"
 		if(/obj/item/stack/material/uranium)
 			return "uranium"
 		if(/obj/item/stack/material/diamond)

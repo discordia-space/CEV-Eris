@@ -25,7 +25,7 @@
 
 /mob/living/carbon/human
 	var/oxygen_alert = 0
-	var/phoron_alert = 0
+	var/plasma_alert = 0
 	var/co2_alert = 0
 	var/fire_alert = 0
 	var/pressure_alert = 0
@@ -585,11 +585,11 @@
 		if(CE_PAINKILLER in chem_effects)
 			analgesic = chem_effects[CE_PAINKILLER]
 
-		var/total_phoronloss = 0
+		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)
 			if(I.contaminated)
-				total_phoronloss += vsc.plc.CONTAMINATION_LOSS
-		if(!(status_flags & GODMODE)) adjustToxLoss(total_phoronloss)
+				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
+		if(!(status_flags & GODMODE)) adjustToxLoss(total_plasmaloss)
 
 	if(status_flags & GODMODE)	return 0	//godmode
 
@@ -873,7 +873,7 @@
 //				if(resting || lying || sleeping)		rest.icon_state = "rest1"
 //				else									rest.icon_state = "rest0"
 		if(toxin)
-			if(hal_screwyhud == 4 || phoron_alert)	toxin.icon_state = "tox1"
+			if(hal_screwyhud == 4 || plasma_alert)	toxin.icon_state = "tox1"
 			else									toxin.icon_state = "tox0"
 		if(oxygen)
 			if(hal_screwyhud == 3 || oxygen_alert)	oxygen.icon_state = "oxy1"
