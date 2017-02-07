@@ -197,8 +197,6 @@ var/global/list/additional_antag_types = list()
 
 	spawn (rand(waittime_l, waittime_h))
 		send_intercept()
-		spawn(rand(100,150))
-			announce_ert_disabled()
 
 	//Assign all antag types for this game mode. Any players spawned as antags earlier should have been removed from the pending list, so no need to worry about those.
 	for(var/datum/antagonist/antag in antag_templates)
@@ -215,42 +213,6 @@ var/global/list/additional_antag_types = list()
 	for(var/datum/antagonist/antag in antag_templates)
 		antag.reset_antag_selection()
 
-/datum/game_mode/proc/announce_ert_disabled()
-	if(!ert_disabled)
-		return
-
-	var/list/reasons = list(
-		"political instability",
-		"quantum fluctuations",
-		"hostile raiders",
-		"derelict station debris",
-		"REDACTED",
-		"ancient alien artillery",
-		"solar magnetic storms",
-		"sentient time-travelling killbots",
-		"gravitational anomalies",
-		"wormholes to another dimension",
-		"a telescience mishap",
-		"radiation flares",
-		"supermatter dust",
-		"leaks into a negative reality",
-		"antiparticle clouds",
-		"residual bluespace energy",
-		"suspected criminal operatives",
-		"malfunctioning von Neumann probe swarms",
-		"shadowy interlopers",
-		"haywire IPC constructs",
-		"rogue Unathi exiles",
-		"artifacts of eldritch horror",
-		"a brain slug infestation",
-		"killer bugs that lay eggs in the husks of the living",
-		"a deserted transport carrying xenomorph specimens",
-		"an emissary for the gestalt requesting a security detail",
-		"a Tajaran slave rebellion",
-		"radical Skrellian transevolutionaries",
-		"classified security operations"
-		)
-	command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
 
 /datum/game_mode/proc/check_finished()
 	if(emergency_shuttle.returned() || station_was_nuked)

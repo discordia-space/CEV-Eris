@@ -415,7 +415,6 @@
 		"blue wizard",
 		"red wizard",
 		"marisa wizard",
-		"emergency response team",
 		"nanotrasen representative",
 		"nanotrasen officer",
 		"nanotrasen captain"
