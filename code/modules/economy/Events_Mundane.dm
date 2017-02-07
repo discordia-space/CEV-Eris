@@ -20,7 +20,7 @@
 		body = ""
 		switch(event_type)
 			if(RESEARCH_BREAKTHROUGH)
-				body = "A major breakthough in the field of [pick("phoron research","super-compressed materials","nano-augmentation","bluespace research","volatile power manipulation")] \
+				body = "A major breakthough in the field of [pick("plasma research","super-compressed materials","nano-augmentation","bluespace research","volatile power manipulation")] \
 				was announced [pick("yesterday","a few days ago","last week","earlier this month")] by a private firm on [affected_dest.name]. \
 				[company_name] declined to comment as to whether this could impinge on profits."
 

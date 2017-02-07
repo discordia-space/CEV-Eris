@@ -95,8 +95,8 @@
 	damage_type = TOX
 	weaken = 5
 
-/obj/item/projectile/energy/phoron
-	name = "phoron bolt"
+/obj/item/projectile/energy/plasma
+	name = "plasma bolt"
 	icon_state = "energy"
 	damage = 20
 	damage_type = TOX
