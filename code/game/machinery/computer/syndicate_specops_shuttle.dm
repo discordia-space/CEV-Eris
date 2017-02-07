@@ -231,10 +231,6 @@ var/syndicate_elite_shuttle_timeleft = 0
 	else if (href_list["sendtostation"])
 		if(syndicate_elite_shuttle_at_station || syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
-		if (!specops_can_move())
-			usr << "<span class='warning'>The Syndicate Elite shuttle is unable to leave.</span>"
-			return
-
 		usr << "<span class='notice'>The Syndicate Elite shuttle will arrive on [station_name] in [(SYNDICATE_ELITE_MOVETIME/10)] seconds.</span>"
 
 		temp  = "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
