@@ -3,14 +3,14 @@
 	sort_order = 6
 
 /datum/category_item/player_setup_item/general/flavor/load_character(var/savefile/S)
-	S["flavor_texts_general"]	>> pref.flavor_texts["general"]
+	S["flavor_text"] >> pref.flavor_text
 
 	S["flavour_texts_robot_Default"] >> pref.flavour_texts_robot["Default"]
 	for(var/module in robot_module_types)
 		S["flavour_texts_robot_[module]"] >> pref.flavour_texts_robot[module]
 
 /datum/category_item/player_setup_item/general/flavor/save_character(var/savefile/S)
-	S["flavor_texts_general"]	<< pref.flavor_texts["general"]
+	S["flavor_text"] << pref.flavor_text
 
 	S["flavour_texts_robot_Default"] << pref.flavour_texts_robot["Default"]
 	for(var/module in robot_module_types)
@@ -26,9 +26,9 @@
 
 /datum/category_item/player_setup_item/general/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["flavor_text"] && href_list["flavor_text"] == "open")
-		var/msg = sanitize(input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]])) as message, extra = 0)
+		var/msg = sanitize(input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(pref.flavor_text)) as message, extra = 0)
 		if(CanUseTopic(user))
-			pref.flavor_texts[href_list["flavor_text"]] = msg
+			pref.flavor_text = msg
 		return TOPIC_HANDLED
 
 	else if(href_list["flavour_text_robot"])
