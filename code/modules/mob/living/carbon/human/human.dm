@@ -1280,11 +1280,9 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
-	var/hidden_face = FALSE
 
 	for(var/obj/item/clothing/C in equipment)
 		if(C.body_parts_covered & FACE)
-			hidden_face = TRUE
 			// Do not show flavor if face is hidden
 			return
 
