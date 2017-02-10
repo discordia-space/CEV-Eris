@@ -517,7 +517,7 @@
 
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	if(H.hal_screwyhud == 4 || H.phoron_alert)
+	if(H.hal_screwyhud == 4 || H.plasma_alert)
 		icon_state = "tox1"
 	else
 		icon_state = "tox0"
@@ -632,14 +632,14 @@
 										contents.Add(0)
 
 								if ("oxygen")
-									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["phoron"])
+									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
 									else
 										contents.Add(0)
 
 								// No races breath this, but never know about downstream servers.
 								if ("carbon dioxide")
-									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["phoron"])
+									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["carbon_dioxide"])
 									else
 										contents.Add(0)

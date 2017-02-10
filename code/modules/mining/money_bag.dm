@@ -14,14 +14,14 @@
 	var/amt_silver = 0
 	var/amt_diamond = 0
 	var/amt_iron = 0
-	var/amt_phoron = 0
+	var/amt_plasma = 0
 	var/amt_uranium = 0
 
 	for (var/obj/item/weapon/coin/C in contents)
 		if (istype(C,/obj/item/weapon/coin/diamond))
 			amt_diamond++;
-		if (istype(C,/obj/item/weapon/coin/phoron))
-			amt_phoron++;
+		if (istype(C,/obj/item/weapon/coin/plasma))
+			amt_plasma++;
 		if (istype(C,/obj/item/weapon/coin/iron))
 			amt_iron++;
 		if (istype(C,/obj/item/weapon/coin/silver))
@@ -40,8 +40,8 @@
 		dat += text("Metal coins: [amt_iron] <A href='?src=\ref[src];remove=iron'>Remove one</A><br>")
 	if (amt_diamond)
 		dat += text("Diamond coins: [amt_diamond] <A href='?src=\ref[src];remove=diamond'>Remove one</A><br>")
-	if (amt_phoron)
-		dat += text("Phoron coins: [amt_phoron] <A href='?src=\ref[src];remove=phoron'>Remove one</A><br>")
+	if (amt_plasma)
+		dat += text("Plasma coins: [amt_plasma] <A href='?src=\ref[src];remove=plasma'>Remove one</A><br>")
 	if (amt_uranium)
 		dat += text("Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=uranium'>Remove one</A><br>")
 	user << browse("[dat]", "window=moneybag")
@@ -76,8 +76,8 @@
 				COIN = locate(/obj/item/weapon/coin/iron,src.contents)
 			if("diamond")
 				COIN = locate(/obj/item/weapon/coin/diamond,src.contents)
-			if("phoron")
-				COIN = locate(/obj/item/weapon/coin/phoron,src.contents)
+			if("plasma")
+				COIN = locate(/obj/item/weapon/coin/plasma,src.contents)
 			if("uranium")
 				COIN = locate(/obj/item/weapon/coin/uranium,src.contents)
 		if(!COIN)

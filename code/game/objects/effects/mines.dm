@@ -56,10 +56,10 @@
 	spawn(0)
 		qdel(src)
 
-/obj/effect/mine/proc/triggerphoron(obj)
+/obj/effect/mine/proc/triggerplasma(obj)
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas("phoron", 30)
+			target.assume_gas("plasma", 30)
 
 			target.hotspot_expose(1000, CELL_VOLUME)
 
@@ -84,10 +84,10 @@
 	icon_state = "uglymine"
 	triggerproc = "triggerrad"
 
-/obj/effect/mine/phoron
-	name = "Phoron Mine"
+/obj/effect/mine/plasma
+	name = "Plasma Mine"
 	icon_state = "uglymine"
-	triggerproc = "triggerphoron"
+	triggerproc = "triggerplasma"
 
 /obj/effect/mine/kick
 	name = "Kick Mine"

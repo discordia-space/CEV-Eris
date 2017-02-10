@@ -193,13 +193,6 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_service
 
-/obj/item/device/radio/headset/ert
-	name = "emergency response team radio headset"
-	desc = "The headset of the boss's boss."
-	icon_state = "com_headset"
-	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/ert
-
 /obj/item/device/radio/headset/ia
 	name = "internal affair's headset"
 	desc = "The headset of your worst enemy."

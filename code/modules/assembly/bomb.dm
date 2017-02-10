@@ -9,7 +9,7 @@
 	flags = CONDUCT | PROXMOVE
 	var/status = 0   //0 - not readied //1 - bomb finished with welder
 	var/obj/item/device/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
-	var/obj/item/weapon/tank/bombtank = null //the second part of the bomb is a phoron tank
+	var/obj/item/weapon/tank/bombtank = null //the second part of the bomb is a plasma tank
 
 /obj/item/device/onetankbomb/examine(mob/user)
 	..(user)
@@ -100,7 +100,7 @@
 	return
 
 /obj/item/weapon/tank/proc/ignite()	//This happens when a bomb is told to explode
-	var/fuel_moles = air_contents.gas["phoron"] + air_contents.gas["oxygen"] / 6
+	var/fuel_moles = air_contents.gas["plasma"] + air_contents.gas["oxygen"] / 6
 	var/strength = 1
 
 	var/turf/ground_zero = get_turf(loc)

@@ -219,10 +219,10 @@
 	desc = "WARNING! N2O flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_n2o"
 
-/obj/structure/sign/atmos_phoron
-	name = "Phoron warning sign"
-	desc = "WARNING! Phoron flow tube. Ensure the flow is disengaged before working."
-	icon_state = "atmos_phoron"
+/obj/structure/sign/atmos_plasma
+	name = "Plasma warning sign"
+	desc = "WARNING! Plasma flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_plasma"
 
 /obj/structure/sign/atmos_n2
 	name = "N2 warning sign"

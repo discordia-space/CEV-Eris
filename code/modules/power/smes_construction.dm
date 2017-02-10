@@ -158,7 +158,7 @@
 	// SMESs store very large amount of power. If someone screws up (ie: Disables safeties and attempts to modify the SMES) very bad things happen.
 	// Bad things are based on charge percentage.
 	// Possible effects:
-	// Sparks - Lets out few sparks, mostly fire hazard if phoron present. Otherwise purely aesthetic.
+	// Sparks - Lets out few sparks, mostly fire hazard if plasma present. Otherwise purely aesthetic.
 	// Shock - Depending on intensity harms the user. Insultated Gloves protect against weaker shocks, but strong shock bypasses them.
 	// EMP Pulse - Lets out EMP pulse discharge which screws up nearby electronics.
 	// Light Overload - X% chance to overload each lighting circuit in connected powernet. APC based.

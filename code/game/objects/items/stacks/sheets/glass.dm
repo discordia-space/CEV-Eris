@@ -2,8 +2,8 @@
  * Contains:
  *		Glass sheets
  *		Reinforced glass sheets
- *		Phoron Glass Sheets
- *		Reinforced Phoron Glass Sheets (AKA Holy fuck strong windows)
+ *		Plasma Glass Sheets
+ *		Reinforced Plasma Glass Sheets (AKA Holy fuck strong windows)
  *		Glass shards - TODO: Move this into code/game/object/item/weapons
  */
 
@@ -136,20 +136,20 @@
 	construction_options = list("One Direction", "Full Window", "Windoor")
 
 /*
- * Phoron Glass sheets
+ * Plasma Glass sheets
  */
-/obj/item/stack/material/glass/phoronglass
-	name = "phoron glass"
-	singular_name = "phoron glass sheet"
-	icon_state = "sheet-phoronglass"
-	created_window = /obj/structure/window/phoronbasic
-	default_type = "phoron glass"
+/obj/item/stack/material/glass/plasmaglass
+	name = "plasma glass"
+	singular_name = "plasma glass sheet"
+	icon_state = "sheet-plasmaglass"
+	created_window = /obj/structure/window/plasmabasic
+	default_type = "plasma glass"
 
-/obj/item/stack/material/glass/phoronglass/attackby(obj/item/W, mob/user)
+/obj/item/stack/material/glass/plasmaglass/attackby(obj/item/W, mob/user)
 	..()
 	if( istype(W, /obj/item/stack/rods) )
 		var/obj/item/stack/rods/V  = W
-		var/obj/item/stack/material/glass/phoronrglass/RG = new (user.loc)
+		var/obj/item/stack/material/glass/plasmarglass/RG = new (user.loc)
 		RG.add_fingerprint(user)
 		RG.add_to_stacks(user)
 		V.use(1)
@@ -163,12 +163,12 @@
 		return ..()
 
 /*
- * Reinforced phoron glass sheets
+ * Reinforced plasma glass sheets
  */
-/obj/item/stack/material/glass/phoronrglass
-	name = "reinforced phoron glass"
-	singular_name = "reinforced phoron glass sheet"
-	icon_state = "sheet-phoronrglass"
-	default_type = "reinforced phoron glass"
-	created_window = /obj/structure/window/phoronreinforced
+/obj/item/stack/material/glass/plasmarglass
+	name = "reinforced plasma glass"
+	singular_name = "reinforced plasma glass sheet"
+	icon_state = "sheet-plasmarglass"
+	default_type = "reinforced plasma glass"
+	created_window = /obj/structure/window/plasmareinforced
 	is_reinforced = 1

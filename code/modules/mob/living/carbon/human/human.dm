@@ -77,7 +77,7 @@
 
 		var/obj/item/organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 		if(P)
-			stat(null, "Phoron Stored: [P.stored_plasma]/[P.max_plasma]")
+			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
 
 		if(back && istype(back,/obj/item/weapon/rig))
 			var/obj/item/weapon/rig/suit = back
