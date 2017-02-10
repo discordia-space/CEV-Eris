@@ -4,9 +4,9 @@
 	var/mob/shadow/shadow
 
 /mob/shadow
+	plane = OPENSPACE_PLANE
 	name = "shadow"
 	desc = "Z-level shadow"
-	layer = OPENSPACE_LAYER + 0.5
 	var/mob/owner = null
 
 /mob/shadow/New(var/mob/L)
