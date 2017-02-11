@@ -41,7 +41,7 @@
 	var/cold_damage_per_tick = 2	//same as heat_damage_per_tick, only if the bodytemperature it's lower than minbodytemp
 	var/fire_alert = 0
 
-	//Atmos effect - Yes, you can make creatures that require phoron or co2 to survive. N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
+	//Atmos effect - Yes, you can make creatures that require plasma or co2 to survive. N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
 	var/min_oxy = 5
 	var/max_oxy = 0					//Leaving something at 0 means it's off - has no maximum
 	var/min_tox = 0
@@ -173,10 +173,10 @@
 				if(Environment.gas["oxygen"] > max_oxy)
 					atmos_suitable = 0
 			if(min_tox)
-				if(Environment.gas["phoron"] < min_tox)
+				if(Environment.gas["plasma"] < min_tox)
 					atmos_suitable = 0
 			if(max_tox)
-				if(Environment.gas["phoron"] > max_tox)
+				if(Environment.gas["plasma"] > max_tox)
 					atmos_suitable = 0
 			if(min_n2)
 				if(Environment.gas["nitrogen"] < min_n2)

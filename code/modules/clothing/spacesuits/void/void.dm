@@ -202,7 +202,7 @@
 	else if(istype(W,/obj/item/weapon/tank))
 		if(tank)
 			user << "\The [src] already has an airtank installed."
-		else if(istype(W,/obj/item/weapon/tank/phoron))
+		else if(istype(W,/obj/item/weapon/tank/plasma))
 			user << "\The [W] cannot be inserted into \the [src]'s storage compartment."
 		else
 			user << "You insert \the [W] into \the [src]'s storage compartment."

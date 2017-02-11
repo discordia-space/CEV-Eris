@@ -12,10 +12,17 @@
 
 	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
 	var/rag_underlay = "rag"
+	var/icon_state_full
+	var/icon_state_empty
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/on_reagent_change()
+	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/New()
 	..()
 	if(isGlass) unacidable = 1
+	icon_state_full = "[icon_state]"
+	icon_state_empty = "[icon_state]_empty"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Destroy()
 	if(rag)
@@ -116,6 +123,10 @@
 		set_light(2)
 	else
 		set_light(0)
+		if(reagents.total_volume)
+			icon_state = icon_state_full
+		else
+			icon_state = icon_state_empty
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	var/blocked = ..()
@@ -430,3 +441,4 @@
 	New()
 		..()
 		reagents.add_reagent("ale", 30)
+

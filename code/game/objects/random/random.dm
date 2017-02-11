@@ -261,8 +261,7 @@
 					/obj/item/toy/figure/secofficer,\
 					/obj/item/toy/figure/warden,\
 					/obj/item/toy/figure/psychologist,\
-					/obj/item/toy/figure/paramedic,\
-					/obj/item/toy/figure/ert)
+					/obj/item/toy/figure/paramedic)
 
 
 /obj/random/plushie

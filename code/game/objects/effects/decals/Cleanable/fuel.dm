@@ -1,5 +1,5 @@
 /obj/effect/decal/cleanable/liquid_fuel
-	//Liquid fuel is used for things that used to rely on volatile fuels or phoron being contained to a couple tiles.
+	//Liquid fuel is used for things that used to rely on volatile fuels or plasma being contained to a couple tiles.
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
 	layer = TURF_LAYER+0.2
@@ -45,7 +45,7 @@
 				else
 					new/obj/effect/decal/cleanable/liquid_fuel(target, amount*0.25,1)
 				amount *= 0.75
-						
+
 
 	flamethrower_fuel
 		icon_state = "mustard"

@@ -62,8 +62,8 @@
 	if (src.z > 6)
 		user << "<span class='warning'>Unable to establish a connection:</span> You're too far away from the station!"
 		return
-	var/dat
 
+	var/dat
 	if (temp)
 		dat = text("<TT>[]</TT><BR><BR><A href='?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
 	else
@@ -71,8 +71,7 @@
 		if (authenticated)
 			switch(screen)
 				if(1.0)
-					dat += {"
-<p style='text-align:center;'>"}
+					dat += {"<p style='text-align:center;'>"}
 					dat += text("<A href='?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
 					dat += text("<A href='?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
 					dat += {"
@@ -127,52 +126,63 @@
 					if ((istype(active1, /datum/data/record) && data_core.general.Find(active1)))
 						user << browse_rsc(active1.fields["photo_front"], "front.png")
 						user << browse_rsc(active1.fields["photo_side"], "side.png")
-						dat += text("<table><tr><td>	\
-						Name: <A href='?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
-						ID: <A href='?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n \
-						Sex: <A href='?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n	\
-						Age: <A href='?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n	\
-						Rank: <A href='?src=\ref[src];choice=Edit Field;field=rank'>[active1.fields["rank"]]</A><BR>\n	\
-						Fingerprint: <A href='?src=\ref[src];choice=Edit Field;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
-						Physical Status: [active1.fields["p_stat"]]<BR>\n	\
-						Mental Status: [active1.fields["m_stat"]]<BR></td>	\
-						<td align = center valign = top>Photo:<br> \
-						<table><td align = center><img src=front.png height=80 width=80 border=4><BR><A href='?src=\ref[src];choice=Edit Field;field=photo front'>Update front photo</A></td> \
-						<td align = center><img src=side.png height=80 width=80 border=4><BR><A href='?src=\ref[src];choice=Edit Field;field=photo side'>Update side photo</A></td></table> \
-						</td></tr></table>")
+						dat += {"
+							<table><tr><td>
+							Name: <A href='?src=\ref[src];choice=Edit;field=name'>[active1.fields["name"]]</A><BR>
+							ID: <A href='?src=\ref[src];choice=Edit;field=id'>[active1.fields["id"]]</A><BR>
+							Sex: <A href='?src=\ref[src];choice=Edit;field=sex'>[active1.fields["sex"]]</A><BR>
+							Age: <A href='?src=\ref[src];choice=Edit;field=age'>[active1.fields["age"]]</A><BR>
+							Rank: <A href='?src=\ref[src];choice=Edit;field=rank'>[active1.fields["rank"]]</A><BR>
+							Fingerprint: <A href='?src=\ref[src];choice=Edit;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>
+							Physical Status: [active1.fields["p_stat"]]<BR>
+							Mental Status: [active1.fields["m_stat"]]<BR></td>
+							<td align = center valign = top>Photo:<br>
+							<table><td align = center><img src=front.png height=80 width=80 border=4><BR>
+							<A href='?src=\ref[src];choice=Edit;field=photo front'>Update front photo</A></td>
+							<td align = center><img src=side.png height=80 width=80 border=4><BR>
+							<A href='?src=\ref[src];choice=Edit;field=photo side'>Update side photo</A></td></table>
+							</td></tr></table>
+						"}
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					if ((istype(active2, /datum/data/record) && data_core.security.Find(active2)))
-						dat += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: <A href='?src=\ref[];choice=Edit Field;field=criminal'>[]</A><BR>\n<BR>\nMinor Crimes: <A href='?src=\ref[];choice=Edit Field;field=mi_crim'>[]</A><BR>\nDetails: <A href='?src=\ref[];choice=Edit Field;field=mi_crim_d'>[]</A><BR>\n<BR>\nMajor Crimes: <A href='?src=\ref[];choice=Edit Field;field=ma_crim'>[]</A><BR>\nDetails: <A href='?src=\ref[];choice=Edit Field;field=ma_crim_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[];choice=Edit Field;field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, active2.fields["criminal"], src, active2.fields["mi_crim"], src, active2.fields["mi_crim_d"], src, active2.fields["ma_crim"], src, active2.fields["ma_crim_d"], src, decode(active2.fields["notes"]))
+						dat += "<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: \
+								<A href='?src=\ref[src];choice=Edit;field=criminal'>[active2.fields["criminal"]]</A><BR>\n<BR>\n \
+								Minor Crimes: <A href='?src=\ref[src];choice=Edit;field=mi_crim'>[active2.fields["mi_crim"]]</A><BR>\n \
+								Details: <A href='?src=\ref[src];choice=Edit;field=mi_crim_d'>[active2.fields["mi_crim_d"]]</A><BR>\n<BR>\n\
+								Major Crimes: <A href='?src=\ref[src];choice=Edit;field=ma_crim'>[active2.fields["ma_crim"]]</A><BR>\n \
+								Details: <A href='?src=\ref[src];choice=Edit;field=ma_crim_d'>[active2.fields["ma_crim_d"]]</A><BR>\n<BR>\n \
+								Important Notes:<BR>\n\t<A href='?src=\ref[src];choice=Edit;field=notes'>[decode(active2.fields["notes"])]</A><BR>\n<BR>\n\
+								<CENTER><B>Comments/Log</B></CENTER><BR>"
 						var/counter = 1
-						while(active2.fields[text("com_[]", counter)])
-							dat += text("[]<BR><A href='?src=\ref[];choice=Delete Entry;del_c=[]'>Delete Entry</A><BR><BR>", active2.fields[text("com_[]", counter)], src, counter)
+						while(active2.fields["com_[counter]"])
+							dat += text("[]<BR><A href='?src=\ref[];choice=Delete Entry;del_c=[]'>Delete Entry</A><BR><BR>", active2.fields["com_[counter]"], src, counter)
 							counter++
-						dat += text("<A href='?src=\ref[];choice=Add Entry'>Add Entry</A><BR><BR>", src)
-						dat += text("<A href='?src=\ref[];choice=Delete Record (Security)'>Delete Record (Security Only)</A><BR><BR>", src)
+						dat += "<A href='?src=\ref[src];choice=Add Entry'>Add Entry</A><BR><BR>"
+						dat += "<A href='?src=\ref[src];choice=Delete Record (Security)'>Delete Record (Security Only)</A><BR><BR>"
 					else
 						dat += "<B>Security Record Lost!</B><BR>"
-						dat += text("<A href='?src=\ref[];choice=New Record (Security)'>New Security Record</A><BR><BR>", src)
-					dat += text("\n<A href='?src=\ref[];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR>\n<A href='?src=\ref[];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[];choice=Return'>Back</A><BR>", src, src, src)
+						dat += "<A href='?src=\ref[src];choice=New Record (Security)'>New Security Record</A><BR><BR>"
+					dat += "<A href='?src=\ref[src];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR> \
+							<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR> \
+							<A href='?src=\ref[src];choice=Print Poster'>Print Wanted Poster</A><BR> \
+							<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
 				if(4.0)
 					if(!Perp.len)
 						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
 					else
 						dat += {"
-<table style="text-align:center;" cellspacing="0" width="100%">
-<tr>					"}
-						dat += text("<th>Search Results for '[]':</th>", tempname)
-						dat += {"
-</tr>
-</table>
-<table style="text-align:center;" border="1" cellspacing="0" width="100%">
-<tr>
-<th>Name</th>
-<th>ID</th>
-<th>Rank</th>
-<th>Fingerprints</th>
-<th>Criminal Status</th>
-</tr>					"}
+							<table style="text-align:center;" cellspacing="0" width="100%">
+							<tr><th>Search Results for '[tempname]':</th></tr></table>
+							<table style="text-align:center;" border="1" cellspacing="0" width="100%">
+							<tr>
+							<th>Name</th>
+							<th>ID</th>
+							<th>Rank</th>
+							<th>Fingerprints</th>
+							<th>Criminal Status</th>
+							</tr>
+						"}
 						for(var/i=1, i<=Perp.len, i += 2)
 							var/crimstat = ""
 							var/datum/data/record/R = Perp[i]
@@ -356,13 +366,30 @@ What a mess.*/
 					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( loc )
 					P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
 					if (record1)
-						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", record1.fields["name"], record1.fields["id"], record1.fields["sex"], record1.fields["age"], record1.fields["fingerprint"], record1.fields["p_stat"], record1.fields["m_stat"])
-						P.name = text("Security Record ([])", record1.fields["name"])
+						P.info += {"
+							Name: [record1.fields["name"]] ID: [record1.fields["id"]]<BR>
+							Sex: [record1.fields["sex"]]<BR>
+							Age: [record1.fields["age"]]<BR>
+							Fingerprint: [record1.fields["fingerprint"]]<BR>
+							Physical Status: [record1.fields["p_stat"]]<BR>
+							Mental Status: [record1.fields["m_stat"]]<BR>
+						"}
+						P.name = "Security Record ([record1.fields["name"]])"
 					else
 						P.info += "<B>General Record Lost!</B><BR>"
 						P.name = "Security Record"
 					if (record2)
-						P.info += text("<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: []<BR>\n<BR>\nMinor Crimes: []<BR>\nDetails: []<BR>\n<BR>\nMajor Crimes: []<BR>\nDetails: []<BR>\n<BR>\nImportant Notes:<BR>\n\t[]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", record2.fields["criminal"], record2.fields["mi_crim"], record2.fields["mi_crim_d"], record2.fields["ma_crim"], record2.fields["ma_crim_d"], decode(record2.fields["notes"]))
+						P.info += {"
+							<BR><CENTER><B>Security Data</B></CENTER><BR>
+							Criminal Status: [record2.fields["criminal"]]<BR><BR>
+							Minor Crimes: [record2.fields["mi_crim"]]<BR>
+							Details: [record2.fields["mi_crim_d"]]<BR><BR>
+							Major Crimes: [record2.fields["ma_crim"]]<BR>
+							Details: [record2.fields["ma_crim_d"]]<BR><BR>
+							Important Notes:<BR>
+							\t[decode(record2.fields["notes"])]<BR><BR>
+							<CENTER><B>Comments/Log</B></CENTER><BR>
+						"}
 						var/counter = 1
 						while(record2.fields[text("com_[]", counter)])
 							P.info += text("[]<BR>", record2.fields[text("com_[]", counter)])
@@ -372,6 +399,23 @@ What a mess.*/
 					P.info += "</TT>"
 					printing = null
 					updateUsrDialog()
+
+			if ("Print Poster")
+				if(!printing)
+					var/wanted_name = sanitizeName(input("Please enter an alias for the criminal:", "Print Wanted Poster", active1.fields["name"]) as text, MAX_NAME_LEN, 1)
+					if(wanted_name)
+						var/default_description = "A poster declaring [wanted_name] to be a dangerous individual, wanted by Nanotrasen. Report any sightings to security immediately."
+						var/major_crimes = active2.fields["ma_crim"]
+						var/minor_crimes = active2.fields["mi_crim"]
+						default_description += "\n[wanted_name] is wanted for the following crimes:\n"
+						default_description += "\nMinor Crimes:\n[minor_crimes]\n[active2.fields["mi_crim_d"]]\n"
+						default_description += "\nMajor Crimes:\n[major_crimes]\n[active2.fields["ma_crim_d"]]\n"
+						printing = 1
+						spawn(30)
+							playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
+							if((istype(active1, /datum/data/record) && data_core.general.Find(active1)))//make sure the record still exists.
+								new /obj/item/weapon/contraband/poster/wanted(src.loc, active1.fields["photo_front"], wanted_name, default_description)
+							printing = 0
 //RECORD DELETE
 			if ("Delete All Records")
 				temp = ""
@@ -422,7 +466,7 @@ What a mess.*/
 				active2 = null
 
 //FIELD FUNCTIONS
-			if ("Edit Field")
+			if ("Edit")
 				if (is_not_allowed(usr))
 					return
 				var/a1 = active1
