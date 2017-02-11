@@ -139,6 +139,26 @@
 		var/mob/living/L = usr
 		L.resist()*/
 
+
+/*/obj/screen/TEST
+	name = "TESTICON!"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "block"
+	var/clicks = 0
+	appearance_flags=RESET_COLOR
+	var/image/A
+	var/image/B
+
+/obj/screen/TEST/Click(location, control, params)
+	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
+	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
+	A.override = 1
+	B.appearance_flags=RESET_COLOR
+	overlays.Cut()
+	clicks = !clicks
+//	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
+	overlays += clicks ? A : B*/
+
 //--------------------------------------------------close---------------------------------------------------------
 
 /obj/screen/close
