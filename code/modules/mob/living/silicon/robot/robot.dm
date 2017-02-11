@@ -100,7 +100,6 @@
 	spark_system.attach(src)
 
 	add_language("Robot Talk", 1)
-	add_language(LANGUAGE_EAL, 1)
 
 	wires = new(src)
 
@@ -119,7 +118,7 @@
 	if(!scrambledcodes && !camera)
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
-		camera.replace_networks(list(NETWORK_EXODUS,NETWORK_ROBOTS))
+		camera.replace_networks(list(NETWORK_CEV_ERIS,NETWORK_ROBOTS))
 		if(wires.IsIndexCut(BORG_WIRE_CAMERA))
 			camera.status = 0
 
@@ -354,6 +353,10 @@
 
 	lights_on = !lights_on
 	usr << "You [lights_on ? "enable" : "disable"] your integrated light."
+	if(lights_on)
+		set_light(5)
+	else
+		set_light(0)
 	update_robot_light()
 
 /mob/living/silicon/robot/verb/self_diagnosis_verb()

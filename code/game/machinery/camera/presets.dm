@@ -1,16 +1,16 @@
 // PRESETS
 var/global/list/station_networks = list(
-										NETWORK_CIVILIAN_EAST,
-										NETWORK_CIVILIAN_WEST,
+										NETWORK_FIRST_SECTION,
+										NETWORK_SECOND_SECTION,
+										NETWORK_THIRD_SECTION,
+										NETWORK_FOURTH_SECTION,
 										NETWORK_COMMAND,
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
-										NETWORK_ENGINEERING_OUTPOST,
-										NETWORK_EXODUS,
+										NETWORK_CEV_ERIS,
 										NETWORK_MEDICAL,
 										NETWORK_MINE,
 										NETWORK_RESEARCH,
-										NETWORK_RESEARCH_OUTPOST,
 										NETWORK_ROBOTS,
 										NETWORK_PRISON,
 										NETWORK_SECURITY
@@ -18,18 +18,23 @@ var/global/list/station_networks = list(
 var/global/list/engineering_networks = list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
-										NETWORK_ENGINEERING_OUTPOST,
 										"Atmosphere Alarms",
 										"Fire Alarms",
 										"Power Alarms")
 /obj/machinery/camera/network/crescent
 	network = list(NETWORK_CRESCENT)
 
-/obj/machinery/camera/network/civilian_east
-	network = list(NETWORK_CIVILIAN_EAST)
+/obj/machinery/camera/network/fist_section
+	network = list(NETWORK_FIRST_SECTION)
 
-/obj/machinery/camera/network/civilian_west
-	network = list(NETWORK_CIVILIAN_WEST)
+/obj/machinery/camera/network/second_section
+	network = list(NETWORK_SECOND_SECTION)
+
+/obj/machinery/camera/network/third_section
+	network = list(NETWORK_THIRD_SECTION)
+
+/obj/machinery/camera/network/fourth_section
+	network = list(NETWORK_FOURTH_SECTION)
 
 /obj/machinery/camera/network/command
 	network = list(NETWORK_COMMAND)
@@ -40,14 +45,8 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/network/engineering
 	network = list(NETWORK_ENGINEERING)
 
-/obj/machinery/camera/network/engineering_outpost
-	network = list(NETWORK_ENGINEERING_OUTPOST)
-
-/obj/machinery/camera/network/ert
-	network = list(NETWORK_ERT)
-
-/obj/machinery/camera/network/exodus
-	network = list(NETWORK_EXODUS)
+/obj/machinery/camera/network/cev_eris
+	network = list(NETWORK_CEV_ERIS)
 
 /obj/machinery/camera/network/mining
 	network = list(NETWORK_MINE)
@@ -102,9 +101,6 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/motion/New()
 	..()
 	upgradeMotion()
-
-/obj/machinery/camera/motion/engineering_outpost
-	network = list(NETWORK_ENGINEERING_OUTPOST)
 
 /obj/machinery/camera/motion/security
 	network = list(NETWORK_SECURITY)

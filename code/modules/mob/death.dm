@@ -66,8 +66,8 @@
 
 	layer = MOB_LAYER
 
-	if(blind && client)
-		blind.alpha = 0
+/*	if(blind && client)
+		blind.alpha = 0*/
 
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 	see_in_dark = 8
@@ -92,7 +92,7 @@
 			H.icon_state = "health7"
 
 	timeofdeath = world.time
-	if(mind) mind.store_memory("Time of death: [worldtime2text()]", 0)
+	if(mind) mind.store_memory("Time of death: [stationtime2text()]", 0)
 	living_mob_list -= src
 	dead_mob_list |= src
 

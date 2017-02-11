@@ -186,9 +186,7 @@
 		"Death Commando",
 		"Research Officer",
 		"BlackOps Commander",
-		"Supreme Commander",
-		"Emergency Response Team",
-		"Emergency Response Team Leader")
+		"Supreme Commander")
 
 /mob/proc/GetIdCard()
 	return null

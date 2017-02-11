@@ -12,13 +12,8 @@
 	var/CheckFaceFlag = 1 //for direction check
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
-	var/light_range_on = 2
-	var/light_power_on = 1
-	var/overlay_layer
-
-/obj/machinery/computer/New()
-	overlay_layer = layer
-	..()
+	var/light_range_on = 1.5
+	var/light_power_on = 2
 
 /obj/machinery/computer/initialize()
 	power_change()
@@ -65,18 +60,18 @@
 	if(stat & NOPOWER)
 		set_light(0)
 		if(icon_keyboard)
-			overlays += image(icon,"[icon_keyboard]_off", overlay_layer)
+			overlays += image(icon,"[icon_keyboard]_off")
 		return
 	else
 		set_light(light_range_on, light_power_on)
 
 	if(stat & BROKEN)
-		overlays += image(icon,"[icon_state]_broken", overlay_layer)
+		overlays += image(icon,"[icon_state]_broken")
 	else
-		overlays += image(icon,icon_screen, overlay_layer)
+		overlays += image(icon,icon_screen)
 
 	if(icon_keyboard)
-		overlays += image(icon, icon_keyboard, overlay_layer)
+		overlays += image(icon, icon_keyboard)
 
 /obj/machinery/computer/power_change()
 	..()
@@ -122,7 +117,7 @@
 /obj/machinery/computer/Topic(href, href_list)
 	if(..())
 		return 1
-	if (!CheckFaceFlag || CheckFace(src,usr))
+	if (issilicon(usr) || !CheckFaceFlag || CheckFace(src,usr))
 		keyboardsound(usr)
 		return 0
 	else
@@ -138,7 +133,7 @@
 		return 1
 	if(!issilicon(user))
 		return 0
-	if (!CheckFaceFlag || CheckFace(src,user))
+	if (issilicon(usr) || !CheckFaceFlag || CheckFace(src,user))
 		keyboardsound(user)
 		return 0
 	else

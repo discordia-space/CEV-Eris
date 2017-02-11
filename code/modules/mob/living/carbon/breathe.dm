@@ -35,12 +35,18 @@
 		if (!(wear_mask && (wear_mask.item_flags & AIRTIGHT)))
 			internal = null
 		if(internal)
-			if (internals)
-				internals.icon_state = "internal1"
+/*			if (internals)
+				internals.icon_state = "internal1"*/
+			if(HUDneed.Find("internal"))
+				var/obj/screen/HUDelm = HUDneed["internal"]
+				HUDelm.icon_state = "internal1"
 			return internal.remove_air_volume(volume_needed)
 		else
-			if (internals)
-				internals.icon_state = "internal0"
+/*			if (internals)
+				internals.icon_state = "internal0"*/
+			if(HUDneed.Find("internal"))
+				var/obj/screen/HUDelm = HUDneed["internal"]
+				HUDelm.icon_state = "internal0"
 	return null
 
 /mob/living/carbon/proc/get_breath_from_environment(var/volume_needed=BREATH_VOLUME)

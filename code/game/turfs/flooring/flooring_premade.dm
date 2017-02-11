@@ -74,6 +74,11 @@
 	icon_state = "hullcenter0"
 	initial_flooring = /decl/flooring/hull
 
+/turf/simulated/floor/hull/New()
+	if(icon_state != "hullcenter0")
+		overrided_icon_state = icon_state
+	..()
+
 /turf/simulated/floor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
@@ -192,10 +197,10 @@
 	oxygen = ATMOSTANK_OXYGEN
 	nitrogen = 0
 
-/turf/simulated/floor/reinforced/phoron
+/turf/simulated/floor/reinforced/plasma
 	oxygen = 0
 	nitrogen = 0
-	phoron = ATMOSTANK_PHORON
+	plasma = ATMOSTANK_PLASMA
 
 /turf/simulated/floor/reinforced/carbon_dioxide
 	oxygen = 0

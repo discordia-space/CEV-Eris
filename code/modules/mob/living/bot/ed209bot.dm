@@ -24,9 +24,11 @@
 		icon_state = "ed209-c"
 	else
 		icon_state = "ed209[on]"
+	..()
 
 /mob/living/bot/secbot/ed209/explode()
 	visible_message("<span class='warning'>[src] blows apart!</span>")
+	playsound(loc, "robot_talk_heavy", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/weapon/secbot_assembly/ed209_assembly(Tsec)
@@ -94,6 +96,7 @@
 				qdel(W)
 				build_step++
 				user << "<span class='notice'>You add the robot leg to [src].</span>"
+				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "legs/frame assembly"
 				if(build_step == 1)
 					item_state = "ed209_leg"
@@ -108,6 +111,7 @@
 				qdel(W)
 				build_step++
 				user << "<span class='notice'>You add the armor to [src].</span>"
+				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "vest/legs/frame assembly"
 				item_state = "ed209_shell"
 				icon_state = "ed209_shell"
@@ -125,6 +129,7 @@
 				qdel(W)
 				build_step++
 				user << "<span class='notice'>You add the helmet to [src].</span>"
+				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "covered and shielded frame assembly"
 				item_state = "ed209_hat"
 				icon_state = "ed209_hat"
@@ -135,6 +140,7 @@
 				qdel(W)
 				build_step++
 				user << "<span class='notice'>You add the prox sensor to [src].</span>"
+				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "covered, shielded and sensored frame assembly"
 				item_state = "ed209_prox"
 				icon_state = "ed209_prox"
@@ -150,6 +156,7 @@
 					if(C.use(1))
 						build_step++
 						user << "<span class='notice'>You wire the ED-209 assembly.</span>"
+						playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 						name = "wired ED-209 assembly"
 				return
 
@@ -158,6 +165,7 @@
 				name = "taser ED-209 assembly"
 				build_step++
 				user << "<span class='notice'>You add [W] to [src].</span>"
+				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				item_state = "ed209_taser"
 				icon_state = "ed209_taser"
 				user.drop_item()

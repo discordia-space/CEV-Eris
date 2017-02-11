@@ -143,7 +143,7 @@ Please contact me on #coderbus IRC. ~Carn x
 //I'll work on removing that stuff by rewriting some of the cloaking stuff at a later date.
 /mob/living/carbon/human/update_icons()
 	lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-	update_hud()		//TODO: remove the need for this
+//	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
 
 	if (icon_update)
@@ -164,6 +164,7 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Scale(size_multiplier)
 		M.Translate(0, 16*(size_multiplier-1))
 		src.transform = M
+	..()
 
 var/global/list/damage_icon_parts = list()
 
@@ -316,7 +317,9 @@ var/global/list/damage_icon_parts = list()
 	if(species.appearance_flags & HAS_UNDERWEAR)
 		for(var/category in all_underwear)
 			var/datum/category_item/underwear/UW = all_underwear[category]
-			UW.apply_to_icon(stand_icon) // TODO:«¿œ»À»“‹: ¿Õ¿À»« ∆»–¿
+			if(!UW.icon_state)
+				return
+			stand_icon.Blend(new /icon(body_build.underwear_icon, UW.icon_state), ICON_OVERLAY)
 
 	if(update_icons)
 		update_icons()
@@ -414,7 +417,7 @@ var/global/list/damage_icon_parts = list()
 	update_mutations(0)
 	update_body(0)
 	update_hair(0)
-	check_HUD()
+	update_hud()//Hud Stuff
 	update_inv_w_uniform(0)
 	update_inv_wear_id(0)
 	update_inv_gloves(0)
@@ -436,12 +439,11 @@ var/global/list/damage_icon_parts = list()
 	update_surgery(0)
 	UpdateDamageIcon()
 	update_icons()
-	//Hud Stuff
-	update_hud()
+
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
-/mob/living/carbon/human/proc/find_inv_position(var/slot_id) //Find HUD position on screen TO:DO ÏÓ„Û ÎË ˇ ÛÔÓÒÚËÚ¸???? species_hud?
+/mob/living/carbon/human/proc/find_inv_position(var/slot_id) //Find HUD position on screen TO:DO √¨√Æ√£√≥ √´√® √ø √≥√Ø√∞√Æ√±√≤√®√≤√º???? species_hud?
 	for(var/obj/screen/inventory/HUDinv in HUDinventory)
 		if (HUDinv.slot_id == slot_id)
 			//world << "[slot_id] [HUDinv.screen_loc]"
@@ -450,8 +452,8 @@ var/global/list/damage_icon_parts = list()
 			else
 				return HUDinv.screen_loc*/
 			return (HUDinv.invisibility == 101) ? null : HUDinv.screen_loc
-	log_admin("[usr] try find_inv_position a [slot_id], but not have that slot!")
-	usr << "Some problem hase accure, change UI style pls or call admins."
+	log_admin("[src] try find_inv_position a [slot_id], but not have that slot!")
+	src << "Some problem hase accure, change UI style pls or call admins."
 	return "7,7"
 
 
@@ -874,12 +876,6 @@ var/global/list/damage_icon_parts = list()
 		update_icons()
 
 
-/mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
-	if(client)
-		check_HUD()
-		client.screen |= contents
-		//if(hud_used)
-			//hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
 
 
 /mob/living/carbon/human/update_inv_handcuffed(var/update_icons=1)

@@ -95,14 +95,28 @@
 			return O
 	return 0
 
+/obj/structure/proc/neighbor_turf_passable()
+	var/turf/T = get_step(src, src.dir)
+	if(!T || !istype(T))
+		return 0
+	if(T.density == 1)
+		return 0
+	for(var/obj/O in T.contents)
+		if(istype(O,/obj/structure))
+			if(istype(O,/obj/structure/railing))
+				return 1
+			else if(O.density == 1)
+				return 0
+	return 1
+
 /obj/structure/proc/do_climb(var/mob/living/user)
 	if (!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>\The [user] starts climbing onto \the [src]!</span>")
+	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user
 
-	if(!do_after(user,(issmall(user) ? 30 : 50), src))
+	if(!do_after(user,(issmall(user) ? 20 : 34)))
 		climbers -= user
 		return
 
@@ -113,7 +127,7 @@
 	usr.forceMove(get_turf(src))
 
 	if (get_turf(user) == get_turf(src))
-		usr.visible_message("<span class='warning'>\The [user] climbs onto \the [src]!</span>")
+		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 	climbers -= user
 
 /obj/structure/proc/structure_shaken()

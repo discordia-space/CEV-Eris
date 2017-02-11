@@ -31,7 +31,7 @@
 
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/medic,\
-		/obj/item/weapon/storage/backpack/satchel_med,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -65,7 +65,7 @@
 
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/medic,\
-		/obj/item/weapon/storage/backpack/satchel_med,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -85,8 +85,8 @@
 					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/virologist(H), slot_wear_suit)
 					H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), slot_wear_mask)
 					switch(H.backbag)
-						if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/virology(H), slot_back)
-						if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_vir(H), slot_back)
+						if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
+						if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
 						if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
 					job_master.spawnId(H, H.mind.assigned_role, H.mind.role_alt_title, /obj/item/weapon/card/id/viro)
 		return ..()
@@ -118,8 +118,8 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/chemistry,\
-		/obj/item/weapon/storage/backpack/satchel_chem,\
+		/obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -147,8 +147,8 @@
 	shoes = /obj/item/clothing/shoes/laceup
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/genetics,\
-		/obj/item/weapon/storage/backpack/satchel_gen,\
+		/obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -211,7 +211,7 @@
 
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/medic,\
-		/obj/item/weapon/storage/backpack/satchel_med,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -242,6 +242,6 @@
 
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/medic,\
-		/obj/item/weapon/storage/backpack/satchel_med,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)

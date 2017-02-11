@@ -234,14 +234,14 @@
 		user.visible_message("*click click*", "<span class='danger'>*click*</span>")
 	else
 		src.visible_message("*click click*")
-	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
+	playsound(src.loc, 'sound/weapons/guns/misc/gun_empty.ogg', 100, 1)
 
 //called after successfully firing
 /obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
 		playsound(user, fire_sound, 10, 1)
 	else
-		playsound(user, fire_sound, 50, 1)
+		playsound(user, fire_sound, 60, 1)
 
 		if(reflex)
 			user.visible_message(
@@ -344,7 +344,7 @@
 		if(silenced)
 			playsound(user, fire_sound, 10, 1)
 		else
-			playsound(user, fire_sound, 50, 1)
+			playsound(user, fire_sound, 60, 1)
 		if(istype(in_chamber, /obj/item/projectile/beam/lastertag))
 			user.show_message("<span class = 'warning'>You feel rather silly, trying to commit suicide with a toy.</span>")
 			mouthshoot = 0
@@ -407,5 +407,6 @@
 /obj/item/weapon/gun/attack_self(mob/user)
 	var/datum/firemode/new_mode = switch_firemodes(user)
 	if(new_mode)
+		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
 

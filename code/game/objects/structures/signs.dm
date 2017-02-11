@@ -219,10 +219,10 @@
 	desc = "WARNING! N2O flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_n2o"
 
-/obj/structure/sign/atmos_phoron
-	name = "Phoron warning sign"
-	desc = "WARNING! Phoron flow tube. Ensure the flow is disengaged before working."
-	icon_state = "atmos_phoron"
+/obj/structure/sign/atmos_plasma
+	name = "Plasma warning sign"
+	desc = "WARNING! Plasma flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_plasma"
 
 /obj/structure/sign/atmos_n2
 	name = "N2 warning sign"
@@ -263,6 +263,26 @@
 	desc = "A silver sign which reads 'DECK IV'."
 	name = "DECK IV"
 	icon_state = "deck4"
+
+/obj/structure/sign/sec1
+	desc = "A silver sign which reads 'SECTION I'."
+	name = "SECTION I"
+	icon_state = "sec1"
+
+/obj/structure/sign/sec2
+	desc = "A silver sign which reads 'SECTION II'."
+	name = "SECTION II"
+	icon_state = "sec2"
+
+/obj/structure/sign/sec3
+	desc = "A silver sign which reads 'SECTION III'."
+	name = "SECTION III"
+	icon_state = "sec3"
+
+/obj/structure/sign/sec4
+	desc = "A silver sign which reads 'SECTION IV'."
+	name = "SECTION IV"
+	icon_state = "sec4"
 
 /obj/structure/sign/nanotrasen
 	name = "\improper NanoTrasen"

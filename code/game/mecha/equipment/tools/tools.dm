@@ -362,7 +362,7 @@
 	range = RANGED
 
 	action(atom/target)
-		if(!action_checks(target) || src.loc.z == 2) return
+		if(!action_checks(target) || src.loc.z == 6) return
 		var/turf/T = get_turf(target)
 		if(T)
 			set_ready_state(0)
@@ -383,7 +383,7 @@
 
 
 	action(atom/target)
-		if(!action_checks(target) || src.loc.z == 2) return
+		if(!action_checks(target) || src.loc.z == 6) return
 		var/list/theareas = list()
 		for(var/area/AR in orange(100, chassis))
 			if(AR in theareas) continue
@@ -767,10 +767,10 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/generator
-	name = "phoron generator"
-	desc = "Generates power using solid phoron as fuel. Pollutes the environment."
+	name = "plasma generator"
+	desc = "Generates power using solid plasma as fuel. Pollutes the environment."
 	icon_state = "tesla"
-	origin_tech = list(TECH_PHORON = 2, TECH_POWER = 2, TECH_ENGINEERING = 1)
+	origin_tech = list(TECH_PLASMA = 2, TECH_POWER = 2, TECH_ENGINEERING = 1)
 	equip_cooldown = 10
 	energy_drain = 0
 	range = MELEE
@@ -793,7 +793,7 @@
 		..()
 
 	proc/init()
-		fuel = new /obj/item/stack/material/phoron(src)
+		fuel = new /obj/item/stack/material/plasma(src)
 		fuel.amount = 0
 		pr_mech_generator = new /datum/global_iterator/mecha_generator(list(src),0)
 		pr_mech_generator.set_delay(equip_cooldown)
@@ -866,12 +866,12 @@
 			return
 		var/datum/gas_mixture/GM = new
 		if(prob(10))
-			T.assume_gas("phoron", 100, 1500+T0C)
-			T.visible_message("The [src] suddenly disgorges a cloud of heated phoron.")
+			T.assume_gas("plasma", 100, 1500+T0C)
+			T.visible_message("The [src] suddenly disgorges a cloud of heated plasma.")
 			destroy()
 		else
-			T.assume_gas("phoron", 5, istype(T) ? T.air.temperature : T20C)
-			T.visible_message("The [src] suddenly disgorges a cloud of phoron.")
+			T.assume_gas("plasma", 5, istype(T) ? T.air.temperature : T20C)
+			T.visible_message("The [src] suddenly disgorges a cloud of plasma.")
 		T.assume_air(GM)
 		return
 

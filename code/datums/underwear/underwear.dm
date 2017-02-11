@@ -49,8 +49,3 @@ datum/category_group/underwear/dd_SortValue()
 
 /datum/category_item/underwear/proc/is_default(var/gender)
 	return is_default
-
-/datum/category_item/underwear/proc/apply_to_icon(var/icon/I)
-	if(!icon_state)
-		return
-	I.Blend(new /icon(icon, icon_state), ICON_OVERLAY)

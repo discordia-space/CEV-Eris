@@ -29,10 +29,12 @@
 	pda = /obj/item/device/pda/heads/hos
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
+	belt = /obj/item/weapon/gun/projectile/lamia
 	put_in_backpack = list(\
-		/obj/item/weapon/gun/energy/gun,\
+		/obj/item/ammo_magazine/mg/cl44/rubber,\
+		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/flashlight/seclite
 	)
@@ -67,9 +69,12 @@
 	pda = /obj/item/device/pda/warden
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
+	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
 	put_in_backpack = list(\
+		/obj/item/ammo_magazine/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/flashlight/seclite
@@ -103,12 +108,15 @@
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/inspector
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	hat = /obj/item/clothing/head/det
 	suit = /obj/item/clothing/suit/storage/insp_trench
 	hand = /obj/item/weapon/storage/briefcase/crimekit
+	belt = /obj/item/weapon/gun/projectile/revolver/consul
 
 	put_in_backpack = list(\
+		/obj/item/ammo_magazine/sl/cl44/rubber,\
+		/obj/item/ammo_magazine/sl/cl44/rubber,\
 		/obj/item/weapon/flame/lighter/zippo,\
 		/obj/item/weapon/storage/box/evidence,\
 	)
@@ -135,9 +143,10 @@
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
 	hand = /obj/item/weapon/storage/briefcase/crimekit
+	belt = /obj/item/weapon/gun/energy/gun/martin
 
 	put_in_backpack = list(\
 		/obj/item/weapon/storage/box/evidence,\
@@ -166,10 +175,14 @@
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
+	gloves = /obj/item/clothing/gloves/thick
+	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
 
 	put_in_backpack = list(\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/weapon/handcuffs,\
+		/obj/item/ammo_magazine/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/device/flashlight/seclite
 	)

@@ -3,7 +3,7 @@
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
-	message = sanitize(message)
+	message = capitalize_cp1251(sanitize(message))
 	..(message, alt_name = alt_name)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
@@ -48,9 +48,6 @@
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/carbon/alien/diona))
-			if(other.languages.len >= 2) //They've sucked down some blood and can speak common now.
-				return 1
 		if (istype(other, /mob/living/silicon))
 			return 1
 		if (istype(other, /mob/living/carbon/brain))

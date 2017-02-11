@@ -1,4 +1,4 @@
-/*
+ /*
 	Screen objects
 	Todo: improve/re-implement
 
@@ -138,6 +138,28 @@
 	if(isliving(usr))
 		var/mob/living/L = usr
 		L.resist()*/
+
+
+/*/obj/screen/TEST
+	name = "TESTICON!"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "block"
+	var/clicks = 0
+	appearance_flags=RESET_COLOR
+	var/image/A
+	var/image/B
+
+/obj/screen/TEST/Click(location, control, params)
+	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
+	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
+	A.override = 1
+	B.appearance_flags=RESET_COLOR
+	overlays.Cut()
+	clicks = !clicks
+//	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
+	overlays += clicks ? A : B*/
+
+
 
 //--------------------------------------------------close---------------------------------------------------------
 
@@ -362,9 +384,9 @@
 
 /obj/screen/inventory/hand/update_icon()
 	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
-		src.icon_state = "act_hand"
+		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
-		src.icon_state = "hand"
+		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------
@@ -517,7 +539,7 @@
 
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	if(H.hal_screwyhud == 4 || H.phoron_alert)
+	if(H.hal_screwyhud == 4 || H.plasma_alert)
 		icon_state = "tox1"
 	else
 		icon_state = "tox0"
@@ -632,14 +654,14 @@
 										contents.Add(0)
 
 								if ("oxygen")
-									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["phoron"])
+									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
 									else
 										contents.Add(0)
 
 								// No races breath this, but never know about downstream servers.
 								if ("carbon dioxide")
-									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["phoron"])
+									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["carbon_dioxide"])
 									else
 										contents.Add(0)
@@ -820,7 +842,7 @@
 
 /obj/screen/intent/Click()
 	parentmob.a_intent_change("right")
-	update_icon()
+//	update_icon()//update in a_intent_change, because macro
 
 /obj/screen/intent/update_icon()
 	switch (parentmob.a_intent)
@@ -836,11 +858,11 @@
 /obj/screen/fastintent
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-
-/obj/screen/fastintent/Click()
+//update in a_intent_change, because macro
+/*/obj/screen/fastintent/Click()
 	if (parentmob.HUDneed.Find("intent"))
 		var/obj/screen/intent/I = parentmob.HUDneed["intent"]
-		I.update_icon()
+		I.update_icon()*/
 
 
 /obj/screen/fastintent/help
@@ -848,31 +870,57 @@
 
 /obj/screen/fastintent/help/Click()
 	parentmob.a_intent_change(I_HELP)
-	..()
+//	..()
 
 /obj/screen/fastintent/harm
 	icon_state = "intent_harm"
 
 /obj/screen/fastintent/harm/Click()
 	parentmob.a_intent_change(I_HURT)
-	..()
+//	..()
 
 /obj/screen/fastintent/grab
 	icon_state = "intent_grab"
 
 /obj/screen/fastintent/grab/Click()
 	parentmob.a_intent_change(I_GRAB)
-	..()
+//	..()
 
 /obj/screen/fastintent/disarm
 	icon_state = "intent_disarm"
 
 /obj/screen/fastintent/disarm/Click()
 	parentmob.a_intent_change(I_DISARM)
-	..()
+//	..()
+
+/obj/screen/drugoverlay
+	icon = 'icons/mob/screen1_full.dmi'
+	icon_state = "blank"
+	name = "drugs"
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	mouse_opacity = 0
+	process_flag = 1
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+//	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
+
+/obj/screen/drugoverlay/process()
+	update_icon()
+
+/obj/screen/drugoverlay/update_icon()
+	underlays.Cut()
+	if (parentmob.disabilities & NEARSIGHTED)
+		underlays += global_hud.vimpaired
+	if (parentmob.eye_blurry)
+		underlays += global_hud.blurry
+	if (parentmob.druggy)
+		underlays += global_hud.druggy
 
 
-
+/obj/screen/full_1_tile_overlay
+	name = "full_1_tile_overlay"
+	icon_state = "blank"
+	layer = 21
+	mouse_opacity = 1
 
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
@@ -881,12 +929,25 @@
 	screen_loc = "1,1"
 	mouse_opacity = 0
 	process_flag = 1
-	layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
+
 
 /obj/screen/damageoverlay/process()
+	update_icon()
+	return
+
+/obj/screen/damageoverlay/update_icon()
+	overlays.Cut()
+	UpdateHealthState()
+
+	underlays.Cut()
+	UpdateVisionState()
+	return
+
+/obj/screen/damageoverlay/proc/UpdateHealthState()
 	var/mob/living/carbon/human/H = parentmob
-	if(overlays.len)
-		overlays.Cut()
+
 	if(H.stat == UNCONSCIOUS)
 		//Critical damage passage overlay
 		if(H.health <= 0)
@@ -954,7 +1015,12 @@
 					I = H.overlays_cache[23]
 			overlays += I
 
-
+/obj/screen/damageoverlay/proc/UpdateVisionState()
+	if(parentmob.eye_blind)
+		underlays |= list(blind_icon)
+//	else
+//		underlays.Remove(list(blind_icon))
+//	world << underlays.len
 
 /obj/screen/frippery
 	name = ""
@@ -965,6 +1031,26 @@
 	src.icon_state = _icon_state
 	src.dir = _dir
 
+/obj/screen/glasses_overlay
+	icon = null
+	name = "glasses"
+	screen_loc = "1,1"
+	mouse_opacity = 0
+	process_flag = 1
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+
+
+/obj/screen/glasses_overlay/process()
+	update_icon()
+	return
+
+/obj/screen/glasses_overlay/update_icon()
+	overlays.Cut()
+	var/mob/living/carbon/human/H = parentmob
+	if(istype(H.glasses, /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/G = H.glasses
+		if (G.active && G.overlay)//check here need if someone want call this func directly
+			overlays |= G.overlay
 
 
 /*	if(owner.gun_move_icon)
@@ -1097,6 +1183,7 @@
 //			owner.radio_use_icon.name = "Disallow Radio Use"
 //-----------------------Gun Mod End------------------------------
 
+//-----------------------toggle_invetory------------------------------
 /obj/screen/toggle_invetory
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "b-open"
@@ -1242,3 +1329,4 @@
 	update_fire(0)
 	update_surgery(0)
 */
+//-----------------------toggle_invetory End------------------------------

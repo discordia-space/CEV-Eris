@@ -30,14 +30,6 @@
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-
-/obj/item/clothing/under/ert
-	name = "ERT tactical uniform"
-	desc = "A short-sleeved black uniform, paired with grey digital-camo cargo pants. It looks very tactical."
-	icon_state = "ert_uniform"
-	item_state = "bl_suit"
-
-
 /obj/item/clothing/under/space
 	name = "\improper NASA jumpsuit"
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
@@ -156,14 +148,6 @@
 	item_state = "kilt"
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET
-
-/obj/item/clothing/under/sexymime
-	name = "sexy mime outfit"
-	desc = "The only time when you DON'T enjoy looking at someone's rack."
-	icon_state = "sexymime"
-	item_state = "w_suit"
-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"

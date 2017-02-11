@@ -130,7 +130,7 @@
 	if (client)
 		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
-	if ((blind && stat != 2))
+/*	if ((blind && stat != 2))
 		if ((blinded))
 			blind.alpha = 255
 		else
@@ -140,7 +140,7 @@
 			if (eye_blurry)
 				client.screen += global_hud.blurry
 			if (druggy)
-				client.screen += global_hud.druggy
+				client.screen += global_hud.druggy*/
 
 	if (stat != 2)
 		if (machine)
@@ -159,11 +159,11 @@
 
 	if(environment.temperature > (T0C+66))
 		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
-		if (fire) fire.icon_state = "fire2"
+//		if (fire) fire.icon_state = "fire2"
 		if(prob(20))
 			src << "<span class='danger'>You feel a searing heat!</span>"
-	else
-		if (fire) fire.icon_state = "fire0"
+//	else
+//		if (fire) fire.icon_state = "fire0"
 
 /mob/living/carbon/alien/handle_fire()
 	if(..())

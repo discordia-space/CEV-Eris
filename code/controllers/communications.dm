@@ -104,11 +104,10 @@ var/const/RADIO_HIGH_FREQ	= 1600
 
 var/const/BOT_FREQ	= 1447
 var/const/COMM_FREQ = 1353
-var/const/ERT_FREQ	= 1345
 var/const/AI_FREQ	= 1343
 var/const/DTH_FREQ	= 1341
 var/const/SYND_FREQ = 1213
-var/const/ENT_FREQ	= 1461 //entertainment frequency. This is not a diona exclusive frequency.
+var/const/ENT_FREQ	= 1461 //entertainment frequency.
 
 // department channels
 var/const/PUB_FREQ = 1459
@@ -130,7 +129,6 @@ var/list/radiochannels = list(
 	"Medical"		= MED_FREQ,
 	"Engineering"	= ENG_FREQ,
 	"Security" 		= SEC_FREQ,
-	"Response Team" = ERT_FREQ,
 	"Special Ops" 	= DTH_FREQ,
 	"Mercenary" 	= SYND_FREQ,
 	"Supply" 		= SUP_FREQ,
@@ -141,8 +139,8 @@ var/list/radiochannels = list(
 	"Security(I)"	= SEC_I_FREQ
 )
 
-// central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
+// central command channels, i.e deathsquid
+var/list/CENT_FREQS = list(DTH_FREQ)
 
 // Antag channels, i.e. Syndicate
 var/list/ANTAG_FREQS = list(SYND_FREQ)
@@ -157,7 +155,7 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI
 	// Antags!
 	if (frequency in ANTAG_FREQS)
 		return "syndradio"
-	// centcomm channels (deathsquid and ert)
+	// centcomm channels
 	if(frequency in CENT_FREQS)
 		return "centradio"
 	// command channel

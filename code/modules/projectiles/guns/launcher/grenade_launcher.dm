@@ -129,8 +129,8 @@
 
 /* Ironhammer stuff */
 
-/obj/item/weapon/gun/launcher/grenade/ironhammer/missionary
-	name = "FS GL \"Missionary\""
+/obj/item/weapon/gun/launcher/grenade/lenar
+	name = "FS GL \"Lenar Hoyt\""
 	desc = "A bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
 	icon_state = "Grenadelauncher_PMC"
 	item_state = "riotgun"
@@ -142,13 +142,13 @@
 	throw_distance = 10
 	release_force = 5
 
-/obj/item/weapon/gun/launcher/grenade/ironhammer/missionary/proc/update_charge()
+/obj/item/weapon/gun/launcher/grenade/lenar/proc/update_charge()
 	var/ratio = (grenades.len + (chambered? 1 : 0)) / (max_grenades + 1)
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
 	overlays += "grenademag_[ratio]"
 
-/obj/item/weapon/gun/launcher/grenade/ironhammer/missionary/update_icon()
+/obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
 	overlays.Cut()
 	update_charge()

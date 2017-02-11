@@ -753,6 +753,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					var/old_icon1 = T.icon
 					var/old_overlays = T.overlays.Copy()
 					var/old_underlays = T.underlays.Copy()
+					var/old_decals = T.decals
 
 					var/turf/X = B.ChangeTurf(T.type)
 					X.set_dir(old_dir1)
@@ -760,6 +761,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 					X.overlays = old_overlays
 					X.underlays = old_underlays
+					X.decals = old_decals
 
 					var/turf/simulated/ST = T
 					if(istype(ST) && ST.zone)
@@ -1335,6 +1337,7 @@ var/mob/dview/dview_mob = new
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)
 	CRASH(msg)
+
 /proc/CheckFace(var/atom/Obj1, var/atom/Obj2)
 	var/CurrentDir = get_dir(Obj1, Obj2)
 	//if ((Obj1.loc == Obj2.loc) || (CurrentDir == Obj1.dir) || (CurrentDir == turn(Obj1.dir, 45)) || (CurrentDir == turn(Obj1.dir, -45)))

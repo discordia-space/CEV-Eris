@@ -139,14 +139,7 @@ var/list/ai_verbs_default = list(
 	//Languages
 	add_language("Robot Talk", 1)
 	add_language("Galactic Common", 1)
-	add_language(LANGUAGE_EAL, 1)
 	add_language(LANGUAGE_SOL_COMMON, 0)
-	add_language(LANGUAGE_UNATHI, 0)
-	add_language(LANGUAGE_SIIK_MAAS, 0)
-	add_language(LANGUAGE_SKRELLIAN, 0)
-	add_language(LANGUAGE_RESOMI, 0)
-	add_language(LANGUAGE_TRADEBAND, 1)
-	add_language(LANGUAGE_GUTTER, 0)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -397,8 +390,7 @@ var/list/ai_verbs_default = list(
 	var/input = sanitize(input(usr, "Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
-	Centcomm_announce(input, usr)
-	usr << "<span class='notice'>Message transmitted.</span>"
+	usr << "<span class='notice'>No response from the remote server. Please, contact your system administrator.</span>"
 	log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)

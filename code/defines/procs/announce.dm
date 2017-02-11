@@ -47,38 +47,19 @@
 	Log(message, message_title)
 
 datum/announcement/proc/Message(message as text, message_title as text)
-	for(var/mob/M in player_list)
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
-			M << "<h2 class='alert'>[title]</h2>"
-			M << "<span class='alert'>[message]</span>"
-			if (announcer)
-				M << "<span class='alert'> -[rhtml_encode(announcer)]</span>"
+	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/minor/Message(message as text, message_title as text)
-	world << "<b>[message]</b>"
+	global_announcer.autosay(utf8_to_cp1251(message), ANNOUNSER_NAME)
 
 datum/announcement/priority/Message(message as text, message_title as text)
-	world << "<h1 class='alert'>[message_title]</h1>"
-	world << "<span class='alert'>[message]</span>"
-	if(announcer)
-		world << "<span class='alert'> -[rhtml_encode(announcer)]</span>"
-	world << "<br>"
+	global_announcer.autosay(utf8_to_cp1251("<span class='alert'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/priority/command/Message(message as text, message_title as text)
-	var/command
-	command += "<h1 class='alert'>[command_name()] Update</h1>"
-	if (message_title)
-		command += "<br><h2 class='alert'>[message_title]</h2>"
-
-	command += "<br><span class='alert'>[message]</span><br>"
-	command += "<br>"
-	for(var/mob/M in player_list)
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
-			M << command
+	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(command_name())] [utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
-	world << "<font size=4 color='red'>[message_title]</font>"
-	world << "<font color='red'>[message]</font>"
+	global_announcer.autosay(utf8_to_cp1251("<font color='red'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
 
 datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if(!newscast)
@@ -122,7 +103,7 @@ datum/announcement/proc/Log(message as text, message_title as text)
 	command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
 /proc/ion_storm_announcement()
-	command_announcement.Announce("It has come to our attention that the station passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+	command_announcement.Announce("It has come to our attention that the ship passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 /proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message)
 	if (ticker.current_state == GAME_STATE_PLAYING)
@@ -131,4 +112,4 @@ datum/announcement/proc/Log(message as text, message_title as text)
 		AnnounceArrivalSimple(character.real_name, rank, join_message)
 
 /proc/AnnounceArrivalSimple(var/name, var/rank = "visitor", var/join_message = "has arrived on the station")
-	global_announcer.autosay("[name], [rank], [join_message].", "Arrivals Announcement Computer")
+	global_announcer.autosay(utf8_to_cp1251("[utf8_to_cp1251(name)], [utf8_to_cp1251(rank)], [utf8_to_cp1251(join_message)]."), ANNOUNSER_NAME)

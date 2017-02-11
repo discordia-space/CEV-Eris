@@ -460,7 +460,7 @@
 // - Is between 80 and 120kPa
 // - Has between 17% and 30% oxygen
 // - Has temperature between -10C and 50C
-// - Has no or only minimal phoron or N2O
+// - Has no or only minimal plasma or N2O
 /proc/is_safe_atmosphere(datum/gas_mixture/atmosphere, var/returntext = 0)
     var/list/status = list()
     if(!atmosphere)
@@ -477,12 +477,12 @@
 
     // Gas concentration checks
     var/oxygen = 0
-    var/phoron = 0
+    var/plasma = 0
     var/carbondioxide = 0
     var/nitrousoxide = 0
     if(atmosphere.total_moles) // Division by zero prevention
         oxygen = (atmosphere.gas["oxygen"] / atmosphere.total_moles) * 100 // Percentage of the gas
-        phoron = (atmosphere.gas["phoron"] / atmosphere.total_moles) * 100
+        plasma = (atmosphere.gas["plasma"] / atmosphere.total_moles) * 100
         carbondioxide = (atmosphere.gas["carbon_dioxide"] / atmosphere.total_moles) * 100
         nitrousoxide = (atmosphere.gas["sleeping_agent"] / atmosphere.total_moles) * 100
 
@@ -493,8 +493,8 @@
 
 
 
-    if(phoron > 0.1)        // Toxic even in small amounts.
-        status.Add("Phoron contamination.")
+    if(plasma > 0.1)        // Toxic even in small amounts.
+        status.Add("Plasma contamination.")
     if(nitrousoxide > 0.1)    // Probably slightly less dangerous but still.
         status.Add("N2O contamination.")
     if(carbondioxide > 5)    // Not as dangerous until very large amount is present.

@@ -13,7 +13,6 @@ var/global/list/additional_antag_types = list()
 	var/required_enemies = 0                 // Minimum antagonists for round to start.
 	var/newscaster_announcements = null
 	var/end_on_antag_death = 0               // Round will end when all antagonists are dead.
-	var/ert_disabled = 0                     // ERT cannot be called.
 	var/deny_respawn = 0	                 // Disable respawn during this round.
 
 	var/list/disabled_jobs = list()           // Mostly used for Malf.  This check is performed in job_controller so it doesn't spawn a regular AI.
@@ -49,9 +48,6 @@ var/global/list/additional_antag_types = list()
 		switch(href_list["toggle"])
 			if("respawn")
 				deny_respawn = !deny_respawn
-			if("ert")
-				ert_disabled = !ert_disabled
-				announce_ert_disabled()
 			if("shuttle_recall")
 				auto_recall_shuttle = !auto_recall_shuttle
 			if("autotraitor")
@@ -201,8 +197,6 @@ var/global/list/additional_antag_types = list()
 
 	spawn (rand(waittime_l, waittime_h))
 		send_intercept()
-		spawn(rand(100,150))
-			announce_ert_disabled()
 
 	//Assign all antag types for this game mode. Any players spawned as antags earlier should have been removed from the pending list, so no need to worry about those.
 	for(var/datum/antagonist/antag in antag_templates)
@@ -219,42 +213,6 @@ var/global/list/additional_antag_types = list()
 	for(var/datum/antagonist/antag in antag_templates)
 		antag.reset_antag_selection()
 
-/datum/game_mode/proc/announce_ert_disabled()
-	if(!ert_disabled)
-		return
-
-	var/list/reasons = list(
-		"political instability",
-		"quantum fluctuations",
-		"hostile raiders",
-		"derelict station debris",
-		"REDACTED",
-		"ancient alien artillery",
-		"solar magnetic storms",
-		"sentient time-travelling killbots",
-		"gravitational anomalies",
-		"wormholes to another dimension",
-		"a telescience mishap",
-		"radiation flares",
-		"supermatter dust",
-		"leaks into a negative reality",
-		"antiparticle clouds",
-		"residual bluespace energy",
-		"suspected criminal operatives",
-		"malfunctioning von Neumann probe swarms",
-		"shadowy interlopers",
-		"haywire IPC constructs",
-		"rogue Unathi exiles",
-		"artifacts of eldritch horror",
-		"a brain slug infestation",
-		"killer bugs that lay eggs in the husks of the living",
-		"a deserted transport carrying xenomorph specimens",
-		"an emissary for the gestalt requesting a security detail",
-		"a Tajaran slave rebellion",
-		"radical Skrellian transevolutionaries",
-		"classified security operations"
-		)
-	command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
 
 /datum/game_mode/proc/check_finished()
 	if(emergency_shuttle.returned() || station_was_nuked)

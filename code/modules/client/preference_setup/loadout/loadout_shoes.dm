@@ -23,11 +23,11 @@
 
 /datum/gear/shoes/blue
 	display_name = "shoes, blue"
-	path = /obj/item/clothing/shoes/blue
+	path = /obj/item/clothing/shoes/color/blue
 
 /datum/gear/shoes/brown
 	display_name = "shoes, brown"
-	path = /obj/item/clothing/shoes/brown
+	path = /obj/item/clothing/shoes/color/brown
 
 /datum/gear/shoes/lacey
 	display_name = "shoes, classy"
@@ -39,7 +39,7 @@
 
 /datum/gear/shoes/green
 	display_name = "shoes, green"
-	path = /obj/item/clothing/shoes/green
+	path = /obj/item/clothing/shoes/color/green
 
 /datum/gear/shoes/leather
 	display_name = "shoes, leather"
@@ -47,24 +47,24 @@
 
 /datum/gear/shoes/orange
 	display_name = "shoes, orange"
-	path = /obj/item/clothing/shoes/orange
+	path = /obj/item/clothing/shoes/color/orange
 
 /datum/gear/shoes/purple
 	display_name = "shoes, purple"
-	path = /obj/item/clothing/shoes/purple
+	path = /obj/item/clothing/shoes/color/purple
 
 /datum/gear/shoes/rainbow
 	display_name = "shoes, rainbow"
-	path = /obj/item/clothing/shoes/rainbow
+	path = /obj/item/clothing/shoes/color/rainbow
 
 /datum/gear/shoes/red
 	display_name = "shoes, red"
-	path = /obj/item/clothing/shoes/red
+	path = /obj/item/clothing/shoes/color/red
 
 /datum/gear/shoes/white
 	display_name = "shoes, white"
-	path = /obj/item/clothing/shoes/white
+	path = /obj/item/clothing/shoes/color/white
 
 /datum/gear/shoes/yellow
 	display_name = "shoes, yellow"
-	path = /obj/item/clothing/shoes/yellow
+	path = /obj/item/clothing/shoes/color/yellow

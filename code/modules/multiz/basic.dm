@@ -9,7 +9,6 @@ var/z_levels = 0 // Each bit represents a connection between adjacent levels.  S
 
 	for(var/i = (height-1); i--;)
 		z_levels |= (1 << (z+i-1))
-	qdel(src)
 
 // The storage of connections between adjacent levels means some bitwise magic is needed.
 proc/HasAbove(var/z)

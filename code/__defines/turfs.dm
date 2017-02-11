@@ -9,3 +9,4 @@
 #define TURF_IS_FRAGILE         256
 #define TURF_ACID_IMMUNE        512
 #define TURF_USE0ICON           1024
+#define SMOOTH_ONLY_WITH_ITSELF 2048

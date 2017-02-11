@@ -6,6 +6,7 @@
 /area
 	var/global/global_uid = 0
 	var/uid
+	var/tmp/camera_id = 0 // For automatic c_tag setting
 
 /area/New()
 	icon_state = ""
@@ -17,11 +18,6 @@
 		power_light = 0
 		power_equip = 0
 		power_environ = 0
-
-	if(lighting_use_dynamic)
-		luminosity = 0
-	else
-		luminosity = 1
 
 	..()
 
@@ -40,6 +36,9 @@
 	for (var/obj/machinery/camera/C in src)
 		cameras += C
 	return cameras
+
+/area/proc/get_camera_tag(var/obj/machinery/camera/C)
+	return "[name] [camera_id++]"
 
 /area/proc/atmosalert(danger_level, var/alarm_source)
 	if (danger_level == 0)

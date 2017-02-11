@@ -397,7 +397,7 @@
 			if(4)
 				reagents.add_reagent("sprinkles", 3)
 			if(5)
-				reagents.add_reagent("phoron", 3)
+				reagents.add_reagent("plasma", 3)
 			if(6)
 				reagents.add_reagent("coco", 3)
 			if(7)
@@ -1624,31 +1624,6 @@
 	icon_state = "monkeycubewrap"
 	flags = 0
 	wrapped = 1
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/farwacube
-	name = "farwa cube"
-	monkey_type = "Farwa"
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
-	name = "farwa cube"
-	monkey_type = "Farwa"
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/stokcube
-	name = "stok cube"
-	monkey_type = "Stok"
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
-	name = "stok cube"
-	monkey_type = "Stok"
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/neaeracube
-	name = "neaera cube"
-	monkey_type = "Neaera"
-
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
-	name = "neaera cube"
-	monkey_type = "Neaera"
-
 
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"
@@ -2895,22 +2870,6 @@
 /obj/item/pizzabox/meat/New()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
-
-/obj/item/weapon/reagent_containers/food/snacks/dionaroast
-	name = "roast diona"
-	desc = "It's like an enormous, leathery carrot. With an eye."
-	icon_state = "dionaroast"
-	trash = /obj/item/trash/plate
-	filling_color = "#75754B"
-	center_of_mass = list("x"=16, "y"=7)
-	nutriment_desc = list("a chorus of flavor" = 6)
-	nutriment_amt = 6
-	New()
-		..()
-		reagents.add_reagent("radium", 2)
-		bitesize = 2
-
-
 
 
 ///////////////////////////////////////////

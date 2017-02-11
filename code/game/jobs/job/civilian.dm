@@ -87,8 +87,8 @@
 
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/,\
-		///obj/item/weapon/storage/backpack/hydroponics,\
-		/obj/item/weapon/storage/backpack/satchel_hyd,\
+		///obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -111,15 +111,15 @@
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
-	idtype = /obj/item/weapon/card/id/qm
+	idtype = /obj/item/weapon/card/id/car
 	ideal_character_age = 40
 
 
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/qm_coat
-	shoes = /obj/item/clothing/shoes/brown
+	shoes = /obj/item/clothing/shoes/color/brown
 	pda = /obj/item/device/pda/quartermaster
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	ear = /obj/item/device/radio/headset/headset_cargo
 	hand = /obj/item/weapon/clipboard
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -138,7 +138,7 @@
 	selection_color = "#dddddd"
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
-	idtype = /obj/item/weapon/card/id/qm
+	idtype = /obj/item/weapon/card/id/car
 
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
@@ -161,7 +161,7 @@
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
 	alt_titles = list("Drill Technician","Prospector")
-	idtype = /obj/item/weapon/card/id/engie
+	idtype = /obj/item/weapon/card/id/car
 
 	uniform = /obj/item/clothing/under/rank/miner
 	pda = /obj/item/device/pda/shaftminer
@@ -231,7 +231,7 @@
 	uniform = /obj/item/clothing/under/mime
 	pda = /obj/item/device/pda/mime
 	hat = /obj/item/clothing/head/beret
-	gloves = /obj/item/clothing/gloves/white
+	gloves = /obj/item/clothing/gloves/color/white
 	mask = /obj/item/clothing/mask/gas/mime
 	ear = /obj/item/device/radio/headset/headset_service
 
@@ -309,7 +309,7 @@
 //	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
 //
 //	uniform = /obj/item/clothing/under/rank/internalaffairs
-//	shoes = /obj/item/clothing/shoes/brown
+//	shoes = /obj/item/clothing/shoes/color/brown
 //	pda = /obj/item/device/pda/lawyer
 //	ear = /obj/item/device/radio/headset/headset_sec
 //	hand = /obj/item/weapon/storage/briefcase

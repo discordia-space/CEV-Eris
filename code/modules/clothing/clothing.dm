@@ -3,20 +3,13 @@
 	siemens_coefficient = 0.9
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
-	var/list/species_restricted = null 				//Only these species can wear this kit.
-	var/gunshot_residue //Used by forensics.
+	var/list/species_restricted = null				// Only these species can wear this kit.
+	var/gunshot_residue								// Used by forensics.
+	var/initial_name = "clothing"					// For coloring
 
 	var/list/accessories = list()
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
-
-	/*
-		Sprites used when the clothing item is refit. This is done by setting icon_override.
-		For best results, if this is set then sprite_sheets should be null and vice versa, but that is by no means necessary.
-		Ideally, sprite_sheets_refit should be used for "hard" clothing items that can't change shape very well to fit the wearer (e.g. helmets, hardsuits),
-		while sprite_sheets should be used for "flexible" clothing items that do not need to be refitted (e.g. vox wearing jumpsuits).
-	*/
-	var/list/sprite_sheets_refit = null
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -26,79 +19,6 @@
 /obj/item/clothing/clean_blood()
 	..()
 	gunshot_residue = null
-
-//BS12: Species-restricted clothing check.
-/obj/item/clothing/mob_can_equip(M as mob, slot)
-
-	//if we can't equip the item anyway, don't bother with species_restricted (cuts down on spam)
-	if (!..())
-		return 0
-
-	if(species_restricted && istype(M,/mob/living/carbon/human))
-		var/exclusive = null
-		var/wearable = null
-		var/mob/living/carbon/human/H = M
-
-		if("exclude" in species_restricted)
-			exclusive = 1
-
-		if(H.species)
-			if(exclusive)
-				if(!(H.species.get_bodytype() in species_restricted))
-					wearable = 1
-			else
-				if(H.species.get_bodytype() in species_restricted)
-					wearable = 1
-
-			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
-				H << "<span class='danger'>Your species cannot wear [src].</span>"
-				return 0
-	return 1
-
-/obj/item/clothing/proc/refit_for_species(var/target_species)
-	if(!species_restricted)
-		return //this item doesn't use the species_restricted system
-
-	//Set species_restricted list
-	switch(target_species)
-		if("Human", "Skrell")	//humanoid bodytypes
-			species_restricted = list("Human", "Skrell") //skrell/humans can wear each other's suits
-		else
-			species_restricted = list(target_species)
-
-	//Set icon
-	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		icon_override = sprite_sheets_refit[target_species]
-	else
-		icon_override = initial(icon_override)
-
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
-
-/obj/item/clothing/head/helmet/refit_for_species(var/target_species)
-	if(!species_restricted)
-		return //this item doesn't use the species_restricted system
-
-	//Set species_restricted list
-	switch(target_species)
-		if("Skrell")
-			species_restricted = list("Human", "Skrell") //skrell helmets fit humans too
-
-		else
-			species_restricted = list(target_species)
-
-	//Set icon
-	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		icon_override = sprite_sheets_refit[target_species]
-	else
-		icon_override = initial(icon_override)
-
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -239,9 +159,6 @@ BLIND     // can't see anything
 		clipped = 1
 		name = "modified [name]"
 		desc = "[desc]<br>They have had the fingertips cut off of them."
-		if("exclude" in species_restricted)
-			species_restricted -= "Unathi"
-			species_restricted -= "Tajara"
 		return
 
 ///////////////////////////////////////////////////////////////////////
@@ -302,13 +219,6 @@ BLIND     // can't see anything
 		else
 			D.wear_hat(src)
 			success = 1
-	else if(istype(user, /mob/living/carbon/alien/diona))
-		var/mob/living/carbon/alien/diona/D = user
-		if(D.hat)
-			success = 2
-		else
-			D.wear_hat(src)
-			success = 1
 
 	if(!success)
 		return 0
@@ -329,16 +239,13 @@ BLIND     // can't see anything
 
 		// Generate object icon.
 		if(!light_overlay_cache["[light_overlay]_icon"])
-			light_overlay_cache["[light_overlay]_icon"] = image("icon" = 'icons/obj/light_overlays.dmi', "icon_state" = "[light_overlay]")
+			light_overlay_cache["[light_overlay]_icon"] = image('icons/obj/light_overlays.dmi', light_overlay)
 		overlays |= light_overlay_cache["[light_overlay]_icon"]
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
 		if(!light_overlay_cache[cache_key])
-			var/use_icon = 'icons/mob/light_overlays.dmi'
-			if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype()])
-				use_icon = sprite_sheets[H.species.get_bodytype()]
-			light_overlay_cache[cache_key] = image("icon" = use_icon, "icon_state" = "[light_overlay]")
+			light_overlay_cache[cache_key] = image('icons/mob/light_overlays.dmi', light_overlay)
 
 	if(H)
 		H.update_inv_head()
@@ -521,10 +428,7 @@ BLIND     // can't see anything
 		if(3)
 			user << "Its vital tracker and tracking beacon appear to be enabled."
 
-/obj/item/clothing/under/proc/set_sensors(mob/usr as mob)
-	var/mob/M = usr
-	if (isobserver(M)) return
-	if (usr.stat || usr.restrained()) return
+/obj/item/clothing/under/proc/set_sensors(var/mob/M)
 	if(has_sensor >= 2)
 		usr << "The controls are locked."
 		return 0
@@ -532,12 +436,10 @@ BLIND     // can't see anything
 		usr << "This suit does not have any sensors."
 		return 0
 
-	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
-	if(get_dist(usr, src) > 1)
-		usr << "You have moved too far away."
-		return
-	sensor_mode = modes.Find(switchMode) - 1
+	if(sensor_mode == 3)
+		sensor_mode = 0
+	else
+		sensor_mode++
 
 	if (src.loc == usr)
 		switch(sensor_mode)
@@ -564,16 +466,13 @@ BLIND     // can't see anything
 				for(var/mob/V in viewers(usr, 1))
 					V.show_message("[usr] sets [src.loc]'s sensors to maximum.", 1)
 
-/obj/item/clothing/under/verb/toggle()
-	set name = "Toggle Suit Sensors"
-	set category = "Object"
-	set src in usr
-	set_sensors(usr)
-	..()
-
-
-
 
 /obj/item/clothing/under/rank/New()
-	sensor_mode = pick(0,1,2,3)
+	sensor_mode = 3
 	..()
+
+/obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
+	if(istype(I, /obj/item/weapon/screwdriver) && istype(U, /mob/living/carbon/human))
+		set_sensors(U)
+	else
+		return ..()

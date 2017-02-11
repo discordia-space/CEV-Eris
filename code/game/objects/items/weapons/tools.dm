@@ -379,7 +379,7 @@
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
-	origin_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3)
+	origin_tech = list(TECH_ENGINEERING = 4, TECH_PLASMA = 3)
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
 	var/last_gen = 0
 

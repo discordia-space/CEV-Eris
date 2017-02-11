@@ -17,10 +17,6 @@
 	display_name = "jumpsuit, black"
 	path = /obj/item/clothing/under/color/black
 
-/datum/gear/uniform/jumpsuit/blackfemale
-	display_name = "jumpsuit, female-black"
-	path = /obj/item/clothing/under/color/blackf
-
 /datum/gear/uniform/jumpsuit/blue
 	display_name = "jumpsuit, blue"
 	path = /obj/item/clothing/under/color/blue
@@ -109,29 +105,9 @@
 	//display_name = "suit, amish"
 	//path = /obj/item/clothing/under/sl_suit
 
-/datum/gear/uniform/suit/shinyblack
-	display_name = "suit, shiny-black"
-	path = /obj/item/clothing/under/lawyer/black
-
-/datum/gear/uniform/suit/blue
-	display_name = "suit, blue"
-	path = /obj/item/clothing/under/lawyer/blue
-
 /datum/gear/uniform/suit/gentle
 	display_name = "suit, gentlemen"
 	path = /obj/item/clothing/under/gentlesuit
-
-/datum/gear/uniform/suit/redlawyer
-	display_name = "suit, lawyer-red"
-	path = /obj/item/clothing/under/lawyer/red
-
-/datum/gear/uniform/suit/purple
-	display_name = "suit, purple"
-	path = /obj/item/clothing/under/lawyer/purpsuit
-
-/datum/gear/uniform/suit/whiteblue
-	display_name = "suit, white-blue"
-	path = /obj/item/clothing/under/lawyer/bluesuit
 
 /datum/gear/uniform/scrubs/blue
 	display_name = "scrubs, blue"

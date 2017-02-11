@@ -27,8 +27,8 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 var/diary               = null
 var/href_logfile        = null
-var/station_name        = "NSS Exodus"
-var/station_short       = "Exodus"
+var/station_name        = "CEV Eris"
+var/station_short       = "Eris"
 var/const/dock_name     = "N.A.S. Crescent"
 var/const/boss_name     = "Central Command"
 var/const/boss_short    = "Centcomm"

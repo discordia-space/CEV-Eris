@@ -103,12 +103,20 @@ var/global/datum/global_init/init = new ()
 
 	if(config.generate_asteroid)
 		// These values determine the specific area that the map is applied to.
-		// If you do not use the official Baycode moonbase map, you will need to change them.
-		//Create the mining Z-level.
-		new /datum/random_map/automata/cave_system(null,1,1,5,255,255)
-		//new /datum/random_map/noise/volcanism(null,1,1,5,255,255) // Not done yet! Pretty, though.
-		// Create the mining ore distribution map.
-		new /datum/random_map/noise/ore(null, 1, 1, 5, 64, 64)
+		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
+		if(config.asteroid_z_levels)
+			for(var/z_level in config.asteroid_z_levels)
+				// In case we got fed a string instead of a number...
+				z_level = text2num(z_level)
+				if(!isnum(z_level))
+					// If it's still not a number, we probably got fed some nonsense string.
+					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
+				// Now for the actual map generating.  This occurs for every z-level defined in the config.
+				new /datum/random_map/automata/cave_system(null,1,1,z_level,300,300)
+				// Let's add ore too.
+				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
+		else
+			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
 		// Update all turfs to ensure everything looks good post-generation. Yes,
 		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
 		for(var/turf/simulated/mineral/M in world) // Ugh.
@@ -174,8 +182,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
 		s["players"] = 0
-		s["stationtime"] = worldtime2text()
-		s["roundduration"] = round_duration()
+		s["stationtime"] = stationtime2text()
+		s["roundduration"] = roundduration2text()
 
 		if(input["status"] == "2")
 			var/list/players = list()

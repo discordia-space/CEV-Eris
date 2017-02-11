@@ -18,7 +18,7 @@ var/list/flooring_types
 // [icon_base]_corners: directional overlays for non-edge corners.
 
 /decl/flooring
-	var/name
+	var/name = "floor"
 	var/desc
 	var/icon
 	var/icon_base
@@ -45,7 +45,7 @@ var/list/flooring_types
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL
 	build_type = /obj/item/stack/tile/grass
 
 /decl/flooring/asteroid
@@ -55,6 +55,7 @@ var/list/flooring_types
 	icon_base = "asteroid"
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
+
 
 /decl/flooring/hull
 	name = "hull"
@@ -72,7 +73,7 @@ var/list/flooring_types
 	icon_base = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | SMOOTH_ONLY_WITH_ITSELF
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
@@ -121,7 +122,7 @@ var/list/flooring_types
 	can_paint = 1
 
 /decl/flooring/tiling/tech
-	name = "techfloor"
+//	name = "techfloor"
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_base = "techfloor_gray"
@@ -133,25 +134,25 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/techgrid
 
 /decl/flooring/tiling/new_tile
-	name = "tile full"
+	name = "floor"
 	icon_base = "tile_full"
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
 	build_type = null
 
 /decl/flooring/tiling/new_tile/cargo_one
-	name = "cargo one"
+//	name = "cargo one"
 	icon_base = "cargo_one_full"
 
 /decl/flooring/tiling/new_tile/kafel
-	name = "kafel"
+//	name = "kafel"
 	icon_base = "kafel_full"
 
 /decl/flooring/tiling/new_tile/techmaint
-	name = "techmaint"
+//	name = "techmaint"
 	icon_base = "techmaint"
 
 /decl/flooring/tiling/new_tile/monofloor
-	name = "monofloor"
+//	name = "monofloor"
 	icon_base = "monofloor"
 
 /decl/flooring/linoleum

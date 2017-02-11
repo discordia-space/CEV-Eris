@@ -32,4 +32,4 @@
 		"platinum" = 1,
 		"sand" = 2
 		)
-	product = /obj/item/stack/material/glass/phoronglass
+	product = /obj/item/stack/material/glass/plasmaglass

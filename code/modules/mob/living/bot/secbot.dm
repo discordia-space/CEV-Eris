@@ -74,6 +74,7 @@
 		set_light(2, 1, "#FF6A00")
 	else
 		set_light(0)
+	..()
 
 /mob/living/bot/secbot/attack_hand(var/mob/user)
 	user.set_machine(src)
@@ -491,6 +492,7 @@
 		var/obj/item/weapon/secbot_assembly/A = new /obj/item/weapon/secbot_assembly
 		user.put_in_hands(A)
 		user << "You add the signaler to the helmet."
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
@@ -518,6 +520,7 @@
 		user.drop_item()
 		build_step = 2
 		user << "You add \the [O] to [src]."
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		overlays += image('icons/obj/aibots.dmi', "hs_eye")
 		name = "helmet/signaler/prox sensor assembly"
 		qdel(O)
@@ -526,6 +529,7 @@
 		user.drop_item()
 		build_step = 3
 		user << "You add \the [O] to [src]."
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "helmet/signaler/prox sensor/robot arm assembly"
 		overlays += image('icons/obj/aibots.dmi', "hs_arm")
 		qdel(O)
@@ -533,6 +537,7 @@
 	else if(istype(O, /obj/item/weapon/melee/baton) && build_step == 3)
 		user.drop_item()
 		user << "You complete the Securitron! Beep boop."
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))
 		S.name = created_name
 		qdel(O)

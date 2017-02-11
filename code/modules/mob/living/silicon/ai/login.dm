@@ -3,7 +3,7 @@
 	for(var/obj/effect/rune/rune in rune_list)
 		client.images += rune.blood_image
 	regenerate_icons()
-	flash = new /obj/screen()
+/*	flash = new /obj/screen()
 	flash.icon_state = "blank"
 	flash.name = "flash"
 	flash.screen_loc = ui_entire_screen
@@ -15,7 +15,7 @@
 	blind.mouse_opacity = 0
 	blind.layer = 18
 	blind.alpha = 0
-	client.screen.Add( blind, flash )
+	client.screen.Add( blind, flash )*/
 
 	if(stat != DEAD)
 		for(var/obj/machinery/ai_status_display/O in machines) //change status

@@ -22,10 +22,6 @@
 	name = "station intercom (Private)"
 	frequency = AI_FREQ
 
-/obj/item/device/radio/intercom/specops
-	name = "\improper Spec Ops intercom"
-	frequency = ERT_FREQ
-
 /obj/item/device/radio/intercom/department
 	canhear_range = 5
 	broadcasting = 0

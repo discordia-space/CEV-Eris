@@ -695,11 +695,6 @@
 	desc = "A \"Space Life\" brand Paramedic action figure."
 	icon_state = "paramedic"
 
-/obj/item/toy/figure/ert
-	name = "Emergency Response Team Commander action figure"
-	desc = "A \"Space Life\" brand Emergency Response Team Commander action figure."
-	icon_state = "ert"
-
 /obj/item/toy/therapy_red
 	name = "red therapy doll"
 	desc = "A toy for therapeutic and recreational purposes. This one is red."

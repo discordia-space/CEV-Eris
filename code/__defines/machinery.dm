@@ -28,19 +28,19 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 
 // Camera networks
 #define NETWORK_CRESCENT "Crescent"
-#define NETWORK_CIVILIAN_EAST "Civilian East"
-#define NETWORK_CIVILIAN_WEST "Civilian West"
+#define NETWORK_FIRST_SECTION "First Section"
+#define	NETWORK_SECOND_SECTION "Second Section"
+#define	NETWORK_THIRD_SECTION "Third Section"
+#define	NETWORK_FOURTH_SECTION "Fourth Section"
 #define NETWORK_COMMAND "Command"
 #define NETWORK_ENGINE "Engine"
 #define NETWORK_ENGINEERING "Engineering"
-#define NETWORK_ENGINEERING_OUTPOST "Engineering Outpost"
-#define NETWORK_ERT "ZeEmergencyResponseTeam"
-#define NETWORK_EXODUS "Exodus"
+#define NETWORK_CEV_ERIS "CEV Eris"
 #define NETWORK_MEDICAL "Medical"
 #define NETWORK_MERCENARY "MercurialNet"
-#define NETWORK_MINE "MINE"
+#define NETWORK_MINE "Mining Shuttle - Hulk"
 #define NETWORK_RESEARCH "Research"
-#define NETWORK_RESEARCH_OUTPOST "Research Outpost"
+#define NETWORK_RESEARCH_OUTPOST "Research Shuttle - Vasiliy Dokuchaev"
 #define NETWORK_ROBOTS "Robots"
 #define NETWORK_PRISON "Prison"
 #define NETWORK_SECURITY "Security"
@@ -48,7 +48,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_THUNDER "Thunderdome"
 
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
-var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret")
+var/list/restricted_camera_networks = list(NETWORK_MERCENARY,"Secret")
 
 
 //singularity defines

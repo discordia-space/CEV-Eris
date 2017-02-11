@@ -96,9 +96,9 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 	spawn(0)
 		for(var/atom/movable/lighting_overlay/L in world)
 			if(L.z in config.admin_levels)
-				L.update_lumcount(1,1,1)
+				L.update_overlay(1,1,1)
 			else
-				L.update_lumcount(0.0, 0.4, 1)
+				L.update_overlay(0.0, 0.4, 1)
 
 		for(var/turf/space/T in turfs)
 			OnTurfChange(T)
@@ -123,7 +123,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			continue
 		if(M.current.stat!=2)
 			M.current.Weaken(10)
-			flick("e_flash", M.current.flash)
+//			flick("e_flash", M.current.flash)
 			if (M.current.HUDtech.Find("flash"))
 				flick("e_flash", M.current.HUDtech["flash"])
 

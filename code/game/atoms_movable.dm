@@ -91,6 +91,15 @@
 				destination.loc.Entered(src, origin)
 	return 1
 
+/atom/movable/proc/forceMoveOld(atom/destination)
+	if(destination)
+		if(loc)
+			loc.Exited(src)
+		loc = destination
+		loc.Entered(src)
+		return 1
+	return 0
+
 //called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
 	if(istype(hit_atom,/mob/living))
@@ -220,7 +229,9 @@
 			a = get_area(src.loc)
 
 	//done throwing, either because it hit something or it finished moving
-	if(isobj(src)) src.throw_impact(get_turf(src),speed)
+	var/turf/new_loc = get_turf(src)
+	if(isobj(src)) src.throw_impact(new_loc,speed)
+	new_loc.Entered(src)
 	src.throwing = 0
 	src.thrower = null
 	src.throw_source = null

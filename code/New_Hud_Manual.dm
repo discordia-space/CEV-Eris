@@ -1,4 +1,4 @@
-
+существующие оверлеи: flash, pain, blind, damageoverlay, blurry, druggy,nvg,thermal,meson,science
 Используемые глобальные переменные:
 global.HUDdatums - тут хранятся датумы с подтипом /datum/hud, используется ассоциация name датума = сам датум
 

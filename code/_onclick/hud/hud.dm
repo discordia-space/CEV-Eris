@@ -12,12 +12,12 @@ var/list/global_huds = list(
 		global_hud.thermal,
 		global_hud.meson,
 		global_hud.science)
-
+/*
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
 /datum/hud/var/obj/screen/disarm_intent
 /datum/hud/var/obj/screen/help_intent
-
+*/
 /datum/global_hud
 	var/obj/screen/druggy
 	var/obj/screen/blurry
@@ -33,7 +33,7 @@ var/list/global_huds = list(
 	screen.screen_loc = "1,1"
 	screen.icon = 'icons/obj/hud_full.dmi'
 	screen.icon_state = icon_state
-	screen.layer = SCREEN_LAYER
+	screen.layer = 17
 	screen.mouse_opacity = 0
 
 	return screen

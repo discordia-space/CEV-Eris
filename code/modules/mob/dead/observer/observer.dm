@@ -76,7 +76,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
 	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
-	forceMove(T)
+	forceMoveOld(T)
 
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
@@ -308,7 +308,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			usr << "No area available."
 
 	stop_following()
-	usr.forceMove(pick(L))
+	usr.forceMoveOld(pick(L))
 
 /mob/dead/observer/verb/follow(input in getmobs())
 	set category = "Ghost"
@@ -370,7 +370,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
 				stop_following()
-				forceMove(T)
+				forceMoveOld(T)
 			else
 				src << "This mob is not located in the game world."
 /*

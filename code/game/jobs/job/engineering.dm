@@ -31,7 +31,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	pda = /obj/item/device/pda/heads/ce
 	hat = /obj/item/clothing/head/hardhat/white
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	belt = /obj/item/weapon/storage/belt/utility/full
 	ear = /obj/item/device/radio/headset/heads/ce
 	survival_gear = /obj/item/weapon/storage/box/engineer
@@ -63,7 +63,7 @@
 	suit = /obj/item/clothing/suit/storage/hazardvest
 	shoes = /obj/item/clothing/shoes/jackboots
 	pda = /obj/item/device/pda/engineering
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	hat = /obj/item/clothing/head/hardhat
 	belt = /obj/item/weapon/storage/belt/utility/full
 	ear = /obj/item/device/radio/headset/headset_eng
@@ -101,7 +101,7 @@
 	suit = /obj/item/clothing/suit/storage/hazardvest
 	hat = /obj/item/clothing/head/hardhat
 	pda = /obj/item/device/pda/atmos
-	gloves = /obj/item/clothing/gloves/black
+	gloves = /obj/item/clothing/gloves/thick
 	belt = /obj/item/weapon/storage/belt/utility/atmostech
 	ear = /obj/item/device/radio/headset/headset_eng
 	shoes = /obj/item/clothing/shoes/jackboots

@@ -11,7 +11,7 @@
 	..()
 	if (!prob(spawn_nothing_percentage))
 		spawn_item()
-		
+
 /obj/random/initialize()
 	..()
 	qdel(src)
@@ -109,7 +109,7 @@
 					prob(1);/obj/item/weapon/packageWrap,\
 					prob(2);/obj/random/bomb_supply,\
 					prob(1);/obj/item/weapon/extinguisher,\
-					prob(1);/obj/item/clothing/gloves/fyellow,\
+					prob(1);/obj/item/clothing/gloves/insulated/cheap ,\
 					prob(3);/obj/item/stack/cable_coil,\
 					prob(2);/obj/random/toolbox,\
 					prob(2);/obj/item/weapon/storage/belt/utility,\
@@ -261,8 +261,7 @@
 					/obj/item/toy/figure/secofficer,\
 					/obj/item/toy/figure/warden,\
 					/obj/item/toy/figure/psychologist,\
-					/obj/item/toy/figure/paramedic,\
-					/obj/item/toy/figure/ert)
+					/obj/item/toy/figure/paramedic)
 
 
 /obj/random/plushie

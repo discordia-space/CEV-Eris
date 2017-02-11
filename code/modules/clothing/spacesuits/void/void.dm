@@ -8,19 +8,6 @@
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
-	//Species-specific stuff.
-	species_restricted = list("Human")
-	sprite_sheets_refit = list(
-		"Unathi" = 'icons/mob/species/unathi/helmet.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/helmet.dmi',
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi',
-		)
-	sprite_sheets_obj = list(
-		"Unathi" = 'icons/obj/clothing/species/unathi/hats.dmi',
-		"Tajara" = 'icons/obj/clothing/species/tajaran/hats.dmi',
-		"Skrell" = 'icons/obj/clothing/species/skrell/hats.dmi',
-		)
-
 	light_overlay = "helmet_light"
 
 /obj/item/clothing/suit/space/void
@@ -33,18 +20,6 @@
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-
-	species_restricted = list("Human", "Skrell")
-	sprite_sheets_refit = list(
-		"Unathi" = 'icons/mob/species/unathi/suit.dmi',
-		"Tajara" = 'icons/mob/species/tajaran/suit.dmi',
-		"Skrell" = 'icons/mob/species/skrell/suit.dmi',
-		)
-	sprite_sheets_obj = list(
-		"Unathi" = 'icons/obj/clothing/species/unathi/suits.dmi',
-		"Tajara" = 'icons/obj/clothing/species/tajaran/suits.dmi',
-		"Skrell" = 'icons/obj/clothing/species/skrell/suits.dmi',
-		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.
 	//With 0.2 resiliance, will reach 10 breach damage after 3 laser carbine blasts or 8 smg hits.
@@ -64,13 +39,6 @@
 	user << "\The [src] has [english_list(part_list)] installed."
 	if(tank && in_range(src,user))
 		user << "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
-
-/obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
-	..()
-	if(istype(helmet))
-		helmet.refit_for_species(target_species)
-	if(istype(boots))
-		boots.refit_for_species(target_species)
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
@@ -234,7 +202,7 @@
 	else if(istype(W,/obj/item/weapon/tank))
 		if(tank)
 			user << "\The [src] already has an airtank installed."
-		else if(istype(W,/obj/item/weapon/tank/phoron))
+		else if(istype(W,/obj/item/weapon/tank/plasma))
 			user << "\The [W] cannot be inserted into \the [src]'s storage compartment."
 		else
 			user << "You insert \the [W] into \the [src]'s storage compartment."

@@ -188,6 +188,10 @@ datum/preferences
 		var/g = "_m"
 		if(gender == FEMALE)	g = "_f"
 
+		var/datum/body_build/body = get_body_build(gender, body_build)
+
+
+
 		var/icon/icobase
 		var/datum/species/current_species = all_species[species]
 
@@ -226,7 +230,7 @@ datum/preferences
 			else
 				preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 
-		var/icon/eyes = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
+		var/icon/eyes = new/icon('icons/mob/human_face.dmi', "eyes[body.index]")
 		if ((current_species && (current_species.appearance_flags & HAS_EYE_COLOR)))
 			eyes.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
@@ -296,7 +300,8 @@ datum/preferences
 				if(underwear_category)
 					var/underwear_item_name = all_underwear[underwear_category_name]
 					var/datum/category_item/underwear/underwear_item = underwear_category.items_by_name[underwear_item_name]
-					underwear_item.apply_to_icon(preview_icon)
+					if(underwear_item.icon_state)
+						preview_icon.Blend(icon(body.underwear_icon, underwear_item.icon_state), ICON_OVERLAY)
 				else
 					all_underwear -= underwear_category_name
 

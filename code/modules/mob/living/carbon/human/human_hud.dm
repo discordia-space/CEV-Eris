@@ -20,8 +20,26 @@
 		H.create_HUD()
 
 	H.show_HUD()
+
+	if(!recreate_flag && !check_HUD_style())
+		H.recolor_HUD(H.client.prefs.UI_style_color, H.client.prefs.UI_style_alpha)
+
 	return recreate_flag
 
+/mob/living/carbon/human/check_HUD_style()
+	var/mob/living/carbon/human/H = src
+
+
+	for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
+
+		if (HUDinv.color != H.client.prefs.UI_style_color || HUDinv.alpha != H.client.prefs.UI_style_alpha)
+			return 0
+
+	for (var/p in HUDneed)
+		var/obj/screen/HUDelm = HUDneed[p]
+		if (HUDelm.color != H.client.prefs.UI_style_color || HUDelm.alpha != H.client.prefs.UI_style_alpha)
+			return 0
+	return 1
 
 /mob/living/carbon/human/check_HUDdatum()//correct a datum?
 	var/mob/living/carbon/human/H = src
@@ -29,6 +47,7 @@
 	if (H.client.prefs.UI_style && !(H.client.prefs.UI_style == "")) //если у клиента моба прописан стиль\тип ХУДа
 		if(global.HUDdatums.Find(H.client.prefs.UI_style))//Если существует такой тип ХУДА
 			return 1
+
 	return 0
 
 /*/mob/living/carbon/human/check_HUDinventory()//correct a HUDinventory?
@@ -72,6 +91,12 @@
 	return*/
 
 
+/mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
+	if(client)
+		check_HUD()
+		client.screen |= contents
+		//if(hud_used)
+			//hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
 
 
 
@@ -79,8 +104,7 @@
 
 
 
-
-/mob/living/carbon/human/create_HUD() //EKUDZA HAS HERE
+/mob/living/carbon/human/create_HUD()
 //	var/mob/living/carbon/human/H = src
 //	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 
@@ -88,6 +112,7 @@
 	create_HUDneed()
 	create_HUDfrippery()
 	create_HUDtech()
+	recolor_HUD(src.client.prefs.UI_style_color, src.client.prefs.UI_style_alpha)
 
 /mob/living/carbon/human/create_HUDinventory()
 	var/mob/living/carbon/human/H = src

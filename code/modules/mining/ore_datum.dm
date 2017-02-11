@@ -63,14 +63,14 @@ var/global/list/ore_data = list()
 	smelts_to = "glass"
 	compresses_to = "sandstone"
 
-/ore/phoron
-	name = "phoron"
-	display_name = "phoron crystals"
-	compresses_to = "phoron"
+/ore/plasma
+	name = "plasma"
+	display_name = "plasma crystals"
+	compresses_to = "plasma"
 	//smelts_to = something that explodes violently on the conveyor, huhuhuhu
 	result_amount = 5
 	spread_chance = 25
-	ore = /obj/item/weapon/ore/phoron
+	ore = /obj/item/weapon/ore/plasma
 	scan_icon = "mineral_uncommon"
 	xarch_ages = list(
 		"thousand" = 999,
@@ -78,7 +78,7 @@ var/global/list/ore_data = list()
 		"billion" = 13,
 		"billion_lower" = 10
 		)
-	xarch_source_mineral = "phoron"
+	xarch_source_mineral = "plasma"
 
 /ore/silver
 	name = "silver"

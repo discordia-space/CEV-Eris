@@ -3,7 +3,7 @@
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
-	light_color = "#315ab4"
+	light_color = COLOR_LIME
 	use_power = 1
 	idle_power_usage = 250
 	active_power_usage = 500

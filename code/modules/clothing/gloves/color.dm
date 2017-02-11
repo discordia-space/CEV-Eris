@@ -1,86 +1,74 @@
-/obj/item/clothing/gloves/yellow
-	desc = "These gloves will protect the wearer from electric shock."
-	name = "insulated gloves"
-	icon_state = "yellow"
-	item_state = "ygloves"
-	siemens_coefficient = 0
-	permeability_coefficient = 0.05
-
-/obj/item/clothing/gloves/fyellow                             //Cheap Chinese Crap
-	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
-	name = "budget insulated gloves"
-	icon_state = "yellow"
-	item_state = "ygloves"
-	siemens_coefficient = 1			//Set to a default of 1, gets overridden in New()
-	permeability_coefficient = 0.05
-
-	New()
-		//average of 0.5, somewhat better than regular gloves' 0.75
-		siemens_coefficient = pick(0,0.1,0.3,0.5,0.5,0.75,1.35) 
-
-/obj/item/clothing/gloves/black
-	desc = "These work gloves are thick and fire-resistant."
-	name = "black gloves"
-	icon_state = "black"
-	item_state = "bgloves"
-	siemens_coefficient = 0.50
-	permeability_coefficient = 0.05
-
-	cold_protection = HANDS
-	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HANDS
-	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
-
-/obj/item/clothing/gloves/orange
-	name = "orange gloves"
+// COLOR GLOVES
+/obj/item/clothing/gloves/color
+	name = "gloves"
+	initial_name = "gloves"
 	desc = "A pair of gloves, they don't look special in any way."
+	icon_state = "latex"
+	item_state = "lgloves"
+
+/obj/item/clothing/gloves/color/white
+	name = "white gloves"
+	desc = "These look pretty fancy."
+	icon_state = "latex"
+	item_state = "lgloves"
+
+/obj/item/clothing/gloves/color/yellow
+	name = "yellow gloves"
+	initial_name = "yellow gloves"
+	desc = "A pair of gloves, they don't look special in any way, but seems familiar."
+	icon_state = "yellow"
+	item_state = "ygloves"
+
+/obj/item/clothing/gloves/color/orange
+	name = "orange gloves"
+	initial_name = "orange gloves"
 	icon_state = "orange"
 	item_state = "orangegloves"
 
-/obj/item/clothing/gloves/red
+/obj/item/clothing/gloves/color/red
 	name = "red gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	initial_name = "red gloves"
 	icon_state = "red"
 	item_state = "redgloves"
 
-/obj/item/clothing/gloves/rainbow
+/obj/item/clothing/gloves/color/rainbow
 	name = "rainbow gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	initial_name = "rainbow gloves"
 	icon_state = "rainbow"
 	item_state = "rainbowgloves"
 
-/obj/item/clothing/gloves/blue
+/obj/item/clothing/gloves/color/blue
 	name = "blue gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	initial_name = "blue gloves"
 	icon_state = "blue"
 	item_state = "bluegloves"
 
-/obj/item/clothing/gloves/purple
+/obj/item/clothing/gloves/color/purple
 	name = "purple gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	initial_name = "purple gloves"
 	icon_state = "purple"
 	item_state = "purplegloves"
 
-/obj/item/clothing/gloves/green
+/obj/item/clothing/gloves/color/green
 	name = "green gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	initial_name = "green gloves"
 	icon_state = "green"
 	item_state = "greengloves"
 
-/obj/item/clothing/gloves/grey
+/obj/item/clothing/gloves/color/grey
 	name = "grey gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	initial_name = "grey gloves"
 	icon_state = "gray"
 	item_state = "graygloves"
 
-/obj/item/clothing/gloves/light_brown
+/obj/item/clothing/gloves/color/light_brown
 	name = "light brown gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	initial_name = "light brown gloves"
 	icon_state = "lightbrown"
 	item_state = "lightbrowngloves"
 
-/obj/item/clothing/gloves/brown
+/obj/item/clothing/gloves/color/brown
 	name = "brown gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+	initial_name = "brown gloves"
 	icon_state = "brown"
 	item_state = "browngloves"

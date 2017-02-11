@@ -89,18 +89,25 @@ var/list/mechtoys = list(
 	name = "airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
 
-	New() //set the turf below the flaps to block air
-		var/turf/T = get_turf(loc)
-		if(T)
-			T.blocks_air = 1
+/obj/structure/plasticflaps/mining/New() //set the turf below the flaps to block air
+		update_turf_underneath(1)
 		..()
 
-	Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
-		var/turf/T = get_turf(loc)
-		if(T)
+/obj/structure/plasticflaps/mining/Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
+		update_turf_underneath(0)
+		..()
+
+/obj/structure/plasticflaps/mining/proc/update_turf_underneath(var/should_pass)
+	var/turf/T = get_turf(loc)
+	if(T)
+		if(should_pass)
+			T.blocks_air = 1
+		else
 			if(istype(T, /turf/simulated/floor))
 				T.blocks_air = 0
-		..()
+
+
+
 
 /*
 /obj/effect/marker/supplymarker
@@ -125,7 +132,7 @@ var/list/mechtoys = list(
 	var/points_per_slip = 2
 	var/points_per_crate = 5
 	var/points_per_platinum = 5 // 5 points per sheet
-	var/points_per_phoron = 5
+	var/points_per_plasma = 5
 	//control
 	var/ordernum
 	var/list/shoppinglist = list()
@@ -168,7 +175,7 @@ var/list/mechtoys = list(
 		var/area/area_shuttle = shuttle.get_location_area()
 		if(!area_shuttle)	return
 
-		var/phoron_count = 0
+		var/plasma_count = 0
 		var/plat_count = 0
 
 		for(var/atom/movable/MA in area_shuttle)
@@ -191,16 +198,16 @@ var/list/mechtoys = list(
 							find_slip = 0
 						continue
 
-					// Sell phoron and platinum
+					// Sell plasma and platinum
 					if(istype(A, /obj/item/stack))
 						var/obj/item/stack/P = A
 						switch(P.get_material_name())
-							if("phoron") phoron_count += P.get_amount()
+							if("plasma") plasma_count += P.get_amount()
 							if("platinum") plat_count += P.get_amount()
 			qdel(MA)
 
-		if(phoron_count)
-			points += phoron_count * points_per_phoron
+		if(plasma_count)
+			points += plasma_count * points_per_plasma
 
 		if(plat_count)
 			points += plat_count * points_per_platinum

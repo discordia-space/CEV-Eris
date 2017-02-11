@@ -169,10 +169,13 @@ var/list/global/tank_gauge_cache = list()
 			var/mob/living/carbon/location = loc
 			if(location.internal == src)
 				location.internal = null
-				location.internals.icon_state = "internal0"
+//				location.internals.icon_state = "internal0"
+				if(location.HUDneed.Find("internal"))
+					var/obj/screen/HUDelm = location.HUDneed["internal"]
+					HUDelm.icon_state = "internal0"
 				usr << "<span class='notice'>You close the tank release valve.</span>"
-				if (location.internals)
-					location.internals.icon_state = "internal0"
+/*				if (location.internals)
+					location.internals.icon_state = "internal0"*/
 			else
 
 				var/can_open_valve
@@ -187,8 +190,11 @@ var/list/global/tank_gauge_cache = list()
 					location.internal = src
 					usr << "<span class='notice'>You open \the [src] valve.</span>"
 					playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
-					if (location.internals)
-						location.internals.icon_state = "internal1"
+/*					if (location.internals)
+						location.internals.icon_state = "internal1"*/
+					if(location.HUDneed.Find("internal"))
+						var/obj/screen/HUDelm = location.HUDneed["internal"]
+						HUDelm.icon_state = "internal1"
 				else
 					usr << "<span class='warning'>You need something to connect to \the [src].</span>"
 
@@ -222,7 +228,7 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/weapon/tank/process()
 	//Allow for reactions
-	air_contents.react() //cooking up air tanks - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
+	air_contents.react() //cooking up air tanks - add plasma and oxygen, then heat above PLASMA_MINIMUM_BURN_TEMPERATURE
 	if(gauge_icon)
 		update_gauge()
 	check_status()
