@@ -1,8 +1,8 @@
 
 
 /var/all_ui_styles = list(
-	"ErisStyle" = 'icons/mob/screen/ErisStyle.dmi',
-	"ErisStyle-noborder" = 'icons/mob/screen/ErisStyle.dmi',
+	"ErisStyle",
+	"ErisStyleHolo",
 	)
 	/*"Midnight"     = 'icons/mob/screen/midnight.dmi',
 	"Orange"       = 'icons/mob/screen/orange.dmi',
@@ -23,12 +23,30 @@
 	if(!ishuman(usr))
 		usr << "<span class='warning'>You must be human to use this verb.</span>"
 		return
+//to:do make normal HUDoption page
+	var/UI_style_new = input(usr, "Select a style.") as null|anything in all_ui_styles
+	if(UI_style_new)
+		prefs.UI_style = UI_style_new
 
+	var/UI_style_alpha_new = input(usr, "Select a new alpha (transparency) parameter for your UI, between 50 and 255","Alpha",prefs.UI_style_alpha) as null|num
+	if(UI_style_alpha_new && (UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50))
+		prefs.UI_style_alpha = UI_style_alpha_new
+
+	var/UI_style_color_new = input(usr, "Choose your UI color. Dark colors are not recommended!","Select a color",prefs.UI_style_color) as color|null
+	if(UI_style_color_new)
+		prefs.UI_style_color = UI_style_color_new
+
+	prefs.save_preferences()
+//	usr:update_hud()
+	usr:regenerate_icons()
+//	src.mob:check_HUD()
+//	var/mob/living/trg = src.mob
+//	trg.check_HUD()
 	/*var/UI_style_new = input(usr, "Select a style. White is recommended for customization") as null|anything in all_ui_styles
 	if(!UI_style_new) return
 
 	var/UI_style_alpha_new = input(usr, "Select a new alpha (transparency) parameter for your UI, between 50 and 255") as null|num
-	if(!UI_style_alpha_new | !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
+	if(!UI_style_alpha_new || !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
 
 	var/UI_style_color_new = input(usr, "Choose your UI color. Dark colors are not recommended!") as color|null
 	if(!UI_style_color_new) return

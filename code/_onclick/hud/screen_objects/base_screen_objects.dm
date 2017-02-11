@@ -16,11 +16,14 @@
 	var/process_flag = 0
 	var/hideflag = 0
 
-/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob)
+/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
 	src.name = _name
 	src.screen_loc = _screen_loc
-
+	if (_icon)
+		src.icon = _icon
+	if (_icon_state)
+		src.icon_state = _icon_state
 ///obj/screen/New()
 //	set in usr.client.screen
 //screen_loc = "[x_pos],[y_pos]"
@@ -138,6 +141,28 @@
 	if(isliving(usr))
 		var/mob/living/L = usr
 		L.resist()*/
+
+
+/*/obj/screen/TEST
+	name = "TESTICON!"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "block"
+	var/clicks = 0
+	appearance_flags=RESET_COLOR
+	var/image/A
+	var/image/B
+
+/obj/screen/TEST/Click(location, control, params)
+	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
+	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
+	A.override = 1
+	B.appearance_flags=RESET_COLOR
+	overlays.Cut()
+	clicks = !clicks
+//	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
+	overlays += clicks ? A : B*/
+
+
 
 //--------------------------------------------------close---------------------------------------------------------
 
@@ -893,6 +918,13 @@
 	if (parentmob.druggy)
 		underlays += global_hud.druggy
 
+
+/obj/screen/full_1_tile_overlay
+	name = "full_1_tile_overlay"
+	icon_state = "blank"
+	layer = 21
+	mouse_opacity = 1
+
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "oxydamageoverlay0"
@@ -902,6 +934,7 @@
 	process_flag = 1
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
+
 
 /obj/screen/damageoverlay/process()
 	update_icon()
