@@ -197,10 +197,10 @@
 	oxygen = ATMOSTANK_OXYGEN
 	nitrogen = 0
 
-/turf/simulated/floor/reinforced/phoron
+/turf/simulated/floor/reinforced/plasma
 	oxygen = 0
 	nitrogen = 0
-	phoron = ATMOSTANK_PHORON
+	plasma = ATMOSTANK_PLASMA
 
 /turf/simulated/floor/reinforced/carbon_dioxide
 	oxygen = 0

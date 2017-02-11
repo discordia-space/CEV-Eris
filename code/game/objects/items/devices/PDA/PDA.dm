@@ -145,12 +145,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	detonate = 0
 	//toff = 1
 
-/obj/item/device/pda/ert
-	default_cartridge = /obj/item/weapon/cartridge/captain
-	icon_state = "pda-h"
-	detonate = 0
-	hidden = 1
-
 /obj/item/device/pda/cargo
 	default_cartridge = /obj/item/weapon/cartridge/quartermaster
 	icon_state = "pda-cargo"
@@ -470,14 +464,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				var/o2_level = environment.gas["oxygen"]/total_moles
 				var/n2_level = environment.gas["nitrogen"]/total_moles
 				var/co2_level = environment.gas["carbon_dioxide"]/total_moles
-				var/phoron_level = environment.gas["phoron"]/total_moles
-				var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
+				var/plasma_level = environment.gas["plasma"]/total_moles
+				var/unknown_level =  1-(o2_level+n2_level+co2_level+plasma_level)
 				data["aircontents"] = list(\
 					"pressure" = "[round(pressure,0.1)]",\
 					"nitrogen" = "[round(n2_level*100,0.1)]",\
 					"oxygen" = "[round(o2_level*100,0.1)]",\
 					"carbon_dioxide" = "[round(co2_level*100,0.1)]",\
-					"phoron" = "[round(phoron_level*100,0.01)]",\
+					"plasma" = "[round(plasma_level*100,0.01)]",\
 					"other" = "[round(unknown_level, 0.01)]",\
 					"temp" = "[round(environment.temperature-T0C,0.1)]",\
 					"reading" = 1\

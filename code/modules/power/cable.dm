@@ -43,7 +43,7 @@ var/list/possible_cable_coil_colours = list(
 	var/d1 = 0
 	var/d2 = 1
 	layer = 2.44 //Just below unary stuff, which is at 2.45 and above pipes, which are at 2.4
-	color = COLOR_RED
+	color = COLOR_RED_LIGHT
 	var/obj/machinery/power/breakerbox/breaker_box
 
 /obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
@@ -57,10 +57,10 @@ var/list/possible_cable_coil_colours = list(
 	return PN.draw_power(amount)
 
 /obj/structure/cable/yellow
-	color = COLOR_YELLOW
+	color = COLOR_AMBER
 
 /obj/structure/cable/green
-	color = COLOR_LIME
+	color = COLOR_GREEN
 
 /obj/structure/cable/blue
 	color = COLOR_BLUE

@@ -45,9 +45,6 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/network/engineering
 	network = list(NETWORK_ENGINEERING)
 
-/obj/machinery/camera/network/ert
-	network = list(NETWORK_ERT)
-
 /obj/machinery/camera/network/cev_eris
 	network = list(NETWORK_CEV_ERIS)
 

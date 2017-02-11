@@ -139,6 +139,28 @@
 		var/mob/living/L = usr
 		L.resist()*/
 
+
+/*/obj/screen/TEST
+	name = "TESTICON!"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "block"
+	var/clicks = 0
+	appearance_flags=RESET_COLOR
+	var/image/A
+	var/image/B
+
+/obj/screen/TEST/Click(location, control, params)
+	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
+	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
+	A.override = 1
+	B.appearance_flags=RESET_COLOR
+	overlays.Cut()
+	clicks = !clicks
+//	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
+	overlays += clicks ? A : B*/
+
+
+
 //--------------------------------------------------close---------------------------------------------------------
 
 /obj/screen/close
@@ -517,7 +539,7 @@
 
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	if(H.hal_screwyhud == 4 || H.phoron_alert)
+	if(H.hal_screwyhud == 4 || H.plasma_alert)
 		icon_state = "tox1"
 	else
 		icon_state = "tox0"
@@ -632,14 +654,14 @@
 										contents.Add(0)
 
 								if ("oxygen")
-									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["phoron"])
+									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
 									else
 										contents.Add(0)
 
 								// No races breath this, but never know about downstream servers.
 								if ("carbon dioxide")
-									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["phoron"])
+									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["carbon_dioxide"])
 									else
 										contents.Add(0)
@@ -893,6 +915,13 @@
 	if (parentmob.druggy)
 		underlays += global_hud.druggy
 
+
+/obj/screen/full_1_tile_overlay
+	name = "full_1_tile_overlay"
+	icon_state = "blank"
+	layer = 21
+	mouse_opacity = 1
+
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "oxydamageoverlay0"
@@ -902,6 +931,7 @@
 	process_flag = 1
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
+
 
 /obj/screen/damageoverlay/process()
 	update_icon()

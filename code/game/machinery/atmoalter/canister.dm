@@ -48,8 +48,8 @@
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled
 	name = "Canister: \[O2 (Cryo)\]"
 
-/obj/machinery/portable_atmospherics/canister/phoron
-	name = "Canister \[Phoron\]"
+/obj/machinery/portable_atmospherics/canister/plasma
+	name = "Canister \[Plasma\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
@@ -77,8 +77,8 @@
 	name = "Canister: \[O2\]"
 	icon_state = "blue"
 	canister_color = "blue"
-/obj/machinery/portable_atmospherics/canister/empty/phoron
-	name = "Canister \[Phoron\]"
+/obj/machinery/portable_atmospherics/canister/empty/plasma
+	name = "Canister \[Plasma\]"
 	icon_state = "orange"
 	canister_color = "orange"
 /obj/machinery/portable_atmospherics/canister/empty/nitrogen
@@ -213,7 +213,7 @@ update_flag
 	else
 		can_label = 0
 
-	air_contents.react() //cooking up air cans - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
+	air_contents.react() //cooking up air cans - add plasma and oxygen, then heat above PLASMA_MINIMUM_BURN_TEMPERATURE
 
 /obj/machinery/portable_atmospherics/canister/return_air()
 	return air_contents
@@ -351,7 +351,7 @@ update_flag
 				"\[N2O\]" = "redws", \
 				"\[N2\]" = "red", \
 				"\[O2\]" = "blue", \
-				"\[Phoron\]" = "orange", \
+				"\[Plasma\]" = "orange", \
 				"\[CO2\]" = "black", \
 				"\[Air\]" = "grey", \
 				"\[CAUTION\]" = "yellow", \
@@ -368,10 +368,10 @@ update_flag
 
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/phoron/New()
+/obj/machinery/portable_atmospherics/canister/plasma/New()
 	..()
 
-	src.air_contents.adjust_gas("phoron", MolesForPressure())
+	src.air_contents.adjust_gas("plasma", MolesForPressure())
 	src.update_icon()
 	return 1
 
@@ -450,8 +450,8 @@ update_flag
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup/New()
+/obj/machinery/portable_atmospherics/canister/plasma/engine_setup/New()
 	..()
-	src.air_contents.adjust_gas("phoron", MolesForPressure())
+	src.air_contents.adjust_gas("plasma", MolesForPressure())
 	src.update_icon()
 	return 1
