@@ -88,7 +88,7 @@ datum/preferences
 	var/list/rlimb_data = list()
 	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
-	var/list/flavor_texts = list()
+	var/flavor_text = ""
 	var/list/flavour_texts_robot = list()
 
 	var/med_record = ""
@@ -216,15 +216,7 @@ datum/preferences
 	if(character.dna)
 		character.dna.real_name = character.real_name
 
-	character.flavor_texts["general"] = flavor_texts["general"]
-	character.flavor_texts["head"] = flavor_texts["head"]
-	character.flavor_texts["face"] = flavor_texts["face"]
-	character.flavor_texts["eyes"] = flavor_texts["eyes"]
-	character.flavor_texts["torso"] = flavor_texts["torso"]
-	character.flavor_texts["arms"] = flavor_texts["arms"]
-	character.flavor_texts["hands"] = flavor_texts["hands"]
-	character.flavor_texts["legs"] = flavor_texts["legs"]
-	character.flavor_texts["feet"] = flavor_texts["feet"]
+	character.flavor_text = flavor_text
 
 	character.body_build = get_body_build(gender, body_build)
 

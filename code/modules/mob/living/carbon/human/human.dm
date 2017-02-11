@@ -685,20 +685,6 @@ var/list/rank_prefix = list(\
 		var/mob/M = locate(href_list["lookmob"])
 		src.examinate(M)
 
-	if (href_list["flavor_change"])
-		switch(href_list["flavor_change"])
-			if("done")
-				src << browse(null, "window=flavor_changes")
-				return
-			if("general")
-				var/msg = sanitize(input(usr,"Update the general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]])) as message, extra = 0)
-				flavor_texts[href_list["flavor_change"]] = msg
-				return
-			else
-				var/msg = sanitize(input(usr,"Update the flavor text for your [href_list["flavor_change"]].","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]])) as message, extra = 0)
-				flavor_texts[href_list["flavor_change"]] = msg
-				set_flavor()
-				return
 	..()
 	return
 
@@ -1294,51 +1280,22 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
-	var/list/exposed = list( \
-	"head" = 1,\
-	"face" = 1,\
-	"eyes" = 1,\
-	"torso" = 1,\
-	"arms" = 1,\
-	"legs" = 1,\
-	"hands" = 1,\
-	"feet" = 1\
-	)
 
 	for(var/obj/item/clothing/C in equipment)
-		if(C.body_parts_covered & HEAD)
-			exposed["head"] = 0
 		if(C.body_parts_covered & FACE)
-			exposed["face"] = 0
-		if(C.body_parts_covered & EYES)
-			exposed["eyes"] = 0
-			exposed["mech_eyes"] = 0
-		else
-			var/obj/item/organ/eyes/E = src.internal_organs_by_name["eyes"]
-			if( E && E.robotic >= 2 ) 	exposed["eyes"] = 0
-			else  exposed["mech_eyes"] = 0
-		if(C.body_parts_covered & UPPER_TORSO)
-			exposed["torso"] = 0
-		if(C.body_parts_covered & ARMS)
-			exposed["arms"] = 0
-		if(C.body_parts_covered & HANDS)
-			exposed["hands"] = 0
-		if(C.body_parts_covered & LEGS)
-			exposed["legs"] = 0
-		if(C.body_parts_covered & FEET)
-			exposed["feet"] = 0
+			// Do not show flavor if face is hidden
+			return
 
-	flavor_text = flavor_texts["general"]
-	flavor_text += "\n\n"
-	for (var/T in flavor_texts)
-		if(flavor_texts[T] && flavor_texts[T] != "")
-			if( exposed[T] )
-				flavor_text += flavor_texts[T]
-				flavor_text += "\n\n"
-	if(!shrink)
-		return flavor_text
-	else
-		return ..()
+	flavor_text = src.flavor_text
+
+	if (flavor_text && flavor_text != "" && !shrink)
+		var/msg = trim(replacetext(flavor_text, "\n", " "))
+		if(!msg) return ""
+		if(lentext(msg) <= 40)
+			return "\blue [msg]"
+		else
+			return "\blue [copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+	return ..()
 
 /mob/living/carbon/human/getDNA()
 	if(species.flags & NO_SCAN)
