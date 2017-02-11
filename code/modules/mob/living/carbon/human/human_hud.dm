@@ -147,13 +147,13 @@
 			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
 			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-			var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
-			if(HUDdatum.HUDneed[HUDname]["icon"])//Анализ на овверайд icon
+			var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H, HUDdatum.HUDneed[HUDname]["icon"] ? HUDdatum.HUDneed[HUDname]["icon"] : HUDdatum.icon, HUDdatum.HUDneed[HUDname]["icon_state"] ? HUDdatum.HUDneed[HUDname]["icon_state"] : null)
+/*			if(HUDdatum.HUDneed[HUDname]["icon"])//Анализ на овверайд icon
 				HUD.icon = HUDdatum.HUDneed[HUDname]["icon"]
 			else
 				HUD.icon = HUDdatum.icon
 			if(HUDdatum.HUDneed[HUDname]["icon_state"])//Анализ на овверайд icon_state
-				HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]
+				HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]*/
 			if(HUDdatum.HUDneed[HUDname]["hideflag"])
 				HUD.hideflag = HUDdatum.HUDneed[HUDname]["hideflag"]
 			H.HUDneed[HUD.name] += HUD//Добавляем в список худов
