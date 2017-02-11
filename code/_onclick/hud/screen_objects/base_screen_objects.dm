@@ -159,6 +159,8 @@
 //	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
 	overlays += clicks ? A : B*/
 
+
+
 //--------------------------------------------------close---------------------------------------------------------
 
 /obj/screen/close
@@ -913,6 +915,13 @@
 	if (parentmob.druggy)
 		underlays += global_hud.druggy
 
+
+/obj/screen/full_1_tile_overlay
+	name = "full_1_tile_overlay"
+	icon_state = "blank"
+	layer = 21
+	mouse_opacity = 1
+
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "oxydamageoverlay0"
@@ -922,6 +931,7 @@
 	process_flag = 1
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
+
 
 /obj/screen/damageoverlay/process()
 	update_icon()
