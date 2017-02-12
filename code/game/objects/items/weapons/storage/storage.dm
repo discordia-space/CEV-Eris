@@ -201,8 +201,8 @@
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = 20
 			cx++
-			if (cx > (4+cols))
-				cx = 4
+			if (cx > (Xcord+cols))
+				cx = Xcord
 				cy--
 	else
 		for(var/obj/O in contents)
@@ -210,8 +210,8 @@
 			O.maptext = ""
 			O.layer = 20
 			cx++
-			if (cx > (4+cols))
-				cx = 4
+			if (cx > (Xcord+cols))
+				cx = Xcord
 				cy--
 	src.closer.screen_loc = "[Xcord+cols+1]:16,[Ycord]:16"
 	return
