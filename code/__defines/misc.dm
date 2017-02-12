@@ -4,8 +4,8 @@
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
-#define OPENSPACE_LAYER (TURF_LAYER - 0.5)
-
+#define SPACE_PLANE     -3
+#define PARALLAX_PLANE  -2
 #define OPENSPACE_PLANE -1
 
 // Invisibility constants.
