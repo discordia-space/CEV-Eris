@@ -16,11 +16,14 @@
 	var/process_flag = 0
 	var/hideflag = 0
 
-/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob)
+/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
 	src.name = _name
 	src.screen_loc = _screen_loc
-
+	if (_icon)
+		src.icon = _icon
+	if (_icon_state)
+		src.icon_state = _icon_state
 ///obj/screen/New()
 //	set in usr.client.screen
 //screen_loc = "[x_pos],[y_pos]"
