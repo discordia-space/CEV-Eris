@@ -122,7 +122,7 @@
 	//Others for slot_orient_objs
 	ConteinerData = list(
 		"Xspace" = 2,
-		"Yspace" = 4,
+		"Yspace" = 5,
 		"ColCount" = 7,
 		"Xslot" = 5,
 		"Yslot" = 2
