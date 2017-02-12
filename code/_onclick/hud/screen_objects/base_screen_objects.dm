@@ -6,6 +6,10 @@
 	They are used with the client/screen list and the screen_loc var.
 	For more information, see the byond documentation on the screen_loc and screen vars.
 */
+/image/no_recolor
+	appearance_flags = RESET_COLOR
+
+
 /obj/screen
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
@@ -575,13 +579,22 @@
 	icon_state = "fire0"
 	screen_loc = "15,9"
 	process_flag = 1
+	var/image/ovrl
+
+/obj/screen/fire/New()
+	..()
+	ovrl = new /image/no_recolor(icon = src.icon, icon_state ="fire1")
+//	ovrl.appearance_flags = RESET_COLOR
 
 /obj/screen/fire/process()
 	update_icon()
 
 /obj/screen/fire/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	icon_state = "fire[H.fire_alert]"
+	src.overlays.Cut()
+	if (H.fire_alert)
+		overlays += ovrl
+//	icon_state = "fire[H.fire_alert]"
 	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
 	else										icon_state = "fire0"*/
 //--------------------------------------------------fire end---------------------------------------------------------

@@ -9,6 +9,7 @@
 //	var/Xbags
 //	var/Ybags
 	var/list/ConteinerData
+
 /datum/hud/human
 	name = "ErisStyle"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
@@ -21,6 +22,8 @@
 		"Xslot" = 5,
 		"Yslot" = 2
 	)
+
+
 //	Xbags = 2
 //	Ybags = 4
 //to:do переместить все существующие оверлеи сюда, если возможно.
@@ -33,7 +36,7 @@
 	)
 //"vision" = list("type" = /obj/screen, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank")
 	HUDneed = list(
-		"health"      = list("type" = /obj/screen/health,     "loc" = "16,6"),
+		"health"      = list("type" = /obj/screen/health,     "loc" = "16,6", "UnderlayData" = ""),
 		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "16,5"),
 		"bodytemp"    = list("type" = /obj/screen/bodytemp,   "loc" = "16,7"),
 		"pressure"    = list("type" = /obj/screen/pressure,   "loc" = "16,13"),
