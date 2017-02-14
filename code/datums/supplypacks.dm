@@ -1287,7 +1287,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "\improper White floor tile crate"
 	cost = 15
 	group = "Miscellaneous"
-	contains = list(/obj/item/stack/tile/floor_white)
+	contains = list(/obj/item/stack/tile/floor/white)
 	amount = 50
 
 /datum/supply_packs/dark_tiles
@@ -1296,7 +1296,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "\improper Dark floor tile crate"
 	cost = 15
 	group = "Miscellaneous"
-	contains = list(/obj/item/stack/tile/floor_dark)
+	contains = list(/obj/item/stack/tile/floor/dark)
 	amount = 50
 
 /datum/supply_packs/freezer_tiles
@@ -1305,7 +1305,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "\improper Freezer floor tile crate"
 	cost = 15
 	group = "Miscellaneous"
-	contains = list(/obj/item/stack/tile/floor_freezer)
+	contains = list(/obj/item/stack/tile/floor/freezer)
 	amount = 50
 
 /datum/supply_packs/hydrotray
