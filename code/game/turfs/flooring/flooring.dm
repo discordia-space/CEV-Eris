@@ -126,12 +126,12 @@ var/list/flooring_types
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_base = "techfloor_gray"
-	build_type = /obj/item/stack/tile/techgrey
+	build_type = /obj/item/stack/tile/floor/techgrey
 	can_paint = null
 
 /decl/flooring/tiling/tech/grid
 	icon_base = "techfloor_grid"
-	build_type = /obj/item/stack/tile/techgrid
+	build_type = /obj/item/stack/tile/floor/techgrid
 
 /decl/flooring/tiling/new_tile
 	name = "floor"
@@ -167,25 +167,25 @@ var/list/flooring_types
 /decl/flooring/tiling/steel
 	name = "floor"
 	icon_base = "steel"
-	build_type = /obj/item/stack/tile/floor_steel
+	build_type = /obj/item/stack/tile/floor/steel
 
 /decl/flooring/tiling/white
 	name = "floor"
 	desc = "How sterile."
 	icon_base = "white"
-	build_type = /obj/item/stack/tile/floor_white
+	build_type = /obj/item/stack/tile/floor/white
 
 /decl/flooring/tiling/dark
 	name = "floor"
 	desc = "How ominous."
 	icon_base = "dark"
-	build_type = /obj/item/stack/tile/floor_dark
+	build_type = /obj/item/stack/tile/floor/dark
 
 /decl/flooring/tiling/freezer
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "freezer"
-	build_type = /obj/item/stack/tile/floor_freezer
+	build_type = /obj/item/stack/tile/floor/freezer
 
 /decl/flooring/wood
 	name = "wooden floor"

@@ -15,7 +15,7 @@
 	var/list/path = list()
 	var/list/ignorelist = list()
 	var/turf/target
-	var/floor_build_type = /decl/flooring/tiling // Basic steel floor.
+	var/floor_build_type
 
 /mob/living/bot/floorbot/update_icons()
 	if(repairing)
@@ -123,7 +123,7 @@
 		if(!target && targetdirection) // Building a bridge
 			var/turf/T = get_step(src, targetdirection)
 			while(T in range(src))
-				if(istype(T, /turf/space))
+				if(istype(T, /turf/space) || (istype(T, /turf/simulated/open) && locate(/obj/structure/lattice) in T))
 					target = T
 					break
 				T = get_step(T, targetdirection)
@@ -134,7 +134,7 @@
 					continue
 				if(T in ignorelist)
 					continue
-				if(istype(T, /turf/space))
+				if(istype(T, /turf/space) || (istype(T, /turf/simulated/open) && locate(/obj/structure/lattice) in T))
 					if(get_turf(T) == loc || prob(40)) // So they target the same tile all the time
 						target = T
 				if(improvefloors && istype(T, /turf/simulated/floor))
@@ -144,7 +144,7 @@
 
 	if(emagged) // Time to griff
 		for(var/turf/simulated/floor/D in view(src))
-			if(D.loc.name == "Space")
+			if(D.loc.name == "Space" || D.loc.name == "open space")
 				continue
 			if(D in ignorelist)
 				continue
@@ -180,6 +180,7 @@
 		step_to(src, path[1])
 		path -= path[1]
 
+
 /mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
 	if(!..())
 		return
@@ -190,11 +191,12 @@
 	if(get_turf(A) != loc)
 		return
 
-	if(emagged && istype(A, /turf/simulated/floor))
-		var/turf/simulated/floor/F = A
+	if(emagged && istype(A, /turf/simulated/floor)) // Emaged floor destroy
 		repairing = 1
 		update_icons()
-		if(F.is_plating())
+		var/turf/simulated/floor/F = A
+		var/obj/structure/catwalk/C = A
+		if(F.flooring)
 			visible_message("<span class='warning'>[src] begins to tear the floor tile from the floor!</span>")
 			var/message = pick("Here we go!", "Let's do this!", "See, how is easy to anger an engineer with one simple trick!")
 			say(message)
@@ -202,6 +204,17 @@
 			if(do_after(src, 50, F))
 				F.break_tile_to_plating()
 				addTiles(1)
+		else if(locate(/obj/structure/catwalk, A))  // Emaged nekowalk destroy
+			visible_message("<span class='warning'>[src] begins to dismatle \the [C.name]!</span>")
+			var/message = pick("Cats dont like it, so i do a favor for them!", "No animals were harmed in the process!", "Nya~!", "M.E.O.W!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
+			if(do_after(src, 50, C))
+				if(istype(A, /turf/space) || istype(A, /turf/simulated/open))
+					new /obj/structure/lattice(locate(A.x, A.y, A.z)) // Spawning lattice under floorbot to allow it destroy more and more!
+				else
+					addTiles(1)
+				qdel(C)
 		else
 			visible_message("<span class='danger'>[src] begins to tear through the floor!</span>")
 			var/message = pick("DOWN WE GO, MY FRIEND!", "REACH FOR THE SKY!", "ABBYS AWAITS!", "I WAS BORN TO BE A MINER!")
@@ -213,9 +226,27 @@
 		target = null
 		repairing = 0
 		update_icons()
-	else if(istype(A, /turf/space))
+
+	else if(emagged && (istype(A, /turf/space) || istype(A, /turf/simulated/open)))  // Emaged nekowalk destroy
+		if(locate(/obj/structure/catwalk, A))
+			var/obj/structure/catwalk/C = A
+			visible_message("<span class='warning'>[src] begins to dismatle \the [C.name]!</span>")
+			var/message = pick("Cats dont like it, so i do a favor for them!", "No animals were harmed in the process!", "Nya~!", "M.E.O.W!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
+			if(do_after(src, 50, C))
+				if(istype(A, /turf/space) || istype(A, /turf/simulated/open))
+					new /obj/structure/lattice(locate(A.x, A.y, A.z)) // Spawning lattice under floorbot to allow it destroy more and more!
+				else
+					addTiles(1)
+				qdel(C)
+			target = null
+			repairing = 0
+			update_icons()
+
+	else if(istype(A, /turf/space) || (istype(A, /turf/simulated/open) && locate(/obj/structure/lattice) in A))
 		var/building = 2
-		if(locate(/obj/structure/lattice, A))
+		if(locate(/obj/structure/lattice, A) || locate(/obj/structure/catwalk, A))
 			building = 1
 		if(amount < building)
 			return
@@ -226,7 +257,8 @@
 		say(message)
 		playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		if(do_after(src, 50, A))
-			if(A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) // Make sure that it still needs repairs
+			// locating lattice or catwalk
+			if((A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) || (A && (locate(/obj/structure/catwalk, A) && building == 1 || !locate(/obj/structure/catwalk, A) && building == 2))) // Make sure that it still needs repairs
 				var/obj/item/I
 				if(building == 1)
 					I = new /obj/item/stack/tile/floor(src)
@@ -247,8 +279,12 @@
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			if(do_after(src, 50, F))
 				if(!F.flooring)
-					F.set_flooring(get_flooring_data(floor_build_type))
-					addTiles(-1)
+					floor_build_type = F.initial_flooring // Gets map-based var, that changes decl
+					if(!floor_build_type) // If it's plating from start..
+						floor_build_type = /decl/flooring/tiling // ...it makes base steel floor sprite.
+					else
+						F.set_flooring(get_flooring_data(floor_build_type))
+						addTiles(-1)
 			target = null
 			repairing = 0
 			update_icons()
