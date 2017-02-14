@@ -26,12 +26,6 @@
 		icon_state = "floorbot[on]e"
 	..()
 
-/mob/living/bot/floorbot/Entered()
-	if(istype(src, /turf/simulated/open) && locate(/obj/structure/lattice) in src)
-		return  // This will prevent floorbot from falling on open space turfs with support
-	else
-		. = ..()
-
 /mob/living/bot/floorbot/attack_hand(var/mob/user)
 	user.set_machine(src)
 	var/dat
