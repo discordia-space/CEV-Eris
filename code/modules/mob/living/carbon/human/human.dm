@@ -229,7 +229,7 @@
 	user.set_machine(src)
 	var/dat = "<B><HR><FONT size=3>[name]</FONT></B><BR><HR>"
 
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/human/HUDdatum = global.HUDdatums[src.defaultHUD]
 
 	for(var/entry in species.hud.gear)
 		var/slot = species.hud.gear[entry]
