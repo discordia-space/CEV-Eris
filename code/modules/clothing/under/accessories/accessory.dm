@@ -13,7 +13,8 @@
 	var/overlay_state = null
 
 /obj/item/clothing/accessory/Destroy()
-	on_removed()
+	if(has_suit)
+		on_removed()
 	return ..()
 
 /obj/item/clothing/accessory/proc/get_inv_overlay()
