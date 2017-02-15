@@ -276,7 +276,6 @@
 
 //Returns whether or not the welding tool is currently on.
 /obj/item/weapon/weldingtool/proc/isOn()
-	set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
 	return src.welding
 
 /obj/item/weapon/weldingtool/update_icon()
@@ -304,6 +303,7 @@
 			src.damtype = "fire"
 			src.w_class = 4
 			welding = 1
+			set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
 			update_icon()
 			processing_objects |= src
 		else
