@@ -124,7 +124,7 @@
 					G.activate(M) 
 					update_inv_wear_mask() 
 				else 
-					M « "<span class='warning'>\The [G] is already primed! Run!</span>" 
+					M << "<span class='warning'>\The [G] is already primed! Run!</span>" 
 				return
 			
 			if(!istype(H))
