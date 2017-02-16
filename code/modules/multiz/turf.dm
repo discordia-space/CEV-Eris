@@ -27,6 +27,9 @@
 		if(!below)
 			return
 
+	if(istype(mover, /mob/living/bot/floorbot) && locate(/obj/structure/lattice) in src)
+		return  // This will prevent floorbot from falling on open space turfs with support
+
 	// No gravit, No fall.
 	if(!has_gravity(src))
 		return
