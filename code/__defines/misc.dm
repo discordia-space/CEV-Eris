@@ -210,3 +210,6 @@
 
 // Default name for announsment system
 #define ANNOUNSER_NAME "CEV Eris System Announcer"
+
+
+#define LIST_OF_CONSONANT list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","ö","ê","í","ã","ø","ù","ç","õ","ô","â","ï","ð","ë","ä","æ","÷","ñ","ì","ò","á","é","û")
