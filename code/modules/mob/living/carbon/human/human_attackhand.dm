@@ -117,7 +117,16 @@
 			return 1
 
 		if(I_HURT)
-
+			if(M.targeted_organ == "mouth" && wear_mask && istype(wear_mask, /obj/item/weapon/grenade)) 
+				var/obj/item/weapon/grenade/G = wear_mask 
+				if(!G.active) 
+					visible_message("<span class='danger'>\The [M] pulls the pin from \the [src]'s [G.name]!</span>") 
+					G.activate(M) 
+					update_inv_wear_mask() 
+				else 
+					M « "<span class='warning'>\The [G] is already primed! Run!</span>" 
+				return
+			
 			if(!istype(H))
 				attack_generic(H,rand(1,3),"punched")
 				return
