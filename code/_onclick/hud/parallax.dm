@@ -16,7 +16,7 @@
 		update()
 
 	proc/update()
-		forceMove(owner.loc)
+		forceMove(get_turf(owner))
 		pixel_x = -224-owner.x
 		pixel_y = -224-owner.y
 

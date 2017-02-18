@@ -229,15 +229,12 @@
 	user.set_machine(src)
 	var/dat = "<B><HR><FONT size=3>[name]</FONT></B><BR><HR>"
 
-	var/datum/hud/human/HUDdatum = global.HUDdatums[src.defaultHUD]
-
 	for(var/entry in species.hud.gear)
 		var/slot = species.hud.gear[entry]
 		if(slot in list(slot_l_store, slot_r_store))
 			continue
-		var/entry_name = HUDdatum.slot_data[entry]["name"]
 		var/obj/item/thing_in_slot = get_equipped_item(slot)
-		dat += "<BR><B>[entry_name]:</b> <a href='?src=\ref[src];item=[slot]'>[istype(thing_in_slot) ? thing_in_slot : "nothing"]</a>"
+		dat += "<BR><B>[entry]:</b> <a href='?src=\ref[src];item=[slot]'>[istype(thing_in_slot) ? thing_in_slot : "nothing"]</a>"
 
 	dat += "<BR><HR>"
 

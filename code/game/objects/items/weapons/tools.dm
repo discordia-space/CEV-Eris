@@ -304,6 +304,7 @@
 			src.w_class = 4
 			welding = 1
 			update_icon()
+			set_light(l_range = 1.4, l_power = 1, l_color = COLOR_ORANGE)
 			processing_objects |= src
 		else
 			if(M)
@@ -321,6 +322,7 @@
 		src.w_class = initial(src.w_class)
 		src.welding = 0
 		update_icon()
+		set_light(l_range = 0, l_power = 0, l_color = COLOR_ORANGE)
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
