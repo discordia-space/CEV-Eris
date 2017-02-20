@@ -5,16 +5,13 @@
 	heat_capacity = 0
 	layer = 2
 
-/turf/simulated/shuttle/wall
-	name = "wall"
-	icon_state = "wall1"
-	opacity = 1
-	density = 1
-	blocks_air = 1
-
 /turf/simulated/shuttle/floor
 	name = "floor"
 	icon_state = "floor"
+
+/turf/simulated/shuttle/floor/mining
+	icon_state = "6,19"
+	icon = 'icons/turf/shuttlemining.dmi'
 
 /turf/simulated/shuttle/plating
 	name = "plating"
