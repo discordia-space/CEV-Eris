@@ -130,6 +130,22 @@
 			M << "<span class='warning'>You tripped over!</span>"
 			return
 
+/turf/simulated/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)
+	if (istype(C, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = C
+		if(R.amount <= 2)
+			return
+		else
+			R.use(2)
+			user << "<span class='notice'>You start connecting [R.name] to [src.name] ...</span>"
+			if(do_after(user,50))
+				src.alpha = 0
+				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(src.loc)
+				//PoolOrNew(/obj/structure/catwalk, src.loc)
+				src.contents += CT
+			return
+	return
+
 /turf/simulated/shuttle/plating/vox //Skipjack plating
 	oxygen = 0
 	nitrogen = MOLES_N2STANDARD + MOLES_O2STANDARD
