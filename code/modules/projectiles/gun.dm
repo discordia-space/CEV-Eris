@@ -147,7 +147,23 @@
 	if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
 		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
 	else
+
+		var/obj/item/weapon/gun/off_hand
+		world << "0"
+		if(ishuman(user) && user.a_intent == "harm")
+			var/mob/living/carbon/human/H = user
+			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
+				off_hand = H.l_hand
+
+			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
+				off_hand = H.r_hand
+			if(off_hand && off_hand.can_hit(user))
+				spawn(1)
+				off_hand.Fire(A,user,params)
+
 		Fire(A,user,params) //Otherwise, fire normally.
+
+
 
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.targeted_organ == "mouth" && !mouthshoot)
@@ -156,6 +172,7 @@
 		Fire(A, user, pointblank=1)
 	else
 		return ..() //Pistolwhippin'
+
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
