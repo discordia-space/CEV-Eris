@@ -156,6 +156,7 @@
 
 			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
 				off_hand = H.r_hand
+
 			if(off_hand && off_hand.can_hit(user))
 				spawn(1)
 				off_hand.Fire(A,user,params)
