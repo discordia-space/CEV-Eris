@@ -162,8 +162,6 @@
 
 		Fire(A,user,params) //Otherwise, fire normally.
 
-
-
 /obj/item/weapon/gun/attack(atom/A, mob/living/user, def_zone)
 	if (A == user && user.targeted_organ == "mouth" && !mouthshoot)
 		handle_suicide(user)
