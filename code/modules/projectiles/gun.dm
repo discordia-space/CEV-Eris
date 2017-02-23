@@ -149,7 +149,6 @@
 	else
 
 		var/obj/item/weapon/gun/off_hand   //Dual wielding
-		world << "0"
 		if(ishuman(user) && user.a_intent == "harm")
 			var/mob/living/carbon/human/H = user
 			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
