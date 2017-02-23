@@ -3,7 +3,6 @@
 /area/mine
 	icon_state = "mining"
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
-	sound_env = ASTEROID
 
 /area/mine/explored
 	name = "Mine"
