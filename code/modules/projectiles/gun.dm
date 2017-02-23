@@ -148,7 +148,7 @@
 		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
 	else
 
-		var/obj/item/weapon/gun/off_hand
+		var/obj/item/weapon/gun/off_hand   //Dual wielding
 		world << "0"
 		if(ishuman(user) && user.a_intent == "harm")
 			var/mob/living/carbon/human/H = user
@@ -172,7 +172,6 @@
 		Fire(A, user, pointblank=1)
 	else
 		return ..() //Pistolwhippin'
-
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	if(!user || !target) return
