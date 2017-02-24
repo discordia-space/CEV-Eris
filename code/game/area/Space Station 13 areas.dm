@@ -99,7 +99,7 @@ var/list/ghostteleportlocs = list()
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
+	ambience = list('sound/ambience/ambispace.ogg')
 
 area/space/atmosalert()
 	return
@@ -667,6 +667,7 @@ area/space/atmosalert()
 /area/maintenance
 	flags = RAD_SHIELDED
 	turf_initializer = new /datum/turf_initializer/maintenance()
+	forced_ambience = list('sound/ambience/maintambience.ogg')
 
 /area/maintenance/aft
 	name = "Aft Maintenance"
@@ -1028,7 +1029,7 @@ area/space/atmosalert()
 /area/chapel/main
 	name = "\improper Chapel"
 	icon_state = "chapel"
-	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg','sound/music/traitor.ogg')
+	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 
 /area/chapel/office
 	name = "\improper Chapel Office"
@@ -1100,7 +1101,6 @@ area/space/atmosalert()
 /area/engineering/
 	name = "\improper Engineering"
 	icon_state = "engineering"
-	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
 /area/engineering/gravity_generator
 	name = "Gravity Generator Room"
@@ -1853,6 +1853,7 @@ area/space/atmosalert()
 /area/eris/engineering/substation
 	name = "Substation"
 	icon_state = "substation"
+	forced_ambience = list('sound/ambience/maintambience.ogg')
 
 /area/eris/engineering/substation/engineering
 	name = "Engineering Substation"
@@ -1873,6 +1874,11 @@ area/space/atmosalert()
 	name = "Bridge Substation"
 
 //Eris Maint
+
+/area/eris/maintenance
+	name = "Maintenance"
+	icon_state = "erisyellow"
+	forced_ambience = list('sound/ambience/maintambience.ogg')
 
 /area/eris/maintenance/oldtele
 	name = "Reserve Teleporter"

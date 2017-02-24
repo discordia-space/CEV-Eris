@@ -27,15 +27,12 @@ var/global/list/holodeck_programs = list(
 	"space" 			= new/datum/holodeck_program(/area/holodeck/source_space,
 													list(
 														'sound/ambience/ambispace.ogg',
-														'sound/music/main.ogg',
-														'sound/music/space.ogg',
-														'sound/music/traitor.ogg',
 														)
 													),
-	"picnicarea" 		= new/datum/holodeck_program(/area/holodeck/source_picnicarea, list('sound/music/title2.ogg')),
+	"picnicarea" 		= new/datum/holodeck_program(/area/holodeck/source_picnicarea, list()),
 	"theatre" 			= new/datum/holodeck_program(/area/holodeck/source_theatre),
 	"meetinghall" 		= new/datum/holodeck_program(/area/holodeck/source_meetinghall),
-	"courtroom" 		= new/datum/holodeck_program(/area/holodeck/source_courtroom, list('sound/music/traitor.ogg')),
+	"courtroom" 		= new/datum/holodeck_program(/area/holodeck/source_courtroom, list()),
 	"burntest" 			= new/datum/holodeck_program(/area/holodeck/source_burntest, list()),
 	"wildlifecarp" 		= new/datum/holodeck_program(/area/holodeck/source_wildlife, list()),
 	"turnoff" 			= new/datum/holodeck_program(/area/holodeck/source_plating, list())
