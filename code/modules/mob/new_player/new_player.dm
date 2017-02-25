@@ -247,14 +247,6 @@
 	if(!job.player_old_enough(src.client))	return 0
 	return 1
 
-/mob/new_player/proc/IsSpawnSafe(var/turf/T)
-	if(istype(T, /turf/space)) // Space tiles
-		return "Spawn location is open to space."
-	var/datum/gas_mixture/air = T.return_air()
-	if(!air)
-		return "Spawn location lacks atmosphere."
-	return is_safe_atmosphere(air, 1)
-
 /mob/new_player/proc/AttemptLateSpawn(rank,var/spawning_at)
 	if(src != usr)
 		return 0
@@ -267,23 +259,6 @@
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
 		return 0
-
-	var/turf/T = job_master.LateSpawn(client, rank, 1)
-	var/airstatus = IsSpawnSafe(T)
-	if(airstatus)
-		var/reply = alert(usr, "Warning. Your selected spawn location seems to have unfavorable atmospheric conditions. \
-		You may die shortly after spawning. It is possible to select different spawn point via character preferences. \
-		Spawn anyway? More information: [airstatus]", "Atmosphere warning", "Abort", "Spawn anyway")
-		if(reply == "Abort")
-			return 0
-		else
-			// Let the staff know, in case the person complains about dying due to this later. They've been warned.
-			log_and_message_admins("User [src] spawned at spawn point with dangerous atmosphere.")
-
-		// Just in case someone stole our position while we were waiting for input from alert() proc
-		if(!IsJobAvailable(rank))
-			src << alert("[rank] is not available. Please try another.")
-			return 0
 
 	spawning = 1
 	close_spawn_windows()

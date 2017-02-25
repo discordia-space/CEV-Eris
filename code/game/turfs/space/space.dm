@@ -61,7 +61,7 @@
 		else
 			user << "<span class='warning'>The plating is going to need some support.</span>"
 			return
-	if (istype(C, /obj/item/stack/tile/techgrey) || istype(C, /obj/item/stack/tile/techgrid))// андерплайтинг строится тут
+	if (istype(C, /obj/item/stack/tile/floor/techgrey) || istype(C, /obj/item/stack/tile/floor/techgrid))// this creates underplating
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			var/obj/item/stack/tile/S = C

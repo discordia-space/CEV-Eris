@@ -14,6 +14,10 @@
 /datum/controller/process/mob/doWork()
 	for(last_object in mob_list)
 		var/mob/M = last_object
+
+		if(isnull(M))
+			return
+
 		if(isnull(M.gcDestroyed))
 			try
 				M.Life()

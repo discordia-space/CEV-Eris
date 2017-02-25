@@ -138,10 +138,13 @@
 
 	//mask
 	if(wear_mask && !skipmask)
+		var/descriptor = "on [T.his] face"
+		if(istype(wear_mask, /obj/item/weapon/grenade))
+			descriptor = "in [T.his] mouth"
 		if(wear_mask.blood_DNA)
-			msg += "<span class='warning'>[T.He] [T.has] \icon[wear_mask] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained [wear_mask.name] on [T.his] face!</span>\n"
+			msg += "<span class='warning'>[T.He] [T.has] \icon[wear_mask] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained [wear_mask.name] [descriptor]!</span>\n"
 		else
-			msg += "[T.He] [T.has] \icon[wear_mask] \a [wear_mask] on [T.his] face.\n"
+			msg += "[T.He] [T.has] \icon[wear_mask] \a [wear_mask] [descriptor].\n"
 
 	//eyes
 	if(glasses && !skipeyes)
@@ -199,12 +202,11 @@
 			msg += "<span class='warning'>[T.He] [T.does] not appear to be breathing.</span>\n"
 		if(istype(usr, /mob/living/carbon/human) && !usr.stat && Adjacent(usr))
 			usr.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
-		spawn(15)
-			if(distance <= 1 && usr.stat != 1)
-				if(pulse() == PULSE_NONE)
-					usr << "<span class='deadsay'>[T.He] [T.has] no pulse[src.client ? "" : " and [T.his] soul has departed"]...</span>"
-				else
-					usr << "<span class='deadsay'>[T.He] [T.has] a pulse!</span>"
+		if(distance<=1 && do_mob(usr,src,15,progress=0))
+			if(pulse() == PULSE_NONE)
+				usr << "<span class='deadsay'>[T.He] [T.has] no pulse[src.client ? "" : " and [T.his] soul has departed"]...</span>"
+			else
+				usr << "<span class='deadsay'>[T.He] [T.has] a pulse!</span>"
 
 	if(fire_stacks)
 		msg += "[T.He] [T.is] covered in some liquid.\n"

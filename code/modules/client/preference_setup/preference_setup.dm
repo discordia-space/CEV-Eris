@@ -222,6 +222,10 @@
 	if(..())
 		return 1
 	var/mob/pref_mob = preference_mob()
+
+	if(isnull(pref_mob))
+		return
+
 	if(!pref_mob || !pref_mob.client)
 		return 1
 
