@@ -113,6 +113,10 @@
 
 /obj/item/modular_computer/processor/get_all_components()
 	var/list/all_components = ..()
+
+	if(isnull(machinery_computer))
+		return
+
 	if(machinery_computer.tesla_link)
 		all_components.Add(machinery_computer.tesla_link)
 	return all_components
