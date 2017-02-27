@@ -19,6 +19,7 @@
 	var/mob/living/parentmob
 	var/process_flag = 0
 	var/hideflag = 0
+	var/list/image/ovrls = list()
 
 /obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
@@ -404,27 +405,43 @@
 	screen_loc = "15,7"
 	process_flag = 1
 
+/obj/screen/health/New()
+	..()
+	ovrls["health0"] += new /image (icon = src.icon, icon_state ="health0")
+	ovrls["health1"] += new /image/no_recolor(icon = src.icon, icon_state ="health1")
+	ovrls["health2"] += new /image/no_recolor(icon = src.icon, icon_state ="health2")
+	ovrls["health3"] += new /image/no_recolor(icon = src.icon, icon_state ="health3")
+	ovrls["health4"] += new /image/no_recolor(icon = src.icon, icon_state ="health4")
+	ovrls["health5"] += new /image/no_recolor(icon = src.icon, icon_state ="health5")
+	ovrls["health6"] += new /image/no_recolor(icon = src.icon, icon_state ="health6")
+	ovrls["health7"] += new /image(icon = src.icon, icon_state ="health7")
+	update_icon()
+
 /obj/screen/health/process()
 	//var/mob/living/carbon/human/H = parentmob
+	update_icon()
+
+/obj/screen/health/update_icon()
 	if(parentmob:stat != DEAD) // They are dead, let death() handle their hud update on this.
+		overlays.Cut()
 		if (parentmob:analgesic > 100)
-			icon_state = "health_numb"
+//			icon_state = "health_numb"
+			overlays += ovrls["health0"]
 		else
 			switch(parentmob:hal_screwyhud)
-				if(1)	icon_state = "health6"
-				if(2)	icon_state = "health7"
+				if(1)	overlays += ovrls["health6"]
+				if(2)	overlays += ovrls["health7"]
 				else
 				//switch(health - halloss)
 					switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
 					//switch(100 - parentmob.traumatic_shock)
-						if(100 to INFINITY)		icon_state = "health0"
-						if(80 to 100)			icon_state = "health1"
-						if(60 to 80)			icon_state = "health2"
-						if(40 to 60)			icon_state = "health3"
-						if(20 to 40)			icon_state = "health4"
-						if(0 to 20)				icon_state = "health5"
-						else					icon_state = "health6"
-
+						if(100 to INFINITY)		overlays += ovrls["health0"]
+						if(80 to 100)			overlays += ovrls["health1"]
+						if(60 to 80)			overlays += ovrls["health2"]
+						if(40 to 60)			overlays += ovrls["health3"]
+						if(20 to 40)			overlays += ovrls["health4"]
+						if(0 to 20)				overlays += ovrls["health5"]
+						else					overlays += ovrls["health6"]
 /*/obj/screen/health/New()
 	if(usr.client)
 		usr.client.screen += src
@@ -436,9 +453,18 @@
 /obj/screen/nutrition
 	name = "nutrition"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "nutrition1"
+	icon_state = "blank"
 	screen_loc = "15,6"
 	process_flag = 1
+
+/obj/screen/nutrition/New()
+	..()
+	ovrls["nutrition0"] += new /image (icon = src.icon, icon_state ="nutrition0")
+	ovrls["nutrition1"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition1")
+	ovrls["nutrition2"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition2")
+	ovrls["nutrition3"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition3")
+	ovrls["nutrition4"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition4")
+	update_icon()
 
 /obj/screen/nutrition/process()
 	//var/mob/living/carbon/human/H = parentmob
@@ -447,12 +473,13 @@
 /obj/screen/nutrition/update_icon()
 	set src in usr.client.screen
 	var/mob/living/carbon/human/H = parentmob
+	overlays.Cut()
 	switch(H.nutrition)
-		if(450 to INFINITY)				icon_state = "nutrition0"
-		if(350 to 450)					icon_state = "nutrition1"
-		if(250 to 350)					icon_state = "nutrition2"
-		if(150 to 250)					icon_state = "nutrition3"
-		else							icon_state = "nutrition4"
+		if(450 to INFINITY)				overlays += ovrls["nutrition0"]
+		if(350 to 450)					overlays += ovrls["nutrition1"]
+		if(250 to 350)					overlays += ovrls["nutrition2"]
+		if(150 to 250)					overlays += ovrls["nutrition3"]
+		else							overlays += ovrls["nutrition4"]
 //--------------------------------------------------nutrition end---------------------------------------------------------
 
 //--------------------------------------------------bodytemp---------------------------------------------------------
@@ -462,6 +489,20 @@
 	icon_state = "temp0"
 	screen_loc = "15,8"
 	process_flag = 1
+
+
+/obj/screen/bodytemp/New()
+	..()
+	ovrls["temp0"] += new /image/no_recolor (icon = src.icon, icon_state ="temp0")
+	ovrls["temp1"] += new /image/no_recolor(icon = src.icon, icon_state ="temp1")
+	ovrls["temp2"] += new /image/no_recolor(icon = src.icon, icon_state ="temp2")
+	ovrls["temp3"] += new /image/no_recolor(icon = src.icon, icon_state ="temp3")
+	ovrls["temp4"] += new /image/no_recolor(icon = src.icon, icon_state ="temp4")
+	ovrls["temp-1"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-1")
+	ovrls["temp-2"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-2")
+	ovrls["temp-3"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-3")
+	ovrls["temp-4"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-4")
+	update_icon()
 
 /obj/screen/bodytemp/process()
 	update_icon()
@@ -487,33 +528,34 @@
 		base_temperature = (parentmob:species.heat_level_1 + parentmob:species.cold_level_1)/2
 
 	var/temp_step
+	overlays.Cut()
 	if (parentmob:bodytemperature >= base_temperature)
 		temp_step = (parentmob:species.heat_level_1 - base_temperature)/4
 
 		if (parentmob:bodytemperature >= parentmob:species.heat_level_1)
-			icon_state = "temp4"
+			overlays += ovrls["temp4"]//icon_state = "temp4"
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*3)
-			icon_state = "temp3"
+			overlays += ovrls["temp3"]
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*2)
-			icon_state = "temp2"
+			overlays += ovrls["temp2"]
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*1)
-			icon_state = "temp1"
+			overlays += ovrls["temp1"]
 		else
-			icon_state = "temp0"
+			overlays += ovrls["temp0"]
 
 	else if (parentmob:bodytemperature < base_temperature)
 		temp_step = (base_temperature - parentmob:species.cold_level_1)/4
 
 		if (parentmob:bodytemperature <= parentmob:species.cold_level_1)
-			icon_state = "temp-4"
+			overlays += ovrls["temp-4"]
 		else if (parentmob:bodytemperature <= base_temperature - temp_step*3)
-			icon_state = "temp-3"
+			overlays += ovrls["temp-3"]
 		else if (parentmob:bodytemperature <= base_temperature - temp_step*2)
-			icon_state = "temp-2"
+			overlays += ovrls["temp-2"]
 		else if (parentmob:bodytemperature <= base_temperature - temp_step*1)
-			icon_state = "temp-1"
+			overlays += ovrls["temp-1"]
 		else
-			icon_state = "temp0"
+			overlays += ovrls["temp0"]
 //--------------------------------------------------bodytemp end---------------------------------------------------------
 
 
@@ -521,16 +563,27 @@
 /obj/screen/pressure
 	name = "pressure"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "pressure0"
+	icon_state = "blank"
 	screen_loc = "15,13"
 	process_flag = 1
+
+/obj/screen/pressure/New()
+	..()
+	ovrls["pressure2"] += new /image/no_recolor (icon = src.icon, icon_state ="pressure2")
+	ovrls["pressure1"] += new /image/no_recolor(icon = src.icon, icon_state ="pressure1")
+	ovrls["pressure0"] += new /image/no_recolor(icon = src.icon, icon_state ="pressure0")
+	ovrls["pressure-1"] += new /image/no_recolor(icon = src.icon, icon_state ="pressure-1")
+	ovrls["pressure-2"] += new /image/no_recolor(icon = src.icon, icon_state ="pressure-2")
+	update_icon()
+
 
 /obj/screen/pressure/process()
 	update_icon()
 
 /obj/screen/pressure/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	icon_state = "pressure[H.pressure_alert]"
+//	icon_state = "pressure[H.pressure_alert]"
+	overlays += ovrls["pressure[H.pressure_alert]"]
 //--------------------------------------------------pressure end---------------------------------------------------------
 
 //--------------------------------------------------toxin---------------------------------------------------------
@@ -541,15 +594,22 @@
 	screen_loc = "15,10"
 	process_flag = 1
 
+/obj/screen/toxin/New()
+	..()
+	ovrls["tox1"] += new /image/no_recolor(icon = src.icon, icon_state ="tox1")
+	update_icon()
+
 /obj/screen/toxin/process()
 	update_icon()
 
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
+	overlays.Cut()
 	if(H.hal_screwyhud == 4 || H.plasma_alert)
-		icon_state = "tox1"
-	else
-		icon_state = "tox0"
+		overlays += ovrls["tox1"]
+//		icon_state = "tox1"
+//	else
+//		icon_state = "tox0"
 //--------------------------------------------------toxin end---------------------------------------------------------
 
 //--------------------------------------------------oxygen---------------------------------------------------------
@@ -561,29 +621,40 @@
 	screen_loc = "15,12"
 	process_flag = 1
 
+/obj/screen/oxygen/New()
+	..()
+	ovrls["oxy1"] += new /image/no_recolor(icon = src.icon, icon_state ="oxy1")
+//	ovrls["oxy0"] += new /image/no_recolor(icon = src.icon, icon_state ="oxy0")
+	update_icon()
+
 /obj/screen/oxygen/process()
 	update_icon()
 
 /obj/screen/oxygen/update_icon()
 	var/mob/living/carbon/human/H = parentmob
+	overlays.Cut()
 	if(H.hal_screwyhud == 3 || H.oxygen_alert)
-		icon_state = "oxy1"
-	else
-		icon_state = "oxy0"
+		overlays += ovrls["oxy1"]
+//		icon_state = "oxy1"
+//	else
+//		icon_state = "oxy0"
 //--------------------------------------------------oxygen end---------------------------------------------------------
 
 //--------------------------------------------------fire---------------------------------------------------------
 /obj/screen/fire
 	name = "fire"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "fire0"
+	icon_state = "blank"
 	screen_loc = "15,9"
 	process_flag = 1
-	var/image/ovrl
+
 
 /obj/screen/fire/New()
 	..()
-	ovrl = new /image/no_recolor(icon = src.icon, icon_state ="fire1")
+	ovrls["fire1"] += new /image/no_recolor(icon = src.icon, icon_state ="fire1")
+	ovrls["fire0"] += new /image(icon = src.icon, icon_state ="fire0")
+	ovrls["fire-1"] += new /image/no_recolor(icon = src.icon, icon_state ="fire-1")
+	update_icon()
 //	ovrl.appearance_flags = RESET_COLOR
 
 /obj/screen/fire/process()
@@ -593,7 +664,7 @@
 	var/mob/living/carbon/human/H = parentmob
 	src.overlays.Cut()
 	if (H.fire_alert)
-		overlays += ovrl
+		overlays += ovrls["fire[H.fire_alert]"]
 //	icon_state = "fire[H.fire_alert]"
 	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
 	else										icon_state = "fire0"*/
@@ -610,15 +681,20 @@
 	icon_state = "internal0"
 	screen_loc = "15,14"
 
+/obj/screen/internal/New()
+	..()
+	ovrls["internal1"] += new /image/no_recolor(icon = src.icon, icon_state ="internal1")
+	ovrls["internal2"] += new /image/no_recolor(icon = src.icon, icon_state ="internal2")
+
 /obj/screen/internal/Click()
 //	if("internal")
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(iscarbon(parentmob))
+		var/mob/living/carbon/C = parentmob
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
 				C.internal = null
 				C << "<span class='notice'>No longer running on internals.</span>"
-				icon_state = "internal0"
+				overlays.Cut()
 			else
 
 				var/no_mask
@@ -708,7 +784,8 @@
 
 
 					if(C.internal)
-						icon_state = "internal1"
+						//icon_state = "internal1"
+						overlays += ovrls["internal1"]
 					else
 						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
 //-----------------------internal END------------------------------
@@ -936,7 +1013,7 @@
 	name = "full_1_tile_overlay"
 	icon_state = "blank"
 	layer = 21
-	mouse_opacity = 1
+	mouse_opacity = 0
 
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'

@@ -9,6 +9,7 @@
 //	var/Xbags
 //	var/Ybags
 	var/list/ConteinerData
+	var/list/IconUnderlays
 
 /datum/hud/human
 	name = "ErisStyle"
@@ -131,6 +132,27 @@
 		"Yslot" = 2
 	)
 
+	IconUnderlays = list(
+		"back0" = new /image/no_recolor(icon = src.icon, icon_state ="t0"),
+		"back1" = new /image/no_recolor(icon = src.icon, icon_state ="t1"),
+		"back2" = new /image/no_recolor(icon = src.icon, icon_state ="t2"),
+		"back3" = new /image/no_recolor(icon = src.icon, icon_state ="t3"),
+		"back4" = new /image/no_recolor(icon = src.icon, icon_state ="t4"),
+		"back5" = new /image/no_recolor(icon = src.icon, icon_state ="t5"),
+		"back6" = new /image/no_recolor(icon = src.icon, icon_state ="t6"),
+		"back7" = new /image/no_recolor(icon = src.icon, icon_state ="t7"),
+		"back8" = new /image/no_recolor(icon = src.icon, icon_state ="t8"),
+		"back9" = new /image/no_recolor(icon = src.icon, icon_state ="t9"),
+		"back10" = new /image/no_recolor(icon = src.icon, icon_state ="t10"),
+		"back11" = new /image/no_recolor(icon = src.icon, icon_state ="t11"),
+		"back12" = new /image/no_recolor(icon = src.icon, icon_state ="t12"),
+		"back13" = new /image/no_recolor(icon = src.icon, icon_state ="t13"),
+		"back14-l" = new /image/no_recolor(icon = src.icon, icon_state ="t14-l"),
+		"back14-m" = new /image/no_recolor(icon = src.icon, icon_state ="t14-m"),
+		"back14-r" = new /image/no_recolor(icon = src.icon, icon_state ="t14-r"),
+		"back15" = new /image/no_recolor(icon = src.icon, icon_state ="t15")
+	)
+
 	HUDoverlays = list(
 		"damageoverlay" = list("type" = /obj/screen/damageoverlay, "loc" = "1,1", "icon" =  'icons/mob/screen1_full.dmi'),
 		"flash" =  list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
@@ -139,25 +161,25 @@
 		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1", "icon_state" = "blank")
 	)
 	HUDneed = list(
-		"health"      = list("type" = /obj/screen/health,     "loc" = "15,7"),
-		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "15,6"),
-		"bodytemp"    = list("type" = /obj/screen/bodytemp,   "loc" = "15,8"),
-		"pressure"    = list("type" = /obj/screen/pressure,   "loc" = "15,14"),
-		"toxin"       = list("type" = /obj/screen/toxin,      "loc" = "15,11"),
-		"oxygen"      = list("type" = /obj/screen/oxygen,     "loc" = "15,13"),
-		"fire"        = list("type" = /obj/screen/fire,       "loc" = "15,10"),
-		"throw"       = list("type" = /obj/screen/HUDthrow,   "loc" = "14,2"),
-		"pull"        = list("type" = /obj/screen/pull,       "loc" = "15,2"),
-		"drop"        = list("type" = /obj/screen/drop,       "loc" = "14:-16,2"),
-		"resist"      = list("type" = /obj/screen/resist,     "loc" = "15:16,2"),
+		"health"      = list("type" = /obj/screen/health,     "loc" = "15,7", "background" = "back2"),
+		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "15,6", "background" = "back3"),
+		"bodytemp"    = list("type" = /obj/screen/bodytemp,   "loc" = "15,8", "background" = "back10"),
+		"pressure"    = list("type" = /obj/screen/pressure,   "loc" = "15,14", "background" = "back10"),
+		"toxin"       = list("type" = /obj/screen/toxin,      "loc" = "15,11", "background" = "back8"),
+		"oxygen"      = list("type" = /obj/screen/oxygen,     "loc" = "15,13", "background" = "back3"),
+		"fire"        = list("type" = /obj/screen/fire,       "loc" = "15,10", "background" = "back12"),
+		"throw"       = list("type" = /obj/screen/HUDthrow,   "loc" = "14,2", "background" = "back13"),
+		"pull"        = list("type" = /obj/screen/pull,       "loc" = "15,2", "background" = "back13"),
+		"drop"        = list("type" = /obj/screen/drop,       "loc" = "14:-16,2", "background" = "back13"),
+		"resist"      = list("type" = /obj/screen/resist,     "loc" = "15:16,2", "background" = "back13"),
 		"m_intent"    = list("type" = /obj/screen/mov_intent, "loc" = "14,1"),
 		"equip"       = list("type" = /obj/screen/equip,      "loc" = "7,2"),
 		"intent"      = list("type" = /obj/screen/intent,     "loc" = "12:16,1"),
-		"help"        = list("type" = /obj/screen/fastintent/help,     "loc" = "12,1"),
-		"disarm"      = list("type" = /obj/screen/fastintent/disarm,   "loc" = "12,1"),
-		"harm"        = list("type" = /obj/screen/fastintent/harm,     "loc" = "13,1"),
-		"grab"        = list("type" = /obj/screen/fastintent/grab,     "loc" = "13,1"),
-		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "15,1"),
+		"help"        = list("type" = /obj/screen/fastintent/help,     "loc" = "12,1", "background" = "back15"),
+		"disarm"      = list("type" = /obj/screen/fastintent/disarm,   "loc" = "12,1", "background" = "back15"),
+		"harm"        = list("type" = /obj/screen/fastintent/harm,     "loc" = "13,1", "background" = "back15"),
+		"grab"        = list("type" = /obj/screen/fastintent/grab,     "loc" = "13,1", "background" = "back15"),
+		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "15,1", "background" = "back2"),
 		"internal"    = list("type" = /obj/screen/internal,   "loc" = "15,15"),
 		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "7,2"),
 		"toggle gun mode"   = list("type" = /obj/screen/gun/mode,       "loc" = "15,3"),
