@@ -763,7 +763,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					X.underlays = old_underlays
 					X.decals = old_decals
 
-					if(istype(T, /turf/space) | istype(T, /turf/simulated/floor/asteroid))
+					if(istype(T, /turf/space) || istype(T, /turf/simulated/floor/asteroid))
 						X.ChangeTurf(get_base_turf_by_area(B))
 
 					var/turf/simulated/ST = T
