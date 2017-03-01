@@ -13,10 +13,10 @@
 
 	if(config.allow_admin_jump)
 		usr.on_mob_jump()
-		var/turfs = get_area_turfs(A)
+		var/new_location = safepick(get_area_turfs(A))
 
-		if(turfs.len)
-			usr.loc = pick(turfs)
+		if(new_location)
+			usr.loc = new_location
 			log_admin("[key_name(usr)] jumped to [A]")
 			message_admins("[key_name_admin(usr)] jumped to [A]", 1)
 		else
