@@ -22,6 +22,7 @@ datum/preferences
 	var/UI_useborder = 0
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
+	var/UI_compact_style = 0
 
 	//character preferences
 	var/real_name						//our character's name

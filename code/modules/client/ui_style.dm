@@ -14,6 +14,18 @@
 		return all_ui_styles[ui_style]
 	return all_ui_styles["White"]
 
+/client/verb/change_ui_format()
+	set name = "Change UI"
+	set category = "Preferences"
+	set desc = "Minimize or maximaze you UI"
+
+	if(!ishuman(usr))
+		usr << "<span class='warning'>You must be human to use this verb.</span>"
+		return
+
+	usr << "UI_compact_style = [prefs.UI_compact_style]"
+	prefs.UI_compact_style = !prefs.UI_compact_style
+	usr << "UI_compact_style = [prefs.UI_compact_style]"
 
 /client/verb/change_ui()
 	set name = "Change UI"

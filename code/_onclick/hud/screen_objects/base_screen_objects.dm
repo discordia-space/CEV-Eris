@@ -486,7 +486,7 @@
 /obj/screen/bodytemp
 	name = "bodytemp"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "temp0"
+	icon_state = "blank"
 	screen_loc = "15,8"
 	process_flag = 1
 
@@ -583,6 +583,7 @@
 /obj/screen/pressure/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 //	icon_state = "pressure[H.pressure_alert]"
+	overlays.Cut()
 	overlays += ovrls["pressure[H.pressure_alert]"]
 //--------------------------------------------------pressure end---------------------------------------------------------
 
@@ -663,8 +664,8 @@
 /obj/screen/fire/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	src.overlays.Cut()
-	if (H.fire_alert)
-		overlays += ovrls["fire[H.fire_alert]"]
+//	if (H.fire_alert)
+	overlays += ovrls["fire[H.fire_alert]"]
 //	icon_state = "fire[H.fire_alert]"
 	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
 	else										icon_state = "fire0"*/
