@@ -9,7 +9,7 @@ var/global/universe_has_ended = 0
 
 /datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
 	if(user)
-		user << "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There will be no shuttle call today.</span>"
+		user << "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There is no escape.</span>"
 	return 0
 
 /datum/universal_state/supermatter_cascade/OnTurfChange(var/turf/T)
@@ -47,7 +47,7 @@ var/global/universe_has_ended = 0
 			flick("e_flash", M.HUDtech["flash"])
 
 	if(emergency_shuttle.can_recall())
-		priority_announcement.Announce("The emergency shuttle has returned due to bluespace distortion.")
+		priority_announcement.Announce("The evacuation has been aborted due to bluespace distortion.")
 		emergency_shuttle.recall()
 
 	AreaSet()

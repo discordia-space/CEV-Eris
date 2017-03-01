@@ -256,6 +256,10 @@ datum/preferences
 				clothes.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
 		else
+			if(isnull(job_master))
+				usr << "<span class='warning'>Job Controller went [job_master], contact to the coder and tell details.</span>"
+				return
+
 			var/datum/job/J = job_master.GetJob(high_job_title)
 			if(J)
 
