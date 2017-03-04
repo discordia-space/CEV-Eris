@@ -173,7 +173,7 @@
 	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
 	alt_titles = list("Psychologist")
 
-	uniform = /obj/item/clothing/under/rank/psych
+	uniform = /obj/item/clothing/under/rank/psych/turtleneck
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
 	shoes = /obj/item/clothing/shoes/laceup
@@ -181,10 +181,6 @@
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		if (H.mind && H.mind.role_alt_title)
-			switch(H.mind.role_alt_title)
-				if("Psychologist")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/psych/turtleneck(H), slot_w_uniform)
 		return ..()
 
 /datum/job/virologist
