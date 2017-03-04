@@ -116,7 +116,10 @@
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
 
 /obj/structure/multiz/stairs/active/Bumped(var/atom/movable/M)
-	if(ismob(M))
+	if(isnull(M))
+		return
+
+	if(ismob(M) && usr.client)
 		usr.client.moving = 1
 		usr.Move(get_turf(target))
 		usr.client.moving = 0

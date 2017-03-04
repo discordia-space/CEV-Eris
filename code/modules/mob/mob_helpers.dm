@@ -292,6 +292,9 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		return
 	M.shakecamera = 1
 	spawn(1)
+		if(isnull(M))
+			return
+
 		if(!M.client)
 			return
 
