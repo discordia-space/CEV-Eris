@@ -341,12 +341,10 @@ var/global/datum/controller/gameticker/ticker
 
 			mode.cleanup()
 
-			//call a transfer shuttle vote
 			spawn(50)
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
 					world << "<span class='danger'>The round has ended!</span>"
 					round_end_announced = 1
-				vote.autotransfer()
 
 		return 1
 
