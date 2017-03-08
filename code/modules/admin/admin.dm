@@ -61,20 +61,15 @@ proc/admin_notice(var/message, var/rights)
 		[admin_jump_link(M, src)]\] <br><br>"}
 
 	if(M.client)
-		body += {"<b>Client Online</b><br/>
-			<b>ckey</b> = [M.client.ckey]<br>
-			<b>Client Age</b> = [M.client.player_age] days<br>
-			<b>CID Related Accounts</b> = [M.client.related_accounts_cid]<br>
-			<b>IP Related Accounts</b> = [M.client.related_accounts_ip]<br>
-			<b>Client Gender</b> = [M.client.gender]<br>
+		body += {"<b>Client Age On Server</b> = [M.client.player_age] days<br>
 			<b>IP</b> = [M.client.address]<br>
 			<b>CID</b> = [M.client.computer_id]<br>
+			<b>IP Related Accounts</b> = [M.client.related_accounts_ip]<br>
+			<b>CID Related Accounts</b> = [M.client.related_accounts_cid]<br>
 			<b>Mob type</b> = [M.type]<br>
 			<b>Inactivity time:</b> [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br><br>"}
 	else
-		body += {"<b>Client Offline</b><br/>
-			<b>ckey</b> = [M.ckey]<br>
-			<b>IP</b> = [M.lastKnownIP]<br>
+		body += {"b>IP</b> = [M.lastKnownIP]<br>
 			<b>CID</b> = [M.computer_id]<br>
 			<b>Mob type</b> = [M.type]<br>
 			<b>Inactivity time:</b> [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br><br>"}
