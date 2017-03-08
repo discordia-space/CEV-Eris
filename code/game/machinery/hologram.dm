@@ -67,7 +67,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 		take_call(user)
 		return
 	else if(caller_id && !incoming_connection)
-		visible_message("Severing connection to distant holopad.")
+		audible_message("Severing connection to distant holopad.")
 		end_call(user)
 		return
 	switch(alert(user,"Would you like to request an AI's presence or establish communications with another pad?", "Holopad","AI","Holocomms","Cancel"))
@@ -97,10 +97,14 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 				if(targetpad==src)
 					user << "<span class='info'>Using such sophisticated technology, just to talk to yourself seems a bit silly.</span>"
 					return
+				if(targetpad && targetpad.caller_id)
+					user << "<span class='info'>The pad flashes a busy sign. Maybe you should try again later..</span>"
+					return
 				if(targetpad)
 					make_call(targetpad, user)
 			else
 				user << "<span class='notice'>A request for holographic communication was already sent recently.</span>"
+
 
 /obj/machinery/hologram/holopad/proc/make_call(var/obj/machinery/hologram/holopad/targetpad, var/mob/living/carbon/user)
 	targetpad.last_request = world.time
@@ -125,6 +129,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	caller_id.unset_machine()
 	caller_id.reset_view() //Send the caller back to his body
 	clear_holo(0, caller_id) // destroy the hologram
+	caller_id = null
 
 /obj/machinery/hologram/holopad/check_eye(mob/user)
 	return 0
@@ -259,6 +264,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		icon_state = "holopad0"
 		if(sourcepad)
 			sourcepad.targetpad = null
+			sourcepad = null
 			caller_id = null
 	return 1
 
