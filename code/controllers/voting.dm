@@ -48,10 +48,6 @@ datum/controller/vote
 
 				voting.Cut()
 
-	proc/autotransfer()
-		initiate_vote("crew_transfer","the server", 1)
-		log_debug("The server has called a crew transfer vote")
-
 	proc/autogamemode()
 		initiate_vote("gamemode","the server", 1)
 		log_debug("The server has called a gamemode vote")
@@ -89,22 +85,6 @@ datum/controller/vote
 						choices[master_mode] += non_voters
 						if(choices[master_mode] >= greatest_votes)
 							greatest_votes = choices[master_mode]
-				else if(mode == "crew_transfer")
-					var/factor = 0.5
-					switch(world.time / (10 * 60)) // minutes
-						if(0 to 60)
-							factor = 0.5
-						if(61 to 120)
-							factor = 0.8
-						if(121 to 240)
-							factor = 1
-						if(241 to 300)
-							factor = 1.2
-						else
-							factor = 1.4
-					choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-					world << "<font color='purple'>Crew Transfer Factor: [factor]</font>"
-					greatest_votes = max(choices["Initiate Crew Transfer"], choices["Continue The Round"])
 
 
 		//get all options with that many votes and return them in a list
@@ -160,9 +140,6 @@ datum/controller/vote
 							restart = 1
 						else
 							master_mode = .
-				if("crew_transfer")
-					if(. == "Initiate Crew Transfer")
-						init_shift_change(null, 1)
 				if("add_antagonist")
 					if(isnull(.) || . == "None")
 						antag_add_failed = 1
@@ -217,19 +194,6 @@ datum/controller/vote
 						gamemode_names[M.config_tag] = capitalize(M.name) //It's ugly to put this here but it works
 						additional_text.Add("<td align = 'center'>[M.required_players]</td>")
 					gamemode_names["secret"] = "Secret"
-				if("crew_transfer")
-					if(check_rights(R_ADMIN|R_MOD, 0))
-						question = "End the shift?"
-						choices.Add("Initiate Crew Transfer", "Continue The Round")
-					else
-						if (get_security_level() == "red" || get_security_level() == "delta")
-							initiator_key << "The current alert status is too high to call for a crew transfer!"
-							return 0
-						if(ticker.current_state <= 2)
-							return 0
-							initiator_key << "The crew transfer button has been disabled!"
-						question = "End the shift?"
-						choices.Add("Initiate Crew Transfer", "Continue The Round")
 				if("add_antagonist")
 					if(!config.allow_extra_antags || ticker.current_state >= 2)
 						return 0
@@ -257,8 +221,6 @@ datum/controller/vote
 			log_vote(text)
 			world << "<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>"
 			switch(vote_type)
-				if("crew_transfer")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 				if("gamemode")
 					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 				if("custom")
@@ -318,10 +280,6 @@ datum/controller/vote
 			else
 				. += "<font color='grey'>Restart (Disallowed)</font>"
 			. += "</li><li>"
-			if(trialmin || config.allow_vote_restart)
-				. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
-			else
-				. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
 			if(trialmin)
 				. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[config.allow_vote_restart?"Allowed":"Disallowed"]</a>)"
 			. += "</li><li>"
@@ -337,7 +295,7 @@ datum/controller/vote
 			if(!antag_add_failed && config.allow_extra_antags)
 				. += "<a href='?src=\ref[src];vote=add_antagonist'>Add Antagonist Type</a>"
 			else
-				. += "<font color='grey'>Restart (Disallowed)</font>"
+				. += "<font color='grey'>Add Antagonist Type (Disallowed)</font>"
 			. += "</li>"
 			//custom
 			if(trialmin)
@@ -369,9 +327,6 @@ datum/controller/vote
 			if("gamemode")
 				if(config.allow_vote_mode || usr.client.holder)
 					initiate_vote("gamemode",usr.key)
-			if("crew_transfer")
-				if(config.allow_vote_restart || usr.client.holder)
-					initiate_vote("crew_transfer",usr.key)
 			if("add_antagonist")
 				if(config.allow_extra_antags)
 					initiate_vote("add_antagonist",usr.key)
