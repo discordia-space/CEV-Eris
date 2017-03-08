@@ -37,9 +37,6 @@ datum/controller/game_controller/proc/setup()
 	setupgenetics()
 	SetupXenoarch()
 
-	transfer_controller = new
-
-
 datum/controller/game_controller/proc/setup_objects()
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
 	sleep(-1)
