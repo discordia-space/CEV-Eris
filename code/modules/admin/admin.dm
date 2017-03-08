@@ -58,9 +58,28 @@ proc/admin_notice(var/message, var/rights)
 		<a href='?src=\ref[src];traitor=\ref[M]'>TP</a> -
 		<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a> -
 		<a href='?src=\ref[src];subtlemessage=\ref[M]'>SM</a> -
-		[admin_jump_link(M, src)]\] <br>
-		<b>Mob type</b> = [M.type]<br><br>
-		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
+		[admin_jump_link(M, src)]\] <br><br>"}
+
+	if(M.client)
+		body += {"<b>Client Online</b><br/>
+			<b>ckey</b> = [M.client.ckey]<br>
+			<b>Client Age</b> = [M.client.player_age] days<br>
+			<b>CID Related Accounts</b> = [M.client.related_accounts_cid]<br>
+			<b>IP Related Accounts</b> = [M.client.related_accounts_ip]<br>
+			<b>Client Gender</b> = [M.client.gender]<br>
+			<b>IP</b> = [M.client.address]<br>
+			<b>CID</b> = [M.client.computer_id]<br>
+			<b>Mob type</b> = [M.type]<br>
+			<b>Inactivity time:</b> [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br><br>"}
+	else
+		body += {"<b>Client Offline</b><br/>
+			<b>ckey</b> = [M.ckey]<br>
+			<b>IP</b> = [M.lastKnownIP]<br>
+			<b>CID</b> = [M.computer_id]<br>
+			<b>Mob type</b> = [M.type]<br>
+			<b>Inactivity time:</b> [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br><br>"}
+
+	body += {"<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
@@ -68,7 +87,8 @@ proc/admin_notice(var/message, var/rights)
 	"}
 
 	if(M.client)
-		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A> | "
+		body += {"| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A> |
+		<A href='?_src_=holder;sendbacktolobby=\ref[M]'>Send back to Lobby</A>"}
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
 			\[<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
