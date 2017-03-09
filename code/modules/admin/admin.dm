@@ -792,15 +792,6 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
 
 
-/datum/admins/proc/toggle_space_ninja()
-	set category = "Server"
-	set desc="Toggle space ninjas spawning."
-	set name="Toggle Space Ninjas"
-	config.ninjas_allowed = !config.ninjas_allowed
-	log_admin("[key_name(usr)] toggled Space Ninjas to [config.ninjas_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Space Ninjas [config.ninjas_allowed ? "on" : "off"].", 1)
-
-
 /datum/admins/proc/delay()
 	set category = "Server"
 	set desc="Delay the game start/end"
