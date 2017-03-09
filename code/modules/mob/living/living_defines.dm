@@ -39,6 +39,7 @@
 
 	var/mob/living/cameraFollow = null
 	var/list/datum/action/actions = list()
+	var/step_count = 0
 
 	var/tod = null // Time of death
 	var/update_slimes = 1

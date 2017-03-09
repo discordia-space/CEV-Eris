@@ -3,6 +3,7 @@
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_state = "carpet"
 	initial_flooring = /decl/flooring/carpet
+	footstep_sounds = list("human" = list('sound/effects/footstep/carpet_human.ogg'))
 
 /turf/simulated/floor/carpet/bcarpet
 	name = "black carpet"
@@ -56,6 +57,7 @@
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
+	footstep_sounds = list("human" = list('sound/effects/footstep/wood_all.ogg')) //@RonaldVanWonderen of Freesound.org
 
 /turf/simulated/floor/grass
 	name = "grass patch"
