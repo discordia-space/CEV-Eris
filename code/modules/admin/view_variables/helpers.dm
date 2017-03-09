@@ -47,7 +47,6 @@
 		<option value='?_src_=vars;godmode=\ref[src]'>Toggle Godmode</option>
 		<option value='?_src_=vars;build_mode=\ref[src]'>Toggle Build Mode</option>
 
-		<option value='?_src_=vars;ninja=\ref[src]'>Make Space Ninja</option>
 		<option value='?_src_=vars;make_skeleton=\ref[src]'>Make 2spooky</option>
 
 		<option value='?_src_=vars;direct_control=\ref[src]'>Assume Direct Control</option>
