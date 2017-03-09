@@ -592,3 +592,6 @@ proc/is_blind(A)
 
 /mob/living/silicon/ai/get_multitool()
 	return ..(aiMulti)
+
+/mob/proc/ssd_check()
+	return !client && !teleop
