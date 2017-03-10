@@ -130,11 +130,11 @@
 				//walking AND no shoes
 					//-(7 - 2) = (-5) = -5 | -5 - (0.333 * 2) = -5.666 | (7 + -5.666) = 1.334 | 1.334 * 3 = 4.002 | range(4.002) = range(4)
 
-				var/volume = 13
+				var/volume = 34
 				if(m_intent == "walk")
-					volume -= 4
+					volume -= 15
 				if(!shoes)
-					volume -= 4
+					volume -= 15
 
 				if(istype(shoes, /obj/item/clothing/shoes))
 					var/obj/item/clothing/shoes/shooess = shoes
