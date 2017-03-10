@@ -132,9 +132,9 @@
 
 				var/volume = 34
 				if(m_intent == "walk")
-					volume -= 15
+					volume -= 12
 				if(!shoes)
-					volume -= 15
+					volume -= 12
 
 				if(istype(shoes, /obj/item/clothing/shoes))
 					var/obj/item/clothing/shoes/shooess = shoes
