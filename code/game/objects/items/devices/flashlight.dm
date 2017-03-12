@@ -214,11 +214,10 @@
 	name = "green glowstick"
 	desc = "A military-grade glowstick."
 	w_class = 2.0
-	brightness_on = 4
-	light_power = 2
 	color = "#49F37C"
 	icon_state = "glowstick"
 	item_state = "glowstick"
+	action_button_name = null
 	var/fuel = 0
 
 /obj/item/device/flashlight/glowstick/New()
@@ -250,7 +249,7 @@
 		I.blend_mode = BLEND_ADD
 		overlays += I
 		item_state = "glowstick-on"
-		set_light(brightness_on)
+		set_light(2.5, 1)
 	else
 		icon_state = "glowstick"
 	var/mob/M = loc
