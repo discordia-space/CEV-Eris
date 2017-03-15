@@ -267,7 +267,7 @@
 			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
 			return 0
 
-		move_delay = world.time + world.tick_lag + world.tick_lag//set move delay
+		move_delay = world.time + world.tick_lag //set move delay
 
 		switch(mob.m_intent)
 			if("run")
