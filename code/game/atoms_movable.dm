@@ -17,8 +17,6 @@
 
 	var/auto_init = 1
 
-	glide_size = 8
-
 /atom/movable/New()
 	..()
 	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
