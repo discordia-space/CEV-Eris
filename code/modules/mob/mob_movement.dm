@@ -192,9 +192,6 @@
 
 	if(moving)	return 0
 
-	if(isobserver(mob))
-		return mob.Move(n,direct)
-
 	if(world.time < move_delay)	return
 
 	if(locate(/obj/effect/stop/, mob.loc))
@@ -267,7 +264,7 @@
 			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
 			return 0
 
-		move_delay = world.time + world.tick_lag //set move delay
+		move_delay = world.time//set move delay
 
 		switch(mob.m_intent)
 			if("run")
@@ -287,7 +284,7 @@
 		if(istype(mob.buckled, /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
-			move_delay = world.time + world.tick_lag + tickcomp
+			move_delay = world.time + tickcomp
 			//drunk driving
 			if(mob.confused)
 				direct = pick(cardinal)
