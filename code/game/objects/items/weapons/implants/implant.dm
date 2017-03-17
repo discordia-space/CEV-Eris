@@ -320,18 +320,18 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	name = "loyalty implant"
 	desc = "Makes you loyal or such."
 
-	get_data()
-		var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> [company_name] Employee Management Implant<BR>
-<b>Life:</b> Ten years.<BR>
-<b>Important Notes:</b> Personnel injected with this device tend to be much more loyal to the company.<BR>
-<HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a small pod of nanobots that manipulate the host's mental functions.<BR>
-<b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
-<b>Integrity:</b> Implant will last so long as the nanobots are inside the bloodstream."}
-		return dat
+/obj/item/weapon/implant/loyalty/get_data()
+	var/data = {"
+			<b>Implant Specifications:</b><BR>
+			<b>Name:</b> [company_name] Employee Management Implant<BR>
+			<b>Life:</b> Ten years.<BR>
+			<b>Important Notes:</b> Personnel injected with this device tend to be much more loyal to the company.<BR>
+			<HR>
+			<b>Implant Details:</b><BR>
+			<b>Function:</b> Contains a small pod of nanobots that manipulate the host's mental functions.<BR>
+			<b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
+			<b>Integrity:</b> Implant will last so long as the nanobots are inside the bloodstream."}
+	return data
 
 
 	implanted(mob/M)
