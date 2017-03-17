@@ -19,8 +19,8 @@
 	. = ..()
 #ifdef USE_OPENSPACE
 	if(istype(mover, /mob/shadow))
-#endif USE_OPENSPACE
 		return
+#endif USE_OPENSPACE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
