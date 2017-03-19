@@ -142,6 +142,7 @@ var/datum/controller/process/open_space/OS_controller = null
 					new_list = LIST_SLOW
 					T.icon = below.icon
 					T.icon_state = below.icon_state
+					T.dir = below.dir
 					T.color = below.color//rgb(127,127,127)
 					T.overlays += below.overlays
 

@@ -6,9 +6,8 @@
 /obj/machinery/computer/power_monitor
 	name = "Power Monitoring Console"
 	desc = "Computer designed to remotely monitor power levels around the station"
-	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "power_key"
-	icon_screen = "power"
+	icon_screen = "power_monitor"
 	light_color = "#ffcc33"
 
 	//computer stuff
@@ -30,16 +29,14 @@
 
 // Updates icon of this computer according to current status.
 /obj/machinery/computer/power_monitor/update_icon()
+	..()
 	if(stat & BROKEN)
-		icon_state = "powerb"
-		return
-	if(stat & NOPOWER)
-		icon_state = "power0"
+		icon_screen = "broken"
 		return
 	if(alerting)
-		icon_state = "power_alert"
+		icon_screen = "power_monitor_warn"
 		return
-	icon_state = "power"
+	 icon_screen = "power_monitor"
 
 // On creation automatically connects to active sensors. This is delayed to ensure sensors already exist.
 /obj/machinery/computer/power_monitor/New()
