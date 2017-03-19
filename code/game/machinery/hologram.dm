@@ -59,7 +59,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 /obj/machinery/hologram/holopad/attack_hand(var/mob/living/carbon/human/user) //Carn: Hologram requests.
 	if(!istype(user))
 		return
-	if(incoming_connection&&caller_id)
+	if(incoming_connection && caller_id)
 		visible_message("The pad hums quietly as it establishes a connection.")
 		if(caller_id.loc!=sourcepad.loc)
 			visible_message("The pad flashes an error message. The caller has left their holopad.")
@@ -125,7 +125,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 		activate_holocall(caller_id)
 	log_admin("[key_name(caller_id)] just established a holopad connection from [sourcepad.loc.loc] to [src.loc.loc]")
 
-/obj/machinery/hologram/holopad/proc/end_call(mob/user)
+/obj/machinery/hologram/holopad/proc/end_call(mob/living/carbon/user)
 	caller_id.unset_machine()
 	caller_id.reset_view() //Send the caller back to his body
 	clear_holo(0, caller_id) // destroy the hologram
@@ -227,7 +227,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 /obj/machinery/hologram/holopad/proc/create_holo(mob/living/silicon/ai/A, mob/living/carbon/caller_id, turf/T = loc)
 	var/obj/effect/overlay/hologram = new(T)//Spawn a blank effect at the location.
 	if(caller_id)
-		var/tempicon = 0
+		var/icon/tempicon = new
 		for(var/datum/data/record/t in data_core.locked)
 			if(t.fields["name"]==caller_id.name)
 				tempicon = t.fields["image"]
@@ -239,15 +239,15 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	hologram.anchored = 1//So space wind cannot drag it.
 	if(caller_id)
 		hologram.name = "[caller_id.name] (Hologram)"
-		hologram.loc = get_step(src,1)
+		hologram.loc = get_step(src, loc)
 		masters[caller_id] = hologram
 	else
 		hologram.name = "[A.name] (Hologram)"//If someone decides to right click.
 		A.holo = src
 		masters[A] = hologram
-	hologram.set_light(2)	//hologram lighting
+	hologram.set_light(2, 2, "#00CCFF")	//hologram lighting
 	hologram.color = color //painted holopad gives coloured holograms
-	set_light(2)			//pad lighting
+	set_light(2, 2, "#00CCFF")			//pad lighting
 	icon_state = "holopad1"
 	return 1
 
@@ -281,7 +281,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			continue
 
 		use_power(power_per_hologram)
-	if(last_request + 200 < world.time&&incoming_connection==1)
+	if(last_request + 200 < world.time && incoming_connection==1)
 		if(sourcepad)
 			sourcepad.audible_message("<i><span class='game say'>The holopad connection timed out</span></i>")
 		incoming_connection = 0
