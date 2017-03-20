@@ -180,6 +180,7 @@
 
 	var/obj/item/weapon/implant/loyalty/L = new /obj/item/weapon/implant/loyalty(src)
 	L.imp_in = src
+	L.loc = src
 	L.implanted = 1
 	var/obj/item/organ/external/affected = get_organ("head")
 	affected.implants += L
