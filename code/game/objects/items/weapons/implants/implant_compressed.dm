@@ -7,19 +7,6 @@
 	legal = FALSE
 	origin_tech = list(TECH_MATERIAL=2, TECH_MAGNET=4, TECH_BLUESPACE=5, TECH_ILLEGAL=4)
 
-/obj/item/weapon/implant/compressed/get_data()
-	var/data = {"
-		<b>Implant Specifications:</b><BR>
-		<b>Name:</b> [company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
-		<b>Life:</b> Activates upon death.<BR>
-		<b>Important Notes:</b> Alerts crew to crewmember death.<BR>
-		<HR>
-		<b>Implant Details:</b><BR>
-		<b>Function:</b> Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
-		<b>Special Features:</b> Alerts crew to crewmember death.<BR>
-		<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
-	return data
-
 /obj/item/weapon/implant/compressed/trigger(emote, mob/source as mob)
 	if (src.scanned == null)
 		return 0
