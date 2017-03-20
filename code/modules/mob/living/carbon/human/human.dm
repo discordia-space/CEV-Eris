@@ -184,7 +184,7 @@
 	var/obj/item/organ/external/affected = get_organ("head")
 	affected.implants += L
 	L.part = affected
-	L.implanted(src)
+	L.implant(src)
 
 
 /mob/living/carbon/human/restrained()
