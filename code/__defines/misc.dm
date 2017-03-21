@@ -4,10 +4,6 @@
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
-#define SPACE_PLANE     -3
-#define PARALLAX_PLANE  -2
-#define OPENSPACE_PLANE -1
-
 // Invisibility constants.
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35

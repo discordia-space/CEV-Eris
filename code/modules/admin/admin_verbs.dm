@@ -179,6 +179,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
 	/client/proc/dsay,
+	/client/proc/check_positions,
 	/datum/admins/proc/run_unit_test
 	)
 
