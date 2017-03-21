@@ -38,9 +38,6 @@
 	var/backbag = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 
 	// General information
-	var/home_system = ""
-	var/citizenship = ""
-	var/personal_faction = ""
 	var/religion = ""
 
 	//Equipment slots
