@@ -17,17 +17,16 @@
 	return data
 
 
-/obj/item/weapon/implant/loyalty/implant(mob/M)
-	if(!istype(M, /mob/living/carbon/human))	return 0
-	var/mob/living/carbon/human/H = M
+/obj/item/weapon/implant/loyalty/install(mob/living/carbon/human/H)
 	var/datum/antagonist/antag_data = get_antag_data(H.mind.special_role)
 	if(antag_data && (antag_data.flags & ANTAG_IMPLANT_IMMUNE))
 		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [company_name] try to invade your mind!")
-		return 0
+
 	else
+		..()
 		clear_antag_roles(H.mind, 1)
 		H << "<span class='notice'>You feel a surge of loyalty towards [company_name].</span>"
-	return 1
+
 
 
 /obj/item/weapon/implantcase/loyalty

@@ -29,10 +29,10 @@
 
 	return
 
-/obj/item/weapon/implant/adrenalin/implant(mob/source)
-	source.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)
-	source << "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate."
-	return 1
+/obj/item/weapon/implant/adrenalin/install(mob/living/carbon/human/H)
+	..()
+	H.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)
+	H << "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate."
 
 
 /obj/item/weapon/implantcase/adrenalin

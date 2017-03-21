@@ -187,10 +187,6 @@
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
 		G.fields["sex"]			= H.gender
-		G.fields["species"]		= H.get_species()
-		G.fields["home_system"]	= H.home_system
-		G.fields["citizenship"]	= H.citizenship
-		G.fields["faction"]		= H.personal_faction
 		G.fields["religion"]	= H.religion
 		if(H.gen_record && !jobban_isbanned(H, "Records"))
 			G.fields["notes"] = H.gen_record
@@ -221,10 +217,6 @@
 		L.fields["b_dna"]		= H.dna.unique_enzymes
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
 		L.fields["identity"]	= H.dna.UI // "
-		L.fields["species"]		= H.get_species()
-		L.fields["home_system"]	= H.home_system
-		L.fields["citizenship"]	= H.citizenship
-		L.fields["faction"]		= H.personal_faction
 		L.fields["religion"]	= H.religion
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
 		if(H.exploit_record && !jobban_isbanned(H, "Records"))
@@ -322,9 +314,6 @@ proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
 	G.fields["species"] = "Human"
-	G.fields["home_system"]	= "Unknown"
-	G.fields["citizenship"]	= "Unknown"
-	G.fields["faction"]		= "Unknown"
 	G.fields["religion"]	= "Unknown"
 	G.fields["photo_front"]	= front
 	G.fields["photo_side"]	= side

@@ -46,21 +46,8 @@
 		if (T1 && ((M == user) || do_after(user, 50, M)))
 			if(user && M && (get_turf(M) == T1) && src && src.implant)
 				M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
-
 				admin_attack_log(user, M, "Implanted using \the [src.name] ([src.implant.name])", "Implanted with \the [src.name] ([src.implant.name])", "used an implanter, [src.name] ([src.implant.name]), on")
-
-				if(src.implant.implant(M))
-					src.implant.loc = M
-					src.implant.imp_in = M
-					src.implant.implanted = 1
-					if (ishuman(M))
-						var/mob/living/carbon/human/H = M
-						var/obj/item/organ/external/affected = H.get_organ(user.targeted_organ)
-						affected.implants += src.implant
-						implant.part = affected
-
-						BITSET(H.hud_updateflag, IMPLOYAL_HUD)
-
+				src.implant.install(M, user.targeted_organ)
 				src.implant = null
 				update()
 

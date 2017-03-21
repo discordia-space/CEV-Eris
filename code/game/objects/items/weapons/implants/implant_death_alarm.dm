@@ -66,10 +66,10 @@
 	spawn(20)
 		malfunction--
 
-/obj/item/weapon/implant/death_alarm/implant(mob/source as mob)
+/obj/item/weapon/implant/death_alarm/install(mob/source as mob)
+	..()
 	mobname = source.real_name
 	processing_objects.Add(src)
-	return 1
 
 
 /obj/item/weapon/implantcase/death_alarm
