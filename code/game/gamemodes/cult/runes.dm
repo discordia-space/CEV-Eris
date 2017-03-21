@@ -301,7 +301,7 @@ var/list/sacrificed = list()
 					else
 						corpse_to_raise = M
 						if(M.key)
-							M.ghostize(1)	//kick them out of their body
+							M.daemonize()	//kick them out of their body
 						break
 			if(!corpse_to_raise)
 				if(is_sacrifice_target)
