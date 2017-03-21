@@ -63,7 +63,7 @@ var/datum/controller/process/open_space/OS_controller = null
 			SCHECK
 
 /datum/controller/process/open_space/proc/add_turf(var/turf/T)
-	var/datum/ospace_data/OD = levels["[T.z]"]
+	var/datum/ospace_data/OD = levels_by_name["[T.z]"]
 	if(OD)
 		OD.add(list(T), LIST_FAST, 1)
 
@@ -76,7 +76,6 @@ var/datum/controller/process/open_space/OS_controller = null
 	. = ..()
 	if(ticker)
 		OS_controller.add_turf(src)
-
 /turf/simulated/open/New()
 	..()
 	if(ticker)
