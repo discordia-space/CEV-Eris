@@ -127,7 +127,7 @@
 				new path(H.l_hand)
 
 	//Loyalty implant
-	if(implanted) H.implant()
+	if(implanted) H.implant_loyalty()
 
 	return 1
 

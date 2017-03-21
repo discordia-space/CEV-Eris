@@ -175,7 +175,7 @@
 
 			if(istype(obj,/obj/item/weapon/implant))
 				var/obj/item/weapon/implant/imp = obj
-				if (imp.islegal())
+				if (imp.legal)
 					find_prob +=60
 				else
 					find_prob +=40
