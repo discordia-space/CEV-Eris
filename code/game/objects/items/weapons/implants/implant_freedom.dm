@@ -46,10 +46,10 @@
 					W.layer = initial(W.layer)
 	return
 
-/obj/item/weapon/implant/freedom/implant(mob/living/carbon/source)
-	source.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	source << "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
-	return 1
+/obj/item/weapon/implant/freedom/install(mob/living/carbon/human/H)
+	..()
+	H.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
+	H << "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
 
 /obj/item/weapon/implant/freedom/get_data()
 	var/data = {"

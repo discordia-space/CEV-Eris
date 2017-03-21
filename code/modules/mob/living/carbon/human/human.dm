@@ -174,20 +174,6 @@
 	if(update)	UpdateDamageIcon()
 
 
-/mob/living/carbon/human/proc/implant_loyalty()
-	if(!config.use_loyalty_implants)
-		return
-
-	var/obj/item/weapon/implant/loyalty/L = new /obj/item/weapon/implant/loyalty(src)
-	L.imp_in = src
-	L.loc = src
-	L.implanted = 1
-	var/obj/item/organ/external/affected = get_organ("head")
-	affected.implants += L
-	L.part = affected
-	L.implant(src)
-
-
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
 		return 1

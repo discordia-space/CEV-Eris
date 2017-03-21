@@ -126,8 +126,9 @@
 			else if(istype(H.l_hand, /obj/item/weapon/storage))
 				new path(H.l_hand)
 
-	//Loyalty implant
-	if(implanted) H.implant_loyalty()
+	if(implanted)
+		var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(src)
+		I.install(H, "head")
 
 	return 1
 

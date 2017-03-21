@@ -20,11 +20,14 @@
 /obj/item/weapon/implant/proc/activate()
 	return
 
-// What does the implant do upon injection?
-// return 0 if the implant fails (ex. Revhead and loyalty implant.)
-// return 1 if the implant succeeds (ex. Nonrevhead and loyalty implant.)
-/obj/item/weapon/implant/proc/implant(var/mob/source)
-	return 1
+/obj/item/weapon/implant/proc/install(var/mob/living/carbon/human/H, affected_organ)
+	src.loc = H
+	src.imp_in = H
+	src.implanted = TRUE
+	var/obj/item/organ/external/affected = H.get_organ(affected_organ)
+	affected.implants += src
+	src.part = affected
+	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 
 /obj/item/weapon/implant/proc/get_data()
 	return "No information available"
