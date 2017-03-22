@@ -6,26 +6,29 @@
 	desc = "Cats really don't like these things."
 	density = 0
 	anchored = 1.0
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/catwalk1.ogg',\
+		'sound/effects/footstep/catwalk2.ogg',\
+		'sound/effects/footstep/catwalk3.ogg',\
+		'sound/effects/footstep/catwalk4.ogg',\
+		'sound/effects/footstep/catwalk5.ogg'))
 
-	New()
-		..()
-//		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
-		spawn(4)
-			if(src)
-				for(var/obj/structure/catwalk/C in get_turf(src))
-					if(C != src)
-						qdel(C)
-				update_icon()
-				for (var/dir in list(1,2,4,8,5,6,9,10))
-					if(locate(/obj/structure/catwalk, get_step(src, dir)))
-						var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
-						L.update_icon() //so siding get updated properly
-	proc
-		is_catwalk()
-			return 1
+/obj/structure/catwalk/New()
+	..()
+//	set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
+	spawn(4)
+		if(src)
+			for(var/obj/structure/catwalk/C in get_turf(src))
+				if(C != src)
+					qdel(C)
+			update_icon()
+			for (var/dir in list(1,2,4,8,5,6,9,10))
+				if(locate(/obj/structure/catwalk, get_step(src, dir)))
+					var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
+					L.update_icon() //so siding get updated properly
 
-
-
+/obj/structure/catwalk/proc/is_catwalk()
+	return 1
 
 /obj/structure/catwalk/update_icon()
 	var/connectdir = 0
@@ -56,7 +59,6 @@
 			diagonalconnect |= 8
 
 	icon_state = "catwalk[connectdir]-[diagonalconnect]"
-
 
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)

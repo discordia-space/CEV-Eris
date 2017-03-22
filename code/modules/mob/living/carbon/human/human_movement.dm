@@ -108,7 +108,7 @@
 		return 1
 	return 0
 
-/mob/living/carbon/human/handle_footstep(turf/T)
+/mob/living/carbon/human/handle_footstep(atom/T)
 	if(..())
 		if(T.footstep_sounds["human"])
 			var/S = pick(T.footstep_sounds["human"])
@@ -130,11 +130,11 @@
 				//walking AND no shoes
 					//-(7 - 2) = (-5) = -5 | -5 - (0.333 * 2) = -5.666 | (7 + -5.666) = 1.334 | 1.334 * 3 = 4.002 | range(4.002) = range(4)
 
-				var/volume = 34
+				var/volume = 90
 				if(m_intent == "walk")
-					volume -= 12
+					volume -= 55
 				if(!shoes)
-					volume -= 12
+					volume -= 70
 
 				if(istype(shoes, /obj/item/clothing/shoes))
 					var/obj/item/clothing/shoes/shooess = shoes

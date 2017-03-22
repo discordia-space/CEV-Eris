@@ -24,8 +24,6 @@
 
 	var/list/decals
 
-	var/list/footstep_sounds = list()		// Footsteps sound
-
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
