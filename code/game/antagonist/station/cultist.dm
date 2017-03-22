@@ -116,6 +116,6 @@ var/datum/antagonist/cultist/cult
 	if(!..())
 		return 0
 	for(var/obj/item/weapon/implant/loyalty/L in player.current)
-		if(L && (L.imp_in == player.current))
+		if(L && (L.wearer == player.current))
 			return 0
 	return 1

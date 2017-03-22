@@ -17,8 +17,8 @@
 
 /obj/item/weapon/implant/compressed/activate()
 	var/turf/t = get_turf(src)
-	if (imp_in)
-		imp_in.put_in_hands(scanned)
+	if (wearer)
+		wearer.put_in_hands(scanned)
 	else
 		scanned.loc = t
 	qdel(src)
