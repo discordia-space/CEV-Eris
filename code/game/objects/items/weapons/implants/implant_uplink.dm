@@ -2,6 +2,8 @@
 	name = "uplink"
 	desc = "Summon things."
 	var/activation_emote = "chuckle"
+	legal = FALSE
+	origin_tech = list(TECH_MATERIAL=4, TECH_MAGNET=4, TECH_DATA=4, TECH_BIO=4, TECH_ILLEGAL=5, TECH_BLUESPACE=5)
 
 /obj/item/weapon/implant/uplink/New()
 	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
@@ -10,12 +12,12 @@
 	..()
 	return
 
-/obj/item/weapon/implant/uplink/implanted(mob/source)
+/obj/item/weapon/implant/uplink/install(mob/living/carbon/human/H)
+	..()
 	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-	source.mind.store_memory("Uplink implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	source << "The implanted uplink implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
-	hidden_uplink.uplink_owner = source.mind
-	return 1
+	H.mind.store_memory("Uplink implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
+	H << "The implanted uplink implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
+	hidden_uplink.uplink_owner = H.mind
 
 
 /obj/item/weapon/implant/uplink/trigger(emote, mob/source as mob)

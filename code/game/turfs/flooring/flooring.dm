@@ -155,6 +155,18 @@ var/list/flooring_types
 //	name = "monofloor"
 	icon_base = "monofloor"
 
+/decl/flooring/tiling/new_tile/monotile
+//	name = "monotile"
+	icon_base = "monotile"
+
+/decl/flooring/tiling/new_tile/steel_grid
+//	name = "steelgrid"
+	icon_base = "steel_grid"
+
+/decl/flooring/tiling/new_tile/steel_ridged
+//	name = "steelridged"
+	icon_base = "steel_ridged"
+
 /decl/flooring/linoleum
 	name = "linoleum"
 	desc = "It's like the 2390's all over again."

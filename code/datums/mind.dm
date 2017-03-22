@@ -322,7 +322,8 @@
 				log_admin("[key_name_admin(usr)] has de-loyalty implanted [current].")
 			if("add")
 				H << "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font></span>"
-				H.implant_loyalty(H, override = TRUE)
+				var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(H)
+				I.install(H, "head")
 				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
 			else
 	else if (href_list["silicon"])
