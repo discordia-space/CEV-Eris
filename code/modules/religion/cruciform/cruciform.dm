@@ -17,7 +17,7 @@ var/list/christians = list()
 /obj/item/weapon/implant/cruciform/proc/restore_power(var/value)
 	power = min(max_power, power + value)
 
-/obj/item/weapon/implant/cruciform/install(/mob/living/carbon/human/H)
+/obj/item/weapon/implant/cruciform/install(mob/living/carbon/human/H)
 	..(H, "chest")
 	src.dna = H.dna
 	processing_objects.Add(src)
@@ -40,8 +40,8 @@ var/list/christians = list()
 		return
 
 	message = replace_characters(message, list("." = ""))
-	for(/datum/ritual/R in allowed_rituals)
-		if(R.phrase = message)
+	for(var/datum/ritual/R in allowed_rituals)
+		if(R.phrase == message)
 			if(R.power > src.power)
 				H << "<span class='danger'></span>"
 				return

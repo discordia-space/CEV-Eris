@@ -6,7 +6,7 @@
 	var/success_message = "Ritual successed."
 	var/fail_message = "Ritual failed."
 
-/datum/ritual/proc/perform(mob/living/carbon/human/H, /obj/item/weapon/implant/cruciform/C, var/success)
+/datum/ritual/proc/perform(mob/living/carbon/human/H, obj/item/weapon/implant/cruciform/C, var/success)
 	if(success)
 		C.use_power(src.power)
 		H << "<span class='notice'>[success_message]</span>"
@@ -21,7 +21,7 @@
 	power = 50
 	chance = 33
 
-/datum/ritual/relief/perform(mob/living/carbon/human/H, /obj/item/weapon/implant/cruciform/C)
+/datum/ritual/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/cruciform/C)
 	var/success = prob(chance * C.success_modifier)
 	if(success)
 		H.add_chemical_effect(CE_PAINKILLER, 10)
@@ -34,7 +34,7 @@
 	power = 50
 	chance = 33
 
-/datum/ritual/soul_hunger/perform(mob/living/carbon/human/H, /obj/item/weapon/implant/cruciform/C)
+/datum/ritual/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/cruciform/C)
 	var/success = prob(chance * C.success_modifier)
 	if(success)
 		H.nutrition += 100
@@ -48,13 +48,13 @@
 	power = 50
 	chance = 60
 
-/datum/ritual/entreaty/perform(mob/living/carbon/human/H, /obj/item/weapon/implant/cruciform/C)
+/datum/ritual/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/cruciform/C)
 	var/success = prob(chance * C.success_modifier)
 	if(success)
-		for(mob/living/carbon/human/target in christians)
+		for(var/mob/living/carbon/human/target in christians)
 			if(target == H)
 				continue
-			if(locate(/obj/item/weapon/cruciform/priest, target) || prob(20))
+			if(locate(/obj/item/weapon/implant/cruciform/priest, target) || prob(20))
 				target << "<span class='danger'>[H], faithful cruciform follower, cries for salvation!</span>"
 	..(H, C, success)
 
