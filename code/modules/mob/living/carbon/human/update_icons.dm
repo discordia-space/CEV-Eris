@@ -330,9 +330,6 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)
 		update_icons()
 
-	//tail
-	update_tail_showing(0)
-
 //HAIR OVERLAY
 /mob/living/carbon/human/proc/update_hair(var/update_icons=1)
 	//Reset our hair
@@ -793,11 +790,9 @@ var/global/list/damage_icon_parts = list()
 				standing.overlays |= A.get_mob_overlay()
 
 		overlays_standing[SUIT_LAYER]	= standing
-		update_tail_showing(0)
 
 	else
 		overlays_standing[SUIT_LAYER]	= null
-		update_tail_showing(0)
 		update_inv_shoes(0)
 
 	update_collar(0)
