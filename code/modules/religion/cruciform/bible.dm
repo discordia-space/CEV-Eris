@@ -5,6 +5,9 @@
 	icon_state = "bible"
 	var/list/rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/entreaty)
 
+/obj/item/weapon/book/attack_self(mob/living/carbon/human/H)
+	interact(H)
+
 /obj/item/weapon/book/bible/interact(mob/living/carbon/human/H)
 	var/data = null
 	for(var/datum/ritual/R in rituals)
