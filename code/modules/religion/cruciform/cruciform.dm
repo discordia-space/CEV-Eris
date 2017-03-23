@@ -1,6 +1,4 @@
 var/list/christians = list()
-// Kind shitty solution, but needed for testing
-var/mob/living/carbon/human/priest = null
 
 /obj/item/weapon/implant/cruciform
 	name = "cruciform"
@@ -9,7 +7,9 @@ var/mob/living/carbon/human/priest = null
 	var/dna = null
 	var/power = 50
 	var/max_power = 50
-	var/list/allowed_rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/banish, /datum/ritual/entreaty)
+	var/success_modifier = 1
+	var/active = FALSE
+	var/list/allowed_rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/entreaty)
 
 /obj/item/weapon/implant/cruciform/proc/use_power(var/value)
 	power = max(0, power - value)
@@ -24,21 +24,27 @@ var/mob/living/carbon/human/priest = null
 	christians.Add(H)
 
 /obj/item/weapon/implant/cruciform/process()
-	if(!implanted && !wearer)
+	if((!implanted && !wearer) || !active)
 		return
-	restore_power(1)
+	restore_power(0.5)
 
 /obj/item/weapon/implant/cruciform/Destroy()
 	processing_objects.Remove(src)
 	..()
 
 /obj/item/weapon/implant/cruciform/hear_talk(mob/living/carbon/human/H, message)
+	if(!active)
+		return
+
 	if(wearer != H)
 		return
 
-	message = replace_characters(message, list("," = "", "." = ""))
+	message = replace_characters(message, list("." = ""))
 	for(/datum/ritual/R in allowed_rituals)
 		if(R.phrase = message)
+			if(R.power > src.power)
+				H << "<span class='danger'></span>"
+				return
 			R.perform(H, src)
 			return
 
@@ -46,7 +52,4 @@ var/mob/living/carbon/human/priest = null
 /obj/item/weapon/implant/cruciform/priest
 	power = 100
 	max_power = 100
-
-/obj/item/weapon/implant/cruciform/priest/install(/mob/living/carbon/human/H)
-	priest = H
-	..()
+	success_modifier = 3
