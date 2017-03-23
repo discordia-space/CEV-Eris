@@ -203,6 +203,6 @@ var/global/datum/matchmaker/matchmaker = new()
 			for(var/datum/relation/R in relations)
 				R.finalize()
 			usr << browse(null, "window=relations")
-		else
-			usr << browse(null, "window=relations")
+		//else
+			//usr << browse(null, "window=relations")	//Window must stay open
 		return 1
