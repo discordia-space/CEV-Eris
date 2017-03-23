@@ -34,7 +34,7 @@
 				Tr = get_turf(C)
 				if((Tr) && (Tr.z != src.z))	continue//Out of range
 				if(!C.implanted) continue
-				dat += "[C.imp_in.name] | Remaining Units: [C.reagents.total_volume] | Inject: "
+				dat += "[C.wearer.name] | Remaining Units: [C.reagents.total_volume] | Inject: "
 				dat += "<A href='?src=\ref[src];inject1=\ref[C]'>(<font color=red>(1)</font>)</A>"
 				dat += "<A href='?src=\ref[src];inject5=\ref[C]'>(<font color=red>(5)</font>)</A>"
 				dat += "<A href='?src=\ref[src];inject10=\ref[C]'>(<font color=red>(10)</font>)</A><BR>"
@@ -45,7 +45,7 @@
 				if((Tr) && (Tr.z != src.z))	continue//Out of range
 				if(!T.implanted) continue
 				var/loc_display = "Unknown"
-				var/mob/living/carbon/M = T.imp_in
+				var/mob/living/carbon/M = T.wearer
 				if((M.z in config.station_levels) && !istype(M.loc, /turf/space))
 					var/turf/mob_loc = get_turf(M)
 					loc_display = mob_loc.loc
@@ -95,8 +95,8 @@
 				var/warning = sanitize(input(usr,"Message:","Enter your message here!",""))
 				if(!warning) return
 				var/obj/item/weapon/implant/I = locate(href_list["warn"])
-				if((I)&&(I.imp_in))
-					var/mob/living/carbon/R = I.imp_in
+				if(I && I.wearer)
+					var/mob/living/carbon/R = I.wearer
 					R << "<span class='notice'>You hear a voice in your head saying: '[warning]'</span>"
 
 			src.add_fingerprint(usr)

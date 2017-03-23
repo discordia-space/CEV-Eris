@@ -408,7 +408,7 @@
 	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)
 	if (isnull(imp))
 		imp = new /obj/item/weapon/implant/health(subject)
-		imp.implanted = subject
+		imp.install(subject)
 		R.implant = "\ref[imp]"
 	//Update it if needed
 	else
