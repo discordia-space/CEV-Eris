@@ -1,8 +1,8 @@
 /obj/item/weapon/book/bible
 	name = "Cyberchristian prayer book"
 	desc = "Contains holy litany and chants."
-	icon_state ="bible"
-	item_state = "bible"
+	icon = 'icons/obj/library.dmi'
+	icon_state = "bible"
 	var/list/rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/entreaty)
 
 /obj/item/weapon/book/bible/interact(mob/living/carbon/human/H)

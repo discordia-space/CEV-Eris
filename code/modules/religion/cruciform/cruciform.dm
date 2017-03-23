@@ -2,6 +2,7 @@ var/list/christians = list()
 
 /obj/item/weapon/implant/cruciform
 	name = "cruciform"
+	icon_state = "cruciform_red"
 	w_class = 2
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
 	var/dna = null
@@ -50,6 +51,7 @@ var/list/christians = list()
 
 
 /obj/item/weapon/implant/cruciform/priest
+	icon_state = "cruciform_green"
 	power = 100
 	max_power = 100
 	success_modifier = 3
