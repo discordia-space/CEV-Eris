@@ -244,12 +244,6 @@ var/global/list/damage_icon_parts = list()
 	else
 		icon_key += "#000000"
 
-	var/obj/item/weapon/implant/cruciform/C = locate(/obj/item/weapon/implant/cruciform, src)
-	if(C && C.wearer == src)
-		var/gender = src.gender == "MALE" ? "_m" : "_f"
-		var/image/cruciform = image("icon"='icons/mob/human_races/cyberlimbs/neotheology.dmi', "icon_state"="[C.icon_state][gender][body_build.index]")
-		icon_key += cruciform
-
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part) || part.is_stump())

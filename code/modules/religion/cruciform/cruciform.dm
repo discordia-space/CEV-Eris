@@ -20,9 +20,12 @@ var/list/christians = list()
 
 /obj/item/weapon/implant/cruciform/install(mob/living/carbon/human/H)
 	..(H, "chest")
-	src.dna = H.dna
+
+/obj/item/weapon/implant/cruciform/activate()
+	active = TRUE
+	src.dna = wearer.dna
 	processing_objects.Add(src)
-	christians.Add(H)
+	christians.Add(wearer)
 
 /obj/item/weapon/implant/cruciform/process()
 	if((!implanted && !wearer) || !active)
