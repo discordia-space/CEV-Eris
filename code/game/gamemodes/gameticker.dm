@@ -285,7 +285,6 @@ var/global/datum/controller/gameticker/ticker
 					captainless=0
 				if(!player_is_antag(player.mind, only_offstation_roles = 1))
 					job_master.EquipRank(player, player.mind.assigned_role, 0)
-					UpdateFactionList(player)
 					equip_custom_items(player)
 		if(captainless)
 			for(var/mob/M in player_list)
@@ -341,12 +340,10 @@ var/global/datum/controller/gameticker/ticker
 
 			mode.cleanup()
 
-			//call a transfer shuttle vote
 			spawn(50)
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
 					world << "<span class='danger'>The round has ended!</span>"
 					round_end_announced = 1
-				vote.autotransfer()
 
 		return 1
 

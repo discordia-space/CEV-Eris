@@ -40,3 +40,11 @@ What is the naming convention for planes or layers?
 
 */
 
+#define SPACE_PLANE     -10
+
+#define PARALLAX_PLANE  -9
+
+#define OPENSPACE_PLANE -8
+
+#define OVER_OPENSPACE_PLANE -7
+

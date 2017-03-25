@@ -87,20 +87,6 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 		if(istype(A, /area/hallway))
 			A.readyalert()
 
-//calls the shuttle for a routine crew transfer
-/datum/emergency_shuttle_controller/proc/call_transfer()
-	if(!can_call()) return
-
-	//set the launch timer
-	autopilot = 1
-	set_launch_countdown(get_shuttle_prep_time())
-	auto_recall_time = rand(world.time + 300, launch_time - 300)
-
-	//reset the shuttle transit time if we need to
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
-
-	priority_announcement.Announce("A crew transfer to [dock_name] has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time()/60)] minutes.")
-
 //recalls the shuttle
 /datum/emergency_shuttle_controller/proc/recall()
 	if (!can_recall()) return

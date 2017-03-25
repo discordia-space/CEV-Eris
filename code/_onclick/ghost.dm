@@ -57,6 +57,7 @@
 	if(target)
 		user.loc = get_turf(target)
 
+/*
 /obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
 	if(awaygate)
 		user.loc = awaygate.loc
@@ -68,6 +69,7 @@
 		user.loc = stationgate.loc
 	else
 		user << "[src] has no destination."
+*/
 
 // -------------------------------------------
 // This was supposed to be used by adminghosts

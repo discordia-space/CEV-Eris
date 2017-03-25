@@ -10,6 +10,29 @@
 	var/obj/item/weapon/circuitboard/circuit = null
 //	weight = 1.0E8
 
+/obj/structure/computerframe/verb/rotate()
+	set name = "Rotate Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if(usr.stat || !usr.canmove || usr.restrained())
+		return
+	if(anchored)
+		usr << "It is fastened to the floor!"
+		return 0
+	set_dir(turn(dir, -90))
+	return 1
+
+/obj/structure/computerframe/AltClick(mob/user)
+	..()
+	if(user.incapacitated())
+		user << "<span class='warning'>You can't do that right now!</span>"
+		return
+	if(!in_range(src, user))
+		return
+	else
+		rotate()
+
 /obj/structure/computerframe/attackby(obj/item/P as obj, mob/user as mob)
 	switch(state)
 		if(0)
@@ -84,7 +107,7 @@
 				user << "<span class='notice'>You remove the cables.</span>"
 				src.state = 2
 				src.icon_state = "2"
-				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
+				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil(src.loc)
 				A.amount = 5
 
 			if(istype(P, /obj/item/stack/material) && P.get_material_name() == "glass")
@@ -105,10 +128,10 @@
 				user << "<span class='notice'>You remove the glass panel.</span>"
 				src.state = 3
 				src.icon_state = "3"
-				new /obj/item/stack/material/glass( src.loc, 2 )
+				new /obj/item/stack/material/glass(src.loc, 2)
 			if(istype(P, /obj/item/weapon/screwdriver))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "<span class='notice'>You connect the monitor.</span>"
-				var/B = new src.circuit.build_path ( src.loc )
+				var/B = new src.circuit.build_path(src.loc, src.dir)
 				src.circuit.construct(B)
 				qdel(src)

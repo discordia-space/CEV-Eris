@@ -42,9 +42,9 @@
 
 			if("freedom")
 				var/obj/item/weapon/implanter/O = new /obj/item/weapon/implanter(src)
-				O.imp = new /obj/item/weapon/implant/freedom(O)
+				O.implant = new /obj/item/weapon/implant/freedom(O)
 				var/obj/item/weapon/implanter/U = new /obj/item/weapon/implanter(src)
-				U.imp = new /obj/item/weapon/implant/uplink(U)
+				U.implant = new /obj/item/weapon/implant/uplink(U)
 				return
 
 			if("hacker")
@@ -82,7 +82,7 @@
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom/New()
 	..()
 	var/obj/item/weapon/implanter/O = new(src)
-	O.imp = new /obj/item/weapon/implant/freedom(O)
+	O.implant = new /obj/item/weapon/implant/freedom(O)
 	O.update()
 	return
 
@@ -108,7 +108,7 @@
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink/New()
 	..()
 	var/obj/item/weapon/implanter/O = new(src)
-	O.imp = new /obj/item/weapon/implant/uplink(O)
+	O.implant = new /obj/item/weapon/implant/uplink(O)
 	O.update()
 	return
 

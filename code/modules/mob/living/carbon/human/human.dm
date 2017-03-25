@@ -173,39 +173,6 @@
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
 
-/mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
-	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
-
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(M)
-	L.imp_in = M
-	L.implanted = 1
-	var/obj/item/organ/external/affected = M.organs_by_name["head"]
-	affected.implants += L
-	L.part = affected
-	L.implanted(src)
-
-/mob/living/carbon/human/proc/implant(var/implant_type = /obj/item/weapon/implant/loyalty)
-	var/obj/item/weapon/implant/L = new implant_type(src)
-	if(!istype(L, /obj/item/weapon/implant))
-		del(L)
-		return 0
-
-// TODO: replace with    L.implanted(src, "head")
-
-	L.imp_in = src
-	L.implanted = 1
-	var/obj/item/organ/external/affected = get_organ("head")
-	affected.implants += L
-	L.part = affected
-	L.implanted(src)
-
-/mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
-	for(var/L in M.contents)
-		if(istype(L, /obj/item/weapon/implant/loyalty))
-			for(var/obj/item/organ/external/O in M.organs)
-				if(L in O.implants)
-					return 1
-	return 0
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
