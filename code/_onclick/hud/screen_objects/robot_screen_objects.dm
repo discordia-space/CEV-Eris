@@ -39,11 +39,16 @@
 	var/icon/underlay_icon = new ('icons/mob/screen1_robot.dmi', "inv_active")
 
 /obj/screen/silicon/module/New(_name = "unnamed", _screen_loc = "7,7", _icon , _icon_state,mob/living/_parentmob, _module_num)
-	..(_name, _screen_loc, _parentmob)
-	module_num = _module_num
-	src.icon_state = _icon_state
-	src.icon = _icon
-	update_icon()
+//	..(_name, _screen_loc, _parentmob)
+	src.parentmob = _parentmob
+	src.name = _name
+	src.screen_loc = _screen_loc
+	src.module_num = _module_num
+	if (_icon_state)
+		src.icon_state = _icon_state
+	if (_icon)
+		src.icon = _icon
+	src.update_icon()
 
 /obj/screen/silicon/module/update_icon()
 	underlays.Cut()
@@ -93,7 +98,11 @@
 	else
 		icon_state = "charge-empty"
 
-/obj/screen/health/cyborg/process() //TO:DO Сделать единцю систему отображения здоровья.
+/obj/screen/health/cyborg/process()
+	update_icon()
+	return
+
+/obj/screen/health/cyborg/update_icon()
 	if (parentmob.stat != 2)
 		if(isdrone(parentmob))
 			switch(parentmob.health)

@@ -19,8 +19,9 @@
 		H.destroy_HUD()
 		H.create_HUD()
 
-	H.minimalize_HUD()
+
 	H.show_HUD()
+	H.minimalize_HUD()
 
 	if(!recreate_flag && !check_HUD_style())
 		H.recolor_HUD(H.client.prefs.UI_style_color, H.client.prefs.UI_style_alpha)
@@ -54,7 +55,7 @@
 /mob/living/carbon/human/minimalize_HUD()
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-
+	world << "[H.client.prefs.UI_compact_style] && [HUDdatum.MinStyleFlag]"
 	if (H.client.prefs.UI_compact_style && HUDdatum.MinStyleFlag)
 //		if (!HUDdatum.MinStyleFlag)
 //			H << "That UI not have min style"
@@ -73,12 +74,14 @@
 					if(HUDdatum.slot_data[p]["minloc"])
 						HUDinv.screen_loc = HUDdatum.slot_data[p]["minloc"]
 					break
+		world << "remove perdelki"
 		for (var/obj/screen/frippery/HUDfri in H.HUDfrippery)
 			H.client.screen -= HUDfri
 //		for (var/obj/screen/HUDfrip in H.HUDfrippery)
 
 //		qdel(H.HUDneed[p])
 	else
+
 		for (var/p in H.HUDneed)
 			var/obj/screen/HUD = H.HUDneed[p]
 			if (HUDdatum.HUDneed[p]["background"])

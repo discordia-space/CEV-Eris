@@ -226,7 +226,7 @@
 		list("loc" = "16,15", "icon_state" = "frame3-1")
 		)
 
-/datum/hud/human/ErisHolo/New()
+/datum/hud/human/New()
 	IconUnderlays = list(
 		"back0" = new /image/no_recolor(src.icon, "t0"),
 		"back1" = new /image/no_recolor(src.icon, "t1"),
