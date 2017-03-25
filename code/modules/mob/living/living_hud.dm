@@ -1,19 +1,26 @@
 /mob/proc/create_HUD()
 	return
 
+/mob/proc/minimalize_HUD()
+	return
+
 /mob/living/proc/destroy_HUD()
 	var/mob/living/H = src
 	src.client.screen.Cut()
 	H.HUDprocess.Cut()
-	for (var/i=1,i<=H.HUDneed.len,i++)
-		var/p = H.HUDneed[i]
+//	for (var/i=1,i<=H.HUDneed.len,i++)
+//		var/p = H.HUDneed[i]
+//		qdel(H.HUDneed[p])
+	for (var/p in H.HUDneed)
 		qdel(H.HUDneed[p])
 	for (var/HUDelement in H.HUDinventory)
 		qdel(HUDelement)
 	for (var/HUDelement in H.HUDfrippery)
 		qdel(HUDelement)
-	for (var/i=1,i<=H.HUDtech.len,i++)
-		var/p = H.HUDtech[i]
+//	for (var/i=1,i<=H.HUDtech.len,i++)
+//		var/p = H.HUDtech[i]
+//		qdel(H.HUDtech[p])
+	for (var/p in H.HUDtech)
 		qdel(H.HUDtech[p])
 	H.HUDtech.Cut()
 	H.HUDneed.Cut()
@@ -28,8 +35,11 @@
 			src.client.screen += HUDneed[p]
 		for (var/obj/screen/HUDinv in src.HUDinventory)
 			src.client.screen += HUDinv
-		for (var/obj/screen/frippery/HUDfri in src.HUDfrippery)
-			src.client.screen += HUDfri
+//		var/datum/hud/human/HUDdatum = global.HUDdatums[src.defaultHUD]
+//		if(!src.client.prefs.UI_compact_style && !HUDdatum.MinStyleFlag)
+//that part do minimalize_HUD()
+//		for (var/obj/screen/frippery/HUDfri in src.HUDfrippery)
+//			src.client.screen += HUDfri
 		for (var/i=1,i<=HUDtech.len,i++)
 			var/p = HUDtech[i]
 			src.client.screen += HUDtech[p]

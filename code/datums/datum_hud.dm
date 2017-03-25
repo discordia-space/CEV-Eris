@@ -11,7 +11,7 @@
 	var/list/ConteinerData
 	var/list/IconUnderlays
 	var/MinStyleFlag = 0 //that HUD style have compact version?
-/datum/hud/human
+/*/datum/hud/human
 	name = "ErisStyle"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	//Xbags,Ybags for space_orient_objs
@@ -117,13 +117,14 @@
 		list("loc" = "16,11", "icon_state" = "frame0-4"),
 		list("loc" = "16,15", "icon_state" = "frame0-1"),
 		list("loc" = "16,15", "icon_state" = "frame3-1")
-		)
+		)*/
 
-/datum/hud/human/ErisHolo
-	name = "ErisStyleHolo"
+/datum/hud/human
+	name = "ErisStyle"
 	icon = 'icons/mob/screen/ErisStyleHolo.dmi'
 	//Xbags,Ybags for space_orient_objs
 	//Others for slot_orient_objs
+	MinStyleFlag = 1
 	ConteinerData = list(
 		"Xspace" = 2,
 		"Yspace" = 5,
@@ -144,53 +145,53 @@
 	)
 
 	HUDneed = list(
-		"health"      = list("type" = /obj/screen/health,    "loc" = "16,6", "minloc" = "15,7", "background" = "back2"),
-		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "16,5", "minloc" = "15,6", "background" = "back3"),
-		"bodytemp"    = list("type" = /obj/screen/bodytemp,   "loc" = "16,7", "minloc" = "15,8", "background" = "back10"),
-		"pressure"    = list("type" = /obj/screen/pressure,   "loc" = "16,13", "minloc" = "15,14", "background" = "back10"),
-		"toxin"       = list("type" = /obj/screen/toxin,      "loc" = "16,10", "minloc" = "15,11", "background" = "back8"),
-		"oxygen"      = list("type" = /obj/screen/oxygen,     "loc" = "16,12", "minloc" = "15,13", "background" = "back3"),
-		"fire"        = list("type" = /obj/screen/fire,       "loc" = "16,9", "minloc" = "15,10", "background" = "back12"),
+		"health"      = list("type" = /obj/screen/health,    "loc" = "16,6", "minloc" = "15,7", "background" = "back1"),
+		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "16,5", "minloc" = "15,6", "background" = "back1"),
+		"bodytemp"    = list("type" = /obj/screen/bodytemp,   "loc" = "16,7", "minloc" = "15,8", "background" = "back1"),
+		"pressure"    = list("type" = /obj/screen/pressure,   "loc" = "16,13", "minloc" = "15,14", "background" = "back1"),
+		"toxin"       = list("type" = /obj/screen/toxin,      "loc" = "16,10", "minloc" = "15,11", "background" = "back1"),
+		"oxygen"      = list("type" = /obj/screen/oxygen,     "loc" = "16,12", "minloc" = "15,13", "background" = "back1"),
+		"fire"        = list("type" = /obj/screen/fire,       "loc" = "16,9", "minloc" = "15,10", "background" = "back1"),
 		"throw"       = list("type" = /obj/screen/HUDthrow,   "loc" = "16,1", "minloc" = "14,2", "background" = "back13"),
 		"pull"        = list("type" = /obj/screen/pull,       "loc" = "15:16,1", "minloc" = "15,2", "background" = "back13"),
 		"drop"        = list("type" = /obj/screen/drop,       "loc" = "16:16,1", "minloc" = "14:16,2", "background" = "back13"),
 		"resist"      = list("type" = /obj/screen/resist,     "loc" = "15,1", "minloc" = "15:16,2", "background" = "back13"),
-		"m_intent"    = list("type" = /obj/screen/mov_intent, "loc" = "15,0", "minloc" = "14,1", "background" = "back2"),
-		"equip"       = list("type" = /obj/screen/equip,      "loc" = "8,1", "minloc" = "7,2"),
-		"intent"      = list("type" = /obj/screen/intent,     "loc" = "13:16,0", "minloc" = "12:16,1"),
+		"m_intent"    = list("type" = /obj/screen/mov_intent, "loc" = "15,0", "minloc" = "14,1", "background" = "back1"),
+		"equip"       = list("type" = /obj/screen/equip,      "loc" = "8,1", "minloc" = "7,2", "background" = "back14-l"),
+		"intent"      = list("type" = /obj/screen/intent,     "loc" = "13:16,0", "minloc" = "12:16,1", "background" = "back1"),
 		"help"        = list("type" = /obj/screen/fastintent/help,     "loc" = "13,0", "minloc" = "12,1", "background" = "back15"),
 		"disarm"      = list("type" = /obj/screen/fastintent/disarm,   "loc" = "13,0:-16", "minloc" = "12,1:-16", "background" = "back15"),
 		"harm"        = list("type" = /obj/screen/fastintent/harm,     "loc" = "14:16,0:-16", "minloc" = "13:16,1", "background" = "back15"),
 		"grab"        = list("type" = /obj/screen/fastintent/grab,     "loc" = "14:16,0", "minloc" = "13:16,1:-16", "background" = "back15"),
-		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "16,0", "minloc" = "15,1", "background" = "back2"),
-		"internal"    = list("type" = /obj/screen/internal,   "loc" = "16,14", "minloc" = "15,15"),
+		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "16,0", "minloc" = "15,1", "background" = "back1"),
+		"internal"    = list("type" = /obj/screen/internal,   "loc" = "16,14", "minloc" = "15,15", "background" = "back1"),
 		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1", "minloc" = "7,2"),
-		"toggle gun mode"   = list("type" = /obj/screen/gun/mode,      "loc" = "16,2", "minloc" = "15,3"),
-		"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "16,3", "minloc" = "15,4"),
-		"allow item use"   = list("type" = /obj/screen/gun/item,       "loc" = "15,2", "mniloc" = "14,3"),
-		"allow radio use"   = list("type" = /obj/screen/gun/radio,      "loc" = "15,3", "minloc" = "14,4"),
-		"toggle invetory"   = list("type" = /obj/screen/toggle_invetory,       "loc" = "2,0", "minloc" = "1,1")
+		"toggle gun mode"   = list("type" = /obj/screen/gun/mode,      "loc" = "16,2", "minloc" = "15,3", "background" = "back1"),
+		"allow movement"   = list("type" = /obj/screen/gun/move,       "loc" = "16,3", "minloc" = "15,4", "background" = "back1"),
+		"allow item use"   = list("type" = /obj/screen/gun/item,       "loc" = "15,2", "minloc" = "14,3", "background" = "back1"),
+		"allow radio use"   = list("type" = /obj/screen/gun/radio,      "loc" = "15,3", "minloc" = "14,4", "background" = "back1"),
+		"toggle invetory"   = list("type" = /obj/screen/toggle_invetory,       "loc" = "2,0", "minloc" = "1,1", "background" = "back1")
 		)
 
 
 	slot_data = list (
-		"i_clothing" =   list("loc" = "2,1","minloc" = "1,2",  "name" = "Uniform",         "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"o_clothing" =   list("loc" = "3,1", "minloc" = "2,2",  "name" = "Suit",            "state" = "equip",   "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"mask" =         list("loc" = "3,2", "minloc" = "2,3",  "name" = "Mask",            "state" = "mask",    "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"gloves" =       list("loc" = "4,1", "minloc" = "3,2",  "name" = "Gloves",          "state" = "gloves",  "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"eyes" =         list("loc" = "2,2", "minloc" = "1,3",  "name" = "Glasses",         "state" = "glasses", "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"l_ear" =        list("loc" = "4,2", "minloc" = "3,3",  "name" = "Left Ear",        "state" = "ears0",   "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"r_ear" =        list("loc" = "4,3", "minloc" = "3,4",  "name" = "Right Ear",       "state" = "ears1",   "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"head" =         list("loc" = "3,3", "minloc" = "2,4",  "name" = "Hat",             "state" = "hair",    "hideflag" = TOGGLE_INVENTORY_FLAG),
-		"shoes" =        list("loc" = "3,0", "minloc" = "2,1",  "name" = "Shoes",           "state" = "shoes"),
-		"suit storage" = list("loc" = "4,0", "minloc" = "3,1",  "name" = "Suit Storage",    "state" = "suit-belt"),
-		"back" =         list("loc" = "7,0", "minloc" = "6,1",  "name" = "Back",            "state" = "back"),
-		"id" =           list("loc" = "5,0", "minloc" = "4,1",  "name" = "ID",              "state" = "id"),
-		"storage1" =     list("loc" = "10,0", "minloc" = "9,1",  "name" = "Left Pocket",     "state" = "pocket_l"),
-		"storage2" =     list("loc" = "11,0", "minloc" = "10,1", "name" = "Right Pocket",    "state" = "pocket_r"),
-		"belt" =         list("loc" = "6,0", "minloc" = "5,1",  "name" = "Belt",            "state" = "belt"),
-		"l_hand" =       list("loc" = "9,0", "minloc" = "8,1",  "name" = "Left Hand",       "state" = "hand-l", "type" = /obj/screen/inventory/hand),
-		"r_hand" =       list("loc" = "8,0", "minloc" = "7,1",  "name" = "Right Hand",      "state" = "hand-r", "type" = /obj/screen/inventory/hand)
+		"i_clothing" =   list("loc" = "2,1","minloc" = "1,2",  "name" = "Uniform",         "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"o_clothing" =   list("loc" = "3,1", "minloc" = "2,2",  "name" = "Suit",            "state" = "equip",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"mask" =         list("loc" = "3,2", "minloc" = "2,3",  "name" = "Mask",            "state" = "mask",    "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"gloves" =       list("loc" = "4,1", "minloc" = "3,2",  "name" = "Gloves",          "state" = "gloves",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"eyes" =         list("loc" = "2,2", "minloc" = "1,3",  "name" = "Glasses",         "state" = "glasses", "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"l_ear" =        list("loc" = "4,2", "minloc" = "3,3",  "name" = "Left Ear",        "state" = "ears0",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"r_ear" =        list("loc" = "4,3", "minloc" = "3,4",  "name" = "Right Ear",       "state" = "ears1",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"head" =         list("loc" = "3,3", "minloc" = "2,4",  "name" = "Hat",             "state" = "hair",    "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"shoes" =        list("loc" = "3,0", "minloc" = "2,1",  "name" = "Shoes",           "state" = "shoes", "background" = "back1"),
+		"suit storage" = list("loc" = "4,0", "minloc" = "3,1",  "name" = "Suit Storage",    "state" = "suit-belt", "background" = "back1"),
+		"back" =         list("loc" = "7,0", "minloc" = "6,1",  "name" = "Back",            "state" = "back", "background" = "back1"),
+		"id" =           list("loc" = "5,0", "minloc" = "4,1",  "name" = "ID",              "state" = "id", "background" = "back1"),
+		"storage1" =     list("loc" = "10,0", "minloc" = "9,1",  "name" = "Left Pocket",     "state" = "pocket_l", "background" = "back1"),
+		"storage2" =     list("loc" = "11,0", "minloc" = "10,1", "name" = "Right Pocket",    "state" = "pocket_r", "background" = "back1"),
+		"belt" =         list("loc" = "6,0", "minloc" = "5,1",  "name" = "Belt",            "state" = "belt", "background" = "back1"),
+		"l_hand" =       list("loc" = "9,0", "minloc" = "8,1",  "name" = "Left Hand",       "state" = "hand-l", "type" = /obj/screen/inventory/hand, "background" = "back1"),
+		"r_hand" =       list("loc" = "8,0", "minloc" = "7,1",  "name" = "Right Hand",      "state" = "hand-r", "type" = /obj/screen/inventory/hand, "background" = "back1")
 		)
 
 	HUDfrippery = list(

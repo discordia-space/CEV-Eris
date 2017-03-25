@@ -329,6 +329,7 @@
 	if(istype(e)) // Real runtimes go to the real error handler
 		// There are two newlines here, because handling desc sucks
 		e.desc = "  Caught by process: [name]\n\n" + e.desc
+//		world << "[e], [thrower]. in [e.file], line [e.line]. [e.desc]"
 		world.Error(e, e_src = thrower)
 		return
 	var/etext = "[e]"

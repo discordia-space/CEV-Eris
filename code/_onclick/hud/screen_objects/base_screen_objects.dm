@@ -21,10 +21,10 @@
 	var/hideflag = 0
 	var/list/image/ovrls = list()
 
-/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
+/obj/screen/New(_name = "unnamed", mob/living/_parentmob, _icon, _icon_state)//(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
 	src.name = _name
-	src.screen_loc = _screen_loc
+//	src.screen_loc = _screen_loc
 	if (_icon)
 		src.icon = _icon
 	if (_icon_state)
@@ -342,9 +342,9 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	layer = 19
 
-/obj/screen/inventory/New(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
+/obj/screen/inventory/New(_name = "unnamed", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)//(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
 	src.name = _name
-	src.screen_loc = _screen_loc
+//	src.screen_loc = _screen_loc
 	src.icon = _icon
 	src.slot_id = _slot_id
 	src.icon_state = _icon_state
@@ -1119,11 +1119,10 @@
 /obj/screen/frippery
 	name = ""
 
-/obj/screen/frippery/New(_icon_state,_screen_loc = "7,7",_dir, mob/living/_parentmob)
+/obj/screen/frippery/New(_icon_state,_screen_loc = "7,7", mob/living/_parentmob)
 	src.parentmob = _parentmob
 	src.screen_loc = _screen_loc
 	src.icon_state = _icon_state
-	src.dir = _dir
 
 /obj/screen/glasses_overlay
 	icon = null

@@ -1,8 +1,7 @@
 
 
 /var/all_ui_styles = list(
-	"ErisStyle",
-	"ErisStyleHolo",
+	"ErisStyle"
 	)
 	/*"Midnight"     = 'icons/mob/screen/midnight.dmi',
 	"Orange"       = 'icons/mob/screen/orange.dmi',
@@ -15,7 +14,7 @@
 	return all_ui_styles["White"]
 
 /client/verb/change_ui_format()
-	set name = "Change UI"
+	set name = "Change UI format"
 	set category = "Preferences"
 	set desc = "Minimize or maximaze you UI"
 
@@ -23,9 +22,11 @@
 		usr << "<span class='warning'>You must be human to use this verb.</span>"
 		return
 
-	usr << "UI_compact_style = [prefs.UI_compact_style]"
+//	usr << "UI_compact_style = [prefs.UI_compact_style]"
 	prefs.UI_compact_style = !prefs.UI_compact_style
-	usr << "UI_compact_style = [prefs.UI_compact_style]"
+//	usr << "UI_compact_style = [prefs.UI_compact_style]"
+
+	usr:minimalize_HUD()
 
 /client/verb/change_ui()
 	set name = "Change UI"
