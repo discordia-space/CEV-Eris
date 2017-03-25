@@ -780,13 +780,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		else
 			return
 
-	choice = input("Is this an emergency evacuation or a crew transfer?") in list("Emergency", "Crew Transfer")
-	if (choice == "Emergency")
-		emergency_shuttle.call_evac()
-	else
-		emergency_shuttle.call_transfer()
-
-
+	emergency_shuttle.call_evac()
 
 	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
 	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)

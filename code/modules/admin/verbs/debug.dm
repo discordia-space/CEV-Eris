@@ -24,7 +24,7 @@
 		return
 	var/turf/T = mob.loc
 
-	if (!( istype(T, /turf) ))
+	if (!istype(T, /turf))
 		return
 
 	var/datum/gas_mixture/env = T.return_air()
@@ -646,7 +646,6 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/beret/centcom/officer(M), slot_head)
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
@@ -671,7 +670,6 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/beret/centcom/captain(M), slot_head)
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
@@ -770,6 +768,28 @@
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
 	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", 1)
 	return
+
+/client/proc/check_positions()
+	set category = "Debug"
+	set name = "Check positions"
+
+	var/mob/user = mob
+	if(user != usr || !holder || !holder.marked_datum())
+		return
+
+	var/turf/user_pos = get_turf(user)
+	var/turf/other_pos = get_turf(holder.marked_datum())
+
+	user << "Check relations of positions:"
+	user << "User position ([user_pos.x],[user_pos.y],[user_pos.z])"
+	user << "Other position ([other_pos.x],[other_pos.y],[other_pos.z])"
+	user << "get_dist = [get_dist(user_pos, other_pos)]"
+	user << "get_dir  = [get_dir(user_pos, other_pos)]"
+	user << "Adjacent = [user_pos.Adjacent(other_pos)]"
+	user << "Check ended."
+
+	return
+
 
 /client/proc/startSinglo()
 

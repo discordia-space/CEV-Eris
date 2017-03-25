@@ -36,6 +36,11 @@
 	ear = /obj/item/device/radio/headset/heads/ce
 	survival_gear = /obj/item/weapon/storage/box/engineer
 
+	put_in_backpack = list(\
+		/obj/item/device/t_scanner,\
+		/obj/item/device/flashlight/glowstick/yellow
+		)
+
 	backpacks = list(
 		/obj/item/weapon/storage/backpack/industrial,\
 		/obj/item/weapon/storage/backpack/satchel_eng,\
@@ -70,7 +75,8 @@
 	survival_gear = /obj/item/weapon/storage/box/engineer
 
 	put_in_backpack = list(\
-		/obj/item/device/t_scanner
+		/obj/item/device/t_scanner,\
+		/obj/item/device/flashlight/glowstick/yellow
 		)
 
 	backpacks = list(
@@ -105,3 +111,8 @@
 	belt = /obj/item/weapon/storage/belt/utility/atmostech
 	ear = /obj/item/device/radio/headset/headset_eng
 	shoes = /obj/item/clothing/shoes/jackboots
+
+	put_in_backpack = list(\
+		/obj/item/device/t_scanner,\
+		/obj/item/device/flashlight/glowstick/yellow
+		)

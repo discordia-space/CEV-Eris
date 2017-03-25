@@ -119,7 +119,7 @@
 	if(isnull(M))
 		return
 
-	if(ismob(M))
+	if(ismob(M) && usr.client)
 		usr.client.moving = 1
 		usr.Move(get_turf(target))
 		usr.client.moving = 0

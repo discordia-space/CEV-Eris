@@ -55,9 +55,6 @@ datum/preferences
 	var/list/gear						//Custom/fluff item loadout.
 
 		//Some faction information.
-	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
-	var/faction = "None"                //Antag faction/general associated faction.
 	var/religion = "None"               //Religious association.
 
 		//Mob preview
@@ -97,8 +94,6 @@ datum/preferences
 	var/gen_record = ""
 	var/exploit_record = ""
 	var/disabilities = 0
-
-	var/nanotrasen_relation = "Neutral"
 
 	var/uplinklocation = "PDA"
 
@@ -251,9 +246,6 @@ datum/preferences
 	character.h_style = h_style
 	character.f_style = f_style
 
-	character.home_system = home_system
-	character.citizenship = citizenship
-	character.personal_faction = faction
 	character.religion = religion
 
 	// Destroy/cyborgize organs

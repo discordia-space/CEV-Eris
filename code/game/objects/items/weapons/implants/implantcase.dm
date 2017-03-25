@@ -9,11 +9,17 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 1.0
-	var/obj/item/weapon/implant/imp = null
+	var/obj/item/weapon/implant/implant = null
+	var/implant_type = null
+
+/obj/item/weapon/implantcase/New()
+	src.implant = new implant_type(src)
+	..()
+	return
 
 /obj/item/weapon/implantcase/proc/update()
-	if (src.imp)
-		src.icon_state = text("implantcase-[]", src.imp.implant_color)
+	if (src.implant)
+		src.icon_state = text("implantcase-[]", src.implant.implant_color)
 	else
 		src.icon_state = "implantcase-0"
 	return
@@ -32,130 +38,31 @@
 		else
 			src.name = "Glass Case"
 	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))
-		if(!src.imp)	return
-		if(!src.imp.allow_reagents)	return
-		if(src.imp.reagents.total_volume >= src.imp.reagents.maximum_volume)
+		if(!src.implant)	return
+		if(!src.implant.allow_reagents)	return
+		if(src.implant.reagents.total_volume >= src.implant.reagents.maximum_volume)
 			user << "<span class='warning'>\The [src] is full.</span>"
 		else
 			spawn(5)
-				I.reagents.trans_to_obj(src.imp, 5)
+				I.reagents.trans_to_obj(src.implant, 5)
 				user << "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>"
 	else if (istype(I, /obj/item/weapon/implanter))
 		var/obj/item/weapon/implanter/M = I
-		if (M.imp)
-			if ((src.imp || M.imp.implanted))
+		if (M.implant)
+			if ((src.implant || M.implant.implanted))
 				return
-			M.imp.loc = src
-			src.imp = M.imp
-			M.imp = null
+			M.implant.loc = src
+			src.implant = M.implant
+			M.implant = null
 			src.update()
 			M.update()
 		else
-			if (src.imp)
-				if (M.imp)
+			if (src.implant)
+				if (M.implant)
 					return
-				src.imp.loc = M
-				M.imp = src.imp
-				src.imp = null
+				src.implant.loc = M
+				M.implant = src.implant
+				src.implant = null
 				update()
 			M.update()
-	return
-
-
-/obj/item/weapon/implantcase/tracking
-	name = "glass case - 'tracking'"
-	desc = "A case containing a tracking implant."
-	icon_state = "implantcase-b"
-
-/obj/item/weapon/implantcase/tracking/New()
-	src.imp = new /obj/item/weapon/implant/tracking( src )
-	..()
-	return
-
-
-/obj/item/weapon/implantcase/explosive
-	name = "glass case - 'explosive'"
-	desc = "A case containing an explosive implant."
-	icon_state = "implantcase-r"
-
-/obj/item/weapon/implantcase/explosive/New()
-	src.imp = new /obj/item/weapon/implant/explosive( src )
-	..()
-	return
-
-
-/obj/item/weapon/implantcase/chem
-	name = "glass case - 'chem'"
-	desc = "A case containing a chemical implant."
-	icon_state = "implantcase-b"
-
-/obj/item/weapon/implantcase/chem/New()
-	src.imp = new /obj/item/weapon/implant/chem( src )
-	..()
-	return
-
-
-/obj/item/weapon/implantcase/loyalty
-	name = "glass case - 'loyalty'"
-	desc = "A case containing a loyalty implant."
-	icon_state = "implantcase-r"
-
-/obj/item/weapon/implantcase/loyalty/New()
-	src.imp = new /obj/item/weapon/implant/loyalty( src )
-	..()
-	return
-
-
-/obj/item/weapon/implantcase/death_alarm
-	name = "glass case - 'death alarm'"
-	desc = "A case containing a death alarm implant."
-	icon_state = "implantcase-b"
-
-/obj/item/weapon/implantcase/death_alarm/New()
-	src.imp = new /obj/item/weapon/implant/death_alarm( src )
-	..()
-	return
-
-
-/obj/item/weapon/implantcase/freedom
-	name = "glass case - 'freedom'"
-	desc = "A case containing a freedom implant."
-	icon_state = "implantcase-r"
-
-/obj/item/weapon/implantcase/freedom/New()
-	src.imp = new /obj/item/weapon/implant/freedom( src )
-	..()
-	return
-
-
-/obj/item/weapon/implantcase/adrenalin
-	name = "glass case - 'adrenalin'"
-	desc = "A case containing an adrenalin implant."
-	icon_state = "implantcase-b"
-
-/obj/item/weapon/implantcase/adrenalin/New()
-	src.imp = new /obj/item/weapon/implant/adrenalin( src )
-	..()
-	return
-
-
-/obj/item/weapon/implantcase/dexplosive
-	name = "glass case - 'explosive'"
-	desc = "A case containing an explosive."
-	icon_state = "implantcase-r"
-
-/obj/item/weapon/implantcase/dexplosive/New()
-	src.imp = new /obj/item/weapon/implant/dexplosive( src )
-	..()
-	return
-
-
-/obj/item/weapon/implantcase/health
-	name = "glass case - 'health'"
-	desc = "A case containing a health tracking implant."
-	icon_state = "implantcase-b"
-
-/obj/item/weapon/implantcase/health/New()
-	src.imp = new /obj/item/weapon/implant/health( src )
-	..()
 	return

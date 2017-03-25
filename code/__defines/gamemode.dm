@@ -35,7 +35,6 @@
 #define MODE_DEATHSQUAD "deathsquad"
 #define MODE_ACTOR "actor"
 #define MODE_MERCENARY "mercenary"
-#define MODE_NINJA "ninja"
 #define MODE_RAIDER "raider"
 #define MODE_WIZARD "wizard"
 #define MODE_CHANGELING "changeling"

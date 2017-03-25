@@ -267,7 +267,6 @@
 
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
-	UpdateFactionList(character)
 	equip_custom_items(character)
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
@@ -301,6 +300,7 @@
 
 	if(character.mind.assigned_role != "Cyborg")
 		data_core.manifest_inject(character)
+		matchmaker.do_matchmaking()
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 		//Grab some data from the character prefs for use in random news procs.
@@ -390,6 +390,13 @@
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
 		mind.original = new_character
+		if(client.prefs.relations.len)
+			for(var/T in client.prefs.relations)
+				var/TT = matchmaker.relation_types[T]
+				var/datum/relation/R = new TT
+				R.holder = mind
+				R.info = client.prefs.relations_info[T]
+			mind.gen_relations_info = client.prefs.relations_info["general"]
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	new_character.name = real_name
