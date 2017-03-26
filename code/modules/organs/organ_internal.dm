@@ -38,7 +38,7 @@
 	gender = PLURAL
 	organ_tag = "eyes"
 	parent_organ = "head"
-	var/list/eye_colour = list(0,0,0)
+	var/list/eyes_color = "#000000"
 	var/list/robo_color = "#000000"
 
 /obj/item/organ/eyes/oneeye
@@ -48,16 +48,16 @@
 	right_eye = 1
 
 /obj/item/organ/eyes/heterohromia
-	var/list/second_colour = list(0,0,0)
+	var/list/second_color = "#000000"
 
 /obj/item/organ/eyes/proc/update_colour()
 	if(!owner)
 		return
-	eye_colour = list(
-		owner.r_eyes ? owner.r_eyes : 0,
-		owner.g_eyes ? owner.g_eyes : 0,
-		owner.b_eyes ? owner.b_eyes : 0
-		)
+	eyes_color = owner.eyes_color
+
+
+obj/item/organ/eyes/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
+	..(holder,OD)
 
 /obj/item/organ/eyes/take_damage(amount, var/silent=0)
 	var/oldbroken = is_broken()

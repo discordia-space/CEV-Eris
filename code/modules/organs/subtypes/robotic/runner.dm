@@ -17,7 +17,7 @@
 
 
 /obj/item/organ/external/robotic/limb/runner
-	icon = 'icons/mob/human_races/cyberlimbs/runner.dmi'
+	force_icon = 'icons/mob/human_races/cyberlimbs/runner.dmi'
 	max_damage = 45
 	min_broken_damage = 30
 	w_class = 3

@@ -25,9 +25,7 @@ datum/preferences
 
 	proc/randomize_hair_color(var/target = "hair")
 		if(prob (75) && target == "facial") // Chance to inherit hair color
-			r_facial = r_hair
-			g_facial = g_hair
-			b_facial = b_hair
+			facial_color = hair_color
 			return
 
 		var/red
@@ -75,13 +73,9 @@ datum/preferences
 
 		switch(target)
 			if("hair")
-				r_hair = red
-				g_hair = green
-				b_hair = blue
+				hair_color = rgb(red, green, blue)
 			if("facial")
-				r_facial = red
-				g_facial = green
-				b_facial = blue
+				facial_color = rgb(red, green, blue)
 
 	proc/randomize_eyes_color()
 		var/red
@@ -127,9 +121,7 @@ datum/preferences
 		green = max(min(green + rand (-25, 25), 255), 0)
 		blue = max(min(blue + rand (-25, 25), 255), 0)
 
-		r_eyes = red
-		g_eyes = green
-		b_eyes = blue
+		eyes_color = rgb(red, green, blue)
 
 	proc/randomize_skin_color()
 		var/red
@@ -175,9 +167,7 @@ datum/preferences
 		green = max(min(green + rand (-25, 25), 255), 0)
 		blue = max(min(blue + rand (-25, 25), 255), 0)
 
-		r_skin = red
-		g_skin = green
-		b_skin = blue
+		skin_color = rgb(red, green, blue)
 
 
 	proc/update_preview_icon()		//seriously. This is horrendous.
@@ -221,7 +211,7 @@ datum/preferences
 
 		// Skin color
 		if(current_species && (current_species.appearance_flags & HAS_SKIN_COLOR))
-			preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			preview_icon.Blend(skin_color, ICON_ADD)
 
 		// Skin tone
 		if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
@@ -232,18 +222,18 @@ datum/preferences
 
 		var/icon/eyes = new/icon('icons/mob/human_face.dmi', "eyes[body.index]")
 		if ((current_species && (current_species.appearance_flags & HAS_EYE_COLOR)))
-			eyes.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
+			eyes.Blend(eyes_color, ICON_ADD)
 
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
 		if(hair_style)
 			var/icon/hair = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
-			hair.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+			hair.Blend(hair_color, ICON_ADD)
 			eyes.Blend(hair, ICON_OVERLAY)
 
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if(facial_hair_style)
 			var/icon/facial = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
-			facial.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
+			facial.Blend(facial_color, ICON_ADD)
 			eyes.Blend(facial, ICON_OVERLAY)
 
 		var/icon/clothes = null

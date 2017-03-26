@@ -62,9 +62,6 @@ var/global/list/modifications_types = list(
 		return 1
 
 	proc/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
-		if(holder && ispath(organ))
-			var/obj/item/organ/O = new organ(holder)
-			return O
 		return null
 
 /datum/body_modification/none
@@ -74,16 +71,21 @@ var/global/list/modifications_types = list(
 	desc = "Normal organ."
 	allowed_species = null
 
-	create_organ(var/mob/living/carbon/holder, var/organ, var/color)
-		return ..(holder,organ,color)
+	create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
+		if(istype(OD))
+			return OD.create_organ(holder,OD)
+		else if(ispath(OD))
+			return new OD(holder)
+		else
+			return null
 
 
 /datum/body_modification/limb
-	create_organ(var/mob/living/carbon/holder, var/O, var/color)
+	create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
 		if(replace_limb)
-			return ..(holder,replace_limb,color)
+			return new replace_limb(holder,OD)
 		else
-			return ..(holder,O,color)
+			return new OD.default_type(holder,OD)
 
 /datum/body_modification/limb/amputation
 	name = "Amputated"
@@ -200,7 +202,7 @@ var/global/list/modifications_types = list(
 	New()
 		var/obj/item/organ/external/robotic/R = replace_limb
 		name = initial(R.name)
-		icon = initial(R.default_icon)
+		icon = initial(R.force_icon)
 		desc = initial(R.desc)
 		short_name = "P: [name]"
 		name = "Prosthesis: [name]"
@@ -245,7 +247,7 @@ var/global/list/modifications_types = list(
 
 	create_organ(var/mob/living/carbon/holder, var/O, var/color)
 		var/obj/item/organ/external/E = ..(holder, O, color)
-		E.default_icon = icon
+		E.force_icon = icon
 		E.model = "exo"
 		E.brute_mod = 0.8
 		return E
@@ -262,9 +264,9 @@ var/global/list/modifications_types = list(
 	allowed_species = list("Human", "Skrell", "Tajara", "Unathi", "Vox")
 	create_organ(var/mob/living/carbon/holder, var/organ, var/color)
 		if(replace_limb)
-			return ..(holder,replace_limb,color)
+			return new replace_limb(holder)
 		else
-			return ..(holder,organ,color)
+			return new organ(holder)
 
 /datum/body_modification/organ/assisted
 	name = "Assisted organ"
@@ -331,7 +333,7 @@ var/global/list/modifications_types = list(
 
 	create_organ(var/mob/living/carbon/holder, var/organ, var/color)
 		var/obj/item/organ/eyes/E = ..(holder,organ,color)
-		E.eye_colour = color
+		E.eyes_color = color
 		return E
 
 /datum/body_modification/organ/oneeye/right
@@ -361,7 +363,7 @@ var/global/list/modifications_types = list(
 
 	create_organ(var/mob/living/carbon/holder, organ_type, color)
 		var/obj/item/organ/eyes/heterohromia/E = new(holder,organ_type,color)
-		E.second_colour = color
+		E.second_color = color
 		return E
 
 #undef MODIFICATION_REMOVED

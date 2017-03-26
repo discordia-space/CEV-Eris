@@ -1,5 +1,5 @@
 /obj/item/organ/external/robotic/enforcer
-	default_icon = 'icons/mob/human_races/cyberlimbs/enforcer.dmi'
+	force_icon = 'icons/mob/human_races/cyberlimbs/enforcer.dmi'
 	brute_mod = 0.7
 	burn_mod = 0.7
 

@@ -22,7 +22,7 @@
 	var/icon_position = 0
 	var/model
 
-	var/default_icon	// Used to force override of species-specific limb icons (for prosthetics).
+	//var/default_icon	// Used to force override of species-specific limb icons (for prosthetics).
 	var/tattoo
 	var/tattoo_color
 
@@ -33,14 +33,14 @@
 	var/max_size = 0
 	var/last_dam = -1
 	var/icon/mob_icon
-//	var/gendered_icon = 0
+	var/gendered_icon = 1
 	var/limb_name
 	var/disfigured = 0
 	var/cannot_amputate
 	var/cannot_break
-	var/s_tone
-	var/list/s_col
-	var/list/h_col
+	var/skin_tone
+	var/skin_col
+	var/hair_col
 	var/list/wounds = list()
 	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
 	var/perma_injury = 0
@@ -61,6 +61,7 @@
 	var/dislocated = 0    // If you target a joint, you can dislocate the limb, causing temporary damage to the organ.
 	var/can_grasp //It would be more appropriate if these two were named "affects_grasp" and "affects_stand" at this point
 	var/can_stand
+	var/list/drop_on_remove
 
 /obj/item/organ/external/Destroy()
 	if(parent && parent.children)
@@ -75,6 +76,72 @@
 			qdel(O)
 
 	return ..()
+
+/obj/item/organ/external/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
+	world << "[src] creating"
+	..(holder)
+	world << "[src] supertype call"
+	if(owner)
+		world << "[src] owner detected"
+		if(OD)
+			set_description(OD)
+			world << "[src] [OD] set"
+		replaced(owner)
+		sync_colour_to_human(owner)
+	spawn(1)
+		update_icon()
+
+
+/obj/item/organ/external/proc/set_description(var/datum/organ_description/desc)
+	src.name = desc.name
+	//src.organ_tag = desc.organ_tag
+	src.limb_name = desc.organ_tag
+	src.amputation_point = desc.amputation_point
+	src.joint = desc.joint
+	src.max_damage = desc.max_damage
+	src.min_broken_damage = desc.min_broken_damage
+	src.w_class = desc.w_class
+
+/obj/item/organ/external/removed(mob/living/user)
+	if(!owner)
+		return
+
+	owner.organs -= src
+	owner.organs_by_name[organ_tag] = null // Remove from owner's vars.
+	owner.bad_external_organs -= src
+
+	for(var/atom/movable/implant in implants)
+		//large items and non-item objs fall to the floor, everything else stays
+		var/obj/item/I = implant
+		if(istype(I) && I.w_class < 3)
+			implant.loc = get_turf(owner)
+		else
+			implant.loc = src
+	implants.Cut()
+
+	release_restraints()
+
+	var/obj/item/dropped = null
+	for(var/slot in drop_on_remove)
+		dropped = owner.get_equipped_item(slot)
+		owner.u_equip(dropped)
+		owner.drop_from_inventory(dropped)
+
+	if(parent)
+		parent.children -= src
+		parent = null
+
+	if(children)
+		for(var/obj/item/organ/external/child in children)
+			child.removed()
+			child.loc = src
+
+	if(internal_organs)
+		for(var/obj/item/organ/organ in internal_organs)
+			organ.removed()
+			organ.loc = src
+
+	..()
 
 /obj/item/organ/external/emp_act(severity)
 	if(!(status & ORGAN_ROBOT))
@@ -177,15 +244,6 @@
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
 	return
-
-
-/obj/item/organ/external/New(var/mob/living/carbon/holder)
-	..(holder)
-	if(owner)
-		replaced(owner)
-		sync_colour_to_human(owner)
-	spawn(1)
-		get_icon()
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
@@ -1156,6 +1214,43 @@ Note that amputating the affected organ does in fact remove the infection from t
 	dislocated = -1
 //	gendered_icon = 1
 
+/obj/item/organ/external/head
+	limb_name = "head"
+	icon_name = "head"
+	name = "head"
+	max_damage = 75
+	min_broken_damage = 35
+	w_class = 3
+	body_part = HEAD
+	vital = 1
+	parent_organ = "chest"
+	joint = "jaw"
+	amputation_point = "neck"
+//	gendered_icon = 1
+	encased = "skull"
+
+/obj/item/organ/external/head/removed()
+	if(owner)
+		name = "[owner.real_name]'s head"
+		owner.u_equip(owner.glasses)
+		owner.u_equip(owner.head)
+		owner.u_equip(owner.l_ear)
+		owner.u_equip(owner.r_ear)
+		owner.u_equip(owner.wear_mask)
+		spawn(1)
+			owner.update_hair()
+	..()
+
+/obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
+	..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
+	if (!disfigured)
+		if (brute_dam > 40)
+			if (prob(50))
+				disfigure("brute")
+		if (burn_dam > 40)
+			disfigure("burn")
+
+/*
 /obj/item/organ/external/arm
 	limb_name = "arm"
 	name = "arm"
@@ -1265,39 +1360,4 @@ Note that amputating the affected organ does in fact remove the infection from t
 	parent_organ = "r_arm"
 	joint = "right wrist"
 	amputation_point = "right wrist"
-
-/obj/item/organ/external/head
-	limb_name = "head"
-	icon_name = "head"
-	name = "head"
-	max_damage = 75
-	min_broken_damage = 35
-	w_class = 3
-	body_part = HEAD
-	vital = 1
-	parent_organ = "chest"
-	joint = "jaw"
-	amputation_point = "neck"
-//	gendered_icon = 1
-	encased = "skull"
-
-/obj/item/organ/external/head/removed()
-	if(owner)
-		name = "[owner.real_name]'s head"
-		owner.u_equip(owner.glasses)
-		owner.u_equip(owner.head)
-		owner.u_equip(owner.l_ear)
-		owner.u_equip(owner.r_ear)
-		owner.u_equip(owner.wear_mask)
-		spawn(1)
-			owner.update_hair()
-	..()
-
-/obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
-	..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
-	if (!disfigured)
-		if (brute_dam > 40)
-			if (prob(50))
-				disfigure("brute")
-		if (burn_dam > 40)
-			disfigure("burn")
+	*/

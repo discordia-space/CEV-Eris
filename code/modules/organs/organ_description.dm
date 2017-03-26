@@ -16,6 +16,9 @@
 	var/can_stand = 0
 	var/list/drop_on_remove = null
 
+/datum/organ_description/proc/create_organ(var/mob/living/carbon/human/H)
+	return new src.default_type(H,src)
+
 /datum/organ_description/chest
 	organ_tag = BP_CHEST
 	name = "upper body"
@@ -70,7 +73,7 @@
 	body_part = ARM_LEFT
 	joint = "left elbow"
 	amputation_point = "left shoulder"
-	default_type = /obj/item/organ/external/arm/left
+//	default_type = /obj/item/organ/external/arm/left
 
 /datum/organ_description/arm/right
 	name = "right arm"
@@ -78,7 +81,7 @@
 	body_part = ARM_RIGHT
 	joint = "right elbow"
 	amputation_point = "right shoulder"
-	default_type = /obj/item/organ/external/arm/right
+//	default_type = /obj/item/organ/external/arm/right
 
 /datum/organ_description/leg
 	max_damage = 50
@@ -94,7 +97,7 @@
 	icon_position = LEFT
 	joint = "left knee"
 	amputation_point = "left hip"
-	default_type = /obj/item/organ/external/leg/left
+//	default_type = /obj/item/organ/external/leg/left
 
 /datum/organ_description/leg/right
 	name = "right leg"
@@ -103,7 +106,7 @@
 	icon_position = RIGHT
 	joint = "right knee"
 	amputation_point = "right hip"
-	default_type = /obj/item/organ/external/leg/right
+//	default_type = /obj/item/organ/external/leg/right
 
 /datum/organ_description/hand
 	min_broken_damage = 15
@@ -118,7 +121,7 @@
 	parent_organ = BP_L_ARM
 	joint = "left wrist"
 	amputation_point = "left wrist"
-	default_type = /obj/item/organ/external/hand/left
+//	default_type = /obj/item/organ/external/hand/left
 
 /datum/organ_description/hand/right
 	organ_tag = BP_R_HAND
@@ -127,10 +130,10 @@
 	parent_organ = BP_R_ARM
 	joint = "right wrist"
 	amputation_point = "right wrist"
-	default_type = /obj/item/organ/external/hand/right
+//	default_type = /obj/item/organ/external/hand/right
 
 /datum/organ_description/foot
-	default_type = /obj/item/organ/external/foot
+//	default_type = /obj/item/organ/external/foot
 	min_broken_damage = 15
 	can_stand = 1
 	drop_on_remove = list(slot_shoes, slot_legcuffed)
@@ -143,7 +146,7 @@
 	parent_organ = BP_L_LEG
 	joint = "left ankle"
 	amputation_point = "left ankle"
-	default_type = /obj/item/organ/external/foot/left
+//	default_type = /obj/item/organ/external/foot/left
 
 /datum/organ_description/foot/right
 	organ_tag = BP_R_FOOT
@@ -153,4 +156,4 @@
 	parent_organ = BP_R_LEG
 	joint = "right ankle"
 	amputation_point = "right ankle"
-	default_type = /obj/item/organ/external/foot/right
+//	default_type = /obj/item/organ/external/foot/right

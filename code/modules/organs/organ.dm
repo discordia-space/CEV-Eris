@@ -49,7 +49,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/New(var/mob/living/carbon/holder)
+/obj/item/organ/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
 	..(holder)
 	var/internal = !istype(src, /obj/item/organ/external)
 	create_reagents(5)
@@ -78,7 +78,8 @@ var/list/organ_cache = list()
 				H.internal_organs_by_name[src.organ_tag] = src
 		if(internal)
 			holder.internal_organs |= src
-	update_icon()
+	if(internal)
+		update_icon()
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
@@ -335,10 +336,8 @@ var/list/organ_cache = list()
 /obj/item/organ/eyes/replaced(var/mob/living/carbon/human/target)
 
 	// Apply our eye colour to the target.
-	if(istype(target) && eye_colour)
-		target.r_eyes = eye_colour[1]
-		target.g_eyes = eye_colour[2]
-		target.b_eyes = eye_colour[3]
+	if(istype(target) && eyes_color)
+		target.eyes_color = eyes_color
 		target.update_eyes()
 	..()
 
@@ -373,9 +372,6 @@ var/list/organ_cache = list()
 	if(!robotic && user.a_intent == I_HELP && user.targeted_organ == "mouth")
 		bitten(user)
 		return
-
-/obj/item/organ/proc/set_description(var/datum/organ_description/desc)
-	return
 
 /obj/item/organ/proc/install(mob/living/carbon/human/H)
 	if(!istype(H))

@@ -1,6 +1,6 @@
 /obj/item/organ/external/robotic
 	name = "robotic"
-	default_icon = 'icons/mob/human_races/cyberlimbs/robotic.dmi'
+	force_icon = 'icons/mob/human_races/cyberlimbs/robotic.dmi'
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	dislocated = -1
 	cannot_break = 1
@@ -9,9 +9,11 @@
 	burn_mod = 0.8
 	var/list/forced_children = null
 	var/attack = 0 			//Attack mode
+	gendered_icon = 0
 
 /obj/item/organ/external/robotic/set_description(var/datum/organ_description/desc)
 	src.name = "[name] [desc.name]"
+	src.limb_name = desc.organ_tag
 	src.amputation_point = desc.amputation_point
 	src.joint = desc.joint
 
