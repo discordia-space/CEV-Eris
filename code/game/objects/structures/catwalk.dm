@@ -7,23 +7,15 @@
 	density = 0
 	anchored = 1.0
 
-	New()
-		..()
-//		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
-		spawn(4)
-			if(src)
-				for(var/obj/structure/catwalk/C in get_turf(src))
-					if(C != src)
-						qdel(C)
-				update_icon()
-				for (var/dir in list(1,2,4,8,5,6,9,10))
-					if(locate(/obj/structure/catwalk, get_step(src, dir)))
-						var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
-						L.update_icon() //so siding get updated properly
 	proc
 		is_catwalk()
 			return 1
 
+/obj/structure/catwalk/proc/update_adjacent()
+	for (var/dir in list(1,2,4,8,5,6,9,10))
+		if(locate(/obj/structure/catwalk, get_step(src, dir)))
+			var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
+			L.update_icon() //so siding get updated properly
 
 
 
@@ -56,6 +48,17 @@
 			diagonalconnect |= 8
 
 	icon_state = "catwalk[connectdir]-[diagonalconnect]"
+
+/obj/structure/catwalk/New()
+	..()
+//		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
+	spawn(4)
+		if(src)
+			for(var/obj/structure/catwalk/C in get_turf(src))
+				if(C != src)
+					qdel(C)
+			update_icon()
+			update_adjacent()
 
 
 /obj/structure/catwalk/ex_act(severity)
