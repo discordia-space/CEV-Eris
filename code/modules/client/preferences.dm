@@ -247,6 +247,8 @@ datum/preferences
 
 	character.religion = religion
 
+	character.rebuild_organs(src)
+
 	// Destroy/cyborgize organs
 
 	for(var/name in organ_data)

@@ -237,8 +237,8 @@
 
 	for(var/organ_tag in species.has_limbs)
 
-		var/list/organ_data = species.has_limbs[organ_tag]
-		var/organ_descriptor = organ_data["descriptor"]
+		var/datum/organ_description/OD = species.has_limbs[organ_tag]
+		var/organ_descriptor = OD.name
 
 		var/obj/item/organ/external/E = organs_by_name[organ_tag]
 		if(!E)

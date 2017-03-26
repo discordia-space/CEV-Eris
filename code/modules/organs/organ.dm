@@ -6,8 +6,8 @@ var/list/organ_cache = list()
 	var/dead_icon
 	var/mob/living/carbon/human/owner = null
 	var/status = 0
-	var/vital //Lose a vital limb, die immediately.
-	var/damage = 0 // amount of damage to the organ
+	var/vital 		//Lose a vital limb, die immediately.
+	var/damage = 0 	// amount of damage to the organ
 
 	var/min_bruised_damage = 10
 	var/min_broken_damage = 30
@@ -15,6 +15,7 @@ var/list/organ_cache = list()
 	var/organ_tag = "organ"
 
 	var/parent_organ = "chest"
+	var/obj/item/organ/external/parent
 	var/robotic = 0 //For being a robot
 	var/rejecting   // Is this organ already being rejected?
 
@@ -48,8 +49,9 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/New(var/mob/living/carbon/holder, var/internal)
+/obj/item/organ/New(var/mob/living/carbon/holder)
 	..(holder)
+	var/internal = !istype(src, /obj/item/organ/external)
 	create_reagents(5)
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
@@ -73,6 +75,7 @@ var/list/organ_cache = list()
 				if(!blood_DNA)
 					blood_DNA = list()
 				blood_DNA[dna.unique_enzymes] = dna.b_type
+				H.internal_organs_by_name[src.organ_tag] = src
 		if(internal)
 			holder.internal_organs |= src
 	update_icon()
@@ -370,3 +373,21 @@ var/list/organ_cache = list()
 	if(!robotic && user.a_intent == I_HELP && user.targeted_organ == "mouth")
 		bitten(user)
 		return
+
+/obj/item/organ/proc/set_description(var/datum/organ_description/desc)
+	return
+
+/obj/item/organ/proc/install(mob/living/carbon/human/H)
+	if(!istype(H))
+		return 1
+
+	owner = H
+	forceMove(owner)
+	if(parent_organ)
+		parent = H.get_organ(parent_organ)
+
+	if(H.dna)
+		if(!blood_DNA)
+			blood_DNA = list()
+		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
+	processing_objects -= src

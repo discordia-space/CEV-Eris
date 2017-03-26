@@ -924,7 +924,7 @@ var/list/rank_prefix = list(\
 
 	// Fix up all organs.
 	// This will ignore any prosthetics in the prefs currently.
-	species.create_organs(src)
+	rebuild_organs()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
 		for (var/obj/item/organ/brain/H in world)
@@ -1131,7 +1131,7 @@ var/list/rank_prefix = list(\
 
 	icon_state = lowertext(species.name)
 
-	species.create_organs(src)
+	rebuild_organs()
 	src.sync_organ_dna()
 	species.handle_post_spawn(src)
 
@@ -1159,6 +1159,54 @@ var/list/rank_prefix = list(\
 		return 1
 	else
 		return 0
+
+//Needed for augmentation
+/mob/living/carbon/human/proc/rebuild_organs(var/from_preference = 0)
+	if(!species)
+		return 0
+
+	for(var/obj/item/organ/organ in (organs|internal_organs))
+		qdel(organ)
+
+	if(organs.len)                  organs.Cut()
+	if(internal_organs.len)         internal_organs.Cut()
+	if(organs_by_name.len)          organs_by_name.Cut()
+	if(internal_organs_by_name.len) internal_organs_by_name.Cut()
+
+	if(from_preference)
+		var/datum/preferences/Pref
+		if(istype(from_preference, /datum/preferences))
+			Pref = from_preference
+		else if(client)
+			Pref = client.prefs
+		else
+			return
+		var/datum/body_modification/BM = null
+		//var/obj/item/organ/Organ = null
+
+		for(var/tag in species.has_limbs)
+			BM = Pref.get_modification(tag)
+			var/datum/organ_description/OD = species.has_limbs[tag]
+			BM.create_organ(src, OD.default_type, Pref.modifications_colors[tag])
+
+		for(var/tag in species.has_organ)
+			BM = Pref.get_modification(tag)
+			BM.create_organ(src, species.has_organ[tag], Pref.modifications_colors[tag])
+
+	else
+		var/organ_type = null
+
+		for(var/limb_tag in species.has_limbs)
+			var/datum/organ_description/OD = species.has_limbs[limb_tag]
+			organ_type = OD.default_type
+			new organ_type(src)
+
+		for(var/organ_tag in species.has_organ)
+			organ_type = species.has_organ[organ_tag]
+			new organ_type(src)
+
+	species.organs_spawned(src)
+	update_body()
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"

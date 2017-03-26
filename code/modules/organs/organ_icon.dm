@@ -54,12 +54,34 @@ var/global/list/limb_icon_cache = list()
 	if(!owner || !owner.species)
 		return
 	if(owner.species.has_organ["eyes"])
-		var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', "eyes[owner.body_build.index]")
+		var/icon/l_eye = new/icon('icons/mob/human_face.dmi', "eye_l[owner.body_build.index]")
+		var/icon/r_eye = new/icon('icons/mob/human_face.dmi', "eye_r[owner.body_build.index]")
 		var/obj/item/organ/eyes/eyes = owner.internal_organs_by_name["eyes"]
-		if(eyes)
-			eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
-		else
+		var/icon/eyes_icon
+
+		if(!eyes)
+			eyes_icon = l_eye
+			eyes_icon.Blend(r_eye, ICON_OVERLAY)
 			eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
+		else
+			if(istype(eyes, /obj/item/organ/eyes/oneeye))
+				var/obj/item/organ/eyes/oneeye/OE = eyes
+				if(OE.right_eye)
+					eyes_icon = r_eye
+				else
+					eyes_icon = l_eye
+				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+			else if(istype(eyes, /obj/item/organ/eyes/heterohromia))
+				var/obj/item/organ/eyes/heterohromia/HT = eyes
+				eyes_icon = r_eye
+				eyes_icon.Blend(rgb(HT.eye_colour[1], HT.eye_colour[2], HT.eye_colour[3]), ICON_ADD)
+				l_eye.Blend(rgb(HT.second_colour[1], HT.second_colour[2], HT.second_colour[3]), ICON_ADD)
+				eyes_icon.Blend(l_eye, ICON_OVERLAY)
+			else
+				eyes_icon = l_eye
+				eyes_icon.Blend(r_eye, ICON_OVERLAY)
+				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+
 		mob_icon.Blend(eyes_icon, ICON_OVERLAY)
 		overlays |= eyes_icon
 

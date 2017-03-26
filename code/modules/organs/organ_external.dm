@@ -13,14 +13,19 @@
 	max_damage = 0
 	dir = SOUTH
 	organ_tag = "limb"
+	var/tally = 0
 
 	var/brute_mod = 1
 	var/burn_mod = 1
-
 	var/icon_name = null
 	var/body_part = null
 	var/icon_position = 0
 	var/model
+
+	var/default_icon	// Used to force override of species-specific limb icons (for prosthetics).
+	var/tattoo
+	var/tattoo_color
+
 	var/force_icon
 	var/damage_state = "00"
 	var/brute_dam = 0
@@ -39,7 +44,7 @@
 	var/list/wounds = list()
 	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
 	var/perma_injury = 0
-	var/obj/item/organ/external/parent
+//	var/obj/item/organ/external/parent
 	var/list/obj/item/organ/external/children
 	var/list/internal_organs = list() 	// Internal organs of this body part
 	var/damage_msg = "\red You feel an intense pain"
@@ -175,7 +180,7 @@
 
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder)
-	..(holder, 0)
+	..(holder)
 	if(owner)
 		replaced(owner)
 		sync_colour_to_human(owner)
@@ -1152,17 +1157,20 @@ Note that amputating the affected organ does in fact remove the infection from t
 //	gendered_icon = 1
 
 /obj/item/organ/external/arm
-	limb_name = "l_arm"
-	name = "left arm"
-	icon_name = "l_arm"
+	limb_name = "arm"
+	name = "arm"
 	max_damage = 50
 	min_broken_damage = 30
 	w_class = 3
+	can_grasp = 1
+
+/obj/item/organ/external/arm/left
+	limb_name = "l_arm"
+	name = "left arm"
+	icon_name = "l_arm"
 	body_part = ARM_LEFT
-	parent_organ = "chest"
 	joint = "left elbow"
 	amputation_point = "left shoulder"
-	can_grasp = 1
 
 /obj/item/organ/external/arm/right
 	limb_name = "r_arm"
@@ -1173,18 +1181,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 	amputation_point = "right shoulder"
 
 /obj/item/organ/external/leg
-	limb_name = "l_leg"
-	name = "left leg"
-	icon_name = "l_leg"
+	limb_name = "leg"
+	name = "leg"
 	max_damage = 50
 	min_broken_damage = 30
 	w_class = 3
+	can_stand = 1
+
+/obj/item/organ/external/leg/left
+	limb_name = "l_leg"
+	name = "left leg"
+	icon_name = "l_leg"
 	body_part = LEG_LEFT
 	icon_position = LEFT
-	parent_organ = "groin"
 	joint = "left knee"
 	amputation_point = "left hip"
-	can_stand = 1
 
 /obj/item/organ/external/leg/right
 	limb_name = "r_leg"
@@ -1196,21 +1207,25 @@ Note that amputating the affected organ does in fact remove the infection from t
 	amputation_point = "right hip"
 
 /obj/item/organ/external/foot
-	limb_name = "l_foot"
-	name = "left foot"
-	icon_name = "l_foot"
+	limb_name = "foot"
+	name = "foot"
 	min_broken_damage = 15
 	w_class = 2
-	body_part = FOOT_LEFT
-	icon_position = LEFT
-	parent_organ = "l_leg"
-	joint = "left ankle"
-	amputation_point = "left ankle"
 	can_stand = 1
 
 /obj/item/organ/external/foot/removed()
 	if(owner) owner.u_equip(owner.shoes)
 	..()
+
+/obj/item/organ/external/foot/left
+	limb_name = "l_foot"
+	name = "left foot"
+	icon_name = "l_foot"
+	body_part = FOOT_LEFT
+	icon_position = LEFT
+	parent_organ = "l_leg"
+	joint = "left ankle"
+	amputation_point = "left ankle"
 
 /obj/item/organ/external/foot/right
 	limb_name = "r_foot"
@@ -1223,20 +1238,24 @@ Note that amputating the affected organ does in fact remove the infection from t
 	amputation_point = "right ankle"
 
 /obj/item/organ/external/hand
-	limb_name = "l_hand"
-	name = "left hand"
-	icon_name = "l_hand"
+	limb_name = "hand"
+	name = "hand"
 	min_broken_damage = 15
 	w_class = 2
-	body_part = HAND_LEFT
-	parent_organ = "l_arm"
-	joint = "left wrist"
-	amputation_point = "left wrist"
 	can_grasp = 1
 
 /obj/item/organ/external/hand/removed()
 	owner.u_equip(owner.gloves)
 	..()
+
+/obj/item/organ/external/hand/left
+	limb_name = "l_hand"
+	name = "left hand"
+	icon_name = "l_hand"
+	body_part = HAND_LEFT
+	parent_organ = "l_arm"
+	joint = "left wrist"
+	amputation_point = "left wrist"
 
 /obj/item/organ/external/hand/right
 	limb_name = "r_hand"

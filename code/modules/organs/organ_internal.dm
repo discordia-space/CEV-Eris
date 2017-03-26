@@ -30,6 +30,8 @@
 		else if(is_broken())
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
+////////////////////// EYES
+
 /obj/item/organ/eyes
 	name = "eyeballs"
 	icon_state = "eyes"
@@ -37,6 +39,16 @@
 	organ_tag = "eyes"
 	parent_organ = "head"
 	var/list/eye_colour = list(0,0,0)
+	var/list/robo_color = "#000000"
+
+/obj/item/organ/eyes/oneeye
+	var/right_eye = 0 			//if true, right eye will removed, if false, left
+
+/obj/item/organ/eyes/oneeye/right
+	right_eye = 1
+
+/obj/item/organ/eyes/heterohromia
+	var/list/second_colour = list(0,0,0)
 
 /obj/item/organ/eyes/proc/update_colour()
 	if(!owner)
