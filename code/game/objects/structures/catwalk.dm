@@ -16,19 +16,19 @@
 					if(C != src)
 						qdel(C)
 				update_icon()
-				upd_ctwlk()
+				redraw_sprites()
 	proc
 		is_catwalk()
 			return 1
 
-	proc/upd_ctwlk()
+	proc/redraw_sprites()
 		for (var/dir in list(1,2,4,8,5,6,9,10))
 			if(locate(/obj/structure/catwalk, get_step(src, dir)))
 				var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
 				L.update_icon() //so siding get updated properly
 
 	Destroy()
-		upd_ctwlk()
+		redraw_sprites()
 		..()
 
 
