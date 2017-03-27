@@ -9,14 +9,13 @@
 
 	New()
 		..()
-//		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
+		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
 		spawn(4)
 			if(src)
 				for(var/obj/structure/catwalk/C in get_turf(src))
 					if(C != src)
 						qdel(C)
 				update_icon()
-				redraw_sprites()
 	proc
 		is_catwalk()
 			return 1
@@ -30,8 +29,6 @@
 	Destroy()
 		redraw_sprites()
 		..()
-
-
 
 /obj/structure/catwalk/update_icon()
 	var/connectdir = 0
