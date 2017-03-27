@@ -104,8 +104,8 @@
 		var/turf/D = locate(T.x, throwy - 1, 1)
 		for(var/atom/movable/AM as mob|obj in T)
 			AM.Move(D)
-		if(istype(T, /turf/simulated))
-			qdel(T)
+		//if(istype(T, /turf/simulated)) // ZAS ne boley
+		//	qdel(T)
 
 	for(var/mob/living/carbon/bug in destination)
 		bug.gib()
