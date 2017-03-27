@@ -27,6 +27,10 @@
 				var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
 				L.update_icon() //so siding get updated properly
 
+	Destroy()
+		upd_ctwlk()
+		..()
+
 
 
 /obj/structure/catwalk/update_icon()
@@ -63,11 +67,9 @@
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			upd_ctwlk()
 			qdel(src)
 			return
 		if(2.0)
-			upd_ctwlk()
 			qdel(src)
 			return
 		if(3.0)
@@ -79,7 +81,6 @@
 	if (istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
-			upd_ctwlk()
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			user << "\blue Slicing lattice joints ..."
 			new /obj/item/stack/rods(src.loc)
