@@ -107,6 +107,7 @@ del(src)
 ***
 
 Do not return unused values from functions. Do not use return if there's no any actions in function after it. 
+
 ***Good:***
 ```
 proc/mutate_count(var/obj, var/value)
@@ -124,16 +125,20 @@ proc/mutate_count(var/obj, var/value)
 
 # Naming
 Avoid short names. No acronyms or abbreviations.
+
 ***Good:***
 ```
 /obj/proximity_sensor/update_sprites()
+var/count = 0
 ```
 ***Bad:***
 ```
 /obj/prox_sensor/upd_sprites()
+var/c = 1
 ```
 ***
 Avoid digits in names.
+
 ***Good:***
 ```
 /datum/job/first_officer
@@ -144,6 +149,7 @@ var/text1 = "text"
 ```
 ***
 Variables, types and methods should be named in "snake case". Constant values should be named in uppercase. 
+
 ***Good:***
 ```
 proc/redraw_icons()
