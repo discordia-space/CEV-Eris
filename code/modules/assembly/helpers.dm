@@ -1,44 +1,29 @@
-/proc/isassembly(O)
+/proc/is_assembly(O)
 	if(istype(O, /obj/item/device/assembly))
 		return 1
 	return 0
 
-/proc/isigniter(O)
+/proc/is_igniter(O)
 	if(istype(O, /obj/item/device/assembly/igniter))
 		return 1
 	return 0
 
-/proc/isinfared(O)
+/proc/is_infrared(O)
 	if(istype(O, /obj/item/device/assembly/infra))
 		return 1
 	return 0
 
-/proc/isprox(O)
+/proc/is_proximity_sensor(O)
 	if(istype(O, /obj/item/device/assembly/prox_sensor))
 		return 1
 	return 0
 
-/proc/issignaler(O)
+/proc/is_signaler(O)
 	if(istype(O, /obj/item/device/assembly/signaler))
 		return 1
 	return 0
 
-/proc/istimer(O)
+/proc/is_timer(O)
 	if(istype(O, /obj/item/device/assembly/timer))
 		return 1
-	return 0
-
-/*
-Name:	IsSpecialAssembly
-Desc:	If true is an object that can be attached to an assembly holder but is a special thing like a plasma can or door
-*/
-
-/obj/proc/IsSpecialAssembly()
-	return 0
-
-/*
-Name:	IsAssemblyHolder
-Desc:	If true is an object that can hold an assemblyholder object
-*/
-/obj/proc/IsAssemblyHolder()
 	return 0
