@@ -21,9 +21,6 @@
 	redraw_nearby_catwalks()
 	..()
 
-/obj/structure/catwalk/proc/is_catwalk()
-	return TRUE
-
 /obj/structure/catwalk/proc/redraw_nearby_catwalks()
 	for(var/direction in alldirs)
 		if(locate(/obj/structure/catwalk, get_step(src, direction)))
