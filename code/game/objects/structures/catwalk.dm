@@ -9,25 +9,26 @@
 
 	New()
 		..()
-//		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
+		set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
 		spawn(4)
 			if(src)
 				for(var/obj/structure/catwalk/C in get_turf(src))
 					if(C != src)
 						qdel(C)
 				update_icon()
-				upd_ctwlk()
 	proc
 		is_catwalk()
 			return 1
 
-	proc/upd_ctwlk()
+	proc/redraw_sprites()
 		for (var/dir in list(1,2,4,8,5,6,9,10))
 			if(locate(/obj/structure/catwalk, get_step(src, dir)))
 				var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
 				L.update_icon() //so siding get updated properly
 
-
+	Destroy()
+		redraw_sprites()
+		..()
 
 /obj/structure/catwalk/update_icon()
 	var/connectdir = 0
@@ -63,11 +64,9 @@
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			upd_ctwlk()
 			qdel(src)
 			return
 		if(2.0)
-			upd_ctwlk()
 			qdel(src)
 			return
 		if(3.0)
@@ -79,7 +78,6 @@
 	if (istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
-			upd_ctwlk()
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			user << "\blue Slicing lattice joints ..."
 			new /obj/item/stack/rods(src.loc)
