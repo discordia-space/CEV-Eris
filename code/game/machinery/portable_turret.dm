@@ -759,7 +759,7 @@ var/list/turret_icons
 				return
 
 		if(4)
-			if(isprox(I))
+			if(is_proximity_sensor(I))
 				build_step = 5
 				if(!user.unEquip(I))
 					user << "<span class='notice'>\the [I] is stuck to your hand, you cannot put it in \the [src]</span>"
