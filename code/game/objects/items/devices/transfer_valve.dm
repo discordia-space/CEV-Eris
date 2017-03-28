@@ -13,8 +13,6 @@
 
 /obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
 
-/obj/item/device/transfer_valve/IsAssemblyHolder()
-	return 1
 
 /obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
 	var/turf/location = get_turf(src) // For admin logs
@@ -39,7 +37,7 @@
 		update_icon()
 		nanomanager.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
-	else if(isassembly(item))
+	else if(is_assembly(item))
 		var/obj/item/device/assembly/A = item
 		if(A.secured)
 			user << "<span class='notice'>The device is secured.</span>"
