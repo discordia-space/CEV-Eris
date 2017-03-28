@@ -16,14 +16,16 @@
 					if(C != src)
 						qdel(C)
 				update_icon()
-				for (var/dir in list(1,2,4,8,5,6,9,10))
-					if(locate(/obj/structure/catwalk, get_step(src, dir)))
-						var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
-						L.update_icon() //so siding get updated properly
+				upd_ctwlk()
 	proc
 		is_catwalk()
 			return 1
 
+	proc/upd_ctwlk()
+		for (var/dir in list(1,2,4,8,5,6,9,10))
+			if(locate(/obj/structure/catwalk, get_step(src, dir)))
+				var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
+				L.update_icon() //so siding get updated properly
 
 
 
@@ -61,9 +63,11 @@
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)
 		if(1.0)
+			upd_ctwlk()
 			qdel(src)
 			return
 		if(2.0)
+			upd_ctwlk()
 			qdel(src)
 			return
 		if(3.0)
@@ -75,6 +79,7 @@
 	if (istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
+			upd_ctwlk()
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			user << "\blue Slicing lattice joints ..."
 			new /obj/item/stack/rods(src.loc)
