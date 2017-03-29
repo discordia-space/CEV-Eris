@@ -29,6 +29,7 @@ Proc defines should contain full type path.
 ```
 ***
 If, else, for, return, continue and break expressions should not be inline.
+
 ***Good:***
 ```
 if(condition)
