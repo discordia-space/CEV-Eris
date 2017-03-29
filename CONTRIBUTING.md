@@ -37,6 +37,7 @@ if(condition)
 ```
 for(var/object in objects)
     foo(object)
+```
 ***Bad:***
 ```
 if(condition) foo()
