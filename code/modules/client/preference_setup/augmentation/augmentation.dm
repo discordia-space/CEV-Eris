@@ -25,8 +25,20 @@
 	if(!pref.modifications_colors)
 		pref.modifications_colors = list()
 
-/datum/category_item/player_setup_item/augmentation/content()
-	var/dat = "<style>div.block{border: 3px solid black;margin: 3px 0px;padding: 4px 0px;}</style>"
+	for(var/tag in (pref.r_organs|pref.l_organs))
+		if(!pref.modifications_colors[tag])
+			pref.modifications_colors[tag] = "#000000"
+
+/datum/category_item/player_setup_item/augmentation/content(var/mob/user)
+	if(pref.req_update_icon == 1)
+		pref.update_preview_icon()
+	if(pref.preview_north && pref.preview_south && pref.preview_east && pref.preview_west)
+		user << browse_rsc(pref.preview_north, "new_previewicon[NORTH].png")
+		user << browse_rsc(pref.preview_south, "new_previewicon[SOUTH].png")
+		user << browse_rsc(pref.preview_east, "new_previewicon[EAST].png")
+		user << browse_rsc(pref.preview_west, "new_previewicon[WEST].png")
+
+	var/dat = "<style>div.block{border: 3px solid black;margin: 3px 0px;padding: 4px 0px;} span.box{display: inline-block; width: 20px; height: 10px; border:1px solid #000;}</style>"
 	dat +=  "<script language='javascript'> [js_byjax] function set(param, value) {window.location='?src=\ref[src];'+param+'='+value;}</script>"
 	dat += "<table style='max-height:400px;height:410px'>"
 	dat += "<tr style='vertical-align:top'><td><div style='max-width:230px;width:230px;height:100%;overflow-y:auto;border:solid;padding:3px'>"
@@ -44,7 +56,7 @@
 		dat += "<a href='?src=\ref[src];color=[organ]'><span class='box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		dat += "<br><a href='?src=\ref[src];organ=[organ]'>[disp_name]</a></div>"
 
-	//dat += "</td><td style='width:80px;text-align:center'><img src=new_previewicon[pref.preview_dir].png height=64 width=64>"
+	dat += "</td><td style='width:80px;text-align:center'><img src=new_previewicon[pref.preview_dir].png height=64 width=64>"
 	dat += "<br><a href='?src=\ref[src];rotate=right'>&lt;&lt;&lt;</a> <a href='?src=\ref[src];rotate=left'>&gt;&gt;&gt;</a></td>"
 	dat += "<td style='width:95px'>"
 
@@ -111,7 +123,7 @@
 		if(!pref.modifications_colors[organ]) pref.modifications_colors[organ] = "#FFFFFF"
 		var/new_color = input(user, "Choose color for [organ_tag_to_name[organ]]: ", "Character Preference", pref.modifications_colors[organ]) as color|null
 		if(new_color && pref.modifications_colors[organ]!=new_color)
-			//pref.req_update_icon = 1							//TODO: Port preview system from bay
+			pref.req_update_icon = 1
 			pref.modifications_colors[organ] = new_color
 		return TOPIC_REFRESH
 
@@ -120,7 +132,14 @@
 		if(mod && mod.is_allowed(pref.current_organ, pref))
 			pref.modifications_data[pref.current_organ] = mod
 			pref.check_child_modifications(pref.current_organ)
-		//	pref.req_update_icon = 1
+			pref.req_update_icon = 1
+		return TOPIC_REFRESH
+
+	else if(href_list["rotate"])
+		if(href_list["rotate"] == "right")
+			pref.preview_dir = turn(pref.preview_dir,-90)
+		else
+			pref.preview_dir = turn(pref.preview_dir,90)
 		return TOPIC_REFRESH
 
 	return ..()

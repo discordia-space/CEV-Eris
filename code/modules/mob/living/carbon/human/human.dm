@@ -1150,6 +1150,10 @@ var/list/rank_prefix = list(\
 	else
 		return 0
 
+#define MODIFICATION_ORGANIC 1
+#define MODIFICATION_SILICON 2
+#define MODIFICATION_REMOVED 3
+
 //Needed for augmentation
 /mob/living/carbon/human/proc/rebuild_organs(var/from_preference = 0)
 	if(!species)
@@ -1176,6 +1180,9 @@ var/list/rank_prefix = list(\
 		for(var/tag in species.has_limbs)
 			BM = Pref.get_modification(tag)
 			var/datum/organ_description/OD = species.has_limbs[tag]
+			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ)
+			if(PBM && (PBM.nature == MODIFICATION_SILICON || PBM.nature == MODIFICATION_REMOVED))
+				BM = PBM
 			BM.create_organ(src, OD, Pref.modifications_colors[tag])
 
 		for(var/tag in species.has_organ)
@@ -1195,6 +1202,10 @@ var/list/rank_prefix = list(\
 
 	species.organs_spawned(src)
 	update_body()
+
+#undef MODIFICATION_REMOVED
+#undef MODIFICATION_ORGANIC
+#undef MODIFICATION_SILICON
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"

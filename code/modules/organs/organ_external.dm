@@ -24,7 +24,7 @@
 
 	//var/default_icon	// Used to force override of species-specific limb icons (for prosthetics).
 	var/tattoo
-	var/tattoo_color
+	var/tattoo_color = "#000000"
 
 	var/force_icon
 	var/damage_state = "00"
@@ -33,7 +33,7 @@
 	var/max_size = 0
 	var/last_dam = -1
 	var/icon/mob_icon
-	var/gendered_icon = 1
+	var/gendered_icon = 0
 	var/limb_name
 	var/disfigured = 0
 	var/cannot_amputate
@@ -78,14 +78,10 @@
 	return ..()
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
-	world << "[src] creating"
 	..(holder)
-	world << "[src] supertype call"
 	if(owner)
-		world << "[src] owner detected"
 		if(OD)
 			set_description(OD)
-			world << "[src] [OD] set"
 		replaced(owner)
 		sync_colour_to_human(owner)
 	spawn(1)

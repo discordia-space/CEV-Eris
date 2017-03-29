@@ -49,9 +49,9 @@ datum/preferences
 	var/religion = "None"               //Religious association.
 
 		//Mob preview
-	var/icon/preview_icon = null
+	/*var/icon/preview_icon = null
 	var/icon/preview_icon_front = null
-	var/icon/preview_icon_side = null
+	var/icon/preview_icon_side = null*/
 
 	var/high_job_title = ""
 

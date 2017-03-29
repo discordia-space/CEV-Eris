@@ -170,7 +170,7 @@ datum/preferences
 		skin_color = rgb(red, green, blue)
 
 
-	proc/update_preview_icon()		//seriously. This is horrendous.
+	/*proc/update_preview_icon()		//seriously. This is horrendous.
 		qdel(preview_icon_front)
 		qdel(preview_icon_side)
 		qdel(preview_icon)
@@ -307,3 +307,4 @@ datum/preferences
 
 		qdel(eyes)
 		qdel(clothes)
+*/

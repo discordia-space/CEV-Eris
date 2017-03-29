@@ -38,8 +38,8 @@
 	gender = PLURAL
 	organ_tag = "eyes"
 	parent_organ = "head"
-	var/list/eyes_color = "#000000"
-	var/list/robo_color = "#000000"
+	var/eyes_color = "#000000"
+	var/robo_color = "#000000"
 
 /obj/item/organ/eyes/oneeye
 	var/right_eye = 0 			//if true, right eye will removed, if false, left
@@ -48,7 +48,7 @@
 	right_eye = 1
 
 /obj/item/organ/eyes/heterohromia
-	var/list/second_color = "#000000"
+	var/second_color = "#000000"
 
 /obj/item/organ/eyes/proc/update_colour()
 	if(!owner)

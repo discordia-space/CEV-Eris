@@ -1,4 +1,4 @@
-/obj/item/organ/external/robotic/enforcer
+/*/obj/item/organ/external/robotic/enforcer	//NEED SPRITES
 	force_icon = 'icons/mob/human_races/cyberlimbs/enforcer.dmi'
 	brute_mod = 0.7
 	burn_mod = 0.7
@@ -121,3 +121,4 @@
 			usr << "<span class = 'notice'>The mag-pulse traction system has been disabled.</span>"
 		return
 
+*/

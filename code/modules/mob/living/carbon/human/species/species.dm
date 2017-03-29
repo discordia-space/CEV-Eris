@@ -12,6 +12,7 @@
 	// Icon/appearance vars.
 	var/icobase = 'icons/mob/human_races/r_human.dmi'    // Normal icon set.
 	var/deform = 'icons/mob/human_races/r_def_human.dmi' // Mutated icon set.
+	var/faceicobase = 'icons/mob/human_face.dmi'
 
 	// Damage overlay and masks.
 	var/damage_overlays = 'icons/mob/human_races/masks/dam_human.dmi'
@@ -185,6 +186,13 @@
 
 /datum/species/proc/get_bodytype()
 	return name
+
+/datum/species/proc/get_body_build(var/gender, var/prefered)
+	for(var/BBT in typesof(/datum/body_build))
+		var/datum/body_build/BB = new BBT
+		if( (!prefered || BB.name == prefered) && (gender in genders) )
+			return BB
+
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 

@@ -66,13 +66,10 @@ var/global/list/limb_icon_cache = list()
 		else
 			if(istype(eyes, /obj/item/organ/eyes/oneeye))
 				var/obj/item/organ/eyes/oneeye/OE = eyes
-				world << "[owner] HAS ONE EYE, right = [OE.right_eye]"
 				if(OE.right_eye)
 					eyes_icon = r_eye
-					world << "LEFT REMOVED"
 				else
 					eyes_icon = l_eye
-					world << "RIGHT REMOVED"
 				eyes_icon.Blend(OE.eyes_color, ICON_ADD)
 			else if(istype(eyes, /obj/item/organ/eyes/heterohromia))
 				var/obj/item/organ/eyes/heterohromia/HT = eyes
@@ -83,7 +80,7 @@ var/global/list/limb_icon_cache = list()
 			else
 				eyes_icon = l_eye
 				eyes_icon.Blend(r_eye, ICON_OVERLAY)
-				eyes_icon.Blend(HT.eyes_color, ICON_ADD)
+				eyes_icon.Blend(eyes.eyes_color, ICON_ADD)
 
 		mob_icon.Blend(eyes_icon, ICON_OVERLAY)
 		overlays |= eyes_icon
@@ -116,28 +113,27 @@ var/global/list/limb_icon_cache = list()
 		qdel(src)
 		return
 	var/gender = "_m"
-	var/icon/newicon
 	if (dna && dna.GetUIState(DNA_UI_GENDER))
 		gender = "_f"
 	else if(owner && owner.gender == FEMALE)
 		gender = "_f"
 
-	if(!gendered_icon)
-		gender = null
+	/*if(gendered_icon || !(limb_name in list(BP_HEAD,BP_CHEST,BP_GROIN)))
+		gender = null*/
 
 	icon_state = "[limb_name][gender][owner.body_build.index][is_stump()?"_s":""]"
 	if(src.force_icon)
-		newicon = src.force_icon
+		icon = src.force_icon
 	else if (!dna)
-		newicon = 'icons/mob/human_races/r_human.dmi'
+		icon = 'icons/mob/human_races/r_human.dmi'
 	else if (status & ORGAN_ROBOT)
-		newicon = 'icons/mob/human_races/robotic.dmi'
+		icon = 'icons/mob/human_races/robotic.dmi'
 	else if (status & ORGAN_MUTATED)
-		newicon = species.deform
+		icon = species.deform
 	else
-		newicon = species.icobase
-	mob_icon = new/icon(newicon, icon_state)
-	world << "[src] in [owner] icon = [newicon] -- [icon_state]"
+		icon = species.icobase
+	mob_icon = new/icon(icon, icon_state)
+	//world << "[src] \ref[src] in [owner] icon = [icon] -- [icon_state]"
 	if(status & ORGAN_DEAD)
 		mob_icon.ColorTone(rgb(10,50,0))
 		mob_icon.SetIntensity(0.7)
@@ -150,6 +146,11 @@ var/global/list/limb_icon_cache = list()
 	else
 		if(skin_col)
 			mob_icon.Blend(skin_col, ICON_ADD)
+
+	if(tattoo)
+		var/icon/T = new/icon('icons/mob/tattoo.dmi',"[limb_name]_[tattoo]")
+		T.Blend(tattoo_color,ICON_ADD)
+		mob_icon.Blend(T,ICON_OVERLAY)
 
 	dir = EAST
 	icon = mob_icon

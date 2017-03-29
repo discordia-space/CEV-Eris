@@ -54,6 +54,7 @@
 
 //// Enforcer ////
 
+/*
 /obj/item/prosthesis/enforcer
 	desc = "Full limb combat prosthesis module."
 	matter = list(DEFAULT_WALL_MATERIAL = 15000)
@@ -79,5 +80,5 @@
 	name = "Enforcer Charge right leg"
 	icon_state = "r_leg"
 	part = list(BP_R_LEG = /obj/item/organ/external/robotic/enforcer/limb/leg)
-
+*/
 
