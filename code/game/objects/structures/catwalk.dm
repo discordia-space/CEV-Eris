@@ -9,29 +9,30 @@
 
 /obj/structure/catwalk/New()
 	..()
-//	set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
 	spawn(4)
 		if(src)
 			for(var/obj/structure/catwalk/C in get_turf(src))
 				if(C != src)
 					qdel(C)
 			update_icon()
-			for (var/dir in list(1,2,4,8,5,6,9,10))
-				if(locate(/obj/structure/catwalk, get_step(src, dir)))
-					var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, dir))
-					L.update_icon() //so siding get updated properly
+			redraw_nearby_catwalks()
 
-/obj/structure/catwalk/proc/is_catwalk()
-	return 1
+/obj/structure/catwalk/Destroy()
+	redraw_nearby_catwalks()
+	..()
+
+/obj/structure/catwalk/proc/redraw_nearby_catwalks()
+	for(var/direction in alldirs)
+		if(locate(/obj/structure/catwalk, get_step(src, direction)))
+			var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, direction))
+			L.update_icon() //so siding get updated properly
+
 
 /obj/structure/catwalk/update_icon()
 	var/connectdir = 0
 	for(var/direction in cardinal)
 		if(locate(/obj/structure/catwalk, get_step(src, direction)))
 			connectdir |= direction
-	//if(locate(/obj/structure/catwalk) in get_step(src, dir))
-    //istype(get_step(src,direction),/turf/simulated/floor)
-	//istype((locate(/obj/structure/catwalk) in get_step(src, dir)), /obj/structure/catwalk)
 
 	//Check the diagonal connections for corners, where you have, for example, connections both north and east. In this case it checks for a north-east connection to determine whether to add a corner marker or not.
 	var/diagonalconnect = 0 //1 = NE; 2 = SE; 4 = NW; 8 = SW
@@ -54,17 +55,13 @@
 
 	icon_state = "catwalk[connectdir]-[diagonalconnect]"
 
+
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
-			return
 		if(2.0)
 			qdel(src)
-			return
-		if(3.0)
-			return
-		else
 	return
 
 /obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)

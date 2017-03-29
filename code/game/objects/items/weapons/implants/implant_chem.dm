@@ -37,8 +37,8 @@
 
 
 /obj/item/weapon/implant/chem/activate(var/cause)
-	if((!cause) || (!src.imp_in))	return 0
-	var/mob/living/carbon/R = src.imp_in
+	if((!cause) || (!src.wearer))	return 0
+	var/mob/living/carbon/R = src.wearer
 	src.reagents.trans_to_mob(R, cause, CHEM_BLOOD)
 	R << "You hear a faint *beep*."
 	if(!src.reagents.total_volume)

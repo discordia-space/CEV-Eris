@@ -19,7 +19,7 @@
 
 /obj/item/weapon/implant/death_alarm/process()
 	if (!implanted) return
-	var/mob/M = imp_in
+	var/mob/M = wearer
 
 	if(isnull(M)) // If the mob got gibbed
 		activate()
@@ -27,7 +27,7 @@
 		activate("death")
 
 /obj/item/weapon/implant/death_alarm/activate(var/cause)
-	var/mob/M = imp_in
+	var/mob/M = wearer
 	var/area/t = get_area(M)
 	switch (cause)
 		if("death")
