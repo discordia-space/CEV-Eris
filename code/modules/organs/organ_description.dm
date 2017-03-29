@@ -12,8 +12,8 @@
 	var/joint = "neck"
 	var/parent_organ = null
 	var/icon_position = null
-	var/can_grasp = 0
-	var/can_stand = 0
+	var/can_grasp = FALSE
+	var/can_stand = FALSE
 	var/list/drop_on_remove = null
 
 /datum/organ_description/proc/create_organ(var/mob/living/carbon/human/H)

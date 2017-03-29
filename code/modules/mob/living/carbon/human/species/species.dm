@@ -190,7 +190,7 @@
 /datum/species/proc/get_body_build(var/gender, var/prefered)
 	for(var/BBT in typesof(/datum/body_build))
 		var/datum/body_build/BB = new BBT
-		if( (!prefered || BB.name == prefered) && (gender in genders) )
+		if((!prefered || BB.name == prefered) && (gender in genders))
 			return BB
 
 

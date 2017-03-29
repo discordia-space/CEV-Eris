@@ -13,7 +13,8 @@ var/global/list/modifications_types = list(
 /proc/generate_body_modification_lists()
 	for(var/mod_type in typesof(/datum/body_modification))
 		var/datum/body_modification/BM = new mod_type()
-		if(!BM.id) continue
+		if(!BM.id)
+			continue
 		body_modifications[BM.id] = BM
 		var/class = ""
 		if(BM.allowed_species && BM.allowed_species.len)
@@ -23,9 +24,12 @@ var/global/list/modifications_types = list(
 
 /proc/get_default_modificaton(var/nature = MODIFICATION_ORGANIC)
 	switch(nature)
-		if(MODIFICATION_ORGANIC) return body_modifications["nothing"]
-		if(MODIFICATION_SILICON) return body_modifications["prosthesis_basic"]
-		if(MODIFICATION_REMOVED) return body_modifications["amputated"]
+		if(MODIFICATION_ORGANIC)
+			return body_modifications["nothing"]
+		if(MODIFICATION_SILICON)
+			return body_modifications["prosthesis_basic"]
+		if(MODIFICATION_REMOVED)
+			return body_modifications["amputated"]
 
 /datum/body_modification
 	var/name = ""
@@ -41,25 +45,25 @@ var/global/list/modifications_types = list(
 	var/icon/icon = 'icons/mob/human_races/body_modification.dmi'
 	var/nature = MODIFICATION_ORGANIC
 
-	proc/get_mob_icon(organ, body_build = "", color="#ffffff", gender = MALE, species)	//Use in setup character only
+/datum/body_modification/proc/get_mob_icon(organ, body_build = "", color="#ffffff", gender = MALE, species)	//Use in setup character only
 		return new/icon('icons/mob/human.dmi', "blank")
 
-	proc/is_allowed(var/organ = "", datum/preferences/P)
-		if(!organ || !(organ in body_parts))
-			usr << "[name] isn't useable for [organ_tag_to_name[organ]]"
-			return 0
-		var/list/organ_data = organ_structure[organ]
-		if(organ_data)
-			var/parent_organ = organ_data["parent"]
-			if(parent_organ)
-				var/datum/body_modification/parent = P.get_modification(parent_organ)
-				if(parent.nature > nature)
-					usr << "[name] can't be attached to [parent.name]"
-					return 0
-		return 1
+/datum/body_modification/proc/is_allowed(var/organ = "", datum/preferences/P)
+	if(!organ || !(organ in body_parts))
+		usr << "[name] isn't useable for [organ_tag_to_name[organ]]"
+		return FALSE
+	var/list/organ_data = organ_structure[organ]
+	if(organ_data)
+		var/parent_organ = organ_data["parent"]
+		if(parent_organ)
+			var/datum/body_modification/parent = P.get_modification(parent_organ)
+			if(parent.nature > nature)
+				usr << "[name] can't be attached to [parent.name]"
+				return FALSE
+	return TRUE
 
-	proc/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
-		return null
+/datum/body_modification/proc/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
+	return null
 
 /datum/body_modification/none
 	name = "Unmodified organ"

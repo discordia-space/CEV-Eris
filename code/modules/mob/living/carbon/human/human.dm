@@ -1162,10 +1162,14 @@ var/list/rank_prefix = list(\
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
 
-	if(organs.len)                  organs.Cut()
-	if(internal_organs.len)         internal_organs.Cut()
-	if(organs_by_name.len)          organs_by_name.Cut()
-	if(internal_organs_by_name.len) internal_organs_by_name.Cut()
+	if(organs.len)
+		organs.Cut()
+	if(internal_organs.len)
+		internal_organs.Cut()
+	if(organs_by_name.len)
+		organs_by_name.Cut()
+	if(internal_organs_by_name.len)
+		internal_organs_by_name.Cut()
 
 	if(from_preference)
 		var/datum/preferences/Pref

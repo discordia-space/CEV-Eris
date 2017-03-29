@@ -49,7 +49,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
+/obj/item/organ/New(var/mob/living/carbon/holder, var/datum/organ_description/OD)
 	..(holder)
 	var/internal = !istype(src, /obj/item/organ/external)
 	create_reagents(5)
