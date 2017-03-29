@@ -45,7 +45,7 @@
 
 /datum/sprite_accessory/hair
 
-	icon = 'icons/mob/Human_face.dmi'	  // default icon for all hairs
+	icon = 'icons/mob/human_face.dmi'	  // default icon for all hairs
 
 	bald
 		name = "Bald"

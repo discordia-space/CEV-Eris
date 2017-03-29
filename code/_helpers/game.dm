@@ -384,6 +384,23 @@ datum/projectile_data
 			GetBluePart(hexa)
 		)
 
+/proc/iscolor(var/color)
+	var/h = copytext(color,1,2)
+	var/r = GetRedPart(color)
+	var/g = GetGreenPart(color)
+	var/b = GetBluePart(color)
+
+	if(!isnum(r) || r > 255 || r < 0)
+		return 0
+	if(!isnum(g) || g > 255 || g < 0)
+		return 0
+	if(!isnum(b) || b > 255 || b < 0)
+		return 0
+	if(h != "#")
+		return 0
+
+	return 1
+
 /proc/MixColors(const/list/colors)
 	var/list/reds = list()
 	var/list/blues = list()

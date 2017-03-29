@@ -144,6 +144,7 @@
 /datum/category_item/player_setup_item/occupation/OnTopic(href, href_list, user)
 	if(href_list["reset_jobs"])
 		ResetJobs()
+		pref.req_update_icon = 1
 		return TOPIC_REFRESH
 
 	else if(href_list["job_alternative"])
@@ -151,6 +152,7 @@
 			pref.alternate_option += 1
 		else if(pref.alternate_option == RETURN_TO_LOBBY)
 			pref.alternate_option = 0
+		pref.req_update_icon = 1
 		return TOPIC_REFRESH
 
 	else if(href_list["select_alt_title"])
@@ -160,10 +162,13 @@
 			var/choice = input("Choose an title for [job.title].", "Choose Title", pref.GetPlayerAltTitle(job)) as anything in choices|null
 			if(choice && CanUseTopic(user))
 				SetPlayerAltTitle(job, choice)
+				pref.req_update_icon = 1
 				return TOPIC_REFRESH
 
 	else if(href_list["set_job"])
-		if(SetJob(user, href_list["set_job"])) return TOPIC_REFRESH
+		if(SetJob(user, href_list["set_job"]))
+			pref.req_update_icon = 1
+			return TOPIC_REFRESH
 
 	return ..()
 

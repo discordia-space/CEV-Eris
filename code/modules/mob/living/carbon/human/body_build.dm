@@ -1,3 +1,4 @@
+var/datum/body_build/default_body_build = new
 /datum/body_build
 	var/name			= "Default"
 	var/gender 			= MALE
@@ -16,6 +17,32 @@
 	var/s_store_icon	= 'icons/mob/belt_mirror.dmi'
 	var/backpack_icon	= 'icons/mob/back.dmi'
 	var/underwear_icon	= 'icons/mob/underwear.dmi'
+
+/datum/body_build/proc/get_mob_icon(var/slot, var/icon_state)
+	var/icon/I
+	for(var/build in list(src, default_body_build))
+		var/datum/body_build/BB = build
+		switch(slot)
+			if("misk")    I = BB.misk_icon
+			if("uniform") I = BB.uniform_icon
+			if("suit")    I = BB.suit_icon
+			if("gloves")  I = BB.gloves_icon
+			if("glasses") I = BB.glasses_icon
+			if("ears")    I = BB.ears_icon
+			if("mask")    I = BB.mask_icon
+			if("head")    I = BB.hat_icon
+			if("shoes")   I = BB.shoes_icon
+			if("belt")    I = BB.belt_icon
+			if("s_store") I = BB.s_store_icon
+			if("back")    I = BB.backpack_icon
+			/*if("tie")     I = BB.ties_icon
+			if("hidden")  I = BB.hidden_icon
+			if("rig")     I = BB.rig_back*/
+			else
+				world.log << "##ERROR. Wrong sprite group for mob icon \"[slot]\""
+		if(icon_state in icon_states(I)) break
+
+	return I
 
 /datum/body_build/female
 	gender 			= FEMALE

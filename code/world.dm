@@ -82,6 +82,8 @@ var/global/datum/global_init/init = new ()
 	load_mods()
 	//end-emergency fix
 
+	generate_body_modification_lists()
+
 	src.update_status()
 
 	. = ..()
