@@ -26,9 +26,7 @@
 		pref.modifications_colors = list()
 
 	for(var/tag in (pref.r_organs|pref.l_organs))
-		world << "DEBUG [tag] color check"
 		if(!iscolor(pref.modifications_colors[tag]))
-			world << "DEBUG [tag] color is [pref.modifications_colors[tag]] , set to black"
 			pref.modifications_colors[tag] = "#000000"
 
 
