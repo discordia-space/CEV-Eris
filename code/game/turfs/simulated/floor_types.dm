@@ -31,6 +31,7 @@
 	var/has_base_range = null
 	//style = "underplating"
 
+
 /turf/simulated/floor/plating/under/update_icon(var/update_neighbors)
 	if(lava)
 		return
