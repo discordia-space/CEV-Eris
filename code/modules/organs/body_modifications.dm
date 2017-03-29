@@ -48,9 +48,6 @@ var/global/list/modifications_types = list(
 		if(!organ || !(organ in body_parts))
 			usr << "[name] isn't useable for [organ_tag_to_name[organ]]"
 			return 0
-		/*if(allowed_species && !(P.species in allowed_species))
-			usr << "[name] isn't allowed for [P.species]"
-			return 0*/
 		var/list/organ_data = organ_structure[organ]
 		if(organ_data)
 			var/parent_organ = organ_data["parent"]
@@ -184,24 +181,6 @@ var/global/list/modifications_types = list(
 		return I
 
 ////Eyes////
-/*
-/datum/body_modification/organ/eyecam
-	name = "Eye cam"
-	short_name = "P: Eye cam"
-	id = "prosthesis_eye_cam"
-	desc = "One of your eyes replaced with portable cam. Do not lose it."
-	body_parts = list(O_EYES)
-	allowed_species = list("Human")
-
-	get_mob_icon(organ, body_build, color, gender, species)
-		var/datum/species/S = all_species[species]
-		var/icon/I = new/icon(S.icobase, "left_eye_[body_build]")
-		I.Blend("#C0C0C0", ICON_ADD)
-		return I
-
-	create_organ()
-		return new /obj/item/organ/internal/eyes/mechanic/cam(null)
-*/
 
 /datum/body_modification/organ/oneeye
 	name = "One eye (left)"

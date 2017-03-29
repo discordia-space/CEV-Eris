@@ -17,37 +17,6 @@
 	src.amputation_point = desc.amputation_point
 	src.joint = desc.joint
 
-/obj/item/organ/external/robotic/install()
-	if(..()) return 1
-	if(islist(forced_children) && forced_children[organ_tag])
-		var/list/spawn_part = forced_children[organ_tag]
-		var/child_type
-		for(var/name in spawn_part)
-			child_type = spawn_part[name]
-			new child_type(owner, owner.species.has_limbs[name])
-	if(can_activate())
-		activate()
-
-/*/obj/item/organ/external/robotic/sync_colour_to_owner()
-	for(var/obj/item/organ/I in internal_organs)
-		I.sync_colour_to_owner()*/
-
-	if(gender)
-		gender = (owner.gender == MALE)? "_m": "_f"
-
-/*/obj/item/organ/external/robotic/get_icon()
-	icon_state = "[organ_tag][gender][owner.body_build]"
-
-	mob_icon = new /icon(icon_name, icon_state)
-	return mob_icon
-*/
-/*
-/obj/item/organ/external/robotic/apply_colors()
-	return
-
-/obj/item/organ/external/robotic/get_icon_key()
-	. = "robotic[model]"
-*/
 
 /obj/item/organ/external/robotic/Destroy()
 	deactivate(1)

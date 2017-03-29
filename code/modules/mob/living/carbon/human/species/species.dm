@@ -232,38 +232,6 @@
 		return "unknown"
 	return species_language.get_random_name(gender)
 
-/*
-/datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
-
-	for(var/obj/item/organ/organ in H.contents)
-		if((organ in H.organs) || (organ in H.internal_organs))
-			qdel(organ)
-
-	if(H.organs)                  H.organs.Cut()
-	if(H.internal_organs)         H.internal_organs.Cut()
-	if(H.organs_by_name)          H.organs_by_name.Cut()
-	if(H.internal_organs_by_name) H.internal_organs_by_name.Cut()
-
-	H.organs = list()
-	H.internal_organs = list()
-	H.organs_by_name = list()
-	H.internal_organs_by_name = list()
-
-	for(var/limb_type in has_limbs)
-		var/list/organ_data = has_limbs[limb_type]
-		var/limb_path = organ_data["path"]
-		var/obj/item/organ/O = new limb_path(H)
-		organ_data["descriptor"] = O.name
-
-	for(var/organ_tag in has_organ)
-		var/organ_type = has_organ[organ_tag]
-		var/obj/item/organ/O = new organ_type(H,1)
-		if(organ_tag != O.organ_tag)
-			warning("[O.type] has a default organ tag \"[O.organ_tag]\" that differs from the species' organ tag \"[organ_tag]\". Updating organ_tag to match.")
-			O.organ_tag = organ_tag
-		H.internal_organs_by_name[organ_tag] = O
-*/
-
 /datum/species/proc/organs_spawned(var/mob/living/carbon/human/H)
 	return
 

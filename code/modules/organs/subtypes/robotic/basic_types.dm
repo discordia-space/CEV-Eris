@@ -21,9 +21,3 @@
 	desc = "Prosthesis with minimalist black and red casing."
 	force_icon = 'icons/mob/human_races/cyberlimbs/xion.dmi'
 	model = "xion"
-
-/*/obj/item/organ/external/robotic/cyber
-	name = "Cyber Interprize"
-	desc = "This limb has a dark metal casing and looks rather bulky."	//NEED SPRITES
-	force_icon = 'icons/mob/human_races/cyberlimbs/cyber.dmi'
-	model = "cyber"*/
