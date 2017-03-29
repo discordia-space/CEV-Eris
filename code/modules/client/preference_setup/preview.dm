@@ -57,22 +57,6 @@ datum/preferences
 				preview_icon.Blend(organ_icon, ICON_OVERLAY)
 			preview_icon.Blend(mod.get_mob_icon(organ, bodybuild.index, modifications_colors[organ], gender, species),ICON_OVERLAY)
 
-		/*//Tail
-		if(current_species.tail)
-			var/icon/temp = new/icon(icobase, "tail")
-			// Skin color
-			if(current_species && (current_species.flags & HAS_SKIN_COLOR))
-				temp.Blend(skin_color, ICON_ADD)
-
-			// Skin tone
-			if(current_species && (current_species.flags & HAS_SKIN_TONE))
-				if (s_tone >= 0)
-					temp.Blend(rgb(sk_tone, sk_tone, sk_tone), ICON_ADD)
-				else
-					temp.Blend(rgb(-sk_tone,  -sk_tone,  -sk_tone), ICON_SUBTRACT)
-			preview_icon.Blend(temp, ICON_OVERLAY)
-			*/
-
 		// Underwear
 		if(current_species.appearance_flags & HAS_UNDERWEAR)
 			for(var/underwear_category_name in all_underwear)
@@ -91,7 +75,7 @@ datum/preferences
 		if(!mod.replace_limb)
 			eyes.Blend(new/icon(current_species.faceicobase, "eye_l[b]"), ICON_OVERLAY)
 			eyes.Blend(new/icon(current_species.faceicobase, "eye_r[b]"), ICON_OVERLAY)
-			if((current_species /*&& (current_species.flags & HAS_EYE_COLOR)*/))
+			if((current_species))
 				eyes.Blend(eyes_color, ICON_ADD)
 		eyes.Blend(mod.get_mob_icon(O_EYES, bodybuild.index, modifications_colors[O_EYES], null, species), ICON_OVERLAY)
 

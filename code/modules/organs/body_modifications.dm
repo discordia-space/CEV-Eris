@@ -98,96 +98,6 @@ var/global/list/modifications_types = list(
 	create_organ()
 		return null
 
-/datum/body_modification/limb/tattoo
-	name = "Abstract"
-	desc = "Simple tattoo (use flavor)."
-	id = "abstract"
-	//allowed_species = list("Human", "Skrell", "Tajara", "Unathi", "Vox")
-	body_parts = list(
-		BP_HEAD, BP_CHEST, BP_GROIN, BP_L_ARM, BP_R_ARM,
-		BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT
-	)
-	icon = 'icons/mob/tattoo.dmi'
-	mob_icon = "abstract"
-
-	New()
-		if(!short_name) short_name = "T: [name]"
-		name = "Tattoo: [name]"
-
-	get_mob_icon(organ, body_build = "", color = "#ffffff")
-		var/icon/I = new/icon(icon, "[organ]_[mob_icon][body_build]")
-		I.Blend(color, ICON_ADD)
-		return I
-
-	create_organ(var/mob/living/carbon/holder, var/O, var/color)
-		var/obj/item/organ/external/E = ..(holder, O, color)
-		E.tattoo = mob_icon
-		E.tattoo_color = iscolor(color) ? color : "#000000"
-		return E
-
-/datum/body_modification/limb/tattoo/venom
-	name = "Venom"
-	id = "venom"
-	body_parts = list(BP_CHEST, "chest2", BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
-	mob_icon = "venom"
-
-/datum/body_modification/limb/tattoo/scar_left
-	name = "Scar (left eye)"
-	short_name = "T: scar (l)"
-	id = "scar_left"
-	body_parts = list(BP_HEAD)
-	mob_icon = "scar_l"
-
-/datum/body_modification/limb/tattoo/scar_right
-	name = "Scar (right eye)"
-	short_name = "T: scar (r)"
-	id = "scar_right"
-	body_parts = list(BP_HEAD)
-	mob_icon = "scar_r"
-
-/datum/body_modification/limb/tattoo/stripes
-	name = "Stripes"
-	id = "stripes"
-	body_parts = list(BP_R_ARM)
-	mob_icon = "stripes"
-
-/datum/body_modification/limb/tattoo/cross
-	name = "Cross"
-	id = "cross"
-	body_parts = list(BP_CHEST)
-	mob_icon = "cross"
-
-/datum/body_modification/limb/tattoo/skull
-	name = "Skull"
-	id = "skull"
-	body_parts = list(BP_CHEST)
-	mob_icon = "skull"
-
-/datum/body_modification/limb/tattoo/diamonds
-	name = "Spades"
-	id = "diamonds"
-	body_parts = list(BP_CHEST)
-	mob_icon = "diamonds"
-
-/*/datum/body_modification/limb/tattoo/tajara_stripes
-	name = "Tiger Stripes"
-	short_name = "T: Tiger"
-	desc = "A great camouflage to hide in long grass."
-	id = "stripes"
-	body_parts = list(BP_HEAD, BP_CHEST)
-	mob_icon = "tajara"
-	allowed_species = list("Tajara")
-
-/datum/body_modification/limb/tattoo/tribal_markings
-	name = "Unathi Tribal Markings"
-	short_name = "T: Tribal"
-	desc = "A specific identification and beautification marks designed on the face or body."
-	id = "tribal"
-	body_parts = list(BP_HEAD, BP_CHEST)
-	mob_icon = "unathi"
-	allowed_species = list("Unathi")
-*/
-
 /datum/body_modification/limb/prosthesis
 	name = "Unbranded"
 	id = "prosthesis_basic"
@@ -196,7 +106,6 @@ var/global/list/modifications_types = list(
 		BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
 	replace_limb = /obj/item/organ/external/robotic
 	icon = 'icons/mob/human_races/robotic.dmi'
-	//allowed_species = list("Human","Tajaran","Unathi","Skrell")
 	nature = MODIFICATION_SILICON
 
 	New()
@@ -230,44 +139,14 @@ var/global/list/modifications_types = list(
 	replace_limb = /obj/item/organ/external/robotic/xion
 	icon = 'icons/mob/human_races/cyberlimbs/xion.dmi'
 
-/*/datum/body_modification/limb/prosthesis/cyber
-	id = "prosthesis_enforcer"								//NO SPRITES
-	replace_limb = /obj/item/organ/external/robotic/cyber
-	icon = 'icons/mob/human_races/cyberlimbs/cyber.dmi'*/
-
-
 /datum/body_modification/limb/mutation
 	New()
 		short_name = "M: [name]"
 		name = "Mutation: [name]"
 
-/*/datum/body_modification/limb/mutation/exoskeleton				//NEED SPRITES
-	name = "Exoskeleton"
-	id = "mutation_exoskeleton"
-	desc = "Your limb covered with bony shell (act as shield)."
-	body_parts = list(BP_HEAD, BP_CHEST, BP_GROIN, BP_L_ARM, BP_R_ARM,\
-		BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
-	icon = 'icons/mob/human_races/cyberlimbs/exo.dmi'
-	mob_icon = "exo"
-
-	create_organ(var/mob/living/carbon/holder, var/O, var/color)
-		var/obj/item/organ/external/E = ..(holder, O, color)
-		E.force_icon = icon
-		E.model = "exo"
-		E.gendered_icon = 0
-		E.brute_mod = 0.8
-		return E
-
-	get_mob_icon(organ, body_build = "", color="#ffffff", gender = MALE)
-		if(organ in list(BP_HEAD, BP_CHEST, BP_GROIN))
-			return new/icon(icon, "[organ]_[gender==FEMALE?"f":"m"][body_build]")
-		else
-			return new/icon(icon, "[organ][body_build]")*/
-
 ////Internals////
 
 /datum/body_modification/organ
-	allowed_species = list("Human", "Skrell", "Tajara", "Unathi", "Vox")
 	create_organ(var/mob/living/carbon/holder, var/organ, var/color)
 		if(replace_limb)
 			return new replace_limb(holder)
@@ -333,7 +212,6 @@ var/global/list/modifications_types = list(
 	replace_limb = /obj/item/organ/eyes/oneeye
 
 	get_mob_icon(organ, body_build, color, gender, species)
-		world << "[src] icon get [organ] [body_build] [color] [gender] [species]"
 		var/datum/species/S = all_species[species]
 		var/icon/I = new/icon(S.faceicobase, "eye_l[body_build]")
 		I.Blend(color, ICON_ADD)
@@ -351,7 +229,6 @@ var/global/list/modifications_types = list(
 	replace_limb = /obj/item/organ/eyes/oneeye/right
 
 	get_mob_icon(organ, body_build, color, gender, species)
-		world << "[src] icon get [organ] [body_build] [color] [gender] [species]"
 		var/datum/species/S = all_species[species]
 		var/icon/I = new/icon(S.faceicobase, "eye_r[body_build]")
 		I.Blend(color, ICON_ADD)
@@ -365,7 +242,6 @@ var/global/list/modifications_types = list(
 	body_parts = list(O_EYES)
 
 	get_mob_icon(organ, body_build, color, gender, species)
-		world << "[src] icon get [organ] [body_build] [color] [gender] [species]"
 		var/datum/species/S = all_species[species]
 		var/icon/I = new/icon(S.faceicobase, "eye_l[body_build]")
 		I.Blend(color, ICON_ADD)
