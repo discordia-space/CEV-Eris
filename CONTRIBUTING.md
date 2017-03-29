@@ -2,9 +2,10 @@
 
 * Pull requests should not contain commented code except TODOs and explanation comments.
 * Pull requests should not contain any debug output, variables or procs.
+* Pull requests should not contain changes that do not relate with functionality described in commit messages.
 * If pull request relates with existing github issue, it should be specified in commit message, for example, "Fix broken floor sprites, close #23" (see https://help.github.com/articles/closing-issues-via-commit-messages/ for additional info).
-* If pull request contains map files changes, it should be previously proccessed by mapmerger tool (see /tool/mapmerger/install.txt for additional info).
-* If pull request contains icon files changes, it should be previously proccessed by icon merger tool (see /too/dmitool/merging.txt for additional info).
+* If pull request contains map files changes, it should be previously proccessed by mapmerger tool (see /tool/mapmerger/install.txt for additional info). Pull request description should contain screenshots of map changes if it's not obvious from map files diff.
+* If pull request contains icon files changes, it should be previously proccessed by icon merger tool (see /too/dmitool/merging.txt for additional info). Pull request description should contain screenshots of changed icon files.
 
 
 # Code style
@@ -28,19 +29,21 @@ Proc defines should contain full type path.
 ```
 ***
 
-Spaces are needed between function agruments (declaration and definition). Spaces are needed between the binary operator and arguments. Space is not needed when the operation is unary. Spaces are not needed near brackets.
+Spaces are needed between function agruments (declaration and definition). Spaces are needed between the binary operator and arguments. Space is not needed when the operation is unary. Spaces are not needed near brackets. Spaces are needed around assignment operator.
 
 ***Good:***
 ```
 /obj/item/pistol/fire(var/user, var/target)
     if(can_fire() && target)
         ammo--
+        var/corpse = target
 ```
 ***Bad:***
 ```
 /obj/item/pistol/fire(var/user,var/target)
     if ( can_fire()&&target )
         ammo --
+        var/corpset=target
 ```
 ***
 
