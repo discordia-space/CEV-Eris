@@ -589,8 +589,8 @@ default behaviour is:
 
 /mob/living/proc/handle_footstep(turf/T)
 	if(istype(T))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /mob/living/verb/resist()
 	set name = "Resist"

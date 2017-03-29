@@ -9,7 +9,7 @@
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0.8
 	species_restricted = null
-	silence_steps = 1
+	silence_steps = TRUE
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
