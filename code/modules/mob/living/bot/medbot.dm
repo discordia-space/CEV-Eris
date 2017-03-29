@@ -355,7 +355,7 @@
 					overlays += image('icons/obj/aibots.dmi', "na_scanner")
 
 			if(1)
-				if(isprox(W))
+				if(is_proximity_sensor(W))
 					user.drop_item()
 					qdel(W)
 					user << "<span class='notice'>You complete the Medibot! Beep boop.</span>"

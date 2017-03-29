@@ -707,8 +707,8 @@ proc/GaussRandRound(var/sigma,var/roundto)
 
 	if(!A || !src) return 0
 
-	var/list/turfs_src = get_area_turfs(src.type)
-	var/list/turfs_trg = get_area_turfs(A.type)
+	var/list/turfs_src = get_area_turfs(src)
+	var/list/turfs_trg = get_area_turfs(A)
 
 	var/src_min_x = 0
 	var/src_min_y = 0
@@ -730,8 +730,14 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		C.x_pos = (T.x - src_min_x)
 		C.y_pos = (T.y - src_min_y)
 
+	var/list/zones_trg = new/list() // Let's add zones from a target destination for rebuilding after.
 	var/list/refined_trg = new/list()
 	for(var/turf/T in turfs_trg)
+		if(istype(T, /turf/simulated))
+			var/turf/simulated/TZ = T
+			if(TZ.zone)
+				zones_trg |= TZ.zone
+			qdel(TZ) // Prevents lighting bugs. Don't ask.
 		refined_trg += T
 		refined_trg[T] = new/datum/coords
 		var/datum/coords/C = refined_trg[T]
@@ -754,6 +760,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					var/old_overlays = T.overlays.Copy()
 					var/old_underlays = T.underlays.Copy()
 					var/old_decals = T.decals
+					var/old_opacity = T.opacity // For shuttle windows
 
 					var/turf/X = B.ChangeTurf(T.type)
 					X.set_dir(old_dir1)
@@ -762,8 +769,9 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					X.overlays = old_overlays
 					X.underlays = old_underlays
 					X.decals = old_decals
+					X.opacity = old_opacity
 
-					if(istype(T, /turf/space) || istype(T, /turf/simulated/floor/asteroid))
+					if(istype(T, /turf/simulated/open) || istype(T, /turf/space) || istype(T, /turf/simulated/floor/asteroid))
 						X.ChangeTurf(get_base_turf_by_area(B))
 
 					var/turf/simulated/ST = T
@@ -830,6 +838,8 @@ proc/GaussRandRound(var/sigma,var/roundto)
 					refined_trg -= B
 					continue moving
 
+	for(var/zone/Z in zones_trg) // rebuilding zones
+		Z.rebuild()
 
 proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 	if(!original)

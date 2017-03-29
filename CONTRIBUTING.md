@@ -1,95 +1,166 @@
-# A quick guide to CONTRIBUTING
+# General
 
-В этом уникальном гуиде не будет никаких руководств "Как быстро научиться программировать и срать говном на бйонде". Готовьте ваши гиты.
+* Pull requests should not contain commented code except TODOs and explanation comments.
+* Pull requests should not contain any debug output, variables or procs.
+* Pull requests should not contain changes that do not relate with functionality described in commit messages.
+* If pull request relates with existing github issue, it should be specified in commit message, for example, "Fix broken floor sprites, close #23" (see https://help.github.com/articles/closing-issues-via-commit-messages/ for additional info).
+* If pull request contains map files changes, it should be previously proccessed by mapmerger tool (see /tool/mapmerger/install.txt for additional info). Pull request description should contain screenshots of map changes if it's not obvious from map files diff.
+* If pull request contains icon files changes, it should be previously proccessed by icon merger tool (see /too/dmitool/merging.txt for additional info). Pull request description should contain screenshots of changed icon files.
 
-## Что я тут делаю?
 
-Очевидно, ты хочешь пропихнуть свой охуенный кусок кода в репозиторий! [*(Хочешь напилить изменения карты? Сюда!)*](https://github.com/Endless-Horizon/CEV-Eris/blob/master/CONTRIBUTING.md#%D0%AF-%D0%BF%D0%B8%D0%BB%D1%8E-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%87%D1%82%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D0%BA%D0%BE-%D0%BC%D0%BD%D0%B5-%D0%BD%D0%BE%D1%87%D1%8C%D1%8E-%D0%BD%D0%B5-%D0%BF%D1%80%D0%B8%D1%88%D0%BB%D0%B0-%D0%B2%D1%81%D1%8F-%D0%B3%D1%80%D0%B8%D0%BD%D0%BE%D0%B4%D0%B5%D0%B2%D1%82%D0%B8%D0%BC%D0%B0-%D0%B8-%D0%BD%D0%B5-%D0%B2%D1%8B%D0%B5%D0%B1%D0%B0%D0%BB%D0%B0-%D0%BC%D0%B5%D0%BD%D1%8F)
-Так вот. Для того, чтобы сделать это, тебе надо:
+# Code style
 
-1. Сделать себе форк;
-2. Настроить гит на компьютере;
-3. Понять и запомнить 3 команды;
-4. Насрать пуллреквестом
+Proc defines should contain full type path.
 
-## Делаем форк!
-
-Заходишь [сюда](https://github.com/Endless-Horizon/CEV-Eris) и жмешь вверху большую и красивую кнопочку Fork.
-Форк почти настроен, охуеть!
-
-## Ставим гиты!
-
-Жми [сюда](https://git-scm.com/download/win). Молодец. Ты скачал гит.
-Установи его! *(Git Bash выбери супротив cmd.exe, остальное постанови стандартным)*
-
-Отлично. Открывай незабвенную `Git Bash` и вводи *(очевидно, заменяя name и email на реальные)*:
-```bash
-$ git config --global user.name "[name]"
-$ git config --global user.email "[email]"
+***Good:***
 ```
-Например:
-```bash
-$ git config --global user.name "Vasya Pupkin"
-$ git config --global user.email "vasya@pupkins.org"
-```
-Охуенно. Теперь открывай страничку своего форка, жми на **большую зеленую кнопку** `Clone or download` и копируй ебаную ссылку.
-Возвращайся к `Git Bash`.
-```bash
-$ git clone <вставь ссылочку>
-$ cd CEV-Eris
-$ git remote add upstream https://github.com/Endless-Horizon/CEV-Eris
-```
-Например:
-```bash
-$ git clone https://github.com/vasyapupkin/CEV-Eris
-$ cd CEV-Eris
-$ git remote add upstream https://github.com/Endless-Horizon/CEV-Eris
-```
-Заебись. Твой гит настроен.
+/obj/item/pistol/proc/fire()
 
-## Срем говном в свой форк
-
-Итак, у тебя есть гит и свой форк.
-Для начала перед работой, чтобы спиздить новейшие коммиты:
+/obj/item/pistol/proc/reload()
 ```
-$ git pull upstream dev
+***Bad:***
+
 ```
-Вносишь изменения и срешь говном. Сделал? Тогда убедись, что твои приключения повлияли только на те файлы, что ты хотел:
+/obj/item/pistol
+    proc
+	fire()
+
+    proc/reload()
 ```
-$ git status
-$ git diff --stat
+***
+
+Spaces are needed between function agruments (declaration and definition). Spaces are needed between the binary operator and arguments. Space is not needed when the operation is unary. Spaces are not needed near brackets. Spaces are needed around assignment operator.
+
+***Good:***
 ```
-Если в статистике изменённых строк слишком много - значит, ты сделал что-то не так. Выполни
+/obj/item/pistol/fire(var/user, var/target)
+    if(can_fire() && target)
+        ammo--
+        var/corpse = target
 ```
-$ git diff
+***Bad:***
 ```
-и проверь все свои изменения построчно.
-Проверил? Никакого лишнего говна нет? Отлично, можно коммитить.
+/obj/item/pistol/fire(var/user,var/target)
+    if ( can_fire()&&target )
+        ammo --
+        var/corpset=target
 ```
-$ git add .
-$ git commit -m "Текст, ёмко описывающий, что ты вообще попытался сделать"
-$ git push origin dev
+***
+
+Boolean variables and return values should use TRUE and FALSE constans instead of 1 and 0.
+
+***Good:***
 ```
-На всякий случай перед этим можно сделать `git pull upstream dev`, и если снова увидишь `vi` - можешь не вводить пояснений, это мерж-коммит.
+/obj/item/pistol/
+	var/broken = FALSE
 
-Постарайся умещать одну фичу в один коммит. Не больше и не меньше.
+/obj/item/pistol/proc/can_fire()
+	return TRUE
+```
+***Bad:***
+```
+/obj/item/pistol/
+	var/broken = 0
 
-Отлично, ты насрал своими коммитами. Время пропихнуть это в репу.
+/obj/item/pistol/proc/can_fire()
+	return 1
+```
+***
 
-## Пропихиваем говно в репозиторий
+Using colon operator (:) for object property and procs access is deprecated.
 
-Здесь всё куда проще. Открываешь страничку своего форка и жмешь кнопочку `New Pull Request`. Нажал?
-Выбирай `base-fork`'ом `Endless-Horizon/CEV-Eris`, а `head-fork`'ом - свой форк.
-Вкратце опиши, какие фичи *(и баги)* были добавлены.
-Создавай ПР.
+***Good:***
+```
+var/obj = new obj()
+var/count = obj.count
+```
+***Bad:***
+```
+var/obj = new obj()
+if(hasvar(obj, "count"))
+	var/count = obj:count
+```
+***
 
-Поздравляю, ты успешен! Жди мержа. Или комментариев с гайдлайном по изменению кода в лучшую сторону.
-Для более полного погружения в гит тебе [сюда](http://try.github.io).
+Colorized text outputs should use html tags instead of magic color symbols.
 
-## Я пилю изменения карты, что мне делать, чтобы ко мне ночью не пришла вся Эрисодевтима и не выебала меня?
+***Good:***
+```
+player << "<span class='notice'>Everything is OK.</span>"
+player << "<span class='warning'>There's something wrong...</span>"
+player << "<span class='danger'>Everything is fucked up!</span>"
+```
+***Bad:***
+```
+player << "\blue Everything is OK."
+player << "\red \bold Everything is fucked up!"
+```
+***
 
-Используй мапмержер. Перед правкой карты запусти из репы `mapmerge/Prepare Maps.bat`. Оно подготовит карты.
-Внеси изменения и запусти `mapmerge/Run Map Merge - DMM.bat`. Выбери номера измененных карт. Молодец.
+del() usage is deprecated, use qdel() instead.
 
-На всякий случай проверь `git diff --stat`, там **не должно** быть около 2-5 тысяч измененных строк.
-Если этих 2-5к там нет - можно коммитить.
+***Good:***
+```
+qdel(src)
+```
+***Bad:***
+```
+del(src)
+```
+***
+
+Do not return unused values from functions. Do not use return if there's no any actions in function after it. 
+
+***Good:***
+```
+proc/mutate_count(var/obj, var/value)
+	if(!value)
+	    return
+    obj.count = value
+```
+***Bad:***
+```
+proc/mutate_count(var/obj, var/value)
+	obj.count = value
+	return 1
+```
+***
+
+# Naming
+Avoid short names. No acronyms or abbreviations.
+
+***Good:***
+```
+/obj/proximity_sensor/update_sprites()
+var/count = 0
+```
+***Bad:***
+```
+/obj/prox_sensor/upd_sprites()
+var/c = 1
+```
+***
+Avoid digits in names.
+
+***Good:***
+```
+/datum/job/first_officer
+```
+***Bad:***
+```
+var/text1 = "text"
+```
+***
+Variables, types and methods should be named in "snake case". Constant values should be named in uppercase. 
+
+***Good:***
+```
+proc/redraw_icons()
+#define SHIP_NAME "Eris"
+```
+***Bad:***
+```
+proc/Reload_gun()
+var/brigArea
+```
+***
