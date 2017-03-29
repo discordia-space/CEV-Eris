@@ -28,7 +28,7 @@ Proc defines should contain full type path.
     proc/reload()
 ```
 ***
-If, else and for expressions should not be inline.
+If, else, for, return, continue and break expressions should not be inline.
 ***Good:***
 ```
 if(condition)
