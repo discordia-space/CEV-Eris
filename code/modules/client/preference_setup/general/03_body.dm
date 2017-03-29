@@ -145,6 +145,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference", pref.eyes_color) as color|null
 		if(new_eyes && has_flag(mob_species, HAS_EYE_COLOR) && CanUseTopic(user))
 			pref.eyes_color = new_eyes
+			pref.req_update_icon = 1
 			return TOPIC_REFRESH
 
 	else if(href_list["skin_tone"])

@@ -26,8 +26,11 @@
 		pref.modifications_colors = list()
 
 	for(var/tag in (pref.r_organs|pref.l_organs))
-		if(!pref.modifications_colors[tag])
+		world << "DEBUG [tag] color check"
+		if(!iscolor(pref.modifications_colors[tag]))
+			world << "DEBUG [tag] color is [pref.modifications_colors[tag]] , set to black"
 			pref.modifications_colors[tag] = "#000000"
+
 
 /datum/category_item/player_setup_item/augmentation/content(var/mob/user)
 	if(pref.req_update_icon == 1)
@@ -38,12 +41,12 @@
 		user << browse_rsc(pref.preview_east, "new_previewicon[EAST].png")
 		user << browse_rsc(pref.preview_west, "new_previewicon[WEST].png")
 
-	var/dat = "<style>div.block{border: 3px solid black;margin: 3px 0px;padding: 4px 0px;} span.box{display: inline-block; width: 20px; height: 10px; border:1px solid #000;}</style>"
+	var/dat = "<style>div.block{margin: 3px 0px;padding: 4px 0px;} span.box{display: inline-block; width: 20px; height: 10px; border:1px solid #000;}</style>"
 	dat +=  "<script language='javascript'> [js_byjax] function set(param, value) {window.location='?src=\ref[src];'+param+'='+value;}</script>"
 	dat += "<table style='max-height:400px;height:410px'>"
-	dat += "<tr style='vertical-align:top'><td><div style='max-width:230px;width:230px;height:100%;overflow-y:auto;border:solid;padding:3px'>"
+	dat += "<tr style='vertical-align:top'><td><div style='max-width:230px;width:230px;height:100%;overflow-y:auto;border-right:1px solid;padding:3px'>"
 	dat += modifications_types[pref.current_organ]
-	dat += "</div></td><td style='margin-left:10px;width-max:285px;width:285px;border:solid'>"
+	dat += "</div></td><td style='margin-left:10px;width-max:285px;width:285px;'>"
 	dat += "<table><tr><td style='width:105px; text-align:right'>"
 
 	for(var/organ in pref.r_organs)
@@ -53,7 +56,8 @@
 			dat += "<div><b><span style='background-color:pink'>[organ_tag_to_name[organ]]</span></b> "
 		else
 			dat += "<div><b>[organ_tag_to_name[organ]]</b> "
-		dat += "<a href='?src=\ref[src];color=[organ]'><span class='box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
+		if(mod.hascolor)
+			dat += "<a href='?src=\ref[src];color=[organ]'><span class='box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		dat += "<br><a href='?src=\ref[src];organ=[organ]'>[disp_name]</a></div>"
 
 	dat += "</td><td style='width:80px;text-align:center'><img src=new_previewicon[pref.preview_dir].png height=64 width=64>"
@@ -63,7 +67,8 @@
 	for(var/organ in pref.l_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
 		var/disp_name = mod ? mod.short_name : "Nothing"
-		dat += "<div><a href='?src=\ref[src];color=[organ]'><span class='box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
+		if(mod.hascolor)
+			dat += "<div><a href='?src=\ref[src];color=[organ]'><span class='box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		if(organ == pref.current_organ)
 			dat += " <b><span style='background-color:pink'>[organ_tag_to_name[organ]]</span></b>"
 		else

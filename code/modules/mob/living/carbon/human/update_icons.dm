@@ -233,7 +233,7 @@ var/global/list/damage_icon_parts = list()
 	if(gender == FEMALE)
 		g = "female"
 
-	var/icon_key = "[species.race_key][g][s_tone][skin_color]"
+	var/icon_key = "[species.race_key][g][fat][s_tone][skin_color]"
 	if(lip_style)
 		icon_key += "[lip_style]"
 	else
@@ -263,7 +263,7 @@ var/global/list/damage_icon_parts = list()
 			else
 				icon_key += "#000000"
 
-	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
+	icon_key = "[icon_key][husk ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 
 	var/icon/base_icon
 	if(human_icon_cache[icon_key])

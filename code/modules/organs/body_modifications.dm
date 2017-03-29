@@ -44,6 +44,7 @@ var/global/list/modifications_types = list(
 	var/mob_icon = ""
 	var/icon/icon = 'icons/mob/human_races/body_modification.dmi'
 	var/nature = MODIFICATION_ORGANIC
+	var/hascolor = FALSE
 
 /datum/body_modification/proc/get_mob_icon(organ, body_build = "", color="#ffffff", gender = MALE, species)	//Use in setup character only
 		return new/icon('icons/mob/human.dmi', "blank")
@@ -192,6 +193,7 @@ var/global/list/modifications_types = list(
 	id = "missed_eye"
 	desc = "One of your eyes was missed."
 	body_parts = list(O_EYES)
+	hascolor = TRUE
 	replace_limb = /obj/item/organ/eyes/oneeye
 
 	get_mob_icon(organ, body_build, color, gender, species)
@@ -223,6 +225,7 @@ var/global/list/modifications_types = list(
 	id = "mutation_heterochromia"
 	desc = "Special color for left eye."
 	body_parts = list(O_EYES)
+	hascolor = TRUE
 
 	get_mob_icon(organ, body_build, color, gender, species)
 		var/datum/species/S = all_species[species]
