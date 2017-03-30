@@ -288,6 +288,10 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	src.updateUsrDialog()
 
 /obj/machinery/gravity_generator/main/proc/grav_on()
+	if(!config.station_levels)
+		message_admins("config.station_levels is blank. Gravgen isn't properly established.")
+		return
+
 	var/area/area = get_area(src)
 	gravity_is_on = 1
 	for(var/area/A in world)
@@ -298,8 +302,12 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	message_admins("The gravity generator was brought fully online. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
 
 /obj/machinery/gravity_generator/main/proc/grav_off()
+	if(!config.station_levels)
+		message_admins("config.station_levels is blank. Gravgen isn't properly established.")
+		return
+
 	var/area/area = get_area(src)
-	gravity_is_on = 1
+	gravity_is_on = 0
 	for(var/area/A in world)
 		if(A.z in config.station_levels)
 			A.gravitychange(gravity_is_on,A)
