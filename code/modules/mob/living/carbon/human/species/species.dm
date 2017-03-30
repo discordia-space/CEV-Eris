@@ -12,6 +12,7 @@
 	// Icon/appearance vars.
 	var/icobase = 'icons/mob/human_races/r_human.dmi'    // Normal icon set.
 	var/deform = 'icons/mob/human_races/r_def_human.dmi' // Mutated icon set.
+	var/faceicobase = 'icons/mob/human_face.dmi'
 
 	// Damage overlay and masks.
 	var/damage_overlays = 'icons/mob/human_races/masks/dam_human.dmi'
@@ -141,17 +142,17 @@
 	var/vision_organ              // If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 
 	var/list/has_limbs = list(
-		"chest" =  list("path" = /obj/item/organ/external/chest),
-		"groin" =  list("path" = /obj/item/organ/external/groin),
-		"head" =   list("path" = /obj/item/organ/external/head),
-		"l_arm" =  list("path" = /obj/item/organ/external/arm),
-		"r_arm" =  list("path" = /obj/item/organ/external/arm/right),
-		"l_leg" =  list("path" = /obj/item/organ/external/leg),
-		"r_leg" =  list("path" = /obj/item/organ/external/leg/right),
-		"l_hand" = list("path" = /obj/item/organ/external/hand),
-		"r_hand" = list("path" = /obj/item/organ/external/hand/right),
-		"l_foot" = list("path" = /obj/item/organ/external/foot),
-		"r_foot" = list("path" = /obj/item/organ/external/foot/right)
+		"chest" =  new /datum/organ_description/chest,
+		"groin" =  new /datum/organ_description/groin,
+		"head" =   new /datum/organ_description/head,
+		"l_arm" =  new /datum/organ_description/arm/left,
+		"r_arm" =  new /datum/organ_description/arm/right,
+		"l_leg" =  new /datum/organ_description/leg/left,
+		"r_leg" =  new /datum/organ_description/leg/right,
+		"l_hand" = new /datum/organ_description/hand/left,
+		"r_hand" = new /datum/organ_description/hand/right,
+		"l_foot" = new /datum/organ_description/foot/left,
+		"r_foot" = new /datum/organ_description/foot/right
 		)
 
 	// Misc
@@ -186,6 +187,13 @@
 
 /datum/species/proc/get_bodytype()
 	return name
+
+/datum/species/proc/get_body_build(var/gender, var/prefered)
+	for(var/BBT in typesof(/datum/body_build))
+		var/datum/body_build/BB = new BBT
+		if((!prefered || BB.name == prefered) && (gender in genders))
+			return BB
+
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 
@@ -225,35 +233,8 @@
 		return "unknown"
 	return species_language.get_random_name(gender)
 
-/datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
-
-	for(var/obj/item/organ/organ in H.contents)
-		if((organ in H.organs) || (organ in H.internal_organs))
-			qdel(organ)
-
-	if(H.organs)                  H.organs.Cut()
-	if(H.internal_organs)         H.internal_organs.Cut()
-	if(H.organs_by_name)          H.organs_by_name.Cut()
-	if(H.internal_organs_by_name) H.internal_organs_by_name.Cut()
-
-	H.organs = list()
-	H.internal_organs = list()
-	H.organs_by_name = list()
-	H.internal_organs_by_name = list()
-
-	for(var/limb_type in has_limbs)
-		var/list/organ_data = has_limbs[limb_type]
-		var/limb_path = organ_data["path"]
-		var/obj/item/organ/O = new limb_path(H)
-		organ_data["descriptor"] = O.name
-
-	for(var/organ_tag in has_organ)
-		var/organ_type = has_organ[organ_tag]
-		var/obj/item/organ/O = new organ_type(H,1)
-		if(organ_tag != O.organ_tag)
-			warning("[O.type] has a default organ tag \"[O.organ_tag]\" that differs from the species' organ tag \"[organ_tag]\". Updating organ_tag to match.")
-			O.organ_tag = organ_tag
-		H.internal_organs_by_name[organ_tag] = O
+/datum/species/proc/organs_spawned(var/mob/living/carbon/human/H)
+	return
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
 
