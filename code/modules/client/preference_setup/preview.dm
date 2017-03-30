@@ -117,26 +117,33 @@ datum/preferences/proc/update_preview_icon()
 
 			var/obj/item/clothing/gloves/GL = J.gloves
 			t_state = initial(GL.icon_state)
-			if(GL) clothes.Blend(new /icon(bodybuild.get_mob_icon("gloves", t_state), t_state), ICON_UNDERLAY)
+			if(GL)
+				clothes.Blend(new /icon(bodybuild.get_mob_icon("gloves", t_state), t_state), ICON_UNDERLAY)
 
 			var/obj/item/weapon/storage/belt/BT = J.belt
 			t_state = initial(BT.icon_state)
-			if(BT) clothes.Blend(new /icon(bodybuild.get_mob_icon("belt", t_state), t_state), ICON_OVERLAY)
+			if(BT)
+				clothes.Blend(new /icon(bodybuild.get_mob_icon("belt", t_state), t_state), ICON_OVERLAY)
 
 			var/obj/item/clothing/suit/ST = J.suit
 			t_state =  initial(ST.icon_state)
-			if(ST) clothes.Blend(new /icon(bodybuild.get_mob_icon("suit", t_state), t_state), ICON_OVERLAY)
+			if(ST)
+				clothes.Blend(new /icon(bodybuild.get_mob_icon("suit", t_state), t_state), ICON_OVERLAY)
 
 			var/obj/item/clothing/head/HT = J.hat
 			t_state = initial(HT.icon_state)
-			if(HT) clothes.Blend(new /icon(bodybuild.get_mob_icon("head", t_state), t_state), ICON_OVERLAY)
+			if(HT)
+				clothes.Blend(new /icon(bodybuild.get_mob_icon("head", t_state), t_state), ICON_OVERLAY)
 
-			if( backbag > 1 )
+			if(backbag > 1)
 				var/obj/item/weapon/storage/backpack/BP = /obj/item/weapon/storage/backpack
 				switch(backbaglist[backbag])
-					if("Backpack")		BP = J.backpacks[1] ? J.backpacks[1] : /obj/item/weapon/storage/backpack
-					if("Satchel Job")	BP = J.backpacks[2] ? J.backpacks[1] : /obj/item/weapon/storage/backpack
-					if("Satchel")		BP = J.backpacks[3] ? J.backpacks[1] : /obj/item/weapon/storage/backpack
+					if("Backpack")
+						BP = J.backpacks[1] ? J.backpacks[1] : /obj/item/weapon/storage/backpack
+					if("Satchel Job")
+						BP = J.backpacks[2] ? J.backpacks[2] : /obj/item/weapon/storage/backpack
+					if("Satchel")
+						BP = J.backpacks[3] ? J.backpacks[3] : /obj/item/weapon/storage/backpack
 				t_state = initial(BP.icon_state)
 				clothes.Blend(new /icon(bodybuild.get_mob_icon("back", t_state), t_state), ICON_OVERLAY)
 

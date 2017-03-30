@@ -391,15 +391,15 @@ datum/projectile_data
 	var/b = GetBluePart(color)
 
 	if(!isnum(r) || r > 255 || r < 0)
-		return 0
+		return FALSE
 	if(!isnum(g) || g > 255 || g < 0)
-		return 0
+		return FALSE
 	if(!isnum(b) || b > 255 || b < 0)
-		return 0
+		return FALSE
 	if(h != "#")
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /proc/MixColors(const/list/colors)
 	var/list/reds = list()

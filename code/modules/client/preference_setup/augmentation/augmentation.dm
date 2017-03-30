@@ -104,7 +104,8 @@
 
 /datum/preferences/proc/check_child_modifications(var/organ = BP_CHEST)
 	var/list/organ_data = organ_structure[organ]
-	if(!organ_data) return
+	if(!organ_data)
+		return
 	var/datum/body_modification/mod = get_modification(organ)
 	for(var/child_organ in organ_data["children"])
 		var/datum/body_modification/child_mod = get_modification(child_organ)
