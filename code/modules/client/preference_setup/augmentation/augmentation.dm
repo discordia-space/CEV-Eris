@@ -124,7 +124,8 @@
 
 	else if(href_list["color"])
 		var/organ = href_list["color"]
-		if(!pref.modifications_colors[organ]) pref.modifications_colors[organ] = "#FFFFFF"
+		if(!pref.modifications_colors[organ])
+			pref.modifications_colors[organ] = "#FFFFFF"
 		var/new_color = input(user, "Choose color for [organ_tag_to_name[organ]]: ", "Character Preference", pref.modifications_colors[organ]) as color|null
 		if(new_color && pref.modifications_colors[organ]!=new_color)
 			pref.req_update_icon = 1
