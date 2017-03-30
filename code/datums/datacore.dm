@@ -248,23 +248,23 @@ proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 	// Skin color
 	if(H.species.flags & HAS_SKIN_TONE)
 		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
-			preview_icon.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
+			preview_icon.Blend(H.skin_color, ICON_ADD)
 
 	var/icon/eyes = new/icon('icons/mob/human_face.dmi', "eyes[body.index]")
 
 	if (H.species.flags & HAS_EYE_COLOR)
-		eyes.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
+		eyes.Blend(H.eyes_color, ICON_ADD)
 
 	var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
 	if(hair_style)
 		var/icon/hair = new/icon(hair_style.icon, "[hair_style.icon_state]_s")
-		hair.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
+		hair.Blend(H.hair_color, ICON_ADD)
 		eyes.Blend(hair, ICON_OVERLAY)
 
 	var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
 	if(facial_hair_style)
 		var/icon/facial = new/icon(facial_hair_style.icon, "[facial_hair_style.icon_state]_s")
-		facial.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)
+		facial.Blend(H.facial_color, ICON_ADD)
 		eyes.Blend(facial, ICON_OVERLAY)
 
 	var/icon/clothes = null

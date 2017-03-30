@@ -17,6 +17,8 @@
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = 1
 
+	var/list/footstep_sounds = list() // Footsteps sound
+
 	///Chemistry.
 	var/datum/reagents/reagents = null
 

@@ -30,22 +30,34 @@
 		else if(is_broken())
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
+////////////////////// EYES
+
 /obj/item/organ/eyes
 	name = "eyeballs"
 	icon_state = "eyes"
 	gender = PLURAL
 	organ_tag = "eyes"
 	parent_organ = "head"
-	var/list/eye_colour = list(0,0,0)
+	var/eyes_color = "#000000"
+	var/robo_color = "#000000"
+
+/obj/item/organ/eyes/oneeye
+	var/right_eye = 0 			//if true, right eye will removed, if false, left
+
+/obj/item/organ/eyes/oneeye/right
+	right_eye = 1
+
+/obj/item/organ/eyes/heterohromia
+	var/second_color = "#000000"
 
 /obj/item/organ/eyes/proc/update_colour()
 	if(!owner)
 		return
-	eye_colour = list(
-		owner.r_eyes ? owner.r_eyes : 0,
-		owner.g_eyes ? owner.g_eyes : 0,
-		owner.b_eyes ? owner.b_eyes : 0
-		)
+	eyes_color = owner.eyes_color
+
+
+obj/item/organ/eyes/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
+	..(holder,OD)
 
 /obj/item/organ/eyes/take_damage(amount, var/silent=0)
 	var/oldbroken = is_broken()

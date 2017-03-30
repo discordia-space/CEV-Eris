@@ -11,6 +11,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	identifying_gender = set_gender
 
 /datum/category_item/player_setup_item/general/basic/load_character(var/savefile/S)
+	pref.req_update_icon = 1
 	S["real_name"]				>> pref.real_name
 	S["name_is_always_random"]	>> pref.be_random_name
 	S["gender"]					>> pref.gender
@@ -74,10 +75,12 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	else if(href_list["gender"])
 		pref.gender = next_in_list(pref.gender, valid_player_genders)
+		pref.req_update_icon = 1
 		return TOPIC_REFRESH
 
 	else if(href_list["body_build"])
 		pref.body_build = input("Body Shape", "Body") in list("Default", "Slim", "Fat")
+		pref.req_update_icon = 1
 		return TOPIC_REFRESH
 
 	else if(href_list["age"])
