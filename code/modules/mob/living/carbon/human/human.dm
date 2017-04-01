@@ -1171,6 +1171,7 @@ var/list/rank_prefix = list(\
 	if(internal_organs_by_name.len)
 		internal_organs_by_name.Cut()
 
+
 	if(from_preference)
 		var/datum/preferences/Pref
 		if(istype(from_preference, /datum/preferences))
@@ -1179,6 +1180,7 @@ var/list/rank_prefix = list(\
 			Pref = client.prefs
 		else
 			return
+
 		var/datum/body_modification/BM = null
 
 		for(var/tag in species.has_limbs)
@@ -1187,11 +1189,18 @@ var/list/rank_prefix = list(\
 			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ)
 			if(PBM && (PBM.nature == MODIFICATION_SILICON || PBM.nature == MODIFICATION_REMOVED))
 				BM = PBM
-			BM.create_organ(src, OD, Pref.modifications_colors[tag])
+			if(BM.is_allowed(tag, Pref))
+				BM.create_organ(src, OD, Pref.modifications_colors[tag])
+			else
+				OD.create_organ(src)
 
 		for(var/tag in species.has_organ)
 			BM = Pref.get_modification(tag)
-			BM.create_organ(src, species.has_organ[tag], Pref.modifications_colors[tag])
+			if(BM.is_allowed(tag, Pref))
+				BM.create_organ(src, species.has_organ[tag], Pref.modifications_colors[tag])
+			else
+				var/organ_type = species.has_organ[tag]
+				new organ_type(src)
 
 	else
 		var/organ_type = null
