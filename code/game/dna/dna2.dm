@@ -129,21 +129,21 @@ var/global/list/datum/dna/gene/dna_genes[0]
 		character.f_style = "Shaved"
 	var/beard	= facial_hair_styles_list.Find(character.f_style)
 
-	SetUIValueRange(DNA_UI_HAIR_R,    character.r_hair,    255,    1)
-	SetUIValueRange(DNA_UI_HAIR_G,    character.g_hair,    255,    1)
-	SetUIValueRange(DNA_UI_HAIR_B,    character.b_hair,    255,    1)
+	SetUIValueRange(DNA_UI_HAIR_R,    GetRedPart(character.hair_color),    255,    1)
+	SetUIValueRange(DNA_UI_HAIR_G,    GetGreenPart(character.hair_color),    255,    1)
+	SetUIValueRange(DNA_UI_HAIR_B,    GetBluePart(character.hair_color),    255,    1)
 
-	SetUIValueRange(DNA_UI_BEARD_R,   character.r_facial,  255,    1)
-	SetUIValueRange(DNA_UI_BEARD_G,   character.g_facial,  255,    1)
-	SetUIValueRange(DNA_UI_BEARD_B,   character.b_facial,  255,    1)
+	SetUIValueRange(DNA_UI_BEARD_R,   GetRedPart(character.facial_color),  255,    1)
+	SetUIValueRange(DNA_UI_BEARD_G,   GetGreenPart(character.facial_color),  255,    1)
+	SetUIValueRange(DNA_UI_BEARD_B,   GetBluePart(character.facial_color),  255,    1)
 
-	SetUIValueRange(DNA_UI_EYES_R,    character.r_eyes,    255,    1)
-	SetUIValueRange(DNA_UI_EYES_G,    character.g_eyes,    255,    1)
-	SetUIValueRange(DNA_UI_EYES_B,    character.b_eyes,    255,    1)
+	SetUIValueRange(DNA_UI_EYES_R,    GetRedPart(character.eyes_color),    255,    1)
+	SetUIValueRange(DNA_UI_EYES_G,    GetGreenPart(character.eyes_color),    255,    1)
+	SetUIValueRange(DNA_UI_EYES_B,    GetBluePart(character.eyes_color),    255,    1)
 
-	SetUIValueRange(DNA_UI_SKIN_R,    character.r_skin,    255,    1)
-	SetUIValueRange(DNA_UI_SKIN_G,    character.g_skin,    255,    1)
-	SetUIValueRange(DNA_UI_SKIN_B,    character.b_skin,    255,    1)
+	SetUIValueRange(DNA_UI_SKIN_R,    GetRedPart(character.skin_color),    255,    1)
+	SetUIValueRange(DNA_UI_SKIN_G,    GetGreenPart(character.skin_color),    255,    1)
+	SetUIValueRange(DNA_UI_SKIN_B,    GetBluePart(character.skin_color),    255,    1)
 
 	SetUIValueRange(DNA_UI_SKIN_TONE, 35-character.s_tone, 220,    1) // Value can be negative.
 

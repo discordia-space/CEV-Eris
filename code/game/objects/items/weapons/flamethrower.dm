@@ -92,7 +92,7 @@
 		update_icon()
 		return
 
-	if(isigniter(W))
+	if(is_igniter(W))
 		var/obj/item/device/assembly/igniter/I = W
 		if(I.secured)	return
 		if(igniter)		return
