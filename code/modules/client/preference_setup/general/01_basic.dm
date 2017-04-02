@@ -94,6 +94,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	else if(href_list["religion"])
 		pref.religion = input("Religion") in list("None", "Cyber Christianity")
+		pref.req_update_icon = 1
 		return TOPIC_REFRESH
 
 	else if(href_list["metadata"])

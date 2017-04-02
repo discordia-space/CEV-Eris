@@ -117,6 +117,9 @@ var/global/list/modifications_types = list(
 	short_name = "P: [name]"
 	name = "Prosthesis: [name]"
 
+/datum/body_modification/limb/prosthesis/is_allowed(var/organ = "", var/datum/preferences/P)
+	return ..(organ, P) && P.religion == "None"
+
 /datum/body_modification/limb/prosthesis/get_mob_icon(organ, body_build, color, gender, species)
 	return new/icon(icon, "[organ][gender == FEMALE ? "_f" : "_m"][body_build]")
 

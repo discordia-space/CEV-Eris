@@ -42,6 +42,10 @@ datum/preferences/proc/update_preview_icon()
 		var/datum/body_modification/PBM = get_modification(OD.parent_organ)
 		if(PBM && (PBM.nature == MODIFICATION_REMOVED || PBM.nature == MODIFICATION_SILICON))
 			mod = PBM
+
+		if(!mod.is_allowed(organ, src))
+			mod = new/datum/body_modification/none
+
 		if(!mod.replace_limb)
 			var/icon/organ_icon = new(icobase, "[organ][g]")
 			// Skin color
