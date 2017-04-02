@@ -381,6 +381,7 @@
 
 /obj/screen/inventory/hand/New()
 	..()
+	ovrls["act_hand"] += new /image/no_recolor (icon = src.icon, icon_state ="act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]")
 	update_icon()
 
 /obj/screen/inventory/hand/Click()
@@ -391,10 +392,13 @@
 		C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
-	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+	src.underlays.Cut()
+	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
+		src.underlays += ovrls["act_hand"]
+/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
 		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
-		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
+		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"*/
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------
@@ -927,11 +931,15 @@
 /obj/screen/intent
 	name = "intent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "help"
+	icon_state = "blank"
 	screen_loc = "8,2"
 
 /obj/screen/intent/New()
 	..()
+	ovrls["disarm"] += new /image/no_recolor (icon = src.icon, icon_state ="disarm")
+	ovrls["harm"] += new /image/no_recolor (icon = src.icon, icon_state ="harm")
+	ovrls["grab"] += new /image/no_recolor (icon = src.icon, icon_state ="grab")
+	ovrls["help"] += new /image/no_recolor (icon = src.icon, icon_state ="help")
 	update_icon()
 
 /obj/screen/intent/Click()
@@ -939,28 +947,45 @@
 //	update_icon()//update in a_intent_change, because macro
 
 /obj/screen/intent/update_icon()
+	src.overlays.Cut()
 	switch (parentmob.a_intent)
-		if(I_HELP)
+/*		if(I_HELP)
 			icon_state = "help"
 		if(I_HURT)
 			icon_state = "harm"
 		if(I_GRAB)
 			icon_state = "grab"
 		if(I_DISARM)
-			icon_state = "disarm"
+			icon_state = "disarm"*/
+		if(I_HELP)
+			src.overlays += ovrls["help"]
+		if(I_HURT)
+			src.overlays += ovrls["harm"]
+		if(I_GRAB)
+			src.overlays += ovrls["grab"]
+		if(I_DISARM)
+			src.overlays += ovrls["disarm"]
 //-----------------------intent END------------------------------
 /obj/screen/fastintent
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "blank"
 //update in a_intent_change, because macro
 /*/obj/screen/fastintent/Click()
 	if (parentmob.HUDneed.Find("intent"))
 		var/obj/screen/intent/I = parentmob.HUDneed["intent"]
 		I.update_icon()*/
+/obj/screen/fastintent/New()
+	..()
+
 
 
 /obj/screen/fastintent/help
-	icon_state = "intent_help"
+//	icon_state = "intent_help"
+
+/obj/screen/fastintent/help/New()
+	..()
+	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_help")
 
 /obj/screen/fastintent/help/Click()
 	parentmob.a_intent_change(I_HELP)
@@ -969,6 +994,10 @@
 /obj/screen/fastintent/harm
 	icon_state = "intent_harm"
 
+/obj/screen/fastintent/harm/New()
+	..()
+	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_harm")
+
 /obj/screen/fastintent/harm/Click()
 	parentmob.a_intent_change(I_HURT)
 //	..()
@@ -976,12 +1005,20 @@
 /obj/screen/fastintent/grab
 	icon_state = "intent_grab"
 
+/obj/screen/fastintent/grab/New()
+	..()
+	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_grab")
+
 /obj/screen/fastintent/grab/Click()
 	parentmob.a_intent_change(I_GRAB)
 //	..()
 
 /obj/screen/fastintent/disarm
 	icon_state = "intent_disarm"
+
+/obj/screen/fastintent/disarm/New()
+	..()
+	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_disarm")
 
 /obj/screen/fastintent/disarm/Click()
 	parentmob.a_intent_change(I_DISARM)

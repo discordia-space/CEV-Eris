@@ -55,7 +55,7 @@
 /mob/living/carbon/human/minimalize_HUD()
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	world << "[H.client.prefs.UI_compact_style] && [HUDdatum.MinStyleFlag]"
+//	world << "[H.client.prefs.UI_compact_style] && [HUDdatum.MinStyleFlag]"
 	if (H.client.prefs.UI_compact_style && HUDdatum.MinStyleFlag)
 //		if (!HUDdatum.MinStyleFlag)
 //			H << "That UI not have min style"
@@ -74,7 +74,7 @@
 					if(HUDdatum.slot_data[p]["minloc"])
 						HUDinv.screen_loc = HUDdatum.slot_data[p]["minloc"]
 					break
-		world << "remove perdelki"
+//		world << "remove perdelki"
 		for (var/obj/screen/frippery/HUDfri in H.HUDfrippery)
 			H.client.screen -= HUDfri
 //		for (var/obj/screen/HUDfrip in H.HUDfrippery)
@@ -84,6 +84,7 @@
 
 		for (var/p in H.HUDneed)
 			var/obj/screen/HUD = H.HUDneed[p]
+			HUD.underlays.Cut()
 			if (HUDdatum.HUDneed[p]["background"])
 				HUD.underlays += HUDdatum.IconUnderlays[HUDdatum.HUDneed[p]["background"]]
 			HUD.screen_loc = HUDdatum.HUDneed[p]["loc"]
@@ -91,6 +92,7 @@
 		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
 			for (var/p in H.species.hud.gear)
 				if(H.species.hud.gear[p] == HUDinv.slot_id)
+					HUDinv.underlays.Cut()
 					if (HUDdatum.slot_data[p]["background"])//(HUDdatum.slot_data[HUDinv.slot_id]["background"])
 						HUDinv.underlays += HUDdatum.IconUnderlays[HUDdatum.slot_data[p]["background"]]
 					HUDinv.screen_loc = HUDdatum.slot_data[p]["loc"]
