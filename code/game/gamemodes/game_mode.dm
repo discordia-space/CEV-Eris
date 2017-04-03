@@ -149,7 +149,7 @@ var/global/list/additional_antag_types = list()
 		return FALSE
 
 	if(!(antag_templates && antag_templates.len))
-		return FALSE
+		return TRUE
 
 	var/enemy_count = 0
 	if(antag_tags && antag_tags.len)
