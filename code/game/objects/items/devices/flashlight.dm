@@ -12,7 +12,7 @@
 
 	action_button_name = "Toggle Flashlight"
 	var/on = 0
-	var/brightness_on = 4 //luminosity when on
+	var/brightness_on = 5 //luminosity when on
 	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
 
 /obj/item/device/flashlight/initialize()
@@ -131,7 +131,7 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	item_state = "lamp"
-	brightness_on = 5
+	brightness_on = 4
 	w_class = 4
 	flags = CONDUCT
 
@@ -143,7 +143,7 @@
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
-	brightness_on = 5
+	brightness_on = 4
 	light_color = "#FFC58F"
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
@@ -160,8 +160,8 @@
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = 2.0
-	brightness_on = 8 // Pretty bright.
-	light_power = 3
+	brightness_on = 4 // Pretty bright.
+	light_power = 2
 	light_color = "#e58775"
 	icon_state = "flare"
 	item_state = "flare"
@@ -209,6 +209,94 @@
 	processing_objects += src
 	update_icon()
 	return 1
+
+/obj/item/device/flashlight/glowstick
+	name = "green glowstick"
+	desc = "A military-grade glowstick."
+	w_class = 2.0
+	color = "#49F37C"
+	icon_state = "glowstick"
+	item_state = "glowstick"
+	action_button_name = null
+	var/fuel = 0
+
+/obj/item/device/flashlight/glowstick/New()
+	pixel_x = rand(-12,12)
+	pixel_y = rand(-12,12)
+	fuel = rand(1600, 2000)
+	light_color = color
+	..()
+
+/obj/item/device/flashlight/glowstick/process()
+	fuel = max(fuel - 1, 0)
+	if(!fuel)
+		turn_off()
+		processing_objects -= src
+		update_icon()
+
+/obj/item/device/flashlight/glowstick/proc/turn_off()
+	on = 0
+	update_icon()
+
+/obj/item/device/flashlight/glowstick/update_icon()
+	item_state = "glowstick"
+	overlays.Cut()
+	if(!fuel)
+		icon_state = "glowstick-empty"
+		set_light(0)
+	else if (on)
+		var/image/I = image(icon,"glowstick-on",color)
+		I.blend_mode = BLEND_ADD
+		overlays += I
+		item_state = "glowstick-on"
+		set_light(2.5, 1)
+	else
+		icon_state = "glowstick"
+	var/mob/M = loc
+	if(istype(M))
+		if(M.l_hand == src)
+			M.update_inv_l_hand()
+		if(M.r_hand == src)
+			M.update_inv_r_hand()
+
+/obj/item/device/flashlight/glowstick/attack_self(mob/user)
+
+	if(!fuel)
+		user << "<span class='notice'>The [src] is spent.</span>"
+		return
+	if(on)
+		user << "<span class='notice'>The [src] is already lit.</span>"
+		return
+
+	. = ..()
+	if(.)
+		user.visible_message("<span class='notice'>[user] cracks and shakes the glowstick.</span>", "<span class='notice'>You crack and shake the glowstick, turning it on!</span>")
+		processing_objects += src
+
+/obj/item/device/flashlight/glowstick/red
+	name = "red glowstick"
+	color = "#FC0F29"
+
+/obj/item/device/flashlight/glowstick/blue
+	name = "blue glowstick"
+	color = "#599DFF"
+
+/obj/item/device/flashlight/glowstick/orange
+	name = "orange glowstick"
+	color = "#FA7C0B"
+
+/obj/item/device/flashlight/glowstick/yellow
+	name = "yellow glowstick"
+	color = "#FEF923"
+
+/obj/item/device/flashlight/glowstick/random
+	name = "glowstick"
+	desc = "A party-grade glowstick."
+	color = "#FF00FF"
+
+/obj/item/device/flashlight/glowstick/random/New()
+	color = rgb(rand(50,255),rand(50,255),rand(50,255))
+	..()
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

@@ -307,8 +307,6 @@
 	if(!light_supplied)
 		var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in current_turf
 		if(L)
-			light_supplied = max(0,min(10,L.lum_r + L.lum_g + L.lum_b)-5)
-		else
 			light_supplied =  5
 	if(light_supplied)
 		if(abs(light_supplied - get_trait(TRAIT_IDEAL_LIGHT)) > get_trait(TRAIT_LIGHT_TOLERANCE))
@@ -386,12 +384,12 @@
 
 	if(prob(5))
 		consume_gasses = list()
-		var/gas = pick("oxygen","nitrogen","phoron","carbon_dioxide")
+		var/gas = pick("oxygen","nitrogen","plasma","carbon_dioxide")
 		consume_gasses[gas] = rand(3,9)
 
 	if(prob(5))
 		exude_gasses = list()
-		var/gas = pick("oxygen","nitrogen","phoron","carbon_dioxide")
+		var/gas = pick("oxygen","nitrogen","plasma","carbon_dioxide")
 		exude_gasses[gas] = rand(3,9)
 
 	chems = list()
@@ -425,7 +423,7 @@
 			"cryptobiolin",
 			"dermaline",
 			"dexalin",
-			"phoron",
+			"plasma",
 			"synaptizine",
 			"impedrezene",
 			"hyronalin",

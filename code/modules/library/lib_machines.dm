@@ -276,7 +276,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			if("6")
 				if(!bibledelay)
 
-					var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible()
+					var/obj/item/weapon/book/bible/B = new /obj/item/weapon/book/bible()
 					B.loc=src.loc
 					bibledelay = 1
 					spawn(60)

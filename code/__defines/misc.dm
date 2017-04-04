@@ -4,10 +4,6 @@
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
-#define OPENSPACE_LAYER (TURF_LAYER - 0.5)
-
-#define OPENSPACE_PLANE -1
-
 // Invisibility constants.
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
@@ -47,9 +43,10 @@
 #define COLOR_GRAY             "#808080"
 #define COLOR_BLACK            "#000000"
 #define COLOR_RED              "#ff0000"
-#define COLOR_RED_LIGHT        "#ff3333"
+#define COLOR_RED_LIGHT        "#b00000"
 #define COLOR_MAROON           "#800000"
 #define COLOR_YELLOW           "#ffff00"
+#define COLOR_AMBER            "#ffbf00"
 #define COLOR_OLIVE            "#808000"
 #define COLOR_LIME             "#00ff00"
 #define COLOR_GREEN            "#008000"
@@ -209,3 +206,6 @@
 
 // Default name for announsment system
 #define ANNOUNSER_NAME "CEV Eris System Announcer"
+
+
+#define LIST_OF_CONSONANT list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","ö","ê","í","ã","ø","ù","ç","õ","ô","â","ï","ð","ë","ä","æ","÷","ñ","ì","ò","á","é","û")

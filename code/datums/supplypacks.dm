@@ -670,11 +670,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_robotics
 	group = "Engineering"
 
-/datum/supply_packs/phoron
-	name = "Phoron assembly crate"
-	contains = list(/obj/item/weapon/tank/phoron,
-					/obj/item/weapon/tank/phoron,
-					/obj/item/weapon/tank/phoron,
+/datum/supply_packs/plasma
+	name = "Plasma assembly crate"
+	contains = list(/obj/item/weapon/tank/plasma,
+					/obj/item/weapon/tank/plasma,
+					/obj/item/weapon/tank/plasma,
 					/obj/item/device/assembly/igniter,
 					/obj/item/device/assembly/igniter,
 					/obj/item/device/assembly/igniter,
@@ -685,8 +685,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/assembly/timer,
 					/obj/item/device/assembly/timer)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure/phoron
-	containername = "\improper Phoron assembly crate"
+	containertype = /obj/structure/closet/crate/secure/plasma
+	containername = "\improper Plasma assembly crate"
 	access = access_tox_storage
 	group = "Science"
 
@@ -1060,7 +1060,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/nun,
 					///obj/item/clothing/under/gimmick/rank/captain/suit,
 					/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
-					/obj/item/clothing/under/lawyer/purpsuit,
 					/obj/item/clothing/suit/bio_suit/plaguedoctorsuit,
 					/obj/item/clothing/under/schoolgirl,
 					/obj/item/clothing/under/owl,
@@ -1079,8 +1078,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/formal_wear
 	contains = list(/obj/item/clothing/head/bowler,
 					/obj/item/clothing/head/that,
-					/obj/item/clothing/under/lawyer/bluesuit,
-					/obj/item/clothing/under/lawyer/purpsuit,
 					/obj/item/clothing/shoes/black,
 					/obj/item/clothing/shoes/black,
 					/obj/item/clothing/shoes/leather,
@@ -1133,7 +1130,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Supermatter Core"
 	contains = list(/obj/machinery/power/supermatter)
 	cost = 150
-	containertype = /obj/structure/closet/crate/secure/phoron
+	containertype = /obj/structure/closet/crate/secure/plasma
 	containername = "\improper Supermatter crate (CAUTION)"
 	group = "Engineering"
 	access = access_ce
@@ -1143,7 +1140,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Supermatter Shard"
 	contains = list(/obj/machinery/power/supermatter/shard)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure/phoron
+	containertype = /obj/structure/closet/crate/secure/plasma
 	containername = "\improper Supermatter shard crate (CAUTION)"
 	access = access_ce
 	group = "Engineering" */
@@ -1290,7 +1287,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "\improper White floor tile crate"
 	cost = 15
 	group = "Miscellaneous"
-	contains = list(/obj/item/stack/tile/floor_white)
+	contains = list(/obj/item/stack/tile/floor/white)
 	amount = 50
 
 /datum/supply_packs/dark_tiles
@@ -1299,7 +1296,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "\improper Dark floor tile crate"
 	cost = 15
 	group = "Miscellaneous"
-	contains = list(/obj/item/stack/tile/floor_dark)
+	contains = list(/obj/item/stack/tile/floor/dark)
 	amount = 50
 
 /datum/supply_packs/freezer_tiles
@@ -1308,7 +1305,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containername = "\improper Freezer floor tile crate"
 	cost = 15
 	group = "Miscellaneous"
-	contains = list(/obj/item/stack/tile/floor_freezer)
+	contains = list(/obj/item/stack/tile/floor/freezer)
 	amount = 50
 
 /datum/supply_packs/hydrotray
@@ -1352,14 +1349,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Atmospherics"
 	contains = list(/obj/machinery/portable_atmospherics/canister/nitrogen)
 
-/datum/supply_packs/canister_phoron
-	name = "Phoron gas canister"
+/datum/supply_packs/canister_plasma
+	name = "Plasma gas canister"
 	cost = 60
-	containername = "\improper Phoron gas canister crate"
+	containername = "\improper Plasma gas canister crate"
 	containertype = /obj/structure/closet/crate/secure/large
 	access = access_atmospherics
 	group = "Atmospherics"
-	contains = list(/obj/machinery/portable_atmospherics/canister/phoron)
+	contains = list(/obj/machinery/portable_atmospherics/canister/plasma)
 
 /datum/supply_packs/canister_sleeping_agent
 	name = "N2O gas canister"

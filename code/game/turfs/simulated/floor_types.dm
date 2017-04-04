@@ -5,16 +5,13 @@
 	heat_capacity = 0
 	layer = 2
 
-/turf/simulated/shuttle/wall
-	name = "wall"
-	icon_state = "wall1"
-	opacity = 1
-	density = 1
-	blocks_air = 1
-
 /turf/simulated/shuttle/floor
 	name = "floor"
 	icon_state = "floor"
+
+/turf/simulated/shuttle/floor/mining
+	icon_state = "6,19"
+	icon = 'icons/turf/shuttlemining.dmi'
 
 /turf/simulated/shuttle/plating
 	name = "plating"
@@ -33,6 +30,7 @@
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	var/has_base_range = null
 	//style = "underplating"
+
 
 /turf/simulated/floor/plating/under/update_icon(var/update_neighbors)
 	if(lava)
@@ -130,8 +128,24 @@
 		if(prob(75))
 			M.adjustBruteLoss(5)
 			M.weakened += 3
+			playsound(src, 'sound/effects/bang.ogg', 50, 1)
 			M << "<span class='warning'>You tripped over!</span>"
 			return
+
+/turf/simulated/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)
+	if (istype(C, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = C
+		if(R.amount <= 2)
+			return
+		else
+			R.use(2)
+			user << "<span class='notice'>You start connecting [R.name]s to [src.name], creating catwalk ...</span>"
+			if(do_after(user,50))
+				src.alpha = 0
+				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(src.loc)
+				src.contents += CT
+			return
+	return
 
 /turf/simulated/shuttle/plating/vox //Skipjack plating
 	oxygen = 0

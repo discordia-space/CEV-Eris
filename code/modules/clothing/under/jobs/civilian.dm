@@ -70,15 +70,6 @@
 
 	permeability_coefficient = 0.50
 
-
-/obj/item/clothing/under/rank/internalaffairs
-	desc = "The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
-	name = "Internal Affairs uniform"
-	icon_state = "internalaffairs"
-	item_state = "ba_suit"
-
-
-
 /obj/item/clothing/under/rank/janitor
 	desc = "It's the official uniform of the station's janitor. It has minor protection from biohazards."
 	name = "janitor's jumpsuit"
@@ -86,54 +77,6 @@
 
 	item_state = "janitor"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-
-
-/obj/item/clothing/under/lawyer
-	desc = "Slick threads."
-	name = "Lawyer suit"
-
-
-/obj/item/clothing/under/lawyer/black
-	name = "black Lawyer suit"
-	icon_state = "lawyer_black"
-	item_state = "lawyer_black"
-
-
-
-/obj/item/clothing/under/lawyer/female
-	name = "black Lawyer suit"
-	icon_state = "black_suit_fem"
-	item_state = "lawyer_black"
-
-
-
-/obj/item/clothing/under/lawyer/red
-	name = "red Lawyer suit"
-	icon_state = "lawyer_red"
-	item_state = "lawyer_red"
-
-
-
-/obj/item/clothing/under/lawyer/blue
-	name = "blue Lawyer suit"
-	icon_state = "lawyer_blue"
-	item_state = "lawyer_blue"
-
-
-
-/obj/item/clothing/under/lawyer/bluesuit
-	name = "Blue Suit"
-	desc = "A classy suit and tie"
-	icon_state = "bluesuit"
-	item_state = "ba_suit"
-
-
-
-/obj/item/clothing/under/lawyer/purpsuit
-	name = "Purple Suit"
-	icon_state = "lawyer_purp"
-	item_state = "ba_suit"
-
 
 
 /obj/item/clothing/under/librarian

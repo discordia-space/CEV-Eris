@@ -165,8 +165,8 @@
 		material.place_dismantled_product(src,devastated)
 
 	for(var/obj/O in src.contents) //Eject contents!
-		if(istype(O,/obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
+		if(istype(O,/obj/item/weapon/contraband/poster))
+			var/obj/item/weapon/contraband/poster/P = O
 			P.roll_and_drop(src)
 		else
 			O.loc = src
@@ -247,5 +247,5 @@
 			src.ChangeTurf(/turf/simulated/floor)
 			for(var/turf/simulated/wall/W in range(3,src))
 				W.burn((temperature/4))
-			for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
+			for(var/obj/machinery/door/airlock/plasma/D in range(3,src))
 				D.ignite(temperature/4)

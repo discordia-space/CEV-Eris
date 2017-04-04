@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
-	light_color = "#315ab4"
+	light_color = COLOR_LIME
 	circuit = /obj/item/weapon/circuitboard/cloning
 	req_access = list(access_heads) //Only used for record deletion right now.
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
@@ -402,13 +402,13 @@
 	R.name=R.dna.real_name
 	R.types=DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages=subject.languages
-	R.flavor=subject.flavor_texts.Copy()
+	R.flavor=subject.flavor_text
 
 	//Add an implant if needed
 	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)
 	if (isnull(imp))
 		imp = new /obj/item/weapon/implant/health(subject)
-		imp.implanted = subject
+		imp.install(subject)
 		R.implant = "\ref[imp]"
 	//Update it if needed
 	else

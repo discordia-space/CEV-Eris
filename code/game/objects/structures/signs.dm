@@ -219,10 +219,10 @@
 	desc = "WARNING! N2O flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_n2o"
 
-/obj/structure/sign/atmos_phoron
-	name = "Phoron warning sign"
-	desc = "WARNING! Phoron flow tube. Ensure the flow is disengaged before working."
-	icon_state = "atmos_phoron"
+/obj/structure/sign/atmos_plasma
+	name = "Plasma warning sign"
+	desc = "WARNING! Plasma flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_plasma"
 
 /obj/structure/sign/atmos_n2
 	name = "N2 warning sign"
@@ -363,3 +363,157 @@
 	name = "MEMETIC HAZARD"
 	desc = "Warning: Memetic hazard, wear meson goggles!"
 	icon_state = "memetic"
+
+//Eris departments
+
+/obj/structure/sign/department
+	name = "department sign"
+	desc = "Sign of some important ship compartment."
+
+/obj/structure/sign/department/medbay
+	name = "MEDBAY"
+	icon_state = "medbay"
+
+/obj/structure/sign/department/virology
+	name = "VIROLOGY"
+	icon_state = "virology"
+
+/obj/structure/sign/department/chem
+	name = "CHEMISTRY"
+	icon_state = "chem"
+
+/obj/structure/sign/department/gene
+	name = "GENETICS"
+	icon_state = "gene"
+
+/obj/structure/sign/department/morgue
+	name = "MORGUE"
+	icon_state = "morgue"
+
+/obj/structure/sign/department/operational
+	name = "OPERATIONAL"
+	icon_state = "operational"
+
+/obj/structure/sign/department/sci
+	name = "SCIENCE"
+	icon_state = "sci"
+
+/obj/structure/sign/department/xenolab
+	name = "XENOLAB"
+	icon_state = "xenolab"
+
+/obj/structure/sign/department/anomaly
+	name = "ANOMALYLAB"
+	icon_state = "anomaly"
+
+/obj/structure/sign/department/dock
+	name = "DOKUCHAYEV DOCK"
+	icon_state = "dock"
+
+/obj/structure/sign/department/rnd
+	name = "RND"
+	icon_state = "rnd"
+
+/obj/structure/sign/department/robo
+	name = "ROBOTICS"
+	icon_state = "robo"
+
+/obj/structure/sign/department/toxins
+	name = "TOXINS"
+	icon_state = "toxins"
+
+/obj/structure/sign/department/toxin_res
+	name = "TOXINLAB"
+	icon_state = "toxin_res"
+
+/obj/structure/sign/department/eva
+	name = "E.V.A."
+	icon_state = "eva"
+
+/obj/structure/sign/department/ass
+	name = "TOOL STORAGE"
+	icon_state = "ass"
+
+/obj/structure/sign/department/bar
+	name = "BAR"
+	icon_state = "bar"
+
+/obj/structure/sign/department/biblio
+	name = "LIBRARY"
+	icon_state = "biblio"
+
+/obj/structure/sign/department/chapel
+	name = "CHAPEL"
+	icon_state = "chapel"
+
+/obj/structure/sign/department/bridge
+	name = "BRIDGE"
+	icon_state = "bridge"
+
+/obj/structure/sign/department/telecoms
+	name = "TELECOMS"
+	icon_state = "telecoms"
+
+/obj/structure/sign/department/conference_room
+	name = "CONFERENCE"
+	icon_state = "conference_room"
+
+/obj/structure/sign/department/ai
+	name = "AI"
+	icon_state = "ai"
+
+/obj/structure/sign/department/cargo
+	name = "CARGO"
+	icon_state = "cargo"
+
+/obj/structure/sign/department/mail
+	name = "MAIL"
+	icon_state = "mail"
+
+/obj/structure/sign/department/miner_dock
+	name = "HULK DOCK"
+	icon_state = "miner_dock"
+
+/obj/structure/sign/department/cargo_dock
+	name = "CARGO A5 DOCK"
+	icon_state = "cargo_dock"
+
+/obj/structure/sign/department/eng
+	name = "ENGINEERING"
+	icon_state = "eng"
+
+/obj/structure/sign/department/engine
+	name = "ENGINE"
+	icon_state = "engine"
+
+/obj/structure/sign/department/gravi
+	name = "GRAVGEN"
+	icon_state = "gravi"
+
+/obj/structure/sign/department/atmos
+	name = "ATMOSPHERICS"
+	icon_state = "atmos"
+
+/obj/structure/sign/department/shield
+	name = "SHIELDGEN"
+	icon_state = "shield"
+
+/obj/structure/sign/department/drones
+	name = "DRONES"
+	icon_state = "drones"
+
+/obj/structure/sign/department/interrogation
+	name = "INTERROGATION"
+	icon_state = "interrogation"
+
+/obj/structure/sign/department/commander
+	name = "IHS COMMANDER"
+	icon_state = "commander"
+
+/obj/structure/sign/department/armory
+	name = "IHS ARMORY"
+	icon_state = "armory"
+
+/obj/structure/sign/department/prison
+	name = "PRISON"
+	icon_state = "prison"

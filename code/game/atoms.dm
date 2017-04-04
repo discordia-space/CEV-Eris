@@ -1,5 +1,6 @@
 /atom
 	layer = 2
+	appearance_flags = TILE_BOUND
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints
@@ -15,6 +16,8 @@
 	var/simulated = 1 //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = 1
+
+	var/list/footstep_sounds = list() // Footsteps sound
 
 	///Chemistry.
 	var/datum/reagents/reagents = null

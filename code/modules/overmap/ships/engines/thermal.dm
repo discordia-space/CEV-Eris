@@ -74,7 +74,7 @@
 		var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
 		loc.assume_air(removed)
-		if(air_contents.temperature > PHORON_MINIMUM_BURN_TEMPERATURE)
+		if(air_contents.temperature > PLASMA_MINIMUM_BURN_TEMPERATURE)
 			var/exhaust_dir = reverse_direction(dir)
 			var/turf/T = get_step(src,exhaust_dir)
 			if(T)

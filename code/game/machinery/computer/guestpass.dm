@@ -45,6 +45,11 @@
 	icon_state = "guest"
 	icon_keyboard = null
 	icon_screen = "pass"
+	light_color = COLOR_BLUE
+	light_range = 1.5
+	light_power = 0.2
+	light_range_on = 1.5
+	light_power_on = 0.2
 	density = 0
 	CheckFaceFlag = 0
 	var/obj/item/weapon/card/id/giver

@@ -13,7 +13,6 @@ var/global/list/additional_antag_types = list()
 	var/required_enemies = 0                 // Minimum antagonists for round to start.
 	var/newscaster_announcements = null
 	var/end_on_antag_death = 0               // Round will end when all antagonists are dead.
-	var/ert_disabled = 0                     // ERT cannot be called.
 	var/deny_respawn = 0	                 // Disable respawn during this round.
 
 	var/list/disabled_jobs = list()           // Mostly used for Malf.  This check is performed in job_controller so it doesn't spawn a regular AI.
@@ -49,9 +48,6 @@ var/global/list/additional_antag_types = list()
 		switch(href_list["toggle"])
 			if("respawn")
 				deny_respawn = !deny_respawn
-			if("ert")
-				ert_disabled = !ert_disabled
-				announce_ert_disabled()
 			if("shuttle_recall")
 				auto_recall_shuttle = !auto_recall_shuttle
 			if("autotraitor")
@@ -120,8 +116,10 @@ var/global/list/additional_antag_types = list()
 
 /datum/game_mode/proc/announce() //to be called when round starts
 	world << "<B>The current game mode is [capitalize(name)]!</B>"
-	if(round_description) world << "[round_description]"
-	if(round_autoantag) world << "Antagonists will be added to the round automagically as needed."
+	if(round_description)
+		world << "[round_description]"
+	if(round_autoantag)
+		world << "Antagonists will be added to the round automagically as needed."
 	if(antag_templates && antag_templates.len)
 		var/antag_summary = "<b>Possible antagonist types:</b> "
 		var/i = 1
@@ -142,16 +140,16 @@ var/global/list/additional_antag_types = list()
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start(var/do_not_spawn)
-	var/playerC = 0
+	var/player_count = 0
 	for(var/mob/new_player/player in player_list)
-		if((player.client)&&(player.ready))
-			playerC++
+		if(player.client && player.ready)
+			player_count++
 
-	if(playerC < required_players)
-		return 0
+	if(player_count < required_players)
+		return FALSE
 
 	if(!(antag_templates && antag_templates.len))
-		return 1
+		return TRUE
 
 	var/enemy_count = 0
 	if(antag_tags && antag_tags.len)
@@ -166,11 +164,11 @@ var/global/list/additional_antag_types = list()
 				potential = antag.candidates
 			if(islist(potential))
 				if(require_all_templates && potential.len < antag.initial_spawn_req)
-					return 0
+					return FALSE
 				enemy_count += potential.len
 				if(enemy_count >= required_enemies)
-					return 1
-	return 0
+					return TRUE
+	return FALSE
 
 /datum/game_mode/proc/refresh_event_modifiers()
 	if(event_delay_mod_moderate || event_delay_mod_major)
@@ -201,8 +199,6 @@ var/global/list/additional_antag_types = list()
 
 	spawn (rand(waittime_l, waittime_h))
 		send_intercept()
-		spawn(rand(100,150))
-			announce_ert_disabled()
 
 	//Assign all antag types for this game mode. Any players spawned as antags earlier should have been removed from the pending list, so no need to worry about those.
 	for(var/datum/antagonist/antag in antag_templates)
@@ -213,61 +209,24 @@ var/global/list/additional_antag_types = list()
 	if(emergency_shuttle && auto_recall_shuttle)
 		emergency_shuttle.auto_recall = 1
 
-	return 1
 
 /datum/game_mode/proc/fail_setup()
 	for(var/datum/antagonist/antag in antag_templates)
 		antag.reset_antag_selection()
 
-/datum/game_mode/proc/announce_ert_disabled()
-	if(!ert_disabled)
-		return
-
-	var/list/reasons = list(
-		"political instability",
-		"quantum fluctuations",
-		"hostile raiders",
-		"derelict station debris",
-		"REDACTED",
-		"ancient alien artillery",
-		"solar magnetic storms",
-		"sentient time-travelling killbots",
-		"gravitational anomalies",
-		"wormholes to another dimension",
-		"a telescience mishap",
-		"radiation flares",
-		"supermatter dust",
-		"leaks into a negative reality",
-		"antiparticle clouds",
-		"residual bluespace energy",
-		"suspected criminal operatives",
-		"malfunctioning von Neumann probe swarms",
-		"shadowy interlopers",
-		"haywire IPC constructs",
-		"rogue Unathi exiles",
-		"artifacts of eldritch horror",
-		"a brain slug infestation",
-		"killer bugs that lay eggs in the husks of the living",
-		"a deserted transport carrying xenomorph specimens",
-		"an emissary for the gestalt requesting a security detail",
-		"a Tajaran slave rebellion",
-		"radical Skrellian transevolutionaries",
-		"classified security operations"
-		)
-	command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
 
 /datum/game_mode/proc/check_finished()
 	if(emergency_shuttle.returned() || station_was_nuked)
-		return 1
+		return TRUE
 	if(end_on_antag_death && antag_templates && antag_templates.len)
 		for(var/datum/antagonist/antag in antag_templates)
 			if(!antag.antags_are_dead())
-				return 0
+				return FALSE
 		if(config.continous_rounds)
 			emergency_shuttle.auto_recall = 0
-			return 0
-		return 1
-	return 0
+			return FALSE
+		return TRUE
+	return FALSE
 
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return
@@ -292,18 +251,20 @@ var/global/list/additional_antag_types = list()
 	var/escaped_total = 0
 
 
-	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
+	var/list/area/escape_locations = list(
+		/area/shuttle/escape/centcom,
+		/area/shuttle/escape_pod1/centcom,
+		/area/shuttle/escape_pod2/centcom,
+		/area/shuttle/escape_pod3/centcom,
+		/area/shuttle/escape_pod5/centcom
+		)
 
 	for(var/mob/M in player_list)
 		if(M.client)
-
 			if(M.stat != DEAD)
 				surviving_total++
 				if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
 					escaped_total++
-
-
-
 			if(isghost(M))
 				ghosts++
 
@@ -315,11 +276,6 @@ var/global/list/additional_antag_types = list()
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
 	world << text
 
-
-
-
-
-	return 0
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
@@ -333,7 +289,7 @@ var/global/list/additional_antag_types = list()
 	for(var/antag_type in all_antag_types)
 		var/datum/antagonist/antag = all_antag_types[antag_type]
 		if(antag.flags & ANTAG_SUSPICIOUS)
-			disregard_roles |= antag.role_text
+			disregard_roles.Add(antag.role_text)
 
 	var/list/suspects = list()
 	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.mind)
@@ -344,16 +300,13 @@ var/global/list/additional_antag_types = list()
 
 		if (special_role in disregard_roles)
 			continue
-		else if(man.client.prefs.nanotrasen_relation == COMPANY_OPPOSED && prob(50) || \
-			man.client.prefs.nanotrasen_relation == COMPANY_SKEPTICAL && prob(20))
-			suspects += man
 		// Antags
 		else if(special_role_data && prob(special_role_data.suspicion_chance))
-			suspects += man
+			suspects.Add(man)
 
 		// Some poor people who were just in the wrong place at the wrong time..
 		else if(prob(10))
-			suspects += man
+			suspects.Add(man)
 
 	for(var/mob/M in suspects)
 		if(player_is_antag(M.mind, only_offstation_roles = 1))
@@ -386,27 +339,27 @@ var/global/list/additional_antag_types = list()
 				continue
 			if(!role || (role in player.client.prefs.be_special_role))
 				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")
-				candidates |= player.mind
+				candidates.Add(player.mind)
 	else
 		// Assemble a list of active players without jobbans.
 		for(var/mob/new_player/player in player_list)
-			if( player.client && player.ready )
-				players += player
+			if(player.client && player.ready)
+				players.Add(player)
 
 		// Get a list of all the people who want to be the antagonist for this round
 		for(var/mob/new_player/player in players)
-			if(!role || (role in player.client.prefs.be_special_role))
+			if(!role || role in player.client.prefs.be_special_role)
 				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")
-				candidates += player.mind
-				players -= player
+				candidates.Add(player.mind)
+				players.Remove(player)
 
 		// If we don't have enough antags, draft people who voted for the round.
 		if(candidates.len < required_enemies)
 			for(var/mob/new_player/player in players)
 				if(player.ckey in round_voters)
 					log_debug("[player.key] voted for this round, so we are drafting them.")
-					candidates += player.mind
-					players -= player
+					candidates.Add(player.mind)
+					players.Remove(player)
 					break
 
 	return candidates		// Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than required_enemies
@@ -414,10 +367,11 @@ var/global/list/additional_antag_types = list()
 							//			Less if there are not enough valid players in the game entirely to make required_enemies.
 
 /datum/game_mode/proc/num_players()
-	. = 0
+	var/count = 0
 	for(var/mob/new_player/P in player_list)
 		if(P.client && P.ready)
-			. ++
+			count++
+	return count
 
 /datum/game_mode/proc/check_antagonists_topic(href, href_list[])
 	return 0
@@ -432,7 +386,7 @@ var/global/list/additional_antag_types = list()
 		for(var/antag_tag in antag_tags)
 			var/datum/antagonist/antag = all_antag_types[antag_tag]
 			if(antag)
-				antag_templates |= antag
+				antag_templates.Add(antag)
 
 	if(additional_antag_types && additional_antag_types.len)
 		if(!antag_templates)
@@ -440,7 +394,7 @@ var/global/list/additional_antag_types = list()
 		for(var/antag_type in additional_antag_types)
 			var/datum/antagonist/antag = all_antag_types[antag_type]
 			if(antag)
-				antag_templates |= antag
+				antag_templates.Add(antag)
 
 	shuffle(antag_templates) //In the case of multiple antag types
 	newscaster_announcements = pick(newscaster_standard_feeds)
@@ -496,17 +450,6 @@ proc/display_roundstart_logout_report()
 		if(M.client && M.client.holder)
 			M << msg
 
-proc/get_nt_opposed()
-	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
-		if(man.client)
-			if(man.client.prefs.nanotrasen_relation == COMPANY_OPPOSED)
-				dudes += man
-			else if(man.client.prefs.nanotrasen_relation == COMPANY_SKEPTICAL && prob(50))
-				dudes += man
-	if(dudes.len == 0) return null
-	return pick(dudes)
-
 //Announces objectives/generic antag text.
 /proc/show_generic_antag_text(var/datum/mind/player)
 	if(player.current)
@@ -520,7 +463,8 @@ proc/get_nt_opposed()
 
 /proc/show_objectives(var/datum/mind/player)
 
-	if(!player || !player.current) return
+	if(!player || !player.current)
+		return
 
 	if(config.objectives_disabled)
 		show_generic_antag_text(player)
@@ -548,4 +492,3 @@ proc/get_nt_opposed()
 			usr << "[ticker.mode.extended_round_description]"
 	else
 		usr << "<i>Shhhh</i>. It's a secret."
-	return

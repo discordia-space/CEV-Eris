@@ -3,6 +3,12 @@
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_state = "carpet"
 	initial_flooring = /decl/flooring/carpet
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/carpet1.ogg', \
+		'sound/effects/footstep/carpet2.ogg', \
+		'sound/effects/footstep/carpet3.ogg', \
+		'sound/effects/footstep/carpet4.ogg', \
+		'sound/effects/footstep/carpet5.ogg'))
 
 /turf/simulated/floor/carpet/bcarpet
 	name = "black carpet"
@@ -56,6 +62,12 @@
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/wood1.ogg',\
+		'sound/effects/footstep/wood2.ogg',\
+		'sound/effects/footstep/wood3.ogg',\
+		'sound/effects/footstep/wood4.ogg',\
+		'sound/effects/footstep/wood5.ogg'))
 
 /turf/simulated/floor/grass
 	name = "grass patch"
@@ -73,6 +85,12 @@
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_state = "hullcenter0"
 	initial_flooring = /decl/flooring/hull
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/hull1.ogg',\
+		'sound/effects/footstep/hull2.ogg',\
+		'sound/effects/footstep/hull3.ogg',\
+		'sound/effects/footstep/hull4.ogg',\
+		'sound/effects/footstep/hull5.ogg'))
 
 /turf/simulated/floor/hull/New()
 	if(icon_state != "hullcenter0")
@@ -84,6 +102,12 @@
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
 	initial_flooring = /decl/flooring/tiling
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/floor1.ogg',\
+		'sound/effects/footstep/floor2.ogg',\
+		'sound/effects/footstep/floor3.ogg',\
+		'sound/effects/footstep/floor4.ogg',\
+		'sound/effects/footstep/floor5.ogg'))
 
 /turf/simulated/floor/tiled/techmaint
 	name = "floor"
@@ -102,6 +126,24 @@
 	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_gray"
 	initial_flooring = /decl/flooring/tiling/tech
+
+/turf/simulated/floor/tiled/monotile
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles.dmi'
+	icon_state = "monotile"
+	initial_flooring = /decl/flooring/tiling/new_tile/monotile
+
+/turf/simulated/floor/tiled/steel_grid
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles.dmi'
+	icon_state = "steel_grid"
+	initial_flooring = /decl/flooring/tiling/new_tile/steel_grid
+
+/turf/simulated/floor/tiled/steel_ridged
+	name = "floor"
+	icon = 'icons/turf/flooring/tiles.dmi'
+	icon_state = "steel_ridged"
+	initial_flooring = /decl/flooring/tiling/new_tile/steel_ridged
 
 /turf/simulated/floor/tiled/old_tile
 	name = "floor"
@@ -197,10 +239,10 @@
 	oxygen = ATMOSTANK_OXYGEN
 	nitrogen = 0
 
-/turf/simulated/floor/reinforced/phoron
+/turf/simulated/floor/reinforced/plasma
 	oxygen = 0
 	nitrogen = 0
-	phoron = ATMOSTANK_PHORON
+	plasma = ATMOSTANK_PLASMA
 
 /turf/simulated/floor/reinforced/carbon_dioxide
 	oxygen = 0
@@ -303,6 +345,14 @@
 /turf/simulated/floor/beach/coastline
 /turf/simulated/floor/plating/snow
 /turf/simulated/floor/airless/ceiling
+
+/turf/simulated/floor/plating
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/plating1.ogg',\
+		'sound/effects/footstep/plating2.ogg',\
+		'sound/effects/footstep/plating3.ogg',\
+		'sound/effects/footstep/plating4.ogg',\
+		'sound/effects/footstep/plating5.ogg'))
 
 /turf/simulated/floor/beach
 	name = "beach"

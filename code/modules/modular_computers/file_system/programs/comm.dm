@@ -142,12 +142,9 @@
 						if(!input || !can_still_topic())
 							nanomanager.update_uis(src)
 							return
-						Syndicate_announce(input, usr)
-						usr << "<span class='notice'>Message transmitted.</span>"
+						usr << "<span class='notice'>No response from the remote server. Please, contact your system administrator.</span>"
 						log_say("[key_name(usr)] has made an illegal announcement: [input]")
 						centcomm_message_cooldown = 1
-						spawn(300)//30 second cooldown
-							centcomm_message_cooldown = 0
 			else if(href_list["target"] == "regular")
 				if(is_autenthicated(user) && !issilicon(usr) && ntn_comm)
 					if(centcomm_message_cooldown)
@@ -162,12 +159,10 @@
 					if(!input || !can_still_topic())
 						nanomanager.update_uis(src)
 						return
-					Centcomm_announce(input, usr)
-					usr << "<span class='notice'>Message transmitted.</span>"
+					usr << "<span class='notice'>No response from the remote server. Please, contact your system administrator.</span>"
 					log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
 					centcomm_message_cooldown = 1
-					spawn(300) //30 second cooldown
-						centcomm_message_cooldown = 0
+
 		if("shuttle")
 			if(is_autenthicated(user) && ntn_cont)
 				if(href_list["target"] == "call")

@@ -158,8 +158,8 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
-	var/brightness_range = 8	// luminosity when on, also used in power calculation
-	var/brightness_power = 3
+	var/brightness_range = 7	// luminosity when on, also used in power calculation
+	var/brightness_power = 2
 	var/brightness_color = null
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
@@ -226,15 +226,16 @@
 	..()
 
 	spawn(2)
-		on = has_power()
+		var/area/A = get_area(src)
+		if(A && !A.requires_power)
+			on = 1
 
-		switch(fitting)
-			if("tube")
-				if(prob(1))
-					broken(1)
-			if("bulb")
-				if(prob(3))
-					broken(1)
+		if(src.z == 1 || src.z == 5)
+			switch(fitting)
+				if("tube","bulb")
+					if(prob(2))
+						broken(1)
+
 		spawn(1)
 			update(0)
 
@@ -736,7 +737,7 @@
 
 
 // attack bulb/tube with object
-// if a syringe, can inject phoron to make it explode
+// if a syringe, can inject plasma to make it explode
 /obj/item/weapon/light/attackby(var/obj/item/I, var/mob/user)
 	..()
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
@@ -744,10 +745,10 @@
 
 		user << "You inject the solution into the [src]."
 
-		if(S.reagents.has_reagent("phoron", 5))
+		if(S.reagents.has_reagent("plasma", 5))
 
-			log_admin("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
+			log_admin("LOG: [user.name] ([user.ckey]) injected a light with plasma, rigging it to explode.")
+			message_admins("LOG: [user.name] ([user.ckey]) injected a light with plasma, rigging it to explode.")
 
 			rigged = 1
 

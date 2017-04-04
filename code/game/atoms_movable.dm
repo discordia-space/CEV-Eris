@@ -91,6 +91,15 @@
 				destination.loc.Entered(src, origin)
 	return 1
 
+/atom/movable/proc/forceMoveOld(atom/destination)
+	if(destination)
+		if(loc)
+			loc.Exited(src)
+		loc = destination
+		loc.Entered(src)
+		return 1
+	return 0
+
 //called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
 	if(istype(hit_atom,/mob/living))

@@ -574,12 +574,8 @@
 		if(closed_system && mechanical)
 			light_string = "that the internal lights are set to [tray_light] lumens"
 		else
-			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
 			var/light_available
-			if(L)
-				light_available = max(0,min(10,L.lum_r + L.lum_g + L.lum_b)-5)
-			else
-				light_available =  5
+			light_available = round((T.get_lumcount()*10)-5)
 			light_string = "a light level of [light_available] lumens"
 
 		usr << "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."

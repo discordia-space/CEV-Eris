@@ -28,6 +28,17 @@
 	sort_order = 6
 	category_item_type = /datum/category_item/player_setup_item/player_global
 
+
+/datum/category_group/player_setup_category/augmentation
+	name = "Augmentation"
+	sort_order = 7
+	category_item_type = /datum/category_item/player_setup_item/augmentation
+
+/datum/category_group/player_setup_category/matchmaking_preferences
+	name = "Matchmaking"
+	sort_order = 8
+	category_item_type = /datum/category_item/player_setup_item/matchmaking
+
 /****************************
 * Category Collection Setup *
 ****************************/
@@ -222,6 +233,10 @@
 	if(..())
 		return 1
 	var/mob/pref_mob = preference_mob()
+
+	if(isnull(pref_mob))
+		return
+
 	if(!pref_mob || !pref_mob.client)
 		return 1
 

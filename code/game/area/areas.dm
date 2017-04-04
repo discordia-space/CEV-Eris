@@ -19,11 +19,6 @@
 		power_equip = 0
 		power_environ = 0
 
-	if(lighting_use_dynamic)
-		luminosity = 0
-	else
-		luminosity = 1
-
 	..()
 
 /area/proc/initialize()
@@ -257,29 +252,34 @@ var/list/mob/living/forced_ambiance_list = new
 	play_ambience(L)
 
 /area/proc/play_ambience(var/mob/living/L)
-	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))	return
+    // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
+	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))    return
 
-	// If we previously were in an area with force-played ambiance, stop it.
-	if(L in forced_ambiance_list)
-		L << sound(null, channel = 1)
-		forced_ambiance_list -= L
+	var/client/CL = L.client
 
-	if(!L.client.ambience_playing)
-		L.client.ambience_playing = 1
-		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 15, channel = 2)
+	if(CL.ambience_playing) // If any ambience already playing
+		if(forced_ambience && forced_ambience.len)
+			if(CL.ambience_playing in forced_ambience)
+				return 1
+			else
+				var/new_ambience = pick(pick(forced_ambience))
+				CL.ambience_playing = new_ambience
+				L << sound(new_ambience, repeat = 1, wait = 0, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
+				return 1
+		if(CL.ambience_playing in ambience)
+			return 1
 
-	if(forced_ambience)
-		if(forced_ambience.len)
-			forced_ambiance_list |= L
-			L << sound(pick(forced_ambience), repeat = 1, wait = 0, volume = 15, channel = 1)
-		else
-			L << sound(null, channel = 1)
-	else if(src.ambience.len && prob(35))
-		if((world.time >= L.client.played + 600))
+	if(ambience.len && prob(35))
+		if(world.time >= L.client.played + 600)
 			var/sound = pick(ambience)
-			L << sound(sound, repeat = 0, wait = 0, volume = 10, channel = 1)
+			CL.ambience_playing = sound
+			L << sound(sound, repeat = 0, wait = 0, volume = 10, channel = SOUND_CHANNEL_AMBIENCE)
 			L.client.played = world.time
+			return 1
+	else
+		var/sound = 'sound/ambience/shipambience.ogg'
+		CL.ambience_playing = sound
+		L << sound(sound, repeat = 1, wait = 0, volume = 30, channel = SOUND_CHANNEL_AMBIENCE)
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
 	A.has_gravity = gravitystate

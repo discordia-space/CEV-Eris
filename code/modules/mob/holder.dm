@@ -134,22 +134,22 @@ var/list/holder_mob_icon_cache = list()
 	var/mob/living/carbon/human/owner = M
 	if(istype(owner) && owner.species)
 
-		var/skin_colour = rgb(owner.r_skin, owner.g_skin, owner.b_skin)
-		var/hair_colour = rgb(owner.r_hair, owner.g_hair, owner.b_hair)
-		var/eye_colour =  rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes)
+		var/skin_color = owner.skin_color
+		var/hair_color = owner.hair_color
+		var/eyes_color =  owner.eyes_color
 		var/species_name = lowertext(owner.species.get_bodytype())
 
 		for(var/cache_entry in generate_for_slots)
-			var/cache_key = "[owner.species]-[cache_entry]-[skin_colour]-[hair_colour]"
+			var/cache_key = "[owner.species]-[cache_entry]-[skin_color]-[hair_color]"
 			if(!holder_mob_icon_cache[cache_key])
 
 				// Generate individual icons.
 				var/icon/mob_icon = icon(icon, "[species_name]_holder_[cache_entry]_base")
-				mob_icon.Blend(skin_colour, ICON_ADD)
+				mob_icon.Blend(skin_color, ICON_ADD)
 				var/icon/hair_icon = icon(icon, "[species_name]_holder_[cache_entry]_hair")
-				hair_icon.Blend(hair_colour, ICON_ADD)
+				hair_icon.Blend(hair_color, ICON_ADD)
 				var/icon/eyes_icon = icon(icon, "[species_name]_holder_[cache_entry]_eyes")
-				eyes_icon.Blend(eye_colour, ICON_ADD)
+				eyes_icon.Blend(eyes_color, ICON_ADD)
 
 				// Blend them together.
 				mob_icon.Blend(eyes_icon, ICON_OVERLAY)

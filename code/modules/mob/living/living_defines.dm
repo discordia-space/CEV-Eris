@@ -26,7 +26,7 @@
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 
-	var/t_phoron = null
+	var/t_plasma = null
 	var/t_oxygen = null
 	var/t_sl_gas = null
 	var/t_n2 = null
@@ -39,6 +39,7 @@
 
 	var/mob/living/cameraFollow = null
 	var/list/datum/action/actions = list()
+	var/step_count = 0
 
 	var/tod = null // Time of death
 	var/update_slimes = 1

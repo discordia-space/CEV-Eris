@@ -13,10 +13,14 @@
 
 	if(config.allow_admin_jump)
 		usr.on_mob_jump()
-		usr.loc = pick(get_area_turfs(A))
+		var/new_location = safepick(get_area_turfs(A))
 
-		log_admin("[key_name(usr)] jumped to [A]")
-		message_admins("[key_name_admin(usr)] jumped to [A]", 1)
+		if(new_location)
+			usr.loc = new_location
+			log_admin("[key_name(usr)] jumped to [A]")
+			message_admins("[key_name_admin(usr)] jumped to [A]", 1)
+		else
+			alert("Admin jump failed due to missing [A] area turfs.")
 
 	else
 		alert("Admin jumping disabled")

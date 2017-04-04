@@ -3,6 +3,7 @@
 	name = "\proper space"
 	icon_state = "0"
 	dynamic_lighting = 0
+	plane = SPACE_PLANE
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -10,8 +11,8 @@
 
 /turf/space/New()
 	if(!istype(src, /turf/space/transit))
-		icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
-	update_starlight()
+		icon_state = "white"
+	//update_starlight()
 	..()
 
 /turf/space/is_space()
@@ -23,12 +24,15 @@
 		O.hide(0)
 
 /turf/space/proc/update_starlight()
-	if(!config.starlight)
+	return
+	//if(locate(/turf/simulated) in orange(src,1))
+	//	set_light(2,2) // Too lazy to port starlight configuration and its 0 by default anyway... ~Zve
+	/*if(!config.starlight)
 		return
 	if(locate(/turf/simulated) in orange(src,1))
 		set_light(config.starlight)
 	else
-		set_light(0)
+		set_light(0)*/
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 
@@ -57,7 +61,7 @@
 		else
 			user << "<span class='warning'>The plating is going to need some support.</span>"
 			return
-	if (istype(C, /obj/item/stack/tile/techgrey) || istype(C, /obj/item/stack/tile/techgrid))// андерплайтинг строится тут
+	if (istype(C, /obj/item/stack/tile/floor/techgrey) || istype(C, /obj/item/stack/tile/floor/techgrid))// this creates underplating
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			var/obj/item/stack/tile/S = C

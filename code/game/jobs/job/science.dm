@@ -31,8 +31,8 @@
 	hand = /obj/item/weapon/clipboard
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/toxins,\
-		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -51,7 +51,7 @@
 	economic_modifier = 7
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
-	alt_titles = list("Xenoarcheologist", "Anomalist", "Phoron Researcher")
+	alt_titles = list("Xenoarcheologist", "Anomalist", "Plasma Researcher")
 	idtype = /obj/item/weapon/card/id/sci
 	minimal_player_age = 14
 
@@ -62,8 +62,8 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/toxins,\
-		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -91,8 +91,8 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/toxins,\
-		/obj/item/weapon/storage/backpack/satchel_tox,\
+		/obj/item/weapon/storage/backpack,\
+		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
 

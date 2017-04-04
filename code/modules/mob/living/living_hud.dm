@@ -34,6 +34,18 @@
 			var/p = HUDtech[i]
 			src.client.screen += HUDtech[p]
 //For HUD checking needs
+
+/mob/living/proc/recolor_HUD(var/_color, var/_alpha)
+	for (var/i=1,i<=HUDneed.len,i++)
+		var/p = HUDneed[i]
+		var/obj/screen/HUDelm = HUDneed[p]
+		HUDelm.color = _color
+		HUDelm.alpha = _alpha
+	for (var/obj/screen/HUDinv in src.HUDinventory)
+		HUDinv.color = _color
+		HUDinv.alpha = _alpha
+	return
+
 /mob/living/proc/check_HUD()//Main HUD check process
 	return
 
@@ -49,7 +61,8 @@
 	return
 /mob/living/proc/check_HUDtech()
 	return
-
+/mob/living/proc/check_HUD_style()
+	return
 
 
 /mob/living/proc/create_HUDinventory()//correct a HUDinventory?

@@ -18,7 +18,7 @@ var/list/flooring_types
 // [icon_base]_corners: directional overlays for non-edge corners.
 
 /decl/flooring
-	var/name
+	var/name = "floor"
 	var/desc
 	var/icon
 	var/icon_base
@@ -122,38 +122,50 @@ var/list/flooring_types
 	can_paint = 1
 
 /decl/flooring/tiling/tech
-	name = "techfloor"
+//	name = "techfloor"
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_base = "techfloor_gray"
-	build_type = /obj/item/stack/tile/techgrey
+	build_type = /obj/item/stack/tile/floor/techgrey
 	can_paint = null
 
 /decl/flooring/tiling/tech/grid
 	icon_base = "techfloor_grid"
-	build_type = /obj/item/stack/tile/techgrid
+	build_type = /obj/item/stack/tile/floor/techgrid
 
 /decl/flooring/tiling/new_tile
-	name = "tile full"
+	name = "floor"
 	icon_base = "tile_full"
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
 	build_type = null
 
 /decl/flooring/tiling/new_tile/cargo_one
-	name = "cargo one"
+//	name = "cargo one"
 	icon_base = "cargo_one_full"
 
 /decl/flooring/tiling/new_tile/kafel
-	name = "kafel"
+//	name = "kafel"
 	icon_base = "kafel_full"
 
 /decl/flooring/tiling/new_tile/techmaint
-	name = "techmaint"
+//	name = "techmaint"
 	icon_base = "techmaint"
 
 /decl/flooring/tiling/new_tile/monofloor
-	name = "monofloor"
+//	name = "monofloor"
 	icon_base = "monofloor"
+
+/decl/flooring/tiling/new_tile/monotile
+//	name = "monotile"
+	icon_base = "monotile"
+
+/decl/flooring/tiling/new_tile/steel_grid
+//	name = "steelgrid"
+	icon_base = "steel_grid"
+
+/decl/flooring/tiling/new_tile/steel_ridged
+//	name = "steelridged"
+	icon_base = "steel_ridged"
 
 /decl/flooring/linoleum
 	name = "linoleum"
@@ -167,25 +179,25 @@ var/list/flooring_types
 /decl/flooring/tiling/steel
 	name = "floor"
 	icon_base = "steel"
-	build_type = /obj/item/stack/tile/floor_steel
+	build_type = /obj/item/stack/tile/floor/steel
 
 /decl/flooring/tiling/white
 	name = "floor"
 	desc = "How sterile."
 	icon_base = "white"
-	build_type = /obj/item/stack/tile/floor_white
+	build_type = /obj/item/stack/tile/floor/white
 
 /decl/flooring/tiling/dark
 	name = "floor"
 	desc = "How ominous."
 	icon_base = "dark"
-	build_type = /obj/item/stack/tile/floor_dark
+	build_type = /obj/item/stack/tile/floor/dark
 
 /decl/flooring/tiling/freezer
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "freezer"
-	build_type = /obj/item/stack/tile/floor_freezer
+	build_type = /obj/item/stack/tile/floor/freezer
 
 /decl/flooring/wood
 	name = "wooden floor"

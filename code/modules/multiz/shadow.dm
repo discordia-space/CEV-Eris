@@ -1,12 +1,15 @@
 #ifdef USE_OPENSPACE
 
-/mob
+/mob  // TODO: rewrite as obj.
 	var/mob/shadow/shadow
 
 /mob/shadow
+	plane = OPENSPACE_PLANE
 	name = "shadow"
 	desc = "Z-level shadow"
-	layer = OPENSPACE_LAYER + 0.5
+	anchored = 1
+	unacidable = 1
+	density = 0
 	var/mob/owner = null
 
 /mob/shadow/New(var/mob/L)

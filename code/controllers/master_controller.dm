@@ -33,15 +33,9 @@ datum/controller/game_controller/New()
 datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
 
-	spawn(20)
-		createRandomZlevel()
-
 	setup_objects()
-	setupgenetics()
+	setup_genetics()
 	SetupXenoarch()
-
-	transfer_controller = new
-
 
 datum/controller/game_controller/proc/setup_objects()
 	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)

@@ -6,6 +6,10 @@
 	They are used with the client/screen list and the screen_loc var.
 	For more information, see the byond documentation on the screen_loc and screen vars.
 */
+/image/no_recolor
+	appearance_flags = RESET_COLOR
+
+
 /obj/screen
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
@@ -16,11 +20,14 @@
 	var/process_flag = 0
 	var/hideflag = 0
 
-/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob)
+/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
 	src.name = _name
 	src.screen_loc = _screen_loc
-
+	if (_icon)
+		src.icon = _icon
+	if (_icon_state)
+		src.icon_state = _icon_state
 ///obj/screen/New()
 //	set in usr.client.screen
 //screen_loc = "[x_pos],[y_pos]"
@@ -138,6 +145,28 @@
 	if(isliving(usr))
 		var/mob/living/L = usr
 		L.resist()*/
+
+
+/*/obj/screen/TEST
+	name = "TESTICON!"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "block"
+	var/clicks = 0
+	appearance_flags=RESET_COLOR
+	var/image/A
+	var/image/B
+
+/obj/screen/TEST/Click(location, control, params)
+	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
+	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
+	A.override = 1
+	B.appearance_flags=RESET_COLOR
+	overlays.Cut()
+	clicks = !clicks
+//	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
+	overlays += clicks ? A : B*/
+
+
 
 //--------------------------------------------------close---------------------------------------------------------
 
@@ -517,7 +546,7 @@
 
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	if(H.hal_screwyhud == 4 || H.phoron_alert)
+	if(H.hal_screwyhud == 4 || H.plasma_alert)
 		icon_state = "tox1"
 	else
 		icon_state = "tox0"
@@ -550,13 +579,22 @@
 	icon_state = "fire0"
 	screen_loc = "15,9"
 	process_flag = 1
+	var/image/ovrl
+
+/obj/screen/fire/New()
+	..()
+	ovrl = new /image/no_recolor(icon = src.icon, icon_state ="fire1")
+//	ovrl.appearance_flags = RESET_COLOR
 
 /obj/screen/fire/process()
 	update_icon()
 
 /obj/screen/fire/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	icon_state = "fire[H.fire_alert]"
+	src.overlays.Cut()
+	if (H.fire_alert)
+		overlays += ovrl
+//	icon_state = "fire[H.fire_alert]"
 	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
 	else										icon_state = "fire0"*/
 //--------------------------------------------------fire end---------------------------------------------------------
@@ -632,14 +670,14 @@
 										contents.Add(0)
 
 								if ("oxygen")
-									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["phoron"])
+									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["oxygen"])
 									else
 										contents.Add(0)
 
 								// No races breath this, but never know about downstream servers.
 								if ("carbon dioxide")
-									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["phoron"])
+									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["plasma"])
 										contents.Add(t.air_contents.gas["carbon_dioxide"])
 									else
 										contents.Add(0)
@@ -878,7 +916,7 @@
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = 0
 	process_flag = 1
-	layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 /obj/screen/drugoverlay/process()
@@ -893,6 +931,13 @@
 	if (parentmob.druggy)
 		underlays += global_hud.druggy
 
+
+/obj/screen/full_1_tile_overlay
+	name = "full_1_tile_overlay"
+	icon_state = "blank"
+	layer = 21
+	mouse_opacity = 1
+
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "oxydamageoverlay0"
@@ -900,8 +945,9 @@
 	screen_loc = "1,1"
 	mouse_opacity = 0
 	process_flag = 1
-	layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
+
 
 /obj/screen/damageoverlay/process()
 	update_icon()
@@ -1001,6 +1047,26 @@
 	src.icon_state = _icon_state
 	src.dir = _dir
 
+/obj/screen/glasses_overlay
+	icon = null
+	name = "glasses"
+	screen_loc = "1,1"
+	mouse_opacity = 0
+	process_flag = 1
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+
+
+/obj/screen/glasses_overlay/process()
+	update_icon()
+	return
+
+/obj/screen/glasses_overlay/update_icon()
+	overlays.Cut()
+	var/mob/living/carbon/human/H = parentmob
+	if(istype(H.glasses, /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/G = H.glasses
+		if (G.active && G.overlay)//check here need if someone want call this func directly
+			overlays |= G.overlay
 
 
 /*	if(owner.gun_move_icon)

@@ -57,10 +57,6 @@
 	body_parts_covered = 0
 
 //Security
-/obj/item/clothing/head/beret/sec
-	name = "security beret"
-	desc = "A beret with the security insignia emblazoned on it. For officers that are more inclined towards style than safety."
-	icon_state = "beret_officer"
 /obj/item/clothing/head/beret/sec/navy/officer
 	name = "Operative beret"
 	desc = "A navy blue beret with an Operative's rank emblem. For officers that are more inclined towards style than safety."
@@ -73,18 +69,6 @@
 	name = "Sergeant beret"
 	desc = "A navy blue beret with a Sergeant's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_warden"
-/obj/item/clothing/head/beret/sec/corporate/officer
-	name = "officer beret"
-	desc = "A corporate black beret with an officer's rank emblem. For officers that are more inclined towards style than safety."
-	icon_state = "beret_corporate_officer"
-/obj/item/clothing/head/beret/sec/corporate/hos
-	name = "officer beret"
-	desc = "A corporate black beret with a commander's rank emblem. For officers that are more inclined towards style than safety."
-	icon_state = "beret_corporate_hos"
-/obj/item/clothing/head/beret/sec/corporate/warden
-	name = "warden beret"
-	desc = "A corporate black beret with a warden's rank emblem. For officers that are more inclined towards style than safety."
-	icon_state = "beret_corporate_warden"
 /obj/item/clothing/head/beret/engineering
 	name = "engineering beret"
 	desc = "A beret with the engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety."
@@ -93,14 +77,6 @@
 	name = "purple beret"
 	desc = "A stylish, if purple, beret."
 	icon_state = "beret_purple"
-/obj/item/clothing/head/beret/centcom/officer
-	name = "officers beret"
-	desc = "A black beret adorned with the shield - a silver kite shield with an engraved sword - of the corporate security forces."
-	icon_state = "beret_centcom_officer"
-/obj/item/clothing/head/beret/centcom/captain
-	name = "captains beret"
-	desc = "A white beret adorned with the shield - a silver kite shield with an engraved sword - of the corporate security forces."
-	icon_state = "beret_centcom_captain"
 
 //Medical
 /obj/item/clothing/head/surgery

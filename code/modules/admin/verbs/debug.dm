@@ -24,7 +24,7 @@
 		return
 	var/turf/T = mob.loc
 
-	if (!( istype(T, /turf) ))
+	if (!istype(T, /turf))
 		return
 
 	var/datum/gas_mixture/env = T.return_air()
@@ -415,7 +415,6 @@
 		"blue wizard",
 		"red wizard",
 		"marisa wizard",
-		"emergency response team",
 		"nanotrasen representative",
 		"nanotrasen officer",
 		"nanotrasen captain"
@@ -647,7 +646,6 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/beret/centcom/officer(M), slot_head)
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
@@ -672,7 +670,6 @@
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(M), slot_shoes)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(M), slot_gloves)
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/clothing/head/beret/centcom/captain(M), slot_head)
 
 			var/obj/item/device/pda/heads/pda = new(M)
 			pda.owner = M.real_name
@@ -688,24 +685,6 @@
 			W.access = get_all_station_access()
 			W.access += get_all_centcom_access()
 			W.assignment = "NanoTrasen Navy Captain"
-			W.registered_name = M.real_name
-			M.equip_to_slot_or_del(W, slot_wear_id)
-
-		if("emergency response team")
-			//M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(M), slot_w_uniform)
-			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(M), slot_shoes)
-			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/thick/swat(M), slot_gloves)
-			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(M), slot_l_ear)
-			M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(M), slot_belt)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(M), slot_glasses)
-			M.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(M), slot_back)
-
-			var/obj/item/weapon/card/id/W = new(M)
-			W.name = "[M.real_name]'s ID Card"
-			W.icon_state = "centcom"
-			W.access = get_all_station_access()
-			W.access += get_all_centcom_access()
-			W.assignment = "Emergency Response Team"
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
 
@@ -790,6 +769,28 @@
 	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", 1)
 	return
 
+/client/proc/check_positions()
+	set category = "Debug"
+	set name = "Check positions"
+
+	var/mob/user = mob
+	if(user != usr || !holder || !holder.marked_datum())
+		return
+
+	var/turf/user_pos = get_turf(user)
+	var/turf/other_pos = get_turf(holder.marked_datum())
+
+	user << "Check relations of positions:"
+	user << "User position ([user_pos.x],[user_pos.y],[user_pos.z])"
+	user << "Other position ([other_pos.x],[other_pos.y],[other_pos.z])"
+	user << "get_dist = [get_dist(user_pos, other_pos)]"
+	user << "get_dir  = [get_dir(user_pos, other_pos)]"
+	user << "Adjacent = [user_pos.Adjacent(other_pos)]"
+	user << "Check ended."
+
+	return
+
+
 /client/proc/startSinglo()
 
 	set category = "Debug"
@@ -828,11 +829,11 @@
 	for(var/obj/machinery/power/rad_collector/Rad in world)
 		if(Rad.anchored)
 			if(!Rad.P)
-				var/obj/item/weapon/tank/phoron/Phoron = new/obj/item/weapon/tank/phoron(Rad)
-				Phoron.air_contents.gas["phoron"] = 70
+				var/obj/item/weapon/tank/plasma/Plasma = new/obj/item/weapon/tank/plasma(Rad)
+				Plasma.air_contents.gas["plasma"] = 70
 				Rad.drainratio = 0
-				Rad.P = Phoron
-				Phoron.loc = Rad
+				Rad.P = Plasma
+				Plasma.loc = Rad
 
 			if(!Rad.active)
 				Rad.toggle_power()

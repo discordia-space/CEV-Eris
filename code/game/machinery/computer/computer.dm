@@ -12,8 +12,8 @@
 	var/CheckFaceFlag = 1 //for direction check
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
-	var/light_range_on = 2
-	var/light_power_on = 1
+	var/light_range_on = 1.5
+	var/light_power_on = 2
 
 /obj/machinery/computer/initialize()
 	power_change()
@@ -95,15 +95,16 @@
 	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20, src))
-			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-			var/obj/item/weapon/circuitboard/M = new circuit( A )
+			var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
+			var/obj/item/weapon/circuitboard/M = new circuit(A)
+			A.dir = src.dir
 			A.circuit = M
 			A.anchored = 1
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)
 				user << "<span class='notice'>The broken glass falls out.</span>"
-				new /obj/item/weapon/material/shard( src.loc )
+				new /obj/item/weapon/material/shard(src.loc)
 				A.state = 3
 				A.icon_state = "3"
 			else

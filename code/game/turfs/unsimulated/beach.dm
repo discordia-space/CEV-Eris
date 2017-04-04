@@ -14,6 +14,9 @@
 /turf/unsimulated/beach/water
 	name = "Water"
 	icon_state = "water"
+	light_color = "#00BFFF"
+	light_power = 2
+	light_range = 2
 
 /turf/unsimulated/beach/water/New()
 	..()

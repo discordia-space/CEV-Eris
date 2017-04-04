@@ -147,7 +147,7 @@
 
 	for(var/datum/language/L in R.languages)
 		H.add_language(L.name)
-	H.flavor_texts = R.flavor.Copy()
+	H.flavor_text = R.flavor
 	attempting = 0
 	return 1
 
@@ -369,23 +369,6 @@
 		icon_state = "pod_1"
 	else if (mess)
 		icon_state = "pod_g"
-
-//Health Tracker Implant
-
-/obj/item/weapon/implant/health
-	name = "health implant"
-	var/healthstring = ""
-
-/obj/item/weapon/implant/health/proc/sensehealth()
-	if(!implanted)
-		return "ERROR"
-	else
-		if(isliving(implanted))
-			var/mob/living/L = implanted
-			healthstring = "[round(L.getOxyLoss())] - [round(L.getFireLoss())] - [round(L.getToxLoss())] - [round(L.getBruteLoss())]"
-		if(!healthstring)
-			healthstring = "ERROR"
-		return healthstring
 
 //Disk stuff.
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.

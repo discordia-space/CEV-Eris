@@ -49,7 +49,7 @@
 
 		if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
 			var/obj/item/device/assembly_holder/det = W
-			if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
+			if(istype(det.left_assembly,det.right_assembly.type) || (!is_igniter(det.left_assembly) && !is_igniter(det.right_assembly)))
 				user << "<span class='warning'>Assembly must contain one igniter.</span>"
 				return
 			if(!det.secured)
@@ -61,11 +61,11 @@
 			user.remove_from_mob(det)
 			det.loc = src
 			detonator = det
-			if(istimer(detonator.a_left))
-				var/obj/item/device/assembly/timer/T = detonator.a_left
+			if(is_timer(detonator.left_assembly))
+				var/obj/item/device/assembly/timer/T = detonator.left_assembly
 				det_time = 10*T.time
-			if(istimer(detonator.a_right))
-				var/obj/item/device/assembly/timer/T = detonator.a_right
+			if(is_timer(detonator.right_assembly))
+				var/obj/item/device/assembly/timer/T = detonator.right_assembly
 				det_time = 10*T.time
 			icon_state = initial(icon_state) +"_ass"
 			name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
@@ -120,11 +120,11 @@
 		if(active) return
 
 		if(detonator)
-			if(!isigniter(detonator.a_left))
-				detonator.a_left.activate()
+			if(!is_igniter(detonator.left_assembly))
+				detonator.left_assembly.activate()
 				active = 1
-			if(!isigniter(detonator.a_right))
-				detonator.a_right.activate()
+			if(!is_igniter(detonator.right_assembly))
+				detonator.right_assembly.activate()
 				active = 1
 		if(active)
 			icon_state = initial(icon_state) + "_active"
@@ -150,11 +150,11 @@
 			icon_state = initial(icon_state) +"_locked"
 			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 50, 1)
 			spawn(0) //Otherwise det_time is erroneously set to 0 after this
-				if(istimer(detonator.a_left)) //Make sure description reflects that the timer has been reset
-					var/obj/item/device/assembly/timer/T = detonator.a_left
+				if(is_timer(detonator.left_assembly)) //Make sure description reflects that the timer has been reset
+					var/obj/item/device/assembly/timer/T = detonator.left_assembly
 					det_time = 10*T.time
-				if(istimer(detonator.a_right))
-					var/obj/item/device/assembly/timer/T = detonator.a_right
+				if(is_timer(detonator.right_assembly))
+					var/obj/item/device/assembly/timer/T = detonator.right_assembly
 					det_time = 10*T.time
 			return
 
@@ -225,7 +225,7 @@
 
 		B1.reagents.add_reagent("aluminum", 15)
 		B1.reagents.add_reagent("fuel",20)
-		B2.reagents.add_reagent("phoron", 15)
+		B2.reagents.add_reagent("plasma", 15)
 		B2.reagents.add_reagent("sacid", 15)
 		B1.reagents.add_reagent("fuel",20)
 

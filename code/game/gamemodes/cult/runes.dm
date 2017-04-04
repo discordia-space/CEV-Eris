@@ -450,9 +450,7 @@ var/list/sacrificed = list()
 			D.universal_speak = 1
 			D.status_flags &= ~GODMODE
 			D.s_tone = 35
-			D.b_eyes = 200
-			D.r_eyes = 200
-			D.g_eyes = 200
+			D.eyes_color = "#C8C8C8"
 			D.update_eyes()
 			D.all_underwear.Cut()
 			D.key = ghost.key
@@ -599,7 +597,7 @@ var/list/sacrificed = list()
 				usr.whisper("O bidai nabora se[pick("'","`")]sma!")
 				usr.whisper("[input]")
 
-			input = sanitize(input)
+			input = capitalize_cp1251(sanitize(input))
 			log_and_message_admins("used a communicate rune to say '[input]'")
 			for(var/datum/mind/H in cult.current_antagonists)
 				if (H.current)

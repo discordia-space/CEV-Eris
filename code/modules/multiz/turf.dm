@@ -16,15 +16,19 @@
 	ASSERT(HasBelow(z))
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
+	. = ..()
 #ifdef USE_OPENSPACE
 	if(istype(mover, /mob/shadow))
-#endif USE_OPENSPACE
 		return
+#endif USE_OPENSPACE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
 		if(!below)
 			return
+
+	if(istype(mover, /mob/living/bot/floorbot) && locate(/obj/structure/lattice) in src)
+		return  // This will prevent floorbot from falling on open space turfs with support
 
 	// No gravit, No fall.
 	if(!has_gravity(src))
@@ -50,7 +54,7 @@
 				if(W.is_fulltile())
 					return
 		// Dont break here, since we still need to be sure that it isnt blocked
-		if(istype(A, /obj/structure/stairs))
+		if(istype(A, /obj/structure/multiz/stairs))
 			soft = 1
 
 	// We've made sure we can move, now.

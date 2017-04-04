@@ -15,7 +15,7 @@
 	var/list/path = list()
 	var/list/ignorelist = list()
 	var/turf/target
-	var/floor_build_type = /decl/flooring/tiling // Basic steel floor.
+	var/floor_build_type
 
 /mob/living/bot/floorbot/update_icons()
 	if(repairing)
@@ -55,6 +55,7 @@
 		emagged = 1
 		if(user)
 			user << "<span class='notice'>The [src] buzzes and beeps.</span>"
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		return 1
 
 /mob/living/bot/floorbot/Topic(href, href_list)
@@ -122,7 +123,7 @@
 		if(!target && targetdirection) // Building a bridge
 			var/turf/T = get_step(src, targetdirection)
 			while(T in range(src))
-				if(istype(T, /turf/space))
+				if(istype(T, /turf/space) || (istype(T, /turf/simulated/open) && locate(/obj/structure/lattice) in T))
 					target = T
 					break
 				T = get_step(T, targetdirection)
@@ -133,7 +134,7 @@
 					continue
 				if(T in ignorelist)
 					continue
-				if(istype(T, /turf/space))
+				if(istype(T, /turf/space) || (istype(T, /turf/simulated/open) && locate(/obj/structure/lattice) in T))
 					if(get_turf(T) == loc || prob(40)) // So they target the same tile all the time
 						target = T
 				if(improvefloors && istype(T, /turf/simulated/floor))
@@ -143,7 +144,7 @@
 
 	if(emagged) // Time to griff
 		for(var/turf/simulated/floor/D in view(src))
-			if(D.loc.name == "Space")
+			if(D.loc.name == "Space" || D.loc.name == "open space")
 				continue
 			if(D in ignorelist)
 				continue
@@ -179,6 +180,7 @@
 		step_to(src, path[1])
 		path -= path[1]
 
+
 /mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
 	if(!..())
 		return
@@ -189,34 +191,74 @@
 	if(get_turf(A) != loc)
 		return
 
-	if(emagged && istype(A, /turf/simulated/floor))
-		var/turf/simulated/floor/F = A
+	if(emagged && istype(A, /turf/simulated/floor)) // Emaged floor destroy
 		repairing = 1
 		update_icons()
-		if(F.is_plating())
+		var/turf/simulated/floor/F = A
+		var/obj/structure/catwalk/C = A
+		if(F.flooring)
 			visible_message("<span class='warning'>[src] begins to tear the floor tile from the floor!</span>")
+			var/message = pick("Here we go!", "Let's do this!", "See, how is easy to anger an engineer with one simple trick!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			if(do_after(src, 50, F))
 				F.break_tile_to_plating()
 				addTiles(1)
+		else if(locate(/obj/structure/catwalk, A))  // Emaged nekowalk destroy
+			visible_message("<span class='warning'>[src] begins to dismatle \the [C.name]!</span>")
+			var/message = pick("Cats dont like it, so i do a favor for them!", "No animals were harmed in the process!", "Nya~!", "M.E.O.W!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
+			if(do_after(src, 50, C))
+				if(istype(A, /turf/space) || istype(A, /turf/simulated/open))
+					new /obj/structure/lattice(locate(A.x, A.y, A.z)) // Spawning lattice under floorbot to allow it destroy more and more!
+				else
+					addTiles(1)
+				qdel(C)
 		else
 			visible_message("<span class='danger'>[src] begins to tear through the floor!</span>")
+			var/message = pick("DOWN WE GO, MY FRIEND!", "REACH FOR THE SKY!", "ABBYS AWAITS!", "I WAS BORN TO BE A MINER!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 200, 0, 0)
 			if(do_after(src, 150, F)) // Extra time because this can and will kill.
 				F.ReplaceWithLattice()
 				addTiles(1)
 		target = null
 		repairing = 0
 		update_icons()
-	else if(istype(A, /turf/space))
+
+	else if(emagged && (istype(A, /turf/space) || istype(A, /turf/simulated/open)))  // Emaged nekowalk destroy
+		if(locate(/obj/structure/catwalk, A))
+			var/obj/structure/catwalk/C = A
+			visible_message("<span class='warning'>[src] begins to dismatle \the [C.name]!</span>")
+			var/message = pick("Cats dont like it, so i do a favor for them!", "No animals were harmed in the process!", "Nya~!", "M.E.O.W!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
+			if(do_after(src, 50, C))
+				if(istype(A, /turf/space) || istype(A, /turf/simulated/open))
+					new /obj/structure/lattice(locate(A.x, A.y, A.z)) // Spawning lattice under floorbot to allow it destroy more and more!
+				else
+					addTiles(1)
+				qdel(C)
+			target = null
+			repairing = 0
+			update_icons()
+
+	else if(istype(A, /turf/space) || (istype(A, /turf/simulated/open) && locate(/obj/structure/lattice) in A))
 		var/building = 2
-		if(locate(/obj/structure/lattice, A))
+		if(locate(/obj/structure/lattice, A) || locate(/obj/structure/catwalk, A))
 			building = 1
 		if(amount < building)
 			return
 		repairing = 1
 		update_icons()
 		visible_message("<span class='notice'>[src] begins to repair the hole.</span>")
+		var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
+		say(message)
+		playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		if(do_after(src, 50, A))
-			if(A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) // Make sure that it still needs repairs
+			// locating lattice or catwalk
+			if((A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) || (A && (locate(/obj/structure/catwalk, A) && building == 1 || !locate(/obj/structure/catwalk, A) && building == 2))) // Make sure that it still needs repairs
 				var/obj/item/I
 				if(building == 1)
 					I = new /obj/item/stack/tile/floor(src)
@@ -232,16 +274,26 @@
 			repairing = 1
 			update_icons()
 			visible_message("<span class='notice'>[src] begins to improve the floor.</span>")
+			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			if(do_after(src, 50, F))
 				if(!F.flooring)
-					F.set_flooring(get_flooring_data(floor_build_type))
-					addTiles(-1)
+					floor_build_type = F.initial_flooring // Gets map-based var, that changes decl
+					if(!floor_build_type) // If it's plating from start..
+						floor_build_type = /decl/flooring/tiling // ...it makes base steel floor sprite.
+					else
+						F.set_flooring(get_flooring_data(floor_build_type))
+						addTiles(-1)
 			target = null
 			repairing = 0
 			update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
 		visible_message("<span class='notice'>\The [src] begins to collect tiles.</span>")
+		var/message = pick("I can use this.")
+		say(message)
+		playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		repairing = 1
 		update_icons()
 		if(do_after(src, 20))
@@ -256,6 +308,9 @@
 		var/obj/item/stack/material/M = A
 		if(M.get_material_name() == DEFAULT_WALL_MATERIAL)
 			visible_message("<span class='notice'>\The [src] begins to make tiles.</span>")
+			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
+			say(message)
+			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			repairing = 1
 			update_icons()
 			if(do_after(src, 50))
@@ -266,6 +321,7 @@
 /mob/living/bot/floorbot/explode()
 	turn_off()
 	visible_message("<span class='danger'>[src] blows apart!</span>")
+	playsound(loc, "robot_talk_heavy", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
 	var/obj/item/weapon/storage/toolbox/mechanical/N = new /obj/item/weapon/storage/toolbox/mechanical(Tsec)
@@ -302,6 +358,7 @@
 		var/obj/item/weapon/toolbox_tiles/B = new /obj/item/weapon/toolbox_tiles
 		user.put_in_hands(B)
 		user << "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>"
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
@@ -322,12 +379,13 @@
 
 /obj/item/weapon/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
 	..()
-	if(isprox(W))
+	if(is_proximity_sensor(W))
 		qdel(W)
 		var/obj/item/weapon/toolbox_tiles_sensor/B = new /obj/item/weapon/toolbox_tiles_sensor()
 		B.created_name = created_name
 		user.put_in_hands(B)
 		user << "<span class='notice'>You add the sensor to the toolbox and tiles!</span>"
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if (istype(W, /obj/item/weapon/pen))
@@ -358,6 +416,7 @@
 		var/mob/living/bot/floorbot/A = new /mob/living/bot/floorbot(T)
 		A.name = created_name
 		user << "<span class='notice'>You add the robot arm to the odd looking toolbox assembly! Boop beep!</span>"
+		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if(istype(W, /obj/item/weapon/pen))

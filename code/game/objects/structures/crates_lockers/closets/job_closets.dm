@@ -87,10 +87,5 @@
 
 /obj/structure/closet/lawcloset/New()
 	..()
-	new /obj/item/clothing/under/lawyer/female(src)
-	new /obj/item/clothing/under/lawyer/black(src)
-	new /obj/item/clothing/under/lawyer/red(src)
-	new /obj/item/clothing/under/lawyer/bluesuit(src)
-	new /obj/item/clothing/under/lawyer/purpsuit(src)
 	new /obj/item/clothing/shoes/color/brown(src)
 	new /obj/item/clothing/shoes/black(src)

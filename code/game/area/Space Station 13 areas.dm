@@ -25,7 +25,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
 	layer = 10
-	luminosity = 0
 	mouse_opacity = 0
 	var/lightswitch = 1
 
@@ -45,7 +44,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/has_gravity = 1
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
-//	var/list/lights				// list of all lights on this area
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = 0
 	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
@@ -98,11 +96,11 @@ var/list/ghostteleportlocs = list()
 	icon_state = "space"
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 1
+	dynamic_lighting = 1
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
+	ambience = list('sound/ambience/ambispace.ogg')
 
 area/space/atmosalert()
 	return
@@ -350,7 +348,7 @@ area/space/atmosalert()
 	name = "\improper Centcom"
 	icon_state = "centcom"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/centcom/control
 	name = "\improper Centcom Control"
@@ -398,7 +396,7 @@ area/space/atmosalert()
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/syndicate_mothership/control
 	name = "\improper Mercenary Control Room"
@@ -450,7 +448,7 @@ area/space/atmosalert()
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	sound_env = ARENA
 
 /area/tdome/tdome1
@@ -473,7 +471,7 @@ area/space/atmosalert()
 /area/acting
 	name = "\improper Centcom Acting Guild"
 	icon_state = "red"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 
 /area/acting/backstage
@@ -481,7 +479,7 @@ area/space/atmosalert()
 
 /area/acting/stage
 	name = "\improper Stage"
-	lighting_use_dynamic = 1
+	dynamic_lighting = 1
 	icon_state = "yellow"
 
 
@@ -547,7 +545,7 @@ area/space/atmosalert()
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/skipjack_station
 	name = "\improper Skipjack"
@@ -676,6 +674,7 @@ area/space/atmosalert()
 	flags = RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
+	forced_ambience = list('sound/ambience/maintambience.ogg')
 
 /area/maintenance/aft
 	name = "Aft Maintenance"
@@ -1051,7 +1050,7 @@ area/space/atmosalert()
 /area/chapel/main
 	name = "\improper Chapel"
 	icon_state = "chapel"
-	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg','sound/music/traitor.ogg')
+	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 	sound_env = LARGE_ENCLOSED
 
 /area/chapel/office
@@ -1068,7 +1067,7 @@ area/space/atmosalert()
 /area/holodeck
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	sound_env = LARGE_ENCLOSED
 
 /area/holodeck/alphadeck
@@ -1137,7 +1136,6 @@ area/space/atmosalert()
 /area/engineering/
 	name = "\improper Engineering"
 	icon_state = "engineering"
-	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
 /area/engineering/gravity_generator
 	name = "Gravity Generator Room"
@@ -1221,7 +1219,7 @@ area/space/atmosalert()
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	base_turf = /turf/space
 
 	auxport
@@ -1393,7 +1391,7 @@ area/space/atmosalert()
 /area/medical/morgue
 	name = "\improper Morgue"
 	icon_state = "morgue"
-	ambience = list('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg','sound/music/main.ogg')
+	ambience = list('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg')
 
 /area/medical/chemistry
 	name = "\improper Chemistry"
@@ -1905,6 +1903,7 @@ area/space/atmosalert()
 /area/eris/engineering/substation
 	name = "Substation"
 	icon_state = "substation"
+	forced_ambience = list('sound/ambience/maintambience.ogg')
 	sound_env = SMALL_ENCLOSED
 
 /area/eris/engineering/substation/engineering
@@ -1926,6 +1925,11 @@ area/space/atmosalert()
 	name = "Bridge Substation"
 
 //Eris Maint
+
+/area/eris/maintenance
+	name = "Maintenance"
+	icon_state = "erisyellow"
+	forced_ambience = list('sound/ambience/maintambience.ogg')
 
 /area/eris/maintenance/oldtele
 	name = "Reserve Teleporter"
@@ -2330,25 +2334,25 @@ area/space/atmosalert()
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/turret_protected/AIsatextFS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/turret_protected/AIsatextAS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/turret_protected/AIsatextAP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/turret_protected/NewAIMain
 	name = "\improper AI Main New"
@@ -2457,13 +2461,11 @@ area/space/atmosalert()
 /area/awaymission/wwvault
 	name = "\improper Wild West Vault"
 	icon_state = "away3"
-	luminosity = 0
 
 /area/awaymission/wwvaultdoors
 	name = "\improper Wild West Vault Doors"  // this is to keep the vault area being entirely lit because of requires_power
 	icon_state = "away2"
 	requires_power = 0
-	luminosity = 0
 
 /area/awaymission/desert
 	name = "Mars"
@@ -2522,7 +2524,7 @@ area/space/atmosalert()
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 	ambience = list()
 	var/sound/mysound = null
@@ -2644,7 +2646,7 @@ var/list/the_station_areas = list (
 	name = "Keelin's private beach"
 	icon_state = "null"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 	var/sound/mysound = null
 

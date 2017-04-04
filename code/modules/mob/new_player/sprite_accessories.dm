@@ -45,7 +45,7 @@
 
 /datum/sprite_accessory/hair
 
-	icon = 'icons/mob/Human_face.dmi'	  // default icon for all hairs
+	icon = 'icons/mob/human_face.dmi'	  // default icon for all hairs
 
 	bald
 		name = "Bald"
@@ -242,6 +242,10 @@
 		icon_state = "hair_emolong"
 		gender = FEMALE
 
+	rightemo
+		name = "Right Emo"
+		icon_state = "hair_emoright"
+
 	shortovereye
 		name = "Overeye Short"
 		icon_state = "hair_shortovereye"
@@ -313,6 +317,11 @@
 	braid2
 		name = "Long Braid"
 		icon_state = "hair_hbraid"
+		gender = FEMALE
+
+	braid3
+		name = "Long Braid 2"
+		icon_state = "hair_longbraid"
 		gender = FEMALE
 
 	odango
@@ -417,6 +426,11 @@
 	doublebun
 		name = "Double-Bun"
 		icon_state = "hair_doublebun"
+
+	Mia
+		name = "Mia"
+		icon_state = "hair_mia"
+		gender = FEMALE
 
 	bald
 		name = "Bald"

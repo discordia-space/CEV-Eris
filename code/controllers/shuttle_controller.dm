@@ -121,20 +121,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Research"] = shuttle
 	process_shuttles += shuttle
 
-	// ERT Shuttle
-	var/datum/shuttle/ferry/multidock/specops/ERT = new()
-	ERT.location = 0
-	ERT.warmup_time = 10
-	ERT.area_offsite = locate(/area/shuttle/specops/station)	//centcom is the home station, the Exodus is offsite
-	ERT.area_station = locate(/area/shuttle/specops/centcom)
-	ERT.docking_controller_tag = "specops_shuttle_port"
-	ERT.docking_controller_tag_station = "specops_shuttle_port"
-	ERT.docking_controller_tag_offsite = "specops_shuttle_fore"
-	ERT.dock_target_station = "specops_centcom_dock"
-	ERT.dock_target_offsite = "specops_dock_airlock"
-	shuttles["Special Operations"] = ERT
-	process_shuttles += ERT
-
 	//Skipjack.
 	var/datum/shuttle/multi_shuttle/VS = new/datum/shuttle/multi_shuttle()
 	VS.origin = locate(/area/skipjack_station/start)

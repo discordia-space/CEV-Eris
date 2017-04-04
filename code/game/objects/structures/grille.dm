@@ -8,7 +8,7 @@
 	flags = CONDUCT
 	layer = 2.9
 	explosion_resistance = 1
-	var/health = 10
+	var/health = 50
 	var/destroyed = 0
 
 
@@ -217,6 +217,23 @@
 	health -= damage
 	spawn(1) healthcheck()
 	return 1
+	
+/obj/structure/grille/hitby(AM as mob|obj)
+	..()
+	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
+	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
+	var/tforce = 0
+	if(ismob(AM))
+		tforce = 10
+	else if(isobj(AM))
+		var/obj/item/I = AM
+		tforce = I.throwforce
+	health = max(0, health - tforce)
+	if(health <= 0)
+		destroyed=1
+		PoolOrNew(/obj/item/stack/rods, get_turf(src))
+		density=0
+		update_icon()
 
 // Used in mapping to avoid
 /obj/structure/grille/broken
