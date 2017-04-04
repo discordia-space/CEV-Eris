@@ -239,7 +239,9 @@
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 		src.id = player_id
 		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', WHERE ckey = '[src.ckey]'")
-		query_update.Execute()
+		if(!query_update.Execute())
+			world.log << "Failed to update players table for user with id [player_id]. Error message: [query_update.ErrorMsg()]."
+			return
 	else
 		var/registration_date = null
 		var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
@@ -258,7 +260,10 @@
 			world.log << "Failed to connect to byond age check for [src.ckey]"
 
 		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', 'player', [src.byond_version])")
-		query_insert.Execute()
+		if(!query_insert.Execute())
+			world.log << "Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
+			return
+
 		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[src.ckey]'")
 		get_player_id.Execute()
 		if(get_player_id.NextRow())
@@ -269,7 +274,9 @@
 	// Logging player access
 	var/server = "[world.internet_address]:[world.port]"
 	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO connections (time, server, player_id, ip, cid) VALUES(Now(), '[server]', [player_id], '[sql_ip]', '[sql_computerid]')")
-	query_accesslog.Execute()
+	if(!query_accesslog.Execute())
+		world.log << "Failed to create connection log entry for user with id [player_id]. Error message: [query_accesslog.ErrorMsg()]."
+
 
 
 #undef TOPIC_SPAM_DELAY
