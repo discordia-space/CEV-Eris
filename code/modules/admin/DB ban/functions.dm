@@ -6,9 +6,9 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
 		if(banned_mob.ckey)
-			message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [banned_mob.ckey], but somehow server could not establish a database connection.</font>",1)
+			error("[key_name_admin(usr)] attempted to ban [banned_mob.ckey], but somehow server could not establish a database connection.")
 		else
-			message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban someone, but somehow server could not establish a database connection.</font>",1)
+			error("[key_name_admin(usr)] attempted to ban someone, but somehow server could not establish a database connection.")
 		return
 
 	var/server = "[world.internet_address]:[world.port]"
@@ -58,7 +58,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		query.Execute()
 		if(!query.NextRow())
 			if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
-				message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet.</font>",1)
+				error("[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet.")
 				return
 
 		target_id = query.item[1]
@@ -68,7 +68,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[usr.ckey]'")
 		query.Execute()
 		if(!query.NextRow())
-			message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but somehow [key_name_admin(usr)] record does not exist in database.</font>",1)
+			error("[key_name_admin(usr)] attempted to ban [ckey], but somehow [key_name_admin(usr)] record does not exist in database.")
 			return
 		banned_by_id = query.item[1]
 
@@ -78,7 +78,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	var/DBQuery/query_insert = dbcon.NewQuery(sql)
 	query_insert.Execute()
 	usr << "\blue Ban saved to database."
-	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
+	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.")
 
 
 datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
@@ -87,7 +87,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to unban [ckey], but somehow server could not establish a database connection.</font>",1)
+		error("[key_name_admin(usr)] attempted to unban [ckey], but somehow server could not establish a database connection.")
 		return
 
 	var/bantype_str
@@ -120,7 +120,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
 	query.Execute()
 	if(!query.NextRow())
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to unban [ckey], but [ckey] has not been seen yet.</font>",1)
+		error("[key_name_admin(usr)] attempted to unban [ckey], but [ckey] has not been seen yet.")
 		return
 	var/target_id = query.item[1]
 
@@ -159,7 +159,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to edit ban record with id [banid], but somehow server could not establish a database connection.</font>",1)
+		error("[key_name_admin(usr)] attempted to edit ban record with id [banid], but somehow server could not establish a database connection.")
 		return
 
 	if(!isnum(banid) || !istext(param))
@@ -178,13 +178,13 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		duration = query.item[2]
 		reason = query.item[3]
 	else
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to edit ban record with id [banid], but matching record does not exist in databse.</font>",1)
+		error("[key_name_admin(usr)] attempted to edit ban record with id [banid], but matching record does not exist in database.")
 		return
 
 	query = dbcon.NewQuery("SELECT ckey FROM players WHERE id = [target_id]")
 	query.Execute()
 	if(!query.NextRow())
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to edit [ckey]'s ban, but [ckey] has not been seen yet.</font>",1)
+		error("[key_name_admin(usr)] attempted to edit [ckey]'s ban, but [ckey] has not been seen yet.")
 		return
 	ckey = query.item[1]
 
@@ -201,7 +201,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					return
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET reason = '[value]', WHERE id = [banid]")
 			update_query.Execute()
-			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s reason from [reason] to [value]",1)
+			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s reason from [reason] to [value]")
 
 		if("duration")
 			if(!value)
@@ -211,7 +211,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					return
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET duration = [value], expiration_time = DATE_ADD(time, INTERVAL '[value]' MINUTE) WHERE id = [banid]")
 			update_query.Execute()
-			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s duration from [duration] to [value]",1)
+			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s duration from [duration] to [value]")
 
 		if("unban")
 			if(alert("Unban [ckey]?", "Unban?", "Yes", "No") == "Yes")
@@ -230,7 +230,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to remove ban record with id [id], but somehow server could not establish a database connection.</font>",1)
+		error("[key_name_admin(usr)] attempted to remove ban record with id [id], but somehow server could not establish a database connection.")
 		return
 
 	var/ckey
@@ -240,7 +240,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	if(query.NextRow())
 		ckey = query.item[1]
 	else
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to remove ban record with id [id], but record does not exist.</font>",1)
+		error("[key_name_admin(usr)] attempted to remove ban record with id [id], but record does not exist.")
 		return
 
 	if(!src.owner || !istype(src.owner, /client))
@@ -249,7 +249,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[usr.ckey]'")
 	query.Execute()
 	if(!query.NextRow())
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to remove ban record with id [id], but admin database record does not exist.</font>",1)
+		error("[key_name_admin(usr)] attempted to remove ban record with id [id], but admin database record does not exist.")
 		return
 	var/admin_id = query.item[1]
 
@@ -257,7 +257,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	var/DBQuery/query_update = dbcon.NewQuery(sql_update)
 	query_update.Execute()
-	message_admins("[key_name_admin(usr)] has lifted [ckey]'s ban.",1)
+	message_admins("[key_name_admin(usr)] has lifted [ckey]'s ban.")
 
 
 /client/proc/DB_ban_panel()

@@ -110,7 +110,6 @@ var/sqlport
 var/sqldb
 var/sqllogin
 var/sqlpass
-var/sqllogging = 0
 
 // For FTP requests. (i.e. downloading runtime logs.)
 // However it'd be ok to use for accessing attack logs and such too, which are even laggier.
