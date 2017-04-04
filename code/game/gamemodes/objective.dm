@@ -25,7 +25,7 @@ var/global/list/all_objectives = list()
 	var/list/possible_targets = list()
 	for(var/datum/mind/possible_target in ticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
-			possible_targets += possible_target
+			possible_targets.Add(possible_target)
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
 
@@ -230,15 +230,16 @@ var/global/list/all_objectives = list()
 		return FALSE
 	if(issilicon(owner.current))
 		return FALSE
-	// TODO: set proper escape pod area
-	var/area/shuttle = locate(/area/shuttle/escape/centcom)
+
+	var/area/first_escape_pod = locate(/area/shuttle/escape_pod1/centcom)
+	var/area/second_escape_pod = locate(/area/shuttle/escape_pod2/centcom)
 	var/list/protected_mobs = list(/mob/living/silicon/ai, /mob/living/silicon/pai)
 	for(var/mob/living/player in player_list)
 		if(player.type in protected_mobs)
 			continue
 		if(player.mind && (player.mind != owner))
 			if(player.stat != DEAD)			//they're not dead!
-				if(get_turf(player) in shuttle)
+				if(get_turf(player) in first_escape_pod || get_turf(player) in second_escape_pod)
 					return FALSE
 	return TRUE
 
@@ -254,15 +255,16 @@ var/global/list/all_objectives = list()
 		return FALSE
 	if(!owner.current)
 		return FALSE
-	// TODO: set proper escape pod area
-	var/area/shuttle = locate(/area/shuttle/escape/centcom)
+
+	var/area/first_escape_pod = locate(/area/shuttle/escape_pod1/centcom)
+	var/area/second_escape_pod = locate(/area/shuttle/escape_pod2/centcom)
 	var/protected_mobs[] = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
 	for(var/mob/living/player in player_list)
 		if(player.type in protected_mobs)
 			continue
 		if(player.mind)
 			if(player.stat != 2)
-				if(get_turf(player) in shuttle)
+				if(get_turf(player) in first_escape_pod || get_turf(player) in second_escape_pod)
 					return FALSE
 	return TRUE
 
@@ -283,8 +285,7 @@ var/global/list/all_objectives = list()
 				if(!T)
 					continue
 				switch(T.loc.type)
-					// TODO: set proper escape pod area
-					if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
+					if(/area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom)
 						return FALSE
 	return TRUE
 
@@ -307,31 +308,12 @@ var/global/list/all_objectives = list()
 	if(!location)
 		return FALSE
 
-// TODO: set proper escape pod area
-/*
-	if(istype(location, /turf/simulated/shuttle/floor4)) // Fails traitors if they are in the shuttle brig -- Polymorph
-		if(istype(owner.current, /mob/living/carbon))
-			var/mob/living/carbon/C = owner.current
-			if (!C.handcuffed)
+	if(istype(location, /area/shuttle/escape_pod1/centcom) || istype(location, /area/shuttle/escape_pod2/centcom))
+		if(istype(owner.current, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = owner.current
+			if(!C.handcuffed)
 				return TRUE
-		return FALSE
-
-
-	var/area/check_area = location.loc
-	if(istype(check_area, /area/shuttle/escape/centcom))
-		return TRUE
-	if(istype(check_area, /area/shuttle/escape_pod1/centcom))
-		return TRUE
-	if(istype(check_area, /area/shuttle/escape_pod2/centcom))
-		return TRUE
-	if(istype(check_area, /area/shuttle/escape_pod3/centcom))
-		return TRUE
-	if(istype(check_area, /area/shuttle/escape_pod5/centcom))
-		return TRUE
-	else
-		return FALSE
-*/
-
+	return FALSE
 
 
 /datum/objective/survive
@@ -531,17 +513,10 @@ var/global/list/all_objectives = list()
 			for(var/mob/living/silicon/ai/ai in world)
 				var/turf/T = get_turf(ai)
 				if(istype(T))
-					// TODO: set proper escape pod area
 					var/area/check_area = get_area(ai)
-					if(istype(check_area, /area/shuttle/escape/centcom))
-						return TRUE
 					if(istype(check_area, /area/shuttle/escape_pod1/centcom))
 						return TRUE
 					if(istype(check_area, /area/shuttle/escape_pod2/centcom))
-						return TRUE
-					if(istype(check_area, /area/shuttle/escape_pod3/centcom))
-						return TRUE
-					if(istype(check_area, /area/shuttle/escape_pod5/centcom))
 						return TRUE
 		else
 			for(var/obj/I in all_items) //Check for items
