@@ -48,11 +48,12 @@ CREATE TABLE `bans` (
   `job` varchar(255) DEFAULT NULL,
   `duration` int(11) NOT NULL,
   `time` datetime NOT NULL,
+  `target_id` int(11) NOT NULL,
+  `banned_by_id` int(11) NOT NULL,
   `expiration_time` datetime NOT NULL,
-  `unbanned` tinyint(1) NOT NULL,
-  `unbanned_time` datetime NOT NULL,
-  `target_id` int(11) DEFAULT NULL,
-  `banned_by_id` int(11) DEFAULT NULL,
+
+  `unbanned` tinyint(1) DEFAULT 0,
+  `unbanned_time` datetime DEFAULT NULL,
   `unbanned_by_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_bans_on_banned_by_id` (`banned_by_id`) USING BTREE,
@@ -100,8 +101,6 @@ CREATE TABLE `connections` (
   `ip` varchar(255) NOT NULL,
   `server` varchar(255) NOT NULL,
   `time` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
   `duration` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_connections_on_player_id` (`player_id`),
@@ -126,6 +125,7 @@ CREATE TABLE `players` (
   `cid` varchar(255) NOT NULL,
   `rank` varchar(255) NOT NULL DEFAULT 'player',
   `flags` int(11) NOT NULL DEFAULT '0',
+  `byond_version` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -206,7 +206,6 @@ CREATE TABLE `polls` (
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
   `question` varchar(255) NOT NULL,
-  `admin_only` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
