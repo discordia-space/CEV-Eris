@@ -57,7 +57,7 @@
 		switch(type)
 			//Polls that have enumerated options
 			if("OPTION")
-				var/DBQuery/voted_query = dbcon.NewQuery("SELECT option_id FROM polls_votes WHERE poll_id = [poll_id] AND player_id = [client.id]")
+				var/DBQuery/voted_query = dbcon.NewQuery("SELECT option_id FROM poll_votes WHERE poll_id = [poll_id] AND player_id = [client.id]")
 				voted_query.Execute()
 
 				var/voted = FALSE
@@ -69,7 +69,7 @@
 
 				var/list/datum/poll_option/options = list()
 
-				var/DBQuery/options_query = dbcon.NewQuery("SELECT id, text FROM polls_options WHERE poll_id = [poll_id]")
+				var/DBQuery/options_query = dbcon.NewQuery("SELECT id, text FROM poll_options WHERE poll_id = [poll_id]")
 				options_query.Execute()
 				while(options_query.NextRow())
 					var/datum/poll_option/option = new()
@@ -110,7 +110,7 @@
 
 			//Polls with a text input
 			if("TEXT")
-				var/DBQuery/voted_query = dbcon.NewQuery("SELECT text FROM polls_text_reply WHERE poll_id = [poll_id] AND player_id = [client.id]")
+				var/DBQuery/voted_query = dbcon.NewQuery("SELECT text FROM poll_text_replies WHERE poll_id = [poll_id] AND player_id = [client.id]")
 				voted_query.Execute()
 
 				var/voted = FALSE
@@ -171,21 +171,21 @@
 			usr << "<span class='danger'>Poll not found.</span>"
 			return
 
-		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM polls_options WHERE id = [option_id] AND poll_id = [poll_id]")
+		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM poll_options WHERE id = [option_id] AND poll_id = [poll_id]")
 		select_query2.Execute()
 
 		if(!select_query2.NextRow())
 			usr << "<span class='warning'>Invalid poll options.</span>"
 			return
 
-		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM polls_votes WHERE poll_id = [poll_id] AND player_id = [client.id]")
+		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM poll_votes WHERE poll_id = [poll_id] AND player_id = [client.id]")
 		voted_query.Execute()
 
 		if(voted_query.NextRow())
 			usr << "<span class='warning'>You already voted in this poll.</span>"
 			return
 
-		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO polls_votes (time, option_id, poll_id, player_id) VALUES (Now(), [option_id], [poll_id], [client.id])")
+		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO poll_votes (time, option_id, poll_id, player_id) VALUES (Now(), [option_id], [poll_id], [client.id])")
 		insert_query.Execute()
 
 		usr << "<span class='notice'>Vote successful.</span>"
@@ -208,7 +208,7 @@
 			usr << "<span class='warning'>Invalid poll type.</span>"
 			return
 
-		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM polls_text_reply WHERE poll_id = [poll_id] AND player_ckey = '[usr.ckey]'")
+		var/DBQuery/voted_query = dbcon.NewQuery("SELECT id FROM poll_text_replies WHERE poll_id = [poll_id] AND player_ckey = '[usr.ckey]'")
 		voted_query.Execute()
 
 		if(voted_query.NextRow())
@@ -224,7 +224,7 @@
 			usr << "<span class='warning'>The text you entered was blank, contained illegal characters or was too long. Please correct the text and submit again.</span>"
 			return
 
-		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO polls_text_reply (time, poll_id, player_id, text) VALUES (Now(), [poll_id], [client.id], '[reply_text]')")
+		var/DBQuery/insert_query = dbcon.NewQuery("INSERT INTO poll_text_replies (time, poll_id, player_id, text) VALUES (Now(), [poll_id], [client.id], '[reply_text]')")
 		insert_query.Execute()
 
 		usr << "<span class='notice'>Vote successful.</span>"
