@@ -180,15 +180,15 @@
 
 	establish_db_connection()
 	if(dbcon.IsConnected())
-		query = dbcon.NewQuery("SELECT id, time FROM connections ORDER BY id DESC LIMIT 1 WHERE player_id = [src.id]")
+		var/DBQuery/query = dbcon.NewQuery("SELECT id, time FROM connections ORDER BY id DESC LIMIT 1 WHERE player_id = [src.id]")
 		if(!query.Execute() || !query.NextRow())
-			world.log("Failed to retrieve last connection record for player with id [src.id].")
+			world.log << "Failed to retrieve last connection record for player with id [src.id]."
 			return ..()
 		var/connection_id = query.item[1]
 		var/connection_start = query.item[2]
 		query = dbcon.NewQuery("UPDATE connections SET duration = ROUND(time_to_sec(timediff(Now(), '[connection_start]'))/60) WHERE id = [connection_id]")
 		if(!query.Execute())
-			world.log("Failed to set last connection duration for player with id [src.id].")
+			world.log << "Failed to set last connection duration for player with id [src.id]."
 
 
 	return ..()
