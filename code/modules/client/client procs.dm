@@ -180,16 +180,16 @@
 
 	establish_db_connection()
 	if(dbcon.IsConnected())
-		var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
-		query.Execute()
-		if(query.NextRow())
-			var/player_id = query.item[1]
-			query = dbcon.NewQuery("SELECT id, time FROM connections ORDER BY id DESC LIMIT 1 WHERE player_id = [player_id]")
-			query.Execute()
-			if(query.NextRow())
-				var/connection_id = query.item[1]
-				var/connection_start = query.item[2]
-				query = dbcon.NewQuery("UPDATE connections SET duration = ROUND(time_to_sec(timediff(Now(), '[connection_start]'))/60) WHERE id = [connection_id]")
+		query = dbcon.NewQuery("SELECT id, time FROM connections ORDER BY id DESC LIMIT 1 WHERE player_id = [src.id]")
+		if(!query.Execute() || !query.NextRow())
+			world.log("Failed to retrieve last connection record for player with id [src.id].")
+			return ..()
+		var/connection_id = query.item[1]
+		var/connection_start = query.item[2]
+		query = dbcon.NewQuery("UPDATE connections SET duration = ROUND(time_to_sec(timediff(Now(), '[connection_start]'))/60) WHERE id = [connection_id]")
+		if(!query.Execute())
+			world.log("Failed to set last connection duration for player with id [src.id].")
+
 
 	return ..()
 
@@ -236,7 +236,7 @@
 	if(player_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 		src.id = player_id
-		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', byond_version = '[src.byond_version]', WHERE ckey = '[src.ckey]'")
+		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', byond_version = '[src.byond_version]' WHERE id = [src.id]")
 		if(!query_update.Execute())
 			world.log << "Failed to update players table for user with id [player_id]. Error message: [query_update.ErrorMsg()]."
 			return
