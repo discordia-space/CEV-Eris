@@ -37,31 +37,40 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	var/computerid
 	var/ip
 
+	var/target_id
+	var/banned_by_id
+
+	var/DBQuery/query
+
 	if(ismob(banned_mob))
 		ckey = banned_mob.ckey
 		if(banned_mob.client)
 			computerid = banned_mob.client.computer_id
 			ip = banned_mob.client.address
+			target_id = banned_mob.client.id
 	else if(banckey)
 		ckey = ckey(banckey)
 		computerid = bancid
 		ip = banip
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
-	query.Execute()
-	if(!query.NextRow())
-		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
-			message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet.</font>",1)
+	if(!target_id)
+		query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
+		query.Execute()
+		if(!query.NextRow())
+			if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
+				message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet.</font>",1)
+				return
+
+		target_id = query.item[1]
+
+	banned_by_id = usr.client.id
+	if(!banned_by_id)
+		query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[usr.ckey]'")
+		query.Execute()
+		if(!query.NextRow())
+			message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but somehow [key_name_admin(usr)] record does not exist in database.</font>",1)
 			return
-
-	var/target_id = query.item[1]
-
-	query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[usr.ckey]'")
-	query.Execute()
-	if(!query.NextRow())
-		message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but somehow [key_name_admin(usr)] record does not exist in database.</font>",1)
-		return
-	var/banned_by_id = query.item[1]
+		banned_by_id = query.item[1]
 
 	reason = sql_sanitize_text(reason)
 

@@ -224,14 +224,11 @@
 
 	var/player_id
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT id, datediff(Now(),first_seen) as age FROM players WHERE ckey = '[src.ckey]'")
-	query.Execute()
-
-	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
-	while(query.NextRow())
-		player_id = query.item[1]
-		player_age = text2num(query.item[2])
-		break
+	if(!src.id)
+		var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[src.ckey]'")
+		query.Execute()
+		if(query.NextRow())
+			player_id = query.item[1]
 
 	var/sql_ip = sql_sanitize_text(src.address)
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
@@ -239,6 +236,7 @@
 
 	if(player_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
+		src.id = player_id
 		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', WHERE ckey = '[src.ckey]'")
 		query_update.Execute()
 	else
@@ -264,6 +262,7 @@
 		get_player_id.Execute()
 		if(get_player_id.NextRow())
 			player_id = get_player_id.item[1]
+			src.id = player_id
 
 
 	// Logging player access
