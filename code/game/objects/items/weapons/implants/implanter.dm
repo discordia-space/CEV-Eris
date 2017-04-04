@@ -10,7 +10,8 @@
 	var/implant_type = null
 
 /obj/item/weapon/implanter/New()
-	src.implant = new implant_type(src)
+	if(implant_type)
+		src.implant = new implant_type(src)
 	..()
 	update()
 	return
