@@ -311,7 +311,7 @@ var/global/list/all_objectives = list()
 	if(istype(location, /area/shuttle/escape_pod1/centcom) || istype(location, /area/shuttle/escape_pod2/centcom))
 		if(istype(owner.current, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = owner.current
-			if(!C.handcuffed)
+			if(!H.handcuffed)
 				return TRUE
 	return FALSE
 
