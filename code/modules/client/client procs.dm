@@ -224,12 +224,10 @@
 		return
 
 	var/player_id
-
-	if(!src.id)
-		var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[src.ckey]'")
-		query.Execute()
-		if(query.NextRow())
-			player_id = query.item[1]
+	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[src.ckey]'")
+	query.Execute()
+	if(query.NextRow())
+		player_id = query.item[1]
 
 	var/sql_ip = sql_sanitize_text(src.address)
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
@@ -238,7 +236,7 @@
 	if(player_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 		src.id = player_id
-		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', WHERE ckey = '[src.ckey]'")
+		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', byond_version = '[src.byond_version]', WHERE ckey = '[src.ckey]'")
 		if(!query_update.Execute())
 			world.log << "Failed to update players table for user with id [player_id]. Error message: [query_update.ErrorMsg()]."
 			return
