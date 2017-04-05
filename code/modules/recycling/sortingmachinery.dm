@@ -455,7 +455,7 @@
 				if(!src || !W.isOn()) return
 				user << "You sliced the floorweld off the delivery chute."
 				var/obj/structure/disposalconstruct/C = new (src.loc)
-				C.ptype = 8 // 8 =  Delivery chute
+				C.pipe_type = PIPE_TYPE_INTAKE
 				C.update()
 				C.anchored = 1
 				C.density = 1

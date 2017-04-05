@@ -207,42 +207,42 @@ Nah
 			var/obj/structure/disposalconstruct/C = new (src.loc)
 			switch(p_type)
 				if(0)
-					C.ptype = 0
+					C.pipe_type = 0
 				if(1)
-					C.ptype = 1
+					C.pipe_type = 1
 				if(2)
-					C.ptype = 2
+					C.pipe_type = 2
 				if(3)
-					C.ptype = 4
+					C.pipe_type = 4
 				if(4)
-					C.ptype = 5
+					C.pipe_type = 5
 				if(5)
-					C.ptype = 6
+					C.pipe_type = 6
 					C.density = 1
 				if(6)
-					C.ptype = 7
+					C.pipe_type = 7
 					C.density = 1
 				if(7)
-					C.ptype = 8
+					C.pipe_type = 8
 					C.density = 1
 				if(8)
-					C.ptype = 9
-					C.subtype = 0
+					C.pipe_type = 9
+					C.sort_type = 0
 				if(9)
-					C.ptype = 9
-					C.subtype = 1
+					C.pipe_type = 9
+					C.sort_type = 1
 				if(10)
-					C.ptype = 9
-					C.subtype = 2
+					C.pipe_type = 9
+					C.sort_type = 2
 				if(11)
-					C.ptype = 13
+					C.pipe_type = 13
 				if(12)
-					C.ptype = 14
+					C.pipe_type = 14
 ///// Z-Level stuff
 				if(21)
-					C.ptype = 11
+					C.pipe_type = 11
 				if(22)
-					C.ptype = 12
+					C.pipe_type = 12
 ///// Z-Level stuff
 			C.add_fingerprint(usr)
 			C.update()
