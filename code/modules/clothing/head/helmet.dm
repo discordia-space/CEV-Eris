@@ -89,7 +89,7 @@
 /obj/item/clothing/head/helmet/light_riot/New()
 	..()
 	hud = new(src)
-	hud.canremove = 0
+	hud.canremove = FALSE
 
 /obj/item/clothing/head/helmet/light_riot/ui_action_click()
 	toggle()
@@ -108,7 +108,7 @@
 			user << "You enable security hud on [src]."
 			update_icon()
 	else
-		if(ismob(user))
+		if(ismob(hud.loc))
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
 			user << "You disable security hud on [src]."
