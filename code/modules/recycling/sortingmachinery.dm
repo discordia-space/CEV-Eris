@@ -431,6 +431,9 @@
 	update()
 	return
 
+/obj/machinery/disposal/deliveryChute/get_eject_turf()
+	return get_ranged_target_turf(src, dir, 10)
+
 /obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
 	if(!I || !user)
 		return

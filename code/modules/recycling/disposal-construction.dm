@@ -1,26 +1,6 @@
 // Disposal pipe construction
 // This is the pipe that you drag around, not the attached ones.
 
-#define PIPE_TYPE_STRAIGHT 0
-#define PIPE_TYPE_BENT 1
-#define PIPE_TYPE_JUNC 2
-#define PIPE_TYPE_JUNC_FLIP 3
-#define PIPE_TYPE_JUNC_Y 4
-#define PIPE_TYPE_TRUNK 5
-#define PIPE_TYPE_BIN 6
-#define PIPE_TYPE_OUTLET 7
-#define PIPE_TYPE_INTAKE 8
-#define PIPE_TYPE_JUNC_SORT 9
-#define PIPE_TYPE_JUNC_SORT_FLIP 10
-#define PIPE_TYPE_UP 11
-#define PIPE_TYPE_DOWN 12
-#define PIPE_TYPE_TAGGER 13
-#define PIPE_TYPE_TAGGER_PART 14
-
-#define SORT_TYPE_NORMAL 0
-#define SORT_TYPE_WILDCARD 1
-#define SORT_TYPE_UNTAGGED 2
-
 /obj/structure/disposalconstruct
 
 	name = "disposal pipe segment"
@@ -31,7 +11,7 @@
 	density = 0
 	matter = list(DEFAULT_WALL_MATERIAL = 1850)
 	level = 2
-	var/sortType = ""
+	var/sortType = list()
 	var/pipe_type = 0
 	var/sort_type = 0
 	var/dpdir = 0	// directions as disposalpipe
