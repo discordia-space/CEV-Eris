@@ -116,3 +116,4 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY,"Secret")
 #define SORT_TYPE_NORMAL 0
 #define SORT_TYPE_WILDCARD 1
 #define SORT_TYPE_UNTAGGED 2
+

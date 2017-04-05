@@ -78,9 +78,8 @@
 				base_state = "pipe-tagger-partial"
 				dpdir = dir | flip
 
-
 ///// Z-Level stuff
-		if(!(pipe_type in list(6, 7, 8, 11, 12, 13, 14)))
+		if(!(pipe_type in list(PIPE_TYPE_BIN, PIPE_TYPE_OUTLET, PIPE_TYPE_INTAKE, PIPE_TYPE_UP, PIPE_TYPE_DOWN, PIPE_TYPE_TAGGER, PIPE_TYPE_TAGGER_PART)))
 ///// Z-Level stuff
 			icon_state = "con[base_state]"
 		else
