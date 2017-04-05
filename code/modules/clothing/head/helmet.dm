@@ -74,10 +74,10 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
 
-/obj/item/clothing/head/helmet/lightriot
+/obj/item/clothing/head/helmet/light_riot
 	name = "light riot helmet"
 	desc = "Standart issue Ironhammer helmet. Basic hud and targeting system included."
-	icon_state = "lightriot"
+	icon_state = "light_riot"
 	body_parts_covered = HEAD|FACE
 	armor = list(melee = 60, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
 	flags_inv = HIDEEARS
@@ -86,37 +86,37 @@
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
 
-/obj/item/clothing/head/helmet/lightriot/New()
+/obj/item/clothing/head/helmet/light_riot/New()
 	..()
 	hud = new(src)
 	hud.canremove = 0
 
-/obj/item/clothing/head/helmet/lightriot/ui_action_click()
+/obj/item/clothing/head/helmet/light_riot/ui_action_click()
 	toggle()
 
-/obj/item/clothing/head/helmet/lightriot/verb/toggle()
+/obj/item/clothing/head/helmet/light_riot/verb/toggle()
 	set name = "Toggle Security Hud"
 	set desc = "Shows you jobs and criminal statuses"
 	set category = "Object"
-	if(usr.stat || usr.restrained())
+	var/mob/user = loc
+	if(usr.stat || user.restrained())
 		return
-	var/mob/user = usr
-	if(usr.get_equipped_item(slot_head) != src)
+	if(user.get_equipped_item(slot_head) != src)
 		return
 	if(hud in src)
 		if(user.equip_to_slot_if_possible(hud, slot_glasses))
-			usr << "You enable security hud on [src]."
+			user << "You enable security hud on [src]."
 			update_icon()
 	else
-		if(ismob(hud.loc))
+		if(ismob(user))
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			usr << "You disable security hud on [src]."
+			user << "You disable security hud on [src]."
 		hud.forceMove(src)
 		update_icon()
 	usr.update_action_buttons()
 
-/obj/item/clothing/head/helmet/lightriot/dropped(usr)
+/obj/item/clothing/head/helmet/light_riot/dropped(usr)
 	..()
 	if(hud.loc != src)
 		if(ismob(hud.loc))
@@ -126,12 +126,12 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/helmet/lightriot/update_icon()
+/obj/item/clothing/head/helmet/light_riot/update_icon()
 	if(hud in src)
-		icon_state = "lightriot"
+		icon_state = "light_riot"
 		set_light(0, 0)
 	else
-		icon_state = "lightriot_on"
+		icon_state = "light_riot_on"
 		set_light(2, 2, "#00CCFF")
 	update_clothing_icon()
 	..()

@@ -44,10 +44,10 @@
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 
-/obj/item/clothing/suit/armor/lightriot
+/obj/item/clothing/suit/armor/light_riot
 	name = "Ligh Riot Suit"
 	desc = "A suit made from kevlar and plactic, it doesn't impair movement but not as reliable as regular riot suit."
-	icon_state = "lightriot"
+	icon_state = "light_riot"
 	item_state = "swat_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(melee = 60, bullet = 15, laser = 15, energy = 15, bomb = 15, bio = 0, rad = 0)
