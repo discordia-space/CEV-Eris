@@ -52,9 +52,6 @@
 		if(air_master)
 			air_master.mark_for_update(src) //handle the addition of the new turf.
 
-		for(var/turf/space/S in range(W,1))
-			S.update_starlight()
-
 		W.levelupdate()
 		. = W
 
@@ -71,11 +68,11 @@
 		if(air_master)
 			air_master.mark_for_update(src)
 
-		for(var/turf/space/S in range(W,1))
-			S.update_starlight()
-
 		W.levelupdate()
 		. =  W
+
+	for(var/turf/space/SP in orange(src,1))
+		SP.update_starlight()
 
 	lighting_overlay = old_lighting_overlay
 	affecting_lights = old_affecting_lights
