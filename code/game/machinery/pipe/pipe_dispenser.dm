@@ -82,9 +82,9 @@
 	src.add_fingerprint(usr)
 	if(href_list["make"])
 		if(!wait)
-			var/p_type = text2num(href_list["make"])
+			var/pipe_type = text2num(href_list["make"])
 			var/p_dir = text2num(href_list["dir"])
-			var/obj/item/pipe/P = new (/*usr.loc*/ src.loc, pipe_type=p_type, dir=p_dir)
+			var/obj/item/pipe/P = new (/*usr.loc*/ src.loc, pipe_type=pipe_type, dir=p_dir)
 			P.update()
 			P.add_fingerprint(usr)
 			wait = 1
@@ -203,9 +203,9 @@ Nah
 			usr << browse(null, "window=pipedispenser")
 			return
 		if(!wait)
-			var/p_type = text2num(href_list["dmake"])
+			var/pipe_type = text2num(href_list["dmake"])
 			var/obj/structure/disposalconstruct/C = new (src.loc)
-			switch(p_type)
+			switch(pipe_type)
 				if(0)
 					C.pipe_type = PIPE_TYPE_STRAIGHT
 				if(1)

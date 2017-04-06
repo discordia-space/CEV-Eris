@@ -492,7 +492,7 @@
 	var/count = 2048	//*** can travel 2048 steps before going inactive (in case of loops)
 	var/destinationTag = "" // changes if contains a delivery container
 	var/tomail = 0 //changes if contains wrapped package
-	var/hasmob = 0 //If it contains a mob
+	var/has_mob = FALSE //If it contains a mob
 
 	var/partialTag = "" //set by a partial tagger the first time round, then put in destinationTag if it goes through again.
 
@@ -505,7 +505,7 @@
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in D)
 		if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
-			hasmob = 1
+			has_mob = TRUE
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
 	//...but it should require a second person to open the package. (i.e. person inside a wrapped locker)
@@ -513,16 +513,16 @@
 		if(O.contents)
 			for(var/mob/living/M in O.contents)
 				if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
-					hasmob = 1
+					has_mob = TRUE
 
 	// now everything inside the disposal gets put into the holder
 	// note AM since can contain mobs or objs
 	for(var/atom/movable/AM in D)
 		AM.forceMove(src)
-		if(istype(AM, /obj/structure/bigDelivery) && !hasmob)
+		if(istype(AM, /obj/structure/bigDelivery) && !has_mob)
 			var/obj/structure/bigDelivery/T = AM
 			src.destinationTag = T.sortTag
-		if(istype(AM, /obj/item/smallDelivery) && !hasmob)
+		if(istype(AM, /obj/item/smallDelivery) && !has_mob)
 			var/obj/item/smallDelivery/T = AM
 			src.destinationTag = T.sortTag
 		//Drones can mail themselves through maint.
@@ -551,20 +551,22 @@
 	var/obj/structure/disposalpipe/last
 	while(active)
 		sleep(1)		// was 1
-		if(!loc) return // check if we got GC'd
+		if(!loc)
+			return // check if we got GC'd
 
-		if(hasmob && prob(3))
+		if(has_mob && prob(3))
 			for(var/mob/living/H in src)
 				if(!istype(H,/mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
 					H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
 
-		var/obj/structure/disposalpipe/curr = loc
-		last = curr
-		curr = curr.transfer(src)
+		var/obj/structure/disposalpipe/current = loc
+		last = current
+		current = current.transfer(src)
 
-		if(!loc) return //side effects
+		if(!loc)
+			return //side effects
 
-		if(!curr)
+		if(!current)
 			last.expel(src, loc, dir)
 
 		//
@@ -586,7 +588,7 @@
 
 	var/fdir = turn(dir, 180)	// flip the movement direction
 	for(var/obj/structure/disposalpipe/P in T)
-		if(fdir & P.dpdir)		// find pipe direction mask that matches flipped dir
+		if(fdir & P.pipe_dir)		// find pipe direction mask that matches flipped dir
 			return P
 	// if no matching pipe, return null
 	return null
@@ -654,7 +656,7 @@
 	density = 0
 
 	level = 1			// underfloor only
-	var/dpdir = 0		// bitmask of pipe directions
+	var/pipe_dir = 0		// bitmask of pipe directions
 	dir = 0				// dir will contain dominant direction for junction pipes
 	var/health = 10 	// health points 0-10
 	layer = 2.3			// slightly lower than wires and other pipes
@@ -695,7 +697,7 @@
 	// returns the direction of the next pipe object, given the entrance dir
 	// by default, returns the bitmask of remaining directions
 /obj/structure/disposalpipe/proc/nextdir(var/fromdir)
-	return dpdir & (~turn(fromdir, 180))
+	return pipe_dir & (~turn(fromdir, 180))
 
 	// transfer the holder through this pipe segment
 	// overriden for special behaviour
@@ -805,7 +807,7 @@
 /obj/structure/disposalpipe/proc/broken(var/remains = 0)
 	if(remains)
 		for(var/D in cardinal)
-			if(D & dpdir)
+			if(D & pipe_dir)
 				var/obj/structure/disposalpipe/broken/P = new(src.loc)
 				P.set_dir(D)
 
@@ -854,7 +856,7 @@
 /obj/structure/disposalpipe/proc/healthcheck()
 	if(health < -2)
 		broken(0)
-	else if(health<1)
+	else if(health < 1)
 		broken(1)
 	return
 
@@ -877,7 +879,8 @@
 			var/atom/wloc = W.loc
 			user << "Slicing the disposal pipe."
 			sleep(30)
-			if(!W.isOn()) return
+			if(!W.isOn())
+				return
 			if(user.loc == uloc && wloc == W.loc)
 				welded()
 			else
@@ -967,9 +970,9 @@
 	New()
 		..()
 		if(icon_state == "pipe-s")
-			dpdir = dir | turn(dir, 180)
+			pipe_dir = dir | turn(dir, 180)
 		else
-			dpdir = dir | turn(dir, -90)
+			pipe_dir = dir | turn(dir, -90)
 
 		update()
 		return
@@ -980,7 +983,7 @@
 
 /obj/structure/disposalpipe/up/New()
 	..()
-	dpdir = dir
+	pipe_dir = dir
 	update()
 	return
 
@@ -1029,7 +1032,7 @@
 
 /obj/structure/disposalpipe/down/New()
 	..()
-	dpdir = dir
+	pipe_dir = dir
 	update()
 	return
 
@@ -1085,11 +1088,11 @@
 /obj/structure/disposalpipe/junction/New()
 	..()
 	if(icon_state == "pipe-j1")
-		dpdir = dir | turn(dir, -90) | turn(dir,180)
+		pipe_dir = dir | turn(dir, -90) | turn(dir,180)
 	else if(icon_state == "pipe-j2")
-		dpdir = dir | turn(dir, 90) | turn(dir,180)
+		pipe_dir = dir | turn(dir, 90) | turn(dir,180)
 	else // pipe-y
-		dpdir = dir | turn(dir,90) | turn(dir, -90)
+		pipe_dir = dir | turn(dir,90) | turn(dir, -90)
 	update()
 	return
 
@@ -1142,8 +1145,9 @@
 
 /obj/structure/disposalpipe/tagger/New()
 	. = ..()
-	dpdir = dir | turn(dir, 180)
-	if(sort_tag) tagger_locations |= sort_tag
+	pipe_dir = dir | turn(dir, 180)
+	if(sort_tag)
+		tagger_locations |= sort_tag
 	updatename()
 	updatedesc()
 	update()
@@ -1158,7 +1162,7 @@
 		if(O.currTag)// Tag set
 			sort_tag = O.currTag
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
-			user << "\blue Changed tag to '[sort_tag]'."
+			user << "<span class='notice'>Changed tag to '[sort_tag]'.</span>"
 			updatename()
 			updatedesc()
 
@@ -1205,7 +1209,7 @@
 	else if(icon_state == "pipe-j2s")
 		sortdir = turn(posdir, 90)
 
-	dpdir = sortdir | posdir | negdir
+	pipe_dir = sortdir | posdir | negdir
 
 /obj/structure/disposalpipe/sortjunction/New()
 	. = ..()
@@ -1305,7 +1309,7 @@
 
 /obj/structure/disposalpipe/trunk/New()
 	..()
-	dpdir = dir
+	pipe_dir = dir
 	spawn(1)
 		getlinked()
 
@@ -1404,7 +1408,7 @@
 // a broken pipe
 /obj/structure/disposalpipe/broken
 	icon_state = "pipe-b"
-	dpdir = 0		// broken pipes have dpdir=0 so they're not found as 'real' pipes
+	pipe_dir = 0		// broken pipes have pipe_dir=0 so they're not found as 'real' pipes
 					// i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
@@ -1471,22 +1475,22 @@
 		return
 	src.add_fingerprint(user)
 	if(istype(I, /obj/item/weapon/screwdriver))
-		if(mode==0)
-			mode=1
+		if(mode == 0)
+			mode = 1
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			user << "You remove the screws around the power connection."
 			return
-		else if(mode==1)
-			mode=0
+		else if(mode == 1)
+			mode = 0
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			user << "You attach the screws around the power connection."
 			return
-	else if(istype(I,/obj/item/weapon/weldingtool) && mode==1)
+	else if(istype(I,/obj/item/weapon/weldingtool) && mode == 1)
 		var/obj/item/weapon/weldingtool/W = I
-		if(W.remove_fuel(0,user))
+		if(W.remove_fuel(0, user))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 			user << "You start slicing the floorweld off the disposal outlet."
-			if(do_after(user,20, src))
+			if(do_after(user, 20, src))
 				if(!src || !W.isOn()) return
 				user << "You sliced the floorweld off the disposal outlet."
 				var/obj/structure/disposalconstruct/C = new (src.loc)

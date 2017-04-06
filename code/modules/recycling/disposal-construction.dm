@@ -14,87 +14,87 @@
 	var/sortType = list()
 	var/pipe_type = 0
 	var/sort_type = 0
-	var/dpdir = 0	// directions as disposalpipe
+	var/pipe_dir = 0	// directions as disposalpipe
 	var/base_state = "pipe-s"
 
-	// update iconstate and dpdir due to dir and type
-	proc/update()
-		var/flip = turn(dir, 180)
-		var/left = turn(dir, 90)
-		var/right = turn(dir, -90)
-		switch(pipe_type)
-			if(PIPE_TYPE_STRAIGHT)
-				base_state = "pipe-s"
-				dpdir = dir | flip
-			if(PIPE_TYPE_BENT)
-				base_state = "pipe-c"
-				dpdir = dir | right
-			if(PIPE_TYPE_JUNC)
-				base_state = "pipe-j1"
-				dpdir = dir | right | flip
-			if(PIPE_TYPE_JUNC_FLIP)
-				base_state = "pipe-j2"
-				dpdir = dir | left | flip
-			if(PIPE_TYPE_JUNC_Y)
-				base_state = "pipe-y"
-				dpdir = dir | left | right
-			if(PIPE_TYPE_TRUNK)
-				base_state = "pipe-t"
-				dpdir = dir
-			 // disposal bin has only one dir, thus we don't need to care about setting it
-			if(PIPE_TYPE_BIN)
-				if(anchored)
-					base_state = "disposal"
-				else
-					base_state = "condisposal"
+	// update iconstate and pipe_dir due to dir and type
+/obj/structure/disposalconstruct/proc/update()
+	var/flip = turn(dir, 180)
+	var/left = turn(dir, 90)
+	var/right = turn(dir, -90)
+	switch(pipe_type)
+		if(PIPE_TYPE_STRAIGHT)
+			base_state = "pipe-s"
+			pipe_dir = dir | flip
+		if(PIPE_TYPE_BENT)
+			base_state = "pipe-c"
+			pipe_dir = dir | right
+		if(PIPE_TYPE_JUNC)
+			base_state = "pipe-j1"
+			pipe_dir = dir | right | flip
+		if(PIPE_TYPE_JUNC_FLIP)
+			base_state = "pipe-j2"
+			pipe_dir = dir | left | flip
+		if(PIPE_TYPE_JUNC_Y)
+			base_state = "pipe-y"
+			pipe_dir = dir | left | right
+		if(PIPE_TYPE_TRUNK)
+			base_state = "pipe-t"
+			pipe_dir = dir
+		 // disposal bin has only one dir, thus we don't need to care about setting it
+		if(PIPE_TYPE_BIN)
+			if(anchored)
+				base_state = "disposal"
+			else
+				base_state = "condisposal"
 
-			if(PIPE_TYPE_OUTLET)
-				base_state = "outlet"
-				dpdir = dir
+		if(PIPE_TYPE_OUTLET)
+			base_state = "outlet"
+			pipe_dir = dir
 
-			if(PIPE_TYPE_INTAKE)
-				base_state = "intake"
-				dpdir = dir
+		if(PIPE_TYPE_INTAKE)
+			base_state = "intake"
+			pipe_dir = dir
 
-			if(PIPE_TYPE_JUNC_SORT)
-				base_state = "pipe-j1s"
-				dpdir = dir | right | flip
+		if(PIPE_TYPE_JUNC_SORT)
+			base_state = "pipe-j1s"
+			pipe_dir = dir | right | flip
 
-			if(PIPE_TYPE_JUNC_SORT_FLIP)
-				base_state = "pipe-j2s"
-				dpdir = dir | left | flip
+		if(PIPE_TYPE_JUNC_SORT_FLIP)
+			base_state = "pipe-j2s"
+			pipe_dir = dir | left | flip
 ///// Z-Level stuff
-			if(PIPE_TYPE_UP)
-				base_state = "pipe-u"
-				dpdir = dir
-			if(PIPE_TYPE_DOWN)
-				base_state = "pipe-d"
-				dpdir = dir
+		if(PIPE_TYPE_UP)
+			base_state = "pipe-u"
+			pipe_dir = dir
+		if(PIPE_TYPE_DOWN)
+			base_state = "pipe-d"
+			pipe_dir = dir
 ///// Z-Level stuff
-			if(PIPE_TYPE_TAGGER)
-				base_state = "pipe-tagger"
-				dpdir = dir | flip
-			if(PIPE_TYPE_TAGGER_PART)
-				base_state = "pipe-tagger-partial"
-				dpdir = dir | flip
+		if(PIPE_TYPE_TAGGER)
+			base_state = "pipe-tagger"
+			pipe_dir = dir | flip
+		if(PIPE_TYPE_TAGGER_PART)
+			base_state = "pipe-tagger-partial"
+			pipe_dir = dir | flip
 
 ///// Z-Level stuff
-		if(!(pipe_type in list(PIPE_TYPE_BIN, PIPE_TYPE_OUTLET, PIPE_TYPE_INTAKE, PIPE_TYPE_UP, PIPE_TYPE_DOWN, PIPE_TYPE_TAGGER, PIPE_TYPE_TAGGER_PART)))
+	if(!(pipe_type in list(PIPE_TYPE_BIN, PIPE_TYPE_OUTLET, PIPE_TYPE_INTAKE, PIPE_TYPE_UP, PIPE_TYPE_DOWN, PIPE_TYPE_TAGGER, PIPE_TYPE_TAGGER_PART)))
 ///// Z-Level stuff
-			icon_state = "con[base_state]"
-		else
-			icon_state = base_state
+		icon_state = "con[base_state]"
+	else
+		icon_state = base_state
 
-		if(invisibility)				// if invisible, fade icon
-			alpha = 128
-		else
-			alpha = 255
+	if(invisibility)				// if invisible, fade icon
+		alpha = 128
+	else
+		alpha = 255
 			//otherwise burying half-finished pipes under floors causes them to half-fade
 
 	// hide called by levelupdate if turf intact status changes
 	// change visibility status and force update of icon
 /obj/structure/disposalconstruct/hide(var/intact)
-	invisibility = (intact && level==1) ? 101: 0	// hide if floor is intact
+	invisibility = (intact && level == 1) ? 101 : 0	// hide if floor is intact
 	update()
 
 
@@ -188,38 +188,38 @@
 	// weldingtool: convert to real pipe
 
 /obj/structure/disposalconstruct/attackby(var/obj/item/I, var/mob/user)
-	var/nicetype = "pipe"
-	var/ispipe = 0 // Indicates if we should change the level of this pipe
+	var/nice_type = "pipe"
+	var/is_pipe = FALSE // Indicates if we should change the level of this pipe
 	src.add_fingerprint(user)
 	switch(pipe_type)
 		if(PIPE_TYPE_BIN)
-			nicetype = "disposal bin"
+			nice_type = "disposal bin"
 		if(PIPE_TYPE_OUTLET)
-			nicetype = "disposal outlet"
+			nice_type = "disposal outlet"
 		if(PIPE_TYPE_INTAKE)
-			nicetype = "delivery chute"
+			nice_type = "delivery chute"
 		if(PIPE_TYPE_JUNC_SORT, PIPE_TYPE_JUNC_SORT_FLIP)
 			switch(sort_type)
 				if(SORT_TYPE_NORMAL)
-					nicetype = "sorting pipe"
+					nice_type = "sorting pipe"
 				if(SORT_TYPE_WILDCARD)
-					nicetype = "wildcard sorting pipe"
+					nice_type = "wildcard sorting pipe"
 				if(SORT_TYPE_UNTAGGED)
-					nicetype = "untagged sorting pipe"
-			ispipe = 1
+					nice_type = "untagged sorting pipe"
+			is_pipe = TRUE
 		if(PIPE_TYPE_TAGGER)
-			nicetype = "tagging pipe"
-			ispipe = 1
+			nice_type = "tagging pipe"
+			is_pipe = TRUE
 		if(PIPE_TYPE_TAGGER_PART)
-			nicetype = "partial tagging pipe"
-			ispipe = 1
+			nice_type = "partial tagging pipe"
+			is_pipe = TRUE
 		else
-			nicetype = "pipe"
-			ispipe = 1
+			nice_type = "pipe"
+			is_pipe = TRUE
 
 	var/turf/T = src.loc
 	if(!T.is_plating())
-		user << "You can only attach the [nicetype] if the floor plating is removed."
+		user << "You can only attach the [nice_type] if the floor plating is removed."
 		return
 
 	var/obj/structure/disposalpipe/CP = locate() in T
@@ -227,38 +227,38 @@
 	if(istype(I, /obj/item/weapon/wrench))
 		if(anchored)
 			anchored = 0
-			if(ispipe)
+			if(is_pipe)
 				level = 2
 				density = 0
 			else
 				density = 1
-			user << "You detach the [nicetype] from the underfloor."
+			user << "You detach the [nice_type] from the underfloor."
 		else
 			if(pipe_type in list(PIPE_TYPE_BIN, PIPE_TYPE_OUTLET, PIPE_TYPE_INTAKE))
 				if(CP) // There's something there
 					if(!istype(CP,/obj/structure/disposalpipe/trunk))
-						user << "The [nicetype] requires a trunk underneath it in order to work."
+						user << "The [nice_type] requires a trunk underneath it in order to work."
 						return
 				else // Nothing under, fuck.
-					user << "The [nicetype] requires a trunk underneath it in order to work."
+					user << "The [nice_type] requires a trunk underneath it in order to work."
 					return
 			else
 				if(CP)
 					update()
-					var/pdir = CP.dpdir
+					var/pdir = CP.pipe_dir
 					if(istype(CP, /obj/structure/disposalpipe/broken))
 						pdir = CP.dir
-					if(pdir & dpdir)
-						user << "There is already a [nicetype] at that location."
+					if(pdir & pipe_dir)
+						user << "There is already a [nice_type] at that location."
 						return
 
 			anchored = 1
-			if(ispipe)
+			if(is_pipe)
 				level = 1 // We don't want disposal bins to disappear under the floors
 				density = 0
 			else
 				density = 1 // We don't want disposal bins or outlets to go density 0
-			user << "You attach the [nicetype] to the underfloor."
+			user << "You attach the [nice_type] to the underfloor."
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		update()
 
@@ -267,19 +267,19 @@
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-				user << "Welding the [nicetype] in place."
+				user << "Welding the [nice_type] in place."
 				if(do_after(user, 20, src))
-					if(!src || !W.isOn()) return
-					user << "The [nicetype] has been welded in place!"
+					if(!src || !W.isOn())
+						return
+					user << "The [nice_type] has been welded in place!"
 					update() // TODO: Make this neat
-					if(ispipe) // Pipe
-
+					if(is_pipe) // Pipe
 						var/pipetype = dpipetype()
 						var/obj/structure/disposalpipe/P = new pipetype(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.base_icon_state = base_state
 						P.set_dir(dir)
-						P.dpdir = dpdir
+						P.pipe_dir = pipe_dir
 						P.updateicon()
 
 						//Needs some special treatment ;)
