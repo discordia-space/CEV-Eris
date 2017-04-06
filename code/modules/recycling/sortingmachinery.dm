@@ -431,6 +431,9 @@
 	update()
 	return
 
+/obj/machinery/disposal/deliveryChute/get_eject_turf()
+	return get_ranged_target_turf(src, dir, 10)
+
 /obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
 	if(!I || !user)
 		return
@@ -455,7 +458,7 @@
 				if(!src || !W.isOn()) return
 				user << "You sliced the floorweld off the delivery chute."
 				var/obj/structure/disposalconstruct/C = new (src.loc)
-				C.ptype = 8 // 8 =  Delivery chute
+				C.pipe_type = PIPE_TYPE_INTAKE
 				C.update()
 				C.anchored = 1
 				C.density = 1
