@@ -227,13 +227,13 @@ Nah
 					C.density = 1
 				if(8)
 					C.pipe_type = PIPE_TYPE_JUNC_SORT
-					C.sort_type = SORT_TYPE_NORMAL
+					C.sort_mode = SORT_TYPE_NORMAL
 				if(9)
 					C.pipe_type = PIPE_TYPE_JUNC_SORT
-					C.sort_type = SORT_TYPE_WILDCARD
+					C.sort_mode = SORT_TYPE_WILDCARD
 				if(10)
 					C.pipe_type = PIPE_TYPE_JUNC_SORT
-					C.sort_type = SORT_TYPE_UNTAGGED
+					C.sort_mode = SORT_TYPE_UNTAGGED
 				if(11)
 					C.pipe_type = PIPE_TYPE_TAGGER
 				if(12)

@@ -504,7 +504,7 @@
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in D)
-		if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
+		if(M && M.stat != DEAD && !istype(M,/mob/living/silicon/robot/drone))
 			has_mob = TRUE
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
@@ -512,7 +512,7 @@
 	for(var/obj/O in D)
 		if(O.contents)
 			for(var/mob/living/M in O.contents)
-				if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
+				if(M && M.stat != DEAD && !istype(M,/mob/living/silicon/robot/drone))
 					has_mob = TRUE
 
 	// now everything inside the disposal gets put into the holder
@@ -539,7 +539,7 @@
 		return
 
 	forceMove(D.trunk)
-	active = 1
+	active = TRUE
 	set_dir(DOWN)
 	spawn(1)
 		move()		// spawn off the movement process
@@ -571,7 +571,7 @@
 
 		//
 		if(!(count--))
-			active = 0
+			active = FALSE
 	return
 
 
@@ -676,7 +676,7 @@
 	var/obj/structure/disposalholder/H = locate() in src
 	if(H)
 		// holder was present
-		H.active = 0
+		H.active = FALSE
 		var/turf/T = src.loc
 		if(T.density)
 			// deleting pipe is inside a dense turf (wall)
@@ -874,14 +874,10 @@
 
 		if(W.remove_fuel(0,user))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-			// check if anything changed over 2 seconds
-			var/turf/uloc = user.loc
-			var/atom/wloc = W.loc
 			user << "Slicing the disposal pipe."
-			sleep(30)
-			if(!W.isOn())
-				return
-			if(user.loc == uloc && wloc == W.loc)
+			if(do_after(user, 30, src))
+				if(!W.isOn())
+					return
 				welded()
 			else
 				user << "You must stay still while welding the pipe."
@@ -922,11 +918,11 @@
 			C.pipe_type = PIPE_TYPE_TAGGER
 		if("pipe-tagger-partial")
 			C.pipe_type = PIPE_TYPE_TAGGER_PART
-	C.sort_type = src.subtype
+	C.sort_mode = src.subtype
 	src.transfer_fingerprints_to(C)
 	C.set_dir(dir)
-	C.density = 0
-	C.anchored = 1
+	C.density = FALSE
+	C.anchored = TRUE
 	C.update()
 
 	qdel(src)
@@ -937,7 +933,7 @@
 	var/obj/structure/disposalholder/H = locate() in src
 	if(H)
 		// holder was present
-		H.active = 0
+		H.active = FALSE
 		var/turf/T = src.loc
 		if(T.density)
 			// deleting pipe is inside a dense turf (wall)
@@ -956,7 +952,7 @@
 	..()
 
 /obj/structure/disposalpipe/hides_under_flooring()
-	return 1
+	return TRUE
 
 // *** TEST verb
 //client/verb/dispstop()
@@ -1236,9 +1232,7 @@
 
 /obj/structure/disposalpipe/sortjunction/proc/divert_check(var/checkTag)
 	if(islist(sortType))
-		for(var/tag in sortType)
-			if(tag == checkTag)
-				return TRUE
+		return checkTag in sortType
 	else
 		return checkTag == sortType
 	return FALSE

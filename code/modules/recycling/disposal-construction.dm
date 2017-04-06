@@ -13,7 +13,7 @@
 	level = 2
 	var/sortType = list()
 	var/pipe_type = 0
-	var/sort_type = 0
+	var/sort_mode = 0
 	var/pipe_dir = 0	// directions as disposalpipe
 	var/base_state = "pipe-s"
 
@@ -154,7 +154,7 @@
 		if(PIPE_TYPE_INTAKE)
 			return /obj/machinery/disposal/deliveryChute
 		if(PIPE_TYPE_JUNC_SORT)
-			switch(sort_type)
+			switch(sort_mode)
 				if(SORT_TYPE_NORMAL)
 					return /obj/structure/disposalpipe/sortjunction
 				if(SORT_TYPE_WILDCARD)
@@ -162,7 +162,7 @@
 				if(SORT_TYPE_UNTAGGED)
 					return /obj/structure/disposalpipe/sortjunction/untagged
 		if(PIPE_TYPE_JUNC_SORT_FLIP)
-			switch(sort_type)
+			switch(sort_mode)
 				if(SORT_TYPE_NORMAL)
 					return /obj/structure/disposalpipe/sortjunction/flipped
 				if(SORT_TYPE_WILDCARD)
@@ -199,7 +199,7 @@
 		if(PIPE_TYPE_INTAKE)
 			nice_type = "delivery chute"
 		if(PIPE_TYPE_JUNC_SORT, PIPE_TYPE_JUNC_SORT_FLIP)
-			switch(sort_type)
+			switch(sort_mode)
 				if(SORT_TYPE_NORMAL)
 					nice_type = "sorting pipe"
 				if(SORT_TYPE_WILDCARD)
