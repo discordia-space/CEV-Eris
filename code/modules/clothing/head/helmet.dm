@@ -8,7 +8,7 @@
 		)
 	item_flags = THICKMATERIAL
 	body_parts_covered = HEAD
-	armor = list(melee = 50, bullet = 15, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 15, laser = 25,energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEEARS|HIDEEYES
 	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -22,7 +22,7 @@
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	body_parts_covered = HEAD|FACE|EYES //face shield
-	armor = list(melee = 82, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
+	armor = list(melee = 70, bullet = 25, laser = 25,energy = 25, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
 
@@ -49,6 +49,7 @@
 	name = "gladiator helmet"
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
+	armor = list(melee = 35, bullet = 15, laser = 25,energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE
 	siemens_coefficient = 1
@@ -72,3 +73,65 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
+
+/obj/item/clothing/head/helmet/light_riot
+	name = "light riot helmet"
+	desc = "Standart issue Ironhammer helmet. Basic hud and targeting system included."
+	icon_state = "light_riot"
+	body_parts_covered = HEAD|FACE
+	armor = list(melee = 60, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
+	flags_inv = HIDEEARS
+	siemens_coefficient = 0.7
+	flash_protection = FLASH_PROTECTION_MAJOR
+	action_button_name = "Toggle Security Hud"
+	var/obj/item/clothing/glasses/hud/security/hud
+
+/obj/item/clothing/head/helmet/light_riot/New()
+	..()
+	hud = new(src)
+	hud.canremove = FALSE
+
+/obj/item/clothing/head/helmet/light_riot/ui_action_click()
+	toggle()
+
+/obj/item/clothing/head/helmet/light_riot/verb/toggle()
+	set name = "Toggle Security Hud"
+	set desc = "Shows you jobs and criminal statuses"
+	set category = "Object"
+	var/mob/user = loc
+	if(usr.stat || user.restrained())
+		return
+	if(user.get_equipped_item(slot_head) != src)
+		return
+	if(hud in src)
+		if(user.equip_to_slot_if_possible(hud, slot_glasses))
+			user << "You enable security hud on [src]."
+			update_icon()
+	else
+		if(ismob(hud.loc))
+			var/mob/hud_loc = hud.loc
+			hud_loc.drop_from_inventory(hud, src)
+			user << "You disable security hud on [src]."
+		hud.forceMove(src)
+		update_icon()
+	usr.update_action_buttons()
+
+/obj/item/clothing/head/helmet/light_riot/dropped(usr)
+	..()
+	if(hud.loc != src)
+		if(ismob(hud.loc))
+			var/mob/hud_loc = hud.loc
+			hud_loc.drop_from_inventory(hud, src)
+			hud_loc << "[hud] automaticly retract in [src]."
+		hud.forceMove(src)
+		update_icon()
+
+/obj/item/clothing/head/helmet/light_riot/update_icon()
+	if(hud in src)
+		icon_state = "light_riot"
+		set_light(0, 0)
+	else
+		icon_state = "light_riot_on"
+		set_light(2, 2, "#00CCFF")
+	update_clothing_icon()
+	..()

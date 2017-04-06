@@ -17,7 +17,7 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
@@ -40,7 +40,17 @@
 	item_state = "swat_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
-	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 0, rad = 0)
+	flags_inv = HIDEJUMPSUIT
+	siemens_coefficient = 0.5
+
+/obj/item/clothing/suit/armor/light_riot
+	name = "Ligh Riot Suit"
+	desc = "A suit made from kevlar and plactic, it doesn't impair movement but not as reliable as regular riot suit."
+	icon_state = "light_riot"
+	item_state = "swat_suit"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 60, bullet = 15, laser = 15, energy = 15, bomb = 15, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 

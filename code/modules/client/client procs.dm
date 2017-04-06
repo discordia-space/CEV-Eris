@@ -177,6 +177,20 @@
 		admins -= src
 	directory -= ckey
 	clients -= src
+
+	establish_db_connection()
+	if(dbcon.IsConnected())
+		var/DBQuery/query = dbcon.NewQuery("SELECT id, time FROM connections ORDER BY id DESC LIMIT 1 WHERE player_id = [src.id]")
+		if(!query.Execute() || !query.NextRow())
+			world.log << "Failed to retrieve last connection record for player with id [src.id]."
+			return ..()
+		var/connection_id = query.item[1]
+		var/connection_start = query.item[2]
+		query = dbcon.NewQuery("UPDATE connections SET duration = ROUND(time_to_sec(timediff(Now(), '[connection_start]'))/60) WHERE id = [connection_id]")
+		if(!query.Execute())
+			world.log << "Failed to set last connection duration for player with id [src.id]."
+
+
 	return ..()
 
 
@@ -191,7 +205,7 @@
 
 	var/sql_ckey = sql_sanitize_text(ckey(key))
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
+	var/DBQuery/query = dbcon.NewQuery("SELECT datediff(Now(),first_seen) as age FROM players WHERE ckey = '[sql_ckey]'")
 	query.Execute()
 
 	if(query.NextRow())
@@ -202,67 +216,65 @@
 
 /client/proc/log_client_to_db()
 
-	if ( IsGuestKey(src.key) )
+	if(IsGuestKey(src.key))
 		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
 		return
 
-	var/sql_ckey = sql_sanitize_text(src.ckey)
-
-	var/DBQuery/query = dbcon.NewQuery("SELECT id, datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
+	var/player_id
+	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[src.ckey]'")
 	query.Execute()
-	var/sql_id = 0
-	player_age = 0	// New players won't have an entry so knowing we have a connection we set this to zero to be updated if their is a record.
-	while(query.NextRow())
-		sql_id = query.item[1]
-		player_age = text2num(query.item[2])
-		break
-
-	var/DBQuery/query_ip = dbcon.NewQuery("SELECT ckey FROM erro_player WHERE ip = '[address]'")
-	query_ip.Execute()
-	related_accounts_ip = ""
-	while(query_ip.NextRow())
-		related_accounts_ip += "[query_ip.item[1]], "
-		break
-
-	var/DBQuery/query_cid = dbcon.NewQuery("SELECT ckey FROM erro_player WHERE computerid = '[computer_id]'")
-	query_cid.Execute()
-	related_accounts_cid = ""
-	while(query_cid.NextRow())
-		related_accounts_cid += "[query_cid.item[1]], "
-		break
-
-	//Just the standard check to see if it's actually a number
-	if(sql_id)
-		if(istext(sql_id))
-			sql_id = text2num(sql_id)
-		if(!isnum(sql_id))
-			return
-
-	var/admin_rank = "Player"
-	if(src.holder)
-		admin_rank = src.holder.rank
+	if(query.NextRow())
+		player_id = query.item[1]
 
 	var/sql_ip = sql_sanitize_text(src.address)
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
-	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
 
-	if(sql_id)
+	if(player_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-		var/DBQuery/query_update = dbcon.NewQuery("UPDATE erro_player SET lastseen = Now(), ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = [sql_id]")
-		query_update.Execute()
+		src.id = player_id
+		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', byond_version = '[src.byond_version]' WHERE id = [src.id]")
+		if(!query_update.Execute())
+			world.log << "Failed to update players table for user with id [player_id]. Error message: [query_update.ErrorMsg()]."
+			return
 	else
-		//New player!! Need to insert all the stuff
-		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO erro_player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', Now(), Now(), '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]')")
-		query_insert.Execute()
+		var/registration_date = null
+		var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
+		if(http)
+			var/F = file2text(http["CONTENT"])
+			if(F)
+				var/regex/R = regex("joined = \"(\\d{4})-(\\d{2})-(\\d{2})\"")
+				if(R.Find(F))
+					var/year = R.group[1]
+					var/month = R.group[2]
+					var/day = R.group[3]
+					registration_date = "[year]-[month]-[day]"
+				else
+					world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+		else
+			world.log << "Failed to connect to byond age check for [src.ckey]"
 
-	//Logging player access
-	var/serverip = "[world.internet_address]:[world.port]"
-	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO `erro_connection_log`(`id`,`datetime`,`serverip`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),'[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
-	query_accesslog.Execute()
+		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', 'player', [src.byond_version])")
+		if(!query_insert.Execute())
+			world.log << "Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
+			return
+
+		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[src.ckey]'")
+		get_player_id.Execute()
+		if(get_player_id.NextRow())
+			player_id = get_player_id.item[1]
+			src.id = player_id
+
+
+	// Logging player access
+	var/server = "[world.internet_address]:[world.port]"
+	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO connections (time, server, player_id, ip, cid) VALUES(Now(), '[server]', [player_id], '[sql_ip]', '[sql_computerid]')")
+	if(!query_accesslog.Execute())
+		world.log << "Failed to create connection log entry for user with id [player_id]. Error message: [query_accesslog.ErrorMsg()]."
+
 
 
 #undef TOPIC_SPAM_DELAY

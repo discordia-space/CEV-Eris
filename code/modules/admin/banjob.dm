@@ -73,24 +73,29 @@ DEBUG
 			return
 
 		//Job permabans
-		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
+		var/DBQuery/query = dbcon.NewQuery("SELECT target_id, job FROM bans WHERE type = 'JOB_PERMABAN' AND isnull(unbanned)")
 		query.Execute()
 
 		while(query.NextRow())
-			var/ckey = query.item[1]
+			var/id = query.item[1]
 			var/job = query.item[2]
-
-			jobban_keylist.Add("[ckey] - [job]")
+			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = [id]")
+			get_ckey.Execute()
+			if(get_ckey.NextRow())
+				var/ckey = get_ckey.item[1]
+				jobban_keylist.Add("[ckey] - [job]")
 
 		//Job tempbans
-		var/DBQuery/query1 = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
+		var/DBQuery/query1 = dbcon.NewQuery("SELECT target_id, job FROM bans WHERE type = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
 		query1.Execute()
 
 		while(query1.NextRow())
-			var/ckey = query1.item[1]
-			var/job = query1.item[2]
-
-			jobban_keylist.Add("[ckey] - [job]")
+			var/id = query.item[1]
+			var/job = query.item[2]
+			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = [id]")
+			if(get_ckey.NextRow())
+				var/ckey = get_ckey.item[1]
+				jobban_keylist.Add("[ckey] - [job]")
 
 /proc/jobban_savebanfile()
 	var/savefile/S=new("data/job_full.ban")
