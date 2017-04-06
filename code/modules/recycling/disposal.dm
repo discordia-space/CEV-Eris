@@ -985,10 +985,10 @@
 
 /obj/structure/disposalpipe/up/nextdir(var/fromdir)
 	var/nextdir
-	if(fromdir == 11)
+	if(fromdir == DOWN)
 		nextdir = dir
 	else
-		nextdir = 12
+		nextdir = UP
 	return nextdir
 
 /obj/structure/disposalpipe/up/transfer(var/obj/structure/disposalholder/H)
@@ -997,7 +997,7 @@
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
-	if(nextdir == 12)
+	if(nextdir == UP)
 		T = GetAbove(src)
 		if(!T)
 			H.forceMove(loc)
@@ -1034,10 +1034,10 @@
 
 /obj/structure/disposalpipe/down/nextdir(var/fromdir)
 	var/nextdir
-	if(fromdir == 12)
+	if(fromdir == UP)
 		nextdir = dir
 	else
-		nextdir = 11
+		nextdir = DOWN
 	return nextdir
 
 /obj/structure/disposalpipe/down/transfer(var/obj/structure/disposalholder/H)
@@ -1047,7 +1047,7 @@
 	var/turf/T
 	var/obj/structure/disposalpipe/P
 
-	if(nextdir == 11)
+	if(nextdir == DOWN)
 		T = GetBelow(src)
 		if(!T)
 			H.forceMove(src.loc)
