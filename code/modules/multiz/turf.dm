@@ -15,6 +15,13 @@
 	below = GetBelow(src)
 	ASSERT(HasBelow(z))
 
+/turf/simulated/open/is_plating()
+	return TRUE
+
+/turf/simulated/open/is_space()
+	var/turf/below = GetBelow(src)
+	return !below || below.is_space()
+
 /turf/simulated/open/Entered(var/atom/movable/mover)
 	. = ..()
 #ifdef USE_OPENSPACE
@@ -44,7 +51,7 @@
 		return
 
 	// See if something prevents us from falling.
-	var/soft = 0
+	var/soft = FALSE
 	for(var/atom/A in below)
 		if(A.density)
 			if(!istype(A, /obj/structure/window))
@@ -55,7 +62,7 @@
 					return
 		// Dont break here, since we still need to be sure that it isnt blocked
 		if(istype(A, /obj/structure/multiz/stairs))
-			soft = 1
+			soft = TRUE
 
 	// We've made sure we can move, now.
 	mover.Move(below)
@@ -63,26 +70,35 @@
 	if(!soft)
 		if(!isliving(mover))
 			if(istype(below, /turf/simulated/open))
-				mover.visible_message("\The [mover] falls from the deck above through \the [below]!", "You hear a whoosh of displaced air.")
+				mover.visible_message(
+					"\The [mover] falls from the deck above through \the [below]!",
+					"You hear a whoosh of displaced air."
+				)
 			else
-				mover.visible_message("\The [mover] falls from the deck above and slams into \the [below]!", "You hear something slam into the deck.")
+				mover.visible_message(
+					"\The [mover] falls from the deck above and slams into \the [below]!",
+					"You hear something slam into the deck."
+				)
 		else
 			var/mob/M = mover
 			if(istype(below, /turf/simulated/open))
-				below.visible_message("\The [mover] falls from the deck above through \the [below]!", "You hear a soft whoosh.[M.stat ? "" : ".. and some screaming."]")
+				below.visible_message(
+					"\The [mover] falls from the deck above through \the [below]!",
+					"You hear a soft whoosh.[M.stat ? "" : ".. and some screaming."]"
+				)
 			else
-				M.visible_message("\The [mover] falls from the deck above and slams into \the [below]!", "You land on \the [below].", "You hear a soft whoosh and a crunch")
+				M.visible_message(
+					"\The [mover] falls from the deck above and slams into \the [below]!",
+					"You land on \the [below].", "You hear a soft whoosh and a crunch"
+				)
 
 			// Handle people getting hurt, it's funny!
 			if (istype(mover, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = mover
 				var/damage = 5
-				H.apply_damage(rand(0, damage), BRUTE, "head")
-				H.apply_damage(rand(0, damage), BRUTE, "chest")
-				H.apply_damage(rand(0, damage), BRUTE, "l_leg")
-				H.apply_damage(rand(0, damage), BRUTE, "r_leg")
-				H.apply_damage(rand(0, damage), BRUTE, "l_arm")
-				H.apply_damage(rand(0, damage), BRUTE, "r_arm")
+				for(var/organ in H.organs_by_name)
+					H.apply_damage(rand(0, damage), BRUTE, organ)
+
 				H.weakened = max(H.weakened,2)
 				H.updatehealth()
 
@@ -117,4 +133,3 @@
 			return
 		else
 			user << "<span class='warning'>The plating is going to need some support.</span>"
-	return
