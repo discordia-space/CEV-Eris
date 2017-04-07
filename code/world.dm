@@ -412,27 +412,6 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		return show_player_info_irc(ckey(input["notes"]))
 
-	else if(copytext(T,1,4) == "age")
-		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
-
-			world_topic_spam_protect_time = world.time
-			world_topic_spam_protect_ip = addr
-			return "Bad Key"
-
-		var/age = get_player_age(input["age"])
-		if(isnum(age))
-			if(age >= 0)
-				return "[age]"
-			else
-				return "Ckey not found"
-		else
-			return "Database connection failed or not set up"
-
 
 /world/Reboot(var/reason)
 	/*spawn(0)
