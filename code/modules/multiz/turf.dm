@@ -96,7 +96,7 @@
 			if (istype(mover, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = mover
 				var/damage = 5
-				for(var/organ in H.organs_by_name)
+				for(var/organ in list(BP_CHEST, BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
 					H.apply_damage(rand(0, damage), BRUTE, organ)
 
 				H.weakened = max(H.weakened,2)
