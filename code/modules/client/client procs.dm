@@ -177,41 +177,7 @@
 		admins -= src
 	directory -= ckey
 	clients -= src
-
-	establish_db_connection()
-	if(dbcon.IsConnected())
-		var/DBQuery/query = dbcon.NewQuery("SELECT id, time FROM connections ORDER BY id DESC LIMIT 1 WHERE player_id = [src.id]")
-		if(!query.Execute() || !query.NextRow())
-			world.log << "Failed to retrieve last connection record for player with id [src.id]."
-			return ..()
-		var/connection_id = query.item[1]
-		var/connection_start = query.item[2]
-		query = dbcon.NewQuery("UPDATE connections SET duration = ROUND(time_to_sec(timediff(Now(), '[connection_start]'))/60) WHERE id = [connection_id]")
-		if(!query.Execute())
-			world.log << "Failed to set last connection duration for player with id [src.id]."
-
-
 	return ..()
-
-
-// here because it's similar to below
-
-// Returns null if no DB connection can be established, or -1 if the requested key was not found in the database
-
-/proc/get_player_age(key)
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		return null
-
-	var/sql_ckey = sql_sanitize_text(ckey(key))
-
-	var/DBQuery/query = dbcon.NewQuery("SELECT datediff(Now(),first_seen) as age FROM players WHERE ckey = '[sql_ckey]'")
-	query.Execute()
-
-	if(query.NextRow())
-		return text2num(query.item[1])
-	else
-		return -1
 
 
 /client/proc/log_client_to_db()
@@ -267,14 +233,6 @@
 		if(get_player_id.NextRow())
 			player_id = get_player_id.item[1]
 			src.id = player_id
-
-
-	// Logging player access
-	var/server = "[world.internet_address]:[world.port]"
-	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO connections (time, server, player_id, ip, cid) VALUES(Now(), '[server]', [player_id], '[sql_ip]', '[sql_computerid]')")
-	if(!query_accesslog.Execute())
-		world.log << "Failed to create connection log entry for user with id [player_id]. Error message: [query_accesslog.ErrorMsg()]."
-
 
 
 #undef TOPIC_SPAM_DELAY
