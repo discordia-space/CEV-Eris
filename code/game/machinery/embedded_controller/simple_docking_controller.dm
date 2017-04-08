@@ -95,12 +95,14 @@
 	signal.data["tag"] = tag_door
 	signal.data["command"] = command
 	post_signal(signal)
+	//world << "D: [src] \ref[src] signal_post ([signal.data["tag"]], [signal.data["command"]])"
 
 ///datum/computer/file/embedded_program/docking/simple/proc/signal_mech_sensor(var/command)
 //	signal_door(command)
 //	return
 
 /datum/computer/file/embedded_program/docking/simple/proc/open_door()
+	//world << "D: [src] \ref[src] open_door called"
 	if(memory["door_status"]["state"] == "closed")
 		//signal_mech_sensor("enable")
 		signal_door("secure_open")
@@ -108,6 +110,7 @@
 		signal_door("lock")
 
 /datum/computer/file/embedded_program/docking/simple/proc/close_door()
+	//world << "D: [src] \ref[src] close_door called"
 	if(memory["door_status"]["state"] == "open")
 		signal_door("secure_close")
 		//signal_mech_sensor("disable")
