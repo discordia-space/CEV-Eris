@@ -157,14 +157,18 @@ datum/track/New(var/title_name, var/audio)
 /obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/tool/wrench))
 		if(playing)
 			StopPlaying()
-		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
-		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		power_change()
-		update_icon()
+		user.visible_message(
+			"<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>",
+			"<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>"
+		)
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			anchored = !anchored
+			power_change()
+			update_icon()
 		return
 	return ..()
 

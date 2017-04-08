@@ -50,13 +50,15 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		G.loc = src
 		charging = G
 		update_icon()
-	else if(portable && istype(G, /obj/item/weapon/wrench))
+	else if(portable && istype(G, /obj/item/weapon/tool/wrench))
 		if(charging)
 			user << "<span class='warning'>Remove [charging] first!</span>"
 			return
+		var/obj/item/weapon/tool/wrench/W = G
+		if(!W.use(user, 0, src))
+			return 0
 		anchored = !anchored
 		user << "You [anchored ? "attached" : "detached"] the recharger."
-		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 
 obj/machinery/recharger/attack_hand(mob/user as mob)
 	if(istype(user,/mob/living/silicon))

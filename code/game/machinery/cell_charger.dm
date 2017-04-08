@@ -58,14 +58,15 @@
 			user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 			chargelevel = -1
 		update_icon()
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(charging)
 			user << "<span class='warning'>Remove the cell first!</span>"
 			return
 
-		anchored = !anchored
-		user << "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			anchored = !anchored
+			user << "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground"
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(charging)

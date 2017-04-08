@@ -77,14 +77,15 @@
 			O.loc = src
 			user << "\blue You add the plasma tank to the generator."
 		else if(!active)
-			if(istype(O, /obj/item/weapon/wrench))
-				anchored = !anchored
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				if(anchored)
-					user << "\blue You secure the generator to the floor."
-				else
-					user << "\blue You unsecure the generator from the floor."
-				makepowernets()
+			if(istype(O, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = O
+				if(W.use(user, 0, src)
+					anchored = !anchored
+					if(anchored)
+						user << "\blue You secure the generator to the floor."
+					else
+						user << "\blue You unsecure the generator from the floor."
+					makepowernets()
 			else if(istype(O, /obj/item/weapon/screwdriver))
 				open = !open
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)

@@ -225,7 +225,7 @@
 		if(13)
 			item_type = "tool"
 			if(prob(25))
-				new_item = new /obj/item/weapon/wrench(src.loc)
+				new_item = new /obj/item/weapon/tool/wrench(src.loc)
 			else if(prob(25))
 				new_item = new /obj/item/weapon/crowbar(src.loc)
 			else

@@ -14,17 +14,17 @@
 	..()
 
 /obj/item/assembly/shock_kit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) && !status)
-		var/turf/T = loc
-		if(ismob(T))
-			T = T.loc
-		part1.loc = T
-		part2.loc = T
-		part1.master = null
-		part2.master = null
-		part1 = null
-		part2 = null
-		qdel(src)
+	if(istype(W, /obj/item/weapon/tool/wrench) && !status)
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			var/turf/T = get_turf(src)
+			part1.loc = T
+			part2.loc = T
+			part1.master = null
+			part2.master = null
+			part1 = null
+			part2 = null
+			qdel(src)
 		return
 	if(istype(W, /obj/item/weapon/screwdriver))
 		status = !status

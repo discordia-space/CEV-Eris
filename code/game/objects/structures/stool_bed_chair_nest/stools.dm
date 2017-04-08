@@ -74,7 +74,7 @@ var/global/list/stool_cache = list() //haha stool
 		user.visible_message("<span class='danger'>[user] breaks [src] over [M]'s back!</span>")
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(M)
-		
+
 		user.remove_from_mob(src)
 		dismantle()
 		qdel(src)
@@ -105,25 +105,33 @@ var/global/list/stool_cache = list() //haha stool
 		padding_material.place_sheet(get_turf(src))
 	qdel(src)
 
-/obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+/obj/item/weapon/stool/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = I
+		W.use(user, 0, src)
 		dismantle()
 		qdel(src)
-	else if(istype(W,/obj/item/stack))
+	else if(istype(I, /obj/item/weapon/wirecutters))
+		if(!padding_material)
+			user << "\The [src] has no padding to remove."
+			return
+		user << "You remove the padding from \the [src]."
+		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
+		remove_padding()
+	else if(istype(I,/obj/item/stack))
 		if(padding_material)
 			user << "\The [src] is already padded."
 			return
-		var/obj/item/stack/C = W
+		var/obj/item/stack/C = I
 		if(C.get_amount() < 1) // How??
 			user.drop_from_inventory(C)
 			qdel(C)
 			return
 		var/padding_type //This is awful but it needs to be like this until tiles are given a material var.
-		if(istype(W,/obj/item/stack/tile/carpet))
+		if(istype(I,/obj/item/stack/tile/carpet))
 			padding_type = "carpet"
-		else if(istype(W,/obj/item/stack/material))
-			var/obj/item/stack/material/M = W
+		else if(istype(I,/obj/item/stack/material))
+			var/obj/item/stack/material/M = I
 			if(M.material && (M.material.flags & MATERIAL_PADDING))
 				padding_type = "[M.material.name]"
 		if(!padding_type)
@@ -136,12 +144,5 @@ var/global/list/stool_cache = list() //haha stool
 		user << "You add padding to \the [src]."
 		add_padding(padding_type)
 		return
-	else if (istype(W, /obj/item/weapon/wirecutters))
-		if(!padding_material)
-			user << "\The [src] has no padding to remove."
-			return
-		user << "You remove the padding from \the [src]."
-		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
-		remove_padding()
 	else
 		..()

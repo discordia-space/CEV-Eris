@@ -100,16 +100,12 @@
 			src.cell = W
 			return
 
-		else if(istype(W,/obj/item/weapon/wrench))
-
+		else if(istype(W,/obj/item/weapon/tool/wrench))
 			if(!air_supply)
 				user << "There is not tank to remove."
 				return
 
-			if(user.r_hand && user.l_hand)
-				air_supply.forceMove(get_turf(user))
-			else
-				user.put_in_hands(air_supply)
+			user.put_in_hands(air_supply)
 			user << "You detach and remove \the [air_supply]."
 			air_supply = null
 			return

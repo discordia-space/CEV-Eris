@@ -88,12 +88,17 @@
 	return 1
 
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+	if(istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(!Wr.use(user, 0, src))
+			return
+
 		anchored = !anchored
-		user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
-					"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
-					"You hear a ratchet")
+		user.visible_message(
+			"[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.",
+			"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.",
+			"You hear a ratchet"
+		)
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))

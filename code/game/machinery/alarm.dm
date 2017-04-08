@@ -836,10 +836,12 @@
 				update_icon()
 				return
 
-			else if(istype(W, /obj/item/weapon/wrench))
+			else if(istype(W, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/Wr = W
+				if(!Wr.use(user, 0, src))
+					return
 				user << "You remove the fire alarm assembly from the wall!"
 				new /obj/item/frame/air_alarm(get_turf(user))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 				qdel(src)
 
 	return ..()
@@ -992,10 +994,12 @@ FIRE ALARM
 					buildstage = 1
 					update_icon()
 
-				else if(istype(W, /obj/item/weapon/wrench))
+				else if(istype(W, /obj/item/weapon/tool/wrench))
+					var/obj/item/weapon/tool/wrench/Wr = W
+					if(!Wr.use(user, 0, src))
+						return
 					user << "You remove the fire alarm assembly from the wall!"
 					new /obj/item/frame/fire_alarm(get_turf(user))
-					playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 					qdel(src)
 		return
 

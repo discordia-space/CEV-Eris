@@ -98,31 +98,35 @@ field_generator power level display
 		return
 
 
-/obj/machinery/field_generator/attackby(obj/item/W, mob/user)
+/obj/machinery/field_generator/attackby(obj/item/I, mob/user)
 	if(active)
 		user << "The [src] needs to be off."
 		return
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(I, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = I
 		switch(state)
 			if(0)
-				state = 1
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] secures [src.name] to the floor.", \
-					"You secure the external reinforcing bolts to the floor.", \
-					"You hear ratchet")
-				src.anchored = 1
+				if(W.use(user, 0, src))
+					state = 1
+					user.visible_message(
+						"[user.name] secures [src.name] to the floor.",
+						"You secure the external reinforcing bolts to the floor.",
+						"You hear ratchet")
+					src.anchored = 1
 			if(1)
-				state = 0
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
-					"You undo the external reinforcing bolts.", \
-					"You hear ratchet")
-				src.anchored = 0
+				if(W.use(user, 0, src))
+					state = 0
+					user.visible_message(
+						"[user.name] unsecures [src.name] reinforcing bolts from the floor.",
+						"You undo the external reinforcing bolts.",
+						"You hear ratchet"
+					)
+					src.anchored = 0
 			if(2)
 				user << "\red The [src.name] needs to be unwelded from the floor."
 				return
-	else if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(I, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/WT = I
 		switch(state)
 			if(0)
 				user << "\red The [src.name] needs to be wrenched to the floor."

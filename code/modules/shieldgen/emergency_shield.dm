@@ -291,9 +291,12 @@
 				user << "<span class='notice'>You repair the [src]!</span>"
 				update_icon()
 
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(locked)
 			user << "The bolts are covered, unlocking this would retract the covers."
+			return
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(!Wr.use(user, 0, src))
 			return
 		if(anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)

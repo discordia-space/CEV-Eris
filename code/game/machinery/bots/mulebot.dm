@@ -112,8 +112,11 @@
 			icon_state = "mulebot0"
 
 		updateDialog()
-	else if (istype(I, /obj/item/weapon/wrench))
+	else if (istype(I, /obj/item/weapon/tool/wrench))
 		if (src.health < maxhealth)
+			var/obj/item/weapon/tool/wrench/W = I
+			if(!W.use(user, 0, src))
+				return
 			src.health = min(maxhealth, src.health+25)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			user.visible_message(

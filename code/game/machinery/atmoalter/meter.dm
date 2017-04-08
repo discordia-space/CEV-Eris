@@ -94,15 +94,17 @@
 	return ..()
 
 /obj/machinery/meter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/weapon/tool/wrench))
 		return ..()
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+
 	user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
-	if (do_after(user, 40, src))
-		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
-			"You hear ratchet.")
+	var/obj/item/weapon/tool/wrench/Wr = W
+	if(Wr.use(user, 40, src))
+		user.visible_message(
+			"<span class='notice'>\The [user] unfastens \the [src].</span>",
+			"<span class='notice'>You have unfastened \the [src].</span>",
+			"You hear ratchet."
+		)
 		new /obj/item/pipe_meter(src.loc)
 		qdel(src)
 

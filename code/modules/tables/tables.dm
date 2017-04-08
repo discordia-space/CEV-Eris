@@ -118,7 +118,10 @@
 		else
 			user << "<span class='warning'>You don't have enough carpet!</span>"
 
-	if(!reinforced && !carpeted && material && istype(W, /obj/item/weapon/wrench))
+	if(!reinforced && !carpeted && material && istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(!Wr.use(user, 0, src))
+			return 1
 		remove_material(W, user)
 		if(!material)
 			update_connections(1)
@@ -129,8 +132,10 @@
 			update_material()
 		return 1
 
-	if(!carpeted && !reinforced && !material && istype(W, /obj/item/weapon/wrench))
-		dismantle(W, user)
+	if(!carpeted && !reinforced && !material && istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			dismantle(W, user)
 		return 1
 
 	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))

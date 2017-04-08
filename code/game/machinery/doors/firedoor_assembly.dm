@@ -46,11 +46,15 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 			qdel(src)
 		else
 			user << "<span class='warning'>You must secure \the [src] first!</span>"
-	else if(istype(C, /obj/item/weapon/wrench))
+	else if(istype(C, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = C
+		if(!W.use(user, 0, src))
+			return
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
-							  "You have [anchored ? "" : "un" ]secured \the [src]!")
+		user.visible_message(
+			"<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
+			"You have [anchored ? "" : "un" ]secured \the [src]!"
+		)
 		update_icon()
 	else if(!anchored && istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C

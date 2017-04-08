@@ -36,11 +36,21 @@
 
 /obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
 
-	if (istype(W, /obj/item/weapon/wrench))
-		var/m = input("Choose work mode", "Mode") as null|anything in mode
-		mode[m] = !mode[m]
-		var/O = mode[m]
-		user.visible_message("<span class='notice'>[usr] has set \the [src] [m] mode [!O?"off":"on"].</span>", "<span class='notice'>You set \the [src] [m] mode [!O?"off":"on"].</span>")
+	if (istype(W, /obj/item/weapon/tool/wrench))
+		var/selected = input("Choose work mode", "Mode") as null|anything in mode
+		if(!selected)
+			return
+
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(!Wr.use(user, 0, src))
+			return
+
+		mode[selected] = !mode[selected]
+		var/O = mode[selected]
+		user.visible_message(
+			"<span class='notice'>[usr] has set \the [src] [selected] mode [!O?"off":"on"].</span>",
+			"<span class='notice'>You set \the [src] [selected] mode [!O?"off":"on"].</span>"
+		)
 		return
 
 	if(istype(W, /obj/item/stack/tile))

@@ -432,7 +432,7 @@ Buildable meters
 /obj/item/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	..()
 	//*
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/weapon/tool/wrench))
 		return ..()
 	if (!isturf(src.loc))
 		return 1
@@ -1140,11 +1140,13 @@ Buildable meters
 			P.initialize()
 			P.build_network()
 
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	user.visible_message( \
-		"[user] fastens the [src].", \
-		"<span class='notice'>You have fastened the [src].</span>", \
-		"You hear ratchet.")
+	var/obj/item/weapon/tool/wrench/Wr = W
+	Wr.use(user, 0, src)
+	user.visible_message(
+		"[user] fastens the [src].",
+		"<span class='notice'>You have fastened the [src].</span>",
+		"You hear ratchet."
+	)
 	qdel(src)	// remove the pipe item
 
 	return
@@ -1165,15 +1167,16 @@ Buildable meters
 /obj/item/pipe_meter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	..()
 
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/weapon/tool/wrench))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
 		user << "<span class='warning'>You need to fasten it to a pipe</span>"
 		return 1
-	new/obj/machinery/meter( src.loc )
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	user << "<span class='notice'>You have fastened the meter to the pipe</span>"
-	qdel(src)
+	var/obj/item/weapon/tool/wrench/Wr = W
+	if(Wr.use(user, 0, src))
+		new/obj/machinery/meter( src.loc )
+		user << "<span class='notice'>You have fastened the meter to the pipe</span>"
+		qdel(src)
 //not sure why these are necessary
 #undef PIPE_SIMPLE_STRAIGHT
 #undef PIPE_SIMPLE_BENT

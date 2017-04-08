@@ -433,11 +433,13 @@
 			try_install_component(user, C)
 		else
 			user << "This component is too large for \the [src]."
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/tool/wrench))
 		var/list/components = get_all_components()
 		if(components.len)
 			user << "Remove all components from \the [src] before disassembling it."
 			return
+		var/obj/item/weapon/tool/wrench/Wrench = W
+		Wrench.use(user, 0, src)
 		new /obj/item/stack/material/steel( get_turf(src.loc), steel_sheet_cost )
 		src.visible_message("\The [src] has been disassembled by [user].")
 		relay_qdel()

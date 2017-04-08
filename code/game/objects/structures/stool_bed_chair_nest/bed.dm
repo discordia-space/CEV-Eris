@@ -89,10 +89,11 @@
 				return
 
 /obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		dismantle()
-		qdel(src)
+	if(istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			dismantle()
+			qdel(src)
 	else if(istype(W,/obj/item/stack))
 		if(padding_material)
 			user << "\The [src] is already padded."
@@ -191,7 +192,7 @@
 	return // Doesn't care about material or anything else.
 
 /obj/structure/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) || istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/weapon/tool/wrench) || istype(W,/obj/item/stack) || istype(W, /obj/item/weapon/wirecutters))
 		return
 	else if(istype(W,/obj/item/roller_holder))
 		if(buckled_mob)

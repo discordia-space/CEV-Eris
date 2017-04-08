@@ -55,25 +55,26 @@
 /obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(src.broken > 0)
 		if(src.broken == 2 && istype(O, /obj/item/weapon/screwdriver)) // If it's broken and they're using a screwdriver
-			user.visible_message( \
-				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
-				"<span class='notice'>You start to fix part of the microwave.</span>" \
+			user.visible_message(
+				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>",
+				"<span class='notice'>You start to fix part of the microwave.</span>"
 			)
 			if (do_after(user, 20, src))
-				user.visible_message( \
-					"<span class='notice'>\The [user] fixes part of the microwave.</span>", \
-					"<span class='notice'>You have fixed part of the microwave.</span>" \
+				user.visible_message(
+					"<span class='notice'>\The [user] fixes part of the microwave.</span>",
+					"<span class='notice'>You have fixed part of the microwave.</span>"
 				)
 				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && istype(O, /obj/item/weapon/wrench)) // If it's broken and they're doing the wrench
-			user.visible_message( \
-				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
-				"<span class='notice'>You start to fix part of the microwave.</span>" \
+		else if(src.broken == 1 && istype(O, /obj/item/weapon/tool/wrench)) // If it's broken and they're doing the wrench
+			var/obj/item/weapon/tool/wrench/W = O
+			user.visible_message(
+				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>",
+				"<span class='notice'>You start to fix part of the microwave.</span>"
 			)
-			if (do_after(user, 20, src))
-				user.visible_message( \
-					"<span class='notice'>\The [user] fixes the microwave.</span>", \
-					"<span class='notice'>You have fixed the microwave.</span>" \
+			if(W.use(user, 20, src))
+				user.visible_message(
+					"<span class='notice'>\The [user] fixes the microwave.</span>",
+					"<span class='notice'>You have fixed the microwave.</span>"
 				)
 				src.icon_state = "mw"
 				src.broken = 0 // Fix it!

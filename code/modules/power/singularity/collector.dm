@@ -71,19 +71,20 @@ var/global/list/rad_collectors = list()
 		if(P && !src.locked)
 			eject()
 			return 1
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(P)
 			user << "\blue Remove the plasma tank first."
 			return 1
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-		src.anchored = !src.anchored
-		user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
-			"You [anchored? "secure":"undo"] the external bolts.", \
-			"You hear a ratchet")
-		if(anchored)
-			connect_to_network()
-		else
-			disconnect_from_network()
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			src.anchored = !src.anchored
+			user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
+				"You [anchored? "secure":"undo"] the external bolts.", \
+				"You hear a ratchet")
+			if(anchored)
+				connect_to_network()
+			else
+				disconnect_from_network()
 		return 1
 	else if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
 		if (src.allowed(user))

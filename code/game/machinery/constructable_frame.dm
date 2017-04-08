@@ -42,11 +42,12 @@
 							state = 2
 							icon_state = "box_1"
 				else
-					if(istype(P, /obj/item/weapon/wrench))
-						playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-						user << "<span class='notice'>You dismantle the frame</span>"
-						new /obj/item/stack/material/steel(src.loc, 5)
-						qdel(src)
+					if(istype(P, /obj/item/weapon/tool/wrench))
+						var/obj/item/weapon/tool/wrench/W = P
+						if(W.use(user, 0, src))
+							user << "<span class='notice'>You dismantle the frame</span>"
+							new /obj/item/stack/material/steel(src.loc, 5)
+							qdel(src)
 			if(2)
 				if(istype(P, /obj/item/weapon/circuitboard))
 					var/obj/item/weapon/circuitboard/B = P

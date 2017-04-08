@@ -1057,13 +1057,14 @@ proc/get_mob_with_client_list()
 
 //Quick type checks for some tools
 var/global/list/common_tools = list(
-/obj/item/stack/cable_coil,
-/obj/item/weapon/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wirecutters,
-/obj/item/device/multitool,
-/obj/item/weapon/crowbar)
+	/obj/item/stack/cable_coil,
+	/obj/item/weapon/tool/wrench,
+	/obj/item/weapon/weldingtool,
+	/obj/item/weapon/screwdriver,
+	/obj/item/weapon/wirecutters,
+	/obj/item/device/multitool,
+	/obj/item/weapon/crowbar
+)
 
 /proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
@@ -1071,7 +1072,7 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iswrench(O)
-	if(istype(O, /obj/item/weapon/wrench))
+	if(istype(O, /obj/item/weapon/tool/wrench))
 		return 1
 	return 0
 

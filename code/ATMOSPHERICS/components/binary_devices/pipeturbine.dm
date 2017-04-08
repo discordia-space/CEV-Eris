@@ -89,11 +89,14 @@
 			overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/wrench))
-			anchored = !anchored
-			user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"
+		if(istype(W, /obj/item/weapon/tool/wrench))
+			var/obj/item/weapon/tool/wrench/Wr = W
+			if(!Wr.use(user, 0, src))
+				return
 
+			anchored = !anchored
 			if(anchored)
+				user << "<span class='notice'>You secure the bolts holding \the [src] to the floor.</span>"
 				if(dir & (NORTH|SOUTH))
 					initialize_directions = EAST|WEST
 				else if(dir & (EAST|WEST))
@@ -108,6 +111,7 @@
 					node2.initialize()
 					node2.build_network()
 			else
+				user << "<span class='notice'>You unsecure the bolts holding \the [src] to the floor.</span>"
 				if(node1)
 					node1.disconnect(src)
 					qdel(network1)
@@ -260,7 +264,10 @@
 
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/wrench))
+		if(istype(W, /obj/item/weapon/tool/wrench))
+			var/obj/item/weapon/tool/wrench/Wr = W
+			if(!Wr.use(user, 0, src))
+				return
 			anchored = !anchored
 			turbine = null
 			user << "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>"

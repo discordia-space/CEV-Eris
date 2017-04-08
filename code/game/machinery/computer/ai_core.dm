@@ -14,9 +14,9 @@
 
 	switch(state)
 		if(0)
-			if(istype(P, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20, src))
+			if(istype(P, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = P
+				if(W.use(user, 20, src))
 					user << "<span class='notice'>You wrench the frame into place.</span>"
 					anchored = 1
 					state = 1
@@ -33,9 +33,9 @@
 					qdel(src)
 					return
 		if(1)
-			if(istype(P, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20, src))
+			if(istype(P, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = P
+				if(W.use(user, 20, src))
 					user << "<span class='notice'>You unfasten the frame.</span>"
 					anchored = 0
 					state = 0
@@ -226,10 +226,11 @@
 		else
 			user << "<span class='danger'>ERROR:</span> Unable to locate artificial intelligence."
 		return
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
 		if(anchored)
 			user.visible_message("<span class='notice'>\The [user] starts to unbolt \the [src] from the plating...</span>")
-			if(!do_after(user,40,src))
+			if(!Wr.use(user,40,src))
 				user.visible_message("<span class='notice'>\The [user] decides not to unbolt \the [src].</span>")
 				return
 			user.visible_message("<span class='notice'>\The [user] finishes unfastening \the [src]!</span>")
@@ -237,7 +238,7 @@
 			return
 		else
 			user.visible_message("<span class='notice'>\The [user] starts to bolt \the [src] to the plating...</span>")
-			if(!do_after(user,40,src))
+			if(!Wr.use(user,40,src))
 				user.visible_message("<span class='notice'>\The [user] decides not to bolt \the [src].</span>")
 				return
 			user.visible_message("<span class='notice'>\The [user] finishes fastening down \the [src]!</span>")

@@ -134,21 +134,26 @@
 
 /obj/machinery/power/am_control_unit/attackby(obj/item/W, mob/user)
 	if(!istype(W) || !user) return
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
 		if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			user.visible_message("[user.name] secures the [src.name] to the floor.", \
-				"You secure the anchor bolts to the floor.", \
-				"You hear a ratchet")
-			src.anchored = 1
-			connect_to_network()
+			if(Wr.use(user, 0, src))
+				user.visible_message(
+					"[user.name] secures the [src.name] to the floor.",
+					"You secure the anchor bolts to the floor.",
+					"You hear a ratchet"
+				)
+				src.anchored = 1
+				connect_to_network()
 		else if(!linked_shielding.len > 0)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			user.visible_message("[user.name] unsecures the [src.name].", \
-				"You remove the anchor bolts.", \
-				"You hear a ratchet")
-			src.anchored = 0
-			disconnect_from_network()
+			if(Wr.use(user, 0, src))
+				user.visible_message(
+					"[user.name] unsecures the [src.name].",
+					"You remove the anchor bolts.",
+					"You hear a ratchet"
+				)
+				src.anchored = 0
+				disconnect_from_network()
 		else
 			user << "\red Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!"
 		return
@@ -161,9 +166,11 @@
 		user.remove_from_mob(W)
 		W.loc = src
 		user.update_icons()
-		user.visible_message("[user.name] loads an [W.name] into the [src.name].", \
-				"You load an [W.name].", \
-				"You hear a thunk.")
+		user.visible_message(
+			"[user.name] loads an [W.name] into the [src.name].",
+			"You load an [W.name].",
+			"You hear a thunk."
+		)
 		return
 
 	if(W.force >= 20)

@@ -36,9 +36,9 @@
 /obj/structure/computerframe/attackby(obj/item/P as obj, mob/user as mob)
 	switch(state)
 		if(0)
-			if(istype(P, /obj/item/weapon/wrench))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20, src))
+			if(istype(P, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = P
+				if(W.use(user, 20, src))
 					user << "<span class='notice'>You wrench the frame into place.</span>"
 					src.anchored = 1
 					src.state = 1
@@ -54,9 +54,9 @@
 					new /obj/item/stack/material/steel( src.loc, 5 )
 					qdel(src)
 		if(1)
-			if(istype(P, /obj/item/weapon/wrench))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20, src))
+			if(istype(P, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = P
+				if(W.use(user, 20, src))
 					user << "<span class='notice'>You unfasten the frame.</span>"
 					src.anchored = 0
 					src.state = 0

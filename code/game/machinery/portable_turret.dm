@@ -296,7 +296,7 @@ var/list/turret_icons
 					user << "<span class='notice'>You remove the turret but did not manage to salvage anything.</span>"
 				qdel(src) // qdel
 
-	else if((istype(I, /obj/item/weapon/wrench)))
+	else if(istype(I, /obj/item/weapon/tool/wrench))
 		if(enabled || raised)
 			user << "<span class='warning'>You cannot unsecure an active turret!</span>"
 			return
@@ -307,21 +307,20 @@ var/list/turret_icons
 			user << "<span class='warning'>Cannot secure turrets in space!</span>"
 			return
 
-		user.visible_message( \
-				"<span class='warning'>[user] begins [anchored ? "un" : ""]securing the turret.</span>", \
-				"<span class='notice'>You begin [anchored ? "un" : ""]securing the turret.</span>" \
+		user.visible_message(
+				"<span class='warning'>[user] begins [anchored ? "un" : ""]securing the turret.</span>",
+				"<span class='notice'>You begin [anchored ? "un" : ""]securing the turret.</span>"
 			)
 
 		wrenching = 1
-		if(do_after(user, 50, src))
+		var/obj/item/weapon/tool/wrench/W = I
+		if(W.use(user, 50, src))
 			//This code handles moving the turret around. After all, it's a portable turret!
 			if(!anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 				anchored = 1
 				update_icon()
 				user << "<span class='notice'>You secure the exterior bolts on the turret.</span>"
-			else if(anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
+			else
 				anchored = 0
 				user << "<span class='notice'>You unsecure the exterior bolts on the turret.</span>"
 				update_icon()
@@ -677,11 +676,12 @@ var/list/turret_icons
 	//this is a bit unwieldy but self-explanatory
 	switch(build_step)
 		if(0)	//first step
-			if(istype(I, /obj/item/weapon/wrench) && !anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << "<span class='notice'>You secure the external bolts.</span>"
-				anchored = 1
-				build_step = 1
+			if(istype(I, /obj/item/weapon/tool/wrench) && !anchored)
+				var/obj/item/weapon/tool/wrench/W = I
+				if(W.use(user, 0, src))
+					user << "<span class='notice'>You secure the external bolts.</span>"
+					anchored = 1
+					build_step = 1
 				return
 
 			else if(istype(I, /obj/item/weapon/crowbar) && !anchored)
@@ -702,19 +702,21 @@ var/list/turret_icons
 					user << "<span class='warning'>You need two sheets of metal to continue construction.</span>"
 				return
 
-			else if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user << "<span class='notice'>You unfasten the external bolts.</span>"
-				anchored = 0
-				build_step = 0
+			else if(istype(I, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = I
+				if(W.use(user, 0, src))
+					user << "<span class='notice'>You unfasten the external bolts.</span>"
+					anchored = 0
+					build_step = 0
 				return
 
 
 		if(2)
-			if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << "<span class='notice'>You bolt the metal armor into place.</span>"
-				build_step = 3
+			if(istype(I, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = I
+				if(W.use(user, 0, src))
+					user << "<span class='notice'>You bolt the metal armor into place.</span>"
+					build_step = 3
 				return
 
 			else if(istype(I, /obj/item/weapon/weldingtool))
@@ -752,11 +754,12 @@ var/list/turret_icons
 				qdel(I) //delete the gun :(
 				return
 
-			else if(istype(I, /obj/item/weapon/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << "<span class='notice'>You remove the turret's metal armor bolts.</span>"
-				build_step = 2
-				return
+			else if(istype(I, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = I
+				if(W.use(user, 0, src))
+					user << "<span class='notice'>You remove the turret's metal armor bolts.</span>"
+					build_step = 2
+					return
 
 		if(4)
 			if(is_proximity_sensor(I))

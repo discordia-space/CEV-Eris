@@ -18,7 +18,11 @@
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
-		usr.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
+		usr.visible_message(
+			"<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>",
+			"<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>",
+			"You hear reverberating porcelain."
+		)
 		swirlie.adjustBruteLoss(8)
 		return
 
@@ -47,7 +51,11 @@
 		user << "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>"
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		if(do_after(user, 30, src))
-			user.visible_message("<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "You hear grinding porcelain.")
+			user.visible_message(
+				"<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>",
+				"<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>",
+				"You hear grinding porcelain."
+			)
 			cistern = !cistern
 			update_icon()
 			return
@@ -63,14 +71,24 @@
 					user << "<span class='notice'>[GM.name] needs to be on the toilet.</span>"
 					return
 				if(open && !swirlie)
-					user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
+					user.visible_message(
+						"<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>",
+						"<span class='notice'>You start to give [GM.name] a swirlie!</span>"
+					)
 					swirlie = GM
 					if(do_after(user, 30, src))
-						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+						user.visible_message(
+							"<span class='danger'>[user] gives [GM.name] a swirlie!</span>",
+							"<span class='notice'>You give [GM.name] a swirlie!</span>",
+							"You hear a toilet flushing."
+						)
 						GM.adjustOxyLoss(5)
 					swirlie = null
 				else
-					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+					user.visible_message(
+						"<span class='danger'>[user] slams [GM.name] into the [src]!</span>",
+						"<span class='notice'>You slam [GM.name] into the [src]!</span>"
+					)
 					GM.adjustBruteLoss(8)
 			else
 				user << "<span class='notice'>You need a tighter grip.</span>"
@@ -117,7 +135,10 @@
 				if(!GM.loc == get_turf(src))
 					user << "<span class='notice'>[GM.name] needs to be on the urinal.</span>"
 					return
-				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+				user.visible_message(
+					"<span class='danger'>[user] slams [GM.name] into the [src]!</span>",
+					"<span class='notice'>You slam [GM.name] into the [src]!</span>"
+				)
 				GM.adjustBruteLoss(8)
 			else
 				user << "<span class='notice'>You need a tighter grip.</span>"
@@ -166,13 +187,18 @@
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)
 		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
-	if(istype(I, /obj/item/weapon/wrench))
+	if(istype(I, /obj/item/weapon/tool/wrench))
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
+		if(!newtemp)
+			return
 		user << "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>"
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 50, src))
+		var/obj/item/weapon/tool/wrench/W = I
+		if(W.use(user, 50, src))
 			watertemp = newtemp
-			user.visible_message("<span class='notice'>\The [user] adjusts \the [src] with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
+			user.visible_message(
+				"<span class='notice'>\The [user] adjusts \the [src] with \the [I].</span>",
+				"<span class='notice'>You adjust the shower with \the [I].</span>"
+			)
 			add_fingerprint(user)
 
 /obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up

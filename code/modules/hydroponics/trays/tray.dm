@@ -496,15 +496,16 @@
 		qdel(O)
 		check_health()
 
-	else if(mechanical && istype(O, /obj/item/weapon/wrench))
+	else if(mechanical && istype(O, /obj/item/weapon/tool/wrench))
 
 		//If there's a connector here, the portable_atmospherics setup can handle it.
 		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
 			return ..()
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		anchored = !anchored
-		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
+		var/obj/item/weapon/tool/wrench/W = O
+		if(W.use(user, 0, src))
+			anchored = !anchored
+			user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
 
 	else if(O.force && seed)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)

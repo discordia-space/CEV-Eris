@@ -224,7 +224,11 @@
 
 	var/obj/structure/disposalpipe/CP = locate() in T
 
-	if(istype(I, /obj/item/weapon/wrench))
+	if(istype(I, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = I
+		if(!W.use(user, 0, src))
+			return
+
 		if(anchored)
 			anchored = 0
 			if(is_pipe)
@@ -259,7 +263,6 @@
 			else
 				density = 1 // We don't want disposal bins or outlets to go density 0
 			user << "You attach the [nice_type] to the underfloor."
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		update()
 
 	else if(istype(I, /obj/item/weapon/weldingtool))

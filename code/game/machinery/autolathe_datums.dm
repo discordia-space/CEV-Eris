@@ -84,7 +84,7 @@
 
 /datum/autolathe/recipe/wrench
 	name = "wrench"
-	path = /obj/item/weapon/wrench
+	path = /obj/item/weapon/tool/wrench
 	category = "Tools"
 
 /datum/autolathe/recipe/hatchet

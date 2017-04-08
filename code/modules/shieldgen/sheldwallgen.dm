@@ -158,27 +158,27 @@
 		CF.set_dir(field_dir)
 
 
-/obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/wrench))
+/obj/machinery/shieldwallgen/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/tool/wrench))
 		if(active)
 			user << "Turn off the field generator first."
 			return
+		else
+			var/obj/item/weapon/tool/wrench/W = I
+			if(!W.use(user, 0, src))
+				return
+			if(state == 0)
+				state = 1
+				user << "You secure the external reinforcing bolts to the floor."
+				src.anchored = 1
+				return
+			else if(state == 1)
+				state = 0
+				user << "You undo the external reinforcing bolts."
+				src.anchored = 0
+				return
 
-		else if(state == 0)
-			state = 1
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			user << "You secure the external reinforcing bolts to the floor."
-			src.anchored = 1
-			return
-
-		else if(state == 1)
-			state = 0
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			user << "You undo the external reinforcing bolts."
-			src.anchored = 0
-			return
-
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
 		if (src.allowed(user))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -187,7 +187,7 @@
 
 	else
 		src.add_fingerprint(user)
-		visible_message("\red The [src.name] has been hit with \the [W.name] by [user.name]!")
+		visible_message("\red The [src.name] has been hit with \the [I.name] by [user.name]!")
 
 /obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
 	var/obj/machinery/shieldwall/F
@@ -222,24 +222,24 @@
 
 //////////////Containment Field START
 /obj/machinery/shieldwall
-		name = "Shield"
-		desc = "An energy shield."
-		icon = 'icons/effects/effects.dmi'
-		icon_state = "shieldwall"
-		anchored = 1
-		density = 1
-		unacidable = 1
-		light_range = 3
-		var/needs_power = 0
-		var/active = 1
-//		var/power = 10
-		var/delay = 5
-		var/last_active
-		var/mob/U
-		var/obj/machinery/shieldwallgen/gen_primary
-		var/obj/machinery/shieldwallgen/gen_secondary
-		var/power_usage = 2500	//how much power it takes to sustain the shield
-		var/generate_power_usage = 7500	//how much power it takes to start up the shield
+	name = "Shield"
+	desc = "An energy shield."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shieldwall"
+	anchored = 1
+	density = 1
+	unacidable = 1
+	light_range = 3
+	var/needs_power = 0
+	var/active = 1
+//	var/power = 10
+	var/delay = 5
+	var/last_active
+	var/mob/U
+	var/obj/machinery/shieldwallgen/gen_primary
+	var/obj/machinery/shieldwallgen/gen_secondary
+	var/power_usage = 2500	//how much power it takes to sustain the shield
+	var/generate_power_usage = 7500	//how much power it takes to start up the shield
 
 /obj/machinery/shieldwall/New(var/obj/machinery/shieldwallgen/A, var/obj/machinery/shieldwallgen/B)
 	..()

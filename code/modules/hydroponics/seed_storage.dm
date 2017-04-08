@@ -217,10 +217,11 @@
 		else
 			user << "<span class='notice'>There are no seeds in \the [O.name].</span>"
 		return
-	else if(istype(O, /obj/item/weapon/wrench))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		anchored = !anchored
-		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
+	else if(istype(O, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = O
+		if(W.use(user, 0, src))
+			anchored = !anchored
+			user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
 
 /obj/machinery/seed_storage/proc/add(var/obj/item/seeds/O as obj)
 	if (istype(O.loc, /mob))
