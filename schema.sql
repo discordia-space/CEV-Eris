@@ -52,7 +52,7 @@ CREATE TABLE `bans` (
   `banned_by_id` int(11) NOT NULL,
   `expiration_time` datetime NOT NULL,
 
-  `unbanned` tinyint(1) DEFAULT 0,
+  `unbanned` tinyint(1) DEFAULT NULL,
   `unbanned_time` datetime DEFAULT NULL,
   `unbanned_by_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
