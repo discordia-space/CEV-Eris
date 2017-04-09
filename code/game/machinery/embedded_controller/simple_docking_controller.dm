@@ -29,22 +29,22 @@
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 
-	var/clean = 0
+	var/clean = FALSE
 	switch(href_list["command"])	//anti-HTML-hacking checks
 		if("force_door")
-			clean = 1
+			clean = TRUE
 		if("toggle_override")
-			clean = 1
+			clean = TRUE
 
 	if(clean)
 		program.receive_user_command(href_list["command"])
 
-	return 0
+	return FALSE
 
 
 //A docking controller program for a simple door based docking port
@@ -95,14 +95,12 @@
 	signal.data["tag"] = tag_door
 	signal.data["command"] = command
 	post_signal(signal)
-	//world << "D: [src] \ref[src] signal_post ([signal.data["tag"]], [signal.data["command"]])"
 
 ///datum/computer/file/embedded_program/docking/simple/proc/signal_mech_sensor(var/command)
 //	signal_door(command)
 //	return
 
 /datum/computer/file/embedded_program/docking/simple/proc/open_door()
-	//world << "D: [src] \ref[src] open_door called"
 	if(memory["door_status"]["state"] == "closed")
 		//signal_mech_sensor("enable")
 		signal_door("secure_open")
@@ -110,7 +108,6 @@
 		signal_door("lock")
 
 /datum/computer/file/embedded_program/docking/simple/proc/close_door()
-	//world << "D: [src] \ref[src] close_door called"
 	if(memory["door_status"]["state"] == "open")
 		signal_door("secure_close")
 		//signal_mech_sensor("disable")

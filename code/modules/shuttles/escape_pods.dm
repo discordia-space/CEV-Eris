@@ -58,17 +58,18 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/Topic(href, href_list)
-	if(..())
+	if(..(href, href_list))
 		return TRUE
 
-	if("manual_arm")
-		if(!pod.arming_controller.armed)
-			pod.arming_controller.arm()
-	if("force_launch")
-		if (pod.can_force())
-			pod.force_launch(src)
-		else if (emergency_shuttle.pods_departed && pod.can_launch())	//allow players to manually launch ahead of time if the shuttle leaves
-			pod.launch(src)
+	switch(href_list["command"])
+		if("manual_arm")
+			if(!pod.arming_controller.armed)
+				pod.arming_controller.arm()
+		if("force_launch")
+			if (pod.can_force())
+				pod.force_launch(src)
+			else if (emergency_shuttle.pods_departed && pod.can_launch())	//allow players to manually launch ahead of time if the shuttle leaves
+				pod.launch(src)
 
 	return FALSE
 
@@ -130,8 +131,6 @@
 /datum/computer/file/embedded_program/docking/simple/escape_pod/proc/unarm()
 	if(armed)
 		armed = FALSE
-		close_door()
-
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/receive_user_command(command)
 	if (!armed)
