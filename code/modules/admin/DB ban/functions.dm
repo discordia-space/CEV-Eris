@@ -455,9 +455,8 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				var/unbanned = select_query.item[10]
 				var/unbanned_by_id = select_query.item[11]
 				var/unbantime = select_query.item[12]
-				var/edits = select_query.item[13]
-				var/ip = select_query.item[14]
-				var/cid = select_query.item[15]
+				var/ip = select_query.item[13]
+				var/cid = select_query.item[14]
 				var/target_ckey
 				var/banned_by_ckey
 				var/unbanned_by_ckey
