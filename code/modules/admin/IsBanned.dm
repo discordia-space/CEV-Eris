@@ -2,7 +2,7 @@
 //Blocks an attempt to connect before even creating our client datum thing.
 world/IsBanned(key, address, computer_id)
 	// TODO: remove debug output
-	world.log << "Perform IsBanned proc for [ckey]."
+	world.log << "Perform IsBanned proc for [key]."
 	if(ckey(key) in admin_datums)
 		return ..()
 
