@@ -1,6 +1,6 @@
 #ifndef OVERRIDE_BAN_SYSTEM
 //Blocks an attempt to connect before even creating our client datum thing.
-world/IsBanned(key,address,computer_id)
+world/IsBanned(key, address, computer_id)
 	if(ckey(key) in admin_datums)
 		return ..()
 
@@ -60,7 +60,9 @@ world/IsBanned(key,address,computer_id)
 
 		var/DBQuery/query = dbcon.NewQuery("SELECT target_id, ip, cid, banned_by_id, reason, expiration_time, duration, time, type FROM bans WHERE (target_id = [id] [ipquery] [cidquery]) AND (type = 'PERMABAN'  OR (type = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
 
-		query.Execute()
+		if(!query.Execute())
+			world.log << "Trying to fetch ban record for [ckeytext] but got error: [query.ErrorMsg()]."
+			return
 
 		while(query.NextRow())
 			var/target_id = query.item[1]
@@ -98,4 +100,3 @@ world/IsBanned(key,address,computer_id)
 		return ..()	//default pager ban stuff
 #endif
 #undef OVERRIDE_BAN_SYSTEM
-

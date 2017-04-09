@@ -6,7 +6,7 @@
 	arming_controller = locate(dock_target_station)
 	if(!istype(arming_controller))
 		world << "<span class='danger'>warning: escape pod with station dock tag [dock_target_station] could not find it's dock target!</span>"
-	
+
 	if(docking_controller)
 		var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/controller_master = docking_controller.master
 		if(!istype(controller_master))
@@ -16,20 +16,22 @@
 
 /datum/shuttle/ferry/escape_pod/can_launch()
 	if(arming_controller && !arming_controller.armed)	//must be armed
-		return 0
+		return FALSE
 	if(location)
-		return 0	//it's a one-way trip.
+		return FALSE	//it's a one-way trip.
 	return ..()
 
 /datum/shuttle/ferry/escape_pod/can_force()
 	if (arming_controller.eject_time && world.time < arming_controller.eject_time + 50)
-		return 0	//dont allow force launching until 5 seconds after the arming controller has reached it's countdown
+		return FALSE	//dont allow force launching until 5 seconds after the arming controller has reached it's countdown
 	return ..()
 
 /datum/shuttle/ferry/escape_pod/can_cancel()
-	return 0
+	return FALSE
 
-	
+/datum/shuttle/ferry/escape_pod/arrived()
+	emergency_shuttle.pods_arrived()
+
 //This controller goes on the escape pod itself
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod
 	name = "escape pod controller"
@@ -43,7 +45,7 @@
 		"override_enabled" = docking_program.override_enabled,
 		"door_state" = 	docking_program.memory["door_status"]["state"],
 		"door_lock" = 	docking_program.memory["door_status"]["lock"],
-		"can_force" = pod.can_force() || (emergency_shuttle.departed && pod.can_launch()),	//allow players to manually launch ahead of time if the shuttle leaves
+		"can_force" = pod.can_force() || (emergency_shuttle.pods_departed && pod.can_launch()),	//allow players to manually launch ahead of time if the shuttle leaves
 		"is_armed" = pod.arming_controller.armed,
 	)
 
@@ -56,18 +58,20 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/Topic(href, href_list)
-	if(..())
-		return 1
-	
-	if("manual_arm")
-		pod.arming_controller.arm()
-	if("force_launch")
-		if (pod.can_force())
-			pod.force_launch(src)
-		else if (emergency_shuttle.departed && pod.can_launch())	//allow players to manually launch ahead of time if the shuttle leaves
-			pod.launch(src)
+	if(..(href, href_list))
+		return TRUE
 
-	return 0
+	switch(href_list["command"])
+		if("manual_arm")
+			if(!pod.arming_controller.armed)
+				pod.arming_controller.arm()
+		if("force_launch")
+			if (pod.can_force())
+				pod.force_launch(src)
+			else if (emergency_shuttle.pods_departed && pod.can_launch())	//allow players to manually launch ahead of time if the shuttle leaves
+				pod.launch(src)
+
+	return FALSE
 
 
 
@@ -87,7 +91,7 @@
 	if (istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
 		var/datum/computer/file/embedded_program/docking/simple/escape_pod/P = docking_program
 		armed = P.armed
-	
+
 	data = list(
 		"docking_status" = docking_program.get_docking_status(),
 		"override_enabled" = docking_program.override_enabled,
@@ -105,25 +109,28 @@
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/emag_act(var/remaining_charges, var/mob/user)
 	if (!emagged)
 		user << "<span class='notice'>You emag the [src], arming the escape pod!</span>"
-		emagged = 1
+		emagged = TRUE
 		if (istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
 			var/datum/computer/file/embedded_program/docking/simple/escape_pod/P = docking_program
 			if (!P.armed)
 				P.arm()
-		return 1
+		return TRUE
 
 //A docking controller program for a simple door based docking port
 /datum/computer/file/embedded_program/docking/simple/escape_pod
-	var/armed = 0
+	var/armed = FALSE
 	var/eject_delay = 10	//give latecomers some time to get out of the way if they don't make it onto the pod
 	var/eject_time = null
-	var/closing = 0
+	var/closing = FALSE
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/proc/arm()
 	if(!armed)
-		armed = 1
+		armed = TRUE
 		open_door()
 
+/datum/computer/file/embedded_program/docking/simple/escape_pod/proc/unarm()
+	if(armed)
+		armed = FALSE
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/receive_user_command(command)
 	if (!armed)
@@ -134,13 +141,13 @@
 	..()
 	if (eject_time && world.time >= eject_time && !closing)
 		close_door()
-		closing = 1
+		closing = TRUE
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/prepare_for_docking()
 	return
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/ready_for_docking()
-	return 1
+	return TRUE
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/finish_docking()
 	return		//don't do anything - the doors only open when the pod is armed.

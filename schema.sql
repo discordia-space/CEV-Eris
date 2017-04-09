@@ -52,7 +52,7 @@ CREATE TABLE `bans` (
   `banned_by_id` int(11) NOT NULL,
   `expiration_time` datetime NOT NULL,
 
-  `unbanned` tinyint(1) DEFAULT 0,
+  `unbanned` tinyint(1) DEFAULT NULL,
   `unbanned_time` datetime DEFAULT NULL,
   `unbanned_by_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -84,27 +84,6 @@ CREATE TABLE `books` (
   PRIMARY KEY (`id`),
   KEY `index_books_on_author_id` (`author_id`),
   CONSTRAINT `fk_rails_53d51ce16a` FOREIGN KEY (`author_id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `connections`
---
-
-DROP TABLE IF EXISTS `connections`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `connections` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `player_id` int(11) DEFAULT NULL,
-  `cid` varchar(255) NOT NULL,
-  `ip` varchar(255) NOT NULL,
-  `server` varchar(255) NOT NULL,
-  `time` datetime NOT NULL,
-  `duration` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_connections_on_player_id` (`player_id`),
-  CONSTRAINT `fk_rails_1c23e36be8` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

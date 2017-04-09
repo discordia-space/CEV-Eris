@@ -204,7 +204,7 @@ var/list/gamemode_cache = list()
 	var/dooc_allowed = 1
 	var/dsay_allowed = 1
 
-	var/starlight = 0	// Whether space turfs have ambient light or not
+	var/starlight = "#ffffff"	// null if turned off
 
 	var/list/ert_species = list("Human")
 
@@ -673,8 +673,7 @@ var/list/gamemode_cache = list()
 					config.event_delay_upper[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
 
 				if("starlight")
-					value = text2num(value)
-					config.starlight = value >= 0 ? value : 0
+					config.starlight = value ? value : 0
 
 				if("ert_species")
 					config.ert_species = splittext(value, ";")
@@ -820,3 +819,5 @@ var/list/gamemode_cache = list()
 			config.python_path = "/usr/bin/env python2"
 		else //probably windows, if not this should work anyway
 			config.python_path = "python"
+
+	world.name = station_name()
