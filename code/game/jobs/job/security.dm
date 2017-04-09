@@ -170,8 +170,8 @@
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/security
-	suit = /obj/item/clothing/suit/armor/vest/security
-	hat = /obj/item/clothing/head/beret/sec/navy/officer
+	suit = /obj/item/clothing/suit/armor/light_riot
+	hat = /obj/item/clothing/head/helmet/light_riot
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots

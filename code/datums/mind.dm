@@ -61,6 +61,9 @@
 	//put this here for easier tracking ingame
 	var/datum/money_account/initial_account
 
+	var/list/known_connections //list of known (RNG) relations between people
+	var/gen_relations_info
+
 /datum/mind/New(var/key)
 	src.key = key
 	..()
@@ -143,7 +146,7 @@
 
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
-		if(antag) 
+		if(antag)
 			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else

@@ -279,6 +279,11 @@
 	adjust_fire_stacks(2)
 	IgniteMob()
 
+/mob/living/proc/irradiate(amount)
+	if(amount)
+		var/blocked = run_armor_check(null, "rad")
+		apply_effect(amount, IRRADIATE, blocked)
+
 /mob/living/proc/get_cold_protection()
 	return 0
 

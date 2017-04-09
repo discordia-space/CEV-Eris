@@ -34,7 +34,7 @@ datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
 
 	setup_objects()
-	setupgenetics()
+	setup_genetics()
 	SetupXenoarch()
 
 datum/controller/game_controller/proc/setup_objects()

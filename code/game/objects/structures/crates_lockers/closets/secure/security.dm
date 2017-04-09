@@ -227,7 +227,6 @@
 		new /obj/item/clothing/under/det/black(src)
 		new /obj/item/clothing/under/inspector(src)
 		new /obj/item/clothing/suit/storage/det_trench(src)
-		new /obj/item/clothing/suit/storage/det_trench/grey(src)
 		new /obj/item/clothing/suit/storage/insp_trench(src)
 		new /obj/item/clothing/gloves/thick(src)
 		new /obj/item/clothing/head/det(src)
