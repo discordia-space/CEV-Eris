@@ -199,41 +199,34 @@
 					return
 				if (emergency_shuttle.can_call())
 					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] called the Emergency Shuttle")
-					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
+					log_admin("[key_name(usr)] started the evacuation")
+					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
 
 			if("2")
 				if (!( ticker ) || !emergency_shuttle.location())
 					return
 				if (emergency_shuttle.can_call())
 					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] called the Emergency Shuttle")
-					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
+					log_admin("[key_name(usr)] started the evacuation")
+					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
 
 				else if (emergency_shuttle.can_recall())
 					emergency_shuttle.recall()
-					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
-					message_admins("\blue [key_name_admin(usr)] sent the Emergency Shuttle back", 1)
+					log_admin("[key_name(usr)] cancelled the evacuation")
+					message_admins("\blue [key_name_admin(usr)] cancelled the evacuation", 1)
 
 		href_list["secretsadmin"] = "check_antagonist"
 
 	else if(href_list["edit_shuttle_time"])
 		if(!check_rights(R_SERVER))	return
 
-		if (emergency_shuttle.wait_for_launch)
-			var/new_time_left = input("Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", emergency_shuttle.estimate_launch_time() ) as num
+		if (emergency_shuttle.waiting_to_leave())
+			var/new_time_left = input("Enter new pods launch countdown (seconds):","Edit Pods Launch Time", emergency_shuttle.estimate_launch_time() ) as num
 
 			emergency_shuttle.launch_time = world.time + new_time_left*10
 
 			log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-			message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left*10]", 1)
-		else if (emergency_shuttle.shuttle.has_arrive_time())
-
-			var/new_time_left = input("Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", emergency_shuttle.estimate_arrival_time() ) as num
-			emergency_shuttle.shuttle.arrive_time = world.time + new_time_left*10
-
-			log_admin("[key_name(usr)] edited the Emergency Shuttle's arrival time to [new_time_left]")
-			message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's arrival time to [new_time_left*10]", 1)
+			message_admins("<span class='notice'> [key_name_admin(usr)] edited the Emergency Pods launch time to [new_time_left*10]</span>", 1)
 		else
 			alert("The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
 

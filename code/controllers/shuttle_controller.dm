@@ -30,23 +30,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	var/datum/shuttle/ferry/shuttle
 
-	// Escape shuttle and pods
-	shuttle = new/datum/shuttle/ferry/emergency()
-	shuttle.location = 1
-	shuttle.warmup_time = 10
-	shuttle.area_offsite = locate(/area/shuttle/escape/centcom)
-	shuttle.area_station = locate(/area/shuttle/escape/station)
-	shuttle.area_transition = locate(/area/shuttle/escape/transit)
-	shuttle.docking_controller_tag = "escape_shuttle"
-	shuttle.dock_target_station = "escape_dock"
-	shuttle.dock_target_offsite = "centcom_dock"
-	shuttle.transit_direction = NORTH
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
-	//shuttle.docking_controller_tag = "supply_shuttle"
-	//shuttle.dock_target_station = "cargo_bay"
-	shuttles["Escape"] = shuttle
-	process_shuttles += shuttle
-
 	shuttle = new/datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
 	shuttle.warmup_time = 0
@@ -57,7 +40,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_station = "escape_pod_1_berth"
 	shuttle.dock_target_offsite = "escape_pod_1_recovery"
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	shuttle.move_time = PODS_TRANSIT
 	process_shuttles += shuttle
 	shuttles["Escape Pod 1"] = shuttle
 
@@ -71,19 +54,17 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_station = "escape_pod_2_berth"
 	shuttle.dock_target_offsite = "escape_pod_2_recovery"
 	shuttle.transit_direction = NORTH
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
+	shuttle.move_time = PODS_TRANSIT
 	process_shuttles += shuttle
 	shuttles["Escape Pod 2"] = shuttle
 
 	//There is no pod 4, apparently.
 
 	//give the emergency shuttle controller it's shuttles
-	emergency_shuttle.shuttle = shuttles["Escape"]
+	//emergency_shuttle.shuttle = shuttles["Escape"]
 	emergency_shuttle.escape_pods = list(
 		shuttles["Escape Pod 1"],
 		shuttles["Escape Pod 2"],
-		shuttles["Escape Pod 3"],
-		shuttles["Escape Pod 5"],
 	)
 
 	// Supply shuttle
