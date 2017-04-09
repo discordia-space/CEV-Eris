@@ -68,7 +68,6 @@ proc/admin_notice(var/message, var/rights)
 	"}
 
 	if(M.client)
-		body += "| <A HREF='?src=\ref[src];sendtoprison=\ref[M]'>Prison</A> | "
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
 			\[<A href='?src=\ref[src];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
@@ -845,26 +844,7 @@ proc/admin_notice(var/message, var/rights)
 		return
 	world << "\red <b>Rebooting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
-
-
-
-
-
-
 	world.Reboot()
-
-/datum/admins/proc/unprison(var/mob/M in mob_list)
-	set category = "Admin"
-	set name = "Unprison"
-	if (M.z == 6)
-		if (config.allow_admin_jump)
-			M.loc = pick(latejoin)
-			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
-			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
-		else
-			alert("Admin jumping disabled")
-	else
-		alert("[M.name] is not prisoned.")
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
