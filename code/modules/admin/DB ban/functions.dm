@@ -267,7 +267,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		return
 	var/admin_id = query.item[1]
 
-	var/sql_update = "UPDATE bans SET unbanned = true, unbanned_time = Now(), unbanned_by_id = [admin_id], WHERE id = [id]"
+	var/sql_update = "UPDATE bans SET unbanned = 1, unbanned_time = Now(), unbanned_by_id = [admin_id], WHERE id = [id]"
 
 	var/DBQuery/query_update = dbcon.NewQuery(sql_update)
 	if(!query_update.Execute())
@@ -455,9 +455,8 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				var/unbanned = select_query.item[10]
 				var/unbanned_by_id = select_query.item[11]
 				var/unbantime = select_query.item[12]
-				var/edits = select_query.item[13]
-				var/ip = select_query.item[14]
-				var/cid = select_query.item[15]
+				var/ip = select_query.item[13]
+				var/cid = select_query.item[14]
 				var/target_ckey
 				var/banned_by_ckey
 				var/unbanned_by_ckey
@@ -514,13 +513,6 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				output += "<tr bgcolor='[lcolor]'>"
 				output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
 				output += "</tr>"
-				if(edits)
-					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5'><b>EDITS</b></td>"
-					output += "</tr>"
-					output += "<tr bgcolor='[lcolor]'>"
-					output += "<td align='center' colspan='5'><font size='2'>[edits]</font></td>"
-					output += "</tr>"
 				if(unbanned)
 					output += "<tr bgcolor='[dcolor]'>"
 					output += "<td align='center' colspan='5' bgcolor=''><b>UNBANNED by admin [unbanned_by_ckey] on [unbantime]</b></td>"
