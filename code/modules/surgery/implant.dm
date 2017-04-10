@@ -136,6 +136,7 @@
 			affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
 		user.drop_item()
 		affected.implants += tool
+		target.update_implants()
 		tool.loc = affected
 		affected.cavity = 0
 
@@ -186,6 +187,7 @@
 				user.visible_message("\blue [user] takes something out of incision on [target]'s [affected.name] with \the [tool].", \
 				"\blue You take [obj] out of incision on [target]'s [affected.name]s with \the [tool]." )
 				affected.implants -= obj
+				target.update_implants()
 
 				BITSET(target.hud_updateflag, IMPLOYAL_HUD)
 

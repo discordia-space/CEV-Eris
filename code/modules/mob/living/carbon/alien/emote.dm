@@ -47,9 +47,6 @@
 			if (!muzzled)
 				message = "<B>The [src.name]</B> whimpers."
 				m_type = 2
-		if("tail")
-			message = "<B>The [src.name]</B> waves its tail."
-			m_type = 1
 		if("gasp")
 			message = "<B>The [src.name]</B> gasps."
 			m_type = 2

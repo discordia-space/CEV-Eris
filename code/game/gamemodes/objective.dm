@@ -304,10 +304,9 @@ var/global/list/all_objectives = list()
 		return FALSE
 	if(!owner.current || owner.current.stat == 2)
 		return FALSE
-	var/turf/location = get_turf(owner.current.loc)
+	var/turf/location = get_area(owner.current)
 	if(!location)
 		return FALSE
-
 	if(istype(location, /area/shuttle/escape_pod1/centcom) || istype(location, /area/shuttle/escape_pod2/centcom))
 		if(istype(owner.current, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = owner.current

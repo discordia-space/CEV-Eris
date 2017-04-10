@@ -87,7 +87,6 @@
 	spawn(1)
 		update_icon()
 
-
 /obj/item/organ/external/proc/set_description(var/datum/organ_description/desc)
 	src.name = desc.name
 	//src.organ_tag = desc.organ_tag
@@ -97,6 +96,30 @@
 	src.max_damage = desc.max_damage
 	src.min_broken_damage = desc.min_broken_damage
 	src.w_class = desc.w_class
+	src.parent_organ = desc.parent_organ
+
+/obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
+	owner = target
+	forceMove(owner)
+	if(istype(owner))
+		owner.organs_by_name[limb_name] = src
+		owner.organs |= src
+		for(var/obj/item/organ/organ in src)
+			organ.replaced(owner,src)
+
+	if(parent_organ)
+		parent = owner.organs_by_name[src.parent_organ]
+		if(parent)
+			if(!parent.children)
+				parent.children = list()
+			parent.children.Add(src)
+			//Remove all stump wounds since limb is not missing anymore
+			for(var/datum/wound/lost_limb/W in parent.wounds)
+				parent.wounds -= W
+				qdel(W)
+				break
+			parent.update_damages()
+
 
 /obj/item/organ/external/removed(mob/living/user)
 	if(!owner)
@@ -240,29 +263,6 @@
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
 	return
-
-/obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
-	owner = target
-	forceMove(owner)
-	if(istype(owner))
-		owner.organs_by_name[limb_name] = src
-		owner.organs |= src
-		for(var/obj/item/organ/organ in src)
-			organ.replaced(owner,src)
-
-	if(parent_organ)
-		parent = owner.organs_by_name[src.parent_organ]
-		if(parent)
-			if(!parent.children)
-				parent.children = list()
-			parent.children.Add(src)
-			//Remove all stump wounds since limb is not missing anymore
-			for(var/datum/wound/lost_limb/W in parent.wounds)
-				parent.wounds -= W
-				qdel(W)
-				break
-			parent.update_damages()
-
 
 /obj/item/organ/external/robotize()
 	..()

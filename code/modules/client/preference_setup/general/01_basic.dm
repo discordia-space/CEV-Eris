@@ -103,4 +103,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 			pref.metadata = sanitize(new_metadata)
 			return TOPIC_REFRESH
 
+	else if(href_list["religion"])
+		pref.religion = input("Religion") in list("None", "Christianity")
+		return TOPIC_REFRESH
+
 	return ..()
