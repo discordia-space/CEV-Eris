@@ -49,6 +49,9 @@
 				M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
 				admin_attack_log(user, M, "Implanted using \the [src.name] ([src.implant.name])", "Implanted with \the [src.name] ([src.implant.name])", "used an implanter, [src.name] ([src.implant.name]), on")
 				src.implant.install(M, user.targeted_organ)
+				if(ishuman(M))
+					var/mob/living/carbon/human/H = M
+					H.update_implants()
 				src.implant = null
 				update()
 

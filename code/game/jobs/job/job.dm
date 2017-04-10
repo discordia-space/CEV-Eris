@@ -130,6 +130,11 @@
 		var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(src)
 		I.install(H, "head")
 
+	if(H.religion == "Christianity" && !locate(/obj/item/weapon/implant/cruciform, H))
+		var/obj/item/weapon/implant/cruciform/C = new /obj/item/weapon/implant/cruciform(H)
+		C.install(H)
+		C.activate()
+
 	return 1
 
 /datum/job/proc/setup_account(var/mob/living/carbon/human/H)
