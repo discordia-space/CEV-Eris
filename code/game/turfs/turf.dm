@@ -131,6 +131,9 @@ var/const/enterloopsanity = 100
 		else if(is_space())
 			M.inertia_dir = 0
 			M.make_floating(0)
+		if(isliving(M))
+			var/mob/living/L = M
+			L.handle_footstep(src)
 
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
