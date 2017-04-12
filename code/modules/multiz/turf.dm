@@ -24,18 +24,15 @@
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
 	. = ..()
-#ifdef USE_OPENSPACE
-	if(istype(mover, /mob/shadow))
+
+	if(!mover.can_fall())
 		return
-#endif USE_OPENSPACE
+
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
 		if(!below)
 			return
-
-	if(istype(mover, /mob/living/bot/floorbot) && locate(/obj/structure/lattice) in src)
-		return  // This will prevent floorbot from falling on open space turfs with support
 
 	// No gravit, No fall.
 	if(!has_gravity(src))
@@ -44,28 +41,21 @@
 	if(locate(/obj/structure/catwalk) in src)
 		return
 
-	// Prevent pipes from falling into the void... if there is a pipe to support it.
-	if(mover.anchored || istype(mover, /obj/item/pipe) && \
-		(locate(/obj/structure/disposalpipe/up) in below) || \
-		 locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
-		return
-
 	// See if something prevents us from falling.
 	var/soft = FALSE
 	for(var/atom/A in below)
-		if(A.density)
-			if(!istype(A, /obj/structure/window))
-				return
-			else
-				var/obj/structure/window/W = A
-				if(W.is_fulltile())
-					return
+		if(A.can_prevent_fall())
+			return
+
 		// Dont break here, since we still need to be sure that it isnt blocked
 		if(istype(A, /obj/structure/multiz/stairs))
 			soft = TRUE
 
 	// We've made sure we can move, now.
-	mover.Move(below)
+	mover.forceMove(below)
+
+	if(mover.fall_sound)
+		playsound(mover, mover.fall_sound, 100)
 
 	if(!soft)
 		if(!isliving(mover))
@@ -99,8 +89,19 @@
 				for(var/organ in list(BP_CHEST, BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
 					H.apply_damage(rand(0, damage), BRUTE, organ)
 
-				H.weakened = max(H.weakened,2)
+				H.Weaken(4)
 				H.updatehealth()
+
+		var/fall_damage = mover.get_fall_damage()
+		for(var/mob/living/M in below)
+			if(M == mover)
+				continue
+			M.Weaken(10)
+			if(fall_damage >= FALL_GIB_DAMAGE)
+				M.gib()
+			else
+				for(var/organ in list(BP_HEAD, BP_CHEST, BP_R_ARM, BP_L_ARM))
+					M.apply_damage(rand(0, fall_damage), BRUTE, organ)
 
 // override to make sure nothing is hidden
 /turf/simulated/open/levelupdate()

@@ -17,6 +17,9 @@
 	var/turf/target
 	var/floor_build_type
 
+/mob/living/bot/floorbot/can_fall()
+	return !(locate(/obj/structure/lattice) in loc)
+
 /mob/living/bot/floorbot/update_icons()
 	if(repairing)
 		icon_state = "floorbot-c"

@@ -3,4 +3,3 @@
 
 
 #define DOOR_CRUSH_DAMAGE 15
-#define USE_OPENSPACE

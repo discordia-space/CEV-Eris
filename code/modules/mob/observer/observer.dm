@@ -15,6 +15,9 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 	var/ghost_image_flag = GHOST_IMAGE_DARKNESS
 	var/image/ghost_image = null //this mobs ghost image, for deleting and stuff
 
+/mob/observer/can_fall()
+	return FALSE
+
 /mob/observer/New()
 	..()
 	ghost_image = image(src.icon,src)

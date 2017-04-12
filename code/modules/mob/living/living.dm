@@ -141,18 +141,18 @@ default behaviour is:
 
 /mob/living/proc/can_swap_with(var/mob/living/tmob)
 	if(tmob.buckled || buckled)
-		return 0
+		return FALSE
 	//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
 	if(!(tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())))
-		return 0
+		return FALSE
 	if(!tmob.canmove || !canmove)
-		return 0
+		return FALSE
 
 	if(swap_density_check(src, tmob))
-		return 0
+		return FALSE
 
 	if(swap_density_check(tmob, src))
-		return 0
+		return FALSE
 
 	return can_move_mob(tmob, 1, 0)
 
