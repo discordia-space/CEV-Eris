@@ -175,9 +175,10 @@
 	if(holder)
 		holder.owner = null
 		admins -= src
-	var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
-	if(!query.Execute())
-		world.log << "Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()]."
+	if(dbcon.IsConnected())
+		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
+		if(!query.Execute())
+			world.log << "Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()]."
 	directory -= ckey
 	clients -= src
 	return ..()
