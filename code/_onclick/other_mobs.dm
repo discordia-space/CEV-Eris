@@ -50,7 +50,7 @@
 
 			visible_message("<span class='warning'>[src] starts climbing onto \the [T]!</span>")
 			shadow.visible_message("<span class='warning'>[shadow] starts climbing onto \the [T]!</span>")
-			if(do_after(src,50,helper))
+			if(do_after(src, 50, helper))
 				visible_message("<span class='warning'>[src] climbs onto \the [T]!</span>")
 				shadow.visible_message("<span class='warning'>[shadow] climbs onto \the [T]!</span>")
 				src.Move(T)
