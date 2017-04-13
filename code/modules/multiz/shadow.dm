@@ -61,6 +61,9 @@
 	if(M.shadow)
 		qdel(M.shadow)
 		M.shadow = null
+		var/client/C = M.client
+		if(C && C.eye == shadow)
+			M.reset_view(0)
 
 /mob/living/update_icons()
 	..()

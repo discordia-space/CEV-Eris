@@ -29,6 +29,36 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(var/atom/A)
+	if(isturf(A) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
+		var/turf/T = A
+		if(T.Adjacent(shadow) && istype(T, /turf/simulated/floor))
+			var/list/objects_to_stand_on = list(
+				/obj/item/weapon/stool,
+				/obj/structure/bed,
+				/obj/structure/table,
+				/obj/structure/closet/crate
+			)
+			var/atom/helper = null
+			var/area/location = get_area(loc)
+			if(!location.has_gravity)
+				helper = src
+			else
+				for(var/type in objects_to_stand_on)
+					helper = locate(type) in src.loc
+					if(helper) break
+				if(!helper) return
+
+			visible_message("<span class='warning'>[src] starts climbing onto \the [T]!</span>")
+			shadow.visible_message("<span class='warning'>[shadow] starts climbing onto \the [T]!</span>")
+			if(do_after(src,50,helper))
+				visible_message("<span class='warning'>[src] climbs onto \the [T]!</span>")
+				shadow.visible_message("<span class='warning'>[shadow] climbs onto \the [T]!</span>")
+				src.Move(T)
+			else
+				visible_message("<span class='warning'>[src] gives up on trying to climb onto \the [T]!</span>")
+				shadow.visible_message("<span class='warning'>[shadow] gives up on trying to climb onto \the [T]!</span>")
+		return
+
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == I_HURT)
