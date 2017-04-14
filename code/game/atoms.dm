@@ -202,20 +202,24 @@ its easier to just keep the beam vertical.
 //All atoms
 /atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
-	var/f_name = "\a [src][infix]."
+	var/full_name = "\a [src][infix]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
-			f_name = "some "
+			full_name = "some "
 		else
-			f_name = "a "
+			ffull_name_name = "a "
 		if(blood_color != "#030303")
-			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			full_name += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
-			f_name += "oil-stained [name][infix]."
+			full_name += "oil-stained [name][infix]."
 
-	user.visible_message("<font size=1>[user.name] looks at [src].</font>")
-	user << "\icon[src] That's [f_name] [suffix]"
-	user << desc
+	if(isobserver(user))
+		user << "\icon[src] This is [full_name] [suffix]."
+	else
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix].")
+
+	if(desc)
+		user << desc
 
 	return distance == -1 || (get_dist(src, user) <= distance)
 
