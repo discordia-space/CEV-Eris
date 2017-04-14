@@ -29,9 +29,9 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(var/atom/A)
-	if(isturf(A) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
-		var/turf/T = A
-		if(T.Adjacent(shadow) && istype(T, /turf/simulated/floor))
+	if((istype(A, /turf/simulated/floor) || istype(A, /obj/structure/catwalk)) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
+		var/turf/T = get_turf(A)
+		if(T.Adjacent(shadow))
 			var/list/objects_to_stand_on = list(
 				/obj/item/weapon/stool,
 				/obj/structure/bed,
@@ -45,19 +45,21 @@
 			else
 				for(var/type in objects_to_stand_on)
 					helper = locate(type) in src.loc
-					if(helper) break
-				if(!helper) return
+					if(helper)
+						break
+				if(!helper)
+					return
 
-			visible_message("<span class='warning'>[src] starts climbing onto \the [T]!</span>")
-			shadow.visible_message("<span class='warning'>[shadow] starts climbing onto \the [T]!</span>")
+			visible_message("<span class='warning'>[src] starts climbing onto \the [A]!</span>")
+			shadow.visible_message("<span class='warning'>[shadow] starts climbing onto \the [A]!</span>")
 			if(do_after(src, 50, helper))
-				visible_message("<span class='warning'>[src] climbs onto \the [T]!</span>")
-				shadow.visible_message("<span class='warning'>[shadow] climbs onto \the [T]!</span>")
+				visible_message("<span class='warning'>[src] climbs onto \the [A]!</span>")
+				shadow.visible_message("<span class='warning'>[shadow] climbs onto \the [A]!</span>")
 				src.Move(T)
 			else
-				visible_message("<span class='warning'>[src] gives up on trying to climb onto \the [T]!</span>")
-				shadow.visible_message("<span class='warning'>[shadow] gives up on trying to climb onto \the [T]!</span>")
-		return
+				visible_message("<span class='warning'>[src] gives up on trying to climb onto \the [A]!</span>")
+				shadow.visible_message("<span class='warning'>[shadow] gives up on trying to climb onto \the [A]!</span>")
+			return
 
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
