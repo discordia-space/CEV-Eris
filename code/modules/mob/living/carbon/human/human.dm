@@ -1532,3 +1532,4 @@ var/list/rank_prefix = list(\
 	else
 		src << "<span class='notice'>You can't do it right now.</span>"
 	return
+
