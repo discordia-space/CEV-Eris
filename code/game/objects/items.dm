@@ -59,6 +59,9 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
+/obj/item/get_fall_damage()
+	return w_class * 2
+
 /obj/item/equipped()
 	..()
 	var/mob/M = loc
