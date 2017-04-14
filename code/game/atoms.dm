@@ -207,7 +207,7 @@ its easier to just keep the beam vertical.
 		if(gender == PLURAL)
 			full_name = "some "
 		else
-			ffull_name_name = "a "
+			full_name = "a "
 		if(blood_color != "#030303")
 			full_name += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
