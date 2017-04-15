@@ -19,19 +19,20 @@
 	throw_speed = 3
 	throw_range = 15
 	var/build_path = null
+	var/frame_type = FRAME_DEFAULT
 	var/board_type = "computer"
 	var/list/req_components = null
-	var/contain_parts = 1
+	var/contain_parts = TRUE
 
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/weapon/circuitboard/proc/construct(var/obj/machinery/M)
 	if (istype(M, build_path))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
 /obj/item/weapon/circuitboard/proc/deconstruct(var/obj/machinery/M)
 	if (istype(M, build_path))
-		return 1
-	return 0
+		return TRUE
+	return FALSE

@@ -36,8 +36,6 @@
 	icon_state = "chaplain"
 	item_state = "bl_suit"
 
-
-
 /obj/item/clothing/under/rank/chef
 	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
 	name = "chef's uniform"
