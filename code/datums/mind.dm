@@ -61,6 +61,9 @@
 	//put this here for easier tracking ingame
 	var/datum/money_account/initial_account
 
+	var/list/known_connections //list of known (RNG) relations between people
+	var/gen_relations_info
+
 /datum/mind/New(var/key)
 	src.key = key
 	..()
@@ -143,7 +146,7 @@
 
 	if(href_list["add_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
-		if(antag) 
+		if(antag)
 			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
@@ -322,7 +325,8 @@
 				log_admin("[key_name_admin(usr)] has de-loyalty implanted [current].")
 			if("add")
 				H << "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font></span>"
-				H.implant_loyalty()
+				var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(H)
+				I.install(H, "head")
 				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
 			else
 	else if (href_list["silicon"])

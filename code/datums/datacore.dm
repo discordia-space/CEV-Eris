@@ -159,15 +159,6 @@
 				foundrecord = t
 				break
 
-	var/list/all_jobs = get_job_datums()
-
-	for(var/datum/job/J in all_jobs)
-		var/list/alttitles = get_alternate_titles(J.title)
-		if(!J)	continue
-		if(assignment in alttitles)
-			real_title = J.title
-			break
-
 	if(foundrecord)
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
@@ -187,10 +178,6 @@
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
 		G.fields["sex"]			= H.gender
-		G.fields["species"]		= H.get_species()
-		G.fields["home_system"]	= H.home_system
-		G.fields["citizenship"]	= H.citizenship
-		G.fields["faction"]		= H.personal_faction
 		G.fields["religion"]	= H.religion
 		if(H.gen_record && !jobban_isbanned(H, "Records"))
 			G.fields["notes"] = H.gen_record
@@ -221,10 +208,6 @@
 		L.fields["b_dna"]		= H.dna.unique_enzymes
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
 		L.fields["identity"]	= H.dna.UI // "
-		L.fields["species"]		= H.get_species()
-		L.fields["home_system"]	= H.home_system
-		L.fields["citizenship"]	= H.citizenship
-		L.fields["faction"]		= H.personal_faction
 		L.fields["religion"]	= H.religion
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
 		if(H.exploit_record && !jobban_isbanned(H, "Records"))
@@ -256,23 +239,23 @@ proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 	// Skin color
 	if(H.species.flags & HAS_SKIN_TONE)
 		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
-			preview_icon.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
+			preview_icon.Blend(H.skin_color, ICON_ADD)
 
 	var/icon/eyes = new/icon('icons/mob/human_face.dmi', "eyes[body.index]")
 
 	if (H.species.flags & HAS_EYE_COLOR)
-		eyes.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
+		eyes.Blend(H.eyes_color, ICON_ADD)
 
 	var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
 	if(hair_style)
 		var/icon/hair = new/icon(hair_style.icon, "[hair_style.icon_state]_s")
-		hair.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
+		hair.Blend(H.hair_color, ICON_ADD)
 		eyes.Blend(hair, ICON_OVERLAY)
 
 	var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
 	if(facial_hair_style)
 		var/icon/facial = new/icon(facial_hair_style.icon, "[facial_hair_style.icon_state]_s")
-		facial.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)
+		facial.Blend(H.facial_color, ICON_ADD)
 		eyes.Blend(facial, ICON_OVERLAY)
 
 	var/icon/clothes = null
@@ -322,9 +305,6 @@ proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
 	G.fields["species"] = "Human"
-	G.fields["home_system"]	= "Unknown"
-	G.fields["citizenship"]	= "Unknown"
-	G.fields["faction"]		= "Unknown"
 	G.fields["religion"]	= "Unknown"
 	G.fields["photo_front"]	= front
 	G.fields["photo_side"]	= side

@@ -17,6 +17,9 @@
 	var/turf/target
 	var/floor_build_type
 
+/mob/living/bot/floorbot/can_fall()
+	return !(locate(/obj/structure/lattice) in loc)
+
 /mob/living/bot/floorbot/update_icons()
 	if(repairing)
 		icon_state = "floorbot-c"
@@ -379,7 +382,7 @@
 
 /obj/item/weapon/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
 	..()
-	if(isprox(W))
+	if(is_proximity_sensor(W))
 		qdel(W)
 		var/obj/item/weapon/toolbox_tiles_sensor/B = new /obj/item/weapon/toolbox_tiles_sensor()
 		B.created_name = created_name

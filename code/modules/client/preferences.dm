@@ -33,20 +33,12 @@ datum/preferences
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/backbag = 2						//backpack type
 	var/h_style = "Bald"				//Hair type
-	var/r_hair = 0						//Hair color
-	var/g_hair = 0						//Hair color
-	var/b_hair = 0						//Hair color
+	var/hair_color = "#000000"			//Hair color
 	var/f_style = "Shaved"				//Face hair type
-	var/r_facial = 0					//Face hair color
-	var/g_facial = 0					//Face hair color
-	var/b_facial = 0					//Face hair color
+	var/facial_color = "#000000"		//Face hair color
 	var/s_tone = 0						//Skin tone
-	var/r_skin = 0						//Skin color
-	var/g_skin = 0						//Skin color
-	var/b_skin = 0						//Skin color
-	var/r_eyes = 0						//Eye color
-	var/g_eyes = 0						//Eye color
-	var/b_eyes = 0						//Eye color
+	var/skin_color = "#000000"			//Skin color
+	var/eyes_color = "#000000"			//Eye color
 	var/species = "Human"               //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
@@ -54,15 +46,12 @@ datum/preferences
 	var/list/gear						//Custom/fluff item loadout.
 
 		//Some faction information.
-	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
-	var/faction = "None"                //Antag faction/general associated faction.
 	var/religion = "None"               //Religious association.
 
 		//Mob preview
-	var/icon/preview_icon = null
+	/*var/icon/preview_icon = null
 	var/icon/preview_icon_front = null
-	var/icon/preview_icon_side = null
+	var/icon/preview_icon_side = null*/
 
 	var/high_job_title = ""
 
@@ -86,7 +75,6 @@ datum/preferences
 	// will probably not be able to do this for head and torso ;)
 	var/list/organ_data = list()
 	var/list/rlimb_data = list()
-	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
 
 	var/flavor_text = ""
 	var/list/flavour_texts_robot = list()
@@ -96,8 +84,6 @@ datum/preferences
 	var/gen_record = ""
 	var/exploit_record = ""
 	var/disabilities = 0
-
-	var/nanotrasen_relation = "Neutral"
 
 	var/uplinklocation = "PDA"
 
@@ -229,31 +215,22 @@ datum/preferences
 	character.age = age
 	character.b_type = b_type
 
-	character.r_eyes = r_eyes
-	character.g_eyes = g_eyes
-	character.b_eyes = b_eyes
+	character.eyes_color = eyes_color
 
-	character.r_hair = r_hair
-	character.g_hair = g_hair
-	character.b_hair = b_hair
+	character.hair_color = hair_color
 
-	character.r_facial = r_facial
-	character.g_facial = g_facial
-	character.b_facial = b_facial
+	character.facial_color = facial_color
 
-	character.r_skin = r_skin
-	character.g_skin = g_skin
-	character.b_skin = b_skin
+	character.skin_color = skin_color
 
 	character.s_tone = s_tone
 
 	character.h_style = h_style
 	character.f_style = f_style
 
-	character.home_system = home_system
-	character.citizenship = citizenship
-	character.personal_faction = faction
 	character.religion = religion
+
+	character.rebuild_organs(src)
 
 	// Destroy/cyborgize organs
 

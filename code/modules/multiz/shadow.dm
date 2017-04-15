@@ -1,5 +1,3 @@
-#ifdef USE_OPENSPACE
-
 /mob  // TODO: rewrite as obj.
 	var/mob/shadow/shadow
 
@@ -11,6 +9,9 @@
 	unacidable = 1
 	density = 0
 	var/mob/owner = null
+
+/mob/shadow/can_fall()
+	return FALSE
 
 /mob/shadow/New(var/mob/L)
 	if(!istype(L))
@@ -61,6 +62,9 @@
 	if(M.shadow)
 		qdel(M.shadow)
 		M.shadow = null
+		var/client/C = M.client
+		if(C && C.eye == shadow)
+			M.reset_view(0)
 
 /mob/living/update_icons()
 	..()
@@ -71,5 +75,3 @@
 	..()
 	if(shadow)
 		shadow.set_dir(new_dir)
-
-#endif

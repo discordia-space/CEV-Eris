@@ -1,6 +1,6 @@
 //Due to how large this one is it gets its own file
 /datum/job/chaplain
-	title = "Monochurch Preacher"
+	title = "Cyberchristian priest"
 	flag = CHAPLAIN
 	department = "Civilian"
 	department_flag = CIVILIAN
@@ -15,9 +15,15 @@
 	uniform = /obj/item/clothing/under/rank/chaplain
 	pda = /obj/item/device/pda/chaplain
 
-	equip(var/mob/living/carbon/human/H)
-		if(!..())	return 0
+/datum/job/chaplain/equip(var/mob/living/carbon/human/H)
+	var/obj/item/weapon/implant/cruciform/priest/C = new /obj/item/weapon/implant/cruciform/priest(H)
+	C.install(H)
+	C.activate()
 
-		var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT
-		H.equip_to_slot_or_del(B, slot_l_hand)
-		return 1
+	H.religion = "Christianity"
+
+	if(!..())	return 0
+
+	var/obj/item/weapon/book/bible/B = new /obj/item/weapon/book/bible(H)
+	H.equip_to_slot_or_del(B, slot_l_hand)
+	return 1

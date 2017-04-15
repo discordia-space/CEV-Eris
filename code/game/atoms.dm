@@ -13,9 +13,11 @@
 	var/pass_flags = 0
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
-	var/simulated = 1 //filter for actions - used by lighting overlays
+	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
-	var/allow_spin = 1
+	var/allow_spin = TRUE
+
+	var/list/footstep_sounds = list() // Footsteps sound
 
 	///Chemistry.
 	var/datum/reagents/reagents = null
@@ -77,7 +79,7 @@
 */
 
 /atom/proc/CheckExit()
-	return 1
+	return TRUE
 
 // If you want to use this, the atom must have the PROXMOVE flag, and the moving
 // atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
@@ -90,14 +92,14 @@
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	P.on_hit(src, 0, def_zone)
-	. = 0
+	. = FALSE
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
 		if(istype(src.loc, container))
-			return 1
+			return FALSE
 	else if(src in container)
-		return 1
+		return TRUE
 	return
 
 /*
@@ -200,20 +202,24 @@ its easier to just keep the beam vertical.
 //All atoms
 /atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
-	var/f_name = "\a [src][infix]."
+	var/full_name = "\a [src][infix]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
-			f_name = "some "
+			full_name = "some "
 		else
-			f_name = "a "
+			full_name = "a "
 		if(blood_color != "#030303")
-			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			full_name += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
-			f_name += "oil-stained [name][infix]."
+			full_name += "oil-stained [name][infix]."
 
-	user.visible_message("<font size=1>[user.name] looks at [src].</font>")
-	user << "\icon[src] That's [f_name] [suffix]"
-	user << desc
+	if(isobserver(user))
+		user << "\icon[src] This is [full_name] [suffix]."
+	else
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix].")
+
+	if(desc)
+		user << desc
 
 	return distance == -1 || (get_dist(src, user) <= distance)
 
@@ -246,7 +252,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/hitby(atom/movable/AM as mob|obj)
 	if (density)
-		AM.throwing = 0
+		AM.throwing = FALSE
 	return
 
 /atom/proc/add_hiddenprint(mob/living/M as mob)
@@ -255,24 +261,24 @@ its easier to just keep the beam vertical.
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if (!istype(H.dna, /datum/dna))
-			return 0
+			return FALSE
 		if (H.gloves)
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
 				src.fingerprintslast = H.key
-			return 0
+			return FALSE
 		if (!( src.fingerprints ))
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",H.real_name, H.key)
 				src.fingerprintslast = H.key
-			return 1
+			return TRUE
 	else
 		if(src.fingerprintslast != M.key)
 			src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",M.real_name, M.key)
 			src.fingerprintslast = M.key
 	return
 
-/atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = 0)
+/atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = FALSE)
 	if(isnull(M)) return
 	if(isAI(M)) return
 	if(isnull(M.key)) return
@@ -289,7 +295,7 @@ its easier to just keep the beam vertical.
 			if(fingerprintslast != M.key)
 				fingerprintshidden += "(Has no fingerprints) Real name: [M.real_name], Key: [M.key]"
 				fingerprintslast = M.key
-			return 0		//Now, lets get to the dirty work.
+			return FALSE		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
 		var/mob/living/carbon/human/H = M
 		if (!istype(H.dna, /datum/dna) || !H.dna.uni_identity || (length(H.dna.uni_identity) != 32))
@@ -309,9 +315,9 @@ its easier to just keep the beam vertical.
 		if(!ignoregloves)
 			if(H.gloves != src)
 				if(prob(75) && istype(H.gloves, /obj/item/clothing/gloves/latex))
-					return 0
+					return FALSE
 				else if(H.gloves && !istype(H.gloves, /obj/item/clothing/gloves/latex))
-					return 0
+					return FALSE
 
 		//More adminstuffz
 		if(fingerprintslast != H.key)
@@ -364,7 +370,7 @@ its easier to just keep the beam vertical.
 			fingerprints[full_print] = stars(full_print, rand(0, 20))	//Initial touch, not leaving much evidence the first time.
 
 
-		return 1
+		return TRUE
 	else
 		//Smudge up dem prints some
 		if(fingerprintslast != M.key)
@@ -401,12 +407,12 @@ its easier to just keep the beam vertical.
 /atom/proc/add_blood(mob/living/carbon/human/M as mob)
 
 	if(flags & NOBLOODY)
-		return 0
+		return FALSE
 
 	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 		blood_DNA = list()
 
-	was_bloodied = 1
+	was_bloodied = TRUE
 	blood_color = "#A10808"
 	if(istype(M))
 		if (!istype(M.dna, /datum/dna))
@@ -415,10 +421,10 @@ its easier to just keep the beam vertical.
 		M.check_dna()
 		if (M.species)
 			blood_color = M.species.blood_color
-	. = 1
-	return 1
+	. = TRUE
+	return TRUE
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
+/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = FALSE)
 	if( istype(src, /turf/simulated) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
@@ -433,7 +439,7 @@ its easier to just keep the beam vertical.
 	src.germ_level = 0
 	if(istype(blood_DNA, /list))
 		blood_DNA = null
-		return 1
+		return TRUE
 
 /atom/proc/get_global_map_pos()
 	if(!islist(global_map) || isemptylist(global_map)) return
@@ -449,16 +455,28 @@ its easier to just keep the beam vertical.
 	if(cur_x && cur_y)
 		return list("x"=cur_x,"y"=cur_y)
 	else
-		return 0
+		return FALSE
 
 /atom/proc/checkpass(passflag)
 	return pass_flags&passflag
 
 /atom/proc/isinspace()
 	if(istype(get_turf(src), /turf/space))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
+
+//Multi-z falling procs
+/atom/movable/proc/can_fall()
+	return !anchored
+
+//Execution by grand piano!
+/atom/movable/proc/get_fall_damage()
+	return 42
+
+//If atom stands under open space, it can prevent fall, or not
+/atom/proc/can_prevent_fall()
+	return FALSE
 
 // Show a message to all mobs and objects in sight of this atom
 // Use for objects performing visible actions
@@ -511,3 +529,4 @@ its easier to just keep the beam vertical.
 
 /turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
 	return ..(AM, old_loc, 0)
+

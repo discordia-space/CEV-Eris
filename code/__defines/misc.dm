@@ -4,10 +4,6 @@
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 
-#define SPACE_PLANE     -3
-#define PARALLAX_PLANE  -2
-#define OPENSPACE_PLANE -1
-
 // Invisibility constants.
 #define INVISIBILITY_LIGHTING             20
 #define INVISIBILITY_LEVEL_ONE            35
@@ -80,10 +76,10 @@
 //	Shuttles.
 
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
-#define SHUTTLE_PREPTIME                300 // 5 minutes = 300 seconds - after this time, the shuttle departs centcom and cannot be recalled.
-#define SHUTTLE_LEAVETIME               180 // 3 minutes = 180 seconds - the duration for which the shuttle will wait at the station after arriving.
-#define SHUTTLE_TRANSIT_DURATION        300 // 5 minutes = 300 seconds - how long it takes for the shuttle to get to the station.
-#define SHUTTLE_TRANSIT_DURATION_RETURN 120 // 2 minutes = 120 seconds - for some reason it takes less time to come back, go figure.
+
+#define PODS_PREPTIME 	600	//10 mins = 600 sec - hol long pods will wait before launch
+#define PODS_TRANSIT 	120 //2 mins - how long pods takes to get to the centcomm
+#define PODS_LOCKDOWN	90	//1.5 mins - how long pods stay opened, if evacuation will be cancelled
 
 // Shuttle moving status.
 #define SHUTTLE_IDLE      0
@@ -213,3 +209,6 @@
 
 
 #define LIST_OF_CONSONANT list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","ö","ê","í","ã","ø","ù","ç","õ","ô","â","ï","ð","ë","ä","æ","÷","ñ","ì","ò","á","é","û")
+
+//Multi-z
+#define FALL_GIB_DAMAGE 999

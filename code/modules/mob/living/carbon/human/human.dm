@@ -174,20 +174,6 @@
 	if(update)	UpdateDamageIcon()
 
 
-/mob/living/carbon/human/proc/implant_loyalty()
-	if(!config.use_loyalty_implants)
-		return
-
-	var/obj/item/weapon/implant/loyalty/L = new /obj/item/weapon/implant/loyalty(src)
-	L.imp_in = src
-	L.loc = src
-	L.implanted = 1
-	var/obj/item/organ/external/affected = get_organ("head")
-	affected.implants += L
-	L.part = affected
-	L.implant(src)
-
-
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
 		return 1
@@ -786,23 +772,17 @@ var/list/rank_prefix = list(\
 		src.verbs -= /mob/living/carbon/human/proc/morph
 		return
 
-	var/new_facial = input("Please select facial hair color.", "Character Generation",rgb(r_facial,g_facial,b_facial)) as color
+	var/new_facial = input("Please select facial hair color.", "Character Generation",facial_color) as color
 	if(new_facial)
-		r_facial = hex2num(copytext(new_facial, 2, 4))
-		g_facial = hex2num(copytext(new_facial, 4, 6))
-		b_facial = hex2num(copytext(new_facial, 6, 8))
+		facial_color = new_facial
 
-	var/new_hair = input("Please select hair color.", "Character Generation",rgb(r_hair,g_hair,b_hair)) as color
-	if(new_facial)
-		r_hair = hex2num(copytext(new_hair, 2, 4))
-		g_hair = hex2num(copytext(new_hair, 4, 6))
-		b_hair = hex2num(copytext(new_hair, 6, 8))
+	var/new_hair = input("Please select hair color.", "Character Generation",hair_color) as color
+	if(new_hair)
+		hair_color = new_hair
 
-	var/new_eyes = input("Please select eye color.", "Character Generation",rgb(r_eyes,g_eyes,b_eyes)) as color
+	var/new_eyes = input("Please select eye color.", "Character Generation",eyes_color) as color
 	if(new_eyes)
-		r_eyes = hex2num(copytext(new_eyes, 2, 4))
-		g_eyes = hex2num(copytext(new_eyes, 4, 6))
-		b_eyes = hex2num(copytext(new_eyes, 6, 8))
+		eyes_color = new_eyes
 		update_eyes()
 
 	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
@@ -938,7 +918,7 @@ var/list/rank_prefix = list(\
 
 	// Fix up all organs.
 	// This will ignore any prosthetics in the prefs currently.
-	species.create_organs(src)
+	rebuild_organs()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
 		for (var/obj/item/organ/brain/H in world)
@@ -1132,20 +1112,16 @@ var/list/rank_prefix = list(\
 
 	if(species.base_color && default_colour)
 		//Apply colour.
-		r_skin = hex2num(copytext(species.base_color,2,4))
-		g_skin = hex2num(copytext(species.base_color,4,6))
-		b_skin = hex2num(copytext(species.base_color,6,8))
+		skin_color = species.base_color
 	else
-		r_skin = 0
-		g_skin = 0
-		b_skin = 0
+		skin_color = "#000000"
 
 	if(species.holder_type)
 		holder_type = species.holder_type
 
 	icon_state = lowertext(species.name)
 
-	species.create_organs(src)
+	rebuild_organs()
 	src.sync_organ_dna()
 	species.handle_post_spawn(src)
 
@@ -1173,6 +1149,76 @@ var/list/rank_prefix = list(\
 		return 1
 	else
 		return 0
+
+#define MODIFICATION_ORGANIC 1
+#define MODIFICATION_SILICON 2
+#define MODIFICATION_REMOVED 3
+
+//Needed for augmentation
+/mob/living/carbon/human/proc/rebuild_organs(var/from_preference = 0)
+	if(!species)
+		return 0
+
+	for(var/obj/item/organ/organ in (organs|internal_organs))
+		qdel(organ)
+
+	if(organs.len)
+		organs.Cut()
+	if(internal_organs.len)
+		internal_organs.Cut()
+	if(organs_by_name.len)
+		organs_by_name.Cut()
+	if(internal_organs_by_name.len)
+		internal_organs_by_name.Cut()
+
+
+	if(from_preference)
+		var/datum/preferences/Pref
+		if(istype(from_preference, /datum/preferences))
+			Pref = from_preference
+		else if(client)
+			Pref = client.prefs
+		else
+			return
+
+		var/datum/body_modification/BM = null
+
+		for(var/tag in species.has_limbs)
+			BM = Pref.get_modification(tag)
+			var/datum/organ_description/OD = species.has_limbs[tag]
+			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ)
+			if(PBM && (PBM.nature == MODIFICATION_SILICON || PBM.nature == MODIFICATION_REMOVED))
+				BM = PBM
+			if(BM.is_allowed(tag, Pref))
+				BM.create_organ(src, OD, Pref.modifications_colors[tag])
+			else
+				OD.create_organ(src)
+
+		for(var/tag in species.has_organ)
+			BM = Pref.get_modification(tag)
+			if(BM.is_allowed(tag, Pref))
+				BM.create_organ(src, species.has_organ[tag], Pref.modifications_colors[tag])
+			else
+				var/organ_type = species.has_organ[tag]
+				new organ_type(src)
+
+	else
+		var/organ_type = null
+
+		for(var/limb_tag in species.has_limbs)
+			var/datum/organ_description/OD = species.has_limbs[limb_tag]
+			OD.create_organ(src)
+
+		for(var/organ_tag in species.has_organ)
+			organ_type = species.has_organ[organ_tag]
+			new organ_type(src)
+
+	species.organs_spawned(src)
+	update_body()
+
+#undef MODIFICATION_REMOVED
+#undef MODIFICATION_ORGANIC
+#undef MODIFICATION_SILICON
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"
@@ -1466,3 +1512,24 @@ var/list/rank_prefix = list(\
 		return PULSE_NONE
 	else
 		return H.pulse
+
+/mob/living/carbon/human/verb/lookup()
+	set name = "Look up"
+	set desc = "If you want to know what's above."
+	set category = "IC"
+
+	if(!is_physically_disabled() && shadow)
+		if(client.eye == shadow)
+			reset_view(0)
+			return
+		var/turf/above = GetAbove(src)
+		if(istype(above, /turf/simulated/open))
+			src << "<span class='notice'>You look up.</span>"
+			if(client)
+				reset_view(shadow)
+			return
+		src << "<span class='notice'>You can see [above].</span>"
+	else
+		src << "<span class='notice'>You can't do it right now.</span>"
+	return
+

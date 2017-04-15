@@ -11,6 +11,7 @@
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
+	var/fall_sound = null
 	var/moved_recently = 0
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
@@ -231,6 +232,8 @@
 	//done throwing, either because it hit something or it finished moving
 	var/turf/new_loc = get_turf(src)
 	if(isobj(src)) src.throw_impact(new_loc,speed)
+	if(fall_sound)
+		playsound(src, fall_sound, 100)
 	new_loc.Entered(src)
 	src.throwing = 0
 	src.thrower = null

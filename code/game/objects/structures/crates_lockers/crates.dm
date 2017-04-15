@@ -115,6 +115,14 @@
 		else
 	return
 
+/obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
+	var/mob/living/L = user
+	if(istype(L) && can_climb(L) && target == user)
+		do_climb(target)
+	else
+		return ..()
+
+
 /obj/structure/closet/crate/secure
 	desc = "A secure crate."
 	name = "Secure crate"

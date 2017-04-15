@@ -21,8 +21,7 @@
 	return data
 
 /obj/item/weapon/implant/explosive/hear_talk(mob/M as mob, msg)
-		hear(msg)
-		return
+	hear(msg)
 
 /obj/item/weapon/implant/explosive/hear(var/msg)
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
@@ -36,26 +35,26 @@
 		return
 
 	var/need_gib = null
-	if(istype(imp_in, /mob/))
-		var/mob/T = imp_in
+	if(istype(wearer, /mob/))
+		var/mob/T = wearer
 		message_admins("Explosive implant triggered in [T] ([T.key]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>) ")
 		log_game("Explosive implant triggered in [T] ([T.key]).")
 		need_gib = 1
 
-		if(ishuman(imp_in))
+		if(ishuman(wearer))
 			if (elevel == "Localized Limb")
 				if(part) //For some reason, small_boom() didn't work. So have this bit of working copypaste.
-					imp_in.visible_message("<span class='warning'>Something beeps inside [imp_in][part ? "'s [part.name]" : ""]!</span>")
+					wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
 					playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 					sleep(25)
 					if (istype(part,/obj/item/organ/external/chest) ||	\
 						istype(part,/obj/item/organ/external/groin) ||	\
 						istype(part,/obj/item/organ/external/head))
 						part.createwound(BRUISE, 60)	//mangle them instead
-						explosion(get_turf(imp_in), -1, -1, 2, 3)
+						explosion(get_turf(wearer), -1, -1, 2, 3)
 						qdel(src)
 					else
-						explosion(get_turf(imp_in), -1, -1, 2, 3)
+						explosion(get_turf(wearer), -1, -1, 2, 3)
 						part.droplimb(0,DROPLIMB_BLUNT)
 						qdel(src)
 			if (elevel == "Destroy Body")
@@ -66,31 +65,31 @@
 				T.gib()
 
 		else
-			explosion(get_turf(imp_in), 0, 1, 3, 6)
+			explosion(get_turf(wearer), 0, 1, 3, 6)
 
 	if(need_gib)
-		imp_in.gib()
+		wearer.gib()
 
-	var/turf/t = get_turf(imp_in)
+	var/turf/t = get_turf(wearer)
 
 	if(t)
 		t.hotspot_expose(3500,125)
 
-/obj/item/weapon/implant/explosive/implant(mob/source as mob)
+/obj/item/weapon/implant/explosive/install(mob/source as mob)
+	..()
 	elevel = alert("What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")
 	phrase = input("Choose activation phrase:") as text
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	phrase = replace_characters(phrase, replacechars)
 	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
 	usr << "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate."
-	return 1
 
 /obj/item/weapon/implant/explosive/proc/small_boom()
-	if (ishuman(imp_in) && part)
-		imp_in.visible_message("<span class='warning'>Something beeps inside [imp_in][part ? "'s [part.name]" : ""]!</span>")
+	if (ishuman(wearer) && part)
+		wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
 		playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 		spawn(25)
-			if (ishuman(imp_in) && part)
+			if (ishuman(wearer) && part)
 				//No tearing off these parts since it's pretty much killing
 				//and you can't replace groins
 				if (istype(part,/obj/item/organ/external/chest) ||	\
@@ -99,7 +98,7 @@
 					part.createwound(BRUISE, 60)	//mangle them instead
 				else
 					part.droplimb(0,DROPLIMB_BLUNT)
-			explosion(get_turf(imp_in), -1, -1, 2, 3)
+			explosion(get_turf(wearer), -1, -1, 2, 3)
 			qdel(src)
 
 /obj/item/weapon/implant/explosive/emp_act(severity)

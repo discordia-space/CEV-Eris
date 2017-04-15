@@ -7,7 +7,7 @@
 	icon_state = "implant"
 	w_class = 1
 	var/implanted = null
-	var/mob/imp_in = null
+	var/mob/wearer = null
 	var/obj/item/organ/external/part = null
 	var/implant_color = "b"
 	var/allow_reagents = 0
@@ -20,11 +20,16 @@
 /obj/item/weapon/implant/proc/activate()
 	return
 
-// What does the implant do upon injection?
-// return 0 if the implant fails (ex. Revhead and loyalty implant.)
-// return 1 if the implant succeeds (ex. Nonrevhead and loyalty implant.)
-/obj/item/weapon/implant/proc/implant(var/mob/source)
-	return 1
+/obj/item/weapon/implant/proc/install(var/mob/living/carbon/human/H, affected_organ)
+	src.loc = H
+	src.wearer = H
+	src.implanted = TRUE
+	var/obj/item/organ/external/affected = H.get_organ(affected_organ)
+	affected.implants += src
+	src.part = affected
+	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
+
+/obj/item/weapon/implant/proc/get_mob_overlay(var/organ_tag, var/gender, var/body_build)
 
 /obj/item/weapon/implant/proc/get_data()
 	return "No information available"
@@ -33,11 +38,11 @@
 	return
 
 /obj/item/weapon/implant/proc/meltdown()	//breaks it down, making implant unrecongizible
-	imp_in << "<span class='warning'>You feel something melting inside [part ? "your [part.name]" : "you"]!</span>"
+	wearer << "<span class='warning'>You feel something melting inside [part ? "your [part.name]" : "you"]!</span>"
 	if (part)
 		part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
 	else
-		var/mob/living/M = imp_in
+		var/mob/living/M = wearer
 		M.apply_damage(15,BURN)
 	name = "melted implant"
 	desc = "Charred circuit in melted plastic case. Wonder what that used to be..."

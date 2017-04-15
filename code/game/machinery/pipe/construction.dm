@@ -65,6 +65,13 @@ Buildable meters
 	w_class = 3
 	level = 2
 
+/obj/item/pipe/can_fall()
+	var/turf/below = GetBelow(get_turf(src))
+	var/pipe_below = istype(below)
+	if(pipe_below)
+		pipe_below = locate(/obj/machinery/atmospherics/pipe/zpipe/up in below)
+	return !(anchored || pipe_below)
+
 /obj/item/pipe/New(var/loc, var/pipe_type as num, var/dir as num, var/obj/machinery/atmospherics/make_from = null)
 	..()
 	if (make_from)

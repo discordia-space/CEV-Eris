@@ -141,18 +141,18 @@ default behaviour is:
 
 /mob/living/proc/can_swap_with(var/mob/living/tmob)
 	if(tmob.buckled || buckled)
-		return 0
+		return FALSE
 	//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
 	if(!(tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())))
-		return 0
+		return FALSE
 	if(!tmob.canmove || !canmove)
-		return 0
+		return FALSE
 
 	if(swap_density_check(src, tmob))
-		return 0
+		return FALSE
 
 	if(swap_density_check(tmob, src))
-		return 0
+		return FALSE
 
 	return can_move_mob(tmob, 1, 0)
 
@@ -501,7 +501,7 @@ default behaviour is:
 		. = ..()
 
 		if (pulling && pulling.loc)
-			if(!( isturf(pulling.loc) ))
+			if(!(isturf(pulling.loc)))
 				stop_pulling()
 				return
 
@@ -580,9 +580,16 @@ default behaviour is:
 	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
 
+	step_count++
+
 	if(update_slimes)
 		for(var/mob/living/carbon/slime/M in view(1,src))
 			M.UpdateFeed(src)
+
+/mob/living/proc/handle_footstep(turf/T)
+	if(istype(T))
+		return TRUE
+	return FALSE
 
 /mob/living/verb/resist()
 	set name = "Resist"

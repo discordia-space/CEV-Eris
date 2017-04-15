@@ -1,14 +1,18 @@
-
 //Either pass the mob you wish to ban in the 'banned_mob' attribute, or the banckey, banip and bancid variables. If both are passed, the mob takes priority! If a mob is not passed, banckey is the minimum that needs to be passed! banip and bancid are optional.
-datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null, var/banip = null, var/bancid = null)
+datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/banckey = null, var/banip = null, var/bancid = null)
 
-	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
+	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))
+		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
+		if(banned_mob.ckey)
+			error("[key_name_admin(usr)] attempted to ban [banned_mob.ckey], but somehow server could not establish a database connection.")
+		else
+			error("[key_name_admin(usr)] attempted to ban someone, but somehow server could not establish a database connection.")
 		return
 
-	var/serverip = "[world.internet_address]:[world.port]"
+	var/server = "[world.internet_address]:[world.port]"
 	var/bantype_pass = 0
 	var/bantype_str
 	switch(bantype)
@@ -26,70 +30,71 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		if(BANTYPE_JOB_TEMP)
 			bantype_str = "JOB_TEMPBAN"
 			bantype_pass = 1
-	if( !bantype_pass ) return
-	if( !istext(reason) ) return
-	if( !isnum(duration) ) return
+	if(!bantype_pass)
+		return
+	if(!istext(reason))
+		return
+	if(!isnum(duration))
+		return
 
 	var/ckey
 	var/computerid
 	var/ip
+
+	var/target_id
+	var/banned_by_id
+
+	var/DBQuery/query
 
 	if(ismob(banned_mob))
 		ckey = banned_mob.ckey
 		if(banned_mob.client)
 			computerid = banned_mob.client.computer_id
 			ip = banned_mob.client.address
+			target_id = banned_mob.client.id
 	else if(banckey)
 		ckey = ckey(banckey)
 		computerid = bancid
 		ip = banip
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_player WHERE ckey = '[ckey]'")
-	query.Execute()
-	var/validckey = 0
-	if(query.NextRow())
-		validckey = 1
-	if(!validckey)
-		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
-			message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet. Please only ban actual players.</font>",1)
+	if(!target_id)
+		query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
+		query.Execute()
+		if(!query.NextRow())
+			if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
+				error("[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet.")
+				return
+
+		target_id = query.item[1]
+
+	banned_by_id = usr.client.id
+	if(!banned_by_id)
+		query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[usr.ckey]'")
+		query.Execute()
+		if(!query.NextRow())
+			error("[key_name_admin(usr)] attempted to ban [ckey], but somehow [key_name_admin(usr)] record does not exist in database.")
 			return
-
-	var/a_ckey
-	var/a_computerid
-	var/a_ip
-
-	if(src.owner && istype(src.owner, /client))
-		a_ckey = src.owner:ckey
-		a_computerid = src.owner:computer_id
-		a_ip = src.owner:address
-
-	var/who
-	for(var/client/C in clients)
-		if(!who)
-			who = "[C]"
-		else
-			who += ", [C]"
-
-	var/adminwho
-	for(var/client/C in admins)
-		if(!adminwho)
-			adminwho = "[C]"
-		else
-			adminwho += ", [C]"
+		banned_by_id = query.item[1]
 
 	reason = sql_sanitize_text(reason)
 
-	var/sql = "INSERT INTO erro_ban (`id`,`bantime`,`serverip`,`bantype`,`reason`,`job`,`duration`,`rounds`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`,`edits`,`unbanned`,`unbanned_datetime`,`unbanned_ckey`,`unbanned_computerid`,`unbanned_ip`) VALUES (null, Now(), '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)"
+	var/sql = "INSERT INTO bans (target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id) VALUES ([target_id], Now(), '[server]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[computerid]', '[ip]', [banned_by_id])"
 	var/DBQuery/query_insert = dbcon.NewQuery(sql)
-	query_insert.Execute()
-	usr << "\blue Ban saved to database."
-	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
-
+	if(!query_insert.Execute())
+		world.log << "[key_name_admin(usr)] attempted to ban [ckey] but got error: [query_insert.ErrorMsg()]."
+		return
+	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.")
 
 
 datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
-	if(!check_rights(R_BAN))	return
+	if(!check_rights(R_BAN))
+		return
+
+	establish_db_connection()
+	if(!dbcon.IsConnected())
+		error("[key_name_admin(usr)] attempted to unban [ckey], but somehow server could not establish a database connection.")
+		return
 
 	var/bantype_str
 	if(bantype)
@@ -114,23 +119,28 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	var/bantype_sql
 	if(bantype_str == "ANY")
-		bantype_sql = "(bantype = 'PERMABAN' OR (bantype = 'TEMPBAN' AND expiration_time > Now() ) )"
+		bantype_sql = "(type = 'PERMABAN' OR (type = 'TEMPBAN' AND expiration_time > Now() ) )"
 	else
-		bantype_sql = "bantype = '[bantype_str]'"
+		bantype_sql = "type = '[bantype_str]'"
 
-	var/sql = "SELECT id FROM erro_ban WHERE ckey = '[ckey]' AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
+	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
+	query.Execute()
+	if(!query.NextRow())
+		error("[key_name_admin(usr)] attempted to unban [ckey], but [ckey] has not been seen yet.")
+		return
+	var/target_id = query.item[1]
+
+	var/sql = "SELECT id FROM bans WHERE target_id = [target_id] AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
 	if(job)
 		sql += " AND job = '[job]'"
-
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		return
 
 	var/ban_id
 	var/ban_number = 0 //failsafe
 
-	var/DBQuery/query = dbcon.NewQuery(sql)
-	query.Execute()
+	query = dbcon.NewQuery(sql)
+	if(!query.Execute())
+		world.log << "[key_name_admin(usr)] attempted to unban [ckey], but got error: [query.ErrorMsg()]."
+		return
 	while(query.NextRow())
 		ban_id = query.item[1]
 		ban_number++;
@@ -153,27 +163,39 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
-	if(!check_rights(R_BAN))	return
+	if(!check_rights(R_BAN))
+		return
+
+	establish_db_connection()
+	if(!dbcon.IsConnected())
+		error("[key_name_admin(usr)] attempted to edit ban record with id [banid], but somehow server could not establish a database connection.")
+		return
 
 	if(!isnum(banid) || !istext(param))
 		usr << "Cancelled"
 		return
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, duration, reason FROM erro_ban WHERE id = [banid]")
+	var/target_id
+	var/ckey
+	var/duration
+	var/reason
+
+	var/DBQuery/query = dbcon.NewQuery("SELECT target_id, duration, reason FROM bans WHERE id = [banid]")
 	query.Execute()
-
-	var/eckey = usr.ckey	//Editing admin ckey
-	var/pckey				//(banned) Player ckey
-	var/duration			//Old duration
-	var/reason				//Old reason
-
 	if(query.NextRow())
-		pckey = query.item[1]
+		target_id = query.item[1]
 		duration = query.item[2]
 		reason = query.item[3]
 	else
-		usr << "Invalid ban id. Contact the database admin"
+		error("[key_name_admin(usr)] attempted to edit ban record with id [banid], but matching record does not exist in database.")
 		return
+
+	query = dbcon.NewQuery("SELECT ckey FROM players WHERE id = [target_id]")
+	query.Execute()
+	if(!query.NextRow())
+		error("[key_name_admin(usr)] attempted to edit [ckey]'s ban, but [ckey] has not been seen yet.")
+		return
+	ckey = query.item[1]
 
 	reason = sql_sanitize_text(reason)
 	var/value
@@ -181,27 +203,31 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 	switch(param)
 		if("reason")
 			if(!value)
-				value = sanitize(input("Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null) as null|text)
+				value = sanitize(input("Insert the new reason for [ckey]'s ban", "New Reason", "[reason]", null) as null|text)
 				value = sql_sanitize_text(value)
 				if(!value)
 					usr << "Cancelled"
 					return
+			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET reason = '[value]', WHERE id = [banid]")
+			if(!update_query.Execute())
+				world.log << "[key_name_admin(usr)] tried to edit ban for [ckey] but got error: [update_query.ErrorMsg()]."
+				return
+			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s reason from [reason] to [value]")
 
-			var/DBQuery/update_query = dbcon.NewQuery("UPDATE erro_ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite><b>\\\"[reason]\\\"</b></cite> to <cite><b>\\\"[value]\\\"</b></cite><BR>') WHERE id = [banid]")
-			update_query.Execute()
-			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s reason from [reason] to [value]",1)
 		if("duration")
 			if(!value)
-				value = input("Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null) as null|num
+				value = input("Insert the new duration (in minutes) for [ckey]'s ban", "New Duration", "[duration]", null) as null|num
 				if(!isnum(value) || !value)
 					usr << "Cancelled"
 					return
+			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET duration = [value], expiration_time = DATE_ADD(time, INTERVAL '[value]' MINUTE) WHERE id = [banid]")
+			if(!update_query.Execute())
+				world.log << "[key_name_admin(usr)] tried to edit a ban duration for [ckey] but got error: [update_query.ErrorMsg()]."
+				return
+			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s duration from [duration] to [value]")
 
-			var/DBQuery/update_query = dbcon.NewQuery("UPDATE erro_ban SET duration = [value], edits = CONCAT(edits,'- [eckey] changed ban duration from [duration] to [value]<br>'), expiration_time = DATE_ADD(bantime, INTERVAL [value] MINUTE) WHERE id = [banid]")
-			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s duration from [duration] to [value]",1)
-			update_query.Execute()
 		if("unban")
-			if(alert("Unban [pckey]?", "Unban?", "Yes", "No") == "Yes")
+			if(alert("Unban [ckey]?", "Unban?", "Yes", "No") == "Yes")
 				DB_ban_unban_by_id(banid)
 				return
 			else
@@ -213,43 +239,41 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
 datum/admins/proc/DB_ban_unban_by_id(var/id)
 
-	if(!check_rights(R_BAN))	return
-
-	var/sql = "SELECT ckey FROM erro_ban WHERE id = [id]"
+	if(!check_rights(R_BAN))
+		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
+		error("[key_name_admin(usr)] attempted to remove ban record with id [id], but somehow server could not establish a database connection.")
 		return
 
-	var/ban_number = 0 //failsafe
+	var/ckey
 
-	var/pckey
-	var/DBQuery/query = dbcon.NewQuery(sql)
+	var/DBQuery/query = dbcon.NewQuery("SELECT target_id FROM bans WHERE id = [id]")
 	query.Execute()
-	while(query.NextRow())
-		pckey = query.item[1]
-		ban_number++;
-
-	if(ban_number == 0)
-		usr << "\red Database update failed due to a ban id not being present in the database."
-		return
-
-	if(ban_number > 1)
-		usr << "\red Database update failed due to multiple bans having the same ID. Contact the database admin."
+	if(query.NextRow())
+		ckey = query.item[1]
+	else
+		error("[key_name_admin(usr)] attempted to remove ban record with id [id], but record does not exist.")
 		return
 
 	if(!src.owner || !istype(src.owner, /client))
 		return
 
-	var/unban_ckey = src.owner:ckey
-	var/unban_computerid = src.owner:computer_id
-	var/unban_ip = src.owner:address
+	query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[usr.ckey]'")
+	query.Execute()
+	if(!query.NextRow())
+		error("[key_name_admin(usr)] attempted to remove ban record with id [id], but admin database record does not exist.")
+		return
+	var/admin_id = query.item[1]
 
-	var/sql_update = "UPDATE erro_ban SET unbanned = 1, unbanned_datetime = Now(), unbanned_ckey = '[unban_ckey]', unbanned_computerid = '[unban_computerid]', unbanned_ip = '[unban_ip]' WHERE id = [id]"
-	message_admins("[key_name_admin(usr)] has lifted [pckey]'s ban.",1)
+	var/sql_update = "UPDATE bans SET unbanned = 1, unbanned_time = Now(), unbanned_by_id = [admin_id], WHERE id = [id]"
 
 	var/DBQuery/query_update = dbcon.NewQuery(sql_update)
-	query_update.Execute()
+	if(!query_update.Execute())
+		world.log << "[key_name_admin(usr)] tried to unban [ckey] but got error: [query_update.ErrorMsg()]."
+		return
+	message_admins("[key_name_admin(usr)] has lifted [ckey]'s ban.")
 
 
 /client/proc/DB_ban_panel()
@@ -267,7 +291,8 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	if(!usr.client)
 		return
 
-	if(!check_rights(R_BAN))	return
+	if(!check_rights(R_BAN))
+		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
@@ -361,6 +386,18 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 			output += "<th width='15%'><b>OPTIONS</b></th>"
 			output += "</tr>"
 
+			var/player_id
+			var/DBQuery/query = dbcon.NewQuery("SELECT id, FROM players WHERE ckey='[playerckey]'")
+			query.Execute()
+			if(query.NextRow())
+				player_id = query.item[1]
+
+			var/admin_id
+			query = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[adminckey]'")
+			query.Execute()
+			if(query.NextRow())
+				admin_id = query.item[1]
+
 			var/adminsearch = ""
 			var/playersearch = ""
 			var/ipsearch = ""
@@ -369,25 +406,25 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 			if(!match)
 				if(adminckey)
-					adminsearch = "AND a_ckey = '[adminckey]' "
+					adminsearch = "AND banned_by_id = [admin_id] "
 				if(playerckey)
-					playersearch = "AND ckey = '[playerckey]' "
+					playersearch = "AND target_id = [player_id] "
 				if(playerip)
 					ipsearch  = "AND ip = '[playerip]' "
 				if(playercid)
-					cidsearch  = "AND computerid = '[playercid]' "
+					cidsearch  = "AND cid = '[playercid]' "
 			else
 				if(adminckey && lentext(adminckey) >= 3)
-					adminsearch = "AND a_ckey LIKE '[adminckey]%' "
+					adminsearch = "AND banned_by_id = [admin_id] "
 				if(playerckey && lentext(playerckey) >= 3)
-					playersearch = "AND ckey LIKE '[playerckey]%' "
+					playersearch = "AND target_id = [player_id] "
 				if(playerip && lentext(playerip) >= 3)
 					ipsearch  = "AND ip LIKE '[playerip]%' "
 				if(playercid && lentext(playercid) >= 7)
-					cidsearch  = "AND computerid LIKE '[playercid]%' "
+					cidsearch  = "AND cid LIKE '[playercid]%' "
 
 			if(dbbantype)
-				bantypesearch = "AND bantype = "
+				bantypesearch = "AND type = "
 
 				switch(dbbantype)
 					if(BANTYPE_TEMP)
@@ -399,7 +436,8 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 					else
 						bantypesearch += "'PERMABAN' "
 
-			var/DBQuery/select_query = dbcon.NewQuery("SELECT id, bantime, bantype, reason, job, duration, expiration_time, ckey, a_ckey, unbanned, unbanned_ckey, unbanned_datetime, edits, ip, computerid FROM erro_ban WHERE 1 [playersearch] [adminsearch] [ipsearch] [cidsearch] [bantypesearch] ORDER BY bantime DESC LIMIT 100")
+
+			var/DBQuery/select_query = dbcon.NewQuery("SELECT id, time, type, reason, job, duration, expiration_time, target_id, banned_by_id, unbanned, unbanned_by_id, unbanned_time, ip, cid FROM bans WHERE 1 [playersearch] [adminsearch] [ipsearch] [cidsearch] [bantypesearch] ORDER BY time DESC LIMIT 100")
 			select_query.Execute()
 
 			var/now = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss") // MUST BE the same format as SQL gives us the dates in, and MUST be least to most specific (i.e. year, month, day not day, month, year)
@@ -412,14 +450,31 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				var/job = select_query.item[5]
 				var/duration = select_query.item[6]
 				var/expiration = select_query.item[7]
-				var/ckey = select_query.item[8]
-				var/ackey = select_query.item[9]
+				var/target_id = select_query.item[8]
+				var/banned_by_id = select_query.item[9]
 				var/unbanned = select_query.item[10]
-				var/unbanckey = select_query.item[11]
+				var/unbanned_by_id = select_query.item[11]
 				var/unbantime = select_query.item[12]
-				var/edits = select_query.item[13]
-				var/ip = select_query.item[14]
-				var/cid = select_query.item[15]
+				var/ip = select_query.item[13]
+				var/cid = select_query.item[14]
+				var/target_ckey
+				var/banned_by_ckey
+				var/unbanned_by_ckey
+
+				query = dbcon.NewQuery("SELECT ckey FROM players WHERE id = [target_id]")
+				query.Execute()
+				if(query.NextRow())
+					target_ckey = query.item[1]
+
+				query = dbcon.NewQuery("SELECT ckey FROM players WHERE id = [banned_by_id]")
+				query.Execute()
+				if(query.NextRow())
+					banned_by_ckey = query.item[1]
+
+				query = dbcon.NewQuery("SELECT ckey FROM players WHERE id = [unbanned_by_id]")
+				query.Execute()
+				if(query.NextRow())
+					unbanned_by_ckey = query.item[1]
 
 				// true if this ban has expired
 				var/auto = (bantype in list("TEMPBAN", "JOB_TEMPBAN")) && now > expiration // oh how I love ISO 8601 (ish) date strings
@@ -446,9 +501,9 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 				output += "<tr bgcolor='[dcolor]'>"
 				output += "<td align='center'>[typedesc]</td>"
-				output += "<td align='center'><b>[ckey]</b></td>"
+				output += "<td align='center'><b>[target_ckey]</b></td>"
 				output += "<td align='center'>[bantime]</td>"
-				output += "<td align='center'><b>[ackey]</b></td>"
+				output += "<td align='center'><b>[banned_by_ckey]</b></td>"
 				output += "<td align='center'>[(unbanned || auto) ? "" : "<b><a href=\"byond://?src=\ref[src];dbbanedit=unban;dbbanid=[banid]\">Unban</a></b>"]</td>"
 				output += "</tr>"
 				output += "<tr bgcolor='[dcolor]'>"
@@ -458,16 +513,9 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 				output += "<tr bgcolor='[lcolor]'>"
 				output += "<td align='center' colspan='5'><b>Reason: [(unbanned || auto) ? "" : "(<a href=\"byond://?src=\ref[src];dbbanedit=reason;dbbanid=[banid]\">Edit</a>)"]</b> <cite>\"[reason]\"</cite></td>"
 				output += "</tr>"
-				if(edits)
-					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5'><b>EDITS</b></td>"
-					output += "</tr>"
-					output += "<tr bgcolor='[lcolor]'>"
-					output += "<td align='center' colspan='5'><font size='2'>[edits]</font></td>"
-					output += "</tr>"
 				if(unbanned)
 					output += "<tr bgcolor='[dcolor]'>"
-					output += "<td align='center' colspan='5' bgcolor=''><b>UNBANNED by admin [unbanckey] on [unbantime]</b></td>"
+					output += "<td align='center' colspan='5' bgcolor=''><b>UNBANNED by admin [unbanned_by_ckey] on [unbantime]</b></td>"
 					output += "</tr>"
 				else if(auto)
 					output += "<tr bgcolor='[dcolor]'>"

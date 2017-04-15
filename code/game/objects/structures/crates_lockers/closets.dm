@@ -21,6 +21,9 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
+/obj/structure/closet/can_prevent_fall()
+	return TRUE
+
 /obj/structure/closet/initialize()
 	..()
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents

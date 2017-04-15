@@ -19,7 +19,7 @@
 
 /obj/item/weapon/implant/death_alarm/process()
 	if (!implanted) return
-	var/mob/M = imp_in
+	var/mob/M = wearer
 
 	if(isnull(M)) // If the mob got gibbed
 		activate()
@@ -27,7 +27,7 @@
 		activate("death")
 
 /obj/item/weapon/implant/death_alarm/activate(var/cause)
-	var/mob/M = imp_in
+	var/mob/M = wearer
 	var/area/t = get_area(M)
 	switch (cause)
 		if("death")
@@ -66,10 +66,10 @@
 	spawn(20)
 		malfunction--
 
-/obj/item/weapon/implant/death_alarm/implant(mob/source as mob)
+/obj/item/weapon/implant/death_alarm/install(mob/source as mob)
+	..()
 	mobname = source.real_name
 	processing_objects.Add(src)
-	return 1
 
 
 /obj/item/weapon/implantcase/death_alarm
