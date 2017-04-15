@@ -18,7 +18,6 @@
 	S["job_engsec_high"]	>> pref.job_engsec_high
 	S["job_engsec_med"]		>> pref.job_engsec_med
 	S["job_engsec_low"]		>> pref.job_engsec_low
-	S["player_alt_titles"]	>> pref.player_alt_titles
 
 /datum/category_item/player_setup_item/occupation/save_character(var/savefile/S)
 	S["alternate_option"]	<< pref.alternate_option
@@ -31,7 +30,6 @@
 	S["job_engsec_high"]	<< pref.job_engsec_high
 	S["job_engsec_med"]		<< pref.job_engsec_med
 	S["job_engsec_low"]		<< pref.job_engsec_low
-	S["player_alt_titles"]	<< pref.player_alt_titles
 
 /datum/category_item/player_setup_item/occupation/sanitize_character()
 	pref.alternate_option	= sanitize_integer(pref.alternate_option, 0, 2, initial(pref.alternate_option))
@@ -44,15 +42,9 @@
 	pref.job_engsec_high	= sanitize_integer(pref.job_engsec_high, 0, 65535, initial(pref.job_engsec_high))
 	pref.job_engsec_med 	= sanitize_integer(pref.job_engsec_med, 0, 65535, initial(pref.job_engsec_med))
 	pref.job_engsec_low 	= sanitize_integer(pref.job_engsec_low, 0, 65535, initial(pref.job_engsec_low))
-	if(!pref.player_alt_titles) pref.player_alt_titles = new()
 
 	if(!job_master)
 		return
-
-	for(var/datum/job/job in job_master.occupations)
-		var/alt_title = pref.player_alt_titles[job.title]
-		if(alt_title && !(alt_title in job.alt_titles))
-			pref.player_alt_titles -= job.title
 
 /datum/category_item/player_setup_item/occupation/content(mob/user, limit = 18, list/splitJobs = list("Chief Medical Officer"))
 	if(!job_master)
@@ -109,8 +101,6 @@
 				. += " <font color=green>\[Yes]</font>"
 			else
 				. += " <font color=red>\[No]</font>"
-			if(job.alt_titles) //Blatantly cloned from a few lines down.
-				. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
 			. += "</a></td></tr>"
 			continue
 
@@ -122,8 +112,6 @@
 			. += " <font color=orange>\[Low]</font>"
 		else
 			. += " <font color=red>\[NEVER]</font>"
-		if(job.alt_titles)
-			. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
 		. += "</a></td></tr>"
 
 	. += "</td'></tr></table>"
@@ -155,16 +143,6 @@
 		pref.req_update_icon = 1
 		return TOPIC_REFRESH
 
-	else if(href_list["select_alt_title"])
-		var/datum/job/job = locate(href_list["select_alt_title"])
-		if (job)
-			var/choices = list(job.title) + job.alt_titles
-			var/choice = input("Choose an title for [job.title].", "Choose Title", pref.GetPlayerAltTitle(job)) as anything in choices|null
-			if(choice && CanUseTopic(user))
-				SetPlayerAltTitle(job, choice)
-				pref.req_update_icon = 1
-				return TOPIC_REFRESH
-
 	else if(href_list["set_job"])
 		if(SetJob(user, href_list["set_job"]))
 			pref.req_update_icon = 1
@@ -172,12 +150,6 @@
 
 	return ..()
 
-/datum/category_item/player_setup_item/occupation/proc/SetPlayerAltTitle(datum/job/job, new_title)
-	// remove existing entry
-	pref.player_alt_titles -= job.title
-	// add one if it's not default
-	if(job.title != new_title)
-		pref.player_alt_titles[job.title] = new_title
 
 /datum/category_item/player_setup_item/occupation/proc/SetJob(mob/user, role)
 	var/datum/job/job = job_master.GetJob(role)
@@ -266,10 +238,6 @@
 	pref.job_engsec_med = 0
 	pref.job_engsec_low = 0
 
-	pref.player_alt_titles.Cut()
-
-/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
-	return (job.title in player_alt_titles) ? player_alt_titles[job.title] : job.title
 
 /datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
 	if(!job || !level)	return 0
