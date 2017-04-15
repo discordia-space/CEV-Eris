@@ -29,7 +29,8 @@
 	src.part = affected
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 
-/obj/item/weapon/implant/proc/get_mob_overlay(var/organ_tag, var/gender, var/body_build)
+/obj/item/weapon/implant/proc/get_mob_overlay(var/gender, var/body_build)
+	return null
 
 /obj/item/weapon/implant/proc/get_data()
 	return "No information available"

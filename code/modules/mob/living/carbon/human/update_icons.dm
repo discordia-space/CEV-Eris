@@ -396,14 +396,10 @@ var/global/list/damage_icon_parts = list()
 	var/image/standing = image('icons/mob/mob.dmi', "blank")
 	var/have_icon = FALSE
 	var/fat = body_build.index
-	var/gender = src.gender == MALE ? "m" : "f"
-	for(var/Organ in organs_by_name)
-		var/obj/item/organ/external/O = get_organ(Organ)
-		if(!O)
-			continue
-		var/image/mob_icon = null
-		for(var/obj/item/weapon/implant/I in O.implants)
-			mob_icon = I.get_mob_overlay(Organ, gender, fat)
+	var/gender = (src.gender == MALE) ? "m" : "f"
+	for(var/obj/item/weapon/implant/I in src)
+		if(I.wearer == src)
+			var/image/mob_icon = I.get_mob_overlay(gender, fat)
 			if(mob_icon)
 				standing.overlays += mob_icon
 				have_icon = TRUE
@@ -411,6 +407,7 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[IMPLANTS_LAYER] = standing
 	else
 		overlays_standing[IMPLANTS_LAYER] = null
+
 	if(update_icons) update_icons()
 
 /* --------------------------------------- */
