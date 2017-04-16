@@ -17,7 +17,7 @@
 	unacidable = 1
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
 	var/mob/living/parentmob
-	var/process_flag = 0
+	var/process_flag = FALSE
 	var/hideflag = 0
 	var/list/image/ovrls = list()
 
@@ -29,18 +29,7 @@
 		src.icon = _icon
 	if (_icon_state)
 		src.icon_state = _icon_state
-///obj/screen/New()
-//	set in usr.client.screen
-//screen_loc = "[x_pos],[y_pos]"
-//	world << "usr:[usr] src:[src]"
-//	if(usr)
-//		parentmob = usr
-//		return 1
-//	else
-//		return 0
 
-//	usr << hud_state
-	//world << "src: [src], parent [parentmob]"
 
 /obj/screen/process()
 	return
@@ -50,124 +39,23 @@
 	return ..()
 
 /obj/screen/Click(location, control, params)
-	if(!usr)	return 1
-	switch(name)
-/*		if("toggle")
-			//if(usr.hud_used.inventory_shown)
-			//	usr.hud_used.inventory_shown = 0
-			//	usr.client.screen -= usr.hud_used.other
-			//else
-			//	usr.hud_used.inventory_shown = 1
-			//	usr.client.screen += usr.hud_used.other
+	if(!usr)
+		return TRUE
 
-			//usr.hud_used.hidden_inventory_update()
-			return*/
+	switch(name)
 
 		if("equip")
 			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-				return 1
+				return TRUE
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				H.quick_equip()
 
 		if("Reset Machine")
 			usr.unset_machine()
-//		if("act_intent")
-//			usr.a_intent_change("right")
-		/*if(I_HELP)
-			usr.a_intent = I_HELP
-			usr.hud_used.action_intent.icon_state = "intent_help"
-		if(I_HURT)
-			usr.a_intent = I_HURT
-			usr.hud_used.action_intent.icon_state = "intent_harm"
-		if(I_GRAB)
-			usr.a_intent = I_GRAB
-			usr.hud_used.action_intent.icon_state = "intent_grab"
-		if(I_DISARM)
-			usr.a_intent = I_DISARM
-			usr.hud_used.action_intent.icon_state = "intent_disarm"*/
-
-/*		if("module")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-//				if(R.module)
-//					R.hud_used.toggle_show_robot_modules()
-//					return 1
-				R.pick_module()
-
-		if("inventory")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				if(R.module)
-//					R.hud_used.toggle_show_robot_modules()
-					return 1
-				else
-					R << "You haven't selected a module yet."*/
-
-/*		if("radio")
-			if(issilicon(usr))
-				usr:radio_menu()
-		if("panel")
-			if(issilicon(usr))
-				usr:installed_modules()
-
-		if("store")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				if(R.module)
-					R.uneq_active()
-//					R.hud_used.update_robot_modules_display()
-				else
-					R << "You haven't selected a module yet."
-
-		if("module1")
-			if(istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(1)
-
-		if("module2")
-			if(istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(2)
-
-		if("module3")
-			if(istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(3)*/
 		else
-			return 0
-	return 1
-
-/*/obj/screen/resist
-	name = "resist"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "act_resist"
-	screen_loc = "1,10"
-
-/obj/screen/resist/Click(location, control, params)
-	..(location, control, params)
-	if(isliving(usr))
-		var/mob/living/L = usr
-		L.resist()*/
-
-
-/*/obj/screen/TEST
-	name = "TESTICON!"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "block"
-	var/clicks = 0
-	appearance_flags=RESET_COLOR
-	var/image/A
-	var/image/B
-
-/obj/screen/TEST/Click(location, control, params)
-	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
-	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
-	A.override = 1
-	B.appearance_flags=RESET_COLOR
-	overlays.Cut()
-	clicks = !clicks
-//	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
-	overlays += clicks ? A : B*/
-
-
+			return FALSE
+	return TRUE
 
 //--------------------------------------------------close---------------------------------------------------------
 
@@ -182,7 +70,7 @@
 		if(istype(master, /obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = master
 			S.close(usr)
-	return 1
+	return TRUE
 //--------------------------------------------------close end---------------------------------------------------------
 
 
@@ -193,7 +81,7 @@
 /obj/screen/grab/Click()
 	var/obj/item/weapon/grab/G = master
 	G.s_click(src)
-	return 1
+	return TRUE
 
 /obj/screen/grab/attack_hand()
 	return
@@ -216,18 +104,18 @@
 
 /obj/screen/item_action/Click()
 	if(!usr || !owner)
-		return 1
+		return TRUE
 	if(!usr.canClick())
 		return
 
 	if(usr.stat || usr.restrained() || usr.stunned || usr.lying)
-		return 1
+		return TRUE
 
 	if(!(owner in usr))
-		return 1
+		return TRUE
 
 	owner.ui_action_click()
-	return 1
+	return TRUE
 //-----------------------------------------------ITEM ACTION END---------------------------------------------------------
 
 
@@ -252,7 +140,7 @@
 				if(17 to 22)
 					parentmob.targeted_organ = "l_foot"
 				else
-					return 1
+					return TRUE
 		if(4 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
@@ -260,7 +148,7 @@
 				if(17 to 22)
 					parentmob.targeted_organ = "l_leg"
 				else
-					return 1
+					return TRUE
 		if(10 to 13) //Hands and groin
 			switch(icon_x)
 				if(8 to 11)
@@ -270,7 +158,7 @@
 				if(21 to 24)
 					parentmob.targeted_organ = "l_hand"
 				else
-					return 1
+					return TRUE
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
@@ -280,7 +168,7 @@
 				if(21 to 24)
 					parentmob.targeted_organ = "l_arm"
 				else
-					return 1
+					return TRUE
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
 				parentmob.targeted_organ = "head"
@@ -300,7 +188,7 @@
 
 	if(old_selecting != parentmob.targeted_organ)
 		update_icon()
-	return 1
+	return TRUE
 
 /obj/screen/zone_sel/New()
 	..()
@@ -325,16 +213,16 @@
 
 /obj/screen/storage/Click()
 	if(!usr.canClick())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	if(master)
 		var/obj/item/I = usr.get_active_hand()
 		if(I)
 			usr.ClickOn(master)
-	return 1
+	return TRUE
 
 //--------------------------------------------------inventory---------------------------------------------------------
 /obj/screen/inventory
@@ -354,11 +242,11 @@
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(!usr.canClick())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	switch(name)
 /*		if("r_hand")
 			if(iscarbon(usr))
@@ -374,7 +262,7 @@
 			if(usr.attack_ui(slot_id))
 				usr.update_inv_l_hand(0)
 				usr.update_inv_r_hand(0)
-	return 1
+	return TRUE
 
 /obj/screen/inventory/hand
 	name = "nonamehand"
@@ -407,7 +295,7 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "health0"
 	screen_loc = "15,7"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/health/New()
 	..()
@@ -459,7 +347,7 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,6"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/nutrition/New()
 	..()
@@ -492,7 +380,7 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,8"
-	process_flag = 1
+	process_flag = TRUE
 
 
 /obj/screen/bodytemp/New()
@@ -510,19 +398,6 @@
 
 /obj/screen/bodytemp/process()
 	update_icon()
-	//var/mob/living/carbon/human/H = parentmob
-	/*if (!parentmob:species)
-		switch(parentmob:bodytemperature) //310.055 optimal body temp
-			if(370 to INFINITY)		icon_state = "temp4"
-			if(350 to 370)			icon_state = "temp3"
-			if(335 to 350)			icon_state = "temp2"
-			if(320 to 335)			icon_state = "temp1"
-			if(300 to 320)			icon_state = "temp0"
-			if(295 to 300)			icon_state = "temp-1"
-			if(280 to 295)			icon_state = "temp-2"
-			if(260 to 280)			icon_state = "temp-3"
-			else					icon_state = "temp-4"
-	else*/
 
 
 /obj/screen/bodytemp/update_icon()
@@ -569,7 +444,7 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,13"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/pressure/New()
 	..()
@@ -624,7 +499,7 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "oxy0"
 	screen_loc = "15,12"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/oxygen/New()
 	..()
@@ -651,7 +526,7 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,9"
-	process_flag = 1
+	process_flag = TRUE
 
 
 /obj/screen/fire/New()
@@ -710,7 +585,7 @@
 
 				if(no_mask)
 					C << "<span class='notice'>You are not wearing a suitable mask or helmet.</span>"
-					return 1
+					return TRUE
 				else
 					var/list/nicename = null
 					var/list/tankcheck = null
@@ -881,7 +756,7 @@
 		C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
 		C.m_intent = "walk"	//Just incase
 		update_icon()
-		return 1
+		return TRUE
 	switch(C.m_intent)
 		if("run")
 			C.m_intent = "walk"
@@ -910,7 +785,7 @@
 
 /obj/screen/equip/Click()
 	if (istype(parentmob.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	if(ishuman(parentmob))
 		var/mob/living/carbon/human/H = parentmob
 		H.quick_equip()
@@ -1030,7 +905,7 @@
 	name = "drugs"
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = 0
-	process_flag = 1
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
@@ -1059,7 +934,7 @@
 	name = "dmg"
 	screen_loc = "1,1"
 	mouse_opacity = 0
-	process_flag = 1
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
@@ -1166,7 +1041,7 @@
 	name = "glasses"
 	screen_loc = "1,1"
 	mouse_opacity = 0
-	process_flag = 1
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 
 
@@ -1216,7 +1091,7 @@
 /obj/screen/gun/Click(location, control, params)
 	if(!usr)
 		return
-	return 1
+	return TRUE
 
 /obj/screen/gun/New()
 	..()
@@ -1237,8 +1112,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_active()
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/mode/update_icon()
 	icon_state = "gun[parentmob.aiming.active]"
@@ -1255,8 +1130,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_MOVE)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/move/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_MOVE))
@@ -1278,8 +1153,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_CLICK)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/item/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_CLICK))
@@ -1301,8 +1176,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_RADIO)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/radio/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_RADIO))
@@ -1339,10 +1214,10 @@
 /obj/screen/toggle_invetory/Click()
 
 	if(parentmob.inventory_shown)
-		parentmob.inventory_shown = 0
+		parentmob.inventory_shown = FALSE
 		hideobjects()
 	else
-		parentmob.inventory_shown = 1
+		parentmob.inventory_shown = TRUE
 		showobjects()
 
 	//parentmob.hud_used.hidden_inventory_update()
@@ -1373,90 +1248,4 @@
 			if(H.wear_suit) H.wear_suit.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 		if(slot_wear_mask)
 			if(H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-/*	for(var/obj/screen/inventory/inv_elem in parentmob.HUDinventory)
-		switch (inv_elem.slot_id)
-			if(slot_head)
-				if(H.head)      H.head.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_shoes)
-				if(H.shoes)     H.shoes.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_l_ear)
-				if(H.l_ear)     H.l_ear.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_r_ear)
-				if(H.r_ear)     H.r_ear.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_gloves)
-				if(H.gloves)    H.gloves.screen_loc =    (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_glasses)
-				if(H.glasses)   H.glasses.screen_loc =   (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_w_uniform)
-				if(H.w_uniform) H.w_uniform.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_wear_suit)
-				if(H.wear_suit) H.wear_suit.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_wear_mask)
-				if(H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc*/
-
-/*//	if(!mymob) return
-//	if(ishuman(mymob))
-	var/mob/living/carbon/human/H = parentmob
-	for(var/gear_slot in H.species.hud.gear)
-		var/list/hud_data = H.species.hud.gear[gear_slot]
-		if(H.inventory_shown)
-			switch(hud_data["slot"])
-				if(slot_head)
-					if(H.head)      H.head.screen_loc =      hud_data["loc"]
-				if(slot_shoes)
-					if(H.shoes)     H.shoes.screen_loc =     hud_data["loc"]
-				if(slot_l_ear)
-					if(H.l_ear)     H.l_ear.screen_loc =     hud_data["loc"]
-				if(slot_r_ear)
-					if(H.r_ear)     H.r_ear.screen_loc =     hud_data["loc"]
-				if(slot_gloves)
-					if(H.gloves)    H.gloves.screen_loc =    hud_data["loc"]
-				if(slot_glasses)
-					if(H.glasses)   H.glasses.screen_loc =   hud_data["loc"]
-				if(slot_w_uniform)
-					if(H.w_uniform) H.w_uniform.screen_loc = hud_data["loc"]
-				if(slot_wear_suit)
-					if(H.wear_suit) H.wear_suit.screen_loc = hud_data["loc"]
-				if(slot_wear_mask)
-					if(H.wear_mask) H.wear_mask.screen_loc = hud_data["loc"]
-		else
-			switch(hud_data["slot"])
-				if(slot_head)
-					if(H.head)      H.head.screen_loc =      null
-				if(slot_shoes)
-					if(H.shoes)     H.shoes.screen_loc =     null
-				if(slot_l_ear)
-					if(H.l_ear)     H.l_ear.screen_loc =     null
-				if(slot_r_ear)
-					if(H.r_ear)     H.r_ear.screen_loc =     null
-				if(slot_gloves)
-					if(H.gloves)    H.gloves.screen_loc =    null
-				if(slot_glasses)
-					if(H.glasses)   H.glasses.screen_loc =   null
-				if(slot_w_uniform)
-					if(H.w_uniform) H.w_uniform.screen_loc = null
-				if(slot_wear_suit)
-					if(H.wear_suit) H.wear_suit.screen_loc = null
-				if(slot_wear_mask)
-					if(H.wear_mask) H.wear_mask.screen_loc = null
-	update_inv_w_uniform(0)
-	update_inv_wear_id(0)
-	update_inv_gloves(0)
-	update_inv_glasses(0)
-	update_inv_ears(0)
-	update_inv_shoes(0)
-	update_inv_s_store(0)
-	update_inv_wear_mask(0)
-	update_inv_head(0)
-	update_inv_belt(0)
-	update_inv_back(0)
-	update_inv_wear_suit(0)
-	update_inv_r_hand(0)
-	update_inv_l_hand(0)
-	update_inv_handcuffed(0)
-	update_inv_legcuffed(0)
-	update_inv_pockets(0)
-	update_fire(0)
-	update_surgery(0)
-*/
 //-----------------------toggle_invetory End------------------------------

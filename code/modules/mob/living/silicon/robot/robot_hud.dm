@@ -8,11 +8,11 @@
 		return
 
 //	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	var/recreate_flag = 0
+	var/recreate_flag = FALSE
 
 	if(!check_HUDdatum())
 		H.defaultHUD = "BorgStyle"
-		++recreate_flag
+		recreate_flag = TRUE
 
 	if (recreate_flag)
 		H.destroy_HUD()
@@ -27,8 +27,8 @@
 
 	if (H.defaultHUD == "BorgStyle") //если у клиента моба прописан стиль\тип ХУДа
 		if(global.HUDdatums.Find(H.defaultHUD))//Если существует такой тип ХУДА
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 
 
