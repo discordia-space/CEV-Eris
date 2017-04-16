@@ -411,12 +411,15 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/biomass = 600
+	var/biomass = 0
 	var/biomass_max = 900
 
 
 /obj/machinery/neotheology/biomass_container/New()
 	..()
+	    ..()
+    if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
+    	biomass = 600
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/neotheology/biocan(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
