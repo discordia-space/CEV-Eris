@@ -113,6 +113,8 @@ Class Procs:
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 
+	var/frame_type = FRAME_DEFAULT
+
 /obj/machinery/New(l, d=0)
 	..(l)
 	if(d)
@@ -334,12 +336,20 @@ Class Procs:
 			user << "<span class='notice'>    [C.name]</span>"
 	return 1
 
+/obj/machinery/proc/create_frame(var/type)
+	if(type == FRAME_DEFAULT)
+		return new/obj/machinery/constructable_frame/machine_frame
+	if(type == FRAME_VERTICAL)
+		return new/obj/machinery/constructable_frame/machine_frame/vertical
+
 /obj/machinery/proc/dismantle()
 	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-	var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
+	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
+	M.forceMove(loc)
 	M.set_dir(src.dir)
 	M.state = 2
-	M.icon_state = "box_1"
+	M.icon_state = "[M.base_state]_1"
+	M.update_icon()
 	for(var/obj/I in component_parts)
 		I.loc = loc
 	qdel(src)
