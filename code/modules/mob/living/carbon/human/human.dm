@@ -1214,6 +1214,7 @@ var/list/rank_prefix = list(\
 			new organ_type(src)
 
 	species.organs_spawned(src)
+
 	update_body()
 
 #undef MODIFICATION_REMOVED
