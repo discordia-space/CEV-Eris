@@ -87,24 +87,24 @@ var/global/list/limb_icon_cache = list()
 
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips[owner.lip_style][owner.body_build.index]")
-		overlays |= lip_icon
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
 
-	if(owner.f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
-			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
-			if(facial_hair_style.do_colouration)
-				facial_s.Blend(owner.facial_color, ICON_ADD)
-			overlays |= facial_s
+	if(!(status & ORGAN_ROBOT))
+		if(owner.f_style)
+			var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
+			if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
+				var/icon/facial = new/icon(facial_hair_style.icon, "[facial_hair_style.icon_state]_s")
+				if(facial_hair_style.do_colouration)
+					facial.Blend(owner.facial_color, ICON_ADD)
+				overlays |= facial
 
-	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
-		if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
-			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
-			if(hair_style.do_colouration)
-				hair_s.Blend(hair_col, ICON_ADD)
-			overlays |= hair_s
+		if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
+			var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
+			if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
+				var/icon/hair = new/icon(hair_style.icon, "[hair_style.icon_state]_s")
+				if(hair_style.do_colouration)
+					hair.Blend(hair_col, ICON_ADD)
+				overlays |= hair
 
 	return mob_icon
 
@@ -121,15 +121,17 @@ var/global/list/limb_icon_cache = list()
 	icon_state = "[limb_name][gender][owner.body_build.index][is_stump()?"_s":""]"
 	if(src.force_icon)
 		icon = src.force_icon
-	else if (!dna)
+	else if(!dna)
 		icon = 'icons/mob/human_races/r_human.dmi'
-	else if (status & ORGAN_ROBOT)
+	else if(status & ORGAN_ROBOT)
 		icon = 'icons/mob/human_races/robotic.dmi'
-	else if (status & ORGAN_MUTATED)
+	else if(status & ORGAN_MUTATED)
 		icon = species.deform
 	else
 		icon = species.icobase
+
 	mob_icon = new/icon(icon, icon_state)
+
 	if(status & ORGAN_DEAD)
 		mob_icon.ColorTone(rgb(10,50,0))
 		mob_icon.SetIntensity(0.7)
