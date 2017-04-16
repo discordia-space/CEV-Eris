@@ -46,7 +46,7 @@
 					/obj/item/weapon/wirecutters,\
 					/obj/item/weapon/weldingtool,\
 					/obj/item/weapon/crowbar,\
-					/obj/item/weapon/wrench,\
+					/obj/item/weapon/tool/wrench,\
 					/obj/item/device/flashlight)
 
 

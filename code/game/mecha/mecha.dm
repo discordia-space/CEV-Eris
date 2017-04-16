@@ -750,13 +750,15 @@
 				user << "<span class='warning'>Invalid ID: Access denied.</span>"
 		else
 			user << "<span class='warning'>Maintenance protocols disabled by operator.</span>"
-	else if(istype(W, /obj/item/weapon/wrench))
-		if(state==1)
-			state = 2
-			user << "You undo the securing bolts."
-		else if(state==2)
-			state = 1
-			user << "You tighten the securing bolts."
+	else if(istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			if(state==1)
+				state = 2
+				user << "You undo the securing bolts."
+			else if(state==2)
+				state = 1
+				user << "You tighten the securing bolts."
 		return
 	else if(istype(W, /obj/item/weapon/crowbar))
 		if(state==2)

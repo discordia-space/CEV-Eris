@@ -210,40 +210,52 @@
 		return 0
 	return 1
 
-/obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/railing/attackby(obj/item/I as obj, mob/user as mob)
 	// Dismantle
-	if(istype(W, /obj/item/weapon/wrench) && !anchored)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 20, src))
-			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
+	if(istype(I, /obj/item/weapon/tool/wrench) && !anchored)
+		var/obj/item/weapon/tool/wrench/W = I
+		if(W.use(user, 20, src))
+			user.visible_message(
+				"<span class='notice'>\The [user] dismantles \the [src].</span>",
+				"<span class='notice'>You dismantle \the [src].</span>"
+			)
 			new /obj/item/stack/material/steel(get_turf(usr))
 			new /obj/item/stack/material/steel(get_turf(usr))
 			qdel(src)
 			return
 
 	// Repair
-	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/F = W
-		if(F.welding)
+	if(health < maxhealth && istype(I, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/W = I
+		if(W.welding)
 			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 			if(do_after(user, 20, src))
-				user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>", "<span class='notice'>You repair some damage to \the [src].</span>")
+				user.visible_message(
+					"<span class='notice'>\The [user] repairs some damage to \the [src].</span>",
+					"<span class='notice'>You repair some damage to \the [src].</span>"
+				)
 				health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
 				return
 
 	// Install
-	if(istype(W, /obj/item/weapon/screwdriver))
-		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrew \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
+	if(istype(I, /obj/item/weapon/screwdriver))
+		if(anchored)
+			user.visible_message("<span class='notice'>\The [user] begins unscrew \the [src].</span>")
+		else
+			user.visible_message("<span class='notice'>\The [user] begins fasten \the [src].</span>")
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 		if(do_after(user, 10, src))
-			user << (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>")
+			if(anchored)
+				user << "<span class='notice'>You have unfastened \the [src] from the floor.</span>"
+			else
+				user << "<span class='notice'>You have fastened \the [src] to the floor.</span>"
 			anchored = !anchored
 			update_icon()
 			return
 
 	// Handle harm intent grabbing/tabling.
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
+	if(istype(I, /obj/item/weapon/grab) && get_dist(src,user)<2)
+		var/obj/item/weapon/grab/G = I
 		if (istype(G.affecting, /mob/living))
 			var/mob/living/M = G.affecting
 			var/obj/occupied = turf_is_crowded()
@@ -267,12 +279,12 @@
 					G.affecting.forceMove(get_turf(src))
 				G.affecting.Weaken(5)
 				visible_message("<span class='danger'>[G.assailant] throws [G.affecting] over \the [src]!</span>")
-			qdel(W)
+			qdel(G)
 			return
 
 	else
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-		take_damage(W.force)
+		take_damage(I.force)
 
 	return ..()
 

@@ -198,10 +198,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 				else
 					user << "<span class='warning'>You need 10 sheets of plasteel!</span>"
 		if(GRAV_NEEDS_WRENCH)
-			if(istype(I, /obj/item/weapon/wrench))
-				user << "<span class='notice'>You secure the plating to the framework.</span>"
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				set_fix()
+			if(istype(I, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = I
+				if(W.use(user, 0, src))
+					user << "<span class='notice'>You secure the plating to the framework.</span>"
+					set_fix()
 		else
 			..()
 	if(old_broken_state != broken_state)

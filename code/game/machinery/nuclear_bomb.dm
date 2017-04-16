@@ -124,13 +124,17 @@ var/bomb_set
 				return
 
 			if(3)
-				if(istype(O,/obj/item/weapon/wrench))
-
-					user.visible_message("[user] begins unwrenching the anchoring bolts on [src].", "You begin unwrenching the anchoring bolts...")
-
-					if(do_after(user, 50, src))
-						if(!src || !user) return
-						user.visible_message("[user] unwrenches the anchoring bolts on [src].", "You unwrench the anchoring bolts.")
+				if(istype(O,/obj/item/weapon/tool/wrench))
+					user.visible_message(
+						"[user] begins unwrenching the anchoring bolts on [src].",
+						"You begin unwrenching the anchoring bolts..."
+					)
+					var/obj/item/weapon/tool/wrench/W = O
+					if(W.use(user, 50, src))
+						user.visible_message(
+							"[user] unwrenches the anchoring bolts on [src].",
+							"You unwrench the anchoring bolts."
+						)
 						removal_stage = 4
 				return
 

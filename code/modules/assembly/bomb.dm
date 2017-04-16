@@ -27,19 +27,20 @@
 	if(istype(W, /obj/item/device/analyzer))
 		bombtank.attackby(W, user)
 		return
-	if(istype(W, /obj/item/weapon/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
+	if(istype(W, /obj/item/weapon/tool/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			user << "<span class='notice'>You disassemble [src].</span>"
 
-		user << "<span class='notice'>You disassemble [src].</span>"
+			bombassembly.loc = user.loc
+			bombassembly.master = null
+			bombassembly = null
 
-		bombassembly.loc = user.loc
-		bombassembly.master = null
-		bombassembly = null
+			bombtank.loc = user.loc
+			bombtank.master = null
+			bombtank = null
 
-		bombtank.loc = user.loc
-		bombtank.master = null
-		bombtank = null
-
-		qdel(src)
+			qdel(src)
 		return
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W

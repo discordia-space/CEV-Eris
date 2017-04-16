@@ -189,7 +189,11 @@
 				user << "<span class='warning'>Unscrew [src]'s battery panel first.</span>"
 		else
 			user << "<span class='warning'>[src]'s security locks are engaged.</span>"
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if (istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(!Wr.use(user, 0, src))
+			return
+
 		if(!suspension_field)
 			if(anchored)
 				anchored = 0

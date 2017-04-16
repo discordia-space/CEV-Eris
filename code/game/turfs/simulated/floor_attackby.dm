@@ -28,10 +28,11 @@
 			make_plating(1)
 			playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
 			return
-		else if(istype(C, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
-			user << "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>"
-			make_plating(1)
-			playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
+		else if(istype(C, /obj/item/weapon/tool/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
+			var/obj/item/weapon/tool/wrench/W = C
+			if(W.use(user, 0, src))
+				user << "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>"
+				make_plating(1)
 			return
 		else if(istype(C, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
 			user << "<span class='notice'>You shovel off the [flooring.descriptor].</span>"

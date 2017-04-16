@@ -105,28 +105,29 @@
 		user.drop_item()
 		qdel(W)
 		return
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if (istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
 		if (unwrenched==0)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 			user << "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>"
-			if (do_after(user, 40, src))
-				user.visible_message( \
-					"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+			if(Wr.use(user, 40, src))
+				user.visible_message(
+					"<span class='notice'>\The [user] unfastens \the [src].</span>",
 					"<span class='notice'>You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
-					"You hear ratchet.")
+					"You hear ratchet."
+				)
 				src.anchored = 0
 				src.stat |= MAINT
 				src.unwrenched = 1
 				if (usr.machine==src)
 					usr << browse(null, "window=pipedispenser")
 		else /*if (unwrenched==1)*/
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 			user << "<span class='notice'>You begin to fasten \the [src] to the floor...</span>"
-			if (do_after(user, 20, src))
-				user.visible_message( \
-					"<span class='notice'>\The [user] fastens \the [src].</span>", \
-					"<span class='notice'>You have fastened \the [src]. Now it can dispense pipes.</span>", \
-					"You hear ratchet.")
+			if(Wr.use(user, 20, src))
+				user.visible_message(
+					"<span class='notice'>\The [user] fastens \the [src].</span>",
+					"<span class='notice'>You have fastened \the [src]. Now it can dispense pipes.</span>",
+					"You hear ratchet."
+				)
 				src.anchored = 1
 				src.stat &= ~MAINT
 				src.unwrenched = 0

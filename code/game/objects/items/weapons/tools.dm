@@ -11,14 +11,26 @@
  * 		Crowbar
  */
 
+/obj/item/weapon/tool
+	icon = 'icons/obj/items.dmi'
+	var/sound/using_sound = null
+
+/obj/item/weapon/tool/proc/use(var/mob/user, var/delay, var/subject)
+	if(using_sound)
+		if(subject)
+			playsound(get_turf(subject), using_sound, 50, 1)
+		else
+			playsound(get_turf(user), using_sound, 50, 1)
+	return do_after(user, delay, subject)
+
 /*
  * Wrench
  */
-/obj/item/weapon/wrench
+/obj/item/weapon/tool/wrench
 	name = "wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
-	icon = 'icons/obj/items.dmi'
 	icon_state = "wrench"
+	using_sound = 'sound/items/Ratchet.ogg'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_NORMAL
@@ -32,11 +44,11 @@
 /*
  * Screwdriver
  */
-/obj/item/weapon/screwdriver
+/obj/item/weapon/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
-	icon = 'icons/obj/items.dmi'
 	icon_state = "screwdriver"
+	using_sound = 'sound/items/Screwdriver.ogg'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	force = WEAPON_FORCE_NORMAL
@@ -87,11 +99,11 @@
 /*
  * Wirecutters
  */
-/obj/item/weapon/wirecutters
+/obj/item/weapon/tools/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
-	icon = 'icons/obj/items.dmi'
 	icon_state = "cutters"
+	//using_sound = 'sound/items/Wirecutter.ogg'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_WEAK
@@ -112,9 +124,11 @@
 
 /obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
-		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
-		"You cut \the [C]'s restraints with \the [src]!",\
-		"You hear cable being cut.")
+		usr.visible_message(
+			"\The [usr] cuts \the [C]'s restraints with \the [src]!",
+			"You cut \the [C]'s restraints with \the [src]!",
+			"You hear cable being cut."
+		)
 		C.handcuffed = null
 		if(C.buckled && C.buckled.buckle_require_restraints)
 			C.buckled.unbuckle_mob()
@@ -128,7 +142,6 @@
  */
 /obj/item/weapon/weldingtool
 	name = "welding tool"
-	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -400,7 +413,6 @@
 /obj/item/weapon/crowbar
 	name = "crowbar"
 	desc = "Used to remove floors and to pry open doors."
-	icon = 'icons/obj/items.dmi'
 	icon_state = "crowbar"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -413,7 +425,6 @@
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
 /obj/item/weapon/crowbar/red
-	icon = 'icons/obj/items.dmi'
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
@@ -444,13 +455,12 @@
 /*/obj/item/weapon/combitool
 	name = "combi-tool"
 	desc = "It even has one of those nubbins for doing the thingy."
-	icon = 'icons/obj/items.dmi'
 	icon_state = "combitool"
 	w_class = 2
 
 	var/list/spawn_tools = list(
 		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wrench,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/wirecutters,
 		/obj/item/weapon/material/kitchen/utensil/knife,
 		/obj/item/weapon/material/kitchen/utensil/fork,

@@ -9,9 +9,11 @@
 
 /obj/item/frame/apc/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/weapon/wrench))
-		new /obj/item/stack/material/steel( get_turf(src.loc), 2 )
-		qdel(src)
+	if(istype(W, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			new /obj/item/stack/material/steel( get_turf(src.loc), 2 )
+			qdel(src)
 
 /obj/item/frame/apc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)

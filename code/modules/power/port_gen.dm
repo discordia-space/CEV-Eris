@@ -267,17 +267,16 @@
 		updateUsrDialog()
 		return
 	else if(!active)
-		if(istype(O, /obj/item/weapon/wrench))
-
-			if(!anchored)
-				connect_to_network()
-				user << "\blue You secure the generator to the floor."
-			else
-				disconnect_from_network()
-				user << "\blue You unsecure the generator from the floor."
-
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-			anchored = !anchored
+		if(istype(O, /obj/item/weapon/tool/wrench))
+			var/obj/item/weapon/tool/wrench/W = O
+			if(W.use(user, 0, src))
+				anchored = !anchored
+				if(!anchored)
+					connect_to_network()
+					user << "\blue You secure the generator to the floor."
+				else
+					disconnect_from_network()
+					user << "\blue You unsecure the generator from the floor."
 
 		else if(istype(O, /obj/item/weapon/screwdriver))
 			open = !open

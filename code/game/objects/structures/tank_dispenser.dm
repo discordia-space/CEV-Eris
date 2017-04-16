@@ -60,8 +60,8 @@
 		else
 			user << "<span class='notice'>[src] is full.</span>"
 		updateUsrDialog()
-		return
-	if(istype(I, /obj/item/weapon/tank/plasma))
+
+	else if(istype(I, /obj/item/weapon/tank/plasma))
 		if(plasmatanks < 10)
 			user.drop_item()
 			I.loc = src
@@ -73,15 +73,16 @@
 		else
 			user << "<span class='notice'>[src] is full.</span>"
 		updateUsrDialog()
-		return
-	if(istype(I, /obj/item/weapon/wrench))
-		if(anchored)
-			user << "<span class='notice'>You lean down and unwrench [src].</span>"
-			anchored = 0
-		else
-			user << "<span class='notice'>You wrench [src] into place.</span>"
-			anchored = 1
-		return
+
+	else if(istype(I, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = I
+		if(W.use(user, 0, src))
+			if(anchored)
+				user << "<span class='notice'>You lean down and unwrench [src].</span>"
+				anchored = 0
+			else
+				user << "<span class='notice'>You wrench [src] into place.</span>"
+				anchored = 1
 
 /obj/structure/dispenser/Topic(href, href_list)
 	if(usr.stat || usr.restrained())

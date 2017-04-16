@@ -41,9 +41,14 @@
 		user.visible_message("<span class='notice'>\The [user] [closed ? "closes" : "opens"] \the [src].</span>", "<span class='notice'>You [closed ? "close" : "open"] \the [src].</span>")
 		update_icon()
 		return
-	else if(istype(I, /obj/item/weapon/wrench))
-		anchored = !anchored
-		user.visible_message("<span class='notice'>\The [user] [anchored ? "wrenches" : "unwrenches"] \the [src].</span>", "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+	else if(istype(I, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = I
+		if(W.use(user, 0, src))
+			anchored = !anchored
+			user.visible_message(
+				"<span class='notice'>\The [user] [anchored ? "wrenches" : "unwrenches"] \the [src].</span>",
+				"<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+			)
 		return
 	else if(istype(I, /obj/item/bee_smoker))
 		if(closed)

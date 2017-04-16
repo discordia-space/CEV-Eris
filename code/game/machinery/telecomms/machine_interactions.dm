@@ -45,14 +45,18 @@
 				user << "You fasten the bolts."
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				construct_op --
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = P
+				if(!W.use(user, 0, src))
+					return
 				user << "You dislodge the external plating."
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				construct_op ++
 		if(2)
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/weapon/tool/wrench))
+				var/obj/item/weapon/tool/wrench/W = P
+				if(W.use(user, 0, src))
+					return
 				user << "You secure the external plating."
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				construct_op --
 			if(istype(P, /obj/item/weapon/wirecutters))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)

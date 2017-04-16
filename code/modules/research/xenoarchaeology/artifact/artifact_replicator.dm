@@ -23,48 +23,48 @@
 /obj/machinery/replicator/New()
 	..()
 
-	var/list/viables = list(\
-	/obj/item/roller,\
-	/obj/structure/closet/crate,\
-	/obj/structure/closet/acloset,\
-	/mob/living/simple_animal/hostile/mimic,\
-	/mob/living/simple_animal/hostile/viscerator,\
-	/mob/living/simple_animal/hostile/hivebot,\
-	/obj/item/device/analyzer,\
-	/obj/item/device/camera,\
-	/obj/item/device/flash,\
-	/obj/item/device/flashlight,\
-	/obj/item/device/healthanalyzer,\
-	/obj/item/device/multitool,\
-	/obj/item/device/paicard,\
-	/obj/item/device/radio,\
-	/obj/item/device/radio/headset,\
-	/obj/item/device/radio/beacon,\
-	/obj/item/weapon/autopsy_scanner,\
-	/obj/item/weapon/bikehorn,\
-	/obj/item/weapon/bonesetter,\
-	/obj/item/weapon/material/knife/butch,\
-	/obj/item/weapon/caution,\
-	/obj/item/weapon/caution/cone,\
-	/obj/item/weapon/crowbar,\
-	/obj/item/weapon/clipboard,\
-	/obj/item/weapon/cell,\
-	/obj/item/weapon/circular_saw,\
-	/obj/item/weapon/material/hatchet,\
-	/obj/item/weapon/handcuffs,\
-	/obj/item/weapon/hemostat,\
-	/obj/item/weapon/material/knife,\
-	/obj/item/weapon/flame/lighter,\
-	/obj/item/weapon/light/bulb,\
-	/obj/item/weapon/light/tube,\
-	/obj/item/weapon/pickaxe,\
-	/obj/item/weapon/shovel,\
-	/obj/item/weapon/weldingtool,\
-	/obj/item/weapon/wirecutters,\
-	/obj/item/weapon/wrench,\
-	/obj/item/weapon/screwdriver,\
-	/obj/item/weapon/grenade/chem_grenade/cleaner,\
-	/obj/item/weapon/grenade/chem_grenade/metalfoam\
+	var/list/viables = list(
+		/obj/item/roller,
+		/obj/structure/closet/crate,
+		/obj/structure/closet/acloset,
+		/mob/living/simple_animal/hostile/mimic,
+		/mob/living/simple_animal/hostile/viscerator,
+		/mob/living/simple_animal/hostile/hivebot,
+		/obj/item/device/analyzer,
+		/obj/item/device/camera,
+		/obj/item/device/flash,
+		/obj/item/device/flashlight,
+		/obj/item/device/healthanalyzer,
+		/obj/item/device/multitool,
+		/obj/item/device/paicard,
+		/obj/item/device/radio,
+		/obj/item/device/radio/headset,
+		/obj/item/device/radio/beacon,
+		/obj/item/weapon/autopsy_scanner,
+		/obj/item/weapon/bikehorn,
+		/obj/item/weapon/bonesetter,
+		/obj/item/weapon/material/knife/butch,
+		/obj/item/weapon/caution,
+		/obj/item/weapon/caution/cone,
+		/obj/item/weapon/crowbar,
+		/obj/item/weapon/clipboard,
+		/obj/item/weapon/cell,
+		/obj/item/weapon/circular_saw,
+		/obj/item/weapon/material/hatchet,
+		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/hemostat,
+		/obj/item/weapon/material/knife,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/light/bulb,
+		/obj/item/weapon/light/tube,
+		/obj/item/weapon/pickaxe,
+		/obj/item/weapon/shovel,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/wirecutters,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/grenade/chem_grenade/cleaner,
+		/obj/item/weapon/grenade/chem_grenade/metalfoam
 	)
 
 	var/quantity = rand(5,15)

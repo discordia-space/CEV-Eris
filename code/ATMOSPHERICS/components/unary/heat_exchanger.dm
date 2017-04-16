@@ -66,7 +66,7 @@
 		return 1
 
 	attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-		if (!istype(W, /obj/item/weapon/wrench))
+		if (!istype(W, /obj/item/weapon/tool/wrench))
 			return ..()
 		var/turf/T = src.loc
 		if (level==1 && isturf(T) && !T.is_plating())
@@ -78,12 +78,13 @@
 			user << "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>"
 			add_fingerprint(user)
 			return 1
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		user << "<span class='notice'>You begin to unfasten \the [src]...</span>"
-		if (do_after(user, 40, src))
-			user.visible_message( \
-				"<span class='notice'>\The [user] unfastens \the [src].</span>", \
-				"<span class='notice'>You have unfastened \the [src].</span>", \
-				"You hear a ratchet.")
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 40, src))
+			user.visible_message(
+				"<span class='notice'>\The [user] unfastens \the [src].</span>",
+				"<span class='notice'>You have unfastened \the [src].</span>",
+				"You hear a ratchet."
+			)
 			new /obj/item/pipe(loc, make_from=src)
 			qdel(src)

@@ -53,34 +53,32 @@
 	if(reinf_material)
 		reinforce_girder()
 
-/obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) && state == 0)
+/obj/structure/girder/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/tool/wrench) && state == 0)
+		var/obj/item/weapon/tool/wrench/W = I
 		if(anchored && !reinf_material)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "<span class='notice'>Now disassembling the girder...</span>"
-			if(do_after(user, 40,src))
-				if(!src) return
+			if(W.use(user, 40, src))
 				user << "<span class='notice'>You dissasembled the girder!</span>"
 				dismantle()
 		else if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "<span class='notice'>Now securing the girder...</span>"
-			if(get_turf(user, 40))
+			if(W.use(user, 40, src))
 				user << "<span class='notice'>You secured the girder!</span>"
 				reset_girder()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+	else if(istype(I, /obj/item/weapon/pickaxe/plasmacutter))
 		user << "<span class='notice'>Now slicing apart the girder...</span>"
 		if(do_after(user,30,src))
 			if(!src) return
 			user << "<span class='notice'>You slice apart the girder!</span>"
 			dismantle()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
+	else if(istype(I, /obj/item/weapon/pickaxe/diamonddrill))
 		user << "<span class='notice'>You drill through the girder!</span>"
 		dismantle()
 
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(istype(I, /obj/item/weapon/screwdriver))
 		if(state == 2)
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			user << "<span class='notice'>Now unsecuring support struts...</span>"
@@ -93,7 +91,7 @@
 			reinforcing = !reinforcing
 			user << "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>"
 
-	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1)
+	else if(istype(I, /obj/item/weapon/wirecutters) && state == 1)
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		user << "<span class='notice'>Now removing support struts...</span>"
 		if(do_after(user, 40,src))
@@ -103,7 +101,7 @@
 			reinf_material = null
 			reset_girder()
 
-	else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored)
+	else if(istype(I, /obj/item/weapon/crowbar) && state == 0 && anchored)
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		user << "<span class='notice'>Now dislodging the girder...</span>"
 		if(do_after(user, 40,src))
@@ -114,12 +112,12 @@
 			health = 50
 			cover = 25
 
-	else if(istype(W, /obj/item/stack/material))
+	else if(istype(I, /obj/item/stack/material))
 		if(reinforcing && !reinf_material)
-			if(!reinforce_with_material(W, user))
+			if(!reinforce_with_material(I, user))
 				return ..()
 		else
-			if(!construct_wall(W, user))
+			if(!construct_wall(I, user))
 				return ..()
 
 	else
@@ -230,21 +228,21 @@
 	new /obj/item/remains/human(get_turf(src))
 	qdel(src)
 
-/obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+/obj/structure/girder/cult/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = I
 		user << "<span class='notice'>Now disassembling the girder...</span>"
-		if(do_after(user,40,src))
+		if(W.use(user, 40, src))
 			user << "<span class='notice'>You dissasembled the girder!</span>"
 			dismantle()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+	else if(istype(I, /obj/item/weapon/pickaxe/plasmacutter))
 		user << "<span class='notice'>Now slicing apart the girder...</span>"
 		if(do_after(user,30,src))
 			user << "<span class='notice'>You slice apart the girder!</span>"
 		dismantle()
 
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
+	else if(istype(I, /obj/item/weapon/pickaxe/diamonddrill))
 		user << "<span class='notice'>You drill through the girder!</span>"
 		new /obj/item/remains/human(get_turf(src))
 		dismantle()

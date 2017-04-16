@@ -190,7 +190,7 @@
 		created_name = t
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
+	if(istype(W, /obj/item/weapon/weldingtool) && (istext(glass) || (glass == 1) || !anchored))
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0, user))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
@@ -220,14 +220,14 @@
 			user << "<span class='notice'>You need more welding fuel.</span>"
 			return
 
-	else if(istype(W, /obj/item/weapon/wrench) && state == 0)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
+	else if(istype(W, /obj/item/weapon/tool/wrench) && state == 0)
 		if(anchored)
 			user.visible_message("[user] begins unsecuring the airlock assembly from the floor.", "You starts unsecuring the airlock assembly from the floor.")
 		else
 			user.visible_message("[user] begins securing the airlock assembly to the floor.", "You starts securing the airlock assembly to the floor.")
 
-		if(do_after(user, 40,src))
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 40, src))
 			if(!src) return
 			user << "<span class='notice'>You [anchored? "un" : ""]secured the airlock assembly!</span>"
 			anchored = !anchored

@@ -839,7 +839,7 @@
 "qg" = (/obj/structure/table/steel,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/skipjack_station/start)
 "qh" = (/obj/structure/bed/chair{dir = 8},/obj/machinery/light/small{dir = 4},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/skipjack_station/start)
 "qi" = (/obj/structure/sink{icon_state = "sink"; dir = 8; pixel_x = -12; pixel_y = 2},/turf/simulated/shuttle/plating,/area/skipjack_station/start)
-"qj" = (/obj/item/weapon/wrench,/obj/item/weapon/mop,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
+"qj" = (/obj/item/weapon/tool/wrench,/obj/item/weapon/mop,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qk" = (/obj/machinery/atmospherics/pipe/simple/visible,/obj/item/weapon/crowbar,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "ql" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew4,/area/space)
 "qm" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; name = "thrower_leftnostop"},/turf/space/transit/east/shuttlespace_ew14,/area/space)

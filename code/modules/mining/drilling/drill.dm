@@ -308,20 +308,19 @@
 	if(default_deconstruction_crowbar(user, W))
 		return
 
-	if(istype(W,/obj/item/weapon/wrench))
-
+	if(istype(W, /obj/item/weapon/tool/wrench))
 		if(istype(get_turf(src), /turf/space))
 			user << "<span class='notice'>You can't anchor something to empty space. Idiot.</span>"
 			return
 
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		user << "<span class='notice'>You [anchored ? "un" : ""]anchor the brace.</span>"
-
-		anchored = !anchored
-		if(anchored)
-			connect()
-		else
-			disconnect()
+		var/obj/item/weapon/tool/wrench/Wr = W
+		if(Wr.use(user, 0, src))
+			user << "<span class='notice'>You [anchored ? "un" : ""]anchor the brace.</span>"
+			anchored = !anchored
+			if(anchored)
+				connect()
+			else
+				disconnect()
 
 /obj/machinery/mining/brace/proc/connect()
 
