@@ -66,8 +66,8 @@
 		equip_slots |= gear[slot]
 
 	if(has_hands)
-		equip_slots |= slot_l_hand
-		equip_slots |= slot_r_hand
+//		equip_slots |= slot_l_hand
+//		equip_slots |= slot_r_hand
 		equip_slots |= slot_handcuffed
 
 	if(slot_back in equip_slots)
@@ -82,8 +82,8 @@
 /datum/hud_data/monkey
 
 	gear = list(
-		"l_hand" =       slot_l_hand,
-		"r_hand" =       slot_r_hand,
-		"mask" =         slot_wear_mask,
-		"back" =         slot_back
+		"Left Hand" =       slot_l_hand,
+		"Right Hand" =       slot_r_hand,
+		"Mask" =         slot_wear_mask,
+		"Back" =         slot_back
 		)

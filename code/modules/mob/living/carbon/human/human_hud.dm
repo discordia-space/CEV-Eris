@@ -1,12 +1,12 @@
 /mob/living/carbon/human/check_HUD()
 	var/mob/living/carbon/human/H = src
-	if(!H.client)
+	if(!H.client)//no client, no HUD
 		return
 
 //	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 	var/recreate_flag = FALSE
 
-	if(!check_HUDdatum())//проверка настроек клиента на правильность
+	if(!check_HUDdatum())//check client prefs
 		log_debug("[H] try check a HUD, but HUDdatums not have \"[H.client.prefs.UI_style]!\"")
 		H << "Some problem hase accure, use default HUD type"
 		H.defaultHUD = "ErisStyle"
@@ -21,7 +21,7 @@
 
 
 	H.show_HUD()
-	H.minimalize_HUD() //
+	H.minimalize_HUD()
 
 	if(!recreate_flag && !check_HUD_style())//Check HUD colour
 		H.recolor_HUD(H.client.prefs.UI_style_color, H.client.prefs.UI_style_alpha)
@@ -147,7 +147,7 @@
 			else
 				HUDtype = /obj/screen/inventory
 
-			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"],\
+			var/obj/screen/inventory/inv_box = new HUDtype(gear_slot,\
 			species.hud.gear[gear_slot],\
 			HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], H)
 

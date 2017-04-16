@@ -25,10 +25,12 @@
 	icon_state = "store"
 
 /obj/screen/silicon/store/Click()
-	var/mob/living/silicon/robot/R = usr
+	var/mob/living/silicon/R = parentmob
 	if(R.module)
 		R.uneq_active()
 		R.update_robot_modules_display()
+		for (var/obj/screen/inv in parentmob.HUDinventory)
+			inv.update_icon()
 	else
 		R << "You haven't selected a module yet."
 
@@ -70,12 +72,17 @@
 
 
 /obj/screen/silicon/module/Click()
-	parentmob:toggle_module(module_num)
+	if issilicon(parentmob)
+		var/mob/living/silicon/R = parentmob
+		R.toggle_module(module_num)
+		return
+	log_debug("[parentmob] have type [parentmob.type], but try use /obj/screen/silicon/module/Click() from [src]")
+	return
 
 /obj/screen/silicon/cell
 	name = "cell"
 	icon_state = "charge0"
-	process_flag = 1
+	process_flag = TRUE
 
 /obj/screen/silicon/cell/process()
 	update_icon()
@@ -149,7 +156,7 @@
 		var/mob/living/silicon/robot/R = parentmob
 		if(R.module)
 			R.toggle_show_robot_modules()
-			return 1
+			return TRUE
 		R.pick_module()
 		update_icon()
 
@@ -166,7 +173,7 @@
 		var/mob/living/silicon/robot/R = parentmob
 		if(R.module)
 			R.toggle_show_robot_modules()
-			return 1
+			return TRUE
 		else
 			R << "You haven't selected a module yet."
 //-----------------------ROBOT stuff end---------------------
