@@ -319,7 +319,7 @@ var/global/list/damage_icon_parts = list()
 		for(var/category in all_underwear)
 			var/datum/category_item/underwear/UW = all_underwear[category]
 			if(!UW.icon_state)
-				return
+				continue
 			stand_icon.Blend(new /icon(body_build.underwear_icon, UW.icon_state), ICON_OVERLAY)
 
 	if(update_icons)
