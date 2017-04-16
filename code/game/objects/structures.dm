@@ -7,6 +7,9 @@
 	var/parts
 	var/list/climbers = list()
 
+/obj/structure/get_fall_damage()
+	return w_class * 3
+
 /obj/structure/Destroy()
 	if(parts)
 		new parts(loc)

@@ -52,7 +52,6 @@
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_kitchen)
-	alt_titles = list("Cook")
 	idtype = /obj/item/weapon/card/id/ltgrey
 
 	uniform = /obj/item/clothing/under/rank/chef
@@ -76,7 +75,6 @@
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	minimal_access = list(access_hydroponics)
-	alt_titles = list("Hydroponicist")
 	idtype = /obj/item/weapon/card/id/hydro
 
 	uniform = /obj/item/clothing/under/rank/hydroponics
@@ -160,7 +158,6 @@
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
-	alt_titles = list("Drill Technician","Prospector")
 	idtype = /obj/item/weapon/card/id/car
 
 	uniform = /obj/item/clothing/under/rank/miner
@@ -284,8 +281,6 @@
 	selection_color = "#dddddd"
 	access = list(access_library, access_maint_tunnels)
 	minimal_access = list(access_library)
-	alt_titles = list("Journalist")
-
 
 	uniform = /obj/item/clothing/under/librarian
 	pda = /obj/item/device/pda/librarian

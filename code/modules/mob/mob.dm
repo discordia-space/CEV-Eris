@@ -16,6 +16,9 @@
 	ghostize()
 	..()
 
+/mob/get_fall_damage()
+	return 15
+
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT
 //	flash = null
 //	blind = null

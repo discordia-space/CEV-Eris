@@ -159,15 +159,6 @@
 				foundrecord = t
 				break
 
-	var/list/all_jobs = get_job_datums()
-
-	for(var/datum/job/J in all_jobs)
-		var/list/alttitles = get_alternate_titles(J.title)
-		if(!J)	continue
-		if(assignment in alttitles)
-			real_title = J.title
-			break
-
 	if(foundrecord)
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
