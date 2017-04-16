@@ -53,16 +53,11 @@
 //OBJECT LEVEL
 #define isobj(A) istype(A, /obj)
 
-#define isairlock(A) istype(A, /obj/machinery/door/airlock)
-
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
 
 
-
 #define islist(A) istype(A, /list)
-
-#define ismovable(A) istype(A, /atom/movable)
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
 

@@ -918,15 +918,27 @@ area/space/atmosalert()
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/crew_quarters/heads/hop
-	name = "\improper Command - HoP's Office"
+	name = "\improper Command - First Officer's Office"
+	icon_state = "head_quarters"
+
+/area/crew_quarters/heads/hop/quarters
+	name = "\improper Command - First Officer's Quarters"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/hor
 	name = "\improper Research - RD's Office"
 	icon_state = "head_quarters"
 
+/area/crew_quarters/heads/hor/quarters
+	name = "\improper Research - RD's Quarters"
+	icon_state = "head_quarters"
+
 /area/crew_quarters/heads/chief
 	name = "\improper Engineering - CE's Office"
+	icon_state = "head_quarters"
+
+/area/crew_quarters/heads/chief/quarters
+	name = "\improper Engineering - CE's Quarters"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/hos
@@ -935,6 +947,10 @@ area/space/atmosalert()
 
 /area/crew_quarters/heads/cmo
 	name = "\improper Medbay - CMO's Office"
+	icon_state = "head_quarters"
+
+/area/crew_quarters/heads/cmo/quarters
+	name = "\improper Medbay - CMO's Quarters"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/courtroom

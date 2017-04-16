@@ -275,7 +275,6 @@ var/global/datum/controller/radio/radio_controller
 /datum/radio_frequency/proc/send_to_filter(obj/source, datum/signal/signal, var/filter, var/turf/start_point = null, var/range = null)
 	if (range && !start_point)
 		return
-
 	for(var/obj/device in devices[filter])
 		if(device == source)
 			continue
@@ -283,9 +282,8 @@ var/global/datum/controller/radio/radio_controller
 			var/turf/end_point = get_turf(device)
 			if(!end_point)
 				continue
-			if(start_point.z!=end_point.z || get_dist(start_point, end_point) > range)
+			if(start_point.z != end_point.z || get_dist(start_point, end_point) > range)
 				continue
-
 		device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 
 /datum/radio_frequency/proc/add_listener(obj/device as obj, var/filter as text|null)
@@ -305,7 +303,7 @@ var/global/datum/controller/radio/radio_controller
 /datum/radio_frequency/proc/remove_listener(obj/device)
 	for (var/devices_filter in devices)
 		var/list/devices_line = devices[devices_filter]
-		devices_line-=device
+		devices_line -= device
 		while (null in devices_line)
 			devices_line -= null
 		if (devices_line.len==0)

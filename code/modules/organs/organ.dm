@@ -75,7 +75,8 @@ var/list/organ_cache = list()
 				if(!blood_DNA)
 					blood_DNA = list()
 				blood_DNA[dna.unique_enzymes] = dna.b_type
-				H.internal_organs_by_name[src.organ_tag] = src
+				if(internal)
+					H.internal_organs_by_name[src.organ_tag] = src
 		if(internal)
 			holder.internal_organs |= src
 	if(internal)

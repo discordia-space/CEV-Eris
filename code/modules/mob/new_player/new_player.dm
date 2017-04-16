@@ -185,59 +185,28 @@
 		new_player_panel()
 
 	if(href_list["showpoll"])
-
 		handle_player_polling()
 		return
 
-	if(href_list["pollid"])
-
-		var/pollid = href_list["pollid"]
-		if(istext(pollid))
-			pollid = text2num(pollid)
-		if(isnum(pollid))
-			src.poll_player(pollid)
+	if(href_list["poll_id"])
+		var/poll_id = href_list["poll_id"]
+		if(istext(poll_id))
+			poll_id = text2num(poll_id)
+		if(isnum(poll_id))
+			src.poll_player(poll_id)
 		return
 
-	if(href_list["votepollid"] && href_list["votetype"])
-		var/pollid = text2num(href_list["votepollid"])
-		var/votetype = href_list["votetype"]
-		switch(votetype)
+	if(href_list["vote_on_poll"] && href_list["vote_type"])
+		var/poll_id = text2num(href_list["vote_on_poll"])
+		var/vote_type = href_list["vote_type"]
+		switch(vote_type)
 			if("OPTION")
-				var/optionid = text2num(href_list["voteoptionid"])
-				vote_on_poll(pollid, optionid)
+				var/option_id = text2num(href_list["vote_option_id"])
+				vote_on_poll(poll_id, option_id)
 			if("TEXT")
-				var/replytext = href_list["replytext"]
-				log_text_poll_reply(pollid, replytext)
-			if("NUMVAL")
-				var/id_min = text2num(href_list["minid"])
-				var/id_max = text2num(href_list["maxid"])
+				var/reply_text = href_list["reply_text"]
+				log_text_poll_reply(poll_id, reply_text)
 
-				if( (id_max - id_min) > 100 )	//Basic exploit prevention
-					usr << "The option ID difference is too big. Please contact administration or the database admin."
-					return
-
-				for(var/optionid = id_min; optionid <= id_max; optionid++)
-					if(!isnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
-						var/rating
-						if(href_list["o[optionid]"] == "abstain")
-							rating = null
-						else
-							rating = text2num(href_list["o[optionid]"])
-							if(!isnum(rating))
-								return
-
-						vote_on_numval_poll(pollid, optionid, rating)
-			if("MULTICHOICE")
-				var/id_min = text2num(href_list["minoptionid"])
-				var/id_max = text2num(href_list["maxoptionid"])
-
-				if( (id_max - id_min) > 100 )	//Basic exploit prevention
-					usr << "The option ID difference is too big. Please contact administration or the database admin."
-					return
-
-				for(var/optionid = id_min; optionid <= id_max; optionid++)
-					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
-						vote_on_poll(pollid, optionid, 1)
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)
@@ -327,12 +296,9 @@
 
 	if(emergency_shuttle) //In case Nanotrasen decides reposess CentComm's shuttles.
 		if(emergency_shuttle.going_to_centcom()) //Shuttle is going to centcomm, not recalled
-			dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
+			dat += "<font color='red'><b>The vessel has been evacuated.</b></font><br>"
 		if(emergency_shuttle.online())
-			if (emergency_shuttle.evac)	// Emergency shuttle is past the point of no recall
-				dat += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
-			else						// Crew transfer initiated
-				dat += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
+			dat += "<font color='red'>The vessel is currently undergoing evacuation procedures.</font><br>"
 
 	dat += "Choose from the following open/valid positions:<br>"
 	for(var/datum/job/job in job_master.occupations)

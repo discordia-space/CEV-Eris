@@ -11,7 +11,6 @@
 	economic_modifier = 1
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
-	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant","Visitor")
 	uniform = /obj/item/clothing/under/rank/assistant
 	suit = /obj/item/clothing/suit/storage/ass_jacket
 

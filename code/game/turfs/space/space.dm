@@ -12,7 +12,7 @@
 /turf/space/New()
 	if(!istype(src, /turf/space/transit))
 		icon_state = "white"
-	//update_starlight()
+	update_starlight()
 	..()
 
 /turf/space/is_space()
@@ -24,15 +24,12 @@
 		O.hide(0)
 
 /turf/space/proc/update_starlight()
-	return
-	//if(locate(/turf/simulated) in orange(src,1))
-	//	set_light(2,2) // Too lazy to port starlight configuration and its 0 by default anyway... ~Zve
-	/*if(!config.starlight)
+	if(!config.starlight)
 		return
 	if(locate(/turf/simulated) in orange(src,1))
-		set_light(config.starlight)
+		set_light(2, 1, config.starlight)
 	else
-		set_light(0)*/
+		set_light(0)
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 

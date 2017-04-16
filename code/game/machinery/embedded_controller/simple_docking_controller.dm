@@ -29,22 +29,22 @@
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 
-	var/clean = 0
+	var/clean = FALSE
 	switch(href_list["command"])	//anti-HTML-hacking checks
 		if("force_door")
-			clean = 1
+			clean = TRUE
 		if("toggle_override")
-			clean = 1
+			clean = TRUE
 
 	if(clean)
 		program.receive_user_command(href_list["command"])
 
-	return 0
+	return FALSE
 
 
 //A docking controller program for a simple door based docking port
