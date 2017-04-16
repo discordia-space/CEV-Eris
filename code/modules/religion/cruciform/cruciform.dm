@@ -22,6 +22,7 @@ var/list/christians = list()
 	..(H, "chest")
 
 /obj/item/weapon/implant/cruciform/get_mob_overlay(gender, body_build)
+	gender = (gender == MALE) ? "m" : "f"
 	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender][body_build]")
 
 /obj/item/weapon/implant/cruciform/activate()
