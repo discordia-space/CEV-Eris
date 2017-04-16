@@ -68,7 +68,7 @@
 		)
 
 
-	slot_data = list (
+/*	slot_data = list (
 		"i_clothing" =   list("loc" = "2,1","minloc" = "1,2",  "name" = "Uniform",         "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
 		"o_clothing" =   list("loc" = "3,1", "minloc" = "2,2",  "name" = "Suit",            "state" = "equip",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
 		"mask" =         list("loc" = "3,2", "minloc" = "2,3",  "name" = "Mask",            "state" = "mask",    "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
@@ -86,6 +86,26 @@
 		"belt" =         list("loc" = "6,0", "minloc" = "5,1",  "name" = "Belt",            "state" = "belt", "background" = "back1"),
 		"l_hand" =       list("loc" = "9,0", "minloc" = "8,1",  "name" = "Left Hand",       "state" = "hand-l", "type" = /obj/screen/inventory/hand, "background" = "back1"),
 		"r_hand" =       list("loc" = "8,0", "minloc" = "7,1",  "name" = "Right Hand",      "state" = "hand-r", "type" = /obj/screen/inventory/hand, "background" = "back1")
+		)*/
+
+	slot_data = list (
+		"Uniform" =   list("loc" = "2,1","minloc" = "1,2",  "name" = "Uniform",         "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Suit" =   list("loc" = "3,1", "minloc" = "2,2",  "name" = "Suit",            "state" = "equip",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Mask" =         list("loc" = "3,2", "minloc" = "2,3",  "name" = "Mask",            "state" = "mask",    "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Gloves" =       list("loc" = "4,1", "minloc" = "3,2",  "name" = "Gloves",          "state" = "gloves",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Glasses" =         list("loc" = "2,2", "minloc" = "1,3",  "name" = "Glasses",         "state" = "glasses", "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Left Ear" =        list("loc" = "4,2", "minloc" = "3,3",  "name" = "Left Ear",        "state" = "ears0",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Right Ear" =        list("loc" = "4,3", "minloc" = "3,4",  "name" = "Right Ear",       "state" = "ears1",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Hat" =         list("loc" = "3,3", "minloc" = "2,4",  "name" = "Hat",             "state" = "hair",    "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Shoes" =        list("loc" = "3,0", "minloc" = "2,1",  "name" = "Shoes",           "state" = "shoes", "background" = "back1"),
+		"Suit Storage" = list("loc" = "4,0", "minloc" = "3,1",  "name" = "Suit Storage",    "state" = "suit-belt", "background" = "back1"),
+		"Back" =         list("loc" = "7,0", "minloc" = "6,1",  "name" = "Back",            "state" = "back", "background" = "back1"),
+		"ID" =           list("loc" = "5,0", "minloc" = "4,1",  "name" = "ID",              "state" = "id", "background" = "back1"),
+		"Left Pocket" =     list("loc" = "10,0", "minloc" = "9,1",  "name" = "Left Pocket",     "state" = "pocket_l", "background" = "back1"),
+		"Right Pocket" =     list("loc" = "11,0", "minloc" = "10,1", "name" = "Right Pocket",    "state" = "pocket_r", "background" = "back1"),
+		"Belt" =         list("loc" = "6,0", "minloc" = "5,1",  "name" = "Belt",            "state" = "belt", "background" = "back1"),
+		"Left Hand" =       list("loc" = "9,0", "minloc" = "8,1",  "name" = "Left Hand",       "state" = "hand-l", "type" = /obj/screen/inventory/hand, "background" = "back1"),
+		"Right Hand" =       list("loc" = "8,0", "minloc" = "7,1",  "name" = "Right Hand",      "state" = "hand-r", "type" = /obj/screen/inventory/hand, "background" = "back1")
 		)
 
 	HUDfrippery = list(
@@ -234,14 +254,14 @@
 		)
 
 	slot_data = list (
-		"i_clothing" =   list("loc" = "2,1",  "name" = "Uniform",         "state" = "center",  "toggle" = 1),
-		"o_clothing" =   list("loc" = "3,1",  "name" = "Suit",            "state" = "equip",   "toggle" = 1),
-		"mask" =         list("loc" = "3,2",  "name" = "Mask",            "state" = "mask",    "toggle" = 1),
-		"gloves" =       list("loc" = "4,1",  "name" = "Gloves",          "state" = "gloves",  "toggle" = 1),
-		"eyes" =         list("loc" = "2,2",  "name" = "Glasses",         "state" = "glasses", "toggle" = 1),
-		"l_ear" =        list("loc" = "4,2",  "name" = "Left Ear",        "state" = "ears0",   "toggle" = 1),
-		"r_ear" =        list("loc" = "4,3",  "name" = "Right Ear",       "state" = "ears1",   "toggle" = 1),
-		"head" =         list("loc" = "3,3",  "name" = "Hat",             "state" = "hair",    "toggle" = 1),
+		"Uniform" =   list("loc" = "2,1",  "name" = "Uniform",         "state" = "center",  "toggle" = 1),
+		"Suit" =   list("loc" = "3,1",  "name" = "Suit",            "state" = "equip",   "toggle" = 1),
+		"Mask" =         list("loc" = "3,2",  "name" = "Mask",            "state" = "mask",    "toggle" = 1),
+		"Gloves" =       list("loc" = "4,1",  "name" = "Gloves",          "state" = "gloves",  "toggle" = 1),
+		"Glasses" =         list("loc" = "2,2",  "name" = "Glasses",         "state" = "glasses", "toggle" = 1),
+		"Left Ear" =        list("loc" = "4,2",  "name" = "Left Ear",        "state" = "ears0",   "toggle" = 1),
+		"Right Ear" =        list("loc" = "4,3",  "name" = "Right Ear",       "state" = "ears1",   "toggle" = 1),
+		"Hat" =         list("loc" = "3,3",  "name" = "Hat",             "state" = "hair",    "toggle" = 1),
 		"shoes" =        list("loc" = "3,0",  "name" = "Shoes",           "state" = "shoes",   "toggle" = 1),
 		"suit storage" = list("loc" = "4,0",  "name" = "Suit Storage",    "state" = "suit-belt"),
 		"back" =         list("loc" = "7,0",  "name" = "Back",            "state" = "back"),

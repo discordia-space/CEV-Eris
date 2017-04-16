@@ -4,16 +4,16 @@
 		return
 
 //	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	var/recreate_flag = 0
+	var/recreate_flag = FALSE
 
 	if(!check_HUDdatum())//проверка настроек клиента на правильность
 		log_debug("[H] try check a HUD, but HUDdatums not have \"[H.client.prefs.UI_style]!\"")
 		H << "Some problem hase accure, use default HUD type"
 		H.defaultHUD = "ErisStyle"
-		++recreate_flag
+		recreate_flag = TRUE
 	else if (H.client.prefs.UI_style != H.defaultHUD)//Если стиль у МОБА не совпадает со стилем у клинета
 		H.defaultHUD = H.client.prefs.UI_style
-		++recreate_flag
+		recreate_flag = TRUE
 
 	if (recreate_flag)
 		H.destroy_HUD()
@@ -21,9 +21,9 @@
 
 
 	H.show_HUD()
-	H.minimalize_HUD()
+	H.minimalize_HUD() //
 
-	if(!recreate_flag && !check_HUD_style())
+	if(!recreate_flag && !check_HUD_style())//Check HUD colour
 		H.recolor_HUD(H.client.prefs.UI_style_color, H.client.prefs.UI_style_alpha)
 
 	return recreate_flag
@@ -35,31 +35,27 @@
 	for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
 
 		if (HUDinv.color != H.client.prefs.UI_style_color || HUDinv.alpha != H.client.prefs.UI_style_alpha)
-			return 0
+			return FALSE
 
 	for (var/p in HUDneed)
 		var/obj/screen/HUDelm = HUDneed[p]
 		if (HUDelm.color != H.client.prefs.UI_style_color || HUDelm.alpha != H.client.prefs.UI_style_alpha)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/human/check_HUDdatum()//correct a datum?
 	var/mob/living/carbon/human/H = src
 
 	if (H.client.prefs.UI_style && !(H.client.prefs.UI_style == "")) //если у клиента моба прописан стиль\тип ХУДа
 		if(global.HUDdatums.Find(H.client.prefs.UI_style))//Если существует такой тип ХУДА
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /mob/living/carbon/human/minimalize_HUD()
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-//	world << "[H.client.prefs.UI_compact_style] && [HUDdatum.MinStyleFlag]"
 	if (H.client.prefs.UI_compact_style && HUDdatum.MinStyleFlag)
-//		if (!HUDdatum.MinStyleFlag)
-//			H << "That UI not have min style"
-//			return
 		for (var/p in H.HUDneed)
 			var/obj/screen/HUD = H.HUDneed[p]
 			HUD.underlays.Cut()
@@ -74,12 +70,8 @@
 					if(HUDdatum.slot_data[p]["minloc"])
 						HUDinv.screen_loc = HUDdatum.slot_data[p]["minloc"]
 					break
-//		world << "remove perdelki"
 		for (var/obj/screen/frippery/HUDfri in H.HUDfrippery)
 			H.client.screen -= HUDfri
-//		for (var/obj/screen/HUDfrip in H.HUDfrippery)
-
-//		qdel(H.HUDneed[p])
 	else
 
 		for (var/p in H.HUDneed)
@@ -121,70 +113,23 @@
 	return
 
 
-
-/*/mob/living/carbon/human/check_HUDinventory()//correct a HUDinventory?
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	var/mob/living/carbon/human/H = src
-
-	if ((H.HUDinventory.len != 0) && (H.HUDinventory.len == species.hud.gear.len) && !(recreate_flag))
-		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
-			if(!(HUDdatum.slot_data.Find(HUDinv.slot_id) && species.hud.gear.Find(HUDinv.slot_id))) //Если данного slot_id нет в датуме худа и в датуме расы.
-				recreate_flag = 1
-				break //то нахуй это дерьмо
-	else
-		recreate_flag = 1
-
-	return
-
-/mob/living/carbon/human/check_HUDneed()
-	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-
-	if ((H.HUDneed.len != 0) && (H.HUDneed.len == species.hud.ProcessHUD.len)) //Если у моба есть ХУД и кол-во эл. худа соотвсетсвует заявленному
-		for (var/i=1,i<=HUDneed.len,i++)
-			if(!(HUDdatum.HUDneed.Find(HUDneed[i]) && species.hud.ProcessHUD.Find(HUDneed[i]))) //Если данного худа нет в датуме худа и в датуме расы.
-				recreate_flag = 1
-				break //то нахуй это дерьмо
-	else
-		recreate_flag = 1
-	return
-
-/mob/living/carbon/human/check_HUDfrippery()
-	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	return
-/mob/living/carbon/human/check_HUDprocess()
-	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	return
-/mob/living/carbon/human/check_HUDtech()
-	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	return*/
-
-
-/mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
+/mob/living/carbon/human/update_hud()
 	if(client)
 		check_HUD()
 		client.screen |= contents
 		//if(hud_used)
 			//hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
-
-
-
-
-
+	return
 
 
 /mob/living/carbon/human/create_HUD()
-//	var/mob/living/carbon/human/H = src
-//	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 
 	create_HUDinventory()
 	create_HUDneed()
 	create_HUDfrippery()
 	create_HUDtech()
 	recolor_HUD(src.client.prefs.UI_style_color, src.client.prefs.UI_style_alpha)
+	return
 
 /mob/living/carbon/human/create_HUDinventory()
 	var/mob/living/carbon/human/H = src
@@ -202,16 +147,10 @@
 			else
 				HUDtype = /obj/screen/inventory
 
-			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"], species.hud.gear[gear_slot], HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], H)
-//			if(HUDdatum.slot_data[gear_slot]["dir"])
-//				inv_box.set_dir(HUDdatum.slot_data[gear_slot]["dir"])
-/*			if (!H.client.prefs.UI_compact_style && !HUDdatum.MinStyleFlag)
-				inv_box.screen_loc = HUDdatum.slot_data[gear_slot]["loc"]
-			else
-				inv_box.screen_loc = HUDdatum.slot_data[gear_slot]["minloc"]
-			if(!H.client.prefs.UI_compact_style && !HUDdatum.MinStyleFlag)
-				if (HUDdatum.slot_data[gear_slot]["background"])
-					inv_box.underlays += HUDdatum.IconUnderlays[HUDdatum.slot_data[gear_slot]["background"]]*/
+			var/obj/screen/inventory/inv_box = new HUDtype(HUDdatum.slot_data[gear_slot]["name"],\
+			species.hud.gear[gear_slot],\
+			HUDdatum.icon, HUDdatum.slot_data[gear_slot]["state"], H)
+
 			if(HUDdatum.slot_data[gear_slot]["hideflag"])
 				inv_box.hideflag = HUDdatum.slot_data[gear_slot]["hideflag"]
 
@@ -227,28 +166,24 @@
 			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
 			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-			var/obj/screen/HUD = new HUDtype(HUDname, H, HUDdatum.HUDneed[HUDname]["icon"] ? HUDdatum.HUDneed[HUDname]["icon"] : HUDdatum.icon, HUDdatum.HUDneed[HUDname]["icon_state"] ? HUDdatum.HUDneed[HUDname]["icon_state"] : null)
-/*			if (!H.client.prefs.UI_compact_style && !HUDdatum.MinStyleFlag)
-				HUD.screen_loc = HUDdatum.HUDneed[HUDname]["loc"]
-			else
-				HUD.screen_loc = HUDdatum.HUDneed[HUDname]["minloc"]
-			if(!H.client.prefs.UI_compact_style && !HUDdatum.MinStyleFlag)
-				if (HUDdatum.HUDneed[HUDname]["background"])
-					HUD.underlays += HUDdatum.IconUnderlays[HUDdatum.HUDneed[HUDname]["background"]]*/
+
+			var/obj/screen/HUD = new HUDtype(HUDname, H,\
+			HUDdatum.HUDneed[HUDname]["icon"] ? HUDdatum.HUDneed[HUDname]["icon"] : HUDdatum.icon,\
+			HUDdatum.HUDneed[HUDname]["icon_state"] ? HUDdatum.HUDneed[HUDname]["icon_state"] : null)
+
 			if(HUDdatum.HUDneed[HUDname]["hideflag"])
 				HUD.hideflag = HUDdatum.HUDneed[HUDname]["hideflag"]
 			H.HUDneed[HUD.name] += HUD//Добавляем в список худов
 			if (HUD.process_flag)//Если худ нужно процессить
 				H.HUDprocess += HUD//Вливаем в соотвествующий список
-
 	return
+
 /mob/living/carbon/human/create_HUDfrippery()
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
 
 	//Добавляем Элементы ХУДа (украшения)
 	for (var/list/whistle in HUDdatum.HUDfrippery)
-//		world << "[whistle["icon_state"]],[whistle["loc"]],[H.name]"
 		var/obj/screen/frippery/perdelka = new (whistle["icon_state"],whistle["loc"],H)
 		perdelka.icon = HUDdatum.icon
 		if(whistle["hideflag"])
@@ -263,13 +198,11 @@
 	//Добавляем технические элементы(damage,flash,pain... оверлеи)
 	for (var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
-		var/obj/screen/HUD = new HUDtype(techobject,H, HUDdatum.HUDoverlays[techobject]["loc"], HUDdatum.HUDoverlays[techobject]["icon"] ? HUDdatum.HUDoverlays[techobject]["icon"] : null, HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
-/*		if(HUDdatum.HUDoverlays[techobject]["icon"])//Анализ на овверайд icon
-			HUD.icon = HUDdatum.HUDoverlays[techobject]["icon"]
-		else
-			HUD.icon = HUDdatum.icon
-		if(HUDdatum.HUDoverlays[techobject]["icon_state"])//Анализ на овверайд icon_state
-			HUD.icon_state = HUDdatum.HUDoverlays[techobject]["icon_state"]*/
+
+		var/obj/screen/HUD = new HUDtype(techobject,H, HUDdatum.HUDoverlays[techobject]["loc"],\
+		 HUDdatum.HUDoverlays[techobject]["icon"] ? HUDdatum.HUDoverlays[techobject]["icon"] : null,\
+		 HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
+
 		H.HUDtech[HUD.name] += HUD//Добавляем в список худов
 		if (HUD.process_flag)//Если худ нужно процессить
 			H.HUDprocess += HUD//Вливаем в соотвествующий список
