@@ -1,5 +1,3 @@
-#ifdef USE_OPENSPACE
-
 //#define DEBUG_OPENSPACE
 
 #define LIST_FAST 1
@@ -189,5 +187,3 @@ var/datum/controller/process/open_space/OS_controller = null
 #undef LIST_FAST
 #undef LIST_NORM
 #undef LIST_SLOW
-
-#endif

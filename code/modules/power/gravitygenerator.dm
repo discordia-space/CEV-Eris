@@ -277,8 +277,10 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 // Set the state of the gravity.
 /obj/machinery/gravity_generator/main/proc/set_state(var/new_state)
-	charging_state = POWER_IDLE
+	if(new_state == on)
+		return
 	on = new_state
+	charging_state = POWER_IDLE
 	use_power = on ? 2 : 1
 	if(new_state) // If we turned on
 		grav_on()
@@ -292,13 +294,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		message_admins("config.station_levels is blank. Gravgen isn't properly established.")
 		return
 
-	var/area/area = get_area(src)
 	gravity_is_on = 1
-	for(var/area/A in world)
-		if(A.z in config.station_levels)
-			A.gravitychange(gravity_is_on,A)
+	update_gravity(gravity_is_on)
 	priority_announcement.Announce("The gravity generator was brought fully operational.")
 	investigate_log("was brought full online and is now producing gravity.", "gravity")
+	var/area/area = get_area(src)
 	message_admins("The gravity generator was brought fully online. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
 
 /obj/machinery/gravity_generator/main/proc/grav_off()
@@ -306,15 +306,18 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		message_admins("config.station_levels is blank. Gravgen isn't properly established.")
 		return
 
-	var/area/area = get_area(src)
 	gravity_is_on = 0
-	for(var/area/A in world)
-		if(A.z in config.station_levels)
-			A.gravitychange(gravity_is_on,A)
+	update_gravity(gravity_is_on)
 	priority_announcement.Announce("The gravity generator was brought offline.")
 	investigate_log("was brought offline and there is now no gravity.", "gravity")
+	var/area/area = get_area(src)
 	message_admins("The gravity generator was brought offline with no backup generator. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
 	shake_everyone()
+
+/obj/machinery/gravity_generator/main/proc/update_gravity(var/is_on)
+	for(var/area/A in world)
+		if(A.z in config.station_levels)
+			A.gravitychange(is_on,A)
 
 // Charge/Discharge and turn on/off gravity when you reach 0/100 percent.
 // Also emit radiation and handle the overlays.

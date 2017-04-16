@@ -17,6 +17,13 @@
 	var/pipe_dir = 0	// directions as disposalpipe
 	var/base_state = "pipe-s"
 
+/obj/structure/disposalconstruct/can_fall()
+	var/turf/below = GetBelow(get_turf(src))
+	var/pipe_below = istype(below)
+	if(pipe_below)
+		pipe_below = locate(/obj/structure/disposalpipe/up) in below
+	return !(anchored || pipe_below)
+
 	// update iconstate and pipe_dir due to dir and type
 /obj/structure/disposalconstruct/proc/update()
 	var/flip = turn(dir, 180)

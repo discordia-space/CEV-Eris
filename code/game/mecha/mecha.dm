@@ -78,6 +78,15 @@
 	var/max_equip = 3
 	var/datum/events/events
 
+/obj/mecha/can_prevent_fall()
+	return TRUE
+
+/obj/mecha/get_fall_damage()
+	return FALL_GIB_DAMAGE
+
+/obj/mecha/can_fall()
+	return TRUE
+
 /obj/mecha/drain_power(var/drain_check)
 
 	if(drain_check)
