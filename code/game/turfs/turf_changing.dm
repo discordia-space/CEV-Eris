@@ -87,8 +87,15 @@
 			continue
 		corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])
 
+	if(force_lighting_update)
+		if(old_lighting_overlay)
+			var/atom/movable/lighting_overlay/old_overlay = old_lighting_overlay
+			old_overlay.Destroy() // This is fastest way to fix double overlays for mine turfs.. Deleting overlay.
+			lighting_build_overlay() // Rebuild overlay!
+
 	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting) || force_lighting_update)
-		reconsider_lights()
+		reconsider_lights() //  Without this turf will be pitch black at lighting_build_overlay(). Updating affecting lights.
+
 	if(dynamic_lighting != old_dynamic_lighting)
 		if(dynamic_lighting)
 			lighting_build_overlay()
