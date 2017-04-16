@@ -166,7 +166,7 @@ var/global/list/map_count = list()
 		return 0
 	var/newpath = get_appropriate_path(map[current_cell])
 	if(newpath)
-		T.ChangeTurf(newpath)
+		T.ChangeTurf(newpath, 1, 1)
 	get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
 	return T
 
