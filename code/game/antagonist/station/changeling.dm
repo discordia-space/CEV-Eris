@@ -71,7 +71,5 @@
 					var/datum/species/S = all_species[player.current.client.prefs.species]
 					if(S && (S.flags & NO_SCAN))
 						return 0
-					if(player.current.client.prefs.organ_data["torso"] == "cyborg") // Full synthetic.
-						return 0
 					return 1
  	return 0

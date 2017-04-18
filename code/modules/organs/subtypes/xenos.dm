@@ -1,16 +1,16 @@
 //XENOMORPH ORGANS
-/obj/item/organ/xenos
+/obj/item/organ/internal/xenos
 	name = "xeno organ"
 	icon = 'icons/effects/blood.dmi'
 	desc = "It smells like an accident in a chemical factory."
 
-/obj/item/organ/xenos/eggsac
+/obj/item/organ/internal/xenos/eggsac
 	name = "egg sac"
 	parent_organ = "groin"
 	icon_state = "xgibmid1"
 	organ_tag = "egg sac"
 
-/obj/item/organ/xenos/plasmavessel
+/obj/item/organ/internal/xenos/plasmavessel
 	name = "plasma vessel"
 	parent_organ = "chest"
 	icon_state = "xgibdown1"
@@ -18,39 +18,39 @@
 	var/stored_plasma = 0
 	var/max_plasma = 500
 
-/obj/item/organ/xenos/plasmavessel/queen
+/obj/item/organ/internal/xenos/plasmavessel/queen
 	name = "bloated plasma vessel"
 	stored_plasma = 200
 	max_plasma = 500
 
-/obj/item/organ/xenos/plasmavessel/sentinel
+/obj/item/organ/internal/xenos/plasmavessel/sentinel
 	stored_plasma = 100
 	max_plasma = 250
 
-/obj/item/organ/xenos/plasmavessel/hunter
+/obj/item/organ/internal/xenos/plasmavessel/hunter
 	name = "tiny plasma vessel"
 	stored_plasma = 100
 	max_plasma = 150
 
-/obj/item/organ/xenos/acidgland
+/obj/item/organ/internal/xenos/acidgland
 	name = "acid gland"
 	parent_organ = "head"
 	icon_state = "xgibtorso"
 	organ_tag = "acid gland"
 
-/obj/item/organ/xenos/resinspinner
+/obj/item/organ/internal/xenos/resinspinner
 	name = "resin spinner"
 	parent_organ = "head"
 	icon_state = "xgibmid2"
 	organ_tag = "resin spinner"
 
-/obj/item/organ/xenos/hivenode
+/obj/item/organ/internal/xenos/hivenode
 	name = "hive node"
 	parent_organ = "chest"
 	icon_state = "xgibmid2"
 	organ_tag = "hive node"
 
-/obj/item/organ/xenos/hivenode/removed(var/mob/living/user)
+/obj/item/organ/xenos/internal/hivenode/removed(var/mob/living/user)
 	if(owner && ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H << "<span class='alium'>You feel your connection to the hivemind fray and fade away...</span>"
@@ -59,8 +59,9 @@
 			xenomorphs.remove_antagonist(H.mind)
 	..(user)
 
-/obj/item/organ/xenos/hivenode/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
-	..(target, affected)
+/obj/item/organ/xenos/internal/hivenode/install(var/mob/living/carbon/human/target)
+	if(..(target))
+		return 1
 	if(owner && ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.add_language("Hivemind")

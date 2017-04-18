@@ -42,7 +42,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	if(!species.has_organ["heart"])
 		return
 
-	var/obj/item/organ/heart/H = internal_organs_by_name["heart"]
+	var/obj/item/organ/internal/heart/H = internal_organs_by_name["heart"]
 	if(!H)	//not having a heart is bad for health
 		setOxyLoss(max(getOxyLoss(),60))
 		adjustOxyLoss(10)
