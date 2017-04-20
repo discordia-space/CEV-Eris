@@ -51,9 +51,7 @@ var/datum/controller/process/open_space/OS_controller = null
 #ifdef DEBUG_OPENSPACE
 	world << "Calc fast OS"
 #endif
-	var/datum/ospace_data/current = null
-	for(var/i in levels)
-		current = i
+	for(var/datum/ospace_data/current in levels)
 		current.calc_fast()
 		SCHECK
 
@@ -62,13 +60,12 @@ var/datum/controller/process/open_space/OS_controller = null
 		world << "Calc normal OS"
 #endif
 		normal_time = world.time + 30
-		for(var/i in levels)
-			current = i
-			current.calc(current.normal)
+		for(var/datum/ospace_data/current in levels)
+			current.calc_normal()
 			SCHECK
 
 /datum/controller/process/open_space/proc/add_turf(var/turf/T)
-	var/datum/ospace_data/OD = levels[T.z]
+	var/datum/ospace_data/OD = (levels.len >= T.z) ? levels[T.z] : null
 	if(OD)
 		OD.add(list(T), LIST_FAST, 1)
 
