@@ -341,12 +341,12 @@ var/global/list/damage_icon_parts = list()
 		return
 
 	//base icons
-	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
+	var/icon/face_standing	= new /icon('icons/mob/hair.dmi',"bald")
 
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype() in facial_hair_style.species_allowed))
-			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
+			var/icon/facial_s = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(facial_color, ICON_ADD)
 
@@ -355,7 +355,7 @@ var/global/list/damage_icon_parts = list()
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
 		if(hair_style && (src.species.get_bodytype() in hair_style.species_allowed))
-			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
+			var/icon/hair_s = new/icon(hair_style.icon, hair_style.icon_state)
 			if(hair_style.do_colouration)
 				hair_s.Blend(hair_color, ICON_ADD)
 
@@ -368,7 +368,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_mutations(var/update_icons=1)
 	var/fat = body_build ? body_build.index : ""
 
-	var/image/standing	= image("icon" = 'icons/effects/genetics.dmi')
+	var/image/standing = image("icon" = 'icons/effects/genetics.dmi')
 	var/add_image = 0
 	var/g = "m"
 	if(gender == FEMALE)	g = "f"
