@@ -30,23 +30,28 @@ var/datum/controller/process/open_space/OS_controller = null
 
 	for(var/datum/ospace_data/OD in levels)
 		if(HasAbove(OD.z))
-			OD.up = levels_by_name["[OD.z + 1]"]
+			OD.up = levels[OD.z + 1]
 
-/datum/controller/process/open_space/proc/add_z_level(var/z)
+	var/datum/ospace_data/OD
+	for(var/turf/simulated/open/T in turfs)
+		OD = levels[T.z]
+		if(OD)
+			OD.fast += T
+
+/datum/controller/process/open_space/proc/add_z_level(var/level)
 #ifdef DEBUG_OPENSPACE
-	world << "OPENSPACE: ADD [z] z lelel"
-	world.log << "OPENSPACE: ADD [z] z lelel"
+	world << "OPENSPACE: ADD [level] z lelel"
+	world.log << "OPENSPACE: ADD [level] z lelel"
 #endif
-	levels_by_name["[z]"] = new /datum/ospace_data(z)
-	levels += levels_by_name["[z]"]
+	if(levels.len < level)
+		levels.len = level
+	levels[level] = new /datum/ospace_data(level)
 
 /datum/controller/process/open_space/doWork()
 #ifdef DEBUG_OPENSPACE
 	world << "Calc fast OS"
 #endif
-	var/datum/ospace_data/current = null
-	for(var/i in levels)
-		current = i
+	for(var/datum/ospace_data/current in levels)
 		current.calc_fast()
 		SCHECK
 
@@ -55,13 +60,12 @@ var/datum/controller/process/open_space/OS_controller = null
 		world << "Calc normal OS"
 #endif
 		normal_time = world.time + 30
-		for(var/i in levels)
-			current = i
-			current.calc(current.normal)
+		for(var/datum/ospace_data/current in levels)
+			current.calc_normal()
 			SCHECK
 
 /datum/controller/process/open_space/proc/add_turf(var/turf/T)
-	var/datum/ospace_data/OD = levels_by_name["[T.z]"]
+	var/datum/ospace_data/OD = (levels.len >= T.z) ? levels[T.z] : null
 	if(OD)
 		OD.add(list(T), LIST_FAST, 1)
 
@@ -70,10 +74,11 @@ var/datum/controller/process/open_space/OS_controller = null
 	. = ..()
 	OS_controller.add_turf(get_turf(src))
 */
-/turf/Entered(atom/movable/Obj)
+/turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()
 	if(ticker)
 		OS_controller.add_turf(src)
+
 /turf/simulated/open/New()
 	..()
 	if(ticker)
@@ -88,9 +93,6 @@ var/datum/controller/process/open_space/OS_controller = null
 
 /datum/ospace_data/New(var/new_level)
 	z = new_level
-	for (var/turf/simulated/open/T in world)
-		if (T.z == z)
-			fast += T
 
 /datum/ospace_data/proc/add(var/list/L, var/I, var/transfer)
 	for(var/elem in L)
@@ -157,6 +159,10 @@ var/datum/controller/process/open_space/OS_controller = null
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
 	if(below)
+		if(below.is_space())
+			plane = SPACE_PLANE
+		else
+			plane = OPENSPACE_PLANE
 		. = LIST_SLOW
 		icon = below.icon
 		icon_state = below.icon_state
