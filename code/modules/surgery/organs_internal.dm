@@ -258,7 +258,7 @@
 				user << "<span class='warning'>\The [target] already has [o_a][O.organ_tag].</span>"
 				return SURGERY_FAILURE
 
-			if(O && affected.limb_name == O.parent_organ)
+			if(O && affected.organ_tag == O.organ_tag)
 				organ_compatible = 1
 			else
 				user << "<span class='warning'>\The [O.organ_tag] [o_do] normally go in \the [affected.name].</span>"
@@ -283,7 +283,7 @@
 		var/obj/item/organ/O = tool
 		if(istype(O))
 			user.remove_from_mob(O)
-			O.replaced(target,affected)
+			O.install(target)
 			playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

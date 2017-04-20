@@ -1,10 +1,12 @@
 /datum/organ_description
 	var/organ_tag = "limb"
 	var/name = "limb"
-	var/default_type = /obj/item/organ/external
+	var/default_type = /obj/item/organ/external/organic
 
 	var/min_broken_damage = 30
 	var/max_damage = 0
+	var/vital = 0
+	var/cannot_amputate = 0
 	var/w_class = 3
 
 	var/body_part = null
@@ -22,10 +24,12 @@
 /datum/organ_description/chest
 	organ_tag = BP_CHEST
 	name = "upper body"
-	default_type = /obj/item/organ/external/chest
+	default_type = /obj/item/organ/external/organic
 
 	min_broken_damage = 35
 	max_damage = 100
+	vital = 1
+	cannot_amputate = 1
 	w_class = 5
 
 	body_part = UPPER_TORSO
@@ -34,10 +38,11 @@
 /datum/organ_description/groin
 	organ_tag = BP_GROIN
 	name = "lower body"
-	default_type = /obj/item/organ/external/groin
+	default_type = /obj/item/organ/external/organic
 
 	min_broken_damage = 35
 	max_damage = 100
+	vital = 1
 	w_class = 4
 
 	body_part = LOWER_TORSO
@@ -52,6 +57,7 @@
 
 	max_damage = 75
 	min_broken_damage = 35
+	vital = 1
 	w_class = 3
 
 	body_part = HEAD

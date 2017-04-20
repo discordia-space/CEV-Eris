@@ -11,7 +11,7 @@
 
 /mob/living/carbon/human/proc/gain_plasma(var/amount)
 
-	var/obj/item/organ/xenos/plasmavessel/I = internal_organs_by_name["plasma vessel"]
+	var/obj/item/organ/internal/xenos/plasmavessel/I = internal_organs_by_name["plasma vessel"]
 	if(!istype(I)) return
 
 	if(amount)
@@ -20,13 +20,13 @@
 
 /mob/living/carbon/human/proc/check_alien_ability(var/cost,var/needs_foundation,var/needs_organ)
 
-	var/obj/item/organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
+	var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 	if(!istype(P))
 		src << "<span class='danger'>Your plasma vessel has been removed!</span>"
 		return
 
 	if(needs_organ)
-		var/obj/item/organ/I = internal_organs_by_name[needs_organ]
+		var/obj/item/organ/internal/I = internal_organs_by_name[needs_organ]
 		if(!I)
 			src << "<span class='danger'>Your [needs_organ] has been removed!</span>"
 			return
@@ -62,7 +62,7 @@
 		src << "<span class='alium'>You need to be closer.</span>"
 		return
 
-	var/obj/item/organ/xenos/plasmavessel/I = M.internal_organs_by_name["plasma vessel"]
+	var/obj/item/organ/internal/xenos/plasmavessel/I = M.internal_organs_by_name["plasma vessel"]
 	if(!istype(I))
 		src << "<span class='alium'>Their plasma vessel is missing.</span>"
 		return
@@ -260,5 +260,5 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 
 	src.visible_message("<span class='danger'>\The [src] regurgitates something into \the [M]'s torso!</span>")
 	M << "<span class='danger'>A hideous lump of alien mass strains your ribcage as it settles within!</span>"
-	var/obj/item/organ/xenos/hivenode/node = new(affecting)
-	node.replaced(M,affecting)
+	var/obj/item/organ/internal/xenos/hivenode/node = new(affecting)
+	node.install(M,affecting)

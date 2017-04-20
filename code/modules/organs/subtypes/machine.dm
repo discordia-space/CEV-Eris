@@ -1,4 +1,4 @@
-/obj/item/organ/cell
+/obj/item/organ/internal/cell
 	name = "microbattery"
 	desc = "A small, powerful cell for use in fully prosthetic bodies."
 	icon = 'icons/obj/power.dmi'
@@ -7,18 +7,18 @@
 	parent_organ = "chest"
 	vital = 1
 
-/obj/item/organ/cell/New()
+/obj/item/organ/internal/cell/New()
 	robotize()
 	..()
 
-/obj/item/organ/cell/replaced()
+/obj/item/organ/internal/cell/install()
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner && owner.stat == DEAD)
 		owner.stat = 0
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
-/obj/item/organ/optical_sensor
+/obj/item/organ/internal/optical_sensor
 	name = "optical sensor"
 	organ_tag = "optics"
 	parent_organ = "head"

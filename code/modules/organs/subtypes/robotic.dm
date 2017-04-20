@@ -1,6 +1,6 @@
 /obj/item/organ/external/robotic
 	name = "robotic"
-	force_icon = 'icons/mob/human_races/robotic.dmi'
+	default_icon = 'icons/mob/human_races/robotic.dmi'
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	dislocated = -1
 	cannot_break = 1
@@ -13,7 +13,7 @@
 
 /obj/item/organ/external/robotic/set_description(var/datum/organ_description/desc)
 	src.name = "[name] [desc.name]"
-	src.limb_name = desc.organ_tag
+	src.organ_tag = desc.organ_tag
 	src.amputation_point = desc.amputation_point
 	src.joint = desc.joint
 

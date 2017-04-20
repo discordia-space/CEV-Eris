@@ -31,10 +31,7 @@
 		user.visible_message("<span class='notice'>[user] has attached [target]'s [E.name] to the [E.amputation_point].</span>",	\
 		"<span class='notice'>You have attached [target]'s [E.name] to the [E.amputation_point].</span>")
 		user.drop_from_inventory(E)
-		E.replaced(target)
-		target.update_body()
-		target.updatehealth()
-		target.UpdateDamageIcon()
+		E.install(target)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/E = tool
