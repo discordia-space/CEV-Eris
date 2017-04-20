@@ -86,13 +86,13 @@ datum/preferences/proc/update_preview_icon()
 	// Hair Style'n'Color
 	var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
 	if(hair_style)
-		var/icon/hair = new/icon(hair_style.icon, "[hair_style.icon_state]_s")
+		var/icon/hair = new/icon(hair_style.icon, hair_style.icon_state)
 		hair.Blend(hair_color, ICON_ADD)
 		eyes.Blend(hair, ICON_OVERLAY)
 
 	var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 	if(facial_hair_style)
-		var/icon/facial = new/icon(facial_hair_style.icon, "[facial_hair_style.icon_state]_s")
+		var/icon/facial = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 		facial.Blend(facial_color, ICON_ADD)
 		eyes.Blend(facial, ICON_OVERLAY)
 
