@@ -53,7 +53,7 @@ var/global/list/default_medbay_channels = list(
 	var/datum/radio_frequency/radio_connection
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
-	proc/set_frequency(new_frequency)
+/obj/item/device/radio/proc/set_frequency(new_frequency)
 		radio_controller.remove_object(src, frequency)
 		frequency = new_frequency
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
@@ -62,8 +62,10 @@ var/global/list/default_medbay_channels = list(
 	..()
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
+	add_hearing()
 
 /obj/item/device/radio/Destroy()
+	remove_hearing()
 	qdel(wires)
 	wires = null
 	if(radio_controller)
@@ -176,6 +178,10 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/proc/ToggleReception()
 	listening = !listening && !(wires.IsIndexCut(WIRE_RECEIVE) || wires.IsIndexCut(WIRE_SIGNAL))
+	if(listening)
+		add_hearing()
+	else
+		remove_hearing()
 
 /obj/item/device/radio/CanUseTopic()
 	if(!on)
