@@ -178,10 +178,6 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/proc/ToggleReception()
 	listening = !listening && !(wires.IsIndexCut(WIRE_RECEIVE) || wires.IsIndexCut(WIRE_SIGNAL))
-	if(listening)
-		add_hearing()
-	else
-		remove_hearing()
 
 /obj/item/device/radio/CanUseTopic()
 	if(!on)

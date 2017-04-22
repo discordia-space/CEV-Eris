@@ -25,7 +25,7 @@
 	add_hearing()
 
 /obj/item/device/taperecorder/Destroy()
-	add_hearing()
+	remove_hearing()
 	..()
 
 /obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
