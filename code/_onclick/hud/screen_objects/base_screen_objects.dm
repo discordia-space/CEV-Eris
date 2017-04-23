@@ -17,29 +17,19 @@
 	unacidable = 1
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
 	var/mob/living/parentmob
-	var/process_flag = 0
+	var/process_flag = FALSE
 	var/hideflag = 0
+	var/list/image/ovrls = list()
 
-/obj/screen/New(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
+/obj/screen/New(_name = "unnamed", mob/living/_parentmob, _icon, _icon_state)//(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
 	src.name = _name
-	src.screen_loc = _screen_loc
+//	src.screen_loc = _screen_loc
 	if (_icon)
 		src.icon = _icon
 	if (_icon_state)
 		src.icon_state = _icon_state
-///obj/screen/New()
-//	set in usr.client.screen
-//screen_loc = "[x_pos],[y_pos]"
-//	world << "usr:[usr] src:[src]"
-//	if(usr)
-//		parentmob = usr
-//		return 1
-//	else
-//		return 0
 
-//	usr << hud_state
-	//world << "src: [src], parent [parentmob]"
 
 /obj/screen/process()
 	return
@@ -49,124 +39,23 @@
 	return ..()
 
 /obj/screen/Click(location, control, params)
-	if(!usr)	return 1
-	switch(name)
-/*		if("toggle")
-			//if(usr.hud_used.inventory_shown)
-			//	usr.hud_used.inventory_shown = 0
-			//	usr.client.screen -= usr.hud_used.other
-			//else
-			//	usr.hud_used.inventory_shown = 1
-			//	usr.client.screen += usr.hud_used.other
+	if(!usr)
+		return TRUE
 
-			//usr.hud_used.hidden_inventory_update()
-			return*/
+	switch(name)
 
 		if("equip")
 			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-				return 1
+				return TRUE
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				H.quick_equip()
 
 		if("Reset Machine")
 			usr.unset_machine()
-//		if("act_intent")
-//			usr.a_intent_change("right")
-		/*if(I_HELP)
-			usr.a_intent = I_HELP
-			usr.hud_used.action_intent.icon_state = "intent_help"
-		if(I_HURT)
-			usr.a_intent = I_HURT
-			usr.hud_used.action_intent.icon_state = "intent_harm"
-		if(I_GRAB)
-			usr.a_intent = I_GRAB
-			usr.hud_used.action_intent.icon_state = "intent_grab"
-		if(I_DISARM)
-			usr.a_intent = I_DISARM
-			usr.hud_used.action_intent.icon_state = "intent_disarm"*/
-
-/*		if("module")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-//				if(R.module)
-//					R.hud_used.toggle_show_robot_modules()
-//					return 1
-				R.pick_module()
-
-		if("inventory")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				if(R.module)
-//					R.hud_used.toggle_show_robot_modules()
-					return 1
-				else
-					R << "You haven't selected a module yet."*/
-
-/*		if("radio")
-			if(issilicon(usr))
-				usr:radio_menu()
-		if("panel")
-			if(issilicon(usr))
-				usr:installed_modules()
-
-		if("store")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				if(R.module)
-					R.uneq_active()
-//					R.hud_used.update_robot_modules_display()
-				else
-					R << "You haven't selected a module yet."
-
-		if("module1")
-			if(istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(1)
-
-		if("module2")
-			if(istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(2)
-
-		if("module3")
-			if(istype(usr, /mob/living/silicon/robot))
-				usr:toggle_module(3)*/
 		else
-			return 0
-	return 1
-
-/*/obj/screen/resist
-	name = "resist"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "act_resist"
-	screen_loc = "1,10"
-
-/obj/screen/resist/Click(location, control, params)
-	..(location, control, params)
-	if(isliving(usr))
-		var/mob/living/L = usr
-		L.resist()*/
-
-
-/*/obj/screen/TEST
-	name = "TESTICON!"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "block"
-	var/clicks = 0
-	appearance_flags=RESET_COLOR
-	var/image/A
-	var/image/B
-
-/obj/screen/TEST/Click(location, control, params)
-	A=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="harm")
-	B=image(icon ='icons/mob/screen/ErisStyleHolo.dmi', icon_state ="grab")
-	A.override = 1
-	B.appearance_flags=RESET_COLOR
-	overlays.Cut()
-	clicks = !clicks
-//	overlays += clicks ? image(icon = 'icons/mob/screen/ErisStyle.dmi', icon_state ="harm",override  = 1) : image(icon ='icons/mob/screen/ErisStyle.dmi', icon_state ="grab",override  = 1)
-	overlays += clicks ? A : B*/
-
-
+			return FALSE
+	return TRUE
 
 //--------------------------------------------------close---------------------------------------------------------
 
@@ -181,7 +70,7 @@
 		if(istype(master, /obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = master
 			S.close(usr)
-	return 1
+	return TRUE
 //--------------------------------------------------close end---------------------------------------------------------
 
 
@@ -192,7 +81,7 @@
 /obj/screen/grab/Click()
 	var/obj/item/weapon/grab/G = master
 	G.s_click(src)
-	return 1
+	return TRUE
 
 /obj/screen/grab/attack_hand()
 	return
@@ -215,18 +104,18 @@
 
 /obj/screen/item_action/Click()
 	if(!usr || !owner)
-		return 1
+		return TRUE
 	if(!usr.canClick())
 		return
 
 	if(usr.stat || usr.restrained() || usr.stunned || usr.lying)
-		return 1
+		return TRUE
 
 	if(!(owner in usr))
-		return 1
+		return TRUE
 
 	owner.ui_action_click()
-	return 1
+	return TRUE
 //-----------------------------------------------ITEM ACTION END---------------------------------------------------------
 
 
@@ -251,7 +140,7 @@
 				if(17 to 22)
 					parentmob.targeted_organ = "l_foot"
 				else
-					return 1
+					return TRUE
 		if(4 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
@@ -259,7 +148,7 @@
 				if(17 to 22)
 					parentmob.targeted_organ = "l_leg"
 				else
-					return 1
+					return TRUE
 		if(10 to 13) //Hands and groin
 			switch(icon_x)
 				if(8 to 11)
@@ -269,7 +158,7 @@
 				if(21 to 24)
 					parentmob.targeted_organ = "l_hand"
 				else
-					return 1
+					return TRUE
 		if(14 to 22) //Chest and arms to shoulders
 			switch(icon_x)
 				if(8 to 11)
@@ -279,7 +168,7 @@
 				if(21 to 24)
 					parentmob.targeted_organ = "l_arm"
 				else
-					return 1
+					return TRUE
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
 				parentmob.targeted_organ = "head"
@@ -299,7 +188,7 @@
 
 	if(old_selecting != parentmob.targeted_organ)
 		update_icon()
-	return 1
+	return TRUE
 
 /obj/screen/zone_sel/New()
 	..()
@@ -324,16 +213,16 @@
 
 /obj/screen/storage/Click()
 	if(!usr.canClick())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	if(master)
 		var/obj/item/I = usr.get_active_hand()
 		if(I)
 			usr.ClickOn(master)
-	return 1
+	return TRUE
 
 //--------------------------------------------------inventory---------------------------------------------------------
 /obj/screen/inventory
@@ -341,9 +230,9 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	layer = 19
 
-/obj/screen/inventory/New(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
+/obj/screen/inventory/New(_name = "unnamed", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)//(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
 	src.name = _name
-	src.screen_loc = _screen_loc
+//	src.screen_loc = _screen_loc
 	src.icon = _icon
 	src.slot_id = _slot_id
 	src.icon_state = _icon_state
@@ -353,11 +242,11 @@
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(!usr.canClick())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	switch(name)
 /*		if("r_hand")
 			if(iscarbon(usr))
@@ -373,13 +262,14 @@
 			if(usr.attack_ui(slot_id))
 				usr.update_inv_l_hand(0)
 				usr.update_inv_r_hand(0)
-	return 1
+	return TRUE
 
 /obj/screen/inventory/hand
 	name = "nonamehand"
 
 /obj/screen/inventory/hand/New()
 	..()
+	ovrls["act_hand"] += new /image/no_recolor (icon = src.icon, icon_state ="act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]")
 	update_icon()
 
 /obj/screen/inventory/hand/Click()
@@ -390,10 +280,13 @@
 		C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
-	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
+	src.underlays.Cut()
+	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
+		src.underlays += ovrls["act_hand"]
+/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) //Если данный элемент ХУДа отображает левую
 		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
-		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
+		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"*/
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------
@@ -402,29 +295,45 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "health0"
 	screen_loc = "15,7"
-	process_flag = 1
+	process_flag = TRUE
+
+/obj/screen/health/New()
+	..()
+	ovrls["health0"] += new /image (icon = src.icon, icon_state ="health0")
+	ovrls["health1"] += new /image/no_recolor(icon = src.icon, icon_state ="health1")
+	ovrls["health2"] += new /image/no_recolor(icon = src.icon, icon_state ="health2")
+	ovrls["health3"] += new /image/no_recolor(icon = src.icon, icon_state ="health3")
+	ovrls["health4"] += new /image/no_recolor(icon = src.icon, icon_state ="health4")
+	ovrls["health5"] += new /image/no_recolor(icon = src.icon, icon_state ="health5")
+	ovrls["health6"] += new /image/no_recolor(icon = src.icon, icon_state ="health6")
+	ovrls["health7"] += new /image(icon = src.icon, icon_state ="health7")
+	update_icon()
 
 /obj/screen/health/process()
 	//var/mob/living/carbon/human/H = parentmob
+	update_icon()
+
+/obj/screen/health/update_icon()
 	if(parentmob:stat != DEAD) // They are dead, let death() handle their hud update on this.
+		overlays.Cut()
 		if (parentmob:analgesic > 100)
-			icon_state = "health_numb"
+//			icon_state = "health_numb"
+			overlays += ovrls["health0"]
 		else
 			switch(parentmob:hal_screwyhud)
-				if(1)	icon_state = "health6"
-				if(2)	icon_state = "health7"
+				if(1)	overlays += ovrls["health6"]
+				if(2)	overlays += ovrls["health7"]
 				else
 				//switch(health - halloss)
 					switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
 					//switch(100 - parentmob.traumatic_shock)
-						if(100 to INFINITY)		icon_state = "health0"
-						if(80 to 100)			icon_state = "health1"
-						if(60 to 80)			icon_state = "health2"
-						if(40 to 60)			icon_state = "health3"
-						if(20 to 40)			icon_state = "health4"
-						if(0 to 20)				icon_state = "health5"
-						else					icon_state = "health6"
-
+						if(100 to INFINITY)		overlays += ovrls["health0"]
+						if(80 to 100)			overlays += ovrls["health1"]
+						if(60 to 80)			overlays += ovrls["health2"]
+						if(40 to 60)			overlays += ovrls["health3"]
+						if(20 to 40)			overlays += ovrls["health4"]
+						if(0 to 20)				overlays += ovrls["health5"]
+						else					overlays += ovrls["health6"]
 /*/obj/screen/health/New()
 	if(usr.client)
 		usr.client.screen += src
@@ -436,9 +345,18 @@
 /obj/screen/nutrition
 	name = "nutrition"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "nutrition1"
+	icon_state = "blank"
 	screen_loc = "15,6"
-	process_flag = 1
+	process_flag = TRUE
+
+/obj/screen/nutrition/New()
+	..()
+	ovrls["nutrition0"] += new /image (icon = src.icon, icon_state ="nutrition0")
+	ovrls["nutrition1"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition1")
+	ovrls["nutrition2"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition2")
+	ovrls["nutrition3"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition3")
+	ovrls["nutrition4"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition4")
+	update_icon()
 
 /obj/screen/nutrition/process()
 	//var/mob/living/carbon/human/H = parentmob
@@ -447,37 +365,39 @@
 /obj/screen/nutrition/update_icon()
 	set src in usr.client.screen
 	var/mob/living/carbon/human/H = parentmob
+	overlays.Cut()
 	switch(H.nutrition)
-		if(450 to INFINITY)				icon_state = "nutrition0"
-		if(350 to 450)					icon_state = "nutrition1"
-		if(250 to 350)					icon_state = "nutrition2"
-		if(150 to 250)					icon_state = "nutrition3"
-		else							icon_state = "nutrition4"
+		if(450 to INFINITY)				overlays += ovrls["nutrition0"]
+		if(350 to 450)					overlays += ovrls["nutrition1"]
+		if(250 to 350)					overlays += ovrls["nutrition2"]
+		if(150 to 250)					overlays += ovrls["nutrition3"]
+		else							overlays += ovrls["nutrition4"]
 //--------------------------------------------------nutrition end---------------------------------------------------------
 
 //--------------------------------------------------bodytemp---------------------------------------------------------
 /obj/screen/bodytemp
 	name = "bodytemp"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "temp0"
+	icon_state = "blank"
 	screen_loc = "15,8"
-	process_flag = 1
+	process_flag = TRUE
+
+
+/obj/screen/bodytemp/New()
+	..()
+	ovrls["temp0"] += new /image/no_recolor (icon = src.icon, icon_state ="temp0")
+	ovrls["temp1"] += new /image/no_recolor(icon = src.icon, icon_state ="temp1")
+	ovrls["temp2"] += new /image/no_recolor(icon = src.icon, icon_state ="temp2")
+	ovrls["temp3"] += new /image/no_recolor(icon = src.icon, icon_state ="temp3")
+	ovrls["temp4"] += new /image/no_recolor(icon = src.icon, icon_state ="temp4")
+	ovrls["temp-1"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-1")
+	ovrls["temp-2"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-2")
+	ovrls["temp-3"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-3")
+	ovrls["temp-4"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-4")
+	update_icon()
 
 /obj/screen/bodytemp/process()
 	update_icon()
-	//var/mob/living/carbon/human/H = parentmob
-	/*if (!parentmob:species)
-		switch(parentmob:bodytemperature) //310.055 optimal body temp
-			if(370 to INFINITY)		icon_state = "temp4"
-			if(350 to 370)			icon_state = "temp3"
-			if(335 to 350)			icon_state = "temp2"
-			if(320 to 335)			icon_state = "temp1"
-			if(300 to 320)			icon_state = "temp0"
-			if(295 to 300)			icon_state = "temp-1"
-			if(280 to 295)			icon_state = "temp-2"
-			if(260 to 280)			icon_state = "temp-3"
-			else					icon_state = "temp-4"
-	else*/
 
 
 /obj/screen/bodytemp/update_icon()
@@ -487,33 +407,34 @@
 		base_temperature = (parentmob:species.heat_level_1 + parentmob:species.cold_level_1)/2
 
 	var/temp_step
+	overlays.Cut()
 	if (parentmob:bodytemperature >= base_temperature)
 		temp_step = (parentmob:species.heat_level_1 - base_temperature)/4
 
 		if (parentmob:bodytemperature >= parentmob:species.heat_level_1)
-			icon_state = "temp4"
+			overlays += ovrls["temp4"]//icon_state = "temp4"
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*3)
-			icon_state = "temp3"
+			overlays += ovrls["temp3"]
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*2)
-			icon_state = "temp2"
+			overlays += ovrls["temp2"]
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*1)
-			icon_state = "temp1"
+			overlays += ovrls["temp1"]
 		else
-			icon_state = "temp0"
+			overlays += ovrls["temp0"]
 
 	else if (parentmob:bodytemperature < base_temperature)
 		temp_step = (base_temperature - parentmob:species.cold_level_1)/4
 
 		if (parentmob:bodytemperature <= parentmob:species.cold_level_1)
-			icon_state = "temp-4"
+			overlays += ovrls["temp-4"]
 		else if (parentmob:bodytemperature <= base_temperature - temp_step*3)
-			icon_state = "temp-3"
+			overlays += ovrls["temp-3"]
 		else if (parentmob:bodytemperature <= base_temperature - temp_step*2)
-			icon_state = "temp-2"
+			overlays += ovrls["temp-2"]
 		else if (parentmob:bodytemperature <= base_temperature - temp_step*1)
-			icon_state = "temp-1"
+			overlays += ovrls["temp-1"]
 		else
-			icon_state = "temp0"
+			overlays += ovrls["temp0"]
 //--------------------------------------------------bodytemp end---------------------------------------------------------
 
 
@@ -521,16 +442,28 @@
 /obj/screen/pressure
 	name = "pressure"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "pressure0"
+	icon_state = "blank"
 	screen_loc = "15,13"
-	process_flag = 1
+	process_flag = TRUE
+
+/obj/screen/pressure/New()
+	..()
+	ovrls["pressure2"] += new /image/no_recolor (icon = src.icon, icon_state ="pressure2")
+	ovrls["pressure1"] += new /image/no_recolor(icon = src.icon, icon_state ="pressure1")
+	ovrls["pressure0"] += new /image/no_recolor(icon = src.icon, icon_state ="pressure0")
+	ovrls["pressure-1"] += new /image/no_recolor(icon = src.icon, icon_state ="pressure-1")
+	ovrls["pressure-2"] += new /image/no_recolor(icon = src.icon, icon_state ="pressure-2")
+	update_icon()
+
 
 /obj/screen/pressure/process()
 	update_icon()
 
 /obj/screen/pressure/update_icon()
 	var/mob/living/carbon/human/H = parentmob
-	icon_state = "pressure[H.pressure_alert]"
+//	icon_state = "pressure[H.pressure_alert]"
+	overlays.Cut()
+	overlays += ovrls["pressure[H.pressure_alert]"]
 //--------------------------------------------------pressure end---------------------------------------------------------
 
 //--------------------------------------------------toxin---------------------------------------------------------
@@ -541,15 +474,22 @@
 	screen_loc = "15,10"
 	process_flag = 1
 
+/obj/screen/toxin/New()
+	..()
+	ovrls["tox1"] += new /image/no_recolor(icon = src.icon, icon_state ="tox1")
+	update_icon()
+
 /obj/screen/toxin/process()
 	update_icon()
 
 /obj/screen/toxin/update_icon()
 	var/mob/living/carbon/human/H = parentmob
+	overlays.Cut()
 	if(H.hal_screwyhud == 4 || H.plasma_alert)
-		icon_state = "tox1"
-	else
-		icon_state = "tox0"
+		overlays += ovrls["tox1"]
+//		icon_state = "tox1"
+//	else
+//		icon_state = "tox0"
 //--------------------------------------------------toxin end---------------------------------------------------------
 
 //--------------------------------------------------oxygen---------------------------------------------------------
@@ -559,31 +499,42 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "oxy0"
 	screen_loc = "15,12"
-	process_flag = 1
+	process_flag = TRUE
+
+/obj/screen/oxygen/New()
+	..()
+	ovrls["oxy1"] += new /image/no_recolor(icon = src.icon, icon_state ="oxy1")
+//	ovrls["oxy0"] += new /image/no_recolor(icon = src.icon, icon_state ="oxy0")
+	update_icon()
 
 /obj/screen/oxygen/process()
 	update_icon()
 
 /obj/screen/oxygen/update_icon()
 	var/mob/living/carbon/human/H = parentmob
+	overlays.Cut()
 	if(H.hal_screwyhud == 3 || H.oxygen_alert)
-		icon_state = "oxy1"
-	else
-		icon_state = "oxy0"
+		overlays += ovrls["oxy1"]
+//		icon_state = "oxy1"
+//	else
+//		icon_state = "oxy0"
 //--------------------------------------------------oxygen end---------------------------------------------------------
 
 //--------------------------------------------------fire---------------------------------------------------------
 /obj/screen/fire
 	name = "fire"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "fire0"
+	icon_state = "blank"
 	screen_loc = "15,9"
-	process_flag = 1
-	var/image/ovrl
+	process_flag = TRUE
+
 
 /obj/screen/fire/New()
 	..()
-	ovrl = new /image/no_recolor(icon = src.icon, icon_state ="fire1")
+	ovrls["fire1"] += new /image/no_recolor(icon = src.icon, icon_state ="fire1")
+	ovrls["fire0"] += new /image(icon = src.icon, icon_state ="fire0")
+	ovrls["fire-1"] += new /image/no_recolor(icon = src.icon, icon_state ="fire-1")
+	update_icon()
 //	ovrl.appearance_flags = RESET_COLOR
 
 /obj/screen/fire/process()
@@ -592,8 +543,8 @@
 /obj/screen/fire/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	src.overlays.Cut()
-	if (H.fire_alert)
-		overlays += ovrl
+//	if (H.fire_alert)
+	overlays += ovrls["fire[H.fire_alert]"]
 //	icon_state = "fire[H.fire_alert]"
 	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
 	else										icon_state = "fire0"*/
@@ -610,15 +561,20 @@
 	icon_state = "internal0"
 	screen_loc = "15,14"
 
+/obj/screen/internal/New()
+	..()
+	ovrls["internal1"] += new /image/no_recolor(icon = src.icon, icon_state ="internal1")
+	ovrls["internal2"] += new /image/no_recolor(icon = src.icon, icon_state ="internal2")
+
 /obj/screen/internal/Click()
 //	if("internal")
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(iscarbon(parentmob))
+		var/mob/living/carbon/C = parentmob
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
 				C.internal = null
 				C << "<span class='notice'>No longer running on internals.</span>"
-				icon_state = "internal0"
+				overlays.Cut()
 			else
 
 				var/no_mask
@@ -629,7 +585,7 @@
 
 				if(no_mask)
 					C << "<span class='notice'>You are not wearing a suitable mask or helmet.</span>"
-					return 1
+					return TRUE
 				else
 					var/list/nicename = null
 					var/list/tankcheck = null
@@ -708,7 +664,8 @@
 
 
 					if(C.internal)
-						icon_state = "internal1"
+						//icon_state = "internal1"
+						overlays += ovrls["internal1"]
 					else
 						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
 //-----------------------internal END------------------------------
@@ -799,7 +756,7 @@
 		C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
 		C.m_intent = "walk"	//Just incase
 		update_icon()
-		return 1
+		return TRUE
 	switch(C.m_intent)
 		if("run")
 			C.m_intent = "walk"
@@ -828,7 +785,7 @@
 
 /obj/screen/equip/Click()
 	if (istype(parentmob.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	if(ishuman(parentmob))
 		var/mob/living/carbon/human/H = parentmob
 		H.quick_equip()
@@ -849,11 +806,15 @@
 /obj/screen/intent
 	name = "intent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "help"
+	icon_state = "blank"
 	screen_loc = "8,2"
 
 /obj/screen/intent/New()
 	..()
+	ovrls["disarm"] += new /image/no_recolor (icon = src.icon, icon_state ="disarm")
+	ovrls["harm"] += new /image/no_recolor (icon = src.icon, icon_state ="harm")
+	ovrls["grab"] += new /image/no_recolor (icon = src.icon, icon_state ="grab")
+	ovrls["help"] += new /image/no_recolor (icon = src.icon, icon_state ="help")
 	update_icon()
 
 /obj/screen/intent/Click()
@@ -861,28 +822,45 @@
 //	update_icon()//update in a_intent_change, because macro
 
 /obj/screen/intent/update_icon()
+	src.overlays.Cut()
 	switch (parentmob.a_intent)
-		if(I_HELP)
+/*		if(I_HELP)
 			icon_state = "help"
 		if(I_HURT)
 			icon_state = "harm"
 		if(I_GRAB)
 			icon_state = "grab"
 		if(I_DISARM)
-			icon_state = "disarm"
+			icon_state = "disarm"*/
+		if(I_HELP)
+			src.overlays += ovrls["help"]
+		if(I_HURT)
+			src.overlays += ovrls["harm"]
+		if(I_GRAB)
+			src.overlays += ovrls["grab"]
+		if(I_DISARM)
+			src.overlays += ovrls["disarm"]
 //-----------------------intent END------------------------------
 /obj/screen/fastintent
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "blank"
 //update in a_intent_change, because macro
 /*/obj/screen/fastintent/Click()
 	if (parentmob.HUDneed.Find("intent"))
 		var/obj/screen/intent/I = parentmob.HUDneed["intent"]
 		I.update_icon()*/
+/obj/screen/fastintent/New()
+	..()
+
 
 
 /obj/screen/fastintent/help
-	icon_state = "intent_help"
+//	icon_state = "intent_help"
+
+/obj/screen/fastintent/help/New()
+	..()
+	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_help")
 
 /obj/screen/fastintent/help/Click()
 	parentmob.a_intent_change(I_HELP)
@@ -891,6 +869,10 @@
 /obj/screen/fastintent/harm
 	icon_state = "intent_harm"
 
+/obj/screen/fastintent/harm/New()
+	..()
+	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_harm")
+
 /obj/screen/fastintent/harm/Click()
 	parentmob.a_intent_change(I_HURT)
 //	..()
@@ -898,12 +880,20 @@
 /obj/screen/fastintent/grab
 	icon_state = "intent_grab"
 
+/obj/screen/fastintent/grab/New()
+	..()
+	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_grab")
+
 /obj/screen/fastintent/grab/Click()
 	parentmob.a_intent_change(I_GRAB)
 //	..()
 
 /obj/screen/fastintent/disarm
 	icon_state = "intent_disarm"
+
+/obj/screen/fastintent/disarm/New()
+	..()
+	src.overlays += new /image/no_recolor (icon = src.icon, icon_state ="intent_disarm")
 
 /obj/screen/fastintent/disarm/Click()
 	parentmob.a_intent_change(I_DISARM)
@@ -915,7 +905,7 @@
 	name = "drugs"
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	mouse_opacity = 0
-	process_flag = 1
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
@@ -936,7 +926,7 @@
 	name = "full_1_tile_overlay"
 	icon_state = "blank"
 	layer = 21
-	mouse_opacity = 1
+	mouse_opacity = 0
 
 /obj/screen/damageoverlay
 	icon = 'icons/mob/screen1_full.dmi'
@@ -944,7 +934,7 @@
 	name = "dmg"
 	screen_loc = "1,1"
 	mouse_opacity = 0
-	process_flag = 1
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
@@ -1041,18 +1031,17 @@
 /obj/screen/frippery
 	name = ""
 
-/obj/screen/frippery/New(_icon_state,_screen_loc = "7,7",_dir, mob/living/_parentmob)
+/obj/screen/frippery/New(_icon_state,_screen_loc = "7,7", mob/living/_parentmob)
 	src.parentmob = _parentmob
 	src.screen_loc = _screen_loc
 	src.icon_state = _icon_state
-	src.dir = _dir
 
 /obj/screen/glasses_overlay
 	icon = null
 	name = "glasses"
 	screen_loc = "1,1"
 	mouse_opacity = 0
-	process_flag = 1
+	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 
 
@@ -1102,7 +1091,7 @@
 /obj/screen/gun/Click(location, control, params)
 	if(!usr)
 		return
-	return 1
+	return TRUE
 
 /obj/screen/gun/New()
 	..()
@@ -1123,8 +1112,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_active()
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/mode/update_icon()
 	icon_state = "gun[parentmob.aiming.active]"
@@ -1141,8 +1130,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_MOVE)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/move/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_MOVE))
@@ -1164,8 +1153,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_CLICK)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/item/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_CLICK))
@@ -1187,8 +1176,8 @@
 			if(!user.aiming) user.aiming = new(user)
 			user.aiming.toggle_permission(TARGET_CAN_RADIO)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/screen/gun/radio/update_icon()
 	if(!(parentmob.aiming.target_permissions & TARGET_CAN_RADIO))
@@ -1225,10 +1214,10 @@
 /obj/screen/toggle_invetory/Click()
 
 	if(parentmob.inventory_shown)
-		parentmob.inventory_shown = 0
+		parentmob.inventory_shown = FALSE
 		hideobjects()
 	else
-		parentmob.inventory_shown = 1
+		parentmob.inventory_shown = TRUE
 		showobjects()
 
 	//parentmob.hud_used.hidden_inventory_update()
@@ -1259,90 +1248,4 @@
 			if(H.wear_suit) H.wear_suit.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 		if(slot_wear_mask)
 			if(H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-/*	for(var/obj/screen/inventory/inv_elem in parentmob.HUDinventory)
-		switch (inv_elem.slot_id)
-			if(slot_head)
-				if(H.head)      H.head.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_shoes)
-				if(H.shoes)     H.shoes.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_l_ear)
-				if(H.l_ear)     H.l_ear.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_r_ear)
-				if(H.r_ear)     H.r_ear.screen_loc =     (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_gloves)
-				if(H.gloves)    H.gloves.screen_loc =    (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_glasses)
-				if(H.glasses)   H.glasses.screen_loc =   (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_w_uniform)
-				if(H.w_uniform) H.w_uniform.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_wear_suit)
-				if(H.wear_suit) H.wear_suit.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-			if(slot_wear_mask)
-				if(H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc*/
-
-/*//	if(!mymob) return
-//	if(ishuman(mymob))
-	var/mob/living/carbon/human/H = parentmob
-	for(var/gear_slot in H.species.hud.gear)
-		var/list/hud_data = H.species.hud.gear[gear_slot]
-		if(H.inventory_shown)
-			switch(hud_data["slot"])
-				if(slot_head)
-					if(H.head)      H.head.screen_loc =      hud_data["loc"]
-				if(slot_shoes)
-					if(H.shoes)     H.shoes.screen_loc =     hud_data["loc"]
-				if(slot_l_ear)
-					if(H.l_ear)     H.l_ear.screen_loc =     hud_data["loc"]
-				if(slot_r_ear)
-					if(H.r_ear)     H.r_ear.screen_loc =     hud_data["loc"]
-				if(slot_gloves)
-					if(H.gloves)    H.gloves.screen_loc =    hud_data["loc"]
-				if(slot_glasses)
-					if(H.glasses)   H.glasses.screen_loc =   hud_data["loc"]
-				if(slot_w_uniform)
-					if(H.w_uniform) H.w_uniform.screen_loc = hud_data["loc"]
-				if(slot_wear_suit)
-					if(H.wear_suit) H.wear_suit.screen_loc = hud_data["loc"]
-				if(slot_wear_mask)
-					if(H.wear_mask) H.wear_mask.screen_loc = hud_data["loc"]
-		else
-			switch(hud_data["slot"])
-				if(slot_head)
-					if(H.head)      H.head.screen_loc =      null
-				if(slot_shoes)
-					if(H.shoes)     H.shoes.screen_loc =     null
-				if(slot_l_ear)
-					if(H.l_ear)     H.l_ear.screen_loc =     null
-				if(slot_r_ear)
-					if(H.r_ear)     H.r_ear.screen_loc =     null
-				if(slot_gloves)
-					if(H.gloves)    H.gloves.screen_loc =    null
-				if(slot_glasses)
-					if(H.glasses)   H.glasses.screen_loc =   null
-				if(slot_w_uniform)
-					if(H.w_uniform) H.w_uniform.screen_loc = null
-				if(slot_wear_suit)
-					if(H.wear_suit) H.wear_suit.screen_loc = null
-				if(slot_wear_mask)
-					if(H.wear_mask) H.wear_mask.screen_loc = null
-	update_inv_w_uniform(0)
-	update_inv_wear_id(0)
-	update_inv_gloves(0)
-	update_inv_glasses(0)
-	update_inv_ears(0)
-	update_inv_shoes(0)
-	update_inv_s_store(0)
-	update_inv_wear_mask(0)
-	update_inv_head(0)
-	update_inv_belt(0)
-	update_inv_back(0)
-	update_inv_wear_suit(0)
-	update_inv_r_hand(0)
-	update_inv_l_hand(0)
-	update_inv_handcuffed(0)
-	update_inv_legcuffed(0)
-	update_inv_pockets(0)
-	update_fire(0)
-	update_surgery(0)
-*/
 //-----------------------toggle_invetory End------------------------------

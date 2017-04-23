@@ -5,7 +5,7 @@ var/list/christians = list()
 	icon_state = "cruciform_red"
 	w_class = 2
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
-	var/dna = null
+	var/datum/dna2/record/data = null
 	var/power = 50
 	var/max_power = 50
 	var/success_modifier = 1
@@ -21,14 +21,29 @@ var/list/christians = list()
 /obj/item/weapon/implant/cruciform/install(mob/living/carbon/human/H)
 	..(H, "chest")
 
-/obj/item/weapon/implant/cruciform/get_mob_overlay(var/organ_tag, var/gender, var/body_build)
+/obj/item/weapon/implant/cruciform/get_mob_overlay(gender, body_build)
+	gender = (gender == MALE) ? "m" : "f"
 	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender][body_build]")
 
 /obj/item/weapon/implant/cruciform/activate()
 	active = TRUE
-	src.dna = wearer.dna
+	update_data()
 	processing_objects.Add(src)
 	christians.Add(wearer)
+
+/obj/item/weapon/implant/cruciform/proc/update_data()
+	if(!wearer)
+		return
+
+	data = new /datum/dna2/record()
+	data.dna = wearer.dna
+	data.ckey = wearer.ckey
+	data.mind = wearer.mind
+	data.id = copytext(md5(wearer.real_name), 2, 6)
+	data.name = data.dna.real_name
+	data.types = DNA2_BUF_UI | DNA2_BUF_UE | DNA2_BUF_SE
+	data.languages = wearer.languages
+	data.flavor = wearer.flavor_text
 
 /obj/item/weapon/implant/cruciform/process()
 	if((!implanted && !wearer) || !active)

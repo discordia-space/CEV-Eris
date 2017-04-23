@@ -8,11 +8,11 @@
 		return
 
 //	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
-	var/recreate_flag = 0
+	var/recreate_flag = FALSE
 
 	if(!check_HUDdatum())
 		H.defaultHUD = "BorgStyle"
-		++recreate_flag
+		recreate_flag = TRUE
 
 	if (recreate_flag)
 		H.destroy_HUD()
@@ -27,8 +27,8 @@
 
 	if (H.defaultHUD == "BorgStyle") //если у клиента моба прописан стиль\тип ХУДа
 		if(global.HUDdatums.Find(H.defaultHUD))//Если существует такой тип ХУДА
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 
 
@@ -55,7 +55,13 @@
 	for (var/HUDname in HUDdatum.slot_data)
 		var/HUDtype
 		HUDtype = HUDdatum.slot_data[HUDname]["type"]
-		var/obj/screen/inventory/inv_box = new HUDtype(HUDname, HUDdatum.slot_data[HUDname]["loc"], HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon_state"],H, HUDdatum.slot_data.Find(HUDname))
+//		var/obj/screen/inventory/inv_box = new HUDtype(HUDname, HUDdatum.slot_data[HUDname]["loc"],HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon"] ? HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon"] : ,HUDdatum.icon,HUDdatum.slot_data[HUDname]["icon_state"],H, HUDdatum.slot_data.Find(HUDname))
+
+		var/obj/screen/silicon/inv_box = new HUDtype(HUDname, HUDdatum.slot_data[HUDname]["loc"], \
+		HUDdatum.slot_data[HUDname]["icon"] ? HUDdatum.slot_data[HUDname]["icon"] : HUDdatum.icon, \
+		HUDdatum.slot_data[HUDname]["icon_state"] ? HUDdatum.slot_data[HUDname]["icon_state"] : null,\
+		H, HUDdatum.slot_data.Find(HUDname))
+
 		H.HUDinventory += inv_box
 	return
 
@@ -66,13 +72,19 @@
 	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
 	for (var/HUDname in HUDdatum.HUDneed)
 		var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-		var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
-		if(HUDdatum.HUDneed[HUDname]["icon"])//Анализ на овверайд icon
-			HUD.icon = HUDdatum.HUDneed[HUDname]["icon"]
-		else
-			HUD.icon = HUDdatum.icon
-		if(HUDdatum.HUDneed[HUDname]["icon_state"])//Анализ на овверайд icon_state
-			HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]
+//		var/obj/screen/HUD = new HUDtype(HUDname, HUDdatum.HUDneed[HUDname]["loc"], H)
+
+		var/obj/screen/HUD = new HUDtype(HUDname, H,\
+		HUDdatum.HUDneed[HUDname]["icon"] ? HUDdatum.HUDneed[HUDname]["icon"] : HUDdatum.icon,\
+		HUDdatum.HUDneed[HUDname]["icon_state"] ? HUDdatum.HUDneed[HUDname]["icon_state"] : null)
+
+		HUD.screen_loc = HUDdatum.HUDneed[HUDname]["loc"]
+//		if(HUDdatum.HUDneed[HUDname]["icon"])//Анализ на овверайд icon
+//			HUD.icon = HUDdatum.HUDneed[HUDname]["icon"]
+//		else
+//			HUD.icon = HUDdatum.icon
+//		if(HUDdatum.HUDneed[HUDname]["icon_state"])//Анализ на овверайд icon_state
+//			HUD.icon_state = HUDdatum.HUDneed[HUDname]["icon_state"]
 		H.HUDneed[HUD.name] += HUD//Добавляем в список худов
 		if (HUD.process_flag)//Если худ нужно процессить
 			H.HUDprocess += HUD//Вливаем в соотвествующий список

@@ -20,7 +20,7 @@
 	// Contains information on the position and tag for all inventory slots
 	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
 	// unless you know exactly what it does.
-	var/list/gear = list(
+/*	var/list/gear = list(
 		"i_clothing" =   slot_w_uniform,
 		"o_clothing" =   slot_wear_suit,
 		"mask" =         slot_wear_mask,
@@ -38,6 +38,26 @@
 		"belt" =         slot_belt,
 		"l_hand" =       slot_l_hand,
 		"r_hand" =       slot_r_hand
+		)*/
+
+	var/list/gear = list(
+		"Uniform" =   slot_w_uniform,
+		"Suit" =   slot_wear_suit,
+		"Mask" =         slot_wear_mask,
+		"Gloves" =       slot_gloves,
+		"Glasses" =         slot_glasses,
+		"Left Ear" =        slot_l_ear,
+		"Right Ear" =        slot_r_ear,
+		"Hat" =         slot_head,
+		"Shoes" =        slot_shoes,
+		"Suit Storage" = slot_s_store,
+		"Back" =         slot_back,
+		"ID" =           slot_wear_id,
+		"Left Pocket" =     slot_l_store,
+		"Right Pocket" =     slot_r_store,
+		"Belt" =         slot_belt,
+		"Left Hand" =       slot_l_hand,
+		"Right Hand" =       slot_r_hand
 		)
 
 /datum/hud_data/New()
@@ -46,8 +66,8 @@
 		equip_slots |= gear[slot]
 
 	if(has_hands)
-		equip_slots |= slot_l_hand
-		equip_slots |= slot_r_hand
+//		equip_slots |= slot_l_hand
+//		equip_slots |= slot_r_hand
 		equip_slots |= slot_handcuffed
 
 	if(slot_back in equip_slots)
@@ -62,8 +82,8 @@
 /datum/hud_data/monkey
 
 	gear = list(
-		"l_hand" =       slot_l_hand,
-		"r_hand" =       slot_r_hand,
-		"mask" =         slot_wear_mask,
-		"back" =         slot_back
+		"Left Hand" =       slot_l_hand,
+		"Right Hand" =       slot_r_hand,
+		"Mask" =         slot_wear_mask,
+		"Back" =         slot_back
 		)
