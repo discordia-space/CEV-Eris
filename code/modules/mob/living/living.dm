@@ -977,14 +977,14 @@ default behaviour is:
 
 // Static Overlays
 
-/mob/living/proc/generateStaticOverlay()
-	staticOverlay = image(getStaticIcon(new/icon(icon, icon_state)), loc = src)
-	staticOverlay.override = 1
+/mob/living/proc/generate_static_overlay()
+	static_overlay = image(get_static_icon(new/icon(icon, icon_state)), loc = src)
+	static_overlay.override = 1
 
 /mob/living/New()
 	..()
-	generateStaticOverlay()
+	generate_static_overlay()
 	for(var/mob/observer/eye/angel/A in player_list)
 		if(A)
-			A.staticOverlays |= staticOverlay
-			A.client.images |= staticOverlay
+			A.static_overlays |= static_overlay
+			A.client.images |= static_overlay

@@ -58,4 +58,4 @@
 
 	var/job = null//Living
 
-	var/image/staticOverlay // For static overlays on living mobs
+	var/image/static_overlay // For static overlays on living mobs

@@ -1,4 +1,4 @@
-/proc/getStaticIcon(icon/A, safety=1)
+/proc/get_static_icon(icon/A, safety=1)
 	var/icon/flat_icon = safety ? A : new(A)
 	flat_icon.Blend(rgb(255,255,255))
 	flat_icon.BecomeAlphaMask()
@@ -6,14 +6,14 @@
 	static_icon.AddAlphaMask(flat_icon)
 	return static_icon
 
-/mob/observer/eye/angel/proc/updateSeeStaticMobs()
+/mob/observer/eye/angel/proc/update_see_static_mobs()
 	if(!client)
 		return
 
-	for(var/i in staticOverlays)
+	for(var/i in static_overlays)
 		client.images.Remove(i)
-		staticOverlays.Remove(i)
+		static_overlays.Remove(i)
 
 	for(var/mob/living/L in mob_list)
-		staticOverlays |= L.staticOverlay
-		client.images |= L.staticOverlay
+		static_overlays |= L.static_overlay
+		client.images |= L.static_overlay

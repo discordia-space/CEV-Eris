@@ -3,4 +3,4 @@
 
 	visualnet.updateVisibility(owner, 0)
 	visualnet.visibility(src)
-	updateSeeStaticMobs()
+	update_see_static_mobs()
