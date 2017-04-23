@@ -8,6 +8,9 @@
 	invisibility = INVISIBILITY_ANGEL
 	see_invisible = SEE_INVISIBLE_ANGEL
 
+	var/list/image/staticOverlays = list()
+
+
 /mob/observer/eye/angel/New(mob/body)
 	..()
 	var/turf/T
@@ -35,12 +38,25 @@
 	owner = src
 	visualnet = cameranet
 
+
 /mob/observer/eye/angel/EyeMove(n, direct)
 	var/turf/T = get_turf(get_step(src, direct))
+	for (var/datum/chunk/chunk in visibleChunks)
+		if (T in chunk.obscuredTurfs)
+			return FALSE // Do not step into unknown turfs; prevents some strange bugs
 	if (T.density)
-		return FALSE
+		return FALSE // Do not pass through walls
 	for (var/atom/movable/A in T)
 		if (!A.CanPass(src, T))
-			return FALSE
+			return FALSE // Do not pass through REALLY BIG objects
 
 	..()
+
+
+/mob/observer/eye/angel/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
+	var/time = say_timestamp()
+	src << "[time][part_a][track][part_b][formatted]"
+
+
+/mob/observer/eye/angel/on_hear_say(message)
+	return

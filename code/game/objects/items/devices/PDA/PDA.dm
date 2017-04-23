@@ -983,7 +983,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
 		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
 		for(var/mob/M in player_list)
-			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears)) // src.client is so that ghosts don't have to listen to mice
+			if((M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears)) || istype(M, /mob/observer/eye/angel)) // src.client is so that ghosts don't have to listen to mice
 				if(istype(M, /mob/new_player))
 					continue
 				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[reception.message]</span></span>")

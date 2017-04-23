@@ -975,3 +975,16 @@ default behaviour is:
 		var/mob/pulled = AM
 		pulled.inertia_dir = 0
 
+// Static Overlays
+
+/mob/living/proc/generateStaticOverlay()
+	staticOverlay = image(getStaticIcon(new/icon(icon, icon_state)), loc = src)
+	staticOverlay.override = 1
+
+/mob/living/New()
+	..()
+	generateStaticOverlay()
+	for(var/mob/observer/eye/angel/A in player_list)
+		if(A)
+			A.staticOverlays |= staticOverlay
+			A.client.images |= staticOverlay
