@@ -54,9 +54,9 @@ var/global/list/default_medbay_channels = list(
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
 /obj/item/device/radio/proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, frequency)
-		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_controller.remove_object(src, frequency)
+	frequency = new_frequency
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/device/radio/New()
 	..()
