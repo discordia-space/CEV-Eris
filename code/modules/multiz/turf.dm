@@ -41,6 +41,9 @@
 	if(locate(/obj/structure/catwalk) in src)
 		return
 
+	if(locate(/obj/structure/multiz/stairs) in src)
+		return
+
 	// See if something prevents us from falling.
 	var/soft = FALSE
 	for(var/atom/A in below)
