@@ -121,10 +121,10 @@
 
 	if(ismob(M) && usr.client)
 		usr.client.moving = 1
-		usr.Move(get_turf(target))
+		usr.forceMove(get_turf(target))
 		usr.client.moving = 0
 	else
-		M.Move(get_turf(target))
+		M.forceMove(get_turf(target))
 
 /obj/structure/multiz/stairs/active/attack_robot(mob/user)
 	. = ..()

@@ -7,6 +7,14 @@
 	legal = FALSE
 	origin_tech = list(TECH_MATERIAL=2, TECH_COMBAT=3, TECH_BIO=4, TECH_ILLEGAL=4)
 
+/obj/item/weapon/implant/explosive/New()
+	..()
+	add_hearing()
+
+/obj/item/weapon/implant/explosive/Destroy()
+	remove_hearing()
+	..()
+
 /obj/item/weapon/implant/explosive/get_data()
 	var/data = {"
 		<b>Implant Specifications:</b><BR>
