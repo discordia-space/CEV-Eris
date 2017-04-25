@@ -29,10 +29,6 @@
 	name = "Bra, black"
 	icon_state = "f5"
 
-/datum/category_item/underwear/top/lacy_bra
-	name = "Lacy bra"
-	icon_state = "f6"
-
 /datum/category_item/underwear/top/sports_bra_black
 	name = "Sports bra, black"
 	icon_state = "f7"
