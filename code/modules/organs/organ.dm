@@ -334,14 +334,6 @@ var/list/organ_cache = list()
 	if(robotic)
 		status |= ORGAN_ROBOT
 
-/obj/item/organ/eyes/replaced(var/mob/living/carbon/human/target)
-
-	// Apply our eye colour to the target.
-	if(istype(target) && eyes_color)
-		target.eyes_color = eyes_color
-		target.update_eyes()
-	..()
-
 /obj/item/organ/proc/bitten(mob/user)
 
 	if(robotic)
