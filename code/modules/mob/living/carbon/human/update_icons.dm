@@ -239,16 +239,11 @@ var/global/list/damage_icon_parts = list()
 		icon_key += "[lip_style]"
 	else
 		icon_key += "nolips"
-	var/obj/item/organ/eyes/eyes = internal_organs_by_name["eyes"]
-	if(eyes)
-		icon_key += "[eyes_color]"
-	else
-		icon_key += "#000000"
 
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part))
-			icon_key += "Missed"
+			icon_key += "[organ_tag]Missed"
 		icon_key += "[organ_tag][part.get_cache_key()]"
 
 

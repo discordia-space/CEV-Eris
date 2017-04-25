@@ -6,12 +6,16 @@
 	parent_organ = "head"
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
+	var/cache_key = "eyes"
 
 /obj/item/organ/eyes/proc/get_icon()
 	var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', "eye_l[owner.body_build.index]")
 	eyes_icon.Blend(icon('icons/mob/human_face.dmi', "eye_r[owner.body_build.index]"), ICON_OVERLAY)
 	eyes_icon.Blend(robotic ? robo_color : eyes_color, ICON_ADD)
 	return eyes_icon
+
+/obj/item/organ/eyes/proc/get_cache_key()
+	return "[cache_key][robotic ? robo_color : eyes_color]"
 
 /obj/item/organ/eyes/replaced(var/mob/living/carbon/human/target)
 
@@ -50,6 +54,7 @@ obj/item/organ/eyes/New(var/mob/living/carbon/holder,var/datum/organ_description
 //Subtypes
 /obj/item/organ/eyes/oneeye
 	icon_state = "eye_l"
+	cache_key = "left_eye"
 
 /obj/item/organ/eyes/oneeye/get_icon()
 	var/icon/eyes_icon
@@ -59,9 +64,14 @@ obj/item/organ/eyes/New(var/mob/living/carbon/holder,var/datum/organ_description
 
 /obj/item/organ/eyes/oneeye/right
 	icon_state = "eye_r"
+	cache_key = "right_eye"
 
 /obj/item/organ/eyes/heterohromia
 	var/second_color = "#000000"
+	cache_key = "heterohromia"
+
+/obj/item/organ/eyes/heterohromia/get_cache_key()
+	return "[cache_key][robotic ? robo_color : eyes_color]&[second_color]"
 
 /obj/item/organ/eyes/heterohromia/get_icon()
 	var/icon/eyes_icon = icon('icons/mob/human_face.dmi', "eye_l[owner.body_build.index]")
