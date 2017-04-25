@@ -12,6 +12,14 @@ var/list/christians = list()
 	var/active = FALSE
 	var/list/allowed_rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/entreaty)
 
+/obj/item/weapon/implant/cruciform/New()
+	..()
+	add_hearing()
+
+/obj/item/weapon/implant/cruciform/Destroy()
+	remove_hearing()
+	..()
+
 /obj/item/weapon/implant/cruciform/proc/use_power(var/value)
 	power = max(0, power - value)
 

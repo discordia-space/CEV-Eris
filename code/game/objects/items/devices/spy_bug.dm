@@ -23,6 +23,11 @@
 	..()
 	radio = new(src)
 	camera = new(src)
+	add_hearing()
+
+/obj/item/device/spy_bug/Destroy()
+	remove_hearing()
+	..()
 
 /obj/item/device/spy_bug/examine(mob/user)
 	. = ..(user, 0)
@@ -61,7 +66,13 @@
 	var/list/obj/machinery/camera/spy/cameras = new()
 
 /obj/item/device/spy_monitor/New()
+	..()
 	radio = new(src)
+	add_hearing()
+
+/obj/item/device/spy_monitor/Destroy()
+	remove_hearing()
+	..()
 
 /obj/item/device/spy_monitor/examine(mob/user)
 	. = ..(user, 1)
