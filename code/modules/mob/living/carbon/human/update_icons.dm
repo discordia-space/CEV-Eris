@@ -247,22 +247,10 @@ var/global/list/damage_icon_parts = list()
 
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
-		if(isnull(part) || part.is_stump())
-			icon_key += "0"
-		else if(part.status & ORGAN_ROBOT || part.robotic & ORGAN_ROBOT)
-			icon_key += "2[part.model ? "-[part.model]": ""]"
-		else if(part.status & ORGAN_DEAD)
-			icon_key += "3"
-		else
-			icon_key += "1"
-		if(part)
-			icon_key += "[part.species.race_key]"
-			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
-			icon_key += "[part.dna.GetUIValue(DNA_UI_SKIN_TONE)]"
-			if(part.skin_col)
-				icon_key += "[skin_color]"
-			else
-				icon_key += "#000000"
+		if(isnull(part))
+			icon_key += "Missed"
+		icon_key += "[organ_tag][part.get_cache_key()]"
+
 
 	icon_key = "[icon_key][husk ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 

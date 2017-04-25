@@ -11,6 +11,14 @@
 	var/list/forced_children = null
 	var/attack = 0 			//Attack mode
 
+/obj/item/organ/external/robotic/get_cache_key()
+	return "ROBOTIC[model]"
+
+/obj/item/organ/external/robotic/update_icon()
+	icon_state = "[limb_name][gender][owner.body_build.index]"
+	mob_icon = icon(force_icon, icon_state)
+	return mob_icon
+
 /obj/item/organ/external/robotic/set_description(var/datum/organ_description/desc)
 	src.name = "[name] [desc.name]"
 	src.limb_name = desc.organ_tag

@@ -1047,63 +1047,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		H.drop_from_inventory(W)
 	W.loc = owner
 
-/obj/item/organ/external/removed(var/mob/living/user, var/ignore_children = 0)
-
-	if(!owner)
-		return
-	var/is_robotic = status & ORGAN_ROBOT
-	var/mob/living/carbon/human/victim = owner
-
-	..()
-
-	victim.bad_external_organs -= src
-
-	for(var/atom/movable/implant in implants)
-		//large items and non-item objs fall to the floor, everything else stays
-		var/obj/item/I = implant
-		if(istype(I) && I.w_class < 3)
-			implant.loc = get_turf(victim.loc)
-		else
-			implant.loc = src
-	implants.Cut()
-
-	// Attached organs also fly off.
-	if(!ignore_children)
-		for(var/obj/item/organ/external/O in children)
-			O.removed()
-			if(O)
-				O.loc = src
-				for(var/obj/item/I in O.contents)
-					I.loc = src
-
-	// Grab all the internal giblets too.
-	for(var/obj/item/organ/organ in internal_organs)
-		organ.removed()
-		organ.loc = src
-
-	// Remove parent references
-	parent.children -= src
-	parent = null
-
-	release_restraints(victim)
-	victim.organs -= src
-	victim.organs_by_name[limb_name] = null // Remove from owner's vars.
-
-	//Robotic limbs explode if sabotaged.
-	if(is_robotic && sabotaged)
-		victim.visible_message(
-			"<span class='danger'>\The [victim]'s [src.name] explodes violently!</span>",\
-			"<span class='danger'>Your [src.name] explodes!</span>",\
-			"<span class='danger'>You hear an explosion!</span>")
-		explosion(get_turf(owner),-1,-1,2,3)
-		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-		spark_system.set_up(5, 0, victim)
-		spark_system.attach(owner)
-		spark_system.start()
-		spawn(10)
-			qdel(spark_system)
-		qdel(src)
-
 /obj/item/organ/external/proc/disfigure(var/type = "brute")
 	if (disfigured)
 		return
