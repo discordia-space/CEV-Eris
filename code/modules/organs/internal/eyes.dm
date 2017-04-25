@@ -30,10 +30,6 @@
 		return
 	eyes_color = owner.eyes_color
 
-
-obj/item/organ/eyes/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
-	..(holder,OD)
-
 /obj/item/organ/eyes/take_damage(amount, var/silent=0)
 	var/oldbroken = is_broken()
 	..()

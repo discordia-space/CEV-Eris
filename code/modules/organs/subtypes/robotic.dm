@@ -9,7 +9,6 @@
 	brute_mod = 0.8
 	burn_mod = 0.8
 	var/list/forced_children = null
-	var/attack = 0 			//Attack mode
 
 /obj/item/organ/external/robotic/get_cache_key()
 	return "ROBOTIC[model]"
