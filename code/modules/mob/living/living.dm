@@ -227,29 +227,34 @@ default behaviour is:
 	return bruteloss
 
 /mob/living/proc/adjustBruteLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	bruteloss = min(max(bruteloss + amount, 0),(maxHealth*2))
 
 /mob/living/proc/getOxyLoss()
 	return oxyloss
 
 /mob/living/proc/adjustOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	oxyloss = min(max(oxyloss + amount, 0),(maxHealth*2))
 
 /mob/living/proc/setOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	oxyloss = amount
 
 /mob/living/proc/getToxLoss()
 	return toxloss
 
 /mob/living/proc/adjustToxLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	toxloss = min(max(toxloss + amount, 0),(maxHealth*2))
 
 /mob/living/proc/setToxLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	toxloss = amount
 
 /mob/living/proc/getFireLoss()
@@ -263,33 +268,39 @@ default behaviour is:
 	return cloneloss
 
 /mob/living/proc/adjustCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	cloneloss = min(max(cloneloss + amount, 0),(maxHealth*2))
 
 /mob/living/proc/setCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	cloneloss = amount
 
 /mob/living/proc/getBrainLoss()
 	return brainloss
 
 /mob/living/proc/adjustBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	brainloss = min(max(brainloss + amount, 0),(maxHealth*2))
 
 /mob/living/proc/setBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	brainloss = amount
 
 /mob/living/proc/getHalLoss()
 	return halloss
 
 /mob/living/proc/adjustHalLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	halloss = min(max(halloss + amount, 0),(maxHealth*2))
 
 /mob/living/proc/setHalLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	halloss = amount
 
 /mob/living/proc/getMaxHealth()
@@ -371,7 +382,8 @@ default behaviour is:
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
@@ -384,15 +396,14 @@ default behaviour is:
 
 // damage MANY external organs, in random order
 /mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
 
 /mob/living/proc/restore_all_organs()
 	return
-
-
 
 /mob/living/proc/revive()
 	rejuvenate()
@@ -740,7 +751,8 @@ default behaviour is:
 		return
 
 	var/obj/selection = input("Select a destination.", "Duct System") as null|anything in sortAssoc(vents)
-	if(!selection)	return
+	if(!selection)
+		return
 
 	if(!vent_found.Adjacent(src))
 		src << "Never mind, you left."
@@ -771,13 +783,15 @@ default behaviour is:
 
 	spawn(travel_time)
 
-		if(!target_vent)	return
+		if(!target_vent)
+			return
 		for(var/mob/O in hearers(target_vent,null))
 			O.show_message("You hear something squeezing through the ventilation ducts.",2)
 
 		sleep(travel_time)
 
-		if(!target_vent)	return
+		if(!target_vent)
+			return
 		if(target_vent.welded)			//the vent can be welded while alien scrolled through the list or travelled.
 			target_vent = vent_found 	//travel back. No additional time required.
 			src << "\red The vent you were heading to appears to be welded."
@@ -900,7 +914,6 @@ default behaviour is:
 	set name = "Stop Pulling"
 	set category = "IC"
 
-
 	if(pulling)
 		pulling.pulledby = null
 		pulling = null
@@ -912,7 +925,7 @@ default behaviour is:
 
 /mob/living/start_pulling(var/atom/movable/AM)
 
-	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if (!AM || !usr || src==AM || !isturf(src.loc))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored)
@@ -959,8 +972,6 @@ default behaviour is:
 	src.pulling = AM
 	AM.pulledby = src
 
-	/*if(pullin)
-		pullin.icon_state = "pull1"*/
 	if (HUDneed.Find("pull"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 		HUD.update_icon()
@@ -974,4 +985,3 @@ default behaviour is:
 	if(ismob(AM))
 		var/mob/pulled = AM
 		pulled.inertia_dir = 0
-
