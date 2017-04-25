@@ -261,7 +261,8 @@ default behaviour is:
 	return fireloss
 
 /mob/living/proc/adjustFireLoss(var/amount)
-	if(status_flags & GODMODE)	return FALSE	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	fireloss = min(max(fireloss + amount, 0),(maxHealth*2))
 
 /mob/living/proc/getCloneLoss()
