@@ -56,6 +56,7 @@ var/global/list/limb_icon_cache = list()
 	part_key += model
 	for(var/obj/item/organ/eyes/I in internal_organs)
 		part_key += I.get_cache_key()
+	return part_key
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
 	..()
