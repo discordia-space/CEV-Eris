@@ -30,50 +30,6 @@
 		else if(is_broken())
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
-////////////////////// EYES
-
-/obj/item/organ/eyes
-	name = "eyeballs"
-	icon_state = "eyes"
-	gender = PLURAL
-	organ_tag = "eyes"
-	parent_organ = "head"
-	var/eyes_color = "#000000"
-	var/robo_color = "#000000"
-
-/obj/item/organ/eyes/oneeye
-	var/right_eye = 0 			//if true, right eye will removed, if false, left
-
-/obj/item/organ/eyes/oneeye/right
-	right_eye = 1
-
-/obj/item/organ/eyes/heterohromia
-	var/second_color = "#000000"
-
-/obj/item/organ/eyes/proc/update_colour()
-	if(!owner)
-		return
-	eyes_color = owner.eyes_color
-
-
-obj/item/organ/eyes/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
-	..(holder,OD)
-
-/obj/item/organ/eyes/take_damage(amount, var/silent=0)
-	var/oldbroken = is_broken()
-	..()
-	if(is_broken() && !oldbroken && owner && !owner.stat)
-		owner << "<span class='danger'>You go blind!</span>"
-
-/obj/item/organ/eyes/process() //Eye damage replaces the old eye_stat var.
-	..()
-	if(!owner)
-		return
-	if(is_bruised())
-		owner.eye_blurry = 20
-	if(is_broken())
-		owner.eye_blind = 20
-
 /obj/item/organ/liver
 	name = "liver"
 	icon_state = "liver"
