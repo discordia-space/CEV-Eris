@@ -237,6 +237,7 @@ var/global/list/damage_icon_parts = list()
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part))
 			icon_key += "[organ_tag]Missed"
+			continue
 		icon_key += "[organ_tag][part.get_cache_key()]"
 
 
