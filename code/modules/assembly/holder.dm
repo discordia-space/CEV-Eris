@@ -13,6 +13,14 @@
 	var/obj/item/device/assembly/left_assembly = null
 	var/obj/item/device/assembly/right_assembly = null
 
+/obj/item/device/assembly_holder/New()
+	..()
+	add_hearing()
+
+/obj/item/device/assembly_holder/Destroy()
+	remove_hearing()
+	..()
+
 /obj/item/device/assembly_holder/proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
 	return
 

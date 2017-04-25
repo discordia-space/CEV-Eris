@@ -249,11 +249,10 @@ proc/get_radio_key_from_channel(var/channel)
 				var/mob/M = I
 				listening += M
 				hearturfs += M.locs[1]
-			else if(isobj(I))
-				var/obj/O = I
-				hearturfs += O.locs[1]
-				listening_obj |= O
 
+		for(var/obj/O in hearing_objects)
+			if(O && O.locs.len && O.locs[1] in hear)
+				listening_obj |= O
 
 		for(var/mob/M in player_list)
 			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
