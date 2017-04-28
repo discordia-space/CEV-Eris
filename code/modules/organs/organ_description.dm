@@ -17,7 +17,7 @@
 	var/list/drop_on_remove = null
 
 /datum/organ_description/proc/create_organ(var/mob/living/carbon/human/H)
-	return new src.default_type(H,src)
+	return new default_type(H,src)
 
 /datum/organ_description/chest
 	organ_tag = BP_CHEST
@@ -65,7 +65,7 @@
 	min_broken_damage = 30
 	w_class = 3
 	parent_organ = BP_CHEST
-	can_grasp = 1
+	can_grasp = TRUE
 
 /datum/organ_description/arm/left
 	name = "left arm"
@@ -86,7 +86,7 @@
 	min_broken_damage = 30
 	w_class = 3
 	parent_organ = BP_GROIN
-	can_stand = 1
+	can_stand = TRUE
 
 /datum/organ_description/leg/left
 	name = "left leg"
@@ -107,7 +107,7 @@
 /datum/organ_description/hand
 	min_broken_damage = 15
 	w_class = 2
-	can_grasp = 1
+	can_grasp = TRUE
 	drop_on_remove = list(slot_gloves, slot_handcuffed)
 
 /datum/organ_description/hand/left
@@ -128,7 +128,7 @@
 
 /datum/organ_description/foot
 	min_broken_damage = 15
-	can_stand = 1
+	can_stand = TRUE
 	drop_on_remove = list(slot_shoes, slot_legcuffed)
 
 /datum/organ_description/foot/left
@@ -148,3 +148,41 @@
 	parent_organ = BP_R_LEG
 	joint = "right ankle"
 	amputation_point = "right ankle"
+
+////SLIME////
+/datum/organ_description/chest/slime
+	name = "upper body"
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/groin/slime
+	name = "fork"
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/head/slime
+	default_type = /obj/item/organ/external/head/slime
+
+/datum/organ_description/arm/left/slime
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/arm/right/slime
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/leg/left/slime
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/leg/right/slime
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/hand/left/slime
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/hand/right/slime
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/foot/left/slime
+	default_type = /obj/item/organ/external/slime
+
+/datum/organ_description/foot/right/slime
+	default_type = /obj/item/organ/external/slime
+
+
