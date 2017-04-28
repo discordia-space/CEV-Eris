@@ -244,11 +244,9 @@ proc/get_radio_key_from_channel(var/channel)
 		var/list/hear = hear(message_range,T)
 		var/list/hearturfs = list()
 
-		for(var/I in hear)
-			if(ismob(I))
-				var/mob/M = I
-				listening += M
-				hearturfs += M.locs[1]
+		for(var/mob/M in mob_list)
+			if(M && M.locs.len && M.locs[1] in hear)
+				listening |= M
 
 		for(var/obj/O in hearing_objects)
 			if(O && O.locs.len && O.locs[1] in hear)
