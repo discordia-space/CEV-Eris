@@ -231,3 +231,14 @@ var/const/enterloopsanity = 100
 
 /turf/proc/update_blood_overlays()
 	return
+
+/turf/get_footstep_sound(var/mobtype)
+	if(!footstep_sounds || !footstep_sounds.len)
+		return
+
+	var/sound = pick(footstep_sounds[mobtype])
+
+	if(locate(/obj/structure/catwalk) in src)
+		sound = pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg')
+
+	return sound

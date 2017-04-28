@@ -110,42 +110,41 @@
 
 /mob/living/carbon/human/handle_footstep(atom/T)
 	if(..())
-		if(T.footstep_sounds["human"])
-			var/S = pick(T.footstep_sounds["human"])
-			if(S)
-				if(m_intent == "run")
-					if(!(step_count % 2)) //every other turf makes a sound
-						return
+		var/S = T.get_footstep_sound("human")
+		if(S)
+			if(m_intent == "run")
+				if(!(step_count % 2)) //every other turf makes a sound
+					return
 
-				var/range = -(world.view - 2)
-				if(m_intent == "walk")
-					range -= 0.333
-				if(!shoes)
-					range -= 0.333
+			var/range = -(world.view - 2)
+			if(m_intent == "walk")
+				range -= 0.333
+			if(!shoes)
+				range -= 0.333
 
-				var/volume = 90
-				if(m_intent == "walk")
-					volume -= 55
-				if(!shoes)
-					volume -= 70
+			var/volume = 90
+			if(m_intent == "walk")
+				volume -= 55
+			if(!shoes)
+				volume -= 70
 
-				if(istype(shoes, /obj/item/clothing/shoes))
-					var/obj/item/clothing/shoes/footwear = shoes
-					if(footwear.silence_steps)
-						return //silent
+			if(istype(shoes, /obj/item/clothing/shoes))
+				var/obj/item/clothing/shoes/footwear = shoes
+				if(footwear.silence_steps)
+					return //silent
 
-				if(!has_organ("l_foot") && !has_organ("r_foot"))
-					return //no feet no footsteps
+			if(!has_organ("l_foot") && !has_organ("r_foot"))
+				return //no feet no footsteps
 
-				if(buckled || lying || throwing)
-					return //people flying, lying down or sitting do not step
+			if(buckled || lying || throwing)
+				return //people flying, lying down or sitting do not step
 
-				if(!has_gravity(src))
-					if(step_count % 3) //this basically says, every three moves make a noise
-						return //1st - none, 1%3==1, 2nd - none, 2%3==2, 3rd - noise, 3%3==0
+			if(!has_gravity(src))
+				if(step_count % 3) //this basically says, every three moves make a noise
+					return //1st - none, 1%3==1, 2nd - none, 2%3==2, 3rd - noise, 3%3==0
 
-				if(species.silent_steps)
-					return //species is silent
+			if(species.silent_steps)
+				return //species is silent
 
-				playsound(T, S, volume, 1, range)
-				return
+			playsound(T, S, volume, 1, range)
+			return
