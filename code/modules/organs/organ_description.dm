@@ -152,37 +152,37 @@
 ////SLIME////
 /datum/organ_description/chest/slime
 	name = "upper body"
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/groin/slime
 	name = "fork"
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/head/slime
-	default_type = /obj/item/organ/external/head/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/arm/left/slime
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/arm/right/slime
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/leg/left/slime
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/leg/right/slime
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/hand/left/slime
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/hand/right/slime
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/foot/left/slime
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 /datum/organ_description/foot/right/slime
-	default_type = /obj/item/organ/external/slime
+	default_type = /obj/item/organ/external/unbreakable
 
 

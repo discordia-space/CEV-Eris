@@ -11,7 +11,7 @@
 	var/list/forced_children = null
 
 /obj/item/organ/external/robotic/get_cache_key()
-	return "ROBOTIC[model]"
+	return "Robotic[model]"
 
 /obj/item/organ/external/robotic/update_icon()
 	icon_state = "[limb_name][gender][owner.body_build.index]"
