@@ -236,7 +236,7 @@ var/const/enterloopsanity = 100
 
 	var/sound
 
-	var/catwalk = locate(/obj/structure/catwalk) in src
+	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
 	if(catwalk)
 		sound = safepick(catwalk.footstep_sounds[mobtype])
 	else
