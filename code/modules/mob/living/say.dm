@@ -244,11 +244,11 @@ proc/get_radio_key_from_channel(var/channel)
 		var/list/hear = hear(message_range,T)
 
 		for(var/mob/M in mob_list)
-			if(M && M.locs.len && M.locs[1] in hear)
+			if(M.locs.len && M.locs[1] in hear)
 				listening |= M
 
 		for(var/obj/O in hearing_objects)
-			if(O && O.locs.len && O.locs[1] in hear)
+			if(O.locs.len && O.locs[1] in hear)
 				listening_obj |= O
 
 		for(var/mob/M in player_list)

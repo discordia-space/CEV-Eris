@@ -233,12 +233,13 @@ var/const/enterloopsanity = 100
 	return
 
 /turf/get_footstep_sound(var/mobtype)
-	if(!footstep_sounds || !footstep_sounds.len)
-		return
 
-	var/sound = pick(footstep_sounds[mobtype])
+	var/sound
 
-	if(locate(/obj/structure/catwalk) in src)
-		sound = pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg')
+	var/catwalk = locate(/obj/structure/catwalk) in src
+	if(catwalk)
+		sound = safepick(catwalk.footstep_sounds[mobtype])
+	else
+		sound = safepick(footstep_sounds[mobtype])
 
 	return sound

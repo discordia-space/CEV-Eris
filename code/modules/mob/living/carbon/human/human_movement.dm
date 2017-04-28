@@ -110,12 +110,32 @@
 
 /mob/living/carbon/human/handle_footstep(atom/T)
 	if(..())
+
+		if(m_intent == "run")
+			if(!(step_count % 2)) //every other turf makes a sound
+				return
+
+		if(istype(shoes, /obj/item/clothing/shoes))
+			var/obj/item/clothing/shoes/footwear = shoes
+			if(footwear.silence_steps)
+				return //silent
+
+		if(!has_organ("l_foot") && !has_organ("r_foot"))
+			return //no feet no footsteps
+
+		if(buckled || lying || throwing)
+			return //people flying, lying down or sitting do not step
+
+		if(!has_gravity(src))
+			if(step_count % 3) //this basically says, every three moves make a noise
+				return //1st - none, 1%3==1, 2nd - none, 2%3==2, 3rd - noise, 3%3==0
+
+		if(species.silent_steps)
+			return //species is silent
+
+
 		var/S = T.get_footstep_sound("human")
 		if(S)
-			if(m_intent == "run")
-				if(!(step_count % 2)) //every other turf makes a sound
-					return
-
 			var/range = -(world.view - 2)
 			if(m_intent == "walk")
 				range -= 0.333
@@ -127,24 +147,6 @@
 				volume -= 55
 			if(!shoes)
 				volume -= 70
-
-			if(istype(shoes, /obj/item/clothing/shoes))
-				var/obj/item/clothing/shoes/footwear = shoes
-				if(footwear.silence_steps)
-					return //silent
-
-			if(!has_organ("l_foot") && !has_organ("r_foot"))
-				return //no feet no footsteps
-
-			if(buckled || lying || throwing)
-				return //people flying, lying down or sitting do not step
-
-			if(!has_gravity(src))
-				if(step_count % 3) //this basically says, every three moves make a noise
-					return //1st - none, 1%3==1, 2nd - none, 2%3==2, 3rd - noise, 3%3==0
-
-			if(species.silent_steps)
-				return //species is silent
 
 			playsound(T, S, volume, 1, range)
 			return
