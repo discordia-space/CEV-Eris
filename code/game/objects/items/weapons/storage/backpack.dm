@@ -79,11 +79,6 @@
 	max_storage_space = 400 // can store a ton of shit!
 	item_state_slots = null
 
-/obj/item/weapon/storage/backpack/cultpack
-	name = "trophy rack"
-	desc = "It's useful for both carrying extra gear and proudly declaring your insanity."
-	icon_state = "cultpack"
-
 /obj/item/weapon/storage/backpack/clown
 	name = "Giggles von Honkerton"
 	desc = "It's a backpack made by Honk! Co."

@@ -242,23 +242,17 @@ proc/get_radio_key_from_channel(var/channel)
 
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
 		var/list/hear = hear(message_range,T)
-		var/list/hearturfs = list()
 
-		for(var/I in hear)
-			if(ismob(I))
-				var/mob/M = I
-				listening += M
-				hearturfs += M.locs[1]
+		for(var/mob/M in mob_list)
+			if(M.locs.len && M.locs[1] in hear)
+				listening |= M
 
 		for(var/obj/O in hearing_objects)
-			if(O && O.locs.len && O.locs[1] in hear)
+			if(O.locs.len && O.locs[1] in hear)
 				listening_obj |= O
 
 		for(var/mob/M in player_list)
 			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
-				listening |= M
-				continue
-			if(M.loc && M.locs[1] in hearturfs)
 				listening |= M
 
 	var/speech_bubble_test = say_test(message)
