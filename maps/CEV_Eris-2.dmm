@@ -872,7 +872,7 @@
 "qN" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/skipjack_station/start)
 "qO" = (/turf/space,/turf/simulated/shuttle/wall{dir = 4; icon_state = "diagonalWall3"},/area/skipjack_station/start)
 "qP" = (/obj/structure/table/woodentable,/obj/machinery/chemical_dispenser/soda,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
-"qQ" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/backpack/cultpack,/turf/unsimulated/floor{icon_state = "lino"},/area/wizard_station)
+"qQ" = (/obj/structure/table/woodentable,/turf/unsimulated/floor{icon_state = "lino"},/area/wizard_station)
 "qR" = (/obj/structure/table/woodentable,/obj/item/clothing/glasses/monocle,/turf/unsimulated/floor{icon_state = "lino"},/area/wizard_station)
 "qS" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/backpack,/turf/unsimulated/floor{icon_state = "lino"},/area/wizard_station)
 "qT" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/clothing/suit/wizrobe/psypurple,/obj/item/clothing/head/wizard/amp,/turf/unsimulated/floor{icon_state = "lino"},/area/wizard_station)
