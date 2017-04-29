@@ -25,13 +25,6 @@
 	new /obj/item/weapon/melee/cultblade(loc)
 	..()
 
-/obj/item/weapon/storage/backpack/cultify()
-	new /obj/item/weapon/storage/backpack/cultpack(loc)
-	..()
-
-/obj/item/weapon/storage/backpack/cultpack/cultify()
-	return
-
 /obj/machinery/cultify()
 	// We keep the number of cultified machines down by only converting those that are dense
 	// The alternative is to keep a separate file of exceptions.
