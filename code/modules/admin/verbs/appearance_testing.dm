@@ -58,3 +58,16 @@ var/datum/appearance_test/appearance_test = new
 	if(rebuild)
 		rebuild_humans()
 		interact(usr)
+
+/mob/living/carbon/human/appearance_test/New()
+	s_tone = -rand(10, 210)
+	eyes_color = rgb(rand(1,220),rand(1,220),rand(1,220))
+	..()
+	var/list/organs = list(BP_L_ARM, BP_R_ARM, BP_R_HAND, BP_L_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
+	for(var/i = 1 to 2)
+		var/organ = pick(organs)
+		organs -= organ
+		if(organs_by_name[organ])
+			qdel(organs_by_name[organ])
+	force_update_limbs()
+	update_body()
