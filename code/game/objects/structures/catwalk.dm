@@ -7,6 +7,12 @@
 	density = 0
 	anchored = 1.0
 
+	footstep_sounds = list("human" = list('sound/effects/footstep/catwalk1.ogg',
+						'sound/effects/footstep/catwalk2.ogg',
+						'sound/effects/footstep/catwalk3.ogg',
+						'sound/effects/footstep/catwalk4.ogg',
+						'sound/effects/footstep/catwalk5.ogg'))
+
 /obj/structure/catwalk/New()
 	..()
 	spawn(4)
@@ -75,7 +81,3 @@
 			new /obj/structure/lattice/(src.loc)
 			qdel(src)
 	return
-
-/obj/structure/catwalk/Crossed()
-	if(isliving(usr))
-		playsound(src, pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg'), 100, 1)

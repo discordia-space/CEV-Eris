@@ -530,3 +530,6 @@ its easier to just keep the beam vertical.
 /turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
 	return ..(AM, old_loc, 0)
 
+/atom/proc/get_footstep_sound()
+	return
+
