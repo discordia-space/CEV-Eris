@@ -1,6 +1,7 @@
 var/datum/appearance_test/appearance_test = new
 
 #define TOGGLE(var) var ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"
+#define TRUEORFALSE(var) var ? "<font color='green'>TRUE</font>" : "<font color='red'>FALSE</font>"
 
 /datum/appearance_test
 	var/build_body = FALSE
@@ -23,9 +24,25 @@ var/datum/appearance_test/appearance_test = new
 	dat += "Use simple icon_state build - <a href='?src=\ref[src];simple=1'>[TOGGLE(simple_setup)]</a><br>"
 	dat += "Cache human body sprite - <a href='?src=\ref[src];cache=1'>[TOGGLE(cache_sprites)]</a><br>"
 	dat += "Head sprite has special update_icon  - <a href='?src=\ref[src];special=1'>[TOGGLE(special_update)]</a><br>"
+	dat += "<br><a href='?src=\ref[src];test_cache=1'>Test cache</a>"
+	dat += " (<a href='?src=\ref[src];test_cache=1;draw_icons=1'>Output icons</a>)<br>."
 	dat += "</body></html>"
 
 	user << browse(jointext(dat, null), "window=test_sprite;size=330x220")
+
+/datum/appearance_test/proc/output_cachelist(var/mob/user, var/draw_icons = FALSE)
+	var/list/dat = list()
+	dat += "<html><head><title>Cache list contents</title><body>"
+	for(var/elem in human_icon_cache)
+		dat += "KEY: [elem]<br>"
+		var/icon/c_icon = human_icon_cache[elem]
+		dat += "Isicon [TRUEORFALSE(isicon(c_icon))]<br>"
+		if(draw_icons)
+			user << browse_rsc(c_icon, elem)
+			dat += "<img src = \"[elem]\"><br>"
+	dat += "</body></html>"
+
+	user << browse(jointext(dat, null), "window=cache_list;size=330x220")
 
 /mob/verb/debug_human_sprite_build()
 	if(!appearance_test)
@@ -54,6 +71,8 @@ var/datum/appearance_test/appearance_test = new
 	if(href_list["special"])
 		special_update = !special_update
 		rebuild = TRUE
+	if(href_list["test_cache"])
+		output_cachelist(usr, href_list["draw_icons"])
 
 	if(rebuild)
 		rebuild_humans()
