@@ -1519,16 +1519,17 @@ var/list/rank_prefix = list(\
 	set desc = "If you want to know what's above."
 	set category = "IC"
 
-	if(!is_physically_disabled() && shadow)
-		if(client.eye == shadow)
-			reset_view(0)
-			return
+	if(!is_physically_disabled())
 		var/turf/above = GetAbove(src)
-		if(istype(above, /turf/simulated/open))
-			src << "<span class='notice'>You look up.</span>"
-			if(client)
-				reset_view(shadow)
-			return
+		if(shadow)
+			if(client.eye == shadow)
+				reset_view(0)
+				return
+			if(istype(above, /turf/simulated/open))
+				src << "<span class='notice'>You look up.</span>"
+				if(client)
+					reset_view(shadow)
+				return
 		src << "<span class='notice'>You can see [above].</span>"
 	else
 		src << "<span class='notice'>You can't do it right now.</span>"
