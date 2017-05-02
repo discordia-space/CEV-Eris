@@ -4,12 +4,15 @@ var/datum/appearance_test/appearance_test = new
 #define TRUEORFALSE(var) var ? "<font color='green'>TRUE</font>" : "<font color='red'>FALSE</font>"
 
 /datum/appearance_test
-	var/build_body = FALSE
-	var/get_species_sprite = FALSE
-	var/colorize_organ = FALSE
-	var/cache_sprites = TRUE
+	var/build_body = TRUE
+	var/get_species_sprite = TRUE
+	var/colorize_organ = TRUE
+	var/cache_sprites = FALSE
+	var/log_sprite_gen = TRUE
+	var/log_sprite_gen_to_world = FALSE
 	var/special_update = TRUE
 	var/simple_setup = FALSE
+	var/cache_generation_log = ""
 
 /datum/appearance_test/proc/rebuild_humans()
 	for(var/mob/living/carbon/human/H in mob_list)
@@ -23,6 +26,9 @@ var/datum/appearance_test/appearance_test = new
 	dat += "Colorize organ sprite - <a href='?src=\ref[src];color=1'>[TOGGLE(colorize_organ)]</a><br>"
 	dat += "Use simple icon_state build - <a href='?src=\ref[src];simple=1'>[TOGGLE(simple_setup)]</a><br>"
 	dat += "Cache human body sprite - <a href='?src=\ref[src];cache=1'>[TOGGLE(cache_sprites)]</a><br>"
+	dat += "Log cache key generation - <a href='?src=\ref[src];log_cache=1'>[TOGGLE(log_sprite_gen)]</a>"
+	dat += " (<a href='?src=\ref[src];view_generation_log=1'>View</a>)<br>"
+	dat += "Log cache key generation to world - <a href='?src=\ref[src];log_cache_world=1'>[TOGGLE(log_sprite_gen_to_world)]</a><br>"
 	dat += "Head sprite has special update_icon  - <a href='?src=\ref[src];special=1'>[TOGGLE(special_update)]</a><br>"
 	dat += "<br><a href='?src=\ref[src];test_cache=1'>Test cache</a>"
 	dat += " (<a href='?src=\ref[src];test_cache=1;draw_icons=1'>Output icons</a>)<br>."
@@ -38,16 +44,25 @@ var/datum/appearance_test/appearance_test = new
 		var/icon/c_icon = human_icon_cache[elem]
 		dat += "Isicon [TRUEORFALSE(isicon(c_icon))]<br>"
 		if(draw_icons)
-			user << browse_rsc(c_icon, elem)
-			dat += "<img src = \"[elem]\"><br>"
+			user << browse_rsc(c_icon, "[elem].png")
+			dat += "<img src = \"[elem].png\"><br>"
 	dat += "</body></html>"
 
-	user << browse(jointext(dat, null), "window=cache_list;size=330x220")
+	user << browse(jointext(dat, null), "window=cache_list;size=1270x770")
 
-/mob/verb/debug_human_sprite_build()
-	if(!appearance_test)
-		appearance_test = new()
-	appearance_test.interact(src)
+/datum/appearance_test/proc/Log(string)
+	if(log_sprite_gen)
+		cache_generation_log += "[string]<br>"
+		if(log_sprite_gen_to_world)
+			world << string
+
+/datum/appearance_test/proc/show_log(var/mob/user)
+	user << browse(cache_generation_log, "window=cache_log;size=1270x770")
+
+/client/proc/debug_human_sprite()
+	set name = "Debug human sprites"
+	set category = "Debug"
+	appearance_test.interact(mob)
 
 /datum/appearance_test/Topic(href, href_list)
 	if(!check_rights(R_SERVER, 1))
@@ -71,12 +86,19 @@ var/datum/appearance_test/appearance_test = new
 	if(href_list["special"])
 		special_update = !special_update
 		rebuild = TRUE
+	if(href_list["log_cache"])
+		Log("Logging now [TOGGLE(!log_sprite_gen)] toggled by [key_name(usr)]")
+		log_sprite_gen = !log_sprite_gen
+	if(href_list["view_generation_log"])
+		show_log(usr)
+	if(href_list["log_cache_world"])
+		log_sprite_gen_to_world = !log_sprite_gen_to_world
 	if(href_list["test_cache"])
 		output_cachelist(usr, href_list["draw_icons"])
 
 	if(rebuild)
 		rebuild_humans()
-		interact(usr)
+	interact(usr)
 
 /mob/living/carbon/human/appearance_test/New()
 	s_tone = -rand(10, 210)

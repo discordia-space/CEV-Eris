@@ -207,12 +207,14 @@ var/global/list/damage_icon_parts = list()
 
 		standing_image.overlays += DI
 
-	overlays_standing[DAMAGE_LAYER]	= standing_image
+	overlays_standing[DAMAGE_LAYER] = standing_image
 
 	if(update_icons)   update_icons()
 
 //BASE MOB SPRITE
 /mob/living/carbon/human/proc/update_body(var/update_icons=1)
+
+	appearance_test.Log("ENTED update_body for \"[real_name]\"")
 
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
@@ -228,11 +230,13 @@ var/global/list/damage_icon_parts = list()
 
 	if(!appearance_test.build_body)
 		stand_icon = new('icons/mob/human.dmi', "human_[(gender == MALE) ? "m" : "f"][body_build.index]")
+		appearance_test.Log("Sprite generation is disabled.")
 	else
 		stand_icon = new('icons/mob/human.dmi',"blank")
 		var/icon_key = ""
 		if(appearance_test.cache_sprites)
 			icon_key = "[species.race_key][fat]"
+			icon_key += "[husk ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 			if(lip_style)
 				icon_key += "[lip_style]"
 			else
@@ -245,12 +249,15 @@ var/global/list/damage_icon_parts = list()
 					continue
 				icon_key += "[organ_tag][part.get_cache_key()]"
 
-			icon_key = "[icon_key][husk ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
+			appearance_test.Log("Generated key: [icon_key]")
 
 		var/icon/base_icon
 		if(appearance_test.cache_sprites && human_icon_cache[icon_key])
+			appearance_test.Log("Cached icon found.")
 			base_icon = human_icon_cache[icon_key]
 		else
+			appearance_test.Log("New icon will be generated.")
+
 			//BEGIN CACHED ICON GENERATION.
 			base_icon = new('icons/mob/human.dmi',"blank")
 
@@ -290,6 +297,7 @@ var/global/list/damage_icon_parts = list()
 				husk_over.Blend(mask, ICON_ADD)
 				base_icon.Blend(husk_over, ICON_OVERLAY)
 
+		if(appearance_test.cache_sprites)
 			human_icon_cache[icon_key] = base_icon
 
 		//END CACHED ICON GENERATION.
@@ -303,6 +311,7 @@ var/global/list/damage_icon_parts = list()
 				continue
 			stand_icon.Blend(new /icon(body_build.underwear_icon, UW.icon_state), ICON_OVERLAY)
 
+	appearance_test.Log("EXIT update_body()")
 	if(update_icons)
 		update_icons()
 
