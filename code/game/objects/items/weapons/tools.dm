@@ -303,6 +303,7 @@
 			src.damtype = "fire"
 			src.w_class = 4
 			welding = 1
+			set_light(l_range = 1.4, l_power = 0.4, l_color = COLOR_ORANGE)
 			update_icon()
 			set_light(l_range = 1.4, l_power = 1, l_color = COLOR_ORANGE)
 			processing_objects |= src
