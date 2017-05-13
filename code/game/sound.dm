@@ -77,8 +77,11 @@ var/list/bullet_hit_object_sound = list('sound/weapons/guns/misc/bullethit.ogg')
 
 			if(T && T.z == turf_source.z)
 				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global)
+			if(T && T.z <= Z_MAX)//Playing sounds on different z-levels.
+				M.playsound_local(turf_source, soundin, vol/(T.z), vary, frequency, falloff/(T.z), is_global)
 
 var/const/FALLOFF_SOUNDS = 0.5
+var/const/Z_MAX = 2
 
 /mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global)
 	if(!src.client || ear_deaf > 0)	return
