@@ -226,6 +226,9 @@
 		dat += "<BR><A href='?src=\ref[src];item=tie'>Remove accessory</A>"
 	dat += "<BR><A href='?src=\ref[src];item=splints'>Remove splints</A>"
 	dat += "<BR><A href='?src=\ref[src];item=pockets'>Empty pockets</A>"
+	var/obj/item/core_implant/CI = locate(/obj/item/core_implant) in src
+	if(CI && CI.wearer == src && !CI.active)
+		dat += "<BR><A href='?src=\ref[src];item=core_implant'>Remove [CI]</A>"
 	dat += "<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>"
 	dat += "<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>"
 

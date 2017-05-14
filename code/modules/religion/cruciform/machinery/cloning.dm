@@ -110,7 +110,8 @@
 	reader.start_reading()
 
 	spawn(50)
-		reader.stop_reading()
+		if(reader)
+			reader.stop_reading()
 
 	return reader.implant.data
 
@@ -292,6 +293,7 @@
 						occupant = new/mob/living/carbon/human(src)
 						occupant.dna = R.dna.Clone()
 						occupant.set_species()
+						occupant.real_name = R.dna.real_name
 						occupant.UpdateAppearance()
 						occupant.sync_organ_dna()
 
@@ -301,10 +303,7 @@
 						s.start()
 
 					if(cloning_stage == CLONING_BODY)
-						if(occupant)
-							occupant.real_name = R.dna.real_name
-							occupant.UpdateAppearance()
-						else
+						if(!occupant)
 							unexpected_error()
 
 					if(cloning_stage == CLONING_HUMAN)
@@ -483,7 +482,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/obj/item/weapon/implant/cruciform/implant
+	var/obj/item/core_implant/cruciform/implant
 	var/reading = FALSE
 
 /obj/machinery/neotheology/reader/New()
@@ -515,8 +514,8 @@
 	if(default_part_replacement(user, O))
 		return
 
-	if(istype(O, /obj/item/weapon/implant/cruciform))
-		var/obj/item/weapon/implant/cruciform/C = O
+	if(istype(O, /obj/item/core_implant/cruciform))
+		var/obj/item/core_implant/cruciform/C = O
 		user.drop_item()
 		C.forceMove(src)
 		implant = C
@@ -559,7 +558,7 @@
 
 	if(implant)
 		var/image/I = image(icon, "reader_c_red")
-		if(istype(implant, /obj/item/weapon/implant/cruciform/priest))
+		if(istype(implant, /obj/item/core_implant/cruciform/priest))
 			I = image(icon, "reader_c_green")
 		overlays.Add(I)
 

@@ -391,6 +391,14 @@ var/global/list/damage_icon_parts = list()
 			if(mob_icon)
 				standing.overlays += mob_icon
 				have_icon = TRUE
+
+	for(var/obj/item/core_implant/CI in src)
+		if(CI.wearer == src)
+			var/image/mob_icon = CI.get_mob_overlay(gender, body_build.index)
+			if(mob_icon)
+				standing.overlays += mob_icon
+				have_icon = TRUE
+
 	if(have_icon)
 		overlays_standing[IMPLANTS_LAYER] = standing
 	else

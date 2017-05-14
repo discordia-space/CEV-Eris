@@ -1,19 +1,6 @@
-/datum/ritual/
-	var/name
-	var/phrase
-	var/power
-	var/chance
-	var/success_message = "Ritual successed."
-	var/fail_message = "Ritual failed."
-
-/datum/ritual/proc/perform(mob/living/carbon/human/H, obj/item/weapon/implant/cruciform/C, var/success)
-	if(success)
-		C.use_power(src.power)
-		H << "<span class='notice'>[success_message]</span>"
-	else
-		C.use_power(src.power/2)
-		H << "<span class='danger'>[fail_message]</span>"
-
+/datum/ritual/cruciform
+	name = "cruciform"
+	phrase = null
 
 /datum/ritual/relief
 	name = "relief"
@@ -21,11 +8,8 @@
 	power = 50
 	chance = 33
 
-/datum/ritual/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/cruciform/C)
-	var/success = prob(chance * C.success_modifier)
-	if(success)
-		H.add_chemical_effect(CE_PAINKILLER, 10)
-	..(H, C, success)
+/datum/ritual/relief/perform(mob/living/carbon/human/H, obj/item/core_implant/C)
+	H.add_chemical_effect(CE_PAINKILLER, 10)
 
 
 /datum/ritual/soul_hunger
@@ -34,12 +18,9 @@
 	power = 50
 	chance = 33
 
-/datum/ritual/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/cruciform/C)
-	var/success = prob(chance * C.success_modifier)
-	if(success)
-		H.nutrition += 100
-		H.adjustToxLoss(5)
-	..(H, C, success)
+/datum/ritual/soul_hunger/perform(mob/living/carbon/human/H, obj/item/core_implant/C)
+	H.nutrition += 100
+	H.adjustToxLoss(5)
 
 
 /datum/ritual/entreaty
@@ -48,20 +29,89 @@
 	power = 50
 	chance = 60
 
-/datum/ritual/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/cruciform/C)
-	var/success = prob(chance * C.success_modifier)
-	if(success)
-		for(var/mob/living/carbon/human/target in christians)
-			if(target == H)
-				continue
-			if(locate(/obj/item/weapon/implant/cruciform/priest, target) || prob(20))
-				target << "<span class='danger'>[H], faithful cruciform follower, cries for salvation!</span>"
-	..(H, C, success)
+/datum/ritual/entreaty/perform(mob/living/carbon/human/H, obj/item/core_implant/C)
+	for(var/mob/living/carbon/human/target in christians)
+		if(target == H)
+			continue
+		if(locate(/obj/item/core_implant/cruciform/priest, target) || prob(20))
+			target << "<span class='danger'>[H], faithful cruciform follower, cries for salvation!</span>"
+	return TRUE
 
 
 /datum/ritual/epiphany
+	name = "epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
 
+/datum/ritual/epiphany/perform(mob/living/carbon/human/user, obj/item/core_implant/C)
+	var/last_dist = 128
+	var/obj/item/core_implant/CI = null
+	for(var/mob/living/carbon/human/CH in view(world.view, user))
+		if(!CH.ckey || !CH.mind)
+			continue
+		var/obj/item/core_implant/CR = locate(/obj/item/core_implant/cruciform) in CH
+		if(CR && CR.wearer == CH && !CR.active && !CR.activated)
+			if(get_dist(CH,user) <= last_dist)
+				last_dist = get_dist(CH,user)
+				CI = CR
+
+	if(!CI)	//No epiphany candidates
+		fail(user, C, "Epiphany candidates not found.")
+		return FALSE
+
+	if(!CI.can_activate())
+		return FALSE
+	else
+		CI.activate()
+
+	return TRUE
+
+
 /datum/ritual/banish
+	name = "banish"
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
 
+
+/datum/ritual/resurrection
+	name = "resurrection"
+	phrase = "EY TI VOSKRESNI TAM YOPTA BLYA"
+
+/datum/ritual/resurrection/perform(mob/living/carbon/human/H, obj/item/core_implant/C)
+	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in view(world.view, H)
+	if(pod && !pod.cloning)
+		pod.start()
+		return TRUE
+
+
+/datum/ritual/reincarnation
+	name = "reincarnation"
+	phrase = "TI TAM V KRESTOFORME PIZDUI V TELO"
+
+/datum/ritual/reincarnation/perform(mob/living/carbon/human/user, obj/item/core_implant/C)
+	var/last_dist = 128
+	var/obj/item/core_implant/CI = null
+	for(var/mob/living/carbon/human/CH in view(world.view, user))
+		if(CH.ckey || CH.mind)
+			continue
+		var/obj/item/core_implant/CR = locate(/obj/item/core_implant/cruciform) in CH
+		if(CR && CR.wearer == CH && !CR.active && CR.activated)
+			if(get_dist(CH,user) <= last_dist)
+				last_dist = get_dist(CH,user)
+				CI = CR
+
+	if(!CI)	//No candidates
+		fail(user, C, "Reincarnation candidates not found.")
+		return FALSE
+
+	var/datum/mind/MN = CI.data.mind
+	if(!istype(MN, /datum/mind))
+		fail(user, C, "Soul inteface failure.")
+		return FALSE
+	if(MN.active)
+		if(CI.data.ckey != ckey(MN.key))
+			fail(user, C, "Soul inteface failure.")
+			return FALSE
+	if(MN.current && MN.current.stat != DEAD)
+		fail(user, C, "Soul inteface failure.")
+		return FALSE
+
+	return CI.transfer_soul()

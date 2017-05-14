@@ -10,7 +10,8 @@
 
 /obj/item/weapon/book/bible/interact(mob/living/carbon/human/H)
 	var/data = null
-	for(var/datum/ritual/R in rituals)
+	for(var/RT in rituals)
+		var/datum/ritual/R = new RT
 		data +=  "<a href='byond://?src=\ref[src];[R.name]=1'>[R.phrase]</a><br>"
 	H << browse(data, "window=bible")
 
@@ -19,8 +20,9 @@
 	if(H.stat)
 		return
 
-	for(var/datum/ritual/R in rituals)
+	for(var/RT in rituals)
+		var/datum/ritual/R = RT
 		if(href_list[R.name])
 			H.say(R.phrase + "!")
 			break
-	return 1
+	return TRUE
