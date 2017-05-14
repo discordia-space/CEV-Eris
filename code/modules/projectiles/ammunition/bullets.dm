@@ -1,32 +1,7 @@
-/obj/item/ammo_casing/a357
-	desc = "A .357 bullet casing."
-	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/pistol/strong
-
-/obj/item/ammo_casing/a50
-	desc = "A .50AE bullet casing."
-	caliber = ".50"
-	projectile_type = /obj/item/projectile/bullet/pistol/strong
-
-/obj/item/ammo_casing/a75
-	desc = "A 20mm bullet casing."
-	caliber = "75"
-	projectile_type = /obj/item/projectile/bullet/gyro
-
-/obj/item/ammo_casing/c38
-	desc = "A .38 bullet casing."
-	caliber = "38"
-	projectile_type = /obj/item/projectile/bullet/pistol
-
-/obj/item/ammo_casing/c38r
-	desc = "A .38 rubber bullet casing."
-	caliber = "38"
-	projectile_type = /obj/item/projectile/bullet/pistol/rubber
-
 /obj/item/ammo_casing/c9mm
 	desc = "A 9mm bullet casing."
 	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/pistol
+	projectile_type = /obj/item/projectile/bullet/c9mm
 
 /obj/item/ammo_casing/c9mmf
 	desc = "A 9mm flash shell casing."
@@ -36,39 +11,106 @@
 /obj/item/ammo_casing/c9mmr
 	desc = "A 9mm rubber bullet casing."
 	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	projectile_type = /obj/item/projectile/bullet/c9mmr
 
 /obj/item/ammo_casing/c9mmp
 	desc = "A 9mm practice bullet casing."
 	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/pistol/practice
+	projectile_type = /obj/item/projectile/bullet/c9mmp
 
+/obj/item/ammo_casing/a10mm
+	desc = "A 10mm bullet casing."
+	caliber = "10mm"
+	projectile_type = /obj/item/projectile/bullet/a10mm
+
+/obj/item/ammo_casing/cl32
+	desc = "A .38 FS hollow point bullet casing."
+	caliber = ".38"
+	projectile_type = /obj/item/projectile/bullet/cl32
+
+/obj/item/ammo_casing/cl32r
+	desc = "A .32 FS rubber bullet casing."
+	caliber = ".32"
+	projectile_type = /obj/item/projectile/bullet/cl32r
+
+/obj/item/ammo_casing/a357
+	desc = "A .357 bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/a357
+
+/obj/item/ammo_casing/c38
+	desc = "A .38 bullet casing."
+	caliber = "38"
+	projectile_type = /obj/item/projectile/bullet/c38
+
+/obj/item/ammo_casing/c38r
+	desc = "A .38 rubber bullet casing."
+	caliber = "38"
+	projectile_type = /obj/item/projectile/bullet/c38r
+
+/obj/item/ammo_casing/cl44
+	desc = "A .44 Frozen Star hollow point bullet casing."
+	caliber = ".44"
+	projectile_type = /obj/item/projectile/bullet/cl44
+
+/obj/item/ammo_casing/cl44r
+	desc = "A .44 Frozen Star rubber bullet casing."
+	caliber = ".44"
+	projectile_type = /obj/item/projectile/bullet/cl44r
 
 /obj/item/ammo_casing/c45
 	desc = "A .45 bullet casing."
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/pistol/medium
+	projectile_type = /obj/item/projectile/bullet/c45
 
 /obj/item/ammo_casing/c45p
 	desc = "A .45 practice bullet casing."
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/pistol/practice
+	projectile_type = /obj/item/projectile/bullet/c45p
 
 /obj/item/ammo_casing/c45r
 	desc = "A .45 rubber bullet casing."
 	caliber = ".45"
-	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	projectile_type = /obj/item/projectile/bullet/c45r
 
 /obj/item/ammo_casing/c45f
 	desc = "A .45 flash shell casing."
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/energy/flash
 
-/obj/item/ammo_casing/a10mm
-	desc = "A 10mm bullet casing."
-	caliber = "10mm"
-	projectile_type = /obj/item/projectile/bullet/pistol/medium
+/obj/item/ammo_casing/a50
+	desc = "A .50AE bullet casing."
+	caliber = ".50"
+	projectile_type = /obj/item/projectile/bullet/a50
 
+/obj/item/ammo_casing/a50r
+	desc = "A .50AE rubber bullet casing."
+	caliber = ".50"
+	projectile_type = /obj/item/projectile/bullet/a50r
+
+/obj/item/ammo_casing/a762
+	desc = "A 7.62mm bullet casing."
+	caliber = "a762"
+	projectile_type = /obj/item/projectile/bullet/a762
+
+/obj/item/ammo_casing/a556
+	desc = "A 5.56mm bullet casing."
+	caliber = "a556"
+	projectile_type = /obj/item/projectile/bullet/a556
+
+/obj/item/ammo_casing/a556p
+	desc = "A 5.56mm practice bullet casing."
+	caliber = "a556"
+	projectile_type = /obj/item/projectile/bullet/a556p
+
+/obj/item/ammo_casing/a145
+	name = "shell casing"
+	desc = "A 14.5mm shell."
+	icon_state = "lcasing"
+	spent_icon = "lcasing-spent"
+	caliber = "14.5mm"
+	projectile_type = /obj/item/projectile/bullet/a145
+	matter = list(DEFAULT_WALL_MATERIAL = 1250)
 
 /obj/item/ammo_casing/shotgun
 	name = "shotgun slug"
@@ -128,30 +170,6 @@
 	projectile_type = /obj/item/projectile/energy/flash/flare
 	matter = list(DEFAULT_WALL_MATERIAL = 90, "glass" = 90)
 
-/obj/item/ammo_casing/a762
-	desc = "A 7.62mm bullet casing."
-	caliber = "a762"
-	projectile_type = /obj/item/projectile/bullet/rifle/a762
-
-/obj/item/ammo_casing/a145
-	name = "shell casing"
-	desc = "A 14.5mm shell."
-	icon_state = "lcasing"
-	spent_icon = "lcasing-spent"
-	caliber = "14.5mm"
-	projectile_type = /obj/item/projectile/bullet/rifle/a145
-	matter = list(DEFAULT_WALL_MATERIAL = 1250)
-
-/obj/item/ammo_casing/a556
-	desc = "A 5.56mm bullet casing."
-	caliber = "a556"
-	projectile_type = /obj/item/projectile/bullet/rifle/a556
-
-/obj/item/ammo_casing/a556p
-	desc = "A 5.56mm practice bullet casing."
-	caliber = "a556"
-	projectile_type = /obj/item/projectile/bullet/rifle/a556/practice
-
 /obj/item/ammo_casing/rocket
 	name = "rocket shell"
 	desc = "A high explosive designed to be fired from a launcher."
@@ -159,53 +177,14 @@
 	projectile_type = /obj/item/missile
 	caliber = "rocket"
 
+/obj/item/ammo_casing/a75
+	desc = "A 20mm bullet casing."
+	caliber = "75"
+	projectile_type = /obj/item/projectile/bullet/gyro
+
 /obj/item/ammo_casing/cap
 	name = "cap"
 	desc = "A cap for children toys."
 	caliber = "caps"
 	color = "#FF0000"
-	projectile_type = /obj/item/projectile/bullet/pistol/cap
-
-/* Ironhammer stuff */
-
-/obj/item/ammo_casing/SMG_sol/rubber
-	desc = "A 9mm Ironhammer rubber bullet casing."
-	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/SMG_sol/rubber
-
-/obj/item/ammo_casing/SMG_sol/brute
-	desc = "A 9mm Ironhammer hollow point bullet casing."
-	caliber = "9mm"
-	projectile_type = /obj/item/projectile/bullet/SMG_sol/brute
-
-/obj/item/ammo_casing/cl38/rubber
-	desc = "A .38 Ironhammer rubber bullet casing."
-	caliber = ".38"
-	projectile_type = /obj/item/projectile/bullet/cl38/rubber
-
-/obj/item/ammo_casing/cl38/brute
-	desc = "A .38 Ironhammer hollow point bullet casing."
-	caliber = ".38"
-	projectile_type = /obj/item/projectile/bullet/cl38/brute
-
-/obj/item/ammo_casing/cl44/rubber
-	desc = "A .44 Ironhammer rubber bullet casing."
-	caliber = ".44"
-	projectile_type = /obj/item/projectile/bullet/cl44/rubber
-
-/obj/item/ammo_casing/cl44/brute
-	desc = "A .44 Ironhammer hollow point bullet casing."
-	caliber = ".44"
-	projectile_type = /obj/item/projectile/bullet/cl44/brute
-
-//gun vendors stuff
-
-/obj/item/ammo_casing/cl32/rubber
-	desc = "A .32 FS rubber bullet casing."
-	caliber = ".32"
-	projectile_type = /obj/item/projectile/bullet/cl32/rubber
-
-/obj/item/ammo_casing/cl32/brute
-	desc = "A .38 FS hollow point bullet casing."
-	caliber = ".38"
-	projectile_type = /obj/item/projectile/bullet/cl32/brute
+	projectile_type = /obj/item/projectile/bullet/cap

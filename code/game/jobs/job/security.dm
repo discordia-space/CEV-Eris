@@ -22,7 +22,6 @@
 			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 	minimal_player_age = 14
 
-	implanted = 1
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
 	hat = /obj/item/clothing/head/beret/sec/navy/hos
@@ -36,7 +35,9 @@
 		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/device/flashlight/seclite
+		/obj/item/device/flashlight/seclite,\
+		/obj/item/weapon/gun/energy/gun/martin,\
+		/obj/item/weapon/melee/baton/loaded
 	)
 
 	backpacks = list(
@@ -57,12 +58,12 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
+	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
+			            access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 5
 	idtype = /obj/item/weapon/card/id/sec
 
-	implanted = 1
 	uniform = /obj/item/clothing/under/rank/warden
 	suit = /obj/item/clothing/suit/armor/vest/serg
 	hat = /obj/item/clothing/head/beret/sec/navy/warden
@@ -77,7 +78,9 @@
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/device/flashlight/seclite
+		/obj/item/device/flashlight/seclite,\
+		/obj/item/weapon/gun/energy/gun/martin,\
+		/obj/item/weapon/melee/baton/loaded
 	)
 
 	backpacks = list(
@@ -98,12 +101,12 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels)
+	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
+			            access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_external_airlocks)
 	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels)
 	minimal_player_age = 3
 	idtype = /obj/item/weapon/card/id/det
 
-	implanted = 1
 	uniform = /obj/item/clothing/under/inspector
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
@@ -119,6 +122,7 @@
 		/obj/item/ammo_magazine/sl/cl44/rubber,\
 		/obj/item/weapon/flame/lighter/zippo,\
 		/obj/item/weapon/storage/box/evidence,\
+		/obj/item/weapon/gun/energy/gun/martin
 	)
 
 
@@ -133,12 +137,11 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
+	access = list(access_security, access_medical, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
 	minimal_access = list(access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
 	minimal_player_age = 3
 	idtype = /obj/item/weapon/card/id/medcpec
 
-	implanted = 1
 	uniform = /obj/item/clothing/under/rank/medspec
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
@@ -164,7 +167,8 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 4
-	access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
+	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
+			            access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 3
 	idtype = /obj/item/weapon/card/id/sec
@@ -184,7 +188,9 @@
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
-		/obj/item/device/flashlight/seclite
+		/obj/item/device/flashlight/seclite,\
+		/obj/item/weapon/gun/energy/gun/martin,\
+		/obj/item/weapon/melee/baton/loaded
 	)
 
 	backpacks = list(

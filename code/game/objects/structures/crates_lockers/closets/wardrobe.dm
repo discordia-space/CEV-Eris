@@ -4,12 +4,12 @@
 	icon_state = "blue"
 	icon_closed = "blue"
 
-/obj/structure/closet/wardrobe/red
+/obj/structure/closet/wardrobe/sec
 	name = "security wardrobe"
-	icon_state = "red"
-	icon_closed = "red"
+	icon_state = "blue"
+	icon_closed = "blue"
 
-/obj/structure/closet/wardrobe/red/New()
+/obj/structure/closet/wardrobe/sec/New()
 	..()
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
