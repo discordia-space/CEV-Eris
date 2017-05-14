@@ -354,31 +354,6 @@
 		I.overlays += ID
 	return I
 
-
-/obj/machinery/door_timer/cell_1
-	name = "Cell 1"
-	id = "Cell 1"
-
-/obj/machinery/door_timer/cell_2
-	name = "Cell 2"
-	id = "Cell 2"
-
-/obj/machinery/door_timer/cell_3
-	name = "Cell 3"
-	id = "Cell 3"
-
-/obj/machinery/door_timer/cell_4
-	name = "Cell 4"
-	id = "Cell 4"
-
-/obj/machinery/door_timer/cell_5
-	name = "Cell 5"
-	id = "Cell 5"
-
-/obj/machinery/door_timer/cell_6
-	name = "Cell 6"
-	id = "Cell 6"
-
 #undef FONT_SIZE
 #undef FONT_COLOR
 #undef FONT_STYLE

@@ -85,9 +85,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/beanbagammo
 	name = "Beanbag shells"
-	contains = list(/obj/item/weapon/storage/box/beanbags,
-					/obj/item/weapon/storage/box/beanbags,
-					/obj/item/weapon/storage/box/beanbags)
+	contains = list(/obj/item/weapon/storage/box/shotgunammo/beanbags,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags)
 	cost = 30
 	containertype = /obj/structure/closet/crate
 	containername = "\improper Beanbag shells"
@@ -698,8 +698,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/gun/energy/gun,
 					/obj/item/weapon/gun/energy/taser,
 					/obj/item/weapon/gun/energy/taser,
-					/obj/item/weapon/gun/projectile/sec,
-					/obj/item/weapon/gun/projectile/sec,
+					/obj/item/weapon/gun/projectile/mk58,
+					/obj/item/weapon/gun/projectile/mk58,
 					/obj/item/weapon/storage/box/flashbangs,
 					/obj/item/weapon/storage/box/teargas)
 	cost = 40
@@ -710,10 +710,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/flareguns
 	name = "Flare guns crate"
-	contains = list(/obj/item/weapon/gun/projectile/sec/flash,
+	contains = list(/obj/item/weapon/gun/projectile/mk58,
 					/obj/item/ammo_magazine/c45m/flash,
 					/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare,
-					/obj/item/weapon/storage/box/flashshells)
+					/obj/item/weapon/storage/box/shotgunammo/flashshells)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "\improper Flare gun crate"
@@ -768,7 +768,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/armor/riot,
 					/obj/item/weapon/storage/box/flashbangs,
 					/obj/item/weapon/storage/box/teargas,
-					/obj/item/weapon/storage/box/beanbags,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags,
 					/obj/item/weapon/storage/box/handcuffs)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
@@ -792,7 +792,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/weapon/storage/box/shotgunammo,
-					/obj/item/weapon/storage/box/shotgunshells,
+					/obj/item/weapon/storage/box/shotgunammo/shotgunshells,
 					/obj/item/weapon/gun/projectile/shotgun/pump/combat,
 					/obj/item/weapon/gun/projectile/shotgun/pump/combat)
 	cost = 65
@@ -817,8 +817,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Ballistic ammunition crate"
 	contains = list(/obj/item/weapon/storage/box/shotgunammo,
 					/obj/item/weapon/storage/box/shotgunammo,
-					/obj/item/weapon/storage/box/shotgunshells,
-					/obj/item/weapon/storage/box/shotgunshells)
+					/obj/item/weapon/storage/box/shotgunammo/shotgunshells,
+					/obj/item/weapon/storage/box/shotgunammo/shotgunshells)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "\improper ballistic ammunition crate"

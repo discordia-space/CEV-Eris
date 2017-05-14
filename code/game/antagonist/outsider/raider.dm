@@ -71,7 +71,6 @@ var/datum/antagonist/raider/raiders
 		/obj/item/weapon/gun/launcher/crossbow,
 		/obj/item/weapon/gun/launcher/grenade,
 		/obj/item/weapon/gun/launcher/pneumatic,
-		/obj/item/weapon/gun/projectile/automatic/mini_uzi,
 		/obj/item/weapon/gun/projectile/automatic/c20r,
 		/obj/item/weapon/gun/projectile/automatic/wt550,
 		/obj/item/weapon/gun/projectile/automatic/sts35,
@@ -82,10 +81,9 @@ var/datum/antagonist/raider/raiders
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
 		/obj/item/weapon/gun/projectile/colt,
-		/obj/item/weapon/gun/projectile/sec,
-		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/mk58,
+		/obj/item/weapon/gun/projectile/clarissa,
 		/obj/item/weapon/gun/projectile/revolver,
-		/obj/item/weapon/gun/projectile/pirate
 		)
 
 	var/list/raider_holster = list(
@@ -224,16 +222,6 @@ var/datum/antagonist/raider/raiders
 
 	var/obj/item/primary = new new_gun(T)
 	var/obj/item/clothing/accessory/holster/holster = null
-
-	//Give some of the raiders a pirate gun as a secondary
-	if(prob(60))
-		var/obj/item/secondary = new /obj/item/weapon/gun/projectile/pirate(T)
-		if(!(primary.slot_flags & SLOT_HOLSTER))
-			holster = new new_holster(T)
-			holster.holstered = secondary
-			secondary.loc = holster
-		else
-			player.equip_to_slot_or_del(secondary, slot_belt)
 
 	if(primary.slot_flags & SLOT_HOLSTER)
 		holster = new new_holster(T)
