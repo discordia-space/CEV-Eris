@@ -170,6 +170,7 @@
 	cloning = TRUE
 
 	visible_message("<span class='notice'>Cloning started.</span>")
+	update_icon()
 
 /obj/machinery/neotheology/cloner/proc/stop(var/forced = FALSE, var/open = TRUE)
 	if(!cloning)
@@ -184,6 +185,7 @@
 		else
 			visible_message("<span class='notice'>Cloning stopped!</span>")
 		cloning_stage = CLONING_IDLE
+	update_icon()
 
 /obj/machinery/neotheology/cloner/proc/mutate()
 	if(occupant && prob(20))
@@ -359,23 +361,34 @@
 		I.pixel_z = 32
 		overlays.Add(I)
 
-	if(cloning_stage == CLONING_BONES)
-		I = image(icon, "clone_bones")
+	/////////BODY
+	if(cloning_stage == CLONING_BONES || cloning_stage == CLONING_MEAT)
+		var/icon/IC = icon(icon, "clone_bones")
+		if(cloning_stage == CLONING_BONES)
+			var/crop = round((max(stage_timer-world.time,0)/((stage_time[cloning_stage]*10)/time_divisor))*32)
+			IC.Crop(1,crop,IC.Width(),IC.Height())
+		I = image(IC)
 		I.layer = 5
 		I.pixel_z = 11
+
 		overlays.Add(I)
-	if(cloning_stage == CLONING_MEAT)
+	if(cloning_stage == CLONING_MEAT || cloning_stage == CLONING_BODY)
 		I = image(icon, "clone_meat")
+		if(cloning_stage == CLONING_MEAT)
+			I.alpha = 255-round((max(stage_timer-world.time,0)/((stage_time[cloning_stage]*10)/time_divisor))*255)
 		I.layer = 5
 		I.pixel_z = 11
 		overlays.Add(I)
 	if(cloning_stage >= CLONING_BODY)
 		if(occupant)
 			I = image(occupant.icon, occupant.icon_state)
+			if(cloning_stage == CLONING_BODY)
+				I.alpha = 255-round((max(stage_timer-world.time,0)/((stage_time[cloning_stage]*10)/time_divisor))*255)
 			I.overlays = occupant.overlays
 			I.layer = 5
 			I.pixel_z = 11
 			overlays.Add(I)
+	//////////////
 
 	if(closed)
 		I = image(icon, "pod_glass0")

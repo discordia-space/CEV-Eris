@@ -13,7 +13,7 @@
 
 
 /datum/ritual/soul_hunger
-	name = "soul_hunger"
+	name = "soul hunger"
 	phrase = "Panem nostrum cotidianum da nobis hodie"
 	power = 50
 	chance = 33
@@ -73,18 +73,23 @@
 
 /datum/ritual/resurrection
 	name = "resurrection"
-	phrase = "EY TI VOSKRESNI TAM YOPTA BLYA"
+	phrase = "Surge stultus fragmen stercore gallus"	//WIP
 
 /datum/ritual/resurrection/perform(mob/living/carbon/human/H, obj/item/core_implant/C)
 	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in view(world.view, H)
-	if(pod && !pod.cloning)
-		pod.start()
-		return TRUE
+	if(pod)
+		if(!pod.cloning)
+			pod.start()
+			return TRUE
+		else
+			fail(H, C, "Cloner already cloning.")
+	else
+		fail(H, C, "Cloner not found.")
 
 
 /datum/ritual/reincarnation
 	name = "reincarnation"
-	phrase = "TI TAM V KRESTOFORME PIZDUI V TELO"
+	phrase = "Nunc omni stercore corpori inserere"		//WIP
 
 /datum/ritual/reincarnation/perform(mob/living/carbon/human/user, obj/item/core_implant/C)
 	var/last_dist = 128

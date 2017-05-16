@@ -15,7 +15,7 @@
 
 /datum/ritual/proc/activate(mob/living/carbon/human/H, obj/item/core_implant/C, var/force = FALSE)
 	C.use_power(src.power)
-	if(!force || !check_success(C))
+	if(!force && !check_success(C))
 		fail(H, C)
 	else
 		if(perform(H, C))
