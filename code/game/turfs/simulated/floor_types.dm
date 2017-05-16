@@ -13,6 +13,10 @@
 	icon_state = "6,19"
 	icon = 'icons/turf/shuttlemining.dmi'
 
+/turf/simulated/shuttle/floor/science
+	icon_state = "8,15"
+	icon = 'icons/turf/shuttlescience.dmi'
+
 /turf/simulated/shuttle/plating
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'

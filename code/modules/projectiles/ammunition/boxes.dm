@@ -59,6 +59,10 @@
 	max_ammo = 10
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/mc9mm/rubber
+	name = "magazine (9mm rubber)"
+	ammo_type = /obj/item/ammo_casing/c9mmr
+
 /obj/item/ammo_magazine/mc9mm/empty
 	initial_ammo = 0
 
@@ -153,6 +157,9 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
+/obj/item/ammo_magazine/a50/rubber
+	name = "magazine (.50 rubber)"
+	ammo_type = /obj/item/ammo_casing/a50r
 /obj/item/ammo_magazine/a50/empty
 	initial_ammo = 0
 
@@ -209,7 +216,7 @@
 	icon_state = "mg_ih_smg_9mm"
 	mag_type = MAGAZINE
 	ammo_mag = "ih_smg"
-	ammo_type = /obj/item/ammo_casing/SMG_sol/rubber
+	ammo_type = /obj/item/ammo_casing/c9mmr
 	matter = list(DEFAULT_WALL_MATERIAL = 1575) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = "9mm"
 	max_ammo = 21
@@ -220,7 +227,7 @@
 	icon_state = "mg_ih_smg_9mm"
 	mag_type = MAGAZINE
 	ammo_mag = "ih_smg"
-	ammo_type = /obj/item/ammo_casing/SMG_sol/brute
+	ammo_type = /obj/item/ammo_casing/c9mm
 	matter = list(DEFAULT_WALL_MATERIAL = 1575) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = "9mm"
 	max_ammo = 21
@@ -228,28 +235,28 @@
 
 /obj/item/ammo_magazine/sl/cl44/rubber
 	name = "speed loader (.44 rubber)"
-	icon_state = "cl_ih_rv_38"
+	icon_state = "cl_ih_rv_44"
 	caliber = ".44"
-	ammo_type = /obj/item/ammo_casing/cl44/rubber
+	ammo_type = /obj/item/ammo_casing/cl44r
 	matter = list(DEFAULT_WALL_MATERIAL = 450)
 	max_ammo = 6
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/sl/cl44/brute
 	name = "speed loader (.44 hollow point)"
-	icon_state = "cl_ih_rv_38"
+	icon_state = "cl_ih_rv_44"
 	caliber = ".44"
-	ammo_type = /obj/item/ammo_casing/cl44/brute
+	ammo_type = /obj/item/ammo_casing/cl44
 	matter = list(DEFAULT_WALL_MATERIAL = 450)
 	max_ammo = 6
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/mg/cl44/rubber
 	name = "magazine (.44 rubber)"
-	icon_state = "mg_ih_pst_38"
+	icon_state = "mg_ih_pst_44"
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl44"
-	ammo_type = /obj/item/ammo_casing/cl44/rubber
+	ammo_type = /obj/item/ammo_casing/cl44r
 	matter = list(DEFAULT_WALL_MATERIAL = 750) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".44"
 	max_ammo = 10
@@ -257,10 +264,10 @@
 
 /obj/item/ammo_magazine/mg/cl44/brute
 	name = "magazine (.44 hollow point)"
-	icon_state = "mg_ih_pst_38"
+	icon_state = "mg_ih_pst_44"
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl44"
-	ammo_type = /obj/item/ammo_casing/cl44/brute
+	ammo_type = /obj/item/ammo_casing/cl44
 	matter = list(DEFAULT_WALL_MATERIAL = 750) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".44"
 	max_ammo = 10
@@ -271,7 +278,7 @@
 	icon_state = "32trauma"
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl32"
-	ammo_type = /obj/item/ammo_casing/cl32/rubber
+	ammo_type = /obj/item/ammo_casing/cl32r
 	matter = list(DEFAULT_WALL_MATERIAL = 750)
 	caliber = ".32"
 	max_ammo = 7
@@ -282,7 +289,7 @@
 	icon_state = "32trauma"
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl32"
-	ammo_type = /obj/item/ammo_casing/cl32/brute
+	ammo_type = /obj/item/ammo_casing/cl32
 	matter = list(DEFAULT_WALL_MATERIAL = 750)
 	caliber = ".32"
 	max_ammo = 7

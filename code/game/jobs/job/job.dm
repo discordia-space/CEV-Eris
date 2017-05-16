@@ -26,7 +26,6 @@
 
 	var/survival_gear = /obj/item/weapon/storage/box/survival// Custom box for spawn in backpack
 //job equipment
-	var/implanted = null
 	var/uniform = /obj/item/clothing/under/color/grey
 	var/shoes = /obj/item/clothing/shoes/black
 	var/pda = /obj/item/device/pda
@@ -125,12 +124,10 @@
 			else if(istype(H.l_hand, /obj/item/weapon/storage))
 				new path(H.l_hand)
 
-	if(implanted)
-		var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(src)
-		I.install(H, "head")
 
 	if(H.religion == "Christianity" && !locate(/obj/item/core_implant/cruciform, H))
 		var/obj/item/core_implant/cruciform/C = new /obj/item/core_implant/cruciform(H)
+
 		C.install(H)
 		C.enable()
 

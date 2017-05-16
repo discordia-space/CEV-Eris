@@ -124,7 +124,7 @@
 				user.remove_from_mob(AM)
 				AM.loc = src
 				ammo_magazine = AM
-				
+
 				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 				cock_gun(user)
 			if(SPEEDLOADER)
@@ -165,7 +165,7 @@
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
-		
+
 		if(unload_sound) playsound(src.loc, unload_sound, 75, 1)
 		ammo_magazine.update_icon()
 		ammo_magazine = null

@@ -309,26 +309,6 @@
 		if(!istype(objective))	return
 		objective.completed = !objective.completed
 
-	else if(href_list["implant"])
-		var/mob/living/carbon/human/H = current
-
-		BITSET(H.hud_updateflag, IMPLOYAL_HUD)   // updates that players HUD images so secHUD's pick up they are implanted or not.
-
-		switch(href_list["implant"])
-			if("remove")
-				for(var/obj/item/weapon/implant/loyalty/I in H.contents)
-					for(var/obj/item/organ/external/organs in H.organs)
-						if(I in organs.implants)
-							qdel(I)
-							break
-				H << "<span class='notice'><font size =3><B>Your loyalty implant has been deactivated.</B></font></span>"
-				log_admin("[key_name_admin(usr)] has de-loyalty implanted [current].")
-			if("add")
-				H << "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font></span>"
-				var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(H)
-				I.install(H, "head")
-				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
-			else
 	else if (href_list["silicon"])
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["silicon"])

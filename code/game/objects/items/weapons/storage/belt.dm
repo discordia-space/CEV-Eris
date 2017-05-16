@@ -133,7 +133,7 @@
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
-		/obj/item/weapon/gun/projectile/sec,
+		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/taperoll/police
 		)
 

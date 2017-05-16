@@ -20,13 +20,10 @@ var/datum/antagonist/renegade/renegades
 		/obj/item/weapon/gun/projectile,
 		/obj/item/weapon/gun/projectile/revolver/detective,
 		/obj/item/weapon/gun/projectile/automatic/c20r,
-		/obj/item/weapon/gun/projectile/deagle/camo,
-		/obj/item/weapon/gun/projectile/pistol,
+		/obj/item/weapon/gun/projectile/clarissa,
 		/obj/item/weapon/silencer,
 		/obj/item/weapon/gun/projectile/shotgun/pump,
 		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-		/obj/item/weapon/gun/projectile/automatic,
-		/obj/item/weapon/gun/projectile/automatic/mini_uzi,
 		/obj/item/weapon/gun/energy/crossbow
 		)
 
