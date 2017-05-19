@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/energy/pulse_rifle
-	name = "pulse rifle"
+	name = "NT PR \"Dominion\""
 	desc = "A weapon that uses advanced pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists."
 	icon_state = "pulse"
 	item_state = null	//so the human update icon uses the icon_state instead.
@@ -21,7 +21,7 @@
 	use_external_power = 1
 
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer
-	name = "pulse destroyer"
+	name = "NT PR \"Purger\""
 	desc = "A heavy-duty, pulse-based energy weapon. Because of its complexity and cost, it is rarely seen in use except by specialists."
 	cell_type = /obj/item/weapon/cell/super
 	fire_delay = 25

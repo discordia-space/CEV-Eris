@@ -21,7 +21,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 70 // Old geezer captains ftw
 
 
-	implanted = 1
 	uniform = /obj/item/clothing/under/rank/captain
 	shoes = /obj/item/clothing/shoes/color/brown
 	pda = /obj/item/device/pda/captain
@@ -68,7 +67,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	economic_modifier = 10
 	ideal_character_age = 50
 
-	implanted = 1
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	shoes = /obj/item/clothing/shoes/laceup
 	suit = /obj/item/clothing/suit/armor/vest

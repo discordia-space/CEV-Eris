@@ -198,8 +198,8 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "secgundark"
 	item_to_spawn()
-		return pick(prob(3);/obj/item/weapon/gun/projectile/sec,\
-					prob(1);/obj/item/weapon/gun/projectile/sec/wood)
+		return pick(prob(3);/obj/item/weapon/gun/projectile/mk58,\
+					prob(1);/obj/item/weapon/gun/projectile/mk58/wood)
 
 
 /obj/random/ammo
@@ -208,10 +208,10 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "45-10"
 	item_to_spawn()
-		return pick(prob(6);/obj/item/weapon/storage/box/beanbags,\
+		return pick(prob(6);/obj/item/weapon/storage/box/shotgunammo/beanbags,\
 					prob(2);/obj/item/weapon/storage/box/shotgunammo,\
-					prob(4);/obj/item/weapon/storage/box/shotgunshells,\
-					prob(1);/obj/item/weapon/storage/box/stunshells,\
+					prob(4);/obj/item/weapon/storage/box/shotgunammo/shotgunshells,\
+					prob(1);/obj/item/weapon/storage/box/shotgunammo/stunshells,\
 					prob(2);/obj/item/ammo_magazine/c45m,\
 					prob(4);/obj/item/ammo_magazine/c45m/rubber,\
 					prob(4);/obj/item/ammo_magazine/c45m/flash,\

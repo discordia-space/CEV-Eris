@@ -171,7 +171,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/g9mm/New()
 	..()
-	new /obj/item/weapon/gun/projectile/pistol(src)
+	new /obj/item/weapon/gun/projectile/clarissa(src)
 	new /obj/item/weapon/silencer(src)
 
 /obj/item/weapon/storage/box/syndie_kit/toxin

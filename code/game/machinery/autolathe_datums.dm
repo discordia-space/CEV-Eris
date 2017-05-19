@@ -418,3 +418,58 @@
 	path = /obj/item/weapon/handcuffs
 	hidden = 1
 	category = "General"
+
+/datum/autolathe/recipe/mg_a50_rubber
+	name = "magazine (.50 rubber)"
+	path = /obj/item/ammo_magazine/a50/rubber
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/mg_a50
+	name = "magazine (.50)"
+	path = /obj/item/ammo_magazine/a50
+	hidden = 1
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/SMG_sol_rubber
+	name = "magazine (9mm rubber)"
+	path = /obj/item/ammo_magazine/SMG_sol/rubber
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/SMG_sol_brute
+	name = "magazine (9mm hollow point)"
+	path = /obj/item/ammo_magazine/SMG_sol/brute
+	hidden = 1
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/sl_cl44_rubber
+	name = "speed loader (.44 rubber)"
+	path = /obj/item/ammo_magazine/sl/cl44/rubber
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/sl_cl44_brute
+	name = "speed loader (.44 hollow point)"
+	path = /obj/item/ammo_magazine/sl/cl44/brute
+	hidden = 1
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/mg_cl44_rubber
+	name = "magazine (.44 rubber)"
+	path = /obj/item/ammo_magazine/mg/cl44/rubber
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/mg_cl44_brute
+	name = "magazine (.44 hollow point)"
+	path = /obj/item/ammo_magazine/mg/cl44/brute
+	hidden = 1
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/mg_cl32_rubber
+	name = "magazine (.32 rubber)"
+	path = /obj/item/ammo_magazine/mg/cl32/rubber
+	category = "Arms and Ammunition"
+
+/datum/autolathe/recipe/mg_cl32_brute
+	name = "magazine (.32 hollow point)"
+	path = /obj/item/ammo_magazine/mg/cl32/brute
+	hidden = 1
+	category = "Arms and Ammunition"
