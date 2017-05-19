@@ -3,7 +3,7 @@
 	desc = "Contains holy litany and chants."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bible"
-	var/list/rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/entreaty)
+	var/list/rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty)
 
 /obj/item/weapon/book/attack_self(mob/living/carbon/human/H)
 	interact(H)

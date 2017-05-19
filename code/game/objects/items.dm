@@ -618,6 +618,3 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
 
-/obj/item/proc/get_mob_overlay(var/gender, var/body_build)
-	return null
-

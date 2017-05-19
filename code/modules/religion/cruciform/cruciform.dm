@@ -1,17 +1,18 @@
 var/list/christians = list()
 
-/obj/item/core_implant/cruciform
+/obj/item/weapon/implant/external/core_implant/cruciform
 	name = "cruciform"
 	icon_state = "cruciform_red"
 	power = 50
 	max_power = 50
-	allowed_rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/entreaty)
+	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty)
+	position_flag = POS_FRONT_TOP
 
-/obj/item/core_implant/cruciform/get_mob_overlay(gender, body_build)
+/obj/item/weapon/implant/external/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
 	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender][body_build]")
 
-/obj/item/core_implant/cruciform/proc/remove_cyber()
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/remove_cyber()
 	if(!wearer)
 		return
 	for(var/obj/O in wearer)
@@ -21,6 +22,8 @@ var/list/christians = list()
 			"<span class='danger'>Your [R.name] tears off.</span>")
 			R.droplimb()
 		if(istype(O, /obj/item/weapon/implant))
+			if(istype(O, /obj/item/weapon/implant/external/core_implant/cruciform))
+				continue
 			var/obj/item/weapon/implant/R = O
 			wearer.visible_message("<span class='danger'>[R.name] rips through [wearer]'s [R.part].</span>",\
 			"<span class='danger'>[R.name] rips through your [R.part].</span>")
@@ -29,20 +32,17 @@ var/list/christians = list()
 			R.wearer = null
 			R.part.implants.Remove(R)
 			R.malfunction = MALFUNCTION_PERMANENT
+	if(istype(wearer, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = wearer
+		H.update_implants()
 
-/obj/item/core_implant/cruciform/activate()
-	if(!wearer)
-		return FALSE
+/obj/item/weapon/implant/external/core_implant/cruciform/activate()
+	if(!wearer || active)
+		return
+	..()
+	christians.Add(wearer)
 
-	remove_cyber()
-	enable()
-	return TRUE
-
-/obj/item/core_implant/cruciform/enable()
-	if(..())
-		christians.Add(wearer)
-
-/obj/item/core_implant/cruciform/can_activate()
+/obj/item/weapon/implant/external/core_implant/cruciform/can_activate()
 	if(!wearer || activated || data)
 		return FALSE
 
@@ -55,24 +55,10 @@ var/list/christians = list()
 		return FALSE
 	return TRUE
 
-/obj/item/core_implant/cruciform/can_install(mob/living/carbon/human/M)
-	if(locate(/obj/item/core_implant) in M)
-		return FALSE
-
-	if(!can_operate(M))
-		return FALSE
-
-	for(var/obj/item/clothing/C in M)
-		if(M.l_hand == C || M.r_hand == C)
-			continue
-		return FALSE
-
-	return TRUE
-
-/obj/item/core_implant/cruciform/priest
+/obj/item/weapon/implant/external/core_implant/cruciform/priest
 	icon_state = "cruciform_green"
 	power = 100
 	max_power = 100
 	success_modifier = 3
-	allowed_rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/entreaty,
-					/datum/ritual/epiphany, /datum/ritual/resurrection, /datum/ritual/reincarnation)
+	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty,
+					/datum/ritual/cruciform/epiphany, /datum/ritual/cruciform/resurrection, /datum/ritual/cruciform/reincarnation)

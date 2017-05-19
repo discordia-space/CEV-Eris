@@ -386,15 +386,8 @@ var/global/list/damage_icon_parts = list()
 	var/image/standing = image('icons/mob/mob.dmi', "blank")
 	var/have_icon = FALSE
 	for(var/obj/item/weapon/implant/I in src)
-		if(I.wearer == src)
+		if(I.is_external() && I.wearer == src)
 			var/image/mob_icon = I.get_mob_overlay(gender, body_build.index)
-			if(mob_icon)
-				standing.overlays += mob_icon
-				have_icon = TRUE
-
-	for(var/obj/item/core_implant/CI in src)
-		if(CI.wearer == src)
-			var/image/mob_icon = CI.get_mob_overlay(gender, body_build.index)
 			if(mob_icon)
 				standing.overlays += mob_icon
 				have_icon = TRUE

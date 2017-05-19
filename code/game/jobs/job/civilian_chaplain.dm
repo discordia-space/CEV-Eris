@@ -16,9 +16,9 @@
 	pda = /obj/item/device/pda/chaplain
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H)
-	var/obj/item/core_implant/cruciform/priest/C = new /obj/item/core_implant/cruciform/priest(H)
+	var/obj/item/weapon/implant/external/core_implant/cruciform/priest/C = new /obj/item/weapon/implant/external/core_implant/cruciform/priest(H)
 	C.install(H)
-	C.enable()
+	C.activate()
 
 	H.religion = "Christianity"
 

@@ -1,9 +1,8 @@
-/obj/item/core_implant
+/obj/item/weapon/implant/external/core_implant
 	name = "core implant"
 	icon = 'icons/obj/device.dmi'
 	w_class = 2
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
-	var/mob/living/carbon/human/wearer = null
 	var/power = 0
 	var/max_power = 0
 	var/datum/dna2/record/data = null
@@ -11,63 +10,88 @@
 	var/active = FALSE
 	var/activated = FALSE			//true, if cruciform was activated once
 	var/list/allowed_rituals = list()
-	var/install_zone = "chest"
+	allowed_organs = list(BP_CHEST)
 
-/obj/item/core_implant/Destroy()
+/obj/item/weapon/implant/external/core_implant/Destroy()
 	processing_objects.Remove(src)
-	remove_hearing()
+	deactivate()
 	..()
 
-/obj/item/core_implant/proc/install(mob/living/carbon/human/M)
-	forceMove(M)
-	wearer = M
-	wearer.update_implants()
-
-/obj/item/core_implant/proc/deactivate()
-	if(!active)
+/obj/item/weapon/implant/external/core_implant/attack(mob/living/L, mob/living/user, var/target_zone)
+	if (!istype(L, /mob/living/carbon/human))
 		return
-	kill_wearer()
-	disable()
+	var/mob/living/carbon/human/M = L
+	if (user)
+		var/obj/item/organ/external/affected = M.get_organ(target_zone)
+		if(!affected)
+			return
+		if(affected.open)
+			return
+		if(M.body_part_covered(target_zone))
+			user << "<span class='warning'>You can't install implant through clothes.</span>"
+			return
+		if(!(user.targeted_organ in allowed_organs))
+			user << "<span class='warning'>You can't install this implant here.</span>"
+			return
+		for(var/obj/item/weapon/implant/IM in affected.implants)
+			if(IM.is_external())
+				if(position_flag & IM.position_flag)
+					user << "<span class='warning'>[src] doesn't fit.</span>"
+					return
 
-/obj/item/core_implant/proc/uninstall()
-	deactivate()
-	drop()
+		M.visible_message("<span class='warning'>[user] is attemping to install implant on [M].</span>")
 
-/obj/item/core_implant/proc/kill_wearer()
-	if(!wearer || wearer.stat == DEAD)
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+		user.do_attack_animation(M)
+
+		var/turf/T1 = get_turf(M)
+		if(T1 && ((M == user) || do_after(user, 40, M)))
+			if(user && M && (get_turf(M) == T1) && src)
+				M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
+				admin_attack_log(user, M, "Implanted using \the [src.name]", "Implanted with \the [src.name]", "installs external implant, [src.name], on")
+				user.drop_item()
+				src.install(M, user.targeted_organ)
+		M.update_implants()
+
+/obj/item/weapon/implant/external/core_implant/proc/kill_wearer()
+	if(!istype(wearer, /mob/living/carbon/human))
 		return
-	wearer.adjustBrainLoss(55+rand(5))
-	wearer.adjustOxyLoss(100+rand(50))
-	var/obj/item/organ/external/install = wearer.get_organ(install_zone)
-	if(install)
-		wearer.apply_damage(100+rand(75), BURN, install)
-	wearer.apply_effect(40+rand(20), IRRADIATE, check_protection = 0)
+	var/mob/living/carbon/human/H = wearer
+	if(H.stat == DEAD)
+		return
+	H.adjustBrainLoss(55+rand(5))
+	H.adjustOxyLoss(100+rand(50))
+	if(part)
+		H.apply_damage(100+rand(75), BURN, part)
+	H.apply_effect(40+rand(20), IRRADIATE, check_protection = 0)
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(3, 1, src)
 	s.start()
 
-/obj/item/core_implant/proc/drop()
-	if(!wearer)
+/obj/item/weapon/implant/external/core_implant/proc/can_activate()
+	return TRUE
+
+/obj/item/weapon/implant/external/core_implant/malfunction()
+	kill_wearer()
+
+/obj/item/weapon/implant/external/core_implant/activate()
+	if(!wearer || active)
 		return
-	var/turf/T = get_turf(wearer)
-	forceMove(T)
-	wearer.update_implants()
-	wearer = null
-	disable()
+	active = TRUE
+	activated = TRUE
+	update_data()
+	processing_objects |= src
+	add_hearing()
 
-/obj/item/core_implant/proc/can_install(mob/living/carbon/human/M)
-	return TRUE
+/obj/item/weapon/implant/external/core_implant/deactivate()
+	if(!active)
+		return
+	kill_wearer()
+	remove_hearing()
+	active = FALSE
+	processing_objects.Remove(src)
 
-/obj/item/core_implant/proc/can_activate()
-	return TRUE
-
-/obj/item/core_implant/proc/activate()
-	if(!wearer || activated)
-		return FALSE
-	enable()
-	return TRUE
-
-/obj/item/core_implant/proc/transfer_soul()
+/obj/item/weapon/implant/external/core_implant/proc/transfer_soul()
 	if(!wearer || !activated || !data)
 		return FALSE
 
@@ -82,22 +106,7 @@
 		update_data()
 		return TRUE
 
-/obj/item/core_implant/proc/enable()
-	if(!wearer)
-		return
-
-	active = TRUE
-	activated = TRUE
-	update_data()
-	processing_objects |= src
-	add_hearing()
-
-/obj/item/core_implant/proc/disable()
-	active = FALSE
-	processing_objects.Remove(src)
-	remove_hearing()
-
-/obj/item/core_implant/proc/update_data()
+/obj/item/weapon/implant/external/core_implant/proc/update_data()
 	if(!wearer)
 		return
 
@@ -111,7 +120,7 @@
 	data.languages = wearer.languages
 	data.flavor = wearer.flavor_text
 
-/obj/item/core_implant/hear_talk(mob/living/carbon/human/H, message)
+/obj/item/weapon/implant/external/core_implant/hear_talk(mob/living/carbon/human/H, message)
 	if(wearer != H)
 		return
 
@@ -125,43 +134,17 @@
 			R.activate(H, src)
 			return
 
-/obj/item/core_implant/attack(mob/living/M, mob/living/user, var/target_zone)
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
-		if(can_install(H))
-			user.drop_item()
-			user.visible_message("<span class='notice'>[user] installs \the [src] on [M].</span>",\
-			"<span class='notice'>You install \the [src] on [M]</span>")
-			install(H)
-		else
-			user << "<span class='warning'>You fail to install \the [src] on [M]</span>"
-
-/obj/item/core_implant/proc/use_power(var/value)
+/obj/item/weapon/implant/external/core_implant/proc/use_power(var/value)
 	power = max(0, power - value)
 
-/obj/item/core_implant/proc/restore_power(var/value)
+/obj/item/weapon/implant/external/core_implant/proc/restore_power(var/value)
 	power = min(max_power, power + value)
 
-/obj/item/core_implant/process()
+/obj/item/weapon/implant/external/core_implant/process()
 	if(!active)
 		return
 	if((!wearer || loc != wearer) && active)
-		disable()
+		remove_hearing()
+		active = FALSE
+		processing_objects.Remove(src)
 	restore_power(0.5)
-
-
-/obj/item/core_implant/verb/detach()
-	set name = "Detach implant"
-	set category = "Object"
-	set src in usr
-
-	if(!istype(usr, /mob/living/carbon/human))
-		return
-
-	var/mob/living/carbon/human/user = usr
-
-	if(!user.stat && !user.handcuffed && !active && wearer == user)
-		uninstall()
-		user.put_in_active_hand(src)
-		user.visible_message("<span class='notice'>[user] detach \his \the [src].</span>",\
-			"<span class='notice'>You detach your \the [src].</span>")

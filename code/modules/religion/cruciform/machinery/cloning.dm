@@ -495,7 +495,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/obj/item/core_implant/cruciform/implant
+	var/obj/item/weapon/implant/external/core_implant/cruciform/implant
 	var/reading = FALSE
 
 /obj/machinery/neotheology/reader/New()
@@ -527,8 +527,8 @@
 	if(default_part_replacement(user, O))
 		return
 
-	if(istype(O, /obj/item/core_implant/cruciform))
-		var/obj/item/core_implant/cruciform/C = O
+	if(istype(O, /obj/item/weapon/implant/external/core_implant/cruciform))
+		var/obj/item/weapon/implant/external/core_implant/cruciform/C = O
 		user.drop_item()
 		C.forceMove(src)
 		implant = C
@@ -571,7 +571,7 @@
 
 	if(implant)
 		var/image/I = image(icon, "reader_c_red")
-		if(istype(implant, /obj/item/core_implant/cruciform/priest))
+		if(istype(implant, /obj/item/weapon/implant/external/core_implant/cruciform/priest))
 			I = image(icon, "reader_c_green")
 		overlays.Add(I)
 

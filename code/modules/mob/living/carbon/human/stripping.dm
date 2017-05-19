@@ -54,17 +54,6 @@
 			suit.accessories -= A
 			update_inv_w_uniform()
 			return
-		if("core_implant")
-			var/obj/item/core_implant/CI = locate(/obj/item/core_implant) in src
-			if(!CI || CI.wearer != src || CI.active)
-				return
-
-			visible_message("<span class='danger'>\The [usr] is trying to remove \the [src]'s [CI.name]!</span>")
-
-			if(!do_mob(user,src,HUMAN_STRIP_DELAY,progress=0))
-				return
-
-			CI.uninstall()
 
 	// Are we placing or stripping?
 	var/stripping

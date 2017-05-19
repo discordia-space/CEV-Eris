@@ -171,8 +171,21 @@
 		var/find_prob = 0
 
 		if (affected.implants.len)
+			var/list/implants = list()
 
-			var/obj/item/obj = pick(affected.implants)
+			for(var/obj/item/I in affected.implants)
+				if(istype(I,/obj/item/weapon/implant))
+					var/obj/item/weapon/implant/IM = I
+					if(IM.is_external())
+						continue
+				implants.Add(I)
+
+			if(!implants.len)
+				user.visible_message("\blue [user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.", \
+				"\blue You could not find anything inside [target]'s [affected.name]." )
+				return
+
+			var/obj/item/obj = pick(implants)
 
 			if(istype(obj,/obj/item/weapon/implant))
 				var/obj/item/weapon/implant/imp = obj
@@ -225,5 +238,5 @@
 				user.visible_message("\red Something beeps inside [target]'s [affected.name]!")
 				playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
 				spawn(25)
-					imp.activate()
+					imp.malfunction()
 

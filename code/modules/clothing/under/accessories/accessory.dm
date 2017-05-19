@@ -29,7 +29,7 @@
 		inv_overlay = image(icon = mob_overlay.icon, icon_state = tmp_icon_state, dir = SOUTH)
 	return inv_overlay
 
-/obj/item/clothing/accessory/get_mob_overlay()
+/obj/item/clothing/accessory/proc/get_mob_overlay()
 	if(!mob_overlay)
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 		if(icon_override)

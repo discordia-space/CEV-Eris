@@ -2,6 +2,7 @@
 	name = "loyalty implant"
 	desc = "Makes you loyal or such."
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=4, TECH_DATA=4)
+	allowed_organs = list(BP_HEAD)
 
 /obj/item/weapon/implant/loyalty/get_data()
 	var/data = {"
