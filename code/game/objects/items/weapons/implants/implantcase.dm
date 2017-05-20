@@ -48,6 +48,8 @@
 				user << "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>"
 	else if (istype(I, /obj/item/weapon/implanter))
 		var/obj/item/weapon/implanter/M = I
+		if(src.implant.is_external())
+			return
 		if (M.implant)
 			if ((src.implant || M.implant.implanted))
 				return

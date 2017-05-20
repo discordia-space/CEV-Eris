@@ -61,7 +61,7 @@
 				activate(5)
 
 	spawn(20)
-		malfunction--
+		malfunction = MALFUNCTION_NONE
 
 
 /obj/item/weapon/implantcase/chem

@@ -23,7 +23,7 @@
 
 	return mobs
 
-proc/random_hair_style(gender, species = "Human")
+/proc/random_hair_style(gender, species = "Human")
 	var/h_style = "Bald"
 
 	var/list/valid_hairstyles = list()
@@ -42,7 +42,7 @@ proc/random_hair_style(gender, species = "Human")
 
 	return h_style
 
-proc/random_facial_hair_style(gender, species = "Human")
+/proc/random_facial_hair_style(gender, species = "Human")
 	var/f_style = "Shaved"
 
 	var/list/valid_facialhairstyles = list()
@@ -62,14 +62,14 @@ proc/random_facial_hair_style(gender, species = "Human")
 
 		return f_style
 
-proc/sanitize_name(name, species = "Human")
+/proc/sanitize_name(name, species = "Human")
 	var/datum/species/current_species
 	if(species)
 		current_species = all_species[species]
 
 	return current_species ? current_species.sanitize_name(name) : sanitizeName(name)
 
-proc/random_name(gender, species = "Human")
+/proc/random_name(gender, species = "Human")
 
 	var/datum/species/current_species
 	if(species)
@@ -83,7 +83,7 @@ proc/random_name(gender, species = "Human")
 	else
 		return current_species.get_random_name(gender)
 
-proc/random_skin_tone()
+/proc/random_skin_tone()
 	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))
 		if("caucasian")		. = -10
 		if("afroamerican")	. = -115
@@ -93,7 +93,7 @@ proc/random_skin_tone()
 		else				. = rand(-185,34)
 	return min(max( .+rand(-25, 25), -185),34)
 
-proc/skintone2racedescription(tone)
+/proc/skintone2racedescription(tone)
 	switch (tone)
 		if(30 to INFINITY)		return "albino"
 		if(20 to 30)			return "pale"
@@ -105,7 +105,7 @@ proc/skintone2racedescription(tone)
 		if(-INFINITY to -65)	return "black"
 		else					return "unknown"
 
-proc/age2agedescription(age)
+/proc/age2agedescription(age)
 	switch(age)
 		if(0 to 1)			return "infant"
 		if(1 to 3)			return "toddler"
@@ -118,7 +118,7 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
-proc/get_body_build(gender, body_build = "Default")
+/proc/get_body_build(gender, body_build = "Default")
 	if(gender == MALE)
 		if(body_build in male_body_builds)
 			return male_body_builds[body_build]
@@ -130,7 +130,7 @@ proc/get_body_build(gender, body_build = "Default")
 		else
 			return female_body_builds["Default"]
 
-proc/RoundHealth(health)
+/proc/RoundHealth(health)
 	switch(health)
 		if(100 to INFINITY)
 			return "health100"
@@ -261,3 +261,25 @@ Proc for attack log creation, because really why not
 
 	if (progbar)
 		qdel(progbar)
+
+/mob/living/carbon/proc/body_part_covered(var/bodypart)
+	var/list/bodyparts = list(
+	BP_HEAD = HEAD,
+	BP_CHEST = UPPER_TORSO,
+	BP_GROIN = LOWER_TORSO,
+	BP_L_ARM = ARM_LEFT,
+	BP_R_ARM = ARM_RIGHT,
+	BP_L_HAND = HAND_LEFT,
+	BP_R_HAND = HAND_RIGHT,
+	BP_L_LEG = LEG_LEFT,
+	BP_R_LEG = LEG_RIGHT,
+	BP_L_FOOT = FOOT_LEFT,
+	BP_R_FOOT = FOOT_RIGHT,
+	)
+
+	for(var/obj/item/clothing/C in src)
+		if(l_hand == C || r_hand == C)
+			continue
+		if(C.body_parts_covered & bodyparts[bodypart])
+			return TRUE
+	return FALSE

@@ -124,8 +124,10 @@
 			else if(istype(H.l_hand, /obj/item/weapon/storage))
 				new path(H.l_hand)
 
-	if(H.religion == "Christianity" && !locate(/obj/item/weapon/implant/cruciform, H))
-		var/obj/item/weapon/implant/cruciform/C = new /obj/item/weapon/implant/cruciform(H)
+
+	if(H.religion == "Christianity" && !locate(/obj/item/weapon/implant/external/core_implant/cruciform, H))
+		var/obj/item/weapon/implant/external/core_implant/cruciform/C = new /obj/item/weapon/implant/external/core_implant/cruciform(H)
+
 		C.install(H)
 		C.activate()
 
