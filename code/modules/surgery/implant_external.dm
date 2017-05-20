@@ -117,11 +117,7 @@
 	user.visible_message("<span class='notice'>[user] removed [implant] from [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You removed [implant] from [target]'s [affected] with \the [tool].</span>" )
 
-	implant.forceMove(get_turf(implant.wearer))
-	implant.wearer = null
-	implant.part.implants.Remove(implant)
-	implant.part = null
-	implant.implanted = FALSE
+	implant.uninstall()
 
 	target.update_implants()
 
