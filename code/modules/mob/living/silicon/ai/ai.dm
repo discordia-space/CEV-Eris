@@ -137,9 +137,8 @@ var/list/ai_verbs_default = list(
 		add_ai_verbs(src)
 
 	//Languages
-	add_language("Robot Talk", 1)
-	add_language("Galactic Common", 1)
-	add_language(LANGUAGE_SOL_COMMON, 0)
+	add_language(LANGUAGE_ROBOT, 1)
+	add_language(LANGUAGE_COMMON, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.

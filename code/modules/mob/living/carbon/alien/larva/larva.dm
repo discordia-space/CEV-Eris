@@ -4,12 +4,12 @@
 	adult_form = /mob/living/carbon/human
 	speak_emote = list("hisses")
 	icon_state = "larva"
-	language = "Hivemind"
+	language = LANGUAGE_HIVEMIND
 	maxHealth = 25
 	health = 25
 
 /mob/living/carbon/alien/larva/New()
 	..()
-	add_language("Xenomorph") //Bonus language.
+	add_language(LANGUAGE_XENOMORPH) //Bonus language.
 	internal_organs |= new /obj/item/organ/xenos/hivenode(src)
 	create_reagents(100)
