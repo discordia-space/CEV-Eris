@@ -2,7 +2,7 @@ var/list/christians = list()
 
 /obj/item/weapon/implant/external/core_implant/cruciform
 	name = "cruciform"
-	icon_state = "cruciform_red"
+	icon_state = "cruciform_green"
 	power = 50
 	max_power = 50
 	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty)
@@ -42,6 +42,12 @@ var/list/christians = list()
 	..()
 	christians.Add(wearer)
 
+/obj/item/weapon/implant/external/core_implant/cruciform/deactivate()
+	if(!active || !wearer)
+		return
+	christians.Remove(wearer)
+	..()
+
 /obj/item/weapon/implant/external/core_implant/cruciform/can_activate()
 	if(!wearer || activated || data)
 		return FALSE
@@ -56,7 +62,7 @@ var/list/christians = list()
 	return TRUE
 
 /obj/item/weapon/implant/external/core_implant/cruciform/priest
-	icon_state = "cruciform_green"
+	icon_state = "cruciform_red"
 	power = 100
 	max_power = 100
 	success_modifier = 3

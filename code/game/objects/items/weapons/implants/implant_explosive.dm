@@ -109,7 +109,7 @@
 			explosion(get_turf(wearer), -1, -1, 2, 3)
 			qdel(src)
 
-/obj/item/weapon/implant/explosive/emp_act(severity)
+/obj/item/weapon/implant/explosive/malfunction(severity)
 	if (malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
@@ -127,7 +127,7 @@
 					else
 						meltdown()		//50% chance of implant disarming
 	spawn (20)
-		malfunction--
+		malfunction = MALFUNCTION_NONE
 
 
 /obj/item/weapon/implantcase/explosive
