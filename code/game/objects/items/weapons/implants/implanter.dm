@@ -34,10 +34,14 @@
 		src.icon_state = "implanter0"
 	return
 
-/obj/item/weapon/implanter/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob/living/carbon))
+/obj/item/weapon/implanter/attack(mob/living/L as mob, mob/user as mob)
+	if (!istype(L, /mob/living/carbon))
 		return
-	if (user && src.implant)
+	var/mob/living/carbon/M = L
+	if (user && src.implant && !src.implant.is_external())
+		if(M.body_part_covered(user.targeted_organ))
+			user << "<span class='warning'>You can't implant through clothes.</span>"
+			return
 		M.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>")
 
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)

@@ -56,9 +56,12 @@
 							return
 
 		if(I.damtype == BRUTE || I.damtype == BURN)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.do_attack_animation(src)
 			hit(I.force)
-			user.visible_message("<span class='danger'>[user] has hit the [name] with [I]!</span>",
-								 "<span class='danger'>[user] has hit the [name] with [I]!</span>")
+			user.visible_message(
+				"<span class='danger'>[user] has hit the [name] with [I]!</span>",
+			)
 
 	else
 		user << "<span class='warning'>It must be closed!</span>"

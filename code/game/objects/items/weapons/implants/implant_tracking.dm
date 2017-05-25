@@ -35,7 +35,7 @@
 			delay = rand(5*60*10,15*60*10)	//from 5 to 15 minutes of free time
 
 	spawn(delay)
-		malfunction--
+		malfunction = MALFUNCTION_NONE
 
 
 /obj/item/weapon/implantcase/tracking

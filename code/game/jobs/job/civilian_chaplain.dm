@@ -16,14 +16,14 @@
 	pda = /obj/item/device/pda/chaplain
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H)
-	var/obj/item/weapon/implant/cruciform/priest/C = new /obj/item/weapon/implant/cruciform/priest(H)
+	var/obj/item/weapon/implant/external/core_implant/cruciform/priest/C = new /obj/item/weapon/implant/external/core_implant/cruciform/priest(H)
 	C.install(H)
 	C.activate()
 
 	H.religion = "Christianity"
 
-	if(!..())	return 0
+	if(!..())	return FALSE
 
 	var/obj/item/weapon/book/bible/B = new /obj/item/weapon/book/bible(H)
 	H.equip_to_slot_or_del(B, slot_l_hand)
-	return 1
+	return TRUE
