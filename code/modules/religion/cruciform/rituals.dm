@@ -1,3 +1,5 @@
+var/list/cruciform_rituals = typesof(/datum/ritual/cruciform)-/datum/ritual/cruciform
+
 /datum/ritual/cruciform
 	name = "cruciform"
 	phrase = null
@@ -55,7 +57,7 @@
 				CI = CR
 
 	if(!CI)	//No epiphany candidates
-		fail(user, C, "Epiphany candidates not found.")
+		fail(user, C, "There's no souls for epiphany here.")
 		return FALSE
 
 	if(!CI.can_activate())
@@ -76,15 +78,18 @@
 	phrase = "Surge stultus fragmen stercore gallus"	//WIP
 
 /datum/ritual/cruciform/resurrection/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
-	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in view(world.view, H)
+	var/obj/machinery/neotheology/cloner/pod = null
+	var/last_dist = 128
+	for(var/obj/machinery/neotheology/cloner/CL in view(world.view, C.wearer))
+		if(!CL.cloning)
+			if(get_dist(CL,C.wearer) <= last_dist)
+				last_dist = get_dist(CL,C.wearer)
+				pod = CL
 	if(pod)
-		if(!pod.cloning)
-			pod.start()
-			return TRUE
-		else
-			fail(H, C, "Cloner already cloning.")
+		pod.start()
+		return TRUE
 	else
-		fail(H, C, "Cloner not found.")
+		fail(H, C, "There are no pods ready for resurrection.")
 
 
 /datum/ritual/cruciform/reincarnation
@@ -104,19 +109,19 @@
 				CI = CR
 
 	if(!CI)	//No candidates
-		fail(user, C, "Reincarnation candidates not found.")
+		fail(user, C, "There's no souls for reincarnation here.")
 		return FALSE
 
 	var/datum/mind/MN = CI.data.mind
 	if(!istype(MN, /datum/mind))
-		fail(user, C, "Soul inteface failure.")
+		fail(user, C, "Soul is lost.")
 		return FALSE
 	if(MN.active)
 		if(CI.data.ckey != ckey(MN.key))
-			fail(user, C, "Soul inteface failure.")
+			fail(user, C, "Soul is lost.")
 			return FALSE
 	if(MN.current && MN.current.stat != DEAD)
-		fail(user, C, "Soul inteface failure.")
+		fail(user, C, "Soul is lost.")
 		return FALSE
 
 	return CI.transfer_soul()

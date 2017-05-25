@@ -124,7 +124,11 @@
 	if(wearer != H)
 		return
 
-	message = replace_characters(message, list("." = ""))
+	if(malfunction)
+		wearer << "Nothing happens."
+		return
+
+	message = replace_characters(message, list("." = "", "!" = ""))
 	for(var/RT in allowed_rituals)
 		var/datum/ritual/R = new RT
 		if(R.phrase == message)
@@ -147,4 +151,20 @@
 		remove_hearing()
 		active = FALSE
 		processing_objects.Remove(src)
-	restore_power(0.5)
+	if(!malfunction)
+		restore_power(0.5)
+
+/obj/item/weapon/implant/external/core_implant/malfunction(severity)
+	if(!wearer || !active)
+		return
+	power = 0
+	if(severity == 2)
+		malfunction = MALFUNCTION_TEMPORARY
+		wearer << "<span class='warning'>Your [src.name] is scorchingly cold. Your mind is confused, you feel that God has left you.</span>"
+		spawn(200+rand(100))
+			if(src)
+				malfunction = MALFUNCTION_NONE
+				if(wearer)
+					wearer << "<span class='info'>You feel that warmth fills your soul, your [src.name] is warming up.</span>"
+	else
+		wearer << "<span class='warning'>Your [src.name] has cooled down.</span>"
