@@ -26,8 +26,8 @@
 /obj/item/weapon/implant/proc/deactivate()
 	return
 
-/obj/item/weapon/implant/proc/malfunction()
-	activate()
+/obj/item/weapon/implant/proc/malfunction(var/severity)
+	return
 
 /obj/item/weapon/implant/proc/is_external()
 	return istype(src, /obj/item/weapon/implant/external)
@@ -73,3 +73,6 @@
 	if(part)
 		part.implants.Remove(src)
 	..()
+
+/obj/item/weapon/implant/explosive/emp_act(severity)
+	malfunction(severity)

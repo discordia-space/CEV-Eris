@@ -570,9 +570,9 @@
 		icon_state = "reader_on"
 
 	if(implant)
-		var/image/I = image(icon, "reader_c_red")
+		var/image/I = image(icon, "reader_c_green")
 		if(istype(implant, /obj/item/weapon/implant/external/core_implant/cruciform/priest))
-			I = image(icon, "reader_c_green")
+			I = image(icon, "reader_c_red")
 		overlays.Add(I)
 
 
