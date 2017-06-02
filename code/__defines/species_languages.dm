@@ -23,7 +23,18 @@
 #define HAS_HAIR_COLOR    0x20   // Hair colour selectable in chargen. (RGB)
 
 // Languages.
-#define LANGUAGE_SOL_COMMON "Sol Common"
+#define LANGUAGE_COMMON "Alliance Common"
+
+#define LANGUAGE_ROBOT "Robot Talk"
+#define LANGUAGE_DRONE "Drone Talk"
+#define LANGUAGE_MONKEY "Chimpanzee"
+
+#define LANGUAGE_XENOMORPH "Xenomorph"
+#define LANGUAGE_HIVEMIND "Hivemind"
+#define LANGUAGE_CHANGELING "Changeling"
+#define LANGUAGE_CORTICAL "Cortical Link"
+#define LANGUAGE_CULT "Cult"
+#define LANGUAGE_OCCULT "Occult"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

@@ -9,7 +9,7 @@
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_monkey.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_monkey.dmi'
 	language = null
-	default_language = "Chimpanzee"
+	default_language = LANGUAGE_MONKEY
 	greater_form = "Human"
 	mob_size = MOB_SMALL
 	has_fine_manipulation = 0

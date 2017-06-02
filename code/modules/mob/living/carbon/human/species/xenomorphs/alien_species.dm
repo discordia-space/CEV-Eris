@@ -3,8 +3,8 @@
 	name = "Xenomorph"
 	name_plural = "Xenomorphs"
 
-	default_language = "Xenomorph"
-	language = "Hivemind"
+	default_language = LANGUAGE_XENOMORPH
+	language = LANGUAGE_HIVEMIND
 	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
 	hud_type = /datum/hud_data/alien
 	rarity_value = 3
