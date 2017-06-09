@@ -1,20 +1,20 @@
 /datum/language/xenocommon
-	name = "Xenomorph"
+	name = LANGUAGE_XENOMORPH
 	colour = "alien"
 	desc = "The common tongue of the xenomorphs."
-	speech_verb = "hisses"
-	ask_verb = "hisses"
-	exclaim_verb = "hisses"
+	speech_verb = list("hisses")
+	ask_verb = list("hisses")
+	exclaim_verb = list("hisses")
 	key = "4"
 	flags = RESTRICTED
 	syllables = list("sss","sSs","SSS")
 
 /datum/language/xenos
-	name = "Hivemind"
+	name = LANGUAGE_HIVEMIND
 	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
-	speech_verb = "hisses"
-	ask_verb = "hisses"
-	exclaim_verb = "hisses"
+	speech_verb = list("hisses")
+	ask_verb = list("hisses")
+	exclaim_verb = list("hisses")
 	colour = "alien"
 	key = "a"
 	flags = RESTRICTED | HIVEMIND
@@ -30,9 +30,8 @@
 	return 0
 
 /datum/language/ling
-	name = "Changeling"
+	name = LANGUAGE_CHANGELING
 	desc = "Although they are normally wary and suspicious of each other, changelings can commune over a distance."
-	speech_verb = "says"
 	colour = "changeling"
 	key = "g"
 	flags = RESTRICTED | HIVEMIND
@@ -45,11 +44,11 @@
 		..(speaker,message)
 
 /datum/language/corticalborer
-	name = "Cortical Link"
+	name = LANGUAGE_CORTICAL
 	desc = "Cortical borers possess a strange link between their tiny minds."
-	speech_verb = "sings"
-	ask_verb = "sings"
-	exclaim_verb = "sings"
+	speech_verb = list("sings")
+	ask_verb = list("sings")
+	exclaim_verb = list("sings")
 	colour = "alien"
 	key = "x"
 	flags = RESTRICTED | HIVEMIND
@@ -68,26 +67,12 @@
 		speaker_mask = B.truename
 	..(speaker,message,speaker_mask)
 
-/datum/language/vox
-	name = "Vox-pidgin"
-	desc = "The common tongue of the various Vox ships making up the Shoal. It sounds like chaotic shrieking to everyone else."
-	speech_verb = "shrieks"
-	ask_verb = "creels"
-	exclaim_verb = "SHRIEKS"
-	colour = "vox"
-	key = "5"
-	syllables = list("ti","ti","ti","hi","hi","ki","ki","ki","ki","ya","ta","ha","ka","ya","chi","cha","kah", \
-	"SKRE","AHK","EHK","RAWK","KRA","AAA","EEE","KI","II","KRI","KA")
-
-/datum/language/vox/get_random_name()
-	return ..(FEMALE,1,6)
-
 /datum/language/cultcommon
-	name = "Cult"
+	name = LANGUAGE_CULT
 	desc = "The chants of the occult, the incomprehensible."
-	speech_verb = "intones"
-	ask_verb = "intones"
-	exclaim_verb = "chants"
+	speech_verb = list("intones")
+	ask_verb = list("intones")
+	exclaim_verb = list("chants")
 	colour = "cult"
 	key = "f"
 	flags = RESTRICTED
@@ -101,11 +86,11 @@
 		"d'rekkathnor", "khari'd", "gual'te", "nikka", "nikt'o", "barada", "kla'atu", "barhah", "hra" ,"zar'garis")
 
 /datum/language/cult
-	name = "Occult"
+	name = LANGUAGE_OCCULT
 	desc = "The initiated can share their thoughts by means defying all reason."
-	speech_verb = "intones"
-	ask_verb = "intones"
-	exclaim_verb = "chants"
+	speech_verb = list("intones")
+	ask_verb = list("intones")
+	exclaim_verb = list("chants")
 	colour = "cult"
 	key = "y"
 	flags = RESTRICTED | HIVEMIND
