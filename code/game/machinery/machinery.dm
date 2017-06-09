@@ -325,7 +325,7 @@ Class Procs:
 						R.handle_item_insertion(A, 1)
 						component_parts -= A
 						component_parts += B
-						B.loc = null
+						B.forceMove(null)
 						user << "<span class='notice'>[A.name] replaced with [B.name].</span>"
 						break
 			update_icon()
@@ -351,6 +351,6 @@ Class Procs:
 	M.icon_state = "[M.base_state]_1"
 	M.update_icon()
 	for(var/obj/I in component_parts)
-		I.loc = loc
+		I.forceMove(loc)
 	qdel(src)
 	return 1

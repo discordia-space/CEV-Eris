@@ -5,17 +5,22 @@
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
 	var/power = 0
 	var/max_power = 0
-	var/datum/dna2/record/data = null
+	var/datum/coreimplant_record/data = null
 	var/success_modifier = 1
 	var/active = FALSE
 	var/activated = FALSE			//true, if cruciform was activated once
 	var/list/allowed_rituals = list()
+	var/address = null				//string, used as id for targeted rituals
 	allowed_organs = list(BP_CHEST)
 
 /obj/item/weapon/implant/external/core_implant/Destroy()
 	processing_objects.Remove(src)
 	deactivate()
 	..()
+
+/obj/item/weapon/implant/external/core_implant/forceMove()
+	..()
+	update_address()
 
 /obj/item/weapon/implant/external/core_implant/attack(mob/living/L, mob/living/user, var/target_zone)
 	if (!istype(L, /mob/living/carbon/human))
@@ -110,15 +115,31 @@
 	if(!wearer)
 		return
 
-	data = new /datum/dna2/record()
+	data = new /datum/coreimplant_record()
+	data.age = wearer.age
 	data.dna = wearer.dna
 	data.ckey = wearer.ckey
 	data.mind = wearer.mind
-	data.id = copytext(md5(wearer.real_name), 2, 6)
 	data.name = data.dna.real_name
-	data.types = DNA2_BUF_UI | DNA2_BUF_UE | DNA2_BUF_SE
 	data.languages = wearer.languages
 	data.flavor = wearer.flavor_text
+
+/obj/item/weapon/implant/external/core_implant/proc/update_address()
+	if(!loc)
+		adress = null
+		return
+
+	if(wearer)
+		adress = wearer.real_name
+		return
+
+	var/area/A = get_area(src)
+	if(istype(loc, /obj/machinery/neotheology))
+		adress = "[loc.name] in [A.name]"
+		return
+	adress = null
+
+
 
 /obj/item/weapon/implant/external/core_implant/hear_talk(mob/living/carbon/human/H, message)
 	if(wearer != H)
@@ -127,7 +148,7 @@
 	message = replace_characters(message, list("." = ""))
 	for(var/RT in allowed_rituals)
 		var/datum/ritual/R = new RT
-		if(R.phrase == message)
+		if(R.compare(message))
 			if(R.power > src.power)
 				H << "<span class='danger'>Not enough energy for the [R.name].</span>"
 				return
@@ -148,3 +169,15 @@
 		active = FALSE
 		processing_objects.Remove(src)
 	restore_power(0.5)
+
+//////////////////////////
+//////////////////////////
+
+/datum/coreimplant_record
+	var/datum/dna/dna = null
+
+	var/age = 0
+	var/ckey = ""
+	var/mind = null
+	var/languages = list()
+	var/flavor = ""

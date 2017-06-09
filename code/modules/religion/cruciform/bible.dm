@@ -23,6 +23,6 @@
 	for(var/RT in rituals)
 		var/datum/ritual/R = RT
 		if(href_list[R.name])
-			H.say(R.phrase + "!")
+			H.say(R.get_say_phrase())
 			break
 	return TRUE

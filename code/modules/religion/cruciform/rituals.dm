@@ -55,7 +55,7 @@
 				CI = CR
 
 	if(!CI)	//No epiphany candidates
-		fail(user, C, "Epiphany candidates not found.")
+		fail(user, C, "Epiphany candidates not found")
 		return FALSE
 
 	if(!CI.can_activate())
@@ -73,7 +73,7 @@
 
 /datum/ritual/cruciform/resurrection
 	name = "resurrection"
-	phrase = "Surge stultus fragmen stercore gallus"	//WIP
+	phrase = "Surge stultus fragmen stercore gallus."	//WIP
 
 /datum/ritual/cruciform/resurrection/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
 	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in view(world.view, H)
@@ -82,7 +82,7 @@
 			pod.start()
 			return TRUE
 		else
-			fail(H, C, "Cloner already cloning.")
+			fail(H, C, "Cloner already cloning")
 	else
 		fail(H, C, "Cloner not found.")
 
@@ -104,19 +104,19 @@
 				CI = CR
 
 	if(!CI)	//No candidates
-		fail(user, C, "Reincarnation candidates not found.")
+		fail(user, C, "Reincarnation candidates not found")
 		return FALSE
 
 	var/datum/mind/MN = CI.data.mind
 	if(!istype(MN, /datum/mind))
-		fail(user, C, "Soul inteface failure.")
+		fail(user, C, "Soul inteface failure")
 		return FALSE
 	if(MN.active)
 		if(CI.data.ckey != ckey(MN.key))
-			fail(user, C, "Soul inteface failure.")
+			fail(user, C, "Soul inteface failure")
 			return FALSE
 	if(MN.current && MN.current.stat != DEAD)
-		fail(user, C, "Soul inteface failure.")
+		fail(user, C, "Soul inteface failure")
 		return FALSE
 
 	return CI.transfer_soul()
