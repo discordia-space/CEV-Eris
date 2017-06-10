@@ -7,6 +7,7 @@ var/list/cruciform_rituals = typesof(/datum/ritual/cruciform)-/datum/ritual/cruc
 /datum/ritual/cruciform/relief
 	name = "relief"
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
+	desc = "Short litany to relieve a pain of afflicted."
 	power = 50
 	chance = 33
 
@@ -17,6 +18,7 @@ var/list/cruciform_rituals = typesof(/datum/ritual/cruciform)-/datum/ritual/cruc
 /datum/ritual/cruciform/soul_hunger
 	name = "soul hunger"
 	phrase = "Panem nostrum cotidianum da nobis hodie"
+	desc = "Litany of piligrims, helps better withstand hunger."
 	power = 50
 	chance = 33
 
@@ -27,7 +29,8 @@ var/list/cruciform_rituals = typesof(/datum/ritual/cruciform)-/datum/ritual/cruc
 
 /datum/ritual/cruciform/entreaty
 	name = "entreaty"
-	phrase = "Deus meus ut quid dereliquisti me?"
+	phrase = "Deus meus ut quid dereliquisti me"
+	desc = "Litany of piligrims, helps better withstand hunger."
 	power = 50
 	chance = 60
 
@@ -43,6 +46,8 @@ var/list/cruciform_rituals = typesof(/datum/ritual/cruciform)-/datum/ritual/cruc
 /datum/ritual/cruciform/epiphany
 	name = "epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
+	desc = "Cyberchristianity's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology corporation's  special altar."
+
 
 /datum/ritual/cruciform/epiphany/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
 	var/last_dist = 128
@@ -67,15 +72,16 @@ var/list/cruciform_rituals = typesof(/datum/ritual/cruciform)-/datum/ritual/cruc
 
 	return TRUE
 
-
+/* - This will be used later, when new cult arrive.
 /datum/ritual/cruciform/banish
 	name = "banish"
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
-
+*/
 
 /datum/ritual/cruciform/resurrection
 	name = "resurrection"
-	phrase = "Surge stultus fragmen stercore gallus"	//WIP
+	phrase = "Target human fuit, et crediderunt in me non morietur in aeternum"
+	desc = "A ritual of formation of a new body in a speclially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
 
 /datum/ritual/cruciform/resurrection/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
 	var/obj/machinery/neotheology/cloner/pod = null
@@ -94,7 +100,9 @@ var/list/cruciform_rituals = typesof(/datum/ritual/cruciform)-/datum/ritual/cruc
 
 /datum/ritual/cruciform/reincarnation
 	name = "reincarnation"
-	phrase = "Nunc omni stercore corpori inserere"		//WIP
+	phrase = "Vas autem Target human senex moritur, et onus hoc levaverit"
+	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
+
 
 /datum/ritual/cruciform/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
 	var/last_dist = 128

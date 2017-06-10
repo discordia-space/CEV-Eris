@@ -2,4 +2,4 @@
 	name = "NeoTheology's altar"
 	desc = "The altar."
 	icon = 'icons/obj/neotheology_machinery.dmi'
-	icon_state = "altar"
+	icon_state = "optable-idle"
