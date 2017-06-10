@@ -12,8 +12,8 @@
 	opacity = 0
 	..()
 
-/obj/machinery/door/blast/shutters/glass/is_block_dir(target_dir, border_only, atom/target)
-	return ..(target_dir, FALSE, target)
+/obj/machinery/door/blast/shutters/glass/AltClick()
+	return
 
 /obj/machinery/door/blast/shutters/glass/attackby(obj/item/I, mob/user, params)
 	if(density)

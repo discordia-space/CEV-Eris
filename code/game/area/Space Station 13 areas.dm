@@ -1709,8 +1709,8 @@ area/space/atmosalert()
 	name = "Library Backroom"
 	icon_state = "erisgreen"
 
-/area/eris/chapelritualroom
-	name = "Chapel Rituals Room"
+/area/eris/chapelmassdriver
+	name = "Chapel Mass Driver"
 	icon_state = "erisgreen"
 
 /area/eris/clothingstorage

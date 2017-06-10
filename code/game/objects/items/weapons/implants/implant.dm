@@ -43,10 +43,13 @@
 
 /obj/item/weapon/implant/proc/uninstall()
 	forceMove(get_turf(wearer))
-	wearer = null
 	part.implants.Remove(src)
 	part = null
 	implanted = FALSE
+	if(ishuman(wearer))
+		var/mob/living/carbon/human/H = wearer
+		H.update_implants()
+	wearer = null
 
 /obj/item/weapon/implant/proc/get_data()
 	return "No information available"

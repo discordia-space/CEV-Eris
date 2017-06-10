@@ -5,12 +5,12 @@
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
 	var/power = 0
 	var/max_power = 0
-	var/datum/dna2/record/data = null
+	var/datum/coreimplant_record/data = null
 	var/success_modifier = 1
 	var/active = FALSE
 	var/activated = FALSE			//true, if cruciform was activated once
 	var/list/allowed_rituals = list()
-	allowed_organs = list(BP_CHEST)
+	var/address = null				//string, used as id for targeted rituals
 
 /obj/item/weapon/implant/external/core_implant/Destroy()
 	processing_objects.Remove(src)
@@ -74,6 +74,14 @@
 /obj/item/weapon/implant/external/core_implant/malfunction()
 	kill_wearer()
 
+/obj/item/weapon/implant/external/core_implant/install(var/mob/M)
+	if(ishuman(M))
+		..()
+
+/obj/item/weapon/implant/external/core_implant/uninstall()
+	deactivate()
+	..()
+
 /obj/item/weapon/implant/external/core_implant/activate()
 	if(!wearer || active)
 		return
@@ -96,6 +104,10 @@
 		return FALSE
 
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
+		for(var/mob/M in player_list)
+			if(M.ckey == data.ckey)
+				if(1)	//angel check here
+					return FALSE
 		var/datum/mind/MN = data.mind
 		if(!istype(MN, /datum/mind))
 			return
@@ -110,32 +122,45 @@
 	if(!wearer)
 		return
 
-	data = new /datum/dna2/record()
+	data = new /datum/coreimplant_record()
 	data.dna = wearer.dna
 	data.ckey = wearer.ckey
 	data.mind = wearer.mind
-	data.id = copytext(md5(wearer.real_name), 2, 6)
-	data.name = data.dna.real_name
-	data.types = DNA2_BUF_UI | DNA2_BUF_UE | DNA2_BUF_SE
 	data.languages = wearer.languages
 	data.flavor = wearer.flavor_text
+
+	if(ishuman(wearer))
+		var/mob/living/carbon/human/H = wearer
+		data.age = H.age
+
+/obj/item/weapon/implant/external/core_implant/proc/update_address()
+	if(!loc)
+		address = null
+		return
+
+	if(wearer)
+		address = wearer.real_name
+		return
+
+	var/area/A = get_area(src)
+	if(istype(loc, /obj/machinery/neotheology))
+		address = "[loc.name] in [strip_improper(A.name)]"
+		return
+
+	address = null
 
 /obj/item/weapon/implant/external/core_implant/hear_talk(mob/living/carbon/human/H, message)
 	if(wearer != H)
 		return
 
-	if(malfunction)
-		wearer << "Nothing happens."
-		return
-
-	message = replace_characters(message, list("." = "", "!" = ""))
+	message = replace_characters(message, list("." = ""))
 	for(var/RT in allowed_rituals)
 		var/datum/ritual/R = new RT
-		if(R.phrase == message)
+		if(R.compare(message))
 			if(R.power > src.power)
 				H << "<span class='danger'>Not enough energy for the [R.name].</span>"
 				return
-			R.activate(H, src)
+			R.activate(H, src, R.get_targets(message))
 			return
 
 /obj/item/weapon/implant/external/core_implant/proc/use_power(var/value)
@@ -151,20 +176,16 @@
 		remove_hearing()
 		active = FALSE
 		processing_objects.Remove(src)
-	if(!malfunction)
-		restore_power(0.5)
+	restore_power(0.5)
 
-/obj/item/weapon/implant/external/core_implant/malfunction(severity)
-	if(!wearer || !active)
-		return
-	power = 0
-	if(severity == 2)
-		malfunction = MALFUNCTION_TEMPORARY
-		wearer << "<span class='warning'>Your [src.name] is scorchingly cold. Your mind is confused, you feel that God has left you.</span>"
-		spawn(200+rand(100))
-			if(src)
-				malfunction = MALFUNCTION_NONE
-				if(wearer)
-					wearer << "<span class='info'>You feel that warmth fills your soul, your [src.name] is warming up.</span>"
-	else
-		wearer << "<span class='warning'>Your [src.name] has cooled down.</span>"
+//////////////////////////
+//////////////////////////
+
+/datum/coreimplant_record
+	var/datum/dna/dna = null
+
+	var/age = 30
+	var/ckey = ""
+	var/mind = null
+	var/languages = list()
+	var/flavor = ""
