@@ -18,10 +18,6 @@
 	deactivate()
 	..()
 
-/obj/item/weapon/implant/external/core_implant/forceMove()
-	..()
-	update_address()
-
 /obj/item/weapon/implant/external/core_implant/attack(mob/living/L, mob/living/user, var/target_zone)
 	if (!istype(L, /mob/living/carbon/human))
 		return
@@ -79,6 +75,10 @@
 /obj/item/weapon/implant/external/core_implant/malfunction()
 	kill_wearer()
 
+/obj/item/weapon/implant/external/core_implant/install(var/mob/M)
+	if(ishuman(M))
+		..()
+
 /obj/item/weapon/implant/external/core_implant/activate()
 	if(!wearer || active)
 		return
@@ -116,28 +116,30 @@
 		return
 
 	data = new /datum/coreimplant_record()
-	data.age = wearer.age
 	data.dna = wearer.dna
 	data.ckey = wearer.ckey
 	data.mind = wearer.mind
-	data.name = data.dna.real_name
 	data.languages = wearer.languages
 	data.flavor = wearer.flavor_text
 
+	if(ishuman(wearer))
+		var/mob/living/carbon/human/H = wearer
+		data.age = H.age
+
 /obj/item/weapon/implant/external/core_implant/proc/update_address()
 	if(!loc)
-		adress = null
+		address = null
 		return
 
 	if(wearer)
-		adress = wearer.real_name
+		address = wearer.real_name
 		return
 
 	var/area/A = get_area(src)
 	if(istype(loc, /obj/machinery/neotheology))
-		adress = "[loc.name] in [A.name]"
+		address = "[loc.name] in [strip_improper(A.name)]"
 		return
-	adress = null
+	address = null
 
 
 
@@ -152,7 +154,7 @@
 			if(R.power > src.power)
 				H << "<span class='danger'>Not enough energy for the [R.name].</span>"
 				return
-			R.activate(H, src)
+			R.activate(H, src, R.get_targets(message))
 			return
 
 /obj/item/weapon/implant/external/core_implant/proc/use_power(var/value)
@@ -176,7 +178,7 @@
 /datum/coreimplant_record
 	var/datum/dna/dna = null
 
-	var/age = 0
+	var/age = 30
 	var/ckey = ""
 	var/mind = null
 	var/languages = list()

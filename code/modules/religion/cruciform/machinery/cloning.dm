@@ -216,7 +216,7 @@
 //Cloning errors
 /obj/machinery/neotheology/cloner/proc/not_enough_biomass()
 	if(biomass_error < 1)
-		visible_message("<span class='warning'>Not enugh biomass!</span>")
+		visible_message("<span class='warning'>Not enough biomass!</span>")
 	if(biomass_error > 3)
 		if(occupant)
 			if(cloning_stage <= CLONING_BODY)
@@ -573,9 +573,9 @@
 		icon_state = "reader_on"
 
 	if(implant)
-		var/image/I = image(icon, "reader_c_red")
+		var/image/I = image(icon, "reader_c_green")
 		if(istype(implant, /obj/item/weapon/implant/external/core_implant/cruciform/priest))
-			I = image(icon, "reader_c_green")
+			I = image(icon, "reader_c_red")
 		overlays.Add(I)
 
 

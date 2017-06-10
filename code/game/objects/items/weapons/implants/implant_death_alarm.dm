@@ -50,7 +50,7 @@
 			qdel(a)
 			processing_objects.Remove(src)
 
-/obj/item/weapon/implant/death_alarm/emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
+/obj/item/weapon/implant/death_alarm/malfunction(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
 	if (malfunction)		//so I'm just going to add a meltdown chance here
 		return
 	malfunction = MALFUNCTION_TEMPORARY

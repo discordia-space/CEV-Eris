@@ -6,6 +6,7 @@
 	var/chance = 100
 	var/success_message = "Ritual successed."
 	var/fail_message = "Ritual failed."
+	var/implant_type = /obj/item/weapon/implant/external/core_implant
 
 //code of ritual, returns true on success, can be interrupted with fail(H, C, targets) and return FALSE
 /datum/ritual/proc/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, targets)
@@ -15,7 +16,7 @@
 /datum/ritual/proc/failed(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, targets)
 	return
 
-/datum/ritual/proc/activate(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, var/force = FALSE, targets)
+/datum/ritual/proc/activate(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, var/list/targets, var/force = FALSE)
 	C.use_power(src.power)
 	if(!force && !check_success(C))
 		fail(H, C, targets)
@@ -23,11 +24,11 @@
 		if(perform(H, C, targets))
 			H << "<span class='notice'>[success_message]</span>"
 
-/datum/ritual/proc/fail(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, var/message)
+/datum/ritual/proc/fail(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, targets, var/message)
 	if(!message)
 		message = fail_message
 	H << "<span class='danger'>[message]</span>"
-	failed(H, C)
+	failed(H, C, targets)
 
 /datum/ritual/proc/check_success(obj/item/weapon/implant/external/core_implant/C)
 	return prob(chance * C.success_modifier)

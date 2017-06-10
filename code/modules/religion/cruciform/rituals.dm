@@ -1,6 +1,15 @@
+var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cruciform)+\
+	(typesof(/datum/ritual/targeted/cruciform)-/datum/ritual/targeted/cruciform)
+
 /datum/ritual/cruciform
 	name = "cruciform"
 	phrase = null
+	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+
+/datum/ritual/targeted/cruciform
+	name = "cruciform targeted"
+	phrase = null
+	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
 
 /datum/ritual/cruciform/relief
 	name = "relief"
@@ -38,85 +47,132 @@
 	return TRUE
 
 
-/datum/ritual/cruciform/epiphany
+/datum/ritual/targeted/cruciform/epiphany
 	name = "epiphany"
-	phrase = "In nomine Patris et Filii et Spiritus sancti"
+	phrase = "In nomine Patris et Filii et Spiritus sancti \[Target human]"
 
-/datum/ritual/cruciform/epiphany/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
-	var/last_dist = 128
-	var/obj/item/weapon/implant/external/core_implant/CI = null
-	for(var/mob/living/carbon/human/CH in view(world.view, user))
-		if(!CH.ckey || !CH.mind)
-			continue
-		var/obj/item/weapon/implant/external/core_implant/CR = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in CH
-		if(CR && CR.wearer == CH && !CR.active && !CR.activated)
-			if(get_dist(CH,user) <= last_dist)
-				last_dist = get_dist(CH,user)
-				CI = CR
+/datum/ritual/targeted/cruciform/epiphany/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C, list/targets)
+	if(targets.len != 1)
+		fail(user, C, "Cannot find follower.")
+		return FALSE
 
-	if(!CI)	//No epiphany candidates
-		fail(user, C, "Epiphany candidates not found")
+	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = targets[1]
+
+	if(!CI)
+		fail(user, C, "Cruciform not found.")
+		return FALSE
+
+	if(!CI.wearer)
+		fail(user, C, "Cruciform is not installed.")
+		return FALSE
+
+	if(CI.activated || CI.active)
+		fail(user, C, "This cruciform already has a soul inside.")
 		return FALSE
 
 	if(!CI.can_activate())
+		fail(user, C, "Epiphany failed.")
 		return FALSE
 	else
 		CI.activate()
 
 	return TRUE
 
+/datum/ritual/targeted/cruciform/epiphany/is_target_valid(index, obj/item/weapon/implant/external/core_implant/target)
+	if(index == 1)
+		if(target.wearer && target.wearer && !target.activated && !target.active)
+			return TRUE
 
 /datum/ritual/cruciform/banish
 	name = "banish"
 	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
 
 
-/datum/ritual/cruciform/resurrection
+/datum/ritual/targeted/cruciform/resurrection
 	name = "resurrection"
-	phrase = "Surge stultus fragmen stercore gallus."	//WIP
+	phrase = "Surge stultus fragmen stercore gallus \[Target cloner]"	//WIP
 
-/datum/ritual/cruciform/resurrection/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
-	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in view(world.view, H)
-	if(pod)
-		if(!pod.cloning)
-			pod.start()
+/datum/ritual/targeted/cruciform/resurrection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C, list/targets)
+	if(targets.len != 1)
+		fail(user, C, "Cannot find cloner.")
+		return FALSE
+
+	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = targets[1]
+
+	if(!CI)
+		fail(user, C, "Cloner not found.")
+		return FALSE
+
+	if(CI.wearer || !istype(CI.loc, /obj/machinery/neotheology/cloner))
+		fail(user, C, "This is not cloner.")
+		return FALSE
+
+	var/obj/machinery/neotheology/cloner/pod = CI.loc
+
+	if(pod.cloning)
+		fail(user, C, "Cloner is already cloning.")
+		return FALSE
+
+	if(pod.stat & NOPOWER)
+		fail(user, C, "Cloner not working.")
+		return FALSE
+
+	pod.start()
+	return TRUE
+
+/datum/ritual/targeted/cruciform/resurrection/is_target_valid(index, obj/item/weapon/implant/external/core_implant/target)
+	if(index == 1)
+		if(!target.wearer && istype(target.loc, /obj/machinery/neotheology/cloner))
 			return TRUE
-		else
-			fail(H, C, "Cloner already cloning")
-	else
-		fail(H, C, "Cloner not found.")
 
-
-/datum/ritual/cruciform/reincarnation
+/datum/ritual/targeted/cruciform/reincarnation
 	name = "reincarnation"
-	phrase = "Nunc omni stercore corpori inserere"		//WIP
+	phrase = "Nunc omni stercore corpori inserere \[Target dummy]"		//WIP
 
-/datum/ritual/cruciform/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
-	var/last_dist = 128
-	var/obj/item/weapon/implant/external/core_implant/CI = null
-	for(var/mob/living/carbon/human/CH in view(world.view, user))
-		if(CH.ckey || CH.mind)
-			continue
-		var/obj/item/weapon/implant/external/core_implant/CR = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in CH
-		if(CR && CR.wearer == CH && !CR.active && CR.activated)
-			if(get_dist(CH,user) <= last_dist)
-				last_dist = get_dist(CH,user)
-				CI = CR
+/datum/ritual/targeted/cruciform/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C, list/targets)
+	if(targets.len != 1)
+		fail(user, C, "Cannot find follower.")
+		return FALSE
 
-	if(!CI)	//No candidates
-		fail(user, C, "Reincarnation candidates not found")
+	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = targets[1]
+
+	if(!CI)
+		fail(user, C, "Cruciform not found.")
+		return FALSE
+
+	if(!CI.wearer)
+		fail(user, C, "Cruciform is not installed.")
+		return FALSE
+
+	if(!CI.activated)
+		fail(user, C, "This cruciform doesn't have soul inside.")
+		return FALSE
+
+	if(CI.active)
+		fail(user, C, "This cruciform already activated.")
 		return FALSE
 
 	var/datum/mind/MN = CI.data.mind
 	if(!istype(MN, /datum/mind))
-		fail(user, C, "Soul inteface failure")
+		fail(user, C, "Soul is lost.")
 		return FALSE
 	if(MN.active)
 		if(CI.data.ckey != ckey(MN.key))
-			fail(user, C, "Soul inteface failure")
+			fail(user, C, "Soul is lost.")
 			return FALSE
 	if(MN.current && MN.current.stat != DEAD)
-		fail(user, C, "Soul inteface failure")
+		fail(user, C, "Soul is lost.")
 		return FALSE
 
-	return CI.transfer_soul()
+	var/succ = CI.transfer_soul()
+
+	if(!succ)
+		fail(user, C, "Soul transfer failed.")
+		return FALSE
+
+	return TRUE
+
+/datum/ritual/targeted/cruciform/reincarnation/is_target_valid(index, obj/item/weapon/implant/external/core_implant/target)
+	if(index == 1)
+		if(target.wearer && target.wearer && target.activated && !target.active)
+			return TRUE
