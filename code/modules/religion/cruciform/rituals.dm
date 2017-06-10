@@ -152,6 +152,10 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 		fail(user, C, "This cruciform already activated.")
 		return FALSE
 
+	if(CI.wearer.stat == DEAD)
+		fail(user, C, "Soul cannot move to dead body.")
+		return FALSE
+
 	var/datum/mind/MN = CI.data.mind
 	if(!istype(MN, /datum/mind))
 		fail(user, C, "Soul is lost.")
@@ -175,4 +179,38 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 /datum/ritual/targeted/cruciform/reincarnation/is_target_valid(index, obj/item/weapon/implant/external/core_implant/target)
 	if(index == 1)
 		if(target.wearer && target.wearer && target.activated && !target.active)
+			return TRUE
+
+
+/datum/ritual/targeted/cruciform/ejection
+	name = "ejection"
+	phrase = "Eject cruciform implant from \[Target dead]"		//WIP
+
+/datum/ritual/targeted/cruciform/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C, list/targets)
+	if(targets.len != 1)
+		fail(user, C, "Cannot find follower.")
+		return FALSE
+
+	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = targets[1]
+
+	if(!CI)
+		fail(user, C, "Cruciform not found.")
+		return FALSE
+
+	if(!CI.wearer)
+		fail(user, C, "Cruciform is not installed.")
+		return FALSE
+
+	var/mob/M = CI.wearer
+
+	if(CI.active && M.stat != DEAD)
+		fail(user, C, "You can't eject activated cruciform from alive christian.")
+		return FALSE
+
+	CI.uninstall()
+	return TRUE
+
+/datum/ritual/targeted/cruciform/ejection/is_target_valid(index, obj/item/weapon/implant/external/core_implant/target)
+	if(index == 1)
+		if(target.wearer && (!target.active || target.wearer.stat == DEAD))
 			return TRUE

@@ -11,7 +11,6 @@
 	var/activated = FALSE			//true, if cruciform was activated once
 	var/list/allowed_rituals = list()
 	var/address = null				//string, used as id for targeted rituals
-	allowed_organs = list(BP_CHEST)
 
 /obj/item/weapon/implant/external/core_implant/Destroy()
 	processing_objects.Remove(src)
@@ -79,6 +78,10 @@
 	if(ishuman(M))
 		..()
 
+/obj/item/weapon/implant/external/core_implant/uninstall()
+	deactivate()
+	..()
+
 /obj/item/weapon/implant/external/core_implant/activate()
 	if(!wearer || active)
 		return
@@ -101,6 +104,10 @@
 		return FALSE
 
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
+		for(var/mob/M in player_list)
+			if(M.ckey == data.ckey)
+				if(1)	//angel check here
+					return FALSE
 		var/datum/mind/MN = data.mind
 		if(!istype(MN, /datum/mind))
 			return
@@ -139,9 +146,8 @@
 	if(istype(loc, /obj/machinery/neotheology))
 		address = "[loc.name] in [strip_improper(A.name)]"
 		return
+
 	address = null
-
-
 
 /obj/item/weapon/implant/external/core_implant/hear_talk(mob/living/carbon/human/H, message)
 	if(wearer != H)

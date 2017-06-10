@@ -18,20 +18,19 @@
 
 	var/final_phrase = phrase
 
+	var/list/usrview = view()
+
 	for(var/i = 1; i<=length(G); i+=1)
 		var/list/CL = list()
 		for(var/obj/item/weapon/implant/external/core_implant/C in world)
 			C.update_address()
-			if(istype(C, implant_type) && C.address && is_target_valid(i,C))
-				CL.Add(C.address)
+			if(C.loc && C.locs && C.locs[1] in usrview)
+				if(istype(C, implant_type) && C.address && is_target_valid(i,C))
+					CL.Add(C.address)
 
 		var/address = null
 		if(CL.len)
-			if(CL.len == 1)
-				address = CL[1]
-			else
-				address = input("Select [copytext(G[i],2,-1)]",
-				 "Ritual target",CL[1]) in CL
+			address = input("Select [copytext(G[i],2,-1)]","Ritual target",CL[1]) in CL
 
 		if(!address)
 			return
