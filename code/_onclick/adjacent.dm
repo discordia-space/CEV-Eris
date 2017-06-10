@@ -5,8 +5,7 @@
 	Examples include reaching a square diagonally or reaching something on the other side of a glass window.
 
 	This is calculated by looking for border items, or in the case of clicking diagonally from yourself, dense items.
-	This proc will NOT notice if you are trying to attack a window on the other side of a dense object in its turf.
-	There is a window helper for that.
+	This proc will NOT notice if you are trying to attack a window on the other side of a dense object in its turf.  There is a window helper for that.
 
 	Note that in all cases the neighbor is handled simply; this is usually the user's mob, in which case it is up to you
 	to check that the mob is not inside of something
@@ -29,13 +28,13 @@
 /turf/Adjacent(var/atom/neighbor, var/atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
-		return TRUE
-	if(get_dist(src,T0) > 1 || (T0.z!=z))
-		return FALSE
+		return 1
+	if(get_dist(src,T0) > 1 || (src.z!=T0.z))
+		return 0
 
 	if(T0.x == x || T0.y == y)
 		// Check for border blockages
-		return T0.ClickCross(get_dir(T0,src), TRUE) && ClickCross(get_dir(src,T0), TRUE, target)
+		return T0.ClickCross(get_dir(T0,src), border_only = 1) && src.ClickCross(get_dir(src,T0), border_only = 1, target_atom = target)
 
 	// Not orthagonal
 	var/in_dir = get_dir(neighbor,src) // eg. northwest (1+8)
@@ -112,26 +111,6 @@ Quick adjacency (to turf):
 		return .
 	return ..()
 
-/*
-	Check if obj block pass in any direction like windows, windor, etc
-*/
-/obj/proc/is_block_dir(target_dir, border_only, atom/target)
-	if(flags & ON_BORDER) // windows have throwpass but are on border, check them first
-		if(dir & target_dir)
-			return TRUE
-	if(!border_only)
-		return density
-	return FALSE
-
-/obj/structure/window/is_block_dir(target_dir, border_only, atom/target)
-	if(!is_fulltile())
-		var/obj/structure/window/W = target
-		if(istype(W))
-			//exception for breaking full tile windows on top of single pane windows
-			if(W.is_fulltile())
-				return FALSE
-	return ..()
-
 
 /*
 	This checks if you there is uninterrupted airspace between that turf and this one.
@@ -140,13 +119,20 @@ Quick adjacency (to turf):
 */
 /turf/proc/ClickCross(var/target_dir, var/border_only, var/target_atom = null)
 	for(var/obj/O in src)
-		// throwpass is used for anything you can click through
-		if(!O.density || O == target_atom || O.throwpass)
-			continue
+		if( !O.density || O == target_atom || O.throwpass) continue // throwpass is used for anything you can click through
 
-		if(O.is_block_dir(target_dir, border_only, target_atom))
-			return FALSE
-	return TRUE
+		if( O.flags&ON_BORDER) // windows have throwpass but are on border, check them first
+			if( O.dir & target_dir || O.dir&(O.dir-1) ) // full tile windows are just diagonals mechanically
+				var/obj/structure/window/W = target_atom
+				if(istype(W))
+					if(!W.is_fulltile())	//exception for breaking full tile windows on top of single pane windows
+						return 0
+				else
+					return 0
+
+		else if( !border_only ) // dense, not on border, cannot pass over
+			return 0
+	return 1
 /*
 	Aside: throwpass does not do what I thought it did originally, and is only used for checking whether or not
 	a thrown object should stop after already successfully entering a square.  Currently the throw code involved

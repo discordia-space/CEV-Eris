@@ -1744,6 +1744,7 @@
 #include "code\modules\recycling\sortingmachinery.dm"
 #include "code\modules\religion\core_implant.dm"
 #include "code\modules\religion\ritual.dm"
+#include "code\modules\religion\targeted.dm"
 #include "code\modules\religion\cruciform\bible.dm"
 #include "code\modules\religion\cruciform\cruciform.dm"
 #include "code\modules\religion\cruciform\rituals.dm"

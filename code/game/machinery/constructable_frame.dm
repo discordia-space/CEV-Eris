@@ -121,9 +121,9 @@
 
 						for(var/obj/O in src)
 							if(circuit.contain_parts) // things like disposal don't want their parts in them
-								O.loc = new_machine
+								O.forceMove(new_machine)
 							else
-								O.loc = null
+								O.forceMove(null)
 							new_machine.component_parts += O
 
 						if(circuit.contain_parts)
