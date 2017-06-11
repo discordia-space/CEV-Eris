@@ -163,7 +163,7 @@
 
 	src << "<span class = 'danger'>You settle into the empty brainpan and begin to expand, fusing inextricably with the dead flesh of [H].</span>"
 
-	H.add_language("Cortical Link")
+	H.add_language(LANGUAGE_CORTICAL)
 
 	if(host.stat == 2)
 		H.verbs |= /mob/living/carbon/human/proc/jumpstart
@@ -294,7 +294,7 @@
 
 			src << "\red <B>You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system.</B>"
 			host << "\red <B>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</B>"
-			host.add_language("Cortical Link")
+			host.add_language(LANGUAGE_CORTICAL)
 
 			// host -> brain
 			var/h2b_id = host.computer_id

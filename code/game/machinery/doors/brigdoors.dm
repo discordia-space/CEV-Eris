@@ -27,6 +27,7 @@
 	var/picture_state		// icon_state of alert picture, if not displaying text/numbers
 	var/list/obj/machinery/targets = list()
 	var/timetoset = 0		// Used to set releasetime upon starting the timer
+	var/list/advanced_access = list(access_armory)
 
 	maptext_height = 26
 	maptext_width = 32
@@ -156,6 +157,14 @@
 /obj/machinery/door_timer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
+//Check access for shower temp change of for other dangerous functions
+/obj/machinery/door_timer/proc/allowed_advanced(var/mob/user as mob)
+	var/obj/item/id = user.GetIdCard()
+	if(id)
+		var/list/access = id.GetAccess()
+		return has_access(list(), advanced_access, access)
+	return FALSE
+
 
 //Allows humans to use door_timer
 //Opens dialog window when someone clicks on door timer
@@ -268,8 +277,9 @@
 				S.toggle()
 
 		if(href_list["st"])
-			for(var/obj/machinery/cellshower/S in targets)
-				S.switchtemp()
+			if(allowed_advanced(usr))
+				for(var/obj/machinery/cellshower/S in targets)
+					S.switchtemp()
 
 		if(href_list["sp"])
 			for(var/obj/machinery/cellshower/S in targets)
@@ -343,31 +353,6 @@
 		ID.pixel_y = py
 		I.overlays += ID
 	return I
-
-
-/obj/machinery/door_timer/cell_1
-	name = "Cell 1"
-	id = "Cell 1"
-
-/obj/machinery/door_timer/cell_2
-	name = "Cell 2"
-	id = "Cell 2"
-
-/obj/machinery/door_timer/cell_3
-	name = "Cell 3"
-	id = "Cell 3"
-
-/obj/machinery/door_timer/cell_4
-	name = "Cell 4"
-	id = "Cell 4"
-
-/obj/machinery/door_timer/cell_5
-	name = "Cell 5"
-	id = "Cell 5"
-
-/obj/machinery/door_timer/cell_6
-	name = "Cell 6"
-	id = "Cell 6"
 
 #undef FONT_SIZE
 #undef FONT_COLOR

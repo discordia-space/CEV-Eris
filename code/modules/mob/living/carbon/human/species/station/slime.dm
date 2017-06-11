@@ -31,18 +31,18 @@
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 
 	has_limbs = list(
-		"chest" =  list("path" = /obj/item/organ/external/chest/unbreakable),
-		"groin" =  list("path" = /obj/item/organ/external/groin/unbreakable),
-		"head" =   list("path" = /obj/item/organ/external/head/unbreakable),
-		"l_arm" =  list("path" = /obj/item/organ/external/arm/unbreakable),
-		"r_arm" =  list("path" = /obj/item/organ/external/arm/right/unbreakable),
-		"l_leg" =  list("path" = /obj/item/organ/external/leg/unbreakable),
-		"r_leg" =  list("path" = /obj/item/organ/external/leg/right/unbreakable),
-		"l_hand" = list("path" = /obj/item/organ/external/hand/unbreakable),
-		"r_hand" = list("path" = /obj/item/organ/external/hand/right/unbreakable),
-		"l_foot" = list("path" = /obj/item/organ/external/foot/unbreakable),
-		"r_foot" = list("path" = /obj/item/organ/external/foot/right/unbreakable)
-		)
+		BP_CHEST =  new /datum/organ_description/chest/slime,
+		BP_GROIN =  new /datum/organ_description/groin/slime,
+		BP_HEAD =   new /datum/organ_description/head/slime,
+		BP_L_ARM =  new /datum/organ_description/arm/left/slime,
+		BP_R_ARM =  new /datum/organ_description/arm/right/slime,
+		BP_L_LEG =  new /datum/organ_description/leg/left/slime,
+		BP_R_LEG =  new /datum/organ_description/leg/right/slime,
+		BP_L_HAND = new /datum/organ_description/hand/left/slime,
+		BP_R_HAND = new /datum/organ_description/hand/right/slime,
+		BP_L_FOOT = new /datum/organ_description/foot/left/slime,
+		BP_R_FOOT = new /datum/organ_description/foot/right/slime
+	)
 
 /datum/species/slime/handle_death(var/mob/living/carbon/human/H)
 	spawn(1)

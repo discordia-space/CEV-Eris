@@ -1,7 +1,9 @@
-/datum/language/human/monkey
-	name = "Chimpanzee"
+/datum/language/monkey
+	name = LANGUAGE_MONKEY
 	desc = "Ook ook ook."
-	speech_verb = "chimpers"
-	ask_verb = "chimpers"
-	exclaim_verb = "screeches"
+	colour = "monkey"
+	speech_verb = list("chimpers")
+	ask_verb = list("chimpers")
+	exclaim_verb = list("screeches")
 	key = "6"
+	flags = WHITELISTED

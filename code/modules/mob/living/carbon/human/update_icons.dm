@@ -2,7 +2,7 @@
 	Global associative list for caching humanoid icons.
 	Index format m or f, followed by a string of 0 and 1 to represent bodyparts followed by husk fat hulk skeleton 1 or 0.
 	TODO: Proper documentation
-	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][s_tone]
+	icon_key is [species.race_key][husk][fat][hulk][skeleton]
 */
 var/global/list/human_icon_cache = list()
 var/global/list/tail_icon_cache = list() //key is [species.race_key][r_skin][g_skin][b_skin]
@@ -207,12 +207,14 @@ var/global/list/damage_icon_parts = list()
 
 		standing_image.overlays += DI
 
-	overlays_standing[DAMAGE_LAYER]	= standing_image
+	overlays_standing[DAMAGE_LAYER] = standing_image
 
 	if(update_icons)   update_icons()
 
 //BASE MOB SPRITE
 /mob/living/carbon/human/proc/update_body(var/update_icons=1)
+
+	appearance_test.Log("ENTED update_body for \"[real_name]\"")
 
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
@@ -222,97 +224,84 @@ var/global/list/damage_icon_parts = list()
 	var/hulk = (HULK in src.mutations)
 	var/skeleton = (SKELETON in src.mutations)
 
-	//CACHING: Generate an index key from visible bodyparts.
-	//0 = destroyed, 1 = normal, 2 = robotic, 3 = necrotic.
-
 	//Create a new, blank icon for our mob to use.
 	if(stand_icon)
 		qdel(stand_icon)
-	stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi',"blank")
 
-	var/g = "male"
-	if(gender == FEMALE)
-		g = "female"
-
-	var/icon_key = "[species.race_key][g][fat][s_tone][skin_color]"
-	if(lip_style)
-		icon_key += "[lip_style]"
+	if(!appearance_test.build_body)
+		stand_icon = new('icons/mob/human.dmi', "human_[(gender == MALE) ? "m" : "f"][body_build.index]")
+		appearance_test.Log("Sprite generation is disabled.")
 	else
-		icon_key += "nolips"
-	var/obj/item/organ/eyes/eyes = internal_organs_by_name["eyes"]
-	if(eyes)
-		icon_key += "[eyes_color]"
-	else
-		icon_key += "#000000"
+		stand_icon = new('icons/mob/human.dmi',"blank")
+		var/icon_key = ""
+		if(appearance_test.cache_sprites)
+			icon_key = "[species.race_key][fat]"
+			icon_key += "[husk ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
+			if(lip_style)
+				icon_key += "[lip_style]"
+			else
+				icon_key += "nolips"
 
-	for(var/organ_tag in species.has_limbs)
-		var/obj/item/organ/external/part = organs_by_name[organ_tag]
-		if(isnull(part) || part.is_stump())
-			icon_key += "0"
-		else if(part.status & ORGAN_ROBOT || part.robotic & ORGAN_ROBOT)
-			icon_key += "2[part.model ? "-[part.model]": ""]"
-		else if(part.status & ORGAN_DEAD)
-			icon_key += "3"
+			for(var/organ_tag in species.has_limbs)
+				var/obj/item/organ/external/part = organs_by_name[organ_tag]
+				if(isnull(part))
+					icon_key += "[organ_tag]Missed"
+					continue
+				icon_key += "[organ_tag][part.get_cache_key()]"
+
+			appearance_test.Log("Generated key: [icon_key]")
+
+		var/icon/base_icon
+		if(appearance_test.cache_sprites && human_icon_cache[icon_key])
+			appearance_test.Log("Cached icon found.")
+			base_icon = human_icon_cache[icon_key]
 		else
-			icon_key += "1"
-		if(part)
-			icon_key += "[part.species.race_key]"
-			icon_key += "[part.dna.GetUIState(DNA_UI_GENDER)]"
-			icon_key += "[part.dna.GetUIValue(DNA_UI_SKIN_TONE)]"
-			if(part.skin_col)
-				icon_key += "[skin_color]"
-			else
-				icon_key += "#000000"
+			appearance_test.Log("New icon will be generated.")
 
-	icon_key = "[icon_key][husk ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
+			//BEGIN CACHED ICON GENERATION.
+			base_icon = new('icons/mob/human.dmi',"blank")
 
-	var/icon/base_icon
-	if(human_icon_cache[icon_key])
-		base_icon = human_icon_cache[icon_key]
-	else
-		//BEGIN CACHED ICON GENERATION.
-		base_icon = new('icons/mob/human.dmi',"blank")
+			for(var/obj/item/organ/external/part in organs)
+				var/icon/temp = part.get_icon(skeleton)
+				//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
+				//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
+				if(part.icon_position&(LEFT|RIGHT))
+					var/icon/temp2 = new('icons/mob/human.dmi',"blank")
+					temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
+					temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
+					if(!(part.icon_position & LEFT))
+						temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
+					if(!(part.icon_position & RIGHT))
+						temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
+					base_icon.Blend(temp2, ICON_OVERLAY)
+					if(part.icon_position & LEFT)
+						temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
+					if(part.icon_position & RIGHT)
+						temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
+					base_icon.Blend(temp2, ICON_UNDERLAY)
+				else
+					base_icon.Blend(temp, ICON_OVERLAY)
 
-		for(var/obj/item/organ/external/part in organs)
-			var/icon/temp = part.get_icon(skeleton)
-			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
-			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
-			if(part.icon_position&(LEFT|RIGHT))
-				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
-				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
-				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
-				if(!(part.icon_position & LEFT))
-					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				if(!(part.icon_position & RIGHT))
-					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				base_icon.Blend(temp2, ICON_OVERLAY)
-				if(part.icon_position & LEFT)
-					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
-				if(part.icon_position & RIGHT)
-					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
-				base_icon.Blend(temp2, ICON_UNDERLAY)
-			else
-				base_icon.Blend(temp, ICON_OVERLAY)
+			if(!skeleton)
+				if(husk)
+					base_icon.ColorTone(husk_color_mod)
+				else if(hulk)
+					var/list/tone = ReadRGB(hulk_color_mod)
+					base_icon.MapColors(rgb(tone[1],0,0),rgb(0,tone[2],0),rgb(0,0,tone[3]))
 
-		if(!skeleton)
-			if(husk)
-				base_icon.ColorTone(husk_color_mod)
-			else if(hulk)
-				var/list/tone = ReadRGB(hulk_color_mod)
-				base_icon.MapColors(rgb(tone[1],0,0),rgb(0,tone[2],0),rgb(0,0,tone[3]))
+			//Handle husk overlay.
+			if(husk && ("overlay_husk" in icon_states(species.icobase)))
+				var/icon/mask = new(base_icon)
+				var/icon/husk_over = new(species.icobase,"overlay_husk")
+				mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
+				husk_over.Blend(mask, ICON_ADD)
+				base_icon.Blend(husk_over, ICON_OVERLAY)
 
-		//Handle husk overlay.
-		if(husk && ("overlay_husk" in icon_states(species.icobase)))
-			var/icon/mask = new(base_icon)
-			var/icon/husk_over = new(species.icobase,"overlay_husk")
-			mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
-			husk_over.Blend(mask, ICON_ADD)
-			base_icon.Blend(husk_over, ICON_OVERLAY)
+		if(appearance_test.cache_sprites)
+			human_icon_cache[icon_key] = base_icon
 
-		human_icon_cache[icon_key] = base_icon
-
-	//END CACHED ICON GENERATION.
-	stand_icon.Blend(base_icon,ICON_OVERLAY)
+		//END CACHED ICON GENERATION.
+		stand_icon.Blend(base_icon,ICON_OVERLAY)
 
 	//Underwear
 	if(species.appearance_flags & HAS_UNDERWEAR)
@@ -322,6 +311,7 @@ var/global/list/damage_icon_parts = list()
 				continue
 			stand_icon.Blend(new /icon(body_build.underwear_icon, UW.icon_state), ICON_OVERLAY)
 
+	appearance_test.Log("EXIT update_body()")
 	if(update_icons)
 		update_icons()
 
@@ -341,7 +331,7 @@ var/global/list/damage_icon_parts = list()
 		return
 
 	//base icons
-	var/icon/face_standing	= new /icon('icons/mob/hair.dmi',"bald")
+	var/icon/face_standing = new /icon('icons/mob/hair.dmi',"bald")
 
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
@@ -396,11 +386,12 @@ var/global/list/damage_icon_parts = list()
 	var/image/standing = image('icons/mob/mob.dmi', "blank")
 	var/have_icon = FALSE
 	for(var/obj/item/weapon/implant/I in src)
-		if(I.wearer == src)
+		if(I.is_external() && I.wearer == src)
 			var/image/mob_icon = I.get_mob_overlay(gender, body_build.index)
 			if(mob_icon)
 				standing.overlays += mob_icon
 				have_icon = TRUE
+
 	if(have_icon)
 		overlays_standing[IMPLANTS_LAYER] = standing
 	else

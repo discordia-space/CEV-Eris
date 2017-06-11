@@ -7,6 +7,14 @@
 	legal = FALSE
 	origin_tech = list(TECH_MATERIAL=2, TECH_COMBAT=3, TECH_BIO=4, TECH_ILLEGAL=4)
 
+/obj/item/weapon/implant/explosive/New()
+	..()
+	add_hearing()
+
+/obj/item/weapon/implant/explosive/Destroy()
+	remove_hearing()
+	..()
+
 /obj/item/weapon/implant/explosive/get_data()
 	var/data = {"
 		<b>Implant Specifications:</b><BR>
@@ -101,7 +109,7 @@
 			explosion(get_turf(wearer), -1, -1, 2, 3)
 			qdel(src)
 
-/obj/item/weapon/implant/explosive/emp_act(severity)
+/obj/item/weapon/implant/explosive/malfunction(severity)
 	if (malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
@@ -119,7 +127,7 @@
 					else
 						meltdown()		//50% chance of implant disarming
 	spawn (20)
-		malfunction--
+		malfunction = MALFUNCTION_NONE
 
 
 /obj/item/weapon/implantcase/explosive

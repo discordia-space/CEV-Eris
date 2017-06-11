@@ -2,14 +2,13 @@
 	name = "Operating Table"
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
-	icon_state = "table2-idle"
+	icon_state = "optable-idle"
 	density = 1
 	anchored = 1.0
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5
 	var/mob/living/carbon/human/victim = null
-	var/strapped = 0.0
 
 	var/obj/machinery/computer/operating/computer = null
 
@@ -56,25 +55,15 @@
 	else
 		return 0
 
-
-/obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
-
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
-		return
-	user.drop_item()
-	if (O.loc != src.loc)
-		step(O, get_dir(O, src))
-	return
-
 /obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, src.loc))
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
 		if(M.lying)
 			src.victim = M
-			icon_state = M.pulse() ? "table2-active" : "table2-idle"
+			icon_state = M.pulse() ? "optable-active" : "optable-idle"
 			return 1
 	src.victim = null
-	icon_state = "table2-idle"
+	icon_state = "optable-idle"
 	return 0
 
 /obj/machinery/optable/process()
@@ -96,9 +85,9 @@
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		src.victim = H
-		icon_state = H.pulse() ? "table2-active" : "table2-idle"
+		icon_state = H.pulse() ? "optable-active" : "optable-idle"
 	else
-		icon_state = "table2-idle"
+		icon_state = "optable-idle"
 
 /obj/machinery/optable/MouseDrop_T(mob/target, mob/user)
 
@@ -130,7 +119,7 @@
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	check_victim()
-	if(src.victim && get_turf(victim) == get_turf(src) && victim.lying)
+	if(victim)
 		usr << "<span class='warning'>\The [src] is already occupied!</span>"
 		return 0
 	if(patient.buckled)

@@ -43,8 +43,8 @@
 
 /mob/living/simple_animal/spiderbot/New()
 	..()
-	add_language("Galactic Common")
-	default_language = all_languages["Galactic Common"]
+	add_language(LANGUAGE_COMMON)
+	default_language = all_languages[LANGUAGE_COMMON]
 	verbs |= /mob/living/proc/ventcrawl
 	verbs |= /mob/living/proc/hide
 
@@ -81,7 +81,7 @@
 
 		if(istype(O, /obj/item/device/mmi/digital))
 			positronic = 1
-			add_language("Robot Talk")
+			add_language(LANGUAGE_ROBOT)
 
 		user.drop_item()
 		src.mmi = O
@@ -177,7 +177,7 @@
 		real_name = initial(real_name)
 		name = real_name
 		update_icon()
-	remove_language("Robot Talk")
+	remove_language(LANGUAGE_ROBOT)
 	positronic = null
 
 /mob/living/simple_animal/spiderbot/Destroy()

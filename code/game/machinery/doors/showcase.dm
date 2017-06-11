@@ -12,8 +12,8 @@
 	opacity = 0
 	..()
 
-/obj/machinery/door/blast/shutters/glass/AltClick()
-	return
+/obj/machinery/door/blast/shutters/glass/is_block_dir(target_dir, border_only, atom/target)
+	return ..(target_dir, FALSE, target)
 
 /obj/machinery/door/blast/shutters/glass/attackby(obj/item/I, mob/user, params)
 	if(density)
@@ -56,9 +56,12 @@
 							return
 
 		if(I.damtype == BRUTE || I.damtype == BURN)
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+			user.do_attack_animation(src)
 			hit(I.force)
-			user.visible_message("<span class='danger'>[user] has hit the [name] with [I]!</span>",
-								 "<span class='danger'>[user] has hit the [name] with [I]!</span>")
+			user.visible_message(
+				"<span class='danger'>[user] has hit the [name] with [I]!</span>",
+			)
 
 	else
 		user << "<span class='warning'>It must be closed!</span>"

@@ -1,78 +1,70 @@
 var/list/christians = list()
 
-/obj/item/weapon/implant/cruciform
+/obj/item/weapon/implant/external/core_implant/cruciform
 	name = "cruciform"
-	icon_state = "cruciform_red"
-	w_class = 2
-	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
-	var/datum/dna2/record/data = null
-	var/power = 50
-	var/max_power = 50
-	var/success_modifier = 1
-	var/active = FALSE
-	var/list/allowed_rituals = list(/datum/ritual/relief, /datum/ritual/soul_hunger, /datum/ritual/entreaty)
+	icon_state = "cruciform_green"
+	power = 50
+	max_power = 50
+	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty)
+	position_flag = POS_FRONT_TOP
 
-/obj/item/weapon/implant/cruciform/proc/use_power(var/value)
-	power = max(0, power - value)
-
-/obj/item/weapon/implant/cruciform/proc/restore_power(var/value)
-	power = min(max_power, power + value)
-
-/obj/item/weapon/implant/cruciform/install(mob/living/carbon/human/H)
-	..(H, "chest")
-
-/obj/item/weapon/implant/cruciform/get_mob_overlay(gender, body_build)
+/obj/item/weapon/implant/external/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
 	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender][body_build]")
 
-/obj/item/weapon/implant/cruciform/activate()
-	active = TRUE
-	update_data()
-	processing_objects.Add(src)
-	christians.Add(wearer)
-
-/obj/item/weapon/implant/cruciform/proc/update_data()
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/remove_cyber()
 	if(!wearer)
 		return
+	for(var/obj/O in wearer)
+		if(istype(O, /obj/item/organ/external/robotic))
+			var/obj/item/organ/external/robotic/R = O
+			wearer.visible_message("<span class='danger'>[wearer]'s [R.name] tears off.</span>",\
+			"<span class='danger'>Your [R.name] tears off.</span>")
+			R.droplimb()
+		if(istype(O, /obj/item/weapon/implant))
+			if(istype(O, /obj/item/weapon/implant/external/core_implant/cruciform))
+				continue
+			var/obj/item/weapon/implant/R = O
+			wearer.visible_message("<span class='danger'>[R.name] rips through [wearer]'s [R.part].</span>",\
+			"<span class='danger'>[R.name] rips through your [R.part].</span>")
+			R.part.take_damage(rand(20)+10)
+			R.forceMove(get_turf(wearer))
+			R.wearer = null
+			R.part.implants.Remove(R)
+			R.malfunction = MALFUNCTION_PERMANENT
+	if(istype(wearer, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = wearer
+		H.update_implants()
 
-	data = new /datum/dna2/record()
-	data.dna = wearer.dna
-	data.ckey = wearer.ckey
-	data.mind = wearer.mind
-	data.id = copytext(md5(wearer.real_name), 2, 6)
-	data.name = data.dna.real_name
-	data.types = DNA2_BUF_UI | DNA2_BUF_UE | DNA2_BUF_SE
-	data.languages = wearer.languages
-	data.flavor = wearer.flavor_text
-
-/obj/item/weapon/implant/cruciform/process()
-	if((!implanted && !wearer) || !active)
+/obj/item/weapon/implant/external/core_implant/cruciform/activate()
+	if(!wearer || active)
 		return
-	restore_power(0.5)
+	..()
+	christians.Add(wearer)
 
-/obj/item/weapon/implant/cruciform/Destroy()
-	processing_objects.Remove(src)
+/obj/item/weapon/implant/external/core_implant/cruciform/deactivate()
+	if(!active || !wearer)
+		return
+	christians.Remove(wearer)
 	..()
 
-/obj/item/weapon/implant/cruciform/hear_talk(mob/living/carbon/human/H, message)
-	if(!active)
-		return
+/obj/item/weapon/implant/external/core_implant/cruciform/can_activate()
+	if(!wearer || activated || data)
+		return FALSE
 
-	if(wearer != H)
-		return
+	if(!can_operate(wearer))
+		return FALSE
 
-	message = replace_characters(message, list("." = ""))
-	for(var/datum/ritual/R in allowed_rituals)
-		if(R.phrase == message)
-			if(R.power > src.power)
-				H << "<span class='danger'></span>"
-				return
-			R.perform(H, src)
-			return
+	for(var/obj/item/clothing/C in wearer)
+		if(wearer.l_hand == C || wearer.r_hand == C)
+			continue
+		return FALSE
+	return TRUE
 
-
-/obj/item/weapon/implant/cruciform/priest
-	icon_state = "cruciform_green"
+/obj/item/weapon/implant/external/core_implant/cruciform/priest
+	icon_state = "cruciform_red"
 	power = 100
 	max_power = 100
 	success_modifier = 3
+	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty,
+					/datum/ritual/cruciform/epiphany, /datum/ritual/cruciform/resurrection, /datum/ritual/cruciform/reincarnation)

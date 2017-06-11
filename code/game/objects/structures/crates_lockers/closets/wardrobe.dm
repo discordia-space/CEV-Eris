@@ -4,12 +4,12 @@
 	icon_state = "blue"
 	icon_closed = "blue"
 
-/obj/structure/closet/wardrobe/red
+/obj/structure/closet/wardrobe/sec
 	name = "security wardrobe"
-	icon_state = "red"
-	icon_closed = "red"
+	icon_state = "blue"
+	icon_closed = "blue"
 
-/obj/structure/closet/wardrobe/red/New()
+/obj/structure/closet/wardrobe/sec/New()
 	..()
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/under/rank/security(src)
@@ -72,7 +72,6 @@
 	new /obj/item/clothing/suit/chaplain_hoodie(src)
 	new /obj/item/clothing/head/chaplain_hood(src)
 	new /obj/item/clothing/under/wedding/bride_white(src)
-	new /obj/item/weapon/storage/backpack/cultpack (src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/deck/tarot(src)

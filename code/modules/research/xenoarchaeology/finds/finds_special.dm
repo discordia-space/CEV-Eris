@@ -22,7 +22,13 @@
 	var/max_stored_messages = 100
 
 /obj/item/clothing/mask/gas/poltergeist/New()
+	..()
 	processing_objects.Add(src)
+	add_hearing()
+
+/obj/item/clothing/mask/gas/poltergeist/Destroy()
+	remove_hearing()
+	..()
 
 /obj/item/clothing/mask/gas/poltergeist/process()
 	if(heard_talk.len && istype(src.loc, /mob/living) && prob(10))
@@ -57,6 +63,11 @@
 /obj/item/weapon/vampiric/New()
 	..()
 	processing_objects.Add(src)
+	add_hearing()
+
+/obj/item/weapon/vampiric/Destroy()
+	remove_hearing()
+	..()
 
 /obj/item/weapon/vampiric/process()
 	//see if we've identified anyone nearby

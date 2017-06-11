@@ -113,6 +113,7 @@
 	log_message("[src.name] created.")
 	loc.Entered(src)
 	mechas_list += src //global mech list
+	add_hearing()
 	return
 
 /obj/mecha/Destroy()
@@ -166,6 +167,7 @@
 	spark_system = null
 
 	mechas_list -= src //global mech list
+	remove_hearing()
 	..()
 
 ////////////////////////
