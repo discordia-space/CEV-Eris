@@ -12,14 +12,15 @@
 /datum/ritual/proc/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, targets)
 	return TRUE
 
-//code of ritual fail, called by fail(H,C,targets)
-/datum/ritual/proc/failed(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, targets)
+//code of ritual fail, called by fail(H,C,targets)		'on_chance' will be true, if ritual failed on chance check
+/datum/ritual/proc/failed(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, targets, on_chance = FALSE)
 	return
 
 /datum/ritual/proc/activate(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, var/list/targets, var/force = FALSE)
 	C.use_power(src.power)
 	if(!force && !check_success(C))
-		fail(H, C, targets)
+		H << "<span class='danger'>[fail_message]</span>"
+		failed(H, C, targets, TRUE)
 	else
 		if(perform(H, C, targets))
 			H << "<span class='notice'>[success_message]</span>"

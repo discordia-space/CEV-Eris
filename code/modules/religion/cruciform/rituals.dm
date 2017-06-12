@@ -185,6 +185,7 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 /datum/ritual/targeted/cruciform/ejection
 	name = "ejection"
 	phrase = "Eject cruciform implant from \[Target dead]"		//WIP
+	desc = "No comments."
 
 /datum/ritual/targeted/cruciform/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C, list/targets)
 	if(targets.len != 1)
