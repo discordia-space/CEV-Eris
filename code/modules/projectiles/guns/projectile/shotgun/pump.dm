@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/pump
-	name = "FS SG \"Remmington\""
-	desc = "The mass-produced Remmington 29x shotgun is a favourite of militia forces on many rimworlds."
+	name = "FS SG \"Kammerer\""
+	desc = "Old Remington design from modern materials, this shotgun is a favourite of militia forces on many worlds."
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4
