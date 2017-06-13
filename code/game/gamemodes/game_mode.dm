@@ -197,9 +197,6 @@ var/global/list/additional_antag_types = list()
 	spawn (ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
 
-	spawn (rand(waittime_l, waittime_h))
-		send_intercept()
-
 	//Assign all antag types for this game mode. Any players spawned as antags earlier should have been removed from the pending list, so no need to worry about those.
 	for(var/datum/antagonist/antag in antag_templates)
 		if(!(antag.flags & ANTAG_OVERRIDE_JOB))
@@ -279,48 +276,6 @@ var/global/list/additional_antag_types = list()
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
-
-/datum/game_mode/proc/send_intercept()
-
-	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
-	intercepttext += "<B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with subversive elements:</B><br>"
-
-	var/list/disregard_roles = list()
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		if(antag.flags & ANTAG_SUSPICIOUS)
-			disregard_roles.Add(antag.role_text)
-
-	var/list/suspects = list()
-	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.mind)
-
-		// NT relation option
-		var/special_role = man.mind.special_role
-		var/datum/antagonist/special_role_data = get_antag_data(special_role)
-
-		if (special_role in disregard_roles)
-			continue
-		// Antags
-		else if(special_role_data && prob(special_role_data.suspicion_chance))
-			suspects.Add(man)
-
-		// Some poor people who were just in the wrong place at the wrong time..
-		else if(prob(10))
-			suspects.Add(man)
-
-	for(var/mob/M in suspects)
-		if(player_is_antag(M.mind, only_offstation_roles = 1))
-			continue
-		switch(rand(1, 100))
-			if(1 to 50)
-				intercepttext += "Someone with the job of <b>[M.mind.assigned_role]</b> <br>"
-			else
-				intercepttext += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b> <br>"
-
-	//New message handling
-	post_comm_message("Cent. Com. Status Summary", intercepttext)
-
-	world << sound('sound/AI/commandreport.ogg')
 
 /datum/game_mode/proc/get_players_for_role(var/role, var/antag_id)
 	var/list/players = list()
