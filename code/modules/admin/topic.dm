@@ -1771,7 +1771,7 @@
 
 	if(href_list["add_player_info"])
 		var/key = href_list["add_player_info"]
-		var/add = sanitize(input("Add Player Info") as null|text)
+		var/add = input_utf8("Add Player Info")
 		if(!add) return
 
 		notes_add(key,add,usr)
