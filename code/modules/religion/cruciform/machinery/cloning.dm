@@ -42,6 +42,7 @@
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/neotheology/cloner(src)
+	component_parts += new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
@@ -215,7 +216,7 @@
 //Cloning errors
 /obj/machinery/neotheology/cloner/proc/not_enough_biomass()
 	if(biomass_error < 1)
-		visible_message("<span class='warning'>Not enugh biomass!</span>")
+		visible_message("<span class='warning'>Not enough biomass!</span>")
 	if(biomass_error > 3)
 		if(occupant)
 			if(cloning_stage <= CLONING_BODY)
@@ -262,7 +263,7 @@
 
 		if(world.time >= stage_timer)
 
-			var/datum/dna2/record/R = read_data()
+			var/datum/coreimplant_record/R = read_data()
 
 			var/has_bio = require_biomass(stage_biomass[get_next_stage()])
 
@@ -296,6 +297,7 @@
 						occupant.dna = R.dna.Clone()
 						occupant.set_species()
 						occupant.real_name = R.dna.real_name
+						occupant.age = R.age
 						occupant.UpdateAppearance()
 						occupant.sync_organ_dna()
 
@@ -434,6 +436,7 @@
 
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/neotheology/biocan(src)
+	component_parts += new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
@@ -502,11 +505,11 @@
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/neotheology/reader(src)
+	component_parts += new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	RefreshParts()
 
-//graphical procs
 /obj/machinery/neotheology/reader/proc/start_reading()
 	if(!implant)
 		return
@@ -541,7 +544,7 @@
 		return
 
 	if(reading)
-		user << "<span class='notice'>You try to pull the implant, but it does not move.</span>"
+		user << "<span class='notice'>You try to pull the [implant], but it does not move.</span>"
 		return
 
 	user.put_in_active_hand(implant)

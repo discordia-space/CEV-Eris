@@ -7,6 +7,7 @@ var/list/christians = list()
 	max_power = 50
 	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty)
 	position_flag = POS_FRONT_TOP
+	allowed_organs = list(BP_CHEST)
 
 /obj/item/weapon/implant/external/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
@@ -22,7 +23,7 @@ var/list/christians = list()
 			"<span class='danger'>Your [R.name] tears off.</span>")
 			R.droplimb()
 		if(istype(O, /obj/item/weapon/implant))
-			if(istype(O, /obj/item/weapon/implant/external/core_implant/cruciform))
+			if(O == src)
 				continue
 			var/obj/item/weapon/implant/R = O
 			wearer.visible_message("<span class='danger'>[R.name] rips through [wearer]'s [R.part].</span>",\
@@ -41,6 +42,11 @@ var/list/christians = list()
 		return
 	..()
 	christians.Add(wearer)
+
+/obj/item/weapon/implant/external/core_implant/cruciform/process()
+	..()
+	if(world.time == round(world.time))
+		remove_cyber()
 
 /obj/item/weapon/implant/external/core_implant/cruciform/deactivate()
 	if(!active || !wearer)
@@ -67,4 +73,5 @@ var/list/christians = list()
 	max_power = 100
 	success_modifier = 3
 	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty,
-					/datum/ritual/cruciform/epiphany, /datum/ritual/cruciform/resurrection, /datum/ritual/cruciform/reincarnation)
+					/datum/ritual/targeted/cruciform/epiphany, /datum/ritual/targeted/cruciform/resurrection,
+					/datum/ritual/targeted/cruciform/reincarnation, /datum/ritual/targeted/cruciform/ejection)
