@@ -32,7 +32,7 @@
 	var/harvest_speed
 	var/capacity
 	var/charge_use
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/big/cell = null
 
 	//Flags
 	var/need_update_field = 0
@@ -47,7 +47,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/cell/high(src)
+	component_parts += new /obj/item/weapon/cell/big/high(src)
 
 	RefreshParts()
 
@@ -150,7 +150,7 @@
 			return
 	if(!panel_open || active) return ..()
 
-	if(istype(O, /obj/item/weapon/cell))
+	if(istype(O, /obj/item/weapon/cell/big))
 		if(cell)
 			user << "The drill already has a cell installed."
 		else
@@ -217,7 +217,7 @@
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
 			charge_use -= 10 * P.rating
-	cell = locate(/obj/item/weapon/cell) in component_parts
+	cell = locate(/obj/item/weapon/cell/big) in component_parts
 
 /obj/machinery/mining/drill/proc/check_supports()
 

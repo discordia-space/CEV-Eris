@@ -11,5 +11,5 @@
 	new /obj/item/clothing/head/helmet/space/void(src)
 	new /obj/item/clothing/suit/space/void(src)
 	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/cell(src)
+	new /obj/item/weapon/cell/big(src)
 	new /obj/item/device/multitool(src)
