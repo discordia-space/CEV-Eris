@@ -193,14 +193,13 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 	priest = TRUE
 
 /datum/ritual/cruciform/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
-	world << "BEGIN"
 	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI
 	var/mob/living/H = G.affecting
-	world << "FIRST"
+
 	if(G)
 		CI = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in G.affecting
-	world << "SECOND"
+
 	if(CI)
 		fail("[H] already have a cruciform installed", user, C)
 		return FALSE

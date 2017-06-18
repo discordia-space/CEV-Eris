@@ -124,7 +124,6 @@
 				H << "<span class='danger'>You are not allowed to perform [R.name].</span>"
 				return
 			R.activate(H, src, R.get_targets(message))
-			return
 
 /obj/item/weapon/implant/external/core_implant/proc/use_power(var/value)
 	power = max(0, power - value)
