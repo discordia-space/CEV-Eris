@@ -986,3 +986,18 @@ default behaviour is:
 	if(ismob(AM))
 		var/mob/pulled = AM
 		pulled.inertia_dir = 0
+
+
+// Static Overlays
+
+/mob/living/proc/generate_static_overlay()
+	static_overlay = image(get_static_icon(new/icon(icon, icon_state)), loc = src)
+	static_overlay.override = 1
+
+/mob/living/New()
+	..()
+	generate_static_overlay()
+	for(var/mob/observer/eye/angel/A in player_list)
+		if(A)
+			A.static_overlays |= static_overlay
+			A.client.images |= static_overlay
