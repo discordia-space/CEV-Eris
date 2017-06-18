@@ -25,10 +25,7 @@
 /obj/item/weapon/implant/proc/is_external()
 	return istype(src, /obj/item/weapon/implant/external)
 
-	// What does the implant do upon injection?
-	// return FALSE if the implant fails (ex. Revhead and loyalty implant.)
-	// return TRUE  if the implant succeeds (ex. Nonrevhead and loyalty implant.)
-
+//return TRUE for implanter icon update.
 /obj/item/weapon/implant/proc/install(var/mob/living/target, var/obj/item/organ/external/affected, var/mob/user)
 	if(!affected)
 		user << "<span class='warning'>[target] miss that body part!.</span>"
