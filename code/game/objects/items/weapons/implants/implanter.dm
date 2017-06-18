@@ -42,6 +42,9 @@
 		if(M.body_part_covered(user.targeted_organ))
 			user << "<span class='warning'>You can't implant through clothes.</span>"
 			return
+		if(src.implant.allowed_organs.len && !(user.targeted_organ in src.implant.allowed_organs))
+			user << "<span class='warning'>[src.implant] cannot be implaned in this limb.</span>"
+			return
 		M.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>")
 
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
