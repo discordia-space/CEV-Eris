@@ -10,7 +10,7 @@
 	..()
 	update_icon()
 
-/obj/item/weapon/cell/big/drain_power(var/drain_check, var/surge, var/power = 0)
+/obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
 
 	if(drain_check)
 		return 1
@@ -22,7 +22,7 @@
 
 	return use(cell_amt) / CELLRATE
 
-/obj/item/weapon/cell/big/update_icon()
+/obj/item/weapon/cell/update_icon()
 	overlays.Cut()
 
 	if(charge < 0.01)
@@ -32,18 +32,18 @@
 	else
 		overlays += image('icons/obj/power.dmi', "cell-o1")
 
-/obj/item/weapon/cell/big/proc/percent()		// return % charge of cell
+/obj/item/weapon/cell/proc/percent()		// return % charge of cell
 	return 100.0*charge/maxcharge
 
-/obj/item/weapon/cell/big/proc/fully_charged()
+/obj/item/weapon/cell/proc/fully_charged()
 	return (charge == maxcharge)
 
 // checks if the power cell is able to provide the specified amount of charge
-/obj/item/weapon/cell/big/proc/check_charge(var/amount)
+/obj/item/weapon/cell/proc/check_charge(var/amount)
 	return (charge >= amount)
 
 // use power from a cell, returns the amount actually used
-/obj/item/weapon/cell/big/proc/use(var/amount)
+/obj/item/weapon/cell/proc/use(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -53,7 +53,7 @@
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
 // from the cell and returns 1. Otherwise does nothing and returns 0.
-/obj/item/weapon/cell/big/proc/checked_use(var/amount)
+/obj/item/weapon/cell/proc/checked_use(var/amount)
 	if(!check_charge(amount))
 		return 0
 	use(amount)
@@ -71,7 +71,7 @@
 	return amount_used
 
 
-/obj/item/weapon/cell/big/examine(mob/user)
+/obj/item/weapon/cell/examine(mob/user)
 	if(get_dist(src, user) > 1)
 		return
 
@@ -80,7 +80,7 @@
 	else
 		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
 
-/obj/item/weapon/cell/big/attackby(obj/item/W, mob/user)
+/obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = W
@@ -97,7 +97,7 @@
 		S.reagents.clear_reagents()
 
 
-/obj/item/weapon/cell/big/proc/explode()
+/obj/item/weapon/cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)
@@ -124,13 +124,13 @@
 
 	qdel(src)
 
-/obj/item/weapon/cell/big/proc/corrupt()
+/obj/item/weapon/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
 		rigged = 1 //broken batterys are dangerous
 
-/obj/item/weapon/cell/big/emp_act(severity)
+/obj/item/weapon/cell/emp_act(severity)
 	//remove this once emp changes on dev are merged in
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc
@@ -142,7 +142,7 @@
 		charge = 0
 	..()
 
-/obj/item/weapon/cell/big/ex_act(severity)
+/obj/item/weapon/cell/ex_act(severity)
 
 	switch(severity)
 		if(1.0)
@@ -162,7 +162,7 @@
 				corrupt()
 	return
 
-/obj/item/weapon/cell/big/proc/get_electrocute_damage()
+/obj/item/weapon/cell/proc/get_electrocute_damage()
 	switch (charge)
 /*		if (9000 to INFINITY)
 			return min(rand(90,150),rand(90,150))
