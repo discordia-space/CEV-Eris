@@ -662,11 +662,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 //MESSENGER/NOTE FUNCTIONS===================================
 
 		if ("Edit")
-			var/n = input(U, "Please enter message", name, notehtml) as message
+			var/n = input_utf8(U, "Please enter message", name, notehtml, type = "message")
 			if (in_range(src, U) && loc == U)
 				n = sanitizeSafe(n, extra = 0)
 				if (mode == 1)
-					note = cp1251_to_utf8(rhtml_decode(n))
+					note = n
 					notehtml = note
 					note = replacetext(note, "\n", "<br>")
 			else

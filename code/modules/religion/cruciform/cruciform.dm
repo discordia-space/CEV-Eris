@@ -5,8 +5,8 @@ var/list/christians = list()
 	icon_state = "cruciform_green"
 	power = 50
 	max_power = 50
-	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty)
 	position_flag = POS_FRONT_TOP
+	allowed_organs = list(BP_CHEST)
 
 /obj/item/weapon/implant/external/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
@@ -22,12 +22,12 @@ var/list/christians = list()
 			"<span class='danger'>Your [R.name] tears off.</span>")
 			R.droplimb()
 		if(istype(O, /obj/item/weapon/implant))
-			if(istype(O, /obj/item/weapon/implant/external/core_implant/cruciform))
+			if(O == src)
 				continue
 			var/obj/item/weapon/implant/R = O
 			wearer.visible_message("<span class='danger'>[R.name] rips through [wearer]'s [R.part].</span>",\
 			"<span class='danger'>[R.name] rips through your [R.part].</span>")
-			R.part.take_damage(rand(20)+10)
+			R.part.take_damage(rand(40)+20)
 			R.forceMove(get_turf(wearer))
 			R.wearer = null
 			R.part.implants.Remove(R)
@@ -42,29 +42,19 @@ var/list/christians = list()
 	..()
 	christians.Add(wearer)
 
+/obj/item/weapon/implant/external/core_implant/cruciform/process()
+	..()
+	if(world.time == round(world.time))
+		remove_cyber()
+
 /obj/item/weapon/implant/external/core_implant/cruciform/deactivate()
 	if(!active || !wearer)
 		return
 	christians.Remove(wearer)
 	..()
 
-/obj/item/weapon/implant/external/core_implant/cruciform/can_activate()
-	if(!wearer || activated || data)
-		return FALSE
-
-	if(!can_operate(wearer))
-		return FALSE
-
-	for(var/obj/item/clothing/C in wearer)
-		if(wearer.l_hand == C || wearer.r_hand == C)
-			continue
-		return FALSE
-	return TRUE
-
 /obj/item/weapon/implant/external/core_implant/cruciform/priest
 	icon_state = "cruciform_red"
 	power = 100
 	max_power = 100
 	success_modifier = 3
-	allowed_rituals = list(/datum/ritual/cruciform/relief, /datum/ritual/cruciform/soul_hunger, /datum/ritual/cruciform/entreaty,
-					/datum/ritual/cruciform/epiphany, /datum/ritual/cruciform/resurrection, /datum/ritual/cruciform/reincarnation)

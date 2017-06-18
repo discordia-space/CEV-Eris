@@ -37,7 +37,7 @@
 
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
-	var/obj/item/weapon/cell/cell
+	var/obj/item/weapon/cell/big/cell
 	var/state = 0
 	var/list/log = new
 	var/last_message = 0
@@ -185,7 +185,7 @@
 	return internal_tank
 
 /obj/mecha/proc/add_cell()
-	cell = new /obj/item/weapon/cell/mecha(src)
+	cell = new /obj/item/weapon/cell/big/super(src)
 
 /obj/mecha/proc/add_cabin()
 	cabin_air = new
@@ -804,7 +804,7 @@
 				src.log_message("Eject attempt made using maintenance controls - rejected.")
 		return
 
-	else if(istype(W, /obj/item/weapon/cell))
+	else if(istype(W, /obj/item/weapon/cell/big))
 		if(state==4)
 			if(!src.cell)
 				user << "You install the powercell"

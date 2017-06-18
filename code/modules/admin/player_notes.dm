@@ -142,6 +142,6 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		dat = "No information found on the given key."
 	else
 		for(var/datum/player_info/I in infos)
-			dat += "[I.content]\nby [I.author] ([I.rank]) on [I.timestamp]\n\n"
+			dat += "[I.content]\n\nby [I.author] ([I.rank]) on [I.timestamp]\n\n"
 
 	return list2params(list(dat))
