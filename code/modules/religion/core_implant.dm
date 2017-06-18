@@ -9,49 +9,12 @@
 	var/success_modifier = 1
 	var/active = FALSE
 	var/activated = FALSE			//true, if cruciform was activated once
-	var/list/allowed_rituals = list()
 	var/address = null				//string, used as id for targeted rituals
 
 /obj/item/weapon/implant/external/core_implant/Destroy()
 	processing_objects.Remove(src)
 	deactivate()
 	..()
-
-/obj/item/weapon/implant/external/core_implant/attack(mob/living/L, mob/living/user, var/target_zone)
-	if (!istype(L, /mob/living/carbon/human))
-		return
-	var/mob/living/carbon/human/M = L
-	if (user)
-		var/obj/item/organ/external/affected = M.get_organ(target_zone)
-		if(!affected)
-			return
-		if(affected.open)
-			return
-		if(M.body_part_covered(target_zone))
-			user << "<span class='warning'>You can't install implant through clothes.</span>"
-			return
-		if(!(user.targeted_organ in allowed_organs))
-			user << "<span class='warning'>You can't install this implant here.</span>"
-			return
-		for(var/obj/item/weapon/implant/IM in affected.implants)
-			if(IM.is_external())
-				if(position_flag & IM.position_flag)
-					user << "<span class='warning'>[src] doesn't fit.</span>"
-					return
-
-		M.visible_message("<span class='warning'>[user] is attemping to install implant on [M].</span>")
-
-		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-		user.do_attack_animation(M)
-
-		var/turf/T1 = get_turf(M)
-		if(T1 && ((M == user) || do_after(user, 40, M)))
-			if(user && M && (get_turf(M) == T1) && src)
-				M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
-				admin_attack_log(user, M, "Implanted using \the [src.name]", "Implanted with \the [src.name]", "installs external implant, [src.name], on")
-				user.drop_item()
-				src.install(M, user.targeted_organ)
-		M.update_implants()
 
 /obj/item/weapon/implant/external/core_implant/proc/kill_wearer()
 	if(!istype(wearer, /mob/living/carbon/human))
@@ -68,15 +31,12 @@
 	s.set_up(3, 1, src)
 	s.start()
 
-/obj/item/weapon/implant/external/core_implant/proc/can_activate()
-	return TRUE
-
 /obj/item/weapon/implant/external/core_implant/malfunction()
 	kill_wearer()
 
 /obj/item/weapon/implant/external/core_implant/install(var/mob/M)
 	if(ishuman(M))
-		..()
+		..(M)
 
 /obj/item/weapon/implant/external/core_implant/uninstall()
 	deactivate()
@@ -153,15 +113,17 @@
 	if(wearer != H)
 		return
 
-	message = replace_characters(message, list("." = ""))
-	for(var/RT in allowed_rituals)
+//	message = replace_characters(message, list("." = ""))
+	for(var/RT in cruciform_rituals)
 		var/datum/ritual/R = new RT
 		if(R.compare(message))
 			if(R.power > src.power)
 				H << "<span class='danger'>Not enough energy for the [R.name].</span>"
 				return
+			if(!R.is_allowed(src))
+				H << "<span class='danger'>You are not allowed to perform [R.name].</span>"
+				return
 			R.activate(H, src, R.get_targets(message))
-			return
 
 /obj/item/weapon/implant/external/core_implant/proc/use_power(var/value)
 	power = max(0, power - value)
