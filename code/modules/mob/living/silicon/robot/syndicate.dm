@@ -8,7 +8,7 @@
 
 /mob/living/silicon/robot/syndicate/New()
 	if(!cell)
-		cell = new /obj/item/weapon/cell(src)
+		cell = new /obj/item/weapon/cell/big(src)
 		cell.maxcharge = 25000
 		cell.charge = 25000
 

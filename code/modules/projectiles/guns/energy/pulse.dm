@@ -23,7 +23,7 @@
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 	name = "NT PR \"Purger\""
 	desc = "A heavy-duty, pulse-based energy weapon. Because of its complexity and cost, it is rarely seen in use except by specialists."
-	cell_type = /obj/item/weapon/cell/super
+	cell_type = /obj/item/weapon/cell/big/super
 	fire_delay = 25
 	fire_sound='sound/weapons/pulse.ogg'
 	projectile_type=/obj/item/projectile/beam/pulse

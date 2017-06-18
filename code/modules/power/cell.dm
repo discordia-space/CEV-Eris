@@ -2,11 +2,11 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/weapon/cell/New()
+/obj/item/weapon/cell/big/New()
 	..()
 	charge = maxcharge
 
-/obj/item/weapon/cell/initialize()
+/obj/item/weapon/cell/big/initialize()
 	..()
 	update_icon()
 
@@ -60,7 +60,7 @@
 	return 1
 
 // recharge the cell
-/obj/item/weapon/cell/proc/give(var/amount)
+/obj/item/weapon/cell/big/proc/give(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0

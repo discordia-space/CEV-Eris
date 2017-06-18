@@ -5,7 +5,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
 
-	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
+	var/obj/item/weapon/cell/big/power_supply //What type of power cell this uses
 	var/charge_cost = 200 //How much energy is needed to fire.
 	var/max_shots = 10 //Determines the capacity of the weapon's power cell. Specifying a cell_type overrides this value.
 	var/cell_type = null
@@ -33,7 +33,7 @@
 	if(cell_type)
 		power_supply = new cell_type(src)
 	else
-		power_supply = new /obj/item/weapon/cell/device/variable(src, max_shots*charge_cost)
+		power_supply = new /obj/item/weapon/cell/medium/device/variable(src, max_shots*charge_cost)
 	if(self_recharge)
 		processing_objects.Add(src)
 	update_icon()
@@ -53,7 +53,7 @@
 			return 0 // check if we actually need to recharge
 
 		if(use_external_power)
-			var/obj/item/weapon/cell/external = get_external_power_supply()
+			var/obj/item/weapon/cell/big/external = get_external_power_supply()
 			if(!external || !external.use(charge_cost)) //Take power from the borg...
 				return 0
 
