@@ -1053,7 +1053,7 @@
 		if(config.allow_admin_rev)
 			L.revive()
 			message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
-			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
+			log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
 		else
 			usr << "Admin Rejuvinates have been disabled"
 
@@ -1771,7 +1771,7 @@
 
 	if(href_list["add_player_info"])
 		var/key = href_list["add_player_info"]
-		var/add = sanitize(input("Add Player Info") as null|text)
+		var/add = input_utf8("Add Player Info", type = "text")
 		if(!add) return
 
 		notes_add(key,add,usr)
