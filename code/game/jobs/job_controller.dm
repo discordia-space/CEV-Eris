@@ -476,7 +476,6 @@ var/global/datum/controller/occupations/job_master
 				G.prescription = 1
 
 		BITSET(H.hud_updateflag, ID_HUD)
-		BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 		BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 		return H
 

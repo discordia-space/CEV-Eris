@@ -19,8 +19,9 @@
 	return data
 
 
-/obj/item/weapon/implant/adrenalin/trigger(emote, mob/source as mob)
-	if (src.uses < 1)	return 0
+/obj/item/weapon/implant/adrenalin/trigger(emote, mob/living/source)
+	if (uses < 1)
+		return
 	if (emote == "pale")
 		src.uses--
 		source << "<span class='notice'>You feel a sudden surge of energy!</span>"
@@ -28,21 +29,17 @@
 		source.SetWeakened(0)
 		source.SetParalysis(0)
 
-	return
-
-/obj/item/weapon/implant/adrenalin/install(mob/living/carbon/human/H)
-	..()
-	H.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)
-	H << "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate."
+/obj/item/weapon/implant/adrenalin/on_install(mob/living/source)
+	source.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)
+	source << "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate."
 
 
 /obj/item/weapon/implantcase/adrenalin
 	name = "glass case - 'adrenalin'"
 	desc = "A case containing an adrenalin implant."
-	icon_state = "implantcase-b"
-	implant_type = /obj/item/weapon/implant/adrenalin
+	implant = /obj/item/weapon/implant/adrenalin
 
 
 /obj/item/weapon/implanter/adrenalin
 	name = "implanter-adrenalin"
-	implant_type = /obj/item/weapon/implant/adrenalin
+	implant = /obj/item/weapon/implant/adrenalin

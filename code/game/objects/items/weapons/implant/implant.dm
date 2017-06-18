@@ -13,33 +13,44 @@
 	var/implant_color = "b"
 	var/allow_reagents = FALSE
 	var/malfunction = MALFUNCTION_NONE
-	var/legal = TRUE
+	var/is_legal = TRUE
 	var/list/allowed_organs = list()
 	var/position_flag = 0
 
-/obj/item/weapon/implant/proc/trigger(emote, source as mob)
-	return
-
+/obj/item/weapon/implant/proc/trigger(emote, mob/living/source)
 /obj/item/weapon/implant/proc/activate()
-	return
-
 /obj/item/weapon/implant/proc/deactivate()
-	return
-
 /obj/item/weapon/implant/proc/malfunction(var/severity)
-	return
 
 /obj/item/weapon/implant/proc/is_external()
 	return istype(src, /obj/item/weapon/implant/external)
 
-/obj/item/weapon/implant/proc/install(var/mob/living/carbon/human/H, affected_organ = BP_CHEST)
-	src.loc = H
-	src.wearer = H
-	src.implanted = TRUE
-	var/obj/item/organ/external/affected = H.get_organ(affected_organ)
-	affected.implants += src
-	src.part = affected
-	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
+	// What does the implant do upon injection?
+	// return FALSE if the implant fails (ex. Revhead and loyalty implant.)
+	// return TRUE  if the implant succeeds (ex. Nonrevhead and loyalty implant.)
+
+/obj/item/weapon/implant/proc/install(var/mob/living/target, var/obj/item/organ/external/affected, var/mob/user)
+	if(!affected)
+		user << "<span class='warning'>[target] miss that body part!.</span>"
+		return
+
+	if(allowed_organs.len && !(affected.organ_tag in allowed_organs))
+		user << "<span class='warning'>[src] cannot be implaned in this limb.</span>"
+		return
+
+	forceMove(target)
+	wearer = target
+	implanted = TRUE
+	if(affected)
+		affected.implants += src
+		part = affected
+	if(ishuman(wearer))
+		var/mob/living/carbon/human/H = wearer
+		H.update_implants()
+	on_install(target, affected)
+	return TRUE
+
+/obj/item/weapon/implant/proc/on_install(var/mob/living/target, var/obj/item/organ/external/E)
 
 /obj/item/weapon/implant/proc/uninstall()
 	forceMove(get_turf(wearer))
@@ -54,8 +65,7 @@
 /obj/item/weapon/implant/proc/get_data()
 	return "No information available"
 
-/obj/item/weapon/implant/proc/hear(message, source as mob)
-	return
+/obj/item/weapon/implant/proc/hear(message, mob/source)
 
 /obj/item/weapon/implant/proc/meltdown()	//breaks it down, making implant unrecongizible
 	wearer << "<span class='warning'>You feel something melting inside [part ? "your [part.name]" : "you"]!</span>"
@@ -75,7 +85,7 @@
 /obj/item/weapon/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/implant/explosive/emp_act(severity)
 	malfunction(severity)
