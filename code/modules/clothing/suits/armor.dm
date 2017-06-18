@@ -45,7 +45,7 @@
 	siemens_coefficient = 0.5
 
 /obj/item/clothing/suit/armor/light_riot
-	name = "Ligh Riot Suit"
+	name = "Light Riot Suit"
 	desc = "A suit made from kevlar and plactic, it doesn't impair movement but not as reliable as regular riot suit."
 	icon_state = "light_riot"
 	item_state = "swat_suit"
