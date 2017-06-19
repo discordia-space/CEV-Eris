@@ -32,7 +32,7 @@
 		return
 
 	if(allowed_organs.len && !(affected.organ_tag in allowed_organs))
-		user << "<span class='warning'>[src] cannot be implaned in this limb.</span>"
+		user << "<span class='warning'>[src] cannot be implanted in this limb.</span>"
 		return
 
 	forceMove(target)
