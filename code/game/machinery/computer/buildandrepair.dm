@@ -67,8 +67,7 @@
 					user << "<span class='notice'>You place the circuit board inside the frame.</span>"
 					src.icon_state = "1"
 					src.circuit = P
-					user.drop_item()
-					P.loc = src
+					user.drop_from_inventory(P, src)
 				else
 					user << "<span class='warning'>This frame does not accept circuit boards of this type!</span>"
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)

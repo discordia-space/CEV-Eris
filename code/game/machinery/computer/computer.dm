@@ -7,7 +7,6 @@
 	use_power = 1
 	idle_power_usage = 300
 	active_power_usage = 300
-	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = 0
 	var/CheckFaceFlag = 1 //for direction check
 	var/icon_keyboard = "generic_key"

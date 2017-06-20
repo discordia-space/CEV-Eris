@@ -14,22 +14,21 @@
 	anchored = TRUE
 	use_power = 0
 	var/base_state = "box"			//base icon for creating subtypes of machine frame
-	var/obj/item/weapon/circuitboard/circuit = null
 	var/list/components = null
 	var/list/req_components = null
 	var/list/req_component_names = null
 	var/state = STATE_NONE
 	frame_type = FRAME_DEFAULT
 
-	proc/update_desc()
-		var/D
-		if(req_components)
-			var/list/component_list = new
-			for(var/I in req_components)
-				if(req_components[I] > 0)
-					component_list += "[num2text(req_components[I])] [req_component_names[I]]"
-			D = "Requires [english_list(component_list)]."
-		desc = D
+/obj/machinery/constructable_frame/proc/update_desc()
+	var/D
+	if(req_components)
+		var/list/component_list = new
+		for(var/I in req_components)
+			if(req_components[I] > 0)
+				component_list += "[num2text(req_components[I])] [req_component_names[I]]"
+		D = "Requires [english_list(component_list)]."
+	desc = D
 
 /obj/machinery/constructable_frame/machine_frame/attackby(obj/item/P as obj, mob/user as mob)
 	switch(state)
@@ -59,8 +58,7 @@
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << "<span class='notice'>You add the circuit board to the frame.</span>"
 					circuit = P
-					user.drop_item()
-					P.loc = src
+					user.drop_from_inventory(P, src)
 					icon_state = "[base_state]_2"
 					state = STATE_CIRCUIT
 					components = list()
@@ -69,8 +67,7 @@
 						req_components[A] = circuit.req_components[A]
 					req_component_names = circuit.req_components.Copy()
 					for(var/A in req_components)
-						var/cp = text2path(A)
-						var/obj/ct = new cp() // have to quickly instantiate it get name
+						var/obj/ct = PoolOrNew(A, null) // have to quickly instantiate it get name
 						req_component_names[A] = ct.name
 					update_desc()
 					user << desc
@@ -111,6 +108,8 @@
 					if(component_check)
 						playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 						var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
+						qdel(new_machine.circuit)
+						new_machine.circuit = circuit
 
 						if(new_machine.component_parts)
 							new_machine.component_parts.Cut()
@@ -119,29 +118,26 @@
 
 						src.circuit.construct(new_machine)
 
-						for(var/obj/O in src)
-							if(circuit.contain_parts) // things like disposal don't want their parts in them
-								O.loc = new_machine
-							else
-								O.loc = null
-							new_machine.component_parts += O
+						new_machine.component_parts += circuit
+						circuit.loc = null
 
-						if(circuit.contain_parts)
-							circuit.loc = new_machine
-						else
-							circuit.loc = null
+						for(var/obj/O in src)
+							new_machine.component_parts += O
+							O.loc = null
 
 						new_machine.RefreshParts()
 						qdel(src)
 				else
 					if(istype(P, /obj/item))
 						for(var/I in req_components)
-							if(istype(P, text2path(I)) && (req_components[I] > 0))
+							if(istype(P, I) && (req_components[I] > 0))
 								playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 								if(istype(P, /obj/item/stack/cable_coil))
 									var/obj/item/stack/cable_coil/CP = P
 									if(CP.get_amount() > 1)
-										var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+										// amount of cable to take, idealy amount required,
+										// but limited by amount provided
+										var/camt = min(CP.amount, req_components[I])
 										var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
 										CC.amount = camt
 										CC.update_icon()
@@ -150,8 +146,7 @@
 										req_components[I] -= camt
 										update_desc()
 										break
-								user.drop_item()
-								P.loc = src
+								user.drop_from_inventory(P, src)
 								components += P
 								req_components[I]--
 								update_desc()
