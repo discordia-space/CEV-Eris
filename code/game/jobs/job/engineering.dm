@@ -38,7 +38,7 @@
 
 	put_in_backpack = list(\
 		/obj/item/device/t_scanner,\
-		/obj/item/device/flashlight/glowstick/yellow
+		/obj/item/device/lighting/glowstick/yellow
 		)
 
 	backpacks = list(
@@ -75,7 +75,7 @@
 
 	put_in_backpack = list(\
 		/obj/item/device/t_scanner,\
-		/obj/item/device/flashlight/glowstick/yellow
+		/obj/item/device/lighting/glowstick/yellow
 		)
 
 	backpacks = list(
@@ -113,5 +113,5 @@
 
 	put_in_backpack = list(\
 		/obj/item/device/t_scanner,\
-		/obj/item/device/flashlight/glowstick/yellow
+		/obj/item/device/lighting/glowstick/yellow
 		)

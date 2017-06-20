@@ -27,7 +27,7 @@
 		if(prob(50))
 			new /obj/item/device/flashlight(src)
 		else
-			new /obj/item/device/flashlight/flare(src)
+			new /obj/item/device/lighting/glowstick/flare(src)
 		new /obj/item/device/radio(src)
 
 /obj/item/weapon/storage/toolbox/mechanical

@@ -226,7 +226,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare
 	name = "\improper BNI Flare Launcher"
 	icon_state = "mecha_flaregun"
-	projectile = /obj/item/device/flashlight/flare
+	projectile = /obj/item/device/lighting/glowstick/flare
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	auto_rearm = 1
 	fire_cooldown = 20
@@ -237,7 +237,7 @@
 	required_type = /obj/mecha  //Why restrict it to just mining or combat mechs?
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare/Fire(atom/movable/AM, atom/target, turf/aimloc)
-	var/obj/item/device/flashlight/flare/fired = AM
+	var/obj/item/device/lighting/glowstick/flare/fired = AM
 	fired.turn_on()
 	..()
 
