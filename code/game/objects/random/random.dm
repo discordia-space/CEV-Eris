@@ -47,7 +47,7 @@
 					/obj/item/weapon/weldingtool,\
 					/obj/item/weapon/crowbar,\
 					/obj/item/weapon/wrench,\
-					/obj/item/device/flashlight)
+					/obj/item/device/lighting/toggleable)
 
 
 /obj/random/technology_scanner

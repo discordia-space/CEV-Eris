@@ -20,6 +20,7 @@
 /obj/item/device/lighting/glowstick/flare/burn_out()
 	..()
 	damtype = initial(damtype)
+	force = initial(force)
 
 /obj/item/device/lighting/glowstick/flare/attack_self(mob/user)
 	if(turn_on(user))
@@ -29,16 +30,8 @@
 		)
 
 /obj/item/device/lighting/glowstick/flare/turn_on(var/mob/user)
-	if(on)
-		return FALSE
-	if(!fuel)
-		if(user)
-			user << "<span class='notice'>It's out of fuel.</span>"
-		return FALSE
-	on = TRUE
-	force = on_damage
-	damtype = "fire"
-	processing_objects += src
-	update_icon()
-	return 1
+	. = ..()
+	if(.)
+		force = on_damage
+		damtype = "fire"
 

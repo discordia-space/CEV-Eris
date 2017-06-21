@@ -40,6 +40,12 @@
 		icon_state = initial(icon_state)
 	update_held_icon()
 
+/obj/item/device/lighting/glowstick/attack_self(mob/user)
+	if(turn_on(user))
+		user.visible_message(
+			"<span class='notice'>[user] cracks and shakes the glowstick.</span>",
+			"<span class='notice'>You crack and shake the glowstick, turning it on!</span>"
+		)
 /obj/item/device/lighting/glowstick/turn_on(mob/user)
 	if(fuel <= 0)
 		user << "<span class='notice'>The [src] is spent.</span>"
@@ -50,10 +56,6 @@
 
 	. = ..()
 	if(.)
-		user.visible_message(
-			"<span class='notice'>[user] cracks and shakes the glowstick.</span>",
-			"<span class='notice'>You crack and shake the glowstick, turning it on!</span>"
-		)
 		processing_objects += src
 
 /obj/item/device/lighting/glowstick/red

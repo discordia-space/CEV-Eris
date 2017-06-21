@@ -1186,7 +1186,7 @@
 
 /datum/chemical_reaction/slime/glow/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
-	var/obj/item/device/flashlight/slime/F = new /obj/item/device/flashlight/slime
+	var/obj/item/device/slimelight/F = new /obj/item/device/slimelight
 	F.loc = get_turf(holder.my_atom)
 
 //Purple

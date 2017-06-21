@@ -1,44 +1,25 @@
-/obj/item/device/flashlight
-	name = "flashlight"
-	desc = "A hand-held emergency light."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "flashlight"
-	item_state = "flashlight"
-	w_class = 2
-	flags = CONDUCT
-	slot_flags = SLOT_BELT
-
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
-
+/obj/item/device/lighting/toggleable/flashlight
 	action_button_name = "Toggle Flashlight"
-	var/on = 0
-	var/brightness_on = 5 //luminosity when on
-	var/turn_on_sound = 'sound/effects/Custom_flashlight.ogg'
+	var/tick_cost = 5
+	var/obj/item/weapon/cell/cell = new
 
-/obj/item/device/flashlight/initialize()
-	..()
-	update_icon()
+/obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
+	. = ..()
+	if(.)
+		processing_objects |= src
+		user.update_action_buttons()
 
-/obj/item/device/flashlight/update_icon()
+/obj/item/device/lighting/toggleable/flashlight/turn_off(mob/user)
+	. = ..()
+	if(.)
+		user.update_action_buttons()
+
+/obj/item/device/lighting/toggleable/flashlight/process()
 	if(on)
-		icon_state = "[initial(icon_state)]-on"
-		set_light(brightness_on)
-	else
-		icon_state = "[initial(icon_state)]"
-		set_light(0)
+		if(!cell || !cell.checked_use(tick_cost))
+			turn_off()
 
-/obj/item/device/flashlight/attack_self(mob/user)
-	if(!isturf(user.loc))
-		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
-		return 0
-	on = !on
-	playsound(src.loc, turn_on_sound, 75, 1)
-	update_icon()
-	user.update_action_buttons()
-	return 1
-
-
-/obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
 	if(on && user.targeted_organ == "eyes")
 
@@ -83,94 +64,34 @@
 					user << "<span class='notice'>\The [M]'s pupils narrow.</span>"
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
-			if (M.HUDtech.Find("flash"))
+			if(M.HUDtech.Find("flash"))
 				flick("flash", M.HUDtech["flash"])
 	else
 		return ..()
 
-/obj/item/device/flashlight/pen
+
+
+
+
+/obj/item/device/lighting/toggleable/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
 	item_state = ""
-	flags = CONDUCT
 	slot_flags = SLOT_EARS
 	brightness_on = 2
 	w_class = 1
 
-/obj/item/device/flashlight/drone
-	name = "low-power flashlight"
-	desc = "A miniature lamp, that might be used by small robots."
-	icon_state = "penlight"
-	item_state = ""
-	flags = CONDUCT
-	brightness_on = 2
-	w_class = 1
-
-/obj/item/device/flashlight/heavy
+/obj/item/device/lighting/toggleable/flashlight/heavy
 	name = "heavy duty flashlight"
 	desc = "A hand-held heavy-duty light."
-	icon = 'icons/obj/lighting.dmi'
 	icon_state = "heavyduty"
-	item_state = "heavyduty"
 	brightness_on = 6
 
-/obj/item/device/flashlight/seclite
+/obj/item/device/lighting/toggleable/flashlight/seclite
 	name = "security flashlight"
 	desc = "A hand-held security flashlight. Very robust."
-	icon = 'icons/obj/lighting.dmi'
 	icon_state = "seclite"
-	item_state = "seclite"
 	brightness_on = 5
 	force = WEAPON_FORCE_NORMAL
 	hitsound = 'sound/weapons/genhit1.ogg'
-
-// the desk lamps are a bit special
-/obj/item/device/flashlight/lamp
-	name = "desk lamp"
-	desc = "A desk lamp with an adjustable mount."
-	icon_state = "lamp"
-	item_state = "lamp"
-	brightness_on = 4
-	w_class = 4
-	flags = CONDUCT
-
-	on = 1
-
-
-// green-shaded desk lamp
-/obj/item/device/flashlight/lamp/green
-	desc = "A classic green-shaded desk lamp."
-	icon_state = "lampgreen"
-	item_state = "lampgreen"
-	brightness_on = 4
-	light_color = "#FFC58F"
-
-/obj/item/device/flashlight/lamp/verb/toggle_light()
-	set name = "Toggle light"
-	set category = "Object"
-	set src in oview(1)
-
-	if(!usr.stat)
-		attack_self(usr)
-
-/obj/item/device/flashlight/slime
-	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "A glowing ball of what appears to be amber."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "floor1" //not a slime extract sprite but... something close enough!
-	item_state = "slime"
-	w_class = 1
-	brightness_on = 6
-	on = 1 //Bio-luminesence has one setting, on.
-
-/obj/item/device/flashlight/slime/New()
-	..()
-	set_light(brightness_on)
-
-/obj/item/device/flashlight/slime/update_icon()
-	return
-
-/obj/item/device/flashlight/slime/attack_self(mob/user)
-	return //Bio-luminescence does not toggle.

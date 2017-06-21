@@ -25,7 +25,7 @@
 		new /obj/item/weapon/crowbar/red(src)
 		new /obj/item/weapon/extinguisher/mini(src)
 		if(prob(50))
-			new /obj/item/device/flashlight(src)
+			new /obj/item/device/lighting/toggleable(src)
 		else
 			new /obj/item/device/lighting/glowstick/flare(src)
 		new /obj/item/device/radio(src)

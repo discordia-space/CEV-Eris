@@ -67,7 +67,7 @@
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/head/soft/purple(src)
 	new /obj/item/clothing/head/beret/purple(src)
-	new /obj/item/device/flashlight(src)
+	new /obj/item/device/lighting/toggleable(src)
 	new /obj/item/weapon/caution(src)
 	new /obj/item/weapon/caution(src)
 	new /obj/item/weapon/caution(src)
