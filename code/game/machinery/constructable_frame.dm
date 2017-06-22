@@ -58,7 +58,8 @@
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << "<span class='notice'>You add the circuit board to the frame.</span>"
 					circuit = P
-					user.drop_from_inventory(P, src)
+					user.drop_from_inventory(P)
+					P.forceMove(src)
 					icon_state = "[base_state]_2"
 					state = STATE_CIRCUIT
 					components = list()
@@ -98,62 +99,62 @@
 				req_components = null
 				components = null
 				icon_state = "[base_state]_1"
+			else if(istype(P, /obj/item/weapon/screwdriver))
+				var/component_check = 1
+				for(var/R in req_components)
+					if(req_components[R] > 0)
+						component_check = 0
+						break
+				if(component_check)
+					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+					var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
+					qdel(new_machine.circuit)
+					new_machine.circuit = circuit
+
+					if(new_machine.component_parts)
+						new_machine.component_parts.Cut()
+					else
+						new_machine.component_parts = list()
+
+					src.circuit.construct(new_machine)
+
+					new_machine.component_parts += circuit
+					circuit.loc = null
+
+					for(var/obj/O in src)
+						new_machine.component_parts += O
+						O.loc = null
+
+					new_machine.RefreshParts()
+					qdel(src)
 			else
-				if(istype(P, /obj/item/weapon/screwdriver))
-					var/component_check = 1
-					for(var/R in req_components)
-						if(req_components[R] > 0)
-							component_check = 0
-							break
-					if(component_check)
-						playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-						var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
-						qdel(new_machine.circuit)
-						new_machine.circuit = circuit
-
-						if(new_machine.component_parts)
-							new_machine.component_parts.Cut()
-						else
-							new_machine.component_parts = list()
-
-						src.circuit.construct(new_machine)
-
-						new_machine.component_parts += circuit
-						circuit.loc = null
-
-						for(var/obj/O in src)
-							new_machine.component_parts += O
-							O.loc = null
-
-						new_machine.RefreshParts()
-						qdel(src)
-				else
-					if(istype(P, /obj/item))
-						for(var/I in req_components)
-							if(istype(P, I) && (req_components[I] > 0))
-								playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-								if(istype(P, /obj/item/stack/cable_coil))
-									var/obj/item/stack/cable_coil/CP = P
-									if(CP.get_amount() > 1)
-										// amount of cable to take, idealy amount required,
-										// but limited by amount provided
-										var/camt = min(CP.amount, req_components[I])
-										var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
-										CC.amount = camt
-										CC.update_icon()
-										CP.use(camt)
-										components += CC
-										req_components[I] -= camt
-										update_desc()
-										break
-								user.drop_from_inventory(P, src)
+				if(istype(P, /obj/item))
+					for(var/I in req_components)
+						if(istype(P, I) && (req_components[I] > 0))
+							playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+							if(istype(P, /obj/item/stack/cable_coil))
+								var/obj/item/stack/cable_coil/CP = P
+								if(CP.get_amount() > 1)
+									// amount of cable to take, idealy amount required,
+									// but limited by amount provided
+									var/camt = min(CP.amount, req_components[I])
+									var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
+									CC.amount = camt
+									CC.update_icon()
+									CP.use(camt)
+									components += CC
+									req_components[I] -= camt
+									update_desc()
+									break
+							if(user.drop_from_inventory(P))
+								P.forceMove(src)
 								components += P
 								req_components[I]--
 								update_desc()
 								break
-						user << desc
-						if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
-							user << "<span class='warning'>You cannot add that component to the machine!</span>"
+					user << desc
+					if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
+						user << "<span class='warning'>You cannot add that component to the machine!</span>"
 	update_icon()
 
 /obj/machinery/constructable_frame/machine_frame/vertical
