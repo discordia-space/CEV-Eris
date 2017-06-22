@@ -5,6 +5,8 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 	name = "cruciform"
 	phrase = null
 	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
+	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
 	var/priest = FALSE
 
 /datum/ritual/cruciform/is_allowed(var/obj/item/weapon/implant/external/core_implant/cruciform/C)
@@ -47,6 +49,7 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 
 /datum/ritual/cruciform/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
 	H.add_chemical_effect(CE_PAINKILLER, 10)
+	return TRUE
 
 
 /datum/ritual/cruciform/soul_hunger
@@ -59,12 +62,13 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 /datum/ritual/cruciform/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
 	H.nutrition += 100
 	H.adjustToxLoss(5)
+	return TRUE
 
 
 /datum/ritual/cruciform/entreaty
 	name = "entreaty"
 	phrase = "Deus meus ut quid dereliquisti me"
-	desc = "Litany of piligrims, helps better withstand hunger."
+	desc = "Call for help, that other cruciform bearers can hear."
 	power = 50
 	chance = 60
 
@@ -187,21 +191,25 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 
 
 /datum/ritual/cruciform/install
-	name = "install"
+	name = "Commitment"
 	phrase = "Unde ipse Dominus dabit vobis signum"
-	desc = "No comments."
+	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
 	priest = TRUE
 
 /datum/ritual/cruciform/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
 	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI
+
+	if(G && G.affecting && ishuman(G.affecting))
+		CI = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in G.affecting
+	else
+		fail("You must hold patient's hand.", user, C)
+		return FALSE
+
 	var/mob/living/H = G.affecting
 
-	if(G)
-		CI = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in G.affecting
-
 	if(CI)
-		fail("[H] already have a cruciform installed", user, C)
+		fail("[H] already have a cruciform installed.", user, C)
 		return FALSE
 
 	var/list/L = get_front(user)
@@ -220,14 +228,14 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 		fail("Cruciform already active.", user, C)
 		return FALSE
 
-	if(H.lying && (locate(/obj/machinery/optable/altar) in L))
+	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
 		fail("[H] must lie on the altar.", user, C)
 		return FALSE
 
 	for(var/obj/item/clothing/CL in H)
 		if(H.l_hand == CL || H.r_hand == CL)
 			continue
-		fail("[H] must be undressed", user, C)
+		fail("[H] must be undressed.", user, C)
 		return FALSE
 
 	CI.install(H)
@@ -247,9 +255,9 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 
 
 /datum/ritual/cruciform/ejection
-	name = "ejection"
+	name = "Deprivation"
 	phrase = "Et revertatur pulvis in terram suam unde erat et spiritus redeat ad Deum qui dedit illum"
-	desc = "No comments."
+	desc = "This litany will command cruciform to detach from bearer if one bearing it is dead. You will be able to attach this cruciform later, or use it in scaner for Resurrection."
 	priest = TRUE
 
 /datum/ritual/cruciform/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bible"
 
-/obj/item/weapon/book/attack_self(mob/living/carbon/human/H)
+/obj/item/weapon/book/bible/attack_self(mob/living/carbon/human/H)
 	interact(H)
 
 /obj/item/weapon/book/bible/interact(mob/living/carbon/human/H)
