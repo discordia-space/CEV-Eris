@@ -12,6 +12,8 @@
 
 #define isEye(A) istype(A, /mob/observer/eye)
 
+#define isangel(A) istype(A, /mob/observer/eye/angel)
+
 #define isnewplayer(A) istype(A, /mob/new_player)
 //++++++++++++++++++++++++++++++++++++++++++++++
 

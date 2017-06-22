@@ -15,7 +15,7 @@
 	var/stunforce = 0
 	var/agonyforce = 60
 	var/status = 0		//whether the thing is on or not
-	var/obj/item/weapon/cell/bcell = null
+	var/obj/item/weapon/cell/big/bcell = null
 	var/hitcost = 1000	//oh god why do power cells carry so much charge? We probably need to make a distinction between "industrial" sized power cells for APCs and power cells for everything else.
 
 /obj/item/weapon/melee/baton/New()
@@ -25,7 +25,7 @@
 
 /obj/item/weapon/melee/baton/loaded/New() //this one starts with a cell pre-installed.
 	..()
-	bcell = new/obj/item/weapon/cell/high(src)
+	bcell = new/obj/item/weapon/cell/big/high(src)
 	update_icon()
 	return
 
@@ -62,7 +62,7 @@
 		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/cell))
+	if(istype(W, /obj/item/weapon/cell/big))
 		if(!bcell)
 			user.drop_item()
 			W.loc = src

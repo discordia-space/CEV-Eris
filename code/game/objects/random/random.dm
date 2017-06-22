@@ -67,11 +67,10 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	item_to_spawn()
-		return pick(prob(10);/obj/item/weapon/cell/crap,\
-					prob(40);/obj/item/weapon/cell,\
-					prob(40);/obj/item/weapon/cell/high,\
-					prob(9);/obj/item/weapon/cell/super,\
-					prob(1);/obj/item/weapon/cell/hyper)
+		return pick(prob(40);/obj/item/weapon/cell/big,\
+					prob(40);/obj/item/weapon/cell/big/high,\
+					prob(9);/obj/item/weapon/cell/big/super,\
+					prob(1);/obj/item/weapon/cell/big/hyper)
 
 
 /obj/random/bomb_supply

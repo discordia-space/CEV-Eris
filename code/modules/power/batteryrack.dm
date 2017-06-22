@@ -23,9 +23,9 @@
 /obj/machinery/power/smes/batteryrack/proc/add_parts()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/batteryrack
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell/high
+	component_parts += new /obj/item/weapon/cell/big/high
+	component_parts += new /obj/item/weapon/cell/big/high
+	component_parts += new /obj/item/weapon/cell/big/high
 	return
 
 
@@ -40,7 +40,7 @@
 	output_level_max = 50000 + max_level * 20000
 
 	var/C = 0
-	for(var/obj/item/weapon/cell/PC in component_parts)
+	for(var/obj/item/weapon/cell/big/PC in component_parts)
 		C += PC.maxcharge
 		cells_amount++
 	capacity = C * 40   //Basic cells are such crap. Hyper cells needed to get on normal SMES levels.
@@ -49,7 +49,7 @@
 /obj/machinery/power/smes/batteryrack/update_icon()
 	overlays.Cut()
 	if(stat & BROKEN)	return
-	
+
 	if(!br_cache)
 		br_cache = list()
 		br_cache.len = 7
@@ -60,7 +60,7 @@
 		br_cache[5] = image('icons/obj/power.dmi', "gsmes_og2")
 		br_cache[6] = image('icons/obj/power.dmi', "gsmes_og3")
 		br_cache[7] = image('icons/obj/power.dmi', "gsmes_og4")
-	
+
 	if (output_attempt)
 		overlays += br_cache[1]
 	if(inputting)
@@ -94,7 +94,7 @@
 					user << "<span class='warning'>Turn off the [src] before dismantling it.</span>"
 			else
 				user << "<span class='warning'>Better let [src] discharge before dismantling it.</span>"
-		else if ((istype(W, /obj/item/weapon/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell) && (cells_amount < 5)))
+		else if ((istype(W, /obj/item/weapon/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell/big) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!output_attempt && !input_attempt)
 					user.drop_item()
@@ -123,9 +123,9 @@
 /obj/machinery/power/smes/batteryrack/makeshift/add_parts()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/ghettosmes
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell/high
-	component_parts += new /obj/item/weapon/cell/high
+	component_parts += new /obj/item/weapon/cell/big/high
+	component_parts += new /obj/item/weapon/cell/big/high
+	component_parts += new /obj/item/weapon/cell/big/high
 	return
 
 

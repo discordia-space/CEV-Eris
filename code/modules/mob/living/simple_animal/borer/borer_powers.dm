@@ -173,7 +173,7 @@
 	H.verbs |= /mob/living/carbon/proc/spawn_larvae
 
 	if(H.client)
-		H.ghostize(0)
+		H.daemonize()
 
 	if(src.mind)
 		src.mind.special_role = "Borer Husk"
