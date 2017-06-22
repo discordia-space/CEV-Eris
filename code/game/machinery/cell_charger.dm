@@ -52,7 +52,8 @@
 				user << "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>"
 				return
 
-			user.drop_from_inventory(W, src)
+			user.drop_from_inventory(W)
+			W.forceMove(src)
 			charging = W
 			user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 			chargelevel = -1

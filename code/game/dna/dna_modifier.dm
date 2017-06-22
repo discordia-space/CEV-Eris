@@ -112,7 +112,8 @@
 			user << "<span class='warning'>A beaker is already loaded into the machine.</span>"
 			return
 		beaker = item
-		user.drop_from_inventory(item, src)
+		user.drop_from_inventory(item)
+		item.forceMove(src)
 		user.visible_message("\The [user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
 		return
 	else if (!istype(item, /obj/item/weapon/grab))
@@ -225,7 +226,8 @@
 /obj/machinery/computer/scan_consolenew/attackby(obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/weapon/disk/data)) //INSERT SOME diskS
 		if (!src.disk)
-			user.drop_from_inventory(I, src)
+			user.drop_from_inventory(I)
+			I.forceMove(src)
 			src.disk = I
 			user << "You insert [I]."
 			nanomanager.update_uis(src) // update all UIs attached to src
