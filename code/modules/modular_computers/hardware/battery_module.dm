@@ -7,7 +7,7 @@
 	critical = 1
 
 	var/battery_rating = 750
-	var/obj/item/weapon/cell/battery = null
+	var/obj/item/weapon/cell/big/battery = null
 
 /obj/item/weapon/computer_hardware/battery_module/advanced
 	name = "advanced battery"
@@ -53,7 +53,7 @@
 
 
 /obj/item/weapon/computer_hardware/battery_module/New()
-	battery = new/obj/item/weapon/cell(src)
+	battery = new/obj/item/weapon/cell/big(src)
 	battery.maxcharge = battery_rating
 	battery.charge = battery_rating
 	..()
