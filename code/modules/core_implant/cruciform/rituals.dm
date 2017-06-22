@@ -49,6 +49,7 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 
 /datum/ritual/cruciform/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
 	H.add_chemical_effect(CE_PAINKILLER, 10)
+	return TRUE
 
 
 /datum/ritual/cruciform/soul_hunger
@@ -61,6 +62,7 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 /datum/ritual/cruciform/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
 	H.nutrition += 100
 	H.adjustToxLoss(5)
+	return TRUE
 
 
 /datum/ritual/cruciform/entreaty
@@ -197,13 +199,17 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 /datum/ritual/cruciform/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
 	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI
+
+	if(G && G.affecting && ishuman(G.affecting))
+		CI = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in G.affecting
+	else
+		fail("You must hold patient's hand.", user, C)
+		return FALSE
+
 	var/mob/living/H = G.affecting
 
-	if(G)
-		CI = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in G.affecting
-
 	if(CI)
-		fail("[H] already have a cruciform installed", user, C)
+		fail("[H] already have a cruciform installed.", user, C)
 		return FALSE
 
 	var/list/L = get_front(user)
@@ -222,14 +228,14 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 		fail("Cruciform already active.", user, C)
 		return FALSE
 
-	if(H.lying && (locate(/obj/machinery/optable/altar) in L))
+	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
 		fail("[H] must lie on the altar.", user, C)
 		return FALSE
 
 	for(var/obj/item/clothing/CL in H)
 		if(H.l_hand == CL || H.r_hand == CL)
 			continue
-		fail("[H] must be undressed", user, C)
+		fail("[H] must be undressed.", user, C)
 		return FALSE
 
 	CI.install(H)
