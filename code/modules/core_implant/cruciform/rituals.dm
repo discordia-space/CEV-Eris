@@ -5,6 +5,8 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 	name = "cruciform"
 	phrase = null
 	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
+	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
 	var/priest = FALSE
 
 /datum/ritual/cruciform/is_allowed(var/obj/item/weapon/implant/external/core_implant/cruciform/C)
@@ -64,7 +66,7 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 /datum/ritual/cruciform/entreaty
 	name = "entreaty"
 	phrase = "Deus meus ut quid dereliquisti me"
-	desc = "Litany of piligrims, helps better withstand hunger."
+	desc = "Call for help, that other cruciform bearers can hear."
 	power = 50
 	chance = 60
 
@@ -187,9 +189,9 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 
 
 /datum/ritual/cruciform/install
-	name = "install"
+	name = "Commitment"
 	phrase = "Unde ipse Dominus dabit vobis signum"
-	desc = "No comments."
+	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
 	priest = TRUE
 
 /datum/ritual/cruciform/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
@@ -247,9 +249,9 @@ var/list/cruciform_rituals = (typesof(/datum/ritual/cruciform)-/datum/ritual/cru
 
 
 /datum/ritual/cruciform/ejection
-	name = "ejection"
+	name = "Deprivation"
 	phrase = "Et revertatur pulvis in terram suam unde erat et spiritus redeat ad Deum qui dedit illum"
-	desc = "No comments."
+	desc = "This litany will command cruciform to detach from bearer if one bearing it is dead. You will be able to attach this cruciform later, or use it in scaner for Resurrection."
 	priest = TRUE
 
 /datum/ritual/cruciform/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
