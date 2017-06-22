@@ -177,7 +177,8 @@
 		if(beaker)
 			user << "<span class='warning'>A beaker is already loaded into the machine.</span>"
 			return
-		if(user.unEquip(G, src))
+		if(user.unEquip(G))
+			G.forceMove(src)
 			beaker = G
 			user.visible_message(
 				"[user] adds \a [G] to \the [src]!",
