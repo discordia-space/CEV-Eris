@@ -48,7 +48,6 @@
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 8)
 	RefreshParts()
 
 	icon = 'icons/obj/neotheology_machinery.dmi'
