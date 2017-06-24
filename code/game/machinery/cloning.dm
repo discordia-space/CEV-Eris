@@ -11,10 +11,10 @@
 	var/mob/selected = null
 	for(var/mob/living/M in player_list)
 		//Dead people only thanks!
-		if((M.stat != 2) || (!M.client))
+		if((M.stat != DEAD) || (!M.client))
 			continue
 		//They need a brain!
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.has_organ["brain"] && !H.has_brain())
 				continue
@@ -33,6 +33,7 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
 	req_access = list(access_genetics) //For premature unlocking.
+	circuit = /obj/item/weapon/circuitboard/clonepod
 	var/mob/living/occupant
 	var/heal_level = 20 //The clone is released once its health reaches this level.
 	var/heal_rate = 1
@@ -47,22 +48,13 @@
 /obj/machinery/clonepod/New()
 	set_extension(src, /datum/extension/multitool, /datum/extension/multitool/store)
 	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/clonepod(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 2)
-
-	RefreshParts()
-	update_icon()
+	if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
+		biomass = CLONE_BIOMASS * 3
 
 /obj/machinery/clonepod/Destroy()
-    if(connected)
-        connected.release_pod(src)
-    return ..()
+	if(connected)
+		connected.release_pod(src)
+	return ..()
 
 /obj/machinery/clonepod/attack_ai(mob/user as mob)
 
@@ -70,9 +62,9 @@
 	return attack_hand(user)
 
 /obj/machinery/clonepod/attack_hand(mob/user as mob)
-	if((isnull(occupant)) || (stat & NOPOWER))
+	if(isnull(occupant) || (stat & NOPOWER))
 		return
-	if((!isnull(occupant)) && (occupant.stat != 2))
+	if(occupant.stat != DEAD)
 		var/completion = (100 * ((occupant.health + 50) / (heal_level + 100))) // Clones start at -150 health
 		user << "Current clone cycle is [round(completion)]% complete."
 	return
@@ -211,13 +203,13 @@
 			return
 		if(default_part_replacement(user, W))
 			return
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(W.GetID())
 		if(!check_access(W))
 			user << "<span class='warning'>Access Denied.</span>"
 			return
-		if((!locked) || (isnull(occupant)))
+		if(!locked || isnull(occupant))
 			return
-		if((occupant.health < -20) && (occupant.stat != 2))
+		if((occupant.health < -20) && (occupant.stat != DEAD))
 			user << "<span class='warning'>Access Refused.</span>"
 			return
 		else
@@ -226,24 +218,22 @@
 	else if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		user << "<span class='notice'>\The [src] processes \the [W].</span>"
 		biomass += 50
-		user.drop_item()
+		user.drop_from_inventory(W)
 		qdel(W)
 		return
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(locked && (anchored || occupant))
 			user << "<span class='warning'>Can not do that while [src] is in use.</span>"
 		else
-			if(anchored)
-				anchored = 0
-				connected.pods -= src
-				connected = null
-			else
-				anchored = 1
+			anchored = !anchored
 			playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 			if(anchored)
 				user.visible_message("[user] secures [src] to the floor.", "You secure [src] to the floor.")
 			else
 				user.visible_message("[user] unsecures [src] from the floor.", "You unsecure [src] from the floor.")
+				if(connected)
+					connected.pods -= src
+					connected = null
 	else
 		..()
 
@@ -257,7 +247,7 @@
 
 //Put messages in the connected computer's temp var for display.
 /obj/machinery/clonepod/proc/connected_message(var/message)
-	if((isnull(connected)) || (!istype(connected, /obj/machinery/computer/cloning)))
+	if(isnull(connected) || !istype(connected, /obj/machinery/computer/cloning))
 		return 0
 	if(!message)
 		return 0
@@ -285,7 +275,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != 0)
+	if(usr.stat)
 		return
 	go_out()
 	add_fingerprint(usr)
@@ -301,7 +291,7 @@
 		update_icon()
 		return
 
-	if(!(occupant))
+	if(!occupant)
 		return
 
 	if(occupant.client)
@@ -340,21 +330,21 @@
 /obj/machinery/clonepod/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A in src)
 				A.loc = loc
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.loc = loc
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A in src)
 					A.loc = loc
 					ex_act(severity)
 				qdel(src)

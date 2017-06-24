@@ -19,12 +19,12 @@
 
 /obj/machinery/button/remote/attack_ai(mob/user as mob)
 	if(wires & 2)
-		return src.attack_hand(user)
+		return attack_hand(user)
 	else
 		user << "Error, no route to host."
 
 /obj/machinery/button/remote/attackby(obj/item/weapon/W, mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/button/remote/emag_act(var/remaining_charges, var/mob/user)
 	if(req_access.len || req_one_access.len)
@@ -37,7 +37,7 @@
 	if(..())
 		return
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 
@@ -91,10 +91,10 @@
 	*/
 
 /obj/machinery/button/remote/airlock/trigger()
-	for(var/obj/machinery/door/airlock/D in world)
-		if(D.id_tag == src.id)
+	for(var/obj/machinery/door/airlock/D in machines)
+		if(D.id_tag == id)
 			if(specialfunctions & OPEN)
-				if (D.density)
+				if(D.density)
 					spawn(0)
 						D.open()
 						return
@@ -135,8 +135,8 @@
 	desc = "It controls blast doors, remotely."
 
 /obj/machinery/button/remote/blast_door/trigger()
-	for(var/obj/machinery/door/blast/M in world)
-		if(M.id == src.id)
+	for(var/obj/machinery/door/blast/M in machines)
+		if(M.id == id)
 			if(M.density)
 				spawn(0)
 					M.open()
@@ -154,8 +154,8 @@
 	desc = "It controls emitters, remotely."
 
 /obj/machinery/button/remote/emitter/trigger(mob/user as mob)
-	for(var/obj/machinery/power/emitter/E in world)
-		if(E.id == src.id)
+	for(var/obj/machinery/power/emitter/E in machines)
+		if(E.id == id)
 			spawn(0)
 				E.activate(user)
 				return
@@ -174,21 +174,21 @@
 	update_icon()
 
 	for(var/obj/machinery/door/blast/M in machines)
-		if (M.id == src.id)
-			spawn( 0 )
+		if(M.id == id)
+			spawn(0)
 				M.open()
 				return
 
 	sleep(20)
 
 	for(var/obj/machinery/mass_driver/M in machines)
-		if(M.id == src.id)
+		if(M.id == id)
 			M.drive()
 
 	sleep(50)
 
 	for(var/obj/machinery/door/blast/M in machines)
-		if (M.id == src.id)
+		if(M.id == id)
 			spawn(0)
 				M.close()
 				return

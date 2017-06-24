@@ -13,7 +13,8 @@
 	icon_state = "bioprinter"
 
 	var/prints_prosthetics
-	var/stored_matter = 200
+	var/stored_matter = 0
+	var/max_matter = 300
 	var/loaded_dna //Blood sample for DNA hashing.
 	var/list/products = list(
 		"heart" =   list(/obj/item/organ/heart,  50),
@@ -28,6 +29,12 @@
 	desc = "It's a machine that prints prosthetic organs."
 	prints_prosthetics = 1
 
+/obj/machinery/bioprinter/New()
+	..()
+	if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
+		stored_matter = 200
+
+
 /obj/machinery/bioprinter/attack_hand(mob/user)
 
 	var/choice = input("What would you like to print?") as null|anything in products
@@ -41,7 +48,7 @@
 		var/obj/item/organ/O = new new_organ(get_turf(src))
 
 		if(prints_prosthetics)
-			O.robotic = 2
+			O.robotic = ORGAN_ROBOT
 		else if(loaded_dna)
 			visible_message("<span class='notice'>The printer injects the stored DNA into the biomass.</span>.")
 			O.transplant_data = list()

@@ -22,7 +22,6 @@
 	var/frame_type = FRAME_DEFAULT
 	var/board_type = "computer"
 	var/list/req_components = null
-	var/contain_parts = TRUE
 
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/weapon/circuitboard/proc/construct(var/obj/machinery/M)
