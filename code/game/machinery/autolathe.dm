@@ -7,8 +7,9 @@
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
+	circuit = /obj/item/weapon/circuitboard/autolathe
 
-	var/list/machine_recipes
+	var/tmp/list/machine_recipes
 	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
 	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
 	var/show_category = "All"
@@ -16,31 +17,22 @@
 	var/hacked = 0
 	var/disabled = 0
 	var/shocked = 0
-	var/busy = 0
+	var/tmp/busy = 0
 
 	var/mat_efficiency = 1
 	var/build_time = 50
 
-	var/datum/wires/autolathe/wires = null
+	var/tmp/datum/wires/autolathe/wires = null
 
 
 /obj/machinery/autolathe/New()
-
 	..()
 	wires = new(src)
-	//Create parts for lathe.
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	RefreshParts()
 	
 /obj/machinery/autolathe/Destroy()
-	qdel(wires)
-	wires = null
+	if(wires)
+		qdel(wires)
+		wires = null
 	return ..()
 
 /obj/machinery/autolathe/proc/update_recipe_list()
@@ -150,7 +142,7 @@
 
 	//Resources are being loaded.
 	var/obj/item/eating = O
-	if(!eating.matter)
+	if(!eating.matter || !eating.matter.len)
 		user << "\The [eating] does not contain significant amounts of useful materials and cannot be accepted."
 		return
 
@@ -166,7 +158,7 @@
 		if(stored_material[material] >= storage_capacity[material])
 			continue
 
-		var/total_material = eating.matter[material]
+		var/total_material = round(eating.matter[material])
 
 		//If it's a stack, we eat multiple sheets.
 		if(istype(eating,/obj/item/stack))

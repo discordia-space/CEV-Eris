@@ -49,7 +49,7 @@
 		return
 
 	if(occupant)
-		if(occupant.stat != 2)
+		if(occupant.stat != DEAD)
 			process_occupant()
 
 	if(air_contents)
@@ -128,6 +128,8 @@
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				data["beakerVolume"] += R.volume
 
+	data["beakerVolume"] = num2text( round(data["beakerVolume"], 0.1) )
+
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -175,11 +177,13 @@
 		if(beaker)
 			user << "<span class='warning'>A beaker is already loaded into the machine.</span>"
 			return
-
-		beaker =  G
-		user.drop_item()
-		G.loc = src
-		user.visible_message("[user] adds \a [G] to \the [src]!", "You add \a [G] to \the [src]!")
+		if(user.unEquip(G))
+			G.forceMove(src)
+			beaker = G
+			user.visible_message(
+				"[user] adds \a [G] to \the [src]!",
+				"You add \a [G] to \the [src]!"
+			)
 	else if(istype(G, /obj/item/weapon/grab))
 		if(!ismob(G:affecting))
 			return
@@ -222,11 +226,11 @@
 	if(air_contents.total_moles < 10)
 		return
 	if(occupant)
-		if(occupant.stat == 2)
+		if(occupant.stat == DEAD)
 			return
 		occupant.bodytemperature += 2*(air_contents.temperature - occupant.bodytemperature)*current_heat_capacity/(current_heat_capacity + air_contents.heat_capacity())
 		occupant.bodytemperature = max(occupant.bodytemperature, air_contents.temperature) // this is so ugly i'm sorry for doing it i'll fix it later i promise
-		occupant.stat = 1
+		occupant.stat = UNCONSCIOUS
 		if(occupant.bodytemperature < T0C)
 			occupant.sleeping = max(5, (1/occupant.bodytemperature)*2000)
 			occupant.Paralyse(max(5, (1/occupant.bodytemperature)*3000))
@@ -284,6 +288,7 @@
 	update_use_power(1)
 	update_icon()
 	return
+
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
 	if (stat & (NOPOWER|BROKEN))
 		usr << "<span class='warning'>The cryo cell is not functioning.</span>"
@@ -321,7 +326,7 @@
 	set category = "Object"
 	set src in oview(1)
 	if(usr == occupant)//If the user is inside the tube...
-		if (usr.stat == 2)//and he's not dead....
+		if(usr.stat == DEAD)//and he's not dead....
 			return
 		usr << "<span class='notice'>Release sequence activated. This will take two minutes.</span>"
 		sleep(1200)
@@ -329,7 +334,7 @@
 			return
 		go_out()//and release him from the eternal prison.
 	else
-		if (usr.stat != 0)
+		if(usr.stat)
 			return
 		go_out()
 	add_fingerprint(usr)
