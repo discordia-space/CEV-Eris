@@ -119,6 +119,12 @@ var/list/christians = list()
 	max_power = 100
 	success_modifier = 3
 
+/obj/item/weapon/implant/external/core_implant/cruciform/inquisitor
+	power = 100
+	max_power = 100
+	success_modifier = 5
+	rituals
+
 //////////////////////////
 //////////////////////////
 
