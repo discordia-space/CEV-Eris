@@ -536,17 +536,17 @@
 
 /obj/structure/sign/faction/frozenstar
 	name = "Frozen Star"
-	desc = "Hanza most popular weapon manufacturer."
+	desc = "The most popular Hanza's weapon manufacturer."
 	icon_state = "frozenstar"
 
 /obj/structure/sign/faction/neotheology
 	name = "NeoTheology"
-	desc = "Cyberchristianity Tau cross  - symbol of NeoTheology."
+	desc = "Tau Cross of Cyberchristianity - symbol of NeoTheology."
 	icon_state = "neotheology"
 
 /obj/structure/sign/faction/neotheology_old
 	name = "NeoTheology"
-	desc = "Cyberchristianity Tau cross  - symbol of NeoTheology."
+	desc = "Tau Cross of Cyberchristianity - symbol of NeoTheology."
 	icon_state = "neotheology-old"
 
 /obj/structure/sign/faction/astersguild
@@ -556,15 +556,15 @@
 
 /obj/structure/sign/faction/technomancers
 	name = "Technomancer League"
-	desc = "Technomancer League - anarchistic community ruled by a powerfull clans."
+	desc = "Technomancer League - anarchistic community ruled by powerful clans."
 	icon_state = "technomancers"
 
 /obj/structure/sign/faction/excelsior
 	name = "EXCELSIOR"
-	desc = "EXCELSIOR are union of communist mining communities with no respect to any private property."
+	desc = "EXCELSIOR is union of communist mining communities with no respect to any private property."
 	icon_state = "excelsior"
 
 /obj/structure/sign/faction/excelsior_old
 	name = "EXCELSIOR"
-	desc = "EXCELSIOR are union of communist mining communities with no respect to any private property."
+	desc = "EXCELSIOR is union of communist mining communities with no respect to any private property."
 	icon_state = "excelsior-old"
