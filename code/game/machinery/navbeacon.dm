@@ -121,7 +121,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 			updateicon()
 
-		else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
+		else if(I.GetID())
 			if(open)
 				if (src.allowed(user))
 					src.locked = !src.locked
@@ -195,7 +195,7 @@ Transponder Codes:<UL>"}
 		..()
 		if (usr.stat)
 			return
-		if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+		if ((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
 			if(open && !locked)
 				usr.set_machine(src)
 

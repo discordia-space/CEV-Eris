@@ -108,7 +108,8 @@ log transactions
 
 		var/obj/item/weapon/card/id/idcard = I
 		if(!held_card)
-			usr.unEquip(I,0,src)
+			usr.unEquip(I)
+			I.forceMove(src)
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
 			held_card = idcard
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)

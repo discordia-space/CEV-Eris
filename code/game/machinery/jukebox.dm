@@ -58,7 +58,7 @@ datum/track/New(var/title_name, var/audio)
 			overlays += "[state_base]-running"
 
 /obj/machinery/media/jukebox/Topic(href, href_list)
-	if(..() || !(Adjacent(usr) || istype(usr, /mob/living/silicon)))
+	if(..() || !(Adjacent(usr) || issilicon(usr)))
 		return
 
 	if(!anchored)

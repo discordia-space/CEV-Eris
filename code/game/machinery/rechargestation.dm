@@ -7,6 +7,7 @@
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 50
+	circuit = /obj/item/weapon/circuitboard/recharge_station
 	var/mob/occupant = null
 	var/obj/item/weapon/cell/big/cell = null
 	var/icon_update_tick = 0	// Used to rebuild the overlay only once every 10 ticks
@@ -23,17 +24,6 @@
 
 /obj/machinery/recharge_station/New()
 	..()
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/recharge_station(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/cell/big/high(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-
-	RefreshParts()
 
 	update_icon()
 
@@ -108,7 +98,6 @@
 		if(!isnull(H.internal_organs_by_name["cell"]) && H.nutrition < 450)
 			H.nutrition = min(H.nutrition+10, 450)
 			cell.use(7000/450*10)
-
 
 /obj/machinery/recharge_station/examine(mob/user)
 	..(user)
