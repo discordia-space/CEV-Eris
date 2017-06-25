@@ -31,10 +31,10 @@
 
 
 /obj/item/clothing/under/rank/chaplain
-	desc = "It's a black jumpsuit, often worn by religious folk."
-	name = "preacher's jumpsuit"
-	icon_state = "chaplain"
-	item_state = "bl_suit"
+	desc = "Ceremonial robe of Cyberchristianity preacher."
+	name = "preacher's robe"
+	icon_state = "preacher"
+	item_state = "w_suit"
 
 /obj/item/clothing/under/rank/chef
 	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
