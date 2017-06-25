@@ -34,7 +34,8 @@
 /obj/machinery/computer/arcade/New()
 	if(!circuit)
 		circuit = pick(subtypesof(/obj/item/weapon/circuitboard/arcade))
-		new circuit.build_path(loc, circuit)
+		var/build_path = initial(circuit.build_path)
+		new build_path (loc, circuit)
 		qdel(src)
 	else
 		..()
