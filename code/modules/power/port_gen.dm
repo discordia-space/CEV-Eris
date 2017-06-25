@@ -52,9 +52,9 @@
 	if(!..(user,1 ))
 		return
 	if(active)
-		usr << "\blue The generator is on."
+		user << "<span class='notice'>The generator is on.</span>"
 	else
-		usr << "\blue The generator is off."
+		user << "<span class='notice'>The generator is off.</span>"
 
 /obj/machinery/power/port_gen/emp_act(severity)
 	var/duration = 6000 //ten minutes
@@ -88,7 +88,7 @@
 
 	var/sheet_name = "Plasma Sheets"
 	var/sheet_path = /obj/item/stack/material/plasma
-	var/board_path = "/obj/item/weapon/circuitboard/pacman"
+	circuit = /obj/item/weapon/circuitboard/pacman
 
 	/*
 		These values were chosen so that the generator can run safely up to 80 kW
@@ -113,17 +113,6 @@
 	..()
 	if(anchored)
 		connect_to_network()
-
-/obj/machinery/power/port_gen/pacman/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new board_path(src)
-	RefreshParts()
 
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
@@ -400,7 +389,7 @@
 	sheet_path = /obj/item/stack/material/uranium
 	sheet_name = "Uranium Sheets"
 	time_per_sheet = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
-	board_path = "/obj/item/weapon/circuitboard/pacman/super"
+	circuit = /obj/item/weapon/circuitboard/pacman/super
 
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
@@ -435,7 +424,7 @@
 	time_per_sheet = 576
 	max_temperature = 800
 	temperature_gain = 90
-	board_path = "/obj/item/weapon/circuitboard/pacman/mrs"
+	circuit = /obj/item/weapon/circuitboard/pacman/mrs
 
 /obj/machinery/power/port_gen/pacman/mrs/explode()
 	//no special effects, but the explosion is pretty big (same as a supermatter shard).
