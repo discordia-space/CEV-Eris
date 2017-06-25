@@ -71,7 +71,7 @@
 	new /obj/item/clothing/head/nun_hood(src)
 	new /obj/item/clothing/suit/chaplain_hoodie(src)
 	new /obj/item/clothing/head/chaplain_hood(src)
-	new /obj/item/clothing/under/wedding/bride_white(src)
+	new /obj/item/clothing/under/bride_white(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/deck/tarot(src)
@@ -261,23 +261,6 @@
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/chemist(src)
 	return
-
-
-/obj/structure/closet/wardrobe/genetics_white
-	name = "genetics wardrobe"
-	icon_state = "white"
-	icon_closed = "white"
-
-/obj/structure/closet/wardrobe/genetics_white/New()
-	..()
-	new /obj/item/clothing/under/rank/geneticist(src)
-	new /obj/item/clothing/under/rank/geneticist(src)
-	new /obj/item/clothing/shoes/color/white(src)
-	new /obj/item/clothing/shoes/color/white(src)
-	new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(src)
-	new /obj/item/clothing/suit/storage/toggle/labcoat/genetics(src)
-	return
-
 
 /obj/structure/closet/wardrobe/virology_white
 	name = "virology wardrobe"

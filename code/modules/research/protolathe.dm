@@ -2,6 +2,7 @@
 	name = "\improper Protolathe"
 	icon_state = "protolathe"
 	flags = OPENCONTAINER
+	circuit = /obj/item/weapon/circuitboard/protolathe
 
 	use_power = 1
 	idle_power_usage = 30
@@ -18,15 +19,6 @@
 /obj/machinery/r_n_d/protolathe/New()
 	materials = default_material_composition.Copy()
 	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/protolathe(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	RefreshParts()
 
 /obj/machinery/r_n_d/protolathe/process()
 	..()
