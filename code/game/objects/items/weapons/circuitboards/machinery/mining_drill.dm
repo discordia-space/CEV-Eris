@@ -11,7 +11,8 @@
 		/obj/item/weapon/stock_parts/capacitor = 1,
 		/obj/item/weapon/cell/big = 1,
 		/obj/item/weapon/stock_parts/matter_bin = 1,
-		/obj/item/weapon/stock_parts/micro_laser = 1
+		/obj/item/weapon/stock_parts/micro_laser = 1,
+		/obj/item/weapon/cell/big/high = 1
 	)
 
 /obj/item/weapon/circuitboard/miningdrillbrace
