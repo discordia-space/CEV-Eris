@@ -18,12 +18,13 @@
 	return data
 
 /obj/item/weapon/implant/death_alarm/process()
-	if (!implanted) return
+	if (!implanted)
+		return
 	var/mob/M = wearer
 
 	if(isnull(M)) // If the mob got gibbed
 		activate()
-	else if(M.stat == 2)
+	else if(M.stat == DEAD)
 		activate("death")
 
 /obj/item/weapon/implant/death_alarm/activate(var/cause)
@@ -66,8 +67,7 @@
 	spawn(20)
 		malfunction--
 
-/obj/item/weapon/implant/death_alarm/install(mob/source as mob)
-	..()
+/obj/item/weapon/implant/death_alarm/on_install(mob/living/source)
 	mobname = source.real_name
 	processing_objects.Add(src)
 
@@ -75,5 +75,8 @@
 /obj/item/weapon/implantcase/death_alarm
 	name = "glass case - 'death alarm'"
 	desc = "A case containing a death alarm implant."
-	icon_state = "implantcase-b"
-	implant_type = /obj/item/weapon/implant/death_alarm
+	implant = /obj/item/weapon/implant/death_alarm
+
+/obj/item/weapon/implanter/death_alarm
+	name = "implanter (death alarm)"
+	implant = /obj/item/weapon/implant/death_alarm

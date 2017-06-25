@@ -1,5 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 #define INSTALL_HANDS 0
 #define INSTALL_FOOTS 1
 
@@ -10,18 +8,17 @@
 	var/activation_emote = "chuckle"
 	var/uses = 1.0
 	var/install_organ = INSTALL_HANDS
-	legal = FALSE
+	is_legal = FALSE
 	origin_tech = list(TECH_COMBAT=5, TECH_MAGNET=3, TECH_BIO=4, TECH_ILLEGAL=2)
 	allowed_organs = list(BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)
 
 /obj/item/weapon/implant/freedom/New()
-	src.activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-	src.uses = rand(1, 5)
-	..()
-	return
+	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	uses = rand(1, 5)
 
-/obj/item/weapon/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
-	if (src.uses < 1)	return 0
+/obj/item/weapon/implant/freedom/trigger(emote, mob/living/carbon/source)
+	if (src.uses < 1)
+		return
 	if (emote == src.activation_emote)
 		src.uses--
 		source << "You feel a faint click."
@@ -49,14 +46,12 @@
 				dropped(source)
 				if (W)
 					W.layer = initial(W.layer)
-	return
 
-/obj/item/weapon/implant/freedom/install(mob/living/carbon/human/H, affected_organ)
-	..()
-	if(affected_organ in list(BP_L_FOOT, BP_R_FOOT))
+/obj/item/weapon/implant/freedom/on_install(mob/living/carbon/source, obj/item/organ/O)
+	if(O.organ_tag in list(BP_L_FOOT, BP_R_FOOT))
 		install_organ = INSTALL_FOOTS
-	H.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	H << "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
+		source.mind.store_memory("Freedom implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.", 0, 0)
+		source << "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
 
 /obj/item/weapon/implant/freedom/get_data()
 	var/data = {"
@@ -75,9 +70,11 @@
 		No Implant Specifics"}
 	return data
 
-
 /obj/item/weapon/implantcase/freedom
 	name = "glass case - 'freedom'"
 	desc = "A case containing a freedom implant."
-	icon_state = "implantcase-r"
-	implant_type = /obj/item/weapon/implant/freedom
+	implant = /obj/item/weapon/implant/freedom
+
+/obj/item/weapon/implanter/freedom
+	name = "implanter (freedom)"
+	implant = /obj/item/weapon/implant/freedom
