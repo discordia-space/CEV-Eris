@@ -121,41 +121,6 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-
-
-/datum/job/geneticist
-	title = "Geneticist"
-	flag = GENETICIST
-	department = "Medical"
-	department_flag = MEDSCI
-	faction = "Station"
-	total_positions = 0
-	spawn_positions = 0
-	supervisors = "the chief medical officer and research director"
-	selection_color = "#ffeef0"
-	economic_modifier = 7
-	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_research)
-	minimal_access = list(access_medical, access_morgue, access_genetics, access_research)
-	idtype = /obj/item/weapon/card/id/gene
-
-	uniform = /obj/item/clothing/under/rank/geneticist
-	pda = /obj/item/device/pda/geneticist
-	ear = /obj/item/device/radio/headset/headset_medsci
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat/genetics
-	shoes = /obj/item/clothing/shoes/laceup
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack,\
-		/obj/item/weapon/storage/backpack/satchel_norm,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
-
-
-	equip(var/mob/living/carbon/human/H)
-		if(!..())	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
-		return 1
-
 /datum/job/psychiatrist
 	title = "Psychiatrist"
 	flag = PSYCHIATRIST
@@ -170,7 +135,7 @@
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_psychiatrist)
 	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
 
-	uniform = /obj/item/clothing/under/rank/psych/turtleneck
+	uniform = /obj/item/clothing/under/rank/psych
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
 	shoes = /obj/item/clothing/shoes/laceup

@@ -72,21 +72,7 @@
 	item_state = "rainbow"
 
 
-/obj/item/clothing/under/gentlesuit
-	name = "gentlemans suit"
-	desc = "A silk black shirt with a white tie and a matching gray vest and slacks. Feels proper."
-	icon_state = "gentlesuit"
-	item_state = "gy_suit"
-
-
-/*/obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "captain's suit"
-	desc = "A green suit and yellow necktie. Exemplifies authority."
-	icon_state = "green_suit"
-	item_state = "dg_suit"*/
-
-
-/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
+/obj/item/clothing/under/rank/fo_suit
 	name = "First Officer's suit"
 	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
 	icon_state = "teal_suit"
@@ -157,17 +143,11 @@
 
 	body_parts_covered = LOWER_TORSO
 
-//wedding stuff
-/obj/item/clothing/under/wedding/
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-
-
-/obj/item/clothing/under/wedding/bride_white
+/obj/item/clothing/under/bride_white
 	name = "silky wedding dress"
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
 	item_state = "nursesuit"
-
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
