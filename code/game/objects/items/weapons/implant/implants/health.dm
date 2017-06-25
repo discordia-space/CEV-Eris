@@ -18,5 +18,4 @@
 /obj/item/weapon/implantcase/health
 	name = "glass case - 'health'"
 	desc = "A case containing a health tracking implant."
-	icon_state = "implantcase-b"
-	implant_type = /obj/item/weapon/implant/health
+	implant = /obj/item/weapon/implant/health

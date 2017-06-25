@@ -4,7 +4,8 @@
 	var/elevel = "Localized Limb"
 	var/phrase = "supercalifragilisticexpialidocious"
 	icon_state = "implant_evil"
-	legal = FALSE
+	implant_color = "r"
+	is_legal = FALSE
 	origin_tech = list(TECH_MATERIAL=2, TECH_COMBAT=3, TECH_BIO=4, TECH_ILLEGAL=4)
 
 /obj/item/weapon/implant/explosive/New()
@@ -28,7 +29,7 @@
 		<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return data
 
-/obj/item/weapon/implant/explosive/hear_talk(mob/M as mob, msg)
+/obj/item/weapon/implant/explosive/hear_talk(mob/M, msg)
 	hear(msg)
 
 /obj/item/weapon/implant/explosive/hear(var/msg)
@@ -55,9 +56,7 @@
 					wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
 					playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 					sleep(25)
-					if (istype(part,/obj/item/organ/external/chest) ||	\
-						istype(part,/obj/item/organ/external/groin) ||	\
-						istype(part,/obj/item/organ/external/head))
+					if (part.organ_tag in list(BP_CHEST, BP_HEAD, BP_GROIN))
 						part.createwound(BRUISE, 60)	//mangle them instead
 						explosion(get_turf(wearer), -1, -1, 2, 3)
 						qdel(src)
@@ -83,8 +82,7 @@
 	if(t)
 		t.hotspot_expose(3500,125)
 
-/obj/item/weapon/implant/explosive/install(mob/source as mob)
-	..()
+/obj/item/weapon/implant/explosive/on_install(mob/living/source)
 	elevel = alert("What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")
 	phrase = input("Choose activation phrase:") as text
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
@@ -100,9 +98,7 @@
 			if (ishuman(wearer) && part)
 				//No tearing off these parts since it's pretty much killing
 				//and you can't replace groins
-				if (istype(part,/obj/item/organ/external/chest) ||	\
-					istype(part,/obj/item/organ/external/groin) ||	\
-					istype(part,/obj/item/organ/external/head))
+				if (part.organ_tag in list(BP_CHEST, BP_GROIN, BP_HEAD))
 					part.createwound(BRUISE, 60)	//mangle them instead
 				else
 					part.droplimb(0,DROPLIMB_BLUNT)
@@ -133,10 +129,9 @@
 /obj/item/weapon/implantcase/explosive
 	name = "glass case - 'explosive'"
 	desc = "A case containing an explosive implant."
-	icon_state = "implantcase-r"
-	implant_type = /obj/item/weapon/implant/explosive
+	implant = new /obj/item/weapon/implant/explosive
 
 
 /obj/item/weapon/implanter/explosive
 	name = "implanter (E)"
-	implant_type = /obj/item/weapon/implant/explosive
+	implant = /obj/item/weapon/implant/explosive
