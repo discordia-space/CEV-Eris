@@ -26,15 +26,28 @@
 	return istype(src, /obj/item/weapon/implant/external)
 
 //return TRUE for implanter icon update.
-/obj/item/weapon/implant/proc/install(var/mob/living/target, var/obj/item/organ/external/affected, var/mob/user)
+/obj/item/weapon/implant/proc/install(var/mob/living/carbon/human/target, var/organ, var/mob/user)
+	var/obj/item/organ/external/affected = target.organs_by_name[organ]
+	if(!affected)
+		world << "affected is null"
+		if(allowed_organs.len)
+			organ = pick(allowed_organs)
+			world << "set to [organ] in ao"
+		else
+			organ = BP_CHEST
+			world << "set to [organ]"
+	affected = target.organs_by_name[organ]
+	world << "AFFECTED [affected]"
 	if(!affected)
 		user << "<span class='warning'>[target] miss that body part!.</span>"
 		return
 
-	if(allowed_organs.len && !(affected.organ_tag in allowed_organs))
+	if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))
 		user << "<span class='warning'>[src] cannot be implanted in this limb.</span>"
+		world << "NOT FOUND"
+		world << "[allowed_organs]:[allowed_organs.len]"
 		return
-
+	world << "ALL OK"
 	forceMove(target)
 	wearer = target
 	implanted = TRUE
