@@ -156,7 +156,8 @@
 
 	power_rating = initial(power_rating) * cap_rating / 2			//more powerful
 	heatsink_temperature = initial(heatsink_temperature) / ((manip_rating + bin_rating) / 2)	//more efficient
-	air_contents.volume = max(initial(internal_volume) - 200, 0) + 200 * bin_rating
+	if(air_contents)
+		air_contents.volume = max(initial(internal_volume) - 200, 0) + 200 * bin_rating
 	set_power_level(power_setting)
 
 /obj/machinery/atmospherics/unary/freezer/proc/set_power_level(var/new_power_setting)

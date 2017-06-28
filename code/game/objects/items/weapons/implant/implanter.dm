@@ -62,6 +62,6 @@
 			"used an implanter, [src.name] ([implant.name]), on"
 		)
 
-		if(implant.install(M, affected, user))
+		if(implant.install(M, user.targeted_organ, user))
 			implant = null
 			update_icon()

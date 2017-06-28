@@ -6,23 +6,11 @@
 	density = 0
 	layer = TURF_LAYER + 0.1
 	anchored = 1
+	circuit = /obj/item/weapon/circuitboard/mech_recharger
 
 	var/obj/mecha/charging = null
 	var/charge = 45
 	var/repair = 0
-
-/obj/machinery/mech_recharger/New()
-	..()
-	component_parts = list()
-
-	component_parts += new /obj/item/weapon/circuitboard/mech_recharger(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-
-	RefreshParts()
 
 /obj/machinery/mech_recharger/Crossed(var/obj/mecha/M)
 	. = ..()
