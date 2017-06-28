@@ -41,11 +41,11 @@
 		shadow.sync_icon(src)
 
 /mob/living/Move()
-	..()
+	. = ..()
 	check_shadow()
 
 /mob/living/forceMove()
-	..()
+	. = ..()
 	check_shadow()
 
 /mob/living/proc/check_shadow()
