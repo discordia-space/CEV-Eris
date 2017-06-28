@@ -67,11 +67,11 @@
 			M.reset_view(0)
 
 /mob/living/update_icons()
-	..()
+	. = ..()
 	if(shadow)
 		shadow.sync_icon(src)
 
 /mob/set_dir(new_dir)
-	..()
+	. = ..()
 	if(shadow)
 		shadow.set_dir(new_dir)
