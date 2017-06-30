@@ -1175,7 +1175,6 @@
 	src.occupant = null
 	src.icon_state = src.reset_icon()+"-open"
 	src.log_message("[mob_container] moved out.")
-	occupant.reset_view()
 	return
 
 /////////////////////////
