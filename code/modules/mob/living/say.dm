@@ -49,6 +49,21 @@ var/list/department_radio_keys = list(
 	  ":ì" = "Service",		".ì" = "Service",
 	  ":ç" = "AI Private",	".ç" = "AI Private",
 	  ":z" = "Entertainment",".z" = "Entertainment",
+
+	  ":Ê" = "right ear",	".Ê" = "right ear",
+	  ":Ä" = "left ear",	".Ä" = "left ear",
+	  ":Ø" = "intercom",	".Ø" = "intercom",
+	  ":Ð" = "department",	".Ð" = "department",
+	  ":Ñ" = "Command",		".Ñ" = "Command",
+	  ":Ò" = "Science",		".Ò" = "Science",
+	  ":Ü" = "Medical",		".Ü" = "Medical",
+	  ":Ó" = "Engineering",	".Ó" = "Engineering",
+	  ":Û" = "Security",	".Û" = "Security",
+	  ":Ö" = "whisper",		".Ö" = "whisper",
+	  ":Ó" = "Mercenary",	".Ó" = "Mercenary",
+	  ":Ã" = "Supply",		".Ã" = "Supply",
+	  ":Ì" = "Service",		".Ü" = "Service",
+	  ":Ç" = "AI Private",	".Ç" = "AI Private",
 )
 
 
