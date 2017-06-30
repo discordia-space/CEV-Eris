@@ -58,7 +58,7 @@ world/IsBanned(key, address, computer_id)
 			failedcid = 0
 			cidquery = " OR cid = '[computer_id]' "
 
-		var/DBQuery/query = dbcon.NewQuery("SELECT target_id, ip, cid, banned_by_id, reason, expiration_time, duration, time, type FROM bans WHERE ((target_id = [id] [ipquery] [cidquery]) AND (type = 'PERMABAN' OR (type = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned))")
+		var/DBQuery/query = dbcon.NewQuery("SELECT target_id, banned_by_id, reason, expiration_time, duration, time, type FROM bans WHERE ((target_id = [id] [ipquery] [cidquery] AND type = 'PERMABAN') OR (type = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
 
 		if(!query.Execute())
 			world.log << "Trying to fetch ban record for [ckeytext] but got error: [query.ErrorMsg()]."
@@ -66,12 +66,12 @@ world/IsBanned(key, address, computer_id)
 
 		while(query.NextRow())
 			var/target_id = query.item[1]
-			var/banned_by_id = query.item[4]
-			var/reason = query.item[5]
-			var/expiration = query.item[6]
-			var/duration = query.item[7]
-			var/bantime = query.item[8]
-			var/bantype = query.item[9]
+			var/banned_by_id = query.item[2]
+			var/reason = query.item[3]
+			var/expiration = query.item[4]
+			var/duration = query.item[5]
+			var/bantime = query.item[6]
+			var/bantype = query.item[7]
 
 			var/banned_ckey
 			var/DBQuery/get_banned_ckey = dbcon.NewQuery("SELECT ckey FROM players WHERE id=[target_id]")

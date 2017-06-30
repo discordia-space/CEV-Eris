@@ -41,11 +41,11 @@
 		shadow.sync_icon(src)
 
 /mob/living/Move()
-	..()
+	. = ..()
 	check_shadow()
 
 /mob/living/forceMove()
-	..()
+	. = ..()
 	check_shadow()
 
 /mob/living/proc/check_shadow()
@@ -67,11 +67,11 @@
 			M.reset_view(0)
 
 /mob/living/update_icons()
-	..()
+	. = ..()
 	if(shadow)
 		shadow.sync_icon(src)
 
 /mob/set_dir(new_dir)
-	..()
+	. = ..()
 	if(shadow)
 		shadow.set_dir(new_dir)

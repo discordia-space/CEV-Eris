@@ -92,11 +92,6 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 			pref.age = max(min(round(text2num(new_age)), S.max_age), S.min_age)
 			return TOPIC_REFRESH
 
-	else if(href_list["religion"])
-		pref.religion = input("Religion") in list("None", "Cyber Christianity")
-		pref.req_update_icon = 1
-		return TOPIC_REFRESH
-
 	else if(href_list["metadata"])
 		var/new_metadata = sanitize(input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , pref.metadata)) as message|null
 		if(new_metadata && CanUseTopic(user))
@@ -105,6 +100,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 
 	else if(href_list["religion"])
 		pref.religion = input("Religion") in list("None", "Christianity")
+		pref.req_update_icon = 1
 		return TOPIC_REFRESH
 
 	return ..()
