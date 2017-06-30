@@ -1172,10 +1172,9 @@
 			mmi.mecha = null
 			src.occupant.canmove = 0
 			src.verbs += /obj/mecha/verb/eject
-	src.occupant = null
-	src.icon_state = src.reset_icon()+"-open"
-	src.log_message("[mob_container] moved out.")
-	src.set_dir(dir_in)
+		src.occupant = null
+		src.icon_state = src.reset_icon()+"-open"
+		src.set_dir(dir_in)
 	return
 
 /////////////////////////
