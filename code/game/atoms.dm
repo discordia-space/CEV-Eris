@@ -214,9 +214,9 @@ its easier to just keep the beam vertical.
 			full_name += "oil-stained [name][infix]."
 
 	if(isobserver(user))
-		user << "\icon[src] This is [full_name] [suffix]."
+		user << "\icon[src] This is [full_name] [suffix]"
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix].")
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
 
 	if(desc)
 		user << desc
