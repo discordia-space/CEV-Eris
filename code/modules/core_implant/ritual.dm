@@ -53,7 +53,7 @@
 
 //returns true, if text is phrase of this ritual
 /datum/ritual/proc/compare(var/text)
-	return text == phrase
+	return phrase && phrase != "" && text == phrase
 
 //returns list of targets, specified in text
 /datum/ritual/proc/get_targets(var/text)
@@ -63,7 +63,13 @@
 //HELPERS
 
 /datum/ritual/proc/get_grabbed(var/mob/living/carbon/human/user)
-	return
+	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
+	var/obj/item/weapon/implant/external/core_implant/CI
+
+	if(G)
+		CI = locate(implant_type) in G.affecting
+
+	return CI
 
 /datum/ritual/proc/get_front(var/mob/living/carbon/human/user)
 	var/turf/T = get_step(user,user.dir)

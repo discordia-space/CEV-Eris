@@ -79,3 +79,4 @@
 
 /obj/item/weapon/implant/explosive/emp_act(severity)
 	malfunction(severity)
+

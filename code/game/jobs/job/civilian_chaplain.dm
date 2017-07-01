@@ -16,7 +16,8 @@
 	pda = /obj/item/device/pda/chaplain
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H)
-	var/obj/item/weapon/implant/external/core_implant/cruciform/priest/C = new /obj/item/weapon/implant/external/core_implant/cruciform/priest(H)
+	//DONT FORGET CHANGE THIS TO PRIEST world << "D:
+	var/obj/item/weapon/implant/external/core_implant/cruciform/inquisitor/C = new /obj/item/weapon/implant/external/core_implant/cruciform/inquisitor(H)
 	C.install(H)
 	C.activate()
 
@@ -24,6 +25,6 @@
 
 	if(!..())	return FALSE
 
-	var/obj/item/weapon/book/bible/B = new /obj/item/weapon/book/bible(H)
+	var/obj/item/weapon/book/ritual/cruciform/B = new /obj/item/weapon/book/ritual/cruciform(H)
 	H.equip_to_slot_or_del(B, slot_l_hand)
 	return TRUE

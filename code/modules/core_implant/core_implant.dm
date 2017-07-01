@@ -3,6 +3,7 @@
 	icon = 'icons/obj/device.dmi'
 	w_class = 2
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
+	var/implant_type = /obj/item/weapon/implant/external/core_implant
 	var/power = 0
 	var/max_power = 0
 	var/success_modifier = 1
@@ -11,6 +12,8 @@
 	var/address = null				//string, used as id for targeted rituals
 
 	var/rituals = list()
+
+	var/remote_ritual
 
 /obj/item/weapon/implant/external/core_implant/Destroy()
 	processing_objects.Remove(src)
@@ -68,6 +71,9 @@
 /obj/item/weapon/implant/external/core_implant/hear_talk(mob/living/carbon/human/H, message)
 	if(wearer != H)
 		return
+
+	if(remote_ritual)
+		remote_ritual = null
 
 	for(var/RT in rituals)
 		var/datum/ritual/R = new RT

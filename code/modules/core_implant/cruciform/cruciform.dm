@@ -1,5 +1,11 @@
 var/list/christians = list()
 
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/is_priest()
+	return istype(src,/obj/item/weapon/implant/external/core_implant/cruciform/priest)
+
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/is_inquisitor()
+	return istype(src,/obj/item/weapon/implant/external/core_implant/cruciform/inquisitor)
+
 /obj/item/weapon/implant/external/core_implant/cruciform
 	name = "cruciform"
 	icon_state = "cruciform_green"
@@ -8,10 +14,11 @@ var/list/christians = list()
 	position_flag = POS_FRONT_TOP
 	allowed_organs = list(BP_CHEST)
 	rituals = list()
+	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
 	var/datum/coreimplant_record/data = null
 
 /obj/item/weapon/implant/external/core_implant/cruciform/New()
-	rituals = cruciform_rituals
+	rituals = cruciform_base_rituals
 
 /obj/item/weapon/implant/external/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
@@ -31,18 +38,19 @@ var/list/christians = list()
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(3, 1, src)
 	s.start()
+	deactivate()
+	uninstall()
 
 /obj/item/weapon/implant/external/core_implant/cruciform/activate()
 	if(!wearer || active)
 		return
 	..()
 	update_data()
-	christians.Add(wearer)
+	christians |= wearer
 
 /obj/item/weapon/implant/external/core_implant/cruciform/deactivate()
 	if(!active || !wearer)
 		return
-	hard_eject()
 	christians.Remove(wearer)
 	..()
 
@@ -50,6 +58,9 @@ var/list/christians = list()
 	..()
 	if(world.time == round(world.time))
 		remove_cyber()
+	if(wearer && wearer.stat == DEAD)
+		deactivate()
+
 
 /obj/item/weapon/implant/external/core_implant/cruciform/proc/transfer_soul()
 	if(!wearer || !activated || !data)
@@ -119,11 +130,10 @@ var/list/christians = list()
 	max_power = 100
 	success_modifier = 3
 
-/obj/item/weapon/implant/external/core_implant/cruciform/inquisitor
-	power = 100
-	max_power = 100
-	success_modifier = 5
-	rituals
+/obj/item/weapon/implant/external/core_implant/cruciform/priest/New()
+	..()
+	rituals = cruciform_base_rituals + cruciform_priest_rituals
+
 
 //////////////////////////
 //////////////////////////
@@ -136,3 +146,4 @@ var/list/christians = list()
 	var/mind = null
 	var/languages = list()
 	var/flavor = ""
+
