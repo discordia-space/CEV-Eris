@@ -33,7 +33,7 @@
 	if(cell_type)
 		power_supply = new cell_type(src)
 	else
-		power_supply = new /obj/item/weapon/cell/medium/device/variable(src, max_shots*charge_cost)
+		power_supply = new /obj/item/weapon/cell/medium/device(src, max_shots*charge_cost)
 	if(self_recharge)
 		processing_objects.Add(src)
 	update_icon()

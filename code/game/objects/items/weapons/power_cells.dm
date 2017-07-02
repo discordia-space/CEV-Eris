@@ -76,10 +76,23 @@
 	maxcharge = 1000
 	matter = list("metal" = 350, "glass" = 50)
 
-/obj/item/weapon/cell/medium/device/variable/New(newloc, charge_amount)
+/obj/item/weapon/cell/medium/device/New(newloc, charge_amount)
 	..(newloc)
 	maxcharge = charge_amount
 	charge = maxcharge
+
+/obj/item/weapon/cell/medium/proc/give(var/amount)
+	if(rigged && amount > 0)
+		explode()
+		return 0
+
+	if(maxcharge < amount)	return 0
+	var/amount_used = min(maxcharge-charge,amount)
+	charge += amount_used
+	return amount_used
+
+/obj/item/weapon/cell/medium/device/give(var/amount)
+	..()
 
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
 
