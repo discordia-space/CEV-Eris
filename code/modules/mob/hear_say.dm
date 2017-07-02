@@ -54,7 +54,7 @@
 		if(italics && is_preference_enabled(/datum/client_preference/ghost_radio))
 			return
 		if(speaker_name != speaker.real_name && speaker.real_name)
-			speaker_name = "[speaker.real_name] ([speaker_name])"
+			speaker_name = "[speaker_name]"
 		track = "([ghost_follow_link(speaker, src)]) "
 		if(is_preference_enabled(/datum/client_preference/ghost_ears) && (speaker in view(src)))
 			message = "<b>[message]</b>"
