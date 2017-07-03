@@ -1129,6 +1129,25 @@
 	//Eject for AI in mecha
 	if(mob_container.forceMove(src.loc))//ejecting mob container
 
+		src.log_message("[mob_container] moved out.")
+		occupant.reset_view()
+		/*
+		if(src.occupant.client)
+			src.occupant.client.eye = src.occupant.client.mob
+			src.occupant.client.perspective = MOB_PERSPECTIVE
+		*/
+		src.occupant << browse(null, "window=exosuit")
+		if(istype(mob_container, /obj/item/device/mmi))
+			var/obj/item/device/mmi/mmi = mob_container
+			if(mmi.brainmob)
+				occupant.loc = mmi
+			mmi.mecha = null
+			src.occupant.canmove = 0
+			src.verbs += /obj/mecha/verb/eject
+		src.occupant = null
+		src.icon_state = src.reset_icon()+"-open"
+		src.set_dir(dir_in)
+
 	if(isAI(mob_container))
 		var/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/AH = locate() in src
 		if(AH)
@@ -1155,24 +1174,7 @@
 			occupant.SetWeakened(5)
 			occupant << "You were blown out of the mech!"
 	*/
-		src.log_message("[mob_container] moved out.")
-		occupant.reset_view()
-		/*
-		if(src.occupant.client)
-			src.occupant.client.eye = src.occupant.client.mob
-			src.occupant.client.perspective = MOB_PERSPECTIVE
-		*/
-		src.occupant << browse(null, "window=exosuit")
-		if(istype(mob_container, /obj/item/device/mmi))
-			var/obj/item/device/mmi/mmi = mob_container
-			if(mmi.brainmob)
-				occupant.loc = mmi
-			mmi.mecha = null
-			src.occupant.canmove = 0
-			src.verbs += /obj/mecha/verb/eject
-		src.occupant = null
-		src.icon_state = src.reset_icon()+"-open"
-		src.set_dir(dir_in)
+
 	return
 
 /////////////////////////
