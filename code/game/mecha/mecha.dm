@@ -1127,12 +1127,13 @@
 	dropped_items.Cut()
 
 	//Eject for AI in mecha
+	if(mob_container.forceMove(src.loc))//ejecting mob container
+
 	if(isAI(mob_container))
 		var/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/AH = locate() in src
 		if(AH)
 			AH.go_out()
 
-	if(mob_container.forceMove(src.loc))//ejecting mob container
 	/*
 		if(ishuman(occupant) && (return_pressure() > HAZARD_HIGH_PRESSURE))
 			use_internal_tank = 0
