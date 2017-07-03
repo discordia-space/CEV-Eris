@@ -1239,6 +1239,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder
 	name = "AI holder"
 	desc = "AI holder - allowed AI control exo-suits."
+	icon_state = "ai_holder"
 	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
 	energy_drain = 5
 	equip_cooldown = 20
@@ -1288,6 +1289,7 @@
 	original.name = "Inactive AI"
 	original.real_name = "Inactive AI"
 	original.icon_state = "ai-empty"
+	chassis.reset_icon()
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/try_occupy(var/mob/living/silicon/ai/AI, var/mob/user)
 	if(current)
