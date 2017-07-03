@@ -411,7 +411,7 @@
 /obj/mecha/proc/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
-		playsound(src,'sound/mecha/Mech_Step.wav',100,1)
+		playsound(src,'sound/mecha/Mech_Step.wav',70,1)
 	return result
 
 
@@ -853,7 +853,7 @@
 
 	return
 
-/*
+
 /obj/mecha/attack_ai(var/mob/living/silicon/ai/user as mob)
 	if(!istype(user, /mob/living/silicon/ai))
 		return
@@ -862,7 +862,7 @@
 						"}
 	user << browse(output, "window=mecha_attack_ai")
 	return
-*/
+
 
 /////////////////////////////////////
 ////////  Atmospheric stuff  ////////
@@ -1668,12 +1668,12 @@
 
 
 
-/*
+
 
 	if (href_list["ai_take_control"])
 		var/mob/living/silicon/ai/AI = locate(href_list["ai_take_control"])
 		var/duration = text2num(href_list["duration"])
-		var/mob/living/silicon/ai/O = new /mob/living/silicon/ai(src)
+		var/mob/living/silicon/ai/O = new /mob/living/silicon/ai(src, safety = TRUE)
 		var/cur_occupant = src.occupant
 		O.invisibility = 0
 		O.canmove = 1
@@ -1695,7 +1695,9 @@
 		AI.name = "Inactive AI"
 		AI.real_name = "Inactive AI"
 		AI.icon_state = "ai-empty"
+		src.reset_icon()
 		spawn(duration)
+		src.go_out()
 			AI.name = O.name
 			AI.real_name = O.real_name
 			if(O.mind)
@@ -1713,7 +1715,7 @@
 			else
 				AI.icon_state = "ai-crash"
 			src.occupant = cur_occupant
-*/
+
 	return
 
 ///////////////////////
