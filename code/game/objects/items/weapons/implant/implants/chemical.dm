@@ -25,27 +25,21 @@
 
 /obj/item/weapon/implant/chem/New()
 	..()
-	var/datum/reagents/R = new/datum/reagents(50)
-	reagents = R
-	R.my_atom = src
+	create_reagents(50)
 
-
-/obj/item/weapon/implant/chem/trigger(emote, source as mob)
+/obj/item/weapon/implant/chem/trigger(emote, mob/living/source)
 	if(emote == "deathgasp")
-		src.activate(src.reagents.total_volume)
-	return
+		activate()
 
-
-/obj/item/weapon/implant/chem/activate(var/cause)
-	if((!cause) || (!src.wearer))	return 0
-	var/mob/living/carbon/R = src.wearer
-	src.reagents.trans_to_mob(R, cause, CHEM_BLOOD)
-	R << "You hear a faint *beep*."
+/obj/item/weapon/implant/chem/activate()
+	if(!wearer)
+		return
+	reagents.trans_to_mob(wearer, reagents.total_volume, CHEM_BLOOD)
+	wearer << "You hear a faint *beep*."
 	if(!src.reagents.total_volume)
-		R << "You hear a faint click from your chest."
+		wearer << "You hear a faint click from your [part]."
 		spawn(0)
 			qdel(src)
-	return
 
 /obj/item/weapon/implant/chem/emp_act(severity)
 	if (malfunction)
@@ -65,7 +59,6 @@
 
 
 /obj/item/weapon/implantcase/chem
-	name = "glass case - 'chem'"
+	name = "glass case - 'chemical'"
 	desc = "A case containing a chemical implant."
-	icon_state = "implantcase-b"
-	implant_type = /obj/item/weapon/implant/chem
+	implant = /obj/item/weapon/implant/chem

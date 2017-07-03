@@ -22,6 +22,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	var/datum/announcement/priority/emergency_pods_launched = new(0, new_sound = sound('sound/misc/notice2.ogg'))
 	var/datum/announcement/priority/emergency_pods_armed = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
 	var/datum/announcement/priority/emergency_pods_unarmed = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))
+	var/datum/announcement/priority/emergency_pods_unarmed_radio = new(0)
 
 /datum/emergency_shuttle_controller/proc/process()
 	if(pods_armed)
@@ -40,7 +41,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 					pod.launch(src)
 		else
 			if(round(estimate_prepare_time()) % 60 == 0 && round(estimate_prepare_time()) > 0)
-				emergency_pods_armed.Announce("An emergency evacuation sequence in progress. You have approximately [round(estimate_prepare_time()/60)] minutes to prepare for departure.")
+				emergency_pods_unarmed_radio.Announce("An emergency evacuation sequence in progress. You have approximately [round(estimate_prepare_time()/60)] minutes to prepare for departure.")
 	else
 		if(world.time >= lockdown_time)
 			for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)

@@ -14,6 +14,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = 2.8
+	circuit = /obj/item/weapon/circuitboard/neotheology/cloner
 
 	frame_type = FRAME_VERTICAL
 
@@ -40,25 +41,13 @@
 
 /obj/machinery/neotheology/cloner/New()
 	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/neotheology/cloner(src)
-	component_parts += new /obj/item/weapon/implant/external/core_implant/cruciform(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 8)
-	RefreshParts()
-
 	icon = 'icons/obj/neotheology_machinery.dmi'
 	update_icon()
 
 /obj/machinery/neotheology/cloner/Destroy()
-	..()
-
 	if(occupant)
 		qdel(occupant)
+	return ..()
 
 /obj/machinery/neotheology/cloner/RefreshParts()
 	var/T = 1
@@ -424,6 +413,7 @@
 	icon_state = "biocan"
 	density = TRUE
 	anchored = TRUE
+	circuit = /obj/item/weapon/circuitboard/neotheology/biocan
 
 	var/biomass = 0
 	var/biomass_max = 900
@@ -433,14 +423,6 @@
 	..()
 	if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
 		biomass = 600
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/neotheology/biocan(src)
-	component_parts += new /obj/item/weapon/implant/external/core_implant/cruciform(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	RefreshParts()
 
 /obj/machinery/neotheology/biomass_container/RefreshParts()
 	var/T = 0
@@ -497,18 +479,10 @@
 	icon_state = "reader_off"
 	density = TRUE
 	anchored = TRUE
+	circuit = /obj/item/weapon/circuitboard/neotheology/reader
 
 	var/obj/item/weapon/implant/external/core_implant/cruciform/implant
 	var/reading = FALSE
-
-/obj/machinery/neotheology/reader/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/neotheology/reader(src)
-	component_parts += new /obj/item/weapon/implant/external/core_implant/cruciform(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	RefreshParts()
 
 /obj/machinery/neotheology/reader/proc/start_reading()
 	if(!implant)

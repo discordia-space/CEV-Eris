@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/chaplain
-	name = "monochurch preacher's locker"
+	name = "cyberchristian preacher's locker"
 	req_access = list(access_chapel_office)
 	icon_state = "preacher1"
 	icon_closed = "preacher"
@@ -16,9 +16,11 @@
 		new /obj/item/clothing/head/nun_hood(src)
 		new /obj/item/clothing/suit/chaplain_hoodie(src)
 		new /obj/item/clothing/head/chaplain_hood(src)
-		new /obj/item/clothing/under/wedding/bride_white(src)
+		new /obj/item/clothing/under/bride_white(src)
 		new /obj/item/weapon/storage/fancy/candle_box(src)
 		new /obj/item/weapon/storage/fancy/candle_box(src)
 		new /obj/item/weapon/deck/tarot(src)
-		new /obj/item/weapon/talkingcrystal(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 		return

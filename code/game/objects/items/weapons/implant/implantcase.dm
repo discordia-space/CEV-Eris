@@ -10,19 +10,19 @@
 	throw_range = 5
 	w_class = 1.0
 	var/obj/item/weapon/implant/implant = null
-	var/implant_type = null
 
 /obj/item/weapon/implantcase/New()
-	src.implant = new implant_type(src)
 	..()
-	return
+	if(ispath(implant))
+		implant = new implant(src)
+		update_icon()
 
-/obj/item/weapon/implantcase/proc/update()
-	if (src.implant)
-		src.icon_state = text("implantcase-[]", src.implant.implant_color)
+/obj/item/weapon/implantcase/update_icon()
+	if(implant)
+		src.icon_state = "implantcase-[implant.implant_color]"
 	else
 		src.icon_state = "implantcase-0"
-	return
+	..()
 
 /obj/item/weapon/implantcase/attackby(obj/item/weapon/I as obj, mob/user as mob)
 	..()
@@ -34,37 +34,36 @@
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
 		if(t)
-			src.name = text("Glass Case - '[]'", t)
+			src.name = "Glass Case - '[t]'"
 		else
 			src.name = "Glass Case"
 	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))
-		if(!src.implant)	return
-		if(!src.implant.allow_reagents)	return
-		if(src.implant.reagents.total_volume >= src.implant.reagents.maximum_volume)
+		if(!implant)
+			return
+		if(!implant.allow_reagents)
+			return
+		if(implant.reagents.total_volume >= implant.reagents.maximum_volume)
 			user << "<span class='warning'>\The [src] is full.</span>"
 		else
 			spawn(5)
-				I.reagents.trans_to_obj(src.implant, 5)
+				I.reagents.trans_to_obj(implant, 5)
 				user << "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>"
 	else if (istype(I, /obj/item/weapon/implanter))
 		var/obj/item/weapon/implanter/M = I
-		if(src.implant.is_external())
+		if(implant.is_external())
 			return
-		if (M.implant)
-			if ((src.implant || M.implant.implanted))
+		if(M.implant)
+			if (implant || M.implant.implanted)
 				return
-			M.implant.loc = src
+			M.implant.forceMove(src)
 			src.implant = M.implant
 			M.implant = null
-			src.update()
-			M.update()
+			update_icon()
+			M.update_icon()
 		else
-			if (src.implant)
-				if (M.implant)
-					return
-				src.implant.loc = M
-				M.implant = src.implant
-				src.implant = null
-				update()
-			M.update()
-	return
+			if(implant && !M.implant)
+				implant.forceMove(M)
+				M.implant = implant
+				implant = null
+				update_icon()
+				M.update_icon()

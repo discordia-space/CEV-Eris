@@ -204,11 +204,6 @@
 
 //Eris signs
 
-/obj/structure/sign/ironhammer
-	name = "Ironhammer Security"
-	desc = "Sign depicts the symbolic of Ironhammer Security, the largest security provider within Trade Union of Hansa."
-	icon_state = "ironhammer"
-
 /obj/structure/sign/atmos_co2
 	name = "CO2 warning sign"
 	desc = "WARNING! CO2 flow tube. Ensure the flow is disengaged before working."
@@ -517,3 +512,59 @@
 /obj/structure/sign/department/prison
 	name = "PRISON"
 	icon_state = "prison"
+
+//Eris factions
+
+/obj/structure/sign/faction
+	name = "faction sign"
+	desc = "Faction sign of some sort."
+
+/obj/structure/sign/faction/ironhammer
+	name = "Ironhammer Security"
+	desc = "Sign depicts the symbolic of Ironhammer Security, the largest security provider within Trade Union of Hansa."
+	icon_state = "ironhammer"
+
+/obj/structure/sign/faction/alliance
+	name = "Mankind Alliance"
+	desc = "Alliance's all-seeing eye, logo of now fallen empire. Once they were owning all the Milky Way. Now it's just dust, forgotten derelicts and automated ships."
+	icon_state = "alliance"
+
+/obj/structure/sign/faction/alliance_old
+	name = "Mankind Alliance"
+	desc = "Alliance's all-seeing eye, logo of now fallen empire. Once they were owning all the Milky Way. Now it's just dust, forgotten derelicts and automated ships."
+	icon_state = "alliance-old"
+
+/obj/structure/sign/faction/frozenstar
+	name = "Frozen Star"
+	desc = "The most popular Hanza's weapon manufacturer."
+	icon_state = "frozenstar"
+
+/obj/structure/sign/faction/neotheology
+	name = "NeoTheology"
+	desc = "Tau Cross of Cyberchristianity - symbol of NeoTheology."
+	icon_state = "neotheology"
+
+/obj/structure/sign/faction/neotheology_old
+	name = "NeoTheology"
+	desc = "Tau Cross of Cyberchristianity - symbol of NeoTheology."
+	icon_state = "neotheology-old"
+
+/obj/structure/sign/faction/astersguild
+	name = "Asters Guild"
+	desc = "Asters Guild - monopolists of far space transportation."
+	icon_state = "astersguild"
+
+/obj/structure/sign/faction/technomancers
+	name = "Technomancer League"
+	desc = "Technomancer League - anarchistic community ruled by powerful clans."
+	icon_state = "technomancers"
+
+/obj/structure/sign/faction/excelsior
+	name = "EXCELSIOR"
+	desc = "EXCELSIOR is union of communist mining communities with no respect to any private property."
+	icon_state = "excelsior"
+
+/obj/structure/sign/faction/excelsior_old
+	name = "EXCELSIOR"
+	desc = "EXCELSIOR is union of communist mining communities with no respect to any private property."
+	icon_state = "excelsior-old"

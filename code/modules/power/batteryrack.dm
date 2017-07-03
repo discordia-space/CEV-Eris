@@ -9,24 +9,10 @@
 	input_level_max = 0
 	output_level_max = 0
 	icon_state = "gsmes"
+	circuit = /obj/item/weapon/circuitboard/batteryrack
 	var/cells_amount = 0
 	var/capacitors_amount = 0
 	var/global/list/br_cache = null
-
-/obj/machinery/power/smes/batteryrack/New()
-	..()
-	add_parts()
-	RefreshParts()
-	return
-
-//Maybe this should be moved up to obj/machinery
-/obj/machinery/power/smes/batteryrack/proc/add_parts()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/batteryrack
-	component_parts += new /obj/item/weapon/cell/big/high
-	component_parts += new /obj/item/weapon/cell/big/high
-	component_parts += new /obj/item/weapon/cell/big/high
-	return
 
 
 /obj/machinery/power/smes/batteryrack/RefreshParts()
@@ -117,16 +103,8 @@
 /obj/machinery/power/smes/batteryrack/makeshift
 	name = "makeshift PSU"
 	desc = "A rack of batteries connected by a mess of wires posing as a PSU."
+	circuit = /obj/item/weapon/circuitboard/ghettosmes
 	var/overcharge_percent = 0
-
-
-/obj/machinery/power/smes/batteryrack/makeshift/add_parts()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/ghettosmes
-	component_parts += new /obj/item/weapon/cell/big/high
-	component_parts += new /obj/item/weapon/cell/big/high
-	component_parts += new /obj/item/weapon/cell/big/high
-	return
 
 
 /obj/machinery/power/smes/batteryrack/makeshift/update_icon()

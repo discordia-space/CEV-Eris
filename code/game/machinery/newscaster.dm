@@ -252,7 +252,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if(!user.IsAdvancedToolUser())
 		return 0
 
-	if(istype(user, /mob/living/carbon/human) || istype(user,/mob/living/silicon) )
+	if(ishuman(user) || istype(user,/mob/living/silicon))
 		var/mob/living/human_or_robot_user = user
 		var/dat
 		dat = text("<HEAD><TITLE>Newscaster</TITLE></HEAD><H3>Newscaster Unit #[src.unit_no]</H3>")

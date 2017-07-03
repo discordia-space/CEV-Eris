@@ -18,13 +18,6 @@
 	icon_open = "labcoat_cmo_open"
 	icon_closed = "labcoat_cmo"
 
-/obj/item/clothing/suit/storage/toggle/labcoat/genetics
-	name = "Geneticist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a blue stripe on the shoulder."
-	icon_state = "labcoat_gen_open"
-	icon_open = "labcoat_gen_open"
-	icon_closed = "labcoat_gen"
-
 /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 	name = "Chemist labcoat"
 	desc = "A suit that protects against minor chemical spills. Has an orange stripe on the shoulder."

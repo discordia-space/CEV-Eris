@@ -9,6 +9,7 @@
 	name = "mining drill head"
 	desc = "An enormous drill."
 	icon_state = "mining_drill"
+	circuit = /obj/item/weapon/circuitboard/miningdrill
 	var/braces_needed = 2
 	var/list/supports = list()
 	var/supported = 0
@@ -38,18 +39,6 @@
 	var/need_update_field = 0
 	var/need_player_check = 0
 
-/obj/machinery/mining/drill/New()
-
-	..()
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/miningdrill(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/cell/big/high(src)
-
-	RefreshParts()
 
 /obj/machinery/mining/drill/process()
 
@@ -290,13 +279,8 @@
 	name = "mining drill brace"
 	desc = "A machinery brace for an industrial drill. It looks easily two feet thick."
 	icon_state = "mining_brace"
+	circuit = /obj/item/weapon/circuitboard/miningdrillbrace
 	var/obj/machinery/mining/drill/connected
-
-/obj/machinery/mining/brace/New()
-	..()
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/miningdrillbrace(src)
 
 /obj/machinery/mining/brace/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(connected && connected.active)

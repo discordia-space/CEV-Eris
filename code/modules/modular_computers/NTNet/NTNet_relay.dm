@@ -8,6 +8,7 @@
 	icon_state = "bus"
 	anchored = 1
 	density = 1
+	circuit = /obj/item/weapon/circuitboard/ntnet_relay
 	var/datum/ntnet/NTNet = null // This is mostly for backwards reference and to allow varedit modifications from ingame.
 	var/enabled = 1				// Set to 0 if the relay was turned off
 	var/dos_failure = 0			// Set to 1 if the relay failed due to (D)DoS attack
@@ -89,9 +90,6 @@
 /obj/machinery/ntnet_relay/New()
 	uid = gl_uid
 	gl_uid++
-	component_parts = list()
-	component_parts += new /obj/item/stack/cable_coil(src,15)
-	component_parts += new /obj/item/weapon/circuitboard/ntnet_relay(src)
 
 	if(ntnet_global)
 		ntnet_global.relays.Add(src)

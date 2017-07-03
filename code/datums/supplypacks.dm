@@ -1058,15 +1058,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/judgerobe,
 					/obj/item/clothing/suit/wcoat,
 					/obj/item/clothing/suit/nun,
-					///obj/item/clothing/under/gimmick/rank/captain/suit,
-					/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
+					/obj/item/clothing/under/rank/fo_suit,
 					/obj/item/clothing/suit/bio_suit/plaguedoctorsuit,
 					/obj/item/clothing/under/schoolgirl,
 					/obj/item/clothing/under/owl,
 					/obj/item/clothing/under/waiter,
 					/obj/item/clothing/under/gladiator,
 					/obj/item/clothing/under/soviet,
-					/obj/item/clothing/under/wedding/bride_white,
+					/obj/item/clothing/under/bride_white,
 					/obj/item/clothing/suit/chef,
 					/obj/item/clothing/under/kilt)
 	name = "Costumes crate"
@@ -1457,7 +1456,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet
 	cost = 15
 	num_contained = 1
-	contains = list(/obj/item/clothing/under/wedding/bride_white)
+	contains = list(/obj/item/clothing/under/bride_white)
 	group = "Miscellaneous"
 
 /datum/supply_packs/painters
