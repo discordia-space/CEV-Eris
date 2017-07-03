@@ -1234,3 +1234,76 @@
 		sleep(equip_cooldown)
 		wait = 0
 		return 1
+
+
+/obj/item/mecha_parts/mecha_equipment/tool/ai_holder
+	name = "AI holder"
+	desc = "AI holder - allowed AI control exo-suits."
+	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
+	energy_drain = 5
+	equip_cooldown = 20
+	salvageable = 0
+	var/mob/living/silicon/ai/original = null
+	var/mob/living/silicon/ai/current  = null
+
+/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/go_out()
+	original.name = current.name
+	original.real_name = current.real_name
+	if(current.mind)
+		current.mind.transfer_to(original)
+	original.control_disabled = FALSE
+	original.laws = current.laws
+	original.oxyloss = current.getOxyLoss()
+	original.fireloss = current.getFireLoss()
+	original.bruteloss = current.getBruteLoss()
+	original.toxloss = current.toxloss
+	original.updatehealth()
+	qdel(current)
+	current = null
+	if (!original.stat)
+		original.icon_state = "ai"
+	else
+		original.icon_state = "ai-crash"
+
+/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/occupied(var/mob/living/silicon/ai/AI)
+	original = AI
+	current = new /mob/living/silicon/ai(src, safety = TRUE)
+	current.invisibility = 0
+	current.canmove = TRUE
+	current.name = original.name
+	current.real_name = original.real_name
+	current.anchored = TRUE
+	current.aiRestorePowerRoutine = 0
+	current.control_disabled = TRUE // Can't control things remotely if you're stuck in a card!
+	current.laws = original.laws
+	current.stat = original.stat
+	current.oxyloss = original.getOxyLoss()
+	current.fireloss = original.getFireLoss()
+	current.bruteloss = original.getBruteLoss()
+	current.toxloss = original.toxloss
+	current.updatehealth()
+	chassis.occupant = current
+	if(original.mind)
+		original.mind.transfer_to(current)
+	original.name = "Inactive AI"
+	original.real_name = "Inactive AI"
+	original.icon_state = "ai-empty"
+
+/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/try_occupy(var/mob/living/silicon/ai/AI, var/mob/user)
+	if(current)
+		user << "Controller is already occupied!"
+		return
+	occupy(AI)
+
+/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/detached()
+	if(current)
+		go_out()
+
+
+/obj/mecha/attack_ai(var/mob/living/user)
+	var/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/AH = locate() in src
+	if(!AH)
+		user << "Remote control interface isn't located!"
+		return
+	else
+		AH.try_occupy(user)
