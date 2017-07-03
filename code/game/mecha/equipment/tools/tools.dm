@@ -1295,9 +1295,9 @@
 	if(current)
 		user << "Controller is already occupied!"
 		return
-	occupy(AI)
+	occupied(AI)
 
-/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/detached()
+/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/detach()
 	if(current)
 		go_out()
 
