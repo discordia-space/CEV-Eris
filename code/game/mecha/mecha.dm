@@ -1114,7 +1114,7 @@
 /obj/mecha/proc/go_out()
 	if(!src.occupant) return
 	var/atom/movable/mob_container
-	if(ishuman(occupant))
+	if(ishuman(occupant) || isAI(occupant))
 		mob_container = src.occupant
 	else if(istype(occupant, /mob/living/carbon/brain))
 		var/mob/living/carbon/brain/brain = occupant
