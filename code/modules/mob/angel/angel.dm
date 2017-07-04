@@ -50,7 +50,24 @@
 		if (!A.CanPass(src, T))
 			return FALSE // Do not pass through REALLY BIG objects
 
-	..()
+
+	var/initial = initial(sprint)
+	var/max_sprint = 20
+
+	if(cooldown && cooldown < world.timeofday)
+		sprint = initial
+
+	for(var/i = 0; i < max(sprint, initial); i += 20)
+		var/turf/step = get_turf(get_step(src, direct))
+		if(step)
+			setLoc(step)
+
+	cooldown = world.timeofday + 5
+	if(acceleration)
+		sprint = min(sprint + 0.5, max_sprint)
+	else
+		sprint = initial
+	return TRUE
 
 
 /mob/observer/eye/angel/on_hear_say(message)
