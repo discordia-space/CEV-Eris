@@ -23,6 +23,14 @@
 	processing_objects -= src
 	on = FALSE
 	update_icon()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.visible_message(
+			"[src] slowly burn out.",
+			"[src] slowly burn out in your hand."
+		)
+	else
+		visible_message("[src] slowly burn out")
 
 /obj/item/device/lighting/glowstick/update_icon()
 	overlays.Cut()
