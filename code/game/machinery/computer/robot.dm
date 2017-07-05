@@ -152,7 +152,7 @@
 		log_game("[key_name(usr)] detonated all cyborgs!")
 
 		for(var/mob/living/silicon/robot/R in mob_list)
-			if(istype(R, /mob/living/silicon/robot/drone))
+			if(isdrone(R))
 				continue
 			// Ignore antagonistic cyborgs
 			if(R.scrambledcodes)
@@ -170,7 +170,7 @@
 
 	for(var/mob/living/silicon/robot/R in mob_list)
 		// Ignore drones
-		if(istype(R, /mob/living/silicon/robot/drone))
+		if(isdrone(R))
 			continue
 		// Ignore antagonistic cyborgs
 		if(R.scrambledcodes)

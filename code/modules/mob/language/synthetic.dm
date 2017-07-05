@@ -28,7 +28,7 @@
 
 	for (var/mob/living/S in living_mob_list)
 
-		if(drone_only && !istype(S,/mob/living/silicon/robot/drone))
+		if(drone_only && !isdrone(S))
 			continue
 		else if(istype(S , /mob/living/silicon/ai))
 			message_start = "<i><span class='game say'>[name], <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[speaker];trackname=[html_encode(speaker.name)]'><span class='name'>[speaker.name]</span></a></span></i>"

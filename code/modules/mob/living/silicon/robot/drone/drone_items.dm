@@ -262,7 +262,7 @@
 				plastic.add_charge(2000)
 			return
 
-		else if(istype(M,/mob/living/silicon/robot/drone) && !M.client)
+		else if(isdrone(M) && !M.client)
 
 			var/mob/living/silicon/robot/D = src.loc
 

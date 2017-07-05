@@ -212,7 +212,7 @@ BLIND     // can't see anything
 	if(!Adjacent(user))
 		return 0
 	var/success
-	if(istype(user, /mob/living/silicon/robot/drone))
+	if(isdrone(user))
 		var/mob/living/silicon/robot/drone/D = user
 		if(D.hat)
 			success = 2
