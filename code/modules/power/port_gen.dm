@@ -301,7 +301,7 @@
 
 	var/data[0]
 	data["active"] = active
-	if(istype(user, /mob/living/silicon/ai))
+	if(isAI(user))
 		data["is_ai"] = 1
 	else if(istype(user, /mob/living/silicon/robot) && !Adjacent(user))
 		data["is_ai"] = 1
@@ -333,7 +333,7 @@
 /*
 /obj/machinery/power/port_gen/pacman/interact(mob/user)
 	if (get_dist(src, user) > 1 )
-		if (!istype(user, /mob/living/silicon/ai))
+		if (!isAI(user))
 			user.unset_machine()
 			user << browse(null, "window=port_gen")
 			return

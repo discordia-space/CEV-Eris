@@ -506,7 +506,8 @@ var/global/list/all_objectives = list()
 
 			for(var/obj/item/device/aicard/C in all_items) //Check for ai card
 				for(var/mob/living/silicon/ai/M in C)
-					if(istype(M, /mob/living/silicon/ai) && M.stat != 2) //See if any AI's are alive inside that card.
+					//See if any AI's are alive inside that card.
+					if(isAI(M) && M.stat != DEAD)
 						return TRUE
 
 			for(var/mob/living/silicon/ai/ai in world)

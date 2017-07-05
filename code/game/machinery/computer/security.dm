@@ -272,7 +272,7 @@ What a mess.*/
 				active2 = null
 
 			if("Log In")
-				if (istype(usr, /mob/living/silicon/ai))
+				if (isAI(usr))
 					src.active1 = null
 					src.active2 = null
 					src.authenticated = usr.name
