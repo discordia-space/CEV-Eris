@@ -16,7 +16,7 @@
 		if(M.has_brain_worms())
 			return //Borer stuff - RR
 
-		if(istype(M, /mob/living/silicon/robot))
+		if(isrobot(M))
 			var/mob/living/silicon/robot/Robot = M
 			if(Robot.mmi)
 				qdel(Robot.mmi)

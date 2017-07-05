@@ -41,7 +41,7 @@
 	user << desc
 
 	// Borgs can now check contents too.
-	if((!ishuman(user)) && (!istype(user, /mob/living/silicon/robot)))
+	if((!ishuman(user)) && (!isrobot(user)))
 		return
 
 	if(!Adjacent(user)) //Can only check the contents of ore boxes if you can physically reach them.

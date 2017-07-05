@@ -303,7 +303,7 @@
 	data["active"] = active
 	if(isAI(user))
 		data["is_ai"] = 1
-	else if(istype(user, /mob/living/silicon/robot) && !Adjacent(user))
+	else if(isrobot(user) && !Adjacent(user))
 		data["is_ai"] = 1
 	else
 		data["is_ai"] = 0

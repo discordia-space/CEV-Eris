@@ -17,7 +17,7 @@
 	var/locked = 1
 
 	attack_self(mob/user as mob)
-		if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
+		if (!ishuman(user) && !isrobot(user))
 			return ..(user)
 
 		var/t1 = text("<B>Access control</B><br>\n")

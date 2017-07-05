@@ -7,7 +7,7 @@
 
 /datum/artifact_effect/cellcharge/DoEffectTouch(var/mob/user)
 	if(user)
-		if(istype(user, /mob/living/silicon/robot))
+		if(isrobot(user))
 			var/mob/living/silicon/robot/R = user
 			for (var/obj/item/weapon/cell/big/D in R.contents)
 				D.charge += rand() * 100 + 50
