@@ -815,10 +815,11 @@ proc/GaussRandRound(var/sigma,var/roundto)
 							X.name = "wall"
 							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
-						if(!istype(O,/obj)) continue
-						O.loc = X
+						O.forceMove(X)
 					for(var/mob/M in T)
-						if(!istype(M,/mob) || isEye(M)) continue // If we need to check for more mobs, I'll add a variable
+						// If we need to check for more mobs, I'll add a variable
+						if(!ismob(M) || isEye(M))
+							continue
 						M.loc = X
 
 //					var/area/AR = X.loc
@@ -938,12 +939,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					var/list/newmobs = new/list()
 
 					for(var/obj/O in T)
-
-						if(!istype(O,/obj))
-							continue
-
 						objs += O
-
 
 					for(var/obj/O in objs)
 						newobjs += DuplicateObject(O , 1)

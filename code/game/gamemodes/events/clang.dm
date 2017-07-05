@@ -26,7 +26,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 				for (var/mob/O in hearers(src, null))
 					O.show_message("CLANG", 2)
 
-		else if (istype(clong, /obj))
+		else if (isobj(clong))
 			if(clong.density)
 				clong.ex_act(2)
 				for (var/mob/O in hearers(src, null))

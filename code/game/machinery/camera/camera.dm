@@ -108,7 +108,7 @@
 
 /obj/machinery/camera/hitby(AM as mob|obj)
 	..()
-	if (istype(AM, /obj))
+	if (isobj(AM))
 		var/obj/O = AM
 		if (O.throwforce >= src.toughness)
 			visible_message("<span class='warning'><B>[src] was hit by [O].</B></span>")

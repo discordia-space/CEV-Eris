@@ -423,7 +423,7 @@
 
 /obj/mecha/Bump(var/atom/obstacle)
 //	src.inertia_dir = null
-	if(istype(obstacle, /obj))
+	if(isobj(obstacle))
 		var/obj/O = obstacle
 		if(istype(O, /obj/effect/portal)) //derpfix
 			src.anchored = 0
@@ -616,7 +616,7 @@
 		if(isliving(A))
 			var/mob/living/M = A
 			M.take_organ_damage(10)
-	else if(istype(A, /obj))
+	else if(isobj(A))
 		var/obj/O = A
 		if(O.throwforce)
 			src.hit_damage(O.throwforce, is_melee=0)

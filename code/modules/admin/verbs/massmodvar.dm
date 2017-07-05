@@ -138,7 +138,7 @@
 						if ( istype(M , O.type) )
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
@@ -154,7 +154,7 @@
 						if (M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
@@ -178,7 +178,7 @@
 						if ( istype(M , O.type) )
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
@@ -193,7 +193,7 @@
 						if (M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
@@ -222,7 +222,7 @@
 							else
 								M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if ( istype(A , O.type) )
 							if(variable=="light_range")
@@ -247,7 +247,7 @@
 							else
 								M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if (A.type == O.type)
 							if(variable=="light_range")
@@ -274,7 +274,7 @@
 						if ( istype(M , O.type) )
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
@@ -289,7 +289,7 @@
 						if (M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
@@ -310,12 +310,12 @@
 						if ( istype(M , O.type) )
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O.type, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
-				else if(istype(O.type, /turf))
+				else if(istype(O, /turf))
 					for(var/turf/A in world)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
@@ -325,12 +325,12 @@
 						if (M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O.type, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
-				else if(istype(O.type, /turf))
+				else if(istype(O, /turf))
 					for(var/turf/A in world)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
@@ -345,7 +345,7 @@
 						if ( istype(M , O.type) )
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
@@ -361,7 +361,7 @@
 						if (M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 
-				else if(istype(O, /obj))
+				else if(isobj(O))
 					for(var/obj/A in world)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]

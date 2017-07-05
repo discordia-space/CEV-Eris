@@ -17,7 +17,7 @@
 		if(!cargo_holder) return
 
 		//loading
-		if(istype(target,/obj))
+		if(isobj(target))
 			var/obj/O = target
 			if(O.buckled_mob)
 				return
@@ -955,7 +955,7 @@
 	action(atom/target)
 		if(!action_checks(target)) return
 		if(!cargo_holder) return
-		if(istype(target,/obj))
+		if(isobj(target))
 			var/obj/O = target
 			if(!O.anchored)
 				if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
