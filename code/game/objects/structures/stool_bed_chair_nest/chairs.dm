@@ -92,7 +92,7 @@
 		return
 
 	else
-		if(istype(usr,/mob/living/simple_animal/mouse))
+		if(ismouse(usr))
 			return
 		if(!usr || !isturf(usr.loc))
 			return
