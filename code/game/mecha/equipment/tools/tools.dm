@@ -1268,7 +1268,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/occupied(var/mob/living/silicon/ai/AI)
 	original = AI
-	current = new /mob/living/silicon/ai(src, safety = TRUE)
+	current = new /mob/living/silicon/ai(chassis, safety = TRUE)
 	current.invisibility = 0
 	current.canmove = TRUE
 	current.name = original.name
