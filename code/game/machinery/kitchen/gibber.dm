@@ -117,11 +117,11 @@
 		user << "<span class='danger'>The gibber is locked and running, wait for it to finish.</span>"
 		return
 
-	if(!(istype(victim, /mob/living/carbon)) && !(istype(victim, /mob/living/simple_animal)) )
+	if(!(iscarbon(victim)) && !(istype(victim, /mob/living/simple_animal)) )
 		user << "<span class='danger'>This is not suitable for the gibber!</span>"
 		return
 
-	if(istype(victim,/mob/living/carbon/human) && !emagged)
+	if(ishuman(victim) && !emagged)
 		user << "<span class='danger'>The gibber safety guard is engaged!</span>"
 		return
 
@@ -192,7 +192,7 @@
 			slab_count = critter.meat_amount
 		if(critter.meat_type)
 			slab_type = critter.meat_type
-	else if(istype(src.occupant,/mob/living/carbon/human))
+	else if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 		slab_name = src.occupant.real_name
 		slab_type = H.species.meat_type

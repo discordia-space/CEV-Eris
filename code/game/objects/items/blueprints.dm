@@ -20,7 +20,7 @@
 	var/const/ROOM_ERR_TOOLARGE = -2
 
 /obj/item/blueprints/attack_self(mob/M as mob)
-	if (!istype(M,/mob/living/carbon/human))
+	if (!ishuman(M))
 		M << "This stack of blue paper means nothing to you." //monkeys cannot into projecting
 		return
 	interact()

@@ -2,7 +2,7 @@
 	return
 
 /obj/machinery/bot/mulebot/get_mob()
-	if(load && istype(load,/mob/living))
+	if(load && isliving(load))
 		return load
 
 /obj/mecha/get_mob()

@@ -79,7 +79,7 @@
 	return
 
 /obj/item/weapon/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	if(!(istype(user, /mob/living/carbon/human) || isghost(user) || istype(user, /mob/living/silicon)) && !forceshow)
+	if(!(ishuman(user) || isghost(user) || istype(user, /mob/living/silicon)) && !forceshow)
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
 	else
@@ -415,7 +415,7 @@
 		else if (P.name != "paper" && P.name != "photo")
 			B.name = P.name
 		user.drop_from_inventory(P)
-		if (istype(user, /mob/living/carbon/human))
+		if (ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 			if (h_user.r_hand == src)
 				h_user.drop_from_inventory(src)

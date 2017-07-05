@@ -47,12 +47,12 @@
 			A.Move(T)	//bump things away when hit
 
 	if(emagged)
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			var/mob/living/M = A
 			visible_message("\red [src] knocks over [M]!")
 			M.apply_effects(5, 5)				//knock people down if you hit them
 			M.apply_damages(22 / move_delay)	// and do damage according to how fast the train is going
-			if(istype(load, /mob/living/carbon/human))
+			if(ishuman(load))
 				var/mob/living/D = load
 				D << "\red You hit [M]!"
 				msg_admin_attack("[D.name] ([D.ckey]) hit [M.name] ([M.ckey]) with [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
@@ -117,7 +117,7 @@
 	set category = "Vehicle"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))

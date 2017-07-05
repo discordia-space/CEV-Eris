@@ -42,7 +42,7 @@
 					message = stars(message)
 
 	var/speaker_name = speaker.name
-	if(istype(speaker, /mob/living/carbon/human))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.rank_prefix_name(H.GetVoice())
 
@@ -122,7 +122,7 @@
 	if(vname)
 		speaker_name = vname
 
-	if(istype(speaker, /mob/living/carbon/human))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice

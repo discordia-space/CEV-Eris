@@ -587,7 +587,7 @@
 	orient2hud()
 
 /obj/item/weapon/storage/emp_act(severity)
-	if(!istype(src.loc, /mob/living))
+	if(!isliving(loc))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 	..()

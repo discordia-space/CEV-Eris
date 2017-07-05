@@ -71,7 +71,7 @@
 
 	if(usr.stat || !Adjacent(usr)) return
 
-	if(!istype(usr,/mob/living/carbon))
+	if(!iscarbon(usr))
 		return
 
 	var/mob/living/carbon/user = usr

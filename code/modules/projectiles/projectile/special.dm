@@ -35,7 +35,7 @@
 
 
 	on_hit(var/atom/target, var/blocked = 0)//These two could likely check temp protection on the mob
-		if(istype(target, /mob/living))
+		if(isliving(target))
 			var/mob/M = target
 			M.bodytemperature = temperature
 		return 1

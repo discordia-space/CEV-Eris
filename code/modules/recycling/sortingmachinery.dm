@@ -404,7 +404,7 @@
 	if(istype(AM, /obj))
 		var/obj/O = AM
 		O.forceMove(src)
-	else if(istype(AM, /mob))
+	else if(ismob(AM))
 		var/mob/M = AM
 		M.forceMove(src)
 	src.flush()

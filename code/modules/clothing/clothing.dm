@@ -31,7 +31,7 @@
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
 
-	if (src.loc != user || !istype(user,/mob/living/carbon/human))
+	if (src.loc != user || !ishuman(user))
 		..()
 		return
 
@@ -232,7 +232,7 @@ BLIND     // can't see anything
 
 	overlays.Cut()
 	var/mob/living/carbon/human/H
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		H = user
 
 	if(on)
@@ -453,7 +453,7 @@ BLIND     // can't see anything
 				usr << "Your suit will now report your vital lifesigns."
 			if(3)
 				usr << "Your suit will now report your vital lifesigns as well as your coordinate position."
-	else if (istype(src.loc, /mob))
+	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)
 				for(var/mob/V in viewers(usr, 1))
@@ -474,7 +474,7 @@ BLIND     // can't see anything
 	..()
 
 /obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
-	if(istype(I, /obj/item/weapon/screwdriver) && istype(U, /mob/living/carbon/human))
+	if(istype(I, /obj/item/weapon/screwdriver) && ishuman(U))
 		set_sensors(U)
 	else
 		return ..()

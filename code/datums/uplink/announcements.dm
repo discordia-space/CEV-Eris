@@ -48,7 +48,7 @@
 		general.fields["sex"] = I.sex
 	else
 		var/mob/living/carbon/human/H
-		if(istype(user,/mob/living/carbon/human))
+		if(ishuman(user))
 			H = user
 			general.fields["age"] = H.age
 		else

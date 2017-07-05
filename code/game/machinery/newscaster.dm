@@ -932,8 +932,8 @@ obj/item/weapon/newspaper/Topic(href, href_list)
 			src.curr_page--
 			playsound(src.loc, "pageturn", 50, 1)
 
-		if (istype(src.loc, /mob))
-			src.attack_self(src.loc)
+		if (ismob(loc))
+			src.attack_self(loc)
 
 
 obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -957,7 +957,7 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 
 /obj/machinery/newscaster/proc/scan_user(mob/living/user as mob)
-	if(istype(user,/mob/living/carbon/human))                       //User is a human
+	if(ishuman(user))                       //User is a human
 		var/mob/living/carbon/human/human_user = user
 		if(human_user.wear_id)                                      //Newscaster scans you
 			if(istype(human_user.wear_id, /obj/item/device/pda) )	//autorecognition, woo!

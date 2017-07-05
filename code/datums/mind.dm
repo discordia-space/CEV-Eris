@@ -208,7 +208,7 @@
 
 				var/list/possible_targets = list("Free objective")
 				for(var/datum/mind/possible_target in ticker.minds)
-					if ((possible_target != src) && istype(possible_target.current, /mob/living/carbon/human))
+					if ((possible_target != src) && ishuman(possible_target.current))
 						possible_targets += possible_target.current
 
 				var/mob/def_target = null

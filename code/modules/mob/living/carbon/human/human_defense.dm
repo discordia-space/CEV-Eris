@@ -271,7 +271,7 @@ meteor_act
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
 		var/zone
-		if (istype(O.thrower, /mob/living))
+		if (isliving(O.thrower))
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.targeted_organ)
 		else

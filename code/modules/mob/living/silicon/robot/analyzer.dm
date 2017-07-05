@@ -30,7 +30,7 @@
 	var/scan_type
 	if(istype(M, /mob/living/silicon/robot))
 		scan_type = "robot"
-	else if(istype(M, /mob/living/carbon/human))
+	else if(ishuman(M))
 		scan_type = "prosthetics"
 	else
 		user << "\red You can't analyze non-robotic things!"
