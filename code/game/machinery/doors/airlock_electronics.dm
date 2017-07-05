@@ -55,14 +55,14 @@
 
 	Topic(href, href_list)
 		..()
-		if (usr.stat || usr.restrained() || (!ishuman(usr) && !istype(usr,/mob/living/silicon)))
+		if (usr.stat || usr.restrained() || (!ishuman(usr) && !issilicon(usr)))
 			return
 		if (href_list["close"])
 			usr << browse(null, "window=airlock")
 			return
 
 		if (href_list["login"])
-			if(istype(usr,/mob/living/silicon))
+			if(issilicon(usr))
 				src.locked = 0
 				src.last_configurator = usr.name
 			else

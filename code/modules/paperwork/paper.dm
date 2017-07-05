@@ -79,7 +79,7 @@
 	return
 
 /obj/item/weapon/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	if(!(ishuman(user) || isghost(user) || istype(user, /mob/living/silicon)) && !forceshow)
+	if(!(ishuman(user) || isghost(user) || issilicon(user)) && !forceshow)
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
 	else

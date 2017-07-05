@@ -52,7 +52,7 @@
 	if (!speaking)
 		if (iscarbon(other))
 			return 1
-		if (istype(other, /mob/living/silicon))
+		if (issilicon(other))
 			return 1
 	return ..()
 

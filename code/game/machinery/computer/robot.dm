@@ -132,7 +132,7 @@
 
 	// Arms the emergency self-destruct system
 	else if(href_list["arm"])
-		if(istype(user, /mob/living/silicon))
+		if(issilicon(user))
 			user << "Access Denied"
 			return
 
@@ -141,7 +141,7 @@
 
 	// Destroys all accessible cyborgs if safety is disabled
 	else if(href_list["nuke"])
-		if(istype(user, /mob/living/silicon))
+		if(issilicon(user))
 			user << "Access Denied"
 			return
 		if(safety)

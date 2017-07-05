@@ -15,7 +15,7 @@
 		user << "<span class='warning'>\The [src] cannot be applied to [M]!</span>"
 		return 1
 
-	if ( ! (ishuman(user) || istype(user, /mob/living/silicon)) )
+	if ( ! (ishuman(user) || issilicon(user)) )
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return 1
 
