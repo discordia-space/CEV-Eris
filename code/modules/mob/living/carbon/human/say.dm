@@ -56,7 +56,7 @@
 			return 1
 
 	//This is already covered by mob/say_understands()
-	//if (istype(other, /mob/living/simple_animal))
+	//if (isanimal(other))
 	//	if((other.universal_speak && !speaking) || src.universal_speak || src.universal_understand)
 	//		return 1
 	//	return 0
