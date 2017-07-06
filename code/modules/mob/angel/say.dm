@@ -27,7 +27,7 @@
 		usr << "<span class='danger'>You have deadchat and ANGEL chat muted.</span>"
 		return
 
-	say_angel_direct("[pick("beeps","buzzes","cries","fizzes","blubbers")], <span class='message'>\"[message]\"</span>", src)
+	say_angel_direct("[pick("beeps","buzzes","echoes","fizzes")], <span class='message'>\"[message]\"</span>", src)
 
 
 /mob/observer/eye/angel/emote(var/act, var/type, var/message)
