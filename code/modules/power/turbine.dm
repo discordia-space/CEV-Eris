@@ -178,16 +178,11 @@
 	..()
 	if(stat & BROKEN)
 		return
-	if (usr.stat || usr.restrained() )
+	if(usr.stat || usr.restrained() )
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		if(!isAI(usr))
-			usr << "\red You don't have the dexterity to do this!"
-			return
-
-	if (( usr.machine==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (isAI(usr)))
-
-
+	if(!usr.IsAdvancedToolUser())
+		return
+	if(get_dist(src, usr) <= 1 || isAI(usr))
 		if( href_list["close"] )
 			usr << browse(null, "window=turbine")
 			usr.machine = null

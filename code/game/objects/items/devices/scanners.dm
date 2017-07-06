@@ -25,7 +25,7 @@ REAGENT SCANNER
 	var/mode = 1;
 
 
-/obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << text("<span class='warning'>You try to analyze the floor's vitals!</span>")
 		for(var/mob/O in viewers(M, null))
@@ -36,8 +36,7 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
+	if(!user.IsAdvancedToolUser())
 		return
 	flick("health2", src)
 	user.visible_message("<span class='notice'>[user] has analyzed [M]'s vitals.</span>","<span class='notice'>You have analyzed [M]'s vitals.</span>")
@@ -208,11 +207,9 @@ REAGENT SCANNER
 	return atmosanalyzer_scan(src, air, user)
 
 /obj/item/device/analyzer/attack_self(mob/user as mob)
-
-	if (user.stat)
+	if(user.stat)
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
+	if(!user.IsAdvancedToolUser())
 		return
 
 	analyze_gases(src, user)
@@ -251,8 +248,7 @@ REAGENT SCANNER
 /obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
 	if (user.stat)
 		return
-	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
-		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+	if (!user.IsAdvancedToolUser())
 		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
@@ -302,8 +298,7 @@ REAGENT SCANNER
 		return
 	if (user.stat)
 		return
-	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
-		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+	if (!user.IsAdvancedToolUser())
 		return
 	if(!istype(O))
 		return

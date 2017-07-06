@@ -115,10 +115,9 @@
 	new /obj/effect/mineral(src, mineral)
 
 //Not even going to touch this pile of spaghetti
-/turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/turf/simulated/mineral/attackby(obj/item/weapon/W, mob/living/user)
 
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		usr << "\red You don't have the dexterity to do this!"
+	if (!user.IsAdvancedToolUser())
 		return
 
 	if (istype(W, /obj/item/device/core_sampler))
