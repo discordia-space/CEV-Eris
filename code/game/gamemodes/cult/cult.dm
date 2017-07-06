@@ -6,4 +6,4 @@
 	required_players = 5
 	required_enemies = 3
 	end_on_antag_death = 1
-	antag_tags = list(MODE_CULTIST)
+	antag_tags = list(ROLE_CULTIST)

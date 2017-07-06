@@ -7,7 +7,7 @@ var/datum/antagonist/cultist/cult
 		return 1
 
 /datum/antagonist/cultist
-	id = MODE_CULTIST
+	id = ROLE_CULTIST
 	role_text = "Cultist"
 	role_text_plural = "Cultists"
 	bantype = "cultist"
