@@ -110,7 +110,7 @@
 			user << "<span class='notice'>\The [I] is no longer in storage.</span>"
 			return
 
-		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>", 3)
+		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>")
 
 		I.forceMove(get_turf(src))
 		frozen_items -= I
@@ -122,7 +122,7 @@
 			user << "<span class='notice'>There is nothing to recover from storage.</span>"
 			return
 
-		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>", 3)
+		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>")
 
 		for(var/obj/item/I in frozen_items)
 			I.forceMove(get_turf(src))
@@ -366,14 +366,15 @@
 	log_and_message_admins("[key_name(occupant)] ([occupant.mind.role_alt_title]) entered cryostorage.")
 
 	announce.autosay("[occupant.real_name], [occupant.mind.role_alt_title], [on_store_message]", "[on_store_name]")
-	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>", 3)
+	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
 
 	//This should guarantee that ghosts don't spawn.
 	occupant.ckey = null
 
 	// Delete the mob.
-	qdel(occupant)
+	var/mob/living/M = occupant
 	set_occupant(null)
+	qdel(M)
 
 
 /obj/machinery/cryopod/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
@@ -402,26 +403,12 @@
 
 		if(willing)
 
-			visible_message("[user] starts putting [grab.affecting:name] into \the [src].", 3)
+			visible_message("[user] starts putting [grab.affecting.name] into \the [src].")
 
 			if(do_after(user, 20, src))
 				if(!M || !grab || !grab.affecting) return
 
-				M.forceMove(src)
-
-				if(M.client)
-					M.client.perspective = EYE_PERSPECTIVE
-					M.client.eye = src
-
-			icon_state = occupied_icon_state
-
-			M << "<span class='notice'>[on_enter_occupant_message]</span>"
-			M << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
 			set_occupant(M)
-			time_entered = world.time
-			if(ishuman(M) && applies_stasis)
-				var/mob/living/carbon/human/H = M
-				H.in_stasis = 1
 
 			// Book keeping!
 			var/turf/location = get_turf(src)
@@ -438,12 +425,12 @@
 	if(usr.stat != 0)
 		return
 
-	icon_state = base_icon_state
-
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = src.contents
-	if(occupant) items -= occupant
-	if(announce) items -= announce
+	if(occupant)
+		items -= occupant
+	if(announce)
+		items -= announce
 
 	for(var/obj/item/W in items)
 		W.forceMove(get_turf(src))
@@ -471,7 +458,7 @@
 			usr << "You're too busy getting your life sucked out of you."
 			return
 
-	visible_message("[usr] starts climbing into \the [src].", 3)
+	visible_message("[usr] starts climbing into \the [src].")
 
 	if(do_after(usr, 20, src))
 
@@ -484,16 +471,6 @@
 
 		usr.stop_pulling()
 		set_occupant(usr)
-		if(ishuman(usr) && applies_stasis)
-			var/mob/living/carbon/human/H = occupant
-			H.in_stasis = 1
-
-		icon_state = occupied_icon_state
-
-		usr << "<span class='notice'>[on_enter_occupant_message]</span>"
-		usr << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
-
-		time_entered = world.time
 
 		src.add_fingerprint(usr)
 
@@ -504,22 +481,30 @@
 	if(!occupant)
 		return
 
-	if(occupant.client)
-		occupant.client.eye = src.occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-
-	occupant.forceMove(get_turf(src))
-	if(ishuman(occupant) && applies_stasis)
-		var/mob/living/carbon/human/H = occupant
-		H.in_stasis = 0
 	set_occupant(null)
 
-	icon_state = base_icon_state
 
-	return
-
-/obj/machinery/cryopod/proc/set_occupant(var/occupant)
-	src.occupant = occupant
+/obj/machinery/cryopod/proc/set_occupant(var/mob/living/new_occupant)
 	name = initial(name)
-	if(occupant)
+	if(new_occupant)
+		occupant = new_occupant
 		name = "[name] ([occupant])"
+		time_entered = world.time
+		if(ishuman(occupant) && applies_stasis)
+			var/mob/living/carbon/human/H = occupant
+			H.in_stasis = 1
+		new_occupant.forceMove(src)
+		icon_state = occupied_icon_state
+
+		occupant << "<span class='notice'>[on_enter_occupant_message]</span>"
+		occupant << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
+
+	else
+		icon_state = base_icon_state
+		if(occupant)
+			occupant.forceMove(get_turf(src))
+			occupant.reset_view(null)
+			if(ishuman(occupant) && applies_stasis)
+				var/mob/living/carbon/human/H = occupant
+				H.in_stasis = 0
+		occupant = null
