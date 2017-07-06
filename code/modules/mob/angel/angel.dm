@@ -40,26 +40,28 @@
 
 
 /mob/observer/eye/angel/EyeMove(n, direct)
-	var/turf/T = get_turf(get_step(src, direct))
-	for (var/datum/chunk/chunk in visibleChunks)
-		if (T in chunk.obscuredTurfs)
-			return FALSE // Do not step into unknown turfs; prevents some strange bugs
-	if (T.density)
-		return FALSE // Do not pass through walls
-	for (var/atom/movable/A in T)
-		if (!A.CanPass(src, T))
-			return FALSE // Do not pass through REALLY BIG objects
-
-
 	var/initial = initial(sprint)
-	var/max_sprint = 20
+	var/max_sprint = 50
 
 	if(cooldown && cooldown < world.timeofday)
 		sprint = initial
 
 	for(var/i = 0; i < max(sprint, initial); i += 20)
 		var/turf/step = get_turf(get_step(src, direct))
+
 		if(step)
+
+			for (var/datum/chunk/chunk in visibleChunks)
+				if (step in chunk.obscuredTurfs)
+					return FALSE // Do not step into unknown turfs; prevents some strange bugs
+
+			if (step.density)
+				return FALSE // Do not pass through walls
+
+			for (var/atom/movable/A in step)
+				if (!A.CanPass(src, step))
+					return FALSE // Do not pass through REALLY BIG objects
+
 			setLoc(step)
 
 	cooldown = world.timeofday + 5
@@ -67,6 +69,7 @@
 		sprint = min(sprint + 0.5, max_sprint)
 	else
 		sprint = initial
+
 	return TRUE
 
 
