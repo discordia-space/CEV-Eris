@@ -131,6 +131,7 @@
 	if(M.m_intent == "run")
 		if(prob(75))
 			M.adjustBruteLoss(5)
+			M.slip()
 			M.weakened += 3
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
 			M << "<span class='warning'>You tripped over!</span>"

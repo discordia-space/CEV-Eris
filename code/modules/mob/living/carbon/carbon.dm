@@ -401,8 +401,9 @@
 	if(buckled)
 		return 0
 	stop_pulling()
-	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
-	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+	if (slipped_on)
+		src << "<span class='warning'>You slipped on [slipped_on]!</span>"
+		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))
 	return 1
