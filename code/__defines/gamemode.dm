@@ -26,7 +26,23 @@
 #define ANTAG_VOTABLE           0x200 // Can be voted as an additional antagonist before roundstart.
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
-// Mode/antag template macros.
+// Mode names macro
+#define MODE_CALAMITY "Calamity"
+#define MODE_CHANGELING "changeling"
+#define MODE_CULT "Cult"
+#define MODE_EXTENDED "Extended"
+#define MODE_HEIST "heist"
+#define MODE_MALF "AI malfunction"
+#define MODE_METEOR "Meteor"
+#define MODE_NUKE "Mercenary"
+#define MODE_REVOLUTION "Revolution"
+#define MODE_TRAITOR "traitor"
+#define MODE_WIZARD "Wizard"
+
+#define MODE_BLOB "blob"
+#define MODE_EPIDEMIC "epidemic"
+
+// antag template macros.
 #define ROLE_BORER "borer"
 #define ROLE_XENOMORPH "xeno"
 #define ROLE_LOYALIST "loyalist"
