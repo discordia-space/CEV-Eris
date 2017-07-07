@@ -26,8 +26,7 @@
 		user << "<span class='danger'>You've been silenced!</span>"
 		return
 
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		user << "<span class='danger'>You don't have the dexterity to do this!</span>"
+	if(!user.IsAdvancedToolUser())
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))

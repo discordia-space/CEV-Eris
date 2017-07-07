@@ -38,6 +38,7 @@ em						{font-style: normal;font-weight: bold;}
 
 /* Radio: Misc */
 .deadsay				{color: #530FAD;}
+.angelsay				{color: #ffaa00;}
 .radio					{color: #008000;}
 .deptradio				{color: #ff00ff;}	/* when all other department colors fail */
 .newscaster				{color: #750000;}

@@ -1,7 +1,7 @@
 var/datum/antagonist/mercenary/mercs
 
 /datum/antagonist/mercenary
-	id = MODE_MERCENARY
+	id = ROLE_MERCENARY
 	role_text = "Mercenary"
 	bantype = "operative"
 	antag_indicator = "synd"

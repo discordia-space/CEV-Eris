@@ -133,7 +133,7 @@ var/list/ghost_traps
 /datum/ghosttrap/borer
 	object = "cortical borer"
 	ban_checks = list("Borer")
-	pref_check = MODE_BORER
+	pref_check = ROLE_BORER
 	ghost_trap_message = "They are occupying a borer now."
 	ghost_trap_role = "Cortical Borer"
 	can_set_own_name = FALSE

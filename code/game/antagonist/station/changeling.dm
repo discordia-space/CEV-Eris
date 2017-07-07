@@ -1,5 +1,5 @@
 /datum/antagonist/changeling
-	id = MODE_CHANGELING
+	id = ROLE_CHANGELING
 	role_text = "Changeling"
 	role_text_plural = "Changelings"
 	bantype = "changeling"
