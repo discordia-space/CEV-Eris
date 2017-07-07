@@ -4,29 +4,37 @@
 	w_class = 2
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
 	var/implant_type = /obj/item/weapon/implant/external/core_implant
-	var/power = 0
-	var/max_power = 0
-	var/success_modifier = 1
 	var/active = FALSE
 	var/activated = FALSE			//true, if cruciform was activated once
-	var/address = null				//string, used as id for targeted rituals
 
-	var/rituals = list()
+	var/address = null
+	var/power = 0
+	var/max_power = 0
+	var/power_regen = 0.5
+	var/success_modifier = 1
+	var/list/rituals = list()
 
-	var/remote_ritual
+	var/list/modules = list()
+	var/list/upgrades = list()
 
 /obj/item/weapon/implant/external/core_implant/Destroy()
 	processing_objects.Remove(src)
 	deactivate()
 	..()
 
+/obj/item/weapon/implant/external/core_implant/New()
+	processing_objects |= src
+	add_hearing()
+	..()
 
 /obj/item/weapon/implant/external/core_implant/install(var/mob/M)
 	if(ishuman(M))
 		..(M)
 
 /obj/item/weapon/implant/external/core_implant/uninstall()
-	deactivate()
+	if(active)
+		hard_eject()
+		deactivate()
 	..()
 
 
@@ -35,8 +43,6 @@
 		return
 	active = TRUE
 	activated = TRUE
-	processing_objects |= src
-	add_hearing()
 
 /obj/item/weapon/implant/external/core_implant/deactivate()
 	if(!active)
@@ -72,8 +78,7 @@
 	if(wearer != H)
 		return
 
-	if(remote_ritual)
-		remote_ritual = null
+	remove_module(get_module(CORE_GROUP_RITUAL))
 
 	for(var/RT in rituals)
 		var/datum/ritual/R = new RT
@@ -85,6 +90,7 @@
 				H << "<span class='danger'>You are not allowed to perform [R.name].</span>"
 				return
 			R.activate(H, src, R.get_targets(message))
+			return
 
 
 /obj/item/weapon/implant/external/core_implant/proc/use_power(var/value)
@@ -100,5 +106,50 @@
 		remove_hearing()
 		active = FALSE
 		processing_objects.Remove(src)
-	restore_power(0.5)
+	restore_power(power_regen)
+
+/obj/item/weapon/implant/external/core_implant/proc/get_module(var/m_type)
+	if(!ispath(m_type))
+		return
+	for(var/datum/core_module/CM in modules)
+		if(istype(CM,m_type))
+			return CM
+	process_modules()
+
+/obj/item/weapon/implant/external/core_implant/proc/add_module(var/datum/core_module/CM)
+	world << "D: install by type call [CM]"
+	if(!istype(src,CM.implant_type))
+		return FALSE
+	CM.set_up()
+	world << "D: [CM] was installed"
+	CM.implant = src
+	CM.install_time = world.time
+	CM.preinstall()
+	modules.Add(CM)
+	CM.install()
+	return TRUE
+
+/obj/item/weapon/implant/external/core_implant/proc/remove_module(var/datum/core_module/CM)
+	world << "D: uninstall call [CM]"
+	if(istype(CM) && CM.implant == src)
+		world << "D: [CM] was uninstalled"
+		CM.uninstall()
+		modules.Remove(CM)
+
+/obj/item/weapon/implant/external/core_implant/proc/remove_modules(var/m_type)
+	world << "D: uninstall by type call [m_type]"
+	if(!ispath(m_type))
+		return
+	for(var/datum/core_module/CM in modules)
+		if(istype(CM,m_type))
+			world << "D: [CM] was uninstalled by type"
+			remove_module(CM)
+
+
+/obj/item/weapon/implant/external/core_implant/proc/process_modules()
+	for(var/datum/core_module/CM in modules)
+		if(CM.time > 0 && CM.install_time + CM.time <= world.time)
+			world << "D: [CM] was uninstalled due to expiation"
+			CM.uninstall()
+
 

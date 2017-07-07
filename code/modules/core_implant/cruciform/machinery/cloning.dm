@@ -114,7 +114,7 @@
 		if(reader)
 			reader.stop_reading()
 
-	return reader.implant.data
+	return reader.implant.get_module(CRUCIFORM_CLONING)
 
 /obj/machinery/neotheology/cloner/proc/set_stage_timer(var/seconds)
 	stage_timer = (world.time + seconds*10)/time_divisor
@@ -263,7 +263,7 @@
 
 		if(world.time >= stage_timer)
 
-			var/datum/coreimplant_record/R = read_data()
+			var/datum/core_module/cruciform/cloning/R = read_data()
 
 			var/has_bio = require_biomass(stage_biomass[get_next_stage()])
 
@@ -322,6 +322,9 @@
 						occupant.setBrainLoss(0)
 						occupant.updatehealth()
 						stop()
+						var/datum/effect/effect/system/smoke_spread/s = new
+						s.set_up(2, 1, src)
+						s.start()
 
 		update_icon()
 		use_power(power_cost)
@@ -574,7 +577,7 @@
 
 	if(implant)
 		var/image/I = image(icon, "reader_c_green")
-		if(istype(implant, /obj/item/weapon/implant/external/core_implant/cruciform/priest))
+		if(implant.get_module(CRUCIFORM_PRIEST))
 			I = image(icon, "reader_c_red")
 		overlays.Add(I)
 

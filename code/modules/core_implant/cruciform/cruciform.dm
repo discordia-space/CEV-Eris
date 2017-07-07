@@ -1,24 +1,15 @@
 var/list/christians = list()
 
-/obj/item/weapon/implant/external/core_implant/cruciform/proc/is_priest()
-	return istype(src,/obj/item/weapon/implant/external/core_implant/cruciform/priest)
-
-/obj/item/weapon/implant/external/core_implant/cruciform/proc/is_inquisitor()
-	return istype(src,/obj/item/weapon/implant/external/core_implant/cruciform/inquisitor)
-
 /obj/item/weapon/implant/external/core_implant/cruciform
 	name = "cruciform"
 	icon_state = "cruciform_green"
-	power = 50
-	max_power = 50
 	position_flag = POS_FRONT_TOP
 	allowed_organs = list(BP_CHEST)
-	rituals = list()
 	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
-	var/datum/coreimplant_record/data = null
 
 /obj/item/weapon/implant/external/core_implant/cruciform/New()
-	rituals = cruciform_base_rituals
+	..()
+	add_module(new CRUCIFORM_COMMON)
 
 /obj/item/weapon/implant/external/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
@@ -38,8 +29,6 @@ var/list/christians = list()
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(3, 1, src)
 	s.start()
-	deactivate()
-	uninstall()
 
 /obj/item/weapon/implant/external/core_implant/cruciform/activate()
 	if(!wearer || active)
@@ -63,9 +52,9 @@ var/list/christians = list()
 
 
 /obj/item/weapon/implant/external/core_implant/cruciform/proc/transfer_soul()
-	if(!wearer || !activated || !data)
+	if(!wearer || !activated)
 		return FALSE
-
+	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
 		for(var/mob/M in player_list)
 			if(M.ckey == data.ckey)
@@ -113,37 +102,8 @@ var/list/christians = list()
 	if(!wearer)
 		return
 
-	data = new /datum/coreimplant_record()
-	data.dna = wearer.dna
-	data.ckey = wearer.ckey
-	data.mind = wearer.mind
-	data.languages = wearer.languages
-	data.flavor = wearer.flavor_text
-
-	if(ishuman(wearer))
-		var/mob/living/carbon/human/H = wearer
-		data.age = H.age
-
-/obj/item/weapon/implant/external/core_implant/cruciform/priest
-	icon_state = "cruciform_red"
-	power = 100
-	max_power = 100
-	success_modifier = 3
-
-/obj/item/weapon/implant/external/core_implant/cruciform/priest/New()
-	..()
-	rituals = cruciform_base_rituals + cruciform_priest_rituals
+	add_module(new CRUCIFORM_CLONING)
 
 
 //////////////////////////
 //////////////////////////
-
-/datum/coreimplant_record
-	var/datum/dna/dna = null
-
-	var/age = 30
-	var/ckey = ""
-	var/mind = null
-	var/languages = list()
-	var/flavor = ""
-

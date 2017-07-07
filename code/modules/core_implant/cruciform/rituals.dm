@@ -51,7 +51,10 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	for(var/mob/living/carbon/human/target in christians)
 		if(target == H)
 			continue
-		if(locate(/obj/item/weapon/implant/external/core_implant/cruciform/priest, target) || prob(20))
+
+		var/obj/item/weapon/implant/external/core_implant/cruciform/CI = target.get_core_implant()
+
+		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(20))
 			target << "<span class='danger'>[H], faithful cruciform follower, cries for salvation!</span>"
 	return TRUE
 
@@ -137,6 +140,8 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 		fail("Cruciform not found.", user, C)
 		return FALSE
 
+	var/datum/core_module/cruciform/cloning/data = CI.get_module(CRUCIFORM_CLONING)
+
 	if(!CI.wearer)
 		fail("Cruciform is not installed.", user, C)
 		return FALSE
@@ -153,12 +158,12 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 		fail("Soul cannot move to dead body.", user, C)
 		return FALSE
 
-	var/datum/mind/MN = CI.data.mind
+	var/datum/mind/MN = data.mind
 	if(!istype(MN, /datum/mind))
 		fail("Soul is lost.", user, C)
 		return FALSE
 	if(MN.active)
-		if(CI.data.ckey != ckey(MN.key))
+		if(data.ckey != ckey(MN.key))
 			fail("Soul is lost.", user, C)
 			return FALSE
 	if(MN.current && MN.current.stat != DEAD)

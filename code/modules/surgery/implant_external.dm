@@ -117,7 +117,7 @@
 	user.visible_message("<span class='notice'>[user] removed [implant] from [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You removed [implant] from [target]'s [affected] with \the [tool].</span>" )
 
-	implant.hard_eject()
+	implant.uninstall()
 
 	target.update_implants()
 

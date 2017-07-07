@@ -1,13 +1,5 @@
 var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/ritual/targeted/inquisitor)
 
-/obj/item/weapon/implant/external/core_implant/cruciform/inquisitor
-	power = 100
-	max_power = 100
-	success_modifier = 5
-
-/obj/item/weapon/implant/external/core_implant/cruciform/inquisitor/New()
-	rituals = cruciform_base_rituals + cruciform_priest_rituals + inquisitor_rituals
-
 /datum/ritual/inquisitor
 	name = "inquisitor"
 	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
@@ -56,7 +48,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 /datum/ritual/targeted/inquisitor/whip/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
 	target.update_address()
 	if(index == 1 && target.address == text)
-		if(target.wearer && !istype(target,/obj/item/weapon/implant/external/core_implant/cruciform/inquisitor) && \
+		if(target.wearer && target.get_module(CRUCIFORM_INQUISITOR) && \
 		 (target.loc && target.locs[1] in view()))
 			return target
 
@@ -198,4 +190,22 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "You, asshole, become a priest"
 
 /datum/ritual/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+	var/obj/item/weapon/implant/external/core_implant/CI = get_grabbed(user)
 
+	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
+		fail("Cruciform not found",user,C)
+		return FALSE
+
+	if(CI.get_module(CRUCIFORM_PRIEST))
+		fail("The target is already a priest.",user,C)
+		return FALSE
+
+	var/datum/core_module/activatable/cruciform/priest_convert/PC = CI.get_module(CRUCIFORM_PRIEST_CONVERT)
+
+	if(!PC)
+		fail("Target must have priest upgrade inside his cruciform.",user,C)
+		return FALSE
+
+	PC.activate()
+
+	return TRUE
