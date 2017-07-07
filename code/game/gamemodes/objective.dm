@@ -433,11 +433,11 @@ var/global/list/all_objectives = list()
 		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
-		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
-		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
-		"a chief medical officer's jumpsuit" = /obj/item/clothing/under/rank/chief_medical_officer,
+		"a Moebius expedition overseer's jumpsuit" = /obj/item/clothing/under/rank/expedition_overseer,
+		"a exultant's jumpsuit" = /obj/item/clothing/under/rank/exultant,
+		"a Moebius biolab officer's jumpsuit" = /obj/item/clothing/under/rank/moebius_biolab_officer,
 		"a Ironhammer commander's jumpsuit" = /obj/item/clothing/under/rank/ih_commander,
-		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
+		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/first_officer,
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
@@ -620,7 +620,7 @@ var/global/list/all_objectives = list()
 /datum/objective/heist/kidnap
 
 /datum/objective/heist/kidnap/choose_target()
-	var/list/roles = list("Chief Engineer", "Research Director", "Roboticist", "Chemist", "Station Engineer")
+	var/list/roles = list("Technomancer Exultant", "Moebius Expedition Overseer", "Moebius Roboticist", "Moebius Chemist", "Technomancer")
 	var/list/possible_targets = list()
 	var/list/priority_targets = list()
 
