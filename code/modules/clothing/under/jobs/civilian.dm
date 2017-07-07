@@ -52,7 +52,7 @@
 
 
 
-/obj/item/clothing/under/rank/head_of_personnel
+/obj/item/clothing/under/rank/first_officer
 	desc = "It's a jumpsuit worn by someone who works in the position of \"First Officer\"."
 	name = "First Officer's jumpsuit"
 	icon_state = "hop"
@@ -93,7 +93,7 @@
 
 /obj/item/clothing/under/rank/miner
 	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."
-	name = "shaft miner's jumpsuit"
+	name = "guild miner's jumpsuit"
 	icon_state = "miner"
 	item_state = "lb_suit"
 

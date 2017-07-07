@@ -48,7 +48,6 @@ em						{font-style: normal;font-weight: bold;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #5C5C8A;}
 .airadio				{color: #FF00FF;}
-.entradio				{color: #339966;}
 
 .secradio				{color: #A30000;}
 .engradio				{color: #A66300;}

@@ -51,7 +51,7 @@
 
 
 /obj/structure/closet/secure_closet/medical3
-	name = "medical doctor's locker"
+	name = "moebius doctor's locker"
 	req_access = list(access_medical_equip)
 	icon_state = "securemed1"
 	icon_closed = "securemed"
@@ -98,7 +98,7 @@
 
 
 /obj/structure/closet/secure_closet/CMO
-	name = "chief medical officer's locker"
+	name = "moebius biolab officer's locker"
 	req_access = list(access_cmo)
 	icon_state = "cmosecure1"
 	icon_closed = "cmosecure"
@@ -126,7 +126,7 @@
 			if ("purple")
 				new /obj/item/clothing/under/rank/medical/purple(src)
 				new /obj/item/clothing/head/surgery/purple(src)
-		new /obj/item/clothing/under/rank/chief_medical_officer(src)
+		new /obj/item/clothing/under/rank/moebius_biolab_officer(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat/cmo(src)
 		new /obj/item/weapon/cartridge/cmo(src)
 		new /obj/item/clothing/gloves/latex(src)

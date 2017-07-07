@@ -1,13 +1,13 @@
 /datum/job/rd
-	title = "Research Director"
-	flag = RD
+	title = "Moebius Expedition Overseer"
+	flag = MEO
 	head_position = 1
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "Moebius Corporation"
 	selection_color = "#ffddff"
 	idtype = /obj/item/weapon/card/id/rd
 	req_admin_notify = 1
@@ -23,7 +23,7 @@
 	minimal_player_age = 14
 	ideal_character_age = 50
 
-	uniform = /obj/item/clothing/under/rank/research_director
+	uniform = /obj/item/clothing/under/rank/expedition_overseer
 	pda = /obj/item/device/pda/heads/rd
 	ear = /obj/item/device/radio/headset/heads/rd
 	shoes = /obj/item/clothing/shoes/laceup
@@ -39,18 +39,18 @@
 
 
 /datum/job/scientist
-	title = "Scientist"
+	title = "Moebius Scientist"
 	flag = SCIENTIST
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 3
-	supervisors = "the research director"
+	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
-	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
+	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_genetics)
+	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch, access_genetics)
 	idtype = /obj/item/weapon/card/id/sci
 	minimal_player_age = 14
 
@@ -66,43 +66,17 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/datum/job/xenobiologist
-	title = "Xenobiologist"
-	flag = XENOBIOLOGIST
-	department = "Science"
-	department_flag = MEDSCI
-	faction = "Station"
-	total_positions = 3
-	spawn_positions = 2
-	supervisors = "the research director"
-	selection_color = "#ffeeff"
-	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
-	minimal_access = list(access_research, access_xenobiology, access_hydroponics, access_tox_storage)
-	idtype = /obj/item/weapon/card/id/sci
-	minimal_player_age = 14
 
-	uniform = /obj/item/clothing/under/rank/scientist
-	pda = /obj/item/device/pda/science
-	ear = /obj/item/device/radio/headset/headset_sci
-	shoes = /obj/item/clothing/shoes/jackboots
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack,\
-		/obj/item/weapon/storage/backpack/satchel_norm,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
 
 /datum/job/roboticist
-	title = "Roboticist"
+	title = "Moebius Roboticist"
 	flag = ROBOTICIST
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "research director"
+	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 5
 	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
