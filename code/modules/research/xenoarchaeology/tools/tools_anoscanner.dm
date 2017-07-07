@@ -32,7 +32,7 @@
 				user << "Background radiation levels detected."
 	else
 		user << "Scanning array is recharging."
-	spawn(20)
+	spawn(25)
 		icon_state = "ano_scanner"
 
 /obj/item/device/ano_scanner/proc/scan()
