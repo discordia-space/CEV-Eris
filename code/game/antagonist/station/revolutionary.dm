@@ -1,7 +1,7 @@
 var/datum/antagonist/revolutionary/revs
 
 /datum/antagonist/revolutionary
-	id = MODE_REVOLUTIONARY
+	id = ROLE_REVOLUTIONARY
 	role_text = "Head Revolutionary"
 	role_text_plural = "Revolutionaries"
 	bantype = "revolutionary"
@@ -29,8 +29,8 @@ var/datum/antagonist/revolutionary/revs
 	faction_invisible = 1
 	faction = "revolutionary"
 
-	restricted_jobs = list("Internal Affairs Agent", "AI", "Cyborg","Captain", "First Officer", "Ironhammer Commander", "Chief Engineer", "Research Director", "Chief Medical Officer")
-	protected_jobs = list("Ironhammer Operative", "Gunnery Sergeant", "Inspector")
+	restricted_jobs = list("AI", "Cyborg","Captain", "First Officer", "Ironhammer Commander", "Technomancer Exultant", "Moebius Expedition Overseer", "Moebius Biolab Officer")
+	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Medical Specialist")
 
 
 /datum/antagonist/revolutionary/New()

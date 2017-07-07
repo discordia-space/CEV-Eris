@@ -1,13 +1,13 @@
 //Due to how large this one is it gets its own file
 /datum/job/chaplain
-	title = "Cyberchristian priest"
+	title = "Cyberchristian Preacher"
 	flag = CHAPLAIN
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the First Officer and God"
+	supervisors = "the NeoTheology Church and God"
 	selection_color = "#dddddd"
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	minimal_access = list(access_morgue, access_chapel_office, access_crematorium)

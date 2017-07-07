@@ -188,8 +188,8 @@
 			var/obj/item/obj = pick(implants)
 
 			if(istype(obj,/obj/item/weapon/implant))
-				var/obj/item/weapon/implant/imp = obj
-				if (imp.legal)
+				var/obj/item/weapon/implant/implant = obj
+				if (implant.is_legal)
 					find_prob +=60
 				else
 					find_prob +=40
@@ -201,8 +201,6 @@
 				"\blue You take [obj] out of incision on [target]'s [affected.name]s with \the [tool]." )
 				affected.implants -= obj
 				target.update_implants()
-
-				BITSET(target.hud_updateflag, IMPLOYAL_HUD)
 
 				//Handle possessive brain borers.
 				if(istype(obj,/mob/living/simple_animal/borer))

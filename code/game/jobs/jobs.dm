@@ -7,44 +7,37 @@ var/const/GUNSERG			=(1<<2)
 var/const/INSPECTOR			=(1<<3)
 var/const/IHOPER			=(1<<4)
 var/const/MEDSPEC			=(1<<5)
-var/const/CHIEF				=(1<<6)
-var/const/ENGINEER			=(1<<7)
-var/const/ATMOSTECH			=(1<<8)
-var/const/AI				=(1<<9)
-var/const/CYBORG			=(1<<10)
+var/const/EXULTANT			=(1<<6)
+var/const/TECHNOMANCER		=(1<<7)
+var/const/AI				=(1<<8)
+var/const/CYBORG			=(1<<9)
 
 
 var/const/MEDSCI			=(1<<1)
 
-var/const/RD				=(1<<0)
+var/const/MEO				=(1<<0)
 var/const/SCIENTIST			=(1<<1)
 var/const/CHEMIST			=(1<<2)
-var/const/CMO				=(1<<3)
+var/const/MBO				=(1<<3)
 var/const/DOCTOR			=(1<<4)
-var/const/GENETICIST		=(1<<5)
-var/const/VIROLOGIST		=(1<<6)
-var/const/PSYCHIATRIST		=(1<<7)
-var/const/ROBOTICIST		=(1<<8)
-var/const/XENOBIOLOGIST		=(1<<9)
-var/const/PARAMEDIC			=(1<<10)
+var/const/PSYCHIATRIST		=(1<<5)
+var/const/ROBOTICIST		=(1<<6)
+var/const/PARAMEDIC			=(1<<7)
 
 
 var/const/CIVILIAN			=(1<<2)
 
-var/const/HOP				=(1<<0)
+var/const/FIRSTOFFICER		=(1<<0)
 var/const/BARTENDER			=(1<<1)
 var/const/BOTANIST			=(1<<2)
 var/const/CHEF				=(1<<3)
 var/const/JANITOR			=(1<<4)
-var/const/LIBRARIAN			=(1<<5)
-var/const/QUARTERMASTER		=(1<<6)
-var/const/CARGOTECH			=(1<<7)
-var/const/MINER				=(1<<8)
-var/const/LAWYER			=(1<<9)
-var/const/CHAPLAIN			=(1<<10)
-var/const/CLOWN				=(1<<11)
-var/const/MIME				=(1<<12)
-var/const/ASSISTANT			=(1<<13)
+var/const/MERCHANT			=(1<<5)
+var/const/GUILDTECH			=(1<<6)
+var/const/MINER				=(1<<7)
+var/const/CHAPLAIN			=(1<<8)
+var/const/ACTOR				=(1<<9)
+var/const/ASSISTANT			=(1<<10)
 
 
 var/list/assistant_occupations = list(
@@ -55,42 +48,39 @@ var/list/command_positions = list(
 	"Captain",
 	"First Officer",
 	"Ironhammer Commander",
-	"Chief Engineer",
-	"Research Director",
-	"Chief Medical Officer"
+	"Technomancer Exultant",
+	"Guild Merchant",
+	"Moebius Expedition Overseer",
+	"Moebius Biolab Officer"
 )
 
 
 var/list/engineering_positions = list(
-	"Chief Engineer",
-	"Station Engineer",
-	"Atmospheric Technician",
+	"Technomancer Exultant",
+	"Technomancer",
 )
 
 
 var/list/medical_positions = list(
-	"Chief Medical Officer",
-	"Medical Doctor",
-	"Geneticist",
-	"Psychiatrist",
-	"Chemist",
-	"Paramedic"
+	"Moebius Biolab Officer",
+	"Moebius Doctor",
+	"Moebius Psychiatrist",
+	"Moebius Chemist",
+	"Moebius Paramedic"
 )
 
 
 var/list/science_positions = list(
-	"Research Director",
-	"Scientist",
-	"Geneticist",	//Part of both medical and science
-	"Roboticist",
-	"Xenobiologist"
+	"Moebius Expedition Overseer",
+	"Moebius Scientist",
+	"Moebius Roboticist",
 )
 
 //BS12 EDIT
 var/list/cargo_positions = list(
-	"Quartermaster",
-	"Cargo Technician",
-	"Shaft Miner"
+	"Guild Merchant",
+	"Guild Technician",
+	"Guild Miner"
 )
 
 var/list/civilian_positions = list(
@@ -99,17 +89,16 @@ var/list/civilian_positions = list(
 	"Gardener",
 	"Chef",
 	"Janitor",
-	"Librarian",
-	"Monochurch Preacher",
+	"Cyberchristian Preacher",
 	"Assistant"
 )
 
 
 var/list/security_positions = list(
 	"Ironhammer Commander",
-	"Gunnery Sergeant",
-	"Medical Specialist",
-	"Inspector",
+	"Ironhammer Gunnery Sergeant",
+	"Ironhammer Medical Specialist",
+	"Ironhammer Inspector",
 	"Ironhammer Operative"
 )
 

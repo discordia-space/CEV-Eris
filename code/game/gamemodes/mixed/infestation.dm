@@ -6,7 +6,7 @@
 	required_players = 15
 	required_enemies = 5
 	end_on_antag_death = 1
-	antag_tags = list(MODE_BORER, MODE_XENOMORPH, MODE_CHANGELING)
+	antag_tags = list(ROLE_BORER, ROLE_XENOMORPH, ROLE_CHANGELING)
 	require_all_templates = 1
 	votable = 0
 

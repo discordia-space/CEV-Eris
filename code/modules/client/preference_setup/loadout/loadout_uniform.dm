@@ -105,9 +105,6 @@
 	//display_name = "suit, amish"
 	//path = /obj/item/clothing/under/sl_suit
 
-/datum/gear/uniform/suit/gentle
-	display_name = "suit, gentlemen"
-	path = /obj/item/clothing/under/gentlesuit
 
 /datum/gear/uniform/scrubs/blue
 	display_name = "scrubs, blue"

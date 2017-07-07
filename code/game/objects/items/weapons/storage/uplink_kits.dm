@@ -80,11 +80,8 @@
 	name = "boxed freedom implant (with injector)"
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom/New()
+	new /obj/item/weapon/implanter/freedom(src)
 	..()
-	var/obj/item/weapon/implanter/O = new(src)
-	O.implant = new /obj/item/weapon/implant/freedom(O)
-	O.update()
-	return
 
 /obj/item/weapon/storage/box/syndie_kit/imp_compress
 	name = "box (C)"
@@ -92,7 +89,6 @@
 /obj/item/weapon/storage/box/syndie_kit/imp_compress/New()
 	new /obj/item/weapon/implanter/compressed(src)
 	..()
-	return
 
 /obj/item/weapon/storage/box/syndie_kit/imp_explosive
 	name = "box (E)"
@@ -100,17 +96,13 @@
 /obj/item/weapon/storage/box/syndie_kit/imp_explosive/New()
 	new /obj/item/weapon/implanter/explosive(src)
 	..()
-	return
 
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink
 	name = "boxed uplink implant (with injector)"
 
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink/New()
+	new /obj/item/weapon/implanter/uplink(src)
 	..()
-	var/obj/item/weapon/implanter/O = new(src)
-	O.implant = new /obj/item/weapon/implant/uplink(O)
-	O.update()
-	return
 
 /obj/item/weapon/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"
@@ -121,7 +113,6 @@
 	new /obj/item/clothing/head/helmet/space/syndicate(src)
 	new /obj/item/clothing/mask/gas/syndicate(src)
 	new /obj/item/weapon/tank/emergency_oxygen/double(src)
-	return
 
 /obj/item/weapon/storage/box/syndie_kit/chameleon
 	name = "chameleon kit"

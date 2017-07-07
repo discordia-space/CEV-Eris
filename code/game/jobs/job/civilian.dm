@@ -4,7 +4,7 @@
 	flag = BARTENDER
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the First Officer"
@@ -45,7 +45,7 @@
 	flag = CHEF
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the First Officer"
@@ -68,7 +68,7 @@
 	flag = BOTANIST
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 1
 	supervisors = "the First Officer"
@@ -82,33 +82,28 @@
 	suit = /obj/item/clothing/suit/apron
 	gloves = /obj/item/clothing/gloves/botanic_leather
 	ear = /obj/item/device/radio/headset/headset_service
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack/,\
-		///obj/item/weapon/storage/backpack,\
-		/obj/item/weapon/storage/backpack/satchel_norm,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
-
 	put_in_backpack = list(\
 		/obj/item/device/analyzer/plant_analyzer
 		)
 
 
 //Cargo
-/datum/job/qm
-	title = "Quartermaster"
-	flag = QUARTERMASTER
+/datum/job/merchant
+	title = "Guild Merchant"
+	flag = MERCHANT
 	department = "Cargo"
+	head_position = 1
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the First Officer"
+	supervisors = "your greed"
 	selection_color = "#dddddd"
-	economic_modifier = 5
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
-	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	economic_modifier = 10
+	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_heads,
+			access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors, access_eva, access_external_airlocks)
+	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_heads,
+			access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors, access_eva)
 	idtype = /obj/item/weapon/card/id/car
 	ideal_character_age = 40
 
@@ -118,23 +113,23 @@
 	shoes = /obj/item/clothing/shoes/color/brown
 	pda = /obj/item/device/pda/quartermaster
 	gloves = /obj/item/clothing/gloves/thick
-	ear = /obj/item/device/radio/headset/headset_cargo
+	ear = /obj/item/device/radio/headset/heads/merchant
 	hand = /obj/item/weapon/clipboard
 	glasses = /obj/item/clothing/glasses/sunglasses
 
 
 
 /datum/job/cargo_tech
-	title = "Cargo Technician"
-	flag = CARGOTECH
+	title = "Guild Technician"
+	flag = GUILDTECH
 	department = "Cargo"
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the quartermaster and the First Officer"
+	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
 	idtype = /obj/item/weapon/card/id/car
 
@@ -146,17 +141,17 @@
 
 
 /datum/job/mining
-	title = "Shaft Miner"
+	title = "Guild Miner"
 	flag = MINER
 	department = "Cargo"
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the quartermaster and the First Officer"
+	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	economic_modifier = 5
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
 	idtype = /obj/item/weapon/card/id/car
 
@@ -172,14 +167,14 @@
 
 
 
-/datum/job/clown
-	title = "Clown"
-	flag = CLOWN
+/datum/job/actor
+	title = "Actor"
+	flag = ACTOR
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	faction = "CEV Eris"
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	access = list(access_maint_tunnels)
@@ -212,49 +207,13 @@
 		return 1
 
 
-/datum/job/mime
-	title = "Mime"
-	flag = MIME
-	department = "Civilian"
-	department_flag = CIVILIAN
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the First Officer"
-	selection_color = "#dddddd"
-	access = list(access_maint_tunnels)
-	minimal_access = list(access_maint_tunnels, access_theatre)
-
-	uniform = /obj/item/clothing/under/mime
-	pda = /obj/item/device/pda/mime
-	hat = /obj/item/clothing/head/beret
-	gloves = /obj/item/clothing/gloves/color/white
-	mask = /obj/item/clothing/mask/gas/mime
-	ear = /obj/item/device/radio/headset/headset_service
-
-/*
-	put_in_backpack = list(\
-		/obj/item/toy/crayon/mime,\
-		/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing
-	)
-*/
-
-	equip(var/mob/living/carbon/human/H)
-		if(!..())	return 0
-//		H.verbs += /client/proc/mimespeak
-//		H.verbs += /client/proc/mimewall
-//		H.mind.special_verbs += /client/proc/mimespeak
-//		H.mind.special_verbs += /client/proc/mimewall
-		H.miming = 1
-		return 1
-
 
 /datum/job/janitor
 	title = "Janitor"
 	flag = JANITOR
 	department = "Civilian"
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the First Officer"
@@ -265,48 +224,3 @@
 	uniform = /obj/item/clothing/under/rank/janitor
 	pda = /obj/item/device/pda/janitor
 	ear = /obj/item/device/radio/headset/headset_service
-
-
-
-//More or less assistants
-/datum/job/librarian
-	title = "Librarian"
-	flag = LIBRARIAN
-	department = "Civilian"
-	department_flag = CIVILIAN
-	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the First Officer"
-	selection_color = "#dddddd"
-	access = list(access_library, access_maint_tunnels)
-	minimal_access = list(access_library)
-
-	uniform = /obj/item/clothing/under/librarian
-	pda = /obj/item/device/pda/librarian
-	hand = /obj/item/weapon/barcodescanner
-
-
-
-//var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
-///datum/job/lawyer
-//	title = "Lawyer"
-//	flag = LAWYER
-//	department = "Civilian"
-//	department_flag = CIVILIAN
-//	faction = "Station"
-//	total_positions = 1
-//	spawn_positions = 1
-//	supervisors = "the captain"
-//	selection_color = "#dddddd"
-//	economic_modifier = 7
-//	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
-//	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
-//
-//	uniform = /obj/item/clothing/under/rank/internalaffairs
-//	shoes = /obj/item/clothing/shoes/color/brown
-//	pda = /obj/item/device/pda/lawyer
-//	ear = /obj/item/device/radio/headset/headset_sec
-//	hand = /obj/item/weapon/storage/briefcase
-//	glasses = /obj/item/clothing/glasses/sunglasses/big
-

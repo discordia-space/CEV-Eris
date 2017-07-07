@@ -4,37 +4,36 @@
 	icon_state = "closed"
 	health = 200
 	maxhealth = 200
+	opacity = 0
 	layer = 4.2
-	var/broken = FALSE
 	var/have_glass = TRUE
 
-/obj/machinery/door/blast/shutters/glass/New()
-	opacity = 0
-	..()
-
 /obj/machinery/door/blast/shutters/glass/is_block_dir(target_dir, border_only, atom/target)
-	return ..(target_dir, FALSE, target)
+	if((stat&BROKEN) || !have_glass)
+		return FALSE
+	else
+		return ..(target_dir, FALSE, target)
 
 /obj/machinery/door/blast/shutters/glass/attackby(obj/item/I, mob/user, params)
 	if(density)
 		if(istype(I, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = I
-			if(broken && have_glass)
+			if((stat&BROKEN) && have_glass)
 				if(WT.remove_fuel(0,user))
 					user << "<span class='notice'>You begin slicing [src]'s debris...</span>"
 					playsound(loc, 'sound/items/Welder.ogg', 40, 1)
-					if(do_after(user, 40))
+					if(do_after(user, 40, src))
 						have_glass = FALSE
-						icon_state = "closed-empty"
+						update_icon()
 						playsound(loc, 'sound/items/Welder2.ogg', 50, 1)
 						return
 			else
-				if(user.a_intent == "help")
+				if(user.a_intent == I_HELP)
 					if(health < maxhealth)
 						if(WT.remove_fuel(0,user))
 							user << "<span class='notice'>You begin repairing [src]...</span>"
 							playsound(loc, 'sound/items/Welder.ogg', 40, 1)
-							if(do_after(user, 40))
+							if(do_after(user, 40, src))
 								health = maxhealth
 								playsound(loc, 'sound/items/Welder2.ogg', 50, 1)
 								update_icon()
@@ -45,13 +44,11 @@
 				if(G.get_amount() >= 2)
 					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << "<span class='notice'>You start to put the glass into [src]...</span>"
-					if(do_after(user, 10))
-						if (G.get_amount() >= 2 && density)
-							G.use(2)
+					if(do_after(user, 10, src))
+						if (density && G.use(2))
 							health = maxhealth
-							broken = FALSE
+							stat &= ~BROKEN
 							have_glass = TRUE
-							icon_state = "closed"
 							update_icon()
 							return
 
@@ -84,7 +81,7 @@
 
 /obj/machinery/door/blast/shutters/glass/ex_act(severity, target)
 	..()
-	if(broken)
+	if(stat&BROKEN)
 		qdel(src)
 		return
 	switch(severity)
@@ -104,32 +101,37 @@
 	..()
 
 /obj/machinery/door/blast/shutters/glass/proc/hit(var/damage, var/sound_effect = 1)
-	if(broken)
+	if(stat&BROKEN)
 		return
 
 	health = max(0, health - damage)
-	update_icon()
 	if(sound_effect)
 		playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
 	if(health <= 0)
-		broken = TRUE
-		if(density)
-			icon_state += "-broken"
+		stat |= BROKEN
 		playsound(loc, 'sound/effects/Glassbr3.ogg', 75, 1)
 		new /obj/item/weapon/material/shard(src.loc)
-		update_icon()
+	update_icon()
 
 /obj/machinery/door/blast/shutters/glass/Destroy()
 	playsound(loc, 'sound/effects/Glassbr3.ogg', 75, 1)
 	new /obj/item/weapon/material/shard(src.loc)
-	..()
+	return ..()
 
 /obj/machinery/door/blast/shutters/glass/update_icon()
 	overlays.Cut()
-	if(icon_state == "closed" && !broken)
-		var/ratio = health / maxhealth
-		ratio = Ceiling(ratio * 4) * 25
-		overlays += "damage[ratio]"
+	if(density)
+		icon_state = "closed"
+		if(!have_glass)
+			icon_state += "_empty"
+		else if(stat&BROKEN)
+			icon_state += "-broken"
+		else if(health < maxhealth)
+			var/ratio = health / maxhealth
+			ratio = Ceiling(ratio * 4) * 25
+			overlays += "damage[ratio]"
+	else
+		icon_state = "open"
 
 /obj/machinery/door/blast/shutters/glass/open()
 	if(operating)
@@ -139,7 +141,7 @@
 	if(!have_glass)
 		flick("opening-empty", src)
 
-	else if(broken)
+	else if(stat&BROKEN)
 		flick("opening-broken", src)
 
 	else
@@ -148,10 +150,9 @@
 		overlays.Cut()
 		flick("opening[ratio]", src)
 
-	icon_state = "open"
-	update_icon()
 	density = 0
 	operating = FALSE
+	update_icon()
 
 
 /obj/machinery/door/blast/shutters/glass/close()
@@ -164,7 +165,7 @@
 		flick("closing-empty", src)
 		icon_state = "closed-empty"
 
-	else if(broken)
+	else if(stat&BROKEN)
 		flick("closing-broken", src)
 		icon_state = "closed-broken"
 
@@ -172,9 +173,8 @@
 		var/ratio = health / maxhealth
 		ratio = Ceiling(ratio * 4) * 25
 		flick("closing[ratio]", src)
-		icon_state = "closed"
 
-	update_icon()
 	density = 1
+	update_icon()
 	crush()
 	operating = FALSE

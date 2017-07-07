@@ -119,8 +119,8 @@
 	..()
 
 /obj/item/weapon/cartridge/quartermaster
-	name = "\improper Space Parts & Space Vendors cartridge"
-	desc = "Perfect for the Quartermaster on the go!"
+	name = "\improper Asters Guild Parts & Vendors cartridge"
+	desc = "Perfect for the Guild Merchant on the go!"
 	icon_state = "cart-q"
 	access_quartermaster = 1
 

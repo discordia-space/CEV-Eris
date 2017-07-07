@@ -10,7 +10,7 @@
 	anchored = 1
 	use_power = 0
 	idle_power_usage = 5			// 5 Watts for thermostat related circuitry
-
+	circuit = /obj/item/weapon/circuitboard/unary_atmos/cooler
 	var/heatsink_temperature = T20C	// The constant temperature reservoir into which the freezer pumps heat. Probably the hull of the station or something.
 	var/internal_volume = 600		// L
 
@@ -21,16 +21,8 @@
 	var/cooling = 0
 
 /obj/machinery/atmospherics/unary/freezer/New()
-	..()
 	initialize_directions = dir
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/unary_atmos/cooler(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 2)
-	RefreshParts()
+	..()
 
 /obj/machinery/atmospherics/unary/freezer/initialize()
 	if(node)
@@ -164,7 +156,8 @@
 
 	power_rating = initial(power_rating) * cap_rating / 2			//more powerful
 	heatsink_temperature = initial(heatsink_temperature) / ((manip_rating + bin_rating) / 2)	//more efficient
-	air_contents.volume = max(initial(internal_volume) - 200, 0) + 200 * bin_rating
+	if(air_contents)
+		air_contents.volume = max(initial(internal_volume) - 200, 0) + 200 * bin_rating
 	set_power_level(power_setting)
 
 /obj/machinery/atmospherics/unary/freezer/proc/set_power_level(var/new_power_setting)

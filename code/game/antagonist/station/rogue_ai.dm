@@ -1,7 +1,7 @@
 var/datum/antagonist/rogue_ai/malf
 
 /datum/antagonist/rogue_ai
-	id = MODE_MALFUNCTION
+	id = ROLE_MALFUNCTION
 	role_text = "Rampant AI"
 	role_text_plural = "Rampant AIs"
 	mob_path = /mob/living/silicon/ai

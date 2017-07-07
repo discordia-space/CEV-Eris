@@ -7,4 +7,4 @@
 	required_enemies = 5
 	end_on_antag_death = 1
 	require_all_templates = 1
-	antag_tags = list(MODE_CHANGELING, MODE_TRAITOR)
+	antag_tags = list(ROLE_CHANGELING, ROLE_TRAITOR)
