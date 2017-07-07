@@ -117,11 +117,9 @@
 	process_modules()
 
 /obj/item/weapon/implant/external/core_implant/proc/add_module(var/datum/core_module/CM)
-	world << "D: install by type call [CM]"
 	if(!istype(src,CM.implant_type))
 		return FALSE
 	CM.set_up()
-	world << "D: [CM] was installed"
 	CM.implant = src
 	CM.install_time = world.time
 	CM.preinstall()
@@ -130,26 +128,22 @@
 	return TRUE
 
 /obj/item/weapon/implant/external/core_implant/proc/remove_module(var/datum/core_module/CM)
-	world << "D: uninstall call [CM]"
 	if(istype(CM) && CM.implant == src)
-		world << "D: [CM] was uninstalled"
 		CM.uninstall()
 		modules.Remove(CM)
+		CM.implant = null
 
 /obj/item/weapon/implant/external/core_implant/proc/remove_modules(var/m_type)
-	world << "D: uninstall by type call [m_type]"
 	if(!ispath(m_type))
 		return
 	for(var/datum/core_module/CM in modules)
 		if(istype(CM,m_type))
-			world << "D: [CM] was uninstalled by type"
 			remove_module(CM)
 
 
 /obj/item/weapon/implant/external/core_implant/proc/process_modules()
 	for(var/datum/core_module/CM in modules)
 		if(CM.time > 0 && CM.install_time + CM.time <= world.time)
-			world << "D: [CM] was uninstalled due to expiation"
 			CM.uninstall()
 
 

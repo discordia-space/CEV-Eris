@@ -223,6 +223,7 @@
 #define CRUCIFORM_PRIEST /datum/core_module/cruciform/priest
 #define CRUCIFORM_INQUISITOR /datum/core_module/cruciform/inquisitor
 #define CRUCIFORM_CLONING /datum/core_module/cruciform/cloning
-#define CRUCIFORM_OBEY /datum/core_module/cruciform/obey
 
+#define CRUCIFORM_OBEY /datum/core_module/cruciform/obey
 #define CRUCIFORM_PRIEST_CONVERT /datum/core_module/activatable/cruciform/priest_convert
+#define CRUCIFORM_OBEY_ACTIVATOR /datum/core_module/activatable/cruciform/obey_activator

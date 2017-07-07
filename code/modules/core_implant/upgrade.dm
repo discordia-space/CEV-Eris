@@ -7,6 +7,7 @@
 	var/obj/item/weapon/implant/external/core_implant/implant
 	var/datum/core_module/module
 	var/remove_module = TRUE //if TRUE, module will removed on upgrade remove
+	var/mob/living/user
 
 /obj/item/weapon/coreimplant_upgrade/New()
 	..()
@@ -35,6 +36,7 @@
 		user.drop_item(src)
 		forceMove(I)
 		implant = I
+		on_install(target,user,target_zone)
 		implant.upgrades.Add(src)
 		implant.add_module(module)
 		user << "<span class='notice'>You are successfully installed [src] in the [target]'s \the [I].</span>"
@@ -42,11 +44,14 @@
 
 	..()
 
+/obj/item/weapon/coreimplant_upgrade/proc/on_install(var/mob/living/carbon/human/target, var/mob/living/user, var/target_zone)
+
+
 /obj/item/weapon/coreimplant_upgrade/proc/remove()
-	if(module && implant && implant.active && implant.wearer)
+	if(implant && implant.wearer)
 		src.forceMove(implant.wearer.loc)
 		implant.upgrades.Remove(src)
-		if(remove_module)
+		if(module && remove_module)
 			implant.remove_module(module)
 		implant = null
 

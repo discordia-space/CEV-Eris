@@ -53,25 +53,30 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 			return target
 
 
-/datum/ritual/targeted/inquisitor/obey
+/datum/ritual/inquisitor/obey
 	name = "obey"
-	phrase = "Lol kek cheburek \[Target human]"
+	phrase = "Lol kek cheburek"
 
-/datum/ritual/targeted/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+/datum/ritual/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+	var/obj/item/weapon/implant/external/core_implant/CI = get_grabbed(user)
 
+	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
+		fail("Cruciform not found",user,C)
+		return FALSE
 
-/datum/ritual/targeted/inquisitor/obey/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
+	if(CI.get_module(CRUCIFORM_OBEY))
+		fail("The target is already obeying.",user,C)
+		return FALSE
 
+	var/datum/core_module/activatable/cruciform/obey_activator/OA = CI.get_module(CRUCIFORM_OBEY_ACTIVATOR)
 
-/datum/ritual/targeted/inquisitor/release
-	name = "release"
-	phrase = "cheburek kek Lol \[Target human]"
+	if(!OA)
+		fail("Target must have obey upgrade inside his cruciform.",user,C)
+		return FALSE
 
-/datum/ritual/targeted/inquisitor/release/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+	OA.activate()
 
-
-/datum/ritual/targeted/inquisitor/release/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
-
+	return TRUE
 
 /datum/ritual/inquisitor/crusader_litany
 	name = "crusader's litany"

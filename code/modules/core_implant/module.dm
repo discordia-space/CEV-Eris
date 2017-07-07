@@ -3,6 +3,7 @@
 	var/implant_type = /obj/item/weapon/implant/external/core_implant
 	var/install_time = 0
 	var/time = 0
+	var/mob/living/user
 
 /datum/core_module/proc/install()
 

@@ -16,11 +16,10 @@
 	pda = /obj/item/device/pda/chaplain
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H)
-	//DONT FORGET CHANGE THIS TO PRIEST world << "D:
 	var/obj/item/weapon/implant/external/core_implant/cruciform/C = new /obj/item/weapon/implant/external/core_implant/cruciform(H)
 	C.install(H)
 	C.activate()
-	C.add_module(new CRUCIFORM_INQUISITOR)
+	C.add_module(new CRUCIFORM_PRIEST)
 
 	H.religion = "Christianity"
 

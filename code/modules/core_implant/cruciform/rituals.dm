@@ -274,3 +274,29 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	CI.uninstall()
 	return TRUE
 
+
+/datum/ritual/cruciform/priest/unupgrade
+	name = "Unupgrade"
+	phrase = "Shas, ya vitaschu iz tebya eto"
+	desc = "BEEP BEEP IM THE SHEEP"
+
+/datum/ritual/cruciform/priest/unupgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
+	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = get_grabbed(user)
+
+	if(!CI)
+		fail("Cruciform not found.", user, C)
+		return FALSE
+
+	if(!CI.wearer)
+		fail("Cruciform is not installed.", user, C)
+		return FALSE
+
+	if(!istype(CI.upgrades) || length(CI.upgrades) <= 0)
+		fail("Target do not have a upgrades.", user, C)
+		return FALSE
+
+	for(var/obj/item/weapon/coreimplant_upgrade/CU in CI.upgrades)
+		CU.remove()
+
+	return TRUE
+
