@@ -1,17 +1,23 @@
 /obj/item/device/lighting/toggleable/flashlight
 	action_button_name = "Toggle Flashlight"
 	var/tick_cost = 5
-	var/obj/item/weapon/cell/cell = new
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell
+
+/obj/item/device/lighting/toggleable/flashlight/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
 	. = ..()
-	if(.)
+	if(. && user)
 		processing_objects |= src
 		user.update_action_buttons()
 
 /obj/item/device/lighting/toggleable/flashlight/turn_off(mob/user)
 	. = ..()
-	if(.)
+	if(. && user)
 		user.update_action_buttons()
 
 /obj/item/device/lighting/toggleable/flashlight/process()
@@ -19,7 +25,21 @@
 		if(!cell || !cell.checked_use(tick_cost))
 			turn_off()
 
-/obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/device/lighting/toggleable/flashlight/attackby(obj/item/C, mob/living/user)
+	if(isscrewdriver(C) && cell)
+		user.put_in_hands(cell)
+		user.visible_message(
+			"[user] detached and remove [cell] from [src].",
+			"<span class='notice'>You detach and remove [cell] from [src].</span>"
+		)
+		cell = null
+	else
+		if(istype(C, suitable_cell) && !cell)
+			user.unEquip(C)
+			cell = C
+			user << "You insert [C] into [src]."
+
+/obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
 	add_fingerprint(user)
 	if(on && user.targeted_organ == "eyes")
 

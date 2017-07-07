@@ -19,15 +19,16 @@
 
 /obj/item/device/lighting/toggleable/attack_self(mob/user)
 	if(on)
-		turn_on(user)
-	else
 		turn_off(user)
+	else
+		turn_on(user)
 
 /obj/item/device/lighting/toggleable/proc/turn_off(var/mob/living/user)
 	set_light(0)
 	update_icon()
 	if(turn_on_sound)
 		playsound(src.loc, turn_on_sound, 75, 1)
+	on = FALSE
 	return TRUE
 
 /obj/item/device/lighting/toggleable/drone

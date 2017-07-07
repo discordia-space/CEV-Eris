@@ -12,7 +12,7 @@
 	turn_on(user)
 
 /obj/item/device/lighting/proc/turn_on(var/mob/living/user)
-	if(!isturf(user.loc))
+	if(user && !isturf(user.loc))
 		//To prevent some lighting anomalities.
 		user << "You cannot turn the light on while in this [user.loc]."
 		return 0
@@ -20,4 +20,5 @@
 	update_icon()
 	if(turn_on_sound)
 		playsound(src.loc, turn_on_sound, 75, 1)
+	on = TRUE
 	return TRUE
