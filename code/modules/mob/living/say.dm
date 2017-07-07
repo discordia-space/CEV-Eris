@@ -61,7 +61,7 @@ var/list/department_radio_keys = list(
 	  ":Ã" = "Supply",		".Ã" = "Supply",
 	  ":Ì" = "Service",		".Ü" = "Service",
 	  ":Ç" = "AI Private",	".Ç" = "AI Private",
-
+)
 
 
 var/list/channel_to_radio_key = new
