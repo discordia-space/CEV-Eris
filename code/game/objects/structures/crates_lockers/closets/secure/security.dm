@@ -48,7 +48,7 @@
 	New()
 		..()
 		new /obj/item/clothing/glasses/sunglasses(src)
-		new /obj/item/clothing/under/rank/head_of_personnel(src)
+		new /obj/item/clothing/under/rank/first_officer(src)
 		new /obj/item/clothing/head/caphat/hop(src)
 		new /obj/item/clothing/suit/armor/vest(src)
 		new /obj/item/clothing/head/helmet(src)
@@ -278,7 +278,7 @@
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
-	req_access = list(access_lawyer)
+	req_access = list(access_security)
 
 	New()
 		..()

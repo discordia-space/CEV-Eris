@@ -98,7 +98,6 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/beret/engineering
 	cost = 1
 	slot = slot_head
-//	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer")
 
 /datum/gear/purp_beret
 	display_name = "beret, purple"
@@ -572,7 +571,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/accessory/storage/brown_vest
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer")
+	allowed_roles = list("Technomancer","Technomancer Exultant")
 
 /datum/gear/black_vest
 	display_name = "webbing, security"

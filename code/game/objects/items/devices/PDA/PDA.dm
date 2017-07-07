@@ -106,14 +106,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
 	ttone = "honk"
 
-/obj/item/device/pda/mime
-	default_cartridge = /obj/item/weapon/cartridge/mime
-	icon_state = "pda-mime"
-	message_silent = 1
-	news_silent = 1
-	ttone = "silence"
-	newstone = "silence"
-
 /obj/item/device/pda/heads
 	default_cartridge = /obj/item/weapon/cartridge/head
 	icon_state = "pda-h"
@@ -178,13 +170,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/roboticist
 	icon_state = "pda-robot"
-
-/obj/item/device/pda/librarian
-	icon_state = "pda-libb"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a WGW-11 series e-reader."
-	note = "Congratulations, your station has chosen the Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant!"
-	message_silent = 1 //Quiet in the library!
-	news_silent = 0		// Librarian is above the law!  (That and alt job title is reporter)
 
 /obj/item/device/pda/clear
 	icon_state = "pda-transp"

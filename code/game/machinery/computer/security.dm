@@ -6,7 +6,7 @@
 	icon_keyboard = "security_key"
 	icon_screen = "security"
 	light_color = COLOR_WHITE
-	req_one_access = list(access_security, access_forensics_lockers, access_lawyer)
+	req_one_access = list(, access_forensics_lockers)
 	circuit = /obj/item/weapon/circuitboard/secure_data
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null

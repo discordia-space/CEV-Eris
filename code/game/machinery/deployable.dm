@@ -40,14 +40,11 @@ for reference:
 	access_cargo_bot = 34
 	access_hydroponics = 35
 	access_manufacturing = 36
-	access_library = 37
-	access_lawyer = 38
 	access_virology = 39
 	access_cmo = 40
-	access_qm = 41
+	access_merchant = 41
 	access_court = 42
 	access_clown = 43
-	access_mime = 44
 */
 
 //Barricades!
