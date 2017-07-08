@@ -1269,6 +1269,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/occupied(var/mob/living/silicon/ai/AI)
 	original = AI
 	current = new /mob/living/silicon/ai(chassis, null, null, TRUE)
+	current.destroy_eyeobj(chassis)
 	current.invisibility = 0
 	current.canmove = TRUE
 	current.name = original.name
