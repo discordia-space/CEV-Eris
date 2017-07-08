@@ -110,7 +110,7 @@
 			return
 
 		// Antag AI checks
-		if(!istype(user, /mob/living/silicon/ai) || !(user.mind.special_role && user.mind.original == user))
+		if(!isAI(user) || !(user.mind.special_role && user.mind.original == user))
 			user << "Access Denied"
 			return
 
@@ -132,7 +132,7 @@
 
 	// Arms the emergency self-destruct system
 	else if(href_list["arm"])
-		if(istype(user, /mob/living/silicon))
+		if(issilicon(user))
 			user << "Access Denied"
 			return
 
@@ -141,7 +141,7 @@
 
 	// Destroys all accessible cyborgs if safety is disabled
 	else if(href_list["nuke"])
-		if(istype(user, /mob/living/silicon))
+		if(issilicon(user))
 			user << "Access Denied"
 			return
 		if(safety)
@@ -152,7 +152,7 @@
 		log_game("[key_name(usr)] detonated all cyborgs!")
 
 		for(var/mob/living/silicon/robot/R in mob_list)
-			if(istype(R, /mob/living/silicon/robot/drone))
+			if(isdrone(R))
 				continue
 			// Ignore antagonistic cyborgs
 			if(R.scrambledcodes)
@@ -170,7 +170,7 @@
 
 	for(var/mob/living/silicon/robot/R in mob_list)
 		// Ignore drones
-		if(istype(R, /mob/living/silicon/robot/drone))
+		if(isdrone(R))
 			continue
 		// Ignore antagonistic cyborgs
 		if(R.scrambledcodes)
@@ -197,7 +197,7 @@
 		robot["master_ai"] = R.connected_ai ? R.connected_ai.name : "None"
 		robot["hackable"] = 0
 		// Antag AIs know whether linked cyborgs are hacked or not.
-		if(operator && istype(operator, /mob/living/silicon/ai) && (R.connected_ai == operator) && (operator.mind.special_role && operator.mind.original == operator))
+		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.special_role && operator.mind.original == operator))
 			robot["hacked"] = R.emagged ? 1 : 0
 			robot["hackable"] = R.emagged? 0 : 1
 		robots.Add(list(robot))

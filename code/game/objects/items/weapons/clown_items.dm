@@ -9,7 +9,7 @@
  * Banana Peals
  */
 /obj/item/weapon/bananapeel/Crossed(AM as mob|obj)
-	if (istype(AM, /mob/living))
+	if (isliving(AM))
 		var/mob/living/M = AM
 		M.slip("the [src.name]",4)
 /*
@@ -24,8 +24,8 @@
 	reagents.add_reagent("cleaner", 5)
 
 /obj/item/weapon/soap/Crossed(AM as mob|obj)
-	if (istype(AM, /mob/living))
-		var/mob/living/M =	AM
+	if (isliving(AM))
+		var/mob/living/M = AM
 		M.slip("the [src.name]",3)
 
 /obj/item/weapon/soap/afterattack(atom/target, mob/user as mob, proximity)

@@ -17,11 +17,11 @@
 /mob/living/carbon/slime/proc/invalidFeedTarget(var/mob/living/M)
 	if (!M || !istype(M))
 		return "This subject is incomparable..."
-	if (istype(M, /mob/living/carbon/slime)) // No cannibalism... yet
+	if (isslime(M)) // No cannibalism... yet
 		return "I cannot feed on other slimes..."
 	if (!Adjacent(M))
 		return "This subject is too far away..."
-	if (istype(M, /mob/living/carbon) && M.getCloneLoss() >= M.maxHealth * 1.5 || istype(M, /mob/living/simple_animal) && M.stat == DEAD)
+	if (iscarbon(M) && M.getCloneLoss() >= M.maxHealth * 1.5 || isanimal(M) && M.stat == DEAD)
 		return "This subject does not have an edible life energy..."
 	for(var/mob/living/carbon/slime/met in view())
 		if(met.Victim == M && met != src)
@@ -42,13 +42,13 @@
 		if(Adjacent(M))
 			UpdateFeed(M)
 
-			if(istype(M, /mob/living/carbon))
+			if(iscarbon(M))
 				Victim.adjustCloneLoss(rand(5,6))
 				Victim.adjustToxLoss(rand(1,2))
 				if(Victim.health <= 0)
 					Victim.adjustToxLoss(rand(2,4))
 
-			else if(istype(M, /mob/living/simple_animal))
+			else if(isanimal(M))
 				Victim.adjustBruteLoss(is_adult ? rand(7, 15) : rand(4, 12))
 
 			else
@@ -56,12 +56,12 @@
 				Feedstop()
 				break
 
-			if(prob(15) && M.client && istype(M, /mob/living/carbon))
+			if(prob(15) && M.client && iscarbon(M))
 				var/painMes = pick("You can feel your body becoming weak!", "You feel like you're about to die!", "You feel every part of your body screaming in agony!", "A low, rolling pain passes through your body!", "Your body feels as if it's falling apart!", "You feel extremely weak!", "A sharp, deep pain bathes every inch of your body!")
 				if (ishuman(M))
 					var/mob/living/carbon/human/H = M
 					H.custom_pain(painMes)
-				else if (istype(M, /mob/living/carbon))
+				else if (iscarbon(M))
 					var/mob/living/carbon/C = M
 					if (!(C.species && (C.species.flags & NO_PAIN)))
 						M << "<span class='danger'>[painMes]</span>"

@@ -19,7 +19,7 @@
 
 	if(triggered) return
 
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]</font>"
 		triggered = 1

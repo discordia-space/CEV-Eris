@@ -64,6 +64,8 @@
 
 	. = ..(gibbed,species.death_message)
 	if(!gibbed)
+		dizziness = 0
+		jitteriness = 0
 		handle_organs()
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)

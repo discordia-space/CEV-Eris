@@ -42,7 +42,7 @@
 	else
 		activate(user)
 
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
@@ -205,7 +205,7 @@
 /obj/item/weapon/melee/energy/blade/process()
 	if(!creator || loc != creator || (creator.l_hand != src && creator.r_hand != src))
 		// Tidy up a bit.
-		if(istype(loc,/mob/living))
+		if(isliving(loc))
 			var/mob/living/carbon/human/host = loc
 			if(istype(host))
 				for(var/obj/item/organ/external/organ in host.organs)

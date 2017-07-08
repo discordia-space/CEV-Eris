@@ -8,13 +8,11 @@ value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
 
-/mob/var/dizziness = 0//Carbon
-/mob/var/is_dizzy = 0
-
 /mob/proc/make_dizzy(var/amount)
-	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
-		return
+	return
 
+// for the moment, only humans get dizzy
+/mob/living/carbon/human/make_dizzy(var/amount)
 	dizziness = min(1000, dizziness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(dizziness > 100 && !is_dizzy)
@@ -22,12 +20,16 @@ below 100 is not dizzy
 			dizzy_process()
 
 
+/mob/living/carbon
+	var/dizziness = 0
+	var/is_dizzy = 0
+
 /*
 dizzy process - wiggles the client's pixel offset over time
 spawned from make_dizzy(), will terminate automatically when dizziness gets <100
 note dizziness decrements automatically in the mob's Life() proc.
 */
-/mob/proc/dizzy_process()
+/mob/living/carbon/human/proc/dizzy_process()
 	is_dizzy = 1
 	while(dizziness > 100)
 		if(client)
@@ -43,12 +45,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 		client.pixel_y = 0
 
 // jitteriness - copy+paste of dizziness
-/mob/var/is_jittery = 0
-/mob/var/jitteriness = 0//Carbon
 /mob/proc/make_jittery(var/amount)
-	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
-		return
+	return
 
+/mob/living/carbon
+	var/is_jittery = 0
+	var/jitteriness = 0
+
+/mob/living/carbon/human/make_jittery(var/amount)
 	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(jitteriness > 100 && !is_jittery)
@@ -57,7 +61,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 
 // Typo from the oriignal coder here, below lies the jitteriness process. So make of his code what you will, the previous comment here was just a copypaste of the above.
-/mob/proc/jittery_process()
+/mob/living/carbon/human/proc/jittery_process()
 	//var/old_x = pixel_x
 	//var/old_y = pixel_y
 	is_jittery = 1

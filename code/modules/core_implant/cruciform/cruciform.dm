@@ -16,7 +16,7 @@ var/list/christians = list()
 	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender][body_build]")
 
 /obj/item/weapon/implant/external/core_implant/cruciform/hard_eject()
-	if(!istype(wearer, /mob/living/carbon/human))
+	if(!ishuman(wearer))
 		return
 	var/mob/living/carbon/human/H = wearer
 	if(H.stat == DEAD)
@@ -94,7 +94,7 @@ var/list/christians = list()
 			R.wearer = null
 			R.part.implants.Remove(R)
 			R.malfunction = MALFUNCTION_PERMANENT
-	if(istype(wearer, /mob/living/carbon/human))
+	if(ishuman(wearer))
 		var/mob/living/carbon/human/H = wearer
 		H.update_implants()
 

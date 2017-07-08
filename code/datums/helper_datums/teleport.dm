@@ -157,7 +157,7 @@
 	var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
 	if(bagholding.len)
 		precision = max(rand(1,100)*bagholding.len,100)
-		if(istype(teleatom, /mob/living))
+		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
 			MM << "<span class='danger'>The Bluespace interface on your [teleatom] interferes with the teleport!</span>"
 	return 1
@@ -168,7 +168,7 @@
 		return 0
 
 	if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/disk/nuclear)))
-		if(istype(teleatom, /mob/living))
+		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
 			MM.visible_message("<span class='danger'>\The [MM] bounces off of the portal!</span>","<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
 		else

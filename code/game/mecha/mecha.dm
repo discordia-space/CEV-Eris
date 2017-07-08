@@ -423,7 +423,7 @@
 
 /obj/mecha/Bump(var/atom/obstacle)
 //	src.inertia_dir = null
-	if(istype(obstacle, /obj))
+	if(isobj(obstacle))
 		var/obj/O = obstacle
 		if(istype(O, /obj/effect/portal)) //derpfix
 			src.anchored = 0
@@ -434,7 +434,7 @@
 			step(obstacle,src.dir)
 		else //I have no idea why I disabled this
 			obstacle.Bumped(src)
-	else if(istype(obstacle, /mob))
+	else if(ismob(obstacle))
 		step(obstacle,src.dir)
 	else
 		obstacle.Bumped(src)
@@ -574,7 +574,7 @@
 /obj/mecha/attack_hand(mob/user as mob)
 	src.log_message("Attack by hand/paw. Attacker - [user].",1)
 
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(user))
 			if(!deflect_hit(is_melee=1))
@@ -609,14 +609,14 @@
 		A.forceMove(src)
 		src.visible_message("The [A] fastens firmly to [src].")
 		return
-	if(deflect_hit(is_melee=0) || istype(A, /mob))
+	if(deflect_hit(is_melee=0) || ismob(A))
 		src.occupant_message("<span class='notice'>\The [A] bounces off the armor.</span>")
 		src.visible_message("\The [A] bounces off \the [src] armor.")
 		src.log_append_to_last("Armor saved.")
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			var/mob/living/M = A
 			M.take_organ_damage(10)
-	else if(istype(A, /obj))
+	else if(isobj(A))
 		var/obj/O = A
 		if(O.throwforce)
 			src.hit_damage(O.throwforce, is_melee=0)
@@ -855,7 +855,7 @@
 
 /*
 /obj/mecha/attack_ai(var/mob/living/silicon/ai/user as mob)
-	if(!istype(user, /mob/living/silicon/ai))
+	if(!isAI(user))
 		return
 	var/output = {"<b>Assume direct control over [src]?</b>
 						<a href='?src=\ref[src];ai_take_control=\ref[user];duration=3000'>Yes</a><br>
@@ -1126,7 +1126,7 @@
 	var/atom/movable/mob_container
 	if(ishuman(occupant))
 		mob_container = src.occupant
-	else if(istype(occupant, /mob/living/carbon/brain))
+	else if(isbrain(occupant))
 		var/mob/living/carbon/brain/brain = occupant
 		mob_container = brain.container
 	else
@@ -1625,8 +1625,9 @@
 		user << browse(null,"window=exosuit_add_access")
 		return
 	if(href_list["dna_lock"])
-		if(usr != src.occupant)	return
-		if(istype(occupant, /mob/living/carbon/brain))
+		if(usr != src.occupant)
+			return
+		if(isbrain(occupant))
 			usr << sound('sound/mecha/UI_SCI-FI_Tone_Deep_Wet_15_stereo_error.wav',channel=4, volume=100);
 			occupant_message("You are a brain. No.")
 			return
@@ -1636,11 +1637,13 @@
 			src.occupant_message("You feel a prick as the needle takes your DNA sample.")
 		return
 	if(href_list["reset_dna"])
-		if(usr != src.occupant)	return
+		if(usr != src.occupant)
+			return
 		usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.wav',channel=4, volume=100);
 		src.dna = null
 	if(href_list["repair_int_control_lost"])
-		if(usr != src.occupant)	return
+		if(usr != src.occupant)
+			return
 		src.occupant_message("Recalibrating coordination system.")
 		src.log_message("Recalibration of coordination system started.")
 		usr << sound('sound/mecha/UI_SCI-FI_Compute_01_Wet_stereo.wav',channel=4, volume=100);

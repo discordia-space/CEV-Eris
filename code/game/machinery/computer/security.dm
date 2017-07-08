@@ -34,7 +34,7 @@
 	if(scan)
 		usr << "You remove \the [scan] from \the [src]."
 		scan.loc = get_turf(src)
-		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
+		if(!usr.get_active_hand() && ishuman(usr))
 			usr.put_in_hands(scan)
 		scan = null
 	else
@@ -228,7 +228,7 @@ What a mess.*/
 		active1 = null
 	if (!( data_core.security.Find(active2) ))
 		active2 = null
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (issilicon(usr)))
 		usr.set_machine(src)
 		switch(href_list["choice"])
 // SORTING!
@@ -254,7 +254,7 @@ What a mess.*/
 
 			if("Confirm Identity")
 				if (scan)
-					if(istype(usr,/mob/living/carbon/human) && !usr.get_active_hand())
+					if(ishuman(usr) && !usr.get_active_hand())
 						usr.put_in_hands(scan)
 					else
 						scan.loc = get_turf(src)
@@ -272,13 +272,13 @@ What a mess.*/
 				active2 = null
 
 			if("Log In")
-				if (istype(usr, /mob/living/silicon/ai))
+				if (isAI(usr))
 					src.active1 = null
 					src.active2 = null
 					src.authenticated = usr.name
 					src.rank = "AI"
 					src.screen = 1
-				else if (istype(usr, /mob/living/silicon/robot))
+				else if (isrobot(usr))
 					src.active1 = null
 					src.active2 = null
 					src.authenticated = usr.name
@@ -337,7 +337,7 @@ What a mess.*/
 
 /*			if ("Search Fingerprints")
 				var/t1 = input("Search String: (Fingerprint)", "Secure. records", null, null)  as text
-				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || (!in_range(src, usr)) && (!istype(usr, /mob/living/silicon))))
+				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || (!in_range(src, usr)) && (!issilicon(usr))))
 					return
 				active1 = null
 				active2 = null
@@ -433,7 +433,7 @@ What a mess.*/
 					return
 				var/a2 = active2
 				var/t1 = cp1251_to_utf8(sanitize(input("Add Comment:", "Secure. records", null, null)  as message))
-				if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active2 != a2))
+				if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 					return
 				var/counter = 1
 				while(active2.fields[text("com_[]", counter)])
@@ -616,13 +616,13 @@ What a mess.*/
 	return
 
 /obj/machinery/computer/secure_data/proc/is_not_allowed(var/mob/user)
-	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!istype(user, /mob/living/silicon)))
+	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!issilicon(user)))
 
 /obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
 	if(istype(user.get_active_hand(), /obj/item/weapon/photo))
 		var/obj/item/weapon/photo/photo = user.get_active_hand()
 		return photo.img
-	if(istype(user, /mob/living/silicon))
+	if(issilicon(user))
 		var/mob/living/silicon/tempAI = usr
 		var/obj/item/weapon/photo/selection = tempAI.GetPicture()
 		if (selection)

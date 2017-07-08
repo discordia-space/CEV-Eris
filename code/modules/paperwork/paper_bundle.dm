@@ -121,7 +121,7 @@
 
 	if(istype(pages[page], /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/P = W
-		if(!(istype(usr, /mob/living/carbon/human) || isghost(usr) || istype(usr, /mob/living/silicon)))
+		if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
 			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
 		else
 			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
@@ -179,7 +179,7 @@
 			update_icon()
 	else
 		usr << "<span class='notice'>You need to hold it in hands!</span>"
-	if (istype(src.loc, /mob) ||istype(src.loc.loc, /mob))
+	if (ismob(src.loc) ||ismob(src.loc.loc))
 		src.attack_self(usr)
 		updateUsrDialog()
 

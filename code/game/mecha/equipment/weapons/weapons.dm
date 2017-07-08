@@ -49,7 +49,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target)
 	var/obj/item/projectile/P = A
 	var/def_zone
-	if(chassis && istype(chassis.occupant,/mob/living/carbon/human))
+	if(chassis && ishuman(chassis.occupant))
 		var/mob/living/carbon/human/H = chassis.occupant
 		def_zone = H.targeted_organ
 	P.launch(target, def_zone)
@@ -147,7 +147,7 @@
 		playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
 		chassis.occupant_message("<font color='red' size='5'>HONK</font>")
 		for(var/mob/living/carbon/M in ohearers(6, chassis))
-			if(istype(M, /mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 					continue

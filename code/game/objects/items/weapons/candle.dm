@@ -58,7 +58,7 @@
 	wax--
 	if(!wax)
 		new/obj/item/trash/candle(src.loc)
-		if(istype(src.loc, /mob))
+		if(ismob(loc))
 			src.dropped()
 		qdel(src)
 	update_icon()

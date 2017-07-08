@@ -159,7 +159,7 @@
 /obj/vehicle/train/cargo/engine/RunOver(var/mob/living/carbon/human/H)
 	..()
 
-	if(is_train_head() && istype(load, /mob/living/carbon/human))
+	if(is_train_head() && ishuman(load))
 		var/mob/living/carbon/human/D = load
 		D << "\red \b You ran over [H]!"
 		visible_message("<B>\red \The [src] ran over [H]!</B>")
@@ -189,7 +189,7 @@
 	if(!..(user, 1))
 		return
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	user << "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition."
@@ -200,7 +200,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(on)
@@ -221,7 +221,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!on)
@@ -237,7 +237,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!key || (load && load != usr))
@@ -256,10 +256,20 @@
 //-------------------------------------------
 // Loading/unloading procs
 //-------------------------------------------
+/obj/vehicle/train/cargo/trolley
+	var/list/allowed_passengers = list(
+		/obj/machinery,
+		/obj/structure/closet,
+		/obj/structure/largecrate,
+		/obj/structure/reagent_dispensers,
+		/obj/structure/ore_box,
+		/mob/living/carbon/human
+	)
+
 /obj/vehicle/train/cargo/trolley/load(var/atom/movable/C)
 	if(ismob(C) && !passenger_allowed)
 		return 0
-	if(!istype(C,/obj/machinery) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !istype(C, /mob/living/carbon/human))
+	if(!is_type_in_list(C, allowed_passengers))
 		return 0
 
 	//if there are any items you don't want to be able to interact with, add them to this check
@@ -273,7 +283,7 @@
 		return 1
 
 /obj/vehicle/train/cargo/engine/load(var/atom/movable/C)
-	if(!istype(C, /mob/living/carbon/human))
+	if(!ishuman(C))
 		return 0
 
 	return ..()

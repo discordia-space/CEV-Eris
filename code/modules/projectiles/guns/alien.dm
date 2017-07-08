@@ -37,7 +37,7 @@
 	icon_state = "spikethrower[spikes]"
 
 /obj/item/weapon/gun/launcher/spikethrower/special_check(user)
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		user << "<span class='warning'>\The [src] does not respond to you!</span>"
 		return 0
 	return ..()

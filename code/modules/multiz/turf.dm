@@ -86,7 +86,7 @@
 				)
 
 			// Handle people getting hurt, it's funny!
-			if (istype(mover, /mob/living/carbon/human))
+			if (ishuman(mover))
 				var/mob/living/carbon/human/H = mover
 				var/damage = 5
 				for(var/organ in list(BP_CHEST, BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
