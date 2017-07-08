@@ -195,7 +195,9 @@ var/global/list/additional_antag_types = list()
 	spawn (ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
 
-	//Assign all antag types for this game mode. Any players spawned as antags earlier should have been removed from the pending list, so no need to worry about those.
+	//Assign all antag types for this game mode.
+	//Any players spawned as antags earlier should have been removed from the pending list,
+	// so no need to worry about those.
 	for(var/datum/antagonist/antag in antag_templates)
 		if(!(antag.flags & ANTAG_OVERRIDE_JOB))
 			antag.attempt_spawn() //select antags to be spawned
@@ -315,9 +317,11 @@ var/global/list/additional_antag_types = list()
 					players.Remove(player)
 					break
 
-	return candidates		// Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than required_enemies
-							//			required_enemies if the number of people with that role set to yes is less than recomended_enemies,
-							//			Less if there are not enough valid players in the game entirely to make required_enemies.
+	return candidates
+	// Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies,
+	// if that number is greater than required_enemies
+	// required_enemies if the number of people with that role set to yes is less than recomended_enemies,
+	// Less if there are not enough valid players in the game entirely to make required_enemies.
 
 /datum/game_mode/proc/num_players()
 	var/count = 0

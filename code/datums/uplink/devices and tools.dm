@@ -75,7 +75,7 @@
 
 /datum/uplink_item/item/tools/teleporter/New()
 	..()
-	antag_roles = list(MODE_MERCENARY)
+	antag_roles = list(ROLE_MERCENARY)
 
 /datum/uplink_item/item/tools/ai_module
 	name = "Hacked AI Upload Module"

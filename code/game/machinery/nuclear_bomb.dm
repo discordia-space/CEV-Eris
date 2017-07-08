@@ -352,7 +352,7 @@ var/bomb_set
 		off_station = 2
 
 	if(ticker)
-		if(ticker.mode && ticker.mode.name == "Mercenary")
+		if(ticker.mode && ticker.mode.name == MODE_NUKE)
 			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
 			if(syndie_location)
 				ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
