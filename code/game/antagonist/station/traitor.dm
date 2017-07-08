@@ -2,8 +2,8 @@ var/datum/antagonist/traitor/traitors
 
 // Inherits most of its vars from the base datum.
 /datum/antagonist/traitor
-	id = MODE_TRAITOR
-	protected_jobs = list("Ironhammer Operative", "Gunnery Sergeant", "Inspector", "Internal Affairs Agent", "Ironhammer Commander", "Captain")
+	id = ROLE_TRAITOR
+	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 
 /datum/antagonist/traitor/New()
@@ -22,7 +22,7 @@ var/datum/antagonist/traitor/traitors
 	if(!..())
 		return
 
-	if(istype(traitor.current, /mob/living/silicon))
+	if(issilicon(traitor.current))
 		var/datum/objective/assassinate/kill_objective = new
 		kill_objective.owner = traitor
 		kill_objective.find_target()
@@ -73,7 +73,7 @@ var/datum/antagonist/traitor/traitors
 	return
 
 /datum/antagonist/traitor/equip(var/mob/living/carbon/human/traitor_mob)
-	if(istype(traitor_mob, /mob/living/silicon)) // this needs to be here because ..() returns false if the mob isn't human
+	if(issilicon(traitor_mob)) // this needs to be here because ..() returns false if the mob isn't human
 		add_law_zero(traitor_mob)
 		return 1
 

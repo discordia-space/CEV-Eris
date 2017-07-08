@@ -107,7 +107,6 @@ var/const/COMM_FREQ = 1353
 var/const/AI_FREQ	= 1343
 var/const/DTH_FREQ	= 1341
 var/const/SYND_FREQ = 1213
-var/const/ENT_FREQ	= 1461 //entertainment frequency.
 
 // department channels
 var/const/PUB_FREQ = 1459
@@ -134,7 +133,6 @@ var/list/radiochannels = list(
 	"Supply" 		= SUP_FREQ,
 	"Service" 		= SRV_FREQ,
 	"AI Private"	= AI_FREQ,
-	"Entertainment" = ENT_FREQ,
 	"Medical(I)"	= MED_I_FREQ,
 	"Security(I)"	= SEC_I_FREQ
 )
@@ -146,7 +144,7 @@ var/list/CENT_FREQS = list(DTH_FREQ)
 var/list/ANTAG_FREQS = list(SYND_FREQ)
 
 //Department channels, arranged lexically
-var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ, ENT_FREQ)
+var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1
@@ -177,8 +175,6 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI
 		return "supradio"
 	if(frequency == SRV_FREQ) // service
 		return "srvradio"
-	if(frequency == ENT_FREQ) //entertainment
-		return "entradio"
 	if(frequency in DEPT_FREQS)
 		return "deptradio"
 

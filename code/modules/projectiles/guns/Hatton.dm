@@ -104,7 +104,7 @@
 		user << "\red You don't have the dexterity to do this!"
 		return
 
-	if(istype(user, /mob/living))
+	if(isliving(user))
 		var/mob/living/M = user
 		if (HULK in M.mutations)
 			M << "\red Your meaty finger is much too large for the trigger guard!"
@@ -120,7 +120,7 @@
 		click_empty()
 		return
 
-	if(istype(user, /mob/living))
+	if(isliving(user))
 		var/mob/living/M = user
 		if ((CLUMSY in M.mutations) && prob(50))
 			M << "<span class='danger'>[src] blows up in your face.</span>"
@@ -157,7 +157,7 @@
 
 
 /mob/hatton_act()
-	if(istype(src, /mob/living/carbon/human))
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		H.take_overall_damage(35, 10)
 	else

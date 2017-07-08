@@ -26,7 +26,7 @@
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival/New()
 	..()
-	antag_roles = list(MODE_MERCENARY)
+	antag_roles = list(ROLE_MERCENARY)
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
 	if(!user)
@@ -48,7 +48,7 @@
 		general.fields["sex"] = I.sex
 	else
 		var/mob/living/carbon/human/H
-		if(istype(user,/mob/living/carbon/human))
+		if(ishuman(user))
 			H = user
 			general.fields["age"] = H.age
 		else

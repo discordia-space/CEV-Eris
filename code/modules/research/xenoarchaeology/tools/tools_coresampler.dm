@@ -84,8 +84,8 @@
 	if(filled_bag)
 		usr << "\blue You eject the full sample bag."
 		var/success = 0
-		if(istype(src.loc, /mob))
-			var/mob/M = src.loc
+		if(ismob(loc))
+			var/mob/M = loc
 			success = M.put_in_inactive_hand(filled_bag)
 		if(!success)
 			filled_bag.loc = get_turf(src)

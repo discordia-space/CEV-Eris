@@ -77,7 +77,7 @@ datum/announcement/proc/PlaySound(var/message_sound)
 	if(!message_sound)
 		return
 	for(var/mob/M in player_list)
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
+		if(!isnewplayer(M) && !isdeaf(M))
 			M << message_sound
 
 datum/announcement/proc/Sound(var/message_sound)

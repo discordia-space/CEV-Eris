@@ -17,7 +17,7 @@
 		if(!cargo_holder) return
 
 		//loading
-		if(istype(target,/obj))
+		if(isobj(target))
 			var/obj/O = target
 			if(O.buckled_mob)
 				return
@@ -50,7 +50,7 @@
 					O.anchored = initial(O.anchored)
 
 		//attacking
-		else if(istype(target,/mob/living))
+		else if(isliving(target))
 			var/mob/living/M = target
 			if(M.stat>1) return
 			if(chassis.occupant.a_intent == I_HURT)
@@ -929,7 +929,7 @@
 	process(var/obj/item/mecha_parts/mecha_equipment/generator/nuclear/EG)
 		if(..())
 			for(var/mob/living/carbon/M in view(EG.chassis))
-				if(istype(M,/mob/living/carbon/human))
+				if(ishuman(M))
 					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE,0)
 				else
 					M.apply_effect(EG.rad_per_cycle, IRRADIATE)
@@ -955,7 +955,7 @@
 	action(atom/target)
 		if(!action_checks(target)) return
 		if(!cargo_holder) return
-		if(istype(target,/obj))
+		if(isobj(target))
 			var/obj/O = target
 			if(!O.anchored)
 				if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
@@ -980,7 +980,7 @@
 			else
 				chassis.occupant_message("<span class='warning'>[target] is firmly secured.</span>")
 
-		else if(istype(target,/mob/living))
+		else if(isliving(target))
 			var/mob/living/M = target
 			if(M.stat>1) return
 			if(chassis.occupant.a_intent == I_HURT)

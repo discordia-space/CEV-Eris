@@ -14,7 +14,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
+	if(usr.stat || usr.restrained() || usr.lying || !isliving(usr))
 		usr << "<span class='warning'>You can't do that.</span>"
 		return
 
@@ -74,7 +74,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.stat || usr.restrained() || usr.lying || !istype(usr, /mob/living))
+	if(usr.stat || usr.restrained() || usr.lying || !isliving(usr))
 		usr << "<span class='warning'>You can't do that.</span>"
 		return
 

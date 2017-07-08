@@ -61,9 +61,6 @@
 
 	update_canmove()
 
-	dizziness = 0
-	jitteriness = 0
-
 	layer = MOB_LAYER
 
 /*	if(blind && client)
@@ -85,14 +82,15 @@
 			healths.icon_state = "health6"
 			log_debug("[src] ([src.type]) died but does not have a valid health7 icon_state (using health6 instead). report this error to Ccomp5950 or your nearest Developer")
 */
-	if(istype(src,/mob/living))
+	if(isliving(src))
 		var/mob/living/L = src
 		if(L.HUDneed.Find("health"))
 			var/obj/screen/health/H = L.HUDneed["health"]
 			H.icon_state = "health7"
 
 	timeofdeath = world.time
-	if(mind) mind.store_memory("Time of death: [stationtime2text()]", 0)
+	if(mind)
+		mind.store_memory("Time of death: [stationtime2text()]", 0)
 	living_mob_list -= src
 	dead_mob_list |= src
 

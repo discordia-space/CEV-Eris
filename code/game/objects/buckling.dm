@@ -53,7 +53,7 @@
 		return
 	if(M == buckled_mob)
 		return
-	if(istype(M, /mob/living/carbon/slime))
+	if(isslime(M))
 		user << "<span class='warning'>The [M] is too squishy to buckle in.</span>"
 		return
 

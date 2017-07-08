@@ -62,7 +62,7 @@
 /datum/access/genetics
 	id = access_genetics
 	desc = "Genetics Lab"
-	region = ACCESS_REGION_MEDBAY
+	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_engine = 10
 /datum/access/engine
@@ -187,7 +187,7 @@
 /var/const/access_rd = 30
 /datum/access/rd
 	id = access_rd
-	desc = "Research Director"
+	desc = "Moebius Expedition Overseer"
 	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_cargo = 31
@@ -226,17 +226,9 @@
 	desc = "Manufacturing"
 	access_type = ACCESS_TYPE_NONE
 
-/var/const/access_library = 37
-/datum/access/library
-	id = access_library
-	desc = "Library"
-	region = ACCESS_REGION_GENERAL
+// /var/const/free_access_id = 37
 
-/var/const/access_lawyer = 38
-/datum/access/lawyer
-	id = access_lawyer
-	desc = "Internal Affairs"
-	region = ACCESS_REGION_COMMAND
+// /var/const/free_access_id = 38
 
 /var/const/access_virology = 39
 /datum/access/virology
@@ -247,13 +239,13 @@
 /var/const/access_cmo = 40
 /datum/access/cmo
 	id = access_cmo
-	desc = "Chief Medical Officer"
+	desc = "Moebius Biolab Officer"
 	region = ACCESS_REGION_COMMAND
 
-/var/const/access_qm = 41
-/datum/access/qm
-	id = access_qm
-	desc = "Quartermaster"
+/var/const/access_merchant = 41
+/datum/access/merchant
+	id = access_merchant
+	desc = "Guild Merchant"
 	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_network = 42
@@ -326,7 +318,7 @@
 /var/const/access_ce = 56
 /datum/access/ce
 	id = access_ce
-	desc = "Chief Engineer"
+	desc = "Technomancer Exultant"
 	region = ACCESS_REGION_ENGINEERING
 
 /var/const/access_hop = 57

@@ -6,10 +6,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	department = "Command"
 	head_position = 1
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "company officials and Corporate Regulations"
+	supervisors = "your heart and wisdom"
 	selection_color = "#ccccff"
 	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = 1
@@ -52,11 +52,11 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/hop
 	title = "First Officer"
-	flag = HOP
+	flag = FIRSTOFFICER
 	department = "Civilian"
 	head_position = 1
 	department_flag = CIVILIAN
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the captain"
@@ -67,7 +67,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	economic_modifier = 10
 	ideal_character_age = 50
 
-	uniform = /obj/item/clothing/under/rank/head_of_personnel
+	uniform = /obj/item/clothing/under/rank/first_officer
 	shoes = /obj/item/clothing/shoes/laceup
 	suit = /obj/item/clothing/suit/armor/vest
 	gloves = /obj/item/clothing/gloves/thick

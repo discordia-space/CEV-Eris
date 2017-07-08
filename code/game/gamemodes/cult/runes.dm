@@ -30,7 +30,7 @@ var/list/sacrificed = list()
 					allrunesloc[index] = R.loc
 			if(index >= 5)
 				user << "<span class='danger'>You feel pain, as rune disappears in reality shift caused by too much wear of space-time fabric.</span>"
-				if (istype(user, /mob/living))
+				if (isliving(user))
 					user.take_overall_damage(5, 0)
 				qdel(src)
 			if(allrunesloc && index != 0)
@@ -67,7 +67,7 @@ var/list/sacrificed = list()
 					runecount++
 			if(runecount >= 2)
 				user << "<span class='danger'>You feel pain, as rune disappears in reality shift caused by too much wear of space-time fabric.</span>"
-				if (istype(user, /mob/living))
+				if (isliving(user))
 					user.take_overall_damage(5, 0)
 				qdel(src)
 			for(var/mob/living/carbon/C in orange(1,src))
@@ -352,7 +352,7 @@ var/list/sacrificed = list()
 			"<span class='danger'>You hear a thousand voices, all crying in pain.</span>")
 			body_to_sacrifice.gib()
 
-//			if(ticker.mode.name == "cult")
+//			if(ticker.mode.name == MODE_CULT)
 //				ticker.mode:add_cultist(corpse_to_raise.mind)
 //			else
 //				ticker.mode.cult |= corpse_to_raise.mind
@@ -632,12 +632,12 @@ var/list/sacrificed = list()
 			for(var/mob/H in victims)
 
 				var/worth = 0
-				if(istype(H,/mob/living/carbon/human))
+				if(ishuman(H))
 					var/mob/living/carbon/human/lamb = H
 					if(lamb.species.rarity_value > 3)
 						worth = 1
 
-				if (ticker.mode.name == "cult")
+				if (ticker.mode.name == MODE_CULT)
 					if(H.mind == cult.sacrifice_target)
 						if(cultsinrange.len >= 3)
 							sacrificed += H.mind
@@ -789,7 +789,7 @@ var/list/sacrificed = list()
 			var/mob/living/user = usr
 			var/list/mob/living/carbon/cultists = new
 			for(var/datum/mind/H in cult.current_antagonists)
-				if (istype(H.current,/mob/living/carbon))
+				if (iscarbon(H.current))
 					cultists+=H.current
 			var/list/mob/living/carbon/users = new
 			for(var/mob/living/carbon/C in orange(1,src))
@@ -836,7 +836,7 @@ var/list/sacrificed = list()
 			var/mob/living/user = usr
 			var/list/mob/living/carbon/cultists = new
 			for(var/datum/mind/H in cult.current_antagonists)
-				if (istype(H.current,/mob/living/carbon))
+				if (iscarbon(H.current))
 					cultists+=H.current
 			var/list/mob/living/carbon/users = new
 			for(var/mob/living/carbon/C in orange(1,src))
@@ -962,7 +962,7 @@ var/list/sacrificed = list()
 /*
 			var/list/mob/living/carbon/cultists = new
 			for(var/datum/mind/H in ticker.mode.cult)
-				if (istype(H.current,/mob/living/carbon))
+				if (iscarbon(H.current))
 					cultists+=H.current
 */
 			var/list/cultists = new //also, wording for it is old wording for obscure rune, which is now hide-see-blood.

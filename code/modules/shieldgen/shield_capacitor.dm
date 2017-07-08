@@ -26,7 +26,7 @@
 				possible_gen.owned_capacitor = src
 				break
 	..()
-	
+
 /obj/machinery/shield_capacitor/emag_act(var/remaining_charges, var/mob/user)
 	if(prob(75))
 		src.locked = !src.locked
@@ -74,7 +74,7 @@
 
 /obj/machinery/shield_capacitor/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_machine()
 			user << browse(null, "window=shield_capacitor")
 			return

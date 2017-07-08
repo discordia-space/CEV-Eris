@@ -1,7 +1,7 @@
 var/datum/antagonist/deathsquad/mercenary/commandos
 
 /datum/antagonist/deathsquad/mercenary
-	id = MODE_COMMANDO
+	id = ROLE_COMMANDO
 	landmark_id = "Syndicate-Commando"
 	role_text = "Syndicate Commando"
 	role_text_plural = "Commandos"

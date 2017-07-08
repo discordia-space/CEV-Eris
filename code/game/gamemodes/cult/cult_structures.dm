@@ -40,7 +40,7 @@
 	if(!isbroken)
 		if(prob(1+ damage * 5))
 			user.visible_message(
-				"<span class='danger'>[user] smashed the pylon!</span>", 
+				"<span class='danger'>[user] smashed the pylon!</span>",
 				"<span class='warning'>You hit the pylon, and its crystal breaks apart!</span>",
 				"You hear a tinkle of crystal shards"
 				)
@@ -133,7 +133,7 @@
 		qdel(src)
 
 /obj/effect/gateway/active/Crossed(var/atom/A)
-	if(!istype(A, /mob/living))
+	if(!isliving(A))
 		return
 
 	var/mob/living/M = A
@@ -153,7 +153,7 @@
 		M.overlays.len = 0
 		M.invisibility = 101
 
-		if(istype(M, /mob/living/silicon/robot))
+		if(isrobot(M))
 			var/mob/living/silicon/robot/Robot = M
 			if(Robot.mmi)
 				qdel(Robot.mmi)

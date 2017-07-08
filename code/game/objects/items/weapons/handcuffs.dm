@@ -35,7 +35,7 @@
 
 		//check for an aggressive grab (or robutts)
 		var/can_place
-		if(istype(user, /mob/living/silicon/robot))
+		if(isrobot(user))
 			can_place = 1
 		else
 			for (var/obj/item/weapon/grab/G in C.grabbed_by)

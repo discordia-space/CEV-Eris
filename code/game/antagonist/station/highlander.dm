@@ -4,7 +4,7 @@ var/datum/antagonist/highlander/highlanders
 	role_text = "Highlander"
 	role_text_plural = "Highlanders"
 	welcome_text = "There can be only one."
-	id = MODE_HIGHLANDER
+	id = ROLE_HIGHLANDER
 	flags = ANTAG_SUSPICIOUS | ANTAG_IMPLANT_IMMUNE //| ANTAG_RANDSPAWN | ANTAG_VOTABLE // Someday...
 
 	hard_cap = 5

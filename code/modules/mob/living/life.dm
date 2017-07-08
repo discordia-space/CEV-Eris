@@ -188,7 +188,7 @@
 	if (!usr.client)
 		return
 	usr.client.screen.Cut()
-	if(istype(usr, /mob/living/carbon/human) && (usr.client.prefs.UI_style != null))
+	if(ishuman(usr) && (usr.client.prefs.UI_style != null))
 		if (!global.HUDdatums.Find(usr.client.prefs.UI_style))
 			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
 		else
