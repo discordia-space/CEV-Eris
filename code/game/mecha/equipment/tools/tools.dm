@@ -1263,6 +1263,8 @@
 	current = null
 	if (!original.stat)
 		original.icon_state = "ai"
+		if(original.eyeobj)
+			original.eyeobj.setLoc(chassis)
 	else
 		original.icon_state = "ai-crash"
 
