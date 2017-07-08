@@ -1,7 +1,7 @@
 #define METEOR_DELAY 6000
 
 /datum/game_mode/meteor
-	name = "Meteor"
+	name = MODE_METEOR
 	round_description = "The space station has been stuck in a major meteor shower."
 	extended_round_description = "The station is on an unavoidable collision course with an asteroid field. The station will be continuously slammed with meteors, venting hallways, rooms, and ultimately destroying a majority of the basic life functions of the entire structure. Coordinate with your fellow crew members to survive the inevitable destruction of the station and get back home in one piece!"
 	config_tag = "meteor"

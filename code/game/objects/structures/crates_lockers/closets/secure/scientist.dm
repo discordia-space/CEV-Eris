@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/scientist
-	name = "scientist's locker"
+	name = "moebius scientist's locker"
 	req_access = list(access_tox_storage)
 	icon_state = "secureres1"
 	icon_closed = "secureres"
@@ -36,7 +36,7 @@
 		..()
 		new /obj/item/clothing/suit/bio_suit/scientist(src)
 		new /obj/item/clothing/head/bio_hood/scientist(src)
-		new /obj/item/clothing/under/rank/research_director(src)
+		new /obj/item/clothing/under/rank/expedition_overseer(src)
 		new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 		new /obj/item/weapon/cartridge/rd(src)
 		new /obj/item/clothing/shoes/color/white(src)

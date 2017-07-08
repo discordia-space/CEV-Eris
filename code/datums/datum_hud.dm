@@ -20,8 +20,8 @@
 	//Others for slot_orient_objs
 	MinStyleFlag = TRUE
 	ConteinerData = list(
-		"Xspace" = 2,
-		"Yspace" = 5,
+		"Xspace" = 5,
+		"Yspace" = 2,
 		"ColCount" = 7,
 		"Xslot" = 5,
 		"Yslot" = 2
