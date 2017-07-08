@@ -83,7 +83,7 @@
 		var/list/robots = list()
 		var/list/robot_names = list()
 		for(var/mob/living/silicon/robot/R in world)
-			if(istype(R, /mob/living/silicon/robot/drone))	// No drones.
+			if(isdrone(R))	// No drones.
 				continue
 			if(R.connected_ai != user)						// No robots linked to other AIs
 				continue

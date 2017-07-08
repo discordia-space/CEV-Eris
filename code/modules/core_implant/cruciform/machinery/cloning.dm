@@ -241,7 +241,7 @@
 			return
 
 	if(cloning)
-		if(occupant && istype(occupant, /mob/living/carbon/human))
+		if(occupant && ishuman(occupant))
 			occupant.setCloneLoss(stage_cloneloss[cloning_stage])
 			occupant.setBrainLoss(stage_brainloss[cloning_stage])
 

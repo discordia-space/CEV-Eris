@@ -147,7 +147,8 @@ var/const/tk_maxrange = 15
 
 
 /obj/item/tk_grab/proc/focus_object(var/obj/target, var/mob/living/user)
-	if(!istype(target,/obj))	return//Cant throw non objects atm might let it do mobs later
+	if(!isobj(target))
+		return//Cant throw non objects atm might let it do mobs later
 	if(target.anchored || !isturf(target.loc))
 		qdel(src)
 		return

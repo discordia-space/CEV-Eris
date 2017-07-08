@@ -19,17 +19,19 @@
 	if(src.slurring)
 		src.traumatic_shock -= 20
 
-	// broken or ripped off organs will add quite a bit of pain
-	if(istype(src,/mob/living/carbon/human))
-		var/mob/living/carbon/human/M = src
-		for(var/obj/item/organ/external/organ in M.organs)
-			if(organ && (organ.is_broken() || organ.open))
-				src.traumatic_shock += 30
-
 	if(src.traumatic_shock < 0)
 		src.traumatic_shock = 0
 
 	return src.traumatic_shock
+
+// broken or ripped off organs will add quite a bit of pain
+/mob/living/carbon/human/updateshock()
+	..()
+	for(var/obj/item/organ/external/organ in organs)
+		if(organ && (organ.is_broken() || organ.open))
+			traumatic_shock += 30
+
+	return traumatic_shock
 
 
 /mob/living/carbon/proc/handle_shock()

@@ -442,7 +442,7 @@
 
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
-	else if(stat != DEAD || istype(src, /mob/new_player))
+	else if(stat != DEAD || isnewplayer(src))
 		usr << "\blue You must be observing to use this!"
 		return
 
@@ -532,7 +532,12 @@
 
 	if(href_list["flavor_more"])
 		if(src in view(usr))
-			usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, cp1251_to_utf8(replacetext(flavor_text, "\n", "<BR>"))), text("window=[];size=500x200", name))
+			var/dat = {"
+				<html><head><title>[name]</title></head>
+				<body><tt>[cp1251_to_utf8(replacetext(flavor_text, "\n", "<br>"))]</tt></body>
+				</html>
+			"}
+			usr << browse(dat, "window=[name];size=500x200")
 			onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
@@ -557,7 +562,7 @@
 	if(M != usr) return
 	if(usr == src) return
 	if(!Adjacent(usr)) return
-	if(istype(M,/mob/living/silicon/ai)) return
+	if(isAI(M)) return
 	show_inv(usr)
 
 
@@ -646,7 +651,7 @@
 /mob/proc/is_mechanical()
 	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
 		return 1
-	return istype(src, /mob/living/silicon)
+	return issilicon(src)
 
 /mob/proc/is_ready()
 	return client && !!mind
@@ -892,11 +897,12 @@
 	return ""
 
 /mob/proc/flash_weak_pain()
-	if(istype(src,/mob/living))
-		var/mob/living/L = src
-//		flick("weak_pain",L.flash["pain"])
-		if (L.HUDtech.Find("pain"))
-			flick("weak_pain",L.HUDtech["pain"])
+	return
+
+/mob/living/flash_weak_pain()
+//	flick("weak_pain", flash["pain"])
+	if(HUDtech.Find("pain"))
+		flick("weak_pain", HUDtech["pain"])
 
 
 /mob/proc/get_visible_implants(var/class = 0)

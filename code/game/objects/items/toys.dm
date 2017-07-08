@@ -186,8 +186,10 @@
 					step_towards(D,trg)
 
 					for(var/mob/living/M in D.loc)
-						if(!istype(M,/mob/living)) continue
-						if(M == user) continue
+						if(!isliving(M))
+							continue
+						if(M == user)
+							continue
 						for(var/mob/O in viewers(world.view, D))
 							O.show_message(text("<span class='warning'>\The [] was hit by the foam dart!</span>", M), 1)
 						new /obj/item/toy/ammo/crossbow(M.loc)
@@ -280,7 +282,7 @@
 			src.item_state = "sword0"
 			src.w_class = 2
 
-		if(istype(user,/mob/living/carbon/human))
+		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.update_inv_l_hand()
 			H.update_inv_r_hand()

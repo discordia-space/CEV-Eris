@@ -9,7 +9,7 @@
 
 /datum/artifact_effect/robohurt/DoEffectTouch(var/mob/user)
 	if(user)
-		if (istype(user, /mob/living/silicon/robot))
+		if (isrobot(user))
 			var/mob/living/silicon/robot/R = user
 			R << "\red Your systems report severe damage has been inflicted!"
 			R.adjustBruteLoss(rand(10,50))

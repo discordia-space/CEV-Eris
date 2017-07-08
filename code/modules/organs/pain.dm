@@ -1,8 +1,9 @@
 mob/proc/flash_pain()
-	if(istype(src,/mob/living))
-		var/mob/living/L = src
-		if (L.HUDtech.Find("pain"))
-			flick("pain",L.HUDtech["pain"])
+	return
+
+/mob/living/flash_pain()
+	if(HUDtech.Find("pain"))
+		flick("pain", HUDtech["pain"])
 
 mob/var/list/pain_stored = list()
 mob/var/last_pain_message = ""
@@ -19,7 +20,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 		return
 	if(world.time < next_pain_time && !force)
 		return
-	if(amount > 10 && istype(src,/mob/living/carbon/human))
+	if(amount > 10 && ishuman(src))
 		if(src:paralysis)
 			src:paralysis = max(0, src:paralysis-round(amount/10))
 	if(amount > 50 && prob(amount / 5))

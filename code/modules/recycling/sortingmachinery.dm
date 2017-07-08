@@ -401,12 +401,8 @@
 		if(WEST)
 			if(AM.loc.x != src.loc.x-1) return
 
-	if(istype(AM, /obj))
-		var/obj/O = AM
-		O.forceMove(src)
-	else if(istype(AM, /mob))
-		var/mob/M = AM
-		M.forceMove(src)
+	if(isobj(AM) || ismob(AM))
+		AM.forceMove(src)
 	src.flush()
 
 /obj/machinery/disposal/deliveryChute/flush()

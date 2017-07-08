@@ -135,7 +135,7 @@
 			remove_self(amount)
 
 /datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	if(istype(M, /mob/living/carbon/slime))
+	if(isslime(M))
 		var/mob/living/carbon/slime/S = M
 		S.adjustToxLoss(8 * removed) // Babies have 150 health, adults have 200; So, 10 units and 13.5
 		if(!S.client)
