@@ -216,7 +216,7 @@
 	src.closer.screen_loc = "[Xcord+cols+1]:16,[Ycord]:16"
 	return
 
-/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents,var/Xcord = 4,var/Ycord = 2)
+/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents,var/Xcord = 5,var/Ycord = 2)
 
 	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
 	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
@@ -276,7 +276,7 @@
 
 	var/adjusted_contents = contents.len
 
-	var/Xcor = 4
+	var/Xcor = 5
 	var/Ycor = 2
 	var/ColCountDatum = 7
 	var/Xslot = 6
