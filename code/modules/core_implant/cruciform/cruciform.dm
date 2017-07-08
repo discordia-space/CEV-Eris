@@ -3,15 +3,13 @@ var/list/christians = list()
 /obj/item/weapon/implant/external/core_implant/cruciform
 	name = "cruciform"
 	icon_state = "cruciform_green"
-	power = 50
-	max_power = 50
 	position_flag = POS_FRONT_TOP
 	allowed_organs = list(BP_CHEST)
-	rituals = list()
-	var/datum/coreimplant_record/data = null
+	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
 
 /obj/item/weapon/implant/external/core_implant/cruciform/New()
-	rituals = cruciform_rituals
+	..()
+	add_module(new CRUCIFORM_COMMON)
 
 /obj/item/weapon/implant/external/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
@@ -37,12 +35,11 @@ var/list/christians = list()
 		return
 	..()
 	update_data()
-	christians.Add(wearer)
+	christians |= wearer
 
 /obj/item/weapon/implant/external/core_implant/cruciform/deactivate()
 	if(!active || !wearer)
 		return
-	hard_eject()
 	christians.Remove(wearer)
 	..()
 
@@ -50,11 +47,14 @@ var/list/christians = list()
 	..()
 	if(world.time == round(world.time))
 		remove_cyber()
+	if(wearer && wearer.stat == DEAD)
+		deactivate()
+
 
 /obj/item/weapon/implant/external/core_implant/cruciform/proc/transfer_soul()
-	if(!wearer || !activated || !data)
+	if(!wearer || !activated)
 		return FALSE
-
+	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
 		for(var/mob/M in player_list)
 			if(M.ckey == data.ckey)
@@ -102,31 +102,8 @@ var/list/christians = list()
 	if(!wearer)
 		return
 
-	data = new /datum/coreimplant_record()
-	data.dna = wearer.dna
-	data.ckey = wearer.ckey
-	data.mind = wearer.mind
-	data.languages = wearer.languages
-	data.flavor = wearer.flavor_text
+	add_module(new CRUCIFORM_CLONING)
 
-	if(ishuman(wearer))
-		var/mob/living/carbon/human/H = wearer
-		data.age = H.age
-
-/obj/item/weapon/implant/external/core_implant/cruciform/priest
-	icon_state = "cruciform_red"
-	power = 100
-	max_power = 100
-	success_modifier = 3
 
 //////////////////////////
 //////////////////////////
-
-/datum/coreimplant_record
-	var/datum/dna/dna = null
-
-	var/age = 30
-	var/ckey = ""
-	var/mind = null
-	var/languages = list()
-	var/flavor = ""
