@@ -216,7 +216,7 @@
 	src.closer.screen_loc = "[Xcord+cols+1]:16,[Ycord]:16"
 	return
 
-/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents,var/Xcord = 4,var/Ycord = 2)
+/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents,var/Xcord = 5,var/Ycord = 2)
 
 	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
 	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
@@ -229,12 +229,9 @@
 	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
 	src.storage_continue.transform = M
 
-	//src.storage_start.screen_loc = "[Xcord]:16,[Ycord]:16"
-	src.storage_start.screen_loc = "5:16,2:16"
-	//src.storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]:16"
-	src.storage_continue.screen_loc = "5:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],2:16"
-	//src.storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]:16"
-	src.storage_end.screen_loc = "5:[19+storage_width-storage_cap_width],2:16"
+	src.storage_start.screen_loc = "[Xcord]:16,[Ycord]:16"
+	src.storage_continue.screen_loc = "[Xcord]:[storage_cap_width+(storage_width-storage_cap_width*2)/2+2],[Ycord]:16"
+	src.storage_end.screen_loc = "[Xcord]:[19+storage_width-storage_cap_width],[Ycord]:16"
 
 	var/startpoint = 0
 	var/endpoint = 1
@@ -257,13 +254,11 @@
 		storage_start.overlays += src.stored_continue
 		storage_start.overlays += src.stored_end
 
-		//O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
-		O.screen_loc = "5:[round((startpoint+endpoint)/2)+2],2:16"
+		O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
 		O.maptext = ""
 		O.layer = 20
 
-	//src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
-	src.closer.screen_loc = "5:[storage_width+19],2:16"
+	src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 	return
 
 /datum/numbered_display
@@ -281,7 +276,7 @@
 
 	var/adjusted_contents = contents.len
 
-	var/Xcor = 4
+	var/Xcor = 5
 	var/Ycor = 2
 	var/ColCountDatum = 7
 	var/Xslot = 6
