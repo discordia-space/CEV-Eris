@@ -2,7 +2,7 @@
 	action_button_name = "Toggle Flashlight"
 	var/tick_cost = 5
 	var/obj/item/weapon/cell/cell = null
-	var/suitable_cell = /obj/item/weapon/cell
+	var/suitable_cell = /obj/item/weapon/cell/medium/device
 
 /obj/item/device/lighting/toggleable/flashlight/New()
 	..()
