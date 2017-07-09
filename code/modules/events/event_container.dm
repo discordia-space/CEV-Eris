@@ -8,7 +8,7 @@
 #define ASSIGNMENT_SCIENTIST "Scientist"
 #define ASSIGNMENT_SECURITY "Security"
 
-var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major")
+var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major", EVENT_LEVEL_ECONOMY = "Economy")
 
 /datum/event_container
 	var/severity = -1
@@ -177,7 +177,11 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Space Vines",			/datum/event/spacevine, 		0,	list(ASSIGNMENT_ENGINEER = 15), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Viral Infection",		/datum/event/viral_infection,	0,	list(ASSIGNMENT_MEDICAL =  30), 1),
 	)
-
+/datum/event_container/economy
+	severity = EVENT_LEVEL_ECONOMY
+	available_events = list(
+		new /datum/event_meta(EVENT_LEVEL_ECONOMY, "Payday",				/datum/event/payday,			1000),
+	)
 
 #undef ASSIGNMENT_ANY
 #undef ASSIGNMENT_AI
