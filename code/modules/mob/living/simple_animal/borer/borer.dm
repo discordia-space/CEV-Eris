@@ -104,7 +104,7 @@
 
 	if(!host || !controlling) return
 
-	if(istype(host,/mob/living/carbon/human))
+	if(ishuman(host))
 		var/mob/living/carbon/human/H = host
 		var/obj/item/organ/external/head = H.get_organ("head")
 		head.implants -= src

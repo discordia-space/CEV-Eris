@@ -21,7 +21,7 @@
 			accessories += A
 			A.on_attached(src, user)
 			src.verbs |= /obj/item/clothing/proc/removetie_verb
-			if(istype(loc, /mob/living/carbon/human))
+			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
 				H.update_inv_w_uniform()
 			return
@@ -82,9 +82,12 @@
 	set name = "Remove Accessory"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
-	if(!accessories.len) return
+	if(!isliving(usr))
+		return
+	if(usr.stat)
+		return
+	if(!accessories.len)
+		return
 	var/obj/item/clothing/accessory/A
 	if(accessories.len > 1)
 		A = input("Select an accessory to remove from [src]") as null|anything in accessories

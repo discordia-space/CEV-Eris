@@ -268,7 +268,7 @@
 		var/timeleft = emergency_shuttle.estimate_prepare_time()
 		dat += "<B>Emergency shuttle</B>\n<BR>\nETA: [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
 
-	if (istype(user, /mob/living/silicon))
+	if (issilicon(user))
 		var/dat2 = src.interact_ai(user) // give the AI a different interact proc to limit its access
 		if(dat2)
 			dat +=  dat2
@@ -433,7 +433,7 @@
 		user << "The emergency shuttle is already on its way."
 		return
 
-	if(ticker.mode.name == "blob")
+	if(ticker.mode.name == MODE_BLOB)
 		user << "Under directive 7-10, [station_name()] is quarantined until further notice."
 		return
 
@@ -474,7 +474,7 @@
 			//New version pretends to call the shuttle but cause the shuttle to return after a random duration.
 			emergency_shuttle.auto_recall = 1
 
-		if(ticker.mode.name == "blob" || ticker.mode.name == "epidemic")
+		if(ticker.mode.name == MODE_BLOB || ticker.mode.name == MODE_EPIDEMIC)
 			user << "Under directive 7-10, [station_name()] is quarantined until further notice."
 			return
 
@@ -491,7 +491,7 @@
 /proc/cancel_call_proc(var/mob/user)
 	if (!( ticker ) || !emergency_shuttle.can_recall())
 		return
-	if((ticker.mode.name == "blob")||(ticker.mode.name == "Meteor"))
+	if((ticker.mode.name == MODE_BLOB)||(ticker.mode.name == MODE_METEOR))
 		return
 
 	if(!emergency_shuttle.going_to_centcom()) //check that shuttle isn't already heading to centcomm

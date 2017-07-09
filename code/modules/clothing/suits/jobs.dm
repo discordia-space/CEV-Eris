@@ -13,9 +13,9 @@
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/lighting/toggleable,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder)
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
-//Cargo Technician
+//Guild Technician
 /obj/item/clothing/suit/storage/cargo_jacket
-	name = "cargo technician jacket"
+	name = "guild technician jacket"
 	desc = "Stylish jacket lined with pockets. It seems have a little protection from physical harm."
 	icon_state = "cargo_jacket"
 	item_state = "cargo_jacket"
@@ -28,7 +28,7 @@
 
 //Quartermaster
 /obj/item/clothing/suit/storage/qm_coat
-	name = "quartermaster coat"
+	name = "guild merchant coat"
 	desc = "An ideal choice for a smuggler. This coat seems have good impact resistant, and made from resistant and expensive materials.."
 	icon_state = "qm_coat"
 	item_state = "qm_coat"

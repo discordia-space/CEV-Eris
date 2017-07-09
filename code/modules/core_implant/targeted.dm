@@ -1,4 +1,6 @@
 #define TARGET_PATTERN "\\\[Target .*?\\]"
+#define TARGET_TEXT "\[Target words]"
+#define TARGET_CANCEL "\[CANCEL]"
 
 /datum/ritual/targeted
 	name = "targeted ritual"
@@ -18,22 +20,23 @@
 
 	var/final_phrase = phrase
 
-	var/list/usrview = view()
-
 	for(var/i = 1; i<=length(G); i+=1)
 		var/list/CL = list()
-		for(var/obj/item/weapon/implant/external/core_implant/C in world)
-			C.update_address()
-			if(C.loc && C.locs && C.locs[1] in usrview)
-				if(istype(C, implant_type) && C.address && is_target_valid(i,C))
+		var/address = null
+		if(G[i] != TARGET_TEXT)
+			for(var/obj/item/weapon/implant/external/core_implant/C in world)
+				C.update_address()
+				if(istype(C, implant_type) && C.address && get_turf(C) in view())
 					CL.Add(C.address)
 
-		var/address = null
-		if(CL.len)
-			address = input("Select [copytext(G[i],2,-1)]","Ritual target",CL[1]) in CL
+			CL.Add(TARGET_CANCEL)
+			if(CL.len)
+				address = input("Select [copytext(G[i],2,-1)]","Ritual target",null) in CL
 
-		if(!address)
-			return
+			if(!address || address == TARGET_CANCEL)
+				return
+		else
+			address = input("Type words","Words","")
 
 		final_phrase = replacetextEx(final_phrase,G[i],address)
 	return final_phrase
@@ -68,14 +71,18 @@
 		G |= R.group
 
 	var/list/targets = list()
-
+	var/i = 1
 	for(var/AD in G)
 		for(var/obj/item/weapon/implant/external/core_implant/C in world)
-			if(istype(C, implant_type) && C.loc && C.address == AD)
-				targets.Add(C)
+			if(istype(C, implant_type) && C.loc)
+				var/target = process_target(i,C,AD)
+				if(target)
+					targets.Add(target)
+		i += 1
 
 	return targets
 
-//returns true if object can be added to select list
-/datum/ritual/targeted/proc/is_target_valid(var/index, var/obj/item/weapon/implant/external/core_implant/target)
+//returns object that will be placed in targets list, of null
+/datum/ritual/targeted/proc/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
 	return TRUE
+

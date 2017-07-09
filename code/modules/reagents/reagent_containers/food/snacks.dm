@@ -47,12 +47,12 @@
 		qdel(src)
 		return 0
 
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		//TODO: replace with standard_feed_mob() call.
 		var/mob/living/carbon/C = M
 		var/fullness = C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)
 		if(C == user)								//If you're eating it yourself
-			if(istype(C,/mob/living/carbon/human))
+			if(ishuman(C))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
 					user << "Where do you intend to put \the [src]? You don't have a mouth!"

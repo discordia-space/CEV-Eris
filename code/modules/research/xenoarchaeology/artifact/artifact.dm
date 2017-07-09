@@ -1,5 +1,5 @@
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 // Large finds - (Potentially) active alien machinery from the dawn of time
 
 /datum/artifact_find
@@ -13,18 +13,19 @@
 	artifact_id = "[pick("kappa","sigma","antaeres","beta","omicron","iota","epsilon","omega","gamma","delta","tau","alpha")]-[rand(100,999)]"
 
 	artifact_find_type = pick(\
-	5;/obj/machinery/power/supermatter,\
-	5;/obj/structure/constructshell,\
-	5;/obj/machinery/syndicate_beacon,\
-	25;/obj/machinery/power/supermatter/shard,\
-	50;/obj/structure/cult/pylon,\
-	100;/obj/machinery/auto_cloner,\
-	100;/obj/machinery/giga_drill,\
-	100;/obj/machinery/replicator,\
-	150;/obj/structure/crystal,\
-	1000;/obj/machinery/artifact)
+		5;/obj/machinery/power/supermatter,
+		5;/obj/structure/constructshell,
+		5;/obj/machinery/syndicate_beacon,
+		25;/obj/machinery/power/supermatter/shard,
+		50;/obj/structure/cult/pylon,
+		100;/obj/machinery/auto_cloner,
+		100;/obj/machinery/giga_drill,
+		100;/obj/machinery/replicator,
+		150;/obj/structure/crystal,
+		1000;/obj/machinery/artifact\
+	)
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Boulders - sometimes turn up after excavating turf - excavate further to try and find large xenoarch finds
 
 /obj/structure/boulder
@@ -106,14 +107,14 @@
 
 /obj/structure/boulder/Bumped(AM)
 	. = ..()
-	if(istype(AM,/mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if((istype(H.l_hand,/obj/item/weapon/pickaxe)) && (!H.hand))
 			attackby(H.l_hand,H)
 		else if((istype(H.r_hand,/obj/item/weapon/pickaxe)) && H.hand)
 			attackby(H.r_hand,H)
 
-	else if(istype(AM,/mob/living/silicon/robot))
+	else if(isrobot(AM))
 		var/mob/living/silicon/robot/R = AM
 		if(istype(R.module_active,/obj/item/weapon/pickaxe))
 			attackby(R.module_active,R)

@@ -488,7 +488,7 @@
 	if(usr.stat || usr.restrained())
 		return
 
-	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
+	if(href_list["remove_coin"] && !issilicon(usr))
 		if(!coin)
 			usr << "There is no coin in this machine."
 			return
@@ -516,7 +516,7 @@
 
 			if(R.price <= 0)
 				src.vend(R, usr)
-			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
+			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				usr << "<span class='danger'>Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled.</span>"
 				return
 			else
@@ -983,7 +983,7 @@
 	icon_state = "engi"
 	icon_deny = "engi-deny"
 	req_access = list(access_engine_equip)
-	products = list(/obj/item/clothing/under/rank/chief_engineer = 4,/obj/item/clothing/under/rank/engineer = 4,/obj/item/clothing/shoes/color/orange = 4,/obj/item/clothing/head/hardhat = 4,
+	products = list(/obj/item/clothing/under/rank/exultant = 4,/obj/item/clothing/under/rank/engineer = 4,/obj/item/clothing/shoes/color/orange = 4,/obj/item/clothing/head/hardhat = 4,
 					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/screwdriver = 12,
 					/obj/item/weapon/crowbar = 12,/obj/item/weapon/wirecutters = 12,/obj/item/device/multitool = 12,/obj/item/weapon/wrench = 12,/obj/item/device/t_scanner = 12,
 					/obj/item/stack/cable_coil/heavyduty = 8, /obj/item/weapon/cell/big = 8, /obj/item/weapon/weldingtool = 8,/obj/item/clothing/head/welding = 8,
@@ -1028,6 +1028,6 @@
 	product_slogans = "Make the RIGHT choice!;Every answer can be found in Cyber Bible. Found out yourself!;Help humanity ascend, join us today!;Remember kids, Cyber-Jesus is wathing you. Always.;NeoTheology know what do you truly need. Join us!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
-	products = list(/obj/item/weapon/book/bible = 10, /obj/item/weapon/storage/fancy/candle_box = 10)
+	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10)
 	contraband = list(/obj/item/weapon/implant/external/core_implant/cruciform = 3)
-	prices = list(/obj/item/weapon/book/bible = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/implant/external/core_implant/cruciform = 1000)
+	prices = list(/obj/item/weapon/book/ritual/cruciform = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/implant/external/core_implant/cruciform = 1000)

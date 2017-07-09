@@ -7,7 +7,7 @@
 	if(!((locate(/obj/machinery/optable, M.loc) && M.resting) || (locate(/obj/structure/bed/roller, M.loc) && (M.buckled || M.lying || M.weakened || M.stunned || M.paralysis || M.sleeping || M.stat)) && prob(75) || (locate(/obj/structure/table/, M.loc) && (M.lying || M.weakened || M.stunned || M.paralysis || M.sleeping || M.stat) && prob(66))))
 		return ..()
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!ishuman(M))
 		return ..()
 
 	if((user.targeted_organ == "l_arm") && (istype(src, /obj/item/robot_parts/l_arm)))

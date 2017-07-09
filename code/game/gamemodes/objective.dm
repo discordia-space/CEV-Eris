@@ -144,7 +144,7 @@ var/global/list/all_objectives = list()
 	return target
 
 /datum/objective/anti_revolution/demote/check_completion()
-	if(target && target.current && istype(target, /mob/living/carbon/human))
+	if(target && target.current && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/obj/item/weapon/card/id/I = H.wear_id
 		if(I)
@@ -249,7 +249,7 @@ var/global/list/all_objectives = list()
 
 
 /datum/objective/block/check_completion()
-	if(!istype(owner.current, /mob/living/silicon))
+	if(!issilicon(owner.current))
 		return FALSE
 	if(!emergency_shuttle.returned())
 		return FALSE
@@ -308,7 +308,7 @@ var/global/list/all_objectives = list()
 	if(!location)
 		return FALSE
 	if(istype(location, /area/shuttle/escape_pod1/centcom) || istype(location, /area/shuttle/escape_pod2/centcom))
-		if(istype(owner.current, /mob/living/carbon/human))
+		if(ishuman(owner.current))
 			var/mob/living/carbon/human/H = owner.current
 			if(!H.handcuffed)
 				return TRUE
@@ -386,7 +386,7 @@ var/global/list/all_objectives = list()
 	if(already_completed)
 		return TRUE
 
-	if(target && target.current && istype(target.current, /mob/living/carbon/human))
+	if(target && target.current && ishuman(target.current))
 		if(target.current.stat == DEAD)
 			return FALSE
 
@@ -433,11 +433,11 @@ var/global/list/all_objectives = list()
 		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
-		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
-		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
-		"a chief medical officer's jumpsuit" = /obj/item/clothing/under/rank/chief_medical_officer,
+		"a Moebius expedition overseer's jumpsuit" = /obj/item/clothing/under/rank/expedition_overseer,
+		"a exultant's jumpsuit" = /obj/item/clothing/under/rank/exultant,
+		"a Moebius biolab officer's jumpsuit" = /obj/item/clothing/under/rank/moebius_biolab_officer,
 		"a Ironhammer commander's jumpsuit" = /obj/item/clothing/under/rank/ih_commander,
-		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
+		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/first_officer,
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
@@ -506,7 +506,8 @@ var/global/list/all_objectives = list()
 
 			for(var/obj/item/device/aicard/C in all_items) //Check for ai card
 				for(var/mob/living/silicon/ai/M in C)
-					if(istype(M, /mob/living/silicon/ai) && M.stat != 2) //See if any AI's are alive inside that card.
+					//See if any AI's are alive inside that card.
+					if(isAI(M) && M.stat != DEAD)
 						return TRUE
 
 			for(var/mob/living/silicon/ai/ai in world)
@@ -539,7 +540,7 @@ var/global/list/all_objectives = list()
 
 	var/current_amount
 	var/obj/item/weapon/rig/S
-	if(istype(owner.current, /mob/living/carbon/human))
+	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
 		S = H.back
 
@@ -620,7 +621,7 @@ var/global/list/all_objectives = list()
 /datum/objective/heist/kidnap
 
 /datum/objective/heist/kidnap/choose_target()
-	var/list/roles = list("Chief Engineer", "Research Director", "Roboticist", "Chemist", "Station Engineer")
+	var/list/roles = list("Technomancer Exultant", "Moebius Expedition Overseer", "Moebius Roboticist", "Moebius Chemist", "Technomancer")
 	var/list/possible_targets = list()
 	var/list/priority_targets = list()
 

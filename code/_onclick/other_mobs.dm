@@ -117,7 +117,7 @@
 			if (I_DISARM) // We stun the target, with the intention to feed
 				var/stunprob = 1
 				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
-				if (powerlevel > 0 && !istype(A, /mob/living/carbon/slime))
+				if (powerlevel > 0 && !isslime(A))
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
 						stunprob *= H.species.siemens_coefficient
@@ -172,7 +172,7 @@
 	if(!..())
 		return
 
-	if(melee_damage_upper == 0 && istype(A,/mob/living))
+	if(melee_damage_upper == 0 && isliving(A))
 		custom_emote(1,"[friendly] [A]!")
 		return
 

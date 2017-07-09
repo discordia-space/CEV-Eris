@@ -11,7 +11,7 @@ var/const/VENDING_WIRE_IDSCAN = 8
 
 /datum/wires/vending/CanUse(var/mob/living/L)
 	var/obj/machinery/vending/V = holder
-	if(!istype(L, /mob/living/silicon))
+	if(!issilicon(L))
 		if(V.seconds_electrified)
 			if(V.shock(L, 100))
 				return 0
@@ -45,7 +45,7 @@ var/const/VENDING_WIRE_IDSCAN = 8
 		if(VENDING_WIRE_THROW)
 			V.shoot_inventory = !mended
 		if(VENDING_WIRE_CONTRABAND)
-			V.categories &= ~CAT_HIDDEN  
+			V.categories &= ~CAT_HIDDEN
 		if(VENDING_WIRE_ELECTRIFY)
 			if(mended)
 				V.seconds_electrified = 0

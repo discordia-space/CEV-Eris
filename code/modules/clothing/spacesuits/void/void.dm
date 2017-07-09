@@ -100,7 +100,8 @@
 	set category = "Object"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	if(!isliving(loc))
+		return
 
 	if(!helmet)
 		usr << "There is no helmet installed."
@@ -133,7 +134,8 @@
 	set category = "Object"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	if(!isliving(src.loc))
+		return
 
 	if(!tank)
 		usr << "There is no tank inserted."
@@ -141,9 +143,12 @@
 
 	var/mob/living/carbon/human/H = usr
 
-	if(!istype(H)) return
-	if(H.stat) return
-	if(H.wear_suit != src) return
+	if(!istype(H))
+		return
+	if(H.stat)
+		return
+	if(H.wear_suit != src)
+		return
 
 	H << "<span class='info'>You press the emergency release, ejecting \the [tank] from your suit.</span>"
 	tank.canremove = 1
@@ -152,12 +157,13 @@
 
 /obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(!istype(user,/mob/living)) return
+	if(!isliving(user))
+		return
 
 	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
 		return ..()
 
-	if(istype(src.loc,/mob/living))
+	if(isliving(src.loc))
 		user << "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>"
 		return
 

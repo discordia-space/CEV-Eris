@@ -5,7 +5,7 @@
 var/list/nuke_disks = list()
 
 /datum/game_mode/nuclear
-	name = "Mercenary"
+	name = MODE_NUKE
 	round_description = "A mercenary strike force is approaching the station!"
 	extended_round_description = "The Company's majority control of plasma in Nyx has marked the \
 		station to be a highly valuable target for many competing organizations and individuals. Being a \
@@ -17,7 +17,7 @@ var/list/nuke_disks = list()
 	end_on_antag_death = 1
 	var/nuke_off_station = 0 //Used for tracking if the syndies actually haul the nuke to the station
 	var/syndies_didnt_escape = 0 //Used for tracking if the syndies got the shuttle off of the z-level
-	antag_tags = list(MODE_MERCENARY)
+	antag_tags = list(ROLE_MERCENARY)
 
 //delete all nuke disks not on a station zlevel
 /datum/game_mode/nuclear/proc/check_nuke_disks()

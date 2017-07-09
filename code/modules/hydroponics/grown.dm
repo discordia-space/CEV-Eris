@@ -156,7 +156,7 @@
 			if(M.buckled)
 				return
 
-			if(istype(M,/mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(H.shoes && H.shoes.item_flags & NOSLIP)
 					return
@@ -184,7 +184,7 @@
 				//TODO: generalize this.
 				user << "<span class='notice'>You add some cable to the [src.name] and slide it inside the battery casing.</span>"
 				var/obj/item/weapon/cell/big/potato/pocell = new /obj/item/weapon/cell/big/potato(get_turf(user))
-				if(src.loc == user && !(user.l_hand && user.r_hand) && istype(user,/mob/living/carbon/human))
+				if(src.loc == user && !(user.l_hand && user.r_hand) && ishuman(user))
 					user.put_in_hands(pocell)
 				pocell.maxcharge = src.potency * 10
 				pocell.charge = pocell.maxcharge

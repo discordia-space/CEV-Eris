@@ -1,5 +1,5 @@
 /datum/game_mode/changeling
-	name = "changeling"
+	name = MODE_CHANGELING
 	round_description = "There are alien changelings on the station. Do not let the changelings succeed!"
 	extended_round_description = "Life always finds a way. However, life can sometimes take a more disturbing route. \
 		Humanity's extensive knowledge of xeno-biological specimens has made them confident and arrogant. Yet \
@@ -15,4 +15,4 @@
 	required_enemies = 1
 	end_on_antag_death = 1
 	antag_scaling_coeff = 10
-	antag_tags = list(MODE_CHANGELING)
+	antag_tags = list(ROLE_CHANGELING)
