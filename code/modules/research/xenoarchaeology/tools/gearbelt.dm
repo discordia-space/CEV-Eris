@@ -11,7 +11,7 @@
 		/obj/item/device/radio/beacon,
 		/obj/item/device/gps,
 		/obj/item/device/measuring_tape,
-		/obj/item/device/lighting/toggleable,
+		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/weapon/pickaxe,
 		/obj/item/device/depth_scanner,
 		/obj/item/device/camera,

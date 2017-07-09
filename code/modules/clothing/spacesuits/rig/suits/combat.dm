@@ -12,7 +12,10 @@
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/combat
-	allowed = list(/obj/item/weapon/gun,/obj/item/device/lighting/toggleable,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
+	allowed = list(
+		/obj/item/weapon/gun,/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton
+	)
 
 
 /obj/item/weapon/rig/combat/equipped
@@ -45,7 +48,10 @@
 	offline_vision_restriction = 0
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ihs_combat
-	allowed = list(/obj/item/weapon/gun,/obj/item/device/lighting/toggleable,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
+	allowed = list(
+		/obj/item/weapon/gun,/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton
+	)
 
 
 /obj/item/weapon/rig/ihs_combat/equipped

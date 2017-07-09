@@ -34,7 +34,7 @@
 
 /datum/autolathe/recipe/flashlight
 	name = "flashlight"
-	path = /obj/item/device/lighting/toggleable
+	path = /obj/item/device/lighting/toggleable/flashlight
 	category = "General"
 
 /datum/autolathe/recipe/floor_light
