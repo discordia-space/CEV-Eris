@@ -34,7 +34,9 @@
 		var/mob/living/carbon/human/H = implant.wearer
 		H.update_implants()
 
-/datum/core_module/cruciform/inquisitor/implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+/datum/core_module/cruciform/inquisitor
+	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+	var/telecrystals = 0
 
 /datum/core_module/cruciform/inquisitor/preinstall()
 	implant.remove_modules(CRUCIFORM_COMMON)

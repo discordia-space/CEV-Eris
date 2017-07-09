@@ -107,3 +107,12 @@ var/list/christians = list()
 
 //////////////////////////
 //////////////////////////
+
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_common()
+	add_module(new CRUCIFORM_COMMON)
+
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_priest()
+	add_module(new CRUCIFORM_PRIEST)
+
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_inquisitor()
+	add_module(new CRUCIFORM_INQUISITOR)
