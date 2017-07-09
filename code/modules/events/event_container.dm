@@ -105,6 +105,8 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 				playercount_modifier = 0.9
 			if(36 to 100000)
 				playercount_modifier = 0.8
+		if(config.event_delay_lower[severity] == config.event_delay_upper[severity])
+			playercount_modifier = 1
 		playercount_modifier = playercount_modifier * delay_modifier
 
 		var/event_delay = rand(config.event_delay_lower[severity], config.event_delay_upper[severity]) * playercount_modifier
