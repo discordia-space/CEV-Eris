@@ -15,7 +15,7 @@
 	var/list/datum/event_container/event_containers = list(
 			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
 			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,
-			EVENT_LEVEL_MAJOR 		= new/datum/event_container/major
+			EVENT_LEVEL_MAJOR 		= new/datum/event_container/major,
 			EVENT_LEVEL_ECONOMY	= new/datum/event_container/economy
 		)
 
