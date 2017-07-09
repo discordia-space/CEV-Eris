@@ -70,11 +70,11 @@
 	prefs.save_preferences()
 	if(prefs.toggles & SOUND_LOBBY)
 		src << "You will now hear music in the game lobby."
-		if(istype(mob, /mob/new_player))
+		if(isnewplayer(mob))
 			playtitlemusic()
 	else
 		src << "You will no longer hear music in the game lobby."
-		if(istype(mob, /mob/new_player))
+		if(isnewplayer(mob))
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jamsz
 
 /client/verb/togglemidis()

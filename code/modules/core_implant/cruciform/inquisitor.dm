@@ -26,6 +26,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	var/obj/item/weapon/implant/external/core_implant/CI = targets[1]
 
 	if(!CI.active || !CI.wearer || CI.get_module(CRUCIFORM_INQUISITOR))
+
 		fail("Cruciform not found.", user, C)
 		return FALSE
 
@@ -61,6 +62,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	var/obj/item/weapon/implant/external/core_implant/CI = get_grabbed(user)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active || CI.get_module(CRUCIFORM_INQUISITOR))
+
 		fail("Cruciform not found",user,C)
 		return FALSE
 
@@ -129,6 +131,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	var/obj/item/weapon/implant/external/core_implant/CI = targets[1]
 
 	if(!CI.active || !CI.wearer || CI.get_module(CRUCIFORM_INQUISITOR))
+  
 		fail("Cruciform not found.", user, C)
 		return FALSE
 
@@ -200,6 +203,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 		fail("Cruciform not found",user,C)
 		return FALSE
+
 
 	if(CI.get_module(CRUCIFORM_PRIEST) || CI.get_module(CRUCIFORM_INQUISITOR))
 		fail("The target is already a priest.",user,C)
@@ -274,3 +278,4 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 /datum/ritual/targeted/inquisitor/spawn_item/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
 	return text
+

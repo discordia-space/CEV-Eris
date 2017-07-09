@@ -270,7 +270,7 @@
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/device/flash))
-		if(istype(user,/mob/living/silicon/robot))
+		if(isrobot(user))
 			var/current_module = user.get_active_hand()
 			if(current_module == W)
 				user << "<span class='warning'>How do you propose to do that?</span>"

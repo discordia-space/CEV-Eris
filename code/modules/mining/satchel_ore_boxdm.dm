@@ -41,7 +41,7 @@
 	user << desc
 
 	// Borgs can now check contents too.
-	if((!istype(user, /mob/living/carbon/human)) && (!istype(user, /mob/living/silicon/robot)))
+	if((!ishuman(user)) && (!isrobot(user)))
 		return
 
 	if(!Adjacent(user)) //Can only check the contents of ore boxes if you can physically reach them.
@@ -68,7 +68,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human)) //Only living, intelligent creatures with hands can empty ore boxes.
+	if(!ishuman(usr)) //Only living, intelligent creatures with hands can empty ore boxes.
 		usr << "\red You are physically incapable of emptying the ore box."
 		return
 

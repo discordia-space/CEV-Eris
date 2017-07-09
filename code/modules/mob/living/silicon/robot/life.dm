@@ -202,7 +202,7 @@
 
 /*	if (src.healths)
 		if (src.stat != 2)
-			if(istype(src,/mob/living/silicon/robot/drone))
+			if(isdrone(src))
 				switch(health)
 					if(35 to INFINITY)
 						src.healths.icon_state = "health0"

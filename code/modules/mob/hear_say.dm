@@ -32,7 +32,7 @@
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
+			if(isanimal(speaker))
 				var/mob/living/simple_animal/S = speaker
 				message = pick(S.speak)
 			else
@@ -42,7 +42,7 @@
 					message = stars(message)
 
 	var/speaker_name = speaker.name
-	if(istype(speaker, /mob/living/carbon/human))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.rank_prefix_name(H.GetVoice())
 
@@ -102,7 +102,7 @@
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
+			if(isanimal(speaker))
 				var/mob/living/simple_animal/S = speaker
 				if(S.speak && S.speak.len)
 					message = pick(S.speak)
@@ -122,7 +122,7 @@
 	if(vname)
 		speaker_name = vname
 
-	if(istype(speaker, /mob/living/carbon/human))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
@@ -135,7 +135,7 @@
 
 	var/changed_voice
 
-	if(istype(src, /mob/living/silicon/ai) && !hard_to_hear)
+	if(isAI(src) && !hard_to_hear)
 		var/jobname // the mob's "job"
 		var/mob/living/carbon/human/impersonating //The crew member being impersonated, if any.
 

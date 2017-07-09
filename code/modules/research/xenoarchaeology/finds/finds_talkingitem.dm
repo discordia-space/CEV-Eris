@@ -119,7 +119,7 @@
 	for(var/mob/M in mob_list)
 		if (!M.client)
 			continue //skip monkeys and leavers
-		if (istype(M, /mob/new_player))
+		if (isnewplayer(M))
 			continue
 		if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 			listening|=M

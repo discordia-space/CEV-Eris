@@ -12,7 +12,7 @@
 	var/list/potentials = list("Human" = /obj/item/weapon/storage/bag/cash/infinite)
 
 /obj/item/weapon/magic_rock/attack_self(mob/user)
-	if(!istype(user,/mob/living/carbon/human))
+	if(!ishuman(user))
 		user << "\The [src] can do nothing for such a simple being."
 		return
 	var/mob/living/carbon/human/H = user

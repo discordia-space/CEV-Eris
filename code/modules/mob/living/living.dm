@@ -49,7 +49,7 @@ default behaviour is:
 		if ((!( yes ) || now_pushing) || !loc)
 			return
 		now_pushing = TRUE
-		if (istype(AM, /mob/living))
+		if (isliving(AM))
 			var/mob/living/tmob = AM
 
 			for(var/mob/living/M in range(tmob, 1))
@@ -87,7 +87,7 @@ default behaviour is:
 			if(a_intent == I_HELP || src.restrained())
 				now_pushing = FALSE
 				return
-			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
+			if(ishuman(tmob) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
 					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
 					now_pushing = FALSE
@@ -180,23 +180,24 @@ default behaviour is:
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
-		//world << "DEBUG: burn_skin(), mutations=[mutations]"
-		if(mShock in src.mutations) //shockproof
-			return FALSE
-		if (COLD_RESISTANCE in src.mutations) //fireproof
-			return FALSE
-		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
-		var/divided_damage = (burn_amount)/(H.organs.len)
-		var/extradam = 0	//added to when organ is at max dam
-		for(var/obj/item/organ/external/affecting in H.organs)
-			if(!affecting)	continue
-			if(affecting.take_damage(0, divided_damage+extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
-				H.UpdateDamageIcon()
-		H.updatehealth()
-		return TRUE
-	else if(istype(src, /mob/living/silicon/ai))
+
+/mob/living/carbon/human/burn_skin(burn_amount)
+	//world << "DEBUG: burn_skin(), mutations=[mutations]"
+	if(mShock in mutations) //shockproof
 		return FALSE
+	if (COLD_RESISTANCE in mutations) //fireproof
+		return FALSE
+	var/divided_damage = (burn_amount)/(organs.len)
+	var/extradam = 0	//added to when organ is at max dam
+	for(var/obj/item/organ/external/affecting in organs)
+		//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
+		if(affecting.take_damage(0, divided_damage+extradam))
+			UpdateDamageIcon()
+	updatehealth()
+	return TRUE
+
+/mob/living/silicon/ai/burn_skin()
+	return FALSE
 
 /mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
 	var/temperature = actual
@@ -214,8 +215,6 @@ default behaviour is:
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
-//		world << "[src] ~ [src.bodytemperature] ~ [temperature]"
 	return temperature
 
 

@@ -389,7 +389,7 @@ var/list/admin_verbs_mentor = list(
 
 
 
-	else if(istype(mob,/mob/new_player))
+	else if(isnewplayer(mob))
 		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
 	else
 		//ghostize
@@ -597,7 +597,7 @@ var/list/admin_verbs_mentor = list(
 	D.makerandom(severity)
 	D.infectionchance = input("How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
 
-	if(istype(T,/mob/living/carbon/human))
+	if(ishuman(T))
 		var/mob/living/carbon/human/H = T
 		if (H.species)
 			D.affected_species = list(H.species.get_bodytype())
@@ -799,7 +799,7 @@ var/list/admin_verbs_mentor = list(
 
 	var/mob/living/carbon/human/M = input("Select mob.", "Edit Appearance") as null|anything in human_mob_list
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!ishuman(M))
 		usr << "\red You can only do this to humans!"
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance?",,"Yes","No"))

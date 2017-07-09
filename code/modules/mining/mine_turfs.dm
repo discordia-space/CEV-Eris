@@ -77,14 +77,14 @@
 
 /turf/simulated/mineral/Bumped(AM)
 	. = ..()
-	if(istype(AM,/mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if((istype(H.l_hand,/obj/item/weapon/pickaxe)) && (!H.hand))
 			attackby(H.l_hand,H)
 		else if((istype(H.r_hand,/obj/item/weapon/pickaxe)) && H.hand)
 			attackby(H.r_hand,H)
 
-	else if(istype(AM,/mob/living/silicon/robot))
+	else if(isrobot(AM))
 		var/mob/living/silicon/robot/R = AM
 		if(istype(R.module_active,/obj/item/weapon/pickaxe))
 			attackby(R.module_active,R)
@@ -530,7 +530,7 @@
 
 /turf/simulated/floor/asteroid/Entered(atom/movable/M as mob|obj)
 	..()
-	if(istype(M,/mob/living/silicon/robot))
+	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.module)
 			if(istype(R.module_state_1,/obj/item/weapon/storage/bag/ore))

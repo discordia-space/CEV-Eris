@@ -25,7 +25,7 @@
 		return attack_hand(user)
 
 	check_eye(var/mob/user as mob)
-		if (user.stat || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+		if (user.stat || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !issilicon(user))) //user can't see - not sure why canmove is here.
 			return -1
 		if(!current_camera)
 			return 0
@@ -64,7 +64,8 @@
 			return 1
 		if(href_list["switch_camera"])
 			if(src.z>6 || stat&(NOPOWER|BROKEN)) return
-			if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
+			if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !issilicon(usr)))
+				return
 			var/obj/machinery/camera/C = locate(href_list["switch_camera"]) in cameranet.cameras
 			if(!C)
 				return
@@ -75,13 +76,15 @@
 			return 1
 		else if(href_list["switch_network"])
 			if(src.z>6 || stat&(NOPOWER|BROKEN)) return
-			if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
+			if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !issilicon(usr)))
+				return
 			if(href_list["switch_network"] in network)
 				current_network = href_list["switch_network"]
 			return 1
 		else if(href_list["reset"])
 			if(src.z>6 || stat&(NOPOWER|BROKEN)) return
-			if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
+			if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !issilicon(usr)))
+				return
 			reset_current()
 			usr.reset_view(current_camera)
 			return 1
@@ -110,7 +113,7 @@
 			A.client.eye = A.eyeobj
 			return 1
 
-		if (!C.can_use() || user.stat || (get_dist(user, src) > 1 || user.machine != src || user.blinded || !( user.canmove ) && !istype(user, /mob/living/silicon)))
+		if (!C.can_use() || user.stat || (get_dist(user, src) > 1 || user.machine != src || user.blinded || !( user.canmove ) && !issilicon(user)))
 			return 0
 		set_current(C)
 		user.reset_view(current_camera)
