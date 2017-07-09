@@ -39,7 +39,7 @@
 		item_state = "glowstick"
 		set_light(0)
 	else if(on)
-		var/image/I = image(icon,"glowstick-on",color)
+		var/image/I = image(icon,"[initial(icon_state)]-on",color)
 		I.blend_mode = BLEND_ADD
 		overlays += I
 		item_state = "[initial(icon_state)]-on"

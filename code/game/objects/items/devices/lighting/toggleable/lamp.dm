@@ -7,7 +7,11 @@
 	flags = CONDUCT
 	slot_flags = null
 
-	on = 1
+	on = TRUE
+
+/obj/item/device/lighting/toggleable/lamp/New()
+	..()
+	update_icon()
 
 /obj/item/device/lighting/toggleable/lamp/verb/toggle_light()
 	set name = "Toggle light"

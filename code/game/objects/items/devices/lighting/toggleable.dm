@@ -25,10 +25,10 @@
 
 /obj/item/device/lighting/toggleable/proc/turn_off(var/mob/living/user)
 	set_light(0)
-	update_icon()
 	if(turn_on_sound)
 		playsound(src.loc, turn_on_sound, 75, 1)
 	on = FALSE
+	update_icon()
 	return TRUE
 
 /obj/item/device/lighting/toggleable/drone

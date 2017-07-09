@@ -35,3 +35,15 @@
 		force = on_damage
 		damtype = "fire"
 
+/obj/item/device/lighting/glowstick/flare/update_icon()
+	overlays.Cut()
+	if(!fuel)
+		icon_state = "[initial(icon_state)]-empty"
+		set_light(0)
+	else if(on)
+		icon_state = "[initial(icon_state)]-on"
+		set_light(brightness_on)
+	else
+		icon_state = initial(icon_state)
+		set_light(0)
+	update_held_icon()

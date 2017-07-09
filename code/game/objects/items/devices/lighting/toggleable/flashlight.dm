@@ -10,6 +10,8 @@
 		cell = new suitable_cell(src)
 
 /obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
+	if(!cell || !cell.check_charge(tick_cost))
+		return FALSE
 	. = ..()
 	if(. && user)
 		processing_objects |= src

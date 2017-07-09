@@ -4,7 +4,7 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	var/on = 0
+	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
 	var/turn_on_sound = null
 
@@ -15,10 +15,10 @@
 	if(user && !isturf(user.loc))
 		//To prevent some lighting anomalities.
 		user << "You cannot turn the light on while in this [user.loc]."
-		return 0
+		return FALSE
 	set_light(brightness_on)
-	update_icon()
 	if(turn_on_sound)
 		playsound(src.loc, turn_on_sound, 75, 1)
 	on = TRUE
+	update_icon()
 	return TRUE
