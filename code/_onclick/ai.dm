@@ -54,6 +54,12 @@
 	if(control_disabled || !canClick())
 		return
 
+	if(istype(loc, /obj/mecha))
+		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
+			return
+		var/obj/mecha/M = loc
+		return M.click_action(A, src)
+
 	if(multitool_mode && isobj(A))
 		var/obj/O = A
 		var/datum/extension/multitool/MT = get_extension(O, /datum/extension/multitool)
