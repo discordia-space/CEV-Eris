@@ -1199,15 +1199,17 @@
 		if(eyeobj.owner != src)
 			reset_view(null)
 	else
-		var/isRemoteObserve = 0
+		var/isRemoteObserve = FALSE
 		if(shadow && client.eye == shadow && !is_physically_disabled())
-			isRemoteObserve = 1
+			isRemoteObserve = TRUE
+		else if(client.eye && istype(client.eye,/mob/observer/eye/god))
+			isRemoteObserve = TRUE
 		else if((mRemote in mutations) && remoteview_target)
 			if(remoteview_target.stat == CONSCIOUS)
-				isRemoteObserve = 1
+				isRemoteObserve = TRUE
 		if(!isRemoteObserve && client && !client.adminobs)
 			remoteview_target = null
-			reset_view(null, 0)
+			reset_view(null, FALSE)
 
 	update_equipment_vision()
 	species.handle_vision(src)

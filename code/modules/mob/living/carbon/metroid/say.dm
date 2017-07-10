@@ -25,9 +25,7 @@
 	return "chirps";
 
 /mob/living/carbon/slime/say_understands(var/other)
-	if (istype(other, /mob/living/carbon/slime))
-		return 1
-	return ..()
+	return isslime(other) || ..()
 
 /mob/living/carbon/slime/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if (speaker in Friends)

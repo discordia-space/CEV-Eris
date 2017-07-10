@@ -1,5 +1,5 @@
 /datum/game_mode/traitor
-	name = "traitor"
+	name = MODE_TRAITOR
 	round_description = "There is a foreign agent or traitor on the station. Do not let the traitor succeed!"
 	extended_round_description = "The Company's monopolistic control over the plasma supplies of Nyx has marked the \
 		station to be a highly valuable target for many competing organizations and individuals. The varied pasts \
@@ -14,7 +14,7 @@
 	required_players = 0
 	required_enemies = 1
 	end_on_antag_death = 1
-	antag_tags = list(MODE_TRAITOR)
+	antag_tags = list(ROLE_TRAITOR)
 	antag_scaling_coeff = 8
 
 /datum/game_mode/traitor/auto

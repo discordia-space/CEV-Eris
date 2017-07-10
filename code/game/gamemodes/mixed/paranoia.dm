@@ -8,4 +8,4 @@
 	end_on_antag_death = 1
 	require_all_templates = 1
 	votable = 0
-	antag_tags = list(MODE_MALFUNCTION, MODE_RENEGADE, MODE_CHANGELING)
+	antag_tags = list(ROLE_MALFUNCTION, ROLE_RENEGADE, ROLE_CHANGELING)

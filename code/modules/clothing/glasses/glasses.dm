@@ -243,7 +243,7 @@
 	flash_protection = FLASH_PROTECTION_REDUCED
 
 	emp_act(severity)
-		if(istype(src.loc, /mob/living/carbon/human))
+		if(ishuman(src.loc))
 			var/mob/living/carbon/human/M = src.loc
 			M << "<span class='danger'>The Optical Thermal Scanner overloads and blinds you!</span>"
 			if(M.glasses == src)

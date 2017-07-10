@@ -4,10 +4,10 @@
 	head_position = 1
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the Captain"
 	selection_color = "#ffdddd"
 	idtype = /obj/item/weapon/card/id/hos
 	req_admin_notify = 1
@@ -34,7 +34,7 @@
 		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/device/flashlight/seclite,\
+		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/melee/baton/loaded
 	)
@@ -47,11 +47,11 @@
 
 
 /datum/job/gunserg
-	title = "Gunnery Sergeant"
+	title = "Ironhammer Gunnery Sergeant"
 	flag = GUNSERG
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
@@ -76,7 +76,7 @@
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/device/flashlight/seclite,\
+		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/melee/baton/loaded
 	)
@@ -89,11 +89,11 @@
 
 
 /datum/job/inspector
-	title = "Inspector"
+	title = "Ironhammer Inspector"
 	flag = INSPECTOR
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the Ironhammer Commander"
@@ -124,11 +124,11 @@
 
 
 /datum/job/medspec
-	title = "Medical Specialist"
+	title = "Ironhammer Medical Specialist"
 	flag = MEDSPEC
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Ironhammer Commander"
@@ -157,7 +157,7 @@
 	flag = IHOPER
 	department = "Security"
 	department_flag = ENGSEC
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 6
 	spawn_positions = 6
 	supervisors = "the Ironhammer Commander"
@@ -183,7 +183,7 @@
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
-		/obj/item/device/flashlight/seclite,\
+		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/melee/baton/loaded
 	)

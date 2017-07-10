@@ -19,42 +19,6 @@
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_SECURITY)
 
-/obj/item/weapon/rig/internalaffairs
-	name = "augmented tie"
-	suit_type = "augmented suit"
-	desc = "Prepare for paperwork."
-	icon_state = "internalaffairs_rig"
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.9
-	slowdown = 0
-	offline_slowdown = 0
-	offline_vision_restriction = 0
-
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/briefcase,/obj/item/weapon/storage/secure/briefcase)
-
-	req_access = list()
-	req_one_access = list()
-
-	glove_type = null
-	helm_type = null
-	boot_type = null
-
-/obj/item/weapon/rig/internalaffairs/equipped
-
-	req_access = list(access_lawyer)
-
-	initial_modules = list(
-		/obj/item/rig_module/ai_container,
-		/obj/item/rig_module/device/flash,
-		/obj/item/rig_module/device/paperdispenser,
-		/obj/item/rig_module/device/pen,
-		/obj/item/rig_module/device/stamp
-		)
-
-	glove_type = null
-	helm_type = null
-	boot_type = null
-
 /obj/item/weapon/rig/industrial
 	name = "industrial suit control module"
 	suit_type = "industrial hardsuit"
@@ -68,7 +32,11 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
 
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/t_scanner,
+		/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/weapon/pickaxe,
+		/obj/item/weapon/rcd
+	)
 
 	req_access = list()
 	req_one_access = list()
@@ -96,7 +64,11 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/eva
 
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/toolbox,/obj/item/weapon/storage/briefcase/inflatable,/obj/item/device/t_scanner,/obj/item/weapon/rcd)
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/storage/toolbox,/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/device/t_scanner,/obj/item/weapon/rcd
+	)
 
 	req_access = list()
 	req_one_access = list()
@@ -124,7 +96,11 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
 
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe,
+		/obj/item/weapon/rcd
+	)
 
 
 	req_access = list()
@@ -165,7 +141,14 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazmat
 
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/weapon/storage/box/excavation,/obj/item/weapon/pickaxe,/obj/item/device/healthanalyzer,/obj/item/device/measuring_tape,/obj/item/device/ano_scanner,/obj/item/device/depth_scanner,/obj/item/device/core_sampler,/obj/item/device/gps,/obj/item/device/beacon_locator,/obj/item/device/radio/beacon,/obj/item/weapon/pickaxe/hand,/obj/item/weapon/storage/bag/fossils)
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
+		/obj/item/stack/flag,/obj/item/weapon/storage/box/excavation,/obj/item/weapon/pickaxe,
+		/obj/item/device/healthanalyzer,/obj/item/device/measuring_tape,/obj/item/device/ano_scanner,
+		/obj/item/device/depth_scanner,/obj/item/device/core_sampler,/obj/item/device/gps,
+		/obj/item/device/beacon_locator,/obj/item/device/radio/beacon,/obj/item/weapon/pickaxe/hand,
+		/obj/item/weapon/storage/bag/fossils
+	)
 
 	req_access = list()
 	req_one_access = list()
@@ -192,7 +175,11 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/medical
 
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical,/obj/item/roller )
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical,
+		/obj/item/roller
+	)
 
 	req_access = list()
 	req_one_access = list()
@@ -218,7 +205,10 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazard
 
-	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
+	allowed = list(
+		/obj/item/weapon/gun,/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton
+	)
 
 	req_access = list()
 	req_one_access = list()

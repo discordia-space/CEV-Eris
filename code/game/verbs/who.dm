@@ -74,7 +74,7 @@
 
 				if(isobserver(C.mob))
 					msg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
+				else if(isnewplayer(C.mob))
 					msg += " - Lobby"
 				else
 					msg += " - Playing"
@@ -89,7 +89,7 @@
 
 				if(isobserver(C.mob))
 					modmsg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
+				else if(isnewplayer(C.mob))
 					modmsg += " - Lobby"
 				else
 					modmsg += " - Playing"
@@ -103,7 +103,7 @@
 				mentmsg += "\t[C] is a [C.holder.rank]"
 				if(isobserver(C.mob))
 					mentmsg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
+				else if(isnewplayer(C.mob))
 					mentmsg += " - Lobby"
 				else
 					mentmsg += " - Playing"

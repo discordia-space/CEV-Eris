@@ -926,19 +926,19 @@ area/space/atmosalert()
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/hor
-	name = "\improper Research - RD's Office"
+	name = "\improper Research - MEO's Office"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/hor/quarters
-	name = "\improper Research - RD's Quarters"
+	name = "\improper Research - MEO's Quarters"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/chief
-	name = "\improper Engineering - CE's Office"
+	name = "\improper Engineering - Exultant Office"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/chief/quarters
-	name = "\improper Engineering - CE's Quarters"
+	name = "\improper Engineering - Exultant Quarters"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/hos
@@ -946,11 +946,11 @@ area/space/atmosalert()
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/cmo
-	name = "\improper Medbay - CMO's Office"
+	name = "\improper Medbay - MBO's Office"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/heads/cmo/quarters
-	name = "\improper Medbay - CMO's Quarters"
+	name = "\improper Medbay - MBO's Quarters"
 	icon_state = "head_quarters"
 
 /area/crew_quarters/courtroom
@@ -1484,7 +1484,7 @@ area/space/atmosalert()
 	..()
 
 /area/security/warden
-	name = "\improper Security - Warden's Office"
+	name = "\improper Security - Gunnery Sergeant's Office"
 	icon_state = "Warden"
 
 /area/security/armoury
@@ -1559,7 +1559,7 @@ area/space/atmosalert()
 	icon_state = "security"
 
 /area/quartermaster
-	name = "\improper Quartermasters"
+	name = "\improper Merchants"
 	icon_state = "quart"
 
 /area/quartermaster/office
@@ -1572,7 +1572,7 @@ area/space/atmosalert()
 	sound_env = LARGE_ENCLOSED
 
 /area/quartermaster/qm
-	name = "\improper Cargo - Quartermaster's Office"
+	name = "\improper Cargo - Merchant Office"
 	icon_state = "quart"
 
 /area/quartermaster/miningdock
@@ -1605,7 +1605,7 @@ area/space/atmosalert()
 	icon_state = "toxlab"
 
 /area/rnd/rdoffice
-	name = "\improper Research Director's Office"
+	name = "\improper Moebius Expedition Overseer's Office"
 	icon_state = "head_quarters"
 
 /area/rnd/supermatter

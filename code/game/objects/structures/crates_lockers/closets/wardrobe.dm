@@ -127,30 +127,6 @@
 	new /obj/item/clothing/shoes/color/orange(src)
 	return
 
-
-/obj/structure/closet/wardrobe/atmospherics_yellow
-	name = "atmospherics wardrobe"
-	icon_state = "yellow"
-	icon_closed = "yellow"
-
-/obj/structure/closet/wardrobe/atmospherics_yellow/New()
-	..()
-	new /obj/item/clothing/under/rank/atmospheric_technician(src)
-	new /obj/item/clothing/under/rank/atmospheric_technician(src)
-	new /obj/item/clothing/under/rank/atmospheric_technician(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/head/beret/engineering(src)
-	new /obj/item/clothing/head/beret/engineering(src)
-	new /obj/item/clothing/head/beret/engineering(src)
-	return
-
-
-
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"
 	icon_state = "yellow"

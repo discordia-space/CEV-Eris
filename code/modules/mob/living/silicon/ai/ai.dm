@@ -435,7 +435,7 @@ var/list/ai_verbs_default = list(
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
 
-		if(target && (!istype(target, /mob/living/carbon/human) || rhtml_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!ishuman(target) || rhtml_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
 			src << "\red System error. Cannot locate [rhtml_decode(href_list["trackname"])]."
