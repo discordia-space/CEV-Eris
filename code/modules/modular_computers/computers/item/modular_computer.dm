@@ -49,7 +49,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
+	if(usr.incapacitated() || !isliving(usr))
 		usr << "<span class='warning'>You can't do that.</span>"
 		return
 

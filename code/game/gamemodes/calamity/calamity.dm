@@ -1,7 +1,7 @@
 #define ANTAG_TYPE_RATIO 8
 
 /datum/game_mode/calamity
-	name = "Calamity"
+	name = MODE_CALAMITY
 	round_description = "This must be a Thursday. You never could get the hang of Thursdays..."
 	extended_round_description = "All Hell is about to break loose. Literally every antagonist type may spawn in this round. Hold on tight."
 	config_tag = "calamity"

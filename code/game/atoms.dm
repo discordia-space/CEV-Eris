@@ -53,7 +53,7 @@
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
-	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
+	if (isAI(user)) // WHYYYY
 		return 0
 	return -1
 
@@ -214,9 +214,9 @@ its easier to just keep the beam vertical.
 			full_name += "oil-stained [name][infix]."
 
 	if(isobserver(user))
-		user << "\icon[src] This is [full_name] [suffix]."
+		user << "\icon[src] This is [full_name] [suffix]"
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix].")
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
 
 	if(desc)
 		user << desc

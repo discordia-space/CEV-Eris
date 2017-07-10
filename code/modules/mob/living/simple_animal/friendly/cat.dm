@@ -154,7 +154,7 @@
 		var/current_dist = get_dist(src, friend)
 
 		if (movement_target != friend)
-			if (current_dist > follow_dist && !istype(movement_target, /mob/living/simple_animal/mouse) && (friend in oview(src)))
+			if (current_dist > follow_dist && !ismouse(movement_target) && (friend in oview(src)))
 				//stop existing movement
 				walk_to(src,0)
 				turns_since_scan = 0
@@ -226,7 +226,7 @@
 	item_state = "cat"
 	icon_living = "cat"
 	icon_dead = "cat_dead"
-	befriend_job = "Chief Medical Officer"
+	befriend_job = "Moebius Biolab Officer"
 
 /mob/living/simple_animal/cat/kitten
 	name = "kitten"

@@ -9,7 +9,7 @@ calculate text size per text.
 	from.trans_to_holder(temp, amount, multiplier, 1)
 	var/list/out = list()
 	var/minimum_percent = 15
-	if(istype(src,/mob/living/carbon/human))
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		minimum_percent = round(15/H.species.taste_sensitivity)
 	if(minimum_percent < 100)

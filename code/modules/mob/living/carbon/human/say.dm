@@ -48,15 +48,15 @@
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/silicon))
+		if (issilicon(other))
 			return 1
-		if (istype(other, /mob/living/carbon/brain))
+		if (isbrain(other))
 			return 1
-		if (istype(other, /mob/living/carbon/slime))
+		if (isslime(other))
 			return 1
 
 	//This is already covered by mob/say_understands()
-	//if (istype(other, /mob/living/simple_animal))
+	//if (isanimal(other))
 	//	if((other.universal_speak && !speaking) || src.universal_speak || src.universal_understand)
 	//		return 1
 	//	return 0

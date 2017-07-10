@@ -76,7 +76,7 @@
 
 	// Check if there's actually an AI to deal with.
 	var/mob/living/silicon/ai/target_ai
-	if(istype(input_device, /mob/living/silicon/ai))
+	if(isAI(input_device))
 		target_ai = input_device
 	else
 		target_ai = locate(/mob/living/silicon/ai) in input_device.contents
@@ -84,7 +84,7 @@
 	var/obj/item/device/aicard/card = ai_card
 
 	// Downloading from/loading to a terminal.
-	if(istype(input_device,/obj/machinery/computer/aifixer) || istype(input_device,/mob/living/silicon/ai) || istype(input_device,/obj/structure/AIcore/deactivated))
+	if(istype(input_device,/obj/machinery/computer/aifixer) || isAI(input_device) || istype(input_device,/obj/structure/AIcore/deactivated))
 
 		// If we're stealing an AI, make sure we have a card for it.
 		if(!card)

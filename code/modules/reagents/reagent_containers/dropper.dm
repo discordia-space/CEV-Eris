@@ -35,7 +35,7 @@
 				if(!do_mob(user, target, time))
 					return
 
-				if(istype(target, /mob/living/carbon/human))
+				if(ishuman(target))
 					var/mob/living/carbon/human/victim = target
 
 					var/obj/item/safe_thing = null

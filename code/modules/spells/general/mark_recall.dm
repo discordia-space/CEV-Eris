@@ -31,7 +31,7 @@
 	if(istext(target))
 		mark = new /obj/effect/wizard_mark(get_turf(user),src)
 		return 1
-	if(!istype(target,/obj)) //something went wrong
+	if(!isobj(target)) //something went wrong
 		return 0
 	var/turf/T = get_turf(target)
 	if(!T)

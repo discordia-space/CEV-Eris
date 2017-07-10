@@ -15,12 +15,13 @@ var/list/event_last_fired = list()
 	active_with_role["Gardener"] = 0
 
 	for(var/mob/M in player_list)
-		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES)) // longer than 10 minutes AFK counts them as inactive
+		// longer than 10 minutes AFK counts them as inactive
+		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES))
 			continue
 
 		active_with_role["Any"]++
 
-		if(istype(M, /mob/living/silicon/robot))
+		if(isrobot(M))
 			var/mob/living/silicon/robot/R = M
 			if(R.module)
 				if(istype(R.module, /obj/item/weapon/robot_module/engineering))

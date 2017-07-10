@@ -92,7 +92,7 @@
 			break
 
 	var/mob/living/H
-	if(istype(M,/mob/living))
+	if(isliving(M))
 		H = M
 
 	if(H && shard && M == user) //This needs a check for feeding the food to other people, but that could be abusable.

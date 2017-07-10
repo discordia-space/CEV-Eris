@@ -1,13 +1,13 @@
 /datum/job/rd
-	title = "Research Director"
-	flag = RD
+	title = "Moebius Expedition Overseer"
+	flag = MEO
 	head_position = 1
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "Moebius Corporation"
 	selection_color = "#ffddff"
 	idtype = /obj/item/weapon/card/id/rd
 	req_admin_notify = 1
@@ -22,7 +22,7 @@
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network)
 	ideal_character_age = 50
 
-	uniform = /obj/item/clothing/under/rank/research_director
+	uniform = /obj/item/clothing/under/rank/expedition_overseer
 	pda = /obj/item/device/pda/heads/rd
 	ear = /obj/item/device/radio/headset/heads/rd
 	shoes = /obj/item/clothing/shoes/laceup
@@ -38,18 +38,18 @@
 
 
 /datum/job/scientist
-	title = "Scientist"
+	title = "Moebius Scientist"
 	flag = SCIENTIST
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 3
-	supervisors = "the research director"
+	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
-	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
+	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_genetics)
+	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch, access_genetics)
 	idtype = /obj/item/weapon/card/id/sci
 
 	uniform = /obj/item/clothing/under/rank/scientist
@@ -66,14 +66,14 @@
 
 
 /datum/job/roboticist
-	title = "Roboticist"
+	title = "Moebius Roboticist"
 	flag = ROBOTICIST
 	department = "Science"
 	department_flag = MEDSCI
-	faction = "Station"
+	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "research director"
+	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 5
 	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.

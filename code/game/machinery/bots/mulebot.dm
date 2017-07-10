@@ -59,7 +59,7 @@
 	..()
 	wires = new(src)
 	botcard = new(src)
-	botcard.access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	botcard.access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_mining_station)
 	cell = new(src)
 	cell.charge = 2000
 	cell.maxcharge = 2000
@@ -247,7 +247,7 @@
 		return
 	if (usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+	if ((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
 		usr.set_machine(src)
 
 		switch(href_list["op"])
@@ -707,7 +707,7 @@
 	if(!wires.MobAvoid())		//usually just bumps, but if avoidance disabled knock over mobs
 		var/mob/M = obs
 		if(ismob(M))
-			if(istype(M,/mob/living/silicon/robot))
+			if(isrobot(M))
 				src.visible_message("<span class='warning'>[src] bumps into [M]!</span>")
 			else
 				src.visible_message("<span class='warning'>[src] knocks over [M]!</span>")

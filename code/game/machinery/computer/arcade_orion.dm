@@ -398,7 +398,7 @@
 /obj/machinery/computer/arcade/orion_trail/proc/emag_effect(var/event)
 	switch(event)
 		if(ORION_TRAIL_RAIDERS)
-			if(istype(usr,/mob/living/carbon))
+			if(iscarbon(usr))
 				var/mob/living/carbon/M = usr
 				if(prob(50))
 					usr << "<span class='warning'>You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?</span>"
@@ -409,7 +409,7 @@
 			else
 				usr << "<span class='warning'>The sounds of battle fill your ears...</span>"
 		if(ORION_TRAIL_ILLNESS)
-			if(istype(usr,/mob/living/carbon/human))
+			if(ishuman(usr))
 				var/mob/living/carbon/human/M = usr
 				M << "<span class='warning'>An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit.</span>"
 				M.vomit()
@@ -420,7 +420,7 @@
 			var/mob/living/M = usr
 			M.adjustBruteLoss(10)
 		if(ORION_TRAIL_FLUX)
-			if(istype(usr,/mob/living/carbon) && prob(75))
+			if(iscarbon(usr) && prob(75))
 				var/mob/living/carbon/M = usr
 				M.Weaken(3)
 				src.visible_message("A sudden gust of powerful wind slams \the [M] into the floor!", "You hear a large fwooshing sound, followed by a bang.")

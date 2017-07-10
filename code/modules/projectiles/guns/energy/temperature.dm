@@ -54,8 +54,8 @@
 			src.current_temperature = min(500, src.current_temperature+amount)
 		else
 			src.current_temperature = max(0, src.current_temperature+amount)
-	if (istype(src.loc, /mob))
-		attack_self(src.loc)
+	if (ismob(loc))
+		attack_self(loc)
 	src.add_fingerprint(usr)
 	return
 

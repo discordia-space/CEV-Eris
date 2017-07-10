@@ -28,11 +28,11 @@
 
 /obj/item/clothing/mask/gas/poltergeist/Destroy()
 	remove_hearing()
-	..()
+	return ..()
 
 /obj/item/clothing/mask/gas/poltergeist/process()
-	if(heard_talk.len && istype(src.loc, /mob/living) && prob(10))
-		var/mob/living/M = src.loc
+	if(heard_talk.len && isliving(loc) && prob(10))
+		var/mob/living/M = loc
 		M.say(pick(heard_talk))
 
 /obj/item/clothing/mask/gas/poltergeist/hear_talk(mob/M as mob, text)
@@ -40,7 +40,7 @@
 	if(heard_talk.len > max_stored_messages)
 		heard_talk.Remove(pick(heard_talk))
 	heard_talk.Add(text)
-	if(istype(src.loc, /mob/living) && world.time - last_twitch > 50)
+	if(isliving(src.loc) && world.time - last_twitch > 50)
 		last_twitch = world.time
 
 

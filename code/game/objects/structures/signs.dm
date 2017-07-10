@@ -539,6 +539,11 @@
 	desc = "The most popular Hanza's weapon manufacturer."
 	icon_state = "frozenstar"
 
+/obj/structure/sign/faction/moebius
+	name = "Moebius Laboratories"
+	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life."
+	icon_state = "moebius"
+
 /obj/structure/sign/faction/neotheology
 	name = "NeoTheology"
 	desc = "Tau Cross of Cyberchristianity - symbol of NeoTheology."

@@ -4,7 +4,7 @@
 //Note that this proc does NOT do MMI related stuff!
 /mob/proc/change_mob_type(var/new_type = null, var/turf/location = null, var/new_name = null as text, var/delete_old_mob = 0 as num, var/subspecies)
 
-	if(istype(src,/mob/new_player))
+	if(isnewplayer(src))
 		usr << "\red cannot convert players who have not entered yet."
 		return
 
@@ -48,7 +48,7 @@
 	else
 		M.key = key
 
-	if(subspecies && istype(M,/mob/living/carbon/human))
+	if(subspecies && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.set_species(subspecies)
 
