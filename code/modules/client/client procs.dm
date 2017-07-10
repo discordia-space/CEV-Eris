@@ -194,13 +194,16 @@
 		return
 
 	var/player_id
-	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[src.ckey]'")
+	var/country
+	var/DBQuery/query = dbcon.NewQuery("SELECT id, country FROM players WHERE ckey = '[src.ckey]'")
 	query.Execute()
 	if(query.NextRow())
 		player_id = query.item[1]
+		country = query.item[2]
 
 	var/sql_ip = sql_sanitize_text(src.address)
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
+	var/sql_country = null
 
 
 	if(player_id)
@@ -225,18 +228,27 @@
 				else
 					world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
 		else
-			world.log << "Failed to connect to byond age check for [src.ckey]"
+			world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
 
-		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', 'player', [src.byond_version])")
+		var/address_check[] = world.Export("http://ip-api.com/line/[sql_ip]")
+		var/country = ""
+		if(address_check)
+			var/list/response = file2list(address_check["CONTENT"])
+			if(response.len && response[1] == "success")
+				country_code = response[3]
+		if(!country)
+			world.log << "Failed on retrieving location for player [src.ckey] from byond site."
+
+
+		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', 'player', [src.byond_version], '[country]')")
 		if(!query_insert.Execute())
-			world.log << "Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
+			world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
 			return
 
 		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[src.ckey]'")
 		get_player_id.Execute()
 		if(get_player_id.NextRow())
-			player_id = get_player_id.item[1]
-			src.id = player_id
+			src.id = get_player_id.item[1]
 
 
 #undef TOPIC_SPAM_DELAY

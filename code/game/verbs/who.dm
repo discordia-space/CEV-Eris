@@ -26,23 +26,15 @@
 					else
 						entry += " - <font color='black'><b>DEAD</b></font>"
 
-			var/age
-			if(isnum(C.player_age))
-				age = C.player_age
-			else
-				age = 0
-
-			if(age <= 1)
-				age = "<font color='#ff0000'><b>[age]</b></font>"
-			else if(age < 10)
-				age = "<font color='#ff8c00'><b>[age]</b></font>"
-
-			entry += " - [age]"
-
 			if(is_special_character(C.mob))
 				entry += " - <b><font color='red'>Antagonist</font></b>"
+
 			if(C.is_afk())
 				entry += " (AFK - [C.inactivity2text()])"
+
+			if(C.registation_date)
+				entry += "<b> Joined: [C.registration_date]</b>"
+
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 			Lines += entry
 	else

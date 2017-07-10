@@ -276,12 +276,12 @@ proc/admin_notice(var/message, var/rights)
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
 
-	var/p_age = "unknown"
+	var/registration_date = "Unknown"
 	for(var/client/C in clients)
 		if(C.ckey == key)
-			p_age = C.player_age
+			registration_date = C.registration_date
 			break
-	dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
+	dat += "<span style='color:#000000; font-weight: bold'>Registration date: [registration_date]</span><br>"
 
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos

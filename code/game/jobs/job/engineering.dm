@@ -24,7 +24,6 @@
 			            access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
 			            access_heads, access_construction, access_sec_doors,
 			            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload)
-	minimal_player_age = 7
 
 	uniform = /obj/item/clothing/under/rank/chief_engineer
 	suit = /obj/item/clothing/suit/storage/hazardvest
