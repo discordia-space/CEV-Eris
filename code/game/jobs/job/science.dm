@@ -64,32 +64,6 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/datum/job/xenobiologist
-	title = "Xenobiologist"
-	flag = XENOBIOLOGIST
-	department = "Science"
-	department_flag = MEDSCI
-	faction = "Station"
-	total_positions = 3
-	spawn_positions = 2
-	supervisors = "the research director"
-	selection_color = "#ffeeff"
-	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
-	minimal_access = list(access_research, access_xenobiology, access_hydroponics, access_tox_storage)
-	idtype = /obj/item/weapon/card/id/sci
-
-	uniform = /obj/item/clothing/under/rank/scientist
-	pda = /obj/item/device/pda/science
-	ear = /obj/item/device/radio/headset/headset_sci
-	shoes = /obj/item/clothing/shoes/jackboots
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack,\
-		/obj/item/weapon/storage/backpack/satchel_norm,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
 
 /datum/job/roboticist
 	title = "Roboticist"
