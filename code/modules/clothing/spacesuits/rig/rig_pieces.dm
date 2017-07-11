@@ -31,14 +31,18 @@
 
 /obj/item/clothing/suit/space/rig
 	name = "chestpiece"
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit
+	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv =          HIDEJUMPSUIT|HIDETAIL
 	item_flags =              STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT
 	slowdown = 0
-	//will reach 10 breach damage after 25 laser carbine blasts, 3 revolver hits, or ~1 PTR hit. Completely immune to smg or sts hits.
+	//will reach 10 breach damage after 25 laser carbine blasts, 3 revolver hits, or ~1 PTR hit.
+	// Completely immune to smg or sts hits.
 	breach_threshold = 38
 	resilience = 0.2
 	can_breach = 1
@@ -79,7 +83,7 @@
 
 /obj/item/clothing/suit/lightrig
 	name = "suit"
-	allowed = list(/obj/item/device/flashlight)
+	allowed = list(/obj/item/device/lighting/toggleable/flashlight)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
