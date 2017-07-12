@@ -64,8 +64,7 @@
 			speaker_name = H.voice
 		for(var/datum/data/record/G in data_core.general)
 			if(G.fields["name"] == speaker_name)
-				speaker_name = H.rank_prefix_name(speaker_name)
-				break
+				return H.rank_prefix_name(speaker_name)
 	return vname ? vname : speaker_name
 
 
