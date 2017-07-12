@@ -210,7 +210,7 @@
 #define ANNOUNSER_NAME "CEV Eris System Announcer"
 
 
-#define LIST_OF_CONSONANT list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","Ã¶","Ãª","Ã­","Ã£","Ã¸","Ã¹","Ã§","Ãµ","Ã´","Ã¢","Ã¯","Ã°","Ã«","Ã¤","Ã¦","Ã·","Ã±","Ã¬","Ã²","Ã¡","Ã©","Ã»")
+#define LIST_OF_CONSONANT list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","á","â","ã","ä","æ","ç","é","ê","ë","ì","í","ï","ð","ñ","ò","ô","õ","ö","÷","ø","ù")
 
 //Multi-z
 #define FALL_GIB_DAMAGE 999
