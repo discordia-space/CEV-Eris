@@ -16,6 +16,16 @@
 
 	. = src.say_dead(message)
 
+/mob/observer/ghost/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",
+		var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+	if(!client) return
+
+	if(speaker && !speaker.client && is_preference_enabled(/datum/client_preference/ghost_ears) && !(speaker in view(src)))
+			//Does the speaker have a client?  It's either random stuff that observers won't care about (Experiment 97B says, 'EHEHEHEHEHEHEHE')
+			//Or someone snoring.  So we make it where they won't hear it.
+		return
+	..()
+
 
 /mob/observer/ghost/emote(var/act, var/type, var/message)
 	//message = sanitize(message) - already sanitized in verb/me_verb()
