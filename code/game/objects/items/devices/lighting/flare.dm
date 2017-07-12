@@ -3,6 +3,7 @@
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	brightness_on = 4 // Pretty bright.
 	light_power = 2
+	color = null
 	light_color = "#e58775"
 	icon_state = "flare"
 	max_fuel = 1000
