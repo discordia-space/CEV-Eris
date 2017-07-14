@@ -12,32 +12,31 @@
 		owner = M
 		owner.parallax = src
 		image = image('icons/parallax.dmi', src, "space")
-//		image.invisibility = 0
+		overlays += image
 		update()
+		..(null)
 
 	proc/update()
 		if(!owner || !owner.client)
 			return
 		var/turf/T = get_turf(owner.client.eye)
-		forceMove(T)
-		pixel_x = -224-T.x
-		pixel_y = -224-T.y
+		screen_loc = "CENTER:[-224-(T&&T.x)],CENTER:[-224-(T&&T.y)]"
 
 /mob
 	var/obj/parallax/parallax
 
 /mob/Move()
 	. = ..()
-	if(parallax)
+	if(. && parallax)
 		parallax.update()
 
 /mob/forceMove()
 	. = ..()
-	if(parallax)
+	if(. && parallax)
 		parallax.update()
 
 /mob/Login()
 	if(!parallax)
 		parallax = new(src)
-	src << parallax.image
+	client.screen += parallax
 	..()
