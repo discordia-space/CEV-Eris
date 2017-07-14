@@ -104,7 +104,7 @@
 		src.initial_icon = P.new_icon
 		if(P.new_icon_file)
 			src.icon = P.new_icon_file
-		src.reset_icon()
+		update_icon()
 		P.use(1, user)
 		return 1
 	else
