@@ -32,7 +32,7 @@
 			if(C.is_afk())
 				entry += " (AFK - [C.inactivity2text()])"
 
-			if(C.registation_date)
+			if(C.registration_date)
 				entry += "<b> Joined: [C.registration_date]</b>"
 
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
