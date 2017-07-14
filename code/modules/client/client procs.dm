@@ -224,18 +224,19 @@
 					var/month = R.group[2]
 					var/day = R.group[3]
 					registration_date = "[year]-[month]-[day]"
+					src.registration_date = registration_date
 				else
 					world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
 		else
 			world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
 
 		var/address_check[] = world.Export("http://ip-api.com/line/[sql_ip]")
-		var/country_code = ""
 		if(address_check)
 			var/list/response = file2list(address_check["CONTENT"])
 			if(response.len && response[1] == "success")
-				country_code = response[3]
-		if(!country_code)
+				country = response[3]
+				src.country = country
+		if(!country)
 			world.log << "Failed on retrieving location for player [src.ckey] from byond site."
 
 
