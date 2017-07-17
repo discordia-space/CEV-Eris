@@ -60,7 +60,7 @@
 	return 1
 
 // recharge the cell
-/obj/item/weapon/cell/big/proc/give(var/amount)
+/obj/item/weapon/cell/proc/give(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0

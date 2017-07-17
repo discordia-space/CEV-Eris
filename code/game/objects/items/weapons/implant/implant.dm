@@ -22,6 +22,9 @@
 /obj/item/weapon/implant/proc/deactivate()
 /obj/item/weapon/implant/proc/malfunction(var/severity)
 
+/obj/item/weapon/implant/proc/islegal()
+	return 0
+
 /obj/item/weapon/implant/proc/is_external()
 	return istype(src, /obj/item/weapon/implant/external)
 

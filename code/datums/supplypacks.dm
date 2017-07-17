@@ -1225,7 +1225,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					 /obj/item/weapon/folder/yellow,
 					 /obj/item/weapon/hand_labeler,
 					 /obj/item/weapon/tape_roll,
-					 /obj/structure/filingcabinet/chestdrawer{anchored = 0},
+					 /obj/structure/filingcabinet/chestdrawer,
 					 /obj/item/weapon/paper_bin)
 	name = "Office supplies"
 	cost = 15

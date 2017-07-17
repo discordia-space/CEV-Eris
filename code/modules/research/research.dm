@@ -129,6 +129,21 @@ research holder datum.
 		if(initial(check_tech.id) == ID)
 			return  initial(check_tech.name)
 
+/datum/research/proc/generate_integrated_circuit_designs()
+	spawn(2 SECONDS) // So the list has time to initialize.
+		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
+			if(IC.spawn_flags & IC_SPAWN_RESEARCH)
+				var/datum/design/D = new /datum/design/circuit(src)
+				D.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
+				D.id = "ic-[lowertext(IC.name)]"
+				if(IC.origin_tech && IC.origin_tech.len)
+					D.req_tech = IC.origin_tech.Copy()
+				else
+					D.req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
+				D.build_path = IC.type
+				possible_designs += D
+
+
 /***************************************************************
 **						Technology Datums					  **
 **	Includes all the various technoliges and what they make.  **

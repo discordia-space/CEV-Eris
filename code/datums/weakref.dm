@@ -1,5 +1,9 @@
+#define QDELETED(X) (!X || X.gc_destroyed)
+
+
+
 /datum
-	var/weakref
+	var/weakref/weakref
 
 /datum/Destroy()
 	weakref = null // Clear this reference to ensure it's kept for as brief duration as possible.
@@ -7,24 +11,27 @@
 
 //obtain a weak reference to a datum
 /proc/weakref(datum/D)
-	if(D.gcDestroyed)
+	if(!istype(D))
+		return
+	if(QDELETED(D))
 		return
 	if(!D.weakref)
-		D.weakref = new /datum/weakref(D)
+		D.weakref = new /weakref(D)
 	return D.weakref
 
-/datum/weakref
+
+/weakref
 	var/ref
 
-/datum/weakref/New(datum/D)
+/weakref/New(datum/D)
 	ref = "\ref[D]"
 
-/datum/weakref/Destroy()
+/weakref/Destroy()
 	// A weakref datum should not be manually destroyed as it is a shared resource,
 	//  rather it should be automatically collected by the BYOND GC when all references are gone.
-	return 0
+	return 1
 
-/datum/weakref/proc/resolve()
+/weakref/proc/resolve()
 	var/datum/D = locate(ref)
 	if(D && D.weakref == src)
 		return D
