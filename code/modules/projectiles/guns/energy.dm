@@ -89,7 +89,7 @@
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= charge_cost)
 			ratio = cell.charge / cell.maxcharge
-		ratio = max(round(ratio, 0.25) * 100, 25)
+			ratio = max(round(ratio, 0.25) * 100, 25)
 
 		if(modifystate)
 			icon_state = "[modifystate][ratio]"
