@@ -5,7 +5,6 @@
 	item_state = "floramut"
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	charge_cost = 100
-	max_shots = 10
 	projectile_type = /obj/item/projectile/energy/floramut
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	modifystate = "floramut"

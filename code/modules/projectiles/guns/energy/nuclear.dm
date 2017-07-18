@@ -20,21 +20,21 @@
 	charge_tick++
 	if(charge_tick < 4) return 0
 	charge_tick = 0
-	if(!power_supply) return 0
-	if((power_supply.charge / power_supply.maxcharge) != 1)
-		power_supply.give(charge_cost)
+	if(!cell) return 0
+	if((cell.charge / cell.maxcharge) != 1)
+		cell.give(charge_cost)
 		update_icon()
 	return 1
 
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_charge()
-	var/ratio = power_supply.charge / power_supply.maxcharge
+	var/ratio = cell.charge / cell.maxcharge
 	ratio = round(ratio, 0.25) * 100
 	overlays += "nucgun-[ratio]"
 
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_reactor()
 	if(lightfail)
 		overlays += "nucgun-medium"
-	else if ((power_supply.charge/power_supply.maxcharge) <= 0.5)
+	else if ((cell.charge/cell.maxcharge) <= 0.5)
 		overlays += "nucgun-light"
 	else
 		overlays += "nucgun-clean"
