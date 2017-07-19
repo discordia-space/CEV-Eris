@@ -145,6 +145,26 @@ proc/mutate_count(var/obj, var/value)
 ```
 ***
 
+Instance variables should be used with only with source object denotation to avoid namespace conflicts.
+
+***Good:***
+```
+/obj/item/
+	var/name = ""
+	
+/obj/item/proc/set_name(name)
+	src.name = name
+```
+***Bad:***
+```
+/obj/item/
+	var/name = ""
+
+/obj/item/proc/set_name(name)
+	name = name
+	# You will probably get a runtime error.
+```
+
 # Naming
 Avoid short names. No acronyms or abbreviations.
 
