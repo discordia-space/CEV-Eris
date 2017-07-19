@@ -49,12 +49,12 @@
 	var/not_heard //the message displayed to people who could not hear the whispering
 	if (speaking)
 		if (speaking.whisper_verb)
-			verb = speaking.whisper_verb
+			verb = safepick(speaking.whisper_verb)
 			not_heard = "[verb] something"
-		else
+		if(!verb)
 			var/adverb = pick("quietly", "softly")
-			verb = "[speaking.speech_verb] [adverb]"
-			not_heard = "[speaking.speech_verb] something [adverb]"
+			verb = "[safepick(speaking.speech_verb)] [adverb]"
+			not_heard = "[verb] something [adverb]"
 	else
 		not_heard = "[verb] something" //TODO get rid of the null language and just prevent speech if language is null
 
