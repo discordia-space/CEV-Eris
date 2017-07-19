@@ -16,7 +16,7 @@
 		var/new_location = safepick(get_area_turfs(A))
 
 		if(new_location)
-			usr.loc = new_location
+			usr.forceMove(new_location)
 			log_admin("[key_name(usr)] jumped to [A]")
 			message_admins("[key_name_admin(usr)] jumped to [A]", 1)
 		else
@@ -34,7 +34,7 @@
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
 		usr.on_mob_jump()
-		usr.loc = T
+		usr.forceMove(T)
 
 	else
 		alert("Admin jumping disabled")
@@ -56,7 +56,7 @@
 			if(T && isturf(T))
 
 				A.on_mob_jump()
-				A.loc = T
+				A.forceMove(T)
 			else
 				A << "This mob is not located in the game world."
 	else
@@ -73,9 +73,7 @@
 		if(src.mob)
 			var/mob/A = src.mob
 			A.on_mob_jump()
-			A.x = tx
-			A.y = ty
-			A.z = tz
+			A.forceMove(locate(tx,ty,tz))
 
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
@@ -101,7 +99,7 @@
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		usr.on_mob_jump()
-		usr.loc = M.loc
+		usr.forceMove(get_turf(M))
 
 	else
 		alert("Admin jumping disabled")
@@ -116,7 +114,7 @@
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", 1)
 		M.on_mob_jump()
-		M.loc = get_turf(usr)
+		M.forceMove(get_turf(usr))
 
 	else
 		alert("Admin jumping disabled")
@@ -144,7 +142,7 @@
 		message_admins("[key_name_admin(usr)] teleported [key_name(M)]", 1)
 		if(M)
 			M.on_mob_jump()
-			M.loc = get_turf(usr)
+			M.forceMove(get_turf(usr))
 
 	else
 		alert("Admin jumping disabled")
@@ -158,7 +156,7 @@
 	if(A)
 		if(config.allow_admin_jump)
 			M.on_mob_jump()
-			M.loc = pick(get_area_turfs(A))
+			M.forceMove(pick(get_area_turfs(A)))
 
 
 			log_admin("[key_name(usr)] teleported [key_name(M)] to [A]")
