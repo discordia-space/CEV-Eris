@@ -7,5 +7,4 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 100
-	max_shots = 20
 	fire_delay = 1

@@ -22,10 +22,19 @@ REAGENT SCANNER
 	throw_range = 10
 	matter = list(DEFAULT_WALL_MATERIAL = 200)
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
-	var/mode = 1;
+	var/mode = 1
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
 
+/obj/item/device/healthanalyzer/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
+	if(!cell || !cell.checked_use(3))
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << text("<span class='warning'>You try to analyze the floor's vitals!</span>")
 		for(var/mob/O in viewers(M, null))
@@ -120,11 +129,11 @@ REAGENT SCANNER
 				if (ID in virusDB)
 					var/datum/data/record/V = virusDB[ID]
 					user.show_message("<span class='warning'>Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]</span>")
-//			user.show_message(text("<span class='warning'>Warning: Unknown pathogen detected in subject's blood.</span>"))
+//				user.show_message(text("<span class='warning'>Warning: Unknown pathogen detected in subject's blood.</span>"))
 	if (M.getCloneLoss())
 		user.show_message("<span class='warning'>Subject appears to have been imperfectly cloned.</span>")
-//	if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
-//		user.show_message("<span class='notice'>Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.</span>")
+//		if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
+//			user.show_message("<span class='notice'>Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.</span>")
 	if (M.has_brain_worms())
 		user.show_message("<span class='warning'>Subject suffering from aberrant brain activity. Recommend further scanning.</span>")
 	else if (M.getBrainLoss() >= 60 || !M.has_brain())
@@ -169,7 +178,6 @@ REAGENT SCANNER
 				user.show_message("<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span>")
 		user.show_message("<span class='notice'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>")
 	src.add_fingerprint(user)
-	return
 
 /obj/item/device/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
@@ -182,6 +190,13 @@ REAGENT SCANNER
 		if(0)
 			usr << "The scanner no longer shows limb damage."
 
+/obj/item/device/healthanalyzer/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/device/healthanalyzer/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 /obj/item/device/analyzer
 	name = "analyzer"
@@ -194,26 +209,44 @@ REAGENT SCANNER
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
-
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
-
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/device/analyzer/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/device/analyzer/atmosanalyze(var/mob/user)
+	if(!cell || !cell.checked_use(5))
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
 	var/air = user.return_air()
 	if (!air)
 		return
 	flick("atmos2", src)
 	return atmosanalyzer_scan(src, air, user)
 
-/obj/item/device/analyzer/attack_self(mob/user as mob)
-	if(user.stat)
-		return
-	if(!user.IsAdvancedToolUser())
-		return
 
-	analyze_gases(src, user)
-	return
+/obj/item/device/analyzer/attack_self(mob/user as mob)
+	if(cell && cell.checked_use(3))
+		if(user.stat)
+			return
+		if(!user.IsAdvancedToolUser())
+			return
+		analyze_gases(src, user)
+	else
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+
+/obj/item/device/analyzer/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/device/analyzer/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 /obj/item/device/mass_spectrometer
 	name = "mass spectrometer"
@@ -232,12 +265,17 @@ REAGENT SCANNER
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	var/details = 0
 	var/recent_fail = 0
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/device/mass_spectrometer/New()
 	..()
 	var/datum/reagents/R = new/datum/reagents(5)
 	reagents = R
 	R.my_atom = src
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
+
 
 /obj/item/device/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)
@@ -246,6 +284,9 @@ REAGENT SCANNER
 		icon_state = initial(icon_state)
 
 /obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
+	if(!cell || !cell.checked_use(7))
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
 	if (user.stat)
 		return
 	if (!user.IsAdvancedToolUser())
@@ -268,7 +309,14 @@ REAGENT SCANNER
 				dat += "[R] "
 		user << "[dat]"
 		reagents.clear_reagents()
-	return
+
+/obj/item/device/mass_spectrometer/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/device/mass_spectrometer/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 /obj/item/device/mass_spectrometer/adv
 	name = "advanced mass spectrometer"
@@ -292,8 +340,18 @@ REAGENT SCANNER
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	var/details = 0
 	var/recent_fail = 0
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/device/reagent_scanner/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/device/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
+	if(!cell || !cell.checked_use(7))
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
 	if(!proximity)
 		return
 	if (user.stat)
@@ -302,7 +360,6 @@ REAGENT SCANNER
 		return
 	if(!istype(O))
 		return
-
 	if(!isnull(O.reagents))
 		var/dat = ""
 		if(O.reagents.reagent_list.len > 0)
@@ -316,7 +373,13 @@ REAGENT SCANNER
 	else
 		user << "<span class='notice'>No significant chemical agents found in [O].</span>"
 
-	return
+/obj/item/device/reagent_scanner/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/device/reagent_scanner/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 /obj/item/device/reagent_scanner/adv
 	name = "advanced reagent scanner"
@@ -335,8 +398,18 @@ REAGENT SCANNER
 	throw_speed = 3
 	throw_range = 7
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/device/slime_scanner/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
+	if(!cell || !cell.checked_use(7))
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
 	if (!isslime(M))
 		user << "<B>This device can only scan slimes!</B>"
 		return
@@ -366,3 +439,12 @@ REAGENT SCANNER
 	if (T.cores > 1)
 		user.show_message("Anomalious slime core amount detected")
 	user.show_message("Growth progress: [T.amount_grown]/10")
+
+
+/obj/item/device/slime_scanner/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/device/slime_scanner/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C

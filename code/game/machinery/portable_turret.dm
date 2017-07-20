@@ -286,7 +286,7 @@ var/list/turret_icons
 					user << "<span class='notice'>You remove the turret and salvage some components.</span>"
 					if(installation)
 						var/obj/item/weapon/gun/energy/Gun = new installation(loc)
-						Gun.power_supply.charge = gun_charge
+						Gun.cell.charge = gun_charge
 						Gun.update_icon()
 					if(prob(50))
 						new /obj/item/stack/material/steel(loc, rand(1,4))
@@ -744,7 +744,7 @@ var/list/turret_icons
 					user << "<span class='notice'>\the [I] is stuck to your hand, you cannot put it in \the [src]</span>"
 					return
 				installation = I.type //installation becomes I.type
-				gun_charge = E.power_supply.charge //the gun's charge is stored in gun_charge
+				gun_charge = E.cell.charge //the gun's charge is stored in gun_charge
 				user << "<span class='notice'>You add [I] to the turret.</span>"
 				target_type = /obj/machinery/porta_turret
 
@@ -847,7 +847,7 @@ var/list/turret_icons
 			build_step = 3
 
 			var/obj/item/weapon/gun/energy/Gun = new installation(loc)
-			Gun.power_supply.charge = gun_charge
+			Gun.cell.charge = gun_charge
 			Gun.update_icon()
 			installation = null
 			gun_charge = 0

@@ -7,6 +7,5 @@
 	force = WEAPON_FORCE_PAINFULL
 	fire_sound='sound/weapons/pulse.ogg'
 	projectile_type = /obj/item/projectile/beam/pulse
-	charge_cost = 100
-	max_shots = 30
+	charge_cost = 75
 	fire_delay = 15

@@ -9,8 +9,7 @@
 	force = WEAPON_FORCE_PAINFULL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	charge_cost = 300
-	max_shots = 10
+	charge_cost = 200
 	projectile_type = /obj/item/projectile/ion
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
@@ -18,7 +17,7 @@
 
 /obj/item/weapon/gun/energy/ionrifle/update_icon()
 	..()
-	if(power_supply.charge < charge_cost)
+	if(cell.charge < charge_cost)
 		item_state = "ionrifle-empty"
 	else
 		item_state = initial(item_state)
