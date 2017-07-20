@@ -35,7 +35,7 @@
 		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/device/flashlight/seclite,\
+		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/melee/baton/loaded
 	)
@@ -78,7 +78,7 @@
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/device/flashlight/seclite,\
+		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/melee/baton/loaded
 	)
@@ -188,7 +188,7 @@
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/device/flash,\
-		/obj/item/device/flashlight/seclite,\
+		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/melee/baton/loaded
 	)
