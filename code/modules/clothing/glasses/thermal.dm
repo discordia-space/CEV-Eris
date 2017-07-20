@@ -5,29 +5,29 @@
 	item_state = "glasses"
 	action_button_name = "Toggle Optical Matrix"
 	origin_tech = list(TECH_MAGNET = 3)
-	toggleable = 1
-	prescription = 1
+	toggleable = TRUE
+	prescription = TRUE
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_REDUCED
-	active = 0
+	active = FALSE
 	var/tick_cost = 0.5
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
 
-	emp_act(severity)
-		if(ishuman(src.loc))
-			var/mob/living/carbon/human/M = src.loc
-			M << "<span class='danger'>The Optical Thermal Scanner overloads and blinds you!</span>"
-			if(M.glasses == src)
-				M.eye_blind = 3
-				M.eye_blurry = 5
-				// Don't cure being nearsighted
-				if(!(M.disabilities & NEARSIGHTED))
-					M.disabilities |= NEARSIGHTED
-					spawn(100)
-						M.disabilities &= ~NEARSIGHTED
-		..()
+/obj/item/clothing/glasses/thermal/emp_act(severity)
+	if(ishuman(src.loc))
+		var/mob/living/carbon/human/M = src.loc
+		if(M.glasses == src)
+			M << "<span class='danger'>[src] overloads and blinds you!</span>"
+			M.eye_blind = 3
+			M.eye_blurry = 5
+			// Don't cure being nearsighted
+			if(!(M.disabilities & NEARSIGHTED))
+				M.disabilities |= NEARSIGHTED
+				spawn(100)
+					M.disabilities &= ~NEARSIGHTED
+	..()
 
 /obj/item/clothing/glasses/thermal/New()
 	..()
@@ -40,7 +40,7 @@
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
 				src.loc << "<span class='warning'>[src] flashes with error - LOW POWER.</span>"
-			toggle(ismob(loc) && loc, 0)
+			toggle(ismob(loc) && loc, FALSE)
 
 /obj/item/clothing/glasses/thermal/toggle(mob/user, new_state)
 	if(new_state)
@@ -64,7 +64,7 @@
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 
 /obj/item/clothing/glasses/thermal/plain
-	toggleable = 0
+	toggleable = FALSE
 	activation_sound = null
 	action_button_name = null
 

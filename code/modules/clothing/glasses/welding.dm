@@ -5,7 +5,7 @@
 	item_state = "welding-g"
 	action_button_name = "Flip Welding Goggles"
 	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
-	var/up = 0
+	var/up = FALSE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
 
@@ -43,5 +43,5 @@
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
-	prescription = 1
+	prescription = TRUE
 	tint = TINT_MODERATE

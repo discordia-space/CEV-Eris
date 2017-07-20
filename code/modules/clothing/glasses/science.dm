@@ -4,9 +4,9 @@
 	icon_state = "purple"
 	item_state = "glasses"
 	action_button_name = "Toggle Optical Matrix"
-	toggleable = 1
-	prescription = 1
-	active = 0
+	toggleable = TRUE
+	prescription = TRUE
+	active = FALSE
 	var/tick_cost = 0.1
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
@@ -22,7 +22,7 @@
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
 				src.loc << "<span class='warning'>[src] flashes with error - LOW POWER.</span>"
-			toggle(ismob(loc) && loc, 0)
+			toggle(ismob(loc) && loc, FALSE)
 
 /obj/item/clothing/glasses/science/toggle(mob/user, new_state)
 	if(new_state)

@@ -1,10 +1,10 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
-	var/prescription = 0
-	var/toggleable = 0
+	var/prescription = FALSE
+	var/toggleable = FALSE
 	var/off_state = "degoggles"
-	var/active = 1
+	var/active = TRUE
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
 	var/obj/screen/overlay = null
 	var/obj/item/clothing/glasses/hud/hud = null	// Hud glasses, if any
@@ -30,7 +30,7 @@
 				user << activation_sound
 			user << "<span class='notice'>[src] optical matrix activated.</span>"
 	else
-		active = 0
+		active = FALSE
 		icon_state = off_state
 		flash_protection = FLASH_PROTECTION_NONE
 		tint = TINT_NONE

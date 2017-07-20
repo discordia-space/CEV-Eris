@@ -6,11 +6,11 @@
 	action_button_name = "Toggle Optical Matrix"
 	origin_tech = list(TECH_MAGNET = 2)
 	darkness_view = 7
-	toggleable = 1
-	prescription = 1
+	toggleable = TRUE
+	prescription = TRUE
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	off_state = "denight"
-	active = 0
+	active = FALSE
 	var/tick_cost = 1
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
@@ -26,7 +26,7 @@ obj/item/clothing/glasses/night/process()
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
 				src.loc << "<span class='warning'>[src] flashes with error - LOW POWER.</span>"
-			toggle(ismob(loc) && loc, 0)
+			toggle(ismob(loc) && loc, FALSE)
 
 obj/item/clothing/glasses/night/toggle(mob/user, new_state)
 	if(new_state)

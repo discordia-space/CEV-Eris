@@ -8,7 +8,7 @@
 
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
-	var/emagged = 0
+	var/emagged = FALSE
 	var/insults = 0
 	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!")
 
@@ -60,6 +60,6 @@
 /obj/item/device/megaphone/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		user << "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>"
-		emagged = 1
+		emagged = TRUE
 		insults = rand(1, 3)//to prevent dickflooding
-		return 1
+		return TRUE
