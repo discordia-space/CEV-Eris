@@ -105,6 +105,7 @@
 #define EVENT_LEVEL_MUNDANE  1
 #define EVENT_LEVEL_MODERATE 2
 #define EVENT_LEVEL_MAJOR    3
+#define EVENT_LEVEL_ECONOMY  4
 
 //General-purpose life speed define for plants.
 #define HYDRO_SPEED_MULTIPLIER 1
@@ -209,7 +210,7 @@
 #define ANNOUNSER_NAME "CEV Eris System Announcer"
 
 
-#define LIST_OF_CONSONANT list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","ö","ê","í","ã","ø","ù","ç","õ","ô","â","ï","ð","ë","ä","æ","÷","ñ","ì","ò","á","é","û")
+#define LIST_OF_CONSONANT list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","Ã¶","Ãª","Ã­","Ã£","Ã¸","Ã¹","Ã§","Ãµ","Ã´","Ã¢","Ã¯","Ã°","Ã«","Ã¤","Ã¦","Ã·","Ã±","Ã¬","Ã²","Ã¡","Ã©","Ã»")
 
 //Multi-z
 #define FALL_GIB_DAMAGE 999
