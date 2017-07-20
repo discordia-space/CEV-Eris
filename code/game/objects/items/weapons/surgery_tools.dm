@@ -20,7 +20,6 @@
 	flags = CONDUCT
 	w_class = 2.0
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
-	corporation = "bluecorp"
 /*
  * Hemostat
  */
@@ -34,7 +33,6 @@
 	w_class = 2.0
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
-	corporation = "defaultcorp"
 /*
  * Cautery
  */
@@ -48,7 +46,6 @@
 	w_class = 2.0
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("burnt")
-	corporation = "redcorp"
 /*
  * Surgical Drill
  */
@@ -64,7 +61,6 @@
 	w_class = 3
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
-	corporation = "greencorp"
 /*
  * Scalpel
  */
