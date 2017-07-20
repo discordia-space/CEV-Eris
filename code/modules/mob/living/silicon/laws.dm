@@ -59,14 +59,16 @@
 
 /mob/living/silicon/proc/statelaws(var/datum/ai_laws/laws)
 	var/prefix = ""
-	if(MAIN_CHANNEL == lawchannel)
-		prefix = ";"
-	else if(lawchannel == "Binary")
-		prefix = "[get_language_prefix()]b"
-	else if((lawchannel in additional_law_channels))
-		prefix = additional_law_channels[lawchannel]
-	else
-		prefix = get_radio_key_from_channel(lawchannel)
+	switch(lawchannel)
+		if(MAIN_CHANNEL)
+			prefix = ";"
+		if("Binary")
+			prefix = "[get_language_prefix()]b"
+		else
+			if((lawchannel in additional_law_channels))
+				prefix = ":" + additional_law_channels[lawchannel]
+			else
+				prefix = ":" + get_radio_key_from_channel(lawchannel)
 
 	dostatelaws(lawchannel, prefix, laws)
 
