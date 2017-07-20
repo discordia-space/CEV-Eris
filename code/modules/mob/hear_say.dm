@@ -1,6 +1,6 @@
 // At minimum every mob has a hear_say proc.
 
-/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if(!client)
 		return
 
@@ -30,7 +30,7 @@
 	else
 		on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
 	if(speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
-		var/turf/source = speaker? get_turf(speaker) : get_turf(src)
+		var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 		src.playsound_local(source, speech_sound, sound_vol, 1)
 
 /mob/proc/on_hear_say(var/message)
@@ -78,10 +78,10 @@
 	var/jobname // the mob's "job"
 	var/mob/living/carbon/human/impersonating //The crew member being impersonated, if any.
 
-	if (ishuman(speaker))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 
-		if(H.wear_mask && istype(H.wear_mask,/obj/item/clothing/mask/gas/voice))
+		if(H.wear_mask && istype(H.wear_mask, /obj/item/clothing/mask/gas/voice))
 			changed_voice = TRUE
 			var/mob/living/carbon/human/I
 
@@ -92,7 +92,7 @@
 
 			// If I's display name is currently different from the voice name and using an agent ID then don't impersonate
 			// as this would allow the AI to track I and realize the mismatch.
-			if(I && (I.name == speaker_name || !I.wear_id || !istype(I.wear_id,/obj/item/weapon/card/id/syndicate)))
+			if(I && (I.name == speaker_name || !I.wear_id || !istype(I.wear_id, /obj/item/weapon/card/id/syndicate)))
 				impersonating = I
 				jobname = impersonating.get_assignment()
 			else
@@ -100,13 +100,13 @@
 		else
 			jobname = H.get_assignment()
 
-	else if (iscarbon(speaker)) // Nonhuman carbon mob
+	else if(iscarbon(speaker)) // Nonhuman carbon mob
 		jobname = "No id"
-	else if (isAI(speaker))
+	else if(isAI(speaker))
 		jobname = "AI"
-	else if (isrobot(speaker))
+	else if(isrobot(speaker))
 		jobname = "Cyborg"
-	else if (istype(speaker, /mob/living/silicon/pai))
+	else if(istype(speaker, /mob/living/silicon/pai))
 		jobname = "Personal AI"
 	else
 		jobname = "Unknown"

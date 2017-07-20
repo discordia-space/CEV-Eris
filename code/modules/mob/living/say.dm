@@ -42,7 +42,7 @@ proc/get_radio_key_from_channel(var/channel)
 	var/mob/living/carbon/human/H = src
 	if(H.l_ear || H.r_ear)
 		var/obj/item/device/radio/headset/dongle
-		if(istype(H.l_ear,/obj/item/device/radio/headset))
+		if(istype(H.l_ear, /obj/item/device/radio/headset))
 			dongle = H.l_ear
 		else
 			dongle = H.r_ear
@@ -227,7 +227,7 @@ proc/get_radio_key_from_channel(var/channel)
 				listening |= M
 
 	var/speech_bubble_test = say_test(message)
-	var/image/speech_bubble = image('icons/mob/talk.dmi',src, "h[speech_bubble_test]")
+	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
 	spawn(30)
 		qdel(speech_bubble)
 
