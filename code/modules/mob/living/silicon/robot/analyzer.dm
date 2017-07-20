@@ -24,7 +24,7 @@
 		cell = new suitable_cell(src)
 
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
-	if(!cell && !cell.checked_use(5))
+	if(!cell || !cell.checked_use(5))
 		user << "<span class='warning'>[src] battery is dead or missing</span>"
 		return
 	if((CLUMSY in user.mutations) && prob(50))

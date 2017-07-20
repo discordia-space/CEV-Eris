@@ -220,7 +220,7 @@ REAGENT SCANNER
 		cell = new suitable_cell(src)
 
 /obj/item/device/analyzer/atmosanalyze(var/mob/user)
-	if(!cell && !cell.checked_use(5))
+	if(!cell || !cell.checked_use(5))
 		user << "<span class='warning'>[src] battery is dead or missing</span>"
 		return
 	var/air = user.return_air()
@@ -284,31 +284,31 @@ REAGENT SCANNER
 		icon_state = initial(icon_state)
 
 /obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
-	if(cell && cell.checked_use(7))
-		if (user.stat)
-			return
-		if (!user.IsAdvancedToolUser())
-			return
-		if(reagents.total_volume)
-			var/list/blood_traces = list()
-			for(var/datum/reagent/R in reagents.reagent_list)
-				if(R.id != "blood")
-					reagents.clear_reagents()
-					user << "<span class='warning'>The sample was contaminated! Please insert another sample</span>"
-					return
-				else
-					blood_traces = params2list(R.data["trace_chem"])
-					break
-			var/dat = "Trace Chemicals Found: "
-			for(var/R in blood_traces)
-				if(details)
-					dat += "[R] ([blood_traces[R]] units) "
-				else
-					dat += "[R] "
-			user << "[dat]"
-			reagents.clear_reagents()
-	else
+	if(!cell || !cell.checked_use(7))
 		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
+	if (user.stat)
+		return
+	if (!user.IsAdvancedToolUser())
+		return
+	if(reagents.total_volume)
+		var/list/blood_traces = list()
+		for(var/datum/reagent/R in reagents.reagent_list)
+			if(R.id != "blood")
+				reagents.clear_reagents()
+				user << "<span class='warning'>The sample was contaminated! Please insert another sample</span>"
+				return
+			else
+				blood_traces = params2list(R.data["trace_chem"])
+				break
+		var/dat = "Trace Chemicals Found: "
+		for(var/R in blood_traces)
+			if(details)
+				dat += "[R] ([blood_traces[R]] units) "
+			else
+				dat += "[R] "
+		user << "[dat]"
+		reagents.clear_reagents()
 
 /obj/item/device/mass_spectrometer/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
@@ -349,7 +349,7 @@ REAGENT SCANNER
 		cell = new suitable_cell(src)
 
 /obj/item/device/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
-	if(!cell && !cell.checked_use(7))
+	if(!cell || !cell.checked_use(7))
 		user << "<span class='warning'>[src] battery is dead or missing</span>"
 		return
 	if(!proximity)
@@ -407,38 +407,39 @@ REAGENT SCANNER
 		cell = new suitable_cell(src)
 
 /obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
-	if(cell && cell.checked_use(5))
-		if (!isslime(M))
-			user << "<B>This device can only scan slimes!</B>"
-			return
-		var/mob/living/carbon/slime/T = M
-		user.show_message("Slime scan results:")
-		user.show_message(text("[T.colour] [] slime", T.is_adult ? "adult" : "baby"))
-		user.show_message(text("Nutrition: [T.nutrition]/[]", T.get_max_nutrition()))
-		if (T.nutrition < T.get_starve_nutrition())
-			user.show_message("<span class='alert'>Warning: slime is starving!</span>")
-		else if (T.nutrition < T.get_hunger_nutrition())
-			user.show_message("<span class='warning'>Warning: slime is hungry</span>")
-		user.show_message("Electric change strength: [T.powerlevel]")
-		user.show_message("Health: [T.health]")
-		if (T.slime_mutation[4] == T.colour)
-			user.show_message("This slime does not evolve any further")
-		else
-			if (T.slime_mutation[3] == T.slime_mutation[4])
-				if (T.slime_mutation[2] == T.slime_mutation[1])
-					user.show_message(text("Possible mutation: []", T.slime_mutation[3]))
-					user.show_message("Genetic destability: [T.mutation_chance/2]% chance of mutation on splitting")
-				else
-					user.show_message(text("Possible mutations: [], [], [] (x2)", T.slime_mutation[1], T.slime_mutation[2], T.slime_mutation[3]))
-					user.show_message("Genetic destability: [T.mutation_chance]% chance of mutation on splitting")
-			else
-				user.show_message(text("Possible mutations: [], [], [], []", T.slime_mutation[1], T.slime_mutation[2], T.slime_mutation[3], T.slime_mutation[4]))
-				user.show_message("Genetic destability: [T.mutation_chance]% chance of mutation on splitting")
-		if (T.cores > 1)
-			user.show_message("Anomalious slime core amount detected")
-		user.show_message("Growth progress: [T.amount_grown]/10")
+	if(!cell || !cell.checked_use(7))
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
+	if (!isslime(M))
+		user << "<B>This device can only scan slimes!</B>"
+		return
+	var/mob/living/carbon/slime/T = M
+	user.show_message("Slime scan results:")
+	user.show_message(text("[T.colour] [] slime", T.is_adult ? "adult" : "baby"))
+	user.show_message(text("Nutrition: [T.nutrition]/[]", T.get_max_nutrition()))
+	if (T.nutrition < T.get_starve_nutrition())
+		user.show_message("<span class='alert'>Warning: slime is starving!</span>")
+	else if (T.nutrition < T.get_hunger_nutrition())
+		user.show_message("<span class='warning'>Warning: slime is hungry</span>")
+	user.show_message("Electric change strength: [T.powerlevel]")
+	user.show_message("Health: [T.health]")
+	if (T.slime_mutation[4] == T.colour)
+		user.show_message("This slime does not evolve any further")
 	else
-		user << "<span class='warning'>[name] battery is dead or missing</span>"
+		if (T.slime_mutation[3] == T.slime_mutation[4])
+			if (T.slime_mutation[2] == T.slime_mutation[1])
+				user.show_message(text("Possible mutation: []", T.slime_mutation[3]))
+				user.show_message("Genetic destability: [T.mutation_chance/2]% chance of mutation on splitting")
+			else
+				user.show_message(text("Possible mutations: [], [], [] (x2)", T.slime_mutation[1], T.slime_mutation[2], T.slime_mutation[3]))
+				user.show_message("Genetic destability: [T.mutation_chance]% chance of mutation on splitting")
+		else
+			user.show_message(text("Possible mutations: [], [], [], []", T.slime_mutation[1], T.slime_mutation[2], T.slime_mutation[3], T.slime_mutation[4]))
+			user.show_message("Genetic destability: [T.mutation_chance]% chance of mutation on splitting")
+	if (T.cores > 1)
+		user.show_message("Anomalious slime core amount detected")
+	user.show_message("Growth progress: [T.amount_grown]/10")
+
 
 /obj/item/device/slime_scanner/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
