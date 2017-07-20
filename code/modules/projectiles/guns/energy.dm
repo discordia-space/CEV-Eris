@@ -108,7 +108,7 @@
 
 /obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C
 		update_icon()
 	else
 		usr << "<span class='warning'>[src] is a self-charging gun, it doesn't need more batteries.</span>"

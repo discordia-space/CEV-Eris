@@ -217,7 +217,7 @@
 
 			O.job = "Cyborg"
 
-			O.cell = chest.cell
+			O.src.cell = chest.cell
 			O.cell.loc = O
 			W.loc = O//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
 

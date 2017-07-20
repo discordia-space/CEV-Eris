@@ -196,7 +196,7 @@ REAGENT SCANNER
 
 /obj/item/device/healthanalyzer/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C
 
 /obj/item/device/analyzer
 	name = "analyzer"
@@ -246,7 +246,7 @@ REAGENT SCANNER
 
 /obj/item/device/analyzer/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C
 
 /obj/item/device/mass_spectrometer
 	name = "mass spectrometer"
@@ -316,7 +316,7 @@ REAGENT SCANNER
 
 /obj/item/device/mass_spectrometer/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C
 
 /obj/item/device/mass_spectrometer/adv
 	name = "advanced mass spectrometer"
@@ -379,7 +379,7 @@ REAGENT SCANNER
 
 /obj/item/device/reagent_scanner/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C
 
 /obj/item/device/reagent_scanner/adv
 	name = "advanced reagent scanner"
@@ -447,4 +447,4 @@ REAGENT SCANNER
 
 /obj/item/device/slime_scanner/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C

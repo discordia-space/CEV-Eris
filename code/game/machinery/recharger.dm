@@ -63,7 +63,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 				user << "This device does not have a battery installed."
 				return
 			else
-				cell = C.battery_module.battery
+				src.cell = C.battery_module.battery
 
 		user.unEquip(G)
 		G.forceMove(src)

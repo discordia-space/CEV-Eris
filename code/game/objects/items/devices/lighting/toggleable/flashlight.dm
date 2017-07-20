@@ -37,7 +37,7 @@
 
 /obj/item/device/lighting/toggleable/flashlight/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C
 
 /obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
 	add_fingerprint(user)

@@ -56,7 +56,7 @@
 				var/obj/item/weapon/cell/medium/C = usr.get_active_hand()
 				if(istype(C))
 					user.drop_item()
-					cell = C
+					src.cell = C
 					C.loc = src
 					C.add_fingerprint(usr)
 
@@ -139,7 +139,7 @@
 					var/obj/item/weapon/cell/medium/C = usr.get_active_hand()
 					if(istype(C))
 						usr.drop_item()
-						cell = C
+						src.cell = C
 						C.loc = src
 						C.add_fingerprint(usr)
 						power_change()

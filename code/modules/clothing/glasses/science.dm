@@ -37,4 +37,4 @@
 
 /obj/item/clothing/glasses/science/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C

@@ -55,7 +55,7 @@
 
 /obj/item/clothing/glasses/thermal/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
+		src.cell = C
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"
