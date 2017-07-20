@@ -12,7 +12,8 @@
 	pixel_x = rand(-12,12)
 	pixel_y = rand(-12,12)
 	fuel = rand(max_fuel*0.8, max_fuel)
-	light_color = color
+	if(!light_color)
+		light_color = color
 	..()
 
 /obj/item/device/lighting/glowstick/process()
