@@ -28,26 +28,26 @@
 	if(user.silent)
 		return
 
+	if(!cell && !cell.checked_use(5))
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
 	if(!message)
 		return
-	if(cell && cell.checked_use(5))
-		message = capitalize(message)
-		log_say("[user.name]/[user.key]  (megaphone) : [message]")
-		if ((src.loc == user && usr.stat == 0))
-			if(emagged)
-				if(insults)
-					for(var/mob/O in (viewers(user)))
-						O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
-					insults--
-				else
-					user << "<span class='warning'>*BZZZZzzzzzt*</span>"
-			else
+	message = capitalize(message)
+	log_say("[user.name]/[user.key]  (megaphone) : [message]")
+	if ((src.loc == user && usr.stat == 0))
+		if(emagged)
+			if(insults)
 				for(var/mob/O in (viewers(user)))
-					O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
-			return
-	else
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+					O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
+				insults--
+			else
+				user << "<span class='warning'>*BZZZZzzzzzt*</span>"
+		else
+			for(var/mob/O in (viewers(user)))
+				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
+		return
 
 /obj/item/device/megaphone/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
