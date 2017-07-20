@@ -17,11 +17,13 @@
 	. = src.say_dead(message)
 
 /mob/observer/ghost/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",
-		var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
-	if(!client) return
+		var/italics = FALSE, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+	if(!client)
+		return
 
 	if(speaker && !speaker.client && is_preference_enabled(/datum/client_preference/ghost_ears) && !(speaker in view(src)))
-			//Does the speaker have a client?  It's either random stuff that observers won't care about (Experiment 97B says, 'EHEHEHEHEHEHEHE')
+			//Does the speaker have a client?
+			// It's either random stuff that observers won't care about (Experiment 97B says, 'EHEHEHEHEHEHEHE')
 			//Or someone snoring.  So we make it where they won't hear it.
 		return
 	..()
@@ -39,7 +41,7 @@
 	log_emote("Ghost/[src.key] : [message]")
 
 	if(src.client)
-		if(src.client.prefs.muted & MUTE_DEADCHAT)
+		if(src.client.prefs.muted&MUTE_DEADCHAT)
 			src << "\red You cannot emote in deadchat (muted)."
 			return
 

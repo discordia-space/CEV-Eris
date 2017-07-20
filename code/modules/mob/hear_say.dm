@@ -29,7 +29,7 @@
 		on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][language.format_message(message, verb)]</span>")
 	else
 		on_hear_say("<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='body'>\"[message]\"</span></span></span>")
-	if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
+	if(speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 		var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 		src.playsound_local(source, speech_sound, sound_vol, 1)
 
@@ -40,12 +40,13 @@
 	var/time = say_timestamp()
 	src << "[time] [message]"
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null,\
+		var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/voice_name ="")
 
 	if(!client)
 		return
 
-	var/speaker_name = get_hear_name(speaker, hard_to_hear, vname)
+	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
 
 	if(language)
 		message = language.format_message_radio(message, verb)
@@ -54,9 +55,9 @@
 
 	on_hear_radio(part_a, speaker_name, part_b, message)
 
-/mob/proc/get_hear_name(var/mob/speaker, hard_to_hear, vname)
+/mob/proc/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
 	if(hard_to_hear)
-		return "unknown"
+		return "Unknown"
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
@@ -65,12 +66,13 @@
 		for(var/datum/data/record/G in data_core.general)
 			if(G.fields["name"] == speaker_name)
 				return H.rank_prefix_name(speaker_name)
-	return vname ? vname : speaker_name
+	return voice_name ? voice_name : speaker_name
 
 
-/mob/living/silicon/ai/get_hear_name(speaker, hard_to_hear, vname)
+/mob/living/silicon/ai/get_hear_name(speaker, hard_to_hear, voice_name)
 	var/speaker_name = ..()
-	if(hard_to_hear) return speaker_name
+	if(hard_to_hear)
+		return speaker_name
 
 	var/changed_voice
 	var/jobname // the mob's "job"
@@ -80,7 +82,7 @@
 		var/mob/living/carbon/human/H = speaker
 
 		if(H.wear_mask && istype(H.wear_mask,/obj/item/clothing/mask/gas/voice))
-			changed_voice = 1
+			changed_voice = TRUE
 			var/mob/living/carbon/human/I
 
 			for(var/mob/living/carbon/human/M in mob_list)
@@ -117,7 +119,7 @@
 	else
 		return "<a href=\"byond://?src=\ref[src];trackname=[rhtml_encode(speaker_name)];track=\ref[speaker]\">[speaker_name] ([jobname])</a>"
 
-/mob/observer/ghost/get_hear_name(var/mob/speaker, hard_to_hear, vname)
+/mob/observer/ghost/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
 	var/speaker_name = ..()
 	if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 		speaker_name = "[speaker.real_name] ([speaker_name])"
