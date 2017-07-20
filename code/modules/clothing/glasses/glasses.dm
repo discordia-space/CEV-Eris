@@ -21,7 +21,7 @@
 
 /obj/item/clothing/glasses/proc/toggle(mob/user, new_state = 0)
 	if(new_state)
-		active = 1
+		active = TRUE
 		icon_state = initial(icon_state)
 		flash_protection = initial(flash_protection)
 		tint = initial(tint)

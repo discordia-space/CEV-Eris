@@ -32,7 +32,7 @@ REAGENT SCANNER
 		cell = new suitable_cell(src)
 
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
-	if(!cell && !cell.checked_use(3))
+	if(!cell || !cell.checked_use(3))
 		user << "<span class='warning'>[src] battery is dead or missing</span>"
 		return
 	if ((CLUMSY in user.mutations) && prob(50))
