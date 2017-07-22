@@ -429,8 +429,8 @@
 	maxhealth = 12.0
 
 /obj/structure/window/basic/full
-    dir = 5
-    icon_state = "fwindow"
+	dir = SOUTH|EAST
+	icon_state = "fwindow"
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
@@ -444,8 +444,8 @@
 	maxhealth = 40.0
 
 /obj/structure/window/plasmabasic/full
-    dir = 5
-    icon_state = "plasmawindow_mask"
+	dir = SOUTH|EAST
+	icon_state = "plasmawindow_mask"
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -466,8 +466,8 @@
 		state = 0
 
 /obj/structure/window/reinforced/full
-    dir = 5
-    icon_state = "fwindow"
+	dir = SOUTH|EAST
+	icon_state = "fwindow"
 
 /obj/structure/window/reinforced/plasma
 	name = "reinforced borosilicate window"
@@ -481,8 +481,8 @@
 	maxhealth = 80.0
 
 /obj/structure/window/reinforced/plasma/full
-    dir = 5
-    icon_state = "plasmarwindow_mask"
+	dir = SOUTH|EAST
+	icon_state = "plasmarwindow_mask"
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
