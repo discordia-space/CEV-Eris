@@ -121,7 +121,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	icon_state = "computer"
 	anchored = 1
 	density = 1
-	var/arcanecheckout = 0
 	var/screenstate = 0 // 0 - Main Menu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
 	var/sortby = "author"
 	var/buffer_book
@@ -147,13 +146,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			<A href='?src=\ref[src];switchscreen=5'>5. Upload New Title to Archive</A><BR>"}
 			if(src.emagged)
 				dat += "<A href='?src=\ref[src];switchscreen=6'>6. Access the Forbidden Lore Vault</A><BR>"
-			if(src.arcanecheckout)
-				new /obj/item/weapon/book/tome(src.loc)
-				user.visible_message(
-				"<span class='notice'>\The [user] stares at the blank screen for a few moments, \his expression frozen in fear. When \he finally awakens from it, \he looks a lot older.</span>",
-				"<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it.</span>"
-				)
-				src.arcanecheckout = 0
 		if(1)
 			// Inventory
 			dat += "<H3>Inventory</H3><BR>"
@@ -289,10 +281,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 			if("7")
 				screenstate = 7
-	if(href_list["arccheckout"])
-		if(src.emagged)
-			src.arcanecheckout = 1
-		src.screenstate = 0
 	if(href_list["increasetime"])
 		checkoutperiod += 1
 	if(href_list["decreasetime"])

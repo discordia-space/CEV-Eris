@@ -18,7 +18,7 @@
 
 /obj/item/weapon/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
-	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
+	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
 		if(reagents.total_volume < 1)
 			user << "<span class='notice'>Your mop is dry!</span>"
 			return

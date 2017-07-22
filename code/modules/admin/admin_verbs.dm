@@ -46,7 +46,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_direct_narrate,	//send text directly to a player with no padding. Useful for narratives and fluff-text,
 	/client/proc/cmd_admin_world_narrate,	//sends text to all players with no padding,
 	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/check_words,			//displays cult-words,
 	/client/proc/check_ai_laws,			//shows AI and borg laws,
 	/client/proc/rename_silicon,		//properly renames silicons,
 	/client/proc/manage_silicon_laws,	// Allows viewing and editing silicon laws. ,
@@ -220,7 +219,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/admin_cancel_shuttle,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
-	/client/proc/check_words,
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
 	/client/proc/play_server_sound,
@@ -917,14 +915,3 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
-
-/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun"
-	set name = "Give Spell"
-	set desc = "Gives a spell to a mob."
-	var/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spells
-	if(!S) return
-	T.add_spell(new S)
-
-	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the spell [S].", 1)

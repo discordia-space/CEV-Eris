@@ -276,10 +276,6 @@
 			apply_material_decorations = 0
 			if(prob(10))
 				apply_image_decorations = 1
-			if(prob(25))
-				new_item = new /obj/item/device/soulstone(src.loc)
-				new_item.icon = 'icons/obj/xenoarchaeology.dmi'
-				new_item.icon_state = icon_state
 		if(17)
 			//cultblade
 			apply_prefix = 0
@@ -292,28 +288,12 @@
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "unknown[rand(1,4)]"
 			new_item.desc = ""
-		if(19)
+		if(19 to 20)
 			apply_prefix = 0
 			new_item = new /obj/item/weapon/material/sword(src.loc)
 			new_item.force = 10
 			item_type = new_item.name
-		if(20)
-			//arcane clothing
-			apply_prefix = 0
-			var/list/possible_spawns = list(/obj/item/clothing/head/culthood,
-			/obj/item/clothing/head/culthood/magus,
-			/obj/item/clothing/head/culthood/alt,
-			/obj/item/clothing/head/helmet/space/cult)
-
-			var/new_type = pick(possible_spawns)
-			new_item = new new_type(src.loc)
-		if(21)
-			//soulstone
-			apply_prefix = 0
-			new_item = new /obj/item/device/soulstone(src.loc)
-			item_type = new_item.name
-			apply_material_decorations = 0
-		if(22)
+		if(21 to 22)
 			if(prob(50))
 				new_item = new /obj/item/weapon/material/shard(src.loc)
 			else
