@@ -428,6 +428,10 @@
 	damage_per_fire_tick = 2.0
 	maxhealth = 12.0
 
+/obj/structure/window/basic/full
+	dir = SOUTH|EAST
+	icon_state = "fwindow"
+
 /obj/structure/window/plasmabasic
 	name = "plasma window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
@@ -439,18 +443,9 @@
 	damage_per_fire_tick = 1.0
 	maxhealth = 40.0
 
-/obj/structure/window/plasmareinforced
-	name = "reinforced borosilicate window"
-	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "plasmarwindow"
-	icon_state = "plasmarwindow"
-	shardtype = /obj/item/weapon/material/shard/plasma
-	glasstype = /obj/item/stack/material/glass/plasmarglass
-	reinf = 1
-	maximal_heat = T0C + 9000
-	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
-	maxhealth = 80.0
-
+/obj/structure/window/plasmabasic/full
+	dir = SOUTH|EAST
+	icon_state = "plasmawindow_mask"
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -463,7 +458,6 @@
 	damage_per_fire_tick = 2.0
 	glasstype = /obj/item/stack/material/glass/reinforced
 
-
 /obj/structure/window/New(Loc, constructed=0)
 	..()
 
@@ -472,8 +466,23 @@
 		state = 0
 
 /obj/structure/window/reinforced/full
-    dir = 5
-    icon_state = "fwindow"
+	dir = SOUTH|EAST
+	icon_state = "fwindow"
+
+/obj/structure/window/reinforced/plasma
+	name = "reinforced borosilicate window"
+	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
+	basestate = "plasmarwindow"
+	icon_state = "plasmarwindow"
+	shardtype = /obj/item/weapon/material/shard/plasma
+	glasstype = /obj/item/stack/material/glass/plasmarglass
+	maximal_heat = T0C + 9000
+	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
+	maxhealth = 80.0
+
+/obj/structure/window/reinforced/plasma/full
+	dir = SOUTH|EAST
+	icon_state = "plasmarwindow_mask"
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
