@@ -10,7 +10,6 @@
 	slot_flags = SLOT_BELT|SLOT_BACK
 
 	projectile_type = /obj/item/projectile/temp
-	cell_type = /obj/item/weapon/cell/big/high
 
 
 /obj/item/weapon/gun/energy/temperature/New()

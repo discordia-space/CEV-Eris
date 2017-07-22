@@ -4,7 +4,7 @@
 	icon_state = "energystun100"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
-	max_shots = 10
+	charge_cost = 150
 
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
@@ -25,11 +25,13 @@
 	desc = "Last chance gun."
 	icon_state = "PDW"
 	item_state = "gun"
-	max_shots = 2
 	charge_meter = 0
 	w_class = 2
+	charge_cost = 50
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	modifystate = null
+	suitable_cell = /obj/item/weapon/cell/small
+	cell_type = /obj/item/weapon/cell/small
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]

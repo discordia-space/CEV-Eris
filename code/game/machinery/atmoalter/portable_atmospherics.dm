@@ -167,7 +167,7 @@
 
 		user.drop_item()
 		C.add_fingerprint(user)
-		cell = C
+		src.cell = C
 		C.loc = src
 		user.visible_message("<span class='notice'>[user] opens the panel on [src] and inserts [C].</span>", "<span class='notice'>You open the panel on [src] and insert [C].</span>")
 		power_change()

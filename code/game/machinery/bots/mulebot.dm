@@ -95,7 +95,7 @@
 		var/obj/item/weapon/cell/big/C = I
 		user.drop_item()
 		C.loc = src
-		cell = C
+		src.cell = C
 		updateDialog()
 	else if(istype(I,/obj/item/weapon/screwdriver))
 		if(locked)
@@ -286,7 +286,7 @@
 					var/obj/item/weapon/cell/big/C = usr.get_active_hand()
 					if(istype(C))
 						usr.drop_item()
-						cell = C
+						src.cell = C
 						C.loc = src
 						C.add_fingerprint(usr)
 

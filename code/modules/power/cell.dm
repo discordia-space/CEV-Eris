@@ -2,11 +2,12 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/weapon/cell/big/New()
+/obj/item/weapon/cell/New()
 	..()
 	charge = maxcharge
+	update_icon()
 
-/obj/item/weapon/cell/big/initialize()
+/obj/item/weapon/cell/initialize()
 	..()
 	update_icon()
 
@@ -28,9 +29,16 @@
 	if(charge < 0.01)
 		return
 	else if(charge/maxcharge >=0.995)
-		overlays += image('icons/obj/power.dmi', "cell-o2")
-	else
-		overlays += image('icons/obj/power.dmi', "cell-o1")
+		overlays += image('icons/obj/power.dmi', "[icon_state]_100")
+	else if(charge/maxcharge >=0.75)
+		overlays += image('icons/obj/power.dmi', "[icon_state]_75")
+	else if(charge/maxcharge >=0.50)
+		overlays += image('icons/obj/power.dmi', "[icon_state]_50")
+	else if(charge/maxcharge >=0.25)
+		overlays += image('icons/obj/power.dmi', "[icon_state]_25")
+	else if(charge/maxcharge >=0.01)
+		overlays += image('icons/obj/power.dmi', "[icon_state]_0")
+
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
 	return 100.0*charge/maxcharge
@@ -49,6 +57,7 @@
 		return 0
 	var/used = min(charge, amount)
 	charge -= used
+	update_icon()
 	return used
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
@@ -60,7 +69,7 @@
 	return 1
 
 // recharge the cell
-/obj/item/weapon/cell/big/proc/give(var/amount)
+/obj/item/weapon/cell/proc/give(var/amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
@@ -68,15 +77,16 @@
 	if(maxcharge < amount)	return 0
 	var/amount_used = min(maxcharge-charge,amount)
 	charge += amount_used
+	update_icon()
 	return amount_used
 
 
 /obj/item/weapon/cell/examine(mob/user)
-	if(get_dist(src, user) > 1)
+	if(!..(user,2))
 		return
 
 	if(maxcharge <= 2500)
-		user << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
+		user << "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
 	else
 		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
 

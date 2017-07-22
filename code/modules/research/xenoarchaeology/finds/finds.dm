@@ -357,13 +357,13 @@
 				//10% chance to have an unchargeable cell
 				//15% chance to gain a random amount of starting energy, otherwise start with an empty cell
 				if(prob(5))
-					new_gun.power_supply.rigged = 1
+					new_gun.cell.rigged = TRUE
 				if(prob(10))
-					new_gun.power_supply.maxcharge = 0
+					new_gun.cell.maxcharge = 0
 				if(prob(15))
-					new_gun.power_supply.charge = rand(0, new_gun.power_supply.maxcharge)
+					new_gun.cell.charge = rand(0, new_gun.cell.maxcharge)
 				else
-					new_gun.power_supply.charge = 0
+					new_gun.cell.charge = 0
 
 			item_type = "gun"
 		if(27)
