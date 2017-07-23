@@ -17,11 +17,11 @@
 	var/max_matter = 300
 	var/loaded_dna //Blood sample for DNA hashing.
 	var/list/products = list(
-		"heart" =   list(/obj/item/organ/heart,  50),
-		"lungs" =   list(/obj/item/organ/lungs,  40),
-		"kidneys" = list(/obj/item/organ/kidneys,20),
-		"eyes" =    list(/obj/item/organ/eyes,   30),
-		"liver" =   list(/obj/item/organ/liver,  50)
+		"heart" =   list(/obj/item/organ/internal/heart,  50),
+		"lungs" =   list(/obj/item/organ/internal/lungs,  40),
+		"kidneys" = list(/obj/item/organ/internal/kidneys,20),
+		"eyes" =    list(/obj/item/organ/internal/eyes,   30),
+		"liver" =   list(/obj/item/organ/internal/liver,  50)
 		)
 
 /obj/machinery/bioprinter/prosthetics
@@ -87,5 +87,5 @@
 		user << "<span class='info'>\The [src] processes \the [W]. Levels of stored matter now: [stored_matter]</span>"
 		qdel(W)
 		return
-	
+
 	return..()

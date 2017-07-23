@@ -1,22 +1,22 @@
-/obj/item/organ/heart
+/obj/item/organ/internal/heart
 	name = "heart"
 	icon_state = "heart-on"
-	organ_tag = "heart"
-	parent_organ = "chest"
+	organ_tag = O_HEART
+	parent_organ = BP_CHEST
 	dead_icon = "heart-off"
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
 	var/beat_sound = 'sound/effects/singlebeat.ogg'
 	var/efficiency = 1
 
-/obj/item/organ/heart/process()
+/obj/item/organ/internal/heart/process()
 	if(owner)
 		handle_pulse()
 		if(pulse)	handle_heartbeat()
 		handle_blood()
 	..()
 
-/obj/item/organ/heart/proc/handle_pulse()
+/obj/item/organ/internal/heart/proc/handle_pulse()
 	if(owner.stat == DEAD || status & ORGAN_ROBOT)
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
@@ -31,7 +31,7 @@
 
 		pulse = Clamp(pulse + owner.chem_effects[CE_PULSE], PULSE_SLOW, PULSE_2FAST)
 
-/obj/item/organ/heart/proc/handle_heartbeat()
+/obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= PULSE_2FAST || owner.shock_stage >= 10 || istype(get_turf(owner), /turf/space))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.
 		//High pulse value corresponds to a fast rate of heartbeat.
@@ -44,7 +44,7 @@
 		else
 			heartbeat++
 
-/obj/item/organ/heart/proc/handle_blood()
+/obj/item/organ/internal/heart/proc/handle_blood()
 	if(!owner)
 		return
 	if(owner.stat == DEAD && owner.bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
@@ -99,28 +99,3 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
-
-/obj/item/organ/lungs
-	name = "lungs"
-	icon_state = "lungs"
-	gender = PLURAL
-	organ_tag = "lungs"
-	parent_organ = "chest"
-
-/obj/item/organ/lungs/process()
-	..()
-
-	if(!owner)
-		return
-
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(5))
-			owner.emote("cough")		//respitory tract infection
-
-	if(is_bruised())
-		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
-			owner.losebreath += 15

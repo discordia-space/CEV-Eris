@@ -104,7 +104,7 @@
 		if(89)
 			new/obj/item/organ/xenos/plasmavessel(src)
 		if(90)
-			new/obj/item/organ/heart(src)
+			new/obj/item/organ/internal/heart(src)
 		if(91)
 			new/obj/item/device/soulstone(src)
 		if(92)
