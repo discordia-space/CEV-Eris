@@ -3,9 +3,7 @@
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "setup_implant"
 	var/obj/item/device/electronic_assembly/implant/IC = null
-
-/obj/item/weapon/implant/integrated_circuit/islegal()
-	return TRUE
+	is_legal = TRUE
 
 /obj/item/weapon/implant/integrated_circuit/New()
 	..()

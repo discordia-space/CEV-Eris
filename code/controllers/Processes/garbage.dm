@@ -205,7 +205,6 @@ world/loop_checks = 0
 	tag = null
 	return
 
-/datum/var/gc_destroyed //Time when this object was destroyed.
 
 #ifdef TESTING
 /client/var/running_find_references

@@ -11,7 +11,6 @@
 	var/damtype = "brute"
 	var/armor_penetration = 0
 	var/corporation = null
-	var/show_messages
 
 /obj/get_fall_damage()
 	return w_class * 2
