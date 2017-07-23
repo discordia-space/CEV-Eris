@@ -375,10 +375,10 @@
 
 /obj/item/integrated_circuit/input/microphone/New()
 	..()
-	listening_objects |= src
+	add_hearing()
 
 /obj/item/integrated_circuit/input/microphone/Destroy()
-	listening_objects -= src
+	remove_hearing()
 	return ..()
 
 /obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
