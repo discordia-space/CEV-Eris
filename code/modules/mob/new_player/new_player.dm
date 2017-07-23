@@ -162,7 +162,7 @@
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
-		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
+		else if(ticker && ticker.nuke_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
 

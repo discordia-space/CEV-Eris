@@ -6,6 +6,7 @@ var/global/datum/controller/gameticker/ticker
 
 	var/hide_mode = 0
 	var/datum/game_mode/mode = null
+	var/datum/storyteller/story = null
 	var/post_game = 0
 	var/event_time = null
 	var/event = 0
@@ -27,6 +28,9 @@ var/global/datum/controller/gameticker/ticker
 	var/triai = 0//Global holder for Triumvirate
 
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
+
+	var/ship_was_nuked = 0              // See nuclearbomb.dm and malfunction.dm.
+	var/nuke_in_progress = 0           	// Sit back and relax
 
 /datum/controller/gameticker/proc/pregame()
 	login_music = pick(list(
@@ -299,18 +303,18 @@ var/global/datum/controller/gameticker/ticker
 	if(current_state != GAME_STATE_PLAYING)
 		return
 
-	mode.process()
+	story.process()
 
 	var/game_finished = 0
 	var/mode_finished = 0
 	if(config.continous_rounds)
-		game_finished = (emergency_shuttle.returned() || mode.station_was_nuked)
+		game_finished = (emergency_shuttle.returned() || ship_was_nuked)
 		mode_finished = (!post_game && mode.check_finished())
 	else
 		game_finished = (mode.check_finished() || emergency_shuttle.returned()) || universe_has_ended
 		mode_finished = game_finished
 
-	if(!mode.explosion_in_progress && game_finished && (mode_finished || post_game))
+	if(!nuke_in_progress && game_finished && (mode_finished || post_game))
 		current_state = GAME_STATE_FINISHED
 
 		spawn

@@ -26,8 +26,7 @@ var/global/list/additional_antag_types = list()
 	var/antag_scaling_coeff = 5              // Coefficient for scaling max antagonists to player count.
 	var/require_all_templates = 0            // Will only start if all templates are checked and can spawn.
 
-	var/station_was_nuked = 0                // See nuclearbomb.dm and malfunction.dm.
-	var/explosion_in_progress = 0            // Sit back and relax
+
 
 	var/event_delay_mod_moderate             // Modifies the timing of random events.
 	var/event_delay_mod_major                // As above.
@@ -213,7 +212,7 @@ var/global/list/additional_antag_types = list()
 
 
 /datum/game_mode/proc/check_finished()
-	if(emergency_shuttle.returned() || station_was_nuked)
+	if(emergency_shuttle.returned() || ticker.ship_was_nuked)
 		return TRUE
 	if(end_on_antag_death && antag_templates && antag_templates.len)
 		for(var/datum/antagonist/antag in antag_templates)
