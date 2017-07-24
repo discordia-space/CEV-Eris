@@ -222,43 +222,120 @@ other types of metals and chemistry for reagents).
 	C.charge = 0 //shouldn't produce power out of thin air.
 	return C
 
-/datum/design/item/powercell/basic
-	name = "basic"
+/datum/design/item/powercell/big/basic
+	name = "Asters \"Robustcell 1000B\""
 	build_type = PROTOLATHE | MECHFAB
-	id = "basic_cell"
+	id = "basic_cell_b"
 	req_tech = list(TECH_POWER = 1)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 	build_path = /obj/item/weapon/cell/big
 	category = "Misc"
 	sort_string = "DAAAA"
 
-/datum/design/item/powercell/high
-	name = "high-capacity"
+/datum/design/item/powercell/big/high
+	name = "Asters \"Robustcell 5000B\""
 	build_type = PROTOLATHE | MECHFAB
-	id = "high_cell"
+	id = "high_cell_b"
 	req_tech = list(TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
 	build_path = /obj/item/weapon/cell/big/high
 	category = "Misc"
 	sort_string = "DAAAB"
 
-/datum/design/item/powercell/super
-	name = "super-capacity"
-	id = "super_cell"
+/datum/design/item/powercell/big/super
+	name = "Asters \"Robustcell 15000B\""
+	id = "super_cell_b"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
 	build_path = /obj/item/weapon/cell/big/super
 	category = "Misc"
 	sort_string = "DAAAC"
 
-/datum/design/item/powercell/hyper
-	name = "hyper-capacity"
-	id = "hyper_cell"
+/datum/design/item/powercell/big/hyper
+	name = "Asters \"Robustcell-X 20000B\""
+	id = "hyper_cell_b"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70)
 	build_path = /obj/item/weapon/cell/big/hyper
 	category = "Misc"
 	sort_string = "DAAAD"
+
+/datum/design/item/powercell/medium/basic
+	name = "Asters \"Robustcell 600M\""
+	build_type = PROTOLATHE | MECHFAB
+	id = "basic_cell_m"
+	req_tech = list(TECH_POWER = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium
+	category = "Misc"
+	sort_string = "DAAAF"
+
+/datum/design/item/powercell/medium/high
+	name = "Asters \"Robustcell 800M\""
+	build_type = PROTOLATHE | MECHFAB
+	id = "high_cell_m"
+	req_tech = list(TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium/high
+	category = "Misc"
+	sort_string = "DAAAI"
+
+/datum/design/item/powercell/medium/super
+	name = "Asters \"Robustcell 1000M\""
+	id = "super_cell_m"
+	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium/super
+	category = "Misc"
+	sort_string = "DAAAO"
+
+/datum/design/item/powercell/medium/hyper
+	name = "Asters \"Robustcell 1500M\""
+	id = "hyper_cell_m"
+	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "gold" = 100, "silver" = 100, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium/hyper
+	category = "Misc"
+	sort_string = "DAAAP"
+
+/datum/design/item/powercell/small/basic
+	name = "Asters \"Robustcell 100S\""
+	build_type = PROTOLATHE | MECHFAB
+	id = "basic_cell_s"
+	req_tech = list(TECH_POWER = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
+	build_path = /obj/item/weapon/cell/small
+	category = "Misc"
+	sort_string = "DAAAQ"
+
+/datum/design/item/powercell/small/high
+	name = "Asters \"Robustcell 200S\""
+	build_type = PROTOLATHE | MECHFAB
+	id = "high_cell_s"
+	req_tech = list(TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
+	build_path = /obj/item/weapon/cell/small/high
+	category = "Misc"
+	sort_string = "DAAAZ"
+
+/datum/design/item/powercell/small/super
+	name = "Asters \"Robustcell 300S\""
+	id = "super_cell_s"
+	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
+	build_path = /obj/item/weapon/cell/small/super
+	category = "Misc"
+	sort_string = "DAAAW"
+
+/datum/design/item/powercell/small/hyper
+	name = "Asters \"Robustcell 500S\""
+	id = "hyper_cell_s"
+	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "gold" = 70, "silver" = 70, "glass" = 30)
+	build_path = /obj/item/weapon/cell/small/hyper
+	category = "Misc"
+	sort_string = "DAAAY"
+
 
 /datum/design/item/hud
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
