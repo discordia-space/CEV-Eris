@@ -54,7 +54,10 @@ research holder datum.
 		known_tech += new T(src)
 	for(var/D in typesof(/datum/design) - /datum/design)
 		possible_designs += new D(src)
+	generate_integrated_circuit_designs()
 	RefreshResearch()
+
+
 
 /datum/research/techonly
 
