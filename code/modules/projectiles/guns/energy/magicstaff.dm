@@ -9,7 +9,6 @@
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 4.0
-	max_shots = 5
 	projectile_type = /obj/item/projectile/change
 	origin_tech = null
 	self_recharge = 1
@@ -33,7 +32,6 @@
 	name = "staff of animation"
 	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
 	projectile_type = /obj/item/projectile/animate
-	max_shots = 10
 
 obj/item/weapon/gun/energy/staff/focus
 	name = "mental focus"

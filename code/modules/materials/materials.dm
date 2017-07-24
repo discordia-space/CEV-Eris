@@ -482,7 +482,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/glass/plasmarglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
-	created_window = /obj/structure/window/plasmareinforced
+	created_window = /obj/structure/window/reinforced/plasma
 	hardness = 40
 	weight = 30
 	//stack_origin_tech = list(TECH_MATERIAL = 2)

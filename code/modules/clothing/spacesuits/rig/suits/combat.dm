@@ -34,7 +34,8 @@
 //Ironhammer rig suit
 
 /obj/item/clothing/head/helmet/space/rig/ihs_combat
-	light_overlay = "helmet_light_dual_green"
+	light_overlay = "sec_light"
+	light_color = "#ca181d"
 
 /obj/item/weapon/rig/ihs_combat
 	name = "ironhammer hardsuit control module"
