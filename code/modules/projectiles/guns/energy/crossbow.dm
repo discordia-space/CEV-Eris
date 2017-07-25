@@ -10,9 +10,9 @@
 	silenced = 1
 	fire_sound = 'sound/weapons/Genhit.ogg'
 	projectile_type = /obj/item/projectile/energy/bolt
-	max_shots = 5
 	self_recharge = 1
 	charge_meter = 0
+	charge_cost = 200
 
 /obj/item/weapon/gun/energy/crossbow/ninja
 	name = "energy dart thrower"

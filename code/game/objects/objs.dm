@@ -191,3 +191,22 @@
 
 /obj/proc/remove_hearing()
 	hearing_objects.Remove(src)
+
+/obj/proc/eject_item(var/obj/item/I, var/mob/living/M)
+	if(!I || !M.IsAdvancedToolUser())
+		return FALSE
+	M.put_in_hands(I)
+	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+	M.visible_message(
+		"[M] remove [I] from [src].",
+		"<span class='notice'>You remove [I] from [src].</span>"
+	)
+	return TRUE
+
+/obj/proc/insert_item(var/obj/item/I, var/mob/living/M)
+	if(!I || !M.unEquip(I))
+		return FALSE
+	I.forceMove(src)
+	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
+	M << "<span class='notice'>You insert [I] into [src].</span>"
+	return TRUE

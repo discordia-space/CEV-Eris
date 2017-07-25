@@ -1,8 +1,8 @@
 /obj/item/device/lighting/toggleable/flashlight
 	action_button_name = "Toggle Flashlight"
-	var/tick_cost = 5
+	var/tick_cost = 0.5
 	var/obj/item/weapon/cell/cell = null
-	var/suitable_cell = /obj/item/weapon/cell/medium/device
+	var/suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/device/lighting/toggleable/flashlight/New()
 	..()
@@ -11,6 +11,8 @@
 
 /obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
 	if(!cell || !cell.check_charge(tick_cost))
+		playsound(loc, 'sound/machines/button.ogg', 50, 1)
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
 		return FALSE
 	. = ..()
 	if(. && user)
@@ -25,21 +27,17 @@
 /obj/item/device/lighting/toggleable/flashlight/process()
 	if(on)
 		if(!cell || !cell.checked_use(tick_cost))
+			if(ismob(src.loc))
+				src.loc << "<span class='warning'>Your flashlight dies. You are alone now.</span>"
 			turn_off()
 
-/obj/item/device/lighting/toggleable/flashlight/attackby(obj/item/C, mob/living/user)
-	if(isscrewdriver(C) && cell)
-		user.put_in_hands(cell)
-		user.visible_message(
-			"[user] detached and remove [cell] from [src].",
-			"<span class='notice'>You detach and remove [cell] from [src].</span>"
-		)
+/obj/item/device/lighting/toggleable/flashlight/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
-	else
-		if(istype(C, suitable_cell) && !cell)
-			user.unEquip(C)
-			cell = C
-			user << "You insert [C] into [src]."
+
+/obj/item/device/lighting/toggleable/flashlight/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 /obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
 	add_fingerprint(user)
@@ -109,6 +107,8 @@
 	desc = "A hand-held heavy-duty light."
 	icon_state = "heavyduty"
 	brightness_on = 6
+	tick_cost = 1
+	suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/device/lighting/toggleable/flashlight/seclite
 	name = "security flashlight"

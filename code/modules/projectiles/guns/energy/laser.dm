@@ -42,7 +42,6 @@ obj/item/weapon/gun/energy/retro
 	w_class = 3
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
-	max_shots = 5 //to compensate a bit for self-recharging
 	self_recharge = 1
 
 /obj/item/weapon/gun/energy/lasercannon
@@ -54,8 +53,7 @@ obj/item/weapon/gun/energy/retro
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser
-	charge_cost = 400
-	max_shots = 5
+	charge_cost = 250
 	fire_delay = 20
 
 /obj/item/weapon/gun/energy/lasercannon/mounted

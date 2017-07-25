@@ -15,8 +15,18 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 200)
 	var/mode = 1;
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/device/robotanalyzer/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+	if(!cell || !cell.checked_use(5))
+		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		return
 	if((CLUMSY in user.mutations) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))
@@ -90,6 +100,13 @@
 					user << "[O.name]: <font color='red'>[O.damage]</font>"
 			if(!organ_found)
 				user << "No prosthetics located."
-
 	src.add_fingerprint(user)
-	return
+
+
+/obj/item/device/robotanalyzer/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/device/robotanalyzer/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
