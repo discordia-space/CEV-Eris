@@ -27,7 +27,6 @@
 		new /obj/item/ammo_magazine/a50/rubber(src)
 		new /obj/item/ammo_magazine/a50/rubber(src)
 		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/clothing/suit/armor/captain(src)
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/caphat/formal(src)
 		new /obj/item/clothing/under/captainformal(src)
