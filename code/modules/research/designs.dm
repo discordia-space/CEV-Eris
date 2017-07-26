@@ -214,49 +214,49 @@ other types of metals and chemistry for reagents).
 
 /datum/design/item/powercell/AssembleDesignDesc()
 	if(build_path)
-		var/obj/item/weapon/cell/big/C = build_path
+		var/obj/item/weapon/cell/large/C = build_path
 		desc = "Allows the construction of power cells that can hold [initial(C.maxcharge)] units of energy."
 
 /datum/design/item/powercell/Fabricate()
-	var/obj/item/weapon/cell/big/C = ..()
+	var/obj/item/weapon/cell/large/C = ..()
 	C.charge = 0 //shouldn't produce power out of thin air.
 	return C
 
-/datum/design/item/powercell/big/basic
-	name = "Asters \"Robustcell 1000B\""
+/datum/design/item/powercell/large/basic
+	name = "Asters \"Robustcell 1000L\""
 	build_type = PROTOLATHE | MECHFAB
 	id = "basic_cell_b"
 	req_tech = list(TECH_POWER = 1)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
-	build_path = /obj/item/weapon/cell/big
+	build_path = /obj/item/weapon/cell/large
 	category = "Misc"
 	sort_string = "DAAAA"
 
-/datum/design/item/powercell/big/high
-	name = "Asters \"Robustcell 5000B\""
+/datum/design/item/powercell/large/high
+	name = "Asters \"Robustcell 5000L\""
 	build_type = PROTOLATHE | MECHFAB
 	id = "high_cell_b"
 	req_tech = list(TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
-	build_path = /obj/item/weapon/cell/big/high
+	build_path = /obj/item/weapon/cell/large/high
 	category = "Misc"
 	sort_string = "DAAAB"
 
-/datum/design/item/powercell/big/super
-	name = "Asters \"Robustcell 15000B\""
+/datum/design/item/powercell/large/super
+	name = "Asters \"Robustcell 15000L\""
 	id = "super_cell_b"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
-	build_path = /obj/item/weapon/cell/big/super
+	build_path = /obj/item/weapon/cell/large/super
 	category = "Misc"
 	sort_string = "DAAAC"
 
-/datum/design/item/powercell/big/hyper
-	name = "Asters \"Robustcell-X 20000B\""
+/datum/design/item/powercell/large/hyper
+	name = "Asters \"Robustcell-X 20000L\""
 	id = "hyper_cell_b"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70)
-	build_path = /obj/item/weapon/cell/big/hyper
+	build_path = /obj/item/weapon/cell/large/hyper
 	category = "Misc"
 	sort_string = "DAAAD"
 

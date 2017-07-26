@@ -93,7 +93,7 @@
 			update_icon()
 			return 1
 
-		else if(!cell && istype(W,/obj/item/weapon/cell/big))
+		else if(!cell && istype(W,/obj/item/weapon/cell/large))
 
 			if(!user.unEquip(W)) return
 			user << "You jack \the [W] into \the [src]'s battery mount."
