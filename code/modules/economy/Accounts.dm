@@ -23,7 +23,7 @@
 	//create a new account
 	var/datum/money_account/M = new()
 	M.owner_name = new_owner_name
-	M.remote_access_pin = rand(1111, 111111)
+	M.remote_access_pin = rand(1111, 9999)
 	M.money = starting_funds
 
 	//create an entry in the account transaction log for when it was created
@@ -37,7 +37,7 @@
 		T.time = "[rand(0,24)]:[rand(11,59)]"
 		T.source_terminal = "NTGalaxyNet Terminal #[rand(111,1111)]"
 
-		M.account_number = rand(111111, 999999)
+		M.account_number = rand(11111, 99999)
 	else
 		T.date = current_date_string
 		T.time = stationtime2text()
