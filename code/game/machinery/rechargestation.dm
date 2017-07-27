@@ -9,7 +9,7 @@
 	idle_power_usage = 50
 	circuit = /obj/item/weapon/circuitboard/recharge_station
 	var/mob/occupant = null
-	var/obj/item/weapon/cell/big/cell = null
+	var/obj/item/weapon/cell/large/cell = null
 	var/icon_update_tick = 0	// Used to rebuild the overlay only once every 10 ticks
 	var/charging = 0
 
@@ -143,7 +143,7 @@
 			cap_rating += P.rating
 		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
 			man_rating += P.rating
-	cell = locate(/obj/item/weapon/cell/big) in component_parts
+	cell = locate(/obj/item/weapon/cell/large) in component_parts
 
 	charging_power = 40000 + 40000 * cap_rating
 	restore_power_active = 10000 + 15000 * cap_rating

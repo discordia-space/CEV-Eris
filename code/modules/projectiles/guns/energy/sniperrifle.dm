@@ -7,13 +7,13 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
-	charge_cost = 400
-	max_shots = 4
+	charge_cost = 300
 	fire_delay = 35
 	force = 10
 	w_class = 4
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0
+	cell_type = /obj/item/weapon/cell/medium/super
 
 /obj/item/weapon/gun/energy/sniperrifle/verb/scope()
 	set category = "Object"

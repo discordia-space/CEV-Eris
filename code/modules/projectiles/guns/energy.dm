@@ -5,10 +5,10 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
 
-	var/obj/item/weapon/cell/big/power_supply //What type of power cell this uses
-	var/charge_cost = 200 //How much energy is needed to fire.
-	var/max_shots = 10 //Determines the capacity of the weapon's power cell. Specifying a cell_type overrides this value.
-	var/cell_type = null
+	var/charge_cost = 100 //How much energy is needed to fire.
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/medium
+	var/cell_type = /obj/item/weapon/cell/medium/high
 	var/projectile_type = /obj/item/projectile/beam/practice
 	var/modifystate
 	var/charge_meter = 1	//if set, the icon state will be chosen based on the current charge
@@ -31,17 +31,12 @@
 /obj/item/weapon/gun/energy/New()
 	..()
 	if(cell_type)
-		power_supply = new cell_type(src)
+		cell = new cell_type(src)
 	else
-		power_supply = new /obj/item/weapon/cell/medium/device/variable(src, max_shots*charge_cost)
+		cell = new /obj/item/weapon/cell/medium
 	if(self_recharge)
 		processing_objects.Add(src)
 	update_icon()
-
-/obj/item/weapon/gun/energy/Destroy()
-	if(self_recharge)
-		processing_objects.Remove(src)
-	..()
 
 /obj/item/weapon/gun/energy/process()
 	if(self_recharge) //Every [recharge_time] ticks, recharge a shot for the cyborg
@@ -49,25 +44,25 @@
 		if(charge_tick < recharge_time) return 0
 		charge_tick = 0
 
-		if(!power_supply || power_supply.charge >= power_supply.maxcharge)
+		if(!cell || cell.charge >= cell.maxcharge)
 			return 0 // check if we actually need to recharge
 
 		if(use_external_power)
-			var/obj/item/weapon/cell/big/external = get_external_power_supply()
+			var/obj/item/weapon/cell/large/external = get_external_cell()
 			if(!external || !external.use(charge_cost)) //Take power from the borg...
 				return 0
 
-		power_supply.give(charge_cost) //... to recharge the shot
+		cell.give(charge_cost) //... to recharge the shot
 		update_icon()
 	return 1
 
 /obj/item/weapon/gun/energy/consume_next_projectile()
-	if(!power_supply) return null
+	if(!cell) return null
 	if(!ispath(projectile_type)) return null
-	if(!power_supply.checked_use(charge_cost)) return null
+	if(!cell.checked_use(charge_cost)) return null
 	return new projectile_type(src)
 
-/obj/item/weapon/gun/energy/proc/get_external_power_supply()
+/obj/item/weapon/gun/energy/proc/get_external_cell()
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return R.cell
@@ -83,22 +78,37 @@
 
 /obj/item/weapon/gun/energy/examine(mob/user)
 	..(user)
-	var/shots_remaining = round(power_supply.charge / charge_cost)
+	var/shots_remaining = round(cell.charge / charge_cost)
 	user << "Has [shots_remaining] shot\s remaining."
 	return
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
 	if(charge_meter)
-		var/ratio = power_supply.charge / power_supply.maxcharge
+		var/ratio = 0
 
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
-		if(power_supply.charge < charge_cost)
-			ratio = 0
-		else
+		if(cell && cell.charge >= charge_cost)
+			ratio = cell.charge / cell.maxcharge
 			ratio = max(round(ratio, 0.25) * 100, 25)
 
 		if(modifystate)
 			icon_state = "[modifystate][ratio]"
 		else
 			icon_state = "[initial(icon_state)][ratio]"
-	if(!ignore_inhands) update_held_icon()
+	if(!ignore_inhands)
+		update_held_icon()
+
+/obj/item/weapon/gun/energy/MouseDrop(over_object)
+	if(!self_recharge)
+		if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+			cell = null
+			update_icon()
+	else
+		usr << "<span class='warning'>[src] is a self-charging gun, its batteries cannot be removed!.</span>"
+
+/obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
+		update_icon()
+	else
+		usr << "<span class='warning'>[src] is a self-charging gun, it doesn't need more batteries.</span>"

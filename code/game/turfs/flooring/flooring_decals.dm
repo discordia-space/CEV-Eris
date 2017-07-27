@@ -630,6 +630,42 @@ var/list/floor_decals = list()
 	name = "L16"
 	icon_state = "L16"
 
+/obj/effect/floor_decal/fact_plaque
+	name = "plaque"
+	icon_state = "plaque"
+
+/obj/effect/floor_decal/fact_plaque/med1
+	name = "plaque"
+	icon_state = "moebius_med1"
+
+/obj/effect/floor_decal/fact_plaque/med2
+	name = "plaque"
+	icon_state = "moebius_med2"
+
+/obj/effect/floor_decal/fact_plaque/med3
+	name = "plaque"
+	icon_state = "moebius_med3"
+
+/obj/effect/floor_decal/fact_plaque/med4
+	name = "plaque"
+	icon_state = "moebius_med4"
+
+/obj/effect/floor_decal/fact_plaque/rnd1
+	name = "plaque"
+	icon_state = "moebius_rnd1"
+
+/obj/effect/floor_decal/fact_plaque/rnd2
+	name = "plaque"
+	icon_state = "moebius_rnd2"
+
+/obj/effect/floor_decal/fact_plaque/rnd3
+	name = "plaque"
+	icon_state = "moebius_rnd3"
+
+/obj/effect/floor_decal/fact_plaque/rnd4
+	name = "plaque"
+	icon_state = "moebius_rnd4"
+
 /obj/effect/floor_decal/sign
 	name = "floor sign"
 	icon_state = "white_1"
