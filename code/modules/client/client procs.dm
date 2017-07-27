@@ -184,8 +184,57 @@
 	return ..()
 
 
-/client/proc/log_client_to_db()
+/client/proc/get_registration_date()
+	var/registration_date = null
+	var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
+	if(http)
+		var/F = file2text(http["CONTENT"])
+		if(F)
+			var/regex/R = regex("joined = \"(\\d{4})-(\\d{2})-(\\d{2})\"")
+			if(R.Find(F))
+				var/year = R.group[1]
+				var/month = R.group[2]
+				var/day = R.group[3]
+				registration_date = "[year]-[month]-[day]"
+				src.registration_date = registration_date
+				return registration_date
+			else
+				world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+	else
+		world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+	return null
 
+
+/client/proc/get_country()
+	var/address_check[] = world.Export("http://ip-api.com/line/[sql_sanitize_text(src.address)]")
+	if(address_check)
+		var/list/response = file2list(address_check["CONTENT"])
+		if(response.len && response[1] == "success")
+			country = response[3]
+			src.country = country
+			return country
+
+	world.log << "Failed on retrieving location for player [src.ckey] from byond site."
+	return null
+
+
+/client/proc/register_in_db()
+	registration_date = src.get_registration_date()
+	country = src.get_country()
+
+	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', 'player', [src.byond_version], '[country]')")
+	if(!query_insert.Execute())
+		world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
+		return
+
+	else 
+		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[src.ckey]'")
+		get_player_id.Execute()
+		if(get_player_id.NextRow())
+			src.id = get_player_id.item[1]
+
+
+/client/proc/log_client_to_db()
 	if(IsGuestKey(src.key))
 		return
 
@@ -193,62 +242,32 @@
 	if(!dbcon.IsConnected())
 		return
 
-	var/player_id
-	var/country
-	var/DBQuery/query = dbcon.NewQuery("SELECT id, country FROM players WHERE ckey = '[src.ckey]'")
-	query.Execute()
-	if(query.NextRow())
-		player_id = query.item[1]
-		country = query.item[2]
-
-	var/sql_ip = sql_sanitize_text(src.address)
-	var/sql_computerid = sql_sanitize_text(src.computer_id)
-
-
-	if(player_id)
-		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-		src.id = player_id
-		var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', byond_version = '[src.byond_version]' WHERE id = [src.id]")
-		if(!query_update.Execute())
-			world.log << "Failed to update players table for user with id [player_id]. Error message: [query_update.ErrorMsg()]."
-			return
+	// check if client already registered in db
+	var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
+	if(!query.Execute())
+		world.log << "Failed to get player record for user with ckey '[src.ckey]'. Error message: [query_update.ErrorMsg()]."
+		// don't know how to properly handle this case so let's just quit
+		return
 	else
-		var/registration_date = null
-		var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
-		if(http)
-			var/F = file2text(http["CONTENT"])
-			if(F)
-				var/regex/R = regex("joined = \"(\\d{4})-(\\d{2})-(\\d{2})\"")
-				if(R.Find(F))
-					var/year = R.group[1]
-					var/month = R.group[2]
-					var/day = R.group[3]
-					registration_date = "[year]-[month]-[day]"
-					src.registration_date = registration_date
-				else
-					world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+		if(query.NextRow())
+			// client already registered so we fetch all needed data
+			query = dbcon.NewQuery("SELECT id, registered FROM players WHERE id = [src.id]")
+			query.Execute()
+			if(query.NextRow())
+				src.id = query.item[1]
+				src.registration_date = query.item[2]
+				src.country = src.get_country()
+
+				var/sql_ip = sql_sanitize_text(src.address)
+				var/sql_computerid = sql_sanitize_text(src.computer_id)
+				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
+				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', byond_version = '[src.byond_version]' WHERE id = [src.id]")
+				
+				if(!query_update.Execute())
+					world.log << "Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()]."
+					return
 		else
-			world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
-
-		var/address_check[] = world.Export("http://ip-api.com/line/[sql_ip]")
-		if(address_check)
-			var/list/response = file2list(address_check["CONTENT"])
-			if(response.len && response[1] == "success")
-				country = response[3]
-				src.country = country
-		if(!country)
-			world.log << "Failed on retrieving location for player [src.ckey] from byond site."
-
-
-		var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', 'player', [src.byond_version], '[country]')")
-		if(!query_insert.Execute())
-			world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
-			return
-
-		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[src.ckey]'")
-		get_player_id.Execute()
-		if(get_player_id.NextRow())
-			src.id = get_player_id.item[1]
+			src.register_in_db()
 
 
 #undef TOPIC_SPAM_DELAY
@@ -258,12 +277,15 @@
 //checks if a client is afk
 //3000 frames = 5 minutes
 /client/proc/is_afk(duration=3000)
-	if(inactivity > duration)	return inactivity
-	return 0
+	if(inactivity > duration)
+		return inactivity
+	return FALSE
+
 
 /client/proc/inactivity2text()
 	var/seconds = inactivity/10
 	return "[round(seconds / 60)] minute\s, [seconds % 60] second\s"
+
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
@@ -280,18 +302,27 @@
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		getFilesSlow(src, asset_cache.cache, register_asset = FALSE)
 
-mob/proc/MayRespawn()
-	return 0
 
-client/proc/MayRespawn()
+/mob/proc/MayRespawn()
+	return FALSE
+
+
+/client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
-	return 0
+	return FALSE
 
-client/verb/character_setup()
+
+/client/verb/character_setup()
 	set name = "Character Setup"
 	set category = "Preferences"
 	if(prefs)
 		prefs.ShowChoices(usr)
+
+
+/proc/get_client_by_ckey(ckey)
+	for(var/client/C in clients)
+		if(C.ckey == ckey)
+			return C

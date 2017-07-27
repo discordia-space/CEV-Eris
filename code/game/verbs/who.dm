@@ -1,4 +1,3 @@
-
 /client/verb/who()
 	set name = "Who"
 	set category = "OOC"
@@ -9,6 +8,9 @@
 
 	if(holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
 		for(var/client/C in clients)
+			if(C.country)
+				usr << browse_rsc(icon('icons/country_flags.dmi', C.country), "flag_[C.country].png")
+				body += "<img src=\"flag_[C.country].png\"><br>"
 			var/entry = "\t[C.key]"
 			if(C.holder && C.holder.fakekey)
 				entry += " <i>(as [C.holder.fakekey])</i>"
@@ -31,9 +33,6 @@
 
 			if(C.is_afk())
 				entry += " (AFK - [C.inactivity2text()])"
-
-			if(C.registration_date)
-				entry += "<b> Joined: [C.registration_date]</b>"
 
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 			Lines += entry

@@ -30,22 +30,29 @@ proc/admin_notice(var/message, var/rights)
 /datum/admins/proc/show_player_panel(var/mob/M in mob_list)
 	set category = null
 	set name = "Show Player Panel"
-	set desc="Edit player (respawn, ban, heal, etc)"
+	set desc = "Edit player (respawn, ban, heal, etc)"
 
 	if(!M)
 		usr << "You seem to be selecting a mob that doesn't exist anymore."
 		return
-	if (!istype(src,/datum/admins))
+	if (!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+	if (!istype(src, /datum/admins))
 		usr << "Error: you are not an admin!"
 		return
 
 	var/body = "<html><head><title>Options for [M.key]</title></head>"
 	body += "<body>Options panel for <b>[M]</b>"
+
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
+		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]<br>"
+		body += "<b>Registration date:</b> [M.client.registration_date ? M.client.registration_date : "Unknown"]<br>"
+
+		var/country = M.client.country
+		if(country)
+			usr << browse_rsc(icon('icons/country_flags.dmi', country), "flag_[country].png")
+			body += "<b>IP:</b> [src.address] <img src=\"flag_[country].png\"><br>"
 
 	if(isnewplayer(M))
 		body += " <B>Hasn't Entered Game</B> "
@@ -268,20 +275,15 @@ proc/admin_notice(var/message, var/rights)
 /datum/admins/proc/show_player_info(var/key as text)
 	set category = "Admin"
 	set name = "Show Player Info"
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+	if(!istype(src, /datum/admins))
 		usr << "Error: you are not an admin!"
 		return
+
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
-
-	var/registration_date = "Unknown"
-	for(var/client/C in clients)
-		if(C.ckey == key)
-			registration_date = C.registration_date
-			break
-	dat += "<span style='color:#000000; font-weight: bold'>Registration date: [registration_date]</span><br>"
 
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
