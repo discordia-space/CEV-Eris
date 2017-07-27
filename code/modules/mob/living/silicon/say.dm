@@ -16,7 +16,7 @@
 
 /mob/living/silicon/ai/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	..()
-	if(message_mode == "department")
+	if(message_mode == "department" || holo)
 		return holopad_talk(message, verb, speaking)
 	else if(message_mode)
 		if (aiRadio.disabledAi || aiRestorePowerRoutine || stat)
