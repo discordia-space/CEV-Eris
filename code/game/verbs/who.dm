@@ -8,10 +8,12 @@
 
 	if(holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
 		for(var/client/C in clients)
+			var/entry
 			if(C.country)
 				usr << browse_rsc(icon('icons/country_flags.dmi', C.country), "flag_[C.country].png")
-				body += "<img src=\"flag_[C.country].png\"><br>"
-			var/entry = "\t[C.key]"
+				entry += "<img src=\"flag_[C.country].png\"> "
+
+			entry += "\t[C.key]"
 			if(C.holder && C.holder.fakekey)
 				entry += " <i>(as [C.holder.fakekey])</i>"
 			entry += " - Playing as [C.mob.real_name]"

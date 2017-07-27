@@ -52,7 +52,7 @@ proc/admin_notice(var/message, var/rights)
 		var/country = M.client.country
 		if(country)
 			usr << browse_rsc(icon('icons/country_flags.dmi', country), "flag_[country].png")
-			body += "<b>IP:</b> [src.address] <img src=\"flag_[country].png\"><br>"
+			body += "<b>IP:</b> [M.client.address] <img src=\"flag_[country].png\"><br>"
 
 	if(isnewplayer(M))
 		body += " <B>Hasn't Entered Game</B> "

@@ -222,7 +222,7 @@
 	registration_date = src.get_registration_date()
 	country = src.get_country()
 
-	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_ip]', '[sql_computerid]', 'player', [src.byond_version], '[country]')")
+	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version], '[country]')")
 	if(!query_insert.Execute())
 		world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
 		return
@@ -245,7 +245,7 @@
 	// check if client already registered in db
 	var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
 	if(!query.Execute())
-		world.log << "Failed to get player record for user with ckey '[src.ckey]'. Error message: [query_update.ErrorMsg()]."
+		world.log << "Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()]."
 		// don't know how to properly handle this case so let's just quit
 		return
 	else
@@ -258,10 +258,8 @@
 				src.registration_date = query.item[2]
 				src.country = src.get_country()
 
-				var/sql_ip = sql_sanitize_text(src.address)
-				var/sql_computerid = sql_sanitize_text(src.computer_id)
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[sql_ip]', cid = '[sql_computerid]', byond_version = '[src.byond_version]' WHERE id = [src.id]")
+				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]' WHERE id = [src.id]")
 				
 				if(!query_update.Execute())
 					world.log << "Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()]."
