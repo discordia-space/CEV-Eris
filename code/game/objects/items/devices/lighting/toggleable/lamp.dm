@@ -2,6 +2,7 @@
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
+	item_state = "lamp"
 	brightness_on = 4
 	w_class = 4
 	flags = CONDUCT
@@ -25,5 +26,6 @@
 /obj/item/device/lighting/toggleable/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
+	item_state = "lampgreen"
 	brightness_on = 4
 	light_color = "#FFC58F"
