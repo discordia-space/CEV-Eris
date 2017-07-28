@@ -9,9 +9,6 @@
 	if(holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
 		for(var/client/C in clients)
 			var/entry
-			if(C.country)
-				usr << browse_rsc(icon('icons/country_flags.dmi', C.country), "flag_[C.country].png")
-				entry += "<img src=\"flag_[C.country].png\"> "
 
 			entry += "\t[C.key]"
 			if(C.holder && C.holder.fakekey)

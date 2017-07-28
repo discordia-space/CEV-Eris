@@ -43,5 +43,6 @@
 	var/id = -1
 	var/registration_date = ""
 	var/country = ""
+	var/country_code = ""
 
 	preload_rsc = 1 // This was 0, so Bay12 can set it to an URL once the player logs in and have them download the resources from a different server. But we change it.

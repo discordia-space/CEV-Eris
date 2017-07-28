@@ -185,6 +185,10 @@
 
 
 /client/proc/get_registration_date()
+	// Return data:
+	// Success: "2017-07-28"
+	// Fail: null
+
 	var/registration_date = null
 	var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
 	if(http)
@@ -195,9 +199,8 @@
 				var/year = R.group[1]
 				var/month = R.group[2]
 				var/day = R.group[3]
-				registration_date = "[year]-[month]-[day]"
-				src.registration_date = registration_date
-				return registration_date
+				src.registration_date = "[year]-[month]-[day]"
+				return src.registration_date
 			else
 				world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
 	else
@@ -206,13 +209,41 @@
 
 
 /client/proc/get_country()
+	// Return data:
+	// Success: list("country" = "United States", "country_code" = "US")
+	// Fail: null
+
 	var/address_check[] = world.Export("http://ip-api.com/line/[sql_sanitize_text(src.address)]")
+	/*
+	Response
+		A successful request will return, by default, the following:
+		 1: success
+		 2: COUNTRY
+		 3: COUNTRY CODE
+		 4: REGION CODE
+		 5: REGION NAME
+		 6: CITY
+		 7: ZIP CODE
+		 8: LATITUDE
+		 9: LONGITUDE
+		10: TIME ZONE
+		11: ISP NAME
+		12: ORGANIZATION NAME
+		13: AS NUMBER / NAME
+		14: IP ADDRESS USED FOR QUERY
+
+		A failed request will return, by default, the following:
+
+		1: fail
+		2: ERROR MESSAGE
+		3: IP ADDRESS USED FOR QUERY
+	*/
 	if(address_check)
 		var/list/response = file2list(address_check["CONTENT"])
 		if(response.len && response[1] == "success")
-			country = response[3]
-			src.country = country
-			return country
+			src.country = response[2]
+			src.country_code = response[3]
+			return list("country" = src.country, "country_code" = src.country_code)
 
 	world.log << "Failed on retrieving location for player [src.ckey] from byond site."
 	return null
@@ -220,9 +251,9 @@
 
 /client/proc/register_in_db()
 	registration_date = src.get_registration_date()
-	country = src.get_country()
+	src.get_country()
 
-	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version], '[country]')")
+	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version])")
 	if(!query_insert.Execute())
 		world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
 		return
@@ -256,7 +287,7 @@
 			if(query.NextRow())
 				src.id = query.item[1]
 				src.registration_date = query.item[2]
-				src.country = src.get_country()
+				src.get_country()
 
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]' WHERE id = [src.id]")

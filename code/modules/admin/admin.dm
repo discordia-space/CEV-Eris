@@ -45,14 +45,17 @@ proc/admin_notice(var/message, var/rights)
 	body += "<body>Options panel for <b>[M]</b>"
 
 	if(M.client)
-		body += " played by <b>[M.client]</b> "
+		body += " played by <b><a href='http://byond.com/members/[M.client.ckey]'>[M.client]</b></a> "
 		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]<br>"
 		body += "<b>Registration date:</b> [M.client.registration_date ? M.client.registration_date : "Unknown"]<br>"
+		body += "<b>IP:</b> [M.client.address ? M.client.address : "Unknown"]<br>"
 
 		var/country = M.client.country
-		if(country)
-			usr << browse_rsc(icon('icons/country_flags.dmi', country), "flag_[country].png")
-			body += "<b>IP:</b> [M.client.address] <img src=\"flag_[country].png\"><br>"
+		var/country_code = M.client.country_code
+		if(country && country_code)
+			usr << browse_rsc(icon('icons/country_flags.dmi', country_code), "flag_[country_code].png")
+			body += "<b>Country:</b> <img src=\"flag_[country_code].png\"> [country]<br><br>"
+
 
 	if(isnewplayer(M))
 		body += " <B>Hasn't Entered Game</B> "
