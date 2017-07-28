@@ -53,8 +53,10 @@ proc/admin_notice(var/message, var/rights)
 		var/country = M.client.country
 		var/country_code = M.client.country_code
 		if(country && country_code)
-			usr << browse_rsc(icon('icons/country_flags.dmi', country_code), "flag_[country_code].png")
-			body += "<b>Country:</b> <img src=\"flag_[country_code].png\"> [country]<br><br>"
+			// TODO (28.07.17): uncomment after flag icons resize
+			// <img src=\"flag_[country_code].png\">
+			// usr << browse_rsc(icon('icons/country_flags.dmi', country_code), "flag_[country_code].png")
+			body += "<b>Country:</b> [country]<br><br>"
 
 
 	if(isnewplayer(M))

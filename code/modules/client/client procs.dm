@@ -189,7 +189,6 @@
 	// Success: "2017-07-28"
 	// Fail: null
 
-	var/registration_date = null
 	var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
 	if(http)
 		var/F = file2text(http["CONTENT"])
@@ -258,7 +257,7 @@
 		world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
 		return
 
-	else 
+	else
 		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[src.ckey]'")
 		get_player_id.Execute()
 		if(get_player_id.NextRow())
@@ -291,7 +290,7 @@
 
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]' WHERE id = [src.id]")
-				
+
 				if(!query_update.Execute())
 					world.log << "Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()]."
 					return
