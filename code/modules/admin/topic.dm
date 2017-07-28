@@ -6,7 +6,7 @@
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
 
-	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
+	if(ticker.storyteller && ticker.storyteller.check_antagonists_topic(href, href_list))
 		check_antagonists()
 		return
 
@@ -188,10 +188,6 @@
 
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))	return
-
-		if(ticker.mode.name == MODE_BLOB)
-			alert("You can't call the shuttle during blob!")
-			return
 
 		switch(href_list["call_shuttle"])
 			if("1")
@@ -849,55 +845,28 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(ticker && ticker.mode)
+		if(ticker && ticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
-		for(var/mode in config.modes)
-			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
+		for(var/mode in config.storytellers)
+			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=random'>Random</A><br>"}
-		dat += {"Now: [master_mode]"}
+		dat += {"Now: [master_storyteller]"}
 		usr << browse(dat, "window=c_mode")
-
-	else if(href_list["f_secret"])
-		if(!check_rights(R_ADMIN))	return
-
-		if(ticker && ticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
-		if(master_mode != "secret")
-			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
-		for(var/mode in config.modes)
-			dat += {"<A href='?src=\ref[src];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"<A href='?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
-		dat += {"Now: [secret_force_mode]"}
-		usr << browse(dat, "window=f_secret")
 
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if (ticker && ticker.mode)
+		if (ticker && ticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [master_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the mode as [master_mode].", 1)
-		world << "\blue <b>The mode is now: [master_mode]</b>"
+		master_storyteller = href_list["c_mode2"]
+		log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
+		message_admins("\blue [key_name_admin(usr)] set the storyteller to [master_storyteller].", 1)
+		world << "\blue <b>The storyteller is now: [master_storyteller]</b>"
 		Game() // updates the main game menu
-		world.save_mode(master_mode)
+		world.save_storyteller(master_storyteller)
 		.(href, list("c_mode"=1))
-
-	else if(href_list["f_secret2"])
-		if(!check_rights(R_ADMIN|R_SERVER))	return
-
-		if(ticker && ticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
-		if(master_mode != "secret")
-			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		secret_force_mode = href_list["f_secret2"]
-		log_admin("[key_name(usr)] set the forced secret mode as [secret_force_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [secret_force_mode].", 1)
-		Game() // updates the main game menu
-		.(href, list("f_secret"=1))
 
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))	return
@@ -1409,7 +1378,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
-		if(!ticker || !ticker.mode)
+		if(!ticker || !ticker.storyteller)
 			alert("The game hasn't started yet!")
 			return
 

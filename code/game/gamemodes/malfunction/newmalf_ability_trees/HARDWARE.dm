@@ -107,7 +107,7 @@
 
 	if(ticker)
 		ticker.station_explosion_cinematic(0,null)
-		if(ticker.mode)
+		if(ticker.storyteller)
 			ticker.ship_was_nuked = TRUE
 
 

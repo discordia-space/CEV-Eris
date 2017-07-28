@@ -68,7 +68,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/free_slot,			//frees slot for chosen job,
 	/client/proc/cmd_admin_change_custom_event,
 	/client/proc/cmd_admin_rejuvenate,
-	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
 	/client/proc/check_customitem_activity,
 	/client/proc/man_up,
@@ -864,20 +863,6 @@ var/list/admin_verbs_mentor = list(
 			job_master.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
-
-/client/proc/toggleghostwriters()
-	set name = "Toggle ghost writers"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.cult_ghostwriter)
-			config.cult_ghostwriter = 0
-			src << "<b>Disallowed ghost writers.</b>"
-			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
-		else
-			config.cult_ghostwriter = 1
-			src << "<b>Enabled ghost writers.</b>"
-			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
 
 /client/proc/toggledrones()
 	set name = "Toggle maintenance drones"

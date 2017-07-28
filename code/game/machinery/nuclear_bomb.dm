@@ -339,7 +339,7 @@ var/bomb_set
 	src.safety = 1
 	update_icon()
 	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
-	if (ticker && ticker.mode)
+	if (ticker && ticker.storyteller)
 		ticker.nuke_in_progress = TRUE
 	sleep(100)
 
@@ -351,21 +351,18 @@ var/bomb_set
 	else
 		off_station = 2
 
-	if(ticker && ticker.mode)
+	if(ticker && ticker.storyteller)
 		ticker.nuke_in_progress = FALSE
 		if(off_station == 1)
-			world << "<b>A nuclear device was set off, but the explosion was out of reach of the station!</b>"
+			world << "<b>A nuclear device was set off, but the explosion was out of reach of the ship!</b>"
 		else if(off_station == 2)
-			world << "<b>A nuclear device was set off, but the device was not on the station!</b>"
+			world << "<b>A nuclear device was set off, but the device was not on the ship!</b>"
 		else
 			world << "<b>The station was destoyed by the nuclear blast!</b>"
 
 		ticker.ship_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 														//kinda shit but I couldn't  get permission to do what I wanted to do.
 
-		if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
-			universe_has_ended = 1
-			return
 	return
 
 /obj/machinery/nuclearbomb/update_icon()

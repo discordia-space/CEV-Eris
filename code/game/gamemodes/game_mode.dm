@@ -6,16 +6,6 @@ var/global/list/additional_antag_types = list()
 	var/round_description = "How did you even vote this in?"
 	var/extended_round_description = "This roundtype should not be spawned, let alone votable. Someone contact a developer and tell them the game's broken again."
 	var/config_tag = null
-	var/votable = 1
-	var/probability = 0
-
-	var/required_players = 0                 // Minimum players for round to start if voted in.
-	var/required_enemies = 0                 // Minimum antagonists for round to start.
-	var/newscaster_announcements = null
-	var/end_on_antag_death = 0               // Round will end when all antagonists are dead.
-	var/deny_respawn = 0	                 // Disable respawn during this round.
-
-	var/list/disabled_jobs = list()           // Mostly used for Malf.  This check is performed in job_controller so it doesn't spawn a regular AI.
 
 	var/shuttle_delay = 1                    // Shuttle transit time is multiplied by this.
 	var/auto_recall_shuttle = 0              // Will the shuttle automatically be recalled?
@@ -43,8 +33,6 @@ var/global/list/additional_antag_types = list()
 		return
 	if(href_list["toggle"])
 		switch(href_list["toggle"])
-			if("respawn")
-				deny_respawn = !deny_respawn
 			if("shuttle_recall")
 				auto_recall_shuttle = !auto_recall_shuttle
 			if("autotraitor")
@@ -407,44 +395,3 @@ proc/display_roundstart_logout_report()
 			M << msg
 
 //Announces objectives/generic antag text.
-/proc/show_generic_antag_text(var/datum/mind/player)
-	if(player.current)
-		player.current << \
-		"You are an antagonist! <font color=blue>Within the rules,</font> \
-		try to act as an opposing force to the crew. Further RP and try to make sure \
-		other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
-		and before taking extreme actions, please try to also contact the administration! \
-		Think through your actions and make the roleplay immersive! <b>Please remember all \
-		rules aside from those without explicit exceptions apply to antagonists.</b>"
-
-/proc/show_objectives(var/datum/mind/player)
-
-	if(!player || !player.current)
-		return
-
-	if(config.objectives_disabled)
-		show_generic_antag_text(player)
-		return
-
-	var/obj_count = 1
-	player.current << "<span class='notice'>Your current objectives:</span>"
-	for(var/datum/objective/objective in player.objectives)
-		player.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
-		obj_count++
-
-/mob/verb/check_round_info()
-	set name = "Check Round Info"
-	set category = "OOC"
-
-	if(!ticker || !ticker.mode)
-		usr << "Something is terribly wrong; there is no gametype."
-		return
-
-	if(master_mode != "secret")
-		usr << "<b>The roundtype is [capitalize(ticker.mode.name)]</b>"
-		if(ticker.mode.round_description)
-			usr << "<i>[ticker.mode.round_description]</i>"
-		if(ticker.mode.extended_round_description)
-			usr << "[ticker.mode.extended_round_description]"
-	else
-		usr << "<i>Shhhh</i>. It's a secret."

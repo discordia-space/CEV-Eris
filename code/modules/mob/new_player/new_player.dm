@@ -68,11 +68,7 @@
 	..()
 
 	if(statpanel("Lobby") && ticker)
-		if(ticker.hide_mode)
-			stat("Game Mode:", "Secret")
-		else
-			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
+		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
 
 		if(ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
@@ -250,7 +246,6 @@
 		character.loc = C.loc
 
 		AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
-		ticker.mode.handle_latejoin(character)
 
 		qdel(C)
 		qdel(src)
@@ -264,8 +259,6 @@
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
-
-	ticker.mode.handle_latejoin(character)
 
 	if(character.mind.assigned_role != "Cyborg")
 		data_core.manifest_inject(character)

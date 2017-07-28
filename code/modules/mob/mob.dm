@@ -368,9 +368,6 @@
 	if ((stat != DEAD || !( ticker )))
 		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
 		return
-	if (ticker.mode && ticker.mode.deny_respawn)
-		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
-		return
 	else if(!MayRespawn(1, config.respawn_delay))
 		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
 			return

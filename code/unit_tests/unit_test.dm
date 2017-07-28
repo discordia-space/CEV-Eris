@@ -96,7 +96,7 @@ proc/initialize_unit_tests()
 			log_unit_test("Pregame Count down has started, giving it 20 seconds to finish.")
 		sleep(1)
 
-	world.save_mode("extended")
+	world.save_storyteller("base")
 
 	sleep(1)
 

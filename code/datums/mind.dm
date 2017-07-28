@@ -108,7 +108,7 @@
 	recipient << browse(output,"window=memory")
 
 /datum/mind/proc/edit_memory()
-	if(!ticker || !ticker.mode)
+	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		alert("Not before round-start!", "Alert")
 		return
 

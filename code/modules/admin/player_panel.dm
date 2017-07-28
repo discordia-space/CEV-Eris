@@ -394,7 +394,7 @@
 /datum/admins/proc/check_antagonists()
 	if (ticker && ticker.current_state >= GAME_STATE_PLAYING)
 		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
-		dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
+		dat += "Current Storyteller: <B>[ticker.storyteller.name]</B><BR>"
 		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 		dat += "<B>Emergency shuttle</B><BR>"
 		if (!emergency_shuttle.online())

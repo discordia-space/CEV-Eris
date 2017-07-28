@@ -433,10 +433,6 @@
 		user << "The emergency shuttle is already on its way."
 		return
 
-	if(ticker.mode.name == MODE_BLOB)
-		user << "Under directive 7-10, [station_name()] is quarantined until further notice."
-		return
-
 	emergency_shuttle.call_evac()
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
@@ -470,14 +466,6 @@
 			user << "The shuttle is refueling. Please wait another [round((54000-world.time)/60)] minutes before trying again."
 			return
 
-		if(ticker.mode.auto_recall_shuttle)
-			//New version pretends to call the shuttle but cause the shuttle to return after a random duration.
-			emergency_shuttle.auto_recall = 1
-
-		if(ticker.mode.name == MODE_BLOB || ticker.mode.name == MODE_EPIDEMIC)
-			user << "Under directive 7-10, [station_name()] is quarantined until further notice."
-			return
-
 	//delay events in case of an autotransfer
 	if (isnull(user))
 		event_manager.delay_events(EVENT_LEVEL_MODERATE, 9000) //15 minutes
@@ -490,8 +478,6 @@
 
 /proc/cancel_call_proc(var/mob/user)
 	if (!( ticker ) || !emergency_shuttle.can_recall())
-		return
-	if((ticker.mode.name == MODE_BLOB)||(ticker.mode.name == MODE_METEOR))
 		return
 
 	if(!emergency_shuttle.going_to_centcom()) //check that shuttle isn't already heading to centcomm
