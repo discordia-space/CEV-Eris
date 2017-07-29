@@ -59,57 +59,53 @@
 //For holopads only. Usable by AI.
 /mob/living/silicon/ai/proc/holopad_talk(var/message, verb, datum/language/speaking)
 
-	log_say("[key_name(src)] : [message]")
+	log_say("[key_name(src)] (holopad) : [message]")
 
 	message = trim(message)
 
 	if (!message)
-		return
+		return FALSE
 
 	var/obj/machinery/hologram/holopad/H = src.holo
-	if(H && H.masters[src])//If there is a hologram and its master is the user.
-
-		// AI can hear their own message, this formats it for them.
-		if(speaking)
-			src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [speaking.format_message(message, verb)]</span></i>"
-		else
-			src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span></i>"
-
-		//This is so pAI's and people inside lockers/boxes,etc can hear the AI Holopad, the alternative being recursion through contents.
-		//This is much faster.
-		var/list/listening = list()
-		var/list/listening_obj = list()
-		var/turf/T = get_turf(H)
-
-		if(T)
-			var/list/hear = hear(7, T)
-			var/list/hearturfs = list()
-
-			for(var/I in hear)
-				if(istype(I, /mob/))
-					var/mob/M = I
-					listening += M
-					hearturfs += M.locs[1]
-					for(var/obj/O in M.contents)
-						listening_obj |= O
-				else if(istype(I, /obj/))
-					var/obj/O = I
-					hearturfs += O.locs[1]
-					listening_obj |= O
-
-
-			for(var/mob/M in player_list)
-				if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
-					M.hear_say(message,verb,speaking,null,null, src)
-					continue
-				if(M.loc && (M.locs[1] in hearturfs))
-					M.hear_say(message,verb,speaking,null,null, src)
-
-
-	else
+	if(!H || !H.masters[src])//If there is a hologram and its master is the user.
 		src << "No holopad connected."
-		return 0
-	return 1
+		return FALSE
+
+
+	// AI can hear their own message, this formats it for them.
+	if(speaking)
+		src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [speaking.format_message(message, verb)]</span></i>"
+	else
+		src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span></i>"
+
+	//This is so pAI's and people inside lockers/boxes,etc can hear the AI Holopad, the alternative being recursion through contents.
+	//This is much faster.
+	var/list/listening = list()
+	var/list/listening_obj = list()
+	var/turf/T = get_turf(H)
+
+	if(T)
+		var/list/hear = hear(7, T)
+
+		for(var/mob/M in mob_list)
+			if(M.locs.len && M.locs[1] in hear)
+				listening |= M
+			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+				listening |= M
+
+		for(var/obj/O in hearing_objects)
+			if(O.locs.len && O.locs[1] in hear)
+				listening_obj |= O
+
+		for(var/mob/M in listening)
+			M.hear_say(message, verb, speaking, null, null, src)
+
+		for(var/obj/O in listening_obj)
+			spawn(0)
+				if(O) //It's possible that it could be deleted in the meantime.
+					O.hear_talk(src, message, verb, speaking)
+
+	return TRUE
 
 /mob/living/silicon/ai/proc/holopad_emote(var/message) //This is called when the AI uses the 'me' verb while using a holopad.
 
