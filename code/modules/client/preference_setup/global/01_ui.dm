@@ -2,9 +2,9 @@
 	name = "UI"
 	sort_order = 1
 	var/list/UI_colors_preset = list(
-		"blue" = "#4FB5F7",
-		"orange" = "#E44000",
-		"green" = "#35BD6C"
+		"blue" = "#4fb5f7",
+		"orange" = "#ff7800",
+		"green" = "#35bd6C"
 		)
 
 /datum/category_item/player_setup_item/player_global/ui/load_preferences(var/savefile/S)
