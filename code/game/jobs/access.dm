@@ -191,6 +191,8 @@
 /mob/proc/GetIdCard()
 	return null
 
+
+
 var/obj/item/weapon/card/id/all_access/ghost_all_access
 /mob/observer/ghost/GetIdCard()
 	if(!is_admin(src))

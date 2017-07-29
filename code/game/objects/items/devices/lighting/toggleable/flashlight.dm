@@ -106,6 +106,7 @@
 	name = "heavy duty flashlight"
 	desc = "A hand-held heavy-duty light."
 	icon_state = "heavyduty"
+	item_state = "heavyduty"
 	brightness_on = 6
 	tick_cost = 1
 	suitable_cell = /obj/item/weapon/cell/medium
@@ -114,6 +115,7 @@
 	name = "security flashlight"
 	desc = "A hand-held security flashlight. Very robust."
 	icon_state = "seclite"
+	item_state = "seclite"
 	brightness_on = 5
 	force = WEAPON_FORCE_NORMAL
 	hitsound = 'sound/weapons/genhit1.ogg'
