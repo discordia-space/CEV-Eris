@@ -148,7 +148,7 @@
 	var/power_rating
 	var/power_losses
 	var/last_power_draw = 0
-	var/obj/item/weapon/cell/big/cell
+	var/obj/item/weapon/cell/large/cell
 
 /obj/machinery/portable_atmospherics/powered/powered()
 	if(use_power) //using area power
@@ -158,12 +158,12 @@
 	return 0
 
 /obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/cell/big))
+	if(istype(I, /obj/item/weapon/cell/large))
 		if(cell)
 			user << "There is already a power cell installed."
 			return
 
-		var/obj/item/weapon/cell/big/C = I
+		var/obj/item/weapon/cell/large/C = I
 
 		user.drop_item()
 		C.add_fingerprint(user)
