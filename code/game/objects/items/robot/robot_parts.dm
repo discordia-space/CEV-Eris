@@ -60,7 +60,7 @@
 	icon_state = "chest"
 	part = list("groin","chest")
 	var/wires = 0.0
-	var/obj/item/weapon/cell/big/cell = null
+	var/obj/item/weapon/cell/large/cell = null
 
 /obj/item/robot_parts/head
 	name = "head"
@@ -247,7 +247,7 @@
 
 /obj/item/robot_parts/chest/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/cell/big))
+	if(istype(W, /obj/item/weapon/cell/large))
 		if(src.cell)
 			user << "<span class='warning'>You have already inserted a cell!</span>"
 			return

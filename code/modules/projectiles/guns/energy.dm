@@ -48,7 +48,7 @@
 			return 0 // check if we actually need to recharge
 
 		if(use_external_power)
-			var/obj/item/weapon/cell/big/external = get_external_cell()
+			var/obj/item/weapon/cell/large/external = get_external_cell()
 			if(!external || !external.use(charge_cost)) //Take power from the borg...
 				return 0
 

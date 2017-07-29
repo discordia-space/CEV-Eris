@@ -44,8 +44,8 @@
 			var/mob/M = G.affecting
 			charged_item = mob_charge(M)
 
-	if(istype(target, /obj/item/weapon/cell/big/))
-		var/obj/item/weapon/cell/big/C = target
+	if(istype(target, /obj/item/weapon/cell/large/))
+		var/obj/item/weapon/cell/large/C = target
 		if(prob(80))
 			C.maxcharge -= 200
 			if(C.maxcharge <= 1) //Div by 0 protection

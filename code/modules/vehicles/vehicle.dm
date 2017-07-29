@@ -30,7 +30,7 @@
 	var/powered = 0		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 
-	var/obj/item/weapon/cell/big/cell
+	var/obj/item/weapon/cell/large/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 
 	var/atom/movable/load		//all vehicles can take a load, since they should all be a least drivable
@@ -85,7 +85,7 @@
 	else if(istype(W, /obj/item/weapon/crowbar) && cell && open)
 		remove_cell(user)
 
-	else if(istype(W, /obj/item/weapon/cell/big) && !cell && open)
+	else if(istype(W, /obj/item/weapon/cell/large) && !cell && open)
 		insert_cell(W, user)
 	else if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/T = W
@@ -233,7 +233,7 @@
 		turn_on()
 		return
 
-/obj/vehicle/proc/insert_cell(var/obj/item/weapon/cell/big/C, var/mob/living/carbon/human/H)
+/obj/vehicle/proc/insert_cell(var/obj/item/weapon/cell/large/C, var/mob/living/carbon/human/H)
 	if(cell)
 		return
 	if(!istype(C))
