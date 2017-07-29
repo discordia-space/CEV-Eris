@@ -188,19 +188,16 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
 
-/obj/item/device/radio/uplink/New(loc, mind, crystal_amount)
-	..(loc)
-	hidden_uplink = new(src, mind, crystal_amount)
+/obj/item/device/radio/uplink/New()
+	hidden_uplink = new(src)
 	icon_state = "radio"
 
 /obj/item/device/radio/uplink/attack_self(mob/user as mob)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-/obj/item/device/multitool/uplink/New(loc, mind, crystal_amount)
-	..(loc)
-	hidden_uplink = new(src, mind, crystal_amount)
-
+/obj/item/device/multitool/uplink/New()
+	hidden_uplink = new(src)
 
 /obj/item/device/multitool/uplink/attack_self(mob/user as mob)
 	if(hidden_uplink)
@@ -209,7 +206,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /obj/item/device/radio/headset/uplink
 	traitor_frequency = 1445
 
-/obj/item/device/radio/headset/uplink/New(loc, mind, crystal_amount = DEFAULT_TELECRYSTAL_AMOUNT)
-	..(loc)
-	hidden_uplink = new(src, mind, crystal_amount)
+/obj/item/device/radio/headset/uplink/New()
+	..()
+	hidden_uplink = new(src)
 	hidden_uplink.uses = DEFAULT_TELECRYSTAL_AMOUNT
