@@ -1,5 +1,4 @@
 /datum/event/payday
-	var/payday_multi = 1
 	var/total_money_ship = 0
 /datum/event/payday/start()
 	if(all_money_accounts.len)
