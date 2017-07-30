@@ -183,7 +183,7 @@
 			if(C.use(5))
 				//TODO: generalize this.
 				user << "<span class='notice'>You add some cable to the [src.name] and slide it inside the battery casing.</span>"
-				var/obj/item/weapon/cell/big/potato/pocell = new /obj/item/weapon/cell/big/potato(get_turf(user))
+				var/obj/item/weapon/cell/large/potato/pocell = new /obj/item/weapon/cell/large/potato(get_turf(user))
 				if(src.loc == user && !(user.l_hand && user.r_hand) && ishuman(user))
 					user.put_in_hands(pocell)
 				pocell.maxcharge = src.potency * 10

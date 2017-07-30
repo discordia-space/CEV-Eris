@@ -17,6 +17,7 @@
 	var/list/allowed_organs = list()
 	var/position_flag = 0
 
+
 /obj/item/weapon/implant/proc/trigger(emote, mob/living/source)
 /obj/item/weapon/implant/proc/activate()
 /obj/item/weapon/implant/proc/deactivate()

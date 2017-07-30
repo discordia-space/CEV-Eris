@@ -217,7 +217,7 @@
 		return
 
 	//doesn't use power cells
-	if(istype(I, /obj/item/weapon/cell/big))
+	if(istype(I, /obj/item/weapon/cell/large))
 		return
 	if (istype(I, /obj/item/weapon/screwdriver))
 		return

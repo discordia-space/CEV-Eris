@@ -2,6 +2,7 @@
 	name = "flashlight"
 	desc = "A hand-held emergency light."
 	icon_state = "flashlight"
+	item_state = "flashlight"
 	flags = CONDUCT
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)

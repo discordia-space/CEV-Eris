@@ -18,7 +18,7 @@
 /obj/item/clothing/glasses/night/New()
 	..()
 	if(!cell && suitable_cell)
-		cell = new /obj/item/weapon/cell/big/super(src)	 //More advanced power cell
+		cell = new /obj/item/weapon/cell/large/super(src)	 //More advanced power cell
 	overlay = global_hud.nvg
 
 obj/item/clothing/glasses/night/process()

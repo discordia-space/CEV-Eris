@@ -18,36 +18,36 @@
 
 //BIG CELLS - for APC, borgs and machinery.
 
-/obj/item/weapon/cell/big
-	name = "Asters \"Robustcell 1000B\""
-	desc = "Asters Guild branded rechargeable B-standardized power cell. This one is the cheapest you can find."
+/obj/item/weapon/cell/large
+	name = "Asters \"Robustcell 1000L\""
+	desc = "Asters Guild branded rechargeable L-standardized power cell. This one is the cheapest you can find."
 	icon_state = "b_st"
 	maxcharge = 1000
 
-/obj/item/weapon/cell/big/high
-	name = "Asters \"Robustcell 5000B\""
-	desc = "Asters Guild branded rechargeable B-standardized power cell. Popular and reliable version."
+/obj/item/weapon/cell/large/high
+	name = "Asters \"Robustcell 5000L\""
+	desc = "Asters Guild branded rechargeable L-standardized power cell. Popular and reliable version."
 	icon_state = "b_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 5000
 
-/obj/item/weapon/cell/big/super
-	name = "Asters \"Robustcell 15000B\""
-	desc = "Asters Guild branded rechargeable B-standardized power cell. This advanced version can store even more energy."
+/obj/item/weapon/cell/large/super
+	name = "Asters \"Robustcell 15000L\""
+	desc = "Asters Guild branded rechargeable L-standardized power cell. This advanced version can store even more energy."
 	icon_state = "b_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 15000
 
-/obj/item/weapon/cell/big/hyper
-	name = "Asters \"Robustcell-X 20000B\""
-	desc = "Asters Guild branded rechargeable B-standardized power cell. Looks like this is rare and powerful prototype."
+/obj/item/weapon/cell/large/hyper
+	name = "Asters \"Robustcell-X 20000L\""
+	desc = "Asters Guild branded rechargeable L-standardized power cell. Looks like this is rare and powerful prototype."
 	icon_state = "b_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 20000
 
 //Meme cells - for fun and cancer
 
-/obj/item/weapon/cell/big/potato
+/obj/item/weapon/cell/large/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
 	origin_tech = list(TECH_POWER = 1)
@@ -57,7 +57,7 @@
 	maxcharge = 300
 	minor_fault = 1
 
-/obj/item/weapon/cell/big/slime
+/obj/item/weapon/cell/large/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with plasma, it crackles with power."
 	origin_tech = list(TECH_POWER = 2, TECH_BIO = 4)

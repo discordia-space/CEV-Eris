@@ -493,10 +493,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/toolbox/electrical,
 					/obj/item/clothing/gloves/insulated,
 					/obj/item/clothing/gloves/insulated,
-					/obj/item/weapon/cell/big,
-					/obj/item/weapon/cell/big,
-					/obj/item/weapon/cell/big/high,
-					/obj/item/weapon/cell/big/high)
+					/obj/item/weapon/cell/large,
+					/obj/item/weapon/cell/large,
+					/obj/item/weapon/cell/large/high,
+					/obj/item/weapon/cell/large/high)
 	cost = 15
 	containertype = /obj/structure/closet/crate
 	containername = "\improper Electrical maintenance crate"
@@ -662,8 +662,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/device/flash,
 					/obj/item/device/flash,
 					/obj/item/device/flash,
-					/obj/item/weapon/cell/big/high,
-					/obj/item/weapon/cell/big/high)
+					/obj/item/weapon/cell/large/high,
+					/obj/item/weapon/cell/large/high)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "\improper Robotics assembly"
@@ -1225,7 +1225,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					 /obj/item/weapon/folder/yellow,
 					 /obj/item/weapon/hand_labeler,
 					 /obj/item/weapon/tape_roll,
-					 /obj/structure/filingcabinet/chestdrawer{anchored = 0},
+					 /obj/structure/filingcabinet/chestdrawer,
 					 /obj/item/weapon/paper_bin)
 	name = "Office supplies"
 	cost = 15
