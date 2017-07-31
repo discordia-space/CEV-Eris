@@ -18,6 +18,43 @@
 	var/time = ""
 	var/source_terminal = ""
 
+/datum/transaction/New(var/amount = 0, var/target_name, var/purpose, var/source_terminal)
+	src.amount = amount
+	src.target_name = target_name
+	src.purpose = purpose
+	src.source_terminal = source_terminal
+
+	src.date = current_date_string
+	src.time = stationtime2text()
+
+/datum/transaction/proc/apply_to(var/datum/money_account/account)
+	if(!istype(account) || account.suspended)
+		return FALSE
+
+	if(isnum(amount))
+		if(amount < 0 && (account.money + amount) < 0)
+			return FALSE
+		account.money += amount
+
+	account.transaction_log.Add(src.Copy())
+	return TRUE
+
+/datum/transaction/proc/set_amount(var/amount, var/update_time = TRUE)
+	src.amount = amount
+	if(update_time)
+		src.time = stationtime2text()
+
+/datum/transaction/proc/Copy()
+	var/datum/transaction/T = PoolOrNew(/datum/transaction)
+	T.target_name = src.target_name
+	T.purpose = src.purpose
+	T.amount = src.amount
+	T.date = src.date
+	T.time = src.time
+	T.source_terminal = src.source_terminal
+	return T
+
+
 /proc/create_account(var/new_owner_name = "Default user", var/starting_funds = 0, var/obj/machinery/account_database/source_db)
 
 	//create a new account
@@ -79,24 +116,11 @@
 /proc/charge_to_account(var/attempt_account_number, var/source_name, var/purpose, var/terminal_id, var/amount)
 	for(var/datum/money_account/D in all_money_accounts)
 		if(D.account_number == attempt_account_number && !D.suspended)
-			D.money += amount
-
 			//create a transaction log entry
-			var/datum/transaction/T = new()
-			T.target_name = source_name
-			T.purpose = purpose
-			if(amount < 0)
-				T.amount = "([amount])"
-			else
-				T.amount = "[amount]"
-			T.date = current_date_string
-			T.time = stationtime2text()
-			T.source_terminal = terminal_id
-			D.transaction_log.Add(T)
+			var/datum/transaction/T = new(amount, source_name, purpose, terminal_id)
+			return T.apply_to(D)
 
-			return 1
-
-	return 0
+	return FALSE
 
 //this returns the first account datum that matches the supplied accnum/pin combination, it returns null if the combination did not match any account
 /proc/attempt_account_access(var/attempt_account_number, var/attempt_pin_number, var/security_level_passed = 0)

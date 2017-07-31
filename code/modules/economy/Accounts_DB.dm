@@ -23,14 +23,7 @@
 			return 1
 
 	proc/create_transation(target, reason, amount)
-		var/datum/transaction/T = new()
-		T.target_name = target
-		T.purpose = reason
-		T.amount = amount
-		T.date = current_date_string
-		T.time = stationtime2text()
-		T.source_terminal = machine_id
-		return T
+		return PoolOrNew(/datum/transaction, list(amount, target, reason, machine_id))
 
 	proc/accounting_letterhead(report_name)
 		return {"
