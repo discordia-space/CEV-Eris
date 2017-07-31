@@ -141,7 +141,7 @@
 	if(!species_modifier)
 		species_modifier = economic_species_modifier[/datum/species/human]
 
-	var/money_amount = (rand(5,50) + rand(5, 50)) * economic_modifier * species_modifier
+	var/money_amount = one_time_payment(species_modifier)
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
 	if(H.mind)
 		var/remembered_info = ""
@@ -158,6 +158,8 @@
 
 	H << "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>"
 
+/datum/job/proc/one_time_payment(var/custom_factor = 1)
+	return (rand(5,50) + rand(5, 50)) * economic_modifier * custom_factor
 
 /datum/job/proc/get_access()
 	if(!config || config.jobs_have_minimal_access)
