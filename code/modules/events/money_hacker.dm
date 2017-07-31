@@ -42,7 +42,7 @@
 		affected_account.money -= lost
 
 		//create a taunting log entry
-		var/datum/transaction/T = new()
+		var/datum/transaction/T = PoolOrNew(/datum/transaction)
 		T.target_name = pick("","yo brotha from anotha motha","el Presidente","chieF smackDowN")
 		T.purpose = pick("Ne$ ---ount fu%ds init*&lisat@*n","PAY BACK YOUR MUM","Funds withdrawal","pWnAgE","l33t hax","liberationez")
 		T.amount = pick("","([rand(0,99999)])","alla money","9001$","HOLLA HOLLA GET DOLLA","([lost])")
@@ -54,7 +54,7 @@
 		T.time = pick("", stationtime2text(), time2)
 		T.source_terminal = pick("","[pick("Biesel","New Gibson")] GalaxyNet Terminal #[rand(111,999)]","your mums place","nantrasen high CommanD")
 
-		affected_account.transaction_log.Add(T)
+		T.apply_to(affected_account)
 
 	else
 		//crew wins

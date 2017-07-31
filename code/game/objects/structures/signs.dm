@@ -526,12 +526,12 @@
 
 /obj/structure/sign/faction/alliance
 	name = "Mankind Alliance"
-	desc = "Alliance's all-seeing eye, logo of now fallen empire. Once they were owning all the Milky Way. Now it's just dust, forgotten derelicts and automated ships."
+	desc = "Alliance's all-seeing eye, banner of now fallen empire. Once they were owning all the Milky Way. Now it's just dust, forgotten derelicts and automated ships."
 	icon_state = "alliance"
 
 /obj/structure/sign/faction/alliance_old
 	name = "Mankind Alliance"
-	desc = "Alliance's all-seeing eye, logo of now fallen empire. Once they were owning all the Milky Way. Now it's just dust, forgotten derelicts and automated ships."
+	desc = "Alliance's all-seeing eye, banner of now fallen empire. Once they were owning all the Milky Way. Now it's just dust, forgotten derelicts and automated ships."
 	icon_state = "alliance-old"
 
 /obj/structure/sign/faction/frozenstar
@@ -573,3 +573,13 @@
 	name = "EXCELSIOR"
 	desc = "EXCELSIOR is union of communist mining communities with no respect to any private property."
 	icon_state = "excelsior-old"
+
+/obj/structure/sign/derelict1
+	name = "Old sign"
+	desc = "Technical information of some sort, shame its too worn-out to read."
+	icon_state = "something-old1"
+
+/obj/structure/sign/derelict2
+	name = "Old sign"
+	desc = "Looks like a planet crashing by some station above it. Its kinda scary."
+	icon_state = "something-old2"
