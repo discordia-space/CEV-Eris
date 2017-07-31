@@ -131,17 +131,13 @@
 
 						//transfer the money
 						E.worth -= transaction_amount
-						linked_account.money += transaction_amount
 
 						//create entry in the EFTPOS linked account transaction log
-						var/datum/transaction/T = new()
-						T.target_name = E.owner_name //D.owner_name
-						T.purpose = (transaction_purpose ? transaction_purpose : "None supplied.")
-						T.amount = transaction_amount
-						T.source_terminal = machine_id
-						T.date = current_date_string
-						T.time = stationtime2text()
-						linked_account.transaction_log.Add(T)
+						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
+							transaction_amount, E.owner_name,
+							transaction_purpose ? transaction_purpose : "None supplied.", machine_id
+						))
+						T.apply_to(linked_account)
 					else
 						usr << "\icon[src]<span class='warning'>\The [O] doesn't have that much money!</span>"
 			else
@@ -251,30 +247,18 @@
 								transaction_paid = 1
 
 								//transfer the money
-								D.money -= transaction_amount
-								linked_account.money += transaction_amount
-
 								//create entries in the two account transaction logs
-								var/datum/transaction/T = new()
-								T.target_name = "[linked_account.owner_name] (via [eftpos_name])"
-								T.purpose = transaction_purpose
-								if(transaction_amount > 0)
-									T.amount = "([transaction_amount])"
-								else
-									T.amount = "[transaction_amount]"
-								T.source_terminal = machine_id
-								T.date = current_date_string
-								T.time = stationtime2text()
-								D.transaction_log.Add(T)
+								var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
+									-transaction_amount, "[linked_account.owner_name] (via [eftpos_name])",
+									transaction_purpose, machine_id
+								))
+								T.apply_to(D)
 								//
-								T = new()
-								T.target_name = D.owner_name
-								T.purpose = transaction_purpose
-								T.amount = "[transaction_amount]"
-								T.source_terminal = machine_id
-								T.date = current_date_string
-								T.time = stationtime2text()
-								linked_account.transaction_log.Add(T)
+								T = new(
+									transaction_amount, D.owner_name,
+									transaction_purpose, machine_id
+								)
+								T.apply_to(linked_account)
 							else
 								usr << "\icon[src]<span class='warning'>You don't have that much money!</span>"
 						else
@@ -285,18 +269,18 @@
 					usr << "\icon[src]<span class='warning'>Connected account has been suspended.</span>"
 			else
 				usr << "\icon[src]<span class='warning'>EFTPOS is not connected to an account.</span>"
-	else if (istype(I, /obj/item/weapon/card/emag))
-		if(transaction_locked)
-			if(transaction_paid)
-				usr << "\icon[src]<span class='info'>You stealthily swipe \the [I] through \the [src].</span>"
-				transaction_locked = 0
-				transaction_paid = 0
-			else
-				usr.visible_message("<span class='info'>\The [usr] swipes a card through \the [src].</span>")
-				playsound(src, 'sound/machines/chime.ogg', 50, 1)
-				src.visible_message("\icon[src] \The [src] chimes.")
-				transaction_paid = 1
 	else
 		..()
 
-	//emag?
+//emag?
+/obj/item/device/eftpos/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
+	if(transaction_locked)
+		if(transaction_paid)
+			usr << "\icon[src]<span class='info'>You stealthily swipe \the [emag_source] through \the [src].</span>"
+			transaction_locked = 0
+			transaction_paid = 0
+		else
+			usr.visible_message("<span class='info'>\The [usr] swipes a card through \the [src].</span>")
+			playsound(src, 'sound/machines/chime.ogg', 50, 1)
+			src.visible_message("\icon[src] \The [src] chimes.")
+			transaction_paid = 1
