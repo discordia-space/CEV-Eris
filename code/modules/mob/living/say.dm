@@ -259,7 +259,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if(sdisabilities&DEAF || ear_deaf)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
-		if(!language || !language.flags&INNATE)
+		if(! (language && language.flags&INNATE))
 			if(speaker == src)
 				src << "<span class='warning'>You cannot hear yourself speak!</span>"
 			else
