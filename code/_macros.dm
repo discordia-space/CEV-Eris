@@ -51,6 +51,8 @@
 
 //---------------------------------------------------
 
+#define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
+#define isweakref(A) istype(A, /weakref)
 
 //OBJECT LEVEL
 #define isobj(A) istype(A, /obj)
