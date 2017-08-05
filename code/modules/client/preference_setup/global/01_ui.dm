@@ -1,6 +1,11 @@
 /datum/category_item/player_setup_item/player_global/ui
 	name = "UI"
 	sort_order = 1
+	var/list/UI_colors_preset = list(
+		"blue" = "#4fb5f7",
+		"orange" = "#ff7800",
+		"green" = "#35bd6C"
+		)
 
 /datum/category_item/player_setup_item/player_global/ui/load_preferences(var/savefile/S)
 	S["UI_style"]		>> pref.UI_style
@@ -23,9 +28,9 @@
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. += "<b>UI Settings</b><br>"
 	. += "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
-	. += "<b>Custom UI</b> (recommended for White UI):<br>"
-	. += "-Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> <table style='display:inline;' bgcolor='[pref.UI_style_color]'><tr><td>__</td></tr></table> <a href='?src=\ref[src];reset=ui'>reset</a><br>"
-	. += "-Alpha(transparency): <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='?src=\ref[src];reset=alpha'>reset</a><br>"
+	. += "Recomended Colours: <a href='?src=\ref[src];select_preset_color=blue'>Blue</a>, <a href='?src=\ref[src];select_preset_color=orange'>Orange</a>, <a href='?src=\ref[src];select_preset_color=green'>Green</a><br>"
+	. += "Manual Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> <table style='display:inline;' bgcolor='[pref.UI_style_color]'><tr><td>__</td></tr></table> <a href='?src=\ref[src];reset=ui'>reset</a><br>"
+	. += "Transparency: <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='?src=\ref[src];reset=alpha'>reset</a><br>"
 	if(can_select_ooc_color(user))
 		. += "<b>OOC Color:</b> "
 		if(pref.ooccolor == initial(pref.ooccolor))
@@ -40,16 +45,31 @@
 		pref.UI_style = UI_style_new
 		return TOPIC_REFRESH
 
+	else if(href_list["select_preset_color"])
+		var/color_name = href_list["select_preset_color"]
+		if(color_name in UI_colors_preset)
+			pref.UI_style_color = UI_colors_preset[color_name]
+			if(isliving(pref.client.mob))
+				var/mob/living/L = pref.client.mob
+				L.check_HUD()
+			return TOPIC_REFRESH
+
 	else if(href_list["select_color"])
 		var/UI_style_color_new = input(user, "Choose UI color, dark colors are not recommended!", "Global Preference", pref.UI_style_color) as color|null
 		if(isnull(UI_style_color_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.UI_style_color = UI_style_color_new
+		if(isliving(pref.client.mob))
+			var/mob/living/L = pref.client.mob
+			L.check_HUD()
 		return TOPIC_REFRESH
 
 	else if(href_list["select_alpha"])
 		var/UI_style_alpha_new = input(user, "Select UI alpha (transparency) level, between 50 and 255.", "Global Preference", pref.UI_style_alpha) as num|null
 		if(isnull(UI_style_alpha_new) || (UI_style_alpha_new < 50 || UI_style_alpha_new > 255) || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.UI_style_alpha = UI_style_alpha_new
+		if(isliving(pref.client.mob))
+			var/mob/living/L = pref.client.mob
+			L.check_HUD()
 		return TOPIC_REFRESH
 
 	else if(href_list["select_ooc_color"])

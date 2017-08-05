@@ -119,19 +119,13 @@ log transactions
 		if(stat & NOPOWER)
 			return
 		if(istype(I,/obj/item/weapon/spacecash))
+			var/obj/item/weapon/spacecash/cash = I
 			//consume the money
-			authenticated_account.money += I:worth
 			playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
 
 			//create a transaction log entry
-			var/datum/transaction/T = new()
-			T.target_name = authenticated_account.owner_name
-			T.purpose = "Credit deposit"
-			T.amount = I:worth
-			T.source_terminal = machine_id
-			T.date = current_date_string
-			T.time = stationtime2text()
-			authenticated_account.transaction_log.Add(T)
+			var/datum/transaction/T = PoolOrNew(/datum/transaction, list(cash.worth, authenticated_account.owner_name, "Credit deposit", machine_id))
+			T.apply_to(authenticated_account)
 
 			user << "<span class='info'>You insert [I] into [src].</span>"
 			src.attack_hand(user)
@@ -255,17 +249,10 @@ log transactions
 						var/transfer_purpose = href_list["purpose"]
 						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
 							usr << "\icon[src]<span class='info'>Funds transfer successful.</span>"
-							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
-							var/datum/transaction/T = new()
-							T.target_name = "Account #[target_account_number]"
-							T.purpose = transfer_purpose
-							T.source_terminal = machine_id
-							T.date = current_date_string
-							T.time = stationtime2text()
-							T.amount = "([transfer_amount])"
-							authenticated_account.transaction_log.Add(T)
+							var/datum/transaction/T = new(-transfer_amount, "Account #[target_account_number]", transfer_purpose, machine_id)
+							T.apply_to(authenticated_account)
 						else
 							usr << "\icon[src]<span class='warning'>Funds transfer failed.</span>"
 
@@ -300,13 +287,9 @@ log transactions
 								//create an entry in the account transaction log
 								var/datum/money_account/failed_account = get_account(tried_account_num)
 								if(failed_account)
-									var/datum/transaction/T = new()
-									T.target_name = failed_account.owner_name
-									T.purpose = "Unauthorised login attempt"
-									T.source_terminal = machine_id
-									T.date = current_date_string
-									T.time = stationtime2text()
-									failed_account.transaction_log.Add(T)
+									//Just crazy
+									var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, failed_account.owner_name, "Unauthorised login attempt", machine_id))
+									T.apply_to(failed_account)
 							else
 								usr << "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."
 								previous_account_number = tried_account_num
@@ -320,13 +303,8 @@ log transactions
 						view_screen = NO_SCREEN
 
 						//create a transaction log entry
-						var/datum/transaction/T = new()
-						T.target_name = authenticated_account.owner_name
-						T.purpose = "Remote terminal access"
-						T.source_terminal = machine_id
-						T.date = current_date_string
-						T.time = stationtime2text()
-						authenticated_account.transaction_log.Add(T)
+						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, authenticated_account.owner_name, "Remote terminal access", machine_id))
+						T.apply_to(authenticated_account)
 
 						usr << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
 
@@ -340,21 +318,13 @@ log transactions
 					if(amount <= authenticated_account.money)
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
 
+
 						//remove the money
-						authenticated_account.money -= amount
-
-						//	spawn_money(amount,src.loc)
-						spawn_ewallet(amount,src.loc,usr)
-
 						//create an entry in the account transaction log
-						var/datum/transaction/T = new()
-						T.target_name = authenticated_account.owner_name
-						T.purpose = "Credit withdrawal"
-						T.amount = "([amount])"
-						T.source_terminal = machine_id
-						T.date = current_date_string
-						T.time = stationtime2text()
-						authenticated_account.transaction_log.Add(T)
+						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id))
+						if(T.apply_to(authenticated_account))
+							//	spawn_money(amount,src.loc)
+							spawn_ewallet(amount,src.loc,usr)
 					else
 						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
 			if("withdrawal")
@@ -366,20 +336,12 @@ log transactions
 					if(amount <= authenticated_account.money)
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
 
-						//remove the money
-						authenticated_account.money -= amount
-
-						spawn_money(amount,src.loc,usr)
-
 						//create an entry in the account transaction log
-						var/datum/transaction/T = new()
-						T.target_name = authenticated_account.owner_name
-						T.purpose = "Credit withdrawal"
-						T.amount = "([amount])"
-						T.source_terminal = machine_id
-						T.date = current_date_string
-						T.time = stationtime2text()
-						authenticated_account.transaction_log.Add(T)
+						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(-amount, authenticated_account.owner_name, "Credit withdrawal", machine_id))
+						if(T.apply_to(authenticated_account))
+							//remove the money
+							spawn_money(amount,src.loc,usr)
+
 					else
 						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
 			if("balance_statement")
@@ -478,13 +440,8 @@ log transactions
 					human_user << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
 
 					//create a transaction log entry
-					var/datum/transaction/T = new()
-					T.target_name = authenticated_account.owner_name
-					T.purpose = "Remote terminal access"
-					T.source_terminal = machine_id
-					T.date = current_date_string
-					T.time = stationtime2text()
-					authenticated_account.transaction_log.Add(T)
+					var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, authenticated_account.owner_name, "Remote terminal access", machine_id))
+					T.apply_to(authenticated_account)
 
 					view_screen = NO_SCREEN
 
