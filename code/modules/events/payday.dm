@@ -17,4 +17,4 @@
 			total_money_ship += money_amount
 
 /datum/event/payday/announce()
-	command_announcement.Announce("A new payday has come. Check your non-suspended accounts for additional funds. The ship's crew totally earned [total_money_ship] this time.", "Payday")
+	command_announcement.Announce("A new payday has come. Check your non-suspended accounts for additional funds. The ship's crew totally earned [total_money_ship] credits this time.", "Payday")
