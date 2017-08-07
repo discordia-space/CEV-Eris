@@ -33,19 +33,19 @@
 /obj/machinery/door/airlock/multi_tile/metal/New()
 	..()
 	if(src.dir > 3)
-		f5 = new/obj/machinery/filler_object (src.loc)
-		f6 = new/obj/machinery/filler_object (get_step(src,EAST))
+		f5 = new/obj/machinery/filler_object(src.loc)
+		f6 = new/obj/machinery/filler_object(get_step(src,EAST))
 	else
-		f5 = new/obj/machinery/filler_object (src.loc)
-		f6 = new/obj/machinery/filler_object (get_step(src,NORTH))
+		f5 = new/obj/machinery/filler_object(src.loc)
+		f6 = new/obj/machinery/filler_object(get_step(src,NORTH))
 	f5.density = 0
 	f6.density = 0
 	f5.set_opacity(opacity)
 	f6.set_opacity(opacity)
 
 /obj/machinery/door/airlock/multi_tile/metal/Destroy()
-	del f5
-	del f6
+	qdel(f5)
+	qdel(f6)
 	..()
 
 /obj/machinery/filler_object
