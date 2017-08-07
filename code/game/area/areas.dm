@@ -38,7 +38,7 @@
 	return cameras
 
 /area/proc/get_camera_tag(var/obj/machinery/camera/C)
-	return "[name] [camera_id++]"
+	return "[name] #[camera_id++]"
 
 /area/proc/atmosalert(danger_level, var/alarm_source)
 	if (danger_level == 0)

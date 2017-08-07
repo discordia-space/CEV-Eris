@@ -20,7 +20,6 @@
 			            access_tox_storage, access_teleporter, access_sec_doors,
 			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network)
-	minimal_player_age = 14
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
@@ -52,7 +51,6 @@
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_genetics)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch, access_genetics)
 	idtype = /obj/item/weapon/card/id/sci
-	minimal_player_age = 14
 
 	uniform = /obj/item/clothing/under/rank/scientist
 	pda = /obj/item/device/pda/science
@@ -65,7 +63,6 @@
 		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
-
 
 
 /datum/job/roboticist
@@ -82,7 +79,6 @@
 	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	idtype = /obj/item/weapon/card/id/dkgrey
-	minimal_player_age = 7
 
 	uniform = /obj/item/clothing/under/rank/roboticist
 	pda = /obj/item/device/pda/roboticist

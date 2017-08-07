@@ -6,7 +6,6 @@
 
 /mob/living/proc/destroy_HUD()
 	var/mob/living/H = src
-	src.client.screen.Cut()
 	H.HUDprocess.Cut()
 	for (var/p in H.HUDneed)
 		qdel(H.HUDneed[p])
@@ -24,7 +23,6 @@
 
 /mob/living/proc/show_HUD()
 	if(src.client)
-		src.client.screen.Cut()
 		for (var/i=1,i<=HUDneed.len,i++)
 			var/p = HUDneed[i]
 			src.client.screen += HUDneed[p]
