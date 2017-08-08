@@ -10,7 +10,7 @@ var/list/event_last_fired = list()
 	active_with_role["Security"] = 0
 	active_with_role["Scientist"] = 0
 	active_with_role[JOB_AI] = 0
-	active_with_role["Cyborg"] = 0
+	active_with_role[JOB_CYBORG] = 0
 	active_with_role[JOB_JANITOR] = 0
 	active_with_role[JOB_GARDENER] = 0
 
@@ -48,8 +48,8 @@ var/list/event_last_fired = list()
 		if(M.mind.assigned_role == JOB_AI)
 			active_with_role[JOB_AI]++
 
-		if(M.mind.assigned_role == "Cyborg")
-			active_with_role["Cyborg"]++
+		if(M.mind.assigned_role == JOB_CYBORG)
+			active_with_role[JOB_CYBORG]++
 
 		if(M.mind.assigned_role == JOB_JANITOR)
 			active_with_role[JOB_JANITOR]++

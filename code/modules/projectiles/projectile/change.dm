@@ -49,7 +49,7 @@
 				new_mob = new /mob/living/silicon/robot(M.loc)
 				new_mob.gender = M.gender
 				new_mob.invisibility = 0
-				new_mob.job = "Cyborg"
+				new_mob.job = JOB_CYBORG
 				var/mob/living/silicon/robot/Robot = new_mob
 				Robot.mmi = new /obj/item/device/mmi(new_mob)
 				Robot.mmi.transfer_identity(M)	//Does not transfer key/client.

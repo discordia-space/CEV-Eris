@@ -23,7 +23,7 @@
 
 
 /datum/job/silicon/cyborg
-	title = "Cyborg"
+	title = JOB_CYBORG
 	flag = CYBORG
 	total_positions = 2
 	spawn_positions = 2

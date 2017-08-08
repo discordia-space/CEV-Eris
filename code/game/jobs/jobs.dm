@@ -105,7 +105,7 @@ var/list/security_positions = list(
 
 var/list/nonhuman_positions = list(
 	JOB_AI,
-	"Cyborg",
+	JOB_CYBORG,
 	"pAI"
 )
 

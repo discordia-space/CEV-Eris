@@ -33,7 +33,7 @@ var/list/spawntypes = list()
 /datum/spawnpoint/cyborg
 	display_name = "Cyborg Storage"
 	msg = "has been activated from storage"
-	restrict_job = list("Cyborg")
+	restrict_job = list(JOB_CYBORG)
 
 /datum/spawnpoint/cyborg/New()
 	..()

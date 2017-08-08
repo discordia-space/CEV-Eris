@@ -245,7 +245,7 @@
 					else if(ispAI(M))
 						M_job = "pAI"
 					else if(isrobot(M))
-						M_job = "Cyborg"
+						M_job = JOB_CYBORG
 					else
 						M_job = "Silicon-based"
 
