@@ -194,7 +194,7 @@
 			if(!def_value)//If it's a custom objective, it will be an empty string.
 				def_value = "custom"
 
-		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
+		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
 		if (!new_obj_type) return
 
 		var/datum/objective/new_objective = null
@@ -236,10 +236,6 @@
 				new_objective = new /datum/objective/block
 				new_objective.owner = src
 
-			if ("hijack")
-				new_objective = new /datum/objective/hijack
-				new_objective.owner = src
-
 			if ("escape")
 				new_objective = new /datum/objective/escape
 				new_objective.owner = src
@@ -275,9 +271,6 @@
 					if("download")
 						new_objective = new /datum/objective/download
 						new_objective.explanation_text = "Download [target_number] research levels."
-					if("capture")
-						new_objective = new /datum/objective/capture
-						new_objective.explanation_text = "Accumulate [target_number] capture points."
 					if("absorb")
 						new_objective = new /datum/objective/absorb
 						new_objective.explanation_text = "Absorb [target_number] compatible genomes."
