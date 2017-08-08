@@ -49,7 +49,7 @@
 
 
 /datum/job/engineering/technomancer
-	title = TECHNOMANCER
+	title = JOB_TECHNOMANCER
 	flag = TECHNOMANCER
 	total_positions = 5
 	spawn_positions = 5
