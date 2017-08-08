@@ -28,20 +28,5 @@ var/global/list/all_objectives = list()
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/datum/objective/proc/get_panel_entry()
+	return explanation_text
