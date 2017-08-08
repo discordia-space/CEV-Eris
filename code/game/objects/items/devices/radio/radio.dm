@@ -329,7 +329,7 @@ var/global/list/default_medbay_channels = list(
 
 	// --- AI ---
 	else if (isAI(M))
-		jobname = "AI"
+		jobname = JOB_AI
 
 	// --- Cyborg ---
 	else if (isrobot(M))

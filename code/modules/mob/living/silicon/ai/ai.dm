@@ -188,7 +188,7 @@ var/list/ai_verbs_default = list(
 		show_laws()
 		src << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
 
-	job = "AI"
+	job = JOB_AI
 	setup_icon()
 
 /mob/living/silicon/ai/Destroy()
@@ -252,7 +252,7 @@ var/list/ai_verbs_default = list(
 
 	// Set ai pda name
 	if(aiPDA)
-		aiPDA.ownjob = "AI"
+		aiPDA.ownjob = JOB_AI
 		aiPDA.owner = pickedName
 		aiPDA.name = pickedName + " (" + aiPDA.ownjob + ")"
 

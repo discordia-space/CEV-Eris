@@ -46,7 +46,7 @@
 	if(!job_master)
 		return
 
-/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 18, list/splitJobs = list("Moebius Biolab Officer"))
+/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 18, list/splitJobs = list(JOB_MBO))
 	if(!job_master)
 		return
 
@@ -77,10 +77,10 @@
 		if(jobban_isbanned(user, rank))
 			. += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
-		if((pref.job_civilian_low & ASSISTANT) && (rank != "Assistant"))
+		if((pref.job_civilian_low & ASSISTANT) && (rank != JOB_ASSISTANT))
 			. += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
-		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
+		if((rank in command_positions) || (rank == JOB_AI))//Bold head jobs
 			. += "<b>[rank]</b>"
 		else
 			. += "[rank]"
@@ -89,7 +89,7 @@
 
 		. += "<a href='?src=\ref[src];set_job=[rank]'>"
 
-		if(rank == "Assistant")//Assistant is special
+		if(rank == JOB_ASSISTANT)//Assistant is special
 			if(pref.job_civilian_low & ASSISTANT)
 				. += " <font color=green>\[Yes]</font>"
 			else
@@ -149,7 +149,7 @@
 	if(!job)
 		return 0
 
-	if(role == "Assistant")
+	if(role == JOB_ASSISTANT)
 		if(pref.job_civilian_low & job.flag)
 			pref.job_civilian_low &= ~job.flag
 		else

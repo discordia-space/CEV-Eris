@@ -207,8 +207,9 @@ var/const/NO_EMAG_ACT = -50
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
-	registered_name = "Captain"
-	assignment = "Captain"
+	registered_name = JOB_CAPTAIN
+	assignment = JOB_CAPTAIN
+
 /obj/item/weapon/card/id/captains_spare/New()
 	access = get_all_station_access()
 	..()

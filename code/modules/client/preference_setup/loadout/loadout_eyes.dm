@@ -32,17 +32,17 @@
 /datum/gear/eyes/security
 	display_name = "Security HUD"
 	path = /obj/item/clothing/glasses/hud/security
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN)
 
 /datum/gear/eyes/medical
 	display_name = "Medical HUD"
 	path = /obj/item/clothing/glasses/hud/health
-	allowed_roles = list("Moebius Doctor","Moebius Biolab Officer","Moebius Chemist","Moebius Paramedic")
+	allowed_roles = list(JOB_DOCTOR,JOB_MBO,JOB_CHEMIST,JOB_PARAMEDIC)
 
 /datum/gear/eyes/shades
 	display_name = "Sunglasses, fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant","Captain","First Officer","Quartermaster","Ironhammer Inspector")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN,JOB_CAPTAIN,JOB_FIRST_OFFICER,JOB_MERCHANT,JOB_IH_INSP)
 
 /datum/gear/eyes/shades/prescriptionsun
 	display_name = "sunglasses, presciption"

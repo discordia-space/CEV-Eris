@@ -151,7 +151,7 @@ var/global/list/all_objectives = list()
 			if(istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/P = I
 				I = P.id
-			if(I.assignment == "Assistant")
+			if(I.assignment == JOB_ASSISTANT)
 				return TRUE
 		else
 			return FALSE
@@ -621,7 +621,7 @@ var/global/list/all_objectives = list()
 /datum/objective/heist/kidnap
 
 /datum/objective/heist/kidnap/choose_target()
-	var/list/roles = list("Technomancer Exultant", "Moebius Expedition Overseer", "Moebius Roboticist", "Moebius Chemist", "Technomancer")
+	var/list/roles = list(JOB_EXULTANT, JOB_MEO, JOB_ROBOTICIST, JOB_CHEMIST, JOB_TECHNOMANCER)
 	var/list/possible_targets = list()
 	var/list/priority_targets = list()
 

@@ -7,7 +7,7 @@
 		return
 
 	if(job_master && ticker)
-		var/datum/job/job = job_master.GetJob("AI")
+		var/datum/job/job = job_master.GetJob(JOB_AI)
 		if(!job)
 			usr << "Unable to locate the AI job"
 			return

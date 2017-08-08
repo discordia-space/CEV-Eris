@@ -127,7 +127,7 @@
 /var/const/access_captain = 20
 /datum/access/captain
 	id = access_captain
-	desc = "Captain"
+	desc = JOB_CAPTAIN
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_all_personal_lockers = 21
@@ -187,7 +187,7 @@
 /var/const/access_rd = 30
 /datum/access/rd
 	id = access_rd
-	desc = "Moebius Expedition Overseer"
+	desc = JOB_MEO
 	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_cargo = 31
@@ -239,13 +239,13 @@
 /var/const/access_cmo = 40
 /datum/access/cmo
 	id = access_cmo
-	desc = "Moebius Biolab Officer"
+	desc = JOB_MBO
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_merchant = 41
 /datum/access/merchant
 	id = access_merchant
-	desc = "Guild Merchant"
+	desc = JOB_MERCHANT
 	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_network = 42
@@ -318,19 +318,19 @@
 /var/const/access_ce = 56
 /datum/access/ce
 	id = access_ce
-	desc = "Technomancer Exultant"
+	desc = JOB_EXULTANT
 	region = ACCESS_REGION_ENGINEERING
 
 /var/const/access_hop = 57
 /datum/access/hop
 	id = access_hop
-	desc = "First Officer"
+	desc = JOB_FIRST_OFFICER
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_hos = 58
 /datum/access/hos
 	id = access_hos
-	desc = "Ironhammer Commander"
+	desc = JOB_IH_COMM
 	region = ACCESS_REGION_SECURITY
 
 /var/const/access_RC_announce = 59 //Request console announcements

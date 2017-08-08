@@ -3,7 +3,7 @@ var/datum/antagonist/traitor/traitors
 // Inherits most of its vars from the base datum.
 /datum/antagonist/traitor
 	id = ROLE_TRAITOR
-	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
+	protected_jobs = list(JOB_IH_OPER, JOB_IH_GUN, JOB_IH_INSP, JOB_IH_COMM, JOB_CAPTAIN, JOB_IH_MED)
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 
 /datum/antagonist/traitor/New()

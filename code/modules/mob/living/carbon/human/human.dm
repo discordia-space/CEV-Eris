@@ -290,16 +290,6 @@
 		else
 			return if_no_id
 
-//Trust me I'm an engineer
-//I think we'll put this shit right here
-var/list/rank_prefix = list(\
-	"Ironhammer Operative" = "Operative",\
-	"Inspector" = "Inspector",\
-	"Gunnery Sergeant" = "Sergeant",\
-	"Ironhammer Commander" = "Lieutenant",\
-	"Captain" = "Captain",\
-	)
-
 /mob/living/carbon/human/proc/rank_prefix_name(name)
 	if(get_id_rank())
 		if(findtext(name, " "))
@@ -349,8 +339,9 @@ var/list/rank_prefix = list(\
 	else if(wear_id)
 		var/obj/item/weapon/card/id/I = wear_id.GetID()
 		rank = I.rank
-	if(rank_prefix[rank])
-		return rank_prefix[rank]
+	var/datum/job/job = job_master.GetJob(rank)
+	if(job)
+		return job.name_prefix
 	return ""
 
 //gets ID card object from special clothes slot or null.

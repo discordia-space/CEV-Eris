@@ -31,7 +31,7 @@
 /datum/gear/accessory/holster
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Commander","Ironhammer Inspector")
+	allowed_roles = list(JOB_CAPTAIN, JOB_FIRST_OFFICER, JOB_IH_OPER, JOB_IH_GUN, JOB_IH_COMM,JOB_IH_INSP)
 
 /datum/gear/accessory/holster/hip
 	display_name = "holster, hip"
@@ -56,12 +56,12 @@
 /datum/gear/accessory/brown_vest
 	display_name = "webbing, engineering"
 	path = /obj/item/clothing/accessory/storage/brown_vest
-	allowed_roles = list("Technomancer","Technomancer Exultant")
+	allowed_roles = list(JOB_TECHNOMANCER,JOB_EXULTANT)
 
 /datum/gear/accessory/black_vest
 	display_name = "webbing, security"
 	path = /obj/item/clothing/accessory/storage/black_vest
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN)
 
 /datum/gear/accessory/webbing
 	display_name = "webbing, simple"

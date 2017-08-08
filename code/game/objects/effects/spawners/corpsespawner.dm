@@ -21,7 +21,7 @@
 	var/corpseback = null
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
-	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
+	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use JOB_CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
 	var/species = "Human"
 
@@ -122,7 +122,7 @@
 ///////////Civilians//////////////////////
 
 /obj/effect/landmark/corpse/chef
-	name = "Chef"
+	name = JOB_CHEF
 	corpseuniform = /obj/item/clothing/under/rank/chef
 	corpsesuit = /obj/item/clothing/suit/chef/classic
 	corpseshoes = /obj/item/clothing/shoes/black
@@ -130,8 +130,8 @@
 	corpseback = /obj/item/weapon/storage/backpack
 	corpseradio = /obj/item/device/radio/headset
 	corpseid = 1
-	corpseidjob = "Chef"
-	corpseidaccess = "Chef"
+	corpseidjob = JOB_CHEF
+	corpseidaccess = JOB_CHEF
 
 
 /obj/effect/landmark/corpse/doctor
@@ -147,7 +147,7 @@
 	corpseidaccess = "Medical Doctor"
 
 /obj/effect/landmark/corpse/engineer
-	name = "Engineer"
+	name = JOB_TECHNOMANCER
 	corpseradio = /obj/item/device/radio/headset/headset_eng
 	corpseuniform = /obj/item/clothing/under/rank/engineer
 	corpseback = /obj/item/weapon/storage/backpack/industrial
@@ -194,8 +194,8 @@
 	corpseback = /obj/item/weapon/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1
-	corpseidjob = "Guild Miner"
-	corpseidaccess = "Guild Miner"
+	corpseidjob = JOB_MINER
+	corpseidaccess = JOB_MINER
 
 /obj/effect/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
@@ -214,7 +214,7 @@
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
-	corpseidaccess = "Captain"
+	corpseidaccess = JOB_CAPTAIN
 
 /obj/effect/landmark/corpse/commander
 	name = "Commander"
@@ -229,4 +229,4 @@
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	corpseidaccess = JOB_CAPTAIN

@@ -1,7 +1,8 @@
 var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/captain
-	title = "Captain"
+	title = JOB_CAPTAIN
+	name_prefix = "Captain"
 	flag = CAPTAIN
 	department = "Command"
 	head_position = 1
@@ -13,8 +14,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ccccff"
 	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = 1
-	access = list() 			//See get_access()
-	minimal_access = list() 	//See get_access()
+	//access - See get_access()
 	economic_modifier = 20
 
 	ideal_character_age = 70 // Old geezer captains ftw
@@ -34,11 +34,12 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		)
 
 	put_in_backpack = list(
-		/obj/item/weapon/storage/box/ids \
+		/obj/item/weapon/storage/box/ids
 	)
 
 	equip(var/mob/living/carbon/human/H)
-		if(!..())	return 0
+		if(!..())
+			return 0
 		if(H.age>49)
 			var/obj/item/clothing/under/U = H.w_uniform
 			if(istype(U)) U.accessories += new /obj/item/clothing/accessory/medal/gold/captain(U)
@@ -50,7 +51,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 
 /datum/job/hop
-	title = "First Officer"
+	title = JOB_FIRST_OFFICER
 	flag = FIRSTOFFICER
 	department = "Civilian"
 	head_position = 1

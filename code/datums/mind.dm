@@ -457,7 +457,8 @@
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
 	..()
-	if(!mind.assigned_role)	mind.assigned_role = "Assistant"	//defualt
+	if(!mind.assigned_role)
+		mind.assigned_role = JOB_ASSISTANT	//defualt
 
 //slime
 /mob/living/carbon/slime/mind_initialize()
@@ -471,7 +472,7 @@
 //AI
 /mob/living/silicon/ai/mind_initialize()
 	..()
-	mind.assigned_role = "AI"
+	mind.assigned_role = JOB_AI
 
 //BORG
 /mob/living/silicon/robot/mind_initialize()
