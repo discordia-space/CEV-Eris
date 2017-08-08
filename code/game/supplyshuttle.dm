@@ -107,7 +107,7 @@ var/list/mechtoys = list(
 				T.blocks_air = 0
 
 
-
+/*
 
 /*
 /obj/effect/marker/supplymarker
@@ -289,3 +289,4 @@ var/list/mechtoys = list(
 
 		shoppinglist.Cut()
 		return
+*/
