@@ -1,12 +1,14 @@
 /datum/objective/rev
 
-/datum/objective/rev/find_target()
-	..()
+/datum/objective/rev/get_panel_entry()
+	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
+	return "Assassinate, capture or convert <a href='?src=\ref[src];switch_target=1'>[target]</a>."
+
+/datum/objective/rev/update_exploration()
 	if(target && target.current)
 		explanation_text = "Assassinate, capture or convert [target.current.real_name], the [target.assigned_role]."
 	else
 		explanation_text = "Free Objective"
-	return target
 
 /datum/objective/rev/check_completion()
 	if(target && target.current)
