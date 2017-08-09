@@ -4,12 +4,13 @@
 	var/dat = list(..())
 	dat += "</br><a href='?src=\ref[src];switch_target=1'>Switch target</a>"
 	return jointext(dat, null)
-
+/*
 /datum/objective/assassinate/Topic(href, href_list)
 	if(..())
 		return TRUE
 	if(href_list["switch_target"])
 
+*/
 /datum/objective/assassinate/find_target()
 	..()
 	if(target && target.current)
@@ -20,7 +21,7 @@
 
 /datum/objective/assassinate/check_completion()
 	if(target && target.current)
-		if(target.current.stat == DEAD || issilicon(target.current) || isbrain(target.current) || !target.current.ckey) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
+		if(target.current.stat == DEAD || !ishuman(target.current))
 			return TRUE
 		return FALSE
 	return TRUE

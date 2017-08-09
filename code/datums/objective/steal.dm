@@ -49,9 +49,9 @@
 	return set_target(pick(possible_items))
 
 
-/datum/objective/steal/proc/select_target()
+/datum/objective/steal/proc/select_target(var/mob/user)
 	var/list/possible_items_all = possible_items + possible_items_special
-	var/new_target = input("Select target:", "Objective target", steal_target) as null|anything in possible_items_all
+	var/new_target = input(user, "Select target:", "Objective target", steal_target) as null|anything in possible_items_all
 	if(!new_target)
 		return
 
@@ -105,3 +105,12 @@
 				if(istype(I, steal_target))
 					return TRUE
 	return FALSE
+
+/datum/objective/steal/get_panel_entry()
+	return "Steal <a href='?src=\ref[src];switch_target=1'>[target_name]</a>."
+
+/datum/objective/steal/Topic(href, href_list)
+	if(..())
+		return TRUE
+	if(href_list["switch_target"])
+		select_target(usr)
