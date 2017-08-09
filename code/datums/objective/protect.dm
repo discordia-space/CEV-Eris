@@ -9,7 +9,6 @@
 		explanation_text = "Protect [target.current.real_name], the [target.assigned_role]."
 	else
 		explanation_text = "Target has not arrived today. Hope he's alive."
-	return target
 
 /datum/objective/protect/check_completion()
 	if(!target)
