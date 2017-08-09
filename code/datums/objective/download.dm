@@ -7,7 +7,7 @@
 /datum/objective/download/check_completion()
 	if(!ishuman(owner.current))
 		return FALSE
-	if(!owner.current || owner.current.stat == 2)
+	if(!owner.current || owner.current.stat == DEAD)
 		return FALSE
 
 	var/current_amount
@@ -27,7 +27,7 @@
 		if(current_data.level > 1)
 			current_amount += (current_data.level - 1)
 
-	return (current_amount < target_amount) ? 0 : 1
+	return (current_amount < target_amount) ? FALSE : TRUE
 
 /datum/objective/download/update_exploration()
 	explanation_text = "Download [target_amount] research levels."

@@ -29,10 +29,10 @@
 /datum/objective/absorb/update_exploration()
 	explanation_text = "Absorb [target_amount] compatible genomes."
 
-/datum/objective/download/get_panel_entry()
+/datum/objective/absorb/get_panel_entry()
 	return "Absorb <a href='?src=\ref[src];set_target=1'>[target_amount]</a> compatible genomes."
 
-/datum/objective/download/Topic(href, href_list)
+/datum/objective/absorb/Topic(href, href_list)
 	if(..())
 		return TRUE
 	if(href_list["set_target"])

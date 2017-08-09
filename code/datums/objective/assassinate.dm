@@ -1,14 +1,8 @@
 /datum/objective/assassinate
 
 /datum/objective/assassinate/get_panel_entry()
-	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "\[No target\]"
+	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
 	return "Assassinate <a href='?src=\ref[src];switch_target=1'>[target]</a>."
-
-/datum/objective/assassinate/Topic(href, href_list)
-	if(..())
-		return TRUE
-	if(href_list["switch_target"])
-		select_human_target(usr)
 
 /datum/objective/assassinate/update_exploration()
 	if(target && target.current)

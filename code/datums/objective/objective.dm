@@ -5,7 +5,7 @@ var/global/list/all_objectives_types = null
 	all_objectives_types = list()
 	var/indent = length("[/datum/objective]/")
 	for(var/path in subtypesof(/datum/objective))
-		var/id = copytext("[path]", indent)
+		var/id = copytext("[path]", indent+1)
 		all_objectives_types[id] = path
 	return TRUE
 
@@ -42,6 +42,7 @@ var/global/list/all_objectives_types = null
 	var/list/possible_targets = get_targets_list()
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
+	update_exploration()
 
 /datum/objective/proc/select_human_target(var/mob/user)
 	var/list/possible_targets = get_targets_list()
@@ -55,3 +56,10 @@ var/global/list/all_objectives_types = null
 
 /datum/objective/proc/get_panel_entry()
 	return explanation_text
+
+/datum/objective/Topic(href, href_list)
+	if(!check_rights(R_DEBUG))
+		return TRUE
+
+	if(href_list["switch_target"])
+		select_human_target(usr)

@@ -107,10 +107,10 @@
 	return FALSE
 
 /datum/objective/steal/get_panel_entry()
-	return "Steal <a href='?src=\ref[src];switch_target=1'>[target_name]</a>."
+	return "Steal <a href='?src=\ref[src];switch_item=1'>[target_name]</a>."
 
 /datum/objective/steal/Topic(href, href_list)
 	if(..())
 		return TRUE
-	if(href_list["switch_target"])
+	if(href_list["switch_item"])
 		select_target(usr)
