@@ -1,4 +1,13 @@
 var/global/list/all_objectives = list()
+var/global/list/all_objectives_types = null
+
+/hook/startup/proc/init_objectives()
+	all_objectives_types = list()
+	var/indent = length("[/datum/objective]")
+	for(var/path in subtypesof(/datum/objective))
+		var/id = copytext("[path]", indent)
+		all_objectives_types[id] = path
+	return TRUE
 
 /datum/objective
 	var/datum/mind/owner = null			//Who owns the objective.
@@ -9,6 +18,7 @@ var/global/list/all_objectives = list()
 
 /datum/objective/New(var/new_owner)
 	owner = new_owner
+	owner.objectives += src
 	find_target()
 	all_objectives.Add(src)
 	..()
