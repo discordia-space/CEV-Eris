@@ -8,7 +8,7 @@
 	if(target && target.current)
 		explanation_text = "Assassinate, capture or convert [target.current.real_name], the [target.assigned_role]."
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "Hm-m-m... Viva la revolucion!"
 
 /datum/objective/rev/check_completion()
 	if(target && target.current)
