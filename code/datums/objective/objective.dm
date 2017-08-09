@@ -46,6 +46,9 @@ var/global/list/all_objectives_types = null
 
 /datum/objective/proc/select_human_target(var/mob/user)
 	var/list/possible_targets = get_targets_list()
+	if(!possible_targets || !possible_targets.len)
+		user << "<span class='warning'>Sorry! No possible targets found!</span>"
+		return
 	var/datum/mind/M = input(user, "New target") as null|anything in possible_targets
 	if(M)
 		target = M
@@ -63,3 +66,4 @@ var/global/list/all_objectives_types = null
 
 	if(href_list["switch_target"])
 		select_human_target(usr)
+		owner.edit_memory()

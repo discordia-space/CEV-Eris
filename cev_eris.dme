@@ -191,6 +191,7 @@
 #include "code\datums\objective\block.dm"
 #include "code\datums\objective\borer.dm"
 #include "code\datums\objective\brig.dm"
+#include "code\datums\objective\custom.dm"
 #include "code\datums\objective\debrain.dm"
 #include "code\datums\objective\download.dm"
 #include "code\datums\objective\escape.dm"

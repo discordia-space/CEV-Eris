@@ -42,3 +42,4 @@
 		else
 			target_amount = new_target
 			update_exploration()
+			owner.edit_memory()
