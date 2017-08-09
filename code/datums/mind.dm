@@ -102,7 +102,7 @@
 
 		var/obj_count = 1
 		for(var/datum/objective/objective in objectives)
-			output += "<B>Objective #[obj_count]</B>: <div>[objective.get_panel_entry()]</div>"
+			output += "<B>Objective #[obj_count]</B>: <div>[objective.explanation_text]</div>"
 			obj_count++
 
 	recipient << browse(output,"window=memory")
