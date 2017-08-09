@@ -98,7 +98,7 @@
 	output += memory
 
 	if(objectives.len>0)
-		output += "<HR><B>Objectives:</B>"
+		output += "<HR><B>Objectives:</B><br>"
 
 		var/obj_count = 1
 		for(var/datum/objective/objective in objectives)
@@ -121,7 +121,7 @@
 		var/datum/antagonist/antag = all_antag_types[antag_type]
 		out += "[antag.get_panel_entry(src)]"
 	out += "</table><hr>"
-	out += "<b>Objectives</b></br>"
+	out += "<b>Objectives</b><br>"
 
 	if(objectives && objectives.len)
 		var/num = 1
