@@ -3,7 +3,7 @@ var/global/list/all_objectives_types = null
 
 /hook/startup/proc/init_objectives()
 	all_objectives_types = list()
-	var/indent = length("[/datum/objective]")
+	var/indent = length("[/datum/objective]/")
 	for(var/path in subtypesof(/datum/objective))
 		var/id = copytext("[path]", indent)
 		all_objectives_types[id] = path
@@ -30,13 +30,28 @@ var/global/list/all_objectives_types = null
 /datum/objective/proc/check_completion()
 	return completed
 
-/datum/objective/proc/find_target()
+/datum/objective/proc/get_targets_list()
 	var/list/possible_targets = list()
 	for(var/datum/mind/possible_target in ticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
 			possible_targets.Add(possible_target)
+	return possible_targets
+
+
+/datum/objective/proc/find_target()
+	var/list/possible_targets = get_targets_list()
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
+
+/datum/objective/proc/select_human_target(var/mob/user)
+	var/list/possible_targets = get_targets_list()
+	var/datum/mind/M = input(user, "New target") as null|anything in possible_targets
+	if(M)
+		target = M
+		update_exploration()
+
+
+/datum/objective/proc/update_exploration()
 
 /datum/objective/proc/get_panel_entry()
 	return explanation_text

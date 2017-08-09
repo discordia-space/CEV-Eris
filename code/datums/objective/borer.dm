@@ -4,7 +4,7 @@
 /datum/objective/borer_survive/check_completion()
 	if(owner)
 		var/mob/living/simple_animal/borer/B = owner
-		if(istype(B) && B.stat < 2 && B.host && B.host.stat < 2)
+		if(istype(B) && B.stat < DEAD && B.host && B.host.stat < DEAD)
 			return TRUE
 	return FALSE
 

@@ -1,12 +1,10 @@
 /datum/objective/debrain
 
-/datum/objective/debrain/find_target()
-	..()
+/datum/objective/debrain/update_exploration()
 	if(target && target.current)
 		explanation_text = "Steal the brain of [target.current.real_name]."
 	else
-		explanation_text = "Free Objective"
-	return target
+		explanation_text = "Target has not arrived today. Did he know that I would come?"
 
 /datum/objective/debrain/check_completion()
 	if(!target) //If it's a free objective.
