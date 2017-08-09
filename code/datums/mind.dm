@@ -260,7 +260,7 @@
 		var/obj_count = 1
 		current << "\blue Your current objectives:"
 		for(var/datum/objective/objective in objectives)
-			current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+			current << "<B>Objective #[obj_count]</B>: [utf8_to_cp1251(objective.explanation_text)]"
 			obj_count++
 	edit_memory()
 
