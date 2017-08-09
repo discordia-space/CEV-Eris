@@ -1,9 +1,8 @@
 /datum/objective/download
 
-/datum/objective/download/proc/gen_amount_goal()
+/datum/objective/download/find_target()
 	target_amount = rand(10, 20)
-	explanation_text = "Download [target_amount] research levels."
-	return target_amount
+	update_exploration()
 
 /datum/objective/download/check_completion()
 	if(!ishuman(owner.current))
@@ -29,3 +28,20 @@
 			current_amount += (current_data.level - 1)
 
 	return (current_amount < target_amount) ? 0 : 1
+
+/datum/objective/download/update_exploration()
+	explanation_text = "Download [target_amount] research levels."
+
+/datum/objective/download/get_panel_entry()
+	return "Download <a href='?src=\ref[src];set_target=1'>[target_amount]</a> research levels."
+
+/datum/objective/download/Topic(href, href_list)
+	if(..())
+		return TRUE
+	if(href_list["set_target"])
+		var/new_target = input("Input target number:", "Research levels", target_amount) as num|null
+		if(new_target < 1)
+			return
+		else
+			target_amount = new_target
+			update_exploration()

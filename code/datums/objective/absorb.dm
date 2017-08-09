@@ -1,5 +1,8 @@
 /datum/objective/absorb
 
+/datum/objective/absorb/find_target()
+	gen_amount_goal()
+
 /datum/objective/absorb/proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
 	target_amount = rand(lowbound, highbound)
 	if(ticker)
@@ -14,7 +17,7 @@
 					needed_count ++
 		target_amount = min(target_amount, needed_count)
 
-	explanation_text = "Absorb [target_amount] compatible genomes."
+	update_exploration()
 	return target_amount
 
 /datum/objective/absorb/check_completion()
@@ -22,3 +25,20 @@
 		return TRUE
 	else
 		return FALSE
+
+/datum/objective/absorb/update_exploration()
+	explanation_text = "Absorb [target_amount] compatible genomes."
+
+/datum/objective/download/get_panel_entry()
+	return "Absorb <a href='?src=\ref[src];set_target=1'>[target_amount]</a> compatible genomes."
+
+/datum/objective/download/Topic(href, href_list)
+	if(..())
+		return TRUE
+	if(href_list["set_target"])
+		var/new_target = input("Input target number:", "Compatible genomes", target_amount) as num|null
+		if(new_target < 1)
+			return
+		else
+			target_amount = new_target
+			update_exploration()
