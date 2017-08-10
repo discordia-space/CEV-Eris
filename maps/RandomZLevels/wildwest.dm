@@ -77,9 +77,7 @@
 				user << "The Wish Granter punishes you for your wickedness, claiming your soul and warping your body to match the darkness in your heart."
 				ticker.mode.traitors += user.mind
 				user.mind.special_role = "traitor"
-				var/datum/objective/escape/escape_objective = new
-				escape_objective.owner = user.mind
-				user.mind.objectives += escape_objective
+				new /datum/objective/escape (user)
 				user << "<B>Your inhibitions are swept away, the bonds of loyalty broken, you are free to murder as you please!</B>"
 				var/obj_count = 1
 				for(var/datum/objective/OBJ in user.mind.objectives)

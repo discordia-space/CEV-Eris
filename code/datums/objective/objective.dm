@@ -42,7 +42,7 @@ var/global/list/all_objectives_types = null
 	var/list/possible_targets = get_targets_list()
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
-	update_exploration()
+	update_explanation()
 
 /datum/objective/proc/select_human_target(var/mob/user)
 	var/list/possible_targets = get_targets_list()
@@ -52,10 +52,10 @@ var/global/list/all_objectives_types = null
 	var/datum/mind/M = input(user, "New target") as null|anything in possible_targets
 	if(M)
 		target = M
-		update_exploration()
+		update_explanation()
 
 
-/datum/objective/proc/update_exploration()
+/datum/objective/proc/update_explanation()
 
 /datum/objective/proc/get_panel_entry()
 	return explanation_text

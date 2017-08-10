@@ -4,7 +4,7 @@
 	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
 	return "Steal the brain of <a href='?src=\ref[src];switch_target=1'>[target]</a>."
 
-/datum/objective/debrain/update_exploration()
+/datum/objective/debrain/update_explanation()
 	if(target && target.current)
 		explanation_text = "Steal the brain of [target.current.real_name]."
 	else

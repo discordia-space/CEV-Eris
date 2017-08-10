@@ -28,5 +28,3 @@
 
 		else if(loss_text)
 			world << "<span class='danger'><font size = 3>[loss_text]</font></span>"
-
-

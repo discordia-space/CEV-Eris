@@ -5,7 +5,7 @@
 	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
 	return "Make an example of <a href='?src=\ref[src];switch_target=1'>[target]</a>."
 
-/datum/objective/harm/update_exploration()
+/datum/objective/harm/update_explanation()
 	if(target && target.current)
 		explanation_text = "Make an example of [target.current.real_name], the [target.assigned_role]. Break one of their bones, detach one of their limbs or disfigure their face. Make sure they're alive when you do it."
 	else

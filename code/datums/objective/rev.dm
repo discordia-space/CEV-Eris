@@ -4,7 +4,7 @@
 	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
 	return "Assassinate, capture or convert <a href='?src=\ref[src];switch_target=1'>[target]</a>."
 
-/datum/objective/rev/update_exploration()
+/datum/objective/rev/update_explanation()
 	if(target && target.current)
 		explanation_text = "Assassinate, capture or convert [target.current.real_name], the [target.assigned_role]."
 	else

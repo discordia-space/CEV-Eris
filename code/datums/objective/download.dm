@@ -2,7 +2,7 @@
 
 /datum/objective/download/find_target()
 	target_amount = rand(10, 20)
-	update_exploration()
+	update_explanation()
 
 /datum/objective/download/check_completion()
 	if(!ishuman(owner.current))
@@ -29,7 +29,7 @@
 
 	return (current_amount < target_amount) ? FALSE : TRUE
 
-/datum/objective/download/update_exploration()
+/datum/objective/download/update_explanation()
 	explanation_text = "Download [target_amount] research levels."
 
 /datum/objective/download/get_panel_entry()
@@ -44,5 +44,5 @@
 			return
 		else
 			target_amount = new_target
-			update_exploration()
+			update_explanation()
 			owner.edit_memory()

@@ -3,6 +3,11 @@
 /datum/objective/absorb/find_target()
 	gen_amount_goal()
 
+
+/datum/objective/absorb/New(owner, lover_goal, upper_goal)
+	..()
+	gen_amount_goal(lover_goal, upper_goal)
+
 /datum/objective/absorb/proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
 	target_amount = rand(lowbound, highbound)
 	if(ticker)
@@ -17,7 +22,7 @@
 					needed_count ++
 		target_amount = min(target_amount, needed_count)
 
-	update_exploration()
+	update_explanation()
 	return target_amount
 
 /datum/objective/absorb/check_completion()
@@ -26,7 +31,7 @@
 	else
 		return FALSE
 
-/datum/objective/absorb/update_exploration()
+/datum/objective/absorb/update_explanation()
 	explanation_text = "Absorb [target_amount] compatible genomes."
 
 /datum/objective/absorb/get_panel_entry()
@@ -41,5 +46,5 @@
 			return
 		else
 			target_amount = new_target
-			update_exploration()
+			update_explanation()
 			owner.edit_memory()

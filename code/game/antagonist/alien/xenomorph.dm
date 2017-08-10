@@ -45,8 +45,8 @@ var/datum/antagonist/xenos/xenomorphs
 /datum/antagonist/xenos/create_objectives(var/datum/mind/player)
 	if(!..())
 		return
-	player.objectives += new /datum/objective/survive()
-	player.objectives += new /datum/objective/escape()
+	new /datum/objective/survive (player)
+	new /datum/objective/escape (player)
 
 /datum/antagonist/xenos/place_mob(var/mob/living/player)
 	player.forceMove(get_turf(pick(get_vents())))
