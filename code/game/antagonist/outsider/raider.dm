@@ -112,23 +112,7 @@ var/datum/antagonist/raider/raiders
 	var/max_objectives = pick(2,2,2,2,3,3,3,4)
 	global_objectives = list()
 	while(i<= max_objectives)
-		var/list/goals = list("kidnap","loot","salvage")
-		var/goal = pick(goals)
-		var/datum/objective/heist/O
-
-		if(goal == "kidnap")
-			goals -= "kidnap"
-			O = new /datum/objective/heist/kidnap()
-		else if(goal == "loot")
-			O = new /datum/objective/heist/loot()
-		else
-			O = new /datum/objective/heist/salvage()
-		O.choose_target()
-		global_objectives |= O
-
 		i++
-
-	global_objectives |= new /datum/objective/heist/preserve_crew
 	return 1
 
 /datum/antagonist/raider/check_victory()

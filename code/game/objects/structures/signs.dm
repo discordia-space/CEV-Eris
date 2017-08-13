@@ -554,6 +554,16 @@
 	desc = "Tau Cross of Cyberchristianity - symbol of NeoTheology."
 	icon_state = "neotheology-old"
 
+/obj/structure/sign/faction/neotheology_cross
+	name = "Cyberñhristianity Tau cross"
+	desc = "Religious symbol of Cyberchristianity - the Tau cross. It looks like a decoration, not a real cruciform."
+	icon_state = "wall_cross_steel"
+
+/obj/structure/sign/faction/neotheology_cross/gold
+	name = "Cyberñhristianity Tau cross"
+	desc = "Religious symbol of Cyberchristianity - the Tau cross. It looks like a decoration, not a real cruciform."
+	icon_state = "wall_cross_gold"
+
 /obj/structure/sign/faction/astersguild
 	name = "Asters Guild"
 	desc = "Asters Guild - monopolists of far space transportation."
