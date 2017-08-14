@@ -30,22 +30,34 @@ proc/admin_notice(var/message, var/rights)
 /datum/admins/proc/show_player_panel(var/mob/M in mob_list)
 	set category = null
 	set name = "Show Player Panel"
-	set desc="Edit player (respawn, ban, heal, etc)"
+	set desc = "Edit player (respawn, ban, heal, etc)"
 
 	if(!M)
 		usr << "You seem to be selecting a mob that doesn't exist anymore."
 		return
-	if (!istype(src,/datum/admins))
+	if (!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+	if (!istype(src, /datum/admins))
 		usr << "Error: you are not an admin!"
 		return
 
 	var/body = "<html><head><title>Options for [M.key]</title></head>"
 	body += "<body>Options panel for <b>[M]</b>"
+
 	if(M.client)
-		body += " played by <b>[M.client]</b> "
-		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
+		body += " played by <b><a href='http://byond.com/members/[M.client.ckey]'>[M.client]</b></a> "
+		body += "\[<A href='?src=\ref[src];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]<br>"
+		body += "<b>Registration date:</b> [M.client.registration_date ? M.client.registration_date : "Unknown"]<br>"
+		body += "<b>IP:</b> [M.client.address ? M.client.address : "Unknown"]<br>"
+
+		var/country = M.client.country
+		var/country_code = M.client.country_code
+		if(country && country_code)
+			// TODO (28.07.17): uncomment after flag icons resize
+			// <img src=\"flag_[country_code].png\">
+			// usr << browse_rsc(icon('icons/country_flags.dmi', country_code), "flag_[country_code].png")
+			body += "<b>Country:</b> [country]<br><br>"
+
 
 	if(isnewplayer(M))
 		body += " <B>Hasn't Entered Game</B> "
@@ -265,6 +277,7 @@ proc/admin_notice(var/message, var/rights)
 		return FALSE
 	else
 		return TRUE
+
 
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun"

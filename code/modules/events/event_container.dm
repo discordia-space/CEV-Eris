@@ -8,7 +8,7 @@
 #define ASSIGNMENT_SCIENTIST "Scientist"
 #define ASSIGNMENT_SECURITY "Security"
 
-var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major")
+var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major", EVENT_LEVEL_ECONOMY = "Economy")
 
 /datum/event_container
 	var/severity = -1
@@ -105,6 +105,8 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 				playercount_modifier = 0.9
 			if(36 to 100000)
 				playercount_modifier = 0.8
+		if(config.event_delay_lower[severity] == config.event_delay_upper[severity])
+			playercount_modifier = 1
 		playercount_modifier = playercount_modifier * delay_modifier
 
 		var/event_delay = rand(config.event_delay_lower[severity], config.event_delay_upper[severity]) * playercount_modifier
@@ -177,7 +179,11 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Space Vines",			/datum/event/spacevine, 		0,	list(ASSIGNMENT_ENGINEER = 15), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Viral Infection",		/datum/event/viral_infection,	0,	list(ASSIGNMENT_MEDICAL =  30), 1),
 	)
-
+/datum/event_container/economy
+	severity = EVENT_LEVEL_ECONOMY
+	available_events = list(
+		new /datum/event_meta(EVENT_LEVEL_ECONOMY, "Payday",				/datum/event/payday,			1000),
+	)
 
 #undef ASSIGNMENT_ANY
 #undef ASSIGNMENT_AI

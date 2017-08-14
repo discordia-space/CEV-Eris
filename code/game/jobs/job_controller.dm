@@ -52,8 +52,6 @@ var/global/datum/controller/occupations/job_master
 				return 0
 			if(jobban_isbanned(player, rank))
 				return 0
-			if(!job.player_old_enough(player.client))
-				return 0
 
 			var/position_limit = job.total_positions
 			if(!latejoin)
@@ -80,9 +78,6 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(jobban_isbanned(player, job.title))
 				Debug("FOC isbanned failed, Player: [player]")
-				continue
-			if(!job.player_old_enough(player.client))
-				Debug("FOC player not old enough, Player: [player]")
 				continue
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 				Debug("FOC character not old enough, Player: [player]")
@@ -112,10 +107,6 @@ var/global/datum/controller/occupations/job_master
 
 			if(jobban_isbanned(player, job.title))
 				Debug("GRJ isbanned failed, Player: [player], Job: [job.title]")
-				continue
-
-			if(!job.player_old_enough(player.client))
-				Debug("GRJ player not old enough, Player: [player]")
 				continue
 
 			if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
@@ -257,10 +248,6 @@ var/global/datum/controller/occupations/job_master
 
 					if(jobban_isbanned(player, job.title))
 						Debug("DO isbanned failed, Player: [player], Job:[job.title]")
-						continue
-
-					if(!job.player_old_enough(player.client))
-						Debug("DO player not old enough, Player: [player], Job:[job.title]")
 						continue
 
 					// If the player wants that job on this level, then try give it to him.
@@ -571,9 +558,6 @@ var/global/datum/controller/occupations/job_master
 					continue //This player is not ready
 				if(jobban_isbanned(player, job.title))
 					level5++
-					continue
-				if(!job.player_old_enough(player.client))
-					level6++
 					continue
 				if(player.client.prefs.GetJobDepartment(job, 1) & job.flag)
 					level1++
