@@ -35,10 +35,8 @@ var/datum/antagonist/renegade/renegades
 
 	if(!..())
 		return
+	new /datum/objective/survive (player)
 
-	var/datum/objective/survive/survive = new
-	survive.owner = player
-	player.objectives |= survive
 
 /datum/antagonist/renegade/equip(var/mob/living/carbon/human/player)
 
@@ -49,12 +47,3 @@ var/datum/antagonist/renegade/renegades
 	var/obj/item/gun = new gun_type(get_turf(player))
 	if(!(player.l_hand && player.r_hand))
 		player.put_in_hands(gun)
-
-
-/proc/rightandwrong()
-	usr << "<B>You summoned guns!</B>"
-	message_admins("[key_name_admin(usr, 1)] summoned guns!")
-	for(var/mob/living/carbon/human/H in player_list)
-		if(H.stat == 2 || !(H.client)) continue
-		if(is_special_character(H)) continue
-		renegades.add_antagonist(H.mind)
