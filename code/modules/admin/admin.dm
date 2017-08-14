@@ -269,16 +269,6 @@ proc/admin_notice(var/message, var/rights)
 	usr << browse(dat, "window=player_notes;size=400x400")
 
 
-/datum/admins/proc/player_has_info(var/key as text)
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
-	var/list/infos
-	info >> infos
-	if(!infos || !infos.len)
-		return FALSE
-	else
-		return TRUE
-
-
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun"
 	set name = "Access Newscaster Network"
