@@ -1763,37 +1763,6 @@
 
 			show_player_panel(M)
 
-	// player info stuff
-
-	if(href_list["add_player_info"])
-		var/key = href_list["add_player_info"]
-		var/add = input_utf8("Add Player Info", type = "text")
-		if(!add) return
-
-		notes_add(key,add,usr)
-		show_player_info(key)
-
-	if(href_list["remove_player_info"])
-		var/key = href_list["remove_player_info"]
-		var/index = text2num(href_list["remove_index"])
-
-		notes_del(key, index)
-		show_player_info(key)
-
-	if(href_list["notes"])
-		var/ckey = href_list["ckey"]
-		if(!ckey)
-			var/mob/M = locate(href_list["mob"])
-			if(ismob(M))
-				ckey = M.ckey
-
-		switch(href_list["notes"])
-			if("show")
-				show_player_info(ckey)
-			if("list")
-				PlayerNotesPage(text2num(href_list["index"]))
-		return
-
 mob/living/proc/can_centcom_reply()
 	return 0
 
