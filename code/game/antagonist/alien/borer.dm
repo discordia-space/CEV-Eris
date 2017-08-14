@@ -28,9 +28,9 @@ var/datum/antagonist/xenos/borer/borers
 /datum/antagonist/xenos/borer/create_objectives(var/datum/mind/player)
 	if(!..())
 		return
-	player.objectives += new /datum/objective/borer_survive()
-	player.objectives += new /datum/objective/borer_reproduce()
-	player.objectives += new /datum/objective/escape()
+	new /datum/objective/borer_survive (player)
+	new /datum/objective/borer_reproduce (player)
+	new /datum/objective/escape (player)
 
 /datum/antagonist/xenos/borer/place_mob(var/mob/living/mob)
 	var/mob/living/simple_animal/borer/borer = mob
