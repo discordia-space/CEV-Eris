@@ -1,3 +1,162 @@
+/datum/supply_order
+	var/ordernum
+	var/orderedby = null
+	var/comment = null
+
+/datum/controller/supply
+	//supply points
+	var/points = 5000
+	var/points_per_process = 0
+	var/points_per_slip = 2
+	var/points_per_crate = 5
+	var/points_per_platinum = 5 // 5 points per sheet
+	var/points_per_plasma = 5
+	var/centcom_message = ""
+	var/contraband = 0
+	var/hacked = 0
+	//control
+	var/ordernum
+	var/list/shoppinglist = list()
+	var/list/requestlist = list()
+	var/list/supply_packs = list()
+	//shuttle movement
+	var/movetime = 1200
+	var/datum/shuttle/ferry/supply/shuttle
+
+	New()
+		ordernum = rand(1,9000)
+
+		for(var/typepath in (typesof(/datum/supply_pack) - /datum/supply_pack))
+			var/datum/supply_pack/P = new typepath()
+			supply_packs[P.name] = P
+
+
+
+	// Supply shuttle ticker - handles supply point regeneration
+	// This is called by the process scheduler every thirty seconds
+	proc/process()
+		points += points_per_process
+
+	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
+	proc/forbidden_atoms_check(atom/A)
+		if(isliving(A))
+			return 1
+		if(istype(A,/obj/item/weapon/disk/nuclear))
+			return 1
+		if(istype(A,/obj/machinery/nuclearbomb))
+			return 1
+		if(istype(A,/obj/item/device/radio/beacon))
+			return 1
+
+		for(var/i=1, i<=A.contents.len, i++)
+			var/atom/B = A.contents[i]
+			if(.(B))
+				return 1
+
+	//Sellin
+	proc/sell()
+		var/area/area_shuttle = shuttle.get_location_area()
+		if(!area_shuttle)	return
+
+		var/msg = ""
+		var/sold_atoms = ""
+
+		for(var/atom/movable/AM in area_shuttle)
+			if(AM.anchored)	continue
+			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
+
+		for(var/a in exports_list)
+			var/datum/export/E = a
+			var/export_text = E.total_printout()
+			if(!export_text)
+				continue
+
+			msg += "\n" + export_text + "\n"
+			supply_controller.points += E.total_cost
+			E.export_end()
+
+		centcom_message = msg
+
+	//Buyin
+	proc/buy()
+		if(!shoppinglist.len) return
+
+		var/area/area_shuttle = shuttle.get_location_area()
+		if(!area_shuttle)	return
+
+		var/list/clear_turfs = list()
+
+		for(var/turf/T in area_shuttle)
+			if(T.density)	continue
+			var/contcount
+			for(var/atom/A in T.contents)
+				if(!A.simulated)
+					continue
+				contcount++
+			if(contcount)
+				continue
+			clear_turfs += T
+
+		for(var/S in shoppinglist)
+			if(!clear_turfs.len)	break
+			var/i = rand(1,clear_turfs.len)
+			var/turf/pickedloc = clear_turfs[i]
+			clear_turfs.Cut(i,i+1)
+
+			var/datum/supply_order/SO = S
+			var/datum/supply_pack/SP = SO.object
+
+			var/obj/A = new SP.containertype(pickedloc)
+			A.name = "[SP.name][SO.comment ? " ([SO.comment])":"" ]"
+
+			//supply manifest generation begin
+
+			var/obj/item/weapon/paper/manifest/slip
+			if(!SP.contraband)
+				slip = new /obj/item/weapon/paper/manifest(A)
+				slip.is_copy = 0
+				slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
+				slip.info +="Order #[SO.ordernum]<br>"
+				slip.info +="Destination: [station_name]<br>"
+				slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
+				slip.info +="CONTENTS:<br><ul>"
+
+			//spawn the stuff, finish generating the manifest while you're at it
+			if(SP.access)
+				if(isnum(SP.access))
+					A.req_access = list(SP.access)
+				else if(islist(SP.access))
+					var/list/L = SP.access // access var is a plain var, we need a list
+					A.req_access = L.Copy()
+				else
+					world << "<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>"
+
+			var/list/contains
+			if(istype(SP,/datum/supply_pack/randomised))
+				var/datum/supply_pack/randomised/SPR = SP
+				contains = list()
+				if(SPR.contains.len)
+					for(var/j=1,j<=SPR.num_contained,j++)
+						contains += pick(SPR.contains)
+			else
+				contains = SP.contains
+
+			for(var/typepath in contains)
+				if(!typepath)	continue
+				var/atom/B2 = new typepath(A)
+				if(SP.amount && B2:amount) B2:amount = SP.amount
+				if(slip) slip.info += "<li>[B2.name]</li>" //add the item to the manifest
+
+			//manifest finalisation
+			if(slip)
+				slip.info += "</ul><br>"
+				slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
+
+		shoppinglist.Cut()
+		return
+
+
+
 /obj/machinery/computer/supplycomp
 	name = "supply control console"
 	icon = 'icons/obj/computer.dmi'
@@ -8,9 +167,11 @@
 	circuit = /obj/item/weapon/circuitboard/supplycomp
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
-	var/hacked = 0
-	var/can_order_contraband = 0
 	var/last_viewed_group = "categories"
+	var/can_order_contraband = 0
+	var/requestonly = FALSE
+	var/contraband = FALSE
+	var/hacked = FALSE
 
 /obj/machinery/computer/ordercomp
 	name = "supply ordering console"
@@ -49,6 +210,7 @@
 	onclose(user, "computer")
 	return
 
+
 /obj/machinery/computer/ordercomp/Topic(href, href_list)
 	if(..())
 		return 1
@@ -72,8 +234,8 @@
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
 			for(var/supply_name in supply_controller.supply_packs )
-				var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
-				if(N.hidden || N.contraband || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
+				var/datum/supply_pack/N = supply_controller.supply_packs[supply_name]
+				if(N.hidden || N.contraband || N.group != last_viewed_group) continue 								//Have to send the type instead of a reference to
 				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"		//the obj because it would get caught by the garbage
 
 	else if (href_list["doorder"])
@@ -83,7 +245,7 @@
 			return
 
 		//Find the correct supply_pack datum
-		var/datum/supply_packs/P = supply_controller.supply_packs[href_list["doorder"]]
+		var/datum/supply_pack/P = supply_controller.supply_packs[href_list["doorder"]]
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
@@ -111,7 +273,7 @@
 		reqform.info += "SUPPLY CRATE TYPE: [P.name]<br>"
 		reqform.info += "ACCESS RESTRICTION: [get_access_desc(P.access)]<br>"
 		reqform.info += "CONTENTS:<br>"
-		reqform.info += P.manifest
+		reqform.info += P.true_manifest
 		reqform.info += "<hr>"
 		reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
 
@@ -196,8 +358,8 @@
 						dat += "*Shuttle is busy*"
 					dat += "<BR>\n<BR>"
 
-
 		dat += {"<HR>\nSupply points: [supply_controller.points]<BR>\n<BR>
+		<A href='?src=\ref[src];viewmes=1'>View messages</A><BR><BR>
 		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
@@ -241,6 +403,15 @@
 			temp = "The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			post_signal("supply")
 
+	if(href_list["viewmes"])
+		if( supply_controller &&  supply_controller.centcom_message)
+			temp += "Latest message: <BR><BR>"
+			temp +=  supply_controller.centcom_message
+			temp += "<BR><BR>"
+		else
+			temp += "Can not find any messages from Commercial barge. <BR><BR>"
+		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+
 	if (href_list["force_send"])
 		shuttle.force_launch(src)
 
@@ -264,14 +435,14 @@
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
 			for(var/supply_name in supply_controller.supply_packs )
-				var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
+				var/datum/supply_pack/N = supply_controller.supply_packs[supply_name]
 				if((N.hidden && !hacked) || (N.contraband && !can_order_contraband) || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
 				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"		//the obj because it would get caught by the garbage
 
 		/*temp = "Supply points: [supply_controller.points]<BR><HR><BR>Request what?<BR><BR>"
 
-		for(var/supply_name in supply_controller.supply_packs )
-			var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
+		for(var/supply_name in supply_controller.supply_pack )
+			var/datum/supply_pack/N = supply_controller.supply_pack[supply_name]
 			if(N.hidden && !hacked) continue
 			if(N.contraband && !can_order_contraband) continue
 			temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"    //the obj because it would get caught by the garbage
@@ -284,7 +455,7 @@
 			return
 
 		//Find the correct supply_pack datum
-		var/datum/supply_packs/P = supply_controller.supply_packs[href_list["doorder"]]
+		var/datum/supply_pack/P = supply_controller.supply_packs[href_list["doorder"]]
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
@@ -312,7 +483,7 @@
 		reqform.info += "SUPPLY CRATE TYPE: [P.name]<br>"
 		reqform.info += "ACCESS RESTRICTION: [get_access_desc(P.access)]<br>"
 		reqform.info += "CONTENTS:<br>"
-		reqform.info += P.manifest
+		reqform.info += P.true_manifest
 		reqform.info += "<hr>"
 		reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
 
@@ -333,7 +504,7 @@
 		//Find the correct supply_order datum
 		var/ordernum = text2num(href_list["confirmorder"])
 		var/datum/supply_order/O
-		var/datum/supply_packs/P
+		var/datum/supply_pack/P
 		temp = "Invalid Request"
 		for(var/i=1, i<=supply_controller.requestlist.len, i++)
 			var/datum/supply_order/SO = supply_controller.requestlist[i]
@@ -357,18 +528,18 @@
 			var/datum/supply_order/SO = S
 			temp += "#[SO.ordernum] - [SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""]<BR>"// <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-/*
+
 	else if (href_list["cancelorder"])
 		var/datum/supply_order/remove_supply = href_list["cancelorder"]
-		supply_shuttle_shoppinglist -= remove_supply
-		supply_shuttle_points += remove_supply.object.cost
+		supply_controller.requestlist -= remove_supply
+		supply_controller.points += remove_supply.object.cost
 		temp += "Canceled: [remove_supply.object.name]<BR><BR><BR>"
 
-		for(var/S in supply_shuttle_shoppinglist)
+		for(var/S in supply_controller.requestlist)
 			var/datum/supply_order/SO = S
 			temp += "[SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""] <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-*/
+
 	else if (href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
 		for(var/S in supply_controller.requestlist)

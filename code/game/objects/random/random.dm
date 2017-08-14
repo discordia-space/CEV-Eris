@@ -209,7 +209,7 @@
 	item_to_spawn()
 		return pick(prob(6);/obj/item/weapon/storage/box/shotgunammo/beanbags,\
 					prob(2);/obj/item/weapon/storage/box/shotgunammo,\
-					prob(4);/obj/item/weapon/storage/box/shotgunammo/shotgunshells,\
+					prob(4);/obj/item/weapon/storage/box/shotgunammo/slug,\
 					prob(1);/obj/item/weapon/storage/box/shotgunammo/stunshells,\
 					prob(2);/obj/item/ammo_magazine/c45m,\
 					prob(4);/obj/item/ammo_magazine/c45m/rubber,\

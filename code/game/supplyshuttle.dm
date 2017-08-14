@@ -107,7 +107,7 @@ var/list/mechtoys = list(
 				T.blocks_air = 0
 
 
-/*
+
 
 /*
 /obj/effect/marker/supplymarker
@@ -118,7 +118,7 @@ var/list/mechtoys = list(
 	anchored = 1
 	opacity = 0
 */
-
+/*
 /datum/supply_order
 	var/ordernum
 	var/datum/supply_packs/object = null

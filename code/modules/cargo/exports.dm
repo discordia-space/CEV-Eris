@@ -102,10 +102,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	var/amount = get_amount(O)
 	total_cost += cost
 	total_amount += amount
-/*
-	feedback_add_details("export_sold_amount","[O.type]|[amount]")
-	feedback_add_details("export_sold_cost","[O.type]|[cost]")
-*/
+
 // Total printout for the cargo console.
 // Called before the end of current export cycle.
 // It must always return something if the datum adds or removes any credts.

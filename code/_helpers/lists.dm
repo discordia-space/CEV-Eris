@@ -162,6 +162,21 @@ proc/listclearnulls(list/list)
 			output += L[i]
 	return output
 
+/proc/reverseRange(list/L, start=1, end=0)
+	if(L.len)
+		start = start % L.len
+		end = end % (L.len+1)
+		if(start <= 0)
+			start += L.len
+		if(end <= 0)
+			end += L.len + 1
+
+		--end
+		while(start < end)
+			L.Swap(start++,end--)
+
+	return L
+
 //Randomize: Return the list in a random order
 /proc/shuffle(var/list/L)
 	if(!L)

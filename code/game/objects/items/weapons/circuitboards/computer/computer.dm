@@ -123,12 +123,10 @@
 	name = T_BOARD("disease splicer")
 	build_path = /obj/machinery/computer/diseasesplicer
 
-/obj/item/weapon/circuitboard/cargo
+/obj/item/weapon/circuitboard/ordercomp
 	name = T_BOARD("supply ordering console")
-	build_path = /obj/machinery/computer/cargo
+	build_path = /obj/machinery/computer/ordercomp
 	origin_tech = list(TECH_DATA = 2)
-	var/contraband_enabled = FALSE
-	var/hacked = FALSE
 
 /obj/item/weapon/circuitboard/mining_shuttle
 	name = T_BOARD("mining shuttle console")
