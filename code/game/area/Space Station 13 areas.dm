@@ -2581,8 +2581,8 @@ area/space/atmosalert()
 			sound_delay = rand(0, 50)
 
 		for(var/mob/living/carbon/human/H in src)
-			if(H.s_tone > -55)
-				H.s_tone--
+			if(H.skin_tone > -55)
+				H.skin_tone--
 				H.update_body()
 			if(H.client)
 				mysound.status = SOUND_UPDATE
@@ -2702,8 +2702,8 @@ var/list/the_station_areas = list (
 			sound_delay = rand(0, 50)
 
 		for(var/mob/living/carbon/human/H in src)
-//			if(H.s_tone > -55)	//ugh...nice/novel idea but please no.
-//				H.s_tone--
+//			if(H.skin_tone > -55)	//ugh...nice/novel idea but please no.
+//				H.skin_tone--
 //				H.update_body()
 			if(H.client)
 				mysound.status = SOUND_UPDATE

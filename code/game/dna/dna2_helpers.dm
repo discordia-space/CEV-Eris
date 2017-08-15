@@ -140,7 +140,7 @@
 		H.eyes_color   = rgb(dna.GetUIValueRange(DNA_UI_EYES_R, 255), dna.GetUIValueRange(DNA_UI_EYES_G, 255), dna.GetUIValueRange(DNA_UI_EYES_B, 255))
 		H.update_eyes()
 
-		H.s_tone   = 35 - dna.GetUIValueRange(DNA_UI_SKIN_TONE, 220) // Value can be negative.
+		H.skin_tone   = 35 - dna.GetUIValueRange(DNA_UI_SKIN_TONE, 220) // Value can be negative.
 
 		if (dna.GetUIState(DNA_UI_GENDER))
 			H.gender = FEMALE

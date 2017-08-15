@@ -67,7 +67,7 @@ var/list/organ_cache = list()
 			blood_DNA = list()
 		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
 	processing_objects -= src
-	sync_to_owner()
+
 
 /obj/item/organ/proc/removed(var/mob/living/user)
 	if(!istype(owner))
@@ -118,14 +118,12 @@ var/list/organ_cache = list()
 	if(robotic)
 		status |= ORGAN_ROBOT
 
-/obj/item/organ/proc/sync_to_owner()
+/obj/item/organ/proc/get_icon_key()
 	return
 
 /obj/item/organ/proc/get_icon()
-	return null
-
-/obj/item/organ/proc/get_icon_key()
-	return
+	update_icon()
+	return icon
 
 /obj/item/organ/proc/update_health()
 	return
@@ -282,6 +280,9 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/rejuvenate()
 	damage = 0
 
+/obj/item/organ/proc/sync_new_color()
+	return null
+
 /obj/item/organ/proc/is_damaged()
 	return damage > 0
 
@@ -351,6 +352,8 @@ var/list/organ_cache = list()
 	robotic = 1
 	min_bruised_damage = 15
 	min_broken_damage = 35
+
+
 
 /obj/item/organ/emp_act(severity)
 	if(!(status & ORGAN_ROBOT))

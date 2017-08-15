@@ -449,7 +449,7 @@ var/list/sacrificed = list()
 					break
 			D.universal_speak = 1
 			D.status_flags &= ~GODMODE
-			D.s_tone = 35
+			D.skin_tone = 35
 			D.eyes_color = "#C8C8C8"
 			D.update_eyes()
 			D.all_underwear.Cut()
@@ -615,8 +615,8 @@ var/list/sacrificed = list()
 					if(!(iscultist(V)))
 						victims += V//Checks for cult status and mob type
 			for(var/obj/item/I in src.loc)//Checks for MMIs/brains/Intellicards
-				if(istype(I,/obj/item/organ/brain))
-					var/obj/item/organ/brain/B = I
+				if(istype(I,/obj/item/organ/internal/brain))
+					var/obj/item/organ/internal/brain/B = I
 					victims += B.brainmob
 				else if(istype(I,/obj/item/device/mmi))
 					var/obj/item/device/mmi/B = I

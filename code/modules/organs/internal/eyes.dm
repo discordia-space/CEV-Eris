@@ -13,21 +13,21 @@
 /obj/item/organ/internal/eyes/proc/get_cache_key()
 	return "[cache_key][robotic ? robo_color : eye_color]"
 
-/obj/item/organ/internal/eyes/install(mob/living/carbon/human/H, redraw_mob = 1)
-	if(..()) return 1
-	// Apply our eye color to the target.
-	if(eye_color)
-		owner.eyes_color = eye_color
-	sync_to_owner()
-	if(redraw_mob)
-		owner.update_body()
-
-/obj/item/organ/internal/eyes/sync_to_owner()
+/obj/item/organ/internal/eyes/sync_new_color()
 	if(!owner)
 		return
 	species = owner.species
 	body_build = owner.body_build.index
 	eye_color = owner.eyes_color ? owner.eyes_color : "#000000"
+
+/obj/item/organ/internal/eyes/install(mob/living/carbon/human/H, redraw_mob = 1)
+	if(..()) return 1
+	// Apply our eye color to the target.
+	if(eye_color)
+		sync_new_color()
+		owner.eyes_color = eye_color
+	if(redraw_mob)
+		owner.update_body()
 
 /obj/item/organ/internal/eyes/get_icon()
 	mob_icon = new/icon(species.icobase, "eyes[body_build]")

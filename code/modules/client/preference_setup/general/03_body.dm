@@ -8,7 +8,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["species"]			>> pref.species
 	S["hair_color"]			>> pref.hair_color
 	S["facial_color"]		>> pref.facial_color
-	S["skin_tone"]			>> pref.s_tone
+	S["skin_tone"]			>> pref.skin_tone
 	S["skin_color"]			>> pref.skin_color
 	S["hair_style_name"]	>> pref.h_style
 	S["facial_style_name"]	>> pref.f_style
@@ -22,7 +22,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["species"]			<< pref.species
 	S["hair_color"]			<< pref.hair_color
 	S["facial_color"]		<< pref.facial_color
-	S["skin_tone"]			<< pref.s_tone
+	S["skin_tone"]			<< pref.skin_tone
 	S["skin_color"]			<< pref.skin_color
 	S["hair_style_name"]	<< pref.h_style
 	S["facial_style_name"]	<< pref.f_style
@@ -37,7 +37,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.species = "Human"
 	pref.hair_color		= iscolor(pref.hair_color) ? pref.hair_color : "#000000"
 	pref.facial_color	= iscolor(pref.facial_color) ? pref.facial_color : "#000000"
-	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
+	pref.skin_tone			= sanitize_integer(pref.skin_tone, -185, 34, initial(pref.skin_tone))
 	pref.skin_color		= iscolor(pref.skin_color) ? pref.skin_color : "#000000"
 	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
@@ -63,7 +63,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br>"
 	. += "Blood Type: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
 	if(has_flag(mob_species, HAS_SKIN_TONE))
-		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
+		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.skin_tone + 35]/220</a><br>"
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br>"
 
 	. += "</td><td style='width:80px;text-align:center'><img src=new_previewicon[pref.preview_dir].png height=64 width=64>"
@@ -151,9 +151,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["skin_tone"])
 		if(!has_flag(mob_species, HAS_SKIN_TONE))
 			return TOPIC_NOACTION
-		var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference", (-pref.s_tone) + 35)  as num|null
-		if(new_s_tone && has_flag(mob_species, HAS_SKIN_TONE) && CanUseTopic(user))
-			pref.s_tone = 35 - max(min( round(new_s_tone), 220),1)
+		var/new_skin_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference", (-pref.skin_tone) + 35)  as num|null
+		if(new_skin_tone && has_flag(mob_species, HAS_SKIN_TONE) && CanUseTopic(user))
+			pref.skin_tone = 35 - max(min( round(new_skin_tone), 220),1)
 			pref.req_update_icon = 1
 			return TOPIC_REFRESH
 

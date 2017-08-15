@@ -47,7 +47,7 @@
 
 	has_organ = list(
 		"heart" =           /obj/item/organ/internal/heart,
-		"brain" =           /obj/item/organ/brain/xeno,
+		"brain" =           /obj/item/organ/internal/brain/xeno,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel,
 		"hive node" =       /obj/item/organ/xenos/hivenode,
 		)
@@ -152,7 +152,7 @@
 
 	has_organ = list(
 		"heart" =           /obj/item/organ/internal/heart,
-		"brain" =           /obj/item/organ/brain/xeno,
+		"brain" =           /obj/item/organ/internal/brain/xeno,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel/queen,
 		"acid gland" =      /obj/item/organ/xenos/acidgland,
 		"hive node" =       /obj/item/organ/xenos/hivenode,
@@ -190,7 +190,7 @@
 
 	has_organ = list(
 		"heart" =           /obj/item/organ/internal/heart,
-		"brain" =           /obj/item/organ/brain/xeno,
+		"brain" =           /obj/item/organ/internal/brain/xeno,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel/hunter,
 		"hive node" =       /obj/item/organ/xenos/hivenode,
 		)
@@ -217,7 +217,7 @@
 
 	has_organ = list(
 		"heart" =           /obj/item/organ/internal/heart,
-		"brain" =           /obj/item/organ/brain/xeno,
+		"brain" =           /obj/item/organ/internal/brain/xeno,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel/sentinel,
 		"acid gland" =      /obj/item/organ/xenos/acidgland,
 		"hive node" =       /obj/item/organ/xenos/hivenode,
@@ -248,7 +248,7 @@
 
 	has_organ = list(
 		"heart" =           /obj/item/organ/internal/heart,
-		"brain" =           /obj/item/organ/brain/xeno,
+		"brain" =           /obj/item/organ/internal/brain/xeno,
 		"egg sac" =         /obj/item/organ/xenos/eggsac,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel/queen,
 		"acid gland" =      /obj/item/organ/xenos/acidgland,

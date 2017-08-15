@@ -36,8 +36,9 @@
 	var/icon/default_icon              // Used to force override of species-specific limb icons (for prosthetics).
 	var/icon/mob_icon                  // Cached icon for use in mob overlays.
 	var/gendered = null
-	var/s_tone				// Skin tone.
-	var/s_col				// skin colour
+	var/skin_tone				// Skin tone.
+	var/skin_color				// skin colour
+	var/hair_col
 	var/body_build
 	var/tattoo = 0
 	var/tattoo_color = ""
@@ -121,7 +122,7 @@
 			parent.wounds -= W
 			qdel(W)
 		parent.update_damages()
-
+/*
 /obj/item/organ/external/proc/heal_damage(brute, burn, internal = 0, robo_repair = 0)
 	if(status & ORGAN_ROBOT && !robo_repair)
 		return
@@ -151,15 +152,15 @@
 	owner.updatehealth()
 
 	return update_damstate()
-
+*/
 /*
 	if(module)
 		module.organ_installed(src, owner)
-*/
+
 	update_icon()
 	owner.updatehealth()
 	owner.UpdateDamageIcon(0)
-
+*/
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
@@ -937,10 +938,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	for (var/obj/item/organ/external/T in children)
 		if(T)
 			T.robotize()
-
+/*
 /obj/item/organ/external/proc/is_damageable(var/additional_damage = 0)
 	return (vital || brute_dam + burn_dam + additional_damage < max_damage)
-
+*/
 /obj/item/organ/external/proc/mutate()
 	if(robotic >= ORGAN_ROBOT)
 		return
