@@ -110,6 +110,10 @@ proc/get_radio_key_from_channel(var/channel)
 			return say_dead(message)
 		return
 
+	if(is_muzzled())
+		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
+		return
+
 	var/message_mode = parse_message_mode(message, "headset")
 
 	switch(copytext(message, 1, 2))
@@ -143,10 +147,6 @@ proc/get_radio_key_from_channel(var/channel)
 		return 1
 
 	verb = say_quote(message, speaking)
-
-	if(is_muzzled())
-		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
-		return
 
 	message = trim_left(message)
 
@@ -239,7 +239,7 @@ proc/get_radio_key_from_channel(var/channel)
 				O.hear_talk(src, message, verb, speaking)
 
 	log_say("[name]/[key] : [message]")
-	return 1
+	return TRUE
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))
