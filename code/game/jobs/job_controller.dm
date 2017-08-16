@@ -20,41 +20,37 @@ var/global/datum/controller/occupations/job_master
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
 			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
-			return 0
+			return FALSE
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
-			if(!job)
-				continue
-			if(job.title == JOB_NONE)
+			if(!job || job.title == JOB_NONE)
 				continue
 			if(job.faction != faction)
 				continue
 			occupations += job
 			occupations_by_name[job.title] = job
-
-		return 1
+		return TRUE
 
 
 	proc/Debug(var/text)
-		if(!Debug2)	return 0
+		if(!Debug2)
+			return FALSE
 		job_debug.Add(text)
-		return 1
-
+		return TRUE
 
 	proc/GetJob(var/rank)
-		if(!rank)	return null
-		return occupations_by_name[rank]
+		return rank && occupations_by_name[rank]
 
 	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
 		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 		if(player && player.mind && rank)
 			var/datum/job/job = GetJob(rank)
 			if(!job)
-				return 0
+				return FALSE
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
-				return 0
+				return FALSE
 			if(jobban_isbanned(player, rank))
-				return 0
+				return FALSE
 
 			var/position_limit = job.total_positions
 			if(!latejoin)
@@ -66,14 +62,14 @@ var/global/datum/controller/occupations/job_master
 				job.current_positions++
 				return 1
 		Debug("AR has failed, Player: [player], Rank: [rank]")
-		return 0
+		return FALSE
 
 	proc/FreeRole(var/rank)	//making additional slot on the fly
 		var/datum/job/job = GetJob(rank)
 		if(job && job.current_positions >= job.total_positions && job.total_positions != -1)
 			job.total_positions++
-			return 1
-		return 0
+			return TRUE
+		return FALSE
 
 	proc/FindOccupationCandidates(datum/job/job, level, flag)
 		Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
@@ -125,7 +121,6 @@ var/global/datum/controller/occupations/job_master
 				player.mind.special_role = null
 		SetupOccupations()
 		unassigned = list()
-		return
 
 
 	///This proc is called before the level loop of DivideOccupations() and will try to select a head,
