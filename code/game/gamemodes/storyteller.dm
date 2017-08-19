@@ -1,4 +1,4 @@
-var/list/current_antags = list()
+var/global/list/current_antags = list()
 
 /datum/storyteller
 	var/config_tag = "base"
@@ -60,9 +60,8 @@ var/list/current_antags = list()
 
 
 /datum/storyteller/proc/chaos_increment()
-	if(world.time % chaos_increment_delay == 0)
-		chaos_level += chaos_increment
-		chaos_increment += chaos_acceleration
+		chaos_level += chaos_increment / 10
+		chaos_increment += chaos_acceleration / 10
 
 /datum/storyteller/proc/process()
 	chaos_increment()

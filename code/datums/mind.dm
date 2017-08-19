@@ -20,7 +20,7 @@
 
 	-	When creating a new mob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
 		a ghost to become a xeno during an event). Simply assign the key or ckey like you've always done.
-
+[]['
 			new_mob.key = key
 
 		The Login proc will handle making a new mob for that mobtype (including setting up stuff like mind.name). Simple!
@@ -39,7 +39,8 @@
 	var/memory
 
 	var/assigned_role
-	var/special_role
+//	var/special_role
+	var/datum/antagonist/antagonist
 
 	var/role_alt_title
 
@@ -50,7 +51,7 @@
 
 	var/has_been_rev = 0//Tracks if this mind has been a rev or not
 
-	var/datum/faction/faction 			//associated faction
+//	var/datum/faction/faction 			//associated faction
 	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0

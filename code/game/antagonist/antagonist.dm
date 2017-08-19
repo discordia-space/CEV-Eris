@@ -1,8 +1,11 @@
 /datum/antagonist
 
-	// Text shown when becoming this antagonist.
-	var/list/restricted_jobs =     list()   // Jobs that cannot be this antagonist (depending on config)
-	var/list/protected_jobs =      list()   // As above.
+	// Base vars
+	var/list/objectives = list()
+	var/mob/living/owner = null
+
+	var/list/restricted_jobs =     list()   // Jobs that technically cannot be this antagonist (like AI-changeling)
+	var/list/protected_jobs =      list()   // As above, but this jobs are rewstricted ideologically (like Security Officer-traitor)
 
 	// Strings.
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
@@ -20,31 +23,15 @@
 	// Visual references.
 	var/antaghud_indicator = "hudsyndicate" // Used by the ghost antagHUD.
 	var/antag_indicator                     // icon_state for icons/mob/mob.dm visual indicator.
-	var/faction_indicator                   // See antag_indicator, but for factionalized people only.
-	var/faction_invisible                   // Can members of the faction identify other antagonists?
 
 	// Faction data.
-	var/faction_role_text                   // Role for sub-antags. Mandatory for faction role.
-	var/faction_descriptor                  // Description of the cause. Mandatory for faction role.
-	var/faction_verb                        // Verb added when becoming a member of the faction, if any.
-	var/faction_welcome                     // Message shown to faction members.
-	var/faction = "neutral"					// Actual faction name. Used primarily in stuff like simple_animals seeing if you are a threat or not.
-
-	// Spawn values (autotraitor and game mode)
-	var/announced                           // Has an announcement been sent?
-	var/spawn_announcement                  // When the datum spawn proc is called, does it announce to the world? (ie. xenos)
-	var/spawn_announcement_title            // Report title.
-	var/spawn_announcement_sound            // Report sound clip.
-	var/spawn_announcement_delay            // Time between initial spawn and round announcement.
+	var/datum/faction/faction = null
 
 	// Misc.
-	var/landmark_id                         // Spawn point identifier.
-	var/mob_path = /mob/living/carbon/human // Mobtype this antag will use if none is provided.
 	var/feedback_tag = "traitor_objective"  // End of round
 	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
-	var/minimum_player_age = 7            	// Players need to be at least minimum_player_age days old before they are eligable for auto-spawning
-	var/suspicion_chance = 50               // Prob of being on the initial Command report
 	var/flags = 0                           // Various runtime options.
+	var/selectable = FALSE					// Is this antag type present in character antag setup?
 
 	// Used for setting appearance.
 	var/list/valid_species =       list("Human")

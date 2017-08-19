@@ -40,9 +40,6 @@
 		return 1
 	return 0
 
-/datum/antagonist/proc/is_votable()
-	return (flags & ANTAG_VOTABLE)
-
 /datum/antagonist/proc/can_late_spawn()
 	return 1
 
