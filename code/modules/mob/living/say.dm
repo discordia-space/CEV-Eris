@@ -110,6 +110,10 @@ proc/get_radio_key_from_channel(var/channel)
 			return say_dead(message)
 		return
 
+	if(is_muzzled())
+		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
+		return
+
 	var/message_mode = parse_message_mode(message, "headset")
 
 	switch(copytext(message, 1, 2))
@@ -143,10 +147,6 @@ proc/get_radio_key_from_channel(var/channel)
 		return 1
 
 	verb = say_quote(message, speaking)
-
-	if(is_muzzled())
-		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
-		return
 
 	message = trim_left(message)
 
@@ -217,14 +217,12 @@ proc/get_radio_key_from_channel(var/channel)
 		for(var/mob/M in mob_list)
 			if(M.locs.len && M.locs[1] in hear)
 				listening |= M
+			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+				listening |= M
 
 		for(var/obj/O in hearing_objects)
 			if(O.locs.len && O.locs[1] in hear)
 				listening_obj |= O
-
-		for(var/mob/M in player_list)
-			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
-				listening |= M
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
@@ -241,7 +239,7 @@ proc/get_radio_key_from_channel(var/channel)
 				O.hear_talk(src, message, verb, speaking)
 
 	log_say("[name]/[key] : [message]")
-	return 1
+	return TRUE
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))
@@ -270,7 +268,7 @@ proc/get_radio_key_from_channel(var/channel)
 					var/mob/living/carbon/human/H = speaker
 					speaker_name = H.rank_prefix_name(speaker_name)
 				src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
-			return
+		return
 
 	//make sure the air can transmit speech - hearer's side
 	var/turf/T = get_turf(src)

@@ -36,6 +36,8 @@
 	var/affected_by_emp_until = 0
 
 /obj/machinery/camera/New()
+	..()
+
 	wires = new(src)
 	assembly = new(src)
 	assembly.state = 4
@@ -50,15 +52,13 @@
 		if(loc)
 			error("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
 		else
-			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
+			error("[src.name] in [get_area(src)] has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
 
-	if(!c_tag)
+	if(isturf(loc) && !c_tag)
 		var/area/A = get_area(src)
 		c_tag = A.get_camera_tag(src)
-
-	..()
 
 /obj/machinery/camera/Destroy()
 	deactivate(null, 0) //kick anyone viewing out

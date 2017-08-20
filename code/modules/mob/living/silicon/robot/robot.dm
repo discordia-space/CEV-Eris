@@ -48,7 +48,7 @@
 
 	var/obj/item/device/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/weapon/cell/big/cell = null
+	var/obj/item/weapon/cell/large/cell = null
 	var/obj/machinery/camera/camera = null
 
 	var/cell_emp_mult = 2
@@ -132,7 +132,7 @@
 		C.wrapped = new C.external_type
 
 	if(!cell)
-		cell = new /obj/item/weapon/cell/big(src)
+		cell = new /obj/item/weapon/cell/large(src)
 		cell.maxcharge = 7500
 		cell.charge = 7500
 
@@ -579,7 +579,7 @@
 		W.forceMove(src)
 		recalculate_synth_capacities()
 
-	else if (istype(W, /obj/item/weapon/cell/big) && opened)	// trying to put a cell inside
+	else if (istype(W, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
 			user << "Close the panel first."

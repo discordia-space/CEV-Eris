@@ -66,6 +66,12 @@ datum/unit_test/proc/check_result()
 	fail("No check results proc")
 	return 1
 
+/datum/unit_test/proc/get_standard_turf()
+	return locate(20,20,1)
+
+/datum/unit_test/proc/log_bad(var/message)
+	log_unit_test("[ascii_red]\[[name]\]: [message][ascii_reset]")
+
 
 proc/load_unit_test_changes()
 /*
