@@ -259,6 +259,7 @@
 #include "code\game\antagonist\antagonist_factions.dm"
 #include "code\game\antagonist\antagonist_helpers.dm"
 #include "code\game\antagonist\antagonist_objectives.dm"
+#include "code\game\antagonist\antagonist_outer.dm"
 #include "code\game\antagonist\antagonist_panel.dm"
 #include "code\game\antagonist\antagonist_place.dm"
 #include "code\game\antagonist\antagonist_print.dm"

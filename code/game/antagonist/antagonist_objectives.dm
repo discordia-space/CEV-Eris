@@ -1,4 +1,4 @@
-/datum/antagonist/proc/create_global_objectives()
+ /datum/antagonist/proc/create_global_objectives()
 	if(config.objectives_disabled)
 		return 0
 	if(global_objectives && global_objectives.len)

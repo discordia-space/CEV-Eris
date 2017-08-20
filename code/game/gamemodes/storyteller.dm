@@ -1,4 +1,4 @@
-var/global/list/current_antags = list()
+var/global/list/current_antagonists = list()
 
 /datum/storyteller
 	var/config_tag = "base"

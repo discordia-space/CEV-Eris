@@ -9,10 +9,6 @@
 
 	// Strings.
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
-	var/victory_text                        // World output at roundend for victory.
-	var/loss_text                           // As above for loss.
-	var/victory_feedback_tag                // Used by the database for end of round loss.
-	var/loss_feedback_tag                   // Used by the database for end of round loss.
 
 	// Role data.
 	var/id = "traitor"                      // Unique datum identifier.
@@ -28,7 +24,6 @@
 	var/datum/faction/faction = null
 
 	// Misc.
-	var/feedback_tag = "traitor_objective"  // End of round
 	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
 	var/flags = 0                           // Various runtime options.
 	var/selectable = FALSE					// Is this antag type present in character antag setup?
@@ -81,42 +76,6 @@
 
 	return candidates
 
-/datum/antagonist/proc/attempt_random_spawn()
-	update_current_antag_max()
-	build_candidate_list(flags & (ANTAG_OVERRIDE_MOB|ANTAG_OVERRIDE_JOB))
-	attempt_spawn()
-	finalize_spawn()
-
-/datum/antagonist/proc/attempt_auto_spawn()
-	if(!can_late_spawn())
-		return 0
-
-	update_current_antag_max()
-	var/active_antags = get_active_antag_count()
-	log_debug("[uppertext(id)]: Found [active_antags]/[cur_max] active [role_text_plural].")
-
-	if(active_antags >= cur_max)
-		log_debug("Could not auto-spawn a [role_text], active antag limit reached.")
-		return 0
-
-	build_candidate_list(flags & (ANTAG_OVERRIDE_MOB|ANTAG_OVERRIDE_JOB))
-	if(!candidates.len)
-		log_debug("Could not auto-spawn a [role_text], no candidates found.")
-		return 0
-
-	attempt_spawn(1) //auto-spawn antags one at a time
-	if(!pending_antagonists.len)
-		log_debug("Could not auto-spawn a [role_text], none of the available candidates could be selected.")
-		return 0
-
-	var/datum/mind/player = pending_antagonists[1]
-	if(!add_antagonist(player,0,0,0,1,1))
-		log_debug("Could not auto-spawn a [role_text], failed to add antagonist.")
-		return 0
-
-	reset_antag_selection()
-
-	return 1
 
 //Selects players that will be spawned in the antagonist role from the potential candidates
 //Selected players are added to the pending_antagonists lists.
