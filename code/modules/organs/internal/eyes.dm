@@ -30,12 +30,10 @@
 		owner.update_body()
 
 /obj/item/organ/internal/eyes/get_icon()
-	mob_icon = new/icon(species.icobase, "eyes[body_build]")
-	if(robotic >= ORGAN_ROBOT)
-		mob_icon.Blend(robo_color, ICON_ADD)
-	else
-		mob_icon.Blend(eye_color, ICON_ADD)
-	return mob_icon
+	var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', "eye_l[owner.body_build.index]")
+	eyes_icon.Blend(icon('icons/mob/human_face.dmi', "eye_r[owner.body_build.index]"), ICON_OVERLAY)
+	eyes_icon.Blend(robotic ? robo_color : eye_color, ICON_ADD)
+	return eyes_icon
 
 /obj/item/organ/internal/eyes/get_icon_key()
 	return "eyes[eye_color]"

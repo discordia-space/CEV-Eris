@@ -163,3 +163,6 @@ var/global/list/limb_icon_cache = list()
 	dir = EAST
 	icon = mob_icon
 
+/obj/item/organ/external/get_icon()
+	update_icon()
+	return mob_icon
