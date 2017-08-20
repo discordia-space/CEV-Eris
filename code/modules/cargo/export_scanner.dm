@@ -1,8 +1,8 @@
 /obj/item/device/export_scanner
 	name = "export scanner"
 	desc = "A device used to check objects against Commercial database."
-	icon = 'icons/obj/autopsy_scanner.dmi' //I know what you're thinking, but I do not have a sprite ~TermService
-	icon_state = "export_scan"
+	icon = 'icons/obj/reader.dmi'
+	icon_state = "reader0"
 	item_state = "radio"
 	flags = NOBLUDGEON
 	w_class = 2
@@ -29,7 +29,7 @@
 		return
 	if(!istype(O) || !proximity)
 		return
-
+	flick("reader1", src)
 	if(istype(O, /obj/machinery/computer/supplycomp))
 		var/obj/machinery/computer/supplycomp/C = O
 		if(!C.requestonly)
