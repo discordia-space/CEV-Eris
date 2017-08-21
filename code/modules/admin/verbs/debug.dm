@@ -610,11 +610,11 @@
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
 
-		if("death commando")//Was looking to add this for a while.
+		/*if("death commando")//Was looking to add this for a while.
 			deathsquad.equip(M)
 
 		if("syndicate commando")
-			commandos.equip(M)
+			commandos.equip(M)*/
 
 		if("nanotrasen representative")
 			//M.equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom(M), slot_w_uniform)

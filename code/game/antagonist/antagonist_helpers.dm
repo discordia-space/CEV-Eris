@@ -1,12 +1,11 @@
-/datum/antagonist/proc/can_become_antag(var/datum/mind/player, var/ignore_role)
-	if(player.current && jobban_isbanned(player.current, bantype))
-		return 0
-	if(!ignore_role)
-		if(player.assigned_role in restricted_jobs)
-			return 0
-		if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
-			return 0
-	return 1
+/datum/antagonist/proc/can_become_antag(var/datum/mind/player)
+	if(player.current && jobban_isbanned(player, bantype))
+		return FALSE
+	if(player.assigned_role in restricted_jobs)
+		return FALSE
+	if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
+		return FALSE
+	return TRUE
 
 /datum/antagonist/proc/antags_are_dead()
 	for(var/datum/mind/antag in current_antagonists)
@@ -53,3 +52,6 @@
 		if(antag.flags & ANTAG_RANDOM_EXCEPTED)
 			antag_candidates -= antag
 	return antag_candidates
+
+/datum/antagonis/proc/isouter()
+	return istype(src, /datum/antagonist/outer)

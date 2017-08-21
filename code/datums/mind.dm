@@ -39,6 +39,7 @@
 	var/memory
 
 	var/assigned_role
+	var/special_role
 	var/list/antagonist = list()
 
 	var/datum/job/assigned_job

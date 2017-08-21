@@ -1,8 +1,53 @@
-/datum/antagonist/proc/print_player_summary()
+/datum/antagonist/proc/show_objectives()
+	if(!owner || !owner.current)
+		return
 
-	if(!current_antagonists.len)
-		return 0
+	var/text = "<span class='notice'>Your current objectives:</span><br>"
 
+	var/num = 1
+	for(var/datum/objective/O in objectives)
+		text += "<B>Objective #[num]</B>: [O.explanation_text]<br>"
+		num++
+
+	owner.current << text
+
+/proc/show_objectives(var/datum/mind/player)
+
+	if(!player || !player.current)
+		return
+
+	if(config.objectives_disabled)
+		show_generic_antag_text(player)
+		return
+
+	var/obj_count = 1
+	player.current << "<span class='notice'>Your current objectives:</span>"
+	for(var/datum/objective/objective in player.objectives)
+		player.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+		obj_count++
+
+/datum/antagonist/proc/greet()
+	if(!owner || !owner.current)
+		return
+
+	var/mob/player = owner.current
+	// Basic intro text.
+	player << "<span class='danger'><font size=3>You are a [role_text]!</font></span>"
+	if(faction)
+		if(src in faction.leaders)
+			player << "You are a leader of the [faction.name]!"
+		else
+			player << "You are a member of the [faction.name]."
+
+		player << "[facton.welcome_text]"
+	else
+		player << "[welcome_text]"
+
+	show_objectives()
+
+	return 1
+
+/datum/antagonist/proc/print_success()
 	var/text = "<br><br><font size = 2><b>The [current_antagonists.len == 1 ? "[role_text] was" : "[role_text_plural] were"]:</b></font>"
 	for(var/datum/mind/P in current_antagonists)
 		text += print_player_full(P)

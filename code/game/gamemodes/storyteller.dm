@@ -1,4 +1,5 @@
-var/global/list/current_antagonists = list()
+var/global/list/current_antags = list()
+var/global/list/current_factions = list()
 
 /datum/storyteller
 	var/config_tag = "base"
@@ -82,32 +83,6 @@ var/global/list/current_antagonists = list()
 	first_role_spawn = FALSE
 
 
-//Announces objectives/generic antag text.
-/proc/show_generic_antag_text(var/datum/mind/player)
-	if(player.current)
-		player.current << \
-		"You are an antagonist! <font color=blue>Within the rules,</font> \
-		try to act as an opposing force to the crew. Further RP and try to make sure \
-		other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
-		and before taking extreme actions, please try to also contact the administration! \
-		Think through your actions and make the roleplay immersive! <b>Please remember all \
-		rules aside from those without explicit exceptions apply to antagonists.</b>"
-
-/proc/show_objectives(var/datum/mind/player)
-
-	if(!player || !player.current)
-		return
-
-	if(config.objectives_disabled)
-		show_generic_antag_text(player)
-		return
-
-	var/obj_count = 1
-	player.current << "<span class='notice'>Your current objectives:</span>"
-	for(var/datum/objective/objective in player.objectives)
-		player.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
-		obj_count++
-
 /mob/verb/check_round_info()
 	set name = "Check Storyteller"
 	set category = "OOC"
@@ -118,4 +93,4 @@ var/global/list/current_antagonists = list()
 
 	usr << "<b>The round storyteller is [capitalize(ticker.storyteller.name)]</b>"
 	if(ticker.storyteller.description)
-		usr << "<i>[ticker.mode.round_description]</i>"
+		usr << "<i>[ticker.storyteller.round_description]</i>"

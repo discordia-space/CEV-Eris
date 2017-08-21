@@ -1,7 +1,3 @@
-/datum/antagonist/proc/update_leader()
-	if(!leader && current_antagonists.len && (flags & ANTAG_HAS_LEADER))
-		leader = current_antagonists[1]
-
 /datum/antagonist/proc/update_antag_mob(var/datum/mind/player, var/preserve_appearance)
 
 	// Get the mob.
@@ -73,19 +69,3 @@
 						if(I.loc == player.current)
 							qdel(I)
 
-/datum/antagonist/proc/update_current_antag_max()
-	cur_max = hard_cap
-	if(ticker && ticker.mode)
-		if(ticker.mode.antag_tags && (id in ticker.mode.antag_tags))
-			cur_max = hard_cap_round
-
-	if(ticker.mode.antag_scaling_coeff)
-
-		var/count = 0
-		for(var/mob/living/M in player_list)
-			if(M.client)
-				count++
-
-		// Minimum: initial_spawn_target
-		// Maximum: hard_cap or hard_cap_round
-		cur_max = max(initial_spawn_target,min(round(count/ticker.mode.antag_scaling_coeff),cur_max))

@@ -63,8 +63,7 @@ var/global/datum/matchmaker/matchmaker = new()
 	if(!M.current)	//no extremely platonic relationships
 		return FALSE
 
-	var/datum/antagonist/special_role_data = get_antag_data(M.special_role)
-	if(special_role_data && (special_role_data.flags & ANTAG_SUSPICIOUS))
+	if(M.antagonist.len)
 		return FALSE
 
 	return TRUE

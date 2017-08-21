@@ -29,25 +29,30 @@
 #define ANTAG_RANDOM_EXCEPTED  2048 // If a game mode randomly selects antag types, antag types with this flag should be excluded.
 
 // Globals.
-var/global/list/all_antag_types = list()
-var/global/list/all_antag_spawnpoints = list()
-var/global/list/antag_names_to_ids = list()
+var/global/list/antag_types = list()
+var/global/list/station_antag_types = list()
+var/global/list/outer_antag_types = list()
+var/global/list/antag_starting_locations = list()
 
 // Global procs.
-/proc/get_antag_data(var/antag_type)
-	if(all_antag_types[antag_type])
-		return all_antag_types[antag_type]
-	else
-		for(var/cur_antag_type in all_antag_types)
-			var/datum/antagonist/antag = all_antag_types[cur_antag_type]
-			if(antag && antag.is_type(antag_type))
-				return antag
+/proc/clear_antagonist(var/datum/mind/player)
+	for(var/datum/antagonist/A in player.antagonist)
+		A.remove_antagonist()
 
-/proc/clear_antag_roles(var/datum/mind/player, var/implanted)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		if(!implanted || !(antag.flags & ANTAG_IMPLANT_IMMUNE))
-			antag.remove_antagonist(player, 1, implanted)
+/proc/clear_antagonist_type(var/datum/mind/player, var/a_id)
+	for(var/datum/antagonist/A in player.antagonist)
+		if(A.id == a_id)
+			A.remove_antagonist()
+
+/proc/make_antagonist(var/datum/mind/M, var/a_id)
+	if(antag_types[a_id])
+		var/datum/antagonist/A = new antag_types[a_id]
+		A.create_antagonist(M)
+
+/proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
+	if(antag_types[a_id])
+		var/datum/antagonist/A = new antag_types[a_id]
+		A.create_antagonist(M, F)
 
 /proc/update_antag_icons(var/datum/mind/player)
 	for(var/antag_type in all_antag_types)
@@ -62,25 +67,33 @@ var/global/list/antag_names_to_ids = list()
 /proc/populate_antag_type_list()
 	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
 		var/datum/antagonist/A = new antag_type
-		all_antag_types[A.id] = A
-		all_antag_spawnpoints[A.landmark_id] = list()
-		antag_names_to_ids[A.role_text] = A.id
+		antag_types[A.id] = antag_type
+		if(A.isouter())
+			outer_antag_types[A.id] = antag_type
+			var/datum/antagonist/outer/O = A
+			var/list/start_locs = list()
+			for(var/obj/effect/landmark/L in landmarks_list)
+				if(L.name == O.landmark_id)
+					start_locs |= get_turf(L)
+			antag_starting_locations[O.id] = start_locs
+		else
+			station_antag_types[A.id] = antag_type
 
-/proc/get_antags(var/atype)
-	var/datum/antagonist/antag = all_antag_types[atype]
-	if(antag && islist(antag.current_antagonists))
-		return antag.current_antagonists
-	return list()
+/proc/get_antags(var/id)
+	var/list/L = list()
+	for(var/datum/antagonist/A in current_antags)
+		if(A.id == id)
+			L.Add(A)
+	return L
 
-/proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = 0)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		if(only_offstation_roles && !(antag.flags & ANTAG_OVERRIDE_JOB))
-			continue
-		if(player in antag.current_antagonists)
-			return 1
-		if(player in antag.pending_antagonists)
-			return 1
-	return 0
+/proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
+	for(var/datum/antag/antag in player.antagonist)
+		if((antag.isouter() && only_offstation_roles) || !only_offstation_roles)
+			return TRUE
+	return FALSE
 
-/proc/player_is_antag_type(var/datum/mind/player, var/a_type)
+/proc/player_is_antag_id(var/datum/mind/player, var/a_id)
+	for(var/datum/antag/antag in player.antagonist)
+		if(antag.id == a_id)
+			return TRUE
+	return FALSE

@@ -37,7 +37,7 @@ var/global/list/empty_playable_ai_cores = list()
 		qdel(mind.objectives)
 		mind.special_role = null
 
-	clear_antag_roles(mind)
+	clear_antagonist(mind)
 
 	daemonize()
 	qdel(src)

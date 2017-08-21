@@ -2,7 +2,7 @@
 
 	// Base vars
 	var/list/objectives = list()
-	var/mob/living/owner = null
+	var/datum/mind/owner = null
 
 	var/list/restricted_jobs =     list()   // Jobs that technically cannot be this antagonist (like AI-changeling)
 	var/list/protected_jobs =      list()   // As above, but this jobs are rewstricted ideologically (like Security Officer-traitor)
@@ -22,11 +22,10 @@
 
 	// Faction data.
 	var/datum/faction/faction = null
+	var/faction_type = null
 
 	// Misc.
 	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
-	var/flags = 0                           // Various runtime options.
-	var/selectable = FALSE					// Is this antag type present in character antag setup?
 
 	// Used for setting appearance.
 	var/list/valid_species =       list("Human")
@@ -37,7 +36,6 @@
 	if(!role_type)
 		role_type = id
 
-	cur_max = hard_cap
 	get_starting_locations()
 	if(!role_text_plural)
 		role_text_plural = role_text
@@ -53,26 +51,34 @@
 	return 1
 
 // Get the raw list of potential players.
-/datum/antagonist/proc/build_candidate_list(var/ghosts_only)
+/datum/antagonist/proc/build_candidate_list()
 	candidates = list() // Clear.
 
 	// Prune restricted status. Broke it up for readability.
-	// Note that this is done before jobs are handed out.
-	for(var/datum/mind/player in ticker.mode.get_players_for_role(role_type, id))
-		if(ghosts_only && !isghost(player.current))
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts may join as this role!")
-		else if(config.use_age_restriction_for_antags && player.current.client.player_age < minimum_player_age)
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: Is only [player.current.client.player_age] day\s old, has to be [minimum_player_age] day\s!")
-		else if(player.special_role)
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They already have a special role ([player.special_role])!")
-		else if (player in pending_antagonists)
-			log_debug("[key_name(player)] is not eligible to become a [role_text]: They have already been selected for this role!")
-		else if(!can_become_antag(player))
+	for(var/mob/player in player_list)
+		if(!player.mind || isnewplayer(player))
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They don't have a mind or not a character!")
+			continue
+		if(isouter() && !(isghost(player) /*|| isangel(player) */))
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: Only ghosts and angels may join as this role!")
+			continue
+		if(!(role_type in player.client.prefs.be_special_role))
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They don't select this role in prefs!")
+			continue
+		if(player.current && jobban_isbanned(player, bantype))
+			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are jobbanned from this role!")
+			continue
+
+		var/datum/mind/mind = player.mind
+
+		if(!can_become_antag(mind))
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are blacklisted for this role!")
-		else if(player_is_antag(player))
+			continue
+		if(player_is_antag(mind))
 			log_debug("[key_name(player)] is not eligible to become a [role_text]: They are already an antagonist!")
-		else
-			candidates += player
+			continue
+
+		candidates += player
 
 	return candidates
 
@@ -121,25 +127,3 @@
 	player.special_role = role_text
 
 	return 1
-
-//Spawns all pending_antagonists. This is done separately from attempt_spawn in case the game mode setup fails.
-/datum/antagonist/proc/finalize_spawn()
-	if(!pending_antagonists)
-		return
-
-	for(var/datum/mind/player in pending_antagonists)
-		pending_antagonists -= player
-		add_antagonist(player,0,0,1)
-
-	reset_antag_selection()
-
-//Resets the antag selection, clearing all pending_antagonists and their special_role
-//(and assigned_role if ANTAG_OVERRIDE_JOB is set) as well as clearing the candidate list.
-//Existing antagonists are left untouched.
-/datum/antagonist/proc/reset_antag_selection()
-	for(var/datum/mind/player in pending_antagonists)
-		if(flags & ANTAG_OVERRIDE_JOB)
-			player.assigned_role = null
-		player.special_role = null
-	pending_antagonists.Cut()
-	candidates.Cut()
