@@ -47,7 +47,7 @@
 	var/auto_return = 1	// true if auto return to home beacon after unload
 	var/auto_pickup = 1 // true if auto-pickup at beacon
 
-	var/obj/item/weapon/cell/big/cell
+	var/obj/item/weapon/cell/large/cell
 						// the installed power cell
 
 	// constants for internal wiring bitflags
@@ -91,11 +91,11 @@
 // cell: insert it
 // other: chance to knock rider off bot
 /obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I,/obj/item/weapon/cell/big) && open && !cell)
-		var/obj/item/weapon/cell/big/C = I
+	if(istype(I,/obj/item/weapon/cell/large) && open && !cell)
+		var/obj/item/weapon/cell/large/C = I
 		user.drop_item()
 		C.loc = src
-		cell = C
+		src.cell = C
 		updateDialog()
 	else if(istype(I,/obj/item/weapon/screwdriver))
 		if(locked)
@@ -283,10 +283,10 @@
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/weapon/cell/big/C = usr.get_active_hand()
+					var/obj/item/weapon/cell/large/C = usr.get_active_hand()
 					if(istype(C))
 						usr.drop_item()
-						cell = C
+						src.cell = C
 						C.loc = src
 						C.add_fingerprint(usr)
 

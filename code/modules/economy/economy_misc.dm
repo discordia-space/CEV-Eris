@@ -75,6 +75,7 @@ var/global/list/datum/money_account/department_accounts = list()
 var/global/num_financial_terminals = 1
 var/global/next_account_number = 0
 var/global/list/all_money_accounts = list()
+var/global/list/transaction_devices = list()
 var/global/economy_init = 0
 
 /proc/setup_economy()
@@ -109,19 +110,14 @@ var/global/economy_init = 0
 		station_account.owner_name = "[station_name()] Station Account"
 		station_account.account_number = rand(111111, 999999)
 		station_account.remote_access_pin = rand(1111, 111111)
-		station_account.money = 75000
 
 		//create an entry in the account transaction log for when it was created
-		var/datum/transaction/T = new()
-		T.target_name = station_account.owner_name
-		T.purpose = "Account creation"
-		T.amount = 75000
+		var/datum/transaction/T = PoolOrNew(/datum/transaction, list(75000, station_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277"))
 		T.date = "2nd April, 2555"
 		T.time = "11:24"
-		T.source_terminal = "Biesel GalaxyNet Terminal #277"
 
 		//add the account
-		station_account.transaction_log.Add(T)
+		T.apply_to(station_account)
 		all_money_accounts.Add(station_account)
 
 /proc/create_department_account(department)
@@ -131,19 +127,14 @@ var/global/economy_init = 0
 	department_account.owner_name = "[department] Account"
 	department_account.account_number = rand(111111, 999999)
 	department_account.remote_access_pin = rand(1111, 111111)
-	department_account.money = 5000
 
 	//create an entry in the account transaction log for when it was created
-	var/datum/transaction/T = new()
-	T.target_name = department_account.owner_name
-	T.purpose = "Account creation"
-	T.amount = department_account.money
+	var/datum/transaction/T = PoolOrNew(/datum/transaction, list(5000, department_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277"))
 	T.date = "2nd April, 2555"
 	T.time = "11:24"
-	T.source_terminal = "Biesel GalaxyNet Terminal #277"
 
 	//add the account
-	department_account.transaction_log.Add(T)
+	T.apply_to(department_account)
 	all_money_accounts.Add(department_account)
 
 	department_accounts[department] = department_account

@@ -40,7 +40,7 @@
 //-------------------------------------------
 /obj/vehicle/train/cargo/engine/New()
 	..()
-	cell = new /obj/item/weapon/cell/big/high(src)
+	cell = new /obj/item/weapon/cell/large/high(src)
 	key = new(src)
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
 	overlays += I
@@ -92,10 +92,10 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/vehicle/train/cargo/trolley/insert_cell(var/obj/item/weapon/cell/big/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/cargo/trolley/insert_cell(var/obj/item/weapon/cell/large/C, var/mob/living/carbon/human/H)
 	return
 
-/obj/vehicle/train/cargo/engine/insert_cell(var/obj/item/weapon/cell/big/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/cargo/engine/insert_cell(var/obj/item/weapon/cell/large/C, var/mob/living/carbon/human/H)
 	..()
 	update_stats()
 

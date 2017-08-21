@@ -2,7 +2,7 @@
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
 	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon_state = "b_st"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
 	force = WEAPON_FORCE_WEAK
@@ -18,33 +18,36 @@
 
 //BIG CELLS - for APC, borgs and machinery.
 
-/obj/item/weapon/cell/big
-	name = "heavy-duty power cell"
-	desc = "A rechargable electrochemical power cell."
+/obj/item/weapon/cell/large
+	name = "Asters \"Robustcell 1000L\""
+	desc = "Asters Guild branded rechargeable L-standardized power cell. This one is the cheapest you can find."
+	icon_state = "b_st"
 	maxcharge = 1000
 
-/obj/item/weapon/cell/big/high
-	name = "high-capacity power cell"
+/obj/item/weapon/cell/large/high
+	name = "Asters \"Robustcell 5000L\""
+	desc = "Asters Guild branded rechargeable L-standardized power cell. Popular and reliable version."
+	icon_state = "b_hi"
 	origin_tech = list(TECH_POWER = 2)
-	icon_state = "hcell"
 	maxcharge = 5000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
 
-/obj/item/weapon/cell/big/super
-	name = "super-capacity power cell"
+/obj/item/weapon/cell/large/super
+	name = "Asters \"Robustcell 15000L\""
+	desc = "Asters Guild branded rechargeable L-standardized power cell. This advanced version can store even more energy."
+	icon_state = "b_sup"
 	origin_tech = list(TECH_POWER = 5)
-	icon_state = "scell"
 	maxcharge = 15000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
 
-/obj/item/weapon/cell/big/hyper
-	name = "hyper-capacity power cell"
+/obj/item/weapon/cell/large/hyper
+	name = "Asters \"Robustcell-X 20000L\""
+	desc = "Asters Guild branded rechargeable L-standardized power cell. Looks like this is rare and powerful prototype."
+	icon_state = "b_hy"
 	origin_tech = list(TECH_POWER = 6)
-	icon_state = "hpcell"
 	maxcharge = 20000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)
 
-/obj/item/weapon/cell/big/potato
+//Meme cells - for fun and cancer
+
+/obj/item/weapon/cell/large/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
 	origin_tech = list(TECH_POWER = 1)
@@ -54,7 +57,7 @@
 	maxcharge = 300
 	minor_fault = 1
 
-/obj/item/weapon/cell/big/slime
+/obj/item/weapon/cell/large/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with plasma, it crackles with power."
 	origin_tech = list(TECH_POWER = 2, TECH_BIO = 4)
@@ -65,25 +68,69 @@
 
 //MEDIUM CELLS - for energy weapons and large devices
 
-/obj/item/weapon/cell/medium/device
-	name = "device power cell"
-	desc = "A small power cell designed to power handheld devices."
-	icon_state = "cell"
+/obj/item/weapon/cell/medium
+	name = "Asters \"Robustcell 600M\""
+	desc = "Asters Guild branded rechargeable M-standardized power cell. This one is the cheapest you can find."
+	icon_state = "m_st"
 	w_class = 2
 	force = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 7
-	maxcharge = 1000
+	maxcharge = 600
 	matter = list("metal" = 350, "glass" = 50)
 
-/obj/item/weapon/cell/medium/device/variable/New(newloc, charge_amount)
-	..(newloc)
-	maxcharge = charge_amount
-	charge = maxcharge
+/obj/item/weapon/cell/medium/high
+	name = "Asters \"Robustcell 800M\""
+	desc = "Asters Guild branded rechargeable M-standardized power cell. Popular and reliable version."
+	icon_state = "m_hi"
+	origin_tech = list(TECH_POWER = 2)
+	maxcharge = 800
+
+/obj/item/weapon/cell/medium/super
+	name = "Asters \"Robustcell 1000M\""
+	desc = "Asters Guild branded rechargeable M-standardized power cell. This advanced version can store even more energy."
+	icon_state = "m_sup"
+	origin_tech = list(TECH_POWER = 5)
+	maxcharge = 1000
+
+/obj/item/weapon/cell/medium/hyper
+	name = "Asters \"Robustcell-X 1500M\""
+	desc = "Asters Guild branded rechargeable M-standardized power cell. Looks like this is rare and powerful prototype."
+	icon_state = "m_hy"
+	origin_tech = list(TECH_POWER = 6)
+	maxcharge = 1500
+
 
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
 
 /obj/item/weapon/cell/small
-	name = "small power cell"
-	desc = "A rechargable electrochemical power cell."
+	name = "Asters \"Robustcell 100S\""
+	desc = "Asters Guild branded rechargeable S-standardized power cell. This one is the cheapest you can find."
+	icon_state = "s_st"
+	w_class = 1
+	force = WEAPON_FORCE_HARMLESS
+	throw_speed = 5
+	throw_range = 7
 	maxcharge = 100
+	matter = list("metal" = 200, "glass" = 30)
+
+/obj/item/weapon/cell/small/high
+	name = "Asters \"Robustcell 200S\""
+	desc = "Asters Guild branded rechargeable S-standardized power cell. Popular and reliable version."
+	icon_state = "s_hi"
+	origin_tech = list(TECH_POWER = 2)
+	maxcharge = 200
+
+/obj/item/weapon/cell/small/super
+	name = "Asters \"Robustcell 300S\""
+	desc = "Asters Guild branded rechargeable S-standardized power cell. This advanced version can store even more energy."
+	icon_state = "s_sup"
+	origin_tech = list(TECH_POWER = 5)
+	maxcharge = 300
+
+/obj/item/weapon/cell/small/hyper
+	name = "Asters \"Robustcell-X 500S\""
+	desc = "Asters Guild branded rechargeable S-standardized power cell. Looks like this is rare and powerful prototype."
+	icon_state = "s_hy"
+	origin_tech = list(TECH_POWER = 6)
+	maxcharge = 500

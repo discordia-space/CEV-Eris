@@ -34,7 +34,7 @@
 	new /obj/item/weapon/secbot_assembly/ed209_assembly(Tsec)
 
 	var/obj/item/weapon/gun/energy/taser/G = new /obj/item/weapon/gun/energy/taser(Tsec)
-	G.power_supply.charge = 0
+	G.cell.charge = 0
 	if(prob(50))
 		new /obj/item/robot_parts/l_leg(Tsec)
 	if(prob(50))
@@ -183,7 +183,7 @@
 					user << "<span class='notice'>Taser gun attached.</span>"
 
 		if(9)
-			if(istype(W, /obj/item/weapon/cell/big))
+			if(istype(W, /obj/item/weapon/cell/large))
 				build_step++
 				user << "<span class='notice'>You complete the ED-209.</span>"
 				var/turf/T = get_turf(src)
