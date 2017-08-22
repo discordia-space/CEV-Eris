@@ -1,5 +1,6 @@
 /datum/faction
 	var/name = "faction"
+	var/antag = "antag"	//Antags that can be members of the faction
 	var/welcome_text = ""
 	var/hud_indicator = null
 
@@ -68,3 +69,37 @@
 /datum/faction/proc/customize(var/mob/leader)
 
 
+
+/datum/faction/proc/print_success()
+	if(!members.len)
+		return
+
+	var/text = "<b><font size=3>[capitalize(name)] was faction of [antag].</font></b>"
+
+	text += "<br><b>[capitalize(name)]'s leaders was:</b>"
+	for(var/datum/antagonist/A in leaders)
+		text += A.print_player()
+
+	text += "<br><b>[capitalize(name)]'s members was:</b>"
+	for(var/datum/antagonist/A in members)
+		text += A.print_player()
+
+	var/failed = FALSE
+	var/num = 1
+
+	for(var/datum/objective/O in objectives)
+		text += "<br><b>Objective [num]:</b> [O.explanation_text] "
+		if(O.check_completion())
+			text += "<font color='green'><B>Success!</B></font>"
+		else
+			text += "<font color='red'>Fail.</font>"
+			failed = TRUE
+		num++
+
+	if(failed)
+		text += "<br><font color='red'><B>The members of the [name] failed their tasks.</B></font>"
+	else
+		text += "<br><font color='green'><B>The members of the [name] accomplished their tasks!</B></font>"
+
+	// Display the results.
+	world << text

@@ -19,8 +19,8 @@
 /datum/category_item/player_setup_item/antagonism/candidacy/content(var/mob/user)
 	. += "<b>Special Role Availability:</b><br>"
 	. += "<table>"
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
+	for(var/antag_type in antag_types)
+		var/datum/antagonist/antag = new antag_types[antag_type]
 		. += "<tr><td>[antag.role_text]: </td><td>"
 		if(jobban_isbanned(preference_mob(), antag.bantype))
 			. += "<span class='danger'>\[BANNED\]</span><br>"
@@ -29,6 +29,7 @@
 		else
 			. += "<a href='?src=\ref[src];add_special=[antag.role_type]'>Yes</a> / <b>No</b></br>"
 		. += "</td></tr>"
+		qdel(antag)
 
 	var/list/ghost_traps = get_ghost_traps()
 	for(var/ghost_trap_key in ghost_traps)
@@ -67,8 +68,8 @@
 
 /datum/category_item/player_setup_item/antagonism/candidacy/proc/valid_special_roles()
 	var/list/private_valid_special_roles = list()
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
+	for(var/antag_type in antag_types)
+		var/datum/antagonist/antag = new antag_types[antag_type]
 		private_valid_special_roles += antag.role_type
 
 	var/list/ghost_traps = get_ghost_traps()

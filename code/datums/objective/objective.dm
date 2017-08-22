@@ -10,13 +10,13 @@ var/global/list/all_objectives_types = null
 	return TRUE
 
 /datum/objective
-	var/datum/mind/owner = null			//Who owns the objective.
+	var/datum/antagonist/owner = null			//Who owns the objective.
 	var/explanation_text = "Nothing"	//What that person is supposed to do.
 	var/datum/mind/target = null		//If they are focused on a particular person.
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = FALSE				//currently only used for custom objectives.
 
-/datum/objective/New(var/new_owner)
+/datum/objective/New(var/datum/antagonist/new_owner)
 	owner = new_owner
 	owner.objectives += src
 	find_target()

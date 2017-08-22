@@ -18,6 +18,6 @@
 		if(H.stat == DEAD || H.restrained())
 			return TRUE
 		// Check if they're converted
-		if(target in revs.current_antagonists)
+		if(player_is_antag_id(target, ROLE_REVOLUTIONARY))
 			return TRUE
 	return FALSE

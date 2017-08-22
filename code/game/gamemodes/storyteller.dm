@@ -70,27 +70,6 @@ var/global/list/current_factions = list()
 		set_role_timer_default()
 		spawn_antagonist()
 
-/datum/storyteller/proc/spawn_antagonist()
-	var/list/role_candidates = list()
-	var/list/outside_candidates = list()
-	for(var/mob/M in player_list)
-		if(isliving(M))
-			if(!M.stat)
-				role_candidates.Add(M)
-		else
-			outside_candidates.Add(M)
-
-	first_role_spawn = FALSE
+/datum/storyteller/proc/choose_antagonist()
 
 
-/mob/verb/check_round_info()
-	set name = "Check Storyteller"
-	set category = "OOC"
-
-	if(!ticker || !ticker.storyteller)
-		usr << "Something is terribly wrong; there is no gametype."
-		return
-
-	usr << "<b>The round storyteller is [capitalize(ticker.storyteller.name)]</b>"
-	if(ticker.storyteller.description)
-		usr << "<i>[ticker.storyteller.round_description]</i>"

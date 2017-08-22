@@ -184,7 +184,7 @@ var/list/ai_verbs_default = list(
 
 	src << radio_text
 
-	if (!player_is_antag_id(mind, ROLE_MALF))
+	if (!player_is_antag_id(mind, ROLE_MALFUNCTION))
 		show_laws()
 		src << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
 

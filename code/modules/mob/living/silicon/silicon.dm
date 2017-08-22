@@ -349,7 +349,7 @@
 	return mind && player_is_antag_id(mind, ROLE_TRAITOR)
 
 /mob/living/silicon/proc/is_malf()
-	return mind && player_is_antag_id(mind, ROLE_MALF)
+	return mind && player_is_antag_id(mind, ROLE_MALFUNCTION)
 
 /mob/living/silicon/proc/is_malf_or_traitor()
 	return is_traitor() || is_malf()

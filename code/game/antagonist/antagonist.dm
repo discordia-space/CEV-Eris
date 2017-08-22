@@ -26,6 +26,7 @@
 
 	// Misc.
 	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
+	var/list/uplinks = list()
 
 	// Used for setting appearance.
 	var/list/valid_species =       list("Human")

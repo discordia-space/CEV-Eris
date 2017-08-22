@@ -39,17 +39,13 @@
 	var/memory
 
 	var/assigned_role
-	var/special_role
+//	var/special_role
 	var/list/antagonist = list()
 
 	var/datum/job/assigned_job
 
-	var/list/datum/objective/objectives = list()
-	var/list/datum/objective/special_verbs = list()
-
 	var/has_been_rev = 0//Tracks if this mind has been a rev or not
 
-//	var/datum/faction/faction 			//associated faction
 	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
@@ -96,13 +92,9 @@
 	var/output = "<B>[current.real_name]'s Memory</B><HR>"
 	output += memory
 
-	if(objectives.len>0)
-		output += "<HR><B>Objectives:</B><br>"
-
-		var/obj_count = 1
-		for(var/datum/objective/objective in objectives)
-			output += "<B>Objective #[obj_count]</B>: <div>[objective.explanation_text]</div>"
-			obj_count++
+	for(var/datum/antagonist/A in antagonist)
+		output += "<br><b>Your [A.role_text] objectives:</b>"
+		output += "[A.print_objectives(FALSE)]"
 
 	recipient << browse(output,"window=memory")
 
@@ -305,14 +297,12 @@
 
 /datum/mind/proc/reset()
 	assigned_role =   null
-	special_role =    null
-	role_alt_title =  null
+	//special_role =    null
+	//role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
 	changeling =      null
 	initial_account = null
-	objectives =      list()
-	special_verbs =   list()
 	has_been_rev =    0
 	rev_cooldown =    0
 	brigged_since =   -1
