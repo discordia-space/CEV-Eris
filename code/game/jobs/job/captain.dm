@@ -15,7 +15,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = 1
 	//access - See get_access()
-	economic_modifier = 20
+	economic_modifier = 25
 
 	ideal_character_age = 70 // Old geezer captains ftw
 
@@ -28,8 +28,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	glasses = /obj/item/clothing/glasses/sunglasses
 
 	backpacks = list(
-		/obj/item/weapon/storage/backpack/captain,\
-		/obj/item/weapon/storage/backpack/satchel_cap,\
+		/obj/item/weapon/storage/backpack/captain,
+		/obj/item/weapon/storage/backpack/satchel_cap,
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
@@ -63,7 +63,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/hop
 	req_admin_notify = 1
-	economic_modifier = 10
+	economic_modifier = 15
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/first_officer
@@ -74,8 +74,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ear = /obj/item/device/radio/headset/heads/hop
 
 	put_in_backpack = list(
-		/obj/item/weapon/storage/box/ids \
-		)
+		/obj/item/weapon/storage/box/ids
+	)
 
 	get_access()
 		return get_all_station_access()

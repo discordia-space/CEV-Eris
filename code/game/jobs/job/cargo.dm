@@ -18,7 +18,7 @@
 	flag = MERCHANT
 	head_position = 1
 	supervisors = "your greed"
-	economic_modifier = 10
+	economic_modifier = 20
 	minimal_access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant,
 		access_mining, access_heads, access_mining_station, access_RC_announce, access_keycard_auth,
