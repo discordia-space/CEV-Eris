@@ -230,3 +230,31 @@
 	corpseid = 1
 	corpseidjob = "Commander"
 	corpseidaccess = "Captain"
+
+
+/////////////////Enemies//////////////////////
+
+/obj/effect/landmark/corpse/pirate
+	name = "Pirate"
+	corpseuniform = /obj/item/clothing/under/pirate
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseglasses = /obj/item/clothing/glasses/eyepatch
+	corpsehelmet = /obj/item/clothing/head/bandana
+
+
+
+/obj/effect/landmark/corpse/pirate/ranged
+	name = "Pirate Gunner"
+	corpsesuit = /obj/item/clothing/suit/pirate
+	corpsehelmet = /obj/item/clothing/head/pirate
+
+
+
+/obj/effect/landmark/corpse/russian
+	name = "Russian"
+	corpseuniform = /obj/item/clothing/under/soviet
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsehelmet = /obj/item/clothing/head/bearpelt
+
+/obj/effect/landmark/corpse/russian/ranged
+	corpsehelmet = /obj/item/clothing/head/ushanka
