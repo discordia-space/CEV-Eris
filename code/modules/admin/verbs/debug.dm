@@ -433,7 +433,7 @@
 		if ("strip")
 			//do nothing
 		if ("job")
-			var/selected_job = input("Select job", "Robust quick dress shop") as null|anything in joblist
+			var/selected_job = input("Select job", "Robust quick dress shop") as null|anything in job_master.occupations_by_name
 			if (isnull(selected_job))
 				return
 

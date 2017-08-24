@@ -178,7 +178,10 @@ var/global/list/string_slot_flags = list(
 	paths = typesof(/datum/job)-/datum/job
 	paths -= exclude_jobs
 	for(var/T in paths)
-		var/datum/job/J = new T
+		var/datum/job/J = T
+		if(initial(J.title) == JOB_NONE)
+			continue
+		J = new T
 		joblist[J.title] = J
 
 	//Languages and species.

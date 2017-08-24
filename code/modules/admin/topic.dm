@@ -389,7 +389,7 @@
 				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'>[replacetext(job.title, " ", "&nbsp")]</a></td>"
 				counter++
 
-			if(counter >= 6) //So things dont get squiiiiished!
+			if(counter >= 5) //So things dont get squiiiiished!
 				jobs += "</tr><tr>"
 				counter = 0
 		jobs += "</tr></table>"
@@ -546,6 +546,9 @@
 				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[antag.bantype];jobban4=\ref[M]'><font color=red>[replacetext("[antag.role_text]", " ", "&nbsp")]</font></a></td>"
 			else
 				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[antag.bantype];jobban4=\ref[M]'>[replacetext("[antag.role_text]", " ", "&nbsp")]</a></td>"
+			if(counter >= 5) //So things dont get squiiiiished!
+				jobs += "</tr><tr align='center'>"
+				counter = 0
 
 		jobs += "</tr></table>"
 
