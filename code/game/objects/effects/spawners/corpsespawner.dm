@@ -22,7 +22,6 @@
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use JOB_CAPTAIN if you want it to be all access.
-	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
 	var/species = "Human"
 
 /obj/effect/landmark/corpse/initialize()
@@ -57,23 +56,21 @@
 		M.equip_to_slot_or_del(new src.corpsepocket2(M), slot_l_store)
 	if(src.corpseback)
 		M.equip_to_slot_or_del(new src.corpseback(M), slot_back)
-	if(src.corpseid == 1)
+
+	var/datum/job/jobdatum = corpseidjob && job_master.GetJob(corpseidjob)
+	if(jobdatum)
+		jobdatum.equip(M)
+
+	if(src.corpseid)
+		var/datum/job/job_access = jobdatum
+		if(corpseidaccess)
+			job_access = job_master.GetJob(corpseidaccess)
 		var/obj/item/weapon/card/id/W = new(M)
-		var/datum/job/jobdatum
-		for(var/jobtype in typesof(/datum/job))
-			var/datum/job/J = new jobtype
-			if(J.title == corpseidaccess)
-				jobdatum = J
-				break
-		if(src.corpseidicon)
-			W.icon_state = corpseidicon
-		if(src.corpseidaccess)
-			if(jobdatum)
-				W.access = jobdatum.get_access()
-			else
-				W.access = list()
-		if(corpseidjob)
-			W.assignment = corpseidjob
+		if(job_access)
+			W.access = job_access.get_access()
+		else
+			W.access = list()
+		W.assignment = corpseidjob
 		M.set_id_info(W)
 		M.equip_to_slot_or_del(W, slot_wear_id)
 	qdel(src)
@@ -123,41 +120,19 @@
 
 /obj/effect/landmark/corpse/chef
 	name = JOB_CHEF
-	corpseuniform = /obj/item/clothing/under/rank/chef
-	corpsesuit = /obj/item/clothing/suit/chef/classic
-	corpseshoes = /obj/item/clothing/shoes/black
-	corpsehelmet = /obj/item/clothing/head/chefhat
-	corpseback = /obj/item/weapon/storage/backpack
-	corpseradio = /obj/item/device/radio/headset
 	corpseid = 1
 	corpseidjob = JOB_CHEF
-	corpseidaccess = JOB_CHEF
 
 
 /obj/effect/landmark/corpse/doctor
-	name = "Doctor"
-	corpseradio = /obj/item/device/radio/headset/headset_med
-	corpseuniform = /obj/item/clothing/under/rank/medical
-	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat
-	corpseback = /obj/item/weapon/storage/backpack/medic
-	corpsepocket1 = /obj/item/device/lighting/toggleable/flashlight/pen
-	corpseshoes = /obj/item/clothing/shoes/black
+	name = JOB_DOCTOR
 	corpseid = 1
-	corpseidjob = "Medical Doctor"
-	corpseidaccess = "Medical Doctor"
+	corpseidjob = JOB_DOCTOR
 
 /obj/effect/landmark/corpse/engineer
 	name = JOB_TECHNOMANCER
-	corpseradio = /obj/item/device/radio/headset/headset_eng
-	corpseuniform = /obj/item/clothing/under/rank/engineer
-	corpseback = /obj/item/weapon/storage/backpack/industrial
-	corpseshoes = /obj/item/clothing/shoes/color/orange
-	corpsebelt = /obj/item/weapon/storage/belt/utility/full
-	corpsegloves = /obj/item/clothing/gloves/insulated
-	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
-	corpseidjob = "Station Engineer"
-	corpseidaccess = "Station Engineer"
+	corpseidjob = JOB_TECHNOMANCER
 
 /obj/effect/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/engineering
@@ -174,28 +149,17 @@
 	corpseback = /obj/item/weapon/storage/backpack/clown
 	corpseid = 1
 	corpseidjob = "Clown"
-	corpseidaccess = "Clown"
+	//corpseidaccess = "Clown" //not exist
 
 /obj/effect/landmark/corpse/scientist
-	name = "Scientist"
-	corpseradio = /obj/item/device/radio/headset/headset_sci
-	corpseuniform = /obj/item/clothing/under/rank/scientist
-	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
-	corpseback = /obj/item/weapon/storage/backpack
-	corpseshoes = /obj/item/clothing/shoes/color/white
+	name = JOB_SCIENTIST
 	corpseid = 1
-	corpseidjob = "Scientist"
-	corpseidaccess = "Scientist"
+	corpseidjob = JOB_SCIENTIST
 
 /obj/effect/landmark/corpse/miner
-	corpseradio = /obj/item/device/radio/headset/headset_cargo
-	corpseuniform = /obj/item/clothing/under/rank/miner
-	corpsegloves = /obj/item/clothing/gloves/thick
-	corpseback = /obj/item/weapon/storage/backpack/industrial
-	corpseshoes = /obj/item/clothing/shoes/black
+	name = JOB_MINER
 	corpseid = 1
 	corpseidjob = JOB_MINER
-	corpseidaccess = JOB_MINER
 
 /obj/effect/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
