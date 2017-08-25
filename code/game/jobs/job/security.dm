@@ -27,7 +27,7 @@
 	idtype = /obj/item/weapon/card/id/hos
 	req_admin_notify = 1
 	economic_modifier = 10
-	minimal_access = list(
+	access = list(
 		access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
 		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
 		access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
@@ -56,11 +56,11 @@
 	name_prefix = "Sergeant"
 	flag = GUNSERG
 	economic_modifier = 5
-	minimal_access = list(
+	access = list(
 		access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels,
-		access_external_airlocks
+		access_external_airlocks, access_medical, access_research, access_engine, access_mailsorting,
+		access_morgue
 	)
-	additional_access = list(access_medical, access_research, access_engine, access_mailsorting, access_morgue)
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/warden
@@ -87,10 +87,8 @@
 	total_positions = 2
 	spawn_positions = 2
 	economic_modifier = 5
-	minimal_access = list(
-		access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels
-	)
-	additional_access = list(
+	access = list(
+		access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
 		access_medical, access_research, access_engine, access_mailsorting, access_external_airlocks
 	)
 	idtype = /obj/item/weapon/card/id/det
@@ -122,8 +120,9 @@
 	title = JOB_IH_MED
 	flag = MEDSPEC
 	economic_modifier = 5
-	minimal_access = list(access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
-	additional_access = list(access_medical)
+	access = list(
+		access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels, access_medical
+	)
 	idtype = /obj/item/weapon/card/id/medcpec
 
 	uniform = /obj/item/clothing/under/rank/medspec
@@ -150,11 +149,11 @@
 	total_positions = 6
 	spawn_positions = 6
 	economic_modifier = 4
-	minimal_access = list(
+	access = list(
 		access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels,
-		access_external_airlocks
+		access_external_airlocks, access_medical, access_research, access_engine,
+		access_mailsorting, access_morgue
 	)
-	additional_access = list( access_medical, access_research, access_engine, access_mailsorting, access_morgue)
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/security

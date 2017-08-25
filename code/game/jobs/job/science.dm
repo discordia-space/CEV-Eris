@@ -17,7 +17,7 @@
 	idtype = /obj/item/weapon/card/id/rd
 	req_admin_notify = 1
 	economic_modifier = 15
-	minimal_access = list(
+	access = list(
 		access_rd, access_heads, access_tox, access_genetics, access_morgue,
 		access_tox_storage, access_teleporter, access_sec_doors,
 		access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
@@ -39,8 +39,10 @@
 	total_positions = 5
 	spawn_positions = 3
 	economic_modifier = 7
-	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch, access_genetics)
-	additional_access = list(access_robotics, access_xenobiology)
+	access = list(
+		access_tox, access_tox_storage, access_research, access_xenoarch, access_genetics,
+		access_robotics, access_xenobiology
+	)
 	idtype = /obj/item/weapon/card/id/sci
 
 	uniform = /obj/item/clothing/under/rank/scientist
@@ -57,8 +59,9 @@
 	spawn_positions = 2
 	economic_modifier = 5
 	//As a job that handles so many corpses, it makes sense for them to have morgue access.
-	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research)
-	additional_access = list(access_tox, access_tox_storage)
+	access = list(
+		access_robotics, access_tech_storage, access_morgue, access_research, access_tox, access_tox_storage
+	)
 	idtype = /obj/item/weapon/card/id/dkgrey
 
 	uniform = /obj/item/clothing/under/rank/roboticist

@@ -25,10 +25,11 @@
 	idtype = /obj/item/weapon/card/id/cmo
 	req_admin_notify = 1
 	economic_modifier = 10
-	minimal_access = list(
+	access = list(
 		access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
 		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks)
+		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks
+	)
 
 	ideal_character_age = 50
 
@@ -47,8 +48,10 @@
 	total_positions = 5
 	spawn_positions = 3
 	economic_modifier = 7
-	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology)
-	additional_access = list(access_chemistry, access_genetics)
+	access = list(
+		access_medical, access_medical_equip, access_morgue, access_surgery, access_virology,
+		access_chemistry, access_genetics
+	)
 	idtype = /obj/item/weapon/card/id/med
 
 	uniform = /obj/item/clothing/under/rank/medical
@@ -64,8 +67,10 @@
 	total_positions = 2
 	spawn_positions = 2
 	economic_modifier = 5
-	minimal_access = list(access_medical, access_medical_equip, access_chemistry)
-	additional_access = list(access_morgue, access_surgery, access_virology, access_genetics)
+	access = list(
+		access_medical, access_medical_equip, access_chemistry, access_morgue, access_surgery,
+		access_virology, access_genetics
+	)
 	idtype = /obj/item/weapon/card/id/chem
 
 	uniform = /obj/item/clothing/under/rank/chemist
@@ -84,8 +89,10 @@
 	title = JOB_PSYCH
 	flag = PSYCHIATRIST
 	economic_modifier = 5
-	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
-	additional_access = list(access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
+	access = list(
+		access_medical, access_medical_equip, access_psychiatrist, access_morgue, access_surgery,
+		access_chemistry, access_virology, access_genetics
+	)
 
 	uniform = /obj/item/clothing/under/rank/psych
 	pda = /obj/item/device/pda/medical
@@ -105,11 +112,10 @@
 	total_positions = 2
 	spawn_positions = 2
 	economic_modifier = 4
-	minimal_access = list(
+	access = list(
 		access_medical, access_medical_equip, access_morgue, access_eva, access_maint_tunnels,
-		access_external_airlocks
+		access_external_airlocks, access_psychiatrist, access_surgery, access_chemistry, access_virology
 	)
-	additional_access = list(access_psychiatrist, access_surgery, access_chemistry, access_virology)
 
 	pda = /obj/item/device/pda/medical
 	shoes = /obj/item/clothing/shoes/jackboots

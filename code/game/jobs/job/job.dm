@@ -3,7 +3,7 @@
 	//The name of the job
 	var/title = JOB_NONE
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
+	var/list/access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
 	var/list/additional_access = list()   // Additionasl access. Need be enabled in config.
 	var/flag = 0 	                      // Bitflags for the job
 	var/department_flag = 0
@@ -158,10 +158,7 @@ For copy-pasting:
 	return (rand(5,50) + rand(5, 50)) * economic_modifier * custom_factor
 
 /datum/job/proc/get_access()
-	if(!config || config.jobs_have_minimal_access)
-		return minimal_access.Copy()
-	else
-		return minimal_access.Copy() | additional_access.Copy()
+	return access.Copy()
 
 /datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
 	if(!istype(target))

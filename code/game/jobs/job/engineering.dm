@@ -35,7 +35,7 @@
 	ideal_character_age = 50
 
 
-	minimal_access = list(
+	access = list(
 		access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
 		access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
 		access_heads, access_construction, access_sec_doors,
@@ -56,7 +56,7 @@
 	supervisors = "the Technomancer Exultant"
 	selection_color = "#fff5cc"
 	economic_modifier = 5
-	minimal_access = list(
+	access = list(
 		access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
 		access_external_airlocks, access_construction, access_atmospherics
 	)

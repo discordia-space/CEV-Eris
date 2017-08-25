@@ -15,8 +15,7 @@
 /datum/job/civilian/bartender
 	title = JOB_BARTENDER
 	flag = BARTENDER
-	minimal_access = list(access_bar)
-	additional_access = list(access_hydroponics, access_kitchen)
+	access = list(access_bar, access_hydroponics, access_kitchen)
 	uniform = /obj/item/clothing/under/rank/bartender
 	pda = /obj/item/device/pda/bar
 
@@ -50,8 +49,7 @@
 	flag = CHEF
 	total_positions = 2
 	spawn_positions = 2
-	minimal_access = list(access_kitchen)
-	additional_access = list(access_hydroponics, access_bar)
+	access = list(access_kitchen, access_hydroponics, access_bar)
 	idtype = /obj/item/weapon/card/id/ltgrey
 
 	uniform = /obj/item/clothing/under/rank/chef
@@ -66,8 +64,7 @@
 	title = JOB_GARDENER
 	flag = BOTANIST
 	total_positions = 2
-	minimal_access = list(access_hydroponics)
-	additional_access = list(access_bar, access_kitchen)
+	access = list(access_hydroponics, access_bar, access_kitchen)
 	idtype = /obj/item/weapon/card/id/hydro
 
 	uniform = /obj/item/clothing/under/rank/hydroponics
@@ -84,7 +81,7 @@
 	flag = ACTOR
 	total_positions = 2
 	spawn_positions = 2
-	minimal_access = list(access_maint_tunnels, access_theatre)
+	access = list(access_maint_tunnels, access_theatre)
 
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -112,7 +109,7 @@
 /datum/job/civilian/janitor
 	title = JOB_JANITOR
 	flag = JANITOR
-	minimal_access = list(access_janitor, access_maint_tunnels)
+	access = list(access_janitor, access_maint_tunnels)
 
 	uniform = /obj/item/clothing/under/rank/janitor
 	pda = /obj/item/device/pda/janitor

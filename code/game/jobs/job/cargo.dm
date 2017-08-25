@@ -19,12 +19,11 @@
 	head_position = 1
 	supervisors = "your greed"
 	economic_modifier = 20
-	minimal_access = list(
+	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant,
 		access_mining, access_heads, access_mining_station, access_RC_announce, access_keycard_auth,
-		access_sec_doors, access_eva
+		access_sec_doors, access_eva, access_external_airlocks
 	)
-	additional_access = list(access_external_airlocks)
 	ideal_character_age = 40
 
 	uniform = /obj/item/clothing/under/rank/cargotech
@@ -42,8 +41,10 @@
 	flag = GUILDTECH
 	total_positions = 2
 	spawn_positions = 2
-	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
-	additional_access = list(access_merchant, access_mining, access_mining_station)
+	access = list(
+		access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting,
+		access_merchant, access_mining, access_mining_station
+	)
 
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
@@ -56,8 +57,10 @@
 	total_positions = 3
 	spawn_positions = 3
 	economic_modifier = 5
-	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
-	additional_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_merchant)
+	access = list(
+		access_mining, access_mining_station, access_mailsorting,
+		access_maint_tunnels, access_cargo, access_cargo_bot, access_merchant
+	)
 
 	uniform = /obj/item/clothing/under/rank/miner
 	pda = /obj/item/device/pda/shaftminer
