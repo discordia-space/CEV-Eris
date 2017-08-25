@@ -107,9 +107,9 @@
 			. += " <font color=red>\[NEVER]</font>"
 		. += "</a></td></tr>"
 
-	. += "</td'></tr></table>"
+	. += "</table></td></tr>"
 
-	. += "</center></table>"
+	. += "</table></center>"
 
 	switch(pref.alternate_option)
 		if(GET_RANDOM_JOB)
