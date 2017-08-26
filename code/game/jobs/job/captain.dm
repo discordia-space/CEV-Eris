@@ -15,7 +15,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	req_admin_notify = 1
 	access = list() 			//See get_access()
 	minimal_access = list() 	//See get_access()
-	economic_modifier = 20
+	economic_modifier = 25
 
 	ideal_character_age = 70 // Old geezer captains ftw
 
@@ -62,7 +62,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/hop
 	req_admin_notify = 1
-	economic_modifier = 10
+	economic_modifier = 15
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/first_officer
