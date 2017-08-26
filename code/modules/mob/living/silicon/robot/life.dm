@@ -238,7 +238,7 @@
 			src.healths.icon_state = "health7"*/
 
 	if (src.syndicate && src.client)
-		for(var/datum/mind/tra in traitors.current_antagonists)
+		for(var/datum/mind/tra in get_antags_list(ROLE_TRAITOR))
 			if(tra.current)
 				// TODO: Update to new antagonist system.
 				var/I = image('icons/mob/mob.dmi', loc = tra.current, icon_state = "traitor")

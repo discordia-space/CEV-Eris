@@ -55,14 +55,9 @@ var/global/list/antag_starting_locations = list()
 		A.create_antagonist(M, F)
 
 /proc/update_antag_icons(var/datum/mind/player)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		if(player)
-			antag.update_icons_removed(player)
-			if(antag.is_antagonist(player))
-				antag.update_icons_added(player)
-		else
-			antag.update_all_icons()
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(antag.faction)
+			antag.faction.add_icons(antag)
 
 /proc/populate_antag_type_list()
 	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
@@ -87,13 +82,47 @@ var/global/list/antag_starting_locations = list()
 	return L
 
 /proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
-	for(var/datum/antag/antag in player.antagonist)
+	for(var/datum/antagonist/antag in player.antagonist)
 		if((antag.isouter() && only_offstation_roles) || !only_offstation_roles)
 			return TRUE
 	return FALSE
 
 /proc/player_is_antag_id(var/datum/mind/player, var/a_id)
-	for(var/datum/antag/antag in player.antagonist)
+	for(var/datum/antagonist/antag in player.antagonist)
 		if(antag.id == a_id)
 			return TRUE
 	return FALSE
+
+/proc/get_antags_list(var/a_type)
+	if(!a_type)
+		return current_antags
+
+	var/list/L = list()
+	for(var/datum/antagonist/antag in current_antags)
+		if(antag.id == a_type)
+			L.Add(antag)
+	return L
+
+/proc/get_dead_antags_count(var/a_type)
+	var/count = 0
+	for(var/datum/antagonist/antag in current_antags)
+		if((!a_type || antag.id == a_type) && antag.is_dead())
+			count++
+	return count
+
+/proc/get_antags_count(var/a_type)
+	if(!a_type)
+		return curreent_antags.len
+
+	var/count = 0
+	for(var/datum/antagonist/antag in current_antags)
+		if(!a_type || antag.id == a_type)
+			count++
+	return count
+
+/proc/get_active_antag_count(var/a_type)
+	var/active_antags = 0
+	for(var/datum/antagonist/antag in current_antags)
+		if((!a_type || antag_id == a_type) && antag.is_active())
+			active_antags++
+	return active_antags

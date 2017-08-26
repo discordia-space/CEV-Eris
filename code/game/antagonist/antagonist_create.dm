@@ -1,5 +1,5 @@
 /datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction)
-	if(!istype(target) || !can_become_antag(target))
+	if(!istype(target) || !target.current || !can_become_antag(target))
 		return FALSE
 
 	target.antagonist.Add(src)
@@ -13,9 +13,8 @@
 	if(!objectives || !objectives.len)
 		create_objectives()
 
-	update_icons_added(target)
 	equip()
-	BITSET(player.current.hud_updateflag, SPECIALROLE_HUD)
+	BITSET(target.current.hud_updateflag, SPECIALROLE_HUD)
 	greet()
 
 /datum/antagonist/proc/create_faction()
@@ -24,7 +23,10 @@
 		faction.add_leader(src)
 
 
-/datum/antagonist/proc/set_antag_name(var/mob/living/player)
+/datum/antagonist/proc/set_antag_name()
+	if(!owner || !owner.current)
+		return
+	var/mob/living/player = owner.current
 	// Choose a name, if any.
 	var/newname = sanitize(input(player, "You are a [role_text]. Would you like to change your name to something else?", "Name change") as null|text, MAX_NAME_LEN)
 	if (newname)

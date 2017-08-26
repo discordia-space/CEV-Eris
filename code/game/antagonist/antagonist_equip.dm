@@ -1,12 +1,12 @@
-/datum/antagonist/proc/equip(var/mob/living/carbon/human/player)
+/datum/antagonist/proc/equip()
 
-	if(!istype(player))
+	if(owner && !ishuman(owner.current))
 		return FALSE
 
 	return TRUE
 
-/datum/antagonist/proc/unequip(var/mob/living/carbon/human/player)
-	if(!istype(player))
+/datum/antagonist/proc/unequip()
+	if(owner && !ishuman(owner.current))
 		return FALSE
 	return TRUE
 

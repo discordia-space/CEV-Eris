@@ -1,8 +1,12 @@
 /datum/faction
 	var/name = "faction"
 	var/antag = "antag"	//Antags that can be members of the faction
-	var/welcome_text = ""
+	var/welcome_text = "Hello, antagonist!"
+
 	var/hud_indicator = null
+	var/faction_invisible = FALSE
+
+	var/list/faction_icons = list()
 
 	var/antag_type
 
@@ -16,7 +20,7 @@
 	create_objectives()
 
 /datum/faction/proc/add_member(var/datum/antagonist/member)
-	if(!member || !member.owner || !member.owner.current || member in members)
+	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
 		return
 
 	members.Add(member)
@@ -25,7 +29,7 @@
 	member.objectives = objectives
 
 	member.owner.current.verbs |= verbs
-
+	add_icons()
 	update_members()
 
 /datum/faction/proc/add_leader(var/datum/antagonist/member)
@@ -42,6 +46,8 @@
 /datum/faction/proc/remove_member(var/datum/antagonist/member)
 	if(!(member in members))
 		return
+
+	remove_icons()
 
 	members.Remove(member)
 	leaders.Remove(member)
@@ -65,6 +71,8 @@
 	if(!members.len)
 		remove_faction()
 		return
+
+	update_icons()
 
 /datum/faction/proc/customize(var/mob/leader)
 
@@ -103,3 +111,56 @@
 
 	// Display the results.
 	world << text
+
+/datum/faction/proc/get_indicator()
+	return image('icons/mob/mob.dmi', icon_state = hud_indicator, layer = LIGHTING_LAYER+0.1)
+
+/datum/faction/proc/add_icons(var/datum/antagonist/antag)
+	if(faction_invisible || !hud_indicator || !antag.owner || !antag.owner.current || !antag.owner.current.client)
+		return
+
+	var/image/I
+
+	if(faction_icons[antag])
+		I = faction_icons[antag]
+	else
+		I = get_indicator()
+		I.loc = antag.owner.current.loc
+		faction_icons[antag] = I
+
+	for(var/datum/antagonist/member in members)
+		if(!member.owner || !member.owner.current || !member.owner.current.client)
+			continue
+
+		antag.owner.current.client.images |= faction_icons[member]
+		member.owner.current.client.images |= I
+
+/datum/faction/proc/remove_icons(var/datum/antagonist/antag)
+	if(!hud_indicator || !antag.owner || !antag.owner.current || !antag.owner.current.client)
+		qdel(faction_icons[antag])
+		faction_icons[antag] = null
+		return
+
+	for(var/datum/antagonist/member in members)
+		if(!member.owner || !member.owner.current || !member.owner.current.client)
+			continue
+
+		antag.owner.current.client.images.Remove(faction_icons[member])
+		member.owner.current.client.images.Remove(I)
+
+	qdel(faction_icons[antag])
+	faction_icons[antag] = null
+
+/datum/faction/proc/clear_icons()
+	for(var/datum/antagonist/antag in members)
+		remove_icons(antag)
+
+	for(var/icon in faction_icons)	//Some members of faction may be offline, but we need to remove all icons
+		qdel(faction_icons[icon])
+
+	faction_icons = list()
+
+/datum/faction/proc/reset_icons()
+	clear_icons()
+	for(var/datum/antagonist/antag in members)
+		add_icons(antag)
