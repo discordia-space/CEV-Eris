@@ -1,5 +1,3 @@
-var/datum/antagonist/xenos/xenomorphs
-
 /datum/antagonist/xenos
 	id = ROLE_XENOMORPH
 	role_text = "Xenomorph"

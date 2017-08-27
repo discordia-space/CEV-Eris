@@ -33,6 +33,8 @@ var/global/list/antag_types = list()
 var/global/list/station_antag_types = list()
 var/global/list/outer_antag_types = list()
 var/global/list/antag_starting_locations = list()
+var/global/list/selectable_antag_types = list()
+var/global/list/antag_bantypes = list()
 
 // Global procs.
 /proc/clear_antagonist(var/datum/mind/player)
@@ -49,10 +51,14 @@ var/global/list/antag_starting_locations = list()
 		var/datum/antagonist/A = new antag_types[a_id]
 		A.create_antagonist(M)
 
+		return A
+
 /proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
 	if(antag_types[a_id])
 		var/datum/antagonist/A = new antag_types[a_id]
 		A.create_antagonist(M, F)
+
+		return A
 
 /proc/update_antag_icons(var/datum/mind/player)
 	for(var/datum/antagonist/antag in player.antagonist)
@@ -73,6 +79,9 @@ var/global/list/antag_starting_locations = list()
 			antag_starting_locations[O.id] = start_locs
 		else
 			station_antag_types[A.id] = antag_type
+		if(A.selectable)
+			selectable_antag_types[A.role_type] = A.id
+		antag_bantypes |= A.bantype
 
 /proc/get_antags(var/id)
 	var/list/L = list()
@@ -89,7 +98,7 @@ var/global/list/antag_starting_locations = list()
 
 /proc/player_is_antag_id(var/datum/mind/player, var/a_id)
 	for(var/datum/antagonist/antag in player.antagonist)
-		if(antag.id == a_id)
+		if(!a_id || antag.id == a_id)
 			return TRUE
 	return FALSE
 
@@ -103,6 +112,16 @@ var/global/list/antag_starting_locations = list()
 			L.Add(antag)
 	return L
 
+/proc/get_player_antags(var/datum/mind/player, var/a_type)
+	if(!a_type)
+		return player.antagonist
+
+	var/list/L = list()
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(antag.id == a_type)
+			L.Add(antag)
+	return L
+
 /proc/get_dead_antags_count(var/a_type)
 	var/count = 0
 	for(var/datum/antagonist/antag in current_antags)
@@ -112,7 +131,7 @@ var/global/list/antag_starting_locations = list()
 
 /proc/get_antags_count(var/a_type)
 	if(!a_type)
-		return curreent_antags.len
+		return current_antags.len
 
 	var/count = 0
 	for(var/datum/antagonist/antag in current_antags)
@@ -123,6 +142,6 @@ var/global/list/antag_starting_locations = list()
 /proc/get_active_antag_count(var/a_type)
 	var/active_antags = 0
 	for(var/datum/antagonist/antag in current_antags)
-		if((!a_type || antag_id == a_type) && antag.is_active())
+		if((!a_type || antag.id == a_type) && antag.is_active())
 			active_antags++
 	return active_antags

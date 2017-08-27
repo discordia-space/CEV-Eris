@@ -108,8 +108,10 @@
 		src.loc = M
 
 		//Update their traitor status.
-		if(host.mind)
-			borers.add_antagonist_mind(host.mind, 1, borers.faction_role_text, borers.faction_welcome)
+		if(host.mind && src.mind)
+			var/datum/antagonist/outer/borer/B = safepick(get_player_antags(src.mind, ROLE_BORER))
+			if(B)
+				make_antagonist_faction(host.mind, ROLE_BORER_CARRIER, B.faction)
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M

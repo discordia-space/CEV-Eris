@@ -413,10 +413,6 @@
 		user << "<span class='notice'>Cannot establish a bluespace connection.</span>"
 		return
 
-	if(deathsquad.deployed)
-		user << "[boss_short] will not allow the shuttle to be called. Consider all contracts terminated."
-		return
-
 	if(emergency_shuttle.deny_shuttle)
 		user << "The emergency shuttle may not be sent at this time. Please try again later."
 		return
@@ -456,10 +452,6 @@
 	if(!force)
 		if(emergency_shuttle.deny_shuttle)
 			user << "[boss_short] does not currently have a shuttle available in your sector. Please try again later."
-			return
-
-		if(deathsquad.deployed == 1)
-			user << "[boss_short] will not allow the shuttle to be called. Consider all contracts terminated."
 			return
 
 		if(world.time < 54000) // 30 minute grace period to let the game get going

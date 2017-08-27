@@ -1,5 +1,3 @@
-var/datum/antagonist/xenos/borer/borers
-
 /datum/antagonist/xenos/borer
 	id = ROLE_BORER
 	role_text = "Cortical Borer"

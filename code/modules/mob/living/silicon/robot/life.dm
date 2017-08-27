@@ -237,7 +237,7 @@
 		else
 			src.healths.icon_state = "health7"*/
 
-	if (src.syndicate && src.client)
+/*	if (src.syndicate && src.client)
 		for(var/datum/mind/tra in get_antags_list(ROLE_TRAITOR))
 			if(tra.current)
 				// TODO: Update to new antagonist system.
@@ -248,7 +248,7 @@
 			// TODO: Update to new antagonist system.
 			if(!src.mind.special_role)
 				src.mind.special_role = "traitor"
-				traitors.current_antagonists |= src.mind
+				traitors.current_antagonists |= src.mind*/
 
 /*	if (src.cells)
 		if (src.cell)

@@ -73,3 +73,5 @@ var/global/list/current_factions = list()
 /datum/storyteller/proc/choose_antagonist()
 
 
+/datum/storyteller/proc/spawn_antagonist()
+

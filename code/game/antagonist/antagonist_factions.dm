@@ -1,6 +1,7 @@
 /datum/faction
 	var/name = "faction"
-	var/antag = "antag"	//Antags that can be members of the faction
+	var/id = "faction"
+	var/antag = "antag"
 	var/welcome_text = "Hello, antagonist!"
 
 	var/hud_indicator = null
@@ -8,7 +9,7 @@
 
 	var/list/faction_icons = list()
 
-	var/antag_type
+	var/list/possible_antags = list()
 
 	var/list/objectives = list()
 	var/list/members = list()
@@ -17,10 +18,16 @@
 	var/list/verbs = list()
 
 /datum/faction/New()
+	if(!current_factions[id])
+		current_factions[id] = list()
+	current_factions[id] += src
+
 	create_objectives()
 
 /datum/faction/proc/add_member(var/datum/antagonist/member)
 	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
+		return
+	if(!(member.id in possible_antags))
 		return
 
 	members.Add(member)
@@ -72,7 +79,6 @@
 		remove_faction()
 		return
 
-	update_icons()
 
 /datum/faction/proc/customize(var/mob/leader)
 
@@ -146,7 +152,7 @@
 			continue
 
 		antag.owner.current.client.images.Remove(faction_icons[member])
-		member.owner.current.client.images.Remove(I)
+		member.owner.current.client.images.Remove(faction_icons[antag])
 
 	qdel(faction_icons[antag])
 	faction_icons[antag] = null

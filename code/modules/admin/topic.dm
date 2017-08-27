@@ -269,10 +269,6 @@
 			if("coffee")			M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
 			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
 			if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
-			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
 
 
 	/////////////////////////////////////new ban stuff
@@ -534,14 +530,11 @@
 		jobs += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=\ref[src];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
 
 		// Antagonists.
-		for(var/antag_type in all_antag_types)
-			var/datum/antagonist/antag = all_antag_types[antag_type]
-			if(!antag || !antag.bantype)
-				continue
-			if(jobban_isbanned(M, "[antag.bantype]") || isbanned_dept)
-				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[antag.bantype];jobban4=\ref[M]'><font color=red>[replacetext("[antag.role_text]", " ", "&nbsp")]</font></a></td>"
+		for(var/ban_type in antag_bantypes)
+			if(jobban_isbanned(M, "[ban_type]") || isbanned_dept)
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[ban_type];jobban4=\ref[M]'><font color=red>[replacetext("[ban_type]", " ", "&nbsp")]</font></a></td>"
 			else
-				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[antag.bantype];jobban4=\ref[M]'>[replacetext("[antag.role_text]", " ", "&nbsp")]</a></td>"
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[ban_type];jobban4=\ref[M]'>[replacetext("[ban_type]", " ", "&nbsp")]</a></td>"
 
 		jobs += "</tr></table>"
 
@@ -1130,6 +1123,9 @@
 
 		//Job + antagonist
 		if(M.mind)
+			var/antag = ""
+			for(var/datum/antagonist/A in M.mind.antagonist)
+				antag += "[A.role_text], "
 			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[M.mind.special_role]</b></font>; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
 		else
 			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>; Has been rev: <i>Mind datum missing</i>;"

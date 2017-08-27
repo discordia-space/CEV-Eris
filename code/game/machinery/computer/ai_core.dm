@@ -211,10 +211,11 @@
 	qdel(src)
 
 /obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
-	if(!ai) return
-	for (var/datum/mind/malfai in malf.current_antagonists)
-		if (ai.mind == malfai)
-			return 1
+	if(!ai)
+		return FALSE
+	if (player_is_antag_id(ai.mind,ROLE_MALF))
+		return TRUE
+	return FALSE
 
 /obj/structure/AIcore/deactivated/attackby(var/obj/item/weapon/W, var/mob/user)
 

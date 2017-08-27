@@ -47,3 +47,10 @@
 		BITSET(owner.current.hud_updateflag, SPECIALROLE_HUD)
 	current_antags.Remove(src)
 
+
+/datum/antagonist/outer/proc/place_antagonist()
+	if(!owner.current)
+		return
+	var/turf/T = pick_mobless_turf_if_exists(antag_starting_locations[id])
+	owner.current.forceMove(T)
+

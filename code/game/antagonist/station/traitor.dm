@@ -1,14 +1,7 @@
-var/datum/antagonist/traitor/traitors
-
 // Inherits most of its vars from the base datum.
 /datum/antagonist/traitor
 	id = ROLE_TRAITOR
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
-	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
-
-/datum/antagonist/traitor/New()
-	..()
-	traitors = src
 
 /datum/antagonist/traitor/get_extra_panel_options(var/datum/mind/player)
 	return "<a href='?src=\ref[player];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[player.current]'>\[spawn uplink\]</a>"
@@ -18,28 +11,28 @@ var/datum/antagonist/traitor/traitors
 		return
 	if(href_list["spawn_uplink"]) spawn_uplink(locate(href_list["spawn_uplink"]))
 
-/datum/antagonist/traitor/create_objectives(var/datum/mind/traitor)
+/datum/antagonist/traitor/create_objectives()
 	if(!..())
 		return
 
-	if(issilicon(traitor.current))
-		new /datum/objective/assassinate (traitor)
-		new /datum/objective/survive (traitor)
+	if(issilicon(owner.current))
+		new /datum/objective/assassinate (src)
+		new /datum/objective/survive (src)
 
 		if(prob(10))
-			new /datum/objective/block (traitor)
+			new /datum/objective/block (src)
 	else
 		switch(rand(1,100))
 			if(1 to 33)
-				new /datum/objective/assassinate (traitor)
+				new /datum/objective/assassinate (src)
 			if(34 to 50)
-				new /datum/objective/brig (traitor)
+				new /datum/objective/brig (src)
 			if(51 to 66)
-				new /datum/objective/harm (traitor)
+				new /datum/objective/harm (src)
 			else
-				new /datum/objective/steal (traitor)
-		if (!(locate(/datum/objective/escape) in traitor.objectives))
-			new /datum/objective/escape (traitor)
+				new /datum/objective/steal (src)
+		if (!(locate(/datum/objective/escape) in objectives))
+			new /datum/objective/escape (src)
 	return
 
 /datum/antagonist/traitor/equip(var/mob/living/carbon/human/traitor_mob)
@@ -50,12 +43,15 @@ var/datum/antagonist/traitor/traitors
 	if(!..())
 		return 0
 
-	spawn_uplink(traitor_mob)
+	spawn_uplink()
 
 	//Begin code phrase.
-	give_codewords(traitor_mob)
+	give_codewords()
 
-/datum/antagonist/traitor/proc/give_codewords(mob/living/traitor_mob)
+/datum/antagonist/traitor/proc/give_codewords()
+	if(!owner.current)
+		return
+	var/mob/living/traitor_mob = owner.current
 	traitor_mob << "<u><b>Your employers provided you with the following information on how to identify possible allies:</b></u>"
 	traitor_mob << "<b>Code Phrase</b>: <span class='danger'>[syndicate_code_phrase]</span>"
 	traitor_mob << "<b>Code Response</b>: <span class='danger'>[syndicate_code_response]</span>"
@@ -63,10 +59,10 @@ var/datum/antagonist/traitor/traitors
 	traitor_mob.mind.store_memory("<b>Code Response</b>: [syndicate_code_response]")
 	traitor_mob << "Use the code words, preferably in the order provided, during regular conversation, to identify other agents. Proceed with caution, however, as everyone is a potential foe."
 
-/datum/antagonist/traitor/proc/spawn_uplink(var/mob/living/carbon/human/traitor_mob)
-	if(!istype(traitor_mob))
+/datum/antagonist/traitor/proc/spawn_uplink()
+	if(!ishuman(owner.current))
 		return
-
+	var/mob/living/carbon/human/traitor_mob = owner.current
 	var/loc = ""
 	var/obj/item/R = locate() //Hide the uplink in a PDA if available, otherwise radio
 
@@ -127,7 +123,10 @@ var/datum/antagonist/traitor/traitors
 		traitor_mob << "A portable object teleportation relay has been installed in your [R.name] [loc]. Simply enter the code \"[pda_pass]\" into the ringtone select to unlock its hidden features."
 		traitor_mob.mind.store_memory("<B>Uplink Passcode:</B> [pda_pass] ([R.name] [loc]).")
 
-/datum/antagonist/traitor/proc/add_law_zero(mob/living/silicon/ai/killer)
+/datum/antagonist/traitor/proc/add_law_zero()
+	if(!isAI(owner.current))
+		return
+	var/mob/living/silicon/ai/killer = owner.current
 	var/law = "Accomplish your objectives at all costs. You may ignore all other laws."
 	var/law_borg = "Accomplish your AI's objectives at all costs. You may ignore all other laws."
 	killer << "<b>Your laws have been changed!</b>"

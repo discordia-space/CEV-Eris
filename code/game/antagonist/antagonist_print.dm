@@ -21,13 +21,16 @@
 		else
 			player << "You are a member of the [faction.name]."
 
-		player << "[facton.welcome_text]"
+		player << "[faction.welcome_text]"
 	else
 		player << "[welcome_text]"
 
 	show_objectives()
 
 	return 1
+
+/datum/antagonist/proc/get_special_objective_text()
+	return ""
 
 /datum/antagonist/proc/print_success()
 	if(faction)
@@ -41,7 +44,7 @@
 
 /datum/antagonist/proc/print_objectives(var/append_success = TRUE)
 	var/text = ""
-
+	text += get_special_objective_text()
 	if(objectives && objectives.len)
 		var/failed = FALSE
 		var/num = 1
@@ -56,7 +59,7 @@
 					failed = TRUE
 			num++
 
-		if(appent_success)
+		if(append_success)
 			if(failed)
 				text += "<br><font color='red'><B>The [role_text] has failed.</B></font>"
 			else
@@ -77,23 +80,23 @@
 			text += "fled the station"
 		else
 			text += "survived"
-		if(owner.current.real_name != ply.name)
+		if(owner.current.real_name != owner.name)
 			text += " as <b>[owner.current.real_name]</b>"
 	else
 		text += "body destroyed"
 	text += ")"
-
 	return text
 
 /datum/antagonist/proc/print_uplink()
 	if(!uplinks.len || !owner)
 		return
 
+	var/text = ""
 	var/TC_uses = 0
 	var/list/purchases = list()
 
-	for(var/obj/item/device/uplink/H in uplinks)
-		if(H && H.uplink_owner && H.uplink_owner == ply)
+	for(var/obj/item/device/uplink/H in world_uplinks)
+		if(H.uplink_owner && H.uplink_owner == owner)
 			TC_uses += H.used_TC
 
 			for(var/datum/uplink_item/UI in H.purchase_log)

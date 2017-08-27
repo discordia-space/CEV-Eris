@@ -329,8 +329,8 @@
 		// We don't want revs to get objectives that aren't for heads of staff. Letting
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == occupant.mind)
-			if(O.owner && O.owner.current)
-				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
+			if(O.owner && O.owner.owner && O.owner.owner.current)
+				O.owner.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
 			qdel(O)
 
 	//Handle job slot/tater cleanup.
@@ -338,9 +338,7 @@
 
 	job_master.FreeRole(job)
 
-	if(occupant.mind.objectives.len)
-		qdel(occupant.mind.objectives)
-		occupant.mind.special_role = null
+	clear_antagonist(occupant.mind)
 
 	// Delete them from datacore.
 	if(PDA_Manifest.len)
@@ -363,9 +361,9 @@
 	//Make an announcement and log the person entering storage.
 	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.role_alt_title] - [stationtime2text()]"
 	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.role_alt_title]) at [stationtime2text()]"
-	log_and_message_admins("[key_name(occupant)] ([occupant.mind.role_alt_title]) entered cryostorage.")
+	log_and_message_admins("[key_name(occupant)] ([occupant.mind.assigned_role]) entered cryostorage.")
 
-	announce.autosay("[occupant.real_name], [occupant.mind.role_alt_title], [on_store_message]", "[on_store_name]")
+	announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
 	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
 
 	//This should guarantee that ghosts don't spawn.

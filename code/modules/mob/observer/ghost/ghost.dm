@@ -104,13 +104,13 @@ Works together with spawning an observer, noted above.
 			if(copytext(hud.icon_state,1,4) == "hud")
 				client.images.Remove(hud)
 
-	if(antagHUD)
+	/*if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
 			if(target.mind && target.mind.special_role)
 				target_list += target
 		if(target_list.len)
-			assess_targets(target_list, src)
+			assess_targets(target_list, src)*/
 	if(medHUD)
 		process_medHUD(src)
 

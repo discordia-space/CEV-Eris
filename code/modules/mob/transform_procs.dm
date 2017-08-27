@@ -137,7 +137,7 @@
 		mind.transfer_to(O)
 		if(O.mind.assigned_role == "Cyborg")
 			O.mind.original = O
-		else if(mind && mind.special_role)
+		else if(mind && mind.antagonist.len)
 			O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 	else
 		O.key = key
@@ -291,8 +291,6 @@
 	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/mushroom))
-		return 1
-	if(ispath(MP, /mob/living/simple_animal/shade))
 		return 1
 	if(ispath(MP, /mob/living/simple_animal/tomato))
 		return 1
