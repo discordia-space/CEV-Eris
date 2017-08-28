@@ -10,7 +10,18 @@
 		return FALSE
 	return TRUE
 
+/datum/antagonist/proc/clear_equipment()
+	if(!ishuman(owner.current))
+		return FALSE
 
+	var/mob/living/carbon/human/player = owner.current
+
+	for(var/obj/item/thing in player.contents)
+		player.drop_from_inventory(thing)
+		if(thing.loc != player)
+			qdel(thing)
+
+	return TRUE
 
 /datum/antagonist/outer/proc/create_id(var/assignment, var/equip = 1)
 	if(!owner || !owner.current || !ishuman(owner.current))

@@ -407,9 +407,10 @@
 
 		dat += "<a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 		dat += "<hr>"
-		for(var/antag_type in all_antag_types)
-			var/datum/antagonist/A = all_antag_types[antag_type]
-			dat += A.get_check_antag_output(src)
+		if(ticker.storyteller)
+			dat += ticker.storyteller.antagonist_report()
+		else
+			dat += "<b><font color='red'>Storyteller not found.</font></b>"
 		dat += "</body></html>"
 		usr << browse(dat, "window=roundstatus;size=400x500")
 	else

@@ -14,8 +14,8 @@
 		return "<br><b>Changeling ID:</b> [owner.changeling.changelingID].<br><b>Genomes Absorbed:</b> [owner.changeling.absorbedcount]"
 
 /datum/antagonist/changeling/create_antagonist(var/datum/mind/player, var/datum/faction/faction)
-	..()
-	player.current.make_changeling()
+	if(..())
+		player.current.make_changeling()
 
 /datum/antagonist/changeling/create_objectives()
 	if(!..())

@@ -107,88 +107,52 @@
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
 	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
-	out += "Factions and special roles:<br><table>"
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
+	out += "Special roles:<br><table>"
+
+	out += "<b>Make_antagonist: </b>"
+	for(var/antag in antag_types)
+		var/antag_name = selectable_antag_types[antag] ? selectable_antag_types[antag] : "<font color='red'>[antag]<font>"
+		out += "<a href='?src=\ref[src];add_antagonist=[antag]'>[antag_name]</a>  "
+	out += "<br>"
+
+	for(var/datum/antagonist/antag in antagonist)
 		out += "[antag.get_panel_entry(src)]"
 	out += "</table><hr>"
-	out += "<b>Objectives</b><br>"
-
-	if(objectives && objectives.len)
-		var/num = 1
-		for(var/datum/objective/O in objectives)
-			out += "<b>Objective #[num]:</b> "
-			if(O.completed)
-				out += "(<font color='green'>complete</font>)"
-			else
-				out += "(<font color='red'>incomplete</font>)"
-			out += " <a href='?src=\ref[src];obj_completed=\ref[O]'>\[toggle\]</a>"
-			out += " <a href='?src=\ref[src];obj_delete=\ref[O]'>\[remove\]</a><br>"
-			out += "<div>[O.get_panel_entry()]</div>"
-			num++
-		out += "<br><a href='?src=\ref[src];obj_announce=1'>\[announce objectives\]</a>"
-
-	else
-		out += "None."
-	out += "<br><a href='?src=\ref[src];obj_add=1'>\[add\]</a>"
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN))
+		return
 
 	if(href_list["add_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
+		var/datum/antagonist/antag = new antag_types[href_list["add_antagonist"]]
 		if(antag)
-			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
+			var/ok = FALSE
+			if(antag.isouter() && active)
+				var/answer = alert("[antag.role_text] is outer antagonist. This player will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
+				ok = answer == "Yes"
+			else
+				ok = TRUE
+
+			if(!ok)
+				return
+
+			if(antag.create_antagonist(src)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
 				usr << "<span class='warning'>[src] could not be made into a [antag.role_text]!</span>"
 
-	else if(href_list["remove_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["remove_antagonist"]]
-		if(antag) antag.remove_antagonist(src)
-
-	else if(href_list["equip_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["equip_antagonist"]]
-		if(antag) antag.equip(src.current)
-
-	else if(href_list["unequip_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["unequip_antagonist"]]
-		if(antag) antag.unequip(src.current)
-
-	else if(href_list["move_antag_to_spawn"])
-		var/datum/antagonist/antag = all_antag_types[href_list["move_antag_to_spawn"]]
-		if(antag) antag.place_mob(src.current)
-
-	else if (href_list["role_edit"])
+	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
 		if (!new_role) return
 		assigned_role = new_role
 
-	else if (href_list["memory_edit"])
+	else if(href_list["memory_edit"])
 		var/new_memo = sanitize(input("Write new memory", "Memory", memory) as null|message)
 		if (isnull(new_memo)) return
 		memory = new_memo
 
-	else if (href_list["obj_add"])
-		var/new_obj_type = input("Select objective type:", "Objective type") as null|anything in all_objectives_types
-		if (!new_obj_type) return
-
-		var/new_type = all_objectives_types[new_obj_type]
-		new new_type (src)
-
-
-	else if (href_list["obj_delete"])
-		var/datum/objective/objective = locate(href_list["obj_delete"])
-		if(!istype(objective))	return
-		objectives -= objective
-
-	else if(href_list["obj_completed"])
-		var/datum/objective/objective = locate(href_list["obj_completed"])
-		if(!istype(objective))	return
-		objective.completed = !objective.completed
-
-	else if (href_list["silicon"])
+	else if(href_list["silicon"])
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["silicon"])
 
@@ -228,7 +192,7 @@
 								R.contents -= R.module.emag
 					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
 
-	else if (href_list["common"])
+	else if(href_list["common"])
 		switch(href_list["common"])
 			if("undress")
 				for(var/obj/item/W in current)
@@ -247,12 +211,6 @@
 						if (suplink)
 							suplink.uses = crystals
 
-	else if (href_list["obj_announce"])
-		var/obj_count = 1
-		current << "\blue Your current objectives:"
-		for(var/datum/objective/objective in objectives)
-			current << "<B>Objective #[obj_count]</B>: [utf8_to_cp1251(objective.explanation_text)]"
-			obj_count++
 	edit_memory()
 
 /datum/mind/proc/find_syndicate_uplink()

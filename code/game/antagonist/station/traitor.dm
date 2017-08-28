@@ -35,13 +35,16 @@
 			new /datum/objective/escape (src)
 	return
 
-/datum/antagonist/traitor/equip(var/mob/living/carbon/human/traitor_mob)
+/datum/antagonist/traitor/equip()
+	if(!owner.current)
+		return FALSE
+	var/mob/living/carbon/human/traitor_mob = owner.current
 	if(issilicon(traitor_mob)) // this needs to be here because ..() returns false if the mob isn't human
 		add_law_zero(traitor_mob)
-		return 1
+		return TRUE
 
 	if(!..())
-		return 0
+		return FALSE
 
 	spawn_uplink()
 

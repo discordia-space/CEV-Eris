@@ -145,3 +145,11 @@ var/global/list/antag_bantypes = list()
 		if((!a_type || antag.id == a_type) && antag.is_active())
 			active_antags++
 	return active_antags
+
+/proc/get_factions_by_type(var/f_type)
+	var/list/L = list()
+	for(var/datum/faction/F in current_factions)
+		if(F.id == f_type)
+			L.Add(F)
+
+	return L

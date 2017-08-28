@@ -16,6 +16,7 @@
 	equip()
 	BITSET(target.current.hud_updateflag, SPECIALROLE_HUD)
 	greet()
+	return TRUE
 
 /datum/antagonist/proc/create_faction()
 	if(!faction && faction_type)
@@ -46,7 +47,10 @@
 	if(owner.current)
 		BITSET(owner.current.hud_updateflag, SPECIALROLE_HUD)
 	current_antags.Remove(src)
+	return TRUE
 
+/datum/antagonist/proc/place_antagonist()
+	return
 
 /datum/antagonist/outer/proc/place_antagonist()
 	if(!owner.current)

@@ -4,7 +4,7 @@
 	if(owner.current)
 		var/mob/holder = owner.current
 		owner.current = new mob_path(get_turf(owner.current))
-		owner.transfer_to(player.current)
+		owner.transfer_to(owner.current)
 		if(holder)
 			qdel(holder)
 		owner.original = owner.current
@@ -14,7 +14,7 @@
 				H.change_appearance(APPEARANCE_ALL, H.loc, H, valid_species, state = z_state)
 		return owner.current
 
-/datum/antagonist/outer/proc/update_access()
+/datum/antagonist/proc/update_access()
 	if(!owner || !owner.current)
 		return
 	for(var/obj/item/weapon/card/id/id in owner.current.contents)

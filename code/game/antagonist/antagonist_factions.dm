@@ -20,7 +20,7 @@
 /datum/faction/New()
 	if(!current_factions[id])
 		current_factions[id] = list()
-	current_factions[id] += src
+	current_factions.Add(src)
 
 	create_objectives()
 
@@ -170,3 +170,7 @@
 	clear_icons()
 	for(var/datum/antagonist/antag in members)
 		add_icons(antag)
+
+/datum/faction/proc/faction_panel()
+
+/datum/faction/Topic(href, href_list)
