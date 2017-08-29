@@ -11,8 +11,8 @@ var/datum/antagonist/cultist/cult
 	role_text = "Cultist"
 	role_text_plural = "Cultists"
 	bantype = "cultist"
-	restricted_jobs = list("Cyberchristian Preacher","AI", "Cyborg", "Ironhammer Commander", "Captain")
-	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", , "Ironhammer Medical Specialist")
+	restricted_jobs = list(JOB_PREACHER,JOB_AI, JOB_CYBORG, JOB_IH_COMM, JOB_CAPTAIN)
+	protected_jobs = list(JOB_IH_OPER, JOB_IH_GUN, JOB_IH_INSP, , JOB_IH_MED)
 	feedback_tag = "cult_objective"
 	antag_indicator = "cult"
 	welcome_text = "You have a talisman in your possession; one that will help you start the cult on this station. Use it well and remember - there are others."

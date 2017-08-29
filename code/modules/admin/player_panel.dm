@@ -241,11 +241,11 @@
 
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
-						M_job = "AI"
+						M_job = JOB_AI
 					else if(ispAI(M))
 						M_job = "pAI"
 					else if(isrobot(M))
-						M_job = "Cyborg"
+						M_job = JOB_CYBORG
 					else
 						M_job = "Silicon-based"
 

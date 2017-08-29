@@ -1484,7 +1484,7 @@ area/space/atmosalert()
 	..()
 
 /area/security/warden
-	name = "\improper Security - Gunnery Sergeant's Office"
+	name = "\improper Security - Gunnery Sergeant's Office" // for search: JOB_IH_GUN
 	icon_state = "Warden"
 
 /area/security/armoury

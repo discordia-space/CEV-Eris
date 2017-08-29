@@ -251,7 +251,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				positions["misc"][name] = rank
 
 		for(var/k in positions)
-			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
+			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"=JOB_CAPTAIN, "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
 
 		return list2params(positions)
 

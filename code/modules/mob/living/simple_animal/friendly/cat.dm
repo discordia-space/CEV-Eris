@@ -226,7 +226,7 @@
 	item_state = "cat"
 	icon_living = "cat"
 	icon_dead = "cat_dead"
-	befriend_job = "Moebius Biolab Officer"
+	befriend_job = JOB_MBO
 
 /mob/living/simple_animal/cat/kitten
 	name = "kitten"

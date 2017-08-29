@@ -77,21 +77,21 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/beret/sec/navy/officer
 	cost = 1
 	slot = slot_head
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN)
 
 /datum/gear/bsec_beret_warden
 	display_name = "beret, navy (warden)"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
 	cost = 1
 	slot = slot_head
-	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list(JOB_IH_COMM,JOB_IH_GUN)
 
 /datum/gear/bsec_beret_hos
 	display_name = "beret, navy (hos)"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
 	cost = 1
 	slot = slot_head
-	allowed_roles = list("Ironhammer Commander")
+	allowed_roles = list(JOB_IH_COMM)
 
 /datum/gear/eng_beret
 	display_name = "beret, engie-orange"
@@ -116,7 +116,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/beret/sec
 	cost = 1
 	slot = slot_head
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN)
 
 /datum/gear/bcap
 	display_name = "cap, blue"
@@ -141,7 +141,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/head/soft/sec/corp
 	cost = 1
 	slot = slot_head
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN)
 
 /datum/gear/gcap
 	display_name = "cap, green"
@@ -307,21 +307,21 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/glasses/hud/security
 	cost = 1
 	slot = slot_glasses
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN)
 
 /datum/gear/thugshades
 	display_name = "Sunglasses, Fat"
 	path = /obj/item/clothing/glasses/sunglasses/big
 	cost = 1
 	slot = slot_glasses
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Quartermaster","First Officer","Captain")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN,JOB_IH_INSP,JOB_MERCHANT,JOB_FIRST_OFFICER,JOB_CAPTAIN)
 
 /datum/gear/prescriptionsun
 	display_name = "sunglasses, presciption"
 	path = /obj/item/clothing/glasses/sunglasses/prescription
 	cost = 2
 	slot = slot_glasses
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Inspector","Quartermaster","First Officer","Captain")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN,JOB_IH_INSP,JOB_MERCHANT,JOB_FIRST_OFFICER,JOB_CAPTAIN)
 
 // Mask
 
@@ -482,7 +482,7 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/under/dress/dress_cap
 	slot = slot_w_uniform
 	cost = 1
-	allowed_roles = list("Captain")
+	allowed_roles = list(JOB_CAPTAIN)
 
 // Attachments
 /datum/gear/armband_cargo
@@ -532,21 +532,21 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/accessory/holster/armpit
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander","Inspector")
+	allowed_roles = list(JOB_CAPTAIN, JOB_FIRST_OFFICER, JOB_IH_OPER, JOB_IH_GUN, JOB_IH_COMM,JOB_IH_INSP)
 
 /datum/gear/hip
 	display_name = "holster, hip"
 	path = /obj/item/clothing/accessory/holster/hip
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander", "Inspector")
+	allowed_roles = list(JOB_CAPTAIN, JOB_FIRST_OFFICER, JOB_IH_OPER, JOB_IH_GUN, JOB_IH_COMM, JOB_IH_INSP)
 
 /datum/gear/waist
 	display_name = "holster, waist"
 	path = /obj/item/clothing/accessory/holster/waist
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Warden", "Ironhammer Commander", "Inspector")
+	allowed_roles = list(JOB_CAPTAIN, JOB_FIRST_OFFICER, JOB_IH_OPER, JOB_IH_GUN, JOB_IH_COMM, JOB_IH_INSP)
 
 /datum/gear/tie_blue
 	display_name = "tie, blue"
@@ -571,14 +571,14 @@ var/global/list/gear_datums = list()
 	path = /obj/item/clothing/accessory/storage/brown_vest
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Technomancer","Technomancer Exultant")
+	allowed_roles = list(JOB_TECHNOMANCER,JOB_EXULTANT)
 
 /datum/gear/black_vest
 	display_name = "webbing, security"
 	path = /obj/item/clothing/accessory/storage/black_vest
 	slot = slot_tie
 	cost = 1
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list(JOB_IH_OPER,JOB_IH_COMM,JOB_IH_GUN)
 
 /datum/gear/webbing
 	display_name = "webbing, simple"

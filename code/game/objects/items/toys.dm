@@ -511,6 +511,14 @@
 	desc = "A \"Space Life\" brand... wait, what the hell is this thing? It seems to be requesting the sweet release of death."
 	icon_state = "assistant"
 	icon = 'icons/obj/toy.dmi'
+	var/bounded_job = null
+
+/obj/item/toy/figure/New()
+	..()
+	if(bounded_job)
+		var/datum/job/job = job_master.GetJob(bounded_job)
+		name = "[job] action figure"
+		desc = "A \"Space Life\" brand [job] action figure."
 
 /obj/item/toy/figure/cmo
 	name = "Chief Medical Officer action figure"
@@ -518,8 +526,7 @@
 	icon_state = "cmo"
 
 /obj/item/toy/figure/assistant
-	name = "Assistant action figure"
-	desc = "A \"Space Life\" brand Assistant action figure."
+	bounded_job = JOB_ASSISTANT
 	icon_state = "assistant"
 
 /obj/item/toy/figure/atmos
@@ -528,8 +535,7 @@
 	icon_state = "atmos"
 
 /obj/item/toy/figure/bartender
-	name = "Bartender action figure"
-	desc = "A \"Space Life\" brand Bartender action figure."
+	bounded_job = JOB_BARTENDER
 	icon_state = "bartender"
 
 /obj/item/toy/figure/borg
@@ -543,8 +549,7 @@
 	icon_state = "botanist"
 
 /obj/item/toy/figure/captain
-	name = "Captain action figure"
-	desc = "A \"Space Life\" brand Captain action figure."
+	bounded_job = JOB_CAPTAIN
 	icon_state = "captain"
 
 /obj/item/toy/figure/cargotech
@@ -563,13 +568,11 @@
 	icon_state = "chaplain"
 
 /obj/item/toy/figure/chef
-	name = "Chef action figure"
-	desc = "A \"Space Life\" brand Chef action figure."
+	bounded_job = JOB_CHEF
 	icon_state = "chef"
 
 /obj/item/toy/figure/chemist
-	name = "Chemist action figure"
-	desc = "A \"Space Life\" brand Chemist action figure."
+	bounded_job = JOB_CHEMIST
 	icon_state = "chemist"
 
 /obj/item/toy/figure/clown
@@ -593,8 +596,7 @@
 	icon_state = "dsquad"
 
 /obj/item/toy/figure/engineer
-	name = "Engineer action figure"
-	desc = "A \"Space Life\" brand Engineer action figure."
+	bounded_job = JOB_TECHNOMANCER
 	icon_state = "engineer"
 
 /obj/item/toy/figure/geneticist
@@ -618,8 +620,7 @@
 	icon_state = "qm"
 
 /obj/item/toy/figure/janitor
-	name = "Janitor action figure"
-	desc = "A \"Space Life\" brand Janitor action figure."
+	bounded_job = JOB_JANITOR
 	icon_state = "janitor"
 
 /obj/item/toy/figure/agent
@@ -643,8 +644,7 @@
 	icon_state = "mime"
 
 /obj/item/toy/figure/miner
-	name = "Shaft Miner action figure"
-	desc = "A \"Space Life\" brand Shaft Miner action figure."
+	bounded_job = JOB_MINER
 	icon_state = "miner"
 
 /obj/item/toy/figure/ninja

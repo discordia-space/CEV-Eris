@@ -58,7 +58,7 @@ var/global/list/skin_styles_female_list = list()		//unused
 var/datum/category_collection/underwear/global_underwear = new()
 
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
-var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
+var/global/list/exclude_jobs = list(/datum/job/silicon/ai,/datum/job/silicon/cyborg)
 
 var/global/list/organ_structure = list(
 	chest = list(name= "Chest", children=list()),
@@ -178,7 +178,10 @@ var/global/list/string_slot_flags = list(
 	paths = typesof(/datum/job)-/datum/job
 	paths -= exclude_jobs
 	for(var/T in paths)
-		var/datum/job/J = new T
+		var/datum/job/J = T
+		if(initial(J.title) == JOB_NONE)
+			continue
+		J = new T
 		joblist[J.title] = J
 
 	//Languages and species.

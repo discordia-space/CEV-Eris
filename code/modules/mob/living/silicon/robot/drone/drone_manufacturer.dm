@@ -101,7 +101,7 @@
 		user << "<span class='danger'>That verb is not currently permitted.</span>"
 		return
 
-	if(jobban_isbanned(user,"Cyborg"))
+	if(jobban_isbanned(user,JOB_CYBORG))
 		user << "<span class='danger'>You are banned from playing synthetics and cannot spawn as a drone.</span>"
 		return
 

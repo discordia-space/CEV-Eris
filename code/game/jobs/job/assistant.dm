@@ -1,5 +1,5 @@
 /datum/job/assistant
-	title = "Assistant"
+	title = JOB_ASSISTANT
 	flag = ASSISTANT
 	department = "Civilian"
 	department_flag = CIVILIAN
@@ -9,8 +9,8 @@
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"
 	economic_modifier = 1
-	access = list()			//See /datum/job/assistant/get_access()
-	minimal_access = list()	//See /datum/job/assistant/get_access()
+	//access - See /datum/job/assistant/get_access()
+	access = list()	//See /datum/job/assistant/get_access()
 	uniform = /obj/item/clothing/under/rank/assistant
 	suit = /obj/item/clothing/suit/storage/ass_jacket
 

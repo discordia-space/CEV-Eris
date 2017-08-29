@@ -238,7 +238,7 @@
 	equip_custom_items(character)
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
-	if(character.mind.assigned_role == "AI")
+	if(character.mind.assigned_role == JOB_AI)
 
 		character = character.AIize(move=0) // AIize the character, but don't move them yet
 
@@ -266,7 +266,7 @@
 
 	ticker.mode.handle_latejoin(character)
 
-	if(character.mind.assigned_role != "Cyborg")
+	if(character.mind.assigned_role != JOB_CYBORG)
 		data_core.manifest_inject(character)
 		matchmaker.do_matchmaking()
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn

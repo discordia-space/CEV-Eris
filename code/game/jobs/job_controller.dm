@@ -7,6 +7,7 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations
 		//List of all jobs
 	var/list/occupations = list()
+	var/list/occupations_by_name = list()
 		//Players who need jobs
 	var/list/unassigned = list()
 		//Debug info
@@ -14,44 +15,42 @@ var/global/datum/controller/occupations/job_master
 
 
 	proc/SetupOccupations(var/faction = "CEV Eris")
-		occupations = list()
+		occupations.Cut()
+		occupations_by_name.Cut()
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
 			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
-			return 0
+			return FALSE
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
-			if(!job)	continue
-			if(job.faction != faction)	continue
+			if(!job || job.title == JOB_NONE)
+				continue
+			if(job.faction != faction)
+				continue
 			occupations += job
-
-
-		return 1
+			occupations_by_name[job.title] = job
+		return TRUE
 
 
 	proc/Debug(var/text)
-		if(!Debug2)	return 0
+		if(!Debug2)
+			return FALSE
 		job_debug.Add(text)
-		return 1
-
+		return TRUE
 
 	proc/GetJob(var/rank)
-		if(!rank)	return null
-		for(var/datum/job/J in occupations)
-			if(!J)	continue
-			if(J.title == rank)	return J
-		return null
+		return rank && occupations_by_name[rank]
 
 	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
 		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 		if(player && player.mind && rank)
 			var/datum/job/job = GetJob(rank)
 			if(!job)
-				return 0
+				return FALSE
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
-				return 0
+				return FALSE
 			if(jobban_isbanned(player, rank))
-				return 0
+				return FALSE
 
 			var/position_limit = job.total_positions
 			if(!latejoin)
@@ -63,14 +62,14 @@ var/global/datum/controller/occupations/job_master
 				job.current_positions++
 				return 1
 		Debug("AR has failed, Player: [player], Rank: [rank]")
-		return 0
+		return FALSE
 
 	proc/FreeRole(var/rank)	//making additional slot on the fly
 		var/datum/job/job = GetJob(rank)
 		if(job && job.current_positions >= job.total_positions && job.total_positions != -1)
 			job.total_positions++
-			return 1
-		return 0
+			return TRUE
+		return FALSE
 
 	proc/FindOccupationCandidates(datum/job/job, level, flag)
 		Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
@@ -99,7 +98,7 @@ var/global/datum/controller/occupations/job_master
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 				continue
 
-			if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
+			if(istype(job, GetJob(JOB_ASSISTANT))) // We don't want to give him assistant, that's boring!
 				continue
 
 			if(job in command_positions) //If you want a command position, select it!
@@ -122,10 +121,10 @@ var/global/datum/controller/occupations/job_master
 				player.mind.special_role = null
 		SetupOccupations()
 		unassigned = list()
-		return
 
 
-	///This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
+	///This proc is called before the level loop of DivideOccupations() and will try to select a head,
+	// ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 	proc/FillHeadPosition()
 		for(var/level = 1 to 3)
 			for(var/command_position in command_positions)
@@ -166,7 +165,8 @@ var/global/datum/controller/occupations/job_master
 		return 0
 
 
-	///This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
+	///This proc is called at the start of the level loop of DivideOccupations() and \
+	will cause head jobs to be checked before any other jobs of the same level
 	proc/CheckHeadPositions(var/level)
 		for(var/command_position in command_positions)
 			var/datum/job/job = GetJob(command_position)
@@ -189,10 +189,9 @@ var/global/datum/controller/occupations/job_master
 
 		//Holder for Triumvirate is stored in the ticker, this just processes it
 		if(ticker && ticker.triai)
-			for(var/datum/job/A in occupations)
-				if(A.title == "AI")
-					A.spawn_positions = 3
-					break
+			var/datum/job/A = GetJob(JOB_AI)
+			if(A)
+				A.spawn_positions = 3
 
 		//Get the players who are ready
 		for(var/mob/new_player/player in player_list)
@@ -214,7 +213,7 @@ var/global/datum/controller/occupations/job_master
 		Debug("AC1, Candidates: [assistant_candidates.len]")
 		for(var/mob/new_player/player in assistant_candidates)
 			Debug("AC1 pass, Player: [player]")
-			AssignRole(player, "Assistant")
+			AssignRole(player, JOB_ASSISTANT)
 			assistant_candidates -= player
 		Debug("DO, AC1 end")
 
@@ -265,23 +264,6 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
 				GiveRandomJob(player)
-		/*
-		Old job system
-		for(var/level = 1 to 3)
-			for(var/datum/job/job in occupations)
-				Debug("Checking job: [job]")
-				if(!job)
-					continue
-				if(!unassigned.len)
-					break
-				if((job.current_positions >= job.spawn_positions) && job.spawn_positions != -1)
-					continue
-				var/list/candidates = FindOccupationCandidates(job, level)
-				while(candidates.len && ((job.current_positions < job.spawn_positions) || job.spawn_positions == -1))
-					var/mob/new_player/candidate = pick(candidates)
-					Debug("Selcted: [candidate], for: [job.title]")
-					AssignRole(candidate, job.title)
-					candidates -= candidate*/
 
 		Debug("DO, Standard Check end")
 
@@ -291,7 +273,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == BE_ASSISTANT)
 				Debug("AC2 Assistant located, Player: [player]")
-				AssignRole(player, "Assistant")
+				AssignRole(player, JOB_ASSISTANT)
 
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)
@@ -313,7 +295,7 @@ var/global/datum/controller/occupations/job_master
 			//Equip custom gear loadout.
 			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
 			var/list/custom_equip_leftovers = list()
-			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
+			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != JOB_CYBORG && job.title != JOB_AI)
 				for(var/thing in H.client.prefs.gear)
 					var/datum/gear/G = gear_datums[thing]
 					if(G)
@@ -407,13 +389,13 @@ var/global/datum/controller/occupations/job_master
 			alt_title = H.mind.role_alt_title
 
 			switch(rank)
-				if("Cyborg")
+				if(JOB_CYBORG)
 					return H.Robotize()
-				if("AI")
+				if(JOB_AI)
 					return H
-				if("Captain")
+				if(JOB_CAPTAIN)
 					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-					captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
+					captain_announcement.Announce("All hands, [JOB_CAPTAIN] [H.real_name] on deck!", new_sound=announce_sound)
 
 			//Deferred item spawning.
 			if(spawn_in_storage && spawn_in_storage.len)
@@ -449,8 +431,6 @@ var/global/datum/controller/occupations/job_master
 
 		if(job.idtype)
 			spawnId(H, rank, alt_title)
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
-			H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
 
 		if(job.req_admin_notify)
 			H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
@@ -471,14 +451,10 @@ var/global/datum/controller/occupations/job_master
 		if(!H)	return 0
 		var/obj/item/weapon/card/id/C = null
 
-		var/datum/job/job = null
-		for(var/datum/job/J in occupations)
-			if(J.title == rank)
-				job = J
-				break
+		var/datum/job/job = GetJob(rank)
 
 		if(job)
-			if(job.title == "Cyborg")
+			if(job.title == JOB_CYBORG)
 				return
 			else
 				idtype = idtype ? idtype : job.idtype
@@ -537,7 +513,7 @@ var/global/datum/controller/occupations/job_master
 				if(!J)	continue
 				J.total_positions = text2num(value)
 				J.spawn_positions = text2num(value)
-				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now
+				if(name == JOB_AI || name == JOB_CYBORG)//I dont like this here but it will do for now
 					J.total_positions = 0
 
 		return 1

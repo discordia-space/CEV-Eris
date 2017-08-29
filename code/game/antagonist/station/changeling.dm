@@ -4,8 +4,8 @@
 	role_text_plural = "Changelings"
 	bantype = "changeling"
 	feedback_tag = "changeling_objective"
-	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
+	restricted_jobs = list(JOB_AI, JOB_CYBORG)
+	protected_jobs = list(JOB_IH_OPER, JOB_IH_GUN, JOB_IH_INSP, JOB_IH_COMM, JOB_CAPTAIN, JOB_IH_MED)
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	antaghud_indicator = "hudchangeling"

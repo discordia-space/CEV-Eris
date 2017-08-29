@@ -263,7 +263,7 @@
 			id.icon_state = "gold"
 			id.access = get_all_accesses()
 			id.registered_name = H.real_name
-			id.assignment = "Captain"
+			id.assignment = JOB_CAPTAIN
 			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
 			H.equip_to_slot_or_del(id, slot_wear_id)
 			H.update_inv_wear_id()
@@ -433,7 +433,7 @@
 		if ("strip")
 			//do nothing
 		if ("job")
-			var/selected_job = input("Select job", "Robust quick dress shop") as null|anything in joblist
+			var/selected_job = input("Select job", "Robust quick dress shop") as null|anything in job_master.occupations_by_name
 			if (isnull(selected_job))
 				return
 

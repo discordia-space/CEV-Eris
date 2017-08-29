@@ -1,10 +1,10 @@
 /datum/job
 
 	//The name of the job
-	var/title = "NOPE"
+	var/title = JOB_NONE
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/list/access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
+	var/list/additional_access = list()   // Additionasl access. Need be enabled in config.
 	var/flag = 0 	                      // Bitflags for the job
 	var/department_flag = 0
 	var/faction = "None"	              // Players will be allowed to spawn in as jobs that are set to "Station"
@@ -13,7 +13,6 @@
 	var/current_positions = 0             // How many players have this job
 	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
-	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/department = null                 // Does this position have a department tag?
 	var/head_position = 0                 // Is this position Command?
@@ -23,6 +22,9 @@
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
+	var/name_prefix = null				  // Special rank name come instead name (befor surname) if set.
+
+	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
 	var/survival_gear = /obj/item/weapon/storage/box/survival// Custom box for spawn in backpack
 //job equipment
 	var/uniform = /obj/item/clothing/under/color/grey
@@ -42,12 +44,14 @@
 		/obj/item/weapon/storage/backpack,
 		/obj/item/weapon/storage/backpack/satchel_norm,
 		/obj/item/weapon/storage/backpack/satchel
-		)
+	)
 
 	//This will be put in backpack. List ordered by priority!
 	var/list/put_in_backpack = list()
 
-	/*For copy-pasting:
+/*
+For copy-pasting:
+
 	implanted =
 	uniform =
 	pda =
@@ -63,15 +67,8 @@
 	hat =
 
 	put_in_backpack = list(
-
-		)
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack,
-		/obj/item/weapon/storage/backpack/satchel_norm,
-		/obj/item/weapon/storage/backpack/satchel
-		)
-	*/
+	)
+*/
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -88,11 +85,10 @@
 			for( var/path in put_in_backpack )
 				new path(BPK)
 
-	//Survival equipment
-
-
 	//No-check items (suits, gloves, etc)
-	if(ear)			H.equip_to_slot_or_del(new ear (H), slot_l_ear)
+	if(ear)
+		H.equip_to_slot_or_del(new ear (H), slot_l_ear)
+		H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
 	if(shoes)		H.equip_to_slot_or_del(new shoes (H), slot_shoes)
 	if(uniform)		H.equip_to_slot_or_del(new uniform (H), slot_w_uniform)
 	if(suit)		H.equip_to_slot_or_del(new suit (H), slot_wear_suit)
@@ -162,10 +158,7 @@
 	return (rand(5,50) + rand(5, 50)) * economic_modifier * custom_factor
 
 /datum/job/proc/get_access()
-	if(!config || config.jobs_have_minimal_access)
-		return src.minimal_access.Copy()
-	else
-		return src.access.Copy()
+	return access.Copy()
 
 /datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
 	if(!istype(target))

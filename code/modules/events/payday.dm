@@ -8,7 +8,7 @@
 		var/datum/data/record/R = record
 		var/datum/job/temp_job = job_master.GetJob(R.fields["real_rank"])
 		if(!temp_job)
-			job_master.GetJob("Assistant")
+			job_master.GetJob(JOB_ASSISTANT)
 		var/datum/money_account/pay_accaunt = get_account(R.fields["pay_account"])
 
 		var/money_amount = temp_job.one_time_payment()

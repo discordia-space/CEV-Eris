@@ -392,7 +392,7 @@ var/global/ManifestJSON
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank=="Captain" && heads.len != 1)
+			if(rank==JOB_CAPTAIN && heads.len != 1)
 				heads.Swap(1,heads.len)
 
 		if(real_rank in security_positions)

@@ -649,7 +649,7 @@
 	return stat == DEAD
 
 /mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
+	if(mind && (mind.assigned_role == JOB_CYBORG || mind.assigned_role == JOB_AI))
 		return 1
 	return issilicon(src)
 
