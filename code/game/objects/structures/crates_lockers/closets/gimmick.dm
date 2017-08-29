@@ -11,14 +11,6 @@
 	else
 		icon_state = icon_opened
 
-/obj/structure/closet/acloset
-	name = "strange closet"
-	desc = "It looks alien!"
-	icon_state = "acloset"
-	icon_closed = "acloset"
-	icon_opened = "aclosetopen"
-
-
 /obj/structure/closet/gimmick
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
