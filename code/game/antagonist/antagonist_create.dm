@@ -108,7 +108,7 @@
 
 	// Clown clumsiness check, I guess downstream might use it.
 	if (player.current.mind)
-		if (player.current.mind.assigned_role == "Clown")
+		if(CLUMSY in player.current.mutations)
 			player.current << "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself."
 			player.current.mutations.Remove(CLUMSY)
 	return 1
