@@ -2714,3 +2714,23 @@ var/list/the_station_areas = list (
 
 		spawn(60) .()
 
+/area/winterstorm
+	var/turf/simulated/floor/plating/snow
+
+/area/winterstorm/crashed_shuttle
+	icon_state = "blue"
+
+/area/winterstorm/crashed_pod_1
+	icon_state = "blue"
+
+/area/winterstorm/rift
+	icon_state = "yellow"
+
+/area/winterstorm/wolf
+	icon_state = "green"
+
+/area/winterstorm/mystery_zone
+	icon_state = "start"
+
+/area/winterstorm/military_barracks
+	icon_state = "security"

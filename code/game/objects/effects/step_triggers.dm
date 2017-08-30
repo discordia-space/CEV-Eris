@@ -125,3 +125,27 @@
 		M << "<span class='info'>[message]</span>"
 		if(once)
 			qdel(src)
+
+/obj/effect/step_trigger/teleporter/ws1_north/New()
+	..()
+	teleport_x = loc.x
+	teleport_y = 2
+	teleport_z = 4
+
+/obj/effect/step_trigger/teleporter/ws1_east/New()
+	..()
+	teleport_x = 2
+	teleport_y = loc.y
+	teleport_z = 5
+
+/obj/effect/step_trigger/teleporter/ws1_south/New()
+	..()
+	teleport_x = loc.x
+	teleport_y = world.maxy - 1
+	teleport_z = 6
+
+/obj/effect/step_trigger/teleporter/ws1_west/New()
+	..()
+	teleport_x = world.maxx - 1
+	teleport_y = loc.y
+	teleport_z = 7
