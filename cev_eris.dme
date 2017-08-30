@@ -2056,7 +2056,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\CEV_Eris-1.dmm"
-#include "maps\CEV_Eris-2.dmm"
-#include "maps\CEV_Eris-3.dmm"
+#include "maps\ows\winterstorm1.dmm"
+#include "maps\ows\winterstorm3.dmm"
+#include "maps\ows\winterstorm4.dmm"
 // END_INCLUDE

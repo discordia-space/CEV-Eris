@@ -343,7 +343,19 @@
 /turf/simulated/floor/light
 /turf/simulated/floor/snow
 /turf/simulated/floor/beach/coastline
+
 /turf/simulated/floor/plating/snow
+	name = "snow"
+	desc = "Looks cold."
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "snow"
+
+/turf/simulated/floor/plating/ice
+	name = "ice sheet"
+	desc = "A sheet of solid ice. Looks slippery."
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "ice"
+
 /turf/simulated/floor/airless/ceiling
 
 /turf/simulated/floor/plating
