@@ -60,9 +60,9 @@
 	if(istype(user, /mob/living/simple_animal/construct/builder))
 		if(health < maxHealth)
 			adjustBruteLoss(-5)
-			user.visible_message("<span class='notice'>\The [user] mends some of \the [src]'s wounds.</span>")
+			user.visible_message(SPAN_NOTICE("\The [user] mends some of \the [src]'s wounds."))
 		else
-			user << "<span class='notice'>\The [src] is undamaged.</span>"
+			user << SPAN_NOTICE("\The [src] is undamaged.")
 		return
 	return ..()
 

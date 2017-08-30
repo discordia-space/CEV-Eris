@@ -38,7 +38,7 @@
 		player.current << "<span class='danger'><font size=3>You are \a [nonstandard_role_type]!</font></span>"
 		player.special_role = nonstandard_role_type
 		if(nonstandard_role_msg)
-			player.current << "<span class='notice'>[nonstandard_role_msg]</span>"
+			player.current << SPAN_NOTICE("[nonstandard_role_msg]")
 		update_icons_added(player)
 	return 1
 

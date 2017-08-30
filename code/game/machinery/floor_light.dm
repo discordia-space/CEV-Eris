@@ -36,7 +36,7 @@ var/list/floor_light_cache = list()
 			return
 		if(!src || !WT.isOn())
 			return
-		visible_message("<span class='notice'>\The [user] has repaired \the [src].</span>")
+		visible_message(SPAN_NOTICE("\The [user] has repaired \the [src]."))
 		stat &= ~BROKEN
 		damaged = null
 		update_brightness()

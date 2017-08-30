@@ -64,11 +64,11 @@
 			return
 
 		drone_call_area = t_area
-		usr << "<span class='notice'>You set the area selector to [drone_call_area].</span>"
+		usr << SPAN_NOTICE("You set the area selector to [drone_call_area].")
 
 	else if (href_list["ping"])
 
-		usr << "<span class='notice'>You issue a maintenance request for all active drones, highlighting [drone_call_area].</span>"
+		usr << SPAN_NOTICE("You issue a maintenance request for all active drones, highlighting [drone_call_area].")
 		for(var/mob/living/silicon/robot/drone/D in world)
 			if(D.client && D.stat == 0)
 				D << "-- Maintenance drone presence requested in: [drone_call_area]."
@@ -101,7 +101,7 @@
 				continue
 
 			dronefab = fab
-			usr << "<span class='notice'>Drone fabricator located.</span>"
+			usr << SPAN_NOTICE("Drone fabricator located.")
 			return
 
 		usr << "<span class='danger'>Unable to locate drone fabricator.</span>"

@@ -7,4 +7,4 @@
 		user << "<span class='warning'>You purge the connection data of \the [holder] from \the [M].</span>"
 	else
 		M.set_buffer(holder)
-		user << "<span class='notice'>You load connection data from \the [holder] to \the [M].</span>"
+		user << SPAN_NOTICE("You load connection data from \the [holder] to \the [M].")

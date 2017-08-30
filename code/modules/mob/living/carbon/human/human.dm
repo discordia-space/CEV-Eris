@@ -1074,10 +1074,10 @@ var/list/rank_prefix = list(\
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message("<span class='notice'>[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
+		usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
 		"You begin counting [src]'s pulse")
 	else
-		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",\
+		usr.visible_message(SPAN_NOTICE("[usr] begins counting their pulse."),\
 		"You begin counting your pulse.")
 
 	if(pulse())
@@ -1543,12 +1543,12 @@ var/list/rank_prefix = list(\
 				reset_view(0)
 				return
 			if(istype(above, /turf/simulated/open))
-				src << "<span class='notice'>You look up.</span>"
+				src << SPAN_NOTICE("You look up.")
 				if(client)
 					reset_view(shadow)
 				return
-		src << "<span class='notice'>You can see [above].</span>"
+		src << SPAN_NOTICE("You can see [above].")
 	else
-		src << "<span class='notice'>You can't do it right now.</span>"
+		src << SPAN_NOTICE("You can't do it right now.")
 	return
 

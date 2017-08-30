@@ -94,7 +94,7 @@
 			var/contained = reagents.get_reagents()
 			var/trans = reagents.trans_to_mob(L, inject_amount(), CHEM_BLOOD)
 			message_admins("[src] injected \the [L] with [trans]u of [contained].")
-			AM << "<span class='notice'>You feel a tiny prick!</span>"
+			AM << SPAN_NOTICE("You feel a tiny prick!")
 			visible_message("<span class='warning'>[src] injects [L]!</span>")
 		else
 			reagents.trans_to(AM, inject_amount())

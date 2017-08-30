@@ -65,11 +65,11 @@
 
 /obj/machinery/turretid/proc/isLocked(mob/user)
 	if(ailock && issilicon(user))
-		user << "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>"
+		user << SPAN_NOTICE("There seems to be a firewall preventing you from accessing this device.")
 		return 1
 
 	if(locked && !issilicon(user))
-		user << "<span class='notice'>Access denied.</span>"
+		user << SPAN_NOTICE("Access denied.")
 		return 1
 
 	return 0
@@ -88,7 +88,7 @@
 		if(src.allowed(usr))
 			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 			if(emagged)
-				user << "<span class='notice'>The turret control is unresponsive.</span>"
+				user << SPAN_NOTICE("The turret control is unresponsive.")
 			else
 				locked = !locked
 				user << "<span class='notice'>You [ locked ? "lock" : "unlock"] the panel.</span>"

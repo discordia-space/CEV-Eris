@@ -128,7 +128,7 @@
 			var/turf/T = get_turf(src)
 			battery.forceMove(T)
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-			usr << "<span class='notice'>You pull \the [battery] out of \the [src]'s power supplier.</span>"
+			usr << SPAN_NOTICE("You pull \the [battery] out of \the [src]'s power supplier.")
 			battery = null
 
 	interact(usr) // To refresh the UI.
@@ -144,7 +144,7 @@
 
 	var/input = sanitizeSafe(input("What do you want to name this?", "Rename", src.name) as null|text, MAX_NAME_LEN)
 	if(src && input && CanInteract(M, physical_state))
-		M << "<span class='notice'>The machine now has a label reading '[input]'.</span>"
+		M << SPAN_NOTICE("The machine now has a label reading '[input]'.")
 		name = input
 
 /obj/item/device/electronic_assembly/proc/can_move()
@@ -228,14 +228,14 @@
 			if(S.scan(target))
 				scanned = TRUE
 		if(scanned)
-			visible_message("<span class='notice'>\The [user] waves \the [src] around [target].</span>")
+			visible_message(SPAN_NOTICE("\The [user] waves \the [src] around [target]."))
 
 /obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/integrated_circuit))
 		if(!user.unEquip(I))
 			return 0
 		if(add_circuit(I, user))
-			user << "<span class='notice'>You slide \the [I] inside \the [src].</span>"
+			user << SPAN_NOTICE("You slide \the [I] inside \the [src].")
 			playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 			interact(user)
 	else if(istype(I, /obj/item/weapon/crowbar))
@@ -261,7 +261,7 @@
 		cell.forceMove(src)
 		battery = cell
 		playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
-		user << "<span class='notice'>You slot \the [cell] inside \the [src]'s power supplier.</span>"
+		user << SPAN_NOTICE("You slot \the [cell] inside \the [src]'s power supplier.")
 		interact(user)
 
 	else

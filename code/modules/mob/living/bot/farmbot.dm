@@ -68,7 +68,7 @@
 	. = ..()
 	if(!emagged)
 		if(user)
-			user << "<span class='notice'>You short out [src]'s plant identifier circuits.</span>"
+			user << SPAN_NOTICE("You short out [src]'s plant identifier circuits.")
 		spawn(rand(30, 50))
 			visible_message("<span class='warning'>[src] buzzes oddly.</span>")
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -186,38 +186,38 @@
 			if(FARMBOT_WATER)
 				action = "water"
 				update_icons()
-				visible_message("<span class='notice'>[src] starts watering \the [A].</span>")
+				visible_message(SPAN_NOTICE("[src] starts watering \the [A]."))
 				playsound(loc, "robot_talk_heavy", 100, 0, 0)
 				var/message = pick("WATER IS LIVE.", "YOU NEED WATER. I GIVE WATER.")
 				say(message)
 				attacking = 1
 				if(do_after(src, 30, A))
 					playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-					visible_message("<span class='notice'>[src] waters \the [A].</span>")
+					visible_message(SPAN_NOTICE("[src] waters \the [A]."))
 					playsound(loc, "robot_talk_heavy", 100, 0, 0)
 					tank.reagents.trans_to(T, 100 - T.waterlevel)
 			if(FARMBOT_UPROOT)
 				action = "hoe"
 				update_icons()
-				visible_message("<span class='notice'>[src] starts uprooting the weeds in \the [A].</span>")
+				visible_message(SPAN_NOTICE("[src] starts uprooting the weeds in \the [A]."))
 				playsound(loc, "robot_talk_heavy", 100, 0, 0)
 				var/message = pick("I WILL PURGE THIS.", "YOU HAVE NO PLACE HERE.")
 				say(message)
 				attacking = 1
 				if(do_after(src, 30, A))
-					visible_message("<span class='notice'>[src] uproots the weeds in \the [A].</span>")
+					visible_message(SPAN_NOTICE("[src] uproots the weeds in \the [A]."))
 					playsound(loc, "robot_talk_heavy", 100, 0, 0)
 					T.weedlevel = 0
 			if(FARMBOT_NUTRIMENT)
 				action = "fertile"
 				update_icons()
-				visible_message("<span class='notice'>[src] starts fertilizing \the [A].</span>")
+				visible_message(SPAN_NOTICE("[src] starts fertilizing \the [A]."))
 				playsound(loc, "robot_talk_heavy", 100, 0, 0)
 				var/message = pick("MUST FEED YOU.", "YOU HAVE TO GROW BIG.")
 				say(message)
 				attacking = 1
 				if(do_after(src, 30, A))
-					visible_message("<span class='notice'>[src] waters \the [A].</span>")
+					visible_message(SPAN_NOTICE("[src] waters \the [A]."))
 					playsound(loc, "robot_talk_heavy", 100, 0, 0)
 					T.reagents.add_reagent("ammonia", 10)
 		attacking = 0
@@ -229,7 +229,7 @@
 			return
 		action = "water"
 		update_icons()
-		visible_message("<span class='notice'>[src] starts refilling its tank from \the [A].</span>")
+		visible_message(SPAN_NOTICE("[src] starts refilling its tank from \the [A]."))
 		playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		attacking = 1
 		while(do_after(src, 10) && tank.reagents.total_volume < tank.reagents.maximum_volume)
@@ -239,7 +239,7 @@
 		attacking = 0
 		action = ""
 		update_icons()
-		visible_message("<span class='notice'>[src] finishes refilling its tank.</span>")
+		visible_message(SPAN_NOTICE("[src] finishes refilling its tank."))
 		playsound(loc, "robot_talk_heavy", 100, 0, 0)
 	else if(emagged && ishuman(A))
 		var/action = pick("weed", "water")

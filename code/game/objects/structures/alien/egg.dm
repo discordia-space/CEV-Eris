@@ -31,7 +31,7 @@
 	if(progress >= MAX_PROGRESS)
 		for(var/mob/M in dead_mob_list)
 			if(isghost(M) && M.client && M.client.prefs && (ROLE_XENOMORPH in M.client.prefs.be_special_role))
-				M << "<span class='notice'>An alien is ready to hatch! ([ghost_follow_link(src, M)]) (<a href='byond://?src=\ref[src];spawn=1'>spawn</a>)</span>"
+				M << SPAN_NOTICE("An alien is ready to hatch! ([ghost_follow_link(src, M)]) (<a href='byond://?src=\ref[src];spawn=1'>spawn</a>)")
 		processing_objects -= src
 		update_icon()
 

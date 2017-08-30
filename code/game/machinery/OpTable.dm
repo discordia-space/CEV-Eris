@@ -73,7 +73,7 @@
 	if (C == user)
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
-		visible_message("<span class='notice'>\The [C] has been laid on \the [src] by [user].</span>", 3)
+		visible_message(SPAN_NOTICE("\The [C] has been laid on \the [src] by [user]."), 3)
 	if (C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
@@ -123,6 +123,6 @@
 		usr << "<span class='warning'>\The [src] is already occupied!</span>"
 		return 0
 	if(patient.buckled)
-		usr << "<span class='notice'>Unbuckle \the [patient] first!</span>"
+		usr << SPAN_NOTICE("Unbuckle \the [patient] first!")
 		return 0
 	return 1

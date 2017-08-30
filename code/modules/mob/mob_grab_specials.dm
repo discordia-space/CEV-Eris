@@ -4,29 +4,29 @@
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
 	if(!E || E.is_stump())
-		user << "<span class='notice'>[H] is missing that bodypart.</span>"
+		user << SPAN_NOTICE("[H] is missing that bodypart.")
 		return
 
-	user.visible_message("<span class='notice'>[user] starts inspecting [affecting]'s [E.name] carefully.</span>")
+	user.visible_message(SPAN_NOTICE("[user] starts inspecting [affecting]'s [E.name] carefully."))
 	if(!do_mob(user,H, 10))
-		user << "<span class='notice'>You must stand still to inspect [E] for wounds.</span>"
+		user << SPAN_NOTICE("You must stand still to inspect [E] for wounds.")
 	else if(E.wounds.len)
 		user << "<span class='warning'>You find [E.get_wounds_desc()]</span>"
 	else
-		user << "<span class='notice'>You find no visible wounds.</span>"
+		user << SPAN_NOTICE("You find no visible wounds.")
 
-	user << "<span class='notice'>Checking bones now...</span>"
+	user << SPAN_NOTICE("Checking bones now...")
 	if(!do_mob(user, H, 20))
-		user << "<span class='notice'>You must stand still to feel [E] for fractures.</span>"
+		user << SPAN_NOTICE("You must stand still to feel [E] for fractures.")
 	else if(E.status & ORGAN_BROKEN)
 		user << "<span class='warning'>The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!</span>"
 		H.custom_pain("Your [E.name] hurts where it's poked.")
 	else
 		user << "<span class='notice'>The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine.</span>"
 
-	user << "<span class='notice'>Checking skin now...</span>"
+	user << SPAN_NOTICE("Checking skin now...")
 	if(!do_mob(user, H, 10))
-		user << "<span class='notice'>You must stand still to check [H]'s skin for abnormalities.</span>"
+		user << SPAN_NOTICE("You must stand still to check [H]'s skin for abnormalities.")
 	else
 		var/bad = 0
 		if(H.getToxLoss() >= 40)
@@ -39,7 +39,7 @@
 			user << "<span class='warning'>[E] is decaying!</span>"
 			bad = 1
 		if(!bad)
-			user << "<span class='notice'>[H]'s skin is normal.</span>"
+			user << SPAN_NOTICE("[H]'s skin is normal.")
 
 /obj/item/weapon/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)

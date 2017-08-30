@@ -308,12 +308,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	dir_set_event.register(following, src, /atom/proc/recursive_dir_set)
 	destroyed_event.register(following, src, /mob/observer/ghost/proc/stop_following)
 
-	src << "<span class='notice'>Now following \the [following]</span>"
+	src << SPAN_NOTICE("Now following \the [following]")
 	move_to_destination(following, following.loc, following.loc)
 
 /mob/observer/ghost/proc/stop_following()
 	if(following)
-		src << "<span class='notice'>No longer following \the [following]</span>"
+		src << SPAN_NOTICE("No longer following \the [following]")
 		moved_event.unregister(following, src)
 		dir_set_event.unregister(following, src)
 		destroyed_event.unregister(following, src)

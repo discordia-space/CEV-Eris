@@ -9,13 +9,13 @@
 	if(flooring)
 		if(istype(C, /obj/item/weapon/crowbar))
 			if(broken || burnt)
-				user << "<span class='notice'>You remove the broken [flooring.descriptor].</span>"
+				user << SPAN_NOTICE("You remove the broken [flooring.descriptor].")
 				make_plating()
 			else if(flooring.flags & TURF_IS_FRAGILE)
 				user << "<span class='danger'>You forcefully pry off the [flooring.descriptor], destroying them in the process.</span>"
 				make_plating()
 			else if(flooring.flags & TURF_REMOVE_CROWBAR)
-				user << "<span class='notice'>You lever off the [flooring.descriptor].</span>"
+				user << SPAN_NOTICE("You lever off the [flooring.descriptor].")
 				make_plating(1)
 			else
 				return
@@ -24,17 +24,17 @@
 		else if(istype(C, /obj/item/weapon/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 			if(broken || burnt)
 				return
-			user << "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>"
+			user << SPAN_NOTICE("You unscrew and remove the [flooring.descriptor].")
 			make_plating(1)
 			playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
 			return
 		else if(istype(C, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
-			user << "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>"
+			user << SPAN_NOTICE("You unwrench and remove the [flooring.descriptor].")
 			make_plating(1)
 			playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
 			return
 		else if(istype(C, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
-			user << "<span class='notice'>You shovel off the [flooring.descriptor].</span>"
+			user << SPAN_NOTICE("You shovel off the [flooring.descriptor].")
 			make_plating(1)
 			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 			return
@@ -82,7 +82,7 @@
 			if(welder.isOn() && (is_plating()))
 				if(broken || burnt)
 					if(welder.remove_fuel(0,user))
-						user << "<span class='notice'>You fix some dents on the broken plating.</span>"
+						user << SPAN_NOTICE("You fix some dents on the broken plating.")
 						playsound(src, 'sound/items/Welder.ogg', 80, 1)
 						icon_state = "plating"
 						burnt = null

@@ -57,7 +57,7 @@
 	if(!emagged)
 		emagged = 1
 		if(user)
-			user << "<span class='notice'>The [src] buzzes and beeps.</span>"
+			user << SPAN_NOTICE("The [src] buzzes and beeps.")
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 		return 1
 
@@ -255,7 +255,7 @@
 			return
 		repairing = 1
 		update_icons()
-		visible_message("<span class='notice'>[src] begins to repair the hole.</span>")
+		visible_message(SPAN_NOTICE("[src] begins to repair the hole."))
 		var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
 		say(message)
 		playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -276,7 +276,7 @@
 		if(!F.flooring && amount)
 			repairing = 1
 			update_icons()
-			visible_message("<span class='notice'>[src] begins to improve the floor.</span>")
+			visible_message(SPAN_NOTICE("[src] begins to improve the floor."))
 			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -293,7 +293,7 @@
 			update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
-		visible_message("<span class='notice'>\The [src] begins to collect tiles.</span>")
+		visible_message(SPAN_NOTICE("\The [src] begins to collect tiles."))
 		var/message = pick("I can use this.")
 		say(message)
 		playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -310,7 +310,7 @@
 	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
 		var/obj/item/stack/material/M = A
 		if(M.get_material_name() == DEFAULT_WALL_MATERIAL)
-			visible_message("<span class='notice'>\The [src] begins to make tiles.</span>")
+			visible_message(SPAN_NOTICE("\The [src] begins to make tiles."))
 			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -353,14 +353,14 @@
 		..()
 		return
 	if(contents.len >= 1)
-		user << "<span class='notice'>They wont fit in as there is already stuff inside.</span>"
+		user << SPAN_NOTICE("They wont fit in as there is already stuff inside.")
 		return
 	if(user.s_active)
 		user.s_active.close(user)
 	if(T.use(10))
 		var/obj/item/weapon/toolbox_tiles/B = new /obj/item/weapon/toolbox_tiles
 		user.put_in_hands(B)
-		user << "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>"
+		user << SPAN_NOTICE("You add the tiles into the empty toolbox. They protrude from the top.")
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
@@ -387,7 +387,7 @@
 		var/obj/item/weapon/toolbox_tiles_sensor/B = new /obj/item/weapon/toolbox_tiles_sensor()
 		B.created_name = created_name
 		user.put_in_hands(B)
-		user << "<span class='notice'>You add the sensor to the toolbox and tiles!</span>"
+		user << SPAN_NOTICE("You add the sensor to the toolbox and tiles!")
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)
@@ -418,7 +418,7 @@
 		var/turf/T = get_turf(user.loc)
 		var/mob/living/bot/floorbot/A = new /mob/living/bot/floorbot(T)
 		A.name = created_name
-		user << "<span class='notice'>You add the robot arm to the odd looking toolbox assembly! Boop beep!</span>"
+		user << SPAN_NOTICE("You add the robot arm to the odd looking toolbox assembly! Boop beep!")
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		user.drop_from_inventory(src)
 		qdel(src)

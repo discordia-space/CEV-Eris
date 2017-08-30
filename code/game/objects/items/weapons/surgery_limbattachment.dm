@@ -30,22 +30,22 @@
 			return 0
 		if(M != user)
 			M.visible_message( \
-				"<span class='notice'>\The [user] is beginning to attach \the [src] where [H]'s [S.display_name] used to be.</span>", \
-				"<span class='notice'>\The [user] begins to attach \the [src] where your [S.display_name] used to be.</span>")
+				SPAN_NOTICE("\The [user] is beginning to attach \the [src] where [H]'s [S.display_name] used to be."), \
+				SPAN_NOTICE("\The [user] begins to attach \the [src] where your [S.display_name] used to be."))
 		else
 			M.visible_message( \
-				"<span class='notice'>\The [user] begins to attach a robotic limb where \his [S.display_name] used to be with [src].</span>", \
-				"<span class='notice'>You begin to attach \the [src] where your [S.display_name] used to be.</span>")
+				SPAN_NOTICE("\The [user] begins to attach a robotic limb where \his [S.display_name] used to be with [src]."), \
+				SPAN_NOTICE("You begin to attach \the [src] where your [S.display_name] used to be."))
 
 		if(do_mob(user, H, 100))
 			if(M != user)
 				M.visible_message( \
-					"<span class='notice'>\The [user] finishes attaching [H]'s new [S.display_name].</span>", \
-					"<span class='notice'>\The [user] finishes attaching your new [S.display_name].</span>")
+					SPAN_NOTICE("\The [user] finishes attaching [H]'s new [S.display_name]."), \
+					SPAN_NOTICE("\The [user] finishes attaching your new [S.display_name]."))
 			else
 				M.visible_message( \
-					"<span class='notice'>\The [user] finishes attaching \his new [S.display_name].</span>", \
-					"<span class='notice'>You finish attaching your new [S.display_name].</span>")
+					SPAN_NOTICE("\The [user] finishes attaching \his new [S.display_name]."), \
+					SPAN_NOTICE("You finish attaching your new [S.display_name]."))
 
 			if(H == user && prob(25))
 				user << "<span class='warning'>You mess up!</span>"

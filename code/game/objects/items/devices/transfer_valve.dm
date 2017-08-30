@@ -25,12 +25,12 @@
 			tank_one = item
 			user.drop_item()
 			item.loc = src
-			user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
+			user << SPAN_NOTICE("You attach the tank to the transfer valve.")
 		else if(!tank_two)
 			tank_two = item
 			user.drop_item()
 			item.loc = src
-			user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
+			user << SPAN_NOTICE("You attach the tank to the transfer valve.")
 			message_admins("[key_name_admin(user)] attached both tanks to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
@@ -40,7 +40,7 @@
 	else if(is_assembly(item))
 		var/obj/item/device/assembly/A = item
 		if(A.secured)
-			user << "<span class='notice'>The device is secured.</span>"
+			user << SPAN_NOTICE("The device is secured.")
 			return
 		if(attached_device)
 			user << "<span class='warning'>There is already an device attached to the valve, remove it first.</span>"
@@ -48,7 +48,7 @@
 		user.remove_from_mob(item)
 		attached_device = A
 		A.loc = src
-		user << "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>"
+		user << SPAN_NOTICE("You attach the [item] to the valve controls and secure it.")
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 

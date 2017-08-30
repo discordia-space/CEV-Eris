@@ -46,7 +46,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		update_icon()
 	else
 		if(busy)
-			visible_message("<span class='notice'>\icon [src] flashes: insufficient materials: [getLackingMaterials(D)].</span>")
+			visible_message(SPAN_NOTICE("\icon [src] flashes: insufficient materials: [getLackingMaterials(D)]."))
 			busy = 0
 			update_icon()
 
@@ -92,7 +92,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 /obj/machinery/r_n_d/circuit_imprinter/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return 1
 	if(default_deconstruction_screwdriver(user, O))
 		if(linked_console)
@@ -104,7 +104,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(default_part_replacement(user, O))
 		return
 	if(panel_open)
-		user << "<span class='notice'>You can't load \the [src] while it's opened.</span>"
+		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
 		return 1
 	if(!linked_console)
 		user << "\The [src] must be linked to an R&D console first."
@@ -114,13 +114,13 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(is_robot_module(O))
 		return 0
 	if(!istype(O, /obj/item/stack/material))
-		user << "<span class='notice'>You cannot insert this item into \the [src]!</span>"
+		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
 		return 0
 	if(stat)
 		return 1
 
 	if(TotalMaterials() + SHEET_MATERIAL_AMOUNT > max_material_storage)
-		user << "<span class='notice'>\The [src]'s material bin is full. Please remove material before adding more.</span>"
+		user << SPAN_NOTICE("\The [src]'s material bin is full. Please remove material before adding more.")
 		return 1
 
 	var/obj/item/stack/material/stack = O
@@ -141,7 +141,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(t)
 		if(do_after(usr, 16, src))
 			if(stack.use(amount))
-				user << "<span class='notice'>You add [amount] sheet\s to \the [src].</span>"
+				user << SPAN_NOTICE("You add [amount] sheet\s to \the [src].")
 				materials[t] += amount * SHEET_MATERIAL_AMOUNT
 	busy = 0
 	updateUsrDialog()

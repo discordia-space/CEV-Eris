@@ -36,7 +36,7 @@
 	player.rev_cooldown = world.time+100
 	var/choice = alert(player.current,"Asked by [src]: Do you want to join the [faction.faction_descriptor]?","Join the [faction.faction_descriptor]?","No!","Yes!")
 	if(choice == "Yes!" && faction.add_antagonist_mind(player, 0, faction.faction_role_text, faction.faction_welcome))
-		src << "<span class='notice'>\The [player.current] joins the [faction.faction_descriptor]!</span>"
+		src << SPAN_NOTICE("\The [player.current] joins the [faction.faction_descriptor]!")
 		return
 	if(choice == "No!")
 		player << "<span class='danger'>You reject this traitorous cause!</span>"

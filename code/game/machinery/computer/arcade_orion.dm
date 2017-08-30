@@ -483,9 +483,9 @@
 	if(!(in_range(user, src)))
 		return
 	if(!active)
-		user << "<span class='notice'>There's a little switch on the bottom. It's flipped down.</span>"
+		user << SPAN_NOTICE("There's a little switch on the bottom. It's flipped down.")
 	else
-		user << "<span class='notice'>There's a little switch on the bottom. It's flipped up.</span>"
+		user << SPAN_NOTICE("There's a little switch on the bottom. It's flipped up.")
 /obj/item/weapon/orion_ship/attack_self(mob/user)
 	if(active)
 		return
@@ -493,7 +493,7 @@
 	log_game("[key_name(usr)] primed an explosive Orion ship for detonation.")
 	user << "<span class='warning'>You flip the switch on the underside of [src].</span>"
 	active = 1
-	src.visible_message("<span class='notice'>[src] softly beeps and whirs to life!</span>")
+	src.visible_message(SPAN_NOTICE("[src] softly beeps and whirs to life!"))
 	src.audible_message("<b>\The [src]</b> says, 'This is ship ID #[rand(1,1000)] to Orion Port Authority. We're coming in for landing, over.'")
 	sleep(20)
 	src.visible_message("<span class='warning'>[src] begins to vibrate...</span>")

@@ -9,7 +9,7 @@
 
 	var/turf/above = GetAbove(src)
 	if(!istype(above))
-		usr << "<span class='notice'>There is nothing of interest in this direction.</span>"
+		usr << SPAN_NOTICE("There is nothing of interest in this direction.")
 		return
 
 	if(!istype(above, /turf/space) && !istype(above, /turf/simulated/open))
@@ -22,7 +22,7 @@
 			return
 
 	usr.Move(above)
-	usr << "<span class='notice'>You move upwards.</span>"
+	usr << SPAN_NOTICE("You move upwards.")
 
 /obj/item/weapon/tank/jetpack/verb/movedown()
 	set name = "Move Downwards"
@@ -35,7 +35,7 @@
 
 	var/turf/below = GetBelow(src)
 	if(!istype(below))
-		usr << "<span class='notice'>There is nothing of interest in this direction.</span>"
+		usr << SPAN_NOTICE("There is nothing of interest in this direction.")
 		return
 
 	if(below.density)
@@ -48,7 +48,7 @@
 			return
 
 	usr.Move(below)
-	usr << "<span class='notice'>You move downwards.</span>"
+	usr << SPAN_NOTICE("You move downwards.")
 
 
 /mob/observer/ghost/verb/moveup()

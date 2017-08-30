@@ -271,7 +271,7 @@
 		W.loc = src
 		coin = W
 		categories |= CAT_COIN
-		user << "<span class='notice'>You insert \the [W] into \the [src].</span>"
+		user << SPAN_NOTICE("You insert \the [W] into \the [src].")
 		nanomanager.update_uis(src)
 		return
 	else if(istype(W, /obj/item/weapon/wrench))
@@ -478,7 +478,7 @@
 		coin.loc = src.loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		usr << "<span class='notice'>You remove the [coin] from the [src]</span>"
+		usr << SPAN_NOTICE("You remove the [coin] from the [src]")
 		coin = null
 		categories &= ~CAT_COIN
 
@@ -532,13 +532,13 @@
 
 	if (R.category & CAT_COIN)
 		if(!coin)
-			user << "<span class='notice'>You need to insert a coin to get this item.</span>"
+			user << SPAN_NOTICE("You need to insert a coin to get this item.")
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				user << "<span class='notice'>You successfully pull the coin out before \the [src] could swallow it.</span>"
+				user << SPAN_NOTICE("You successfully pull the coin out before \the [src] could swallow it.")
 			else
-				user << "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>"
+				user << SPAN_NOTICE("You weren't able to pull the coin out fast enough, the machine ate it, string and all.")
 				qdel(coin)
 				categories &= ~CAT_COIN
 		else
@@ -572,7 +572,7 @@
 	if(!user.unEquip(W))
 		return
 
-	user << "<span class='notice'>You insert \the [W] in the product receptor.</span>"
+	user << SPAN_NOTICE("You insert \the [W] in the product receptor.")
 	R.add_product(W)
 
 	nanomanager.update_uis(src)

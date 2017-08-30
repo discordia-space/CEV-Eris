@@ -25,11 +25,11 @@
 				src.locked = !( src.locked )
 				if(src.locked)
 					src.icon_state = src.icon_locked
-					user << "<span class='notice'>You lock \the [src]!</span>"
+					user << SPAN_NOTICE("You lock \the [src]!")
 					return
 				else
 					src.icon_state = src.icon_closed
-					user << "<span class='notice'>You unlock \the [src]!</span>"
+					user << SPAN_NOTICE("You unlock \the [src]!")
 					return
 			else
 				user << "<span class='warning'>Access Denied</span>"

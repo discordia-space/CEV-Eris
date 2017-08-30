@@ -26,7 +26,7 @@
 		return
 	if(mode == WIRE)
 		selected_io = io
-		user << "<span class='notice'>You attach a data wire to \the [selected_io.holder]'s [selected_io.name] data channel.</span>"
+		user << SPAN_NOTICE("You attach a data wire to \the [selected_io.holder]'s [selected_io.name] data channel.")
 		mode = WIRING
 		update_icon()
 	else if(mode == WIRING)
@@ -43,7 +43,7 @@
 		selected_io.linked |= io
 		io.linked |= selected_io
 
-		user << "<span class='notice'>You connect \the [selected_io.holder]'s [selected_io.name] to \the [io.holder]'s [io.name].</span>"
+		user << SPAN_NOTICE("You connect \the [selected_io.holder]'s [selected_io.name] to \the [io.holder]'s [io.name].")
 		mode = WIRE
 		update_icon()
 		selected_io.holder.interact(user) // This is to update the UI.
@@ -55,7 +55,7 @@
 			user <<"<span class='warning'>There is nothing connected to \the [selected_io] data channel.</span>"
 			selected_io = null
 			return
-		user << "<span class='notice'>You prepare to detach a data wire from \the [selected_io.holder]'s [selected_io.name] data channel.</span>"
+		user << SPAN_NOTICE("You prepare to detach a data wire from \the [selected_io.holder]'s [selected_io.name] data channel.")
 		mode = UNWIRING
 		update_icon()
 		return
@@ -68,8 +68,8 @@
 		if(selected_io in io.linked)
 			io.linked.Remove(selected_io)
 			selected_io.linked.Remove(io)
-			user << "<span class='notice'>You disconnect \the [selected_io.holder]'s [selected_io.name] from \
-			\the [io.holder]'s [io.name].</span>"
+			user << SPAN_NOTICE("You disconnect \the [selected_io.holder]'s [selected_io.name] from \
+			\the [io.holder]'s [io.name].")
 			selected_io.holder.interact(user) // This is to update the UI.
 			selected_io = null
 			mode = UNWIRE
@@ -86,18 +86,18 @@
 			mode = UNWIRE
 		if(WIRING)
 			if(selected_io)
-				user << "<span class='notice'>You decide not to wire the data channel.</span>"
+				user << SPAN_NOTICE("You decide not to wire the data channel.")
 			selected_io = null
 			mode = WIRE
 		if(UNWIRE)
 			mode = WIRE
 		if(UNWIRING)
 			if(selected_io)
-				user << "<span class='notice'>You decide not to disconnect the data channel.</span>"
+				user << SPAN_NOTICE("You decide not to disconnect the data channel.")
 			selected_io = null
 			mode = UNWIRE
 	update_icon()
-	user << "<span class='notice'>You set \the [src] to [mode].</span>"
+	user << SPAN_NOTICE("You set \the [src] to [mode].")
 
 #undef WIRE
 #undef WIRING
@@ -133,21 +133,21 @@
 			new_data = input("Now type in a number.","[src] number writing") as null|num
 			if(isnum(new_data) && CanInteract(user, physical_state))
 				data_to_write = new_data
-				user << "<span class='notice'>You set \the [src]'s memory to [new_data].</span>"
+				user << SPAN_NOTICE("You set \the [src]'s memory to [new_data].")
 		if("ref")
 			accepting_refs = 1
-			user << "<span class='notice'>You turn \the [src]'s ref scanner on.  Slide it across \
-			an object for a ref of that object to save it in memory.</span>"
+			user << SPAN_NOTICE("You turn \the [src]'s ref scanner on.  Slide it across \
+			an object for a ref of that object to save it in memory.")
 		if("null")
 			data_to_write = null
-			user << "<span class='notice'>You set \the [src]'s memory to absolutely nothing.</span>"
+			user << SPAN_NOTICE("You set \the [src]'s memory to absolutely nothing.")
 
 /obj/item/device/integrated_electronics/debugger/afterattack(atom/target, mob/living/user, proximity)
 	if(accepting_refs && proximity)
 		data_to_write = weakref(target)
-		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
-		user << "<span class='notice'>You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
-		now off.</span>"
+		visible_message(SPAN_NOTICE("[user] slides \a [src]'s over \the [target]."))
+		user << SPAN_NOTICE("You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
+		now off.")
 		accepting_refs = 0
 
 /obj/item/device/integrated_electronics/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
@@ -161,7 +161,7 @@
 		user <<"<span class='notice'>You write '[data_to_write ? data_to_show : "NULL"]' to the '[io]' pin of \the [io.holder].</span>"
 	else if(io.io_type == PULSE_CHANNEL)
 		io.holder.check_then_do_work(ignore_power = TRUE)
-		user << "<span class='notice'>You pulse \the [io.holder]'s [io].</span>"
+		user << SPAN_NOTICE("You pulse \the [io.holder]'s [io].")
 
 	io.holder.interact(user) // This is to update the UI.
 

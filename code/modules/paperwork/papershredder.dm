@@ -54,7 +54,7 @@
 		return
 
 	if(!paperamount)
-		usr << "<span class='notice'>\The [src] is empty.</span>"
+		usr << SPAN_NOTICE("\The [src] is empty.")
 		return
 
 	empty_bin(usr)
@@ -66,7 +66,7 @@
 		empty_into = null
 
 	if(empty_into && empty_into.contents.len >= empty_into.storage_slots)
-		user << "<span class='notice'>\The [empty_into] is full.</span>"
+		user << SPAN_NOTICE("\The [empty_into] is full.")
 		return
 
 	while(paperamount)
@@ -78,12 +78,12 @@
 				break
 	if(empty_into)
 		if(paperamount)
-			user << "<span class='notice'>You fill \the [empty_into] with as much shredded paper as it will carry.</span>"
+			user << SPAN_NOTICE("You fill \the [empty_into] with as much shredded paper as it will carry.")
 		else
-			user << "<span class='notice'>You empty \the [src] into \the [empty_into].</span>"
+			user << SPAN_NOTICE("You empty \the [src] into \the [empty_into].")
 
 	else
-		user << "<span class='notice'>You empty \the [src].</span>"
+		user << SPAN_NOTICE("You empty \the [src].")
 	update_icon()
 
 /obj/machinery/papershredder/proc/get_shredded_paper()

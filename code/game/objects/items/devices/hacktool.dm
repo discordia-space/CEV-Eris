@@ -54,14 +54,14 @@
 		known_targets.Swap(1, found)	// Move the last hacked item first
 		return 1
 
-	user << "<span class='notice'>You begin hacking \the [target]...</span>"
+	user << SPAN_NOTICE("You begin hacking \the [target]...")
 	is_hacking = 1
 	// On average hackin takes ~30 seconds. Fairly small random span to avoid people simply aborting and trying again
 	var/hack_result = do_after(user, (20 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS)), progress = 0)
 	is_hacking = 0
 
 	if(hack_result && in_hack_mode)
-		user << "<span class='notice'>Your hacking attempt was succesful!</span>"
+		user << SPAN_NOTICE("Your hacking attempt was succesful!")
 		playsound(src.loc, 'sound/piano/A#6.ogg', 75)
 	else
 		user << "<span class='warning'>Your hacking attempt failed!</span>"

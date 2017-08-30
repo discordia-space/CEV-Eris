@@ -37,7 +37,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			return
 
 		if(istype(G, /obj/item/weapon/gun/energy/gun/nuclear) || istype(G, /obj/item/weapon/gun/energy/crossbow))
-			user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
+			user << SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor.")
 			return
 
 		if(istype(G, /obj/item/weapon/melee/baton))

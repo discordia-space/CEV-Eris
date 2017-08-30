@@ -11,7 +11,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = H.get_active_hand()
 		if(!I)
-			H << "<span class='notice'>You are not holding anything to equip.</span>"
+			H << SPAN_NOTICE("You are not holding anything to equip.")
 			return
 		if(H.equip_to_appropriate_slot(I))
 			if(hand)

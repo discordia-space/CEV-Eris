@@ -146,10 +146,10 @@
 		if (user.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
+			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 			return
 		if(!temp)
-			user << "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>"
+			user << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
 			return
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
@@ -197,11 +197,11 @@
 						success = 1
 						S.handle_item_insertion(I, 1)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 					if(success && !failure)
-						user << "<span class='notice'>You put everything in [S].</span>"
+						user << SPAN_NOTICE("You put everything in [S].")
 					else if(success)
-						user << "<span class='notice'>You put some things in [S].</span>"
+						user << SPAN_NOTICE("You put some things in [S].")
 					else
-						user << "<span class='notice'>You fail to pick anything up with \the [S].</span>"
+						user << SPAN_NOTICE("You fail to pick anything up with \the [S].")
 
 			else if(S.can_be_inserted(src))
 				S.handle_item_insertion(src)

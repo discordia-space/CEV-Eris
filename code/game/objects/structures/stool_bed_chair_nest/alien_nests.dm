@@ -16,9 +16,9 @@
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
 				buckled_mob.visible_message(\
-					"<span class='notice'>[user.name] pulls [buckled_mob.name] free from the sticky nest!</span>",\
-					"<span class='notice'>[user.name] pulls you free from the gelatinous resin.</span>",\
-					"<span class='notice'>You hear squelching...</span>")
+					SPAN_NOTICE("[user.name] pulls [buckled_mob.name] free from the sticky nest!"),\
+					SPAN_NOTICE("[user.name] pulls you free from the gelatinous resin."),\
+					SPAN_NOTICE("You hear squelching..."))
 				buckled_mob.pixel_y = 0
 				buckled_mob.old_y = 0
 				unbuckle_mob()
@@ -29,7 +29,7 @@
 				buckled_mob.visible_message(\
 					"<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
 					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
-					"<span class='notice'>You hear squelching...</span>")
+					SPAN_NOTICE("You hear squelching..."))
 				spawn(NEST_RESIST_TIME)
 					if(user && buckled_mob && user.buckled == src)
 						buckled_mob.last_special = world.time
@@ -58,9 +58,9 @@
 		return
 	else
 		M.visible_message(\
-			"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
+			SPAN_NOTICE("[user.name] secretes a thick vile goo, securing [M.name] into [src]!"),\
 			"<span class='warning'>[user.name] drenches you in a foul-smelling resin, trapping you in the [src]!</span>",\
-			"<span class='notice'>You hear squelching...</span>")
+			SPAN_NOTICE("You hear squelching..."))
 	M.buckled = src
 	M.loc = src.loc
 	M.set_dir(src.dir)

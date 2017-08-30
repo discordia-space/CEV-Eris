@@ -95,7 +95,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			qdel(src)
 			return
 		else if(istype(I, /obj/item/weapon/nullrod))
-			user << "<span class='notice'>You disrupt the vile magic with the deadening field of the null rod!</span>"
+			user << SPAN_NOTICE("You disrupt the vile magic with the deadening field of the null rod!")
 			qdel(src)
 			return
 		return
@@ -455,7 +455,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				if (!chosen_rune)
 					return
 				if (chosen_rune == "none")
-					user << "<span class='notice'>You decide against scribing a rune, perhaps you should take this time to study your notes.</span>"
+					user << SPAN_NOTICE("You decide against scribing a rune, perhaps you should take this time to study your notes.")
 					return
 				if (chosen_rune == "teleport")
 					dictionary[chosen_rune] += input ("Choose a destination word") in english
@@ -476,7 +476,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 					return
 				var/mob/living/carbon/human/H = user
 				var/obj/effect/rune/R = new /obj/effect/rune(user.loc)
-				user << "<span class='notice'>You finish drawing the arcane markings of the Geometer.</span>"
+				user << SPAN_NOTICE("You finish drawing the arcane markings of the Geometer.")
 				var/list/required = dictionary[chosen_rune]
 				R.word1 = english[required[1]]
 				R.word2 = english[required[2]]
@@ -524,7 +524,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		if(user)
 			var/r
 			if (!istype(user.loc,/turf))
-				user << "<span class='notice'>You do not have enough space to write a proper rune.</span>"
+				user << SPAN_NOTICE("You do not have enough space to write a proper rune.")
 			var/list/runes = list("teleport", "itemport", "tome", "armor", "convert", "tear in reality", "emp", "drain", "seer", "raise", "obscure", "reveal", "astral journey", "manifest", "imbue talisman", "sacrifice", "wall", "freedom", "cultsummon", "deafen", "blind", "bloodboil", "communicate", "stun")
 			r = input("Choose a rune to scribe", "Rune Scribing") in runes //not cancellable.
 			if(locate(/obj/effect/rune) in user.loc)

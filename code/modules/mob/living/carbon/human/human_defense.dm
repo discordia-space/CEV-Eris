@@ -250,7 +250,7 @@ meteor_act
 	if(affecting.sabotaged)
 		user << "<span class='warning'>[src]'s [affecting.name] is already sabotaged!</span>"
 		return -1
-	user << "<span class='notice'>You sneakily slide [emag_source] into the dataport on [src]'s [affecting.name] and short out the safeties.</span>"
+	user << SPAN_NOTICE("You sneakily slide [emag_source] into the dataport on [src]'s [affecting.name] and short out the safeties.")
 	affecting.sabotaged = 1
 	return 1
 
@@ -292,7 +292,7 @@ meteor_act
 				return
 
 		if(!zone)
-			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
+			visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"))
 			return
 
 		O.throwing = 0		//it hit, so stop moving

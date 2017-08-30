@@ -9,7 +9,7 @@
 
 /obj/item/weapon/contract/attack_self(mob/user as mob)
 	if(contract_master == null)
-		user << "<span class='notice'>You bind the contract to your soul, making you the recipient of whatever poor fool's soul that decides to contract with you.</span>"
+		user << SPAN_NOTICE("You bind the contract to your soul, making you the recipient of whatever poor fool's soul that decides to contract with you.")
 		contract_master = user
 		return
 
@@ -47,7 +47,7 @@
 		user << "<span class='warning'>You are already a wizarding apprentice!</span>"
 		return 0
 	if(wizards.add_antagonist_mind(user.mind,1,"apprentice","<b>You are an apprentice! Your job is to learn the wizarding arts!</b>"))
-		user << "<span class='notice'>With the signing of this paper you agree to become \the [contract_master]'s apprentice in the art of wizardry.</span>"
+		user << SPAN_NOTICE("With the signing of this paper you agree to become \the [contract_master]'s apprentice in the art of wizardry.")
 		return 1
 	return 0
 
@@ -67,7 +67,7 @@
 		user.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 		user.see_in_dark = 8
 		user.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		user << "<span class='notice'>The walls suddenly disappear.</span>"
+		user << SPAN_NOTICE("The walls suddenly disappear.")
 		return 1
 	return 0
 
@@ -80,7 +80,7 @@
 	..()
 	if(!(TK in user.mutations))
 		user.mutations.Add(TK)
-		user << "<span class='notice'>You feel your mind expanding!</span>"
+		user << SPAN_NOTICE("You feel your mind expanding!")
 		return 1
 	return 0
 

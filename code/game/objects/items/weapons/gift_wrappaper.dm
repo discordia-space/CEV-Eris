@@ -50,7 +50,7 @@
 		user << "<span class='warning'>I need wirecutters for that.</span>"
 		return
 
-	user << "<span class='notice'>You cut open the present.</span>"
+	user << SPAN_NOTICE("You cut open the present.")
 
 	for(var/mob/M in src) //Should only be one but whatever.
 		M.loc = src.loc

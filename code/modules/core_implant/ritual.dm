@@ -29,7 +29,7 @@
 	else
 		if(perform(H, C, targets))
 			C.use_power(src.power)
-			H << "<span class='notice'>[success_message]</span>"
+			H << SPAN_NOTICE("[success_message]")
 
 /datum/ritual/proc/fail(var/message, mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C, targets)
 	if(!message)

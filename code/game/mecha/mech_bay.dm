@@ -50,11 +50,11 @@
 			use_power(t * 150)
 			done = 0
 		else
-			charging.occupant_message("<span class='notice'>Fully charged.</span>")
+			charging.occupant_message(SPAN_NOTICE("Fully charged."))
 	if(repair && charging.health < initial(charging.health))
 		charging.health = min(charging.health + repair, initial(charging.health))
 		if(charging.health == initial(charging.health))
-			charging.occupant_message("<span class='notice'>Fully repaired.</span>")
+			charging.occupant_message(SPAN_NOTICE("Fully repaired."))
 
 		else
 			done = 0
@@ -76,7 +76,7 @@
 
 		return
 	if(M.cell)
-		M.occupant_message("<span class='notice'>Now charging...</span>")
+		M.occupant_message(SPAN_NOTICE("Now charging..."))
 		charging = M
 	return
 

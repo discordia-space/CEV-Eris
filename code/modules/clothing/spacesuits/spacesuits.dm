@@ -49,9 +49,9 @@
 		camera.set_status(!camera.status)
 		if(camera.status)
 			camera.c_tag = FindNameFromID(usr)
-			usr << "<span class='notice'>User scanned as [camera.c_tag]. Camera activated.</span>"
+			usr << SPAN_NOTICE("User scanned as [camera.c_tag]. Camera activated.")
 		else
-			usr << "<span class='notice'>Camera deactivated.</span>"
+			usr << SPAN_NOTICE("Camera deactivated.")
 
 /obj/item/clothing/head/helmet/space/examine(var/mob/user)
 	if(..(user, 1) && camera_networks && camera_networks.len)

@@ -94,16 +94,16 @@
 		switch(det_time)
 			if (1)
 				det_time = 10
-				user << "<span class='notice'>You set the [name] for 1 second detonation time.</span>"
+				user << SPAN_NOTICE("You set the [name] for 1 second detonation time.")
 			if (10)
 				det_time = 30
-				user << "<span class='notice'>You set the [name] for 3 second detonation time.</span>"
+				user << SPAN_NOTICE("You set the [name] for 3 second detonation time.")
 			if (30)
 				det_time = 50
-				user << "<span class='notice'>You set the [name] for 5 second detonation time.</span>"
+				user << SPAN_NOTICE("You set the [name] for 5 second detonation time.")
 			if (50)
 				det_time = 1
-				user << "<span class='notice'>You set the [name] for instant detonation.</span>"
+				user << SPAN_NOTICE("You set the [name] for instant detonation.")
 		add_fingerprint(user)
 	..()
 	return

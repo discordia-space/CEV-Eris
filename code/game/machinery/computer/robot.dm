@@ -64,7 +64,7 @@
 			target << "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered."
 			target.ResetSecurityCodes()
 		else
-			message_admins("<span class='notice'>[key_name_admin(usr)] detonated [target.name]!</span>")
+			message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated [target.name]!"))
 			log_game("[key_name(usr)] detonated [target.name]!")
 			target << "<span class='danger'>Self-destruct command received.</span>"
 			spawn(10)
@@ -125,10 +125,10 @@
 		if(!target || !istype(target))
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] emagged [target.name] using robotic console!</span>")
+		message_admins(SPAN_NOTICE("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
 		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
 		target.emagged = 1
-		target << "<span class='notice'>Failsafe protocols overriden. New tools available.</span>"
+		target << SPAN_NOTICE("Failsafe protocols overriden. New tools available.")
 
 	// Arms the emergency self-destruct system
 	else if(href_list["arm"])
@@ -148,7 +148,7 @@
 			user << "Self-destruct aborted - safety active"
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] detonated all cyborgs!</span>")
+		message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated all cyborgs!"))
 		log_game("[key_name(usr)] detonated all cyborgs!")
 
 		for(var/mob/living/silicon/robot/R in mob_list)

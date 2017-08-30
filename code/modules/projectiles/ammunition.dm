@@ -117,9 +117,9 @@
 
 /obj/item/ammo_magazine/attack_self(mob/user)
 	if(!stored_ammo.len)
-		user << "<span class='notice'>[src] is already empty!</span>"
+		user << SPAN_NOTICE("[src] is already empty!")
 		return
-	user << "<span class='notice'>You empty [src].</span>"
+	user << SPAN_NOTICE("You empty [src].")
 	for(var/obj/item/ammo_casing/C in stored_ammo)
 		C.loc = user.loc
 		C.set_dir(pick(cardinal))

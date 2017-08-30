@@ -128,23 +128,23 @@
 					else
 						dir_to_set = 4
 			else
-				user << "<span class='notice'>You can't reach.</span>"
+				user << SPAN_NOTICE("You can't reach.")
 				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
 		for(var/obj/structure/window/WINDOW in loc)
 			if(WINDOW.dir == dir_to_set)
-				user << "<span class='notice'>There is already a window facing this way there.</span>"
+				user << SPAN_NOTICE("There is already a window facing this way there.")
 				return
-		user << "<span class='notice'>You start placing the window.</span>"
+		user << SPAN_NOTICE("You start placing the window.")
 		if(do_after(user,20,src))
 			for(var/obj/structure/window/WINDOW in loc)
 				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
-					user << "<span class='notice'>There is already a window facing this way there.</span>"
+					user << SPAN_NOTICE("There is already a window facing this way there.")
 					return
 
 			var/wtype = ST.material.created_window
 			if (ST.use(1))
 				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
-				user << "<span class='notice'>You place the [WD] on [src].</span>"
+				user << SPAN_NOTICE("You place the [WD] on [src].")
 				WD.update_icon()
 		return
 //window placing end

@@ -66,7 +66,7 @@
 /obj/item/device/assembly/proc/attach_assembly(var/obj/item/device/assembly/A, var/mob/user)
 	holder = new/obj/item/device/assembly_holder(get_turf(src))
 	if(holder.attach(A, src, user))
-		user << "<span class='notice'>You attach \the [A] to \the [src]!</span>"
+		user << SPAN_NOTICE("You attach \the [A] to \the [src]!")
 
 
 /obj/item/device/assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -77,9 +77,9 @@
 			return
 	if(isscrewdriver(W))
 		if(toggle_secure())
-			user << "<span class='notice'>\The [src] is ready!</span>"
+			user << SPAN_NOTICE("\The [src] is ready!")
 		else
-			user << "<span class='notice'>\The [src] can now be attached!</span>"
+			user << SPAN_NOTICE("\The [src] can now be attached!")
 		return
 	..()
 
@@ -92,9 +92,9 @@
 	..(user)
 	if(in_range(src, user) || loc == user)
 		if(secured)
-			user << "<span class='notice'>\The [src] is ready!</span>"
+			user << SPAN_NOTICE("\The [src] is ready!")
 		else
-			user << "<span class='notice'>\The [src] can be attached!</span>"
+			user << SPAN_NOTICE("\The [src] can be attached!")
 
 
 /obj/item/device/assembly/attack_self(mob/user as mob)

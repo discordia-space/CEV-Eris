@@ -314,7 +314,7 @@
 			var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 			if(newtag)
 				RCon_tag = newtag
-				user << "<span class='notice'>You changed the RCON tag to: [newtag]</span>"
+				user << SPAN_NOTICE("You changed the RCON tag to: [newtag]")
 			return
 		// Charged above 1% and safeties are enabled.
 		if((charge > (capacity/100)) && safeties_enabled)

@@ -63,12 +63,12 @@
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health+10)
-				user.visible_message("<span class='warning'>[user] repairs [src]!</span>","<span class='notice'>You repair [src]!</span>")
+				user.visible_message("<span class='warning'>[user] repairs [src]!</span>",SPAN_NOTICE("You repair [src]!"))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			else
-				user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
+				user << SPAN_NOTICE("Unable to repair with the maintenance panel closed.")
 		else
-			user << "<span class='notice'>[src] does not need a repair.</span>"
+			user << SPAN_NOTICE("[src] does not need a repair.")
 	else
 		if(hasvar(W,"force") && hasvar(W,"damtype"))
 			switch(W.damtype)

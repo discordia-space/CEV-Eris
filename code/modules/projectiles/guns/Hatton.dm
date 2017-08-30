@@ -67,7 +67,7 @@
 		user.put_in_hands(magazine)
 		magazine.update_icon()
 		magazine = null
-		user << "<span class='notice'>You pull the magazine out of \the [src]!</span>"
+		user << SPAN_NOTICE("You pull the magazine out of \the [src]!")
 	update_icon()
 	return
 

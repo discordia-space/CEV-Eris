@@ -74,7 +74,7 @@
 
 /mob/living/silicon/proc/dostatelaws(var/method, var/prefix, var/datum/ai_laws/laws)
 	if(stating_laws[prefix])
-		src << "<span class='notice'>[method]: Already stating laws using this communication method.</span>"
+		src << SPAN_NOTICE("[method]: Already stating laws using this communication method.")
 		return
 
 	stating_laws[prefix] = 1

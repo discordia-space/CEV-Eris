@@ -89,7 +89,7 @@
 	if (usr.stat)
 		return
 	if (!ishuman(usr) && !issmall(usr)) //Make sure they're a mob that has dna
-		usr << "<span class='notice'>Try as you might, you can not climb up into the scanner.</span>"
+		usr << SPAN_NOTICE("Try as you might, you can not climb up into the scanner.")
 		return
 	if (src.occupant)
 		usr << "<span class='warning'>The scanner is already occupied!</span>"

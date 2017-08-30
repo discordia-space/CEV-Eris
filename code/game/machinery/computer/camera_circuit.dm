@@ -108,7 +108,7 @@
 /obj/item/weapon/circuitboard/camera/emag_act(var/remaining_charges, var/mob/user)
 	if(network)
 		authorised = 1
-		user << "<span class='notice'>You authorised the circuit network!</span>"
+		user << SPAN_NOTICE("You authorised the circuit network!")
 		updateDialog()
 		return 1
 	else

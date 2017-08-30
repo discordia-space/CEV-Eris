@@ -206,7 +206,7 @@
 			world.log << "Failed to insert vote from [client.id] for poll [poll_id]. Error message: [insert_query.ErrorMsg()]."
 			return
 
-		usr << "<span class='notice'>Vote successful.</span>"
+		usr << SPAN_NOTICE("Vote successful.")
 		usr << browse(null,"window=playerpoll")
 
 
@@ -251,5 +251,5 @@
 			world.log << "Failed to insert text vote reply for [poll_id] from user [client.id]. Error message: [insert_query.ErrorMsg()]."
 			return
 
-		usr << "<span class='notice'>Vote successful.</span>"
+		usr << SPAN_NOTICE("Vote successful.")
 		usr << browse(null,"window=playerpoll")

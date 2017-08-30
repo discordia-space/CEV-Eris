@@ -105,7 +105,7 @@
 	set category = "Abilities"
 
 	if(alien_queen_exists())
-		src << "<span class='notice'>We already have an active queen.</span>"
+		src << SPAN_NOTICE("We already have an active queen.")
 		return
 
 	if(check_alien_ability(500))

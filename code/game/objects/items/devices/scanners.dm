@@ -39,25 +39,25 @@ REAGENT SCANNER
 		user << text("<span class='warning'>You try to analyze the floor's vitals!</span>")
 		for(var/mob/O in viewers(M, null))
 			O.show_message("<span class='warning'>\The [user] has analyzed the floor's vitals!</span>", 1)
-		user.show_message("<span class='notice'>Analyzing Results for The floor:</span>", 1)
+		user.show_message(SPAN_NOTICE("Analyzing Results for The floor:"), 1)
 		user.show_message("Overall Status: Healthy</span>", 1)
-		user.show_message("<span class='notice'>    Damage Specifics: 0-0-0-0</span>", 1)
-		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
-		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
+		user.show_message(SPAN_NOTICE("    Damage Specifics: 0-0-0-0"), 1)
+		user.show_message(SPAN_NOTICE("Key: Suffocation/Toxin/Burns/Brute"), 1)
+		user.show_message(SPAN_NOTICE("Body Temperature: ???"), 1)
 		return
 	if(!user.IsAdvancedToolUser())
 		return
 	flick("health2", src)
-	user.visible_message("<span class='notice'>[user] has analyzed [M]'s vitals.</span>","<span class='notice'>You have analyzed [M]'s vitals.</span>")
+	user.visible_message(SPAN_NOTICE("[user] has analyzed [M]'s vitals."),SPAN_NOTICE("You have analyzed [M]'s vitals."))
 
 	if (!ishuman(M) || M.isSynthetic())
 		//these sensors are designed for organic life
-		user.show_message("<span class='notice'>Analyzing Results for ERROR:\n\t Overall Status: ERROR</span>")
-		user.show_message("<span class='notice'>    Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font></span>", 1)
-		user.show_message("<span class='notice'>    Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font></span>")
-		user.show_message("<span class='notice'>Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
+		user.show_message(SPAN_NOTICE("Analyzing Results for ERROR:\n\t Overall Status: ERROR"))
+		user.show_message(SPAN_NOTICE("    Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>"), 1)
+		user.show_message(SPAN_NOTICE("    Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>"))
+		user.show_message(SPAN_NOTICE("Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)"), 1)
 		user.show_message("<span class='warning'>Warning: Blood Level ERROR: --% --cl.</span> <span class='notice'>Type: ERROR</span>")
-		user.show_message("<span class='notice'>Subject's pulse: <font color='red'>-- bpm.</font></span>")
+		user.show_message(SPAN_NOTICE("Subject's pulse: <font color='red'>-- bpm.</font>"))
 		return
 
 	var/fake_oxy = max(rand(1,40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
@@ -67,19 +67,19 @@ REAGENT SCANNER
 	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
-		user.show_message("<span class='notice'>Analyzing Results for [M]:</span>")
-		user.show_message("<span class='notice'>Overall Status: dead</span>")
+		user.show_message(SPAN_NOTICE("Analyzing Results for [M]:"))
+		user.show_message(SPAN_NOTICE("Overall Status: dead"))
 	else
 		user.show_message("<span class='notice'>Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[round(M.health/M.maxHealth*100)]% healthy"]</span>")
-	user.show_message("<span class='notice'>    Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font></span>", 1)
-	user.show_message("<span class='notice'>    Damage Specifics: <font color='blue'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font></span>")
-	user.show_message("<span class='notice'>Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
+	user.show_message(SPAN_NOTICE("    Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>"), 1)
+	user.show_message(SPAN_NOTICE("    Damage Specifics: <font color='blue'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>"))
+	user.show_message(SPAN_NOTICE("Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)"), 1)
 	if(M.tod && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
-		user.show_message("<span class='notice'>Time of Death: [M.tod]</span>")
+		user.show_message(SPAN_NOTICE("Time of Death: [M.tod]"))
 	if(ishuman(M) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1,1)
-		user.show_message("<span class='notice'>Localized Damage, Brute/Burn:</span>",1)
+		user.show_message(SPAN_NOTICE("Localized Damage, Brute/Burn:"),1)
 		if(length(damaged)>0)
 			for(var/obj/item/organ/external/org in damaged)
 				user.show_message(text("<span class='notice'>     [][]: [][] - []</span>",
@@ -89,7 +89,7 @@ REAGENT SCANNER
 				(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":"",
 				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0),1)
 		else
-			user.show_message("<span class='notice'>    Limbs are OK.</span>",1)
+			user.show_message(SPAN_NOTICE("    Limbs are OK."),1)
 
 	OX = M.getOxyLoss() > 50 ? 	"<font color='blue'><b>Severe oxygen deprivation detected</b></font>" 		: 	"Subject bloodstream oxygen level normal"
 	TX = M.getToxLoss() > 50 ? 	"<font color='green'><b>Dangerous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level minimal"
@@ -106,11 +106,11 @@ REAGENT SCANNER
 			for(var/A in C.reagents.reagent_list)
 				var/datum/reagent/R = A
 				if(R.scannable)
-					reagentdata["[R.id]"] = "<span class='notice'>    [round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name]</span>"
+					reagentdata["[R.id]"] = SPAN_NOTICE("    [round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name]")
 				else
 					unknown++
 			if(reagentdata.len)
-				user.show_message("<span class='notice'>Beneficial reagents detected in subject's blood:</span>")
+				user.show_message(SPAN_NOTICE("Beneficial reagents detected in subject's blood:"))
 				for(var/d in reagentdata)
 					user.show_message(reagentdata[d])
 			if(unknown)
@@ -119,7 +119,7 @@ REAGENT SCANNER
 			var/unknown = 0
 			for(var/datum/reagent/R in C.ingested.reagent_list)
 				if(R.scannable)
-					user << "<span class='notice'>[R.name] found in subject's stomach.</span>"
+					user << SPAN_NOTICE("[R.name] found in subject's stomach.")
 				else
 					++unknown
 			if(unknown)
@@ -175,7 +175,7 @@ REAGENT SCANNER
 			else if(blood_percent <= BLOOD_VOLUME_BAD)
 				user.show_message("<span class='danger'><i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</i></span> <span class='notice'>Type: [blood_type]</span>")
 			else
-				user.show_message("<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span>")
+				user.show_message(SPAN_NOTICE("Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]"))
 		user.show_message("<span class='notice'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>")
 	src.add_fingerprint(user)
 
@@ -367,11 +367,11 @@ REAGENT SCANNER
 			for (var/datum/reagent/R in O.reagents.reagent_list)
 				dat += "\n \t <span class='notice'>[R][details ? ": [R.volume / one_percent]%" : ""]"
 		if(dat)
-			user << "<span class='notice'>Chemicals found: [dat]</span>"
+			user << SPAN_NOTICE("Chemicals found: [dat]")
 		else
-			user << "<span class='notice'>No active chemical agents found in [O].</span>"
+			user << SPAN_NOTICE("No active chemical agents found in [O].")
 	else
-		user << "<span class='notice'>No significant chemical agents found in [O].</span>"
+		user << SPAN_NOTICE("No significant chemical agents found in [O].")
 
 /obj/item/device/reagent_scanner/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))

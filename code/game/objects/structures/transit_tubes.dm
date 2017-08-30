@@ -117,7 +117,7 @@ obj/structure/ex_act(severity)
 	if(!pod_moving && icon_state == "open" && ismob(AM))
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(pod.contents.len)
-				AM << "<span class='notice'>The pod is already occupied.</span>"
+				AM << SPAN_NOTICE("The pod is already occupied.")
 				return
 			else if(!pod.moving && pod.dir in directions())
 				AM.loc = pod

@@ -176,9 +176,9 @@
 			return
 		status = !status
 		if(status)
-			user << "<span class='notice'>You secure the welder.</span>"
+			user << SPAN_NOTICE("You secure the welder.")
 		else
-			user << "<span class='notice'>The welder can now be attached and modified.</span>"
+			user << SPAN_NOTICE("The welder can now be attached and modified.")
 		src.add_fingerprint(user)
 		return
 
@@ -230,7 +230,7 @@
 	if(!proximity) return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !src.welding)
 		O.reagents.trans_to_obj(src, max_fuel)
-		user << "<span class='notice'>Welder refueled</span>"
+		user << SPAN_NOTICE("Welder refueled")
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.welding)
@@ -271,7 +271,7 @@
 		return 1
 	else
 		if(M)
-			M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+			M << SPAN_NOTICE("You need more welding fuel to complete this task.")
 		return 0
 
 //Returns whether or not the welding tool is currently on.
@@ -296,7 +296,7 @@
 	if(set_welding && !welding)
 		if (get_fuel() > 0)
 			if(M)
-				M << "<span class='notice'>You switch the [src] on.</span>"
+				M << SPAN_NOTICE("You switch the [src] on.")
 			else if(T)
 				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
 			src.force = WEAPON_FORCE_PAINFULL
@@ -308,13 +308,13 @@
 			processing_objects |= src
 		else
 			if(M)
-				M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+				M << SPAN_NOTICE("You need more welding fuel to complete this task.")
 			return
 	//Otherwise
 	else if(!set_welding && welding)
 		processing_objects -= src
 		if(M)
-			M << "<span class='notice'>You switch \the [src] off.</span>"
+			M << SPAN_NOTICE("You switch \the [src] off.")
 		else if(T)
 			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
 		src.force = WEAPON_FORCE_WEAK
@@ -432,12 +432,12 @@
 			if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(15,0,0,1)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message("<span class='notice'>\The [user] patches some dents on \the [M]'s [S.name] with \the [src].</span>")
+				user.visible_message(SPAN_NOTICE("\The [user] patches some dents on \the [M]'s [S.name] with \the [src]."))
 			else if(S.open != 2)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 			return 1
 		else if(S.open != 2)
-			user << "<span class='notice'>Nothing to fix!</span>"
+			user << SPAN_NOTICE("Nothing to fix!")
 
 	else
 		return ..()

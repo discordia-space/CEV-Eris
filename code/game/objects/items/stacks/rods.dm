@@ -35,7 +35,7 @@
 			var/obj/item/stack/material/steel/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
 			for (var/mob/M in viewers(src))
-				M.show_message("<span class='notice'>[src] is shaped into metal by [user.name] with the weldingtool.</span>", 3, "<span class='notice'>You hear welding.</span>", 2)
+				M.show_message(SPAN_NOTICE("[src] is shaped into metal by [user.name] with the weldingtool."), 3, SPAN_NOTICE("You hear welding."), 2)
 			var/obj/item/stack/rods/R = src
 			src = null
 			var/replace = (user.get_inactive_hand()==R)
@@ -66,13 +66,13 @@
 		if(get_amount() < 2)
 			user << "<span class='warning'>You need at least two rods to do this.</span>"
 			return
-		usr << "<span class='notice'>Assembling grille...</span>"
+		usr << SPAN_NOTICE("Assembling grille...")
 		in_use = 1
 		if (!do_after(usr, 10))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
-		usr << "<span class='notice'>You assemble a grille</span>"
+		usr << SPAN_NOTICE("You assemble a grille")
 		in_use = 0
 		F.add_fingerprint(usr)
 		use(2)

@@ -42,8 +42,8 @@
 
 		M.heal_organ_damage((src.heal_brute/2), (src.heal_burn/2))
 		user.visible_message( \
-			"<span class='notice'>[M] has been applied with [src] by [user].</span>", \
-			"<span class='notice'>You apply \the [src] to [M].</span>" \
+			SPAN_NOTICE("[M] has been applied with [src] by [user]."), \
+			SPAN_NOTICE("You apply \the [src] to [M].") \
 		)
 		use(1)
 
@@ -69,8 +69,8 @@
 				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>"
 				return 1
 			else
-				user.visible_message("<span class='notice'>\The [user] starts treating [M]'s [affecting.name].</span>", \
-						             "<span class='notice'>You start treating [M]'s [affecting.name].</span>" )
+				user.visible_message(SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."), \
+						             SPAN_NOTICE("You start treating [M]'s [affecting.name].") )
 				var/used = 0
 				for (var/datum/wound/W in affecting.wounds)
 					if (W.internal)
@@ -80,19 +80,19 @@
 					if(used == amount)
 						break
 					if(!do_mob(user, M, W.damage/5))
-						user << "<span class='notice'>You must stand still to bandage wounds.</span>"
+						user << SPAN_NOTICE("You must stand still to bandage wounds.")
 						break
 
 					if (W.current_stage <= W.max_bleeding_stage)
-						user.visible_message("<span class='notice'>\The [user] bandages \a [W.desc] on [M]'s [affecting.name].</span>", \
-						                              "<span class='notice'>You bandage \a [W.desc] on [M]'s [affecting.name].</span>" )
+						user.visible_message(SPAN_NOTICE("\The [user] bandages \a [W.desc] on [M]'s [affecting.name]."), \
+						                              SPAN_NOTICE("You bandage \a [W.desc] on [M]'s [affecting.name].") )
 						//H.add_side_effect("Itch")
 					else if (W.damage_type == BRUISE)
-						user.visible_message("<span class='notice'>\The [user] places a bruise patch over \a [W.desc] on [M]'s [affecting.name].</span>", \
-						                              "<span class='notice'>You place a bruise patch over \a [W.desc] on [M]'s [affecting.name].</span>" )
+						user.visible_message(SPAN_NOTICE("\The [user] places a bruise patch over \a [W.desc] on [M]'s [affecting.name]."), \
+						                              SPAN_NOTICE("You place a bruise patch over \a [W.desc] on [M]'s [affecting.name].") )
 					else
-						user.visible_message("<span class='notice'>\The [user] places a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>", \
-						                              "<span class='notice'>You place a bandaid over \a [W.desc] on [M]'s [affecting.name].</span>" )
+						user.visible_message(SPAN_NOTICE("\The [user] places a bandaid over \a [W.desc] on [M]'s [affecting.name]."), \
+						                              SPAN_NOTICE("You place a bandaid over \a [W.desc] on [M]'s [affecting.name].") )
 					W.bandage()
 					used++
 				affecting.update_damages()
@@ -107,7 +107,7 @@
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
+				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
 
 /obj/item/stack/medical/ointment
 	name = "ointment"
@@ -131,13 +131,13 @@
 				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been salved.</span>"
 				return 1
 			else
-				user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
-						             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
+				user.visible_message(SPAN_NOTICE("\The [user] starts salving wounds on [M]'s [affecting.name]."), \
+						             SPAN_NOTICE("You start salving the wounds on [M]'s [affecting.name].") )
 				if(!do_mob(user, M, 10))
-					user << "<span class='notice'>You must stand still to salve wounds.</span>"
+					user << SPAN_NOTICE("You must stand still to salve wounds.")
 					return 1
-				user.visible_message("<span class='notice'>[user] salved wounds on [M]'s [affecting.name].</span>", \
-				                         "<span class='notice'>You salved wounds on [M]'s [affecting.name].</span>" )
+				user.visible_message(SPAN_NOTICE("[user] salved wounds on [M]'s [affecting.name]."), \
+				                         SPAN_NOTICE("You salved wounds on [M]'s [affecting.name].") )
 				use(1)
 				affecting.salve()
 		else
@@ -145,7 +145,7 @@
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
+				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
@@ -168,8 +168,8 @@
 				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been treated.</span>"
 				return 1
 			else
-				user.visible_message("<span class='notice'>\The [user] starts treating [M]'s [affecting.name].</span>", \
-						             "<span class='notice'>You start treating [M]'s [affecting.name].</span>" )
+				user.visible_message(SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."), \
+						             SPAN_NOTICE("You start treating [M]'s [affecting.name].") )
 				var/used = 0
 				for (var/datum/wound/W in affecting.wounds)
 					if (W.internal)
@@ -179,17 +179,17 @@
 					if(used == amount)
 						break
 					if(!do_mob(user, M, W.damage/5))
-						user << "<span class='notice'>You must stand still to bandage wounds.</span>"
+						user << SPAN_NOTICE("You must stand still to bandage wounds.")
 						break
 					if (W.current_stage <= W.max_bleeding_stage)
-						user.visible_message("<span class='notice'>\The [user] cleans \a [W.desc] on [M]'s [affecting.name] and seals the edges with bioglue.</span>", \
-						                     "<span class='notice'>You clean and seal \a [W.desc] on [M]'s [affecting.name].</span>" )
+						user.visible_message(SPAN_NOTICE("\The [user] cleans \a [W.desc] on [M]'s [affecting.name] and seals the edges with bioglue."), \
+						                     SPAN_NOTICE("You clean and seal \a [W.desc] on [M]'s [affecting.name].") )
 					else if (W.damage_type == BRUISE)
-						user.visible_message("<span class='notice'>\The [user] places a medical patch over \a [W.desc] on [M]'s [affecting.name].</span>", \
-						                              "<span class='notice'>You place a medical patch over \a [W.desc] on [M]'s [affecting.name].</span>" )
+						user.visible_message(SPAN_NOTICE("\The [user] places a medical patch over \a [W.desc] on [M]'s [affecting.name]."), \
+						                              SPAN_NOTICE("You place a medical patch over \a [W.desc] on [M]'s [affecting.name].") )
 					else
-						user.visible_message("<span class='notice'>\The [user] smears some bioglue over \a [W.desc] on [M]'s [affecting.name].</span>", \
-						                              "<span class='notice'>You smear some bioglue over \a [W.desc] on [M]'s [affecting.name].</span>" )
+						user.visible_message(SPAN_NOTICE("\The [user] smears some bioglue over \a [W.desc] on [M]'s [affecting.name]."), \
+						                              SPAN_NOTICE("You smear some bioglue over \a [W.desc] on [M]'s [affecting.name].") )
 					W.bandage()
 					W.disinfect()
 					W.heal_damage(heal_brute)
@@ -206,7 +206,7 @@
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
+				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
@@ -230,13 +230,13 @@
 				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been salved.</span>"
 				return 1
 			else
-				user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
-						             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
+				user.visible_message(SPAN_NOTICE("\The [user] starts salving wounds on [M]'s [affecting.name]."), \
+						             SPAN_NOTICE("You start salving the wounds on [M]'s [affecting.name].") )
 				if(!do_mob(user, M, 10))
-					user << "<span class='notice'>You must stand still to salve wounds.</span>"
+					user << SPAN_NOTICE("You must stand still to salve wounds.")
 					return 1
-				user.visible_message( 	"<span class='notice'>[user] covers wounds on [M]'s [affecting.name] with regenerative membrane.</span>", \
-										"<span class='notice'>You cover wounds on [M]'s [affecting.name] with regenerative membrane.</span>" )
+				user.visible_message( 	SPAN_NOTICE("[user] covers wounds on [M]'s [affecting.name] with regenerative membrane."), \
+										SPAN_NOTICE("You cover wounds on [M]'s [affecting.name] with regenerative membrane.") )
 				affecting.heal_damage(0,heal_burn)
 				use(1)
 				affecting.salve()
@@ -245,7 +245,7 @@
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>"
+				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
 
 /obj/item/stack/medical/splint
 	name = "medical splints"

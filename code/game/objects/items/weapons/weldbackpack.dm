@@ -28,7 +28,7 @@
 			if(T.welding)
 				user << "<span class='danger'>That was close!</span>"
 			src.reagents.trans_to_obj(W, T.max_fuel)
-			user << "<span class='notice'>Welder refilled!</span>"
+			user << SPAN_NOTICE("Welder refilled!")
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 	user << "<span class='warning'>The tank scoffs at your insolence. It only provides services to welders.</span>"
@@ -39,7 +39,7 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to_obj(src, max_fuel)
-		user << "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>"
+		user << SPAN_NOTICE("You crack the cap off the top of the pack and fill it back up again from the tank.")
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)

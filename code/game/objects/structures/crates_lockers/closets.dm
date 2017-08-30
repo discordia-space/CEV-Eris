@@ -159,7 +159,7 @@
 
 /obj/structure/closet/proc/toggle(mob/user as mob)
 	if(!(src.opened ? src.close() : src.open()))
-		user << "<span class='notice'>It won't budge!</span>"
+		user << SPAN_NOTICE("It won't budge!")
 		return
 	update_icon()
 
@@ -214,11 +214,11 @@
 				if(!WT.isOn())
 					return
 				else
-					user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+					user << SPAN_NOTICE("You need more welding fuel to complete this task.")
 					return
 			new /obj/item/stack/material/steel(src.loc)
 			for(var/mob/M in viewers(src))
-				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
+				M.show_message(SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."), 3, "You hear welding.", 2)
 			qdel(src)
 			return
 		if(istype(W, /obj/item/weapon/storage/laundry_basket) && W.contents.len)
@@ -226,9 +226,9 @@
 			var/turf/T = get_turf(src)
 			for(var/obj/item/I in LB.contents)
 				LB.remove_from_storage(I, T)
-			user.visible_message("<span class='notice'>[user] empties \the [LB] into \the [src].</span>", \
-								 "<span class='notice'>You empty \the [LB] into \the [src].</span>", \
-								 "<span class='notice'>You hear rustling of clothes.</span>")
+			user.visible_message(SPAN_NOTICE("[user] empties \the [LB] into \the [src]."), \
+								 SPAN_NOTICE("You empty \the [LB] into \the [src]."), \
+								 SPAN_NOTICE("You hear rustling of clothes."))
 			return
 		if(isrobot(user))
 			return
@@ -245,7 +245,7 @@
 			if(!WT.isOn())
 				return
 			else
-				user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+				user << SPAN_NOTICE("You need more welding fuel to complete this task.")
 				return
 		src.welded = !src.welded
 		src.update_icon()
@@ -285,7 +285,7 @@
 		return
 
 	if(!src.open())
-		user << "<span class='notice'>It won't budge!</span>"
+		user << SPAN_NOTICE("It won't budge!")
 
 /obj/structure/closet/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -295,7 +295,7 @@
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
-		usr << "<span class='notice'>It won't budge!</span>"
+		usr << SPAN_NOTICE("It won't budge!")
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)

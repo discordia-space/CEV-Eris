@@ -65,7 +65,7 @@
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
-					user << "<span class='notice'>You insert the cables.</span>"
+					user << SPAN_NOTICE("You insert the cables.")
 					construct_op--
 					stat &= ~BROKEN // the machine's not borked anymore!
 				else

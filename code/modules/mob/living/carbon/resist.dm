@@ -7,13 +7,13 @@
 		spin(32,2)
 		visible_message(
 			"<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>",
-			"<span class='notice'>You stop, drop, and roll!</span>"
+			SPAN_NOTICE("You stop, drop, and roll!")
 			)
 		sleep(30)
 		if(fire_stacks <= 0)
 			visible_message(
 				"<span class='danger'>[src] has successfully extinguished themselves!</span>",
-				"<span class='notice'>You extinguish yourself.</span>"
+				SPAN_NOTICE("You extinguish yourself.")
 				)
 			ExtinguishMob()
 		return TRUE
@@ -62,7 +62,7 @@
 			return
 		visible_message(
 			"<span class='danger'>\The [src] manages to remove \the [handcuffed]!</span>",
-			"<span class='notice'>You successfully remove \the [handcuffed].</span>"
+			SPAN_NOTICE("You successfully remove \the [handcuffed].")
 			)
 		drop_from_inventory(handcuffed)
 
@@ -96,7 +96,7 @@
 			return
 		visible_message(
 			"<span class='danger'>[src] manages to remove \the [legcuffed]!</span>",
-			"<span class='notice'>You successfully remove \the [legcuffed].</span>"
+			SPAN_NOTICE("You successfully remove \the [legcuffed].")
 			)
 
 		drop_from_inventory(legcuffed)
@@ -171,5 +171,5 @@
 			if(!buckled)
 				return
 			visible_message("<span class='danger'>\The [usr] manages to unbuckle themself!</span>",
-							"<span class='notice'>You successfully unbuckle yourself.</span>")
+							SPAN_NOTICE("You successfully unbuckle yourself."))
 			buckled.user_unbuckle_mob(src)

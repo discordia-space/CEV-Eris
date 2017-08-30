@@ -69,7 +69,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	var/input = sanitizeSafe(input("What do you want to name the circuit?", "Rename", src.name) as null|text, MAX_NAME_LEN)
 	if(src && input && CanInteract(M, physical_state))
-		M << "<span class='notice'>The circuit '[src.name]' is now labeled '[input]'.</span>"
+		M << SPAN_NOTICE("The circuit '[src.name]' is now labeled '[input]'.")
 		name = input
 
 /obj/item/integrated_circuit/interact(mob/user)
@@ -235,7 +235,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			forceMove(T)
 			assembly = null
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-			usr << "<span class='notice'>You pop \the [src] out of the case, and slide it out.</span>"
+			usr << SPAN_NOTICE("You pop \the [src] out of the case, and slide it out.")
 		else
 			usr <<"<span class='warning'>You need a screwdriver to remove components.</span>"
 		var/obj/item/device/electronic_assembly/ea = loc

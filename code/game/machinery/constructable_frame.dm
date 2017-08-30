@@ -39,16 +39,16 @@
 					user << "<span class='warning'>You need five lengths of cable to add them to the frame.</span>"
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				user << "<span class='notice'>You start to add cables to the frame.</span>"
+				user << SPAN_NOTICE("You start to add cables to the frame.")
 				if(do_after(user, 20, src) && state == STATE_NONE)
 					if(C.use(5))
-						user << "<span class='notice'>You add cables to the frame.</span>"
+						user << SPAN_NOTICE("You add cables to the frame.")
 						state = STATE_WIRES
 						icon_state = "[base_state]_1"
 			else
 				if(istype(P, /obj/item/weapon/wrench))
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-					user << "<span class='notice'>You dismantle the frame</span>"
+					user << SPAN_NOTICE("You dismantle the frame")
 					new /obj/item/stack/material/steel(src.loc, 5)
 					qdel(src)
 		if(STATE_WIRES)
@@ -56,7 +56,7 @@
 				var/obj/item/weapon/circuitboard/B = P
 				if(B.board_type == "machine" && frame_type == B.frame_type)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					user << "<span class='notice'>You add the circuit board to the frame.</span>"
+					user << SPAN_NOTICE("You add the circuit board to the frame.")
 					circuit = P
 					user.drop_from_inventory(P)
 					P.forceMove(src)
@@ -77,7 +77,7 @@
 			else
 				if(istype(P, /obj/item/weapon/wirecutters))
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
-					user << "<span class='notice'>You remove the cables.</span>"
+					user << SPAN_NOTICE("You remove the cables.")
 					state = STATE_NONE
 					icon_state = "[base_state]_0"
 					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
@@ -90,9 +90,9 @@
 				circuit.loc = src.loc
 				circuit = null
 				if(components.len == 0)
-					user << "<span class='notice'>You remove the circuit board.</span>"
+					user << SPAN_NOTICE("You remove the circuit board.")
 				else
-					user << "<span class='notice'>You remove the circuit board and other components.</span>"
+					user << SPAN_NOTICE("You remove the circuit board and other components.")
 					for(var/obj/item/weapon/W in components)
 						W.loc = src.loc
 				desc = initial(desc)

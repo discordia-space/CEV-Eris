@@ -38,11 +38,11 @@
 					if (src.auth_need - src.authorized.len > 0)
 						message_admins("[key_name_admin(user)] has authorized early shuttle launch")
 						log_game("[user.ckey] has authorized early shuttle launch")
-						world << text("<span class='notice'><b>Alert: [] authorizations needed until shuttle is launched early</b></span>", src.auth_need - src.authorized.len)
+						world << (SPAN_NOTICE("<b>Alert: [src.auth_need - src.authorized.len] authorizations needed until shuttle is launched early</b>"))
 					else
 						message_admins("[key_name_admin(user)] has launched the shuttle")
 						log_game("[user.ckey] has launched the shuttle early")
-						world << "<span class='notice'><b>Alert: Shuttle launch time shortened to 10 seconds!</b></span>"
+						world << SPAN_NOTICE("<b>Alert: Shuttle launch time shortened to 10 seconds!</b>")
 						emergency_shuttle.set_launch_countdown(10)
 						//src.authorized = null
 						qdel(src.authorized)
@@ -50,10 +50,10 @@
 
 				if("Repeal")
 					src.authorized -= W:registered_name
-					world << text("<span class='notice'><b>Alert: [] authorizations needed until shuttle is launched early</b></span>", src.auth_need - src.authorized.len)
+					world << SPAN_NOTICE("<b>Alert: [src.auth_need - src.authorized.len] authorizations needed until shuttle is launched early</b>")
 
 				if("Abort")
-					world << "<span class='notice'><b>All authorizations to shortening time for shuttle launch have been revoked!</b></span>"
+					world << SPAN_NOTICE("<b>All authorizations to shortening time for shuttle launch have been revoked!</b>")
 					src.authorized.len = 0
 					src.authorized = list(  )
 
@@ -63,7 +63,7 @@
 			if(!emagged && !emergency_shuttle.location() && user.get_active_hand() == W)
 				switch(choice)
 					if("Launch")
-						world << "<span class='notice'><b>Alert: Shuttle launch time shortened to 10 seconds!</b></span>"
+						world << SPAN_NOTICE("<b>Alert: Shuttle launch time shortened to 10 seconds!</b>")
 						emergency_shuttle.set_launch_countdown(10)
 						emagged = 1
 					if("Cancel")

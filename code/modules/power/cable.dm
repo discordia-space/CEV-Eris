@@ -518,7 +518,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
 			return 1
 		else if(S.open != 2)
-			user << "<span class='notice'>Nothing to fix!</span>"
+			user << SPAN_NOTICE("Nothing to fix!")
 
 	else
 		return ..()
@@ -546,7 +546,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		final_color = possible_cable_coil_colours["Red"]
 		selected_color = "red"
 	color = final_color
-	user << "<span class='notice'>You change \the [src]'s color to [lowertext(selected_color)].</span>"
+	user << SPAN_NOTICE("You change \the [src]'s color to [lowertext(selected_color)].")
 
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
@@ -578,7 +578,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 			return
 		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
 		B.color = color
-		usr << "<span class='notice'>You wind some cable together to make some restraints.</span>"
+		usr << SPAN_NOTICE("You wind some cable together to make some restraints.")
 		src.use(15)
 	else
 		usr << "\blue You cannot do that."

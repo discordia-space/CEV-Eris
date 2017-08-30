@@ -24,7 +24,7 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 		if(do_after(user, 40, src) && !wired && anchored)
 			if (cable.use(1))
 				wired = 1
-				user << "<span class='notice'>You wire \the [src].</span>"
+				user << SPAN_NOTICE("You wire \the [src].")
 
 	else if(istype(C, /obj/item/weapon/wirecutters) && wired )
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
@@ -32,7 +32,7 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 
 		if(do_after(user, 40, src))
 			if(!src) return
-			user << "<span class='notice'>You cut the wires!</span>"
+			user << SPAN_NOTICE("You cut the wires!")
 			new/obj/item/stack/cable_coil(src.loc, 1)
 			wired = 0
 
@@ -64,6 +64,6 @@ obj/structure/firedoor_assembly/attackby(C as obj, mob/user as mob)
 				new /obj/item/stack/material/steel(src.loc, 2)
 				qdel(src)
 		else
-			user << "<span class='notice'>You need more welding fuel.</span>"
+			user << SPAN_NOTICE("You need more welding fuel.")
 	else
 		..(C, user)

@@ -128,7 +128,7 @@
 			beaker = I
 			user.drop_item()
 			I.loc = src
-			user.visible_message("<span class='notice'>\The [user] adds \a [I] to \the [src].</span>", "<span class='notice'>You add \a [I] to \the [src].</span>")
+			user.visible_message(SPAN_NOTICE("\The [user] adds \a [I] to \the [src]."), SPAN_NOTICE("You add \a [I] to \the [src]."))
 		else
 			user << "<span class='warning'>\The [src] has a beaker already.</span>"
 		return

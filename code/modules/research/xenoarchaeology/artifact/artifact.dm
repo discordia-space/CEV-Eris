@@ -63,7 +63,7 @@
 		var/obj/item/device/measuring_tape/P = W
 		user.visible_message("<span class='notice'>[user] extends [P] towards [src].","\blue You extend [P] towards [src].</span>")
 		if(do_after(user,40,src))
-			user << "<span class='notice'>[src] has been excavated to a depth of [2*src.excavation_level]cm.</span>"
+			user << SPAN_NOTICE("[src] has been excavated to a depth of [2*src.excavation_level]cm.")
 		return
 
 	if (istype(W, /obj/item/weapon/pickaxe))
@@ -80,7 +80,7 @@
 		if(!do_after(user,P.digspeed, src))
 			return
 
-		user << "<span class='notice'>You finish [P.drill_verb] [src].</span>"
+		user << SPAN_NOTICE("You finish [P.drill_verb] [src].")
 		excavation_level += P.excavation_amount
 
 		if(excavation_level > 100)

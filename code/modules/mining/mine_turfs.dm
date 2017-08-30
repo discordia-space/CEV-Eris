@@ -133,9 +133,9 @@
 
 	if (istype(W, /obj/item/device/measuring_tape))
 		var/obj/item/device/measuring_tape/P = W
-		user.visible_message("<span class='notice'>\The [user] extends [P] towards [src].</span>","<span class='notice'>You extend [P] towards [src].</span>")
+		user.visible_message(SPAN_NOTICE("\The [user] extends [P] towards [src]."),SPAN_NOTICE("You extend [P] towards [src]."))
 		if(do_after(user,25, src))
-			user << "<span class='notice'>\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm.</span>"
+			user << SPAN_NOTICE("\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm.")
 		return
 
 	if (istype(W, /obj/item/weapon/pickaxe))
@@ -169,7 +169,7 @@
 					artifact_debris()
 
 		if(do_after(user,P.digspeed, src))
-			user << "<span class='notice'>You finish [P.drill_verb] the rock.</span>"
+			user << SPAN_NOTICE("You finish [P.drill_verb] the rock.")
 
 			if(finds && finds.len)
 				var/datum/find/F = finds[1]
@@ -472,7 +472,7 @@
 
 		if(!do_after(user,40, src)) return
 
-		user << "<span class='notice'>You dug a hole.</span>"
+		user << SPAN_NOTICE("You dug a hole.")
 		gets_dug()
 
 	else if(istype(W,/obj/item/weapon/storage/bag/ore))

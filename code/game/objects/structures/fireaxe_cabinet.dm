@@ -89,7 +89,7 @@
 			else if(user.unEquip(O))
 				O.forceMove(src)
 				fireaxe = O
-				user << "<span class='notice'>You place \the [fireaxe] into \the [src].</span>"
+				user << SPAN_NOTICE("You place \the [fireaxe] into \the [src].")
 				update_icon()
 			return
 

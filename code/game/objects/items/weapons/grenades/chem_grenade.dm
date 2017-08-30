@@ -56,7 +56,7 @@
 				user << "<span class='warning'>Assembly must be secured with screwdriver.</span>"
 				return
 			path = 1
-			user << "<span class='notice'>You add [W] to the metal casing.</span>"
+			user << SPAN_NOTICE("You add [W] to the metal casing.")
 			playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
 			user.remove_from_mob(det)
 			det.loc = src
@@ -74,11 +74,11 @@
 			if(stage == 1)
 				path = 1
 				if(beakers.len)
-					user << "<span class='notice'>You lock the assembly.</span>"
+					user << SPAN_NOTICE("You lock the assembly.")
 					name = "grenade"
 				else
 //					user << "<span class='warning'>You need to add at least one beaker before locking the assembly.</span>"
-					user << "<span class='notice'>You lock the empty assembly.</span>"
+					user << SPAN_NOTICE("You lock the empty assembly.")
 					name = "fake grenade"
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
 				icon_state = initial(icon_state) +"_locked"
@@ -89,7 +89,7 @@
 					prime()
 					return
 				else
-					user << "<span class='notice'>You unlock the assembly.</span>"
+					user << SPAN_NOTICE("You unlock the assembly.")
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
 					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 					icon_state = initial(icon_state) + (detonator?"_ass":"")
@@ -102,7 +102,7 @@
 				return
 			else
 				if(W.reagents.total_volume)
-					user << "<span class='notice'>You add \the [W] to the assembly.</span>"
+					user << SPAN_NOTICE("You add \the [W] to the assembly.")
 					user.drop_item()
 					W.loc = src
 					beakers += W

@@ -9,10 +9,10 @@ mob/proc/airflow_stun()
 	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)	return 0
 
 	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
-		src << "<span class='notice'>You stay upright as the air rushes past you.</span>"
+		src << SPAN_NOTICE("You stay upright as the air rushes past you.")
 		return 0
 	if(buckled)
-		src << "<span class='notice'>Air suddenly rushes past you!</span>"
+		src << SPAN_NOTICE("Air suddenly rushes past you!")
 		return 0
 	if(!lying)
 		src << "<span class='warning'>The sudden rush of air knocks you over!</span>"

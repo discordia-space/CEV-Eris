@@ -149,7 +149,7 @@ BLIND     // can't see anything
 /obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
 		if (clipped)
-			user << "<span class='notice'>The [src] have already been clipped!</span>"
+			user << SPAN_NOTICE("The [src] have already been clipped!")
 			update_icon()
 			return
 
@@ -225,7 +225,7 @@ BLIND     // can't see anything
 	else if(success == 2)
 		user << "<span class='warning'>You are already wearing a hat.</span>"
 	else if(success == 1)
-		user << "<span class='notice'>You crawl under \the [src].</span>"
+		user << SPAN_NOTICE("You crawl under \the [src].")
 	return 1
 
 /obj/item/clothing/head/update_icon(var/mob/user)
@@ -333,7 +333,7 @@ BLIND     // can't see anything
 		user.unEquip(I)
 		I.forceMove(src)
 		holding = I
-		user.visible_message("<span class='notice'>\The [user] shoves \the [I] into \the [src].</span>")
+		user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
 		verbs |= /obj/item/clothing/shoes/proc/draw_knife
 		update_icon()
 	else

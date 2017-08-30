@@ -64,10 +64,10 @@
 					H << "<span class='danger'>They don't have a mouth, you cannot perform CPR!</span>"
 					return
 				if((H.head && (H.head.body_parts_covered & FACE)) || (H.wear_mask && (H.wear_mask.body_parts_covered & FACE)))
-					H << "<span class='notice'>Remove your mask!</span>"
+					H << SPAN_NOTICE("Remove your mask!")
 					return 0
 				if((head && (head.body_parts_covered & FACE)) || (wear_mask && (wear_mask.body_parts_covered & FACE)))
-					H << "<span class='notice'>Remove [src]'s mask!</span>"
+					H << SPAN_NOTICE("Remove [src]'s mask!")
 					return 0
 
 				if (!cpr_time)
@@ -85,7 +85,7 @@
 				adjustOxyLoss(-(min(getOxyLoss(), 5)))
 				updatehealth()
 				H.visible_message("<span class='danger'>\The [H] performs CPR on \the [src]!</span>")
-				src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
+				src << SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good.")
 				H << "<span class='warning'>Repeat at least every 7 seconds.</span>"
 
 			else
@@ -97,14 +97,14 @@
 				return 0
 			for(var/obj/item/weapon/grab/G in src.grabbed_by)
 				if(G.assailant == M)
-					M << "<span class='notice'>You already grabbed [src].</span>"
+					M << SPAN_NOTICE("You already grabbed [src].")
 					return
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
-				M << "<span class='notice'>You cannot grab [src], \he is buckled in!</span>"
+				M << SPAN_NOTICE("You cannot grab [src], \he is buckled in!")
 			if(!G)	//the grab will delete itself in New if affecting is anchored
 				return
 			M.put_in_active_hand(G)

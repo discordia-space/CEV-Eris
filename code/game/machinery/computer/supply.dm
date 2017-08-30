@@ -210,7 +210,7 @@
 
 /obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
 	if(!hacked)
-		user << "<span class='notice'>Special supplies unlocked.</span>"
+		user << SPAN_NOTICE("Special supplies unlocked.")
 		hacked = 1
 		return 1
 

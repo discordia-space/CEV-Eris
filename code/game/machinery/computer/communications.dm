@@ -177,7 +177,7 @@
 				var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 				if(!input || !(usr in view(1,src)))
 					return
-				usr << "<span class='notice'>No response from the remote server. Please, contact your system administrator.</span>"
+				usr << SPAN_NOTICE("No response from the remote server. Please, contact your system administrator.")
 				log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
 				centcomm_message_cooldown = 1
 
@@ -191,7 +191,7 @@
 				var/input = sanitize(input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 				if(!input || !(usr in view(1,src)))
 					return
-				usr << "<span class='notice'>No response from the remote server. Please, contact your system administrator.</span>"
+				usr << SPAN_NOTICE("No response from the remote server. Please, contact your system administrator.")
 				log_say("[key_name(usr)] has made an illegal announcement: [input]")
 				centcomm_message_cooldown = 1
 
@@ -410,7 +410,7 @@
 		return
 
 	if(!universe.OnShuttleCall(usr))
-		user << "<span class='notice'>Cannot establish a bluespace connection.</span>"
+		user << SPAN_NOTICE("Cannot establish a bluespace connection.")
 		return
 
 	if(deathsquad.deployed)

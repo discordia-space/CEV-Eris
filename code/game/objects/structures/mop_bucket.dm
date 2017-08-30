@@ -23,7 +23,7 @@
 			user << "<span class='warning'>\The [src] is out of water!</span>"
 		else
 			reagents.trans_to_obj(I, 5)
-			user << "<span class='notice'>You wet \the [I] in \the [src].</span>"
+			user << SPAN_NOTICE("You wet \the [I] in \the [src].")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/structure/mopbucket/on_reagent_change()

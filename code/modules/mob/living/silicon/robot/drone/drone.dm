@@ -176,7 +176,7 @@ var/list/mob_hat_cache = list()
 			return
 		user.unEquip(W)
 		wear_hat(W)
-		user.visible_message("<span class='notice'>\The [user] puts \the [W] on \the [src].</span>")
+		user.visible_message(SPAN_NOTICE("\The [user] puts \the [W] on \the [src]."))
 		return
 	else if(istype(W, /obj/item/borg/upgrade/))
 		user << "<span class='danger'>\The [src] is not compatible with \the [W].</span>"

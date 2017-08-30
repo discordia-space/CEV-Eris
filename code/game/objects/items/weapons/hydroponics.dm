@@ -45,7 +45,7 @@
 					user << "<span class='warning'>The seed bag is full.</span>"
 					S.updateUsrDialog()
 					return
-			user << "<span class='notice'>You pick up all the seeds.</span>"
+			user << SPAN_NOTICE("You pick up all the seeds.")
 		else
 			if (S.contents.len < S.capacity)
 				S.contents += src;

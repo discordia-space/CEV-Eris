@@ -46,13 +46,13 @@
 
 /obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
 	if(src.opened)
-		user << "<span class='notice'>Close the locker first.</span>"
+		user << SPAN_NOTICE("Close the locker first.")
 		return
 	if(src.broken)
 		user << "<span class='warning'>The locker appears to be broken.</span>"
 		return
 	if(user.loc == src)
-		user << "<span class='notice'>You can't reach the lock from inside.</span>"
+		user << SPAN_NOTICE("You can't reach the lock from inside.")
 		return
 	if(src.allowed(user))
 		src.locked = !src.locked
@@ -62,7 +62,7 @@
 				playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		update_icon()
 	else
-		user << "<span class='notice'>Access Denied</span>"
+		user << SPAN_NOTICE("Access Denied")
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
@@ -73,7 +73,7 @@
 			if(src.large)
 				src.MouseDrop_T(G.affecting, user)	//act like they were dragged onto the closet
 			else
-				user << "<span class='notice'>The locker is too small to stuff [G.affecting] into!</span>"
+				user << SPAN_NOTICE("The locker is too small to stuff [G.affecting] into!")
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.

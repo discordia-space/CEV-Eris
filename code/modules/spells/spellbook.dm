@@ -119,7 +119,7 @@
 	if(href_list["path"])
 		var/path = text2path(href_list["path"])
 		if(uses < spellbook.spells[path])
-			usr << "<span class='notice'>You do not have enough spell slots to purchase this.</span>"
+			usr << SPAN_NOTICE("You do not have enough spell slots to purchase this.")
 			return
 		uses -= spellbook.spells[path]
 

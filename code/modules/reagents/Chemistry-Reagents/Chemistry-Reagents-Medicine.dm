@@ -440,7 +440,7 @@
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			M << "<span class='notice'>Your mind feels focused and undivided.</span>"
+			M << SPAN_NOTICE("Your mind feels focused and undivided.")
 
 /datum/reagent/citalopram
 	name = "Citalopram"
@@ -459,7 +459,7 @@
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			M << "<span class='notice'>Your mind feels stable... a little stable.</span>"
+			M << SPAN_NOTICE("Your mind feels stable... a little stable.")
 
 /datum/reagent/paroxetine
 	name = "Paroxetine"
@@ -478,7 +478,7 @@
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			if(prob(90))
-				M << "<span class='notice'>Your mind feels much more stable.</span>"
+				M << SPAN_NOTICE("Your mind feels much more stable.")
 			else
 				M << "<span class='warning'>Your mind breaks apart...</span>"
 				M.hallucination += 200

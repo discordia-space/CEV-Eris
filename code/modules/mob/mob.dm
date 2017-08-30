@@ -211,7 +211,7 @@
 	set category = "IC"
 
 	if((is_blind(src) || usr.stat) && !isobserver(src))
-		src << "<span class='notice'>Something is there but you can't see it.</span>"
+		src << SPAN_NOTICE("Something is there but you can't see it.")
 		return 1
 
 	face_atom(A)
@@ -367,13 +367,13 @@
 	set category = "OOC"
 
 	if (!( config.abandon_allowed ))
-		usr << "<span class='notice'>Respawn is disabled.</span>"
+		usr << SPAN_NOTICE("Respawn is disabled.")
 		return
 	if ((stat != DEAD || !( ticker )))
-		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
+		usr << SPAN_NOTICE("<B>You must be dead to use this!</B>")
 		return
 	if (ticker.mode && ticker.mode.deny_respawn)
-		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
+		usr << SPAN_NOTICE("Respawn is disabled for this roundtype.")
 		return
 	else if(!MayRespawn(1, config.respawn_delay))
 		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
@@ -383,7 +383,7 @@
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
+	usr << SPAN_NOTICE("<B>Make sure to play a different character, and please roleplay correctly!</B>")
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")

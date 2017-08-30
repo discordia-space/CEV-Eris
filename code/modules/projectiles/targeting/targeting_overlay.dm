@@ -196,10 +196,10 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 
 	if(owner.client)
 		if(active)
-			owner << "<span class='notice'>You will now aim rather than fire.</span>"
+			owner << SPAN_NOTICE("You will now aim rather than fire.")
 			owner.client.add_gun_icons()
 		else
-			owner << "<span class='notice'>You will no longer aim rather than fire.</span>"
+			owner << SPAN_NOTICE("You will no longer aim rather than fire.")
 			owner.client.remove_gun_icons()
 
 /obj/aiming_overlay/proc/cancel_aiming(var/no_message = 0)
@@ -208,7 +208,7 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 	if(istype(aiming_with, /obj/item/weapon/gun))
 		playsound(get_turf(owner), 'sound/weapons/TargetOff.ogg', 50,1)
 	if(!no_message)
-		owner.visible_message("<span class='notice'>\The [owner] lowers \the [aiming_with].</span>")
+		owner.visible_message(SPAN_NOTICE("\The [owner] lowers \the [aiming_with]."))
 
 	moved_event.unregister(owner, src)
 	if(aiming_at)

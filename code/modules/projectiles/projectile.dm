@@ -179,7 +179,7 @@
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
-			visible_message("<span class='notice'>\The [src] misses [target_mob] narrowly!</span>")
+			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
 		return 0
 
 	//hit messages

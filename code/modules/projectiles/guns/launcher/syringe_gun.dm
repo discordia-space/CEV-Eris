@@ -21,7 +21,7 @@
 /obj/item/weapon/syringe_cartridge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		syringe = I
-		user << "<span class='notice'>You carefully insert [syringe] into [src].</span>"
+		user << SPAN_NOTICE("You carefully insert [syringe] into [src].")
 		user.remove_from_mob(syringe)
 		syringe.loc = src
 		sharp = 1
@@ -30,7 +30,7 @@
 
 /obj/item/weapon/syringe_cartridge/attack_self(mob/user)
 	if(syringe)
-		user << "<span class='notice'>You remove [syringe] from [src].</span>"
+		user << SPAN_NOTICE("You remove [syringe] from [src].")
 		user.put_in_hands(syringe)
 		syringe = null
 		sharp = initial(sharp)
@@ -113,7 +113,7 @@
 		var/obj/item/weapon/syringe_cartridge/C = darts[1]
 		darts -= C
 		user.put_in_hands(C)
-		user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+		user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
 	else
 		..()
 
@@ -126,7 +126,7 @@
 		user.remove_from_mob(C)
 		C.loc = src
 		darts += C //add to the end
-		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
+		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 	else
 		..()
 

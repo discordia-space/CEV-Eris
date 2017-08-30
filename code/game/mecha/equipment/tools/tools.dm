@@ -43,7 +43,7 @@
 					cargo_holder.cargo += O
 					O.loc = chassis
 					O.anchored = 0
-					occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
+					occupant_message(SPAN_NOTICE("[target] succesfully loaded."))
 					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 				else
 					occupant_message("<span class='warning'>You must hold still while handling objects.</span>")
@@ -204,7 +204,7 @@
 			if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
 				var/obj/o = target
 				var/amount = o.reagents.trans_to_obj(src, 200)
-				occupant_message("<span class='notice'>[amount] units transferred into internal tank.</span>")
+				occupant_message(SPAN_NOTICE("[amount] units transferred into internal tank."))
 				playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
 				return
 
@@ -970,7 +970,7 @@
 							cargo_holder.cargo += O
 							O.loc = chassis
 							O.anchored = 0
-							chassis.occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
+							chassis.occupant_message(SPAN_NOTICE("[target] succesfully loaded."))
 							chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 						else
 							chassis.occupant_message("<span class='warning'>You must hold still while handling objects.</span>")
@@ -1021,7 +1021,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
 	if (chassis)
-		chassis.visible_message("<span class='notice'>[user] starts to climb into [chassis].</span>")
+		chassis.visible_message(SPAN_NOTICE("[user] starts to climb into [chassis]."))
 
 	if(do_after(user, 40, src, needhand=0))
 		if(!src.occupant)

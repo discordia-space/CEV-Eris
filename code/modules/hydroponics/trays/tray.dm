@@ -294,7 +294,7 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message("<span class='notice'>[src] has been overtaken by [seed.display_name].</span>")
+	visible_message(SPAN_NOTICE("[src] has been overtaken by [seed.display_name]."))
 
 	return
 
@@ -538,7 +538,7 @@
 		usr << "[src] is empty."
 		return
 
-	usr << "<span class='notice'>[seed.display_name] are growing here.</span>"
+	usr << SPAN_NOTICE("[seed.display_name] are growing here.")
 
 	if(!Adjacent(usr))
 		return

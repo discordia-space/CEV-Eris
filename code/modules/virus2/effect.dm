@@ -143,7 +143,7 @@
 			var/obj/item/organ/external/E = H.organs_by_name[organ]
 			if (!(E.status & ORGAN_DEAD))
 				E.status |= ORGAN_DEAD
-				H << "<span class='notice'>You can't feel your [E.name] anymore...</span>"
+				H << SPAN_NOTICE("You can't feel your [E.name] anymore...")
 				for (var/obj/item/organ/external/C in E.children)
 					C.status |= ORGAN_DEAD
 			H.update_body(1)
@@ -174,7 +174,7 @@
 	deactivate(var/mob/living/carbon/mob,var/multiplier)
 		if(ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			H << "<span class='notice'>You suddenly feel hurt and old...</span>"
+			H << SPAN_NOTICE("You suddenly feel hurt and old...")
 			H.age += 8
 		var/backlash_amt = 5*multiplier
 		mob.apply_damages(backlash_amt,backlash_amt,backlash_amt,backlash_amt)
@@ -252,7 +252,7 @@
 	name = "Topographical Cretinism"
 	stage = 3
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob << "<span class='notice'>You have trouble telling right and left apart all of a sudden.</span>"
+		mob << SPAN_NOTICE("You have trouble telling right and left apart all of a sudden.")
 		mob.confused += 10
 
 /datum/disease2/effect/mutation
@@ -352,7 +352,7 @@
 	name = "Adrenaline Extra"
 	stage = 2
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob << "<span class='notice'>You feel a rush of energy inside you!</span>"
+		mob << SPAN_NOTICE("You feel a rush of energy inside you!")
 		if (mob.reagents.get_reagent_amount("hyperzine") < 10)
 			mob.reagents.add_reagent("hyperzine", 4)
 		if (prob(30))

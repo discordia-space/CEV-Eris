@@ -19,7 +19,7 @@
 	if(!implant)
 		return ..()
 	user.put_in_hands(implant)
-	user << "<span class='notice'>You remove \the [implant] from \the [src].</span>"
+	user << SPAN_NOTICE("You remove \the [implant] from \the [src].")
 	name = "implanter"
 	implant = null
 	update_icon()
@@ -53,7 +53,7 @@
 	if(do_mob(user, M, 50) && src && implant)
 		M.visible_message(
 			"<span class='warning'>[user] has implanted [M] in [affected].</span>",
-			"<span class='notice'>You implanted \the [implant] into [M]'s [affected].</span>"
+			SPAN_NOTICE("You implanted \the [implant] into [M]'s [affected].")
 		)
 
 		admin_attack_log(user, M,

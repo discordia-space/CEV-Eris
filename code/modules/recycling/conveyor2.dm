@@ -85,7 +85,7 @@
 			var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(src.loc)
 			C.id = id
 			transfer_fingerprints_to(C)
-		user << "<span class='notice'>You remove the conveyor belt.</span>"
+		user << SPAN_NOTICE("You remove the conveyor belt.")
 		qdel(src)
 		return
 	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
@@ -242,7 +242,7 @@
 		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
 		C.id = id
 		transfer_fingerprints_to(C)
-		user << "<span class='notice'>You deattach the conveyor switch.</span>"
+		user << SPAN_NOTICE("You deattach the conveyor switch.")
 		qdel(src)
 
 /obj/machinery/conveyor_switch/oneway
@@ -283,7 +283,7 @@
 /obj/item/conveyor_construct/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/conveyor_switch_construct))
-		user << "<span class='notice'>You link the switch to the conveyor belt assembly.</span>"
+		user << SPAN_NOTICE("You link the switch to the conveyor belt assembly.")
 		var/obj/item/conveyor_switch_construct/C = I
 		id = C.id
 

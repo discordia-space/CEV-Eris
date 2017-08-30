@@ -338,7 +338,7 @@
 					scanner_progress = 0
 					scanning = 1
 					t_left_radspike = pick(5,10,15)
-					usr << "<span class='notice'>Scan initiated.</span>"
+					usr << SPAN_NOTICE("Scan initiated.")
 				else
 					usr << "<span class='warning'>Could not initiate scan, seal requires replacing.</span>"
 			else

@@ -39,7 +39,7 @@
 		on_install(target,user,target_zone)
 		implant.upgrades.Add(src)
 		implant.add_module(module)
-		user << "<span class='notice'>You are successfully installed [src] in the [target]'s \the [I].</span>"
+		user << SPAN_NOTICE("You are successfully installed [src] in the [target]'s \the [I].")
 		return
 
 	..()

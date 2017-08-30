@@ -846,7 +846,7 @@
 			for(var/mob/M in range(wearer, 1))
 				if(M.pulling == wearer)
 					if(!M.restrained() && M.stat == 0 && M.canmove && wearer.Adjacent(M))
-						user << "<span class='notice'>Your host is restrained! They can't move!</span>"
+						user << SPAN_NOTICE("Your host is restrained! They can't move!")
 						return 0
 					else
 						M.stop_pulling()

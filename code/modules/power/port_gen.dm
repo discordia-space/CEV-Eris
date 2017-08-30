@@ -52,9 +52,9 @@
 	if(!..(user,1 ))
 		return
 	if(active)
-		user << "<span class='notice'>The generator is on.</span>"
+		user << SPAN_NOTICE("The generator is on.")
 	else
-		user << "<span class='notice'>The generator is off.</span>"
+		user << SPAN_NOTICE("The generator is off.")
 
 /obj/machinery/power/port_gen/emp_act(severity)
 	var/duration = 6000 //ten minutes

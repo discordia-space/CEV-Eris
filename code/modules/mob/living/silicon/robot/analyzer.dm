@@ -46,7 +46,7 @@
 		user << "\red You can't analyze non-robotic things!"
 		return
 
-	user.visible_message("<span class='notice'>\The [user] has analyzed [M]'s components.</span>","<span class='notice'>You have analyzed [M]'s components.</span>")
+	user.visible_message(SPAN_NOTICE("\The [user] has analyzed [M]'s components."),SPAN_NOTICE("You have analyzed [M]'s components."))
 	switch(scan_type)
 		if("robot")
 			var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
@@ -76,10 +76,10 @@
 
 		if("prosthetics")
 			var/mob/living/carbon/human/H = M
-			user << "<span class='notice'>Analyzing Results for \the [H]:</span>"
+			user << SPAN_NOTICE("Analyzing Results for \the [H]:")
 			user << "Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>"
 
-			user << "<span class='notice'>External prosthetics:</span>"
+			user << SPAN_NOTICE("External prosthetics:")
 			var/organ_found
 			if(H.internal_organs.len)
 				for(var/obj/item/organ/external/E in H.organs)
@@ -90,7 +90,7 @@
 			if(!organ_found)
 				user << "No prosthetics located."
 			user << "<hr>"
-			user << "<span class='notice'>Internal prosthetics:</span>"
+			user << SPAN_NOTICE("Internal prosthetics:")
 			organ_found = null
 			if(H.internal_organs.len)
 				for(var/obj/item/organ/O in H.internal_organs)

@@ -57,7 +57,7 @@
 		return
 
 	if(bcell)
-		user <<"<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
+		user <<SPAN_NOTICE("The baton is [round(bcell.percent())]% charged.")
 	if(!bcell)
 		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
 
@@ -67,17 +67,17 @@
 			user.drop_item()
 			W.loc = src
 			bcell = W
-			user << "<span class='notice'>You install a cell in [src].</span>"
+			user << SPAN_NOTICE("You install a cell in [src].")
 			update_icon()
 		else
-			user << "<span class='notice'>[src] already has a cell.</span>"
+			user << SPAN_NOTICE("[src] already has a cell.")
 
 	else if(istype(W, /obj/item/weapon/screwdriver))
 		if(bcell)
 			bcell.update_icon()
 			bcell.loc = get_turf(src.loc)
 			bcell = null
-			user << "<span class='notice'>You remove the cell from the [src].</span>"
+			user << SPAN_NOTICE("You remove the cell from the [src].")
 			status = 0
 			update_icon()
 			return

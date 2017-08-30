@@ -501,11 +501,11 @@
 		manipulating = 0
 		return
 	if(!anchored)
-		user.visible_message("<span class='notice'>\The [user] has secured \the [src] to the floor.</span>",
-	                         "<span class='notice'>You have secured \the [src] to the floor.</span>")
+		user.visible_message(SPAN_NOTICE("\The [user] has secured \the [src] to the floor."),
+	                         SPAN_NOTICE("You have secured \the [src] to the floor."))
 	else
 		user.visible_message("<span class='warning'>\The [user] has unsecured \the [src] from the floor.</span>",
-	                         "<span class='notice'>You have unsecured \the [src] from the floor.</span>")
+	                         SPAN_NOTICE("You have unsecured \the [src] from the floor."))
 	anchored = !anchored
 	manipulating = 0
 	return

@@ -96,11 +96,11 @@
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 					user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
 				else
-					user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
+					user << SPAN_NOTICE("Unable to repair with the maintenance panel closed.")
 			else
-				user << "<span class='notice'>[src] does not need a repair.</span>"
+				user << SPAN_NOTICE("[src] does not need a repair.")
 		else
-			user << "<span class='notice'>Unable to repair while [src] is off.</span>"
+			user << SPAN_NOTICE("Unable to repair while [src] is off.")
 	else if(hasvar(W,"force") && hasvar(W,"damtype"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		switch(W.damtype)
@@ -243,13 +243,13 @@
 	C.forceMove(src)
 	src.cell = C
 	powercheck()
-	usr << "<span class='notice'>You install [C] in [src].</span>"
+	usr << SPAN_NOTICE("You install [C] in [src].")
 
 /obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
 	if(!cell)
 		return
 
-	usr << "<span class='notice'>You remove [cell] from [src].</span>"
+	usr << SPAN_NOTICE("You remove [cell] from [src].")
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null

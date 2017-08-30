@@ -158,9 +158,9 @@
 				W.loc = src
 				state = 3
 			else
-				user << "<span class='notice'>You can't put the item in right now.</span>"
+				user << SPAN_NOTICE("You can't put the item in right now.")
 		else
-			user << "<span class='notice'>The washing machine is full.</span>"
+			user << SPAN_NOTICE("The washing machine is full.")
 	else
 		..()
 	update_icon()

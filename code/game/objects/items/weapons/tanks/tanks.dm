@@ -67,7 +67,7 @@ var/list/global/tank_gauge_cache = list()
 				descriptive = "room temperature"
 			else
 				descriptive = "cold"
-		user << "<span class='notice'>\The [src] feels [descriptive].</span>"
+		user << SPAN_NOTICE("\The [src] feels [descriptive].")
 
 /obj/item/weapon/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -173,7 +173,7 @@ var/list/global/tank_gauge_cache = list()
 				if(location.HUDneed.Find("internal"))
 					var/obj/screen/HUDelm = location.HUDneed["internal"]
 					HUDelm.icon_state = "internal0"
-				usr << "<span class='notice'>You close the tank release valve.</span>"
+				usr << SPAN_NOTICE("You close the tank release valve.")
 /*				if (location.internals)
 					location.internals.icon_state = "internal0"*/
 			else
@@ -188,7 +188,7 @@ var/list/global/tank_gauge_cache = list()
 
 				if(can_open_valve)
 					location.internal = src
-					usr << "<span class='notice'>You open \the [src] valve.</span>"
+					usr << SPAN_NOTICE("You open \the [src] valve.")
 					playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
 /*					if (location.internals)
 						location.internals.icon_state = "internal1"*/

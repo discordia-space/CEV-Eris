@@ -41,7 +41,7 @@
 	if(emagged)
 		user << "Circuit lock is already removed."
 		return
-	user << "<span class='notice'>You override the circuit lock and open controls.</span>"
+	user << SPAN_NOTICE("You override the circuit lock and open controls.")
 	emagged = 1
 	locked = 0
 	return 1

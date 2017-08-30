@@ -114,7 +114,7 @@
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return
 
 	if(default_deconstruction_screwdriver(user, O))
@@ -176,7 +176,7 @@
 		mass_per_sheet += eating.matter[material]
 
 	if(!filltype)
-		user << "<span class='notice'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>"
+		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
 		return
 	else if(filltype == 1)
 		user << "You fill \the [src] to capacity with \the [eating]."
@@ -208,7 +208,7 @@
 	add_fingerprint(usr)
 
 	if(busy)
-		usr << "<span class='notice'>The autolathe is busy. Please wait for completion of previous operation.</span>"
+		usr << SPAN_NOTICE("The autolathe is busy. Please wait for completion of previous operation.")
 		return
 
 	if(href_list["change_category"])

@@ -199,7 +199,7 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	M.visible_message(
 		"[M] remove [I] from [src].",
-		"<span class='notice'>You remove [I] from [src].</span>"
+		SPAN_NOTICE("You remove [I] from [src].")
 	)
 	return TRUE
 
@@ -208,5 +208,5 @@
 		return FALSE
 	I.forceMove(src)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
-	M << "<span class='notice'>You insert [I] into [src].</span>"
+	M << SPAN_NOTICE("You insert [I] into [src].")
 	return TRUE

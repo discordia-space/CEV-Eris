@@ -168,7 +168,7 @@
 			break
 
 		if(cig == null)
-			user << "<span class='notice'>Looks like the packet is out of cigarettes.</span>"
+			user << SPAN_NOTICE("Looks like the packet is out of cigarettes.")
 			return
 
 		// Instead of running equip_to_slot_if_possible() we check here first,
@@ -182,7 +182,7 @@
 		user.equip_to_slot(cig, slot_wear_mask)
 
 		reagents.maximum_volume = 15 * contents.len
-		user << "<span class='notice'>You take a cigarette out of the pack.</span>"
+		user << SPAN_NOTICE("You take a cigarette out of the pack.")
 		update_icon()
 	else
 		..()

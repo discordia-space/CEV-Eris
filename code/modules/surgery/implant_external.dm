@@ -46,8 +46,8 @@
 					user << "<span class='warning'>[implant] doesn't fit.</span>"
 					return
 
-	user.visible_message("<span class='notice'>[user] installed [tool] to [target]'s [affected].</span>", \
-	"<span class='notice'>You installed [tool] to [target]'s [affected].</span>" )
+	user.visible_message(SPAN_NOTICE("[user] installed [tool] to [target]'s [affected]."), \
+	SPAN_NOTICE("You installed [tool] to [target]'s [affected].") )
 
 	user.drop_item()
 	implant.install(target, target_zone)
@@ -114,8 +114,8 @@
 	if(!implant)
 		return
 
-	user.visible_message("<span class='notice'>[user] removed [implant] from [target]'s [affected] with \the [tool].</span>", \
-	"<span class='notice'>You removed [implant] from [target]'s [affected] with \the [tool].</span>" )
+	user.visible_message(SPAN_NOTICE("[user] removed [implant] from [target]'s [affected] with \the [tool]."), \
+	SPAN_NOTICE("You removed [implant] from [target]'s [affected] with \the [tool].") )
 
 	implant.uninstall()
 

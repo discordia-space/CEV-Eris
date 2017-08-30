@@ -25,7 +25,7 @@
 		return 0
 	evidence |= supplied.evidence
 	name = "[initial(name)] (combined)"
-	user << "<span class='notice'>You transfer the contents of \the [supplied] into \the [src].</span>"
+	user << SPAN_NOTICE("You transfer the contents of \the [supplied] into \the [src].")
 	return 1
 
 /obj/item/weapon/sample/print/merge_evidence(var/obj/item/weapon/sample/supplied, var/mob/user)
@@ -37,7 +37,7 @@
 		else
 			evidence[print] = supplied.evidence[print]
 	name = "[initial(name)] (combined)"
-	user << "<span class='notice'>You overlay \the [src] and \the [supplied], combining the print records.</span>"
+	user << SPAN_NOTICE("You overlay \the [src] and \the [supplied], combining the print records.")
 	return 1
 
 /obj/item/weapon/sample/attackby(var/obj/O, var/mob/user)
@@ -70,7 +70,7 @@
 		user << "<span class='warning'>Take \the [H.gloves] off first.</span>"
 		return
 
-	user << "<span class='notice'>You firmly press your fingertips onto the card.</span>"
+	user << SPAN_NOTICE("You firmly press your fingertips onto the card.")
 	var/fullprint = H.get_full_print()
 	evidence[fullprint] = fullprint
 	name = "[initial(name)] (\the [H])"

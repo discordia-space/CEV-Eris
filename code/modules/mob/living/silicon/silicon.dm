@@ -239,10 +239,10 @@
 	switch(sensor_type)
 		if ("Security")
 			sensor_mode = SEC_HUD
-			src << "<span class='notice'>Security records overlay enabled.</span>"
+			src << SPAN_NOTICE("Security records overlay enabled.")
 		if ("Medical")
 			sensor_mode = MED_HUD
-			src << "<span class='notice'>Life signs monitor overlay enabled.</span>"
+			src << SPAN_NOTICE("Life signs monitor overlay enabled.")
 		if ("Disable")
 			sensor_mode = 0
 			src << "Sensor augmentations disabled."
@@ -325,7 +325,7 @@
 				if(alarms[A] == -1)
 					if(!reported)
 						reported = 1
-						src << "<span class='notice'>--- [AH.category] Cleared ---</span>"
+						src << SPAN_NOTICE("--- [AH.category] Cleared ---")
 					src << "\The [A.alarm_name()]."
 
 		if(alarm_raised)

@@ -16,13 +16,13 @@
 	var/is_connected = (P in C.pods)
 	if(!is_connected)
 		if(C.connect_pod(P))
-			user << "<span class='notice'>You connect \the [P] to \the [C].</span>"
+			user << SPAN_NOTICE("You connect \the [P] to \the [C].")
 		else
 			user << "<span class='warning'>You failed to connect \the [P] to \the [C].</span>"
 		return MT_REFRESH
 
 	if(C.release_pod(P))
-		user << "<span class='notice'>You disconnect \the [P] from \the [C].</span>"
+		user << SPAN_NOTICE("You disconnect \the [P] from \the [C].")
 	else
-		user << "<span class='notice'>You failed to disconnect \the [P] from \the [C].</span>"
+		user << SPAN_NOTICE("You failed to disconnect \the [P] from \the [C].")
 	return MT_REFRESH

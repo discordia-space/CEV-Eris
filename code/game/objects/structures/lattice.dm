@@ -57,7 +57,7 @@
 	if (istype(C, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
-			user << "<span class='notice'>Slicing lattice joints ...</span>"
+			user << SPAN_NOTICE("Slicing lattice joints ...")
 		PoolOrNew(/obj/item/stack/rods, src.loc)
 		qdel(src)
 	if (istype(C, /obj/item/stack/rods))
@@ -66,7 +66,7 @@
 			return
 		else
 			R.use(2)
-			user << "<span class='notice'>You start connecting [R.name] to [src.name] ...</span>"
+			user << SPAN_NOTICE("You start connecting [R.name] to [src.name] ...")
 			if(do_after(user,50))
 				src.alpha = 0
 				new /obj/structure/catwalk(src.loc)

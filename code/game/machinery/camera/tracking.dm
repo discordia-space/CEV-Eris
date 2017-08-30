@@ -271,7 +271,7 @@ mob/living/proc/tracking_cancelled()
 mob/living/silicon/robot/tracking_initiated()
 	tracking_entities--
 	if(!tracking_entities && has_zeroth_law())
-		src << "<span class='notice'>Internal camera is no longer being accessed.</span>"
+		src << SPAN_NOTICE("Internal camera is no longer being accessed.")
 
 
 #undef TRACKING_POSSIBLE

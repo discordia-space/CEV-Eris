@@ -20,7 +20,7 @@
 			var/obj/item/weapon/weldingtool/WT = I
 			if((stat&BROKEN) && have_glass)
 				if(WT.remove_fuel(0,user))
-					user << "<span class='notice'>You begin slicing [src]'s debris...</span>"
+					user << SPAN_NOTICE("You begin slicing [src]'s debris...")
 					playsound(loc, 'sound/items/Welder.ogg', 40, 1)
 					if(do_after(user, 40, src))
 						have_glass = FALSE
@@ -31,7 +31,7 @@
 				if(user.a_intent == I_HELP)
 					if(health < maxhealth)
 						if(WT.remove_fuel(0,user))
-							user << "<span class='notice'>You begin repairing [src]...</span>"
+							user << SPAN_NOTICE("You begin repairing [src]...")
 							playsound(loc, 'sound/items/Welder.ogg', 40, 1)
 							if(do_after(user, 40, src))
 								health = maxhealth
@@ -43,7 +43,7 @@
 				var/obj/item/stack/material/glass/reinforced/G = I
 				if(G.get_amount() >= 2)
 					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					user << "<span class='notice'>You start to put the glass into [src]...</span>"
+					user << SPAN_NOTICE("You start to put the glass into [src]...")
 					if(do_after(user, 10, src))
 						if (density && G.use(2))
 							health = maxhealth

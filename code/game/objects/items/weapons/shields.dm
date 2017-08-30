@@ -133,14 +133,14 @@
 		update_icon()
 		w_class = 4
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-		user << "<span class='notice'>\The [src] is now active.</span>"
+		user << SPAN_NOTICE("\The [src] is now active.")
 
 	else
 		force = 3
 		update_icon()
 		w_class = 1
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-		user << "<span class='notice'>\The [src] can now be concealed.</span>"
+		user << SPAN_NOTICE("\The [src] can now be concealed.")
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

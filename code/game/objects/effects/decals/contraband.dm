@@ -67,11 +67,11 @@
 	if(istype(W, /obj/item/weapon/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)
-			user << "<span class='notice'>You remove the remnants of the poster.</span>"
+			user << SPAN_NOTICE("You remove the remnants of the poster.")
 			qdel(src)
 		else
 			roll_and_drop()
-			user << "<span class='notice'>You carefully remove the poster from the wall.</span>"
+			user << SPAN_NOTICE("You carefully remove the poster from the wall.")
 		return
 
 /obj/item/weapon/contraband/poster/proc/roll_and_drop()
@@ -119,7 +119,7 @@
 		user << "<span class='warning'>You can't place poster there</span>"
 
 	//Looks like it's uncluttered enough. Place the poster.
-	user << "<span class='notice'>You start placing the poster on the wall...</span>"
+	user << SPAN_NOTICE("You start placing the poster on the wall...")
 	if(do_after(usr, 17, src))
 		user.drop_from_inventory(src, new_loc)
 		placement_dir = get_dir(W, new_loc)

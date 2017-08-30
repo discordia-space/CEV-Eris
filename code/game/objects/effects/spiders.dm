@@ -176,7 +176,7 @@
 							return
 
 						if(prob(50))
-							src.visible_message("<span class='notice'>You hear something squeezing through the ventilation ducts.</span>",2)
+							src.visible_message(SPAN_NOTICE("You hear something squeezing through the ventilation ducts."),2)
 						sleep(travel_time)
 
 						if(!exit_vent || exit_vent.welded)
@@ -225,9 +225,9 @@
 			O.owner.apply_damage(1, TOX, O.limb_name)
 			if(world.time > last_itch + 30 SECONDS)
 				last_itch = world.time
-				O.owner << "<span class='notice'>Your [O.name] itches...</span>"
+				O.owner << SPAN_NOTICE("Your [O.name] itches...")
 	else if(prob(1))
-		src.visible_message("<span class='notice'>\The [src] skitters.</span>")
+		src.visible_message(SPAN_NOTICE("\The [src] skitters."))
 
 	if(amount_grown)
 		amount_grown += rand(0,2)

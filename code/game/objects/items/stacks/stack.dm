@@ -122,7 +122,7 @@
 		return
 
 	if (recipe.time)
-		user << "<span class='notice'>Building [recipe.title] ...</span>"
+		user << SPAN_NOTICE("Building [recipe.title] ...")
 		if (!do_after(user, recipe.time))
 			return
 
@@ -292,7 +292,7 @@
 			continue
 		var/transfer = src.transfer_to(item)
 		if (transfer)
-			user << "<span class='notice'>You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.</span>"
+			user << SPAN_NOTICE("You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.")
 		if(!amount)
 			break
 

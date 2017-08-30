@@ -90,13 +90,13 @@
 		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] made [key_name_admin(admin_ckey)] an admin with the rank [new_rank]")
 		log_admin("[key_name(usr)] made [key_name(admin_ckey)] an admin with the rank [new_rank]")
-		usr << "<span class='notice'>New admin added.</span>"
+		usr << SPAN_NOTICE("New admin added.")
 	else
 		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET rank = '[new_rank]' WHERE ckey = '[admin_ckey]'")
 		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] changed [key_name_admin(admin_ckey)] admin rank to [new_rank]")
 		log_admin("[key_name(usr)] changed [key_name(admin_ckey)] admin rank to [new_rank]")
-		usr << "<span class='notice'>Admin rank changed.</span>"
+		usr << SPAN_NOTICE("Admin rank changed.")
 
 /datum/admins/proc/log_admin_permission_modification(var/admin_ckey, var/new_permission, var/nominal)
 	if(config.admin_legacy_system)
@@ -141,10 +141,10 @@
 		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] removed the [nominal] permission of [key_name_admin(admin_ckey)]")
 		log_admin("[key_name(usr)] removed the [nominal] permission of [key_name(admin_ckey)]")
-		usr << "<span class='notice'>Permission removed.</span>"
+		usr << SPAN_NOTICE("Permission removed.")
 	else //This admin doesn't have this permission, so we are adding it.
 		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET flags = '[admin_rights | new_permission]' WHERE ckey = '[admin_ckey]'")
 		insert_query.Execute()
 		message_admins("[key_name_admin(usr)] added the [nominal] permission of [key_name_admin(admin_ckey)]")
 		log_admin("[key_name(usr)] added the [nominal] permission of [key_name(admin_ckey)]")
-		usr << "<span class='notice'>Permission added.</span>"
+		usr << SPAN_NOTICE("Permission added.")

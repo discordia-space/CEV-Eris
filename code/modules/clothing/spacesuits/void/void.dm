@@ -38,7 +38,7 @@
 		part_list += "\a [I]"
 	user << "\The [src] has [english_list(part_list)] installed."
 	if(tank && in_range(src,user))
-		user << "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
+		user << SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
@@ -114,7 +114,7 @@
 	if(H.wear_suit != src) return
 
 	if(H.head == helmet)
-		H << "<span class='notice'>You retract your suit helmet.</span>"
+		H << SPAN_NOTICE("You retract your suit helmet.")
 		helmet.canremove = 1
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)

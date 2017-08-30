@@ -97,9 +97,9 @@
 	// Basic intro text.
 	player.current << "<span class='danger'><font size=3>You are a [role_text]!</font></span>"
 	if(leader_welcome_text && player == leader)
-		player.current << "<span class='notice'>[leader_welcome_text]</span>"
+		player.current << SPAN_NOTICE("[leader_welcome_text]")
 	else
-		player.current << "<span class='notice'>[welcome_text]</span>"
+		player.current << SPAN_NOTICE("[welcome_text]")
 
 	if((flags & ANTAG_HAS_NUKE) && !spawned_nuke)
 		create_nuke()
