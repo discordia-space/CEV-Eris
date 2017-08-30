@@ -514,7 +514,7 @@
 
 /obj/machinery/cash_register/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		src.visible_message("<span class='danger'>The [src]'s cash box springs open as [user] swipes the card through the scanner!</span>")
+		src.visible_message(SPAN_DANGER("The [src]'s cash box springs open as [user] swipes the card through the scanner!"))
 		playsound(src, "sparks", 50, 1)
 		req_access = list()
 		emagged = 1

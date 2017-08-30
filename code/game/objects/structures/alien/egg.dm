@@ -56,7 +56,7 @@
 
 	// Check for bans properly.
 	if(jobban_isbanned(user, "Xenomorph"))
-		user << "<span class='danger'>You are banned from playing a Xenomorph.</span>"
+		user << SPAN_DANGER("You are banned from playing a Xenomorph.")
 		return
 
 	var/confirm = alert(user, "Are you sure you want to join as a Xenomorph larva?", "Become Larva", "No", "Yes")

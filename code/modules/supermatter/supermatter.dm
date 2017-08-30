@@ -387,7 +387,7 @@
 		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
 			if(!H.lying)
-				H << "<span class='danger'>A strong gravitational force slams you to the ground!</span>"
+				H << SPAN_DANGER("A strong gravitational force slams you to the ground!")
 				H.Weaken(20)
 
 

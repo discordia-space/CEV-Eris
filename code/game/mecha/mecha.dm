@@ -600,16 +600,16 @@
 				src.hit_damage(damage=15, is_melee=1)
 				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
-				user << "<span class='danger'>You slash at the armored suit!</span>"
-				visible_message("<span class='danger'>\The [user] slashes at [src.name]'s armor!</span>")
+				user << SPAN_DANGER("You slash at the armored suit!")
+				visible_message(SPAN_DANGER("\The [user] slashes at [src.name]'s armor!"))
 			else
 				src.log_append_to_last("Armor saved.")
 				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
-				user << "<span class='danger'>Your claws had no effect!</span>"
+				user << SPAN_DANGER("Your claws had no effect!")
 				src.occupant_message(SPAN_NOTICE("\The [user]'s claws are stopped by the armor."))
 				visible_message(SPAN_WARNING("\The [user] rebounds off [src.name]'s armor!"))
 		else
-			user.visible_message("<span class='danger'>\The [user] hits \the [src]. Nothing happens.</span>","<span class='danger'>You hit \the [src] with no visible effect.</span>")
+			user.visible_message(SPAN_DANGER("\The [user] hits \the [src]. Nothing happens."),SPAN_DANGER("You hit \the [src] with no visible effect."))
 			src.log_append_to_last("Armor saved.")
 		return
 	else if ((HULK in user.mutations) && !deflect_hit(is_melee=1))
@@ -710,10 +710,10 @@
 		src.take_damage(6)
 		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1, -1)
-		user << "<span class='danger'>You smash at the armored suit!</span>"
+		user << SPAN_DANGER("You smash at the armored suit!")
 		for (var/mob/V in viewers(src))
 			if(V.client && !(V.blinded))
-				V.show_message("<span class='danger'>\The [user] smashes against [src.name]'s armor!</span>", 1)
+				V.show_message(SPAN_DANGER("\The [user] smashes against [src.name]'s armor!"), 1)
 	else
 		src.log_append_to_last("Armor saved.")
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1, -1)
@@ -862,7 +862,7 @@
 		src.log_message("Attacked by [W]. Attacker - [user]")
 
 		if(deflect_hit(is_melee=1))
-			user << "<span class='danger'>\The [W] bounces off [src.name].</span>"
+			user << SPAN_DANGER("\The [W] bounces off [src.name].")
 			src.log_append_to_last("Armor saved.")
 		else
 			src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
@@ -984,7 +984,7 @@
 			src.verbs -= /obj/mecha/verb/connect_to_port
 			return
 		else
-			src.occupant_message("<span class='danger'>\The [name] failed to connect to the port.</span>")
+			src.occupant_message(SPAN_DANGER("\The [name] failed to connect to the port."))
 			return
 	else
 		src.occupant_message("Nothing happens")
@@ -1003,7 +1003,7 @@
 		src.verbs -= /obj/mecha/verb/disconnect_from_port
 		src.verbs += /obj/mecha/verb/connect_to_port
 	else
-		src.occupant_message("<span class='danger'>[name] is not connected to the port at the moment.</span>")
+		src.occupant_message(SPAN_DANGER("[name] is not connected to the port at the moment."))
 
 /obj/mecha/verb/toggle_lights()
 	set name = "Toggle Lights"
@@ -1048,10 +1048,10 @@
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			usr << "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>"
+			usr << SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?")
 			return
 	if (src.occupant)
-		usr << "<span class='danger'>The [src.name] is already occupied!</span>"
+		usr << SPAN_DANGER("The [src.name] is already occupied!")
 		src.log_append_to_last("Permission denied.")
 		return
 /*
@@ -1773,7 +1773,7 @@
 	if(!deflect_hit(is_melee=1))
 		src.hit_damage(damage, is_melee=1)
 		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-		visible_message("<span class='danger'>[user] [attack_message] [src]!</span>")
+		visible_message(SPAN_DANGER("[user] [attack_message] [src]!"))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 	else
 		src.log_append_to_last("Armor saved.")

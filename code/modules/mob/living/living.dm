@@ -89,7 +89,7 @@ default behaviour is:
 				return
 			if(ishuman(tmob) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
-					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
+					src << SPAN_DANGER("You fail to push [tmob]'s fat ass out of the way.")
 					now_pushing = FALSE
 					return
 			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
@@ -680,7 +680,7 @@ default behaviour is:
 					visible_message(SPAN_WARNING("[src] has broken free of [G.assailant]'s headlock!"))
 					qdel(G)
 	if(resisting)
-		visible_message("<span class='danger'>[src] resists!</span>")
+		visible_message(SPAN_DANGER("[src] resists!"))
 
 /mob/living/verb/lay_down()
 	set name = "Rest"

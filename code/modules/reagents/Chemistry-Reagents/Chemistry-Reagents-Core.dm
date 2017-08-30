@@ -143,7 +143,7 @@
 				S.Target = null
 				++S.Discipline
 		if(dose == removed)
-			S.visible_message(SPAN_WARNING("[S]'s flesh sizzles where the water touches it!"), "<span class='danger'>Your flesh burns in the water!</span>")
+			S.visible_message(SPAN_WARNING("[S]'s flesh sizzles where the water touches it!"), SPAN_DANGER("Your flesh burns in the water!"))
 
 /datum/reagent/fuel
 	name = "Welding fuel"

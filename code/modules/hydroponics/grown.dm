@@ -29,7 +29,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		world << "<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>"
+		world << SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting.")
 		qdel(src)
 		return
 
@@ -69,7 +69,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		world << "<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>"
+		world << SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting.")
 		qdel(src)
 		return
 
@@ -252,7 +252,7 @@
 			return
 		if(prob(35))
 			if(user)
-				user << "<span class='danger'>\The [src] has fallen to bits.</span>"
+				user << SPAN_DANGER("\The [src] has fallen to bits.")
 				user.drop_from_inventory(src)
 			qdel(src)
 
@@ -265,7 +265,7 @@
 		return
 
 	if(user.a_intent == I_HURT)
-		user.visible_message("<span class='danger'>\The [user] squashes \the [src]!</span>")
+		user.visible_message(SPAN_DANGER("\The [user] squashes \the [src]!"))
 		seed.thrown_at(src,user)
 		sleep(-1)
 		if(src) qdel(src)

@@ -66,7 +66,7 @@
 		else
 			message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated [target.name]!"))
 			log_game("[key_name(usr)] detonated [target.name]!")
-			target << "<span class='danger'>Self-destruct command received.</span>"
+			target << SPAN_DANGER("Self-destruct command received.")
 			spawn(10)
 				target.self_destruct()
 
@@ -157,7 +157,7 @@
 			// Ignore antagonistic cyborgs
 			if(R.scrambledcodes)
 				continue
-			R << "<span class='danger'>Self-destruct command received.</span>"
+			R << SPAN_DANGER("Self-destruct command received.")
 			spawn(10)
 				R.self_destruct()
 

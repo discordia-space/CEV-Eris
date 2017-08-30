@@ -204,14 +204,14 @@
 
 	if(blocked && istype(C, /obj/item/weapon/crowbar) && !repairing)
 		if(!hatch_open)
-			user << "<span class='danger'>You must open the maintenance hatch first!</span>"
+			user << SPAN_DANGER("You must open the maintenance hatch first!")
 		else
-			user.visible_message("<span class='danger'>[user] is removing the electronics from \the [src].</span>",
+			user.visible_message(SPAN_DANGER("[user] is removing the electronics from \the [src]."),
 									"You start to remove the electronics from [src].")
 			if(do_after(user,30,src))
 				if(blocked && density && hatch_open)
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-					user.visible_message("<span class='danger'>[user] has removed the electronics from \the [src].</span>",
+					user.visible_message(SPAN_DANGER("[user] has removed the electronics from \the [src]."),
 										"You have removed the electronics from [src].")
 
 					if (stat & BROKEN)
@@ -228,7 +228,7 @@
 		return
 
 	if(blocked)
-		user << "<span class='danger'>\The [src] is welded shut!</span>"
+		user << SPAN_DANGER("\The [src] is welded shut!")
 		return
 
 	if(istype(C, /obj/item/weapon/crowbar) || istype(C,/obj/item/weapon/material/twohanded/fireaxe))
@@ -236,7 +236,7 @@
 			return
 
 		if(blocked && istype(C, /obj/item/weapon/crowbar))
-			user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
+			user.visible_message(SPAN_DANGER("\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!"),\
 			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 			"You hear someone struggle and metal straining.")
 			return

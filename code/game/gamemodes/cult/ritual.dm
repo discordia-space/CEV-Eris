@@ -356,7 +356,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		M.take_organ_damage(0,rand(5,20)) //really lucky - 5 hits for a crit
 		for(var/mob/O in viewers(M, null))
 			O.show_message(SPAN_WARNING("\The [user] beats \the [M] with \the [src]!"), 1)
-		M << "<span class='danger'>You feel searing heat inside!</span>"
+		M << SPAN_DANGER("You feel searing heat inside!")
 
 
 	attack_self(mob/living/user as mob)
@@ -466,8 +466,8 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				return
 
 			for (var/mob/V in viewers(src))
-				V.show_message("<span class='danger'>\The [user] slices open a finger and begins to chant and paint symbols on the floor.</span>", 3, "<span class='danger'>You hear chanting.</span>", 2)
-			user << "<span class='danger'>You slice open one of your fingers and begin drawing a rune on the floor whilst chanting the ritual that binds your life essence with the dark arcane energies flowing through the surrounding world.</span>"
+				V.show_message(SPAN_DANGER("\The [user] slices open a finger and begins to chant and paint symbols on the floor."), 3, SPAN_DANGER("You hear chanting."), 2)
+			user << SPAN_DANGER("You slice open one of your fingers and begin drawing a rune on the floor whilst chanting the ritual that binds your life essence with the dark arcane energies flowing through the surrounding world.")
 			user.take_overall_damage((rand(9)+1)/10) // 0.1 to 1.0 damage
 			if(do_after(user, 50))
 				var/area/A = get_area(user)

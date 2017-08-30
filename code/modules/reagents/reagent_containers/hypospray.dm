@@ -31,10 +31,10 @@
 	if(istype(H))
 		var/obj/item/organ/external/affected = H.get_organ(user.targeted_organ)
 		if(!affected)
-			user << "<span class='danger'>\The [H] is missing that limb!</span>"
+			user << SPAN_DANGER("\The [H] is missing that limb!")
 			return
 		else if(affected.status & ORGAN_ROBOT)
-			user << "<span class='danger'>You cannot inject a robotic limb.</span>"
+			user << SPAN_DANGER("You cannot inject a robotic limb.")
 			return
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)

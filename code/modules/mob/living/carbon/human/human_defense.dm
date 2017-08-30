@@ -148,7 +148,7 @@ meteor_act
 	var/hit_zone = get_zone_with_miss_chance(target_zone, src)
 
 	if(!hit_zone)
-		visible_message("<span class='danger'>\The [user] misses [src] with \the [I]!</span>")
+		visible_message(SPAN_DANGER("\The [user] misses [src] with \the [I]!"))
 		return null
 
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
@@ -156,7 +156,7 @@ meteor_act
 
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if (!affecting || affecting.is_stump())
-		user << "<span class='danger'>They are missing that limb!</span>"
+		user << SPAN_DANGER("They are missing that limb!")
 		return null
 
 	return hit_zone
@@ -195,12 +195,12 @@ meteor_act
 			if(headcheck(hit_zone))
 				//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(effective_force))
-					visible_message("<span class='danger'>[src] [species.knockout_message]</span>")
+					visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
 					apply_effect(20, PARALYZE, blocked)
 			else
 				//Easier to score a stun but lasts less time
 				if(prob(effective_force + 10))
-					visible_message("<span class='danger'>[src] has been knocked down!</span>")
+					visible_message(SPAN_DANGER("[src] has been knocked down!"))
 					apply_effect(6, WEAKEN, blocked)
 
 		//Apply blood

@@ -25,11 +25,11 @@
 	update_icon()
 
 /turf/simulated/wall/proc/fail_smash(var/mob/user)
-	user << "<span class='danger'>You smash against the wall!</span>"
+	user << SPAN_DANGER("You smash against the wall!")
 	take_damage(rand(25,75))
 
 /turf/simulated/wall/proc/success_smash(var/mob/user)
-	user << "<span class='danger'>You smash through the wall!</span>"
+	user << SPAN_DANGER("You smash through the wall!")
 	user.do_attack_animation(src)
 	spawn(1)
 		dismantle_wall(1)
@@ -38,9 +38,9 @@
 
 	if(rotting)
 		if(reinf_material)
-			user << "<span class='danger'>\The [reinf_material.display_name] feels porous and crumbly.</span>"
+			user << SPAN_DANGER("\The [reinf_material.display_name] feels porous and crumbly.")
 		else
-			user << "<span class='danger'>\The [material.display_name] crumbles under your touch!</span>"
+			user << SPAN_DANGER("\The [material.display_name] crumbles under your touch!")
 			dismantle_wall()
 			return 1
 
@@ -325,10 +325,10 @@
 		if(dam_prob < 100 && W.force > (dam_threshhold/10))
 			playsound(src, hitsound, 80, 1)
 			if(!prob(dam_prob))
-				visible_message("<span class='danger'>\The [user] attacks \the [src] with \the [W] and it [material.destruction_desc]!</span>")
+				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [W] and it [material.destruction_desc]!"))
 				dismantle_wall(1)
 			else
-				visible_message("<span class='danger'>\The [user] attacks \the [src] with \the [W]!</span>")
+				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [W]!"))
 		else
-			visible_message("<span class='danger'>\The [user] attacks \the [src] with \the [W], but it bounces off!</span>")
+			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [W], but it bounces off!"))
 		return

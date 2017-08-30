@@ -172,8 +172,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 				src.visible_message(SPAN_WARNING("[src] extends a proboscis!"))
 			if(3)
 				src << SPAN_NOTICE("We stab [T] with the proboscis.")
-				src.visible_message("<span class='danger'>[src] stabs [T] with the proboscis!</span>")
-				T << "<span class='danger'>You feel a sharp stabbing pain!</span>"
+				src.visible_message(SPAN_DANGER("[src] stabs [T] with the proboscis!"))
+				T << SPAN_DANGER("You feel a sharp stabbing pain!")
 				var/obj/item/organ/external/affecting = T.get_organ(src.targeted_organ)
 				if(affecting.take_damage(39,0,1,0,"large organic needle"))
 					T:UpdateDamageIcon()
@@ -185,8 +185,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 			return
 
 	src << SPAN_NOTICE("We have absorbed [T]!")
-	src.visible_message("<span class='danger'>[src] sucks the fluids from [T]!</span>")
-	T << "<span class='danger'>You have been absorbed by the changeling!</span>"
+	src.visible_message(SPAN_DANGER("[src] sucks the fluids from [T]!"))
+	T << SPAN_DANGER("You have been absorbed by the changeling!")
 
 	T.dna.real_name = T.real_name //Set this again, just to be sure that it's properly set.
 	changeling.absorbed_dna |= T.dna
@@ -699,7 +699,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
 	if(!T)	return 0
-	T << "<span class='danger'>Your eyes burn horrificly!</span>"
+	T << SPAN_DANGER("Your eyes burn horrificly!")
 	T.disabilities |= NEARSIGHTED
 	spawn(300)	T.disabilities &= ~NEARSIGHTED
 	T.eye_blind = 10
@@ -714,7 +714,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_deaf_sting)
 	if(!T)	return 0
-	T << "<span class='danger'>Your ears pop and begin ringing loudly!</span>"
+	T << SPAN_DANGER("Your ears pop and begin ringing loudly!")
 	T.sdisabilities |= DEAF
 	spawn(300)	T.sdisabilities &= ~DEAF
 
@@ -727,7 +727,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	var/mob/living/carbon/T = changeling_sting(30,/mob/proc/changeling_paralysis_sting)
 	if(!T)	return 0
-	T << "<span class='danger'>Your muscles begin to painfully tighten.</span>"
+	T << SPAN_DANGER("Your muscles begin to painfully tighten.")
 	T.Weaken(20)
 
 	return 1
@@ -773,7 +773,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_unfat_sting)
 	if(!T)	return 0
-	T << "<span class='danger'>you feel a small prick as stomach churns violently and you become to feel skinnier.</span>"
+	T << SPAN_DANGER("you feel a small prick as stomach churns violently and you become to feel skinnier.")
 	T.nutrition -= 100
 
 	return 1
@@ -785,7 +785,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_DEATHsting)
 	if(!T)	return 0
-	T << "<span class='danger'>You feel a small prick and your chest becomes tight.</span>"
+	T << SPAN_DANGER("You feel a small prick and your chest becomes tight.")
 	T.silent = 10
 	T.Paralyse(10)
 	T.make_jittery(1000)

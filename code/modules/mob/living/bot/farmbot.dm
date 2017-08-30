@@ -251,7 +251,7 @@
 				flick("farmbot_hoe", src)
 				do_attack_animation(A)
 				if(prob(50))
-					visible_message("<span class='danger'>[src] swings wildly at [A] with a minihoe, missing completely!</span>")
+					visible_message(SPAN_DANGER("[src] swings wildly at [A] with a minihoe, missing completely!"))
 					playsound(loc, "robot_talk_heavy", 100, 0, 0)
 					return
 				var/t = pick("slashed", "sliced", "cut", "clawed")
@@ -261,10 +261,10 @@
 				say(message)
 			if("water")
 				flick("farmbot_water", src)
-				visible_message("<span class='danger'>[src] splashes [A] with water!</span>") // That's it. RP effect.
+				visible_message(SPAN_DANGER("[src] splashes [A] with water!")) // That's it. RP effect.
 
 /mob/living/bot/farmbot/explode()
-	visible_message("<span class='danger'>[src] blows apart!</span>")
+	visible_message(SPAN_DANGER("[src] blows apart!"))
 	playsound(loc, "robot_talk_heavy", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 

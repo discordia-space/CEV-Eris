@@ -37,7 +37,7 @@
 		else if(perc > 0.25)
 			user << SPAN_WARNING("It looks moderately damaged.")
 		else
-			user << "<span class='danger'>It looks heavily damaged.</span>"
+			user << SPAN_DANGER("It looks heavily damaged.")
 	if(silicate)
 		if (silicate < 30)
 			user << SPAN_NOTICE("It has a thin layer of silicate.")
@@ -153,7 +153,7 @@
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
-	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
+	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -174,7 +174,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
+		user.visible_message(SPAN_DANGER("[user] smashes through [src]!"))
 		user.do_attack_animation(src)
 		shatter()
 
@@ -188,8 +188,8 @@
 
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
 		user.do_attack_animation(src)
-		usr.visible_message("<span class='danger'>\The [usr] bangs against \the [src]!</span>",
-							"<span class='danger'>You bang against \the [src]!</span>",
+		usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
+							SPAN_DANGER("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
@@ -205,7 +205,7 @@
 	if(!damage)
 		return
 	if(damage >= 10)
-		visible_message("<span class='danger'>[user] smashes into [src]!</span>")
+		visible_message(SPAN_DANGER("[user] smashes into [src]!"))
 		take_damage(damage)
 	else
 		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
@@ -225,13 +225,13 @@
 					M.apply_damage(7)
 					hit(10)
 				if(2)
-					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+					M.visible_message(SPAN_DANGER("[user] bashes [M] against \the [src]!"))
 					if (prob(50))
 						M.Weaken(1)
 					M.apply_damage(10)
 					hit(25)
 				if(3)
-					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+					M.visible_message(SPAN_DANGER("<big>[user] crushes [M] against \the [src]!</big>"))
 					M.Weaken(5)
 					M.apply_damage(20)
 					hit(50)

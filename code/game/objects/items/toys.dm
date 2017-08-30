@@ -225,7 +225,7 @@
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
-					O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, SPAN_WARNING("You hear the sound of foam against skull"), 2)
+					O.show_message(SPAN_DANGER("\The [user] casually lines up a shot with [M]'s head and pulls the trigger!"), 1, SPAN_WARNING("You hear the sound of foam against skull"), 2)
 					O.show_message(SPAN_WARNING("\The [M] was hit in the head by the foam dart!"), 1)
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
@@ -233,7 +233,8 @@
 			src.bullets--
 		else if (M.lying && src.bullets == 0)
 			for(var/mob/O in viewers(M, null))
-				if (O.client)	O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), 1, SPAN_WARNING("You hear someone fall"), 2)
+				if (O.client)
+					O.show_message(SPAN_DANGER("\The [user] casually lines up a shot with [M]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!"), 1, SPAN_WARNING("You hear someone fall"), 2)
 			user.Weaken(5)
 		return
 

@@ -137,8 +137,8 @@
 			spawn(0)
 				if(buckle_mob(affecting))
 					affecting.visible_message(\
-						"<span class='danger'>[affecting.name] is buckled to [src] by [user.name]!</span>",\
-						"<span class='danger'>You are buckled to [src] by [user.name]!</span>",\
+						SPAN_DANGER("[affecting.name] is buckled to [src] by [user.name]!"),\
+						SPAN_DANGER("You are buckled to [src] by [user.name]!"),\
 						SPAN_NOTICE("You hear metal clanking."))
 			qdel(W)
 	else

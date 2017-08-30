@@ -272,7 +272,7 @@
 		return
 	step_towards(O, src.loc)
 	if(user != O)
-		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
+		user.show_viewers(SPAN_DANGER("[user] stuffs [O] into [src]!"))
 	src.add_fingerprint(user)
 	return
 
@@ -324,7 +324,7 @@
 	if(!damage || !wallbreaker)
 		return
 	attack_animation(user)
-	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
+	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
 	dump_contents()
 	spawn(1) qdel(src)
 	return 1
@@ -347,7 +347,7 @@
 	//okay, so the closet is either welded or locked... resist!!!
 	escapee << SPAN_WARNING("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)")
 
-	visible_message("<span class='danger'>\The [src] begins to shake violently!</span>")
+	visible_message(SPAN_DANGER("\The [src] begins to shake violently!"))
 
 	breakout = 1 //can't think of a better way to do this right now.
 	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
@@ -369,7 +369,7 @@
 	//Well then break it!
 	breakout = 0
 	escapee << SPAN_WARNING("You successfully break out!")
-	visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
+	visible_message(SPAN_DANGER("\The [escapee] successfully broke out of \the [src]!"))
 	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
 	break_open()
 	animate_shake()

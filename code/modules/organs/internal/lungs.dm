@@ -157,7 +157,7 @@
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))
-				owner << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"
+				owner << SPAN_DANGER("You feel your face freezing and icicles forming in your lungs!")
 
 			switch(breath.temperature)
 				if(species.cold_level_3 to species.cold_level_2)
@@ -171,7 +171,7 @@
 			owner.fire_alert = 1
 		else if(breath.temperature >= species.heat_level_1)
 			if(prob(20))
-				owner << "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>"
+				owner << SPAN_DANGER("You feel your face burning and a searing heat in your lungs!")
 
 			switch(breath.temperature)
 				if(species.heat_level_1 to species.heat_level_2)

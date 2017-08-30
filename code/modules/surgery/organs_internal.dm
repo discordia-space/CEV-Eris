@@ -233,11 +233,11 @@
 			return 0
 
 		if((affected.status & ORGAN_ROBOT) && !(O.status & ORGAN_ROBOT))
-			user << "<span class='danger'>You cannot install a naked organ into a robotic body.</span>"
+			user << SPAN_DANGER("You cannot install a naked organ into a robotic body.")
 			return SURGERY_FAILURE
 
 		if(!target.species)
-			user << "<span class='danger'>You have no idea what species this person is. Report this on the bug tracker.</span>"
+			user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
 			return SURGERY_FAILURE
 
 		var/o_is = (O.gender == PLURAL) ? "are" : "is"

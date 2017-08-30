@@ -454,20 +454,20 @@ var/list/global/slot_flags_enumeration = list(
 
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
-				O.show_message("<span class='danger'>[M] has been stabbed in the eye with [src] by [user].</span>", 1)
-			M << "<span class='danger'>[user] stabs you in the eye with [src]!</span>"
-			user << "<span class='danger'>You stab [M] in the eye with [src]!</span>"
+				O.show_message(SPAN_DANGER("[M] has been stabbed in the eye with [src] by [user]."), 1)
+			M << SPAN_DANGER("[user] stabs you in the eye with [src]!")
+			user << SPAN_DANGER("You stab [M] in the eye with [src]!")
 		else
 			user.visible_message( \
-				"<span class='danger'>[user] has stabbed themself with [src]!</span>", \
-				"<span class='danger'>You stab yourself in the eyes with [src]!</span>" \
+				SPAN_DANGER("[user] has stabbed themself with [src]!"), \
+				SPAN_DANGER("You stab yourself in the eyes with [src]!") \
 			)
 
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != 2)
 				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
-					M << "<span class='danger'>Your eyes start to bleed profusely!</span>"
+					M << SPAN_DANGER("Your eyes start to bleed profusely!")
 			if(prob(50))
 				if(M.stat != 2)
 					M << SPAN_WARNING("You drop what you're holding and clutch at your eyes!")

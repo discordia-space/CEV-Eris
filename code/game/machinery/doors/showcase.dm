@@ -57,7 +57,7 @@
 			user.do_attack_animation(src)
 			hit(I.force)
 			user.visible_message(
-				"<span class='danger'>[user] has hit the [name] with [I]!</span>",
+				SPAN_DANGER("[user] has hit the [name] with [I]!"),
 			)
 
 	else
@@ -68,7 +68,7 @@
 
 /obj/machinery/door/blast/shutters/glass/hitby(AM as mob|obj)
 	..()
-	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
+	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	var/throw_force = 0
 	if(ismob(AM))
 		throw_force = 10

@@ -291,11 +291,11 @@
 		var/mob/living/carbon/human/H = M
 		if(H.head)
 			if(H.head.unacidable)
-				H << "<span class='danger'>Your [H.head] protects you from the acid.</span>"
+				H << SPAN_DANGER("Your [H.head] protects you from the acid.")
 				remove_self(volume)
 				return
 			else if(removed > meltdose)
-				H << "<span class='danger'>Your [H.head] melts away!</span>"
+				H << SPAN_DANGER("Your [H.head] melts away!")
 				qdel(H.head)
 				H.update_inv_head(1)
 				H.update_hair(1)
@@ -305,11 +305,11 @@
 
 		if(H.wear_mask)
 			if(H.wear_mask.unacidable)
-				H << "<span class='danger'>Your [H.wear_mask] protects you from the acid.</span>"
+				H << SPAN_DANGER("Your [H.wear_mask] protects you from the acid.")
 				remove_self(volume)
 				return
 			else if(removed > meltdose)
-				H << "<span class='danger'>Your [H.wear_mask] melts away!</span>"
+				H << SPAN_DANGER("Your [H.wear_mask] melts away!")
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(1)
 				H.update_hair(1)
@@ -319,10 +319,10 @@
 
 		if(H.glasses)
 			if(H.glasses.unacidable)
-				H << "<span class='danger'>Your [H.glasses] partially protect you from the acid!</span>"
+				H << SPAN_DANGER("Your [H.glasses] partially protect you from the acid!")
 				removed /= 2
 			else if(removed > meltdose)
-				H << "<span class='danger'>Your [H.glasses] melt away!</span>"
+				H << SPAN_DANGER("Your [H.glasses] melt away!")
 				qdel(H.glasses)
 				H.update_inv_glasses(1)
 				removed -= meltdose / 2

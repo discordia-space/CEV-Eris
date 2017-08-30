@@ -44,10 +44,10 @@ effective or pretty fucking useless.
 				M.Weaken(rand(10,20))
 				if(prob(25))
 					M.Stun(rand(5,10))
-				M << "<span class='danger'>You feel a tremendous, paralyzing wave flood your mind.</span>"
+				M << SPAN_DANGER("You feel a tremendous, paralyzing wave flood your mind.")
 
 			else
-				M << "<span class='danger'>You feel a sudden, electric jolt travel through your head.</span>"
+				M << SPAN_DANGER("You feel a sudden, electric jolt travel through your head.")
 
 	playsound(src.loc, 'sound/misc/interference.ogg', 50, 1)
 	user << SPAN_NOTICE("You trigger [src].")

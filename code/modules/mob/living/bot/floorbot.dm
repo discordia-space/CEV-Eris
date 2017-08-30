@@ -219,7 +219,7 @@
 					addTiles(1)
 				qdel(C)
 		else
-			visible_message("<span class='danger'>[src] begins to tear through the floor!</span>")
+			visible_message(SPAN_DANGER("[src] begins to tear through the floor!"))
 			var/message = pick("DOWN WE GO, MY FRIEND!", "REACH FOR THE SKY!", "ABBYS AWAITS!", "I WAS BORN TO BE A MINER!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 200, 0, 0)
@@ -323,7 +323,7 @@
 
 /mob/living/bot/floorbot/explode()
 	turn_off()
-	visible_message("<span class='danger'>[src] blows apart!</span>")
+	visible_message(SPAN_DANGER("[src] blows apart!"))
 	playsound(loc, "robot_talk_heavy", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 

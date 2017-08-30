@@ -77,7 +77,7 @@
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
-		user << "<span class='danger'>[src] can tell you nothing about \the [target].</span>"
+		user << SPAN_DANGER("[src] can tell you nothing about \the [target].")
 		return
 
 	flick("hydro2", src)

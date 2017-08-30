@@ -22,16 +22,16 @@
 
 	var/obj/item/organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 	if(!istype(P))
-		src << "<span class='danger'>Your plasma vessel has been removed!</span>"
+		src << SPAN_DANGER("Your plasma vessel has been removed!")
 		return
 
 	if(needs_organ)
 		var/obj/item/organ/I = internal_organs_by_name[needs_organ]
 		if(!I)
-			src << "<span class='danger'>Your [needs_organ] has been removed!</span>"
+			src << SPAN_DANGER("Your [needs_organ] has been removed!")
 			return
 		else if((I.status & ORGAN_CUT_AWAY) || I.is_broken())
-			src << "<span class='danger'>Your [needs_organ] is too damaged to function!</span>"
+			src << SPAN_DANGER("Your [needs_organ] is too damaged to function!")
 			return
 
 	if(P.stored_plasma < cost)
@@ -243,7 +243,7 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 		src << SPAN_WARNING("This form is not compatible with our physiology.")
 		return
 
-	src.visible_message("<span class='danger'>\The [src] crouches over \the [M], extending a hideous protuberance from its head!</span>")
+	src.visible_message(SPAN_DANGER("\The [src] crouches over \the [M], extending a hideous protuberance from its head!"))
 
 	if(!do_mob(src, M, 150))
 		return
@@ -258,7 +258,7 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 	if(!check_alien_ability(500,1,"egg sac"))
 		return
 
-	src.visible_message("<span class='danger'>\The [src] regurgitates something into \the [M]'s torso!</span>")
-	M << "<span class='danger'>A hideous lump of alien mass strains your ribcage as it settles within!</span>"
+	src.visible_message(SPAN_DANGER("\The [src] regurgitates something into \the [M]'s torso!"))
+	M << SPAN_DANGER("A hideous lump of alien mass strains your ribcage as it settles within!")
 	var/obj/item/organ/xenos/hivenode/node = new(affecting)
 	node.replaced(M,affecting)

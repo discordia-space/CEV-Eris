@@ -170,7 +170,7 @@
 			if(limb_can_operate)
 				if(istype(C))
 					if(!C.get_amount() >= 3)
-						user << "<span class='danger'>You need three or more cable pieces to repair this damage.</span>"
+						user << SPAN_DANGER("You need three or more cable pieces to repair this damage.")
 						return SURGERY_FAILURE
 					C.use(3)
 				return 1
@@ -382,23 +382,23 @@
 			return 0
 
 		if(!M.brainmob || !M.brainmob.client || !M.brainmob.ckey || M.brainmob.stat >= DEAD)
-			user << "<span class='danger'>That brain is not usable.</span>"
+			user << SPAN_DANGER("That brain is not usable.")
 			return SURGERY_FAILURE
 
 		if(!(affected.status & ORGAN_ROBOT))
-			user << "<span class='danger'>You cannot install a computer brain into a meat skull.</span>"
+			user << SPAN_DANGER("You cannot install a computer brain into a meat skull.")
 			return SURGERY_FAILURE
 
 		if(!target.species)
-			user << "<span class='danger'>You have no idea what species this person is. Report this on the bug tracker.</span>"
+			user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
 			return SURGERY_FAILURE
 
 		if(!target.species.has_organ["brain"])
-			user << "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>"
+			user << SPAN_DANGER("You're pretty sure [target.species.name_plural] don't normally have a brain.")
 			return SURGERY_FAILURE
 
 		if(!isnull(target.internal_organs["brain"]))
-			user << "<span class='danger'>Your subject already has a brain.</span>"
+			user << SPAN_DANGER("Your subject already has a brain.")
 			return SURGERY_FAILURE
 
 		return 1

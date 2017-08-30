@@ -87,7 +87,7 @@
 			break
 
 	if(!can_state)
-		src << "<span class='danger'>[method]: Unable to state laws. Communication method unavailable.</span>"
+		src << SPAN_DANGER("[method]: Unable to state laws. Communication method unavailable.")
 	stating_laws[prefix] = 0
 
 /mob/living/silicon/proc/statelaw(var/law)

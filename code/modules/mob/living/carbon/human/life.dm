@@ -180,7 +180,7 @@
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
 					continue
-				O.show_message(text("<span class='danger'>[src] starts having a seizure!</span>"), 1)
+				O.show_message(text(SPAN_DANGER("[src] starts having a seizure!")), 1)
 			Paralyse(10)
 			make_jittery(1000)
 	if (disabilities & COUGHING)
@@ -217,15 +217,15 @@
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
 			if(7 <= rn && rn <= 9) if(get_active_hand())
-				src << "<span class='danger'>Your hand won't respond properly, you drop what you're holding!</span>"
+				src << SPAN_DANGER("Your hand won't respond properly, you drop what you're holding!")
 				drop_item()
 		if(getBrainLoss() >= 45)
 			if(10 <= rn && rn <= 12)
 				if(prob(50))
-					src << "<span class='danger'>You suddenly black out!</span>"
+					src << SPAN_DANGER("You suddenly black out!")
 					Paralyse(10)
 				else if(!lying)
-					src << "<span class='danger'>Your legs won't respond properly, you fall down!</span>"
+					src << SPAN_DANGER("Your legs won't respond properly, you fall down!")
 					Weaken(10)
 
 

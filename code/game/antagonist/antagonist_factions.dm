@@ -26,12 +26,12 @@
 		return
 
 	if(world.time < player.rev_cooldown)
-		src << "<span class='danger'>You must wait five seconds between attempts.</span>"
+		src << SPAN_DANGER("You must wait five seconds between attempts.")
 		return
 
-	src << "<span class='danger'>You are attempting to convert \the [player.current]...</span>"
+	src << SPAN_DANGER("You are attempting to convert \the [player.current]...")
 	log_admin("[src]([src.ckey]) attempted to convert [player.current].")
-	message_admins("<span class='danger'>[src]([src.ckey]) attempted to convert [player.current].</span>")
+	message_admins(SPAN_DANGER("[src]([src.ckey]) attempted to convert [player.current]."))
 
 	player.rev_cooldown = world.time+100
 	var/choice = alert(player.current,"Asked by [src]: Do you want to join the [faction.faction_descriptor]?","Join the [faction.faction_descriptor]?","No!","Yes!")
@@ -39,8 +39,8 @@
 		src << SPAN_NOTICE("\The [player.current] joins the [faction.faction_descriptor]!")
 		return
 	if(choice == "No!")
-		player << "<span class='danger'>You reject this traitorous cause!</span>"
-	src << "<span class='danger'>\The [player.current] does not support the [faction.faction_descriptor]!</span>"
+		player << SPAN_DANGER("You reject this traitorous cause!")
+	src << SPAN_DANGER("\The [player.current] does not support the [faction.faction_descriptor]!")
 
 /mob/living/proc/convert_to_loyalist(mob/M as mob in oview(src))
 	set name = "Convert Recidivist"

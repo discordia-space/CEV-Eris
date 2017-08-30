@@ -429,7 +429,7 @@ var/global/datum/controller/occupations/job_master
 						var/metadata = H.client.prefs.gear[G.display_name]
 						G.spawn_item(B, metadata)
 				else
-					H << "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
+					H << SPAN_DANGER("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.")
 
 		if(istype(H)) //give humans wheelchairs, if they need them.
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")

@@ -293,10 +293,10 @@
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
-	visible_message("<span class='danger'>\The [src] has been attacked with \the [O] by [user].</span>")
+	visible_message(SPAN_DANGER("\The [src] has been attacked with \the [O] by [user]."))
 
 	if(O.force <= resistance)
-		user << "<span class='danger'>This weapon is ineffective, it does no damage.</span>"
+		user << SPAN_DANGER("This weapon is ineffective, it does no damage.")
 		return 2
 
 	var/damage = O.force
@@ -390,11 +390,11 @@
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
-			user.visible_message("<span class='danger'>[user] chops up \the [src]!</span>")
+			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(src)
 		else
-			user.visible_message("<span class='danger'>[user] butchers \the [src] messily!</span>")
+			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
 			gib()
 
 /mob/living/simple_animal/handle_fire()

@@ -172,7 +172,7 @@
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/screwdriver))
 		if(welding)
-			user << "<span class='danger'>Stop welding first!</span>"
+			user << SPAN_DANGER("Stop welding first!")
 			return
 		status = !status
 		if(status)
@@ -236,7 +236,7 @@
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.welding)
 		message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 		log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-		user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
+		user << SPAN_DANGER("You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.")
 		var/obj/structure/reagent_dispensers/fueltank/tank = O
 		tank.explode()
 		return
@@ -298,7 +298,7 @@
 			if(M)
 				M << SPAN_NOTICE("You switch the [src] on.")
 			else if(T)
-				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
+				T.visible_message(SPAN_DANGER("\The [src] turns on."))
 			src.force = WEAPON_FORCE_PAINFULL
 			src.damtype = "fire"
 			src.w_class = 4
@@ -347,7 +347,7 @@
 				if(E.damage > 10)
 					E.damage += rand(4,10)
 			if(FLASH_PROTECTION_REDUCED)
-				H << "<span class='danger'>Your equipment intensify the welder's glow. Your eyes itch and burn severely.</span>"
+				H << SPAN_DANGER("Your equipment intensify the welder's glow. Your eyes itch and burn severely.")
 				H.eye_blurry += rand(12,20)
 				E.damage += rand(12, 16)
 		if(safety<FLASH_PROTECTION_MAJOR)
@@ -355,10 +355,10 @@
 				user << SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!")
 
 			if (E.damage >= E.min_broken_damage)
-				H << "<span class='danger'>You go blind!</span>"
+				H << SPAN_DANGER("You go blind!")
 				H.sdisabilities |= BLIND
 			else if (E.damage >= E.min_bruised_damage)
-				H << "<span class='danger'>You go blind!</span>"
+				H << SPAN_DANGER("You go blind!")
 				H.eye_blind = 5
 				H.eye_blurry = 5
 				H.disabilities |= NEARSIGHTED
@@ -434,7 +434,7 @@
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				user.visible_message(SPAN_NOTICE("\The [user] patches some dents on \the [M]'s [S.name] with \the [src]."))
 			else if(S.open != 2)
-				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
+				user << SPAN_DANGER("The damage is far too severe to patch over externally.")
 			return 1
 		else if(S.open != 2)
 			user << SPAN_NOTICE("Nothing to fix!")

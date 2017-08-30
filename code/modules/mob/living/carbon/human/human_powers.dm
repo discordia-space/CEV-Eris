@@ -83,7 +83,7 @@
 	last_special = world.time + 75
 	status_flags |= LEAPING
 
-	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
+	src.visible_message(SPAN_DANGER("\The [src] leaps at [T]!"))
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
 	playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
 
@@ -105,7 +105,7 @@
 	var/use_hand = "left"
 	if(l_hand)
 		if(r_hand)
-			src << "<span class='danger'>You need to have one hand free to grab someone.</span>"
+			src << SPAN_DANGER("You need to have one hand free to grab someone.")
 			return
 		else
 			use_hand = "right"

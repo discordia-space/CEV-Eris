@@ -153,13 +153,13 @@ obj/aiming_overlay/proc/update_aiming_deferred()
 		if(aiming_at == target)
 			return
 		cancel_aiming(1)
-		owner.visible_message("<span class='danger'>\The [owner] turns \the [thing] on \the [target]!</span>")
+		owner.visible_message(SPAN_DANGER("\The [owner] turns \the [thing] on \the [target]!"))
 	else
-		owner.visible_message("<span class='danger'>\The [owner] aims \the [thing] at \the [target]!</span>")
+		owner.visible_message(SPAN_DANGER("\The [owner] aims \the [thing] at \the [target]!"))
 
 	if(owner.client)
 		owner.client.add_gun_icons()
-	target << "<span class='danger'>You now have a gun pointed at you. No sudden moves!</span>"
+	target << SPAN_DANGER("You now have a gun pointed at you. No sudden moves!")
 	aiming_with = thing
 	aiming_at = target
 	if(istype(aiming_with, /obj/item/weapon/gun))

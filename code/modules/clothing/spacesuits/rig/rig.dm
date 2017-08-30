@@ -195,7 +195,7 @@
 
 	// Seal toggling can be initiated by the suit AI, too
 	if(!wearer)
-		initiator << "<span class='danger'>Cannot toggle suit: The suit is currently not being worn by anyone.</span>"
+		initiator << SPAN_DANGER("Cannot toggle suit: The suit is currently not being worn by anyone.")
 		return 0
 
 	if(!check_power_cost(wearer))
@@ -210,7 +210,7 @@
 	sealing = 1
 
 	if(!seal_target && !suit_is_deployed())
-		wearer.visible_message("<span class='danger'>[wearer]'s suit flashes an error light.</span>","<span class='danger'>Your suit flashes an error light. It can't function properly without being fully deployed.</span>")
+		wearer.visible_message(SPAN_DANGER("[wearer]'s suit flashes an error light."),SPAN_DANGER("Your suit flashes an error light. It can't function properly without being fully deployed."))
 		failed_to_seal = 1
 
 	if(!failed_to_seal)
@@ -326,13 +326,13 @@
 				if(istype(wearer))
 					if(!canremove)
 						if (offline_slowdown < 3)
-							wearer << "<span class='danger'>Your suit beeps stridently, and suddenly goes dead.</span>"
+							wearer << SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead.")
 						else
-							wearer << "<span class='danger'>Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit.</span>"
+							wearer << SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit.")
 					if(offline_vision_restriction == 1)
-						wearer << "<span class='danger'>The suit optics flicker and die, leaving you with restricted vision.</span>"
+						wearer << SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision.")
 					else if(offline_vision_restriction == 2)
-						wearer << "<span class='danger'>The suit optics drop out completely, drowning you in darkness.</span>"
+						wearer << SPAN_DANGER("The suit optics drop out completely, drowning you in darkness.")
 		if(!offline)
 			offline = 1
 	else
@@ -505,11 +505,11 @@
 		if(user.back != src)
 			return 0
 		else if(!src.allowed(user))
-			user << "<span class='danger'>Unauthorized user. Access denied.</span>"
+			user << SPAN_DANGER("Unauthorized user. Access denied.")
 			return 0
 
 	else if(!ai_override_enabled)
-		user << "<span class='danger'>Synthetic access disabled. Please consult hardware provider.</span>"
+		user << SPAN_DANGER("Synthetic access disabled. Please consult hardware provider.")
 		return 0
 
 	return 1
@@ -754,7 +754,7 @@
 
 	if(wearer)
 		if(dam_module.damage >= 2)
-			wearer << "<span class='danger'>The [source] has disabled your [dam_module.interface_name]!</span>"
+			wearer << SPAN_DANGER("The [source] has disabled your [dam_module.interface_name]!")
 		else
 			wearer << SPAN_WARNING("The [source] has damaged your [dam_module.interface_name]!")
 	dam_module.deactivate()
@@ -762,9 +762,9 @@
 /obj/item/weapon/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
 	if(malfunction_delay)
 		if(offline)
-			user << "<span class='danger'>The suit is completely unresponsive.</span>"
+			user << SPAN_DANGER("The suit is completely unresponsive.")
 		else
-			user << "<span class='danger'>ERROR: Hardware fault. Rebooting interface...</span>"
+			user << SPAN_DANGER("ERROR: Hardware fault. Rebooting interface...")
 		return 1
 	return 0
 

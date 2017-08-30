@@ -97,7 +97,7 @@
 
 /obj/machinery/turretid/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		user << "<span class='danger'>You short out the turret controls' access analysis module.</span>"
+		user << SPAN_DANGER("You short out the turret controls' access analysis module.")
 		emagged = 1
 		locked = 0
 		ailock = 0

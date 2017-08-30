@@ -20,7 +20,7 @@
 	if(!damage || !wallbreaker)
 		return 0
 	attack_animation(user)
-	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
+	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
 	spawn(1) dismantle()
 	return 1
 
@@ -198,7 +198,7 @@
 
 /obj/structure/girder/attack_hand(mob/user as mob)
 	if (HULK in user.mutations)
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
+		visible_message(SPAN_DANGER("[user] smashes [src] apart!"))
 		dismantle()
 		return
 	return ..()

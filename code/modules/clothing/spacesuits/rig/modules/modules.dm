@@ -163,7 +163,7 @@
 		return 0
 
 	if(holder.security_check_enabled && !holder.check_suit_access(usr))
-		usr << "<span class='danger'>Access denied.</span>"
+		usr << SPAN_DANGER("Access denied.")
 		return 0
 
 	if(!holder.check_power_cost(usr, use_power_cost, 0, src, (istype(usr,/mob/living/silicon ? 1 : 0) ) ) )

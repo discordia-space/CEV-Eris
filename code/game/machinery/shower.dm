@@ -206,6 +206,6 @@
 		if(master.watertemp == "boiling")
 			C.bodytemperature = min(500, C.bodytemperature + 35)
 			C.adjustFireLoss(5)
-			C << "<span class='danger'>The water is searing!</span>"
+			C << SPAN_DANGER("The water is searing!")
 			return
 //cyka blyat

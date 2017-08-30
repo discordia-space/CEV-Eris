@@ -120,7 +120,7 @@
 		helmet.forceMove(src)
 	else
 		if(H.head)
-			H << "<span class='danger'>You cannot deploy your helmet while wearing \the [H.head].</span>"
+			H << SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head].")
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.pickup(H)

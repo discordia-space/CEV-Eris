@@ -12,7 +12,7 @@
 				user << SPAN_NOTICE("You remove the broken [flooring.descriptor].")
 				make_plating()
 			else if(flooring.flags & TURF_IS_FRAGILE)
-				user << "<span class='danger'>You forcefully pry off the [flooring.descriptor], destroying them in the process.</span>"
+				user << SPAN_DANGER("You forcefully pry off the [flooring.descriptor], destroying them in the process.")
 				make_plating()
 			else if(flooring.flags & TURF_REMOVE_CROWBAR)
 				user << SPAN_NOTICE("You lever off the [flooring.descriptor].")

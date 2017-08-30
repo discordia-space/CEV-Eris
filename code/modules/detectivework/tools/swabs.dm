@@ -29,7 +29,7 @@
 		return
 
 	if(user != H && H.a_intent != I_HELP && !H.lying)
-		user.visible_message("<span class='danger'>\The [user] tries to take a swab sample from \the [H], but they move away.</span>")
+		user.visible_message(SPAN_DANGER("\The [user] tries to take a swab sample from \the [H], but they move away."))
 		return
 
 	if(user.targeted_organ == "mouth")

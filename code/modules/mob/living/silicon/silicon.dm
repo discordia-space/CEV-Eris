@@ -70,8 +70,8 @@
 //	flick("noise", src.flash)
 	if (HUDtech.Find("flash"))
 		flick("noise", HUDtech["flash"])
-	src << "<span class='danger'><B>*BZZZT*</B></span>"
-	src << "<span class='danger'>Warning: Electromagnetic pulse detected.</span>"
+	src << SPAN_DANGER("<B>*BZZZT*</B>")
+	src << SPAN_DANGER("Warning: Electromagnetic pulse detected.")
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)

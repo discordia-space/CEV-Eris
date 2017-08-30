@@ -123,7 +123,7 @@
 	if(isliving(user))
 		var/mob/living/M = user
 		if ((CLUMSY in M.mutations) && prob(50))
-			M << "<span class='danger'>[src] blows up in your face.</span>"
+			M << SPAN_DANGER("[src] blows up in your face.")
 			M.drop_item()
 			Fire(get_turf(M))
 			del(src)

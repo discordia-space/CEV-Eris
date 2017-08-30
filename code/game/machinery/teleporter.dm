@@ -222,7 +222,7 @@
 		return
 	if (istype(M, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("<span class='danger'>The [] bounces off of the portal!</span>", M.name), 1)
+			O.show_message(text(SPAN_DANGER("The [] bounces off of the portal!"), M.name), 1)
 		return
 	if (isliving(M))
 		var/mob/living/MM = M
@@ -247,7 +247,7 @@
 				disky = 1
 	if (disky)
 		for(var/mob/P in viewers(M, null))
-			P.show_message(text("<span class='danger'>The [] bounces off of the portal!</span>", M.name), 1)
+			P.show_message(text(SPAN_DANGER("The [] bounces off of the portal!"), M.name), 1)
 		return
 
 //Bags of Holding cause bluespace teleportation to go funky. --NeoFite

@@ -42,7 +42,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(!reagents.total_volume)
-		user << "<span class='danger'>None of [src] left!</span>"
+		user << SPAN_DANGER("None of [src] left!")
 		user.drop_from_inventory(src)
 		qdel(src)
 		return 0
@@ -64,7 +64,7 @@
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
 			if (fullness <= 50)
-				C << "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>"
+				C << SPAN_DANGER("You hungrily chew out a piece of [src] and gobble it!")
 			if (fullness > 50 && fullness <= 150)
 				C << SPAN_NOTICE("You hungrily begin to eat [src].")
 			if (fullness > 150 && fullness <= 350)
@@ -72,16 +72,16 @@
 			if (fullness > 350 && fullness <= 550)
 				C << SPAN_NOTICE("You unwillingly chew a bit of [src].")
 			if (fullness > 550)
-				C << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
+				C << SPAN_DANGER("You cannot force any more of [src] to go down your throat.")
 				return 0
 		else
 			if(!M.can_force_feed(user, src))
 				return
 
 			if (fullness <= 550)
-				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
+				user.visible_message(SPAN_DANGER("[user] attempts to feed [M] [src]."))
 			else
-				user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
+				user.visible_message(SPAN_DANGER("[user] cannot force anymore of [src] down [M]'s throat."))
 				return 0
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -91,7 +91,7 @@
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
 			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
 
-			user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
+			user.visible_message(SPAN_DANGER("[user] feeds [M] [src]."))
 
 		if(reagents)								//Handle ingestion of the reagent.
 			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -958,7 +958,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/pie_smudge(src.loc)
-	src.visible_message("<span class='danger'>\The [src.name] splats.</span>","<span class='danger'>You hear a splat.</span>")
+	src.visible_message(SPAN_DANGER("\The [src.name] splats."),SPAN_DANGER("You hear a splat."))
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis

@@ -117,7 +117,7 @@
 				src << SPAN_NOTICE("Now teleporting.")
 				observer.loc = O.loc
 			else
-				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
+				src << SPAN_DANGER("Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.")
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
@@ -163,7 +163,7 @@
 			usr << SPAN_NOTICE("There is an administrative lock on entering the game!")
 			return
 		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
-			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
+			usr << SPAN_DANGER("The station is currently exploding. Joining would go poorly.")
 			return
 
 		var/datum/species/S = all_species[client.prefs.species]

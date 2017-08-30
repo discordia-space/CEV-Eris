@@ -44,7 +44,7 @@
 	update_recipe_list()
 
 	if(..() || (disabled && !panel_open))
-		user << "<span class='danger'>\The [src] is disabled!</span>"
+		user << SPAN_DANGER("\The [src] is disabled!")
 		return
 
 	if(shocked)

@@ -84,8 +84,8 @@
 			if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		chassis.visible_message("<span class='danger'>\The [chassis] starts to drill \the [target]</span>", SPAN_WARNING("You hear a large drill."))
-		occupant_message("<span class='danger'>You start to drill \the [target]</span>")
+		chassis.visible_message(SPAN_DANGER("\The [chassis] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
+		occupant_message(SPAN_DANGER("You start to drill \the [target]"))
 		playsound(src,'sound/mecha/mechdrill.ogg',100,1)
 		var/T = chassis.loc
 		var/C = target.loc	//why are these backwards? we may never know -Pete
@@ -140,8 +140,8 @@
 			if(target_obj.unacidable)	return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		chassis.visible_message("<span class='danger'>\The [chassis] starts to drill \the [target]</span>", SPAN_WARNING("You hear a large drill."))
-		occupant_message("<span class='danger'>You start to drill \the [target]</span>")
+		chassis.visible_message(SPAN_DANGER("\The [chassis] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
+		occupant_message(SPAN_DANGER("You start to drill \the [target]"))
 		playsound(src,'sound/mecha/mechdrill.ogg',100,1)
 		var/T = chassis.loc
 		var/C = target.loc	//why are these backwards? we may never know -Pete
@@ -984,11 +984,11 @@
 			var/mob/living/M = target
 			if(M.stat>1) return
 			if(chassis.occupant.a_intent == I_HURT)
-				chassis.occupant_message("<span class='danger'>You obliterate [target] with [src.name], leaving blood and guts everywhere.</span>")
-				chassis.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>")
+				chassis.occupant_message(SPAN_DANGER("You obliterate [target] with [src.name], leaving blood and guts everywhere."))
+				chassis.visible_message(SPAN_DANGER("[chassis] destroys [target] in an unholy fury."))
 			if(chassis.occupant.a_intent == I_DISARM)
-				chassis.occupant_message("<span class='danger'>You tear [target]'s limbs off with [src.name].</span>")
-				chassis.visible_message("<span class='danger'>[chassis] rips [target]'s arms off.</span>")
+				chassis.occupant_message(SPAN_DANGER("You tear [target]'s limbs off with [src.name]."))
+				chassis.visible_message(SPAN_DANGER("[chassis] rips [target]'s arms off."))
 			else
 				step_away(M,chassis)
 				chassis.occupant_message("You smash into [target], sending them flying.")
@@ -1013,7 +1013,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
-		AM << "<span class='danger'>You tumble out of the destroyed [src.name]!</span>"
+		AM << SPAN_DANGER("You tumble out of the destroyed [src.name]!")
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/Exit(atom/movable/O)
@@ -1104,18 +1104,18 @@
 		return
 
 	if (!isturf(usr.loc))
-		usr << "<span class='danger'>You can't reach the passenger compartment from here.</span>"
+		usr << SPAN_DANGER("You can't reach the passenger compartment from here.")
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			usr << "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>"
+			usr << SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?")
 			return
 
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
-			usr << "<span class='danger'>You're too busy getting your life sucked out of you.</span>"
+			usr << SPAN_DANGER("You're too busy getting your life sucked out of you.")
 			return
 
 	//search for a valid passenger compartment
@@ -1135,11 +1135,11 @@
 	//didn't find anything
 	switch (feedback)
 		if (OCCUPIED)
-			usr << "<span class='danger'>The passenger compartment is already occupied!</span>"
+			usr << SPAN_DANGER("The passenger compartment is already occupied!")
 		if (LOCKED)
 			usr << SPAN_WARNING("The passenger compartment hatch is locked!")
 		if (OCCUPIED|LOCKED)
-			usr << "<span class='danger'>All of the passenger compartments are already occupied or locked!</span>"
+			usr << SPAN_DANGER("All of the passenger compartments are already occupied or locked!")
 		if (0)
 			usr << SPAN_WARNING("\The [src] doesn't have a passenger compartment.")
 

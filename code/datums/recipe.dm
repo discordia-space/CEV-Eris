@@ -102,7 +102,7 @@
 // food-related
 /datum/recipe/proc/make_food(var/obj/container as obj)
 	if(!result)
-		world << "<span class='danger'>Recipe [type] is defined without a result, please bug this.</span>"
+		world << SPAN_DANGER("Recipe [type] is defined without a result, please bug this.")
 		return
 	var/obj/result_obj = new result(container)
 	for (var/obj/O in (container.contents-result_obj))

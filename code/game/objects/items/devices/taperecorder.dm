@@ -70,7 +70,7 @@
 	var/turf/T = get_turf(loc)
 	if(ismob(loc))
 		var/mob/M = loc
-		M << "<span class='danger'>\The [src] explodes!</span>"
+		M << SPAN_DANGER("\The [src] explodes!")
 	if(T)
 		T.hotspot_expose(700,125)
 		explosion(T, -1, -1, 0, 4)

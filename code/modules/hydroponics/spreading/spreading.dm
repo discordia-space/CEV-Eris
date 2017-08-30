@@ -83,7 +83,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		world << "<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>"
+		world << SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting.")
 		qdel(src)
 		return
 
@@ -241,7 +241,7 @@
 			user << SPAN_WARNING("There is nothing to take a sample from.")
 			return
 		if(sampled)
-			user << "<span class='danger'>You cannot take another sample from \the [src].</span>"
+			user << SPAN_DANGER("You cannot take another sample from \the [src].")
 			return
 		if(prob(70))
 			sampled = 1

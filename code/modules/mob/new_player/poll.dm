@@ -55,7 +55,7 @@
 			question = select_query.item[3]
 			type = select_query.item[4]
 		else
-			usr << "<span class='danger'>Poll question details not found.</span>"
+			usr << SPAN_DANGER("Poll question details not found.")
 			return
 
 		switch(type)
@@ -177,10 +177,10 @@
 
 		if(select_query.NextRow())
 			if(select_query.item[4] != "OPTION")
-				usr << "<span class='danger'>Invalid poll type.</span>"
+				usr << SPAN_DANGER("Invalid poll type.")
 				return
 		else
-			usr << "<span class='danger'>Poll not found.</span>"
+			usr << SPAN_DANGER("Poll not found.")
 			return
 
 		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM poll_options WHERE id = [option_id] AND poll_id = [poll_id]")

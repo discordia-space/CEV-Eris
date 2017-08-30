@@ -30,7 +30,7 @@
 	else if(H.a_intent == "grab" && hat && !(H.l_hand && H.r_hand))
 		hat.loc = get_turf(src)
 		H.put_in_hands(hat)
-		H.visible_message("<span class='danger'>\The [H] removes \the [src]'s [hat].</span>")
+		H.visible_message(SPAN_DANGER("\The [H] removes \the [src]'s [hat]."))
 		hat = null
 		updateicon()
 	else

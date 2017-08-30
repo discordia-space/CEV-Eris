@@ -35,7 +35,7 @@
 			qdel(W)
 			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
 			if(paperamount > max_paper)
-				user <<"<span class='danger'>\The [src] was too full, and shredded paper goes everywhere!</span>"
+				user <<SPAN_DANGER("\The [src] was too full, and shredded paper goes everywhere!")
 				for(var/i=(paperamount-max_paper);i>0;i--)
 					var/obj/item/weapon/shreddedp/SP = get_shredded_paper()
 					SP.loc = get_turf(src)
@@ -112,8 +112,8 @@
 	if(!do_after(user,20, src))
 		user << SPAN_WARNING("You must hold \the [P] steady to burn \the [src].")
 		return
-	user.visible_message("<span class='danger'>\The [user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
-		"<span class='danger'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
+	user.visible_message(SPAN_DANGER("\The [user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."), \
+		SPAN_DANGER("You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."))
 	FireBurn()
 
 /obj/item/weapon/shreddedp/proc/FireBurn()

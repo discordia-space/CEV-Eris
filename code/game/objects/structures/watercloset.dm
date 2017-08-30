@@ -18,7 +18,7 @@
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
-		usr.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", SPAN_NOTICE("You slam the toilet seat onto [swirlie.name]'s head!"), "You hear reverberating porcelain.")
+		usr.visible_message(SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"), SPAN_NOTICE("You slam the toilet seat onto [swirlie.name]'s head!"), "You hear reverberating porcelain.")
 		swirlie.adjustBruteLoss(8)
 		return
 
@@ -63,14 +63,14 @@
 					user << SPAN_NOTICE("[GM.name] needs to be on the toilet.")
 					return
 				if(open && !swirlie)
-					user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", SPAN_NOTICE("You start to give [GM.name] a swirlie!"))
+					user.visible_message(SPAN_DANGER("[user] starts to give [GM.name] a swirlie!"), SPAN_NOTICE("You start to give [GM.name] a swirlie!"))
 					swirlie = GM
 					if(do_after(user, 30, src))
-						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", SPAN_NOTICE("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
+						user.visible_message(SPAN_DANGER("[user] gives [GM.name] a swirlie!"), SPAN_NOTICE("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
 						GM.adjustOxyLoss(5)
 					swirlie = null
 				else
-					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", SPAN_NOTICE("You slam [GM.name] into the [src]!"))
+					user.visible_message(SPAN_DANGER("[user] slams [GM.name] into the [src]!"), SPAN_NOTICE("You slam [GM.name] into the [src]!"))
 					GM.adjustBruteLoss(8)
 			else
 				user << SPAN_NOTICE("You need a tighter grip.")
@@ -117,7 +117,7 @@
 				if(!GM.loc == get_turf(src))
 					user << SPAN_NOTICE("[GM.name] needs to be on the urinal.")
 					return
-				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", SPAN_NOTICE("You slam [GM.name] into the [src]!"))
+				user.visible_message(SPAN_DANGER("[user] slams [GM.name] into the [src]!"), SPAN_NOTICE("You slam [GM.name] into the [src]!"))
 				GM.adjustBruteLoss(8)
 			else
 				user << SPAN_NOTICE("You need a tighter grip.")
@@ -329,7 +329,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(temperature >= H.species.heat_level_1)
-			H << "<span class='danger'>The water is searing hot!</span>"
+			H << SPAN_DANGER("The water is searing hot!")
 		else if(temperature <= H.species.cold_level_1)
 			H << SPAN_WARNING("The water is freezing cold!")
 
@@ -427,7 +427,7 @@
 				else
 					B.deductcharge(B.hitcost)
 				user.visible_message( \
-					"<span class='danger'>[user] was stunned by \his wet [O]!</span>", \
+					SPAN_DANGER("[user] was stunned by \his wet [O]!"), \
 					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
 				return 1
 	else if(istype(O, /obj/item/weapon/mop))

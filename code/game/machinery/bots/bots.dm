@@ -51,7 +51,7 @@
 		if (src.health > maxhealth/3)
 			user << SPAN_WARNING("[src]'s parts look loose.")
 		else
-			user << "<span class='danger'>[src]'s parts look very loose!</span>"
+			user << SPAN_DANGER("[src]'s parts look very loose!")
 	return
 
 /obj/machinery/bot/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -137,7 +137,7 @@
 
 	if(user.species.can_shred(user))
 		src.health -= rand(15,30)*brute_dam_coeff
-		src.visible_message("<span class='danger'>[user] has slashed [src]!</span>")
+		src.visible_message(SPAN_DANGER("[user] has slashed [src]!"))
 		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)

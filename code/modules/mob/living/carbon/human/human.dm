@@ -1083,7 +1083,7 @@ var/list/rank_prefix = list(\
 	if(pulse())
 		usr << "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>"
 	else
-		usr << "<span class='danger'>[src] has no pulse!</span>"	//it is REALLY UNLIKELY that a dead person would check his own pulse
+		usr << SPAN_DANGER("[src] has no pulse!")	//it is REALLY UNLIKELY that a dead person would check his own pulse
 		return
 
 	usr << "You must[self ? "" : " both"] remain still until counting is finished."
@@ -1419,10 +1419,10 @@ var/list/rank_prefix = list(\
 		return
 
 	if(self)
-		src << "<span class='danger'>You pop your [current_limb.joint] back in!</span>"
+		src << SPAN_DANGER("You pop your [current_limb.joint] back in!")
 	else
-		U << "<span class='danger'>You pop [S]'s [current_limb.joint] back in!</span>"
-		S << "<span class='danger'>[U] pops your [current_limb.joint] back in!</span>"
+		U << SPAN_DANGER("You pop [S]'s [current_limb.joint] back in!")
+		S << SPAN_DANGER("[U] pops your [current_limb.joint] back in!")
 	current_limb.undislocate()
 
 /mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)

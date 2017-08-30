@@ -212,7 +212,7 @@
 	..()
 
 /obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	visible_message(SPAN_DANGER("[user] [attack_verb] the [src]!"))
 	attack_animation(user)
 	health -= damage
 	spawn(1) healthcheck()
@@ -220,7 +220,7 @@
 
 /obj/structure/grille/hitby(AM as mob|obj)
 	..()
-	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
+	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
 	var/tforce = 0
 	if(ismob(AM))

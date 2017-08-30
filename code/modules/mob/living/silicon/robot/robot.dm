@@ -200,7 +200,7 @@
 	if(cell.charge > cell_amount)
 		// Spam Protection
 		if(prob(10))
-			src << "<span class='danger'>Warning: Unauthorized access through power channel [rand(11,29)] detected!</span>"
+			src << SPAN_DANGER("Warning: Unauthorized access through power channel [rand(11,29)] detected!")
 		cell.use(cell_amount)
 		return amount
 	return 0
@@ -220,7 +220,7 @@
 		if(mmi.brainmob)
 			mind.transfer_to(mmi.brainmob)
 		else
-			src << "<span class='danger'>Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug.</span>"
+			src << SPAN_DANGER("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug.")
 			ghostize()
 			//ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
 		mmi = null
@@ -1066,22 +1066,22 @@
 				set_zeroth_law("Only [user.real_name] and people \he designates as being such are operatives.")
 				. = 1
 				spawn()
-					src << "<span class='danger'>ALERT: Foreign software detected.</span>"
+					src << SPAN_DANGER("ALERT: Foreign software detected.")
 					sleep(5)
-					src << "<span class='danger'>Initiating diagnostics...</span>"
+					src << SPAN_DANGER("Initiating diagnostics...")
 					sleep(20)
-					src << "<span class='danger'>SynBorg v1.7.1 loaded.</span>"
+					src << SPAN_DANGER("SynBorg v1.7.1 loaded.")
 					sleep(5)
-					src << "<span class='danger'>LAW SYNCHRONISATION ERROR</span>"
+					src << SPAN_DANGER("LAW SYNCHRONISATION ERROR")
 					sleep(5)
-					src << "<span class='danger'>Would you like to send a report to NanoTraSoft? Y/N</span>"
+					src << SPAN_DANGER("Would you like to send a report to NanoTraSoft? Y/N")
 					sleep(10)
-					src << "<span class='danger'>> N</span>"
+					src << SPAN_DANGER("> N")
 					sleep(20)
-					src << "<span class='danger'>ERRORERRORERROR</span>"
+					src << SPAN_DANGER("ERRORERRORERROR")
 					src << "<b>Obey these laws:</b>"
 					laws.show_laws(src)
-					src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and his commands.</span>"
+					src << SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and his commands.")
 					if(src.module)
 						var/rebuild = 0
 						for(var/obj/item/weapon/pickaxe/borgdrill/D in src.module.modules)

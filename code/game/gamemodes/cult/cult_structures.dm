@@ -40,7 +40,7 @@
 	if(!isbroken)
 		if(prob(1+ damage * 5))
 			user.visible_message(
-				"<span class='danger'>[user] smashed the pylon!</span>",
+				SPAN_DANGER("[user] smashed the pylon!"),
 				SPAN_WARNING("You hit the pylon, and its crystal breaks apart!"),
 				"You hear a tinkle of crystal shards"
 				)

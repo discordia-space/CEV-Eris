@@ -85,7 +85,7 @@
 	if(!istype(W) || istype(W, /obj/item/weapon/inflatable_dispenser)) return
 
 	if (can_puncture(W))
-		visible_message("<span class='danger'>[user] pierces [src] with [W]!</span>")
+		visible_message(SPAN_DANGER("[user] pierces [src] with [W]!"))
 		deflate(1)
 	if(W.damtype == BRUTE || W.damtype == BURN)
 		hit(W.force)
@@ -133,10 +133,10 @@
 	health -= damage
 	attack_animation(user)
 	if(health <= 0)
-		user.visible_message("<span class='danger'>[user] [attack_verb] open the [src]!</span>")
+		user.visible_message(SPAN_DANGER("[user] [attack_verb] open the [src]!"))
 		spawn(1) deflate(1)
 	else
-		user.visible_message("<span class='danger'>[user] [attack_verb] at [src]!</span>")
+		user.visible_message(SPAN_DANGER("[user] [attack_verb] at [src]!"))
 	return 1
 
 /obj/structure/inflatable/door //Based on mineral door code

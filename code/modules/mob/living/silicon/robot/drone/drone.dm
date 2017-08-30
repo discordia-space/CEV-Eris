@@ -63,13 +63,13 @@ var/list/mob_hat_cache = list()
 	if(!istype(possessor) || !possessor.client || !possessor.ckey)
 		return 0
 	if(!config.allow_drone_spawn)
-		src << "<span class='danger'>Playing as drones is not currently permitted.</span>"
+		src << SPAN_DANGER("Playing as drones is not currently permitted.")
 		return 0
 	if(too_many_active_drones())
-		src << "<span class='danger'>The maximum number of active drones has been reached..</span>"
+		src << SPAN_DANGER("The maximum number of active drones has been reached..")
 		return 0
 	if(jobban_isbanned(possessor,"Cyborg"))
-		usr << "<span class='danger'>You are banned from playing synthetics and cannot spawn as a drone.</span>"
+		usr << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
 		return 0
 	if(!possessor.MayRespawn(1,DRONE_SPAWN_DELAY))
 		return 0
@@ -179,11 +179,11 @@ var/list/mob_hat_cache = list()
 		user.visible_message(SPAN_NOTICE("\The [user] puts \the [W] on \the [src]."))
 		return
 	else if(istype(W, /obj/item/borg/upgrade/))
-		user << "<span class='danger'>\The [src] is not compatible with \the [W].</span>"
+		user << SPAN_DANGER("\The [src] is not compatible with \the [W].")
 		return
 
 	else if (istype(W, /obj/item/weapon/crowbar))
-		user << "<span class='danger'>\The [src] is hermetically sealed. You can't open the case.</span>"
+		user << SPAN_DANGER("\The [src] is hermetically sealed. You can't open the case.")
 		return
 
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
@@ -191,19 +191,19 @@ var/list/mob_hat_cache = list()
 		if(stat == 2)
 
 			if(!config.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
-				user << "<span class='danger'>The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one.</span>"
+				user << SPAN_DANGER("The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one.")
 				return
 
 			if(!allowed(usr))
-				user << "<span class='danger'>Access denied.</span>"
+				user << SPAN_DANGER("Access denied.")
 				return
 
-			user.visible_message("<span class='danger'>\The [user] swipes \his ID card through \the [src], attempting to reboot it.</span>", "<span class='danger'>>You swipe your ID card through \the [src], attempting to reboot it.</span>")
+			user.visible_message(SPAN_DANGER("\The [user] swipes \his ID card through \the [src], attempting to reboot it."), SPAN_DANGER(">You swipe your ID card through \the [src], attempting to reboot it."))
 			request_player()
 			return
 
 		else
-			user.visible_message("<span class='danger'>\The [user] swipes \his ID card through \the [src], attempting to shut it down.</span>", "<span class='danger'>You swipe your ID card through \the [src], attempting to shut it down.</span>")
+			user.visible_message(SPAN_DANGER("\The [user] swipes \his ID card through \the [src], attempting to shut it down."), SPAN_DANGER("You swipe your ID card through \the [src], attempting to shut it down."))
 
 			if(emagged)
 				return
@@ -211,7 +211,7 @@ var/list/mob_hat_cache = list()
 			if(allowed(usr))
 				shut_down()
 			else
-				user << "<span class='danger'>Access denied.</span>"
+				user << SPAN_DANGER("Access denied.")
 
 		return
 
@@ -219,16 +219,16 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/emag_act(var/remaining_charges, var/mob/user)
 	if(!client || stat == 2)
-		user << "<span class='danger'>There's not much point subverting this heap of junk.</span>"
+		user << SPAN_DANGER("There's not much point subverting this heap of junk.")
 		return
 
 	if(emagged)
-		src << "<span class='danger'>\The [user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt.</span>"
-		user << "<span class='danger'>You attempt to subvert [src], but the sequencer has no effect.</span>"
+		src << SPAN_DANGER("\The [user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt.")
+		user << SPAN_DANGER("You attempt to subvert [src], but the sequencer has no effect.")
 		return
 
-	user << "<span class='danger'>You swipe the sequencer across [src]'s interface and watch its eyes flicker.</span>"
-	src << "<span class='danger'>You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script.</span>"
+	user << SPAN_DANGER("You swipe the sequencer across [src]'s interface and watch its eyes flicker.")
+	src << SPAN_DANGER("You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script.")
 
 	message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")
 	log_game("[key_name(user)] emagged drone [key_name(src)].  Laws overridden.")
@@ -245,7 +245,7 @@ var/list/mob_hat_cache = list()
 
 	src << "<b>Obey these laws:</b>"
 	laws.show_laws(src)
-	src << "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and \his commands.</span>"
+	src << SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and \his commands.")
 	return 1
 
 //DRONE LIFE/DEATH
@@ -279,18 +279,18 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != 2)
 		if(emagged)
-			src << "<span class='danger'>You feel something attempting to modify your programming, but your hacked subroutines are unaffected.</span>"
+			src << SPAN_DANGER("You feel something attempting to modify your programming, but your hacked subroutines are unaffected.")
 		else
-			src << "<span class='danger'>A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.</span>"
+			src << SPAN_DANGER("A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.")
 			full_law_reset()
 			show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
 	if(stat != 2)
 		if(emagged)
-			src << "<span class='danger'>You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you.</span>"
+			src << SPAN_DANGER("You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you.")
 		else
-			src << "<span class='danger'>You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.</span>"
+			src << SPAN_DANGER("You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.")
 			death()
 
 /mob/living/silicon/robot/drone/proc/full_law_reset()

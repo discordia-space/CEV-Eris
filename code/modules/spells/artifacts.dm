@@ -18,7 +18,7 @@
 		return
 
 	user << "<span class='info'>You can see... everything!</span>"
-	visible_message("<span class='danger'>[user] stares into [src], their eyes glazing over.</span>")
+	visible_message(SPAN_DANGER("[user] stares into [src], their eyes glazing over."))
 
 	user.teleop = user.ghostize(1)
 	announce_ghost_joinleave(user.teleop, 1, "You feel that they used a powerful artifact to [pick("invade","disturb","disrupt","infest","taint","spoil","blight")] this place with their presence.")

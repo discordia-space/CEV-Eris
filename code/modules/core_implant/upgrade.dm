@@ -29,8 +29,8 @@
 			user << SPAN_WARNING("[target] already have this upgrade.")
 			return
 
-	user.visible_message("<span class='danger'>[user] attempts to install [src] in \the [target]'s [I].</span>",
-		"<span class='danger'>You are trying to install [src] in the [target]'s \the [I].</span>")
+	user.visible_message(SPAN_DANGER("[user] attempts to install [src] in \the [target]'s [I]."),
+		SPAN_DANGER("You are trying to install [src] in the [target]'s \the [I]."))
 
 	if(do_after(user,50,target))
 		user.drop_item(src)

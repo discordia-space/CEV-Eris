@@ -343,7 +343,7 @@ var/global/datum/controller/gameticker/ticker
 
 		spawn(50)
 			if(!round_end_announced) // Spam Prevention. Now it should announce only once.
-				world << "<span class='danger'>The round has ended!</span>"
+				world << SPAN_DANGER("The round has ended!")
 				round_end_announced = 1
 
 

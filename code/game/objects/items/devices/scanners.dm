@@ -86,7 +86,7 @@ REAGENT SCANNER
 				capitalize(org.name),
 				(org.status & ORGAN_ROBOT) ? "(Cybernetic)" : "",
 				(org.brute_dam > 0) ? SPAN_WARNING("[org.brute_dam]") : 0,
-				(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":"",
+				(org.status & ORGAN_BLEEDING)?SPAN_DANGER("\[Bleeding\]"):"",
 				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0),1)
 		else
 			user.show_message(SPAN_NOTICE("    Limbs are OK."),1)
@@ -171,9 +171,9 @@ REAGENT SCANNER
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.dna.b_type
 			if((blood_percent <= BLOOD_VOLUME_SAFE) && (blood_percent > BLOOD_VOLUME_BAD))
-				user.show_message("<span class='danger'>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> <span class='notice'>Type: [blood_type]</span>")
+				user.show_message(SPAN_DANGER("Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> <span class='notice'>Type: [blood_type]"))
 			else if(blood_percent <= BLOOD_VOLUME_BAD)
-				user.show_message("<span class='danger'><i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</i></span> <span class='notice'>Type: [blood_type]</span>")
+				user.show_message(SPAN_DANGER("<i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</i></span> <span class='notice'>Type: [blood_type]"))
 			else
 				user.show_message(SPAN_NOTICE("Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]"))
 		user.show_message("<span class='notice'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>")

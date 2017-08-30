@@ -19,7 +19,7 @@
 	if(owner.a_intent == I_HELP)
 		owner << SPAN_WARNING("You refrain from firing \the [aiming_with] as your intent is set to help.")
 		return
-	owner.visible_message("<span class='danger'>\The [owner] pulls the trigger reflexively!</span>")
+	owner.visible_message(SPAN_DANGER("\The [owner] pulls the trigger reflexively!"))
 	var/obj/item/weapon/gun/G = aiming_with
 	if(istype(G))
 		G.Fire(aiming_at, owner)

@@ -248,17 +248,17 @@
 			var/mob/living/M = G.affecting
 			var/obj/occupied = turf_is_crowded()
 			if(occupied)
-				user << "<span class='danger'>There's \a [occupied] in the way.</span>"
+				user << SPAN_DANGER("There's \a [occupied] in the way.")
 				return
 			if (G.state < 2)
 				if(user.a_intent == I_HURT)
 					if (prob(15))	M.Weaken(5)
 					M.apply_damage(8,def_zone = "head")
 					take_damage(8)
-					visible_message("<span class='danger'>[G.assailant] slams [G.affecting]'s face against \the [src]!</span>")
+					visible_message(SPAN_DANGER("[G.assailant] slams [G.affecting]'s face against \the [src]!"))
 					playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 				else
-					user << "<span class='danger'>You need a better grip to do that!</span>"
+					user << SPAN_DANGER("You need a better grip to do that!")
 					return
 			else
 				if (get_turf(G.affecting) == get_turf(src))
@@ -266,7 +266,7 @@
 				else
 					G.affecting.forceMove(get_turf(src))
 				G.affecting.Weaken(5)
-				visible_message("<span class='danger'>[G.assailant] throws [G.affecting] over \the [src]!</span>")
+				visible_message(SPAN_DANGER("[G.assailant] throws [G.affecting] over \the [src]!"))
 			qdel(W)
 			return
 
@@ -306,7 +306,7 @@
 		return
 
 	if(!neighbor_turf_passable())
-		user << "<span class='danger'>You can't climb there, the way is blocked.</span>"
+		user << SPAN_DANGER("You can't climb there, the way is blocked.")
 		climbers -= user
 		return
 

@@ -294,10 +294,10 @@
 		usr << SPAN_WARNING("The cryo cell is not functioning.")
 		return
 	if (!istype(M))
-		usr << "<span class='danger'>The cryo cell cannot handle such a lifeform!</span>"
+		usr << SPAN_DANGER("The cryo cell cannot handle such a lifeform!")
 		return
 	if (occupant)
-		usr << "<span class='danger'>The cryo cell is already occupied!</span>"
+		usr << SPAN_DANGER("The cryo cell is already occupied!")
 		return
 	if (M.abiotic())
 		usr << SPAN_WARNING("Subject may not have abiotic items on.")

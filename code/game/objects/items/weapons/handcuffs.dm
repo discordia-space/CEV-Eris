@@ -46,7 +46,7 @@
 		if(can_place)
 			place_handcuffs(C, user)
 		else
-			user << "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>"
+			user << SPAN_DANGER("You need to have a firm grip on [C] before you can put \the [src] on!")
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src.loc, cuff_sound, 30, 1, -2)
@@ -56,14 +56,14 @@
 		return 0
 
 	if (!H.has_organ_for_slot(slot_handcuffed))
-		user << "<span class='danger'>\The [H] needs at least two wrists before you can cuff them together!</span>"
+		user << SPAN_DANGER("\The [H] needs at least two wrists before you can cuff them together!")
 		return 0
 
 	if(istype(H.gloves,/obj/item/clothing/gloves/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		user << "<span class='danger'>\The [src] won't fit around \the [H.gloves]!</span>"
+		user << SPAN_DANGER("\The [src] won't fit around \the [H.gloves]!")
 		return 0
 
-	//user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
+	//user.visible_message(SPAN_DANGER("\The [user] is attempting to put [cuff_type] on \the [H]!"))
 
 	if(!do_after(user,0, target))
 		return 0
@@ -76,7 +76,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(H)
 
-	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")
+	user.visible_message(SPAN_DANGER("\The [user] has put [cuff_type] on \the [H]!"))
 
 	// Apply cuffs.
 	var/obj/item/weapon/handcuffs/cuffs = src

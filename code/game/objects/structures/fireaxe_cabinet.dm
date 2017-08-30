@@ -14,9 +14,9 @@
 /obj/structure/fireaxecabinet/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
 	attack_animation(user)
 	playsound(user, 'sound/effects/Glasshit.ogg', 50, 1)
-	visible_message("<span class='danger'>[user] [attack_verb] \the [src]!</span>")
+	visible_message(SPAN_DANGER("[user] [attack_verb] \the [src]!"))
 	if(damage_threshold > damage)
-		user << "<span class='danger'>Your strike is deflected by the reinforced glass!</span>"
+		user << SPAN_DANGER("Your strike is deflected by the reinforced glass!")
 		return
 	if(shattered)
 		return

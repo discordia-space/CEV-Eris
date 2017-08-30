@@ -62,6 +62,6 @@
 	if(!target)
 		return
 
-	target << "<span class='danger'>You feel punished!</span>"
+	target << SPAN_DANGER("You feel punished!")
 	target.fire_stacks += 15
 	target.IgniteMob()

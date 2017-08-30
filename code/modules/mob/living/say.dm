@@ -111,7 +111,7 @@ proc/get_radio_key_from_channel(var/channel)
 		return
 
 	if(is_muzzled())
-		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
+		src << SPAN_DANGER("You're muzzled and cannot speak!")
 		return
 
 	var/message_mode = parse_message_mode(message, "headset")

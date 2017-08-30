@@ -166,9 +166,9 @@
 		if(istype(ai_card, /obj/item/device/aicard))
 			if(integrated_ai && !integrated_ai.stat)
 				if(user)
-					user << "<span class='danger'>You cannot eject your currently stored AI. Purge it manually.</span>"
+					user << SPAN_DANGER("You cannot eject your currently stored AI. Purge it manually.")
 				return 0
-			user << "<span class='danger'>You purge the remaining scraps of data from your previous AI, freeing it for use.</span>"
+			user << SPAN_DANGER("You purge the remaining scraps of data from your previous AI, freeing it for use.")
 			if(integrated_ai)
 				integrated_ai.ghostize()
 				qdel(integrated_ai)
