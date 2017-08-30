@@ -58,13 +58,13 @@
 		return
 
 	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
-		usr << "<span class='warning'>You do not have permission to do this!</span>"
+		usr << SPAN_WARNING("You do not have permission to do this!")
 		return
 
 	establish_db_connection()
 
 	if(!dbcon.IsConnected())
-		usr << "<span class='warning'>Failed to establish database connection.</span>"
+		usr << SPAN_WARNING("Failed to establish database connection.")
 		return
 
 	if(!admin_ckey || !new_rank)
@@ -106,12 +106,12 @@
 		return
 
 	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
-		usr << "<span class='warning'>You do not have permission to do this!</span>"
+		usr << SPAN_WARNING("You do not have permission to do this!")
 		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		usr << "<span class='warning'>Failed to establish database connection.</span>"
+		usr << SPAN_WARNING("Failed to establish database connection.")
 		return
 
 	if(!admin_ckey || !new_permission)
@@ -131,7 +131,7 @@
 	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey, flags FROM players WHERE ckey = '[admin_ckey]'")
 	select_query.Execute()
 	if(!select_query.NextRow())
-		usr << "<span class='warning'>Permissions edit for [admin_ckey] failed on retrieving related database record.</span>"
+		usr << SPAN_WARNING("Permissions edit for [admin_ckey] failed on retrieving related database record.")
 		return
 
 	var/admin_rights = text2num(select_query.item[2])

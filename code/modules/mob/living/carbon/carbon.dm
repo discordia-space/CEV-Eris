@@ -197,11 +197,11 @@
 		else if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if (M.on_fire)
-				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames, but to no avail!</span>",
-				"<span class='warning'>You try to pat out [src]'s flames, but to no avail! Put yourself out first!</span>")
+				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames, but to no avail!"),
+				SPAN_WARNING("You try to pat out [src]'s flames, but to no avail! Put yourself out first!"))
 			else
-				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames!</span>",
-				"<span class='warning'>You try to pat out [src]'s flames! Hot!</span>")
+				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames!"),
+				SPAN_WARNING("You try to pat out [src]'s flames! Hot!"))
 				if(do_mob(M, src, 15))
 					src.fire_stacks -= 0.5
 					if (prob(10) && (M.fire_stacks <= 0))
@@ -213,8 +213,8 @@
 					else
 						src.fire_stacks -= 0.5 //Less effective than stop, drop, and roll - also accounting for the fact that it takes half as long.
 						if (src.fire_stacks <= 0)
-							M.visible_message("<span class='warning'>[M] successfully pats out [src]'s flames.</span>",
-							"<span class='warning'>You successfully pat out [src]'s flames.</span>")
+							M.visible_message(SPAN_WARNING("[M] successfully pats out [src]'s flames."),
+							SPAN_WARNING("You successfully pat out [src]'s flames."))
 							src.ExtinguishMob()
 							src.fire_stacks = 0
 		else
@@ -385,7 +385,7 @@
 		return 0
 	stop_pulling()
 	if (slipped_on)
-		src << "<span class='warning'>You slipped on [slipped_on]!</span>"
+		src << SPAN_WARNING("You slipped on [slipped_on]!")
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))

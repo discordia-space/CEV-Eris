@@ -36,7 +36,7 @@
 	if(locked && !emagged)
 		locked = 0
 		emagged = 1
-		user << "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>"
+		user << SPAN_WARNING("You short out [src]'s maintenance hatch lock.")
 		log_and_message_admins("emagged [src]'s maintenance hatch lock")
 		return 1
 
@@ -49,7 +49,7 @@
 	..(user)
 	if (src.health < maxhealth)
 		if (src.health > maxhealth/3)
-			user << "<span class='warning'>[src]'s parts look loose.</span>"
+			user << SPAN_WARNING("[src]'s parts look loose.")
 		else
 			user << "<span class='danger'>[src]'s parts look very loose!</span>"
 	return
@@ -63,7 +63,7 @@
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health+10)
-				user.visible_message("<span class='warning'>[user] repairs [src]!</span>",SPAN_NOTICE("You repair [src]!"))
+				user.visible_message(SPAN_WARNING("[user] repairs [src]!"),SPAN_NOTICE("You repair [src]!"))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			else
 				user << SPAN_NOTICE("Unable to repair with the maintenance panel closed.")

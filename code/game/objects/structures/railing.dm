@@ -52,16 +52,16 @@
 	if(health < maxhealth)
 		switch(health / maxhealth)
 			if(0.0 to 0.5)
-				user << "<span class='warning'>It looks severely damaged!</span>"
+				user << SPAN_WARNING("It looks severely damaged!")
 			if(0.25 to 0.5)
-				user << "<span class='warning'>It looks damaged!</span>"
+				user << SPAN_WARNING("It looks damaged!")
 			if(0.5 to 1.0)
 				user << SPAN_NOTICE("It has a few scrapes and dents.")
 
 /obj/structure/railing/proc/take_damage(amount)
 	health -= amount
 	if(health <= 0)
-		visible_message("<span class='warning'>\The [src] breaks down!</span>")
+		visible_message(SPAN_WARNING("\The [src] breaks down!"))
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 		new /obj/item/stack/rods(get_turf(usr))
 		qdel(src)
@@ -294,7 +294,7 @@
 	if(!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	usr.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
@@ -315,6 +315,6 @@
 	else
 		usr.forceMove(get_turf(src))
 
-	usr.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
+	usr.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
 	if(!anchored)	take_damage(maxhealth) // Fatboy
 	climbers -= user

@@ -4,7 +4,7 @@
 
 	. = 1
 	if(!allow_thrust(0.01, usr))
-		usr << "<span class='warning'>\The [src] is disabled.</span>"
+		usr << SPAN_WARNING("\The [src] is disabled.")
 		return
 
 	var/turf/above = GetAbove(src)
@@ -13,12 +13,12 @@
 		return
 
 	if(!istype(above, /turf/space) && !istype(above, /turf/simulated/open))
-		usr << "<span class='warning'>You bump against \the [above].</span>"
+		usr << SPAN_WARNING("You bump against \the [above].")
 		return
 
 	for(var/atom/A in above)
 		if(A.density)
-			usr << "<span class='warning'>\The [A] blocks you.</span>"
+			usr << SPAN_WARNING("\The [A] blocks you.")
 			return
 
 	usr.Move(above)
@@ -30,7 +30,7 @@
 
 	. = 1
 	if(!allow_thrust(0.01, usr))
-		usr << "<span class='warning'>\The [src] is disabled.</span>"
+		usr << SPAN_WARNING("\The [src] is disabled.")
 		return
 
 	var/turf/below = GetBelow(src)
@@ -39,12 +39,12 @@
 		return
 
 	if(below.density)
-		usr << "<span class='warning'>You bump against \the [below].</span>"
+		usr << SPAN_WARNING("You bump against \the [below].")
 		return
 
 	for(var/atom/A in below)
 		if(A.density)
-			usr << "<span class='warning'>\The [A] blocks you.</span>"
+			usr << SPAN_WARNING("\The [A] blocks you.")
 			return
 
 	usr.Move(below)

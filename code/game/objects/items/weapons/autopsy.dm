@@ -181,10 +181,10 @@
 
 	var/obj/item/organ/external/S = M.get_organ(user.targeted_organ)
 	if(!S)
-		usr << "<span class='warning'>You can't scan this body part.</span>"
+		usr << SPAN_WARNING("You can't scan this body part.")
 		return
 	if(!S.open)
-		usr << "<span class='warning'>You have to cut the limb open first!</span>"
+		usr << SPAN_WARNING("You have to cut the limb open first!")
 		return
 	for(var/mob/O in viewers(M))
 		O.show_message(SPAN_NOTICE("\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]"), 1)

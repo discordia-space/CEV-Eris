@@ -24,7 +24,7 @@
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>Uh ... how do those things work?!</span>"
+		user << SPAN_WARNING("Uh ... how do those things work?!")
 		place_handcuffs(user, user)
 		return
 
@@ -104,8 +104,8 @@ var/last_chew = 0
 	var/obj/item/organ/external/O = H.organs_by_name[H.hand?"l_hand":"r_hand"]
 	if (!O) return
 
-	var/s = "<span class='warning'>[H.name] chews on \his [O.name]!</span>"
-	H.visible_message(s, "<span class='warning'>You chew on your [O.name]!</span>")
+	var/s = SPAN_WARNING("[H.name] chews on \his [O.name]!")
+	H.visible_message(s, SPAN_WARNING("You chew on your [O.name]!"))
 	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
 	log_attack("[s] ([H.ckey])")
 

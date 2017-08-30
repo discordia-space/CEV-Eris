@@ -135,7 +135,7 @@
 			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
 			switch (state)
 				if(1)
-					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+					M.visible_message(SPAN_WARNING("[user] slams [M] against \the [src]!"))
 					M.apply_damage(7)
 					hit(10)
 				if(2)
@@ -311,11 +311,11 @@
 	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
 		var/obj/item/weapon/grab/G = W
 		if(G.state<2)
-			user << "<span class='warning'>You need a better grip to do that!</span>"
+			user << SPAN_WARNING("You need a better grip to do that!")
 			return
 		G.affecting.loc = src.loc
 		G.affecting.Weaken(5)
-		visible_message("<span class='warning'>[G.assailant] dunks [G.affecting] into the [src]!</span>", 3)
+		visible_message(SPAN_WARNING("[G.assailant] dunks [G.affecting] into the [src]!"), 3)
 		qdel(W)
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
@@ -332,7 +332,7 @@
 			I.loc = src.loc
 			visible_message(SPAN_NOTICE("Swish! \the [I] lands in \the [src]."), 3)
 		else
-			visible_message("<span class='warning'>\The [I] bounces off of \the [src]'s rim!</span>", 3)
+			visible_message(SPAN_WARNING("\The [I] bounces off of \the [src]'s rim!"), 3)
 		return 0
 	else
 		return ..(mover, target, height, air_group)

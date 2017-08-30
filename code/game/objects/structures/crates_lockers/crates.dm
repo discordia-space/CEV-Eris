@@ -153,7 +153,7 @@
 		user << SPAN_NOTICE("Close the crate first.")
 		return
 	if(src.broken)
-		user << "<span class='warning'>The crate appears to be broken.</span>"
+		user << SPAN_WARNING("The crate appears to be broken.")
 		return
 	if(src.allowed(user))
 		set_locked(!locked, user)
@@ -182,7 +182,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		usr << SPAN_WARNING("This mob type can't use this verb.")
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)

@@ -65,7 +65,7 @@
 			if(C.data == "Clown Land")
 				//whoops
 				for(var/mob/O in hearers(src, null))
-					O.show_message("<span class='warning'>Incoming bluespace portal detected, unable to lock in.</span>", 2)
+					O.show_message(SPAN_WARNING("Incoming bluespace portal detected, unable to lock in."), 2)
 
 				for(var/obj/machinery/teleport/hub/H in range(1))
 					var/amount = rand(2,5)
@@ -195,7 +195,7 @@
 		return
 	if (!com.locked)
 		for(var/mob/O in hearers(src, null))
-			O.show_message("<span class='warning'>Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.</span>")
+			O.show_message(SPAN_WARNING("Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
 		return
 	if (istype(M, /atom/movable))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
@@ -227,7 +227,7 @@
 	if (isliving(M))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/weapon/disk/nuclear))
-			MM << "<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>"
+			MM << SPAN_WARNING("Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.")
 			return
 	var/disky = 0
 	for (var/atom/O in M.contents) //I'm pretty sure this accounts for the maximum amount of container in container stacking. --NeoFite
@@ -254,7 +254,7 @@
 	if (isliving(M))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/weapon/storage/backpack/holding))
-			MM << "<span class='warning'>The Bluespace interface on your Bag of Holding interferes with the teleport!</span>"
+			MM << SPAN_WARNING("The Bluespace interface on your Bag of Holding interferes with the teleport!")
 			precision = rand(1,100)
 	if (istype(M, /obj/item/weapon/storage/backpack/holding))
 		precision = rand(1,100)

@@ -33,13 +33,13 @@
 		if(absorb_text)
 			show_message("[absorb_text]")
 		else
-			show_message("<span class='warning'>Your armor absorbs the blow!</span>")
+			show_message(SPAN_WARNING("Your armor absorbs the blow!"))
 		return 2
 	if(absorb == 1)
 		if(absorb_text)
 			show_message("[soften_text]",4)
 		else
-			show_message("<span class='warning'>Your armor softens the blow!</span>")
+			show_message(SPAN_WARNING("Your armor softens the blow!"))
 		return 1
 	return 0
 
@@ -196,7 +196,7 @@
 
 				if(T)
 					src.loc = T
-					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
+					visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"),SPAN_WARNING("You are pinned to the wall by [O]!"))
 					src.anchored = 1
 					src.pinned += O
 

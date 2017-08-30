@@ -48,7 +48,7 @@
 			amount *= TABLE_BRITTLE_MATERIAL_MULTIPLIER
 	health -= amount
 	if(health <= 0)
-		visible_message("<span class='warning'>\The [src] breaks down!</span>")
+		visible_message(SPAN_WARNING("\The [src] breaks down!"))
 		return break_to_parts() // if we break and form shards, return them to the caller to do !FUN! things with
 
 /obj/structure/table/initialize()
@@ -83,9 +83,9 @@
 	if(health < maxhealth)
 		switch(health / maxhealth)
 			if(0.0 to 0.5)
-				user << "<span class='warning'>It looks severely damaged!</span>"
+				user << SPAN_WARNING("It looks severely damaged!")
 			if(0.25 to 0.5)
-				user << "<span class='warning'>It looks damaged!</span>"
+				user << SPAN_WARNING("It looks damaged!")
 			if(0.5 to 1.0)
 				user << SPAN_NOTICE("It has a few scrapes and dents.")
 
@@ -116,7 +116,7 @@
 			update_icon()
 			return 1
 		else
-			user << "<span class='warning'>You don't have enough carpet!</span>"
+			user << SPAN_WARNING("You don't have enough carpet!")
 
 	if(!reinforced && !carpeted && material && istype(W, /obj/item/weapon/wrench))
 		remove_material(W, user)
@@ -164,19 +164,19 @@
 
 /obj/structure/table/proc/reinforce_table(obj/item/stack/material/S, mob/user)
 	if(reinforced)
-		user << "<span class='warning'>\The [src] is already reinforced!</span>"
+		user << SPAN_WARNING("\The [src] is already reinforced!")
 		return
 
 	if(!can_reinforce)
-		user << "<span class='warning'>\The [src] cannot be reinforced!</span>"
+		user << SPAN_WARNING("\The [src] cannot be reinforced!")
 		return
 
 	if(!material)
-		user << "<span class='warning'>Plate \the [src] before reinforcing it!</span>"
+		user << SPAN_WARNING("Plate \the [src] before reinforcing it!")
 		return
 
 	if(flipped)
-		user << "<span class='warning'>Put \the [src] back in place before reinforcing it!</span>"
+		user << SPAN_WARNING("Put \the [src] back in place before reinforcing it!")
 		return
 
 	reinforced = common_material_add(S, user, "reinforc")
@@ -201,10 +201,10 @@
 /obj/structure/table/proc/common_material_add(obj/item/stack/material/S, mob/user, verb) // Verb is actually verb without 'e' or 'ing', which is added. Works for 'plate'/'plating' and 'reinforce'/'reinforcing'.
 	var/material/M = S.get_material()
 	if(!istype(M))
-		user << "<span class='warning'>You cannot [verb]e \the [src] with \the [S].</span>"
+		user << SPAN_WARNING("You cannot [verb]e \the [src] with \the [S].")
 		return null
 	if (src.flipped && istype(M, /material/glass))
-		user << "<span class='warning'>You cannot [verb]e \the [src] with \the [S] when [src] flipped!.</span>"
+		user << SPAN_WARNING("You cannot [verb]e \the [src] with \the [S] when [src] flipped!.")
 		return null
 	if(manipulating) return M
 	manipulating = 1
@@ -219,7 +219,7 @@
 // Returns the material to set the table to.
 /obj/structure/table/proc/common_material_remove(mob/user, material/M, delay, what, type_holding, sound)
 	if(!M.stack_type)
-		user << "<span class='warning'>You are unable to remove the [what] from this table!</span>"
+		user << SPAN_WARNING("You are unable to remove the [what] from this table!")
 		return M
 
 	if(manipulating) return M

@@ -87,7 +87,7 @@
 		int_pressure += P.air.return_pressure()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_pressure - env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>"
+		user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
 		add_fingerprint(user)
 		return 1
 	user << SPAN_NOTICE("You begin to unfasten \the [src]...")

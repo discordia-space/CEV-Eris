@@ -64,7 +64,7 @@
 		return 1
 	else if(isliving(mover))
 		if(prob(50))
-			mover << "<span class='warning'>You get stuck in \the [src] for a moment.</span>"
+			mover << SPAN_WARNING("You get stuck in \the [src] for a moment.")
 			return 0
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)
@@ -248,7 +248,7 @@
 		icon_state = pick("cocoon1","cocoon2","cocoon3")
 
 /obj/effect/spider/cocoon/Destroy()
-	src.visible_message("<span class='warning'>\The [src] splits open.</span>")
+	src.visible_message(SPAN_WARNING("\The [src] splits open."))
 	for(var/atom/movable/A in contents)
 		A.loc = src.loc
 	return ..()

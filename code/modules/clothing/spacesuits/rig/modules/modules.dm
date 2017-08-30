@@ -143,23 +143,23 @@
 /obj/item/rig_module/proc/engage()
 
 	if(damage >= 2)
-		usr << "<span class='warning'>The [interface_name] is damaged beyond use!</span>"
+		usr << SPAN_WARNING("The [interface_name] is damaged beyond use!")
 		return 0
 
 	if(world.time < next_use)
-		usr << "<span class='warning'>You cannot use the [interface_name] again so soon.</span>"
+		usr << SPAN_WARNING("You cannot use the [interface_name] again so soon.")
 		return 0
 
 	if(!holder || holder.canremove)
-		usr << "<span class='warning'>The suit is not initialized.</span>"
+		usr << SPAN_WARNING("The suit is not initialized.")
 		return 0
 
 	if(usr.lying || usr.stat || usr.stunned || usr.paralysis || usr.weakened)
-		usr << "<span class='warning'>You cannot use the suit in this state.</span>"
+		usr << SPAN_WARNING("You cannot use the suit in this state.")
 		return 0
 
 	if(holder.wearer && holder.wearer.lying)
-		usr << "<span class='warning'>The suit cannot function while the wearer is prone.</span>"
+		usr << SPAN_WARNING("The suit cannot function while the wearer is prone.")
 		return 0
 
 	if(holder.security_check_enabled && !holder.check_suit_access(usr))

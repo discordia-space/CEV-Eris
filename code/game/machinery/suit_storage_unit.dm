@@ -941,7 +941,7 @@
 /obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
 
 	if(locked || active)
-		user << "<span class='warning'>The cycler is locked.</span>"
+		user << SPAN_WARNING("The cycler is locked.")
 		return
 
 	if (!occupant)

@@ -18,11 +18,11 @@
 /obj/machinery/dnaforensics/attackby(var/obj/item/W, mob/user as mob)
 
 	if(bloodsamp)
-		user << "<span class='warning'>There is already a sample in the machine.</span>"
+		user << SPAN_WARNING("There is already a sample in the machine.")
 		return
 
 	if(closed)
-		user << "<span class='warning'>Open the cover before inserting the sample.</span>"
+		user << SPAN_WARNING("Open the cover before inserting the sample.")
 		return
 
 	var/obj/item/weapon/forensics/swab/swab = W
@@ -32,7 +32,7 @@
 		swab.loc = src
 		user << SPAN_NOTICE("You insert \the [W] into \the [src].")
 	else
-		user << "<span class='warning'>\The [src] only accepts used swabs.</span>"
+		user << SPAN_WARNING("\The [src] only accepts used swabs.")
 		return
 
 /obj/machinery/dnaforensics/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null)
@@ -72,7 +72,7 @@
 				else
 					usr << SPAN_NOTICE("Please close sample lid before initiating scan.")
 			else
-				usr << "<span class='warning'>Insert an item to scan.</span>"
+				usr << SPAN_WARNING("Insert an item to scan.")
 
 	if(href_list["ejectItem"])
 		if(bloodsamp)
@@ -137,7 +137,7 @@
 		return
 
 	if(scanning)
-		usr << "<span class='warning'>You can't do that while [src] is scanning!</span>"
+		usr << SPAN_WARNING("You can't do that while [src] is scanning!")
 		return
 
 	closed = !closed

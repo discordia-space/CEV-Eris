@@ -308,7 +308,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		user << SPAN_WARNING("Access denied.")
 		return
 	..()
 
@@ -350,7 +350,7 @@
 	if (!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/tvalve/digital))
-		user << "<span class='warning'>You cannot unwrench \the [src], it's too complicated.</span>"
+		user << SPAN_WARNING("You cannot unwrench \the [src], it's too complicated.")
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
@@ -448,7 +448,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		user << SPAN_WARNING("Access denied.")
 		return
 	..()
 

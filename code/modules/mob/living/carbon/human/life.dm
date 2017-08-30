@@ -213,7 +213,7 @@
 				custom_pain("Your head feels numb and painful.")
 		if(getBrainLoss() >= 15)
 			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-				src << "<span class='warning'>It becomes hard to see for some reason.</span>"
+				src << SPAN_WARNING("It becomes hard to see for some reason.")
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
 			if(7 <= rn && rn <= 9) if(get_active_hand())
@@ -260,13 +260,13 @@
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-				src << "<span class='warning'>You feel weak.</span>"
+				src << SPAN_WARNING("You feel weak.")
 				Weaken(3)
 				if(!lying)
 					emote("collapse")
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
 				if((h_style != "Bald" || f_style != "Shaved" ))
-					src << "<span class='warning'>Your hair falls out.</span>"
+					src << SPAN_WARNING("Your hair falls out.")
 					h_style = "Bald"
 					f_style = "Shaved"
 					update_hair()
@@ -277,7 +277,7 @@
 			if(prob(5))
 				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 			if(prob(1))
-				src << "<span class='warning'>You feel strange!</span>"
+				src << SPAN_WARNING("You feel strange!")
 				adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 				emote("gasp")
 
@@ -657,7 +657,7 @@
 				qdel(a)
 
 			if(halloss >= species.total_health)
-				src << "<span class='warning'>[species.halloss_message_self]</span>"
+				src << SPAN_WARNING("[species.halloss_message_self]")
 				src.visible_message("<B>[src]</B> [species.halloss_message].")
 				Paralyse(10)
 				setHalLoss(species.total_health-1)

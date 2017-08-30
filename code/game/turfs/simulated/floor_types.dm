@@ -133,7 +133,7 @@
 			M.adjustBruteLoss(5)
 			M.slip(null, 6)
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
-			M << "<span class='warning'>You tripped over!</span>"
+			M << SPAN_WARNING("You tripped over!")
 			return
 
 /turf/simulated/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)

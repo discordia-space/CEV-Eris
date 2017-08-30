@@ -12,11 +12,11 @@
 
 /obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if (!istype(M))
-		user << "<span class='warning'>\The [src] cannot be applied to [M]!</span>"
+		user << SPAN_WARNING("\The [src] cannot be applied to [M]!")
 		return 1
 
 	if ( ! (ishuman(user) || issilicon(user)) )
-		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+		user << SPAN_WARNING("You don't have the dexterity to do this!")
 		return 1
 
 	if (ishuman(M))
@@ -25,15 +25,15 @@
 
 		if(affecting.name == "head")
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
-				user << "<span class='warning'>You can't apply [src] through [H.head]!</span>"
+				user << SPAN_WARNING("You can't apply [src] through [H.head]!")
 				return 1
 		else
 			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				user << "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>"
+				user << SPAN_WARNING("You can't apply [src] through [H.wear_suit]!")
 				return 1
 
 		if(affecting.status & ORGAN_ROBOT)
-			user << "<span class='warning'>This isn't useful at all on a robotic limb..</span>"
+			user << SPAN_WARNING("This isn't useful at all on a robotic limb..")
 			return 1
 
 		H.UpdateDamageIcon()
@@ -66,7 +66,7 @@
 
 		if(affecting.open == 0)
 			if(affecting.is_bandaged())
-				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>"
+				user << SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been bandaged.")
 				return 1
 			else
 				user.visible_message(SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."), \
@@ -98,9 +98,9 @@
 				affecting.update_damages()
 				if(used == amount)
 					if(affecting.is_bandaged())
-						user << "<span class='warning'>\The [src] is used up.</span>"
+						user << SPAN_WARNING("\The [src] is used up.")
 					else
-						user << "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>"
+						user << SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name].")
 				use(used)
 		else
 			if (can_operate(H))        //Checks if mob is lying down on table for surgery
@@ -128,7 +128,7 @@
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
-				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been salved.</span>"
+				user << SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved.")
 				return 1
 			else
 				user.visible_message(SPAN_NOTICE("\The [user] starts salving wounds on [M]'s [affecting.name]."), \
@@ -165,7 +165,7 @@
 
 		if(affecting.open == 0)
 			if(affecting.is_bandaged() && affecting.is_disinfected())
-				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been treated.</span>"
+				user << SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been treated.")
 				return 1
 			else
 				user.visible_message(SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."), \
@@ -197,9 +197,9 @@
 				affecting.update_damages()
 				if(used == amount)
 					if(affecting.is_bandaged())
-						user << "<span class='warning'>\The [src] is used up.</span>"
+						user << SPAN_WARNING("\The [src] is used up.")
 					else
-						user << "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>"
+						user << SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name].")
 				use(used)
 		else
 			if (can_operate(H))        //Checks if mob is lying down on table for surgery
@@ -227,7 +227,7 @@
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
-				user << "<span class='warning'>The wounds on [M]'s [affecting.name] have already been salved.</span>"
+				user << SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved.")
 				return 1
 			else
 				user.visible_message(SPAN_NOTICE("\The [user] starts salving wounds on [M]'s [affecting.name]."), \

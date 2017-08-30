@@ -17,7 +17,7 @@
 /mob/living/silicon/robot/set_zeroth_law(var/law, var/law_borg)
 	..()
 	if(tracking_entities)
-		src << "<span class='warning'>Internal camera is currently being accessed.</span>"
+		src << SPAN_WARNING("Internal camera is currently being accessed.")
 
 /mob/living/silicon/proc/add_ion_law(var/law)
 	laws_sanity_check()

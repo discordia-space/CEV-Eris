@@ -97,14 +97,14 @@
 	else
 		var/dam = damage / material.integrity
 		if(dam <= 0.3)
-			user << "<span class='warning'>It looks slightly damaged.</span>"
+			user << SPAN_WARNING("It looks slightly damaged.")
 		else if(dam <= 0.6)
-			user << "<span class='warning'>It looks moderately damaged.</span>"
+			user << SPAN_WARNING("It looks moderately damaged.")
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		user << "<span class='warning'>There is fungus growing on [src].</span>"
+		user << SPAN_WARNING("There is fungus growing on [src].")
 
 //Damage
 
@@ -223,7 +223,7 @@
 	var/turf/simulated/floor/F = src
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
-	user << "<span class='warning'>The thermite starts melting through the wall.</span>"
+	user << SPAN_WARNING("The thermite starts melting through the wall.")
 
 	spawn(100)
 		if(O)

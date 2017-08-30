@@ -49,16 +49,16 @@
 /obj/item/weapon/circuitboard/security/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/weapon/card/id))
 		if(emagged)
-			user << "<span class='warning'>Circuit lock does not respond.</span>"
+			user << SPAN_WARNING("Circuit lock does not respond.")
 			return
 		if(check_access(I))
 			locked = !locked
 			user << "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>"
 		else
-			user << "<span class='warning'>Access denied.</span>"
+			user << SPAN_WARNING("Access denied.")
 	else if(istype(I,/obj/item/device/multitool))
 		if(locked)
-			user << "<span class='warning'>Circuit controls are locked.</span>"
+			user << SPAN_WARNING("Circuit controls are locked.")
 			return
 		var/existing_networks = jointext(network,",")
 		var/input = sanitize(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))

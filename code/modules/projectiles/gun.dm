@@ -145,7 +145,7 @@
 		return
 
 	if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
-		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
+		user << SPAN_WARNING("You refrain from firing your [src] as your intent is set to help.")
 	else
 
 
@@ -182,7 +182,7 @@
 
 	if(world.time < next_fire_time)
 		if (world.time % 3) //to prevent spam
-			user << "<span class='warning'>[src] is not ready to fire again!</span>"
+			user << SPAN_WARNING("[src] is not ready to fire again!")
 		return
 
 	var/shoot_time = (burst - 1)* burst_delay
@@ -267,7 +267,7 @@
 		else
 			user.visible_message(
 				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"<span class='warning'>You fire \the [src]!</span>",
+				SPAN_WARNING("You fire \the [src]!"),
 				"You hear a [fire_sound_text]!"
 				)
 

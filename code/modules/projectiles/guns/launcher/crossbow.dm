@@ -68,7 +68,7 @@
 
 /obj/item/weapon/gun/launcher/crossbow/consume_next_projectile(mob/user=null)
 	if(tension <= 0)
-		user << "<span class='warning'>\The [src] is not drawn back!</span>"
+		user << SPAN_WARNING("\The [src] is not drawn back!")
 		return null
 	return bolt
 
@@ -108,7 +108,7 @@
 
 	while(bolt && tension && loc == current_user)
 		if(!do_after(user, 25, src)) //crossbow strings don't just magically pull back on their own.
-			user.visible_message("[usr] stops drawing and relaxes the string of [src].","<span class='warning'>You stop drawing back and relax the string of [src].</span>")
+			user.visible_message("[usr] stops drawing and relaxes the string of [src].",SPAN_WARNING("You stop drawing back and relax the string of [src]."))
 			tension = 0
 			update_icon()
 			return

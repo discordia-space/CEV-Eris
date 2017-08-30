@@ -175,7 +175,7 @@
 /obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
 	if(istype(G, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
-			user << "<span class='warning'>A beaker is already loaded into the machine.</span>"
+			user << SPAN_WARNING("A beaker is already loaded into the machine.")
 			return
 		if(user.unEquip(G))
 			G.forceMove(src)
@@ -291,7 +291,7 @@
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
 	if (stat & (NOPOWER|BROKEN))
-		usr << "<span class='warning'>The cryo cell is not functioning.</span>"
+		usr << SPAN_WARNING("The cryo cell is not functioning.")
 		return
 	if (!istype(M))
 		usr << "<span class='danger'>The cryo cell cannot handle such a lifeform!</span>"
@@ -300,10 +300,10 @@
 		usr << "<span class='danger'>The cryo cell is already occupied!</span>"
 		return
 	if (M.abiotic())
-		usr << "<span class='warning'>Subject may not have abiotic items on.</span>"
+		usr << SPAN_WARNING("Subject may not have abiotic items on.")
 		return
 	if(!node)
-		usr << "<span class='warning'>The cell is not correctly connected to its pipe network!</span>"
+		usr << SPAN_WARNING("The cell is not correctly connected to its pipe network!")
 		return
 	if (M.client)
 		M.client.perspective = EYE_PERSPECTIVE

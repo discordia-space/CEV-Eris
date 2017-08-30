@@ -107,7 +107,7 @@
 /obj/item/device/assembly_holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(isscrewdriver(W))
 		if(!left_assembly || !right_assembly)
-			user << "<span class='warning'>Assembly part missing!</span>"
+			user << SPAN_WARNING("Assembly part missing!")
 			return
 		left_assembly.toggle_secure()
 		right_assembly.toggle_secure()
@@ -125,7 +125,7 @@
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!left_assembly || !right_assembly)
-			user << "<span class='warning'>Assembly part missing!</span>"
+			user << SPAN_WARNING("Assembly part missing!")
 			return
 		if(istype(left_assembly,right_assembly.type))//If they are the same type it causes issues due to window code
 			switch(alert("Which side would you like to use?",,"Left","Right"))

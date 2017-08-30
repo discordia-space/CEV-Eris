@@ -47,11 +47,11 @@
 
 	var/turf/simulated/floor/F = A
 	if(!istype(F))
-		user << "<span class='warning'>\The [src] can only be used on station flooring.</span>"
+		user << SPAN_WARNING("\The [src] can only be used on station flooring.")
 		return
 
 	if(!F.flooring || !F.flooring.can_paint || F.broken || F.burnt)
-		user << "<span class='warning'>\The [src] cannot paint broken or missing tiles.</span>"
+		user << SPAN_WARNING("\The [src] cannot paint broken or missing tiles.")
 		return
 
 	var/list/decal_data = decals[decal]
@@ -65,11 +65,11 @@
 			config_error = 1
 
 	if(config_error)
-		user << "<span class='warning'>\The [src] flashes an error light. You might need to reconfigure it.</span>"
+		user << SPAN_WARNING("\The [src] flashes an error light. You might need to reconfigure it.")
 		return
 
 	if(F.decals && F.decals.len > 5 && painting_decal != /obj/effect/floor_decal/reset)
-		user << "<span class='warning'>\The [F] has been painted too much; you need to clear it off.</span>"
+		user << SPAN_WARNING("\The [F] has been painted too much; you need to clear it off.")
 		return
 
 	var/painting_dir = 0

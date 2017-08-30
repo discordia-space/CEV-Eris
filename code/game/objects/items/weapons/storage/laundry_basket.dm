@@ -28,11 +28,11 @@
 		if (user.hand)
 			temp = H.get_organ("l_hand")
 		if(!temp)
-			user << "<span class='warning'>You need two hands to pick this up!</span>"
+			user << SPAN_WARNING("You need two hands to pick this up!")
 			return
 
 	if(user.get_inactive_hand())
-		user << "<span class='warning'>You need your other hand to be empty</span>"
+		user << SPAN_WARNING("You need your other hand to be empty")
 		return
 	return ..()
 

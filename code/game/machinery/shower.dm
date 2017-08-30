@@ -112,7 +112,7 @@
 		var/mob/living/L = O
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
-		L << "<span class='warning'>You've been drenched in water!</span>"
+		L << SPAN_WARNING("You've been drenched in water!")
 		if(iscarbon(O))
 			var/mob/living/carbon/M = O
 			if(M.r_hand)
@@ -201,7 +201,7 @@
 
 		if(master.watertemp == "freezing")
 			C.bodytemperature = max(80, C.bodytemperature - 80)
-			C << "<span class='warning'>The water is freezing!</span>"
+			C << SPAN_WARNING("The water is freezing!")
 			return
 		if(master.watertemp == "boiling")
 			C.bodytemperature = min(500, C.bodytemperature + 35)

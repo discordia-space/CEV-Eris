@@ -36,7 +36,7 @@
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = P
 				if (C.get_amount() < 5)
-					user << "<span class='warning'>You need five lengths of cable to add them to the frame.</span>"
+					user << SPAN_WARNING("You need five lengths of cable to add them to the frame.")
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << SPAN_NOTICE("You start to add cables to the frame.")
@@ -73,7 +73,7 @@
 					update_desc()
 					user << desc
 				else
-					user << "<span class='warning'>This frame does not accept circuit boards of this type!</span>"
+					user << SPAN_WARNING("This frame does not accept circuit boards of this type!")
 			else
 				if(istype(P, /obj/item/weapon/wirecutters))
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
@@ -154,7 +154,7 @@
 								break
 					user << desc
 					if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
-						user << "<span class='warning'>You cannot add that component to the machine!</span>"
+						user << SPAN_WARNING("You cannot add that component to the machine!")
 	update_icon()
 
 /obj/machinery/constructable_frame/machine_frame/vertical

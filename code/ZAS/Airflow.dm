@@ -15,7 +15,7 @@ mob/proc/airflow_stun()
 		src << SPAN_NOTICE("Air suddenly rushes past you!")
 		return 0
 	if(!lying)
-		src << "<span class='warning'>The sudden rush of air knocks you over!</span>"
+		src << SPAN_WARNING("The sudden rush of air knocks you over!")
 	Weaken(5)
 	last_airflow_stun = world.time
 

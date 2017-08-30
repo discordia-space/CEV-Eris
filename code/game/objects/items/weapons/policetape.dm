@@ -198,7 +198,7 @@ var/list/tape_roll_applications = list()
 		if (!can_place)
 			start = null
 			update_icon()
-			usr << "<span class='warning'>You can't run \the [src] through that!</span>"
+			usr << SPAN_WARNING("You can't run \the [src] through that!")
 			return
 
 		cur = start
@@ -279,7 +279,7 @@ var/list/tape_roll_applications = list()
 		var/mob/M = mover
 		add_fingerprint(M)
 		if (!allowed(M))	//only select few learn art of not crumpling the tape
-			M << "<span class='warning'>You are not supposed to go past [src]...</span>"
+			M << SPAN_WARNING("You are not supposed to go past [src]...")
 			if(M.a_intent == I_HELP)
 				return 0
 			crumple()

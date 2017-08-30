@@ -69,7 +69,7 @@
 					construct_op--
 					stat &= ~BROKEN // the machine's not borked anymore!
 				else
-					user << "<span class='warning'>You need five coils of wire for this.</span>"
+					user << SPAN_WARNING("You need five coils of wire for this.")
 			if(istype(P, /obj/item/weapon/crowbar))
 				user << "You begin prying out the circuit board other components..."
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)

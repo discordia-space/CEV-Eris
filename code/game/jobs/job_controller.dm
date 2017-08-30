@@ -17,7 +17,7 @@ var/global/datum/controller/occupations/job_master
 		occupations = list()
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
-			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
+			world << SPAN_WARNING("Error setting up jobs, no job datums found!")
 			return 0
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
@@ -329,7 +329,7 @@ var/global/datum/controller/occupations/job_master
 							permitted = 0
 
 						if(!permitted)
-							H << "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>"
+							H << SPAN_WARNING("Your current job or whitelist status does not permit you to spawn with [thing]!")
 							continue
 
 						if(G.slot && !(G.slot in custom_equip_slots))

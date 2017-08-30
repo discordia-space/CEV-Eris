@@ -583,22 +583,22 @@
 		return
 
 	if (AM.anchored)
-		src << "<span class='warning'>It won't budge!</span>"
+		src << SPAN_WARNING("It won't budge!")
 		return
 
 	var/mob/M = AM
 	if(ismob(AM))
 
 		if(!can_pull_mobs || !can_pull_size)
-			src << "<span class='warning'>It won't budge!</span>"
+			src << SPAN_WARNING("It won't budge!")
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			src << "<span class='warning'>It won't budge!</span>"
+			src << SPAN_WARNING("It won't budge!")
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			src << "<span class='warning'>It won't budge!</span>"
+			src << SPAN_WARNING("It won't budge!")
 			return
 
 		// If your size is larger than theirs and you have some
@@ -613,7 +613,7 @@
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)
-			src << "<span class='warning'>It won't budge!</span>"
+			src << SPAN_WARNING("It won't budge!")
 			return
 
 	if(pulling)
@@ -952,9 +952,9 @@ mob/proc/yank_out_object()
 	var/obj/item/weapon/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
-		src << "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>"
+		src << SPAN_WARNING("You attempt to get a good grip on [selection] in your body.")
 	else
-		U << "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>"
+		U << SPAN_WARNING("You attempt to get a good grip on [selection] in [S]'s body.")
 
 	if(!do_mob(U, S, 30))
 		return
@@ -962,9 +962,9 @@ mob/proc/yank_out_object()
 		return
 
 	if(self)
-		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>")
+		visible_message(SPAN_WARNING("<b>[src] rips [selection] out of their body.</b>"),SPAN_WARNING("<b>You rip [selection] out of your body.</b>"))
 	else
-		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
+		visible_message(SPAN_WARNING("<b>[usr] rips [selection] out of [src]'s body.</b>"),SPAN_WARNING("<b>[usr] rips [selection] out of your body.</b>"))
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		src.verbs -= /mob/proc/yank_out_object

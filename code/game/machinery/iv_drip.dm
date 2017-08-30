@@ -137,7 +137,7 @@
 	set src in view(1)
 
 	if(!isliving(usr))
-		usr << "<span class='warning'>You can't do that.</span>"
+		usr << SPAN_WARNING("You can't do that.")
 		return
 
 	if(usr.stat)

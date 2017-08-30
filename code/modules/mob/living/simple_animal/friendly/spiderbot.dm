@@ -53,10 +53,10 @@
 	if(istype(O, /obj/item/device/mmi))
 		var/obj/item/device/mmi/B = O
 		if(src.mmi)
-			user << "<span class='warning'>There's already a brain in [src]!</span>"
+			user << SPAN_WARNING("There's already a brain in [src]!")
 			return
 		if(!B.brainmob)
-			user << "<span class='warning'>Sticking an empty MMI into the frame would sort of defeat the purpose.</span>"
+			user << SPAN_WARNING("Sticking an empty MMI into the frame would sort of defeat the purpose.")
 			return
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
@@ -70,11 +70,11 @@
 				return
 
 		if(B.brainmob.stat == DEAD)
-			user << "<span class='warning'>[O] is dead. Sticking it into the frame would sort of defeat the purpose.</span>"
+			user << SPAN_WARNING("[O] is dead. Sticking it into the frame would sort of defeat the purpose.")
 			return
 
 		if(jobban_isbanned(B.brainmob, "Cyborg"))
-			user << "<span class='warning'>\The [O] does not seem to fit.</span>"
+			user << SPAN_WARNING("\The [O] does not seem to fit.")
 			return
 
 		user << SPAN_NOTICE("You install \the [O] in \the [src]!")
@@ -101,7 +101,7 @@
 				add_fingerprint(user)
 				src.visible_message(SPAN_NOTICE("\The [user] has spot-welded some of the damage to \the [src]!"))
 			else
-				user << "<span class='warning'>\The [src] is undamaged!</span>"
+				user << SPAN_WARNING("\The [src] is undamaged!")
 		else
 			user << "<span class='danger'>You need more welding fuel for this task!</span>"
 			return
@@ -134,7 +134,7 @@
 
 /mob/living/simple_animal/spiderbot/emag_act(var/remaining_charges, var/mob/user)
 	if (emagged)
-		user << "<span class='warning'>[src] is already overloaded - better run.</span>"
+		user << SPAN_WARNING("[src] is already overloaded - better run.")
 		return 0
 	else
 		user << SPAN_NOTICE("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time.")
@@ -250,7 +250,7 @@
 		return -1
 
 	if(held_item)
-		src << "<span class='warning'>You are already holding \the [held_item]</span>"
+		src << SPAN_WARNING("You are already holding \the [held_item]")
 		return 1
 
 	var/list/items = list()
@@ -269,10 +269,10 @@
 					SPAN_NOTICE("You grab \the [held_item]."), \
 					"You hear a skittering noise and a clink.")
 				return held_item
-		src << "<span class='warning'>\The [selection] is too far away.</span>"
+		src << SPAN_WARNING("\The [selection] is too far away.")
 		return 0
 
-	src << "<span class='warning'>There is nothing of interest to take.</span>"
+	src << SPAN_WARNING("There is nothing of interest to take.")
 	return 0
 
 /mob/living/simple_animal/spiderbot/examine(mob/user)

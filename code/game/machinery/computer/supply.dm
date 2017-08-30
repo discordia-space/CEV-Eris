@@ -151,7 +151,7 @@
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied.</span>"
+		user << SPAN_WARNING("Access Denied.")
 		return
 
 	if(..())
@@ -174,8 +174,8 @@
 						switch(shuttle.docking_controller.get_docking_status())
 							if ("docked") dat += "Docked at station<BR>"
 							if ("undocked") dat += "Undocked from station<BR>"
-							if ("docking") dat += "Docking with station [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>" : ""]<BR>"
-							if ("undocking") dat += "Undocking from station [shuttle.can_force()? "<span class='warning'><A href='?src=\ref[src];force_send=1'>Force Launch</A></span>" : ""]<BR>"
+							if ("docking") dat += "Docking with station [shuttle.can_force()? SPAN_WARNING("<A href='?src=\ref[src];force_send=1'>Force Launch</A>") : ""]<BR>"
+							if ("undocking") dat += "Undocking from station [shuttle.can_force()? SPAN_WARNING("<A href='?src=\ref[src];force_send=1'>Force Launch</A>") : ""]<BR>"
 					else
 						dat += "Station<BR>"
 

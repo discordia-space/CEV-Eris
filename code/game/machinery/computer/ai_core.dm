@@ -67,7 +67,7 @@
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = P
 				if (C.get_amount() < 5)
-					user << "<span class='warning'>You need five coils of wire to add them to the frame.</span>"
+					user << SPAN_WARNING("You need five coils of wire to add them to the frame.")
 					return
 				user << SPAN_NOTICE("You start to add cables to the frame.")
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -92,7 +92,7 @@
 			if(istype(P, /obj/item/stack/material) && P.get_material_name() == "rglass")
 				var/obj/item/stack/RG = P
 				if (RG.get_amount() < 2)
-					user << "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>"
+					user << SPAN_WARNING("You need two sheets of glass to put in the glass panel.")
 					return
 				user << SPAN_NOTICE("You start to put in the glass panel.")
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -127,14 +127,14 @@
 			if(istype(P, /obj/item/device/mmi))
 				var/obj/item/device/mmi/M = P
 				if(!M.brainmob)
-					user << "<span class='warning'>Sticking an empty [P] into the frame would sort of defeat the purpose.</span>"
+					user << SPAN_WARNING("Sticking an empty [P] into the frame would sort of defeat the purpose.")
 					return
 				if(M.brainmob.stat == 2)
-					user << "<span class='warning'>Sticking a dead [P] into the frame would sort of defeat the purpose.</span>"
+					user << SPAN_WARNING("Sticking a dead [P] into the frame would sort of defeat the purpose.")
 					return
 
 				if(jobban_isbanned(M.brainmob, "AI"))
-					user << "<span class='warning'>This [P] does not seem to fit.</span>"
+					user << SPAN_WARNING("This [P] does not seem to fit.")
 					return
 
 				if(M.brainmob.mind)

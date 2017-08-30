@@ -34,7 +34,7 @@
 		qdel(src)
 
 /obj/item/weapon/contract/proc/contract_effect(mob/user as mob)
-	user << "<span class='warning'>You've signed your soul over to \the [contract_master] and with that your unbreakable vow of servitude begins.</span>"
+	user << SPAN_WARNING("You've signed your soul over to \the [contract_master] and with that your unbreakable vow of servitude begins.")
 	return 1
 
 /obj/item/weapon/contract/apprentice
@@ -44,7 +44,7 @@
 
 /obj/item/weapon/contract/apprentice/contract_effect(mob/user as mob)
 	if(user.mind.special_role == "apprentice")
-		user << "<span class='warning'>You are already a wizarding apprentice!</span>"
+		user << SPAN_WARNING("You are already a wizarding apprentice!")
 		return 0
 	if(wizards.add_antagonist_mind(user.mind,1,"apprentice","<b>You are an apprentice! Your job is to learn the wizarding arts!</b>"))
 		user << SPAN_NOTICE("With the signing of this paper you agree to become \the [contract_master]'s apprentice in the art of wizardry.")

@@ -164,7 +164,7 @@
 		return ..()
 
 	if(isliving(src.loc))
-		user << "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>"
+		user << SPAN_WARNING("You cannot modify \the [src] while it is being worn.")
 		return
 
 	if(istype(W,/obj/item/weapon/screwdriver))

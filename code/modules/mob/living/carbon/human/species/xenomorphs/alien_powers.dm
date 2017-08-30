@@ -171,7 +171,7 @@
 		src << "You cannot spit neurotoxin in your current state."
 		return
 
-	visible_message("<span class='warning'>[src] spits neurotoxin at [target]!</span>", "<span class='alium'>You spit neurotoxin at [target].</span>")
+	visible_message(SPAN_WARNING("[src] spits neurotoxin at [target]!"), "<span class='alium'>You spit neurotoxin at [target].</span>")
 
 	//I'm not motivated enough to revise this. Prjectile code in general needs update.
 	// Maybe change this to use throw_at? ~ Z
@@ -209,7 +209,7 @@
 	if(!check_alien_ability(75,1,"resin spinner"))
 		return
 
-	visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
+	visible_message(SPAN_WARNING("<B>[src] vomits up a thick purple substance and begins to shape it!</B>"), "<span class='alium'>You shape a [choice].</span>")
 	switch(choice)
 		if("resin door")
 			new /obj/machinery/door/unpowered/simple/resin(loc)
@@ -227,20 +227,20 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 	set category = "Abilities"
 
 	if(!M.Adjacent(src))
-		src << "<span class='warning'>They are too far away.</span>"
+		src << SPAN_WARNING("They are too far away.")
 		return
 
 	if(!M.mind)
-		src << "<span class='warning'>This mindless flesh adds nothing to the hive.</span>"
+		src << SPAN_WARNING("This mindless flesh adds nothing to the hive.")
 		return
 
 	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name["hive node"]))
-		src << "<span class='warning'>They are already part of the hive.</span>"
+		src << SPAN_WARNING("They are already part of the hive.")
 		return
 
 	var/obj/item/organ/affecting = M.get_organ("chest")
 	if(!affecting || (affecting.status & ORGAN_ROBOT))
-		src << "<span class='warning'>This form is not compatible with our physiology.</span>"
+		src << SPAN_WARNING("This form is not compatible with our physiology.")
 		return
 
 	src.visible_message("<span class='danger'>\The [src] crouches over \the [M], extending a hideous protuberance from its head!</span>")
@@ -249,7 +249,7 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 		return
 
 	if(!M || !M.Adjacent(src))
-		src << "<span class='warning'>They are too far away.</span>"
+		src << SPAN_WARNING("They are too far away.")
 		return
 
 	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name["hive node"]) || !affecting || (affecting.status & ORGAN_ROBOT))

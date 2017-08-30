@@ -119,4 +119,4 @@
 	M.mutations.Remove(mutation)
 	if(deactivation_messages.len)
 		var/msg = pick(deactivation_messages)
-		M << "<span class='warning'>[msg]</span>"
+		M << SPAN_WARNING("[msg]")

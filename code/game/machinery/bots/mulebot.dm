@@ -125,7 +125,7 @@
 	else if(load && ismob(load))  // chance to knock off rider
 		if(prob(1+I.force * 2))
 			unload(0)
-			user.visible_message("<span class='warning'>[user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'>You knock [load] off [src] with \the [I]!</span>")
+			user.visible_message(SPAN_WARNING("[user] knocks [load] off [src] with \the [I]!"), SPAN_WARNING("You knock [load] off [src] with \the [I]!"))
 		else
 			user << "You hit [src] with \the [I] but to no effect."
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -156,7 +156,7 @@
 	if(prob(50) && !isnull(load))
 		unload(0)
 	if(prob(25))
-		src.visible_message("<span class='warning'>Something shorts out inside [src]!</span>")
+		src.visible_message(SPAN_WARNING("Something shorts out inside [src]!"))
 		var/index = 1<< (rand(0,9))
 		if(wires & index)
 			wires &= ~index
@@ -256,14 +256,14 @@
 					locked = !locked
 					updateDialog()
 				else
-					usr << "<span class='warning'>Access denied.</span>"
+					usr << SPAN_WARNING("Access denied.")
 					return
 			if("power")
 				if (src.on)
 					turn_off()
 				else if (cell && !open)
 					if (!turn_on())
-						usr << "<span class='warning'>You can't switch on [src].</span>"
+						usr << SPAN_WARNING("You can't switch on [src].")
 						return
 				else
 					return
@@ -708,9 +708,9 @@
 		var/mob/M = obs
 		if(ismob(M))
 			if(isrobot(M))
-				src.visible_message("<span class='warning'>[src] bumps into [M]!</span>")
+				src.visible_message(SPAN_WARNING("[src] bumps into [M]!"))
 			else
-				src.visible_message("<span class='warning'>[src] knocks over [M]!</span>")
+				src.visible_message(SPAN_WARNING("[src] knocks over [M]!"))
 				M.stop_pulling()
 				M.Stun(8)
 				M.Weaken(5)
@@ -720,7 +720,7 @@
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc
 /obj/machinery/bot/mulebot/proc/RunOver(var/mob/living/carbon/human/H)
-	src.visible_message("<span class='warning'>[src] drives over [H]!</span>")
+	src.visible_message(SPAN_WARNING("[src] drives over [H]!"))
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)

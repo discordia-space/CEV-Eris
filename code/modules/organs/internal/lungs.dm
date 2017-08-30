@@ -115,7 +115,7 @@
 			owner.co2_alert = 0
 
 		if(!owner.co2_alert && word && prob(warn_prob))
-			owner << "<span class='warning'>You feel [word].</span>"
+			owner << SPAN_WARNING("You feel [word].")
 			owner.adjustOxyLoss(oxyloss)
 			owner.co2_alert = alert
 

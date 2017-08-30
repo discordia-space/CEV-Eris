@@ -133,7 +133,7 @@
 			leak_fuel(amount_per_transfer_from_this)
 	if (istype(W,/obj/item/device/assembly_holder))
 		if (rig)
-			user << "<span class='warning'>There is another device in the way.</span>"
+			user << SPAN_WARNING("There is another device in the way.")
 			return ..()
 		user.visible_message("\The [user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
 		if(do_after(user, 20, src))

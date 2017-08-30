@@ -156,7 +156,7 @@
 
 /obj/structure/foamedmetal/attack_hand(var/mob/user)
 	if ((HULK in user.mutations) || (prob(75 - metal * 25)))
-		user.visible_message("<span class='warning'>[user] smashes through the foamed metal.</span>", SPAN_NOTICE("You smash through the metal foam wall."))
+		user.visible_message(SPAN_WARNING("[user] smashes through the foamed metal."), SPAN_NOTICE("You smash through the metal foam wall."))
 		qdel(src)
 	else
 		user << SPAN_NOTICE("You hit the metal foam but bounce off it.")
@@ -166,13 +166,13 @@
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
 		G.affecting.loc = src.loc
-		visible_message("<span class='warning'>[G.assailant] smashes [G.affecting] through the foamed metal wall.</span>")
+		visible_message(SPAN_WARNING("[G.assailant] smashes [G.affecting] through the foamed metal wall."))
 		qdel(I)
 		qdel(src)
 		return
 
 	if(prob(I.force * 20 - metal * 25))
-		user.visible_message("<span class='warning'>[user] smashes through the foamed metal.</span>", SPAN_NOTICE("You smash through the foamed metal with \the [I]."))
+		user.visible_message(SPAN_WARNING("[user] smashes through the foamed metal."), SPAN_NOTICE("You smash through the foamed metal with \the [I]."))
 		qdel(src)
 	else
 		user << SPAN_NOTICE("You hit the metal foam to no effect.")

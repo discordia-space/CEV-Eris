@@ -42,7 +42,7 @@
 					else
 						S.item_quants[G.name] = 1
 				else
-					user << "<span class='warning'>The seed bag is full.</span>"
+					user << SPAN_WARNING("The seed bag is full.")
 					S.updateUsrDialog()
 					return
 			user << SPAN_NOTICE("You pick up all the seeds.")
@@ -54,7 +54,7 @@
 				else
 					S.item_quants[name] = 1
 			else
-				user << "<span class='warning'>The seed bag is full.</span>"
+				user << SPAN_WARNING("The seed bag is full.")
 		S.updateUsrDialog()
 	return
 

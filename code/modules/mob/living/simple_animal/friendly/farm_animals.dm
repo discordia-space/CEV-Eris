@@ -63,7 +63,7 @@
 /mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
 	..()
 	if(stat == CONSCIOUS)
-		visible_message("<span class='warning'>[src] gets an evil-looking gleam in their eye.</span>")
+		visible_message(SPAN_WARNING("[src] gets an evil-looking gleam in their eye."))
 
 /mob/living/simple_animal/hostile/retaliate/goat/Move()
 	..()
@@ -131,7 +131,7 @@
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M as mob)
 	if(!stat && M.a_intent == I_DISARM && icon_state != icon_dead)
-		M.visible_message("<span class='warning'>[M] tips over [src].</span>",SPAN_NOTICE("You tip over [src]."))
+		M.visible_message(SPAN_WARNING("[M] tips over [src]."),SPAN_NOTICE("You tip over [src]."))
 		Weaken(30)
 		icon_state = icon_dead
 		spawn(rand(20,50))

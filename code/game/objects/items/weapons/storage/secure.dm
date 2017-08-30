@@ -58,7 +58,7 @@
 						src.l_setshort = 0
 						src.l_hacking = 0
 					else
-						user.show_message("<span class='warning'>Unable to reset internal memory.</span>", 1)
+						user.show_message(SPAN_WARNING("Unable to reset internal memory."), 1)
 						src.l_hacking = 0
 				else	src.l_hacking = 0
 				return
@@ -153,7 +153,7 @@
 
 	attack_hand(mob/user as mob)
 		if ((src.loc == user) && (src.locked == 1))
-			usr << "<span class='warning'>[src] is locked and cannot be opened!</span>"
+			usr << SPAN_WARNING("[src] is locked and cannot be opened!")
 		else if ((src.loc == user) && (!src.locked))
 			src.open(usr)
 		else

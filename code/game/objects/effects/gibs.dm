@@ -19,7 +19,7 @@
 
 	proc/Gib(atom/location, var/datum/dna/MobDNA = null)
 		if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
-			world << "<span class='warning'>Gib list length mismatch!</span>"
+			world << SPAN_WARNING("Gib list length mismatch!")
 			return
 
 		if(sparks)

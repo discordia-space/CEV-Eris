@@ -102,7 +102,7 @@
 	if(inflamed && owner)
 		inflamed++
 		if(prob(5))
-			owner << "<span class='warning'>You feel a stinging pain in your abdomen!</span>"
+			owner << SPAN_WARNING("You feel a stinging pain in your abdomen!")
 			owner.emote("me",1,"winces slightly.")
 		if(inflamed > 200)
 			if(prob(3))

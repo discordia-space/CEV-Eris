@@ -79,7 +79,7 @@ var/list/mob_hat_cache = list()
 	if(!(istype(possessor) && possessor.ckey))
 		return 0
 	if(src.ckey || src.client)
-		possessor << "<span class='warning'>\The [src] already has a player.</span>"
+		possessor << SPAN_WARNING("\The [src] already has a player.")
 		return 0
 	message_admins("<span class='adminnotice'>[key_name_admin(possessor)] has taken control of \the [src].</span>")
 	log_admin("[key_name(possessor)] took control of \the [src].")
@@ -172,7 +172,7 @@ var/list/mob_hat_cache = list()
 
 	if(user.a_intent == I_HELP && istype(W, /obj/item/clothing/head))
 		if(hat)
-			user << "<span class='warning'>\The [src] is already wearing \the [hat].</span>"
+			user << SPAN_WARNING("\The [src] is already wearing \the [hat].")
 			return
 		user.unEquip(W)
 		wear_hat(W)

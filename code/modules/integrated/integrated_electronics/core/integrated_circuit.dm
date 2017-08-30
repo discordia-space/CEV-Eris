@@ -203,7 +203,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			if(pin)
 				debugger.write_data(pin, usr)
 		else
-			usr << "<span class='warning'>You can't do a whole lot without the proper tools.</span>"
+			usr << SPAN_WARNING("You can't do a whole lot without the proper tools.")
 
 	if(href_list["examine"])
 		examine(usr)
@@ -217,9 +217,9 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			if(D.accepting_refs)
 				D.afterattack(src, usr, TRUE)
 			else
-				usr << "<span class='warning'>The Debugger's 'ref scanner' needs to be on.</span>"
+				usr << SPAN_WARNING("The Debugger's 'ref scanner' needs to be on.")
 		else
-			usr << "<span class='warning'>You need a Debugger set to 'ref' mode to do that.</span>"
+			usr << SPAN_WARNING("You need a Debugger set to 'ref' mode to do that.")
 
 	if(href_list["autopulse"])
 		if(autopulse != -1)
@@ -228,7 +228,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(href_list["remove"])
 		if(istype(held_item, /obj/item/weapon/screwdriver))
 			if(!removable)
-				usr << "<span class='warning'>\The [src] seems to be permanently attached to the case.</span>"
+				usr << SPAN_WARNING("\The [src] seems to be permanently attached to the case.")
 				return
 			disconnect_all()
 			var/turf/T = get_turf(src)
@@ -237,7 +237,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
 			usr << SPAN_NOTICE("You pop \the [src] out of the case, and slide it out.")
 		else
-			usr <<"<span class='warning'>You need a screwdriver to remove components.</span>"
+			usr <<SPAN_WARNING("You need a screwdriver to remove components.")
 		var/obj/item/device/electronic_assembly/ea = loc
 		if(istype(ea))
 			ea.interact(usr)

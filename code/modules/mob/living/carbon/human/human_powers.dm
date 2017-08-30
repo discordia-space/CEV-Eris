@@ -92,7 +92,7 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		src << "<span class='warning'>You miss!</span>"
+		src << SPAN_WARNING("You miss!")
 		return
 
 	T.Weaken(3)
@@ -110,7 +110,7 @@
 		else
 			use_hand = "right"
 
-	src.visible_message("<span class='warning'><b>\The [src]</b> seizes [T] aggressively!</span>")
+	src.visible_message(SPAN_WARNING("<b>\The [src]</b> seizes [T] aggressively!"))
 
 	var/obj/item/weapon/grab/G = new(src,T)
 	if(use_hand == "left")
@@ -145,7 +145,7 @@
 
 	last_special = world.time + 50
 
-	visible_message("<span class='warning'><b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!</span>")
+	visible_message(SPAN_WARNING("<b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!"))
 
 	if(ishuman(G.affecting))
 		var/mob/living/carbon/human/H = G.affecting

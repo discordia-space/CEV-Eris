@@ -112,4 +112,4 @@
 		updateDialog()
 		return 1
 	else
-		user << "<span class='warning'>You must select a camera network circuit!</span>"
+		user << SPAN_WARNING("You must select a camera network circuit!")

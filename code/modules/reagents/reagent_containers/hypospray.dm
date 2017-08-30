@@ -22,7 +22,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
-		user << "<span class='warning'>[src] is empty.</span>"
+		user << SPAN_WARNING("[src] is empty.")
 		return
 	if (!istype(M))
 		return

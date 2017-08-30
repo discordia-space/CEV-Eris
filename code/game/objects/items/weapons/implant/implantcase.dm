@@ -43,7 +43,7 @@
 		if(!implant.allow_reagents)
 			return
 		if(implant.reagents.total_volume >= implant.reagents.maximum_volume)
-			user << "<span class='warning'>\The [src] is full.</span>"
+			user << SPAN_WARNING("\The [src] is full.")
 		else
 			spawn(5)
 				I.reagents.trans_to_obj(implant, 5)

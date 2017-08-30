@@ -95,7 +95,7 @@
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if (!user.)
-		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+		user << SPAN_WARNING("You don't have the dexterity to do this!")
 		return
 
 	//get the user's location
@@ -204,7 +204,7 @@
 
 			user << SPAN_NOTICE("You remove the outer plating.")
 			dismantle_wall()
-			user.visible_message("<span class='warning'>The wall was torn open by [user]!</span>")
+			user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
 			return
 
 	//Reinforced dismantling.

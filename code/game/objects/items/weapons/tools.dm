@@ -316,7 +316,7 @@
 		if(M)
 			M << SPAN_NOTICE("You switch \the [src] off.")
 		else if(T)
-			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
+			T.visible_message(SPAN_WARNING("\The [src] turns off."))
 		src.force = WEAPON_FORCE_WEAK
 		src.damtype = "brute"
 		src.w_class = initial(src.w_class)
@@ -337,12 +337,12 @@
 		var/safety = H.eyecheck()
 		switch(safety)
 			if(FLASH_PROTECTION_MODERATE)
-				H << "<span class='warning'>Your eyes sting a little.</span>"
+				H << SPAN_WARNING("Your eyes sting a little.")
 				E.damage += rand(1, 2)
 				if(E.damage > 12)
 					H.eye_blurry += rand(3,6)
 			if(FLASH_PROTECTION_NONE)
-				H << "<span class='warning'>Your eyes burn.</span>"
+				H << SPAN_WARNING("Your eyes burn.")
 				E.damage += rand(2, 4)
 				if(E.damage > 10)
 					E.damage += rand(4,10)
@@ -352,7 +352,7 @@
 				E.damage += rand(12, 16)
 		if(safety<FLASH_PROTECTION_MAJOR)
 			if(E.damage > 10)
-				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
+				user << SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!")
 
 			if (E.damage >= E.min_broken_damage)
 				H << "<span class='danger'>You go blind!</span>"

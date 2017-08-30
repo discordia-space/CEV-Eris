@@ -60,11 +60,11 @@
 			attack_hand(user)
 		else
 			if(emagged)
-				user << "<span class='warning'>ERROR</span>"
+				user << SPAN_WARNING("ERROR")
 			if(open)
-				user << "<span class='warning'>Please close the access panel before locking it.</span>"
+				user << SPAN_WARNING("Please close the access panel before locking it.")
 			else
-				user << "<span class='warning'>Access denied.</span>"
+				user << SPAN_WARNING("Access denied.")
 		return
 	else if(istype(O, /obj/item/weapon/screwdriver))
 		if(!locked)

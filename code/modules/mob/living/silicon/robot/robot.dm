@@ -244,7 +244,7 @@
 			else
 				icontype = module_sprites[1]
 				icon = 'icons/mob/robots.dmi'
-				src << "<span class='warning'>Custom Sprite Sheet does not contain a valid icon_state for [ckey]-[modtype]</span>"
+				src << SPAN_WARNING("Custom Sprite Sheet does not contain a valid icon_state for [ckey]-[modtype]")
 		else
 			icontype = module_sprites[1]
 		icon_state = module_sprites[icontype]
@@ -482,7 +482,7 @@
 
 	if (istype(W, /obj/item/weapon/weldingtool))
 		if (src == user)
-			user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
+			user << SPAN_WARNING("You lack the reach to be able to repair yourself.")
 			return
 
 		if (!getBruteLoss())

@@ -484,7 +484,7 @@
 		if(cash_stored)
 			overlays += "register_cash"
 	else
-		usr << "<span class='warning'>The cash box is locked.</span>"
+		usr << SPAN_WARNING("The cash box is locked.")
 
 
 /obj/machinery/cash_register/proc/toggle_anchors(obj/item/weapon/wrench/W, mob/user)
@@ -494,7 +494,7 @@
 		user.visible_message("\The [user] begins securing \the [src] to the floor.",
 	                         "You begin securing \the [src] to the floor.")
 	else
-		user.visible_message("<span class='warning'>\The [user] begins unsecuring \the [src] from the floor.</span>",
+		user.visible_message(SPAN_WARNING("\The [user] begins unsecuring \the [src] from the floor."),
 	                         "You begin unsecuring \the [src] from the floor.")
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	if(!do_after(user, 20))
@@ -504,7 +504,7 @@
 		user.visible_message(SPAN_NOTICE("\The [user] has secured \the [src] to the floor."),
 	                         SPAN_NOTICE("You have secured \the [src] to the floor."))
 	else
-		user.visible_message("<span class='warning'>\The [user] has unsecured \the [src] from the floor.</span>",
+		user.visible_message(SPAN_WARNING("\The [user] has unsecured \the [src] from the floor."),
 	                         SPAN_NOTICE("You have unsecured \the [src] from the floor."))
 	anchored = !anchored
 	manipulating = 0

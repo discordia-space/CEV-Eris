@@ -47,7 +47,7 @@
 /obj/machinery/power/supply_beacon/attackby(var/obj/item/weapon/W, var/mob/user)
 	if(!use_power && istype(W, /obj/item/weapon/wrench))
 		if(!anchored && !connect_to_network())
-			user << "<span class='warning'>This device must be placed over an exposed cable.</span>"
+			user << SPAN_WARNING("This device must be placed over an exposed cable.")
 			return
 		anchored = !anchored
 		user.visible_message("<span class='notice'>\The [user] [anchored ? "secures" : "unsecures"] \the [src].</span>")
@@ -59,13 +59,13 @@
 
 	if(expended)
 		use_power = 0
-		user << "<span class='warning'>\The [src] has used up its charge.</span>"
+		user << SPAN_WARNING("\The [src] has used up its charge.")
 		return
 
 	if(anchored)
 		return use_power ? deactivate(user) : activate(user)
 	else
-		user << "<span class='warning'>You need to secure the beacon with a wrench first!</span>"
+		user << SPAN_WARNING("You need to secure the beacon with a wrench first!")
 		return
 
 /obj/machinery/power/supply_beacon/attack_ai(var/mob/user)

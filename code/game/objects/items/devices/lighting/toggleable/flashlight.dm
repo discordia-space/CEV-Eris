@@ -12,7 +12,7 @@
 /obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
 	if(!cell || !cell.check_charge(tick_cost))
 		playsound(loc, 'sound/machines/button.ogg', 50, 1)
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return FALSE
 	. = ..()
 	if(. && user)
@@ -28,7 +28,7 @@
 	if(on)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
-				src.loc << "<span class='warning'>Your flashlight dies. You are alone now.</span>"
+				src.loc << SPAN_WARNING("Your flashlight dies. You are alone now.")
 			turn_off()
 
 /obj/item/device/lighting/toggleable/flashlight/MouseDrop(over_object)
@@ -50,7 +50,7 @@
 		if(istype(H))
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
 				if(istype(C) && (C.body_parts_covered & EYES))
-					user << "<span class='warning'>You're going to need to remove [C.name] first.</span>"
+					user << SPAN_WARNING("You're going to need to remove [C.name] first.")
 					return
 
 			var/obj/item/organ/vision
@@ -63,12 +63,12 @@
 							 	 SPAN_NOTICE("You direct [src] to [M]'s eyes."))
 			if(H == user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
-					user << "<span class='warning'>\The [M]'s pupils do not react to the light!</span>"
+					user << SPAN_WARNING("\The [M]'s pupils do not react to the light!")
 					return
 				if(XRAY in M.mutations)
 					user << SPAN_NOTICE("\The [M] pupils give an eerie glow!")
 				if(vision.damage)
-					user << "<span class='warning'>There's visible damage to [M]'s [vision.name]!</span>"
+					user << SPAN_WARNING("There's visible damage to [M]'s [vision.name]!")
 				else if(M.eye_blurry)
 					user << SPAN_NOTICE("\The [M]'s pupils react slower than normally.")
 				if(M.getBrainLoss() > 15)

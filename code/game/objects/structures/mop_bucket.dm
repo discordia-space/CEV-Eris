@@ -20,7 +20,7 @@
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/mop))
 		if(reagents.total_volume < 1)
-			user << "<span class='warning'>\The [src] is out of water!</span>"
+			user << SPAN_WARNING("\The [src] is out of water!")
 		else
 			reagents.trans_to_obj(I, 5)
 			user << SPAN_NOTICE("You wet \the [I] in \the [src].")

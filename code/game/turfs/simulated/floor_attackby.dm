@@ -39,7 +39,7 @@
 			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 			return
 		else if(istype(C, /obj/item/stack/cable_coil))
-			user << "<span class='warning'>You must remove the [flooring.descriptor] first.</span>"
+			user << SPAN_WARNING("You must remove the [flooring.descriptor] first.")
 			return
 		else if (istype(C, /obj/item/frame))
 			var/obj/item/frame/F = C
@@ -50,7 +50,7 @@
 
 		if(istype(C, /obj/item/stack))
 			if(broken || burnt)
-				user << "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>"
+				user << SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage.")
 				return
 			var/obj/item/stack/S = C
 			var/decl/flooring/use_flooring
@@ -65,7 +65,7 @@
 				return
 			// Do we have enough?
 			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)
-				user << "<span class='warning'>You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor].</span>"
+				user << SPAN_WARNING("You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor].")
 				return
 			// Stay still and focus...
 			if(use_flooring.build_time && !do_after(user, use_flooring.build_time, src))
@@ -88,7 +88,7 @@
 						burnt = null
 						broken = null
 					else
-						user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+						user << SPAN_WARNING("You need more welding fuel to complete this task.")
 					return
 		else if(istype(C,/obj/item/frame))
 			var/obj/item/frame/F = C
@@ -100,9 +100,9 @@
 
 /turf/simulated/floor/can_build_cable(var/mob/user)
 	if(!is_plating() || flooring)
-		user << "<span class='warning'>Removing the tiling first.</span>"
+		user << SPAN_WARNING("Removing the tiling first.")
 		return 0
 	if(broken || burnt)
-		user << "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>"
+		user << SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage.")
 		return 0
 	return 1

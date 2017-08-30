@@ -196,7 +196,7 @@ var/list/global/tank_gauge_cache = list()
 						var/obj/screen/HUDelm = location.HUDneed["internal"]
 						HUDelm.icon_state = "internal1"
 				else
-					usr << "<span class='warning'>You need something to connect to \the [src].</span>"
+					usr << SPAN_WARNING("You need something to connect to \the [src].")
 
 	src.add_fingerprint(usr)
 	return 1
@@ -283,7 +283,7 @@ var/list/global/tank_gauge_cache = list()
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)
 		#ifdef FIREDBG
-		log_debug("<span class='warning'>[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]</span>")
+		log_debug(SPAN_WARNING("[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
 		#endif
 
 		if(integrity <= 0)
@@ -298,7 +298,7 @@ var/list/global/tank_gauge_cache = list()
 
 	else if(pressure > TANK_LEAK_PRESSURE)
 		#ifdef FIREDBG
-		log_debug("<span class='warning'>[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]</span>")
+		log_debug(SPAN_WARNING("[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"))
 		#endif
 
 		if(integrity <= 0)

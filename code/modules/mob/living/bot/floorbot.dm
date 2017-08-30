@@ -200,7 +200,7 @@
 		var/turf/simulated/floor/F = A
 		var/obj/structure/catwalk/C = A
 		if(F.flooring)
-			visible_message("<span class='warning'>[src] begins to tear the floor tile from the floor!</span>")
+			visible_message(SPAN_WARNING("[src] begins to tear the floor tile from the floor!"))
 			var/message = pick("Here we go!", "Let's do this!", "See, how is easy to anger an engineer with one simple trick!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -208,7 +208,7 @@
 				F.break_tile_to_plating()
 				addTiles(1)
 		else if(locate(/obj/structure/catwalk, A))  // Emaged nekowalk destroy
-			visible_message("<span class='warning'>[src] begins to dismatle \the [C.name]!</span>")
+			visible_message(SPAN_WARNING("[src] begins to dismatle \the [C.name]!"))
 			var/message = pick("Cats dont like it, so i do a favor for them!", "No animals were harmed in the process!", "Nya~!", "M.E.O.W!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -233,7 +233,7 @@
 	else if(emagged && (istype(A, /turf/space) || istype(A, /turf/simulated/open)))  // Emaged nekowalk destroy
 		if(locate(/obj/structure/catwalk, A))
 			var/obj/structure/catwalk/C = A
-			visible_message("<span class='warning'>[src] begins to dismatle \the [C.name]!</span>")
+			visible_message(SPAN_WARNING("[src] begins to dismatle \the [C.name]!"))
 			var/message = pick("Cats dont like it, so i do a favor for them!", "No animals were harmed in the process!", "Nya~!", "M.E.O.W!")
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
@@ -365,7 +365,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
-		user << "<span class='warning'>You need 10 floor tiles for a floorbot.</span>"
+		user << SPAN_WARNING("You need 10 floor tiles for a floorbot.")
 	return
 
 /obj/item/weapon/toolbox_tiles

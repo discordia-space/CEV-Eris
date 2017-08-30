@@ -120,7 +120,7 @@
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	check_victim()
 	if(victim)
-		usr << "<span class='warning'>\The [src] is already occupied!</span>"
+		usr << SPAN_WARNING("\The [src] is already occupied!")
 		return 0
 	if(patient.buckled)
 		usr << SPAN_NOTICE("Unbuckle \the [patient] first!")

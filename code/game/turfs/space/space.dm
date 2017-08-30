@@ -56,7 +56,7 @@
 			ChangeTurf(/turf/simulated/floor/airless)
 			return
 		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
+			user << SPAN_WARNING("The plating is going to need some support.")
 			return
 	if (istype(C, /obj/item/stack/tile/floor/techgrey) || istype(C, /obj/item/stack/tile/floor/techgrid))// this creates underplating
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
@@ -70,7 +70,7 @@
 			ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
+			user << SPAN_WARNING("The plating is going to need some support.")
 	return
 
 
@@ -78,7 +78,7 @@
 
 /turf/space/Entered(atom/movable/A as mob|obj)
 	if(movement_disabled)
-		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
+		usr << SPAN_WARNING("Movement is admin-disabled.") //This is to identify lag problems
 		return
 	..()
 	if ((!(A) || src != A.loc))	return

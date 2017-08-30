@@ -62,7 +62,7 @@
 		if(!istype(target_slot))  // They aren't holding anything valid and there's nothing to remove, why are we even here?
 			return
 		if(!target_slot.canremove)
-			user << "<span class='warning'>You cannot remove \the [src]'s [target_slot.name].</span>"
+			user << SPAN_WARNING("You cannot remove \the [src]'s [target_slot.name].")
 			return
 		stripping = 1
 
@@ -88,7 +88,7 @@
 // Empty out everything in the target's pockets.
 /mob/living/carbon/human/proc/empty_pockets(var/mob/living/user)
 	if(!r_store && !l_store)
-		user << "<span class='warning'>\The [src] has nothing in their pockets.</span>"
+		user << SPAN_WARNING("\The [src] has nothing in their pockets.")
 		return
 	if(r_store)
 		unEquip(r_store)
@@ -100,10 +100,10 @@
 /mob/living/carbon/human/proc/toggle_sensors(var/mob/living/user)
 	var/obj/item/clothing/under/suit = w_uniform
 	if(!suit)
-		user << "<span class='warning'>\The [src] is not wearing a suit with sensors.</span>"
+		user << SPAN_WARNING("\The [src] is not wearing a suit with sensors.")
 		return
 	if (suit.has_sensor >= 2)
-		user << "<span class='warning'>\The [src]'s suit sensor controls are locked.</span>"
+		user << SPAN_WARNING("\The [src]'s suit sensor controls are locked.")
 		return
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their sensors toggled by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) sensors</font>")
@@ -116,7 +116,7 @@
 	if(istype(wear_suit,/obj/item/clothing/suit/space))
 		var/obj/item/clothing/suit/space/suit = wear_suit
 		if(suit.supporting_limbs && suit.supporting_limbs.len)
-			user << "<span class='warning'>You cannot remove the splints - [src]'s [suit] is supporting some of the breaks.</span>"
+			user << SPAN_WARNING("You cannot remove the splints - [src]'s [suit] is supporting some of the breaks.")
 			can_reach_splints = 0
 
 	if(can_reach_splints)
@@ -131,7 +131,7 @@
 		if(removed_splint)
 			visible_message("<span class='danger'>\The [user] removes \the [src]'s splints!</span>")
 		else
-			user << "<span class='warning'>\The [src] has no splints to remove.</span>"
+			user << SPAN_WARNING("\The [src] has no splints to remove.")
 
 // Set internals on or off.
 /mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)
@@ -154,7 +154,7 @@
 			internal = belt
 
 	if(internal)
-		visible_message("<span class='warning'>\The [src] is now running on internals!</span>")
+		visible_message(SPAN_WARNING("\The [src] is now running on internals!"))
 		internal.add_fingerprint(user)
 /*		if (internals)
 			internals.icon_state = "internal1"*/

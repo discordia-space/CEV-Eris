@@ -607,7 +607,7 @@
 				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
 				user << "<span class='danger'>Your claws had no effect!</span>"
 				src.occupant_message(SPAN_NOTICE("\The [user]'s claws are stopped by the armor."))
-				visible_message("<span class='warning'>\The [user] rebounds off [src.name]'s armor!</span>")
+				visible_message(SPAN_WARNING("\The [user] rebounds off [src.name]'s armor!"))
 		else
 			user.visible_message("<span class='danger'>\The [user] hits \the [src]. Nothing happens.</span>","<span class='danger'>You hit \the [src] with no visible effect.</span>")
 			src.log_append_to_last("Armor saved.")
@@ -717,11 +717,11 @@
 	else
 		src.log_append_to_last("Armor saved.")
 		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1, -1)
-		user << "<span class='warning'>Your attack had no effect!</span>"
-		src.occupant_message("<span class='warning'>\The [user]'s attack is stopped by the armor.</span>")
+		user << SPAN_WARNING("Your attack had no effect!")
+		src.occupant_message(SPAN_WARNING("\The [user]'s attack is stopped by the armor."))
 		for (var/mob/V in viewers(src))
 			if(V.client && !(V.blinded))
-				V.show_message("<span class='warning'>\The [user] rebounds off the [src.name] armor!</span>", 1)
+				V.show_message(SPAN_WARNING("\The [user] rebounds off the [src.name] armor!"), 1)
 	return
 */
 
@@ -768,9 +768,9 @@
 				output_maintenance_dialog(id_card, user)
 				return
 			else
-				user << "<span class='warning'>Invalid ID: Access denied.</span>"
+				user << SPAN_WARNING("Invalid ID: Access denied.")
 		else
-			user << "<span class='warning'>Maintenance protocols disabled by operator.</span>"
+			user << SPAN_WARNING("Maintenance protocols disabled by operator.")
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(state==1)
 			state = 2
@@ -818,8 +818,8 @@
 				src.go_out()
 				src.log_message("[src.occupant] was ejected using the maintenance controls.")
 			else
-				user << "<span class='warning'>Your attempt is rejected.</span>"
-				src.occupant_message("<span class='warning'>An attempt to eject you was made using the maintenance controls.</span>")
+				user << SPAN_WARNING("Your attempt is rejected.")
+				src.occupant_message(SPAN_WARNING("An attempt to eject you was made using the maintenance controls."))
 				src.log_message("Eject attempt made using maintenance controls - rejected.")
 		return
 
@@ -1041,7 +1041,7 @@
 		return
 
 	if (usr.buckled)
-		usr << "<span class='warning'>You can't climb into the exosuit while buckled!</span>"
+		usr << SPAN_WARNING("You can't climb into the exosuit while buckled!")
 		return
 
 	src.log_message("[usr] tries to move in.")
@@ -1066,7 +1066,7 @@
 	else if(src.operation_allowed(usr))
 		passed = 1
 	if(!passed)
-		usr << "<span class='warning'>Access denied</span>"
+		usr << SPAN_WARNING("Access denied")
 		src.log_append_to_last("Permission denied.")
 		return
 	for(var/mob/living/carbon/slime/M in range(1,usr))
@@ -1605,7 +1605,7 @@
 				passengers["[P.occupant]"] = P
 
 		if (!passengers)
-			user << "<span class='warning'>There are no passengers to remove.</span>"
+			user << SPAN_WARNING("There are no passengers to remove.")
 			return
 
 		var/pname = input(user, "Choose a passenger to forcibly remove.", "Forcibly Remove Passenger") as null|anything in passengers

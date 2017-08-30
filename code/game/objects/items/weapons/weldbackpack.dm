@@ -31,7 +31,7 @@
 			user << SPAN_NOTICE("Welder refilled!")
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
-	user << "<span class='warning'>The tank scoffs at your insolence. It only provides services to welders.</span>"
+	user << SPAN_WARNING("The tank scoffs at your insolence. It only provides services to welders.")
 	return
 
 /obj/item/weapon/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
@@ -43,7 +43,7 @@
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		user << "<span class='warning'>The pack is already full!</span>"
+		user << SPAN_WARNING("The pack is already full!")
 		return
 
 /obj/item/weapon/weldpack/examine(mob/user)

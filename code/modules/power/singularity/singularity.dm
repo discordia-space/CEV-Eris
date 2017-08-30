@@ -197,7 +197,7 @@
 				if(chained)
 					overlays = "chain_s7"
 				if(growing)
-					visible_message("<span class='warning'>The singularity expands to a dangerous size.</span>")
+					visible_message(SPAN_WARNING("The singularity expands to a dangerous size."))
 				else
 					visible_message(SPAN_NOTICE("Miraculously, the singularity reduces in size, and can be contained."))
 		if(STAGE_FIVE) //This one also lacks a check for gens because it eats everything.
@@ -217,7 +217,7 @@
 			if(growing)
 				visible_message("<span class='danger'><font size='2'>The singularity has grown out of control!</font></span>")
 			else
-				visible_message("<span class='warning'>The singularity miraculously reduces in size and loses its supermatter properties.</span>")
+				visible_message(SPAN_WARNING("The singularity miraculously reduces in size and loses its supermatter properties."))
 		if(STAGE_SUPER)//SUPERSINGULO
 			name = "super gravitational singularity"
 			desc = "A gravitational singularity with the properties of supermatter. <b>It has the power to destroy worlds.</b>"

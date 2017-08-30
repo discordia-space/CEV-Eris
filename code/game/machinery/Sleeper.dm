@@ -98,7 +98,7 @@
 		return 1
 
 	if(usr == occupant)
-		usr << "<span class='warning'>You can't reach the controls from the inside.</span>"
+		usr << SPAN_WARNING("You can't reach the controls from the inside.")
 		return
 
 	add_fingerprint(usr)
@@ -130,7 +130,7 @@
 			I.loc = src
 			user.visible_message(SPAN_NOTICE("\The [user] adds \a [I] to \the [src]."), SPAN_NOTICE("You add \a [I] to \the [src]."))
 		else
-			user << "<span class='warning'>\The [src] has a beaker already.</span>"
+			user << SPAN_WARNING("\The [src] has a beaker already.")
 		return
 
 /obj/machinery/sleeper/MouseDrop_T(var/mob/target, var/mob/user)
@@ -166,7 +166,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(occupant)
-		user << "<span class='warning'>\The [src] is already occupied.</span>"
+		user << SPAN_WARNING("\The [src] is already occupied.")
 		return
 
 	if(M == user)
@@ -176,7 +176,7 @@
 
 	if(do_after(user, 20, src))
 		if(occupant)
-			user << "<span class='warning'>\The [src] is already occupied.</span>"
+			user << SPAN_WARNING("\The [src] is already occupied.")
 			return
 		M.stop_pulling()
 		if(M.client)

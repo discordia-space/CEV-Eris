@@ -118,7 +118,7 @@
 			user << SPAN_NOTICE("Nothing to fix!")
 			return
 		if(!density)
-			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+			user << SPAN_WARNING("\The [src] must be closed before you can repair it.")
 			return
 
 		//figure out how much metal we need

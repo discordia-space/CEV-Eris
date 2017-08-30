@@ -60,7 +60,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if (syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
 	if (!syndicate_elite_can_move())
-		usr << "<span class='warning'>The Syndicate Elite shuttle is unable to leave.</span>"
+		usr << SPAN_WARNING("The Syndicate Elite shuttle is unable to leave.")
 		return
 
 		sleep(600)
@@ -174,7 +174,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 	for(var/turf/T in get_area_turfs(end_location) )
 		var/mob/M = locate(/mob) in T
-		M << "<span class='warning'>You have arrived to [station_name]. Commence operation!</span>"
+		M << SPAN_WARNING("You have arrived to [station_name]. Commence operation!")
 
 /proc/syndicate_elite_can_move()
 	if(syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return 0
@@ -191,11 +191,11 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 /obj/machinery/computer/syndicate_elite_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied.</span>"
+		user << SPAN_WARNING("Access Denied.")
 		return
 
 //	if (sent_syndicate_strike_team == 0)
-//		usr << "<span class='warning'>The strike team has not yet deployed.</span>"
+//		usr << SPAN_WARNING("The strike team has not yet deployed.")
 //		return
 
 	if(..())

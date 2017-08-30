@@ -137,7 +137,7 @@ var/list/possible_cable_coil_colours = list(
 
 	if(istype(W, /obj/item/weapon/wirecutters))
 		if(d1 == 12 || d2 == 12)
-			user << "<span class='warning'>You must cut this cable from above.</span>"
+			user << SPAN_WARNING("You must cut this cable from above.")
 			return
 
 		if(breaker_box)
@@ -153,7 +153,7 @@ var/list/possible_cable_coil_colours = list(
 			new/obj/item/stack/cable_coil(T, 1, color)
 
 		for(var/mob/O in viewers(src, null))
-			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
+			O.show_message(SPAN_WARNING("[user] cuts the cable."), 1)
 
 		if(d1 == 11 || d2 == 11)
 			var/turf/turf = GetBelow(src)
@@ -178,10 +178,10 @@ var/list/possible_cable_coil_colours = list(
 	else if(istype(W, /obj/item/device/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
-			user << "<span class='warning'>[powernet.avail]W in power network.</span>"
+			user << SPAN_WARNING("[powernet.avail]W in power network.")
 
 		else
-			user << "<span class='warning'>The cable is not powered.</span>"
+			user << SPAN_WARNING("The cable is not powered.")
 
 		shock(user, 5, 0.2)
 
@@ -649,14 +649,14 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				user << "<span class='warning'>There's already a cable at that position.</span>"
+				user << SPAN_WARNING("There's already a cable at that position.")
 				return
 ///// Z-Level Stuff
 		// check if the target is open space
 		if(istype(F, /turf/simulated/open))
 			for(var/obj/structure/cable/LC in F)
 				if((LC.d1 == dirn && LC.d2 == 11 ) || ( LC.d2 == dirn && LC.d1 == 11))
-					user << "<span class='warning'>There's already a cable at that position.</span>"
+					user << SPAN_WARNING("There's already a cable at that position.")
 					return
 
 			var/obj/structure/cable/C = new(F)

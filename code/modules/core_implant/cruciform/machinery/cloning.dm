@@ -205,7 +205,7 @@
 //Cloning errors
 /obj/machinery/neotheology/cloner/proc/not_enough_biomass()
 	if(biomass_error < 1)
-		visible_message("<span class='warning'>Not enough biomass!</span>")
+		visible_message(SPAN_WARNING("Not enough biomass!"))
 	if(biomass_error > 3)
 		if(occupant)
 			if(cloning_stage <= CLONING_BODY)
@@ -218,7 +218,7 @@
 
 /obj/machinery/neotheology/cloner/proc/data_not_found()
 	if(data_error < 1)
-		visible_message("<span class='warning'>Implant read error!</span>")
+		visible_message(SPAN_WARNING("Implant read error!"))
 	if(data_error > 3)
 		if(occupant && cloning_stage <= CLONING_BODY)
 			mutate()
@@ -227,7 +227,7 @@
 	data_error += 1
 
 /obj/machinery/neotheology/cloner/proc/unexpected_error()	//For specific errors
-	visible_message("<span class='warning'>Unexpected error!</span>")
+	visible_message(SPAN_WARNING("Unexpected error!"))
 	stop(TRUE)
 
 ///////////////
@@ -236,7 +236,7 @@
 	if(stat & NOPOWER)
 		if(cloning)
 			stop(TRUE)
-			visible_message("<span class='warning'>Power lost!</span>")
+			visible_message(SPAN_WARNING("Power lost!"))
 			update_icon()
 			return
 

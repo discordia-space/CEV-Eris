@@ -29,7 +29,7 @@ var/list/floor_light_cache = list()
 	else if(istype(W, /obj/item/weapon/weldingtool) && (damaged || (stat & BROKEN)))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(!WT.remove_fuel(0, user))
-			user << "<span class='warning'>\The [src] must be on to complete this task.</span>"
+			user << SPAN_WARNING("\The [src] must be on to complete this task.")
 			return
 		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 		if(!do_after(user, 20, src))
@@ -42,7 +42,7 @@ var/list/floor_light_cache = list()
 		update_brightness()
 	else if (istype(W, /obj/item/device/multitool))
 		if(on)
-			user << "<span class='warning'>\The [src] must be turn off to change a color.</span>"
+			user << SPAN_WARNING("\The [src] must be turn off to change a color.")
 			return
 		var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
 		default_light_colour = new_light_colour
@@ -67,15 +67,15 @@ var/list/floor_light_cache = list()
 	else
 
 		if(!anchored)
-			user << "<span class='warning'>\The [src] must be screwed down first.</span>"
+			user << SPAN_WARNING("\The [src] must be screwed down first.")
 			return
 
 		if(stat & BROKEN)
-			user << "<span class='warning'>\The [src] is too damaged to be functional.</span>"
+			user << SPAN_WARNING("\The [src] is too damaged to be functional.")
 			return
 
 		if(stat & NOPOWER)
-			user << "<span class='warning'>\The [src] is unpowered.</span>"
+			user << SPAN_WARNING("\The [src] is unpowered.")
 			return
 
 		on = !on

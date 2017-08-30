@@ -245,10 +245,10 @@ meteor_act
 /mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
 	var/obj/item/organ/external/affecting = get_organ(user.targeted_organ)
 	if(!affecting || !(affecting.status & ORGAN_ROBOT))
-		user << "<span class='warning'>That limb isn't robotic.</span>"
+		user << SPAN_WARNING("That limb isn't robotic.")
 		return -1
 	if(affecting.sabotaged)
-		user << "<span class='warning'>[src]'s [affecting.name] is already sabotaged!</span>"
+		user << SPAN_WARNING("[src]'s [affecting.name] is already sabotaged!")
 		return -1
 	user << SPAN_NOTICE("You sneakily slide [emag_source] into the dataport on [src]'s [affecting.name] and short out the safeties.")
 	affecting.sabotaged = 1
@@ -263,7 +263,7 @@ meteor_act
 			if(canmove && !restrained())
 				if(isturf(O.loc))
 					put_in_active_hand(O)
-					visible_message("<span class='warning'>[src] catches [O]!</span>")
+					visible_message(SPAN_WARNING("[src] catches [O]!"))
 					throw_mode_off()
 					return
 
@@ -353,7 +353,7 @@ meteor_act
 
 				if(T)
 					src.loc = T
-					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
+					visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"),SPAN_WARNING("You are pinned to the wall by [O]!"))
 					src.anchored = 1
 					src.pinned += O
 

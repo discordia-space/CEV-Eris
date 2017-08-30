@@ -45,7 +45,7 @@
 
 /obj/structure/fireaxecabinet/attack_hand(var/mob/user)
 	if(!unlocked)
-		user << "<span class='warning'>\The [src] is locked.</span>"
+		user << SPAN_WARNING("\The [src] is locked.")
 		return
 	toggle_open(user)
 
@@ -56,11 +56,11 @@
 			return
 
 		if(!open)
-			user << "<span class='warning'>\The [src] is closed.</span>"
+			user << SPAN_WARNING("\The [src] is closed.")
 			return
 
 		if(!fireaxe)
-			user << "<span class='warning'>\The [src] is empty.</span>"
+			user << SPAN_WARNING("\The [src] is empty.")
 			return
 
 		fireaxe.forceMove(get_turf(user))
@@ -85,7 +85,7 @@
 	if(istype(O, /obj/item/weapon/material/twohanded/fireaxe))
 		if(open)
 			if(fireaxe)
-				user << "<span class='warning'>There is already \a [fireaxe] inside \the [src].</span>"
+				user << SPAN_WARNING("There is already \a [fireaxe] inside \the [src].")
 			else if(user.unEquip(O))
 				O.forceMove(src)
 				fireaxe = O

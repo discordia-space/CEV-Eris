@@ -31,7 +31,7 @@
 		if(user==pulling)
 			pulling = null
 			user.pulledby = null
-			user << "<span class='warning'>You lost your grip!</span>"
+			user << SPAN_WARNING("You lost your grip!")
 		return
 	if(buckled_mob && pulling && user == buckled_mob)
 		if(pulling.stat || pulling.stunned || pulling.weakened || pulling.paralysis || pulling.lying || pulling.restrained())
@@ -49,10 +49,10 @@
 		if(user==pulling)
 			return
 	if(pulling && (get_dir(src.loc, pulling.loc) == direction))
-		user << "<span class='warning'>You cannot go there.</span>"
+		user << SPAN_WARNING("You cannot go there.")
 		return
 	if(pulling && buckled_mob && (buckled_mob == user))
-		user << "<span class='warning'>You cannot drive while being pushed.</span>"
+		user << SPAN_WARNING("You cannot drive while being pushed.")
 		return
 
 	// Let's roll
@@ -103,7 +103,7 @@
 					unbuckle_mob()
 			if (pulling && (get_dist(src, pulling) > 1))
 				pulling.pulledby = null
-				pulling << "<span class='warning'>You lost your grip!</span>"
+				pulling << SPAN_WARNING("You lost your grip!")
 				pulling = null
 		else
 			if (occupant && (src.loc != occupant.loc))
@@ -120,7 +120,7 @@
 	if(in_range(src, user))
 		if(!ishuman(user))	return
 		if(user == buckled_mob)
-			user << "<span class='warning'>You realize you are unable to push the wheelchair you sit in.</span>"
+			user << SPAN_WARNING("You realize you are unable to push the wheelchair you sit in.")
 			return
 		if(!pulling)
 			pulling = user

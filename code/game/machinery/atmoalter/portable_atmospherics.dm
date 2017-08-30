@@ -175,7 +175,7 @@
 
 	if(istype(I, /obj/item/weapon/screwdriver))
 		if(!cell)
-			user << "<span class='warning'>There is no power cell installed.</span>"
+			user << SPAN_WARNING("There is no power cell installed.")
 			return
 
 		user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and removes [cell]."), SPAN_NOTICE("You open the panel on [src] and remove [cell]."))

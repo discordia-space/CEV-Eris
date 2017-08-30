@@ -16,7 +16,7 @@
 
 /obj/item/weapon/gun/energy/staff/special_check(var/mob/user)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		usr << "<span class='warning'>You focus your mind on \the [src], but nothing happens!</span>"
+		usr << SPAN_WARNING("You focus your mind on \the [src], but nothing happens!")
 		return 0
 
 	return ..()

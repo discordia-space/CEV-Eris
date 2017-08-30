@@ -191,7 +191,7 @@
 			spark_system.start()
 			playsound(src.loc, "sparks", 50, 1)
 			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
-			visible_message("<span class='warning'>The glass door was sliced open by [user]!</span>")
+			visible_message(SPAN_WARNING("The glass door was sliced open by [user]!"))
 		return 1
 
 	//If it's emagged, crowbar can pry electronics out.

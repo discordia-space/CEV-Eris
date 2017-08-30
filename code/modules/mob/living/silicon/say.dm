@@ -8,7 +8,7 @@
 	..()
 	if(message_mode)
 		if(!is_component_functioning("radio"))
-			src << "<span class='warning'>Your radio isn't functional at this time.</span>"
+			src << SPAN_WARNING("Your radio isn't functional at this time.")
 			return 0
 		if(message_mode == "general")
 			message_mode = null

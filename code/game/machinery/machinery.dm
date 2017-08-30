@@ -229,16 +229,16 @@ Class Procs:
 	if(user.lying || user.stat)
 		return 1
 	if (!user.IsAdvancedToolUser())
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
+		usr << SPAN_WARNING("You don't have the dexterity to do this!")
 		return 1
 
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src].</span>")
+			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			user << "<span class='warning'>You momentarily forget how to use \the [src].</span>"
+			user << SPAN_WARNING("You momentarily forget how to use \the [src].")
 			return 1
 
 	src.add_fingerprint(user)

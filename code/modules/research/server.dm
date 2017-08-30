@@ -163,7 +163,7 @@
 	add_fingerprint(usr)
 	usr.set_machine(src)
 	if(!allowed(usr) && !emagged)
-		usr << "<span class='warning'>You do not have the required access level</span>"
+		usr << SPAN_WARNING("You do not have the required access level")
 		return
 
 	if(href_list["main"])

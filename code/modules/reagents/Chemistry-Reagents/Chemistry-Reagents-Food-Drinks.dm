@@ -315,9 +315,9 @@
 	var/message = null
 	if(eyes_covered)
 		if(!mouth_covered)
-			message = "<span class='warning'>Your [eye_protection] protects your eyes from the pepperspray!</span>"
+			message = SPAN_WARNING("Your [eye_protection] protects your eyes from the pepperspray!")
 	else
-		message = "<span class='warning'>The pepperspray gets in your eyes!</span>"
+		message = SPAN_WARNING("The pepperspray gets in your eyes!")
 		if(mouth_covered)
 			M.eye_blurry = max(M.eye_blurry, 15)
 			M.eye_blind = max(M.eye_blind, 5)
@@ -327,7 +327,7 @@
 
 	if(mouth_covered)
 		if(!message)
-			message = "<span class='warning'>Your [face_protection] protects you from the pepperspray!</span>"
+			message = SPAN_WARNING("Your [face_protection] protects you from the pepperspray!")
 	else if(!no_pain)
 		message = "<span class='danger'>Your face and throat burn!</span>"
 		if(prob(25))

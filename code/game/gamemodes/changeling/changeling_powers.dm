@@ -96,19 +96,19 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		return
 
 	if(src.stat > max_stat)
-		src << "<span class='warning'>We are incapacitated.</span>"
+		src << SPAN_WARNING("We are incapacitated.")
 		return
 
 	if(changeling.absorbed_dna.len < required_dna)
-		src << "<span class='warning'>We require at least [required_dna] samples of compatible DNA.</span>"
+		src << SPAN_WARNING("We require at least [required_dna] samples of compatible DNA.")
 		return
 
 	if(changeling.chem_charges < required_chems)
-		src << "<span class='warning'>We require at least [required_chems] units of chemicals to do that!</span>"
+		src << SPAN_WARNING("We require at least [required_chems] units of chemicals to do that!")
 		return
 
 	if(changeling.geneticdamage > max_genetic_damage)
-		src << "<span class='warning'>Our genomes are still reassembling. We need time to recover first.</span>"
+		src << SPAN_WARNING("Our genomes are still reassembling. We need time to recover first.")
 		return
 
 	return changeling
@@ -138,28 +138,28 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	var/obj/item/weapon/grab/G = src.get_active_hand()
 	if(!istype(G))
-		src << "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>"
+		src << SPAN_WARNING("We must be grabbing a creature in our active hand to absorb them.")
 		return
 
 	var/mob/living/carbon/human/T = G.affecting
 	if(!istype(T))
-		src << "<span class='warning'>[T] is not compatible with our biology.</span>"
+		src << SPAN_WARNING("[T] is not compatible with our biology.")
 		return
 
 	if(T.species.flags & NO_SCAN)
-		src << "<span class='warning'>We do not know how to parse this creature's DNA!</span>"
+		src << SPAN_WARNING("We do not know how to parse this creature's DNA!")
 		return
 
 	if(HUSK in T.mutations)
-		src << "<span class='warning'>This creature's DNA is ruined beyond useability!</span>"
+		src << SPAN_WARNING("This creature's DNA is ruined beyond useability!")
 		return
 
 	if(G.state != GRAB_KILL)
-		src << "<span class='warning'>We must have a tighter grip to absorb this creature.</span>"
+		src << SPAN_WARNING("We must have a tighter grip to absorb this creature.")
 		return
 
 	if(changeling.isabsorbing)
-		src << "<span class='warning'>We are already absorbing!</span>"
+		src << SPAN_WARNING("We are already absorbing!")
 		return
 
 	changeling.isabsorbing = 1
@@ -169,7 +169,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 				src << SPAN_NOTICE("This creature is compatible. We must hold still...")
 			if(2)
 				src << SPAN_NOTICE("We extend a proboscis.")
-				src.visible_message("<span class='warning'>[src] extends a proboscis!</span>")
+				src.visible_message(SPAN_WARNING("[src] extends a proboscis!"))
 			if(3)
 				src << SPAN_NOTICE("We stab [T] with the proboscis.")
 				src.visible_message("<span class='danger'>[src] stabs [T] with the proboscis!</span>")
@@ -180,7 +180,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 
 		if(!do_mob(src, T, 150))
-			src << "<span class='warning'>Our absorption of [T] has been interrupted!</span>"
+			src << SPAN_WARNING("Our absorption of [T] has been interrupted!")
 			changeling.isabsorbing = 0
 			return
 
@@ -259,7 +259,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		return
 
 	changeling.chem_charges -= 5
-	src.visible_message("<span class='warning'>[src] transforms!</span>")
+	src.visible_message(SPAN_WARNING("[src] transforms!"))
 	changeling.geneticdamage = 30
 	src.dna = chosen_dna.Clone()
 	src.real_name = chosen_dna.real_name
@@ -283,20 +283,20 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(!changeling)	return
 
 	if(src.has_brain_worms())
-		src << "<span class='warning'>We cannot perform this ability at the present time!</span>"
+		src << SPAN_WARNING("We cannot perform this ability at the present time!")
 		return
 
 	var/mob/living/carbon/human/H = src
 
 	if(!istype(H) || !H.species.primitive_form)
-		src << "<span class='warning'>We cannot perform this ability in this form!</span>"
+		src << SPAN_WARNING("We cannot perform this ability in this form!")
 		return
 
 	changeling.chem_charges--
 	H.remove_changeling_powers()
-	H.visible_message("<span class='warning'>[H] transforms!</span>")
+	H.visible_message(SPAN_WARNING("[H] transforms!"))
 	changeling.geneticdamage = 30
-	H << "<span class='warning'>Our genes cry out!</span>"
+	H << SPAN_WARNING("Our genes cry out!")
 	var/list/implants = list() //Try to preserve implants.
 	for(var/obj/item/weapon/implant/W in H)
 		implants += W
@@ -327,7 +327,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	changeling.chem_charges--
 	C.remove_changeling_powers()
-	C.visible_message("<span class='warning'>[C] transforms!</span>")
+	C.visible_message(SPAN_WARNING("[C] transforms!"))
 	C.dna = chosen_dna.Clone()
 
 	var/list/implants = list()
@@ -635,11 +635,11 @@ var/list/datum/dna/hivemind_bank = list()
 	if(M.loc == src.loc)
 		return 1 //target and source are in the same thing
 	if(!isturf(src.loc) || !isturf(M.loc))
-		src << "<span class='warning'>We cannot reach \the [M] with a sting!</span>"
+		src << SPAN_WARNING("We cannot reach \the [M] with a sting!")
 		return 0 //One is inside, the other is outside something.
 	// Maximum queued turfs set to 25; I don't *think* anything raises sting_range above 2, but if it does the 25 may need raising
 	if(!AStar(src.loc, M.loc, /turf/proc/AdjacentTurfs, /turf/proc/Distance, max_nodes=25, max_node_depth=sting_range)) //If we can't find a path, fail
-		src << "<span class='warning'>We cannot find a path to sting \the [M] by!</span>"
+		src << SPAN_WARNING("We cannot find a path to sting \the [M] by!")
 		return 0
 	return 1
 
@@ -665,7 +665,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	src << SPAN_NOTICE("We stealthily sting [T].")
 	if(!T.mind || !T.mind.changeling)	return T	//T will be affected by the sting
-	T << "<span class='warning'>You feel a tiny prick.</span>"
+	T << SPAN_WARNING("You feel a tiny prick.")
 	return
 
 
@@ -756,9 +756,9 @@ var/list/datum/dna/hivemind_bank = list()
 	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_transformation_sting)
 	if(!T)	return 0
 	if((HUSK in T.mutations) || (!ishuman(T) && !issmall(T)))
-		src << "<span class='warning'>Our sting appears ineffective against its DNA.</span>"
+		src << SPAN_WARNING("Our sting appears ineffective against its DNA.")
 		return 0
-	T.visible_message("<span class='warning'>[T] transforms!</span>")
+	T.visible_message(SPAN_WARNING("[T] transforms!"))
 	T.dna = chosen_dna.Clone()
 	T.real_name = chosen_dna.real_name
 	T.UpdateAppearance()

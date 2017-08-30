@@ -26,7 +26,7 @@
 				attack_generic(user,1,"slices")
 
 	if(climbers.len && !(user in climbers))
-		user.visible_message("<span class='warning'>[user.name] shakes \the [src].</span>", \
+		user.visible_message(SPAN_WARNING("[user.name] shakes \the [src]."), \
 					SPAN_NOTICE("You shake \the [src]."))
 		structure_shaken()
 
@@ -117,7 +117,7 @@
 	if (!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	usr.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
@@ -131,7 +131,7 @@
 	usr.forceMove(get_turf(src))
 
 	if (get_turf(user) == get_turf(src))
-		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+		usr.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
 	climbers -= user
 
 /obj/structure/proc/structure_shaken()

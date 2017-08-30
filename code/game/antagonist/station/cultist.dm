@@ -87,7 +87,7 @@ var/datum/antagonist/cultist/cult
 		runerandom()
 
 	var/wordexp = "[cultwords[word]] is [word]..."
-	cult_mob << "<span class='warning'>You remember one thing from the dark teachings of your master... [wordexp]</span>"
+	cult_mob << SPAN_WARNING("You remember one thing from the dark teachings of your master... [wordexp]")
 	cult_mob.mind.store_memory("You remember that <B>[wordexp]</B>", 0, 0)
 
 /datum/antagonist/cultist/remove_antagonist(var/datum/mind/player, var/show_message, var/implanted)

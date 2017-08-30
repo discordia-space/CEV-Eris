@@ -167,7 +167,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				B << "<span class='warning'>\The [user] stuffs [O] into [src]!</span>"
+				B << SPAN_WARNING("\The [user] stuffs [O] into [src]!")
 	return
 
 
@@ -239,13 +239,13 @@
 
 /obj/structure/crematorium/attack_hand(mob/user as mob)
 //	if (cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH
-//		user.show_message("<span class='warning'>Uh-oh, that was a bad idea.</span>", 1)
+//		user.show_message(SPAN_WARNING("Uh-oh, that was a bad idea."), 1)
 //		//usr << "Uh-oh, that was a bad idea."
 //		src:loc:poison += 20000000
 //		src:loc:firelevel = src:loc:poison
 //		return
 	if (cremating)
-		usr << "<span class='warning'>It's locked.</span>"
+		usr << SPAN_WARNING("It's locked.")
 		return
 	if ((src.connected) && (src.locked == 0))
 		for(var/atom/movable/A as mob|obj in src.connected.loc)
@@ -314,7 +314,7 @@
 
 	if(contents.len <= 0)
 		for (var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>You hear a hollow crackle.</span>", 1)
+			M.show_message(SPAN_WARNING("You hear a hollow crackle."), 1)
 			return
 
 	else
@@ -323,7 +323,7 @@
 			return
 
 		for (var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>You hear a roar as the crematorium activates.</span>", 1)
+			M.show_message(SPAN_WARNING("You hear a roar as the crematorium activates."), 1)
 
 		cremating = 1
 		locked = 1
@@ -401,7 +401,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				B << text("<span class='warning'>[] stuffs [] into []!</span>", user, O, src)
+				B << (SPAN_WARNING("[user] stuffs [O] into [src]!"))
 			//Foreach goto(99)
 	return
 
@@ -425,4 +425,4 @@
 				if (!C.cremating)
 					C.cremate(user)
 	else
-		usr << "<span class='warning'>Access denied.</span>"
+		usr << SPAN_WARNING("Access denied.")

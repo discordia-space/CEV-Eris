@@ -298,13 +298,13 @@ var/list/turret_icons
 
 	else if((istype(I, /obj/item/weapon/wrench)))
 		if(enabled || raised)
-			user << "<span class='warning'>You cannot unsecure an active turret!</span>"
+			user << SPAN_WARNING("You cannot unsecure an active turret!")
 			return
 		if(wrenching)
 			user << "<span class='warning'>Someone is already [anchored ? "un" : ""]securing the turret!</span>"
 			return
 		if(!anchored && isinspace())
-			user << "<span class='warning'>Cannot secure turrets in space!</span>"
+			user << SPAN_WARNING("Cannot secure turrets in space!")
 			return
 
 		user.visible_message( \
@@ -352,7 +352,7 @@ var/list/turret_icons
 	if(!emagged)
 		//Emagging the turret makes it go bonkers and stun everyone. It also makes
 		//the turret shoot much, much faster.
-		user << "<span class='warning'>You short out [src]'s threat assessment circuits.</span>"
+		user << SPAN_WARNING("You short out [src]'s threat assessment circuits.")
 		visible_message("[src] hums oddly...")
 		emagged = 1
 		iconholder = 1
@@ -699,7 +699,7 @@ var/list/turret_icons
 					build_step = 2
 					icon_state = "turret_frame2"
 				else
-					user << "<span class='warning'>You need two sheets of metal to continue construction.</span>"
+					user << SPAN_WARNING("You need two sheets of metal to continue construction.")
 				return
 
 			else if(istype(I, /obj/item/weapon/wrench))
@@ -786,7 +786,7 @@ var/list/turret_icons
 					user << SPAN_NOTICE("You add some metal armor to the exterior frame.")
 					build_step = 7
 				else
-					user << "<span class='warning'>You need two sheets of metal to continue construction.</span>"
+					user << SPAN_WARNING("You need two sheets of metal to continue construction.")
 				return
 
 			else if(istype(I, /obj/item/weapon/screwdriver))

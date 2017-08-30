@@ -27,7 +27,7 @@
 	..()
 
 /mob/living/bot/secbot/ed209/explode()
-	visible_message("<span class='warning'>[src] blows apart!</span>")
+	visible_message(SPAN_WARNING("[src] blows apart!"))
 	playsound(loc, "robot_talk_heavy", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
@@ -149,7 +149,7 @@
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if (C.get_amount() < 1)
-					user << "<span class='warning'>You need one coil of wire to wire [src].</span>"
+					user << SPAN_WARNING("You need one coil of wire to wire [src].")
 					return
 				user << SPAN_NOTICE("You start to wire [src].")
 				if(do_after(user, 40, src) && build_step == 6)

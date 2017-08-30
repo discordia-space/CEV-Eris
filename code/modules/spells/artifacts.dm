@@ -14,7 +14,7 @@
 
 /obj/item/weapon/scrying/attack_self(mob/user as mob)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		user << "<span class='warning'>You stare into the orb and see nothing but your own reflection.</span>"
+		user << SPAN_WARNING("You stare into the orb and see nothing but your own reflection.")
 		return
 
 	user << "<span class='info'>You can see... everything!</span>"

@@ -121,7 +121,7 @@
 				user.put_in_inactive_hand(B)
 			qdel(src)
 		else
-			user << "<span class='warning'>You need one sheet of metal to arm the robot frame.</span>"
+			user << SPAN_WARNING("You need one sheet of metal to arm the robot frame.")
 	if(istype(W, /obj/item/robot_parts/l_leg))
 		if(src.l_leg)	return
 		user.drop_item()
@@ -158,9 +158,9 @@
 			src.chest = W
 			src.updateicon()
 		else if(!W:wires)
-			user << "<span class='warning'>You need to attach wires to it first!</span>"
+			user << SPAN_WARNING("You need to attach wires to it first!")
 		else
-			user << "<span class='warning'>You need to attach a cell to it first!</span>"
+			user << SPAN_WARNING("You need to attach a cell to it first!")
 
 	if(istype(W, /obj/item/robot_parts/head))
 		if(src.head)	return
@@ -170,16 +170,16 @@
 			src.head = W
 			src.updateicon()
 		else
-			user << "<span class='warning'>You need to attach a flash to it first!</span>"
+			user << SPAN_WARNING("You need to attach a flash to it first!")
 
 	if(istype(W, /obj/item/device/mmi))
 		var/obj/item/device/mmi/M = W
 		if(check_completion())
 			if(!istype(loc,/turf))
-				user << "<span class='warning'>You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise.</span>"
+				user << SPAN_WARNING("You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise.")
 				return
 			if(!M.brainmob)
-				user << "<span class='warning'>Sticking an empty [W] into the frame would sort of defeat the purpose.</span>"
+				user << SPAN_WARNING("Sticking an empty [W] into the frame would sort of defeat the purpose.")
 				return
 			if(!M.brainmob.key)
 				var/ghost_can_reenter = 0
@@ -193,11 +193,11 @@
 					return
 
 			if(M.brainmob.stat == DEAD)
-				user << "<span class='warning'>Sticking a dead [W] into the frame would sort of defeat the purpose.</span>"
+				user << SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose.")
 				return
 
 			if(jobban_isbanned(M.brainmob, "Cyborg"))
-				user << "<span class='warning'>This [W] does not seem to fit.</span>"
+				user << SPAN_WARNING("This [W] does not seem to fit.")
 				return
 
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
@@ -232,7 +232,7 @@
 
 			qdel(src)
 		else
-			user << "<span class='warning'>The MMI must go in after everything else!</span>"
+			user << SPAN_WARNING("The MMI must go in after everything else!")
 
 	if (istype(W, /obj/item/weapon/pen))
 		var/t = sanitizeSafe(input(user, "Enter new robot name", src.name, src.created_name), MAX_NAME_LEN)
@@ -249,7 +249,7 @@
 	..()
 	if(istype(W, /obj/item/weapon/cell/large))
 		if(src.cell)
-			user << "<span class='warning'>You have already inserted a cell!</span>"
+			user << SPAN_WARNING("You have already inserted a cell!")
 			return
 		else
 			user.drop_item()
@@ -258,7 +258,7 @@
 			user << SPAN_NOTICE("You insert the cell!")
 	if(istype(W, /obj/item/stack/cable_coil))
 		if(src.wires)
-			user << "<span class='warning'>You have already inserted wire!</span>"
+			user << SPAN_WARNING("You have already inserted wire!")
 			return
 		else
 			var/obj/item/stack/cable_coil/coil = W
@@ -273,7 +273,7 @@
 		if(isrobot(user))
 			var/current_module = user.get_active_hand()
 			if(current_module == W)
-				user << "<span class='warning'>How do you propose to do that?</span>"
+				user << SPAN_WARNING("How do you propose to do that?")
 				return
 			else
 				add_flashes(W,user)
@@ -306,8 +306,8 @@
 
 /obj/item/robot_parts/emag_act(var/remaining_charges, var/mob/user)
 	if(sabotaged)
-		user << "<span class='warning'>[src] is already sabotaged!</span>"
+		user << SPAN_WARNING("[src] is already sabotaged!")
 	else
-		user << "<span class='warning'>You short out the safeties.</span>"
+		user << SPAN_WARNING("You short out the safeties.")
 		sabotaged = 1
 		return 1

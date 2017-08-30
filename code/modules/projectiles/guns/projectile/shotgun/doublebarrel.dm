@@ -54,6 +54,6 @@
 			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) //but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
 			name = "sawn-off shotgun"
 			desc = "Omar's coming!"
-			user << "<span class='warning'>You shorten the barrel of \the [src]!</span>"
+			user << SPAN_WARNING("You shorten the barrel of \the [src]!")
 	else
 		..()

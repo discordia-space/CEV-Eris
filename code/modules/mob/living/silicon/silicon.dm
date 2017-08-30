@@ -315,7 +315,7 @@
 					alarm_raised = 1
 					if(!reported)
 						reported = 1
-						src << "<span class='warning'>--- [AH.category] Detected ---</span>"
+						src << SPAN_WARNING("--- [AH.category] Detected ---")
 					raised_alarm(A)
 
 		for(var/datum/alarm_handler/AH in queued_alarms)

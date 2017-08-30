@@ -207,7 +207,7 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
 		if(on)
-			user << "<span class='warning'>Turn \the [src] off first!</span>"
+			user << SPAN_WARNING("Turn \the [src] off first!")
 			return
 
 		anchored = !anchored
@@ -234,7 +234,7 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
-		user << "<span class='warning'>The bolts are too tight for you to unscrew!</span>"
+		user << SPAN_WARNING("The bolts are too tight for you to unscrew!")
 		return
 
 	..()

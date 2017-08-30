@@ -86,7 +86,7 @@
 				updatehealth()
 				H.visible_message("<span class='danger'>\The [H] performs CPR on \the [src]!</span>")
 				src << SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good.")
-				H << "<span class='warning'>Repeat at least every 7 seconds.</span>"
+				H << SPAN_WARNING("Repeat at least every 7 seconds.")
 
 			else
 				help_shake_act(M)
@@ -113,7 +113,7 @@
 
 			H.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
+			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
 			return 1
 
 		if(I_HURT)
@@ -124,7 +124,7 @@
 					G.activate(M)
 					update_inv_wear_mask()
 				else
-					M << "<span class='warning'>\The [G] is already primed! Run!</span>"
+					M << SPAN_WARNING("\The [G] is already primed! Run!")
 				return
 
 			if(!istype(H))
@@ -268,7 +268,7 @@
 				if(armor_check < 2)
 					visible_message("<span class='danger'>[M] has pushed [src]!</span>")
 				else
-					visible_message("<span class='warning'>[M] attempted to push [src]!</span>")
+					visible_message(SPAN_WARNING("[M] attempted to push [src]!"))
 				return
 
 			if(randn <= 60)
@@ -328,7 +328,7 @@
 	if(!organ || organ.is_dislocated() || organ.dislocated == -1)
 		return 0
 
-	user.visible_message("<span class='warning'>[user] begins to dislocate [src]'s [organ.joint]!</span>")
+	user.visible_message(SPAN_WARNING("[user] begins to dislocate [src]'s [organ.joint]!"))
 	if(do_after(user, 100, progress = 0))
 		organ.dislocate(1)
 		src.visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")

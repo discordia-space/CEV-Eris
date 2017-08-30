@@ -62,7 +62,7 @@ datum/track/New(var/title_name, var/audio)
 		return
 
 	if(!anchored)
-		usr << "<span class='warning'>You must secure \the [src] first.</span>"
+		usr << SPAN_WARNING("You must secure \the [src] first.")
 		return
 
 	if(stat & (NOPOWER|BROKEN))

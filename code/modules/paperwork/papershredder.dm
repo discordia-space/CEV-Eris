@@ -28,7 +28,7 @@
 				paper_result = shred_amounts[shred_type]
 		if(paper_result)
 			if(paperamount == max_paper)
-				user << "<span class='warning'>\The [src] is full; please empty it before you continue.</span>"
+				user << SPAN_WARNING("\The [src] is full; please empty it before you continue.")
 				return
 			paperamount += paper_result
 			user.drop_from_inventory(W)
@@ -105,12 +105,12 @@
 	if(user.restrained())
 		return
 	if(!P.lit)
-		user << "<span class='warning'>\The [P] is not lit.</span>"
+		user << SPAN_WARNING("\The [P] is not lit.")
 		return
-	user.visible_message("<span class='warning'>\The [user] holds \the [P] up to \the [src]. It looks like \he's trying to burn it!</span>", \
-		"<span class='warning'>You hold \the [P] up to \the [src], burning it slowly.</span>")
+	user.visible_message(SPAN_WARNING("\The [user] holds \the [P] up to \the [src]. It looks like \he's trying to burn it!"), \
+		SPAN_WARNING("You hold \the [P] up to \the [src], burning it slowly."))
 	if(!do_after(user,20, src))
-		user << "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>"
+		user << SPAN_WARNING("You must hold \the [P] steady to burn \the [src].")
 		return
 	user.visible_message("<span class='danger'>\The [user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 		"<span class='danger'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")

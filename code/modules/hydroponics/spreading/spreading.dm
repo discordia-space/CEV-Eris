@@ -232,13 +232,13 @@
 
 	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
 		if(sampled)
-			user << "<span class='warning'>\The [src] has already been sampled recently.</span>"
+			user << SPAN_WARNING("\The [src] has already been sampled recently.")
 			return
 		if(!is_mature())
-			user << "<span class='warning'>\The [src] is not mature enough to yield a sample yet.</span>"
+			user << SPAN_WARNING("\The [src] is not mature enough to yield a sample yet.")
 			return
 		if(!seed)
-			user << "<span class='warning'>There is nothing to take a sample from.</span>"
+			user << SPAN_WARNING("There is nothing to take a sample from.")
 			return
 		if(sampled)
 			user << "<span class='danger'>You cannot take another sample from \the [src].</span>"

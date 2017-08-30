@@ -206,7 +206,7 @@
 	if(!holster.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << "<span class='warning'>You need your gun equiped to holster it.</span>"
+			usr << SPAN_WARNING("You need your gun equiped to holster it.")
 			return
 		holster.holster(W, usr)
 	else

@@ -87,7 +87,7 @@
 		if(isliving(AM))
 			var/mob/living/L = AM
 			var/turf/T = get_turf(AM)
-			T.visible_message("<span class='warning'>[src] is trying to inject [L]!</span>")
+			T.visible_message(SPAN_WARNING("[src] is trying to inject [L]!"))
 			sleep(3 SECONDS)
 			if(!L.can_be_injected_by(src))
 				return
@@ -95,7 +95,7 @@
 			var/trans = reagents.trans_to_mob(L, inject_amount(), CHEM_BLOOD)
 			message_admins("[src] injected \the [L] with [trans]u of [contained].")
 			AM << SPAN_NOTICE("You feel a tiny prick!")
-			visible_message("<span class='warning'>[src] injects [L]!</span>")
+			visible_message(SPAN_WARNING("[src] injects [L]!"))
 		else
 			reagents.trans_to(AM, inject_amount())
 

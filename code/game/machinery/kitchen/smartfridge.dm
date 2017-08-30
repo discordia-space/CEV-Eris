@@ -355,7 +355,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
-	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target.name]!</span>")
+	src.visible_message(SPAN_WARNING("[src] launches [throw_item.name] at [target.name]!"))
 	return 1
 
 /************************
@@ -366,6 +366,6 @@
 	if(stat & (NOPOWER|BROKEN)) return 0
 	if(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf)))
 		if(!allowed(usr) && !emagged && locked != -1 && href_list["vend"])
-			usr << "<span class='warning'>Access denied.</span>"
+			usr << SPAN_WARNING("Access denied.")
 			return 0
 	return ..()

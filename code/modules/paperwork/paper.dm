@@ -93,7 +93,7 @@
 	playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav',40,1)
 
 	if((CLUMSY in usr.mutations) && prob(50))
-		usr << "<span class='warning'>You cut yourself on the paper.</span>"
+		usr << SPAN_WARNING("You cut yourself on the paper.")
 		return
 	var/n_name = sanitizeSafe(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text, MAX_NAME_LEN)
 
@@ -109,7 +109,7 @@
 /obj/item/weapon/paper/attack_self(mob/living/user as mob)
 	if(user.a_intent == I_HURT)
 		if(icon_state == "scrap")
-			user.show_message("<span class='warning'>\The [src] is already crumpled.</span>")
+			user.show_message(SPAN_WARNING("\The [src] is already crumpled."))
 			return
 		//crumple dat paper
 		info = stars(info,85)
@@ -153,7 +153,7 @@
 				H.lip_style = null
 				H.update_body()
 			else
-				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
+				user.visible_message(SPAN_WARNING("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
 								 	 SPAN_NOTICE("You begin to wipe off [H]'s lipstick."))
 				if(do_after(user, 10, H) && do_after(H, 10, needhand = 0))	//user needs to keep their active hand, H does not.
 					user.visible_message(SPAN_NOTICE("[user] wipes [H]'s lipstick off with \the [src]."), \
@@ -366,7 +366,7 @@
 
 
 		if(fields > 50)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()
-			usr << "<span class='warning'>Too many fields. Sorry, you can't do this.</span>"
+			usr << SPAN_WARNING("Too many fields. Sorry, you can't do this.")
 			fields = last_fields_value
 			return
 
@@ -441,7 +441,7 @@
 
 	else if(istype(P, /obj/item/weapon/pen))
 		if(icon_state == "scrap")
-			usr << "<span class='warning'>\The [src] is too crumpled to write on.</span>"
+			usr << SPAN_WARNING("\The [src] is too crumpled to write on.")
 			return
 
 		var/obj/item/weapon/pen/robopen/RP = P

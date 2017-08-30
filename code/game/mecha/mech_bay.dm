@@ -72,7 +72,7 @@
 
 /obj/machinery/mech_recharger/proc/start_charging(var/obj/mecha/M)
 	if(stat & (NOPOWER | BROKEN))
-		M.occupant_message("<span class='warning'>Power port not responding. Terminating.</span>")
+		M.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))
 
 		return
 	if(M.cell)

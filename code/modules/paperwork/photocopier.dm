@@ -58,7 +58,7 @@
 				var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
 				sleep(15*B.pages.len)
 			else
-				usr << "<span class='warning'>\The [copyitem] can't be copied by \the [src].</span>"
+				usr << SPAN_WARNING("\The [copyitem] can't be copied by \the [src].")
 				break
 
 			use_power(active_power_usage)

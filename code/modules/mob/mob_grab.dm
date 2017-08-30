@@ -154,12 +154,12 @@
 	switch(target_zone)
 		if("mouth")
 			if(announce)
-				user.visible_message("<span class='warning'>\The [user] covers [target]'s mouth!</span>")
+				user.visible_message(SPAN_WARNING("\The [user] covers [target]'s mouth!"))
 			if(target.silent < 3)
 				target.silent = 3
 		if("eyes")
 			if(announce)
-				assailant.visible_message("<span class='warning'>[assailant] covers [affecting]'s eyes!</span>")
+				assailant.visible_message(SPAN_WARNING("[assailant] covers [affecting]'s eyes!"))
 			if(affecting.eye_blind < 3)
 				affecting.eye_blind = 3
 
@@ -230,9 +230,9 @@
 		if(!allow_upgrade)
 			return
 		if(!affecting.lying)
-			assailant.visible_message("<span class='warning'>[assailant] has grabbed [affecting] aggressively (now hands)!</span>")
+			assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively (now hands)!"))
 		else
-			assailant.visible_message("<span class='warning'>[assailant] pins [affecting] down to the ground (now hands)!</span>")
+			assailant.visible_message(SPAN_WARNING("[assailant] pins [affecting] down to the ground (now hands)!"))
 			apply_pinning(affecting, assailant)
 
 		state = GRAB_AGGRESSIVE
@@ -243,7 +243,7 @@
 			assailant << SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens.")
 			return
 
-		assailant.visible_message("<span class='warning'>[assailant] has reinforced \his grip on [affecting] (now neck)!</span>")
+		assailant.visible_message(SPAN_WARNING("[assailant] has reinforced \his grip on [affecting] (now neck)!"))
 		state = GRAB_NECK
 		icon_state = "grabbed+1"
 		assailant.set_dir(get_dir(assailant, affecting))
@@ -300,7 +300,7 @@
 			switch(assailant.a_intent)
 				if(I_HELP)
 					if(force_down)
-						assailant << "<span class='warning'>You are no longer pinning [affecting] to the ground.</span>"
+						assailant << SPAN_WARNING("You are no longer pinning [affecting] to the ground.")
 						force_down = 0
 						return
 					inspect_organ(affecting, assailant, hit_zone)
@@ -330,7 +330,7 @@
 
 /obj/item/weapon/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)
-		assailant.visible_message("<span class='warning'>[assailant] lost \his tight grip on [affecting]'s neck!</span>")
+		assailant.visible_message(SPAN_WARNING("[assailant] lost \his tight grip on [affecting]'s neck!"))
 		hud.icon_state = "kill"
 		state = GRAB_NECK
 

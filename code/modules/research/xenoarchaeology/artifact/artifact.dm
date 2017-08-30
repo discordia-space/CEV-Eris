@@ -86,7 +86,7 @@
 		if(excavation_level > 100)
 			//failure
 			user.visible_message("<span class='danger'>[src] suddenly crumbles away.</span>",\
-			"<span class='warning'>[src] has disintegrated under your onslaught, any secrets it was holding are long gone.</span>")
+			SPAN_WARNING("[src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
 			qdel(src)
 			return
 

@@ -37,7 +37,7 @@
 		return
 	if(!implant.is_external())
 		if(M.body_part_covered(user.targeted_organ))
-			user << "<span class='warning'>You can't implant through clothes.</span>"
+			user << SPAN_WARNING("You can't implant through clothes.")
 			return
 
 	var/obj/item/organ/external/affected = null
@@ -45,14 +45,14 @@
 		var/mob/living/carbon/human/H = M
 		affected = H.get_organ(user.targeted_organ)
 
-	M.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>")
+	M.visible_message(SPAN_WARNING("[user] is attemping to implant [M]."))
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.do_attack_animation(M)
 
 	if(do_mob(user, M, 50) && src && implant)
 		M.visible_message(
-			"<span class='warning'>[user] has implanted [M] in [affected].</span>",
+			SPAN_WARNING("[user] has implanted [M] in [affected]."),
 			SPAN_NOTICE("You implanted \the [implant] into [M]'s [affected].")
 		)
 

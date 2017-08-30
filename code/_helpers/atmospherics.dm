@@ -10,7 +10,7 @@
 			user << SPAN_NOTICE("[line]")
 		return 1
 
-	user << "<span class='warning'>Your [src] flashes a red light as it fails to analyze \the [A].</span>"
+	user << SPAN_WARNING("Your [src] flashes a red light as it fails to analyze \the [A].")
 	return 0
 
 /proc/atmosanalyzer_scan(var/obj/target, var/datum/gas_mixture/mixture, var/mob/user)

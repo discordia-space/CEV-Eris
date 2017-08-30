@@ -36,7 +36,7 @@
 	else if(istype(I, /obj/item/weapon/mop))
 		if(I.reagents.total_volume < I.reagents.maximum_volume)	//if it's not completely soaked we assume they want to wet it, otherwise store it
 			if(reagents.total_volume < 1)
-				user << "<span class='warning'>[src] is out of water!</span>"
+				user << SPAN_WARNING("[src] is out of water!")
 			else
 				reagents.trans_to_obj(I, 5)	//
 				user << SPAN_NOTICE("You wet [I] in [src].")
@@ -276,7 +276,7 @@
 	if(buckled_mob)
 		if(prob(85))
 			return buckled_mob.bullet_act(Proj)
-	visible_message("<span class='warning'>[Proj] ricochets off the [callme]!</span>")
+	visible_message(SPAN_WARNING("[Proj] ricochets off the [callme]!"))
 
 
 /obj/item/key

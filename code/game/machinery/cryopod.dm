@@ -330,7 +330,7 @@
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == occupant.mind)
 			if(O.owner && O.owner.current)
-				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
+				O.owner.current << SPAN_WARNING("You get the feeling your target is no longer within your reach...")
 			qdel(O)
 
 	//Handle job slot/tater cleanup.

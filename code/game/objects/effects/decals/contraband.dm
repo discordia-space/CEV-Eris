@@ -52,7 +52,7 @@
 		if("Yes")
 			if(!Adjacent(user))
 				return
-			visible_message("<span class='warning'>[user] rips [src] in a single, decisive motion!</span>" )
+			visible_message(SPAN_WARNING("[user] rips [src] in a single, decisive motion!") )
 			playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
 			ruined = 1
 			icon = initial(icon)
@@ -90,7 +90,7 @@
 
 	//must place on a wall and user must not be inside a closet/mecha/whatever
 	if (!istype(W) || !W.Adjacent(user))
-		user << "<span class='warning'>You can't place this here!</span>"
+		user << SPAN_WARNING("You can't place this here!")
 		return
 
 	var/turf/new_loc = null
@@ -116,7 +116,7 @@
 					new_loc = user.loc
 					break
 	if(!new_loc)
-		user << "<span class='warning'>You can't place poster there</span>"
+		user << SPAN_WARNING("You can't place poster there")
 
 	//Looks like it's uncluttered enough. Place the poster.
 	user << SPAN_NOTICE("You start placing the poster on the wall...")

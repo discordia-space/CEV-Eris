@@ -33,9 +33,9 @@
 		if(perc > 0.75)
 			user << SPAN_NOTICE("It has a few cracks.")
 		else if(perc > 0.5)
-			user << "<span class='warning'>It looks slightly damaged.</span>"
+			user << SPAN_WARNING("It looks slightly damaged.")
 		else if(perc > 0.25)
-			user << "<span class='warning'>It looks moderately damaged.</span>"
+			user << SPAN_WARNING("It looks moderately damaged.")
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
 	if(silicate)
@@ -221,7 +221,7 @@
 			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
 			switch (state)
 				if(1)
-					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+					M.visible_message(SPAN_WARNING("[user] slams [M] against \the [src]!"))
 					M.apply_damage(7)
 					hit(10)
 				if(2)

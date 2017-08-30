@@ -11,7 +11,7 @@
 	if(!do_mob(user,H, 10))
 		user << SPAN_NOTICE("You must stand still to inspect [E] for wounds.")
 	else if(E.wounds.len)
-		user << "<span class='warning'>You find [E.get_wounds_desc()]</span>"
+		user << SPAN_WARNING("You find [E.get_wounds_desc()]")
 	else
 		user << SPAN_NOTICE("You find no visible wounds.")
 
@@ -30,20 +30,20 @@
 	else
 		var/bad = 0
 		if(H.getToxLoss() >= 40)
-			user << "<span class='warning'>[H] has an unhealthy skin discoloration.</span>"
+			user << SPAN_WARNING("[H] has an unhealthy skin discoloration.")
 			bad = 1
 		if(H.getOxyLoss() >= 20)
-			user << "<span class='warning'>[H]'s skin is unusaly pale.</span>"
+			user << SPAN_WARNING("[H]'s skin is unusaly pale.")
 			bad = 1
 		if(E.status & ORGAN_DEAD)
-			user << "<span class='warning'>[E] is decaying!</span>"
+			user << SPAN_WARNING("[E] is decaying!")
 			bad = 1
 		if(!bad)
 			user << SPAN_NOTICE("[H]'s skin is normal.")
 
 /obj/item/weapon/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
-		attacker << "<span class='warning'>You require a better grab to do this.</span>"
+		attacker << SPAN_WARNING("You require a better grab to do this.")
 		return
 
 	var/obj/item/organ/external/organ = target.get_organ(check_zone(target_zone))
@@ -65,7 +65,7 @@
 	if(!attack)
 		return
 	if(state < GRAB_NECK)
-		attacker << "<span class='warning'>You require a better grab to do this.</span>"
+		attacker << SPAN_WARNING("You require a better grab to do this.")
 		return
 	for(var/obj/item/protection in list(target.head, target.wear_mask, target.glasses))
 		if(protection && (protection.body_parts_covered & EYES))
@@ -113,7 +113,7 @@
 
 /obj/item/weapon/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
 	if(state < GRAB_NECK)
-		attacker << "<span class='warning'>You require a better grab to do this.</span>"
+		attacker << SPAN_WARNING("You require a better grab to do this.")
 		return
 	if(target.grab_joint(attacker, target_zone))
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -121,10 +121,10 @@
 
 /obj/item/weapon/grab/proc/pin_down(mob/target, mob/attacker)
 	if(state < GRAB_AGGRESSIVE)
-		attacker << "<span class='warning'>You require a better grab to do this.</span>"
+		attacker << SPAN_WARNING("You require a better grab to do this.")
 		return
 	if(force_down)
-		attacker << "<span class='warning'>You are already pinning [target] to the ground.</span>"
+		attacker << SPAN_WARNING("You are already pinning [target] to the ground.")
 
 	attacker.visible_message("<span class='danger'>[attacker] starts forcing [target] to the ground!</span>")
 	if(do_after(attacker, 20, progress=0) && target)

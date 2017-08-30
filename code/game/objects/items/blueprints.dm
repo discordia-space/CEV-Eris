@@ -104,20 +104,20 @@ move an amendment</a> to the drawing.</p>
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				usr << "<span class='warning'>The new area must be completely airtight!</span>"
+				usr << SPAN_WARNING("The new area must be completely airtight!")
 				return
 			if(ROOM_ERR_TOOLARGE)
-				usr << "<span class='warning'>The new area too large!</span>"
+				usr << SPAN_WARNING("The new area too large!")
 				return
 			else
-				usr << "<span class='warning'>Error! Please notify administration!</span>"
+				usr << SPAN_WARNING("Error! Please notify administration!")
 				return
 	var/list/turf/turfs = res
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", ""), MAX_NAME_LEN)
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
-		usr << "<span class='warning'>Name too long.</span>"
+		usr << SPAN_WARNING("Name too long.")
 		return
 	var/area/A = new
 	A.name = str
@@ -153,7 +153,7 @@ move an amendment</a> to the drawing.</p>
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		usr << "<span class='warning'>Text too long.</span>"
+		usr << SPAN_WARNING("Text too long.")
 		return
 	set_area_machinery_title(A,str,prevname)
 	A.name = str

@@ -26,7 +26,7 @@
 /obj/structure/computerframe/AltClick(mob/user)
 	..()
 	if(user.incapacitated())
-		user << "<span class='warning'>You can't do that right now!</span>"
+		user << SPAN_WARNING("You can't do that right now!")
 		return
 	if(!in_range(src, user))
 		return
@@ -70,7 +70,7 @@
 					user.drop_from_inventory(P)
 					P.forceMove(src)
 				else
-					user << "<span class='warning'>This frame does not accept circuit boards of this type!</span>"
+					user << SPAN_WARNING("This frame does not accept circuit boards of this type!")
 			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << SPAN_NOTICE("You screw the circuit board into place.")
@@ -92,7 +92,7 @@
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = P
 				if (C.get_amount() < 5)
-					user << "<span class='warning'>You need five coils of wire to add them to the frame.</span>"
+					user << SPAN_WARNING("You need five coils of wire to add them to the frame.")
 					return
 				user << SPAN_NOTICE("You start to add cables to the frame.")
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -113,7 +113,7 @@
 			if(istype(P, /obj/item/stack/material) && P.get_material_name() == "glass")
 				var/obj/item/stack/G = P
 				if (G.get_amount() < 2)
-					user << "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>"
+					user << SPAN_WARNING("You need two sheets of glass to put in the glass panel.")
 					return
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << SPAN_NOTICE("You start to put in the glass panel.")

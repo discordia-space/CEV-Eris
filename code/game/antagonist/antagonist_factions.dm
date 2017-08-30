@@ -14,15 +14,15 @@
 		return
 
 	if(faction.is_antagonist(player))
-		src << "<span class='warning'>\The [player.current] already serves the [faction.faction_descriptor].</span>"
+		src << SPAN_WARNING("\The [player.current] already serves the [faction.faction_descriptor].")
 		return
 
 	if(player_is_antag(player))
-		src << "<span class='warning'>\The [player.current]'s loyalties seem to be elsewhere...</span>"
+		src << SPAN_WARNING("\The [player.current]'s loyalties seem to be elsewhere...")
 		return
 
 	if(!faction.can_become_antag(player))
-		src << "<span class='warning'>\The [player.current] cannot be \a [faction.faction_role_text]!</span>"
+		src << SPAN_WARNING("\The [player.current] cannot be \a [faction.faction_role_text]!")
 		return
 
 	if(world.time < player.rev_cooldown)

@@ -81,14 +81,14 @@
 			var/mob/living/carbon/human/H = mob
 			var/obj/item/organ/external/O = pick(H.organs)
 			if(prob(25))
-				mob << "<span class='warning'>Your [O.name] feels as if it might burst!</span>"
+				mob << SPAN_WARNING("Your [O.name] feels as if it might burst!")
 			if(prob(10))
 				spawn(50)
 					if(O)
 						O.droplimb(0,DROPLIMB_BLUNT)
 		else
 			if(prob(75))
-				mob << "<span class='warning'>Your whole body feels like it might fall apart!</span>"
+				mob << SPAN_WARNING("Your whole body feels like it might fall apart!")
 			if(prob(10))
 				mob.adjustBruteLoss(25*multiplier)
 
@@ -365,7 +365,7 @@
 	stage = 1
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		if (prob(30))
-			mob << "<span class='warning'>You feel like you are about to sneeze!</span>"
+			mob << SPAN_WARNING("You feel like you are about to sneeze!")
 		sleep(5)
 		mob.say("*sneeze")
 		for(var/mob/living/carbon/M in get_step(mob,mob.dir))
@@ -378,7 +378,7 @@
 	name = "Flemmingtons"
 	stage = 1
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob << "<span class='warning'>Mucous runs down the back of your throat.</span>"
+		mob << SPAN_WARNING("Mucous runs down the back of your throat.")
 
 /datum/disease2/effect/drool
 	name = "Saliva Effect"
@@ -398,4 +398,4 @@
 	name = "Headache"
 	stage = 1
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob << "<span class='warning'>Your head hurts a bit.</span>"
+		mob << SPAN_WARNING("Your head hurts a bit.")

@@ -331,7 +331,7 @@
 		if(temperature >= H.species.heat_level_1)
 			H << "<span class='danger'>The water is searing hot!</span>"
 		else if(temperature <= H.species.cold_level_1)
-			H << "<span class='warning'>The water is freezing cold!</span>"
+			H << SPAN_WARNING("The water is freezing cold!")
 
 /obj/item/weapon/bikehorn/rubberducky
 	name = "rubber ducky"
@@ -357,7 +357,7 @@
 	if(!usr.Adjacent(src))
 		return ..()
 	if(!thing.reagents || thing.reagents.total_volume == 0)
-		usr << "<span class='warning'>\The [thing] is empty.</span>"
+		usr << SPAN_WARNING("\The [thing] is empty.")
 		return
 	// Clear the vessel.
 	visible_message(SPAN_NOTICE("\The [usr] tips the contents of \the [thing] into \the [src]."))
@@ -381,7 +381,7 @@
 		return
 
 	if(busy)
-		user << "<span class='warning'>Someone's already washing here.</span>"
+		user << SPAN_WARNING("Someone's already washing here.")
 		return
 
 	usr << SPAN_NOTICE("You start washing your hands.")
@@ -403,7 +403,7 @@
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(busy)
-		user << "<span class='warning'>Someone's already washing here.</span>"
+		user << SPAN_WARNING("Someone's already washing here.")
 		return
 
 	var/obj/item/weapon/reagent_containers/RG = O

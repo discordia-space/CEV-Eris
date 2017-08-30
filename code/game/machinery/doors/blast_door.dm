@@ -118,7 +118,7 @@
 			return
 		var/obj/item/stack/P = C
 		if(P.amount < amt)
-			usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+			usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 			return
 		usr << SPAN_NOTICE("You begin repairing [src]...")
 		if(do_after(usr, 30, src))
@@ -126,7 +126,7 @@
 				usr << SPAN_NOTICE("You have repaired \the [src]")
 				src.repair()
 			else
-				usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+				usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 
 
 

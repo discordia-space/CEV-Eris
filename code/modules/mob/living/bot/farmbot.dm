@@ -70,7 +70,7 @@
 		if(user)
 			user << SPAN_NOTICE("You short out [src]'s plant identifier circuits.")
 		spawn(rand(30, 50))
-			visible_message("<span class='warning'>[src] buzzes oddly.</span>")
+			visible_message(SPAN_WARNING("[src] buzzes oddly."))
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			emagged = 1
 		return 1

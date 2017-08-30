@@ -39,7 +39,7 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/attack_self(mob/user as mob)
 	if(on_fire)
-		user.visible_message("<span class='warning'>\The [user] stamps out [src].</span>", "<span class='warning'>You stamp out [src].</span>")
+		user.visible_message(SPAN_WARNING("\The [user] stamps out [src]."), SPAN_WARNING("You stamp out [src]."))
 		user.unEquip(src)
 		extinguish()
 	else
@@ -51,9 +51,9 @@
 		if(F.lit)
 			ignite()
 			if(on_fire)
-				visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
+				visible_message(SPAN_WARNING("\The [user] lights [src] with [W]."))
 			else
-				user << "<span class='warning'>You manage to singe [src], but fail to light it.</span>"
+				user << SPAN_WARNING("You manage to singe [src], but fail to light it.")
 
 	. = ..()
 	update_name()
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/wipe_down(atom/A, mob/user)
 	if(!reagents.total_volume)
-		user << "<span class='warning'>The [initial(name)] is dry!</span>"
+		user << SPAN_WARNING("The [initial(name)] is dry!")
 	else
 		user.visible_message("\The [user] starts to wipe down [A] with [src]!")
 		reagents.splash(A, 1) //get a small amount of liquid on the thing we're wiping.
@@ -115,7 +115,7 @@
 				user.do_attack_animation(src)
 				user.visible_message(
 					"<span class='danger'>\The [user] smothers [target] with [src]!</span>",
-					"<span class='warning'>You smother [target] with [src]!</span>",
+					SPAN_WARNING("You smother [target] with [src]!"),
 					"You hear some struggling and muffled cries of surprise"
 					)
 
@@ -134,7 +134,7 @@
 
 	if(istype(A, /obj/structure/reagent_dispensers))
 		if(!reagents.get_free_space())
-			user << "<span class='warning'>\The [src] is already soaked.</span>"
+			user << SPAN_WARNING("\The [src] is already soaked.")
 			return
 
 		if(A.reagents && A.reagents.trans_to_obj(src, reagents.maximum_volume))
@@ -191,7 +191,7 @@
 	//rags sitting around with 1 second of burn time left is dumb.
 	//ensures players always have a few seconds of burn time left when they light their rag
 	if(burn_time <= 5)
-		visible_message("<span class='warning'>\The [src] falls apart!</span>")
+		visible_message(SPAN_WARNING("\The [src] falls apart!"))
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
 		qdel(src)
 	update_name()
@@ -199,7 +199,7 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/process()
 	if(!can_ignite())
-		visible_message("<span class='warning'>\The [src] burns out.</span>")
+		visible_message(SPAN_WARNING("\The [src] burns out."))
 		extinguish()
 
 	//copied from matches

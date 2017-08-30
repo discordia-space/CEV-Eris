@@ -54,7 +54,7 @@
 
 	visible_message(
 		"<span class='danger'>\The [src] attempts to remove \the [HC]!</span>",
-		"<span class='warning'>You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)</span>"
+		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)")
 		)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
@@ -88,7 +88,7 @@
 
 	visible_message(
 		"<span class='danger'>[usr] attempts to remove \the [HC]!</span>",
-		"<span class='warning'>You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)</span>"
+		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)")
 		)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
@@ -110,7 +110,7 @@
 /mob/living/carbon/proc/break_handcuffs()
 	visible_message(
 		"<span class='danger'>[src] is trying to break \the [handcuffed]!</span>",
-		"<span class='warning'>You attempt to break your [handcuffed.name]. (This will take around 5 seconds and you need to stand still)</span>"
+		SPAN_WARNING("You attempt to break your [handcuffed.name]. (This will take around 5 seconds and you need to stand still)")
 		)
 
 	if(do_after(src, 5 SECONDS, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
@@ -119,7 +119,7 @@
 
 		visible_message(
 			"<span class='danger'>[src] manages to break \the [handcuffed]!</span>",
-			"<span class='warning'>You successfully break your [handcuffed.name].</span>"
+			SPAN_WARNING("You successfully break your [handcuffed.name].")
 			)
 
 		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
@@ -131,7 +131,7 @@
 		update_inv_handcuffed()
 
 /mob/living/carbon/proc/break_legcuffs()
-	src << "<span class='warning'>You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)</span>"
+	src << SPAN_WARNING("You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)")
 	visible_message("<span class='danger'>[src] is trying to break the legcuffs!</span>")
 
 	if(do_after(src, 5 SECONDS, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
@@ -140,7 +140,7 @@
 
 		visible_message(
 			"<span class='danger'>[src] manages to break the legcuffs!</span>",
-			"<span class='warning'>You successfully break your legcuffs.</span>"
+			SPAN_WARNING("You successfully break your legcuffs.")
 			)
 
 		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
@@ -163,7 +163,7 @@
 	else
 		visible_message(
 			"<span class='danger'>[usr] attempts to unbuckle themself!</span>",
-			"<span class='warning'>You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)</span>"
+			SPAN_WARNING("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")
 			)
 
 

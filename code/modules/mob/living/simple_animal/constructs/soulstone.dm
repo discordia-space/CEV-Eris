@@ -20,11 +20,11 @@
 	if(istype(M, /mob/living/carbon/human/dummy))
 		return..()
 	if(jobban_isbanned(M, "cultist"))
-		user << "<span class='warning'>This person's soul is too corrupt and cannot be captured!</span>"
+		user << SPAN_WARNING("This person's soul is too corrupt and cannot be captured!")
 		return..()
 
 	if(M.has_brain_worms()) //Borer stuff - RR
-		user << "<span class='warning'>This being is corrupted by an alien intelligence and cannot be soul trapped.</span>"
+		user << SPAN_WARNING("This being is corrupted by an alien intelligence and cannot be soul trapped.")
 		return..()
 
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their soul captured with [src.name] by [user.name] ([user.ckey])</font>")

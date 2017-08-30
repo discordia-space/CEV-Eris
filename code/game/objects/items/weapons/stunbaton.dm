@@ -59,7 +59,7 @@
 	if(bcell)
 		user <<SPAN_NOTICE("The baton is [round(bcell.percent())]% charged.")
 	if(!bcell)
-		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
+		user <<SPAN_WARNING("The baton does not have a power source installed.")
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/cell/large))
@@ -93,9 +93,9 @@
 	else
 		status = 0
 		if(!bcell)
-			user << "<span class='warning'>[src] does not have a power source!</span>"
+			user << SPAN_WARNING("[src] does not have a power source!")
 		else
-			user << "<span class='warning'>[src] is out of charge.</span>"
+			user << SPAN_WARNING("[src] is out of charge.")
 	add_fingerprint(user)
 
 /obj/item/weapon/melee/baton/attack(mob/M, mob/user)
@@ -131,9 +131,9 @@
 		//we can't really extract the actual hit zone from ..(), unfortunately. Just act like they attacked the area they intended to.
 	else if(!status)
 		if(affecting)
-			target.visible_message("<span class='warning'>[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off.</span>")
+			target.visible_message(SPAN_WARNING("[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
 		else
-			target.visible_message("<span class='warning'>[target] has been prodded with [src] by [user]. Luckily it was off.</span>")
+			target.visible_message(SPAN_WARNING("[target] has been prodded with [src] by [user]. Luckily it was off."))
 	else
 		if(affecting)
 			target.visible_message("<span class='danger'>[target] has been prodded in the [affecting.name] with [src] by [user]!</span>")

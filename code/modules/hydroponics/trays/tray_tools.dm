@@ -45,7 +45,7 @@
 
 /obj/item/device/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
 	if(!cell || !cell.checked_use(5))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return
 	if(!flag) return
 

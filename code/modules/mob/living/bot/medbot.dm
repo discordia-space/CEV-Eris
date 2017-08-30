@@ -99,7 +99,7 @@
 		return
 
 	icon_state = "medibots"
-	visible_message("<span class='warning'>[src] is trying to inject [H]!</span>")
+	visible_message(SPAN_WARNING("[src] is trying to inject [H]!"))
 	if(declare_treatment)
 		var/area/location = get_area(src)
 		broadcast_medical_hud_message("[src] is treating <b>[H]</b> in <b>[location]</b>", src)
@@ -110,7 +110,7 @@
 			reagent_glass.reagents.trans_to_mob(H, injection_amount, CHEM_BLOOD)
 		else
 			H.reagents.add_reagent(t, injection_amount)
-		visible_message("<span class='warning'>[src] injects [H] with the syringe!</span>")
+		visible_message(SPAN_WARNING("[src] injects [H] with the syringe!"))
 	currently_healing = 0
 	update_icons()
 
@@ -228,8 +228,8 @@
 	. = ..()
 	if(!emagged)
 		if(user)
-			user << "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>"
-		visible_message("<span class='warning'>[src] buzzes oddly!</span>")
+			user << SPAN_WARNING("You short out [src]'s reagent synthesis circuits.")
+		visible_message(SPAN_WARNING("[src] buzzes oddly!"))
 		playsound(loc, "robot_talk_light", 100, 0, 0)
 		flick("medibot_spark", src)
 		patient = null

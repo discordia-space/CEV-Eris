@@ -116,10 +116,10 @@
 		switch(AM.mag_type)
 			if(MAGAZINE)
 				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
-					user << "<span class='warning'>[src] requires another magazine.</span>" //wrong magazine
+					user << SPAN_WARNING("[src] requires another magazine.") //wrong magazine
 					return
 				if(ammo_magazine)
-					user << "<span class='warning'>[src] already has a magazine loaded.</span>" //already a magazine here
+					user << SPAN_WARNING("[src] already has a magazine loaded.") //already a magazine here
 					return
 				user.remove_from_mob(AM)
 				AM.loc = src
@@ -129,7 +129,7 @@
 				cock_gun(user)
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
-					user << "<span class='warning'>[src] is full!</span>"
+					user << SPAN_WARNING("[src] is full!")
 					return
 				var/count = 0
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
@@ -150,7 +150,7 @@
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
 			return //incompatible
 		if(loaded.len >= max_shells)
-			user << "<span class='warning'>[src] is full.</span>"
+			user << SPAN_WARNING("[src] is full.")
 			return
 
 		user.remove_from_mob(C)
@@ -189,7 +189,7 @@
 			user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
 			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 	else
-		user << "<span class='warning'>[src] is empty.</span>"
+		user << SPAN_WARNING("[src] is empty.")
 	update_icon()
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)

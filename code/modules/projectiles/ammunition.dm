@@ -105,10 +105,10 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(C.caliber != caliber)
-			user << "<span class='warning'>[C] does not fit into [src].</span>"
+			user << SPAN_WARNING("[C] does not fit into [src].")
 			return
 		if(stored_ammo.len >= max_ammo)
-			user << "<span class='warning'>[src] is full!</span>"
+			user << SPAN_WARNING("[src] is full!")
 			return
 		user.remove_from_mob(C)
 		C.loc = src

@@ -111,7 +111,7 @@
 	if (isobj(AM))
 		var/obj/O = AM
 		if (O.throwforce >= src.toughness)
-			visible_message("<span class='warning'><B>[src] was hit by [O].</B></span>")
+			visible_message(SPAN_WARNING("<B>[src] was hit by [O].</B>"))
 		take_damage(O.throwforce)
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
@@ -125,7 +125,7 @@
 	if(user.species.can_shred(user))
 		set_status(0)
 		user.do_attack_animation(src)
-		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
+		visible_message(SPAN_WARNING("\The [user] slashes at [src]!"))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
 		destroy()
@@ -194,7 +194,7 @@
 
 	else if (istype(W, /obj/item/weapon/camera_bug))
 		if (!src.can_use())
-			user << "<span class='warning'>Camera non-functional.</span>"
+			user << SPAN_WARNING("Camera non-functional.")
 			return
 		if (src.bugged)
 			user << SPAN_NOTICE("Camera bug removed.")
@@ -207,7 +207,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if (W.force >= src.toughness)
 			user.do_attack_animation(src)
-			visible_message("<span class='warning'><b>[src] has been [pick(W.attack_verb)] with [W] by [user]!</b></span>")
+			visible_message(SPAN_WARNING("<b>[src] has been [pick(W.attack_verb)] with [W] by [user]!</b>"))
 			if (istype(W, /obj/item)) //is it even possible to get into attackby() with non-items?
 				var/obj/item/I = W
 				if (I.hitsound)
@@ -389,7 +389,7 @@
 		return
 
 	if(stat & BROKEN)
-		user << "<span class='warning'>\The [src] is broken.</span>"
+		user << SPAN_WARNING("\The [src] is broken.")
 		return
 
 	user.set_machine(src)

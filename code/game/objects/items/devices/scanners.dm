@@ -33,12 +33,12 @@ REAGENT SCANNER
 
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
 	if(!cell || !cell.checked_use(3))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << text("<span class='warning'>You try to analyze the floor's vitals!</span>")
+		user << text(SPAN_WARNING("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
-			O.show_message("<span class='warning'>\The [user] has analyzed the floor's vitals!</span>", 1)
+			O.show_message(SPAN_WARNING("\The [user] has analyzed the floor's vitals!"), 1)
 		user.show_message(SPAN_NOTICE("Analyzing Results for The floor:"), 1)
 		user.show_message("Overall Status: Healthy</span>", 1)
 		user.show_message(SPAN_NOTICE("    Damage Specifics: 0-0-0-0"), 1)
@@ -56,7 +56,7 @@ REAGENT SCANNER
 		user.show_message(SPAN_NOTICE("    Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>"), 1)
 		user.show_message(SPAN_NOTICE("    Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>"))
 		user.show_message(SPAN_NOTICE("Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)"), 1)
-		user.show_message("<span class='warning'>Warning: Blood Level ERROR: --% --cl.</span> <span class='notice'>Type: ERROR</span>")
+		user.show_message(SPAN_WARNING("Warning: Blood Level ERROR: --% --cl.</span> <span class='notice'>Type: ERROR"))
 		user.show_message(SPAN_NOTICE("Subject's pulse: <font color='red'>-- bpm.</font>"))
 		return
 
@@ -85,7 +85,7 @@ REAGENT SCANNER
 				user.show_message(text("<span class='notice'>     [][]: [][] - []</span>",
 				capitalize(org.name),
 				(org.status & ORGAN_ROBOT) ? "(Cybernetic)" : "",
-				(org.brute_dam > 0) ? "<span class='warning'>[org.brute_dam]</span>" : 0,
+				(org.brute_dam > 0) ? SPAN_WARNING("[org.brute_dam]") : 0,
 				(org.status & ORGAN_BLEEDING)?"<span class='danger'>\[Bleeding\]</span>":"",
 				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0),1)
 		else
@@ -96,7 +96,7 @@ REAGENT SCANNER
 	BU = M.getFireLoss() > 50 ? 	"<font color='#FFA500'><b>Severe burn damage detected</b></font>" 			:	"Subject burn injury status O.K"
 	BR = M.getBruteLoss() > 50 ? "<font color='red'><b>Severe anatomical damage detected</b></font>" 		: 	"Subject brute-force injury status O.K"
 	if(M.status_flags & FAKEDEATH)
-		OX = fake_oxy > 50 ? 		"<span class='warning'>Severe oxygen deprivation detected</span>" 	: 	"Subject bloodstream oxygen level normal"
+		OX = fake_oxy > 50 ? 		SPAN_WARNING("Severe oxygen deprivation detected") 	: 	"Subject bloodstream oxygen level normal"
 	user.show_message("[OX] | [TX] | [BU] | [BR]")
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
@@ -129,19 +129,19 @@ REAGENT SCANNER
 				if (ID in virusDB)
 					var/datum/data/record/V = virusDB[ID]
 					user.show_message("<span class='warning'>Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]</span>")
-//				user.show_message(text("<span class='warning'>Warning: Unknown pathogen detected in subject's blood.</span>"))
+//				user.show_message(text(SPAN_WARNING("Warning: Unknown pathogen detected in subject's blood.")))
 	if (M.getCloneLoss())
-		user.show_message("<span class='warning'>Subject appears to have been imperfectly cloned.</span>")
+		user.show_message(SPAN_WARNING("Subject appears to have been imperfectly cloned."))
 //		if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
 //			user.show_message("<span class='notice'>Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.</span>")
 	if (M.has_brain_worms())
-		user.show_message("<span class='warning'>Subject suffering from aberrant brain activity. Recommend further scanning.</span>")
+		user.show_message(SPAN_WARNING("Subject suffering from aberrant brain activity. Recommend further scanning."))
 	else if (M.getBrainLoss() >= 60 || !M.has_brain())
-		user.show_message("<span class='warning'>Subject is brain dead.</span>")
+		user.show_message(SPAN_WARNING("Subject is brain dead."))
 	else if (M.getBrainLoss() >= 25)
-		user.show_message("<span class='warning'>Severe brain damage detected. Subject likely to have a traumatic brain injury.</span>")
+		user.show_message(SPAN_WARNING("Severe brain damage detected. Subject likely to have a traumatic brain injury."))
 	else if (M.getBrainLoss() >= 10)
-		user.show_message("<span class='warning'>Significant brain damage detected. Subject may have had a concussion.</span>")
+		user.show_message(SPAN_WARNING("Significant brain damage detected. Subject may have had a concussion."))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/name in H.organs_by_name)
@@ -151,20 +151,20 @@ REAGENT SCANNER
 			var/limb = e.name
 			if(e.status & ORGAN_BROKEN)
 				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg")) && (!(e.status & ORGAN_SPLINTED)))
-					user << "<span class='warning'>Unsecured fracture in subject [limb]. Splinting recommended for transport.</span>"
+					user << SPAN_WARNING("Unsecured fracture in subject [limb]. Splinting recommended for transport.")
 			if(e.has_infected_wound())
-				user << "<span class='warning'>Infected wound detected in subject [limb]. Disinfection recommended.</span>"
+				user << SPAN_WARNING("Infected wound detected in subject [limb]. Disinfection recommended.")
 
 		for(var/name in H.organs_by_name)
 			var/obj/item/organ/external/e = H.organs_by_name[name]
 			if(e && e.status & ORGAN_BROKEN)
-				user.show_message(text("<span class='warning'>Bone fractures detected. Advanced scanner required for location.</span>"), 1)
+				user.show_message(text(SPAN_WARNING("Bone fractures detected. Advanced scanner required for location.")), 1)
 				break
 		for(var/obj/item/organ/external/e in H.organs)
 			if(!e)
 				continue
 			for(var/datum/wound/W in e.wounds) if(W.internal)
-				user.show_message(text("<span class='warning'>Internal bleeding detected. Advanced scanner required for location.</span>"), 1)
+				user.show_message(text(SPAN_WARNING("Internal bleeding detected. Advanced scanner required for location.")), 1)
 				break
 		if(M:vessel)
 			var/blood_volume = H.vessel.get_reagent_amount("blood")
@@ -221,7 +221,7 @@ REAGENT SCANNER
 
 /obj/item/device/analyzer/atmosanalyze(var/mob/user)
 	if(!cell || !cell.checked_use(5))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return
 	var/air = user.return_air()
 	if (!air)
@@ -238,7 +238,7 @@ REAGENT SCANNER
 			return
 		analyze_gases(src, user)
 	else
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 
 /obj/item/device/analyzer/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
@@ -285,7 +285,7 @@ REAGENT SCANNER
 
 /obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
 	if(!cell || !cell.checked_use(7))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return
 	if (user.stat)
 		return
@@ -296,7 +296,7 @@ REAGENT SCANNER
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.id != "blood")
 				reagents.clear_reagents()
-				user << "<span class='warning'>The sample was contaminated! Please insert another sample</span>"
+				user << SPAN_WARNING("The sample was contaminated! Please insert another sample")
 				return
 			else
 				blood_traces = params2list(R.data["trace_chem"])
@@ -350,7 +350,7 @@ REAGENT SCANNER
 
 /obj/item/device/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
 	if(!cell || !cell.checked_use(7))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return
 	if(!proximity)
 		return
@@ -408,7 +408,7 @@ REAGENT SCANNER
 
 /obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!cell || !cell.checked_use(7))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return
 	if (!isslime(M))
 		user << "<B>This device can only scan slimes!</B>"
@@ -420,7 +420,7 @@ REAGENT SCANNER
 	if (T.nutrition < T.get_starve_nutrition())
 		user.show_message("<span class='alert'>Warning: slime is starving!</span>")
 	else if (T.nutrition < T.get_hunger_nutrition())
-		user.show_message("<span class='warning'>Warning: slime is hungry</span>")
+		user.show_message(SPAN_WARNING("Warning: slime is hungry"))
 	user.show_message("Electric change strength: [T.powerlevel]")
 	user.show_message("Health: [T.health]")
 	if (T.slime_mutation[4] == T.colour)

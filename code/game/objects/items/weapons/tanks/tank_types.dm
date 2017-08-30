@@ -26,7 +26,7 @@
 
 	examine(mob/user)
 		if(..(user, 0) && air_contents.gas["oxygen"] < 10)
-			user << text("<span class='warning'>The meter on \the [src] indicates you are almost out of oxygen!</span>")
+			user << text(SPAN_WARNING("The meter on \the [src] indicates you are almost out of oxygen!"))
 			//playsound(usr, 'sound/effects/alert.ogg', 50, 1)
 
 

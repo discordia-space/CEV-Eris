@@ -223,7 +223,7 @@ BLIND     // can't see anything
 	if(!success)
 		return 0
 	else if(success == 2)
-		user << "<span class='warning'>You are already wearing a hat.</span>"
+		user << SPAN_WARNING("You are already wearing a hat.")
 	else if(success == 1)
 		user << SPAN_NOTICE("You crawl under \the [src].")
 	return 1
@@ -312,7 +312,7 @@ BLIND     // can't see anything
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
 		holding = null
 	else
-		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
+		usr << SPAN_WARNING("Your need an empty, unbroken hand to do that.")
 		holding.forceMove(src)
 
 	if(!holding)
@@ -328,7 +328,7 @@ BLIND     // can't see anything
 	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
 	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
 		if(holding)
-			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
+			user << SPAN_WARNING("\The [src] is already holding \a [holding].")
 			return
 		user.unEquip(I)
 		I.forceMove(src)

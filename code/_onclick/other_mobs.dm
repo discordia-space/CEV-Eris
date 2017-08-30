@@ -50,15 +50,15 @@
 				if(!helper)
 					return
 
-			visible_message("<span class='warning'>[src] starts climbing onto \the [A]!</span>")
-			shadow.visible_message("<span class='warning'>[shadow] starts climbing onto \the [A]!</span>")
+			visible_message(SPAN_WARNING("[src] starts climbing onto \the [A]!"))
+			shadow.visible_message(SPAN_WARNING("[shadow] starts climbing onto \the [A]!"))
 			if(do_after(src, 50, helper))
-				visible_message("<span class='warning'>[src] climbs onto \the [A]!</span>")
-				shadow.visible_message("<span class='warning'>[shadow] climbs onto \the [A]!</span>")
+				visible_message(SPAN_WARNING("[src] climbs onto \the [A]!"))
+				shadow.visible_message(SPAN_WARNING("[shadow] climbs onto \the [A]!"))
 				src.Move(T)
 			else
-				visible_message("<span class='warning'>[src] gives up on trying to climb onto \the [A]!</span>")
-				shadow.visible_message("<span class='warning'>[shadow] gives up on trying to climb onto \the [A]!</span>")
+				visible_message(SPAN_WARNING("[src] gives up on trying to climb onto \the [A]!"))
+				shadow.visible_message(SPAN_WARNING("[shadow] gives up on trying to climb onto \the [A]!"))
 			return
 
 	if(!gloves && !mutations.len) return

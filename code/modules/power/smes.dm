@@ -208,7 +208,7 @@
 //Will return 1 on failure
 /obj/machinery/power/smes/proc/make_terminal(const/mob/user)
 	if (user.loc == loc)
-		user << "<span class='warning'>You must not be on the same tile as the [src].</span>"
+		user << SPAN_WARNING("You must not be on the same tile as the [src].")
 		return 1
 
 	//Direction the terminal will face to
@@ -220,11 +220,11 @@
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
 	if (istype(tempLoc, /turf/space))
-		user << "<span class='warning'>You can't build a terminal on space.</span>"
+		user << SPAN_WARNING("You can't build a terminal on space.")
 		return 1
 	else if (istype(tempLoc))
 		if(!tempLoc.is_plating())
-			user << "<span class='warning'>You must remove the floor plating first.</span>"
+			user << SPAN_WARNING("You must remove the floor plating first.")
 			return 1
 	user << SPAN_NOTICE("You start adding cable to the [src].")
 	if(do_after(user, 50, src))
@@ -262,14 +262,14 @@
 			return 0
 
 	if (!open_hatch)
-		user << "<span class='warning'>You need to open access hatch on [src] first!</span>"
+		user << SPAN_WARNING("You need to open access hatch on [src] first!")
 		return 0
 
 	if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = W
 		if (CC.get_amount() <= 10)
-			user << "<span class='warning'>You need more cables.</span>"
+			user << SPAN_WARNING("You need more cables.")
 			building_terminal = 0
 			return 0
 		if (make_terminal(user))
@@ -289,7 +289,7 @@
 		var/turf/tempTDir = terminal.loc
 		if (istype(tempTDir))
 			if(!tempTDir.is_plating())
-				user << "<span class='warning'>You must remove the floor plating first.</span>"
+				user << SPAN_WARNING("You must remove the floor plating first.")
 			else
 				user << SPAN_NOTICE("You begin to cut the cables...")
 				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)

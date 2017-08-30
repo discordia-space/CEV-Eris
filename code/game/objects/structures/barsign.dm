@@ -41,7 +41,7 @@
 			icon_state = sign_type
 			user << SPAN_NOTICE("You change the barsign.")
 		else
-			user << "<span class='warning'>Access denied.</span>"
+			user << SPAN_WARNING("Access denied.")
 		return
 
 	return ..()

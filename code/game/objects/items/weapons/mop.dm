@@ -26,7 +26,7 @@
 		if(!T)
 			return
 
-		user.visible_message("<span class='warning'>[user] begins to clean \the [T].</span>")
+		user.visible_message(SPAN_WARNING("[user] begins to clean \the [T]."))
 
 		if(do_after(user, 40, T))
 			if(T)

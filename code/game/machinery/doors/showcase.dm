@@ -61,7 +61,7 @@
 			)
 
 	else
-		user << "<span class='warning'>It must be closed!</span>"
+		user << SPAN_WARNING("It must be closed!")
 
 /obj/machinery/door/blast/shutters/glass/attack_hand(mob/user)
 	return

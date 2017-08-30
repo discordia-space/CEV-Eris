@@ -135,7 +135,7 @@
 				if(program)
 					if(is_autenthicated(user) && program.computer_emagged && !issilicon(usr) && ntn_comm)
 						if(centcomm_message_cooldown)
-							usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
+							usr << SPAN_WARNING("Arrays recycling. Please stand by.")
 							nanomanager.update_uis(src)
 							return
 						var/input = sanitize(input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
@@ -148,11 +148,11 @@
 			else if(href_list["target"] == "regular")
 				if(is_autenthicated(user) && !issilicon(usr) && ntn_comm)
 					if(centcomm_message_cooldown)
-						usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
+						usr << SPAN_WARNING("Arrays recycling. Please stand by.")
 						nanomanager.update_uis(src)
 						return
 					if(!is_relay_online())//Contact Centcom has a check, Syndie doesn't to allow for Traitor funs.
-						usr <<"<span class='warning'>No Emergency Bluespace Relay detected. Unable to transmit message.</span>"
+						usr <<SPAN_WARNING("No Emergency Bluespace Relay detected. Unable to transmit message.")
 						nanomanager.update_uis(src)
 						return
 					var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)

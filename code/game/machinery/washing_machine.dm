@@ -182,7 +182,7 @@
 			crayon = null
 			state = 1
 		if(5)
-			user << "<span class='warning'>The [src] is busy.</span>"
+			user << SPAN_WARNING("The [src] is busy.")
 		if(6)
 			state = 7
 		if(7)

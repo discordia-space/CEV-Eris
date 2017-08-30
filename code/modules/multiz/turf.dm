@@ -136,4 +136,4 @@
 			ChangeTurf(/turf/simulated/floor/airless)
 			return
 		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
+			user << SPAN_WARNING("The plating is going to need some support.")

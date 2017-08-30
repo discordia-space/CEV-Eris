@@ -36,7 +36,7 @@
 			return
 		if(spellbook.book_flags & LOCKED)
 			if(user.mind.special_role == "apprentice")
-				user << "<span class='warning'>Drat! This spellbook's apprentice proof lock is on!.</span>"
+				user << SPAN_WARNING("Drat! This spellbook's apprentice proof lock is on!.")
 				return
 			else
 				user << "You notice the apprentice proof lock is on. Luckily you are beyond such things and can open it anyways."
@@ -150,7 +150,7 @@
 			temp = "All spells have been removed. You may now memorize a new set of spells."
 
 		else
-			usr << "<span class='warning'>You must be in the wizard academy to re-memorize your spells.</span>"
+			usr << SPAN_WARNING("You must be in the wizard academy to re-memorize your spells.")
 
 	src.interact(usr)
 

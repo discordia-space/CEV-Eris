@@ -67,7 +67,7 @@
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.gloves)
-		user << "<span class='warning'>Take \the [H.gloves] off first.</span>"
+		user << SPAN_WARNING("Take \the [H.gloves] off first.")
 		return
 
 	user << SPAN_NOTICE("You firmly press your fingertips onto the card.")
@@ -87,7 +87,7 @@
 	var/mob/living/carbon/human/H = M
 
 	if(H.gloves)
-		user << "<span class='warning'>\The [H] is wearing gloves.</span>"
+		user << SPAN_WARNING("\The [H] is wearing gloves.")
 		return 1
 
 	if(user != H && H.a_intent != I_HELP && !H.lying)
@@ -104,7 +104,7 @@
 			if(istype(O) && !O.is_stump())
 				has_hand = 1
 		if(!has_hand)
-			user << "<span class='warning'>They don't have any hands.</span>"
+			user << SPAN_WARNING("They don't have any hands.")
 			return 1
 		user.visible_message("[user] takes a copy of \the [H]'s fingerprints.")
 		var/fullprint = H.get_full_print()
@@ -144,7 +144,7 @@
 		take_sample(user,A)
 		return 1
 	else
-		user << "<span class='warning'>You are unable to locate any [evidence_type]s on \the [A].</span>"
+		user << SPAN_WARNING("You are unable to locate any [evidence_type]s on \the [A].")
 		return ..()
 
 /obj/item/weapon/forensics/sample_kit/powder

@@ -134,14 +134,14 @@
 	if (!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if (connected_device)
-		user << "<span class='warning'>You cannot unwrench \the [src], dettach \the [connected_device] first.</span>"
+		user << SPAN_WARNING("You cannot unwrench \the [src], dettach \the [connected_device] first.")
 		return 1
 	if (locate(/obj/machinery/portable_atmospherics, src.loc))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>"
+		user << SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure.")
 		add_fingerprint(user)
 		return 1
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)

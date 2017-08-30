@@ -92,10 +92,10 @@
 		usr << SPAN_NOTICE("Try as you might, you can not climb up into the scanner.")
 		return
 	if (src.occupant)
-		usr << "<span class='warning'>The scanner is already occupied!</span>"
+		usr << SPAN_WARNING("The scanner is already occupied!")
 		return
 	if (usr.abiotic())
-		usr << "<span class='warning'>The subject cannot have abiotic items on.</span>"
+		usr << SPAN_WARNING("The subject cannot have abiotic items on.")
 		return
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
@@ -109,7 +109,7 @@
 /obj/machinery/dna_scannernew/attackby(var/obj/item/weapon/item as obj, var/mob/user as mob)
 	if(istype(item, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
-			user << "<span class='warning'>A beaker is already loaded into the machine.</span>"
+			user << SPAN_WARNING("A beaker is already loaded into the machine.")
 			return
 		beaker = item
 		user.drop_from_inventory(item)
@@ -122,10 +122,10 @@
 	if (!ismob(G.affecting))
 		return
 	if (src.occupant)
-		user << "<span class='warning'>The scanner is already occupied!</span>"
+		user << SPAN_WARNING("The scanner is already occupied!")
 		return
 	if (G.affecting.abiotic())
-		user << "<span class='warning'>The subject cannot have abiotic items on.</span>"
+		user << SPAN_WARNING("The subject cannot have abiotic items on.")
 		return
 	put_in(G.affecting)
 	src.add_fingerprint(user)

@@ -28,7 +28,7 @@
 		var/obj/item/weapon/weldingtool/WT = W
 
 		if(get_amount() < 2)
-			user << "<span class='warning'>You need at least two rods to do this.</span>"
+			user << SPAN_WARNING("You need at least two rods to do this.")
 			return
 
 		if(WT.remove_fuel(0,user))
@@ -64,7 +64,7 @@
 
 	else if(!in_use)
 		if(get_amount() < 2)
-			user << "<span class='warning'>You need at least two rods to do this.</span>"
+			user << SPAN_WARNING("You need at least two rods to do this.")
 			return
 		usr << SPAN_NOTICE("Assembling grille...")
 		in_use = 1

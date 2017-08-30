@@ -75,10 +75,10 @@
 	user << SPAN_NOTICE("You eat \the [src]")
 
 /obj/item/weapon/reagent_containers/proc/other_feed_message_start(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] is trying to feed [target] \the [src]!</span>")
+	user.visible_message(SPAN_WARNING("[user] is trying to feed [target] \the [src]!"))
 
 /obj/item/weapon/reagent_containers/proc/other_feed_message_finish(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] has fed [target] \the [src]!</span>")
+	user.visible_message(SPAN_WARNING("[user] has fed [target] \the [src]!"))
 
 /obj/item/weapon/reagent_containers/proc/feed_sound(var/mob/user)
 	return
@@ -99,7 +99,7 @@
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				user << "<span class='warning'>\The [blocked] is in the way!</span>"
+				user << SPAN_WARNING("\The [blocked] is in the way!")
 				return
 
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
@@ -115,7 +115,7 @@
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				user << "<span class='warning'>\The [blocked] is in the way!</span>"
+				user << SPAN_WARNING("\The [blocked] is in the way!")
 				return
 
 		other_feed_message_start(user, target)

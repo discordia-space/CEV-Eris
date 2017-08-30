@@ -47,7 +47,7 @@
 
 /obj/item/weapon/gun/projectile/heavysniper/special_check(mob/user)
 	if(bolt_open)
-		user << "<span class='warning'>You can't fire [src] while the bolt is open!</span>"
+		user << SPAN_WARNING("You can't fire [src] while the bolt is open!")
 		return 0
 	return ..()
 

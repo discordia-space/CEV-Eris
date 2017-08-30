@@ -31,7 +31,7 @@
 	if(istype(O, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/gun = O
 		if(installed_gun)
-			user << "<span class='warning'>There's already a weapon installed.</span>"
+			user << SPAN_WARNING("There's already a weapon installed.")
 			return
 		user.drop_from_inventory(gun)
 		installed_gun = gun

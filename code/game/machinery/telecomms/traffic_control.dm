@@ -125,7 +125,7 @@
 		add_fingerprint(usr)
 		usr.set_machine(src)
 		if(!src.allowed(usr) && !emagged)
-			usr << "<span class='warning'>ACCESS DENIED.</span>"
+			usr << SPAN_WARNING("ACCESS DENIED.")
 			return
 
 		if(href_list["viewserver"])

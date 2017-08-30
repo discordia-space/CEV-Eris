@@ -49,7 +49,7 @@
 		user << SPAN_NOTICE("Close the locker first.")
 		return
 	if(src.broken)
-		user << "<span class='warning'>The locker appears to be broken.</span>"
+		user << SPAN_WARNING("The locker appears to be broken.")
 		return
 	if(user.loc == src)
 		user << SPAN_NOTICE("You can't reach the lock from inside.")
@@ -119,9 +119,9 @@
 		if(visual_feedback)
 			visible_message(visual_feedback, audible_feedback)
 		else if(user && emag_source)
-			visible_message("<span class='warning'>\The [src] has been broken by \the [user] with \an [emag_source]!</span>", "You hear a faint electrical spark.")
+			visible_message(SPAN_WARNING("\The [src] has been broken by \the [user] with \an [emag_source]!"), "You hear a faint electrical spark.")
 		else
-			visible_message("<span class='warning'>\The [src] sparks and breaks open!</span>", "You hear a faint electrical spark.")
+			visible_message(SPAN_WARNING("\The [src] sparks and breaks open!"), "You hear a faint electrical spark.")
 		return 1
 
 /obj/structure/closet/secure_closet/attack_hand(mob/user as mob)
@@ -143,7 +143,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		usr << SPAN_WARNING("This mob type can't use this verb.")
 
 /obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

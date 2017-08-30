@@ -58,7 +58,7 @@
 			return
 
 		if(mode == SYRINGE_BROKEN)
-			user << "<span class='warning'>This syringe is broken!</span>"
+			user << SPAN_WARNING("This syringe is broken!")
 			return
 
 		if(user.a_intent == I_HURT && ismob(target))
@@ -72,7 +72,7 @@
 			if(SYRINGE_DRAW)
 
 				if(!reagents.get_free_space())
-					user << "<span class='warning'>The syringe is full.</span>"
+					user << SPAN_WARNING("The syringe is full.")
 					mode = SYRINGE_INJECT
 					return
 
@@ -82,15 +82,15 @@
 						return
 					if(iscarbon(target))
 						if(isslime(target))
-							user << "<span class='warning'>You are unable to locate any blood.</span>"
+							user << SPAN_WARNING("You are unable to locate any blood.")
 							return
 						var/amount = reagents.get_free_space()
 						var/mob/living/carbon/T = target
 						if(!T.dna)
-							user << "<span class='warning'>You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum).</span>"
+							user << SPAN_WARNING("You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum).")
 							return
 						if(NOCLONE in T.mutations) //target done been et, no more blood in him
-							user << "<span class='warning'>You are unable to locate any blood.</span>"
+							user << SPAN_WARNING("You are unable to locate any blood.")
 							return
 
 						var/datum/reagent/B
@@ -172,9 +172,9 @@
 							return
 
 					if(injtime == time)
-						user.visible_message("<span class='warning'>[user] is trying to inject [target] with [visible_name]!</span>")
+						user.visible_message(SPAN_WARNING("[user] is trying to inject [target] with [visible_name]!"))
 					else
-						user.visible_message("<span class='warning'>[user] begins hunting for an injection port on [target]'s suit!</span>")
+						user.visible_message(SPAN_WARNING("[user] begins hunting for an injection port on [target]'s suit!"))
 
 					user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 					user.do_attack_animation(target)
@@ -182,7 +182,7 @@
 					if(!do_mob(user, target, injtime))
 						return
 
-					user.visible_message("<span class='warning'>[user] injects [target] with the syringe!</span>")
+					user.visible_message(SPAN_WARNING("[user] injects [target] with the syringe!"))
 
 				var/trans
 				if(ismob(target))

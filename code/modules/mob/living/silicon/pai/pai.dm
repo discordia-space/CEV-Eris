@@ -348,7 +348,7 @@
 		src.adjustBruteLoss(W.force)
 		src.updatehealth()
 	else
-		visible_message("<span class='warning'>[user.name] bonks [src] harmlessly with [W].</span>")
+		visible_message(SPAN_WARNING("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
 		if(stat != 2) close_up()
 	return

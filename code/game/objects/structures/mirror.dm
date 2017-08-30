@@ -44,10 +44,10 @@
 		return
 
 	if(prob(I.force * 2))
-		visible_message("<span class='warning'>[user] smashes [src] with [I]!</span>")
+		visible_message(SPAN_WARNING("[user] smashes [src] with [I]!"))
 		shatter()
 	else
-		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
+		visible_message(SPAN_WARNING("[user] hits [src] with [I]!"))
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
 
 /obj/structure/mirror/attack_generic(var/mob/user, var/damage)
