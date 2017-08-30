@@ -1,0 +1,36 @@
+*** Begin Log: Wed Aug 30 23:10:13 2017 ***
+Wed Aug 30 23:10:18 2017
+World opened on network port 53678.
+Welcome BYOND! (5.0 Public Version 511.1385)
+Running revision:
+master
+2017-08-25
+67ecfcac32e14d0c7f175c2b22a8994b29f2f406
+## ERROR: File not found (data/mode.txt)
+The specified module could not be found.
+
+Your server failed to establish a connection with the feedback database.
+The system cannot find the file specified.
+
+## ERROR: Failed to connect to database in load_admins(). Reverting to legacy system.
+The operation completed successfully.
+
+## ERROR: Database connection failed. Reverting to the legacy ban system.
+Infinite loop suspected--switching proc to background.
+If it is not an infinite loop, either do 'set background=1' or set world.loop_checks=0.
+proc name: New (/world/New)
+  source file: world.dm,125
+  usr: null
+  src: world
+  call stack:
+world: New()
+world: New()
+world: New()
+*** Begin Log: Wed Aug 30 23:49:42 2017 ***
+Wed Aug 30 23:49:57 2017
+World opened on network port 53960.
+Welcome BYOND! (5.0 Public Version 511.1385)
+Running revision:
+master
+2017-08-25
+67ecfcac32e14d0c7f175c2b22a8994b29f2f406
