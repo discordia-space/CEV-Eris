@@ -109,24 +109,24 @@
 		if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 			force_toggle()
 		else
-			usr << "<span class='notice'>[src]'s motors resist your effort.</span>"
+			usr << SPAN_NOTICE("[src]'s motors resist your effort.")
 		return
 	if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel")
 		var/amt = Ceiling((maxhealth - health)/150)
 		if(!amt)
-			usr << "<span class='notice'>\The [src] is already fully repaired.</span>"
+			usr << SPAN_NOTICE("\The [src] is already fully repaired.")
 			return
 		var/obj/item/stack/P = C
 		if(P.amount < amt)
-			usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+			usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 			return
-		usr << "<span class='notice'>You begin repairing [src]...</span>"
+		usr << SPAN_NOTICE("You begin repairing [src]...")
 		if(do_after(usr, 30, src))
 			if(P.use(amt))
-				usr << "<span class='notice'>You have repaired \the [src]</span>"
+				usr << SPAN_NOTICE("You have repaired \the [src]")
 				src.repair()
 			else
-				usr << "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>"
+				usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 
 
 

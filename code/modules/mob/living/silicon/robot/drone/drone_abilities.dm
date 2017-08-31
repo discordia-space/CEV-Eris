@@ -10,13 +10,13 @@
 		mail_destination = ""
 		return
 
-	src << "<span class='notice'>You configure your internal beacon, tagging yourself for delivery to '[new_tag]'.</span>"
+	src << SPAN_NOTICE("You configure your internal beacon, tagging yourself for delivery to '[new_tag]'.")
 	mail_destination = new_tag
 
 	//Auto flush if we use this verb inside a disposal chute.
 	var/obj/machinery/disposal/D = src.loc
 	if(istype(D))
-		src << "<span class='notice'>\The [D] acknowledges your signal.</span>"
+		src << SPAN_NOTICE("\The [D] acknowledges your signal.")
 		D.flush_count = D.flush_every_ticks
 
 	return
@@ -30,7 +30,7 @@
 	else if(H.a_intent == "grab" && hat && !(H.l_hand && H.r_hand))
 		hat.loc = get_turf(src)
 		H.put_in_hands(hat)
-		H.visible_message("<span class='danger'>\The [H] removes \the [src]'s [hat].</span>")
+		H.visible_message(SPAN_DANGER("\The [H] removes \the [src]'s [hat]."))
 		hat = null
 		updateicon()
 	else

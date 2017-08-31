@@ -305,7 +305,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			H.AdjustStunned(1)
 			H.AdjustWeakened(1)
-		mob << "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>"
+		mob << SPAN_NOTICE("The sudden appearance of gravity makes you fall to the floor!")
 
 /area/proc/prison_break()
 	var/obj/machinery/power/apc/theAPC = get_apc()

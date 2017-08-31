@@ -11,7 +11,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = H.get_active_hand()
 		if(!I)
-			H << "<span class='notice'>You are not holding anything to equip.</span>"
+			H << SPAN_NOTICE("You are not holding anything to equip.")
 			return
 		if(H.equip_to_appropriate_slot(I))
 			if(hand)
@@ -299,7 +299,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			var/obj/item/clothing/under/uniform = src.w_uniform
 			uniform.attackby(W,src)
 		else
-			src << "<span class='danger'>You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]</span>"
+			src << SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]")
 			return
 
 	if((W == src.l_hand) && (slot != slot_l_hand))
@@ -332,7 +332,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			covering = src.wear_suit
 
 	if(covering && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
-		user << "<span class='warning'>\The [covering] is in the way.</span>"
+		user << SPAN_WARNING("\The [covering] is in the way.")
 		return 0
 	return 1
 

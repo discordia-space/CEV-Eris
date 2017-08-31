@@ -133,7 +133,7 @@
 			M.adjustBruteLoss(5)
 			M.slip(null, 6)
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
-			M << "<span class='warning'>You tripped over!</span>"
+			M << SPAN_WARNING("You tripped over!")
 			return
 
 /turf/simulated/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)
@@ -143,7 +143,7 @@
 			return
 		else
 			R.use(2)
-			user << "<span class='notice'>You start connecting [R.name]s to [src.name], creating catwalk ...</span>"
+			user << SPAN_NOTICE("You start connecting [R.name]s to [src.name], creating catwalk ...")
 			if(do_after(user,50))
 				src.alpha = 0
 				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(src.loc)

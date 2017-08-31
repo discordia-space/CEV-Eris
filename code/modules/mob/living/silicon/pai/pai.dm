@@ -183,7 +183,7 @@
 	medicalActive2 = null
 	medical_cannotfind = 0
 	nanomanager.update_uis(src)
-	usr << "<span class='notice'>You reset your record-viewing software.</span>"
+	usr << SPAN_NOTICE("You reset your record-viewing software.")
 
 /mob/living/silicon/pai/cancel_camera()
 	set category = "pAI Commands"
@@ -260,7 +260,7 @@
 				if(card in affecting.implants)
 					affecting.take_damage(rand(30,50))
 					affecting.implants -= card
-					H.visible_message("<span class='danger'>\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!</span>")
+					H.visible_message(SPAN_DANGER("\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!"))
 					break
 		holder.drop_from_inventory(card)
 	else if(istype(card.loc,/obj/item/device/pda))
@@ -344,17 +344,17 @@
 //Overriding this will stop a number of headaches down the track.
 /mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.force)
-		visible_message("<span class='danger'>[user.name] attacks [src] with [W]!</span>")
+		visible_message(SPAN_DANGER("[user.name] attacks [src] with [W]!"))
 		src.adjustBruteLoss(W.force)
 		src.updatehealth()
 	else
-		visible_message("<span class='warning'>[user.name] bonks [src] harmlessly with [W].</span>")
+		visible_message(SPAN_WARNING("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
 		if(stat != 2) close_up()
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
-	visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
+	visible_message(SPAN_DANGER("[user.name] boops [src] on the head."))
 	close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.

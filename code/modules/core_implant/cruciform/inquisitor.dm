@@ -32,7 +32,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 	var/mob/living/M = CI.wearer
 
-	M << "<span class='danger'>You feel wave of shocking pain coming from your cruciform.</span>"
+	M << SPAN_DANGER("You feel wave of shocking pain coming from your cruciform.")
 
 	if(CI.active)
 		fail("This cruciform already activated.", user, C)

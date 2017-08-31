@@ -19,50 +19,50 @@
 		return		// don't set a label
 
 	if(!labels_left)
-		user << "<span class='notice'>No labels left.</span>"
+		user << SPAN_NOTICE("No labels left.")
 		return
 	if(!label || !length(label))
-		user << "<span class='notice'>No text set.</span>"
+		user << SPAN_NOTICE("No text set.")
 		return
 	if(length(A.name) + length(label) > 64)
-		user << "<span class='notice'>Label too big.</span>"
+		user << SPAN_NOTICE("Label too big.")
 		return
 	if(ishuman(A))
-		user << "<span class='notice'>The label refuses to stick to [A.name].</span>"
+		user << SPAN_NOTICE("The label refuses to stick to [A.name].")
 		return
 	if(issilicon(A))
-		user << "<span class='notice'>The label refuses to stick to [A.name].</span>"
+		user << SPAN_NOTICE("The label refuses to stick to [A.name].")
 		return
 	if(isobserver(A))
-		user << "<span class='notice'>[src] passes through [A.name].</span>"
+		user << SPAN_NOTICE("[src] passes through [A.name].")
 		return
 	if(istype(A, /obj/item/weapon/reagent_containers/glass))
-		user << "<span class='notice'>The label can't stick to the [A.name].  (Try using a pen)</span>"
+		user << SPAN_NOTICE("The label can't stick to the [A.name].  (Try using a pen)")
 		return
 	if(istype(A, /obj/machinery/portable_atmospherics/hydroponics))
 		var/obj/machinery/portable_atmospherics/hydroponics/tray = A
 		if(!tray.mechanical)
-			user << "<span class='notice'>How are you going to label that?</span>"
+			user << SPAN_NOTICE("How are you going to label that?")
 			return
 		tray.labelled = label
 		spawn(1)
 			tray.update_icon()
 	playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.wav',100,1)
-	user.visible_message("<span class='notice'>[user] labels [A] as [label].</span>", \
-						 "<span class='notice'>You label [A] as [label].</span>")
+	user.visible_message(SPAN_NOTICE("[user] labels [A] as [label]."), \
+						 SPAN_NOTICE("You label [A] as [label]."))
 	A.name = "[A.name] ([label])"
 
 /obj/item/weapon/hand_labeler/attack_self(mob/user as mob)
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)
-		user << "<span class='notice'>You turn on \the [src].</span>"
+		user << SPAN_NOTICE("You turn on \the [src].")
 		//Now let them chose the text.
 		var/str = sanitizeSafe(input(user,"Label text?","Set label",""), MAX_NAME_LEN)
 		if(!str || !length(str))
-			user << "<span class='notice'>Invalid text.</span>"
+			user << SPAN_NOTICE("Invalid text.")
 			return
 		label = str
-		user << "<span class='notice'>You set the text to '[str]'.</span>"
+		user << SPAN_NOTICE("You set the text to '[str]'.")
 	else
-		user << "<span class='notice'>You turn off \the [src].</span>"
+		user << SPAN_NOTICE("You turn off \the [src].")

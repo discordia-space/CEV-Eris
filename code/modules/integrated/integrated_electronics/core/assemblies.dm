@@ -100,7 +100,7 @@
 	if(battery)
 		HTML += "[round(battery.charge, 0.1)]/[battery.maxcharge] ([round(battery.percent(), 0.1)]%) cell charge. <a href='?src=\ref[src];remove_cell=1'>\[Remove\]</a>"
 	else
-		HTML += "<span class='danger'>No powercell detected!</span>"
+		HTML += SPAN_DANGER("No powercell detected!")
 	HTML += "<br><br>"
 	HTML += "Components;<br>"
 	for(var/obj/item/integrated_circuit/circuit in contents)
@@ -123,12 +123,12 @@
 
 	if(href_list["remove_cell"])
 		if(!battery)
-			usr << "<span class='warning'>There's no power cell to remove from \the [src].</span>"
+			usr << SPAN_WARNING("There's no power cell to remove from \the [src].")
 		else
 			var/turf/T = get_turf(src)
 			battery.forceMove(T)
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-			usr << "<span class='notice'>You pull \the [battery] out of \the [src]'s power supplier.</span>"
+			usr << SPAN_NOTICE("You pull \the [battery] out of \the [src]'s power supplier.")
 			battery = null
 
 	interact(usr) // To refresh the UI.
@@ -144,7 +144,7 @@
 
 	var/input = sanitizeSafe(input("What do you want to name this?", "Rename", src.name) as null|text, MAX_NAME_LEN)
 	if(src && input && CanInteract(M, physical_state))
-		M << "<span class='notice'>The machine now has a label reading '[input]'.</span>"
+		M << SPAN_NOTICE("The machine now has a label reading '[input]'.")
 		name = input
 
 /obj/item/device/electronic_assembly/proc/can_move()
@@ -195,21 +195,21 @@
 // Returns true if the circuit made it inside.
 /obj/item/device/electronic_assembly/proc/add_circuit(var/obj/item/integrated_circuit/IC, var/mob/user)
 	if(!opened)
-		user << "<span class='warning'>\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.</span>"
+		user << SPAN_WARNING("\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.")
 		return FALSE
 
 	if(IC.w_class > src.w_class)
-		user <<"<span class='warning'>\The [IC] is way too big to fit into \the [src].</span>"
+		user <<SPAN_WARNING("\The [IC] is way too big to fit into \the [src].")
 		return FALSE
 
 	var/total_part_size = get_part_size()
 	var/total_complexity = get_part_complexity()
 
 	if((total_part_size + IC.w_class) > max_components)
-		user << "<span class='warning'>You can't seem to add the '[IC.name]', as there's insufficient space.</span>"
+		user << SPAN_WARNING("You can't seem to add the '[IC.name]', as there's insufficient space.")
 		return FALSE
 	if((total_complexity + IC.complexity) > max_complexity)
-		user << "<span class='warning'>You can't seem to add the '[IC.name]', since this setup's too complicated for the case.</span>"
+		user << SPAN_WARNING("You can't seem to add the '[IC.name]', since this setup's too complicated for the case.")
 		return FALSE
 
 	if(!IC.forceMove(src))
@@ -228,14 +228,14 @@
 			if(S.scan(target))
 				scanned = TRUE
 		if(scanned)
-			visible_message("<span class='notice'>\The [user] waves \the [src] around [target].</span>")
+			visible_message(SPAN_NOTICE("\The [user] waves \the [src] around [target]."))
 
 /obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/integrated_circuit))
 		if(!user.unEquip(I))
 			return 0
 		if(add_circuit(I, user))
-			user << "<span class='notice'>You slide \the [I] inside \the [src].</span>"
+			user << SPAN_NOTICE("You slide \the [I] inside \the [src].")
 			playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 			interact(user)
 	else if(istype(I, /obj/item/weapon/crowbar))
@@ -247,21 +247,21 @@
 		if(opened)
 			interact(user)
 		else
-			user << "<span class='warning'>\The [src] isn't opened, so you can't fiddle with the internal components.  \
-			Try using a crowbar.</span>"
+			user << SPAN_WARNING("\The [src] isn't opened, so you can't fiddle with the internal components.  \
+			Try using a crowbar.")
 	else if(istype(I, /obj/item/weapon/cell/small))
 		if(!opened)
-			user << "<span class='warning'>\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.</span>"
+			user << SPAN_WARNING("\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.")
 			return FALSE
 		if(battery)
-			user << "<span class='warning'>\The [src] already has \a [battery] inside.  Remove it first if you want to replace it.</span>"
+			user << SPAN_WARNING("\The [src] already has \a [battery] inside.  Remove it first if you want to replace it.")
 			return FALSE
 		var/obj/item/weapon/cell/small/cell = I
 		user.drop_item(cell)
 		cell.forceMove(src)
 		battery = cell
 		playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
-		user << "<span class='notice'>You slot \the [cell] inside \the [src]'s power supplier.</span>"
+		user << SPAN_NOTICE("You slot \the [cell] inside \the [src]'s power supplier.")
 		interact(user)
 
 	else

@@ -15,16 +15,16 @@
 			return
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "<span class='danger'>Speech is currently admin-disabled.</span>"
+		usr << SPAN_DANGER("Speech is currently admin-disabled.")
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << "<span class='danger'>Deadchat and ANGEL chat are globally muted.</span>"
+			src << SPAN_DANGER("Deadchat and ANGEL chat are globally muted.")
 			return
 
 	if(!is_preference_enabled(/datum/client_preference/show_dsay))
-		usr << "<span class='danger'>You have deadchat and ANGEL chat muted.</span>"
+		usr << SPAN_DANGER("You have deadchat and ANGEL chat muted.")
 		return
 
 	say_angel_direct("[pick("beeps","buzzes","echoes","fizzes")], <span class='message'>\"[message]\"</span>", src)
@@ -50,16 +50,16 @@
 			return
 
 	if(client.prefs.muted & MUTE_DEADCHAT)
-		src << "<span class='danger'>You cannot send deadchat and ANGEL emotes (muted).</span>"
+		src << SPAN_DANGER("You cannot send deadchat and ANGEL emotes (muted).")
 		return
 
 	if(!is_preference_enabled(/datum/client_preference/show_dsay))
-		src << "<span class='danger'>You have deadchat and ANGEL chat muted.</span>"
+		src << SPAN_DANGER("You have deadchat and ANGEL chat muted.")
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << "<span class='danger'>Deadchat and ANGEL chat are globally muted.</span>"
+			src << SPAN_DANGER("Deadchat and ANGEL chat are globally muted.")
 			return
 
 

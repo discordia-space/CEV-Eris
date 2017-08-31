@@ -64,7 +64,7 @@
 
 /obj/item/device/assembly/timer/interact(mob/user as mob)//TODO: Have this use the wires
 	if(!secured)
-		user << "<span class='warning'>The [name] is unsecured!</span>"
+		user << SPAN_WARNING("The [name] is unsecured!")
 		return
 	var/second = time % 60
 	var/minute = (time - second) / 60

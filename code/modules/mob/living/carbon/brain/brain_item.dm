@@ -44,7 +44,7 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	brainmob << "<span class='notice'>You feel slightly disoriented. That's normal when you're just a [initial(src.name)].</span>"
+	brainmob << SPAN_NOTICE("You feel slightly disoriented. That's normal when you're just a [initial(src.name)].")
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/brain/examine(mob/user) // -- TLE

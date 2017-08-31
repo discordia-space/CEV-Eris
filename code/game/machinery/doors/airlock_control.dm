@@ -266,7 +266,7 @@ obj/machinery/access_button/attack_hand(mob/user)
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	add_fingerprint(usr)
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied</span>"
+		user << SPAN_WARNING("Access Denied")
 
 	else if(radio_connection)
 		var/datum/signal/signal = new

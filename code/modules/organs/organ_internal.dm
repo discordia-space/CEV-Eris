@@ -102,7 +102,7 @@
 	if(inflamed && owner)
 		inflamed++
 		if(prob(5))
-			owner << "<span class='warning'>You feel a stinging pain in your abdomen!</span>"
+			owner << SPAN_WARNING("You feel a stinging pain in your abdomen!")
 			owner.emote("me",1,"winces slightly.")
 		if(inflamed > 200)
 			if(prob(3))
@@ -115,11 +115,11 @@
 				if (owner.nutrition > 100)
 					owner.vomit()
 				else
-					owner << "<span class='danger'>You gag as you want to throw up, but there's nothing in your stomach!</span>"
+					owner << SPAN_DANGER("You gag as you want to throw up, but there's nothing in your stomach!")
 					owner.Weaken(10)
 		if(inflamed > 600)
 			if(prob(1))
-				owner << "<span class='danger'>Your abdomen is a world of pain!</span>"
+				owner << SPAN_DANGER("Your abdomen is a world of pain!")
 				owner.Weaken(10)
 
 				var/obj/item/organ/external/E = owner.get_organ(parent_organ)
