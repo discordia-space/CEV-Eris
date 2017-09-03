@@ -16,13 +16,6 @@
 		return 0
 	return ..()
 
-/obj/structure/closet/secure_closet/close()
-	if(..())
-		if(broken)
-			icon_state = src.icon_off
-		return 1
-	else
-		return 0
 
 /obj/structure/closet/secure_closet/emp_act(severity)
 	for(var/obj/O in src)
@@ -108,8 +101,7 @@
 		broken = 1
 		locked = 0
 		desc = "It appears to be broken."
-//		icon_state = icon_off
-		flick(icon_broken, src)
+
 
 		if(visual_feedback)
 			visible_message(visual_feedback, audible_feedback)

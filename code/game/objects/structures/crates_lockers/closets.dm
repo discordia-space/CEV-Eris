@@ -99,31 +99,38 @@
 			M.client.perspective = MOB_PERSPECTIVE
 
 /obj/structure/closet/proc/open()
-	if(welded || locked)
+	if(src.welded || src.locked)
 		return 0
-	var/turf/T = get_turf(src)
-	for(var/mob/living/L in T)
-		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
-			if(user)
-				user << "<span class='danger'>There's something large on top of [src], preventing it from opening.</span>"
-			return 0
 	return 1
 
+	if(!src.can_open())
+		return 0
+
+	src.dump_contents()
+
+
+	src.opened = 1
 	playsound(src.loc, open_sound, 100, 1, -3)
 	density = 0
 	return 1
 
 /obj/structure/closet/proc/close()
-	var/turf/T = get_turf(src)
-	for(var/obj/structure/closet/closet in T)
-		if(closet != src && !closet.wall_mounted)
-			return 0
-	for(var/mob/living/L in T)
-		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
-			if(user)
-				user << "<span class='danger'>There's something too large in [src], preventing it from closing.</span>"
-			return 0
-	return 1
+	if(!src.opened)
+		return 0
+	if(!src.can_close())
+		return 0
+
+	var/stored_units = 0
+
+	if(store_misc)
+		stored_units += store_misc(stored_units)
+	if(store_items)
+		stored_units += store_items(stored_units)
+	if(store_mobs)
+		stored_units += store_mobs(stored_units)
+
+
+	src.opened = 0
 
 	playsound(src.loc, close_sound, 100, 1, -3)
 	density = 1

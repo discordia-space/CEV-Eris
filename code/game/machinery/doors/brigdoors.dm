@@ -113,7 +113,6 @@
 		if(C.broken)	continue
 		if(C.opened && !C.close())	continue
 		C.locked = 1
-		C.icon_state = C.icon_locked
 	return 1
 
 
@@ -133,7 +132,6 @@
 		if(C.broken)	continue
 		if(C.opened)	continue
 		C.locked = 0
-		C.icon_state = C.icon_closed
 
 	return 1
 

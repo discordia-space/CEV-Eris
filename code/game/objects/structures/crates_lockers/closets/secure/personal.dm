@@ -59,8 +59,7 @@
 		if(src.allowed(user) || !src.registered_name || (istype(I) && (src.registered_name == I.registered_name)))
 			//they can open all lockers, or nobody owns this, or they own this locker
 			src.locked = !( src.locked )
-			if(src.locked)	src.icon_state = src.icon_locked
-			else	src.icon_state = src.icon_closed
+
 
 			if(!src.registered_name)
 				src.registered_name = I.registered_name
@@ -83,7 +82,6 @@
 		broken = 1
 		locked = 0
 		desc = "It appears to be broken."
-		icon_state = src.icon_broken
 		if(visual_feedback)
 			visible_message("<span class='warning'>[visual_feedback]</span>", "<span class='warning'>[audible_feedback]</span>")
 		return 1
@@ -105,7 +103,6 @@
 				if(!src.close())
 					return
 			src.locked = 1
-			src.icon_state = src.icon_locked
 			src.registered_name = null
 			src.desc = "It's a secure locker for personnel. The first card swiped gains control."
 	return
