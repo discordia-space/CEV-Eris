@@ -2,12 +2,6 @@
 	name = "technomancer exultant's locker"
 	req_access = list(access_ce)
 	icon_state = "securece1"
-	icon_closed = "securece"
-	icon_locked = "securece1"
-	icon_opened = "secureceopen"
-	icon_broken = "securecebroken"
-	icon_off = "secureceoff"
-
 
 	New()
 		..()
@@ -45,12 +39,6 @@
 	name = "electrical supplies"
 	req_access = list(access_engine_equip)
 	icon_state = "secureengelec1"
-	icon_closed = "secureengelec"
-	icon_locked = "secureengelec1"
-	icon_opened = "toolclosetopen"
-	icon_broken = "secureengelecbroken"
-	icon_off = "secureengelecoff"
-
 
 	New()
 		..()
@@ -73,12 +61,6 @@
 	name = "welding supplies"
 	req_access = list(access_construction)
 	icon_state = "secureengweld1"
-	icon_closed = "secureengweld"
-	icon_locked = "secureengweld1"
-	icon_opened = "toolclosetopen"
-	icon_broken = "secureengweldbroken"
-	icon_off = "secureengweldoff"
-
 
 	New()
 		..()
@@ -99,12 +81,6 @@
 	name = "technomancer's locker"
 	req_access = list(access_engine_equip)
 	icon_state = "secureeng1"
-	icon_closed = "secureeng"
-	icon_locked = "secureeng1"
-	icon_opened = "secureengopen"
-	icon_broken = "secureengbroken"
-	icon_off = "secureengoff"
-
 
 	New()
 		..()

@@ -2,11 +2,6 @@
 	name = "cyberchristian preacher's locker"
 	req_access = list(access_chapel_office)
 	icon_state = "preacher1"
-	icon_closed = "preacher"
-	icon_locked = "preacher1"
-	icon_opened = "preacheropen"
-	icon_broken = "preacherbroken"
-	icon_off = "preacheroff"
 
 	New()
 		..()

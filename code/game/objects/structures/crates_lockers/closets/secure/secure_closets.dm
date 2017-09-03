@@ -5,14 +5,9 @@
 	icon_state = "secure1"
 	density = 1
 	opened = 0
-	var/locked = 1
-	var/broken = 0
+	broken = 0
+	locked = 1
 	var/large = 1
-	icon_closed = "secure"
-	var/icon_locked = "secure1"
-	icon_opened = "secureopen"
-	var/icon_broken = "securebroken"
-	var/icon_off = "secureoff"
 	wall_mounted = 0 //never solid (You can always pass over it)
 	health = 200
 
@@ -113,7 +108,7 @@
 		broken = 1
 		locked = 0
 		desc = "It appears to be broken."
-		icon_state = icon_off
+//		icon_state = icon_off
 		flick(icon_broken, src)
 
 		if(visual_feedback)
@@ -145,20 +140,6 @@
 	else
 		usr << "<span class='warning'>This mob type can't use this verb.</span>"
 
-/obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
-	overlays.Cut()
-
-	if(!opened)
-		if(broken)
-			icon_state = icon_off
-		else if(locked)
-			icon_state = icon_locked
-		else
-			icon_state = icon_closed
-		if(welded)
-			overlays += "welded"
-	else
-		icon_state = icon_opened
 
 /obj/structure/closet/secure_closet/req_breakout()
 	if(!opened && locked) return 1

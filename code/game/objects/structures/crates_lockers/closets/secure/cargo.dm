@@ -2,11 +2,6 @@
 	name = "guild technician's locker"
 	req_access = list(access_cargo)
 	icon_state = "securecargo1"
-	icon_closed = "securecargo"
-	icon_locked = "securecargo1"
-	icon_opened = "securecargoopen"
-	icon_broken = "securecargobroken"
-	icon_off = "securecargooff"
 
 	New()
 		..()
@@ -21,11 +16,7 @@
 	name = "guild merchant's locker"
 	req_access = list(access_merchant)
 	icon_state = "secureqm1"
-	icon_closed = "secureqm"
-	icon_locked = "secureqm1"
-	icon_opened = "secureqmopen"
-	icon_broken = "secureqmbroken"
-	icon_off = "secureqmoff"
+
 
 	New()
 		..()

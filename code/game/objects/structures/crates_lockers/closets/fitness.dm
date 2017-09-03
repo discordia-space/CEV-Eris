@@ -2,7 +2,6 @@
 	name = "athletic wardrobe"
 	desc = "It's a storage unit for athletic wear."
 	icon_state = "mixed"
-	icon_closed = "mixed"
 
 /obj/structure/closet/athletic_mixed/New()
 	..()
@@ -50,7 +49,6 @@
 	name = "red laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
 	icon_state = "red"
-	icon_closed = "red"
 
 /obj/structure/closet/lasertag/red/New()
 	..()
@@ -64,7 +62,6 @@
 	name = "blue laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
 	icon_state = "blue"
-	icon_closed = "blue"
 
 /obj/structure/closet/lasertag/blue/New()
 	..()

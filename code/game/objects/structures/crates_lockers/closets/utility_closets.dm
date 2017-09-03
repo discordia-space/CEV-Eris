@@ -16,8 +16,6 @@
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
 	icon_state = "emergency"
-	icon_closed = "emergency"
-	icon_opened = "emergencyopen"
 
 /obj/structure/closet/emcloset/New()
 	..()
@@ -64,8 +62,6 @@
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
 	icon_state = "firecloset"
-	icon_closed = "firecloset"
-	icon_opened = "fireclosetopen"
 
 /obj/structure/closet/firecloset/New()
 	..()
@@ -88,13 +84,6 @@
 	new /obj/item/weapon/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 
-/obj/structure/closet/firecloset/update_icon()
-	if(!opened)
-		icon_state = icon_closed
-	else
-		icon_state = icon_opened
-
-
 /*
  * Tool Closet
  */
@@ -102,8 +91,6 @@
 	name = "tool closet"
 	desc = "It's a storage unit for tools."
 	icon_state = "toolcloset"
-	icon_closed = "toolcloset"
-	icon_opened = "toolclosetopen"
 
 /obj/structure/closet/toolcloset/New()
 	..()
@@ -146,8 +133,6 @@
 	name = "radiation suit closet"
 	desc = "It's a storage unit for rad-protective suits."
 	icon_state = "radsuitcloset"
-	icon_opened = "toolclosetopen"
-	icon_closed = "radsuitcloset"
 
 /obj/structure/closet/radiation/New()
 	..()
@@ -163,8 +148,6 @@
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
 	icon_state = "bombsuit"
-	icon_closed = "bombsuit"
-	icon_opened = "bombsuitopen"
 
 /obj/structure/closet/bombcloset/New()
 	..()
@@ -178,8 +161,6 @@
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
 	icon_state = "bombsuitsec"
-	icon_closed = "bombsuitsec"
-	icon_opened = "bombsuitsecopen"
 
 /obj/structure/closet/bombclosetsecurity/New()
 	..()

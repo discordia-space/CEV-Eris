@@ -1,3 +1,7 @@
+/atom/proc/add_overlay(list/overlays, priority = FALSE)
+	if(!overlays)
+		return
+
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
@@ -5,13 +9,18 @@
 	icon_state = "closed"
 	density = 1
 	w_class = 5
-	var/icon_closed = "closed"
-	var/icon_opened = "open"
-	var/opened = 0
-	var/welded = 0
-	var/wall_mounted = 0 //never solid (You can always pass over it)
+	var/locked = 0
+	var/broken = 0
+	var/icon_door = null
+	var/icon_door_override = FALSE //override to have open overlay use icon different to its base's
+	var/secure = FALSE
+//	var/icon_closed = "closed"
+//	var/icon_opened = "open"
+	var/opened = FALSE
+	var/welded = FALSE
+	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	var/health = 100
-	var/breakout = 0 //if someone is currently breaking out. mutex
+	var/breakout = FALSE //if someone is currently breaking out. mutex
 	var/storage_capacity = 2 * MOB_MEDIUM //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
 	var/open_sound = 'sound/machines/Custom_closetopen.ogg'
@@ -65,6 +74,10 @@
 		return 0
 	return 1
 
+	if(src.locked)
+		return 0
+	return ..()
+
 /obj/structure/closet/proc/can_close()
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src)
@@ -86,37 +99,31 @@
 			M.client.perspective = MOB_PERSPECTIVE
 
 /obj/structure/closet/proc/open()
-	if(src.opened)
+	if(welded || locked)
 		return 0
+	var/turf/T = get_turf(src)
+	for(var/mob/living/L in T)
+		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
+			if(user)
+				user << "<span class='danger'>There's something large on top of [src], preventing it from opening.</span>"
+			return 0
+	return 1
 
-	if(!src.can_open())
-		return 0
-
-	src.dump_contents()
-
-	src.icon_state = src.icon_opened
-	src.opened = 1
 	playsound(src.loc, open_sound, 100, 1, -3)
 	density = 0
 	return 1
 
 /obj/structure/closet/proc/close()
-	if(!src.opened)
-		return 0
-	if(!src.can_close())
-		return 0
-
-	var/stored_units = 0
-
-	if(store_misc)
-		stored_units += store_misc(stored_units)
-	if(store_items)
-		stored_units += store_items(stored_units)
-	if(store_mobs)
-		stored_units += store_mobs(stored_units)
-
-	src.icon_state = src.icon_closed
-	src.opened = 0
+	var/turf/T = get_turf(src)
+	for(var/obj/structure/closet/closet in T)
+		if(closet != src && !closet.wall_mounted)
+			return 0
+	for(var/mob/living/L in T)
+		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
+			if(user)
+				user << "<span class='danger'>There's something too large in [src], preventing it from closing.</span>"
+			return 0
+	return 1
 
 	playsound(src.loc, close_sound, 100, 1, -3)
 	density = 1
@@ -314,11 +321,26 @@
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
 	if(!opened)
-		icon_state = icon_closed
+		if(icon_door)
+			add_overlay("[icon_door]_door")
+		else
+			add_overlay("[icon_state]_door")
 		if(welded)
-			overlays += "welded"
+			add_overlay("welded")
+		if(secure)
+			if(!broken)
+				if(locked)
+					add_overlay("locked")
+				else
+					add_overlay("unlocked")
+			else
+				add_overlay("off")
+
 	else
-		icon_state = icon_opened
+		if(icon_door_override)
+			add_overlay("[icon_door]_open")
+		else
+			add_overlay("[icon_state]_open")
 
 /obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)
 	if(!damage || !wallbreaker)

@@ -4,8 +4,6 @@
 	icon = 'icons/obj/storage.dmi'
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "acloset"
-	icon_closed = "acloset"
-	icon_opened = "aclosetopen"
 
 /obj/structure/closet/wizard/New()
 	..()

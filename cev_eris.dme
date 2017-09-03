@@ -18,6 +18,7 @@
 #include "code\stylesheet.dm"
 #include "code\world.dm"
 #include "code\__defines\_compile_options.dm"
+#include "code\__defines\_misc.dm"
 #include "code\__defines\_planes+layers.dm"
 #include "code\__defines\admin.dm"
 #include "code\__defines\appearance.dm"
@@ -2056,7 +2057,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\CEV_Eris-1.dmm"
-#include "maps\CEV_Eris-2.dmm"
-#include "maps\CEV_Eris-3.dmm"
+#include "maps\exodus\test_map.dmm"
 // END_INCLUDE

@@ -2,11 +2,6 @@
 	name = "medicine closet"
 	desc = "Filled with medical junk."
 	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_medical_equip)
 
 
@@ -30,11 +25,6 @@
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
 	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_surgery)
 
 
@@ -54,11 +44,6 @@
 	name = "moebius doctor's locker"
 	req_access = list(access_medical_equip)
 	icon_state = "securemed1"
-	icon_closed = "securemed"
-	icon_locked = "securemed1"
-	icon_opened = "securemedopen"
-	icon_broken = "securemedbroken"
-	icon_off = "securemedoff"
 
 	New()
 		..()
@@ -101,11 +86,6 @@
 	name = "moebius biolab officer's locker"
 	req_access = list(access_cmo)
 	icon_state = "cmosecure1"
-	icon_closed = "cmosecure"
-	icon_locked = "cmosecure1"
-	icon_opened = "cmosecureopen"
-	icon_broken = "cmosecurebroken"
-	icon_off = "cmosecureoff"
 
 	New()
 		..()
@@ -157,11 +137,6 @@
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
 	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_chemistry)
 
 
