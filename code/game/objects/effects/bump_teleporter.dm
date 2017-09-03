@@ -2,8 +2,7 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 
 /obj/effect/bump_teleporter
 	name = "bump-teleporter"
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x2"
+	icon_state = "config--blue"
 	var/id = null			//id of this bump_teleporter.
 	var/id_target = null	//id of bump_teleporter which this moves you to.
 	invisibility = 101 		//nope, can't see this
