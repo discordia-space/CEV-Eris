@@ -85,7 +85,7 @@ mob/living/carbon/proc/handle_hallucinations()
 				//src << "Danger Flash"
 				if(!halimage)
 					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src,world.view))
+					for(var/turf/simulated/floor/F in trange(world.view, src))
 						possible_points += F
 					if(possible_points.len)
 						var/turf/simulated/floor/target = pick(possible_points)
@@ -147,7 +147,7 @@ mob/living/carbon/proc/handle_hallucinations()
 				//src << "Danger Flash"
 				if(!halbody)
 					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src,world.view))
+					for(var/turf/simulated/floor/F in trange(world.view, src))
 						possible_points += F
 					if(possible_points.len)
 						var/turf/simulated/floor/target = pick(possible_points)

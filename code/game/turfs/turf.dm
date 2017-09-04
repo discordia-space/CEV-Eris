@@ -30,7 +30,6 @@
 		spawn( 0 )
 			src.Entered(AM)
 			return
-	turfs |= src
 
 /turf/proc/update_icon()
 	return

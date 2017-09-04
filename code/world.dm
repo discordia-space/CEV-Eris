@@ -120,12 +120,6 @@ var/global/datum/global_init/init = new ()
 				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
 		else
 			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
-		// Update all turfs to ensure everything looks good post-generation. Yes,
-		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
-		for(var/turf/simulated/mineral/M in world) // Ugh.
-			M.updateMineralOverlays()
-		for(var/turf/simulated/floor/asteroid/M in world) // Uuuuuugh.
-			M.updateMineralOverlays()
 
 	// Create autolathe recipes, as above.
 	populate_lathe_recipes()
@@ -136,6 +130,18 @@ var/global/datum/global_init/init = new ()
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)
+		for(var/turf/T in world)
+			T.initialize()
+			turfs += T
+			if(config.generate_asteroid)
+				// Update all turfs to ensure everything looks good post-generation. Yes,
+				// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
+				if(istype(T, /turf/simulated/mineral))
+					var/turf/simulated/mineral/M = T
+					M.updateMineralOverlays()
+				if(istype(T, /turf/simulated/mineral))
+					var/turf/simulated/floor/asteroid/M = T
+					M.updateMineralOverlays()
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		processScheduler.setup()
 		master_controller.setup()
@@ -145,7 +151,7 @@ var/global/datum/global_init/init = new ()
 
 
 
-	spawn(3000)		//so we aren't adding to the round-start lag
+	spawn(2000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
 			ToRban_autoupdate()
 
