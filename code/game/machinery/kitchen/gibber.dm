@@ -75,14 +75,14 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		user << "<span class='danger'>The gibber is locked and running, wait for it to finish.</span>"
+		user << SPAN_DANGER("The gibber is locked and running, wait for it to finish.")
 		return
 	else
 		src.startgibbing(user)
 
 /obj/machinery/gibber/examine()
 	..()
-	usr << "The safety guard is [emagged ? "<span class='danger'>disabled</span>" : "enabled"]."
+	usr << "The safety guard is [emagged ? SPAN_DANGER("disabled") : "enabled"]."
 
 /obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
@@ -96,7 +96,7 @@
 		return ..()
 
 	if(G.state < 2)
-		user << "<span class='danger'>You need a better grip to do that!</span>"
+		user << SPAN_DANGER("You need a better grip to do that!")
 		return
 
 	move_into_gibber(user,G.affecting)
@@ -110,30 +110,30 @@
 /obj/machinery/gibber/proc/move_into_gibber(var/mob/user,var/mob/living/victim)
 
 	if(src.occupant)
-		user << "<span class='danger'>The gibber is full, empty it first!</span>"
+		user << SPAN_DANGER("The gibber is full, empty it first!")
 		return
 
 	if(operating)
-		user << "<span class='danger'>The gibber is locked and running, wait for it to finish.</span>"
+		user << SPAN_DANGER("The gibber is locked and running, wait for it to finish.")
 		return
 
 	if(!(iscarbon(victim)) && !(isanimal(victim)) )
-		user << "<span class='danger'>This is not suitable for the gibber!</span>"
+		user << SPAN_DANGER("This is not suitable for the gibber!")
 		return
 
 	if(ishuman(victim) && !emagged)
-		user << "<span class='danger'>The gibber safety guard is engaged!</span>"
+		user << SPAN_DANGER("The gibber safety guard is engaged!")
 		return
 
 
 	if(victim.abiotic(1))
-		user << "<span class='danger'>Subject may not have abiotic items on.</span>"
+		user << SPAN_DANGER("Subject may not have abiotic items on.")
 		return
 
-	user.visible_message("<span class='danger'>[user] starts to put [victim] into the gibber!</span>")
+	user.visible_message(SPAN_DANGER("[user] starts to put [victim] into the gibber!"))
 	src.add_fingerprint(user)
 	if(do_after(user, 30, src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
-		user.visible_message("<span class='danger'>\The [user] stuffs \the [victim] into the gibber!</span>")
+		user.visible_message(SPAN_DANGER("\The [user] stuffs \the [victim] into the gibber!"))
 		if(victim.client)
 			victim.client.perspective = EYE_PERSPECTIVE
 			victim.client.eye = src
@@ -170,10 +170,10 @@
 	if(src.operating)
 		return
 	if(!src.occupant)
-		visible_message("<span class='danger'>You hear a loud metallic grinding sound.</span>")
+		visible_message(SPAN_DANGER("You hear a loud metallic grinding sound."))
 		return
 	use_power(1000)
-	visible_message("<span class='danger'>You hear a loud squelchy grinding sound.</span>")
+	visible_message(SPAN_DANGER("You hear a loud squelchy grinding sound."))
 	src.operating = 1
 	update_icon()
 

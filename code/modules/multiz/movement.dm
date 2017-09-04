@@ -4,25 +4,25 @@
 
 	. = 1
 	if(!allow_thrust(0.01, usr))
-		usr << "<span class='warning'>\The [src] is disabled.</span>"
+		usr << SPAN_WARNING("\The [src] is disabled.")
 		return
 
 	var/turf/above = GetAbove(src)
 	if(!istype(above))
-		usr << "<span class='notice'>There is nothing of interest in this direction.</span>"
+		usr << SPAN_NOTICE("There is nothing of interest in this direction.")
 		return
 
 	if(!istype(above, /turf/space) && !istype(above, /turf/simulated/open))
-		usr << "<span class='warning'>You bump against \the [above].</span>"
+		usr << SPAN_WARNING("You bump against \the [above].")
 		return
 
 	for(var/atom/A in above)
 		if(A.density)
-			usr << "<span class='warning'>\The [A] blocks you.</span>"
+			usr << SPAN_WARNING("\The [A] blocks you.")
 			return
 
 	usr.Move(above)
-	usr << "<span class='notice'>You move upwards.</span>"
+	usr << SPAN_NOTICE("You move upwards.")
 
 /obj/item/weapon/tank/jetpack/verb/movedown()
 	set name = "Move Downwards"
@@ -30,25 +30,25 @@
 
 	. = 1
 	if(!allow_thrust(0.01, usr))
-		usr << "<span class='warning'>\The [src] is disabled.</span>"
+		usr << SPAN_WARNING("\The [src] is disabled.")
 		return
 
 	var/turf/below = GetBelow(src)
 	if(!istype(below))
-		usr << "<span class='notice'>There is nothing of interest in this direction.</span>"
+		usr << SPAN_NOTICE("There is nothing of interest in this direction.")
 		return
 
 	if(below.density)
-		usr << "<span class='warning'>You bump against \the [below].</span>"
+		usr << SPAN_WARNING("You bump against \the [below].")
 		return
 
 	for(var/atom/A in below)
 		if(A.density)
-			usr << "<span class='warning'>\The [A] blocks you.</span>"
+			usr << SPAN_WARNING("\The [A] blocks you.")
 			return
 
 	usr.Move(below)
-	usr << "<span class='notice'>You move downwards.</span>"
+	usr << SPAN_NOTICE("You move downwards.")
 
 
 /mob/observer/ghost/verb/moveup()

@@ -96,8 +96,8 @@ var/global/datum/matchmaker/matchmaker = new()
 	return 1
 
 /datum/relation/proc/sever()
-	holder.current << "<span class='warning'>Your connection with [other.holder] is no more.</span>"
-	other.holder.current << "<span class='warning'>Your connection with [holder] is no more.</span>"
+	holder.current << SPAN_WARNING("Your connection with [other.holder] is no more.")
+	other.holder.current << SPAN_WARNING("Your connection with [holder] is no more.")
 	other.other = null
 	matchmaker.relations -= other
 	matchmaker.relations -= src

@@ -52,9 +52,9 @@
 	if(!..(user,1 ))
 		return
 	if(active)
-		user << "<span class='notice'>The generator is on.</span>"
+		user << SPAN_NOTICE("The generator is on.")
 	else
-		user << "<span class='notice'>The generator is off.</span>"
+		user << SPAN_NOTICE("The generator is off.")
 
 /obj/machinery/power/port_gen/emp_act(severity)
 	var/duration = 6000 //ten minutes
@@ -132,8 +132,8 @@
 	..(user)
 	user << "\The [src] appears to be producing [power_gen*power_output] W."
 	user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	if(IsBroken()) user << "<span class='warning'>\The [src] seems to have broken down.</span>"
-	if(overheating) user << "<span class='danger'>\The [src] is overheating!</span>"
+	if(IsBroken()) user << SPAN_WARNING("\The [src] seems to have broken down.")
+	if(overheating) user << SPAN_DANGER("\The [src] is overheating!")
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet
@@ -352,7 +352,7 @@
 	dat += text("Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>")
 
 	var/tempstr = "Temperature: [temperature]&deg;C<br>"
-	dat += (overheating)? "<span class='danger'>[tempstr]</span>" : tempstr
+	dat += (overheating)? SPAN_DANGER("[tempstr]") : tempstr
 	dat += "<br><A href='?src=\ref[src];action=close'>Close</A>"
 	user << browse("[dat]", "window=port_gen")
 	onclose(user, "port_gen")

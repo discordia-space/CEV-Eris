@@ -4,7 +4,7 @@
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "<span class='warning'>Speech is currently admin-disabled.</span>"
+		usr << SPAN_WARNING("Speech is currently admin-disabled.")
 		return
 
 	if(!mob)	return
@@ -16,18 +16,18 @@
 	if(!msg)	return
 
 	if(!is_preference_enabled(/datum/client_preference/show_ooc))
-		src << "<span class='warning'>You have OOC muted.</span>"
+		src << SPAN_WARNING("You have OOC muted.")
 		return
 
 	if(!holder)
 		if(!config.ooc_allowed)
-			src << "<span class='danger'>OOC is globally muted.</span>"
+			src << SPAN_DANGER("OOC is globally muted.")
 			return
 		if(!config.dooc_allowed && (mob.stat == DEAD))
-			usr << "<span class='danger'>OOC for dead mobs has been turned off.</span>"
+			usr << SPAN_DANGER("OOC for dead mobs has been turned off.")
 			return
 		if(prefs.muted & MUTE_OOC)
-			src << "<span class='danger'>You cannot use OOC (muted).</span>"
+			src << SPAN_DANGER("You cannot use OOC (muted).")
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
@@ -69,7 +69,7 @@
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "<span class='danger'>Speech is currently admin-disabled.</span>"
+		usr << SPAN_DANGER("Speech is currently admin-disabled.")
 		return
 
 	if(!mob)
@@ -84,18 +84,18 @@
 		return
 
 	if(!is_preference_enabled(/datum/client_preference/show_looc))
-		src << "<span class='danger'>You have LOOC muted.</span>"
+		src << SPAN_DANGER("You have LOOC muted.")
 		return
 
 	if(!holder)
 		if(!config.looc_allowed)
-			src << "<span class='danger'>LOOC is globally muted.</span>"
+			src << SPAN_DANGER("LOOC is globally muted.")
 			return
 		if(!config.dooc_allowed && (mob.stat == DEAD))
-			usr << "<span class='danger'>OOC for dead mobs has been turned off.</span>"
+			usr << SPAN_DANGER("OOC for dead mobs has been turned off.")
 			return
 		if(prefs.muted & MUTE_OOC)
-			src << "<span class='danger'>You cannot use OOC (muted).</span>"
+			src << SPAN_DANGER("You cannot use OOC (muted).")
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return

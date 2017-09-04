@@ -55,7 +55,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 		var/obj/item/weapon/implant/external/core_implant/cruciform/CI = target.get_core_implant()
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(20))
-			target << "<span class='danger'>[H], faithful cruciform follower, cries for salvation!</span>"
+			target << SPAN_DANGER("[H], faithful cruciform follower, cries for salvation!")
 	return TRUE
 
 

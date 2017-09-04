@@ -141,20 +141,20 @@
 								contents += "  [get_access_desc(A)]"
 
 						if(!computer.nano_printer.print_text(contents,"access report"))
-							usr << "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>"
+							usr << SPAN_NOTICE("Hardware error: Printer was unable to print the file. It may be out of paper.")
 							return
 						else
-							computer.visible_message("<span class='notice'>\The [computer] prints out paper.</span>")
+							computer.visible_message(SPAN_NOTICE("\The [computer] prints out paper."))
 				else
 					var/contents = {"<h4>Crew Manifest</h4>
 									<br>
 									[data_core ? data_core.get_manifest(0) : ""]
 									"}
 					if(!computer.nano_printer.print_text(contents,text("crew manifest ([])", stationtime2text())))
-						usr << "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>"
+						usr << SPAN_NOTICE("Hardware error: Printer was unable to print the file. It may be out of paper.")
 						return
 					else
-						computer.visible_message("<span class='notice'>\The [computer] prints out paper.</span>")
+						computer.visible_message(SPAN_NOTICE("\The [computer] prints out paper."))
 		if("eject")
 			if(computer && computer.card_slot)
 				if(id_card)
@@ -172,7 +172,7 @@
 					if(temp_name)
 						id_card.registered_name = temp_name
 					else
-						computer.visible_message("<span class='notice'>[computer] buzzes rudely.</span>")
+						computer.visible_message(SPAN_NOTICE("[computer] buzzes rudely."))
 				else if(href_list["account"])
 					var/account_num = text2num(input("Enter account number.", "Account", id_card.associated_account_number))
 					id_card.associated_account_number = account_num
@@ -196,7 +196,7 @@
 								jobdatum = J
 								break
 						if(!jobdatum)
-							usr << "<span class='warning'>No log exists for this job: [t1]</span>"
+							usr << SPAN_WARNING("No log exists for this job: [t1]")
 							return
 
 						access = jobdatum.get_access()

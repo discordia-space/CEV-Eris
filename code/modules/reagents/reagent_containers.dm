@@ -38,15 +38,15 @@
 		return 0
 
 	if(!target.reagents || !target.reagents.total_volume)
-		user << "<span class='notice'>[target] is empty.</span>"
+		user << SPAN_NOTICE("[target] is empty.")
 		return 1
 
 	if(reagents && !reagents.get_free_space())
-		user << "<span class='notice'>[src] is full.</span>"
+		user << SPAN_NOTICE("[src] is full.")
 		return 1
 
 	var/trans = target.reagents.trans_to_obj(src, target:amount_per_transfer_from_this)
-	user << "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>"
+	user << SPAN_NOTICE("You fill [src] with [trans] units of the contents of [target].")
 	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 	return 1
 
@@ -55,11 +55,11 @@
 		return
 
 	if(!reagents || !reagents.total_volume)
-		user << "<span class='notice'>[src] is empty.</span>"
+		user << SPAN_NOTICE("[src] is empty.")
 		return 1
 
 	if(target.reagents && !target.reagents.get_free_space())
-		user << "<span class='notice'>[target] is full.</span>"
+		user << SPAN_NOTICE("[target] is full.")
 		return 1
 
 	var/contained = reagentlist()
@@ -67,18 +67,18 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to splash [target.name] ([target.key]). Reagents: [contained]</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) splashed [target.name] ([target.key]) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	user.visible_message("<span class='danger'>[target] has been splashed with something by [user]!</span>", "<span class = 'notice'>You splash the solution onto [target].</span>")
+	user.visible_message(SPAN_DANGER("[target] has been splashed with something by [user]!"), "<span class = 'notice'>You splash the solution onto [target].</span>")
 	reagents.splash(target, reagents.total_volume)
 	return 1
 
 /obj/item/weapon/reagent_containers/proc/self_feed_message(var/mob/user)
-	user << "<span class='notice'>You eat \the [src]</span>"
+	user << SPAN_NOTICE("You eat \the [src]")
 
 /obj/item/weapon/reagent_containers/proc/other_feed_message_start(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] is trying to feed [target] \the [src]!</span>")
+	user.visible_message(SPAN_WARNING("[user] is trying to feed [target] \the [src]!"))
 
 /obj/item/weapon/reagent_containers/proc/other_feed_message_finish(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] has fed [target] \the [src]!</span>")
+	user.visible_message(SPAN_WARNING("[user] has fed [target] \the [src]!"))
 
 /obj/item/weapon/reagent_containers/proc/feed_sound(var/mob/user)
 	return
@@ -88,7 +88,7 @@
 		return 0
 
 	if(!reagents || !reagents.total_volume)
-		user << "<span class='notice'>\The [src] is empty.</span>"
+		user << SPAN_NOTICE("\The [src] is empty.")
 		return 1
 
 	if(target == user)
@@ -99,7 +99,7 @@
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				user << "<span class='warning'>\The [blocked] is in the way!</span>"
+				user << SPAN_WARNING("\The [blocked] is in the way!")
 				return
 
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
@@ -115,7 +115,7 @@
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				user << "<span class='warning'>\The [blocked] is in the way!</span>"
+				user << SPAN_WARNING("\The [blocked] is in the way!")
 				return
 
 		other_feed_message_start(user, target)
@@ -141,21 +141,21 @@
 
 	// Ensure we don't splash beakers and similar containers.
 	if(!target.is_open_container() && istype(target, /obj/item/weapon/reagent_containers))
-		user << "<span class='notice'>\The [target] is closed.</span>"
+		user << SPAN_NOTICE("\The [target] is closed.")
 		return 1
 	// Otherwise don't care about splashing.
 	else if(!target.is_open_container())
 		return 0
 
 	if(!reagents || !reagents.total_volume)
-		user << "<span class='notice'>[src] is empty.</span>"
+		user << SPAN_NOTICE("[src] is empty.")
 		return 1
 
 	if(!target.reagents.get_free_space())
-		user << "<span class='notice'>[target] is full.</span>"
+		user << SPAN_NOTICE("[target] is full.")
 		return 1
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.wav',50,1)
-	user << "<span class='notice'>You transfer [trans] units of the solution to [target].</span>"
+	user << SPAN_NOTICE("You transfer [trans] units of the solution to [target].")
 	return 1

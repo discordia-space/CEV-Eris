@@ -534,9 +534,9 @@ var/global/list/default_medbay_channels = list(
 	. = ..()
 	if ((in_range(src, user) || loc == user))
 		if (b_stat)
-			user.show_message("<span class='notice'>\The [src] can be attached and modified!</span>")
+			user.show_message(SPAN_NOTICE("\The [src] can be attached and modified!"))
 		else
-			user.show_message("<span class='notice'>\The [src] can not be modified or attached!</span>")
+			user.show_message(SPAN_NOTICE("\The [src] can not be modified or attached!"))
 	return
 
 /obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -547,9 +547,9 @@ var/global/list/default_medbay_channels = list(
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
 		if (b_stat)
-			user.show_message("<span class='notice'>\The [src] can now be attached and modified!</span>")
+			user.show_message(SPAN_NOTICE("\The [src] can now be attached and modified!"))
 		else
-			user.show_message("<span class='notice'>\The [src] can no longer be modified or attached!</span>")
+			user.show_message(SPAN_NOTICE("\The [src] can no longer be modified or attached!"))
 		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)
@@ -672,9 +672,9 @@ var/global/list/default_medbay_channels = list(
 		if(enable_subspace_transmission != subspace_transmission)
 			subspace_transmission = !subspace_transmission
 			if(subspace_transmission)
-				usr << "<span class='notice'>Subspace Transmission is enabled</span>"
+				usr << SPAN_NOTICE("Subspace Transmission is enabled")
 			else
-				usr << "<span class='notice'>Subspace Transmission is disabled</span>"
+				usr << SPAN_NOTICE("Subspace Transmission is disabled")
 
 			if(subspace_transmission == 0)//Simple as fuck, clears the channel list to prevent talking/listening over them if subspace transmission is disabled
 				channels = list()
@@ -687,10 +687,10 @@ var/global/list/default_medbay_channels = list(
 			shut_up = !shut_up
 			if(shut_up)
 				canhear_range = 0
-				usr << "<span class='notice'>Loadspeaker disabled.</span>"
+				usr << SPAN_NOTICE("Loadspeaker disabled.")
 			else
 				canhear_range = 3
-				usr << "<span class='notice'>Loadspeaker enabled.</span>"
+				usr << SPAN_NOTICE("Loadspeaker enabled.")
 		. = 1
 
 	if(.)

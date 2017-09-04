@@ -41,10 +41,10 @@
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= 10)
 			if(src.density)
-				visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+				visible_message(SPAN_DANGER("\The [user] forces \the [src] open!"))
 				open(1)
 			else
-				visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+				visible_message(SPAN_DANGER("\The [user] forces \the [src] closed!"))
 				close(1)
 		else
 			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
@@ -389,7 +389,7 @@ About the new airlock wires panel:
 			else /*if(src.justzap)*/
 				return
 		else if(user.hallucination > 50 && prob(10) && src.operating == 0)
-			user << "<span class='danger'>You feel a powerful shock course through your body!</span>"
+			user << SPAN_DANGER("You feel a powerful shock course through your body!")
 			user.halloss += 10
 			user.stunned += 10
 			return
@@ -685,14 +685,14 @@ About the new airlock wires panel:
 		if(H.getBrainLoss() >= 60)
 			playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
-				visible_message("<span class='warning'>[user] headbutts the airlock.</span>")
+				visible_message(SPAN_WARNING("[user] headbutts the airlock."))
 				var/obj/item/organ/external/affecting = H.get_organ("head")
 				H.Stun(8)
 				H.Weaken(5)
 				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 			else
-				visible_message("<span class='warning'>[user] headbutts the airlock. Good thing they're wearing a helmet.</span>")
+				visible_message(SPAN_WARNING("[user] headbutts the airlock. Good thing they're wearing a helmet."))
 			return
 	**/
 
@@ -705,16 +705,16 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/CanUseTopic(var/mob/user)
 	if(operating < 0) //emagged
-		user << "<span class='warning'>Unable to interface: Internal error.</span>"
+		user << SPAN_WARNING("Unable to interface: Internal error.")
 		return STATUS_CLOSE
 	if(issilicon(user) && !src.canAIControl())
 		if(src.canAIHack(user))
 			src.hack(user)
 		else
 			if (src.isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
-				user << "<span class='warning'>Unable to interface: Connection timed out.</span>"
+				user << SPAN_WARNING("Unable to interface: Connection timed out.")
 			else
-				user << "<span class='warning'>Unable to interface: Connection refused.</span>"
+				user << SPAN_WARNING("Unable to interface: Connection refused.")
 		return STATUS_CLOSE
 
 	return ..()
@@ -802,7 +802,7 @@ About the new airlock wires panel:
 	else if(istype(C, /obj/item/weapon/screwdriver))
 		if (src.p_open)
 			if (stat & BROKEN)
-				usr << "<span class='warning'>The panel is broken and cannot be closed.</span>"
+				usr << SPAN_WARNING("The panel is broken and cannot be closed.")
 			else
 				src.p_open = 0
 				playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
@@ -824,7 +824,7 @@ About the new airlock wires panel:
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
 			if(do_after(user,40,src))
-				user << "<span class='notice'>You removed the airlock electronics!</span>"
+				user << SPAN_NOTICE("You removed the airlock electronics!")
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
 				if (istype(da, /obj/structure/door_assembly/multi_tile))
@@ -852,9 +852,9 @@ About the new airlock wires panel:
 				qdel(src)
 				return
 		else if(arePowerSystemsOn())
-			user << "<span class='notice'>The airlock's motors resist your efforts to force it.</span>"
+			user << SPAN_NOTICE("The airlock's motors resist your efforts to force it.")
 		else if(locked)
-			user << "<span class='notice'>The airlock's bolts prevent it from being forced.</span>"
+			user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
 		else
 			if(density)
 				spawn(0)	open(1)
@@ -863,20 +863,20 @@ About the new airlock wires panel:
 
 	else if(istype(C, /obj/item/weapon/material/twohanded/fireaxe) && !arePowerSystemsOn())
 		if(locked)
-			user << "<span class='notice'>The airlock's bolts prevent it from being forced.</span>"
+			user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
 		else if( !welded && !operating )
 			if(density)
 				var/obj/item/weapon/material/twohanded/fireaxe/F = C
 				if(F.wielded)
 					spawn(0)	open(1)
 				else
-					user << "<span class='warning'>You need to be wielding \the [C] to do that.</span>"
+					user << SPAN_WARNING("You need to be wielding \the [C] to do that.")
 			else
 				var/obj/item/weapon/material/twohanded/fireaxe/F = C
 				if(F.wielded)
 					spawn(0)	close(1)
 				else
-					user << "<span class='warning'>You need to be wielding \the [C] to do that.</span>"
+					user << SPAN_WARNING("You need to be wielding \the [C] to do that.")
 
 	else
 		..()

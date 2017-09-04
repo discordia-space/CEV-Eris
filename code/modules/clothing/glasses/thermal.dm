@@ -19,7 +19,7 @@
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/M = src.loc
 		if(M.glasses == src)
-			M << "<span class='danger'>[src] overloads and blinds you!</span>"
+			M << SPAN_DANGER("[src] overloads and blinds you!")
 			M.eye_blind = 3
 			M.eye_blurry = 5
 			// Don't cure being nearsighted
@@ -39,13 +39,13 @@
 	if(active)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
-				src.loc << "<span class='warning'>[src] flashes with error - LOW POWER.</span>"
+				src.loc << SPAN_WARNING("[src] flashes with error - LOW POWER.")
 			toggle(ismob(loc) && loc, FALSE)
 
 /obj/item/clothing/glasses/thermal/toggle(mob/user, new_state)
 	if(new_state)
 		if(!cell || !cell.check_charge(tick_cost) && user)
-			user << "<span class='warning'>[src] battery is dead or missing.</span>"
+			user << SPAN_WARNING("[src] battery is dead or missing.")
 			return
 	..(user, new_state)
 

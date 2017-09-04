@@ -34,7 +34,7 @@
 	var/oldbroken = is_broken()
 	..()
 	if(is_broken() && !oldbroken && owner && !owner.stat)
-		owner << "<span class='danger'>You go blind!</span>"
+		owner << SPAN_DANGER("You go blind!")
 
 /obj/item/organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()

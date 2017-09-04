@@ -90,9 +90,9 @@
 			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			update_icon()
 		else
-			user << "<span class='warning'>The controls are locked!</span>"
+			user << SPAN_WARNING("The controls are locked!")
 	else
-		user << "<span class='warning'>\The [src] needs to be firmly secured to the floor first.</span>"
+		user << SPAN_WARNING("\The [src] needs to be firmly secured to the floor first.")
 		return 1
 
 
@@ -170,7 +170,7 @@
 					"You hear a ratchet")
 				src.anchored = 0
 			if(2)
-				user << "<span class='warning'>\The [src] needs to be unwelded from the floor.</span>"
+				user << SPAN_WARNING("\The [src] needs to be unwelded from the floor.")
 		return
 
 	if(istype(W, /obj/item/weapon/weldingtool))
@@ -180,7 +180,7 @@
 			return
 		switch(state)
 			if(0)
-				user << "<span class='warning'>\The [src] needs to be wrenched to the floor.</span>"
+				user << SPAN_WARNING("\The [src] needs to be wrenched to the floor.")
 			if(1)
 				if (WT.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
@@ -193,7 +193,7 @@
 						user << "You weld [src] to the floor."
 						connect_to_network()
 				else
-					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+					user << SPAN_WARNING("You need more welding fuel to complete this task.")
 			if(2)
 				if (WT.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
@@ -206,12 +206,12 @@
 						user << "You cut [src] free from the floor."
 						disconnect_from_network()
 				else
-					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+					user << SPAN_WARNING("You need more welding fuel to complete this task.")
 		return
 
 	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
 		if(emagged)
-			user << "<span class='warning'>The lock seems to be broken.</span>"
+			user << SPAN_WARNING("The lock seems to be broken.")
 			return
 		if(src.allowed(user))
 			if(active)
@@ -219,9 +219,9 @@
 				user << "The controls are now [src.locked ? "locked." : "unlocked."]"
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				user << "<span class='warning'>The controls can only be locked when [src] is online.</span>"
+				user << SPAN_WARNING("The controls can only be locked when [src] is online.")
 		else
-			user << "<span class='warning'>Access denied.</span>"
+			user << SPAN_WARNING("Access denied.")
 		return
 	..()
 	return
@@ -230,5 +230,5 @@
 	if(!emagged)
 		locked = 0
 		emagged = 1
-		user.visible_message("[user.name] emags [src].","<span class='warning'>You short out the lock.</span>")
+		user.visible_message("[user.name] emags [src].",SPAN_WARNING("You short out the lock."))
 		return 1

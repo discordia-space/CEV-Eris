@@ -20,7 +20,7 @@
 			var/obj/item/weapon/weldingtool/WT = I
 			if((stat&BROKEN) && have_glass)
 				if(WT.remove_fuel(0,user))
-					user << "<span class='notice'>You begin slicing [src]'s debris...</span>"
+					user << SPAN_NOTICE("You begin slicing [src]'s debris...")
 					playsound(loc, 'sound/items/Welder.ogg', 40, 1)
 					if(do_after(user, 40, src))
 						have_glass = FALSE
@@ -31,7 +31,7 @@
 				if(user.a_intent == I_HELP)
 					if(health < maxhealth)
 						if(WT.remove_fuel(0,user))
-							user << "<span class='notice'>You begin repairing [src]...</span>"
+							user << SPAN_NOTICE("You begin repairing [src]...")
 							playsound(loc, 'sound/items/Welder.ogg', 40, 1)
 							if(do_after(user, 40, src))
 								health = maxhealth
@@ -43,7 +43,7 @@
 				var/obj/item/stack/material/glass/reinforced/G = I
 				if(G.get_amount() >= 2)
 					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					user << "<span class='notice'>You start to put the glass into [src]...</span>"
+					user << SPAN_NOTICE("You start to put the glass into [src]...")
 					if(do_after(user, 10, src))
 						if (density && G.use(2))
 							health = maxhealth
@@ -57,18 +57,18 @@
 			user.do_attack_animation(src)
 			hit(I.force)
 			user.visible_message(
-				"<span class='danger'>[user] has hit the [name] with [I]!</span>",
+				SPAN_DANGER("[user] has hit the [name] with [I]!"),
 			)
 
 	else
-		user << "<span class='warning'>It must be closed!</span>"
+		user << SPAN_WARNING("It must be closed!")
 
 /obj/machinery/door/blast/shutters/glass/attack_hand(mob/user)
 	return
 
 /obj/machinery/door/blast/shutters/glass/hitby(AM as mob|obj)
 	..()
-	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
+	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	var/throw_force = 0
 	if(ismob(AM))
 		throw_force = 10

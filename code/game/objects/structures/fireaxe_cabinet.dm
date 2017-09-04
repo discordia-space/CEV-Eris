@@ -14,9 +14,9 @@
 /obj/structure/fireaxecabinet/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
 	attack_animation(user)
 	playsound(user, 'sound/effects/Glasshit.ogg', 50, 1)
-	visible_message("<span class='danger'>[user] [attack_verb] \the [src]!</span>")
+	visible_message(SPAN_DANGER("[user] [attack_verb] \the [src]!"))
 	if(damage_threshold > damage)
-		user << "<span class='danger'>Your strike is deflected by the reinforced glass!</span>"
+		user << SPAN_DANGER("Your strike is deflected by the reinforced glass!")
 		return
 	if(shattered)
 		return
@@ -45,7 +45,7 @@
 
 /obj/structure/fireaxecabinet/attack_hand(var/mob/user)
 	if(!unlocked)
-		user << "<span class='warning'>\The [src] is locked.</span>"
+		user << SPAN_WARNING("\The [src] is locked.")
 		return
 	toggle_open(user)
 
@@ -56,11 +56,11 @@
 			return
 
 		if(!open)
-			user << "<span class='warning'>\The [src] is closed.</span>"
+			user << SPAN_WARNING("\The [src] is closed.")
 			return
 
 		if(!fireaxe)
-			user << "<span class='warning'>\The [src] is empty.</span>"
+			user << SPAN_WARNING("\The [src] is empty.")
 			return
 
 		fireaxe.forceMove(get_turf(user))
@@ -85,11 +85,11 @@
 	if(istype(O, /obj/item/weapon/material/twohanded/fireaxe))
 		if(open)
 			if(fireaxe)
-				user << "<span class='warning'>There is already \a [fireaxe] inside \the [src].</span>"
+				user << SPAN_WARNING("There is already \a [fireaxe] inside \the [src].")
 			else if(user.unEquip(O))
 				O.forceMove(src)
 				fireaxe = O
-				user << "<span class='notice'>You place \the [fireaxe] into \the [src].</span>"
+				user << SPAN_NOTICE("You place \the [fireaxe] into \the [src].")
 				update_icon()
 			return
 

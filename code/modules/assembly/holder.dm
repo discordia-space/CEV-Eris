@@ -65,9 +65,9 @@
 	..(user)
 	if(in_range(src, user) || src.loc == user)
 		if(src.secured)
-			user << "<span class='notice'>\The [src] is ready!</span>"
+			user << SPAN_NOTICE("\The [src] is ready!")
 		else
-			user << "<span class='notice'>\The [src] can be attached!</span>"
+			user << SPAN_NOTICE("\The [src] can be attached!")
 
 
 /obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)
@@ -107,15 +107,15 @@
 /obj/item/device/assembly_holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(isscrewdriver(W))
 		if(!left_assembly || !right_assembly)
-			user << "<span class='warning'>Assembly part missing!</span>"
+			user << SPAN_WARNING("Assembly part missing!")
 			return
 		left_assembly.toggle_secure()
 		right_assembly.toggle_secure()
 		secured = !secured
 		if(secured)
-			user << "<span class='notice'>\The [src] is ready!</span>"
+			user << SPAN_NOTICE("\The [src] is ready!")
 		else
-			user << "<span class='notice'>\The [src] can now be taken apart!</span>"
+			user << SPAN_NOTICE("\The [src] can now be taken apart!")
 		update_icon()
 		return
 	..()
@@ -125,7 +125,7 @@
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!left_assembly || !right_assembly)
-			user << "<span class='warning'>Assembly part missing!</span>"
+			user << SPAN_WARNING("Assembly part missing!")
 			return
 		if(istype(left_assembly,right_assembly.type))//If they are the same type it causes issues due to window code
 			switch(alert("Which side would you like to use?",,"Left","Right"))
@@ -213,17 +213,17 @@
 		if(!istype(tmr,/obj/item/device/assembly/timer))
 			tmr = holder.right_assembly
 		if(!istype(tmr,/obj/item/device/assembly/timer))
-			usr << "<span class='notice'>This detonator has no timer.</span>"
+			usr << SPAN_NOTICE("This detonator has no timer.")
 			return
 
 		if(tmr.timing)
-			usr << "<span class='notice'>Clock is ticking already.</span>"
+			usr << SPAN_NOTICE("Clock is ticking already.")
 		else
 			var/ntime = input("Enter desired time in seconds", "Time", "5") as num
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"
-				usr << "<span class='notice'>Timer set to [tmr.time] seconds.</span>"
+				usr << SPAN_NOTICE("Timer set to [tmr.time] seconds.")
 			else
 				usr << "<span class='notice'>Timer can't be [ntime<=0?"negative":"more than 1000 seconds"].</span>"
 	else
