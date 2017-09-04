@@ -2,6 +2,7 @@
 
 /obj/effect/landmark/map_data
 	name = "Unknown"
+	icon_state = "config-green"
 	desc = "An unknown location."
 	invisibility = 101
 
