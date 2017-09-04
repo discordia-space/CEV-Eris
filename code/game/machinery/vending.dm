@@ -1020,3 +1020,12 @@
 	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10)
 	contraband = list(/obj/item/weapon/implant/external/core_implant/cruciform = 3)
 	prices = list(/obj/item/weapon/book/ritual/cruciform = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/implant/external/core_implant/cruciform = 1000)
+
+/obj/machinery/vending/powermat
+	name = "Asters Guild Power-Mat."
+	desc = "Trust is power, and there’s no power you can trust like Robustcell."
+	product_slogans = "Trust is power, and there’s no power you can trust like Robustcell.;No battery is stronger longer.;One that Last!;You can't top the copper top!"
+	product_ads = "Robust!;Trustworthy!;Durable!"
+	icon_state = "powermat"
+	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20)
+	prices = list(/obj/item/weapon/cell/large = 500, /obj/item/weapon/cell/large/high = 700, /obj/item/weapon/cell/medium = 300, /obj/item/weapon/cell/medium/high = 400, /obj/item/weapon/cell/small = 100, /obj/item/weapon/cell/small/high = 200)
