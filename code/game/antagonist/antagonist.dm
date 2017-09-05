@@ -15,7 +15,7 @@
 	var/role_type                           // Preferences option for this role. Defaults to the id if unset
 	var/role_text = "Traitor"               // special_role text.
 	var/role_text_plural = "Traitors"       // As above but plural.
-	var/selecteble = TRUE
+	var/selectable = FALSE
 
 	// Faction data.
 	var/datum/faction/faction = null

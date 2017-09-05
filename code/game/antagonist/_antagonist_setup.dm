@@ -69,14 +69,13 @@ var/global/list/antag_bantypes = list()
 	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
 		var/datum/antagonist/A = new antag_type
 		antag_types[A.id] = antag_type
-		if(A.isouter())
+		if(A.outer)
 			outer_antag_types[A.id] = antag_type
-			var/datum/antagonist/outer/O = A
 			var/list/start_locs = list()
 			for(var/obj/effect/landmark/L in landmarks_list)
-				if(L.name == O.landmark_id)
+				if(L.name == A.landmark_id)
 					start_locs |= get_turf(L)
-			antag_starting_locations[O.id] = start_locs
+			antag_starting_locations[A.id] = start_locs
 		else
 			station_antag_types[A.id] = antag_type
 		if(A.selectable)
@@ -92,7 +91,7 @@ var/global/list/antag_bantypes = list()
 
 /proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
 	for(var/datum/antagonist/antag in player.antagonist)
-		if((antag.isouter() && only_offstation_roles) || !only_offstation_roles)
+		if((antag.outer && only_offstation_roles) || !only_offstation_roles)
 			return TRUE
 	return FALSE
 

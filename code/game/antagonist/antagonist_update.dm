@@ -1,4 +1,4 @@
-/datum/antagonist/outer/proc/update_antag_mob()
+/datum/antagonist/proc/update_antag_mob()
 
 	// Get the mob.
 	if(owner.current)

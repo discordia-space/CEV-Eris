@@ -23,7 +23,7 @@
 
 	return TRUE
 
-/datum/antagonist/outer/proc/create_id(var/assignment, var/equip = 1)
+/datum/antagonist/proc/create_id(var/assignment, var/equip = 1)
 	if(!owner || !owner.current || !ishuman(owner.current))
 		return
 
@@ -37,7 +37,7 @@
 	if(equip) player.equip_to_slot_or_del(W, slot_wear_id)
 	return W
 
-/datum/antagonist/outer/proc/create_radio(var/freq)
+/datum/antagonist/proc/create_radio(var/freq)
 	if(!owner || !owner.current || !ishuman(owner.current))
 		return
 

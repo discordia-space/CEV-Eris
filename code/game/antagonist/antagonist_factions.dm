@@ -172,5 +172,6 @@
 		add_icons(antag)
 
 /datum/faction/proc/faction_panel()
+	//!TODO: faction panel
 
 /datum/faction/Topic(href, href_list)

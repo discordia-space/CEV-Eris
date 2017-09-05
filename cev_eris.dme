@@ -279,6 +279,7 @@
 #include "code\game\antagonist\antagonist_panel.dm"
 #include "code\game\antagonist\antagonist_print.dm"
 #include "code\game\antagonist\antagonist_update.dm"
+#include "code\game\antagonist\alien\borer.dm"
 #include "code\game\antagonist\station\changeling.dm"
 #include "code\game\antagonist\station\traitor.dm"
 #include "code\game\area\ai_monitored.dm"

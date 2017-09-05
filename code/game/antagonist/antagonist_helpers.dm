@@ -11,9 +11,6 @@
 		return FALSE
 	return TRUE
 
-/datum/antagonist/proc/isouter()
-	return istype(src, /datum/antagonist/outer)
-
 /datum/antagonist/proc/is_dead()
 	if(!owner || !owner.current || owner.current.stat == DEAD || !ishuman(owner.current))
 		return TRUE

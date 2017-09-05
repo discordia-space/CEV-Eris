@@ -119,7 +119,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in player_list)
 			if((player) && (player.mind))
 				player.mind.assigned_role = null
-				player.mind.special_role = null
+		//		player.mind.special_role = null
 		SetupOccupations()
 		unassigned = list()
 		return
@@ -404,7 +404,7 @@ var/global/datum/controller/occupations/job_master
 		var/alt_title = null
 		if(H.mind)
 			H.mind.assigned_role = rank
-			alt_title = H.mind.role_alt_title
+		//	alt_title = H.mind.role_alt_title
 
 			switch(rank)
 				if("Cyborg")

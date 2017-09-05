@@ -109,9 +109,9 @@
 
 		//Update their traitor status.
 		if(host.mind && src.mind)
-			var/datum/antagonist/outer/borer/B = safepick(get_player_antags(src.mind, ROLE_BORER))
-			if(B)
-				make_antagonist_faction(host.mind, ROLE_BORER_CARRIER, B.faction)
+			var/datum/antagonist/xenos/borer/borer = pick(get_player_antags(src.mind, ROLE_BORER))
+			if(borer)
+				make_antagonist_faction(host.mind, ROLE_BORER_CARRIER, borer.faction)
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M

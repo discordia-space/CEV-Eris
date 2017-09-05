@@ -107,8 +107,8 @@ datum/announcement/proc/Log(message as text, message_title as text)
 
 /proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message)
 	if (ticker.current_state == GAME_STATE_PLAYING)
-		if(character.mind.role_alt_title)
-			rank = character.mind.role_alt_title
+	/*	if(character.mind.role_alt_title)
+			rank = character.mind.role_alt_title*/
 		AnnounceArrivalSimple(character.real_name, rank, join_message)
 
 /proc/AnnounceArrivalSimple(var/name, var/rank = "visitor", var/join_message = "has arrived on the station")

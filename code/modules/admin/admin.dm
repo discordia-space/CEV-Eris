@@ -845,26 +845,20 @@ proc/admin_notice(var/message, var/rights)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-/proc/is_special_character(mob/M as mob) // returns 1 for specail characters and 2 for heroes of gamemode
-	if(!ticker || !ticker.storyteller)
-		return 0
+/proc/is_special_character(mob/M as mob) // returns 1 for special characters
 	if (!istype(M))
-		return 0
+		return FALSE
 
-	if(M.mind)
-		if(ticker.storyteller.current_antags && ticker.storyteller.current_antags.len)
-			for(var/datum/antagonist/antag in ticker.mode.antag_templates)
-				if(antag.is_antagonist(M.mind))
-					return 2
-		else if(M.mind.special_role)
-			return 1
+	if(M.mind && player_is_antag(M.mind))
+		return TRUE
+
 
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.emagged)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /datum/admins/proc/spawn_fruit(seedtype in plant_controller.seeds)
 	set category = "Debug"

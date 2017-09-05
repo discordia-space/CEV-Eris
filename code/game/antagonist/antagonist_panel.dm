@@ -5,7 +5,7 @@
 	dat += "<a href='?src=\ref[src];remove_antagonist=1'>\[remove\]</a>"
 	dat += "<a href='?src=\ref[src];equip_antagonist=1'>\[equip\]</a>"
 	dat += "<a href='?src=\ref[src];unequip_antagonist=1'>\[unequip\]</a>"
-	if(isouter())
+	if(outer)
 		dat += "<a href='?src=\ref[src];move_antag_to_spawn=1'>\[move to spawn\]</a>"
 	if(extra)
 		dat += "[extra]"
@@ -84,7 +84,7 @@
 		faction.remove_member(src)
 
 	else if(href_list["edit_faction"] && faction)
-		faction.panel()
+		faction.faction_panel()
 
 	else if(href_list["add_faction"] && faction_type && !faction)
 		var/list/L = list()

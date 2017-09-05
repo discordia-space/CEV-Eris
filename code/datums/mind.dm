@@ -128,7 +128,7 @@
 		var/datum/antagonist/antag = new antag_types[href_list["add_antagonist"]]
 		if(antag)
 			var/ok = FALSE
-			if(antag.isouter() && active)
+			if(antag.outer && active)
 				var/answer = alert("[antag.role_text] is outer antagonist. This player will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
 				ok = answer == "Yes"
 			else
