@@ -22,10 +22,10 @@
 				if (H.hand)
 					temp = H.organs_by_name["l_hand"]
 				if(temp && !temp.is_usable())
-					user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
+					user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 					return
 
-				user << "<span class='notice'>You pick up the [src].</span>"
+				user << SPAN_NOTICE("You pick up the [src].")
 				user.put_in_hands(src)
 
 	return
@@ -37,7 +37,7 @@
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
+			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 			return
 	var/response = ""
 	if(!papers.len > 0)
@@ -67,9 +67,9 @@
 
 		P.loc = user.loc
 		user.put_in_hands(P)
-		user << "<span class='notice'>You take [P] out of the [src].</span>"
+		user << SPAN_NOTICE("You take [P] out of the [src].")
 	else
-		user << "<span class='notice'>[src] is empty!</span>"
+		user << SPAN_NOTICE("[src] is empty!")
 
 	add_fingerprint(user)
 	return
@@ -81,7 +81,7 @@
 
 	user.drop_item()
 	i.loc = src
-	user << "<span class='notice'>You put [i] in [src].</span>"
+	user << SPAN_NOTICE("You put [i] in [src].")
 	papers.Add(i)
 	update_icon()
 	amount++
@@ -92,7 +92,7 @@
 		if(amount)
 			user << "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
 		else
-			user << "<span class='notice'>There are no papers in the bin.</span>"
+			user << SPAN_NOTICE("There are no papers in the bin.")
 	return
 
 

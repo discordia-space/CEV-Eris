@@ -573,7 +573,7 @@
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
 				C.internal = null
-				C << "<span class='notice'>No longer running on internals.</span>"
+				C << SPAN_NOTICE("No longer running on internals.")
 				overlays.Cut()
 			else
 
@@ -584,7 +584,7 @@
 						no_mask = 1
 
 				if(no_mask)
-					C << "<span class='notice'>You are not wearing a suitable mask or helmet.</span>"
+					C << SPAN_NOTICE("You are not wearing a suitable mask or helmet.")
 					return TRUE
 				else
 					var/list/nicename = null
@@ -658,7 +658,7 @@
 					//We've determined the best container now we set it as our internals
 
 					if(best)
-						C << "<span class='notice'>You are now running on internals from [tankcheck[best]] [from] your [nicename[best]].</span>"
+						C << SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]].")
 						playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
 						C.internal = tankcheck[best]
 
@@ -753,7 +753,7 @@
 //	if(iscarbon(parentmob))
 	var/mob/living/carbon/C = parentmob
 	if(C.legcuffed)
-		C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
+		C << SPAN_NOTICE("You are legcuffed! You cannot run until you get [C.legcuffed] removed!")
 		C.m_intent = "walk"	//Just incase
 		update_icon()
 		return TRUE

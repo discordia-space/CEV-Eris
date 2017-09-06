@@ -22,17 +22,17 @@
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/simulated/floor))
-		usr << "<span class='warning'>APC cannot be placed on this spot.</span>"
+		usr << SPAN_WARNING("APC cannot be placed on this spot.")
 		return
 	if (A.requires_power == 0 || istype(A, /area/space))
-		usr << "<span class='warning'>APC cannot be placed in this area.</span>"
+		usr << SPAN_WARNING("APC cannot be placed in this area.")
 		return
 	if (A.get_apc())
-		usr << "<span class='warning'>This area already has an APC.</span>"
+		usr << SPAN_WARNING("This area already has an APC.")
 		return //only one APC per area
 	for(var/obj/machinery/power/terminal/T in loc)
 		if (T.master)
-			usr << "<span class='warning'>There is another network terminal here.</span>"
+			usr << SPAN_WARNING("There is another network terminal here.")
 			return
 		else
 			var/obj/item/stack/cable_coil/C = new /obj/item/stack/cable_coil(loc)

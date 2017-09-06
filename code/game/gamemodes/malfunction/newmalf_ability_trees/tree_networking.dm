@@ -57,7 +57,7 @@
 			user << "You already control this APC!"
 			return
 		else if(A.aidisabled)
-			user << "<span class='notice'>Unable to connect to APC. Please verify wire connection and try again.</span>"
+			user << SPAN_NOTICE("Unable to connect to APC. Please verify wire connection and try again.")
 			return
 	else
 		return
@@ -77,9 +77,9 @@
 		if(A.hacker == user)
 			user << "Hack successful. You now have full control over the APC."
 		else
-			user << "<span class='notice'>Hack failed. Connection to APC has been lost. Please verify wire connection and try again.</span>"
+			user << SPAN_NOTICE("Hack failed. Connection to APC has been lost. Please verify wire connection and try again.")
 	else
-		user << "<span class='notice'>Hack failed. Unable to locate APC. Please verify the APC still exists.</span>"
+		user << SPAN_NOTICE("Hack failed. Unable to locate APC. Please verify the APC still exists.")
 	user.hacking = 0
 
 

@@ -64,7 +64,7 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 				pref.real_name = new_name
 				return TOPIC_REFRESH
 			else
-				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				user << SPAN_WARNING("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .")
 				return TOPIC_NOACTION
 
 	else if(href_list["random_name"])

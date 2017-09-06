@@ -38,7 +38,7 @@
 
 /obj/item/weapon/gun/launcher/spikethrower/special_check(user)
 	if(ishuman(user))
-		user << "<span class='warning'>\The [src] does not respond to you!</span>"
+		user << SPAN_WARNING("\The [src] does not respond to you!")
 		return 0
 	return ..()
 

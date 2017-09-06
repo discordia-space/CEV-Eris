@@ -53,7 +53,7 @@
 	if(!W.edge || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 
-	user.visible_message("<span class='danger'>\The [user] begins to slit [src]'s throat with \the [W]!</span>")
+	user.visible_message(SPAN_DANGER("\The [user] begins to slit [src]'s throat with \the [W]!"))
 
 	user.next_move = world.time + 20 //also should prevent user from triggering this repeatedly
 	if(!do_after(user, 20, progress=0))
@@ -82,9 +82,9 @@
 
 	if(total_damage)
 		if(oxyloss >= 40)
-			user.visible_message("<span class='danger'>\The [user] slit [src]'s throat open with \the [W]!</span>")
+			user.visible_message(SPAN_DANGER("\The [user] slit [src]'s throat open with \the [W]!"))
 		else
-			user.visible_message("<span class='danger'>\The [user] cut [src]'s neck with \the [W]!</span>")
+			user.visible_message(SPAN_DANGER("\The [user] cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)
 			playsound(loc, W.hitsound, 50, 1, -1)

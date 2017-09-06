@@ -95,7 +95,7 @@
 		if(istype(H.mind))
 			for(var/law in laws)
 				H.mind.store_memory(law)
-				H << "<span class='warning'>[law]</span>"
+				H << SPAN_WARNING("[law]")
 
 /datum/core_module/cruciform/obey/uninstall()
 	if(implant && ishuman(implant.wearer))

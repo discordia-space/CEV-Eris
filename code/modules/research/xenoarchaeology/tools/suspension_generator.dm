@@ -120,7 +120,7 @@
 				if(anchored)
 					activate()
 				else
-					usr << "<span class='warning'>You are unable to activate [src] until it is properly secured on the ground.</span>"
+					usr << SPAN_WARNING("You are unable to activate [src] until it is properly secured on the ground.")
 		else
 			deactivate()
 	if(href_list["select_field"])
@@ -134,7 +134,7 @@
 			if(attempt_unlock(I, usr))
 				usr << "<span class='info'>You insert [I], the console flashes \'<i>Access granted.</i>\'</span>"
 			else
-				usr << "<span class='warning'>You insert [I], the console flashes \'<i>Access denied.</i>\'</span>"
+				usr << SPAN_WARNING("You insert [I], the console flashes \'<i>Access denied.</i>\'")
 	else if(href_list["ejectcard"])
 		if(auth_card)
 			if(ishuman(usr))
@@ -184,11 +184,11 @@
 					user << "<span class='info'>You crowbar the battery panel [open ? "open" : "in place"].</span>"
 					icon_state = "suspension[open ? (cell ? "1" : "0") : "2"]"
 				else
-					user << "<span class='warning'>[src]'s safety locks are engaged, shut it down first.</span>"
+					user << SPAN_WARNING("[src]'s safety locks are engaged, shut it down first.")
 			else
-				user << "<span class='warning'>Unscrew [src]'s battery panel first.</span>"
+				user << SPAN_WARNING("Unscrew [src]'s battery panel first.")
 		else
-			user << "<span class='warning'>[src]'s security locks are engaged.</span>"
+			user << SPAN_WARNING("[src]'s security locks are engaged.")
 	else if (istype(W, /obj/item/weapon/wrench))
 		if(!suspension_field)
 			if(anchored)
@@ -201,11 +201,11 @@
 			else
 				desc = "It has stubby legs bolted up against it's body for stabilising."
 		else
-			user << "<span class='warning'>You are unable to secure [src] while it is active!</span>"
+			user << SPAN_WARNING("You are unable to secure [src] while it is active!")
 	else if (istype(W, /obj/item/weapon/cell/large))
 		if(open)
 			if(cell)
-				user << "<span class='warning'>There is a power cell already installed.</span>"
+				user << SPAN_WARNING("There is a power cell already installed.")
 			else
 				user.drop_item()
 				W.loc = src
@@ -218,9 +218,9 @@
 			if(attempt_unlock(I, user))
 				user << "<span class='info'>You swipe [I], the console flashes \'<i>Access granted.</i>\'</span>"
 			else
-				user << "<span class='warning'>You swipe [I], console flashes \'<i>Access denied.</i>\'</span>"
+				user << SPAN_WARNING("You swipe [I], console flashes \'<i>Access denied.</i>\'")
 		else
-			user << "<span class='warning'>Remove [auth_card] first.</span>"
+			user << SPAN_WARNING("Remove [auth_card] first.")
 
 /obj/machinery/suspension_gen/proc/attempt_unlock(var/obj/item/weapon/card/C, var/mob/user)
 	if(!open)

@@ -38,13 +38,13 @@
 			name = ("bookcase ([newname])")
 	else if(istype(O,/obj/item/weapon/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		user << (anchored ? "<span class='notice'>You unfasten \the [src] from the floor.</span>" : "<span class='notice'>You secure \the [src] to the floor.</span>")
+		user << (anchored ? SPAN_NOTICE("You unfasten \the [src] from the floor.") : SPAN_NOTICE("You secure \the [src] to the floor."))
 		anchored = !anchored
 	else if(istype(O,/obj/item/weapon/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-		user << "<span class='notice'>You begin dismantling \the [src].</span>"
+		user << SPAN_NOTICE("You begin dismantling \the [src].")
 		if(do_after(user,25,src))
-			user << "<span class='notice'>You dismantle \the [src].</span>"
+			user << SPAN_NOTICE("You dismantle \the [src].")
 			new /obj/item/stack/material/wood(get_turf(src), amount = 3)
 			for(var/obj/item/weapon/book/b in contents)
 				b.loc = (get_turf(src))
@@ -153,12 +153,12 @@
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
 	if(carved)
 		if(store)
-			user << "<span class='notice'>[store] falls out of [title]!</span>"
+			user << SPAN_NOTICE("[store] falls out of [title]!")
 			store.loc = get_turf(src.loc)
 			store = null
 			return
 		else
-			user << "<span class='notice'>The pages of [title] have been cut out!</span>"
+			user << SPAN_NOTICE("The pages of [title] have been cut out!")
 			return
 	if(src.dat)
 		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
@@ -174,13 +174,13 @@
 				user.drop_item()
 				W.loc = src
 				store = W
-				user << "<span class='notice'>You put [W] in [title].</span>"
+				user << SPAN_NOTICE("You put [W] in [title].")
 				return
 			else
-				user << "<span class='notice'>[W] won't fit in [title].</span>"
+				user << SPAN_NOTICE("[W] won't fit in [title].")
 				return
 		else
-			user << "<span class='notice'>There's already something in [title]!</span>"
+			user << SPAN_NOTICE("There's already something in [title]!")
 			return
 	if(istype(W, /obj/item/weapon/pen))
 		if(unique)
@@ -243,9 +243,9 @@
 					user << "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
 	else if(istype(W, /obj/item/weapon/material/knife) || istype(W, /obj/item/weapon/wirecutters))
 		if(carved)	return
-		user << "<span class='notice'>You begin to carve out [title].</span>"
+		user << SPAN_NOTICE("You begin to carve out [title].")
 		if(do_after(user, 30, src))
-			user << "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>"
+			user << SPAN_NOTICE("You carve out the pages from [title]! You didn't want to read it anyway.")
 			carved = 1
 			return
 	else
@@ -253,8 +253,8 @@
 
 /obj/item/weapon/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.targeted_organ == "eyes")
-		user.visible_message("<span class='notice'>You open up the book and show it to [M]. </span>", \
-			"<span class='notice'> [user] opens up a book and shows it to [M]. </span>")
+		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
+			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 

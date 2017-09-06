@@ -35,7 +35,7 @@
 	if(sdisability)
 		M.sdisabilities|=sdisability
 	if(activation_message)
-		M << "<span class='warning'>[activation_message]</span>"
+		M << SPAN_WARNING("[activation_message]")
 	else
 		testing("[name] has no activation message.")
 
@@ -47,7 +47,7 @@
 	if(sdisability)
 		M.sdisabilities &= (~sdisability)
 	if(deactivation_message)
-		M << "<span class='warning'>[deactivation_message]</span>"
+		M << SPAN_WARNING("[deactivation_message]")
 	else
 		testing("[name] has no deactivation message.")
 

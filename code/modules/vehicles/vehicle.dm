@@ -96,11 +96,11 @@
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 					user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
 				else
-					user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
+					user << SPAN_NOTICE("Unable to repair with the maintenance panel closed.")
 			else
-				user << "<span class='notice'>[src] does not need a repair.</span>"
+				user << SPAN_NOTICE("[src] does not need a repair.")
 		else
-			user << "<span class='notice'>Unable to repair while [src] is off.</span>"
+			user << SPAN_NOTICE("Unable to repair while [src] is off.")
 	else if(hasvar(W,"force") && hasvar(W,"damtype"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		switch(W.damtype)
@@ -185,11 +185,11 @@
 		emagged = 1
 		if(locked)
 			locked = 0
-			user << "<span class='warning'>You bypass [src]'s controls.</span>"
+			user << SPAN_WARNING("You bypass [src]'s controls.")
 		return 1
 
 /obj/vehicle/proc/explode()
-	src.visible_message("<span class='danger'>\The [src] blows apart!</span>")
+	src.visible_message(SPAN_DANGER("\The [src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	PoolOrNew(/obj/item/stack/rods, Tsec)
@@ -243,13 +243,13 @@
 	C.forceMove(src)
 	src.cell = C
 	powercheck()
-	usr << "<span class='notice'>You install [C] in [src].</span>"
+	usr << SPAN_NOTICE("You install [C] in [src].")
 
 /obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
 	if(!cell)
 		return
 
-	usr << "<span class='notice'>You remove [cell] from [src].</span>"
+	usr << SPAN_NOTICE("You remove [cell] from [src].")
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null
@@ -352,7 +352,7 @@
 /obj/vehicle/attack_generic(var/mob/user, var/damage, var/attack_message)
 	if(!damage)
 		return
-	visible_message("<span class='danger'>\The [user] [attack_message] the \the [src]!</span>")
+	visible_message(SPAN_DANGER("\The [user] [attack_message] the \the [src]!"))
 	if(istype(user))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked \the [src.name]</font>")
 		user.do_attack_animation(src)

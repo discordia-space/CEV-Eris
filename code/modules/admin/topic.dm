@@ -225,7 +225,7 @@
 			emergency_shuttle.launch_time = world.time + new_time_left*10
 
 			log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-			message_admins("<span class='notice'> [key_name_admin(usr)] edited the Emergency Pods launch time to [new_time_left*10]</span>", 1)
+			message_admins(SPAN_NOTICE(" [key_name_admin(usr)] edited the Emergency Pods launch time to [new_time_left*10]"), 1)
 		else
 			alert("The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
 
@@ -564,11 +564,11 @@
 	//JOBBAN'S INNARDS
 	else if(href_list["jobban3"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN,0))
-			usr << "<span class='warning'>You do not have the appropriate permissions to add job bans!</span>"
+			usr << SPAN_WARNING("You do not have the appropriate permissions to add job bans!")
 			return
 
 		if(check_rights(R_MOD,0) && !check_rights(R_ADMIN,0) && !config.mods_can_job_tempban) // If mod and tempban disabled
-			usr << "<span class='warning'>Mod jobbanning is disabled!</span>"
+			usr << SPAN_WARNING("Mod jobbanning is disabled!")
 			return
 
 		var/mob/M = locate(href_list["jobban4"])
@@ -644,9 +644,11 @@
 		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
 			switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 				if("Yes")
-					if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN, 0))
-						usr << "<span class='warning'> You Cannot issue temporary job-bans!</span>"
+
+					if(!check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0))
+						usr << SPAN_WARNING("You Cannot issue temporary job-bans!")
 						return
+
 					if(config.ban_legacy_system)
 						usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."
 						return
@@ -654,7 +656,7 @@
 					if(!mins)
 						return
 					if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && mins > config.mod_job_tempban_max)
-						usr << "<span class='warning'> Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!</span>"
+						usr << SPAN_WARNING("Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!")
 						return
 					var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
 					if(!reason)
@@ -765,11 +767,11 @@
 
 	else if(href_list["newban"])
 		if(!check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0))
-			usr << "<span class='warning'>You do not have the appropriate permissions to add bans!</span>"
+			usr << SPAN_WARNING("You do not have the appropriate permissions to add bans!")
 			return
 
 		if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && !config.mods_can_job_tempban) // If mod and tempban disabled
-			usr << "<span class='warning'>Mod jobbanning is disabled!</span>"
+			usr << SPAN_WARNING("Mod jobbanning is disabled!")
 			return
 
 		var/mob/M = locate(href_list["newban"])
@@ -782,8 +784,9 @@
 				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 				if(!mins)
 					return
+
 				if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && mins > config.mod_tempban_max)
-					usr << "<span class='warning'>Moderators can only job tempban up to [config.mod_tempban_max] minutes!</span>"
+					usr << SPAN_WARNING("Moderators can only job tempban up to [config.mod_tempban_max] minutes!")
 					return
 				if(mins >= 525600) mins = 525599
 				var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
