@@ -22,8 +22,7 @@ var/global/list/map_sectors = list()
 //===================================================================================
 /obj/effect/mapinfo/
 	name = "map info metaobject"
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x2"
+	icon_state = "config-green"
 	invisibility = 101
 	var/obj_type		//type of overmap object it spawns
 	var/landing_area 	//type of area used as inbound shuttle landing, null if no shuttle landing area

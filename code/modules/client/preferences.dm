@@ -124,7 +124,7 @@ datum/preferences
 	if(!user || !user.client)	return
 
 	if(!get_mob_by_key(client_ckey))
-		user << "<span class='danger'>No mob exists for the given client!</span>"
+		user << SPAN_DANGER("No mob exists for the given client!")
 		close_load_dialog(user)
 		return
 
@@ -155,7 +155,7 @@ datum/preferences
 		if(config.forumurl)
 			user << link(config.forumurl)
 		else
-			user << "<span class='danger'>The forum URL is not set in the server configuration.</span>"
+			user << SPAN_DANGER("The forum URL is not set in the server configuration.")
 			return
 	ShowChoices(usr)
 	return 1

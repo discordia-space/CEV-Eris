@@ -125,7 +125,7 @@
 			current += S.amount
 		if(capacity == current)//If it's full, you're done
 			if(!stop_messages)
-				usr << "<span class='warning'>The snatcher is full.</span>"
+				usr << SPAN_WARNING("The snatcher is full.")
 			return 0
 		return 1
 

@@ -46,13 +46,13 @@
 
 /obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
 	if(src.opened)
-		user << "<span class='notice'>Close the locker first.</span>"
+		user << SPAN_NOTICE("Close the locker first.")
 		return
 	if(src.broken)
-		user << "<span class='warning'>The locker appears to be broken.</span>"
+		user << SPAN_WARNING("The locker appears to be broken.")
 		return
 	if(user.loc == src)
-		user << "<span class='notice'>You can't reach the lock from inside.</span>"
+		user << SPAN_NOTICE("You can't reach the lock from inside.")
 		return
 	if(src.allowed(user))
 		src.locked = !src.locked
@@ -62,7 +62,7 @@
 				playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		update_icon()
 	else
-		user << "<span class='notice'>Access Denied</span>"
+		user << SPAN_NOTICE("Access Denied")
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
@@ -73,7 +73,7 @@
 			if(src.large)
 				src.MouseDrop_T(G.affecting, user)	//act like they were dragged onto the closet
 			else
-				user << "<span class='notice'>The locker is too small to stuff [G.affecting] into!</span>"
+				user << SPAN_NOTICE("The locker is too small to stuff [G.affecting] into!")
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
@@ -82,7 +82,7 @@
 		if(W)
 			W.forceMove(src.loc)
 	else if(istype(W, /obj/item/weapon/melee/energy/blade))
-		if(emag_act(INFINITY, user, "<span class='danger'>The locker has been sliced open by [user] with \an [W]</span>!", "<span class='danger'>You hear metal being sliced and sparks flying.</span>"))
+		if(emag_act(INFINITY, user, "<span class='danger'>The locker has been sliced open by [user] with \an [W]</span>!", SPAN_DANGER("You hear metal being sliced and sparks flying.")))
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
@@ -119,9 +119,9 @@
 		if(visual_feedback)
 			visible_message(visual_feedback, audible_feedback)
 		else if(user && emag_source)
-			visible_message("<span class='warning'>\The [src] has been broken by \the [user] with \an [emag_source]!</span>", "You hear a faint electrical spark.")
+			visible_message(SPAN_WARNING("\The [src] has been broken by \the [user] with \an [emag_source]!"), "You hear a faint electrical spark.")
 		else
-			visible_message("<span class='warning'>\The [src] sparks and breaks open!</span>", "You hear a faint electrical spark.")
+			visible_message(SPAN_WARNING("\The [src] sparks and breaks open!"), "You hear a faint electrical spark.")
 		return 1
 
 /obj/structure/closet/secure_closet/attack_hand(mob/user as mob)
@@ -143,7 +143,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		usr << SPAN_WARNING("This mob type can't use this verb.")
 
 /obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

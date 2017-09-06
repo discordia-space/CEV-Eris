@@ -137,7 +137,7 @@ var/list/possible_cable_coil_colours = list(
 
 	if(istype(W, /obj/item/weapon/wirecutters))
 		if(d1 == 12 || d2 == 12)
-			user << "<span class='warning'>You must cut this cable from above.</span>"
+			user << SPAN_WARNING("You must cut this cable from above.")
 			return
 
 		if(breaker_box)
@@ -153,7 +153,7 @@ var/list/possible_cable_coil_colours = list(
 			new/obj/item/stack/cable_coil(T, 1, color)
 
 		for(var/mob/O in viewers(src, null))
-			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
+			O.show_message(SPAN_WARNING("[user] cuts the cable."), 1)
 
 		if(d1 == 11 || d2 == 11)
 			var/turf/turf = GetBelow(src)
@@ -178,10 +178,10 @@ var/list/possible_cable_coil_colours = list(
 	else if(istype(W, /obj/item/device/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
-			user << "<span class='warning'>[powernet.avail]W in power network.</span>"
+			user << SPAN_WARNING("[powernet.avail]W in power network.")
 
 		else
-			user << "<span class='warning'>The cable is not powered.</span>"
+			user << SPAN_WARNING("The cable is not powered.")
 
 		shock(user, 5, 0.2)
 
@@ -513,12 +513,12 @@ obj/structure/cable/proc/cableColor(var/colorC)
 			if(S.burn_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(0,15,0,1)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message("<span class='danger'>\The [user] patches some damaged wiring on \the [M]'s [S.name] with \the [src].</span>")
+				user.visible_message(SPAN_DANGER("\The [user] patches some damaged wiring on \the [M]'s [S.name] with \the [src]."))
 			else if(S.open != 2)
-				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
+				user << SPAN_DANGER("The damage is far too severe to patch over externally.")
 			return 1
 		else if(S.open != 2)
-			user << "<span class='notice'>Nothing to fix!</span>"
+			user << SPAN_NOTICE("Nothing to fix!")
 
 	else
 		return ..()
@@ -546,7 +546,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		final_color = possible_cable_coil_colours["Red"]
 		selected_color = "red"
 	color = final_color
-	user << "<span class='notice'>You change \the [src]'s color to [lowertext(selected_color)].</span>"
+	user << SPAN_NOTICE("You change \the [src]'s color to [lowertext(selected_color)].")
 
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
@@ -578,7 +578,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 			return
 		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
 		B.color = color
-		usr << "<span class='notice'>You wind some cable together to make some restraints.</span>"
+		usr << SPAN_NOTICE("You wind some cable together to make some restraints.")
 		src.use(15)
 	else
 		usr << "\blue You cannot do that."
@@ -649,14 +649,14 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				user << "<span class='warning'>There's already a cable at that position.</span>"
+				user << SPAN_WARNING("There's already a cable at that position.")
 				return
 ///// Z-Level Stuff
 		// check if the target is open space
 		if(istype(F, /turf/simulated/open))
 			for(var/obj/structure/cable/LC in F)
 				if((LC.d1 == dirn && LC.d2 == 11 ) || ( LC.d2 == dirn && LC.d1 == 11))
-					user << "<span class='warning'>There's already a cable at that position.</span>"
+					user << SPAN_WARNING("There's already a cable at that position.")
 					return
 
 			var/obj/structure/cable/C = new(F)

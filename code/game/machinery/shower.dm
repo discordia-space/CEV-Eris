@@ -17,7 +17,7 @@
 
 /obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)
-		user << "<span class='notice'>The water temperature seems to be [watertemp].</span>"
+		user << SPAN_NOTICE("The water temperature seems to be [watertemp].")
 
 /obj/machinery/cellshower/process()
 	for(var/obj/effect/shower/S in effect)
@@ -112,7 +112,7 @@
 		var/mob/living/L = O
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
-		L << "<span class='warning'>You've been drenched in water!</span>"
+		L << SPAN_WARNING("You've been drenched in water!")
 		if(iscarbon(O))
 			var/mob/living/carbon/M = O
 			if(M.r_hand)
@@ -201,11 +201,11 @@
 
 		if(master.watertemp == "freezing")
 			C.bodytemperature = max(80, C.bodytemperature - 80)
-			C << "<span class='warning'>The water is freezing!</span>"
+			C << SPAN_WARNING("The water is freezing!")
 			return
 		if(master.watertemp == "boiling")
 			C.bodytemperature = min(500, C.bodytemperature + 35)
 			C.adjustFireLoss(5)
-			C << "<span class='danger'>The water is searing!</span>"
+			C << SPAN_DANGER("The water is searing!")
 			return
 //cyka blyat

@@ -19,9 +19,9 @@
 
 		opened = !opened
 		if(opened)
-			usr << "<span class='notice'>The access panel is now open.</span>"
+			usr << SPAN_NOTICE("The access panel is now open.")
 		else
-			usr << "<span class='notice'>The access panel is now closed.</span>"
+			usr << SPAN_NOTICE("The access panel is now closed.")
 		return
 
 

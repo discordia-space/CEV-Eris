@@ -175,11 +175,11 @@ var/list/turret_icons
 
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(ailock && issilicon(user))
-		user << "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>"
+		user << SPAN_NOTICE("There seems to be a firewall preventing you from accessing this device.")
 		return 1
 
 	if(locked && !issilicon(user))
-		user << "<span class='notice'>Access denied.</span>"
+		user << SPAN_NOTICE("Access denied.")
 		return 1
 
 	return 0
@@ -227,14 +227,14 @@ var/list/turret_icons
 
 /obj/machinery/porta_turret/CanUseTopic(var/mob/user)
 	if(HasController())
-		user << "<span class='notice'>Turrets can only be controlled using the assigned turret controller.</span>"
+		user << SPAN_NOTICE("Turrets can only be controlled using the assigned turret controller.")
 		return STATUS_CLOSE
 
 	if(isLocked(user))
 		return STATUS_CLOSE
 
 	if(!anchored)
-		usr << "<span class='notice'>\The [src] has to be secured first!</span>"
+		usr << SPAN_NOTICE("\The [src] has to be secured first!")
 		return STATUS_CLOSE
 
 	return ..()
@@ -280,10 +280,10 @@ var/list/turret_icons
 		if(istype(I, /obj/item/weapon/crowbar))
 			//If the turret is destroyed, you can remove it with a crowbar to
 			//try and salvage its components
-			user << "<span class='notice'>You begin prying the metal coverings off.</span>"
+			user << SPAN_NOTICE("You begin prying the metal coverings off.")
 			if(do_after(user, 20, src))
 				if(prob(70))
-					user << "<span class='notice'>You remove the turret and salvage some components.</span>"
+					user << SPAN_NOTICE("You remove the turret and salvage some components.")
 					if(installation)
 						var/obj/item/weapon/gun/energy/Gun = new installation(loc)
 						Gun.cell.charge = gun_charge
@@ -293,18 +293,18 @@ var/list/turret_icons
 					if(prob(50))
 						new /obj/item/device/assembly/prox_sensor(loc)
 				else
-					user << "<span class='notice'>You remove the turret but did not manage to salvage anything.</span>"
+					user << SPAN_NOTICE("You remove the turret but did not manage to salvage anything.")
 				qdel(src) // qdel
 
 	else if((istype(I, /obj/item/weapon/wrench)))
 		if(enabled || raised)
-			user << "<span class='warning'>You cannot unsecure an active turret!</span>"
+			user << SPAN_WARNING("You cannot unsecure an active turret!")
 			return
 		if(wrenching)
 			user << "<span class='warning'>Someone is already [anchored ? "un" : ""]securing the turret!</span>"
 			return
 		if(!anchored && isinspace())
-			user << "<span class='warning'>Cannot secure turrets in space!</span>"
+			user << SPAN_WARNING("Cannot secure turrets in space!")
 			return
 
 		user.visible_message( \
@@ -319,11 +319,11 @@ var/list/turret_icons
 				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 				anchored = 1
 				update_icon()
-				user << "<span class='notice'>You secure the exterior bolts on the turret.</span>"
+				user << SPAN_NOTICE("You secure the exterior bolts on the turret.")
 			else if(anchored)
 				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
 				anchored = 0
-				user << "<span class='notice'>You unsecure the exterior bolts on the turret.</span>"
+				user << SPAN_NOTICE("You unsecure the exterior bolts on the turret.")
 				update_icon()
 		wrenching = 0
 
@@ -334,7 +334,7 @@ var/list/turret_icons
 			user << "<span class='notice'>Controls are now [locked ? "locked" : "unlocked"].</span>"
 			updateUsrDialog()
 		else
-			user << "<span class='notice'>Access denied.</span>"
+			user << SPAN_NOTICE("Access denied.")
 
 	else
 		//if the turret was attacked with the intention of harming it:
@@ -352,7 +352,7 @@ var/list/turret_icons
 	if(!emagged)
 		//Emagging the turret makes it go bonkers and stun everyone. It also makes
 		//the turret shoot much, much faster.
-		user << "<span class='warning'>You short out [src]'s threat assessment circuits.</span>"
+		user << SPAN_WARNING("You short out [src]'s threat assessment circuits.")
 		visible_message("[src] hums oddly...")
 		emagged = 1
 		iconholder = 1
@@ -679,14 +679,14 @@ var/list/turret_icons
 		if(0)	//first step
 			if(istype(I, /obj/item/weapon/wrench) && !anchored)
 				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << "<span class='notice'>You secure the external bolts.</span>"
+				user << SPAN_NOTICE("You secure the external bolts.")
 				anchored = 1
 				build_step = 1
 				return
 
 			else if(istype(I, /obj/item/weapon/crowbar) && !anchored)
 				playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
-				user << "<span class='notice'>You dismantle the turret construction.</span>"
+				user << SPAN_NOTICE("You dismantle the turret construction.")
 				new /obj/item/stack/material/steel( loc, 5)
 				qdel(src)
 				return
@@ -695,16 +695,16 @@ var/list/turret_icons
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == DEFAULT_WALL_MATERIAL)
 				var/obj/item/stack/M = I
 				if(M.use(2))
-					user << "<span class='notice'>You add some metal armor to the interior frame.</span>"
+					user << SPAN_NOTICE("You add some metal armor to the interior frame.")
 					build_step = 2
 					icon_state = "turret_frame2"
 				else
-					user << "<span class='warning'>You need two sheets of metal to continue construction.</span>"
+					user << SPAN_WARNING("You need two sheets of metal to continue construction.")
 				return
 
 			else if(istype(I, /obj/item/weapon/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user << "<span class='notice'>You unfasten the external bolts.</span>"
+				user << SPAN_NOTICE("You unfasten the external bolts.")
 				anchored = 0
 				build_step = 0
 				return
@@ -713,7 +713,7 @@ var/list/turret_icons
 		if(2)
 			if(istype(I, /obj/item/weapon/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << "<span class='notice'>You bolt the metal armor into place.</span>"
+				user << SPAN_NOTICE("You bolt the metal armor into place.")
 				build_step = 3
 				return
 
@@ -722,7 +722,7 @@ var/list/turret_icons
 				if(!WT.isOn())
 					return
 				if(WT.get_fuel() < 5) //uses up 5 fuel.
-					user << "<span class='notice'>You need more fuel to complete this task.</span>"
+					user << SPAN_NOTICE("You need more fuel to complete this task.")
 					return
 
 				playsound(loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
@@ -741,11 +741,11 @@ var/list/turret_icons
 					return
 				var/obj/item/weapon/gun/energy/E = I //typecasts the item to an energy gun
 				if(!user.unEquip(I))
-					user << "<span class='notice'>\the [I] is stuck to your hand, you cannot put it in \the [src]</span>"
+					user << SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]")
 					return
 				installation = I.type //installation becomes I.type
 				gun_charge = E.cell.charge //the gun's charge is stored in gun_charge
-				user << "<span class='notice'>You add [I] to the turret.</span>"
+				user << SPAN_NOTICE("You add [I] to the turret.")
 				target_type = /obj/machinery/porta_turret
 
 				build_step = 4
@@ -754,7 +754,7 @@ var/list/turret_icons
 
 			else if(istype(I, /obj/item/weapon/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << "<span class='notice'>You remove the turret's metal armor bolts.</span>"
+				user << SPAN_NOTICE("You remove the turret's metal armor bolts.")
 				build_step = 2
 				return
 
@@ -762,9 +762,9 @@ var/list/turret_icons
 			if(is_proximity_sensor(I))
 				build_step = 5
 				if(!user.unEquip(I))
-					user << "<span class='notice'>\the [I] is stuck to your hand, you cannot put it in \the [src]</span>"
+					user << SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]")
 					return
-				user << "<span class='notice'>You add the prox sensor to the turret.</span>"
+				user << SPAN_NOTICE("You add the prox sensor to the turret.")
 				qdel(I)
 				return
 
@@ -774,7 +774,7 @@ var/list/turret_icons
 			if(istype(I, /obj/item/weapon/screwdriver))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				build_step = 6
-				user << "<span class='notice'>You close the internal access hatch.</span>"
+				user << SPAN_NOTICE("You close the internal access hatch.")
 				return
 
 			//attack_hand() removes the prox sensor
@@ -783,16 +783,16 @@ var/list/turret_icons
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == DEFAULT_WALL_MATERIAL)
 				var/obj/item/stack/M = I
 				if(M.use(2))
-					user << "<span class='notice'>You add some metal armor to the exterior frame.</span>"
+					user << SPAN_NOTICE("You add some metal armor to the exterior frame.")
 					build_step = 7
 				else
-					user << "<span class='warning'>You need two sheets of metal to continue construction.</span>"
+					user << SPAN_WARNING("You need two sheets of metal to continue construction.")
 				return
 
 			else if(istype(I, /obj/item/weapon/screwdriver))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				build_step = 5
-				user << "<span class='notice'>You open the internal access hatch.</span>"
+				user << SPAN_NOTICE("You open the internal access hatch.")
 				return
 
 		if(7)
@@ -800,14 +800,14 @@ var/list/turret_icons
 				var/obj/item/weapon/weldingtool/WT = I
 				if(!WT.isOn()) return
 				if(WT.get_fuel() < 5)
-					user << "<span class='notice'>You need more fuel to complete this task.</span>"
+					user << SPAN_NOTICE("You need more fuel to complete this task.")
 
 				playsound(loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
 				if(do_after(user, 30, src))
 					if(!src || !WT.remove_fuel(5, user))
 						return
 					build_step = 8
-					user << "<span class='notice'>You weld the turret's armor down.</span>"
+					user << SPAN_NOTICE("You weld the turret's armor down.")
 
 					//The final step: create a full turret
 					var/obj/machinery/porta_turret/Turret = new target_type(loc)
@@ -821,7 +821,7 @@ var/list/turret_icons
 
 			else if(istype(I, /obj/item/weapon/crowbar))
 				playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
-				user << "<span class='notice'>You pry off the turret's exterior armor.</span>"
+				user << SPAN_NOTICE("You pry off the turret's exterior armor.")
 				new /obj/item/stack/material/steel(loc, 2)
 				build_step = 6
 				return
@@ -851,10 +851,10 @@ var/list/turret_icons
 			Gun.update_icon()
 			installation = null
 			gun_charge = 0
-			user << "<span class='notice'>You remove [Gun] from the turret frame.</span>"
+			user << SPAN_NOTICE("You remove [Gun] from the turret frame.")
 
 		if(5)
-			user << "<span class='notice'>You remove the prox sensor from the turret frame.</span>"
+			user << SPAN_NOTICE("You remove the prox sensor from the turret frame.")
 			new /obj/item/device/assembly/prox_sensor(loc)
 			build_step = 4
 

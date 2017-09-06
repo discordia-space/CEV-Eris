@@ -69,14 +69,14 @@
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == "glass")
 		var/obj/item/stack/G = W
 		if(uses >= max_uses)
-			user << "<span class='warning'>[src.name] is full.</span>"
+			user << SPAN_WARNING("[src.name] is full.")
 			return
 		else if(G.use(1))
 			AddUses(16) //Autolathe converts 1 sheet into 16 lights.
-			user << "<span class='notice'>You insert a piece of glass into \the [src.name]. You have [uses] light\s remaining.</span>"
+			user << SPAN_NOTICE("You insert a piece of glass into \the [src.name]. You have [uses] light\s remaining.")
 			return
 		else
-			user << "<span class='warning'>You need one sheet of glass to replace lights.</span>"
+			user << SPAN_WARNING("You need one sheet of glass to replace lights.")
 
 	if(istype(W, /obj/item/weapon/light))
 		var/obj/item/weapon/light/L = W
@@ -127,7 +127,7 @@
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
 			if(!Use(U)) return
-			U << "<span class='notice'>You replace the [target.fitting] with the [src].</span>"
+			U << SPAN_NOTICE("You replace the [target.fitting] with the [src].")
 
 			if(target.status != LIGHT_EMPTY)
 

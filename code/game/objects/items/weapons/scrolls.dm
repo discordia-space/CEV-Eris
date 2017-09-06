@@ -12,7 +12,7 @@
 
 /obj/item/weapon/teleportation_scroll/attack_self(mob/user as mob)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		usr << "<span class='warning'>You stare at the scroll but cannot make sense of the markings!</span>"
+		usr << SPAN_WARNING("You stare at the scroll but cannot make sense of the markings!")
 		return
 
 	user.set_machine(src)

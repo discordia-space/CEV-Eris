@@ -156,7 +156,7 @@
 
 		H.mind.initial_account = M
 
-	H << "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>"
+	H << SPAN_NOTICE("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>")
 
 /datum/job/proc/one_time_payment(var/custom_factor = 1)
 	return (rand(5,50) + rand(5, 50)) * economic_modifier * custom_factor

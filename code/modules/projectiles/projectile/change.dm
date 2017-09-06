@@ -88,10 +88,10 @@
 			else
 				new_mob.key = M.key
 
-			new_mob << "<span class='warning'>Your form morphs into that of \a [lowertext(randomize)].</span>"
+			new_mob << SPAN_WARNING("Your form morphs into that of \a [lowertext(randomize)].")
 
 			qdel(M)
 			return
 		else
-			M << "<span class='warning'>Your form morphs into that of \a [lowertext(randomize)].</span>"
+			M << SPAN_WARNING("Your form morphs into that of \a [lowertext(randomize)].")
 			return

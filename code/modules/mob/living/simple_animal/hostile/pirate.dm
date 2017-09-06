@@ -29,7 +29,7 @@
 	min_n2 = 0
 	max_n2 = 0
 	unsuitable_atoms_damage = 15
-	var/corpse = /obj/effect/landmark/mobcorpse/pirate
+	var/corpse = /obj/effect/landmark/corpse/pirate
 	var/weapon1 = /obj/item/weapon/melee/energy/sword/pirate
 
 	faction = "pirate"
@@ -43,7 +43,7 @@
 	ranged = 1
 	rapid = 1
 	projectiletype = /obj/item/projectile/beam
-	corpse = /obj/effect/landmark/mobcorpse/pirate/ranged
+	corpse = /obj/effect/landmark/corpse/pirate/ranged
 	weapon1 = /obj/item/weapon/gun/energy/laser
 
 

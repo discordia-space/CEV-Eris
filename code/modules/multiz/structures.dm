@@ -69,13 +69,13 @@
 
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
 	if(!target || !istype(target.loc, /turf))
-		M << "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>"
+		M << SPAN_NOTICE("\The [src] is incomplete and can't be climbed.")
 		return
 
 	var/turf/T = target.loc
 	for(var/atom/A in T)
 		if(A.density)
-			M << "<span class='notice'>\A [A] is blocking \the [src].</span>"
+			M << SPAN_NOTICE("\A [A] is blocking \the [src].")
 			return
 
 	M.visible_message(

@@ -108,21 +108,21 @@
 
 	if (!can_use(required))
 		if (produced>1)
-			user << "<span class='warning'>You haven't got enough [src] to build \the [produced] [recipe.title]\s!</span>"
+			user << SPAN_WARNING("You haven't got enough [src] to build \the [produced] [recipe.title]\s!")
 		else
-			user << "<span class='warning'>You haven't got enough [src] to build \the [recipe.title]!</span>"
+			user << SPAN_WARNING("You haven't got enough [src] to build \the [recipe.title]!")
 		return
 
 	if (recipe.one_per_turf && (locate(recipe.result_type) in user.loc))
-		user << "<span class='warning'>There is another [recipe.title] here!</span>"
+		user << SPAN_WARNING("There is another [recipe.title] here!")
 		return
 
 	if (recipe.on_floor && !isfloor(user.loc))
-		user << "<span class='warning'>\The [recipe.title] must be constructed on the floor!</span>"
+		user << SPAN_WARNING("\The [recipe.title] must be constructed on the floor!")
 		return
 
 	if (recipe.time)
-		user << "<span class='notice'>Building [recipe.title] ...</span>"
+		user << SPAN_NOTICE("Building [recipe.title] ...")
 		if (!do_after(user, recipe.time))
 			return
 
@@ -292,7 +292,7 @@
 			continue
 		var/transfer = src.transfer_to(item)
 		if (transfer)
-			user << "<span class='notice'>You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.</span>"
+			user << SPAN_NOTICE("You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.")
 		if(!amount)
 			break
 

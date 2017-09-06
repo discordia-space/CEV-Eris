@@ -84,7 +84,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	var/zone = user.targeted_organ
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
-		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
+		user << SPAN_WARNING("You can't operate on this area while surgery is already in progress.")
 		return 1
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
@@ -101,7 +101,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				else if ((tool in user.contents) && user.Adjacent(M))			//or
 					S.fail_step(user, M, zone, tool)		//malpractice~
 				else // This failing silently was a pain.
-					user << "<span class='warning'>You must remain close to your patient to conduct surgery.</span>"
+					user << SPAN_WARNING("You must remain close to your patient to conduct surgery.")
 				M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
 				if (ishuman(M))
 					var/mob/living/carbon/human/H = M
@@ -109,7 +109,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				return	1	  												//don't want to do weapony things after surgery
 
 	if (user.a_intent == I_HELP)
-		user << "<span class='warning'>You can't see any useful way to use [tool] on [M].</span>"
+		user << SPAN_WARNING("You can't see any useful way to use [tool] on [M].")
 	return 0
 
 proc/sort_surgeries()

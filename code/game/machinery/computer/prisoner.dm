@@ -97,7 +97,7 @@
 				var/obj/item/weapon/implant/I = locate(href_list["warn"])
 				if(I && I.wearer)
 					var/mob/living/carbon/R = I.wearer
-					R << "<span class='notice'>You hear a voice in your head saying: '[warning]'</span>"
+					R << SPAN_NOTICE("You hear a voice in your head saying: '[warning]'")
 
 			src.add_fingerprint(usr)
 		src.updateUsrDialog()

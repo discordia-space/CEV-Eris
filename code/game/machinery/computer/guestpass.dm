@@ -20,20 +20,20 @@
 /obj/item/weapon/card/id/guest/examine(mob/user)
 	..(user)
 	if (world.time < expiration_time)
-		user << "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>"
+		user << SPAN_NOTICE("This pass expires at [worldtime2stationtime(expiration_time)].")
 	else
-		user << "<span class='warning'>It expired at [worldtime2stationtime(expiration_time)].</span>"
+		user << SPAN_WARNING("It expired at [worldtime2stationtime(expiration_time)].")
 
 /obj/item/weapon/card/id/guest/read()
 	if (world.time > expiration_time)
-		usr << "<span class='notice'>This pass expired at [worldtime2stationtime(expiration_time)].</span>"
+		usr << SPAN_NOTICE("This pass expired at [worldtime2stationtime(expiration_time)].")
 	else
-		usr << "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>"
+		usr << SPAN_NOTICE("This pass expires at [worldtime2stationtime(expiration_time)].")
 
-	usr << "<span class='notice'>It grants access to following areas:</span>"
+	usr << SPAN_NOTICE("It grants access to following areas:")
 	for (var/A in temp_access)
-		usr << "<span class='notice'>[get_access_desc(A)].</span>"
-	usr << "<span class='notice'>Issuing reason: [reason].</span>"
+		usr << SPAN_NOTICE("[get_access_desc(A)].")
+	usr << SPAN_NOTICE("Issuing reason: [reason].")
 	return
 
 /////////////////////////////////////////////
@@ -72,7 +72,7 @@
 			giver = O
 			updateUsrDialog()
 		else if(giver)
-			user << "<span class='warning'>There is already ID card inside.</span>"
+			user << SPAN_WARNING("There is already ID card inside.")
 		return
 	..()
 
@@ -135,7 +135,7 @@
 					if (dur > 0 && dur <= 30)
 						duration = dur
 					else
-						usr << "<span class='warning'>Invalid duration.</span>"
+						usr << SPAN_WARNING("Invalid duration.")
 			if ("access")
 				var/A = text2num(href_list["access"])
 				if (A in accesses)
@@ -191,6 +191,6 @@
 					pass.reason = reason
 					pass.name = "guest pass #[number]"
 				else
-					usr << "<span class='warning'>Cannot issue pass without issuing ID.</span>"
+					usr << SPAN_WARNING("Cannot issue pass without issuing ID.")
 	updateUsrDialog()
 	return

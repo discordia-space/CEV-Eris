@@ -179,14 +179,14 @@
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
-			visible_message("<span class='notice'>\The [src] misses [target_mob] narrowly!</span>")
+			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
 		return 0
 
 	//hit messages
 	if(silenced)
-		target_mob << "<span class='danger'>You've been hit in the [parse_zone(def_zone)] by \the [src]!</span>"
+		target_mob << SPAN_DANGER("You've been hit in the [parse_zone(def_zone)] by \the [src]!")
 	else
-		visible_message("<span class='danger'>\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!</span>")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
+		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 
 	//admin logs
 	if(!no_attack_log)
@@ -228,7 +228,7 @@
 			//if they have a neck grab on someone, that person gets hit instead
 			var/obj/item/weapon/grab/G = locate() in M
 			if(G && G.state >= GRAB_NECK)
-				visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
+				visible_message(SPAN_DANGER("\The [M] uses [G.affecting] as a shield!"))
 				if(Bump(G.affecting, forced=1))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
 

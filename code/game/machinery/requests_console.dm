@@ -235,7 +235,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else
 				reset_message()
-				user << "<span class='warning'>You are not authorized to send announcements.</span>"
+				user << SPAN_WARNING("You are not authorized to send announcements.")
 			updateUsrDialog()
 	if (istype(O, /obj/item/weapon/stamp))
 		if(inoperable(MAINT)) return
