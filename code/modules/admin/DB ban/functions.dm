@@ -1,7 +1,7 @@
 //Either pass the mob you wish to ban in the 'banned_mob' attribute, or the banckey, banip and bancid variables. If both are passed, the mob takes priority! If a mob is not passed, banckey is the minimum that needs to be passed! banip and bancid are optional.
 datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/banckey = null, var/banip = null, var/bancid = null)
 
-	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))
+	if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))
 		return
 
 	establish_db_connection()
@@ -88,7 +88,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 
 datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
-	if(!check_rights(R_BAN))
+	if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
 		return
 
 	establish_db_connection()
@@ -163,7 +163,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
-	if(!check_rights(R_BAN))
+	if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
 		return
 
 	establish_db_connection()
@@ -239,7 +239,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
 datum/admins/proc/DB_ban_unban_by_id(var/id)
 
-	if(!check_rights(R_BAN))
+	if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
 		return
 
 	establish_db_connection()
@@ -291,7 +291,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	if(!usr.client)
 		return
 
-	if(!check_rights(R_BAN))
+	if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
 		return
 
 	establish_db_connection()

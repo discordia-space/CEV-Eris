@@ -23,25 +23,26 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 			if("Removed")	continue				//Reserved
 
 		var/rights = 0
-		for(var/i=2, i<=List.len, i++)
+		for(var/i = 2, i <= List.len, i++)
 			switch(ckey(List[i]))
-				if("@","prev")					rights |= previous_rights
-				if("buildmode","build")			rights |= R_BUILDMODE
-				if("admin")						rights |= R_ADMIN
-				if("ban")						rights |= R_BAN
-				if("fun")						rights |= R_FUN
-				if("server")					rights |= R_SERVER
-				if("debug")						rights |= R_DEBUG
-				if("permissions","rights")		rights |= R_PERMISSIONS
-				if("possess")					rights |= R_POSSESS
-				if("stealth")					rights |= R_STEALTH
-				if("rejuv","rejuvinate")		rights |= R_REJUVINATE
-				if("varedit")					rights |= R_VAREDIT
-				if("everything","host","all")	rights |= (R_HOST | R_BUILDMODE | R_ADMIN | R_BAN | R_FUN | R_SERVER | R_DEBUG | R_PERMISSIONS | R_POSSESS | R_STEALTH | R_REJUVINATE | R_VAREDIT | R_SOUNDS | R_SPAWN | R_MOD| R_MENTOR)
-				if("sound","sounds")			rights |= R_SOUNDS
-				if("spawn","create")			rights |= R_SPAWN
-				if("mod")						rights |= R_MOD
-				if("mentor")				rights |= R_MENTOR
+				if("@","prev")
+					rights |= previous_rights
+				if("admin")
+					rights |= R_ADMIN
+				if("fun")
+					rights |= R_FUN
+				if("server")
+					rights |= R_SERVER
+				if("debug")
+					rights |= R_DEBUG
+				if("permissions", "rights")
+					rights |= R_PERMISSIONS
+				if("everything", "host", "all")
+					rights |= (R_HOST | R_ADMIN | R_FUN | R_SERVER | R_DEBUG | R_PERMISSIONS | R_MOD | R_MENTOR)
+				if("mod")
+					rights |= R_MOD
+				if("mentor")
+					rights |= R_MENTOR
 
 		admin_ranks[rank] = rights
 		previous_rights = rights

@@ -241,7 +241,7 @@
 
 	else if(href_list["simplemake"])
 
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/M = locate(href_list["mob"])
 		if(!ismob(M))
@@ -280,7 +280,8 @@
 
 	/////////////////////////////////////new ban stuff
 	else if(href_list["unbanf"])
-		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
+			return
 
 		var/banfolder = href_list["unbanf"]
 		Banlist.cd = "/base/[banfolder]"
@@ -296,7 +297,8 @@
 		usr.client.warn(href_list["warn"])
 
 	else if(href_list["unbane"])
-		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
+			return
 
 		UpdateTime()
 		var/reason
@@ -347,7 +349,8 @@
 	/////////////////////////////////////new ban stuff
 
 	else if(href_list["jobban2"])
-//		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
+			return
 
 		var/mob/M = locate(href_list["jobban2"])
 		if(!ismob(M))
@@ -574,7 +577,7 @@
 			return
 
 		if(M != usr)																//we can jobban ourselves
-			if(M.client && M.client.holder && (M.client.holder.rights & R_BAN))		//they can ban too. So we can't ban them
+			if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN))		//they can ban too. So we can't ban them
 				alert("You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
@@ -641,7 +644,7 @@
 		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
 			switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 				if("Yes")
-					if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
+					if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN, 0))
 						usr << "<span class='warning'> You Cannot issue temporary job-bans!</span>"
 						return
 					if(config.ban_legacy_system)
@@ -650,7 +653,7 @@
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
 						return
-					if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > config.mod_job_tempban_max)
+					if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && mins > config.mod_job_tempban_max)
 						usr << "<span class='warning'> Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!</span>"
 						return
 					var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
@@ -676,7 +679,8 @@
 					href_list["jobban2"] = 1 // lets it fall through and refresh
 					return 1
 				if("No")
-					if(!check_rights(R_BAN))  return
+					if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
+						return
 					var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
 					if(reason)
 						var/msg
@@ -744,7 +748,8 @@
 			qdel(M.client)
 
 	else if(href_list["removejobban"])
-		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
+			return
 
 		var/t = href_list["removejobban"]
 		if(t)
@@ -759,11 +764,11 @@
 				DB_ban_unban(ckey(key), BANTYPE_JOB_PERMA, job)
 
 	else if(href_list["newban"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
+		if(!check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0))
 			usr << "<span class='warning'>You do not have the appropriate permissions to add bans!</span>"
 			return
 
-		if(check_rights(R_MOD,0) && !check_rights(R_ADMIN, 0) && !config.mods_can_job_tempban) // If mod and tempban disabled
+		if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && !config.mods_can_job_tempban) // If mod and tempban disabled
 			usr << "<span class='warning'>Mod jobbanning is disabled!</span>"
 			return
 
@@ -777,7 +782,7 @@
 				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 				if(!mins)
 					return
-				if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > config.mod_tempban_max)
+				if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && mins > config.mod_tempban_max)
 					usr << "<span class='warning'>Moderators can only job tempban up to [config.mod_tempban_max] minutes!</span>"
 					return
 				if(mins >= 525600) mins = 525599
@@ -801,7 +806,8 @@
 				qdel(M.client)
 				//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
-				if(!check_rights(R_BAN))   return
+				if(!check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0))
+					return
 				var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
 				if(!reason)
 					return
@@ -895,7 +901,7 @@
 		.(href, list("f_secret"=1))
 
 	else if(href_list["monkeyone"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
 		if(!istype(H))
@@ -907,7 +913,7 @@
 		H.monkeyize()
 
 	else if(href_list["corgione"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["corgione"])
 		if(!istype(H))
@@ -1034,7 +1040,7 @@
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)", 1)
 
 	else if(href_list["revive"])
-		if(!check_rights(R_REJUVINATE))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/living/L = locate(href_list["revive"])
 		if(!istype(L))
@@ -1049,7 +1055,7 @@
 			usr << "Admin Rejuvinates have been disabled"
 
 	else if(href_list["makeai"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["makeai"])
 		if(!istype(H))
@@ -1061,7 +1067,7 @@
 		H.AIize()
 
 	else if(href_list["makeslime"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
 		if(!istype(H))
@@ -1071,7 +1077,7 @@
 		usr.client.cmd_admin_slimeize(H)
 
 	else if(href_list["makerobot"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
 		if(!istype(H))
@@ -1081,7 +1087,7 @@
 		usr.client.cmd_admin_robotize(H)
 
 	else if(href_list["makeanimal"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/M = locate(href_list["makeanimal"])
 		if(isnewplayer(M))
@@ -1091,7 +1097,7 @@
 		usr.client.cmd_admin_animalize(M)
 
 	else if(href_list["togmutate"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["togmutate"])
 		if(!istype(H))
@@ -1415,23 +1421,23 @@
 		show_traitor_panel(M)
 
 	else if(href_list["create_object"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 		return create_object(usr)
 
 	else if(href_list["quick_create_object"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 		return quick_create_object(usr)
 
 	else if(href_list["create_turf"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 		return create_turf(usr)
 
 	else if(href_list["create_mob"])
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 		return create_mob(usr)
 
 	else if(href_list["object_list"])			//this is the laggiest thing ever
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_FUN))	return
 
 		if(!config.allow_admin_spawning)
 			usr << "Spawning of items is not allowed."
@@ -1741,7 +1747,7 @@
 				vsc.SetDefault(usr)
 
 	else if(href_list["toglang"])
-		if(check_rights(R_SPAWN))
+		if(check_rights(R_FUN))
 			var/mob/M = locate(href_list["toglang"])
 			if(!istype(M))
 				usr << "[M] is illegal type, must be /mob!"

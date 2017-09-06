@@ -76,7 +76,6 @@ proc/admin_notice(var/message, var/rights)
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
-		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
 	"}
 
 	if(M.client)
@@ -217,57 +216,6 @@ proc/admin_notice(var/message, var/rights)
 /datum/player_info/var/rank //rank of admin who made the notes
 /datum/player_info/var/content // text content of the information
 /datum/player_info/var/timestamp // Because this is bloody annoying
-
-#define PLAYER_NOTES_ENTRIES_PER_PAGE 50
-/datum/admins/proc/PlayerNotes()
-	set category = "Admin"
-	set name = "Player Notes"
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
-		return
-	PlayerNotesPage(1)
-
-/datum/admins/proc/PlayerNotesPage(page)
-	var/dat = "<B>Player notes</B><HR>"
-	var/savefile/S=new("data/player_notes.sav")
-	var/list/note_keys
-	S >> note_keys
-	if(!note_keys)
-		dat += "No notes found."
-	else
-		dat += "<table>"
-		note_keys = sortList(note_keys)
-
-		// Display the notes on the current page
-		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
-		// Emulate ceil(why does BYOND not have ceil)
-		if(number_pages != round(number_pages))
-			number_pages = round(number_pages) + 1
-		var/page_index = page - 1
-		if(page_index < 0 || page_index >= number_pages)
-			return
-
-		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
-		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-		upper_bound = min(upper_bound, note_keys.len)
-		for(var/index = lower_bound, index <= upper_bound, index++)
-			var/t = note_keys[index]
-			dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
-
-		dat += "</table><br>"
-
-		// Display a footer to select different pages
-		for(var/index = 1, index <= number_pages, index++)
-			if(index == page)
-				dat += "<b>"
-			dat += "<a href='?src=\ref[src];notes=list;index=[index]'>[index]</a> "
-			if(index == page)
-				dat += "</b>"
-
-	usr << browse(dat, "window=player_notes;size=400x400")
-
 
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun"
@@ -516,7 +464,8 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/Jobbans()
-	if(!check_rights(R_BAN))	return
+	if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
+		return
 
 	var/dat = "<B>Job Bans!</B><HR><table>"
 	for(var/t in jobban_keylist)
@@ -832,7 +781,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_FUN))	return
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
 		return
@@ -845,7 +794,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Spawn a custom item."
 	set name = "Spawn Custom Item"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_FUN))	return
 
 	var/owner = input("Select a ckey.", "Spawn Custom Item") as null|anything in custom_items
 	if(!owner|| !custom_items[owner])
@@ -864,7 +813,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Check the custom item list."
 	set name = "Check Custom Items"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_FUN))	return
 
 	if(!custom_items)
 		usr << "Custom item list is null."
@@ -885,7 +834,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Spawn a spreading plant effect."
 	set name = "Spawn Plant"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_FUN))	return
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
 		return
@@ -897,7 +846,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_FUN))	return
 
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
@@ -1144,7 +1093,7 @@ proc/admin_notice(var/message, var/rights)
 		return //Extra sanity check to make sure only observers are shoved into things
 
 	//Same as assume-direct-control perm requirements.
-	if (!check_rights(R_VAREDIT,0) || !check_rights(R_ADMIN|R_DEBUG,0))
+	if (!check_rights(R_ADMIN|R_DEBUG,0))
 		return 0
 	if (!frommob.ckey)
 		return 0

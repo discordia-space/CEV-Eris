@@ -4,7 +4,8 @@
 
 	if(href_list["info"])
 		// spawn or admin privileges to see info about viruses
-		if(!check_rights(R_ADMIN|R_SPAWN)) return
+		if(!check_rights(R_ADMIN|R_FUN))
+			return
 
 		usr << "Infection chance: [infectionchance]; Speed: [speed]; Spread type: [spreadtype]"
 		usr << "Affected species: [english_list(affected_species)]"
@@ -33,7 +34,8 @@
 /client/proc/virus2_editor()
 	set name = "Virus Editor"
 	set category = "Fun"
-	if(!holder || !check_rights(R_SPAWN)) return // spawn privileges to create viruses
+	if(!holder || !check_rights(R_FUN))
+		return // spawn privileges to create viruses
 
 	holder.virus2_editor_datum.show_ui(src)
 

@@ -81,12 +81,13 @@ var/list/admin_verbs_admin = list(
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
 	/client/proc/makePAI,
+	/client/proc/stealth,
 	/datum/admins/proc/paralyze_mob
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
-	/client/proc/jobbans
 	)
+
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
@@ -106,8 +107,9 @@ var/list/admin_verbs_fun = list(
 	/client/proc/toggle_random_events,
 	/client/proc/editappear,
 	/client/proc/roll_dices,
+	/client/proc/togglebuildmodeself,
 	/datum/admins/proc/call_supply_drop,
-	/datum/admins/proc/call_drop_pod
+	/datum/admins/proc/call_drop_pod,
 	)
 
 var/list/admin_verbs_spawn = list(
@@ -274,40 +276,45 @@ var/list/admin_verbs_mod = list(
 	/client/proc/dsay,
 	/datum/admins/proc/show_player_panel,
 	/client/proc/check_antagonists,
-	/client/proc/jobbans,
-	/client/proc/cmd_admin_subtle_message, // send an message to somebody as a 'voice in their head',
-	/datum/admins/proc/paralyze_mob
 )
 
 var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
 	/datum/admins/proc/PlayerNotes,
-	/client/proc/admin_ghost,
 	/client/proc/cmd_mod_say,
-	/client/proc/cmd_admin_subtle_message
 )
 
 /client/proc/add_admin_verbs()
 	if(holder)
 		verbs += admin_verbs_default
-		if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
-		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
-		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
-		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
-		if(holder.rights & R_SERVER)		verbs += admin_verbs_server
+		if(holder.rights & R_ADMIN)
+			verbs += admin_verbs_admin
+			verbs += admin_verbs_ban
+			verbs += admin_verbs_spawn
+
+		if(holder.rights & R_MOD)
+			verbs += admin_verbs_mod
+			verbs += admin_verbs_ban
+
+		if(holder.rights & R_MENTOR)
+			verbs += admin_verbs_mentor
+
+		if(holder.rights & R_SERVER)
+			verbs += admin_verbs_server
+
 		if(holder.rights & R_DEBUG)
 			verbs += admin_verbs_debug
-			if(config.debugparanoid && !(holder.rights & R_ADMIN))
-				verbs.Remove(admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
-		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
-		if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
-		if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
-		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
-		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
-		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
-		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
+
+		if(holder.rights & R_PERMISSIONS)
+			verbs += admin_verbs_permissions
+
+		if(holder.rights & R_FUN)
+			verbs += admin_verbs_fun
+			verbs += admin_verbs_possess
+			verbs += admin_verbs_rejuv
+			verbs += admin_verbs_sounds
+
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -423,17 +430,6 @@ var/list/admin_verbs_mentor = list(
 	if(holder)
 		holder.check_antagonists()
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
-
-	return
-
-/client/proc/jobbans()
-	set name = "Display Job bans"
-	set category = "Admin"
-	if(holder)
-		if(config.ban_legacy_system)
-			holder.Jobbans()
-		else
-			holder.DB_ban_panel()
 
 	return
 
