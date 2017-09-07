@@ -61,7 +61,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/game_panel,			//game panel, allows to change game-mode etc,
 	/client/proc/cmd_admin_say,			//admin-only ooc chat,
 	///datum/admins/proc/togglehubvisibility, //toggles visibility on the BYOND Hub,
-	/datum/admins/proc/PlayerNotes,
 	/client/proc/cmd_mod_say,
 	/client/proc/free_slot,			//frees slot for chosen job,
 	/client/proc/cmd_admin_change_custom_event,
@@ -269,7 +268,6 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_context,	// right-click adminPM interface,
 	/client/proc/cmd_admin_pm_panel,	// admin-pm list,
 	/client/proc/debug_variables,		// allows us to -see- the variables of any instance in the game.,
-	/datum/admins/proc/PlayerNotes,
 	/client/proc/admin_ghost,			// allows us to ghost/reenter body at will,
 	/client/proc/cmd_mod_say,
 	/client/proc/player_panel_new,
@@ -281,7 +279,6 @@ var/list/admin_verbs_mod = list(
 var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
-	/datum/admins/proc/PlayerNotes,
 	/client/proc/cmd_mod_say,
 )
 
