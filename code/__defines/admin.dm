@@ -26,8 +26,8 @@
 #define R_SERVER        0x2
 #define R_DEBUG         0x4
 #define R_PERMISSIONS   0x8
-#define R_MOD           0x10
-#define R_MENTOR        0x20
+#define R_MENTOR        0x10
+#define R_MOD           0x20
 #define R_ADMIN         0x40
 #define R_HOST          0x80
 
