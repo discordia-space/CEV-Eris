@@ -477,7 +477,8 @@ proc/admin_notice(var/message, var/rights)
 	usr << browse(dat, "window=ban;size=400x400")
 
 /datum/admins/proc/Game()
-	if(!check_rights(0))	return
+	if(!check_rights(0))
+		return
 
 	var/dat = {"
 		<center><B>Game Panel</B></center><hr>\n
@@ -501,7 +502,8 @@ proc/admin_notice(var/message, var/rights)
 	return
 
 /datum/admins/proc/Secrets()
-	if(!check_rights(0))	return
+	if(!check_rights(0))
+		return
 
 	var/dat = "<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>"
 	for(var/datum/admin_secret_category/category in admin_secrets.categories)
@@ -546,7 +548,8 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Special Verbs"
 	set name = "Announce"
 	set desc="Announce your desires to the world"
-	if(!check_rights(0))	return
+	if(!check_rights(0))
+		return
 
 	var/message = russian_to_cp1251(input("Global message to send:", "Admin Announce", null, null))  as message
 	if(message)
@@ -702,7 +705,8 @@ proc/admin_notice(var/message, var/rights)
 	set desc="Delay the game start/end"
 	set name="Delay"
 
-	if(!check_rights(R_SERVER))	return
+	if(!check_rights(R_SERVER))
+		return
 	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
@@ -745,7 +749,8 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Server"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
-	if(!usr.client.holder)	return
+	if(!usr.client.holder)
+		return
 	if( alert("Reboot server?",,"Yes","No") == "No")
 		return
 	world << "\red <b>Rebooting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"
@@ -780,8 +785,8 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
-
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))
+		return
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
 		return
@@ -794,7 +799,8 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Spawn a custom item."
 	set name = "Spawn Custom Item"
 
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))
+		return
 
 	var/owner = input("Select a ckey.", "Spawn Custom Item") as null|anything in custom_items
 	if(!owner|| !custom_items[owner])
@@ -813,7 +819,8 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Check the custom item list."
 	set name = "Check Custom Items"
 
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))
+		return
 
 	if(!custom_items)
 		usr << "Custom item list is null."
@@ -834,7 +841,8 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Spawn a spreading plant effect."
 	set name = "Spawn Plant"
 
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))
+		return
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
 		return
@@ -846,7 +854,8 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
 
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))
+		return
 
 	var/list/types = typesof(/atom)
 	var/list/matches = new()

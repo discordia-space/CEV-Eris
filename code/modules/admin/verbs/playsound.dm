@@ -3,7 +3,8 @@ var/list/sounds_cache = list()
 /client/proc/play_sound(S as sound)
 	set category = "Fun"
 	set name = "Play Global Sound"
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))
+		return
 
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
@@ -24,7 +25,8 @@ var/list/sounds_cache = list()
 /client/proc/play_local_sound(S as sound)
 	set category = "Fun"
 	set name = "Play Local Sound"
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))
+		return
 
 	log_admin("[key_name(src)] played a local sound [S]")
 	message_admins("[key_name_admin(src)] played a local sound [S]", 1)
@@ -35,7 +37,8 @@ var/list/sounds_cache = list()
 /client/proc/play_server_sound()
 	set category = "Fun"
 	set name = "Play Server Sound"
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))
+		return
 
 	var/list/sounds = file2list("sound/serversound_list.txt");
 	sounds += "--CANCEL--"
@@ -43,7 +46,8 @@ var/list/sounds_cache = list()
 
 	var/melody = input("Select a sound from the server to play", "Server sound list", "--CANCEL--") in sounds
 
-	if(melody == "--CANCEL--")	return
+	if(melody == "--CANCEL--")
+		return
 
 	play_sound(melody)
 
