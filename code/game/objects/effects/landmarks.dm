@@ -101,6 +101,17 @@
 	new PICK(src.loc)
 	delete_me = 1
 
+/obj/effect/landmark/machinery
+
+/obj/effect/landmark/machinery/input
+	icon_state = "in-blue"
+	name = "Input area"
+
+/obj/effect/landmark/machinery/output
+	icon_state = "out-red"
+	name = "Output area"
+
+
 //SUBCLASSES.  Spawn a bunch of items and disappear likewise
 /obj/effect/landmark/costume/chicken/New()
 	new /obj/item/clothing/suit/chickensuit(src.loc)

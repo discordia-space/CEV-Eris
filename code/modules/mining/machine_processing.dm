@@ -106,14 +106,16 @@
 	density = 1
 	anchored = 1
 	light_range = 3
-	var/obj/machinery/mineral/input = null
-	var/obj/machinery/mineral/output = null
+	var/obj/effect/landmark/machinery/input = null
+	var/obj/effect/landmark/machinery/output = null
 	var/obj/machinery/mineral/console = null
 	var/sheets_per_tick = 10
 	var/list/ores_processing[0]
 	var/list/ores_stored[0]
 	var/static/list/alloy_data
 	var/active = 0
+	var/input_dir = 0
+	var/output_dir = 0
 
 /obj/machinery/mineral/processing_unit/New()
 	..()
@@ -132,14 +134,13 @@
 			ores_stored[OD.name] = 0
 
 	//Locate our output and input machinery.
-	spawn(5)
-		for (var/dir in cardinal)
-			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-			if(src.input) break
-		for (var/dir in cardinal)
-			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-			if(src.output) break
-		return
+
+	var/obj/marker = null
+	marker = locate(/obj/effect/landmark/machinery/input) in orange(1)
+	input_dir = get_dir(src, marker)
+	marker = locate(/obj/effect/landmark/machinery/output) in orange(1)
+	output_dir = get_dir(src, marker)
+
 	return
 
 /obj/machinery/mineral/processing_unit/process()
@@ -149,12 +150,12 @@
 	var/list/tick_alloys = list()
 
 	//Grab some more ore to process this tick.
-	for(var/i = 0,i<sheets_per_tick,i++)
-		var/obj/item/weapon/ore/O = locate() in input.loc
-		if(!O) break
+	var/limit = sheets_per_tick
+	for(var/obj/item/weapon/ore/O in get_step(src, input_dir))
+		if(--limit <= 0)
+			break
 		if(!isnull(ores_stored[O.material]))
-			ores_stored[O.material]++
-
+			ores_stored[O.material] ++
 		qdel(O)
 
 	if(!active)

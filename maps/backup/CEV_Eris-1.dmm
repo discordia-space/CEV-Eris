@@ -7635,7 +7635,7 @@
 "cQQ" = (/turf/simulated/shuttle/wall/mining{icon_state = "10,11"},/area/shuttle/mining/station)
 "cQR" = (/turf/simulated/shuttle/wall/mining{icon_state = "11,11"},/area/shuttle/mining/station)
 "cQS" = (/obj/machinery/mineral/unloading_machine{icon_state = "unloader-corner"},/turf/simulated/floor,/area/shuttle/mining/station)
-"cQT" = (/obj/machinery/conveyor{dir = 4; id = "mining_external"},/obj/effect/landmark/machinery/input,/turf/simulated/floor,/area/shuttle/mining/station)
+"cQT" = (/obj/machinery/conveyor{dir = 4; id = "mining_external"},/obj/machinery/mineral/input,/turf/simulated/floor,/area/shuttle/mining/station)
 "cQU" = (/obj/machinery/conveyor{dir = 4; id = "mining_external"},/obj/structure/plasticflaps/mining,/turf/simulated/floor,/area/shuttle/mining/station)
 "cQV" = (/obj/machinery/conveyor{dir = 4; id = "mining_external"},/obj/structure/ore_box,/turf/simulated/floor,/area/shuttle/mining/station)
 "cQW" = (/obj/machinery/atmospherics/pipe/zpipe/down{dir = 4},/turf/simulated/open,/area/eris/maintenance/aft3port)
@@ -7686,7 +7686,7 @@
 "cRP" = (/turf/simulated/shuttle/floor/mining{icon_state = "9,10"},/area/shuttle/mining/station)
 "cRQ" = (/turf/simulated/shuttle/wall/mining{icon_state = "10,10"},/area/shuttle/mining/station)
 "cRR" = (/turf/simulated/shuttle/wall/mining{icon_state = "11,10"},/area/shuttle/mining/station)
-"cRS" = (/obj/machinery/conveyor{dir = 2; id = "mining_internal"},/obj/effect/landmark/machinery/output,/obj/structure/plasticflaps/mining,/turf/simulated/floor,/area/shuttle/mining/station)
+"cRS" = (/obj/machinery/conveyor{dir = 2; id = "mining_internal"},/obj/machinery/mineral/output,/obj/structure/plasticflaps/mining,/turf/simulated/floor,/area/shuttle/mining/station)
 "cRT" = (/turf/simulated/shuttle/wall/mining{icon_state = "13,10"},/area/shuttle/mining/station)
 "cRU" = (/turf/simulated/shuttle/wall/mining{icon_state = "14,10"},/area/shuttle/mining/station)
 "cRV" = (/turf/simulated/shuttle/wall/mining{icon_state = "15,10"},/area/shuttle/mining/station)
@@ -7723,11 +7723,11 @@
 "cSA" = (/obj/structure/table/steel,/obj/item/weapon/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/simulated/shuttle/floor/mining{icon_state = "7,9"},/area/shuttle/mining/station)
 "cSB" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/shuttle/floor/mining{icon_state = "8,9"},/area/shuttle/mining/station)
 "cSC" = (/turf/simulated/shuttle/floor/mining{icon_state = "9,9"},/area/shuttle/mining/station)
-"cSD" = (/obj/machinery/conveyor{dir = 4; id = "mining_internal"},/obj/effect/landmark/machinery/output,/turf/simulated/floor,/area/shuttle/mining/station)
+"cSD" = (/obj/machinery/mineral/input,/obj/structure/ore_box,/turf/simulated/shuttle/floor/mining{icon_state = "10,9"},/area/shuttle/mining/station)
 "cSE" = (/obj/machinery/mineral/unloading_machine,/turf/simulated/floor,/area/shuttle/mining/station)
-"cSF" = (/obj/effect/landmark/machinery/input,/obj/structure/ore_box,/turf/simulated/shuttle/floor/mining{icon_state = "10,9"},/area/shuttle/mining/station)
+"cSF" = (/obj/machinery/conveyor{dir = 4; id = "mining_internal"},/obj/machinery/mineral/output,/turf/simulated/floor,/area/shuttle/mining/station)
 "cSG" = (/obj/machinery/conveyor{dir = 4; id = "mining_internal"},/turf/simulated/floor,/area/shuttle/mining/station)
-"cSH" = (/obj/effect/landmark/machinery/input,/turf/simulated/shuttle/floor/mining{icon_state = "10,9"},/area/shuttle/mining/station)
+"cSH" = (/obj/machinery/mineral/input,/turf/simulated/shuttle/floor/mining{icon_state = "10,9"},/area/shuttle/mining/station)
 "cSI" = (/turf/simulated/shuttle/wall/mining{icon_state = "15,9"},/area/shuttle/mining/station)
 "cSJ" = (/obj/structure/shuttle_part/mining{icon_state = "16,9"},/turf/space,/area/shuttle/mining/station)
 "cSK" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/universal,/turf/simulated/floor/plating/under,/area/eris/maintenance/aft3port)
@@ -7803,7 +7803,7 @@
 "cUc" = (/turf/simulated/shuttle/floor/mining{icon_state = "11,7"},/area/shuttle/mining/station)
 "cUd" = (/turf/simulated/shuttle/floor/mining{icon_state = "12,7"},/area/shuttle/mining/station)
 "cUe" = (/obj/machinery/mineral/processing_unit_console{pixel_x = -3; pixel_y = 27},/turf/simulated/shuttle/wall/mining{icon_state = "13,7"; opacity = 0},/area/shuttle/mining/station)
-"cUf" = (/obj/machinery/conveyor{dir = 2; id = "mining_internal"},/obj/effect/landmark/machinery/output,/turf/simulated/floor,/area/shuttle/mining/station)
+"cUf" = (/obj/machinery/conveyor{dir = 2; id = "mining_internal"},/obj/machinery/mineral/output,/turf/simulated/floor,/area/shuttle/mining/station)
 "cUg" = (/turf/simulated/shuttle/wall/mining{icon_state = "15,7"},/area/shuttle/mining/station)
 "cUh" = (/obj/structure/shuttle_part/mining{icon_state = "16,7"},/turf/space,/area/shuttle/mining/station)
 "cUi" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/turf/simulated/floor/plating/under,/area/eris/maintenance/aft3port)
@@ -7887,7 +7887,7 @@
 "cVI" = (/turf/simulated/shuttle/wall/mining{icon_state = "11,4"},/area/shuttle/mining/station)
 "cVJ" = (/obj/machinery/conveyor{dir = 6; id = "mining_internal"},/turf/simulated/floor,/area/shuttle/mining/station)
 "cVK" = (/obj/machinery/conveyor{dir = 8; id = "mining_internal"},/turf/simulated/floor,/area/shuttle/mining/station)
-"cVL" = (/obj/machinery/conveyor{dir = 8; id = "mining_internal"},/obj/effect/landmark/machinery/output,/turf/simulated/floor,/area/shuttle/mining/station)
+"cVL" = (/obj/machinery/conveyor{dir = 8; id = "mining_internal"},/obj/machinery/mineral/output,/turf/simulated/floor,/area/shuttle/mining/station)
 "cVM" = (/turf/simulated/shuttle/wall/mining{icon_state = "15,4"},/area/shuttle/mining/station)
 "cVN" = (/obj/structure/shuttle_part/mining{icon_state = "16,4"},/turf/space,/area/shuttle/mining/station)
 "cVO" = (/obj/machinery/atmospherics/pipe/simple/visible/yellow{tag = "icon-intact (NORTHEAST)"; icon_state = "intact"; dir = 5},/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/simulated/floor/plating/under,/area/eris/maintenance/aft3port)
@@ -12760,7 +12760,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacGIcNQcNRab
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacNQcHjcGmcPNcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPOcPPabBabBabBabBcPtcPQcPReCRevnevicPVcPWeCScPXcPtcPYcPZcQacCqaaaaaaaaaaaaaaaaaabEVcQbcQcbEVaaaaaaaaaaBfaIvcQdaBfaaaaaaaaacQecQfcQgcQhcQicQjcQkcQlcQmcQncQocQpcQqcQrcQscQtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaadaadabBabBabBabBabBabBabBabBabBabBabBcCqcCqcCqcCqcCqcCqcCqcCqabBabBabBabBabBcPtcPtcPtcQucQvcQwcQwcQwcQwcQwcQwcQxcPtcQycQzcQAcQBcQBcQBcQBcQBcQBeCGbEVcQDcQEbEVeCGcQBcQBaBfcQFcQGaBfaaaaaaaaacQHcQIcQJcQKcQLcQMcQNcQOcQPcQQcQRcQScQTcQUcQVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabBabBabBabBabBaaaaaaabBabBabBabBcCqcQWcQXcQXcQYcQXcQZcCqabBabBabBabBcRacRbcRccRdcRecRfcRgcRhcRicRjcRkcRlcRmcPtcGLcRncRocRpcRqcRrcRscRtcRucRvcRwcRxcRycRzcRAeAUcRCcRDcREcRFeCHaaaaaaaaacRHcRIcRJcRKcRLcRMcRNcROcRPcRQcRRcRScRTcRUcRVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabBabBabBabBabBaaaaaaabBabBabBabBcCqcPYcRWcRWcRXcRYcRZcCqcCqcCqcCqcCqcCqcCqcSacCqcSbcPtcPtcPtcPtcPtcSccPtcPtcPtcCqcSdcSecSfcSgcShcSicSjcSkcSlcSmcSncSocSpcSqcSqcSqcSrcSscSteCHaaaaaaaaacSucSvcSwcSxcSycSzcSAcSBcSCcSFcSEcSDcSGcSHcSIcSJaaaaaLaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabBabBabBabBabBaaaaaaabBabBabBabBcCqcPYcRWcRWcRXcRYcRZcCqcCqcCqcCqcCqcCqcCqcSacCqcSbcPtcPtcPtcPtcPtcSccPtcPtcPtcCqcSdcSecSfcSgcShcSicSjcSkcSlcSmcSncSocSpcSqcSqcSqcSrcSscSteCHaaaaaaaaacSucSvcSwcSxcSycSzcSAcSBcSCcSDcSEcSFcSGcSHcSIcSJaaaaaLaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabBabBabBabBabBabBcCqcCqcCqcCqcSKcSLcCqcCqcGrcSMeCVcCqcGrcCqcSOcSPcSQcSRcSRcSScSRcSRcSTcSUcSVcFncCqcSWcSXcQBcSYcSZcTacTbcTccTdcTecTfcTgcThcTicTjcTkcSscSscTleCHaaaaaaaaacTmcTncTocTpcTpcTpcTqcTrcTscTtcTucTvcTwcTxcTycTzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabBabBabBabBabBabBabBabBabBcCqcTAcTBcTCcTCcTCcTDcTEcCqcTFcCqcCqcCqcTGcCqcCqcCqcCqcCqcTHcCqcCqcCqcCqcCqcCqcQBcTIcTJcTKcTLcTMcTMbKHcTNcTObKHcTMcTMcTPcTQcTQcTReCHaaaaaaaaacTScTTeCWcTVcTWcTXcTYcTZcUacUbcUccUdcUecUfcUgcUhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabBabBaaeaaeaaeabBabBabBcCqcCqcUicUjcUkcUkcUkcUkcUkcUlcUmcCqcTCcCqcUncCqcUocUpcUqcCqcUrcCqcUscUtcUucCqcGLbKHcTMcTMcTMcTMcTMcUvbKHcUwbMKbKHcUvcTMcTMcTMcTMcTMbKHaaaaaaaaacUxcUycUzcUAcUBcUCcUDcUEcUFcUGcUHcUIcUJcSHcUKcULaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

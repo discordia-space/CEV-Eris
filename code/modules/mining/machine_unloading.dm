@@ -7,18 +7,18 @@
 	icon_state = "unloader"
 	density = 1
 	anchored = 1.0
-	var/obj/machinery/mineral/input = null
-	var/obj/machinery/mineral/output = null
+	var/obj/effect/landmark/machinery/input = null
+	var/obj/effect/landmark/machinery/output = null
 
 
 /obj/machinery/mineral/unloading_machine/New()
 	..()
 	spawn( 5 )
 		for (var/dir in cardinal)
-			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
+			src.input = locate(/obj/effect/landmark/machinery/input, get_step(src, dir))
 			if(src.input) break
 		for (var/dir in cardinal)
-			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
+			src.output = locate(/obj/effect/landmark/machinery/output, get_step(src, dir))
 			if(src.output) break
 		return
 	return
