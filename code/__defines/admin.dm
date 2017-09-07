@@ -22,13 +22,13 @@
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 // Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 // Admin permissions.
-#define R_ADMIN         0x1
-#define R_FUN           0x2
-#define R_SERVER        0x4
-#define R_DEBUG         0x8
-#define R_PERMISSIONS   0x10
-#define R_MOD           0x20
-#define R_MENTOR        0x40
-#define R_HOST          0x80 //higher than this will overflow
+#define R_FUN           0x1
+#define R_SERVER        0x2
+#define R_DEBUG         0x4
+#define R_PERMISSIONS   0x8
+#define R_MOD           0x10
+#define R_MENTOR        0x20
+#define R_ADMIN         0x40
+#define R_HOST          0x80
 
 #define R_MAXPERMISSION 0x80 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
