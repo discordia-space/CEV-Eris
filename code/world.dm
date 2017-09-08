@@ -29,7 +29,7 @@ var/global/datum/global_init/init = new ()
 /datum/global_init/Destroy()
 	return 1
 
-/var/game_id = null
+var/game_id = null
 /proc/generate_gameid()
 	if(game_id != null)
 		return
@@ -139,7 +139,7 @@ var/global/datum/global_init/init = new ()
 				if(istype(T, /turf/simulated/mineral))
 					var/turf/simulated/mineral/M = T
 					M.updateMineralOverlays()
-				if(istype(T, /turf/simulated/mineral))
+				if(istype(T, /turf/simulated/floor/asteroid))
 					var/turf/simulated/floor/asteroid/M = T
 					M.updateMineralOverlays()
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
