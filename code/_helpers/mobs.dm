@@ -90,8 +90,8 @@
 		if("african")		. = -165
 		if("latino")		. = -55
 		if("albino")		. = 34
-		else				. = rand(-185,34)
-	return min(max( .+rand(-25, 25), -185),34)
+		else				. = rand(-185, 34)
+	return min(max( .+rand(-25, 25), -185), 34)
 
 /proc/skintone2racedescription(tone)
 	switch (tone)

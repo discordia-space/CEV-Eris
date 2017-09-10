@@ -53,7 +53,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_THUNDER "Thunderdome"
 
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
-var/list/restricted_camera_networks = list(NETWORK_MERCENARY,"Secret")
+var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 
 
 //singularity defines

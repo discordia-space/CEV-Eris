@@ -21,7 +21,7 @@ var/command_name = null
 	if (station_name)
 		return station_name
 
-	var/random = rand(1,5)
+	var/random = rand(1, 5)
 	var/name = ""
 
 	//Rare: Pre-Prefix
@@ -32,24 +32,24 @@ var/command_name = null
 	// Prefix
 	switch(Holiday)
 		//get normal name
-		if(null,"",0)
-			name = pick("", "Stanford", "Dorf", "Alium", "Prefix", "Clowning", "Aegis", "Ishimura", "Scaredy", "Death-World", "Mime", "Honk", "Rogue", "MacRagge", "Ultrameens", "Safety", "Paranoia", "Explosive", "Neckbear", "Donk", "Muppet", "North", "West", "East", "South", "Slant-ways", "Widdershins", "Rimward", "Expensive", "Procreatory", "Imperial", "Unidentified", "Immoral", "Carp", "Ork", "Pete", "Control", "Nettle", "Aspie", "Class", "Crab", "Fist","Corrogated","Skeleton","Race", "Fatguy", "Gentleman", "Capitalist", "Communist", "Bear", "Beard", "Derp", "Space", "Spess", "Star", "Moon", "System", "Mining", "Neckbeard", "Research", "Supply", "Military", "Orbital", "Battle", "Science", "Asteroid", "Home", "Production", "Transport", "Delivery", "Extraplanetary", "Orbital", "Correctional", "Robot", "Hats", "Pizza")
+		if(null, "", 0)
+			name = pick("", "Stanford", "Dorf", "Alium", "Prefix", "Clowning", "Aegis", "Ishimura", "Scaredy", "Death-World", "Mime", "Honk", "Rogue", "MacRagge", "Ultrameens", "Safety", "Paranoia", "Explosive", "Neckbear", "Donk", "Muppet", "North", "West", "East", "South", "Slant-ways", "Widdershins", "Rimward", "Expensive", "Procreatory", "Imperial", "Unidentified", "Immoral", "Carp", "Ork", "Pete", "Control", "Nettle", "Aspie", "Class", "Crab", "Fist", "Corrogated", "Skeleton", "Race", "Fatguy", "Gentleman", "Capitalist", "Communist", "Bear", "Beard", "Derp", "Space", "Spess", "Star", "Moon", "System", "Mining", "Neckbeard", "Research", "Supply", "Military", "Orbital", "Battle", "Science", "Asteroid", "Home", "Production", "Transport", "Delivery", "Extraplanetary", "Orbital", "Correctional", "Robot", "Hats", "Pizza")
 			if(name)
 				station_name += name + " "
 
 		//For special days like christmas, easter, new-years etc ~Carn
 		if("Friday the 13th")
-			name = pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")
+			name = pick("Mike", "Friday", "Evil", "Myers", "Murder", "Deathly", "Stabby")
 			station_name += name + " "
 			random = 13
 		else
 			//get the first word of the Holiday and use that
-			var/i = findtext(Holiday," ",1,0)
-			name = copytext(Holiday,1,i)
+			var/i = findtext(Holiday, " ", 1, 0)
+			name = copytext(Holiday, 1, i)
 			station_name += name + " "
 
 	// Suffix
-	name = pick("Station", "Fortress", "Frontier", "Suffix", "Death-trap", "Space-hulk", "Lab", "Hazard","Spess Junk", "Fishery", "No-Moon", "Tomb", "Crypt", "Hut", "Monkey", "Bomb", "Trade Post", "Fortress", "Village", "Town", "City", "Edition", "Hive", "Complex", "Base", "Facility", "Depot", "Outpost", "Installation", "Drydock", "Observatory", "Array", "Relay", "Monitor", "Platform", "Construct", "Hangar", "Prison", "Center", "Port", "Waystation", "Factory", "Waypoint", "Stopover", "Hub", "HQ", "Office", "Object", "Fortification", "Colony", "Planet-Cracker", "Roost", "Fat Camp")
+	name = pick("Station", "Fortress", "Frontier", "Suffix", "Death-trap", "Space-hulk", "Lab", "Hazard", "Spess Junk", "Fishery", "No-Moon", "Tomb", "Crypt", "Hut", "Monkey", "Bomb", "Trade Post", "Fortress", "Village", "Town", "City", "Edition", "Hive", "Complex", "Base", "Facility", "Depot", "Outpost", "Installation", "Drydock", "Observatory", "Array", "Relay", "Monitor", "Platform", "Construct", "Hangar", "Prison", "Center", "Port", "Waystation", "Factory", "Waypoint", "Stopover", "Hub", "HQ", "Office", "Object", "Fortification", "Colony", "Planet-Cracker", "Roost", "Fat Camp")
 	station_name += name + " "
 
 	// ID Number
@@ -65,7 +65,7 @@ var/command_name = null
 		if(5)
 			station_name += pick("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen")
 		if(13)
-			station_name += pick("13","XIII","Thirteen")
+			station_name += pick("13", "XIII", "Thirteen")
 
 
 	if (config && config.server_name)
@@ -124,7 +124,7 @@ var/syndicate_code_response//Code response for traitors.
 	/*
 	Should be expanded.
 	How this works:
-	Instead of "I'm looking for James Smith," the traitor would say "James Smith" as part of a conversation.
+	Instead of "I'm looking for James Smith, " the traitor would say "James Smith" as part of a conversation.
 	Another traitor may then respond with: "They enjoy running through the void-filled vacuum of the derelict."
 	The phrase should then have the words: James Smith.
 	The response should then have the words: run, void, and derelict.
@@ -145,9 +145,9 @@ var/syndicate_code_response//Code response for traitors.
 		25; 5
 	)
 
-	var/safety[] = list(1,2,3)//Tells the proc which options to remove later on.
-	var/nouns[] = list("love","hate","anger","peace","pride","sympathy","bravery","loyalty","honesty","integrity","compassion","charity","success","courage","deceit","skill","beauty","brilliance","pain","misery","beliefs","dreams","justice","truth","faith","liberty","knowledge","thought","information","culture","trust","dedication","progress","education","hospitality","leisure","trouble","friendships", "relaxation")
-	var/drinks[] = list("vodka and tonic","gin fizz","bahama mama","manhattan","black Russian","whiskey soda","long island tea","margarita","Irish coffee"," manly dwarf","Irish cream","doctor's delight","Beepksy Smash","tequilla sunrise","brave bull","gargle blaster","bloody mary","whiskey cola","white Russian","vodka martini","martini","Cuba libre","kahlua","vodka","wine","moonshine")
+	var/safety[] = list(1, 2, 3)//Tells the proc which options to remove later on.
+	var/nouns[] = list("love", "hate", "anger", "peace", "pride", "sympathy", "bravery", "loyalty", "honesty", "integrity", "compassion", "charity", "success", "courage", "deceit", "skill", "beauty", "brilliance", "pain", "misery", "beliefs", "dreams", "justice", "truth", "faith", "liberty", "knowledge", "thought", "information", "culture", "trust", "dedication", "progress", "education", "hospitality", "leisure", "trouble", "friendships", "relaxation")
+	var/drinks[] = list("vodka and tonic", "gin fizz", "bahama mama", "manhattan", "black Russian", "whiskey soda", "long island tea", "margarita", "Irish coffee", " manly dwarf", "Irish cream", "doctor's delight", "Beepksy Smash", "tequilla sunrise", "brave bull", "gargle blaster", "bloody mary", "whiskey cola", "white Russian", "vodka martini", "martini", "Cuba libre", "kahlua", "vodka", "wine", "moonshine")
 	var/locations[] = teleportlocs.len ? teleportlocs : drinks//if null, defaults to drinks instead.
 
 	var/names[] = list()
@@ -156,35 +156,35 @@ var/syndicate_code_response//Code response for traitors.
 
 	var/maxwords = words//Extra var to check for duplicates.
 
-	for(words,words>0,words--)//Randomly picks from one of the choices below.
+	for(words, words>0, words--)//Randomly picks from one of the choices below.
 
 		if(words==1&&(1 in safety)&&(2 in safety))//If there is only one word remaining and choice 1 or 2 have not been selected.
-			safety = list(pick(1,2))//Select choice 1 or 2.
+			safety = list(pick(1, 2))//Select choice 1 or 2.
 		else if(words==1&&maxwords==2)//Else if there is only one word remaining (and there were two originally), and 1 or 2 were chosen,
 			safety = list(3)//Default to list 3
 
 		switch(pick(safety))//Chance based on the safety list.
 			if(1)//1 and 2 can only be selected once each to prevent more than two specific names/places/etc.
-				switch(rand(1,2))//Mainly to add more options later.
+				switch(rand(1, 2))//Mainly to add more options later.
 					if(1)
 						if(names.len&&prob(70))
 							code_phrase += pick(names)
 						else
-							code_phrase += pick(pick(first_names_male,first_names_female))
+							code_phrase += pick(pick(first_names_male, first_names_female))
 							code_phrase += " "
 							code_phrase += pick(last_names)
 					if(2)
 						code_phrase += pick(joblist)//Returns a job.
 				safety -= 1
 			if(2)
-				switch(rand(1,2))//Places or things.
+				switch(rand(1, 2))//Places or things.
 					if(1)
 						code_phrase += pick(drinks)
 					if(2)
 						code_phrase += pick(locations)
 				safety -= 2
 			if(3)
-				switch(rand(1,3))//Nouns, adjectives, verbs. Can be selected more than once.
+				switch(rand(1, 3))//Nouns, adjectives, verbs. Can be selected more than once.
 					if(1)
 						code_phrase += pick(nouns)
 					if(2)

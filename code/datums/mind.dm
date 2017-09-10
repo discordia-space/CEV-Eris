@@ -105,7 +105,7 @@
 			output += "<B>Objective #[obj_count]</B>: <div>[objective.explanation_text]</div>"
 			obj_count++
 
-	recipient << browse(output,"window=memory")
+	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
 	if(!ticker || !ticker.mode)
@@ -251,7 +251,7 @@
 					var/crystals
 					if (suplink)
 						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]","Operative uplink", crystals) as null|num
+					crystals = input("Amount of telecrystals for [key]", "Operative uplink", crystals) as null|num
 					if (!isnull(crystals))
 						if (suplink)
 							suplink.uses = crystals
