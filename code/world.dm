@@ -76,7 +76,7 @@ var/game_id = null
 		config.server_name += " #[(world.port % 1000) / 100]"
 
 	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+		log = file("data/logs/runtime/[time2text(world.realtime, "YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
 	//Emergency Fix
@@ -115,7 +115,7 @@ var/game_id = null
 					// If it's still not a number, we probably got fed some nonsense string.
 					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
 				// Now for the actual map generating.  This occurs for every z-level defined in the config.
-				new /datum/random_map/automata/cave_system(null,1,1,z_level,300,300)
+				new /datum/random_map/automata/cave_system(null, 1, 1, z_level, 300, 300)
 				// Let's add ore too.
 				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
 		else
@@ -178,7 +178,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				n++
 		return n
 
-	else if (copytext(T,1,7) == "status")
+	else if (copytext(T, 1, 7) == "status")
 		var/input[] = params2list(T)
 		var/list/s = list()
 		s["version"] = game_version
@@ -267,7 +267,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		else
 			return "unknown"
 
-	else if(copytext(T,1,5) == "info")
+	else if(copytext(T, 1, 5) == "info")
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
@@ -344,7 +344,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				ret[M.key] = M.name
 			return list2params(ret)
 
-	else if(copytext(T,1,9) == "adminmsg")
+	else if(copytext(T, 1, 9) == "adminmsg")
 		/*
 			We got an adminmsg from IRC bot lets split the input then validate the input.
 			expected output:
@@ -398,7 +398,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		return "Message Successful"
 
-	else if(copytext(T,1,6) == "notes")
+	else if(copytext(T, 1, 6) == "notes")
 		/*
 			We got a request for notes from the IRC Bot
 			expected output:
@@ -461,7 +461,7 @@ var/world_topic_spam_protect_time = world.timeofday
 /proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
-	config.load("config/game_options.txt","game_options")
+	config.load("config/game_options.txt", "game_options")
 	config.loadsql("config/dbconfig.txt")
 
 /hook/startup/proc/loadMods()
@@ -589,7 +589,7 @@ proc/setup_database_connection()
 	var/address = sqladdress
 	var/port = sqlport
 
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	dbcon.Connect("dbi:mysql:[db]:[address]:[port]", "[user]", "[pass]")
 	. = dbcon.IsConnected()
 	if ( . )
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
