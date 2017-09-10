@@ -12,7 +12,7 @@
 
 /obj/machinery/mineral/processing_unit_console/New()
 	..()
-	spawn(7)
+	spawn()
 		src.machine = locate(/obj/machinery/mineral/processing_unit) in range(3, src)
 		if (machine)
 			machine.console = src
@@ -106,8 +106,6 @@
 	density = 1
 	anchored = 1
 	light_range = 3
-	var/obj/effect/landmark/machinery/input = null
-	var/obj/effect/landmark/machinery/output = null
 	var/obj/machinery/mineral/console = null
 	var/sheets_per_tick = 10
 	var/list/ores_processing[0]
@@ -133,19 +131,19 @@
 			ores_processing[OD.name] = 0
 			ores_stored[OD.name] = 0
 
-	//Locate our output and input machinery.
-
-	var/obj/marker = null
-	marker = locate(/obj/effect/landmark/machinery/input) in orange(1)
-	input_dir = get_dir(src, marker)
-	marker = locate(/obj/effect/landmark/machinery/output) in orange(1)
-	output_dir = get_dir(src, marker)
-
-	return
+	spawn()
+		//Locate our output and input machinery.
+		var/obj/marker = null
+		marker = locate(/obj/effect/landmark/machinery/input) in range(1, loc)
+		if(marker)
+			input_dir = get_dir(src, marker)
+		marker = locate(/obj/effect/landmark/machinery/output) in range(1, loc)
+		if(marker)
+			output_dir = get_dir(src, marker)
 
 /obj/machinery/mineral/processing_unit/process()
 
-	if (!src.output || !src.input) return
+	if (!output_dir || !input_dir) return
 
 	var/list/tick_alloys = list()
 
@@ -204,7 +202,7 @@
 							sheets += total-1
 
 						for(var/i=0,i<total,i++)
-							new A.product(output.loc)
+							new A.product(get_step(src, output_dir))
 
 			else if(ores_processing[metal] == 2 && O.compresses_to) //Compressing.
 
@@ -219,7 +217,7 @@
 				for(var/i=0,i<can_make,i+=2)
 					ores_stored[metal]-=2
 					sheets+=2
-					new M.stack_type(output.loc)
+					new M.stack_type(get_step(src, output_dir))
 
 			else if(ores_processing[metal] == 1 && O.smelts_to) //Smelting.
 
@@ -232,11 +230,11 @@
 				for(var/i=0,i<can_make,i++)
 					ores_stored[metal]--
 					sheets++
-					new M.stack_type(output.loc)
+					new M.stack_type(get_step(src, output_dir))
 			else
 				ores_stored[metal]--
 				sheets++
-				new /obj/item/weapon/ore/slag(output.loc)
+				new /obj/item/weapon/ore/slag(get_step(src, output_dir))
 		else
 			continue
 

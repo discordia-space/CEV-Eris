@@ -102,6 +102,10 @@
 	delete_me = 1
 
 /obj/effect/landmark/machinery
+	invisibility = 0
+
+/obj/effect/landmark/machinery/New()
+	delete_me = 1
 
 /obj/effect/landmark/machinery/input
 	icon_state = "in-blue"
