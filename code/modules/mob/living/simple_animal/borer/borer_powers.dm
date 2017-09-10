@@ -178,7 +178,6 @@
 		H.daemonize()
 
 	if(src.mind)
-		src.mind.special_role = "Borer Husk"
 		src.mind.transfer_to(host)
 
 	H.ChangeToHusk()

@@ -5,20 +5,12 @@
 	mob_path = /mob/living/simple_animal/borer
 	bantype = "Borer"
 	welcome_text = "Use your Infest power to crawl into the ear of a host and fuse with their brain. You can only take control temporarily, and at risk of hurting your host, so be clever and careful; your host is encouraged to help you however they can. Talk to your fellow borers with :x."
-	antag_indicator = "brainworm"
-	antaghud_indicator = "hudborer"
 
-	faction_role_text = "Borer Thrall"
+/*	faction_role_text = "Borer Thrall"
 	faction_descriptor = "Unity"
 	faction_welcome = "You are now a thrall to a cortical borer. Please listen to what they have to say; they're in your head."
 	faction = "borer"
-
-	initial_spawn_req = 3
-	initial_spawn_target = 5
-
-/datum/antagonist/xenos/borer/New()
-	..(1)
-	borers = src
+*/
 
 /datum/antagonist/xenos/borer/get_extra_panel_options(var/datum/mind/player)
 	return "<a href='?src=\ref[src];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
@@ -30,7 +22,7 @@
 	new /datum/objective/borer_reproduce (player)
 	new /datum/objective/escape (player)
 
-/datum/antagonist/xenos/borer/place_mob(var/mob/living/mob)
+/datum/antagonist/xenos/borer/place_antagonist(var/mob/living/mob)
 	var/mob/living/simple_animal/borer/borer = mob
 	if(istype(borer))
 		var/mob/living/carbon/human/host

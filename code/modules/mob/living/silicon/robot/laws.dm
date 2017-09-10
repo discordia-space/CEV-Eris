@@ -21,7 +21,7 @@
 				photosync()
 				src << "<b>Laws synced with AI, be sure to note any changes.</b>"
 				// TODO: Update to new antagonist system.
-				if(mind && mind.special_role == "traitor" && mind.original == src)
+				if(mind && player_is_antag(mind) && mind.original == src)
 					src << "<b>Remember, your AI does NOT share or know about your law 0.</b>"
 		else
 			src << "<b>No AI selected to sync laws with, disabling lawsync protocol.</b>"
@@ -30,7 +30,7 @@
 	who << "<b>Obey these laws:</b>"
 	laws.show_laws(who)
 	// TODO: Update to new antagonist system.
-	if (mind && (mind.special_role == "traitor" && mind.original == src) && connected_ai)
+	if (mind && (player_is_antag(mind) && mind.original == src) && connected_ai)
 		who << "<b>Remember, [connected_ai.name] is technically your master, but your objective comes first.</b>"
 	else if (connected_ai)
 		who << "<b>Remember, [connected_ai.name] is your master, other AIs can be ignored.</b>"

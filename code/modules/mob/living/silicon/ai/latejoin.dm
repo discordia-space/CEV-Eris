@@ -33,10 +33,6 @@ var/global/list/empty_playable_ai_cores = list()
 
 	job_master.FreeRole(job)
 
-	if(mind.objectives.len)
-		qdel(mind.objectives)
-		mind.special_role = null
-
 	clear_antagonist(mind)
 
 	daemonize()

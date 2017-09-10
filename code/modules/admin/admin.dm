@@ -1163,30 +1163,6 @@ proc/admin_notice(var/message, var/rights)
 	qdel(frommob)
 	return 1
 
-/datum/admins/proc/force_antag_latespawn()
-	set category = "Admin"
-	set name = "Force Template Spawn"
-	set desc = "Force an antagonist template to spawn."
-
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
-		return
-
-	if(!ticker || !ticker.mode)
-		usr << "Mode has not started."
-		return
-
-	var/antag_type = input("Choose a template.","Force Latespawn") as null|anything in all_antag_types
-	if(!antag_type || !all_antag_types[antag_type])
-		usr << "Aborting."
-		return
-
-	var/datum/antagonist/antag = all_antag_types[antag_type]
-	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
-	antag.attempt_auto_spawn()
-
 /datum/admins/proc/force_mode_latespawn()
 	set category = "Admin"
 	set name = "Force Mode Spawn"

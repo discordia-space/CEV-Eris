@@ -137,7 +137,7 @@
 			if(!ok)
 				return
 
-			if(antag.create_antagonist(src)) // Ignore equipment and role type for this.
+			if(antag.create_antagonist(src))
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
 				usr << "<span class='warning'>[src] could not be made into a [antag.role_text]!</span>"
@@ -295,10 +295,6 @@
 	..()
 	mind.assigned_role = "slime"
 
-/mob/living/carbon/alien/larva/mind_initialize()
-	..()
-	mind.special_role = "Larva"
-
 //AI
 /mob/living/silicon/ai/mind_initialize()
 	..()
@@ -313,7 +309,6 @@
 /mob/living/silicon/pai/mind_initialize()
 	..()
 	mind.assigned_role = "pAI"
-	mind.special_role = ""
 
 //Animals
 /mob/living/simple_animal/mind_initialize()

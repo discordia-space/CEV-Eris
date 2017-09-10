@@ -32,7 +32,7 @@
 		spawn(600)
 			qdel(src)
 
-
+/*
 // SINGULO BEACON SPAWNER
 
 /obj/item/device/radio/beacon/syndicate
@@ -47,3 +47,4 @@
 		playsound(src, 'sound/effects/pop.ogg', 100, 1, 1)
 		qdel(src)
 	return
+*/

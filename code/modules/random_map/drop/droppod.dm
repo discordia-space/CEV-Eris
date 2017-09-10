@@ -147,6 +147,7 @@
 				drop.buckled = null
 			drop.forceMove(T)
 
+
 /datum/admins/proc/call_drop_pod()
 	set category = "Fun"
 	set desc = "Call an immediate drop pod on your location."
@@ -190,12 +191,12 @@
 		spawned_mob.tag = "awaiting drop"
 
 		// Equip them, if they are human and it is desirable.
-		if(ishuman(spawned_mob))
+/*		if(ishuman(spawned_mob))
 			var/antag_type = input("Select an equipment template to use or cancel for nude.", null) as null|anything in all_antag_types
 			if(antag_type)
 				var/datum/antagonist/A = all_antag_types[antag_type]
 				A.equip(spawned_mob)
-
+*/
 	if(alert("Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.",,"No","Yes") == "No")
 		if(spawned_mob)
 			qdel(spawned_mob)
@@ -225,3 +226,4 @@
 		return
 
 	new /datum/random_map/droppod(null, usr.x-1, usr.y-1, usr.z, supplied_drops = spawned_mobs, automated = automatic_pod)
+

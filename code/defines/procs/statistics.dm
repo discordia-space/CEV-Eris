@@ -29,7 +29,7 @@ proc/sql_report_death(var/mob/living/carbon/human/H)
 	var/sqlname = sanitizeSQL(H.real_name)
 	var/sqlkey = sanitizeSQL(H.key)
 	var/sqlpod = sanitizeSQL(podname)
-	var/sqlspecial = sanitizeSQL(H.mind.special_role)
+	var/sqlspecial = sanitizeSQL("antag")
 	var/sqljob = sanitizeSQL(H.mind.assigned_role)
 	var/laname
 	var/lakey
@@ -62,7 +62,7 @@ proc/sql_report_cyborg_death(var/mob/living/silicon/robot/H)
 	var/sqlname = sanitizeSQL(H.real_name)
 	var/sqlkey = sanitizeSQL(H.key)
 	var/sqlpod = sanitizeSQL(podname)
-	var/sqlspecial = sanitizeSQL(H.mind.special_role)
+	var/sqlspecial = sanitizeSQL("antag")
 	var/sqljob = sanitizeSQL(H.mind.assigned_role)
 	var/laname
 	var/lakey
