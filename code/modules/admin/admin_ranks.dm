@@ -116,7 +116,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		var/rank = query.item[3]
 
 		var/permissions = load_permissions(id)
-		var/datum/admins/D = new /datum/admins(rank, rights, ckey)
+		var/datum/admins/D = new /datum/admins(rank, permissions, ckey)
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
 		D.associate(directory[ckey])
