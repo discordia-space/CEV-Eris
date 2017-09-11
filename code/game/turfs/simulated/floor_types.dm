@@ -104,9 +104,7 @@
 		if(!isnull(burnt) && (flags & TURF_CAN_BURN))
 			overlays |= get_flooring_overlayu("[icon_base]-burned-[burnt]", "burned[burnt]")
 	if(update_neighbors)
-		for(var/turf/simulated/floor/F in range(src, 1))
-			if(F == src)
-				continue
+		for(var/turf/simulated/floor/F in trange(1, src) - src)
 			F.update_icon()
 
 /turf/simulated/floor/plating/under/proc/get_flooring_overlayu(var/cache_key, var/icon_base, var/icon_dir = 0)
