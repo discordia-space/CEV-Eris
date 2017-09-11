@@ -974,7 +974,7 @@ proc/admin_notice(var/message, var/rights)
 
 	M.mind.edit_memory()
 
-
+/*
 /datum/admins/proc/show_game_mode()
 	set category = "Admin"
 	set desc = "Show the current round storyteller."
@@ -1004,7 +1004,7 @@ proc/admin_notice(var/message, var/rights)
 	out += " <a href='?src=\ref[ticker.mode];add_antag_type=1'>\[+\]</a><br/>"
 
 	usr << browse(out, "window=edit_mode[src]")
-
+*/
 
 
 /datum/admins/proc/toggletintedweldhelmets()
@@ -1163,6 +1163,7 @@ proc/admin_notice(var/message, var/rights)
 	qdel(frommob)
 	return 1
 
+/*
 /datum/admins/proc/force_mode_latespawn()
 	set category = "Admin"
 	set name = "Force Mode Spawn"
@@ -1180,6 +1181,7 @@ proc/admin_notice(var/message, var/rights)
 
 	log_and_message_admins("attempting to force mode autospawn.")
 	ticker.mode.process_autoantag()
+*/
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin"

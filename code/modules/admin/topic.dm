@@ -6,7 +6,7 @@
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
 
-	if(ticker.storyteller && ticker.storyteller.check_antagonists_topic(href, href_list))
+	if(ticker.storyteller)
 		check_antagonists()
 		return
 
