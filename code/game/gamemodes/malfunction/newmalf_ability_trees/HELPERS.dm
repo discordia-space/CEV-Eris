@@ -68,6 +68,7 @@
 	var/help = file2text('html/ingame_manuals/malf_ai.html')
 	if(!help)
 		help = "Error loading help (file html/ingame_manuals/malf_ai.html is probably missing). Please report this to server administration staff."
+		error("Failed to load html/ingame_manuals/malf_ai.html.")
 
 	user << browse(help, "window=malf_ai_help;size=600x500")
 
