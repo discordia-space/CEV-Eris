@@ -189,7 +189,7 @@ Thus, the two variables affect pump operation are set in New():
 	ui_interact(user)
 	return
 
-/obj/machinery/atmospherics/binary/pump/Topic(href,href_list)
+/obj/machinery/atmospherics/binary/pump/Topic(href, href_list)
 	if(..()) return 1
 
 	if(href_list["power"])
@@ -201,7 +201,7 @@ Thus, the two variables affect pump operation are set in New():
 		if ("max")
 			target_pressure = max_pressure_setting
 		if ("set")
-			var/new_pressure = input(usr,"Enter new output pressure (0-[max_pressure_setting]kPa)","Pressure control",src.target_pressure) as num
+			var/new_pressure = input(usr, "Enter new output pressure (0-[max_pressure_setting]kPa)", "Pressure control", src.target_pressure) as num
 			src.target_pressure = between(0, new_pressure, max_pressure_setting)
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)

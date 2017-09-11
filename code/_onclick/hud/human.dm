@@ -75,8 +75,8 @@
 		var/icon/ico
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
+		ico.MapColors(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1)
+		ico.DrawBox(rgb(255, 255, 255, 1), 1, ico.Height()/2, ico.Width()/2, ico.Height())
 		using = new /obj/screen( src )
 		using.name = I_HELP
 		using.icon = ico
@@ -87,8 +87,8 @@
 		help_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
+		ico.MapColors(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1)
+		ico.DrawBox(rgb(255, 255, 255, 1), ico.Width()/2, ico.Height()/2, ico.Width(), ico.Height())
 		using = new /obj/screen( src )
 		using.name = I_DISARM
 		using.icon = ico
@@ -99,8 +99,8 @@
 		disarm_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
+		ico.MapColors(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1)
+		ico.DrawBox(rgb(255, 255, 255, 1), ico.Width()/2, 1, ico.Width(), ico.Height()/2)
 		using = new /obj/screen( src )
 		using.name = I_GRAB
 		using.icon = ico
@@ -111,8 +111,8 @@
 		grab_intent = using
 
 		ico = new(ui_style, "black")
-		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
+		ico.MapColors(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1)
+		ico.DrawBox(rgb(255, 255, 255, 1), 1, 1, ico.Width()/2, ico.Height()/2)
 		using = new /obj/screen( src )
 		using.name = I_HURT
 		using.icon = ico
@@ -302,7 +302,7 @@
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
-	mymob.blind.screen_loc = "1,1"
+	mymob.blind.screen_loc = "1, 1"
 	mymob.blind.mouse_opacity = 0
 	mymob.blind.layer = 18
 	mymob.blind.alpha = 0
@@ -312,7 +312,7 @@
 	mymob.damageoverlay.icon = 'icons/mob/screen1_full.dmi'
 	mymob.damageoverlay.icon_state = "oxydamageoverlay0"
 	mymob.damageoverlay.name = "dmg"
-	mymob.damageoverlay.screen_loc = "1,1"
+	mymob.damageoverlay.screen_loc = "1, 1"
 	mymob.damageoverlay.mouse_opacity = 0
 	mymob.damageoverlay.layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	hud_elements |= mymob.damageoverlay

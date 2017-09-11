@@ -152,7 +152,7 @@
 
 	if(scrubbing && power_draw <= 0)	//99% of all scrubbers
 		//Fucking hibernate because you ain't doing shit.
-		hibernate = world.time + (rand(100,200))
+		hibernate = world.time + (rand(100, 200))
 
 	if (power_draw >= 0)
 		last_power_draw = power_draw

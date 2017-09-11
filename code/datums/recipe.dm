@@ -80,7 +80,7 @@
 			var/found = 0
 			for(var/i = 1; i < checklist.len+1; i++)
 				var/item_type = checklist[i]
-				if (istype(O,item_type))
+				if (istype(O, item_type))
 					checklist.Cut(i, i+1)
 					found = 1
 					break

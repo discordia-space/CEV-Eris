@@ -202,8 +202,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 /obj/effect/bgstar/New()
 	..()
-	pixel_x += rand(-2,30)
-	pixel_y += rand(-2,30)
+	pixel_x += rand(-2, 30)
+	pixel_y += rand(-2, 30)
 	var/starnum = pick("1", "1", "1", "2", "3", "4")
 
 	icon_state = "star"+starnum
@@ -234,7 +234,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	spawning = TRUE
 	while(spawning)
 		sleep(rand(2, 30))
-		var/obj/effect/bgstar/S = new/obj/effect/bgstar(locate(x,y,z))
+		var/obj/effect/bgstar/S = new/obj/effect/bgstar(locate(x, y, z))
 		S.direction = spawndir
 		spawn()
 			S.startmove()
