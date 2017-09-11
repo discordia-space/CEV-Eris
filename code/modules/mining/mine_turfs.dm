@@ -34,8 +34,11 @@
 	has_resources = 1
 
 /turf/simulated/mineral/New()
+	..()
 	spawn(0)
 		MineralSpread()
+
+/turf/simulated/mineral/initialize()
 	spawn(2)
 		updateMineralOverlays(1)
 
@@ -423,7 +426,7 @@
 		'sound/effects/footstep/asteroid5.ogg'))
 
 /turf/simulated/floor/asteroid/New()
-
+	..()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
 
