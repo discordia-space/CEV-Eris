@@ -93,7 +93,10 @@
 	output += memory
 
 	for(var/datum/antagonist/A in antagonist)
-		output += "<br><b>Your [A.role_text] objectives:</b>"
+		if(A.faction)
+			output += "<br><b>Your [A.faction.name] faction objectives:</b>"
+		else
+			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
 
 	recipient << browse(output,"window=memory")

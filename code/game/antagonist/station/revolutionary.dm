@@ -1,24 +1,9 @@
-var/datum/antagonist/revolutionary/revs
-
 /datum/antagonist/revolutionary
 	id = ROLE_REVOLUTIONARY
 	role_text = "Head Revolutionary"
 	role_text_plural = "Revolutionaries"
 	bantype = "revolutionary"
-	feedback_tag = "rev_objective"
-	antag_indicator = "rev_head"
 	welcome_text = "Down with the capitalists! Down with the Bourgeoise!"
-	victory_text = "The heads of staff were relieved of their posts! The revolutionaries win!"
-	loss_text = "The heads of staff managed to stop the revolution!"
-	victory_feedback_tag = "win - heads killed"
-	loss_feedback_tag = "loss - rev heads killed"
-	flags = ANTAG_SUSPICIOUS | ANTAG_VOTABLE
-	antaghud_indicator = "hudrevolutionary"
-
-	hard_cap = 2
-	hard_cap_round = 4
-	initial_spawn_req = 2
-	initial_spawn_target = 4
 
 	//Inround revs.
 	faction_role_text = "Revolutionary"
@@ -32,12 +17,24 @@ var/datum/antagonist/revolutionary/revs
 	restricted_jobs = list("AI", "Cyborg","Captain", "First Officer", "Ironhammer Commander", "Technomancer Exultant", "Moebius Expedition Overseer", "Moebius Biolab Officer")
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Medical Specialist")
 
+/datum/faction/revolutionary
+	id = FACTION_REVOLUTIONARY
+	name = "Revolution"
+	description = "Viva la revolution!"
+	welcome_text = "Help the cause overturn the ruling class. Do not harm your fellow freedom fighters."
+	faction_invisible = TRUE
+	faction_indicator = "rev"
 
-/datum/antagonist/revolutionary/New()
-	..()
-	revs = src
+	antag = "Revolutionary"
+	antag_plural = "Revolutionaries"
 
-/datum/antagonist/revolutionary/create_global_objectives()
+	leader_verbs = list(/mob/living/proc/convert_to_rev)
+
+/mob/living/proc/convert_to_rev(mob/M as mob in oview(src))
+	set name = "Convert Bourgeoise"
+	set category = "Abilities"
+
+/datum/faction/revolutionary/create_objectives()
 	if(!..())
 		return
 	global_objectives = list()

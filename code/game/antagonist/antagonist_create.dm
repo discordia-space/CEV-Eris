@@ -1,4 +1,4 @@
-/datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction)
+/datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE)
 	if(!istype(target) || !target.current || !can_become_antag(target))
 		return FALSE
 
@@ -13,7 +13,9 @@
 	if(!objectives || !objectives.len)
 		create_objectives()
 
-	equip()
+	if(doequip)
+		equip()
+
 	BITSET(target.current.hud_updateflag, SPECIALROLE_HUD)
 	greet()
 	return TRUE

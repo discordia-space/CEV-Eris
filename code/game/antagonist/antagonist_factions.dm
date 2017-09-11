@@ -1,7 +1,9 @@
 /datum/faction
-	var/name = "faction"
 	var/id = "faction"
-	var/antag = "antag"
+	var/name = "faction"	//name displayed in many places
+	var/description = "This is faction."
+	var/antag = "antag"		//name for the faction members
+	var/antag_plural = "antags"
 	var/welcome_text = "Hello, antagonist!"
 
 	var/hud_indicator = null
@@ -9,13 +11,14 @@
 
 	var/list/faction_icons = list()
 
-	var/list/possible_antags = list()
+	var/list/possible_antags = list()	//List of antag ids, that can join this faction. If empty, anybody can join
 
 	var/list/objectives = list()
 	var/list/members = list()
 	var/list/leaders = list()
 
-	var/list/verbs = list()
+	var/list/verbs = list()	//List of verbs, used by this faction members
+	var/list/leader_verbs = list()
 
 /datum/faction/New()
 	if(!current_factions[id])
@@ -24,29 +27,43 @@
 
 	create_objectives()
 
+/datum/faction/proc/convert()
+	return FALSE
+
 /datum/faction/proc/add_member(var/datum/antagonist/member)
 	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
 		return
-	if(!(member.id in possible_antags))
+	if(possible_antags.len && !(member.id in possible_antags))
 		return
 
 	members.Add(member)
 	member.faction = src
-
-	member.objectives = objectives
+	member.owner.current << SPAN_NOTICE("You became a member of the [name].")
+	member.set_objectives(objectives)
 
 	member.owner.current.verbs |= verbs
 	add_icons()
 	update_members()
 
 /datum/faction/proc/add_leader(var/datum/antagonist/member)
-	if(!member || member in leaders)
+	if(!member || member in leaders || !member.owner.current)
 		return
 
 	if(!(member in members))
 		add_member(member)
 
 	leaders.Add(member)
+	member.owner.current.verbs |= leader_verbs
+	member.owner.current << SPAN_NOTICE("You became a <b>leader</b> of the [name].")
+	update_members()
+
+/datum/faction/proc/remove_leader(var/datum/antagonist/member)
+	if(!member || !(member in leaders) || !member.owner.current)
+		return
+
+	leaders.Remove(member)
+	member.owner.current << SPAN_WARNING("You are no longer the <b>leader</b> of the [name].")
+	member.owner.current.verbs.Remove(leader_verbs)
 
 	update_members()
 
@@ -58,6 +75,7 @@
 
 	members.Remove(member)
 	leaders.Remove(member)
+	member.owner.current << SPAN_WARNING("You are no longer a member of the [name].")
 
 	if(member.owner && member.owner.current)
 		member.owner.current.verbs.Remove(verbs)
@@ -74,11 +92,20 @@
 
 /datum/faction/proc/create_objectives()
 
-/datum/faction/proc/update_members()
-	if(!members.len)
-		remove_faction()
-		return
+/datum/faction/proc/set_objectives(var/list/new_objs)
+	objectives = new_objs
 
+	for(var/datum/antagonist/A in members)
+		A.set_objectives(new_objs)
+
+/datum/faction/proc/update_members()
+	var/leaders_alive = FALSE
+	for(var/datum/antagonist/A in leaders)
+		if(A.is_active())
+			leaders_alive = TRUE
+
+	if(!members.len || !leaders_alive)
+		remove_faction()
 
 /datum/faction/proc/customize(var/mob/leader)
 

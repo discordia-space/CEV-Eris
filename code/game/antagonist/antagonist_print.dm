@@ -2,7 +2,10 @@
 	if(!owner || !owner.current)
 		return
 
-	var/text = "<span class='notice'>Your current objectives:</span><br>"
+	var/text = "<span class='notice'>Your current [role_text] objectives:</span><br>"
+
+	if(faction)
+		text = "<span class='notice'>Your current [faction.name] faction objectives:</span><br>"
 
 	text += print_objectives(FALSE)
 

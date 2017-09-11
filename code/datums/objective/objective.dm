@@ -17,9 +17,10 @@ var/global/list/all_objectives_types = null
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = FALSE				//currently only used for custom objectives.
 
-/datum/objective/New(var/datum/antagonist/new_owner)
+/datum/objective/New(var/datum/antagonist/new_owner, var/add_to_list = TRUE)
 	antag = new_owner
-	antag.objectives += src
+	if(add_to_list)
+		antag.objectives += src
 	if(antag.owner)
 		owner = antag.owner
 	find_target()

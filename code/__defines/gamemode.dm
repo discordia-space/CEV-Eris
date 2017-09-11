@@ -46,7 +46,7 @@
 
 #define ROLE_BORER_CARRIER "borer_carrier"
 
-#define FACTION_REVOLUTION "revolution"
+#define FACTION_REVOLUTIONARY "revolutionary"
 #define FACTION_BORERS "borers"
 #define FACTION_XENOMORPHS "xenomorphs"
 
