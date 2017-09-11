@@ -39,17 +39,17 @@ datum/controller/vote
 				result()
 				for(var/client/C in voting)
 					if(C)
-						C << browse(null,"window=vote")
+						C << browse(null, "window=vote")
 				reset()
 			else
 				for(var/client/C in voting)
 					if(C)
-						C << browse(vote.interface(C),"window=vote")
+						C << browse(vote.interface(C), "window=vote")
 
 				voting.Cut()
 
 	proc/autogamemode()
-		initiate_vote("gamemode","the server", 1)
+		initiate_vote("gamemode", "the server", 1)
 		log_debug("The server has called a gamemode vote")
 
 	proc/reset()
@@ -182,7 +182,7 @@ datum/controller/vote
 			reset()
 			switch(vote_type)
 				if("restart")
-					choices.Add("Restart Round","Continue Playing")
+					choices.Add("Restart Round", "Continue Playing")
 				if("gamemode")
 					if(ticker.current_state >= 2)
 						return 0
@@ -203,10 +203,10 @@ datum/controller/vote
 							choices.Add(antag.role_text)
 					choices.Add("None")
 				if("custom")
-					cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
+					cp1251_to_utf8(rhtml_encode(input(usr, "What is the vote for?") as text|null))
 					if(!question)	return 0
-					for(var/i=1,i<=10,i++)
-						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))
+					for(var/i=1, i<=10, i++)
+						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr, "Please enter an option or hit cancel to finish") as text|null)))
 						if(!option || mode || !usr.client)	break
 						choices.Add(option)
 				else
@@ -305,7 +305,7 @@ datum/controller/vote
 		return .
 
 
-	Topic(href,href_list[],hsrc)
+	Topic(href, href_list[],hsrc)
 		if(!usr || !usr.client)	return	//not necessary but meh...just in-case somebody does something stupid
 		switch(href_list["vote"])
 			if("close")
@@ -323,16 +323,16 @@ datum/controller/vote
 					config.allow_vote_mode = !config.allow_vote_mode
 			if("restart")
 				if(config.allow_vote_restart || usr.client.holder)
-					initiate_vote("restart",usr.key)
+					initiate_vote("restart", usr.key)
 			if("gamemode")
 				if(config.allow_vote_mode || usr.client.holder)
-					initiate_vote("gamemode",usr.key)
+					initiate_vote("gamemode", usr.key)
 			if("add_antagonist")
 				if(config.allow_extra_antags)
-					initiate_vote("add_antagonist",usr.key)
+					initiate_vote("add_antagonist", usr.key)
 			if("custom")
 				if(usr.client.holder)
-					initiate_vote("custom",usr.key)
+					initiate_vote("custom", usr.key)
 			else
 				var/t = round(text2num(href_list["vote"]))
 				if(t) // It starts from 1, so there's no problem
@@ -345,4 +345,4 @@ datum/controller/vote
 	set name = "Vote"
 
 	if(vote)
-		src << browse(vote.interface(client),"window=vote")
+		src << browse(vote.interface(client), "window=vote")

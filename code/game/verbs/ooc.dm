@@ -31,11 +31,6 @@
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
-		if(findtext(msg, "byond://"))
-			src << "<B>Advertising other servers is not allowed.</B>"
-			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
-			return
 
 	log_ooc("[mob.name]/[key] : [msg]")
 
@@ -59,7 +54,7 @@
 					else
 						display_name = holder.fakekey
 			if(holder && !holder.fakekey && (holder.rights & R_ADMIN) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				target << "<font color='[src.prefs.ooccolor]'><span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
+				target << "<span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <font color='[src.prefs.ooccolor]'><EM>[display_name]:</EM></font> <span class='[ooc_style]'><span class='message'>[msg]</span></span></span>"
 			else
 				target << "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>"
 
@@ -98,11 +93,6 @@
 			src << SPAN_DANGER("You cannot use OOC (muted).")
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
-			return
-		if(findtext(msg, "byond://"))
-			src << "<B>Advertising other servers is not allowed.</B>"
-			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")

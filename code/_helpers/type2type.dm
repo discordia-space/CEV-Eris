@@ -59,7 +59,7 @@
 
 // Splits the text of a file at seperator and returns them in a list.
 /proc/file2list(filename, seperator="\n")
-	return splittext(return_file_text(filename),seperator)
+	return splittext(return_file_text(filename), seperator)
 
 // Turns a direction into text
 /proc/num2dir(direction)
@@ -132,7 +132,8 @@
 		else                return ICON_OVERLAY
 
 // Converts a rights bitfield into a string
-/proc/rights2text(rights,seperator="")
+/proc/rights2text(rights, seperator="")
+	if (rights & R_BUILDMODE)   . += "[seperator]+BUILDMODE"
 	if (rights & R_ADMIN)       . += "[seperator]+ADMIN"
 	if (rights & R_FUN)         . += "[seperator]+FUN"
 	if (rights & R_SERVER)      . += "[seperator]+SERVER"
@@ -194,9 +195,9 @@
 			tmpDays -= daysInYear
 
 	if(isLeap(year)) //The year is a leap year
-		monthsInDays = list(-1,30,59,90,120,151,181,212,243,273,304,334)
+		monthsInDays = list(-1, 30, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
 	else
-		monthsInDays = list(0,31,59,90,120,151,181,212,243,273,304,334)
+		monthsInDays = list(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
 
 	var/mDays = 0;
 	var/monthIndex = 0;

@@ -126,7 +126,7 @@
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 
-/obj/screen/zone_sel/Click(location, control,params)
+/obj/screen/zone_sel/Click(location, control, params)
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
@@ -613,7 +613,7 @@
 					for(var/i=1, i<tankcheck.len+1, ++i)
 						if(istype(tankcheck[i], /obj/item/weapon/tank))
 							var/obj/item/weapon/tank/t = tankcheck[i]
-							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc,breathes))
+							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc, breathes))
 								contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
 								continue					//in it, so we're going to believe the tank is what it says it is
 							switch(breathes)
@@ -667,7 +667,7 @@
 						//icon_state = "internal1"
 						overlays += ovrls["internal1"]
 					else
-						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
+						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>"
 //-----------------------internal END------------------------------
 
 /obj/screen/pull
