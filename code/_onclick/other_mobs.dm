@@ -17,7 +17,7 @@
 	// If the gloves do anything, have them return 1 to stop
 	// normal attack_hand() here.
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
-	if(istype(G) && G.Touch(A,1))
+	if(istype(G) && G.Touch(A, 1))
 		return
 
 	A.attack_hand(src)
@@ -66,7 +66,7 @@
 	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 
-	else if(istype(G) && G.Touch(A,0)) // for magic gloves
+	else if(istype(G) && G.Touch(A, 0)) // for magic gloves
 		return
 
 	else if(TK in mutations)
@@ -87,7 +87,7 @@
 	if(!..())
 		return 0
 
-	A.attack_generic(src,rand(5,6),"bitten")
+	A.attack_generic(src, rand(5, 6), "bitten")
 
 /*
 	Slimes
@@ -144,7 +144,7 @@
 					s.start()
 
 					if(prob(stunprob) && powerlevel >= 8)
-						M.adjustFireLoss(powerlevel * rand(6,10))
+						M.adjustFireLoss(powerlevel * rand(6, 10))
 				else if(prob(40))
 					M.visible_message(SPAN_DANGER("[src] has pounced at [M]!"), SPAN_DANGER("[src] has pounced at you!"))
 					M.Weaken(power)
@@ -154,9 +154,9 @@
 			if (I_GRAB) // We feed
 				Wrap(M)
 			if (I_HURT) // Attacking
-				A.attack_generic(src, (is_adult ? rand(20,40) : rand(5,25)), "glomped")
+				A.attack_generic(src, (is_adult ? rand(20, 40) : rand(5, 25)), "glomped")
 	else
-		A.attack_generic(src, (is_adult ? rand(20,40) : rand(5,25)), "glomped") // Basic attack.
+		A.attack_generic(src, (is_adult ? rand(20, 40) : rand(5, 25)), "glomped") // Basic attack.
 /*
 	New Players:
 	Have no reason to click on anything at all.
@@ -173,9 +173,9 @@
 		return
 
 	if(melee_damage_upper == 0 && isliving(A))
-		custom_emote(1,"[friendly] [A]!")
+		custom_emote(1, "[friendly] [A]!")
 		return
 
 	var/damage = rand(melee_damage_lower, melee_damage_upper)
-	if(A.attack_generic(src,damage,attacktext,environment_smash) && loc && attack_sound)
+	if(A.attack_generic(src, damage, attacktext, environment_smash) && loc && attack_sound)
 		playsound(loc, attack_sound, 50, 1, 1)

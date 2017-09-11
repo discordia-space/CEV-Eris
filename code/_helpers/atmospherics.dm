@@ -19,7 +19,7 @@
 
 	var/list/results = list()
 	if (total_moles>0)
-		results += SPAN_NOTICE("Pressure: [round(pressure,0.1)] kPa")
+		results += SPAN_NOTICE("Pressure: [round(pressure, 0.1)] kPa")
 		for(var/mix in mixture.gas)
 			results += SPAN_NOTICE("[gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]%")
 		results += SPAN_NOTICE("Temperature: [round(mixture.temperature-T0C)]&deg;C")
