@@ -1,7 +1,6 @@
 /obj/effect/landmark
 	name = "landmark"
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x2"
+	icon = 'icons/misc/landmarks.dmi'
 	anchored = 1.0
 	unacidable = 1
 	simulated = 0
@@ -85,8 +84,7 @@
 
 /obj/effect/landmark/start
 	name = "start"
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x"
+	icon_state = "player-blue"
 	anchored = 1.0
 	invisibility = 101
 

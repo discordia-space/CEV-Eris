@@ -84,10 +84,10 @@
 		var/datum/ritual/R = new RT
 		if(R.compare(message))
 			if(R.power > src.power)
-				H << "<span class='danger'>Not enough energy for the [R.name].</span>"
+				H << SPAN_DANGER("Not enough energy for the [R.name].")
 				return
 			if(!R.is_allowed(src))
-				H << "<span class='danger'>You are not allowed to perform [R.name].</span>"
+				H << SPAN_DANGER("You are not allowed to perform [R.name].")
 				return
 			R.activate(H, src, R.get_targets(message))
 			return

@@ -19,15 +19,15 @@
 	..()
 	if(!deployed && can_use(user))
 		user.visible_message(
-			"<span class='danger'>[user] starts to deploy \the [src].</span>",
-			"<span class='danger'>You begin deploying \the [src]!</span>",
+			SPAN_DANGER("[user] starts to deploy \the [src]."),
+			SPAN_DANGER("You begin deploying \the [src]!"),
 			"You hear the slow creaking of a spring."
 			)
 
 		if (do_after(user, 60, src))
 			user.visible_message(
-				"<span class='danger'>\The [user] has deployed \the [src].</span>",
-				"<span class='danger'>You have deployed \the [src]!</span>",
+				SPAN_DANGER("\The [user] has deployed \the [src]."),
+				SPAN_DANGER("You have deployed \the [src]!"),
 				"You hear a latch click loudly."
 				)
 
@@ -39,23 +39,23 @@
 /obj/item/weapon/beartrap/attack_hand(mob/user as mob)
 	if(buckled_mob && can_use(user))
 		user.visible_message(
-			"<span class='notice'>[user] begins freeing [buckled_mob] from \the [src].</span>",
-			"<span class='notice'>You carefully begin to free [buckled_mob] from \the [src].</span>",
+			SPAN_NOTICE("[user] begins freeing [buckled_mob] from \the [src]."),
+			SPAN_NOTICE("You carefully begin to free [buckled_mob] from \the [src]."),
 			)
 		if(do_after(user, 60, src))
-			user.visible_message("<span class='notice'>[buckled_mob] has been freed from \the [src] by [user].</span>")
+			user.visible_message(SPAN_NOTICE("[buckled_mob] has been freed from \the [src] by [user]."))
 			unbuckle_mob()
 			anchored = 0
 	else if(deployed && can_use(user))
 		user.visible_message(
-			"<span class='danger'>[user] starts to disarm \the [src].</span>",
-			"<span class='notice'>You begin disarming \the [src]!</span>",
+			SPAN_DANGER("[user] starts to disarm \the [src]."),
+			SPAN_NOTICE("You begin disarming \the [src]!"),
 			"You hear a latch click followed by the slow creaking of a spring."
 			)
 		if(do_after(user, 60, src))
 			user.visible_message(
-				"<span class='danger'>[user] has disarmed \the [src].</span>",
-				"<span class='notice'>You have disarmed \the [src]!</span>"
+				SPAN_DANGER("[user] has disarmed \the [src]."),
+				SPAN_NOTICE("You have disarmed \the [src]!")
 				)
 			deployed = 0
 			anchored = 0
@@ -85,7 +85,7 @@
 		set_dir(L.dir)
 		can_buckle = 1
 		buckle_mob(L)
-		L << "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>"
+		L << SPAN_DANGER("The steel jaws of \the [src] bite into you, trapping you in place!")
 		deployed = 0
 		can_buckle = initial(can_buckle)
 
@@ -94,8 +94,8 @@
 		var/mob/living/L = AM
 		if(L.m_intent == "run")
 			L.visible_message(
-				"<span class='danger'>[L] steps on \the [src].</span>",
-				"<span class='danger'>You step on \the [src]!</span>",
+				SPAN_DANGER("[L] steps on \the [src]."),
+				SPAN_DANGER("You step on \the [src]!"),
 				"<b>You hear a loud metallic snap!</b>"
 				)
 			attack_mob(L)

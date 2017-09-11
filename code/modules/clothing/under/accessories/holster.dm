@@ -7,11 +7,11 @@
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))
-		user << "<span class='warning'>There is already \a [holstered] holstered here!</span>"
+		user << SPAN_WARNING("There is already \a [holstered] holstered here!")
 		return
 
 	if (!(I.slot_flags & SLOT_HOLSTER))
-		user << "<span class='warning'>[I] won't fit in [src]!</span>"
+		user << SPAN_WARNING("[I] won't fit in [src]!")
 		return
 
 	if(istype(user))
@@ -21,7 +21,7 @@
 	holstered.loc = src
 	holstered.add_fingerprint(user)
 	w_class = max(w_class, holstered.w_class)
-	user.visible_message("<span class='notice'>[user] holsters \the [holstered].</span>", "<span class='notice'>You holster \the [holstered].</span>")
+	user.visible_message(SPAN_NOTICE("[user] holsters \the [holstered]."), SPAN_NOTICE("You holster \the [holstered]."))
 	name = "occupied [initial(name)]"
 
 /obj/item/clothing/accessory/holster/proc/clear_holster()
@@ -33,17 +33,17 @@
 		return
 
 	if(istype(user.get_active_hand(),/obj) && istype(user.get_inactive_hand(),/obj))
-		user << "<span class='warning'>You need an empty hand to draw \the [holstered]!</span>"
+		user << SPAN_WARNING("You need an empty hand to draw \the [holstered]!")
 	else
 		if(user.a_intent == I_HURT)
 			usr.visible_message(
-				"<span class='danger'>[user] draws \the [holstered], ready to shoot!</span>",
-				"<span class='warning'>You draw \the [holstered], ready to shoot!</span>"
+				SPAN_DANGER("[user] draws \the [holstered], ready to shoot!"),
+				SPAN_WARNING("You draw \the [holstered], ready to shoot!")
 				)
 		else
 			user.visible_message(
-				"<span class='notice'>[user] draws \the [holstered], pointing it at the ground.</span>",
-				"<span class='notice'>You draw \the [holstered], pointing it at the ground.</span>"
+				SPAN_NOTICE("[user] draws \the [holstered], pointing it at the ground."),
+				SPAN_NOTICE("You draw \the [holstered], pointing it at the ground.")
 				)
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)
@@ -101,12 +101,12 @@
 			H = locate() in S.accessories
 
 	if (!H)
-		usr << "<span class='warning'>Something is very wrong.</span>"
+		usr << SPAN_WARNING("Something is very wrong.")
 
 	if(!H.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << "<span class='warning'>You need your gun equiped to holster it.</span>"
+			usr << SPAN_WARNING("You need your gun equiped to holster it.")
 			return
 		H.holster(W, usr)
 	else

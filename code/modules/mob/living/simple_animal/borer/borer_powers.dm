@@ -32,8 +32,8 @@
 		src << "You wiggle out of [host]'s ear and plop to the ground."
 		if(host.mind)
 			if(!host.stat)
-				host << "<span class='danger'>Something slimy wiggles out of your ear and plops to the ground!</span>"
-			host << "<span class='danger'>As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again.</span>"
+				host << SPAN_DANGER("Something slimy wiggles out of your ear and plops to the ground!")
+			host << SPAN_DANGER("As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again.")
 
 		detatch()
 		leave_host()
@@ -348,7 +348,7 @@
 		return
 
 	verbs -= /mob/living/carbon/human/proc/jumpstart
-	visible_message("<span class='warning'>With a hideous, rattling moan, [src] shudders back to life!</span>")
+	visible_message(SPAN_WARNING("With a hideous, rattling moan, [src] shudders back to life!"))
 
 	rejuvenate()
 	restore_blood()

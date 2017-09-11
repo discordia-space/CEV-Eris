@@ -36,7 +36,7 @@
 			var/datum/computer/file/embedded_program/docking/C = locate(controller_tag)
 
 			if(!istype(C))
-				world << "<span class='danger'>warning: shuttle with docking tag [controller_tag] could not find it's controller!</span>"
+				world << SPAN_DANGER("warning: shuttle with docking tag [controller_tag] could not find it's controller!")
 			else
 				destination_dock_controllers[destination] = C
 

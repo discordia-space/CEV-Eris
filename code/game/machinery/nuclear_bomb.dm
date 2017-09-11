@@ -85,7 +85,7 @@ var/bomb_set
 					var/obj/item/weapon/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if (WT.get_fuel() < 5) // uses up 5 fuel.
-						user << "<span class='warning'>You need more fuel to complete this task.</span>"
+						user << SPAN_WARNING("You need more fuel to complete this task.")
 						return
 
 					user.visible_message("[user] starts cutting loose the anchoring bolt covers on [src].", "You start cutting loose the anchoring bolt covers with [O]...")
@@ -112,7 +112,7 @@ var/bomb_set
 					var/obj/item/weapon/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if (WT.get_fuel() < 5) // uses up 5 fuel.
-						user << "<span class='warning'>You need more fuel to complete this task.</span>"
+						user << SPAN_WARNING("You need more fuel to complete this task.")
 						return
 
 					user.visible_message("[user] starts cutting apart the anchoring system sealant on [src].", "You start cutting apart the anchoring system's sealant with [O]...")
@@ -159,9 +159,9 @@ var/bomb_set
 	else if (deployable)
 		if(removal_stage < 5)
 			src.anchored = 1
-			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+			visible_message(SPAN_WARNING("With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
 		else
-			visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+			visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		extended = 1
 		if(!src.lighthack)
 			flick("nuclearbombc", src)
@@ -210,10 +210,10 @@ var/bomb_set
 		return
 
 	if (src.deployable)
-		usr << "<span class='warning'>You close several panels to make [src] undeployable.</span>"
+		usr << SPAN_WARNING("You close several panels to make [src] undeployable.")
 		src.deployable = 0
 	else
-		usr << "<span class='warning'>You adjust some panels to make [src] deployable.</span>"
+		usr << SPAN_WARNING("You adjust some panels to make [src] deployable.")
 		src.deployable = 1
 	return
 
@@ -271,15 +271,15 @@ var/bomb_set
 					nanomanager.update_uis(src)
 					return
 				if (!anchored)
-					usr << "<span class='warning'>\The [src] needs to be anchored.</span>"
+					usr << SPAN_WARNING("\The [src] needs to be anchored.")
 					nanomanager.update_uis(src)
 					return
 				if (safety)
-					usr << "<span class='warning'>The safety is still on.</span>"
+					usr << SPAN_WARNING("The safety is still on.")
 					nanomanager.update_uis(src)
 					return
 				if (wires.IsIndexCut(NUCLEARBOMB_WIRE_TIMING))
-					usr << "<span class='warning'>Nothing happens, something might be wrong with the wiring.</span>"
+					usr << SPAN_WARNING("Nothing happens, something might be wrong with the wiring.")
 					nanomanager.update_uis(src)
 					return
 
@@ -292,7 +292,7 @@ var/bomb_set
 					secure_device()
 			if (href_list["safety"])
 				if (wires.IsIndexCut(NUCLEARBOMB_WIRE_SAFETY))
-					usr << "<span class='warning'>Nothing happens, something might be wrong with the wiring.</span>"
+					usr << SPAN_WARNING("Nothing happens, something might be wrong with the wiring.")
 					nanomanager.update_uis(src)
 					return
 				safety = !safety
@@ -301,19 +301,19 @@ var/bomb_set
 			if (href_list["anchor"])
 				if(removal_stage == 5)
 					anchored = 0
-					visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+					visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 					nanomanager.update_uis(src)
 					return
 
 				if(!isinspace())
 					anchored = !anchored
 					if(anchored)
-						visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
+						visible_message(SPAN_WARNING("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
 					else
 						secure_device()
-						visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
+						visible_message(SPAN_WARNING("The anchoring bolts slide back into the depths of [src]."))
 				else
-					usr << "<span class='warning'>There is nothing to anchor to!</span>"
+					usr << SPAN_WARNING("There is nothing to anchor to!")
 
 	nanomanager.update_uis(src)
 

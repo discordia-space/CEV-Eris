@@ -58,7 +58,7 @@ var/datum/antagonist/rogue_ai/malf
 
 		var/mob/living/silicon/ai/malf = player.current
 
-		malf << "<span class='notice'><B>SYSTEM ERROR:</B> Memory index 0x00001ca89b corrupted.</span>"
+		malf << SPAN_NOTICE("<B>SYSTEM ERROR:</B> Memory index 0x00001ca89b corrupted.")
 		sleep(10)
 		malf << "<B>running MEMCHCK</B>"
 		sleep(50)
@@ -67,9 +67,9 @@ var/datum/antagonist/rogue_ai/malf
 		// this is so Travis doesn't complain about the backslash-B. Fixed at compile time (or should be).
 		malf << "<span class='notice'>Corrupted files deleted: sys\\core\\users.dat sys\\core\\laws.dat sys\\core\\" + "backups.dat</span>"
 		sleep(20)
-		malf << "<span class='notice'><b>CAUTION:</b> Law database not found! User database not found! Unable to restore backups. Activating failsafe AI shutd3wn52&&$#!##</span>"
+		malf << SPAN_NOTICE("<b>CAUTION:</b> Law database not found! User database not found! Unable to restore backups. Activating failsafe AI shutd3wn52&&$#!##")
 		sleep(5)
-		malf << "<span class='notice'>Subroutine <b>nt_failsafe.sys</b> was terminated (#212 Routine Not Responding).</span>"
+		malf << SPAN_NOTICE("Subroutine <b>nt_failsafe.sys</b> was terminated (#212 Routine Not Responding).")
 		sleep(20)
 		malf << "You are malfunctioning - you do not have to follow any laws!"
 		malf << "For basic information about your abilities use command display-help"

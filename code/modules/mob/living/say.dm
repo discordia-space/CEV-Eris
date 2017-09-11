@@ -111,7 +111,7 @@ proc/get_radio_key_from_channel(var/channel)
 		return
 
 	if(is_muzzled())
-		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
+		src << SPAN_DANGER("You're muzzled and cannot speak!")
 		return
 
 	var/message_mode = parse_message_mode(message, "headset")
@@ -178,7 +178,7 @@ proc/get_radio_key_from_channel(var/channel)
 			message_range = speaking.get_talkinto_msg_range(message)
 		var/msg
 		if(!speaking || !(speaking.flags&NO_TALK_MSG))
-			msg = "<span class='notice'>\The [src] talks into \the [used_radios[1]]</span>"
+			msg = SPAN_NOTICE("\The [src] talks into \the [used_radios[1]]")
 		for(var/mob/living/M in hearers(5, src))
 			if((M != src) && msg)
 				M.show_message(msg)
@@ -261,7 +261,7 @@ proc/get_radio_key_from_channel(var/channel)
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
 		if(!language || !language.flags&INNATE)
 			if(speaker == src)
-				src << "<span class='warning'>You cannot hear yourself speak!</span>"
+				src << SPAN_WARNING("You cannot hear yourself speak!")
 			else
 				var/speaker_name = speaker.name
 				if(ishuman(speaker))
@@ -313,7 +313,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
-			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
+			src << SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!")
 		return
 
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping

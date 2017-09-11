@@ -217,7 +217,7 @@ var/list/storyteller_cache = list()
 
 	var/aggressive_changelog = 0
 
-	var/list/language_prefixes = list(",","#","-")//Default language prefixes
+	var/list/language_prefixes = list(",", "#", "-")//Default language prefixes
 
 	var/ghosts_can_possess_animals = 0
 

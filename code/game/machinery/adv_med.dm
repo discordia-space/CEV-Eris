@@ -40,10 +40,10 @@
 	if(usr.stat)
 		return
 	if(src.occupant)
-		usr << "<span class='warning'>The scanner is already occupied!</span>"
+		usr << SPAN_WARNING("The scanner is already occupied!")
 		return
 	if(usr.abiotic())
-		usr << "<span class='warning'>The subject cannot have abiotic items on.</span>"
+		usr << SPAN_WARNING("The subject cannot have abiotic items on.")
 		return
 	usr.pulling = null
 	usr.client.perspective = EYE_PERSPECTIVE
@@ -74,10 +74,10 @@
 	if ((!( istype(G, /obj/item/weapon/grab) ) || !( ismob(G.affecting) )))
 		return
 	if (src.occupant)
-		user << "<span class='warning'>The scanner is already occupied!</span>"
+		user << SPAN_WARNING("The scanner is already occupied!")
 		return
 	if (G.affecting.abiotic())
-		user << "<span class='warning'>Subject cannot have abiotic items on.</span>"
+		user << SPAN_WARNING("Subject cannot have abiotic items on.")
 		return
 	var/mob/M = G.affecting
 	if (M.client)
@@ -163,10 +163,10 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!connected || (connected.stat & (NOPOWER|BROKEN)))
-		user << "<span class='warning'>This console is not connected to a functioning body scanner.</span>"
+		user << SPAN_WARNING("This console is not connected to a functioning body scanner.")
 		return
 	if(!ishuman(connected.occupant))
-		user << "<span class='warning'>This device can only scan compatible lifeforms.</span>"
+		user << SPAN_WARNING("This device can only scan compatible lifeforms.")
 		return
 
 	var/dat
@@ -179,7 +179,7 @@
 			dat = format_occupant_data(src.connected.get_occupant_data())
 			dat += "<HR><A href='?src=\ref[src];print=1'>Print</A><BR>"
 		else
-			dat = "<span class='warning'>Error: No Body Scanner connected.</span>"
+			dat = SPAN_WARNING("Error: No Body Scanner connected.")
 
 	dat += text("<BR><A href='?src=\ref[];mach_close=scanconsole'>Close</A>", user)
 	user << browse(dat, "window=scanconsole;size=430x600")

@@ -24,7 +24,7 @@
 		return
 	if (emote == "pale")
 		src.uses--
-		source << "<span class='notice'>You feel a sudden surge of energy!</span>"
+		source << SPAN_NOTICE("You feel a sudden surge of energy!")
 		source.SetStunned(0)
 		source.SetWeakened(0)
 		source.SetParalysis(0)

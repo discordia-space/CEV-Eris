@@ -54,17 +54,17 @@
 
 /obj/screen/movable/proc/decode_screen_X(X)
 	//Find EAST/WEST implementations
-	if(findtext(X,"EAST-"))
-		var/num = text2num(copytext(X,6)) //Trim EAST-
+	if(findtext(X, "EAST-"))
+		var/num = text2num(copytext(X, 6)) //Trim EAST-
 		if(!num)
 			num = 0
 		. = usr.client.view*2 + 1 - num
-	else if(findtext(X,"WEST+"))
-		var/num = text2num(copytext(X,6)) //Trim WEST+
+	else if(findtext(X, "WEST+"))
+		var/num = text2num(copytext(X, 6)) //Trim WEST+
 		if(!num)
 			num = 0
 		. = num+1
-	else if(findtext(X,"CENTER"))
+	else if(findtext(X, "CENTER"))
 		. = usr.client.view+1
 
 /obj/screen/movable/proc/encode_screen_Y(Y)
@@ -76,17 +76,17 @@
 		. = "CENTER"
 
 /obj/screen/movable/proc/decode_screen_Y(Y)
-	if(findtext(Y,"NORTH-"))
-		var/num = text2num(copytext(Y,7)) //Trim NORTH-
+	if(findtext(Y, "NORTH-"))
+		var/num = text2num(copytext(Y, 7)) //Trim NORTH-
 		if(!num)
 			num = 0
 		. = usr.client.view*2 + 1 - num
-	else if(findtext(Y,"SOUTH+"))
-		var/num = text2num(copytext(Y,7)) //Time SOUTH+
+	else if(findtext(Y, "SOUTH+"))
+		var/num = text2num(copytext(Y, 7)) //Time SOUTH+
 		if(!num)
 			num = 0
 		. = num+1
-	else if(findtext(Y,"CENTER"))
+	else if(findtext(Y, "CENTER"))
 		. = usr.client.view+1
 
 //Debug procs
@@ -100,7 +100,7 @@
 	M.maptext = "Movable"
 	M.maptext_width = 64
 
-	var/screen_l = input(usr,"Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Movable UI Object") as text
+	var/screen_l = input(usr, "Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)", "Spawn Movable UI Object") as text
 	if(!screen_l)
 		return
 
@@ -119,7 +119,7 @@
 	S.maptext = "Snap"
 	S.maptext_width = 64
 
-	var/screen_l = input(usr,"Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Snap UI Object") as text
+	var/screen_l = input(usr, "Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)", "Spawn Snap UI Object") as text
 	if(!screen_l)
 		return
 

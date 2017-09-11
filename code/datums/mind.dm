@@ -99,7 +99,7 @@
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
 
-	recipient << browse(output,"window=memory")
+	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
@@ -143,7 +143,7 @@
 			if(antag.create_antagonist(src))
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
-				usr << "<span class='warning'>[src] could not be made into a [antag.role_text]!</span>"
+				usr << SPAN_WARNING("[src] could not be made into a [antag.role_text]!")
 
 	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
@@ -209,7 +209,7 @@
 					var/crystals
 					if (suplink)
 						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]","Operative uplink", crystals) as null|num
+					crystals = input("Amount of telecrystals for [key]", "Operative uplink", crystals) as null|num
 					if (!isnull(crystals))
 						if (suplink)
 							suplink.uses = crystals

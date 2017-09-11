@@ -57,7 +57,7 @@ Data storage vars:
 	var/result
 	var/state = 0
 
-	New(list/arguments=null,autostart=1)
+	New(list/arguments=null, autostart=1)
 		delay = delay>0?(delay):1
 		if(forbid_garbage) //prevents garbage collection with tag != null
 			tag = "\ref[src]"
@@ -139,7 +139,7 @@ Data storage vars:
 			arg_list = arguments
 			return 1
 		else
-//			world << "<span class='danger'>Invalid arguments supplied for [src.type], ref = \ref[src]</span>"
+//			world << SPAN_DANGER("Invalid arguments supplied for [src.type], ref = \ref[src]")
 			return 0
 
 	proc/toggle_null_checks()

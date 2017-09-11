@@ -82,7 +82,7 @@ var/const/NO_EMAG_ACT = -50
 		log_and_message_admins("emagged \an [A].")
 
 	if(uses<1)
-		user.visible_message("<span class='warning'>\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent.</span>")
+		user.visible_message(SPAN_WARNING("\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent."))
 		user.drop_item()
 		var/obj/item/weapon/card/emag_broken/junk = new(user.loc)
 		junk.add_fingerprint(user)
@@ -118,7 +118,7 @@ var/const/NO_EMAG_ACT = -50
 		show(usr)
 		usr << desc
 	else
-		usr << "<span class='warning'>It is too far away.</span>"
+		usr << SPAN_WARNING("It is too far away.")
 
 /obj/item/weapon/card/id/proc/prevent_tracking()
 	return 0

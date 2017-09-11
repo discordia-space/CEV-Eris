@@ -22,16 +22,16 @@
 
 	var/obj/item/organ/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 	if(!istype(P))
-		src << "<span class='danger'>Your plasma vessel has been removed!</span>"
+		src << SPAN_DANGER("Your plasma vessel has been removed!")
 		return
 
 	if(needs_organ)
 		var/obj/item/organ/I = internal_organs_by_name[needs_organ]
 		if(!I)
-			src << "<span class='danger'>Your [needs_organ] has been removed!</span>"
+			src << SPAN_DANGER("Your [needs_organ] has been removed!")
 			return
 		else if((I.status & ORGAN_CUT_AWAY) || I.is_broken())
-			src << "<span class='danger'>Your [needs_organ] is too damaged to function!</span>"
+			src << SPAN_DANGER("Your [needs_organ] is too damaged to function!")
 			return
 
 	if(P.stored_plasma < cost)
@@ -105,7 +105,7 @@
 	set category = "Abilities"
 
 	if(alien_queen_exists())
-		src << "<span class='notice'>We already have an active queen.</span>"
+		src << SPAN_NOTICE("We already have an active queen.")
 		return
 
 	if(check_alien_ability(500))
@@ -171,7 +171,7 @@
 		src << "You cannot spit neurotoxin in your current state."
 		return
 
-	visible_message("<span class='warning'>[src] spits neurotoxin at [target]!</span>", "<span class='alium'>You spit neurotoxin at [target].</span>")
+	visible_message(SPAN_WARNING("[src] spits neurotoxin at [target]!"), "<span class='alium'>You spit neurotoxin at [target].</span>")
 
 	//I'm not motivated enough to revise this. Prjectile code in general needs update.
 	// Maybe change this to use throw_at? ~ Z
@@ -209,7 +209,7 @@
 	if(!check_alien_ability(75,1,"resin spinner"))
 		return
 
-	visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
+	visible_message(SPAN_WARNING("<B>[src] vomits up a thick purple substance and begins to shape it!</B>"), "<span class='alium'>You shape a [choice].</span>")
 	switch(choice)
 		if("resin door")
 			new /obj/machinery/door/unpowered/simple/resin(loc)
@@ -227,29 +227,29 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 	set category = "Abilities"
 
 	if(!M.Adjacent(src))
-		src << "<span class='warning'>They are too far away.</span>"
+		src << SPAN_WARNING("They are too far away.")
 		return
 
 	if(!M.mind)
-		src << "<span class='warning'>This mindless flesh adds nothing to the hive.</span>"
+		src << SPAN_WARNING("This mindless flesh adds nothing to the hive.")
 		return
 
 	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name["hive node"]))
-		src << "<span class='warning'>They are already part of the hive.</span>"
+		src << SPAN_WARNING("They are already part of the hive.")
 		return
 
 	var/obj/item/organ/affecting = M.get_organ("chest")
 	if(!affecting || (affecting.status & ORGAN_ROBOT))
-		src << "<span class='warning'>This form is not compatible with our physiology.</span>"
+		src << SPAN_WARNING("This form is not compatible with our physiology.")
 		return
 
-	src.visible_message("<span class='danger'>\The [src] crouches over \the [M], extending a hideous protuberance from its head!</span>")
+	src.visible_message(SPAN_DANGER("\The [src] crouches over \the [M], extending a hideous protuberance from its head!"))
 
 	if(!do_mob(src, M, 150))
 		return
 
 	if(!M || !M.Adjacent(src))
-		src << "<span class='warning'>They are too far away.</span>"
+		src << SPAN_WARNING("They are too far away.")
 		return
 
 	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name["hive node"]) || !affecting || (affecting.status & ORGAN_ROBOT))
@@ -258,7 +258,7 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 	if(!check_alien_ability(500,1,"egg sac"))
 		return
 
-	src.visible_message("<span class='danger'>\The [src] regurgitates something into \the [M]'s torso!</span>")
-	M << "<span class='danger'>A hideous lump of alien mass strains your ribcage as it settles within!</span>"
+	src.visible_message(SPAN_DANGER("\The [src] regurgitates something into \the [M]'s torso!"))
+	M << SPAN_DANGER("A hideous lump of alien mass strains your ribcage as it settles within!")
 	var/obj/item/organ/xenos/hivenode/node = new(affecting)
 	node.replaced(M,affecting)

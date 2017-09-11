@@ -25,7 +25,7 @@ var/global/list/hearing_objects = list()			//list of all objects, that can hear 
 var/global/list/global_corporations = list()
 var/global/list/HUDdatums = list()
 
-#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
+#define all_genders_define_list list(MALE, FEMALE, PLURAL, NEUTER)
 
 var/global/list/turfs = list()						//list of all turfs
 

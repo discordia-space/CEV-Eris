@@ -230,10 +230,10 @@ var/global/datum/controller/gameticker/ticker
 
 			if(universe_has_ended)
 				if(!delay_end)
-					world << "<span class='notice'><b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b></span>"
+					world << SPAN_NOTICE("<b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b>")
 			else
 				if(!delay_end)
-					world << "<span class='notice'><b>Restarting in [restart_timeout/10] seconds</b></span>"
+					world << SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>")
 
 
 			if(!delay_end)
@@ -241,9 +241,9 @@ var/global/datum/controller/gameticker/ticker
 				if(!delay_end)
 					world.Reboot()
 				else
-					world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
+					world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
 			else
-				world << "<span class='notice'><b>An admin has delayed the round end</b></span>"
+				world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
 
 
 /datum/controller/gameticker/proc/declare_completion()

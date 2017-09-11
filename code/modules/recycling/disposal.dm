@@ -1158,7 +1158,7 @@
 		if(O.currTag)// Tag set
 			sort_tag = O.currTag
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
-			user << "<span class='notice'>Changed tag to '[sort_tag]'.</span>"
+			user << SPAN_NOTICE("Changed tag to '[sort_tag]'.")
 			updatename()
 			updatedesc()
 

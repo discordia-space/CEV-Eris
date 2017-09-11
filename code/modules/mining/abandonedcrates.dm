@@ -143,29 +143,29 @@
 	if(!locked)
 		return
 
-	user << "<span class='notice'>The crate is locked with a Deca-code lock.</span>"
+	user << SPAN_NOTICE("The crate is locked with a Deca-code lock.")
 	var/input = input(user, "Enter [codelen] digits.", "Deca-Code Lock", "") as text
 	if(!Adjacent(user))
 		return
 
 	if(input == null || length(input) != codelen)
-		user << "<span class='notice'>You leave the crate alone.</span>"
+		user << SPAN_NOTICE("You leave the crate alone.")
 	else if(check_input(input))
-		user << "<span class='notice'>The crate unlocks!</span>"
+		user << SPAN_NOTICE("The crate unlocks!")
 		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
-		visible_message("<span class='warning'>A red light on \the [src]'s control panel flashes briefly.</span>")
+		visible_message(SPAN_WARNING("A red light on \the [src]'s control panel flashes briefly."))
 		attempts--
 		if (attempts == 0)
-			user << "<span class='danger'>The crate's anti-tamper system activates!</span>"
+			user << SPAN_DANGER("The crate's anti-tamper system activates!")
 			var/turf/T = get_turf(src.loc)
 			explosion(T, 0, 0, 1, 2)
 			qdel(src)
 
 /obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
 	if (locked)
-		user << "<span class='notice'>The crate unlocks!</span>"
+		user << SPAN_NOTICE("The crate unlocks!")
 		locked = 0
 
 /obj/structure/closet/crate/secure/loot/proc/check_input(var/input)
@@ -183,11 +183,11 @@
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(locked)
 		if (istype(W, /obj/item/device/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
-			user << "<span class='notice'>DECA-CODE LOCK ANALYSIS:</span>"
+			user << SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:")
 			if (attempts == 1)
-				user << "<span class='warning'>* Anti-Tamper system will activate on the next failed access attempt.</span>"
+				user << SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt.")
 			else
-				user << "<span class='notice'>* Anti-Tamper system will activate after [src.attempts] failed access attempts.</span>"
+				user << SPAN_NOTICE("* Anti-Tamper system will activate after [src.attempts] failed access attempts.")
 			if(lastattempt.len)
 				var/bulls = 0
 				var/cows = 0
@@ -199,6 +199,6 @@
 					else if(lastattempt[i] in code_contents)
 						++cows
 					code_contents -= lastattempt[i]
-				user << "<span class='notice'>Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.</span>"
+				user << SPAN_NOTICE("Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.")
 			return
 	..()

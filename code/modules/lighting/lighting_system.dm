@@ -41,5 +41,5 @@
 /world/New()
 	. = ..()
 
-	create_all_lighting_corners()
 	create_all_lighting_overlays()
+	create_all_lighting_corners()
