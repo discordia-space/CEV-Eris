@@ -1,7 +1,9 @@
-/datum/admins/proc/formatJob(var/mob/mob, var/title)
-	var/red = jobban_isbanned(mob, title)
+/datum/admins/proc/formatJob(var/mob/mob, var/title, var/bantype)
+	if(!bantype)
+		bantype = title
+	var/red = jobban_isbanned(mob, bantype)
 	return \
-		"<a href='?src=\ref[src];jobban3=[title];jobban4=\ref[mob]'>\
+		"<a href='?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>\
 		[red ? "<font color=red>" : null][replacetext(title, " ", "&nbsp")][red ? "</font>" : null]\
 		</a> "
 
@@ -9,7 +11,7 @@
 	. += "<table width='100%'>"
 	. += "<tr bgcolor='[color]'><th><a href='?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>[title]</a></th></tr><tr><td class='jobs'>"
 	for(var/jobPos in jobList)
-		. += formatJob(mob, jobPos)
+		. += formatJob(mob, jobPos, jobList[jobPos])
 	. += "</td></tr></table>"
 
 
@@ -418,7 +420,7 @@
 			var/datum/antagonist/antag = all_antag_types[antag_type]
 			if(!antag || !antag.bantype)
 				continue
-			jobban_list |= antag.bantype
+			jobban_list[antag.role_text] = antag.bantype
 		body += formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 		dat = "<head>[header]</head><body><tt>[body.Join(null)]</tt></body>"
