@@ -8,11 +8,10 @@
 		</a> "
 
 /datum/admins/proc/formatJobGroup(var/mob/mob, var/title, var/color, var/bantype, var/list/jobList)
-	. += "<table width='100%'>"
 	. += "<tr bgcolor='[color]'><th><a href='?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>[title]</a></th></tr><tr><td class='jobs'>"
 	for(var/jobPos in jobList)
 		. += formatJob(mob, jobPos, jobList[jobPos])
-	. += "</td></tr></table>"
+	. += "</td></tr>"
 
 
 /datum/admins/Topic(href, href_list)
@@ -394,11 +393,6 @@
 		"}
 		var/list/body = list()
 
-	/***********************************WARNING!************************************
-				      The jobban stuff looks mangled and disgusting
-						      But it looks beautiful in-game
-						                -Nodrak
-	************************************WARNING!***********************************/
 //Regular jobs
 	//Command (Blue)
 		body += formatJobGroup(M, "Command Positions", "ccccff", "commanddept", command_positions)
@@ -423,7 +417,7 @@
 			jobban_list[antag.role_text] = antag.bantype
 		body += formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
-		dat = "<head>[header]</head><body><tt>[body.Join(null)]</tt></body>"
+		dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
 		usr << browse(dat, "window=jobban2;size=800x490")
 		return
 
