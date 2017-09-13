@@ -413,7 +413,7 @@
 	//Civilian (Grey)
 		body += formatJobGroup(M, "Civilian Positions", "dddddd", "civiliandept", civilian_positions)
 	//Non-Human (Green)
-		body += formatJobGroup(M, "Non-human Positions", "ccffcc", "nonhumandept", nonhuman_positions + "pAI" + "Antag HUD")
+		body += formatJobGroup(M, "Non-human Positions", "ccffcc", "nonhumandept", nonhuman_positions + "Antag HUD")
 	//Antagonist (Orange)
 		var/jobban_list = list()
 		for(var/antag_type in all_antag_types)
