@@ -386,7 +386,7 @@
 					word-spacing: normal;
 				}
 				.jobs{
-					text-align:justify;
+					text-align:center;
 					word-spacing: 30px;
 				}
 			</style>
