@@ -3,6 +3,7 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
+	icon_state = "freezer"
 	req_access = list(access_kitchen)
 
 	New()
@@ -16,6 +17,7 @@
 
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
+	icon_state = "freezer"
 	req_access = list()
 
 

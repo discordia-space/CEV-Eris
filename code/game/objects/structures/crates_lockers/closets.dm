@@ -9,13 +9,11 @@
 	icon_state = "closed"
 	density = 1
 	w_class = 5
-	var/locked = 0
-	var/broken = 0
+	var/locked = FALSE
+	var/broken = FALSE
 	var/icon_door = null
 	var/icon_door_override = FALSE //override to have open overlay use icon different to its base's
 	var/secure = FALSE
-//	var/icon_closed = "closed"
-//	var/icon_opened = "open"
 	var/opened = FALSE
 	var/welded = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
@@ -69,12 +67,12 @@
 	if(air_group || (height==0 || wall_mounted)) return 1
 	return (!density)
 
-/obj/structure/closet/proc/can_open()
-	if(src.welded)
+/obj/structure/closet/proc/can_open(mob/living/user)
+	if(welded || locked)
 		return 0
 	return 1
 
-	if(src.locked)
+	if(locked)
 		return 0
 	return ..()
 
@@ -87,51 +85,42 @@
 /obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
 	for(var/obj/effect/dummy/chameleon/AD in src)
-		AD.forceMove(src.loc)
+		AD.forceMove(loc)
 
 	for(var/obj/I in src)
-		I.forceMove(src.loc)
+		I.forceMove(loc)
 
 	for(var/mob/M in src)
-		M.forceMove(src.loc)
+		M.forceMove(loc)
 		if(M.client)
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
 
-/obj/structure/closet/proc/open()
-	if(src.welded || src.locked)
+/obj/structure/closet/proc/open(mob/living/user)
+	if(opened || !can_open(user))
 		return 0
 	return 1
-
-	if(!src.can_open())
+	opened = 1
+	if(!can_open())
 		return 0
-
-	src.dump_contents()
-
-
-	src.opened = 1
+	dump_contents()
+	update_icon()
 	playsound(src.loc, open_sound, 100, 1, -3)
 	density = 0
 	return 1
 
-/obj/structure/closet/proc/close()
-	if(!src.opened)
+/obj/structure/closet/proc/close(mob/living/user)
+	if(!opened || !can_close(user))
 		return 0
-	if(!src.can_close())
-		return 0
-
 	var/stored_units = 0
-
 	if(store_misc)
 		stored_units += store_misc(stored_units)
 	if(store_items)
 		stored_units += store_items(stored_units)
 	if(store_mobs)
 		stored_units += store_mobs(stored_units)
-
-
-	src.opened = 0
-
+	opened = 0
+	update_icon()
 	playsound(src.loc, close_sound, 100, 1, -3)
 	density = 1
 	return 1
@@ -171,8 +160,8 @@
 		added_units += M.mob_size
 	return added_units
 
-/obj/structure/closet/proc/toggle(mob/user as mob)
-	if(!(src.opened ? src.close() : src.open()))
+/obj/structure/closet/proc/toggle(mob/living/user)
+	if(!(opened ? close(user) : open(user)))
 		user << "<span class='notice'>It won't budge!</span>"
 		return
 	update_icon()
