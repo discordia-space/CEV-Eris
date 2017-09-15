@@ -61,6 +61,25 @@ datum/supply_pack/New()
 	crate_name = "MULEbot Crate"
 	group = "Operations"
 
+/datum/supply_pack/lunchboxes
+	name = "Lunchboxes"
+	contains = list(/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow)
+	cost = 1500
+	containertype = /obj/structure/closet/crate
+	crate_name  = "\improper Lunchboxes"
+	group = "Operations"
+
 /datum/supply_pack/artscrafts
 	name = "Arts and Crafts supplies"
 	contains = list(/obj/item/weapon/storage/fancy/crayons,
