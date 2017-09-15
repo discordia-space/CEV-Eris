@@ -77,9 +77,9 @@
 					qdel(src)
 					return 1
 				else
-					user << "<span class='warning'>Turn off the [src] before dismantling it.</span>"
+					user << SPAN_WARNING("Turn off the [src] before dismantling it.")
 			else
-				user << "<span class='warning'>Better let [src] discharge before dismantling it.</span>"
+				user << SPAN_WARNING("Better let [src] discharge before dismantling it.")
 		else if ((istype(W, /obj/item/weapon/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell/large) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!output_attempt && !input_attempt)
@@ -87,11 +87,11 @@
 					component_parts += W
 					W.loc = src
 					RefreshParts()
-					user << "<span class='notice'>You upgrade the [src] with [W.name].</span>"
+					user << SPAN_NOTICE("You upgrade the [src] with [W.name].")
 				else
-					user << "<span class='warning'>Turn off the [src] before dismantling it.</span>"
+					user << SPAN_WARNING("Turn off the [src] before dismantling it.")
 			else
-				user << "<span class='warning'>Better let [src] discharge before putting your hand inside it.</span>"
+				user << SPAN_WARNING("Better let [src] discharge before putting your hand inside it.")
 		else
 			user.set_machine(src)
 			interact(user)

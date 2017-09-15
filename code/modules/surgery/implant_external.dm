@@ -43,11 +43,11 @@
 			var/obj/item/weapon/implant/IM = I
 			if(IM.is_external())
 				if(implant.position_flag & IM.position_flag)
-					user << "<span class='warning'>[implant] doesn't fit.</span>"
+					user << SPAN_WARNING("[implant] doesn't fit.")
 					return
 
-	user.visible_message("<span class='notice'>[user] installed [tool] to [target]'s [affected].</span>", \
-	"<span class='notice'>You installed [tool] to [target]'s [affected].</span>" )
+	user.visible_message(SPAN_NOTICE("[user] installed [tool] to [target]'s [affected]."), \
+	SPAN_NOTICE("You installed [tool] to [target]'s [affected].") )
 
 	user.drop_item()
 	implant.install(target, target_zone)
@@ -56,8 +56,8 @@
 /datum/surgery_step/external_implant/install/fail_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message("<span class='warning'>[user]'s hand slips, tearing [target]'s [affected.name] with \the [tool]!</span>",
-		"<span class='warning'>Your hand slips, tearing the [target]'s [affected.name] with \the [tool]!</span>")
+	user.visible_message(SPAN_WARNING("[user]'s hand slips, tearing [target]'s [affected.name] with \the [tool]!"),
+		SPAN_WARNING("Your hand slips, tearing the [target]'s [affected.name] with \the [tool]!"))
 
 	target.apply_damage(15, BRUTE, affected)
 
@@ -114,8 +114,8 @@
 	if(!implant)
 		return
 
-	user.visible_message("<span class='notice'>[user] removed [implant] from [target]'s [affected] with \the [tool].</span>", \
-	"<span class='notice'>You removed [implant] from [target]'s [affected] with \the [tool].</span>" )
+	user.visible_message(SPAN_NOTICE("[user] removed [implant] from [target]'s [affected] with \the [tool]."), \
+	SPAN_NOTICE("You removed [implant] from [target]'s [affected] with \the [tool].") )
 
 	implant.uninstall()
 
@@ -124,7 +124,7 @@
 /datum/surgery_step/external_implant/remove/fail_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message("<span class='warning'>[user]'s hand slips, tearing [target]'s [affected.name] with \the [tool]!</span>",
-		"<span class='warning'>Your hand slips, tearing the [target]'s [affected.name] with \the [tool]!</span>")
+	user.visible_message(SPAN_WARNING("[user]'s hand slips, tearing [target]'s [affected.name] with \the [tool]!"),
+		SPAN_WARNING("Your hand slips, tearing the [target]'s [affected.name] with \the [tool]!"))
 
 	target.apply_damage(15, BRUTE, affected)

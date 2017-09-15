@@ -110,7 +110,7 @@ var/list/ghost_traps
 	target << "<b>Use say [target.get_language_prefix()]b to speak to other artificial intelligences.</b>"
 	var/turf/T = get_turf(target)
 	var/obj/item/device/mmi/digital/posibrain/P = target.loc
-	T.visible_message("<span class='notice'>\The [P] chimes quietly.</span>")
+	T.visible_message(SPAN_NOTICE("\The [P] chimes quietly."))
 	if(!istype(P)) //wat
 		return
 	P.searching = 0

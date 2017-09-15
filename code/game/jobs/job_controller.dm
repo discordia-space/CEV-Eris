@@ -17,7 +17,7 @@ var/global/datum/controller/occupations/job_master
 		occupations = list()
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
-			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
+			world << SPAN_WARNING("Error setting up jobs, no job datums found!")
 			return 0
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
@@ -52,8 +52,6 @@ var/global/datum/controller/occupations/job_master
 				return 0
 			if(jobban_isbanned(player, rank))
 				return 0
-			if(!job.player_old_enough(player.client))
-				return 0
 
 			var/position_limit = job.total_positions
 			if(!latejoin)
@@ -80,9 +78,6 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(jobban_isbanned(player, job.title))
 				Debug("FOC isbanned failed, Player: [player]")
-				continue
-			if(!job.player_old_enough(player.client))
-				Debug("FOC player not old enough, Player: [player]")
 				continue
 			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 				Debug("FOC character not old enough, Player: [player]")
@@ -112,10 +107,6 @@ var/global/datum/controller/occupations/job_master
 
 			if(jobban_isbanned(player, job.title))
 				Debug("GRJ isbanned failed, Player: [player], Job: [job.title]")
-				continue
-
-			if(!job.player_old_enough(player.client))
-				Debug("GRJ player not old enough, Player: [player]")
 				continue
 
 			if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
@@ -259,10 +250,6 @@ var/global/datum/controller/occupations/job_master
 						Debug("DO isbanned failed, Player: [player], Job:[job.title]")
 						continue
 
-					if(!job.player_old_enough(player.client))
-						Debug("DO player not old enough, Player: [player], Job:[job.title]")
-						continue
-
 					// If the player wants that job on this level, then try give it to him.
 					if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
 
@@ -342,7 +329,7 @@ var/global/datum/controller/occupations/job_master
 							permitted = 0
 
 						if(!permitted)
-							H << "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>"
+							H << SPAN_WARNING("Your current job or whitelist status does not permit you to spawn with [thing]!")
 							continue
 
 						if(G.slot && !(G.slot in custom_equip_slots))
@@ -352,7 +339,7 @@ var/global/datum/controller/occupations/job_master
 							if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 								custom_equip_leftovers += thing
 							else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-								H << "<span class='notice'>Equipping you with \the [thing]!</span>"
+								H << SPAN_NOTICE("Equipping you with \the [thing]!")
 								custom_equip_slots.Add(G.slot)
 							else
 								custom_equip_leftovers.Add(thing)
@@ -372,7 +359,7 @@ var/global/datum/controller/occupations/job_master
 				else
 					var/metadata = H.client.prefs.gear[G.display_name]
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-						H << "<span class='notice'>Equipping you with \the [thing]!</span>"
+						H << SPAN_NOTICE("Equipping you with \the [thing]!")
 						custom_equip_slots.Add(G.slot)
 					else
 						spawn_in_storage += thing
@@ -437,12 +424,12 @@ var/global/datum/controller/occupations/job_master
 
 				if(!isnull(B))
 					for(var/thing in spawn_in_storage)
-						H << "<span class='notice'>Placing \the [thing] in your [B.name]!</span>"
+						H << SPAN_NOTICE("Placing \the [thing] in your [B.name]!")
 						var/datum/gear/G = gear_datums[thing]
 						var/metadata = H.client.prefs.gear[G.display_name]
 						G.spawn_item(B, metadata)
 				else
-					H << "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
+					H << SPAN_DANGER("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.")
 
 		if(istype(H)) //give humans wheelchairs, if they need them.
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
@@ -571,9 +558,6 @@ var/global/datum/controller/occupations/job_master
 					continue //This player is not ready
 				if(jobban_isbanned(player, job.title))
 					level5++
-					continue
-				if(!job.player_old_enough(player.client))
-					level6++
 					continue
 				if(player.client.prefs.GetJobDepartment(job, 1) & job.flag)
 					level1++

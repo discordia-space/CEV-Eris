@@ -190,10 +190,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Re-enter Corpse"
 	if(!client)	return
 	if(!(mind && mind.current && can_reenter_corpse))
-		src << "<span class='warning'>You have no body.</span>"
+		src << SPAN_WARNING("You have no body.")
 		return
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
-		usr << "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>"
+		usr << SPAN_WARNING("Another consciousness is in your body... it is resisting you.")
 		return
 	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/found_rune
@@ -202,7 +202,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				found_rune = 1
 				break
 		if(!found_rune)
-			usr << "<span class='warning'>The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.</span>"
+			usr << SPAN_WARNING("The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.")
 			return
 	stop_following()
 	mind.current.ajourn=0
@@ -281,7 +281,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(!L || !L.len)
 		if(holyblock)
-			usr << "<span class='warning'>This area has been entirely made into sacred grounds, you cannot enter it while you are in this plane of existence!</span>"
+			usr << SPAN_WARNING("This area has been entirely made into sacred grounds, you cannot enter it while you are in this plane of existence!")
 		else
 			usr << "No area available."
 
@@ -308,12 +308,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	dir_set_event.register(following, src, /atom/proc/recursive_dir_set)
 	destroyed_event.register(following, src, /mob/observer/ghost/proc/stop_following)
 
-	src << "<span class='notice'>Now following \the [following]</span>"
+	src << SPAN_NOTICE("Now following \the [following]")
 	move_to_destination(following, following.loc, following.loc)
 
 /mob/observer/ghost/proc/stop_following()
 	if(following)
-		src << "<span class='notice'>No longer following \the [following]</span>"
+		src << SPAN_NOTICE("No longer following \the [following]")
 		moved_event.unregister(following, src)
 		dir_set_event.unregister(following, src)
 		destroyed_event.unregister(following, src)
@@ -322,7 +322,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/ghost/move_to_destination(var/atom/movable/am, var/old_loc, var/new_loc)
 	var/turf/T = get_turf(new_loc)
 	if(check_holy(T))
-		usr << "<span class='warning'>You cannot follow something standing on holy grounds!</span>"
+		usr << SPAN_WARNING("You cannot follow something standing on holy grounds!")
 		return
 	..()
 
@@ -410,7 +410,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 
 	if(config.disable_player_mice)
-		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
+		src << SPAN_WARNING("Spawning as a mouse is currently disabled.")
 		return
 
 	if(!MayRespawn(1, ANIMAL_SPAWN_DELAY))
@@ -418,7 +418,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/turf/T = get_turf(src)
 	if(!T || (T.z in config.admin_levels))
-		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
+		src << SPAN_WARNING("You may not spawn as a mouse on this Z-level.")
 		return
 
 	var/response = alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?","Squeek!","Nope!")
@@ -436,7 +436,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		vent_found = pick(found_vents)
 		host = new /mob/living/simple_animal/mouse(vent_found.loc)
 	else
-		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
+		src << SPAN_WARNING("Unable to find any unwelded vents to spawn mice at.")
 
 	if(host)
 		if(config.uneducated_mice)
@@ -474,7 +474,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/ghost/proc/try_possession(var/mob/living/M)
 	if(!config.ghosts_can_possess_animals)
-		usr << "<span class='warning'>Ghosts are not permitted to possess animals.</span>"
+		usr << SPAN_WARNING("Ghosts are not permitted to possess animals.")
 		return 0
 	if(!M.can_be_possessed_by(src))
 		return 0
@@ -518,7 +518,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		T = get_step(T,text2dir(direction))
 
 	if (!istype(T))
-		src << "<span class='warning'>You cannot doodle there.</span>"
+		src << SPAN_WARNING("You cannot doodle there.")
 		return
 
 	if(!choice || choice.amount == 0 || !(src.Adjacent(choice)))
@@ -530,7 +530,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
 		num_doodles++
 	if (num_doodles > 4)
-		src << "<span class='warning'>There is no space to write on!</span>"
+		src << SPAN_WARNING("There is no space to write on!")
 		return
 
 	var/max_length = 50
@@ -541,7 +541,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 		if (length(message) > max_length)
 			message += "-"
-			src << "<span class='warning'>You ran out of blood to write with!</span>"
+			src << SPAN_WARNING("You ran out of blood to write with!")
 
 		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
 		W.basecolor = doodle_color
@@ -564,14 +564,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(src.invisibility != 0)
 		user.visible_message( \
-			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
-			"<span class='warning'>You drag [src] to our plane of reality!</span>" \
+			SPAN_WARNING("\The [user] drags ghost, [src], to our plane of reality!"), \
+			SPAN_WARNING("You drag [src] to our plane of reality!") \
 		)
 		toggle_visibility(1)
 	else
 		user.visible_message ( \
-			"<span class='warning'>\The [user] just tried to smash \his book into that ghost!  It's not very effective.</span>", \
-			"<span class='warning'>You get the feeling that the ghost can't become any more visible.</span>" \
+			SPAN_WARNING("\The [user] just tried to smash \his book into that ghost!  It's not very effective."), \
+			SPAN_WARNING("You get the feeling that the ghost can't become any more visible.") \
 		)
 
 /mob/observer/ghost/proc/toggle_icon(var/icon)
@@ -667,17 +667,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
 		if(feedback)
-			src << "<span class='warning'>Your non-dead body prevent you from respawning.</span>"
+			src << SPAN_WARNING("Your non-dead body prevent you from respawning.")
 		return 0
 	if(config.antag_hud_restricted && has_enabled_antagHUD == 1)
 		if(feedback)
-			src << "<span class='warning'>antagHUD restrictions prevent you from respawning.</span>"
+			src << SPAN_WARNING("antagHUD restrictions prevent you from respawning.")
 		return 0
 
 	var/timedifference = world.time - timeofdeath
 	if(respawn_time && timeofdeath && timedifference < respawn_time MINUTES)
 		var/timedifference_text = time2text(respawn_time MINUTES - timedifference,"mm:ss")
-		src << "<span class='warning'>You must have been dead for [respawn_time] minute\s to respawn. You have [timedifference_text] left.</span>"
+		src << SPAN_WARNING("You must have been dead for [respawn_time] minute\s to respawn. You have [timedifference_text] left.")
 		return 0
 
 	return 1

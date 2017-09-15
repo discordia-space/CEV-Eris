@@ -96,7 +96,7 @@
 		return
 	var/obj/mecha/M = locate() in T
 	if(M)
-		M.visible_message("<span class='danger'>The blob attacks \the [M]!</span>")
+		M.visible_message(SPAN_DANGER("The blob attacks \the [M]!"))
 		M.take_damage(40)
 		return
 
@@ -104,7 +104,7 @@
 	for(var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
-		L.visible_message("<span class='danger'>The blob attacks \the [L]!</span>", "<span class='danger'>The blob attacks you!</span>")
+		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		L.take_organ_damage(rand(30, 40))
 		return

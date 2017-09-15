@@ -18,6 +18,8 @@
 	var/devtype = 0 						// 0: None(unselected), 1: Laptop, 2: Tablet
 	var/total_price = 0						// Price of currently vended device.
 
+	var/datum/transaction/transaction_template = null
+
 	// Device loadout
 	var/dev_cpu = 1							// 1: Default, 2: Upgraded
 	var/dev_battery = 1						// 1: Default, 2: Upgraded, 3: Advanced
@@ -26,6 +28,13 @@
 	var/dev_tesla = 0						// 0: None, 1: Standard (LAPTOP ONLY)
 	var/dev_nanoprint = 0					// 0: None, 1: Standard
 	var/dev_card = 0						// 0: None, 1: Standard
+
+/obj/machinery/lapvend/New()
+	..()
+	transaction_template = new(
+		0, "Computer Manufacturer (via [src.name])",
+		null, src.name
+	)
 
 // Removes all traces of old order and allows you to begin configuration from scratch.
 /obj/machinery/lapvend/proc/reset_order()
@@ -268,7 +277,7 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if (!customer_account || customer_account.suspended)
 		ping("Connection error. Unable to connect to account.")
-		return 0
+		return FALSE
 
 	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
 		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
@@ -276,19 +285,12 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 		if(!customer_account)
 			ping("Unable to access account: incorrect credentials.")
-			return 0
+			return FALSE
 
 	if(total_price > customer_account.money)
 		ping("Insufficient funds in account.")
-		return 0
+		return FALSE
 	else
-		customer_account.money -= total_price
-		var/datum/transaction/T = new()
-		T.target_name = "Computer Manufacturer (via [src.name])"
-		T.purpose = "Purchase of [(devtype == 1) ? "laptop computer" : "tablet microcomputer"]."
-		T.amount = total_price
-		T.source_terminal = src.name
-		T.date = current_date_string
-		T.time = stationtime2text()
-		customer_account.transaction_log.Add(T)
-		return 1
+		transaction_template.set_amount(-total_price)
+		transaction_template.purpose = "Purchase of [(devtype == 1) ? "laptop computer" : "tablet microcomputer"]."
+		return transaction_template.apply_to(customer_account)

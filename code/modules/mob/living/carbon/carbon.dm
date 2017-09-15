@@ -50,7 +50,7 @@
 	if((user in src.stomach_contents) && istype(user))
 		if(user.last_special <= world.time)
 			user.last_special = world.time + 50
-			src.visible_message("<span class='danger'>You hear something rumbling inside [src]'s stomach...</span>")
+			src.visible_message(SPAN_DANGER("You hear something rumbling inside [src]'s stomach..."))
 			var/obj/item/I = user.get_active_hand()
 			if(I && I.force)
 				var/d = rand(round(I.force / 4), I.force)
@@ -63,7 +63,7 @@
 					H.updatehealth()
 				else
 					src.take_organ_damage(d)
-				user.visible_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>")
+				user.visible_message(SPAN_DANGER("[user] attacks [src]'s stomach wall with the [I.name]!"))
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
 
 				if(prob(src.getBruteLoss() - 50))
@@ -197,24 +197,24 @@
 		else if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if (M.on_fire)
-				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames, but to no avail!</span>",
-				"<span class='warning'>You try to pat out [src]'s flames, but to no avail! Put yourself out first!</span>")
+				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames, but to no avail!"),
+				SPAN_WARNING("You try to pat out [src]'s flames, but to no avail! Put yourself out first!"))
 			else
-				M.visible_message("<span class='warning'>[M] tries to pat out [src]'s flames!</span>",
-				"<span class='warning'>You try to pat out [src]'s flames! Hot!</span>")
+				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames!"),
+				SPAN_WARNING("You try to pat out [src]'s flames! Hot!"))
 				if(do_mob(M, src, 15))
 					src.fire_stacks -= 0.5
 					if (prob(10) && (M.fire_stacks <= 0))
 						M.fire_stacks += 1
 					M.IgniteMob()
 					if (M.on_fire)
-						M.visible_message("<span class='danger'>The fire spreads from [src] to [M]!</span>",
-						"<span class='danger'>The fire spreads to you as well!</span>")
+						M.visible_message(SPAN_DANGER("The fire spreads from [src] to [M]!"),
+						SPAN_DANGER("The fire spreads to you as well!"))
 					else
 						src.fire_stacks -= 0.5 //Less effective than stop, drop, and roll - also accounting for the fact that it takes half as long.
 						if (src.fire_stacks <= 0)
-							M.visible_message("<span class='warning'>[M] successfully pats out [src]'s flames.</span>",
-							"<span class='warning'>You successfully pat out [src]'s flames.</span>")
+							M.visible_message(SPAN_WARNING("[M] successfully pats out [src]'s flames."),
+							SPAN_WARNING("You successfully pat out [src]'s flames."))
 							src.ExtinguishMob()
 							src.fire_stacks = 0
 		else
@@ -231,21 +231,21 @@
 			var/mob/living/carbon/human/H = src
 			if(istype(H)) show_ssd = H.species.show_ssd
 			if(show_ssd && !client && !teleop)
-				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
-				"<span class='notice'>You shake [src], but they do not respond... Maybe they have S.S.D?</span>")
+				M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to wake [t_him] up!"), \
+				SPAN_NOTICE("You shake [src], but they do not respond... Maybe they have S.S.D?"))
 			else if(lying || src.sleeping)
 				src.sleeping = max(0,src.sleeping-5)
 				if(src.sleeping == 0)
 					src.resting = 0
-				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!</span>", \
-									"<span class='notice'>You shake [src] trying to wake [t_him] up!</span>")
+				M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to wake [t_him] up!"), \
+									SPAN_NOTICE("You shake [src] trying to wake [t_him] up!"))
 			else
 				var/mob/living/carbon/human/hugger = M
 				if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
-					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
-								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>")
+					M.visible_message(SPAN_NOTICE("[M] hugs [src] to make [t_him] feel better!"), \
+								SPAN_NOTICE("You hug [src] to make [t_him] feel better!"))
 				if(M.fire_stacks >= (src.fire_stacks + 3))
 					src.fire_stacks += 1
 					M.fire_stacks -= 1
@@ -385,7 +385,7 @@
 		return 0
 	stop_pulling()
 	if (slipped_on)
-		src << "<span class='warning'>You slipped on [slipped_on]!</span>"
+		src << SPAN_WARNING("You slipped on [slipped_on]!")
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Stun(stun_duration)
 	Weaken(Floor(stun_duration/2))

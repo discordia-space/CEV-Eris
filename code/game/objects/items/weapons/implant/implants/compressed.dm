@@ -59,7 +59,7 @@
 	if(istype(A,/obj/item) && implant)
 		var/obj/item/weapon/implant/compressed/c = implant
 		if (c.scanned)
-			user << "<span class='warning'>Something is already scanned inside the implant!</span>"
+			user << SPAN_WARNING("Something is already scanned inside the implant!")
 			return
 		if(ismob(A.loc))
 			var/mob/M = A.loc

@@ -64,7 +64,7 @@
 				else if (iscarbon(M))
 					var/mob/living/carbon/C = M
 					if (!(C.species && (C.species.flags & NO_PAIN)))
-						M << "<span class='danger'>[painMes]</span>"
+						M << SPAN_DANGER("[painMes]")
 
 			gain_nutrition(rand(20,25))
 
@@ -92,7 +92,7 @@
 					++Friends[Victim.LAssailant]
 
 		else
-			src << "<span class='notice'>This subject does not have a strong enough life energy anymore...</span>"
+			src << SPAN_NOTICE("This subject does not have a strong enough life energy anymore...")
 
 	Victim = null
 
@@ -111,7 +111,7 @@
 	set desc = "This will let you evolve from baby to adult slime."
 
 	if(stat)
-		src << "<span class='notice'>I must be conscious to do this...</span>"
+		src << SPAN_NOTICE("I must be conscious to do this...")
 		return
 
 	if(!is_adult)
@@ -122,22 +122,22 @@
 			regenerate_icons()
 			name = text("[colour] [is_adult ? "adult" : "baby"] slime ([number])")
 		else
-			src << "<span class='notice'>I am not ready to evolve yet...</span>"
+			src << SPAN_NOTICE("I am not ready to evolve yet...")
 	else
-		src << "<span class='notice'>I have already evolved...</span>"
+		src << SPAN_NOTICE("I have already evolved...")
 
 /mob/living/carbon/slime/verb/Reproduce()
 	set category = "Slime"
 	set desc = "This will make you split into four Slimes."
 
 	if(stat)
-		src << "<span class='notice'>I must be conscious to do this...</span>"
+		src << SPAN_NOTICE("I must be conscious to do this...")
 		return
 
 	if(is_adult)
 		if(amount_grown >= 10)
 			if(stat)
-				src << "<span class='notice'>I must be conscious to do this...</span>"
+				src << SPAN_NOTICE("I must be conscious to do this...")
 				return
 
 			var/list/babies = list()
@@ -163,6 +163,6 @@
 				new_slime.key = src.key
 			qdel(src)
 		else
-			src << "<span class='notice'>I am not ready to reproduce yet...</span>"
+			src << SPAN_NOTICE("I am not ready to reproduce yet...")
 	else
-		src << "<span class='notice'>I am not old enough to reproduce yet...</span>"
+		src << SPAN_NOTICE("I am not old enough to reproduce yet...")

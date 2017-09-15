@@ -609,7 +609,7 @@
 		return STATUS_CLOSE
 
 	if(aidisabled && isAI(user))
-		user << "<span class='warning'>AI control for \the [src] interface has been disabled.</span>"
+		user << SPAN_WARNING("AI control for \the [src] interface has been disabled.")
 		return STATUS_CLOSE
 
 	. = shorted ? STATUS_DISABLED : STATUS_INTERACTIVE
@@ -786,7 +786,7 @@
 				return
 
 			if (wiresexposed && istype(W, /obj/item/weapon/wirecutters))
-				user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+				user.visible_message(SPAN_WARNING("[user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				new/obj/item/stack/cable_coil(get_turf(src), 5)
 				buildstage = 1
@@ -802,20 +802,20 @@
 						locked = !locked
 						user << "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>"
 					else
-						user << "<span class='warning'>Access denied.</span>"
+						user << SPAN_WARNING("Access denied.")
 			return
 
 		if(1)
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if (C.use(5))
-					user << "<span class='notice'>You wire \the [src].</span>"
+					user << SPAN_NOTICE("You wire \the [src].")
 					buildstage = 2
 					update_icon()
 					first_run()
 					return
 				else
-					user << "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>"
+					user << SPAN_WARNING("You need 5 pieces of cable to do wire \the [src].")
 					return
 
 			else if(istype(W, /obj/item/weapon/crowbar))
@@ -958,11 +958,11 @@ FIRE ALARM
 				if (istype(W, /obj/item/device/multitool))
 					src.detecting = !( src.detecting )
 					if (src.detecting)
-						user.visible_message("<span class='notice'>\The [user] has reconnected [src]'s detecting unit!</span>", "<span class='notice'>You have reconnected [src]'s detecting unit.</span>")
+						user.visible_message(SPAN_NOTICE("\The [user] has reconnected [src]'s detecting unit!"), SPAN_NOTICE("You have reconnected [src]'s detecting unit."))
 					else
-						user.visible_message("<span class='notice'>\The [user] has disconnected [src]'s detecting unit!</span>", "<span class='notice'>You have disconnected [src]'s detecting unit.</span>")
+						user.visible_message(SPAN_NOTICE("\The [user] has disconnected [src]'s detecting unit!"), SPAN_NOTICE("You have disconnected [src]'s detecting unit."))
 				else if (istype(W, /obj/item/weapon/wirecutters))
-					user.visible_message("<span class='notice'>\The [user] has cut the wires inside \the [src]!</span>", "<span class='notice'>You have cut the wires inside \the [src].</span>")
+					user.visible_message(SPAN_NOTICE("\The [user] has cut the wires inside \the [src]!"), SPAN_NOTICE("You have cut the wires inside \the [src]."))
 					new/obj/item/stack/cable_coil(get_turf(src), 5)
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 					buildstage = 1
@@ -971,11 +971,11 @@ FIRE ALARM
 				if(istype(W, /obj/item/stack/cable_coil))
 					var/obj/item/stack/cable_coil/C = W
 					if (C.use(5))
-						user << "<span class='notice'>You wire \the [src].</span>"
+						user << SPAN_NOTICE("You wire \the [src].")
 						buildstage = 2
 						return
 					else
-						user << "<span class='warning'>You need 5 pieces of cable to wire \the [src].</span>"
+						user << SPAN_WARNING("You need 5 pieces of cable to wire \the [src].")
 						return
 				else if(istype(W, /obj/item/weapon/crowbar))
 					user << "You pry out the circuit!"

@@ -62,8 +62,9 @@
 	active = FALSE
 	for(var/TT in masters)
 		var/turf/T = TT
-		if(T.lighting_overlay)
+		if(T.dynamic_lighting)
 			active = TRUE
+			return
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
 /datum/lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)

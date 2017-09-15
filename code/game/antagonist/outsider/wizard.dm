@@ -30,7 +30,6 @@ var/datum/antagonist/wizard/wizards
 	var/kill
 	var/escape
 	var/steal
-	var/hijack
 
 	switch(rand(1,100))
 		if(1 to 30)
@@ -42,8 +41,6 @@ var/datum/antagonist/wizard/wizards
 		if(61 to 99)
 			kill = 1
 			steal = 1
-		else
-			hijack = 1
 
 	if(kill)
 		var/datum/objective/assassinate/kill_objective = new
@@ -59,10 +56,6 @@ var/datum/antagonist/wizard/wizards
 		var/datum/objective/survive/survive_objective = new
 		survive_objective.owner = wizard
 		wizard.objectives |= survive_objective
-	if(hijack)
-		var/datum/objective/hijack/hijack_objective = new
-		hijack_objective.owner = wizard
-		wizard.objectives |= hijack_objective
 	return
 
 /datum/antagonist/wizard/update_antag_mob(var/datum/mind/wizard)
@@ -123,12 +116,12 @@ Made a proc so this is not repeated 14 (or more) times.*/
 // Humans can wear clothes.
 /mob/living/carbon/human/wearing_wiz_garb()
 	if(!is_wiz_garb(src.wear_suit) && (!src.species.hud || (slot_wear_suit in src.species.hud.equip_slots)))
-		src << "<span class='warning'>I don't feel strong enough without my robe.</span>"
+		src << SPAN_WARNING("I don't feel strong enough without my robe.")
 		return 0
 	if(!is_wiz_garb(src.shoes) && (!species.hud || (slot_shoes in src.species.hud.equip_slots)))
-		src << "<span class='warning'>I don't feel strong enough without my sandals.</span>"
+		src << SPAN_WARNING("I don't feel strong enough without my sandals.")
 		return 0
 	if(!is_wiz_garb(src.head) && (!species.hud || (slot_head in src.species.hud.equip_slots)))
-		src << "<span class='warning'>I don't feel strong enough without my hat.</span>"
+		src << SPAN_WARNING("I don't feel strong enough without my hat.")
 		return 0
 	return 1
