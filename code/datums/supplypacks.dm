@@ -106,6 +106,25 @@ var/list/all_supply_groups = list("Operations", "Security", "Hospitality", "Engi
 	containername = "\improper Toner cartridges"
 	group = "Supply"
 
+/datum/supply_packs/lunchboxes
+	name = "Lunchboxes"
+	contains = list(/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow)
+	cost = 25
+	containertype = /obj/structure/closet/crate
+	containername = "\improper Lunchboxes"
+	group = "Supply"
+
 /datum/supply_packs/party
 	name = "Party equipment"
 	contains = list(/obj/item/weapon/storage/box/drinkingglasses,
