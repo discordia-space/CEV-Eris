@@ -41,6 +41,7 @@
 
 /datum/export/large/reagent_dispenser/fuel
 	unit_name = "fueltank"
+	contents_cost = 800
 	export_types = list(/obj/structure/reagent_dispensers/fueltank)
 
 /datum/export/large/reagent_dispenser/beer
