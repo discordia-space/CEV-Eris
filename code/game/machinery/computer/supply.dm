@@ -23,137 +23,148 @@
 	var/movetime = 1200
 	var/datum/shuttle/ferry/supply/shuttle
 
-	New()
-		ordernum = rand(1,9000)
+/datum/controller/supply/New()
+	ordernum = rand(1, 9000)
 
-		for(var/typepath in (typesof(/datum/supply_pack) - /datum/supply_pack))
-			var/datum/supply_pack/P = new typepath()
-			supply_packs[P.name] = P
+	for(var/typepath in (typesof(/datum/supply_pack) - /datum/supply_pack))
+		var/datum/supply_pack/P = new typepath()
+		supply_packs[P.name] = P
 
 
 
-	// Supply shuttle ticker - handles supply point regeneration
-	// This is called by the process scheduler every thirty seconds
-	proc/process()
-		points += points_per_process
+// Supply shuttle ticker - handles supply point regeneration
+// This is called by the process scheduler every thirty seconds
+/datum/controller/supply/proc/process()
+	points += points_per_process
 
-	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
-	proc/forbidden_atoms_check(atom/A)
-		if(isliving(A))
-			return 1
-		if(istype(A,/obj/item/weapon/disk/nuclear))
-			return 1
-		if(istype(A,/obj/machinery/nuclearbomb))
-			return 1
-		if(istype(A,/obj/item/device/radio/beacon))
-			return 1
+//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
+/datum/controller/supply/proc/forbidden_atoms_check(atom/A)
+	if(isliving(A))
+		return TRUE
+	if(istype(A, /obj/item/weapon/disk/nuclear))
+		return TRUE
+	if(istype(A, /obj/machinery/nuclearbomb))
+		return TRUE
+	if(istype(A, /obj/item/device/radio/beacon))
+		return TRUE
 
-		for(var/i=1, i<=A.contents.len, i++)
-			var/atom/B = A.contents[i]
-			if(.(B))
-				return 1
+	for(var/i=1, i<=A.contents.len, i++)
+		var/atom/B = A.contents[i]
+		if(.(B))
+			return TRUE
 
-	//Sellin
-	proc/sell()
-		var/area/area_shuttle = shuttle.get_location_area()
-		if(!area_shuttle)	return
-
-		var/msg = ""
-		var/sold_atoms = ""
-
-		for(var/atom/movable/AM in area_shuttle)
-			if(AM.anchored)	continue
-			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
-
-		for(var/a in exports_list)
-			var/datum/export/E = a
-			var/export_text = E.total_printout()
-			if(!export_text)
-				continue
-
-			msg += "\n" + export_text + "\n"
-			supply_controller.points += E.total_cost
-			E.export_end()
-
-		centcom_message = msg
-
-	//Buyin
-	proc/buy()
-		if(!shoppinglist.len) return
-
-		var/area/area_shuttle = shuttle.get_location_area()
-		if(!area_shuttle)	return
-
-		var/list/clear_turfs = list()
-
-		for(var/turf/T in area_shuttle)
-			if(T.density)	continue
-			var/contcount
-			for(var/atom/A in T.contents)
-				if(!A.simulated)
-					continue
-				contcount++
-			if(contcount)
-				continue
-			clear_turfs += T
-
-		for(var/S in shoppinglist)
-			if(!clear_turfs.len)	break
-			var/i = rand(1,clear_turfs.len)
-			var/turf/pickedloc = clear_turfs[i]
-			clear_turfs.Cut(i,i+1)
-
-			var/datum/supply_order/SO = S
-			var/datum/supply_pack/SP = SO.object
-
-			var/obj/A = new SP.containertype(pickedloc)
-			A.name = "[SP.name][SO.comment ? " ([SO.comment])":"" ]"
-
-			//supply manifest generation begin
-
-			var/obj/item/weapon/paper/manifest/slip
-			if(!SP.contraband)
-				slip = new /obj/item/weapon/paper/manifest(A)
-				slip.is_copy = 0
-				slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
-				slip.info +="Order #[SO.ordernum]<br>"
-				slip.info +="Destination: [station_name]<br>"
-				slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
-				slip.info +="CONTENTS:<br><ul>"
-
-			//spawn the stuff, finish generating the manifest while you're at it
-			if(SP.access)
-				if(isnum(SP.access))
-					A.req_access = list(SP.access)
-				else if(islist(SP.access))
-					var/list/L = SP.access // access var is a plain var, we need a list
-					A.req_access = L.Copy()
-				else
-					world << "<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>"
-
-			var/list/contains
-			if(istype(SP,/datum/supply_pack/randomised))
-				var/datum/supply_pack/randomised/SPR = SP
-				contains = list()
-				if(SPR.contains.len)
-					for(var/j=1,j<=SPR.num_contained,j++)
-						contains += pick(SPR.contains)
-			else
-				contains = SP.contains
-
-			for(var/typepath in contains)
-				if(!typepath)	continue
-				var/atom/B2 = new typepath(A)
-				if(SP.amount && B2:amount) B2:amount = SP.amount
-				if(slip) slip.info += "<li>[B2.name]</li>" //add the item to the manifest
-
-			//manifest finalisation
-			if(slip)
-				slip.info += "</ul><br>"
-				slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
-
-		shoppinglist.Cut()
+//Sellin
+/datum/controller/supply/proc/sell()
+	var/area/area_shuttle = shuttle.get_location_area()
+	if(!area_shuttle)
 		return
+
+	var/msg = ""
+	var/sold_atoms = ""
+
+	for(var/atom/movable/AM in area_shuttle)
+		if(AM.anchored)
+			continue
+
+		sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
+
+	for(var/a in exports_list)
+		var/datum/export/E = a
+		var/export_text = E.total_printout()
+		if(!export_text)
+			continue
+
+		msg += "\n" + export_text + "\n"
+		supply_controller.points += E.total_cost
+		E.export_end()
+
+	centcom_message = msg
+
+//Buyin
+/datum/controller/supply/proc/buy()
+	if(!shoppinglist.len)
+		return
+
+	var/area/area_shuttle = shuttle.get_location_area()
+	if(!area_shuttle)
+		return
+
+	var/list/clear_turfs = list()
+
+	for(var/turf/T in area_shuttle)
+		if(T.density)
+			continue
+
+		var/contcount
+		for(var/atom/A in T.contents)
+			if(!A.simulated)
+				continue
+			contcount++
+		if(contcount)
+			continue
+		clear_turfs += T
+
+	for(var/S in shoppinglist)
+		if(!clear_turfs.len)
+			break
+
+		var/i = rand(1,clear_turfs.len)
+		var/turf/pickedloc = clear_turfs[i]
+		clear_turfs.Cut(i,i+1)
+
+		var/datum/supply_order/SO = S
+		var/datum/supply_pack/SP = SO.object
+
+		var/obj/A = new SP.containertype(pickedloc)
+		A.name = "[SP.name][SO.comment ? " ([SO.comment])":"" ]"
+
+		//supply manifest generation begin
+
+		var/obj/item/weapon/paper/manifest/slip
+		if(!SP.contraband)
+			slip = new /obj/item/weapon/paper/manifest(A)
+			slip.is_copy = 0
+			slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
+			slip.info +="Order #[SO.ordernum]<br>"
+			slip.info +="Destination: [station_name]<br>"
+			slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
+			slip.info +="CONTENTS:<br><ul>"
+
+		//spawn the stuff, finish generating the manifest while you're at it
+		if(SP.access)
+			if(isnum(SP.access))
+				A.req_access = list(SP.access)
+			else if(islist(SP.access))
+				var/list/L = SP.access // access var is a plain var, we need a list
+				A.req_access = L.Copy()
+			else
+				world << "<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>"
+
+		var/list/contains
+		if(istype(SP,/datum/supply_pack/randomised))
+			var/datum/supply_pack/randomised/SPR = SP
+			contains = list()
+			if(SPR.contains.len)
+				for(var/j=1,j<=SPR.num_contained,j++)
+					contains += pick(SPR.contains)
+		else
+			contains = SP.contains
+
+		for(var/typepath in contains)
+			if(!typepath)
+				continue
+
+			var/atom/B2 = new typepath(A)
+			if(SP.amount && B2:amount) B2:amount = SP.amount
+			if(slip) slip.info += "<li>[B2.name]</li>" //add the item to the manifest
+
+		//manifest finalisation
+		if(slip)
+			slip.info += "</ul><br>"
+			slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
+
+	shoppinglist.Cut()
+	return
 
 
 
@@ -168,7 +179,7 @@
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
-	var/can_order_contraband = 0
+	var/can_order_contraband = FALSE
 	var/requestonly = FALSE
 	var/contraband = FALSE
 	var/hacked = FALSE
@@ -213,7 +224,7 @@
 
 /obj/machinery/computer/ordercomp/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	if( isturf(loc) && (in_range(src, usr) || issilicon(usr)) )
 		usr.set_machine(src)
@@ -374,7 +385,7 @@
 	if(!hacked)
 		user << "<span class='notice'>Special supplies unlocked.</span>"
 		hacked = 1
-		return 1
+		return TRUE
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	if(!supply_controller)
@@ -385,7 +396,7 @@
 		world.log << "## ERROR: Eek. The supply/shuttle datum is missing somehow."
 		return
 	if(..())
-		return 1
+		return TRUE
 
 	if(isturf(loc) && ( in_range(src, usr) || issilicon(usr) ) )
 		usr.set_machine(src)
@@ -439,15 +450,6 @@
 				if((N.hidden && !hacked) || (N.contraband && !can_order_contraband) || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
 				temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"		//the obj because it would get caught by the garbage
 
-		/*temp = "Supply points: [supply_controller.points]<BR><HR><BR>Request what?<BR><BR>"
-
-		for(var/supply_name in supply_controller.supply_pack )
-			var/datum/supply_pack/N = supply_controller.supply_pack[supply_name]
-			if(N.hidden && !hacked) continue
-			if(N.contraband && !can_order_contraband) continue
-			temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"    //the obj because it would get caught by the garbage
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"*/
-
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
 			for(var/mob/V in hearers(src))
@@ -460,7 +462,8 @@
 
 		var/timeout = world.time + 600
 		var/reason = sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text)
-		if(world.time > timeout)	return
+		if(world.time > timeout)
+			return
 		if(!reason)	return
 
 		var/idname = "*None Provided*"
