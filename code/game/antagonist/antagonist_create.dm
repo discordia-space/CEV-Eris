@@ -1,5 +1,6 @@
 /datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE)
 	if(!istype(target) || !target.current || !can_become_antag(target))
+		world << "D:WRONG TARGET [target]"
 		return FALSE
 
 	target.antagonist.Add(src)

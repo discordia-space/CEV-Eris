@@ -48,14 +48,16 @@ var/global/list/antag_bantypes = list()
 
 /proc/make_antagonist(var/datum/mind/M, var/a_id)
 	if(antag_types[a_id])
-		var/datum/antagonist/A = new antag_types[a_id]
+		var/a_type = antag_types[a_id]
+		world.log << "D:a_type [a_type]"
+		var/datum/antagonist/A = new a_type
 		A.create_antagonist(M)
-
 		return A
 
 /proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
 	if(antag_types[a_id])
-		var/datum/antagonist/A = new antag_types[a_id]
+		var/a_type = antag_types[a_id]
+		var/datum/antagonist/A = new a_type
 		A.create_antagonist(M, F)
 
 		return A
@@ -150,5 +152,10 @@ var/global/list/antag_bantypes = list()
 	for(var/datum/faction/F in current_factions)
 		if(F.id == f_type)
 			L.Add(F)
-
 	return L
+
+/proc/player_is_antag_faction(var/datum/mind/player, var/a_id, var/datum/faction/F)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if((!a_id || antag.id == a_id) && antag.faction == F)
+			return TRUE
+	return FALSE

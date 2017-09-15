@@ -20,7 +20,7 @@ var/global/list/all_objectives_types = null
 /datum/objective/New(var/datum/antagonist/new_owner, var/add_to_list = TRUE)
 	antag = new_owner
 	if(add_to_list)
-		antag.objectives += src
+		antag.objectives |= src
 	if(antag.owner)
 		owner = antag.owner
 	find_target()

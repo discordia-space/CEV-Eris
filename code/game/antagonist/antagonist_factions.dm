@@ -30,7 +30,7 @@
 /datum/faction/proc/convert()
 	return FALSE
 
-/datum/faction/proc/add_member(var/datum/antagonist/member)
+/datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
 		return
 	if(possible_antags.len && !(member.id in possible_antags))
@@ -38,44 +38,51 @@
 
 	members.Add(member)
 	member.faction = src
-	member.owner.current << SPAN_NOTICE("You became a member of the [name].")
+	if(announce)
+		member.owner.current << SPAN_NOTICE("You became a member of the [name].")
 	member.set_objectives(objectives)
 
 	member.owner.current.verbs |= verbs
 	add_icons()
 	update_members()
 
-/datum/faction/proc/add_leader(var/datum/antagonist/member)
+/datum/faction/proc/add_leader(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || member in leaders || !member.owner.current)
 		return
 
 	if(!(member in members))
-		add_member(member)
+		add_member(member,FALSE)
 
 	leaders.Add(member)
 	member.owner.current.verbs |= leader_verbs
-	member.owner.current << SPAN_NOTICE("You became a <b>leader</b> of the [name].")
+	if(announce)
+		member.owner.current << SPAN_NOTICE("You became a <b>leader</b> of the [name].")
 	update_members()
 
-/datum/faction/proc/remove_leader(var/datum/antagonist/member)
+/datum/faction/proc/remove_leader(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !(member in leaders) || !member.owner.current)
 		return
 
 	leaders.Remove(member)
-	member.owner.current << SPAN_WARNING("You are no longer the <b>leader</b> of the [name].")
+	if(announce)
+		member.owner.current << SPAN_WARNING("You are no longer the <b>leader</b> of the [name].")
 	member.owner.current.verbs.Remove(leader_verbs)
 
 	update_members()
 
-/datum/faction/proc/remove_member(var/datum/antagonist/member)
+/datum/faction/proc/remove_member(var/datum/antagonist/member, var/announce = TRUE)
 	if(!(member in members))
 		return
 
 	remove_icons()
 
 	members.Remove(member)
-	leaders.Remove(member)
-	member.owner.current << SPAN_WARNING("You are no longer a member of the [name].")
+
+	if(member in leaders)
+		remove_leader(member, FALSE)
+
+	if(announce)
+		member.owner.current << SPAN_WARNING("You are no longer a member of the [name].")
 
 	if(member.owner && member.owner.current)
 		member.owner.current.verbs.Remove(verbs)

@@ -1,10 +1,10 @@
 /datum/antagonist/revolutionary
 	id = ROLE_REVOLUTIONARY
-	role_text = "Head Revolutionary"
+	role_text = "Revolutionary"
 	role_text_plural = "Revolutionaries"
 	bantype = "revolutionary"
 	welcome_text = "Down with the capitalists! Down with the Bourgeoise!"
-
+	faction_type = /datum/faction/revolutionary
 	restricted_jobs = list("AI", "Cyborg","Captain", "First Officer", "Ironhammer Commander", "Technomancer Exultant", "Moebius Expedition Overseer", "Moebius Biolab Officer")
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Medical Specialist")
 
@@ -25,10 +25,15 @@
 	set name = "Convert Bourgeoise"
 	set category = "Abilities"
 
+	src << "NO"
+
 /datum/faction/revolutionary/create_objectives()
 	if(!..())
 		return
 	for(var/mob/living/carbon/human/player in mob_list)
-		if(!player.mind || player.stat==2 || !(player.mind.assigned_role in command_positions))
+		if(!player.mind || player.stat==DEAD || !(player.mind.assigned_role in command_positions) || player in members)
 			continue
-		new /datum/objective/rev (player)
+		var/datum/objective/faction/rev/O = new /datum/objective/faction/rev (src)
+		O.target = player.mind
+		O.update_explanation()
+
