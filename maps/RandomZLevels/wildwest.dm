@@ -48,16 +48,16 @@
 				user << "The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart."
 				if (!(LASER in user.mutations))
 					user.mutations.Add(LASER)
-					user << "<span class='notice'>You feel pressure building behind your eyes.</span>"
+					user << SPAN_NOTICE("You feel pressure building behind your eyes.")
 				if (!(COLD_RESISTANCE in user.mutations))
 					user.mutations.Add(COLD_RESISTANCE)
-					user << "<span class='notice'>Your body feels warm.</span>"
+					user << SPAN_NOTICE("Your body feels warm.")
 				if (!(XRAY in user.mutations))
 					user.mutations.Add(XRAY)
 					user.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 					user.see_in_dark = 8
 					user.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-					user << "<span class='notice'>The walls suddenly disappear.</span>"
+					user << SPAN_NOTICE("The walls suddenly disappear.")
 				user.dna.mutantrace = "shadow"
 				user.update_mutantrace()
 			if("Wealth")
@@ -147,9 +147,9 @@
 
 	var/mob/living/carbon/C = usr
 	if(!C.stat)
-		C << "<span class='notice'>You're not dead yet!</span>"
+		C << SPAN_NOTICE("You're not dead yet!")
 		return
-	C << "<span class='notice'>Death is not your end!</span>"
+	C << SPAN_NOTICE("Death is not your end!")
 
 	spawn(rand(800,1200))
 		if(C.stat == DEAD)
@@ -166,7 +166,7 @@
 		C.radiation = 0
 		C.heal_overall_damage(C.getBruteLoss(), C.getFireLoss())
 		C.reagents.clear_reagents()
-		C << "<span class='notice'>You have regenerated.</span>"
-		C.visible_message("<span class='warning'>[usr] appears to wake from the dead, having healed all wounds.</span>")
+		C << SPAN_NOTICE("You have regenerated.")
+		C.visible_message(SPAN_WARNING("[usr] appears to wake from the dead, having healed all wounds."))
 		C.update_canmove()
 	return 1

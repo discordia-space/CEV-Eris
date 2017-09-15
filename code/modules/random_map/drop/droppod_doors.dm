@@ -27,7 +27,7 @@
 
 /obj/structure/droppod_door/attack_hand(var/mob/user)
 	if(deploying) return
-	user << "<span class='danger'>You prime the explosive bolts. Better get clear!</span>"
+	user << SPAN_DANGER("You prime the explosive bolts. Better get clear!")
 	sleep(30)
 	deploy()
 
@@ -36,7 +36,7 @@
 		return
 
 	deployed = 1
-	visible_message("<span class='danger'>The explosive bolts on \the [src] detonate, throwing it open!</span>")
+	visible_message(SPAN_DANGER("The explosive bolts on \the [src] detonate, throwing it open!"))
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)
 
 	// This is shit but it will do for the sake of testing.

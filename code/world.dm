@@ -29,7 +29,7 @@ var/global/datum/global_init/init = new ()
 /datum/global_init/Destroy()
 	return 1
 
-/var/game_id = null
+var/game_id = null
 /proc/generate_gameid()
 	if(game_id != null)
 		return
@@ -76,7 +76,7 @@ var/global/datum/global_init/init = new ()
 		config.server_name += " #[(world.port % 1000) / 100]"
 
 	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+		log = file("data/logs/runtime/[time2text(world.realtime, "YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
 	//Emergency Fix
@@ -115,17 +115,11 @@ var/global/datum/global_init/init = new ()
 					// If it's still not a number, we probably got fed some nonsense string.
 					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
 				// Now for the actual map generating.  This occurs for every z-level defined in the config.
-				new /datum/random_map/automata/cave_system(null,1,1,z_level,300,300)
+				new /datum/random_map/automata/cave_system(null, 1, 1, z_level, 300, 300)
 				// Let's add ore too.
 				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
 		else
 			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
-		// Update all turfs to ensure everything looks good post-generation. Yes,
-		// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
-		for(var/turf/simulated/mineral/M in world) // Ugh.
-			M.updateMineralOverlays()
-		for(var/turf/simulated/floor/asteroid/M in world) // Uuuuuugh.
-			M.updateMineralOverlays()
 
 	// Create autolathe recipes, as above.
 	populate_lathe_recipes()
@@ -136,6 +130,18 @@ var/global/datum/global_init/init = new ()
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)
+		for(var/turf/T in world)
+			T.initialize()
+			turfs += T
+			if(config.generate_asteroid)
+				// Update all turfs to ensure everything looks good post-generation. Yes,
+				// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
+				if(istype(T, /turf/simulated/mineral))
+					var/turf/simulated/mineral/M = T
+					M.updateMineralOverlays()
+				if(istype(T, /turf/simulated/floor/asteroid))
+					var/turf/simulated/floor/asteroid/M = T
+					M.updateMineralOverlays()
 		processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		processScheduler.setup()
 		master_controller.setup()
@@ -145,7 +151,7 @@ var/global/datum/global_init/init = new ()
 
 
 
-	spawn(3000)		//so we aren't adding to the round-start lag
+	spawn(2000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
 			ToRban_autoupdate()
 
@@ -172,7 +178,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				n++
 		return n
 
-	else if (copytext(T,1,7) == "status")
+	else if (copytext(T, 1, 7) == "status")
 		var/input[] = params2list(T)
 		var/list/s = list()
 		s["version"] = game_version
@@ -261,7 +267,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		else
 			return "unknown"
 
-	else if(copytext(T,1,5) == "info")
+	else if(copytext(T, 1, 5) == "info")
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
@@ -338,7 +344,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				ret[M.key] = M.name
 			return list2params(ret)
 
-	else if(copytext(T,1,9) == "adminmsg")
+	else if(copytext(T, 1, 9) == "adminmsg")
 		/*
 			We got an adminmsg from IRC bot lets split the input then validate the input.
 			expected output:
@@ -392,7 +398,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		return "Message Successful"
 
-	else if(copytext(T,1,6) == "notes")
+	else if(copytext(T, 1, 6) == "notes")
 		/*
 			We got a request for notes from the IRC Bot
 			expected output:
@@ -455,7 +461,7 @@ var/world_topic_spam_protect_time = world.timeofday
 /proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
-	config.load("config/game_options.txt","game_options")
+	config.load("config/game_options.txt", "game_options")
 	config.loadsql("config/dbconfig.txt")
 
 /hook/startup/proc/loadMods()
@@ -583,7 +589,7 @@ proc/setup_database_connection()
 	var/address = sqladdress
 	var/port = sqlport
 
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	dbcon.Connect("dbi:mysql:[db]:[address]:[port]", "[user]", "[pass]")
 	. = dbcon.IsConnected()
 	if ( . )
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.

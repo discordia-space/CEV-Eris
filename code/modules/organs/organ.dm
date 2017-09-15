@@ -226,6 +226,10 @@ var/list/organ_cache = list()
 	if(damage >= max_damage)
 		die()
 
+/obj/item/organ/examine(mob/user)
+	..(user)
+	if(status & ORGAN_DEAD)
+		user << SPAN_NOTICE("The decay has set in.")
 
 /obj/item/organ/proc/handle_germ_effects()
 	//** Handle the effects of infections

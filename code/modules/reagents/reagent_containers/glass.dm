@@ -52,11 +52,11 @@
 		if(!..(user, 2))
 			return
 		if(reagents && reagents.reagent_list.len)
-			user << "<span class='notice'>It contains [reagents.total_volume] units of liquid.</span>"
+			user << SPAN_NOTICE("It contains [reagents.total_volume] units of liquid.")
 		else
-			user << "<span class='notice'>It is empty.</span>"
+			user << SPAN_NOTICE("It is empty.")
 		if(!is_open_container())
-			user << "<span class='notice'>Airtight lid seals it completely.</span>"
+			user << SPAN_NOTICE("Airtight lid seals it completely.")
 
 	attack_self()
 		..()
@@ -87,7 +87,7 @@
 
 		if(reagents.total_volume)
 			playsound(src,'sound/effects/Splash_Small_01_mono.wav',50,1)
-			user << "<span class='notice'>You splash the solution onto [target].</span>"
+			user << SPAN_NOTICE("You splash the solution onto [target].")
 			reagents.splash(target, reagents.total_volume)
 			return
 
@@ -95,7 +95,7 @@
 		if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/lighting/toggleable/flashlight/pen))
 			var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
 			if(length(tmp_label) > 10)
-				user << "<span class='notice'>The label can be at most 10 characters long.</span>"
+				user << SPAN_NOTICE("The label can be at most 10 characters long.")
 			else
 				user << "<span class='notice'>You set the label to \"[tmp_label]\".</span>"
 				label_text = tmp_label
@@ -236,10 +236,10 @@
 		return
 	else if(istype(D, /obj/item/weapon/mop))
 		if(reagents.total_volume < 1)
-			user << "<span class='warning'>\The [src] is empty!</span>"
+			user << SPAN_WARNING("\The [src] is empty!")
 		else
 			reagents.trans_to_obj(D, 5)
-			user << "<span class='notice'>You wet \the [D] in \the [src].</span>"
+			user << SPAN_NOTICE("You wet \the [D] in \the [src].")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
 	else

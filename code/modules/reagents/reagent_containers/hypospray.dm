@@ -22,7 +22,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
-		user << "<span class='warning'>[src] is empty.</span>"
+		user << SPAN_WARNING("[src] is empty.")
 		return
 	if (!istype(M))
 		return
@@ -31,22 +31,22 @@
 	if(istype(H))
 		var/obj/item/organ/external/affected = H.get_organ(user.targeted_organ)
 		if(!affected)
-			user << "<span class='danger'>\The [H] is missing that limb!</span>"
+			user << SPAN_DANGER("\The [H] is missing that limb!")
 			return
 		else if(affected.status & ORGAN_ROBOT)
-			user << "<span class='danger'>You cannot inject a robotic limb.</span>"
+			user << SPAN_DANGER("You cannot inject a robotic limb.")
 			return
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.do_attack_animation(M)
-	user << "<span class='notice'>You inject [M] with [src].</span>"
-	M << "<span class='notice'>You feel a tiny prick!</span>"
+	user << SPAN_NOTICE("You inject [M] with [src].")
+	M << SPAN_NOTICE("You feel a tiny prick!")
 
 	if(M.reagents)
 		var/contained = reagentlist()
 		var/trans = reagents.trans_to_mob(M, amount_per_transfer_from_this, CHEM_BLOOD)
 		admin_inject_log(user, M, src, contained, trans)
-		user << "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in \the [src].</span>"
+		user << SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in \the [src].")
 
 	return
 
@@ -80,6 +80,6 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	..(user)
 	if(reagents && reagents.reagent_list.len)
-		user << "<span class='notice'>It is currently loaded.</span>"
+		user << SPAN_NOTICE("It is currently loaded.")
 	else
-		user << "<span class='notice'>It is spent.</span>"
+		user << SPAN_NOTICE("It is spent.")

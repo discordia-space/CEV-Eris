@@ -22,13 +22,13 @@
 			if(O.buckled_mob)
 				return
 			if(locate(/mob/living) in O)
-				occupant_message("<span class='warning'>You can't load living things into the cargo compartment.</span>")
+				occupant_message(SPAN_WARNING("You can't load living things into the cargo compartment."))
 				return
 			if(O.anchored)
-				occupant_message("<span class='warning'>[target] is firmly secured.</span>")
+				occupant_message(SPAN_WARNING("[target] is firmly secured."))
 				return
 			if(cargo_holder.cargo.len >= cargo_holder.cargo_capacity)
-				occupant_message("<span class='warning'>Not enough room in cargo compartment.</span>")
+				occupant_message(SPAN_WARNING("Not enough room in cargo compartment."))
 				return
 
 			occupant_message("You lift [target] and start to load it into cargo compartment.")
@@ -43,10 +43,10 @@
 					cargo_holder.cargo += O
 					O.loc = chassis
 					O.anchored = 0
-					occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
+					occupant_message(SPAN_NOTICE("[target] succesfully loaded."))
 					log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 				else
-					occupant_message("<span class='warning'>You must hold still while handling objects.</span>")
+					occupant_message(SPAN_WARNING("You must hold still while handling objects."))
 					O.anchored = initial(O.anchored)
 
 		//attacking
@@ -57,8 +57,8 @@
 				M.take_overall_damage(dam_force)
 				M.adjustOxyLoss(round(dam_force/2))
 				M.updatehealth()
-				occupant_message("<span class='warning'>You squeeze [target] with [src.name]. Something cracks.</span>")
-				chassis.visible_message("<span class='warning'>[chassis] squeezes [target].</span>")
+				occupant_message(SPAN_WARNING("You squeeze [target] with [src.name]. Something cracks."))
+				chassis.visible_message(SPAN_WARNING("[chassis] squeezes [target]."))
 			else
 				step_away(M,chassis)
 				occupant_message("You push [target] out of the way.")
@@ -84,8 +84,8 @@
 			if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		chassis.visible_message("<span class='danger'>\The [chassis] starts to drill \the [target]</span>", "<span class='warning'>You hear a large drill.</span>")
-		occupant_message("<span class='danger'>You start to drill \the [target]</span>")
+		chassis.visible_message(SPAN_DANGER("\The [chassis] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
+		occupant_message(SPAN_DANGER("You start to drill \the [target]"))
 		playsound(src,'sound/mecha/mechdrill.ogg',100,1)
 		var/T = chassis.loc
 		var/C = target.loc	//why are these backwards? we may never know -Pete
@@ -94,12 +94,12 @@
 				if(istype(target, /turf/simulated/wall))
 					var/turf/simulated/wall/W = target
 					if(W.reinf_material)
-						occupant_message("<span class='warning'>\The [target] is too durable to drill through.</span>")
+						occupant_message(SPAN_WARNING("\The [target] is too durable to drill through."))
 					else
 						log_message("Drilled through \the [target]")
 						target.ex_act(2)
 				else if(istype(target, /turf/simulated/mineral))
-					for(var/turf/simulated/mineral/M in range(chassis,1))
+					for(var/turf/simulated/mineral/M in trange(1, chassis))
 						if(get_dir(chassis,M)&chassis.dir)
 							M.GetDrilled()
 					log_message("Drilled through \the [target]")
@@ -110,7 +110,7 @@
 								if(get_dir(chassis,ore)&chassis.dir)
 									ore.Move(ore_box)
 				else if(istype(target, /turf/simulated/floor/asteroid))
-					for(var/turf/simulated/floor/asteroid/M in range(chassis,1))
+					for(var/turf/simulated/floor/asteroid/M in trange(1, chassis))
 						if(get_dir(chassis,M)&chassis.dir)
 							M.gets_dug()
 					log_message("Drilled through \the [target]")
@@ -140,8 +140,8 @@
 			if(target_obj.unacidable)	return
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		chassis.visible_message("<span class='danger'>\The [chassis] starts to drill \the [target]</span>", "<span class='warning'>You hear a large drill.</span>")
-		occupant_message("<span class='danger'>You start to drill \the [target]</span>")
+		chassis.visible_message(SPAN_DANGER("\The [chassis] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
+		occupant_message(SPAN_DANGER("You start to drill \the [target]"))
 		playsound(src,'sound/mecha/mechdrill.ogg',100,1)
 		var/T = chassis.loc
 		var/C = target.loc	//why are these backwards? we may never know -Pete
@@ -153,7 +153,7 @@
 						log_message("Drilled through \the [target]")
 						target.ex_act(3)
 				else if(istype(target, /turf/simulated/mineral))
-					for(var/turf/simulated/mineral/M in range(chassis,1))
+					for(var/turf/simulated/mineral/M in trange(1, chassis))
 						if(get_dir(chassis,M)&chassis.dir)
 							M.GetDrilled()
 					log_message("Drilled through \the [target]")
@@ -164,7 +164,7 @@
 								if(get_dir(chassis,ore)&chassis.dir)
 									ore.Move(ore_box)
 				else if(istype(target,/turf/simulated/floor/asteroid))
-					for(var/turf/simulated/floor/asteroid/M in range(target,1))
+					for(var/turf/simulated/floor/asteroid/M in trange(1, target))
 						M.gets_dug()
 					log_message("Drilled through \the [target]")
 					if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
@@ -204,12 +204,12 @@
 			if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
 				var/obj/o = target
 				var/amount = o.reagents.trans_to_obj(src, 200)
-				occupant_message("<span class='notice'>[amount] units transferred into internal tank.</span>")
+				occupant_message(SPAN_NOTICE("[amount] units transferred into internal tank."))
 				playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
 				return
 
 			if (src.reagents.total_volume < 1)
-				occupant_message("<span class='warning'>\The [src] is empty.</span>")
+				occupant_message(SPAN_WARNING("\The [src] is empty."))
 				return
 
 			playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
@@ -442,7 +442,7 @@
 			last_fired = world.time
 		else
 			if (world.time % 3)
-				occupant_message("<span class='warning'>[src] is not ready to fire again!</span>")
+				occupant_message(SPAN_WARNING("[src] is not ready to fire again!"))
 			return 0
 
 		switch(mode)
@@ -827,7 +827,7 @@
 			var/result = load_fuel(target)
 			var/message
 			if(isnull(result))
-				message = "<span class='warning'>[fuel] traces in target minimal. [target] cannot be used as fuel.</span>"
+				message = SPAN_WARNING("[fuel] traces in target minimal. [target] cannot be used as fuel.")
 			else if(!result)
 				message = "Unit is full."
 			else
@@ -852,7 +852,7 @@
 	attackby(weapon,mob/user)
 		var/result = load_fuel(weapon)
 		if(isnull(result))
-			user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.","<span class='warning'>[fuel] traces minimal. [weapon] cannot be used as fuel.</span>")
+			user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.",SPAN_WARNING("[fuel] traces minimal. [weapon] cannot be used as fuel."))
 		else if(!result)
 			user << "Unit is full."
 		else
@@ -970,25 +970,25 @@
 							cargo_holder.cargo += O
 							O.loc = chassis
 							O.anchored = 0
-							chassis.occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
+							chassis.occupant_message(SPAN_NOTICE("[target] succesfully loaded."))
 							chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 						else
-							chassis.occupant_message("<span class='warning'>You must hold still while handling objects.</span>")
+							chassis.occupant_message(SPAN_WARNING("You must hold still while handling objects."))
 							O.anchored = initial(O.anchored)
 				else
-					chassis.occupant_message("<span class='warning'>Not enough room in cargo compartment.</span>")
+					chassis.occupant_message(SPAN_WARNING("Not enough room in cargo compartment."))
 			else
-				chassis.occupant_message("<span class='warning'>[target] is firmly secured.</span>")
+				chassis.occupant_message(SPAN_WARNING("[target] is firmly secured."))
 
 		else if(isliving(target))
 			var/mob/living/M = target
 			if(M.stat>1) return
 			if(chassis.occupant.a_intent == I_HURT)
-				chassis.occupant_message("<span class='danger'>You obliterate [target] with [src.name], leaving blood and guts everywhere.</span>")
-				chassis.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>")
+				chassis.occupant_message(SPAN_DANGER("You obliterate [target] with [src.name], leaving blood and guts everywhere."))
+				chassis.visible_message(SPAN_DANGER("[chassis] destroys [target] in an unholy fury."))
 			if(chassis.occupant.a_intent == I_DISARM)
-				chassis.occupant_message("<span class='danger'>You tear [target]'s limbs off with [src.name].</span>")
-				chassis.visible_message("<span class='danger'>[chassis] rips [target]'s arms off.</span>")
+				chassis.occupant_message(SPAN_DANGER("You tear [target]'s limbs off with [src.name]."))
+				chassis.visible_message(SPAN_DANGER("[chassis] rips [target]'s arms off."))
 			else
 				step_away(M,chassis)
 				chassis.occupant_message("You smash into [target], sending them flying.")
@@ -1013,7 +1013,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
-		AM << "<span class='danger'>You tumble out of the destroyed [src.name]!</span>"
+		AM << SPAN_DANGER("You tumble out of the destroyed [src.name]!")
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/Exit(atom/movable/O)
@@ -1021,7 +1021,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
 	if (chassis)
-		chassis.visible_message("<span class='notice'>[user] starts to climb into [chassis].</span>")
+		chassis.visible_message(SPAN_NOTICE("[user] starts to climb into [chassis]."))
 
 	if(do_after(user, 40, src, needhand=0))
 		if(!src.occupant)
@@ -1030,7 +1030,7 @@
 			log_message("\The [user] boarded.")
 			occupant_message("\The [user] boarded.")
 		else if(src.occupant != user)
-			user << "<span class='warning'>[src.occupant] was faster. Try better next time, loser.</span>"
+			user << SPAN_WARNING("[src.occupant] was faster. Try better next time, loser.")
 	else
 		user << "You stop entering the exosuit."
 
@@ -1104,18 +1104,18 @@
 		return
 
 	if (!isturf(usr.loc))
-		usr << "<span class='danger'>You can't reach the passenger compartment from here.</span>"
+		usr << SPAN_DANGER("You can't reach the passenger compartment from here.")
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			usr << "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>"
+			usr << SPAN_DANGER("Kinda hard to climb in while handcuffed don't you think?")
 			return
 
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
-			usr << "<span class='danger'>You're too busy getting your life sucked out of you.</span>"
+			usr << SPAN_DANGER("You're too busy getting your life sucked out of you.")
 			return
 
 	//search for a valid passenger compartment
@@ -1135,13 +1135,13 @@
 	//didn't find anything
 	switch (feedback)
 		if (OCCUPIED)
-			usr << "<span class='danger'>The passenger compartment is already occupied!</span>"
+			usr << SPAN_DANGER("The passenger compartment is already occupied!")
 		if (LOCKED)
-			usr << "<span class='warning'>The passenger compartment hatch is locked!</span>"
+			usr << SPAN_WARNING("The passenger compartment hatch is locked!")
 		if (OCCUPIED|LOCKED)
-			usr << "<span class='danger'>All of the passenger compartments are already occupied or locked!</span>"
+			usr << SPAN_DANGER("All of the passenger compartments are already occupied or locked!")
 		if (0)
-			usr << "<span class='warning'>\The [src] doesn't have a passenger compartment.</span>"
+			usr << SPAN_WARNING("\The [src] doesn't have a passenger compartment.")
 
 #undef LOCKED
 #undef OCCUPIED

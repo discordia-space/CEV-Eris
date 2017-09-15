@@ -51,7 +51,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	H << "<span class='danger'>You are now visible.</span>"
+	H << SPAN_DANGER("You are now visible.")
 	H.invisibility = 0
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
@@ -102,7 +102,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!istype(H.loc, /turf))
-		H << "<span class='warning'>You cannot teleport out of your current location.</span>"
+		H << SPAN_WARNING("You cannot teleport out of your current location.")
 		return 0
 
 	var/turf/T
@@ -112,19 +112,19 @@
 		T = get_teleport_loc(get_turf(H), H, rand(5, 9))
 
 	if(!T || T.density)
-		H << "<span class='warning'>You cannot teleport into solid walls.</span>"
+		H << SPAN_WARNING("You cannot teleport into solid walls.")
 		return 0
 
 	if(T.z in config.admin_levels)
-		H << "<span class='warning'>You cannot use your teleporter on this Z-level.</span>"
+		H << SPAN_WARNING("You cannot use your teleporter on this Z-level.")
 		return 0
 
 	if(T.contains_dense_objects())
-		H << "<span class='warning'>You cannot teleport to a location with solid objects.</span>"
+		H << SPAN_WARNING("You cannot teleport to a location with solid objects.")
 		return 0
 
 	if(T.z != H.z || get_dist(T, get_turf(H)) > world.view)
-		H << "<span class='warning'>You cannot teleport to such a distant object.</span>"
+		H << SPAN_WARNING("You cannot teleport to such a distant object.")
 		return 0
 
 	phase_out(H,get_turf(H))

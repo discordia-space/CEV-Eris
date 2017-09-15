@@ -148,11 +148,11 @@ FLOOR SAFES
 			space += I.w_class
 			user.drop_item()
 			I.loc = src
-			user << "<span class='notice'>You put [I] in [src].</span>"
+			user << SPAN_NOTICE("You put [I] in [src].")
 			updateUsrDialog()
 			return
 		else
-			user << "<span class='notice'>[I] won't fit in [src].</span>"
+			user << SPAN_NOTICE("[I] won't fit in [src].")
 			return
 	else
 		if(istype(I, /obj/item/clothing/accessory/stethoscope))

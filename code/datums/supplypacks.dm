@@ -5,7 +5,7 @@
 //BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Atmospherics","Medical","Reagents","Reagent Cartridges","Science","Hydroponics", "Supply", "Miscellaneous")
+var/list/all_supply_groups = list("Operations", "Security", "Hospitality", "Engineering", "Atmospherics", "Medical", "Reagents", "Reagent Cartridges", "Science", "Hydroponics", "Supply", "Miscellaneous")
 
 /datum/supply_packs
 	var/name = null
@@ -104,6 +104,25 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "\improper Toner cartridges"
+	group = "Supply"
+
+/datum/supply_packs/lunchboxes
+	name = "Lunchboxes"
+	contains = list(/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox/cat,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow,
+					/obj/item/weapon/storage/lunchbox/rainbow)
+	cost = 25
+	containertype = /obj/structure/closet/crate
+	containername = "\improper Lunchboxes"
 	group = "Supply"
 
 /datum/supply_packs/party

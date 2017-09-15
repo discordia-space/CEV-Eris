@@ -16,7 +16,7 @@
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner && owner.stat == DEAD)
 		owner.stat = 0
-		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
+		owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 
 /obj/item/organ/optical_sensor
 	name = "optical sensor"
@@ -65,7 +65,7 @@
 	spawn(1)
 		if(owner && owner.stat == DEAD)
 			owner.stat = 0
-			owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
+			owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 
 /obj/item/organ/mmi_holder/posibrain/New()
 	robotize()

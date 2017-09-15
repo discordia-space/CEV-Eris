@@ -27,7 +27,7 @@
 		return
 
 	proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
-		M << "<span class='danger'>BANG</span>"						// Called during the loop that bangs people in lockers/containers and when banging
+		M << SPAN_DANGER("BANG")						// Called during the loop that bangs people in lockers/containers and when banging
 		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																	// -- Polymorph
 
@@ -83,19 +83,19 @@
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 			if (E && E.damage >= E.min_bruised_damage)
-				M << "<span class='danger'>Your eyes start to burn badly!</span>"
+				M << SPAN_DANGER("Your eyes start to burn badly!")
 				if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
 					if (E.damage >= E.min_broken_damage)
-						M << "<span class='danger'>You can't see anything!</span>"
+						M << SPAN_DANGER("You can't see anything!")
 		if (M.ear_damage >= 15)
-			M << "<span class='danger'>Your ears start to ring badly!</span>"
+			M << SPAN_DANGER("Your ears start to ring badly!")
 			if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
 				if (prob(M.ear_damage - 10 + 5))
-					M << "<span class='danger'>You can't hear anything!</span>"
+					M << SPAN_DANGER("You can't hear anything!")
 					M.sdisabilities |= DEAF
 		else
 			if (M.ear_damage >= 5)
-				M << "<span class='danger'>Your ears start to ring!</span>"
+				M << SPAN_DANGER("Your ears start to ring!")
 		M.update_icons()
 
 /obj/item/weapon/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve

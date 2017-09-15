@@ -112,13 +112,13 @@
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
-			user << "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>"
+			user << SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now.")
 			return
 		if(health >= maxhealth)
-			user << "<span class='notice'>Nothing to fix!</span>"
+			user << SPAN_NOTICE("Nothing to fix!")
 			return
 		if(!density)
-			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+			user << SPAN_WARNING("\The [src] must be closed before you can repair it.")
 			return
 
 		//figure out how much metal we need
@@ -126,7 +126,7 @@
 		var/amount_needed = ceil((maxhealth - health)/DOOR_REPAIR_AMOUNT)
 		var/used = min(amount_needed,stack.amount)
 		if (used)
-			user << "<span class='notice'>You fit [used] [stack.singular_name]\s to damaged and broken parts on \the [src].</span>"
+			user << SPAN_NOTICE("You fit [used] [stack.singular_name]\s to damaged and broken parts on \the [src].")
 			stack.use(used)
 			health = between(health, health + used*DOOR_REPAIR_AMOUNT, maxhealth)
 		return
@@ -138,9 +138,9 @@
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			user.do_attack_animation(src)
 			if(W.force < min_force)
-				user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
+				user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
 			else
-				user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
+				user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
 				playsound(src.loc, hitsound, 100, 1)
 				take_damage(W.force)
 		return

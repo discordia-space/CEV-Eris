@@ -33,10 +33,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy right now.</span>"
+		user << SPAN_NOTICE("\The [src] is busy right now.")
 		return
 	if(loaded_item)
-		user << "<span class='notice'>There is something already loaded into \the [src].</span>"
+		user << SPAN_NOTICE("There is something already loaded into \the [src].")
 		return 1
 	if(default_deconstruction_screwdriver(user, O))
 		if(linked_console)
@@ -48,25 +48,25 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(default_part_replacement(user, O))
 		return
 	if(panel_open)
-		user << "<span class='notice'>You can't load \the [src] while it's opened.</span>"
+		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
 		return 1
 	if(!linked_console)
-		user << "<span class='notice'>\The [src] must be linked to an R&D console first.</span>"
+		user << SPAN_NOTICE("\The [src] must be linked to an R&D console first.")
 		return
 	if(!loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
 		if(!O.origin_tech)
-			user << "<span class='notice'>This doesn't seem to have a tech origin.</span>"
+			user << SPAN_NOTICE("This doesn't seem to have a tech origin.")
 			return
 		if(O.origin_tech.len == 0)
-			user << "<span class='notice'>You cannot deconstruct this item.</span>"
+			user << SPAN_NOTICE("You cannot deconstruct this item.")
 			return
 		busy = 1
 		loaded_item = O
 		user.drop_item()
 		O.loc = src
-		user << "<span class='notice'>You add \the [O] to \the [src].</span>"
+		user << SPAN_NOTICE("You add \the [O] to \the [src].")
 		flick("d_analyzer_la", src)
 		spawn(10)
 			update_icon()

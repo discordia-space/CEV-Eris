@@ -126,7 +126,7 @@
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 
-/obj/screen/zone_sel/Click(location, control,params)
+/obj/screen/zone_sel/Click(location, control, params)
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
@@ -573,7 +573,7 @@
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
 				C.internal = null
-				C << "<span class='notice'>No longer running on internals.</span>"
+				C << SPAN_NOTICE("No longer running on internals.")
 				overlays.Cut()
 			else
 
@@ -584,7 +584,7 @@
 						no_mask = 1
 
 				if(no_mask)
-					C << "<span class='notice'>You are not wearing a suitable mask or helmet.</span>"
+					C << SPAN_NOTICE("You are not wearing a suitable mask or helmet.")
 					return TRUE
 				else
 					var/list/nicename = null
@@ -613,7 +613,7 @@
 					for(var/i=1, i<tankcheck.len+1, ++i)
 						if(istype(tankcheck[i], /obj/item/weapon/tank))
 							var/obj/item/weapon/tank/t = tankcheck[i]
-							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc,breathes))
+							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc, breathes))
 								contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
 								continue					//in it, so we're going to believe the tank is what it says it is
 							switch(breathes)
@@ -658,7 +658,7 @@
 					//We've determined the best container now we set it as our internals
 
 					if(best)
-						C << "<span class='notice'>You are now running on internals from [tankcheck[best]] [from] your [nicename[best]].</span>"
+						C << SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]].")
 						playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
 						C.internal = tankcheck[best]
 
@@ -667,7 +667,7 @@
 						//icon_state = "internal1"
 						overlays += ovrls["internal1"]
 					else
-						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
+						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>"
 //-----------------------internal END------------------------------
 
 /obj/screen/pull
@@ -753,7 +753,7 @@
 //	if(iscarbon(parentmob))
 	var/mob/living/carbon/C = parentmob
 	if(C.legcuffed)
-		C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
+		C << SPAN_NOTICE("You are legcuffed! You cannot run until you get [C.legcuffed] removed!")
 		C.m_intent = "walk"	//Just incase
 		update_icon()
 		return TRUE

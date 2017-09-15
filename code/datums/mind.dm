@@ -105,7 +105,7 @@
 			output += "<B>Objective #[obj_count]</B>: <div>[objective.explanation_text]</div>"
 			obj_count++
 
-	recipient << browse(output,"window=memory")
+	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
 	if(!ticker || !ticker.mode)
@@ -151,7 +151,7 @@
 			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 			else
-				usr << "<span class='warning'>[src] could not be made into a [antag.role_text]!</span>"
+				usr << SPAN_WARNING("[src] could not be made into a [antag.role_text]!")
 
 	else if(href_list["remove_antagonist"])
 		var/datum/antagonist/antag = all_antag_types[href_list["remove_antagonist"]]
@@ -251,7 +251,7 @@
 					var/crystals
 					if (suplink)
 						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]","Operative uplink", crystals) as null|num
+					crystals = input("Amount of telecrystals for [key]", "Operative uplink", crystals) as null|num
 					if (!isnull(crystals))
 						if (suplink)
 							suplink.uses = crystals

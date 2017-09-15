@@ -78,20 +78,20 @@ obj/machinery/atmospherics/trinary
 		var/node2_connect = turn(dir, -90)
 		var/node3_connect = dir
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				if (check_connect_types(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+			if(target.initialize_directions & get_dir(target, src))
+				if (check_connect_types(target, src))
 					node1 = target
 					break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				if (check_connect_types(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, node2_connect))
+			if(target.initialize_directions & get_dir(target, src))
+				if (check_connect_types(target, src))
 					node2 = target
 					break
-		for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				if (check_connect_types(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, node3_connect))
+			if(target.initialize_directions & get_dir(target, src))
+				if (check_connect_types(target, src))
 					node3 = target
 					break
 

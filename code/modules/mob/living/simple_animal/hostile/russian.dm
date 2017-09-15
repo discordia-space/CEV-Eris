@@ -19,7 +19,7 @@
 	melee_damage_upper = 15
 	attacktext = "punched"
 	a_intent = I_HURT
-	var/corpse = /obj/effect/landmark/mobcorpse/russian
+	var/corpse = /obj/effect/landmark/corpse/russian
 	var/weapon1 = /obj/item/weapon/material/knife
 	min_oxy = 5
 	max_oxy = 0
@@ -37,7 +37,7 @@
 /mob/living/simple_animal/hostile/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"
-	corpse = /obj/effect/landmark/mobcorpse/russian/ranged
+	corpse = /obj/effect/landmark/corpse/russian/ranged
 	weapon1 = /obj/item/weapon/gun/projectile/revolver/mateba
 	ranged = 1
 	projectiletype = /obj/item/projectile/bullet

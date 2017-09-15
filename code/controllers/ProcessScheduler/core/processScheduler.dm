@@ -97,7 +97,7 @@ var/global/datum/controller/processScheduler/processScheduler
 /datum/controller/processScheduler/proc/process()
 	updateCurrentTickData()
 
-	for(var/i=world.tick_lag,i<world.tick_lag*50,i+=world.tick_lag)
+	for(var/i=world.tick_lag, i<world.tick_lag*50, i+=world.tick_lag)
 		spawn(i) updateCurrentTickData()
 	while(isRunning)
 		// Hopefully spawning this for 50 ticks in the future will make it the first thing in the queue.
@@ -357,7 +357,7 @@ var/global/datum/controller/processScheduler/processScheduler
 	var/tmp/error = cpuAverage - 100
 	var/tmp/timeAllowanceDelta = SIMPLE_SIGN(error) * -0.5 * world.tick_lag * max(0, 0.001 * abs(error))
 
-	//timeAllowance = world.tick_lag * min(1, 0.5 * ((200/max(1,cpuAverage)) - 1))
+	//timeAllowance = world.tick_lag * min(1, 0.5 * ((200/max(1, cpuAverage)) - 1))
 	timeAllowance = min(timeAllowanceMax, max(0, timeAllowance + timeAllowanceDelta))
 
 /datum/controller/processScheduler/proc/statProcesses()

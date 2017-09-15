@@ -29,4 +29,4 @@
 	projectile_type=/obj/item/projectile/beam/pulse
 
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
-	user << "<span class='warning'>[src.name] has three settings, and they are all DESTROY.</span>"
+	user << SPAN_WARNING("[src.name] has three settings, and they are all DESTROY.")

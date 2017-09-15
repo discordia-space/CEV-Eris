@@ -418,16 +418,16 @@
 	if (istype(O, /obj/item/weapon/wrench))
 		if (anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			user << "<span class='notice'>You begin to loosen \the [src]'s casters...</span>"
+			user << SPAN_NOTICE("You begin to loosen \the [src]'s casters...")
 			if (do_after(user, 40, src))
 				user.visible_message( \
 					"[user] loosens \the [src]'s casters.", \
-					"<span class='notice'>You have loosened \the [src]. Now it can be pulled somewhere else.</span>", \
+					SPAN_NOTICE("You have loosened \the [src]. Now it can be pulled somewhere else."), \
 					"You hear ratchet.")
 				src.anchored = 0
 		else
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			user << "<span class='notice'>You begin to tighten \the [src] to the floor...</span>"
+			user << SPAN_NOTICE("You begin to tighten \the [src] to the floor...")
 			if (do_after(user, 20, src))
 				user.visible_message( \
 					"[user] tightens \the [src]'s casters.", \

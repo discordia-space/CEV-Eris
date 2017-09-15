@@ -26,7 +26,7 @@
 /turf/space/proc/update_starlight()
 	if(!config.starlight)
 		return
-	if(locate(/turf/simulated) in orange(src,1))
+	if(locate(/turf/simulated) in trange(1, src))
 		set_light(2, 1, config.starlight)
 	else
 		set_light(0)
@@ -39,7 +39,7 @@
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			user << "<span class='notice'>Constructing support lattice ...</span>"
+			user << SPAN_NOTICE("Constructing support lattice ...")
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -56,7 +56,7 @@
 			ChangeTurf(/turf/simulated/floor/airless)
 			return
 		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
+			user << SPAN_WARNING("The plating is going to need some support.")
 			return
 	if (istype(C, /obj/item/stack/tile/floor/techgrey) || istype(C, /obj/item/stack/tile/floor/techgrid))// this creates underplating
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
@@ -70,7 +70,7 @@
 			ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
-			user << "<span class='warning'>The plating is going to need some support.</span>"
+			user << SPAN_WARNING("The plating is going to need some support.")
 	return
 
 
@@ -78,7 +78,7 @@
 
 /turf/space/Entered(atom/movable/A as mob|obj)
 	if(movement_disabled)
-		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
+		usr << SPAN_WARNING("Movement is admin-disabled.") //This is to identify lag problems
 		return
 	..()
 	if ((!(A) || src != A.loc))	return

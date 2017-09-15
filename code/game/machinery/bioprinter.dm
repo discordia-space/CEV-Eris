@@ -60,7 +60,7 @@
 		visible_message("<span class='info'>The bioprinter spits out a new organ.</span>")
 
 	else
-		user << "<span class='warning'>There is not enough matter in the printer.</span>"
+		user << SPAN_WARNING("There is not enough matter in the printer.")
 
 /obj/machinery/bioprinter/attackby(obj/item/weapon/W, mob/user)
 

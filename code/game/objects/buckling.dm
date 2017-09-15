@@ -48,13 +48,13 @@
 
 /obj/proc/user_buckle_mob(mob/living/M, mob/user)
 	if(!ticker)
-		user << "<span class='warning'>You can't buckle anyone in before the game starts.</span>"
+		user << SPAN_WARNING("You can't buckle anyone in before the game starts.")
 	if(!user.Adjacent(M) || user.restrained() || user.lying || user.stat || istype(user, /mob/living/silicon/pai))
 		return
 	if(M == buckled_mob)
 		return
 	if(isslime(M))
-		user << "<span class='warning'>The [M] is too squishy to buckle in.</span>"
+		user << SPAN_WARNING("The [M] is too squishy to buckle in.")
 		return
 
 	add_fingerprint(user)
@@ -63,28 +63,28 @@
 	if(buckle_mob(M))
 		if(M == user)
 			M.visible_message(\
-				"<span class='notice'>[M.name] buckles themselves to [src].</span>",\
-				"<span class='notice'>You buckle yourself to [src].</span>",\
-				"<span class='notice'>You hear metal clanking.</span>")
+				SPAN_NOTICE("[M.name] buckles themselves to [src]."),\
+				SPAN_NOTICE("You buckle yourself to [src]."),\
+				SPAN_NOTICE("You hear metal clanking."))
 		else
 			M.visible_message(\
-				"<span class='danger'>[M.name] is buckled to [src] by [user.name]!</span>",\
-				"<span class='danger'>You are buckled to [src] by [user.name]!</span>",\
-				"<span class='notice'>You hear metal clanking.</span>")
+				SPAN_DANGER("[M.name] is buckled to [src] by [user.name]!"),\
+				SPAN_DANGER("You are buckled to [src] by [user.name]!"),\
+				SPAN_NOTICE("You hear metal clanking."))
 
 /obj/proc/user_unbuckle_mob(mob/user)
 	var/mob/living/M = unbuckle_mob()
 	if(M)
 		if(M != user)
 			M.visible_message(\
-				"<span class='notice'>[M.name] was unbuckled by [user.name]!</span>",\
-				"<span class='notice'>You were unbuckled from [src] by [user.name].</span>",\
-				"<span class='notice'>You hear metal clanking.</span>")
+				SPAN_NOTICE("[M.name] was unbuckled by [user.name]!"),\
+				SPAN_NOTICE("You were unbuckled from [src] by [user.name]."),\
+				SPAN_NOTICE("You hear metal clanking."))
 		else
 			M.visible_message(\
-				"<span class='notice'>[M.name] unbuckled themselves!</span>",\
-				"<span class='notice'>You unbuckle yourself from [src].</span>",\
-				"<span class='notice'>You hear metal clanking.</span>")
+				SPAN_NOTICE("[M.name] unbuckled themselves!"),\
+				SPAN_NOTICE("You unbuckle yourself from [src]."),\
+				SPAN_NOTICE("You hear metal clanking."))
 		add_fingerprint(user)
 	return M
 

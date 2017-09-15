@@ -33,7 +33,7 @@
 
 //hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
 /datum/subsystem/proc/stat_entry()
-	stat(name, "[round(cost,0.001)]ds\t(CPU:[round(cpu,1)]%)")
+	stat(name, "[round(cost, 0.001)]ds\t(CPU:[round(cpu, 1)]%)")
 
 //could be used to postpone a costly subsystem for one cycle
 //for instance, during cpu intensive operations like explosions

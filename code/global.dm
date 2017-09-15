@@ -124,7 +124,7 @@ var/DBConnection/dbcon     = new() // Feedback    database (New database)
 /var/list/tagger_locations = list()
 
 // Added for Xenoarchaeology, might be useful for other stuff.
-var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+var/global/list/alphabet_uppercase = list("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
 
 
 // Used by robots and robot preferences.

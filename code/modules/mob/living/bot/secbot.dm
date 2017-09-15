@@ -277,10 +277,10 @@
 			spawn(2)
 				is_attacking = 0
 				update_icons()
-			visible_message("<span class='warning'>[C] was prodded by [src] with a stun baton!</span>")
+			visible_message(SPAN_WARNING("[C] was prodded by [src] with a stun baton!"))
 		else
 			playsound(loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
-			visible_message("<span class='warning'>[src] is trying to put handcuffs on [C]!</span>")
+			visible_message(SPAN_WARNING("[src] is trying to put handcuffs on [C]!"))
 			if(do_mob(src, C, 60))
 				if(!C.handcuffed)
 					C.handcuffed = new /obj/item/weapon/handcuffs(C)
@@ -298,10 +298,10 @@
 		spawn(2)
 			is_attacking = 0
 			update_icons()
-		visible_message("<span class='warning'>[M] was beaten by [src] with a stun baton!</span>")
+		visible_message(SPAN_WARNING("[M] was beaten by [src] with a stun baton!"))
 
 /mob/living/bot/secbot/explode()
-	visible_message("<span class='warning'>[src] blows apart!</span>")
+	visible_message(SPAN_WARNING("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	var/obj/item/weapon/secbot_assembly/Sa = new /obj/item/weapon/secbot_assembly(Tsec)

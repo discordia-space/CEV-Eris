@@ -53,7 +53,7 @@ var/global/photo_count = 0
 		show(user)
 		user << desc
 	else
-		user << "<span class='notice'>It is too far away.</span>"
+		user << SPAN_NOTICE("It is too far away.")
 
 /obj/item/weapon/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo_[id].png")
@@ -138,7 +138,7 @@ var/global/photo_count = 0
 	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3,5,7)
 	if(nsize)
 		size = nsize
-		usr << "<span class='notice'>Camera will now take [size]x[size] photos.</span>"
+		usr << SPAN_NOTICE("Camera will now take [size]x[size] photos.")
 
 /obj/item/device/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -155,9 +155,9 @@ var/global/photo_count = 0
 /obj/item/device/camera/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/device/camera_film))
 		if(pictures_left)
-			user << "<span class='notice'>[src] still has some film in it!</span>"
+			user << SPAN_NOTICE("[src] still has some film in it!")
 			return
-		user << "<span class='notice'>You insert [I] into [src].</span>"
+		user << SPAN_NOTICE("You insert [I] into [src].")
 		user.drop_item()
 		qdel(I)
 		pictures_left = pictures_max
@@ -192,7 +192,7 @@ var/global/photo_count = 0
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."
-	user << "<span class='notice'>[pictures_left] photos left.</span>"
+	user << SPAN_NOTICE("[pictures_left] photos left.")
 	icon_state = icon_off
 	on = 0
 	spawn(64)

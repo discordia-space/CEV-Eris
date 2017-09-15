@@ -43,11 +43,11 @@
 		if(!implant.allow_reagents)
 			return
 		if(implant.reagents.total_volume >= implant.reagents.maximum_volume)
-			user << "<span class='warning'>\The [src] is full.</span>"
+			user << SPAN_WARNING("\The [src] is full.")
 		else
 			spawn(5)
 				I.reagents.trans_to_obj(implant, 5)
-				user << "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>"
+				user << SPAN_NOTICE("You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.")
 	else if (istype(I, /obj/item/weapon/implanter))
 		var/obj/item/weapon/implanter/M = I
 		if(implant.is_external())

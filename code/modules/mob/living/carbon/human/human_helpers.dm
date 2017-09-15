@@ -15,7 +15,7 @@
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
 			src << "Where do you intend to put \the [food]? You don't have a mouth!"
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			src << "<span class='warning'>\The [status[2]] is in the way!</span>"
+			src << SPAN_WARNING("\The [status[2]] is in the way!")
 	return 0
 
 /mob/living/carbon/human/proc/should_have_organ(var/organ_check)
@@ -40,7 +40,7 @@
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
 			feeder << "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!"
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			feeder << "<span class='warning'>\The [status[2]] is in the way!</span>"
+			feeder << SPAN_WARNING("\The [status[2]] is in the way!")
 	return 0
 
 /mob/living/carbon/human/proc/can_eat_status()

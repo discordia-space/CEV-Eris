@@ -22,5 +22,5 @@
 	return
 
 /obj/structure/table/rack/holorack/dismantle(obj/item/weapon/wrench/W, mob/user)
-	user << "<span class='warning'>You cannot dismantle \the [src].</span>"
+	user << SPAN_WARNING("You cannot dismantle \the [src].")
 	return

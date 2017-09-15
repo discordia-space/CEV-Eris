@@ -44,21 +44,21 @@
 			if (istype(W, /obj/item/weapon/screwdriver))
 				if (do_after(user, 20, src))
 					src.open =! src.open
-					user.show_message(text("<span class='notice'>You [] the service panel.</span>", (src.open ? "open" : "close")))
+					user.show_message(SPAN_NOTICE("You [src.open ? "open" : "close"] the service panel."))
 				return
 			if ((istype(W, /obj/item/device/multitool)) && (src.open == 1)&& (!src.l_hacking))
-				user.show_message("<span class='notice'>Now attempting to reset internal memory, please hold.</span>", 1)
+				user.show_message(SPAN_NOTICE("Now attempting to reset internal memory, please hold."), 1)
 				src.l_hacking = 1
 				if (do_after(usr, 100, src))
 					if (prob(40))
 						src.l_setshort = 1
 						src.l_set = 0
-						user.show_message("<span class='notice'>Internal memory reset. Please give it a few seconds to reinitialize.</span>", 1)
+						user.show_message(SPAN_NOTICE("Internal memory reset. Please give it a few seconds to reinitialize."), 1)
 						sleep(80)
 						src.l_setshort = 0
 						src.l_hacking = 0
 					else
-						user.show_message("<span class='warning'>Unable to reset internal memory.</span>", 1)
+						user.show_message(SPAN_WARNING("Unable to reset internal memory."), 1)
 						src.l_hacking = 0
 				else	src.l_hacking = 0
 				return
@@ -153,7 +153,7 @@
 
 	attack_hand(mob/user as mob)
 		if ((src.loc == user) && (src.locked == 1))
-			usr << "<span class='warning'>[src] is locked and cannot be opened!</span>"
+			usr << SPAN_WARNING("[src] is locked and cannot be opened!")
 		else if ((src.loc == user) && (!src.locked))
 			src.open(usr)
 		else
