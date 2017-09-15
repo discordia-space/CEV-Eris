@@ -6,29 +6,36 @@
 	w_class = 2.0
 	flags = CONDUCT
 
-	var/spamcheck = 0
-	var/emagged = 0
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+	var/emagged = FALSE
 	var/insults = 0
-	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!", "FOR THE SYNDICATE!")
+	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!")
+
+/obj/item/device/megaphone/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/device/megaphone/attack_self(mob/living/user as mob)
 	if (user.client)
 		if(user.client.prefs.muted & MUTE_IC)
-			src << "<span class='warning'>You cannot speak in IC (muted).</span>"
+			src << SPAN_WARNING("You cannot speak in IC (muted).")
 			return
 	if(!ishuman(user))
-		user << "<span class='warning'>You don't know how to use this!</span>"
+		user << SPAN_WARNING("You don't know how to use this!")
 		return
 	if(user.silent)
 		return
-	if(spamcheck)
-		user << "<span class='warning'>\The [src] needs to recharge!</span>"
-		return
 
+	if(!cell || !cell.checked_use(5))
+		user << SPAN_WARNING("[src] battery is dead or missing")
+		return
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
 	if(!message)
 		return
 	message = capitalize(message)
+	log_say("[user.name]/[user.key]  (megaphone) : [message]")
 	if ((src.loc == user && usr.stat == 0))
 		if(emagged)
 			if(insults)
@@ -36,19 +43,23 @@
 					O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
 				insults--
 			else
-				user << "<span class='warning'>*BZZZZzzzzzt*</span>"
+				user << SPAN_WARNING("*BZZZZzzzzzt*")
 		else
 			for(var/mob/O in (viewers(user)))
 				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
-
-		spamcheck = 1
-		spawn(20)
-			spamcheck = 0
 		return
+
+/obj/item/device/megaphone/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/device/megaphone/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 /obj/item/device/megaphone/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		user << "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>"
-		emagged = 1
+		user << SPAN_WARNING("You overload \the [src]'s voice synthesizer.")
+		emagged = TRUE
 		insults = rand(1, 3)//to prevent dickflooding
-		return 1
+		return TRUE

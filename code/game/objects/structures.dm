@@ -26,8 +26,8 @@
 				attack_generic(user,1,"slices")
 
 	if(climbers.len && !(user in climbers))
-		user.visible_message("<span class='warning'>[user.name] shakes \the [src].</span>", \
-					"<span class='notice'>You shake \the [src].</span>")
+		user.visible_message(SPAN_WARNING("[user.name] shakes \the [src]."), \
+					SPAN_NOTICE("You shake \the [src]."))
 		structure_shaken()
 
 	return ..()
@@ -77,12 +77,12 @@
 		return 0
 
 	if (!user.Adjacent(src))
-		user << "<span class='danger'>You can't climb there, the way is blocked.</span>"
+		user << SPAN_DANGER("You can't climb there, the way is blocked.")
 		return 0
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		user << "<span class='danger'>There's \a [occupied] in the way.</span>"
+		user << SPAN_DANGER("There's \a [occupied] in the way.")
 		return 0
 	return 1
 
@@ -117,7 +117,7 @@
 	if (!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	usr.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
@@ -131,27 +131,27 @@
 	usr.forceMove(get_turf(src))
 
 	if (get_turf(user) == get_turf(src))
-		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
+		usr.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
 	climbers -= user
 
 /obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in climbers)
 		M.Weaken(1)
-		M << "<span class='danger'>You topple as you are shaken off \the [src]!</span>"
+		M << SPAN_DANGER("You topple as you are shaken off \the [src]!")
 		climbers.Cut(1,2)
 
 	for(var/mob/living/M in get_turf(src))
 		if(M.lying) return //No spamming this on people.
 
 		M.Weaken(3)
-		M << "<span class='danger'>You topple as \the [src] moves under you!</span>"
+		M << SPAN_DANGER("You topple as \the [src] moves under you!")
 
 		if(prob(25))
 
 			var/damage = rand(15,30)
 			var/mob/living/carbon/human/H = M
 			if(!istype(H))
-				H << "<span class='danger'>You land heavily!</span>"
+				H << SPAN_DANGER("You land heavily!")
 				M.adjustBruteLoss(damage)
 				return
 
@@ -170,12 +170,12 @@
 					affecting = H.get_organ("head")
 
 			if(affecting)
-				M << "<span class='danger'>You land heavily on your [affecting.name]!</span>"
+				M << SPAN_DANGER("You land heavily on your [affecting.name]!")
 				affecting.take_damage(damage, 0)
 				if(affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)
 			else
-				H << "<span class='danger'>You land heavily!</span>"
+				H << SPAN_DANGER("You land heavily!")
 				H.adjustBruteLoss(damage)
 
 			H.UpdateDamageIcon()
@@ -188,19 +188,19 @@
 	if(!Adjacent(user))
 		return 0
 	if (user.restrained() || user.buckled)
-		user << "<span class='notice'>You need your hands and legs free for this.</span>"
+		user << SPAN_NOTICE("You need your hands and legs free for this.")
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
 	if (issilicon(user))
-		user << "<span class='notice'>You need hands for this.</span>"
+		user << SPAN_NOTICE("You need hands for this.")
 		return 0
 	return 1
 
 /obj/structure/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
 	if(!breakable || !damage || !wallbreaker)
 		return 0
-	visible_message("<span class='danger'>[user] [attack_verb] the [src] apart!</span>")
+	visible_message(SPAN_DANGER("[user] [attack_verb] the [src] apart!"))
 	attack_animation(user)
 	spawn(1) qdel(src)
 	return 1

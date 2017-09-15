@@ -48,7 +48,7 @@
 /obj/CanUseTopic(var/mob/user, var/datum/topic_state/state)
 	if(user.CanUseObjTopic(src))
 		return ..()
-	user << "<span class='danger'>\icon[src]Access Denied!</span>"
+	user << SPAN_DANGER("\icon[src]Access Denied!")
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)
@@ -191,3 +191,22 @@
 
 /obj/proc/remove_hearing()
 	hearing_objects.Remove(src)
+
+/obj/proc/eject_item(var/obj/item/I, var/mob/living/M)
+	if(!I || !M.IsAdvancedToolUser())
+		return FALSE
+	M.put_in_hands(I)
+	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+	M.visible_message(
+		"[M] remove [I] from [src].",
+		SPAN_NOTICE("You remove [I] from [src].")
+	)
+	return TRUE
+
+/obj/proc/insert_item(var/obj/item/I, var/mob/living/M)
+	if(!I || !M.unEquip(I))
+		return FALSE
+	I.forceMove(src)
+	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
+	M << SPAN_NOTICE("You insert [I] into [src].")
+	return TRUE

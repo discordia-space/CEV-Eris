@@ -25,7 +25,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)	return
 	if(!reagents.total_volume)
-		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
+		M.visible_message(SPAN_NOTICE("[M] finishes eating \the [src]."),SPAN_NOTICE("You finish eating \the [src]."))
 		usr.drop_from_inventory(src)	//so icons update :[
 
 		if(trash)
@@ -42,7 +42,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(!reagents.total_volume)
-		user << "<span class='danger'>None of [src] left!</span>"
+		user << SPAN_DANGER("None of [src] left!")
 		user.drop_from_inventory(src)
 		qdel(src)
 		return 0
@@ -59,29 +59,29 @@
 					return
 				var/obj/item/blocked = H.check_mouth_coverage()
 				if(blocked)
-					user << "<span class='warning'>\The [blocked] is in the way!</span>"
+					user << SPAN_WARNING("\The [blocked] is in the way!")
 					return
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //puts a limit on how fast people can eat/drink things
 			if (fullness <= 50)
-				C << "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>"
+				C << SPAN_DANGER("You hungrily chew out a piece of [src] and gobble it!")
 			if (fullness > 50 && fullness <= 150)
-				C << "<span class='notice'>You hungrily begin to eat [src].</span>"
+				C << SPAN_NOTICE("You hungrily begin to eat [src].")
 			if (fullness > 150 && fullness <= 350)
-				C << "<span class='notice'>You take a bite of [src].</span>"
+				C << SPAN_NOTICE("You take a bite of [src].")
 			if (fullness > 350 && fullness <= 550)
-				C << "<span class='notice'>You unwillingly chew a bit of [src].</span>"
+				C << SPAN_NOTICE("You unwillingly chew a bit of [src].")
 			if (fullness > 550)
-				C << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
+				C << SPAN_DANGER("You cannot force any more of [src] to go down your throat.")
 				return 0
 		else
 			if(!M.can_force_feed(user, src))
 				return
 
 			if (fullness <= 550)
-				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
+				user.visible_message(SPAN_DANGER("[user] attempts to feed [M] [src]."))
 			else
-				user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
+				user.visible_message(SPAN_DANGER("[user] cannot force anymore of [src] down [M]'s throat."))
 				return 0
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -91,7 +91,7 @@
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
 			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
 
-			user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
+			user.visible_message(SPAN_DANGER("[user] feeds [M] [src]."))
 
 		if(reagents)								//Handle ingestion of the reagent.
 			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -112,11 +112,11 @@
 	if (bitecount==0)
 		return
 	else if (bitecount==1)
-		user << "<span class='notice'>\The [src] was bitten by someone!</span>"
+		user << SPAN_NOTICE("\The [src] was bitten by someone!")
 	else if (bitecount<=3)
-		user << "<span class='notice'>\The [src] was bitten [bitecount] time\s!</span>"
+		user << SPAN_NOTICE("\The [src] was bitten [bitecount] time\s!")
 	else
-		user << "<span class='notice'>\The [src] was bitten multiple times!</span>"
+		user << SPAN_NOTICE("\The [src] was bitten multiple times!")
 
 /obj/item/weapon/reagent_containers/food/snacks/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/storage))
@@ -131,12 +131,12 @@
 				U.create_reagents(5)
 
 			if (U.reagents.total_volume > 0)
-				user << "<span class='warning'>You already have something on your [U].</span>"
+				user << SPAN_WARNING("You already have something on your [U].")
 				return
 
 			user.visible_message( \
 				"\The [user] scoops up some [src] with \the [U]!", \
-				"<span class='notice'>You scoop up some [src] with \the [U]!</span>" \
+				SPAN_NOTICE("You scoop up some [src] with \the [U]!") \
 			)
 
 			src.bitecount++
@@ -161,7 +161,7 @@
 			if (W.w_class >= src.w_class || is_robot_module(W))
 				return
 
-			user << "<span class='warning'>You slip \the [W] inside \the [src].</span>"
+			user << SPAN_WARNING("You slip \the [W] inside \the [src].")
 			user.remove_from_mob(W)
 			W.dropped(user)
 			add_fingerprint(user)
@@ -170,15 +170,15 @@
 
 		if (has_edge(W))
 			if (!can_slice_here)
-				user << "<span class='warning'>You cannot slice \the [src] here! You need a table or at least a tray to do it.</span>"
+				user << SPAN_WARNING("You cannot slice \the [src] here! You need a table or at least a tray to do it.")
 				return
 
 			var/slices_lost = 0
 			if (W.w_class > 3)
-				user.visible_message("<span class='notice'>\The [user] crudely slices \the [src] with [W]!</span>", "<span class='notice'>You crudely slice \the [src] with your [W]!</span>")
+				user.visible_message(SPAN_NOTICE("\The [user] crudely slices \the [src] with [W]!"), SPAN_NOTICE("You crudely slice \the [src] with your [W]!"))
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
-				user.visible_message("<span class='notice'>\The [user] slices \the [src]!</span>", "<span class='notice'>You slice \the [src]!</span>")
+				user.visible_message(SPAN_NOTICE("\The [user] slices \the [src]!"), SPAN_NOTICE("You slice \the [src]!"))
 
 			var/reagents_per_slice = reagents.total_volume/slices_num
 			for(var/i=1 to (slices_num-slices_lost))
@@ -495,7 +495,7 @@
 	..()
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.splash(hit_atom, reagents.total_volume)
-	src.visible_message("<span class='warning'>\The [src] has been squashed!</span>","<span class='warning'>You hear a smack.</span>")
+	src.visible_message(SPAN_WARNING("\The [src] has been squashed!"),SPAN_WARNING("You hear a smack."))
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -504,10 +504,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			usr << "<span class='notice'>The egg refuses to take on this color!</span>"
+			usr << SPAN_NOTICE("The egg refuses to take on this color!")
 			return
 
-		usr << "<span class='notice'>You color \the [src] [clr]</span>"
+		usr << SPAN_NOTICE("You color \the [src] [clr]")
 		icon_state = "egg-[clr]"
 	else
 		..()
@@ -722,10 +722,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
 	if(has_been_heated)
-		user << "<span class='notice'>The heating chemicals have already been spent.</span>"
+		user << SPAN_NOTICE("The heating chemicals have already been spent.")
 		return
 	has_been_heated = 1
-	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up.")
+	user.visible_message(SPAN_NOTICE("[user] crushes \the [src] package."), "You crush \the [src] package and feel a comfortable heat build up.")
 	spawn(200)
 		user << "You think \the [src] is ready to eat about now."
 		heat()
@@ -958,7 +958,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/pie_smudge(src.loc)
-	src.visible_message("<span class='danger'>\The [src.name] splats.</span>","<span class='danger'>You hear a splat.</span>")
+	src.visible_message(SPAN_DANGER("\The [src.name] splats."),SPAN_DANGER("You hear a splat."))
 	qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis
@@ -1182,7 +1182,7 @@
 		bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
 	On_Consume()
 		if(prob(unpopped))	//lol ...what's the point?
-			usr << "<span class='warning'>You bite down on an un-popped kernel!</span>"
+			usr << SPAN_WARNING("You bite down on an un-popped kernel!")
 			unpopped = max(0, unpopped-1)
 		..()
 
@@ -1598,7 +1598,7 @@
 			Unwrap(user)
 
 	proc/Expand()
-		src.visible_message("<span class='notice'>\The [src] expands!</span>")
+		src.visible_message(SPAN_NOTICE("\The [src] expands!"))
 		var/mob/living/carbon/human/H = new(get_turf(src))
 		H.set_species(monkey_type)
 		H.real_name = H.species.get_random_name()
@@ -2763,7 +2763,7 @@
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
-		user << "<span class='warning'>You take \the [src.pizza] out of \the [src].</span>"
+		user << SPAN_WARNING("You take \the [src.pizza] out of \the [src].")
 		src.pizza = null
 		update_icon()
 		return
@@ -2777,7 +2777,7 @@
 		boxes -= box
 
 		user.put_in_hands( box )
-		user << "<span class='warning'>You remove the topmost [src] from your hand.</span>"
+		user << SPAN_WARNING("You remove the topmost [src] from your hand.")
 		box.update_icon()
 		update_icon()
 		return
@@ -2816,11 +2816,11 @@
 				box.update_icon()
 				update_icon()
 
-				user << "<span class='warning'>You put \the [box] ontop of \the [src]!</span>"
+				user << SPAN_WARNING("You put \the [box] ontop of \the [src]!")
 			else
-				user << "<span class='warning'>The stack is too high!</span>"
+				user << SPAN_WARNING("The stack is too high!")
 		else
-			user << "<span class='warning'>Close \the [box] first!</span>"
+			user << SPAN_WARNING("Close \the [box] first!")
 
 		return
 
@@ -2833,9 +2833,9 @@
 
 			update_icon()
 
-			user << "<span class='warning'>You put \the [I] in \the [src]!</span>"
+			user << SPAN_WARNING("You put \the [I] in \the [src]!")
 		else
-			user << "<span class='warning'>You try to push \the [I] through the lid but it doesn't work!</span>"
+			user << SPAN_WARNING("You try to push \the [I] through the lid but it doesn't work!")
 		return
 
 	if( istype(I, /obj/item/weapon/pen/) )

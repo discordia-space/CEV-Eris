@@ -18,7 +18,7 @@
 	board_type = "machine"
 	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 2)
 	req_components = list(
-		/obj/item/weapon/cell/big = 3
+		/obj/item/weapon/cell/large = 3
 	)
 
 /obj/item/weapon/circuitboard/ghettosmes
@@ -27,5 +27,5 @@
 	build_path = /obj/machinery/power/smes/batteryrack/makeshift
 	board_type = "machine"
 	req_components = list(
-		/obj/item/weapon/cell/big = 3
+		/obj/item/weapon/cell/large = 3
 	)

@@ -30,7 +30,7 @@
 		var/obj/item/device/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
-				user << "<span class='notice'>You have labeled the destination as [O.currTag].</span>"
+				user << SPAN_NOTICE("You have labeled the destination as [O.currTag].")
 				if(!src.sortTag)
 					src.sortTag = O.currTag
 					update_icon()
@@ -38,16 +38,16 @@
 					src.sortTag = O.currTag
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 			else
-				user << "<span class='warning'>The package is already labeled for [O.currTag].</span>"
+				user << SPAN_WARNING("The package is already labeled for [O.currTag].")
 		else
-			user << "<span class='warning'>You need to set a destination first!</span>"
+			user << SPAN_WARNING("You need to set a destination first!")
 
 	else if(istype(W, /obj/item/weapon/pen))
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 				if(!str || !length(str))
-					usr << "<span class='warning'> Invalid text.</span>"
+					usr << SPAN_WARNING(" Invalid text.")
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
@@ -139,7 +139,7 @@
 		var/obj/item/device/destTagger/O = W
 		if(O.currTag)
 			if(src.sortTag != O.currTag)
-				user << "<span class='notice'>You have labeled the destination as [O.currTag].</span>"
+				user << SPAN_NOTICE("You have labeled the destination as [O.currTag].")
 				if(!src.sortTag)
 					src.sortTag = O.currTag
 					update_icon()
@@ -148,16 +148,16 @@
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 				playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.wav',100,2)
 			else
-				user << "<span class='warning'>The package is already labeled for [O.currTag].</span>"
+				user << SPAN_WARNING("The package is already labeled for [O.currTag].")
 		else
-			user << "<span class='warning'>You need to set a destination first!</span>"
+			user << SPAN_WARNING("You need to set a destination first!")
 
 	else if(istype(W, /obj/item/weapon/pen))
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 				if(!str || !length(str))
-					usr << "<span class='warning'> Invalid text.</span>"
+					usr << SPAN_WARNING(" Invalid text.")
 					return
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
@@ -273,7 +273,7 @@
 			src.add_fingerprint(usr)
 			src.amount -= 1
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+			SPAN_NOTICE("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a small object.")
 	else if (istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/O = target
@@ -284,10 +284,10 @@
 			O.forceMove(P)
 			src.amount -= 3
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+			SPAN_NOTICE("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a large object.")
 		else if(src.amount < 3)
-			user << "<span class='warning'>You need more paper.</span>"
+			user << SPAN_WARNING("You need more paper.")
 	else if (istype (target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
 		if (src.amount > 3 && !O.opened)
@@ -297,10 +297,10 @@
 			O.forceMove(P)
 			src.amount -= 3
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
-			"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
+			SPAN_NOTICE("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
 			"You hear someone taping paper around a large object.")
 		else if(src.amount < 3)
-			user << "<span class='warning'>You need more paper.</span>"
+			user << SPAN_WARNING("You need more paper.")
 	else
 		user << "\blue The object you are trying to wrap is unsuitable for the sorting machinery!"
 	if (src.amount <= 0)

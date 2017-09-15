@@ -65,11 +65,11 @@
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
-					user << "<span class='notice'>You insert the cables.</span>"
+					user << SPAN_NOTICE("You insert the cables.")
 					construct_op--
 					stat &= ~BROKEN // the machine's not borked anymore!
 				else
-					user << "<span class='warning'>You need five coils of wire for this.</span>"
+					user << SPAN_WARNING("You need five coils of wire for this.")
 			if(istype(P, /obj/item/weapon/crowbar))
 				user << "You begin prying out the circuit board other components..."
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)

@@ -214,51 +214,128 @@ other types of metals and chemistry for reagents).
 
 /datum/design/item/powercell/AssembleDesignDesc()
 	if(build_path)
-		var/obj/item/weapon/cell/big/C = build_path
+		var/obj/item/weapon/cell/large/C = build_path
 		desc = "Allows the construction of power cells that can hold [initial(C.maxcharge)] units of energy."
 
 /datum/design/item/powercell/Fabricate()
-	var/obj/item/weapon/cell/big/C = ..()
+	var/obj/item/weapon/cell/large/C = ..()
 	C.charge = 0 //shouldn't produce power out of thin air.
 	return C
 
-/datum/design/item/powercell/basic
-	name = "basic"
+/datum/design/item/powercell/large/basic
+	name = "Asters \"Robustcell 1000L\""
 	build_type = PROTOLATHE | MECHFAB
-	id = "basic_cell"
+	id = "basic_cell_b"
 	req_tech = list(TECH_POWER = 1)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
-	build_path = /obj/item/weapon/cell/big
+	build_path = /obj/item/weapon/cell/large
 	category = "Misc"
 	sort_string = "DAAAA"
 
-/datum/design/item/powercell/high
-	name = "high-capacity"
+/datum/design/item/powercell/large/high
+	name = "Asters \"Robustcell 5000L\""
 	build_type = PROTOLATHE | MECHFAB
-	id = "high_cell"
+	id = "high_cell_b"
 	req_tech = list(TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
-	build_path = /obj/item/weapon/cell/big/high
+	build_path = /obj/item/weapon/cell/large/high
 	category = "Misc"
 	sort_string = "DAAAB"
 
-/datum/design/item/powercell/super
-	name = "super-capacity"
-	id = "super_cell"
+/datum/design/item/powercell/large/super
+	name = "Asters \"Robustcell 15000L\""
+	id = "super_cell_b"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
-	build_path = /obj/item/weapon/cell/big/super
+	build_path = /obj/item/weapon/cell/large/super
 	category = "Misc"
 	sort_string = "DAAAC"
 
-/datum/design/item/powercell/hyper
-	name = "hyper-capacity"
-	id = "hyper_cell"
+/datum/design/item/powercell/large/hyper
+	name = "Asters \"Robustcell-X 20000L\""
+	id = "hyper_cell_b"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70)
-	build_path = /obj/item/weapon/cell/big/hyper
+	build_path = /obj/item/weapon/cell/large/hyper
 	category = "Misc"
 	sort_string = "DAAAD"
+
+/datum/design/item/powercell/medium/basic
+	name = "Asters \"Robustcell 600M\""
+	build_type = PROTOLATHE | MECHFAB
+	id = "basic_cell_m"
+	req_tech = list(TECH_POWER = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium
+	category = "Misc"
+	sort_string = "DAAAF"
+
+/datum/design/item/powercell/medium/high
+	name = "Asters \"Robustcell 800M\""
+	build_type = PROTOLATHE | MECHFAB
+	id = "high_cell_m"
+	req_tech = list(TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium/high
+	category = "Misc"
+	sort_string = "DAAAI"
+
+/datum/design/item/powercell/medium/super
+	name = "Asters \"Robustcell 1000M\""
+	id = "super_cell_m"
+	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium/super
+	category = "Misc"
+	sort_string = "DAAAO"
+
+/datum/design/item/powercell/medium/hyper
+	name = "Asters \"Robustcell 1500M\""
+	id = "hyper_cell_m"
+	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "gold" = 100, "silver" = 100, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium/hyper
+	category = "Misc"
+	sort_string = "DAAAP"
+
+/datum/design/item/powercell/small/basic
+	name = "Asters \"Robustcell 100S\""
+	build_type = PROTOLATHE | MECHFAB
+	id = "basic_cell_s"
+	req_tech = list(TECH_POWER = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
+	build_path = /obj/item/weapon/cell/small
+	category = "Misc"
+	sort_string = "DAAAQ"
+
+/datum/design/item/powercell/small/high
+	name = "Asters \"Robustcell 200S\""
+	build_type = PROTOLATHE | MECHFAB
+	id = "high_cell_s"
+	req_tech = list(TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
+	build_path = /obj/item/weapon/cell/small/high
+	category = "Misc"
+	sort_string = "DAAAZ"
+
+/datum/design/item/powercell/small/super
+	name = "Asters \"Robustcell 300S\""
+	id = "super_cell_s"
+	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
+	build_path = /obj/item/weapon/cell/small/super
+	category = "Misc"
+	sort_string = "DAAAW"
+
+/datum/design/item/powercell/small/hyper
+	name = "Asters \"Robustcell 500S\""
+	id = "hyper_cell_s"
+	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "gold" = 70, "silver" = 70, "glass" = 30)
+	build_path = /obj/item/weapon/cell/small/hyper
+	category = "Misc"
+	sort_string = "DAAAY"
+
 
 /datum/design/item/hud
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
@@ -1731,6 +1808,70 @@ CIRCUITS BELOW
 	id = "cart_captain"
 	build_path = /obj/item/weapon/cartridge/captain
 	sort_string = "VBAAO"
+
+/datum/design/item/wirer
+	name = "Custom wirer tool"
+	id = "wirer"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
+	build_path = /obj/item/device/integrated_electronics/wirer
+	sort_string = "VBVAA"
+
+/datum/design/item/debugger
+	name = "Custom circuit debugger tool"
+	id = "debugger"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
+	build_path = /obj/item/device/integrated_electronics/debugger
+	sort_string = "VBVAB"
+
+
+
+/datum/design/item/custom_circuit_assembly
+	name = "Small custom assembly"
+	desc = "An customizable assembly for simple, small devices."
+	id = "assembly-small"
+	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	build_path = /obj/item/device/electronic_assembly
+	sort_string = "VCAAA"
+
+/datum/design/item/custom_circuit_assembly/medium
+	name = "Medium custom assembly"
+	desc = "An customizable assembly suited for more ambitious mechanisms."
+	id = "assembly-medium"
+	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 20000)
+	build_path = /obj/item/device/electronic_assembly/medium
+	sort_string = "VCAAB"
+
+/datum/design/item/custom_circuit_assembly/drone
+	name = "Drone custom assembly"
+	desc = "An customizable assembly optimized for autonomous devices."
+	id = "assembly-drone"
+	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_POWER = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 30000)
+	build_path = /obj/item/device/electronic_assembly/drone
+	sort_string = "VCAAC"
+
+/datum/design/item/custom_circuit_assembly/large
+	name = "Large custom assembly"
+	desc = "An customizable assembly for large machines."
+	id = "assembly-large"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 40000)
+	build_path = /obj/item/device/electronic_assembly/large
+	sort_string = "VCAAD"
+
+/datum/design/item/custom_circuit_assembly/implant
+	name = "Implant custom assembly"
+	desc = "An customizable assembly for very small devices, implanted into living entities."
+	id = "assembly-implant"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 3, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000)
+	build_path = /obj/item/weapon/implant/integrated_circuit
+	sort_string = "VCAAE"
+
 
 /* Uncomment if someone makes these buildable
 /datum/design/circuit/general_alert

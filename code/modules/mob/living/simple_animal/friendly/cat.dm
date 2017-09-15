@@ -213,7 +213,7 @@
 			say("Meow!")
 			return
 
-	usr << "<span class='notice'>[src] ignores you.</span>"
+	usr << SPAN_NOTICE("[src] ignores you.")
 	return
 
 

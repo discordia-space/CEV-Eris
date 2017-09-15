@@ -36,7 +36,7 @@
 			return
 		if(spellbook.book_flags & LOCKED)
 			if(user.mind.special_role == "apprentice")
-				user << "<span class='warning'>Drat! This spellbook's apprentice proof lock is on!.</span>"
+				user << SPAN_WARNING("Drat! This spellbook's apprentice proof lock is on!.")
 				return
 			else
 				user << "You notice the apprentice proof lock is on. Luckily you are beyond such things and can open it anyways."
@@ -119,7 +119,7 @@
 	if(href_list["path"])
 		var/path = text2path(href_list["path"])
 		if(uses < spellbook.spells[path])
-			usr << "<span class='notice'>You do not have enough spell slots to purchase this.</span>"
+			usr << SPAN_NOTICE("You do not have enough spell slots to purchase this.")
 			return
 		uses -= spellbook.spells[path]
 
@@ -150,7 +150,7 @@
 			temp = "All spells have been removed. You may now memorize a new set of spells."
 
 		else
-			usr << "<span class='warning'>You must be in the wizard academy to re-memorize your spells.</span>"
+			usr << SPAN_WARNING("You must be in the wizard academy to re-memorize your spells.")
 
 	src.interact(usr)
 

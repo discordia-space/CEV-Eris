@@ -83,7 +83,7 @@
 /obj/effect/wingrille_spawn/reinforced_plasma
 	name = "reinforced plasma window grille spawner"
 	icon_state = "pr-wingrille"
-	win_path = /obj/structure/window/plasmareinforced
+	win_path = /obj/structure/window/reinforced/plasma
 
 /obj/effect/wingrille_spawn/reinforced/polarized
 	name = "polarized window grille spawner"

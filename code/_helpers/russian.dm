@@ -23,7 +23,7 @@
 		else if (a == 184)
 			t += ascii2text(168)
 		else t += ascii2text(a)
-	t = replacetext(t,"&#255;","ß")
+	t = replacetext(t, "&#255;", "ß")
 	return t
 
 /proc/rlowertext(text as text)
@@ -71,9 +71,9 @@
 	var/msg = ""
 	switch(type)
 		if("message")
-			msg = input(user, message, title, edit_cp1251(default)) as message
+			msg = input(user, message, title, edit_cp1251(default)) as null|message
 		if("text")
-			msg = input(user, message, title, default) as text
+			msg = input(user, message, title, default) as null|text
 	msg = russian_to_cp1251(msg)
 	return post_edit_cp1251(msg)
 
@@ -81,9 +81,9 @@
 	var/msg = ""
 	switch(type)
 		if("message")
-			msg = input(user, message, title, edit_utf8(default)) as message
+			msg = input(user, message, title, edit_utf8(default)) as null|message
 		if("text")
-			msg = input(user, message, title, default) as text
+			msg = input(user, message, title, default) as null|text
 	msg = russian_to_utf8(msg)
 	return post_edit_utf8(msg)
 
@@ -107,13 +107,13 @@ var/global/list/rkeys = list(
 //TEXT MODS RUS
 /proc/capitalize_cp1251(var/t as text)
 	var/s = 2
-	if (copytext(t,1,2) == ";")
+	if (copytext(t, 1, 2) == ";")
 		s += 1
-	else if (copytext(t,1,2) == ":")
+	else if (copytext(t, 1, 2) == ":")
 		s += 2
 	return ruppertext(copytext(t, 1, s)) + copytext(t, s)
 
 /proc/intonation(text)
-	if (copytext(text,-1) == "!")
+	if (copytext(text, -1) == "!")
 		text = "<b>[text]</b>"
 	return text

@@ -34,12 +34,12 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /atom/movable/attackby(obj/item/W, mob/user)
 	if(!(W.flags & NOBLUDGEON))
-		visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>")
+		visible_message(SPAN_DANGER("[src] has been hit by [user] with [W]."))
 
 /mob/living/attackby(obj/item/I, mob/user)
 	if(!ismob(user))
 		return 0
-	if(can_operate(src) && do_surgery(src,user,I)) //Surgery
+	if(can_operate(src) && do_surgery(src, user, I)) //Surgery
 		return 1
 	return I.attack(src, user, user.targeted_organ)
 

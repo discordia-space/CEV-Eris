@@ -161,7 +161,7 @@
 		return
 	if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B, /obj/item/weapon/reagent_containers/food))
 		if(!accept_glass && istype(B,/obj/item/weapon/reagent_containers/food))
-			user << "<span class='notice'>This machine only accepts beakers</span>"
+			user << SPAN_NOTICE("This machine only accepts beakers")
 		src.beaker =  B
 		user.drop_item()
 		B.loc = src

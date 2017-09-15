@@ -118,21 +118,21 @@
 	else if (istype(W, /obj/item/weapon/wrench))
 		if(connected_port)
 			disconnect()
-			user << "<span class='notice'>You disconnect \the [src] from the port.</span>"
+			user << SPAN_NOTICE("You disconnect \the [src] from the port.")
 			update_icon()
 			return
 		else
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 			if(possible_port)
 				if(connect(possible_port))
-					user << "<span class='notice'>You connect \the [src] to the port.</span>"
+					user << SPAN_NOTICE("You connect \the [src] to the port.")
 					update_icon()
 					return
 				else
-					user << "<span class='notice'>\The [src] failed to connect to the port.</span>"
+					user << SPAN_NOTICE("\The [src] failed to connect to the port.")
 					return
 			else
-				user << "<span class='notice'>Nothing happens.</span>"
+				user << SPAN_NOTICE("Nothing happens.")
 				return
 
 	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
@@ -148,7 +148,7 @@
 	var/power_rating
 	var/power_losses
 	var/last_power_draw = 0
-	var/obj/item/weapon/cell/big/cell
+	var/obj/item/weapon/cell/large/cell
 
 /obj/machinery/portable_atmospherics/powered/powered()
 	if(use_power) //using area power
@@ -158,27 +158,27 @@
 	return 0
 
 /obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/cell/big))
+	if(istype(I, /obj/item/weapon/cell/large))
 		if(cell)
 			user << "There is already a power cell installed."
 			return
 
-		var/obj/item/weapon/cell/big/C = I
+		var/obj/item/weapon/cell/large/C = I
 
 		user.drop_item()
 		C.add_fingerprint(user)
-		cell = C
+		src.cell = C
 		C.loc = src
-		user.visible_message("<span class='notice'>[user] opens the panel on [src] and inserts [C].</span>", "<span class='notice'>You open the panel on [src] and insert [C].</span>")
+		user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and inserts [C]."), SPAN_NOTICE("You open the panel on [src] and insert [C]."))
 		power_change()
 		return
 
 	if(istype(I, /obj/item/weapon/screwdriver))
 		if(!cell)
-			user << "<span class='warning'>There is no power cell installed.</span>"
+			user << SPAN_WARNING("There is no power cell installed.")
 			return
 
-		user.visible_message("<span class='notice'>[user] opens the panel on [src] and removes [cell].</span>", "<span class='notice'>You open the panel on [src] and remove [cell].</span>")
+		user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and removes [cell]."), SPAN_NOTICE("You open the panel on [src] and remove [cell]."))
 		cell.add_fingerprint(user)
 		cell.loc = src.loc
 		cell = null

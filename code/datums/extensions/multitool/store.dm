@@ -4,7 +4,7 @@
 
 	if(M.get_buffer() == holder)
 		M.set_buffer(null)
-		user << "<span class='warning'>You purge the connection data of \the [holder] from \the [M].</span>"
+		user << SPAN_WARNING("You purge the connection data of \the [holder] from \the [M].")
 	else
 		M.set_buffer(holder)
-		user << "<span class='notice'>You load connection data from \the [holder] to \the [M].</span>"
+		user << SPAN_NOTICE("You load connection data from \the [holder] to \the [M].")

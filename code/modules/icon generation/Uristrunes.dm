@@ -207,7 +207,7 @@ var/list/rune_animation = list(
 	o.icon = get_rune(rand(1, 1023), 1)
 
 /mob/verb/runes_15x15()
-	for(var/turf/t in range(7))
+	for(var/turf/t in trange(7, get_turf(src)))
 		var/obj/o = new /obj(t)
 		o.icon = get_rune(rand(1, 1023), 1)
 
@@ -224,7 +224,7 @@ var/list/rune_animation = list(
 	o.icon = animate_rune(I, color1, border1, color2, border2, alpha1, alpha2)
 
 /mob/verb/spam()
-	for(var/turf/t in range(4))
+	for(var/turf/t in trange(4, get_turf(src)))
 		var/icon/I = icon('icons/effects/uristrunes.dmi', "blank")
 
 		var/rune = rand(1, 1023)

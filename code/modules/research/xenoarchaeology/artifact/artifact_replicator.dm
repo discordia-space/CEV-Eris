@@ -26,7 +26,6 @@
 	var/list/viables = list(\
 	/obj/item/roller,\
 	/obj/structure/closet/crate,\
-	/obj/structure/closet/acloset,\
 	/mob/living/simple_animal/hostile/mimic,\
 	/mob/living/simple_animal/hostile/viscerator,\
 	/mob/living/simple_animal/hostile/hivebot,\
@@ -48,7 +47,7 @@
 	/obj/item/weapon/caution/cone,\
 	/obj/item/weapon/crowbar,\
 	/obj/item/weapon/clipboard,\
-	/obj/item/weapon/cell/big,\
+	/obj/item/weapon/cell/large,\
 	/obj/item/weapon/circular_saw,\
 	/obj/item/weapon/material/hatchet,\
 	/obj/item/weapon/handcuffs,\

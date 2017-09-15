@@ -46,15 +46,6 @@ var/datum/antagonist/cultist/cult
 		return
 
 	global_objectives = list()
-	if(prob(50))
-		global_objectives |= new /datum/objective/cult/survive
-	else
-		global_objectives |= new /datum/objective/cult/eldergod
-
-	var/datum/objective/cult/sacrifice/sacrifice = new()
-	sacrifice.find_target()
-	sacrifice_target = sacrifice.target
-	global_objectives |= sacrifice
 
 /datum/antagonist/cultist/equip(var/mob/living/carbon/human/player)
 
@@ -96,13 +87,13 @@ var/datum/antagonist/cultist/cult
 		runerandom()
 
 	var/wordexp = "[cultwords[word]] is [word]..."
-	cult_mob << "<span class='warning'>You remember one thing from the dark teachings of your master... [wordexp]</span>"
+	cult_mob << SPAN_WARNING("You remember one thing from the dark teachings of your master... [wordexp]")
 	cult_mob.mind.store_memory("You remember that <B>[wordexp]</B>", 0, 0)
 
 /datum/antagonist/cultist/remove_antagonist(var/datum/mind/player, var/show_message, var/implanted)
 	if(!..())
 		return 0
-	player.current << "<span class='danger'>An unfamiliar white light flashes through your mind, cleansing the taint of the dark-one and the memories of your time as his servant with it.</span>"
+	player.current << SPAN_DANGER("An unfamiliar white light flashes through your mind, cleansing the taint of the dark-one and the memories of your time as his servant with it.")
 	player.memory = ""
 	if(show_message)
 		player.current.visible_message("<FONT size = 3>[player.current] looks like they just reverted to their old faith!</FONT>")

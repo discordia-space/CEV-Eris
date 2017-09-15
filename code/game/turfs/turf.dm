@@ -30,7 +30,6 @@
 		spawn( 0 )
 			src.Entered(AM)
 			return
-	turfs |= src
 
 /turf/proc/update_icon()
 	return
@@ -67,7 +66,7 @@
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
+		usr << SPAN_WARNING("Movement is admin-disabled.") //This is to identify lag problems
 		return
 
 	..()
@@ -113,7 +112,7 @@ var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
 	if(movement_disabled)
-		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
+		usr << SPAN_WARNING("Movement is admin-disabled.") //This is to identify lag problems
 		return
 	..()
 
@@ -226,7 +225,7 @@ var/const/enterloopsanity = 100
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	else
-		user << "<span class='warning'>\The [source] is too dry to wash that.</span>"
+		user << SPAN_WARNING("\The [source] is too dry to wash that.")
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 
 /turf/proc/update_blood_overlays()

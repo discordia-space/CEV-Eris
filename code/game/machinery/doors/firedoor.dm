@@ -50,12 +50,8 @@
 	)
 
 /obj/machinery/door/firedoor/New()
-	. = ..()
-	for(var/obj/machinery/door/firedoor/F in loc)
-		if(F != src)
-			spawn(1)
-				qdel(src)
-			return .
+	..()
+
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
@@ -82,7 +78,7 @@
 		return
 
 	if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
-		user << "<span class='warning'>WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!</span>"
+		user << SPAN_WARNING("WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!")
 
 	user << "<b>Sensor readings:</b>"
 	for(var/index = 1; index <= tile_info.len; index++)
@@ -97,7 +93,7 @@
 			if(4)
 				o += "WEST: "
 		if(tile_info[index] == null)
-			o += "<span class='warning'>DATA UNAVAILABLE</span>"
+			o += SPAN_WARNING("DATA UNAVAILABLE")
 			user << o
 			continue
 		var/celsius = convert_k2c(tile_info[index][1])
@@ -135,7 +131,7 @@
 		return//Already doing something.
 
 	if(blocked)
-		user << "<span class='warning'>\The [src] is welded solid!</span>"
+		user << SPAN_WARNING("\The [src] is welded solid!")
 		return
 
 	var/alarmed = lockdown
@@ -155,7 +151,7 @@
 		return
 
 	if(alarmed && density && lockdown && !allowed(user))
-		user << "<span class='warning'>Access denied.  Please wait for authorities to arrive, or for the alert to clear.</span>"
+		user << SPAN_WARNING("Access denied.  Please wait for authorities to arrive, or for the alert to clear.")
 		return
 	else
 		user.visible_message("<span class='notice'>\The [src] [density ? "open" : "close"]s for \the [user].</span>",\
@@ -208,14 +204,14 @@
 
 	if(blocked && istype(C, /obj/item/weapon/crowbar) && !repairing)
 		if(!hatch_open)
-			user << "<span class='danger'>You must open the maintenance hatch first!</span>"
+			user << SPAN_DANGER("You must open the maintenance hatch first!")
 		else
-			user.visible_message("<span class='danger'>[user] is removing the electronics from \the [src].</span>",
+			user.visible_message(SPAN_DANGER("[user] is removing the electronics from \the [src]."),
 									"You start to remove the electronics from [src].")
 			if(do_after(user,30,src))
 				if(blocked && density && hatch_open)
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-					user.visible_message("<span class='danger'>[user] has removed the electronics from \the [src].</span>",
+					user.visible_message(SPAN_DANGER("[user] has removed the electronics from \the [src]."),
 										"You have removed the electronics from [src].")
 
 					if (stat & BROKEN)
@@ -232,7 +228,7 @@
 		return
 
 	if(blocked)
-		user << "<span class='danger'>\The [src] is welded shut!</span>"
+		user << SPAN_DANGER("\The [src] is welded shut!")
 		return
 
 	if(istype(C, /obj/item/weapon/crowbar) || istype(C,/obj/item/weapon/material/twohanded/fireaxe))
@@ -240,7 +236,7 @@
 			return
 
 		if(blocked && istype(C, /obj/item/weapon/crowbar))
-			user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
+			user.visible_message(SPAN_DANGER("\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!"),\
 			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 			"You hear someone struggle and metal straining.")
 			return

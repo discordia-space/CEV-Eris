@@ -119,10 +119,10 @@ var/list/name_to_material
 // Placeholders for light tiles and rglass.
 /material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!rod_product)
-		user << "<span class='warning'>You cannot make anything out of \the [target_stack]</span>"
+		user << SPAN_WARNING("You cannot make anything out of \the [target_stack]")
 		return
 	if(used_stack.get_amount() < 1 || target_stack.get_amount() < 1)
-		user << "<span class='warning'>You need one rod and one sheet of [display_name] to make anything useful.</span>"
+		user << SPAN_WARNING("You need one rod and one sheet of [display_name] to make anything useful.")
 		return
 	used_stack.use(1)
 	target_stack.use(1)
@@ -132,15 +132,15 @@ var/list/name_to_material
 
 /material/proc/build_wired_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!wire_product)
-		user << "<span class='warning'>You cannot make anything out of \the [target_stack]</span>"
+		user << SPAN_WARNING("You cannot make anything out of \the [target_stack]")
 		return
 	if(used_stack.get_amount() < 5 || target_stack.get_amount() < 1)
-		user << "<span class='warning'>You need five wires and one sheet of [display_name] to make anything useful.</span>"
+		user << SPAN_WARNING("You need five wires and one sheet of [display_name] to make anything useful.")
 		return
 
 	used_stack.use(5)
 	target_stack.use(1)
-	user << "<span class='notice'>You attach wire to the [name].</span>"
+	user << SPAN_NOTICE("You attach wire to the [name].")
 	var/obj/item/product = new wire_product(get_turf(user))
 	if(!(user.l_hand && user.r_hand))
 		user.put_in_hands(product)
@@ -288,7 +288,7 @@ var/list/name_to_material
 	if(temperature < ignition_point)
 		return 0
 	var/totalPlasma = 0
-	for(var/turf/simulated/floor/target_tile in range(2,T))
+	for(var/turf/simulated/floor/target_tile in trange(2, T))
 		var/plasmaToDeduce = (temperature/30) * effect_multiplier
 		totalPlasma += plasmaToDeduce
 		target_tile.assume_gas("plasma", plasmaToDeduce, 200+T0C)
@@ -380,12 +380,12 @@ var/list/name_to_material
 		return 0
 
 	if(!user.IsAdvancedToolUser())
-		user << "<span class='warning'>This task is too complex for your clumsy hands.</span>"
+		user << SPAN_WARNING("This task is too complex for your clumsy hands.")
 		return 1
 
 	var/turf/T = user.loc
 	if(!istype(T))
-		user << "<span class='warning'>You must be standing on open flooring to build a window.</span>"
+		user << SPAN_WARNING("You must be standing on open flooring to build a window.")
 		return 1
 
 	var/title = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
@@ -418,12 +418,12 @@ var/list/name_to_material
 				failed_to_build = 1
 			if(!failed_to_build && choice == "Windoor")
 				if(!is_reinforced())
-					user << "<span class='warning'>This material is not reinforced enough to use for a door.</span>"
+					user << SPAN_WARNING("This material is not reinforced enough to use for a door.")
 					return
 				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
 					failed_to_build = 1
 	if(failed_to_build)
-		user << "<span class='warning'>There is no room in this location.</span>"
+		user << SPAN_WARNING("There is no room in this location.")
 		return 1
 
 	var/build_path = /obj/structure/windoor_assembly
@@ -434,7 +434,7 @@ var/list/name_to_material
 		build_path = created_window
 
 	if(used_stack.get_amount() < sheets_needed)
-		user << "<span class='warning'>You need at least [sheets_needed] sheets to build this.</span>"
+		user << SPAN_WARNING("You need at least [sheets_needed] sheets to build this.")
 		return 1
 
 	// Build the structure and update sheet count etc.
@@ -482,7 +482,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/glass/plasmarglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
-	created_window = /obj/structure/window/plasmareinforced
+	created_window = /obj/structure/window/reinforced/plasma
 	hardness = 40
 	weight = 30
 	//stack_origin_tech = list(TECH_MATERIAL = 2)

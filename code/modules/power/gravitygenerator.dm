@@ -175,31 +175,31 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
 			if(istype(I, /obj/item/weapon/screwdriver))
-				user << "<span class='notice'>You secure the screws of the framework.</span>"
+				user << SPAN_NOTICE("You secure the screws of the framework.")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				broken_state++
 		if(GRAV_NEEDS_WELDING)
 			if(istype(I, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/WT = I
 				if(WT.remove_fuel(1, user))
-					user << "<span class='notice'>You mend the damaged framework.</span>"
+					user << SPAN_NOTICE("You mend the damaged framework.")
 					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 					broken_state++
 				else if(WT.isOn())
-					user << "<span class='warning'>You don't have enough fuel to mend the damaged framework!</span>"
+					user << SPAN_WARNING("You don't have enough fuel to mend the damaged framework!")
 		if(GRAV_NEEDS_PLASTEEL)
 			if(istype(I, /obj/item/stack/material/plasteel))
 				var/obj/item/stack/material/plasteel/PS = I
 				if(PS.amount >= 10)
 					PS.use(10)
-					user << "<span class='notice'>You add the plating to the framework.</span>"
+					user << SPAN_NOTICE("You add the plating to the framework.")
 					playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 					broken_state++
 				else
-					user << "<span class='warning'>You need 10 sheets of plasteel!</span>"
+					user << SPAN_WARNING("You need 10 sheets of plasteel!")
 		if(GRAV_NEEDS_WRENCH)
 			if(istype(I, /obj/item/weapon/wrench))
-				user << "<span class='notice'>You secure the plating to the framework.</span>"
+				user << SPAN_NOTICE("You secure the plating to the framework.")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				set_fix()
 		else

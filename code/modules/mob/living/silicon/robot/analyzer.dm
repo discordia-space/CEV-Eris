@@ -15,8 +15,18 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 200)
 	var/mode = 1;
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/device/robotanalyzer/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+	if(!cell || !cell.checked_use(5))
+		user << SPAN_WARNING("[src] battery is dead or missing")
+		return
 	if((CLUMSY in user.mutations) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))
@@ -36,7 +46,7 @@
 		user << "\red You can't analyze non-robotic things!"
 		return
 
-	user.visible_message("<span class='notice'>\The [user] has analyzed [M]'s components.</span>","<span class='notice'>You have analyzed [M]'s components.</span>")
+	user.visible_message(SPAN_NOTICE("\The [user] has analyzed [M]'s components."),SPAN_NOTICE("You have analyzed [M]'s components."))
 	switch(scan_type)
 		if("robot")
 			var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
@@ -66,10 +76,10 @@
 
 		if("prosthetics")
 			var/mob/living/carbon/human/H = M
-			user << "<span class='notice'>Analyzing Results for \the [H]:</span>"
+			user << SPAN_NOTICE("Analyzing Results for \the [H]:")
 			user << "Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>"
 
-			user << "<span class='notice'>External prosthetics:</span>"
+			user << SPAN_NOTICE("External prosthetics:")
 			var/organ_found
 			if(H.internal_organs.len)
 				for(var/obj/item/organ/external/E in H.organs)
@@ -80,7 +90,7 @@
 			if(!organ_found)
 				user << "No prosthetics located."
 			user << "<hr>"
-			user << "<span class='notice'>Internal prosthetics:</span>"
+			user << SPAN_NOTICE("Internal prosthetics:")
 			organ_found = null
 			if(H.internal_organs.len)
 				for(var/obj/item/organ/O in H.internal_organs)
@@ -90,6 +100,13 @@
 					user << "[O.name]: <font color='red'>[O.damage]</font>"
 			if(!organ_found)
 				user << "No prosthetics located."
-
 	src.add_fingerprint(user)
-	return
+
+
+/obj/item/device/robotanalyzer/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/device/robotanalyzer/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C

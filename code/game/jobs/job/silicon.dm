@@ -8,7 +8,6 @@
 	selection_color = "#ccffcc"
 	supervisors = "your laws"
 	req_admin_notify = 1
-	minimal_player_age = 7
 	account_allowed = 0
 	economic_modifier = 0
 	equip(var/mob/living/carbon/human/H)
@@ -29,7 +28,6 @@
 	spawn_positions = 2
 	supervisors = "your laws and the AI"	//Nodrak
 	selection_color = "#ddffdd"
-	minimal_player_age = 1
 	account_allowed = 0
 	economic_modifier = 0
 

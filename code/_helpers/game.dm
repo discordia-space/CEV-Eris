@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-/proc/dopage(src,target)
+/proc/dopage(src, target)
 	var/href_list
 	var/href
 	href_list = params2list("src=\ref[src]&[target]=1")
@@ -76,7 +76,7 @@
 /proc/isNotAdminLevel(var/level)
 	return !isAdminLevel(level)
 
-/proc/circlerange(center=usr,radius=3)
+/proc/circlerange(center=usr, radius=3)
 
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
@@ -91,7 +91,7 @@
 	//turfs += centerturf
 	return turfs
 
-/proc/circleview(center=usr,radius=3)
+/proc/circleview(center=usr, radius=3)
 
 	var/turf/centerturf = get_turf(center)
 	var/list/atoms = new/list()
@@ -110,11 +110,11 @@
 	if(!centre)
 		return
 
-	var/turf/x1y1 = locate(((centre.x-rad)<1 ? 1 : centre.x-rad),((centre.y-rad)<1 ? 1 : centre.y-rad),centre.z)
-	var/turf/x2y2 = locate(((centre.x+rad)>world.maxx ? world.maxx : centre.x+rad),((centre.y+rad)>world.maxy ? world.maxy : centre.y+rad),centre.z)
-	return block(x1y1,x2y2)
+	var/turf/x1y1 = locate(((centre.x-rad)<1 ? 1 : centre.x-rad), ((centre.y-rad)<1 ? 1 : centre.y-rad), centre.z)
+	var/turf/x2y2 = locate(((centre.x+rad)>world.maxx ? world.maxx : centre.x+rad), ((centre.y+rad)>world.maxy ? world.maxy : centre.y+rad), centre.z)
+	return block(x1y1, x2y2)
 
-/proc/get_dist_euclidian(atom/Loc1 as turf|mob|obj,atom/Loc2 as turf|mob|obj)
+/proc/get_dist_euclidian(atom/Loc1 as turf|mob|obj, atom/Loc2 as turf|mob|obj)
 	var/dx = Loc1.x - Loc2.x
 	var/dy = Loc1.y - Loc2.y
 
@@ -122,20 +122,20 @@
 
 	return dist
 
-/proc/circlerangeturfs(center=usr,radius=3)
+/proc/circlerangeturfs(center=usr, radius=3)
 
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
 	var/rsq = radius * (radius+0.5)
 
-	for(var/turf/T in range(radius, centerturf))
+	for(var/turf/T in trange(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx*dx + dy*dy <= rsq)
 			turfs += T
 	return turfs
 
-/proc/circleviewturfs(center=usr,radius=3)		//Is there even a diffrence between this proc and circlerangeturfs()?
+/proc/circleviewturfs(center=usr, radius=3)		//Is there even a diffrence between this proc and circlerangeturfs()?
 
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
@@ -194,7 +194,7 @@
 
 			var/turf/speaker = get_turf(R)
 			if(speaker)
-				for(var/turf/T in hear(R.canhear_range,speaker))
+				for(var/turf/T in hear(R.canhear_range, speaker))
 					speaker_coverage[T] = T
 
 
@@ -212,7 +212,7 @@
 #define SIGN(X) ((X<0)?-1:1)
 
 proc
-	inLineOfSight(X1,Y1,X2,Y2,Z=1,PX1=16.5,PY1=16.5,PX2=16.5,PY2=16.5)
+	inLineOfSight(X1, Y1, X2, Y2, Z=1, PX1=16.5, PY1=16.5, PX2=16.5, PY2=16.5)
 		var/turf/T
 		if(X1==X2)
 			if(Y1==Y2)
@@ -221,7 +221,7 @@ proc
 				var/s = SIGN(Y2-Y1)
 				Y1+=s
 				while(Y1!=Y2)
-					T=locate(X1,Y1,Z)
+					T=locate(X1, Y1, Z)
 					if(T.opacity)
 						return 0
 					Y1+=s
@@ -237,7 +237,7 @@ proc
 					Y1+=signY //Line exits tile vertically
 				else
 					X1+=signX //Line exits tile horizontally
-				T=locate(X1,Y1,Z)
+				T=locate(X1, Y1, Z)
 				if(T.opacity)
 					return 0
 		return 1
@@ -250,7 +250,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	if(!Aturf || !Bturf)
 		return 0
 
-	if(inLineOfSight(Aturf.x,Aturf.y, Bturf.x,Bturf.y,Aturf.z))
+	if(inLineOfSight(Aturf.x, Aturf.y, Bturf.x, Bturf.y, Aturf.z))
 		return 1
 
 	else
@@ -353,7 +353,7 @@ datum/projectile_data
 
 /proc/projectile_trajectory(var/src_x, var/src_y, var/rotation, var/angle, var/power)
 
-	// returns the destination (Vx,y) that a projectile shot at [src_x], [src_y], with an angle of [angle],
+	// returns the destination (Vx, y) that a projectile shot at [src_x], [src_y], with an angle of [angle],
 	// rotated at [rotation] and with the power of [power]
 	// Thanks to VistaPOWA for this function
 
@@ -369,13 +369,13 @@ datum/projectile_data
 	return new /datum/projectile_data(src_x, src_y, time, distance, power_x, power_y, dest_x, dest_y)
 
 /proc/GetRedPart(const/hexa)
-	return hex2num(copytext(hexa,2,4))
+	return hex2num(copytext(hexa, 2, 4))
 
 /proc/GetGreenPart(const/hexa)
-	return hex2num(copytext(hexa,4,6))
+	return hex2num(copytext(hexa, 4, 6))
 
 /proc/GetBluePart(const/hexa)
-	return hex2num(copytext(hexa,6,8))
+	return hex2num(copytext(hexa, 6, 8))
 
 /proc/GetHexColors(const/hexa)
 	return list(
@@ -385,7 +385,7 @@ datum/projectile_data
 		)
 
 /proc/iscolor(var/color)
-	var/h = copytext(color,1,2)
+	var/h = copytext(color, 1, 2)
 	var/r = GetRedPart(color)
 	var/g = GetGreenPart(color)
 	var/b = GetBluePart(color)
@@ -416,7 +416,7 @@ datum/projectile_data
 	var/r = mixOneColor(weights, reds)
 	var/g = mixOneColor(weights, greens)
 	var/b = mixOneColor(weights, blues)
-	return rgb(r,g,b)
+	return rgb(r, g, b)
 
 /proc/mixOneColor(var/list/weight, var/list/color)
 	if (!weight || !color || length(weight)!=length(color))
@@ -442,7 +442,7 @@ datum/projectile_data
 //	if(mixedcolor<0x00 || mixedcolor>0xFF)
 //		return 0
 	//that's not the kind of operation we are running here, nerd
-	mixedcolor=min(max(mixedcolor,0),255)
+	mixedcolor=min(max(mixedcolor, 0), 255)
 
 	return mixedcolor
 
@@ -454,7 +454,7 @@ datum/projectile_data
 	var/minp=16777216;
 	var/maxp=0;
 	for(var/dir in cardinal)
-		var/turf/simulated/T=get_turf(get_step(loc,dir))
+		var/turf/simulated/T=get_turf(get_step(loc, dir))
 		var/cp=0
 		if(T && istype(T) && T.zone)
 			var/datum/gas_mixture/environment = T.return_air()
@@ -485,7 +485,7 @@ datum/projectile_data
 				direction = 3
 			if(WEST)
 				direction = 4
-		var/turf/simulated/T=get_turf(get_step(loc,dir))
+		var/turf/simulated/T=get_turf(get_step(loc, dir))
 		var/list/rstats = new /list(stats.len)
 		if(T && istype(T) && T.zone)
 			var/datum/gas_mixture/environment = T.return_air()

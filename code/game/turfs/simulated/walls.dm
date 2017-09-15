@@ -93,18 +93,18 @@
 	. = ..(user)
 
 	if(!damage)
-		user << "<span class='notice'>It looks fully intact.</span>"
+		user << SPAN_NOTICE("It looks fully intact.")
 	else
 		var/dam = damage / material.integrity
 		if(dam <= 0.3)
-			user << "<span class='warning'>It looks slightly damaged.</span>"
+			user << SPAN_WARNING("It looks slightly damaged.")
 		else if(dam <= 0.6)
-			user << "<span class='warning'>It looks moderately damaged.</span>"
+			user << SPAN_WARNING("It looks moderately damaged.")
 		else
-			user << "<span class='danger'>It looks heavily damaged.</span>"
+			user << SPAN_DANGER("It looks heavily damaged.")
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		user << "<span class='warning'>There is fungus growing on [src].</span>"
+		user << SPAN_WARNING("There is fungus growing on [src].")
 
 //Damage
 
@@ -120,7 +120,7 @@
 		return
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
-	visible_message("<span class='danger'>\The [src] spontaneously combusts!.</span>") //!!OH SHIT!!
+	visible_message(SPAN_DANGER("\The [src] spontaneously combusts!.")) //!!OH SHIT!!
 	return
 
 /turf/simulated/wall/proc/take_damage(dam)
@@ -223,7 +223,7 @@
 	var/turf/simulated/floor/F = src
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
-	user << "<span class='warning'>The thermite starts melting through the wall.</span>"
+	user << SPAN_WARNING("The thermite starts melting through the wall.")
 
 	spawn(100)
 		if(O)
@@ -245,7 +245,7 @@
 		spawn(2)
 			new /obj/structure/girder(src)
 			src.ChangeTurf(/turf/simulated/floor)
-			for(var/turf/simulated/wall/W in range(3,src))
+			for(var/turf/simulated/wall/W in trange(3, src) - src)
 				W.burn((temperature/4))
 			for(var/obj/machinery/door/airlock/plasma/D in range(3,src))
 				D.ignite(temperature/4)

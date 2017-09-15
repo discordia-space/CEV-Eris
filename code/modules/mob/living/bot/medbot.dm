@@ -99,7 +99,7 @@
 		return
 
 	icon_state = "medibots"
-	visible_message("<span class='warning'>[src] is trying to inject [H]!</span>")
+	visible_message(SPAN_WARNING("[src] is trying to inject [H]!"))
 	if(declare_treatment)
 		var/area/location = get_area(src)
 		broadcast_medical_hud_message("[src] is treating <b>[H]</b> in <b>[location]</b>", src)
@@ -110,7 +110,7 @@
 			reagent_glass.reagents.trans_to_mob(H, injection_amount, CHEM_BLOOD)
 		else
 			H.reagents.add_reagent(t, injection_amount)
-		visible_message("<span class='warning'>[src] injects [H] with the syringe!</span>")
+		visible_message(SPAN_WARNING("[src] injects [H] with the syringe!"))
 	currently_healing = 0
 	update_icons()
 
@@ -164,16 +164,16 @@
 /mob/living/bot/medbot/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/weapon/reagent_containers/glass))
 		if(locked)
-			user << "<span class='notice'>You cannot insert a beaker because the panel is locked.</span>"
+			user << SPAN_NOTICE("You cannot insert a beaker because the panel is locked.")
 			return
 		if(!isnull(reagent_glass))
-			user << "<span class='notice'>There is already a beaker loaded.</span>"
+			user << SPAN_NOTICE("There is already a beaker loaded.")
 			return
 
 		user.drop_item()
 		O.loc = src
 		reagent_glass = O
-		user << "<span class='notice'>You insert [O].</span>"
+		user << SPAN_NOTICE("You insert [O].")
 		return
 	else
 		..()
@@ -213,7 +213,7 @@
 			reagent_glass.loc = get_turf(src)
 			reagent_glass = null
 		else
-			usr << "<span class='notice'>You cannot eject the beaker because the panel is locked.</span>"
+			usr << SPAN_NOTICE("You cannot eject the beaker because the panel is locked.")
 
 	else if ((href_list["togglevoice"]) && (!locked || issilicon(usr)))
 		vocal = !vocal
@@ -228,8 +228,8 @@
 	. = ..()
 	if(!emagged)
 		if(user)
-			user << "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>"
-		visible_message("<span class='warning'>[src] buzzes oddly!</span>")
+			user << SPAN_WARNING("You short out [src]'s reagent synthesis circuits.")
+		visible_message(SPAN_WARNING("[src] buzzes oddly!"))
 		playsound(loc, "robot_talk_light", 100, 0, 0)
 		flick("medibot_spark", src)
 		patient = null
@@ -242,7 +242,7 @@
 
 /mob/living/bot/medbot/explode()
 	on = 0
-	visible_message("<span class='danger'>[src] blows apart!</span>")
+	visible_message(SPAN_DANGER("[src] blows apart!"))
 	playsound(loc, "robot_talk_light", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
@@ -299,7 +299,7 @@
 		return
 
 	if(contents.len >= 1)
-		user << "<span class='notice'>You need to empty [src] out first.</span>"
+		user << SPAN_NOTICE("You need to empty [src] out first.")
 		return
 
 	var/obj/item/weapon/firstaid_arm_assembly/A = new /obj/item/weapon/firstaid_arm_assembly
@@ -312,7 +312,7 @@
 
 	qdel(S)
 	user.put_in_hands(A)
-	user << "<span class='notice'>You add the robot arm to the first aid kit.</span>"
+	user << SPAN_NOTICE("You add the robot arm to the first aid kit.")
 	playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 	user.drop_from_inventory(src)
 	qdel(src)
@@ -349,7 +349,7 @@
 					user.drop_item()
 					qdel(W)
 					build_step++
-					user << "<span class='notice'>You add the health sensor to [src].</span>"
+					user << SPAN_NOTICE("You add the health sensor to [src].")
 					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 					name = "First aid/robot arm/health analyzer assembly"
 					overlays += image('icons/obj/aibots.dmi', "na_scanner")
@@ -358,7 +358,7 @@
 				if(is_proximity_sensor(W))
 					user.drop_item()
 					qdel(W)
-					user << "<span class='notice'>You complete the Medibot! Beep boop.</span>"
+					user << SPAN_NOTICE("You complete the Medibot! Beep boop.")
 					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 					var/turf/T = get_turf(src)
 					var/mob/living/bot/medbot/S = new /mob/living/bot/medbot(T)

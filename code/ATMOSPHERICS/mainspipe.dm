@@ -169,12 +169,12 @@ obj/machinery/atmospherics/mains_pipe/simple
 				else if (!node2_dir)
 					node2_dir = direction
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,node1_dir))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[1] = target
 				break
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,node2_dir))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node2_dir))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[2] = target
 				break
 
@@ -210,8 +210,8 @@ obj/machinery/atmospherics/mains_pipe/manifold
 
 		for(var/direction in cardinal)
 			if(direction&connect_directions)
-				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,direction))
-					if(target.initialize_mains_directions & get_dir(target,src))
+				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, direction))
+					if(target.initialize_mains_directions & get_dir(target, src))
 						nodes[1] = target
 						connect_directions &= ~direction
 						break
@@ -221,8 +221,8 @@ obj/machinery/atmospherics/mains_pipe/manifold
 
 		for(var/direction in cardinal)
 			if(direction&connect_directions)
-				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,direction))
-					if(target.initialize_mains_directions & get_dir(target,src))
+				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, direction))
+					if(target.initialize_mains_directions & get_dir(target, src))
 						nodes[2] = target
 						connect_directions &= ~direction
 						break
@@ -232,8 +232,8 @@ obj/machinery/atmospherics/mains_pipe/manifold
 
 		for(var/direction in cardinal)
 			if(direction&connect_directions)
-				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,direction))
-					if(target.initialize_mains_directions & get_dir(target,src))
+				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, direction))
+					if(target.initialize_mains_directions & get_dir(target, src))
 						nodes[3] = target
 						connect_directions &= ~direction
 						break
@@ -270,23 +270,23 @@ obj/machinery/atmospherics/mains_pipe/manifold4w
 		..()
 
 	initialize()
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,NORTH))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, NORTH))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[1] = target
 				break
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,SOUTH))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, SOUTH))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[2] = target
 				break
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,EAST))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, EAST))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[3] = target
 				break
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,WEST))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, WEST))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[3] = target
 				break
 
@@ -330,16 +330,16 @@ obj/machinery/atmospherics/mains_pipe/split
 		node2_dir = turn(dir, -90)
 		node3_dir = dir
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,node1_dir))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[1] = target
 				break
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,node2_dir))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node2_dir))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[2] = target
 				break
-		for(var/obj/machinery/atmospherics/target in get_step(src,node3_dir))
-			if(target.initialize_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, node3_dir))
+			if(target.initialize_directions & get_dir(target, src))
 				node3 = target
 				break
 
@@ -438,19 +438,19 @@ obj/machinery/atmospherics/mains_pipe/split3
 			scrubbers_node_dir = NORTH
 
 		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
-			if(target.initialize_mains_directions & get_dir(target,src))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[1] = target
 				break
-		for(var/obj/machinery/atmospherics/target in get_step(src,supply_node_dir))
-			if(target.initialize_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, supply_node_dir))
+			if(target.initialize_directions & get_dir(target, src))
 				supply_node = target
 				break
-		for(var/obj/machinery/atmospherics/target in get_step(src,scrubbers_node_dir))
-			if(target.initialize_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, scrubbers_node_dir))
+			if(target.initialize_directions & get_dir(target, src))
 				scrubbers_node = target
 				break
-		for(var/obj/machinery/atmospherics/target in get_step(src,aux_node_dir))
-			if(target.initialize_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, aux_node_dir))
+			if(target.initialize_directions & get_dir(target, src))
 				aux_node = target
 				break
 
@@ -517,8 +517,8 @@ obj/machinery/atmospherics/mains_pipe/cap
 		icon_state = "cap[invisibility ? "-f" : ""]"
 
 	initialize()
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,dir))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, dir))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[1] = target
 				break
 
@@ -565,7 +565,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 				break
 
 		if(animation)
-			flick("[hide?"h":""]mvalve[src.open][!src.open]",src)
+			flick("[hide?"h":""]mvalve[src.open][!src.open]", src)
 		else
 			icon_state = "[hide?"h":""]mvalve[open]"
 
@@ -581,12 +581,12 @@ obj/machinery/atmospherics/mains_pipe/valve
 				else if (!node2_dir)
 					node2_dir = direction
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,node1_dir))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[1] = target
 				break
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src,node2_dir))
-			if(target.initialize_mains_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node2_dir))
+			if(target.initialize_mains_directions & get_dir(target, src))
 				nodes[2] = target
 				break
 
@@ -649,7 +649,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 		attack_hand(mob/user as mob)
 			if(!src.allowed(user))
-				user << "<span class='warning'>Access denied.</span>"
+				user << SPAN_WARNING("Access denied.")
 				return
 			..()
 
@@ -682,7 +682,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 					break
 
 			if(animation)
-				flick("[hide?"h":""]dvalve[src.open][!src.open]",src)
+				flick("[hide?"h":""]dvalve[src.open][!src.open]", src)
 			else
 				icon_state = "[hide?"h":""]dvalve[open]"
 

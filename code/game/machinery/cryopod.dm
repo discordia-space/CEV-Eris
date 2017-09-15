@@ -99,7 +99,7 @@
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			user << "<span class='notice'>There is nothing to recover from storage.</span>"
+			user << SPAN_NOTICE("There is nothing to recover from storage.")
 			return
 
 		var/obj/item/I = input(usr, "Please choose which object to retrieve.","Object recovery",null) as null|anything in frozen_items
@@ -107,10 +107,10 @@
 			return
 
 		if(!(I in frozen_items))
-			user << "<span class='notice'>\The [I] is no longer in storage.</span>"
+			user << SPAN_NOTICE("\The [I] is no longer in storage.")
 			return
 
-		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>")
+		visible_message(SPAN_NOTICE("The console beeps happily as it disgorges \the [I]."))
 
 		I.forceMove(get_turf(src))
 		frozen_items -= I
@@ -119,10 +119,10 @@
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			user << "<span class='notice'>There is nothing to recover from storage.</span>"
+			user << SPAN_NOTICE("There is nothing to recover from storage.")
 			return
 
-		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>")
+		visible_message(SPAN_NOTICE("The console beeps happily as it disgorges the desired objects."))
 
 		for(var/obj/item/I in frozen_items)
 			I.forceMove(get_turf(src))
@@ -330,7 +330,7 @@
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == occupant.mind)
 			if(O.owner && O.owner.current)
-				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
+				O.owner.current << SPAN_WARNING("You get the feeling your target is no longer within your reach...")
 			qdel(O)
 
 	//Handle job slot/tater cleanup.
@@ -366,7 +366,7 @@
 	log_and_message_admins("[key_name(occupant)] ([occupant.mind.role_alt_title]) entered cryostorage.")
 
 	announce.autosay("[occupant.real_name], [occupant.mind.role_alt_title], [on_store_message]", "[on_store_name]")
-	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
+	visible_message(SPAN_NOTICE("\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage."))
 
 	//This should guarantee that ghosts don't spawn.
 	occupant.ckey = null
@@ -382,7 +382,7 @@
 	if(istype(G, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/grab = G
 		if(occupant)
-			user << "<span class='notice'>\The [src] is in use.</span>"
+			user << SPAN_NOTICE("\The [src] is in use.")
 			return
 
 		if(!ismob(grab.affecting))
@@ -413,7 +413,7 @@
 			// Book keeping!
 			var/turf/location = get_turf(src)
 			log_admin("[key_name_admin(M)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-			message_admins("<span class='notice'>[key_name_admin(M)] has entered a stasis pod.</span>")
+			message_admins(SPAN_NOTICE("[key_name_admin(M)] has entered a stasis pod."))
 
 			//Despawning occurs when process() is called with an occupant without a client.
 			src.add_fingerprint(M)
@@ -450,7 +450,7 @@
 		return
 
 	if(src.occupant)
-		usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
+		usr << SPAN_NOTICE("<B>\The [src] is in use.</B>")
 		return
 
 	for(var/mob/living/carbon/slime/M in range(1,usr))
@@ -466,7 +466,7 @@
 			return
 
 		if(src.occupant)
-			usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
+			usr << SPAN_NOTICE("<B>\The [src] is in use.</B>")
 			return
 
 		usr.stop_pulling()
@@ -496,8 +496,8 @@
 		new_occupant.forceMove(src)
 		icon_state = occupied_icon_state
 
-		occupant << "<span class='notice'>[on_enter_occupant_message]</span>"
-		occupant << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
+		occupant << SPAN_NOTICE("[on_enter_occupant_message]")
+		occupant << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
 
 	else
 		icon_state = base_icon_state

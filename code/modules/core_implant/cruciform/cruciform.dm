@@ -78,8 +78,8 @@ var/list/christians = list()
 			var/obj/item/organ/external/robotic/R = O
 			if(R.owner != wearer)
 				continue
-			wearer.visible_message("<span class='danger'>[wearer]'s [R.name] tears off.</span>",\
-			"<span class='danger'>Your [R.name] tears off.</span>")
+			wearer.visible_message(SPAN_DANGER("[wearer]'s [R.name] tears off."),\
+			SPAN_DANGER("Your [R.name] tears off."))
 			R.droplimb()
 		if(istype(O, /obj/item/weapon/implant))
 			if(O == src)
@@ -87,8 +87,8 @@ var/list/christians = list()
 			var/obj/item/weapon/implant/R = O
 			if(R.wearer != wearer)
 				continue
-			wearer.visible_message("<span class='danger'>[R.name] rips through [wearer]'s [R.part].</span>",\
-			"<span class='danger'>[R.name] rips through your [R.part].</span>")
+			wearer.visible_message(SPAN_DANGER("[R.name] rips through [wearer]'s [R.part]."),\
+			SPAN_DANGER("[R.name] rips through your [R.part]."))
 			R.part.take_damage(rand(40)+20)
 			R.forceMove(get_turf(wearer))
 			R.wearer = null
@@ -107,3 +107,12 @@ var/list/christians = list()
 
 //////////////////////////
 //////////////////////////
+
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_common()
+	add_module(new CRUCIFORM_COMMON)
+
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_priest()
+	add_module(new CRUCIFORM_PRIEST)
+
+/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_inquisitor()
+	add_module(new CRUCIFORM_INQUISITOR)

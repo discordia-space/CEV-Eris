@@ -113,12 +113,12 @@ var/list/holder_mob_icon_cache = list()
 	grabber.put_in_hands(H)
 
 	if(self_grab)
-		grabber << "<span class='notice'>\The [src] clambers onto you!</span>"
-		src << "<span class='notice'>You climb up onto \the [grabber]!</span>"
+		grabber << SPAN_NOTICE("\The [src] clambers onto you!")
+		src << SPAN_NOTICE("You climb up onto \the [grabber]!")
 		grabber.equip_to_slot_if_possible(H, slot_back, 0, 1)
 	else
-		grabber << "<span class='notice'>You scoop up \the [src]!</span>"
-		src << "<span class='notice'>\The [grabber] scoops you up!</span>"
+		grabber << SPAN_NOTICE("You scoop up \the [src]!")
+		src << SPAN_NOTICE("\The [grabber] scoops you up!")
 
 	grabber.status_flags |= PASSEMOTES
 	H.sync(src)

@@ -67,7 +67,7 @@
 		user.put_in_hands(magazine)
 		magazine.update_icon()
 		magazine = null
-		user << "<span class='notice'>You pull the magazine out of \the [src]!</span>"
+		user << SPAN_NOTICE("You pull the magazine out of \the [src]!")
 	update_icon()
 	return
 
@@ -123,7 +123,7 @@
 	if(isliving(user))
 		var/mob/living/M = user
 		if ((CLUMSY in M.mutations) && prob(50))
-			M << "<span class='danger'>[src] blows up in your face.</span>"
+			M << SPAN_DANGER("[src] blows up in your face.")
 			M.drop_item()
 			Fire(get_turf(M))
 			del(src)

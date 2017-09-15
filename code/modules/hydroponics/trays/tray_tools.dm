@@ -44,6 +44,9 @@
 	return 0
 
 /obj/item/device/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
+	if(!cell || !cell.checked_use(5))
+		user << SPAN_WARNING("[src] battery is dead or missing")
+		return
 	if(!flag) return
 
 	var/datum/seed/grown_seed
@@ -74,13 +77,13 @@
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
-		user << "<span class='danger'>[src] can tell you nothing about \the [target].</span>"
+		user << SPAN_DANGER("[src] can tell you nothing about \the [target].")
 		return
 
 	flick("hydro2", src)
 	form_title = "[grown_seed.seed_name] (#[grown_seed.uid])"
 	var/dat = "<h3>Plant data for [form_title]</h3>"
-	user.visible_message("<span class='notice'>[user] runs the scanner over \the [target].</span>")
+	user.visible_message(SPAN_NOTICE("[user] runs the scanner over \the [target]."))
 
 	dat += "<h2>General Data</h2>"
 

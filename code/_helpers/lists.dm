@@ -31,10 +31,10 @@
 		return "[output][and_text][input[index]]"
 
 //Returns list element or null. Should prevent "index out of bounds" error.
-proc/listgetindex(var/list/list,index)
+proc/listgetindex(var/list/list, index)
 	if(istype(list) && list.len)
 		if(isnum(index))
-			if(InRange(index,1,list.len))
+			if(InRange(index, 1, list.len))
 				return list[index]
 		else if(index in list)
 			return list[index]
@@ -170,7 +170,7 @@ proc/listclearnulls(list/list)
 	L = L.Copy()
 
 	for(var/i=1; i<L.len; i++)
-		L.Swap(i, rand(i,L.len))
+		L.Swap(i, rand(i, L.len))
 	return L
 
 //Return a list with no duplicate entries
@@ -184,7 +184,7 @@ proc/listclearnulls(list/list)
 	if(isnull(L) || L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1
-	return mergeKey(sortKey(L.Copy(0,middle)), sortKey(L.Copy(middle)), order)
+	return mergeKey(sortKey(L.Copy(0, middle)), sortKey(L.Copy(middle)), order)
 
 //Mergsort: does the actual sorting and returns the results back to sortAtom
 /proc/mergeKey(var/list/client/L, var/list/client/R, var/order = 1)
@@ -208,7 +208,7 @@ proc/listclearnulls(list/list)
 	if(isnull(L) || L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1
-	return mergeAtoms(sortAtom(L.Copy(0,middle)), sortAtom(L.Copy(middle)), order)
+	return mergeAtoms(sortAtom(L.Copy(0, middle)), sortAtom(L.Copy(middle)), order)
 
 //Mergsort: does the actual sorting and returns the results back to sortAtom
 /proc/mergeAtoms(var/list/atom/L, var/list/atom/R, var/order = 1)
@@ -275,8 +275,8 @@ proc/listclearnulls(list/list)
 /proc/sortList(var/list/L)
 	if(L.len < 2)
 		return L
-	var/middle = L.len / 2 + 1 // Copy is first,second-1
-	return mergeLists(sortList(L.Copy(0,middle)), sortList(L.Copy(middle))) //second parameter null = to end of list
+	var/middle = L.len / 2 + 1 // Copy is first, second-1
+	return mergeLists(sortList(L.Copy(0, middle)), sortList(L.Copy(middle))) //second parameter null = to end of list
 
 //Mergsorge: uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(var/list/L)
@@ -329,8 +329,8 @@ proc/listclearnulls(list/list)
 /proc/sortAssoc(var/list/L)
 	if(L.len < 2)
 		return L
-	var/middle = L.len / 2 + 1 // Copy is first,second-1
-	return mergeAssoc(sortAssoc(L.Copy(0,middle)), sortAssoc(L.Copy(middle))) //second parameter null = to end of list
+	var/middle = L.len / 2 + 1 // Copy is first, second-1
+	return mergeAssoc(sortAssoc(L.Copy(0, middle)), sortAssoc(L.Copy(middle))) //second parameter null = to end of list
 
 /proc/mergeAssoc(var/list/L, var/list/R)
 	var/Li=1
@@ -347,16 +347,16 @@ proc/listclearnulls(list/list)
 	return (result + R.Copy(Ri, 0))
 
 // Macros to test for bits in a bitfield. Note, that this is for use with indexes, not bit-masks!
-#define BITTEST(bitfield,index)  ((bitfield)  &   (1 << (index)))
-#define BITSET(bitfield,index)   (bitfield)  |=  (1 << (index))
-#define BITRESET(bitfield,index) (bitfield)  &= ~(1 << (index))
-#define BITFLIP(bitfield,index)  (bitfield)  ^=  (1 << (index))
+#define BITTEST(bitfield, index)  ((bitfield)  &   (1 << (index)))
+#define BITSET(bitfield, index)   (bitfield)  |=  (1 << (index))
+#define BITRESET(bitfield, index) (bitfield)  &= ~(1 << (index))
+#define BITFLIP(bitfield, index)  (bitfield)  ^=  (1 << (index))
 
 //Converts a bitfield to a list of numbers (or words if a wordlist is provided)
 /proc/bitfield2list(bitfield = 0, list/wordlist)
 	var/list/r = list()
 	if(istype(wordlist,/list))
-		var/max = min(wordlist.len,16)
+		var/max = min(wordlist.len, 16)
 		var/bit = 1
 		for(var/i=1, i<=max, i++)
 			if(bitfield & bit)
@@ -418,8 +418,8 @@ proc/listclearnulls(list/list)
 /proc/dd_sortedObjectList(var/list/L, var/cache=list())
 	if(L.len < 2)
 		return L
-	var/middle = L.len / 2 + 1 // Copy is first,second-1
-	return dd_mergeObjectList(dd_sortedObjectList(L.Copy(0,middle), cache), dd_sortedObjectList(L.Copy(middle), cache), cache) //second parameter null = to end of list
+	var/middle = L.len / 2 + 1 // Copy is first, second-1
+	return dd_mergeObjectList(dd_sortedObjectList(L.Copy(0, middle), cache), dd_sortedObjectList(L.Copy(middle), cache), cache) //second parameter null = to end of list
 
 /proc/dd_mergeObjectList(var/list/L, var/list/R, var/list/cache)
 	var/Li=1

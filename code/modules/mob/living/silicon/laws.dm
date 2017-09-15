@@ -17,7 +17,7 @@
 /mob/living/silicon/robot/set_zeroth_law(var/law, var/law_borg)
 	..()
 	if(tracking_entities)
-		src << "<span class='warning'>Internal camera is currently being accessed.</span>"
+		src << SPAN_WARNING("Internal camera is currently being accessed.")
 
 /mob/living/silicon/proc/add_ion_law(var/law)
 	laws_sanity_check()
@@ -59,20 +59,22 @@
 
 /mob/living/silicon/proc/statelaws(var/datum/ai_laws/laws)
 	var/prefix = ""
-	if(MAIN_CHANNEL == lawchannel)
-		prefix = ";"
-	else if(lawchannel == "Binary")
-		prefix = "[get_language_prefix()]b"
-	else if((lawchannel in additional_law_channels))
-		prefix = additional_law_channels[lawchannel]
-	else
-		prefix = get_radio_key_from_channel(lawchannel)
+	switch(lawchannel)
+		if(MAIN_CHANNEL)
+			prefix = ";"
+		if("Binary")
+			prefix = "[get_language_prefix()]b"
+		else
+			if((lawchannel in additional_law_channels))
+				prefix = ":" + additional_law_channels[lawchannel]
+			else
+				prefix = ":" + get_radio_key_from_channel(lawchannel)
 
 	dostatelaws(lawchannel, prefix, laws)
 
 /mob/living/silicon/proc/dostatelaws(var/method, var/prefix, var/datum/ai_laws/laws)
 	if(stating_laws[prefix])
-		src << "<span class='notice'>[method]: Already stating laws using this communication method.</span>"
+		src << SPAN_NOTICE("[method]: Already stating laws using this communication method.")
 		return
 
 	stating_laws[prefix] = 1
@@ -85,7 +87,7 @@
 			break
 
 	if(!can_state)
-		src << "<span class='danger'>[method]: Unable to state laws. Communication method unavailable.</span>"
+		src << SPAN_DANGER("[method]: Unable to state laws. Communication method unavailable.")
 	stating_laws[prefix] = 0
 
 /mob/living/silicon/proc/statelaw(var/law)

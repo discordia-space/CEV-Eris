@@ -21,7 +21,7 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/New()
 	..()
-	cell = new/obj/item/weapon/cell/big/high(src)
+	cell = new/obj/item/weapon/cell/medium/high(src)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -166,7 +166,7 @@
 	name = "[name] (ID [id])"
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
-		usr << "<span class='notice'>You can't directly interact with this machine. Use the scrubber control console.</span>"
+		usr << SPAN_NOTICE("You can't directly interact with this machine. Use the scrubber control console.")
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
 	src.overlays = 0
@@ -207,7 +207,7 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
 		if(on)
-			user << "<span class='warning'>Turn \the [src] off first!</span>"
+			user << SPAN_WARNING("Turn \the [src] off first!")
 			return
 
 		anchored = !anchored
@@ -217,7 +217,7 @@
 		return
 
 	//doesn't use power cells
-	if(istype(I, /obj/item/weapon/cell/big))
+	if(istype(I, /obj/item/weapon/cell/large))
 		return
 	if (istype(I, /obj/item/weapon/screwdriver))
 		return
@@ -234,7 +234,7 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
-		user << "<span class='warning'>The bolts are too tight for you to unscrew!</span>"
+		user << SPAN_WARNING("The bolts are too tight for you to unscrew!")
 		return
 
 	..()

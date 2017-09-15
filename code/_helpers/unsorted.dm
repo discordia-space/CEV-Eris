@@ -37,7 +37,7 @@
 
 //Returns the middle-most value
 /proc/dd_range(var/low, var/high, var/num)
-	return max(low,min(high,num))
+	return max(low, min(high, num))
 
 //Returns whether or not A is the middle most value
 /proc/InRange(var/A, var/lower, var/upper)
@@ -46,7 +46,7 @@
 	return 1
 
 
-/proc/Get_Angle(atom/movable/start,atom/movable/end)//For beams.
+/proc/Get_Angle(atom/movable/start, atom/movable/end)//For beams.
 	if(!start || !end) return 0
 	var/dy
 	var/dx
@@ -61,7 +61,7 @@
 		.+=360
 
 //Returns location. Returns null if no location was found.
-/proc/get_teleport_loc(turf/location,mob/target,distance = 1, density = 0, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
+/proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = 0, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 /*
 Location where the teleport begins, target that will teleport, distance to go, density checking 0/1(yes/no).
 Random error in tile placement x, error in tile placement y, and block offset.
@@ -120,7 +120,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			b2xerror+=errory
 			b2yerror+=errorx
 
-	var/turf/destination=locate(location.x+dirx,location.y+diry,location.z)
+	var/turf/destination=locate(location.x+dirx, location.y+diry, location.z)
 
 	if(destination)//If there is a destination.
 		if(errorx||errory)//If errorx or y were specified.
@@ -133,10 +133,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			Offset always calculates in relation to direction faced. In other words, depending on the direction of the teleport,
 			the offset should remain positioned in relation to destination.*/
 
-			var/turf/center = locate((destination.x+xoffset),(destination.y+yoffset),location.z)//So now, find the new center.
+			var/turf/center = locate((destination.x+xoffset), (destination.y+yoffset), location.z)//So now, find the new center.
 
 			//Now to find a box from center location and make that our destination.
-			for(var/turf/T in block(locate(center.x+b1xerror,center.y+b1yerror,location.z), locate(center.x+b2xerror,center.y+b2yerror,location.z) ))
+			for(var/turf/T in block(locate(center.x+b1xerror, center.y+b1yerror, location.z), locate(center.x+b2xerror, center.y+b2yerror, location.z) ))
 				if(density&&T.density)	continue//If density was specified.
 				if(T.x>world.maxx || T.x<1)	continue//Don't want them to teleport off the map.
 				if(T.y>world.maxy || T.y<1)	continue
@@ -157,22 +157,22 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null) return 1
-	var/adir = get_dir(A,B)
-	var/rdir = get_dir(B,A)
+	var/adir = get_dir(A, B)
+	var/rdir = get_dir(B, A)
 	if((adir & (NORTH|SOUTH)) && (adir & (EAST|WEST)))	//	diagonal
-		var/iStep = get_step(A,adir&(NORTH|SOUTH))
-		if(!LinkBlocked(A,iStep) && !LinkBlocked(iStep,B)) return 0
+		var/iStep = get_step(A, adir&(NORTH|SOUTH))
+		if(!LinkBlocked(A, iStep) && !LinkBlocked(iStep, B)) return 0
 
-		var/pStep = get_step(A,adir&(EAST|WEST))
-		if(!LinkBlocked(A,pStep) && !LinkBlocked(pStep,B)) return 0
+		var/pStep = get_step(A, adir&(EAST|WEST))
+		if(!LinkBlocked(A, pStep) && !LinkBlocked(pStep, B)) return 0
 		return 1
 
-	if(DirBlocked(A,adir)) return 1
-	if(DirBlocked(B,rdir)) return 1
+	if(DirBlocked(A, adir)) return 1
+	if(DirBlocked(B, rdir)) return 1
 	return 0
 
 
-/proc/DirBlocked(turf/loc,var/dir)
+/proc/DirBlocked(turf/loc, var/dir)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)			continue
 		if(D.dir == SOUTHWEST)	return 1
@@ -195,10 +195,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/sign(x)
 	return x!=0?x/abs(x):0
 
-/proc/getline(atom/M,atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
+/proc/getline(atom/M, atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
 	var/px=M.x		//starting x
 	var/py=M.y
-	var/line[] = list(locate(px,py,M.z))
+	var/line[] = list(locate(px, py, M.z))
 	var/dx=N.x-px	//x distance
 	var/dy=N.y-py
 	var/dxabs=abs(dx)//Absolute value of x distance
@@ -215,7 +215,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				y-=dxabs
 				py+=sdy
 			px+=sdx		//Step on in x direction
-			line+=locate(px,py,M.z)//Add the turf to the list
+			line+=locate(px, py, M.z)//Add the turf to the list
 	else
 		for(j=0;j<dyabs;j++)
 			x+=dxabs
@@ -223,7 +223,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				x-=dyabs
 				px+=sdx
 			py+=sdy
-			line+=locate(px,py,M.z)
+			line+=locate(px, py, M.z)
 	return line
 
 #define LOCATE_COORDS(X, Y, Z) locate(between(1, X, world.maxx), between(1, Y, world.maxy), Z)
@@ -286,7 +286,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
-/mob/proc/fully_replace_character_name(var/oldname,var/newname)
+/mob/proc/fully_replace_character_name(var/oldname, var/newname)
 	if(!newname)	return 0
 	real_name = newname
 	name = newname
@@ -297,7 +297,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
+		for(var/list/L in list(data_core.general, data_core.medical, data_core.security, data_core.locked))
 			for(var/datum/data/record/R in L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
@@ -337,8 +337,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/time_passed = world.time
 		var/newname
 
-		for(var/i=1,i<=3,i++)	//we get 3 attempts to pick a suitable name.
-			newname = input(src,"You are \a [role]. Would you like to change your name to something else?", "Name change",oldname) as text
+		for(var/i=1, i<=3, i++)	//we get 3 attempts to pick a suitable name.
+			newname = input(src, "You are \a [role]. Would you like to change your name to something else?", "Name change", oldname) as text
 			if((world.time-time_passed)>3000)
 				return	//took too long
 			newname = sanitizeName(newname, ,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
@@ -356,7 +356,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(!newname)	//we'll stick with the oldname then
 			return
 
-		if(cmptext("ai",role))
+		if(cmptext("ai", role))
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
@@ -366,13 +366,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				A.SetName(newname)
 
 
-		fully_replace_character_name(oldname,newname)
+		fully_replace_character_name(oldname, newname)
 
 
 
 //Picks a string of symbols to display as the law number for hacked or ion laws
 /proc/ionnum()
-	return "[pick("1","2","3","4","5","6","7","8","9","0")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
+	return "[pick("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")][pick("!", "@", "#", "$", "%", "^", "&", "*")][pick("!", "@", "#", "$", "%", "^", "&", "*")][pick("!", "@", "#", "$", "%", "^", "&", "*")]"
 
 //When an AI is activated, it can choose from a list of non-slaved borgs to have as a slave.
 /proc/freeborg()
@@ -412,7 +412,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/select_active_ai(var/mob/user)
 	var/list/ais = active_ais()
 	if(ais.len)
-		if(user)	. = input(usr,"AI signals detected:", "AI selection") in ais
+		if(user)	. = input(usr, "AI signals detected:", "AI selection") in ais
 		else		. = pick(ais)
 	return .
 
@@ -548,7 +548,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(direction & WEST)
 		x = max(1, x - range)
 
-	return locate(x,y,A.z)
+	return locate(x, y, A.z)
 
 
 // returns turf relative to A offset in dx and dy tiles
@@ -556,7 +556,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/get_offset_target_turf(var/atom/A, var/dx, var/dy)
 	var/x = min(world.maxx, max(1, A.x + dx))
 	var/y = min(world.maxy, max(1, A.y + dy))
-	return locate(x,y,A.z)
+	return locate(x, y, A.z)
 
 //Makes sure MIDDLE is between LOW and HIGH. If not, it adjusts it. Returns the adjusted value. Lower bound takes priority.
 /proc/between(var/low, var/middle, var/high)
@@ -568,7 +568,7 @@ proc/arctan(x)
 
 //returns random gauss number
 proc/GaussRand(var/sigma)
-  var/x,y,rsq
+  var/x, y, rsq
   do
     x=2*rand()-1
     y=2*rand()-1
@@ -577,8 +577,8 @@ proc/GaussRand(var/sigma)
   return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
-proc/GaussRandRound(var/sigma,var/roundto)
-	return round(GaussRand(sigma),roundto)
+proc/GaussRandRound(var/sigma, var/roundto)
+	return round(GaussRand(sigma), roundto)
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
 /atom/proc/GetAllContents(searchDepth = 5)
@@ -619,8 +619,8 @@ proc/GaussRandRound(var/sigma,var/roundto)
 	return cant_pass
 
 /proc/get_step_towards2(var/atom/ref , var/atom/trg)
-	var/base_dir = get_dir(ref, get_step_towards(ref,trg))
-	var/turf/temp = get_step_towards(ref,trg)
+	var/base_dir = get_dir(ref, get_step_towards(ref, trg))
+	var/turf/temp = get_step_towards(ref, trg)
 
 	if(is_blocked_turf(temp))
 		var/dir_alt1 = turn(base_dir, 90)
@@ -637,12 +637,12 @@ proc/GaussRandRound(var/sigma,var/roundto)
 			if(!is_blocked_turf(turf_last2))
 				free_tile = turf_last2
 				break
-			turf_last1 = get_step(turf_last1,dir_alt1)
-			turf_last2 = get_step(turf_last2,dir_alt2)
+			turf_last1 = get_step(turf_last1, dir_alt1)
+			turf_last2 = get_step(turf_last2, dir_alt2)
 			breakpoint++
 
 		if(!free_tile) return get_step(ref, base_dir)
-		else return get_step_towards(ref,free_tile)
+		else return get_step_towards(ref, free_tile)
 
 	else return get_step(ref, base_dir)
 
@@ -851,12 +851,12 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 	if(sameloc)
 		O=new original.type(original.loc)
 	else
-		O=new original.type(locate(0,0,0))
+		O=new original.type(locate(0, 0, 0))
 
 	if(perfectcopy)
 		if((O) && (original))
 			for(var/V in original.vars)
-				if(!(V in list("type","loc","locs","vars", "parent", "parent_type","verbs","ckey","key")))
+				if(!(V in list("type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key")))
 					O.vars[V] = original.vars[V]
 	return O
 
@@ -992,22 +992,22 @@ proc/get_cardinal_dir(atom/A, atom/B)
 
 //chances are 1:value. anyprob(1) will always return true
 proc/anyprob(value)
-	return (rand(1,value)==value)
+	return (rand(1, value)==value)
 
 proc/view_or_range(distance = world.view , center = usr , type)
 	switch(type)
 		if("view")
-			. = view(distance,center)
+			. = view(distance, center)
 		if("range")
-			. = range(distance,center)
+			. = range(distance, center)
 	return
 
 proc/oview_or_orange(distance = world.view , center = usr , type)
 	switch(type)
 		if("view")
-			. = oview(distance,center)
+			. = oview(distance, center)
 		if("range")
-			. = orange(distance,center)
+			. = orange(distance, center)
 	return
 
 proc/get_mob_with_client_list()
@@ -1287,7 +1287,7 @@ var/list/FLOORITEMS = list(
 	return 0
 
 /proc/format_text(text)
-	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
+	return replacetext(replacetext(text, "\proper ", ""), "\improper ", "")
 
 /proc/topic_link(var/datum/D, var/arglist, var/content)
 	if(istype(arglist,/list))
@@ -1297,10 +1297,10 @@ var/list/FLOORITEMS = list(
 /proc/get_random_colour(var/simple, var/lower, var/upper)
 	var/colour
 	if(simple)
-		colour = pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))
+		colour = pick(list("FF0000", "FF7F00", "FFFF00", "00FF00", "0000FF", "4B0082", "8F00FF"))
 	else
 		for(var/i=1;i<=3;i++)
-			var/temp_col = "[num2hex(rand(lower,upper))]"
+			var/temp_col = "[num2hex(rand(lower, upper))]"
 			if(length(temp_col )<2)
 				temp_col  = "0[temp_col]"
 			colour += temp_col

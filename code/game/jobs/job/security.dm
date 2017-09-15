@@ -20,7 +20,6 @@
 			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
 			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
 			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
-	minimal_player_age = 14
 
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
@@ -61,7 +60,6 @@
 	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
 			            access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
-	minimal_player_age = 5
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/warden
@@ -104,7 +102,6 @@
 	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
 			            access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_external_airlocks)
 	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels)
-	minimal_player_age = 3
 	idtype = /obj/item/weapon/card/id/det
 
 	uniform = /obj/item/clothing/under/inspector
@@ -139,7 +136,6 @@
 	economic_modifier = 5
 	access = list(access_security, access_medical, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
 	minimal_access = list(access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
-	minimal_player_age = 3
 	idtype = /obj/item/weapon/card/id/medcpec
 
 	uniform = /obj/item/clothing/under/rank/medspec
@@ -170,7 +166,6 @@
 	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
 			            access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
-	minimal_player_age = 3
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/security

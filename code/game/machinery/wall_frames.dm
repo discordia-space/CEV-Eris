@@ -36,14 +36,14 @@
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/simulated/floor))
-		usr << "<span class='danger'>\The [src] Alarm cannot be placed on this spot.</span>"
+		usr << SPAN_DANGER("\The [src] Alarm cannot be placed on this spot.")
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		usr << "<span class='danger'>\The [src] Alarm cannot be placed in this area.</span>"
+		usr << SPAN_DANGER("\The [src] Alarm cannot be placed in this area.")
 		return
 
 	if(gotwallitem(loc, ndir))
-		usr << "<span class='danger'>There's already an item on this wall!</span>"
+		usr << SPAN_DANGER("There's already an item on this wall!")
 		return
 
 	var/obj/machinery/M = new build_machine_type(loc, ndir, 1)
@@ -71,14 +71,14 @@
 	var/turf/loc = get_turf(on_floor)
 	//var/area/A = loc.loc
 	/*if (!istype(loc, /turf/simulated/floor)) //TODO rework this
-		usr << "<span class='danger'>\The [src] Alarm cannot be placed on this spot.</span>"
+		usr << SPAN_DANGER("\The [src] Alarm cannot be placed on this spot.")
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		usr << "<span class='danger'>\The [src] Alarm cannot be placed in this area.</span>"
+		usr << SPAN_DANGER("\The [src] Alarm cannot be placed in this area.")
 		return*/
 
 	if(gotflooritem(loc, ndir))
-		usr << "<span class='danger'>There's already an item on this floor!</span>"
+		usr << SPAN_DANGER("There's already an item on this floor!")
 		return
 
 	var/obj/machinery/M = new build_floormachine_type(loc, ndir, 1)

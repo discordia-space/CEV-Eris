@@ -27,7 +27,6 @@
 		new /obj/item/ammo_magazine/a50/rubber(src)
 		new /obj/item/ammo_magazine/a50/rubber(src)
 		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/clothing/suit/armor/captain(src)
 		new /obj/item/weapon/melee/telebaton(src)
 		new /obj/item/clothing/head/caphat/formal(src)
 		new /obj/item/clothing/under/captainformal(src)
@@ -291,29 +290,3 @@
 		new /obj/item/clothing/head/powdered_wig (src)
 		new /obj/item/weapon/storage/briefcase(src)
 		return
-
-/obj/structure/closet/secure_closet/wall
-	name = "wall locker"
-	req_access = list(access_security)
-	icon_state = "wall-locker1"
-	density = 1
-	icon_closed = "wall-locker"
-	icon_locked = "wall-locker1"
-	icon_opened = "wall-lockeropen"
-	icon_broken = "wall-lockerbroken"
-	icon_off = "wall-lockeroff"
-
-	//too small to put a man in
-	large = 0
-
-/obj/structure/closet/secure_closet/wall/update_icon()
-	if(broken)
-		icon_state = icon_broken
-	else
-		if(!opened)
-			if(locked)
-				icon_state = icon_locked
-			else
-				icon_state = icon_closed
-		else
-			icon_state = icon_opened

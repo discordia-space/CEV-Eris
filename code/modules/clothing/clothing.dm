@@ -123,7 +123,7 @@ BLIND     // can't see anything
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.75
 	var/wired = 0
-	var/obj/item/weapon/cell/big/cell = 0
+	var/obj/item/weapon/cell/large/cell = 0
 	var/clipped = 0
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
@@ -149,7 +149,7 @@ BLIND     // can't see anything
 /obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
 		if (clipped)
-			user << "<span class='notice'>The [src] have already been clipped!</span>"
+			user << SPAN_NOTICE("The [src] have already been clipped!")
 			update_icon()
 			return
 
@@ -223,9 +223,9 @@ BLIND     // can't see anything
 	if(!success)
 		return 0
 	else if(success == 2)
-		user << "<span class='warning'>You are already wearing a hat.</span>"
+		user << SPAN_WARNING("You are already wearing a hat.")
 	else if(success == 1)
-		user << "<span class='notice'>You crawl under \the [src].</span>"
+		user << SPAN_NOTICE("You crawl under \the [src].")
 	return 1
 
 /obj/item/clothing/head/update_icon(var/mob/user)
@@ -309,10 +309,10 @@ BLIND     // can't see anything
 	holding.forceMove(get_turf(usr))
 
 	if(usr.put_in_hands(holding))
-		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
+		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
 		holding = null
 	else
-		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
+		usr << SPAN_WARNING("Your need an empty, unbroken hand to do that.")
 		holding.forceMove(src)
 
 	if(!holding)
@@ -328,12 +328,12 @@ BLIND     // can't see anything
 	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
 	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
 		if(holding)
-			user << "<span class='warning'>\The [src] is already holding \a [holding].</span>"
+			user << SPAN_WARNING("\The [src] is already holding \a [holding].")
 			return
 		user.unEquip(I)
 		I.forceMove(src)
 		holding = I
-		user.visible_message("<span class='notice'>\The [user] shoves \the [I] into \the [src].</span>")
+		user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
 		verbs |= /obj/item/clothing/shoes/proc/draw_knife
 		update_icon()
 	else

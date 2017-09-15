@@ -36,6 +36,8 @@
 	var/affected_by_emp_until = 0
 
 /obj/machinery/camera/New()
+	..()
+
 	wires = new(src)
 	assembly = new(src)
 	assembly.state = 4
@@ -50,15 +52,13 @@
 		if(loc)
 			error("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
 		else
-			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
+			error("[src.name] in [get_area(src)] has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
 
-	if(!c_tag)
+	if(isturf(loc) && !c_tag)
 		var/area/A = get_area(src)
 		c_tag = A.get_camera_tag(src)
-
-	..()
 
 /obj/machinery/camera/Destroy()
 	deactivate(null, 0) //kick anyone viewing out
@@ -111,7 +111,7 @@
 	if (isobj(AM))
 		var/obj/O = AM
 		if (O.throwforce >= src.toughness)
-			visible_message("<span class='warning'><B>[src] was hit by [O].</B></span>")
+			visible_message(SPAN_WARNING("<B>[src] was hit by [O].</B>"))
 		take_damage(O.throwforce)
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
@@ -125,7 +125,7 @@
 	if(user.species.can_shred(user))
 		set_status(0)
 		user.do_attack_animation(src)
-		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
+		visible_message(SPAN_WARNING("\The [user] slashes at [src]!"))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
 		destroy()
@@ -155,10 +155,10 @@
 				assembly.dir = src.dir
 				if(stat & BROKEN)
 					assembly.state = 2
-					user << "<span class='notice'>You repaired \the [src] frame.</span>"
+					user << SPAN_NOTICE("You repaired \the [src] frame.")
 				else
 					assembly.state = 1
-					user << "<span class='notice'>You cut \the [src] free from the wall.</span>"
+					user << SPAN_NOTICE("You cut \the [src] free from the wall.")
 					new /obj/item/stack/cable_coil(src.loc, length=2)
 				assembly = null //so qdel doesn't eat it.
 			qdel(src)
@@ -194,20 +194,20 @@
 
 	else if (istype(W, /obj/item/weapon/camera_bug))
 		if (!src.can_use())
-			user << "<span class='warning'>Camera non-functional.</span>"
+			user << SPAN_WARNING("Camera non-functional.")
 			return
 		if (src.bugged)
-			user << "<span class='notice'>Camera bug removed.</span>"
+			user << SPAN_NOTICE("Camera bug removed.")
 			src.bugged = 0
 		else
-			user << "<span class='notice'>Camera bugged.</span>"
+			user << SPAN_NOTICE("Camera bugged.")
 			src.bugged = 1
 
 	else if(W.damtype == BRUTE || W.damtype == BURN) //bashing cameras
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if (W.force >= src.toughness)
 			user.do_attack_animation(src)
-			visible_message("<span class='warning'><b>[src] has been [pick(W.attack_verb)] with [W] by [user]!</b></span>")
+			visible_message(SPAN_WARNING("<b>[src] has been [pick(W.attack_verb)] with [W] by [user]!</b>"))
 			if (istype(W, /obj/item)) //is it even possible to get into attackby() with non-items?
 				var/obj/item/I = W
 				if (I.hitsound)
@@ -229,17 +229,17 @@
 		set_status(!src.status)
 		if (!(src.status))
 			if(user)
-				visible_message("<span class='notice'> [user] has deactivated [src]!</span>")
+				visible_message(SPAN_NOTICE(" [user] has deactivated [src]!"))
 			else
-				visible_message("<span class='notice'> [src] clicks and shuts down. </span>")
+				visible_message(SPAN_NOTICE(" [src] clicks and shuts down. "))
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			icon_state = "[initial(icon_state)]1"
 			add_hiddenprint(user)
 		else
 			if(user)
-				visible_message("<span class='notice'> [user] has reactivated [src]!</span>")
+				visible_message(SPAN_NOTICE(" [user] has reactivated [src]!"))
 			else
-				visible_message("<span class='notice'> [src] clicks and reactivates itself. </span>")
+				visible_message(SPAN_NOTICE(" [src] clicks and reactivates itself. "))
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			icon_state = initial(icon_state)
 			add_hiddenprint(user)
@@ -372,7 +372,7 @@
 		return 0
 
 	// Do after stuff here
-	user << "<span class='notice'>You start to weld the [src]..</span>"
+	user << SPAN_NOTICE("You start to weld the [src]..")
 	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 	WT.eyecheck(user)
 	busy = 1
@@ -389,7 +389,7 @@
 		return
 
 	if(stat & BROKEN)
-		user << "<span class='warning'>\The [src] is broken.</span>"
+		user << SPAN_WARNING("\The [src] is broken.")
 		return
 
 	user.set_machine(src)

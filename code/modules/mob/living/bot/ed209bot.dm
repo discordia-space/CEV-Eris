@@ -27,14 +27,14 @@
 	..()
 
 /mob/living/bot/secbot/ed209/explode()
-	visible_message("<span class='warning'>[src] blows apart!</span>")
+	visible_message(SPAN_WARNING("[src] blows apart!"))
 	playsound(loc, "robot_talk_heavy", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/weapon/secbot_assembly/ed209_assembly(Tsec)
 
 	var/obj/item/weapon/gun/energy/taser/G = new /obj/item/weapon/gun/energy/taser(Tsec)
-	G.power_supply.charge = 0
+	G.cell.charge = 0
 	if(prob(50))
 		new /obj/item/robot_parts/l_leg(Tsec)
 	if(prob(50))
@@ -95,7 +95,7 @@
 				user.drop_item()
 				qdel(W)
 				build_step++
-				user << "<span class='notice'>You add the robot leg to [src].</span>"
+				user << SPAN_NOTICE("You add the robot leg to [src].")
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "legs/frame assembly"
 				if(build_step == 1)
@@ -110,7 +110,7 @@
 				user.drop_item()
 				qdel(W)
 				build_step++
-				user << "<span class='notice'>You add the armor to [src].</span>"
+				user << SPAN_NOTICE("You add the armor to [src].")
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "vest/legs/frame assembly"
 				item_state = "ed209_shell"
@@ -122,13 +122,13 @@
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "shielded frame assembly"
-					user << "<span class='notice'>You welded the vest to [src].</span>"
+					user << SPAN_NOTICE("You welded the vest to [src].")
 		if(4)
 			if(istype(W, /obj/item/clothing/head/helmet))
 				user.drop_item()
 				qdel(W)
 				build_step++
-				user << "<span class='notice'>You add the helmet to [src].</span>"
+				user << SPAN_NOTICE("You add the helmet to [src].")
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "covered and shielded frame assembly"
 				item_state = "ed209_hat"
@@ -139,7 +139,7 @@
 				user.drop_item()
 				qdel(W)
 				build_step++
-				user << "<span class='notice'>You add the prox sensor to [src].</span>"
+				user << SPAN_NOTICE("You add the prox sensor to [src].")
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				name = "covered, shielded and sensored frame assembly"
 				item_state = "ed209_prox"
@@ -149,13 +149,13 @@
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if (C.get_amount() < 1)
-					user << "<span class='warning'>You need one coil of wire to wire [src].</span>"
+					user << SPAN_WARNING("You need one coil of wire to wire [src].")
 					return
-				user << "<span class='notice'>You start to wire [src].</span>"
+				user << SPAN_NOTICE("You start to wire [src].")
 				if(do_after(user, 40, src) && build_step == 6)
 					if(C.use(1))
 						build_step++
-						user << "<span class='notice'>You wire the ED-209 assembly.</span>"
+						user << SPAN_NOTICE("You wire the ED-209 assembly.")
 						playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 						name = "wired ED-209 assembly"
 				return
@@ -164,7 +164,7 @@
 			if(istype(W, /obj/item/weapon/gun/energy/taser))
 				name = "taser ED-209 assembly"
 				build_step++
-				user << "<span class='notice'>You add [W] to [src].</span>"
+				user << SPAN_NOTICE("You add [W] to [src].")
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				item_state = "ed209_taser"
 				icon_state = "ed209_taser"
@@ -175,17 +175,17 @@
 			if(istype(W, /obj/item/weapon/screwdriver))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				var/turf/T = get_turf(user)
-				user << "<span class='notice'>Now attaching the gun to the frame...</span>"
+				user << SPAN_NOTICE("Now attaching the gun to the frame...")
 				sleep(40)
 				if(get_turf(user) == T && build_step == 8)
 					build_step++
 					name = "armed [name]"
-					user << "<span class='notice'>Taser gun attached.</span>"
+					user << SPAN_NOTICE("Taser gun attached.")
 
 		if(9)
-			if(istype(W, /obj/item/weapon/cell/big))
+			if(istype(W, /obj/item/weapon/cell/large))
 				build_step++
-				user << "<span class='notice'>You complete the ED-209.</span>"
+				user << SPAN_NOTICE("You complete the ED-209.")
 				var/turf/T = get_turf(src)
 				new /mob/living/bot/secbot/ed209(T,created_name,lasercolor)
 				user.drop_item()

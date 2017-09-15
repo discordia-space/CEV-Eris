@@ -15,16 +15,16 @@
 	if(W.GetID())
 		if(subverted)
 			locked = 0
-			user << "<span class='danger'>It looks like the locking system has been shorted out.</span>"
+			user << SPAN_DANGER("It looks like the locking system has been shorted out.")
 			return
 
 		if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
 			locked = 0
-			user << "<span class='danger'>\The [src] doesn't seem to have a locking mechanism.</span>"
+			user << SPAN_DANGER("\The [src] doesn't seem to have a locking mechanism.")
 			return
 
 		if(security_check_enabled && !src.allowed(user))
-			user << "<span class='danger'>Access denied.</span>"
+			user << SPAN_DANGER("Access denied.")
 			return
 
 		locked = !locked
@@ -69,7 +69,7 @@
 			if(ishuman(src.loc))
 				var/mob/living/carbon/human/H = src.loc
 				if(H.back == src)
-					user << "<span class='danger'>You can't install a hardsuit module while the suit is being worn.</span>"
+					user << SPAN_DANGER("You can't install a hardsuit module while the suit is being worn.")
 					return 1
 
 			if(!installed_modules) installed_modules = list()
@@ -93,7 +93,7 @@
 			update_icon()
 			return 1
 
-		else if(!cell && istype(W,/obj/item/weapon/cell/big))
+		else if(!cell && istype(W,/obj/item/weapon/cell/large))
 
 			if(!user.unEquip(W)) return
 			user << "You jack \the [W] into \the [src]'s battery mount."
@@ -193,5 +193,5 @@
 		req_one_access.Cut()
 		locked = 0
 		subverted = 1
-		user << "<span class='danger'>You short out the access protocol for the suit.</span>"
+		user << SPAN_DANGER("You short out the access protocol for the suit.")
 		return 1

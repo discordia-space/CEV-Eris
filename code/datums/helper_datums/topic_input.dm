@@ -2,13 +2,13 @@
 	var/href
 	var/list/href_list
 
-	New(thref,list/thref_list)
+	New(thref, list/thref_list)
 		href = thref
 		href_list = thref_list.Copy()
 		return
 
 	proc/get(i)
-		return listgetindex(href_list,i)
+		return listgetindex(href_list, i)
 
 	proc/getAndLocate(i)
 		var/t = get(i)
@@ -45,9 +45,9 @@
 		var/t = get(i)
 		return istext(t) ? t : null
 
-	proc/getType(i,type)
+	proc/getType(i, type)
 		var/t = getAndLocate(i)
-		return istype(t,type) ? t : null
+		return istype(t, type) ? t : null
 
 	proc/getPath(i)
 		var/t = get(i)
