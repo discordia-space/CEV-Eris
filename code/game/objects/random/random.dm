@@ -19,7 +19,6 @@
 /obj/random/proc/item_to_spawn()
 	return 0
 
-
 // creates the random item
 /obj/random/proc/spawn_item()
 	var/build_path = item_to_spawn()
@@ -32,32 +31,3 @@
 	var/spawn_object = null
 	item_to_spawn()
 		return ispath(spawn_object) ? spawn_object : text2path(spawn_object)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
