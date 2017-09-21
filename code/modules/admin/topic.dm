@@ -403,11 +403,9 @@
 	//Antagonist (Orange)
 
 		var/jobban_list = list()
-		for(var/antag_type in all_antag_types)
-			var/datum/antagonist/antag = all_antag_types[antag_type]
-			if(!antag || !antag.bantype)
-				continue
-			jobban_list[antag.role_text] = antag.bantype
+		for(var/antag_ban in antag_bantypes)
+			var/role = antag_bantypes[antag_ban]
+			jobban_list[role] = antag_ban
 		body += formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 		dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"

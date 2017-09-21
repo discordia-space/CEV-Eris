@@ -82,7 +82,7 @@ var/global/list/antag_bantypes = list()
 			station_antag_types[A.id] = antag_type
 		if(A.selectable)
 			selectable_antag_types[A.role_type] = A.id
-		antag_bantypes |= A.bantype
+		antag_bantypes[A.bantype] = A.role_text
 
 /proc/get_antags(var/id)
 	var/list/L = list()

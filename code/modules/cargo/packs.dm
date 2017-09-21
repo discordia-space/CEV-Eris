@@ -1150,16 +1150,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 //--------------MISCELLANEOUS-------------------
 //----------------------------------------------
 
-/datum/supply_pack/wizard
-	name = "Wizard costume"
-	contains = list(/obj/item/weapon/staff,
-					/obj/item/clothing/suit/wizrobe/fake,
-					/obj/item/clothing/shoes/sandal,
-					/obj/item/clothing/head/wizard/fake)
-	cost = 2000
-	crate_name = "Wizard costume crate"
-	group = "Miscellaneous"
-
 /datum/supply_pack/formal_wear
 	contains = list(/obj/item/clothing/head/bowler,
 					/obj/item/clothing/head/that,
