@@ -15,6 +15,7 @@
 		new /obj/item/device/radio/headset/headset_cargo(src)
 		new /obj/item/clothing/gloves/thick(src)
 		new /obj/item/clothing/head/soft(src)
+		new /obj/item/device/export_scanner(src)
 		return
 
 /obj/structure/closet/secure_closet/quartermaster
@@ -43,4 +44,5 @@
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/device/export_scanner(src)
 		return

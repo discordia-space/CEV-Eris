@@ -196,7 +196,7 @@
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 
-/obj/item/weapon/storage/box/shotgunammo/shotgunshells
+/obj/item/weapon/storage/box/shotgunammo/buckshot
 	name = "box of shotgun shells"
 
 	New()
