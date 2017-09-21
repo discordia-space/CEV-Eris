@@ -19,14 +19,6 @@
 	antag = "Revolutionary"
 	antag_plural = "Revolutionaries"
 
-	leader_verbs = list(/mob/living/proc/convert_to_rev)
-
-/mob/living/proc/convert_to_rev(mob/M as mob in oview(src))
-	set name = "Convert Bourgeoise"
-	set category = "Abilities"
-
-	src << "NO"
-
 /datum/faction/revolutionary/create_objectives()
 	if(!..())
 		return
@@ -36,4 +28,5 @@
 		var/datum/objective/faction/rev/O = new /datum/objective/faction/rev (src)
 		O.target = player.mind
 		O.update_explanation()
+		set_objectives(list(O))
 
