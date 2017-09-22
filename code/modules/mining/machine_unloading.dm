@@ -7,40 +7,39 @@
 	icon_state = "unloader"
 	density = 1
 	anchored = 1.0
-	var/obj/machinery/mineral/input = null
-	var/obj/machinery/mineral/output = null
+	var/input_dir = null
+	var/output_dir = null
 
 
 /obj/machinery/mineral/unloading_machine/New()
 	..()
-	spawn( 5 )
-		for (var/dir in cardinal)
-			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-			if(src.input) break
-		for (var/dir in cardinal)
-			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-			if(src.output) break
-		return
-	return
+	spawn()
+		//Locate our output and input machinery.
+		var/obj/marker = null
+		marker = locate(/obj/effect/landmark/machinery/input) in range(1, loc)
+		if(marker)
+			input_dir = get_dir(src, marker)
+		marker = locate(/obj/effect/landmark/machinery/output) in range(1, loc)
+		if(marker)
+			output_dir = get_dir(src, marker)
 
 /obj/machinery/mineral/unloading_machine/process()
-	if (src.output && src.input)
-		if (locate(/obj/structure/ore_box, input.loc))
-			var/obj/structure/ore_box/BOX = locate(/obj/structure/ore_box, input.loc)
+	if(output_dir && input_dir)
+		var/turf/input = get_step(src, input_dir)
+		var/obj/structure/ore_box/BOX = locate() in input
+		if(BOX)
+			var/turf/output = get_step(src, output_dir)
 			var/i = 0
-			for (var/obj/item/weapon/ore/O in BOX.contents)
-				BOX.contents -= O
-				O.loc = output.loc
-				i++
-				if (i>=10)
+			for(var/obj/item/weapon/ore/O in BOX.contents)
+				O.forceMove(output)
+				if(++i>=10)
 					return
-		if (locate(/obj/item, input.loc))
+
+		if(locate(/obj/item) in input)
 			var/obj/item/O
-			var/i
-			for (i = 0; i<10; i++)
-				O = locate(/obj/item, input.loc)
-				if (O)
-					O.loc = src.output.loc
+			for(var/i = 0; i<10; i++)
+				O = locate(/obj/item) in input
+				if(O)
+					O.forceMove(get_step(src, output_dir))
 				else
-					return
-	return
+					break
