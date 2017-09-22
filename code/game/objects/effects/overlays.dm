@@ -12,6 +12,20 @@
 		..()
 		spawn(10) qdel(src)
 
+/obj/effect/overlay/pulse
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "empdisable"
+	name = "emp sparks"
+	layer = FLY_LAYER
+	anchored = TRUE
+	density = FALSE
+
+/obj/effect/overlay/pulse/New(loc, var/lifetime = 10)
+	..(loc)
+	set_dir(pick(cardinal))
+	spawn(lifetime)
+		qdel(src)
+
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
