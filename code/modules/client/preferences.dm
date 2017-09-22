@@ -37,7 +37,7 @@ datum/preferences
 	var/hair_color = "#000000"			//Hair color
 	var/f_style = "Shaved"				//Face hair type
 	var/facial_color = "#000000"		//Face hair color
-	var/s_tone = 0						//Skin tone
+	var/skin_tone = 0						//Skin tone
 	var/skin_color = "#000000"			//Skin color
 	var/eyes_color = "#000000"			//Eye color
 	var/species = "Human"               //Species datum to use.
@@ -223,7 +223,7 @@ datum/preferences
 
 	character.skin_color = skin_color
 
-	character.s_tone = s_tone
+	character.skin_tone = skin_tone
 
 	character.h_style = h_style
 	character.f_style = f_style

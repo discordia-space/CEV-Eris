@@ -7,7 +7,7 @@
 	parent_organ = "chest"
 	vital = 1
 
-/obj/item/organ/cell/New()
+/obj/item/organ/internal/cell/New()
 	robotize()
 	..()
 

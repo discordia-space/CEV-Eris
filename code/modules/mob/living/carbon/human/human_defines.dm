@@ -10,7 +10,7 @@
 	//Eye colour
 	var/eyes_color = "#000000"
 
-	var/s_tone = 0	//Skin tone
+	var/skin_tone = 0	//Skin tone
 
 	//Skin colour
 	var/skin_color = "#000000"

@@ -331,7 +331,7 @@
 		return 1
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
+		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name["eyes"]
 		if(!E)
 			return
 		var/safety = H.eyecheck()

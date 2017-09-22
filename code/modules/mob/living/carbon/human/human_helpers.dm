@@ -18,6 +18,20 @@
 			src << SPAN_WARNING("\The [status[2]] is in the way!")
 	return 0
 
+/mob/living/carbon/human/proc/should_have_organ(var/organ_check)
+
+	var/obj/item/organ/external/affecting
+	if(organ_check in list(O_HEART, O_LUNGS))
+		affecting = organs_by_name[BP_CHEST]
+	else if(organ_check in list(O_LIVER, O_KIDNEYS))
+		affecting = organs_by_name[BP_GROIN]
+
+	if(affecting && (affecting.robotic >= ORGAN_ROBOT)) //LETHALGHOST: check that
+		return 0
+	return (species && species.has_organ[organ_check])
+
+
+
 /mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)
 	var/list/status = can_eat_status()
 	if(status[1] == HUMAN_EATING_NO_ISSUE)
@@ -88,3 +102,12 @@
 /mob/living/carbon/human/proc/get_core_implant()
 	var/obj/item/weapon/implant/external/core_implant/C = locate(/obj/item/weapon/implant/external/core_implant, src)
 	return C
+
+/mob/living/carbon/human/proc/get_blood_colour()
+	if(isSynthetic())
+		return SYNTH_BLOOD_COLOUR
+	else
+		return species.blood_color
+
+/mob/living/carbon/human/proc/get_flesh_colour()
+	return isSynthetic() ? SYNTH_FLESH_COLOUR : species.flesh_color

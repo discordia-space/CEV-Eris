@@ -6,7 +6,7 @@ datum/preferences
 
 		if(current_species)
 			if(current_species.appearance_flags & HAS_SKIN_TONE)
-				s_tone = random_skin_tone()
+				skin_tone = random_skin_tone()
 			if(current_species.appearance_flags & HAS_EYE_COLOR)
 				randomize_eyes_color()
 			if(current_species.appearance_flags & HAS_SKIN_COLOR)

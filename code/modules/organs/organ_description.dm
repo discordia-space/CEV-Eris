@@ -5,6 +5,8 @@
 
 	var/min_broken_damage = 30
 	var/max_damage = 0
+	var/vital = 0
+	var/cannot_amputate = 0
 	var/w_class = 3
 
 	var/body_part = null
@@ -26,6 +28,8 @@
 
 	min_broken_damage = 35
 	max_damage = 100
+	vital = TRUE
+	cannot_amputate = TRUE
 	w_class = 5
 
 	body_part = UPPER_TORSO
@@ -38,6 +42,7 @@
 
 	min_broken_damage = 35
 	max_damage = 100
+	vital = TRUE
 	w_class = 4
 
 	body_part = LOWER_TORSO

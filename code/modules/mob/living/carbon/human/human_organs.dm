@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/update_eyes()
-	var/obj/item/organ/eyes/eyes = internal_organs_by_name["eyes"]
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name["eyes"]
 	if(eyes)
 		eyes.update_colour()
 		regenerate_icons()
@@ -8,6 +8,8 @@
 /mob/living/carbon/human/var/list/organs = list()
 /mob/living/carbon/human/var/list/organs_by_name = list() // map organ names to organs
 /mob/living/carbon/human/var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
+
+
 
 // Takes care of organ related updates, such as broken and missing limbs
 /mob/living/carbon/human/proc/handle_organs()

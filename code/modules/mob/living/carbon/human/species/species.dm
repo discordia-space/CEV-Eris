@@ -131,29 +131,29 @@
 	var/rarity_value = 1          // Relative rarity/collector value for this species.
 	                              // Determines the organs that the species spawns with and
 	var/list/has_organ = list(    // which required-organ checks are conducted.
-		"heart" =    /obj/item/organ/heart,
-		"lungs" =    /obj/item/organ/lungs,
-		"liver" =    /obj/item/organ/liver,
-		"kidneys" =  /obj/item/organ/kidneys,
-		"brain" =    /obj/item/organ/brain,
-		"appendix" = /obj/item/organ/appendix,
-		"eyes" =     /obj/item/organ/eyes
+		O_HEART =    /obj/item/organ/internal/heart,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_LIVER =    /obj/item/organ/internal/liver,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_APPENDIX = /obj/item/organ/internal/appendix,
+		O_EYES =     /obj/item/organ/internal/eyes
 		)
 	var/vision_organ              // If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 
 	var/list/has_limbs = list(
-		"chest" =  new /datum/organ_description/chest,
-		"groin" =  new /datum/organ_description/groin,
-		"head" =   new /datum/organ_description/head,
-		"l_arm" =  new /datum/organ_description/arm/left,
-		"r_arm" =  new /datum/organ_description/arm/right,
-		"l_leg" =  new /datum/organ_description/leg/left,
-		"r_leg" =  new /datum/organ_description/leg/right,
-		"l_hand" = new /datum/organ_description/hand/left,
-		"r_hand" = new /datum/organ_description/hand/right,
-		"l_foot" = new /datum/organ_description/foot/left,
-		"r_foot" = new /datum/organ_description/foot/right
-		)
+		BP_CHEST  = new /datum/organ_description/chest,
+		BP_GROIN  = new /datum/organ_description/groin,
+		BP_HEAD   = new /datum/organ_description/head,
+		BP_L_ARM  = new /datum/organ_description/arm/left,
+		BP_R_ARM  = new /datum/organ_description/arm/right,
+		BP_L_LEG  = new /datum/organ_description/leg/left,
+		BP_R_LEG  = new /datum/organ_description/leg/right,
+		BP_L_HAND = new /datum/organ_description/hand/left,
+		BP_R_HAND = new /datum/organ_description/hand/right,
+		BP_L_FOOT = new /datum/organ_description/foot/left,
+		BP_R_FOOT = new /datum/organ_description/foot/right
+	)
 
 	// Misc
 	var/list/genders = list(MALE, FEMALE)

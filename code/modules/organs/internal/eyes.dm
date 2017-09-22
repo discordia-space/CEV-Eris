@@ -1,42 +1,64 @@
-/obj/item/organ/eyes
+/obj/item/organ/internal/eyes
 	name = "eyeballs"
 	icon_state = "eyes"
 	gender = PLURAL
-	organ_tag = "eyes"
-	parent_organ = "head"
-	var/eyes_color = "#000000"
+	organ_tag = O_EYES
+	parent_organ = BP_HEAD
+	var/eye_color = ""
 	var/robo_color = "#000000"
+	var/icon/mob_icon = null
+	var/body_build = null
 	var/cache_key = "eyes"
 
-/obj/item/organ/eyes/proc/get_icon()
-	var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', "eye_l[owner.body_build.index]")
-	eyes_icon.Blend(icon('icons/mob/human_face.dmi', "eye_r[owner.body_build.index]"), ICON_OVERLAY)
-	eyes_icon.Blend(robotic ? robo_color : eyes_color, ICON_ADD)
-	return eyes_icon
+/obj/item/organ/internal/eyes/proc/get_cache_key()
+	return "[cache_key][robotic ? robo_color : eye_color]"
 
-/obj/item/organ/eyes/proc/get_cache_key()
-	return "[cache_key][robotic ? robo_color : eyes_color]"
-
-/obj/item/organ/eyes/replaced(var/mob/living/carbon/human/target)
-
-	// Apply our eye colour to the target.
-	if(istype(target) && eyes_color)
-		target.eyes_color = eyes_color
-		target.update_eyes()
-	..()
-
-/obj/item/organ/eyes/proc/update_colour()
+/obj/item/organ/internal/eyes/sync_new_color()
 	if(!owner)
 		return
-	eyes_color = owner.eyes_color
+	species = owner.species
+	body_build = owner.body_build.index
+	eye_color = owner.eyes_color ? owner.eyes_color : "#000000"
 
-/obj/item/organ/eyes/take_damage(amount, var/silent=0)
+/obj/item/organ/internal/eyes/install(mob/living/carbon/human/H, redraw_mob = 1)
+	if(..()) return 1
+	// Apply our eye color to the target.
+	if(eye_color)
+		sync_new_color()
+		owner.eyes_color = eye_color
+	if(redraw_mob)
+		owner.update_body()
+
+/obj/item/organ/internal/eyes/get_icon()
+	var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', "eye_l[owner.body_build.index]")
+	eyes_icon.Blend(icon('icons/mob/human_face.dmi', "eye_r[owner.body_build.index]"), ICON_OVERLAY)
+	eyes_icon.Blend(robotic ? robo_color : eye_color, ICON_ADD)
+	return eyes_icon
+
+/obj/item/organ/internal/eyes/get_icon_key()
+	return "eyes[eye_color]"
+
+/obj/item/organ/internal/eyes/take_damage(amount, var/silent=0)
 	var/oldbroken = is_broken()
 	..()
+
+	if(damage > 10)
+		if(!silent)
+			owner << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
+	if(damage >= min_bruised_damage)
+		if(!owner.disabilities & NEARSIGHTED)
+			if(!silent)
+				owner << "<span class='danger'>It's become harder to see!</span>"
+			owner.disabilities |= NEARSIGHTED
+			spawn(100)
+				owner.disabilities &= ~NEARSIGHTED
+
 	if(is_broken() && !oldbroken && owner && !owner.stat)
+
 		owner << SPAN_DANGER("You go blind!")
 
-/obj/item/organ/eyes/process() //Eye damage replaces the old eye_stat var.
+
+/obj/item/organ/internal/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
 	if(!owner)
 		return
@@ -45,37 +67,41 @@
 	if(is_broken())
 		owner.eye_blind = 20
 
+/obj/item/organ/internal/eyes/proc/update_colour()
+	if(!owner)
+		return
+	eye_color = owner.eyes_color
 
+//// One eye ////
 
-//Subtypes
-/obj/item/organ/eyes/oneeye
-	icon_state = "eye_l"
-	cache_key = "left_eye"
+/obj/item/organ/internal/eyes/oneeye
+	get_icon()
+		mob_icon = icon(species.icobase, "left_eye[body_build]")
+		mob_icon.Blend(eye_color, ICON_ADD)
+		return mob_icon
 
-/obj/item/organ/eyes/oneeye/get_icon()
-	var/icon/eyes_icon
-	eyes_icon = icon('icons/mob/human_face.dmi', "[icon_state][owner.body_build.index]")
-	eyes_icon.Blend(robotic ? robo_color : eyes_color, ICON_ADD)
-	return eyes_icon
+/obj/item/organ/internal/eyes/oneeye/get_icon_key()
+	return "eyes_left[eye_color]"
 
-/obj/item/organ/eyes/oneeye/right
-	icon_state = "eye_r"
-	cache_key = "right_eye"
+/obj/item/organ/internal/eyes/oneeye/right
+	get_icon()
+		mob_icon = icon(species.icobase, "right_eye[body_build]")
+		mob_icon.Blend(eye_color, ICON_ADD)
+		return mob_icon
 
-/obj/item/organ/eyes/heterohromia
+/obj/item/organ/internal/eyes/oneeye/right/get_icon_key()
+	return "eyes_right[eye_color]"
+
+//// Heterohromia ////
+
+/obj/item/organ/internal/eyes/heterohromia
 	var/second_color = "#000000"
-	cache_key = "heterohromia"
+	get_icon()
+		..()
+		var/icon/one_eye = icon(species.icobase, "left_eye[body_build]")
+		one_eye.Blend(second_color, ICON_ADD)
+		mob_icon.Blend(one_eye, ICON_OVERLAY)
+		return mob_icon
 
-/obj/item/organ/eyes/heterohromia/get_cache_key()
-	return "[cache_key][robotic ? robo_color : eyes_color]&[second_color]"
-
-/obj/item/organ/eyes/heterohromia/get_icon()
-	var/icon/eyes_icon = icon('icons/mob/human_face.dmi', "eye_l[owner.body_build.index]")
-	eyes_icon.Blend(robotic ? robo_color : eyes_color, ICON_ADD)
-
-	var/icon/right_eye = icon('icons/mob/human_face.dmi', "eye_r[owner.body_build.index]")
-	right_eye.Blend(second_color, ICON_ADD)
-	eyes_icon.Blend(right_eye)
-
-	return eyes_icon
-
+/obj/item/organ/internal/eyes/heterohromia/get_icon_key()
+	return "eyes_hetero[eye_color]&[second_color]"

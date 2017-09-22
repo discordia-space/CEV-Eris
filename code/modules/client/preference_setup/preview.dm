@@ -54,10 +54,10 @@ datum/preferences/proc/update_preview_icon()
 
 			// Skin tone
 			if(current_species && (current_species.appearance_flags & HAS_SKIN_TONE))
-				if (s_tone >= 0)
-					organ_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+				if (skin_tone >= 0)
+					organ_icon.Blend(rgb(skin_tone, skin_tone, skin_tone), ICON_ADD)
 				else
-					organ_icon.Blend(rgb((-s_tone),  (-s_tone),  (-s_tone)), ICON_SUBTRACT)
+					organ_icon.Blend(rgb((-skin_tone),  (-skin_tone),  (-skin_tone)), ICON_SUBTRACT)
 			preview_icon.Blend(organ_icon, ICON_OVERLAY)
 		preview_icon.Blend(mod.get_mob_icon(organ, bodybuild.index, modifications_colors[organ], gender, species),ICON_OVERLAY)
 

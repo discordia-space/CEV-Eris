@@ -14,28 +14,28 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
 	skin_tone = null
-	skin_col = null
+	skin_color = null
 	hair_col = null
 	if(status & ORGAN_ROBOT)
 		return
 	if(species && human.species && species.name != human.species.name)
 		return
-	if(!isnull(human.s_tone) && (human.species.appearance_flags & HAS_SKIN_TONE))
-		skin_tone = human.s_tone
+	if(!isnull(human.skin_tone) && (human.species.appearance_flags & HAS_SKIN_TONE))
+		skin_tone = human.skin_tone
 	if(human.species.appearance_flags & HAS_SKIN_COLOR)
-		skin_col = human.skin_color
+		skin_color = human.skin_color
 	hair_col = human.hair_color
 
 /obj/item/organ/external/proc/sync_colour_to_dna()
 	skin_tone = null
-	skin_col = null
+	skin_color = null
 	hair_col = null
 	if(status & ORGAN_ROBOT)
 		return
 	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
 		skin_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
 	if(species.appearance_flags & HAS_SKIN_COLOR)
-		skin_col = rgb(dna.GetUIValue(DNA_UI_SKIN_R), dna.GetUIValue(DNA_UI_SKIN_G), dna.GetUIValue(DNA_UI_SKIN_B))
+		skin_color = rgb(dna.GetUIValue(DNA_UI_SKIN_R), dna.GetUIValue(DNA_UI_SKIN_G), dna.GetUIValue(DNA_UI_SKIN_B))
 	hair_col = rgb(dna.GetUIValue(DNA_UI_HAIR_R),dna.GetUIValue(DNA_UI_HAIR_G),dna.GetUIValue(DNA_UI_HAIR_B))
 
 /obj/item/organ/external/proc/get_cache_key()
@@ -59,17 +59,17 @@ var/global/list/limb_icon_cache = list()
 
 	part_key += "[dna.GetUIState(DNA_UI_GENDER)]"
 	part_key += "[skin_tone]"
-	part_key += skin_col
+	part_key += skin_color
 	part_key += model
 
 	if(!appearance_test.special_update)
-		for(var/obj/item/organ/eyes/I in internal_organs)
+		for(var/obj/item/organ/internal/eyes/I in internal_organs)
 			part_key += I.get_cache_key()
 	return part_key
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
 	..()
-	var/obj/item/organ/eyes/eyes = owner.internal_organs_by_name["eyes"]
+	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name["eyes"]
 	if(eyes) eyes.update_colour()
 
 /obj/item/organ/external/head/removed()
@@ -87,7 +87,7 @@ var/global/list/limb_icon_cache = list()
 		return
 
 	if(owner.species.has_organ["eyes"])
-		var/obj/item/organ/eyes/eyes = owner.internal_organs_by_name["eyes"]
+		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name["eyes"]
 		if(eyes)
 			mob_icon.Blend(eyes.get_icon(), ICON_OVERLAY)
 
@@ -156,13 +156,13 @@ var/global/list/limb_icon_cache = list()
 			else
 				mob_icon.Blend(rgb(-skin_tone,  -skin_tone,  -skin_tone), ICON_SUBTRACT)
 		else
-			if(skin_col)
-				mob_icon.Blend(skin_col, ICON_ADD)
+			if(skin_color)
+				mob_icon.Blend(skin_color, ICON_ADD)
 
 
 	dir = EAST
 	icon = mob_icon
 
-/obj/item/organ/external/proc/get_icon()
+/obj/item/organ/external/get_icon()
 	update_icon()
 	return mob_icon

@@ -153,6 +153,9 @@
 
 #define MOVED_DROP 1
 
+#define SYNTH_BLOOD_COLOUR "#030303"
+#define SYNTH_FLESH_COLOUR "#575757"
+
 //carbon taste sensitivity defines, used in mob/living/carbon/proc/ingest
 #define TASTE_HYPERSENSITIVE 3 //anything below 5%
 #define TASTE_SENSITIVE 2 //anything below 7%
