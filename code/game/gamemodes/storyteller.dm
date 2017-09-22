@@ -2,16 +2,15 @@ var/global/list/current_antags = list()
 var/global/list/current_factions = list()
 
 /datum/storyteller
-	var/config_tag = "base"
-	var/name = "Storyteller"
-	var/description = "Storyteller tells the story of the round. It spawns antagonists and calls events."
+	var/config_tag = "normal"
+	var/name = "Shitgen"
+	var/welcome = "Prepare to fun!"
+	var/description = "Try to survive as long as you can."
 
 	var/chaos_level = 0
 	var/chaos_level_cap = 1000
 
 	var/chaos_increment = 10
-	var/chaos_increment_delay = 10		//Every this period in seconds, chaos level will be incremented by chaos_increment
-	var/chaos_acceleration = 1			//Every chaos level increment, this value will be added to the chaos_increment
 
 	var/role_spawn_timer = 0
 	var/event_spawn_timer = 0
@@ -26,17 +25,31 @@ var/global/list/current_factions = list()
 	var/min_event_spawn_delay = 10*60
 	var/max_event_spawn_delay = 20*60
 
-	var/difficult_multiplier = 1	//The larger this multiplier, the more difficult roles will spawn
+	var/difficult_multiplier = 1	//The larger this multiplier, the more difficult roles will be spawned
 
 	var/list/disabled_antags = list()
 	var/list/disabled_events = list()
+	var/list/required_jobs = list("Captain","Technomancer")
+
+	var/list/pending_candidates = list()
 
 
-/datum/storyteller/proc/can_start()
+/datum/storyteller/proc/can_start(var/announce = FALSE)
+	for(var/role in required_jobs)
+		var/check = FALSE
+		for(var/mob/new_player/player in player_list)
+			if(player.ready && player.mind && player.mind.assigned_role == role)
+				check = TRUE
+				break
+		if(!check)
+			world << "<b>Game won't start without the [role].</b>"
+			world << print_required_roles()
+			return FALSE
+
 	return TRUE
 
 /datum/storyteller/proc/announce()
-	world << "<b>Game storyteller is [src.name]</b>"
+	world << "<b><font size=3>Storyteller is [src.name]. [welcome]</font></b>"
 	if(description)
 		world << "[description]"
 
@@ -45,7 +58,6 @@ var/global/list/current_factions = list()
 /datum/storyteller/proc/set_up()
 	set_role_timer(rand(min_start_role_spawn_delay, max_start_role_spawn_delay))
 	set_event_timer_default()
-
 
 /datum/storyteller/proc/set_role_timer(var/time)
 	role_spawn_timer = world.time + time
@@ -61,8 +73,7 @@ var/global/list/current_factions = list()
 
 
 /datum/storyteller/proc/chaos_increment()
-		chaos_level += chaos_increment / 10
-		chaos_increment += chaos_acceleration / 10
+		chaos_level += chaos_increment
 
 /datum/storyteller/proc/process()
 	chaos_increment()
@@ -70,8 +81,29 @@ var/global/list/current_factions = list()
 		set_role_timer_default()
 		spawn_antagonist()
 
-/datum/storyteller/proc/choose_antagonist()
+	if(event_spawn_timer <= world.time)
+		set_event_timer_default()
+		create_event()
+
+/datum/storyteller/proc/print_required_roles()
+	var/text = "[name]'s required roles:"
+	for(var/reqrole in required_jobs)
+		text += "<br> - [reqrole]"
+	return text
+
+
+
+/datum/storyteller/proc/choose_antagonist_type()
+	return
+
+
+
 
 
 /datum/storyteller/proc/spawn_antagonist()
 
+
+/datum/storyteller/proc/choose_event()
+	return
+
+/datum/storyteller/proc/create_event()

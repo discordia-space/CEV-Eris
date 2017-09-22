@@ -7,12 +7,15 @@
 		return FALSE
 	if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
 		return FALSE
-	/*if(!(id in player.current.client.prefs.be_special_role))
-		return FALSE*/
+	if(outer && !(isghost(player.current) || isangel(player.current)))
+		return FALSE
+	if(!outer && (player.current.stat || !player.active))
+		return FALSE
+
 	return TRUE
 
 /datum/antagonist/proc/is_dead()
-	if(!owner || !owner.current || owner.current.stat == DEAD || !ishuman(owner.current))
+	if(!owner || !owner.current || owner.current.stat == DEAD || !owner.active)
 		return TRUE
 	return FALSE
 

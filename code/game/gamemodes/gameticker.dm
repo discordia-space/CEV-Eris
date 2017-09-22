@@ -69,13 +69,13 @@ var/global/datum/controller/gameticker/ticker
 
 	if(!src.storyteller)
 		current_state = GAME_STATE_PREGAME
-		world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
+		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return 0
 
 	job_master.ResetOccupations()
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!src.storyteller.can_start())
+	if(!src.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
 		job_master.ResetOccupations()
