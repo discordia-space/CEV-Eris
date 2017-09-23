@@ -3,7 +3,7 @@ var/global/list/current_factions = list()
 
 /datum/storyteller
 	var/config_tag = "normal"
-	var/name = "Shitgen"
+	var/name = "Shitgenerator"
 	var/welcome = "Prepare to fun!"
 	var/description = "Try to survive as long as you can."
 
@@ -91,14 +91,8 @@ var/global/list/current_factions = list()
 		text += "<br> - [reqrole]"
 	return text
 
-
-
 /datum/storyteller/proc/choose_antagonist_type()
 	return
-
-
-
-
 
 /datum/storyteller/proc/spawn_antagonist()
 
@@ -107,3 +101,4 @@ var/global/list/current_factions = list()
 	return
 
 /datum/storyteller/proc/create_event()
+

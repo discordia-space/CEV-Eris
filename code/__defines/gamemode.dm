@@ -44,11 +44,12 @@
 #define ROLE_MALFUNCTION "malf"
 #define ROLE_TRAITOR "traitor"
 
-#define ROLE_BORER_CARRIER "borer_carrier"
-
 #define FACTION_REVOLUTIONARY "revolutionary"
 #define FACTION_BORERS "borers"
 #define FACTION_XENOMORPHS "xenomorphs"
+
+#define ROLESET_TRAITOR "traitor"
+#define ROLESET_VERSUS_TRAITOR "double_agents"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 25
 

@@ -1,6 +1,10 @@
 /datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE)
-	if(!istype(target) || !target.current || !can_become_antag(target))
-		world << "D:WRONG TARGET [target]"
+	if(!istype(target) || !target.current)
+		log_debug("ANTAGONIST Wrong target passed to create_antagonist of [id]! Target: [target == null?"NULL":target]")
+		return FALSE
+
+	if(!can_become_antag(target))
+		log_debug("ANTAGONIST [target.name] cannot become this antag, but passed roleset candidate.")
 		return FALSE
 
 	target.antagonist.Add(src)
@@ -17,14 +21,16 @@
 	if(doequip)
 		equip()
 
-	BITSET(target.current.hud_updateflag, SPECIALROLE_HUD)
+	if(outer)
+		set_antag_name()
+
 	greet()
 	return TRUE
 
 /datum/antagonist/proc/create_faction()
 	if(!faction && faction_type)
-		faction = new faction_type
-		faction.add_leader(src)
+		faction = create_or_get_faction(faction_type)
+		faction.add_member(src)
 
 
 /datum/antagonist/proc/set_antag_name()

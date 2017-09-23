@@ -93,6 +93,8 @@
 	output += memory
 
 	for(var/datum/antagonist/A in antagonist)
+		if(!A.objectives.len)
+			break
 		if(A.faction)
 			output += "<br><b>Your [A.faction.name] faction objectives:</b>"
 		else

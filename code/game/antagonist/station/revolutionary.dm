@@ -25,7 +25,7 @@
 	for(var/mob/living/carbon/human/player in mob_list)
 		if(!player.mind || player.stat==DEAD || !(player.mind.assigned_role in command_positions) || player in members)
 			continue
-		var/datum/objective/faction/rev/O = new /datum/objective/faction/rev (src)
+		var/datum/objective/faction/rev/O = new /datum/objective/faction/rev (src, FALSE)
 		O.target = player.mind
 		O.update_explanation()
 		set_objectives(list(O))

@@ -7,7 +7,7 @@
 	var/welcome_text = "Hello, antagonist!"
 
 	var/hud_indicator = null
-	var/faction_invisible = FALSE
+	var/faction_invisible = TRUE
 
 	var/list/faction_icons = list()
 
@@ -21,8 +21,6 @@
 	var/list/leader_verbs = list()
 
 /datum/faction/New()
-	if(!current_factions[id])
-		current_factions[id] = list()
 	current_factions.Add(src)
 
 	create_objectives()

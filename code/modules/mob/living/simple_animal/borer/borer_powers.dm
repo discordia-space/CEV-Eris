@@ -108,10 +108,11 @@
 		src.loc = M
 
 		//Update their traitor status.
-		if(host.mind && src.mind)
-			var/datum/antagonist/xenos/borer/borer = pick(get_player_antags(src.mind, ROLE_BORER))
-			if(borer)
-				make_antagonist_faction(host.mind, ROLE_BORER_CARRIER, borer.faction)
+		/*if(host.mind && src.mind)
+			var/list/L = get_player_antags(src.mind, ROLE_BORER)
+			var/datum/antagonist/borer/borer
+			if(L.len)
+				borer = L[1]*/
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M

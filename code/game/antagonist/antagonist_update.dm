@@ -1,7 +1,7 @@
 /datum/antagonist/proc/update_antag_mob()
 
 	// Get the mob.
-	if(owner.current)
+	if(owner.current && ispath(mob_path))
 		var/mob/holder = owner.current
 		owner.current = new mob_path(get_turf(owner.current))
 		owner.transfer_to(owner.current)

@@ -30,7 +30,7 @@
 
 	show_objectives()
 
-	return 1
+	return TRUE
 
 /datum/antagonist/proc/get_special_objective_text()
 	return ""

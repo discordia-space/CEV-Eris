@@ -46,10 +46,13 @@ var/global/list/antag_bantypes = list()
 		if(A.id == a_id)
 			A.remove_antagonist()
 
+/proc/get_antag_instance(var/a_id)
+	if(antag_types[a_id])
+		return new antag_types[a_id]
+
 /proc/make_antagonist(var/datum/mind/M, var/a_id)
 	if(antag_types[a_id])
 		var/a_type = antag_types[a_id]
-		world.log << "D:a_type [a_type]"
 		var/datum/antagonist/A = new a_type
 		A.create_antagonist(M)
 		return A
@@ -159,3 +162,14 @@ var/global/list/antag_bantypes = list()
 		if((!a_id || antag.id == a_id) && antag.faction == F)
 			return TRUE
 	return FALSE
+
+/proc/create_or_get_faction(var/f_type)
+	var/list/factions = list()
+	for(var/datum/faction/F in current_factions)
+		if(F.type == f_type)
+			factions.Add(F)
+
+	if(!factions.len)
+		return new f_type
+	else
+		return factions[1]
