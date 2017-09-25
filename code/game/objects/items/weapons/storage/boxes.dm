@@ -46,7 +46,7 @@
 	if ( !found )	// User is too far away
 		return
 	// Now make the cardboard
-	user << "<span class='notice'>You fold [src] flat.</span>"
+	user << SPAN_NOTICE("You fold [src] flat.")
 	new src.foldable(get_turf(src))
 	qdel(src)
 
@@ -196,7 +196,7 @@
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 
-/obj/item/weapon/storage/box/shotgunammo/shotgunshells
+/obj/item/weapon/storage/box/shotgunammo/buckshot
 	name = "box of shotgun shells"
 
 	New()

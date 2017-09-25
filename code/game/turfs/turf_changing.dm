@@ -71,7 +71,7 @@
 		W.levelupdate()
 		. =  W
 
-	for(var/turf/space/SP in orange(src,1))
+	for(var/turf/space/SP in trange(1, src))
 		SP.update_starlight()
 
 	lighting_overlay = old_lighting_overlay

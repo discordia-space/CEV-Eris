@@ -13,11 +13,11 @@
 /obj/machinery/microscope/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	if(sample)
-		user << "<span class='warning'>There is already a slide in the microscope.</span>"
+		user << SPAN_WARNING("There is already a slide in the microscope.")
 		return
 
 	if(istype(W, /obj/item/weapon/forensics/swab)|| istype(W, /obj/item/weapon/sample/fibers) || istype(W, /obj/item/weapon/sample/print))
-		user << "<span class='notice'>You insert \the [W] into the microscope.</span>"
+		user << SPAN_NOTICE("You insert \the [W] into the microscope.")
 		user.unEquip(W)
 		W.forceMove(src)
 		sample = W
@@ -27,16 +27,16 @@
 /obj/machinery/microscope/attack_hand(mob/user)
 
 	if(!sample)
-		user << "<span class='warning'>The microscope has no sample to examine.</span>"
+		user << SPAN_WARNING("The microscope has no sample to examine.")
 		return
 
-	user << "<span class='notice'>The microscope whirrs as you examine \the [sample].</span>"
+	user << SPAN_NOTICE("The microscope whirrs as you examine \the [sample].")
 
 	if(!do_after(user, 25, src) || !sample)
-		user << "<span class='notice'>You stop examining \the [sample].</span>"
+		user << SPAN_NOTICE("You stop examining \the [sample].")
 		return
 
-	user << "<span class='notice'>Printing findings now...</span>"
+	user << SPAN_NOTICE("Printing findings now...")
 	var/obj/item/weapon/paper/report = new(get_turf(src))
 	report.stamped = list(/obj/item/weapon/stamp)
 	report.overlays = list("paper_stamped")
@@ -70,7 +70,7 @@
 		if(card.evidence && card.evidence.len)
 			report.info += "Surface analysis has determined unique fingerprint strings:<br><br>"
 			for(var/prints in card.evidence)
-				report.info += "<span class='notice'>Fingerprint string: </span>"
+				report.info += SPAN_NOTICE("Fingerprint string: ")
 				if(!is_complete_print(prints))
 					report.info += "INCOMPLETE PRINT"
 				else
@@ -89,9 +89,9 @@
 	if(!istype(remover) || remover.incapacitated() || !Adjacent(remover))
 		return ..()
 	if(!sample)
-		remover << "<span class='warning'>\The [src] does not have a sample in it.</span>"
+		remover << SPAN_WARNING("\The [src] does not have a sample in it.")
 		return
-	remover << "<span class='notice'>You remove \the [sample] from \the [src].</span>"
+	remover << SPAN_NOTICE("You remove \the [sample] from \the [src].")
 	sample.forceMove(get_turf(src))
 	remover.put_in_hands(sample)
 	sample = null

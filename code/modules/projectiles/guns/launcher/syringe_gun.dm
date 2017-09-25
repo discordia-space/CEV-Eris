@@ -21,7 +21,7 @@
 /obj/item/weapon/syringe_cartridge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		syringe = I
-		user << "<span class='notice'>You carefully insert [syringe] into [src].</span>"
+		user << SPAN_NOTICE("You carefully insert [syringe] into [src].")
 		user.remove_from_mob(syringe)
 		syringe.loc = src
 		sharp = 1
@@ -30,7 +30,7 @@
 
 /obj/item/weapon/syringe_cartridge/attack_self(mob/user)
 	if(syringe)
-		user << "<span class='notice'>You remove [syringe] from [src].</span>"
+		user << SPAN_NOTICE("You remove [syringe] from [src].")
 		user.put_in_hands(syringe)
 		syringe = null
 		sharp = initial(sharp)
@@ -94,26 +94,26 @@
 
 /obj/item/weapon/gun/launcher/syringe/attack_self(mob/living/user as mob)
 	if(next)
-		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", "<span class='warning'>You unlatch and carefully relax the bolt on [src], unloading the spring.</span>")
+		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", SPAN_WARNING("You unlatch and carefully relax the bolt on [src], unloading the spring."))
 		next = null
 	else if(darts.len)
 		playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
-		user.visible_message("[user] draws back the bolt on [src], clicking it into place.", "<span class='warning'>You draw back the bolt on the [src], loading the spring!</span>")
+		user.visible_message("[user] draws back the bolt on [src], clicking it into place.", SPAN_WARNING("You draw back the bolt on the [src], loading the spring!"))
 		next = darts[1]
 	add_fingerprint(user)
 
 /obj/item/weapon/gun/launcher/syringe/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(!darts.len)
-			user << "<span class='warning'>[src] is empty.</span>"
+			user << SPAN_WARNING("[src] is empty.")
 			return
 		if(next)
-			user << "<span class='warning'>[src]'s cover is locked shut.</span>"
+			user << SPAN_WARNING("[src]'s cover is locked shut.")
 			return
 		var/obj/item/weapon/syringe_cartridge/C = darts[1]
 		darts -= C
 		user.put_in_hands(C)
-		user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+		user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
 	else
 		..()
 
@@ -121,12 +121,12 @@
 	if(istype(A, /obj/item/weapon/syringe_cartridge))
 		var/obj/item/weapon/syringe_cartridge/C = A
 		if(darts.len >= max_darts)
-			user << "<span class='warning'>[src] is full!</span>"
+			user << SPAN_WARNING("[src] is full!")
 			return
 		user.remove_from_mob(C)
 		C.loc = src
 		darts += C //add to the end
-		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
+		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 	else
 		..()
 

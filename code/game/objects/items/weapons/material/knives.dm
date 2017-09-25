@@ -38,10 +38,10 @@
 /obj/item/weapon/material/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)
-		user << "<span class='notice'>You flip out \the [src].</span>"
+		user << SPAN_NOTICE("You flip out \the [src].")
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	else
-		user << "<span class='notice'>\The [src] can now be concealed.</span>"
+		user << SPAN_NOTICE("\The [src] can now be concealed.")
 	update_force()
 	add_fingerprint(user)
 

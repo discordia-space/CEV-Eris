@@ -104,9 +104,7 @@
 		if(!isnull(burnt) && (flags & TURF_CAN_BURN))
 			overlays |= get_flooring_overlayu("[icon_base]-burned-[burnt]", "burned[burnt]")
 	if(update_neighbors)
-		for(var/turf/simulated/floor/F in range(src, 1))
-			if(F == src)
-				continue
+		for(var/turf/simulated/floor/F in trange(1, src) - src)
 			F.update_icon()
 
 /turf/simulated/floor/plating/under/proc/get_flooring_overlayu(var/cache_key, var/icon_base, var/icon_dir = 0)
@@ -133,7 +131,7 @@
 			M.adjustBruteLoss(5)
 			M.slip(null, 6)
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
-			M << "<span class='warning'>You tripped over!</span>"
+			M << SPAN_WARNING("You tripped over!")
 			return
 
 /turf/simulated/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)
@@ -143,7 +141,7 @@
 			return
 		else
 			R.use(2)
-			user << "<span class='notice'>You start connecting [R.name]s to [src.name], creating catwalk ...</span>"
+			user << SPAN_NOTICE("You start connecting [R.name]s to [src.name], creating catwalk ...")
 			if(do_after(user,50))
 				src.alpha = 0
 				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(src.loc)

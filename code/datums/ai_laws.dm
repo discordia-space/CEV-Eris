@@ -227,7 +227,7 @@ var/global/const/base_law_type = /datum/ai_laws/nanotrasen
 		if(law == zeroth_law_borg)
 			continue
 		if(law == zeroth_law)
-			who << "<span class='danger'>[law.get_index()]. [law.law]</span>"
+			who << SPAN_DANGER("[law.get_index()]. [law.law]")
 		else
 			who << "[law.get_index()]. [law.law]"
 

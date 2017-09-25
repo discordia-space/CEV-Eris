@@ -90,22 +90,22 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/space"))
-					for(var/turf/space/m in world)
+					for(var/turf/space/m in turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/simulated"))
-					for(var/turf/simulated/m in world)
+					for(var/turf/simulated/m in turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/unsimulated"))
-					for(var/turf/unsimulated/m in world)
+					for(var/turf/unsimulated/m in turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf"))
-					for(var/turf/m in world)
+					for(var/turf/m in turfs)
 						if(istype(m, f2))
 							from_objs += m
 

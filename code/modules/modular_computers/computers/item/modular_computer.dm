@@ -50,11 +50,11 @@
 	set src in view(1)
 
 	if(usr.incapacitated() || !isliving(usr))
-		usr << "<span class='warning'>You can't do that.</span>"
+		usr << SPAN_WARNING("You can't do that.")
 		return
 
 	if(!Adjacent(usr))
-		usr << "<span class='warning'>You can't reach it.</span>"
+		usr << SPAN_WARNING("You can't reach it.")
 		return
 
 	proc_eject_id(usr)

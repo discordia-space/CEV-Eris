@@ -84,7 +84,7 @@ proc/sd_Alert(client/who, message, title, buttons = list("Ok"),\
 		spawn(duration)
 			if(T) qdel(T)
 			return
-	T.Display(message,title,buttons,default,unfocus,size,table,style,select,flags)
+	T.Display(message, title, buttons, default, unfocus, size, table, style, select, flags)
 	. = T.Response()
 
 sd_alert
@@ -94,7 +94,7 @@ sd_alert
 		list/validation
 
 	Destroy()
-		target << browse(null,"window=\ref[src]")
+		target << browse(null, "window=\ref[src]")
 		..()
 
 	New(who, tag)
@@ -102,12 +102,12 @@ sd_alert
 		target = who
 		src.tag = tag
 
-	Topic(href,params[])
+	Topic(href, params[])
 		if(usr.client != target) return
 		response = params["clk"]
 
-	proc/Display(message,title,list/buttons,default,unfocus,size,table,style,select,flags)
-		if(unfocus) spawn() target << browse(null,null)
+	proc/Display(message, title, list/buttons, default, unfocus, size, table, style, select, flags)
+		if(unfocus) spawn() target << browse(null, null)
 		if(istext(buttons)) buttons = list(buttons)
 		if(!default) default = buttons[1]
 		if(!(flags & SD_ALERT_NOVALIDATE)) validation = buttons.Copy()
@@ -148,7 +148,7 @@ sd_alert
 
 		html += "</th></tr></table></body>"
 
-		target << browse(html,"window=\ref[src];size=[size];can_close=0")
+		target << browse(html, "window=\ref[src];size=[size];can_close=0")
 
 	proc/Response()
 		var/validated

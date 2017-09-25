@@ -105,7 +105,7 @@
 		if(!T.contains_dense_objects())
 			last_valid_turf = T
 	else
-		user << "<span class='warning'>Some strange aura is blocking the way!</span>"
+		user << SPAN_WARNING("Some strange aura is blocking the way!")
 	src.canmove = 0
 	spawn(2) src.canmove = 1
 

@@ -73,7 +73,7 @@
 			if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
 				return
 
-			M << "<span class='danger'>You step on \the [src]!</span>"
+			M << SPAN_DANGER("You step on \the [src]!")
 
 			var/list/check = list("l_foot", "r_foot")
 			while(check.len)

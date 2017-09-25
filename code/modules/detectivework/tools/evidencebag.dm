@@ -42,15 +42,15 @@
 		return
 
 	if(istype(I, /obj/item/weapon/evidencebag))
-		user << "<span class='notice'>You find putting an evidence bag in another evidence bag to be slightly absurd.</span>"
+		user << SPAN_NOTICE("You find putting an evidence bag in another evidence bag to be slightly absurd.")
 		return
 
 	if(I.w_class > 3)
-		user << "<span class='notice'>[I] won't fit in [src].</span>"
+		user << SPAN_NOTICE("[I] won't fit in [src].")
 		return
 
 	if(contents.len)
-		user << "<span class='notice'>[src] already has something inside it.</span>"
+		user << SPAN_NOTICE("[src] already has something inside it.")
 		return
 
 	user.visible_message("[user] puts [I] into [src]", "You put [I] inside [src].",\

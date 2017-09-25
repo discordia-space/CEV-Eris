@@ -36,15 +36,15 @@
 	if(on)
 		user << "\green It seems to be online."
 	else
-		user << "<span class='warning'>It seems to be offline.</span>"
+		user << SPAN_WARNING("It seems to be offline.")
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)
-		user << "<span class='warning'>System locked. Please try again later.</span>"
+		user << SPAN_WARNING("System locked. Please try again later.")
 		return
 
 	if(busy)
-		user << "<span class='warning'>System is busy. Please wait until current operation is finished before changing power settings.</span>"
+		user << SPAN_WARNING("System is busy. Please wait until current operation is finished before changing power settings.")
 		return
 
 	busy = 1
@@ -60,11 +60,11 @@
 
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
 	if(update_locked)
-		user << "<span class='warning'>System locked. Please try again later.</span>"
+		user << SPAN_WARNING("System locked. Please try again later.")
 		return
 
 	if(busy)
-		user << "<span class='warning'>System is busy. Please wait until current operation is finished before changing power settings.</span>"
+		user << SPAN_WARNING("System is busy. Please wait until current operation is finished before changing power settings.")
 		return
 
 	busy = 1
@@ -86,7 +86,7 @@
 		var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 		if(newtag)
 			RCon_tag = newtag
-			user << "<span class='notice'>You changed the RCON tag to: [newtag]</span>"
+			user << SPAN_NOTICE("You changed the RCON tag to: [newtag]")
 
 
 

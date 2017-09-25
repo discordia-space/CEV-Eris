@@ -2,7 +2,7 @@
 
 /obj/item/weapon/coin
 	icon = 'icons/obj/items.dmi'
-	name = "Coin"
+	name = COIN_STANDARD
 	icon_state = "coin"
 	flags = CONDUCT
 	force = 0.0
@@ -17,45 +17,45 @@
 	pixel_y = rand(0,8)-8
 
 /obj/item/weapon/coin/gold
-	name = "gold coin"
+	name = COIN_GOLD
 	icon_state = "coin_gold"
 
 /obj/item/weapon/coin/silver
-	name = "silver coin"
+	name = COIN_SILVER
 	icon_state = "coin_silver"
 
 /obj/item/weapon/coin/diamond
-	name = "diamond coin"
+	name = COIN_DIAMOND
 	icon_state = "coin_diamond"
 
 /obj/item/weapon/coin/iron
-	name = "iron coin"
+	name = COIN_IRON
 	icon_state = "coin_iron"
 
 /obj/item/weapon/coin/plasma
-	name = "solid plasma coin"
+	name = COIN_PLASMA
 	icon_state = "coin_plasma"
 
 /obj/item/weapon/coin/uranium
-	name = "uranium coin"
+	name = COIN_URANIUM
 	icon_state = "coin_uranium"
 
 /obj/item/weapon/coin/platinum
-	name = "platinum coin"
+	name = COIN_PLATINUM
 	icon_state = "coin_adamantine"
 
 /obj/item/weapon/coin/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
-			user << "<span class='notice'>There already is a string attached to this coin.</span>"
+			user << SPAN_NOTICE("There already is a string attached to this coin.")
 			return
 		if (CC.use(1))
 			overlays += image('icons/obj/items.dmi',"coin_string_overlay")
 			string_attached = 1
-			user << "<span class='notice'>You attach a string to the coin.</span>"
+			user << SPAN_NOTICE("You attach a string to the coin.")
 		else
-			user << "<span class='notice'>This cable coil appears to be empty.</span>"
+			user << SPAN_NOTICE("This cable coil appears to be empty.")
 		return
 	else if(istype(W,/obj/item/weapon/wirecutters))
 		if(!string_attached)
@@ -77,5 +77,5 @@
 		comment = "tails"
 	else if(result == 2)
 		comment = "heads"
-	user.visible_message("<span class='notice'>[user] has thrown \the [src]. It lands on [comment]! </span>", \
-						 "<span class='notice'>You throw \the [src]. It lands on [comment]! </span>")
+	user.visible_message(SPAN_NOTICE("[user] has thrown \the [src]. It lands on [comment]! "), \
+						 SPAN_NOTICE("You throw \the [src]. It lands on [comment]! "))

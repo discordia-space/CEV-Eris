@@ -98,14 +98,14 @@ Class Procs:
 	set background = 1
 	#endif
 
-	admin_notice("<span class='danger'>Processing Geometry...</span>", R_DEBUG)
+	admin_notice(SPAN_DANGER("Processing Geometry..."), R_DEBUG)
 	sleep(-1)
 
 	var/start_time = world.timeofday
 
 	var/simulated_turf_count = 0
 
-	for(var/turf/simulated/S in world)
+	for(var/turf/simulated/S in turfs)
 		simulated_turf_count++
 		S.update_air_properties()
 
@@ -114,7 +114,7 @@ Class Procs:
 Total Simulated Turfs: [simulated_turf_count]
 Total Zones: [zones.len]
 Total Edges: [edges.len]
-Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]</span>" : "None"]
+Total Active Edges: [active_edges.len ? SPAN_DANGER("[active_edges.len]") : "None"]
 Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]
 </span>"}, R_DEBUG)
 
@@ -187,7 +187,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		#ifdef ZASDBG
 		if(updated != updating.len)
 			tick_progress = "[updating.len - updated] tiles left unupdated."
-			world << "<span class='danger'>[tick_progress]</span>"
+			world << SPAN_DANGER("[tick_progress]")
 			. = 0
 		#endif
 

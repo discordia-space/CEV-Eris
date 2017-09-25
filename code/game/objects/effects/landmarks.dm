@@ -1,7 +1,6 @@
 /obj/effect/landmark
 	name = "landmark"
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x2"
+	icon = 'icons/misc/landmarks.dmi'
 	anchored = 1.0
 	unacidable = 1
 	simulated = 0
@@ -85,8 +84,7 @@
 
 /obj/effect/landmark/start
 	name = "start"
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "x"
+	icon_state = "player-blue"
 	anchored = 1.0
 	invisibility = 101
 
@@ -102,6 +100,21 @@
 	var/PICK= options[rand(1,options.len)]
 	new PICK(src.loc)
 	delete_me = 1
+
+/obj/effect/landmark/machinery
+	invisibility = 0
+
+/obj/effect/landmark/machinery/New()
+	delete_me = 1
+
+/obj/effect/landmark/machinery/input
+	icon_state = "in-blue"
+	name = "Input area"
+
+/obj/effect/landmark/machinery/output
+	icon_state = "out-red"
+	name = "Output area"
+
 
 //SUBCLASSES.  Spawn a bunch of items and disappear likewise
 /obj/effect/landmark/costume/chicken/New()

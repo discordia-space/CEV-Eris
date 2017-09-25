@@ -11,11 +11,11 @@
 /datum/sun/New()
 
 	solars = solars_list
-	rate = rand(50,200)/100			// 50% - 200% of standard rotation
+	rate = rand(50, 200)/100			// 50% - 200% of standard rotation
 	if(prob(50))					// same chance to rotate clockwise than counter-clockwise
 		rate = -rate
 	solar_next_update = world.time	// init the timer
-	angle = rand (0,360)			// the station position to the sun is randomised at round start
+	angle = rand (0, 360)			// the station position to the sun is randomised at round start
 
 /*/hook/startup/proc/createSun() // handled in scheduler
 	sun = new /datum/sun()
@@ -33,7 +33,7 @@
 
 	solar_next_update += SOLAR_UPDATE_TIME // since we updated the angle, set the proper time for the next loop
 
-	// now calculate and cache the (dx,dy) increments for line drawing
+	// now calculate and cache the (dx, dy) increments for line drawing
 
 	var/s = sin(angle)
 	var/c = cos(angle)

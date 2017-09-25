@@ -31,5 +31,5 @@ var/list/robot_custom_icons
 			if("[ckey]-Standard" in valid_states)
 				icon_state = "[ckey]-Standard"
 			else
-				src << "<span class='warning'>Could not locate [ckey]-Standard sprite.</span>"
+				src << SPAN_WARNING("Could not locate [ckey]-Standard sprite.")
 				icon =  'icons/mob/robots.dmi'

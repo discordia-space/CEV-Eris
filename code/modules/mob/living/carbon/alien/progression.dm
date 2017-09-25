@@ -12,11 +12,11 @@
 		return
 
 	if(handcuffed || legcuffed)
-		src << "<span class='warning'>You cannot evolve when you are cuffed.</span>"
+		src << SPAN_WARNING("You cannot evolve when you are cuffed.")
 		return
 
 	if(amount_grown < max_grown)
-		src << "<span class='warning'>You are not fully grown.</span>"
+		src << SPAN_WARNING("You are not fully grown.")
 		return
 
 	// confirm_evolution() handles choices and other specific requirements.

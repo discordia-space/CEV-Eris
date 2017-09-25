@@ -23,7 +23,7 @@
 			qdel(G.affecting)
 			qdel(G)
 		else
-			user << "<span class='danger'>They are too big for the spike, try something smaller!</span>"
+			user << SPAN_DANGER("They are too big for the spike, try something smaller!")
 
 /obj/structure/kitchenspike/proc/spike(var/mob/living/victim)
 

@@ -54,11 +54,11 @@
 			I.loc = src
 			oxytanks.Add(I)
 			oxygentanks++
-			user << "<span class='notice'>You put [I] in [src].</span>"
+			user << SPAN_NOTICE("You put [I] in [src].")
 			if(oxygentanks < 5)
 				update_icon()
 		else
-			user << "<span class='notice'>[src] is full.</span>"
+			user << SPAN_NOTICE("[src] is full.")
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/weapon/tank/plasma))
@@ -67,19 +67,19 @@
 			I.loc = src
 			platanks.Add(I)
 			plasmatanks++
-			user << "<span class='notice'>You put [I] in [src].</span>"
+			user << SPAN_NOTICE("You put [I] in [src].")
 			if(oxygentanks < 6)
 				update_icon()
 		else
-			user << "<span class='notice'>[src] is full.</span>"
+			user << SPAN_NOTICE("[src] is full.")
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/weapon/wrench))
 		if(anchored)
-			user << "<span class='notice'>You lean down and unwrench [src].</span>"
+			user << SPAN_NOTICE("You lean down and unwrench [src].")
 			anchored = 0
 		else
-			user << "<span class='notice'>You wrench [src] into place.</span>"
+			user << SPAN_NOTICE("You wrench [src] into place.")
 			anchored = 1
 		return
 
@@ -97,7 +97,7 @@
 				else
 					O = new /obj/item/weapon/tank/oxygen(loc)
 				O.loc = loc
-				usr << "<span class='notice'>You take [O] out of [src].</span>"
+				usr << SPAN_NOTICE("You take [O] out of [src].")
 				oxygentanks--
 				update_icon()
 		if(href_list["plasma"])
@@ -109,7 +109,7 @@
 				else
 					P = new /obj/item/weapon/tank/plasma(loc)
 				P.loc = loc
-				usr << "<span class='notice'>You take [P] out of [src].</span>"
+				usr << SPAN_NOTICE("You take [P] out of [src].")
 				plasmatanks--
 				update_icon()
 		playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
