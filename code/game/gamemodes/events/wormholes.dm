@@ -44,19 +44,6 @@
 				pick_turfs -= exit
 				if( !exit || !istype(exit) )	continue	//sanity
 
-				create_wormhole(enter,exit)
+				PoolOrNew(/obj/effect/portal/wormhole, list(enter, exit, rand(300, 600)))
 
 				sleep(sleep_duration)						//have a well deserved nap!
-
-
-//maybe this proc can even be used as an admin tool for teleporting players without ruining immulsions?
-/proc/create_wormhole(var/turf/enter as turf, var/turf/exit as turf)
-	var/obj/effect/portal/P = new /obj/effect/portal( enter )
-	P.target = exit
-	P.creator = null
-	P.icon = 'icons/obj/objects.dmi'
-	P.failchance = 0
-	P.icon_state = "anom"
-	P.name = "wormhole"
-	spawn(rand(300,600))
-		qdel(P)
