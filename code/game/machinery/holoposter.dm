@@ -70,7 +70,7 @@
 /obj/machinery/holoposter/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(seclevel == "red" && "delta")
+	if(seclevel == ("red" || "delta"))
 		if(!icon_state == "attention")
 			icon_state = "attention"
 			set_light(l_range = 2, l_power = 3, l_color = "#AA7039")
