@@ -46,9 +46,11 @@
 				security_level = SEC_LEVEL_DELTA
 
 		var/newlevel = get_security_level()
-		for(var/obj/machinery/firealarm/FA in machines)
-			if(FA.z in config.contact_levels)
-				FA.set_security_level(newlevel)
+		for(var/elem in machines)
+			if(istype(elem, /obj/machinery/firealarm))
+				var/obj/machinery/firealarm/FA = elem
+				if(FA.z in config.contact_levels)
+					FA.set_security_level(newlevel)
 
 
 /proc/get_security_level()
