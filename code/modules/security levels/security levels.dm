@@ -9,6 +9,7 @@
 /var/datum/announcement/priority/security/security_announcement_down = new(do_log = 0, do_newscast = 1)
 
 /proc/set_security_level(var/level)
+	var/previosLevel = security_level
 	switch(level)
 		if("green")
 			level = SEC_LEVEL_GREEN
@@ -45,12 +46,10 @@
 				security_announcement_up.Announce("[config.alert_desc_delta]", "Attention! Delta security level reached!", new_sound = 'sound/effects/siren.ogg')
 				security_level = SEC_LEVEL_DELTA
 
-		var/newlevel = get_security_level()
+		var/obj/machinery/M = null
 		for(var/elem in machines)
-			if(istype(elem, /obj/machinery/firealarm))
-				var/obj/machinery/firealarm/FA = elem
-				if(FA.z in config.contact_levels)
-					FA.set_security_level(newlevel)
+			M = elem
+			M.securityLevelChanged(security_level, previosLevel)
 
 
 /proc/get_security_level()

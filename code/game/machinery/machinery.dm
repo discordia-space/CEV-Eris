@@ -92,6 +92,9 @@ Class Procs:
    process()                  'game/machinery/machine.dm'
       Called by the 'master_controller' once per game tick for each machine that is listed in the 'machines' list.
 
+   securityCodeChanged()
+      Automatically triggered when the alarm level changes, does nothing by itself, can be rewritten.
+
 
 	Compiled by Aygar
 */
@@ -187,6 +190,8 @@ Class Procs:
 
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
+
+/obj/machinery/proc/securityLevelChanged(var/newLevel, var/previousLevel)
 
 /obj/machinery/CanUseTopic(var/mob/user)
 	if(stat & BROKEN)
