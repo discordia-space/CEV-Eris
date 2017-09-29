@@ -24,18 +24,17 @@
 		icon_state = "off"
 		set_light(0)
 		return
+	var/new_color = "#FFFFFF"
 	if(stat & BROKEN)
 		icon_state = "glitch"
-		set_light(l_range = 2, l_power = 2, l_color = "#4D658D")
-		return
-	if(seclevel == ("red" || "delta"))
+		new_color = "#4D658D"
+	else if(security_level >= SEC_LEVEL_RED)
 		icon_state = "attention"
-		set_light(l_range = 3, l_power = 3, l_color = "#AA7039")
-		return
-	if(icon_state in postertypes)
-		set_light(l_range = 2, l_power = 2, l_color = postertypes[icon_state])
-	else
-		set_light(l_range = 2, l_power = 2, l_color = "#FFFFFF")
+		new_color =  "#AA7039"
+	else if(icon_state in postertypes)
+		new_color = postertypes[icon_state]
+
+	set_light(l_range = 2, l_power = 2, l_color = new_color)
 
 /obj/machinery/holoposter/proc/set_rand_sprite()
     icon_state = pick(postertypes)
