@@ -92,7 +92,7 @@ Class Procs:
    process()                  'game/machinery/machine.dm'
       Called by the 'master_controller' once per game tick for each machine that is listed in the 'machines' list.
 
-   securityCodeChanged()
+   securityLevelChanged()
       Automatically triggered when the alarm level changes, does nothing by itself, can be rewritten.
 
 

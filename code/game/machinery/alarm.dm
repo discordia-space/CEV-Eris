@@ -1154,7 +1154,7 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-/obj/machinery/firealarm/proc/set_security_level(var/newlevel)
+/obj/machinery/firealarm/securityLevelChanged(var/newlevel)
 	if(seclevel != newlevel)
 		seclevel = newlevel
 		update_icon()
