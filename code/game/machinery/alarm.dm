@@ -918,12 +918,16 @@ FIRE ALARM
 		else
 			icon_state = "fire0"
 			switch(seclevel)
-				if("green")	set_light(l_range = 1.5, l_power = 0.2, l_color = COLOR_LIME)
-				if("blue")	set_light(l_range = 1.5, l_power = 0.2, l_color = "#1024A9")
-				if("red")	set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_RED)
-				if("delta")	set_light(l_range = 1.5, l_power = 0.5, l_color = "#FF6633")
-
-		src.overlays += image('icons/obj/monitors.dmi', "overlay_[seclevel]")
+				if(SEC_LEVEL_GREEN)
+					color = COLOR_LIME
+				if(SEC_LEVEL_BLUE)
+					color = "#1024A9"
+				if(SEC_LEVEL_RED)
+					color = COLOR_RED
+				if(SEC_LEVEL_DELTA)
+					color = "#FF6633"
+			set_light(l_range = 1.5, l_power = 0.5, l_color = light_color)
+		src.overlays += image('icons/obj/monitors.dmi', "overlay_[num2seclevel(seclevel)]")
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(src.detecting)
@@ -1154,7 +1158,7 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-/obj/machinery/firealarm/proc/set_security_level(var/newlevel)
+/obj/machinery/firealarm/securityLevelChanged(var/newlevel)
 	if(seclevel != newlevel)
 		seclevel = newlevel
 		update_icon()
