@@ -9,7 +9,7 @@
 /var/datum/announcement/priority/security/security_announcement_down = new(do_log = 0, do_newscast = 1)
 
 /proc/set_security_level(var/level)
-	var/previosLevel = security_level
+	var/previousLevel = security_level
 	switch(level)
 		if("green")
 			level = SEC_LEVEL_GREEN
@@ -49,7 +49,7 @@
 		var/obj/machinery/M = null
 		for(var/elem in machines)
 			M = elem
-			M.securityLevelChanged(security_level, previosLevel)
+			M.securityLevelChanged(security_level, previousLevel)
 
 
 /proc/get_security_level()
