@@ -28,7 +28,7 @@
 		icon_state = "glitch"
 		set_light(l_range = 2, l_power = 2, l_color = "#4D658D")
 		return
-	if(icon_state == "attention")
+	if(seclevel == ("red" || "delta"))
 		icon_state = "attention"
 		set_light(l_range = 3, l_power = 3, l_color = "#AA7039")
 		return
@@ -72,11 +72,11 @@
 /obj/machinery/holoposter/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(seclevel == ("red" || "delta"))
-		if(!icon_state == "attention")
-			icon_state = "attention"
-			update_icon()
-		return
 	if((world.time > last_launch + 1 MINUTE) && (!icon_forced))
 		set_rand_sprite()
 		last_launch = world.time
+
+/obj/machinery/firealarm/securityLevelChanged(var/newlevel)
+	if(seclevel != newlevel)
+		seclevel = newlevel
+		update_icon()
