@@ -917,7 +917,6 @@ FIRE ALARM
 			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_RED)
 		else
 			icon_state = "fire0"
-			var/lighting_color = "#FFFFFF"
 			switch(seclevel)
 				if(SEC_LEVEL_GREEN)
 					color = COLOR_LIME
@@ -927,7 +926,7 @@ FIRE ALARM
 					color = COLOR_RED
 				if(SEC_LEVEL_DELTA)
 					color = "#FF6633"
-			set_light(l_range = 1.5, l_power = 0.5, l_color = lighting_color)
+			set_light(l_range = 1.5, l_power = 0.5, l_color = light_color)
 		src.overlays += image('icons/obj/monitors.dmi', "overlay_[num2seclevel(seclevel)]")
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
