@@ -92,6 +92,9 @@ Class Procs:
    process()                  'game/machinery/machine.dm'
       Called by the 'master_controller' once per game tick for each machine that is listed in the 'machines' list.
 
+   securityLevelChanged()
+      Automatically triggered when the alarm level changes, does nothing by itself, can be rewritten.
+
 
 	Compiled by Aygar
 */
@@ -147,15 +150,7 @@ Class Procs:
 	if(use_power && !stat)
 		use_power(7500/severity)
 
-		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
-		pulse2.icon = 'icons/effects/effects.dmi'
-		pulse2.icon_state = "empdisable"
-		pulse2.name = "emp sparks"
-		pulse2.anchored = 1
-		pulse2.set_dir(pick(cardinal))
-
-		spawn(10)
-			qdel(pulse2)
+		PoolOrNew(/obj/effect/overlay/pulse, src.loc)
 	..()
 
 /obj/machinery/ex_act(severity)
@@ -195,6 +190,8 @@ Class Procs:
 
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
+
+/obj/machinery/proc/securityLevelChanged(var/newLevel, var/previousLevel)
 
 /obj/machinery/CanUseTopic(var/mob/user)
 	if(stat & BROKEN)
