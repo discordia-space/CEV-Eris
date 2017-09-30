@@ -42,16 +42,18 @@
 
 /obj/machinery/holoposter/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER))
 		return
 	if (istype(W, /obj/item/device/multitool))
 		playsound(user.loc, 'sound/items/multitool_pulse.ogg', 60, 1)
 		icon_state = input("Available Posters", "Holographic Poster") as null|anything in  postertypes + "random"
 		if(icon_state == "random")
+			stat &= ~BROKEN
 			icon_forced = FALSE
 			set_rand_sprite()
 			return
 		icon_forced = TRUE
+		stat &= ~BROKEN
 		update_icon()
 		return
 
