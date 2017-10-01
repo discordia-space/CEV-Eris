@@ -8,10 +8,18 @@
 					/obj/item/weapon/crowbar,\
 					/obj/item/weapon/wrench,\
 					/obj/item/weapon/storage/belt/utility,\
-					/obj/item/clothing/gloves/insulated/cheap ,\
+					/obj/item/weapon/storage/belt/utility/full,\
+					/obj/item/clothing/gloves/insulated/cheap,\
+					/obj/item/clothing/head/welding,\
 					/obj/item/weapon/extinguisher,\
 					/obj/item/stack/cable_coil,\
 					/obj/item/weapon/packageWrap,\
+					/obj/item/weapon/shovel,\
+					/obj/item/weapon/pickaxe,\
+					/obj/item/device/flash,\
+					/obj/item/weapon/mop,\
+					/obj/item/weapon/inflatable_dispenser,\
+					/obj/item/weapon/grenade/chem_grenade/cleaner,\
 					/obj/item/device/lighting/toggleable/flashlight)
 
 /obj/random/tool/low_chance
@@ -28,6 +36,7 @@
 					prob(1);/obj/item/device/antibody_scanner,\
 					prob(3);/obj/item/device/destTagger,\
 					prob(3);/obj/item/device/analyzer/plant_analyzer,\
+					prob(1);/obj/item/weapon/autopsy_scanner,\
 					prob(5);/obj/item/device/healthanalyzer,\
 					prob(1);/obj/item/device/mass_spectrometer,\
 					prob(2);/obj/item/device/robotanalyzer,\
