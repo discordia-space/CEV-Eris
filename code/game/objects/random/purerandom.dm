@@ -84,6 +84,10 @@
 					prob(2);/obj/item/clothing/head/soft/blue,\
 					prob(2);/obj/item/clothing/head/soft/green,\
 					prob(2);/obj/item/clothing/head/soft/grey,\
+					prob(2);/obj/item/device/taperecorder,\
+					prob(2);/obj/item/weapon/storage/briefcase,\
+					prob(2);/obj/item/weapon/storage/secure/briefcase,\
+					prob(2);/obj/item/device/binoculars,\
 					prob(1);/obj/item/taperoll,\
 					prob(1);/obj/item/toy/crossbow,\
 					prob(1);/obj/item/toy/cultsword,\
@@ -119,6 +123,7 @@
 					prob(1);/obj/item/weapon/circuitboard/autolathe,\
 					prob(1);/obj/item/ammo_magazine/mg/cl32/rubber,\
 					prob(1);/obj/item/ammo_magazine/mg/cl32/brute,\
+					prob(1);/obj/item/weapon/flamethrower,\
 					prob(1);/obj/item/weapon/gun/projectile/mk58,\
 					prob(1);/obj/item/weapon/gun/projectile/giskard)
 

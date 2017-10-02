@@ -12,6 +12,14 @@
 					prob(3);/obj/item/weapon/material/butterflyhandle,\
 					prob(3);/obj/item/weapon/material/wirerod,\
 					prob(1);/obj/item/weapon/material/butterfly/switchblade,\
+					prob(1);/obj/item/clothing/mask/chameleon,\
+					prob(1);/obj/item/clothing/glasses/chameleon,\
+					prob(1);/obj/item/clothing/gloves/chameleon,\
+					prob(1);/obj/item/weapon/storage/backpack/chameleon,\
+					prob(1);/obj/item/clothing/shoes/chameleon,\
+					prob(1);/obj/item/clothing/head/chameleon,\
+					prob(1);/obj/item/clothing/under/chameleon,\
+					prob(2);/obj/item/weapon/gun/energy/chameleon,\
 					prob(1);/obj/item/weapon/reagent_containers/syringe/drugs)
 
 /obj/random/contraband/low_chance
