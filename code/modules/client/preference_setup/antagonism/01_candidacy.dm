@@ -19,17 +19,15 @@
 /datum/category_item/player_setup_item/antagonism/candidacy/content(var/mob/user)
 	. += "<b>Special Role Availability:</b><br>"
 	. += "<table>"
-	for(var/antag_type in antag_types)
-		var/datum/antagonist/antag = new antag_types[antag_type]
-		. += "<tr><td>[antag.role_text]: </td><td>"
-		if(jobban_isbanned(preference_mob(), antag.bantype))
+	for(var/antag_type in selectable_antag_types)
+		. += "<tr><td>[capitalize(selectable_antag_types[antag_type])]: </td><td>"
+		if(jobban_isbanned(preference_mob(), antag_bantypes[antag_type]))
 			. += "<span class='danger'>\[BANNED\]</span><br>"
-		else if(antag.role_type in pref.be_special_role)
-			. += "<b>Yes</b> / <a href='?src=\ref[src];del_special=[antag.role_type]'>No</a></br>"
+		else if(antag_type in pref.be_special_role)
+			. += "<b>Yes</b> / <a href='?src=\ref[src];del_special=[antag_type]]'>No</a></br>"
 		else
-			. += "<a href='?src=\ref[src];add_special=[antag.role_type]'>Yes</a> / <b>No</b></br>"
+			. += "<a href='?src=\ref[src];add_special=[antag_type]'>Yes</a> / <b>No</b></br>"
 		. += "</td></tr>"
-		qdel(antag)
 
 	var/list/ghost_traps = get_ghost_traps()
 	for(var/ghost_trap_key in ghost_traps)

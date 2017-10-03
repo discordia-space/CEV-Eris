@@ -1,7 +1,6 @@
 /datum/faction
 	var/id = "faction"
 	var/name = "faction"	//name displayed in many places
-	var/description = "This is faction."
 	var/antag = "antag"		//name for the faction members
 	var/antag_plural = "antags"
 	var/welcome_text = "Hello, antagonist!"
@@ -43,6 +42,7 @@
 	member.owner.current.verbs |= verbs
 	add_icons()
 	update_members()
+	return TRUE
 
 /datum/faction/proc/add_leader(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || member in leaders || !member.owner.current)
@@ -56,6 +56,7 @@
 	if(announce)
 		member.owner.current << SPAN_NOTICE("You became a <b>leader</b> of the [name].")
 	update_members()
+	return TRUE
 
 /datum/faction/proc/remove_leader(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !(member in leaders) || !member.owner.current)
@@ -67,6 +68,7 @@
 	member.owner.current.verbs.Remove(leader_verbs)
 
 	update_members()
+	return TRUE
 
 /datum/faction/proc/remove_member(var/datum/antagonist/member, var/announce = TRUE)
 	if(!(member in members))
@@ -86,6 +88,7 @@
 		member.owner.current.verbs.Remove(verbs)
 
 	update_members()
+	return TRUE
 
 /datum/faction/proc/remove_faction()
 	for(var/datum/antagonist/A in members)
@@ -93,6 +96,7 @@
 
 	current_factions.Remove(src)
 	qdel(src)
+	return TRUE
 
 
 /datum/faction/proc/create_objectives()
@@ -205,5 +209,31 @@
 
 /datum/faction/proc/faction_panel()
 	//!TODO: faction panel
+	var/data = "FACTION PANEL"
+	data += "<br>[name] - faction of [antag] ([id])"
+	data += "<br>Welcome: [welcome_text]"
+	data += "<br><a href='?src=\ref[src];rename=1'>\[NAME\]</a> \
+	<a href='?src=\ref[src];rewelcome=1'>\[WLCM\]</a><a href='?src=\ref[src];remove=1'>\[REMOVE\]</a>"
+	data += "<br>Hud: \"<a href='?src=\ref[src];seticon=1'>[hud_indicator ? hud_indicator:"null"]</a>\""
+	data += "<br><a href='?src=\ref[src];toggleinv=1'>\[MAKE [faction_invisible ? "VISIBLE":"INVISIBLE"]\]</a>"
+
+
+	data += "<br><br><b>Members:</b>"
+	for(var/i=1;i<=members.len)
+		var/datum/antagonist/member = members[i]
+		if(!istype(leader))
+			data += "<br>Invalid element on index [i]: [member?member:"NULL"]"
+		else
+			if(member in leaders)
+				data += "<br>[member.owner? member.owner.name:"no owner"] <a href='?src=\ref[src];remleader=[i]'>\[REMLEADER\]</a><a href='?src=\ref[src];remmember=[i]'>\[REM\]</a>"
+			else
+				data += "<br>[member.owner? member.owner.name:"no owner"] <a href='?src=\ref[src];makeleader=[i]'>\[LEADER\]</a><a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
+
+	usr << browse(data,"window=[id]faction")
 
 /datum/faction/Topic(href, href_list)
+	if(!check_rights(R_ADMIN))
+		return
+
+	faction_panel()
+

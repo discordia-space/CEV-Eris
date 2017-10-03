@@ -4,6 +4,7 @@
 	role_text_plural = "Changelings"
 	bantype = "changeling"
 	restricted_jobs = list("AI", "Cyborg")
+	weight = 15
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
 

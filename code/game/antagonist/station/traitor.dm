@@ -1,6 +1,7 @@
 // Inherits most of its vars from the base datum.
 /datum/antagonist/traitor
 	id = ROLE_TRAITOR
+	weight = 10
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
 
 /datum/antagonist/traitor/get_extra_panel_options(var/datum/mind/player)

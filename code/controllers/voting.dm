@@ -68,7 +68,7 @@ datum/controller/vote
 		var/greatest_votes = 0
 		var/total_votes = 0
 		for(var/option in choices)
-			var/votes = choices[option]
+			var/votes = choices[choices[option]]
 			total_votes += votes
 			if(votes > greatest_votes)
 				greatest_votes = votes
@@ -174,7 +174,7 @@ datum/controller/vote
 					if(ticker.current_state >= 2)
 						return 0
 					choices.Add(storyteller_cache)
-					for (var/F in choices)
+					for(var/F in choices)
 						var/datum/storyteller/S = storyteller_cache[F]
 						if(S)
 							storyteller_names[S.config_tag] = capitalize(S.name) //It's ugly to put this here but it works

@@ -1,46 +1,35 @@
 /datum/roleset/traitor
-	id = ROLESET_TRAITOR
-	difficulty = 1
-
-/datum/roleset/traitor/can_spawn()
-	return get_candidates_count(ROLE_TRAITOR) >= 1
+	id = "traitor"
+	roles = list(ROLE_TRAITOR = 1)
 
 /datum/roleset/traitor/spawn_roleset()
-	var/datum/mind/M = choose_candidate(ROLE_TRAITOR)
+	var/datum/mind/M = safepick(candidates_list(ROLE_TRAITOR))
 	if(!M)
-		log_roleset("Traitor roleset spawn failed: can't find candidate.")
-		return
+		return FALSE
+
 	make_antagonist(M,ROLE_TRAITOR)
 	log_roleset("[M.name] was choosen for the traitor role and was succesfully antagonized.")
+	return TRUE
 
 
 /datum/roleset/double_agents
-	id = ROLESET_VERSUS_TRAITOR
-	difficulty = 2
-
-/datum/roleset/double_agents/can_spawn()
-	return get_candidates_count(ROLE_TRAITOR) >= 2
+	id = "double_agents"
+	roles = list(ROLE_TRAITOR = 2)
 
 /datum/roleset/double_agents/spawn_roleset()
-	var/datum/mind/first = choose_candidate(ROLE_TRAITOR)
-	if(!first)
-		log_roleset("Double agents roleset spawn failed: can't find candidates.")
+	var/list/candidates = candidates_list(ROLE_TRAITOR)
+	if(candidates.len < 2)
 		return FALSE
 
-	pending_candidates.Add(first)
-
-	var/datum/mind/second = choose_candidate(ROLE_TRAITOR)
-	if(!second)
-		log_roleset("Double agents roleset spawn failed: can't find second candidate.")
-		return FALSE
-
-	pending_candidates.Cut()
+	var/datum/mind/first = pick(candidates)
+	candidates.Remove(first)
+	var/datum/mind/second = pick(candidates)
 
 	var/datum/antagonist/a1 = get_antag_instance(ROLE_TRAITOR)
 	var/datum/antagonist/a2 = get_antag_instance(ROLE_TRAITOR)
 
-	a1.owner = first
-	a2.owner = second
+	a1.create_antagonist(first, announce = FALSE)
+	a2.create_antagonist(second, announce = FALSE)
 
 	var/datum/objective/assassinate/O = new (a1)
 	O.target = second.current
@@ -54,7 +43,5 @@
 
 	new/datum/objective/escape(a2)
 
-	a1.create_antagonist(first)
-	a2.create_antagonist(second)
-
 	log_roleset("[first.name] and [second.name] were choosen for the double agents role and were succesfully antagonized.")
+	return TRUE

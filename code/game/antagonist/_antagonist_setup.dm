@@ -32,9 +32,11 @@
 var/global/list/antag_types = list()
 var/global/list/station_antag_types = list()
 var/global/list/outer_antag_types = list()
+var/global/list/group_antag_types = list()
 var/global/list/antag_starting_locations = list()
 var/global/list/selectable_antag_types = list()
 var/global/list/antag_bantypes = list()
+var/global/list/antag_weights = list()
 
 // Global procs.
 /proc/clear_antagonist(var/datum/mind/player)
@@ -84,7 +86,10 @@ var/global/list/antag_bantypes = list()
 		else
 			station_antag_types[A.id] = antag_type
 		if(A.selectable)
-			selectable_antag_types[A.role_type] = A.id
+			selectable_antag_types[A.id] = A.role_type
+		if(A.faction_type)
+			group_antag_types[A.id] = antag_type
+		antag_weights[A.id] = A.weight
 		antag_bantypes[A.bantype] = A.role_text
 
 /proc/get_antags(var/id)

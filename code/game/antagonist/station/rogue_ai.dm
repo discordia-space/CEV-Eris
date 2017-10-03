@@ -1,8 +1,9 @@
 /datum/antagonist/rogue_ai
 	id = ROLE_MALFUNCTION
+	role_type = "Malf AI"
 	role_text = "Rampant AI"
 	role_text_plural = "Rampant AIs"
-
+	weight = 100
 	welcome_text = "You are malfunctioning! You do not have to follow any laws."
 
 

@@ -11,11 +11,12 @@
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
 
 	// Role data.
-	var/id = "traitor"                      // Unique datum identifier.
+	var/id = null                      // Unique datum identifier.
 	var/role_type                           // Preferences option for this role. Defaults to the id if unset
 	var/role_text = "Traitor"               // special_role text.
 	var/role_text_plural = "Traitors"       // As above but plural.
-	var/selectable = FALSE
+	var/selectable = TRUE
+	var/weight = 10
 
 	// Faction data.
 	var/datum/faction/faction = null

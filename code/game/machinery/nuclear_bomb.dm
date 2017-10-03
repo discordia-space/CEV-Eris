@@ -339,7 +339,7 @@ var/bomb_set
 	src.safety = 1
 	update_icon()
 	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
-	if (ticker && ticker.storyteller)
+	if (ticker)
 		ticker.nuke_in_progress = TRUE
 	sleep(100)
 
@@ -358,10 +358,12 @@ var/bomb_set
 		else if(off_station == 2)
 			world << "<b>A nuclear device was set off, but the device was not on the ship!</b>"
 		else
-			world << "<b>The station was destoyed by the nuclear blast!</b>"
+			world << "<b>The ship was destoyed by the nuclear blast!</b>"
 
 		ticker.ship_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 														//kinda shit but I couldn't  get permission to do what I wanted to do.
+
+		ticker.station_explosion_cinematic(off_station)
 
 	return
 

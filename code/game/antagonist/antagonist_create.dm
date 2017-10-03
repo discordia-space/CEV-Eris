@@ -1,4 +1,4 @@
-/datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE)
+/datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE)
 	if(!istype(target) || !target.current)
 		log_debug("ANTAGONIST Wrong target passed to create_antagonist of [id]! Target: [target == null?"NULL":target]")
 		return FALSE
@@ -23,8 +23,9 @@
 
 	if(outer)
 		set_antag_name()
+	if(announce)
+		greet()
 
-	greet()
 	return TRUE
 
 /datum/antagonist/proc/create_faction()

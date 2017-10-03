@@ -1,27 +1,34 @@
+var/global/list/rolesets = list()
+
+/proc/fill_rolesets_list()
+	for(var/type in typesof(/datum/roleset)-/datum/roleset)
+		rolesets.Add(new type)
+
 /datum/roleset
 	var/id = "roleset"
-	var/difficulty = 0
+	var/list/roles = list()
 
-	var/list/pending_candidates = list()	//Buffer for resolving conflicts while choosing several roles
+/datum/roleset/proc/get_roles_weight()
+	var/W = 0
+	for(var/role in roles)
+		W += antag_weights[role] * roles[role]
+	return W
 
+/datum/roleset/proc/get_special_weight()
+	return 0
 
-/datum/roleset/proc/spawn_allowed()	//Is this roleset suitable to spawn in this situation?
-	return TRUE
+/datum/roleset/proc/get_weight()
+	return get_roles_weight() + get_special_weight()
 
-/datum/roleset/proc/can_spawn()		//Is there enough candidates for this roleset and spawn won't cause any conflicts?
+/datum/roleset/proc/can_spawn()
 	return TRUE
 
 /datum/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
 
-/datum/roleset/proc/get_candidates_count(var/a_type)	//For use for internal necessaries
+/datum/roleset/proc/get_candidates_count(var/a_type)	//For internal using
 	var/list/L = candidates_list(a_type)
 	return L.len
-
-/datum/roleset/proc/choose_candidate(var/antag)
-	var/list/L = candidates_list(antag)
-	if(L.len)
-		return pick(L)
 
 /datum/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
 	var/datum/antagonist/temp
@@ -41,8 +48,6 @@
 			continue
 		if(!(temp.id in candidate.current.client.prefs.be_special_role))
 			continue
-		if(candidate in pending_candidates)
-			continue
 		if(oneantag && candidate.antagonist.len)
 			continue
 
@@ -55,4 +60,4 @@
 
 
 /datum/roleset/proc/log_roleset(var/text)
-	log_admin("ROLESET: [text] \[STRT\]")
+	log_admin("ROLESET: [text] <a href='?src=\ref[ticker.storyteller];panel=1'>\[STRT\]</a>")

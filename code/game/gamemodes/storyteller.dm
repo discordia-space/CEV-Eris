@@ -1,47 +1,38 @@
 var/global/list/current_antags = list()
 var/global/list/current_factions = list()
 
+var/global/list/rolespawn_log = list()
+
 /datum/storyteller
 	var/config_tag = "normal"
 	var/name = "Shitgenerator"
 	var/welcome = "Prepare to fun!"
 	var/description = "Try to survive as long as you can."
 
-	var/chaos_level = 0
-	var/chaos_level_cap = 1000
-
-	var/chaos_increment = 10
-
 	var/role_spawn_timer = 0
-	var/event_spawn_timer = 0
+	var/role_spawn_stage = 0
 
 	var/min_role_spawn_delay = 20*60
 	var/max_role_spawn_delay = 30*60
 
 	var/min_start_role_spawn_delay = 10*60
-	var/max_start_role_spawn_delay = 15*60
+	var/max_start_role_spawn_delay = 18*60
 	var/first_role_spawn = TRUE
-
-	var/min_event_spawn_delay = 10*60
-	var/max_event_spawn_delay = 20*60
-
-	var/difficult_multiplier = 1	//The larger this multiplier, the more difficult roles will be spawned
 
 	var/list/disabled_antags = list()
 	var/list/disabled_events = list()
-	var/list/required_jobs = list("Captain","Technomancer")
+	var/list/required_jobs = list("Captain" = 1,"Technomancer" = 1)
 
 	var/list/pending_candidates = list()
 
 
 /datum/storyteller/proc/can_start(var/announce = FALSE)
 	for(var/role in required_jobs)
-		var/check = FALSE
+		var/check = 0
 		for(var/mob/new_player/player in player_list)
 			if(player.ready && player.mind && player.mind.assigned_role == role)
-				check = TRUE
-				break
-		if(!check)
+				check++
+		if(check < required_jobs[role])
 			world << "<b>Game won't start without the [role].</b>"
 			world << print_required_roles()
 			return FALSE
@@ -56,8 +47,8 @@ var/global/list/current_factions = list()
 /datum/storyteller/proc/declare_completion()
 
 /datum/storyteller/proc/set_up()
+	fill_rolesets_list()
 	set_role_timer(rand(min_start_role_spawn_delay, max_start_role_spawn_delay))
-	set_event_timer_default()
 
 /datum/storyteller/proc/set_role_timer(var/time)
 	role_spawn_timer = world.time + time
@@ -65,40 +56,49 @@ var/global/list/current_factions = list()
 /datum/storyteller/proc/set_role_timer_default()
 	set_role_timer(rand(min_role_spawn_delay, max_role_spawn_delay))
 
-/datum/storyteller/proc/set_event_timer(var/time)
-	event_spawn_timer = world.time + time
-
-/datum/storyteller/proc/set_event_timer_default()
-	set_event_timer(rand(min_event_spawn_delay, max_event_spawn_delay))
-
-
-/datum/storyteller/proc/chaos_increment()
-		chaos_level += chaos_increment
-
 /datum/storyteller/proc/process()
-	chaos_increment()
-	if(role_spawn_timer <= world.time)
+	if(role_spawn_timer && role_spawn_timer <= world.time)
 		set_role_timer_default()
+		role_spawn_stage++
 		spawn_antagonist()
 
-	if(event_spawn_timer <= world.time)
-		set_event_timer_default()
-		create_event()
 
-/datum/storyteller/proc/print_required_roles()
-	var/text = "[name]'s required roles:"
-	for(var/reqrole in required_jobs)
-		text += "<br> - [reqrole]"
-	return text
+/datum/storyteller/proc/get_round_weight()
+	return 0
 
-/datum/storyteller/proc/choose_antagonist_type()
-	return
+/datum/storyteller/proc/get_roleset_weight(var/datum/roleset/R)
+	return R.roles_weight()+R.special_weight()
 
 /datum/storyteller/proc/spawn_antagonist()
+	var/weight = get_round_weight()
+
+	//Shuffle roleset list to make rolesets with equal weight follow randomly
+	var/list/shuffled_rolesets = list()
+	for(var/datum/roleset/R in rolesets)
+		shuffled_rolesets.Insert(random(1,shuffled_rolesets.len),R)
+
+	//Now, sort possiblities by closeness to round weight
+	var/list/possiblities = list()
+	for(var/datum/roleset/R in shuffled_rolesets)
+		if(R.can_spawn())
+			var/added = FALSE
+			var/rweight = get_roleset_weight(R)
+			if(possiblities.len)
+				for(var/i = 1; i<=possiblities.len; i++)
+					var/list/M = possiblities[i]
+					if(abs(rweight-weight) <= abs(M[1]-weight))
+						added = TRUE
+						possiblities.Insert(i,list(rweight,R))
+						break
+			if(!added)
+				possiblities.Add(list(rweight,R))
+
+	for(var/list/L in possiblities)
+		var/datum/roleset/R = L[2]
+		if(spawn_roleset(R))
+			rolespawn_log.Add(L)
+			break
 
 
-/datum/storyteller/proc/choose_event()
-	return
 
-/datum/storyteller/proc/create_event()
 
