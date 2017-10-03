@@ -7,6 +7,12 @@
 					/obj/item/weapon/weldingtool,\
 					/obj/item/weapon/crowbar,\
 					/obj/item/weapon/wrench,\
+					/obj/item/device/assembly/igniter,\
+					/obj/item/device/assembly/infra,\
+					/obj/item/device/assembly/prox_sensor,\
+					/obj/item/device/assembly/signaler,\
+					/obj/item/device/assembly/timer,\
+					/obj/item/device/assembly/voice,\
 					/obj/item/weapon/storage/belt/utility,\
 					/obj/item/weapon/storage/belt/utility/full,\
 					/obj/item/clothing/gloves/insulated/cheap,\
@@ -56,7 +62,7 @@
 					prob(2);/obj/item/weapon/storage/toolbox/electrical,\
 					prob(1);/obj/item/weapon/storage/toolbox/emergency)
 
-/obj/random/technology_scanner/low_chance
-	name = "low chance random scanner"
-	icon_state = "tech-green-low"
+/obj/random/toolbox/low_chance
+	name = "low chance random toolbox"
+	icon_state = "box-green-low"
 	spawn_nothing_percentage = 60

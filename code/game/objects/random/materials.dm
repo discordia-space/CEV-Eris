@@ -44,5 +44,5 @@
 
 /obj/random/material_rare/low_chance
 	name = "low chance random rare material"
-	icon_state = "material-green-low"
+	icon_state = "material-orange-low"
 	spawn_nothing_percentage = 60
