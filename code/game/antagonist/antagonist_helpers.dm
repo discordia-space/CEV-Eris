@@ -1,5 +1,5 @@
 /datum/antagonist/proc/can_become_antag(var/datum/mind/player)
-	if(!player.current || !player.current.client)
+	if(!istype(player) || !player.current || !player.current.client)
 		return FALSE
 	if(jobban_isbanned(player.current, bantype))
 		return FALSE

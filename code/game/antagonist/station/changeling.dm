@@ -8,15 +8,12 @@
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
 
-	faction = "changeling"
-
 /datum/antagonist/changeling/get_special_objective_text()
-	if(owner)
+	if(owner && owner.changeling)
 		return "<br><b>Changeling ID:</b> [owner.changeling.changelingID].<br><b>Genomes Absorbed:</b> [owner.changeling.absorbedcount]"
 
-/datum/antagonist/changeling/create_antagonist(var/datum/mind/player, var/datum/faction/faction)
-	if(..())
-		player.current.make_changeling()
+/datum/antagonist/changeling/special_init()
+	owner.current.make_changeling()
 
 /datum/antagonist/changeling/create_objectives()
 	if(!..())

@@ -21,6 +21,8 @@
 	target.antagonist.Add(src)
 	current_antags.Add(src)
 
+	special_init()
+
 	if(new_faction)
 		new_faction.add_member(src)
 
@@ -35,10 +37,10 @@
 	if(announce)
 		greet()
 
-	if(outer)
-		set_antag_name()
-
 	return TRUE
+
+/datum/antagonist/proc/special_init()
+
 
 /datum/antagonist/proc/create_from_ghost(var/mob/observer/ghost)
 	if(!istype(ghost))

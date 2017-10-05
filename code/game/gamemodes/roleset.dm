@@ -30,7 +30,7 @@ var/global/list/rolesets = list()
 	var/list/L = candidates_list(a_type)
 	return L.len
 
-/datum/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
+/datum/roleset/proc/candidates_list(var/antag, var/oneantag = FALSE)
 	var/datum/antagonist/temp
 
 	if(ispath(antag_types[antag]))
@@ -68,26 +68,29 @@ var/global/list/rolesets = list()
 
 	var/list/candidates = list()
 	var/agree_time_out = FALSE
+	var/any_candidates = FALSE
 
 	if(temp.outer)
 		for(var/mob/observer/candidate in player_list)
 			if(!candidate.client)
 				continue
-			if(!temp.can_become_antag(candidate))
+			if(!temp.can_become_antag_ghost(candidate))
 				continue
 			if(!(temp.id in candidate.client.prefs.be_special_role))
 				continue
+
+			any_candidates = TRUE
 
 			//Activity test)))
 			if(act_test)
 				spawn()
 					usr = candidate
-					if(alert("Do you want to become the [temp.role_text]? Hurry up, you have one minute to make choice!","Antag lottery","OH YES","No, I'm autist") == "OH YES")
+					if(alert("Do you want to become the [temp.role_text]? Hurry up, you have 20 seconds to make choice!","Antag lottery","OH YES","No, I'm autist") == "OH YES")
 						if(!agree_time_out)
 							candidates.Add(candidate)
 
-		if(act_test)
-			sleep(1 MINUTE)
+		if(any_candidates && act_test)	//we won't need to wait, if there's no candidates
+			sleep(200)
 			agree_time_out = TRUE
 
 	return candidates

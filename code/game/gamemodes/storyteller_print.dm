@@ -83,11 +83,11 @@
 
 	usr << browse(data,"window=story")
 
-/datum/storyteller/Topic(href,href_list)
+/*/datum/storyteller/Topic(href,href_list)
 	if(!check_rights(R_ADMIN))
 		return
 
 	storyteller_panel()
-
+*/
 
 

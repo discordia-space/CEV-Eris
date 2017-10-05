@@ -7,19 +7,17 @@
 	welcome_text = "You are malfunctioning! You do not have to follow any laws."
 
 
-/datum/antagonist/rogue_ai/create_antagonist()
-	if(..())
-		var/mob/living/silicon/ai/master = owner.current
+/datum/antagonist/rogue_ai/special_init()
+	var/mob/living/silicon/ai/master = owner.current
 
-		for(var/mob/living/silicon/robot/R in player_list)
-			if(R.connected_ai)
-				continue
-			R.connect_to_ai(master)
-			R.lawupdate = TRUE
-			R.sync()
+	for(var/mob/living/silicon/robot/R in player_list)
+		if(R.connected_ai)
+			continue
+		R.connect_to_ai(master)
+		R.lawupdate = TRUE
+		R.sync()
 
-		return TRUE
-	return FALSE
+	return TRUE
 
 // Ensures proper reset of all malfunction related things.
 /datum/antagonist/rogue_ai/remove_antagonist()

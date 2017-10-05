@@ -122,14 +122,15 @@ var/global/list/rolespawn_log = list()
 						break
 			if(!added)
 				possiblities.Add(R)
+	spawn()
+		for(var/datum/roleset/R in possiblities)
+			if(R.spawn_roleset())
+				rolespawn_log.Add(R)
 
-	for(var/datum/roleset/R in possiblities)
-		if(R.spawn_roleset())
-			rolespawn_log.Add(R)
-			return TRUE
+		log_admin("STORYTELLER: All rolesets failed. There's no antag in this time. [storyteller_button()]")
 
-	log_admin("STORYTELLER: All rolesets failed. There's no antag in this time. [storyteller_button()]")
-	return FALSE
+
+	return TRUE
 
 /proc/storyteller_button()
 	return "<a href='?src=\ref[ticker.storyteller];panel=1'>\[STORY\]</a>"

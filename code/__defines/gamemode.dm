@@ -31,6 +31,7 @@
 
 // antag template macros.
 #define ROLE_BORER "borer"
+#define ROLE_BORER_REPRODUCED "borer_r"
 #define ROLE_XENOMORPH "xeno"
 #define ROLE_LOYALIST "loyalist"
 #define ROLE_MUTINEER "mutineer"
