@@ -7,9 +7,19 @@
 		return FALSE
 	if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
 		return FALSE
-	if(outer && !player.active)
+	if(player.current.stat || !player.active)
 		return FALSE
-	if(!outer && (player.current.stat || !player.active))
+
+	return TRUE
+
+/datum/antagonist/proc/can_become_antag_ghost(var/mob/ghost)
+	if(!outer)
+		return FALSE
+	if(!istype(ghost))
+		return FALSE
+	if(!ghost.client)
+		return FALSE
+	if(jobban_isbanned(ghost, bantype))
 		return FALSE
 
 	return TRUE

@@ -2,8 +2,8 @@
 	explanation_text = "Survive in a host until the end of the round."
 
 /datum/objective/borer_survive/check_completion()
-	if(owner)
-		var/mob/living/simple_animal/borer/B = owner
+	if(owner && owner.current)
+		var/mob/living/simple_animal/borer/B = owner.current
 		if(istype(B) && B.stat < DEAD && B.host && B.host.stat < DEAD)
 			return TRUE
 	return FALSE

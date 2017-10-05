@@ -21,11 +21,7 @@
 
 /datum/faction/New()
 	current_factions.Add(src)
-
 	create_objectives()
-
-/datum/faction/proc/convert()
-	return FALSE
 
 /datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
@@ -118,22 +114,25 @@
 
 /datum/faction/proc/customize(var/mob/leader)
 
-
-
 /datum/faction/proc/print_success()
 	if(!members.len)
 		return
 
-	var/text = "<b><font size=3>[capitalize(name)] was faction of [antag].</font></b>"
+	var/text = "<b>[capitalize(name)] was faction of [antag].</b>"
 
-	text += "<br><b>[capitalize(name)]'s leaders was:</b>"
-	for(var/datum/antagonist/A in leaders)
-		text += A.print_player()
+	if(leaders.len)
+		text += "<br><b>[capitalize(name)]'s leader[leaders.len >= 1?"":"s"] was:</b>"
+		for(var/datum/antagonist/A in leaders)
+			text += A.print_player()
+		text += "<br>"
+	else
+		text += "<br>[capitalize(name)] had no leaders.<br>"
 
 	text += "<br><b>[capitalize(name)]'s members was:</b>"
 	for(var/datum/antagonist/A in members)
 		text += A.print_player()
 
+	text += "<br>"
 	var/failed = FALSE
 	var/num = 1
 
@@ -152,7 +151,7 @@
 		text += "<br><font color='green'><B>The members of the [name] accomplished their tasks!</B></font>"
 
 	// Display the results.
-	world << text
+	return text
 
 /datum/faction/proc/get_indicator()
 	return image('icons/mob/mob.dmi', icon_state = hud_indicator, layer = LIGHTING_LAYER+0.1)
@@ -208,26 +207,25 @@
 		add_icons(antag)
 
 /datum/faction/proc/faction_panel()
-	//!TODO: faction panel
 	var/data = "FACTION PANEL"
 	data += "<br>[name] - faction of [antag] ([id])"
 	data += "<br>Welcome: [welcome_text]"
-	data += "<br><a href='?src=\ref[src];rename=1'>\[NAME\]</a> \
-	<a href='?src=\ref[src];rewelcome=1'>\[WLCM\]</a><a href='?src=\ref[src];remove=1'>\[REMOVE\]</a>"
-	data += "<br>Hud: \"<a href='?src=\ref[src];seticon=1'>[hud_indicator ? hud_indicator:"null"]</a>\""
-	data += "<br><a href='?src=\ref[src];toggleinv=1'>\[MAKE [faction_invisible ? "VISIBLE":"INVISIBLE"]\]</a>"
+	data += {"<br><a href='?src=\ref[src];rename=1'>\[NAME\]</a>
+	<a href='?src=\ref[src];rewelcome=1'>\[WLCM\]</a><a href='?src=\ref[src];remove=1'>\[REMOVE\]</a>"}
+	data += "<br>Hud: \"<a href='?src=\ref[src];seticon=1'>[hud_indicator ? hud_indicator : "null"]</a>\""
+	data += "<br><a href='?src=\ref[src];toggleinv=1'>\[MAKE [faction_invisible ? "VISIBLE" : "INVISIBLE"]\]</a>"
 
 
 	data += "<br><br><b>Members:</b>"
 	for(var/i=1;i<=members.len)
 		var/datum/antagonist/member = members[i]
-		if(!istype(leader))
-			data += "<br>Invalid element on index [i]: [member?member:"NULL"]"
+		if(!istype(member))
+			data += "<br>Invalid element on index [i]: [member ? member : "NULL"]"
 		else
 			if(member in leaders)
-				data += "<br>[member.owner? member.owner.name:"no owner"] <a href='?src=\ref[src];remleader=[i]'>\[REMLEADER\]</a><a href='?src=\ref[src];remmember=[i]'>\[REM\]</a>"
+				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];remleader=[i]'>\[REMLEADER\]</a><a href='?src=\ref[src];remmember=[i]'>\[REM\]</a>"
 			else
-				data += "<br>[member.owner? member.owner.name:"no owner"] <a href='?src=\ref[src];makeleader=[i]'>\[LEADER\]</a><a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
+				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];makeleader=[i]'>\[LEADER\]</a><a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
 
 	usr << browse(data,"window=[id]faction")
 

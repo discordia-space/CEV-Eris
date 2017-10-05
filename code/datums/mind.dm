@@ -134,18 +134,22 @@
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)
-				var/answer = alert("[antag.role_text] is outer antagonist. This player will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
+				var/answer = alert("[antag.role_text] is outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
 				ok = answer == "Yes"
 			else
-				ok = TRUE
+				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","No","Yes")
+				ok = answer == "Yes"
 
 			if(!ok)
 				return
 
-			if(antag.create_antagonist(src))
-				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
+			if(antag.outer)
+
 			else
-				usr << SPAN_WARNING("[src] could not be made into a [antag.role_text]!")
+				if(antag.create_antagonist(src))
+					log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
+				else
+					usr << SPAN_WARNING("[src] could not be made into a [antag.role_text]!")
 
 	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist

@@ -2,7 +2,7 @@
 
 	var/dat = "<tr><td><b>[role_text]:</b>"
 	var/extra = get_extra_panel_options()
-	dat += "<a href='?src=\ref[src];remove_antagonist=1'>\[remove\]</a>"
+	dat += "<br><a href='?src=\ref[src];remove_antagonist=1'>\[remove\]</a>"
 	dat += "<a href='?src=\ref[src];equip_antagonist=1'>\[equip\]</a>"
 	dat += "<a href='?src=\ref[src];unequip_antagonist=1'>\[unequip\]</a>"
 	if(outer)
@@ -27,7 +27,7 @@
 		dat += "<b>Objectives</b><br>"
 		var/num = 1
 		for(var/datum/objective/O in objectives)
-			dat += "<b>Objective #[num]:</b> "
+			dat += "<b>Objective #[num]:</b> [O.explanation_text] "
 			if(O.completed)
 				dat += "(<font color='green'>complete</font>)"
 			else

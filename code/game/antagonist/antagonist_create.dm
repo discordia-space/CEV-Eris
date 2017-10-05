@@ -1,14 +1,25 @@
 /datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE)
 	if(!istype(target) || !target.current)
-		log_debug("ANTAGONIST Wrong target passed to create_antagonist of [id]! Target: [target == null?"NULL":target]")
+		log_debug("ANTAGONIST Wrong target passed to create_antagonist of [id]! Target: [target == null?"NULL":target] \ref[target]")
 		return FALSE
 
 	if(!can_become_antag(target))
 		log_debug("ANTAGONIST [target.name] cannot become this antag, but passed roleset candidate.")
 		return FALSE
 
-	target.antagonist.Add(src)
 	owner = target
+
+	if(outer)
+		if(!ispath(mob_path))
+			owner = null
+			log_debug("ANTAGONIST [src.id]'s mob_path is not a path! ([mob_path])")
+			return FALSE
+
+		update_antag_mob()
+		place_antagonist()
+
+	target.antagonist.Add(src)
+	current_antags.Add(src)
 
 	if(new_faction)
 		new_faction.add_member(src)
@@ -21,12 +32,37 @@
 	if(doequip)
 		equip()
 
-	if(outer)
-		set_antag_name()
 	if(announce)
 		greet()
 
+	if(outer)
+		set_antag_name()
+
 	return TRUE
+
+/datum/antagonist/proc/create_from_ghost(var/mob/observer/ghost)
+	if(!istype(ghost))
+		log_debug("ANTAGONIST Wrong target passed to create_from_ghost of [id]! Ghost: [ghost == null?"NULL":ghost] \ref[ghost]")
+		return FALSE
+
+	if(!can_become_antag_ghost(ghost))
+		log_debug("ANTAGONIST This ghost ([ghost]) can't become [id].")
+		return FALSE
+
+	if(!ispath(mob_path))
+		log_debug("ANTAGONIST mob_path in [id] is not path! ([mob_path])")
+		return FALSE
+
+	var/mob/M = new mob_path
+	M.client = ghost.client
+
+	if(!M.mind)
+		log_debug("ANTAGONIST mob, which created from mob_path has no mind. ([M] - \ref[M] : [mob_path])")
+		M.client = ghost.client
+		qdel(M)
+		return FALSE
+
+	return create_antagonist(M.mind)
 
 /datum/antagonist/proc/create_faction()
 	if(!faction && faction_type)

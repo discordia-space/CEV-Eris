@@ -403,9 +403,9 @@
 	//Antagonist (Orange)
 
 		var/jobban_list = list()
-		for(var/antag_ban in antag_bantypes)
-			var/role = antag_bantypes[antag_ban]
-			jobban_list[role] = antag_ban
+		for(var/a_id in antag_bantypes)
+			var/a_ban = antag_bantypes[a_id]
+			jobban_list[antag_names[a_id]] = a_ban
 		body += formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 		dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
@@ -698,11 +698,9 @@
 
 		if(ticker && ticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
+		var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 		for(var/mode in config.storytellers)
 			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
-		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
-		dat += {"<A href='?src=\ref[src];c_mode2=random'>Random</A><br>"}
 		dat += {"Now: [master_storyteller]"}
 		usr << browse(dat, "window=c_mode")
 

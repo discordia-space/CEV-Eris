@@ -583,7 +583,7 @@ proc/admin_notice(var/message, var/rights)
 
 	var/dat = {"
 		<center><B>Game Panel</B></center><hr>\n
-		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
+		<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>
 		"}
 
 	dat += {"

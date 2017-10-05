@@ -30,6 +30,7 @@
 
 // Globals.
 var/global/list/antag_types = list()
+var/global/list/antag_names = list()
 var/global/list/station_antag_types = list()
 var/global/list/outer_antag_types = list()
 var/global/list/group_antag_types = list()
@@ -52,12 +53,21 @@ var/global/list/antag_weights = list()
 	if(antag_types[a_id])
 		return new antag_types[a_id]
 
+/proc/make_antagonist_ghost(var/mob/M, var/a_id)
+	if(antag_types[a_id])
+		var/a_type = antag_types[a_id]
+		var/datum/antagonist/A = new a_type
+		if(A.outer)
+			if(A.create_from_ghost(M))
+				return A
+
 /proc/make_antagonist(var/datum/mind/M, var/a_id)
 	if(antag_types[a_id])
 		var/a_type = antag_types[a_id]
 		var/datum/antagonist/A = new a_type
-		A.create_antagonist(M)
-		return A
+		if(!A.outer)
+			if(A.create_antagonist(M))
+				return A
 
 /proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
 	if(antag_types[a_id])
@@ -90,7 +100,8 @@ var/global/list/antag_weights = list()
 		if(A.faction_type)
 			group_antag_types[A.id] = antag_type
 		antag_weights[A.id] = A.weight
-		antag_bantypes[A.bantype] = A.role_text
+		antag_names[A.id] = A.role_text
+		antag_bantypes[A.id] = A.bantype
 
 /proc/get_antags(var/id)
 	var/list/L = list()

@@ -4,8 +4,9 @@
 	weight = 10
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
 
-/datum/antagonist/traitor/get_extra_panel_options(var/datum/mind/player)
-	return "<a href='?src=\ref[player];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[player.current]'>\[spawn uplink\]</a>"
+/datum/antagonist/traitor/get_extra_panel_options()
+	if(owner.current)
+		return "<a href='?src=\ref[owner];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[owner.current]'>\[spawn uplink\]</a>"
 
 /datum/antagonist/traitor/Topic(href, href_list)
 	if (..())

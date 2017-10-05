@@ -66,9 +66,8 @@
 
 /datum/category_item/player_setup_item/antagonism/candidacy/proc/valid_special_roles()
 	var/list/private_valid_special_roles = list()
-	for(var/antag_type in antag_types)
-		var/datum/antagonist/antag = new antag_types[antag_type]
-		private_valid_special_roles += antag.role_type
+	for(var/antag_type in selectable_antag_types)
+		private_valid_special_roles += antag_type
 
 	var/list/ghost_traps = get_ghost_traps()
 	for(var/ghost_trap_key in ghost_traps)

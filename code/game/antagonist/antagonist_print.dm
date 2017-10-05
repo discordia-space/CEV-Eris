@@ -2,10 +2,10 @@
 	if(!owner || !owner.current)
 		return
 
-	var/text = "<span class='notice'>Your current [role_text] objectives:</span><br>"
+	var/text = "<b>Your [role_text] current objectives:</b>"
 
 	if(faction)
-		text = "<span class='notice'>Your current [faction.name] faction objectives:</span><br>"
+		text = "<b>Your [faction.name] faction current objectives:</b>"
 
 	text += print_objectives(FALSE)
 
@@ -43,7 +43,7 @@
 	text += print_objectives()
 
 	// Display the results.
-	world << text
+	return text
 
 /datum/antagonist/proc/print_objectives(var/append_success = TRUE)
 	var/text = ""

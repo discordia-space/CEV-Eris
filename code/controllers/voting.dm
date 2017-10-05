@@ -13,7 +13,6 @@ datum/controller/vote
 	var/list/voted = list()
 	var/list/voting = list()
 	var/list/current_votes = list()
-	var/list/additional_text = list()
 	var/auto_muted = 0
 
 	New()
@@ -61,14 +60,13 @@ datum/controller/vote
 		voted.Cut()
 		voting.Cut()
 		current_votes.Cut()
-		additional_text.Cut()
 
 	proc/get_result()
 		//get the highest number of votes
 		var/greatest_votes = 0
 		var/total_votes = 0
 		for(var/option in choices)
-			var/votes = choices[choices[option]]
+			var/votes = choices[option]
 			total_votes += votes
 			if(votes > greatest_votes)
 				greatest_votes = votes
@@ -149,42 +147,48 @@ datum/controller/vote
 	proc/submit_vote(var/ckey, var/vote)
 		if(mode)
 			if(config.vote_no_dead && usr.stat == DEAD && !usr.client.holder)
-				return 0
-			if(vote && vote >= 1 && vote <= choices.len)
+				return FALSE
+			if(vote && choices[vote])
 				if(current_votes[ckey])
-					choices[choices[current_votes[ckey]]]--
+					choices[current_votes[ckey]]--
 				voted += usr.ckey
-				choices[choices[vote]]++	//check this
+				choices[vote]++	//check this
 				current_votes[ckey] = vote
 				return vote
-		return 0
+		return FALSE
+
+	proc/init_choices(var/list/L)
+		for(var/choice in L)
+			choices[choice] = 0
 
 	proc/initiate_vote(var/vote_type, var/initiator_key, var/automatic = 0)
 		if(!mode)
 			if(started_time != null && !(check_rights(R_ADMIN) || automatic))
 				var/next_allowed_time = (started_time + config.vote_delay)
 				if(next_allowed_time > world.time)
-					return 0
+					return FALSE
 
 			reset()
 			switch(vote_type)
 				if("restart")
-					choices.Add("Restart Round","Continue Playing")
+					init_choices(list("Restart Round","Continue Playing"))
 				if("storyteller")
-					if(ticker.current_state >= 2)
-						return 0
-					choices.Add(storyteller_cache)
+					if(ticker.current_state != GAME_STATE_PREGAME)
+						return FALSE
+					init_choices(list(storyteller_cache))
 					for(var/F in choices)
 						var/datum/storyteller/S = storyteller_cache[F]
 						if(S)
-							storyteller_names[S.config_tag] = capitalize(S.name) //It's ugly to put this here but it works
+							storyteller_names[S.config_tag] = S.name //It's ugly to put this here but it works
 				if("custom")
 					cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
-					if(!question)	return 0
+					if(!question)	return FALSE
+					var/list/tmp_choices = list()
 					for(var/i=1,i<=10,i++)
 						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))
 						if(!option || mode || !usr.client)	break
-						choices.Add(option)
+						tmp_choices.Add(option)
+					init_choices(tmp_choices)
 				else
 					return 0
 			mode = vote_type
@@ -225,24 +229,21 @@ datum/controller/vote
 			else			. += "<h2>Vote: [capitalize(mode)]</h2>"
 			. += "Time Left: [time_remaining] s<hr>"
 			. += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
-			if(capitalize(mode) == "storyteller") .+= "<td align = 'center'><b>Minimum Players</b></td></tr>"
 
-			for(var/i = 1, i <= choices.len, i++)
-				var/votes = choices[choices[i]]
+			for(var/choice in choices)
+				var/votes = choices[choice]
 				if(!votes)	votes = 0
 				. += "<tr>"
 				if(mode == "storyteller")
-					if(current_votes[C.ckey] == i)
-						. += "<td><b><a href='?src=\ref[src];vote=[i]'>[storyteller_names[choices[i]]]</a></b></td><td align = 'center'>[votes]</td>"
+					if(current_votes[C.ckey] == choice)
+						. += "<td><b><a href='?src=\ref[src];vote=[choice]'>[storyteller_names[choice]]</a></b></td><td align = 'center'>[votes]</td>"
 					else
-						. += "<td><a href='?src=\ref[src];vote=[i]'>[storyteller_names[choices[i]]]</a></td><td align = 'center'>[votes]</td>"
+						. += "<td><a href='?src=\ref[src];vote=[choice]'>[storyteller_names[choice]]</a></td><td align = 'center'>[votes]</td>"
 				else
-					if(current_votes[C.ckey] == i)
-						. += "<td><b><a href='?src=\ref[src];vote=[i]'>[choices[i]]</a></b></td><td align = 'center'>[votes]</td>"
+					if(current_votes[C.ckey] == choice)
+						. += "<td><b><a href='?src=\ref[src];vote=[choice]'>[choice]</a></b></td><td align = 'center'>[votes]</td>"
 					else
-						. += "<td><a href='?src=\ref[src];vote=[i]'>[choices[i]]</a></td><td align = 'center'>[votes]</td>"
-				if (additional_text.len >= i)
-					. += additional_text[i]
+						. += "<td><a href='?src=\ref[src];vote=[choice]'>[choice]</a></td><td align = 'center'>[votes]</td>"
 				. += "</tr>"
 
 			. += "</table><hr>"
@@ -304,9 +305,7 @@ datum/controller/vote
 				if(usr.client.holder)
 					initiate_vote("custom",usr.key)
 			else
-				var/t = round(text2num(href_list["vote"]))
-				if(t) // It starts from 1, so there's no problem
-					submit_vote(usr.ckey, t)
+				submit_vote(usr.ckey, href_list["vote"])
 		usr.vote()
 
 

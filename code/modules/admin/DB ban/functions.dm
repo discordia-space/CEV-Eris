@@ -329,7 +329,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		output += "<option value='[j]'>[j]</option>"
 	var/list/bantypes = list("traitor","changeling","operative","revolutionary","cultist","wizard") //For legacy bans.
 	for(var/ban_type in antag_bantypes) // Grab other bans.
-		bantypes |= ban_type
+		bantypes |= antag_bantypes[ban_type]
 	for(var/j in bantypes)
 		output += "<option value='[j]'>[j]</option>"
 	output += "</select></td></tr></table>"

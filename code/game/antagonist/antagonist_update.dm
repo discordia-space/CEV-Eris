@@ -1,13 +1,19 @@
-/datum/antagonist/proc/update_antag_mob()
-
+/datum/antagonist/proc/update_antag_mob(var/transfer_mind = TRUE)
 	// Get the mob.
 	if(owner.current && ispath(mob_path))
 		var/mob/holder = owner.current
-		owner.current = new mob_path(get_turf(owner.current))
-		owner.transfer_to(owner.current)
+
+		if(transfer_mind)
+			owner.current = new mob_path(get_turf(owner.current))
+			owner.transfer_to(owner.current)
+			owner.original = owner.current
+		else
+			var/mob/M = new mob_path(get_turf(owner.current))
+			M.key = owner.current.key
+			owner = M.mind
+
 		if(holder)
 			qdel(holder)
-		owner.original = owner.current
 		spawn(3)
 			var/mob/living/carbon/human/H = owner.current
 			if(istype(H))

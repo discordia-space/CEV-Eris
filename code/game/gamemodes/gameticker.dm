@@ -273,11 +273,11 @@ var/global/datum/controller/gameticker/ticker
 	world << "<br>"
 
 	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
-		if(aiPlayer.stat != 2)
+		if(aiPlayer.stat != DEAD)
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
 		else
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
-		aiPlayer.show_laws(1)
+		aiPlayer.show_laws(TRUE)
 
 		if(aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
