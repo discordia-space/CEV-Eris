@@ -12,6 +12,11 @@
 					prob(2);/obj/item/ammo_magazine/mc9mmt,\
 					prob(6);/obj/item/ammo_magazine/mc9mmt/rubber)
 
+/obj/random/ammo/low_chance
+	name = "low chance random random ammunition"
+	icon_state = "ammo-green-low"
+	spawn_nothing_percentage = 60
+
 /obj/random/ammo_ihs
 	name = "random ironhammer ammunition"
 	icon_state = "ammo-blue"

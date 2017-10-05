@@ -31,7 +31,7 @@
 /obj/random/gun_energy_cheap
 	name = "random cheap energy weapon"
 	desc = "This is a random security weapon."
-	icon_state = "gun-black"
+	icon_state = "gun-blue"
 	item_to_spawn()
 		return pick(prob(2);/obj/item/weapon/gun/energy/gun/martin,\
 					prob(2);/obj/item/weapon/gun/energy/gun,\

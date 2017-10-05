@@ -812,11 +812,6 @@ default behaviour is:
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return FALSE
 
-/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W in internal_organs)
-		return
-	..()
-
 //damage/heal the mob ears and adjust the deaf amount
 /mob/living/adjustEarDamage(var/damage, var/deaf)
 	ear_damage = max(0, ear_damage + damage)
