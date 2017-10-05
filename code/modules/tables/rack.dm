@@ -24,3 +24,8 @@
 /obj/structure/table/rack/holorack/dismantle(obj/item/weapon/wrench/W, mob/user)
 	user << SPAN_WARNING("You cannot dismantle \the [src].")
 	return
+
+/obj/structure/table/rack/shelf
+	name = "shelf"
+	desc = "For collecting dust, heads of the enemies and tools."
+	icon_state = "shelf"
