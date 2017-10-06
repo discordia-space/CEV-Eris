@@ -34,7 +34,7 @@
 	name = "memory circuit"
 	desc = "This circuit can store four pieces of data."
 	icon_state = "memory4"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	complexity = 4
 	inputs = list("input pin 1","input pin 2","input pin 3","input pin 4")
 	outputs = list("output pin 1","output pin 2","output pin 3","output pin 4")
@@ -45,7 +45,7 @@
 	name = "large memory circuit"
 	desc = "This big circuit can hold eight pieces of data."
 	icon_state = "memory8"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	complexity = 8
 	inputs = list(
 		"input pin 1",
@@ -73,7 +73,7 @@
 	name = "large memory stick"
 	desc = "This stick of memory can hold up up to sixteen pieces of data."
 	icon_state = "memory16"
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	complexity = 16
 	inputs = list(
 		"input pin 1",

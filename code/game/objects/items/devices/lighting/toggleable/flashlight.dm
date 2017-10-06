@@ -100,7 +100,7 @@
 	item_state = ""
 	slot_flags = SLOT_EARS
 	brightness_on = 2
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 
 /obj/item/device/lighting/toggleable/flashlight/heavy
 	name = "heavy duty flashlight"

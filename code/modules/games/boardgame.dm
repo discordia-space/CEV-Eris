@@ -172,7 +172,7 @@ obj/item/weapon/board/attackby(obj/item/I as obj, mob/user as mob)
 	desc = "It is plastic and shiny."
 	icon = 'icons/obj/pieces.dmi'
 	icon_state = "checker_black"
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 
 /obj/item/weapon/checker/red
 	name = "red checker"

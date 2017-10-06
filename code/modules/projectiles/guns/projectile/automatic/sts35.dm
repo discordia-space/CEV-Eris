@@ -3,7 +3,7 @@
 	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 7.62mm rounds. This one is unmarked."
 	icon_state = "arifle"
 	item_state = null
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	force = 10
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
