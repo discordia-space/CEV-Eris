@@ -6,7 +6,7 @@
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = HOLD_CASINGS
 	max_shells = 6
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_PAINFULL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK

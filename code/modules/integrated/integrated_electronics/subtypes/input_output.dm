@@ -635,7 +635,7 @@
 	desc = "This small camera allows a remote viewer to see what it sees."
 	extended_desc = "The camera is linked to the Research camera network."
 	icon_state = "video_camera"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	complexity = 10
 	inputs = list("camera name" = "video camera circuit", "camera active" = 0)
 	outputs = list()

@@ -3,7 +3,7 @@
 	desc = "The Z8 Bulldog is an older model bullpup carbine, made by Frozen Star. Uses armor piercing 5.56mm rounds. Makes you feel like a space marine when you hold it."
 	icon_state = "carbine"
 	item_state = "z8carbine"
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_PAINFULL
 	caliber = "a556"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)

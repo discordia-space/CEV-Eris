@@ -6,7 +6,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "evidenceobj"
 	item_state = ""
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	var/obj/item/stored_item = null
 
 /obj/item/weapon/evidencebag/MouseDrop(var/obj/item/I as obj)

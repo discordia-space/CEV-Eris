@@ -5,7 +5,7 @@
 	desc = "A nulling power sink which drains energy from electrical systems."
 	icon_state = "powersink0"
 	item_state = "electronic"
-	w_class = 4.0
+	w_class = ITEM_SIZE_LARGE
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 1

@@ -5,7 +5,7 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	storage_slots = 7
-	max_w_class = 3
+	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 28
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")

@@ -8,7 +8,7 @@
 	fire_sound = 'sound/weapons/emitter.ogg'
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	w_class = 4.0
+	w_class = ITEM_SIZE_LARGE
 	projectile_type = /obj/item/projectile/change
 	origin_tech = null
 	self_recharge = 1

@@ -292,7 +292,7 @@ var/global/list/damage_icon_parts = list()
 			//Handle husk overlay.
 			if(husk && ("overlay_husk" in icon_states(species.icobase)))
 				var/icon/mask = new(base_icon)
-				var/icon/husk_over = new(species.icobase,"overlay_husk")
+				var/icon/husk_over = new(species.icobase,"overlay_husk[fat]")
 				mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
 				husk_over.Blend(mask, ICON_ADD)
 				base_icon.Blend(husk_over, ICON_OVERLAY)

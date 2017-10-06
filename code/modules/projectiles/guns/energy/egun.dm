@@ -26,7 +26,7 @@
 	icon_state = "PDW"
 	item_state = "gun"
 	charge_meter = 0
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	charge_cost = 50
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	modifystate = null

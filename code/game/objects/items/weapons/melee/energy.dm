@@ -60,14 +60,14 @@
 	//active_force = 150 //holy...
 	active_force = 60
 	active_throwforce = 35
-	active_w_class = 5
+	active_w_class = ITEM_SIZE_HUGE
 	//force = 40
 	//throwforce = 25
 	force = 20
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	flags = CONDUCT | NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -94,12 +94,12 @@
 	icon_state = "sword0"
 	active_force = WEAPON_FORCE_LETHAL
 	active_throwforce = WEAPON_FORCE_LETHAL
-	active_w_class = 4
+	active_w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	flags = NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	sharp = 1
@@ -177,7 +177,7 @@
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1
-	w_class = 4.0//So you can't hide it in your pocket or some such.
+	w_class = ITEM_SIZE_LARGE//So you can't hide it in your pocket or some such.
 	flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator

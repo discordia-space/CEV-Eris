@@ -4,7 +4,7 @@
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4
-	w_class = 4.0
+	w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_PAINFULL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
