@@ -6,16 +6,21 @@
 	name = "closet"
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closet.dmi'
-	icon_state = "closed"
+	icon_state = "generic"
 	density = 1
 	w_class = 5
 	var/locked = FALSE
 	var/broken = FALSE
+	var/horizontal = FALSE
 	var/icon_door = null
+	var/allow_dense = FALSE
 	var/icon_door_override = FALSE //override to have open overlay use icon different to its base's
 	var/secure = FALSE
+	var/allow_objects = FALSE
 	var/opened = FALSE
 	var/welded = FALSE
+	var/dense_when_open = FALSE
+	var/max_mob_size = 2
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	var/health = 100
 	var/breakout = FALSE //if someone is currently breaking out. mutex
@@ -30,7 +35,7 @@
 
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
-
+/*
 /obj/structure/closet/initialize()
 	..()
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
@@ -44,6 +49,11 @@
 			content_size += Ceiling(I.w_class/2)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
+*/
+/obj/structure/closet/initialize(mapload)
+	. = ..()
+	update_icon()
+	PopulateContents()
 
 
 /obj/structure/closet/examine(mob/user)
@@ -70,16 +80,62 @@
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
 		return 0
+	var/turf/T = get_turf(src)
+	for(var/mob/living/L in T)
+		if(L.anchored || horizontal && L.mob_size > 0 && L.density)
+			if(user)
+				user << "<span class='danger'>There's something large on top of [src], preventing it from opening.</span>"
+			return 0
 	return 1
-
-	if(locked)
-		return 0
-	return ..()
 
 /obj/structure/closet/proc/can_close()
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src)
 			return 0
+	return 1
+
+/obj/structure/closet/proc/take_contents()
+	var/atom/L = drop_location()
+	for(var/atom/movable/AM in L)
+		if(AM != src && insert(AM) == -1) // limit reached
+			break
+
+/obj/structure/closet/proc/insert(atom/movable/AM)
+	if(contents.len >= storage_capacity)
+		return -1
+
+	if(ismob(AM))
+		if(!isliving(AM)) //let's not put ghosts or camera mobs inside closets...
+			return
+		var/mob/living/L = AM
+		if(L.anchored || L.buckled || L.incorporeal_move )
+			return
+		if(L.mob_size > 0) // Tiny mobs are treated as items.
+			if(horizontal && L.density)
+				return
+			if(L.mob_size > max_mob_size)
+				return
+			var/mobs_stored = 0
+			for(var/mob/living/M in contents)
+				if(++mobs_stored >= storage_capacity)
+					return
+		L.stop_pulling()
+	else if(istype(AM, /obj/structure/closet))
+		return
+	else if(isobj(AM))
+		if(!allow_objects && !istype(AM, /obj/item) && !istype(AM, /obj/effect/dummy/chameleon))
+			return
+		if(!allow_dense && AM.density)
+			return
+		if(AM.anchored)
+			return
+	else
+		return
+
+	AM.forceMove(src)
+	if(AM.pulledby)
+		AM.pulledby.stop_pulling()
+
 	return 1
 
 /obj/structure/closet/proc/dump_contents()
@@ -98,15 +154,13 @@
 
 /obj/structure/closet/proc/open(mob/living/user)
 	if(opened || !can_open(user))
-		return 0
-	return 1
+		return
+	playsound(loc, open_sound, 100, 1, -3)
 	opened = 1
-	if(!can_open())
-		return 0
+	if(!dense_when_open)
+		density = FALSE
 	dump_contents()
 	update_icon()
-	playsound(src.loc, open_sound, 100, 1, -3)
-	density = 0
 	return 1
 
 /obj/structure/closet/proc/close(mob/living/user)
@@ -186,6 +240,8 @@
 					A.forceMove(src.loc)
 				qdel(src)
 
+/obj/structure/closet/proc/PopulateContents()
+	return
 /obj/structure/closet/proc/damage(var/damage)
 	health -= damage
 	if(health <= 0)

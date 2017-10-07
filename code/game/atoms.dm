@@ -35,6 +35,9 @@
 		reagents = null
 	. = ..()
 
+/atom/proc/AllowDrop()
+	return FALSE
+
 /atom/proc/reveal_blood()
 	return
 
@@ -43,6 +46,12 @@
 
 /atom/proc/remove_air(amount)
 	return null
+
+/atom/proc/drop_location()
+	var/atom/L = loc
+	if(!L)
+		return null
+	return L.AllowDrop() ? L : get_turf(L)
 
 /atom/proc/return_air()
 	if(loc)
