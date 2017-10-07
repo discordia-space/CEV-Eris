@@ -30,7 +30,7 @@ var/global/list/rolesets = list()
 	var/list/L = candidates_list(a_type)
 	return L.len
 
-/datum/roleset/proc/candidates_list(var/antag, var/oneantag = FALSE)
+/datum/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
 	var/datum/antagonist/temp
 
 	if(ispath(antag_types[antag]))
@@ -50,7 +50,7 @@ var/global/list/rolesets = list()
 				continue
 			if(!(temp.id in candidate.current.client.prefs.be_special_role))
 				continue
-			if(oneantag && candidate.antagonist.len)
+			if(ticker.storyteller && ticker.storyteller.one_role_per_player && candidate.antagonist.len)
 				continue
 
 			candidates.Add(candidate)
@@ -90,7 +90,7 @@ var/global/list/rolesets = list()
 							candidates.Add(candidate)
 
 		if(any_candidates && act_test)	//we won't need to wait, if there's no candidates
-			sleep(200)
+			sleep(20 SECONDS)
 			agree_time_out = TRUE
 
 	return candidates

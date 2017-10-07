@@ -14,9 +14,6 @@
 	selectable = FALSE
 	mob_path = /mob/living/simple_animal/borer
 
-/datum/antagonist/borer/get_extra_panel_options(var/datum/mind/player)
-	return "<a href='?src=\ref[src];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
-
 /datum/antagonist/borer/create_objectives()
 	new /datum/objective/borer_survive (src)
 	new /datum/objective/borer_reproduce (src)

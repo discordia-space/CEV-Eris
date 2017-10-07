@@ -5,7 +5,6 @@ var/global/datum/controller/gameticker/ticker
 	var/current_state = GAME_STATE_PREGAME
 
 	var/datum/storyteller/storyteller = null
-	var/post_game = 0
 	var/event_time = null
 	var/event = 0
 
@@ -107,6 +106,8 @@ var/global/datum/controller/gameticker/ticker
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
+		for(var/mob/new_player/N in mob_list)
+			N.new_player_panel_proc()
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
 
@@ -147,28 +148,50 @@ var/global/datum/controller/gameticker/ticker
 	cinematic = new(src)
 	cinematic.icon = 'icons/effects/station_explosion.dmi'
 	cinematic.icon_state = "station_intact"
-	cinematic.layer = 20
+	cinematic.layer = 30
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
 
-	for(var/mob/living/M in living_mob_list)
+	for(var/mob/M in mob_list)
 		var/turf/T = get_turf(M)
 		if(T && T.z in config.station_levels)	//we don't use M.death(0) because it calls a for(/mob) loop and
 			if(M.client)
 				M.client.screen += cinematic
-			M.health = 0
-			M.stat = DEAD
-
+			if(isliving(M))
+				var/mob/living/LM = M
+				LM.health = 0
+				LM.stat = DEAD
 
 	//Now animate the cinematic
+	sleep(30)
+
 	flick("intro_nuke", cinematic)
-	sleep(35)
-	flick("station_explode_fade_red", cinematic)
+
+	sleep(30)
+
+	flick("ship_explode_fade_red", cinematic)
+
+	sleep(15)
+
 	world << sound('sound/effects/explosionfar.ogg')
+
+	sleep(5)
+
+	world << sound('sound/effects/explosionfar.ogg')
+
+	sleep(4)
+
+	world << sound('sound/effects/explosionfar.ogg')
+
+	sleep(6)
+
+	world << sound('sound/effects/explosionfar.ogg')
+	world << sound('sound/effects/explosionfar.ogg')
+	world << sound('sound/effects/explosionfar.ogg')
+
+	sleep(30)
+
 	cinematic.icon_state = "summary_selfdes"
-	for(var/mob/living/M in living_mob_list)
-		if(M.loc.z in config.station_levels)
-			M.death()//No mercy
 	//If its actually the end of the round, wait for it to end.
 	//Otherwise if its a verb it will continue on afterwards.
 	sleep(300)
@@ -219,7 +242,7 @@ var/global/datum/controller/gameticker/ticker
 
 	var/game_finished = (emergency_shuttle.returned() || ship_was_nuked  || universe_has_ended)
 
-	if(!nuke_in_progress && game_finished && post_game)
+	if(!nuke_in_progress && game_finished)
 		current_state = GAME_STATE_FINISHED
 
 		spawn

@@ -12,19 +12,19 @@ var/global/list/rolespawn_log = list()
 	var/role_spawn_timer = 0
 	var/role_spawn_stage = 0
 
-	var/min_role_spawn_delay = 20 MINUTE
-	var/max_role_spawn_delay = 30 MINUTE
+	var/min_role_spawn_delay = 20 MINUTES
+	var/max_role_spawn_delay = 30 MINUTES
 
-	var/min_start_role_spawn_delay = 10 MINUTE
-	var/max_start_role_spawn_delay = 18 MINUTE
-	var/first_role_spawn = TRUE
+	var/min_start_role_spawn_delay = 10 MINUTES
+	var/max_start_role_spawn_delay = 18 MINUTES
 
 	var/list/disabled_antags = list()
 	var/list/disabled_events = list()
 	var/list/required_jobs = list("Captain" = 1,"Technomancer" = 1)
 
-	var/list/pending_candidates = list()
+	var/one_role_per_player = TRUE
 
+	var/force_spawn_now = FALSE
 
 /datum/storyteller/proc/can_start(var/announce = FALSE)
 	if(required_jobs.len)
@@ -34,8 +34,9 @@ var/global/list/rolespawn_log = list()
 				if(player.ready && player.mind && player.mind.assigned_role == role)
 					check++
 			if(check < required_jobs[role])
-				world << "<b>Game can't start without the [role].</b>"
-				world << print_required_roles()
+				if(announce)
+					world << "<b>Game can't start without the [role].</b>"
+					world << print_required_roles()
 				return FALSE
 
 	return TRUE
@@ -56,11 +57,11 @@ var/global/list/rolespawn_log = list()
 	set_role_timer(rand(min_role_spawn_delay, max_role_spawn_delay))
 
 /datum/storyteller/proc/process()
-	if(role_spawn_timer && role_spawn_timer <= world.time)
+	if(force_spawn_now || (role_spawn_timer && role_spawn_timer <= world.time))
+		force_spawn_now = FALSE
 		set_role_timer_default()
 		role_spawn_stage++
 		spawn_antagonist()
-
 
 /datum/storyteller/proc/get_player_weight(var/mob/M)
 	var/weight = 0
@@ -126,6 +127,7 @@ var/global/list/rolespawn_log = list()
 		for(var/datum/roleset/R in possiblities)
 			if(R.spawn_roleset())
 				rolespawn_log.Add(R)
+				break
 
 		log_admin("STORYTELLER: All rolesets failed. There's no antag in this time. [storyteller_button()]")
 

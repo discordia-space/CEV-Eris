@@ -1,14 +1,21 @@
 /datum/antagonist/proc/get_panel_entry()
 
 	var/dat = "<tr><td><b>[role_text]:</b>"
+	if(!owner)
+		dat += "<br><b>This antag datum has no owner.</b> <a href='?src=\ref[src];select_antagonist=1'>\[select\]</a>"
+	else
+		dat += "<br><b>Owner: </b>[owner.name] <a href='?src=\ref[src];edit_mind=1'>\[memory\]</a>"
 	var/extra = get_extra_panel_options()
-	dat += "<br><a href='?src=\ref[src];remove_antagonist=1'>\[remove\]</a>"
-	dat += "<a href='?src=\ref[src];equip_antagonist=1'>\[equip\]</a>"
-	dat += "<a href='?src=\ref[src];unequip_antagonist=1'>\[unequip\]</a>"
-	if(outer)
-		dat += "<a href='?src=\ref[src];move_antag_to_spawn=1'>\[move to spawn\]</a>"
-	if(extra)
-		dat += "[extra]"
+	if(owner)
+		dat += "<br><a href='?src=\ref[src];remove_antagonist=1'>\[remove\]</a>"
+		dat += "<a href='?src=\ref[src];equip_antagonist=1'>\[equip\]</a>"
+		dat += "<a href='?src=\ref[src];unequip_antagonist=1'>\[unequip\]</a>"
+		if(outer)
+			dat += "<a href='?src=\ref[src];move_antag_to_spawn=1'>\[move to spawn\]</a>"
+		if(extra)
+			dat += "[extra]"
+	else
+		dat += "<br><a href='?src=\ref[src];del_datum=1'><b><font color='red'>\[DELETE DATUM\]</font></b></a>"
 
 	dat += "<br>"
 
@@ -41,11 +48,37 @@
 	dat += "</td></tr>"
 	return dat
 
+/datum/antagonist/proc/antagonist_panel()
+	usr << browse(get_panel_entry(),"window=\ref[src]antag")
+
 /datum/antagonist/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(href_list["remove_antagonist"])
+	if(href_list["select_antagonist"])
+		if(!owner)
+			if(!outer)
+				var/list/MN = list()
+				for(var/datum/mind/M in ticker.minds)
+					if(can_become_antag(M))
+						MN[M.name] = M
+				MN["CANCEL"] = null
+
+				var/datum/mind/M = input("Select mind for role.","Add antagonist",null) in MN
+				if(M)
+					create_antagonist(M)
+			else
+				var/list/CD = list()
+				for(var/mob/observer/M in player_list)
+					if(can_become_antag_ghost(M))
+						CD[M.name] = M
+				CD["CANCEL"] = null
+
+				var/mob/M = input("Select ghost for role.","Add antagonist",null) in CD
+				if(M)
+					create_from_ghost(M)
+
+	else if(href_list["remove_antagonist"])
 		remove_antagonist()
 
 	else if(href_list["equip_antagonist"])
@@ -105,8 +138,17 @@
 		F.customize()
 		F.add_leader(src)
 
-	if(owner)
-		owner.edit_memory()
+	else if(href_list["edit_memory"])
+		if(owner)
+			owner.edit_memory()
+
+	else if(href_list["del_datum"])
+		if(input("Are you sure you want to delete this datum?","Antag del","No","Yes") == "Yes")
+			remove_antagonist()
+			qdel(src)
+			return
+
+	antagonist_panel()
 
 /datum/antagonist/proc/get_extra_panel_options()
 	return

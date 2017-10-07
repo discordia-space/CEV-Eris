@@ -116,12 +116,12 @@
 
 	out += "<b>Make_antagonist: </b>"
 	for(var/antag in antag_types)
-		var/antag_name = selectable_antag_types[antag] ? selectable_antag_types[antag] : "<font color='red'>[antag]<font>"
+		var/antag_name = selectable_antag_types[antag] ? selectable_antag_types[antag] : "<font color='red'>[antag]</font>"
 		out += "<a href='?src=\ref[src];add_antagonist=[antag]'>[antag_name]</a>  "
 	out += "<br>"
 
 	for(var/datum/antagonist/antag in antagonist)
-		out += "[antag.get_panel_entry(src)]"
+		out += "<br><b>[antag.role_text]</b> <a href='?src=\ref[antag]'>\[EDIT\]</a> <a href='?src=\ref[antag];remove_antagonist=1'>\[DEL\]</a>"
 	out += "</table><hr>"
 	usr << browse(out, "window=edit_memory[src]")
 
@@ -130,7 +130,8 @@
 		return
 
 	if(href_list["add_antagonist"])
-		var/datum/antagonist/antag = new antag_types[href_list["add_antagonist"]]
+		var/t = antag_types[href_list["add_antagonist"]]
+		var/datum/antagonist/antag = new t
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)

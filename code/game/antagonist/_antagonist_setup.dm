@@ -57,17 +57,15 @@ var/global/list/antag_weights = list()
 	if(antag_types[a_id])
 		var/a_type = antag_types[a_id]
 		var/datum/antagonist/A = new a_type
-		if(A.outer)
-			if(A.create_from_ghost(M))
-				return A
+		if(A.create_from_ghost(M))
+			return A
 
 /proc/make_antagonist(var/datum/mind/M, var/a_id)
 	if(antag_types[a_id])
 		var/a_type = antag_types[a_id]
 		var/datum/antagonist/A = new a_type
-		if(!A.outer)
-			if(A.create_antagonist(M))
-				return A
+		if(istype(M) && A.create_antagonist(M))
+			return A
 
 /proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
 	if(antag_types[a_id])

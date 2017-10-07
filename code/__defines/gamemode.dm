@@ -27,7 +27,7 @@
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
 // Storyteller names macro
-#define STORYTELLER_BASE "shit generator"
+#define STORYTELLER_BASE "shitgenerator"
 
 // antag template macros.
 #define ROLE_BORER "borer"

@@ -581,10 +581,11 @@ proc/admin_notice(var/message, var/rights)
 /datum/admins/proc/Game()
 	if(!check_rights(0))	return
 
-	var/dat = {"
-		<center><B>Game Panel</B></center><hr>\n
-		<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>
-		"}
+	var/dat = "<center><B>Game Panel</B></center><hr>"
+	if(ticker.storyteller)
+		dat += "<A href='?src=\ref[ticker.storyteller]'>Storyteller Panel</A><br>"
+	else
+		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"
 
 	dat += {"
 		<BR>
