@@ -86,11 +86,16 @@
 	update_members()
 	return TRUE
 
-/datum/faction/proc/remove_faction()
+/datum/faction/proc/clear_faction()
 	for(var/datum/antagonist/A in members)
 		remove_member(A)
 
 	current_factions.Remove(src)
+	return TRUE
+
+
+/datum/faction/proc/remove_faction()
+	clear_faction()
 	qdel(src)
 	return TRUE
 
@@ -207,7 +212,7 @@
 		add_icons(antag)
 
 /datum/faction/proc/faction_panel()
-	var/data = "FACTION PANEL"
+	var/data = "<center><font size='3'><b>FACTION PANEL</b></font></center>"
 	data += "<br>[name] - faction of [antag] ([id])"
 	data += "<br>Welcome: [welcome_text]"
 	data += {"<br><a href='?src=\ref[src];rename=1'>\[NAME\]</a>
@@ -223,15 +228,33 @@
 			data += "<br>Invalid element on index [i]: [member ? member : "NULL"]"
 		else
 			if(member in leaders)
-				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];remleader=[i]'>\[REMLEADER\]</a><a href='?src=\ref[src];remmember=[i]'>\[REM\]</a>"
+				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];remleader=[i]'>\[REMV LEADER\]</a> \[REMOVE\]"
 			else
-				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];makeleader=[i]'>\[LEADER\]</a><a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
+				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];makeleader=[i]'>\[MAKE LEADER\]</a> <a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
 
 	usr << browse(data,"window=[id]faction")
 
 /datum/faction/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))
 		return
+
+	if(href_list["makeleader"])
+		var/ind = text2num(href_list["makeleader"])
+		var/datum/antagonist/A = members[ind]
+		if(istype(A))
+			add_leader(A)
+
+	if(href_list["remleader"])
+		var/ind = text2num(href_list["remleader"])
+		var/datum/antagonist/A = members[ind]
+		if(istype(A) && A in leaders)
+			remove_leader(A)
+
+	if(href_list["remmember"])
+		var/ind = text2num(href_list["remmember"])
+		var/datum/antagonist/A = members[ind]
+		if(istype(A) && !(A in leaders))
+			remove_member(A)
 
 	faction_panel()
 
