@@ -24,6 +24,7 @@
 
 	var/tmp/datum/wires/autolathe/wires = null
 
+	var/datum/browser/popup
 
 /obj/machinery/autolathe/New()
 	..()
@@ -108,7 +109,7 @@
 
 		dat += "<hr>"
 
-	var/datum/browser/popup = new(user, "autolathe","Autolathe", 400, 600, src)
+	popup = new(user, "autolathe","Autolathe", 400, 600, src)
 	popup.set_content(dat)
 	popup.open()
 
@@ -205,8 +206,13 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
 	add_fingerprint(usr)
+
+	if(href_list["close"])
+		popup.close(usr)
+		return
+
+	usr.set_machine(src)
 
 	if(busy)
 		usr << SPAN_NOTICE("The autolathe is busy. Please wait for completion of previous operation.")
