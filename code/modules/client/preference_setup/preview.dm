@@ -159,6 +159,8 @@ datum/preferences/proc/update_preview_icon()
 	if(clothes)
 		preview_icon.Blend(clothes, ICON_OVERLAY)
 
+	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
+
 	preview_south = new(preview_icon, dir = SOUTH)
 	preview_north = new(preview_icon, dir = NORTH)
 	preview_east  = new(preview_icon, dir = EAST)
