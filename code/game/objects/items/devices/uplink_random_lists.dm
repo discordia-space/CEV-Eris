@@ -90,11 +90,6 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/hardsuit_modules/laser_canon, reselect_propbability = 5)
 
 #ifdef DEBUG
-/proc/debug_uplink_purchage_log()
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/A = all_antag_types[antag_type]
-		A.print_player_summary()
-
 /proc/debug_uplink_item_assoc_list()
 	for(var/key in uplink.items_assoc)
 		world << "[key] - [uplink.items_assoc[key]]"

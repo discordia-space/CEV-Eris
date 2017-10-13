@@ -19,12 +19,9 @@
 	if(istype(O, /obj/item/weapon/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/weapon/book/tome))
-			usr << SPAN_NOTICE("The solution does nothing. Whatever this is, it isn't normal ink.")
-			return
 		var/obj/item/weapon/book/affectedbook = O
 		affectedbook.dat = null
-		usr << SPAN_NOTICE("The solution dissolves the ink on the book.")
+		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
 	return
 
 /datum/reagent/aluminum
@@ -156,12 +153,9 @@
 	if(istype(O, /obj/item/weapon/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/weapon/book/tome))
-			usr << SPAN_NOTICE("The solution does nothing. Whatever this is, it isn't normal ink.")
-			return
 		var/obj/item/weapon/book/affectedbook = O
 		affectedbook.dat = null
-		usr << SPAN_NOTICE("The solution dissolves the ink on the book.")
+		usr << "<span class='notice'>The solution dissolves the ink on the book.</span>"
 	return
 
 /datum/reagent/hydrazine
@@ -291,11 +285,11 @@
 		var/mob/living/carbon/human/H = M
 		if(H.head)
 			if(H.head.unacidable)
-				H << SPAN_DANGER("Your [H.head] protects you from the acid.")
+				H << "<span class='danger'>Your [H.head] protects you from the acid.</span>"
 				remove_self(volume)
 				return
 			else if(removed > meltdose)
-				H << SPAN_DANGER("Your [H.head] melts away!")
+				H << "<span class='danger'>Your [H.head] melts away!</span>"
 				qdel(H.head)
 				H.update_inv_head(1)
 				H.update_hair(1)
@@ -305,11 +299,11 @@
 
 		if(H.wear_mask)
 			if(H.wear_mask.unacidable)
-				H << SPAN_DANGER("Your [H.wear_mask] protects you from the acid.")
+				H << "<span class='danger'>Your [H.wear_mask] protects you from the acid.</span>"
 				remove_self(volume)
 				return
 			else if(removed > meltdose)
-				H << SPAN_DANGER("Your [H.wear_mask] melts away!")
+				H << "<span class='danger'>Your [H.wear_mask] melts away!</span>"
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(1)
 				H.update_hair(1)
@@ -319,10 +313,10 @@
 
 		if(H.glasses)
 			if(H.glasses.unacidable)
-				H << SPAN_DANGER("Your [H.glasses] partially protect you from the acid!")
+				H << "<span class='danger'>Your [H.glasses] partially protect you from the acid!</span>"
 				removed /= 2
 			else if(removed > meltdose)
-				H << SPAN_DANGER("Your [H.glasses] melt away!")
+				H << "<span class='danger'>Your [H.glasses] melt away!</span>"
 				qdel(H.glasses)
 				H.update_inv_glasses(1)
 				removed -= meltdose / 2
@@ -353,7 +347,7 @@
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
 		for(var/mob/M in viewers(5, O))
-			M << SPAN_WARNING("\The [O] melts.")
+			M << "<span class='warning'>\The [O] melts.</span>"
 		qdel(O)
 		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile
 

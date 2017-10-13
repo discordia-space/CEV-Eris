@@ -68,11 +68,7 @@
 	..()
 
 	if(statpanel("Lobby") && ticker)
-		if(ticker.hide_mode)
-			stat("Game Mode:", "Secret")
-		else
-			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
+		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
 
 		if(ticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
@@ -114,10 +110,10 @@
 			close_spawn_windows()
 			var/obj/O = locate("landmark*Observer-Start")
 			if(istype(O))
-				src << SPAN_NOTICE("Now teleporting.")
+				src << "<span class='notice'>Now teleporting.</span>"
 				observer.loc = O.loc
 			else
-				src << SPAN_DANGER("Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.")
+				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
@@ -160,10 +156,10 @@
 	if(href_list["SelectedJob"])
 
 		if(!config.enter_allowed)
-			usr << SPAN_NOTICE("There is an administrative lock on entering the game!")
+			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
-		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
-			usr << SPAN_DANGER("The station is currently exploding. Joining would go poorly.")
+		else if(ticker && ticker.nuke_in_progress)
+			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
 
 		var/datum/species/S = all_species[client.prefs.species]
@@ -222,7 +218,7 @@
 		usr << "\red The round is either not ready, or has already finished..."
 		return 0
 	if(!config.enter_allowed)
-		usr << SPAN_NOTICE("There is an administrative lock on entering the game!")
+		usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 		return 0
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
@@ -249,7 +245,6 @@
 		character.loc = C.loc
 
 		AnnounceCyborg(character, rank, "has been downloaded to the empty core in \the [character.loc.loc]")
-		ticker.mode.handle_latejoin(character)
 
 		qdel(C)
 		qdel(src)
@@ -263,8 +258,6 @@
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
-
-	ticker.mode.handle_latejoin(character)
 
 	if(character.mind.assigned_role != "Cyborg")
 		data_core.manifest_inject(character)
@@ -281,8 +274,6 @@
 
 /mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message)
 	if (ticker.current_state == GAME_STATE_PLAYING)
-		if(character.mind.role_alt_title)
-			rank = character.mind.role_alt_title
 		// can't use their name here, since cyborg namepicking is done post-spawn, so we'll just say "A new Cyborg has arrived"/"A new Android has arrived"/etc.
 		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has completed cryogenic revival"].", "Arrivals Announcement Computer")
 

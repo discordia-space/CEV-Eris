@@ -87,7 +87,6 @@ var/global/list/organ_tag_to_name = list(
 // Visual nets
 var/list/datum/visualnet/visual_nets = list()
 var/datum/visualnet/camera/cameranet = new()
-var/datum/visualnet/cult/cultnet = new()
 
 // Runes
 var/global/list/rune_list = new()

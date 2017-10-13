@@ -136,26 +136,6 @@
 		/obj/item/taperoll/police
 		)
 
-/obj/item/weapon/storage/belt/soulstone
-	name = "soul stone belt"
-	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away"
-	icon_state = "soulstonebelt"
-	item_state = "soulstonebelt"
-	storage_slots = 6
-	can_hold = list(
-		/obj/item/device/soulstone
-		)
-
-/obj/item/weapon/storage/belt/soulstone/full/New()
-	..()
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-
-
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"
 	desc = "Proves to the world that you are the strongest!"

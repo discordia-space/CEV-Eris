@@ -25,9 +25,6 @@
 	if(istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart))
 		return
 
-	if(istype(A, /spell))
-		return
-
 	if(proximity)
 		if(standard_dispenser_refill(user, A))
 			return

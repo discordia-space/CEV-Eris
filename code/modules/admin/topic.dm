@@ -22,10 +22,6 @@
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
 
-	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
-		check_antagonists()
-		return
-
 	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 
 		var/adminckey = href_list["dbsearchadmin"]
@@ -205,10 +201,6 @@
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(ticker.mode.name == MODE_BLOB)
-			alert("You can't call the shuttle during blob!")
-			return
-
 		switch(href_list["call_shuttle"])
 			if("1")
 				if ((!( ticker ) || !emergency_shuttle.location()))
@@ -289,10 +281,6 @@
 			if("coffee")			M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
 			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
 			if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
-			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
 
 
 	/////////////////////////////////////new ban stuff
@@ -409,12 +397,11 @@
 	//Non-Human (Green)
 		body += formatJobGroup(M, "Non-human Positions", "ccffcc", "nonhumandept", nonhuman_positions + "Antag HUD")
 	//Antagonist (Orange)
+
 		var/jobban_list = list()
-		for(var/antag_type in all_antag_types)
-			var/datum/antagonist/antag = all_antag_types[antag_type]
-			if(!antag || !antag.bantype)
-				continue
-			jobban_list[antag.role_text] = antag.bantype
+		for(var/a_id in antag_bantypes)
+			var/a_ban = antag_bantypes[a_id]
+			jobban_list[antag_names[a_id]] = a_ban
 		body += formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 		dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
@@ -705,55 +692,26 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(ticker && ticker.mode)
+		if(ticker && ticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
-		for(var/mode in config.modes)
-			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
-		dat += {"<A href='?src=\ref[src];c_mode2=random'>Random</A><br>"}
-		dat += {"Now: [master_mode]"}
+		var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
+		for(var/mode in config.storytellers)
+			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.storyteller_names[mode]]</A><br>"}
+		dat += {"Now: [master_storyteller]"}
 		usr << browse(dat, "window=c_mode")
-
-	else if(href_list["f_secret"])
-		if(!check_rights(R_ADMIN))	return
-
-		if(ticker && ticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
-		if(master_mode != "secret")
-			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
-		for(var/mode in config.modes)
-			dat += {"<A href='?src=\ref[src];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"<A href='?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
-		dat += {"Now: [secret_force_mode]"}
-		usr << browse(dat, "window=f_secret")
 
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if (ticker && ticker.mode)
+		if (ticker && ticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [master_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the mode as [master_mode].", 1)
-		world << "\blue <b>The mode is now: [master_mode]</b>"
+		master_storyteller = href_list["c_mode2"]
+		log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
+		message_admins("\blue [key_name_admin(usr)] set the storyteller to [master_storyteller].", 1)
+		world << "\blue <b>The storyteller is now: [master_storyteller]</b>"
 		Game() // updates the main game menu
-		world.save_mode(master_mode)
+		world.save_storyteller(master_storyteller)
 		.(href, list("c_mode"=1))
-
-	else if(href_list["f_secret2"])
-		if(!check_rights(R_ADMIN|R_SERVER))	return
-
-		if(ticker && ticker.mode)
-			return alert(usr, "The game has already started.", null, null, null, null)
-		if(master_mode != "secret")
-			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		secret_force_mode = href_list["f_secret2"]
-		log_admin("[key_name(usr)] set the forced secret mode as [secret_force_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [secret_force_mode].", 1)
-		Game() // updates the main game menu
-		.(href, list("f_secret"=1))
 
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))	return
@@ -1017,7 +975,10 @@
 
 		//Job + antagonist
 		if(M.mind)
-			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[M.mind.special_role]</b></font>; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
+			var/antag = ""
+			for(var/datum/antagonist/A in M.mind.antagonist)
+				antag += "[A.role_text], "
+			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>!TODO</b></font>; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
 		else
 			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>; Has been rev: <i>Mind datum missing</i>;"
 
@@ -1265,7 +1226,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
-		if(!ticker || !ticker.mode)
+		if(!ticker || !ticker.storyteller)
 			alert("The game hasn't started yet!")
 			return
 

@@ -82,7 +82,6 @@
 
 	if(H.mind)
 		H.mind.assigned_role = "Alien"
-		H.mind.special_role = "Alien"
 
 	alien_number++ //Keep track of how many aliens we've had so far.
 	H.real_name = "alien [caste_name] ([alien_number])"

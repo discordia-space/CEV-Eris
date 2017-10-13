@@ -20,7 +20,7 @@
 
 	-	When creating a new mob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
 		a ghost to become a xeno during an event). Simply assign the key or ckey like you've always done.
-
+[]['
 			new_mob.key = key
 
 		The Login proc will handle making a new mob for that mobtype (including setting up stuff like mind.name). Simple!
@@ -34,23 +34,18 @@
 	var/name				//replaces mob/var/original_name
 	var/mob/living/current
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
-	var/active = 0
+	var/active = FALSE
 
 	var/memory
 
 	var/assigned_role
-	var/special_role
-
-	var/role_alt_title
+//	var/special_role
+	var/list/antagonist = list()
 
 	var/datum/job/assigned_job
 
-	var/list/datum/objective/objectives = list()
-	var/list/datum/objective/special_verbs = list()
+	var/has_been_rev = FALSE	//Tracks if this mind has been a rev or not
 
-	var/has_been_rev = 0//Tracks if this mind has been a rev or not
-
-	var/datum/faction/faction 			//associated faction
 	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
@@ -97,18 +92,19 @@
 	var/output = "<B>[current.real_name]'s Memory</B><HR>"
 	output += memory
 
-	if(objectives.len>0)
-		output += "<HR><B>Objectives:</B><br>"
-
-		var/obj_count = 1
-		for(var/datum/objective/objective in objectives)
-			output += "<B>Objective #[obj_count]</B>: <div>[objective.explanation_text]</div>"
-			obj_count++
+	for(var/datum/antagonist/A in antagonist)
+		if(!A.objectives.len)
+			break
+		if(A.faction)
+			output += "<br><b>Your [A.faction.name] faction objectives:</b>"
+		else
+			output += "<br><b>Your [A.role_text] objectives:</b>"
+		output += "[A.print_objectives(FALSE)]"
 
 	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
-	if(!ticker || !ticker.mode)
+	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		alert("Not before round-start!", "Alert")
 		return
 
@@ -116,88 +112,57 @@
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
 	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
-	out += "Factions and special roles:<br><table>"
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		out += "[antag.get_panel_entry(src)]"
+	out += "Special roles:<br><table>"
+
+	out += "<b>Make_antagonist: </b>"
+	for(var/antag in antag_types)
+		var/antag_name = selectable_antag_types[antag] ? selectable_antag_types[antag] : "<font color='red'>[antag]</font>"
+		out += "<a href='?src=\ref[src];add_antagonist=[antag]'>[antag_name]</a>  "
+	out += "<br>"
+
+	for(var/datum/antagonist/antag in antagonist)
+		out += "<br><b>[antag.role_text]</b> <a href='?src=\ref[antag]'>\[EDIT\]</a> <a href='?src=\ref[antag];remove_antagonist=1'>\[DEL\]</a>"
 	out += "</table><hr>"
-	out += "<b>Objectives</b><br>"
-
-	if(objectives && objectives.len)
-		var/num = 1
-		for(var/datum/objective/O in objectives)
-			out += "<b>Objective #[num]:</b> "
-			if(O.completed)
-				out += "(<font color='green'>complete</font>)"
-			else
-				out += "(<font color='red'>incomplete</font>)"
-			out += " <a href='?src=\ref[src];obj_completed=\ref[O]'>\[toggle\]</a>"
-			out += " <a href='?src=\ref[src];obj_delete=\ref[O]'>\[remove\]</a><br>"
-			out += "<div>[O.get_panel_entry()]</div>"
-			num++
-		out += "<br><a href='?src=\ref[src];obj_announce=1'>\[announce objectives\]</a>"
-
-	else
-		out += "None."
-	out += "<br><a href='?src=\ref[src];obj_add=1'>\[add\]</a>"
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN))
+		return
 
 	if(href_list["add_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
+		var/t = antag_types[href_list["add_antagonist"]]
+		var/datum/antagonist/antag = new t
 		if(antag)
-			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
-				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
+			var/ok = FALSE
+			if(antag.outer && active)
+				var/answer = alert("[antag.role_text] is outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
+				ok = answer == "Yes"
 			else
-				usr << SPAN_WARNING("[src] could not be made into a [antag.role_text]!")
+				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","No","Yes")
+				ok = answer == "Yes"
 
-	else if(href_list["remove_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["remove_antagonist"]]
-		if(antag) antag.remove_antagonist(src)
+			if(!ok)
+				return
 
-	else if(href_list["equip_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["equip_antagonist"]]
-		if(antag) antag.equip(src.current)
+			if(antag.outer)
 
-	else if(href_list["unequip_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["unequip_antagonist"]]
-		if(antag) antag.unequip(src.current)
+			else
+				if(antag.create_antagonist(src))
+					log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
+				else
+					usr << SPAN_WARNING("[src] could not be made into a [antag.role_text]!")
 
-	else if(href_list["move_antag_to_spawn"])
-		var/datum/antagonist/antag = all_antag_types[href_list["move_antag_to_spawn"]]
-		if(antag) antag.place_mob(src.current)
-
-	else if (href_list["role_edit"])
+	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
 		if (!new_role) return
 		assigned_role = new_role
 
-	else if (href_list["memory_edit"])
+	else if(href_list["memory_edit"])
 		var/new_memo = sanitize(input("Write new memory", "Memory", memory) as null|message)
 		if (isnull(new_memo)) return
 		memory = new_memo
 
-	else if (href_list["obj_add"])
-		var/new_obj_type = input("Select objective type:", "Objective type") as null|anything in all_objectives_types
-		if (!new_obj_type) return
-
-		var/new_type = all_objectives_types[new_obj_type]
-		new new_type (src)
-
-
-	else if (href_list["obj_delete"])
-		var/datum/objective/objective = locate(href_list["obj_delete"])
-		if(!istype(objective))	return
-		objectives -= objective
-
-	else if(href_list["obj_completed"])
-		var/datum/objective/objective = locate(href_list["obj_completed"])
-		if(!istype(objective))	return
-		objective.completed = !objective.completed
-
-	else if (href_list["silicon"])
+	else if(href_list["silicon"])
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["silicon"])
 
@@ -237,7 +202,7 @@
 								R.contents -= R.module.emag
 					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
 
-	else if (href_list["common"])
+	else if(href_list["common"])
 		switch(href_list["common"])
 			if("undress")
 				for(var/obj/item/W in current)
@@ -256,12 +221,6 @@
 						if (suplink)
 							suplink.uses = crystals
 
-	else if (href_list["obj_announce"])
-		var/obj_count = 1
-		current << "\blue Your current objectives:"
-		for(var/datum/objective/objective in objectives)
-			current << "<B>Objective #[obj_count]</B>: [utf8_to_cp1251(objective.explanation_text)]"
-			obj_count++
 	edit_memory()
 
 /datum/mind/proc/find_syndicate_uplink()
@@ -306,14 +265,12 @@
 
 /datum/mind/proc/reset()
 	assigned_role =   null
-	special_role =    null
-	role_alt_title =  null
+	//special_role =    null
+	//role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
 	changeling =      null
 	initial_account = null
-	objectives =      list()
-	special_verbs =   list()
 	has_been_rev =    0
 	rev_cooldown =    0
 	brigged_since =   -1
@@ -321,12 +278,8 @@
 //Antagonist role check
 /mob/living/proc/check_special_role(role)
 	if(mind)
-		if(!role)
-			return mind.special_role
-		else
-			return (mind.special_role == role) ? 1 : 0
-	else
-		return 0
+		return player_is_antag_id(mind,role)
+	return FALSE
 
 //Initialisation procs
 /mob/living/proc/mind_initialize()
@@ -352,10 +305,6 @@
 	..()
 	mind.assigned_role = "slime"
 
-/mob/living/carbon/alien/larva/mind_initialize()
-	..()
-	mind.special_role = "Larva"
-
 //AI
 /mob/living/silicon/ai/mind_initialize()
 	..()
@@ -370,7 +319,6 @@
 /mob/living/silicon/pai/mind_initialize()
 	..()
 	mind.assigned_role = "pAI"
-	mind.special_role = ""
 
 //Animals
 /mob/living/simple_animal/mind_initialize()
@@ -381,21 +329,3 @@
 	..()
 	mind.assigned_role = "Corgi"
 
-/mob/living/simple_animal/shade/mind_initialize()
-	..()
-	mind.assigned_role = "Shade"
-
-/mob/living/simple_animal/construct/builder/mind_initialize()
-	..()
-	mind.assigned_role = "Artificer"
-	mind.special_role = "Cultist"
-
-/mob/living/simple_animal/construct/wraith/mind_initialize()
-	..()
-	mind.assigned_role = "Wraith"
-	mind.special_role = "Cultist"
-
-/mob/living/simple_animal/construct/armoured/mind_initialize()
-	..()
-	mind.assigned_role = "Juggernaut"
-	mind.special_role = "Cultist"

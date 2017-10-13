@@ -13,9 +13,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/player_panel_new,		//shows an interface for all players, with links to various panels,
 	/client/proc/invisimin,				//allows our mob to go invisible/visible,
 //	/datum/admins/proc/show_traitor_panel,	//interface which shows a mob's mind, -Removed due to rare practical use. Moved to debug verbs ~Errorage,
-	/datum/admins/proc/show_game_mode,  //Configuration window for the current game mode.,
-	/datum/admins/proc/force_mode_latespawn, //Force the mode to try a latespawn proc,
-	/datum/admins/proc/force_antag_latespawn, //Force a specific template to try a latespawn proc,
+//	/datum/admins/proc/show_game_mode,  //Configuration window for the current game mode.,
+//	/datum/admins/proc/force_mode_latespawn, //Force the mode to try a latespawn proc,
 	/datum/admins/proc/toggleenter,		//toggles whether people can join the current game,
 	/datum/admins/proc/toggleguests,	//toggles whether guests can join the current game,
 	/datum/admins/proc/announce,		//priority announce something to all clients.,
@@ -45,7 +44,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_direct_narrate,	//send text directly to a player with no padding. Useful for narratives and fluff-text,
 	/client/proc/cmd_admin_world_narrate,	//sends text to all players with no padding,
 	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/check_words,			//displays cult-words,
 	/client/proc/check_ai_laws,			//shows AI and borg laws,
 	/client/proc/rename_silicon,		//properly renames silicons,
 	/client/proc/manage_silicon_laws,	// Allows viewing and editing silicon laws. ,
@@ -68,7 +66,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/free_slot,			//frees slot for chosen job,
 	/client/proc/cmd_admin_change_custom_event,
 	/client/proc/cmd_admin_rejuvenate,
-	/client/proc/toggleghostwriters,
 	/client/proc/toggledrones,
 	/client/proc/check_customitem_activity,
 	/client/proc/man_up,
@@ -154,7 +151,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
-	/client/proc/debug_antagonist_template,
+//	/client/proc/debug_antagonist_template,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
@@ -219,7 +216,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/admin_cancel_shuttle,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
-	/client/proc/check_words,
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
 	/client/proc/play_server_sound,
@@ -866,20 +862,6 @@ var/list/admin_verbs_mentor = list(
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
 
-/client/proc/toggleghostwriters()
-	set name = "Toggle ghost writers"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.cult_ghostwriter)
-			config.cult_ghostwriter = 0
-			src << "<b>Disallowed ghost writers.</b>"
-			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
-		else
-			config.cult_ghostwriter = 1
-			src << "<b>Enabled ghost writers.</b>"
-			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
-
 /client/proc/toggledrones()
 	set name = "Toggle maintenance drones"
 	set category = "Server"
@@ -916,14 +898,3 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
-
-/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun"
-	set name = "Give Spell"
-	set desc = "Gives a spell to a mob."
-	var/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spells
-	if(!S) return
-	T.add_spell(new S)
-
-	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the spell [S].", 1)

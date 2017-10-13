@@ -182,7 +182,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/input[] = params2list(T)
 		var/list/s = list()
 		s["version"] = game_version
-		s["mode"] = master_mode
+		s["storyteller"] = master_storyteller
 		s["respawn"] = config.abandon_allowed
 		s["enter"] = config.enter_allowed
 		s["vote"] = config.allow_vote_mode
@@ -191,7 +191,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
 		s["players"] = 0
-		s["stationtime"] = stationtime2text()
+		s["shiptime"] = stationtime2text()
 		s["roundduration"] = roundduration2text()
 
 		if(input["status"] == "2")
@@ -292,7 +292,6 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/strings = list(M.name, M.ckey)
 			if(M.mind)
 				strings += M.mind.assigned_role
-				strings += M.mind.special_role
 			for(var/text in strings)
 				if(ckey(text) in ckeysearch)
 					match[M] += 10 // an exact match is far better than a partial one
@@ -320,7 +319,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			info["loc"] = M.loc ? "[M.loc]" : "null"
 			info["turf"] = MT ? "[MT] @ [MT.x], [MT.y], [MT.z]" : "null"
 			info["area"] = MT ? "[MT.loc]" : "null"
-			info["antag"] = M.mind ? (M.mind.special_role ? M.mind.special_role : "Not antag") : "No mind"
+			info["antag"] = M.mind ? (M.mind.antagonist.len ? "Antag" : "Not antag") : "No mind"
 			info["hasbeenrev"] = M.mind ? M.mind.has_been_rev : "No mind"
 			info["stat"] = M.stat
 			info["type"] = M.type
@@ -434,17 +433,17 @@ var/world_topic_spam_protect_time = world.timeofday
 	..(reason)
 
 /hook/startup/proc/loadMode()
-	world.load_mode()
+	world.load_storyteller()
 	return 1
 
-/world/proc/load_mode()
+/world/proc/load_storyteller()
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
-			master_mode = Lines[1]
-			log_misc("Saved mode is '[master_mode]'")
+			master_storyteller = Lines[1]
+			log_misc("Saved storyteller is '[master_storyteller]'")
 
-/world/proc/save_mode(var/the_mode)
+/world/proc/save_storyteller(var/the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
@@ -527,8 +526,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/list/features = list()
 
 	if(ticker)
-		if(master_mode)
-			features += master_mode
+		if(master_storyteller)
+			features += master_storyteller
 	else
 		features += "<b>STARTING</b>"
 
