@@ -228,9 +228,10 @@
 			data += "<br>Invalid element on index [i]: [member ? member : "NULL"]"
 		else
 			if(member in leaders)
-				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];remleader=[i]'>\[REMV LEADER\]</a> \[REMOVE\]"
+				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];remleader=\ref[member]'>\[REMV LEADER\]</a> \[REMOVE\]"
 			else
-				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];makeleader=[i]'>\[MAKE LEADER\]</a> <a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
+				data += "<br>[member.owner ? member.owner.name : "no owner"] <a href='?src=\ref[src];makeleader=\ref[member]'>\[MAKE LEADER\]</a> <a href='?src=\ref[src];remmember=[i]'>\[REMOVE\]</a>"
+			data += "<a href='?src=[member]'>\[EDIT\]</a>"
 
 	usr << browse(data,"window=[id]faction")
 
@@ -239,20 +240,17 @@
 		return
 
 	if(href_list["makeleader"])
-		var/ind = text2num(href_list["makeleader"])
-		var/datum/antagonist/A = members[ind]
+		var/datum/antagonist/A = locate(href_list["makeleader"])
 		if(istype(A))
 			add_leader(A)
 
 	if(href_list["remleader"])
-		var/ind = text2num(href_list["remleader"])
-		var/datum/antagonist/A = members[ind]
+		var/datum/antagonist/A = locate(href_list["remleader"])
 		if(istype(A) && A in leaders)
 			remove_leader(A)
 
 	if(href_list["remmember"])
-		var/ind = text2num(href_list["remmember"])
-		var/datum/antagonist/A = members[ind]
+		var/datum/antagonist/A = locate(href_list["remmember"])
 		if(istype(A) && !(A in leaders))
 			remove_member(A)
 
