@@ -96,8 +96,4 @@
 
 	updateicon()
 
-	if(ticker && ticker.mode)
-		ticker.mode.check_win()
-
-
 	return 1

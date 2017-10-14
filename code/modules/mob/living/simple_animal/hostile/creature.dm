@@ -30,9 +30,6 @@
 
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/creature/cult/cultify()
-	return
-
 /mob/living/simple_animal/hostile/creature/cult/Life()
 	..()
 	check_horde()

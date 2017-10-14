@@ -513,5 +513,10 @@ datum/projectile_data
 /proc/SecondsToTicks(var/seconds)
 	return seconds * 10
 
-/proc/round_is_spooky(var/spookiness_threshold = config.cult_ghostwriter_req_cultists)
-	return (cult.current_antagonists.len > spookiness_threshold)
+/proc/get_vents()
+	var/list/vents = list()
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in config.station_levels)
+			if(temp_vent.network.normal_members.len > 15)
+				vents += temp_vent
+	return vents

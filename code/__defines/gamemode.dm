@@ -26,24 +26,12 @@
 #define ANTAG_VOTABLE           0x200 // Can be voted as an additional antagonist before roundstart.
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
-// Mode names macro
-#define MODE_CALAMITY "Calamity"
-#define MODE_CHANGELING "changeling"
-#define MODE_CULT "Cult"
-#define MODE_EXTENDED "Extended"
-#define MODE_HEIST "heist"
-#define MODE_MALF "AI malfunction"
-#define MODE_METEOR "Meteor"
-#define MODE_NUKE "Mercenary"
-#define MODE_REVOLUTION "Revolution"
-#define MODE_TRAITOR "traitor"
-#define MODE_WIZARD "Wizard"
-
-#define MODE_BLOB "blob"
-#define MODE_EPIDEMIC "epidemic"
+// Storyteller names macro
+#define STORYTELLER_BASE "shitgenerator"
 
 // antag template macros.
 #define ROLE_BORER "borer"
+#define ROLE_BORER_REPRODUCED "borer_r"
 #define ROLE_XENOMORPH "xeno"
 #define ROLE_LOYALIST "loyalist"
 #define ROLE_MUTINEER "mutineer"
@@ -51,17 +39,18 @@
 #define ROLE_DEATHSQUAD "deathsquad"
 #define ROLE_ACTOR "actor"
 #define ROLE_MERCENARY "mercenary"
-#define ROLE_RAIDER "raider"
-#define ROLE_WIZARD "wizard"
 #define ROLE_CHANGELING "changeling"
-#define ROLE_CULTIST "cultist"
-#define ROLE_HIGHLANDER "highlander"
 #define ROLE_MONKEY "monkey"
-#define ROLE_RENEGADE "renegade"
 #define ROLE_REVOLUTIONARY "revolutionary"
-#define ROLE_LOYALIST "loyalist"
 #define ROLE_MALFUNCTION "malf"
 #define ROLE_TRAITOR "traitor"
+
+#define FACTION_REVOLUTIONARY "revolutionary"
+#define FACTION_BORERS "borers"
+#define FACTION_XENOMORPHS "xenomorphs"
+
+#define ROLESET_TRAITOR "traitor"
+#define ROLESET_VERSUS_TRAITOR "double_agents"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 25
 

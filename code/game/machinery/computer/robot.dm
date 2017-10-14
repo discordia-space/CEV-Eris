@@ -60,7 +60,7 @@
 			return
 
 		// Antagonistic cyborgs? Left here for downstream
-		if(target.mind && target.mind.special_role && target.emagged)
+		if(target.mind && player_is_antag(target.mind) && target.emagged)
 			target << "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered."
 			target.ResetSecurityCodes()
 		else
@@ -110,7 +110,7 @@
 			return
 
 		// Antag AI checks
-		if(!isAI(user) || !(user.mind.special_role && user.mind.original == user))
+		if(!isAI(user) || !(user.mind.antagonist.len && user.mind.original == user))
 			user << "Access Denied"
 			return
 
@@ -197,7 +197,7 @@
 		robot["master_ai"] = R.connected_ai ? R.connected_ai.name : "None"
 		robot["hackable"] = 0
 		// Antag AIs know whether linked cyborgs are hacked or not.
-		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.special_role && operator.mind.original == operator))
+		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.antagonist.len && operator.mind.original == operator))
 			robot["hacked"] = R.emagged ? 1 : 0
 			robot["hackable"] = R.emagged? 0 : 1
 		robots.Add(list(robot))

@@ -337,7 +337,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(G_found.mind && !G_found.mind.active)
 		G_found.mind.transfer_to(new_character)	//be careful when doing stuff like this! I've already checked the mind isn't in use
-		new_character.mind.special_verbs = list()
 	else
 		new_character.mind_initialize()
 	if(!new_character.mind.assigned_role)	new_character.mind.assigned_role = "Assistant"//If they somehow got a null assigned role.
@@ -369,12 +368,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/player_key = G_found.key
 
 	//Now for special roles and equipment.
-	var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
-	if(antag_data)
-		antag_data.add_antagonist(new_character.mind)
-		antag_data.place_mob(new_character)
-	else
-		job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)
+	job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
@@ -709,14 +703,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
 
-	var/choice
-	if(ticker.mode.auto_recall_shuttle)
-		choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
-		if(choice == "Confirm")
-			emergency_shuttle.auto_recall = 1	//enable auto-recall
-		else
-			return
-
 	emergency_shuttle.call_evac()
 
 	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
@@ -772,7 +758,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_FUN))	return
 
-	if (ticker && ticker.mode)
+	if (ticker.current_state != GAME_STATE_PREGAME)
 		usr << "Nope you can't do this, the game's already started. This only works before rounds!"
 		return
 

@@ -44,8 +44,6 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			var/obj/item/weapon/melee/baton/B = G
 			cell = B.bcell
 		else if(istype(G, /obj/item/weapon/gun/energy))
-			if(istype(G, /obj/item/weapon/gun/energy/staff))
-				return
 			var/obj/item/weapon/gun/energy/E = G
 			cell = E.cell
 		else if(istype(G, /obj/item/weapon/cell))
