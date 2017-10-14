@@ -47,6 +47,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	req_access = list(access_research)	//Data and setting manipulation requires scientist access.
 
+	var/datum/browser/popup
+
 /obj/machinery/computer/rdconsole/proc/CallMaterialName(var/ID)
 	var/return_name = ID
 	switch(return_name)
@@ -152,6 +154,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		return 1
 
 	add_fingerprint(usr)
+
+	if(href_list["close"])
+		popup.close(usr)
+		return
 
 	usr.set_machine(src)
 	if(href_list["menu"]) //Switches menu screens. Converts a sent text string into a number. Saves a LOT of code.
@@ -415,7 +421,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		dat += "<UL>"
 		dat +=  "<LI>Level: [T.level]"
 		dat +=  "<LI>Summary: [T.desc]"
-		dat += "</UL>"
+		dat += "</UL><br>"
 	return dat
 
 /obj/machinery/computer/rdconsole/proc/GetResearchListInfo()
@@ -432,6 +438,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		return
 
 	user.set_machine(src)
+	interact(user)
+
+/obj/machinery/computer/rdconsole/interact(mob/user as mob)
 	var/dat = ""
 	files.RefreshResearch()
 	switch(screen) //A quick check to make sure you get the right screen when a device is disconnected.
@@ -774,8 +783,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "List of Researched Technologies and Designs:"
 			dat += GetResearchListInfo()
 
-	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=850x600")
-	onclose(user, "rdconsole")
+	popup = new(user, "rdconsole","Research and Development Console", 850, 600, src)
+	popup.set_content("<TITLE>Research and Development Console</TITLE><HR>[jointext(dat, null)]")
+	popup.open()
 
 /obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"
