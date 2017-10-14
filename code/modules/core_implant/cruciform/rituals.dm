@@ -189,7 +189,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI
 
 	if(G && G.affecting && ishuman(G.affecting))
-		CI = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in G.affecting
+		CI = G.affecting.get_cruciform()
 	else
 		fail("You must hold patient's hand.", user, C)
 		return FALSE
