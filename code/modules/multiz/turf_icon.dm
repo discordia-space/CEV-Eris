@@ -70,8 +70,7 @@
 			icon_state = "white"
 
 
-
-/hook/roundstart/init_openspace()
+/hook/roundstart/proc/init_openspace()
 	var/turf/T
 	for(var/elem in turfs)
 		if(istype(elem, /turf/simulated/open) || istype(elem, /turf/space))
