@@ -33,6 +33,8 @@
 	if(reagents)
 		qdel(reagents)
 		reagents = null
+	spawn()
+		update_openspace()
 	. = ..()
 
 /atom/proc/initialize()
