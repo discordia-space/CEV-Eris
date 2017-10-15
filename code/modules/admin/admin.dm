@@ -582,7 +582,7 @@ proc/admin_notice(var/message, var/rights)
 	if(!check_rights(0))	return
 
 	var/dat = "<center><B>Game Panel</B></center><hr>"
-	if(ticker.storyteller)
+	if(ticker.storyteller && (ticker.current_state != GAME_STATE_PREGAME))
 		dat += "<A href='?src=\ref[ticker.storyteller]'>Storyteller Panel</A><br>"
 	else
 		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"

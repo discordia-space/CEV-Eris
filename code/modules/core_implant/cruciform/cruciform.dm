@@ -116,3 +116,9 @@ var/list/christians = list()
 
 /obj/item/weapon/implant/external/core_implant/cruciform/proc/make_inquisitor()
 	add_module(new CRUCIFORM_INQUISITOR)
+
+
+
+/mob/proc/get_cruciform()
+	var/obj/item/weapon/implant/external/core_implant/C = locate(/obj/item/weapon/implant/external/core_implant/cruciform, src)
+	return C
