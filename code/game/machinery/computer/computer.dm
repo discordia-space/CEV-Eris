@@ -95,9 +95,8 @@
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20, src))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-			var/obj/item/weapon/circuitboard/M = new circuit(A)
 			A.dir = src.dir
-			A.circuit = M
+			A.circuit = circuit
 			A.anchored = 1
 			for (var/obj/C in src)
 				C.loc = src.loc
@@ -110,7 +109,7 @@
 				user << SPAN_NOTICE("You disconnect the monitor.")
 				A.state = 4
 				A.icon_state = "4"
-			M.deconstruct(src)
+			circuit.deconstruct(src)
 			qdel(src)
 	else
 		..()

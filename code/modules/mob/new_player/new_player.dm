@@ -5,6 +5,7 @@
 	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
 	var/totalPlayers = 0		 //Player counts for the Lobby tab
 	var/totalPlayersReady = 0
+	var/datum/browser/panel
 	universal_speak = 1
 
 	invisibility = 101
@@ -30,9 +31,9 @@
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
-			output += "<p>\[ <b>Ready</b> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
+			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
 		else
-			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <b>Not Ready</b> \]</p>"
+			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <span class='linkOn'><b>Not Ready</b></span> \]</p>"
 
 	else
 		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
@@ -61,7 +62,10 @@
 
 	output += "</div>"
 
-	src << browse(output,"window=playersetup;size=210x280;can_close=0")
+	panel = new(src, "Welcome","Welcome", 210, 280, src)
+	panel.set_window_options("can_close=0")
+	panel.set_content(output)
+	panel.open()
 	return
 
 /mob/new_player/Stat()
@@ -94,7 +98,7 @@
 			ready = 0
 
 	if(href_list["refresh"])
-		src << browse(null, "window=playersetup") //closes the player setup window
+		panel.close()
 		new_player_panel_proc()
 
 	if(href_list["observe"])
@@ -386,7 +390,7 @@
 
 /mob/new_player/proc/close_spawn_windows()
 	src << browse(null, "window=latechoices") //closes late choices window
-	src << browse(null, "window=playersetup") //closes the player setup window
+	panel.close()
 
 /mob/new_player/proc/has_admin_rights()
 	return check_rights(R_ADMIN, 0, src)

@@ -17,6 +17,7 @@
 			pref.be_special_role -= role
 
 /datum/category_item/player_setup_item/antagonism/candidacy/content(var/mob/user)
+	. = list()
 	. += "<b>Special Role Availability:</b><br>"
 	. += "<table>"
 	for(var/antag_type in selectable_antag_types)
@@ -44,6 +45,7 @@
 			. += "<a href='?src=\ref[src];add_special=[ghost_trap.pref_check]'>Yes</a> / <b>No</b></br>"
 		. += "</td></tr>"
 	. += "</table>"
+	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/proc/banned_from_ghost_role(var/mob, var/datum/ghosttrap/ghost_trap)
 	for(var/ban_type in ghost_trap.ban_checks)

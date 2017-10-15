@@ -74,6 +74,7 @@ var/list/gear_datums = list()
 				total_cost += G.cost
 
 /datum/category_item/player_setup_item/loadout/content()
+	. = list()
 	var/total_cost = 0
 	if(pref.gear && pref.gear.len)
 		for(var/i = 1; i <= pref.gear.len; i++)
@@ -84,7 +85,6 @@ var/list/gear_datums = list()
 	var/fcolor =  "#3366CC"
 	if(total_cost < MAX_GEAR_COST)
 		fcolor = "#E67300"
-	. = list()
 	. += "<table align = 'center' width = 100%>"
 	. += "<tr><td colspan=3><center><b><font color = '[fcolor]'>[total_cost]/[MAX_GEAR_COST]</font> loadout points spent.</b> \[<a href='?src=\ref[src];clear_loadout=1'>Clear Loadout</a>\]</center></td></tr>"
 
@@ -97,15 +97,18 @@ var/list/gear_datums = list()
 		else
 			. += " |"
 		if(category == current_tab)
-			. += " [category] "
+			. += " <span class='linkOn'>[category]</span> "
 		else
 			var/datum/loadout_category/LC = loadout_categories[category]
-			var/tcolor =  "#3366CC"
+			var/make_orange = FALSE
 			for(var/thing in LC.gear)
 				if(thing in pref.gear)
-					tcolor = "#E67300"
+					make_orange = TRUE
 					break
-			. += " <a href='?src=\ref[src];select_category=[category]'><font color = '[tcolor]'>[category]</font></a> "
+			if(make_orange)
+				. += " <a href='?src=\ref[src];select_category=[category]'><font color = '#E67300'>[category]</font></a> "
+			else
+				. += " <a href='?src=\ref[src];select_category=[category]'>[category]</a> "
 	. += "</b></center></td></tr>"
 
 	var/datum/loadout_category/LC = loadout_categories[current_tab]
@@ -118,7 +121,7 @@ var/list/gear_datums = list()
 		var/datum/gear/G = LC.gear[gear_name]
 		var/ticked = (G.display_name in pref.gear)
 		var/obj/item/temp = G.path
-		. += "<tr style='vertical-align:top'><td width=25%><a href='?src=\ref[src];toggle_gear=[G.display_name]'><font color='[ticked ? "#E67300" : "#3366CC"]'>[G.display_name]</font></a>"
+		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
 		if(ticked)
 			var/metadata = pref.gear[G.display_name]
 			if(!metadata)
