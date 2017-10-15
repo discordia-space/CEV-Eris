@@ -15,8 +15,9 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 
 /datum/ritual/targeted/inquisitor/whip
-	name = "whip"
-	phrase = "Kok i kek bratya na vek \[Target human]"
+	name = "Retribution"
+	phrase = "Mihi vindicta \[Target human]"
+	desc = "Trow guilty believers on relentless agony."
 
 /datum/ritual/targeted/inquisitor/whip/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	if(!targets.len)
@@ -55,8 +56,9 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 
 /datum/ritual/inquisitor/obey
-	name = "obey"
-	phrase = "Lol kek cheburek"
+	name = "Obey"
+	phrase = "Sicut dilexit me Pater et ego dilexi, vos manete in dilectione mea"
+	desc = "Bound believer to your will."
 
 /datum/ritual/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	var/obj/item/weapon/implant/external/core_implant/CI = get_grabbed(user)
@@ -81,8 +83,9 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	return TRUE
 
 /datum/ritual/inquisitor/crusader_litany
-	name = "crusader's litany"
-	phrase = "Kek lol arbidol"
+	name = "Endure"
+	phrase = "Dominus autem dirigat corda vestra in caritate Dei et patientia Christi"
+	desc = "Withstand the ravages of wounds and pain."
 
 /datum/ritual/inquisitor/crusader_litany/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	H << "<span class='info'>You feel relieved. The pain goes away, the wounds heal.</span>"
@@ -94,8 +97,9 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	return TRUE
 
 /datum/ritual/inquisitor/healing_palm
-	name = "healing palm"
-	phrase = "Kek lol arbidol this asshole"
+	name = "Healing Hand"
+	phrase = "Venite ad me, omnes qui laboratis, et onerati estis et ego reficiam vos"
+	desc = "Heal loyal believers"
 
 /datum/ritual/inquisitor/healing_palm/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = get_grabbed(user)
@@ -120,8 +124,9 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	return TRUE
 
 /datum/ritual/targeted/inquisitor/god_eye
-	name = "god eye"
-	phrase = "I see you the \[Target human]"
+	name = "Eye of God"
+	phrase = "Non enim est aliquid absconditum, nisi ut manifestitur \[Target human]"
+	desc = "Look on the world from the eyes of the believer."
 
 /datum/ritual/targeted/inquisitor/god_eye/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	if(!targets.len)
@@ -131,7 +136,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	var/obj/item/weapon/implant/external/core_implant/CI = targets[1]
 
 	if(!CI.active || !CI.wearer || CI.get_module(CRUCIFORM_INQUISITOR))
-  
+
 		fail("Cruciform not found.", user, C)
 		return FALSE
 
@@ -160,8 +165,9 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 			return target
 
 /datum/ritual/targeted/inquisitor/message
-	name = "message"
-	phrase = "PM to \[Target human] text: \[Target words]"
+	name = "Message"
+	phrase = "Audite \[Target human] et responde mihi \[Target words]"
+	desc = "Send message to other believer."
 
 /datum/ritual/targeted/inquisitor/message/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	if(targets.len < 2)
@@ -194,8 +200,9 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 				return text
 
 /datum/ritual/inquisitor/initiation
-	name = "initiation"
-	phrase = "You, asshole, become a priest"
+	name = "Initiation"
+	phrase = "Habe fiduciam in Domino ex toto corde tuo et ne innitaris prudentiae tuae, in omnibus viis tuis cogita illum et ipse diriget gressus tuos"
+	desc = "Grant the power of priest to one of believers."
 
 /datum/ritual/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	var/obj/item/weapon/implant/external/core_implant/CI = get_grabbed(user)
@@ -220,8 +227,9 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	return TRUE
 
 /datum/ritual/inquisitor/check_telecrystals
-	name = "telecrystals"
-	phrase = "Skolko telekristalov u menya"
+	name = "Knowledge"
+	phrase = "Cor sapientis quaerit doctrinam, et os stultorum pascetur inperitia"
+	desc = "Find out the limits of your power, how much telecrystals you have now."
 
 /datum/ritual/inquisitor/check_telecrystals/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	var/datum/core_module/cruciform/inquisitor/I = C.get_module(CRUCIFORM_INQUISITOR)
@@ -235,15 +243,15 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 
 /datum/ritual/targeted/inquisitor/spawn_item
-	name = "spawn item"
-	phrase = "Spawni vesch \[Target words]"
-	desc = "book obey priest"
+	name = "Grant Relic"
+	phrase = "Dona mihi viam meam \[Target words]"
+	desc = "Receive item needed in your jorney."
 
 /datum/ritual/targeted/inquisitor/spawn_item/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
 	var/datum/core_module/cruciform/inquisitor/I = C.get_module(CRUCIFORM_INQUISITOR)
 
 	if(!targets.len)
-		fail("Wrong item name.",user,C,targets)
+		fail("Item name was wrong.",user,C,targets)
 		return FALSE
 
 	if(!I || I.telecrystals <= 0)
@@ -263,7 +271,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 			correct = try_to_spawn(/obj/item/weapon/coreimplant_upgrade/cruciform/priest,10,I,T)
 
 	if(!correct)
-		fail("Wrong item name.",user,C,targets)
+		fail("Item name was wrong.",user,C,targets)
 		return FALSE
 
 	return TRUE
@@ -278,4 +286,3 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 /datum/ritual/targeted/inquisitor/spawn_item/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
 	return text
-

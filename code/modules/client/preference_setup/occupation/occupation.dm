@@ -57,24 +57,17 @@
 	. += "<table width='100%' cellpadding='1' cellspacing='0' style='color:black;'>"
 	var/index = -1
 
-	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
-	var/datum/job/lastJob
-	if (!job_master)		return
+	if(!job_master)
+		return
 	for(var/datum/job/job in job_master.occupations)
 
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
-			if((index < limit) && (lastJob != null))
-				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
-				//the last job's selection color. Creating a rather nice effect.
-				for(var/i = 0, i < (limit - index), i += 1)
-					. += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
 			. += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0' style='color:black;'>"
 			index = 0
 
 		. += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		var/rank = job.title
-		lastJob = job
 		if(jobban_isbanned(user, rank))
 			. += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
@@ -92,20 +85,20 @@
 
 		if(rank == "Assistant")//Assistant is special
 			if(pref.job_civilian_low & ASSISTANT)
-				. += " <font color=green>\[Yes]</font>"
+				. += " <font color=55cc55>\[Yes]</font>"
 			else
-				. += " <font color=red>\[No]</font>"
+				. += " <font color=black>\[No]</font>"
 			. += "</a></td></tr>"
 			continue
 
 		if(pref.GetJobDepartment(job, 1) & job.flag)
-			. += " <font color=blue>\[High]</font>"
+			. += " <font color=55cc55>\[High]</font>"
 		else if(pref.GetJobDepartment(job, 2) & job.flag)
-			. += " <font color=green>\[Medium]</font>"
+			. += " <font color=eecc22>\[Medium]</font>"
 		else if(pref.GetJobDepartment(job, 3) & job.flag)
-			. += " <font color=orange>\[Low]</font>"
+			. += " <font color=cc5555>\[Low]</font>"
 		else
-			. += " <font color=red>\[NEVER]</font>"
+			. += " <font color=black>\[NEVER]</font>"
 		. += "</a></td></tr>"
 
 	. += "</td'></tr></table>"
