@@ -32,7 +32,19 @@
 /datum/antagonist/inquisitor/can_become_antag(var/datum/mind/M)
 	if(!..())
 		return FALSE
-	if(!(locate(/obj/item/weapon/implant/external/core_implant/cruciform) in M.current))
+	if(!M.current.get_cruciform())
 		return FALSE
+	return TRUE
+
+/datum/antagonist/inquisitor/equip()
+	if(!owner.current)
+		return FALSE
+
+	var/obj/item/weapon/implant/external/core_implant/cruciform/C = owner.current.get_cruciform()
+
+	if(!C)
+		return FALSE
+
+	C.make_inquisitor()
 	return TRUE
 

@@ -37,7 +37,7 @@
 
 /datum/core_module/cruciform/inquisitor
 	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
-	var/telecrystals = 0
+	var/telecrystals = 15
 
 /datum/core_module/cruciform/inquisitor/preinstall()
 	implant.remove_modules(CRUCIFORM_COMMON)
