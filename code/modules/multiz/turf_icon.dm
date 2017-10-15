@@ -36,10 +36,14 @@
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
 	if(below)
-		if(below.is_space())
+		if(below.icon == 'icons/turf/space.dmi')
 			plane = SPACE_PLANE
 		else
 			plane = OPENSPACE_PLANE
+			var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
+			over_OS_darkness.plane = OVER_OPENSPACE_PLANE
+			over_OS_darkness.layer = MOB_LAYER
+			overlays += over_OS_darkness
 		icon = below.icon
 		icon_state = below.icon_state
 		dir = below.dir
@@ -58,12 +62,6 @@
 				temp2.overlays += o.overlays
 				o_img += temp2
 			overlays += o_img
-/*
-		var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
-		over_OS_darkness.plane = OVER_OPENSPACE_PLANE
-		over_OS_darkness.layer = MOB_LAYER
-		overlays += over_OS_darkness
-*/
 	else
 		icon = initial(icon)
 		plane = initial(plane)
@@ -88,3 +86,6 @@
 	. = ..()
 	update_openspace()
 
+/turf/Exited(atom/movable/Obj, atom/OldLoc)
+	. = ..()
+	update_openspace()
