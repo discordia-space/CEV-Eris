@@ -60,6 +60,7 @@
 		set_light(0)
 		if(icon_keyboard)
 			overlays += image(icon,"[icon_keyboard]_off")
+		update_openspace()
 		return
 	else
 		set_light(light_range_on, light_power_on)
@@ -71,6 +72,7 @@
 
 	if(icon_keyboard)
 		overlays += image(icon, icon_keyboard)
+	update_openspace()
 
 /obj/machinery/computer/power_change()
 	..()
