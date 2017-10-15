@@ -58,11 +58,12 @@
 				temp2.overlays += o.overlays
 				o_img += temp2
 			overlays += o_img
-
+/*
 		var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
 		over_OS_darkness.plane = OVER_OPENSPACE_PLANE
 		over_OS_darkness.layer = MOB_LAYER
 		overlays += over_OS_darkness
+*/
 	else
 		icon = initial(icon)
 		plane = initial(plane)
