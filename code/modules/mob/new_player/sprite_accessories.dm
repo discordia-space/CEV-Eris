@@ -605,39 +605,39 @@ datum/sprite_accessory/hair/fastline
 ///////////////////////////////////
 */
 
-datum/sprite_accessory/hair/kare
+/datum/sprite_accessory/hair/kare
 	name = "Kare"
 	icon_state = "kare"
 
-datum/sprite_accessory/hair/zone
+/datum/sprite_accessory/hair/zone
 	name = "Zone"
 	icon_state = "zone"
 
-datum/sprite_accessory/hair/ziegler
+/datum/sprite_accessory/hair/ziegler
 	name = "Ziegler"
 	icon_state = "ziegler"
 
-datum/sprite_accessory/hair/wisp
+/datum/sprite_accessory/hair/wisp
 	name = "Wisp"
 	icon_state = "Wisp"
 
-datum/sprite_accessory/hair/volaju
+/datum/sprite_accessory/hair/volaju
 	name = "Volaju"
 	icon_state = "volaju"
 
-datum/sprite_accessory/hair/veryshortovereye
+/datum/sprite_accessory/hair/veryshortovereye
 	name = "Very Short Over Eye 1"
 	icon_state = "veryshortovereye"
 
-datum/sprite_accessory/hair/veryshortovereyealternate
+/datum/sprite_accessory/hair/veryshortovereyealternate
 	name = "Very Short Over Eye 2"
 	icon_state = "veryshortovereyealternate"
 
-datum/sprite_accessory/hair/ponytail6
+/datum/sprite_accessory/hair/ponytail6
 	name = "Ponytail 6"
 	icon_state = "ponytail6"
 
-datum/sprite_accessory/hair/ponytail7
+/datum/sprite_accessory/hair/ponytail7
 	name = "Ponytail 7"
 	icon_state = "ponytail7"
 /*
