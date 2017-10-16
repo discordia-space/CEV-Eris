@@ -39,8 +39,7 @@ var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/round_progressing = 1
-var/master_mode       = "extended" // "extended"
-var/secret_force_mode = "secret"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
+var/master_storyteller       = "base" // "base"
 
 var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 
@@ -124,7 +123,7 @@ var/DBConnection/dbcon     = new() // Feedback    database (New database)
 /var/list/tagger_locations = list()
 
 // Added for Xenoarchaeology, might be useful for other stuff.
-var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+var/global/list/alphabet_uppercase = list("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
 
 
 // Used by robots and robot preferences.

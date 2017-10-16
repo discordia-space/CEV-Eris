@@ -41,7 +41,7 @@
 	on = !on
 	if(on)
 		visible_message("<span class='warning'>[src] clicks and distributes some pain.")
-		for(var/turf/T in range(1, locate(x, y, z - 1)))
+		for(var/turf/T in trange(1, locate(x, y, z - 1)))
 			if(T.density)
 				continue
 			var/obj/effect/shower/S = new(T)
@@ -52,7 +52,7 @@
 /obj/machinery/cellshower/proc/spray()
 	visible_message("<span class='warning'>[src] clicks and distributes some pain.")
 	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1)
-	for(var/turf/T in range(1, locate(x, y, z - 1)))
+	for(var/turf/T in trange(1, locate(x, y, z - 1)))
 		if(T.density)
 			continue
 		spawn(0)
@@ -186,7 +186,7 @@
 		var/turf/tile = loc
 		loc.clean_blood()
 		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
+			if(istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
 				del(E)
 
 /obj/effect/shower/process()

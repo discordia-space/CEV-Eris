@@ -480,12 +480,11 @@ proc/admin_notice(var/message, var/rights)
 	if(!check_rights(0))
 		return
 
-	var/dat = {"
-		<center><B>Game Panel</B></center><hr>\n
-		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
-		"}
-	if(master_mode == "secret")
-		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
+	var/dat = "<center><B>Game Panel</B></center><hr>"
+	if(ticker.storyteller && (ticker.current_state != GAME_STATE_PREGAME))
+		dat += "<A href='?src=\ref[ticker.storyteller]'>Storyteller Panel</A><br>"
+	else
+		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"
 
 	dat += {"
 		<BR>
@@ -623,16 +622,6 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 
 
-
-/datum/admins/proc/toggletraitorscaling()
-	set category = "Server"
-	set desc="Toggle traitor scaling"
-	set name="Toggle Traitor Scaling"
-	config.traitor_scaling = !config.traitor_scaling
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [config.traitor_scaling].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [config.traitor_scaling ? "on" : "off"].", 1)
-
-
 /datum/admins/proc/startnow()
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"
@@ -760,26 +749,20 @@ proc/admin_notice(var/message, var/rights)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-/proc/is_special_character(mob/M as mob) // returns 1 for specail characters and 2 for heroes of gamemode
-	if(!ticker || !ticker.mode)
-		return 0
+/proc/is_special_character(mob/M as mob) // returns 1 for special characters
 	if (!istype(M))
-		return 0
+		return FALSE
 
-	if(M.mind)
-		if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
-			for(var/datum/antagonist/antag in ticker.mode.antag_templates)
-				if(antag.is_antagonist(M.mind))
-					return 2
-		else if(M.mind.special_role)
-			return 1
+	if(M.mind && player_is_antag(M.mind))
+		return TRUE
+
 
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.emagged)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /datum/admins/proc/spawn_fruit(seedtype in plant_controller.seeds)
 	set category = "Debug"
@@ -899,59 +882,23 @@ proc/admin_notice(var/message, var/rights)
 
 	M.mind.edit_memory()
 
-
+/*
 /datum/admins/proc/show_game_mode()
 	set category = "Admin"
-	set desc = "Show the current round configuration."
-	set name = "Show Game Mode"
+	set desc = "Show the current round storyteller."
+	set name = "Show Storyteller"
 
-	if(!ticker || !ticker.mode)
+	if(!ticker || !ticker.storyteller)
 		alert("Not before roundstart!", "Alert")
 		return
 
-	var/out = "<font size=3><b>Current mode: [ticker.mode.name] (<a href='?src=\ref[ticker.mode];debug_antag=self'>[ticker.mode.config_tag]</a>)</b></font><br/>"
-	out += "<hr>"
-
-	if(ticker.mode.deny_respawn)
-		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];toggle=respawn'>disallowed</a>"
-	else
-		out += "<b>Respawning:</b> <a href='?src=\ref[ticker.mode];toggle=respawn'>allowed</a>"
-	out += "<br/>"
-
-	out += "<b>Shuttle delay multiplier:</b> <a href='?src=\ref[ticker.mode];set=shuttle_delay'>[ticker.mode.shuttle_delay]</a><br/>"
-
-	if(ticker.mode.auto_recall_shuttle)
-		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];toggle=shuttle_recall'>enabled</a>"
-	else
-		out += "<b>Shuttle auto-recall:</b> <a href='?src=\ref[ticker.mode];toggle=shuttle_recall'>disabled</a>"
-	out += "<br/><br/>"
-
-	if(ticker.mode.event_delay_mod_moderate)
-		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_moderate'>[ticker.mode.event_delay_mod_moderate]</a><br/>"
-	else
-		out += "<b>Moderate event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_moderate'>unset</a><br/>"
-
-	if(ticker.mode.event_delay_mod_major)
-		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_severe'>[ticker.mode.event_delay_mod_major]</a><br/>"
-	else
-		out += "<b>Major event time modifier:</b> <a href='?src=\ref[ticker.mode];set=event_modifier_severe'>unset</a><br/>"
-
+	var/out = "<font size=3><b>Current storyteller: [ticker.storyteller.name] (<a href='?src=\ref[ticker.storyteller];debug_antag=self'>[ticker.storyteller.config_tag]</a>)</b></font><br/>"
 	out += "<hr>"
 
 	if(ticker.mode.antag_tags && ticker.mode.antag_tags.len)
 		out += "<b>Core antag templates:</b></br>"
 		for(var/antag_tag in ticker.mode.antag_tags)
 			out += "<a href='?src=\ref[ticker.mode];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
-
-	if(ticker.mode.round_autoantag)
-		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>enabled</a></b>."
-		if(ticker.mode.antag_scaling_coeff > 0)
-			out += " (scaling with <a href='?src=\ref[ticker.mode];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
-		else
-			out += " (not currently scaling, <a href='?src=\ref[ticker.mode];set=antag_scaling'>set a coefficient</a>)"
-		out += "<br/>"
-	else
-		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];toggle=autotraitor'>disabled</a></b>.<br/>"
 
 	out += "<b>All antag ids:</b>"
 	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len).
@@ -965,7 +912,7 @@ proc/admin_notice(var/message, var/rights)
 	out += " <a href='?src=\ref[ticker.mode];add_antag_type=1'>\[+\]</a><br/>"
 
 	usr << browse(out, "window=edit_mode[src]")
-
+*/
 
 
 /datum/admins/proc/toggletintedweldhelmets()
@@ -1124,30 +1071,7 @@ proc/admin_notice(var/message, var/rights)
 	qdel(frommob)
 	return 1
 
-/datum/admins/proc/force_antag_latespawn()
-	set category = "Admin"
-	set name = "Force Template Spawn"
-	set desc = "Force an antagonist template to spawn."
-
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
-		return
-
-	if(!ticker || !ticker.mode)
-		usr << "Mode has not started."
-		return
-
-	var/antag_type = input("Choose a template.","Force Latespawn") as null|anything in all_antag_types
-	if(!antag_type || !all_antag_types[antag_type])
-		usr << "Aborting."
-		return
-
-	var/datum/antagonist/antag = all_antag_types[antag_type]
-	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
-	antag.attempt_auto_spawn()
-
+/*
 /datum/admins/proc/force_mode_latespawn()
 	set category = "Admin"
 	set name = "Force Mode Spawn"
@@ -1165,6 +1089,7 @@ proc/admin_notice(var/message, var/rights)
 
 	log_and_message_admins("attempting to force mode autospawn.")
 	ticker.mode.process_autoantag()
+*/
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Fun"

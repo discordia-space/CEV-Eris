@@ -24,7 +24,7 @@
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 400)
 
-/obj/item/weapon/locator/attack_self(mob/user as mob)
+/obj/item/weapon/locator/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat
 	if (src.temp)
@@ -135,12 +135,12 @@ Frequency:
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)
 	matter = list(DEFAULT_WALL_MATERIAL = 10000)
 
-/obj/item/weapon/hand_tele/attack_self(mob/user as mob)
+/obj/item/weapon/hand_tele/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location||current_location.z==2||current_location.z>=7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		user << SPAN_NOTICE("\The [src] is malfunctioning.")
 		return
-	var/list/L = list(  )
+	var/list/L = list()
 	for(var/obj/machinery/teleport/hub/R in world)
 		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(R.x - 2, R.y, R.z))
 		if (istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
@@ -148,10 +148,12 @@ Frequency:
 				L["[com.id] (Active)"] = com.locked
 			else
 				L["[com.id] (Inactive)"] = com.locked
-	var/list/turfs = list(	)
-	for(var/turf/T in orange(10))
-		if(T.x>world.maxx-8 || T.x<8)	continue	//putting them at the edge is dumb
-		if(T.y>world.maxy-8 || T.y<8)	continue
+	var/list/turfs = list()
+	for(var/turf/T in trange(10, get_turf(src)) - src)
+		if(T.x > world.maxx - 8 || T.x < 8) //putting them at the edge is dumb
+			continue
+		if(T.y > world.maxy - 8 || T.y < 8)
+			continue
 		turfs += T
 	if(turfs.len)
 		L["None (Dangerous)"] = pick(turfs)

@@ -43,10 +43,6 @@
 			pulledby.pulling = null
 		pulledby = null
 
-/atom/movable/proc/initialize()
-	if(!isnull(gcDestroyed))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
-
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
 		src.throw_impact(A)
@@ -287,10 +283,6 @@
 		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
 			y = TRANSITIONEDGE + 1
 			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
-
-		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
-			var/datum/game_mode/nuclear/G = ticker.mode
-			G.check_nuke_disks()
 
 		spawn(0)
 			if(loc) loc.Entered(src)

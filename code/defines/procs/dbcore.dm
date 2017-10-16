@@ -47,7 +47,7 @@ DBConnection
 	var/server = ""
 	var/port = 3306
 
-DBConnection/New(dbi_handler,username,password_handler,cursor_handler)
+DBConnection/New(dbi_handler, username, password_handler, cursor_handler)
 	src.dbi = dbi_handler
 	src.user = username
 	src.password = password_handler
@@ -74,7 +74,7 @@ DBConnection/proc/Quote(str)
 DBConnection/proc/ErrorMsg()
 	return _dm_db_error_msg(_db_con)
 
-DBConnection/proc/SelectDB(database_name,dbi)
+DBConnection/proc/SelectDB(database_name, dbi)
 	if(IsConnected())
 		Disconnect()
 	return Connect("[dbi?"[dbi]":"dbi:mysql:[database_name]:[sqladdress]:[sqlport]"]", user, password)
@@ -112,7 +112,7 @@ DBQuery/proc/Execute(sql_query = src.sql, cursor_handler = default_cursor)
 	return _dm_db_execute(_db_query, sql_query, db_connection._db_con, cursor_handler, null)
 
 DBQuery/proc/NextRow()
-	return _dm_db_next_row(_db_query,item,conversions)
+	return _dm_db_next_row(_db_query, item, conversions)
 
 DBQuery/proc/RowsAffected()
 	return _dm_db_rows_affected(_db_query)

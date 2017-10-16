@@ -101,6 +101,21 @@
 	new PICK(src.loc)
 	delete_me = 1
 
+/obj/effect/landmark/machinery
+	invisibility = 0
+
+/obj/effect/landmark/machinery/New()
+	delete_me = 1
+
+/obj/effect/landmark/machinery/input
+	icon_state = "in-blue"
+	name = "Input area"
+
+/obj/effect/landmark/machinery/output
+	icon_state = "out-red"
+	name = "Output area"
+
+
 //SUBCLASSES.  Spawn a bunch of items and disappear likewise
 /obj/effect/landmark/costume/chicken/New()
 	new /obj/item/clothing/suit/chickensuit(src.loc)
@@ -186,11 +201,6 @@
 /obj/effect/landmark/costume/commie/New()
 	new /obj/item/clothing/under/soviet(src.loc)
 	new /obj/item/clothing/head/ushanka(src.loc)
-	delete_me = 1
-
-/obj/effect/landmark/costume/marisawizard/fake/New()
-	new /obj/item/clothing/head/wizard/marisa/fake(src.loc)
-	new/obj/item/clothing/suit/wizrobe/marisa/fake(src.loc)
 	delete_me = 1
 
 /obj/effect/landmark/costume/sexyclown/New()

@@ -26,7 +26,7 @@
 
 /obj/machinery/atmospherics/tvalve/update_icon(animation)
 	if(animation)
-		flick("tvalve[src.state][!src.state]",src)
+		flick("tvalve[src.state][!src.state]", src)
 	else
 		icon_state = "tvalve[state]"
 
@@ -197,19 +197,19 @@
 	node2_dir = turn(dir, -90)
 	node3_dir = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
+			if (check_connect_types(target, src))
 				node1 = target
 				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
+		if(target.initialize_directions & get_dir(target, src))
+			if (check_connect_types(target, src))
 				node2 = target
 				break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_dir))
-		if(target.initialize_directions & get_dir(target,src))
-			if (check_connect_types(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node3_dir))
+		if(target.initialize_directions & get_dir(target, src))
+			if (check_connect_types(target, src))
 				node3 = target
 				break
 
@@ -395,16 +395,16 @@
 	node2_dir = turn(dir, 90)
 	node3_dir = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node2 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node3_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node3 = target
 			break
 
@@ -413,7 +413,7 @@
 
 /obj/machinery/atmospherics/tvalve/mirrored/update_icon(animation)
 	if(animation)
-		flick("tvalvem[src.state][!src.state]",src)
+		flick("tvalvem[src.state][!src.state]", src)
 	else
 		icon_state = "tvalvem[state]"
 

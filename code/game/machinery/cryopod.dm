@@ -99,7 +99,7 @@
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			user << SPAN_NOTICE("There is nothing to recover from storage.")
+			user << "<span class='notice'>There is nothing to recover from storage.</span>"
 			return
 
 		var/obj/item/I = input(usr, "Please choose which object to retrieve.","Object recovery",null) as null|anything in frozen_items
@@ -107,10 +107,10 @@
 			return
 
 		if(!(I in frozen_items))
-			user << SPAN_NOTICE("\The [I] is no longer in storage.")
+			user << "<span class='notice'>\The [I] is no longer in storage.</span>"
 			return
 
-		visible_message(SPAN_NOTICE("The console beeps happily as it disgorges \the [I]."))
+		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>")
 
 		I.forceMove(get_turf(src))
 		frozen_items -= I
@@ -119,10 +119,10 @@
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			user << SPAN_NOTICE("There is nothing to recover from storage.")
+			user << "<span class='notice'>There is nothing to recover from storage.</span>"
 			return
 
-		visible_message(SPAN_NOTICE("The console beeps happily as it disgorges the desired objects."))
+		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>")
 
 		for(var/obj/item/I in frozen_items)
 			I.forceMove(get_turf(src))
@@ -330,7 +330,7 @@
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == occupant.mind)
 			if(O.owner && O.owner.current)
-				O.owner.current << SPAN_WARNING("You get the feeling your target is no longer within your reach...")
+				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
 			qdel(O)
 
 	//Handle job slot/tater cleanup.
@@ -338,9 +338,7 @@
 
 	job_master.FreeRole(job)
 
-	if(occupant.mind.objectives.len)
-		qdel(occupant.mind.objectives)
-		occupant.mind.special_role = null
+	clear_antagonist(occupant.mind)
 
 	// Delete them from datacore.
 	if(PDA_Manifest.len)
@@ -361,12 +359,12 @@
 
 
 	//Make an announcement and log the person entering storage.
-	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.role_alt_title] - [stationtime2text()]"
-	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.role_alt_title]) at [stationtime2text()]"
-	log_and_message_admins("[key_name(occupant)] ([occupant.mind.role_alt_title]) entered cryostorage.")
+	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.assigned_role] - [stationtime2text()]"
+	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.assigned_role]) at [stationtime2text()]"
+	log_and_message_admins("[key_name(occupant)] ([occupant.mind.assigned_role]) entered cryostorage.")
 
-	announce.autosay("[occupant.real_name], [occupant.mind.role_alt_title], [on_store_message]", "[on_store_name]")
-	visible_message(SPAN_NOTICE("\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage."))
+	announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
+	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
 
 	//This should guarantee that ghosts don't spawn.
 	occupant.ckey = null
@@ -382,7 +380,7 @@
 	if(istype(G, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/grab = G
 		if(occupant)
-			user << SPAN_NOTICE("\The [src] is in use.")
+			user << "<span class='notice'>\The [src] is in use.</span>"
 			return
 
 		if(!ismob(grab.affecting))
@@ -413,7 +411,7 @@
 			// Book keeping!
 			var/turf/location = get_turf(src)
 			log_admin("[key_name_admin(M)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-			message_admins(SPAN_NOTICE("[key_name_admin(M)] has entered a stasis pod."))
+			message_admins("<span class='notice'>[key_name_admin(M)] has entered a stasis pod.</span>")
 
 			//Despawning occurs when process() is called with an occupant without a client.
 			src.add_fingerprint(M)
@@ -450,7 +448,7 @@
 		return
 
 	if(src.occupant)
-		usr << SPAN_NOTICE("<B>\The [src] is in use.</B>")
+		usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
 		return
 
 	for(var/mob/living/carbon/slime/M in range(1,usr))
@@ -466,7 +464,7 @@
 			return
 
 		if(src.occupant)
-			usr << SPAN_NOTICE("<B>\The [src] is in use.</B>")
+			usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
 			return
 
 		usr.stop_pulling()
@@ -496,8 +494,8 @@
 		new_occupant.forceMove(src)
 		icon_state = occupied_icon_state
 
-		occupant << SPAN_NOTICE("[on_enter_occupant_message]")
-		occupant << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
+		occupant << "<span class='notice'>[on_enter_occupant_message]</span>"
+		occupant << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
 
 	else
 		icon_state = base_icon_state

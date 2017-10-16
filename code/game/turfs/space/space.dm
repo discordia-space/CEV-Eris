@@ -26,7 +26,7 @@
 /turf/space/proc/update_starlight()
 	if(!config.starlight)
 		return
-	if(locate(/turf/simulated) in orange(src,1))
+	if(locate(/turf/simulated) in trange(1, src))
 		set_light(2, 1, config.starlight)
 	else
 		set_light(0)
@@ -85,7 +85,7 @@
 
 	inertial_drift(A)
 
-	if(ticker && ticker.mode)
+	if(ticker && ticker.storyteller)
 
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(ticker.mode.name == MODE_NUKE) return

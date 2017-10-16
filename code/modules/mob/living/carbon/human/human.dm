@@ -1425,11 +1425,6 @@ var/list/rank_prefix = list(\
 		S << SPAN_DANGER("[U] pops your [current_limb.joint] back in!")
 	current_limb.undislocate()
 
-/mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W in organs)
-		return
-	..()
-
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
 	if(update_hud)

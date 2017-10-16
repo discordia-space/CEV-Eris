@@ -138,7 +138,7 @@
 					return
 
 				if(M.brainmob.mind)
-					clear_antag_roles(M.brainmob.mind, 1)
+					clear_antagonist(M.brainmob.mind)
 
 				user.drop_item()
 				P.loc = src
@@ -211,10 +211,11 @@
 	qdel(src)
 
 /obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
-	if(!ai) return
-	for (var/datum/mind/malfai in malf.current_antagonists)
-		if (ai.mind == malfai)
-			return 1
+	if(!ai)
+		return FALSE
+	if (player_is_antag_id(ai.mind,ROLE_MALFUNCTION))
+		return TRUE
+	return FALSE
 
 /obj/structure/AIcore/deactivated/attackby(var/obj/item/weapon/W, var/mob/user)
 

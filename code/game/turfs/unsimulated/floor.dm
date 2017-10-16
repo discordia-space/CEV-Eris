@@ -7,3 +7,4 @@
 	name = "mask"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rockvault"
+	dynamic_lighting = TRUE

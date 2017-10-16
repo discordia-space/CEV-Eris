@@ -107,6 +107,12 @@
 #define EVENT_LEVEL_MAJOR    3
 #define EVENT_LEVEL_ECONOMY  4
 
+// Cargo-related stuff.
+#define MANIFEST_ERROR_CHANCE		5
+#define MANIFEST_ERROR_NAME			1
+#define MANIFEST_ERROR_CONTENTS		2
+#define MANIFEST_ERROR_ITEM			4
+
 //General-purpose life speed define for plants.
 #define HYDRO_SPEED_MULTIPLIER 1
 
@@ -137,6 +143,15 @@
 
 #define WALL_CAN_OPEN 1
 #define WALL_OPENING 2
+
+#define COIN_STANDARD "Coin"
+#define COIN_GOLD "Gold coin"
+#define COIN_SILVER "Silver coin"
+#define COIN_DIAMOND "Diamond coin"
+#define COIN_IRON "Iron coin"
+#define COIN_PLASMA "Solid plasma coin"
+#define COIN_URANIUM "Uranium coin"
+#define COIN_PLATINUM "Platunum coin"
 
 #define DEFAULT_TABLE_MATERIAL "plastic"
 #define DEFAULT_WALL_MATERIAL "steel"
@@ -210,7 +225,7 @@
 #define ANNOUNSER_NAME "CEV Eris System Announcer"
 
 
-#define LIST_OF_CONSONANT list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z","á","â","ã","ä","æ","ç","é","ê","ë","ì","í","ï","ð","ñ","ò","ô","õ","ö","÷","ø","ù")
+#define LIST_OF_CONSONANT list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "á", "â", "ã", "ä", "æ", "ç", "é", "ê", "ë", "ì", "í", "ï", "ð", "ñ", "ò", "ô", "õ", "ö", "÷", "ø", "ù")
 
 //Multi-z
 #define FALL_GIB_DAMAGE 999

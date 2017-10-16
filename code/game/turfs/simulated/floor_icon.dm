@@ -123,10 +123,11 @@ var/list/flooring_cache = list()
 			overlays |= get_flooring_overlay("[flooring.icon_base]-burned-[burnt]", "burned[burnt]")
 
 	if(update_neighbors)
-		for(var/turf/simulated/floor/F in range(src, 1))
+		for(var/turf/simulated/floor/F in trange(1, src))
 			if(F == src)
 				continue
 			F.update_icon()
+	update_openspace()
 
 /turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
 	if(!flooring_cache[cache_key])

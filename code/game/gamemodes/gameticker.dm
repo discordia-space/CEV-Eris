@@ -4,9 +4,7 @@ var/global/datum/controller/gameticker/ticker
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
 
-	var/hide_mode = 0
-	var/datum/game_mode/mode = null
-	var/post_game = 0
+	var/datum/storyteller/storyteller = null
 	var/event_time = null
 	var/event = 0
 
@@ -28,6 +26,11 @@ var/global/datum/controller/gameticker/ticker
 
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 
+	var/ship_was_nuked = 0              // See nuclearbomb.dm and malfunction.dm.
+	var/nuke_in_progress = 0           	// Sit back and relax
+
+	var/newscaster_announcements = null
+
 /datum/controller/gameticker/proc/pregame()
 	login_music = pick(list(
 		'sound/music/tonspender_irritations.ogg',
@@ -48,7 +51,7 @@ var/global/datum/controller/gameticker/ticker
 				pregame_timeleft--
 			if(pregame_timeleft == config.vote_autogamemode_timeleft)
 				if(!vote.time_remaining)
-					vote.autogamemode()	//Quit calling this over and over and over and over.
+					vote.autostoryteller()	//Quit calling this over and over and over and over.
 					while(vote.time_remaining)
 						for(var/i = 0, i < 10, i++)
 							sleep(1)
@@ -60,56 +63,27 @@ var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker/proc/setup()
 	//Create and announce mode
-	if(master_mode == "secret")
-		src.hide_mode = 1
 
-	var/list/runnable_modes = config.get_runnable_modes()
-	if(master_mode == "random" || master_mode == "secret")
-		if(!runnable_modes.len)
-			current_state = GAME_STATE_PREGAME
-			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
-			return 0
-		if(secret_force_mode != "secret")
-			src.mode = config.pick_mode(secret_force_mode)
-		if(!src.mode)
-			var/list/weighted_modes = list()
-			for(var/datum/game_mode/GM in runnable_modes)
-				weighted_modes[GM.config_tag] = config.probabilities[GM.config_tag]
-			src.mode = gamemode_cache[pickweight(weighted_modes)]
-	else
-		src.mode = config.pick_mode(master_mode)
+	src.storyteller = config.pick_storyteller(master_storyteller)
 
-	if(!src.mode)
+	if(!src.storyteller)
 		current_state = GAME_STATE_PREGAME
-		world << "<span class='danger'>Serious error in mode setup!</span> Reverting to pre-game lobby."
+		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return 0
 
 	job_master.ResetOccupations()
-	src.mode.create_antagonists()
-	src.mode.pre_setup()
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!src.mode.can_start())
-		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+	if(!src.storyteller.can_start(TRUE))
+		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
-		mode.fail_setup()
-		mode = null
 		job_master.ResetOccupations()
 		return 0
 
-	if(hide_mode)
-		world << "<B>The current game mode is - Secret!</B>"
-		if(runnable_modes.len)
-			var/list/temp_modes = new
-			for(var/datum/game_mode/M in runnable_modes)
-				temp_modes.Add(M.name)
-			temp_modes = sortList(temp_modes)
-			if(temp_modes.len)
-				world << "<B>Possibilities:</B> [english_list(temp_modes)]"
-	else
-		src.mode.announce()
+	src.storyteller.announce()
 
 	setup_economy()
+	newscaster_announcements = pick(newscaster_standard_feeds)
 	current_state = GAME_STATE_PLAYING
 	create_characters() //Create player characters and transfer them
 	collect_minds()
@@ -121,7 +95,7 @@ var/global/datum/controller/gameticker/ticker
 	shuttle_controller.setup_shuttle_docks()
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
-		mode.post_setup()
+		storyteller.set_up()
 		//Cleanup some stuff
 		for(var/obj/effect/landmark/start/S in landmarks_list)
 			//Deleting Startpoints but we need the ai point to AI-ize people later
@@ -132,6 +106,8 @@ var/global/datum/controller/gameticker/ticker
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
+		for(var/mob/new_player/N in mob_list)
+			N.new_player_panel_proc()
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
 
@@ -160,105 +136,68 @@ var/global/datum/controller/gameticker/ticker
 	var/obj/screen/cinematic = null
 
 	//Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-/datum/controller/gameticker/proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
+/datum/controller/gameticker/proc/station_explosion_cinematic(var/ship_missed = 0)
 	if(cinematic)
 		return	//already a cinematic in progress!
+
+	if(ship_missed)
+		world << sound('sound/effects/explosionfar.ogg')
+		return	//bomb missed the ship
 
 	//initialise our cinematic screen object
 	cinematic = new(src)
 	cinematic.icon = 'icons/effects/station_explosion.dmi'
 	cinematic.icon_state = "station_intact"
-	cinematic.layer = 20
+	cinematic.layer = 30
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
 
-	var/obj/structure/bed/temp_buckle = new(src)
-	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
-	if(station_missed)
-		for(var/mob/living/M in living_mob_list)
-			M.buckled = temp_buckle				//buckles the mob so it can't do anything
-			if(M.client)
-				M.client.screen += cinematic	//show every client the cinematic
-	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
-		for(var/mob/living/M in living_mob_list)
-			M.buckled = temp_buckle
+	for(var/mob/M in mob_list)
+		var/turf/T = get_turf(M)
+		if(T && T.z in config.station_levels)	//we don't use M.death(0) because it calls a for(/mob) loop and
 			if(M.client)
 				M.client.screen += cinematic
-
-			switch(M.z)
-				if(0)	//inside a crate or something
-					var/turf/T = get_turf(M)
-					if(T && T.z in config.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
-						M.health = 0
-						M.stat = DEAD
-				if(1)	//on a z-level 1 turf.
-					M.health = 0
-					M.stat = DEAD
+			if(isliving(M))
+				var/mob/living/LM = M
+				LM.health = 0
+				LM.stat = DEAD
 
 	//Now animate the cinematic
-	switch(station_missed)
-		if(1)	//nuke was nearby but (mostly) missed
-			if(mode && !override)
-				override = mode.name
-			switch(override)
-				if("mercenary") //Nuke wasn't on station when it blew up
-					flick("intro_nuke",cinematic)
-					sleep(35)
-					world << sound('sound/effects/explosionfar.ogg')
-					flick("station_intact_fade_red", cinematic)
-					cinematic.icon_state = "summary_nukefail"
-				else
-					flick("intro_nuke", cinematic)
-					sleep(35)
-					world << sound('sound/effects/explosionfar.ogg')
-					//flick("end",cinematic)
+	sleep(30)
 
+	flick("intro_nuke", cinematic)
 
-		if(2)	//nuke was nowhere nearby	//TODO: a really distant explosion animation
-			sleep(50)
-			world << sound('sound/effects/explosionfar.ogg')
+	sleep(30)
 
+	flick("ship_explode_fade_red", cinematic)
 
-		else	//station was destroyed
-			if(mode && !override)
-				override = mode.name
-			switch( override )
-				if("mercenary") //Nuke Ops successfully bombed the station
-					flick("intro_nuke", cinematic)
-					sleep(35)
-					flick("station_explode_fade_red", cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
-					cinematic.icon_state = "summary_nukewin"
-				if("AI malfunction") //Malf (screen,explosion,summary)
-					flick("intro_malf", cinematic)
-					sleep(76)
-					flick("station_explode_fade_red", cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
-					cinematic.icon_state = "summary_malf"
-				if("blob") //Station nuked (nuke,explosion,summary)
-					flick("intro_nuke", cinematic)
-					sleep(35)
-					flick("station_explode_fade_red", cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
-					cinematic.icon_state = "summary_selfdes"
-				else //Station nuked (nuke,explosion,summary)
-					flick("intro_nuke", cinematic)
-					sleep(35)
-					flick("station_explode_fade_red", cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
-					cinematic.icon_state = "summary_selfdes"
-			for(var/mob/living/M in living_mob_list)
-				if(M.loc.z in config.station_levels)
-					M.death()//No mercy
+	sleep(15)
+
+	world << sound('sound/effects/explosionfar.ogg')
+
+	sleep(5)
+
+	world << sound('sound/effects/explosionfar.ogg')
+
+	sleep(4)
+
+	world << sound('sound/effects/explosionfar.ogg')
+
+	sleep(6)
+
+	world << sound('sound/effects/explosionfar.ogg')
+	world << sound('sound/effects/explosionfar.ogg')
+	world << sound('sound/effects/explosionfar.ogg')
+
+	sleep(30)
+
+	cinematic.icon_state = "summary_selfdes"
 	//If its actually the end of the round, wait for it to end.
 	//Otherwise if its a verb it will continue on afterwards.
 	sleep(300)
 
 	if(cinematic)
 		qdel(cinematic)		//end the cinematic
-	if(temp_buckle)
-		qdel(temp_buckle)	//release everybody
-
 
 
 /datum/controller/gameticker/proc/create_characters()
@@ -299,18 +238,11 @@ var/global/datum/controller/gameticker/ticker
 	if(current_state != GAME_STATE_PLAYING)
 		return
 
-	mode.process()
+	storyteller.process()
 
-	var/game_finished = 0
-	var/mode_finished = 0
-	if(config.continous_rounds)
-		game_finished = (emergency_shuttle.returned() || mode.station_was_nuked)
-		mode_finished = (!post_game && mode.check_finished())
-	else
-		game_finished = (mode.check_finished() || emergency_shuttle.returned()) || universe_has_ended
-		mode_finished = game_finished
+	var/game_finished = (emergency_shuttle.returned() || ship_was_nuked  || universe_has_ended)
 
-	if(!mode.explosion_in_progress && game_finished && (mode_finished || post_game))
+	if(!nuke_in_progress && game_finished)
 		current_state = GAME_STATE_FINISHED
 
 		spawn
@@ -336,19 +268,9 @@ var/global/datum/controller/gameticker/ticker
 			else
 				world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
 
-	else if(mode_finished)
-		post_game = 1
-
-		mode.cleanup()
-
-		spawn(50)
-			if(!round_end_announced) // Spam Prevention. Now it should announce only once.
-				world << SPAN_DANGER("The round has ended!")
-				round_end_announced = 1
-
 
 /datum/controller/gameticker/proc/declare_completion()
-	world << "<br><br><br><H1>A round of [mode.name] has ended!</H1>"
+	world << "<br><br><br><H1>A round has ended!</H1>"
 	for(var/mob/Player in player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
@@ -374,11 +296,11 @@ var/global/datum/controller/gameticker/ticker
 	world << "<br>"
 
 	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
-		if(aiPlayer.stat != 2)
+		if(aiPlayer.stat != DEAD)
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
 		else
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
-		aiPlayer.show_laws(1)
+		aiPlayer.show_laws(TRUE)
 
 		if(aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
@@ -406,7 +328,7 @@ var/global/datum/controller/gameticker/ticker
 	if(dronecount)
 		world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>"
 
-	mode.declare_completion()//To declare normal completion.
+	storyteller.declare_completion()//To declare normal completion.
 
 	//Ask the event manager to print round end information
 	event_manager.RoundEnd()
@@ -414,14 +336,13 @@ var/global/datum/controller/gameticker/ticker
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
 	//Look into all mobs in world, dead or alive
-	for(var/datum/mind/Mind in minds)
-		var/temprole = Mind.special_role
-		if(temprole)							//if they are an antagonist of some sort.
-			if(temprole in total_antagonists)	//If the role exists already, add the name to it
-				total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
-			else
-				total_antagonists.Add(temprole) //If the role doesnt exist in the list, create it and add the mob
-				total_antagonists[temprole] += ": [Mind.name]([Mind.key])"
+	for(var/datum/antagonist/antag in current_antags)
+		var/temprole = antag.id
+		if(temprole && antag.owner)							//if they are an antagonist of some sort.
+			if(!(temprole in total_antagonists))	//If the role doesn't exist in list, create it
+				total_antagonists.Add(temprole)
+			total_antagonists[temprole] += ", [antag.owner.name]([antag.owner.key])"
+
 
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")

@@ -522,3 +522,58 @@
 //		new /obj/item/weapon/pestspray(src)
 //		new /obj/item/weapon/pestspray(src)
 //		new /obj/item/weapon/pestspray(src)
+
+
+
+/obj/structure/closet/crate/secure/weapon
+	desc = "A secure weapons crate."
+	name = "Weapons crate"
+	icon_state = "weaponcrate"
+	icon_opened = "weaponcrateopen"
+	icon_closed = "weaponcrate"
+
+/obj/structure/closet/crate/scicrate
+	desc = "A science crate."
+	name = "Science crate"
+	icon_state = "scicrate"
+	icon_opened = "scicrateopen"
+	icon_closed = "scicrate"
+
+/obj/structure/closet/crate/secure/scisecurecrate
+	desc = "A secure science crate."
+	name = "Science crate"
+	icon_state = "scisecurecrate"
+	icon_opened = "scisecurecrateopen"
+	icon_closed = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/gear
+	desc = "A secure gear crate."
+	name = "Gear crate"
+	icon_state = "secgearcrate"
+	icon_opened = "secgearcrateopen"
+	icon_closed = "secgearcrate"
+
+/obj/structure/closet/crate/secure/hydrosec
+	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
+	name = "secure hydroponics crate"
+	icon_state = "hydrosecurecrate"
+	icon_opened = "hydrosecurecrateopen"
+	icon_closed = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/woodseccrate
+	desc = "A secure wooden crate."
+	name = "Secure wooden crate"
+	icon_state = "woodseccrate"
+	icon_opened = "woodseccrateopen"
+	icon_closed = "woodseccrate"
+
+/obj/structure/closet/crate/secure/bin
+	desc = "A secure bin."
+	name = "Secure bin"
+	icon_state = "largebins"
+	icon_opened = "largebinsopen"
+	icon_closed = "largebins"
+	redlight = "largebinr"
+	greenlight = "largebing"
+	sparks = "largebinsparks"
+	emag = "largebinemag"
