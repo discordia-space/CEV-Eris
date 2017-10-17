@@ -5,7 +5,7 @@
 		return FALSE
 	if(player.assigned_role in restricted_jobs)
 		return FALSE
-	if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
+	if(player.assigned_role in protected_jobs)
 		return FALSE
 	if(player.current.stat || !player.active)
 		return FALSE

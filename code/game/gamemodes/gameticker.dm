@@ -3,6 +3,7 @@ var/global/datum/controller/gameticker/ticker
 /datum/controller/gameticker
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
+	var/first_start_trying = TRUE
 
 	var/datum/storyteller/storyteller = null
 	var/event_time = null
@@ -40,9 +41,14 @@ var/global/datum/controller/gameticker/ticker
 		'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
 		'sound/music/paradise_cracked_title03.ogg'))
 	do
-		pregame_timeleft = 180
-		world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
+		if(first_start_trying)
+			pregame_timeleft = 180
+			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
+		else
+			pregame_timeleft = 20
+
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i = 0, i < 10, i++)
 				sleep(1)
@@ -58,6 +64,7 @@ var/global/datum/controller/gameticker/ticker
 							vote.process()
 			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
+			first_start_trying = FALSE
 	while (!setup())
 
 
@@ -77,6 +84,7 @@ var/global/datum/controller/gameticker/ticker
 	if(!src.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
+		storyteller = null
 		job_master.ResetOccupations()
 		return 0
 

@@ -37,8 +37,8 @@
 
 /mob/living/simple_animal/borer/Login()
 	..()
-	if(mind)
-		make_antagonist(mind,ROLE_BORER_REPRODUCED)
+	if(!roundstart && mind && !mind.antagonist.len)
+		make_antagonist(mind,ROLE_BORER)
 
 /mob/living/simple_animal/borer/New()
 	..()

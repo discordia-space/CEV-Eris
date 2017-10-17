@@ -52,6 +52,8 @@ var/global/list/rolesets = list()
 				continue
 			if(ticker.storyteller && ticker.storyteller.one_role_per_player && candidate.antagonist.len)
 				continue
+			if(player_is_antag_id(candidate,antag))
+				continue
 
 			candidates.Add(candidate)
 

@@ -9,11 +9,6 @@
 
 	outer = TRUE
 
-/datum/antagonist/borer/reproduced
-	id = ROLE_BORER_REPRODUCED
-	selectable = FALSE
-	mob_path = /mob/living/simple_animal/borer
-
 /datum/antagonist/borer/create_objectives()
 	new /datum/objective/borer_survive (src)
 	new /datum/objective/borer_reproduce (src)
