@@ -3,7 +3,10 @@ var/global/datum/controller/gameticker/ticker
 /datum/controller/gameticker
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
+
+	//setup vars
 	var/first_start_trying = TRUE
+	var/vote_ended = FALSE
 
 	var/datum/storyteller/storyteller = null
 	var/event_time = null
@@ -41,6 +44,7 @@ var/global/datum/controller/gameticker/ticker
 		'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
 		'sound/music/paradise_cracked_title03.ogg'))
 	do
+		vote_ended = FALSE
 		if(first_start_trying)
 			pregame_timeleft = 180
 			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
@@ -55,8 +59,9 @@ var/global/datum/controller/gameticker/ticker
 				vote.process()
 			if(round_progressing)
 				pregame_timeleft--
-			if(pregame_timeleft == config.vote_autogamemode_timeleft)
+			if(!vote_ended && (pregame_timeleft == config.vote_autogamemode_timeleft || !first_start_trying))
 				if(!vote.time_remaining)
+					vote_ended = TRUE
 					vote.autostoryteller()	//Quit calling this over and over and over and over.
 					while(vote.time_remaining)
 						for(var/i = 0, i < 10, i++)

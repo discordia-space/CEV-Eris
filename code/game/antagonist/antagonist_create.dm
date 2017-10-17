@@ -1,4 +1,4 @@
-/datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE)
+/datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE, var/update = TRUE)
 	if(!istype(target) || !target.current)
 		log_debug("ANTAGONIST Wrong target passed to create_antagonist of [id]! Target: [target == null?"NULL":target] \ref[target]")
 		return FALSE
@@ -17,7 +17,9 @@
 			target.antagonist.Remove(src)
 			return FALSE
 
-		update_antag_mob()
+		if(update || !istype(target.current,mob_path))
+			update_antag_mob()
+
 		place_antagonist()
 
 
