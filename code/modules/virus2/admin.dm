@@ -33,8 +33,9 @@
 /datum/admins/var/datum/virus2_editor/virus2_editor_datum = new
 /client/proc/virus2_editor()
 	set name = "Virus Editor"
-	set category = "Fun"
-	if(!holder || !check_rights(R_FUN))
+	set category = "Debug"
+
+	if(!holder || !check_rights(R_DEBUG))
 		return // spawn privileges to create viruses
 
 	holder.virus2_editor_datum.show_ui(src)

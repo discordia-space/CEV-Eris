@@ -64,6 +64,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		var/rights = 0
 		for(var/i = 2, i <= List.len, i++)
 			switch(ckey(List[i]))
+
 				if("@", "prev")
 					rights |= previous_rights
 				if("admin")
@@ -77,7 +78,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 				if("permissions", "rights")
 					rights |= R_PERMISSIONS
 				if("everything", "host", "all")
-					rights |= (R_HOST | R_ADMIN | R_FUN | R_SERVER | R_DEBUG | R_PERMISSIONS | R_MOD | R_MENTOR)
+					rights |= (R_ADMIN | R_FUN | R_SERVER | R_DEBUG | R_PERMISSIONS | R_MOD | R_MENTOR)
 				if("mod")
 					rights |= R_MOD
 				if("mentor")
@@ -105,6 +106,57 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		load_admins_legacy()
 	else
 		load_admins()
+=======
+		//The current admin system uses SQL
+
+		establish_db_connection()
+		if(!dbcon.IsConnected())
+			error("Failed to connect to database in load_admins(). Reverting to legacy system.")
+			log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
+			config.admin_legacy_system = 1
+			load_admins()
+			return
+
+		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, rank, flags FROM players WHERE rank != 'player'")
+		query.Execute()
+		while(query.NextRow())
+			var/ckey = query.item[1]
+			var/rank = query.item[2]
+			var/rights = query.item[3]
+			if(istext(rights))
+				rights = text2num(rights)
+			var/datum/admins/D = new /datum/admins(rank, rights, ckey)
+
+			//find the client for a ckey if they are connected and associate them with the new admin datum
+			D.associate(directory[ckey])
+		if(!admin_datums)
+			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
+			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
+			config.admin_legacy_system = 1
+			load_admins()
+			return
+
+	#ifdef TESTING
+	var/msg = "Admins Built:\n"
+	for(var/ckey in admin_datums)
+		var/rank
+		var/datum/admins/D = admin_datums[ckey]
+		if(D)	rank = D.rank
+		msg += "\t[ckey] - [rank]\n"
+	testing(msg)
+	#endif
+
+
+#ifdef TESTING
+/client/verb/changerank(newrank in admin_ranks)
+	if(holder)
+		holder.rank = newrank
+		holder.rights = admin_ranks[newrank]
+	else
+		holder = new /datum/admins(newrank,admin_ranks[newrank],ckey)
+	remove_admin_verbs()
+	holder.associate(src)
+
 
 
 /proc/load_admins()

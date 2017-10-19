@@ -158,19 +158,9 @@ var/const/tk_maxrange = 15
 	return
 
 /obj/item/tk_grab/proc/apply_focus_overlay()
-	if(!focus)	return
-	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, locate(focus.x, focus.y, focus.z))
-	O.name = "sparkles"
-	O.anchored = 1
-	O.density = 0
-	O.layer = FLY_LAYER
-	O.set_dir(pick(cardinal))
-	O.icon = 'icons/effects/effects.dmi'
-	O.icon_state = "nothing"
-	flick("empdisable", O)
-	spawn(5)
-		qdel(O)
-	return
+	if(!focus)
+		return
+	PoolOrNew(/obj/effect/overlay/pulse, list(get_turf(focus), 5))
 
 /obj/item/tk_grab/update_icon()
 	overlays.Cut()

@@ -20,39 +20,35 @@
 
 //auto-gibs anything that bumps into it
 /obj/machinery/gibber/autogibber
-	var/turf/input_plate
+	var/input_dir = 0
 
 /obj/machinery/gibber/autogibber/New()
 	..()
-	spawn(5)
-		for(var/i in cardinal)
-			var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
-			if(input_obj)
-				if(isturf(input_obj.loc))
-					input_plate = input_obj.loc
-					gib_throw_dir = i
-					qdel(input_obj)
-					break
-
-		if(!input_plate)
+	spawn()
+		var/obj/effect/landmark/machinery/input/input = locate() in orange(1, src)
+		if(input)
+			input_dir = get_dir(src, input)
+		else
 			log_misc("a [src] didn't find an input plate.")
-			return
 
 /obj/machinery/gibber/autogibber/Bumped(var/atom/A)
-	if(!input_plate) return
+	if(!input_dir)
+		return
 
 	if(ismob(A))
 		var/mob/M = A
-
-		if(M.loc == input_plate
-		)
-			M.loc = src
+		if(M.loc == get_step(src, input_dir))
+			M.forceMove(src)
 			M.gib()
 
 
 /obj/machinery/gibber/New()
 	..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+	update_icon()
+	spawn()
+		var/obj/effect/landmark/machinery/output/output = locate() in orange(1, src)
+		if(output)
+			gib_throw_dir = get_dir(src, output)
 
 /obj/machinery/gibber/update_icon()
 	overlays.Cut()
@@ -69,7 +65,6 @@
 
 /obj/machinery/gibber/relaymove(mob/user as mob)
 	src.go_out()
-	return
 
 /obj/machinery/gibber/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
@@ -86,7 +81,7 @@
 
 /obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
-	user << "<span class='danger'>You [emagged ? "disable" : "enable"] the gibber safety guard.</span>"
+	user <<  SPAN_DANGER("You [emagged ? "disable" : "enable"] the gibber safety guard.")
 	return 1
 
 /obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)

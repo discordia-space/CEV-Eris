@@ -1,4 +1,4 @@
-var/list/gamemode_cache = list()
+var/list/storyteller_cache = list()
 
 /datum/configuration
 	var/server_name = null				// server name (for world name / status)
@@ -39,11 +39,8 @@ var/list/gamemode_cache = list()
 	var/vote_no_dead = 0				// dead people can't vote (tbi)
 //	var/enable_authentication = 0		// goon authentication
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
-	var/feature_object_spell_system = 0 //spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
-	var/traitor_scaling = 0 			//if amount of traitors scales based on amount of players
 	var/objectives_disabled = 0 			//if objectives are disabled or not
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
-	var/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
 	var/Ticklag = 0.9
@@ -52,10 +49,8 @@ var/list/gamemode_cache = list()
 	var/list/resource_urls = null
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
 	var/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
-	var/list/mode_names = list()
-	var/list/modes = list()				// allowed modes
-	var/list/votable_modes = list()		// votable modes
-	var/list/probabilities = list()		// relative probability of each mode
+	var/list/storyteller_names = list()
+	var/list/storytellers = list()				// allowed modes
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/allow_ai = 1					// allow ai job
@@ -74,9 +69,6 @@ var/list/gamemode_cache = list()
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
-
-	var/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
-	var/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
 
 	var/character_slots = 10				// The number of available character slots
 
@@ -230,21 +222,17 @@ var/list/gamemode_cache = list()
 	var/ghosts_can_possess_animals = 0
 
 /datum/configuration/New()
-	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
+	var/list/L = typesof(/datum/storyteller)
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
-		var/datum/game_mode/M = new T()
-		if (M.config_tag)
-			gamemode_cache[M.config_tag] = M // So we don't instantiate them repeatedly.
-			if(!(M.config_tag in modes))		// ensure each mode is added only once
-				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
-				src.modes += M.config_tag
-				src.mode_names[M.config_tag] = M.name
-				src.probabilities[M.config_tag] = M.probability
-				if (M.votable)
-					src.votable_modes += M.config_tag
-	src.votable_modes += "secret"
+		var/datum/storyteller/S = new T()
+		if (S.config_tag)
+			storyteller_cache[S.config_tag] = S // So we don't instantiate them repeatedly.
+			if(!(S.config_tag in storytellers))		// ensure each mode is added only once
+				log_misc("Adding storyteller [S.name] ([S.config_tag]) to configuration.")
+				src.storytellers += S.config_tag
+				src.storyteller_names[S.config_tag] = S.name
 
 /datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 	var/list/Lines = file2list(filename)
@@ -457,14 +445,8 @@ var/list/gamemode_cache = list()
 				if ("usewhitelist")
 					config.usewhitelist = 1
 
-				if ("feature_object_spell_system")
-					config.feature_object_spell_system = 1
-
 				if ("allow_metadata")
 					config.allow_Metadata = 1
-
-				if ("traitor_scaling")
-					config.traitor_scaling = 1
 
 				if ("aliens_allowed")
 					config.aliens_allowed = 1
@@ -474,21 +456,6 @@ var/list/gamemode_cache = list()
 
 				if("protect_roles_from_antagonist")
 					config.protect_roles_from_antagonist = 1
-
-				if ("probability")
-					var/prob_pos = findtext(value, " ")
-					var/prob_name = null
-					var/prob_value = null
-
-					if (prob_pos)
-						prob_name = lowertext(copytext(value, 1, prob_pos))
-						prob_value = copytext(value, prob_pos + 1)
-						if (prob_name in config.modes)
-							config.probabilities[prob_name] = text2num(prob_value)
-						else
-							log_misc("Unknown game mode probability configuration definition: [prob_name].")
-					else
-						log_misc("Incorrect probability configuration definition: [prob_name]  [prob_value].")
 
 				if("allow_random_events")
 					config.allow_random_events = 1
@@ -579,9 +546,6 @@ var/list/gamemode_cache = list()
 				if("gateway_delay")
 					config.gateway_delay = text2num(value)
 
-				if("continuous_rounds")
-					config.continous_rounds = 1
-
 				if("ghost_interaction")
 					config.ghost_interaction = 1
 
@@ -612,12 +576,6 @@ var/list/gamemode_cache = list()
 
 				if("use_lib_nudge")
 					config.use_lib_nudge = 1
-
-				if("allow_cult_ghostwriter")
-					config.cult_ghostwriter = 1
-
-				if("req_cult_ghostwriter")
-					config.cult_ghostwriter_req_cultists = text2num(value)
 
 				if("character_slots")
 					config.character_slots = text2num(value)
@@ -808,22 +766,22 @@ var/list/gamemode_cache = list()
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
 
-/datum/configuration/proc/pick_mode(mode_name)
+/datum/configuration/proc/pick_storyteller(storyteller_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
-	for (var/game_mode in gamemode_cache)
-		var/datum/game_mode/M = gamemode_cache[game_mode]
-		if (M.config_tag && M.config_tag == mode_name)
-			return M
-	return gamemode_cache["extended"]
+	for (var/storyteller in storyteller_cache)
+		var/datum/storyteller/S = storyteller_cache[storyteller]
+		if (S.config_tag && S.config_tag == storyteller_name)
+			return S
+	return storyteller_cache[STORYTELLER_BASE]
 
-/datum/configuration/proc/get_runnable_modes()
-	var/list/runnable_modes = list()
-	for(var/game_mode in gamemode_cache)
-		var/datum/game_mode/M = gamemode_cache[game_mode]
-		if(M && M.can_start() && !isnull(config.probabilities[M.config_tag]) && config.probabilities[M.config_tag] > 0)
-			runnable_modes |= M
-	return runnable_modes
+/datum/configuration/proc/get_storytellers()
+	var/list/runnable_storytellers = list()
+	for(var/storyteller in storyteller_cache)
+		var/datum/storyteller/S = storyteller_cache[storyteller]
+		if(S)
+			runnable_storytellers |= S
+	return runnable_storytellers
 
 /datum/configuration/proc/post_load()
 	//apply a default value to config.python_path, if needed

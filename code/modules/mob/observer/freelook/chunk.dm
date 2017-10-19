@@ -143,4 +143,8 @@
 			t.obfuscations[obfuscation.type] = image(obfuscation.icon, t, obfuscation.icon_state, OBFUSCATION_LAYER)
 		obscured += t.obfuscations[obfuscation.type]
 
+/proc/seen_turfs_in_range(var/source, var/range)
+	var/turf/pos = get_turf(source)
+	return hear(range, pos)
+
 #undef UPDATE_BUFFER

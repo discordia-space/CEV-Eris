@@ -110,7 +110,7 @@
 	set desc = "Spawn a tank transfer valve bomb"
 	set name = "Instant TTV"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	var/obj/effect/spawner/newbomb/proto = /obj/effect/spawner/newbomb/radio/custom

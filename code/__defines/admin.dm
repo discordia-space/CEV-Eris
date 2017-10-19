@@ -29,6 +29,8 @@
 #define R_MENTOR        0x10
 #define R_MOD           0x20
 #define R_ADMIN         0x40
-#define R_HOST          0x80
 
-#define R_MAXPERMISSION 0x80 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+// Host permission (sum of all permissions above) is equal to 127 or 0x7F
+#define R_HOST 0x7F // Used for debug/mock only
+
+#define R_MAXPERMISSION 0x40 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.

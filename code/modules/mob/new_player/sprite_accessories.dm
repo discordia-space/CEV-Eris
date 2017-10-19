@@ -49,7 +49,7 @@
 
 /datum/sprite_accessory/hair/short
 	name = "Short Hair"	  // try to capatilize the names please~
-	icon_state = "a" // you do not need to define _s or _l sub-states, game automatically does this for you
+	icon_state = "shorthair" // you do not need to define _s or _l sub-states, game automatically does this for you
 
 /datum/sprite_accessory/hair/shorthair2
 	name = "Short Hair 2"
@@ -57,11 +57,11 @@
 
 /datum/sprite_accessory/hair/cut
 	name = "Cut Hair"
-	icon_state = "c"
+	icon_state = "CutHair"
 
 /datum/sprite_accessory/hair/long
 	name = "Shoulder-length Hair"
-	icon_state = "b"
+	icon_state = "ShoulderlengthHair"
 
 /datum/sprite_accessory/hair/longer
 	name = "Long Hair"
@@ -233,7 +233,7 @@
 
 /datum/sprite_accessory/hair/fag
 	name = "Flow Hair"
-	icon_state = "f"
+	icon_state = "FlowHair"
 
 /datum/sprite_accessory/hair/feather
 	name = "Feather"
@@ -246,7 +246,7 @@
 
 /datum/sprite_accessory/hair/mohawk
 	name = "Mohawk"
-	icon_state = "d"
+	icon_state = "Mohawk"
 
 /datum/sprite_accessory/hair/jensen
 	name = "Jensen Hair"
@@ -342,8 +342,12 @@ datum/sprite_accessory/hair/longbangs
 
 /datum/sprite_accessory/hair/balding
 	name = "Balding Hair"
-	icon_state = "e"
+	icon_state = "BaldingHair"
 	gender = MALE // turnoff!
+
+/datum/sprite_accessory/hair/CIA
+	name = "CIA"
+	icon_state = "cia"
 
 /datum/sprite_accessory/hair/bun
 	name = "Bun Head"
@@ -593,6 +597,49 @@ datum/sprite_accessory/hair/fastline
 	icon_state = "fastline"
 	gender = MALE
 
+/*
+///////////////////////////////////
+/  =---------------------------=  /
+/  ==BlueBay ==  /
+/  =---------------------------=  /
+///////////////////////////////////
+*/
+
+/datum/sprite_accessory/hair/kare
+	name = "Kare"
+	icon_state = "kare"
+
+/datum/sprite_accessory/hair/zone
+	name = "Zone"
+	icon_state = "zone"
+
+/datum/sprite_accessory/hair/ziegler
+	name = "Ziegler"
+	icon_state = "ziegler"
+
+/datum/sprite_accessory/hair/wisp
+	name = "Wisp"
+	icon_state = "Wisp"
+
+/datum/sprite_accessory/hair/volaju
+	name = "Volaju"
+	icon_state = "volaju"
+
+/datum/sprite_accessory/hair/veryshortovereye
+	name = "Very Short Over Eye 1"
+	icon_state = "veryshortovereye"
+
+/datum/sprite_accessory/hair/veryshortovereyealternate
+	name = "Very Short Over Eye 2"
+	icon_state = "veryshortovereyealternate"
+
+/datum/sprite_accessory/hair/ponytail6
+	name = "Ponytail 6"
+	icon_state = "ponytail6"
+
+/datum/sprite_accessory/hair/ponytail7
+	name = "Ponytail 7"
+	icon_state = "ponytail7"
 /*
 ///////////////////////////////////
 /  =---------------------------=  /

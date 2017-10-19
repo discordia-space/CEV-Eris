@@ -55,12 +55,8 @@ var/global/universe_has_ended = 0
 	APCSet()
 	OverlayAndAmbientSet()
 
-	// Disable Nar-Sie.
-	cult.allow_narsie = 0
-
 	PlayerSet()
 
-	new /obj/singularity/narsie/large/exit(pick(endgame_exits))
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
 There's been a galaxy-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
@@ -118,13 +114,13 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			APC.queue_icon_update()
 
 /datum/universal_state/supermatter_cascade/proc/PlayerSet()
-	for(var/datum/mind/M in player_list)
-		if(!isliving(M.current))
+	for(var/datum/antagonist/A in current_antags)
+		if(!isliving(A.owner.current))
 			continue
-		if(M.current.stat!=2)
-			M.current.Weaken(10)
+		if(A.owner.current.stat!=2)
+			A.owner.current.Weaken(10)
 //			flick("e_flash", M.current.flash)
-			if (M.current.HUDtech.Find("flash"))
-				flick("e_flash", M.current.HUDtech["flash"])
+			if (A.owner.current.HUDtech.Find("flash"))
+				flick("e_flash", A.owner.current.HUDtech["flash"])
 
-		clear_antag_roles(M)
+		A.remove_antagonist()

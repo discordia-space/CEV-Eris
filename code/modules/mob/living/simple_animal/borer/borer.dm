@@ -38,7 +38,7 @@
 /mob/living/simple_animal/borer/Login()
 	..()
 	if(mind)
-		borers.add_antagonist(mind)
+		make_antagonist(mind,ROLE_BORER_REPRODUCED)
 
 /mob/living/simple_animal/borer/New()
 	..()
@@ -156,7 +156,7 @@
 	if(!host) return
 
 	if(host.mind)
-		borers.remove_antagonist(host.mind)
+		clear_antagonist_type(host.mind, ROLE_BORER)
 
 	src.loc = get_turf(host)
 

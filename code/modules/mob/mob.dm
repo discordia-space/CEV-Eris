@@ -5,14 +5,10 @@
 	unset_machine()
 	qdel(hud_used)
 	if(client)
-		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
-			qdel(spell_master)
 		remove_screen_obj_references()
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
-	if(mind && mind.current == src)
-		spellremove(src)
 	ghostize()
 	..()
 
@@ -41,7 +37,7 @@
 //	item_use_icon = null
 //	gun_move_icon = null
 //	gun_setting_icon = null
-	spell_masters = null
+//	spell_masters = null
 	zone_sel = null
 
 /mob/New()
@@ -211,7 +207,7 @@
 	set category = "IC"
 
 	if((is_blind(src) || usr.stat) && !isobserver(src))
-		src << SPAN_NOTICE("Something is there but you can't see it.")
+		src << "<span class='notice'>Something is there but you can't see it.</span>"
 		return 1
 
 	face_atom(A)
@@ -367,13 +363,10 @@
 	set category = "OOC"
 
 	if (!( config.abandon_allowed ))
-		usr << SPAN_NOTICE("Respawn is disabled.")
+		usr << "<span class='notice'>Respawn is disabled.</span>"
 		return
 	if ((stat != DEAD || !( ticker )))
-		usr << SPAN_NOTICE("<B>You must be dead to use this!</B>")
-		return
-	if (ticker.mode && ticker.mode.deny_respawn)
-		usr << SPAN_NOTICE("Respawn is disabled for this roundtype.")
+		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
 		return
 	else if(!MayRespawn(1, config.respawn_delay))
 		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
@@ -383,7 +376,7 @@
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	usr << SPAN_NOTICE("<B>Make sure to play a different character, and please roleplay correctly!</B>")
+	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
@@ -583,22 +576,22 @@
 		return
 
 	if (AM.anchored)
-		src << SPAN_WARNING("It won't budge!")
+		src << "<span class='warning'>It won't budge!</span>"
 		return
 
 	var/mob/M = AM
 	if(ismob(AM))
 
 		if(!can_pull_mobs || !can_pull_size)
-			src << SPAN_WARNING("It won't budge!")
+			src << "<span class='warning'>It won't budge!</span>"
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			src << SPAN_WARNING("It won't budge!")
+			src << "<span class='warning'>It won't budge!</span>"
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			src << SPAN_WARNING("It won't budge!")
+			src << "<span class='warning'>It won't budge!</span>"
 			return
 
 		// If your size is larger than theirs and you have some
@@ -613,7 +606,7 @@
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)
-			src << SPAN_WARNING("It won't budge!")
+			src << "<span class='warning'>It won't budge!</span>"
 			return
 
 	if(pulling)
@@ -952,9 +945,9 @@ mob/proc/yank_out_object()
 	var/obj/item/weapon/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
-		src << SPAN_WARNING("You attempt to get a good grip on [selection] in your body.")
+		src << "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>"
 	else
-		U << SPAN_WARNING("You attempt to get a good grip on [selection] in [S]'s body.")
+		U << "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>"
 
 	if(!do_mob(U, S, 30))
 		return
@@ -962,9 +955,9 @@ mob/proc/yank_out_object()
 		return
 
 	if(self)
-		visible_message(SPAN_WARNING("<b>[src] rips [selection] out of their body.</b>"),SPAN_WARNING("<b>You rip [selection] out of your body.</b>"))
+		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>")
 	else
-		visible_message(SPAN_WARNING("<b>[usr] rips [selection] out of [src]'s body.</b>"),SPAN_WARNING("<b>[usr] rips [selection] out of your body.</b>"))
+		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		src.verbs -= /mob/proc/yank_out_object
