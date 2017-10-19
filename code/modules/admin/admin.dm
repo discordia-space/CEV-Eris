@@ -768,7 +768,7 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
@@ -782,7 +782,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Spawn a custom item."
 	set name = "Spawn Custom Item"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	var/owner = input("Select a ckey.", "Spawn Custom Item") as null|anything in custom_items
@@ -802,7 +802,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Check the custom item list."
 	set name = "Check Custom Items"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	if(!custom_items)
@@ -824,7 +824,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "Spawn a spreading plant effect."
 	set name = "Spawn Plant"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
@@ -837,7 +837,7 @@ proc/admin_notice(var/message, var/rights)
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_DEBUG))
 		return
 
 	var/list/types = typesof(/atom)
@@ -1022,20 +1022,6 @@ proc/admin_notice(var/message, var/rights)
 			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, src)])</b>"
 
 
-/proc/ishost(whom)
-	if(!whom)
-		return 0
-	var/client/C
-	var/mob/M
-	if(istype(whom, /client))
-		C = whom
-	if(ismob(whom))
-		M = whom
-		C = M.client
-	if(R_HOST & C.holder.rights)
-		return 1
-	else
-		return 0
 //
 //
 //ALL DONE

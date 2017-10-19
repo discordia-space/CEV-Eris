@@ -427,7 +427,7 @@
 			return
 
 		if(M != usr)																//we can jobban ourselves
-			if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN))		//they can ban too. So we can't ban them
+			if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN || M.client.holder.rights & R_MOD))		//they can ban too. So we can't ban them
 				alert("You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
@@ -489,7 +489,7 @@
 			switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 				if("Yes")
 
-					if(!check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0))
+					if(!check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE))
 						usr << SPAN_WARNING("You Cannot issue temporary job-bans!")
 						return
 
@@ -499,7 +499,7 @@
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
 						return
-					if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && mins > config.mod_job_tempban_max)
+					if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_job_tempban_max)
 						usr << SPAN_WARNING("Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!")
 						return
 					var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
@@ -610,11 +610,11 @@
 				DB_ban_unban(ckey(key), BANTYPE_JOB_PERMA, job)
 
 	else if(href_list["newban"])
-		if(!check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0))
+		if(!check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE))
 			usr << SPAN_WARNING("You do not have the appropriate permissions to add bans!")
 			return
 
-		if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && !config.mods_can_job_tempban) // If mod and tempban disabled
+		if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
 			usr << SPAN_WARNING("Mod jobbanning is disabled!")
 			return
 
@@ -629,7 +629,7 @@
 				if(!mins)
 					return
 
-				if(check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0) && mins > config.mod_tempban_max)
+				if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_tempban_max)
 					usr << SPAN_WARNING("Moderators can only job tempban up to [config.mod_tempban_max] minutes!")
 					return
 				if(mins >= 525600) mins = 525599
@@ -653,7 +653,7 @@
 				qdel(M.client)
 				//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
-				if(!check_rights(R_MOD, 0) && !check_rights(R_ADMIN, 0))
+				if(!check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE))
 					return
 				var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
 				if(!reason)

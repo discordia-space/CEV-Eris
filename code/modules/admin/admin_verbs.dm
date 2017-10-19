@@ -284,7 +284,6 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_ADMIN)
 			verbs += admin_verbs_admin
 			verbs += admin_verbs_ban
-			verbs += admin_verbs_spawn
 
 		if(holder.rights & R_MOD)
 			verbs += admin_verbs_mod
@@ -298,6 +297,7 @@ var/list/admin_verbs_mentor = list(
 
 		if(holder.rights & R_DEBUG)
 			verbs += admin_verbs_debug
+			verbs += admin_verbs_spawn
 
 		if(holder.rights & R_PERMISSIONS)
 			verbs += admin_verbs_permissions
