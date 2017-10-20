@@ -1,4 +1,7 @@
 /turf/simulated/open/update_icon()
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING)
+		return
+
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
 	if(below)
@@ -35,6 +38,9 @@
 		ChangeTurf(/turf/space)
 
 /turf/space/update_icon()
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING)
+		return
+
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
 	if(below)
