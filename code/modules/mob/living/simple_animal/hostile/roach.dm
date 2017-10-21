@@ -22,7 +22,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 4
 	attacktext = "bitten"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/voice/insect_battle_bite.wav'
 
 	faction = "roach"
 
@@ -31,6 +31,7 @@
 	. = ..()
 	if(.)
 		custom_emote(1,"charges at [.]!")
+		playsound(src, 'sound/voice/insect_battle_screeching.wav', 30, 1, -3)
 
 /mob/living/simple_animal/hostile/roach/AttackingTarget()
 	. =..()
@@ -43,6 +44,9 @@
 /mob/living/simple_animal/hostile/roach/tank
 	name = "Panzer Roach"
 	desc = "A monstrous cockroach the size of a huge dog. This one looks more robust than others."
+	icon_state = "panzer"
+	icon_living = "panzer"
+	icon_dead = "panzer_dead"
 	meat_amount = 4
 	turns_per_move = 2
 	maxHealth = 30
@@ -54,6 +58,9 @@
 /mob/living/simple_animal/hostile/roach/hunter
 	name = "Jager Roach"
 	desc = "A monstrous cockroach the size of a grown dog. This one have a bigger claws."
+	icon_state = "jager"
+	icon_living = "jager"
+	icon_dead = "jager_dead"
 	meat_amount = 3
 	turns_per_move = 2
 	maxHealth = 15
@@ -62,19 +69,12 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 10
 
-/mob/living/simple_animal/hostile/roach/support
-	name = "Seuche Roach"
-	desc = "A monstrous cockroach the size of a grown dog. This one smells like hell and secrete strange vapors."
-	meat_amount = 3
-	turns_per_move = 4
-	maxHealth = 20
-	health = 20
-
-	melee_damage_upper = 3
-
 /mob/living/simple_animal/hostile/roach/fuhrer
 	name = "Fuhrer Roach"
 	desc = "A glorious leader of cockroaches. Literally Hitler."
+	icon_state = "fuhrer"
+	icon_living = "fuhrer"
+	icon_dead = "fuhrer_dead"
 	meat_amount = 5
 	turns_per_move = 4
 	maxHealth = 60
@@ -82,6 +82,19 @@
 
 	melee_damage_lower = 3
 	melee_damage_upper = 20
+
+/mob/living/simple_animal/hostile/roach/support
+	name = "Seuche Roach"
+	desc = "A monstrous cockroach the size of a grown dog. This one smells like hell and secrete strange vapors."
+	icon_state = "seuche"
+	icon_living = "seucher"
+	icon_dead = "seuche_dead"
+	meat_amount = 3
+	turns_per_move = 4
+	maxHealth = 20
+	health = 20
+
+	melee_damage_upper = 3
 
 
 /mob/living/simple_animal/hostile/roach/support/New()

@@ -54,7 +54,7 @@
 
 /datum/reagent/toxin/blattedin/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L, /mob/living/simple_animal/hostile/roach))
-		L.heal_organ_damage(L)
+		L.heal_organ_damage(amount)
 	else
 		..()
 
