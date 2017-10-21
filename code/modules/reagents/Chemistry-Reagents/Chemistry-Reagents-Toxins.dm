@@ -43,6 +43,21 @@
 	color = "#003333"
 	strength = 10
 
+/datum/reagent/toxin/blattedin
+	name = "Blattedin"
+	id = "blattedin"
+	description = "A powerful toxin produced by those omnipresent roaches."
+	taste_description = "chicken"
+	reagent_state = LIQUID
+	color = "#0F4800"
+	strength = 5
+
+/datum/reagent/toxin/blattedin/touch_mob(var/mob/living/L, var/amount)
+	if(istype(L, /mob/living/simple_animal/hostile/roach))
+		L.heal_organ_damage(L)
+	else
+		..()
+
 /datum/reagent/toxin/plasma
 	name = "Plasma"
 	id = "plasma"
