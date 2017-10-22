@@ -102,13 +102,13 @@
 	create_reagents(100)
 
 /mob/living/simple_animal/hostile/roach/support/proc/gas_attack()
-	if(!reagents.has_reagent("blattedin", 20))
+	if(!(reagents.has_reagent("blattedin", 20) && health <= 0))
 		return
 	var/location = get_turf(src)
 	var/datum/effect/effect/system/smoke_spread/chem/S = new
 	S.attach(location)
 	S.set_up(src.reagents, src.reagents.total_volume, 0, location)
-	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+	src.visible_message(SPAN_DANGER("\the [src] secrete strange vapors!"))
 	spawn(0)
 		S.start()
 	reagents.clear_reagents()

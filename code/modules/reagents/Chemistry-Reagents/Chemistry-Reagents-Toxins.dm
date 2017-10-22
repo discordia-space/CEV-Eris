@@ -54,7 +54,10 @@
 
 /datum/reagent/toxin/blattedin/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L, /mob/living/simple_animal/hostile/roach))
-		L.heal_organ_damage(amount)
+		if(L.health <= 0)
+			if(prob(70))//Roaches sometimes can come back to life from healing vapors
+				return
+		L.heal_organ_damage(amount * 0.5)
 	else
 		..()
 
