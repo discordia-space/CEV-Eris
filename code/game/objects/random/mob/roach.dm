@@ -11,7 +11,7 @@
 /obj/random/mob/roaches/low_chance
 	name = "low chance random roach"
 	icon_state = "hostilemob-brown-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 82
 
 
 /obj/random/cluster/roaches
@@ -26,4 +26,4 @@
 /obj/random/cluster/roaches/low_chance
 	name = "low chance cluster of roaches"
 	icon_state = "hostilemob-brown-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 82

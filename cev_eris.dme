@@ -747,6 +747,8 @@
 #include "code\game\objects\random\tools.dm"
 #include "code\game\objects\random\toys.dm"
 #include "code\game\objects\random\mob\roach.dm"
+#include "code\game\objects\random\mob\slime.dm"
+#include "code\game\objects\random\mob\spider.dm"
 #include "code\game\objects\structures\barsign.dm"
 #include "code\game\objects\structures\bedsheet_bin.dm"
 #include "code\game\objects\structures\catwalk.dm"
