@@ -22,7 +22,7 @@
 	var/store_mobs = 1
 
 /obj/structure/closet/can_prevent_fall()
-	return density
+	return TRUE
 
 /obj/structure/closet/initialize()
 	..()
