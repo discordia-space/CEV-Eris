@@ -3,7 +3,6 @@
 	desc = "Hiss!"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "alienh_running"
-	icon_living = "alienh_running"
 	icon_dead = "alien_l"
 	icon_gib = "syndicate_gib"
 	response_help = "pokes"
@@ -38,7 +37,6 @@
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
 	icon_state = "aliend_running"
-	icon_living = "aliend_running"
 	icon_dead = "aliend_l"
 	health = 60
 	melee_damage_lower = 15
@@ -47,7 +45,6 @@
 /mob/living/simple_animal/hostile/alien/sentinel
 	name = "alien sentinel"
 	icon_state = "aliens_running"
-	icon_living = "aliens_running"
 	icon_dead = "aliens_l"
 	health = 120
 	melee_damage_lower = 15
@@ -60,7 +57,6 @@
 /mob/living/simple_animal/hostile/alien/queen
 	name = "alien queen"
 	icon_state = "alienq_running"
-	icon_living = "alienq_running"
 	icon_dead = "alienq_l"
 	health = 250
 	maxHealth = 250
@@ -77,7 +73,6 @@
 	name = "alien empress"
 	icon = 'icons/mob/alienqueen.dmi'
 	icon_state = "queen_s"
-	icon_living = "queen_s"
 	icon_dead = "queen_dead"
 	move_to_delay = 4
 	maxHealth = 400
@@ -98,7 +93,6 @@
 	desc = "A fast, armoured predator accustomed to hiding and ambushing in cold terrain."
 	faction = "samak"
 	icon_state = "samak"
-	icon_living = "samak"
 	icon_dead = "samak_dead"
 	icon = 'icons/jungle.dmi'
 	move_to_delay = 2
@@ -119,7 +113,6 @@
 	desc = "A small pack animal. Although omnivorous, it will hunt meat on occasion."
 	faction = "diyaab"
 	icon_state = "diyaab"
-	icon_living = "diyaab"
 	icon_dead = "diyaab_dead"
 	icon = 'icons/jungle.dmi'
 	move_to_delay = 1
@@ -140,7 +133,6 @@
 	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. Don't be fooled by its beauty though."
 	faction = "shantak"
 	icon_state = "shantak"
-	icon_living = "shantak"
 	icon_dead = "shantak_dead"
 	icon = 'icons/jungle.dmi'
 	move_to_delay = 1
@@ -159,7 +151,6 @@
 	name = "yithian"
 	desc = "A friendly creature vaguely resembling an oversized snail without a shell."
 	icon_state = "yithian"
-	icon_living = "yithian"
 	icon_dead = "yithian_dead"
 	icon = 'icons/jungle.dmi'
 
@@ -167,6 +158,5 @@
 	name = "tindalos"
 	desc = "It looks like a large, flightless grasshopper."
 	icon_state = "tindalos"
-	icon_living = "tindalos"
 	icon_dead = "tindalos_dead"
 	icon = 'icons/jungle.dmi'

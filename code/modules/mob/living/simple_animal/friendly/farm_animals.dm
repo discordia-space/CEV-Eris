@@ -3,7 +3,6 @@
 	name = "goat"
 	desc = "Not known for their pleasant disposition."
 	icon_state = "goat"
-	icon_living = "goat"
 	icon_dead = "goat_dead"
 	speak = list("EHEHEHEHEH","eh?")
 	speak_emote = list("brays")
@@ -87,7 +86,6 @@
 	name = "cow"
 	desc = "Known for their milk, just don't tip them over."
 	icon_state = "cow"
-	icon_living = "cow"
 	icon_dead = "cow_dead"
 	icon_gib = "cow_gib"
 	speak = list("moo?","moo","MOOOOOO")
@@ -149,7 +147,6 @@
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
 	icon_state = "chick"
-	icon_living = "chick"
 	icon_dead = "chick_dead"
 	icon_gib = "chick_gib"
 	speak = list("Cherp.","Cherp?","Chirrup.","Cheep!")
@@ -191,7 +188,6 @@ var/global/chicken_count = 0
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
 	icon_state = "chicken"
-	icon_living = "chicken"
 	icon_dead = "chicken_dead"
 	speak = list("Cluck!","BWAAAAARK BWAK BWAK BWAK!","Bwaak bwak.")
 	speak_emote = list("clucks","croons")

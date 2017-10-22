@@ -68,6 +68,9 @@
 
 /mob/living/simple_animal/New()
 	..()
+	if(!icon_living)
+		icon_living = icon_state
+
 	verbs -= /mob/verb/observe
 
 /mob/living/simple_animal/Login()

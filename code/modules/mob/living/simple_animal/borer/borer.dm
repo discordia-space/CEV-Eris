@@ -9,7 +9,6 @@
 	response_harm   = "stomps on"
 	icon_state = "brainslug"
 	item_state = "brainslug"
-	icon_living = "brainslug"
 	icon_dead = "brainslug_dead"
 	speed = 5
 	a_intent = I_HURT

@@ -3,7 +3,6 @@
 	desc = "A part of a space worm."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "spaceworm"
-	icon_living = "spaceworm"
 	icon_dead = "spacewormdead"
 	status_flags = 0
 
@@ -49,7 +48,6 @@
 	head
 		name = "space worm head"
 		icon_state = "spacewormhead"
-		icon_living = "spacewormhead"
 		icon_dead = "spacewormdead"
 
 		maxHealth = 20

@@ -4,7 +4,6 @@
 	real_name = "corgi"
 	desc = "It's a corgi."
 	icon_state = "corgi"
-	icon_living = "corgi"
 	icon_dead = "corgi_dead"
 	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
 	speak_emote = list("barks", "woofs")
@@ -131,7 +130,6 @@
 	real_name = "corgi"
 	desc = "It's a corgi puppy."
 	icon_state = "puppy"
-	icon_living = "puppy"
 	icon_dead = "puppy_dead"
 
 //pupplies cannot wear anything.
@@ -149,7 +147,6 @@
 	gender = FEMALE
 	desc = "It's a corgi with a cute pink bow."
 	icon_state = "lisa"
-	icon_living = "lisa"
 	icon_dead = "lisa_dead"
 	response_help  = "pets"
 	response_disarm = "bops"

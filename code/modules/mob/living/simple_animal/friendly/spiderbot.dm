@@ -19,7 +19,6 @@
 	desc = "A skittering robotic friend!"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "spiderbot-chassis"
-	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
 
 	wander = 0
