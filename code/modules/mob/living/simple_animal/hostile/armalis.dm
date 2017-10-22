@@ -4,7 +4,6 @@
 
 	icon = 'icons/mob/armalis.dmi'
 	icon_state = "armalis_naked"
-	icon_dead = "armalis_naked_dead"
 
 	health = 125
 	maxHealth = 125
@@ -30,7 +29,6 @@
 
 /mob/living/simple_animal/armalis/armored
 	icon_state = "armalis_armored"
-	icon_dead = "armalis_armored_dead"
 
 	health = 175
 	maxHealth = 175

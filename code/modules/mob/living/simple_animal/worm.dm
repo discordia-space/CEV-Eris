@@ -3,7 +3,6 @@
 	desc = "A part of a space worm."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "spaceworm"
-	icon_dead = "spacewormdead"
 	status_flags = 0
 
 	speak_emote = list("transmits") //not supposed to be used under AI control
@@ -48,7 +47,7 @@
 	head
 		name = "space worm head"
 		icon_state = "spacewormhead"
-		icon_dead = "spacewormdead"
+		icon_dead = "spaceworm_dead"
 
 		maxHealth = 20
 		health = 20

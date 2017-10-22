@@ -4,7 +4,6 @@
 	desc = "A domesticated, feline pet. Has a tendency to adopt crewmembers."
 	icon_state = "cat2"
 	item_state = "cat2"
-	icon_dead = "cat2_dead"
 	speak = list("Meow!","Esp!","Purr!","HSSSSS")
 	speak_emote = list("purrs", "meows")
 	emote_hear = list("meows","mews")
@@ -223,7 +222,6 @@
 	gender = FEMALE
 	icon_state = "cat"
 	item_state = "cat"
-	icon_dead = "cat_dead"
 	befriend_job = "Moebius Biolab Officer"
 
 /mob/living/simple_animal/cat/kitten
@@ -231,7 +229,6 @@
 	desc = "D'aaawwww"
 	icon_state = "kitten"
 	item_state = "kitten"
-	icon_dead = "kitten_dead"
 	gender = NEUTER
 
 // Leaving this here for now.
@@ -247,7 +244,6 @@
 	gender = MALE
 	icon_state = "cat3"
 	item_state = "cat3"
-	icon_dead = "cat3_dead"
 	holder_type = /obj/item/weapon/holder/cat/fluff/bones
 	var/friend_name = "Erstatz Vryroxes"
 

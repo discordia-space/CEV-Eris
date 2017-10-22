@@ -4,7 +4,6 @@
 	icon = 'icons/mob/critter.dmi'
 	speak_emote = list("gibbers")
 	icon_state = "otherthing"
-	icon_dead = "otherthing-dead"
 	health = 80
 	maxHealth = 80
 	melee_damage_lower = 25

@@ -9,7 +9,6 @@
 	name = "giant spider"
 	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
 	icon_state = "guard"
-	icon_dead = "guard_dead"
 	speak_emote = list("chitters")
 	emote_hear = list("chitters")
 	speak_chance = 5
@@ -38,7 +37,6 @@
 /mob/living/simple_animal/hostile/giant_spider/nurse
 	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes."
 	icon_state = "nurse"
-	icon_dead = "nurse_dead"
 	maxHealth = 40
 	health = 40
 	melee_damage_lower = 5
@@ -52,7 +50,6 @@
 /mob/living/simple_animal/hostile/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	icon_state = "hunter"
-	icon_dead = "hunter_dead"
 	maxHealth = 120
 	health = 120
 	melee_damage_lower = 10

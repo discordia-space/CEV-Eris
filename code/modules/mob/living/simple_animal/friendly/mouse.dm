@@ -4,7 +4,6 @@
 	desc = "It's a small rodent."
 	icon_state = "mouse_gray"
 	item_state = "mouse_gray"
-	icon_dead = "mouse_gray_dead"
 	speak = list("Squeek!","SQUEEK!","Squeek?")
 	speak_emote = list("squeeks","squeeks","squiks")
 	emote_hear = list("squeeks","squeaks","squiks")

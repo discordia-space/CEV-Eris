@@ -2,7 +2,7 @@
 	name = "Pirate"
 	desc = "Does what he wants cause a pirate is free."
 	icon_state = "piratemelee"
-	icon_dead = "piratemelee_dead"
+	icon_dead = "pirate_dead" //TODO: That icon isn't exists
 	speak_chance = 0
 	turns_per_move = 5
 	response_help = "pushes"
@@ -36,7 +36,6 @@
 /mob/living/simple_animal/hostile/pirate/ranged
 	name = "Pirate Gunner"
 	icon_state = "pirateranged"
-	icon_dead = "piratemelee_dead"
 	projectilesound = 'sound/weapons/laser.ogg'
 	ranged = 1
 	rapid = 1

@@ -93,7 +93,6 @@
 	desc = "A fast, armoured predator accustomed to hiding and ambushing in cold terrain."
 	faction = "samak"
 	icon_state = "samak"
-	icon_dead = "samak_dead"
 	icon = 'icons/jungle.dmi'
 	move_to_delay = 2
 	maxHealth = 125
@@ -113,7 +112,6 @@
 	desc = "A small pack animal. Although omnivorous, it will hunt meat on occasion."
 	faction = "diyaab"
 	icon_state = "diyaab"
-	icon_dead = "diyaab_dead"
 	icon = 'icons/jungle.dmi'
 	move_to_delay = 1
 	maxHealth = 25
@@ -133,7 +131,6 @@
 	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. Don't be fooled by its beauty though."
 	faction = "shantak"
 	icon_state = "shantak"
-	icon_dead = "shantak_dead"
 	icon = 'icons/jungle.dmi'
 	move_to_delay = 1
 	maxHealth = 75
@@ -151,12 +148,10 @@
 	name = "yithian"
 	desc = "A friendly creature vaguely resembling an oversized snail without a shell."
 	icon_state = "yithian"
-	icon_dead = "yithian_dead"
 	icon = 'icons/jungle.dmi'
 
 /mob/living/simple_animal/tindalos
 	name = "tindalos"
 	desc = "It looks like a large, flightless grasshopper."
 	icon_state = "tindalos"
-	icon_dead = "tindalos_dead"
 	icon = 'icons/jungle.dmi'

@@ -2,7 +2,6 @@
 	name = "Kampfer Roach"
 	desc = "A monstrous cockroach the size of a grown dog. These huge mutants can be everywhere where humans are, on ships, planets and stations."
 	icon_state = "roach"
-	icon_dead = "roach_dead"
 	speak_chance = 0
 	turns_per_move = 3
 	response_help = "pets the"
@@ -44,7 +43,6 @@
 	name = "Panzer Roach"
 	desc = "A monstrous cockroach the size of a huge dog. This one looks more robust than others."
 	icon_state = "panzer"
-	icon_dead = "panzer_dead"
 	meat_amount = 4
 	turns_per_move = 2
 	maxHealth = 30
@@ -57,7 +55,6 @@
 	name = "Jager Roach"
 	desc = "A monstrous cockroach the size of a grown dog. This one have a bigger claws."
 	icon_state = "jager"
-	icon_dead = "jager_dead"
 	meat_amount = 3
 	turns_per_move = 2
 	maxHealth = 15
@@ -70,7 +67,6 @@
 	name = "Fuhrer Roach"
 	desc = "A glorious leader of cockroaches. Literally Hitler."
 	icon_state = "fuhrer"
-	icon_dead = "fuhrer_dead"
 	meat_amount = 5
 	turns_per_move = 4
 	maxHealth = 60
@@ -83,7 +79,6 @@
 	name = "Seuche Roach"
 	desc = "A monstrous cockroach the size of a grown dog. This one smells like hell and secrete strange vapors."
 	icon_state = "seuche"
-	icon_dead = "seuche_dead"
 	meat_amount = 3
 	turns_per_move = 4
 	maxHealth = 20
