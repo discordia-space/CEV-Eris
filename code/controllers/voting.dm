@@ -318,7 +318,7 @@ var/datum/controller/vote/vote = new()
 	set name = "Vote"
 
 	if(vote)
-		interface_client(client)
+		vote.interface_client(client)
 
 
 ///////////////////////////////////////////////
