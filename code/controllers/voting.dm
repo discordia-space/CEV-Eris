@@ -21,7 +21,11 @@ var/datum/controller/vote/vote = new()
 
 /datum/controller/vote/proc/update_voters()
 	for(var/client/C in voters)
-		C << browse(interface(C),"window=vote")
+		interface_client(C)
+
+/datum/controller/vote/proc/interface_client(var/client/C)
+	C << browse(interface(C),"window=vote;can_close=0;can_resize=0;can_minimize=0")
+
 
 /datum/controller/vote/proc/process()	//called by master_controller
 	if(active_vote)
@@ -73,8 +77,7 @@ var/datum/controller/vote/vote = new()
 
 	var/text = "[poll.name] vote started by [poll.initiator]."
 	log_vote(text)
-	world << {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.
-			You have [poll.time] seconds to vote.</font>"}
+	world << {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"}
 	world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
 	return TRUE
@@ -97,9 +100,7 @@ var/datum/controller/vote/vote = new()
 		return
 	var/data = "<html><head><title>Voting Panel</title></head><body>"
 	data += "(<a href='?src=\ref[src];debug=1'>DEBUG</a>)"
-	var/admin = FALSE
-	if(check_rights(R_ADMIN))
-		admin = TRUE
+	var/admin = check_rights(R_ADMIN)
 
 	voters |= C
 
@@ -317,7 +318,7 @@ var/datum/controller/vote/vote = new()
 	set name = "Vote"
 
 	if(vote)
-		src << browse(vote.interface(client),"window=vote")
+		interface_client(client)
 
 
 ///////////////////////////////////////////////
