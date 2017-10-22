@@ -6,6 +6,7 @@
 	plane = OPENSPACE_PLANE
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 
+	var/open = FALSE
 	var/turf/below
 	var/list/underlay_references
 	var/global/overlay_map = list()
@@ -24,19 +25,23 @@
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
 	. = ..()
+	if(open)
+		fallThrough(mover)
 
-	if(!mover.can_fall())
-		return
+/turf/simulated/open/proc/updateFallability()
+	var/wasOpen = open
+	open = isOpen()
+	if(open && open != wasOpen)
+		for(var/atom/A in src)
+			fallThrough(A)
 
+/turf/simulated/open/proc/isOpen()
+	. = FALSE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
 		below = GetBelow(src)
 		if(!below)
 			return
-
-	// No gravit, No fall.
-	if(!has_gravity(src))
-		return
 
 	if(locate(/obj/structure/catwalk) in src)
 		return
@@ -44,12 +49,23 @@
 	if(locate(/obj/structure/multiz/stairs) in src)
 		return
 
-	// See if something prevents us from falling.
-	var/soft = FALSE
 	for(var/atom/A in below)
 		if(A.can_prevent_fall())
 			return
 
+	return TRUE
+
+/turf/simulated/open/proc/fallThrough(var/atom/movable/mover)
+	if(!mover.can_fall())
+		return
+
+	// No gravit, No fall.
+	if(!has_gravity(src))
+		return
+
+	// See if something prevents us from falling.
+	var/soft = FALSE
+	for(var/atom/A in below)
 		// Dont break here, since we still need to be sure that it isnt blocked
 		if(istype(A, /obj/structure/multiz/stairs))
 			soft = TRUE
@@ -57,8 +73,8 @@
 	// We've made sure we can move, now.
 	mover.forceMove(below)
 
-	if(mover.fall_sound)
-		playsound(mover, mover.fall_sound, 100)
+	if(ishuman(mover) && mover.gender == MALE && prob(5))
+		playsound(src, 'sound/hallucinations/scream.ogg', 100)
 
 	if(!soft)
 		if(!isliving(mover))
