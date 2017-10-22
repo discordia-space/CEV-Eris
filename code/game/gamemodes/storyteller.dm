@@ -4,10 +4,10 @@ var/global/list/current_factions = list()
 var/global/list/rolespawn_log = list()
 
 /datum/storyteller
-	var/config_tag = STORYTELLER_BASE
-	var/name = "Shitgenerator"
-	var/welcome = "Prepare to fun! Try to survive as long as you can."
-	var/description = "Shitgenerator is most basic storyteller."
+	var/config_tag = ""
+	var/name = "Storyteller"
+	var/welcome = "Welcome"
+	var/description = "You shouldn't see this"
 
 	var/role_spawn_timer = 0
 	var/role_spawn_stage = 0
@@ -20,31 +20,16 @@ var/global/list/rolespawn_log = list()
 
 	var/list/disabled_antags = list()
 	var/list/disabled_events = list()
-	var/list/required_jobs = list("Captain" = 1,"Technomancer" = 1)
 
 	var/one_role_per_player = TRUE
 
 	var/force_spawn_now = FALSE
 
-/datum/storyteller/proc/can_start(var/announce = FALSE)
-	if(required_jobs.len)
-		for(var/role in required_jobs)
-			var/check = 0
-			for(var/mob/new_player/player in player_list)
-				if(player.ready && player.mind && player.mind.assigned_role == role)
-					check++
-			if(check < required_jobs[role])
-				if(announce)
-					world << "<b>Game can't start without the [role].</b>"
-					world << print_required_roles()
-				return FALSE
-
+/datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
 	return TRUE
 
 /datum/storyteller/proc/announce()
 	world << "<b><font size=3>Storyteller is [src.name].</font> <br>[welcome]</b>"
-	if(description)
-		world << "[description]"
 
 /datum/storyteller/proc/set_up()
 	fill_rolesets_list()

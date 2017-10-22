@@ -222,7 +222,7 @@ var/list/storyteller_cache = list()
 	var/ghosts_can_possess_animals = 0
 
 /datum/configuration/New()
-	var/list/L = typesof(/datum/storyteller)
+	var/list/L = typesof(/datum/storyteller)-/datum/storyteller
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
@@ -766,13 +766,12 @@ var/list/storyteller_cache = list()
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
 
-/datum/configuration/proc/pick_storyteller(storyteller_name)
+/datum/configuration/proc/pick_storyteller(story_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
-	for (var/storyteller in storyteller_cache)
-		var/datum/storyteller/S = storyteller_cache[storyteller]
-		if (S.config_tag && S.config_tag == storyteller_name)
-			return S
+	if(story_name in storyteller_cache)
+		return storyteller_cache[story_name]
+
 	return storyteller_cache[STORYTELLER_BASE]
 
 /datum/configuration/proc/get_storytellers()
