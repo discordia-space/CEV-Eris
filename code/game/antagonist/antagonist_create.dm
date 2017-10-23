@@ -1,4 +1,4 @@
-/datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE)
+/datum/antagonist/proc/create_antagonist(var/datum/mind/target, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE, var/update = TRUE)
 	if(!istype(target) || !target.current)
 		log_debug("ANTAGONIST Wrong target passed to create_antagonist of [id]! Target: [target == null?"NULL":target] \ref[target]")
 		return FALSE
@@ -8,17 +8,21 @@
 		return FALSE
 
 	owner = target
+	target.antagonist.Add(src)
 
 	if(outer)
 		if(!ispath(mob_path))
 			owner = null
 			log_debug("ANTAGONIST [src.id]'s mob_path is not a path! ([mob_path])")
+			target.antagonist.Remove(src)
 			return FALSE
 
-		update_antag_mob()
+		if(update || !istype(target.current,mob_path))
+			update_antag_mob()
+
 		place_antagonist()
 
-	target.antagonist.Add(src)
+
 	current_antags.Add(src)
 
 	special_init()
@@ -55,7 +59,7 @@
 		log_debug("ANTAGONIST mob_path in [id] is not path! ([mob_path])")
 		return FALSE
 
-	var/mob/M = new mob_path
+	var/mob/M = new mob_path(null)
 	M.client = ghost.client
 
 	if(!M.mind)

@@ -1,312 +1,316 @@
 var/datum/controller/vote/vote = new()
 
-var/global/list/round_voters = list() //Keeps track of the individuals voting for a given round, for use in forcedrafting.
+/datum/controller/vote
+	var/list/votes = list()
+	var/list/voters = list()	//List of clients with opened vote window
+	var/datum/poll/active_vote = null
+	var/vote_start_time = 0
 
-datum/controller/vote
-	var/initiator = null
-	var/started_time = null
-	var/time_remaining = 0
-	var/mode = null
-	var/question = null
-	var/list/choices = list()
-	var/list/storyteller_names = list()
-	var/list/voted = list()
-	var/list/voting = list()
-	var/list/current_votes = list()
-	var/auto_muted = 0
+/datum/controller/vote/New()
+	if(vote != src)
+		if(istype(vote))
+			del(vote)
+		vote = src
 
-	New()
-		if(vote != src)
-			if(istype(vote))
-				del(vote)
-			vote = src
+	init_votes()
 
-	proc/process()	//called by master_controller
-		if(mode)
-			// No more change mode votes after the game has started.
-			// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason
-			if(mode == "storyteller" && ticker.current_state >= 2)
-				world << "<b>Voting aborted due to game start.</b>"
-				src.reset()
-				return
+/datum/controller/vote/proc/init_votes()
+	for(var/T in typesof(/datum/poll)-/datum/poll)
+		var/datum/poll/P = new T
+		votes[T] = P
 
-			// Calculate how much time is remaining by comparing current time, to time of vote start,
-			// plus vote duration
-			time_remaining = round((started_time + config.vote_period - world.time)/10)
+/datum/controller/vote/proc/update_voters()
+	for(var/client/C in voters)
+		interface_client(C)
 
-			if(time_remaining < 0)
-				result()
-				for(var/client/C in voting)
-					if(C)
-						C << browse(null,"window=vote")
-				reset()
+/datum/controller/vote/proc/interface_client(var/client/C)
+	C << browse(interface(C),"window=vote;can_close=0;can_resize=0;can_minimize=0")
+
+
+/datum/controller/vote/proc/process()	//called by master_controller
+	if(active_vote)
+		active_vote.process()
+
+		if(get_vote_time() >= active_vote.time)
+			var/list/winners = active_vote.get_winners()
+			var/text = ""
+			if(winners.len)
+				if(winners.len > 1)
+					text += "<b>Vote Tied Between:</b><br>"
+					for(var/option in winners)
+						text += "\t[option]<br>"
+
+				var/datum/vote_choice/choice = pick(winners)
+				text += "<b>Vote Result: [choice.text]</b>"
+				choice.on_win()
+
 			else
-				for(var/client/C in voting)
-					if(C)
-						C << browse(vote.interface(C),"window=vote")
-
-				voting.Cut()
-
-	proc/autostoryteller()
-		initiate_vote("storyteller","the server", 1)
-		log_debug("The server has called a storyteller vote")
-
-	proc/reset()
-		initiator = null
-		time_remaining = 0
-		mode = null
-		question = null
-		choices.Cut()
-		voted.Cut()
-		voting.Cut()
-		current_votes.Cut()
-
-	proc/get_result()
-		//get the highest number of votes
-		var/greatest_votes = 0
-		var/total_votes = 0
-		for(var/option in choices)
-			var/votes = choices[option]
-			total_votes += votes
-			if(votes > greatest_votes)
-				greatest_votes = votes
-		//default-vote for everyone who didn't vote
-		if(!config.vote_no_default && choices.len)
-			var/non_voters = (clients.len - total_votes)
-			if(non_voters > 0)
-				if(mode == "restart")
-					choices["Continue Playing"] += non_voters
-					if(choices["Continue Playing"] >= greatest_votes)
-						greatest_votes = choices["Continue Playing"]
-				else if(mode == "storyteller")
-					if(master_storyteller in choices)
-						choices[master_storyteller] += non_voters
-						if(choices[master_storyteller] >= greatest_votes)
-							greatest_votes = choices[master_storyteller]
-
-
-		//get all options with that many votes and return them in a list
-		. = list()
-		if(greatest_votes)
-			for(var/option in choices)
-				if(choices[option] == greatest_votes)
-					. += utf8_to_cp1251(option)
-		return .
-
-	proc/announce_result()
-		var/list/winners = get_result()
-		var/text
-		if(winners.len > 0)
-			if(winners.len > 1)
-				text = "<b>Vote Tied Between:</b>\n"
-				for(var/option in winners)
-					text += "\t[option]\n"
-			. = pick(winners)
-
-			for(var/key in current_votes)
-				if(choices[current_votes[key]] == .)
-					round_voters += key // Keep track of who voted for the winning round.
-
-			text += "<b>Vote Result: [.]</b>"
-		else
-			text += "<b>Vote Result: Inconclusive - No Votes!</b>"
-
-		log_vote(text)
-		world << "<font color='purple'>[text]</font>"
-		return .
-
-	proc/result()
-		. = announce_result()
-		var/restart = 0
-		if(.)
-			switch(mode)
-				if("restart")
-					if(. == "Restart Round")
-						restart = 1
-				if("storyteller")
-					if(master_storyteller != .)
-						world.save_storyteller(.)
-						if(ticker && ticker.storyteller)
-							restart = 1
-						else
-							master_storyteller = .
-
-		if(mode == "storyteller") //fire this even if the vote fails.
-			if(!round_progressing)
-				round_progressing = 1
-				world << "<font color='red'><b>The round will start soon.</b></font>"
-
-		if(restart)
-			world << "World restarting due to vote..."
-			sleep(50)
-			log_game("Rebooting due to restart vote")
-			world.Reboot()
-
-		return .
-
-	proc/submit_vote(var/ckey, var/vote)
-		if(mode)
-			if(config.vote_no_dead && usr.stat == DEAD && !usr.client.holder)
-				return FALSE
-			if(vote && choices[vote])
-				if(current_votes[ckey])
-					choices[current_votes[ckey]]--
-				voted += usr.ckey
-				choices[vote]++	//check this
-				current_votes[ckey] = vote
-				return vote
-		return FALSE
-
-	proc/init_choices(var/list/L)
-		for(var/choice in L)
-			choices[choice] = 0
-
-	proc/initiate_vote(var/vote_type, var/initiator_key, var/automatic = 0)
-		if(!mode)
-			if(started_time != null && !(check_rights(R_ADMIN) || automatic))
-				var/next_allowed_time = (started_time + config.vote_delay)
-				if(next_allowed_time > world.time)
-					return FALSE
-
-			reset()
-			switch(vote_type)
-				if("restart")
-					init_choices(list("Restart Round","Continue Playing"))
-				if("storyteller")
-					if(ticker.current_state != GAME_STATE_PREGAME)
-						return FALSE
-					init_choices(list(storyteller_cache))
-					for(var/F in choices)
-						var/datum/storyteller/S = storyteller_cache[F]
-						if(S)
-							storyteller_names[S.config_tag] = S.name //It's ugly to put this here but it works
-				if("custom")
-					cp1251_to_utf8(rhtml_encode(input(usr,"What is the vote for?") as text|null))
-					if(!question)	return FALSE
-					var/list/tmp_choices = list()
-					for(var/i=1,i<=10,i++)
-						var/option = cp1251_to_utf8(capitalize(rhtml_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null)))
-						if(!option || mode || !usr.client)	break
-						tmp_choices.Add(option)
-					init_choices(tmp_choices)
-				else
-					return 0
-			mode = vote_type
-			initiator = initiator_key
-			started_time = world.time
-			var/text = "[capitalize(mode)] vote started by [initiator]."
-			if(mode == "custom")
-				text += "\n[utf8_to_cp1251(question)]"
+				text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 
 			log_vote(text)
-			world << "<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>"
-			switch(vote_type)
-				if("storyteller")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
-				if("custom")
-					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
-			if(mode == "storyteller" && round_progressing)
-				round_progressing = 0
-				world << "<font color='red'><b>Round start has been delayed.</b></font>"
+			world << "<font color='purple'>[text]</font>"
 
-			time_remaining = round(config.vote_period/10)
-			return 1
-		return 0
+			stop_vote()
 
-	proc/interface(var/client/C)
-		if(!C)	return
-		var/admin = 0
-		var/trialmin = 0
-		if(C.holder)
-			if(C.holder.rights & R_ADMIN)
-				admin = 1
-				trialmin = 1 // don't know why we use both of these it's really weird, but I'm 2 lasy to refactor this all to use just admin.
-		voting |= C
+		update_voters()
 
-		. = "<html><head><title>Voting Panel</title></head><body>"
-		if(mode)
-			if(question)	. += "<h2>Vote: '[question]'</h2>"
-			else			. += "<h2>Vote: [capitalize(mode)]</h2>"
-			. += "Time Left: [time_remaining] s<hr>"
-			. += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
+/datum/controller/vote/proc/autostoryteller()
+	start_vote(/datum/poll/storyteller)
 
-			for(var/choice in choices)
-				var/votes = choices[choice]
-				if(!votes)	votes = 0
-				. += "<tr>"
-				if(mode == "storyteller")
-					if(current_votes[C.ckey] == choice)
-						. += "<td><b><a href='?src=\ref[src];vote=[choice]'>[storyteller_names[choice]]</a></b></td><td align = 'center'>[votes]</td>"
-					else
-						. += "<td><a href='?src=\ref[src];vote=[choice]'>[storyteller_names[choice]]</a></td><td align = 'center'>[votes]</td>"
-				else
-					if(current_votes[C.ckey] == choice)
-						. += "<td><b><a href='?src=\ref[src];vote=[choice]'>[choice]</a></b></td><td align = 'center'>[votes]</td>"
-					else
-						. += "<td><a href='?src=\ref[src];vote=[choice]'>[choice]</a></td><td align = 'center'>[votes]</td>"
-				. += "</tr>"
+/datum/controller/vote/proc/start_vote(var/newvote)
+	if(active_vote)
+		return FALSE
 
-			. += "</table><hr>"
-			if(admin)
-				. += "(<a href='?src=\ref[src];vote=cancel'>Cancel Vote</a>) "
+	var/datum/poll/poll = null
+
+	if(ispath(newvote) && newvote in votes)
+		poll = votes[newvote]
+
+	if(!poll || !poll.can_start())
+		return FALSE
+
+	poll.start()
+	vote_start_time = world.time
+
+	for(var/client/C in voters)
+		C << browse(interface(C),"window=vote")
+
+	var/text = "[poll.name] vote started by [poll.initiator]."
+	log_vote(text)
+	world << {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"}
+	world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
+
+	return TRUE
+
+/datum/controller/vote/proc/stop_vote()
+	if(!active_vote)
+		return FALSE
+
+	active_vote.reset()
+	vote_start_time = 0
+	voters.Cut()
+	active_vote = null
+	return TRUE
+
+/datum/controller/vote/proc/get_vote_time()	//How many seconds vote lasts
+	return round((world.time - vote_start_time)/10)
+
+/datum/controller/vote/proc/interface(var/client/C)
+	if(!C)
+		return
+	var/data = "<html><head><title>Voting Panel</title></head><body>"
+	data += "(<a href='?src=\ref[src];debug=1'>DEBUG</a>)"
+	var/admin = check_rights(R_ADMIN)
+
+	voters |= C
+
+	if(active_vote)
+		data += "<h2>Vote: '[active_vote.question]'</h2>"
+		data += "Time Left: [active_vote.time - get_vote_time()] s<br>"
+		data += "Started by: <b>[active_vote.initiator]</b><hr>"
+
+		if(active_vote.multiple_votes)
+			data += "You can vote multiple choices.<br>"
 		else
-			. += "<h2>Start a vote:</h2><hr><ul><li>"
-			//restart
-			if(trialmin || config.allow_vote_restart)
-				. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
+			data += "You can vote one choice.<br>"
+
+		if(active_vote.can_revote)
+			if(active_vote.can_unvote)
+				data += "You can either change vote or remove it."
 			else
-				. += "<font color='grey'>Restart (Disallowed)</font>"
-			. += "</li><li>"
-			if(trialmin)
-				. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[config.allow_vote_restart?"Allowed":"Disallowed"]</a>)"
-			. += "</li><li>"
-			//storyteller
-			if(trialmin || config.allow_vote_mode)
-				. += "<a href='?src=\ref[src];vote=storyteller'>Storyteller</a>"
+				data += "You can change your vote."
+		else
+			data += "You can't change your vote."
+
+		data += "<hr>"
+		data += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
+
+		for(var/datum/vote_choice/choice in active_vote.choices)
+			var/c_votes = (active_vote.see_votes || admin) ? choice.voters.len : "*"
+			data += "<tr><td>"
+			if(C.key in choice.voters)
+				data += "<b><a href='?src=\ref[src];vote=\ref[choice]'>[choice.text]</a></b>"
 			else
-				. += "<font color='grey'>Storyteller (Disallowed)</font>"
-			if(trialmin)
-				. += "\t(<a href='?src=\ref[src];vote=toggle_storyteller'>[config.allow_vote_mode?"Allowed":"Disallowed"]</a>)"
-			. += "</li><li>"
-			//custom
-			if(trialmin)
-				. += "<li><a href='?src=\ref[src];vote=custom'>Custom</a></li>"
-			. += "</ul><hr>"
-		. += "<a href='?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
-		return .
+				data += "<a href='?src=\ref[src];vote=\ref[choice]'>[choice.text]</a>"
+			if(choice.desc)
+				data += "<br>\t<i>[choice.desc]</i>"
+			data += "</td><td align = 'center'>[c_votes]</td></tr>"
+
+		data += "</table><hr>"
+		if(admin)
+			data += "(<a href='?src=\ref[src];cancel=1'>Cancel Vote</a>) "
+	else
+		var/any_votes = FALSE
+		data += "<h2>Start a vote:</h2><hr><ul>"
+
+		for(var/P in votes)
+			var/datum/poll/poll = votes[P]
+			data += "<li>"
+			any_votes = TRUE
+
+			if(poll.can_start() && (!poll.only_admin || admin))
+				data += "<a href='?src=\ref[src];start_vote=\ref[poll]'>[poll.name]</a>"
+			else
+				data += "<s>[poll.name]</s>"
+
+			if(admin)
+				data += "\t(<a href='?src=\ref[src];toggle_admin=\ref[poll]'>[poll.only_admin?"Only admin":"Allowed"]</a>)"
+			data += "</li>"
+
+		if(!any_votes)
+			data += "<li><i>There is no available votes here now.</i></li>"
+
+		data += "</ul><hr>"
+	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
+	return data
 
 
-	Topic(href,href_list[],hsrc)
-		if(!usr || !usr.client)	return	//not necessary but meh...just in-case somebody does something stupid
-		switch(href_list["vote"])
-			if("close")
-				voting -= usr.client
-				usr << browse(null, "window=vote")
-				return
-			if("cancel")
-				if(usr.client.holder)
-					reset()
-			if("toggle_restart")
-				if(usr.client.holder)
-					config.allow_vote_restart = !config.allow_vote_restart
-			if("toggle_storyteller")
-				if(usr.client.holder)
-					config.allow_vote_mode = !config.allow_vote_mode
-			if("restart")
-				if(config.allow_vote_restart || usr.client.holder)
-					initiate_vote("restart",usr.key)
-			if("storyteller")
-				if(config.allow_vote_mode || usr.client.holder)
-					initiate_vote("storyteller",usr.key)
-			if("add_antagonist")
-				if(config.allow_extra_antags)
-					initiate_vote("add_antagonist",usr.key)
-			if("custom")
-				if(usr.client.holder)
-					initiate_vote("custom",usr.key)
-			else
-				submit_vote(usr.ckey, href_list["vote"])
-		usr.vote()
+/datum/controller/vote/Topic(href,href_list[],hsrc)
+	if(href_list["vote"])
+		if(active_vote)
+			var/datum/vote_choice/choice = locate(href_list["vote"]) in active_vote.choices
+			if(istype(choice) && usr && usr.client)
+				active_vote.vote(choice, usr.client)
+
+	if(href_list["toggle_admin"])
+		var/datum/poll/poll = locate(href_list["toggle_admin"])
+		if(istype(poll) && check_rights(R_ADMIN))
+			poll.only_admin = !poll.only_admin
+
+	if(href_list["start_vote"])
+		var/datum/poll/poll = locate(href_list["start_vote"])
+		if(istype(poll) && (!poll.only_admin || check_rights(R_ADMIN)))
+			start_vote(poll.type)
+
+	if(href_list["cancel"])
+		if(active_vote && check_rights(R_ADMIN))
+			stop_vote()
+
+	if(href_list["debug"])
+		usr.client.debug_variables(src)
+
+	if(href_list["close"])
+		if(usr && usr.client)
+			voters.Remove(usr.client)
+			usr.client << browse(null,"window=vote")
+			return
+
+	usr.vote()
+
+
+
+/datum/poll
+	var/name = "Voting"
+	var/question = "Voting, voting, candidates are faggots!"
+	var/time = 60	//in seconds
+	var/list/choice_types = list(/datum/vote_choice)	//Choices will be initialized from this list
+
+	var/only_admin = TRUE	//Is only admins can initiate this?
+
+	var/multiple_votes = FALSE
+	var/can_revote = TRUE	//Can voters change their mind?
+	var/can_unvote = FALSE
+
+	var/see_votes = TRUE	//Can voters see choices votes count?
+
+	var/list/choices = list()
+	var/initiator = null	//Initiator's key
+
+/datum/poll/proc/init_choices()
+	for(var/ch in choice_types)
+		choices.Add(new ch)
+
+/datum/poll/proc/is_non_voters(var/datum/vote_choice/C)
+	return FALSE
+
+/datum/poll/proc/start()
+	init_choices()
+	if(!choices.len)
+		return
+
+	if(usr && usr.client)
+		initiator = usr.client.key
+	else
+		initiator = "server"
+
+	on_start()
+	vote.active_vote = src
+
+/datum/poll/proc/can_start()
+	return TRUE
+
+/datum/poll/proc/on_start()
+	return
+
+/datum/poll/proc/on_end()
+	return
+
+/datum/poll/proc/reset()
+	on_end()
+	choices.Cut()
+	initiator = null
+	if(vote.active_vote == src)
+		vote.active_vote = null
+
+
+
+/datum/poll/proc/process()
+	return
+
+
+/datum/poll/proc/vote(var/datum/vote_choice/choice, var/client/CL)
+	var/key = CL.key
+	if(key in choice.voters)
+		if(can_revote && can_unvote)
+			choice.voters.Remove(key)
+	else
+		if(multiple_votes)
+			choice.voters.Add(key)
+		else
+			var/vtd = FALSE
+			for(var/datum/vote_choice/C in choices)
+				vtd = TRUE
+				if(can_revote)
+					C.voters.Remove(key)
+
+			if(can_revote || !vtd)
+				choice.voters.Add(key)
+
+/datum/poll/proc/get_winners()
+	var/list/choice_votes = list()
+	var/list/all_voters = list()
+
+	for(var/datum/vote_choice/V in choices)
+		all_voters |= V.voters
+		choice_votes[V] = V.voters.len
+
+	var/non_voters = clients.len - all_voters.len
+
+	for(var/datum/vote_choice/V in choice_votes)
+		if(is_non_voters(V))
+			choice_votes[V] += non_voters
+			break
+
+	var/max_votes = 0
+	for(var/datum/vote_choice/V in choice_votes)
+		max_votes = max(max_votes, choice_votes[V])
+
+	var/list/winners = list()
+	for(var/datum/vote_choice/V in choice_votes)
+		if(V.voters.len == max_votes)
+			winners.Add(V)
+
+	return winners
+
+
+/datum/vote_choice
+	var/text = "Vladimir Putin"
+	var/desc = null
+	var/list/voters = list()	//list of ckeys of voters
+
+/datum/vote_choice/proc/on_win()
+	return
+
 
 
 /mob/verb/vote()
@@ -314,4 +318,152 @@ datum/controller/vote
 	set name = "Vote"
 
 	if(vote)
-		src << browse(vote.interface(client),"window=vote")
+		vote.interface_client(client)
+
+
+///////////////////////////////////////////////
+///////////////////VOTES//////////////////////
+//////////////////////////////////////////////
+
+/datum/poll/restart
+	name = "Restart"
+	question = "Restart Round"
+	time = 60
+	choice_types = list(/datum/vote_choice/restart, /datum/vote_choice/countinue_round)
+
+	only_admin = TRUE
+
+	multiple_votes = FALSE
+	can_revote = TRUE
+	can_unvote = FALSE
+
+	see_votes = TRUE
+
+/datum/poll/restart/is_non_voters(var/datum/vote_choice/C)
+	if(istype(C,/datum/vote_choice/countinue_round))
+		return TRUE
+	return FALSE
+
+/datum/vote_choice/restart
+	text = "Restart Round"
+
+/datum/vote_choice/restart/on_win()
+	world << "<b>World restarting due to vote...<b>"
+	sleep(50)
+	log_game("Rebooting due to restart vote")
+	world.Reboot()
+
+/datum/vote_choice/countinue_round
+	text = "Continue Round"
+
+
+
+/datum/poll/storyteller
+	name = "Storyteller"
+	question = "Choose storyteller"
+	time = 60
+	choice_types = list()
+
+	only_admin = TRUE
+
+	multiple_votes = FALSE
+	can_revote = TRUE
+	can_unvote = TRUE
+
+	see_votes = TRUE
+
+/datum/poll/storyteller/is_non_voters(var/datum/vote_choice/storyteller/C)
+	if(istype(C) && C.new_storyteller == master_storyteller)
+		return TRUE
+	return FALSE
+
+/datum/poll/storyteller/init_choices()
+	for(var/ch in storyteller_cache)
+		var/datum/vote_choice/storyteller/CS = new
+		var/datum/storyteller/S = storyteller_cache[ch]
+		CS.text = S.name
+		CS.desc = S.description
+		CS.new_storyteller = ch
+		choices.Add(CS)
+
+/datum/poll/storyteller/process()
+	if(ticker.current_state != GAME_STATE_PREGAME)
+		vote.stop_vote()
+		world << "<b>Voting aborted due to game start.</b>"
+	return
+
+/datum/poll/storyteller/can_start()
+	return ticker && ticker.current_state == GAME_STATE_PREGAME
+
+/datum/poll/storyteller/on_start()
+	round_progressing = FALSE
+	world << "<font color='red'><b>Round start has been delayed.</b></font>"
+
+/datum/poll/storyteller/on_end()
+	ticker.story_vote_ended = TRUE
+	round_progressing = TRUE
+	world << "<font color='red'><b>The round will start soon.</b></font>"
+
+/datum/vote_choice/storyteller
+	text = "You shouldn't see this."
+	var/new_storyteller = STORYTELLER_BASE
+
+/datum/vote_choice/storyteller/on_win()
+	master_storyteller = new_storyteller
+	world.save_storyteller(master_storyteller)
+
+
+
+/datum/poll/custom
+	name = "Custom"
+	question = "Why is there no text here?"
+	time = 60
+	choice_types = list()
+
+	only_admin = TRUE
+
+	multiple_votes = TRUE
+	can_revote = TRUE
+	can_unvote = FALSE
+
+	see_votes = TRUE
+
+/datum/poll/custom/init_choices()
+	multiple_votes = FALSE
+	can_revote = TRUE
+	can_unvote = FALSE
+	see_votes = TRUE
+
+	question = input("What's your vote question?","Custom vote","Custom vote question")
+
+	var/choice_text = ""
+	var/ch_num = 1
+	do
+		choice_text = input("Vote choice [ch_num]. Type nothing to stop.","Custom vote","")
+		ch_num += 1
+		if(choice_text != "")
+			var/datum/vote_choice/custom/C = new
+			C.text = choice_text
+			choices.Add(C)
+	while(choice_text != "" && ch_num < 10)
+
+	if(alert("Should the voters be able to vote multiple options?","Custom vote","Yes","No") == "Yes")
+		multiple_votes = TRUE
+
+	if(alert("Should the voters be able to change their choice?","Custom vote","Yes","No") == "No")
+		can_revote = FALSE
+
+	if(alert("Should the voters be able to remove their votes?","Custom vote","Yes","No") == "Yes")
+		can_unvote = TRUE
+
+	if(alert("Should the voters see another voters votes?","Custom vote","Yes","No") == "No")
+		see_votes = FALSE
+
+	if(alert("Are you sure you want to continue?","Custom vote","Yes","No") == "No")
+		choices.Cut()
+
+/datum/vote_choice/custom
+	text = "Vote choice"
+
+
+
