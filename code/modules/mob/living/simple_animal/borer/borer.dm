@@ -8,7 +8,6 @@
 	response_disarm = "prods"
 	response_harm   = "stomps on"
 	icon_state = "brainslug"
-	item_state = "brainslug"
 	speed = 5
 	a_intent = I_HURT
 	stop_automated_movement = 1
