@@ -3,8 +3,6 @@
 	name = "space bear"
 	desc = "RawrRawr!!"
 	icon_state = "bear"
-	icon_living = "bear"
-	icon_dead = "bear_dead"
 	icon_gib = "bear_gib"
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
