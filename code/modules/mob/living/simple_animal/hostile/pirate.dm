@@ -2,7 +2,7 @@
 	name = "Pirate"
 	desc = "Does what he wants cause a pirate is free."
 	icon_state = "piratemelee"
-	icon_dead = "pirate_dead" //TODO: That icon isn't exists
+	icon_dead = "pirate_dead" //TODO: That icon doesn't exist
 	speak_chance = 0
 	turns_per_move = 5
 	response_help = "pushes"

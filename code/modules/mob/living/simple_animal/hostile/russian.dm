@@ -2,7 +2,7 @@
 	name = "russian"
 	desc = "For the Motherland!"
 	icon_state = "russianmelee"
-	icon_dead = "russian_dead" //TODO: that icons isn't exists
+	icon_dead = "russian_dead" //TODO: that icon doesn't exist
 	icon_gib = "syndicate_gib"
 	speak_chance = 0
 	turns_per_move = 5

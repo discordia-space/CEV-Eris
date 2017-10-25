@@ -2,7 +2,7 @@
 	name = "\improper Syndicate operative"
 	desc = "Death to the Company."
 	icon_state = "syndicate"
-	icon_dead = "syndicate_dead" //TODO: That icons isn't exist
+	icon_dead = "syndicate_dead" //TODO: That icon doesn't exist
 	icon_gib = "syndicate_gib"
 	speak_chance = 0
 	turns_per_move = 5
