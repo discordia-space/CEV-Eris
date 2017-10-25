@@ -34,6 +34,7 @@
 /client/proc/virus2_editor()
 	set name = "Virus Editor"
 	set category = "Debug"
+
 	if(!holder || !check_rights(R_DEBUG))
 		return // spawn privileges to create viruses
 
