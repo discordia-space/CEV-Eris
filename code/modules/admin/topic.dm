@@ -428,7 +428,6 @@
 
 		if(M != usr)																//we can jobban ourselves
 			if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN || M.client.holder.rights & R_MOD))		//they can ban too. So we can't ban them
-
 				alert("You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
@@ -500,7 +499,6 @@
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
 						return
-
 					if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_job_tempban_max)
 						usr << SPAN_WARNING("Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!")
 						return
@@ -612,7 +610,6 @@
 				DB_ban_unban(ckey(key), BANTYPE_JOB_PERMA, job)
 
 	else if(href_list["newban"])
-
 		if(!check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE))
 			usr << SPAN_WARNING("You do not have the appropriate permissions to add bans!")
 			return

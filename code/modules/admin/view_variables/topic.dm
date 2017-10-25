@@ -69,7 +69,6 @@
 		src.holder.show_player_panel(M)
 		href_list["datumrefresh"] = href_list["mob_player_panel"]
 
-
 	else if(href_list["give_disease2"])
 		if(!check_rights(R_ADMIN|R_FUN))
 			return
