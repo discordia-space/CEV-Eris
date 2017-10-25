@@ -160,9 +160,9 @@
 	var/val = 0 // value to return
 
 	for(var/obj/item/I in carrying)
-		if(I.w_class == 1.0)
+		if(I.w_class == ITEM_SIZE_TINY)
 			val ++
-		else if(I.w_class == 2.0)
+		else if(I.w_class == ITEM_SIZE_SMALL)
 			val += 3
 		else
 			val += 5
@@ -177,9 +177,9 @@
 	for(var/obj/item/I in loc)
 		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
 			var/add = 0
-			if(I.w_class == 1.0)
+			if(I.w_class == ITEM_SIZE_TINY)
 				add = 1
-			else if(I.w_class == 2.0)
+			else if(I.w_class == ITEM_SIZE_SMALL)
 				add = 3
 			else
 				add = 5

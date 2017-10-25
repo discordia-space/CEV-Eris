@@ -177,7 +177,7 @@
 	icon_sparking = "safespark"
 	force = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_NO_CONTAINER
-	max_w_class = 8
+	max_w_class = ITEM_SIZE_GARGANTUAN
 	anchored = 1.0
 	density = 0
 	cant_hold = list(/obj/item/weapon/storage/secure/briefcase)

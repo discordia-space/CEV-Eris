@@ -476,8 +476,8 @@
 		if (stat & MAINT)
 			user << SPAN_WARNING("There is no connector for your power cell.")
 			return
-		if(W.w_class != 3)
-			user << "\The [W] is too [W.w_class < 3? "small" : "large"] to fit here."
+		if(W.w_class != ITEM_SIZE_NORMAL)
+			user << "\The [W] is too [W.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
 			return
 
 		user.drop_item()
@@ -648,7 +648,7 @@
 		if (((stat & BROKEN) || hacker) \
 				&& !opened \
 				&& W.force >= 5 \
-				&& W.w_class >= 3.0 \
+				&& W.w_class >= ITEM_SIZE_NORMAL \
 				&& prob(20) )
 			opened = 2
 			user.visible_message(SPAN_DANGER("The APC cover was knocked down with the [W.name] by [user.name]!"), \

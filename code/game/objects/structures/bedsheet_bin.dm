@@ -27,7 +27,10 @@ LINEN BINS
 
 /obj/item/weapon/bedsheet/attackby(obj/item/I, mob/user)
 	if(is_sharp(I))
-		user.visible_message(SPAN_NOTICE("\The [user] begins cutting up \the [src] with \a [I]."), SPAN_NOTICE("You begin cutting up \the [src] with \the [I]."))
+		user.visible_message(
+			SPAN_NOTICE("\The [user] begins cutting up \the [src] with \a [I]."),
+			SPAN_NOTICE("You begin cutting up \the [src] with \the [I].")
+		)
 		if(do_after(user, 50, src))
 			user << SPAN_NOTICE("You cut \the [src] into pieces!")
 			for(var/i in 1 to rand(2,5))
@@ -122,7 +125,8 @@ LINEN BINS
 		sheets.Add(I)
 		amount++
 		user << SPAN_NOTICE("You put [I] in [src].")
-	else if(amount && !hidden && I.w_class < 4)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
+	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
+	else if(amount && !hidden && I.w_class < ITEM_SIZE_LARGE)
 		user.drop_item()
 		I.loc = src
 		hidden = I
