@@ -166,7 +166,7 @@ var/list/debug_verbs = list (
 )
 
 
-ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 /client/proc/enable_debug_verbs()
 	set category = "Debug"
 	set name = "Debug verbs"

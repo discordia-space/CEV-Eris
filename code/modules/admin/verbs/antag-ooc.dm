@@ -1,4 +1,4 @@
-ADMIN_VERB_ADD(/client/proc/aooc, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/aooc, R_ADMIN, FALSE)
 /client/proc/aooc(msg as text)
 	set category = "OOC"
 	set name = "AOOC"

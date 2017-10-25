@@ -1,6 +1,6 @@
 var/list/sounds_cache = list()
 
-ADMIN_VERB_ADD(/client/proc/play_sound, R_FUN)
+ADMIN_VERB_ADD(/client/proc/play_sound, R_FUN, FALSE)
 /client/proc/play_sound(S as sound)
 	set category = "Fun"
 	set name = "Play Global Sound"
@@ -23,7 +23,7 @@ ADMIN_VERB_ADD(/client/proc/play_sound, R_FUN)
 
 
 
-ADMIN_VERB_ADD(/client/proc/play_local_sound, R_FUN)
+ADMIN_VERB_ADD(/client/proc/play_local_sound, R_FUN, FALSE)
 /client/proc/play_local_sound(S as sound)
 	set category = "Fun"
 	set name = "Play Local Sound"
@@ -35,7 +35,7 @@ ADMIN_VERB_ADD(/client/proc/play_local_sound, R_FUN)
 	playsound(get_turf(src.mob), S, 50, 0, 0)
 
 
-ADMIN_VERB_ADD(/client/proc/play_server_sound, R_FUN)
+ADMIN_VERB_ADD(/client/proc/play_server_sound, R_FUN, FALSE)
 /client/proc/play_server_sound()
 	set category = "Fun"
 	set name = "Play Server Sound"

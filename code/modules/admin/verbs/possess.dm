@@ -1,4 +1,4 @@
-ADMIN_VERB_ADD(/proc/possess, R_FUN)
+ADMIN_VERB_ADD(/proc/possess, R_FUN, FALSE)
 /proc/possess(obj/O as obj in range(world.view))
 	set name = "Possess Obj"
 	set category = "Object"
@@ -27,7 +27,7 @@ ADMIN_VERB_ADD(/proc/possess, R_FUN)
 	usr.control_object = O
 
 
-ADMIN_VERB_ADD(/proc/release, R_FUN)
+ADMIN_VERB_ADD(/proc/release, R_FUN, FALSE)
 /proc/release()
 	set name = "Release Obj"
 	set category = "Object"

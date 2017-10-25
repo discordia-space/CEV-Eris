@@ -1,4 +1,4 @@
-ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 /client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debug-Game"
@@ -212,7 +212,7 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG)
 
 
 //TODO: merge the vievars version into this or something maybe mayhaps
-ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
 	set name = "Del-All"
@@ -228,7 +228,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG)
 		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
 	set name = "Make Powernets"
@@ -237,7 +237,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG)
 	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG, FALSE)
 /client/proc/cmd_debug_tog_aliens()
 	set category = "Server"
 	set name = "Toggle Aliens"
@@ -391,7 +391,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG)
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 /client/proc/cmd_admin_dress()
 	set category = "Fun"
 	set name = "Select equipment"
@@ -739,7 +739,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN)
 	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", 1)
 
 
-ADMIN_VERB_ADD(/client/proc/check_positions, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/check_positions, R_DEBUG, FALSE)
 /client/proc/check_positions()
 	set category = "Debug"
 	set name = "Check positions"
@@ -812,7 +812,7 @@ ADMIN_VERB_ADD(/client/proc/check_positions, R_DEBUG)
 			SMES.input_attempt = 1
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 /client/proc/cmd_debug_mob_lists()
 	set category = "Debug"
 	set name = "Debug Mob Lists"

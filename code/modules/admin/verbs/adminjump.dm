@@ -4,7 +4,7 @@
 /mob/observer/ghost/on_mob_jump()
 	stop_following()
 
-ADMIN_VERB_ADD(/client/proc/Jump, R_ADMIN|R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/Jump, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/Jump(var/area/A in return_sorted_areas())
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
@@ -26,7 +26,7 @@ ADMIN_VERB_ADD(/client/proc/Jump, R_ADMIN|R_DEBUG)
 	else
 		alert("Admin jumping disabled")
 
-ADMIN_VERB_ADD(/client/proc/jumptoturf, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/jumptoturf, R_ADMIN, FALSE)
 //allows us to jump to a specific turf
 /client/proc/jumptoturf(var/turf/T in turfs)
 	set name = "Jump to Turf"
@@ -43,7 +43,7 @@ ADMIN_VERB_ADD(/client/proc/jumptoturf, R_ADMIN)
 		alert("Admin jumping disabled")
 	return
 
-ADMIN_VERB_ADD(/client/proc/jumptomob, R_ADMIN|R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/jumptomob, R_ADMIN|R_DEBUG, FALSE)
 //allows us to jump to a specific mob
 /client/proc/jumptomob(var/mob/M in mob_list)
 	set category = "Admin"
@@ -66,7 +66,7 @@ ADMIN_VERB_ADD(/client/proc/jumptomob, R_ADMIN|R_DEBUG)
 				A << "This mob is not located in the game world."
 	else
 		alert("Admin jumping disabled")
-ADMIN_VERB_ADD(/client/proc/jumptocoord, R_ADMIN|R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/jumptocoord, R_ADMIN|R_DEBUG, FALSE)
 //we ghost and jump to a coordinate
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
@@ -86,7 +86,7 @@ ADMIN_VERB_ADD(/client/proc/jumptocoord, R_ADMIN|R_DEBUG)
 	else
 		alert("Admin jumping disabled")
 
-ADMIN_VERB_ADD(/client/proc/jumptokey, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/jumptokey, R_ADMIN, TRUE)
 //allows us to jump to the location of a mob with a certain ckey
 /client/proc/jumptokey()
 	set category = "Admin"
@@ -112,7 +112,7 @@ ADMIN_VERB_ADD(/client/proc/jumptokey, R_ADMIN)
 	else
 		alert("Admin jumping disabled")
 
-ADMIN_VERB_ADD(/client/proc/Getmob, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/Getmob, R_ADMIN, FALSE)
 //teleports a mob to our location
 /client/proc/Getmob(var/mob/M in mob_list)
 	set category = "Admin"
@@ -129,7 +129,7 @@ ADMIN_VERB_ADD(/client/proc/Getmob, R_ADMIN)
 	else
 		alert("Admin jumping disabled")
 
-ADMIN_VERB_ADD(/client/proc/Getkey, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/Getkey, R_ADMIN, FALSE)
 //teleports a mob with a certain ckey to our location
 /client/proc/Getkey()
 	set category = "Admin"

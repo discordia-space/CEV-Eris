@@ -15,7 +15,7 @@
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_subtle_message, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_subtle_message, R_ADMIN, FALSE)
 //send an message to somebody as a 'voice in their head'
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
 	set category = "Special Verbs"
@@ -39,7 +39,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_subtle_message, R_ADMIN)
 	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_world_narrate, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_world_narrate, R_ADMIN, FALSE)
 //sends text to all players with no padding
 /client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
 	set category = "Special Verbs"
@@ -58,7 +58,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_world_narrate, R_ADMIN)
 	message_admins("\blue \bold GlobalNarrate: [key_name_admin(usr)] : [msg]<BR>", 1)
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_direct_narrate, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_direct_narrate, R_ADMIN, FALSE)
 //send text directly to a player with no padding. Useful for narratives and fluff-text
 /client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
 	set category = "Special Verbs"
@@ -147,7 +147,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	M << "<span class = 'alert'>You have been [muteunmute] from [mute_string].</span>"
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_add_random_ai_law, R_FUN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_add_random_ai_law, R_FUN, FALSE)
 /client/proc/cmd_admin_add_random_ai_law()
 	set category = "Fun"
 	set name = "Add Random AI Law"
@@ -196,7 +196,7 @@ Ccomp's first proc.
 		return mobs
 
 
-ADMIN_VERB_ADD(/client/proc/allow_character_respawn, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/allow_character_respawn, R_ADMIN, FALSE)
 // Allows a ghost to respawn
 /client/proc/allow_character_respawn()
 	set category = "Special Verbs"
@@ -227,7 +227,7 @@ ADMIN_VERB_ADD(/client/proc/allow_character_respawn, R_ADMIN)
 	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the 30 minute respawn limit", 1)
 
 
-ADMIN_VERB_ADD(/client/proc/toggle_antagHUD_use, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/toggle_antagHUD_use, R_ADMIN, FALSE)
 /client/proc/toggle_antagHUD_use()
 	set category = "Server"
 	set name = "Toggle antagHUD usage"
@@ -261,7 +261,7 @@ ADMIN_VERB_ADD(/client/proc/toggle_antagHUD_use, R_ADMIN)
 	message_admins("Admin [key_name_admin(usr)] has [action] antagHUD usage for observers", 1)
 
 
-ADMIN_VERB_ADD(/client/proc/toggle_antagHUD_restrictions, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/toggle_antagHUD_restrictions, R_ADMIN, FALSE)
 /client/proc/toggle_antagHUD_restrictions()
 	set category = "Server"
 	set name = "Toggle antagHUD Restrictions"
@@ -293,7 +293,7 @@ If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
-ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN)
+ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 /client/proc/respawn_character()
 	set category = "Special Verbs"
 	set name = "Respawn Character"
@@ -397,7 +397,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN)
 
 	return new_character
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_add_freeform_ai_law, R_FUN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_add_freeform_ai_law, R_FUN, FALSE)
 /client/proc/cmd_admin_add_freeform_ai_law()
 	set category = "Fun"
 	set name = "Add Custom AI law"
@@ -426,7 +426,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_add_freeform_ai_law, R_FUN)
 		command_announcement.Announce("Ion storm detected near the ship. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_rejuvenate, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_rejuvenate, R_ADMIN, FALSE)
 /client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Rejuvenate"
@@ -447,7 +447,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_rejuvenate, R_ADMIN)
 		alert("Admin revive disabled")
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_create_centcom_report, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_create_centcom_report, R_ADMIN, FALSE)
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Special Verbs"
 	set name = "Create Command Report"
@@ -475,7 +475,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_create_centcom_report, R_ADMIN)
 	message_admins("[key_name_admin(src)] has created a command report", 1)
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_delete, R_ADMIN|R_SERVER|R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_delete, R_ADMIN|R_SERVER|R_DEBUG, FALSE)
 //delete an instance/object/mob/etc
 /client/proc/cmd_admin_delete(atom/O as obj|mob|turf in range(world.view))
 	set category = "Admin"
@@ -491,7 +491,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_delete, R_ADMIN|R_SERVER|R_DEBUG)
 
 		qdel(O)
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_list_open_jobs, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_list_open_jobs, R_DEBUG, FALSE)
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
 	set name = "List free slots"
@@ -575,7 +575,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_list_open_jobs, R_DEBUG)
 	M.gib()
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_gib_self, R_FUN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_gib_self, R_FUN, FALSE)
 /client/proc/cmd_admin_gib_self()
 	set name = "Gibself"
 	set category = "Fun"
@@ -652,7 +652,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_gib_self, R_FUN)
 	// I will both remove their SVN access and permanently ban them from my servers.
 	return
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_check_contents, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_check_contents, R_ADMIN, FALSE)
 //displays the contents of an instance
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
 	set category = "Special Verbs"
@@ -694,7 +694,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_check_contents, R_ADMIN)
 			T.ttemp = 293.15
 */
 
-ADMIN_VERB_ADD(/client/proc/toggle_view_range, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/toggle_view_range, R_ADMIN, FALSE)
 //changes how far we can see
 /client/proc/toggle_view_range()
 	set category = "Special Verbs"
@@ -711,7 +711,7 @@ ADMIN_VERB_ADD(/client/proc/toggle_view_range, R_ADMIN)
 
 
 
-ADMIN_VERB_ADD(/client/proc/admin_call_shuttle, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/admin_call_shuttle, R_ADMIN, FALSE)
 //allows us to call the emergency shuttle
 /client/proc/admin_call_shuttle()
 
@@ -732,7 +732,7 @@ ADMIN_VERB_ADD(/client/proc/admin_call_shuttle, R_ADMIN)
 	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)
 	return
 
-ADMIN_VERB_ADD(/client/proc/admin_cancel_shuttle, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/admin_cancel_shuttle, R_ADMIN, FALSE)
 //allows us to cancel the emergency shuttle, sending it back to centcomm
 /client/proc/admin_cancel_shuttle()
 	set category = "Admin"
@@ -775,7 +775,7 @@ ADMIN_VERB_ADD(/client/proc/admin_cancel_shuttle, R_ADMIN)
 		usr << t
 
 
-ADMIN_VERB_ADD(/client/proc/everyone_random, R_FUN)
+ADMIN_VERB_ADD(/client/proc/everyone_random, R_FUN, FALSE)
 /client/proc/everyone_random()
 	set category = "Fun"
 	set name = "Make Everyone Random"
@@ -809,7 +809,7 @@ ADMIN_VERB_ADD(/client/proc/everyone_random, R_FUN)
 	ticker.random_players = 1
 
 
-ADMIN_VERB_ADD(/client/proc/toggle_random_events, R_SERVER)
+ADMIN_VERB_ADD(/client/proc/toggle_random_events, R_SERVER, FALSE)
 /client/proc/toggle_random_events()
 	set category = "Server"
 	set name = "Toggle random events on/off"

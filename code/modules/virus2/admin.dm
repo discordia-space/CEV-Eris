@@ -31,7 +31,7 @@
 	"}
 
 /datum/admins/var/datum/virus2_editor/virus2_editor_datum = new
-ADMIN_VERB_ADD(/client/proc/virus2_editor, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/virus2_editor, R_DEBUG, FALSE)
 /client/proc/virus2_editor()
 	set name = "Virus Editor"
 	set category = "Debug"
