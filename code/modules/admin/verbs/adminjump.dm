@@ -4,6 +4,7 @@
 /mob/observer/ghost/on_mob_jump()
 	stop_following()
 
+ADMIN_VERB_ADD(/client/proc/Jump, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/Jump(var/area/A in return_sorted_areas())
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
@@ -25,6 +26,8 @@
 	else
 		alert("Admin jumping disabled")
 
+ADMIN_VERB_ADD(/client/proc/jumptoturf, R_ADMIN, FALSE)
+//allows us to jump to a specific turf
 /client/proc/jumptoturf(var/turf/T in turfs)
 	set name = "Jump to Turf"
 	set category = "Admin"
@@ -40,6 +43,8 @@
 		alert("Admin jumping disabled")
 	return
 
+ADMIN_VERB_ADD(/client/proc/jumptomob, R_ADMIN|R_DEBUG, FALSE)
+//allows us to jump to a specific mob
 /client/proc/jumptomob(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
@@ -61,7 +66,8 @@
 				A << "This mob is not located in the game world."
 	else
 		alert("Admin jumping disabled")
-
+ADMIN_VERB_ADD(/client/proc/jumptocoord, R_ADMIN|R_DEBUG, FALSE)
+//we ghost and jump to a coordinate
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
 	set name = "Jump to Coordinate"
@@ -80,6 +86,8 @@
 	else
 		alert("Admin jumping disabled")
 
+ADMIN_VERB_ADD(/client/proc/jumptokey, R_ADMIN, TRUE)
+//allows us to jump to the location of a mob with a certain ckey
 /client/proc/jumptokey()
 	set category = "Admin"
 	set name = "Jump to Key"
@@ -104,6 +112,8 @@
 	else
 		alert("Admin jumping disabled")
 
+ADMIN_VERB_ADD(/client/proc/Getmob, R_ADMIN, FALSE)
+//teleports a mob to our location
 /client/proc/Getmob(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Get Mob"
@@ -119,6 +129,8 @@
 	else
 		alert("Admin jumping disabled")
 
+ADMIN_VERB_ADD(/client/proc/Getkey, R_ADMIN, FALSE)
+//teleports a mob with a certain ckey to our location
 /client/proc/Getkey()
 	set category = "Admin"
 	set name = "Get Key"
@@ -146,20 +158,3 @@
 
 	else
 		alert("Admin jumping disabled")
-
-/client/proc/sendmob(var/mob/M in sortmobs())
-	set category = "Admin"
-	set name = "Send Mob"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
-		return
-	var/area/A = input(usr, "Pick an area.", "Pick an area") in return_sorted_areas()
-	if(A)
-		if(config.allow_admin_jump)
-			M.on_mob_jump()
-			M.forceMove(pick(get_area_turfs(A)))
-
-
-			log_admin("[key_name(usr)] teleported [key_name(M)] to [A]")
-			message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)] to [A]", 1)
-		else
-			alert("Admin jumping disabled")

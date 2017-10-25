@@ -1,6 +1,9 @@
 #define MEMOFILE "data/memo.sav"	//where the memos are saved
 #define ENABLE_MEMOS 1				//using a define because screw making a config variable for it. This is more efficient and purty.
 
+ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
+//admin memo system. show/delete/write.
+// +SERVER needed to delete admin memos of others
 //switch verb so we don't spam up the verb lists with like, 3 verbs for this feature.
 /client/proc/admin_memo(task in list("write","show","delete"))
 	set name = "Memo"

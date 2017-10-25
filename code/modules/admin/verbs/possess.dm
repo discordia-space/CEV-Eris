@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/proc/possess, R_FUN, FALSE)
 /proc/possess(obj/O as obj in range(world.view))
 	set name = "Possess Obj"
 	set category = "Object"
@@ -26,21 +27,23 @@
 	usr.control_object = O
 
 
-/proc/release(obj/O as obj in range(world.view))
+ADMIN_VERB_ADD(/proc/release, R_FUN, FALSE)
+/proc/release()
 	set name = "Release Obj"
 	set category = "Object"
 	//usr.loc = get_turf(usr)
 
+	var/obj/controlled_obj = null
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object
+		controlled_obj = usr.control_object
 		usr.real_name = usr.name_archive
 		usr.name = usr.real_name
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			H.name = H.get_visible_name()
-//		usr.regenerate_icons() //So the name is updated properly
 
-	usr.loc = O.loc // Appear where the object you were controlling is -- TLE
-	usr.client.eye = usr
+	usr.forceMove(controlled_obj.loc) // Appear where the object you were controlling is -- TLE
+	usr.reset_view()
 	usr.control_object = null
 
 

@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/datum/admins/proc/capture_map, R_SERVER, FALSE)
 /datum/admins/proc/capture_map(tx as null|num, ty as null|num, tz as null|num, range as null|num)
 	set category = "Server"
 	set name = "Capture Map Part"
