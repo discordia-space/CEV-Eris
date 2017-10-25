@@ -20,11 +20,6 @@
 
 
 var/list/admin_verbs = list("default" = list(), "hideable" = list())
-var/list/admin_verbs_paranoid_debug = list(
-	/client/proc/callproc,
-	/client/proc/callproc_target,
-	/client/proc/debug_controller,
-)
 
 /client/proc/add_admin_verbs()
 	if(holder)
