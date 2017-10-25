@@ -247,6 +247,7 @@
 	else
 		return ..()
 
+ADMIN_VERB_ADD(/client/proc/empty_ai_core_toggle_latejoin, R_ADMIN)
 /client/proc/empty_ai_core_toggle_latejoin()
 	set name = "Toggle AI Core Latejoin"
 	set category = "Server"

@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/client/proc/air_report, R_DEBUG)
 /client/proc/air_report()
 	set category = "Debug"
 	set name = "Show Air Report"
@@ -98,6 +99,7 @@
 	usr << browse(output,"window=radioreport")
 
 
+ADMIN_VERB_ADD(/client/proc/reload_admins, R_SERVER)
 /client/proc/reload_admins()
 	set name = "Reload Admins"
 	set category = "Debug"
@@ -108,6 +110,7 @@
 	load_admins()
 
 
+ADMIN_VERB_ADD(/client/proc/reload_mentors, R_SERVER)
 /client/proc/reload_mentors()
 	set name = "Reload Mentors"
 	set category = "Debug"
@@ -140,6 +143,8 @@
 	return
 	*/
 
+
+ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_SERVER)
 /client/proc/kill_airgroup()
 	set name = "Kill Local Airgroup"
 	set desc = "Use this to allow manual manupliation of atmospherics."

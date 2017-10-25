@@ -166,6 +166,7 @@ var/list/debug_verbs = list (
 )
 
 
+ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG)
 /client/proc/enable_debug_verbs()
 	set category = "Debug"
 	set name = "Debug verbs"
@@ -185,12 +186,11 @@ var/list/debug_verbs = list (
 	verbs -= debug_verbs
 
 
-
-
-/client/var/list/testZAScolors_turfs = list()
-/client/var/list/testZAScolors_zones = list()
-/client/var/usedZAScolors = 0
-/client/var/list/image/ZAScolors = list()
+/client
+	var/list/testZAScolors_turfs = list()
+	var/list/testZAScolors_zones = list()
+	var/usedZAScolors = 0
+	var/list/image/ZAScolors = list()
 
 /client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
 	testZAScolors_zones += Z
