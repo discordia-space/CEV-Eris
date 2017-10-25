@@ -12,13 +12,13 @@
 /obj/random/mob/roaches/low_chance
 	name = "low chance random roach"
 	icon_state = "hostilemob-brown-low"
-	spawn_nothing_percentage = 82
+	spawn_nothing_percentage = 70
 
 /obj/random/cluster/roaches
 	name = "cluster of roaches"
-	icon_state = "hostilemob-brown"
-	min_amount = 5
-	max_amount = 15
+	icon_state = "hostilemob-brown-cluster"
+	min_amount = 3
+	max_amount = 7
 	spread_range = 0
 
 /obj/random/cluster/roaches/item_to_spawn()
@@ -26,5 +26,5 @@
 
 /obj/random/cluster/roaches/low_chance
 	name = "low chance cluster of roaches"
-	icon_state = "hostilemob-brown-low"
-	spawn_nothing_percentage = 82
+	icon_state = "hostilemob-brown-cluster-low"
+	spawn_nothing_percentage = 70
