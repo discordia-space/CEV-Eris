@@ -117,7 +117,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			config.admin_legacy_system = 1
-			load_admins()
+			load_admins_legacy()
 			return
 
 /proc/load_admins()
