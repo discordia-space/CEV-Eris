@@ -46,7 +46,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFULL
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1

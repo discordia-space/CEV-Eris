@@ -19,7 +19,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sampler0"
 	item_state = "screwdriver_brown"
-	w_class = 1.0
+	w_class = ITEM_SIZE_TINY
 	//slot_flags = SLOT_BELT
 	var/sampled_turf = ""
 	var/num_stored_bags = 10
@@ -74,7 +74,7 @@
 			var/image/I = image("icon"=R, "layer"=FLOAT_LAYER)
 			filled_bag.overlays += I
 			filled_bag.overlays += "evidence"
-			filled_bag.w_class = 1
+			filled_bag.w_class = ITEM_SIZE_TINY
 
 			user << "\blue You take a core sample of the [item_to_sample]."
 	else
