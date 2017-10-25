@@ -768,6 +768,7 @@ proc/admin_notice(var/message, var/rights)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
+ 
 	if(!check_rights(R_DEBUG))
 		return
 
