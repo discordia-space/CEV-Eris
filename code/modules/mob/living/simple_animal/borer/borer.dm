@@ -8,9 +8,6 @@
 	response_disarm = "prods"
 	response_harm   = "stomps on"
 	icon_state = "brainslug"
-	item_state = "brainslug"
-	icon_living = "brainslug"
-	icon_dead = "brainslug_dead"
 	speed = 5
 	a_intent = I_HURT
 	stop_automated_movement = 1
@@ -37,8 +34,10 @@
 
 /mob/living/simple_animal/borer/Login()
 	..()
-	if(mind)
-		make_antagonist(mind,ROLE_BORER_REPRODUCED)
+	if(!roundstart && mind && !mind.antagonist.len)
+		var/a_type = antag_types[ROLE_BORER_REPRODUCED]
+		var/datum/antagonist/A = new a_type
+		A.create_antagonist(mind,update = FALSE)
 
 /mob/living/simple_animal/borer/New()
 	..()

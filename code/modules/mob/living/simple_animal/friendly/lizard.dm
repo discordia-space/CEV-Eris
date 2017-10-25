@@ -3,8 +3,6 @@
 	desc = "A cute tiny lizard."
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "lizard"
-	icon_living = "lizard"
-	icon_dead = "lizard-dead"
 	speak_emote = list("hisses")
 	health = 5
 	maxHealth = 5
