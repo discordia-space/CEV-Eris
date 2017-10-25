@@ -32,7 +32,6 @@
 
 /obj/random/gun_energy_cheap
 	name = "random cheap energy weapon"
-	desc = "This is a random security weapon."
 	icon_state = "gun-blue"
 
 /obj/random/gun_energy_cheap/item_to_spawn()

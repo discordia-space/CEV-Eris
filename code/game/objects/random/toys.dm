@@ -1,6 +1,5 @@
 /obj/random/action_figure
 	name = "random action figure"
-	desc = "This is a random action figure."
 	icon_state = "box-grey"
 
 /obj/random/action_figure/item_to_spawn()
@@ -45,7 +44,6 @@
 
 /obj/random/plushie
 	name = "random plushie"
-	desc = "This is a random plushie."
 	icon_state = "box-grey"
 
 /obj/random/plushie/item_to_spawn()

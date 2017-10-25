@@ -1,6 +1,5 @@
 /obj/random
 	name = "random object"
-	desc = "This item type is used to spawn random objects at round-start"
 	icon = 'icons/misc/landmarks.dmi'
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/min_amount = 1
@@ -37,7 +36,6 @@
 
 /obj/random/single
 	name = "randomly spawned object"
-	desc = "This item type is used to randomly spawn a given object at round-start"
 	var/spawn_object = null
 
 /obj/random/single/item_to_spawn()
