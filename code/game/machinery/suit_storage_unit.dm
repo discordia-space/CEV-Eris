@@ -774,6 +774,8 @@
 	if(electrified != 0)
 		if(src.shock(user, 100))
 			return
+	if(!usr)
+		return
 
 	usr.set_machine(src)
 
