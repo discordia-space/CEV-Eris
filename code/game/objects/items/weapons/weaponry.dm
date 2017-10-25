@@ -20,41 +20,20 @@
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
-	//if(user != M)
-	if(user.spell_list.len)
-		user.silence_spells(300) //30 seconds
-		user << SPAN_DANGER("You've been silenced!")
-		return
 
 	if(!user.IsAdvancedToolUser())
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << SPAN_DANGER("The rod slips out of your hand and hits your head.")
+		user << "<span class='danger'>The rod slips out of your hand and hits your head.</span>"
 		user.take_organ_damage(10)
 		user.Paralyse(20)
 		return
 
-	if (M.stat !=2)
-		if(cult && (M.mind in cult.current_antagonists) && prob(33))
-			M << SPAN_DANGER("The power of [src] clears your mind of the cult's influence!")
-			user << SPAN_DANGER("You wave [src] over [M]'s head and see their eyes become clear, their mind returning to normal.")
-			cult.remove_antagonist(M.mind)
-			M.visible_message(SPAN_DANGER("\The [user] waves \the [src] over \the [M]'s head."))
-		else if(prob(10))
-			user << SPAN_DANGER("The rod slips in your hand.")
-			..()
-		else
-			user << SPAN_DANGER("The rod appears to do nothing.")
-			M.visible_message(SPAN_DANGER("\The [user] waves \the [src] over \the [M]'s head."))
-			return
 
 /obj/item/weapon/nullrod/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
-	if (istype(A, /turf/simulated/floor))
-		user << SPAN_NOTICE("You hit the floor with the [src].")
-		call(/obj/effect/rune/proc/revealrunes)(src)
 
 /obj/item/weapon/energy_net
 	name = "energy net"
@@ -195,7 +174,7 @@
 	else
 		health -= rand(5,8)
 
-	H << SPAN_DANGER("You claw at the energy net.")
+	H << "<span class='danger'>You claw at the energy net.</span>"
 
 	healthcheck()
 	return

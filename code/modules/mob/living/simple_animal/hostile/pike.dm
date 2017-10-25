@@ -3,8 +3,6 @@
 	desc = "A bigger, angrier cousin of the space carp."
 	icon = 'icons/mob/spaceshark.dmi'
 	icon_state = "shark"
-	icon_living = "shark"
-	icon_dead = "shark_dead"
 	meat_amount = 10
 	turns_per_move = 2
 	move_to_delay = 2

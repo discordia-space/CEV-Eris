@@ -55,8 +55,6 @@
 	species_restricted = null
 	body_parts_covered = 0
 
-	wizard_garb = 1
-
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
 	name = "magic shoes"
@@ -96,9 +94,6 @@
 	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = null
-
-/obj/item/clothing/shoes/cult/cultify()
-	return
 
 /obj/item/clothing/shoes/cyborg
 	name = "cyborg boots"

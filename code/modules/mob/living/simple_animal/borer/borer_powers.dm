@@ -108,8 +108,11 @@
 		src.loc = M
 
 		//Update their traitor status.
-		if(host.mind)
-			borers.add_antagonist_mind(host.mind, 1, borers.faction_role_text, borers.faction_welcome)
+		/*if(host.mind && src.mind)
+			var/list/L = get_player_antags(src.mind, ROLE_BORER)
+			var/datum/antagonist/borer/borer
+			if(L.len)
+				borer = L[1]*/
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -176,7 +179,6 @@
 		H.daemonize()
 
 	if(src.mind)
-		src.mind.special_role = "Borer Husk"
 		src.mind.transfer_to(host)
 
 	H.ChangeToHusk()

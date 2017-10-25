@@ -409,18 +409,8 @@
 			return
 		chassis.use_power(energy_drain)
 		set_ready_state(0)
-		var/obj/effect/portal/P = new /obj/effect/portal(get_turf(target))
-		P.target = target_turf
-		P.creator = null
-		P.icon = 'icons/obj/objects.dmi'
-		P.failchance = 0
-		P.icon_state = "anom"
-		P.name = "wormhole"
+		PoolOrNew(/obj/effect/portal/wormhole, list(get_turf(target), target_turf, rand(150, 300)))
 		do_after_cooldown()
-		src = null
-		spawn(rand(150,300))
-			qdel(P)
-		return
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult
 	name = "gravitational catapult"

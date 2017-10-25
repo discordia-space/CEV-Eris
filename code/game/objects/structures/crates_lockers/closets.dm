@@ -98,6 +98,7 @@
 	src.opened = 1
 	playsound(src.loc, open_sound, 100, 1, -3)
 	density = 0
+	update_openspace()
 	return 1
 
 /obj/structure/closet/proc/close()
@@ -120,6 +121,7 @@
 
 	playsound(src.loc, close_sound, 100, 1, -3)
 	density = 1
+	update_openspace()
 	return 1
 
 //Cham Projector Exception

@@ -60,6 +60,7 @@
 		set_light(0)
 		if(icon_keyboard)
 			overlays += image(icon,"[icon_keyboard]_off")
+		update_openspace()
 		return
 	else
 		set_light(light_range_on, light_power_on)
@@ -71,6 +72,7 @@
 
 	if(icon_keyboard)
 		overlays += image(icon, icon_keyboard)
+	update_openspace()
 
 /obj/machinery/computer/power_change()
 	..()
@@ -95,9 +97,8 @@
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20, src))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-			var/obj/item/weapon/circuitboard/M = new circuit(A)
 			A.dir = src.dir
-			A.circuit = M
+			A.circuit = circuit
 			A.anchored = 1
 			for (var/obj/C in src)
 				C.loc = src.loc
@@ -110,7 +111,7 @@
 				user << SPAN_NOTICE("You disconnect the monitor.")
 				A.state = 4
 				A.icon_state = "4"
-			M.deconstruct(src)
+			circuit.deconstruct(src)
 			qdel(src)
 	else
 		..()

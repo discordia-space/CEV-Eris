@@ -15,6 +15,7 @@
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return
 
+/*
 /client/proc/debug_antagonist_template(antag_type in all_antag_types)
 	set category = "Debug"
 	set name = "Debug Antagonist"
@@ -24,6 +25,7 @@
 	if(antag)
 		usr.client.debug_variables(antag)
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
+*/
 
 /client/proc/debug_controller(controller in list("Master", "Ticker", "Ticker Process", "Air", "Jobs", "Sun", "Radio", "Supply", "Shuttles", "Emergency Shuttle", "Configuration", "pAI", "Cameras", "Transfer Controller", "Gas Data", "Event", "Plants", "Alarm", "Nano", "Chemistry", "Wireless", "Observation"))
 	set category = "Debug"

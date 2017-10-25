@@ -72,7 +72,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 
 
 /datum/ritual/cruciform/priest/epiphany
-	name = "epiphany"
+	name = "Epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
 	desc = "Cyberchristianity's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology corporation's  special altar."
 
@@ -80,7 +80,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = get_grabbed(user)
 
 	if(!CI)
-		fail("Cruciform not found.", user, C)
+		fail("There is no cruciform on this one.", user, C)
 		return FALSE
 
 	if(!CI.wearer)
@@ -104,7 +104,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 */
 
 /datum/ritual/cruciform/priest/resurrection
-	name = "resurrection"
+	name = "Resurrection"
 	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
 	desc = "A ritual of formation of a new body in a speclially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
 
@@ -114,7 +114,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	var/obj/machinery/neotheology/cloner/pod = locate(/obj/machinery/neotheology/cloner) in OBJS
 
 	if(!pod)
-		fail("Cloner not found.", user, C)
+		fail("You fail to find any cloner here.", user, C)
 		return FALSE
 
 	if(pod.cloning)
@@ -129,7 +129,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	return TRUE
 
 /datum/ritual/cruciform/priest/reincarnation
-	name = "reincarnation"
+	name = "Reincarnation"
 	phrase = "Vetus moritur et onus hoc levaverit"
 	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
 
@@ -137,7 +137,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = get_grabbed(user)
 
 	if(!CI)
-		fail("Cruciform not found.", user, C)
+		fail("There is no cruciform on this one", user, C)
 		return FALSE
 
 	var/datum/core_module/cruciform/cloning/data = CI.get_module(CRUCIFORM_CLONING)
@@ -189,7 +189,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI
 
 	if(G && G.affecting && ishuman(G.affecting))
-		CI = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in G.affecting
+		CI = G.affecting.get_cruciform()
 	else
 		fail("You must hold patient's hand.", user, C)
 		return FALSE
@@ -205,7 +205,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	CI = locate(/obj/item/weapon/implant/external/core_implant/cruciform) in L
 
 	if(!CI)
-		fail("Cruciform not found.", user, C)
+		fail("There is no cruciform on this one", user, C)
 		return FALSE
 
 	if(!(H in L))
@@ -229,7 +229,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	CI.install(H)
 
 	if(CI.wearer != H)
-		fail("Install failed.", user, C)
+		fail("Commitment failed.", user, C)
 		return FALSE
 
 	if(ishuman(H))
@@ -252,7 +252,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = get_grabbed(user)
 
 	if(!CI)
-		fail("Cruciform not found.", user, C)
+		fail("There is no cruciform on this one", user, C)
 		return FALSE
 
 	if(!CI.wearer)
@@ -276,15 +276,15 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 
 
 /datum/ritual/cruciform/priest/unupgrade
-	name = "Unupgrade"
-	phrase = "Shas, ya vitaschu iz tebya eto"
-	desc = "BEEP BEEP IM THE SHEEP"
+	name = "Asacris"
+	phrase = "A caelo usque ad centrum"
+	desc = "This litany will remove any upgrade from "
 
 /datum/ritual/cruciform/priest/unupgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C)
 	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = get_grabbed(user)
 
 	if(!CI)
-		fail("Cruciform not found.", user, C)
+		fail("There is no cruciform on this one.", user, C)
 		return FALSE
 
 	if(!CI.wearer)
@@ -292,7 +292,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 		return FALSE
 
 	if(!istype(CI.upgrades) || length(CI.upgrades) <= 0)
-		fail("Target do not have a upgrades.", user, C)
+		fail("here is no upgrades on this one.", user, C)
 		return FALSE
 
 	for(var/obj/item/weapon/coreimplant_upgrade/CU in CI.upgrades)

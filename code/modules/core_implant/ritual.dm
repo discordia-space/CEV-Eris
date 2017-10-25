@@ -62,6 +62,11 @@
 
 //HELPERS
 
+/datum/ritual/proc/get_coreimplant(var/ctype, var/mob/living/carbon/human/H)
+	var/obj/item/weapon/implant/external/core_implant/CI = locate(ctype) in H
+	return CI
+
+
 /datum/ritual/proc/get_grabbed(var/mob/living/carbon/human/user)
 	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
 	var/obj/item/weapon/implant/external/core_implant/CI

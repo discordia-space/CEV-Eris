@@ -339,8 +339,8 @@ var/bomb_set
 	src.safety = 1
 	update_icon()
 	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
-	if (ticker && ticker.mode)
-		ticker.mode.explosion_in_progress = 1
+	if (ticker)
+		ticker.nuke_in_progress = TRUE
 	sleep(100)
 
 	var/off_station = 0
@@ -351,28 +351,20 @@ var/bomb_set
 	else
 		off_station = 2
 
-	if(ticker)
-		if(ticker.mode && ticker.mode.name == MODE_NUKE)
-			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
-			if(syndie_location)
-				ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
-			ticker.mode:nuke_off_station = off_station
-		ticker.station_explosion_cinematic(off_station,null)
-		if(ticker.mode)
-			ticker.mode.explosion_in_progress = 0
-			if(off_station == 1)
-				world << "<b>A nuclear device was set off, but the explosion was out of reach of the station!</b>"
-			else if(off_station == 2)
-				world << "<b>A nuclear device was set off, but the device was not on the station!</b>"
-			else
-				world << "<b>The station was destoyed by the nuclear blast!</b>"
+	if(ticker && ticker.storyteller)
+		ticker.nuke_in_progress = FALSE
+		if(off_station == 1)
+			world << "<b>A nuclear device was set off, but the explosion was out of reach of the ship!</b>"
+		else if(off_station == 2)
+			world << "<b>A nuclear device was set off, but the device was not on the ship!</b>"
+		else
+			world << "<b>The ship was destoyed by the nuclear blast!</b>"
 
-			ticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
-															//kinda shit but I couldn't  get permission to do what I wanted to do.
+		ticker.ship_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
+														//kinda shit but I couldn't  get permission to do what I wanted to do.
 
-			if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
-				universe_has_ended = 1
-				return
+		ticker.station_explosion_cinematic(off_station)
+
 	return
 
 /obj/machinery/nuclearbomb/update_icon()
@@ -402,21 +394,6 @@ if(!N.lighthack)
 	icon_state = "nucleardisk"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_TINY
-
-/obj/item/weapon/disk/nuclear/New()
-	..()
-	nuke_disks |= src
-
-/obj/item/weapon/disk/nuclear/Destroy()
-	nuke_disks -= src
-	if(!nuke_disks.len)
-		var/turf/T = pick_area_turf(/area/maintenance, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
-		if(T)
-			var/obj/D = new /obj/item/weapon/disk/nuclear(T)
-			log_and_message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).", location = T)
-		else
-			log_and_message_admins("[src], the last authentication disk, has been destroyed. Failed to respawn disc!")
-	return ..()
 
 /obj/item/weapon/disk/nuclear/touch_map_edge()
 	qdel(src)

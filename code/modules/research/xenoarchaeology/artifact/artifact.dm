@@ -14,10 +14,8 @@
 
 	artifact_find_type = pick(\
 		5;/obj/machinery/power/supermatter,
-		5;/obj/structure/constructshell,
-		5;/obj/machinery/syndicate_beacon,
+//		5;/obj/machinery/syndicate_beacon,
 		25;/obj/machinery/power/supermatter/shard,
-		50;/obj/structure/cult/pylon,
 		100;/obj/machinery/auto_cloner,
 		100;/obj/machinery/giga_drill,
 		100;/obj/machinery/replicator,

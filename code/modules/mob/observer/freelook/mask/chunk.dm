@@ -31,6 +31,3 @@
 /mob/living/simple_animal/shade/narsie/seen_cult_turfs()
 	return view(2, src)
 
-/proc/seen_turfs_in_range(var/source, var/range)
-	var/turf/pos = get_turf(source)
-	return hear(range, pos)
