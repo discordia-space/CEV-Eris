@@ -35,6 +35,7 @@ ADMIN_VERB_ADD(/client/proc/virus2_editor, R_DEBUG, FALSE)
 /client/proc/virus2_editor()
 	set name = "Virus Editor"
 	set category = "Debug"
+
 	if(!holder || !check_rights(R_DEBUG))
 		return // spawn privileges to create viruses
 
