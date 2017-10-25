@@ -34,8 +34,10 @@
 
 /mob/living/simple_animal/borer/Login()
 	..()
-	if(mind)
-		make_antagonist(mind,ROLE_BORER_REPRODUCED)
+	if(!roundstart && mind && !mind.antagonist.len)
+		var/a_type = antag_types[ROLE_BORER_REPRODUCED]
+		var/datum/antagonist/A = new a_type
+		A.create_antagonist(mind,update = FALSE)
 
 /mob/living/simple_animal/borer/New()
 	..()

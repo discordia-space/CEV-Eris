@@ -58,12 +58,6 @@
 /datum/storyteller/proc/antagonist_report()
 	return "Here might be storyteller antagonist report."
 
-/datum/storyteller/proc/print_required_roles()
-	var/text = "[name]'s required roles:"
-	for(var/reqrole in required_jobs)
-		text += "<br> - [reqrole]"
-	return text
-
 /datum/storyteller/proc/storyteller_panel()
 	var/data = "<center><font size='3'><b>STORYTELLER PANEL v0.1</b></font></center>"
 	data += "<br>Current storyteller: [src.name] ([src.config_tag])"
