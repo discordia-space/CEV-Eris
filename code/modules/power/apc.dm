@@ -70,6 +70,7 @@
 	anchored = 1
 	use_power = 0
 	req_access = list(access_engine_equip)
+	var/need_sound
 	var/area/area
 	var/areastring = null
 	var/obj/item/weapon/cell/large/cell
@@ -1018,8 +1019,6 @@
 		main_status = 1
 	else
 		main_status = 2
-
-	var/need_sound
 
 	if(!cell || cell.charge <= 0)
 		if(need_sound == TRUE)
