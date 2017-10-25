@@ -3,7 +3,7 @@
 	desc = "A small, easily concealable gun. Uses 9mm rounds."
 	icon_state = "pistol"
 	item_state = null
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	caliber = "9mm"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
@@ -19,7 +19,7 @@
 			user << SPAN_NOTICE("You unscrew [silenced] from [src].")
 			user.put_in_hands(silenced)
 			silenced = 0
-			w_class = 2
+			w_class = ITEM_SIZE_SMALL
 			update_icon()
 			return
 	..()
@@ -32,7 +32,7 @@
 		user.drop_item()
 		user << SPAN_NOTICE("You screw [I] onto [src].")
 		silenced = I	//dodgy?
-		w_class = 3
+		w_class = ITEM_SIZE_NORMAL
 		I.loc = src		//put the silencer into the gun
 		update_icon()
 		return
@@ -50,4 +50,4 @@
 	desc = "a silencer"
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "silencer"
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL

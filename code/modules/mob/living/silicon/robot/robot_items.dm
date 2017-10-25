@@ -152,16 +152,16 @@
 
 			if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
 				var/add = 0
-				if(I.w_class == 1.0)
+				if(I.w_class == ITEM_SIZE_TINY)
 					add = 1
-				else if(I.w_class == 2.0)
+				else if(I.w_class == ITEM_SIZE_SMALL)
 					add = 3
 				else
 					add = 5
 				if(calc_carry() + add >= max_carry)
 					break
 
-				I.loc = src
+				I.forceMove(src)
 				carrying.Add(I)
 				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
@@ -316,7 +316,7 @@
 	desc = "Small device which allows rapid deployment and removal of inflatables."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "inf_deployer"
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 
 	// By default stores up to 10 walls and 5 doors. May be changed.
 	var/stored_walls = 10

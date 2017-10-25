@@ -132,7 +132,7 @@
 	for(var/atom/movable/implant in implants)
 		//large items and non-item objs fall to the floor, everything else stays
 		var/obj/item/I = implant
-		if(istype(I) && I.w_class < 3)
+		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
 			implant.loc = get_turf(owner)
 		else
 			implant.loc = src
@@ -829,7 +829,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(DROPLIMB_BURN)
 			new /obj/effect/decal/cleanable/ash(get_turf(victim))
 			for(var/obj/item/I in src)
-				if(I.w_class > 2 && !istype(I,/obj/item/organ))
+				if(I.w_class > ITEM_SIZE_SMALL && !istype(I,/obj/item/organ))
 					I.loc = get_turf(src)
 			qdel(src)
 		if(DROPLIMB_BLUNT)
@@ -847,7 +847,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/I in src)
-				if(I.w_class <= 2)
+				if(I.w_class <= ITEM_SIZE_SMALL)
 					qdel(I)
 					continue
 				I.loc = get_turf(src)

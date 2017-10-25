@@ -6,7 +6,7 @@
 	icon		= 'icons/obj/modular_laptop.dmi'
 	icon_state	= "laptop-closed"
 	item_state	= "laptop-inhand"
-	w_class		= 3
+	w_class		= ITEM_SIZE_NORMAL
 	var/obj/machinery/modular_computer/laptop/stored_computer = null
 
 /obj/item/laptop/verb/open_computer()

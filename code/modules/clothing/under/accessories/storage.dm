@@ -5,7 +5,7 @@
 	slot = "utility"
 	var/slots = 3
 	var/obj/item/weapon/storage/internal/hold
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/clothing/accessory/storage/New()
 	..()

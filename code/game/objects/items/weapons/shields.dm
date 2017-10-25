@@ -59,7 +59,7 @@
 	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = ITEM_SIZE_LARGE
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list("glass" = 7500, DEFAULT_WALL_MATERIAL = 1000)
 	attack_verb = list("shoved", "bashed")
@@ -100,7 +100,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
@@ -131,14 +131,14 @@
 	if (active)
 		force = WEAPON_FORCE_PAINFULL
 		update_icon()
-		w_class = 4
+		w_class = ITEM_SIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		user << SPAN_NOTICE("\The [src] is now active.")
 
 	else
 		force = 3
 		update_icon()
-		w_class = 1
+		w_class = ITEM_SIZE_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		user << SPAN_NOTICE("\The [src] can now be concealed.")
 
