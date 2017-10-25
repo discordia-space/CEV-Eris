@@ -458,7 +458,7 @@
 						user.visible_message(\
 							SPAN_WARNING("[user.name] has removed the power control board from [src.name]!"),\
 							SPAN_NOTICE("You remove the power control board."))
-						new /obj/item/weapon/module/power_control(loc)
+						new /obj/item/weapon/circuitboard/apc(loc)
 		else if (opened!=2) //cover isn't removed
 			opened = 0
 			update_icon()
@@ -579,7 +579,7 @@
 				new /obj/item/stack/cable_coil(loc,10)
 				user << SPAN_NOTICE("You cut the cables and dismantle the power terminal.")
 				qdel(terminal)
-	else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0 && !((stat & BROKEN)))
+	else if (istype(W, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && !((stat & BROKEN)))
 		user.visible_message(SPAN_WARNING("[user.name] inserts the power control board into [src]."), \
 							"You start to insert the power control board into the frame...")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -588,7 +588,7 @@
 				has_electronics = 1
 				user << SPAN_NOTICE("You place the power control board inside the frame.")
 				qdel(W)
-	else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0 && ((stat & BROKEN)))
+	else if (istype(W, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
 		user << SPAN_WARNING("You cannot put the board inside, the frame is damaged.")
 		return
 	else if (istype(W, /obj/item/weapon/weldingtool) && opened && has_electronics==0 && !terminal)
