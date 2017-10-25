@@ -85,7 +85,7 @@ client/proc/Test_ZAS_Connection(var/turf/simulated/T as turf)
 			mob << "both turfs can merge."
 
 
-ADMIN_VERB_ADD(/client/proc/ZASSettings, R_SERVER)
+ADMIN_VERB_ADD(/client/proc/ZASSettings, R_DEBUG)
 /client/proc/ZASSettings()
 	set category = "Debug"
 

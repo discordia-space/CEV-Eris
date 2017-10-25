@@ -293,7 +293,7 @@ If a guy was gibbed and you want to revive him, this is a good way to do so.
 Works kind of like entering the game with a new character. Character receives a new mind if they didn't have one.
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
-ADMIN_VERB_ADD(/client/proc/respawn_character, R_DEBUG)
+ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN)
 /client/proc/respawn_character()
 	set category = "Special Verbs"
 	set name = "Respawn Character"
@@ -491,7 +491,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_delete, R_ADMIN|R_SERVER|R_DEBUG)
 
 		qdel(O)
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_list_open_jobs, R_SERVER)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_list_open_jobs, R_DEBUG)
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
 	set name = "List free slots"
@@ -775,7 +775,7 @@ ADMIN_VERB_ADD(/client/proc/admin_cancel_shuttle, R_ADMIN)
 		usr << t
 
 
-ADMIN_VERB_ADD(/client/proc/everyone_random, R_ADMIN|R_SERVER)
+ADMIN_VERB_ADD(/client/proc/everyone_random, R_FUN)
 /client/proc/everyone_random()
 	set category = "Fun"
 	set name = "Make Everyone Random"
@@ -809,7 +809,7 @@ ADMIN_VERB_ADD(/client/proc/everyone_random, R_ADMIN|R_SERVER)
 	ticker.random_players = 1
 
 
-ADMIN_VERB_ADD(/client/proc/toggle_random_events, R_FUN|R_SERVER)
+ADMIN_VERB_ADD(/client/proc/toggle_random_events, R_SERVER)
 /client/proc/toggle_random_events()
 	set category = "Server"
 	set name = "Toggle random events on/off"

@@ -1,4 +1,4 @@
-ADMIN_VERB_ADD(/client/proc/free_slot, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_change_custom_event, R_ADMIN)
 // verb for admins to set custom event
 /client/proc/cmd_admin_change_custom_event()
 	set category = "Fun"

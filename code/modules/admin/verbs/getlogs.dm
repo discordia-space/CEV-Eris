@@ -41,7 +41,7 @@ ADMIN_VERB_ADD(/client/proc/giveruntimelog, R_ADMIN)
 
 //This proc allows download of runtime logs saved within the data/logs/ folder by dreamdeamon.
 //It works similarly to show-server-log.
-ADMIN_VERB_ADD(/client/proc/getruntimelog, R_SERVER)
+ADMIN_VERB_ADD(/client/proc/getruntimelog, R_DEBUG)
 // allows us to access runtime logs to somebody
 /client/proc/getruntimelog()
 	set name = ".getruntimelog"

@@ -78,7 +78,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
 	/client/proc/cmd_debug_make_powernets,
-	/client/proc/kill_airgroup,
+//	/client/proc/kill_airgroup,
 	/client/proc/debug_controller,
 	/client/proc/startSinglo,
 	/client/proc/cmd_debug_mob_lists,
@@ -227,7 +227,7 @@ ADMIN_VERB_ADD(/client/proc/game_panel, R_ADMIN)
 		holder.Game()
 
 
-ADMIN_VERB_ADD(/client/proc/investigate_show, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/secrets, R_ADMIN)
 /client/proc/secrets()
 	set name = "Secrets"
 	set category = "Admin"

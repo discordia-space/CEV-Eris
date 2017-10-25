@@ -228,7 +228,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG)
 		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
 
 
-ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_SERVER)
+ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG)
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
 	set name = "Make Powernets"
@@ -391,7 +391,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG)
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
-ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_ADMIN)
+ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN)
 /client/proc/cmd_admin_dress()
 	set category = "Fun"
 	set name = "Select equipment"

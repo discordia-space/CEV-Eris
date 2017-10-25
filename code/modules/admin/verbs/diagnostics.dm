@@ -120,12 +120,12 @@ ADMIN_VERB_ADD(/client/proc/reload_mentors, R_SERVER)
 	message_admins("[usr] manually reloaded Mentors")
 	world.load_mods()
 
-
+/*
 //todo:
+ADMIN_VERB_ADD(/client/proc/jump_to_dead_group, R_DEBUG)
 /client/proc/jump_to_dead_group()
 	set name = "Jump to dead group"
 	set category = "Debug"
-		/*
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
@@ -141,15 +141,14 @@ ADMIN_VERB_ADD(/client/proc/reload_mentors, R_SERVER)
 	usr.loc = pick(dest_group.members)
 
 	return
-	*/
+*/
 
-
-ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_SERVER)
+/*
+ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG)
 /client/proc/kill_airgroup()
 	set name = "Kill Local Airgroup"
 	set desc = "Use this to allow manual manupliation of atmospherics."
 	set category = "Debug"
-	/*
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
@@ -166,7 +165,7 @@ ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_SERVER)
 	else
 		usr << "Local airgroup is unsimulated!"
 
-	*/
+*/
 
 /client/proc/print_jobban_old()
 	set name = "Print Jobban Log"
