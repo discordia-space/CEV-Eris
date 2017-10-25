@@ -9,7 +9,7 @@
 	The 'fire' activator will cause the mechanism to attempt to fire the weapon at the coordinates, if possible.  Note that the \
 	normal limitations to firearms, such as ammunition requirements and firing delays, still hold true if fired by the mechanism."
 	complexity = 20
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	inputs = list(
 		"\<NUM\> target X rel",
 		"\<NUM\> target Y rel"
@@ -108,7 +108,7 @@
 	<br>\
 	Pulsing the 'step towards dir' activator pin will cause the machine to move a meter in that direction, assuming it is not \
 	being held, or anchored in some way.  It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits."
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	complexity = 20
 	inputs = list("dir num")
 	outputs = list()

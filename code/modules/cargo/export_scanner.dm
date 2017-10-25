@@ -5,7 +5,7 @@
 	icon_state = "reader0"
 	item_state = "radio"
 	flags = NOBLUDGEON
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 1
 	var/power = 0
 	var/obj/item/weapon/cell/cell = null

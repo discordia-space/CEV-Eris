@@ -3,7 +3,7 @@ obj/item/weapon/gun/projectile/automatic/l6_saw
 	desc = "A rather traditionally made L6 SAW with a pleasantly lacquered wooden pistol grip. This one is unmarked."
 	icon_state = "l6closed100"
 	item_state = "l6closedmag"
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	force = 10
 	slot_flags = 0
 	max_shells = 50

@@ -4,7 +4,7 @@
 	singular_name = "metal rod"
 	icon_state = "rods"
 	flags = CONDUCT
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFULL
 	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 5

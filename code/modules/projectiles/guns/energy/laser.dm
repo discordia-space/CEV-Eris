@@ -5,7 +5,7 @@
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
@@ -27,7 +27,7 @@ obj/item/weapon/gun/energy/retro
 	desc = "Alliance cheap laser gun. In our deep past - this was main weapon of low-rank police force across all Milky Way, bilions copys of this gun was made. They still can be found almoust everywhere."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 
@@ -39,7 +39,7 @@ obj/item/weapon/gun/energy/retro
 	force = WEAPON_FORCE_PAINFULL
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
 	self_recharge = 1

@@ -6,7 +6,7 @@
 	desc = "For climbing on bluespace mountains!"
 	icon_state = "harpoon-1"
 	icon = 'icons/obj/items.dmi'
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	throw_speed = 4
 	throw_range = 20
 	origin_tech = list(TECH_BLUESPACE = 5)
