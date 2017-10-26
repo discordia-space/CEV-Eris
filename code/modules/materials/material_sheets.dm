@@ -2,7 +2,7 @@
 /obj/item/stack/material
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	throw_speed = 3
 	throw_range = 3
 	max_amount = 50

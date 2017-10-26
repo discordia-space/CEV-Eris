@@ -1,6 +1,7 @@
 /obj/random/mob/spiders
 	name = "random spider"
 	icon_state = "hostilemob-black"
+	alpha = 128
 
 /obj/random/mob/spiders/item_to_spawn()
 	return pick(prob(30);/obj/effect/spider/spiderling,\
@@ -16,6 +17,7 @@
 /obj/random/cluster/spiders
 	name = "cluster of spiders"
 	icon_state = "hostilemob-black-cluster"
+	alpha = 128
 	min_amount = 1
 	max_amount = 4
 	spread_range = 0

@@ -18,7 +18,7 @@
 	icon_state = "retractor"
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	flags = CONDUCT
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 /*
  * Hemostat
@@ -30,7 +30,7 @@
 	icon_state = "hemostat"
 	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
 	flags = CONDUCT
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
 /*
@@ -43,7 +43,7 @@
 	icon_state = "cautery"
 	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
 	flags = CONDUCT
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("burnt")
 /*
@@ -58,7 +58,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 10000)
 	flags = CONDUCT
 	force = WEAPON_FORCE_DANGEROUS
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
 /*
@@ -73,7 +73,7 @@
 	force = WEAPON_FORCE_DANGEROUS
 	sharp = 1
 	edge = 1
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	throwforce = 5.0
 	throw_speed = WEAPON_FORCE_WEAK
@@ -122,7 +122,7 @@
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	flags = CONDUCT
 	force = WEAPON_FORCE_ROBUST
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5
@@ -138,7 +138,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bone-gel"
 	force = 0
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	throwforce = 1.0
 
 /obj/item/weapon/FixOVein
@@ -148,7 +148,7 @@
 	force = 0
 	throwforce = 1.0
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 3)
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	var/usage_amount = 10
 
 /obj/item/weapon/bonesetter
@@ -159,5 +159,5 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 3
 	throw_range = 5
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "hit", "bludgeoned")

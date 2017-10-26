@@ -8,7 +8,7 @@
 	icon_name = "torso"
 	max_damage = 100
 	min_broken_damage = 35
-	w_class = 5
+	w_class = ITEM_SIZE_HUGE
 	body_part = UPPER_TORSO
 	vital = 1
 	amputation_point = "spine"
@@ -24,7 +24,7 @@
 	icon_name = "groin"
 	max_damage = 100
 	min_broken_damage = 35
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	body_part = LOWER_TORSO
 	vital = 1
 	parent_organ = "chest"
@@ -38,7 +38,7 @@
 	name = "head"
 	max_damage = 75
 	min_broken_damage = 35
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	body_part = HEAD
 	vital = 1
 	parent_organ = "chest"

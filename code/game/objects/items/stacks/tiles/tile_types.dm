@@ -11,7 +11,7 @@
 	name = "tile"
 	singular_name = "tile"
 	desc = "A non-descript floor tile"
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	max_amount = 60
 
 /obj/item/stack/tile/New()

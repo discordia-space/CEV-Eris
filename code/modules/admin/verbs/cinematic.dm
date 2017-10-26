@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/client/proc/cinematic, R_FUN, FALSE)
 /client/proc/cinematic(var/cinematic as anything in list("explosion",null))
 	set name = "Cinematic"
 	set category = "Fun"

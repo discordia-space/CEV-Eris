@@ -3,6 +3,6 @@
 	desc = "A specialized firearm designed to fire lethal bolts of plasma."
 	icon_state = "toxgun"
 	fire_sound = 'sound/effects/stealthoff.ogg'
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 5, TECH_PLASMA = 4)
 	projectile_type = /obj/item/projectile/energy/plasma

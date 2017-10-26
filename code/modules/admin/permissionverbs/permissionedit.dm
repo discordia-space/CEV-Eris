@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/client/proc/edit_admin_permissions, R_PERMISSIONS, FALSE)
 /client/proc/edit_admin_permissions()
 	set category = "Admin"
 	set name = "Permissions Panel"

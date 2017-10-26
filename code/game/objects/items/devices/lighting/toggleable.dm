@@ -38,4 +38,4 @@
 	icon_state = "penlight"
 	item_state = ""
 	brightness_on = 2
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
