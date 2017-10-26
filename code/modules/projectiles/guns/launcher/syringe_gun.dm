@@ -86,7 +86,6 @@
 
 /obj/item/weapon/gun/launcher/syringe/New()
 	..()
-	verbs -= /obj/item/weapon/gun/proc/toggle_safety
 
 /obj/item/weapon/gun/launcher/syringe/consume_next_projectile()
 	if(next)
@@ -136,12 +135,6 @@
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 	else
 		..()
-
-/obj/item/weapon/gun/launcher/syringe/check_safety(mob/user)
-	return
-
-/obj/item/weapon/gun/launcher/syringe/AltClick(mob/user)
-	return
 
 /obj/item/weapon/gun/launcher/syringe/rapid
 	name = "syringe gun revolver"
