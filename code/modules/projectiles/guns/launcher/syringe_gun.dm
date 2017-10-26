@@ -77,9 +77,16 @@
 	release_force = 10
 	throw_distance = 10
 
+	safety = FALSE//just whynot
+	restrict_safety = TRUE//so syringe gun doesn't contents any safety shit
+
 	var/list/darts = list()
 	var/max_darts = 1
 	var/obj/item/weapon/syringe_cartridge/next
+
+/obj/item/weapon/gun/launcher/syringe/New()
+	..()
+	verbs -= /obj/item/weapon/gun/proc/toggle_safety
 
 /obj/item/weapon/gun/launcher/syringe/consume_next_projectile()
 	if(next)
@@ -129,6 +136,12 @@
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 	else
 		..()
+
+/obj/item/weapon/gun/launcher/syringe/check_safety(mob/user)
+	return
+
+/obj/item/weapon/gun/launcher/syringe/AltClick(mob/user)
+	return
 
 /obj/item/weapon/gun/launcher/syringe/rapid
 	name = "syringe gun revolver"
