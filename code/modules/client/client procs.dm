@@ -252,7 +252,7 @@
 	registration_date = src.get_registration_date()
 	src.get_country()
 
-	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version])")
+	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version], '[src.country_code]')")
 	if(!query_insert.Execute())
 		world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
 		return
@@ -289,7 +289,7 @@
 				src.get_country()
 
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]' WHERE id = [src.id]")
+				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]', country = '[src.country_code]' WHERE id = [src.id]")
 
 				if(!query_update.Execute())
 					world.log << "Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()]."
@@ -348,9 +348,3 @@
 	set category = "Preferences"
 	if(prefs)
 		prefs.ShowChoices(usr)
-
-
-/proc/get_client_by_ckey(ckey)
-	for(var/client/C in clients)
-		if(C.ckey == ckey)
-			return C
