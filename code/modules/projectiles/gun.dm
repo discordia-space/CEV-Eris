@@ -66,6 +66,9 @@
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
 
+	var/safety = TRUE//is safety will be toggled on spawn() or not
+	var/restrict_safety = FALSE//if gun don't need safety in all - toggle to TRUE
+
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
@@ -87,6 +90,9 @@
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
+
+	if(!restrict_safety)
+		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
 
 /obj/item/weapon/gun/update_held_icon()
 	if(requires_two_hands)
@@ -128,6 +134,11 @@
 		else
 			handle_click_empty(user)
 		return 0
+	if(!restrict_safety)
+		if(safety)
+			user << "<span class='danger'>The gun's safety is on!</span>"
+			handle_click_empty(user)
+			return 0
 	return 1
 
 /obj/item/weapon/gun/emp_act(severity)
@@ -406,6 +417,10 @@
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user << "The fire selector is set to [current_mode.name]."
+	if(safety)
+		user << "<span class='notice'>The safety is on.</span>"
+	else
+		user << "<span class='notice'>The safety is off.</span>"
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
@@ -425,3 +440,25 @@
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		user << SPAN_NOTICE("\The [src] is now set to [new_mode.name].")
 
+/obj/item/weapon/gun/proc/check_safety(mob/user)
+	if(!restrict_safety)
+		if(src == user.get_active_hand())//returns the thing in our active hand
+			safety = !safety
+			playsound(user, 'sound/weapons/selector.ogg', 50, 1)
+			user << "<span class='notice'>You toggle the safety [safety ? "on":"off"].</span>"
+
+/obj/item/weapon/gun/AltClick(mob/user)
+	if(!restrict_safety)
+		..()
+		if(user.incapacitated())
+			user << "<span class='warning'>You can't do that right now!</span>"
+			return
+
+		check_safety(user)
+
+/obj/item/weapon/gun/proc/toggle_safety()
+	set name = "Toggle gun's safety"
+	set category = "Object"
+	set src in view(1)
+
+	check_safety(usr)
