@@ -1,6 +1,7 @@
 /obj/random/mob/roaches
 	name = "random roach"
 	icon_state = "hostilemob-brown"
+	alpha = 128
 
 /obj/random/mob/roaches/item_to_spawn()
 	return pick(prob(12);/mob/living/simple_animal/hostile/roach,\
@@ -17,6 +18,7 @@
 /obj/random/cluster/roaches
 	name = "cluster of roaches"
 	icon_state = "hostilemob-brown-cluster"
+	alpha = 128
 	min_amount = 3
 	max_amount = 7
 	spread_range = 0

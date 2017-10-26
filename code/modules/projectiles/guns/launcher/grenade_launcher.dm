@@ -101,6 +101,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = 5
 	max_grenades = 0
+	safety = FALSE
 
 /obj/item/weapon/gun/launcher/grenade/underslung/attack_self()
 	return

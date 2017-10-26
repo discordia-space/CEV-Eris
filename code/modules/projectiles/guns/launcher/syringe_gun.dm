@@ -77,9 +77,15 @@
 	release_force = 10
 	throw_distance = 10
 
+	safety = FALSE//just whynot
+	restrict_safety = TRUE//so syringe gun doesn't contents any safety shit
+
 	var/list/darts = list()
 	var/max_darts = 1
 	var/obj/item/weapon/syringe_cartridge/next
+
+/obj/item/weapon/gun/launcher/syringe/New()
+	..()
 
 /obj/item/weapon/gun/launcher/syringe/consume_next_projectile()
 	if(next)

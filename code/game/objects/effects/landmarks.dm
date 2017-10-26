@@ -1,6 +1,7 @@
 /obj/effect/landmark
 	name = "landmark"
 	icon = 'icons/misc/landmarks.dmi'
+	alpha = 64 //Or else they cover half of the map
 	anchored = 1.0
 	unacidable = 1
 	simulated = 0
