@@ -112,9 +112,9 @@
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
-			var/obj/O = locate("landmark*Observer-Start")
+			var/obj/O = locate("landmark*observer-spawn")
 			if(istype(O))
-				src << "<span class='notice'>Now teleporting.</span>"
+				src << "<span class='notice'>You are observer now.</span>"
 				observer.loc = O.loc
 			else
 				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"

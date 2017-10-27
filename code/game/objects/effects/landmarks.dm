@@ -11,63 +11,6 @@
 /obj/effect/landmark/New()
 	..()
 	tag = text("landmark*[]", name)
-
-	switch(name)			//some of these are probably obsolete
-		if("monkey")
-			monkeystart += loc
-			delete_me = 1
-			return
-		if("start")
-			newplayer_start += loc
-			delete_me = 1
-			return
-		if("JoinLate")
-			latejoin += loc
-			delete_me = 1
-			return
-		if("JoinLateGateway")
-			latejoin_gateway += loc
-			delete_me = 1
-			return
-		if("JoinLateCryo")
-			latejoin_cryo += loc
-			delete_me = 1
-			return
-		if("JoinLateCyborg")
-			latejoin_cyborg += loc
-			delete_me = 1
-			return
-		if("prisonwarp")
-			prisonwarp += loc
-			delete_me = 1
-			return
-		if("Holding Facility")
-			holdingfacility += loc
-		if("tdome1")
-			tdome1 += loc
-		if("tdome2")
-			tdome2 += loc
-		if("tdomeadmin")
-			tdomeadmin += loc
-		if("tdomeobserve")
-			tdomeobserve += loc
-		if("prisonsecuritywarp")
-			prisonsecuritywarp += loc
-			delete_me = 1
-			return
-		if("xeno_spawn")
-			xeno_spawn += loc
-			delete_me = 1
-			return
-		if("endgame_exit")
-			endgame_safespawns += loc
-			delete_me = 1
-			return
-		if("bluespacerift")
-			endgame_exits += loc
-			delete_me = 1
-			return
-
 	landmarks_list += src
 	return 1
 
@@ -83,15 +26,50 @@
 	landmarks_list -= src
 	return ..()
 
+
+
+/obj/effect/landmark/latejoin
+	name = "late-spawn"
+	icon_state = "player-blue-cluster"
+
+/obj/effect/landmark/latejoin/New()
+	..()
+	latejoin += loc
+	delete_me = 1
+	return
+
+
+/obj/effect/landmark/latejoincyborg
+	name = "late-cyborg-spawn"
+	icon_state = "synth-cyan"
+
+/obj/effect/landmark/latejoincyborg/New()
+	..()
+	latejoin_cyborg += loc
+	delete_me = 1
+	return
+
+
+/obj/effect/landmark/observerjoin
+	name = "observer-spawn"
+	icon_state = "player-grey-cluster"
+
+/obj/effect/landmark/observerjoin/New()
+	..()
+	delete_me = 1
+	return
+
 /obj/effect/landmark/start
 	name = "start"
-	icon_state = "player-blue"
+	icon_state = "player-grey"
 	anchored = 1.0
+	alpha = 124
 	invisibility = 101
+	var/datum/job/job = null
 
 /obj/effect/landmark/start/New()
 	..()
-	tag = "start*[name]"
+	tag = "start*[initial(job.title)]"
 	return 1
 
 //Costume spawner landmarks

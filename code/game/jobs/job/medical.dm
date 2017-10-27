@@ -39,6 +39,12 @@
 		H.equip_to_slot_or_del(new /obj/item/device/lighting/toggleable/flashlight/pen(H), slot_s_store)
 		return 1
 
+/obj/effect/landmark/start/cmo
+	name = "Moebius Biolab Officer"
+	icon_state = "player-green-officer"
+	job = /datum/job/cmo
+
+
 /datum/job/doctor
 	title = "Moebius Doctor"
 	flag = DOCTOR
@@ -67,28 +73,10 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-/*		if (H.mind && H.mind.role_alt_title)
-			switch(H.mind.role_alt_title)
-				if("Emergency Physician")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
-				if("Surgeon")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/blue(H), slot_w_uniform)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
-					H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/blue(H), slot_head)
-				if("Virologist")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/virologist(H), slot_w_uniform)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/virologist(H), slot_wear_suit)
-					H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), slot_wear_mask)
-					switch(H.backbag)
-						if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
-						if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-						if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-					job_master.spawnId(H, H.mind.assigned_role, H.mind.role_alt_title, /obj/item/weapon/card/id/viro)
-*/
-		return ..()
+/obj/effect/landmark/start/doctor
+	name = "Moebius Doctor"
+	icon_state = "player-green"
+	job = /datum/job/doctor
 
 
 
@@ -120,6 +108,12 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
+/obj/effect/landmark/start/chemist
+	name = "Moebius Chemist"
+	icon_state = "player-green"
+	job = /datum/job/chemist
+
+
 /datum/job/psychiatrist
 	title = "Moebius Psychiatrist"
 	flag = PSYCHIATRIST
@@ -144,8 +138,13 @@
 		if(!H)	return 0
 		return ..()
 
+/obj/effect/landmark/start/psychiatrist
+	name = "Moebius Psychiatrist"
+	icon_state = "player-green"
+	job = /datum/job/psychiatrist
 
-/datum/job/Paramedic
+
+/datum/job/paramedic
 	title = "Moebius Paramedic"
 	flag = PARAMEDIC
 	department = "Medical"
@@ -170,3 +169,9 @@
 		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
+
+/obj/effect/landmark/start/paramedic
+	name = "Moebius Paramedic"
+	icon_state = "player-green"
+	job = /datum/job/paramedic
+
