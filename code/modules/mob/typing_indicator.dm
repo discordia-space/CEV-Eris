@@ -29,30 +29,6 @@ mob/var/obj/effect/decal/typing_indicator
 					typing = 0
 			return state
 
-/mob/verb/say_wrapper()
-	set name = ".Say"
-	set hidden = 1
-
-	set_typing_indicator(1)
-	hud_typing = 1
-	var/message = input("","say (text)") as text
-	hud_typing = 0
-	set_typing_indicator(0)
-	if(message)
-		say_verb(message)
-
-/mob/verb/me_wrapper()
-	set name = ".Me"
-	set hidden = 1
-
-	set_typing_indicator(1)
-	hud_typing = 1
-	var/message = input("","me (text)") as text
-	hud_typing = 0
-	set_typing_indicator(0)
-	if(message)
-		me_verb(message)
-
 /mob/proc/handle_typing_indicator()
 	if(is_preference_enabled(/datum/client_preference/show_typing_indicator) && !hud_typing)
 		var/temp = winget(client, "input", "text")

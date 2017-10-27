@@ -6,19 +6,46 @@
 	set category = "IC"
 	return
 
+
+/mob/verb/say_wrapper()
+	set name = "Say verb"
+	set category = "IC"
+
+	set_typing_indicator(1)
+	hud_typing = 1
+	var/message = input("","say (text)") as text
+	hud_typing = 0
+	set_typing_indicator(0)
+	if(message)
+		say_verb(message)
+
+
 /mob/verb/say_verb(message as text)
 	set name = "Say"
-	set category = "IC"
+	set hidden = 1
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
 		return
-
 	set_typing_indicator(0)
 	usr.say(message)
 
+
+/mob/verb/me_wrapper()
+	set name = "Me verb"
+	set category = "IC"
+
+	set_typing_indicator(1)
+	hud_typing = 1
+	var/message = input("","me (text)") as text
+	hud_typing = 0
+	set_typing_indicator(0)
+	if(message)
+		me_verb(message)
+
+
 /mob/verb/me_verb(message as text)
 	set name = "Me"
-	set category = "IC"
+	set hidden = 1
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
