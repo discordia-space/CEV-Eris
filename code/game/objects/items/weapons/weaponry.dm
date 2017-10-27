@@ -9,7 +9,7 @@
 	throw_speed = 1
 	throw_range = 4
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 
 /obj/item/weapon/nullrod/attack(mob/M as mob, mob/living/user as mob) //Paste from old-code to decult with a null rod.
 

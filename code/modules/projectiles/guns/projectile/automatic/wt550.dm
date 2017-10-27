@@ -3,7 +3,7 @@
 	desc = "The W-T 550 Saber is a cheap self-defense weapon, mass-produced by Frozen Star for paramilitary and private use. Uses 9mm rounds."
 	icon_state = "wt550"
 	item_state = "wt550"
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT

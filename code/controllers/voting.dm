@@ -84,6 +84,7 @@ var/datum/controller/vote/vote = new()
 	if(!C)
 		return
 	var/data = "<html><head><title>Voting Panel</title></head><body>"
+
 	var/admin = FALSE
 	if(C.mob)
 		admin = check_rights(user = C.mob)
@@ -211,6 +212,7 @@ var/datum/controller/vote/vote = new()
 	if(!choices.len)
 		return FALSE
 
+
 	if(usr && usr.client)
 		initiator = usr.client.key
 	else
@@ -260,8 +262,8 @@ var/datum/controller/vote/vote = new()
 			if(can_revote || !vtd)
 				choice.voters.Add(key)
 
-
 /datum/poll/proc/check_winners()
+
 	var/list/choice_votes = list()
 	var/list/all_voters = list()
 
@@ -270,6 +272,7 @@ var/datum/controller/vote/vote = new()
 		choice_votes[V] = V.voters.len
 
 	var/max_votes = 1
+
 	for(var/datum/vote_choice/V in choice_votes)
 		max_votes = max(max_votes, choice_votes[V])
 
@@ -290,8 +293,6 @@ var/datum/controller/vote/vote = new()
 		text += "\t[ch.text] - [ch.voters.len] vote[(ch.voters.len>1)?"s":""].<br>"
 		if(ch == winner)
 			text += "</b>"
-
-
 
 	if(!winner)
 		text += "\t<b>Did not vote - [non_voters]</b><br>"
@@ -340,7 +341,6 @@ var/datum/controller/vote/vote = new()
 	can_unvote = FALSE
 
 	see_votes = TRUE
-
 
 /datum/vote_choice/restart
 	text = "Restart Round"

@@ -6,7 +6,7 @@
 
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_range = 15
 	throw_speed = 3

@@ -1,6 +1,6 @@
 /obj/item/inflatable
 	name = "inflatable"
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/inflatable.dmi'
 	var/deploy_path = null
 
@@ -254,7 +254,7 @@
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"
 	item_state = "syringe_kit"
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 28
 	can_hold = list(/obj/item/inflatable)
 

@@ -10,7 +10,7 @@
 	charge_cost = 300
 	fire_delay = 35
 	force = 10
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0
 	cell_type = /obj/item/weapon/cell/medium/super

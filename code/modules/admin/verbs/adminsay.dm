@@ -1,3 +1,5 @@
+ADMIN_VERB_ADD(/client/proc/cmd_admin_say, R_ADMIN, TRUE)
+//admin-only ooc chat
 /client/proc/cmd_admin_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
@@ -15,7 +17,7 @@
 				C << "<span class='admin_channel'>" + create_text_tag("admin", "ADMIN:", C) + " <span class='name'>[key_name(usr, 1)]</span>([admin_jump_link(mob, src)]): <span class='message'>[msg]</span></span>"
 
 
-
+ADMIN_VERB_ADD(/client/proc/cmd_mod_say, R_ADMIN|R_MOD|R_MENTOR, TRUE)
 /client/proc/cmd_mod_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Msay"

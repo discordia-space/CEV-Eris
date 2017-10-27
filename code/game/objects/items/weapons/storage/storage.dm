@@ -8,11 +8,11 @@
 /obj/item/weapon/storage
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
-	var/max_w_class = 3 //Max size of objects that this object can store (in effect only if can_hold isn't set)
+	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = 8 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = null //The number of storage slots in this container.
 	var/obj/screen/storage/boxes = null
@@ -393,7 +393,7 @@
 					usr << SPAN_NOTICE("You put \the [W] into [src].")
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
-				else if (W && W.w_class >= 3) //Otherwise they can only see large or normal items from a distance...
+				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 
 		src.orient2hud(usr)
@@ -650,17 +650,4 @@
 	if (storage_cost)
 		return storage_cost
 	else
-		if(w_class == 1)
-			return 1
-		if(w_class == 2)
-			return 2
-		if(w_class == 3)
-			return 4
-		if(w_class == 4)
-			return 8
-		if(w_class == 5)
-			return 16
-		else
-			return 1000
-
-		//return 2**(w_class-1) //1,2,4,8,16,...
+		return 2**(w_class-1) //1,2,4,8,16,...

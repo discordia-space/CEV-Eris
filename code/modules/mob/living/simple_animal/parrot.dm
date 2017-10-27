@@ -30,7 +30,6 @@
 	desc = "The parrot squaks, \"It's a Parrot! BAWWK!\""
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "parrot_fly"
-	icon_living = "parrot_fly"
 	icon_dead = "parrot_dead"
 	pass_flags = PASSTABLE
 	mob_size = MOB_SMALL
@@ -512,12 +511,12 @@
 
 		if(istype(AM, /obj/item))
 			var/obj/item/I = AM
-			if(I.w_class < 2)
+			if(I.w_class < ITEM_SIZE_SMALL)
 				return I
 
 		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
-			if((C.l_hand && C.l_hand.w_class <= 2) || (C.r_hand && C.r_hand.w_class <= 2))
+			if((C.l_hand && C.l_hand.w_class <= ITEM_SIZE_SMALL) || (C.r_hand && C.r_hand.w_class <= ITEM_SIZE_SMALL))
 				return C
 	return null
 
@@ -541,12 +540,12 @@
 
 		if(istype(AM, /obj/item))
 			var/obj/item/I = AM
-			if(I.w_class <= 2)
+			if(I.w_class <= ITEM_SIZE_SMALL)
 				return I
 
 		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
-			if(C.l_hand && C.l_hand.w_class <= 2 || C.r_hand && C.r_hand.w_class <= 2)
+			if(C.l_hand && C.l_hand.w_class <= ITEM_SIZE_SMALL || C.r_hand && C.r_hand.w_class <= ITEM_SIZE_SMALL)
 				return C
 	return null
 
@@ -568,7 +567,7 @@
 
 	for(var/obj/item/I in view(1,src))
 		//Make sure we're not already holding it and it's small enough
-		if(I.loc != src && I.w_class <= 2)
+		if(I.loc != src && I.w_class <= ITEM_SIZE_SMALL)
 
 			//If we have a perch and the item is sitting on it, continue
 			if(!client && parrot_perch && I.loc == parrot_perch.loc)
@@ -597,10 +596,10 @@
 	var/obj/item/stolen_item = null
 
 	for(var/mob/living/carbon/C in view(1,src))
-		if(C.l_hand && C.l_hand.w_class <= 2)
+		if(C.l_hand && C.l_hand.w_class <= ITEM_SIZE_SMALL)
 			stolen_item = C.l_hand
 
-		if(C.r_hand && C.r_hand.w_class <= 2)
+		if(C.r_hand && C.r_hand.w_class <= ITEM_SIZE_SMALL)
 			stolen_item = C.r_hand
 
 		if(stolen_item)

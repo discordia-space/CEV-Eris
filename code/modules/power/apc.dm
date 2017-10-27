@@ -70,7 +70,7 @@
 	anchored = 1
 	use_power = 0
 	req_access = list(access_engine_equip)
-	var/needsound
+	var/need_sound
 	var/area/area
 	var/areastring = null
 	var/obj/item/weapon/cell/large/cell
@@ -476,8 +476,8 @@
 		if (stat & MAINT)
 			user << SPAN_WARNING("There is no connector for your power cell.")
 			return
-		if(W.w_class != 3)
-			user << "\The [W] is too [W.w_class < 3? "small" : "large"] to fit here."
+		if(W.w_class != ITEM_SIZE_NORMAL)
+			user << "\The [W] is too [W.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
 			return
 
 		user.drop_item()
@@ -648,7 +648,7 @@
 		if (((stat & BROKEN) || hacker) \
 				&& !opened \
 				&& W.force >= 5 \
-				&& W.w_class >= 3.0 \
+				&& W.w_class >= ITEM_SIZE_NORMAL \
 				&& prob(20) )
 			opened = 2
 			user.visible_message(SPAN_DANGER("The APC cover was knocked down with the [W.name] by [user.name]!"), \
@@ -1020,12 +1020,12 @@
 	else
 		main_status = 2
 
-	if(cell.charge <= 0)
-		if (needsound == 1)
+	if(!cell || cell.charge <= 0)
+		if(need_sound == TRUE)
 			playsound(src.loc, 'sound/machines/Custom_apcnopower.ogg', 75, 0)
-			needsound = 0
+			need_sound = FALSE
 	else
-		needsound = 1
+		need_sound = TRUE
 
 	if(debug)
 		log_debug("Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light] - Longterm: [longtermpower]")

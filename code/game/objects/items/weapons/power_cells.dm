@@ -9,7 +9,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 100
 	var/rigged = 0		// true if rigged to explode
@@ -72,7 +72,7 @@
 	name = "Asters \"Robustcell 600M\""
 	desc = "Asters Guild branded rechargeable M-standardized power cell. This one is the cheapest you can find."
 	icon_state = "m_st"
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 7
@@ -107,7 +107,7 @@
 	name = "Asters \"Robustcell 100S\""
 	desc = "Asters Guild branded rechargeable S-standardized power cell. This one is the cheapest you can find."
 	icon_state = "s_st"
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	force = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 7

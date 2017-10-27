@@ -107,7 +107,7 @@
 
 	switch(pref.alternate_option)
 		if(GET_RANDOM_JOB)
-			. += "<u><a href='?src=\ref[src];job_alternative=1'><font color=green>Get random job if preferences unavailable</font></a></u>"
+			. += "<u><a href='?src=\ref[src];job_alternative=1'><font color=ca6cca>Get random job if preferences unavailable</font></a></u>"
 		if(BE_ASSISTANT)
 			. += "<u><a href='?src=\ref[src];job_alternative=1'><font color=red>Be assistant if preference unavailable</font></a></u>"
 		if(RETURN_TO_LOBBY)
