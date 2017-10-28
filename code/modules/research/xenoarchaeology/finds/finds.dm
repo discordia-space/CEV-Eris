@@ -207,7 +207,12 @@
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "box"
 			var/obj/item/weapon/storage/box/new_box = new_item
-			new_box.max_w_class = pick(1,2,2,3,3,3,4,4)
+			new_box.max_w_class = pick(\
+				prob(1);ITEM_SIZE_TINY,
+				prob(2);ITEM_SIZE_SMALL,
+				prob(3);ITEM_SIZE_NORMAL,
+				prob(2);ITEM_SIZE_LARGE\
+			)
 			var/storage_amount = 2**(new_box.max_w_class-1)
 			new_box.max_storage_space = rand(storage_amount, storage_amount * 10)
 			if(prob(30))

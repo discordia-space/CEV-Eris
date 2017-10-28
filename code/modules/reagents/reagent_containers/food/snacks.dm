@@ -14,7 +14,7 @@
 	var/nutriment_amt = 0
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 
 /obj/item/weapon/reagent_containers/food/snacks/New()
 	..()
@@ -174,7 +174,7 @@
 				return
 
 			var/slices_lost = 0
-			if (W.w_class > 3)
+			if (W.w_class > ITEM_SIZE_NORMAL)
 				user.visible_message(SPAN_NOTICE("\The [user] crudely slices \the [src] with [W]!"), SPAN_NOTICE("You crudely slice \the [src] with your [W]!"))
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
@@ -623,6 +623,19 @@
 		..()
 		reagents.add_reagent("protein", 3)
 		reagents.add_reagent("carpotoxin", 3)
+		src.bitesize = 6
+
+/obj/item/weapon/reagent_containers/food/snacks/roachmeat
+	name = "roach meat"
+	desc = "Gross piece of roach meat."
+	icon_state = "xenomeat"
+	filling_color = "#E2FFDE"
+	center_of_mass = list("x"=17, "y"=13)
+
+	New()
+		..()
+		reagents.add_reagent("protein", 3)
+		reagents.add_reagent("blattedin", 4)
 		src.bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
@@ -2168,7 +2181,7 @@
 // sliceable is just an organization type path, it doesn't have any additional code or variables tied to it.
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable
-	w_class = 3 //Whole pizzas and cakes shouldn't fit in a pocket, you can slice them if you want to do that.
+	w_class = ITEM_SIZE_NORMAL //Whole pizzas and cakes shouldn't fit in a pocket, you can slice them if you want to do that.
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread
 	name = "meatbread loaf"

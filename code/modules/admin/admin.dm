@@ -27,6 +27,8 @@ proc/admin_notice(var/message, var/rights)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
+ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
+//shows an interface for individual players, with various links (links require additional flags
 /datum/admins/proc/show_player_panel(var/mob/M in mob_list)
 	set category = null
 	set name = "Show Player Panel"
@@ -76,7 +78,6 @@ proc/admin_notice(var/message, var/rights)
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
-		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
 	"}
 
 	if(M.client)
@@ -92,8 +93,7 @@ proc/admin_notice(var/message, var/rights)
 
 	body += {"<br><br>
 		<A href='?src=\ref[src];jumpto=\ref[M]'><b>Jump to</b></A> |
-		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A> |
-		<A href='?src=\ref[src];sendmob=\ref[M]'>Send To</A>
+		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A>
 		<br><br>
 		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A> | " : "" ]
 		<A href='?src=\ref[src];narrateto=\ref[M]'>Narrate to</A> |
@@ -218,108 +218,8 @@ proc/admin_notice(var/message, var/rights)
 /datum/player_info/var/content // text content of the information
 /datum/player_info/var/timestamp // Because this is bloody annoying
 
-#define PLAYER_NOTES_ENTRIES_PER_PAGE 50
-/datum/admins/proc/PlayerNotes()
-	set category = "Admin"
-	set name = "Player Notes"
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
-		return
-	PlayerNotesPage(1)
-
-/datum/admins/proc/PlayerNotesPage(page)
-	var/dat = "<B>Player notes</B><HR>"
-	var/savefile/S=new("data/player_notes.sav")
-	var/list/note_keys
-	S >> note_keys
-	if(!note_keys)
-		dat += "No notes found."
-	else
-		dat += "<table>"
-		note_keys = sortList(note_keys)
-
-		// Display the notes on the current page
-		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
-		// Emulate ceil(why does BYOND not have ceil)
-		if(number_pages != round(number_pages))
-			number_pages = round(number_pages) + 1
-		var/page_index = page - 1
-		if(page_index < 0 || page_index >= number_pages)
-			return
-
-		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
-		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-		upper_bound = min(upper_bound, note_keys.len)
-		for(var/index = lower_bound, index <= upper_bound, index++)
-			var/t = note_keys[index]
-			dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
-
-		dat += "</table><br>"
-
-		// Display a footer to select different pages
-		for(var/index = 1, index <= number_pages, index++)
-			if(index == page)
-				dat += "<b>"
-			dat += "<a href='?src=\ref[src];notes=list;index=[index]'>[index]</a> "
-			if(index == page)
-				dat += "</b>"
-
-	usr << browse(dat, "window=player_notes;size=400x400")
-
-
-/datum/admins/proc/player_has_info(var/key as text)
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
-	var/list/infos
-	info >> infos
-	if(!infos || !infos.len) return 0
-	else return 1
-
-
-/datum/admins/proc/show_player_info(var/key as text)
-	set category = "Admin"
-	set name = "Show Player Info"
-
-	if(!istype(src, /datum/admins))
-		src = usr.client.holder
-	if(!istype(src, /datum/admins))
-		usr << "Error: you are not an admin!"
-		return
-
-	var/dat = "<html><head><title>Info on [key]</title></head>"
-	dat += "<body>"
-
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
-	var/list/infos
-	info >> infos
-	if(!infos)
-		dat += "No information found on the given key.<br>"
-	else
-		var/update_file = 0
-		var/i = 0
-		for(var/datum/player_info/I in infos)
-			i += 1
-			if(!I.timestamp)
-				I.timestamp = "Pre-4/3/2012"
-				update_file = 1
-			if(!I.rank)
-				I.rank = "N/A"
-				update_file = 1
-			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
-				dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A>"
-			dat += "<br><br>"
-		if(update_file) info << infos
-
-	dat += "<br>"
-	dat += "<A href='?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
-
-	dat += "</body></html>"
-	usr << browse(dat, "window=adminplayerinfo;size=480x480")
-
-
-
+ADMIN_VERB_ADD(/datum/admins/proc/access_news_network, R_ADMIN, FALSE)
+//allows access of newscasters
 /datum/admins/proc/access_news_network() //MARKER
 	set category = "Fun"
 	set name = "Access Newscaster Network"
@@ -567,7 +467,8 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/Jobbans()
-	if(!check_rights(R_BAN))	return
+	if(!check_rights(R_MOD) && !check_rights(R_ADMIN))
+		return
 
 	var/dat = "<B>Job Bans!</B><HR><table>"
 	for(var/t in jobban_keylist)
@@ -579,7 +480,8 @@ proc/admin_notice(var/message, var/rights)
 	usr << browse(dat, "window=ban;size=400x400")
 
 /datum/admins/proc/Game()
-	if(!check_rights(0))	return
+	if(!check_rights(0))
+		return
 
 	var/dat = "<center><B>Game Panel</B></center><hr>"
 	if(ticker.storyteller && (ticker.current_state != GAME_STATE_PREGAME))
@@ -602,7 +504,8 @@ proc/admin_notice(var/message, var/rights)
 	return
 
 /datum/admins/proc/Secrets()
-	if(!check_rights(0))	return
+	if(!check_rights(0))
+		return
 
 	var/dat = "<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>"
 	for(var/datum/admin_secret_category/category in admin_secrets.categories)
@@ -625,6 +528,7 @@ proc/admin_notice(var/message, var/rights)
 //i.e. buttons/verbs
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/restart, R_SERVER, FALSE)
 /datum/admins/proc/restart()
 	set category = "Server"
 	set name = "Restart"
@@ -643,11 +547,14 @@ proc/admin_notice(var/message, var/rights)
 		world.Reboot()
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/announce, R_ADMIN, FALSE)
+//priority announce something to all clients.
 /datum/admins/proc/announce()
 	set category = "Special Verbs"
 	set name = "Announce"
 	set desc="Announce your desires to the world"
-	if(!check_rights(0))	return
+	if(!check_rights(0))
+		return
 
 	var/message = russian_to_cp1251(input("Global message to send:", "Admin Announce", null, null))  as message
 	if(message)
@@ -658,6 +565,8 @@ proc/admin_notice(var/message, var/rights)
 		log_admin("Announce: [key_name(usr)] : [message]")
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/toggleooc, R_ADMIN, FALSE)
+//toggles ooc on/off for everyone
 /datum/admins/proc/toggleooc()
 	set category = "Server"
 	set desc="Globally Toggles OOC"
@@ -673,7 +582,8 @@ proc/admin_notice(var/message, var/rights)
 		world << "<B>The OOC channel has been globally disabled!</B>"
 	log_and_message_admins("toggled OOC.")
 
-
+ADMIN_VERB_ADD(/datum/admins/proc/togglelooc, R_ADMIN, FALSE)
+//toggles looc on/off for everyone
 /datum/admins/proc/togglelooc()
 	set category = "Server"
 	set desc="Globally Toggles LOOC"
@@ -690,7 +600,8 @@ proc/admin_notice(var/message, var/rights)
 	log_and_message_admins("toggled LOOC.")
 
 
-
+ADMIN_VERB_ADD(/datum/admins/proc/toggledsay, R_ADMIN, FALSE)
+//toggles dsay on/off for everyone
 /datum/admins/proc/toggledsay()
 	set category = "Server"
 	set desc="Globally Toggles DSAY"
@@ -707,7 +618,8 @@ proc/admin_notice(var/message, var/rights)
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 
-
+ADMIN_VERB_ADD(/datum/admins/proc/toggleoocdead, R_ADMIN, FALSE)
+//toggles ooc on/off for everyone who is dead
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
 	set desc="Toggle Dead OOC."
@@ -721,6 +633,7 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/startnow, R_SERVER, FALSE)
 /datum/admins/proc/startnow()
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"
@@ -738,6 +651,8 @@ proc/admin_notice(var/message, var/rights)
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
 		return 0
 
+ADMIN_VERB_ADD(/datum/admins/proc/toggleenter, R_ADMIN, FALSE)
+//toggles whether people can join the current game
 /datum/admins/proc/toggleenter()
 	set category = "Server"
 	set desc="People can't enter"
@@ -752,6 +667,7 @@ proc/admin_notice(var/message, var/rights)
 	world.update_status()
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/toggleAI, R_ADMIN, FALSE)
 /datum/admins/proc/toggleAI()
 	set category = "Server"
 	set desc="People can't be AI"
@@ -765,6 +681,7 @@ proc/admin_notice(var/message, var/rights)
 	world.update_status()
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/toggleaban, R_SERVER, FALSE)
 /datum/admins/proc/toggleaban()
 	set category = "Server"
 	set desc="Respawn basically"
@@ -779,6 +696,7 @@ proc/admin_notice(var/message, var/rights)
 	world.update_status()
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/toggle_aliens, R_FUN|R_SERVER, FALSE)
 /datum/admins/proc/toggle_aliens()
 	set category = "Server"
 	set desc="Toggle alien mobs"
@@ -788,12 +706,14 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/delay, R_SERVER, FALSE)
 /datum/admins/proc/delay()
 	set category = "Server"
 	set desc="Delay the game start/end"
 	set name="Delay"
 
-	if(!check_rights(R_SERVER))	return
+	if(!check_rights(R_SERVER))
+		return
 	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
@@ -807,7 +727,7 @@ proc/admin_notice(var/message, var/rights)
 		world << "<b>The game will start soon.</b>"
 		log_admin("[key_name(usr)] removed the delay.")
 
-
+ADMIN_VERB_ADD(/datum/admins/proc/adjump, R_SERVER, FALSE)
 /datum/admins/proc/adjump()
 	set category = "Server"
 	set desc="Toggle admin jumping"
@@ -816,6 +736,7 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/adspawn, R_SERVER, FALSE)
 /datum/admins/proc/adspawn()
 	set category = "Server"
 	set desc="Toggle admin spawning"
@@ -824,6 +745,7 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/adrev, R_SERVER, FALSE)
 /datum/admins/proc/adrev()
 	set category = "Server"
 	set desc="Toggle admin revives"
@@ -832,11 +754,13 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("\blue Toggled reviving to [config.allow_admin_rev].")
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/immreboot, R_SERVER, FALSE)
 /datum/admins/proc/immreboot()
 	set category = "Server"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
-	if(!usr.client.holder)	return
+	if(!usr.client.holder)
+		return
 	if( alert("Reboot server?",,"Yes","No") == "No")
 		return
 	world << "\red <b>Rebooting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"
@@ -861,12 +785,14 @@ proc/admin_notice(var/message, var/rights)
 
 	return FALSE
 
+ADMIN_VERB_ADD(/datum/admins/proc/spawn_fruit, R_DEBUG, FALSE)
 /datum/admins/proc/spawn_fruit(seedtype in plant_controller.seeds)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
-
-	if(!check_rights(R_SPAWN))	return
+ 
+	if(!check_rights(R_DEBUG))
+		return
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
 		return
@@ -874,12 +800,14 @@ proc/admin_notice(var/message, var/rights)
 	S.harvest(usr,0,0,1)
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
 
+ADMIN_VERB_ADD(/datum/admins/proc/spawn_custom_item, R_DEBUG, FALSE)
 /datum/admins/proc/spawn_custom_item()
 	set category = "Debug"
 	set desc = "Spawn a custom item."
 	set name = "Spawn Custom Item"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_DEBUG))
+		return
 
 	var/owner = input("Select a ckey.", "Spawn Custom Item") as null|anything in custom_items
 	if(!owner|| !custom_items[owner])
@@ -892,13 +820,15 @@ proc/admin_notice(var/message, var/rights)
 
 	item_to_spawn.spawn_item(get_turf(usr))
 
-/datum/admins/proc/check_custom_items()
 
+ADMIN_VERB_ADD(/datum/admins/proc/check_custom_items, R_DEBUG, FALSE)
+/datum/admins/proc/check_custom_items()
 	set category = "Debug"
 	set desc = "Check the custom item list."
 	set name = "Check Custom Items"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_DEBUG))
+		return
 
 	if(!custom_items)
 		usr << "Custom item list is null."
@@ -914,24 +844,31 @@ proc/admin_notice(var/message, var/rights)
 		for(var/datum/custom_item/item in current_items)
 			usr << "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]"
 
+
+ADMIN_VERB_ADD(/datum/admins/proc/spawn_plant, R_DEBUG, FALSE)
 /datum/admins/proc/spawn_plant(seedtype in plant_controller.seeds)
 	set category = "Debug"
 	set desc = "Spawn a spreading plant effect."
 	set name = "Spawn Plant"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_DEBUG))
+		return
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
 		return
 	new /obj/effect/plant(get_turf(usr), plant_controller.seeds[seedtype])
 	log_admin("[key_name(usr)] spawned [seedtype] vines at ([usr.x],[usr.y],[usr.z])")
 
+
+ADMIN_VERB_ADD(/datum/admins/proc/spawn_atom, R_DEBUG, FALSE)
+// allows us to spawn instances
 /datum/admins/proc/spawn_atom(var/object as text)
 	set category = "Debug"
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_DEBUG))
+		return
 
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
@@ -960,7 +897,9 @@ proc/admin_notice(var/message, var/rights)
 	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
 
 
-
+// -Removed due to rare practical use. Moved to debug verbs ~Errorage,
+//ADMIN_VERB_ADD(/datum/admins/proc/show_traitor_panel, R_ADMIN, TRUE)
+//interface which shows a mob's mind
 /datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
@@ -976,6 +915,8 @@ proc/admin_notice(var/message, var/rights)
 	M.mind.edit_memory()
 
 /*
+ADMIN_VERB_ADD(/datum/admins/proc/show_game_mode, R_ADMIN, FALSE)
+//Configuration window for the current game mode.
 /datum/admins/proc/show_game_mode()
 	set category = "Admin"
 	set desc = "Show the current round storyteller."
@@ -1021,6 +962,8 @@ proc/admin_notice(var/message, var/rights)
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 
 
+ADMIN_VERB_ADD(/datum/admins/proc/toggleguests, R_ADMIN, FALSE)
+//toggles whether guests can join the current game
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"
@@ -1115,20 +1058,6 @@ proc/admin_notice(var/message, var/rights)
 			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M, src)])</b>"
 
 
-/proc/ishost(whom)
-	if(!whom)
-		return 0
-	var/client/C
-	var/mob/M
-	if(istype(whom, /client))
-		C = whom
-	if(ismob(whom))
-		M = whom
-		C = M.client
-	if(R_HOST & C.holder.rights)
-		return 1
-	else
-		return 0
 //
 //
 //ALL DONE
@@ -1142,7 +1071,7 @@ proc/admin_notice(var/message, var/rights)
 		return //Extra sanity check to make sure only observers are shoved into things
 
 	//Same as assume-direct-control perm requirements.
-	if (!check_rights(R_VAREDIT,0) || !check_rights(R_ADMIN|R_DEBUG,0))
+	if (!check_rights(R_ADMIN|R_DEBUG,0))
 		return 0
 	if (!frommob.ckey)
 		return 0
@@ -1165,6 +1094,8 @@ proc/admin_notice(var/message, var/rights)
 	return 1
 
 /*
+ADMIN_VERB_ADD(/datum/admins/proc/force_mode_latespawn, R_ADMIN, FALSE)
+//Force the mode to try a latespawn proc
 /datum/admins/proc/force_mode_latespawn()
 	set category = "Admin"
 	set name = "Force Mode Spawn"
@@ -1184,8 +1115,9 @@ proc/admin_notice(var/message, var/rights)
 	ticker.mode.process_autoantag()
 */
 
+ADMIN_VERB_ADD(/datum/admins/proc/paralyze_mob, R_ADMIN, FALSE)
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
-	set category = "Admin"
+	set category = "Fun"
 	set name = "Toggle Paralyze"
 	set desc = "Paralyzes a player. Or unparalyses them."
 

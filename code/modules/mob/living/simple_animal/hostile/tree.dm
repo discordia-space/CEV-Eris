@@ -3,7 +3,6 @@
 	desc = "A pissed off tree-like alien. It seems annoyed with the festivities..."
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
-	icon_living = "pine_1"
 	icon_dead = "pine_1"
 	icon_gib = "pine_1"
 	speak_chance = 0

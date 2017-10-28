@@ -7,7 +7,6 @@
 	desc = "A small robot"
 	icon = 'icons/mob/hivebot.dmi'
 	icon_state = "basic"
-	icon_living = "basic"
 	icon_dead = "basic"
 	health = 15
 	maxHealth = 15
@@ -59,7 +58,6 @@
 	desc = "Some odd beacon thing"
 	icon = 'icons/mob/hivebot.dmi'
 	icon_state = "def_radar-off"
-	icon_living = "def_radar-off"
 	health = 200
 	maxHealth = 200
 	status_flags = 0

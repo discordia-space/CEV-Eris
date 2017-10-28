@@ -234,3 +234,14 @@ var/global/list/string_slot_flags = list(
 				. += "    has: [t]\n"
 	world << .
 */
+
+var/global/list/admin_permissions = list(
+	"fun" = 0x1,
+	"server" = 0x2,
+	"debug" = 0x4,
+	"permissions" = 0x8,
+	"mentor" = 0x10,
+	"moderator" = 0x20,
+	"admin" = 0x40,
+	"host" = 0x80
+	)

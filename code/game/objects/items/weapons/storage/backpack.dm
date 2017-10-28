@@ -17,9 +17,9 @@
 		slot_l_hand_str = "backpack",
 		slot_r_hand_str = "backpack",
 		)
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	slot_flags = SLOT_BACK
-	max_w_class = 4
+	max_w_class = ITEM_SIZE_LARGE
 	max_storage_space = 28
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -48,7 +48,7 @@
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	origin_tech = list(TECH_BLUESPACE = 4)
 	icon_state = "holdingpack"
-	max_w_class = 4
+	max_w_class = ITEM_SIZE_LARGE
 	max_storage_space = 56
 	storage_cost = 29
 
@@ -74,8 +74,8 @@
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state = "giftbag"
-	w_class = 4.0
-	max_w_class = 3
+	w_class = ITEM_SIZE_LARGE
+	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 400 // can store a ton of shit!
 	item_state_slots = null
 

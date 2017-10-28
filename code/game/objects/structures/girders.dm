@@ -3,7 +3,7 @@
 	anchored = 1
 	density = 1
 	layer = 2
-	w_class = 5
+	w_class = ITEM_SIZE_HUGE
 	var/state = 0
 	var/health = 200
 	var/cover = 50 //how much cover the girder provides against projectiles.
