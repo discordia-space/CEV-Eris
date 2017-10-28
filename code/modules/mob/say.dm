@@ -12,7 +12,7 @@
 
 	set_typing_indicator(TRUE)
 	hud_typing = TRUE
-	var/message = input("","say (text)") as text
+	var/message = input("", "say (text)") as text
 	hud_typing = FALSE
 	set_typing_indicator(FALSE)
 	if(message)
@@ -35,7 +35,7 @@
 
 	set_typing_indicator(TRUE)
 	hud_typing = TRUE
-	var/message = input("","me (text)") as text
+	var/message = input("", "me (text)") as text
 	hud_typing = FALSE
 	set_typing_indicator(FALSE)
 	if(message)
