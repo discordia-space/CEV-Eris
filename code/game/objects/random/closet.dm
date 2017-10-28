@@ -1,6 +1,7 @@
 /obj/random/closet
 	name = "random closet"
 	icon_state = "closet-grey"
+	alpha = 128
 
 /obj/random/closet/item_to_spawn()
 	return pick(prob(4);/obj/structure/closet,\

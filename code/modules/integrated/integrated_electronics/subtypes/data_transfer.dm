@@ -27,7 +27,7 @@
 /obj/item/integrated_circuit/transfer/splitter/large
 	name = "eight splitter"
 	icon_state = "splitter8"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	complexity = 9
 	outputs = list("A","B","C","D","E","F","G","H")
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -76,7 +76,7 @@
 /obj/item/integrated_circuit/transfer/activator_splitter/large
 	name = "eight activator splitter"
 	icon_state = "splitter4"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	complexity = 9
 	activators = list(
 		"incoming pulse",
@@ -130,13 +130,13 @@
 /obj/item/integrated_circuit/transfer/multiplexer/large
 	name = "eight multiplexer"
 	number_of_inputs = 8
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	icon_state = "mux8"
 
 /obj/item/integrated_circuit/transfer/multiplexer/huge
 	name = "sixteen multiplexer"
 	icon_state = "mux16"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	number_of_inputs = 16
 
 /obj/item/integrated_circuit/transfer/demultiplexer
@@ -176,11 +176,11 @@
 /obj/item/integrated_circuit/transfer/demultiplexer/large
 	name = "eight demultiplexer"
 	icon_state = "dmux8"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	number_of_outputs = 8
 
 /obj/item/integrated_circuit/transfer/demultiplexer/huge
 	name = "sixteen demultiplexer"
 	icon_state = "dmux16"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	number_of_outputs = 16

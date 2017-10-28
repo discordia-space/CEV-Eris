@@ -6,4 +6,4 @@
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_TABLET
 	max_hardware_size = 1
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL

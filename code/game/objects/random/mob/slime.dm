@@ -1,6 +1,7 @@
 /obj/random/cluster/slimes
 	name = "cluster of slimes"
 	icon_state = "hostilemob-cyan-cluster"
+	alpha = 128
 	min_amount = 1
 	max_amount = 3
 	spread_range = 0

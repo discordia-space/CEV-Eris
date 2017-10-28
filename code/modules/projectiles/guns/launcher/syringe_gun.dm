@@ -9,7 +9,7 @@
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = WEAPON_FORCE_WEAK
 	force = WEAPON_FORCE_WEAK
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	var/obj/item/weapon/reagent_containers/syringe/syringe
 
 /obj/item/weapon/syringe_cartridge/update_icon()
@@ -66,7 +66,7 @@
 	desc = "A spring loaded rifle designed to fit syringes, designed to incapacitate unruly patients from a distance."
 	icon_state = "syringegun"
 	item_state = "syringegun"
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	force = 7
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	slot_flags = SLOT_BELT
@@ -77,9 +77,15 @@
 	release_force = 10
 	throw_distance = 10
 
+	safety = FALSE//just whynot
+	restrict_safety = TRUE//so syringe gun doesn't contents any safety shit
+
 	var/list/darts = list()
 	var/max_darts = 1
 	var/obj/item/weapon/syringe_cartridge/next
+
+/obj/item/weapon/gun/launcher/syringe/New()
+	..()
 
 /obj/item/weapon/gun/launcher/syringe/consume_next_projectile()
 	if(next)

@@ -1,6 +1,7 @@
 /obj/random
 	name = "random object"
 	icon = 'icons/misc/landmarks.dmi'
+	alpha = 64 //Or else they cover half of the map
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/min_amount = 1
 	var/max_amount = 1

@@ -16,7 +16,7 @@
 	desc = "An advanced suit that protects against injuries during special operations. Property of Gorlex Marauders."
 	item_state = "syndie_voidsuit"
 	slowdown = 1
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 60)
 	allowed = list(
 		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
