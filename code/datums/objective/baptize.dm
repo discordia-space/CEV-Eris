@@ -10,12 +10,10 @@
 	else
 		explanation_text = "Target has not arrived today. Is it a coincidence?"
 
-/datum/objective/baptize/check_completion()
-	if(target && target.current)
-		if(target.current.stat == DEAD || !ishuman(target.current))
-			return TRUE
-		return FALSE
-	return TRUE
+/datum/objective/baptize/update_completion()
+	if(!completed || target && target.current)
+		if(target.current in christians)
+			completed = TRUE
 
 /datum/objective/baptize/get_targets_list()
 	var/list/possible_targets = list()

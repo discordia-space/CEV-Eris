@@ -1,5 +1,5 @@
 /datum/objective/harm
-	var/already_completed = FALSE
+	var/last_harm_points = 0
 
 /datum/objective/harm/get_panel_entry()
 	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
@@ -11,18 +11,22 @@
 	else
 		explanation_text = "Target has not arrived today. Did he know that I would come?"
 
-/datum/objective/harm/check_completion()
-	if(already_completed)
-		return TRUE
+/datum/objective/harm/get_info()
+	return "([last_harm_points] injure points)"
+
+/datum/objective/harm/update_completion()
+	if(completed)
+		return
+	var/harm_points = 0
 
 	if(target && target.current && ishuman(target.current))
 		if(target.current.stat == DEAD)
-			return FALSE
+			return
 
 		var/mob/living/carbon/human/H = target.current
 		for(var/obj/item/organ/external/E in H.organs)
 			if(E.status & ORGAN_BROKEN)
-				return TRUE
+				harm_points += 2
 
 		for(var/limb_tag in H.species.has_limbs) //todo check prefs for robotic limbs and amputations.
 			var/list/organ_data = H.species.has_limbs[limb_tag]
@@ -33,9 +37,13 @@
 					found = TRUE
 					break
 			if(!found)
-				return TRUE
+				harm_points += 2
 
 		var/obj/item/organ/external/head/head = H.get_organ("head")
 		if(head.disfigured)
-			return TRUE
-	return FALSE
+			harm_points += 1
+
+		if(harm_points >= 4)
+			completed = TRUE
+
+		last_harm_points = harm_points

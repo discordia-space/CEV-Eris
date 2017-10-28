@@ -5,5 +5,3 @@
 	description = "This storyteller don't require any crew to start."
 
 	required_jobs = list()
-
-	one_role_per_player = FALSE
