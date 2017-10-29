@@ -8,8 +8,8 @@
 	desc = "With love."
 	icon_state = "lunchbox_heart"
 	item_state = "lunchbox_heart"
-	w_class = 3
-	max_w_class = 3
+	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 8
 	attack_verb = "lunched"
 

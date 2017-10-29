@@ -3,8 +3,6 @@
 	desc = "A large brown bear."
 
 	icon_state = "brownbear"
-	icon_living = "brownbear"
-	icon_dead = "brownbear_dead"
 	icon_gib = "brownbear_gib"
 
 	health = 75

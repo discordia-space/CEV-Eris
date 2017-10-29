@@ -9,6 +9,8 @@
 /var/list/view_variables_no_assoc = list("verbs", "contents","screen","images")
 
 // Acceptable 'in world', as VV would be incredibly hampered otherwise
+ADMIN_VERB_ADD(/client/proc/debug_variables, null, FALSE)
+//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify
 /client/proc/debug_variables(datum/D in world)
 	set category = "Debug"
 	set name = "View Variables"

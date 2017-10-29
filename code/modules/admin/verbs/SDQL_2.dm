@@ -1,7 +1,6 @@
-
-
+ADMIN_VERB_ADD(/client/proc/SDQL2_query, R_DEBUG, FALSE)
 /client/proc/SDQL2_query(query_text as message)
-	set category = "Admin"
+	set category = "Debug"
 	if(!check_rights(R_DEBUG))  //Shouldn't happen... but just to be safe.
 		message_admins("\red ERROR: Non-admin [usr.key] attempted to execute a SDQL query!")
 		log_admin("Non-admin [usr.key] attempted to execute a SDQL query!")

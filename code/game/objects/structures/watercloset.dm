@@ -76,10 +76,10 @@
 				user << SPAN_NOTICE("You need a tighter grip.")
 
 	if(cistern && !isrobot(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
-		if(I.w_class > 3)
+		if(I.w_class >= ITEM_SIZE_LARGE)
 			user << SPAN_NOTICE("\The [I] does not fit.")
 			return
-		if(w_items + I.w_class > 5)
+		if(w_items + I.w_class > ITEM_SIZE_HUGE)
 			user << SPAN_NOTICE("The cistern is full.")
 			return
 		user.drop_item()

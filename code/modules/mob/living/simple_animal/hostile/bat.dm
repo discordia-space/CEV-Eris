@@ -3,8 +3,6 @@
 	desc = "A swarm of cute little blood sucking bats that looks pretty upset."
 	icon = 'icons/mob/bats.dmi'
 	icon_state = "bat"
-	icon_living = "bat"
-	icon_dead = "bat_dead"
 	icon_gib = "bat_dead"
 	speak_chance = 0
 	turns_per_move = 3

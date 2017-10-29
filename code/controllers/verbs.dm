@@ -1,5 +1,10 @@
 //TODO: rewrite and standardise all controller datums to the datum/controller type
-//TODO: allow all controllers to be deleted for clean restarts (see WIP master controller stuff) - MC done - lighting done
+//TODO: allow all controllers to be deleted for clean restarts (see WIP master controller stuff)
+//		- MC done
+//		- lighting done
+
+
+ADMIN_VERB_ADD(/client/proc/restart_controller, R_DEBUG, null)
 /client/proc/restart_controller(controller in list("Supply"))
 	set category = "Debug"
 	set name = "Restart Controller"
@@ -16,6 +21,7 @@
 	return
 
 /*
+ADMIN_VERB_ADD(/client/proc/debug_antagonist_template, R_DEBUG, null)
 /client/proc/debug_antagonist_template(antag_type in all_antag_types)
 	set category = "Debug"
 	set name = "Debug Antagonist"
@@ -27,7 +33,13 @@
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 */
 
-/client/proc/debug_controller(controller in list("Master", "Ticker", "Ticker Process", "Air", "Jobs", "Sun", "Radio", "Supply", "Shuttles", "Emergency Shuttle", "Configuration", "pAI", "Cameras", "Transfer Controller", "Gas Data", "Event", "Plants", "Alarm", "Nano", "Chemistry", "Wireless", "Observation"))
+
+ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
+/client/proc/debug_controller(controller in list(
+		"Master", "Ticker", "Ticker Process", "Air", "Jobs", "Sun", "Radio", "Supply",
+		"Shuttles", "Emergency Shuttle", "Configuration", "pAI", "Cameras", "Transfer Controller",
+		"Gas Data", "Event", "Plants", "Alarm", "Nano", "Chemistry", "Wireless", "Observation")
+	)
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"

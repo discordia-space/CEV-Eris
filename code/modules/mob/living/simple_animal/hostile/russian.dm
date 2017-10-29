@@ -2,8 +2,7 @@
 	name = "russian"
 	desc = "For the Motherland!"
 	icon_state = "russianmelee"
-	icon_living = "russianmelee"
-	icon_dead = "russianmelee_dead"
+	icon_dead = "russian_dead" //TODO: that icon doesn't exist
 	icon_gib = "syndicate_gib"
 	speak_chance = 0
 	turns_per_move = 5
@@ -36,7 +35,6 @@
 
 /mob/living/simple_animal/hostile/russian/ranged
 	icon_state = "russianranged"
-	icon_living = "russianranged"
 	corpse = /obj/effect/landmark/corpse/russian/ranged
 	weapon1 = /obj/item/weapon/gun/projectile/revolver/mateba
 	ranged = 1

@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 /client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debug-Game"
@@ -209,7 +210,9 @@
 			src << "Made [M] a cultist."
 */
 
+
 //TODO: merge the vievars version into this or something maybe mayhaps
+ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
 	set name = "Del-All"
@@ -225,6 +228,7 @@
 		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
 
 
+ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
 	set name = "Make Powernets"
@@ -233,6 +237,7 @@
 	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
 
 
+ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG, FALSE)
 /client/proc/cmd_debug_tog_aliens()
 	set category = "Server"
 	set name = "Toggle Aliens"
@@ -386,6 +391,7 @@
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
+ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 /client/proc/cmd_admin_dress()
 	set category = "Fun"
 	set name = "Select equipment"
@@ -731,8 +737,9 @@
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
 	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode]..", 1)
-	return
 
+
+ADMIN_VERB_ADD(/client/proc/check_positions, R_DEBUG, FALSE)
 /client/proc/check_positions()
 	set category = "Debug"
 	set name = "Check positions"
@@ -751,8 +758,6 @@
 	user << "get_dir  = [get_dir(user_pos, other_pos)]"
 	user << "Adjacent = [user_pos.Adjacent(other_pos)]"
 	user << "Check ended."
-
-	return
 
 
 /client/proc/startSinglo()
@@ -806,6 +811,8 @@
 		if(SMES.anchored)
 			SMES.input_attempt = 1
 
+
+ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 /client/proc/cmd_debug_mob_lists()
 	set category = "Debug"
 	set name = "Debug Mob Lists"

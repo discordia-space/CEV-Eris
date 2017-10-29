@@ -16,6 +16,7 @@
 //Call these procs to dump your world to a series of image files (!!)
 //NOTE: Does not explicitly support non 32x32 icons or stuff with large pixel_* values, so don't blame me if it doesn't work perfectly
 
+ADMIN_VERB_ADD(/client/proc/nanomapgen_DumpImage, R_SERVER, FALSE)
 /client/proc/nanomapgen_DumpImage()
 	set name = "Generate NanoUI Map"
 	set category = "Server"

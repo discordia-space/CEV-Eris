@@ -15,7 +15,7 @@
 	desc = "A bulky, heavy-duty piece of exclusive corporate armor. YOU are in charge!"
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE
@@ -92,7 +92,7 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	item_state = "pirate"
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	allowed = list(
 		/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,
 		/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency_oxygen

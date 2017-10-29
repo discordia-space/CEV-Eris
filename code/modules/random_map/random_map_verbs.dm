@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/client/proc/print_random_map, R_DEBUG, FALSE)
 /client/proc/print_random_map()
 	set category = "Debug"
 	set name = "Display Random Map"
@@ -12,6 +13,8 @@
 	if(istype(M))
 		M.display_map(usr)
 
+
+ADMIN_VERB_ADD(/client/proc/delete_random_map, R_DEBUG, FALSE)
 /client/proc/delete_random_map()
 	set category = "Debug"
 	set name = "Delete Random Map"
@@ -29,6 +32,8 @@
 		log_admin("[key_name(usr)] has deleted [M.name].")
 		qdel(M)
 
+
+ADMIN_VERB_ADD(/client/proc/create_random_map, R_DEBUG, FALSE)
 /client/proc/create_random_map()
 	set category = "Debug"
 	set name = "Create Random Map"
@@ -53,6 +58,8 @@
 		message_admins("[key_name_admin(usr)] has created [M.name].")
 		log_admin("[key_name(usr)] has created [M.name].")
 
+
+ADMIN_VERB_ADD(/client/proc/apply_random_map, R_DEBUG, FALSE)
 /client/proc/apply_random_map()
 	set category = "Debug"
 	set name = "Apply Random Map"
@@ -78,6 +85,8 @@
 		M.set_origins(tx,ty,tz)
 		M.apply_to_map()
 
+
+ADMIN_VERB_ADD(/client/proc/overlay_random_map, R_DEBUG, FALSE)
 /client/proc/overlay_random_map()
 	set category = "Debug"
 	set name = "Overlay Random Map"

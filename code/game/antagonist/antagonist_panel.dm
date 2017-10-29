@@ -4,7 +4,7 @@
 	if(!owner)
 		dat += "<br><b>This antag datum has no owner.</b> <a href='?src=\ref[src];select_antagonist=1'>\[select\]</a>"
 	else
-		dat += "<br><b>Owner: </b>[owner.name] <a href='?src=\ref[src];edit_mind=1'>\[memory\]</a>"
+		dat += "<br><b>Owner: </b>[owner.name] <a href='?src=\ref[owner]'>\[memory\]</a>"
 	var/extra = get_extra_panel_options()
 	if(owner)
 		dat += "<br><a href='?src=\ref[src];remove_antagonist=1'>\[remove\]</a>"

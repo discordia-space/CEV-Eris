@@ -34,7 +34,7 @@ obj/item/weapon/board/attackby(obj/item/I as obj, mob/user as mob)
 		..()
 
 /obj/item/weapon/board/proc/addPiece(obj/item/I as obj, mob/user as mob, var/tile = 0)
-	if(I.w_class != 1) //only small stuff
+	if(I.w_class != ITEM_SIZE_TINY) //only small stuff
 		user.show_message(SPAN_WARNING("\The [I] is too big to be used as a board piece."))
 		return 0
 	if(num == 64)
@@ -172,7 +172,7 @@ obj/item/weapon/board/attackby(obj/item/I as obj, mob/user as mob)
 	desc = "It is plastic and shiny."
 	icon = 'icons/obj/pieces.dmi'
 	icon_state = "checker_black"
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 
 /obj/item/weapon/checker/red
 	name = "red checker"

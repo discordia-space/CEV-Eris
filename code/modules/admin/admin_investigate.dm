@@ -26,6 +26,8 @@
 	F << "<small>[time2text(world.timeofday,"hh:mm")] \ref[src] ([x],[y],[z])</small> || [src] [message]<br>"
 
 //ADMINVERBS
+ADMIN_VERB_ADD(/client/proc/investigate_show, R_ADMIN, TRUE)
+//various admintools for investigation. Such as a singulo grief-log
 /client/proc/investigate_show( subject in list("hrefs","notes","singulo","telesci") )
 	set name = "Investigate"
 	set category = "Admin"

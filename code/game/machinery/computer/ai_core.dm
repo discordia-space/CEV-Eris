@@ -247,9 +247,10 @@
 	else
 		return ..()
 
+ADMIN_VERB_ADD(/client/proc/empty_ai_core_toggle_latejoin, R_ADMIN, null)
 /client/proc/empty_ai_core_toggle_latejoin()
 	set name = "Toggle AI Core Latejoin"
-	set category = "Admin"
+	set category = "Server"
 
 	var/list/cores = list()
 	for(var/obj/structure/AIcore/deactivated/D in world)
