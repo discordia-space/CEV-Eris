@@ -51,7 +51,8 @@ var/global/list/antag_weights = list()
 
 /proc/get_antag_instance(var/a_id)
 	if(antag_types[a_id])
-		return new antag_types[a_id]
+		var/atype = antag_types[a_id]
+		return new atype
 
 /proc/make_antagonist_ghost(var/mob/M, var/a_id)
 	if(antag_types[a_id])
@@ -111,6 +112,12 @@ var/global/list/antag_weights = list()
 /proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if((antag.outer && only_offstation_roles) || !only_offstation_roles)
+			return TRUE
+	return FALSE
+
+/proc/player_is_ship_antag(var/datum/mind/player)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(!antag.outer)
 			return TRUE
 	return FALSE
 

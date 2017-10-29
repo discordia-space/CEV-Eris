@@ -1,8 +1,7 @@
-// Inherits most of its vars from the base datum.
 /datum/antagonist/inquisitor
 	id = ROLE_INQUISITOR
-	role_text = "Inquisitor"
-	role_text_plural = "Inquisitors"
+	role_text = "NeoTheology Inquisitor"
+	role_text_plural = "NeoTheology Inquisitors"
 	bantype = "inquisitor"
 	welcome_text = "Here should be the inquisitor welcome text."
 	weight = 9

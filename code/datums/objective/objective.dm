@@ -31,6 +31,9 @@ var/global/list/all_objectives_types = null
 	all_objectives.Remove(src)
 	..()
 
+/datum/objective/proc/update_completion()	//This is for objectives requiring mid-round check, like harm or baptize
+	return
+
 /datum/objective/proc/check_completion()
 	return completed
 
@@ -63,6 +66,9 @@ var/global/list/all_objectives_types = null
 
 /datum/objective/proc/get_panel_entry()
 	return explanation_text
+
+/datum/objective/proc/get_info()	//Text, returned by this proc will be displayed at round end
+	return ""
 
 /datum/objective/Topic(href, href_list)
 	if(!check_rights(R_DEBUG))

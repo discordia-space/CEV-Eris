@@ -48,6 +48,16 @@ var/global/list/rolespawn_log = list()
 		role_spawn_stage++
 		spawn_antagonist()
 
+/datum/storyteller/proc/update_objectives()
+	for(var/datum/antagonist/A in current_antags)
+		if(!A.faction)
+			for(var/datum/objective/O in A.objectives)
+				O.update_completion()
+
+	for(var/datum/faction/F in current_factions)
+		for(var/datum/objective/O in F.objectives)
+			O.update_completion()
+
 /datum/storyteller/proc/get_player_weight(var/mob/M)
 	var/weight = 0
 	if(M.client && (M.mind && !M.mind.antagonist.len) && M.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))

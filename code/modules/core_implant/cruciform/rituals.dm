@@ -95,6 +95,9 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 
 	CI.wearer << "<span class='info'>Your cruciform vibrates and warms up.</span>"
 
+	if(ticker && ticker.storyteller)	//Call objectives update to check inquisitor objective completion
+		ticker.storyteller.update_objectives()
+
 	return TRUE
 
 /* - This will be used later, when new cult arrive.
