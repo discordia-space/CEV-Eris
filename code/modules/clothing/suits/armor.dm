@@ -25,32 +25,15 @@
 	icon_state = "armorsec"
 	item_state = "armorsec"
 
-/obj/item/clothing/suit/armor/vest/serg
-	name = "Gunnery Sergeant's light armor"
-	desc = "Light armor of Ironhammer Security forces. Not designed for serious operations."
-	icon_state = "serg_armor"
-	item_state = "armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
 
 /obj/item/clothing/suit/armor/riot
 	name = "Riot Suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
-	item_state = "swat_suit"
+	item_state = "riot"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
 	armor = list(melee = 75, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT
-	siemens_coefficient = 0.5
-
-/obj/item/clothing/suit/armor/light_riot
-	name = "Light Riot Suit"
-	desc = "A suit made from kevlar and plactic, it doesn't impair movement but not as reliable as regular riot suit."
-	icon_state = "light_riot"
-	item_state = "swat_suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	armor = list(melee = 60, bullet = 15, laser = 15, energy = 15, bomb = 15, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 

@@ -68,7 +68,7 @@
 				new /obj/item/weapon/storage/bag/trash(src)
 				new /obj/item/weapon/soap/syndie(src)
 				new /obj/item/bodybag(src)
-				new /obj/item/clothing/shoes/laceup(src)
+				new /obj/item/clothing/shoes/reinforced(src)
 				return
 
 /obj/item/weapon/storage/box/syndie_kit
