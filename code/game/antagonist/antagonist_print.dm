@@ -55,6 +55,7 @@
 
 			text += "<br><b>Objective [num]:</b> [O.explanation_text] "
 			if(append_success)
+				text += "[O.get_info()] "
 				if(O.check_completion())
 					text += "<font color='green'><B>Success!</B></font>"
 				else
