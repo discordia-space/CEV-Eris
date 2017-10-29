@@ -25,7 +25,7 @@
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
 	pda = /obj/item/device/pda/heads/rd
 	ear = /obj/item/device/radio/headset/heads/rd
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	hand = /obj/item/weapon/clipboard
 

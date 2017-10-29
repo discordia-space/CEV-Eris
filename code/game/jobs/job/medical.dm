@@ -22,7 +22,7 @@
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/moebius_biolab_officer
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	pda = /obj/item/device/pda/heads/cmo
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	ear = /obj/item/device/radio/headset/heads/cmo
@@ -61,7 +61,7 @@
 	idtype = /obj/item/weapon/card/id/med
 
 	uniform = /obj/item/clothing/under/rank/medical
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
@@ -97,7 +97,7 @@
 
 
 	uniform = /obj/item/clothing/under/rank/chemist
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	pda = /obj/item/device/pda/chemist
 	ear = /obj/item/device/radio/headset/headset_med
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
@@ -131,7 +131,7 @@
 	uniform = /obj/item/clothing/under/rank/psych
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 
 	equip(var/mob/living/carbon/human/H)

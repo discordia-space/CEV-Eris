@@ -17,12 +17,11 @@
 	siemens_coefficient = 0.7
 	can_hold_knife = 1
 
-
-/obj/item/clothing/shoes/inspector
-	name = "boots"
+/obj/item/clothing/shoes/reinforced
+	name = "reinforced boots"
 	desc = "Slightly reinforced boots. Optimal for your journey into a wonderful world of maintenance."
-	icon_state = "inspector"
-	item_state = "inspector"
+	icon_state = "laceups"
+	item_state = "laceups"
 	force = 2
 	armor = list(melee = 10, bullet = 5, laser = 5, energy = 5, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
