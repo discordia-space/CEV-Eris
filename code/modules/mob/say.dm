@@ -4,21 +4,47 @@
 /mob/verb/whisper()
 	set name = "Whisper"
 	set category = "IC"
-	return
+
+
+/mob/verb/say_wrapper()
+	set name = "Say verb"
+	set category = "IC"
+
+	set_typing_indicator(TRUE)
+	hud_typing = TRUE
+	var/message = input("", "say (text)") as text
+	hud_typing = FALSE
+	set_typing_indicator(FALSE)
+	if(message)
+		say_verb(message)
+
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
-	set category = "IC"
+	set hidden = TRUE
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
 		return
-
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	usr.say(message)
+
+
+/mob/verb/me_wrapper()
+	set name = "Me verb"
+	set category = "IC"
+
+	set_typing_indicator(TRUE)
+	hud_typing = TRUE
+	var/message = input("", "me (text)") as text
+	hud_typing = FALSE
+	set_typing_indicator(FALSE)
+	if(message)
+		me_verb(message)
+
 
 /mob/verb/me_verb(message as text)
 	set name = "Me"
-	set category = "IC"
+	set hidden = TRUE
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
@@ -26,7 +52,7 @@
 
 	message = sanitize(message)
 
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	if(use_me)
 		usr.emote("me", usr.emote_type, message)
 	else
@@ -51,11 +77,11 @@
 /mob/proc/say_understands(var/mob/other, var/datum/language/speaking = null)
 
 	if(src.stat == DEAD)
-		return 1
+		return TRUE
 
 	//Universal speak makes everything understandable, for obvious reasons.
 	else if(src.universal_speak || src.universal_understand)
-		return 1
+		return TRUE
 
 	//Languages are handled after.
 	if(!speaking)

@@ -1,14 +1,14 @@
 #define TYPING_INDICATOR_LIFETIME 30 * 10	//grace period after which typing indicator disappears regardless of text in chatbar
 
-mob/var/hud_typing = 0 //set when typing in an input window instead of chatline
-mob/var/typing
-mob/var/last_typed
-mob/var/last_typed_time
+/mob
+	var/hud_typing = FALSE //set when typing in an input window instead of chatline
+	var/typing
+	var/last_typed
+	var/last_typed_time
 
-mob/var/obj/effect/decal/typing_indicator
+	var/obj/effect/decal/typing_indicator
 
 /mob/proc/set_typing_indicator(var/state)
-
 	if(!typing_indicator)
 		typing_indicator = new
 		typing_indicator.icon = 'icons/mob/talk.dmi'
@@ -22,36 +22,12 @@ mob/var/obj/effect/decal/typing_indicator
 			if(state)
 				if(!typing)
 					overlays += typing_indicator
-					typing = 1
+					typing = TRUE
 			else
 				if(typing)
 					overlays -= typing_indicator
-					typing = 0
+					typing = FALSE
 			return state
-
-/mob/verb/say_wrapper()
-	set name = ".Say"
-	set hidden = 1
-
-	set_typing_indicator(1)
-	hud_typing = 1
-	var/message = input("","say (text)") as text
-	hud_typing = 0
-	set_typing_indicator(0)
-	if(message)
-		say_verb(message)
-
-/mob/verb/me_wrapper()
-	set name = ".Me"
-	set hidden = 1
-
-	set_typing_indicator(1)
-	hud_typing = 1
-	var/message = input("","me (text)") as text
-	hud_typing = 0
-	set_typing_indicator(0)
-	if(message)
-		me_verb(message)
 
 /mob/proc/handle_typing_indicator()
 	if(is_preference_enabled(/datum/client_preference/show_typing_indicator) && !hud_typing)
@@ -62,12 +38,12 @@ mob/var/obj/effect/decal/typing_indicator
 			last_typed_time = world.time
 
 		if (world.time > last_typed_time + TYPING_INDICATOR_LIFETIME)
-			set_typing_indicator(0)
+			set_typing_indicator(FALSE)
 			return
 		if(length(temp) > 5 && findtext(temp, "Say \"", 1, 7))
-			set_typing_indicator(1)
+			set_typing_indicator(TRUE)
 		else if(length(temp) > 3 && findtext(temp, "Me ", 1, 5))
-			set_typing_indicator(1)
+			set_typing_indicator(FALSE)
 
 		else
-			set_typing_indicator(0)
+			set_typing_indicator(TRUE)
