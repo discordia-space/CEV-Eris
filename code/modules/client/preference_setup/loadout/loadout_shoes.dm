@@ -31,11 +31,11 @@
 
 /datum/gear/shoes/lacey
 	display_name = "shoes, classy"
-	path = /obj/item/clothing/shoes/laceup
+	path = /obj/item/clothing/shoes/reinforced
 
 /datum/gear/shoes/dress
 	display_name = "shoes, dress"
-	path = /obj/item/clothing/shoes/laceup
+	path = /obj/item/clothing/shoes/reinforced
 
 /datum/gear/shoes/green
 	display_name = "shoes, green"
