@@ -448,11 +448,12 @@
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		user << SPAN_NOTICE("\The [src] is now set to [new_mode.name].")
 
-/obj/item/weapon/gun/proc/change_safety(mob/user)
+/obj/item/weapon/gun/proc/change_safety(mob/living/user, obj/item/I))
 	if(safety_module)
 		if(src == user.get_active_hand()) // returns the thing in our active hand
 			for(var/obj/item/gun_safety_module/M in safety_module)
-				if(!M.verification(user))
+				var/id_present = istype(I, /obj/item/weapon/card/id) ? I : null
+				if(!M.verification(id_present))
 					user << SPAN_WARNING(module.decline_message)
 					return
 
@@ -475,4 +476,4 @@
 		user << SPAN_WARNING("You can't do that right now!</span>")
 		return
 
-	change_safety(usr)
+	change_safety(user)
