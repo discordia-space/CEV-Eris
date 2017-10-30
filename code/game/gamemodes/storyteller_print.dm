@@ -16,8 +16,9 @@
 			if(L.len > 1)
 				text += "<br><b>The [fA.role_text_plural]:</b>"
 				for(var/datum/antagonist/A in antags_by_ids[a_id])
-					text += "  "+A.print_success()
+					text += A.print_success()
 			else
+				text += "<br><b>The [fA.role_text]:</b>"
 				text += fA.print_success()
 
 	if(current_factions.len)
