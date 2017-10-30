@@ -42,7 +42,7 @@
 				prob(2);/obj/item/weapon/cane,\
 				prob(1);/obj/item/weapon/cane/concealed,\
 				prob(2);/obj/item/weapon/staff/broom,\
-				prob(1);/obj/item/weapon/module/power_control,\
+				prob(1);/obj/item/weapon/circuitboard/apc,\
 				prob(1);/obj/item/weapon/shovel,\
 				prob(2);/obj/item/weapon/folder,\
 				prob(2);/obj/item/weapon/folder/blue,\

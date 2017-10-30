@@ -117,13 +117,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofuburger
 
-/datum/recipe/ghostburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/ectoplasm //where do you even find this stuff
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/ghostburger
-
 /datum/recipe/clownburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
