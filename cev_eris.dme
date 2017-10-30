@@ -1686,6 +1686,7 @@
 #include "code\modules\projectiles\effects.dm"
 #include "code\modules\projectiles\gun.dm"
 #include "code\modules\projectiles\projectile.dm"
+#include "code\modules\projectiles\safety_modules.dm"
 #include "code\modules\projectiles\ammunition\boxes.dm"
 #include "code\modules\projectiles\ammunition\bullets.dm"
 #include "code\modules\projectiles\guns\alien.dm"
