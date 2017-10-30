@@ -116,7 +116,7 @@
 /obj/item/clothing/head/HoS
 	name = "Ironhammer Commander Hat"
 	desc = "The hat of the Ironhammer Commander. For showing the officers who's in charge."
-	icon_state = "hoscap"
+	icon_state = "hoshat"
 	body_parts_covered = 0
 	siemens_coefficient = 0.8
 
