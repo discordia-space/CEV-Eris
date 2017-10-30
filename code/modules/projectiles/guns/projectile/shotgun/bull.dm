@@ -1,8 +1,8 @@
 /obj/item/weapon/gun/projectile/shotgun/bull
 	name = "FS SG \"Bull\""
-	desc = "A true classic."
+	desc = "A Frozen Star double-barreled pump action shotgun. Marvel of engineering, this gun  often use by police SWAT teams."
 	icon_state = "PeaceWalker"
-	item_state = "cshotgun"
+	item_state = "PW"
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = HOLD_CASINGS
 	max_shells = 6
@@ -76,7 +76,7 @@
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
 	ratio = round(ratio, 0.25) * 100
-	overlays += "[ratio]_shotgun"
+	overlays += "[ratio]_PW"
 
 
 /obj/item/weapon/gun/projectile/shotgun/bull/update_icon()

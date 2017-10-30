@@ -44,17 +44,17 @@
 
 /obj/item/clothing/gloves/thick/swat
 	desc = "These tactical gloves are somewhat fire and impact-resistant."
-	name = "SWAT Gloves"
-	icon_state = "black"
-	item_state = "swat_gl"
-	armor = list(melee = 80, bullet = 60, laser = 60,energy = 25, bomb = 50, bio = 10, rad = 0)
+	name = "IHS combat gloves"
+	icon_state = "ihscombat"
+	item_state = "ihscombat"
+	armor = list(melee = 40, bullet = 30, laser = 30,energy = 25, bomb = 40, bio = 10, rad = 0)
 
 /obj/item/clothing/gloves/thick/combat //Combined effect of SWAT gloves and insulated gloves
 	desc = "These tactical gloves are somewhat fire and impact resistant."
 	name = "combat gloves"
 	icon_state = "black"
 	item_state = "swat_gl"
-	armor = list(melee = 80, bullet = 60, laser = 60,energy = 25, bomb = 50, bio = 10, rad = 0)
+	armor = list(melee = 40, bullet = 30, laser = 30,energy = 25, bomb = 40, bio = 10, rad = 0)
 	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/latex

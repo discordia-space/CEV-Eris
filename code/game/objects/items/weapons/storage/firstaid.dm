@@ -131,6 +131,20 @@
 /obj/item/weapon/storage/firstaid/surgery
 	name = "surgery kit"
 	desc = "Contains tools for surgery. Has precise foam fitting for safe transport."
+	icon_state = "surgeon"
+	item_state = "firstaid-surgeon"
+	can_hold = list(
+		/obj/item/weapon/bonesetter,
+		/obj/item/weapon/cautery,
+		/obj/item/weapon/circular_saw,
+		/obj/item/weapon/hemostat,
+		/obj/item/weapon/retractor,
+		/obj/item/weapon/scalpel,
+		/obj/item/weapon/surgicaldrill,
+		/obj/item/weapon/bonegel,
+		/obj/item/weapon/FixOVein,
+		/obj/item/stack/medical/advanced/bruise_pack
+		)
 
 /obj/item/weapon/storage/firstaid/surgery/New()
 	..()

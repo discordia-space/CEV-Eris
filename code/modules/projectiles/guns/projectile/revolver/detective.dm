@@ -2,6 +2,7 @@
 	name = "FS REV .38 \"Havelock\""
 	desc = "A cheap Frozen Star knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
 	icon_state = "detective"
+	drawChargeMeter = FALSE
 	max_shells = 6
 	caliber = "38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)

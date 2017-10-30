@@ -21,11 +21,15 @@
 		/obj/item/weapon/cell/large = 3
 	)
 
-/obj/item/weapon/circuitboard/ghettosmes
-	name = T_BOARD("makeshift PSU")
-	desc = "An APC circuit repurposed into some power storage device controller"
+/obj/item/weapon/circuitboard/apc
+	name = "power control module"
+	icon = 'icons/obj/module.dmi'
+	icon_state = "power_mod"
+	desc = "Heavy-duty switching circuits for power control."
+	flags = CONDUCT
 	build_path = /obj/machinery/power/smes/batteryrack/makeshift
 	board_type = "machine"
 	req_components = list(
 		/obj/item/weapon/cell/large = 3
 	)
+	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
