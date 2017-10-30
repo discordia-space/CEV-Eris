@@ -15,6 +15,17 @@
 /*
  * Soap
  */
+/obj/item/weapon/soap
+	name = "soap"
+	desc = "A cheap bar of soap. Doesn't smell."
+	gender = PLURAL
+	icon = 'icons/obj/items.dmi'
+	icon_state = "soap"
+	w_class = ITEM_SIZE_SMALL
+	throwforce = 0
+	throw_speed = 4
+	throw_range = 20
+
 /obj/item/weapon/soap/New()
 	..()
 	create_reagents(5)
@@ -51,15 +62,45 @@
 
 //attack_as_weapon
 /obj/item/weapon/soap/attack(mob/living/target, mob/living/user, var/target_zone)
-	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_sel && user.targeted_organ == "mouth" )
-		user.visible_message(SPAN_DANGER("\The [user] washes \the [target]'s mouth out with soap!"))
+	if(ishuman(target) && ishuman(user) && !target.stat && user.targeted_organ == "mouth")
+		user.visible_message(
+			SPAN_DANGER("\The [user] washes \the [target]'s mouth out with soap!")
+		)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //prevent spam
 		return
 	..()
 
+/obj/item/weapon/soap/nanotrasen
+	desc = "A NanoTrasen-brand bar of soap. Smells of plasma."
+	icon_state = "soapnt"
+
+/obj/item/weapon/soap/deluxe
+	icon_state = "soapdeluxe"
+
+/obj/item/weapon/soap/deluxe/New()
+	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
+	..()
+
+/obj/item/weapon/soap/syndie
+	desc = "An untrustworthy bar of soap. Smells of fear."
+	icon_state = "soapsyndie"
+
 /*
  * Bike Horns
  */
+/obj/item/weapon/bikehorn
+	name = "bike horn"
+	desc = "A horn off of a bicycle."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "bike_horn"
+	item_state = "bike_horn"
+	throwforce = WEAPON_FORCE_HARMLESS
+	w_class = ITEM_SIZE_SMALL
+	throw_speed = 3
+	throw_range = 15
+	attack_verb = list("HONKED")
+	var/spam_flag = 0
+
 /obj/item/weapon/bikehorn/attack_self(mob/user as mob)
 	if (spam_flag == 0)
 		spam_flag = 1
@@ -67,4 +108,3 @@
 		src.add_fingerprint(user)
 		spawn(20)
 			spam_flag = 0
-	return

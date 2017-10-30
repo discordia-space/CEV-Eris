@@ -787,19 +787,6 @@
 		reagents.add_reagent("alkysine", 6)
 		bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/ghostburger
-	name = "Ghost Burger"
-	desc = "Spooky! It doesn't look very filling."
-	icon_state = "ghostburger"
-	filling_color = "#FFF2FF"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("buns" = 3, "spookiness" = 3)
-	nutriment_amt = 2
-	New()
-		..()
-		bitesize = 2
-
-
 /obj/item/weapon/reagent_containers/food/snacks/human
 	var/hname = ""
 	var/job = null
