@@ -30,22 +30,9 @@
 	//For MAGAZINE guns
 	var/magazine_type = null	//the type of magazine that the gun comes preloaded with
 	var/obj/item/ammo_magazine/ammo_magazine = null //stored magazine
-	var/auto_eject = 0			//if the magazine should automatically eject itself when empty.
+	var/auto_eject = FALSE			//if the magazine should automatically eject itself when empty.
 	var/auto_eject_sound = null
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
-	//TODO generalize ammo icon states for guns
-	//var/magazine_states = 0
-	//var/list/icon_keys = list()		//keys
-	//var/list/ammo_states = list()	//values
-
-/obj/item/weapon/gun/projectile/New()
-	..()
-	if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
-		for(var/i in 1 to max_shells)
-			loaded += new ammo_type(src)
-	if(ispath(magazine_type) && (load_method & MAGAZINE))
-		ammo_magazine = new magazine_type(src)
-	update_icon()
 
 /obj/item/weapon/gun/projectile/proc/cock_gun(mob/user)
 	set waitfor = 0

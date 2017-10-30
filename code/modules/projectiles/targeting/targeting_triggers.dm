@@ -16,9 +16,6 @@
 	if(!owner.canClick())
 		return
 	owner.setClickCooldown(5) // Spam prevention, essentially.
-	if(owner.a_intent == I_HELP)
-		owner << SPAN_WARNING("You refrain from firing \the [aiming_with] as your intent is set to help.")
-		return
 	owner.visible_message(SPAN_DANGER("\The [owner] pulls the trigger reflexively!"))
 	var/obj/item/weapon/gun/G = aiming_with
 	if(istype(G))
