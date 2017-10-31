@@ -42,7 +42,7 @@
 	// Diagonal case
 	var/in_dir = get_dir(T0, src)	// eg. northwest (1+8)
 	var/d1 = in_dir&(EAST|WEST)		// eg west		(1+8)&(8) = 8
-	var/d2 = in_dir&(NORTH|SOUT)	// eg north		(1+8) - 8 = 1
+	var/d2 = in_dir&(NORTH|SOUTH)	// eg north		(1+8) - 8 = 1
 
 	for(var/d in list(d1, d2))
 		if(!T0.ClickCross(d, TRUE))
