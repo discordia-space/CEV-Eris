@@ -32,24 +32,7 @@ var/datum/controller/vote/vote = new()
 		active_vote.process()
 
 		if(get_vote_time() >= active_vote.time)
-			var/list/winners = active_vote.get_winners()
-			var/text = ""
-			if(winners.len)
-				if(winners.len > 1)
-					text += "<b>Vote Tied Between:</b><br>"
-					for(var/option in winners)
-						text += "\t[option]<br>"
-
-				var/datum/vote_choice/choice = pick(winners)
-				text += "<b>Vote Result: [choice.text]</b>"
-				choice.on_win()
-
-			else
-				text += "<b>Vote Result: Inconclusive - No Votes!</b>"
-
-			log_vote(text)
-			world << "<font color='purple'>[text]</font>"
-
+			active_vote.check_winners()
 			stop_vote()
 
 		update_voters()
@@ -69,7 +52,9 @@ var/datum/controller/vote/vote = new()
 	if(!poll || !poll.can_start())
 		return FALSE
 
-	poll.start()
+	if(!poll.start())
+		return
+
 	vote_start_time = world.time
 
 	for(var/client/C in voters)
@@ -99,8 +84,10 @@ var/datum/controller/vote/vote = new()
 	if(!C)
 		return
 	var/data = "<html><head><title>Voting Panel</title></head><body>"
-	data += "(<a href='?src=\ref[src];debug=1'>DEBUG</a>)"
-	var/admin = check_rights(R_ADMIN)
+
+	var/admin = FALSE
+	if(C.mob)
+		admin = check_rights(user = C.mob)
 
 	voters |= C
 
@@ -183,7 +170,7 @@ var/datum/controller/vote/vote = new()
 			start_vote(poll.type)
 
 	if(href_list["cancel"])
-		if(active_vote && check_rights(R_ADMIN))
+		if(active_vote && check_rights())
 			stop_vote()
 
 	if(href_list["debug"])
@@ -220,13 +207,11 @@ var/datum/controller/vote/vote = new()
 	for(var/ch in choice_types)
 		choices.Add(new ch)
 
-/datum/poll/proc/is_non_voters(var/datum/vote_choice/C)
-	return FALSE
-
 /datum/poll/proc/start()
 	init_choices()
 	if(!choices.len)
-		return
+		return FALSE
+
 
 	if(usr && usr.client)
 		initiator = usr.client.key
@@ -235,6 +220,7 @@ var/datum/controller/vote/vote = new()
 
 	on_start()
 	vote.active_vote = src
+	return TRUE
 
 /datum/poll/proc/can_start()
 	return TRUE
@@ -276,7 +262,8 @@ var/datum/controller/vote/vote = new()
 			if(can_revote || !vtd)
 				choice.voters.Add(key)
 
-/datum/poll/proc/get_winners()
+/datum/poll/proc/check_winners()
+
 	var/list/choice_votes = list()
 	var/list/all_voters = list()
 
@@ -284,14 +271,8 @@ var/datum/controller/vote/vote = new()
 		all_voters |= V.voters
 		choice_votes[V] = V.voters.len
 
-	var/non_voters = clients.len - all_voters.len
+	var/max_votes = 1
 
-	for(var/datum/vote_choice/V in choice_votes)
-		if(is_non_voters(V))
-			choice_votes[V] += non_voters
-			break
-
-	var/max_votes = 0
 	for(var/datum/vote_choice/V in choice_votes)
 		max_votes = max(max_votes, choice_votes[V])
 
@@ -300,7 +281,29 @@ var/datum/controller/vote/vote = new()
 		if(V.voters.len == max_votes)
 			winners.Add(V)
 
-	return winners
+	var/non_voters = clients.len - all_voters.len
+	var/text = "<b>Votes:</b><br>"
+	var/datum/vote_choice/winner = null
+	if(winners.len)
+		winner = pick(winners)
+
+	for(var/datum/vote_choice/ch in choice_votes)
+		if(ch == winner)
+			text += "<b>"
+		text += "\t[ch.text] - [ch.voters.len] vote[(ch.voters.len>1)?"s":""].<br>"
+		if(ch == winner)
+			text += "</b>"
+
+	if(!winner)
+		text += "\t<b>Did not vote - [non_voters]</b><br>"
+	else
+		text += "\tDid not vote - [non_voters]<br>"
+		winner.on_win()
+
+
+	log_vote(text)
+	world << "<font color='purple'>[text]</font>"
+
 
 
 /datum/vote_choice
@@ -339,11 +342,6 @@ var/datum/controller/vote/vote = new()
 
 	see_votes = TRUE
 
-/datum/poll/restart/is_non_voters(var/datum/vote_choice/C)
-	if(istype(C,/datum/vote_choice/countinue_round))
-		return TRUE
-	return FALSE
-
 /datum/vote_choice/restart
 	text = "Restart Round"
 
@@ -372,11 +370,6 @@ var/datum/controller/vote/vote = new()
 
 	see_votes = TRUE
 
-/datum/poll/storyteller/is_non_voters(var/datum/vote_choice/storyteller/C)
-	if(istype(C) && C.new_storyteller == master_storyteller)
-		return TRUE
-	return FALSE
-
 /datum/poll/storyteller/init_choices()
 	for(var/ch in storyteller_cache)
 		var/datum/vote_choice/storyteller/CS = new
@@ -397,12 +390,12 @@ var/datum/controller/vote/vote = new()
 
 /datum/poll/storyteller/on_start()
 	round_progressing = FALSE
-	world << "<font color='red'><b>Round start has been delayed.</b></font>"
+	world << "<b>Game start has been delayed.</b>"
 
 /datum/poll/storyteller/on_end()
 	ticker.story_vote_ended = TRUE
 	round_progressing = TRUE
-	world << "<font color='red'><b>The round will start soon.</b></font>"
+	world << "<b>The game will start soon.</b>"
 
 /datum/vote_choice/storyteller
 	text = "You shouldn't see this."
