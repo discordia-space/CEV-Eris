@@ -40,18 +40,18 @@
 		return T0.ClickCross(get_dir(T0, src), TRUE) && ClickCross(get_dir(src, T0), TRUE, target)
 
 	// Diagonal case
-	var/in_dir = get_dir(neighbor, src) // eg. northwest (1+8)
-	var/d1 = in_dir&(in_dir-1)		// eg west		(1+8)&(8) = 8
-	var/d2 = in_dir - d1			// eg north		(1+8) - 8 = 1
+	var/in_dir = get_dir(T0, src)	// eg. northwest (1+8)
+	var/d1 = in_dir&(EAST|WEST)		// eg west		(1+8)&(8) = 8
+	var/d2 = in_dir&(NORTH|SOUT)	// eg north		(1+8) - 8 = 1
 
 	for(var/d in list(d1, d2))
-		if(!T0.ClickCross(d, border_only = 1))
+		if(!T0.ClickCross(d, TRUE))
 			continue // could not leave T0 in that direction
 
 		var/turf/T1 = get_step(T0, d)
 		if(!T1 || T1.density)
 			continue
-		if(!T1.ClickCross(get_dir(T1, T0), FALSE) || T1.ClickCross(get_dir(T1, src), FALSE))
+		if(!T1.ClickCross(get_dir(T1, T0), FALSE) || !T1.ClickCross(get_dir(T1, src), FALSE))
 			continue // couldn't enter or couldn't leave T1
 
 		if(!src.ClickCross(get_dir(src, T1), TRUE, target))
@@ -69,7 +69,7 @@ Quick adjacency (to turf):
 /turf/proc/AdjacentQuick(var/atom/neighbor, var/atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
-		return 1
+		return TRUE
 
 	if(get_dist(src, T0) > 1 || (src.z != T0.z))
 		return FALSE
@@ -116,9 +116,9 @@ Quick adjacency (to turf):
 /obj/machinery/door/Adjacent(var/atom/neighbor)
 	var/obj/machinery/door/firedoor/border_only/BOD = locate() in loc
 	if(BOD)
-		BOD.throwpass = 1 // allow click to pass
+		BOD.throwpass = TRUE // allow click to pass
 		. = ..()
-		BOD.throwpass = 0
+		BOD.throwpass = FALSE
 		return .
 	return ..()
 
