@@ -8,7 +8,7 @@
 	layer = 3.2//Just above doors
 	anchored = 1.0
 	flags = ON_BORDER
-	var/maxhealth = 14.0
+	var/maxhealth = 40
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2.0 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/health
@@ -426,7 +426,7 @@
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 100
 	damage_per_fire_tick = 2.0
-	maxhealth = 80.0
+	maxhealth = 60
 
 /obj/structure/window/basic/full
 	dir = SOUTH|EAST
@@ -441,7 +441,7 @@
 	glasstype = /obj/item/stack/material/glass/plasmaglass
 	maximal_heat = T0C + 2000
 	damage_per_fire_tick = 1.0
-	maxhealth = 400.0
+	maxhealth = 300
 
 /obj/structure/window/plasmabasic/full
 	dir = SOUTH|EAST
@@ -452,7 +452,7 @@
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "rwindow"
 	basestate = "rwindow"
-	maxhealth = 400.0
+	maxhealth = 200
 	reinf = 1
 	maximal_heat = T0C + 750
 	damage_per_fire_tick = 2.0
@@ -478,7 +478,7 @@
 	glasstype = /obj/item/stack/material/glass/plasmarglass
 	maximal_heat = T0C + 9000
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
-	maxhealth = 800.0
+	maxhealth = 600
 
 /obj/structure/window/reinforced/plasma/full
 	dir = SOUTH|EAST
@@ -496,7 +496,7 @@
 	desc = "It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
 	icon_state = "fwindow"
 	basestate = "fwindow"
-	maxhealth = 400
+	maxhealth = 250
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
