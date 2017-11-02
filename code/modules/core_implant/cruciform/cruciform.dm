@@ -58,7 +58,7 @@ var/list/christians = list()
 	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
 		for(var/mob/M in player_list)
 			if(M.ckey == data.ckey)
-				if(1)	//angel check here
+				if(!isghost(M) && !isangel(M))
 					return FALSE
 		var/datum/mind/MN = data.mind
 		if(!istype(MN, /datum/mind))
