@@ -165,3 +165,23 @@
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/surgical_apron
+	name = "surgical apron"
+	desc = "Excelent blood collector."
+	icon_state = "surgeon"
+	item_state = "surgeon"
+	blood_overlay_type = "armor"
+	allowed = list(
+		/obj/item/weapon/bonesetter,
+		/obj/item/weapon/cautery,
+		/obj/item/weapon/circular_saw,
+		/obj/item/weapon/hemostat,
+		/obj/item/weapon/retractor,
+		/obj/item/weapon/scalpel,
+		/obj/item/weapon/surgicaldrill,
+		/obj/item/weapon/bonegel,
+		/obj/item/weapon/FixOVein,
+		/obj/item/stack/medical/advanced/bruise_pack
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
