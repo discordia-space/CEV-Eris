@@ -96,6 +96,7 @@
 		new /obj/item/weapon/storage/belt/medical/emt(src)
 		new /obj/item/weapon/storage/belt/medical/(src)
 		new /obj/item/weapon/storage/belt/medical/(src)
+		new /obj/item/clothing/suit/storage/surgical_apron(src)
 		return
 
 
