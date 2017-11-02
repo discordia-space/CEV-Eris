@@ -31,9 +31,10 @@
 #define DNA_UI_EYES_G      12
 #define DNA_UI_EYES_B      13
 #define DNA_UI_GENDER      14
-#define DNA_UI_BEARD_STYLE 15
-#define DNA_UI_HAIR_STYLE  16
-#define DNA_UI_LENGTH      16 // Update this when you add something, or you WILL break shit.
+#define DNA_UI_BODYBUILD   15
+#define DNA_UI_BEARD_STYLE 16
+#define DNA_UI_HAIR_STYLE  17
+#define DNA_UI_LENGTH      17 // Update this when you add something, or you WILL break shit.
 
 #define DNA_SE_LENGTH 27
 // For later:
@@ -148,6 +149,13 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_SKIN_TONE, 35-character.s_tone, 220,    1) // Value can be negative.
 
 	SetUIState(DNA_UI_GENDER,         character.gender!=MALE,        1)
+
+	var/list/body_builds = male_body_builds
+	if(character.gender == FEMALE)
+		body_builds = female_body_builds
+
+	var/bodybuildind = body_builds.Find(character.body_build.name)
+	SetUIValueRange(DNA_UI_BODYBUILD, bodybuildind, body_builds.len, 1)
 
 	SetUIValueRange(DNA_UI_HAIR_STYLE,  hair,  hair_styles_list.len,       1)
 	SetUIValueRange(DNA_UI_BEARD_STYLE, beard, facial_hair_styles_list.len,1)
