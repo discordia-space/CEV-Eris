@@ -175,7 +175,7 @@
 	icon_state_closed = "pdoor1"
 	icon_state_closing = "pdoorc1"
 	icon_state = "pdoor1"
-	maxhealth = 600
+	maxhealth = 400
 	block_air_zones = 1
 
 /obj/machinery/door/blast/regular/open
