@@ -230,9 +230,9 @@
 		if(!allow_upgrade)
 			return
 		if(!affecting.lying)
-			assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively (now hands)!"))
+			assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively!"))
 		else
-			assailant.visible_message(SPAN_WARNING("[assailant] pins [affecting] down to the ground (now hands)!"))
+			assailant.visible_message(SPAN_WARNING("[assailant] pins [affecting] down to the ground!"))
 			apply_pinning(affecting, assailant)
 
 		state = GRAB_AGGRESSIVE
@@ -243,7 +243,7 @@
 			assailant << SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens.")
 			return
 
-		assailant.visible_message(SPAN_WARNING("[assailant] has reinforced \his grip on [affecting] (now neck)!"))
+		assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] neck!"))
 		state = GRAB_NECK
 		icon_state = "grabbed+1"
 		assailant.set_dir(get_dir(assailant, affecting))
