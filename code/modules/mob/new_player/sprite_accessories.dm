@@ -126,7 +126,7 @@
 
 /datum/sprite_accessory/hair/bowl2
 	name = "Bowl 2"
-	con_state = "bowlcut2"
+	icon_state = "bowlcut2"
 	gender = MALE
 
 /datum/sprite_accessory/hair/braid
