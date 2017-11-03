@@ -25,7 +25,7 @@
 /obj/machinery/gibber/autogibber/New()
 	..()
 	spawn()
-		var/obj/effect/landmark/machinery/input/input = locate() in orange(1, src)
+		var/obj/landmark/machinery/input/input = locate() in orange(1, src)
 		if(input)
 			input_dir = get_dir(src, input)
 		else
@@ -46,7 +46,7 @@
 	..()
 	update_icon()
 	spawn()
-		var/obj/effect/landmark/machinery/output/output = locate() in orange(1, src)
+		var/obj/landmark/machinery/output/output = locate() in orange(1, src)
 		if(output)
 			gib_throw_dir = get_dir(src, output)
 

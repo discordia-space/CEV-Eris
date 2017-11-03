@@ -46,7 +46,7 @@
 
 		var/obj/L = null
 
-		for(var/obj/effect/landmark/sloc in landmarks_list)
+		for(var/obj/landmark/sloc in landmarks_list)
 			if(sloc.name != C.data) continue
 			if(locate(/mob/living) in sloc.loc) continue
 			L = sloc
@@ -56,7 +56,7 @@
 			L = locate("landmark*[C.data]") // use old stype
 
 
-		if(istype(L, /obj/effect/landmark/) && istype(L.loc, /turf))
+		if(istype(L, /obj/landmark/) && istype(L.loc, /turf))
 			usr << "You insert the coordinates into the machine."
 			usr << "A message flashes across the screen reminding the traveller that the nuclear authentication disk is to remain on the station at all times."
 			user.drop_item()

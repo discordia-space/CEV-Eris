@@ -4,7 +4,7 @@
 
 //To do: Allow corpses to appear mangled, bloody, etc. Allow customizing the bodies appearance (they're all bald and white right now).
 
-/obj/effect/landmark/corpse
+/obj/landmark/corpse
 	name = "Unknown"
 	icon_state = "player-black"
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
@@ -25,10 +25,10 @@
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/species = "Human"
 
-/obj/effect/landmark/corpse/initialize()
+/obj/landmark/corpse/initialize()
 	createCorpse()
 
-/obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
+/obj/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	M.set_species(species)
 	M.real_name = src.name
@@ -84,7 +84,7 @@
 
 
 
-/obj/effect/landmark/corpse/syndicatesoldier
+/obj/landmark/corpse/syndicatesoldier
 	name = "Syndicate Operative"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/armor/vest
@@ -100,7 +100,7 @@
 
 
 
-/obj/effect/landmark/corpse/syndicatecommando
+/obj/landmark/corpse/syndicatecommando
 	name = "Syndicate Commando"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/space/void/merc
@@ -119,28 +119,28 @@
 
 ///////////Civilians//////////////////////
 
-/obj/effect/landmark/corpse/chef
+/obj/landmark/corpse/chef
 	name = "Chef"
 	corpseid = 1
 	corpseidjob = "Chef"
 
 
-/obj/effect/landmark/corpse/doctor
+/obj/landmark/corpse/doctor
 	name = "Medical doctor"
 	corpseid = 1
 	corpseidjob = "Medical doctor"
 
-/obj/effect/landmark/corpse/engineer
+/obj/landmark/corpse/engineer
 	name = "Technomancer"
 	corpseid = 1
 	corpseidjob = "Technomancer"
 
-/obj/effect/landmark/corpse/engineer/rig
+/obj/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/engineering
 
-/obj/effect/landmark/corpse/clown
+/obj/landmark/corpse/clown
 	name = "Clown"
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
@@ -152,17 +152,17 @@
 	corpseidjob = "Clown"
 	//corpseidaccess = "Clown" //not exist
 
-/obj/effect/landmark/corpse/scientist
+/obj/landmark/corpse/scientist
 	name = "Scientist"
 	corpseid = 1
 	corpseidjob = "Scientist"
 
-/obj/effect/landmark/corpse/miner
+/obj/landmark/corpse/miner
 	name = "Guild Miner"
 	corpseid = 1
 	corpseidjob = "Guild Miner"
 
-/obj/effect/landmark/corpse/miner/rig
+/obj/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/mining
@@ -170,7 +170,7 @@
 
 /////////////////Officers//////////////////////
 
-/obj/effect/landmark/corpse/bridgeofficer
+/obj/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
 	corpseradio = /obj/item/device/radio/headset/heads/hop
 	//corpseuniform = /obj/item/clothing/under/rank/centcom_officer
@@ -181,7 +181,7 @@
 	corpseidjob = "Bridge Officer"
 	corpseidaccess = "Captain"
 
-/obj/effect/landmark/corpse/commander
+/obj/landmark/corpse/commander
 	name = "Commander"
 	//corpseuniform = /obj/item/clothing/under/rank/centcom_captain
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
@@ -199,7 +199,7 @@
 
 /////////////////Enemies//////////////////////
 
-/obj/effect/landmark/corpse/pirate
+/obj/landmark/corpse/pirate
 	name = "Pirate"
 	corpseuniform = /obj/item/clothing/under/pirate
 	corpseshoes = /obj/item/clothing/shoes/jackboots
@@ -208,18 +208,18 @@
 
 
 
-/obj/effect/landmark/corpse/pirate/ranged
+/obj/landmark/corpse/pirate/ranged
 	name = "Pirate Gunner"
 	corpsesuit = /obj/item/clothing/suit/pirate
 	corpsehelmet = /obj/item/clothing/head/pirate
 
 
 
-/obj/effect/landmark/corpse/russian
+/obj/landmark/corpse/russian
 	name = "Russian"
 	corpseuniform = /obj/item/clothing/under/soviet
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsehelmet = /obj/item/clothing/head/bearpelt
 
-/obj/effect/landmark/corpse/russian/ranged
+/obj/landmark/corpse/russian/ranged
 	corpsehelmet = /obj/item/clothing/head/ushanka

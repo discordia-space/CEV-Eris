@@ -35,7 +35,7 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/obj/effect/landmark/start/rd
+/obj/landmark/start/rd
 	name = "Moebius Expedition Overseer"
 	icon_state = "player-purple-officer"
 	job = /datum/job/rd
@@ -69,7 +69,7 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/obj/effect/landmark/start/scientist
+/obj/landmark/start/scientist
 	name = "Moebius Scientist"
 	icon_state = "player-purple"
 	job = /datum/job/scientist
@@ -98,7 +98,7 @@
 	hand = /obj/item/weapon/storage/toolbox/mechanical
 	shoes = /obj/item/clothing/shoes/jackboots
 
-/obj/effect/landmark/start/roboticist
+/obj/landmark/start/roboticist
 	name = "Moebius Roboticist"
 	icon_state = "player-purple"
 	job = /datum/job/roboticist

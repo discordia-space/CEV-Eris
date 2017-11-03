@@ -112,10 +112,10 @@
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
-			var/obj/O = locate("landmark*observer-spawn")
+			var/obj/O = locate("observer-spawn")
 			if(istype(O))
 				src << "<span class='notice'>You are observer now.</span>"
-				observer.loc = O.loc
+				observer.forceMove(O.loc)
 			else
 				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.

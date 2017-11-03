@@ -38,7 +38,7 @@
 			new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
 		return 1
 
-/obj/effect/landmark/start/bartender
+/obj/landmark/start/bartender
 	name = "Bartender"
 	icon_state = "player-grey"
 	job = /datum/job/bartender
@@ -66,7 +66,7 @@
 	suit = /obj/item/clothing/suit/chef
 	ear = /obj/item/device/radio/headset/headset_service
 
-/obj/effect/landmark/start/chef
+/obj/landmark/start/chef
 	name = "Chef"
 	icon_state = "player-grey"
 	job = /datum/job/chef
@@ -96,7 +96,7 @@
 		/obj/item/device/analyzer/plant_analyzer
 		)
 
-/obj/effect/landmark/start/hydro
+/obj/landmark/start/hydro
 	name = "Gardener"
 	icon_state = "player-grey"
 	job = /datum/job/hydro
@@ -141,7 +141,7 @@
 		H.mutations.Add(CLUMSY)
 		return 1
 
-/obj/effect/landmark/start/actor
+/obj/landmark/start/actor
 	name = "Actor"
 	icon_state = "player-grey"
 	job = /datum/job/actor
@@ -164,7 +164,7 @@
 	pda = /obj/item/device/pda/janitor
 	ear = /obj/item/device/radio/headset/headset_service
 
-/obj/effect/landmark/start/janitor
+/obj/landmark/start/janitor
 	name = "Janitor"
 	icon_state = "player-grey"
 	job = /datum/job/janitor

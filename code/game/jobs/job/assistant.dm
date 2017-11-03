@@ -20,7 +20,7 @@
 	else
 		return list()
 
-/obj/effect/landmark/start/assistant
+/obj/landmark/start/assistant
 	name = "Assistant"
 	icon_state = "player-grey"
 	job = /datum/job/assistant

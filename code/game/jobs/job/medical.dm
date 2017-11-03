@@ -39,7 +39,7 @@
 		H.equip_to_slot_or_del(new /obj/item/device/lighting/toggleable/flashlight/pen(H), slot_s_store)
 		return 1
 
-/obj/effect/landmark/start/cmo
+/obj/landmark/start/cmo
 	name = "Moebius Biolab Officer"
 	icon_state = "player-green-officer"
 	job = /datum/job/cmo
@@ -73,7 +73,7 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/obj/effect/landmark/start/doctor
+/obj/landmark/start/doctor
 	name = "Moebius Doctor"
 	icon_state = "player-green"
 	job = /datum/job/doctor
@@ -108,7 +108,7 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/obj/effect/landmark/start/chemist
+/obj/landmark/start/chemist
 	name = "Moebius Chemist"
 	icon_state = "player-green"
 	job = /datum/job/chemist
@@ -138,7 +138,7 @@
 		if(!H)	return 0
 		return ..()
 
-/obj/effect/landmark/start/psychiatrist
+/obj/landmark/start/psychiatrist
 	name = "Moebius Psychiatrist"
 	icon_state = "player-green"
 	job = /datum/job/psychiatrist
@@ -170,7 +170,7 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/obj/effect/landmark/start/paramedic
+/obj/landmark/start/paramedic
 	name = "Moebius Paramedic"
 	icon_state = "player-green"
 	job = /datum/job/paramedic

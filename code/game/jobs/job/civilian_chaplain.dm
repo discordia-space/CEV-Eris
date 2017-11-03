@@ -15,7 +15,7 @@
 	uniform = /obj/item/clothing/under/rank/chaplain
 	pda = /obj/item/device/pda/chaplain
 
-/obj/effect/landmark/start/chaplain
+/obj/landmark/start/chaplain
 	name = "Cyberchristian Preacher"
 	icon_state = "player-black"
 	job = /datum/job/chaplain
