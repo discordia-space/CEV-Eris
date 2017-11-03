@@ -45,6 +45,12 @@
 		/obj/item/weapon/storage/backpack/satchel
 	)
 
+/obj/landmark/start/ihc
+	name = "Ironhammer Commander"
+	icon_state = "player-blue-officer"
+	job = /datum/job/ihc
+
+
 
 /datum/job/gunserg
 	title = "Ironhammer Gunnery Sergeant"
@@ -89,6 +95,11 @@
 		/obj/item/weapon/storage/backpack/satchel
 	)
 
+/obj/landmark/start/gunserg
+	name = "Ironhammer Gunnery Sergeant"
+	icon_state = "player-blue"
+	job = /datum/job/gunserg
+
 
 /datum/job/inspector
 	title = "Ironhammer Inspector"
@@ -126,6 +137,11 @@
 		/obj/item/weapon/gun/energy/gun/martin
 	)
 
+/obj/landmark/start/inspector
+	name = "Ironhammer Inspector"
+	icon_state = "player-blue"
+	job = /datum/job/inspector
+
 
 /datum/job/medspec
 	title = "Ironhammer Medical Specialist"
@@ -156,6 +172,11 @@
 		/obj/item/ammo_magazine/mg/cl32/rubber,\
 		/obj/item/weapon/storage/box/evidence,\
 	)
+
+/obj/landmark/start/medspec
+	name = "Ironhammer Medical Specialist"
+	icon_state = "player-blue"
+	job = /datum/job/medspec
 
 
 /datum/job/ihoper
@@ -202,3 +223,8 @@
 		/obj/item/weapon/storage/backpack/satchel_sec,\
 		/obj/item/weapon/storage/backpack/satchel
 	)
+
+/obj/landmark/start/ihoper
+	name = "Ironhammer Operative"
+	icon_state = "player-blue"
+	job = /datum/job/ihoper

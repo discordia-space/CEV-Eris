@@ -79,25 +79,20 @@
 
 	if(move)
 		var/obj/loc_landmark
-		for(var/obj/effect/landmark/start/sloc in landmarks_list)
-			if (sloc.name != "AI")
-				continue
+		for(var/obj/landmark/start/AI/sloc in landmarks_list)
 			if ((locate(/mob/living) in sloc.loc) || (locate(/obj/structure/AIcore) in sloc.loc))
 				continue
 			loc_landmark = sloc
 		if (!loc_landmark)
-			for(var/obj/effect/landmark/tripai in landmarks_list)
-				if (tripai.name == "tripai")
-					if((locate(/mob/living) in tripai.loc) || (locate(/obj/structure/AIcore) in tripai.loc))
-						continue
-					loc_landmark = tripai
+			for(var/obj/landmark/start/triai/tripai in landmarks_list)
+				if((locate(/mob/living) in tripai.loc) || (locate(/obj/structure/AIcore) in tripai.loc))
+					continue
+				loc_landmark = tripai
 		if (!loc_landmark)
 			O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
-			for(var/obj/effect/landmark/start/sloc in landmarks_list)
-				if (sloc.name == "AI")
-					loc_landmark = sloc
+			loc_landmark = locate(/obj/landmark/start/AI) in landmarks_list
 
-		O.loc = loc_landmark.loc
+		O.forceMove(loc_landmark.loc)
 
 	O.on_mob_init()
 

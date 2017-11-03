@@ -88,7 +88,7 @@ var/global/list/antag_weights = list()
 		if(A.outer)
 			outer_antag_types[A.id] = antag_type
 			var/list/start_locs = list()
-			for(var/obj/effect/landmark/L in landmarks_list)
+			for(var/obj/landmark/L in landmarks_list)
 				if(L.name == A.landmark_id)
 					start_locs |= get_turf(L)
 			antag_starting_locations[A.id] = start_locs

@@ -287,21 +287,21 @@
 			linkedholodeck.play_ambience(M)
 
 	spawn(30)
-		for(var/obj/effect/landmark/L in linkedholodeck)
+		for(var/obj/landmark/L in linkedholodeck)
 			if(L.name=="Atmospheric Test Start")
 				spawn(20)
 					var/turf/T = get_turf(L)
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+					var/datum/effect/effect/system/spark_spread/s = new
 					s.set_up(2, 1, T)
 					s.start()
 					if(T)
 						T.temperature = 5000
 						T.hotspot_expose(50000,50000,1)
-			if(L.name=="Holocarp Spawn")
+			if(istype(L, /obj/landmark/mob/holocarpspawn))
 				holographic_mobs += new /mob/living/simple_animal/hostile/carp/holodeck(L.loc)
 
-			if(L.name=="Holocarp Spawn Random")
-				if (prob(4)) //With 4 spawn points, carp should only appear 15% of the time.
+			if(istype(L, /obj/landmark/mob/holocarprandom))
+				if(prob(4)) //With 4 spawn points, carp should only appear 15% of the time.
 					holographic_mobs += new /mob/living/simple_animal/hostile/carp/holodeck(L.loc)
 
 		update_projections()

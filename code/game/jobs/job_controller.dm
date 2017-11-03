@@ -371,7 +371,7 @@ var/global/datum/controller/occupations/job_master
 		if(!joined_late)
 			var/obj/S = null
 			var/list/loc_list = new()
-			for(var/obj/effect/landmark/start/sloc in landmarks_list)
+			for(var/obj/landmark/start/sloc in landmarks_list)
 				if(sloc.name != rank)	continue
 				if(locate(/mob/living) in sloc.loc)	continue
 				loc_list += sloc
@@ -379,7 +379,7 @@ var/global/datum/controller/occupations/job_master
 				S = pick(loc_list)
 			else
 				S = locate("start*[rank]") // use old stype
-			if(istype(S, /obj/effect/landmark/start) && istype(S.loc, /turf))
+			if(istype(S, /obj/landmark/start) && istype(S.loc, /turf))
 				H.forceMove(S.loc)
 			else
 				LateSpawn(H.client, rank)

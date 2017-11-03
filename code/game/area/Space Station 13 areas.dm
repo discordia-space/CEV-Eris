@@ -73,7 +73,7 @@ var/list/ghostteleportlocs = list()
 /hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area/AR in world)
 		if(ghostteleportlocs.Find(AR.name)) continue
-		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
+		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/shuttle/specops/centcom))
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
@@ -444,28 +444,6 @@ area/space/atmosalert()
 	icon_state = "honk"
 	requires_power = 0
 
-/area/tdome
-	name = "\improper Thunderdome"
-	icon_state = "thunder"
-	requires_power = 0
-	dynamic_lighting = 0
-	sound_env = ARENA
-
-/area/tdome/tdome1
-	name = "\improper Thunderdome (Team 1)"
-	icon_state = "green"
-
-/area/tdome/tdome2
-	name = "\improper Thunderdome (Team 2)"
-	icon_state = "yellow"
-
-/area/tdome/tdomeadmin
-	name = "\improper Thunderdome (Admin.)"
-	icon_state = "purple"
-
-/area/tdome/tdomeobserve
-	name = "\improper Thunderdome (Observer.)"
-	icon_state = "purple"
 
 //ACTORS GUILD
 /area/acting
