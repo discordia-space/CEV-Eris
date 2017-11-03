@@ -35,6 +35,7 @@
 	anchored = TRUE
 	alpha = 124
 	invisibility = 101
+	delete_me = TRUE
 	var/datum/job/job = null
 
 /obj/landmark/start/New()
@@ -45,3 +46,4 @@
 /obj/landmark/start/triai
 	icon_state = "ai-green"
 	name = "tripai"
+	delete_me = FALSE
