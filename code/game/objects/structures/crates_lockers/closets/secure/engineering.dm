@@ -15,10 +15,6 @@
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_eng(src)
-		if (prob(70))
-			new /obj/item/clothing/accessory/storage/brown_vest(src)
-		else
-			new /obj/item/clothing/accessory/storage/webbing(src)
 		new /obj/item/blueprints(src)
 		new /obj/item/clothing/under/rank/exultant(src)
 		new /obj/item/clothing/head/hardhat/white(src)
@@ -112,10 +108,6 @@
 			new /obj/item/weapon/storage/backpack/industrial(src)
 		else
 			new /obj/item/weapon/storage/backpack/satchel_eng(src)
-		if (prob(70))
-			new /obj/item/clothing/accessory/storage/brown_vest(src)
-		else
-			new /obj/item/clothing/accessory/storage/webbing(src)
 		new /obj/item/weapon/storage/toolbox/mechanical(src)
 		new /obj/item/device/radio/headset/headset_eng(src)
 		new /obj/item/clothing/suit/storage/hazardvest(src)

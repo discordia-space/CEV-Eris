@@ -169,7 +169,6 @@
 		new /obj/item/weapon/cell/small/high(src)
 		new /obj/item/weapon/cell/small/high(src)
 		new /obj/item/weapon/gun/energy/gun/martin(src)
-		new /obj/item/clothing/accessory/storage/black_vest(src)
 		new /obj/item/weapon/gun/projectile/shotgun/bull(src)
 		new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
 		new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
