@@ -17,7 +17,6 @@ var/global/list/chemical_reactions_list				//list of all /datum/chemical_reactio
 var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
-var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 var/global/list/hearing_objects = list()			//list of all objects, that can hear mob say
@@ -53,7 +52,6 @@ var/global/list/hair_styles_female_list = list()
 var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
 var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
-var/global/list/skin_styles_female_list = list()		//unused
 
 var/datum/category_collection/underwear/global_underwear = new()
 
@@ -87,10 +85,6 @@ var/global/list/organ_tag_to_name = list(
 // Visual nets
 var/list/datum/visualnet/visual_nets = list()
 var/datum/visualnet/camera/cameranet = new()
-
-// Runes
-var/global/list/rune_list = new()
-var/global/list/escape_list = list()
 
 var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
 
@@ -232,7 +226,6 @@ var/global/list/string_slot_flags = list(
 				. += "    has: [t]\n"
 	world << .
 */
-
 var/global/list/admin_permissions = list(
 	"fun" = 0x1,
 	"server" = 0x2,

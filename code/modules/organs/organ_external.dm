@@ -52,7 +52,6 @@
 	var/open = 0
 	var/stage = 0
 	var/cavity = 0
-	var/sabotaged = 0 // If a prosthetic limb is emagged, it will detonate when it fails.
 	var/encased       // Needs to be opened with a saw to access the organs.
 	var/list/implants = list()
 	var/wound_update_accuracy = 1 	// how often wounds should be updated, a higher number means less often
