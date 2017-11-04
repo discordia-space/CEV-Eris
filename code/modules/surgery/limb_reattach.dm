@@ -113,8 +113,6 @@
 				var/new_limb_type = organ_data["path"]
 				var/obj/item/organ/external/new_limb = new new_limb_type(target)
 				new_limb.robotize(L.model_info)
-				if(L.sabotaged)
-					new_limb.sabotaged = 1
 
 		target.update_body()
 		target.updatehealth()
