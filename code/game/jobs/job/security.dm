@@ -162,7 +162,7 @@
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
-	gloves = /obj/item/clothing/gloves/thick/swat
+	gloves = /obj/item/clothing/gloves/thick
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
 	hand = /obj/item/weapon/storage/briefcase/crimekit
 	belt = /obj/item/weapon/gun/projectile/olivaw
