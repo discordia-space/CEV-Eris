@@ -96,6 +96,7 @@
 	src.min_broken_damage = desc.min_broken_damage
 	src.w_class = desc.w_class
 	src.parent_organ = desc.parent_organ
+	src.body_part = desc.body_part
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target
