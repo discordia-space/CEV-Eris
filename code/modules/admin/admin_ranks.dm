@@ -121,13 +121,12 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 			return
 
 /proc/load_admins()
-	var/DBQuery/query = dbcon.NewQuery("SELECT id, ckey, rank, flags FROM players WHERE rank != 'player'")
+	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, rank, flags FROM players WHERE rank != 'player'")
 	query.Execute()
 	while(query.NextRow())
-		var/id = query.item[1]
-		var/ckey = query.item[2]
-		var/rank = query.item[3]
-		var/flags = query.item[4]
+		var/ckey = query.item[1]
+		var/rank = query.item[2]
+		var/flags = query.item[3]
 
 		if(istext(flags))
 			flags = text2num(flags)
