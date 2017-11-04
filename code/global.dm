@@ -39,8 +39,7 @@ var/changelog_hash      = ""
 var/game_year           = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/round_progressing = 1
-var/master_mode       = "extended" // "extended"
-var/secret_force_mode = "secret"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
+var/master_storyteller       = "shitgenerator"
 
 var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 
@@ -51,25 +50,11 @@ var/list/lastsignalers = list() // Keeps last 100 signals here in format: "[src]
 var/list/lawchanges    = list() // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
 var/list/reg_dna       = list()
 
-var/list/monkeystart     = list()
 var/list/wizardstart     = list()
-var/list/newplayer_start = list()
 
 //Spawnpoints.
 var/list/latejoin         = list()
-var/list/latejoin_gateway = list()
-var/list/latejoin_cryo    = list()
 var/list/latejoin_cyborg  = list()
-
-var/list/prisonwarp         = list() // Prisoners go to these
-var/list/holdingfacility    = list() // Captured people go here
-var/list/xeno_spawn         = list() // Aliens spawn at at these.
-var/list/tdome1             = list()
-var/list/tdome2             = list()
-var/list/tdomeobserve       = list()
-var/list/tdomeadmin         = list()
-var/list/prisonsecuritywarp = list() // Prison security goes to these.
-var/list/prisonwarped       = list() // List of players already warped.
 
 var/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)
 var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
@@ -124,7 +109,7 @@ var/DBConnection/dbcon     = new() // Feedback    database (New database)
 /var/list/tagger_locations = list()
 
 // Added for Xenoarchaeology, might be useful for other stuff.
-var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+var/global/list/alphabet_uppercase = list("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
 
 
 // Used by robots and robot preferences.

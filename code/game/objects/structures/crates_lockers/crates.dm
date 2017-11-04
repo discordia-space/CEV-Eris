@@ -71,21 +71,21 @@
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(rigged)
-			user << "<span class='notice'>[src] is already rigged!</span>"
+			user << SPAN_NOTICE("[src] is already rigged!")
 			return
 		if (C.use(1))
-			user  << "<span class='notice'>You rig [src].</span>"
+			user  << SPAN_NOTICE("You rig [src].")
 			rigged = 1
 			return
 	else if(istype(W, /obj/item/device/radio/electropack))
 		if(rigged)
-			user  << "<span class='notice'>You attach [W] to [src].</span>"
+			user  << SPAN_NOTICE("You attach [W] to [src].")
 			user.drop_item()
 			W.forceMove(src)
 			return
 	else if(istype(W, /obj/item/weapon/wirecutters))
 		if(rigged)
-			user  << "<span class='notice'>You cut away the wiring.</span>"
+			user  << SPAN_NOTICE("You cut away the wiring.")
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			rigged = 0
 			return
@@ -144,15 +144,15 @@
 
 /obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
 	if(src.opened)
-		user << "<span class='notice'>Close the crate first.</span>"
+		user << SPAN_NOTICE("Close the crate first.")
 		return
 	if(src.broken)
-		user << "<span class='warning'>The crate appears to be broken.</span>"
+		user << SPAN_WARNING("The crate appears to be broken.")
 		return
 	if(src.allowed(user))
 		set_locked(!locked, user)
 	else
-		user << "<span class='notice'>Access Denied</span>"
+		user << SPAN_NOTICE("Access Denied")
 
 /obj/structure/closet/crate/secure/proc/set_locked(var/newlocked, mob/user = null)
 	if(locked == newlocked) return
@@ -176,7 +176,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		usr << SPAN_WARNING("This mob type can't use this verb.")
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -204,7 +204,7 @@
 		playsound(src.loc, "sparks", 60, 1)
 		src.locked = 0
 		src.broken = 1
-		user << "<span class='notice'>You unlock \the [src].</span>"
+		user << SPAN_NOTICE("You unlock \the [src].")
 		return 1
 
 /obj/structure/closet/crate/secure/emp_act(severity)
@@ -482,3 +482,58 @@
 //		new /obj/item/weapon/pestspray(src)
 //		new /obj/item/weapon/pestspray(src)
 //		new /obj/item/weapon/pestspray(src)
+
+
+
+/obj/structure/closet/crate/secure/weapon
+	desc = "A secure weapons crate."
+	name = "Weapons crate"
+	icon_state = "weaponcrate"
+	icon_opened = "weaponcrateopen"
+	icon_closed = "weaponcrate"
+
+/obj/structure/closet/crate/scicrate
+	desc = "A science crate."
+	name = "Science crate"
+	icon_state = "scicrate"
+	icon_opened = "scicrateopen"
+	icon_closed = "scicrate"
+
+/obj/structure/closet/crate/secure/scisecurecrate
+	desc = "A secure science crate."
+	name = "Science crate"
+	icon_state = "scisecurecrate"
+	icon_opened = "scisecurecrateopen"
+	icon_closed = "scisecurecrate"
+
+/obj/structure/closet/crate/secure/gear
+	desc = "A secure gear crate."
+	name = "Gear crate"
+	icon_state = "secgearcrate"
+	icon_opened = "secgearcrateopen"
+	icon_closed = "secgearcrate"
+
+/obj/structure/closet/crate/secure/hydrosec
+	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
+	name = "secure hydroponics crate"
+	icon_state = "hydrosecurecrate"
+	icon_opened = "hydrosecurecrateopen"
+	icon_closed = "hydrosecurecrate"
+
+/obj/structure/closet/crate/secure/woodseccrate
+	desc = "A secure wooden crate."
+	name = "Secure wooden crate"
+	icon_state = "woodseccrate"
+	icon_opened = "woodseccrateopen"
+	icon_closed = "woodseccrate"
+
+/obj/structure/closet/crate/secure/bin
+	desc = "A secure bin."
+	name = "Secure bin"
+	icon_state = "largebins"
+	icon_opened = "largebinsopen"
+	icon_closed = "largebins"
+	redlight = "largebinr"
+	greenlight = "largebing"
+	sparks = "largebinsparks"
+	emag = "largebinemag"

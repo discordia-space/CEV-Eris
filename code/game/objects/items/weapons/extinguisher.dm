@@ -7,7 +7,7 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_DANGEROUS
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	throw_speed = 2
 	throw_range = 10
 	force = WEAPON_FORCE_DANGEROUS
@@ -28,7 +28,7 @@
 	item_state = "miniFE"
 	hitsound = null	//it is much lighter, after all.
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_NORMAL
 	max_water = 150
 	spray_particles = 3
@@ -75,13 +75,13 @@
 	if( istype(target, /obj/structure/reagent_dispensers/watertank) && flag)
 		var/obj/o = target
 		var/amount = o.reagents.trans_to_obj(src, 50)
-		user << "<span class='notice'>You fill [src] with [amount] units of the contents of [target].</span>"
+		user << SPAN_NOTICE("You fill [src] with [amount] units of the contents of [target].")
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 
 	if (!safety)
 		if (src.reagents.total_volume < 1)
-			usr << "<span class='notice'>\The [src] is empty.</span>"
+			usr << SPAN_NOTICE("\The [src] is empty.")
 			return
 
 		if (world.time < src.last_use + 20)

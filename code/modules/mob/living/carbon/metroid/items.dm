@@ -4,7 +4,7 @@
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey slime extract"
 	force = 1.0
-	w_class = 1.0
+	w_class = ITEM_SIZE_TINY
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 6
@@ -16,10 +16,10 @@
 	attackby(obj/item/O as obj, mob/user as mob)
 		if(istype(O, /obj/item/weapon/slimesteroid2))
 			if(enhanced == 1)
-				user << "<span class='warning'> This extract has already been enhanced!</span>"
+				user << SPAN_WARNING(" This extract has already been enhanced!")
 				return ..()
 			if(Uses == 0)
-				user << "<span class='warning'> You can't enhance a used extract!</span>"
+				user << SPAN_WARNING(" You can't enhance a used extract!")
 				return ..()
 			user <<"You apply the enhancer. It now has triple the amount of uses."
 			Uses = 3
@@ -129,16 +129,16 @@
 
 	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
 		if(!isslime(M))//If target is not a slime.
-			user << "<span class='warning'> The potion only works on baby slimes!</span>"
+			user << SPAN_WARNING(" The potion only works on baby slimes!")
 			return ..()
 		if(M.is_adult) //Can't tame adults
-			user << "<span class='warning'> Only baby slimes can be tamed!</span>"
+			user << SPAN_WARNING(" Only baby slimes can be tamed!")
 			return..()
 		if(M.stat)
-			user << "<span class='warning'> The slime is dead!</span>"
+			user << SPAN_WARNING(" The slime is dead!")
 			return..()
 		if(M.mind)
-			user << "<span class='warning'> The slime resists!</span>"
+			user << SPAN_WARNING(" The slime resists!")
 			return ..()
 		var/mob/living/simple_animal/slime/pet = new /mob/living/simple_animal/slime(M.loc)
 		pet.icon_state = "[M.colour] baby slime"
@@ -163,13 +163,13 @@
 
 	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
 		if(!istype(M, /mob/living/carbon/slime/))//If target is not a slime.
-			user << "<span class='warning'> The potion only works on slimes!</span>"
+			user << SPAN_WARNING(" The potion only works on slimes!")
 			return ..()
 		if(M.stat)
-			user << "<span class='warning'> The slime is dead!</span>"
+			user << SPAN_WARNING(" The slime is dead!")
 			return..()
 		if(M.mind)
-			user << "<span class='warning'> The slime resists!</span>"
+			user << SPAN_WARNING(" The slime resists!")
 			return ..()
 		var/mob/living/simple_animal/adultslime/pet = new /mob/living/simple_animal/adultslime(M.loc)
 		pet.icon_state = "[M.colour] adult slime"
@@ -195,16 +195,16 @@
 
 	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
 		if(!isslime(M))//If target is not a slime.
-			user << "<span class='warning'> The steroid only works on baby slimes!</span>"
+			user << SPAN_WARNING(" The steroid only works on baby slimes!")
 			return ..()
 		if(M.is_adult) //Can't tame adults
-			user << "<span class='warning'> Only baby slimes can use the steroid!</span>"
+			user << SPAN_WARNING(" Only baby slimes can use the steroid!")
 			return..()
 		if(M.stat)
-			user << "<span class='warning'> The slime is dead!</span>"
+			user << SPAN_WARNING(" The slime is dead!")
 			return..()
 		if(M.cores == 3)
-			user <<"<span class='warning'> The slime already has the maximum amount of extract!</span>"
+			user <<SPAN_WARNING(" The slime already has the maximum amount of extract!")
 			return..()
 
 		user <<"You feed the slime the steroid. It now has triple the amount of extract."
@@ -220,10 +220,10 @@
 	/*afterattack(obj/target, mob/user , flag)
 		if(istype(target, /obj/item/slime_extract))
 			if(target.enhanced == 1)
-				user << "<span class='warning'> This extract has already been enhanced!</span>"
+				user << SPAN_WARNING(" This extract has already been enhanced!")
 				return ..()
 			if(target.Uses == 0)
-				user << "<span class='warning'> You can't enhance a used extract!</span>"
+				user << SPAN_WARNING(" You can't enhance a used extract!")
 				return ..()
 			user <<"You apply the enhancer. It now has triple the amount of uses."
 			target.Uses = 3

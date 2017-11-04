@@ -4,7 +4,8 @@
 
 	if(href_list["info"])
 		// spawn or admin privileges to see info about viruses
-		if(!check_rights(R_ADMIN|R_SPAWN)) return
+		if(!check_rights(R_ADMIN|R_FUN))
+			return
 
 		usr << "Infection chance: [infectionchance]; Speed: [speed]; Spread type: [spreadtype]"
 		usr << "Affected species: [english_list(affected_species)]"
@@ -30,10 +31,13 @@
 	"}
 
 /datum/admins/var/datum/virus2_editor/virus2_editor_datum = new
+ADMIN_VERB_ADD(/client/proc/virus2_editor, R_DEBUG, FALSE)
 /client/proc/virus2_editor()
 	set name = "Virus Editor"
-	set category = "Admin"
-	if(!holder || !check_rights(R_SPAWN)) return // spawn privileges to create viruses
+	set category = "Debug"
+
+	if(!holder || !check_rights(R_DEBUG))
+		return // spawn privileges to create viruses
 
 	holder.virus2_editor_datum.show_ui(src)
 
@@ -208,7 +212,7 @@
 
 				spawned_viruses += D
 
-				message_admins("<span class='danger'>[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus (<a href='?src=\ref[D];info=1'>Info</a>)</span>")
+				message_admins(SPAN_DANGER("[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus (<a href='?src=\ref[D];info=1'>Info</a>)"))
 				log_admin("[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus!")
 				infect_virus2(infectee, D, forced=1)
 

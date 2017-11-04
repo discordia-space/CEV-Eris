@@ -38,7 +38,7 @@
 		part_list += "\a [I]"
 	user << "\The [src] has [english_list(part_list)] installed."
 	if(tank && in_range(src,user))
-		user << "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
+		user << SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
@@ -114,13 +114,13 @@
 	if(H.wear_suit != src) return
 
 	if(H.head == helmet)
-		H << "<span class='notice'>You retract your suit helmet.</span>"
+		H << SPAN_NOTICE("You retract your suit helmet.")
 		helmet.canremove = 1
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
 	else
 		if(H.head)
-			H << "<span class='danger'>You cannot deploy your helmet while wearing \the [H.head].</span>"
+			H << SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head].")
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.pickup(H)
@@ -164,7 +164,7 @@
 		return ..()
 
 	if(isliving(src.loc))
-		user << "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>"
+		user << SPAN_WARNING("You cannot modify \the [src] while it is being worn.")
 		return
 
 	if(istype(W,/obj/item/weapon/screwdriver))

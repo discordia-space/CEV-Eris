@@ -25,7 +25,7 @@
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
 	pda = /obj/item/device/pda/heads/rd
 	ear = /obj/item/device/radio/headset/heads/rd
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	hand = /obj/item/weapon/clipboard
 
@@ -34,6 +34,11 @@
 		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
+
+/obj/landmark/start/rd
+	name = "Moebius Expedition Overseer"
+	icon_state = "player-purple-officer"
+	job = /datum/job/rd
 
 
 
@@ -64,6 +69,11 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
+/obj/landmark/start/scientist
+	name = "Moebius Scientist"
+	icon_state = "player-purple"
+	job = /datum/job/scientist
+
 
 /datum/job/roboticist
 	title = "Moebius Roboticist"
@@ -87,3 +97,8 @@
 	suit = /obj/item/clothing/suit/storage/robotech_jacket
 	hand = /obj/item/weapon/storage/toolbox/mechanical
 	shoes = /obj/item/clothing/shoes/jackboots
+
+/obj/landmark/start/roboticist
+	name = "Moebius Roboticist"
+	icon_state = "player-purple"
+	job = /datum/job/roboticist

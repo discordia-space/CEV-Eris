@@ -852,13 +852,13 @@ var/global/list/gear_datums = list()
 
 /datum/gear/laceyshoes
 	display_name = "shoes, classy"
-	path = /obj/item/clothing/shoes/laceup
+	path = /obj/item/clothing/shoes/reinforced
 	cost = 1
 	slot = slot_shoes
 
 /datum/gear/dress_shoes
 	display_name = "shoes, dress"
-	path = /obj/item/clothing/shoes/laceup
+	path = /obj/item/clothing/shoes/reinforced
 	cost = 1
 	slot = slot_shoes
 

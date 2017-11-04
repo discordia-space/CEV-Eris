@@ -159,7 +159,7 @@
 	cloning_stage = CLONING_IDLE
 	cloning = TRUE
 
-	visible_message("<span class='notice'>Cloning started.</span>")
+	visible_message(SPAN_NOTICE("Cloning started."))
 	update_icon()
 
 /obj/machinery/neotheology/cloner/proc/stop(var/forced = FALSE, var/open = TRUE)
@@ -171,9 +171,9 @@
 		if(open)
 			open(forced)
 		if(is_done())
-			visible_message("<span class='notice'>Cloning done!</span>")
+			visible_message(SPAN_NOTICE("Cloning done!"))
 		else
-			visible_message("<span class='notice'>Cloning stopped!</span>")
+			visible_message(SPAN_NOTICE("Cloning stopped!"))
 		cloning_stage = CLONING_IDLE
 	update_icon()
 
@@ -205,7 +205,7 @@
 //Cloning errors
 /obj/machinery/neotheology/cloner/proc/not_enough_biomass()
 	if(biomass_error < 1)
-		visible_message("<span class='warning'>Not enough biomass!</span>")
+		visible_message(SPAN_WARNING("Not enough biomass!"))
 	if(biomass_error > 3)
 		if(occupant)
 			if(cloning_stage <= CLONING_BODY)
@@ -218,7 +218,7 @@
 
 /obj/machinery/neotheology/cloner/proc/data_not_found()
 	if(data_error < 1)
-		visible_message("<span class='warning'>Implant read error!</span>")
+		visible_message(SPAN_WARNING("Implant read error!"))
 	if(data_error > 3)
 		if(occupant && cloning_stage <= CLONING_BODY)
 			mutate()
@@ -227,7 +227,7 @@
 	data_error += 1
 
 /obj/machinery/neotheology/cloner/proc/unexpected_error()	//For specific errors
-	visible_message("<span class='warning'>Unexpected error!</span>")
+	visible_message(SPAN_WARNING("Unexpected error!"))
 	stop(TRUE)
 
 ///////////////
@@ -236,7 +236,7 @@
 	if(stat & NOPOWER)
 		if(cloning)
 			stop(TRUE)
-			visible_message("<span class='warning'>Power lost!</span>")
+			visible_message(SPAN_WARNING("Power lost!"))
 			update_icon()
 			return
 
@@ -274,7 +274,7 @@
 					if(!is_done())
 						cloning_stage = get_next_stage()
 						if(cloning_stage < CLONING_DONE)
-							visible_message("<span class='notice'>Processing cloning stage [cloning_stage]/5.</span>")
+							visible_message(SPAN_NOTICE("Processing cloning stage [cloning_stage]/5."))
 						set_stage_timer(stage_time[cloning_stage])
 
 
@@ -438,9 +438,9 @@
 		return
 
 	if(biomass == 0)
-		user << "<span class='notice'>It is empty.</span>"
+		user << SPAN_NOTICE("It is empty.")
 	else
-		user << "<span class='notice'>Filled by [biomass]/[biomass_max].</span>"
+		user << SPAN_NOTICE("Filled by [biomass]/[biomass_max].")
 
 /obj/machinery/neotheology/biomass_container/attackby(obj/item/O as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, O))
@@ -453,9 +453,9 @@
 
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		if(biomass >= biomass_max)
-			user << "<span class='notice'>\The [src] is full.</span>"
+			user << SPAN_NOTICE("\The [src] is full.")
 			return
-		user << "<span class='notice'>You put [O] in [src].</span>"
+		user << SPAN_NOTICE("You put [O] in [src].")
 		biomass += 50
 		user.drop_item()
 		qdel(O)
@@ -521,7 +521,7 @@
 		return
 
 	if(reading)
-		user << "<span class='notice'>You try to pull the [implant], but it does not move.</span>"
+		user << SPAN_NOTICE("You try to pull the [implant], but it does not move.")
 		return
 
 	user.put_in_active_hand(implant)

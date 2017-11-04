@@ -1,7 +1,7 @@
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items.dmi'
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = 0
@@ -146,10 +146,10 @@
 		if (user.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			user << "<span class='notice'>You try to move your [temp.name], but cannot!</span>"
+			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 			return
 		if(!temp)
-			user << "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>"
+			user << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
 			return
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
@@ -197,11 +197,11 @@
 						success = 1
 						S.handle_item_insertion(I, 1)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 					if(success && !failure)
-						user << "<span class='notice'>You put everything in [S].</span>"
+						user << SPAN_NOTICE("You put everything in [S].")
 					else if(success)
-						user << "<span class='notice'>You put some things in [S].</span>"
+						user << SPAN_NOTICE("You put some things in [S].")
 					else
-						user << "<span class='notice'>You fail to pick anything up with \the [S].</span>"
+						user << SPAN_NOTICE("You fail to pick anything up with \the [S].")
 
 			else if(S.can_be_inserted(src))
 				S.handle_item_insertion(src)
@@ -300,32 +300,32 @@ var/list/global/slot_flags_enumeration = list(
 	switch(slot)
 		if(slot_l_ear, slot_r_ear)
 			var/slot_other_ear = (slot == slot_l_ear)? slot_r_ear : slot_l_ear
-			if( (w_class > 1) && !(slot_flags & SLOT_EARS) )
+			if( (w_class > ITEM_SIZE_TINY) && !(slot_flags & SLOT_EARS) )
 				return 0
 			if( (slot_flags & SLOT_TWOEARS) && H.get_equipped_item(slot_other_ear) )
 				return 0
 		if(slot_wear_id)
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
-					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
+					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
 				return 0
 		if(slot_l_store, slot_r_store)
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
-					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
+					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
 				return 0
 			if(slot_flags & SLOT_DENYPOCKET)
 				return 0
-			if( w_class > 2 && !(slot_flags & SLOT_POCKET) )
+			if( w_class > ITEM_SIZE_SMALL && !(slot_flags & SLOT_POCKET) )
 				return 0
 		if(slot_s_store)
 			if(!H.wear_suit && (slot_wear_suit in mob_equip))
 				if(!disable_warning)
-					H << "<span class='warning'>You need a suit before you can attach this [name].</span>"
+					H << SPAN_WARNING("You need a suit before you can attach this [name].")
 				return 0
 			if(!H.wear_suit.allowed)
 				if(!disable_warning)
-					usr << "<span class='warning'>You somehow have a suit with no defined allowed items for suit storage, stop that.</span>"
+					usr << SPAN_WARNING("You somehow have a suit with no defined allowed items for suit storage, stop that.")
 				return 0
 			if( !(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
 				return 0
@@ -346,12 +346,12 @@ var/list/global/slot_flags_enumeration = list(
 		if(slot_tie)
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
-					H << "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>"
+					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
 				return 0
 			var/obj/item/clothing/under/uniform = H.w_uniform
 			if(uniform.accessories.len && !uniform.can_attach_accessory(src))
 				if (!disable_warning)
-					H << "<span class='warning'>You already have an accessory of this type attached to your [uniform].</span>"
+					H << SPAN_WARNING("You already have an accessory of this type attached to your [uniform].")
 				return 0
 	return 1
 
@@ -375,22 +375,22 @@ var/list/global/slot_flags_enumeration = list(
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
 	if(!iscarbon(usr) || isbrain(usr))//Is humanoid, and is not a brain
-		usr << "<span class='warning'>You can't pick things up!</span>"
+		usr << SPAN_WARNING("You can't pick things up!")
 		return
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
-		usr << "<span class='warning'>You can't pick things up!</span>"
+		usr << SPAN_WARNING("You can't pick things up!")
 		return
 	if(src.anchored) //Object isn't anchored
-		usr << "<span class='warning'>You can't pick that up!</span>"
+		usr << SPAN_WARNING("You can't pick that up!")
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full
-		usr << "<span class='warning'>Your right hand is full.</span>"
+		usr << SPAN_WARNING("Your right hand is full.")
 		return
 	if(usr.hand && usr.l_hand) //Left hand is not full
-		usr << "<span class='warning'>Your left hand is full.</span>"
+		usr << SPAN_WARNING("Your left hand is full.")
 		return
 	if(!istype(src.loc, /turf)) //Object is on a turf
-		usr << "<span class='warning'>You can't pick that up!</span>"
+		usr << SPAN_WARNING("You can't pick that up!")
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
@@ -424,11 +424,11 @@ var/list/global/slot_flags_enumeration = list(
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if(protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
-				user << "<span class='warning'>You're going to need to remove the eye covering first.</span>"
+				user << SPAN_WARNING("You're going to need to remove the eye covering first.")
 				return
 
 	if(!M.has_eyes())
-		user << "<span class='warning'>You cannot locate any eyes on [M]!</span>"
+		user << SPAN_WARNING("You cannot locate any eyes on [M]!")
 		return
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
@@ -442,7 +442,7 @@ var/list/global/slot_flags_enumeration = list(
 	//if((CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*
-		M << "<span class='warning'>You stab yourself in the eye.</span>"
+		M << SPAN_WARNING("You stab yourself in the eye.")
 		M.sdisabilities |= BLIND
 		M.weakened += 4
 		M.adjustBruteLoss(10)
@@ -454,30 +454,30 @@ var/list/global/slot_flags_enumeration = list(
 
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
-				O.show_message("<span class='danger'>[M] has been stabbed in the eye with [src] by [user].</span>", 1)
-			M << "<span class='danger'>[user] stabs you in the eye with [src]!</span>"
-			user << "<span class='danger'>You stab [M] in the eye with [src]!</span>"
+				O.show_message(SPAN_DANGER("[M] has been stabbed in the eye with [src] by [user]."), 1)
+			M << SPAN_DANGER("[user] stabs you in the eye with [src]!")
+			user << SPAN_DANGER("You stab [M] in the eye with [src]!")
 		else
 			user.visible_message( \
-				"<span class='danger'>[user] has stabbed themself with [src]!</span>", \
-				"<span class='danger'>You stab yourself in the eyes with [src]!</span>" \
+				SPAN_DANGER("[user] has stabbed themself with [src]!"), \
+				SPAN_DANGER("You stab yourself in the eyes with [src]!") \
 			)
 
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != 2)
 				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
-					M << "<span class='danger'>Your eyes start to bleed profusely!</span>"
+					M << SPAN_DANGER("Your eyes start to bleed profusely!")
 			if(prob(50))
 				if(M.stat != 2)
-					M << "<span class='warning'>You drop what you're holding and clutch at your eyes!</span>"
+					M << SPAN_WARNING("You drop what you're holding and clutch at your eyes!")
 					M.drop_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
 			if (eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
-					M << "<span class='warning'>You go blind!</span>"
+					M << SPAN_WARNING("You go blind!")
 		var/obj/item/organ/external/affecting = H.get_organ("head")
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()

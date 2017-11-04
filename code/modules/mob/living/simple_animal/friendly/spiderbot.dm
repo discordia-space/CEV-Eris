@@ -19,7 +19,6 @@
 	desc = "A skittering robotic friend!"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "spiderbot-chassis"
-	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
 
 	wander = 0
@@ -53,10 +52,10 @@
 	if(istype(O, /obj/item/device/mmi))
 		var/obj/item/device/mmi/B = O
 		if(src.mmi)
-			user << "<span class='warning'>There's already a brain in [src]!</span>"
+			user << SPAN_WARNING("There's already a brain in [src]!")
 			return
 		if(!B.brainmob)
-			user << "<span class='warning'>Sticking an empty MMI into the frame would sort of defeat the purpose.</span>"
+			user << SPAN_WARNING("Sticking an empty MMI into the frame would sort of defeat the purpose.")
 			return
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
@@ -66,18 +65,18 @@
 						ghost_can_reenter = 1
 						break
 			if(!ghost_can_reenter)
-				user << "<span class='notice'>[O] is completely unresponsive; there's no point.</span>"
+				user << SPAN_NOTICE("[O] is completely unresponsive; there's no point.")
 				return
 
 		if(B.brainmob.stat == DEAD)
-			user << "<span class='warning'>[O] is dead. Sticking it into the frame would sort of defeat the purpose.</span>"
+			user << SPAN_WARNING("[O] is dead. Sticking it into the frame would sort of defeat the purpose.")
 			return
 
 		if(jobban_isbanned(B.brainmob, "Cyborg"))
-			user << "<span class='warning'>\The [O] does not seem to fit.</span>"
+			user << SPAN_WARNING("\The [O] does not seem to fit.")
 			return
 
-		user << "<span class='notice'>You install \the [O] in \the [src]!</span>"
+		user << SPAN_NOTICE("You install \the [O] in \the [src]!")
 
 		if(istype(O, /obj/item/device/mmi/digital))
 			positronic = 1
@@ -99,15 +98,15 @@
 				if(health > maxHealth)
 					health = maxHealth
 				add_fingerprint(user)
-				src.visible_message("<span class='notice'>\The [user] has spot-welded some of the damage to \the [src]!</span>")
+				src.visible_message(SPAN_NOTICE("\The [user] has spot-welded some of the damage to \the [src]!"))
 			else
-				user << "<span class='warning'>\The [src] is undamaged!</span>"
+				user << SPAN_WARNING("\The [src] is undamaged!")
 		else
-			user << "<span class='danger'>You need more welding fuel for this task!</span>"
+			user << SPAN_DANGER("You need more welding fuel for this task!")
 			return
 	else if(istype(O, /obj/item/weapon/card/id)||istype(O, /obj/item/device/pda))
 		if (!mmi)
-			user << "<span class='danger'>There's no reason to swipe your ID - \the [src] has no brain to remove.</span>"
+			user << SPAN_DANGER("There's no reason to swipe your ID - \the [src] has no brain to remove.")
 			return 0
 
 		var/obj/item/weapon/card/id/id_card
@@ -119,14 +118,14 @@
 			id_card = pda.id
 
 		if(access_robotics in id_card.access)
-			user << "<span class='notice'>You swipe your access card and pop the brain out of \the [src].</span>"
+			user << SPAN_NOTICE("You swipe your access card and pop the brain out of \the [src].")
 			eject_brain()
 			if(held_item)
 				held_item.loc = src.loc
 				held_item = null
 			return 1
 		else
-			user << "<span class='danger'>You swipe your card with no effect.</span>"
+			user << SPAN_DANGER("You swipe your card with no effect.")
 			return 0
 
 	else
@@ -134,12 +133,12 @@
 
 /mob/living/simple_animal/spiderbot/emag_act(var/remaining_charges, var/mob/user)
 	if (emagged)
-		user << "<span class='warning'>[src] is already overloaded - better run.</span>"
+		user << SPAN_WARNING("[src] is already overloaded - better run.")
 		return 0
 	else
-		user << "<span class='notice'>You short out the security protocols and overload [src]'s cell, priming it to explode in a short time.</span>"
-		spawn(100)	src << "<span class='danger'>Your cell seems to be outputting a lot of power...</span>"
-		spawn(200)	src << "<span class='danger'>Internal heat sensors are spiking! Something is badly wrong with your cell!</span>"
+		user << SPAN_NOTICE("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time.")
+		spawn(100)	src << SPAN_DANGER("Your cell seems to be outputting a lot of power...")
+		spawn(200)	src << SPAN_DANGER("Internal heat sensors are spiking! Something is badly wrong with your cell!")
 		spawn(300)	src.explode()
 
 /mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/device/mmi/M as obj)
@@ -150,7 +149,7 @@
 		src.name = "spider-bot ([M.brainmob.name])"
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
-	src.visible_message("<span class='danger'>\The [src] makes an odd warbling noise, fizzles, and explodes!</span>")
+	src.visible_message(SPAN_DANGER("\The [src] makes an odd warbling noise, fizzles, and explodes!"))
 	explosion(get_turf(loc), -1, -1, 3, 5)
 	eject_brain()
 	death()
@@ -222,8 +221,8 @@
 		return 0
 
 	if(istype(held_item, /obj/item/weapon/grenade))
-		visible_message("<span class='danger'>\The [src] launches \the [held_item]!</span>", \
-			"<span class='danger'>You launch \the [held_item]!</span>", \
+		visible_message(SPAN_DANGER("\The [src] launches \the [held_item]!"), \
+			SPAN_DANGER("You launch \the [held_item]!"), \
 			"You hear a skittering noise and a thump!")
 		var/obj/item/weapon/grenade/G = held_item
 		G.loc = src.loc
@@ -231,8 +230,8 @@
 		held_item = null
 		return 1
 
-	visible_message("<span class='notice'>\The [src] drops \the [held_item].</span>", \
-		"<span class='notice'>You drop \the [held_item].</span>", \
+	visible_message(SPAN_NOTICE("\The [src] drops \the [held_item]."), \
+		SPAN_NOTICE("You drop \the [held_item]."), \
 		"You hear a skittering noise and a soft thump.")
 
 	held_item.loc = src.loc
@@ -250,12 +249,12 @@
 		return -1
 
 	if(held_item)
-		src << "<span class='warning'>You are already holding \the [held_item]</span>"
+		src << SPAN_WARNING("You are already holding \the [held_item]")
 		return 1
 
 	var/list/items = list()
 	for(var/obj/item/I in view(1,src))
-		if(I.loc != src && I.w_class <= 2 && I.Adjacent(src) )
+		if(I.loc != src && I.w_class <= ITEM_SIZE_SMALL && I.Adjacent(src) )
 			items.Add(I)
 
 	var/obj/selection = input("Select an item.", "Pickup") in items
@@ -265,14 +264,14 @@
 			if(selection == I)
 				held_item = selection
 				selection.loc = src
-				visible_message("<span class='notice'>\The [src] scoops up \the [held_item].</span>", \
-					"<span class='notice'>You grab \the [held_item].</span>", \
+				visible_message(SPAN_NOTICE("\The [src] scoops up \the [held_item]."), \
+					SPAN_NOTICE("You grab \the [held_item]."), \
 					"You hear a skittering noise and a clink.")
 				return held_item
-		src << "<span class='warning'>\The [selection] is too far away.</span>"
+		src << SPAN_WARNING("\The [selection] is too far away.")
 		return 0
 
-	src << "<span class='warning'>There is nothing of interest to take.</span>"
+	src << SPAN_WARNING("There is nothing of interest to take.")
 	return 0
 
 /mob/living/simple_animal/spiderbot/examine(mob/user)

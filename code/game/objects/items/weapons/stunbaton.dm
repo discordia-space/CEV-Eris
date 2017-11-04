@@ -9,7 +9,7 @@
 	sharp = 0
 	edge = 0
 	throwforce = WEAPON_FORCE_PAINFULL
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	var/stunforce = 0
@@ -57,9 +57,9 @@
 		return
 
 	if(bcell)
-		user <<"<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
+		user <<SPAN_NOTICE("The baton is [round(bcell.percent())]% charged.")
 	if(!bcell)
-		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
+		user <<SPAN_WARNING("The baton does not have a power source installed.")
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/cell/large))
@@ -67,17 +67,17 @@
 			user.drop_item()
 			W.loc = src
 			bcell = W
-			user << "<span class='notice'>You install a cell in [src].</span>"
+			user << SPAN_NOTICE("You install a cell in [src].")
 			update_icon()
 		else
-			user << "<span class='notice'>[src] already has a cell.</span>"
+			user << SPAN_NOTICE("[src] already has a cell.")
 
 	else if(istype(W, /obj/item/weapon/screwdriver))
 		if(bcell)
 			bcell.update_icon()
 			bcell.loc = get_turf(src.loc)
 			bcell = null
-			user << "<span class='notice'>You remove the cell from the [src].</span>"
+			user << SPAN_NOTICE("You remove the cell from the [src].")
 			status = 0
 			update_icon()
 			return
@@ -93,14 +93,14 @@
 	else
 		status = 0
 		if(!bcell)
-			user << "<span class='warning'>[src] does not have a power source!</span>"
+			user << SPAN_WARNING("[src] does not have a power source!")
 		else
-			user << "<span class='warning'>[src] is out of charge.</span>"
+			user << SPAN_WARNING("[src] is out of charge.")
 	add_fingerprint(user)
 
 /obj/item/weapon/melee/baton/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		user << "<span class='danger'>You accidentally hit yourself with the [src]!</span>"
+		user << SPAN_DANGER("You accidentally hit yourself with the [src]!")
 		user.Weaken(30)
 		deductcharge(hitcost)
 		return
@@ -131,14 +131,14 @@
 		//we can't really extract the actual hit zone from ..(), unfortunately. Just act like they attacked the area they intended to.
 	else if(!status)
 		if(affecting)
-			target.visible_message("<span class='warning'>[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off.</span>")
+			target.visible_message(SPAN_WARNING("[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
 		else
-			target.visible_message("<span class='warning'>[target] has been prodded with [src] by [user]. Luckily it was off.</span>")
+			target.visible_message(SPAN_WARNING("[target] has been prodded with [src] by [user]. Luckily it was off."))
 	else
 		if(affecting)
-			target.visible_message("<span class='danger'>[target] has been prodded in the [affecting.name] with [src] by [user]!</span>")
+			target.visible_message(SPAN_DANGER("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
 		else
-			target.visible_message("<span class='danger'>[target] has been prodded with [src] by [user]!</span>")
+			target.visible_message(SPAN_DANGER("[target] has been prodded with [src] by [user]!"))
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	//stun effects

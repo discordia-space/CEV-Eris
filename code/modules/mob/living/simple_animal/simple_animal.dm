@@ -68,6 +68,11 @@
 
 /mob/living/simple_animal/New()
 	..()
+	if(!icon_living)
+		icon_living = icon_state
+	if(!icon_dead)
+		icon_dead = "[icon_state]_dead"
+
 	verbs -= /mob/verb/observe
 
 /mob/living/simple_animal/Login()
@@ -279,24 +284,24 @@
 						qdel(MED)
 					for(var/mob/M in viewers(src, null))
 						if ((M.client && !( M.blinded )))
-							M.show_message("<span class='notice'>[user] applies the [MED] on [src].</span>")
+							M.show_message(SPAN_NOTICE("[user] applies the [MED] on [src]."))
 		else
-			user << "<span class='notice'>\The [src] is dead, medical items won't bring \him back to life.</span>"
+			user << SPAN_NOTICE("\The [src] is dead, medical items won't bring \him back to life.")
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
 			harvest(user)
 	else
 		if(!O.force)
-			visible_message("<span class='notice'>[user] gently taps [src] with \the [O].</span>")
+			visible_message(SPAN_NOTICE("[user] gently taps [src] with \the [O]."))
 		else
 			O.attack(src, user, user.targeted_organ)
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
-	visible_message("<span class='danger'>\The [src] has been attacked with \the [O] by [user].</span>")
+	visible_message(SPAN_DANGER("\The [src] has been attacked with \the [O] by [user]."))
 
 	if(O.force <= resistance)
-		user << "<span class='danger'>This weapon is ineffective, it does no damage.</span>"
+		user << SPAN_DANGER("This weapon is ineffective, it does no damage.")
 		return 2
 
 	var/damage = O.force
@@ -390,11 +395,11 @@
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
-			user.visible_message("<span class='danger'>[user] chops up \the [src]!</span>")
+			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(src)
 		else
-			user.visible_message("<span class='danger'>[user] butchers \the [src] messily!</span>")
+			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
 			gib()
 
 /mob/living/simple_animal/handle_fire()

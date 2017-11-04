@@ -92,6 +92,9 @@ Class Procs:
    process()                  'game/machinery/machine.dm'
       Called by the 'master_controller' once per game tick for each machine that is listed in the 'machines' list.
 
+   securityLevelChanged()
+      Automatically triggered when the alarm level changes, does nothing by itself, can be rewritten.
+
 
 	Compiled by Aygar
 */
@@ -99,7 +102,7 @@ Class Procs:
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	w_class = 10
+	w_class = ITEM_SIZE_NO_CONTAINER
 
 	var/stat = 0
 	var/emagged = 0
@@ -147,15 +150,7 @@ Class Procs:
 	if(use_power && !stat)
 		use_power(7500/severity)
 
-		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
-		pulse2.icon = 'icons/effects/effects.dmi'
-		pulse2.icon_state = "empdisable"
-		pulse2.name = "emp sparks"
-		pulse2.anchored = 1
-		pulse2.set_dir(pick(cardinal))
-
-		spawn(10)
-			qdel(pulse2)
+		PoolOrNew(/obj/effect/overlay/pulse, src.loc)
 	..()
 
 /obj/machinery/ex_act(severity)
@@ -196,6 +191,8 @@ Class Procs:
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
 
+/obj/machinery/proc/securityLevelChanged(var/newLevel, var/previousLevel)
+
 /obj/machinery/CanUseTopic(var/mob/user)
 	if(stat & BROKEN)
 		return STATUS_CLOSE
@@ -229,16 +226,16 @@ Class Procs:
 	if(user.lying || user.stat)
 		return 1
 	if (!user.IsAdvancedToolUser())
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
+		usr << SPAN_WARNING("You don't have the dexterity to do this!")
 		return 1
 
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src].</span>")
+			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			user << "<span class='warning'>You momentarily forget how to use \the [src].</span>"
+			user << SPAN_WARNING("You momentarily forget how to use \the [src].")
 			return 1
 
 	src.add_fingerprint(user)
@@ -322,14 +319,14 @@ Class Procs:
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						user << "<span class='notice'>[A.name] replaced with [B.name].</span>"
+						user << SPAN_NOTICE("[A.name] replaced with [B.name].")
 						break
 			update_icon()
 			RefreshParts()
 	else
-		user << "<span class='notice'>Following parts detected in the machine:</span>"
+		user << SPAN_NOTICE("Following parts detected in the machine:")
 		for(var/var/obj/item/C in component_parts)
-			user << "<span class='notice'>    [C.name]</span>"
+			user << SPAN_NOTICE("    [C.name]")
 	return 1
 
 /obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/weapon/crowbar/C)

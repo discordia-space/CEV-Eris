@@ -70,8 +70,8 @@
 //	flick("noise", src.flash)
 	if (HUDtech.Find("flash"))
 		flick("noise", HUDtech["flash"])
-	src << "<span class='danger'><B>*BZZZT*</B></span>"
-	src << "<span class='danger'>Warning: Electromagnetic pulse detected.</span>"
+	src << SPAN_DANGER("<B>*BZZZT*</B>")
+	src << SPAN_DANGER("Warning: Electromagnetic pulse detected.")
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
@@ -239,10 +239,10 @@
 	switch(sensor_type)
 		if ("Security")
 			sensor_mode = SEC_HUD
-			src << "<span class='notice'>Security records overlay enabled.</span>"
+			src << SPAN_NOTICE("Security records overlay enabled.")
 		if ("Medical")
 			sensor_mode = MED_HUD
-			src << "<span class='notice'>Life signs monitor overlay enabled.</span>"
+			src << SPAN_NOTICE("Life signs monitor overlay enabled.")
 		if ("Disable")
 			sensor_mode = 0
 			src << "Sensor augmentations disabled."
@@ -315,7 +315,7 @@
 					alarm_raised = 1
 					if(!reported)
 						reported = 1
-						src << "<span class='warning'>--- [AH.category] Detected ---</span>"
+						src << SPAN_WARNING("--- [AH.category] Detected ---")
 					raised_alarm(A)
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
@@ -325,7 +325,7 @@
 				if(alarms[A] == -1)
 					if(!reported)
 						reported = 1
-						src << "<span class='notice'>--- [AH.category] Cleared ---</span>"
+						src << SPAN_NOTICE("--- [AH.category] Cleared ---")
 					src << "\The [A.alarm_name()]."
 
 		if(alarm_raised)
@@ -346,10 +346,10 @@
 
 
 /mob/living/silicon/proc/is_traitor()
-	return mind && (mind in traitors.current_antagonists)
+	return mind && player_is_antag_id(mind, ROLE_TRAITOR)
 
 /mob/living/silicon/proc/is_malf()
-	return mind && (mind in malf.current_antagonists)
+	return mind && player_is_antag_id(mind, ROLE_MALFUNCTION)
 
 /mob/living/silicon/proc/is_malf_or_traitor()
 	return is_traitor() || is_malf()

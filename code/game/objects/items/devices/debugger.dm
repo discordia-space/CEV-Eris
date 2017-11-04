@@ -11,7 +11,7 @@
 	icon_state = "hacktool-g"
 	flags = CONDUCT
 	force = WEAPON_FORCE_HARMLESS
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_range = 15
 	throw_speed = 3
@@ -26,21 +26,21 @@
 	if(istype(O, /obj/machinery/power/apc))
 		var/obj/machinery/power/apc/A = O
 		if(A.emagged || A.hacker)
-			user << "<span class='warning'>There is a software error with the device.</span>"
+			user << SPAN_WARNING("There is a software error with the device.")
 		else
-			user << "<span class='notice'>The device's software appears to be fine.</span>"
+			user << SPAN_NOTICE("The device's software appears to be fine.")
 		return 1
 	if(istype(O, /obj/machinery/door))
 		var/obj/machinery/door/D = O
 		if(D.operating == -1)
-			user << "<span class='warning'>There is a software error with the device.</span>"
+			user << SPAN_WARNING("There is a software error with the device.")
 		else
-			user << "<span class='notice'>The device's software appears to be fine.</span>"
+			user << SPAN_NOTICE("The device's software appears to be fine.")
 		return 1
 	else if(istype(O, /obj/machinery))
 		var/obj/machinery/A = O
 		if(A.emagged)
-			user << "<span class='warning'>There is a software error with the device.</span>"
+			user << SPAN_WARNING("There is a software error with the device.")
 		else
-			user << "<span class='notice'>The device's software appears to be fine.</span>"
+			user << SPAN_NOTICE("The device's software appears to be fine.")
 		return 1

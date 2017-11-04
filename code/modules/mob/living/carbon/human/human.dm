@@ -693,7 +693,7 @@ var/list/rank_prefix = list(\
 	if(species.has_fine_manipulation)
 		return 1
 	if(!silent)
-		src << "<span class='warning'>You don't have the dexterity to use that!</span>"
+		src << SPAN_WARNING("You don't have the dexterity to use that!")
 	return 0
 
 /mob/living/carbon/human/abiotic(var/full_body = 0)
@@ -740,13 +740,13 @@ var/list/rank_prefix = list(\
 		return
 	if(!lastpuke)
 		lastpuke = 1
-		src << "<span class='warning'>You feel nauseous...</span>"
+		src << SPAN_WARNING("You feel nauseous...")
 		spawn(150)	//15 seconds until second warning
-			src << "<span class='warning'>You feel like you are about to throw up!</span>"
+			src << SPAN_WARNING("You feel like you are about to throw up!")
 			spawn(100)	//and you have 10 more for mad dash to the bucket
 				Stun(5)
 
-				src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
+				src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))
 				playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
 				var/turf/location = loc
@@ -1049,12 +1049,12 @@ var/list/rank_prefix = list(\
 			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
 				if(species.flags & NO_PAIN)
-					src << "<span class='warning'>You feel [O] moving inside your [organ.name].</span>"
+					src << SPAN_WARNING("You feel [O] moving inside your [organ.name].")
 				else
 					var/msg = pick( \
-						"<span class='warning'>A spike of pain jolts your [organ.name] as you bump [O] inside.</span>", \
-						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>", \
-						"<span class='warning'>Your movement jostles [O] in your [organ.name] painfully.</span>")
+						SPAN_WARNING("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
+						SPAN_WARNING("Your movement jostles [O] in your [organ.name] painfully."), \
+						SPAN_WARNING("Your movement jostles [O] in your [organ.name] painfully."))
 					src << msg
 
 				organ.take_damage(rand(1,3), 0, 0)
@@ -1074,23 +1074,23 @@ var/list/rank_prefix = list(\
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message("<span class='notice'>[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
+		usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
 		"You begin counting [src]'s pulse")
 	else
-		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",\
+		usr.visible_message(SPAN_NOTICE("[usr] begins counting their pulse."),\
 		"You begin counting your pulse.")
 
 	if(pulse())
 		usr << "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>"
 	else
-		usr << "<span class='danger'>[src] has no pulse!</span>"	//it is REALLY UNLIKELY that a dead person would check his own pulse
+		usr << SPAN_DANGER("[src] has no pulse!")	//it is REALLY UNLIKELY that a dead person would check his own pulse
 		return
 
 	usr << "You must[self ? "" : " both"] remain still until counting is finished."
 	if(do_mob(usr, src, 60))
 		usr << "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>"
 	else
-		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
+		usr << SPAN_WARNING("You failed to check the pulse. Try again.")
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 //	world << "set species"
@@ -1253,26 +1253,26 @@ var/list/rank_prefix = list(\
 		verbs -= /mob/living/carbon/human/proc/bloody_doodle
 
 	if (src.gloves)
-		src << "<span class='warning'>Your [src.gloves] are getting in the way.</span>"
+		src << SPAN_WARNING("Your [src.gloves] are getting in the way.")
 		return
 
 	var/turf/simulated/T = src.loc
 	if (!istype(T)) //to prevent doodling out of mechs and lockers
-		src << "<span class='warning'>You cannot reach the floor.</span>"
+		src << SPAN_WARNING("You cannot reach the floor.")
 		return
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
 	if (direction != "Here")
 		T = get_step(T,text2dir(direction))
 	if (!istype(T))
-		src << "<span class='warning'>You cannot doodle there.</span>"
+		src << SPAN_WARNING("You cannot doodle there.")
 		return
 
 	var/num_doodles = 0
 	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
 		num_doodles++
 	if (num_doodles > 4)
-		src << "<span class='warning'>There is no space to write on!</span>"
+		src << SPAN_WARNING("There is no space to write on!")
 		return
 
 	var/max_length = bloody_hands * 30 //tweeter style
@@ -1285,7 +1285,7 @@ var/list/rank_prefix = list(\
 
 		if (length(message) > max_length)
 			message += "-"
-			src << "<span class='warning'>You ran out of blood to write with!</span>"
+			src << SPAN_WARNING("You ran out of blood to write with!")
 
 		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
 		W.basecolor = (hand_blood_color) ? hand_blood_color : "#A10808"
@@ -1409,9 +1409,9 @@ var/list/rank_prefix = list(\
 	var/obj/item/organ/external/current_limb = organs_by_name[choice]
 
 	if(self)
-		src << "<span class='warning'>You brace yourself to relocate your [current_limb.joint]...</span>"
+		src << SPAN_WARNING("You brace yourself to relocate your [current_limb.joint]...")
 	else
-		U << "<span class='warning'>You begin to relocate [S]'s [current_limb.joint]...</span>"
+		U << SPAN_WARNING("You begin to relocate [S]'s [current_limb.joint]...")
 
 	if(!do_after(U, 30, src))
 		return
@@ -1419,16 +1419,11 @@ var/list/rank_prefix = list(\
 		return
 
 	if(self)
-		src << "<span class='danger'>You pop your [current_limb.joint] back in!</span>"
+		src << SPAN_DANGER("You pop your [current_limb.joint] back in!")
 	else
-		U << "<span class='danger'>You pop [S]'s [current_limb.joint] back in!</span>"
-		S << "<span class='danger'>[U] pops your [current_limb.joint] back in!</span>"
+		U << SPAN_DANGER("You pop [S]'s [current_limb.joint] back in!")
+		S << SPAN_DANGER("[U] pops your [current_limb.joint] back in!")
 	current_limb.undislocate()
-
-/mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W in organs)
-		return
-	..()
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
@@ -1543,12 +1538,12 @@ var/list/rank_prefix = list(\
 				reset_view(0)
 				return
 			if(istype(above, /turf/simulated/open))
-				src << "<span class='notice'>You look up.</span>"
+				src << SPAN_NOTICE("You look up.")
 				if(client)
 					reset_view(shadow)
 				return
-		src << "<span class='notice'>You can see [above].</span>"
+		src << SPAN_NOTICE("You can see [above].")
 	else
-		src << "<span class='notice'>You can't do it right now.</span>"
+		src << SPAN_NOTICE("You can't do it right now.")
 	return
 

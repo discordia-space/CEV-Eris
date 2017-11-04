@@ -5,14 +5,10 @@
 	unset_machine()
 	qdel(hud_used)
 	if(client)
-		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
-			qdel(spell_master)
 		remove_screen_obj_references()
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
-	if(mind && mind.current == src)
-		spellremove(src)
 	ghostize()
 	..()
 
@@ -41,7 +37,7 @@
 //	item_use_icon = null
 //	gun_move_icon = null
 //	gun_setting_icon = null
-	spell_masters = null
+//	spell_masters = null
 	zone_sel = null
 
 /mob/New()
@@ -371,9 +367,6 @@
 		return
 	if ((stat != DEAD || !( ticker )))
 		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
-		return
-	if (ticker.mode && ticker.mode.deny_respawn)
-		usr << "<span class='notice'>Respawn is disabled for this roundtype.</span>"
 		return
 	else if(!MayRespawn(1, config.respawn_delay))
 		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")

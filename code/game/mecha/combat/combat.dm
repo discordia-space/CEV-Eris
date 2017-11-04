@@ -99,7 +99,7 @@
 						target:attackby(src,src.occupant)
 					else if(prob(5))
 						target:dismantle_wall(1)
-						src.occupant_message("<span class='notice'>You smash through the wall.</span>")
+						src.occupant_message(SPAN_NOTICE("You smash through the wall."))
 						src.visible_message("<b>[src.name] smashes through the wall</b>")
 						playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 					melee_can_hit = 0
@@ -111,7 +111,7 @@
 /obj/mecha/combat/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())
 		if(H.client)
-			H.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
+			H.client.mouse_pointer_icon = file('icons/mecha/mecha_mouse.dmi')
 		return 1
 	else
 		return 0

@@ -36,7 +36,7 @@
 	if(locked && !emagged)
 		locked = 0
 		emagged = 1
-		user << "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>"
+		user << SPAN_WARNING("You short out [src]'s maintenance hatch lock.")
 		log_and_message_admins("emagged [src]'s maintenance hatch lock")
 		return 1
 
@@ -49,9 +49,9 @@
 	..(user)
 	if (src.health < maxhealth)
 		if (src.health > maxhealth/3)
-			user << "<span class='warning'>[src]'s parts look loose.</span>"
+			user << SPAN_WARNING("[src]'s parts look loose.")
 		else
-			user << "<span class='danger'>[src]'s parts look very loose!</span>"
+			user << SPAN_DANGER("[src]'s parts look very loose!")
 	return
 
 /obj/machinery/bot/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -63,12 +63,12 @@
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health+10)
-				user.visible_message("<span class='warning'>[user] repairs [src]!</span>","<span class='notice'>You repair [src]!</span>")
+				user.visible_message(SPAN_WARNING("[user] repairs [src]!"),SPAN_NOTICE("You repair [src]!"))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			else
-				user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
+				user << SPAN_NOTICE("Unable to repair with the maintenance panel closed.")
 		else
-			user << "<span class='notice'>[src] does not need a repair.</span>"
+			user << SPAN_NOTICE("[src] does not need a repair.")
 	else
 		if(hasvar(W,"force") && hasvar(W,"damtype"))
 			switch(W.damtype)
@@ -110,18 +110,11 @@
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
-	var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc )
-	pulse2.icon = 'icons/effects/effects.dmi'
-	pulse2.icon_state = "empdisable"
-	pulse2.name = "emp sparks"
-	pulse2.anchored = 1
-	pulse2.set_dir(pick(cardinal))
+	PoolOrNew(/obj/effect/overlay/pulse, src.loc)
 
-	spawn(10)
-		qdel(pulse2)
-	if (on)
+	if(on)
 		turn_off()
-	spawn(severity*300)
+	spawn(severity * 300)
 		stat &= ~EMPED
 		if (was_on)
 			turn_on()
@@ -137,7 +130,7 @@
 
 	if(user.species.can_shred(user))
 		src.health -= rand(15,30)*brute_dam_coeff
-		src.visible_message("<span class='danger'>[user] has slashed [src]!</span>")
+		src.visible_message(SPAN_DANGER("[user] has slashed [src]!"))
 		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
 	density = 1
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	flags = OPENCONTAINER
 	var/amount_per_transfer_from_this = 5	//shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
@@ -20,10 +20,10 @@
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/mop))
 		if(reagents.total_volume < 1)
-			user << "<span class='warning'>\The [src] is out of water!</span>"
+			user << SPAN_WARNING("\The [src] is out of water!")
 		else
 			reagents.trans_to_obj(I, 5)
-			user << "<span class='notice'>You wet \the [I] in \the [src].</span>"
+			user << SPAN_NOTICE("You wet \the [I] in \the [src].")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/structure/mopbucket/on_reagent_change()

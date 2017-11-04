@@ -17,7 +17,7 @@ var/global/datum/controller/occupations/job_master
 		occupations = list()
 		var/list/all_jobs = typesof(/datum/job)
 		if(!all_jobs.len)
-			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
+			world << SPAN_WARNING("Error setting up jobs, no job datums found!")
 			return 0
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
@@ -119,7 +119,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in player_list)
 			if((player) && (player.mind))
 				player.mind.assigned_role = null
-				player.mind.special_role = null
+		//		player.mind.special_role = null
 		SetupOccupations()
 		unassigned = list()
 		return
@@ -243,9 +243,9 @@ var/global/datum/controller/occupations/job_master
 
 				// Loop through all jobs
 				for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
-					if(!job || ticker.mode.disabled_jobs.Find(job.title) )
+					/*if(!job || ticker.mode.disabled_jobs.Find(job.title) )
 						continue
-
+					*/
 					if(jobban_isbanned(player, job.title))
 						Debug("DO isbanned failed, Player: [player], Job:[job.title]")
 						continue
@@ -329,7 +329,7 @@ var/global/datum/controller/occupations/job_master
 							permitted = 0
 
 						if(!permitted)
-							H << "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>"
+							H << SPAN_WARNING("Your current job or whitelist status does not permit you to spawn with [thing]!")
 							continue
 
 						if(G.slot && !(G.slot in custom_equip_slots))
@@ -339,7 +339,7 @@ var/global/datum/controller/occupations/job_master
 							if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 								custom_equip_leftovers += thing
 							else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-								H << "<span class='notice'>Equipping you with \the [thing]!</span>"
+								H << SPAN_NOTICE("Equipping you with \the [thing]!")
 								custom_equip_slots.Add(G.slot)
 							else
 								custom_equip_leftovers.Add(thing)
@@ -359,7 +359,7 @@ var/global/datum/controller/occupations/job_master
 				else
 					var/metadata = H.client.prefs.gear[G.display_name]
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-						H << "<span class='notice'>Equipping you with \the [thing]!</span>"
+						H << SPAN_NOTICE("Equipping you with \the [thing]!")
 						custom_equip_slots.Add(G.slot)
 					else
 						spawn_in_storage += thing
@@ -371,7 +371,7 @@ var/global/datum/controller/occupations/job_master
 		if(!joined_late)
 			var/obj/S = null
 			var/list/loc_list = new()
-			for(var/obj/effect/landmark/start/sloc in landmarks_list)
+			for(var/obj/landmark/start/sloc in landmarks_list)
 				if(sloc.name != rank)	continue
 				if(locate(/mob/living) in sloc.loc)	continue
 				loc_list += sloc
@@ -379,7 +379,7 @@ var/global/datum/controller/occupations/job_master
 				S = pick(loc_list)
 			else
 				S = locate("start*[rank]") // use old stype
-			if(istype(S, /obj/effect/landmark/start) && istype(S.loc, /turf))
+			if(istype(S, /obj/landmark/start) && istype(S.loc, /turf))
 				H.forceMove(S.loc)
 			else
 				LateSpawn(H.client, rank)
@@ -404,7 +404,7 @@ var/global/datum/controller/occupations/job_master
 		var/alt_title = null
 		if(H.mind)
 			H.mind.assigned_role = rank
-			alt_title = H.mind.role_alt_title
+		//	alt_title = H.mind.role_alt_title
 
 			switch(rank)
 				if("Cyborg")
@@ -424,12 +424,12 @@ var/global/datum/controller/occupations/job_master
 
 				if(!isnull(B))
 					for(var/thing in spawn_in_storage)
-						H << "<span class='notice'>Placing \the [thing] in your [B.name]!</span>"
+						H << SPAN_NOTICE("Placing \the [thing] in your [B.name]!")
 						var/datum/gear/G = gear_datums[thing]
 						var/metadata = H.client.prefs.gear[G.display_name]
 						G.spawn_item(B, metadata)
 				else
-					H << "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
+					H << SPAN_DANGER("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.")
 
 		if(istype(H)) //give humans wheelchairs, if they need them.
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")

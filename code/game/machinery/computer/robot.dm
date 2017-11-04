@@ -60,13 +60,13 @@
 			return
 
 		// Antagonistic cyborgs? Left here for downstream
-		if(target.mind && target.mind.special_role && target.emagged)
+		if(target.mind && player_is_antag(target.mind) && target.emagged)
 			target << "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered."
 			target.ResetSecurityCodes()
 		else
-			message_admins("<span class='notice'>[key_name_admin(usr)] detonated [target.name]!</span>")
+			message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated [target.name]!"))
 			log_game("[key_name(usr)] detonated [target.name]!")
-			target << "<span class='danger'>Self-destruct command received.</span>"
+			target << SPAN_DANGER("Self-destruct command received.")
 			spawn(10)
 				target.self_destruct()
 
@@ -110,7 +110,7 @@
 			return
 
 		// Antag AI checks
-		if(!isAI(user) || !(user.mind.special_role && user.mind.original == user))
+		if(!isAI(user) || !(user.mind.antagonist.len && user.mind.original == user))
 			user << "Access Denied"
 			return
 
@@ -125,10 +125,10 @@
 		if(!target || !istype(target))
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] emagged [target.name] using robotic console!</span>")
+		message_admins(SPAN_NOTICE("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
 		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
 		target.emagged = 1
-		target << "<span class='notice'>Failsafe protocols overriden. New tools available.</span>"
+		target << SPAN_NOTICE("Failsafe protocols overriden. New tools available.")
 
 	// Arms the emergency self-destruct system
 	else if(href_list["arm"])
@@ -148,7 +148,7 @@
 			user << "Self-destruct aborted - safety active"
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] detonated all cyborgs!</span>")
+		message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated all cyborgs!"))
 		log_game("[key_name(usr)] detonated all cyborgs!")
 
 		for(var/mob/living/silicon/robot/R in mob_list)
@@ -157,7 +157,7 @@
 			// Ignore antagonistic cyborgs
 			if(R.scrambledcodes)
 				continue
-			R << "<span class='danger'>Self-destruct command received.</span>"
+			R << SPAN_DANGER("Self-destruct command received.")
 			spawn(10)
 				R.self_destruct()
 
@@ -197,7 +197,7 @@
 		robot["master_ai"] = R.connected_ai ? R.connected_ai.name : "None"
 		robot["hackable"] = 0
 		// Antag AIs know whether linked cyborgs are hacked or not.
-		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.special_role && operator.mind.original == operator))
+		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.antagonist.len && operator.mind.original == operator))
 			robot["hacked"] = R.emagged ? 1 : 0
 			robot["hackable"] = R.emagged? 0 : 1
 		robots.Add(list(robot))

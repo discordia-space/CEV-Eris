@@ -24,11 +24,12 @@
 
 	var/tmp/datum/wires/autolathe/wires = null
 
+	var/datum/browser/popup
 
 /obj/machinery/autolathe/New()
 	..()
 	wires = new(src)
-	
+
 /obj/machinery/autolathe/Destroy()
 	if(wires)
 		qdel(wires)
@@ -44,7 +45,7 @@
 	update_recipe_list()
 
 	if(..() || (disabled && !panel_open))
-		user << "<span class='danger'>\The [src] is disabled!</span>"
+		user << SPAN_DANGER("\The [src] is disabled!")
 		return
 
 	if(shocked)
@@ -62,7 +63,7 @@
 			material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
 
 		dat += "[material_top]</tr>[material_bottom]</tr></table><hr>"
-		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[show_category]</a>.</h3></center><table width = '100%'>"
+		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[show_category]</a></h3></center><table width = '100%'>"
 
 		var/index = 0
 		for(var/datum/autolathe/recipe/R in machine_recipes)
@@ -108,13 +109,14 @@
 
 		dat += "<hr>"
 
-	user << browse(dat, "window=autolathe")
-	onclose(user, "autolathe")
+	popup = new(user, "autolathe","Autolathe", 400, 600, src)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return
 
 	if(default_deconstruction_screwdriver(user, O))
@@ -176,7 +178,7 @@
 		mass_per_sheet += eating.matter[material]
 
 	if(!filltype)
-		user << "<span class='notice'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>"
+		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
 		return
 	else if(filltype == 1)
 		user << "You fill \the [src] to capacity with \the [eating]."
@@ -204,11 +206,16 @@
 	if(..())
 		return
 
-	usr.set_machine(src)
 	add_fingerprint(usr)
 
+	if(href_list["close"])
+		popup.close(usr)
+		return
+
+	usr.set_machine(src)
+
 	if(busy)
-		usr << "<span class='notice'>The autolathe is busy. Please wait for completion of previous operation.</span>"
+		usr << SPAN_NOTICE("The autolathe is busy. Please wait for completion of previous operation.")
 		return
 
 	if(href_list["change_category"])

@@ -3,7 +3,7 @@
 	desc = "A device used to project your voice. Loudly."
 	icon_state = "megaphone"
 	item_state = "radio"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 
 	var/obj/item/weapon/cell/cell = null
@@ -20,16 +20,16 @@
 /obj/item/device/megaphone/attack_self(mob/living/user as mob)
 	if (user.client)
 		if(user.client.prefs.muted & MUTE_IC)
-			src << "<span class='warning'>You cannot speak in IC (muted).</span>"
+			src << SPAN_WARNING("You cannot speak in IC (muted).")
 			return
 	if(!ishuman(user))
-		user << "<span class='warning'>You don't know how to use this!</span>"
+		user << SPAN_WARNING("You don't know how to use this!")
 		return
 	if(user.silent)
 		return
 
 	if(!cell || !cell.checked_use(5))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
 	if(!message)
@@ -43,7 +43,7 @@
 					O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
 				insults--
 			else
-				user << "<span class='warning'>*BZZZZzzzzzt*</span>"
+				user << SPAN_WARNING("*BZZZZzzzzzt*")
 		else
 			for(var/mob/O in (viewers(user)))
 				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
@@ -59,7 +59,7 @@
 
 /obj/item/device/megaphone/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		user << "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>"
+		user << SPAN_WARNING("You overload \the [src]'s voice synthesizer.")
 		emagged = TRUE
 		insults = rand(1, 3)//to prevent dickflooding
 		return TRUE

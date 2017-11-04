@@ -3,8 +3,6 @@
 	name = "goat"
 	desc = "Not known for their pleasant disposition."
 	icon_state = "goat"
-	icon_living = "goat"
-	icon_dead = "goat_dead"
 	speak = list("EHEHEHEHEH","eh?")
 	speak_emote = list("brays")
 	emote_hear = list("brays")
@@ -63,7 +61,7 @@
 /mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
 	..()
 	if(stat == CONSCIOUS)
-		visible_message("<span class='warning'>[src] gets an evil-looking gleam in their eye.</span>")
+		visible_message(SPAN_WARNING("[src] gets an evil-looking gleam in their eye."))
 
 /mob/living/simple_animal/hostile/retaliate/goat/Move()
 	..()
@@ -74,7 +72,7 @@
 /mob/living/simple_animal/hostile/retaliate/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/weapon/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
-		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
+		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
 			user << "\red The [O] is full."
@@ -87,8 +85,6 @@
 	name = "cow"
 	desc = "Known for their milk, just don't tip them over."
 	icon_state = "cow"
-	icon_living = "cow"
-	icon_dead = "cow_dead"
 	icon_gib = "cow_gib"
 	speak = list("moo?","moo","MOOOOOO")
 	speak_emote = list("moos","moos hauntingly")
@@ -114,7 +110,7 @@
 /mob/living/simple_animal/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/weapon/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
-		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
+		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
 			user << "\red The [O] is full."
@@ -131,7 +127,7 @@
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M as mob)
 	if(!stat && M.a_intent == I_DISARM && icon_state != icon_dead)
-		M.visible_message("<span class='warning'>[M] tips over [src].</span>","<span class='notice'>You tip over [src].</span>")
+		M.visible_message(SPAN_WARNING("[M] tips over [src]."),SPAN_NOTICE("You tip over [src]."))
 		Weaken(30)
 		icon_state = icon_dead
 		spawn(rand(20,50))
@@ -149,8 +145,6 @@
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
 	icon_state = "chick"
-	icon_living = "chick"
-	icon_dead = "chick_dead"
 	icon_gib = "chick_gib"
 	speak = list("Cherp.","Cherp?","Chirrup.","Cheep!")
 	speak_emote = list("cheeps")
@@ -191,8 +185,6 @@ var/global/chicken_count = 0
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
 	icon_state = "chicken"
-	icon_living = "chicken"
-	icon_dead = "chicken_dead"
 	speak = list("Cluck!","BWAAAAARK BWAK BWAK BWAK!","Bwaak bwak.")
 	speak_emote = list("clucks","croons")
 	emote_hear = list("clucks")

@@ -8,7 +8,7 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
 	density = 1
-	w_class = 5
+	w_class = ITEM_SIZE_HUGE
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE
@@ -161,6 +161,7 @@
 		density = FALSE
 	dump_contents()
 	update_icon()
+	update_openspace()
 	return 1
 
 /obj/structure/closet/proc/close(mob/living/user)
@@ -177,6 +178,7 @@
 	update_icon()
 	playsound(src.loc, close_sound, 100, 1, -3)
 	density = 1
+	update_openspace()
 	return 1
 
 //Cham Projector Exception
@@ -216,7 +218,7 @@
 
 /obj/structure/closet/proc/toggle(mob/living/user)
 	if(!(opened ? close(user) : open(user)))
-		user << "<span class='notice'>It won't budge!</span>"
+		user << SPAN_NOTICE("It won't budge!")
 		return
 	update_icon()
 
@@ -273,11 +275,11 @@
 				if(!WT.isOn())
 					return
 				else
-					user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+					user << SPAN_NOTICE("You need more welding fuel to complete this task.")
 					return
 			new /obj/item/stack/material/steel(src.loc)
 			for(var/mob/M in viewers(src))
-				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
+				M.show_message(SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."), 3, "You hear welding.", 2)
 			qdel(src)
 			return
 		if(istype(W, /obj/item/weapon/storage/laundry_basket) && W.contents.len)
@@ -285,9 +287,9 @@
 			var/turf/T = get_turf(src)
 			for(var/obj/item/I in LB.contents)
 				LB.remove_from_storage(I, T)
-			user.visible_message("<span class='notice'>[user] empties \the [LB] into \the [src].</span>", \
-								 "<span class='notice'>You empty \the [LB] into \the [src].</span>", \
-								 "<span class='notice'>You hear rustling of clothes.</span>")
+			user.visible_message(SPAN_NOTICE("[user] empties \the [LB] into \the [src]."), \
+								 SPAN_NOTICE("You empty \the [LB] into \the [src]."), \
+								 SPAN_NOTICE("You hear rustling of clothes."))
 			return
 		if(isrobot(user))
 			return
@@ -304,7 +306,7 @@
 			if(!WT.isOn())
 				return
 			else
-				user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+				user << SPAN_NOTICE("You need more welding fuel to complete this task.")
 				return
 		src.welded = !src.welded
 		src.update_icon()
@@ -331,7 +333,7 @@
 		return
 	step_towards(O, src.loc)
 	if(user != O)
-		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
+		user.show_viewers(SPAN_DANGER("[user] stuffs [O] into [src]!"))
 	src.add_fingerprint(user)
 	return
 
@@ -344,7 +346,7 @@
 		return
 
 	if(!src.open())
-		user << "<span class='notice'>It won't budge!</span>"
+		user << SPAN_NOTICE("It won't budge!")
 
 /obj/structure/closet/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -354,7 +356,7 @@
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
-		usr << "<span class='notice'>It won't budge!</span>"
+		usr << SPAN_NOTICE("It won't budge!")
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
@@ -368,7 +370,7 @@
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		usr << SPAN_WARNING("This mob type can't use this verb.")
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
@@ -398,7 +400,7 @@
 	if(!damage || !wallbreaker)
 		return
 	attack_animation(user)
-	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
+	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
 	dump_contents()
 	spawn(1) qdel(src)
 	return 1
@@ -419,9 +421,9 @@
 	escapee.setClickCooldown(100)
 
 	//okay, so the closet is either welded or locked... resist!!!
-	escapee << "<span class='warning'>You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)</span>"
+	escapee << SPAN_WARNING("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)")
 
-	visible_message("<span class='danger'>\The [src] begins to shake violently!</span>")
+	visible_message(SPAN_DANGER("\The [src] begins to shake violently!"))
 
 	breakout = 1 //can't think of a better way to do this right now.
 	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
@@ -442,8 +444,8 @@
 
 	//Well then break it!
 	breakout = 0
-	escapee << "<span class='warning'>You successfully break out!</span>"
-	visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
+	escapee << SPAN_WARNING("You successfully break out!")
+	visible_message(SPAN_DANGER("\The [escapee] successfully broke out of \the [src]!"))
 	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
 	break_open()
 	animate_shake()

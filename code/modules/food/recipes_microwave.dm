@@ -117,13 +117,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofuburger
 
-/datum/recipe/ghostburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/ectoplasm //where do you even find this stuff
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/ghostburger
-
 /datum/recipe/clownburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
@@ -536,20 +529,6 @@ I said no!
 	fruit = list("plumphelmet" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/plump_pie
-
-/datum/recipe/spellburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,
-		/obj/item/clothing/head/wizard/fake,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
-
-/datum/recipe/spellburger
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,
-		/obj/item/clothing/head/wizard,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
 
 /datum/recipe/bigbiteburger
 	items = list(

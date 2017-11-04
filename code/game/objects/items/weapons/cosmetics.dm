@@ -4,7 +4,7 @@
 	desc = "A generic brand of lipstick."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "lipstick"
-	w_class = 1.0
+	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	var/colour = "red"
 	var/open = 0
@@ -49,23 +49,23 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
-			user << "<span class='notice'>You need to wipe off the old lipstick first!</span>"
+			user << SPAN_NOTICE("You need to wipe off the old lipstick first!")
 			return
 		if(H == user)
-			user.visible_message("<span class='notice'>[user] does their lips with \the [src].</span>", \
-								 "<span class='notice'>You take a moment to apply \the [src]. Perfect!</span>")
+			user.visible_message(SPAN_NOTICE("[user] does their lips with \the [src]."), \
+								 SPAN_NOTICE("You take a moment to apply \the [src]. Perfect!"))
 			H.lip_style = colour
 			H.update_body()
 		else
-			user.visible_message("<span class='warning'>[user] begins to do [H]'s lips with \the [src].</span>", \
-								 "<span class='notice'>You begin to apply \the [src].</span>")
+			user.visible_message(SPAN_WARNING("[user] begins to do [H]'s lips with \the [src]."), \
+								 SPAN_NOTICE("You begin to apply \the [src]."))
 			if(do_after(user, 20, H) && do_after(H, 20, needshand = 0))	//user needs to keep their active hand, H does not.
-				user.visible_message("<span class='notice'>[user] does [H]'s lips with \the [src].</span>", \
-									 "<span class='notice'>You apply \the [src].</span>")
+				user.visible_message(SPAN_NOTICE("[user] does [H]'s lips with \the [src]."), \
+									 SPAN_NOTICE("You apply \the [src]."))
 				H.lip_style = colour
 				H.update_body()
 	else
-		user << "<span class='notice'>Where are the lips on that?</span>"
+		user << SPAN_NOTICE("Where are the lips on that?")
 
 //you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack()
 
@@ -73,7 +73,7 @@
 /obj/item/weapon/haircomb //sparklysheep's comb
 	name = "purple comb"
 	desc = "A pristine purple comb made from flexible plastic."
-	w_class = 1.0
+	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	icon = 'icons/obj/items.dmi'
 	icon_state = "purplecomb"

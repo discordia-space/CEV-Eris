@@ -30,7 +30,7 @@ var/datum/uplink/uplink = new()
 	var/desc
 	var/item_cost = 0
 	var/datum/uplink_category/category		// Item category
-	var/list/datum/antagonist/antag_roles	// Antag roles this item is displayed to. If empty, display to all.
+	var/list/antag_roles	// Antag roles this item is displayed to. If empty, display to all.
 
 /datum/uplink_item/item
 	var/path = null
@@ -78,8 +78,7 @@ var/datum/uplink/uplink = new()
 		return 0
 
 	for(var/antag_role in antag_roles)
-		var/datum/antagonist/antag = all_antag_types[antag_role]
-		if(antag.is_antagonist(U.uplink_owner))
+		if(player_is_antag_id(U.uplink_owner, antag_role))
 			return 1
 	return 0
 

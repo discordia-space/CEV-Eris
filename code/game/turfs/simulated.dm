@@ -62,7 +62,7 @@
 	unwet_task = null
 	return ..()
 
-/turf/simulated/proc/initialize()
+/turf/simulated/initialize()
 	return
 
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
@@ -81,7 +81,7 @@
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "<span class='danger'>Movement is admin-disabled.</span>" //This is to identify lag problems
+		usr << SPAN_DANGER("Movement is admin-disabled.") //This is to identify lag problems
 		return
 
 	if (isliving(A))

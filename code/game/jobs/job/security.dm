@@ -23,11 +23,11 @@
 
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
-	hat = /obj/item/clothing/head/beret/sec/navy/hos
+	hat = /obj/item/clothing/head/HoS
 	pda = /obj/item/device/pda/heads/hos
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick
+	gloves = /obj/item/clothing/gloves/thick/swat
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	belt = /obj/item/weapon/gun/projectile/lamia
 	put_in_backpack = list(\
@@ -44,6 +44,12 @@
 		/obj/item/weapon/storage/backpack/satchel_sec,\
 		/obj/item/weapon/storage/backpack/satchel
 	)
+
+/obj/landmark/start/ihc
+	name = "Ironhammer Commander"
+	icon_state = "player-blue-officer"
+	job = /datum/job/ihc
+
 
 
 /datum/job/gunserg
@@ -63,12 +69,12 @@
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/warden
-	suit = /obj/item/clothing/suit/armor/vest/serg
+	suit = /obj/item/clothing/suit/armor/vest/security
 	hat = /obj/item/clothing/head/beret/sec/navy/warden
 	pda = /obj/item/device/pda/warden
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick
+	gloves = /obj/item/clothing/gloves/thick/swat
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
 	put_in_backpack = list(\
@@ -78,6 +84,8 @@
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
+		/obj/item/weapon/cell/small/high,\
+		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/melee/baton/loaded
 	)
 
@@ -86,6 +94,11 @@
 		/obj/item/weapon/storage/backpack/satchel_sec,\
 		/obj/item/weapon/storage/backpack/satchel
 	)
+
+/obj/landmark/start/gunserg
+	name = "Ironhammer Gunnery Sergeant"
+	icon_state = "player-blue"
+	job = /datum/job/gunserg
 
 
 /datum/job/inspector
@@ -107,7 +120,7 @@
 	uniform = /obj/item/clothing/under/inspector
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
-	shoes = /obj/item/clothing/shoes/inspector
+	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
 	hat = /obj/item/clothing/head/det
 	suit = /obj/item/clothing/suit/storage/insp_trench
@@ -119,8 +132,15 @@
 		/obj/item/ammo_magazine/sl/cl44/rubber,\
 		/obj/item/weapon/flame/lighter/zippo,\
 		/obj/item/weapon/storage/box/evidence,\
+		/obj/item/weapon/cell/small/high,\
+		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/gun/energy/gun/martin
 	)
+
+/obj/landmark/start/inspector
+	name = "Ironhammer Inspector"
+	icon_state = "player-blue"
+	job = /datum/job/inspector
 
 
 /datum/job/medspec
@@ -141,15 +161,22 @@
 	uniform = /obj/item/clothing/under/rank/medspec
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
-	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick
+	shoes = /obj/item/clothing/shoes/reinforced
+	gloves = /obj/item/clothing/gloves/thick/swat
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
 	hand = /obj/item/weapon/storage/briefcase/crimekit
-	belt = /obj/item/weapon/gun/energy/gun/martin
+	belt = /obj/item/weapon/gun/projectile/olivaw
 
 	put_in_backpack = list(\
+		/obj/item/ammo_magazine/mg/cl32/rubber,\
+		/obj/item/ammo_magazine/mg/cl32/rubber,\
 		/obj/item/weapon/storage/box/evidence,\
 	)
+
+/obj/landmark/start/medspec
+	name = "Ironhammer Medical Specialist"
+	icon_state = "player-blue"
+	job = /datum/job/medspec
 
 
 /datum/job/ihoper
@@ -169,12 +196,13 @@
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/security
-	suit = /obj/item/clothing/suit/armor/light_riot
-	hat = /obj/item/clothing/head/helmet/light_riot
+	suit = /obj/item/clothing/suit/armor/vest/security
+	hat = /obj/item/clothing/head/helmet
+	mask = /obj/item/clothing/mask/balaclava/tactical
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick
+	gloves = /obj/item/clothing/gloves/thick/swat
 	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
 
 	put_in_backpack = list(\
@@ -185,6 +213,8 @@
 		/obj/item/device/flash,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
+		/obj/item/weapon/cell/small/high,\
+		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/melee/baton/loaded
 	)
 
@@ -193,3 +223,8 @@
 		/obj/item/weapon/storage/backpack/satchel_sec,\
 		/obj/item/weapon/storage/backpack/satchel
 	)
+
+/obj/landmark/start/ihoper
+	name = "Ironhammer Operative"
+	icon_state = "player-blue"
+	job = /datum/job/ihoper

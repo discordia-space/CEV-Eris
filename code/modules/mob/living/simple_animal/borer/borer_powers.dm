@@ -32,8 +32,8 @@
 		src << "You wiggle out of [host]'s ear and plop to the ground."
 		if(host.mind)
 			if(!host.stat)
-				host << "<span class='danger'>Something slimy wiggles out of your ear and plops to the ground!</span>"
-			host << "<span class='danger'>As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again.</span>"
+				host << SPAN_DANGER("Something slimy wiggles out of your ear and plops to the ground!")
+			host << SPAN_DANGER("As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again.")
 
 		detatch()
 		leave_host()
@@ -108,8 +108,11 @@
 		src.loc = M
 
 		//Update their traitor status.
-		if(host.mind)
-			borers.add_antagonist_mind(host.mind, 1, borers.faction_role_text, borers.faction_welcome)
+		/*if(host.mind && src.mind)
+			var/list/L = get_player_antags(src.mind, ROLE_BORER)
+			var/datum/antagonist/borer/borer
+			if(L.len)
+				borer = L[1]*/
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -176,7 +179,6 @@
 		H.daemonize()
 
 	if(src.mind)
-		src.mind.special_role = "Borer Husk"
 		src.mind.transfer_to(host)
 
 	H.ChangeToHusk()
@@ -347,7 +349,7 @@
 		return
 
 	verbs -= /mob/living/carbon/human/proc/jumpstart
-	visible_message("<span class='warning'>With a hideous, rattling moan, [src] shudders back to life!</span>")
+	visible_message(SPAN_WARNING("With a hideous, rattling moan, [src] shudders back to life!"))
 
 	rejuvenate()
 	restore_blood()

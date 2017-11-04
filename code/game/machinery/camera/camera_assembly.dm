@@ -3,7 +3,7 @@
 	desc = "A pre-fabricated security camera kit, ready to be assembled and mounted to a surface."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "cameracase"
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	anchored = 0
 
 	matter = list(DEFAULT_WALL_MATERIAL = 700,"glass" = 300)
@@ -60,10 +60,10 @@
 			if(iscoil(W))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.use(2))
-					user << "<span class='notice'>You add wires to the assembly.</span>"
+					user << SPAN_NOTICE("You add wires to the assembly.")
 					state = 3
 				else
-					user << "<span class='warning'>You need 2 coils of wire to wire the assembly.</span>"
+					user << SPAN_WARNING("You need 2 coils of wire to wire the assembly.")
 				return
 
 			else if(iswelder(W))
@@ -160,7 +160,7 @@
 	if(!WT.isOn())
 		return 0
 
-	user << "<span class='notice'>You start to weld \the [src]..</span>"
+	user << SPAN_NOTICE("You start to weld \the [src]..")
 	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 	WT.eyecheck(user)
 	busy = 1

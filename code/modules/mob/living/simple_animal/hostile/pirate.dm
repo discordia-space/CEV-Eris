@@ -2,8 +2,7 @@
 	name = "Pirate"
 	desc = "Does what he wants cause a pirate is free."
 	icon_state = "piratemelee"
-	icon_living = "piratemelee"
-	icon_dead = "piratemelee_dead"
+	icon_dead = "pirate_dead" //TODO: That icon doesn't exist
 	speak_chance = 0
 	turns_per_move = 5
 	response_help = "pushes"
@@ -29,7 +28,7 @@
 	min_n2 = 0
 	max_n2 = 0
 	unsuitable_atoms_damage = 15
-	var/corpse = /obj/effect/landmark/corpse/pirate
+	var/corpse = /obj/landmark/corpse/pirate
 	var/weapon1 = /obj/item/weapon/melee/energy/sword/pirate
 
 	faction = "pirate"
@@ -37,13 +36,11 @@
 /mob/living/simple_animal/hostile/pirate/ranged
 	name = "Pirate Gunner"
 	icon_state = "pirateranged"
-	icon_living = "pirateranged"
-	icon_dead = "piratemelee_dead"
 	projectilesound = 'sound/weapons/laser.ogg'
 	ranged = 1
 	rapid = 1
 	projectiletype = /obj/item/projectile/beam
-	corpse = /obj/effect/landmark/corpse/pirate/ranged
+	corpse = /obj/landmark/corpse/pirate/ranged
 	weapon1 = /obj/item/weapon/gun/energy/laser
 
 

@@ -264,11 +264,11 @@ datum/hud/New(mob/owner)
 	set hidden = 1
 
 	if(!hud_used)
-		usr << "<span class='warning'>This mob type does not use a HUD.</span>"
+		usr << SPAN_WARNING("This mob type does not use a HUD.")
 		return
 
 	if(!ishuman(src))
-		usr << "<span class='warning'>Inventory hiding is currently only supported for human mobs, sorry.</span>"
+		usr << SPAN_WARNING("Inventory hiding is currently only supported for human mobs, sorry.")
 		return
 
 	if(!client) return

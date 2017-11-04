@@ -1,7 +1,9 @@
 //#define USE_OPENSPACE
 
-/obj/effect/landmark/map_data
+/obj/landmark/map_data
 	name = "Unknown"
+	icon_state = "config-green"
+	alpha = 255 //This one too important
 	desc = "An unknown location."
 	invisibility = 101
 

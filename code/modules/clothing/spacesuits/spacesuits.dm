@@ -49,9 +49,9 @@
 		camera.set_status(!camera.status)
 		if(camera.status)
 			camera.c_tag = FindNameFromID(usr)
-			usr << "<span class='notice'>User scanned as [camera.c_tag]. Camera activated.</span>"
+			usr << SPAN_NOTICE("User scanned as [camera.c_tag]. Camera activated.")
 		else
-			usr << "<span class='notice'>Camera deactivated.</span>"
+			usr << SPAN_NOTICE("Camera deactivated.")
 
 /obj/item/clothing/head/helmet/space/examine(var/mob/user)
 	if(..(user, 1) && camera_networks && camera_networks.len)
@@ -62,7 +62,7 @@
 	desc = "A suit that protects against low pressure environments. \"NSS EXODUS\" is written in large block letters on the back."
 	icon_state = "space"
 	item_state = "s_suit"
-	w_class = 4//bulky item
+	w_class = ITEM_SIZE_LARGE//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL

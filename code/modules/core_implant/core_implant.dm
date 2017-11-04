@@ -1,7 +1,7 @@
 /obj/item/weapon/implant/external/core_implant
 	name = "core implant"
 	icon = 'icons/obj/device.dmi'
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=7, TECH_DATA=5)
 	var/implant_type = /obj/item/weapon/implant/external/core_implant
 	var/active = FALSE
@@ -84,10 +84,10 @@
 		var/datum/ritual/R = new RT
 		if(R.compare(message))
 			if(R.power > src.power)
-				H << "<span class='danger'>Not enough energy for the [R.name].</span>"
+				H << SPAN_DANGER("Not enough energy for the [R.name].")
 				return
 			if(!R.is_allowed(src))
-				H << "<span class='danger'>You are not allowed to perform [R.name].</span>"
+				H << SPAN_DANGER("You are not allowed to perform [R.name].")
 				return
 			R.activate(H, src, R.get_targets(message))
 			return

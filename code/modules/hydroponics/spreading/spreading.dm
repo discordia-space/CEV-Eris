@@ -18,7 +18,7 @@
 
 			log_and_message_admins("Spacevines spawned at \the [get_area(T)]", location = T)
 			return
-		log_and_message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
+		log_and_message_admins(SPAN_NOTICE("Event: Spacevines failed to find a viable turf."))
 
 /obj/effect/dead_plant
 	anchored = 1
@@ -83,7 +83,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		world << "<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>"
+		world << SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting.")
 		qdel(src)
 		return
 
@@ -232,16 +232,16 @@
 
 	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
 		if(sampled)
-			user << "<span class='warning'>\The [src] has already been sampled recently.</span>"
+			user << SPAN_WARNING("\The [src] has already been sampled recently.")
 			return
 		if(!is_mature())
-			user << "<span class='warning'>\The [src] is not mature enough to yield a sample yet.</span>"
+			user << SPAN_WARNING("\The [src] is not mature enough to yield a sample yet.")
 			return
 		if(!seed)
-			user << "<span class='warning'>There is nothing to take a sample from.</span>"
+			user << SPAN_WARNING("There is nothing to take a sample from.")
 			return
 		if(sampled)
-			user << "<span class='danger'>You cannot take another sample from \the [src].</span>"
+			user << SPAN_DANGER("You cannot take another sample from \the [src].")
 			return
 		if(prob(70))
 			sampled = 1

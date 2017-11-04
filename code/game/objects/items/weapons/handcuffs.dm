@@ -7,7 +7,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
@@ -24,7 +24,7 @@
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>Uh ... how do those things work?!</span>"
+		user << SPAN_WARNING("Uh ... how do those things work?!")
 		place_handcuffs(user, user)
 		return
 
@@ -46,7 +46,7 @@
 		if(can_place)
 			place_handcuffs(C, user)
 		else
-			user << "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>"
+			user << SPAN_DANGER("You need to have a firm grip on [C] before you can put \the [src] on!")
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src.loc, cuff_sound, 30, 1, -2)
@@ -56,14 +56,14 @@
 		return 0
 
 	if (!H.has_organ_for_slot(slot_handcuffed))
-		user << "<span class='danger'>\The [H] needs at least two wrists before you can cuff them together!</span>"
+		user << SPAN_DANGER("\The [H] needs at least two wrists before you can cuff them together!")
 		return 0
 
 	if(istype(H.gloves,/obj/item/clothing/gloves/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		user << "<span class='danger'>\The [src] won't fit around \the [H.gloves]!</span>"
+		user << SPAN_DANGER("\The [src] won't fit around \the [H.gloves]!")
 		return 0
 
-	//user.visible_message("<span class='danger'>\The [user] is attempting to put [cuff_type] on \the [H]!</span>")
+	//user.visible_message(SPAN_DANGER("\The [user] is attempting to put [cuff_type] on \the [H]!"))
 
 	if(!do_after(user,0, target))
 		return 0
@@ -76,7 +76,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(H)
 
-	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")
+	user.visible_message(SPAN_DANGER("\The [user] has put [cuff_type] on \the [H]!"))
 
 	// Apply cuffs.
 	var/obj/item/weapon/handcuffs/cuffs = src
@@ -104,8 +104,8 @@ var/last_chew = 0
 	var/obj/item/organ/external/O = H.organs_by_name[H.hand?"l_hand":"r_hand"]
 	if (!O) return
 
-	var/s = "<span class='warning'>[H.name] chews on \his [O.name]!</span>"
-	H.visible_message(s, "<span class='warning'>You chew on your [O.name]!</span>")
+	var/s = SPAN_WARNING("[H.name] chews on \his [O.name]!")
+	H.visible_message(s, SPAN_WARNING("You chew on your [O.name]!"))
 	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
 	log_attack("[s] ([H.ckey])")
 
@@ -154,7 +154,7 @@ var/last_chew = 0
 		if (R.use(1))
 			var/obj/item/weapon/material/wirerod/W = new(get_turf(user))
 			user.put_in_hands(W)
-			user << "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>"
+			user << SPAN_NOTICE("You wrap the cable restraint around the top of the rod.")
 			qdel(src)
 			update_icon(user)
 

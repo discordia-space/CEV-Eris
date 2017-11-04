@@ -402,22 +402,22 @@
 			if(iscarbon(usr))
 				var/mob/living/carbon/M = usr
 				if(prob(50))
-					usr << "<span class='warning'>You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?</span>"
+					usr << SPAN_WARNING("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?")
 					M.hallucination += 50
 				else
-					usr << "<span class='danger'>Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there...</span>"
+					usr << SPAN_DANGER("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there...")
 					M.take_organ_damage(10)
 			else
-				usr << "<span class='warning'>The sounds of battle fill your ears...</span>"
+				usr << SPAN_WARNING("The sounds of battle fill your ears...")
 		if(ORION_TRAIL_ILLNESS)
 			if(ishuman(usr))
 				var/mob/living/carbon/human/M = usr
-				M << "<span class='warning'>An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit.</span>"
+				M << SPAN_WARNING("An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit.")
 				M.vomit()
 			else
-				usr << "<span class='warning'>You feel ill.</span>"
+				usr << SPAN_WARNING("You feel ill.")
 		if(ORION_TRAIL_CARP)
-			usr << "<span class='danger'> Something bit you!</span>"
+			usr << SPAN_DANGER(" Something bit you!")
 			var/mob/living/M = usr
 			M.adjustBruteLoss(10)
 		if(ORION_TRAIL_FLUX)
@@ -427,7 +427,7 @@
 				src.visible_message("A sudden gust of powerful wind slams \the [M] into the floor!", "You hear a large fwooshing sound, followed by a bang.")
 				M.take_organ_damage(10)
 			else
-				usr << "<span class='warning'>A violent gale blows past you, and you barely manage to stay standing!</span>"
+				usr << SPAN_WARNING("A violent gale blows past you, and you barely manage to stay standing!")
 		if(ORION_TRAIL_MALFUNCTION)
 			if(supplies["3"])
 				return
@@ -438,11 +438,11 @@
 			if(prob(90) && !supplies["2"])
 				var/turf/simulated/floor/F = src.loc
 				F.ChangeTurf(/turf/space)
-				src.visible_message("<span class='danger'>Something slams into the floor around \the [src], exposing it to space!</span>", "You hear something crack and break.")
+				src.visible_message(SPAN_DANGER("Something slams into the floor around \the [src], exposing it to space!"), "You hear something crack and break.")
 			else
 				src.visible_message("Something slams into the floor around \the [src] - luckily, it didn't get through!", "You hear something crack.")
 		if(ORION_TRAIL_GAMEOVER)
-			usr << "<span class='danger'><font size=3>You're never going to make it to Orion...</font></span>"
+			usr << SPAN_DANGER("<font size=3>You're never going to make it to Orion...</font>")
 			var/mob/living/M = usr
 			M.visible_message("\The [M] starts rapidly deteriorating.")
 			M << browse (null,"window=arcade")
@@ -476,32 +476,32 @@
 	desc = "A model spaceship, it looks like those used back in the day when travelling to Orion! It even has a miniature FX-293 reactor, which was renowned for its instability and tendency to explode..."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ship"
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	var/active = 0 //if the ship is on
 /obj/item/weapon/orion_ship/examine(mob/user)
 	..()
 	if(!(in_range(user, src)))
 		return
 	if(!active)
-		user << "<span class='notice'>There's a little switch on the bottom. It's flipped down.</span>"
+		user << SPAN_NOTICE("There's a little switch on the bottom. It's flipped down.")
 	else
-		user << "<span class='notice'>There's a little switch on the bottom. It's flipped up.</span>"
+		user << SPAN_NOTICE("There's a little switch on the bottom. It's flipped up.")
 /obj/item/weapon/orion_ship/attack_self(mob/user)
 	if(active)
 		return
 	message_admins("[key_name_admin(usr)] primed an explosive Orion ship for detonation.")
 	log_game("[key_name(usr)] primed an explosive Orion ship for detonation.")
-	user << "<span class='warning'>You flip the switch on the underside of [src].</span>"
+	user << SPAN_WARNING("You flip the switch on the underside of [src].")
 	active = 1
-	src.visible_message("<span class='notice'>[src] softly beeps and whirs to life!</span>")
+	src.visible_message(SPAN_NOTICE("[src] softly beeps and whirs to life!"))
 	src.audible_message("<b>\The [src]</b> says, 'This is ship ID #[rand(1,1000)] to Orion Port Authority. We're coming in for landing, over.'")
 	sleep(20)
-	src.visible_message("<span class='warning'>[src] begins to vibrate...</span>")
+	src.visible_message(SPAN_WARNING("[src] begins to vibrate..."))
 	src.audible_message("<b>\The [src]</b> says, 'Uh, Port? Having some issues with our reactor, could you check it out? Over.'")
 	sleep(30)
 	src.audible_message("<b>\The [src]</b> says, 'Oh, God! Code Eight! CODE EIGHT! IT'S GONNA BL-'")
 	sleep(3.6)
-	src.visible_message("<span class='danger'>[src] explodes!</span>")
+	src.visible_message(SPAN_DANGER("[src] explodes!"))
 	explosion(src.loc, 1,2,4)
 	qdel(src)
 

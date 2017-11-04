@@ -12,7 +12,7 @@ var/const/tk_maxrange = 15
 */
 /atom/proc/attack_tk(mob/user)
 	if(user.stat) return
-	user.UnarmedAttack(src,0) // attack_hand, attack_paw, etc
+	user.UnarmedAttack(src, 0) // attack_hand, attack_paw, etc
 	return
 
 /*
@@ -67,7 +67,7 @@ var/const/tk_maxrange = 15
 	icon_state = "2"
 	flags = NOBLUDGEON
 	//item_state = null
-	w_class = 10.0
+	w_class = ITEM_SIZE_NO_CONTAINER
 	layer = 20
 
 	var/last_throw = 0
@@ -107,7 +107,7 @@ var/const/tk_maxrange = 15
 		return
 
 	var/d = get_dist(user, target)
-	if(focus) d = max(d,get_dist(user,focus)) // whichever is further
+	if(focus) d = max(d, get_dist(user, focus)) // whichever is further
 	switch(d)
 		if(0)
 			;
@@ -119,7 +119,7 @@ var/const/tk_maxrange = 15
 		if(8 to tk_maxrange)
 			user.setMoveCooldown(10)
 		else
-			user << "<span class='notice'>Your mind won't reach that far.</span>"
+			user << SPAN_NOTICE("Your mind won't reach that far.")
 			return
 
 	if(!focus)
@@ -135,7 +135,7 @@ var/const/tk_maxrange = 15
 		var/obj/item/I = focus
 		var/resolved = target.attackby(I, user, user:get_organ_target())
 		if(!resolved && target && I)
-			I.afterattack(target,user,1) // for splashing with beakers
+			I.afterattack(target, user, 1) // for splashing with beakers
 	else
 		apply_focus_overlay()
 		focus.throw_at(target, 10, 1, user)
@@ -158,22 +158,12 @@ var/const/tk_maxrange = 15
 	return
 
 /obj/item/tk_grab/proc/apply_focus_overlay()
-	if(!focus)	return
-	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, locate(focus.x,focus.y,focus.z))
-	O.name = "sparkles"
-	O.anchored = 1
-	O.density = 0
-	O.layer = FLY_LAYER
-	O.set_dir(pick(cardinal))
-	O.icon = 'icons/effects/effects.dmi'
-	O.icon_state = "nothing"
-	flick("empdisable",O)
-	spawn(5)
-		qdel(O)
-	return
+	if(!focus)
+		return
+	PoolOrNew(/obj/effect/overlay/pulse, list(get_turf(focus), 5))
 
 /obj/item/tk_grab/update_icon()
 	overlays.Cut()
 	if(focus && focus.icon && focus.icon_state)
-		overlays += icon(focus.icon,focus.icon_state)
+		overlays += icon(focus.icon, focus.icon_state)
 	return

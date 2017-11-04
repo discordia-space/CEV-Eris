@@ -379,7 +379,7 @@
 		if(1)
 			var/turf/T = get_step(mob, direct)
 			if(mob.check_holy(T))
-				mob << "<span class='warning'>You cannot get past holy grounds while you are in this plane of existence!</span>"
+				mob << SPAN_WARNING("You cannot get past holy grounds while you are in this plane of existence!")
 				return
 			else
 				mob.forceMove(get_step(mob, direct))
@@ -458,7 +458,7 @@
 
 	//Check to see if we slipped
 	if(prob(slip_chance(5)) && !buckled)
-		src << "<span class='warning'>You slipped!</span>"
+		src << SPAN_WARNING("You slipped!")
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
 		return 0

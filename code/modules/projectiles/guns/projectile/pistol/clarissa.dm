@@ -3,7 +3,7 @@
 	desc = "A small, easily concealable gun. Uses 9mm rounds."
 	icon_state = "pistol"
 	item_state = null
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	caliber = "9mm"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
@@ -16,10 +16,10 @@
 			if(user.l_hand != src && user.r_hand != src)
 				..()
 				return
-			user << "<span class='notice'>You unscrew [silenced] from [src].</span>"
+			user << SPAN_NOTICE("You unscrew [silenced] from [src].")
 			user.put_in_hands(silenced)
 			silenced = 0
-			w_class = 2
+			w_class = ITEM_SIZE_SMALL
 			update_icon()
 			return
 	..()
@@ -27,12 +27,12 @@
 /obj/item/weapon/gun/projectile/clarissa/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/silencer))
 		if(user.l_hand != src && user.r_hand != src)	//if we're not in his hands
-			user << "<span class='notice'>You'll need [src] in your hands to do that.</span>"
+			user << SPAN_NOTICE("You'll need [src] in your hands to do that.")
 			return
 		user.drop_item()
-		user << "<span class='notice'>You screw [I] onto [src].</span>"
+		user << SPAN_NOTICE("You screw [I] onto [src].")
 		silenced = I	//dodgy?
-		w_class = 3
+		w_class = ITEM_SIZE_NORMAL
 		I.loc = src		//put the silencer into the gun
 		update_icon()
 		return
@@ -50,4 +50,4 @@
 	desc = "a silencer"
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "silencer"
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL

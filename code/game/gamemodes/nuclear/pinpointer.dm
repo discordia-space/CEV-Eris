@@ -4,7 +4,7 @@
 	icon_state = "pinoff"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
@@ -17,7 +17,7 @@
 		if(!active)
 			active = 1
 			workdisk()
-			usr << "<span class='notice'>You activate the pinpointer</span>"
+			usr << SPAN_NOTICE("You activate the pinpointer")
 		else
 			active = 0
 			icon_state = "pinoff"
@@ -69,11 +69,11 @@
 				worklocation()
 			if(mode == 2)
 				workobj()
-			usr << "<span class='notice'>You activate the pinpointer</span>"
+			usr << SPAN_NOTICE("You activate the pinpointer")
 		else
 			active = 0
 			icon_state = "pinoff"
-			usr << "<span class='notice'>You deactivate the pinpointer</span>"
+			usr << SPAN_NOTICE("You deactivate the pinpointer")
 
 
 	proc/worklocation()
@@ -189,14 +189,14 @@
 		active = 1
 		if(!mode)
 			workdisk()
-			user << "<span class='notice'>Authentication Disk Locator active.</span>"
+			user << SPAN_NOTICE("Authentication Disk Locator active.")
 		else
 			worklocation()
-			user << "<span class='notice'>Shuttle Locator active.</span>"
+			user << SPAN_NOTICE("Shuttle Locator active.")
 	else
 		active = 0
 		icon_state = "pinoff"
-		user << "<span class='notice'>You deactivate the pinpointer.</span>"
+		user << SPAN_NOTICE("You deactivate the pinpointer.")
 
 
 /obj/item/weapon/pinpointer/nukeop/workdisk()
@@ -241,7 +241,7 @@
 		mode = 0
 		workdisk()
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-		visible_message("<span class='notice'>Authentication Disk Locator active.</span>")
+		visible_message(SPAN_NOTICE("Authentication Disk Locator active."))
 		return
 	if(!home)
 		home = locate()

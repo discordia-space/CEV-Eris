@@ -4,7 +4,7 @@
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "pscrubber:0"
 	density = 1
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 
 	var/on = 0
 	var/volume_rate = 800
@@ -166,7 +166,7 @@
 	name = "[name] (ID [id])"
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
-		usr << "<span class='notice'>You can't directly interact with this machine. Use the scrubber control console.</span>"
+		usr << SPAN_NOTICE("You can't directly interact with this machine. Use the scrubber control console.")
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
 	src.overlays = 0
@@ -207,7 +207,7 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
 		if(on)
-			user << "<span class='warning'>Turn \the [src] off first!</span>"
+			user << SPAN_WARNING("Turn \the [src] off first!")
 			return
 
 		anchored = !anchored
@@ -234,7 +234,7 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/weapon/wrench))
-		user << "<span class='warning'>The bolts are too tight for you to unscrew!</span>"
+		user << SPAN_WARNING("The bolts are too tight for you to unscrew!")
 		return
 
 	..()

@@ -8,7 +8,7 @@ var/global/list/stool_cache = list() //haha stool
 	icon_state = "stool_preview" //set for the map
 	force = 10
 	throwforce = 10
-	w_class = 5
+	w_class = ITEM_SIZE_HUGE
 	var/base_icon = "stool_base"
 	var/material/material
 	var/material/padding_material
@@ -71,7 +71,7 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(5) && isliving(M))
-		user.visible_message("<span class='danger'>[user] breaks [src] over [M]'s back!</span>")
+		user.visible_message(SPAN_DANGER("[user] breaks [src] over [M]'s back!"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(M)
 

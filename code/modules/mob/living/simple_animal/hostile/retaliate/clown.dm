@@ -2,8 +2,6 @@
 	name = "clown"
 	desc = "A denizen of clown planet"
 	icon_state = "clown"
-	icon_living = "clown"
-	icon_dead = "clown_dead"
 	icon_gib = "clown_gib"
 	speak_chance = 0
 	turns_per_move = 5

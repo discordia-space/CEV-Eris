@@ -12,7 +12,7 @@
 /obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
 	if(!cell || !cell.check_charge(tick_cost))
 		playsound(loc, 'sound/machines/button.ogg', 50, 1)
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing")
 		return FALSE
 	. = ..()
 	if(. && user)
@@ -28,7 +28,7 @@
 	if(on)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
-				src.loc << "<span class='warning'>Your flashlight dies. You are alone now.</span>"
+				src.loc << SPAN_WARNING("Your flashlight dies. You are alone now.")
 			turn_off()
 
 /obj/item/device/lighting/toggleable/flashlight/MouseDrop(over_object)
@@ -50,7 +50,7 @@
 		if(istype(H))
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
 				if(istype(C) && (C.body_parts_covered & EYES))
-					user << "<span class='warning'>You're going to need to remove [C.name] first.</span>"
+					user << SPAN_WARNING("You're going to need to remove [C.name] first.")
 					return
 
 			var/obj/item/organ/vision
@@ -59,29 +59,29 @@
 			if(!vision)
 				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>"
 
-			user.visible_message("<span class='notice'>\The [user] directs [src] to [M]'s eyes.</span>", \
-							 	 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
+			user.visible_message(SPAN_NOTICE("\The [user] directs [src] to [M]'s eyes."), \
+							 	 SPAN_NOTICE("You direct [src] to [M]'s eyes."))
 			if(H == user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
-					user << "<span class='warning'>\The [M]'s pupils do not react to the light!</span>"
+					user << SPAN_WARNING("\The [M]'s pupils do not react to the light!")
 					return
 				if(XRAY in M.mutations)
-					user << "<span class='notice'>\The [M] pupils give an eerie glow!</span>"
+					user << SPAN_NOTICE("\The [M] pupils give an eerie glow!")
 				if(vision.damage)
-					user << "<span class='warning'>There's visible damage to [M]'s [vision.name]!</span>"
+					user << SPAN_WARNING("There's visible damage to [M]'s [vision.name]!")
 				else if(M.eye_blurry)
-					user << "<span class='notice'>\The [M]'s pupils react slower than normally.</span>"
+					user << SPAN_NOTICE("\The [M]'s pupils react slower than normally.")
 				if(M.getBrainLoss() > 15)
-					user << "<span class='notice'>There's visible lag between left and right pupils' reactions.</span>"
+					user << SPAN_NOTICE("There's visible lag between left and right pupils' reactions.")
 
 				var/list/pinpoint = list("oxycodone"=1,"tramadol"=5)
 				var/list/dilating = list("space_drugs"=5,"mindbreaker"=1)
 				if(M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
-					user << "<span class='notice'>\The [M]'s pupils are already pinpoint and cannot narrow any more.</span>"
+					user << SPAN_NOTICE("\The [M]'s pupils are already pinpoint and cannot narrow any more.")
 				else if(M.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))
-					user << "<span class='notice'>\The [M]'s pupils narrow slightly, but are still very dilated.</span>"
+					user << SPAN_NOTICE("\The [M]'s pupils narrow slightly, but are still very dilated.")
 				else
-					user << "<span class='notice'>\The [M]'s pupils narrow.</span>"
+					user << SPAN_NOTICE("\The [M]'s pupils narrow.")
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
 			if(M.HUDtech.Find("flash"))
@@ -100,7 +100,7 @@
 	item_state = ""
 	slot_flags = SLOT_EARS
 	brightness_on = 2
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 
 /obj/item/device/lighting/toggleable/flashlight/heavy
 	name = "heavy duty flashlight"

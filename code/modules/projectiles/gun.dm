@@ -41,7 +41,7 @@
 	flags =  CONDUCT
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 5
@@ -66,6 +66,9 @@
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
 
+	var/safety = TRUE//is safety will be toggled on spawn() or not
+	var/restrict_safety = FALSE//if gun don't need safety in all - toggle to TRUE
+
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
@@ -87,6 +90,9 @@
 
 	if(isnull(scoped_accuracy))
 		scoped_accuracy = accuracy
+
+	if(!restrict_safety)
+		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
 
 /obj/item/weapon/gun/update_held_icon()
 	if(requires_two_hands)
@@ -113,7 +119,7 @@
 
 	var/mob/living/M = user
 	if(HULK in M.mutations)
-		M << "<span class='danger'>Your fingers are much too large for the trigger guard!</span>"
+		M << SPAN_DANGER("Your fingers are much too large for the trigger guard!")
 		return 0
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
@@ -121,13 +127,18 @@
 			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
 				handle_post_fire(user, user)
 				user.visible_message(
-					"<span class='danger'>\The [user] shoots \himself in the foot with \the [src]!</span>",
-					"<span class='danger'>You shoot yourself in the foot with \the [src]!</span>"
+					SPAN_DANGER("\The [user] shoots \himself in the foot with \the [src]!"),
+					SPAN_DANGER("You shoot yourself in the foot with \the [src]!")
 					)
 				M.drop_item()
 		else
 			handle_click_empty(user)
 		return 0
+	if(!restrict_safety)
+		if(safety)
+			user << "<span class='danger'>The gun's safety is on!</span>"
+			handle_click_empty(user)
+			return 0
 	return 1
 
 /obj/item/weapon/gun/emp_act(severity)
@@ -144,8 +155,6 @@
 		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
 		return
 
-	if(user && user.a_intent == I_HELP) //regardless of what happens, refuse to shoot if help intent is on
-		user << "<span class='warning'>You refrain from firing your [src] as your intent is set to help.</span>"
 	else
 
 
@@ -182,7 +191,7 @@
 
 	if(world.time < next_fire_time)
 		if (world.time % 3) //to prevent spam
-			user << "<span class='warning'>[src] is not ready to fire again!</span>"
+			user << SPAN_WARNING("[src] is not ready to fire again!")
 		return
 
 	var/shoot_time = (burst - 1)* burst_delay
@@ -246,7 +255,7 @@
 //called if there was no projectile to shoot
 /obj/item/weapon/gun/proc/handle_click_empty(mob/user)
 	if (user)
-		user.visible_message("*click click*", "<span class='danger'>*click*</span>")
+		user.visible_message("*click click*", SPAN_DANGER("*click*"))
 	else
 		src.visible_message("*click click*")
 	playsound(src.loc, 'sound/weapons/guns/misc/gun_empty.ogg', 100, 1)
@@ -267,7 +276,7 @@
 		else
 			user.visible_message(
 				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
-				"<span class='warning'>You fire \the [src]!</span>",
+				SPAN_WARNING("You fire \the [src]!"),
 				"You hear a [fire_sound_text]!"
 				)
 
@@ -348,9 +357,9 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = 1
-	M.visible_message("<span class='danger'>[user] sticks their gun in their mouth, ready to pull the trigger...</span>")
+	M.visible_message(SPAN_DANGER("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 40, progress=0))
-		M.visible_message("<span class='notice'>[user] decided life was worth living</span>")
+		M.visible_message(SPAN_NOTICE("[user] decided life was worth living"))
 		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
@@ -406,6 +415,10 @@
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		user << "The fire selector is set to [current_mode.name]."
+	if(safety)
+		user << "<span class='notice'>The safety is on.</span>"
+	else
+		user << "<span class='notice'>The safety is off.</span>"
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
@@ -423,5 +436,27 @@
 	var/datum/firemode/new_mode = switch_firemodes(user)
 	if(new_mode)
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
-		user << "<span class='notice'>\The [src] is now set to [new_mode.name].</span>"
+		user << SPAN_NOTICE("\The [src] is now set to [new_mode.name].")
 
+/obj/item/weapon/gun/proc/check_safety(mob/user)
+	if(!restrict_safety)
+		if(src == user.get_active_hand())//returns the thing in our active hand
+			safety = !safety
+			playsound(user, 'sound/weapons/selector.ogg', 50, 1)
+			user << "<span class='notice'>You toggle the safety [safety ? "on":"off"].</span>"
+
+/obj/item/weapon/gun/AltClick(mob/user)
+	if(!restrict_safety)
+		..()
+		if(user.incapacitated())
+			user << "<span class='warning'>You can't do that right now!</span>"
+			return
+
+		check_safety(user)
+
+/obj/item/weapon/gun/proc/toggle_safety()
+	set name = "Toggle gun's safety"
+	set category = "Object"
+	set src in view(1)
+
+	check_safety(usr)

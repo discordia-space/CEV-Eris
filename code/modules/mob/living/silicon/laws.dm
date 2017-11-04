@@ -17,7 +17,7 @@
 /mob/living/silicon/robot/set_zeroth_law(var/law, var/law_borg)
 	..()
 	if(tracking_entities)
-		src << "<span class='warning'>Internal camera is currently being accessed.</span>"
+		src << SPAN_WARNING("Internal camera is currently being accessed.")
 
 /mob/living/silicon/proc/add_ion_law(var/law)
 	laws_sanity_check()
@@ -74,7 +74,7 @@
 
 /mob/living/silicon/proc/dostatelaws(var/method, var/prefix, var/datum/ai_laws/laws)
 	if(stating_laws[prefix])
-		src << "<span class='notice'>[method]: Already stating laws using this communication method.</span>"
+		src << SPAN_NOTICE("[method]: Already stating laws using this communication method.")
 		return
 
 	stating_laws[prefix] = 1
@@ -87,7 +87,7 @@
 			break
 
 	if(!can_state)
-		src << "<span class='danger'>[method]: Unable to state laws. Communication method unavailable.</span>"
+		src << SPAN_DANGER("[method]: Unable to state laws. Communication method unavailable.")
 	stating_laws[prefix] = 0
 
 /mob/living/silicon/proc/statelaw(var/law)

@@ -3,7 +3,7 @@
 	desc = "A dice with six sides."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "d66"
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	var/sides = 6
 	attack_verb = list("diced")
 
@@ -66,9 +66,9 @@ Another builds like baystation12 also have a duplication.
 	else if (result == 20 && sides == 20)
 		comment = "Nat 20!"
 	icon_state = "[name][result]"
-	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \
-						 "<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
-						 "<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
+	user.visible_message(SPAN_NOTICE("[user] has thrown [src]. It lands on [result]. [comment]"), \
+						 SPAN_NOTICE("You throw [src]. It lands on a [result]. [comment]"), \
+						 SPAN_NOTICE("You hear [src] landing on a [result]. [comment]"))
 
 /obj/item/weapon/dice/throw_impact(atom/hit_atom, var/speed)
 	..()
@@ -79,4 +79,4 @@ Another builds like baystation12 also have a duplication.
 	else if (result == 20 && sides == 20)
 		comment = "Nat 20!"
 	icon_state = "[name][result]"
-	src.visible_message("<span class='notice'>\The [src] lands on [result]. [comment]</span>")
+	src.visible_message(SPAN_NOTICE("\The [src] lands on [result]. [comment]"))

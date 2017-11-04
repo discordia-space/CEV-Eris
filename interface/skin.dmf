@@ -113,7 +113,7 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "5"
-		command = ".me"
+		command = "me-verb"
 		is-disabled = false
 	elem 
 		name = "A+REP"
@@ -181,7 +181,7 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "T"
-		command = ".say"
+		command = "say-verb"
 		is-disabled = false
 	elem "w_key"
 		name = "W+REP"
@@ -237,11 +237,11 @@ macro "borghotkeymode"
 		is-disabled = false
 	elem 
 		name = "F3"
-		command = ".say"
+		command = "say-verb"
 		is-disabled = false
 	elem 
 		name = "F4"
-		command = ".me"
+		command = "me-verb"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -435,11 +435,11 @@ macro "macro"
 		is-disabled = false
 	elem 
 		name = "F3"
-		command = ".say"
+		command = "say-verb"
 		is-disabled = false
 	elem 
 		name = "F4"
-		command = ".me"
+		command = "me-verb"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -577,7 +577,7 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "5"
-		command = ".me"
+		command = "me-verb"
 		is-disabled = false
 	elem 
 		name = "A+REP"
@@ -661,7 +661,7 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "T"
-		command = ".say"
+		command = "say-verb"
 		is-disabled = false
 	elem "w_key"
 		name = "W+REP"
@@ -717,11 +717,11 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "F3"
-		command = ".say"
+		command = "say-verb"
 		is-disabled = false
 	elem 
 		name = "F4"
-		command = ".me"
+		command = "me-verb"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -915,11 +915,11 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "F3"
-		command = ".say"
+		command = "say-verb"
 		is-disabled = false
 	elem 
 		name = "F4"
-		command = ".me"
+		command = "me-verb"
 		is-disabled = false
 	elem 
 		name = "F5"

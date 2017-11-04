@@ -7,7 +7,7 @@
 	icon_state = "large"
 	sharp = 1
 	edge = 1
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	force_divisor = 0.2 // 6 with hardness 30 (glass)
 	thrown_force_divisor = 0.4 // 4 with weight 15 (glass)
 	item_state = "shard-glass"
@@ -73,7 +73,7 @@
 			if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
 				return
 
-			M << "<span class='danger'>You step on \the [src]!</span>"
+			M << SPAN_DANGER("You step on \the [src]!")
 
 			var/list/check = list("l_foot", "r_foot")
 			while(check.len)

@@ -9,7 +9,7 @@
 	The 'fire' activator will cause the mechanism to attempt to fire the weapon at the coordinates, if possible.  Note that the \
 	normal limitations to firearms, such as ammunition requirements and firing delays, still hold true if fired by the mechanism."
 	complexity = 20
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	inputs = list(
 		"\<NUM\> target X rel",
 		"\<NUM\> target Y rel"
@@ -31,12 +31,12 @@
 	if(istype(O, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/gun = O
 		if(installed_gun)
-			user << "<span class='warning'>There's already a weapon installed.</span>"
+			user << SPAN_WARNING("There's already a weapon installed.")
 			return
 		user.drop_from_inventory(gun)
 		installed_gun = gun
 		gun.forceMove(src)
-		user << "<span class='notice'>You slide \the [gun] into the firing mechanism.</span>"
+		user << SPAN_NOTICE("You slide \the [gun] into the firing mechanism.")
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 	else
 		..()
@@ -44,11 +44,11 @@
 /obj/item/integrated_circuit/manipulation/weapon_firing/attack_self(var/mob/user)
 	if(installed_gun)
 		installed_gun.forceMove(get_turf(src))
-		user << "<span class='notice'>You slide \the [installed_gun] out of the firing mechanism.</span>"
+		user << SPAN_NOTICE("You slide \the [installed_gun] out of the firing mechanism.")
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_gun = null
 	else
-		user << "<span class='notice'>There's no weapon to remove from the mechanism.</span>"
+		user << SPAN_NOTICE("There's no weapon to remove from the mechanism.")
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/do_work()
 	if(..())
@@ -108,7 +108,7 @@
 	<br>\
 	Pulsing the 'step towards dir' activator pin will cause the machine to move a meter in that direction, assuming it is not \
 	being held, or anchored in some way.  It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits."
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	complexity = 20
 	inputs = list("dir num")
 	outputs = list()

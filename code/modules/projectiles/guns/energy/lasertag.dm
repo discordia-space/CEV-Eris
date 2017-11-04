@@ -12,7 +12,7 @@
 /obj/item/weapon/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)
 	if(ishuman(M))
 		if(!istype(M.wear_suit, required_vest))
-			M << "<span class='warning'>You need to be wearing your laser tag vest!</span>"
+			M << SPAN_WARNING("You need to be wearing your laser tag vest!")
 			return 0
 	return ..()
 

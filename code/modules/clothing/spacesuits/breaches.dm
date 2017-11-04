@@ -190,7 +190,7 @@ var/global/list/breach_burn_descriptors = list(
 			return
 
 		if(isliving(loc))
-			user << "<span class='warning'>How do you intend to patch a hardsuit while someone is wearing it?</span>"
+			user << SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?")
 			return
 
 		if(!damage || !burn_damage)

@@ -5,7 +5,7 @@
 	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
 	icon_state = "jetpack"
 	gauge_icon = null
-	w_class = 4.0
+	w_class = ITEM_SIZE_LARGE
 	item_state = "jetpack"
 	force = WEAPON_FORCE_PAINFULL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
@@ -27,7 +27,7 @@
 /obj/item/weapon/tank/jetpack/examine(mob/user)
 	. = ..()
 	if(air_contents.total_moles < 5)
-		user << "<span class='danger'>The meter on \the [src] indicates you are almost out of gas!</span>"
+		user << SPAN_DANGER("The meter on \the [src] indicates you are almost out of gas!")
 		playsound(user, 'sound/effects/alert.ogg', 50, 1)
 
 /obj/item/weapon/tank/jetpack/verb/toggle_rockets()

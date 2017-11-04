@@ -92,7 +92,7 @@
 		return
 	if(hardware_integrity() < 50)
 		if(!shutup)
-			src << "<span class='notice'>Starting APU... <b>FAULT</b>(System Damaged)</span>"
+			src << SPAN_NOTICE("Starting APU... <b>FAULT</b>(System Damaged)")
 		return
 	if(!shutup)
 		src << "Starting APU... ONLINE"

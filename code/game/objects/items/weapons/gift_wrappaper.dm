@@ -18,47 +18,14 @@
 	..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
-	if(w_class > 0 && w_class < 4)
+	if(w_class < ITEM_SIZE_LARGE)
 		icon_state = "gift[w_class]"
 	else
 		icon_state = "gift[pick(1, 2, 3)]"
-	return
-
-/obj/item/weapon/gift/attack_self(mob/user as mob)
-	user.drop_item()
-	if(src.gift)
-		user.put_in_active_hand(gift)
-		src.gift.add_fingerprint(user)
-	else
-		user << "<span class='warning'>The gift was empty!</span>"
-	qdel(src)
-	return
 
 /obj/item/weapon/a_gift/ex_act()
 	qdel(src)
 	return
-
-/obj/effect/spresent/relaymove(mob/user as mob)
-	if (user.stat)
-		return
-	user << "<span class='warning'>You can't move.</span>"
-
-/obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-
-	if (!istype(W, /obj/item/weapon/wirecutters))
-		user << "<span class='warning'>I need wirecutters for that.</span>"
-		return
-
-	user << "<span class='notice'>You cut open the present.</span>"
-
-	for(var/mob/M in src) //Should only be one but whatever.
-		M.loc = src.loc
-		if (M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
-
-	qdel(src)
 
 /obj/item/weapon/a_gift/attack_self(mob/M as mob)
 	var/gift_type = pick(
@@ -114,9 +81,56 @@
 	qdel(src)
 	return
 
+/obj/item/weapon/gift
+	name = "gift"
+	desc = "A wrapped item."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "gift3"
+	var/size = 3.0
+	var/obj/item/gift = null
+	item_state = "gift"
+	w_class = ITEM_SIZE_LARGE
+
+/obj/item/weapon/gift/attack_self(mob/user as mob)
+	user.drop_item()
+	if(src.gift)
+		user.put_in_active_hand(gift)
+		src.gift.add_fingerprint(user)
+	else
+		user << SPAN_WARNING("The gift was empty!")
+	qdel(src)
+
+/obj/effect/spresent/relaymove(mob/user as mob)
+	if (user.stat)
+		return
+	user << SPAN_WARNING("You can't move.")
+
+/obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	..()
+
+	if (!istype(W, /obj/item/weapon/wirecutters))
+		user << SPAN_WARNING("I need wirecutters for that.")
+		return
+
+	user << SPAN_NOTICE("You cut open the present.")
+
+	for(var/mob/M in src) //Should only be one but whatever.
+		M.forceMove(loc)
+	qdel(src)
+
 /*
  * Wrapping Paper
  */
+/obj/item/weapon/c_tube
+	name = "cardboard tube"
+	desc = "A tube... of cardboard."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "c_tube"
+	throwforce = WEAPON_FORCE_HARMLESS
+	w_class = ITEM_SIZE_SMALL
+	throw_speed = 4
+	throw_range = 5
+
 /obj/item/weapon/wrapping_paper
 	name = "wrapping paper"
 	desc = "You can use this to wrap items in."
@@ -127,12 +141,12 @@
 /obj/item/weapon/wrapping_paper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if (!( locate(/obj/structure/table, src.loc) ))
-		user << "<span class='warning'>You MUST put the paper on a table!</span>"
-	if (W.w_class < 4)
+		user << SPAN_WARNING("You MUST put the paper on a table!")
+	if (W.w_class < ITEM_SIZE_LARGE)
 		if ((istype(user.l_hand, /obj/item/weapon/wirecutters) || istype(user.r_hand, /obj/item/weapon/wirecutters)))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
-				user << "<span class='warning'>You need more paper!</span>"
+				user << SPAN_WARNING("You need more paper!")
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/weapon/gift)) //No gift wrapping gifts!
@@ -154,9 +168,9 @@
 				qdel(src)
 				return
 		else
-			user << "<span class='warning'>You need scissors!</span>"
+			user << SPAN_WARNING("You need scissors!")
 	else
-		user << "<span class='warning'>The object is FAR too large!</span>"
+		user << SPAN_WARNING("The object is FAR too large!")
 	return
 
 
@@ -185,6 +199,6 @@
 			msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")
 
 		else
-			user << "<span class='warning'>You need more paper.</span>"
+			user << SPAN_WARNING("You need more paper.")
 	else
 		user << "They are moving around too much. A straightjacket would help."

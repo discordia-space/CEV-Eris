@@ -57,7 +57,21 @@ research holder datum.
 	generate_integrated_circuit_designs()
 	RefreshResearch()
 
+/datum/tech/proc/getCost(current_level = null)
+	// Calculates tech disk's supply points sell cost
+	if(!current_level)
+		current_level = initial(level)
 
+	if(current_level >= level)
+		return 0
+
+	var/cost = 0
+	for(var/i = current_level + 1 to level)
+		if(i == initial(level))
+			continue
+		cost += i*rare
+
+	return cost
 
 /datum/research/techonly
 
@@ -157,6 +171,7 @@ research holder datum.
 	var/desc = "description"			//General description of what it does and what it makes.
 	var/id = "id"						//An easily referenced ID. Must be alphanumeric, lower-case, and no symbols.
 	var/level = 1						//A simple number scale of the research level. Level 0 = Secret tech.
+	var/rare = 1						//How much CentCom wants to get that tech. Used in supply shuttle tech cost calculation.
 
 /datum/tech/materials
 	name = "Materials Research"
@@ -172,6 +187,7 @@ research holder datum.
 	name = "Plasma Research"
 	desc = "Research into the mysterious substance colloqually known as 'plasma'."
 	id = TECH_PLASMA
+	rare = 3
 
 /datum/tech/powerstorage
 	name = "Power Manipulation Technology"
@@ -182,6 +198,7 @@ research holder datum.
 	name = "'Blue-space' Research"
 	desc = "Research into the sub-reality known as 'blue-space'"
 	id = TECH_BLUESPACE
+	rare = 2
 
 /datum/tech/biotech
 	name = "Biological Technology"
@@ -221,7 +238,7 @@ research holder datum.
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
 	item_state = "card-id"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	matter = list(DEFAULT_WALL_MATERIAL = 30, "glass" = 10)
 	var/datum/tech/stored
 
@@ -235,7 +252,7 @@ research holder datum.
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
 	item_state = "card-id"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	matter = list(DEFAULT_WALL_MATERIAL = 30, "glass" = 10)
 	var/datum/design/blueprint
 

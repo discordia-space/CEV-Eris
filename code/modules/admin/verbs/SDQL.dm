@@ -3,8 +3,9 @@
 
 //Note: For use in BS12, need text_starts_with proc, and to modify the action on select to use BS12's object edit command(s).
 
+ADMIN_VERB_ADD(/client/proc/SDQL_query, R_DEBUG, FALSE)
 /client/proc/SDQL_query(query_text as message)
-	set category = "Admin"
+	set category = "Debug"
 	if(!check_rights(R_DEBUG))  //Shouldn't happen... but just to be safe.
 		message_admins("\red ERROR: Non-admin [usr.key] attempted to execute a SDQL query!")
 		log_admin("Non-admin [usr.key] attempted to execute a SDQL query!")
@@ -90,22 +91,22 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/space"))
-					for(var/turf/space/m in world)
+					for(var/turf/space/m in turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/simulated"))
-					for(var/turf/simulated/m in world)
+					for(var/turf/simulated/m in turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/unsimulated"))
-					for(var/turf/unsimulated/m in world)
+					for(var/turf/unsimulated/m in turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf"))
-					for(var/turf/m in world)
+					for(var/turf/m in turfs)
 						if(istype(m, f2))
 							from_objs += m
 

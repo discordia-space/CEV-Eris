@@ -35,7 +35,7 @@
 	var/obj/screen/gun/mode/gun_setting_icon = null*/
 
 	//spells hud icons - this interacts with add_spell and remove_spell
-	var/list/obj/screen/movable/spell_master/spell_masters = null
+	//var/list/obj/screen/movable/spell_master/spell_masters = null
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
@@ -176,3 +176,5 @@
 	var/list/HUDprocess = list() //What HUD object need process
 	var/list/HUDtech = list()
 	var/defaultHUD = "" //Default mob hud
+
+	var/list/progressbars = null

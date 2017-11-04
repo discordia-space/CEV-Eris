@@ -12,7 +12,7 @@
 	if(istype(I, /obj/item/clothing/accessory))
 
 		if(!valid_accessory_slots || !valid_accessory_slots.len)
-			usr << "<span class='warning'>You cannot attach accessories of any kind to \the [src].</span>"
+			usr << SPAN_WARNING("You cannot attach accessories of any kind to \the [src].")
 			return
 
 		var/obj/item/clothing/accessory/A = I
@@ -26,7 +26,7 @@
 				H.update_inv_w_uniform()
 			return
 		else
-			user << "<span class='warning'>You cannot attach more accessories of this type to [src].</span>"
+			user << SPAN_WARNING("You cannot attach more accessories of this type to [src].")
 		return
 
 	if(accessories.len)

@@ -3,7 +3,7 @@
 	desc = "A small handheld black light."
 	icon_state = "uv_off"
 	slot_flags = SLOT_BELT
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
 	action_button_name = "Toggle UV light"
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
@@ -53,7 +53,7 @@
 		var/turf/origin = get_turf(src)
 		if(!origin)
 			return
-		for(var/turf/T in range(range, origin))
+		for(var/turf/T in trange(range, origin))
 			var/use_alpha = 255 - (step_alpha * get_dist(origin, T))
 			for(var/atom/A in T.contents)
 				if(A.fluorescent == 1)

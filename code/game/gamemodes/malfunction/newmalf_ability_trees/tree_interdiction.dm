@@ -114,8 +114,8 @@
 			target << "Unlock signal received.."
 			target.SetLockdown(0)
 			if(target.lockcharge)
-				user << "<span class='notice'>Unlock Failed, lockdown wire cut.</span>"
-				target << "<span class='notice'>Unlock Failed, lockdown wire cut.</span>"
+				user << SPAN_NOTICE("Unlock Failed, lockdown wire cut.")
+				target << SPAN_NOTICE("Unlock Failed, lockdown wire cut.")
 			else
 				user << "Cyborg unlocked."
 				target << "You have been unlocked."
@@ -135,7 +135,7 @@
 
 	var/list/L = get_unlinked_cyborgs(user)
 	if(!L.len)
-		user << "<span class='notice'>ERROR: No unlinked cyborgs detected!</span>"
+		user << SPAN_NOTICE("ERROR: No unlinked cyborgs detected!")
 
 
 	if(target && !istype(target))
@@ -200,7 +200,7 @@
 
 	var/list/L = get_other_ais(user)
 	if(!L.len)
-		user << "<span class='notice'>ERROR: No other AIs detected!</span>"
+		user << SPAN_NOTICE("ERROR: No other AIs detected!")
 
 	if(target && !istype(target))
 		user << "This is not an AI."

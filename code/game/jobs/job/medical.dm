@@ -22,7 +22,7 @@
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/moebius_biolab_officer
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	pda = /obj/item/device/pda/heads/cmo
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	ear = /obj/item/device/radio/headset/heads/cmo
@@ -38,6 +38,12 @@
 		if(!..())	return 0
 		H.equip_to_slot_or_del(new /obj/item/device/lighting/toggleable/flashlight/pen(H), slot_s_store)
 		return 1
+
+/obj/landmark/start/cmo
+	name = "Moebius Biolab Officer"
+	icon_state = "player-green-officer"
+	job = /datum/job/cmo
+
 
 /datum/job/doctor
 	title = "Moebius Doctor"
@@ -55,7 +61,7 @@
 	idtype = /obj/item/weapon/card/id/med
 
 	uniform = /obj/item/clothing/under/rank/medical
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
@@ -67,27 +73,10 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		if (H.mind && H.mind.role_alt_title)
-			switch(H.mind.role_alt_title)
-				if("Emergency Physician")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)
-				if("Surgeon")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/blue(H), slot_w_uniform)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat(H), slot_wear_suit)
-					H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/blue(H), slot_head)
-				if("Virologist")
-					H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/virologist(H), slot_w_uniform)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/toggle/labcoat/virologist(H), slot_wear_suit)
-					H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), slot_wear_mask)
-					switch(H.backbag)
-						if(2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
-						if(3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
-						if(4) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-					job_master.spawnId(H, H.mind.assigned_role, H.mind.role_alt_title, /obj/item/weapon/card/id/viro)
-		return ..()
+/obj/landmark/start/doctor
+	name = "Moebius Doctor"
+	icon_state = "player-green"
+	job = /datum/job/doctor
 
 
 
@@ -108,7 +97,7 @@
 
 
 	uniform = /obj/item/clothing/under/rank/chemist
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	pda = /obj/item/device/pda/chemist
 	ear = /obj/item/device/radio/headset/headset_med
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
@@ -118,6 +107,12 @@
 		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
+
+/obj/landmark/start/chemist
+	name = "Moebius Chemist"
+	icon_state = "player-green"
+	job = /datum/job/chemist
+
 
 /datum/job/psychiatrist
 	title = "Moebius Psychiatrist"
@@ -136,15 +131,20 @@
 	uniform = /obj/item/clothing/under/rank/psych
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		return ..()
 
+/obj/landmark/start/psychiatrist
+	name = "Moebius Psychiatrist"
+	icon_state = "player-green"
+	job = /datum/job/psychiatrist
 
-/datum/job/Paramedic
+
+/datum/job/paramedic
 	title = "Moebius Paramedic"
 	flag = PARAMEDIC
 	department = "Medical"
@@ -169,3 +169,9 @@
 		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
 		)
+
+/obj/landmark/start/paramedic
+	name = "Moebius Paramedic"
+	icon_state = "player-green"
+	job = /datum/job/paramedic
+

@@ -43,6 +43,24 @@
 	color = "#003333"
 	strength = 10
 
+/datum/reagent/toxin/blattedin
+	name = "Blattedin"
+	id = "blattedin"
+	description = "A powerful toxin produced by those omnipresent roaches."
+	taste_description = "chicken"
+	reagent_state = LIQUID
+	color = "#0F4800"
+	strength = 5
+
+/datum/reagent/toxin/blattedin/touch_mob(var/mob/living/L, var/amount)
+	if(istype(L, /mob/living/simple_animal/hostile/roach))
+		if(L.health <= 0)
+			if(prob(70))//Roaches sometimes can come back to life from healing vapors
+				return
+		L.heal_organ_damage(amount * 0.5)
+	else
+		..()
+
 /datum/reagent/toxin/plasma
 	name = "Plasma"
 	id = "plasma"
@@ -188,7 +206,7 @@
 		if(locate(/obj/effect/overlay/wallrot) in W)
 			for(var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)
-			W.visible_message("<span class='notice'>The fungi are completely dissolved by the solution!</span>")
+			W.visible_message(SPAN_NOTICE("The fungi are completely dissolved by the solution!"))
 
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
@@ -261,7 +279,7 @@
 
 /datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(prob(10))
-		M << "<span class='danger'>Your insides are burning!</span>"
+		M << SPAN_DANGER("Your insides are burning!")
 		M.adjustToxLoss(rand(100, 300) * removed)
 	else if(prob(40))
 		M.heal_organ_damage(25 * removed, 0)
@@ -476,7 +494,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name != "Slime")
-			M << "<span class='danger'>Your flesh rapidly mutates!</span>"
+			M << SPAN_DANGER("Your flesh rapidly mutates!")
 			H.set_species("Slime")
 
 /datum/reagent/aslimetoxin
@@ -490,7 +508,7 @@
 /datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // TODO: check if there's similar code anywhere else
 	if(M.transforming)
 		return
-	M << "<span class='danger'>Your flesh rapidly mutates!</span>"
+	M << SPAN_DANGER("Your flesh rapidly mutates!")
 	M.transforming = 1
 	M.canmove = 0
 	M.icon = null

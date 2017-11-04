@@ -7,7 +7,7 @@
 	gender = NEUTER
 	throw_speed = 3
 	throw_range = 7
-	w_class = 3
+	w_class = ITEM_SIZE_NORMAL
 	sharp = 0
 	edge = 0
 
@@ -79,7 +79,7 @@
 
 /obj/item/weapon/material/proc/shatter(var/consumed)
 	var/turf/T = get_turf(src)
-	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
+	T.visible_message(SPAN_DANGER("\The [src] [material.destruction_desc]!"))
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.drop_from_inventory(src)

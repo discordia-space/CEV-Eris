@@ -5,7 +5,7 @@
 	density = 1
 	var/health = 100.0
 	flags = CONDUCT
-	w_class = 5
+	w_class = ITEM_SIZE_HUGE
 
 	var/valve_open = 0
 	var/release_pressure = ONE_ATMOSPHERE
@@ -241,7 +241,7 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench) && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
-		visible_message("<span class='warning'>\The [user] hits \the [src] with \a [W]!</span>")
+		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [W]!"))
 		src.health -= W.force
 		src.add_fingerprint(user)
 		healthcheck()

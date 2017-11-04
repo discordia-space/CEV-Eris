@@ -6,7 +6,7 @@
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	var/implanted = FALSE
 	var/mob/wearer = null
 	var/obj/item/organ/external/part = null
@@ -37,11 +37,11 @@
 	affected = target.organs_by_name[organ]
 
 	if(!affected)
-		user << "<span class='warning'>[target] miss that body part!.</span>"
+		user << SPAN_WARNING("[target] miss that body part!.")
 		return
 
 	if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))
-		user << "<span class='warning'>[src] cannot be implanted in this limb.</span>"
+		user << SPAN_WARNING("[src] cannot be implanted in this limb.")
 		return
 
 	forceMove(target)

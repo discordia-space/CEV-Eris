@@ -34,18 +34,20 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	light_color = "#a97faa"
 	circuit = /obj/item/weapon/circuitboard/rdconsole
 	var/datum/research/files							//Stores all the collected research data.
-	var/obj/item/weapon/disk/tech_disk/t_disk = null	//Stores the technology disk.
+	var/obj/item/weapon/disk/tech_disk/t_disk   = null	//Stores the technology disk.
 	var/obj/item/weapon/disk/design_disk/d_disk = null	//Stores the design disk.
 
 	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
-	var/obj/machinery/r_n_d/protolathe/linked_lathe = null				//Linked Protolathe
-	var/obj/machinery/r_n_d/circuit_imprinter/linked_imprinter = null	//Linked Circuit Imprinter
+	var/obj/machinery/r_n_d/protolathe/linked_lathe             = null	//Linked Protolathe
+	var/obj/machinery/r_n_d/circuit_imprinter/linked_imprinter  = null	//Linked Circuit Imprinter
 
 	var/screen = 1.0	//Which screen is currently showing.
-	var/id = 0			//ID of the computer (for server restrictions).
-	var/sync = 1		//If sync = 0, it doesn't show up on Server Control Console
+	var/id     = 0			//ID of the computer (for server restrictions).
+	var/sync   = 1		//If sync = 0, it doesn't show up on Server Control Console
 
 	req_access = list(access_research)	//Data and setting manipulation requires scientist access.
+
+	var/datum/browser/popup
 
 /obj/machinery/computer/rdconsole/proc/CallMaterialName(var/ID)
 	var/return_name = ID
@@ -69,7 +71,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole/proc/CallReagentName(var/ID)
 	var/return_name = ID
 	var/datum/reagent/temp_reagent
-	for(var/R in (typesof(/datum/reagent) - /datum/reagent))
+	for(var/R in (subtypesof(/datum/reagent)))
 		temp_reagent = null
 		temp_reagent = new R()
 		if(temp_reagent.id == ID)
@@ -81,18 +83,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
 	for(var/obj/machinery/r_n_d/D in range(3, src))
-		if(D.linked_console != null || D.panel_open)
+		if(!isnull(D.linked_console) || D.panel_open)
 			continue
 		if(istype(D, /obj/machinery/r_n_d/destructive_analyzer))
-			if(linked_destroy == null)
+			if(isnull(linked_destroy))
 				linked_destroy = D
 				D.linked_console = src
 		else if(istype(D, /obj/machinery/r_n_d/protolathe))
-			if(linked_lathe == null)
+			if(isnull(linked_lathe))
 				linked_lathe = D
 				D.linked_console = src
 		else if(istype(D, /obj/machinery/r_n_d/circuit_imprinter))
-			if(linked_imprinter == null)
+			if(isnull(linked_imprinter))
 				linked_imprinter = D
 				D.linked_console = src
 	return
@@ -120,7 +122,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	//Loading a disk into it.
 	if(istype(D, /obj/item/weapon/disk))
 		if(t_disk || d_disk)
-			user << "A disk is already loaded into the machine."
+			user << SPAN_NOTICE("A disk is already loaded into the machine.")
 			return
 
 		if(istype(D, /obj/item/weapon/disk/tech_disk))
@@ -128,11 +130,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else if (istype(D, /obj/item/weapon/disk/design_disk))
 			d_disk = D
 		else
-			user << "<span class='notice'>Machine cannot accept disks in that format.</span>"
+			user << SPAN_NOTICE("Machine cannot accept disks in that format.")
 			return
 		user.drop_item()
 		D.loc = src
-		user << "<span class='notice'>You add \the [D] to the machine.</span>"
+		user << SPAN_NOTICE("You add \the [D] to the machine.")
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -144,7 +146,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << "<span class='notice'>You you disable the security protocols.</span>"
+		user << SPAN_NOTICE("You you disable the security protocols.")
 		return 1
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list)
@@ -152,6 +154,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		return 1
 
 	add_fingerprint(usr)
+
+	if(href_list["close"])
+		popup.close(usr)
+		return
 
 	usr.set_machine(src)
 	if(href_list["menu"]) //Switches menu screens. Converts a sent text string into a number. Saves a LOT of code.
@@ -210,7 +216,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				usr << "<span class='notice'>The destructive analyzer is busy at the moment.</span>"
+				usr << SPAN_NOTICE("The destructive analyzer is busy at the moment.")
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.loc = linked_destroy.loc
@@ -221,9 +227,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				usr << "<span class='notice'>The destructive analyzer is busy at the moment.</span>"
+				usr << SPAN_NOTICE("The destructive analyzer is busy at the moment.")
 			else
-				if(alert("Proceeding will destroy loaded item. Continue?", "Destructive analyzer confirmation", "Yes", "No") == "No" || !linked_destroy)
+				if(!linked_destroy)
 					return
 				linked_destroy.busy = 1
 				screen = 0.1
@@ -233,7 +239,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					if(linked_destroy)
 						linked_destroy.busy = 0
 						if(!linked_destroy.loaded_item)
-							usr <<"<span class='notice'>The destructive analyzer appears to be empty.</span>"
+							usr <<SPAN_NOTICE("The destructive analyzer appears to be empty.")
 							screen = 1.0
 							return
 
@@ -274,7 +280,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 		screen = 0.0
 		if(!sync)
-			usr << "<span class='notice'>You must connect to the network first.</span>"
+			usr << SPAN_NOTICE("You must connect to the network first.")
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)
@@ -415,7 +421,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		dat += "<UL>"
 		dat +=  "<LI>Level: [T.level]"
 		dat +=  "<LI>Summary: [T.desc]"
-		dat += "</UL>"
+		dat += "</UL><br>"
 	return dat
 
 /obj/machinery/computer/rdconsole/proc/GetResearchListInfo()
@@ -432,21 +438,24 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		return
 
 	user.set_machine(src)
+	interact(user)
+
+/obj/machinery/computer/rdconsole/interact(mob/user as mob)
 	var/dat = ""
 	files.RefreshResearch()
 	switch(screen) //A quick check to make sure you get the right screen when a device is disconnected.
 		if(2 to 2.9)
-			if(linked_destroy == null)
+			if(isnull(linked_destroy))
 				screen = 2.0
-			else if(linked_destroy.loaded_item == null)
+			else if(isnull(linked_destroy.loaded_item))
 				screen = 2.1
 			else
 				screen = 2.2
 		if(3 to 3.9)
-			if(linked_lathe == null)
+			if(isnull(linked_lathe))
 				screen = 3.0
 		if(4 to 4.9)
-			if(linked_imprinter == null)
+			if(isnull(linked_imprinter))
 				screen = 4.0
 
 	switch(screen)
@@ -504,7 +513,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "Disk Contents: (Technology Data Disk)<BR><BR>"
-			if(t_disk.stored == null)
+			if(isnull(t_disk.stored))
 				dat += "The disk has no data stored on it.<HR>"
 				dat += "Operations: "
 				dat += "<A href='?src=\ref[src];menu=1.3'>Load Tech to Disk</A> || "
@@ -529,7 +538,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		if(1.4) //Design Disk menu.
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
-			if(d_disk.blueprint == null)
+			if(isnull(d_disk.blueprint))
 				dat += "The disk has no data stored on it.<HR>"
 				dat += "Operations: "
 				dat += "<A href='?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
@@ -774,8 +783,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "List of Researched Technologies and Designs:"
 			dat += GetResearchListInfo()
 
-	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=850x600")
-	onclose(user, "rdconsole")
+	popup = new(user, "rdconsole","Research and Development Console", 850, 600, src)
+	popup.set_content("<TITLE>Research and Development Console</TITLE><HR>[jointext(dat, null)]")
+	popup.open()
 
 /obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"

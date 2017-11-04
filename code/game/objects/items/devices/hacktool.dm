@@ -44,7 +44,7 @@
 
 /obj/item/device/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
 	if(is_hacking)
-		user << "<span class='warning'>You are already hacking!</span>"
+		user << SPAN_WARNING("You are already hacking!")
 		return 0
 	if(!is_type_in_list(target, supported_types))
 		user << "\icon[src] <span class='warning'>Unable to hack this target!</span>"
@@ -54,17 +54,17 @@
 		known_targets.Swap(1, found)	// Move the last hacked item first
 		return 1
 
-	user << "<span class='notice'>You begin hacking \the [target]...</span>"
+	user << SPAN_NOTICE("You begin hacking \the [target]...")
 	is_hacking = 1
 	// On average hackin takes ~30 seconds. Fairly small random span to avoid people simply aborting and trying again
 	var/hack_result = do_after(user, (20 SECONDS + rand(0, 10 SECONDS) + rand(0, 10 SECONDS)), progress = 0)
 	is_hacking = 0
 
 	if(hack_result && in_hack_mode)
-		user << "<span class='notice'>Your hacking attempt was succesful!</span>"
+		user << SPAN_NOTICE("Your hacking attempt was succesful!")
 		playsound(src.loc, 'sound/piano/A#6.ogg', 75)
 	else
-		user << "<span class='warning'>Your hacking attempt failed!</span>"
+		user << SPAN_WARNING("Your hacking attempt failed!")
 		return 0
 
 	known_targets.Insert(1, target)	// Insert the newly hacked target first,

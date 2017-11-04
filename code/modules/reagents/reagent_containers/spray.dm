@@ -7,7 +7,7 @@
 	flags = OPENCONTAINER|NOBLUDGEON
 	slot_flags = SLOT_BELT
 	throwforce = 3
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 10
 	amount_per_transfer_from_this = 10
@@ -25,15 +25,12 @@
 	if(istype(A, /obj/item/weapon/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/weapon/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart))
 		return
 
-	if(istype(A, /spell))
-		return
-
 	if(proximity)
 		if(standard_dispenser_refill(user, A))
 			return
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		user << "<span class='notice'>\The [src] is empty!</span>"
+		user << SPAN_NOTICE("\The [src] is empty!")
 		return
 
 	Spray_at(A, user, proximity)
@@ -74,7 +71,7 @@
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 	spray_size = next_in_list(spray_size, spray_sizes)
-	user << "<span class='notice'>You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.</span>"
+	user << SPAN_NOTICE("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.")
 
 /obj/item/weapon/reagent_containers/spray/examine(mob/user)
 	if(..(user, 0) && loc == user)
@@ -90,7 +87,7 @@
 	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
 		return
 	if(isturf(usr.loc))
-		usr << "<span class='notice'>You empty \the [src] onto the floor.</span>"
+		usr << SPAN_NOTICE("You empty \the [src] onto the floor.")
 		reagents.splash(usr.loc, reagents.total_volume)
 
 //space cleaner
@@ -164,7 +161,7 @@
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	throwforce = 3
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	possible_transfer_amounts = null
 	volume = 600
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)

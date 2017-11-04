@@ -124,7 +124,7 @@ datum/preferences
 	if(!user || !user.client)	return
 
 	if(!get_mob_by_key(client_ckey))
-		user << "<span class='danger'>No mob exists for the given client!</span>"
+		user << SPAN_DANGER("No mob exists for the given client!")
 		close_load_dialog(user)
 		return
 
@@ -145,7 +145,9 @@ datum/preferences
 	dat += player_setup.content(user)
 
 	dat += "</html></body>"
-	user << browse(dat, "window=preferences;size=635x736")
+	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 665, 736, src)
+	popup.set_content(dat)
+	popup.open()
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!isnewplayer(user))
@@ -155,7 +157,7 @@ datum/preferences
 		if(config.forumurl)
 			user << link(config.forumurl)
 		else
-			user << "<span class='danger'>The forum URL is not set in the server configuration.</span>"
+			user << SPAN_DANGER("The forum URL is not set in the server configuration.")
 			return
 	ShowChoices(usr)
 	return 1

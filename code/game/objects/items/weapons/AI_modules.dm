@@ -14,7 +14,7 @@ AI MODULES
 	desc = "An AI Module for transmitting encrypted instructions to the AI."
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 15
@@ -32,10 +32,6 @@ AI MODULES
 			return
 		if (!comp.current)
 			usr << "You haven't selected an AI to transmit laws to!"
-			return
-
-		if(ticker && ticker.mode && ticker.mode.name == MODE_BLOB)
-			usr << "Law uploads have been disabled by [company_name]!"
 			return
 
 		if (comp.current.stat == 2 || comp.current.control_disabled == 1)
@@ -365,7 +361,7 @@ AI MODULES
 	log_law_changes(target, sender)
 
 	lawchanges.Add("The law is '[newFreeFormLaw]'")
-	target << "<span class='danger'>BZZZZT</span>"
+	target << SPAN_DANGER("BZZZZT")
 	var/law = "[newFreeFormLaw]"
 	target.add_ion_law(law)
 	target.show_laws()

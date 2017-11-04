@@ -23,7 +23,7 @@
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
@@ -40,7 +40,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	force = WEAPON_FORCE_NORMAL
-	w_class = 1.0
+	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 3
 	throw_range = 5
@@ -97,7 +97,7 @@
 	force = WEAPON_FORCE_WEAK
 	throw_speed = 2
 	throw_range = 9
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 80)
 	attack_verb = list("pinched", "nipped")
@@ -138,7 +138,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 
 	//Cost to make in the autolathe
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)
@@ -172,13 +172,13 @@
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/screwdriver))
 		if(welding)
-			user << "<span class='danger'>Stop welding first!</span>"
+			user << SPAN_DANGER("Stop welding first!")
 			return
 		status = !status
 		if(status)
-			user << "<span class='notice'>You secure the welder.</span>"
+			user << SPAN_NOTICE("You secure the welder.")
 		else
-			user << "<span class='notice'>The welder can now be attached and modified.</span>"
+			user << SPAN_NOTICE("The welder can now be attached and modified.")
 		src.add_fingerprint(user)
 		return
 
@@ -230,13 +230,13 @@
 	if(!proximity) return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !src.welding)
 		O.reagents.trans_to_obj(src, max_fuel)
-		user << "<span class='notice'>Welder refueled</span>"
+		user << SPAN_NOTICE("Welder refueled")
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.welding)
 		message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 		log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-		user << "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>"
+		user << SPAN_DANGER("You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.")
 		var/obj/structure/reagent_dispensers/fueltank/tank = O
 		tank.explode()
 		return
@@ -271,7 +271,7 @@
 		return 1
 	else
 		if(M)
-			M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+			M << SPAN_NOTICE("You need more welding fuel to complete this task.")
 		return 0
 
 //Returns whether or not the welding tool is currently on.
@@ -296,27 +296,27 @@
 	if(set_welding && !welding)
 		if (get_fuel() > 0)
 			if(M)
-				M << "<span class='notice'>You switch the [src] on.</span>"
+				M << SPAN_NOTICE("You switch the [src] on.")
 			else if(T)
-				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
+				T.visible_message(SPAN_DANGER("\The [src] turns on."))
 			src.force = WEAPON_FORCE_PAINFULL
 			src.damtype = "fire"
-			src.w_class = 4
+			src.w_class = ITEM_SIZE_LARGE
 			welding = 1
 			update_icon()
 			set_light(l_range = 1.4, l_power = 1, l_color = COLOR_ORANGE)
 			processing_objects |= src
 		else
 			if(M)
-				M << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+				M << SPAN_NOTICE("You need more welding fuel to complete this task.")
 			return
 	//Otherwise
 	else if(!set_welding && welding)
 		processing_objects -= src
 		if(M)
-			M << "<span class='notice'>You switch \the [src] off.</span>"
+			M << SPAN_NOTICE("You switch \the [src] off.")
 		else if(T)
-			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
+			T.visible_message(SPAN_WARNING("\The [src] turns off."))
 		src.force = WEAPON_FORCE_WEAK
 		src.damtype = "brute"
 		src.w_class = initial(src.w_class)
@@ -337,28 +337,28 @@
 		var/safety = H.eyecheck()
 		switch(safety)
 			if(FLASH_PROTECTION_MODERATE)
-				H << "<span class='warning'>Your eyes sting a little.</span>"
+				H << SPAN_WARNING("Your eyes sting a little.")
 				E.damage += rand(1, 2)
 				if(E.damage > 12)
 					H.eye_blurry += rand(3,6)
 			if(FLASH_PROTECTION_NONE)
-				H << "<span class='warning'>Your eyes burn.</span>"
+				H << SPAN_WARNING("Your eyes burn.")
 				E.damage += rand(2, 4)
 				if(E.damage > 10)
 					E.damage += rand(4,10)
 			if(FLASH_PROTECTION_REDUCED)
-				H << "<span class='danger'>Your equipment intensify the welder's glow. Your eyes itch and burn severely.</span>"
+				H << SPAN_DANGER("Your equipment intensify the welder's glow. Your eyes itch and burn severely.")
 				H.eye_blurry += rand(12,20)
 				E.damage += rand(12, 16)
 		if(safety<FLASH_PROTECTION_MAJOR)
 			if(E.damage > 10)
-				user << "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>"
+				user << SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!")
 
 			if (E.damage >= E.min_broken_damage)
-				H << "<span class='danger'>You go blind!</span>"
+				H << SPAN_DANGER("You go blind!")
 				H.sdisabilities |= BLIND
 			else if (E.damage >= E.min_bruised_damage)
-				H << "<span class='danger'>You go blind!</span>"
+				H << SPAN_DANGER("You go blind!")
 				H.eye_blind = 5
 				H.eye_blurry = 5
 				H.disabilities |= NEARSIGHTED
@@ -374,14 +374,14 @@
 /obj/item/weapon/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 3)
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
 
 /obj/item/weapon/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_PLASMA = 3)
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
 	var/last_gen = 0
@@ -408,7 +408,7 @@
 	force = WEAPON_FORCE_PAINFULL
 	throwforce = WEAPON_FORCE_NORMAL
 	item_state = "crowbar"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 50)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -432,12 +432,12 @@
 			if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(15,0,0,1)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message("<span class='notice'>\The [user] patches some dents on \the [M]'s [S.name] with \the [src].</span>")
+				user.visible_message(SPAN_NOTICE("\The [user] patches some dents on \the [M]'s [S.name] with \the [src]."))
 			else if(S.open != 2)
-				user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
+				user << SPAN_DANGER("The damage is far too severe to patch over externally.")
 			return 1
 		else if(S.open != 2)
-			user << "<span class='notice'>Nothing to fix!</span>"
+			user << SPAN_NOTICE("Nothing to fix!")
 
 	else
 		return ..()
@@ -447,7 +447,7 @@
 	desc = "It even has one of those nubbins for doing the thingy."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "combitool"
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 
 	var/list/spawn_tools = list(
 		/obj/item/weapon/screwdriver,

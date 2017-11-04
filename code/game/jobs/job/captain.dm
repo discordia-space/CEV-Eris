@@ -47,6 +47,11 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	get_access()
 		return get_all_station_access()
 
+/obj/landmark/start/captain
+	name = "Captain"
+	icon_state = "player-gold-officer"
+	job = /datum/job/captain
+
 
 
 /datum/job/hop
@@ -66,7 +71,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/first_officer
-	shoes = /obj/item/clothing/shoes/laceup
+	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/armor/vest
 	gloves = /obj/item/clothing/gloves/thick
 	pda = /obj/item/device/pda/heads/hop
@@ -78,3 +83,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	get_access()
 		return get_all_station_access()
+
+/obj/landmark/start/hop
+	name = "First Officer"
+	icon_state = "player-gold"
+	job = /datum/job/hop

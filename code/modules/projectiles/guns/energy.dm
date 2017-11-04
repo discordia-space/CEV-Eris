@@ -30,10 +30,6 @@
 
 /obj/item/weapon/gun/energy/New()
 	..()
-	if(cell_type)
-		cell = new cell_type(src)
-	else
-		cell = new /obj/item/weapon/cell/medium
 	if(self_recharge)
 		processing_objects.Add(src)
 	update_icon()
@@ -104,11 +100,11 @@
 			cell = null
 			update_icon()
 	else
-		usr << "<span class='warning'>[src] is a self-charging gun, its batteries cannot be removed!.</span>"
+		usr << SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!.")
 
 /obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 		update_icon()
 	else
-		usr << "<span class='warning'>[src] is a self-charging gun, it doesn't need more batteries.</span>"
+		usr << SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries.")

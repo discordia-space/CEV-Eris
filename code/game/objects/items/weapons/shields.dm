@@ -41,7 +41,7 @@
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(check_shield_arc(user, bad_arc, damage_source, attacker))
 		if(prob(get_block_chance(user, damage, damage_source, attacker)))
-			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			user.visible_message(SPAN_DANGER("\The [user] blocks [attack_text] with \the [src]!"))
 			return 1
 	return 0
 
@@ -59,7 +59,7 @@
 	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = ITEM_SIZE_LARGE
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list("glass" = 7500, DEFAULT_WALL_MATERIAL = 1000)
 	attack_verb = list("shoved", "bashed")
@@ -80,7 +80,7 @@
 /obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/melee/baton))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else
@@ -100,7 +100,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 2
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
@@ -125,22 +125,22 @@
 
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>You beat yourself in the head with [src].</span>"
+		user << SPAN_WARNING("You beat yourself in the head with [src].")
 		user.take_organ_damage(5)
 	active = !active
 	if (active)
 		force = WEAPON_FORCE_PAINFULL
 		update_icon()
-		w_class = 4
+		w_class = ITEM_SIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-		user << "<span class='notice'>\The [src] is now active.</span>"
+		user << SPAN_NOTICE("\The [src] is now active.")
 
 	else
 		force = 3
 		update_icon()
-		w_class = 1
+		w_class = ITEM_SIZE_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-		user << "<span class='notice'>\The [src] can now be concealed.</span>"
+		user << SPAN_NOTICE("\The [src] can now be concealed.")
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

@@ -34,7 +34,7 @@
 	name = "memory circuit"
 	desc = "This circuit can store four pieces of data."
 	icon_state = "memory4"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	complexity = 4
 	inputs = list("input pin 1","input pin 2","input pin 3","input pin 4")
 	outputs = list("output pin 1","output pin 2","output pin 3","output pin 4")
@@ -45,7 +45,7 @@
 	name = "large memory circuit"
 	desc = "This big circuit can hold eight pieces of data."
 	icon_state = "memory8"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	complexity = 8
 	inputs = list(
 		"input pin 1",
@@ -73,7 +73,7 @@
 	name = "large memory stick"
 	desc = "This stick of memory can hold up up to sixteen pieces of data."
 	icon_state = "memory16"
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	complexity = 16
 	inputs = list(
 		"input pin 1",
@@ -142,26 +142,26 @@
 			new_data = input("Now type in a string.","[src] string writing") as null|text
 			if(istext(new_data) && CanInteract(user, physical_state))
 				O.data = new_data
-				user << "<span class='notice'>You set \the [src]'s memory to [O.display_data()].</span>"
+				user << SPAN_NOTICE("You set \the [src]'s memory to [O.display_data()].")
 		if("number")
 			accepting_refs = 0
 			new_data = input("Now type in a number.","[src] number writing") as null|num
 			if(isnum(new_data) && CanInteract(user, physical_state))
 				O.data = new_data
-				user << "<span class='notice'>You set \the [src]'s memory to [O.display_data()].</span>"
+				user << SPAN_NOTICE("You set \the [src]'s memory to [O.display_data()].")
 		if("ref")
 			accepting_refs = 1
-			user << "<span class='notice'>You turn \the [src]'s ref scanner on.  Slide it across \
-			an object for a ref of that object to save it in memory.</span>"
+			user << SPAN_NOTICE("You turn \the [src]'s ref scanner on.  Slide it across \
+			an object for a ref of that object to save it in memory.")
 		if("null")
 			O.data = null
-			user << "<span class='notice'>You set \the [src]'s memory to absolutely nothing.</span>"
+			user << SPAN_NOTICE("You set \the [src]'s memory to absolutely nothing.")
 
 /obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
 	if(accepting_refs && proximity)
 		var/datum/integrated_io/O = outputs[1]
 		O.data = weakref(target)
-		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
-		user << "<span class='notice'>You set \the [src]'s memory to a reference to [O.display_data()].  The ref scanner is \
-		now off.</span>"
+		visible_message(SPAN_NOTICE("[user] slides \a [src]'s over \the [target]."))
+		user << SPAN_NOTICE("You set \the [src]'s memory to a reference to [O.display_data()].  The ref scanner is \
+		now off.")
 		accepting_refs = 0

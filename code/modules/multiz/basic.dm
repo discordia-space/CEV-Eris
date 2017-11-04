@@ -3,7 +3,7 @@
 var/z_levels = 0 // Each bit represents a connection between adjacent levels.  So the first bit means levels 1 and 2 are connected.
 
 // If the height is more than 1, we mark all contained levels as connected.
-/obj/effect/landmark/map_data/New()
+/obj/landmark/map_data/New()
 	ASSERT(height > 1)
 	// Due to the offsets of how connections are stored v.s. how z-levels are indexed, some magic number silliness happened.
 

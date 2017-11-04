@@ -118,7 +118,7 @@ var/list/mechtoys = list(
 	anchored = 1
 	opacity = 0
 */
-
+/*
 /datum/supply_order
 	var/ordernum
 	var/datum/supply_packs/object = null
@@ -264,7 +264,7 @@ var/list/mechtoys = list(
 					var/list/L = SP.access // access var is a plain var, we need a list
 					A.req_access = L.Copy()
 				else
-					world << "<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>"
+					world << SPAN_DANGER("Supply pack with invalid access restriction [SP.access] encountered!")
 
 			var/list/contains
 			if(istype(SP,/datum/supply_packs/randomised))
@@ -289,3 +289,4 @@ var/list/mechtoys = list(
 
 		shoppinglist.Cut()
 		return
+*/

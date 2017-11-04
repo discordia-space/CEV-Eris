@@ -102,7 +102,7 @@ proc/initialize_unit_tests()
 			log_unit_test("Pregame Count down has started, giving it 20 seconds to finish.")
 		sleep(1)
 
-	world.save_mode("extended")
+	world.save_storyteller("base")
 
 	sleep(1)
 
@@ -179,6 +179,8 @@ proc/initialize_unit_tests()
 			tests += d
 	return tests
 
+
+ADMIN_VERB_ADD(/datum/admins/proc/run_unit_test, R_DEBUG, FALSE)
 /datum/admins/proc/run_unit_test(var/datum/unit_test/unit_test_type in get_test_datums())
 	set name = "Run Unit Test"
 	set desc = "Runs the selected unit test - Remember to enable Debug Log Messages"

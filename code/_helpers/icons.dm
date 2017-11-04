@@ -78,13 +78,13 @@ More than one HSV color can match the same RGB color.
 Here are some procs you can use for color management:
 
 ReadRGB(rgb)
-    Takes an RGB string like "#ffaa55" and converts it to a list such as list(255,170,85). If an RGBA format is used
+    Takes an RGB string like "#ffaa55" and converts it to a list such as list(255, 170, 85). If an RGBA format is used
     that includes alpha, the list will have a fourth item for the alpha value.
 hsv(hue, sat, val, apha)
     Counterpart to rgb(), this takes the values you input and converts them to a string in "#hhhssvv" or "#hhhssvvaa"
     format. Alpha is not included in the result if null.
 ReadHSV(rgb)
-    Takes an HSV string like "#100FF80" and converts it to a list such as list(256,255,128). If an HSVA format is used that
+    Takes an HSV string like "#100FF80" and converts it to a list such as list(256, 255, 128). If an HSVA format is used that
     includes alpha, the list will have a fourth item for the alpha value.
 RGBtoHSV(rgb)
     Takes an RGB or RGBA string like "#ffaa55" and converts it into an HSV or HSVA color such as "#080aaff".
@@ -144,17 +144,17 @@ mob
 
 		// Testing dynamic icon overlays
 		var/icon/I = icon('old_or_unused.dmi', icon_state="aqua")
-		I.Shift(NORTH,16,1)
+		I.Shift(NORTH, 16, 1)
 		overlays+=I
 
 		// Testing dynamic image overlays
-		I=image(icon=I,pixel_x = -32, pixel_y = 32)
+		I=image(icon=I, pixel_x = -32, pixel_y = 32)
 		overlays+=I
 
 		// Testing object types (and layers)
 		overlays+=/obj/effect/overlayTest
 
-		loc = locate (10,10,1)
+		loc = locate (10, 10, 1)
 	verb
 		Browse_Icon()
 			set name = "1. Browse Icon"
@@ -178,17 +178,17 @@ mob
 			// Send the icon to src's local cache
 			src<<browse_rsc(I, iconName)
 			// Update the label to show it
-			winset(src,"imageLabel","image='\ref[I]'");
+			winset(src, "imageLabel", "image='\ref[I]'");
 
 		Add_Overlay()
 			set name = "4. Add Overlay"
-			overlays += image(icon='old_or_unused.dmi',icon_state="yellow",pixel_x = rand(-64,32), pixel_y = rand(-64,32))
+			overlays += image(icon='old_or_unused.dmi',icon_state="yellow", pixel_x = rand(-64, 32), pixel_y = rand(-64, 32))
 
 		Stress_Test()
 			set name = "5. Stress Test"
 			for(var/i = 0 to 1000)
 				// The third parameter forces it to generate a new one, even if it's already cached
-				getFlatIcon(src,0,2)
+				getFlatIcon(src, 0, 2)
 				if(prob(5))
 					Add_Overlay()
 			Browse_Icon()
@@ -217,22 +217,22 @@ world
 
 icon
 	proc/MakeLying()
-		var/icon/I = new(src,dir=SOUTH)
+		var/icon/I = new(src, dir=SOUTH)
 		I.BecomeLying()
 		return I
 
 	proc/BecomeLying()
 		Turn(90)
-		Shift(SOUTH,6)
-		Shift(EAST,1)
+		Shift(SOUTH, 6)
+		Shift(EAST, 1)
 
 	// Multiply all alpha values by this float
 	proc/ChangeOpacity(opacity = 1.0)
-		MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,opacity, 0,0,0,0)
+		MapColors(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, opacity, 0, 0, 0, 0)
 
 	// Convert to grayscale
 	proc/GrayScale()
-		MapColors(0.3,0.3,0.3, 0.59,0.59,0.59, 0.11,0.11,0.11, 0,0,0)
+		MapColors(0.3, 0.3, 0.3, 0.59, 0.59, 0.59, 0.11, 0.11, 0.11, 0, 0, 0)
 
 	proc/ColorTone(tone)
 		GrayScale()
@@ -243,12 +243,12 @@ icon
 		var/icon/upper = (255-gray) ? new(src) : null
 
 		if(gray)
-			MapColors(255/gray,0,0, 0,255/gray,0, 0,0,255/gray, 0,0,0)
+			MapColors(255/gray, 0, 0, 0, 255/gray, 0, 0, 0, 255/gray, 0, 0, 0)
 			Blend(tone, ICON_MULTIPLY)
 		else SetIntensity(0)
 		if(255-gray)
-			upper.Blend(rgb(gray,gray,gray), ICON_SUBTRACT)
-			upper.MapColors((255-TONE[1])/(255-gray),0,0,0, 0,(255-TONE[2])/(255-gray),0,0, 0,0,(255-TONE[3])/(255-gray),0, 0,0,0,0, 0,0,0,1)
+			upper.Blend(rgb(gray, gray, gray), ICON_SUBTRACT)
+			upper.MapColors((255-TONE[1])/(255-gray), 0, 0, 0, 0, (255-TONE[2])/(255-gray), 0, 0, 0, 0, (255-TONE[3])/(255-gray), 0, 0, 0, 0, 0, 0, 0, 0, 1)
 			Blend(upper, ICON_ADD)
 
 	// Take the minimum color of two icons; combine transparency as if blending with ICON_ADD
@@ -277,13 +277,13 @@ icon
 	// make this icon fully opaque--transparent pixels become black
 	proc/Opaque(background = "#000000")
 		SwapColor(null, background)
-		MapColors(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,0, 0,0,0,1)
+		MapColors(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
 
 	// Change a grayscale icon into a white icon where the original color becomes the alpha
 	// I.e., black -> transparent, gray -> translucent white, white -> solid white
 	proc/BecomeAlphaMask()
 		SwapColor(null, "#000000ff")	// don't let transparent become gray
-		MapColors(0,0,0,0.3, 0,0,0,0.59, 0,0,0,0.11, 0,0,0,0, 1,1,1,0)
+		MapColors(0, 0, 0, 0.3, 0, 0, 0, 0.59, 0, 0, 0, 0.11, 0, 0, 0, 0, 1, 1, 1, 0)
 
 	proc/UseAlphaMask(mask)
 		Opaque()
@@ -321,9 +321,9 @@ proc/ReadRGB(rgb)
 	if(!rgb) return
 
 	// interpret the HSV or HSVA value
-	var/i=1,start=1
+	var/i=1, start=1
 	if(text2ascii(rgb) == 35) ++start // skip opening #
-	var/ch,which=0,r=0,g=0,b=0,alpha=0,usealpha
+	var/ch, which=0, r=0, g=0, b=0, alpha=0, usealpha
 	var/digits=0
 	for(i=start, i<=length(rgb), ++i)
 		ch = text2ascii(rgb, i)
@@ -371,9 +371,9 @@ proc/ReadHSV(hsv)
 	if(!hsv) return
 
 	// interpret the HSV or HSVA value
-	var/i=1,start=1
+	var/i=1, start=1
 	if(text2ascii(hsv) == 35) ++start // skip opening #
-	var/ch,which=0,hue=0,sat=0,val=0,alpha=0,usealpha
+	var/ch, which=0, hue=0, sat=0, val=0, alpha=0, usealpha
 	var/digits=0
 	for(i=start, i<=length(hsv), ++i)
 		ch = text2ascii(hsv, i)
@@ -419,7 +419,7 @@ proc/HSVtoRGB(hsv)
 	hue -= hue >> 8
 	if(hue >= 0x5fa) hue -= 0x5fa
 
-	var/hi,mid,lo,r,g,b
+	var/hi, mid, lo, r, g, b
 	hi = val
 	lo = round((255 - sat) * val / 255, 1)
 	mid = lo + round(abs(round(hue, 510) - hue) * (hi - lo) / 255, 1)
@@ -432,7 +432,7 @@ proc/HSVtoRGB(hsv)
 		else if(hue >= 255)  {r=mid; g=hi;  b=lo }
 		else                 {r=hi;  g=mid; b=lo }
 
-	return (HSV.len > 3) ? rgb(r,g,b,HSV[4]) : rgb(r,g,b)
+	return (HSV.len > 3) ? rgb(r, g, b, HSV[4]) : rgb(r, g, b)
 
 proc/RGBtoHSV(rgb)
 	if(!rgb) return "#0000000"
@@ -442,8 +442,8 @@ proc/RGBtoHSV(rgb)
 	var/r = RGB[1]
 	var/g = RGB[2]
 	var/b = RGB[3]
-	var/hi = max(r,g,b)
-	var/lo = min(r,g,b)
+	var/hi = max(r, g, b)
+	var/lo = min(r, g, b)
 
 	var/val = hi
 	var/sat = hi ? round((hi-lo) * 255 / hi, 1) : 0
@@ -709,10 +709,10 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 							currentLayer = A.layer+(1000+currentLayer)/1000
 
 					// Sort add into layers list
-					for(cmpIndex=1,cmpIndex<=layers.len,cmpIndex++)
+					for(cmpIndex=1, cmpIndex<=layers.len, cmpIndex++)
 						compare = layers[cmpIndex]
 						if(currentLayer < layers[compare]) // Associated value is the calculated layer
-							layers.Insert(cmpIndex,current)
+							layers.Insert(cmpIndex, current)
 							layers[current] = currentLayer
 							break
 					if(cmpIndex>layers.len) // Reached end of list without inserting
@@ -750,7 +750,7 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 					var/blankpixel;
 					for(var/y;y<=32;y++)
 						for(var/x;x<32;x++)
-							blankpixel = isnull(add.GetPixel(x,y))
+							blankpixel = isnull(add.GetPixel(x, y))
 							if(!blankpixel)
 								break
 						if(!blankpixel)
@@ -795,12 +795,12 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 		return icon(flat, "", SOUTH)
 
 	getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
-		var/icon/alpha_mask = new(A.icon,A.icon_state)//So we want the default icon and icon state of A.
+		var/icon/alpha_mask = new(A.icon, A.icon_state)//So we want the default icon and icon state of A.
 		for(var/I in A.overlays)//For every image in overlays. var/image/I will not work, don't try it.
 			if(I:layer>A.layer)	continue//If layer is greater than what we need, skip it.
-			var/icon/image_overlay = new(I:icon,I:icon_state)//Blend only works with icon objects.
+			var/icon/image_overlay = new(I:icon, I:icon_state)//Blend only works with icon objects.
 			//Also, icons cannot directly set icon_state. Slower than changing variables but whatever.
-			alpha_mask.Blend(image_overlay,ICON_OR)//OR so they are lumped together in a nice overlay.
+			alpha_mask.Blend(image_overlay, ICON_OR)//OR so they are lumped together in a nice overlay.
 		return alpha_mask//And now return the mask.
 
 /mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.
@@ -810,7 +810,7 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 	var/icon/alpha_mask = getIconMask(src)//Which is why I created that proc. Also a little slow since it's blending a bunch of icons together but good enough.
 	opacity_icon.AddAlphaMask(alpha_mask)//Likely the main source of lag for this proc. Probably not designed to run each tick.
 	opacity_icon.ChangeOpacity(0.4)//Front end for MapColors so it's fast. 0.5 means half opacity and looks the best in my opinion.
-	for(var/i=0,i<5,i++)//And now we add it as overlays. It's faster than creating an icon and then merging it.
+	for(var/i=0, i<5, i++)//And now we add it as overlays. It's faster than creating an icon and then merging it.
 		var/image/I = image("icon" = opacity_icon, "icon_state" = A.icon_state, "layer" = layer+0.8)//So it's above other stuff but below weapons and the like.
 		switch(i)//Now to determine offset so the result is somewhat blurred.
 			if(1)	I.pixel_x--
@@ -821,7 +821,7 @@ proc // Creates a single icon from a given /atom or /image.  Only the first argu
 
 /proc/getHologramIcon(icon/A, safety=1)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
-	flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
+	flat_icon.ColorTone(rgb(125, 180, 225))//Let's make it bluish.
 	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
 	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanline")//Scanline effect.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
@@ -840,9 +840,9 @@ proc/adjust_brightness(var/color, var/value)
 	if (!value) return color
 
 	var/list/RGB = ReadRGB(color)
-	RGB[1] = Clamp(RGB[1]+value,0,255)
-	RGB[2] = Clamp(RGB[2]+value,0,255)
-	RGB[3] = Clamp(RGB[3]+value,0,255)
+	RGB[1] = Clamp(RGB[1]+value, 0, 255)
+	RGB[2] = Clamp(RGB[2]+value, 0, 255)
+	RGB[3] = Clamp(RGB[3]+value, 0, 255)
 	return rgb(RGB[1],RGB[2],RGB[3])
 
 proc/sort_atoms_by_layer(var/list/atoms)
@@ -874,7 +874,7 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 	//Lines below determine what tiles will be rendered
 	for(var/xoff = 0 to range)
 		for(var/yoff = 0 to range)
-			var/turf/T = locate(tx + xoff,ty + yoff,tz)
+			var/turf/T = locate(tx + xoff, ty + yoff, tz)
 			if(T)
 				if(cap_mode == CAPTURE_MODE_REGULAR)
 					if(user.can_capture_turf(T))

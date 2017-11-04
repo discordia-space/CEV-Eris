@@ -4,8 +4,6 @@
 	name = "space carp"
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
 	icon_state = "carp"
-	icon_living = "carp"
-	icon_dead = "carp_dead"
 	icon_gib = "carp_gib"
 	speak_chance = 0
 	turns_per_move = 5
@@ -52,4 +50,4 @@
 	if(istype(L))
 		if(prob(15))
 			L.Weaken(3)
-			L.visible_message("<span class='danger'>\the [src] knocks down \the [L]!</span>")
+			L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))

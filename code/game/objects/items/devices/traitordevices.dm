@@ -19,7 +19,7 @@ effective or pretty fucking useless.
 	desc = "A strange device with twin antennas."
 	icon_state = "batterer"
 	throwforce = WEAPON_FORCE_HARMLESS
-	w_class = 1.0
+	w_class = ITEM_SIZE_TINY
 	throw_speed = 4
 	throw_range = 10
 	flags = CONDUCT
@@ -32,7 +32,7 @@ effective or pretty fucking useless.
 /obj/item/device/batterer/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	if(!user) 	return
 	if(times_used >= max_uses)
-		user << "<span class='warning'>The mind batterer has been burnt out!</span>"
+		user << SPAN_WARNING("The mind batterer has been burnt out!")
 		return
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used [src] to knock down people in the area.</font>")
@@ -44,13 +44,13 @@ effective or pretty fucking useless.
 				M.Weaken(rand(10,20))
 				if(prob(25))
 					M.Stun(rand(5,10))
-				M << "<span class='danger'>You feel a tremendous, paralyzing wave flood your mind.</span>"
+				M << SPAN_DANGER("You feel a tremendous, paralyzing wave flood your mind.")
 
 			else
-				M << "<span class='danger'>You feel a sudden, electric jolt travel through your head.</span>"
+				M << SPAN_DANGER("You feel a sudden, electric jolt travel through your head.")
 
 	playsound(src.loc, 'sound/misc/interference.ogg', 50, 1)
-	user << "<span class='notice'>You trigger [src].</span>"
+	user << SPAN_NOTICE("You trigger [src].")
 	times_used += 1
 	if(times_used >= max_uses)
 		icon_state = "battererburnt"

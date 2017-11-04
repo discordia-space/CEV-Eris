@@ -3,7 +3,7 @@
 	desc = "Used by obese officers to save their breath for running."
 	icon_state = "voice0"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
-	w_class = 1.0
+	w_class = ITEM_SIZE_TINY
 	flags = CONDUCT
 
 	var/use_message = "Halt! Security!"
@@ -33,15 +33,15 @@ obj/item/device/hailer/attack_self(mob/living/carbon/user as mob)
 
 	if(isnull(insults))
 		playsound(get_turf(src), 'sound/voice/halt.ogg', 100, 1, vary = 0)
-		user.audible_message("<span class='warning'>[user]'s [name] rasps, \"[use_message]\"</span>", "<span class='warning'>\The [user] holds up \the [name].</span>")
+		user.audible_message("<span class='warning'>[user]'s [name] rasps, \"[use_message]\"</span>", SPAN_WARNING("\The [user] holds up \the [name]."))
 	else
 		if(insults > 0)
 			playsound(get_turf(src), 'sound/voice/binsult.ogg', 100, 1, vary = 0)
 			// Yes, it used to show the transcription of the sound clip. That was a) inaccurate b) immature as shit.
-			user.audible_message("<span class='warning'>[user]'s [name] gurgles something indecipherable and deeply offensive.</span>", "<span class='warning'>\The [user] holds up \the [name].</span>")
+			user.audible_message(SPAN_WARNING("[user]'s [name] gurgles something indecipherable and deeply offensive."), SPAN_WARNING("\The [user] holds up \the [name]."))
 			insults--
 		else
-			user << "<span class='danger'>*BZZZZZZZZT*</span>"
+			user << SPAN_DANGER("*BZZZZZZZZT*")
 
 	spamcheck = 1
 	spawn(20)
@@ -49,7 +49,7 @@ obj/item/device/hailer/attack_self(mob/living/carbon/user as mob)
 
 /obj/item/device/hailer/emag_act(var/remaining_charges, var/mob/user)
 	if(isnull(insults))
-		user << "<span class='danger'>You overload \the [src]'s voice synthesizer.</span>"
+		user << SPAN_DANGER("You overload \the [src]'s voice synthesizer.")
 		insults = rand(1, 3)//to prevent dickflooding
 		return 1
 	else

@@ -3,7 +3,6 @@
 	desc = "A pissed off tree-like alien. It seems annoyed with the festivities..."
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
-	icon_living = "pine_1"
 	icon_dead = "pine_1"
 	icon_gib = "pine_1"
 	speak_chance = 0
@@ -48,7 +47,7 @@
 	if(istype(L))
 		if(prob(15))
 			L.Weaken(3)
-			L.visible_message("<span class='danger'>\the [src] knocks down \the [L]!</span>")
+			L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
 
 /mob/living/simple_animal/hostile/tree/death()
 	..(null,"is hacked into pieces!")

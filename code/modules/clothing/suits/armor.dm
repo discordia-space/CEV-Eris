@@ -25,32 +25,15 @@
 	icon_state = "armorsec"
 	item_state = "armorsec"
 
-/obj/item/clothing/suit/armor/vest/serg
-	name = "Gunnery Sergeant's light armor"
-	desc = "Light armor of Ironhammer Security forces. Not designed for serious operations."
-	icon_state = "serg_armor"
-	item_state = "armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-
 
 /obj/item/clothing/suit/armor/riot
 	name = "Riot Suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
-	item_state = "swat_suit"
+	item_state = "riot"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
 	armor = list(melee = 75, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT
-	siemens_coefficient = 0.5
-
-/obj/item/clothing/suit/armor/light_riot
-	name = "Light Riot Suit"
-	desc = "A suit made from kevlar and plactic, it doesn't impair movement but not as reliable as regular riot suit."
-	icon_state = "light_riot"
-	item_state = "swat_suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	armor = list(melee = 60, bullet = 15, laser = 15, energy = 15, bomb = 15, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 
@@ -81,7 +64,7 @@
 		if(!(def_zone in list("chest", "groin")))
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
-			visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+			visible_message(SPAN_DANGER("\The [user]'s [src.name] reflects [attack_text]!"))
 
 			// Find a turf near or on the original location to bounce to
 			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
@@ -134,9 +117,9 @@
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(prob(50))
-		user.visible_message("<span class='danger'>The reactive teleport system flings [user] clear of the attack!</span>")
+		user.visible_message(SPAN_DANGER("The reactive teleport system flings [user] clear of the attack!"))
 		var/list/turfs = new/list()
-		for(var/turf/T in orange(6, user))
+		for(var/turf/T in trange(6, get_turf(user)))
 			if(istype(T,/turf/space)) continue
 			if(T.density) continue
 			if(T.x>world.maxx-6 || T.x<6)	continue
@@ -206,7 +189,7 @@
 	if(!holster.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << "<span class='warning'>You need your gun equiped to holster it.</span>"
+			usr << SPAN_WARNING("You need your gun equiped to holster it.")
 			return
 		holster.holster(W, usr)
 	else
@@ -249,7 +232,7 @@
 	desc = "A heavily armored suit that protects against moderate damage."
 	icon_state = "heavy"
 	item_state = "swat_suit"
-	w_class = 4//bulky item
+	w_class = ITEM_SIZE_LARGE//bulky item
 	gas_transfer_coefficient = 0.90
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	slowdown = 3

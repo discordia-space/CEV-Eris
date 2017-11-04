@@ -46,7 +46,7 @@
 			src.updateUsrDialog()
 			return
 		var/mob/M = locate(href_list["traitormob"])
-		if(M.mind.special_role || jobban_isbanned(M, "Syndicate"))
+		if(M.mind.antagonist.len || jobban_isbanned(M, "Syndicate"))
 			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
 			src.updateUsrDialog()
 			return
@@ -93,7 +93,7 @@
 
 /obj/machinery/power/singularity_beacon/proc/Activate(mob/user = null)
 	if(surplus() < 1500)
-		if(user) user << "<span class='notice'>The connected wire doesn't have enough current.</span>"
+		if(user) user << SPAN_NOTICE("The connected wire doesn't have enough current.")
 		return
 	for(var/obj/singularity/singulo in world)
 		if(singulo.z == z)
@@ -102,7 +102,7 @@
 	active = 1
 	machines |= src
 	if(user)
-		user << "<span class='notice'>You activate the beacon.</span>"
+		user << SPAN_NOTICE("You activate the beacon.")
 
 
 /obj/machinery/power/singularity_beacon/proc/Deactivate(mob/user = null)
@@ -112,7 +112,7 @@
 	icon_state = "[icontype]0"
 	active = 0
 	if(user)
-		user << "<span class='notice'>You deactivate the beacon.</span>"
+		user << SPAN_NOTICE("You deactivate the beacon.")
 
 
 /obj/machinery/power/singularity_beacon/attack_ai(mob/user as mob)
@@ -123,19 +123,19 @@
 	if(anchored)
 		return active ? Deactivate(user) : Activate(user)
 	else
-		user << "<span class='danger'>You need to screw the beacon to the floor first!</span>"
+		user << SPAN_DANGER("You need to screw the beacon to the floor first!")
 		return
 
 
 /obj/machinery/power/singularity_beacon/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/screwdriver))
 		if(active)
-			user << "<span class='danger'>You need to deactivate the beacon first!</span>"
+			user << SPAN_DANGER("You need to deactivate the beacon first!")
 			return
 
 		if(anchored)
 			anchored = 0
-			user << "<span class='notice'>You unscrew the beacon from the floor.</span>"
+			user << SPAN_NOTICE("You unscrew the beacon from the floor.")
 			disconnect_from_network()
 			return
 		else
@@ -143,7 +143,7 @@
 				user << "This device must be placed over an exposed cable."
 				return
 			anchored = 1
-			user << "<span class='notice'>You screw the beacon to the floor and attach the cable.</span>"
+			user << SPAN_NOTICE("You screw the beacon to the floor and attach the cable.")
 			return
 	..()
 	return

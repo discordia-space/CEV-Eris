@@ -75,14 +75,13 @@
 	return 0
 
 /datum/species/xenos/hug(var/mob/living/carbon/human/H,var/mob/living/target)
-	H.visible_message("<span class='notice'>[H] caresses [target] with its scythe-like arm.</span>", \
-					"<span class='notice'>You caress [target] with your scythe-like arm.</span>")
+	H.visible_message(SPAN_NOTICE("[H] caresses [target] with its scythe-like arm."), \
+					SPAN_NOTICE("You caress [target] with your scythe-like arm."))
 
 /datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
 
 	if(H.mind)
 		H.mind.assigned_role = "Alien"
-		H.mind.special_role = "Alien"
 
 	alien_number++ //Keep track of how many aliens we've had so far.
 	H.real_name = "alien [caste_name] ([alien_number])"

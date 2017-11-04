@@ -88,7 +88,7 @@
 	desc = "A box of crayons for all your rune drawing needs."
 	icon = 'icons/obj/crayons.dmi'
 	icon_state = "crayonbox"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	icon_type = "crayon"
 	can_hold = list(
 		/obj/item/weapon/pen/crayon
@@ -130,7 +130,7 @@
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 6
@@ -168,7 +168,7 @@
 			break
 
 		if(cig == null)
-			user << "<span class='notice'>Looks like the packet is out of cigarettes.</span>"
+			user << SPAN_NOTICE("Looks like the packet is out of cigarettes.")
 			return
 
 		// Instead of running equip_to_slot_if_possible() we check here first,
@@ -182,7 +182,7 @@
 		user.equip_to_slot(cig, slot_wear_mask)
 
 		reagents.maximum_volume = 15 * contents.len
-		user << "<span class='notice'>You take a cigarette out of the pack.</span>"
+		user << SPAN_NOTICE("You take a cigarette out of the pack.")
 		update_icon()
 	else
 		..()
@@ -209,7 +209,7 @@
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
-	w_class = 1
+	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 7
@@ -258,7 +258,7 @@
 	icon = 'icons/obj/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
-	max_w_class = 2
+	max_w_class = ITEM_SIZE_SMALL
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
 	max_storage_space = 12 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6

@@ -163,13 +163,13 @@
 		var/node2_connect = turn(dir, -90)
 		var/node1_connect = turn(dir, 90)
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-			if(target.initialize_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+			if(target.initialize_directions & get_dir(target, src))
 				node1 = target
 				break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-			if(target.initialize_directions & get_dir(target,src))
+		for(var/obj/machinery/atmospherics/target in get_step(src, node2_connect))
+			if(target.initialize_directions & get_dir(target, src))
 				node2 = target
 				break
 
@@ -245,8 +245,8 @@
 	proc/updateConnection()
 		turbine = null
 		if(src.loc && anchored)
-			turbine = locate(/obj/machinery/atmospherics/pipeturbine) in get_step(src,dir)
-			if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir,180) != dir)
+			turbine = locate(/obj/machinery/atmospherics/pipeturbine) in get_step(src, dir)
+			if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir, 180) != dir)
 				turbine = null
 
 	process()

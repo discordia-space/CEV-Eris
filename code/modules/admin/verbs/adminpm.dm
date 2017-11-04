@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/client/proc/cmd_admin_pm_context, R_ADMIN|R_MOD|R_MENTOR, FALSE)
 //allows right clicking mobs to send an admin PM to their client, forwards the selected mob's client to cmd_admin_pm
 /client/proc/cmd_admin_pm_context(mob/M as mob in mob_list)
 	set category = null
@@ -8,7 +9,7 @@
 	if( !ismob(M) || !M.client )	return
 	cmd_admin_pm(M.client,null)
 
-
+ADMIN_VERB_ADD(/client/proc/cmd_admin_pm_panel, R_ADMIN|R_MOD|R_MENTOR, FALSE)
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
 /client/proc/cmd_admin_pm_panel()
 	set category = "Admin"
@@ -129,8 +130,8 @@
 
 	// Handled on Bot32's end, unsure about other bots
 //	if(length(msg) > 400) // TODO: if message length is over 400, divide it up into seperate messages, the message length restriction is based on IRC limitations.  Probably easier to do this on the bots ends.
-//		src << "<span class='warning'>Your message was not sent because it was more then 400 characters find your message below for ease of copy/pasting</span>"
-//		src << "<span class='notice'>[msg]</span>"
+//		src << SPAN_WARNING("Your message was not sent because it was more then 400 characters find your message below for ease of copy/pasting")
+//		src << SPAN_NOTICE("[msg]")
 //		return
 
 

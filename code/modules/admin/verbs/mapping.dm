@@ -118,9 +118,9 @@ var/intercom_range_display_status = 0
 
 	if(intercom_range_display_status)
 		for(var/obj/item/device/radio/intercom/I in world)
-			for(var/turf/T in orange(7,I))
-				var/obj/effect/debugging/marker/F = new/obj/effect/debugging/marker(T)
-				if (!(F in view(7,I.loc)))
+			for(var/turf/T in trange(7, I))
+				var/obj/effect/debugging/marker/F = new(T)
+				if (!(F in view(7, I.loc)))
 					qdel(F)
 
 
@@ -135,7 +135,7 @@ var/list/debug_verbs = list (
 	,/client/proc/count_objects_on_z_level
 	,/client/proc/count_objects_all
 	,/client/proc/cmd_assume_direct_control
-	,/client/proc/jump_to_dead_group
+//	,/client/proc/jump_to_dead_group
 	,/client/proc/startSinglo
 	,/client/proc/ticklag
 	,/client/proc/cmd_admin_grantfullaccess
@@ -159,13 +159,13 @@ var/list/debug_verbs = list (
 	,/client/proc/hide_debug_verbs
 	,/client/proc/testZAScolors
 	,/client/proc/testZAScolors_remove
-	,/datum/admins/proc/setup_supermatter
 	,/client/proc/atmos_toggle_debug
 	,/client/proc/spawn_tanktransferbomb
 	,/client/proc/debug_human_sprite
 )
 
 
+ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 /client/proc/enable_debug_verbs()
 	set category = "Debug"
 	set name = "Debug verbs"
@@ -185,12 +185,11 @@ var/list/debug_verbs = list (
 	verbs -= debug_verbs
 
 
-
-
-/client/var/list/testZAScolors_turfs = list()
-/client/var/list/testZAScolors_zones = list()
-/client/var/usedZAScolors = 0
-/client/var/list/image/ZAScolors = list()
+/client
+	var/list/testZAScolors_turfs = list()
+	var/list/testZAScolors_zones = list()
+	var/usedZAScolors = 0
+	var/list/image/ZAScolors = list()
 
 /client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
 	testZAScolors_zones += Z
@@ -249,9 +248,7 @@ var/list/debug_verbs = list (
 				continue
 			recurse_zone(connected,1)
 
-	for(var/turf/T in range(25,location))
-		if(!istype(T))
-			continue
+	for(var/turf/T in trange(25, location))
 		if(T in testZAScolors_turfs)
 			continue
 		images += image(red, T, "zasdebug", TURF_LAYER)

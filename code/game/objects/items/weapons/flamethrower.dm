@@ -9,7 +9,7 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3.0
+	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 1, TECH_PLASMA = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
 	var/status = 0
@@ -104,7 +104,7 @@
 
 	if(istype(W,/obj/item/weapon/tank/plasma))
 		if(ptank)
-			user << "<span class='notice'>There appears to already be a plasma tank loaded in [src]!</span>"
+			user << SPAN_NOTICE("There appears to already be a plasma tank loaded in [src]!")
 			return
 		user.drop_item()
 		ptank = W
@@ -124,7 +124,7 @@
 	if(user.stat || user.restrained() || user.lying)	return
 	user.set_machine(src)
 	if(!ptank)
-		user << "<span class='notice'>Attach a plasma tank first!</span>"
+		user << SPAN_NOTICE("Attach a plasma tank first!")
 		return
 	var/dat = text("<TT><B>Flamethrower (<A HREF='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a>)</B><BR>\n Tank Pressure: [ptank.air_contents.return_pressure()]<BR>\nAmount to throw: <A HREF='?src=\ref[src];amount=-100'>-</A> <A HREF='?src=\ref[src];amount=-10'>-</A> <A HREF='?src=\ref[src];amount=-1'>-</A> [throw_amount] <A HREF='?src=\ref[src];amount=1'>+</A> <A HREF='?src=\ref[src];amount=10'>+</A> <A HREF='?src=\ref[src];amount=100'>+</A><BR>\n<A HREF='?src=\ref[src];remove=1'>Remove plasmatank</A> - <A HREF='?src=\ref[src];close=1'>Close</A></TT>")
 	user << browse(dat, "window=flamethrower;size=600x300")

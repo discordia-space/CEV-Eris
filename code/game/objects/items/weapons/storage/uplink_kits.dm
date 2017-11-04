@@ -54,7 +54,7 @@
 				new /obj/item/device/encryptionkey/binary(src)
 				return
 
-			if("lordsingulo")
+/*			if("lordsingulo")
 				new /obj/item/device/radio/beacon/syndicate(src)
 				new /obj/item/clothing/suit/space/syndicate(src)
 				new /obj/item/clothing/head/helmet/space/syndicate(src)
@@ -62,13 +62,13 @@
 				new /obj/item/weapon/tank/emergency_oxygen/double(src)
 				new /obj/item/weapon/card/emag(src)
 				return
-
+*/
 			if("smoothoperator")
 				new /obj/item/weapon/storage/box/syndie_kit/g9mm(src)
 				new /obj/item/weapon/storage/bag/trash(src)
 				new /obj/item/weapon/soap/syndie(src)
 				new /obj/item/bodybag(src)
-				new /obj/item/clothing/shoes/laceup(src)
+				new /obj/item/clothing/shoes/reinforced(src)
 				return
 
 /obj/item/weapon/storage/box/syndie_kit

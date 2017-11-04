@@ -609,7 +609,7 @@
 		return STATUS_CLOSE
 
 	if(aidisabled && isAI(user))
-		user << "<span class='warning'>AI control for \the [src] interface has been disabled.</span>"
+		user << SPAN_WARNING("AI control for \the [src] interface has been disabled.")
 		return STATUS_CLOSE
 
 	. = shorted ? STATUS_DISABLED : STATUS_INTERACTIVE
@@ -786,7 +786,7 @@
 				return
 
 			if (wiresexposed && istype(W, /obj/item/weapon/wirecutters))
-				user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+				user.visible_message(SPAN_WARNING("[user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				new/obj/item/stack/cable_coil(get_turf(src), 5)
 				buildstage = 1
@@ -802,20 +802,20 @@
 						locked = !locked
 						user << "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>"
 					else
-						user << "<span class='warning'>Access denied.</span>"
+						user << SPAN_WARNING("Access denied.")
 			return
 
 		if(1)
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if (C.use(5))
-					user << "<span class='notice'>You wire \the [src].</span>"
+					user << SPAN_NOTICE("You wire \the [src].")
 					buildstage = 2
 					update_icon()
 					first_run()
 					return
 				else
-					user << "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>"
+					user << SPAN_WARNING("You need 5 pieces of cable to do wire \the [src].")
 					return
 
 			else if(istype(W, /obj/item/weapon/crowbar))
@@ -864,7 +864,7 @@ Just a object used in constructing air alarms
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	desc = "Looks like a circuit. Probably is."
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
 /*
@@ -917,13 +917,18 @@ FIRE ALARM
 			set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_RED)
 		else
 			icon_state = "fire0"
+			var/new_color = null
 			switch(seclevel)
-				if("green")	set_light(l_range = 1.5, l_power = 0.2, l_color = COLOR_LIME)
-				if("blue")	set_light(l_range = 1.5, l_power = 0.2, l_color = "#1024A9")
-				if("red")	set_light(l_range = 1.5, l_power = 0.5, l_color = COLOR_RED)
-				if("delta")	set_light(l_range = 1.5, l_power = 0.5, l_color = "#FF6633")
-
-		src.overlays += image('icons/obj/monitors.dmi', "overlay_[seclevel]")
+				if(SEC_LEVEL_GREEN)
+					new_color = COLOR_LIME
+				if(SEC_LEVEL_BLUE)
+					new_color = "#1024A9"
+				if(SEC_LEVEL_RED)
+					new_color = COLOR_RED
+				if(SEC_LEVEL_DELTA)
+					new_color = "#FF6633"
+			set_light(l_range = 1.5, l_power = 0.5, l_color = new_color)
+		src.overlays += image('icons/obj/monitors.dmi', "overlay_[num2seclevel(seclevel)]")
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(src.detecting)
@@ -958,11 +963,11 @@ FIRE ALARM
 				if (istype(W, /obj/item/device/multitool))
 					src.detecting = !( src.detecting )
 					if (src.detecting)
-						user.visible_message("<span class='notice'>\The [user] has reconnected [src]'s detecting unit!</span>", "<span class='notice'>You have reconnected [src]'s detecting unit.</span>")
+						user.visible_message(SPAN_NOTICE("\The [user] has reconnected [src]'s detecting unit!"), SPAN_NOTICE("You have reconnected [src]'s detecting unit."))
 					else
-						user.visible_message("<span class='notice'>\The [user] has disconnected [src]'s detecting unit!</span>", "<span class='notice'>You have disconnected [src]'s detecting unit.</span>")
+						user.visible_message(SPAN_NOTICE("\The [user] has disconnected [src]'s detecting unit!"), SPAN_NOTICE("You have disconnected [src]'s detecting unit."))
 				else if (istype(W, /obj/item/weapon/wirecutters))
-					user.visible_message("<span class='notice'>\The [user] has cut the wires inside \the [src]!</span>", "<span class='notice'>You have cut the wires inside \the [src].</span>")
+					user.visible_message(SPAN_NOTICE("\The [user] has cut the wires inside \the [src]!"), SPAN_NOTICE("You have cut the wires inside \the [src]."))
 					new/obj/item/stack/cable_coil(get_turf(src), 5)
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 					buildstage = 1
@@ -971,11 +976,11 @@ FIRE ALARM
 				if(istype(W, /obj/item/stack/cable_coil))
 					var/obj/item/stack/cable_coil/C = W
 					if (C.use(5))
-						user << "<span class='notice'>You wire \the [src].</span>"
+						user << SPAN_NOTICE("You wire \the [src].")
 						buildstage = 2
 						return
 					else
-						user << "<span class='warning'>You need 5 pieces of cable to wire \the [src].</span>"
+						user << SPAN_WARNING("You need 5 pieces of cable to wire \the [src].")
 						return
 				else if(istype(W, /obj/item/weapon/crowbar))
 					user << "You pry out the circuit!"
@@ -1154,7 +1159,7 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-/obj/machinery/firealarm/proc/set_security_level(var/newlevel)
+/obj/machinery/firealarm/securityLevelChanged(var/newlevel)
 	if(seclevel != newlevel)
 		seclevel = newlevel
 		update_icon()
@@ -1172,7 +1177,7 @@ Just a object used in constructing fire alarms
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	desc = "A circuit. It has a label on it, it says \"Can handle heat levels up to 40 degrees celsius!\""
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 
 /obj/machinery/partyalarm

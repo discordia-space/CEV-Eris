@@ -1,3 +1,4 @@
+ADMIN_VERB_ADD(/client/proc/aooc, R_ADMIN, FALSE)
 /client/proc/aooc(msg as text)
 	set category = "OOC"
 	set name = "AOOC"
@@ -13,7 +14,7 @@
 		display_name = holder.fakekey
 
 	for(var/mob/M in mob_list)
-		if((M.mind && M.mind.special_role && M.client) || check_rights(R_ADMIN, 0, M))
+		if((M.mind && M.mind.antagonist.len && M.client) || check_rights(R_ADMIN, 0, M))
 			M << "<font color='#960018'><span class='ooc'>" + create_text_tag("aooc", "Antag-OOC:", M.client) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
 
 	log_ooc("(ANTAG) [key] : [msg]")

@@ -14,10 +14,8 @@
 
 	artifact_find_type = pick(\
 		5;/obj/machinery/power/supermatter,
-		5;/obj/structure/constructshell,
-		5;/obj/machinery/syndicate_beacon,
+//		5;/obj/machinery/syndicate_beacon,
 		25;/obj/machinery/power/supermatter/shard,
-		50;/obj/structure/cult/pylon,
 		100;/obj/machinery/auto_cloner,
 		100;/obj/machinery/giga_drill,
 		100;/obj/machinery/replicator,
@@ -63,7 +61,7 @@
 		var/obj/item/device/measuring_tape/P = W
 		user.visible_message("<span class='notice'>[user] extends [P] towards [src].","\blue You extend [P] towards [src].</span>")
 		if(do_after(user,40,src))
-			user << "<span class='notice'>[src] has been excavated to a depth of [2*src.excavation_level]cm.</span>"
+			user << SPAN_NOTICE("[src] has been excavated to a depth of [2*src.excavation_level]cm.")
 		return
 
 	if (istype(W, /obj/item/weapon/pickaxe))
@@ -80,13 +78,13 @@
 		if(!do_after(user,P.digspeed, src))
 			return
 
-		user << "<span class='notice'>You finish [P.drill_verb] [src].</span>"
+		user << SPAN_NOTICE("You finish [P.drill_verb] [src].")
 		excavation_level += P.excavation_amount
 
 		if(excavation_level > 100)
 			//failure
-			user.visible_message("<span class='danger'>[src] suddenly crumbles away.</span>",\
-			"<span class='warning'>[src] has disintegrated under your onslaught, any secrets it was holding are long gone.</span>")
+			user.visible_message(SPAN_DANGER("[src] suddenly crumbles away."),\
+			SPAN_WARNING("[src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
 			qdel(src)
 			return
 

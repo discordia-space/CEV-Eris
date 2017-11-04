@@ -7,6 +7,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
+	var/drawChargeMeter = TRUE
 	ammo_type = /obj/item/ammo_casing/a357
 	unload_sound 	= 'sound/weapons/guns/interact/rev_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
@@ -20,8 +21,8 @@
 	set category = "Object"
 
 	chamber_offset = 0
-	visible_message("<span class='warning'>\The [usr] spins the cylinder of \the [src]!</span>", \
-	"<span class='notice'>You hear something metallic spin and click.</span>")
+	visible_message(SPAN_WARNING("\The [usr] spins the cylinder of \the [src]!"), \
+	SPAN_NOTICE("You hear something metallic spin and click."))
 	playsound(src.loc, 'sound/weapons/revolver_spin.ogg', 100, 1)
 	loaded = shuffle(loaded)
 	if(rand(1,max_shells) > loaded.len)
@@ -36,3 +37,17 @@
 /obj/item/weapon/gun/projectile/revolver/load_ammo(var/obj/item/A, mob/user)
 	chamber_offset = 0
 	return ..()
+
+/obj/item/weapon/gun/projectile/revolver/proc/update_charge()
+	if(!drawChargeMeter)
+		return
+	overlays.Cut()
+	if(loaded.len==0)
+		overlays += "[icon_state]_off"
+	else
+		overlays += "[icon_state]_on"
+
+
+/obj/item/weapon/gun/projectile/revolver/update_icon()
+	update_charge()
+

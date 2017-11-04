@@ -1,11 +1,7 @@
 var/global/list/empty_playable_ai_cores = list()
 
 /hook/roundstart/proc/spawn_empty_ai()
-	if("AI" in ticker.mode.disabled_jobs)
-		return 1	// Don't make empty AI's if you can't have them (also applies to Malf)
-	for(var/obj/effect/landmark/start/S in landmarks_list)
-		if(S.name != "AI")
-			continue
+	for(var/obj/landmark/start/AI/S in landmarks_list)
 		if(locate(/mob/living) in S.loc)
 			continue
 		empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))
@@ -17,10 +13,10 @@ var/global/list/empty_playable_ai_cores = list()
 	set category = "OOC"
 	set desc = "Wipe your core. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
-	if(ticker && ticker.mode && ticker.mode.name == MODE_MALF)
+/*	if(ticker && ticker.mode && ticker.mode.name == MODE_MALF)
 		usr << "<span class='danger'>You cannot use this verb in malfunction. If you need to leave, please adminhelp.</span>"
 		return
-
+*/
 	// Guard against misclicks, this isn't the sort of thing we want happening accidentally
 	if(alert("WARNING: This will immediately wipe your core and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?",
 					"Wipe Core", "No", "No", "Yes") != "Yes")
@@ -35,11 +31,7 @@ var/global/list/empty_playable_ai_cores = list()
 
 	job_master.FreeRole(job)
 
-	if(mind.objectives.len)
-		qdel(mind.objectives)
-		mind.special_role = null
-
-	clear_antag_roles(mind)
+	clear_antagonist(mind)
 
 	daemonize()
 	qdel(src)

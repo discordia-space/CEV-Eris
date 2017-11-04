@@ -16,7 +16,7 @@
 /datum/hud/human
 	name = "ErisStyle"
 	icon = 'icons/mob/screen/ErisStyleHolo.dmi'
-	//Xbags,Ybags for space_orient_objs
+	//Xbags, Ybags for space_orient_objs
 	//Others for slot_orient_objs
 	MinStyleFlag = TRUE
 	ConteinerData = list(
@@ -66,7 +66,7 @@
 		)
 
 	slot_data = list (
-		"Uniform" =   list("loc" = "2,1","minloc" = "1,2",            "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+		"Uniform" =   list("loc" = "2,1", "minloc" = "1,2",            "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
 		"Suit" =   list("loc" = "3,1", "minloc" = "2,2",              "state" = "equip",   "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
 		"Mask" =         list("loc" = "3,2", "minloc" = "2,3",        "state" = "mask",    "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
 		"Gloves" =       list("loc" = "4,1", "minloc" = "3,2",        "state" = "gloves",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
@@ -86,8 +86,8 @@
 		)
 
 	HUDfrippery = list(
-		list("loc" = "1,0", "icon_state" = "frame0-3",),
-		list("loc" = "1,0", "icon_state" = "frame3-4",),
+		list("loc" = "1,0", "icon_state" = "frame0-3", ),
+		list("loc" = "1,0", "icon_state" = "frame3-4", ),
 		list("loc" = "1,1", "icon_state" = "frame2-2",  "hideflag" = TOGGLE_INVENTORY_FLAG),
 		list("loc" = "1,2", "icon_state" = "frame2-3",  "hideflag" = TOGGLE_INVENTORY_FLAG),
 		list("loc" = "1,3", "icon_state" = "frame2-1",  "hideflag" = TOGGLE_INVENTORY_FLAG),

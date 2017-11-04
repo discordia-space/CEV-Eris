@@ -37,7 +37,7 @@
 
 /datum/core_module/cruciform/inquisitor
 	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
-	var/telecrystals = 0
+	var/telecrystals = 15
 
 /datum/core_module/cruciform/inquisitor/preinstall()
 	implant.remove_modules(CRUCIFORM_COMMON)
@@ -95,7 +95,7 @@
 		if(istype(H.mind))
 			for(var/law in laws)
 				H.mind.store_memory(law)
-				H << "<span class='warning'>[law]</span>"
+				H << SPAN_WARNING("[law]")
 
 /datum/core_module/cruciform/obey/uninstall()
 	if(implant && ishuman(implant.wearer))

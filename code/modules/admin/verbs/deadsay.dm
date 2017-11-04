@@ -1,3 +1,5 @@
+ADMIN_VERB_ADD(/client/proc/dsay, R_ADMIN|R_DEBUG|R_MOD, TRUE)
+//talk in deadchat using our ckey/fakekey
 /client/proc/dsay(msg as text)
 	set category = "Special Verbs"
 	set name = "Dsay" //Gave this shit a shorter name so you only have to time out "dsay" rather than "dead say" to use it --NeoFite
@@ -8,11 +10,11 @@
 	if(!src.mob)
 		return
 	if(prefs.muted & MUTE_DEADCHAT)
-		src << "<span class='warning'>You cannot send DSAY messages (muted).</span>"
+		src << SPAN_WARNING("You cannot send DSAY messages (muted).")
 		return
 
 	if(!is_preference_enabled(/datum/client_preference/show_dsay))
-		src << "<span class='warning'>You have deadchat muted.</span>"
+		src << SPAN_WARNING("You have deadchat muted.")
 		return
 
 	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))

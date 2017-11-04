@@ -5,7 +5,7 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	storage_slots = 7
-	max_w_class = 3
+	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 28
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
@@ -17,7 +17,7 @@
 	set category = "Object"
 
 	if(show_above_suit == -1)
-		usr << "<span class='notice'>\The [src] cannot be worn above your suit!</span>"
+		usr << SPAN_NOTICE("\The [src] cannot be worn above your suit!")
 		return
 	show_above_suit = !show_above_suit
 	update_icon()
@@ -135,26 +135,6 @@
 		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/taperoll/police
 		)
-
-/obj/item/weapon/storage/belt/soulstone
-	name = "soul stone belt"
-	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away"
-	icon_state = "soulstonebelt"
-	item_state = "soulstonebelt"
-	storage_slots = 6
-	can_hold = list(
-		/obj/item/device/soulstone
-		)
-
-/obj/item/weapon/storage/belt/soulstone/full/New()
-	..()
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"

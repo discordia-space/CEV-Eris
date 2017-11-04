@@ -2,6 +2,7 @@
 	name = "FS REV .38 \"Havelock\""
 	desc = "A cheap Frozen Star knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
 	icon_state = "detective"
+	drawChargeMeter = FALSE
 	max_shells = 6
 	caliber = "38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -16,7 +17,7 @@
 	var/mob/M = usr
 	if(!M.mind)	return 0
 	if(!M.mind.assigned_role == "Detective")
-		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
+		M << SPAN_NOTICE("You don't feel cool enough to name this gun, chump.")
 		return 0
 
 	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)

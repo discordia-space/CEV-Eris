@@ -21,7 +21,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
-	user << "<span class='notice'>You press the button labeled '[src.name]'.</span>"
+	user << SPAN_NOTICE("You press the button labeled '[src.name]'.")
 	activate_pin(1)
 
 /obj/item/integrated_circuit/input/toggle_button
@@ -465,7 +465,7 @@
 	var/list/nearby_things = range(0, get_turf(src))
 	for(var/mob/M in nearby_things)
 		var/obj/O = assembly ? assembly : src
-		M << "<span class='notice'>\icon[O] [stuff_to_display]</span>"
+		M << SPAN_NOTICE("\icon[O] [stuff_to_display]")
 
 /obj/item/integrated_circuit/output/screen/large
 	name = "large screen"
@@ -476,7 +476,7 @@
 /obj/item/integrated_circuit/output/screen/large/do_work()
 	..()
 	var/obj/O = assembly ? loc : assembly
-	O.visible_message("<span class='notice'>\icon[O] [stuff_to_display]</span>")
+	O.visible_message(SPAN_NOTICE("\icon[O] [stuff_to_display]"))
 
 /obj/item/integrated_circuit/output/light
 	name = "light"
@@ -635,7 +635,7 @@
 	desc = "This small camera allows a remote viewer to see what it sees."
 	extended_desc = "The camera is linked to the Research camera network."
 	icon_state = "video_camera"
-	w_class = 2.0
+	w_class = ITEM_SIZE_SMALL
 	complexity = 10
 	inputs = list("camera name" = "video camera circuit", "camera active" = 0)
 	outputs = list()

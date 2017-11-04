@@ -38,7 +38,7 @@
 /mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="whispers")
 
 	if (istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade))
-		src << "<span class='danger'>You're muzzled and cannot speak!</span>"
+		src << SPAN_DANGER("You're muzzled and cannot speak!")
 		return
 
 	var/message_range = 1

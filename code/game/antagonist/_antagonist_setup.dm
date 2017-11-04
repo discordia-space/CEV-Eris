@@ -29,56 +29,168 @@
 #define ANTAG_RANDOM_EXCEPTED  2048 // If a game mode randomly selects antag types, antag types with this flag should be excluded.
 
 // Globals.
-var/global/list/all_antag_types = list()
-var/global/list/all_antag_spawnpoints = list()
-var/global/list/antag_names_to_ids = list()
+var/global/list/antag_types = list()
+var/global/list/antag_names = list()
+var/global/list/station_antag_types = list()
+var/global/list/outer_antag_types = list()
+var/global/list/group_antag_types = list()
+var/global/list/antag_starting_locations = list()
+var/global/list/selectable_antag_types = list()
+var/global/list/antag_bantypes = list()
+var/global/list/antag_weights = list()
 
 // Global procs.
-/proc/get_antag_data(var/antag_type)
-	if(all_antag_types[antag_type])
-		return all_antag_types[antag_type]
-	else
-		for(var/cur_antag_type in all_antag_types)
-			var/datum/antagonist/antag = all_antag_types[cur_antag_type]
-			if(antag && antag.is_type(antag_type))
-				return antag
+/proc/clear_antagonist(var/datum/mind/player)
+	for(var/datum/antagonist/A in player.antagonist)
+		A.remove_antagonist()
 
-/proc/clear_antag_roles(var/datum/mind/player, var/implanted)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		if(!implanted || !(antag.flags & ANTAG_IMPLANT_IMMUNE))
-			antag.remove_antagonist(player, 1, implanted)
+/proc/clear_antagonist_type(var/datum/mind/player, var/a_id)
+	for(var/datum/antagonist/A in player.antagonist)
+		if(A.id == a_id)
+			A.remove_antagonist()
+
+/proc/get_antag_instance(var/a_id)
+	if(antag_types[a_id])
+		var/atype = antag_types[a_id]
+		return new atype
+
+/proc/make_antagonist_ghost(var/mob/M, var/a_id)
+	if(antag_types[a_id])
+		var/a_type = antag_types[a_id]
+		var/datum/antagonist/A = new a_type
+		if(A.create_from_ghost(M))
+			return A
+
+/proc/make_antagonist(var/datum/mind/M, var/a_id)
+	if(antag_types[a_id])
+		var/a_type = antag_types[a_id]
+		var/datum/antagonist/A = new a_type
+		if(istype(M) && A.create_antagonist(M))
+			return A
+
+/proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
+	if(antag_types[a_id])
+		var/a_type = antag_types[a_id]
+		var/datum/antagonist/A = new a_type
+		A.create_antagonist(M, F)
+
+		return A
 
 /proc/update_antag_icons(var/datum/mind/player)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		if(player)
-			antag.update_icons_removed(player)
-			if(antag.is_antagonist(player))
-				antag.update_icons_added(player)
-		else
-			antag.update_all_icons()
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(antag.faction)
+			antag.faction.add_icons(antag)
 
 /proc/populate_antag_type_list()
 	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
 		var/datum/antagonist/A = new antag_type
-		all_antag_types[A.id] = A
-		all_antag_spawnpoints[A.landmark_id] = list()
-		antag_names_to_ids[A.role_text] = A.id
+		antag_types[A.id] = antag_type
+		if(A.outer)
+			outer_antag_types[A.id] = antag_type
+			var/list/start_locs = list()
+			for(var/obj/landmark/L in landmarks_list)
+				if(L.name == A.landmark_id)
+					start_locs |= get_turf(L)
+			antag_starting_locations[A.id] = start_locs
+		else
+			station_antag_types[A.id] = antag_type
+		if(A.selectable)
+			selectable_antag_types[A.id] = A.role_type
+		if(A.faction_type)
+			group_antag_types[A.id] = antag_type
+		antag_weights[A.id] = A.weight
+		antag_names[A.id] = A.role_text
+		antag_bantypes[A.id] = A.bantype
 
-/proc/get_antags(var/atype)
-	var/datum/antagonist/antag = all_antag_types[atype]
-	if(antag && islist(antag.current_antagonists))
-		return antag.current_antagonists
-	return list()
+/proc/get_antags(var/id)
+	var/list/L = list()
+	for(var/datum/antagonist/A in current_antags)
+		if(A.id == id)
+			L.Add(A)
+	return L
 
-/proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = 0)
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
-		if(only_offstation_roles && !(antag.flags & ANTAG_OVERRIDE_JOB))
-			continue
-		if(player in antag.current_antagonists)
-			return 1
-		if(player in antag.pending_antagonists)
-			return 1
-	return 0
+/proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if((antag.outer && only_offstation_roles) || !only_offstation_roles)
+			return TRUE
+	return FALSE
+
+/proc/player_is_ship_antag(var/datum/mind/player)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(!antag.outer)
+			return TRUE
+	return FALSE
+
+/proc/player_is_antag_id(var/datum/mind/player, var/a_id)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(!a_id || antag.id == a_id)
+			return TRUE
+	return FALSE
+
+/proc/get_antags_list(var/a_type)
+	if(!a_type)
+		return current_antags
+
+	var/list/L = list()
+	for(var/datum/antagonist/antag in current_antags)
+		if(antag.id == a_type)
+			L.Add(antag)
+	return L
+
+/proc/get_player_antags(var/datum/mind/player, var/a_type)
+	if(!a_type)
+		return player.antagonist
+
+	var/list/L = list()
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(antag.id == a_type)
+			L.Add(antag)
+	return L
+
+/proc/get_dead_antags_count(var/a_type)
+	var/count = 0
+	for(var/datum/antagonist/antag in current_antags)
+		if((!a_type || antag.id == a_type) && antag.is_dead())
+			count++
+	return count
+
+/proc/get_antags_count(var/a_type)
+	if(!a_type)
+		return current_antags.len
+
+	var/count = 0
+	for(var/datum/antagonist/antag in current_antags)
+		if(!a_type || antag.id == a_type)
+			count++
+	return count
+
+/proc/get_active_antag_count(var/a_type)
+	var/active_antags = 0
+	for(var/datum/antagonist/antag in current_antags)
+		if((!a_type || antag.id == a_type) && antag.is_active())
+			active_antags++
+	return active_antags
+
+/proc/get_factions_by_type(var/f_type)
+	var/list/L = list()
+	for(var/datum/faction/F in current_factions)
+		if(F.id == f_type)
+			L.Add(F)
+	return L
+
+/proc/player_is_antag_faction(var/datum/mind/player, var/a_id, var/datum/faction/F)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if((!a_id || antag.id == a_id) && antag.faction == F)
+			return TRUE
+	return FALSE
+
+/proc/create_or_get_faction(var/f_type)
+	var/list/factions = list()
+	for(var/datum/faction/F in current_factions)
+		if(F.type == f_type)
+			factions.Add(F)
+
+	if(!factions.len)
+		return new f_type
+	else
+		return factions[1]

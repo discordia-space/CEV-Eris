@@ -10,15 +10,19 @@ var/global/list/all_objectives_types = null
 	return TRUE
 
 /datum/objective
+	var/datum/antagonist/antag = null
 	var/datum/mind/owner = null			//Who owns the objective.
 	var/explanation_text = "Nothing"	//What that person is supposed to do.
 	var/datum/mind/target = null		//If they are focused on a particular person.
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = FALSE				//currently only used for custom objectives.
 
-/datum/objective/New(var/new_owner)
-	owner = new_owner
-	owner.objectives += src
+/datum/objective/New(var/datum/antagonist/new_owner, var/add_to_list = TRUE)
+	antag = new_owner
+	if(add_to_list)
+		antag.objectives |= src
+	if(antag.owner)
+		owner = antag.owner
 	find_target()
 	all_objectives.Add(src)
 	..()
@@ -26,6 +30,9 @@ var/global/list/all_objectives_types = null
 /datum/objective/Destroy()
 	all_objectives.Remove(src)
 	..()
+
+/datum/objective/proc/update_completion()	//This is for objectives requiring mid-round check, like harm or baptize
+	return
 
 /datum/objective/proc/check_completion()
 	return completed
@@ -47,7 +54,7 @@ var/global/list/all_objectives_types = null
 /datum/objective/proc/select_human_target(var/mob/user)
 	var/list/possible_targets = get_targets_list()
 	if(!possible_targets || !possible_targets.len)
-		user << "<span class='warning'>Sorry! No possible targets found!</span>"
+		user << SPAN_WARNING("Sorry! No possible targets found!")
 		return
 	var/datum/mind/M = input(user, "New target") as null|anything in possible_targets
 	if(M)
@@ -59,6 +66,9 @@ var/global/list/all_objectives_types = null
 
 /datum/objective/proc/get_panel_entry()
 	return explanation_text
+
+/datum/objective/proc/get_info()	//Text, returned by this proc will be displayed at round end
+	return ""
 
 /datum/objective/Topic(href, href_list)
 	if(!check_rights(R_DEBUG))

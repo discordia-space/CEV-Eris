@@ -25,7 +25,7 @@ var/global/list/hearing_objects = list()			//list of all objects, that can hear 
 var/global/list/global_corporations = list()
 var/global/list/HUDdatums = list()
 
-#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
+#define all_genders_define_list list(MALE, FEMALE, PLURAL, NEUTER)
 
 var/global/list/turfs = list()						//list of all turfs
 
@@ -87,13 +87,10 @@ var/global/list/organ_tag_to_name = list(
 // Visual nets
 var/list/datum/visualnet/visual_nets = list()
 var/datum/visualnet/camera/cameranet = new()
-var/datum/visualnet/cult/cultnet = new()
 
 // Runes
 var/global/list/rune_list = new()
 var/global/list/escape_list = list()
-var/global/list/endgame_exits = list()
-var/global/list/endgame_safespawns = list()
 
 var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
 
@@ -235,3 +232,14 @@ var/global/list/string_slot_flags = list(
 				. += "    has: [t]\n"
 	world << .
 */
+
+var/global/list/admin_permissions = list(
+	"fun" = 0x1,
+	"server" = 0x2,
+	"debug" = 0x4,
+	"permissions" = 0x8,
+	"mentor" = 0x10,
+	"moderator" = 0x20,
+	"admin" = 0x40,
+	"host" = 0x80
+	)

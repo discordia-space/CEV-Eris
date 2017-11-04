@@ -85,7 +85,7 @@
 			var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(src.loc)
 			C.id = id
 			transfer_fingerprints_to(C)
-		user << "<span class='notice'>You remove the conveyor belt.</span>"
+		user << SPAN_NOTICE("You remove the conveyor belt.")
 		qdel(src)
 		return
 	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
@@ -211,7 +211,7 @@
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
 	if(!allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		user << SPAN_WARNING("Access denied.")
 		return
 
 	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
@@ -242,7 +242,7 @@
 		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
 		C.id = id
 		transfer_fingerprints_to(C)
-		user << "<span class='notice'>You deattach the conveyor switch.</span>"
+		user << SPAN_NOTICE("You deattach the conveyor switch.")
 		qdel(src)
 
 /obj/machinery/conveyor_switch/oneway
@@ -277,13 +277,13 @@
 	icon_state = "conveyor0"
 	name = "conveyor belt assembly"
 	desc = "A conveyor belt assembly."
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	var/id = "" //inherited by the belt
 
 /obj/item/conveyor_construct/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/conveyor_switch_construct))
-		user << "<span class='notice'>You link the switch to the conveyor belt assembly.</span>"
+		user << SPAN_NOTICE("You link the switch to the conveyor belt assembly.")
 		var/obj/item/conveyor_switch_construct/C = I
 		id = C.id
 
@@ -308,7 +308,7 @@
 	desc = "A conveyor control switch assembly."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
-	w_class = 4
+	w_class = ITEM_SIZE_LARGE
 	var/id = "" //inherited by the switch
 
 /obj/item/conveyor_switch_construct/New()

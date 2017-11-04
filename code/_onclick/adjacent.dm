@@ -6,13 +6,12 @@
 
 	This is calculated by looking for border items, or in the case of clicking diagonally from yourself, dense items.
 	This proc will NOT notice if you are trying to attack a window on the other side of a dense object in its turf.
-	There is a window helper for that.
 
 	Note that in all cases the neighbor is handled simply; this is usually the user's mob, in which case it is up to you
 	to check that the mob is not inside of something
 */
 /atom/proc/Adjacent(var/atom/neighbor) // basic inheritance, unused
-	return 0
+	return FALSE
 
 // Not a sane use of the function and (for now) indicative of an error elsewhere
 /area/Adjacent(var/atom/neighbor)
@@ -28,33 +27,39 @@
 */
 /turf/Adjacent(var/atom/neighbor, var/atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
+
 	if(T0 == src)
 		return TRUE
-	if(get_dist(src,T0) > 1 || (T0.z!=z))
+
+	if(get_dist(src, T0) > 1 || (src.z != T0.z))
 		return FALSE
 
+	// Non diagonal case
 	if(T0.x == x || T0.y == y)
 		// Check for border blockages
-		return T0.ClickCross(get_dir(T0,src), TRUE) && ClickCross(get_dir(src,T0), TRUE, target)
+		return T0.ClickCross(get_dir(T0, src), TRUE) && ClickCross(get_dir(src, T0), TRUE, target)
 
-	// Not orthagonal
-	var/in_dir = get_dir(neighbor,src) // eg. northwest (1+8)
-	var/d1 = in_dir&(in_dir-1)		// eg west		(1+8)&(8) = 8
-	var/d2 = in_dir - d1			// eg north		(1+8) - 8 = 1
+	// Diagonal case
+	var/in_dir = get_dir(T0, src)	// eg. northwest (1+8)
+	var/d1 = in_dir&(EAST|WEST)		// eg west		(1+8)&(8) = 8
+	var/d2 = in_dir&(NORTH|SOUTH)	// eg north		(1+8) - 8 = 1
 
-	for(var/d in list(d1,d2))
-		if(!T0.ClickCross(d, border_only = 1))
+	for(var/d in list(d1, d2))
+		if(!T0.ClickCross(d, TRUE))
 			continue // could not leave T0 in that direction
 
-		var/turf/T1 = get_step(T0,d)
-		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0) | get_dir(T1,src), border_only = 0))
+		var/turf/T1 = get_step(T0, d)
+		if(!T1 || T1.density)
+			continue
+		if(!T1.ClickCross(get_dir(T1, T0), FALSE) || !T1.ClickCross(get_dir(T1, src), FALSE))
 			continue // couldn't enter or couldn't leave T1
 
-		if(!src.ClickCross(get_dir(src,T1), border_only = 1, target_atom = target))
+		if(!src.ClickCross(get_dir(src, T1), TRUE, target))
 			continue // could not enter src
 
-		return 1 // we don't care about our own density
-	return 0
+		return TRUE // we don't care about our own density
+
+	return FALSE
 
 /*
 Quick adjacency (to turf):
@@ -64,12 +69,12 @@ Quick adjacency (to turf):
 /turf/proc/AdjacentQuick(var/atom/neighbor, var/atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
-		return 1
+		return TRUE
 
-	if(get_dist(src,T0) > 1 || (src.z!=T0.z))
-		return 0
+	if(get_dist(src, T0) > 1 || (src.z != T0.z))
+		return FALSE
 
-	return 1
+	return TRUE
 
 /*
 	Adjacency (to anything else):
@@ -80,20 +85,25 @@ Quick adjacency (to turf):
 	This is not used in stock /tg/station currently.
 */
 /atom/movable/Adjacent(var/atom/neighbor)
-	if(neighbor == loc) return 1
-	if(!isturf(loc)) return 0
+	if(neighbor == loc)
+		return TRUE
+	if(!isturf(loc))
+		return FALSE
 	for(var/turf/T in locs)
-		if(isnull(T)) continue
-		if(T.Adjacent(neighbor,src)) return 1
-	return 0
+		if(isnull(T))
+			continue
+		if(T.Adjacent(neighbor, src))
+			return TRUE
+	return FALSE
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(var/atom/neighbor, var/recurse = 1)
-	if(neighbor == loc) return 1
+	if(neighbor == loc)
+		return TRUE
 	if(istype(loc,/obj/item))
 		if(recurse > 0)
-			return loc.Adjacent(neighbor,recurse - 1)
-		return 0
+			return loc.Adjacent(neighbor, recurse - 1)
+		return FALSE
 	return ..()
 /*
 	Special case: This allows you to reach a door when it is visally on top of,
@@ -106,9 +116,9 @@ Quick adjacency (to turf):
 /obj/machinery/door/Adjacent(var/atom/neighbor)
 	var/obj/machinery/door/firedoor/border_only/BOD = locate() in loc
 	if(BOD)
-		BOD.throwpass = 1 // allow click to pass
+		BOD.throwpass = TRUE // allow click to pass
 		. = ..()
-		BOD.throwpass = 0
+		BOD.throwpass = FALSE
 		return .
 	return ..()
 

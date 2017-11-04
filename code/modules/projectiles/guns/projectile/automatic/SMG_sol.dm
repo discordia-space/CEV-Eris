@@ -2,8 +2,8 @@ obj/item/weapon/gun/projectile/automatic/SMG_sol
 	name = "FS SMG 9x19 \"Sol\""
 	desc = "A standard-issued weapon used by Ironhammer operatives. Compact and reliable. Uses 9mm rounds."
 	icon_state = "SMG-IS"
-	item_state = "wt550"
-	w_class = 4
+	item_state = "c24"
+	w_class = ITEM_SIZE_LARGE
 	ammo_mag = "ih_smg"
 	load_method = MAGAZINE
 	max_shells = 21
