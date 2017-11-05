@@ -1730,7 +1730,7 @@
 #include "code\modules\projectiles\guns\projectile\sniper.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\c20r.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\l6_saw.dm"
-#include "code\modules\projectiles\guns\projectile\automatic\SMG_sol.dm"
+#include "code\modules\projectiles\guns\projectile\automatic\sol.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\sts35.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\wt550.dm"
 #include "code\modules\projectiles\guns\projectile\automatic\z8.dm"

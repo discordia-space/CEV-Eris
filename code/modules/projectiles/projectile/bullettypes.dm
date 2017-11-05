@@ -1,10 +1,10 @@
 /obj/item/projectile/bullet/c9mm
-	damage = 22
+	damage = 18
 	sharp = 0
 
 /obj/item/projectile/bullet/c9mmr
 	damage = 4
-	agony = 24
+	agony = 20
 	embed = 0
 	sharp = 0
 
@@ -85,6 +85,18 @@
 /obj/item/projectile/bullet/a556p
 	damage = 10
 	agony = 10
+	embed = 0
+	sharp = 0
+
+/obj/item/projectile/bullet/c65
+	damage = 24
+	armor_penetration = 20
+	penetrating = 1
+	sharp = 0
+
+/obj/item/projectile/bullet/c65r
+	damage = 8
+	agony = 24
 	embed = 0
 	sharp = 0
 
