@@ -173,7 +173,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/drop_item(var/atom/Target)
 	var/obj/item/I = get_active_hand()
 	drop_from_inventory(I)
-	I.forceMove(Target, MOVED_DROP)
+	I.forceMove(Target||loc, MOVED_DROP)
 
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
