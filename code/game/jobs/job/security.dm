@@ -76,7 +76,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/thick/swat
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
+	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 	put_in_backpack = list(\
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
@@ -203,7 +203,7 @@
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/thick/swat
-	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
+	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 
 	put_in_backpack = list(\
 		/obj/item/weapon/handcuffs,\
