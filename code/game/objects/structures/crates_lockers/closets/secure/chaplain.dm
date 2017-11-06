@@ -20,6 +20,6 @@
 		new /obj/item/weapon/storage/fancy/candle_box(src)
 		new /obj/item/weapon/storage/fancy/candle_box(src)
 		new /obj/item/weapon/deck/tarot(src)
-		for (i=1, i<=10, i++)
+		for (var/i=1, i<=10, i++)
 			new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 		return
