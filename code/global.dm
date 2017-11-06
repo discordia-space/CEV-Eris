@@ -15,8 +15,6 @@ var/global/list/sec_hud_users            = list() // List of all entities using 
 var/global/list/hud_icon_reference       = list()
 
 
-var/global/list/global_mutations  = list() // List of hidden mutation things.
-
 var/global/datum/universal_state/universe = new
 
 var/global/list/global_map = null
@@ -43,14 +41,11 @@ var/master_storyteller       = "shitgenerator"
 
 var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
 
-var/list/jobMax        = list()
 var/list/bombers       = list()
 var/list/admin_log     = list()
 var/list/lastsignalers = list() // Keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
 var/list/lawchanges    = list() // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
 var/list/reg_dna       = list()
-
-var/list/wizardstart     = list()
 
 //Spawnpoints.
 var/list/latejoin         = list()
@@ -68,17 +63,9 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 var/datum/configuration/config      = null
 var/datum/sun/sun                   = null
 
-var/list/combatlog = list()
-var/list/IClog     = list()
-var/list/OOClog    = list()
-var/list/adminlog  = list()
-
 var/list/powernets = list()
 
 var/Debug2 = 0
-var/datum/debug/debugobj
-
-var/datum/moduletypes/mods = new()
 
 var/gravity_is_on = 1
 

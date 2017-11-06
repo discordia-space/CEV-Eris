@@ -52,7 +52,6 @@
 	var/open = 0
 	var/stage = 0
 	var/cavity = 0
-	var/sabotaged = 0 // If a prosthetic limb is emagged, it will detonate when it fails.
 	var/encased       // Needs to be opened with a saw to access the organs.
 	var/list/implants = list()
 	var/wound_update_accuracy = 1 	// how often wounds should be updated, a higher number means less often
@@ -97,6 +96,7 @@
 	src.min_broken_damage = desc.min_broken_damage
 	src.w_class = desc.w_class
 	src.parent_organ = desc.parent_organ
+	src.body_part = desc.body_part
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target

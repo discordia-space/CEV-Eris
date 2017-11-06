@@ -242,18 +242,6 @@ meteor_act
 		return 1
 	return 0
 
-/mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
-	var/obj/item/organ/external/affecting = get_organ(user.targeted_organ)
-	if(!affecting || !(affecting.status & ORGAN_ROBOT))
-		user << SPAN_WARNING("That limb isn't robotic.")
-		return -1
-	if(affecting.sabotaged)
-		user << SPAN_WARNING("[src]'s [affecting.name] is already sabotaged!")
-		return -1
-	user << SPAN_NOTICE("You sneakily slide [emag_source] into the dataport on [src]'s [affecting.name] and short out the safeties.")
-	affecting.sabotaged = 1
-	return 1
-
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
 	if(istype(AM,/obj/))
