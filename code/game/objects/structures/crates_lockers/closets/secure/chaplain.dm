@@ -23,4 +23,11 @@
 		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
+		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 		return
