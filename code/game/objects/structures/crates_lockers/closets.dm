@@ -1,6 +1,9 @@
-/atom/proc/add_overlay(list/overlays, priority = FALSE)
-	if(!overlays)
-		return
+/atom/proc/add_overlay(var/overlay)
+	ASSERT(overlay)
+	ASSERT(istext(overlay))
+
+	overlays.Add(image(icon,icon_state = overlay))
+
 
 /obj/structure/closet
 	name = "closet"
@@ -13,6 +16,11 @@
 	var/broken = FALSE
 	var/horizontal = FALSE
 	var/icon_door = null
+	var/icon_welded = "welded"
+	var/icon_locked = "locked"
+	var/icon_unlocked = "unlocked"
+	var/icon_emag = "off"
+	var/icon_sparking = "sparking"
 	var/allow_dense = FALSE
 	var/icon_door_override = FALSE //override to have open overlay use icon different to its base's
 	var/secure = FALSE
@@ -78,21 +86,21 @@
 	return (!density)
 
 /obj/structure/closet/proc/can_open(mob/living/user)
-	if(welded || locked)
-		return 0
+	if(welded || (secure && locked))
+		return FALSE
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > 0 && L.density)
 			if(user)
 				user << "<span class='danger'>There's something large on top of [src], preventing it from opening.</span>"
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/structure/closet/proc/can_close()
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/structure/closet/proc/take_contents()
 	var/atom/L = drop_location()
@@ -181,6 +189,42 @@
 	update_openspace()
 	return 1
 
+/obj/structure/closet/proc/toggle(mob/living/user)
+	if(!(opened ? close(user) : open(user)))
+		user << SPAN_NOTICE("It won't budge!")
+		return
+	update_icon()
+
+/obj/structure/closet/proc/togglelock(mob/user as mob)
+	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
+	if(!secure)
+		return
+
+	if(src.opened)
+		user << SPAN_NOTICE("Close the [ctype] first.")
+		return
+	if(src.broken)
+		user << SPAN_WARNING("The [ctype] appears to be broken.")
+		return
+	if(src.allowed(user))
+		set_locked(!locked, user)
+	else
+		user << SPAN_NOTICE("Access Denied")
+
+/obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
+	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
+	if(!secure)
+		return
+
+	if(locked == newlocked)
+		return
+
+	locked = newlocked
+	if(user)
+		for(var/mob/O in viewers(user, 3))
+			O.show_message( "<span class='notice'>The [ctype] has been [locked ? null : "un"]locked by [user].</span>", 1)
+	update_icon()
+
 //Cham Projector Exception
 /obj/structure/closet/proc/store_misc(var/stored_units)
 	var/added_units = 0
@@ -215,12 +259,6 @@
 		M.forceMove(src)
 		added_units += M.mob_size
 	return added_units
-
-/obj/structure/closet/proc/toggle(mob/living/user)
-	if(!(opened ? close(user) : open(user)))
-		user << SPAN_NOTICE("It won't budge!")
-		return
-	update_icon()
 
 // this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
@@ -312,6 +350,12 @@
 		src.update_icon()
 		for(var/mob/M in viewers(src))
 			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
+	else if(istype(W,/obj/item/weapon/card/id))
+		src.togglelock(user)
+		return
+	else if(istype(W, /obj/item/weapon/melee/energy/blade) && secure)
+		emag_act(INFINITY, user)
+		return
 	else
 		src.attack_hand(user)
 	return
@@ -350,13 +394,38 @@
 
 /obj/structure/closet/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
-	src.toggle(user)
+	if(secure && locked && !opened)
+		src.togglelock(user)
+	else
+		src.toggle(user)
 
 // tk grab then use on self
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
 		usr << SPAN_NOTICE("It won't budge!")
+
+/obj/structure/closet/emag_act(var/remaining_charges, var/mob/user)
+	if(!broken)
+		locked = FALSE
+		broken = TRUE
+		update_icon()
+		playsound(src.loc, "sparks", 60, 1)
+		user << SPAN_NOTICE("You unlock \the [src].")
+		return TRUE
+
+/obj/structure/closet/emp_act(severity)
+	for(var/obj/O in src)
+		O.emp_act(severity)
+	if(!broken && !opened  && prob(50/severity))
+		if(!locked)
+			locked = TRUE
+		else
+			locked = FALSE
+			playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+		broken = TRUE
+	update_icon()
+	..()
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
@@ -372,29 +441,44 @@
 	else
 		usr << SPAN_WARNING("This mob type can't use this verb.")
 
+/obj/structure/closet/verb/verb_togglelock()
+	set src in oview(1) // One square distance
+	set category = "Object"
+	set name = "Toggle Lock"
+
+	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
+		return
+
+	if(ishuman(usr))
+		src.add_fingerprint(usr)
+		src.togglelock(usr)
+	else
+		usr << SPAN_WARNING("This mob type can't use this verb.")
+
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
 	if(!opened)
-		if(icon_door)
+		if(icon_door_override)
 			add_overlay("[icon_door]_door")
 		else
 			add_overlay("[icon_state]_door")
 		if(welded)
-			add_overlay("welded")
-		if(secure)
-			if(!broken)
-				if(locked)
-					add_overlay("locked")
-				else
-					add_overlay("unlocked")
-			else
-				add_overlay("off")
-
+			add_overlay(icon_welded)
 	else
 		if(icon_door_override)
 			add_overlay("[icon_door]_open")
 		else
 			add_overlay("[icon_state]_open")
+
+	if(secure)
+		if(!broken)
+			if(locked)
+				add_overlay(icon_locked)
+			else
+				add_overlay(icon_unlocked)
+		else
+			add_overlay(icon_emag)
+			add_overlay(icon_sparking)
 
 /obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)
 	if(!damage || !wallbreaker)

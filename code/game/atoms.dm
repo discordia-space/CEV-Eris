@@ -37,6 +37,11 @@
 		update_openspace()
 	. = ..()
 
+/atom/proc/initialize()
+	if(!isnull(gcDestroyed))
+		crash_with("GC: -- [type] had initialize() called after qdel() --")
+
+
 /atom/proc/AllowDrop()
 	return FALSE
 
