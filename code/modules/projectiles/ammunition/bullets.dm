@@ -109,7 +109,7 @@
 	projectile_type = /obj/item/projectile/bullet/c65
 
 /obj/item/ammo_casing/c65r
-	desc = "A .6.5mm rubber bullet casing."
+	desc = "A 6.5mm rubber bullet casing."
 	caliber = "6.5mm"
 	projectile_type = /obj/item/projectile/bullet/c65r
 
