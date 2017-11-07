@@ -62,7 +62,9 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(!T)
+		//Safety in case we cannot find the body's position
+		T = pickSpawnLocation("observer", FALSE)
 	forceMove(T)
 
 	if(!name)							//To prevent nameless ghosts

@@ -47,10 +47,6 @@ var/list/lastsignalers = list() // Keeps last 100 signals here in format: "[src]
 var/list/lawchanges    = list() // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
 var/list/reg_dna       = list()
 
-//Spawnpoints.
-var/list/latejoin         = list()
-var/list/latejoin_cyborg  = list()
-
 var/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)
 var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)

@@ -175,7 +175,7 @@
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
 			return 0
 
-		AttemptLateSpawn(href_list["SelectedJob"],client.prefs.spawnpoint)
+		AttemptLateSpawn(href_list["SelectedJob"], client.prefs.spawnpoint)
 		return
 
 	if(!ready && href_list["preference"])

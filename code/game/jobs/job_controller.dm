@@ -7,6 +7,7 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations
 		//List of all jobs
 	var/list/occupations = list()
+	var/list/occupations_by_name = list()
 		//Players who need jobs
 	var/list/unassigned = list()
 		//Debug info
@@ -14,33 +15,29 @@ var/global/datum/controller/occupations/job_master
 
 
 	proc/SetupOccupations(var/faction = "CEV Eris")
-		occupations = list()
-		var/list/all_jobs = typesof(/datum/job)
-		if(!all_jobs.len)
+		occupations.Cut()
+		occupations_by_name.Cut()
+		for(var/J in subtypesof(/datum/job))
+			var/datum/job/job = new J()
+			if(job.faction != faction)
+				continue
+			occupations += job
+			occupations_by_name[job.title] = job
+
+		if(!occupations.len)
 			world << SPAN_WARNING("Error setting up jobs, no job datums found!")
 			return 0
-		for(var/J in all_jobs)
-			var/datum/job/job = new J()
-			if(!job)	continue
-			if(job.faction != faction)	continue
-			occupations += job
-
 
 		return 1
 
-
 	proc/Debug(var/text)
-		if(!Debug2)	return 0
+		if(!Debug2)
+			return 0
 		job_debug.Add(text)
 		return 1
 
-
 	proc/GetJob(var/rank)
-		if(!rank)	return null
-		for(var/datum/job/J in occupations)
-			if(!J)	continue
-			if(J.title == rank)	return J
-		return null
+		return rank && occupations_by_name[rank]
 
 	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
 		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
@@ -265,23 +262,6 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in unassigned)
 			if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
 				GiveRandomJob(player)
-		/*
-		Old job system
-		for(var/level = 1 to 3)
-			for(var/datum/job/job in occupations)
-				Debug("Checking job: [job]")
-				if(!job)
-					continue
-				if(!unassigned.len)
-					break
-				if((job.current_positions >= job.spawn_positions) && job.spawn_positions != -1)
-					continue
-				var/list/candidates = FindOccupationCandidates(job, level)
-				while(candidates.len && ((job.current_positions < job.spawn_positions) || job.spawn_positions == -1))
-					var/mob/new_player/candidate = pick(candidates)
-					Debug("Selcted: [candidate], for: [job.title]")
-					AssignRole(candidate, job.title)
-					candidates -= candidate*/
 
 		Debug("DO, Standard Check end")
 
@@ -369,18 +349,9 @@ var/global/datum/controller/occupations/job_master
 		H.job = rank
 
 		if(!joined_late)
-			var/obj/S = null
-			var/list/loc_list = new()
-			for(var/obj/landmark/start/sloc in landmarks_list)
-				if(sloc.name != rank)	continue
-				if(locate(/mob/living) in sloc.loc)	continue
-				loc_list += sloc
-			if(loc_list.len)
-				S = pick(loc_list)
-			else
-				S = locate("start*[rank]") // use old stype
-			if(istype(S, /obj/landmark/start) && istype(S.loc, /turf))
-				H.forceMove(S.loc)
+			var/turf/S = pickSpawnLocation(job.type)
+			if(istype(S))
+				H.forceMove(S)
 			else
 				LateSpawn(H.client, rank)
 
@@ -542,7 +513,6 @@ var/global/datum/controller/occupations/job_master
 
 		return 1
 
-
 	proc/HandleFeedbackGathering()
 		for(var/datum/job/job in occupations)
 			var/tmp_str = "|[job.title]|"
@@ -572,7 +542,6 @@ var/global/datum/controller/occupations/job_master
 
 /datum/controller/occupations/proc/LateSpawn(var/client/C, var/rank, var/return_location = 0)
 	//spawn at one of the latespawn locations
-
 	var/datum/spawnpoint/spawnpos
 
 	if(!C)
@@ -580,28 +549,26 @@ var/global/datum/controller/occupations/job_master
 
 	var/mob/H = C.mob
 	if(C.prefs.spawnpoint)
-		spawnpos = spawntypes[C.prefs.spawnpoint]
+		spawnpos = getSpawnPoint(C.prefs.spawnpoint, FALSE)
+	if(!spawnpos || !spawnpos.check_job_spawning(rank))
+		for(var/name in spawnpoints_late)
+			var/datum/spawnpoint/SP = spawnpoints_late[name]
+			if(SP.check_job_spawning(rank))
+				spawnpos = SP
+				break
 
 	if(spawnpos && istype(spawnpos))
-		if(spawnpos.check_job_spawning(rank))
-			if(return_location)
-				return pick(spawnpos.turfs)
-			else
-				if(H)
-					H.forceMove(pick(spawnpos.turfs))
-				return spawnpos.msg
-		else
-			if(return_location)
-				return pick(latejoin)
-			else
-				if(H)
-					H << "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the default spawn point instead."
-					H.forceMove(pick(latejoin))
-				return "has completed cryogenic revival"
-	else
+		var/list/latejoin = safepick(spawnpos.getFreeTurfs())
 		if(return_location)
-			return pick(latejoin)
+			return latejoin
 		else
 			if(H)
-				H.forceMove(pick(latejoin))
+				H.forceMove(latejoin)
+			return spawnpos.message
+	else
+		if(return_location)
+			return pickSpawnLocation()
+		else
+			if(H)
+				H.forceMove(pickSpawnLocation())
 			return "has arrived on the station"

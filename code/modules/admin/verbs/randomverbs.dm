@@ -315,7 +315,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 		usr << "<font color='red'>There is no active key like that in the game or the person is not currently a ghost.</font>"
 		return
 
-	var/mob/living/carbon/human/new_character = new(pick(latejoin))//The mob being spawned.
+	var/mob/living/carbon/human/new_character = new()//The mob being spawned.
 
 	var/datum/data/record/record_found			//Referenced to later to either randomize or not randomize the character.
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
@@ -379,6 +379,7 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 
 	//Now for special roles and equipment.
 	job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)
+	job_master.LateSpawn(new_character.client, new_character.mind.assigned_role)
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
