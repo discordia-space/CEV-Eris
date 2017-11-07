@@ -30,7 +30,9 @@
 	else
 		name += " #[rand(1000, 9999)]"
 
-	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(!T)
+		//Safety in case we cannot find the body's position
+		T = pickSpawnLocation("observer", FALSE)
 	forceMove(T)
 
 	real_name = name

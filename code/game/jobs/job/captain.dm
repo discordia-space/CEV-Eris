@@ -47,10 +47,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	get_access()
 		return get_all_station_access()
 
-/obj/landmark/start/captain
+/obj/landmark/join/start/captain
 	name = "Captain"
 	icon_state = "player-gold-officer"
-	job = /datum/job/captain
+	join_tag = /datum/job/captain
 
 
 
@@ -84,7 +84,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	get_access()
 		return get_all_station_access()
 
-/obj/landmark/start/hop
+/obj/landmark/join/start/hop
 	name = "First Officer"
 	icon_state = "player-gold"
-	job = /datum/job/hop
+	join_tag = /datum/job/hop

@@ -17,9 +17,9 @@
 /datum/job/ai/is_position_available()
 	return (empty_playable_ai_cores.len != 0)
 
-/obj/landmark/start/AI
+/obj/landmark/join/start/AI
 	icon_state = "player-grey"
-	job = /datum/job/ai
+	join_tag = /datum/job/ai
 	delete_me = FALSE
 
 
@@ -38,5 +38,5 @@
 	equip(var/mob/living/carbon/human/H)
 		return H
 
-/obj/landmark/start/cyborg
-	job = /datum/job/cyborg
+/obj/landmark/join/start/cyborg
+	join_tag = /datum/job/cyborg
