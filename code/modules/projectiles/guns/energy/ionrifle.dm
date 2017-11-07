@@ -17,7 +17,7 @@
 
 /obj/item/weapon/gun/energy/ionrifle/update_icon()
 	..()
-	if(cell.charge < charge_cost)
+	if(!cell || cell.charge < charge_cost)
 		item_state = "ionrifle-empty"
 	else
 		item_state = initial(item_state)
