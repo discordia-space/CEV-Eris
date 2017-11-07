@@ -146,7 +146,7 @@ var/list/slot_equipment_priority = list( \
 
 // Removes an item from inventory and places it in the target atom.
 // If canremove or other conditions need to be checked then use unEquip instead.
-/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
+/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null, drop_flag = null)
 	if(W)
 		if(!Target)
 			Target = loc
@@ -156,7 +156,7 @@ var/list/slot_equipment_priority = list( \
 			return 1 // self destroying objects (tk, grabs)
 
 		if(W.loc != Target)
-			W.forceMove(Target)
+			W.forceMove(Target, drop_flag)
 		update_icons()
 		return 1
 	return 0
@@ -172,8 +172,7 @@ var/list/slot_equipment_priority = list( \
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(var/atom/Target)
 	var/obj/item/I = get_active_hand()
-	drop_from_inventory(I)
-	I.forceMove(Target||loc, MOVED_DROP)
+	drop_from_inventory(I, Target, MOVED_DROP)
 
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
