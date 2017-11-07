@@ -45,10 +45,10 @@
 		/obj/item/weapon/storage/backpack/satchel
 	)
 
-/obj/landmark/start/ihc
+/obj/landmark/join/start/ihc
 	name = "Ironhammer Commander"
 	icon_state = "player-blue-officer"
-	job = /datum/job/ihc
+	join_tag = /datum/job/ihc
 
 
 
@@ -95,10 +95,10 @@
 		/obj/item/weapon/storage/backpack/satchel
 	)
 
-/obj/landmark/start/gunserg
+/obj/landmark/join/start/gunserg
 	name = "Ironhammer Gunnery Sergeant"
 	icon_state = "player-blue"
-	job = /datum/job/gunserg
+	join_tag = /datum/job/gunserg
 
 
 /datum/job/inspector
@@ -137,10 +137,10 @@
 		/obj/item/weapon/gun/energy/gun/martin
 	)
 
-/obj/landmark/start/inspector
+/obj/landmark/join/start/inspector
 	name = "Ironhammer Inspector"
 	icon_state = "player-blue"
-	job = /datum/job/inspector
+	join_tag = /datum/job/inspector
 
 
 /datum/job/medspec
@@ -173,10 +173,10 @@
 		/obj/item/weapon/storage/box/evidence,\
 	)
 
-/obj/landmark/start/medspec
+/obj/landmark/join/start/medspec
 	name = "Ironhammer Medical Specialist"
 	icon_state = "player-blue"
-	job = /datum/job/medspec
+	join_tag = /datum/job/medspec
 
 
 /datum/job/ihoper
@@ -224,7 +224,7 @@
 		/obj/item/weapon/storage/backpack/satchel
 	)
 
-/obj/landmark/start/ihoper
+/obj/landmark/join/start/ihoper
 	name = "Ironhammer Operative"
 	icon_state = "player-blue"
-	job = /datum/job/ihoper
+	join_tag = /datum/job/ihoper
