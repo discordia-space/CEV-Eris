@@ -33,8 +33,30 @@
 
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
+/*
+ADMIN_VERB_ADD(/client/proc/validate_hairs, R_DEBUG, null)
+/client/proc/validate_hairs()
+	set name = "Validate hairs"
+	set category = "Debug"
 
-
+	var/list/variants = list(
+		"hair"   = /datum/sprite_accessory/hair,
+		"facial" = /datum/sprite_accessory/facial_hair
+	)
+	var/input = input("Select list") as null|anything in variants
+	if(!input)
+		return
+	usr << "[capitalize(input)]:"
+	for(var/path in subtypesof(variants[input]))
+		var/datum/sprite_accessory/hair = path
+		var/name = initial(hair.name)
+		var/icon_state = initial(hair.icon_state)
+		var/icon = initial(hair.icon)
+		if(icon_state in icon_states(icon))
+			usr << SPAN_NOTICE("[name]: icon exist")
+		else
+			usr << SPAN_WARNING("[name]: icon NOT exist!")
+*/
 /*
 ////////////////////////////
 /  =--------------------=  /
