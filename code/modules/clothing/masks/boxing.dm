@@ -8,7 +8,7 @@
 	w_class = ITEM_SIZE_SMALL
 
 /obj/item/clothing/mask/balaclava/tactical
-	name = "green balaclava"
+	name = "tactical balaclava"
 	desc = "Designed to both hide identities and keep your face comfy and warm."
 	icon_state = "swatclava"
 	item_state = "balaclava"
