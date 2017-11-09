@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/roach
 	name = "Kampfer Roach"
-	desc = "A monstrous cockroach the size of a grown dog. These huge mutants can be everywhere where humans are, on ships, planets and stations."
+	desc = "A monstrous, dog-sized cockroach. These huge mutants can be everywhere where humans are, on ships, planets and stations."
 	icon_state = "roach"
 	speak_chance = 0
 	turns_per_move = 3
@@ -41,7 +41,7 @@
 
 /mob/living/simple_animal/hostile/roach/tank
 	name = "Panzer Roach"
-	desc = "A monstrous cockroach the size of a huge dog. This one looks more robust than others."
+	desc = "A monstrous, dog-sized cockroach. This one looks more robust than others."
 	icon_state = "panzer"
 	meat_amount = 4
 	turns_per_move = 2
@@ -53,7 +53,7 @@
 
 /mob/living/simple_animal/hostile/roach/hunter
 	name = "Jager Roach"
-	desc = "A monstrous cockroach the size of a grown dog. This one have a bigger claws."
+	desc = "A monstrous, dog-sized cockroach. This one have a bigger claws."
 	icon_state = "jager"
 	meat_amount = 3
 	turns_per_move = 2
@@ -77,7 +77,7 @@
 
 /mob/living/simple_animal/hostile/roach/support
 	name = "Seuche Roach"
-	desc = "A monstrous cockroach the size of a grown dog. This one smells like hell and secrete strange vapors."
+	desc = "A monstrous, dog-sized cockroach. This one smells like hell and secretes strange vapors."
 	icon_state = "seuche"
 	meat_amount = 3
 	turns_per_move = 4
