@@ -1013,7 +1013,7 @@
 	prices = list(/obj/item/weapon/book/ritual/cruciform = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/implant/external/core_implant/cruciform = 1000)
 
 /obj/machinery/vending/powermat
-	name = "Asters Guild Power-Mat."
+	name = "Asters Guild Power-Mat"
 	desc = "Trust is power, and there’s no power you can trust like Robustcell."
 	product_slogans = "Trust is power, and there’s no power you can trust like Robustcell.;No battery is stronger longer.;One that Last!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
