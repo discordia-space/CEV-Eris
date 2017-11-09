@@ -43,26 +43,11 @@
 
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
-/*
+
 /obj/structure/closet/initialize()
 	..()
-	if(!opened)		// if closed, any item at the crate's loc is put in the contents
-		var/obj/item/I
-		for(I in src.loc)
-			if(I.density || I.anchored || I == src) continue
-			I.forceMove(src)
-		// adjust locker size to hold all items with 5 units of free store room
-		var/content_size = 0
-		for(I in src.contents)
-			content_size += Ceiling(I.w_class/2)
-		if(content_size > storage_capacity-5)
-			storage_capacity = content_size + 5
-*/
-/obj/structure/closet/initialize(mapload)
-	. = ..()
+	populate_contents()
 	update_icon()
-	PopulateContents()
-
 
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
@@ -280,8 +265,19 @@
 					A.forceMove(src.loc)
 				qdel(src)
 
-/obj/structure/closet/proc/PopulateContents()
-	return
+/obj/structure/closet/proc/populate_contents()
+	if(!opened)		// if closed, any item at the crate's loc is put in the contents
+		var/obj/item/I
+		for(I in src.loc)
+			if(I.density || I.anchored || I == src) continue
+			I.forceMove(src)
+		// adjust locker size to hold all items with 5 units of free store room
+		var/content_size = 0
+		for(I in src.contents)
+			content_size += Ceiling(I.w_class/2)
+		if(content_size > storage_capacity-5)
+			storage_capacity = content_size + 5
+
 /obj/structure/closet/proc/damage(var/damage)
 	health -= damage
 	if(health <= 0)
