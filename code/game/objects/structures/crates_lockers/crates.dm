@@ -302,9 +302,7 @@
 	name = "secure bin"
 	desc = "A secure bin."
 	icon_state = "largebins"
-	icon_locked = "largebinr"
-	icon_unlocked = "largebing"
-	icon_emag = "largebinbemag"
+	icon_lock = "largebin"
 	icon_sparking = "largebinbsparks"
 	icon_welded = null //TODO
 
@@ -338,9 +336,7 @@
 	desc = "A hefty metal crate with an electronic locking system."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "largemetal"
-	icon_locked = "largemetalr"
-	icon_unlocked = "largemetalb"
-	icon_emag = "largemetale"
+	icon_lock = "largemetal"
 	icon_sparking = null
 	icon_welded = null //TODO
 
@@ -396,12 +392,12 @@
 /obj/structure/closet/crate/scicrate
 	desc = "A science crate."
 	name = "Science crate"
-	icon_state = "scicrate"
+	icon_state = "crate"
 
 /obj/structure/closet/crate/secure/scisecurecrate
 	desc = "A secure science crate."
 	name = "Science crate"
-	icon_state = "scisecurecrate"
+	icon_state = "securecrate"
 
 /obj/structure/closet/crate/secure/gear
 	desc = "A secure gear crate."
@@ -416,5 +412,5 @@
 /obj/structure/closet/crate/secure/woodseccrate
 	desc = "A secure wooden crate."
 	name = "Secure wooden crate"
-	icon_state = "woodseccrate"
+	icon_state = "plasmacrate"
 

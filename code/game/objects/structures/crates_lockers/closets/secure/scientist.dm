@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/scientist
 	name = "moebius scientist's locker"
 	req_access = list(access_tox_storage)
-	icon_state = "secureres1"
+	icon_state = "science"
 
 	New()
 		..()

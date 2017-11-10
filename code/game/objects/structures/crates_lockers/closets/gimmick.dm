@@ -1,7 +1,7 @@
 /obj/structure/closet/cabinet
 	name = "cabinet"
 	desc = "Old will forever be in fashion."
-	icon_state = "cabinet_closed"
+	icon_state = "cabinet"
 /*
 /obj/structure/closet/cabinet/update_icon()
 	if(!opened)
@@ -12,13 +12,13 @@
 /obj/structure/closet/gimmick
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
-	icon_state = "syndicate1"
+	icon_state = "syndicate"
 	anchored = 0
 
 /obj/structure/closet/gimmick/russian
 	name = "russian surplus closet"
 	desc = "It's a storage unit for Russian standard-issue surplus."
-	icon_state = "syndicate1"
+	icon_state = "syndicate"
 
 /obj/structure/closet/gimmick/russian/New()
 	..()
@@ -37,7 +37,7 @@
 /obj/structure/closet/gimmick/tacticool
 	name = "tacticool gear closet"
 	desc = "It's a storage unit for Tacticool gear."
-	icon_state = "syndicate1"
+	icon_state = "syndicate"
 
 /obj/structure/closet/gimmick/tacticool/New()
 	..()
@@ -92,7 +92,7 @@
 
 /obj/structure/closet/thunderdome/tdgreen
 	name = "green-team Thunderdome closet"
-	icon_state = "syndicate1"
+	icon_state = "syndicate"
 
 /obj/structure/closet/thunderdome/tdgreen/New()
 	..()

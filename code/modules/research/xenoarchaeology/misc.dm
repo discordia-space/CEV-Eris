@@ -62,7 +62,7 @@
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
 	req_access = list(access_tox_storage)
-	icon_state = "secureres1"
+	icon_state = "science"
 
 	New()
 		..()
@@ -78,7 +78,8 @@
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"
-	icon_state = "toolcloset"
+	icon_state = "eng"
+	icon_door = "eng_tool"
 
 
 	New()

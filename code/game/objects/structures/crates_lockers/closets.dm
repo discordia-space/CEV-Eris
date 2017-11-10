@@ -17,12 +17,9 @@
 	var/horizontal = FALSE
 	var/icon_door = null
 	var/icon_welded = "welded"
-	var/icon_locked = "locked"
-	var/icon_unlocked = "unlocked"
-	var/icon_emag = "off"
+	var/icon_lock = "lock"
 	var/icon_sparking = "sparking"
 	var/allow_dense = FALSE
-	var/icon_door_override = FALSE //override to have open overlay use icon different to its base's
 	var/secure = FALSE
 	var/allow_objects = FALSE
 	var/opened = FALSE
@@ -454,14 +451,14 @@
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
 	if(!opened)
-		if(icon_door_override)
+		if(icon_door)
 			add_overlay("[icon_door]_door")
 		else
 			add_overlay("[icon_state]_door")
 		if(welded)
 			add_overlay(icon_welded)
 	else
-		if(icon_door_override)
+		if(icon_door)
 			add_overlay("[icon_door]_open")
 		else
 			add_overlay("[icon_state]_open")
@@ -469,11 +466,11 @@
 	if(secure)
 		if(!broken)
 			if(locked)
-				add_overlay(icon_locked)
+				add_overlay("[icon_lock]_locked")
 			else
-				add_overlay(icon_unlocked)
+				add_overlay("[icon_lock]_unlocked")
 		else
-			add_overlay(icon_emag)
+			add_overlay("[icon_lock]_off")
 			add_overlay(icon_sparking)
 
 /obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)

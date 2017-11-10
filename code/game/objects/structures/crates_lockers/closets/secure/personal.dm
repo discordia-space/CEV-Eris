@@ -3,6 +3,7 @@
 	desc = "It's a secure locker for personnel. The first card swiped gains control."
 	req_access = list(access_all_personal_lockers)
 	var/registered_name = null
+	icon_state = "secure"
 
 /obj/structure/closet/secure_closet/personal/New()
 	..()
@@ -31,7 +32,8 @@
 
 
 /obj/structure/closet/secure_closet/personal/cabinet
-	icon_state = "cabinetdetective_locked"
+	icon_state = "cabinet"
+	icon_lock = "cabinet"
 
 /obj/structure/closet/secure_closet/personal/cabinet/New()
 	..()

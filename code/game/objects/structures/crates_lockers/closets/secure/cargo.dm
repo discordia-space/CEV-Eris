@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/cargotech
 	name = "guild technician's locker"
 	req_access = list(access_cargo)
-	icon_state = "securecargo1"
+	icon_state = "cargo"
 
 /obj/structure/closet/secure_closet/cargotech/New()
 	..()
@@ -13,13 +13,13 @@
 	new /obj/item/device/export_scanner(src)
 	return
 
-/obj/structure/closet/secure_closet/quartermaster
+/obj/structure/closet/secure_closet/reinforced/quartermaster
 	name = "guild merchant's locker"
 	req_access = list(access_merchant)
-	icon_state = "secureqm1"
+	icon_state = "qm"
 
 
-/obj/structure/closet/secure_closet/quartermaster/New()
+/obj/structure/closet/secure_closet/reinforced/quartermaster/New()
 	..()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/color/brown(src)

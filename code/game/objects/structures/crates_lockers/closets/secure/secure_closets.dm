@@ -21,3 +21,7 @@
 	broken = TRUE
 	locked = FALSE
 	..()
+
+/obj/structure/closet/secure_closet/reinforced
+	icon = 'icons/obj/closet.dmi'
+	icon_lock = "reinforced"

@@ -2,6 +2,7 @@
 	name = "captain's locker"
 	req_access = list(access_captain)
 	icon_state = "capsecure1"
+	icon_lock = "cabinet"
 
 /obj/structure/closet/secure_closet/captains/New()
 	..()
@@ -55,12 +56,12 @@
 
 
 
-/obj/structure/closet/secure_closet/hos
+/obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
 	req_access = list(access_hos)
-	icon_state = "hossecure1"
+	icon_state = "hos"
 
-/obj/structure/closet/secure_closet/hos/New()
+/obj/structure/closet/secure_closet/reinforced/hos/New()
 	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
@@ -92,7 +93,7 @@
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
 	req_access = list(access_armory)
-	icon_state = "wardensecure1"
+	icon_state = "warden"
 
 
 /obj/structure/closet/secure_closet/warden/New()
@@ -126,7 +127,7 @@
 /obj/structure/closet/secure_closet/security
 	name = "Ironhammer Operative locker"
 	req_access = list(access_brig)
-	icon_state = "sec1"
+	icon_state = "sec"
 
 
 /obj/structure/closet/secure_closet/security/New()
@@ -158,7 +159,7 @@
 /obj/structure/closet/secure_closet/medspec
 	name = "Ironhammer Medical Specialist locker"
 	req_access = list(access_medspec)
-	icon_state = "sec1"
+	icon_state = "sec"
 
 
 /obj/structure/closet/secure_closet/medspec/New()
@@ -181,7 +182,7 @@
 /obj/structure/closet/secure_closet/detective
 	name = "detective's cabinet"
 	req_access = list(access_forensics_lockers)
-	icon_state = "cabinetdetective_locked"
+	icon_state = "cabinetdetective"
 
 /obj/structure/closet/secure_closet/detective/New()
 	..()
@@ -220,6 +221,7 @@
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
 	req_access = list(access_captain)
+	icon_state = "secure"
 
 
 /obj/structure/closet/secure_closet/injection/New()
@@ -234,7 +236,8 @@
 	name = "brig locker"
 	req_access = list(access_brig)
 	anchored = 1
-	var/id = null
+	icon_state = "secure"
+	var/id
 
 /obj/structure/closet/secure_closet/brig/New()
 	..()
@@ -247,6 +250,7 @@
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(access_security)
+	icon_state = "sec"
 
 /obj/structure/closet/secure_closet/courtroom/New()
 	..()

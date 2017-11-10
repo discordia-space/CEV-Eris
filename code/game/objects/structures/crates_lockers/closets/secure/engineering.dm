@@ -1,9 +1,9 @@
-/obj/structure/closet/secure_closet/engineering_chief
+/obj/structure/closet/secure_closet/reinforced/engineering_chief
 	name = "technomancer exultant's locker"
 	req_access = list(access_ce)
-	icon_state = "securece1"
+	icon_state = "ce"
 
-/obj/structure/closet/secure_closet/engineering_chief/New()
+/obj/structure/closet/secure_closet/reinforced/engineering_chief/New()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
@@ -34,7 +34,8 @@
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
 	req_access = list(access_engine_equip)
-	icon_state = "secureengelec1"
+	icon_state = "eng"
+	icon_door = "end_elec"
 
 /obj/structure/closet/secure_closet/engineering_electrical/New()
 	..()
@@ -56,7 +57,8 @@
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
 	req_access = list(access_construction)
-	icon_state = "secureengweld1"
+	icon_state = "eng"
+	icon_door = "end_weld"
 
 /obj/structure/closet/secure_closet/engineering_welding/New()
 	..()
@@ -76,7 +78,8 @@
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "technomancer's locker"
 	req_access = list(access_engine_equip)
-	icon_state = "secureeng1"
+	icon_state = "eng"
+	icon_door = "end_secure"
 
 /obj/structure/closet/secure_closet/engineering_personal/New()
 	..()

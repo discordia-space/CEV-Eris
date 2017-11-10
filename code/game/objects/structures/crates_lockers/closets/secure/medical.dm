@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/medical1
 	name = "medicine closet"
 	desc = "Filled with medical junk."
-	icon_state = "medical1"
+	icon_state = "med"
 	req_access = list(access_medical_equip)
 
 
@@ -24,7 +24,7 @@
 /obj/structure/closet/secure_closet/medical2
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
-	icon_state = "medical1"
+	icon_state = "med"
 	req_access = list(access_surgery)
 
 
@@ -43,7 +43,7 @@
 /obj/structure/closet/secure_closet/medical3
 	name = "moebius doctor's locker"
 	req_access = list(access_medical_equip)
-	icon_state = "securemed1"
+	icon_state = "med"
 
 /obj/structure/closet/secure_closet/medical3/New()
 	..()
@@ -86,12 +86,12 @@
 
 
 
-/obj/structure/closet/secure_closet/CMO
+/obj/structure/closet/secure_closet/reinforced/CMO
 	name = "moebius biolab officer's locker"
 	req_access = list(access_cmo)
-	icon_state = "cmosecure1"
+	icon_state = "cmo"
 
-/obj/structure/closet/secure_closet/CMO/New()
+/obj/structure/closet/secure_closet/reinforced/CMO/New()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
@@ -125,6 +125,7 @@
 /obj/structure/closet/secure_closet/animal
 	name = "animal control closet"
 	req_access = list(access_surgery)
+	icon_state = "sec"
 
 
 /obj/structure/closet/secure_closet/animal/New()
@@ -140,7 +141,8 @@
 /obj/structure/closet/secure_closet/chemical
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
-	icon_state = "medical1"
+	icon_state = "med"
+	icon_door = "chemical"
 	req_access = list(access_chemistry)
 
 

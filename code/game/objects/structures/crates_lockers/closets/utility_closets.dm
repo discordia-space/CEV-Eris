@@ -61,7 +61,7 @@
 /obj/structure/closet/firecloset
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
-	icon_state = "firecloset"
+	icon_state = "fire"
 
 /obj/structure/closet/firecloset/New()
 	..()
@@ -90,7 +90,8 @@
 /obj/structure/closet/toolcloset
 	name = "tool closet"
 	desc = "It's a storage unit for tools."
-	icon_state = "toolcloset"
+	icon_state = "eng"
+	icon_door = "eng_tool"
 
 /obj/structure/closet/toolcloset/New()
 	..()
@@ -132,7 +133,8 @@
 /obj/structure/closet/radiation
 	name = "radiation suit closet"
 	desc = "It's a storage unit for rad-protective suits."
-	icon_state = "radsuitcloset"
+	icon_state = "eng"
+	icon_door = "eng_rad"
 
 /obj/structure/closet/radiation/New()
 	..()
@@ -147,7 +149,7 @@
 /obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
-	icon_state = "bombsuit"
+	icon_state = "bomb"
 
 /obj/structure/closet/bombcloset/New()
 	..()
@@ -160,7 +162,7 @@
 /obj/structure/closet/bombclosetsecurity
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
-	icon_state = "bombsuitsec"
+	icon_state = "bomb"
 
 /obj/structure/closet/bombclosetsecurity/New()
 	..()

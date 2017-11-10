@@ -1,7 +1,8 @@
 /obj/structure/closet/secure_closet/bar
 	name = "booze closet"
 	req_access = list(access_bar)
-	icon_state = "cabinetbar_locked"
+	icon_state = "cabinet"
+	icon_lock = "cabinet"
 
 
 /obj/structure/closet/secure_closet/bar/New()
