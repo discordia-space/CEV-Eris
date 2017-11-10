@@ -106,10 +106,6 @@ var/global/datum/controller/gameticker/ticker
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		storyteller.set_up()
-		//Cleanup some stuff
-		for(var/obj/landmark/start/S in landmarks_list)
-			if(S.delete_me)
-				qdel(S)
 		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn

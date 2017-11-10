@@ -38,7 +38,8 @@ datum/preferences/proc/set_biological_gender(var/set_gender)
 	pref.real_name		= sanitize_name(pref.real_name, pref.species)
 	if(!pref.real_name)
 		pref.real_name	= random_name(pref.gender, pref.species)
-	pref.spawnpoint		= sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
+	pref.spawnpoint		= sanitize_inlist(pref.spawnpoint, spawnpoints_late, spawnpoints_late[1])
+
 	pref.be_random_name	= sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
 /datum/category_item/player_setup_item/general/basic/content()

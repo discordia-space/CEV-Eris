@@ -39,10 +39,10 @@
 		H.equip_to_slot_or_del(new /obj/item/device/lighting/toggleable/flashlight/pen(H), slot_s_store)
 		return 1
 
-/obj/landmark/start/cmo
+/obj/landmark/join/start/cmo
 	name = "Moebius Biolab Officer"
 	icon_state = "player-green-officer"
-	job = /datum/job/cmo
+	join_tag = /datum/job/cmo
 
 
 /datum/job/doctor
@@ -73,10 +73,10 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/obj/landmark/start/doctor
+/obj/landmark/join/start/doctor
 	name = "Moebius Doctor"
 	icon_state = "player-green"
-	job = /datum/job/doctor
+	join_tag = /datum/job/doctor
 
 
 
@@ -108,10 +108,10 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/obj/landmark/start/chemist
+/obj/landmark/join/start/chemist
 	name = "Moebius Chemist"
 	icon_state = "player-green"
-	job = /datum/job/chemist
+	join_tag = /datum/job/chemist
 
 
 /datum/job/psychiatrist
@@ -138,10 +138,10 @@
 		if(!H)	return 0
 		return ..()
 
-/obj/landmark/start/psychiatrist
+/obj/landmark/join/start/psychiatrist
 	name = "Moebius Psychiatrist"
 	icon_state = "player-green"
-	job = /datum/job/psychiatrist
+	join_tag = /datum/job/psychiatrist
 
 
 /datum/job/paramedic
@@ -170,8 +170,8 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
-/obj/landmark/start/paramedic
+/obj/landmark/join/start/paramedic
 	name = "Moebius Paramedic"
 	icon_state = "player-green"
-	job = /datum/job/paramedic
+	join_tag = /datum/job/paramedic
 

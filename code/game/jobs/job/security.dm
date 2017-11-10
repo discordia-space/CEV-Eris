@@ -45,10 +45,10 @@
 		/obj/item/weapon/storage/backpack/satchel
 	)
 
-/obj/landmark/start/ihc
+/obj/landmark/join/start/ihc
 	name = "Ironhammer Commander"
 	icon_state = "player-blue-officer"
-	job = /datum/job/ihc
+	join_tag = /datum/job/ihc
 
 
 
@@ -76,7 +76,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/thick/swat
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
+	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 	put_in_backpack = list(\
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
@@ -95,10 +95,10 @@
 		/obj/item/weapon/storage/backpack/satchel
 	)
 
-/obj/landmark/start/gunserg
+/obj/landmark/join/start/gunserg
 	name = "Ironhammer Gunnery Sergeant"
 	icon_state = "player-blue"
-	job = /datum/job/gunserg
+	join_tag = /datum/job/gunserg
 
 
 /datum/job/inspector
@@ -137,10 +137,10 @@
 		/obj/item/weapon/gun/energy/gun/martin
 	)
 
-/obj/landmark/start/inspector
+/obj/landmark/join/start/inspector
 	name = "Ironhammer Inspector"
 	icon_state = "player-blue"
-	job = /datum/job/inspector
+	join_tag = /datum/job/inspector
 
 
 /datum/job/medspec
@@ -162,7 +162,7 @@
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
-	gloves = /obj/item/clothing/gloves/thick/swat
+	gloves = /obj/item/clothing/gloves/thick
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/medspec
 	hand = /obj/item/weapon/storage/briefcase/crimekit
 	belt = /obj/item/weapon/gun/projectile/olivaw
@@ -173,10 +173,10 @@
 		/obj/item/weapon/storage/box/evidence,\
 	)
 
-/obj/landmark/start/medspec
+/obj/landmark/join/start/medspec
 	name = "Ironhammer Medical Specialist"
 	icon_state = "player-blue"
-	job = /datum/job/medspec
+	join_tag = /datum/job/medspec
 
 
 /datum/job/ihoper
@@ -203,7 +203,7 @@
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/thick/swat
-	belt = /obj/item/weapon/gun/projectile/automatic/SMG_sol
+	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 
 	put_in_backpack = list(\
 		/obj/item/weapon/handcuffs,\
@@ -224,7 +224,7 @@
 		/obj/item/weapon/storage/backpack/satchel
 	)
 
-/obj/landmark/start/ihoper
+/obj/landmark/join/start/ihoper
 	name = "Ironhammer Operative"
 	icon_state = "player-blue"
-	job = /datum/job/ihoper
+	join_tag = /datum/job/ihoper

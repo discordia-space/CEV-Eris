@@ -1,49 +1,55 @@
 /obj/landmark/join
 	delete_me = TRUE
+	var/join_tag = "latejoin"
 
+/obj/landmark/join/New()
+	if(join_tag)
+		var/datum/spawnpoint/SP = getSpawnPoint(join_tag)
+		SP.turfs += src.loc
+	..()
 
 /obj/landmark/join/late
-	name = "late-spawn"
+	name = "late_cryo"
 	icon_state = "player-blue-cluster"
+	join_tag = "Cryogenic Storage"
+	var/message = "has completed cryogenic revival"
+	var/restrict_job = null
+	var/disallow_job = null
 
 /obj/landmark/join/late/New()
+	if(join_tag)
+		var/datum/spawnpoint/SP = getSpawnPoint(join_tag)
+		SP.turfs += src.loc
+		SP.display_name = join_tag
+		SP.restrict_job = restrict_job
+		SP.disallow_job = disallow_job
+		SP.message = message
+		spawnpoints_late[join_tag] = SP
+		join_tag = null
 	..()
-	latejoin += loc
 
-
-/obj/landmark/join/cyborg
-	name = "late-cyborg-spawn"
+/obj/landmark/join/late/cyborg
+	name = "late_cybor"
 	icon_state = "synth-cyan"
-
-/obj/landmark/join/cyborg/New()
-	..()
-	latejoin_cyborg += loc
-
+	join_tag = "Cyborg Storage"
+	message = "has been activated from storage"
+	restrict_job = list("Cyborg")
 
 /obj/landmark/join/observer
 	name = "observer-spawn"
 	icon_state = "player-grey-cluster"
+	join_tag = "observer"
 
-/obj/landmark/join/observer/New()
-	..()
-	tag = "observer-spawn"
-
-
-/obj/landmark/start
+/obj/landmark/join/start
 	name = "start"
 	icon_state = "player-grey"
 	anchored = TRUE
 	alpha = 124
 	invisibility = 101
+	join_tag = null
 	delete_me = TRUE
-	var/datum/job/job = null
 
-/obj/landmark/start/New()
-	..()
-	if(job)
-		name = initial(job.title)
-
-/obj/landmark/start/triai
+/obj/landmark/join/start/triai
 	icon_state = "ai-green"
 	name = "tripai"
-	delete_me = FALSE
+	join_tag = "tripai"

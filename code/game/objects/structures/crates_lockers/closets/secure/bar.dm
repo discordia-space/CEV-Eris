@@ -4,19 +4,19 @@
 	icon_state = "cabinetbar_locked"
 
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
-		return
+/obj/structure/closet/secure_closet/bar/New()
+	..()
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer( src )
+	return
 /*
 /obj/structure/closet/secure_closet/bar/update_icon()
 	if(broken)

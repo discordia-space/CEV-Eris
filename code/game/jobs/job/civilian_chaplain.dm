@@ -15,10 +15,10 @@
 	uniform = /obj/item/clothing/under/rank/chaplain
 	pda = /obj/item/device/pda/chaplain
 
-/obj/landmark/start/chaplain
+/obj/landmark/join/start/chaplain
 	name = "Cyberchristian Preacher"
 	icon_state = "player-black"
-	job = /datum/job/chaplain
+	join_tag = /datum/job/chaplain
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H)
 	var/obj/item/weapon/implant/external/core_implant/cruciform/C = new /obj/item/weapon/implant/external/core_implant/cruciform(H)

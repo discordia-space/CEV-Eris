@@ -6,7 +6,6 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	var/list/part = null // Order of args is important for installing robolimbs.
-	var/sabotaged = 0 //Emagging limbs can have repercussions when installed as prosthetics.
 	var/model_info
 	dir = SOUTH
 
@@ -302,12 +301,3 @@
 		W.loc = src
 		src.flash1 = W
 		user << SPAN_NOTICE("You insert the flash into the eye socket!")
-
-
-/obj/item/robot_parts/emag_act(var/remaining_charges, var/mob/user)
-	if(sabotaged)
-		user << SPAN_WARNING("[src] is already sabotaged!")
-	else
-		user << SPAN_WARNING("You short out the safeties.")
-		sabotaged = 1
-		return 1

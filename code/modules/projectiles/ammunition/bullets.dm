@@ -103,6 +103,16 @@
 	caliber = "a556"
 	projectile_type = /obj/item/projectile/bullet/a556p
 
+/obj/item/ammo_casing/c65
+	desc = "A 6.5mm bullet casing."
+	caliber = "6.5mm"
+	projectile_type = /obj/item/projectile/bullet/c65
+
+/obj/item/ammo_casing/c65r
+	desc = "A 6.5mm rubber bullet casing."
+	caliber = "6.5mm"
+	projectile_type = /obj/item/projectile/bullet/c65r
+
 /obj/item/ammo_casing/a145
 	name = "shell casing"
 	desc = "A 14.5mm shell."
