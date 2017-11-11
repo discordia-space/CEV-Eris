@@ -112,10 +112,7 @@
 	suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/device/lighting/toggleable/flashlight/seclite
-	name = "security flashlight"
-	desc = "A hand-held security flashlight. Very robust."
+	name = "Ironhammer flashlight"
+	desc = "A hand-held security flashlight.."
 	icon_state = "seclite"
 	item_state = "seclite"
-	brightness_on = 5
-	force = WEAPON_FORCE_NORMAL
-	hitsound = 'sound/weapons/genhit1.ogg'
