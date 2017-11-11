@@ -172,28 +172,24 @@
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
-	if(istype(G, /obj/item/weapon/reagent_containers/glass))
+/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(var/mob/user, var/mob/target, var/obj/item/weapon/grab/grab)
+	for(var/mob/living/carbon/slime/M in range(1,target))
+		if(M.Victim == target)
+			user << "[target] will not fit into the cryo because they have a slime latched onto their head."
+			return
+	return put_mob(target)
+
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
 			user << SPAN_WARNING("A beaker is already loaded into the machine.")
 			return
-		if(user.unEquip(G))
-			G.forceMove(src)
-			beaker = G
+		if(user.unEquip(W, src))
+			beaker = W
 			user.visible_message(
-				"[user] adds \a [G] to \the [src]!",
-				"You add \a [G] to \the [src]!"
+				"[user] adds \a [W] to \the [src]!",
+				"You add \a [W] to \the [src]!"
 			)
-	else if(istype(G, /obj/item/weapon/grab))
-		if(!ismob(G:affecting))
-			return
-		for(var/mob/living/carbon/slime/M in range(1,G:affecting))
-			if(M.Victim == G:affecting)
-				usr << "[G:affecting:name] will not fit into the cryo because they have a slime latched onto their head."
-				return
-		var/mob/M = G:affecting
-		if(put_mob(M))
-			qdel(G)
 	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/update_icon()
@@ -320,6 +316,22 @@
 	add_fingerprint(usr)
 	update_icon()
 	return 1
+
+/obj/machinery/atmospherics/unary/cryo_cell/MouseDrop_T(var/mob/target, var/mob/user)
+	if(!ismob(target))
+		return
+	if (target.buckled)
+		usr << SPAN_WARN("Unbuckle the subject before attempting to move them.")
+		return
+	user.visible_message(
+		SPAN_NOTE("\The [user] begins placing \the [target] into \the [src]."),
+		SPAN_NOTE("You start placing \the [target] into \the [src].")
+	)
+	if(!do_after(user, 30, src) || !Adjacent(target))
+		return
+	put_mob(target)
+	return
+
 
 /obj/machinery/atmospherics/unary/cryo_cell/verb/move_eject()
 	set name = "Eject occupant"

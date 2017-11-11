@@ -12,7 +12,7 @@
 	name = "grab"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "reinforce"
-	flags = 0
+	flags = NOBLUDGEON
 	var/obj/screen/grab/hud = null
 	var/mob/living/affecting = null
 	var/mob/living/carbon/human/assailant = null
@@ -22,13 +22,25 @@
 	var/last_action = 0
 	var/last_hit_zone = 0
 	var/force_down //determines if the affecting mob will be pinned to the ground
-	var/dancing //determines if assailant and affecting keep looking at each other. Basically a wrestling position
+	var/dancing //determines if assailant and affecting keep looking at each other.
+				//Basically a wrestling position
 
 	layer = 21
 	abstract = 1
 	item_state = "nothing"
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_NO_CONTAINER
 
+/obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
+	return FALSE
+
+/obj/item/weapon/grab/resolve_attackby(obj/O, mob/user, var/click_params)
+	if(ismob(O))
+		return ..()
+	if(!istype(O) || get_dist(O, affecting) > 1)
+		return TRUE
+	if(O.affect_grab(assailant, affecting, state))
+		qdel(src)
+	return TRUE
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)
 	..()
@@ -57,7 +69,8 @@
 				dancing = 1
 	adjust_position()
 
-//Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
+//Used by throw code to hand over the mob, instead of throwing the grab.
+// The grab is then deleted by the throw code.
 /obj/item/weapon/grab/proc/throw_held()
 	if(affecting)
 		if(affecting.buckled)
@@ -148,7 +161,8 @@
 	adjust_position()
 
 /obj/item/weapon/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
-	var/announce = (target_zone != last_hit_zone) //only display messages when switching between different target zones
+	//only display messages when switching between different target zones
+	var/announce = (target_zone != last_hit_zone)
 	last_hit_zone = target_zone
 
 	switch(target_zone)
@@ -240,6 +254,7 @@
 		state = GRAB_AGGRESSIVE
 		icon_state = "grabbed1"
 		hud.icon_state = "reinforce1"
+
 	else if(state < GRAB_NECK)
 		if(isslime(affecting))
 			assailant << SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens.")
@@ -255,6 +270,7 @@
 		hud.icon_state = "kill"
 		hud.name = "kill"
 		affecting.Stun(10) //10 ticks of ensured grab
+
 	else if(state < GRAB_UPGRADING)
 		assailant.visible_message(SPAN_DANGER("[assailant] starts to tighten \his grip on [affecting]'s neck!"))
 		hud.icon_state = "kill1"
@@ -278,12 +294,15 @@
 		qdel(src)
 		return 0
 
-	if(affecting)
-		if(!isturf(assailant.loc) || ( !isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1) )
+	else
+		if(!isturf(assailant.loc) || !isturf(affecting.loc) || get_dist(assailant, affecting) > 1)
 			qdel(src)
 			return 0
 
 	return 1
+
+/obj/item/weapon/grab/do_surgery()
+	return 0
 
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
 	if(!affecting)
@@ -340,9 +359,9 @@
 	var/destroying = 0
 
 /obj/item/weapon/grab/Destroy()
-	animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
-	affecting.layer = 4
 	if(affecting)
+		animate(affecting, pixel_x = 0, pixel_y = 0, 4, 1, LINEAR_EASING)
+		affecting.layer = 4
 		affecting.grabbed_by -= src
 		affecting = null
 	if(assailant)
@@ -352,4 +371,4 @@
 	qdel(hud)
 	hud = null
 	destroying = 1 // stops us calling qdel(src) on dropped()
-	..()
+	return ..()
