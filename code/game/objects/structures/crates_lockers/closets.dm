@@ -85,7 +85,7 @@
 	return TRUE
 
 /obj/structure/closet/proc/take_contents()
-	var/atom/L = drop_location()
+	var/turf/L = get_turf(src)
 	for(var/atom/movable/AM in L)
 		if(AM != src && insert(AM) == -1) // limit reached
 			break
