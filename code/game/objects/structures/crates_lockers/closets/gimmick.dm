@@ -114,7 +114,8 @@
 	new /obj/item/clothing/head/helmet/thunderdome(src)
 	new /obj/item/clothing/head/helmet/thunderdome(src)
 	new /obj/item/clothing/head/helmet/thunderdome(src)
+
 /obj/structure/closet/oldstyle
 	name = "\improper Old closet"
 	desc = "Old and rusty closet, maybe even Alliance production."
-	icon_state = "closedoldstyle"
+	icon_state = "oldstyle"

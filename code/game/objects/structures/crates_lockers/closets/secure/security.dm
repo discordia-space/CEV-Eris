@@ -1,10 +1,10 @@
-/obj/structure/closet/secure_closet/captains
+/obj/structure/closet/secure_closet/reinforced/captains
 	name = "captain's locker"
 	req_access = list(access_captain)
-	icon_state = "capsecure1"
+	icon_state = "cap"
 	icon_lock = "cabinet"
 
-/obj/structure/closet/secure_closet/captains/New()
+/obj/structure/closet/secure_closet/reinforced/captains/New()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/captain(src)
@@ -30,12 +30,12 @@
 
 
 
-/obj/structure/closet/secure_closet/hop
+/obj/structure/closet/secure_closet/reinforced/hop
 	name = "First Officer's locker"
 	req_access = list(access_hop)
-	icon_state = "hopsecure1"
+	icon_state = "hop"
 
-/obj/structure/closet/secure_closet/hop/New()
+/obj/structure/closet/secure_closet/reinforced/hop/New()
 	..()
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/under/rank/first_officer(src)

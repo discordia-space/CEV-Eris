@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/chaplain
 	name = "cyberchristian preacher's locker"
 	req_access = list(access_chapel_office)
-	icon_state = "preacher1"
+	icon_state = "preacher"
 
 /obj/structure/closet/secure_closet/chaplain/New()
 	..()
