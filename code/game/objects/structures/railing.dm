@@ -210,6 +210,33 @@
 		return 0
 	return 1
 
+/obj/structure/railing/affect_grab(var/mob/user, var/mob/living/target, var/state)
+	var/obj/occupied = turf_is_crowded()
+	if(occupied)
+		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		return
+	if (state < GRAB_AGGRESSIVE)
+		if(user.a_intent == I_HURT)
+			if(prob(15))
+				target.Weaken(5)
+			target.apply_damage(8, def_zone = "head")
+			take_damage(8)
+			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+			playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+		else
+			user << SPAN_DANGER("You need a better grip to do that!")
+			return
+	else
+		if (get_turf(target) == get_turf(src))
+			target.forceMove(get_step(src, src.dir))
+		else
+			target.forceMove(get_turf(src))
+		target.Weaken(5)
+		visible_message(SPAN_DANGER("[user] throws [target] over \the [src]!"))
+	return TRUE
+
+
+
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
 	if(istype(W, /obj/item/weapon/wrench) && !anchored)
@@ -241,38 +268,8 @@
 			update_icon()
 			return
 
-	// Handle harm intent grabbing/tabling.
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
-		if (isliving(G.affecting))
-			var/mob/living/M = G.affecting
-			var/obj/occupied = turf_is_crowded()
-			if(occupied)
-				user << SPAN_DANGER("There's \a [occupied] in the way.")
-				return
-			if (G.state < 2)
-				if(user.a_intent == I_HURT)
-					if (prob(15))	M.Weaken(5)
-					M.apply_damage(8,def_zone = "head")
-					take_damage(8)
-					visible_message(SPAN_DANGER("[G.assailant] slams [G.affecting]'s face against \the [src]!"))
-					playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-				else
-					user << SPAN_DANGER("You need a better grip to do that!")
-					return
-			else
-				if (get_turf(G.affecting) == get_turf(src))
-					G.affecting.forceMove(get_step(src, src.dir))
-				else
-					G.affecting.forceMove(get_turf(src))
-				G.affecting.Weaken(5)
-				visible_message(SPAN_DANGER("[G.assailant] throws [G.affecting] over \the [src]!"))
-			qdel(W)
-			return
-
-	else
-		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-		take_damage(W.force)
+	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+	take_damage(W.force)
 
 	return ..()
 

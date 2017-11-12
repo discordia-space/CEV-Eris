@@ -68,12 +68,6 @@
 	if(src.opened)
 		if(istype(W, /obj/item/weapon/storage/laundry_basket))
 			return ..(W,user)
-		if(istype(W, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = W
-			if(src.large)
-				src.MouseDrop_T(G.affecting, user)	//act like they were dragged onto the closet
-			else
-				user << SPAN_NOTICE("The locker is too small to stuff [G.affecting] into!")
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
