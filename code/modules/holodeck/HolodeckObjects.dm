@@ -126,32 +126,8 @@
 	..()
 
 /obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user as mob)
-	if(!istype(W)) return//I really wish I did not need this
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
-		if(isliving(G.affecting))
-			var/mob/living/M = G.affecting
-			var/state = G.state
-			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
-			switch (state)
-				if(1)
-					M.visible_message(SPAN_WARNING("[user] slams [M] against \the [src]!"))
-					M.apply_damage(7)
-					hit(10)
-				if(2)
-					M.visible_message(SPAN_DANGER("[user] bashes [M] against \the [src]!"))
-					if (prob(50))
-						M.Weaken(1)
-					M.apply_damage(10)
-					hit(25)
-				if(3)
-					M.visible_message(SPAN_DANGER("<big>[user] crushes [M] against \the [src]!</big>"))
-					M.Weaken(5)
-					M.apply_damage(20)
-					hit(50)
-			return
-
-	if(W.flags & NOBLUDGEON) return
+	if(!istype(W) || W.flags & NOBLUDGEON)
+		return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
 		user << (SPAN_NOTICE("It's a holowindow, you can't unfasten it!"))
@@ -307,18 +283,17 @@
 	density = 1
 	throwpass = 1
 
+/obj/structure/holohoop/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+	if(state == GRAB_PASSIVE)
+		user << SPAN_WARNING("You need a better grip to do that!")
+		return FALSE
+	target.forceMove(src.loc)
+	target.Weaken(5)
+	visible_message(SPAN_WARNING("[user] dunks [target] into the [src]!"))
+	return TRUE
+
 /obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
-		if(G.state<2)
-			user << SPAN_WARNING("You need a better grip to do that!")
-			return
-		G.affecting.loc = src.loc
-		G.affecting.Weaken(5)
-		visible_message(SPAN_WARNING("[G.assailant] dunks [G.affecting] into the [src]!"), 3)
-		qdel(W)
-		return
-	else if (istype(W, /obj/item) && get_dist(src,user)<2)
+	if (istype(W, /obj/item) && get_dist(src,user)<2)
 		user.drop_item(src.loc)
 		visible_message(SPAN_NOTICE("[user] dunks [W] into the [src]!"), 3)
 		return
@@ -329,10 +304,10 @@
 		if(istype(I, /obj/item/projectile))
 			return
 		if(prob(50))
-			I.loc = src.loc
-			visible_message(SPAN_NOTICE("Swish! \the [I] lands in \the [src]."), 3)
+			I.forceMove(src.loc)
+			visible_message(SPAN_NOTICE("Swish! \the [I] lands in \the [src]."))
 		else
-			visible_message(SPAN_WARNING("\The [I] bounces off of \the [src]'s rim!"), 3)
+			visible_message(SPAN_WARNING("\The [I] bounces off of \the [src]'s rim!"))
 		return 0
 	else
 		return ..(mover, target, height, air_group)

@@ -45,17 +45,7 @@
 	if(usr.abiotic())
 		usr << SPAN_WARNING("The subject cannot have abiotic items on.")
 		return
-	usr.pulling = null
-	usr.client.perspective = EYE_PERSPECTIVE
-	usr.client.eye = src
-	usr.loc = src
-	src.occupant = usr
-	update_use_power(2)
-	update_icon()
-	for(var/obj/O in src)
-		//O = null
-		qdel(O)
-		//Foreach goto(124)
+	set_occupant(usr)
 	src.add_fingerprint(usr)
 	return
 
@@ -70,30 +60,48 @@
 	update_use_power(1)
 	update_icon()
 
-/obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
-	if ((!( istype(G, /obj/item/weapon/grab) ) || !( ismob(G.affecting) )))
+/obj/machinery/bodyscanner/proc/set_occupant(var/mob/living/L)
+	L.forceMove(src)
+	src.occupant = L
+	update_use_power(2)
+	update_icon()
+	src.add_fingerprint(usr)
+
+
+/obj/machinery/bodyscanner/affect_grab(var/mob/user, var/mob/target)
+	if (src.occupant)
+		user << SPAN_NOTICE("The scanner is already occupied!")
+		return
+	if(target.buckled)
+		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
+		return
+	if(target.abiotic())
+		user << SPAN_NOTICE("Subject cannot have abiotic items on.")
+		return
+	set_occupant(target)
+	src.add_fingerprint(user)
+	return TRUE
+
+/obj/machinery/bodyscanner/MouseDrop_T(var/mob/target, var/mob/user)
+	if(!ismob(target))
 		return
 	if (src.occupant)
 		user << SPAN_WARNING("The scanner is already occupied!")
 		return
-	if (G.affecting.abiotic())
+	if (target.abiotic())
 		user << SPAN_WARNING("Subject cannot have abiotic items on.")
 		return
-	var/mob/M = G.affecting
-	if (M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
-	M.loc = src
-	src.occupant = M
-	update_use_power(2)
-	playsound(src.loc, 'sound/machines/medbayscanner1.ogg', 75, 0)
-	update_icon()
-	for(var/obj/O in src)
-		O.loc = src.loc
-		//Foreach goto(154)
+	if (target.buckled)
+		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
+		return
+	user.visible_message(
+		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
+		SPAN_NOTICE("You start placing \the [target] into \the [src].")
+	)
+	if(!do_after(user, 30, src) || !Adjacent(target))
+		return
+	set_occupant(target)
 	src.add_fingerprint(user)
-	//G = null
-	qdel(G)
 	return
 
 /obj/machinery/bodyscanner/ex_act(severity)
