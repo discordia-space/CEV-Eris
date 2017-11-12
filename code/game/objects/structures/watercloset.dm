@@ -18,7 +18,11 @@
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
-		usr.visible_message(SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"), SPAN_NOTICE("You slam the toilet seat onto [swirlie.name]'s head!"), "You hear reverberating porcelain.")
+		usr.visible_message(
+			SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"),
+			SPAN_NOTICE("You slam the toilet seat onto [swirlie.name]'s head!"),
+			"You hear reverberating porcelain."
+		)
 		swirlie.adjustBruteLoss(8)
 		return
 
@@ -52,29 +56,6 @@
 			update_icon()
 			return
 
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
-
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
-
-			if(G.state>1)
-				if(!GM.loc == get_turf(src))
-					user << SPAN_NOTICE("[GM.name] needs to be on the toilet.")
-					return
-				if(open && !swirlie)
-					user.visible_message(SPAN_DANGER("[user] starts to give [GM.name] a swirlie!"), SPAN_NOTICE("You start to give [GM.name] a swirlie!"))
-					swirlie = GM
-					if(do_after(user, 30, src))
-						user.visible_message(SPAN_DANGER("[user] gives [GM.name] a swirlie!"), SPAN_NOTICE("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
-						GM.adjustOxyLoss(5)
-					swirlie = null
-				else
-					user.visible_message(SPAN_DANGER("[user] slams [GM.name] into the [src]!"), SPAN_NOTICE("You slam [GM.name] into the [src]!"))
-					GM.adjustBruteLoss(8)
-			else
-				user << SPAN_NOTICE("You need a tighter grip.")
-
 	if(cistern && !isrobot(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class >= ITEM_SIZE_LARGE)
 			user << SPAN_NOTICE("\The [I] does not fit.")
@@ -99,6 +80,42 @@
 			user << SPAN_NOTICE("You empty the [O] into the [src].")
 
 
+/obj/structure/toilet/affect_grab(var/mob/user, var/mob/living/target, var/state)
+	if(state == GRAB_PASSIVE)
+		user << SPAN_NOTICE("You need a tighter grip.")
+		return FALSE
+	if(!target.loc == src.loc)
+		user << SPAN_NOTICE("[target] needs to be on the toilet.")
+		return FALSE
+	if(open && !swirlie)
+		user.visible_message(
+			SPAN_DANGER("[user] starts to give [target] a swirlie!"),
+			SPAN_NOTICE("You start to give [target] a swirlie!")
+		)
+		swirlie = target
+		if (do_after(user, 30, src) || !Adjacent(target))
+			user.visible_message(
+				SPAN_DANGER("[user] gives [target] a swirlie!"),
+				SPAN_NOTICE("You give [target] a swirlie!"),
+				"You hear a toilet flushing."
+			)
+			var/mob/living/carbon/C = target
+			if(!istype(C) || !C.internal)
+				target.adjustOxyLoss(5)
+		swirlie = null
+	else
+		user.visible_message(
+			SPAN_DANGER("[user] slams [target] into the [src]!"),
+			SPAN_NOTICE("You slam [target] into the [src]!")
+		)
+		admin_attack_log(user, target,
+			"slams <b>[key_name(target)]</b> into the [src]",
+			"Was slamed by <b>[key_name(user)] into the [src]</b>",
+			"slamed into the [src]"
+		)
+		target.adjustBruteLoss(8)
+	return TRUE
+
 
 /obj/structure/urinal
 	name = "urinal"
@@ -108,20 +125,24 @@
 	density = 0
 	anchored = 1
 
-/obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
-			if(G.state>1)
-				if(!GM.loc == get_turf(src))
-					user << SPAN_NOTICE("[GM.name] needs to be on the urinal.")
-					return
-				user.visible_message(SPAN_DANGER("[user] slams [GM.name] into the [src]!"), SPAN_NOTICE("You slam [GM.name] into the [src]!"))
-				GM.adjustBruteLoss(8)
-			else
-				user << SPAN_NOTICE("You need a tighter grip.")
-
+/obj/structure/urinal/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+	if(state == GRAB_PASSIVE)
+		user << SPAN_NOTICE("You need a tighter grip.")
+		return FALSE
+	if(!target.loc == src.loc)
+		user << SPAN_NOTICE("[target] needs to be on the urinal.")
+		return
+	user.visible_message(
+		SPAN_DANGER("[user] slams [target] into the [src]!"),
+		SPAN_NOTICE("You slam [target] into the [src]!")
+	)
+	admin_attack_log(user, target,
+		"slams <b>[key_name(target)]</b> into the [src]",
+		"Was slamed by <b>[key_name(user)] into the [src]</b>",
+		"slamed into the [src]"
+	)
+	target.adjustBruteLoss(8)
+	return TRUE
 
 
 /obj/machinery/shower

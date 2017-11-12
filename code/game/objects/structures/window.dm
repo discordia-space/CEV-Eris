@@ -211,32 +211,33 @@
 		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
 	return 1
 
+/obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+	switch(state)
+		if(GRAB_PASSIVE)
+			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
+			target.apply_damage(7)
+			hit(10)
+		if(GRAB_AGGRESSIVE)
+			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
+			if(prob(50))
+				target.Weaken(1)
+			target.apply_damage(10)
+			hit(25)
+		if(GRAB_NECK)
+			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
+			target.Weaken(5)
+			target.apply_damage(20)
+			hit(50)
+	admin_attack_log(user, target,
+		"Smashed [key_name(target)] against \the [src]",
+		"Smashed against \the [src] by [key_name(user)]",
+		"smashed [key_name(target)] against \the [src]."
+	)
+	return TRUE
+
+
 /obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return//I really wish I did not need this
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
-		if(isliving(G.affecting))
-			var/mob/living/M = G.affecting
-			var/state = G.state
-			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
-			switch (state)
-				if(1)
-					M.visible_message(SPAN_WARNING("[user] slams [M] against \the [src]!"))
-					M.apply_damage(7)
-					hit(10)
-				if(2)
-					M.visible_message(SPAN_DANGER("[user] bashes [M] against \the [src]!"))
-					if (prob(50))
-						M.Weaken(1)
-					M.apply_damage(10)
-					hit(25)
-				if(3)
-					M.visible_message(SPAN_DANGER("<big>[user] crushes [M] against \the [src]!</big>"))
-					M.Weaken(5)
-					M.apply_damage(20)
-					hit(50)
-			return
-
 	if(W.flags & NOBLUDGEON) return
 
 	if(istype(W, /obj/item/weapon/screwdriver))

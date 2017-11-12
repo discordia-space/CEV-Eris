@@ -375,7 +375,7 @@
 	set_occupant(null)
 
 
-/obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target, var/obj/item/weapon/grab/grab)
+/obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
 	put_inside(target, user)
 	return TRUE
 
@@ -424,6 +424,8 @@
 		var/turf/location = get_turf(src)
 		log_admin("[key_name_admin(affecting)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		message_admins("<span class='notice'>[key_name_admin(affecting)] has entered a stasis pod.</span>")
+		if(user == affecting)
+			src.add_fingerprint(affecting)
 
 		//Despawning occurs when process() is called with an occupant without a client.
 		src.add_fingerprint(user)

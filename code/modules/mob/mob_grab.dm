@@ -48,8 +48,7 @@
 	assailant = user
 	affecting = victim
 
-	if(affecting.anchored || !assailant.Adjacent(victim))
-		qdel(src)
+	if(!confirm())
 		return
 
 	affecting.grabbed_by += src
@@ -72,7 +71,7 @@
 //Used by throw code to hand over the mob, instead of throwing the grab.
 // The grab is then deleted by the throw code.
 /obj/item/weapon/grab/proc/throw_held()
-	if(affecting)
+	if(confirm())
 		if(affecting.buckled)
 			return null
 		if(state >= GRAB_AGGRESSIVE)
@@ -94,9 +93,7 @@
 	if(gcDestroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
 		return PROCESS_KILL
 
-	confirm()
-	if(!assailant)
-		qdel(src) // Same here, except we're trying to delete ourselves.
+	if(!confirm())
 		return PROCESS_KILL
 
 	if(assailant.client)
@@ -166,12 +163,12 @@
 	last_hit_zone = target_zone
 
 	switch(target_zone)
-		if("mouth")
+		if(O_MOUTH)
 			if(announce)
 				user.visible_message(SPAN_WARNING("\The [user] covers [target]'s mouth!"))
 			if(target.silent < 3)
 				target.silent = 3
-		if("eyes")
+		if(O_EYES)
 			if(announce)
 				assailant.visible_message(SPAN_WARNING("[assailant] covers [affecting]'s eyes!"))
 			if(affecting.eye_blind < 3)
@@ -228,7 +225,7 @@
 			animate(affecting, pixel_x =-shift, pixel_y = 0, 5, 1, LINEAR_EASING)
 
 /obj/item/weapon/grab/proc/s_click(obj/screen/S)
-	if(!affecting)
+	if(!confirm())
 		return
 	if(state == GRAB_UPGRADING)
 		return
@@ -301,9 +298,6 @@
 
 	return 1
 
-/obj/item/weapon/grab/do_surgery()
-	return 0
-
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
 	if(!affecting)
 		return
@@ -330,9 +324,9 @@
 					jointlock(affecting, assailant, hit_zone)
 
 				if(I_HURT)
-					if(hit_zone == "eyes")
+					if(hit_zone == O_EYES)
 						attack_eye(affecting, assailant)
-					else if(hit_zone == "head")
+					else if(hit_zone == BP_HEAD)
 						headbut(affecting, assailant)
 					else
 						dislocate(affecting, assailant, hit_zone)

@@ -134,7 +134,7 @@
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+	// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 410)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -172,7 +172,7 @@
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(var/mob/user, var/mob/target, var/obj/item/weapon/grab/grab)
+/obj/machinery/atmospherics/unary/cryo_cell/affect_grab(var/mob/user, var/mob/target)
 	for(var/mob/living/carbon/slime/M in range(1,target))
 		if(M.Victim == target)
 			user << "[target] will not fit into the cryo because they have a slime latched onto their head."
@@ -321,11 +321,11 @@
 	if(!ismob(target))
 		return
 	if (target.buckled)
-		usr << SPAN_WARN("Unbuckle the subject before attempting to move them.")
+		usr << SPAN_WARNING("Unbuckle the subject before attempting to move them.")
 		return
 	user.visible_message(
-		SPAN_NOTE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTE("You start placing \the [target] into \the [src].")
+		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
+		SPAN_NOTICE("You start placing \the [target] into \the [src].")
 	)
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return

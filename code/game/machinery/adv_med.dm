@@ -68,15 +68,15 @@
 	src.add_fingerprint(usr)
 
 
-/obj/machinery/bodyscanner/affect_grab(var/mob/user, var/mob/target, var/obj/item/weapon/grab/grab)
+/obj/machinery/bodyscanner/affect_grab(var/mob/user, var/mob/target)
 	if (src.occupant)
-		user << SPAN_NOTE("The scanner is already occupied!")
+		user << SPAN_NOTICE("The scanner is already occupied!")
 		return
 	if(target.buckled)
-		user << SPAN_NOTE("Unbuckle the subject before attempting to move them.")
+		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
 		return
 	if(target.abiotic())
-		user << SPAN_NOTE("Subject cannot have abiotic items on.")
+		user << SPAN_NOTICE("Subject cannot have abiotic items on.")
 		return
 	set_occupant(target)
 	src.add_fingerprint(user)
@@ -92,7 +92,7 @@
 		user << SPAN_WARNING("Subject cannot have abiotic items on.")
 		return
 	if (target.buckled)
-		user << SPAN_NOTE("Unbuckle the subject before attempting to move them.")
+		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
 		return
 	user.visible_message(
 		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
