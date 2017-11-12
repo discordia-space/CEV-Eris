@@ -474,97 +474,85 @@
 		src.OCCUPANT = null //Testing this as a backup sanity test
 	return
 
+/obj/machinery/suit_storage_unit/affect_grab(var/mob/user, var/mob/target)
+	if(!isopen)
+		user << SPAN_WARNING("The unit's doors are shut.")
+		return
+	if(!ispowered || isbroken)
+		user << SPAN_WARNING("The unit is not operational.")
+		return
+	if(OCCUPANT || HELMET || SUIT) //Unit needs to be absolutely empty
+		user << SPAN_WARNING("The unit's storage area is too cluttered.")
+		return
+	visible_message("[user] starts putting [target] into the Suit Storage Unit.")
+	if(do_after(user, 20, src) && Adjacent(target))
+		target.reset_view(src)
+		target.forceMove(src)
+		OCCUPANT = target
+		isopen = 0 //close ittt
+
+		add_fingerprint(user)
+		updateUsrDialog()
+		update_icon()
+		return TRUE
 
 /obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
-	if(!src.ispowered)
+	if(!ispowered)
 		return
 	if(istype(I, /obj/item/weapon/screwdriver))
-		src.panelopen = !src.panelopen
+		panelopen = !panelopen
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-		user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(src.panelopen ? "open up" : "close") )
-		src.updateUsrDialog()
+		user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(panelopen ? "open up" : "close"))
+		updateUsrDialog()
 		return
-	if ( istype(I, /obj/item/weapon/grab) )
-		var/obj/item/weapon/grab/G = I
-		if( !(ismob(G.affecting)) )
-			return
-		if (!src.isopen)
-			usr << "<font color='red'>The unit's doors are shut.</font>"
-			return
-		if (!src.ispowered || src.isbroken)
-			usr << "<font color='red'>The unit is not operational.</font>"
-			return
-		if ( (src.OCCUPANT) || (src.HELMET) || (src.SUIT) ) //Unit needs to be absolutely empty
-			user << "<font color='red'>The unit's storage area is too cluttered.</font>"
-			return
-		visible_message("[user] starts putting [G.affecting.name] into the Suit Storage Unit.", 3)
-		if(do_after(user, 20, src))
-			if(!G || !G.affecting) return //derpcheck
-			var/mob/M = G.affecting
-			if (M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
-			src.OCCUPANT = M
-			src.isopen = 0 //close ittt
-
-			//for(var/obj/O in src)
-			//	O.loc = src.loc
-			src.add_fingerprint(user)
-			qdel(G)
-			src.updateUsrDialog()
-			src.update_icon()
-			return
-		return
-	if( istype(I,/obj/item/clothing/suit/space) )
-		if(!src.isopen)
+	if(istype(I,/obj/item/clothing/suit/space))
+		if(!isopen)
 			return
 		var/obj/item/clothing/suit/space/S = I
-		if(src.SUIT)
+		if(SUIT)
 			user << "<font color='blue'>The unit already contains a suit.</font>"
 			return
 		user << "You load the [S.name] into the storage compartment."
 		user.drop_item()
 		S.loc = src
-		src.SUIT = S
-		src.update_icon()
-		src.updateUsrDialog()
+		SUIT = S
+		update_icon()
+		updateUsrDialog()
 		return
-	if( istype(I,/obj/item/clothing/head/helmet) )
-		if(!src.isopen)
+	if(istype(I,/obj/item/clothing/head/helmet))
+		if(!isopen)
 			return
 		var/obj/item/clothing/head/helmet/H = I
-		if(src.HELMET)
+		if(HELMET)
 			user << "<font color='blue'>The unit already contains a helmet.</font>"
 			return
 		user << "You load the [H.name] into the storage compartment."
 		user.drop_item()
 		H.loc = src
-		src.HELMET = H
-		src.update_icon()
-		src.updateUsrDialog()
+		HELMET = H
+		update_icon()
+		updateUsrDialog()
 		return
-	if( istype(I,/obj/item/clothing/mask) )
-		if(!src.isopen)
+	if(istype(I,/obj/item/clothing/mask))
+		if(!isopen)
 			return
 		var/obj/item/clothing/mask/M = I
-		if(src.MASK)
+		if(MASK)
 			user << "<font color='blue'>The unit already contains a mask.</font>"
 			return
 		user << "You load the [M.name] into the storage compartment."
 		user.drop_item()
 		M.loc = src
-		src.MASK = M
-		src.update_icon()
-		src.updateUsrDialog()
+		MASK = M
+		update_icon()
+		updateUsrDialog()
 		return
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+	update_icon()
+	updateUsrDialog()
 
 
 /obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 //////////////////////////////REMINDER: Make it lock once you place some fucker inside.
 
@@ -647,12 +635,33 @@
 	can_repair = 1
 
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
+
+/obj/machinery/suit_cycler/affect_grab(var/mob/user, var/mob/target)
+	if(locked)
+		user << SPAN_DANGER("The suit cycler is locked.")
+		return
+
+	if(contents.len)
+		user << SPAN_DANGER("There is no room inside the cycler for [target].")
+		return
+
+	visible_message(SPAN_NOTICE("[user] starts putting [target] into the suit cycler."))
+
+	if(do_after(user, 20) && Adjacent(target))
+		target.reset_view(src)
+		target.forceMove(src)
+		occupant = target
+
+		add_fingerprint(user)
+		updateUsrDialog()
+		return TRUE
+
 
 /obj/machinery/suit_cycler/attackby(obj/item/I as obj, mob/user as mob)
 
 	if(electrified != 0)
-		if(src.shock(user, 100))
+		if(shock(user, 100))
 			return
 
 	//Hacking init.
@@ -660,43 +669,11 @@
 		if(panel_open)
 			attack_hand(user)
 		return
-	//Other interface stuff.
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
-
-		if(!(ismob(G.affecting)))
-			return
-
-		if(locked)
-			user << SPAN_DANGER("The suit cycler is locked.")
-			return
-
-		if(src.contents.len > 0)
-			user << SPAN_DANGER("There is no room inside the cycler for [G.affecting.name].")
-			return
-
-		visible_message(SPAN_NOTICE("[user] starts putting [G.affecting.name] into the suit cycler."), 3)
-
-		if(do_after(user, 20, src))
-			if(!G || !G.affecting) return
-			var/mob/M = G.affecting
-			if (M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
-			src.occupant = M
-
-			src.add_fingerprint(user)
-			qdel(G)
-
-			src.updateUsrDialog()
-
-			return
 	else if(istype(I,/obj/item/weapon/screwdriver))
 
 		panel_open = !panel_open
 		user << "You [panel_open ?  "open" : "close"] the maintenance panel."
-		src.updateUsrDialog()
+		updateUsrDialog()
 		return
 
 	else if(istype(I,/obj/item/clothing/head/helmet/space) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
@@ -718,8 +695,8 @@
 		I.loc = src
 		helmet = I
 
-		src.update_icon()
-		src.updateUsrDialog()
+		update_icon()
+		updateUsrDialog()
 		return
 
 	else if(istype(I,/obj/item/clothing/suit/space/void))
@@ -741,8 +718,8 @@
 		I.loc = src
 		suit = I
 
-		src.update_icon()
-		src.updateUsrDialog()
+		update_icon()
+		updateUsrDialog()
 		return
 
 	..()

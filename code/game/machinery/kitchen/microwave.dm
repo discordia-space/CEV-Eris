@@ -131,10 +131,6 @@
 				user << SPAN_WARNING("Your [O] contains components unsuitable for cookery.")
 				return 1
 		return
-	else if(istype(O,/obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = O
-		user << SPAN_WARNING("This is ridiculous. You can not fit \the [G.affecting] in this [src].")
-		return 1
 	else if(istype(O,/obj/item/weapon/crowbar))
 		user.visible_message( \
 			"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave.</span>", \
@@ -153,6 +149,10 @@
 		user << SPAN_WARNING("You have no idea what you can cook with this [O].")
 	..()
 	src.updateUsrDialog()
+
+/obj/machinery/microwave/affect_grab(var/mob/user, var/mob/target)
+	user << SPAN_WARNING("This is ridiculous. You can not fit \the [target] in this [src].")
+	return FALSE
 
 /obj/machinery/microwave/attack_ai(mob/user as mob)
 	if(isrobot(user) && Adjacent(user))

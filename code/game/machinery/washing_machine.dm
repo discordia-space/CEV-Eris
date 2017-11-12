@@ -82,6 +82,13 @@
 /obj/machinery/washing_machine/update_icon()
 	icon_state = "wm_[state][panel]"
 
+/obj/machinery/washing_machine/affect_grab(var/mob/user, var/mob/target)
+	if((state == 1) && hacked)
+		if(ishuman(user) && iscorgi(target))
+			target.forceMove(src)
+			state = 3
+			return TRUE
+
 /obj/machinery/washing_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	/*if(istype(W,/obj/item/weapon/screwdriver))
 		panel = !panel
@@ -94,15 +101,6 @@
 				crayon.loc = src
 			else
 				..()
-		else
-			..()
-	else if(istype(W,/obj/item/weapon/grab))
-		if( (state == 1) && hacked)
-			var/obj/item/weapon/grab/G = W
-			if(ishuman(G.assailant) && iscorgi(G.affecting))
-				G.affecting.loc = src
-				qdel(G)
-				state = 3
 		else
 			..()
 	else if(istype(W,/obj/item/stack/material/hairlesshide) || \
