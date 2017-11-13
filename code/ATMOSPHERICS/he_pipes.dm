@@ -56,7 +56,11 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 			..()
 		else
 			var/datum/gas_mixture/pipe_air = return_air()
-			if(istype(loc, /turf/simulated/))
+
+			if(istype(loc, /turf/space/) || istype(loc, /turf/simulated/floor/hull))
+				parent.radiate_heat_to_space(surface, 1)
+
+			else if(istype(loc, /turf/simulated/))
 				var/environment_temperature = 0
 				if(loc:blocks_air)
 					environment_temperature = loc:temperature
@@ -65,8 +69,6 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 					environment_temperature = environment.temperature
 				if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
 					parent.temperature_interact(loc, volume, thermal_conductivity)
-			else if(istype(loc, /turf/space/))
-				parent.radiate_heat_to_space(surface, 1)
 
 			if(buckled_mob)
 				var/hc = pipe_air.heat_capacity()
