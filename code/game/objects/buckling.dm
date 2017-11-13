@@ -21,7 +21,6 @@
 	return ..()
 
 
-
 /obj/proc/buckle_mob(mob/living/M)
 	if(!can_buckle || !istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
 		return 0
