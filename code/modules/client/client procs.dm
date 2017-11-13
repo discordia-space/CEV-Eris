@@ -281,7 +281,7 @@
 	else
 		if(query.NextRow())
 			// client already registered so we fetch all needed data
-			query = dbcon.NewQuery("SELECT id, registered FROM players WHERE id = [src.id]")
+			query = dbcon.NewQuery("SELECT id, registered FROM players WHERE id = [query.item[1]]")
 			query.Execute()
 			if(query.NextRow())
 				src.id = query.item[1]

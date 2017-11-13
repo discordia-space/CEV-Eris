@@ -28,7 +28,7 @@
 	overlays += "sol_[ratio]"
 
 /obj/item/weapon/gun/projectile/automatic/sol/update_icon()
-	icon_state = initial(icon_state) + (ammo_magazine ? null : "-empty")
+	icon_state = initial(icon_state) + (ammo_magazine ?  "-full" : "")
 	overlays.Cut()
 	update_charge()
 
