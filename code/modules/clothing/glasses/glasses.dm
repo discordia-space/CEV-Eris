@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses
 	name = "glasses"
-	icon = 'icons/obj/clothing/glasses.dmi'
+	icon = 'icons/inventory/eyes/icon.dmi'
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	var/off_state = "degoggles"
