@@ -110,10 +110,11 @@
 			door.close()
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
-		if(C.broken)	continue
-		if(C.opened && !C.close())	continue
-		C.locked = 1
-		C.icon_state = C.icon_locked
+		if(C.broken)
+			continue
+		if(C.opened && !C.close())
+			continue
+		C.set_locked(TRUE)
 	return 1
 
 
@@ -130,10 +131,11 @@
 			door.open()
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
-		if(C.broken)	continue
-		if(C.opened)	continue
-		C.locked = 0
-		C.icon_state = C.icon_closed
+		if(C.broken)
+			continue
+		if(C.opened)
+			continue
+		C.set_locked(FALSE)
 
 	return 1
 

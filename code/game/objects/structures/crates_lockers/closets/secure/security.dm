@@ -1,243 +1,211 @@
-/obj/structure/closet/secure_closet/captains
+/obj/structure/closet/secure_closet/reinforced/captains
 	name = "captain's locker"
 	req_access = list(access_captain)
-	icon_state = "capsecure1"
-	icon_closed = "capsecure"
-	icon_locked = "capsecure1"
-	icon_opened = "capsecureopen"
-	icon_broken = "capsecurebroken"
-	icon_off = "capsecureoff"
+	icon_state = "cap"
+	icon_lock = "cabinet"
 
-	New()
-		..()
-		if(prob(50))
-			new /obj/item/weapon/storage/backpack/captain(src)
-		else
-			new /obj/item/weapon/storage/backpack/satchel_cap(src)
-		new /obj/item/clothing/head/caphat/cap(src)
-		new /obj/item/clothing/under/rank/captain(src)
-		new /obj/item/clothing/suit/armor/vest(src)
-		new /obj/item/weapon/cartridge/captain(src)
-		new /obj/item/clothing/head/helmet(src)
-		new /obj/item/clothing/shoes/color/brown(src)
-		new /obj/item/device/radio/headset/heads/captain(src)
-		new /obj/item/clothing/gloves/captain(src)
-		new /obj/item/weapon/gun/projectile/deagle(src)
-		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/weapon/melee/telebaton(src)
-		new /obj/item/clothing/head/caphat/formal(src)
-		new /obj/item/clothing/under/captainformal(src)
-		return
+/obj/structure/closet/secure_closet/reinforced/captains/New()
+	..()
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/captain(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel_cap(src)
+	new /obj/item/clothing/head/caphat/cap(src)
+	new /obj/item/clothing/under/rank/captain(src)
+	new /obj/item/clothing/suit/armor/vest(src)
+	new /obj/item/weapon/cartridge/captain(src)
+	new /obj/item/clothing/head/helmet(src)
+	new /obj/item/clothing/shoes/color/brown(src)
+	new /obj/item/device/radio/headset/heads/captain(src)
+	new /obj/item/clothing/gloves/captain(src)
+	new /obj/item/weapon/gun/projectile/deagle(src)
+	new /obj/item/ammo_magazine/a50/rubber(src)
+	new /obj/item/ammo_magazine/a50/rubber(src)
+	new /obj/item/ammo_magazine/a50/rubber(src)
+	new /obj/item/ammo_magazine/a50/rubber(src)
+	new /obj/item/weapon/melee/telebaton(src)
+	new /obj/item/clothing/head/caphat/formal(src)
+	new /obj/item/clothing/under/captainformal(src)
+	return
 
 
 
-/obj/structure/closet/secure_closet/hop
+/obj/structure/closet/secure_closet/reinforced/hop
 	name = "First Officer's locker"
 	req_access = list(access_hop)
-	icon_state = "hopsecure1"
-	icon_closed = "hopsecure"
-	icon_locked = "hopsecure1"
-	icon_opened = "hopsecureopen"
-	icon_broken = "hopsecurebroken"
-	icon_off = "hopsecureoff"
+	icon_state = "hop"
 
-	New()
-		..()
-		new /obj/item/clothing/glasses/sunglasses(src)
-		new /obj/item/clothing/under/rank/first_officer(src)
-		new /obj/item/clothing/head/caphat/hop(src)
-		new /obj/item/clothing/suit/armor/vest(src)
-		new /obj/item/clothing/head/helmet(src)
-		new /obj/item/weapon/cartridge/hop(src)
-		new /obj/item/device/radio/headset/heads/hop(src)
-		new /obj/item/weapon/storage/box/ids(src)
-		new /obj/item/weapon/storage/box/ids( src )
-		new /obj/item/weapon/gun/projectile/deagle(src)
-		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/ammo_magazine/a50/rubber(src)
-		new /obj/item/device/flash(src)
-		return
+/obj/structure/closet/secure_closet/reinforced/hop/New()
+	..()
+	new /obj/item/clothing/glasses/sunglasses(src)
+	new /obj/item/clothing/under/rank/first_officer(src)
+	new /obj/item/clothing/head/caphat/hop(src)
+	new /obj/item/clothing/suit/armor/vest(src)
+	new /obj/item/clothing/head/helmet(src)
+	new /obj/item/weapon/cartridge/hop(src)
+	new /obj/item/device/radio/headset/heads/hop(src)
+	new /obj/item/weapon/storage/box/ids(src)
+	new /obj/item/weapon/storage/box/ids( src )
+	new /obj/item/weapon/gun/projectile/deagle(src)
+	new /obj/item/ammo_magazine/a50/rubber(src)
+	new /obj/item/ammo_magazine/a50/rubber(src)
+	new /obj/item/ammo_magazine/a50/rubber(src)
+	new /obj/item/ammo_magazine/a50/rubber(src)
+	new /obj/item/device/flash(src)
+	return
 
 
 
-/obj/structure/closet/secure_closet/hos
+/obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
 	req_access = list(access_hos)
-	icon_state = "hossecure1"
-	icon_closed = "hossecure"
-	icon_locked = "hossecure1"
-	icon_opened = "hossecureopen"
-	icon_broken = "hossecurebroken"
-	icon_off = "hossecureoff"
+	icon_state = "hos"
 
-	New()
-		..()
-		new /obj/item/weapon/storage/backpack/security(src)
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
-		new /obj/item/clothing/head/HoS(src)
-		new /obj/item/clothing/suit/armor/vest/security(src)
-		new /obj/item/clothing/suit/armor/hos(src)
-		new /obj/item/weapon/cartridge/hos(src)
-		new /obj/item/device/radio/headset/heads/hos(src)
-		new /obj/item/clothing/glasses/sunglasses/sechud(src)
-		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/shield/riot(src)
-		new /obj/item/weapon/storage/box/flashbangs(src)
-		new /obj/item/weapon/storage/belt/security(src)
-		new /obj/item/device/flash(src)
-		new /obj/item/ammo_magazine/mg/cl44/rubber(src)
-		new /obj/item/ammo_magazine/mg/cl44/rubber(src)
-		new /obj/item/ammo_magazine/mg/cl44/rubber(src)
-		new /obj/item/weapon/cell/small/high(src)
-		new /obj/item/weapon/cell/small/high(src)
-		new /obj/item/weapon/gun/energy/gun/martin(src)
-		new /obj/item/clothing/accessory/holster/waist(src)
-		new /obj/item/weapon/melee/telebaton(src)
-		new /obj/item/clothing/head/beret/sec/navy/hos(src)
-		new /obj/item/clothing/accessory/badge/hos(src)
-		return
+/obj/structure/closet/secure_closet/reinforced/hos/New()
+	..()
+	new /obj/item/weapon/storage/backpack/security(src)
+	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/clothing/head/HoS(src)
+	new /obj/item/clothing/suit/armor/vest/security(src)
+	new /obj/item/clothing/suit/armor/hos(src)
+	new /obj/item/weapon/cartridge/hos(src)
+	new /obj/item/device/radio/headset/heads/hos(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud(src)
+	new /obj/item/taperoll/police(src)
+	new /obj/item/weapon/shield/riot(src)
+	new /obj/item/weapon/storage/box/flashbangs(src)
+	new /obj/item/weapon/storage/belt/security(src)
+	new /obj/item/device/flash(src)
+	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
+	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
+	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
+	new /obj/item/weapon/cell/small/high(src)
+	new /obj/item/weapon/cell/small/high(src)
+	new /obj/item/weapon/gun/energy/gun/martin(src)
+	new /obj/item/clothing/accessory/holster/waist(src)
+	new /obj/item/weapon/melee/telebaton(src)
+	new /obj/item/clothing/head/beret/sec/navy/hos(src)
+	new /obj/item/clothing/accessory/badge/hos(src)
+	return
 
 
 
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
 	req_access = list(access_armory)
-	icon_state = "wardensecure1"
-	icon_closed = "wardensecure"
-	icon_locked = "wardensecure1"
-	icon_opened = "wardensecureopen"
-	icon_broken = "wardensecurebroken"
-	icon_off = "wardensecureoff"
+	icon_state = "warden"
 
 
-	New()
-		..()
-		new /obj/item/weapon/storage/backpack/security(src)
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
-		new /obj/item/clothing/suit/armor/vest/security(src)
-		new /obj/item/clothing/under/rank/warden(src)
-		new /obj/item/clothing/head/warden(src)
-		new /obj/item/weapon/cartridge/security(src)
-		new /obj/item/device/radio/headset/headset_sec(src)
-		new /obj/item/clothing/glasses/sunglasses/sechud(src)
-		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/storage/box/flashbangs(src)
-		new /obj/item/weapon/storage/box/teargas(src)
-		new /obj/item/weapon/storage/belt/security(src)
-		new /obj/item/weapon/reagent_containers/spray/pepper(src)
-		new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-		new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-		new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-		new /obj/item/weapon/cell/small/high(src)
-		new /obj/item/weapon/cell/small/high(src)
-		new /obj/item/weapon/gun/energy/gun/martin(src)
-		new /obj/item/weapon/storage/box/holobadge(src)
-		new /obj/item/clothing/head/beret/sec/navy/warden(src)
-		new /obj/item/clothing/accessory/badge/warden(src)
-		return
+/obj/structure/closet/secure_closet/warden/New()
+	..()
+	new /obj/item/weapon/storage/backpack/security(src)
+	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/clothing/suit/armor/vest/security(src)
+	new /obj/item/clothing/under/rank/warden(src)
+	new /obj/item/clothing/head/warden(src)
+	new /obj/item/weapon/cartridge/security(src)
+	new /obj/item/device/radio/headset/headset_sec(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud(src)
+	new /obj/item/taperoll/police(src)
+	new /obj/item/weapon/storage/box/flashbangs(src)
+	new /obj/item/weapon/storage/box/teargas(src)
+	new /obj/item/weapon/storage/belt/security(src)
+	new /obj/item/weapon/reagent_containers/spray/pepper(src)
+	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/weapon/cell/small/high(src)
+	new /obj/item/weapon/cell/small/high(src)
+	new /obj/item/weapon/gun/energy/gun/martin(src)
+	new /obj/item/weapon/storage/box/holobadge(src)
+	new /obj/item/clothing/head/beret/sec/navy/warden(src)
+	new /obj/item/clothing/accessory/badge/warden(src)
+	return
 
 
 
 /obj/structure/closet/secure_closet/security
 	name = "Ironhammer Operative locker"
 	req_access = list(access_brig)
-	icon_state = "sec1"
-	icon_closed = "sec"
-	icon_locked = "sec1"
-	icon_opened = "secopen"
-	icon_broken = "secbroken"
-	icon_off = "secoff"
+	icon_state = "sec"
 
-	New()
-		..()
-		new /obj/item/weapon/storage/backpack/security(src)
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
-		new /obj/item/device/radio/headset/headset_sec(src)
-		new /obj/item/weapon/storage/belt/security(src)
-		new /obj/item/device/flash(src)
-		new /obj/item/weapon/reagent_containers/spray/pepper(src)
-		new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-		new /obj/item/weapon/melee/baton/loaded(src)
-		new /obj/item/clothing/glasses/sunglasses/sechud(src)
-		new /obj/item/taperoll/police(src)
-		new /obj/item/device/hailer(src)
-		new /obj/item/weapon/cell/small/high(src)
-		new /obj/item/weapon/cell/small/high(src)
-		new /obj/item/weapon/gun/energy/gun/martin(src)
-		new /obj/item/weapon/gun/projectile/shotgun/bull(src)
-		new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
-		new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
-		new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-		new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-		new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-		return
+
+/obj/structure/closet/secure_closet/security/New()
+	..()
+	new /obj/item/weapon/storage/backpack/security(src)
+	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/device/radio/headset/headset_sec(src)
+	new /obj/item/weapon/storage/belt/security(src)
+	new /obj/item/device/flash(src)
+	new /obj/item/weapon/reagent_containers/spray/pepper(src)
+	new /obj/item/weapon/grenade/chem_grenade/teargas(src)
+	new /obj/item/weapon/melee/baton/loaded(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud(src)
+	new /obj/item/taperoll/police(src)
+	new /obj/item/device/hailer(src)
+	new /obj/item/weapon/cell/small/high(src)
+	new /obj/item/weapon/cell/small/high(src)
+	new /obj/item/weapon/gun/energy/gun/martin(src)
+	new /obj/item/weapon/gun/projectile/shotgun/bull(src)
+	new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
+	new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
+	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	return
 
 
 
 /obj/structure/closet/secure_closet/medspec
 	name = "Ironhammer Medical Specialist locker"
 	req_access = list(access_medspec)
-	icon_state = "sec1"
-	icon_closed = "sec"
-	icon_locked = "sec1"
-	icon_opened = "secopen"
-	icon_broken = "secbroken"
-	icon_off = "secoff"
+	icon_state = "sec"
 
-	New()
-		..()
-		new /obj/item/clothing/glasses/sunglasses/sechud(src)
-		new /obj/item/taperoll/police(src)
-		new /obj/item/clothing/under/rank/medspec(src)
-		new /obj/item/device/pda/detective(src)
-		new /obj/item/device/radio/headset/headset_sec(src)
-		new /obj/item/clothing/shoes/reinforced(src)
-		new /obj/item/clothing/gloves/thick(src)
-		new /obj/item/clothing/suit/storage/toggle/labcoat/medspec(src)
-		new /obj/item/weapon/storage/briefcase/crimekit(src)
-		new /obj/item/ammo_magazine/mg/cl32/rubber(src)
-		new /obj/item/ammo_magazine/mg/cl32/rubber(src)
-		return
+
+/obj/structure/closet/secure_closet/medspec/New()
+	..()
+	new /obj/item/clothing/glasses/sunglasses/sechud(src)
+	new /obj/item/taperoll/police(src)
+	new /obj/item/clothing/under/rank/medspec(src)
+	new /obj/item/device/pda/detective(src)
+	new /obj/item/device/radio/headset/headset_sec(src)
+	new /obj/item/clothing/shoes/reinforced(src)
+	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/suit/storage/toggle/labcoat/medspec(src)
+	new /obj/item/weapon/storage/briefcase/crimekit(src)
+	new /obj/item/ammo_magazine/mg/cl32/rubber(src)
+	new /obj/item/ammo_magazine/mg/cl32/rubber(src)
+	return
 
 
 
 /obj/structure/closet/secure_closet/detective
 	name = "detective's cabinet"
 	req_access = list(access_forensics_lockers)
-	icon_state = "cabinetdetective_locked"
-	icon_closed = "cabinetdetective"
-	icon_locked = "cabinetdetective_locked"
-	icon_opened = "cabinetdetective_open"
-	icon_broken = "cabinetdetective_broken"
-	icon_off = "cabinetdetective_broken"
+	icon_state = "cabinetdetective"
 
-	New()
-		..()
-		new /obj/item/clothing/under/det(src)
-		new /obj/item/clothing/under/det/black(src)
-		new /obj/item/clothing/under/inspector(src)
-		new /obj/item/clothing/suit/storage/det_trench(src)
-		new /obj/item/clothing/suit/storage/insp_trench(src)
-		new /obj/item/clothing/gloves/thick(src)
-		new /obj/item/clothing/head/det(src)
-		new /obj/item/clothing/head/det/grey(src)
-		new /obj/item/clothing/shoes/reinforced(src)
-		new /obj/item/weapon/storage/box/evidence(src)
-		new /obj/item/device/radio/headset/headset_sec(src)
-		new /obj/item/clothing/suit/armor/vest/detective(src)
-		new /obj/item/taperoll/police(src)
-		new /obj/item/weapon/gun/projectile/revolver/consul(src)
-		new /obj/item/clothing/accessory/holster/armpit(src)
-		new /obj/item/ammo_magazine/sl/cl44/rubber(src)
-		new /obj/item/ammo_magazine/sl/cl44/rubber(src)
-		new /obj/item/ammo_magazine/sl/cl44/rubber(src)
-		return
-
+/obj/structure/closet/secure_closet/detective/New()
+	..()
+	new /obj/item/clothing/under/det(src)
+	new /obj/item/clothing/under/det/black(src)
+	new /obj/item/clothing/under/inspector(src)
+	new /obj/item/clothing/suit/storage/det_trench(src)
+	new /obj/item/clothing/suit/storage/insp_trench(src)
+	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/head/det(src)
+	new /obj/item/clothing/head/det/grey(src)
+	new /obj/item/clothing/shoes/reinforced(src)
+	new /obj/item/weapon/storage/box/evidence(src)
+	new /obj/item/device/radio/headset/headset_sec(src)
+	new /obj/item/clothing/suit/armor/vest/detective(src)
+	new /obj/item/taperoll/police(src)
+	new /obj/item/weapon/gun/projectile/revolver/consul(src)
+	new /obj/item/clothing/accessory/holster/armpit(src)
+	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
+	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
+	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
+	return
+/*
 /obj/structure/closet/secure_closet/detective/update_icon()
 	if(broken)
 		icon_state = icon_broken
@@ -249,17 +217,18 @@
 				icon_state = icon_closed
 		else
 			icon_state = icon_opened
-
+*/
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
 	req_access = list(access_captain)
+	icon_state = "secure"
 
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
-		new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
-		return
+/obj/structure/closet/secure_closet/injection/New()
+	..()
+	new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
+	new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
+	return
 
 
 
@@ -267,28 +236,30 @@
 	name = "brig locker"
 	req_access = list(access_brig)
 	anchored = 1
-	var/id = null
+	icon_state = "secure"
+	var/id
 
-	New()
-		..()
-		new /obj/item/clothing/under/color/orange( src )
-		new /obj/item/clothing/shoes/color/orange( src )
-		return
+/obj/structure/closet/secure_closet/brig/New()
+	..()
+	new /obj/item/clothing/under/color/orange( src )
+	new /obj/item/clothing/shoes/color/orange( src )
+	return
 
 
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(access_security)
+	icon_state = "sec"
 
-	New()
-		..()
-		new /obj/item/clothing/shoes/color/brown(src)
-		new /obj/item/weapon/paper/Court (src)
-		new /obj/item/weapon/paper/Court (src)
-		new /obj/item/weapon/paper/Court (src)
-		new /obj/item/weapon/pen (src)
-		new /obj/item/clothing/suit/judgerobe (src)
-		new /obj/item/clothing/head/powdered_wig (src)
-		new /obj/item/weapon/storage/briefcase(src)
-		return
+/obj/structure/closet/secure_closet/courtroom/New()
+	..()
+	new /obj/item/clothing/shoes/color/brown(src)
+	new /obj/item/weapon/paper/Court (src)
+	new /obj/item/weapon/paper/Court (src)
+	new /obj/item/weapon/paper/Court (src)
+	new /obj/item/weapon/pen (src)
+	new /obj/item/clothing/suit/judgerobe (src)
+	new /obj/item/clothing/head/powdered_wig (src)
+	new /obj/item/weapon/storage/briefcase(src)
+	return

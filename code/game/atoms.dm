@@ -41,7 +41,6 @@
 	if(!isnull(gcDestroyed))
 		crash_with("GC: -- [type] had initialize() called after qdel() --")
 
-
 /atom/proc/reveal_blood()
 	return
 
