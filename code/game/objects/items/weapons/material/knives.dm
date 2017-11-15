@@ -77,8 +77,15 @@
 
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
-	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+
+/obj/item/weapon/material/knife/neotritual
+	name = "NeoTheology ritual knife"
+	desc = "Cyberchristians priests use this for ending followers agony. When nothing can help, and only new body can bring salvation, use this."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "neot-knife"
+	item_state = "knife"
+	applies_material_colour = 0
