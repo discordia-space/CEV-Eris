@@ -12515,7 +12515,7 @@
 "eGI" = (/obj/machinery/atmospherics/pipe/simple/visible/green{tag = "icon-intact (NORTHEAST)"; icon_state = "intact"; dir = 5},/turf/simulated/floor/hull{flooring_override = "hullcenter18"; icon_state = "hullcenter18"; tag = "icon-hullcenter18"},/area/space)
 "eGJ" = (/obj/machinery/atmospherics/pipe/manifold/visible/green,/obj/effect/floor_decal/rust,/turf/simulated/floor/hull{flooring_override = "hullcenter18"; icon_state = "hullcenter18"; tag = "icon-hullcenter18"},/area/space)
 "eGK" = (/obj/machinery/atmospherics/pipe/simple/visible/green{tag = "icon-intact (NORTHWEST)"; icon_state = "intact"; dir = 9},/obj/effect/floor_decal/rust,/turf/simulated/floor/hull{flooring_override = "hullcenter18"; icon_state = "hullcenter18"; tag = "icon-hullcenter18"},/area/space)
-"eGL" = (/obj/machinery/atmospherics/pipe/simple/heat_exchanging{tag = "icon-intact (WEST)"; icon_state = "intact"; dir = 8},/turf/simulated/floor/hull,/area/space)
+"eGL" = (/obj/machinery/atmospherics/pipe/simple/heat_exchanging{dir = 4},/turf/simulated/floor/hull,/area/space)
 "eGM" = (/obj/random/techpart,/obj/random/techpart,/obj/random/techpart,/obj/random/techpart,/turf/simulated/floor/plating/under,/area/eris/maintenance/thirdsec5port)
 "eGN" = (/obj/effect/floor_decal/rust,/obj/random/ammo/low_chance,/obj/random/ammo/low_chance,/turf/simulated/floor/tiled/techmaint,/area/eris/maintenance/thirdsec5port)
 "eGO" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/old_tile/blue,/area/eris/maintenance/oldbridge)
