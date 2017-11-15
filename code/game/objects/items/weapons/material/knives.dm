@@ -56,7 +56,7 @@
 	flags = CONDUCT
 	sharp = 1
 	edge = 1
-	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
+	force_divisor = 0.3 // 18 when wielded with hardness 60 (steel)
 	matter = list(DEFAULT_WALL_MATERIAL = 12000)
 	origin_tech = "materials=1"
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -79,7 +79,7 @@
 	name = "butcher's cleaver"
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
-	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
+	force_divisor = 0.4 // 24 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/material/knife/neotritual

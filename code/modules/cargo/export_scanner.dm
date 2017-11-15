@@ -24,7 +24,7 @@
 		user << "<span class='notice'>The [src] is currently not linked to a cargo console.</span>"
 
 /obj/item/device/export_scanner/afterattack(obj/O, mob/user, proximity)
-	if(!cell || !cell.checked_use(10))
+	if(!cell || !cell.checked_use(3))
 		user << "<span class='warning'>[src] battery is dead or missing</span>"
 		return
 	if(!istype(O) || !proximity)
