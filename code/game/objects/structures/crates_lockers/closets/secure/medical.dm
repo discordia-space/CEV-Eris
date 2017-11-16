@@ -5,7 +5,7 @@
 	req_access = list(access_medical_equip)
 
 
-/obj/structure/closet/secure_closet/medical1/New()
+/obj/structure/closet/secure_closet/medical1/populate_contents()
 	..()
 	new /obj/item/weapon/storage/box/autoinjectors(src)
 	new /obj/item/weapon/storage/box/syringes(src)
@@ -17,8 +17,6 @@
 	new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline(src)
 	new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
 	new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/medical2
@@ -28,7 +26,7 @@
 	req_access = list(access_surgery)
 
 
-/obj/structure/closet/secure_closet/medical2/New()
+/obj/structure/closet/secure_closet/medical2/populate_contents()
 	..()
 	new /obj/item/weapon/tank/anesthetic(src)
 	new /obj/item/weapon/tank/anesthetic(src)
@@ -36,8 +34,6 @@
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/clothing/mask/breath/medical(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/medical3
@@ -45,7 +41,7 @@
 	req_access = list(access_medical_equip)
 	icon_state = "med"
 
-/obj/structure/closet/secure_closet/medical3/New()
+/obj/structure/closet/secure_closet/medical3/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
@@ -74,7 +70,6 @@
 	new /obj/item/clothing/under/rank/medical(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
 	new /obj/item/clothing/shoes/color/white(src)
-//	new /obj/item/weapon/cartridge/medical(src)
 	new /obj/item/device/radio/headset/headset_med(src)
 	new /obj/item/taperoll/medical(src)
 	new /obj/item/weapon/storage/belt/medical/emt(src)
@@ -82,8 +77,6 @@
 	new /obj/item/weapon/storage/belt/medical/(src)
 	new /obj/item/weapon/storage/belt/medical/(src)
 	new /obj/item/clothing/suit/storage/surgical_apron(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/reinforced/CMO
@@ -91,7 +84,7 @@
 	req_access = list(access_cmo)
 	icon_state = "cmo"
 
-/obj/structure/closet/secure_closet/reinforced/CMO/New()
+/obj/structure/closet/secure_closet/reinforced/CMO/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
@@ -118,8 +111,6 @@
 	new /obj/item/device/radio/headset/heads/cmo(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/reagent_containers/hypospray(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/animal
@@ -128,13 +119,12 @@
 	icon_state = "sec"
 
 
-/obj/structure/closet/secure_closet/animal/New()
+/obj/structure/closet/secure_closet/animal/populate_contents()
 	..()
 	new /obj/item/device/assembly/signaler(src)
 	new /obj/item/device/radio/electropack(src)
 	new /obj/item/device/radio/electropack(src)
 	new /obj/item/device/radio/electropack(src)
-	return
 
 
 
@@ -146,8 +136,7 @@
 	req_access = list(access_chemistry)
 
 
-/obj/structure/closet/secure_closet/chemical/New()
+/obj/structure/closet/secure_closet/chemical/populate_contents()
 	..()
 	new /obj/item/weapon/storage/box/pillbottles(src)
 	new /obj/item/weapon/storage/box/pillbottles(src)
-	return

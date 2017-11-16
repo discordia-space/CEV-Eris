@@ -13,15 +13,13 @@
 	desc = "It's a storage unit for formal clothing."
 	icon_door = "black"
 
-/obj/structure/closet/gmcloset/New()
+/obj/structure/closet/gmcloset/populate_contents()
 	..()
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/clothing/head/hairflower
-	//new /obj/item/clothing/under/sl_suit(src)
-	//new /obj/item/clothing/under/sl_suit(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/suit/wcoat(src)
@@ -37,7 +35,7 @@
 	desc = "It's a storage unit for foodservice garments."
 	icon_door = "black"
 
-/obj/structure/closet/chefcloset/New()
+/obj/structure/closet/chefcloset/populate_contents()
 	..()
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/clothing/under/waiter(src)
@@ -56,7 +54,7 @@
 	desc = "It's a storage unit for janitorial clothes and gear."
 	icon_door = "mixed"
 
-/obj/structure/closet/jcloset/New()
+/obj/structure/closet/jcloset/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/janitor(src)
 	new /obj/item/device/radio/headset/headset_service(src)
@@ -82,7 +80,7 @@
 	icon_door = "blue"
 
 
-/obj/structure/closet/lawcloset/New()
+/obj/structure/closet/lawcloset/populate_contents()
 	..()
 	new /obj/item/clothing/shoes/color/brown(src)
 	new /obj/item/clothing/shoes/black(src)

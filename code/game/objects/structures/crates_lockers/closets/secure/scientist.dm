@@ -3,7 +3,7 @@
 	req_access = list(access_tox_storage)
 	icon_state = "science"
 
-/obj/structure/closet/secure_closet/scientist/New()
+/obj/structure/closet/secure_closet/scientist/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/scientist(src)
 	//new /obj/item/clothing/suit/labcoat/science(src)
@@ -13,8 +13,6 @@
 	new /obj/item/device/radio/headset/headset_sci(src)
 	new /obj/item/weapon/tank/air(src)
 	new /obj/item/clothing/mask/gas(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/reinforced/RD
@@ -23,7 +21,7 @@
 	icon_state = "rd"
 
 
-/obj/structure/closet/secure_closet/reinforced/RD/New()
+/obj/structure/closet/secure_closet/reinforced/RD/populate_contents()
 	..()
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)
@@ -38,4 +36,3 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/bluespace_harpoon(src)
-	return

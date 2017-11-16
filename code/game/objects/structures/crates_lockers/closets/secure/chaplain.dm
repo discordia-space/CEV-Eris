@@ -3,7 +3,7 @@
 	req_access = list(access_chapel_office)
 	icon_state = "preacher"
 
-/obj/structure/closet/secure_closet/chaplain/New()
+/obj/structure/closet/secure_closet/chaplain/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/chaplain(src)
 	new /obj/item/clothing/shoes/black(src)
@@ -18,4 +18,3 @@
 	for (var/i=1, i<=10, i++)
 		new /obj/item/weapon/implant/external/core_implant/cruciform(src)
 	new /obj/item/weapon/material/knife/neotritual(src)
-	return

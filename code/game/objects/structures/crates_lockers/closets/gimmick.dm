@@ -2,13 +2,7 @@
 	name = "cabinet"
 	desc = "Old will forever be in fashion."
 	icon_state = "cabinet"
-/*
-/obj/structure/closet/cabinet/update_icon()
-	if(!opened)
-		icon_state = icon_closed
-	else
-		icon_state = icon_opened
-*/
+
 /obj/structure/closet/gimmick
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
@@ -20,7 +14,7 @@
 	desc = "It's a storage unit for Russian standard-issue surplus."
 	icon_state = "syndicate"
 
-/obj/structure/closet/gimmick/russian/New()
+/obj/structure/closet/gimmick/russian/populate_contents()
 	..()
 	new /obj/item/clothing/head/ushanka(src)
 	new /obj/item/clothing/head/ushanka(src)
@@ -39,7 +33,7 @@
 	desc = "It's a storage unit for Tacticool gear."
 	icon_state = "syndicate"
 
-/obj/structure/closet/gimmick/tacticool/New()
+/obj/structure/closet/gimmick/tacticool/populate_contents()
 	..()
 	new /obj/item/clothing/glasses/eyepatch(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
@@ -69,7 +63,7 @@
 /obj/structure/closet/thunderdome/tdred
 	name = "red-team Thunderdome closet"
 
-/obj/structure/closet/thunderdome/tdred/New()
+/obj/structure/closet/thunderdome/tdred/populate_contents()
 	..()
 	new /obj/item/clothing/suit/armor/tdome/red(src)
 	new /obj/item/clothing/suit/armor/tdome/red(src)
@@ -94,7 +88,7 @@
 	name = "green-team Thunderdome closet"
 	icon_state = "syndicate"
 
-/obj/structure/closet/thunderdome/tdgreen/New()
+/obj/structure/closet/thunderdome/tdgreen/populate_contents()
 	..()
 	new /obj/item/clothing/suit/armor/tdome/green(src)
 	new /obj/item/clothing/suit/armor/tdome/green(src)

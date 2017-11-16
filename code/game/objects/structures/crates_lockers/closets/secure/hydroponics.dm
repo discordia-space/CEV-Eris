@@ -3,7 +3,7 @@
 	req_access = list(access_hydroponics)
 	icon_state = "hydro"
 
-/obj/structure/closet/secure_closet/hydroponics/New()
+/obj/structure/closet/secure_closet/hydroponics/populate_contents()
 	..()
 	new /obj/item/clothing/suit/apron(src)
 	new /obj/item/weapon/storage/bag/plants(src)
@@ -15,4 +15,3 @@
 	new /obj/item/weapon/material/hatchet(src)
 	new /obj/item/weapon/wirecutters/clippers(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-	return

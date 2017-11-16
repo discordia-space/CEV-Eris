@@ -137,7 +137,7 @@
 	desc = "A internals crate."
 	icon_state = "o2crate"
 
-/obj/structure/closet/crate/internals/New()
+/obj/structure/closet/crate/internals/populate_contents()
 	..()
 	new /obj/item/weapon/tank/emergency_oxygen(src)
 	new /obj/item/weapon/tank/emergency_oxygen(src)
@@ -187,7 +187,7 @@
 	desc = "A crate with rapid construction device."
 	icon_state = "crate"
 
-/obj/structure/closet/crate/rcd/New()
+/obj/structure/closet/crate/rcd/populate_contents()
 	..()
 	new /obj/item/weapon/rcd_ammo(src)
 	new /obj/item/weapon/rcd_ammo(src)
@@ -197,7 +197,7 @@
 /obj/structure/closet/crate/solar
 	name = "solar pack crate"
 
-/obj/structure/closet/crate/solar/New()
+/obj/structure/closet/crate/solar/populate_contents()
 	..()
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
@@ -228,28 +228,13 @@
 	name = "freezer"
 	desc = "A freezer."
 	icon_state = "freezer"
-	var/target_temp = T0C - 40
-	var/cooling_power = 40
-
-	return_air()
-		var/datum/gas_mixture/gas = (..())
-		if(!gas)	return null
-		var/datum/gas_mixture/newgas = new/datum/gas_mixture()
-		newgas.copy_from(gas)
-		if(newgas.temperature <= target_temp)	return
-
-		if((newgas.temperature - cooling_power) > target_temp)
-			newgas.temperature -= cooling_power
-		else
-			newgas.temperature = target_temp
-		return newgas
 
 /obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
 	name = "emergency rations"
 	desc = "A crate of emergency rations."
 
 
-/obj/structure/closet/crate/freezer/rations/New()
+/obj/structure/closet/crate/freezer/rations/populate_contents()
 	..()
 	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
 	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
@@ -267,7 +252,7 @@
 	desc = "A crate with a radiation sign on it."
 	icon_state = "radiation"
 
-/obj/structure/closet/crate/radiation/New()
+/obj/structure/closet/crate/radiation/populate_contents()
 	..()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
@@ -368,22 +353,6 @@
 	desc = "All you need to destroy those pesky weeds and pests."
 	icon_state = "hydrocrate"
 
-/obj/structure/closet/crate/hydroponics/prespawned
-	//This exists so the prespawned hydro crates spawn with their contents.
-
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/material/minihoe(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
-
-
-
 /obj/structure/closet/crate/secure/weapon
 	desc = "A secure weapons crate."
 	name = "Weapons crate"
@@ -413,4 +382,3 @@
 	desc = "A secure wooden crate."
 	name = "Secure wooden crate"
 	icon_state = "plasmacrate"
-

@@ -6,14 +6,13 @@
 	icon_state = "freezer"
 	req_access = list(access_kitchen)
 
-/obj/structure/closet/secure_closet/freezer/kitchen/New()
+/obj/structure/closet/secure_closet/freezer/kitchen/populate_contents()
 	..()
 	for(var/i = 0, i < 6, i++)
 		new /obj/item/weapon/reagent_containers/food/condiment/flour(src)
 	new /obj/item/weapon/reagent_containers/food/condiment/sugar(src)
 	for(var/i = 0, i < 3, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src)
-	return
 
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
@@ -27,12 +26,10 @@
 	icon_state = "freezer"
 
 
-/obj/structure/closet/secure_closet/freezer/meat/New()
+/obj/structure/closet/secure_closet/freezer/meat/populate_contents()
 	..()
 	for(var/i = 0, i < 4, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/freezer/fridge
@@ -40,7 +37,7 @@
 	icon_state = "freezer"
 
 
-/obj/structure/closet/secure_closet/freezer/fridge/New()
+/obj/structure/closet/secure_closet/freezer/fridge/populate_contents()
 	..()
 	for(var/i = 0, i < 5, i++)
 		new /obj/item/weapon/reagent_containers/food/drinks/milk(src)
@@ -48,7 +45,6 @@
 		new /obj/item/weapon/reagent_containers/food/drinks/soymilk(src)
 	for(var/i = 0, i < 2, i++)
 		new /obj/item/weapon/storage/fancy/egg_box(src)
-	return
 
 
 
@@ -58,7 +54,7 @@
 	req_access = list(access_heads_vault)
 
 
-/obj/structure/closet/secure_closet/freezer/money/New()
+/obj/structure/closet/secure_closet/freezer/money/populate_contents()
 	..()
 	for(var/i = 0, i < 3, i++)
 		new /obj/item/weapon/spacecash/bundle/c1000(src)
@@ -66,4 +62,3 @@
 		new /obj/item/weapon/spacecash/bundle/c500(src)
 	for(var/i = 0, i < 6, i++)
 		new /obj/item/weapon/spacecash/bundle/c200(src)
-	return
