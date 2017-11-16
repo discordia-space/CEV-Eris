@@ -50,7 +50,7 @@
 			new /obj/item/clothing/head/helmet/space/emergency(src)
 			new /obj/item/clothing/head/helmet/space/emergency(src)
 
-/obj/structure/closet/emcloset/legacy/New()
+/obj/structure/closet/emcloset/legacy/populate_contents()
 	..()
 	new /obj/item/weapon/tank/oxygen(src)
 	new /obj/item/clothing/mask/gas(src)
@@ -63,7 +63,7 @@
 	desc = "It's a storage unit for fire-fighting supplies."
 	icon_state = "fire"
 
-/obj/structure/closet/firecloset/New()
+/obj/structure/closet/firecloset/populate_contents()
 	..()
 
 	new /obj/item/clothing/suit/fire/firefighter(src)
@@ -93,7 +93,7 @@
 	icon_state = "eng"
 	icon_door = "eng_tool"
 
-/obj/structure/closet/toolcloset/New()
+/obj/structure/closet/toolcloset/populate_contents()
 	..()
 	if(prob(40))
 		new /obj/item/clothing/suit/storage/hazardvest(src)
@@ -136,7 +136,7 @@
 	icon_state = "eng"
 	icon_door = "eng_rad"
 
-/obj/structure/closet/radiation/New()
+/obj/structure/closet/radiation/populate_contents()
 	..()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
@@ -151,7 +151,7 @@
 	desc = "It's a storage unit for explosion-protective suits."
 	icon_state = "bomb"
 
-/obj/structure/closet/bombcloset/New()
+/obj/structure/closet/bombcloset/populate_contents()
 	..()
 	new /obj/item/clothing/suit/bomb_suit( src )
 	new /obj/item/clothing/under/color/black( src )
@@ -164,7 +164,7 @@
 	desc = "It's a storage unit for explosion-protective suits."
 	icon_state = "bomb"
 
-/obj/structure/closet/bombclosetsecurity/New()
+/obj/structure/closet/bombclosetsecurity/populate_contents()
 	..()
 	new /obj/item/clothing/suit/bomb_suit/security( src )
 	new /obj/item/clothing/under/rank/security( src )

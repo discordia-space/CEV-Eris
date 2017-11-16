@@ -2,7 +2,7 @@
 	desc = "It's a storage unit for operational gear."
 	icon_state = "syndicate"
 
-/obj/structure/closet/malf/suits/New()
+/obj/structure/closet/malf/suits/populate_contents()
 	..()
 	new /obj/item/weapon/tank/jetpack/void(src)
 	new /obj/item/clothing/mask/breath(src)

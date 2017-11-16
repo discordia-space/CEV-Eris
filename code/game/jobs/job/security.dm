@@ -28,13 +28,15 @@
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/thick/swat
-	glasses = /obj/item/clothing/glasses/sunglasses/sechud
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/lamia
 	put_in_backpack = list(\
 		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/ammo_magazine/mg/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
+		/obj/item/weapon/cell/small/high,\
+		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/melee/baton/loaded
 	)
@@ -75,7 +77,7 @@
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/thick/swat
-	glasses = /obj/item/clothing/glasses/sunglasses/sechud
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 	put_in_backpack = list(\
 		/obj/item/ammo_magazine/SMG_sol/rubber,\
@@ -198,6 +200,7 @@
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest/security
 	hat = /obj/item/clothing/head/helmet
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	mask = /obj/item/clothing/mask/balaclava/tactical
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec

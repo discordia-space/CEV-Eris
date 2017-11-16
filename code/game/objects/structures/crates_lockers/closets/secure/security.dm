@@ -4,7 +4,7 @@
 	icon_state = "cap"
 	icon_lock = "cabinet"
 
-/obj/structure/closet/secure_closet/reinforced/captains/New()
+/obj/structure/closet/secure_closet/reinforced/captains/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/captain(src)
@@ -26,7 +26,6 @@
 	new /obj/item/weapon/melee/telebaton(src)
 	new /obj/item/clothing/head/caphat/formal(src)
 	new /obj/item/clothing/under/captainformal(src)
-	return
 
 
 
@@ -35,7 +34,7 @@
 	req_access = list(access_hop)
 	icon_state = "hop"
 
-/obj/structure/closet/secure_closet/reinforced/hop/New()
+/obj/structure/closet/secure_closet/reinforced/hop/populate_contents()
 	..()
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/under/rank/first_officer(src)
@@ -52,7 +51,6 @@
 	new /obj/item/ammo_magazine/a50/rubber(src)
 	new /obj/item/ammo_magazine/a50/rubber(src)
 	new /obj/item/device/flash(src)
-	return
 
 
 
@@ -61,7 +59,7 @@
 	req_access = list(access_hos)
 	icon_state = "hos"
 
-/obj/structure/closet/secure_closet/reinforced/hos/New()
+/obj/structure/closet/secure_closet/reinforced/hos/populate_contents()
 	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
@@ -70,7 +68,7 @@
 	new /obj/item/clothing/suit/armor/hos(src)
 	new /obj/item/weapon/cartridge/hos(src)
 	new /obj/item/device/radio/headset/heads/hos(src)
-	new /obj/item/clothing/glasses/sunglasses/sechud(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/taperoll/police(src)
 	new /obj/item/weapon/shield/riot(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
@@ -86,7 +84,6 @@
 	new /obj/item/weapon/melee/telebaton(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/accessory/badge/hos(src)
-	return
 
 
 
@@ -96,7 +93,7 @@
 	icon_state = "warden"
 
 
-/obj/structure/closet/secure_closet/warden/New()
+/obj/structure/closet/secure_closet/warden/populate_contents()
 	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
@@ -105,7 +102,7 @@
 	new /obj/item/clothing/head/warden(src)
 	new /obj/item/weapon/cartridge/security(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
-	new /obj/item/clothing/glasses/sunglasses/sechud(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/taperoll/police(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/storage/box/teargas(src)
@@ -120,7 +117,6 @@
 	new /obj/item/weapon/storage/box/holobadge(src)
 	new /obj/item/clothing/head/beret/sec/navy/warden(src)
 	new /obj/item/clothing/accessory/badge/warden(src)
-	return
 
 
 
@@ -130,7 +126,7 @@
 	icon_state = "sec"
 
 
-/obj/structure/closet/secure_closet/security/New()
+/obj/structure/closet/secure_closet/security/populate_contents()
 	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
@@ -140,7 +136,7 @@
 	new /obj/item/weapon/reagent_containers/spray/pepper(src)
 	new /obj/item/weapon/grenade/chem_grenade/teargas(src)
 	new /obj/item/weapon/melee/baton/loaded(src)
-	new /obj/item/clothing/glasses/sunglasses/sechud(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/taperoll/police(src)
 	new /obj/item/device/hailer(src)
 	new /obj/item/weapon/cell/small/high(src)
@@ -152,7 +148,6 @@
 	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
 	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
 	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	return
 
 
 
@@ -162,9 +157,9 @@
 	icon_state = "sec"
 
 
-/obj/structure/closet/secure_closet/medspec/New()
+/obj/structure/closet/secure_closet/medspec/populate_contents()
 	..()
-	new /obj/item/clothing/glasses/sunglasses/sechud(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/taperoll/police(src)
 	new /obj/item/clothing/under/rank/medspec(src)
 	new /obj/item/device/pda/detective(src)
@@ -175,16 +170,15 @@
 	new /obj/item/weapon/storage/briefcase/crimekit(src)
 	new /obj/item/ammo_magazine/mg/cl32/rubber(src)
 	new /obj/item/ammo_magazine/mg/cl32/rubber(src)
-	return
 
 
 
 /obj/structure/closet/secure_closet/detective
-	name = "detective's cabinet"
+	name = "Ironhammer Inspector locker"
 	req_access = list(access_forensics_lockers)
 	icon_state = "cabinetdetective"
 
-/obj/structure/closet/secure_closet/detective/New()
+/obj/structure/closet/secure_closet/detective/populate_contents()
 	..()
 	new /obj/item/clothing/under/det(src)
 	new /obj/item/clothing/under/det/black(src)
@@ -199,36 +193,27 @@
 	new /obj/item/device/radio/headset/headset_sec(src)
 	new /obj/item/clothing/suit/armor/vest/detective(src)
 	new /obj/item/taperoll/police(src)
+	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
+	new /obj/item/weapon/cell/small/high(src)
+	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/gun/projectile/revolver/consul(src)
 	new /obj/item/clothing/accessory/holster/armpit(src)
 	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
 	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
 	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
-	return
-/*
-/obj/structure/closet/secure_closet/detective/update_icon()
-	if(broken)
-		icon_state = icon_broken
-	else
-		if(!opened)
-			if(locked)
-				icon_state = icon_locked
-			else
-				icon_state = icon_closed
-		else
-			icon_state = icon_opened
-*/
+
+
+
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
 	req_access = list(access_captain)
 	icon_state = "secure"
 
 
-/obj/structure/closet/secure_closet/injection/New()
+/obj/structure/closet/secure_closet/injection/populate_contents()
 	..()
 	new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
 	new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
-	return
 
 
 
@@ -239,11 +224,10 @@
 	icon_state = "secure"
 	var/id
 
-/obj/structure/closet/secure_closet/brig/New()
+/obj/structure/closet/secure_closet/brig/populate_contents()
 	..()
 	new /obj/item/clothing/under/color/orange( src )
 	new /obj/item/clothing/shoes/color/orange( src )
-	return
 
 
 
@@ -252,7 +236,7 @@
 	req_access = list(access_security)
 	icon_state = "sec"
 
-/obj/structure/closet/secure_closet/courtroom/New()
+/obj/structure/closet/secure_closet/courtroom/populate_contents()
 	..()
 	new /obj/item/clothing/shoes/color/brown(src)
 	new /obj/item/weapon/paper/Court (src)
@@ -262,4 +246,3 @@
 	new /obj/item/clothing/suit/judgerobe (src)
 	new /obj/item/clothing/head/powdered_wig (src)
 	new /obj/item/weapon/storage/briefcase(src)
-	return

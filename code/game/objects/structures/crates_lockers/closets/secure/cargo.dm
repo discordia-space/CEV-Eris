@@ -3,7 +3,7 @@
 	req_access = list(access_cargo)
 	icon_state = "cargo"
 
-/obj/structure/closet/secure_closet/cargotech/New()
+/obj/structure/closet/secure_closet/cargotech/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/black(src)
@@ -11,7 +11,6 @@
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/head/soft(src)
 	new /obj/item/device/export_scanner(src)
-	return
 
 /obj/structure/closet/secure_closet/reinforced/quartermaster
 	name = "guild merchant's locker"
@@ -19,7 +18,7 @@
 	icon_state = "qm"
 
 
-/obj/structure/closet/secure_closet/reinforced/quartermaster/New()
+/obj/structure/closet/secure_closet/reinforced/quartermaster/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/color/brown(src)
@@ -36,4 +35,3 @@
 	new /obj/item/ammo_casing/shotgun/beanbag(src)
 	new /obj/item/ammo_casing/shotgun/beanbag(src)
 	new /obj/item/device/export_scanner(src)
-	return

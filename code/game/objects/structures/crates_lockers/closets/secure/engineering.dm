@@ -3,7 +3,7 @@
 	req_access = list(access_ce)
 	icon_state = "ce"
 
-/obj/structure/closet/secure_closet/reinforced/engineering_chief/New()
+/obj/structure/closet/secure_closet/reinforced/engineering_chief/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
@@ -27,8 +27,6 @@
 	new /obj/item/weapon/hatton_magazine(src)
 	new /obj/item/weapon/hatton_magazine(src)
 	new /obj/item/weapon/hatton_magazine(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/engineering_electrical
@@ -37,7 +35,7 @@
 	icon_state = "eng"
 	icon_door = "end_elec"
 
-/obj/structure/closet/secure_closet/engineering_electrical/New()
+/obj/structure/closet/secure_closet/engineering_electrical/populate_contents()
 	..()
 	new /obj/item/clothing/gloves/insulated(src)
 	new /obj/item/clothing/gloves/insulated(src)
@@ -50,8 +48,6 @@
 	new /obj/item/device/multitool(src)
 	new /obj/item/device/multitool(src)
 	new /obj/item/device/multitool(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/engineering_welding
@@ -60,7 +56,7 @@
 	icon_state = "eng"
 	icon_door = "end_weld"
 
-/obj/structure/closet/secure_closet/engineering_welding/New()
+/obj/structure/closet/secure_closet/engineering_welding/populate_contents()
 	..()
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/head/welding(src)
@@ -71,17 +67,15 @@
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
-	return
-
 
 
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "technomancer's locker"
 	req_access = list(access_engine_equip)
 	icon_state = "eng"
-	icon_door = "end_secure"
+	icon_door = "eng_secure"
 
-/obj/structure/closet/secure_closet/engineering_personal/New()
+/obj/structure/closet/secure_closet/engineering_personal/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
@@ -94,4 +88,3 @@
 	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/weapon/cartridge/engineering(src)
 	new /obj/item/taperoll/engineering(src)
-	return

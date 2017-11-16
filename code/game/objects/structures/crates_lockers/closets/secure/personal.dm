@@ -5,7 +5,7 @@
 	var/registered_name = null
 	icon_state = "secure"
 
-/obj/structure/closet/secure_closet/personal/New()
+/obj/structure/closet/secure_closet/personal/populate_contents()
 	..()
 	spawn(2)
 		if(prob(50))
@@ -13,13 +13,12 @@
 		else
 			new /obj/item/weapon/storage/backpack/satchel_norm(src)
 		new /obj/item/device/radio/headset( src )
-	return
 
 
 /obj/structure/closet/secure_closet/personal/patient
 	name = "patient's closet"
 
-/obj/structure/closet/secure_closet/personal/patient/New()
+/obj/structure/closet/secure_closet/personal/patient/populate_contents()
 	..()
 	spawn(4)
 		// Not really the best way to do this, but it's better than "contents = list()"!
@@ -27,15 +26,13 @@
 			qdel(AM)
 		new /obj/item/clothing/under/color/white( src )
 		new /obj/item/clothing/shoes/color/white( src )
-	return
-
 
 
 /obj/structure/closet/secure_closet/personal/cabinet
 	icon_state = "cabinet"
 	icon_lock = "cabinet"
 
-/obj/structure/closet/secure_closet/personal/cabinet/New()
+/obj/structure/closet/secure_closet/personal/cabinet/populate_contents()
 	..()
 	spawn(4)
 		// Not really the best way to do this, but it's better than "contents = list()"!
@@ -43,7 +40,6 @@
 			qdel(AM)
 		new /obj/item/weapon/storage/backpack/satchel/withwallet( src )
 		new /obj/item/device/radio/headset( src )
-	return
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.opened)
