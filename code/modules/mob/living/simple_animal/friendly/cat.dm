@@ -195,7 +195,8 @@
 	else if (friend.health <= 50)
 		if (prob(10))
 			var/verb = pick("meows", "mews", "mrowls")
-			audible_emote("[verb] anxiously.")
+			var/msg1 = ("[verb] anxiously.")
+			src.visible_message("<span class='name'>[src]</span> [msg1].")
 
 /mob/living/simple_animal/cat/fluff/verb/friend()
 	set name = "Become Friends"

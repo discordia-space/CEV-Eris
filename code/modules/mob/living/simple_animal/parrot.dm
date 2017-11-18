@@ -338,7 +338,8 @@
 			//Search for item to steal
 			parrot_interest = search_for_item()
 			if(parrot_interest)
-				visible_emote("looks in [parrot_interest]'s direction and takes flight")
+				var/msg1 = ("looks in [parrot_interest]'s direction and takes flight")
+				src.visible_message("<span class='name'>[src]</span> [msg1].")
 				parrot_state = PARROT_SWOOP | PARROT_STEAL
 				icon_state = "parrot_fly"
 			return
@@ -360,7 +361,8 @@
 			if(AM)
 				if(istype(AM, /obj/item) || isliving(AM))	//If stealable item
 					parrot_interest = AM
-					visible_emote("turns and flies towards [parrot_interest]")
+					var/msg2 = ("turns and flies towards [parrot_interest]")
+					src.visible_message("<span class='name'>[src]</span> [msg2].")
 					parrot_state = PARROT_SWOOP | PARROT_STEAL
 					return
 				else	//Else it's a perch
@@ -474,11 +476,12 @@
 				var/obj/item/organ/external/affecting = H.get_organ(ran_zone(pick(parrot_dam_zone)))
 
 				H.apply_damage(damage, BRUTE, affecting, H.run_armor_check(affecting, "melee"), sharp=1)
-				visible_emote(pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
-
+				var/msg3 = (pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
+				src.visible_message("<span class='name'>[src]</span> [msg3].")
 			else
 				L.adjustBruteLoss(damage)
-				visible_emote(pick("pecks at [L].", "claws [L]."))
+				var/msg3 = (pick("pecks at [L].", "claws [L]."))
+				src.visible_message("<span class='name'>[src]</span> [msg3].")
 			return
 
 		//Otherwise, fly towards the mob!

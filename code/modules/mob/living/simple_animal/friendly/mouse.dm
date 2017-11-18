@@ -50,7 +50,8 @@
 			icon_state = "mouse_[body_color]"
 			wander = 1
 		else if(prob(5))
-			audible_emote("snuffles.")
+			var/msg2 = ("snuffles.")
+			src.visible_message("<span class='name'>[src]</span> [msg2].")
 
 /mob/living/simple_animal/mouse/lay_down()
 	..()
