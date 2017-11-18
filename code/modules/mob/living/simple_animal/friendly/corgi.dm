@@ -75,10 +75,12 @@
 					if(isturf(movement_target.loc) )
 						UnarmedAttack(movement_target)
 					else if(ishuman(movement_target.loc) && prob(20))
-						visible_emote("stares at the [movement_target] that [movement_target.loc] has with sad puppy eyes.")
+						var/msg1 = ("stares at the [movement_target] that [movement_target.loc] has with sad puppy eyes.")
+						src.visible_message("<span class='name'>[src]</span> [msg1].")
 
 		if(prob(1))
-			visible_emote(pick("dances around","chases their tail"))
+			var/msg2 = (pick("dances around","chases their tail"))
+			src.visible_message("<span class='name'>[src]</span> [msg2].")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
@@ -184,7 +186,8 @@
 
 
 		if(prob(1))
-			visible_emote(pick("dances around","chases her tail"))
+			var/msg3 = (pick("dances around","chases her tail"))
+			src.visible_message("<span class='name'>[src]</span> [msg3].")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)

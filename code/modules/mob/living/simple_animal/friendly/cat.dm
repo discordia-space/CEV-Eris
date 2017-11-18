@@ -31,7 +31,8 @@
 			for(var/mob/living/simple_animal/mouse/M in loc)
 				if(!M.stat)
 					M.splat()
-					visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
+					var/msg1 = (pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
+					src.visible_message("<span class='name'>[src]</span> [msg1].")
 					movement_target = null
 					stop_automated_movement = 0
 					break
@@ -40,7 +41,8 @@
 
 	for(var/mob/living/simple_animal/mouse/snack in oview(src,5))
 		if(snack.stat < DEAD && prob(15))
-			audible_emote(pick("hisses and spits!","mrowls fiercely!","eyes [snack] hungrily."))
+			var/msg2 = (pick("hisses and spits!","mrowls fiercely!","eyes [snack] hungrily."))
+			src.visible_message("<span class='name'>[src]</span> [msg2].")
 		break
 
 	if(incapacitated())
@@ -66,8 +68,8 @@
 					visible += O
 			if(visible.len)
 				var/atom/A = pick(visible)
-				visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
-
+				var/msg3 = ("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
+				src.visible_message("<span class='name'>[src]</span> [msg3].")
 /mob/living/simple_animal/cat/proc/handle_movement_target()
 	//if our target is neither inside a turf or inside a human(???), stop
 	if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
@@ -180,13 +182,16 @@
 		if (friend.stat >= DEAD || friend.health <= config.health_threshold_softcrit)
 			if (prob((friend.stat < DEAD)? 50 : 15))
 				var/verb = pick("meows", "mews", "mrowls")
-				audible_emote(pick("[verb] in distress.", "[verb] anxiously."))
+				var/msg4 = (pick("[verb] in distress.", "[verb] anxiously."))
+				src.visible_message("<span class='name'>[src]</span> [msg4].")
+
 		else
 			if (prob(5))
-				visible_emote(pick("nuzzles [friend].",
+				var/msg5 = (pick("nuzzles [friend].",
 								   "brushes against [friend].",
 								   "rubs against [friend].",
 								   "purrs."))
+				src.visible_message("<span class='name'>[src]</span> [msg5].")
 	else if (friend.health <= 50)
 		if (prob(10))
 			var/verb = pick("meows", "mews", "mrowls")

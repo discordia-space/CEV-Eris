@@ -39,7 +39,8 @@
 /mob/living/simple_animal/hostile/tree/FindTarget()
 	. = ..()
 	if(.)
-		audible_emote("growls at [.]")
+		var/msg1 = ("growls at [.]")
+		src.visible_message("<span class='name'>[src]</span> [msg1].")
 
 /mob/living/simple_animal/hostile/tree/AttackingTarget()
 	. =..()

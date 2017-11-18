@@ -124,7 +124,8 @@
 	//Speaking
 	if(!client && speak_chance)
 		if(rand(0,200) < speak_chance)
-			src.visible_message("<span class='name'>[src]</span> pick(emote_see)].")
+			var/msg = pick(emote_see)
+			src.visible_message("<span class='name'>[src]</span> [msg].")
 
 	//Atmos
 	var/atmos_suitable = 1
