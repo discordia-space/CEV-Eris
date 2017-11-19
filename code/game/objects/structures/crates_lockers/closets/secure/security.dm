@@ -63,6 +63,7 @@
 	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
+	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/suit/armor/hos(src)

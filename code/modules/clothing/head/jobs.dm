@@ -63,11 +63,11 @@
 	icon_state = "beret_navy_officer"
 /obj/item/clothing/head/beret/sec/navy/hos
 	name = "Commander beret"
-	desc = "A navy blue beret with a Commander's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "Grey beret with a Commander's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_hos"
 /obj/item/clothing/head/beret/sec/navy/warden
 	name = "Sergeant beret"
-	desc = "A navy blue beret with a Sergeant's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "Read beret with a Sergeant's rank emblem. For officers that are more inclined towards style than safety."
 	icon_state = "beret_navy_warden"
 /obj/item/clothing/head/beret/engineering
 	name = "engineering beret"
