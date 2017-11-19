@@ -10,7 +10,7 @@
 	icon_state = "circ-off"
 	anchored = 0
 
-	var/kinetic_efficiency = 0.04 //combined kinetic and kinetic-to-electric efficiency
+	var/kinetic_efficiency = 0.06 //combined kinetic and kinetic-to-electric efficiency
 	var/volume_ratio = 0.2
 
 	var/recent_moles_transferred = 0
