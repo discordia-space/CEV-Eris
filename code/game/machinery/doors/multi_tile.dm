@@ -21,8 +21,8 @@
 /obj/machinery/door/airlock/multi_tile/glass
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Door2x1glass.dmi'
-	opacity = 0
-	glass = 1
+	opacity = FALSE
+	glass = TRUE
 	assembly_type = /obj/structure/door_assembly/multi_tile
 
 /obj/machinery/door/airlock/multi_tile/metal
@@ -38,8 +38,8 @@
 	else
 		f5 = new/obj/machinery/filler_object(src.loc)
 		f6 = new/obj/machinery/filler_object(get_step(src,NORTH))
-	f5.density = 0
-	f6.density = 0
+	f5.density = FALSE
+	f6.density = FALSE
 	f5.set_opacity(opacity)
 	f6.set_opacity(opacity)
 
@@ -52,7 +52,8 @@
 	name = ""
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = ""
-	density = 0
+	density = FALSE
+	anchored = TRUE
 
 /obj/machinery/door/airlock/multi_tile/metal/mait
 	icon = 'icons/obj/doors/Door2x1_Maint.dmi'
