@@ -985,32 +985,12 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 
 
 
-proc/get_cardinal_dir(atom/A, atom/B)
+/proc/get_cardinal_dir(atom/A, atom/B)
 	var/dx = abs(B.x - A.x)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
 
-//chances are 1:value. anyprob(1) will always return true
-proc/anyprob(value)
-	return (rand(1, value)==value)
-
-proc/view_or_range(distance = world.view , center = usr , type)
-	switch(type)
-		if("view")
-			. = view(distance, center)
-		if("range")
-			. = range(distance, center)
-	return
-
-proc/oview_or_orange(distance = world.view , center = usr , type)
-	switch(type)
-		if("view")
-			. = oview(distance, center)
-		if("range")
-			. = orange(distance, center)
-	return
-
-proc/get_mob_with_client_list()
+/proc/get_mob_with_client_list()
 	var/list/mobs = list()
 	for(var/mob/M in mob_list)
 		if (M.client)
@@ -1019,26 +999,33 @@ proc/get_mob_with_client_list()
 
 
 /proc/parse_zone(zone)
-	if(zone == "r_hand") return "right hand"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "l_arm") return "left arm"
-	else if (zone == "r_arm") return "right arm"
-	else if (zone == "l_leg") return "left leg"
-	else if (zone == "r_leg") return "right leg"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "r_hand") return "right hand"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else return zone
-
-//gets the turf the atom is located in (or itself, if it is a turf).
-//returns null if the atom is not in a turf.
-/proc/get_turf(atom/A)
-	if(!istype(A)) return
-	for(A, A && !isturf(A), A=A.loc);
-	return A
+	switch(zone)
+		if("r_hand")
+			return "right hand"
+		if("l_hand")
+			return "left hand"
+		if("l_arm")
+			return "left arm"
+		if("r_arm")
+			return "right arm"
+		if("l_leg")
+			return "left leg"
+		if("r_leg")
+			return "right leg"
+		if("l_foot")
+			return "left foot"
+		if("r_foot")
+			return "right foot"
+		if("l_hand")
+			return "left hand"
+		if("r_hand")
+			return "right hand"
+		if("l_foot")
+			return "left foot"
+		if("r_foot")
+			return "right foot"
+		else
+			return zone
 
 /proc/get(atom/loc, type)
 	while(loc)
