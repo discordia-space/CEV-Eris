@@ -58,20 +58,20 @@
 		if(anchored && !reinf_material)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			user << SPAN_NOTICE("Now disassembling the girder...")
-			if(do_after(user, 40,src))
+			if(do_after(user, 40, src))
 				if(!src) return
 				user << SPAN_NOTICE("You dissasembled the girder!")
 				dismantle()
 		else if(!anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			user << SPAN_NOTICE("Now securing the girder...")
-			if(get_turf(user, 40))
+			if(do_after(user, 40, src))
 				user << SPAN_NOTICE("You secured the girder!")
 				reset_girder()
 
 	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
 		user << SPAN_NOTICE("Now slicing apart the girder...")
-		if(do_after(user,30,src))
+		if(do_after(user, 30, src))
 			if(!src) return
 			user << SPAN_NOTICE("You slice apart the girder!")
 			dismantle()
@@ -84,7 +84,7 @@
 		if(state == 2)
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			user << SPAN_NOTICE("Now unsecuring support struts...")
-			if(do_after(user, 40,src))
+			if(do_after(user, 40, src))
 				if(!src) return
 				user << SPAN_NOTICE("You unsecured the support struts!")
 				state = 1
@@ -96,7 +96,7 @@
 	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1)
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		user << SPAN_NOTICE("Now removing support struts...")
-		if(do_after(user, 40,src))
+		if(do_after(user, 40, src))
 			if(!src) return
 			user << SPAN_NOTICE("You removed the support struts!")
 			reinf_material.place_dismantled_product(get_turf(src))
@@ -106,7 +106,7 @@
 	else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored)
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		user << SPAN_NOTICE("Now dislodging the girder...")
-		if(do_after(user, 40,src))
+		if(do_after(user, 40, src))
 			if(!src) return
 			user << SPAN_NOTICE("You dislodged the girder!")
 			icon_state = "displaced"
