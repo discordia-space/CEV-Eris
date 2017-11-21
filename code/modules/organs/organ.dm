@@ -334,38 +334,6 @@ var/list/organ_cache = list()
 	if(robotic)
 		status |= ORGAN_ROBOT
 
-/obj/item/organ/proc/bitten(mob/user)
-
-	if(robotic)
-		return
-
-	user << "\blue You take an experimental bite out of \the [src]."
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
-	blood_splatter(src,B,1)
-
-	user.drop_from_inventory(src)
-	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
-	O.name = name
-	O.icon = icon
-	O.icon_state = icon_state
-
-	// Pass over the blood.
-	reagents.trans_to(O, reagents.total_volume)
-
-	if(fingerprints) O.fingerprints = fingerprints.Copy()
-	if(fingerprintshidden) O.fingerprintshidden = fingerprintshidden.Copy()
-	if(fingerprintslast) O.fingerprintslast = fingerprintslast
-
-	user.put_in_active_hand(O)
-	qdel(src)
-
-/obj/item/organ/attack_self(mob/user as mob)
-
-	// Convert it to an edible form, yum yum.
-	if(!robotic && user.a_intent == I_HELP && user.targeted_organ == "mouth")
-		bitten(user)
-		return
-
 /obj/item/organ/proc/install(mob/living/carbon/human/H)
 	if(!istype(H))
 		return 1
