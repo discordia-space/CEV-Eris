@@ -74,6 +74,8 @@
 #define DROPLIMB_BLUNT 1
 #define DROPLIMB_BURN 2
 
+#define ORGAN_PROCESS_ACCURACY 10
+
 // Damage above this value must be repaired with surgery.
 #define ROBOLIMB_SELF_REPAIR_CAP 30
 

@@ -315,10 +315,12 @@ var/world_topic_spam_protect_time = world.timeofday
 			info["key"] = M.key
 			info["name"] = M.name == M.real_name ? M.name : "[M.name] ([M.real_name])"
 			info["role"] = M.mind ? (M.mind.assigned_role ? M.mind.assigned_role : "No role") : "No mind"
+/*
 			var/turf/MT = get_turf(M)
 			info["loc"] = M.loc ? "[M.loc]" : "null"
 			info["turf"] = MT ? "[MT] @ [MT.x], [MT.y], [MT.z]" : "null"
 			info["area"] = MT ? "[MT.loc]" : "null"
+*/
 			info["antag"] = M.mind ? (M.mind.antagonist.len ? "Antag" : "Not antag") : "No mind"
 			info["hasbeenrev"] = M.mind ? M.mind.has_been_rev : "No mind"
 			info["stat"] = M.stat
