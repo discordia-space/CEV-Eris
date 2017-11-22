@@ -124,8 +124,7 @@
 	//Speaking
 	if(!client && speak_chance)
 		if(rand(0,200) < speak_chance)
-			var/msg = pick(emote_see)
-			src.visible_message("<span class='name'>[src]</span> [msg].")
+			visible_emote(emote_see)
 
 	//Atmos
 	var/atmos_suitable = 1
@@ -180,6 +179,12 @@
 	if(!atmos_suitable)
 		adjustBruteLoss(unsuitable_atoms_damage)
 	return 1
+
+/mob/living/simple_animal/proc/visible_emote(message)
+	if(islist(message))
+		message = safepick(message)
+	if(message)
+		visible_message("<span class='name'>[src]</span> [message].")
 
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)

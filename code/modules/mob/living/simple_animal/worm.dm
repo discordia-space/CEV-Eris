@@ -6,7 +6,7 @@
 	status_flags = 0
 
 	speak_emote = list("transmits") //not supposed to be used under AI control
-	emote_hear = list("transmits")  //I'm just adding it so it doesn't runtime if controlled by player who speaks
+	emote_see = list("transmits")  //I'm just adding it so it doesn't runtime if controlled by player who speaks
 
 	response_help  = "touches"
 	response_disarm = "flails at"

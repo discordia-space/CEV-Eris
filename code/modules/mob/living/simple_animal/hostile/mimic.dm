@@ -38,8 +38,7 @@
 /mob/living/simple_animal/hostile/mimic/FindTarget()
 	. = ..()
 	if(.)
-		var/msg1 = ("growls at [.]")
-		src.visible_message("<span class='name'>[src]</span> [msg1].")
+		visible_emote("growls at [.]")
 
 /mob/living/simple_animal/hostile/mimic/death()
 	..()

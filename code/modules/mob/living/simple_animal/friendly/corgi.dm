@@ -4,9 +4,7 @@
 	real_name = "corgi"
 	desc = "It's a corgi."
 	icon_state = "corgi"
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
 	speak_emote = list("barks", "woofs")
-	emote_hear = list("barks", "woofs", "yaps","pants")
 	emote_see = list("shakes its head", "shivers")
 	speak_chance = 1
 	turns_per_move = 10
@@ -75,8 +73,7 @@
 					if(isturf(movement_target.loc) )
 						UnarmedAttack(movement_target)
 					else if(ishuman(movement_target.loc) && prob(20))
-						var/msg1 = ("stares at the [movement_target] that [movement_target.loc] has with sad puppy eyes.")
-						src.visible_message("<span class='name'>[src]</span> [msg1].")
+						visible_emote("stares at the [movement_target] that [movement_target.loc] has with sad puppy eyes.")
 
 		if(prob(1))
 			var/msg2 = (pick("dances around","chases their tail"))

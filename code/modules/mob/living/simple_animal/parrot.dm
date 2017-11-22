@@ -34,10 +34,8 @@
 	pass_flags = PASSTABLE
 	mob_size = MOB_SMALL
 
-	speak = list("Hi","Hello!","Cracker?","BAWWWWK george mellons griffing me")
 	speak_emote = list("squawks","says","yells")
-	emote_hear = list("squawks","bawks")
-	emote_see = list("flutters its wings")
+	emote_see = list("flutters its wings","squawks","bawks")
 
 	speak_chance = 1//1% (1 in 100) chance every tick; So about once per 150 seconds, assuming an average tick is 1.5s
 	turns_per_move = 5
@@ -338,8 +336,7 @@
 			//Search for item to steal
 			parrot_interest = search_for_item()
 			if(parrot_interest)
-				var/msg1 = ("looks in [parrot_interest]'s direction and takes flight")
-				src.visible_message("<span class='name'>[src]</span> [msg1].")
+				visible_message("looks in [parrot_interest]'s direction and takes flight")
 				parrot_state = PARROT_SWOOP | PARROT_STEAL
 				icon_state = "parrot_fly"
 			return

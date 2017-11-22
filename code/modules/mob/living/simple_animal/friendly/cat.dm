@@ -3,9 +3,7 @@
 	name = "cat"
 	desc = "A domesticated, feline pet. Has a tendency to adopt crewmembers."
 	icon_state = "cat2"
-	speak = list("Meow!","Esp!","Purr!","HSSSSS")
 	speak_emote = list("purrs", "meows")
-	emote_hear = list("meows","mews")
 	emote_see = list("shakes their head", "shivers")
 	speak_chance = 1
 	turns_per_move = 5
@@ -31,8 +29,11 @@
 			for(var/mob/living/simple_animal/mouse/M in loc)
 				if(!M.stat)
 					M.splat()
-					var/msg1 = (pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
-					src.visible_message("<span class='name'>[src]</span> [msg1].")
+					visible_emote(pick(\
+						"bites \the [M]!",
+						"toys with \the [M].",
+						"chomps on \the [M]!"\
+					))
 					movement_target = null
 					stop_automated_movement = 0
 					break
@@ -42,7 +43,7 @@
 	for(var/mob/living/simple_animal/mouse/snack in oview(src,5))
 		if(snack.stat < DEAD && prob(15))
 			var/msg2 = (pick("hisses and spits!","mrowls fiercely!","eyes [snack] hungrily."))
-			src.visible_message("<span class='name'>[src]</span> [msg2].")
+			visible_emote("<span class='name'>[src]</span> [msg2].")
 		break
 
 	if(incapacitated())
@@ -68,8 +69,8 @@
 					visible += O
 			if(visible.len)
 				var/atom/A = pick(visible)
-				var/msg3 = ("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
-				src.visible_message("<span class='name'>[src]</span> [msg3].")
+				visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
+
 /mob/living/simple_animal/cat/proc/handle_movement_target()
 	//if our target is neither inside a turf or inside a human(???), stop
 	if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
@@ -182,8 +183,7 @@
 		if (friend.stat >= DEAD || friend.health <= config.health_threshold_softcrit)
 			if (prob((friend.stat < DEAD)? 50 : 15))
 				var/verb = pick("meows", "mews", "mrowls")
-				var/msg4 = (pick("[verb] in distress.", "[verb] anxiously."))
-				src.visible_message("<span class='name'>[src]</span> [msg4].")
+				visible_emote(pick("[verb] in distress.", "[verb] anxiously."))
 
 		else
 			if (prob(5))
@@ -195,8 +195,7 @@
 	else if (friend.health <= 50)
 		if (prob(10))
 			var/verb = pick("meows", "mews", "mrowls")
-			var/msg1 = ("[verb] anxiously.")
-			src.visible_message("<span class='name'>[src]</span> [msg1].")
+			visible_emote("[verb] anxiously.")
 
 /mob/living/simple_animal/cat/fluff/verb/friend()
 	set name = "Become Friends"
