@@ -262,7 +262,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 		var/limb = affecting.name
-		if(!(affecting.limb_name in list("l_arm","r_arm","l_leg","r_leg")))
+		if(!(affecting.organ_tag in list("l_arm","r_arm","l_leg","r_leg")))
 			user << SPAN_DANGER("You can't apply a splint there!")
 			return
 		if(affecting.status & ORGAN_SPLINTED)
@@ -271,7 +271,7 @@
 		if (M != user)
 			user.visible_message(SPAN_DANGER("[user] starts to apply \the [src] to [M]'s [limb]."), SPAN_DANGER("You start to apply \the [src] to [M]'s [limb]."), SPAN_DANGER("You hear something being wrapped."))
 		else
-			if((!user.hand && affecting.limb_name == "r_arm") || (user.hand && affecting.limb_name == "l_arm"))
+			if((!user.hand && affecting.organ_tag == "r_arm") || (user.hand && affecting.organ_tag == "l_arm"))
 				user << SPAN_DANGER("You can't apply a splint to the arm you're using!")
 				return
 			user.visible_message(SPAN_DANGER("[user] starts to apply \the [src] to their [limb]."), SPAN_DANGER("You start to apply \the [src] to your [limb]."), SPAN_DANGER("You hear something being wrapped."))

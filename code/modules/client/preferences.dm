@@ -243,11 +243,11 @@ datum/preferences
 		if(O)
 			O.status = 0
 			if(status == "amputated")
-				character.organs_by_name[O.limb_name] = null
+				character.organs_by_name[O.organ_tag] = null
 				character.organs -= O
 				if(O.children) // This might need to become recursive.
 					for(var/obj/item/organ/external/child in O.children)
-						character.organs_by_name[child.limb_name] = null
+						character.organs_by_name[child.organ_tag] = null
 						character.organs -= child
 
 			else if(status == "cyborg")

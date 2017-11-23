@@ -34,7 +34,6 @@
 	var/last_dam = -1
 	var/icon/mob_icon
 	var/gendered_icon = 0
-	var/limb_name
 	var/disfigured = 0
 	var/cannot_amputate
 	var/cannot_break
@@ -88,8 +87,7 @@
 
 /obj/item/organ/external/proc/set_description(var/datum/organ_description/desc)
 	src.name = desc.name
-	//src.organ_tag = desc.organ_tag
-	src.limb_name = desc.organ_tag
+	src.organ_tag = desc.organ_tag
 	src.amputation_point = desc.amputation_point
 	src.joint = desc.joint
 	src.max_damage = desc.max_damage
@@ -102,7 +100,7 @@
 	owner = target
 	forceMove(owner)
 	if(istype(owner))
-		owner.organs_by_name[limb_name] = src
+		owner.organs_by_name[organ_tag] = src
 		owner.organs |= src
 		for(var/obj/item/organ/organ in src)
 			organ.replaced(owner,src)

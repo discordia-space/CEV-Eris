@@ -4,7 +4,7 @@
 
 /obj/item/organ/external/chest
 	name = "upper body"
-	limb_name = "chest"
+	organ_tag = "chest"
 	icon_name = "torso"
 	max_damage = 100
 	min_broken_damage = 35
@@ -20,7 +20,7 @@
 
 /obj/item/organ/external/groin
 	name = "lower body"
-	limb_name = "groin"
+	organ_tag = "groin"
 	icon_name = "groin"
 	max_damage = 100
 	min_broken_damage = 35
@@ -33,7 +33,7 @@
 	dislocated = -1
 
 /obj/item/organ/external/head
-	limb_name = "head"
+	organ_tag = "head"
 	icon_name = "head"
 	name = "head"
 	max_damage = 75

@@ -19,13 +19,13 @@
 	if(owner)
 		gender = owner.gender == FEMALE ? "f" : "m"
 		body = owner.body_build.index
-	icon_state = "[limb_name]_[gender][body]"
+	icon_state = "[organ_tag]_[gender][body]"
 	mob_icon = icon(force_icon, icon_state)
 	return mob_icon
 
 /obj/item/organ/external/robotic/set_description(var/datum/organ_description/desc)
 	src.name = "[name] [desc.name]"
-	src.limb_name = desc.organ_tag
+	src.organ_tag = desc.organ_tag
 	src.amputation_point = desc.amputation_point
 	src.joint = desc.joint
 
