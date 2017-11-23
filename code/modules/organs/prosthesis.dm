@@ -10,7 +10,6 @@
 	var/construction_time = 100
 	var/list/construction_cost = list(DEFAULT_WALL_MATERIAL=18000)
 	var/list/part = null // Order of args is important for installing robolimbs.
-	var/allow_slim_body = 1
 	dir = SOUTH
 
 
