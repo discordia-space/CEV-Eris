@@ -3,9 +3,7 @@
 	name = "cat"
 	desc = "A domesticated, feline pet. Has a tendency to adopt crewmembers."
 	icon_state = "cat2"
-	speak = list("Meow!","Esp!","Purr!","HSSSSS")
 	speak_emote = list("purrs", "meows")
-	emote_hear = list("meows","mews")
 	emote_see = list("shakes their head", "shivers")
 	speak_chance = 1
 	turns_per_move = 5
@@ -31,7 +29,11 @@
 			for(var/mob/living/simple_animal/mouse/M in loc)
 				if(!M.stat)
 					M.splat()
-					visible_emote(pick("bites \the [M]!","toys with \the [M].","chomps on \the [M]!"))
+					visible_emote(pick(\
+						"bites \the [M]!",
+						"toys with \the [M].",
+						"chomps on \the [M]!"\
+					))
 					movement_target = null
 					stop_automated_movement = 0
 					break
@@ -40,7 +42,8 @@
 
 	for(var/mob/living/simple_animal/mouse/snack in oview(src,5))
 		if(snack.stat < DEAD && prob(15))
-			audible_emote(pick("hisses and spits!","mrowls fiercely!","eyes [snack] hungrily."))
+			var/msg2 = (pick("hisses and spits!","mrowls fiercely!","eyes [snack] hungrily."))
+			visible_emote("<span class='name'>[src]</span> [msg2].")
 		break
 
 	if(incapacitated())
@@ -180,17 +183,19 @@
 		if (friend.stat >= DEAD || friend.health <= config.health_threshold_softcrit)
 			if (prob((friend.stat < DEAD)? 50 : 15))
 				var/verb = pick("meows", "mews", "mrowls")
-				audible_emote(pick("[verb] in distress.", "[verb] anxiously."))
+				visible_emote(pick("[verb] in distress.", "[verb] anxiously."))
+
 		else
 			if (prob(5))
-				visible_emote(pick("nuzzles [friend].",
+				var/msg5 = (pick("nuzzles [friend].",
 								   "brushes against [friend].",
 								   "rubs against [friend].",
 								   "purrs."))
+				src.visible_message("<span class='name'>[src]</span> [msg5].")
 	else if (friend.health <= 50)
 		if (prob(10))
 			var/verb = pick("meows", "mews", "mrowls")
-			audible_emote("[verb] anxiously.")
+			visible_emote("[verb] anxiously.")
 
 /mob/living/simple_animal/cat/fluff/verb/friend()
 	set name = "Become Friends"

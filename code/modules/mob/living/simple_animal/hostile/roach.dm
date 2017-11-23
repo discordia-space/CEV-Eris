@@ -2,7 +2,8 @@
 	name = "Kampfer Roach"
 	desc = "A monstrous, dog-sized cockroach. These huge mutants can be everywhere where humans are, on ships, planets and stations."
 	icon_state = "roach"
-	speak_chance = 0
+	emote_see = list("chirps loudly", "cleans its whiskers with forelegs")
+	speak_chance = 5
 	turns_per_move = 3
 	response_help = "pets the"
 	response_disarm = "pushes aside"

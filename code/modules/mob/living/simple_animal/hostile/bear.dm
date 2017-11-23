@@ -4,9 +4,7 @@
 	desc = "RawrRawr!!"
 	icon_state = "bear"
 	icon_gib = "bear_gib"
-	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
-	emote_hear = list("rawrs","grumbles","grawls")
 	emote_see = list("stares ferociously", "stomps")
 	speak_chance = 1
 	turns_per_move = 5

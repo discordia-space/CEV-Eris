@@ -5,7 +5,6 @@
 	icon_state = "crab"
 	mob_size = MOB_SMALL
 	speak_emote = list("clicks")
-	emote_hear = list("clicks")
 	emote_see = list("clacks")
 	speak_chance = 1
 	turns_per_move = 5

@@ -34,10 +34,8 @@
 	pass_flags = PASSTABLE
 	mob_size = MOB_SMALL
 
-	speak = list("Hi","Hello!","Cracker?","BAWWWWK george mellons griffing me")
 	speak_emote = list("squawks","says","yells")
-	emote_hear = list("squawks","bawks")
-	emote_see = list("flutters its wings")
+	emote_see = list("flutters its wings","squawks","bawks")
 
 	speak_chance = 1//1% (1 in 100) chance every tick; So about once per 150 seconds, assuming an average tick is 1.5s
 	turns_per_move = 5
@@ -338,7 +336,7 @@
 			//Search for item to steal
 			parrot_interest = search_for_item()
 			if(parrot_interest)
-				visible_emote("looks in [parrot_interest]'s direction and takes flight")
+				visible_message("looks in [parrot_interest]'s direction and takes flight")
 				parrot_state = PARROT_SWOOP | PARROT_STEAL
 				icon_state = "parrot_fly"
 			return
@@ -360,7 +358,8 @@
 			if(AM)
 				if(istype(AM, /obj/item) || isliving(AM))	//If stealable item
 					parrot_interest = AM
-					visible_emote("turns and flies towards [parrot_interest]")
+					var/msg2 = ("turns and flies towards [parrot_interest]")
+					src.visible_message("<span class='name'>[src]</span> [msg2].")
 					parrot_state = PARROT_SWOOP | PARROT_STEAL
 					return
 				else	//Else it's a perch
@@ -474,11 +473,12 @@
 				var/obj/item/organ/external/affecting = H.get_organ(ran_zone(pick(parrot_dam_zone)))
 
 				H.apply_damage(damage, BRUTE, affecting, H.run_armor_check(affecting, "melee"), sharp=1)
-				visible_emote(pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
-
+				var/msg3 = (pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
+				src.visible_message("<span class='name'>[src]</span> [msg3].")
 			else
 				L.adjustBruteLoss(damage)
-				visible_emote(pick("pecks at [L].", "claws [L]."))
+				var/msg3 = (pick("pecks at [L].", "claws [L]."))
+				src.visible_message("<span class='name'>[src]</span> [msg3].")
 			return
 
 		//Otherwise, fly towards the mob!

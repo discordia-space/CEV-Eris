@@ -38,7 +38,7 @@
 /mob/living/simple_animal/hostile/mimic/FindTarget()
 	. = ..()
 	if(.)
-		audible_emote("growls at [.]")
+		visible_emote("growls at [.]")
 
 /mob/living/simple_animal/hostile/mimic/death()
 	..()
