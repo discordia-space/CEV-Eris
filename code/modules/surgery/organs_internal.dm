@@ -244,10 +244,7 @@
 		var/o_a =  (O.gender == PLURAL) ? "" : "a "
 		var/o_do = (O.gender == PLURAL) ? "don't" : "doesn't"
 
-		if(O.organ_tag == "limb")
-			return 0
-		else if(target.species.has_organ[O.organ_tag])
-
+		if(target.species.has_organ[O.organ_tag])
 			if(O.damage > (O.max_damage * 0.75))
 				user << SPAN_WARNING("\The [O.organ_tag] [o_is] in no state to be transplanted.")
 				return SURGERY_FAILURE
@@ -258,7 +255,7 @@
 				user << SPAN_WARNING("\The [target] already has [o_a][O.organ_tag].")
 				return SURGERY_FAILURE
 
-			if(O && affected.limb_name == O.parent_organ)
+			if(O && affected.organ_tag == O.parent_organ)
 				organ_compatible = 1
 			else
 				user << SPAN_WARNING("\The [O.organ_tag] [o_do] normally go in \the [affected.name].")

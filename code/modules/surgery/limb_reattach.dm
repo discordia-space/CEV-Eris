@@ -80,40 +80,44 @@
 		SPAN_WARNING(" Your hand slips, damaging [target]'s [E.amputation_point]!"))
 		target.apply_damage(10, BRUTE, null, sharp=1)
 
-/datum/surgery_step/limb/mechanize
-	allowed_tools = list(/obj/item/robot_parts = 100)
+/datum/surgery_step/limb/prosthesis
+	allowed_tools = list(/obj/item/prosthesis = 100)
 
 	min_duration = 80
 	max_duration = 100
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
-			var/obj/item/robot_parts/p = tool
+			var/obj/item/prosthesis/p = tool
 			if (p.part)
 				if (!(target_zone in p.part))
-					return 0
+					return FALSE
 			return isnull(target.get_organ(target_zone))
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		user.visible_message("[user] starts attaching \the [tool] to [target].", \
-		"You start attaching \the [tool] to [target].")
+		user.visible_message(
+			"[user] starts attaching \the [tool] to [target].",
+			"You start attaching \the [tool] to [target]."
+		)
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/robot_parts/L = tool
-		user.visible_message(SPAN_NOTICE("[user] has attached \the [tool] to [target]."),	\
-		SPAN_NOTICE("You have attached \the [tool] to [target]."))
+		var/obj/item/prosthesis/L = tool
+		user.visible_message(
+			SPAN_NOTICE("[user] has attached \the [tool] to [target]."),
+			SPAN_NOTICE("You have attached \the [tool] to [target].")
+		)
 
 		if(L.part)
 			for(var/part_name in L.part)
-				if(!isnull(target.get_organ(part_name)))
+				if(target.get_organ(part_name))
 					continue
-				var/list/organ_data = target.species.has_limbs["[part_name]"]
+				var/datum/organ_description/organ_data = target.species.has_limbs[part_name]
 				if(!organ_data)
 					continue
-				var/new_limb_type = organ_data["path"]
-				var/obj/item/organ/external/new_limb = new new_limb_type(target)
-				new_limb.robotize(L.model_info)
+				var/new_limb_type = L.part[part_name]
+				new new_limb_type(target, organ_data)
 
+		/*TODO:ORGANS should be called by organ in `installed()` don't forget remove*/
 		target.update_body()
 		target.updatehealth()
 		target.UpdateDamageIcon()
