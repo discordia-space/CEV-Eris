@@ -28,7 +28,7 @@
 		return
 	return
 
-/obj/effect/portal/New(loc, lifetime = 300)
+/obj/effect/portal/New(loc, lifetime)
 	..(loc)
 	spawn(lifetime)
 		qdel(src)
@@ -57,5 +57,5 @@
 	failchance = 0
 
 /obj/effect/portal/wormhole/New(loc, exit, lifetime)
-	..(loc, lifetime)
+	..(lifetime)
 	target = exit
