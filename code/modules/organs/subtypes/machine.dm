@@ -8,7 +8,7 @@
 	vital = 1
 
 /obj/item/organ/cell/New()
-	robotize()
+	status |= ORGAN_ROBOT|ORGAN_ASSISTED
 	..()
 
 /obj/item/organ/cell/replaced()
@@ -27,7 +27,7 @@
 	dead_icon = "camera_broken"
 
 /obj/item/organ/optical_sensor/New()
-	robotize()
+	status |= ORGAN_ROBOT|ORGAN_ASSISTED
 	..()
 
 // Used for an MMI or posibrain being installed into a human.
@@ -68,7 +68,7 @@
 			owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 
 /obj/item/organ/mmi_holder/posibrain/New()
-	robotize()
+	status |= ORGAN_ROBOT|ORGAN_ASSISTED
 	stored_mmi = new /obj/item/device/mmi/digital/posibrain(src)
 	..()
 	spawn(30)

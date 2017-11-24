@@ -34,7 +34,6 @@
 	var/last_dam = -1
 	var/icon/mob_icon
 	var/gendered_icon = 0
-	var/limb_name
 	var/disfigured = 0
 	var/cannot_amputate
 	var/cannot_break
@@ -88,8 +87,7 @@
 
 /obj/item/organ/external/proc/set_description(var/datum/organ_description/desc)
 	src.name = desc.name
-	//src.organ_tag = desc.organ_tag
-	src.limb_name = desc.organ_tag
+	src.organ_tag = desc.organ_tag
 	src.amputation_point = desc.amputation_point
 	src.joint = desc.joint
 	src.max_damage = desc.max_damage
@@ -102,7 +100,7 @@
 	owner = target
 	forceMove(owner)
 	if(istype(owner))
-		owner.organs_by_name[limb_name] = src
+		owner.organs_by_name[organ_tag] = src
 		owner.organs |= src
 		for(var/obj/item/organ/organ in src)
 			organ.replaced(owner,src)
@@ -263,12 +261,6 @@
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
 	return
-
-/obj/item/organ/external/robotize()
-	..()
-	//robit limbs take reduced damage
-	brute_mod = 0.8
-	burn_mod = 0.8
 
 /****************************************************
 			   DAMAGE PROCS
@@ -802,8 +794,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			parent_organ.update_damages()
 		else
 			var/obj/item/organ/external/stump/stump = new (victim, 0, src)
-			if(status & ORGAN_ROBOT)
-				stump.robotize()
 			stump.wounds |= W
 			victim.organs |= stump
 			stump.update_damages()
@@ -985,25 +975,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	status &= ~ORGAN_BROKEN
 	return 1
-
-/obj/item/organ/external/robotize(var/company)
-	..()
-
-	if(company)
-		model = company
-		var/datum/robolimb/R = all_robolimbs[company]
-		if(R)
-			force_icon = R.icon
-			name = "[R.company] [initial(name)]"
-			desc = "[R.desc]"
-
-	dislocated = -1 //TODO, make robotic limbs a separate type, remove snowflake
-	cannot_break = 1
-	update_icon(1)
-	unmutate()
-	for (var/obj/item/organ/external/T in children)
-		if(T)
-			T.robotize()
 
 /obj/item/organ/external/proc/mutate()
 	if(src.status & ORGAN_ROBOT)
