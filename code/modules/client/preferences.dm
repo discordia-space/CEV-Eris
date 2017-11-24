@@ -235,7 +235,6 @@ datum/preferences
 	// Build mob body from prefs
 	character.rebuild_organs(src)
 
-
 	character.all_underwear.Cut()
 
 	for(var/underwear_category_name in all_underwear)
