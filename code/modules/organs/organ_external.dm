@@ -262,12 +262,6 @@
 	damage = min(max_damage, (brute_dam + burn_dam))
 	return
 
-/obj/item/organ/external/robotize()
-	..()
-	//robit limbs take reduced damage
-	brute_mod = 0.8
-	burn_mod = 0.8
-
 /****************************************************
 			   DAMAGE PROCS
 ****************************************************/
@@ -800,8 +794,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			parent_organ.update_damages()
 		else
 			var/obj/item/organ/external/stump/stump = new (victim, 0, src)
-			if(status & ORGAN_ROBOT)
-				stump.robotize()
 			stump.wounds |= W
 			victim.organs |= stump
 			stump.update_damages()
@@ -983,25 +975,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	status &= ~ORGAN_BROKEN
 	return 1
-
-/obj/item/organ/external/robotize(var/company)
-	..()
-
-	if(company)
-		model = company
-		var/datum/robolimb/R = all_robolimbs[company]
-		if(R)
-			force_icon = R.icon
-			name = "[R.company] [initial(name)]"
-			desc = "[R.desc]"
-
-	dislocated = -1 //TODO, make robotic limbs a separate type, remove snowflake
-	cannot_break = 1
-	update_icon(1)
-	unmutate()
-	for (var/obj/item/organ/external/T in children)
-		if(T)
-			T.robotize()
 
 /obj/item/organ/external/proc/mutate()
 	if(src.status & ORGAN_ROBOT)
