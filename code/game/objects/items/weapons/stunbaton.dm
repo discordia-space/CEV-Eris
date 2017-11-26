@@ -14,35 +14,31 @@
 	attack_verb = list("beaten")
 	var/stunforce = 0
 	var/agonyforce = 60
-	var/status = 0		//whether the thing is on or not
-	var/obj/item/weapon/cell/large/bcell = null
-	var/hitcost = 1000	//oh god why do power cells carry so much charge? We probably need to make a distinction between "industrial" sized power cells for APCs and power cells for everything else.
+	var/status = FALSE		//whether the thing is on or not
+	var/hitcost = 100
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/weapon/melee/baton/New()
 	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/loaded/New() //this one starts with a cell pre-installed.
-	..()
-	bcell = new/obj/item/weapon/cell/large/high(src)
-	update_icon()
-	return
-
-/obj/item/weapon/melee/baton/proc/deductcharge(var/chrgdeductamt)
-	if(bcell)
-		if(bcell.checked_use(chrgdeductamt))
-			return 1
-		else
-			status = 0
-			update_icon()
-			return 0
+/obj/item/weapon/melee/baton/proc/deductcharge(var/power_drain)
+	if(!cell || !cell.checked_use(power_drain))
+		return TRUE
+	else
+		status = FALSE
+		update_icon()
+		return FALSE
 	return null
 
 /obj/item/weapon/melee/baton/update_icon()
 	if(status)
 		icon_state = "[initial(name)]_active"
-	else if(!bcell)
+	else if(!cell)
 		icon_state = "[initial(name)]_nocell"
 	else
 		icon_state = "[initial(name)]"
@@ -56,27 +52,27 @@
 	if(!..(user, 1))
 		return
 
-	if(bcell)
-		user <<SPAN_NOTICE("The baton is [round(bcell.percent())]% charged.")
-	if(!bcell)
+	if(cell)
+		user <<SPAN_NOTICE("The baton is [round(cell.percent())]% charged.")
+	if(!cell)
 		user <<SPAN_WARNING("The baton does not have a power source installed.")
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/cell/large))
-		if(!bcell)
+		if(!cell)
 			user.drop_item()
 			W.loc = src
-			bcell = W
+			cell = W
 			user << SPAN_NOTICE("You install a cell in [src].")
 			update_icon()
 		else
 			user << SPAN_NOTICE("[src] already has a cell.")
 
 	else if(istype(W, /obj/item/weapon/screwdriver))
-		if(bcell)
-			bcell.update_icon()
-			bcell.loc = get_turf(src.loc)
-			bcell = null
+		if(cell)
+			cell.update_icon()
+			cell.loc = get_turf(src.loc)
+			cell = null
 			user << SPAN_NOTICE("You remove the cell from the [src].")
 			status = 0
 			update_icon()
@@ -85,14 +81,14 @@
 	return
 
 /obj/item/weapon/melee/baton/attack_self(mob/user)
-	if(bcell && bcell.charge > hitcost)
+	if(cell && cell.charge > hitcost)
 		status = !status
 		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = 0
-		if(!bcell)
+		if(!cell)
 			user << SPAN_WARNING("[src] does not have a power source!")
 		else
 			user << SPAN_WARNING("[src] is out of charge.")
@@ -153,8 +149,8 @@
 			H.forcesay(hit_appends)
 
 /obj/item/weapon/melee/baton/emp_act(severity)
-	if(bcell)
-		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
+	if(cell)
+		cell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
 //secborg stun baton module
@@ -162,11 +158,19 @@
 	//try to find our power cell
 	var/mob/living/silicon/robot/R = loc
 	if (istype(R))
-		bcell = R.cell
+		cell = R.cell
 	return ..()
 
 /obj/item/weapon/melee/baton/robot/attackby(obj/item/weapon/W, mob/user)
 	return
+
+/obj/item/weapon/melee/baton/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/weapon/melee/baton/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/melee/baton/cattleprod
@@ -178,6 +182,6 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	stunforce = 0
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
-	hitcost = 2500
+	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null

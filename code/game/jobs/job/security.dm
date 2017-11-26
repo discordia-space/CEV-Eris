@@ -38,7 +38,7 @@
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/gun/energy/gun/martin,\
-		/obj/item/weapon/melee/baton/loaded
+		/obj/item/weapon/melee/baton
 	)
 
 	backpacks = list(
@@ -88,7 +88,7 @@
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/cell/small/high,\
-		/obj/item/weapon/melee/baton/loaded
+		/obj/item/weapon/melee/baton
 	)
 
 	backpacks = list(
@@ -218,7 +218,7 @@
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/cell/small/high,\
-		/obj/item/weapon/melee/baton/loaded
+		/obj/item/weapon/melee/baton
 	)
 
 	backpacks = list(
