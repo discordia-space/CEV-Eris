@@ -27,13 +27,13 @@
 	return
 
 /obj/item/weapon/melee/baton/proc/deductcharge(var/power_drain)
-	if(!cell || !cell.checked_use(power_drain))
-		return TRUE
-	else
-		status = FALSE
-		update_icon()
-		return FALSE
-	return null
+	if(cell)
+		if(cell.checked_use(power_drain))
+			return TRUE
+		else
+			status = FALSE
+			update_icon()
+			return FALSE
 
 /obj/item/weapon/melee/baton/update_icon()
 	if(status)
