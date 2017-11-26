@@ -27,7 +27,7 @@
 	pda = /obj/item/device/pda/heads/hos
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick/swat
+	gloves = /obj/item/clothing/gloves/stungloves
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/lamia
 	put_in_backpack = list(\
@@ -38,7 +38,6 @@
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/gun/energy/gun/martin,\
-		/obj/item/weapon/melee/baton
 	)
 
 	backpacks = list(
@@ -76,7 +75,7 @@
 	pda = /obj/item/device/pda/warden
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick/swat
+	gloves = /obj/item/clothing/gloves/stungloves
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 	put_in_backpack = list(\
@@ -88,7 +87,6 @@
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/cell/small/high,\
-		/obj/item/weapon/melee/baton
 	)
 
 	backpacks = list(
@@ -123,7 +121,7 @@
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
-	gloves = /obj/item/clothing/gloves/thick
+	gloves = /obj/item/clothing/gloves/stungloves
 	hat = /obj/item/clothing/head/det
 	suit = /obj/item/clothing/suit/storage/insp_trench
 	hand = /obj/item/weapon/storage/briefcase/crimekit
@@ -205,7 +203,7 @@
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick/swat
+	gloves = /obj/item/clothing/gloves/stungloves
 	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 
 	put_in_backpack = list(\
@@ -218,7 +216,6 @@
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/cell/small/high,\
-		/obj/item/weapon/melee/baton
 	)
 
 	backpacks = list(
