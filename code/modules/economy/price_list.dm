@@ -486,8 +486,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
 	price_tag = 10
 
-/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
-	price_tag = 40
 
 /obj/item/weapon/reagent_containers/food/snacks/chips
 	price_tag = 10
