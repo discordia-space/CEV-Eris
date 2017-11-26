@@ -31,6 +31,7 @@
 /obj/item/weapon/gun/energy/New()
 	..()
 	if(self_recharge)
+		cell = new cell_type(src)
 		processing_objects.Add(src)
 	update_icon()
 

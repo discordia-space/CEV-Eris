@@ -14,11 +14,6 @@
 	desc = "A poster condemning the station's security forces."
 	icon_state="poster3"
 
-/datum/poster/tg_4
-	name = "Lusty Xeno"
-	desc = "A heretical poster depicting the titular star of an equally heretical book."
-	icon_state="poster4"
-
 /datum/poster/tg_5
 	name = "Mercenary Recruitment Poster"
 	desc = "See the galaxy! Shatter corrupt megacorporations! Join today!"
