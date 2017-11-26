@@ -136,7 +136,7 @@
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/reagent_containers/spray/pepper(src)
 	new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-	new /obj/item/weapon/melee/baton/loaded(src)
+	new /obj/item/weapon/melee/baton(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/taperoll/police(src)
 	new /obj/item/device/hailer(src)
