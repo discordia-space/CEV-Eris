@@ -170,7 +170,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/standard/New()
 	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/weapon/melee/baton/loaded(src)
+	src.modules += new /obj/item/weapon/melee/baton(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
 	src.modules += new /obj/item/weapon/wrench(src)
 	src.modules += new /obj/item/weapon/crowbar(src)
@@ -417,8 +417,8 @@ var/global/list/robot_modules = list(
 	else
 		T.charge_tick = 0
 	var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules
-	if(B && B.bcell)
-		B.bcell.give(amount)
+	if(B && B.cell)
+		B.cell.give(amount)
 
 /obj/item/weapon/robot_module/janitor
 	name = "janitorial robot module"
