@@ -57,29 +57,6 @@
 	if(!cell)
 		user <<SPAN_WARNING("The baton does not have a power source installed.")
 
-/obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/cell/large))
-		if(!cell)
-			user.drop_item()
-			W.loc = src
-			cell = W
-			user << SPAN_NOTICE("You install a cell in [src].")
-			update_icon()
-		else
-			user << SPAN_NOTICE("[src] already has a cell.")
-
-	else if(istype(W, /obj/item/weapon/screwdriver))
-		if(cell)
-			cell.update_icon()
-			cell.loc = get_turf(src.loc)
-			cell = null
-			user << SPAN_NOTICE("You remove the cell from the [src].")
-			status = 0
-			update_icon()
-			return
-		..()
-	return
-
 /obj/item/weapon/melee/baton/attack_self(mob/user)
 	if(cell && cell.charge > hitcost)
 		status = !status
@@ -87,7 +64,7 @@
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
-		status = 0
+		status = FALSE
 		if(!cell)
 			user << SPAN_WARNING("[src] does not have a power source!")
 		else
