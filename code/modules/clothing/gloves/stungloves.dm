@@ -60,14 +60,6 @@
 /obj/item/clothing/gloves/stungloves/ui_action_click()
 	attack_self(usr)
 
-/obj/item/clothing/gloves/stungloves/attack(mob/M, mob/user)
-	if(status && (CLUMSY in user.mutations) && prob(50))
-		user << SPAN_DANGER("You accidentally hit yourself with the [src]!")
-		user.Weaken(30)
-		deductcharge(hitcost)
-		return
-	return ..()
-
 /obj/item/clothing/gloves/stungloves/Touch(mob/living/L, var/proximity)
 	if(!status)
 		return FALSE
