@@ -26,13 +26,6 @@
 	armor = list(melee = 10, bullet = 5, laser = 5, energy = 5, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
-/obj/item/clothing/shoes/jackboots/unathi
-	name = "toe-less jackboots"
-	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
-	item_state = "digiboots"
-	icon_state = "digiboots"
-	species_restricted = null
-
 /obj/item/clothing/shoes/workboots
 	name = "workboots"
 	desc = "A pair of steel-toed work boots designed for use in industrial settings. Safety first."

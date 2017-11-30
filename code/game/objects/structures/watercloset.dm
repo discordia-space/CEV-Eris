@@ -436,8 +436,8 @@
 
 	else if (istype(O, /obj/item/weapon/melee/baton))
 		var/obj/item/weapon/melee/baton/B = O
-		if(B.bcell)
-			if(B.bcell.charge > 0 && B.status == 1)
+		if(B.cell)
+			if(B.cell.charge > 0 && B.status == 1)
 				flick("baton_active", src)
 				user.Stun(10)
 				user.stuttering = 10
