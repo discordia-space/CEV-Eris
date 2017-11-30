@@ -111,7 +111,7 @@
 /obj/item/weapon/storage/belt/security
 	name = "security belt"
 	desc = "Can hold security gear like handcuffs and flashes."
-	icon_state = "securitybelt"
+	icon_state = "security"
 	item_state = "security"
 	can_hold = list(
 		/obj/item/weapon/grenade,
