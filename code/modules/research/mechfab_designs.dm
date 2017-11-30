@@ -96,6 +96,34 @@
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
 
+
+//Prosthesis ====================================
+
+/datum/design/item/mechfab/prosthesis
+	category = "Prosthesis"
+	materials = list(DEFAULT_WALL_MATERIAL = 18000)
+
+/datum/design/item/mechfab/prosthesis/r_arm
+	name = "right arm"
+	id = "prosthesis_simple_r_arm"
+	build_path = /obj/item/prosthesis/r_arm
+
+/datum/design/item/mechfab/prosthesis/l_arm
+	name = "left arm"
+	id = "prosthesis_simple_l_arm"
+	build_path = /obj/item/prosthesis/l_arm
+
+/datum/design/item/mechfab/prosthesis/r_leg
+	name = "right leg"
+	id = "prosthesis_simple_r_leg"
+	build_path = /obj/item/prosthesis/r_leg
+
+/datum/design/item/mechfab/prosthesis/l_leg
+	name = "left leg"
+	id = "prosthesis_simple_l_leg"
+	build_path = /obj/item/prosthesis/l_leg
+
+
 //Ripley ====================================
 
 /datum/design/item/mechfab/ripley
