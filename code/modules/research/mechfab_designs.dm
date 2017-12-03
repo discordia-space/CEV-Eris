@@ -6,13 +6,6 @@
 /datum/design/item/mechfab/robot
 	category = "Robot"
 
-//if the fabricator is a mech fab pass the manufacturer info over to the robot part constructor
-/datum/design/item/mechfab/robot/Fabricate(var/newloc, var/fabricator)
-	if(istype(fabricator, /obj/machinery/mecha_part_fabricator))
-		var/obj/machinery/mecha_part_fabricator/mechfab = fabricator
-		return new build_path(newloc, mechfab.manufacturer)
-	return ..()
-
 /datum/design/item/mechfab/robot/exoskeleton
 	name = "Robot exoskeleton"
 	id = "robot_exoskeleton"
@@ -95,6 +88,34 @@
 	name = "Armour plating"
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
+
+
+//Prosthesis ====================================
+
+/datum/design/item/mechfab/prosthesis
+	category = "Prosthesis"
+	materials = list(DEFAULT_WALL_MATERIAL = 18000)
+
+/datum/design/item/mechfab/prosthesis/r_arm
+	name = "right arm"
+	id = "prosthesis_simple_r_arm"
+	build_path = /obj/item/prosthesis/r_arm
+
+/datum/design/item/mechfab/prosthesis/l_arm
+	name = "left arm"
+	id = "prosthesis_simple_l_arm"
+	build_path = /obj/item/prosthesis/l_arm
+
+/datum/design/item/mechfab/prosthesis/r_leg
+	name = "right leg"
+	id = "prosthesis_simple_r_leg"
+	build_path = /obj/item/prosthesis/r_leg
+
+/datum/design/item/mechfab/prosthesis/l_leg
+	name = "left leg"
+	id = "prosthesis_simple_l_leg"
+	build_path = /obj/item/prosthesis/l_leg
+
 
 //Ripley ====================================
 
