@@ -63,7 +63,7 @@
 /obj/item/ammo_magazine
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
-	icon_state = "357"
+	icon_state = "place-holder-box"
 	icon = 'icons/obj/ammo.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -79,6 +79,7 @@
 	var/caliber = "357"
 	var/ammo_mag = "default"
 	var/max_ammo = 7
+	var/reload_delay = 0 //when we need to make reload slower
 
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
 	var/initial_ammo = null
@@ -101,7 +102,7 @@
 			stored_ammo += new ammo_type(src)
 	update_icon()
 
-/obj/item/ammo_magazine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(C.caliber != caliber)
@@ -110,9 +111,12 @@
 		if(stored_ammo.len >= max_ammo)
 			user << SPAN_WARNING("[src] is full!")
 			return
-		user.remove_from_mob(C)
-		C.loc = src
-		stored_ammo.Insert(1, C) //add to the head of the list
+		if(reload_delay)
+			user << SPAN_NOTICE("It takes some time to reload gun with [src]...")
+		if (do_after(user, reload_delay, user))
+			user.remove_from_mob(C)
+			C.loc = src
+			stored_ammo.Insert(1, C) //add to the head of the list
 		update_icon()
 
 /obj/item/ammo_magazine/attack_self(mob/user)
