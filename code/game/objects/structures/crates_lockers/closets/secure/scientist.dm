@@ -16,7 +16,7 @@
 
 
 /obj/structure/closet/secure_closet/reinforced/RD
-	name = "research director's locker"
+	name = "Moebius Expedition Overseer locker"
 	req_access = list(access_rd)
 	icon_state = "rd"
 

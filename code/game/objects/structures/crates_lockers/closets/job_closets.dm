@@ -70,17 +70,3 @@
 	new /obj/item/device/lightreplacer(src)
 	new /obj/item/weapon/storage/bag/trash(src)
 	new /obj/item/clothing/shoes/galoshes(src)
-
-/*
- * Lawyer
- */
-/obj/structure/closet/lawcloset
-	name = "legal closet"
-	desc = "It's a storage unit for courtroom apparel and items."
-	icon_door = "blue"
-
-
-/obj/structure/closet/lawcloset/populate_contents()
-	..()
-	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/clothing/shoes/black(src)
