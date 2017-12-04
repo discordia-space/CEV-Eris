@@ -193,6 +193,9 @@
 	else
 		user << SPAN_NOTICE("Access Denied")
 
+/obj/structure/closet/AltClick(mob/user as mob)
+	src.togglelock(user)
+
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
