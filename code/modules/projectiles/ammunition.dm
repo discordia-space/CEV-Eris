@@ -118,6 +118,21 @@
 			C.loc = src
 			stored_ammo.Insert(1, C) //add to the head of the list
 		update_icon()
+	else if(istype(W, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/other = W
+		if(!src.stored_ammo.len)
+			user << SPAN_WARNING("There is no ammo in [src]!")
+			return
+		if(!do_after(user, src.reload_delay, src))
+			user << SPAN_WARNING("You stop loading ammo into [other]")
+			return
+		for(var/obj/item/ammo in src.stored_ammo)
+			other.attackby(ammo, user)
+			if(ammo in other.stored_ammo)
+				src.stored_ammo -= ammo
+			else
+				return
+		user << SPAN_NOTICE("You're done here")
 
 /obj/item/ammo_magazine/attack_self(mob/user)
 	if(!stored_ammo.len)
@@ -169,4 +184,3 @@
 
 	magazine_icondata_keys["[M.type]"] = icon_keys
 	magazine_icondata_states["[M.type]"] = ammo_states
-
