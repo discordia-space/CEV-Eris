@@ -134,11 +134,19 @@
 				return
 		user << SPAN_NOTICE("You're done here")
 
+/obj/item/ammo_magazine/attack_hand(mob/living/user)
+	if(user.get_inactive_hand() == src && stored_ammo.len)
+		var/obj/item/ammo_casing/AC = stored_ammo[1]
+		if(user.put_in_active_hand(AC))
+			stored_ammo -= AC
+	else
+		return ..()
+
 /obj/item/ammo_magazine/attack_self(mob/user)
 	if(!stored_ammo.len)
 		user << SPAN_NOTICE("[src] is already empty!")
 		return
-	user << SPAN_NOTICE("You empty [src].")
+	user << SPAN_NOTICE("You take ammo from [src].")
 	for(var/obj/item/ammo_casing/C in stored_ammo)
 		C.loc = user.loc
 		C.set_dir(pick(cardinal))

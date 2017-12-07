@@ -68,7 +68,7 @@
 	icon_state = "box357"
 	matter = list(DEFAULT_WALL_MATERIAL = 1800)
 	caliber = "357"
-	ammo_type = /obj/item/ammo_casing/c38
+	ammo_type = /obj/item/ammo_casing/a357
 	max_ammo = 30
 
 /obj/item/ammo_magazine/ammobox/c44
