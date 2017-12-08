@@ -57,7 +57,7 @@
 	//cut some projectile damage here and not in projectile.dm, becouse we need not to all things what are using get_str_dam() becomes thin and weak.
 	//in general, bullets have 35-95 damage, and they are plased in ~30 bullets magazines, so 50*30 = 150, but plasteel walls have only 400 hp =|
 	//but you may also increase materials thickness or etc.
-	var/proj_damage = Proj.get_structure_damage() / 4//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
+	var/proj_damage = Proj.get_structure_damage() / 3//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	var/damage = min(proj_damage, 100)
