@@ -5,6 +5,7 @@
 /obj/random/gun_cheap/item_to_spawn()
 	return pick(prob(3);/obj/item/weapon/gun/projectile/mk58,\
 				prob(1);/obj/item/weapon/gun/projectile/mk58/wood,\
+				prob(1);/obj/item/weapon/gun/projectile/revolver/detective,\
 				prob(4);/obj/item/weapon/gun/projectile/giskard,\
 				prob(2);/obj/item/weapon/gun/projectile/shotgun/pump,\
 				prob(2);/obj/item/weapon/gun/projectile/olivaw)
