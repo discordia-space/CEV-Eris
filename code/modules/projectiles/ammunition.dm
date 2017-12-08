@@ -112,7 +112,7 @@
 			user << SPAN_WARNING("[src] is full!")
 			return
 		if(reload_delay)
-			user << SPAN_NOTICE("It takes some time to reload gun with [src]...")
+			user << SPAN_NOTICE("It takes some time to reload [src] with [C]...")
 		if (do_after(user, reload_delay, user))
 			user.remove_from_mob(C)
 			C.loc = src
