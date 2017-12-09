@@ -100,7 +100,7 @@
 
 /obj/structure/closet/wardrobe/yellow
 	name = "yellow wardrobe"
-	icon_door = "wardrobe-y"
+	icon_door = "yellow_door"
 
 /obj/structure/closet/wardrobe/yellow/populate_contents()
 	..()
@@ -166,7 +166,7 @@
 	name = "science wardrobe"
 	icon_door = "white"
 
-/obj/structure/closet/wardrobe/toxins_white/populate_contents()
+/obj/structure/closet/wardrobe/science_white/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/scientist(src)
 	new /obj/item/clothing/under/rank/scientist(src)
@@ -288,7 +288,7 @@
 
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"
-	icon_door = "syndicate1"
+	icon_door = "black_door"
 
 /obj/structure/closet/wardrobe/tactical/populate_contents()
 	..()
