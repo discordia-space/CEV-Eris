@@ -77,9 +77,9 @@
 	new /obj/item/clothing/gloves/stungloves(src)
 	new /obj/item/weapon/cell/medium/high(src)
 	new /obj/item/device/flash(src)
-	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
-	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
-	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
+	new /obj/item/ammo_magazine/cl44/rubber(src)
+	new /obj/item/ammo_magazine/cl44/rubber(src)
+	new /obj/item/ammo_magazine/cl44/rubber(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/gun/energy/gun/martin(src)
@@ -113,9 +113,9 @@
 	new /obj/item/clothing/gloves/stungloves(src)
 	new /obj/item/weapon/cell/medium/high(src)
 	new /obj/item/weapon/reagent_containers/spray/pepper(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/gun/energy/gun/martin(src)
@@ -150,9 +150,9 @@
 	new /obj/item/weapon/gun/projectile/shotgun/bull(src)
 	new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
 	new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
 
 
 
@@ -173,8 +173,8 @@
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/medspec(src)
 	new /obj/item/weapon/storage/briefcase/crimekit(src)
-	new /obj/item/ammo_magazine/mg/cl32/rubber(src)
-	new /obj/item/ammo_magazine/mg/cl32/rubber(src)
+	new /obj/item/ammo_magazine/cl32/rubber(src)
+	new /obj/item/ammo_magazine/cl32/rubber(src)
 
 
 
@@ -205,9 +205,9 @@
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/gun/projectile/revolver/consul(src)
 	new /obj/item/clothing/accessory/holster/armpit(src)
-	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
-	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
-	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
+	new /obj/item/ammo_magazine/sl44/rubber(src)
+	new /obj/item/ammo_magazine/sl44/rubber(src)
+	new /obj/item/ammo_magazine/sl44/rubber(src)
 
 
 

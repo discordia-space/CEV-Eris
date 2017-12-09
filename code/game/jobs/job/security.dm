@@ -31,8 +31,8 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/lamia
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/mg/cl44/rubber,\
-		/obj/item/ammo_magazine/mg/cl44/rubber,\
+		/obj/item/ammo_magazine/cl44/rubber,\
+		/obj/item/ammo_magazine/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/cell/small/high,\
@@ -79,8 +79,8 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/SMG_sol/rubber,\
-		/obj/item/ammo_magazine/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/sol65/rubber,\
+		/obj/item/ammo_magazine/sol65/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
@@ -128,8 +128,8 @@
 	belt = /obj/item/weapon/gun/projectile/revolver/consul
 
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/sl/cl44/rubber,\
-		/obj/item/ammo_magazine/sl/cl44/rubber,\
+		/obj/item/ammo_magazine/sl44/rubber,\
+		/obj/item/ammo_magazine/sl44/rubber,\
 		/obj/item/weapon/flame/lighter/zippo,\
 		/obj/item/weapon/storage/box/evidence,\
 		/obj/item/weapon/cell/small/high,\
@@ -168,8 +168,8 @@
 	belt = /obj/item/weapon/gun/projectile/olivaw
 
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/mg/cl32/rubber,\
-		/obj/item/ammo_magazine/mg/cl32/rubber,\
+		/obj/item/ammo_magazine/cl32/rubber,\
+		/obj/item/ammo_magazine/cl32/rubber,\
 		/obj/item/weapon/storage/box/evidence,\
 	)
 
@@ -209,8 +209,8 @@
 	put_in_backpack = list(\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/ammo_magazine/SMG_sol/rubber,\
-		/obj/item/ammo_magazine/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/sol65/rubber,\
+		/obj/item/ammo_magazine/sol65/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
