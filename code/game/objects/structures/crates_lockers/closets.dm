@@ -33,6 +33,8 @@
 							  //then open it in a populated area to crash clients.
 	var/open_sound = 'sound/machines/Custom_closetopen.ogg'
 	var/close_sound = 'sound/machines/Custom_closetclose.ogg'
+	var/lock_on_sound = 'sound/machines/door_lock_on.ogg'
+	var/lock_off_sound = 'sound/machines/door_lock_off.ogg'
 
 	var/store_misc = 1
 	var/store_items = 1
@@ -205,6 +207,10 @@
 		return
 
 	locked = newlocked
+	if(locked)
+		playsound(src.loc, lock_on_sound, 60, 1, -3)
+	else
+		playsound(src.loc, lock_off_sound, 60, 1, -3)
 	if(user)
 		for(var/mob/O in viewers(user, 3))
 			O.show_message( "<span class='notice'>The [ctype] has been [locked ? null : "un"]locked by [user].</span>", 1)
