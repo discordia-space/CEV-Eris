@@ -859,7 +859,7 @@ area/space/atmosalert()
 	icon_state = "construction"
 
 /area/hallway/secondary/entry
-	name = "\improper Arrival Shuttle Hallway"
+	name = "\improper Cryo Chamber Hallway"
 	icon_state = "entry_1"
 
 /area/hallway/secondary/entry/fore

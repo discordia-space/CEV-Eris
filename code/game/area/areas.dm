@@ -150,7 +150,6 @@
 /area/proc/updateicon()
 	if ((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire)
-			//icon_state = "blue"
 			for(var/obj/machinery/light/L in src)
 				if(istype(L, /obj/machinery/light/small))
 					continue
@@ -161,11 +160,12 @@
 					continue
 				L.set_blue()
 		else if(!fire && eject && !party && !(atmosalm == 2))
-			icon_state = "red"
+			for(var/obj/machinery/light/L in src)
+				if(istype(L, /obj/machinery/light/small))
+					continue
+				L.set_red()
 		else if(party && !fire && !eject && !(atmosalm == 2))
 			icon_state = "party"
-		//else
-			//icon_state = "blue-red"
 	else
 	//	new lighting behaviour with obj lights
 		icon_state = null
