@@ -74,7 +74,7 @@
 		var/mob/living/L = against
 		L.IgniteMob()
 
-	playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.wav',100,1)
+	playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.ogg',100,1)
 	src.transfer_fingerprints_to(B)
 
 	qdel(src)

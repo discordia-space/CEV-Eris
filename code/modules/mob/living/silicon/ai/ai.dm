@@ -54,6 +54,7 @@ var/list/ai_verbs_default = list(
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
+	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/multitool/aiMulti = null
 	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
