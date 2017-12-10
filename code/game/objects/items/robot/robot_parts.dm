@@ -1,12 +1,11 @@
 /obj/item/robot_parts
 	name = "robot parts"
+	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon = 'icons/obj/robot_parts.dmi'
 	item_state = "buildpipe"
 	icon_state = "blank"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	var/list/part = null // Order of args is important for installing robolimbs.
-	var/model_info
 	dir = SOUTH
 
 /obj/item/robot_parts/set_dir()
@@ -14,50 +13,28 @@
 
 /obj/item/robot_parts/New(var/newloc, var/model)
 	..(newloc)
-	if(model_info && model)
-		model_info = model
-		var/datum/robolimb/R = all_robolimbs[model]
-		if(R)
-			name = "[R.company] [initial(name)]"
-			desc = "[R.desc]"
-			if(icon_state in icon_states(R.icon))
-				icon = R.icon
-	else
-		name = "robot [initial(name)]"
+	name = "robot [initial(name)]"
 
 /obj/item/robot_parts/l_arm
 	name = "left arm"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_arm"
-	part = list("l_arm","l_hand")
-	model_info = 1
 
 /obj/item/robot_parts/r_arm
 	name = "right arm"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_arm"
-	part = list("r_arm","r_hand")
-	model_info = 1
 
 /obj/item/robot_parts/l_leg
 	name = "left leg"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_leg"
-	part = list("l_leg","l_foot")
-	model_info = 1
 
 /obj/item/robot_parts/r_leg
 	name = "right leg"
-	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_leg"
-	part = list("r_leg","r_foot")
-	model_info = 1
 
 /obj/item/robot_parts/chest
 	name = "torso"
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
 	icon_state = "chest"
-	part = list("groin","chest")
 	var/wires = 0.0
 	var/obj/item/weapon/cell/large/cell = null
 
@@ -65,7 +42,6 @@
 	name = "head"
 	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals."
 	icon_state = "head"
-	part = list("head")
 	var/obj/item/device/flash/flash1 = null
 	var/obj/item/device/flash/flash2 = null
 

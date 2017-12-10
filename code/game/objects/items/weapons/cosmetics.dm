@@ -1,7 +1,7 @@
 /obj/item/weapon/lipstick
 	gender = PLURAL
 	name = "red lipstick"
-	desc = "A generic brand of lipstick."
+	desc = "A generic brand of lipstick. You can wipe off lipstick with paper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "lipstick"
 	w_class = ITEM_SIZE_TINY
@@ -72,7 +72,7 @@
 
 /obj/item/weapon/haircomb //sparklysheep's comb
 	name = "purple comb"
-	desc = "A pristine purple comb made from flexible plastic."
+	desc = "A pristine purple comb made from flexible plastic. You can wipe off lipstick with paper"
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	icon = 'icons/obj/items.dmi'

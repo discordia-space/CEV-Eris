@@ -319,7 +319,7 @@
 
 /datum/autolathe/recipe/magazine_revolver_1
 	name = "ammunition (.357)"
-	path = /obj/item/ammo_magazine/a357
+	path = /obj/item/ammo_magazine/sl357
 	hidden = 1
 	category = "Arms and Ammunition"
 
@@ -432,44 +432,44 @@
 
 /datum/autolathe/recipe/SMG_sol_rubber
 	name = "magazine (9mm rubber)"
-	path = /obj/item/ammo_magazine/SMG_sol/rubber
+	path = /obj/item/ammo_magazine/sol65/rubber
 	category = "Arms and Ammunition"
 
 /datum/autolathe/recipe/SMG_sol_brute
 	name = "magazine (9mm hollow point)"
-	path = /obj/item/ammo_magazine/SMG_sol/brute
+	path = /obj/item/ammo_magazine/sol65
 	hidden = 1
 	category = "Arms and Ammunition"
 
 /datum/autolathe/recipe/sl_cl44_rubber
 	name = "speed loader (.44 rubber)"
-	path = /obj/item/ammo_magazine/sl/cl44/rubber
+	path = /obj/item/ammo_magazine/sl44/rubber
 	category = "Arms and Ammunition"
 
 /datum/autolathe/recipe/sl_cl44_brute
 	name = "speed loader (.44 hollow point)"
-	path = /obj/item/ammo_magazine/sl/cl44/brute
+	path = /obj/item/ammo_magazine/sl44
 	hidden = 1
 	category = "Arms and Ammunition"
 
 /datum/autolathe/recipe/mg_cl44_rubber
 	name = "magazine (.44 rubber)"
-	path = /obj/item/ammo_magazine/mg/cl44/rubber
+	path = /obj/item/ammo_magazine/cl44/rubber
 	category = "Arms and Ammunition"
 
 /datum/autolathe/recipe/mg_cl44_brute
 	name = "magazine (.44 hollow point)"
-	path = /obj/item/ammo_magazine/mg/cl44/brute
+	path = /obj/item/ammo_magazine/cl44
 	hidden = 1
 	category = "Arms and Ammunition"
 
 /datum/autolathe/recipe/mg_cl32_rubber
 	name = "magazine (.32 rubber)"
-	path = /obj/item/ammo_magazine/mg/cl32/rubber
+	path = /obj/item/ammo_magazine/cl32/rubber
 	category = "Arms and Ammunition"
 
 /datum/autolathe/recipe/mg_cl32_brute
 	name = "magazine (.32 hollow point)"
-	path = /obj/item/ammo_magazine/mg/cl32/brute
+	path = /obj/item/ammo_magazine/cl32
 	hidden = 1
 	category = "Arms and Ammunition"

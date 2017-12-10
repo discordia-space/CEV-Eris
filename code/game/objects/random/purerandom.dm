@@ -122,11 +122,16 @@
 				prob(1);/obj/item/weapon/stock_parts/subspace/treatment,\
 				prob(1);/obj/item/weapon/aiModule/reset,\
 				prob(1);/obj/item/weapon/circuitboard/autolathe,\
-				prob(1);/obj/item/ammo_magazine/mg/cl32/rubber,\
-				prob(1);/obj/item/ammo_magazine/mg/cl32/brute,\
+				prob(1);/obj/item/ammo_magazine/cl32/rubber,\
+				prob(1);/obj/item/ammo_magazine/cl32,\
+				prob(1);/obj/item/ammo_magazine/sl357,\
+				prob(1);/obj/item/ammo_magazine/sl38,\
+				prob(1);/obj/item/ammo_magazine/sl38/rubber,\
 				prob(1);/obj/item/weapon/flamethrower,\
 				prob(1);/obj/item/weapon/gun/projectile/mk58,\
-				prob(1);/obj/item/weapon/gun/projectile/giskard)
+				prob(1);/obj/item/weapon/gun/projectile/giskard,\
+				prob(1);/obj/item/weapon/gun/projectile/revolver/deckard,\
+				prob(1);/obj/item/weapon/gun/projectile/revolver/detective)
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

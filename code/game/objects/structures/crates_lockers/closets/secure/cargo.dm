@@ -1,9 +1,9 @@
-/obj/structure/closet/secure_closet/cargotech
+/obj/structure/closet/secure_closet/personal/cargotech
 	name = "guild technician's locker"
 	req_access = list(access_cargo)
 	icon_state = "cargo"
 
-/obj/structure/closet/secure_closet/cargotech/populate_contents()
+/obj/structure/closet/secure_closet/personal/cargotech/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/black(src)
@@ -12,13 +12,13 @@
 	new /obj/item/clothing/head/soft(src)
 	new /obj/item/device/export_scanner(src)
 
-/obj/structure/closet/secure_closet/reinforced/quartermaster
+/obj/structure/closet/secure_closet/personal/reinforced/quartermaster
 	name = "guild merchant's locker"
 	req_access = list(access_merchant)
 	icon_state = "qm"
 
 
-/obj/structure/closet/secure_closet/reinforced/quartermaster/populate_contents()
+/obj/structure/closet/secure_closet/personal/reinforced/quartermaster/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/color/brown(src)
