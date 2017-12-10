@@ -940,18 +940,16 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
-	//req_access = list(access_maint_tunnels) //Maintenance access
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/crowbar = 5,/obj/item/weapon/weldingtool = 3,/obj/item/weapon/wirecutters = 5,
-					/obj/item/weapon/wrench = 5,/obj/item/device/analyzer = 5,/obj/item/device/t_scanner = 5,/obj/item/weapon/screwdriver = 5)
-	contraband = list(/obj/item/weapon/weldingtool/hugetank = 2,/obj/item/clothing/gloves/insulated/cheap  = 2)
-	premium = list(/obj/item/clothing/gloves/insulated = 1)
+					/obj/item/weapon/wrench = 5,/obj/item/device/analyzer = 5,/obj/item/device/t_scanner = 5, /obj/item/weapon/screwdriver = 5, /obj/item/weapon/weldingtool/hugetank = 2,/obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1)
+	prices = list(/obj/item/stack/cable_coil/random = 100,/obj/item/weapon/crowbar = 30,/obj/item/weapon/weldingtool = 30,/obj/item/weapon/wirecutters = 30,
+					/obj/item/weapon/wrench = 30,/obj/item/device/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/screwdriver = 30, /obj/item/weapon/weldingtool/hugetank = 150, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	req_access = list(access_engine_equip)
 	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
@@ -962,16 +960,18 @@
 	desc = "Everything you need for do-it-yourself station repair."
 	icon_state = "engi"
 	icon_deny = "engi-deny"
-	req_access = list(access_engine_equip)
-	products = list(/obj/item/clothing/under/rank/exultant = 4,/obj/item/clothing/under/rank/engineer = 4,/obj/item/clothing/shoes/color/orange = 4,/obj/item/clothing/head/hardhat = 4,
+	products = list(/obj/item/clothing/head/hardhat = 4,
 					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/screwdriver = 12,
 					/obj/item/weapon/crowbar = 12,/obj/item/weapon/wirecutters = 12,/obj/item/device/multitool = 12,/obj/item/weapon/wrench = 12,/obj/item/device/t_scanner = 12,
 					/obj/item/stack/cable_coil/heavyduty = 8, /obj/item/weapon/cell/large = 8, /obj/item/weapon/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5,/obj/item/weapon/stock_parts/micro_laser = 5,
 					/obj/item/weapon/stock_parts/matter_bin = 5,/obj/item/weapon/stock_parts/manipulator = 5,/obj/item/weapon/stock_parts/console_screen = 5)
-	// There was an incorrect entry (cablecoil/power).  I improvised to cablecoil/heavyduty.
-	// Another invalid entry, /obj/item/weapon/circuitry.  I don't even know what that would translate to, removed it.
-	// The original products list wasn't finished.  The ones without given quantities became quantity 5.  -Sayu
+	prices = list(/obj/item/clothing/head/hardhat = 4,
+					/obj/item/weapon/storage/belt/utility = 150,/obj/item/clothing/glasses/meson = 300,/obj/item/clothing/gloves/insulated = 600, /obj/item/weapon/screwdriver = 30,
+					/obj/item/weapon/crowbar = 30,/obj/item/weapon/wirecutters = 30,/obj/item/device/multitool = 40,/obj/item/weapon/wrench = 40,/obj/item/device/t_scanner = 50,
+					/obj/item/stack/cable_coil/heavyduty = 100, /obj/item/weapon/cell/large = 500, /obj/item/weapon/weldingtool = 40,/obj/item/clothing/head/welding = 80,
+					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 150, /obj/item/weapon/stock_parts/scanning_module = 40,/obj/item/weapon/stock_parts/micro_laser = 40,
+					/obj/item/weapon/stock_parts/matter_bin = 40,/obj/item/weapon/stock_parts/manipulator = 40,/obj/item/weapon/stock_parts/console_screen = 40)
 
 //This one's from bay12
 /obj/machinery/vending/robotics
@@ -979,12 +979,10 @@
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
-	req_access = list(access_robotics)
 	products = list(/obj/item/clothing/suit/storage/toggle/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/device/flash = 4,
 					/obj/item/weapon/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/healthanalyzer = 3,
 					/obj/item/weapon/scalpel = 2,/obj/item/weapon/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/screwdriver = 5,/obj/item/weapon/crowbar = 5)
-	//everything after the power cell had no amounts, I improvised.  -Sayu
 
 //FOR ACTORS GUILD - mainly props that cannot be spawned otherwise
 /obj/machinery/vending/props
