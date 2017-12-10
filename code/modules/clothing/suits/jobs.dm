@@ -67,11 +67,23 @@
 
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
-	name = "preacher hoodie"
+	name = "preacher coat"
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
-	body_parts_covered = UPPER_TORSO|ARMS
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	allowed = list(
+		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,
+		/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
+		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,
+		/obj/item/device/analyzer, /obj/item/device/multitool, /obj/item/device/pipe_painter,
+		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/crowbar,
+		/obj/item/weapon/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/wirecutters,
+		/obj/item/weapon/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
+		/obj/item/taperoll/engineering
+	)
+	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 //Chaplain
 /obj/item/clothing/suit/nun
