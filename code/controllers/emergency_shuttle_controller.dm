@@ -78,7 +78,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 	emergency_pods_armed.Announce("An emergency evacuation sequence has been started. You have approximately [round(estimate_prepare_time()/60)] minutes to prepare for departure.")
 	for(var/area/A in world)
-		if(istype(A, /area/hallway))
+		if(istype(A, /area/hallway) || istype(A, /area/eris/hallway))
 			A.readyalert()
 
 	//arm the pods
@@ -93,7 +93,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	pods_armed = FALSE
 
 	for(var/area/A in world)
-		if(istype(A, /area/hallway))
+		if(istype(A, /area/hallway) || istype(A, /area/eris/hallway))
 			A.readyreset()
 
 	//unarm the pods
