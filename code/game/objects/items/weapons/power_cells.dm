@@ -85,10 +85,6 @@
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0
-
-	if(charge >= maxcharge)
-		return 0 // check if we actually need to recharge
-
 	give(maxcharge * 0.04)
 	update_icon()
 	return 1
@@ -186,10 +182,6 @@
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0
-
-	if(charge >= maxcharge)
-		return 0 // check if we actually need to recharge
-
 	give(maxcharge * 0.04)
 	update_icon()
 	return 1
@@ -266,10 +258,6 @@
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0
-
-	if(charge >= maxcharge)
-		return 0 // check if we actually need to recharge
-
 	give(maxcharge * 0.04)
 	update_icon()
 	return 1
