@@ -22,6 +22,7 @@
 	locked = FALSE
 	..()
 
-/obj/structure/closet/secure_closet/reinforced
+/obj/structure/closet/secure_closet/personal/reinforced
 	icon = 'icons/obj/closet.dmi'
+	icon_state = "hop"
 	icon_lock = "reinforced"
