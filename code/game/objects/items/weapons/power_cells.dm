@@ -81,6 +81,10 @@
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 13000
 
+/obj/item/weapon/cell/large/moebius/nuclear/New()
+	..()
+	processing_objects |= src
+
 /obj/item/weapon/cell/large/moebius/nuclear/process()
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
@@ -178,6 +182,10 @@
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1000
 
+/obj/item/weapon/cell/medium/moebius/nuclear/New()
+	..()
+	processing_objects |= src
+
 /obj/item/weapon/cell/medium/moebius/nuclear/process()
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
@@ -253,6 +261,10 @@
 	icon_state = "meb_s_nu"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 300
+
+/obj/item/weapon/cell/small/moebius/nuclear/New()
+	..()
+	processing_objects |= src
 
 /obj/item/weapon/cell/small/moebius/nuclear/process()
 	charge_tick++
