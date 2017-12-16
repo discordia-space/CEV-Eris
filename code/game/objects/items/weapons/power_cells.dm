@@ -14,9 +14,23 @@
 	var/maxcharge = 100
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
+	var/autorecharging = FALSE //For nucclear cells
 	var/recharge_time = 4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+
+/obj/item/weapon/cell/initialize()
+	..()
+	if(autorecharging)
+		processing_objects |= src
+
+/obj/item/weapon/cell/process()
+	charge_tick++
+	if(charge_tick < recharge_time) return 0
+	charge_tick = 0
+	give(maxcharge * 0.04)
+	update_icon()
+	return 1
 
 //BIG CELLS - for APC, borgs and machinery.
 
@@ -78,20 +92,9 @@
 	name = "Moebius \"Atomcell 13000L\""
 	desc = "Moebius Laboratories branded rechargeable L-standardized power cell. This version able to recharge itself over time."
 	icon_state = "meb_b_nu"
+	autorecharging = TRUE
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 13000
-
-/obj/item/weapon/cell/large/moebius/nuclear/New()
-	..()
-	processing_objects |= src
-
-/obj/item/weapon/cell/large/moebius/nuclear/process()
-	charge_tick++
-	if(charge_tick < recharge_time) return 0
-	charge_tick = 0
-	give(maxcharge * 0.04)
-	update_icon()
-	return 1
 
 //Meme cells - for fun and cancer
 
@@ -179,20 +182,9 @@
 	name = "Moebius \"Atomcell 1000M\""
 	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. This version able to recharge itself over time."
 	icon_state = "meb_m_nu"
+	autorecharging = TRUE
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1000
-
-/obj/item/weapon/cell/medium/moebius/nuclear/New()
-	..()
-	processing_objects |= src
-
-/obj/item/weapon/cell/medium/moebius/nuclear/process()
-	charge_tick++
-	if(charge_tick < recharge_time) return 0
-	charge_tick = 0
-	give(maxcharge * 0.04)
-	update_icon()
-	return 1
 
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
 
@@ -259,17 +251,6 @@
 	name = "Moebius \"Atomcell 300S\""
 	desc = "Moebius Laboratories branded rechargeable S-standardized power cell. This version able to recharge itself over time."
 	icon_state = "meb_s_nu"
+	autorecharging = TRUE
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 300
-
-/obj/item/weapon/cell/small/moebius/nuclear/New()
-	..()
-	processing_objects |= src
-
-/obj/item/weapon/cell/small/moebius/nuclear/process()
-	charge_tick++
-	if(charge_tick < recharge_time) return 0
-	charge_tick = 0
-	give(maxcharge * 0.04)
-	update_icon()
-	return 1
