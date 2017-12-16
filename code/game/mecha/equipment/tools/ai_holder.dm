@@ -12,14 +12,20 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/go_out()
 	chassis.occupant = null
+	chassis.reset_icon()
+
 	occupant.set_mecha(null)
 	if(occupant.eyeobj)
 		occupant.eyeobj.setLoc(chassis)
+	else
+		var/mob/living/silicon/ai/AI = occupant
+		AI.create_eyeobj(get_turf(src))
+
 	occupant = null
 	if(prev_occupant)
 		chassis.occupant = prev_occupant
 		prev_occupant.forceMove(chassis)
-	qdel(Cam)
+
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/occupied(var/mob/living/silicon/ai/AI)
 	if(chassis.occupant && !isAI(chassis.occupant))
@@ -29,24 +35,34 @@
 	occupant = AI
 	chassis.occupant = occupant
 	chassis.reset_icon()
-	Cam = PoolOrNew(/obj/machinery/camera)
-	Cam.c_tag = chassis.name
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/interact(var/mob/living/silicon/ai/user)
-	if(!istype(user) || !chassis)
+	world << "Enter"
+	if(!chassis)
+		world << "No chasis"
 		return
 	if(occupant)
+		world << "OC exist"
 		if(occupant == user)
 			go_out()
 		else
 			user << "Controller is already occupied!"
 	else
-		occupied(user)
+		world << "No OC"
+		if(isAI(user))
+			world << "user is AI"
+			occupied(user)
+	world << "Exit"
+
+/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/attach()
+	..()
+	Cam = PoolOrNew(/obj/machinery/camera)
+	Cam.c_tag = chassis.name
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/detach()
 	if(occupant)
 		go_out()
-
+	qdel(Cam)
 
 
 /obj/mecha/attack_ai(var/mob/living/user)
@@ -55,8 +71,10 @@
 		AH.interact(user)
 
 /mob/living/silicon/ai/proc/set_mecha(var/obj/mecha/M)
-	if(M && controlled_mech == M)
-		return
-	if(controlled_mech)
-		controlled_mech.go_out()
+	if(M)
+		if(controlled_mech == M)
+			return
+		if(controlled_mech)
+			controlled_mech.go_out()
+		destroy_eyeobj(M)
 	controlled_mech = M

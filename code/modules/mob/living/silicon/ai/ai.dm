@@ -445,14 +445,18 @@ var/list/ai_verbs_default = list(
 	return
 
 /mob/living/silicon/ai/reset_view(atom/A)
+	if(controlled_mech)
+		return ..(controlled_mech)
 	if(camera)
 		camera.set_light(0)
 	if(istype(A,/obj/machinery/camera))
 		camera = A
 	..()
 	if(istype(A,/obj/machinery/camera))
-		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
-		else				A.set_light(0)
+		if(camera_light_on)
+			A.set_light(AI_CAMERA_LUMINOSITY)
+		else
+			A.set_light(0)
 
 
 /mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)
