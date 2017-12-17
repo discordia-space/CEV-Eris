@@ -90,30 +90,6 @@
 		icon_state = "waterballoon-e"
 		item_state = "balloon-empty"
 
-/obj/item/toy/syndicateballoon
-	name = "criminal balloon"
-	desc = "There is a tag on the back that reads \"FUK NT!11!\"."
-	throwforce = 0
-	throw_speed = 4
-	throw_range = 20
-	force = 0
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "syndballoon"
-	item_state = "syndballoon"
-	w_class = ITEM_SIZE_LARGE
-
-/obj/item/toy/nanotrasenballoon
-	name = "criminal balloon"
-	desc = "Across the balloon the following is printed: \"Man, I love NanoTrasen soooo much. I use only NT products. You have NO idea.\""
-	throwforce = 0
-	throw_speed = 4
-	throw_range = 20
-	force = 0
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "ntballoon"
-	item_state = "ntballoon"
-	w_class = ITEM_SIZE_LARGE
-
 /*
  * Fake telebeacon
  */
@@ -846,18 +822,6 @@
 	item_state = "cultblade"
 	w_class = ITEM_SIZE_LARGE
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
-
-/* NYET.
-/obj/item/weapon/toddler
-	icon_state = "toddler"
-	name = "toddler"
-	desc = "This baby looks almost real. Wait, did it just burp?"
-	force = 5
-	w_class = ITEM_SIZE_LARGE
-	slot_flags = SLOT_BACK
-*/
-
-//This should really be somewhere else but I don't know where. w/e
 
 /obj/item/weapon/inflatable_duck
 	name = "inflatable duck"
