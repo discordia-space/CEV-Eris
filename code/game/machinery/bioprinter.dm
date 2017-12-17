@@ -17,7 +17,7 @@
 	var/max_matter = 300
 	var/loaded_dna //Blood sample for DNA hashing.
 	var/list/products = list(
-		"heart" =   list(/obj/item/organ/heart,  50),
+		O_HEART =   list(/obj/item/organ/internal/heart,  50),
 		"lungs" =   list(/obj/item/organ/lungs,  40),
 		"kidneys" = list(/obj/item/organ/kidneys,20),
 		O_EYES =    list(/obj/item/organ/internal/eyes,   30),

@@ -46,7 +46,7 @@
 	vision_flags = SEE_SELF|SEE_MOBS
 
 	has_organ = list(
-		"heart" =           /obj/item/organ/heart,
+		O_HEART =           /obj/item/organ/internal/heart,
 		"brain" =           /obj/item/organ/brain/xeno,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel,
 		"hive node" =       /obj/item/organ/xenos/hivenode,
@@ -150,7 +150,7 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_drone.dmi'
 
 	has_organ = list(
-		"heart" =           /obj/item/organ/heart,
+		O_HEART =           /obj/item/organ/internal/heart,
 		"brain" =           /obj/item/organ/brain/xeno,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel/queen,
 		"acid gland" =      /obj/item/organ/xenos/acidgland,
@@ -188,7 +188,7 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
 
 	has_organ = list(
-		"heart" =           /obj/item/organ/heart,
+		O_HEART =           /obj/item/organ/internal/heart,
 		"brain" =           /obj/item/organ/brain/xeno,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel/hunter,
 		"hive node" =       /obj/item/organ/xenos/hivenode,
@@ -215,7 +215,7 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
 
 	has_organ = list(
-		"heart" =           /obj/item/organ/heart,
+		O_HEART =           /obj/item/organ/internal/heart,
 		"brain" =           /obj/item/organ/brain/xeno,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel/sentinel,
 		"acid gland" =      /obj/item/organ/xenos/acidgland,
@@ -246,7 +246,7 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_queen.dmi'
 
 	has_organ = list(
-		"heart" =           /obj/item/organ/heart,
+		O_HEART =           /obj/item/organ/internal/heart,
 		"brain" =           /obj/item/organ/brain/xeno,
 		"egg sac" =         /obj/item/organ/xenos/eggsac,
 		"plasma vessel" =   /obj/item/organ/xenos/plasmavessel/queen,
