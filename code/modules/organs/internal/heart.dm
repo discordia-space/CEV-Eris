@@ -67,7 +67,7 @@
 	switch(blood_volume)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			if(prob(1))
-				owner << "<span class='warning'>You feel [pick("dizzy","woosey","faint")]</span>"
+				owner << SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]")
 			if(owner.getOxyLoss() < 20)
 				owner.adjustOxyLoss(3)
 		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -77,12 +77,12 @@
 			owner.adjustOxyLoss(1)
 			if(prob(15))
 				owner.Paralyse(rand(1,3))
-				owner << "<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
+				owner << SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]")
 		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 			owner.adjustOxyLoss(5)
 			owner.adjustToxLoss(3)
 			if(prob(15))
-				owner << "<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
+				owner << SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]")
 		else if(blood_volume < BLOOD_VOLUME_SURVIVE)
 			owner.death()
 
@@ -99,28 +99,3 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
-
-/obj/item/organ/lungs
-	name = "lungs"
-	icon_state = "lungs"
-	gender = PLURAL
-	organ_tag = "lungs"
-	parent_organ = "chest"
-
-/obj/item/organ/lungs/process()
-	..()
-
-	if(!owner)
-		return
-
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(5))
-			owner.emote("cough")		//respitory tract infection
-
-	if(is_bruised())
-		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
-			owner.losebreath += 15
