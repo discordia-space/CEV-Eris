@@ -657,11 +657,11 @@ var/list/rank_prefix = list(\
 ///eyecheck()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
-	if(!species.has_organ["eyes"]) //No eyes, can't hurt them.
+	if(!species.has_organ[O_EYES]) //No eyes, can't hurt them.
 		return FLASH_PROTECTION_MAJOR
 
-	if(internal_organs_by_name["eyes"]) // Eyes are fucked, not a 'weak point'.
-		var/obj/item/organ/I = internal_organs_by_name["eyes"]
+	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
+		var/obj/item/organ/I = internal_organs_by_name[O_EYES]
 		if(I.status & ORGAN_CUT_AWAY)
 			return FLASH_PROTECTION_MAJOR
 
@@ -1360,8 +1360,8 @@ var/list/rank_prefix = list(\
 	return 0
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name["eyes"])
-		var/obj/item/organ/eyes = internal_organs_by_name["eyes"]
+	if(internal_organs_by_name[O_EYES])
+		var/obj/item/organ/internal/eyes = internal_organs_by_name[O_EYES]
 		if(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY))
 			return 1
 	return 0

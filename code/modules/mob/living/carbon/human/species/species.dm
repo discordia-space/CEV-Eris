@@ -137,7 +137,7 @@
 		"kidneys" =  /obj/item/organ/kidneys,
 		"brain" =    /obj/item/organ/brain,
 		O_APPENDIX = /obj/item/organ/internal/appendix,
-		"eyes" =     /obj/item/organ/eyes
+		O_EYES =     /obj/item/organ/internal/eyes
 		)
 	var/vision_organ              // If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 
@@ -175,8 +175,8 @@
 		hud = new()
 
 	//If the species has eyes, they are the default vision organ
-	if(!vision_organ && has_organ["eyes"])
-		vision_organ = "eyes"
+	if(!vision_organ && has_organ[O_EYES])
+		vision_organ = O_EYES
 
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)

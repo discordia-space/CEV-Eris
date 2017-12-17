@@ -28,7 +28,7 @@
 		return ..()
 
 	if(user.a_intent != I_HELP)
-		if(user.targeted_organ == "head" || user.targeted_organ == "eyes")
+		if(user.targeted_organ in list("head", O_EYES))
 			if((CLUMSY in user.mutations) && prob(50))
 				M = user
 			return eyestab(M,user)

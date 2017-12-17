@@ -252,7 +252,7 @@
 		..()
 
 /obj/item/weapon/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(user.targeted_organ == "eyes")
+	if(user.targeted_organ == O_EYES)
 		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
 			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")

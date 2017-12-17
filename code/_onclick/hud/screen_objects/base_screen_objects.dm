@@ -178,13 +178,13 @@
 							parentmob.targeted_organ = "mouth"
 					/*if(26) //Eyeline, eyes are on 15 and 17
 						if(icon_x in 14 to 18)
-							selecting = "eyes"
+							selecting = O_EYES
 					if(25 to 27)
 						if(icon_x in 15 to 17)
-							selecting = "eyes"*/
+							selecting = O_EYES*/
 					if(25 to 27)
 						if(icon_x in 14 to 18)
-							parentmob.targeted_organ = "eyes"
+							parentmob.targeted_organ = O_EYES
 
 	if(old_selecting != parentmob.targeted_organ)
 		update_icon()

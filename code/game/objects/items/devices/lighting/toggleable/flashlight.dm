@@ -41,7 +41,7 @@
 
 /obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
 	add_fingerprint(user)
-	if(on && user.targeted_organ == "eyes")
+	if(on && user.targeted_organ == O_EYES)
 
 		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
@@ -57,7 +57,7 @@
 			if(H.species.vision_organ)
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
-				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>"
+				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : O_EYES] on [H]!</span>"
 
 			user.visible_message(SPAN_NOTICE("\The [user] directs [src] to [M]'s eyes."), \
 							 	 SPAN_NOTICE("You direct [src] to [M]'s eyes."))

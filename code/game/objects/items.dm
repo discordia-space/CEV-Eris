@@ -417,7 +417,7 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(istype(H))
 
-		var/obj/item/organ/eyes/eyes = H.internal_organs_by_name["eyes"]
+		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[O_EYES]
 
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
