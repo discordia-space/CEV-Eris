@@ -4,15 +4,6 @@
 /datum/uplink_item/item/badassery
 	category = /datum/uplink_category/badassery
 
-/datum/uplink_item/item/badassery/balloon
-	name = "For showing that You Are The BOSS (Useless Balloon)"
-	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
-	path = /obj/item/toy/syndicateballoon
-
-/datum/uplink_item/item/badassery/balloon/NT
-	name = "For showing that you love NT SOO much (Useless Balloon)"
-	path = /obj/item/toy/nanotrasenballoon
-
 /**************
 * Random Item *
 **************/
