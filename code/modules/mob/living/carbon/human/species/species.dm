@@ -134,7 +134,7 @@
 		O_HEART =    /obj/item/organ/internal/heart,
 		"lungs" =    /obj/item/organ/lungs,
 		"liver" =    /obj/item/organ/liver,
-		"kidneys" =  /obj/item/organ/kidneys,
+		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		"brain" =    /obj/item/organ/brain,
 		O_APPENDIX = /obj/item/organ/internal/appendix,
 		O_EYES =     /obj/item/organ/internal/eyes
