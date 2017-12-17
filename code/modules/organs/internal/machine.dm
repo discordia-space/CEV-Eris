@@ -33,7 +33,7 @@
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/mmi_holder
 	name = "brain"
-	organ_tag = "brain"
+	organ_tag = O_BRAIN
 	parent_organ = "chest"
 	vital = 1
 	var/obj/item/device/mmi/stored_mmi

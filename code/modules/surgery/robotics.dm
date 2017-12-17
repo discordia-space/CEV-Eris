@@ -393,11 +393,11 @@
 			user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
 			return SURGERY_FAILURE
 
-		if(!target.species.has_organ["brain"])
+		if(!target.species.has_organ[O_BRAIN])
 			user << SPAN_DANGER("You're pretty sure [target.species.name_plural] don't normally have a brain.")
 			return SURGERY_FAILURE
 
-		if(!isnull(target.internal_organs["brain"]))
+		if(!isnull(target.internal_organs[O_BRAIN]))
 			user << SPAN_DANGER("Your subject already has a brain.")
 			return SURGERY_FAILURE
 
@@ -416,7 +416,7 @@
 
 		var/obj/item/device/mmi/M = tool
 		var/obj/item/organ/mmi_holder/holder = new(target, 1)
-		target.internal_organs_by_name["brain"] = holder
+		target.internal_organs_by_name[O_BRAIN] = holder
 		user.drop_from_inventory(tool)
 		tool.loc = holder
 		holder.stored_mmi = tool

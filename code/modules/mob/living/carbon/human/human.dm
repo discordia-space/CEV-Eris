@@ -669,7 +669,7 @@ var/list/rank_prefix = list(\
 
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
-/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = "brain")
+/mob/living/carbon/human/proc/headcheck(var/target_zone, var/brain_tag = O_BRAIN)
 	if(!species.has_organ[brain_tag])
 		return 0
 
@@ -920,7 +920,7 @@ var/list/rank_prefix = list(\
 	rebuild_organs()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for (var/obj/item/organ/brain/H in world)
+		for (var/obj/item/organ/internal/brain/H in world)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -1353,11 +1353,7 @@ var/list/rank_prefix = list(\
 	..()
 
 /mob/living/carbon/human/has_brain()
-	if(internal_organs_by_name["brain"])
-		var/obj/item/organ/brain = internal_organs_by_name["brain"]
-		if(brain && istype(brain))
-			return 1
-	return 0
+	return istype(internal_organs_by_name[O_BRAIN], /obj/item/organ/internal/brain)
 
 /mob/living/carbon/human/has_eyes()
 	if(internal_organs_by_name[O_EYES])

@@ -77,7 +77,7 @@
 		if(!E || E.is_stump())
 			src << "\The [H] does not have a head!"
 
-		if(!H.species.has_organ["brain"])
+		if(!H.species.has_organ[O_BRAIN])
 			src << "\The [H] does not seem to have an ear canal to breach."
 			return
 
@@ -116,7 +116,7 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/obj/item/organ/I = H.internal_organs_by_name["brain"]
+			var/obj/item/organ/I = H.internal_organs_by_name[O_BRAIN]
 			if(!I) // No brain organ, so the borer moves in and replaces it permanently.
 				replace_brain()
 			else
@@ -184,7 +184,7 @@
 	H.ChangeToHusk()
 
 	var/obj/item/organ/borer/B = new(H)
-	H.internal_organs_by_name["brain"] = B
+	H.internal_organs_by_name[O_BRAIN] = B
 	H.internal_organs |= B
 
 	var/obj/item/organ/external/affecting = H.get_organ("head")

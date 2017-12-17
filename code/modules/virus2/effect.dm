@@ -224,7 +224,7 @@
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		if(ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			var/obj/item/organ/brain/B = H.internal_organs_by_name["brain"]
+			var/obj/item/organ/internal/brain/B = H.internal_organs_by_name[O_BRAIN]
 			if (B && B.damage < B.min_broken_damage)
 				B.take_damage(5)
 		else
