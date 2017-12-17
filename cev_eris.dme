@@ -1626,6 +1626,7 @@
 #include "code\modules\organs\external\subtypes\standard.dm"
 #include "code\modules\organs\external\subtypes\unbreakable.dm"
 #include "code\modules\organs\external\subtypes\xenos.dm"
+#include "code\modules\organs\internal\_internal.dm"
 #include "code\modules\organs\internal\appendix.dm"
 #include "code\modules\organs\internal\eyes.dm"
 #include "code\modules\organs\internal\heart.dm"

@@ -1,17 +1,17 @@
-/obj/item/organ/appendix
+/obj/item/organ/internal/appendix
 	name = "appendix"
 	icon_state = "appendix"
 	parent_organ = "groin"
-	organ_tag = "appendix"
-	var/inflamed = 0
+	organ_tag = O_APPENDIX
+	var/inflamed = 0 //Counter, not boolean
 
-/obj/item/organ/appendix/update_icon()
+/obj/item/organ/internal/appendix/update_icon()
 	..()
 	if(inflamed)
 		icon_state = "appendixinflamed"
 		name = "inflamed appendix"
 
-/obj/item/organ/appendix/process()
+/obj/item/organ/internal/appendix/process()
 	..()
 	if(inflamed && owner)
 		inflamed++
