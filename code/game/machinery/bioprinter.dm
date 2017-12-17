@@ -18,7 +18,7 @@
 	var/loaded_dna //Blood sample for DNA hashing.
 	var/list/products = list(
 		O_HEART =   list(/obj/item/organ/internal/heart,  50),
-		"lungs" =   list(/obj/item/organ/lungs,  40),
+		O_LUNGS =   list(/obj/item/organ/internal/lungs,  40),
 		O_KIDNEYS = list(/obj/item/organ/internal/kidneys,20),
 		O_EYES =    list(/obj/item/organ/internal/eyes,   30),
 		O_LIVER =   list(/obj/item/organ/internal/liver,  50)

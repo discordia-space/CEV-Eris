@@ -132,7 +132,7 @@
 	                              // Determines the organs that the species spawns with and
 	var/list/has_organ = list(    // which required-organ checks are conducted.
 		O_HEART =    /obj/item/organ/internal/heart,
-		"lungs" =    /obj/item/organ/lungs,
+		O_LUNGS =    /obj/item/organ/internal/lungs,
 		O_LIVER =    /obj/item/organ/internal/liver,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		"brain" =    /obj/item/organ/brain,

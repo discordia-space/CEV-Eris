@@ -1,8 +1,8 @@
-/obj/item/organ/lungs
+/obj/item/organ/internal/lungs
 	name = "lungs"
 	icon_state = "lungs"
 	gender = PLURAL
-	organ_tag = "lungs"
+	organ_tag = O_LUNGS
 	parent_organ = "chest"
 
 	var/breath_type
@@ -16,14 +16,14 @@
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
 
-/obj/item/organ/lungs/set_dna(var/datum/dna/new_dna)
+/obj/item/organ/internal/lungs/set_dna(var/datum/dna/new_dna)
 	..()
 	min_breath_pressure = species.breath_pressure
 	breath_type = species.breath_type ? species.breath_type : "oxygen"
 	poison_type = species.poison_type ? species.poison_type : "plasma"
 	exhale_type = species.exhale_type ? species.exhale_type : 0
 
-/obj/item/organ/lungs/process()
+/obj/item/organ/internal/lungs/process()
 	..()
 
 	if(!owner)
@@ -42,7 +42,7 @@
 			owner.losebreath += 15
 
 
-/obj/item/organ/lungs/proc/handle_breath(datum/gas_mixture/breath)
+/obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath)
 	if(!owner)
 		return 0
 	if(!breath)
@@ -151,7 +151,7 @@
 	breath.update_values()
 	return !failed_breath
 
-/obj/item/organ/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
+/obj/item/organ/internal/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
 	// Hot air hurts :(
 	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
 		var/damage = 0
