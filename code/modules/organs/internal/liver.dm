@@ -1,10 +1,10 @@
-/obj/item/organ/liver
+/obj/item/organ/internal/liver
 	name = "liver"
 	icon_state = "liver"
-	organ_tag = "liver"
+	organ_tag = O_LIVER
 	parent_organ = "groin"
 
-/obj/item/organ/liver/process()
+/obj/item/organ/internal/liver/process()
 
 	..()
 
@@ -13,7 +13,7 @@
 
 	if (germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			owner << "\red Your skin itches."
+			owner << SPAN_WARNING("Your skin itches.")
 	if (germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()

@@ -133,7 +133,7 @@
 	var/list/has_organ = list(    // which required-organ checks are conducted.
 		O_HEART =    /obj/item/organ/internal/heart,
 		"lungs" =    /obj/item/organ/lungs,
-		"liver" =    /obj/item/organ/liver,
+		O_LIVER =    /obj/item/organ/internal/liver,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		"brain" =    /obj/item/organ/brain,
 		O_APPENDIX = /obj/item/organ/internal/appendix,
