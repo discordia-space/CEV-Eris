@@ -2,7 +2,6 @@
 	name = "captain's locker"
 	req_access = list(access_captain)
 	icon_state = "cap"
-	icon_lock = "cabinet"
 
 /obj/structure/closet/secure_closet/personal/reinforced/captains/populate_contents()
 	..()
@@ -102,7 +101,7 @@
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/under/rank/warden(src)
-	new /obj/item/clothing/head/warden(src)
+	new /obj/item/clothing/head/beret/sec/navy/warden(src)
 	new /obj/item/weapon/cartridge/security(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
