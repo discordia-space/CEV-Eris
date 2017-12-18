@@ -513,6 +513,30 @@
 		if(0)
 			usr << "[src] now picks up one item at a time."
 
+/obj/item/weapon/storage/proc/collectItems(var/turf/target, var/mob/user)
+	ASSERT(istype(target))
+	. = FALSE
+	var/limiter = 15
+	for(var/obj/item/I in target)
+		if(--limiter < 0)
+			break
+		if(can_be_inserted(I, TRUE))
+			. |= TRUE
+			handle_item_insertion(I, TRUE)
+
+	if(user)
+		if(.)
+			user << SPAN_NOTICE("You put some things in [src].")
+		else
+			user << SPAN_NOTICE("You fail to pick anything up with \the [src].")
+
+
+/obj/item/weapon/storage/resolve_attackby(atom/A, mob/user)
+	if(collection_mode && isturf(A) || istype(A, /obj/item))
+		if(collectItems(get_turf(A), user))
+			return
+	return ..()
+
 
 /obj/item/weapon/storage/verb/quick_empty()
 	set name = "Empty Contents"
