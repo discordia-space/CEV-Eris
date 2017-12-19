@@ -3,18 +3,8 @@
 	desc = "It's a secure locker for personnel."
 	req_access = list(access_all_personal_lockers)
 	var/registered_name = null
-	req_access = list(access_all_personal_lockers)
 	var/list/access_occupy = list()
 	icon_state = "secure"
-
-/obj/structure/closet/secure_closet/personal/examine(mob/user)
-	if(get_dist(src, user) <= 3)
-		if(broken)
-			user << "It appears to be broken."
-		if(registered_name)
-			user << SPAN_NOTICE("Owned by [registered_name].")
-		else
-			user << "The first card swiped gains control."
 
 /obj/structure/closet/secure_closet/personal/check_access(obj/item/weapon/card/id/I)
 	if(istype(I))
@@ -38,6 +28,7 @@
 	if(istype(I))
 		if(!src.registered_name && has_access(access_occupy, list(), I.GetAccess()))
 			src.registered_name = I.registered_name
+			name = "[initial(name)] ([registered_name])"
 			user << SPAN_NOTICE("You occupied [src].")
 			return
 
@@ -71,3 +62,4 @@
 					return
 			src.locked = TRUE
 			src.registered_name = null
+			name = initial(name)

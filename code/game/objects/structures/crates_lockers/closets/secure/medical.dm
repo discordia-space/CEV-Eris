@@ -38,7 +38,8 @@
 
 /obj/structure/closet/secure_closet/personal/doctor
 	name = "moebius doctor's locker"
-	req_access = list(access_medical_equip)
+	req_access = list(access_cmo)
+	access_occupy = list(access_medical_equip)
 	icon_state = "med"
 
 /obj/structure/closet/secure_closet/personal/doctor/populate_contents()
@@ -79,12 +80,12 @@
 	new /obj/item/clothing/suit/storage/surgical_apron(src)
 
 
-/obj/structure/closet/secure_closet/personal/reinforced/CMO
+/obj/structure/closet/secure_closet/reinforced/CMO
 	name = "moebius biolab officer's locker"
 	req_access = list(access_cmo)
 	icon_state = "cmo"
 
-/obj/structure/closet/secure_closet/personal/reinforced/CMO/populate_contents()
+/obj/structure/closet/secure_closet/reinforced/CMO/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
