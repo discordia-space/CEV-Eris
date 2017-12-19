@@ -1,10 +1,9 @@
-/obj/structure/closet/secure_closet/personal/reinforced/captains
+/obj/structure/closet/secure_closet/reinforced/captains
 	name = "captain's locker"
 	req_access = list(access_captain)
 	icon_state = "cap"
-	icon_lock = "cabinet"
 
-/obj/structure/closet/secure_closet/personal/reinforced/captains/populate_contents()
+/obj/structure/closet/secure_closet/reinforced/captains/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/captain(src)
@@ -29,12 +28,12 @@
 
 
 
-/obj/structure/closet/secure_closet/personal/reinforced/hop
+/obj/structure/closet/secure_closet/reinforced/hop
 	name = "First Officer's locker"
 	req_access = list(access_hop)
 	icon_state = "hop"
 
-/obj/structure/closet/secure_closet/personal/reinforced/hop/populate_contents()
+/obj/structure/closet/secure_closet/reinforced/hop/populate_contents()
 	..()
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/under/rank/first_officer(src)
@@ -54,12 +53,12 @@
 
 
 
-/obj/structure/closet/secure_closet/personal/reinforced/hos
+/obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
 	req_access = list(access_hos)
 	icon_state = "hos"
 
-/obj/structure/closet/secure_closet/personal/reinforced/hos/populate_contents()
+/obj/structure/closet/secure_closet/reinforced/hos/populate_contents()
 	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
@@ -102,7 +101,7 @@
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/under/rank/warden(src)
-	new /obj/item/clothing/head/warden(src)
+	new /obj/item/clothing/head/beret/sec/navy/warden(src)
 	new /obj/item/weapon/cartridge/security(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
@@ -127,7 +126,8 @@
 
 /obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
-	req_access = list(access_brig)
+	req_access = list(access_hos)
+	access_occupy = list(access_brig)
 	icon_state = "sec"
 
 
