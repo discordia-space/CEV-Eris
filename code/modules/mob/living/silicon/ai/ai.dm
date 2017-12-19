@@ -54,6 +54,7 @@ var/list/ai_verbs_default = list(
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
+	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/multitool/aiMulti = null
 	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
@@ -444,14 +445,18 @@ var/list/ai_verbs_default = list(
 	return
 
 /mob/living/silicon/ai/reset_view(atom/A)
+	if(controlled_mech)
+		return ..(controlled_mech)
 	if(camera)
 		camera.set_light(0)
 	if(istype(A,/obj/machinery/camera))
 		camera = A
 	..()
 	if(istype(A,/obj/machinery/camera))
-		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
-		else				A.set_light(0)
+		if(camera_light_on)
+			A.set_light(AI_CAMERA_LUMINOSITY)
+		else
+			A.set_light(0)
 
 
 /mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)

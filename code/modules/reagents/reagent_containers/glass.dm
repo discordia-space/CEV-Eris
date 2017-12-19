@@ -61,7 +61,7 @@
 	attack_self()
 		..()
 		if(is_open_container())
-			playsound(src,'sound/effects/Lid_Removal_Bottle_mono.wav',50,1)
+			playsound(src,'sound/effects/Lid_Removal_Bottle_mono.ogg',50,1)
 			usr << "<span class = 'notice'>You put the lid on \the [src].</span>"
 			flags ^= OPENCONTAINER
 		else
@@ -86,7 +86,7 @@
 			return
 
 		if(reagents.total_volume)
-			playsound(src,'sound/effects/Splash_Small_01_mono.wav',50,1)
+			playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
 			user << SPAN_NOTICE("You splash the solution onto [target].")
 			reagents.splash(target, reagents.total_volume)
 			return
@@ -102,7 +102,7 @@
 				update_name_label()
 
 	proc/update_name_label()
-		playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav',40,1)
+		playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg',40,1)
 		if(label_text == "")
 			name = base_name
 		else
@@ -125,12 +125,12 @@
 
 	pickup(mob/user)
 		..()
-		playsound(src,'sound/items/Glass_Fragment_take.wav',50,1)
+		playsound(src,'sound/items/Glass_Fragment_take.ogg',50,1)
 		update_icon()
 
 	dropped(mob/user)
 		..()
-		playsound(src,'sound/items/Glass_Fragment_drop.wav',50,1)
+		playsound(src,'sound/items/Glass_Fragment_drop.ogg',50,1)
 		update_icon()
 
 	attack_hand()
