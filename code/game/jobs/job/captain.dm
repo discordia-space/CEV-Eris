@@ -13,8 +13,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	selection_color = "#ccccff"
 	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = 1
-	access = list() 			//See get_access()
-	minimal_access = list() 	//See get_access()
 	economic_modifier = 25
 
 	ideal_character_age = 70 // Old geezer captains ftw
