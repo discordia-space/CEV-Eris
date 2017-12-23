@@ -10,10 +10,11 @@
 	supervisors = "the NeoTheology Church and God"
 	selection_color = "#dddddd"
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
-	minimal_access = list(access_morgue, access_chapel_office, access_crematorium)
 	idtype = /obj/item/weapon/card/id/chaplain
 	uniform = /obj/item/clothing/under/rank/chaplain
 	suit = /obj/item/clothing/suit/chaplain_hoodie
+	shoes = /obj/item/clothing/shoes/reinforced
+	gloves = /obj/item/clothing/gloves/thick
 	pda = /obj/item/device/pda/chaplain
 
 /obj/landmark/join/start/chaplain

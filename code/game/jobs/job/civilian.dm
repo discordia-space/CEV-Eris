@@ -10,7 +10,6 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_bar)
 	uniform = /obj/item/clothing/under/rank/bartender
 	pda = /obj/item/device/pda/bar
 	ear = /obj/item/device/radio/headset/headset_service
@@ -56,7 +55,6 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_kitchen)
 	idtype = /obj/item/weapon/card/id/ltgrey
 
 	uniform = /obj/item/clothing/under/rank/chef
@@ -84,7 +82,6 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_hydroponics)
 	idtype = /obj/item/weapon/card/id/hydro
 
 	uniform = /obj/item/clothing/under/rank/hydroponics
@@ -112,8 +109,7 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	access = list(access_maint_tunnels)
-	minimal_access = list(access_maint_tunnels, access_theatre)
+	access = list(access_maint_tunnels, access_theatre)
 
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -158,7 +154,6 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	access = list(access_janitor, access_maint_tunnels)
-	minimal_access = list(access_janitor, access_maint_tunnels)
 
 	uniform = /obj/item/clothing/under/rank/janitor
 	pda = /obj/item/device/pda/janitor
