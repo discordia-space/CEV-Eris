@@ -17,6 +17,7 @@
 	var/affected_area = 3
 
 /obj/item/weapon/grenade/chem_grenade/New()
+	..()
 	create_reagents(1000)
 
 /obj/item/weapon/grenade/chem_grenade/attack_self(mob/user as mob)
@@ -31,9 +32,8 @@
 			icon_state = initial(icon_state)
 		else if(beakers.len)
 			for(var/obj/B in beakers)
-				if(istype(B))
-					beakers -= B
-					user.put_in_hands(B)
+				beakers -= B
+				user.put_in_hands(B)
 		name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 	if(stage > 1 && !active && clown_check(user))
 		user << SPAN_WARNING("You prime \the [name]!")
