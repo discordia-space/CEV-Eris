@@ -109,8 +109,8 @@
 	item_state = "emsbelt"
 
 /obj/item/weapon/storage/belt/security
-	name = "security belt"
-	desc = "Can hold security gear like handcuffs and flashes."
+	name = "tactical belt"
+	desc = "Can hold various military and security equipment."
 	icon_state = "security"
 	item_state = "security"
 	can_hold = list(
@@ -121,9 +121,8 @@
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_magazine,
+		/obj/item/weapon/cell/small,
 		/obj/item/weapon/reagent_containers/food/snacks/donut,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/gun/energy/taser,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/clothing/glasses/hud/security,
 		/obj/item/device/lighting/toggleable/flashlight,
@@ -133,6 +132,12 @@
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
 		/obj/item/weapon/gun/projectile/mk58,
+		/obj/item/weapon/gun/projectile/clarissa,
+		/obj/item/weapon/gun/projectile/giskard,
+		/obj/item/weapon/gun/projectile/olivaw,
+		/obj/item/weapon/gun/projectile/revolver/detective,
+		/obj/item/weapon/gun/energy/gun/martin,
+		/obj/item/weapon/gun/energy/taser,
 		/obj/item/taperoll/police
 		)
 
@@ -145,10 +150,3 @@
 	can_hold = list(
 		"/obj/item/clothing/mask/luchador"
 		)
-
-/obj/item/weapon/storage/belt/security/tactical
-	name = "combat belt"
-	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
-	icon_state = "swatbelt"
-	item_state = "swatbelt"
-	storage_slots = 9
