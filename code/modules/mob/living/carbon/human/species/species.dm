@@ -145,14 +145,14 @@
 		"chest" =  new /datum/organ_description/chest,
 		"groin" =  new /datum/organ_description/groin,
 		"head" =   new /datum/organ_description/head,
-		"l_arm" =  new /datum/organ_description/arm/left,
-		"r_arm" =  new /datum/organ_description/arm/right,
-		"l_leg" =  new /datum/organ_description/leg/left,
-		"r_leg" =  new /datum/organ_description/leg/right,
-		"l_hand" = new /datum/organ_description/hand/left,
-		"r_hand" = new /datum/organ_description/hand/right,
-		"l_foot" = new /datum/organ_description/foot/left,
-		"r_foot" = new /datum/organ_description/foot/right
+		BP_L_ARM =  new /datum/organ_description/arm/left,
+		BP_R_ARM =  new /datum/organ_description/arm/right,
+		BP_L_LEG =  new /datum/organ_description/leg/left,
+		BP_R_LEG =  new /datum/organ_description/leg/right,
+		BP_L_HAND = new /datum/organ_description/hand/left,
+		BP_R_HAND = new /datum/organ_description/hand/right,
+		BP_L_FOOT = new /datum/organ_description/foot/left,
+		BP_R_FOOT = new /datum/organ_description/foot/right
 		)
 
 	// Misc

@@ -58,7 +58,7 @@
 			user.visible_message(SPAN_DANGER("\The [user] has taped up \the [H]'s mouth!"))
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
 
-		else if(user.targeted_organ == "r_hand" || user.targeted_organ == "l_hand")
+		else if(user.targeted_organ == BP_R_HAND || user.targeted_organ == BP_L_HAND)
 			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
 			if(!T.place_handcuffs(H, user))
 				user.unEquip(T)

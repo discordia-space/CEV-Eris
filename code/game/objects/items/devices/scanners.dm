@@ -144,22 +144,23 @@ REAGENT SCANNER
 		user.show_message(SPAN_WARNING("Significant brain damage detected. Subject may have had a concussion."))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		var/foundUnlocatedFracture = FALSE
 		for(var/name in H.organs_by_name)
-			var/obj/item/organ/external/e = H.organs_by_name[name]
-			if(!e)
+			var/obj/item/organ/external/E = H.organs_by_name[name]
+			if(!E)
 				continue
-			var/limb = e.name
-			if(e.status & ORGAN_BROKEN)
-				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg")) && (!(e.status & ORGAN_SPLINTED)))
-					user << SPAN_WARNING("Unsecured fracture in subject [limb]. Splinting recommended for transport.")
-			if(e.has_infected_wound())
-				user << SPAN_WARNING("Infected wound detected in subject [limb]. Disinfection recommended.")
+			if(E.status & ORGAN_BROKEN)
+				if(!(E.status & ORGAN_SPLINTED))
+					if(E.organ_tag in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
+						user << SPAN_WARNING("Unsecured fracture in subject [E]. Splinting recommended for transport.")
+					else
+						foundUnlocatedFracture = TRUE
+			if(E.has_infected_wound())
+				user << SPAN_WARNING("Infected wound detected in subject [E]. Disinfection recommended.")
 
-		for(var/name in H.organs_by_name)
-			var/obj/item/organ/external/e = H.organs_by_name[name]
-			if(e && e.status & ORGAN_BROKEN)
-				user.show_message(text(SPAN_WARNING("Bone fractures detected. Advanced scanner required for location.")), 1)
-				break
+			if(foundUnlocatedFracture)
+				user.show_message(SPAN_WARNING("Bone fractures detected. Advanced scanner required for location."), 1)
+
 		for(var/obj/item/organ/external/e in H.organs)
 			if(!e)
 				continue
