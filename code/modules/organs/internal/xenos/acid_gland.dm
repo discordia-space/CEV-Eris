@@ -1,6 +1,6 @@
 /obj/item/organ/internal/xenos/acidgland
 	name = "acid gland"
-	parent_organ = "head"
+	parent_organ = BP_HEAD
 	icon_state = "xgibtorso"
 	organ_tag = O_ACID
 	owner_verbs = list(

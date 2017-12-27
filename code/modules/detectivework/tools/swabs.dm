@@ -33,7 +33,7 @@
 		return
 
 	if(user.targeted_organ == "mouth")
-		if(!H.organs_by_name["head"])
+		if(!H.organs_by_name[BP_HEAD])
 			user << SPAN_WARNING("They don't have a head.")
 			return
 		if(!H.check_has_mouth())

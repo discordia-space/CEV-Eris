@@ -43,7 +43,7 @@ meteor_act
 	agony_amount *= siemens_coeff
 
 	switch (def_zone)
-		if("head")
+		if(BP_HEAD)
 			agony_amount *= 1.50
 		if(BP_L_HAND, BP_R_HAND)
 			var/c_hand
@@ -207,7 +207,7 @@ meteor_act
 		if(!(I.flags & NOBLOODY))
 			I.add_blood(src)
 
-		if(prob(33 + I.sharp*10))
+		if(prob(33 + I.sharp * 10))
 			var/turf/location = loc
 			if(istype(location, /turf/simulated))
 				location.add_blood(src)
@@ -218,7 +218,7 @@ meteor_act
 					H.bloody_hands(src)
 
 			switch(hit_zone)
-				if("head")
+				if(BP_HEAD)
 					if(wear_mask)
 						wear_mask.add_blood(src)
 						update_inv_wear_mask(0)

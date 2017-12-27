@@ -39,7 +39,7 @@
 			if(!found)
 				harm_points += 2
 
-		var/obj/item/organ/external/head/head = H.get_organ("head")
+		var/obj/item/organ/external/head/head = H.get_organ(BP_HEAD)
 		if(head.disfigured)
 			harm_points += 1
 

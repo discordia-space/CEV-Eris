@@ -3,7 +3,7 @@
 	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
 	desc = "A piece of juicy meat found in a person's head."
 	organ_tag = O_BRAIN
-	parent_organ = "head"
+	parent_organ = BP_HEAD
 	vital = 1
 	icon_state = "brain2"
 	force = 1.0

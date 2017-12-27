@@ -50,7 +50,7 @@ var/global/list/sparring_attack_cache = list()
 
 	if(attack_damage >= 5 && armour < 2 && !(target == user) && stun_chance <= attack_damage * 5) // 25% standard chance
 		switch(zone) // strong punches can have effects depending on where they hit
-			if("head", "mouth", O_EYES)
+			if(BP_HEAD, "mouth", O_EYES)
 				// Induce blurriness
 				target.visible_message(
 					SPAN_DANGER("[target] looks momentarily disoriented."),
@@ -126,7 +126,7 @@ var/global/list/sparring_attack_cache = list()
 
 	if (user.wear_mask && (istype(user.wear_mask, /obj/item/clothing/mask/muzzle) || istype(user.wear_mask, /obj/item/weapon/grenade)))
 		return 0
-	if (user == target && zone in list("head", "eyes", "mouth"))
+	if (user == target && zone in list(BP_HEAD, "eyes", "mouth"))
 		return 0
 	return 1
 
@@ -149,7 +149,7 @@ var/global/list/sparring_attack_cache = list()
 
 	if(!target.lying)
 		switch(zone)
-			if("head", "mouth", O_EYES)
+			if(BP_HEAD, "mouth", O_EYES)
 				// ----- HEAD ----- //
 				switch(attack_damage)
 					if(1 to 2)

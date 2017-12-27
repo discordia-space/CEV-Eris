@@ -171,17 +171,11 @@
 					return TRUE
 		if(23 to 30) //Head, but we need to check for eye or mouth
 			if(icon_x in 12 to 20)
-				parentmob.targeted_organ = "head"
+				parentmob.targeted_organ = BP_HEAD
 				switch(icon_y)
 					if(23 to 24)
 						if(icon_x in 15 to 17)
 							parentmob.targeted_organ = "mouth"
-					/*if(26) //Eyeline, eyes are on 15 and 17
-						if(icon_x in 14 to 18)
-							selecting = O_EYES
-					if(25 to 27)
-						if(icon_x in 15 to 17)
-							selecting = O_EYES*/
 					if(25 to 27)
 						if(icon_x in 14 to 18)
 							parentmob.targeted_organ = O_EYES

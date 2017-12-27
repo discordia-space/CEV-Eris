@@ -369,7 +369,7 @@ default behaviour is:
 	var/mob/shooter = src
 	var/t = shooter:targeted_organ
 	if(t in list(O_EYES, "mouth"))
-		t = "head"
+		t = BP_HEAD
 	var/obj/item/organ/external/def_zone = ran_zone(t)
 	return def_zone
 

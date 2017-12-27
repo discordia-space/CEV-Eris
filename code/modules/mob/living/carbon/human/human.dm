@@ -150,7 +150,7 @@
 
 	for(var/obj/item/organ/external/temp in organs)
 		switch(temp.name)
-			if("head")
+			if(BP_HEAD)
 				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
 			if("chest")
 				update |= temp.take_damage(b_loss * 0.4, f_loss * 0.4, used_weapon = weapon_message)
@@ -310,7 +310,7 @@ var/list/rank_prefix = list(\
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name()
-	var/obj/item/organ/external/head = get_organ("head")
+	var/obj/item/organ/external/head = get_organ(BP_HEAD)
 	if(!head || head.disfigured || head.is_stump() || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
@@ -714,7 +714,7 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/proc/check_has_mouth()
 	// Todo, check stomach organ when implemented.
-	var/obj/item/organ/external/head/H = get_organ("head")
+	var/obj/item/organ/external/head/H = get_organ(BP_HEAD)
 	if(!H || !H.can_intake_reagents)
 		return 0
 	return 1
@@ -1285,7 +1285,7 @@ var/list/rank_prefix = list(\
 
 	if(!target_zone)
 		if(!user)
-			target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
+			target_zone = pick(BP_ALL + BP_CHEST + BP_CHEST)
 		else
 			target_zone = user.targeted_organ
 
@@ -1299,7 +1299,7 @@ var/list/rank_prefix = list(\
 		fail_msg = "That limb is robotic."
 	else
 		switch(target_zone)
-			if("head")
+			if(BP_HEAD)
 				if(head && head.item_flags & THICKMATERIAL)
 					. = 0
 			else
@@ -1307,7 +1307,7 @@ var/list/rank_prefix = list(\
 					. = 0
 	if(!. && error_msg && user)
 		if(!fail_msg)
-			fail_msg = "There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into."
+			fail_msg = "There is no exposed flesh or thin material [target_zone == BP_HEAD ? "on their head" : "on their body"] to inject into."
 		user << "<span class='alert'>[fail_msg]</span>"
 
 /mob/living/carbon/human/print_flavor_text(var/shrink = 1)

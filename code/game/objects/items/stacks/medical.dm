@@ -23,7 +23,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
 
-		if(affecting.name == "head")
+		if(affecting.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				user << SPAN_WARNING("You can't apply [src] through [H.head]!")
 				return 1
@@ -41,9 +41,9 @@
 	else
 
 		M.heal_organ_damage((src.heal_brute/2), (src.heal_burn/2))
-		user.visible_message( \
-			SPAN_NOTICE("[M] has been applied with [src] by [user]."), \
-			SPAN_NOTICE("You apply \the [src] to [M].") \
+		user.visible_message(
+			SPAN_NOTICE("[M] has been applied with [src] by [user]."),
+			SPAN_NOTICE("You apply \the [src] to [M].")
 		)
 		use(1)
 

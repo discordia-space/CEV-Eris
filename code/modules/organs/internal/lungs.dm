@@ -78,7 +78,8 @@
 			owner.emote("gasp")
 
 		var/ratio = inhale_pp/safe_pressure_min
-		owner.adjustOxyLoss(max(HUMAN_MAX_OXYLOSS*(1-ratio), 0))	// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
+		// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
+		owner.adjustOxyLoss(max(HUMAN_MAX_OXYLOSS*(1-ratio), 0))
 		failed_inhale = 1
 
 	owner.oxygen_alert = failed_inhale
@@ -167,7 +168,7 @@
 				else
 					damage = COLD_GAS_DAMAGE_LEVEL_1
 
-			owner.apply_damage(damage, BURN, "head", used_weapon = "Excessive Cold")
+			owner.apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 			owner.fire_alert = 1
 		else if(breath.temperature >= species.heat_level_1)
 			if(prob(20))
@@ -181,7 +182,7 @@
 				else
 					damage = HEAT_GAS_DAMAGE_LEVEL_3
 
-			owner.apply_damage(damage, BURN, "head", used_weapon = "Excessive Heat")
+			owner.apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 			owner.fire_alert = 2
 
 		//breathing in hot/cold air also heats/cools you a bit

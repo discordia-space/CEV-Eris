@@ -76,7 +76,7 @@ proc/getsensorlevel(A)
 
 //The base miss chance for the different defence zones
 var/list/global/base_miss_chance = list(
-	"head" = 40,
+	BP_HEAD = 40,
 	"chest" = 10,
 	"groin" = 20,
 	BP_L_LEG  = 20,
@@ -92,7 +92,7 @@ var/list/global/base_miss_chance = list(
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
-	"head" = 25,
+	BP_HEAD = 25,
 	"chest" = 70,
 	"groin" = 30,
 	BP_L_LEG  = 25,
@@ -109,9 +109,9 @@ var/list/global/organ_rel_size = list(
 	if(!zone)	return "chest"
 	switch(zone)
 		if(O_EYES)
-			zone = "head"
+			zone = BP_HEAD
 		if("mouth")
-			zone = "head"
+			zone = BP_HEAD
 	return zone
 
 // Returns zone with a certain probability. If the probability fails, or no zone is specified, then a random body part is chosen.
@@ -126,7 +126,7 @@ var/list/global/organ_rel_size = list(
 	var/ran_zone = zone
 	while (ran_zone == zone)
 		ran_zone = pick (
-			organ_rel_size["head"]; "head",
+			organ_rel_size[BP_HEAD]; BP_HEAD,
 			organ_rel_size["chest"]; "chest",
 			organ_rel_size["groin"]; "groin",
 			organ_rel_size[BP_L_ARM]; BP_L_ARM,

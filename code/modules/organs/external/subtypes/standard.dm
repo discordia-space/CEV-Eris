@@ -33,7 +33,7 @@
 	dislocated = -1
 
 /obj/item/organ/external/head
-	organ_tag = "head"
+	organ_tag = BP_HEAD
 	icon_name = "head"
 	name = "head"
 	max_damage = 75

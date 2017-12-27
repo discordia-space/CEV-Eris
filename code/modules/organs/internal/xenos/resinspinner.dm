@@ -1,6 +1,6 @@
 /obj/item/organ/internal/xenos/resinspinner
 	name = "resin spinner"
-	parent_organ = "head"
+	parent_organ = BP_HEAD
 	icon_state = "xgibmid2"
 	organ_tag = O_RESIN
 	owner_verbs = list(

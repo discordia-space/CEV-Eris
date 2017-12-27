@@ -3,7 +3,7 @@
 	icon_state = "eyes"
 	gender = PLURAL
 	organ_tag = O_EYES
-	parent_organ = "head"
+	parent_organ = BP_HEAD
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
 	var/cache_key = O_EYES

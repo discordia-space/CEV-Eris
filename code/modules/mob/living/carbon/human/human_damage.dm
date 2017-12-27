@@ -348,7 +348,7 @@ This function restores all organs.
 	if(!zone)
 		zone = "chest"
 	else if(zone in list(O_EYES, "mouth"))
-		zone = "head"
+		zone = BP_HEAD
 	return organs_by_name[zone]
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)

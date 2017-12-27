@@ -35,7 +35,7 @@ var/const/MAX_ACTIVE_TIME = 400
 /obj/item/clothing/mask/facehugger/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	. = ..()
 	user.drop_from_inventory(src)
-	if(hit_zone == "head")
+	if(hit_zone == BP_HEAD)
 		Attach(target)
 
 /obj/item/clothing/mask/facehugger/New()

@@ -27,7 +27,7 @@
 	icon_state = "borer"
 	organ_tag = O_BRAIN
 	desc = "A disgusting space slug."
-	parent_organ = "head"
+	parent_organ = BP_HEAD
 	vital = 1
 
 /obj/item/organ/borer/removed(var/mob/living/user)

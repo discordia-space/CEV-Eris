@@ -149,7 +149,7 @@
 		verbs += /obj/vehicle/train/cargo/engine/verb/stop_engine
 
 /obj/vehicle/train/cargo/RunOver(var/mob/living/carbon/human/H)
-	var/list/parts = list("head", "chest", BP_L_LEG , BP_R_LEG, BP_L_ARM, BP_R_ARM)
+	var/list/parts = list(BP_HEAD, "chest", BP_L_LEG , BP_R_LEG, BP_L_ARM, BP_R_ARM)
 
 	H.apply_effects(5, 5)
 	for(var/i = 0, i < rand(1,3), i++)

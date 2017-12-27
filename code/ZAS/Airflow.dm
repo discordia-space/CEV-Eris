@@ -224,8 +224,8 @@ mob/living/carbon/human/airflow_hit(atom/A)
 		bloody_body(src)
 	var/b_loss = airflow_speed * vsc.airflow_damage
 
-	var/blocked = run_armor_check("head","melee")
-	apply_damage(b_loss/3, BRUTE, "head", blocked, 0, "Airflow")
+	var/blocked = run_armor_check(BP_HEAD,"melee")
+	apply_damage(b_loss/3, BRUTE, BP_HEAD, blocked, 0, "Airflow")
 
 	blocked = run_armor_check("chest","melee")
 	apply_damage(b_loss/3, BRUTE, "chest", blocked, 0, "Airflow")

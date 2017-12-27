@@ -40,7 +40,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_back)
 			return has_organ("chest")
 		if(slot_wear_mask)
-			return has_organ("head")
+			return has_organ(BP_HEAD)
 		if(slot_handcuffed)
 			return has_organ(BP_L_HAND) && has_organ(BP_R_HAND)
 		if(slot_legcuffed)
@@ -55,11 +55,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 			// the only relevant check for this is the uniform check
 			return 1
 		if(slot_l_ear, slot_r_ear, slot_glasses)
-			return has_organ("head")
+			return has_organ(BP_HEAD)
 		if(slot_gloves)
 			return has_organ(BP_L_HAND) || has_organ(BP_R_HAND)
 		if(slot_head)
-			return has_organ("head")
+			return has_organ(BP_HEAD)
 		if(slot_shoes)
 			return has_organ(BP_R_FOOT) || has_organ(BP_L_FOOT)
 		if(slot_wear_suit, slot_w_uniform, slot_l_store, slot_r_store, slot_s_store)

@@ -724,7 +724,7 @@
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
-	H.apply_damage( 2  * damage, BRUTE, "head")
+	H.apply_damage( 2  * damage, BRUTE, BP_HEAD)
 	H.apply_damage( 2  * damage, BRUTE, "chest")
 	H.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
 	H.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)

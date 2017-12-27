@@ -167,7 +167,7 @@
 				if("elbow")
 					affecting = H.get_organ(pick(BP_L_ARM, BP_R_ARM))
 				if("head")
-					affecting = H.get_organ("head")
+					affecting = H.get_organ(BP_HEAD)
 
 			if(affecting)
 				M << SPAN_DANGER("You land heavily on your [affecting.name]!")

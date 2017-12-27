@@ -320,9 +320,10 @@ var/global/list/damage_icon_parts = list()
 	//Reset our hair
 	overlays_standing[HAIR_LAYER]	= null
 
-	var/obj/item/organ/external/head/head_organ = get_organ("head")
+	var/obj/item/organ/external/head/head_organ = get_organ(BP_HEAD)
 	if(!head_organ || head_organ.is_stump() )
-		if(update_icons)   update_icons()
+		if(update_icons)
+			update_icons()
 		return
 
 	//masks and helmets can obscure our hair.
