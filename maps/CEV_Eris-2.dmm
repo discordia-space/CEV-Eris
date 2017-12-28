@@ -846,7 +846,7 @@
 "qn" = (/obj/machinery/microwave{pixel_x = -1; pixel_y = 8},/obj/structure/table/steel,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qo" = (/obj/item/seeds/potatoseed,/obj/item/seeds/potatoseed,/obj/item/seeds/ambrosiavulgarisseed,/obj/item/weapon/material/minihoe,/obj/item/weapon/beartrap,/obj/structure/table/steel,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qp" = (/obj/machinery/vending/hydroseeds,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
-"qq" = (/obj/structure/table/rack,/obj/item/weapon/melee/energy/sword/pirate,/obj/item/clothing/suit/space/pirate,/obj/item/clothing/suit/space/pirate,/obj/item/weapon/tank/oxygen,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/skipjack_station/start)
+"qq" = (/obj/structure/table/rack,/obj/item/weapon/melee/energy/sword/pirate,/obj/item/weapon/tank/oxygen,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/skipjack_station/start)
 "qr" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/storage/belt/utility/full,/obj/item/device/multitool,/obj/item/device/multitool,/obj/item/clothing/shoes/magboots,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qs" = (/obj/machinery/washing_machine,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qt" = (/obj/structure/table/standard,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter/zippo,/obj/item/clothing/gloves/insulated,/obj/item/stack/material/steel{amount = 50},/obj/item/stack/material/glass{amount = 50},/obj/item/weapon/card/emag,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
@@ -1158,3 +1158,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+
