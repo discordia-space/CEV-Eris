@@ -219,4 +219,25 @@
 			continue
 		target.add_language(L.name)
 
+/proc/add_also_known_language(var/mob/living/carbon/human/target)
+
+	world << "add__also_known_language!"
+
+	if(!ishuman(target))
+		return
+
+	var/mob/living/carbon/human/H = target
+
+	var/datum/mind/M = H.mind
+
+	if(!H.mind.assigned_role || !H.mind.assigned_role.also_known_languages.len)
+		return
+
+	var/i
+
+	for(i in H.mind.assigned_role.also_known_languages)
+		if(prob(H.mind.assigned_role.also_known_languages[i]))
+			H.add_language(i)
+			world << "language[i] added to [H]"
+	world << "end of add_languages"
 #undef SCRAMBLE_CACHE_LEN

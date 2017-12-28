@@ -338,6 +338,8 @@
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
 
+	add_also_known_language(new_character)//handling additional languages for some antags and etc
+
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
