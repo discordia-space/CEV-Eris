@@ -12,6 +12,7 @@
 	idtype = /obj/item/weapon/card/id/ce
 	req_admin_notify = 1
 	economic_modifier = 10
+	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
 
 	ideal_character_age = 50
 

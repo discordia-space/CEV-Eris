@@ -12,6 +12,7 @@
 	idtype = /obj/item/weapon/card/id/hos
 	req_admin_notify = 1
 	economic_modifier = 10
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
 		access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
 		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
@@ -63,6 +64,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
 		access_security, access_medical, access_research, access_engine, access_mailsorting,
 		access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue,
@@ -113,6 +115,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
 		access_security, access_medical, access_research, access_engine, access_mailsorting,
 		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
@@ -157,6 +160,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
 		access_security, access_medical, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels
 	)
@@ -194,6 +198,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 4
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
 		access_security, access_medical, access_research, access_engine, access_mailsorting,
 		access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks

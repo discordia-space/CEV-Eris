@@ -43,7 +43,6 @@
 	join_tag = /datum/job/bartender
 
 
-
 /datum/job/chef
 	title = "Chef"
 	flag = CHEF
@@ -54,6 +53,7 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	idtype = /obj/item/weapon/card/id/ltgrey
 
@@ -81,6 +81,7 @@
 	spawn_positions = 1
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	idtype = /obj/item/weapon/card/id/hydro
 
@@ -109,6 +110,7 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_maint_tunnels, access_theatre)
 
 	uniform = /obj/item/clothing/under/rank/clown
@@ -153,6 +155,7 @@
 	spawn_positions = 1
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_janitor, access_maint_tunnels)
 
 	uniform = /obj/item/clothing/under/rank/janitor
