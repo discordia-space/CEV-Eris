@@ -327,8 +327,9 @@ var/global/datum/controller/occupations/job_master
 								custom_equip_leftovers.Add(thing)
 						else
 							spawn_in_storage += thing
-			//Equip job items.
+			//Equip job items and language stuff
 			job.equip(H)
+			job.add_additiional_language(H)
 			job.setup_account(H)
 
 			job.apply_fingerprints(H)

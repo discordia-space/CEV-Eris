@@ -131,6 +131,26 @@
 
 	return 1
 
+datum/job/proc/add_additiional_language(var/mob/living/carbon/human/target)
+	if(!target)
+		return 0
+
+	if(!ishuman(target))
+		return 0
+
+	var/mob/living/carbon/human/H = target
+
+	if(!H.mind || !H.mind.assigned_job || !also_known_languages.len)
+		return 0
+
+	var/i
+
+	for(i in also_known_languages)
+		if(prob(also_known_languages[i]))
+			H.add_language(i)
+
+	return 1
+
 /datum/job/proc/setup_account(var/mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
 		return

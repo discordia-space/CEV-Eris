@@ -348,7 +348,7 @@
 	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
 
 	if(mind)
-		mind.active = 0					//we wish to transfer the key manually
+		mind.active = 0//we wish to transfer the key manually
 		mind.original = new_character
 		if(client.prefs.relations.len)
 			for(var/T in client.prefs.relations)
@@ -375,9 +375,7 @@
 	new_character.force_update_limbs()
 	new_character.update_eyes()
 	new_character.regenerate_icons()
-	new_character.key = key		//Manually transfer the key to log them in
-
-	add_also_known_language(new_character)//handling additional languages for some antags and etc
+	new_character.key = key//Manually transfer the key to log them in
 
 	return new_character
 
