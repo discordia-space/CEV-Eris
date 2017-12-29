@@ -36,7 +36,7 @@
 #define LANGUAGE_CULT "Cult"
 #define LANGUAGE_OCCULT "Occult"
 
-#define kANGUAGE_CYRILLIC "Russian"
+#define LANGUAGE_CYRILLIC "Russian"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.
