@@ -228,7 +228,7 @@ meteor_act
 					if(glasses && prob(33))
 						glasses.add_blood(src)
 						update_inv_glasses(0)
-				if("chest")
+				if(BP_CHEST)
 					bloody_body(src)
 
 	return 1
@@ -256,14 +256,14 @@ meteor_act
 					return
 
 		var/dtype = O.damtype
-		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
+		var/throw_damage = O.throwforce * (speed / THROWFORCE_SPEED_DIVISOR)
 
 		var/zone
 		if (isliving(O.thrower))
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.targeted_organ)
 		else
-			zone = ran_zone("chest",75)	//Hits a random part of the body, geared towards the chest
+			zone = ran_zone(BP_CHEST, 75)	//Hits a random part of the body, geared towards the chest
 
 		//check if we hit
 		var/miss_chance = 15

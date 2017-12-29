@@ -2,7 +2,7 @@
 	name = "heart"
 	icon_state = "heart-on"
 	organ_tag = O_HEART
-	parent_organ = "chest"
+	parent_organ = BP_CHEST
 	dead_icon = "heart-off"
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0

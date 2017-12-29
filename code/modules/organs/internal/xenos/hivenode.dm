@@ -1,6 +1,6 @@
 /obj/item/organ/internal/xenos/hivenode
 	name = "hive node"
-	parent_organ = "chest"
+	parent_organ = BP_CHEST
 	icon_state = "xgibmid2"
 	organ_tag = O_HIVE
 

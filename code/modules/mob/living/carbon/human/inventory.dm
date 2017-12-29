@@ -38,7 +38,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 /mob/living/carbon/human/proc/has_organ_for_slot(slot)
 	switch(slot)
 		if(slot_back)
-			return has_organ("chest")
+			return has_organ(BP_CHEST)
 		if(slot_wear_mask)
 			return has_organ(BP_HEAD)
 		if(slot_handcuffed)
@@ -50,7 +50,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_hand)
 			return has_organ(BP_R_HAND)
 		if(slot_belt)
-			return has_organ("chest")
+			return has_organ(BP_CHEST)
 		if(slot_wear_id)
 			// the only relevant check for this is the uniform check
 			return 1
@@ -63,7 +63,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_shoes)
 			return has_organ(BP_R_FOOT) || has_organ(BP_L_FOOT)
 		if(slot_wear_suit, slot_w_uniform, slot_l_store, slot_r_store, slot_s_store)
-			return has_organ("chest")
+			return has_organ(BP_CHEST)
 		if(slot_in_backpack)
 			return 1
 		if(slot_tie)

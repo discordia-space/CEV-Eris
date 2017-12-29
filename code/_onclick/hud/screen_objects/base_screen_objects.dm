@@ -164,7 +164,7 @@
 				if(8 to 11)
 					parentmob.targeted_organ = BP_R_ARM
 				if(12 to 20)
-					parentmob.targeted_organ = "chest"
+					parentmob.targeted_organ = BP_CHEST
 				if(21 to 24)
 					parentmob.targeted_organ = BP_L_ARM
 				else

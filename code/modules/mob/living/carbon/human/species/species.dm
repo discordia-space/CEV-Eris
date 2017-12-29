@@ -142,7 +142,7 @@
 	var/vision_organ              // If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 
 	var/list/has_limbs = list(
-		"chest" =  new /datum/organ_description/chest,
+		BP_CHEST =  new /datum/organ_description/chest,
 		"groin" =  new /datum/organ_description/groin,
 		BP_HEAD =   new /datum/organ_description/head,
 		BP_L_ARM =  new /datum/organ_description/arm/left,

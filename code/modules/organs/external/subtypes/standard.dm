@@ -4,7 +4,7 @@
 
 /obj/item/organ/external/chest
 	name = "upper body"
-	organ_tag = "chest"
+	organ_tag = BP_CHEST
 	icon_name = "torso"
 	max_damage = 100
 	min_broken_damage = 35
@@ -27,7 +27,7 @@
 	w_class = ITEM_SIZE_LARGE
 	body_part = LOWER_TORSO
 	vital = 1
-	parent_organ = "chest"
+	parent_organ = BP_CHEST
 	amputation_point = "lumbar"
 	joint = "hip"
 	dislocated = -1
@@ -41,7 +41,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	body_part = HEAD
 	vital = 1
-	parent_organ = "chest"
+	parent_organ = BP_CHEST
 	joint = "jaw"
 	amputation_point = "neck"
 	encased = "skull"

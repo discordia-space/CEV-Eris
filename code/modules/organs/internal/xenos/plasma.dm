@@ -1,6 +1,6 @@
 /obj/item/organ/internal/xenos/plasmavessel
 	name = "plasma vessel"
-	parent_organ = "chest"
+	parent_organ = BP_CHEST
 	icon_state = "xgibdown1"
 	organ_tag = O_PLASMA
 	var/stored_plasma = 0

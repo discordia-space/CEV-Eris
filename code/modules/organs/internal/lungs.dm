@@ -3,7 +3,7 @@
 	icon_state = "lungs"
 	gender = PLURAL
 	organ_tag = O_LUNGS
-	parent_organ = "chest"
+	parent_organ = BP_CHEST
 
 	var/breath_type
 	var/poison_type

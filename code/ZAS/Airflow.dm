@@ -227,8 +227,8 @@ mob/living/carbon/human/airflow_hit(atom/A)
 	var/blocked = run_armor_check(BP_HEAD,"melee")
 	apply_damage(b_loss/3, BRUTE, BP_HEAD, blocked, 0, "Airflow")
 
-	blocked = run_armor_check("chest","melee")
-	apply_damage(b_loss/3, BRUTE, "chest", blocked, 0, "Airflow")
+	blocked = run_armor_check(BP_CHEST,"melee")
+	apply_damage(b_loss/3, BRUTE, BP_CHEST, blocked, 0, "Airflow")
 
 	blocked = run_armor_check("groin","melee")
 	apply_damage(b_loss/3, BRUTE, "groin", blocked, 0, "Airflow")

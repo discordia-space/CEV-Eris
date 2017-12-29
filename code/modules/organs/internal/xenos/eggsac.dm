@@ -44,7 +44,7 @@
 		owner << SPAN_WARNING("They are already part of the hive.")
 		return
 
-	var/obj/item/organ/affecting = M.get_organ("chest")
+	var/obj/item/organ/affecting = M.get_organ(BP_CHEST)
 	if(!affecting || (affecting.status & ORGAN_ROBOT))
 		owner << SPAN_WARNING("This form is not compatible with our physiology.")
 		return

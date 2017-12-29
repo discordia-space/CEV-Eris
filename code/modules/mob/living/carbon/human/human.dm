@@ -152,7 +152,7 @@
 		switch(temp.name)
 			if(BP_HEAD)
 				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
-			if("chest")
+			if(BP_CHEST)
 				update |= temp.take_damage(b_loss * 0.4, f_loss * 0.4, used_weapon = weapon_message)
 			else
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)

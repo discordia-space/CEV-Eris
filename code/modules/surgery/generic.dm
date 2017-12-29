@@ -199,7 +199,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		var/msg = "[user] starts to pry open the incision on [target]'s [affected.name] with \the [tool]."
 		var/self_msg = "You start to pry open the incision on [target]'s [affected.name] with \the [tool]."
-		if (target_zone == "chest")
+		if (target_zone == BP_CHEST)
 			msg = "[user] starts to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool]."
 			self_msg = "You start to separate the ribcage and rearrange the organs in [target]'s torso with \the [tool]."
 		if (target_zone == "groin")
@@ -213,7 +213,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		var/msg = "\blue [user] keeps the incision open on [target]'s [affected.name] with \the [tool]."
 		var/self_msg = "\blue You keep the incision open on [target]'s [affected.name] with \the [tool]."
-		if (target_zone == "chest")
+		if (target_zone == BP_CHEST)
 			msg = "\blue [user] keeps the ribcage open on [target]'s torso with \the [tool]."
 			self_msg = "\blue You keep the ribcage open on [target]'s torso with \the [tool]."
 		if (target_zone == "groin")
@@ -226,7 +226,7 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		var/msg = "\red [user]'s hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!"
 		var/self_msg = "\red Your hand slips, tearing the edges of the incision on [target]'s [affected.name] with \the [tool]!"
-		if (target_zone == "chest")
+		if (target_zone == BP_CHEST)
 			msg = "\red [user]'s hand slips, damaging several organs in [target]'s torso with \the [tool]!"
 			self_msg = "\red Your hand slips, damaging several organs in [target]'s torso with \the [tool]!"
 		if (target_zone == "groin")
