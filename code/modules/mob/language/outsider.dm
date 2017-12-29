@@ -98,7 +98,7 @@
 /datum/language/russian
 	name = "Russian"
 	desc = "This is the languaged used by the russians"
-	//colour = "russian" TODO
+	colour = "russian"
 	key = "r"
 	flags = RESTRICTED
 	syllables = list("zhena", "reb", "kot", "tvoy", "vodka", "blyad", "lenin", "ponimat", "zhit", "kley", "sto", "yat", "si", "det", \
