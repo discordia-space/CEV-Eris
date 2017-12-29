@@ -273,9 +273,6 @@
 	var/damage = O.force
 	if (O.damtype == HALLOSS)
 		damage = 0
-	if(supernatural && istype(O,/obj/item/weapon/nullrod))
-		damage *= 2
-		purge = 3
 	adjustBruteLoss(damage)
 
 	return 0
