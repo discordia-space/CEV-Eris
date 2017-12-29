@@ -3,7 +3,7 @@
 	icon_state = "kidneys"
 	gender = PLURAL
 	organ_tag = O_KIDNEYS
-	parent_organ = "groin"
+	parent_organ = BP_GROIN
 
 /obj/item/organ/internal/kidneys/process()
 

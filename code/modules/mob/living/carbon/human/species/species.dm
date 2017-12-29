@@ -143,7 +143,7 @@
 
 	var/list/has_limbs = list(
 		BP_CHEST =  new /datum/organ_description/chest,
-		"groin" =  new /datum/organ_description/groin,
+		BP_GROIN =  new /datum/organ_description/groin,
 		BP_HEAD =   new /datum/organ_description/head,
 		BP_L_ARM =  new /datum/organ_description/arm/left,
 		BP_R_ARM =  new /datum/organ_description/arm/right,

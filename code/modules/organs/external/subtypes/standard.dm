@@ -20,7 +20,7 @@
 
 /obj/item/organ/external/groin
 	name = "lower body"
-	organ_tag = "groin"
+	organ_tag = BP_GROIN
 	icon_name = "groin"
 	max_damage = 100
 	min_broken_damage = 35

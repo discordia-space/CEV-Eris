@@ -78,7 +78,7 @@ proc/getsensorlevel(A)
 var/list/global/base_miss_chance = list(
 	BP_HEAD = 40,
 	BP_CHEST = 10,
-	"groin" = 20,
+	BP_GROIN = 20,
 	BP_L_LEG  = 20,
 	BP_R_LEG = 20,
 	BP_L_ARM = 20,
@@ -94,7 +94,7 @@ var/list/global/base_miss_chance = list(
 var/list/global/organ_rel_size = list(
 	BP_HEAD = 25,
 	BP_CHEST = 70,
-	"groin" = 30,
+	BP_GROIN = 30,
 	BP_L_LEG  = 25,
 	BP_R_LEG = 25,
 	BP_L_ARM = 25,
@@ -128,7 +128,7 @@ var/list/global/organ_rel_size = list(
 		ran_zone = pick (
 			organ_rel_size[BP_HEAD]; BP_HEAD,
 			organ_rel_size[BP_CHEST]; BP_CHEST,
-			organ_rel_size["groin"]; "groin",
+			organ_rel_size[BP_GROIN]; BP_GROIN,
 			organ_rel_size[BP_L_ARM]; BP_L_ARM,
 			organ_rel_size[BP_R_ARM]; BP_R_ARM,
 			organ_rel_size[BP_L_LEG ]; BP_L_LEG ,

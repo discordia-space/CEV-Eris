@@ -427,7 +427,7 @@ datum/gas_mixture/proc/check_recombustability(list/fuel_objs)
 
 	apply_damage(2.5 * mx * head_exposure,  BURN, BP_HEAD,  0, 0, "Fire")
 	apply_damage(2.5 * mx * chest_exposure, BURN, BP_CHEST, 0, 0, "Fire")
-	apply_damage(2.0 * mx * groin_exposure, BURN, "groin", 0, 0, "Fire")
+	apply_damage(2.0 * mx * groin_exposure, BURN, BP_GROIN, 0, 0, "Fire")
 	apply_damage(0.6 * mx * legs_exposure,  BURN, BP_L_LEG , 0, 0, "Fire")
 	apply_damage(0.6 * mx * legs_exposure,  BURN, BP_R_LEG, 0, 0, "Fire")
 	apply_damage(0.4 * mx * arms_exposure,  BURN, BP_L_ARM, 0, 0, "Fire")

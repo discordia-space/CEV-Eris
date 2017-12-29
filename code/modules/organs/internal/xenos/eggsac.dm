@@ -1,6 +1,6 @@
 /obj/item/organ/internal/xenos/eggsac
 	name = "egg sac"
-	parent_organ = "groin"
+	parent_organ = BP_GROIN
 	icon_state = "xgibmid1"
 	organ_tag = O_EGG
 	owner_verbs = list(

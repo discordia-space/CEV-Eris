@@ -1,7 +1,7 @@
 /obj/item/organ/internal/appendix
 	name = "appendix"
 	icon_state = "appendix"
-	parent_organ = "groin"
+	parent_organ = BP_GROIN
 	organ_tag = O_APPENDIX
 	var/inflamed = 0 //Counter, not boolean
 

@@ -85,7 +85,7 @@ var/global/list/sparring_attack_cache = list()
 					if(prob(50))
 						target.set_dir(reverse_dir[target.dir])
 					target.apply_effect(attack_damage * 0.4, WEAKEN, armour)
-			if("groin")
+			if(BP_GROIN)
 				target.visible_message(
 					SPAN_WARNING("[target] looks like \he is in pain!"),
 					SPAN_WARNING((target.gender=="female") ? "Oh god that hurt!" : "Oh no, not your[pick("testicles", "crown jewels", "clockweights", "family jewels", "marbles", "bean bags", "teabags", "sweetmeats", "goolies")]!")
@@ -192,7 +192,7 @@ var/global/list/sparring_attack_cache = list()
 	if (user.legcuffed)
 		return 0
 
-	if(!zone in (BP_LEGS + "groin"))
+	if(!zone in (BP_LEGS + BP_GROIN))
 		return 0
 
 	var/obj/item/organ/external/E = user.organs_by_name[BP_L_FOOT]

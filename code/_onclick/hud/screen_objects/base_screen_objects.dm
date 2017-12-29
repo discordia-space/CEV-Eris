@@ -154,7 +154,7 @@
 				if(8 to 11)
 					parentmob.targeted_organ = BP_R_HAND
 				if(12 to 20)
-					parentmob.targeted_organ = "groin"
+					parentmob.targeted_organ = BP_GROIN
 				if(21 to 24)
 					parentmob.targeted_organ = BP_L_HAND
 				else
