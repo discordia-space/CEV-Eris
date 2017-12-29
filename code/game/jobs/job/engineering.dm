@@ -61,6 +61,7 @@
 	supervisors = "the Technomancer Exultant"
 	selection_color = "#fff5cc"
 	economic_modifier = 5
+	also_known_languages = list(LANGUAGE_CYRILLIC = 100)
 	access = list(
 		access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
 		access_external_airlocks, access_construction, access_atmospherics

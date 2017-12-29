@@ -224,20 +224,24 @@
 	world << "add__also_known_language!"
 
 	if(!ishuman(target))
+		world << "!ishuman"
 		return
 
 	var/mob/living/carbon/human/H = target
 
-	var/datum/mind/M = H.mind
-
-	if(!H.mind.assigned_role || !H.mind.assigned_role.also_known_languages.len)
+	if(!H.mind || !H.mind.assigned_job || !H.mind.assigned_job.also_known_languages.len)
+		world << "!H.mind.assigned_job || !H.mind.assigned_job.also_known_languages.len"
+		world << "H.mind = [H.mind]"
+		world << "H.mind.assigned_job = [H.mind.assigned_job]"
+		world << "H.mind.assigned_job.also_known_languages.len = [H.mind.assigned_job.also_known_languages.len]"
 		return
 
 	var/i
 
-	for(i in H.mind.assigned_role.also_known_languages)
-		if(prob(H.mind.assigned_role.also_known_languages[i]))
+	for(i in H.mind.assigned_job.also_known_languages)
+		if(prob(H.mind.assigned_job.also_known_languages[i]))
 			H.add_language(i)
-			world << "language[i] added to [H]"
+			world << "language\[[i]\] added to \[[H]\]"
 	world << "end of add_languages"
+
 #undef SCRAMBLE_CACHE_LEN
