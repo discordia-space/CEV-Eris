@@ -281,13 +281,7 @@
 			apply_material_decorations = 0
 			if(prob(10))
 				apply_image_decorations = 1
-		if(17)
-			//cultblade
-			apply_prefix = 0
-			new_item = new /obj/item/weapon/melee/cultblade(src.loc)
-			apply_material_decorations = 0
-			apply_image_decorations = 0
-		if(18)
+		if(17 to 18)
 			new_item = new /obj/item/device/radio/beacon(src.loc)
 			talkative = 0
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
