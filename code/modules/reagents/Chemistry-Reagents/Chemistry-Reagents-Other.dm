@@ -196,16 +196,6 @@
 	M.SetWeakened(0)
 	M.adjustToxLoss(rand(3))
 
-/datum/reagent/water/holywater
-	name = "Holy Water"
-	id = "holywater"
-	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
-	color = "#E0E8EF"
-
-	glass_icon_state = "glass_clear"
-	glass_name = "glass of holy water"
-	glass_desc = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
-
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
 	if(volume >= 5)
 		T.holy = 1
