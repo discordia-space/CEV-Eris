@@ -312,7 +312,9 @@ BLIND     // can't see anything
 	update_icon()
 	return
 
-
+/obj/item/clothing/shoes/AltClick()
+	if(src in usr)
+		draw_knife()
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
 	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
 	 istype(I, /obj/item/weapon/material/butterfly) || \
