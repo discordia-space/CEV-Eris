@@ -23,7 +23,8 @@
 #define HAS_HAIR_COLOR    0x20   // Hair colour selectable in chargen. (RGB)
 
 // Languages.
-#define LANGUAGE_COMMON "Alliance Common"
+#define LANGUAGE_COMMON "English Common"
+#define LANGUAGE_CYRILLIC "Techno-Russian"
 
 #define LANGUAGE_ROBOT "Robot Talk"
 #define LANGUAGE_DRONE "Drone Talk"
@@ -35,8 +36,6 @@
 #define LANGUAGE_CORTICAL "Cortical Link"
 #define LANGUAGE_CULT "Cult"
 #define LANGUAGE_OCCULT "Occult"
-
-#define LANGUAGE_CYRILLIC "Russian"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

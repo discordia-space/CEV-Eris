@@ -1,6 +1,6 @@
 /datum/language/common
 	name = LANGUAGE_COMMON
-	desc = "The common alliance language."
+	desc = "Most popular language in Canis Majoris constellation, thanks to many USA colonial ships arrived there in distant past."
 	key = "0"
 	flags = RESTRICTED
 
