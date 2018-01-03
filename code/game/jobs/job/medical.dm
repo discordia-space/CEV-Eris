@@ -12,7 +12,7 @@
 	idtype = /obj/item/weapon/card/id/cmo
 	req_admin_notify = 1
 	economic_modifier = 10
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
 		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
@@ -56,7 +56,7 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 7
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
 		access_genetics
@@ -94,7 +94,7 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 5
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
 		access_genetics
@@ -131,7 +131,7 @@
 	economic_modifier = 5
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
 		access_genetics, access_psychiatrist
@@ -164,7 +164,7 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 4
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist

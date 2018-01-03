@@ -12,7 +12,7 @@
 	idtype = /obj/item/weapon/card/id/rd
 	req_admin_notify = 1
 	economic_modifier = 15
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_rd, access_heads, access_tox, access_genetics, access_morgue,
 		access_tox_storage, access_teleporter, access_sec_doors,
@@ -52,7 +52,7 @@
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 7
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch,
 		access_genetics
@@ -88,7 +88,7 @@
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 5
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research
 	) //As a job that handles so many corpses, it makes sense for them to have morgue access.

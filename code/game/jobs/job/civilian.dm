@@ -9,6 +9,7 @@
 	spawn_positions = 1
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	uniform = /obj/item/clothing/under/rank/bartender
 	pda = /obj/item/device/pda/bar
