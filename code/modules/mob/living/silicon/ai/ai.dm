@@ -95,6 +95,32 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	src.verbs -= ai_verbs_default
 
+
+/mob/living/silicon/ai/proc/add_mecha_verbs()
+	verbs += /mob/living/silicon/ai/proc/view_mecha_stats
+	verbs += /mob/living/silicon/ai/proc/eject
+
+
+/mob/living/silicon/ai/proc/remove_mecha_verbs()
+	verbs -= /mob/living/silicon/ai/proc/view_mecha_stats
+	verbs -= /mob/living/silicon/ai/proc/eject
+
+/mob/living/silicon/ai/proc/view_mecha_stats()
+	set name = "View Stats"
+	set category = "Exosuit Interface"
+	set popup_menu = 0
+	if(controlled_mech)
+		controlled_mech.view_stats()
+
+
+/mob/living/silicon/ai/proc/eject()
+	set name = "Eject"
+	set category = "Exosuit Interface"
+	set popup_menu = 0
+	if(controlled_mech)
+		controlled_mech.eject()
+
+
 /mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
 	announcement = new()
 	announcement.title = "A.I. Announcement"

@@ -13,7 +13,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/go_out()
 	chassis.occupant = null
 	chassis.reset_icon()
-
+	occupant.remove_ai_verbs()
 	occupant.set_mecha(null)
 	if(occupant.eyeobj)
 		occupant.eyeobj.setLoc(chassis)
@@ -35,6 +35,7 @@
 	occupant = AI
 	chassis.occupant = occupant
 	chassis.reset_icon()
+	AI.add_ai_verbs()
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/interact(var/mob/living/silicon/ai/user)
 	world << "Enter"
