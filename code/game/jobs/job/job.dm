@@ -129,19 +129,16 @@
 		C.install(H)
 		C.activate()
 
-	return 1
+	return TRUE
 
-datum/job/proc/add_additiional_language(var/mob/living/carbon/human/target)
-	if(!target)
-		return 0
-
+/datum/job/proc/add_additiional_language(var/mob/living/carbon/human/target)
 	if(!ishuman(target))
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = target
 
-	if(!H.mind || !H.mind.assigned_job || !also_known_languages.len)
-		return 0
+	if(!also_known_languages.len)
+		return FALSE
 
 	var/i
 
@@ -149,7 +146,7 @@ datum/job/proc/add_additiional_language(var/mob/living/carbon/human/target)
 		if(prob(also_known_languages[i]))
 			H.add_language(i)
 
-	return 1
+	return TRUE
 
 /datum/job/proc/setup_account(var/mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
