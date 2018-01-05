@@ -21,11 +21,6 @@
 			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
 				remove_splints(user)
 			return
-		if("sensors")
-			visible_message(SPAN_DANGER("\The [user] is trying to set \the [src]'s sensors!"))
-			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
-				toggle_sensors(user)
-			return
 		if("internals")
 			visible_message(SPAN_DANGER("\The [usr] is trying to set \the [src]'s internals!"))
 			if(do_mob(user,src,HUMAN_STRIP_DELAY, progress = 0))
