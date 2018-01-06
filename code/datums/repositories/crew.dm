@@ -24,7 +24,7 @@ var/global/datum/repository/crew/crew_repository = new()
 	var/tracked = scan()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
-		var/location_approved = (pos.z == T.z || ((pos.z in config.station_levels) && (T.z in config.station_levels)))
+		var/location_approved = is_on_same_plane_or_station(pos.z, T.z)
 		if((C) && (C.has_sensor) && (pos) && (T && location_approved) && (C.sensor_mode != SUIT_SENSOR_OFF))
 			if(ishuman(C.loc))
 				var/mob/living/carbon/human/H = C.loc
