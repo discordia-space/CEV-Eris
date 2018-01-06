@@ -17,7 +17,7 @@
 	var/open = 0
 
 /obj/item/clothing/mask/balaclava/tactical/proc/adjust_mask(mob/user)
-	if(!user.incapacited())
+	if(!usr.incapacited())
 		src.open = !src.open
 		if (src.open)
 			body_parts_covered = body_parts_covered & ~FACE

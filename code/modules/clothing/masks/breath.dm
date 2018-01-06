@@ -11,7 +11,7 @@
 	var/hanging = 0
 
 /obj/item/clothing/mask/breath/proc/adjust_mask(mob/user)
-	if(!user.incapacited())
+	if(!usr.incapacited())
 		src.hanging = !src.hanging
 		if (src.hanging)
 			gas_transfer_coefficient = 1
