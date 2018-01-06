@@ -24,18 +24,8 @@ var/global/datum/repository/crew/crew_repository = new()
 	var/tracked = scan()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
-		if(
-			(C) && \
-			(C.has_sensor) && \
-			(pos) && \
-			( \
-				T && \
-				( \
-					pos.z == T.z || ((pos.z in config.station_levels) && (T.z in config.station_levels)) \
-				) \
-			) \
-			&& (C.sensor_mode != SUIT_SENSOR_OFF) \
-		)
+		var/location_approved = (pos.z == T.z || ((pos.z in config.station_levels) && (T.z in config.station_levels)))
+		if((C) && (C.has_sensor) && (pos) && (T && location_approved) && (C.sensor_mode != SUIT_SENSOR_OFF))
 			if(ishuman(C.loc))
 				var/mob/living/carbon/human/H = C.loc
 				if(H.w_uniform != C)
