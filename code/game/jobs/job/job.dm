@@ -17,6 +17,7 @@
 	var/head_position = 0                 // Is this position Command?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
+	var/list/also_known_languages = list()// additional chance based languages to all jobs.
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
@@ -128,7 +129,24 @@
 		C.install(H)
 		C.activate()
 
-	return 1
+	return TRUE
+
+/datum/job/proc/add_additiional_language(var/mob/living/carbon/human/target)
+	if(!ishuman(target))
+		return FALSE
+
+	var/mob/living/carbon/human/H = target
+
+	if(!also_known_languages.len)
+		return FALSE
+
+	var/i
+
+	for(i in also_known_languages)
+		if(prob(also_known_languages[i]))
+			H.add_language(i)
+
+	return TRUE
 
 /datum/job/proc/setup_account(var/mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))

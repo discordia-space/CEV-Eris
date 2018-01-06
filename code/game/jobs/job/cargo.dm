@@ -11,6 +11,7 @@
 	supervisors = "your greed"
 	selection_color = "#dddddd"
 	economic_modifier = 20
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
 		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
@@ -46,6 +47,7 @@
 	spawn_positions = 2
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
 		access_mining_station
@@ -62,7 +64,6 @@
 	icon_state = "player-beige"
 	join_tag = /datum/job/cargo_tech
 
-
 /datum/job/mining
 	title = "Guild Miner"
 	flag = MINER
@@ -74,6 +75,7 @@
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	economic_modifier = 5
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
 		access_mining_station
