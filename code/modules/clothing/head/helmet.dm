@@ -71,6 +71,7 @@
 	icon_state = "light_riot"
 	body_parts_covered = HEAD|FACE
 	armor = list(melee = 60, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
+	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
 	flash_protection = FLASH_PROTECTION_MAJOR
