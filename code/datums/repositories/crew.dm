@@ -48,7 +48,7 @@ var/global/datum/repository/crew/crew_repository = new()
 
 				if(C.sensor_mode >= SUIT_SENSOR_TRACKING)
 					var/area/A = get_area(H)
-					crewmemberData["area"] = strip_improper(sanitize(A.name))
+					crewmemberData["area"] = sanitize(strip_improper(A.name))
 					crewmemberData["x"] = pos.x
 					crewmemberData["y"] = pos.y
 
