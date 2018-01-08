@@ -2,6 +2,10 @@
 
 	// Base vars
 	var/list/objectives = list()
+
+	var/list/possible_objectives = list()
+	var/survive_objective = null
+
 	var/datum/mind/owner = null
 
 	var/list/restricted_jobs =     list()   // Jobs that technically cannot be this antagonist (like AI-changeling)
@@ -11,12 +15,11 @@
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
 
 	// Role data.
-	var/id = null                      // Unique datum identifier.
+	var/id = null                      		// Unique datum identifier.
 	var/role_type                           // Preferences option for this role. Defaults to the id if unset
 	var/role_text = "Traitor"               // special_role text.
 	var/role_text_plural = "Traitors"       // As above but plural.
 	var/selectable = TRUE
-	var/weight = 10
 
 	// Faction data.
 	var/datum/faction/faction = null
@@ -25,10 +28,6 @@
 	// Misc.
 	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
 	var/list/uplinks = list()
-
-
-	// Used for setting appearance.
-	var/list/valid_species =       list("Human")
 
 
 /datum/antagonist/New()

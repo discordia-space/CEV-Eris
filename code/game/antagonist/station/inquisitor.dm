@@ -4,29 +4,18 @@
 	role_text_plural = "NeoTheology Inquisitors"
 	bantype = "inquisitor"
 	welcome_text = "Here should be the inquisitor welcome text."
-	weight = 9
 	protected_jobs = list("Cyberchristian Preacher")
 
+	possible_objectives = list(
+	list(
+	/datum/objective/assasinate = 30,
+	/datum/objective/brig = 15,
+	/datum/objective/harm = 15,
+	/datum/objective/steal = 30,
+	/datum/objective/baptize = 30,
+	))
 
-/datum/antagonist/inquisitor/create_objectives()
-	if(!..())
-		return
-
-	switch(rand(1,100))
-		if(1 to 25)
-			new /datum/objective/assassinate (src)
-		if(26 to 40)
-			new /datum/objective/brig (src)
-		if(41 to 55)
-			new /datum/objective/harm (src)
-		if(56 to 80)
-			new /datum/objective/baptize (src)
-		else
-			new /datum/objective/steal (src)
-
-	if (!(locate(/datum/objective/escape) in objectives))
-		new /datum/objective/escape (src)
-	return
+	survive_objective = /datum/objective/escape
 
 /datum/antagonist/inquisitor/can_become_antag(var/datum/mind/M)
 	if(!..())

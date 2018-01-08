@@ -1,20 +1,6 @@
-/datum/roleset/traitor
-	id = "traitor"
-	roles = list(ROLE_TRAITOR = 1)
-
-/datum/roleset/traitor/spawn_roleset()
-	var/datum/mind/M = safepick(candidates_list(ROLE_TRAITOR))
-	if(!M)
-		return FALSE
-
-	make_antagonist(M,ROLE_TRAITOR)
-	log_roleset("[M.name] was choosen for the traitor role and was succesfully antagonized.")
-	return TRUE
-
-
 /datum/roleset/double_agents
 	id = "double_agents"
-	roles = list(ROLE_TRAITOR = 2)
+	role_id = null
 
 /datum/roleset/double_agents/spawn_roleset()
 	var/list/candidates = candidates_list(ROLE_TRAITOR)
@@ -43,5 +29,7 @@
 
 	new/datum/objective/escape(a2)
 
-	log_roleset("[first.name] and [second.name] were choosen for the double agents role and were succesfully antagonized.")
 	return TRUE
+
+/datum/roleset/double_agents/create_objectives(var/datum/antagonist/A)
+

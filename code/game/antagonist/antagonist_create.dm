@@ -32,9 +32,6 @@
 
 	create_faction()
 
-	if(!objectives || !objectives.len)
-		create_objectives()
-
 	if(doequip)
 		equip()
 

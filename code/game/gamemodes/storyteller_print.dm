@@ -65,7 +65,6 @@
 	data += "<br><br>Time to next role spawn: <a href='?src=\ref[src];edit_timer=1'>[(role_spawn_timer-world.time)/10]</a> <a href='?src=\ref[src];edit_timer_t=1'>\[as tick\]</a> s"
 	data += "<br><b><a href='?src=\ref[src];force_spawn=1'>\[FORCE ROLE SPAWN\]</a></b>"
 	data += "<br>Last spawn stage: [role_spawn_stage]."
-	data += "<br>Current round weight: [get_round_weight()]"
 
 	data += "<br><br>One role per player: <a href='?src=\ref[src];toggle_orpp=1'>[one_role_per_player?"Yes":"No"]</a>"
 

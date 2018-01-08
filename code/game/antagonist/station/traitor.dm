@@ -1,8 +1,18 @@
 // Inherits most of its vars from the base datum.
 /datum/antagonist/traitor
 	id = ROLE_TRAITOR
-	weight = 10
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
+
+	possible_objectives = list(
+	list(
+	/datum/objective/assasinate = 30,
+	/datum/objective/brig = 15,
+	/datum/objective/harm = 15,
+	/datum/objective/steal = 30,
+	))
+
+	survive_objective = /datum/objective/escape
+
 
 /datum/antagonist/traitor/get_extra_panel_options()
 	if(owner.current)
@@ -13,45 +23,20 @@
 		return
 	if(href_list["spawn_uplink"]) spawn_uplink(locate(href_list["spawn_uplink"]))
 
-/datum/antagonist/traitor/create_objectives()
-	if(!..())
-		return
-
-	if(issilicon(owner.current))
-		new /datum/objective/assassinate (src)
-		new /datum/objective/survive (src)
-
-		if(prob(10))
-			new /datum/objective/block (src)
-	else
-		switch(rand(1,100))
-			if(1 to 33)
-				new /datum/objective/assassinate (src)
-			if(34 to 50)
-				new /datum/objective/brig (src)
-			if(51 to 66)
-				new /datum/objective/harm (src)
-			else
-				new /datum/objective/steal (src)
-		if (!(locate(/datum/objective/escape) in objectives))
-			new /datum/objective/escape (src)
-	return
+/datum/antagonist/traitor/can_become_antag(var/datum/mind/player)
+	return ishuman(player.current) && ..(player)
 
 /datum/antagonist/traitor/equip()
 	if(!owner.current)
 		return FALSE
-	var/mob/living/carbon/human/traitor_mob = owner.current
-	if(issilicon(traitor_mob)) // this needs to be here because ..() returns false if the mob isn't human
-		add_law_zero(traitor_mob)
-		return TRUE
 
 	if(!..())
 		return FALSE
 
 	spawn_uplink()
-
-	//Begin code phrase.
 	give_codewords()
+
+	return TRUE
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
@@ -65,7 +50,25 @@
 	traitor_mob << "Use the code words, preferably in the order provided, during regular conversation, to identify other agents. Proceed with caution, however, as everyone is a potential foe."
 
 
-/datum/antagonist/traitor/proc/add_law_zero()
+
+
+
+/datum/antagonist/traitor/synth
+	id = ROLE_TRAITOR_SYNTH
+
+	possible_objectives = list(
+	/datum/objective/assasinate = 100,
+	/datum/objective/block = 10)
+
+	survive_objective = /datum/objective/survive
+
+/datum/antagonist/traitor/synth/can_become_antag(var/datum/mind/player)
+	return issilicon(player) && ..(player)
+
+/datum/antagonist/traitor/synth/equip()
+	add_law_zero()
+
+/datum/antagonist/traitor/synth/proc/add_law_zero()
 	if(!isAI(owner.current))
 		return
 	var/mob/living/silicon/ai/killer = owner.current

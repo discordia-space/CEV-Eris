@@ -6,19 +6,26 @@ var/global/list/rolesets = list()
 
 /datum/roleset
 	var/id = "roleset"
-	var/list/roles = list()
+	var/role_id = null
 
-/datum/roleset/proc/get_roles_weight()
-	var/W = 0
-	for(var/role in roles)
-		W += antag_weights[role] * roles[role]
-	return W
+	var/weight_cache = 0
+	var/spawn_times = 0
 
-/datum/roleset/proc/get_special_weight()
-	return 0
+	//Weight calculation settings. Set to negative to disable check
+	var/req_crew = -1
+	var/req_heads = -1
+	var/req_sec = -1
+	var/req_eng = -1
+	var/req_med = -1
+	var/req_sci = -1
 
-/datum/roleset/proc/get_weight()
-	return get_roles_weight() + get_special_weight()
+	var/req_stage = -1
+
+	var/max_crew_diff = 10	//Maximum difference between above values and real crew distribution. If difference is greater, weight will be 0
+	var/max_stage_diff = 2
+
+/datum/roleset/proc/get_special_weight(var/weight)
+	return weight
 
 /datum/roleset/proc/can_spawn()
 	return TRUE
@@ -57,6 +64,7 @@ var/global/list/rolesets = list()
 
 			candidates.Add(candidate)
 
+	qdel(temp)
 	return candidates
 
 /datum/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE)
@@ -83,7 +91,7 @@ var/global/list/rolesets = list()
 
 			any_candidates = TRUE
 
-			//Activity test)))
+			//Activity test
 			if(act_test)
 				spawn()
 					usr = candidate
@@ -91,15 +99,41 @@ var/global/list/rolesets = list()
 						if(!agree_time_out)
 							candidates.Add(candidate)
 
-		if(any_candidates && act_test)	//we won't need to wait, if there's no candidates
+		if(any_candidates && act_test)	//we don't need to wait if there's no candidates
 			sleep(20 SECONDS)
 			agree_time_out = TRUE
 
+	qdel(temp)
 	return candidates
 
+/datum/roleset/proc/create()
+	var/succ = spawn_roleset()
+	if(succ)
+		spawn_times++
+		log_admin("STORYTELLER: [id] roleset has been spawned! [storyteller_button()]")
+	return succ
+
 /datum/roleset/proc/spawn_roleset()
-	return
+	var/antag = antag_types[role_id]
+	var/datum/antagonist/A = new antag
+
+	if(role_id in outer_antag_types)
+		var/mob/M = safepick(ghost_candidates_list(role_id))
+		if(!M)
+			return FALSE
+		return A.create_from_ghost(M)
+
+	else
+		var/datum/mind/M = safepick(candidates_list(role_id))
+		if(!M)
+			return FALSE
+		return A.create_antagonist(M)
+
+	create_objectives(A)
 
 
-/datum/roleset/proc/log_roleset(var/text)
-	log_admin("ROLESET: [text] <a href='?src=\ref[ticker.storyteller];panel=1'>\[STRT\]</a>")
+/datum/roleset/proc/create_objectives(var/datum/antagonist/A)
+	A.objectives.Cut()
+	A.create_objectives()
+	A.create_survive_objective()
+

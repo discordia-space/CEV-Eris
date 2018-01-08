@@ -8,7 +8,7 @@
 	..()
 	gen_amount_goal(lover_goal, upper_goal)
 
-/datum/objective/absorb/proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
+/datum/objective/absorb/proc/gen_amount_goal(var/lowbound = 2, var/highbound = 4)
 	target_amount = rand(lowbound, highbound)
 	if(ticker)
 		var/needed_count = 1 //autowin
