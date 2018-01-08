@@ -331,7 +331,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_gloves, slot_w_uniform)
 			covering = src.wear_suit
 
-	if((covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
+	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
 		return 0
 	return 1
