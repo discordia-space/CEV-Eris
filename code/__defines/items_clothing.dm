@@ -102,20 +102,21 @@
 #define HEAD        0x1
 #define FACE        0x2
 #define EYES        0x4
-#define UPPER_TORSO 0x8
-#define LOWER_TORSO 0x10
-#define LEG_LEFT    0x20
-#define LEG_RIGHT   0x40
-#define LEGS        0x60   //  LEG_LEFT | LEG_RIGHT
-#define FOOT_LEFT   0x80
-#define FOOT_RIGHT  0x100
-#define FEET        0x180  // FOOT_LEFT | FOOT_RIGHT
-#define ARM_LEFT    0x200
-#define ARM_RIGHT   0x400
-#define ARMS        0x600 //  ARM_LEFT | ARM_RIGHT
-#define HAND_LEFT   0x800
-#define HAND_RIGHT  0x1000
-#define HANDS       0x1800 // HAND_LEFT | HAND_RIGHT
+#define EARS        0x8
+#define UPPER_TORSO 0x10
+#define LOWER_TORSO 0x20
+#define LEG_LEFT    0x40
+#define LEG_RIGHT   0x80
+#define LEGS        0xC0    //  LEG_LEFT | LEG_RIGHT
+#define FOOT_LEFT   0x100
+#define FOOT_RIGHT  0x200
+#define FEET        0x300   // FOOT_LEFT | FOOT_RIGHT
+#define ARM_LEFT    0x400
+#define ARM_RIGHT   0x800
+#define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
+#define HAND_LEFT   0x1000
+#define HAND_RIGHT  0x2000
+#define HANDS       0x3000  // HAND_LEFT | HAND_RIGHT
 #define FULL_BODY   0xFFFF
 
 // Bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.

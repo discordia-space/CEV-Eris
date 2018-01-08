@@ -7,7 +7,7 @@
 		slot_r_hand_str = "helmet",
 		)
 	item_flags = THICKMATERIAL
-	body_parts_covered = HEAD
+	body_parts_covered = HEAD | EARS
 	armor = list(melee = 35, bullet = 15, laser = 25,energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	cold_protection = HEAD
@@ -42,7 +42,7 @@
 	icon_state = "gladiator"
 	armor = list(melee = 35, bullet = 15, laser = 25,energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
-	body_parts_covered = HEAD|FACE
+	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
 
 /obj/item/clothing/head/helmet/tactical
@@ -69,7 +69,7 @@
 	name = "riot helmet"
 	desc = "Standart issue Ironhammer helmet. Basic hud and targeting system included."
 	icon_state = "light_riot"
-	body_parts_covered = HEAD|FACE
+	body_parts_covered = HEAD|FACE|EARS
 	armor = list(melee = 60, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	flags_inv = HIDEEARS

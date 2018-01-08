@@ -328,6 +328,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_glasses)
 			covering = src.head
 			check_flags = EYES
+		if(slot_l_ear, slot_r_ear, )
+			covering = src.head
 		if(slot_gloves, slot_w_uniform)
 			covering = src.wear_suit
 
