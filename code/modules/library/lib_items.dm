@@ -151,6 +151,11 @@
 	var/obj/item/store	//What's in the book?
 
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
+	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.wav',\
+		'sound/items/BOOK_Turn_Page_2.wav',\
+		'sound/items/BOOK_Turn_Page_3.wav',\
+		'sound/items/BOOK_Turn_Page_4.wav',\
+		), rand(40,80), 1)
 	if(carved)
 		if(store)
 			user << SPAN_NOTICE("[store] falls out of [title]!")
