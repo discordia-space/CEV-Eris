@@ -442,7 +442,7 @@
 
 			listed_products.Add(list(list(
 				"key" = key,
-				"name" = I.product_name,
+				"name" = strip_improper(I.product_name),
 				"price" = I.price,
 				"color" = I.display_color,
 				"amount" = I.get_amount())))
