@@ -432,4 +432,3 @@
 	New()
 		..()
 		reagents.add_reagent("ale", 30)
-
