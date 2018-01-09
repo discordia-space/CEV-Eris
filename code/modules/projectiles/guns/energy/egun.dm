@@ -25,7 +25,7 @@
 	desc = "Last chance gun."
 	icon_state = "PDW"
 	item_state = "gun"
-	charge_meter = 0
+	charge_meter = FALSE
 	w_class = ITEM_SIZE_SMALL
 	charge_cost = 50
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)

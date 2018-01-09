@@ -81,7 +81,8 @@
 /obj/effect/shower/update_icon()
 	overlays.Cut()
 	if(mymist)
-		del(mymist)
+		qdel(mymist)
+		mymist = null
 
 	if(master.on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
@@ -93,15 +94,14 @@
 					ismist = 1
 					mymist = new /obj/effect/mist(loc)
 		else
-			ismist = 1
 			mymist = new /obj/effect/mist(loc)
 	else if(ismist)
-		ismist = 1
 		mymist = new /obj/effect/mist(loc)
 		spawn(150)
 			if(src && !master.on)
 				ismist = 0
-				del(mymist)
+				qdel(mymist)
+				mymist = null
 				qdel(src)
 
 //Yes, showers are super powerful as far as washing goes.

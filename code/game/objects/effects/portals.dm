@@ -7,7 +7,6 @@
 	unacidable = 1//Can't destroy energy portals.
 	var/failchance = 5
 	var/obj/item/target = null
-	var/creator = null
 	anchored = TRUE
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)

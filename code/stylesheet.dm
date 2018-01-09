@@ -88,6 +88,7 @@ h1.alert, h2.alert		{color: #000000;}
 .changeling				{color: #800080;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
+.russian				{color: #635d17}
 
 .interface				{color: #330033;}
 

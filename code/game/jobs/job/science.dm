@@ -12,14 +12,13 @@
 	idtype = /obj/item/weapon/card/id/rd
 	req_admin_notify = 1
 	economic_modifier = 15
-	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
-			            access_tox_storage, access_teleporter, access_sec_doors,
-			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network)
-	minimal_access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
-			            access_tox_storage, access_teleporter, access_sec_doors,
-			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_rd, access_heads, access_tox, access_genetics, access_morgue,
+		access_tox_storage, access_teleporter, access_sec_doors,
+		access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
+		access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network
+	)
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
@@ -53,8 +52,11 @@
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_genetics)
-	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch, access_genetics)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch,
+		access_genetics
+	)
 	idtype = /obj/item/weapon/card/id/sci
 
 	uniform = /obj/item/clothing/under/rank/scientist
@@ -86,8 +88,10 @@
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#ffeeff"
 	economic_modifier = 5
-	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
-	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research
+	) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	idtype = /obj/item/weapon/card/id/dkgrey
 
 	uniform = /obj/item/clothing/under/rank/roboticist

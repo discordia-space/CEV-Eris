@@ -1,7 +1,7 @@
 //Biosuit complete with shoes (in the item sprite)
 /obj/item/clothing/head/bio_hood
 	name = "bio hood"
-	icon_state = "bio"
+	icon_state = "bio_general"
 	item_state_slots = list(
 		slot_l_hand_str = "bio_hood",
 		slot_r_hand_str = "bio_hood",

@@ -2,8 +2,8 @@
 #define MODE_TRANSMIT 1
 
 /obj/item/weapon/bluespace_harpoon
-	name = "bluespace harpoon"
-	desc = "For climbing on bluespace mountains!"
+	name = "NT BSD \"Harpoon\""
+	desc = "One of the last things developed by old Nanotrasen, this harpoon serve as tool for short and accurate teleportation of cargo and personal through blue-space."
 	icon_state = "harpoon-1"
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEM_SIZE_NORMAL
@@ -11,24 +11,26 @@
 	throw_range = 20
 	origin_tech = list(TECH_BLUESPACE = 5)
 	var/mode = MODE_TRANSMIT
-	var/last_fire = 0			// time of last shot
 	var/transforming = FALSE	// mode changing takes some time
-	var/firing_delay = 200
 	var/offset_chance = 5		//chance to teleport things in wrong place
 	var/teleport_offset = 8		//radius of wrong place
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/medium
 
+/obj/item/weapon/bluespace_harpoon/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
+	if(!cell || !cell.checked_use(100))
+		user << SPAN_WARNING("[src] battery is dead or missing.")
+		return
 	if(!user || !A || user.machine)
 		return
 	if(transforming)
 		user << "<span class = 'warning'>You can't fire while [src] transforming!</span>"
 		return
-	if(!(world.time - last_fire >= firing_delay))
-		user << "<span class = 'warning'>[src] is recharging</span>"
-		return
-
-	last_fire = world.time
 
 	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
@@ -82,3 +84,11 @@
 /obj/item/weapon/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
 	..(user, dist)
 	user << "<span class='notice'>Mode set to [mode ? "transmiting" : "receiving"].</span>"
+
+/obj/item/weapon/bluespace_harpoon/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/weapon/bluespace_harpoon/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C

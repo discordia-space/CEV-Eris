@@ -447,7 +447,6 @@
 
 /obj/item/weapon/gun/AltClick(mob/user)
 	if(!restrict_safety)
-		..()
 		if(user.incapacitated())
 			user << "<span class='warning'>You can't do that right now!</span>"
 			return

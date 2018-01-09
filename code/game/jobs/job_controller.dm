@@ -56,6 +56,7 @@ var/global/datum/controller/occupations/job_master
 			if((job.current_positions < position_limit) || position_limit == -1)
 				Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 				player.mind.assigned_role = rank
+				player.mind.assigned_job = job
 				unassigned -= player
 				job.current_positions++
 				return 1
@@ -116,6 +117,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in player_list)
 			if((player) && (player.mind))
 				player.mind.assigned_role = null
+				player.mind.assigned_job = null
 		//		player.mind.special_role = null
 		SetupOccupations()
 		unassigned = list()
@@ -325,8 +327,9 @@ var/global/datum/controller/occupations/job_master
 								custom_equip_leftovers.Add(thing)
 						else
 							spawn_in_storage += thing
-			//Equip job items.
+			//Equip job items and language stuff
 			job.equip(H)
+			job.add_additiional_language(H)
 			job.setup_account(H)
 
 			job.apply_fingerprints(H)

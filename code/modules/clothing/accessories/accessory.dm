@@ -4,7 +4,7 @@
 	icon = 'icons/inventory/accessory/icon.dmi'
 	icon_state = "bluetie"
 	item_state = ""	//no inhands
-	slot_flags = SLOT_TIE
+	slot_flags = SLOT_ACCESSORY_BUFFER
 	w_class = ITEM_SIZE_SMALL
 	var/slot = "decor"
 	var/obj/item/clothing/has_suit = null		//the suit the tie may be attached to

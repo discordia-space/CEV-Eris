@@ -12,14 +12,14 @@
 	idtype = /obj/item/weapon/card/id/hos
 	req_admin_notify = 1
 	economic_modifier = 10
-	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
-			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
-			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
-	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
-			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
-			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
+		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
+		access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
+		access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway,
+		access_external_airlocks
+	)
 
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
@@ -64,9 +64,12 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
-			            access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
-	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	access = list(
+		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue,
+		access_external_airlocks
+	)
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/warden
@@ -112,9 +115,12 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
-			            access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_external_airlocks)
-	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	access = list(
+		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
+		access_external_airlocks
+	)
 	idtype = /obj/item/weapon/card/id/det
 
 	uniform = /obj/item/clothing/under/inspector
@@ -154,8 +160,10 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_medical, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
-	minimal_access = list(access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	access = list(
+		access_security, access_medical, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels
+	)
 	idtype = /obj/item/weapon/card/id/medcpec
 
 	uniform = /obj/item/clothing/under/rank/medspec
@@ -190,9 +198,11 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 4
-	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
-			            access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
-	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	access = list(
+		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks
+	)
 	idtype = /obj/item/weapon/card/id/sec
 
 	uniform = /obj/item/clothing/under/rank/security

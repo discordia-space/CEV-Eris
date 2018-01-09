@@ -21,11 +21,6 @@
 			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
 				remove_splints(user)
 			return
-		if("sensors")
-			visible_message(SPAN_DANGER("\The [user] is trying to set \the [src]'s sensors!"))
-			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
-				toggle_sensors(user)
-			return
 		if("internals")
 			visible_message(SPAN_DANGER("\The [usr] is trying to set \the [src]'s internals!"))
 			if(do_mob(user,src,HUMAN_STRIP_DELAY, progress = 0))
@@ -95,19 +90,6 @@
 	if(l_store)
 		unEquip(l_store)
 	visible_message(SPAN_DANGER("\The [user] empties \the [src]'s pockets!"))
-
-// Modify the current target sensor level.
-/mob/living/carbon/human/proc/toggle_sensors(var/mob/living/user)
-	var/obj/item/clothing/under/suit = w_uniform
-	if(!suit)
-		user << SPAN_WARNING("\The [src] is not wearing a suit with sensors.")
-		return
-	if (suit.has_sensor >= 2)
-		user << SPAN_WARNING("\The [src]'s suit sensor controls are locked.")
-		return
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their sensors toggled by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) sensors</font>")
-	suit.set_sensors(user)
 
 // Remove all splints.
 /mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
