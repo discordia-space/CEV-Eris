@@ -2,18 +2,18 @@ var/global/list/gear_datums = list()
 
 /hook/startup/proc/populate_gear_list()
 	var/list/sort_categories = list(
-		"[slot_head]"		= list(),
-		"ears"				= list(),
-		"[slot_glasses]" 	= list(),
-		"[slot_wear_mask]"	= list(),
-		"[slot_w_uniform]"	= list(),
-		"[slot_tie]"		= list(),
-		"[slot_wear_suit]"	= list(),
-		"[slot_gloves]"		= list(),
-		"[slot_shoes]"		= list(),
-		"utility"			= list(),
-		"misc"				= list(),
-		"unknown"			= list(),
+		"[slot_head]"		        = list(),
+		"ears"						= list(),
+		"[slot_glasses]" 			= list(),
+		"[slot_wear_mask]"			= list(),
+		"[slot_w_uniform]"			= list(),
+		"[slot_accessory_buffer]"	= list(),
+		"[slot_wear_suit]"			= list(),
+		"[slot_gloves]"				= list(),
+		"[slot_shoes]"				= list(),
+		"utility"					= list(),
+		"misc"						= list(),
+		"unknown"					= list(),
 	)
 
 	//create a list of gear datums to sort
@@ -488,102 +488,102 @@ var/global/list/gear_datums = list()
 /datum/gear/armband_cargo
 	display_name = "armband, cargo"
 	path = /obj/item/clothing/accessory/armband/cargo
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/armband_emt
 	display_name = "armband, EMT"
 	path = /obj/item/clothing/accessory/armband/medgreen
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/armband_engineering
 	display_name = "armband, engineering"
 	path = /obj/item/clothing/accessory/armband/engine
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/armband_hydroponics
 	display_name = "armband, hydroponics"
 	path = /obj/item/clothing/accessory/armband/hydro
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/armband_medical
 	display_name = "armband, medical"
 	path = /obj/item/clothing/accessory/armband/med
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/armband
 	display_name = "armband, red"
 	path = /obj/item/clothing/accessory/armband
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/armband_science
 	display_name = "armband, science"
 	path = /obj/item/clothing/accessory/armband/science
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/armpit
 	display_name = "holster, armpit"
 	path = /obj/item/clothing/accessory/holster/armpit
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander","Inspector")
 
 /datum/gear/hip
 	display_name = "holster, hip"
 	path = /obj/item/clothing/accessory/holster/hip
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Gunnery Sergeant", "Ironhammer Commander", "Inspector")
 
 /datum/gear/waist
 	display_name = "holster, waist"
 	path = /obj/item/clothing/accessory/holster/waist
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Warden", "Ironhammer Commander", "Inspector")
 
 /datum/gear/tie_blue
 	display_name = "tie, blue"
 	path = /obj/item/clothing/accessory/blue
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/tie_red
 	display_name = "tie, red"
 	path = /obj/item/clothing/accessory/red
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/tie_horrible
 	display_name = "tie, socially disgraceful"
 	path = /obj/item/clothing/accessory/horrible
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 
 /datum/gear/brown_vest
 	display_name = "webbing, engineering"
 	path = /obj/item/clothing/accessory/storage/brown_vest
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 	allowed_roles = list("Technomancer","Technomancer Exultant")
 
 /datum/gear/black_vest
 	display_name = "webbing, security"
 	path = /obj/item/clothing/accessory/storage/black_vest
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 1
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
 
 /datum/gear/webbing
 	display_name = "webbing, simple"
 	path = /obj/item/clothing/accessory/storage/webbing
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	cost = 2
 
 // Suit slot

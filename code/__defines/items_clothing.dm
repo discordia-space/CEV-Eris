@@ -5,22 +5,22 @@
 #define CANDLE_LUM 3 // For how bright candles are.
 
 // Item inventory slot bitmasks.
-#define SLOT_OCLOTHING  0x1
-#define SLOT_ICLOTHING  0x2
-#define SLOT_GLOVES     0x4
-#define SLOT_EYES       0x8
-#define SLOT_EARS       0x10
-#define SLOT_MASK       0x20
-#define SLOT_HEAD       0x40
-#define SLOT_FEET       0x80
-#define SLOT_ID         0x100
-#define SLOT_BELT       0x200
-#define SLOT_BACK       0x400
-#define SLOT_POCKET     0x800  // This is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_DENYPOCKET 0x1000  // This is to  deny items with a w_class of 2 or 1 from fitting in pockets.
-#define SLOT_TWOEARS    0x2000
-#define SLOT_TIE        0x4000
-#define SLOT_HOLSTER	0x8000 //16th bit - higher than this will overflow
+#define SLOT_OCLOTHING         0x1
+#define SLOT_ICLOTHING         0x2
+#define SLOT_GLOVES            0x4
+#define SLOT_EYES              0x8
+#define SLOT_EARS              0x10
+#define SLOT_MASK              0x20
+#define SLOT_HEAD              0x40
+#define SLOT_FEET              0x80
+#define SLOT_ID                0x100
+#define SLOT_BELT              0x200
+#define SLOT_BACK              0x400
+#define SLOT_POCKET            0x800  // This is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define SLOT_DENYPOCKET        0x1000  // This is to  deny items with a w_class of 2 or 1 from fitting in pockets.
+#define SLOT_TWOEARS           0x2000
+#define SLOT_ACCESSORY_BUFFER  0x4000
+#define SLOT_HOLSTER	       0x8000 //16th bit - higher than this will overflow
 
 // Flags bitmasks.
 #define NOBLUDGEON         0x1    // When an item has this it produces no "X has been hit by Y with Z" message with the default handler.
@@ -86,7 +86,7 @@
 #define slot_legcuffed   19
 #define slot_r_ear       20
 #define slot_legs        21
-#define slot_tie         22
+#define slot_accessory_buffer         22
 
 // Inventory slot strings.
 // since numbers cannot be used as associative list keys.

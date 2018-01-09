@@ -78,7 +78,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return has_organ("chest")
 		if(slot_in_backpack)
 			return 1
-		if(slot_tie)
+		if(slot_accessory_buffer)
 			return 1
 
 /mob/living/carbon/human/u_equip(obj/W as obj)
@@ -295,7 +295,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(src.get_active_hand() == W)
 				src.remove_from_mob(W)
 			W.forceMove(src.back)
-		if(slot_tie)
+		if(slot_accessory_buffer)
 			var/obj/item/clothing/under/uniform = src.w_uniform
 			uniform.attackby(W,src)
 		else
