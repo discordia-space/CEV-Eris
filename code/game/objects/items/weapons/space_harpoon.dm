@@ -2,8 +2,8 @@
 #define MODE_TRANSMIT 1
 
 /obj/item/weapon/bluespace_harpoon
-	name = "bluespace harpoon"
-	desc = "For climbing on bluespace mountains!"
+	name = "NT BSD \"Harpoon\""
+	desc = "One of the last things developed by old Nanotrasen, this harpoon serve as tool for short and accurate teleportation of cargo and personal through blue-space."
 	icon_state = "harpoon-1"
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEM_SIZE_NORMAL
@@ -24,7 +24,7 @@
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
 	if(!cell || !cell.checked_use(100))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if(!user || !A || user.machine)
 		return
