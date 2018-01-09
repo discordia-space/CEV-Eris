@@ -123,8 +123,8 @@ Frequency:
  * Hand-tele
  */
 /obj/item/weapon/hand_tele
-	name = "hand tele"
-	desc = "A portable item using blue-space technology."
+	name = "NT BSD \"Jumper\""
+	desc = "Also known as hand teleporter, this is old and unreliable way to create stable blue-space portals. Yet it become popular due its size and low energy consumption."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele"
 	item_state = "electronic"
@@ -144,7 +144,7 @@ Frequency:
 
 /obj/item/weapon/hand_tele/attack_self(mob/user)
 	if(!cell || !cell.checked_use(33))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location||current_location.z==2||current_location.z>=7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
@@ -171,8 +171,7 @@ Frequency:
 	if ((user.get_active_hand() != src || user.stat || user.restrained()))
 		return
 	var/T = L[t1]
-	for(var/mob/O in hearers(user, null))
-		O.show_message(SPAN_NOTICE("Locked In."), 2)
+	user << SPAN_NOTICE("Portal locked in.")
 	var/obj/effect/portal/P = new /obj/effect/portal( get_turf(src) )
 	P.target = T
 	src.add_fingerprint(user)

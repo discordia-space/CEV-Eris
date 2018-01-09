@@ -33,7 +33,7 @@ REAGENT SCANNER
 
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
 	if(!cell || !cell.checked_use(3))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << text(SPAN_WARNING("You try to analyze the floor's vitals!"))
@@ -221,7 +221,7 @@ REAGENT SCANNER
 
 /obj/item/device/analyzer/atmosanalyze(var/mob/user)
 	if(!cell || !cell.checked_use(5))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	var/air = user.return_air()
 	if (!air)
@@ -238,7 +238,7 @@ REAGENT SCANNER
 			return
 		analyze_gases(src, user)
 	else
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 
 /obj/item/device/analyzer/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
@@ -285,7 +285,7 @@ REAGENT SCANNER
 
 /obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
 	if(!cell || !cell.checked_use(7))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if (user.stat)
 		return
@@ -408,7 +408,7 @@ REAGENT SCANNER
 
 /obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!cell || !cell.checked_use(7))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if (!isslime(M))
 		user << "<B>This device can only scan slimes!</B>"
