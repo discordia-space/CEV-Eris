@@ -175,7 +175,6 @@ Frequency:
 		O.show_message(SPAN_NOTICE("Locked In."), 2)
 	var/obj/effect/portal/P = new /obj/effect/portal( get_turf(src) )
 	P.target = T
-	P.creator = src
 	src.add_fingerprint(user)
 
 	return
