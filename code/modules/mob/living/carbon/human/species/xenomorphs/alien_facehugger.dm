@@ -35,7 +35,7 @@ var/const/MAX_ACTIVE_TIME = 400
 /obj/item/clothing/mask/facehugger/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	. = ..()
 	user.drop_from_inventory(src)
-	if(hit_zone == "head")
+	if(hit_zone == BP_HEAD)
 		Attach(target)
 
 /obj/item/clothing/mask/facehugger/New()
@@ -112,7 +112,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		return
 
 	var/mob/living/carbon/C = M
-	if(istype(C) && locate(/obj/item/organ/xenos/hivenode) in C.internal_organs)
+	if(istype(C) && locate(/obj/item/organ/internal/xenos/hivenode) in C.internal_organs)
 		return
 
 
@@ -223,7 +223,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		return 0
 
 	var/mob/living/carbon/C = M
-	if(istype(C) && locate(/obj/item/organ/xenos/hivenode) in C.internal_organs)
+	if(istype(C) && locate(/obj/item/organ/internal/xenos/hivenode) in C.internal_organs)
 		return 0
 
 	if(ishuman(C))

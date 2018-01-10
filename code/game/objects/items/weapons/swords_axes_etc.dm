@@ -22,9 +22,9 @@
 		user.Weaken(3 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.apply_damage(2*force, BRUTE, "head")
+			H.apply_damage(2 * force, BRUTE, BP_HEAD)
 		else
-			user.take_organ_damage(2*force)
+			user.take_organ_damage(2 * force)
 		return
 	return ..()
 
@@ -44,18 +44,22 @@
 /obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
 	on = !on
 	if(on)
-		user.visible_message(SPAN_WARNING("With a flick of their wrist, [user] extends their telescopic baton."),\
-		SPAN_WARNING("You extend the baton."),\
-		"You hear an ominous click.")
+		user.visible_message(
+			SPAN_WARNING("With a flick of their wrist, [user] extends their telescopic baton."),
+			SPAN_WARNING("You extend the baton."),
+			"You hear an ominous click."
+		)
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
 		w_class = ITEM_SIZE_NORMAL
 		force = WEAPON_FORCE_PAINFULL//quite robust
 		attack_verb = list("smacked", "struck", "slapped")
 	else
-		user.visible_message(SPAN_NOTICE("\The [user] collapses their telescopic baton."),\
-		SPAN_NOTICE("You collapse the baton."),\
-		"You hear a click.")
+		user.visible_message(
+			SPAN_NOTICE("\The [user] collapses their telescopic baton."),
+			SPAN_NOTICE("You collapse the baton."),
+			"You hear a click."
+		)
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"
 		w_class = ITEM_SIZE_SMALL
@@ -89,7 +93,7 @@
 			user.Weaken(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				H.apply_damage(2*force, BRUTE, "head")
+				H.apply_damage(2 * force, BRUTE, BP_HEAD)
 			else
 				user.take_organ_damage(2*force)
 			return
