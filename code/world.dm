@@ -124,9 +124,6 @@ var/game_id = null
 	// Create autolathe recipes, as above.
 	populate_lathe_recipes()
 
-	// Create robolimbs for chargen.
-	populate_robolimb_list()
-
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)

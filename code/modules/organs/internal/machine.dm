@@ -3,8 +3,8 @@
 	desc = "A small, powerful cell for use in fully prosthetic bodies."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "scell"
-	organ_tag = "cell"
-	parent_organ = "chest"
+	organ_tag = O_CELL
+	parent_organ = BP_CHEST
 	vital = 1
 
 /obj/item/organ/cell/New()
@@ -21,7 +21,7 @@
 /obj/item/organ/optical_sensor
 	name = "optical sensor"
 	organ_tag = "optics"
-	parent_organ = "head"
+	parent_organ = BP_HEAD
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "camera"
 	dead_icon = "camera_broken"
@@ -33,8 +33,8 @@
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/mmi_holder
 	name = "brain"
-	organ_tag = "brain"
-	parent_organ = "chest"
+	organ_tag = O_BRAIN
+	parent_organ = BP_CHEST
 	vital = 1
 	var/obj/item/device/mmi/stored_mmi
 

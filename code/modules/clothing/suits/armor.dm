@@ -62,7 +62,7 @@
 		var/obj/item/projectile/P = damage_source
 
 		var/reflectchance = 40 - round(damage/3)
-		if(!(def_zone in list("chest", "groin")))
+		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
 			visible_message(SPAN_DANGER("\The [user]'s [src.name] reflects [attack_text]!"))

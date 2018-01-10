@@ -33,6 +33,8 @@
 #define O_LIVER    "liver"
 #define O_KIDNEYS  "kidneys"
 #define O_APPENDIX "appendix"
+#define O_CELL     "cell"
+
 #define O_PLASMA   "plasma vessel"
 #define O_HIVE     "hive node"
 #define O_NUTRIENT "nutrient vessel"
@@ -56,6 +58,8 @@
 #define BP_HEAD   "head"
 #define BP_CHEST  "chest"
 #define BP_GROIN  "groin"
+
+#define BP_LEGS list(BP_R_LEG, BP_L_LEG, BP_R_FOOT, BP_L_FOOT)
 #define BP_ALL list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
 
 

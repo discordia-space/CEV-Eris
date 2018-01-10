@@ -33,7 +33,7 @@
 		return
 
 	if(user.targeted_organ == "mouth")
-		if(!H.organs_by_name["head"])
+		if(!H.organs_by_name[BP_HEAD])
 			user << SPAN_WARNING("They don't have a head.")
 			return
 		if(!H.check_has_mouth())
@@ -43,13 +43,13 @@
 		dna = list(H.dna.unique_enzymes)
 		sample_type = "DNA"
 
-	else if(user.targeted_organ == "r_hand" || user.targeted_organ == "l_hand")
+	else if(user.targeted_organ == BP_R_HAND || user.targeted_organ == BP_L_HAND)
 		var/has_hand
-		var/obj/item/organ/external/O = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/O = H.organs_by_name[BP_R_HAND]
 		if(istype(O) && !O.is_stump())
 			has_hand = 1
 		else
-			O = H.organs_by_name["l_hand"]
+			O = H.organs_by_name[BP_L_HAND]
 			if(istype(O) && !O.is_stump())
 				has_hand = 1
 		if(!has_hand)
