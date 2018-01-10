@@ -35,7 +35,7 @@
 	species.handle_death(src)
 
 	//Handle brain slugs.
-	var/obj/item/organ/external/head = get_organ("head")
+	var/obj/item/organ/external/head = get_organ(BP_HEAD)
 	var/mob/living/simple_animal/borer/B
 
 	for(var/I in head.implants)
@@ -56,7 +56,9 @@
 	callHook("death", list(src, gibbed))
 
 	if(wearing_rig)
-		wearing_rig.notify_ai(SPAN_DANGER("Warning: user death event. Mobility control passed to integrated intelligence system."))
+		wearing_rig.notify_ai(
+			SPAN_DANGER("Warning: user death event. Mobility control passed to integrated intelligence system.")
+		)
 
 	. = ..(gibbed,species.death_message)
 	if(!gibbed)
@@ -71,7 +73,7 @@
 	if(HUSK in mutations)	return
 
 	if(f_style)
-		f_style = "Shaved"		//we only change the icon_state of the hair datum, so it doesn't mess up their UI/UE
+		f_style = "Shaved"	//we only change the icon_state of the hair datum, so it doesn't mess up their UI/UE
 	if(h_style)
 		h_style = "Bald"
 	update_hair(0)

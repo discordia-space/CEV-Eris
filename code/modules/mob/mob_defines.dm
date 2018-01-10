@@ -108,7 +108,7 @@
 
 	var/inertia_dir = 0
 
-	var/targeted_organ = "chest"
+	var/targeted_organ = BP_CHEST
 
 //	var/job = null//Living
 

@@ -27,7 +27,7 @@
 	if(istype(H) && H.shoes)
 		return
 	seed.do_thorns(victim,src)
-	seed.do_sting(victim,src,pick("r_foot","l_foot","r_leg","l_leg"))
+	seed.do_sting(victim,src,pick(BP_LEGS))
 
 /obj/effect/plant/proc/unbuckle()
 	if(buckled_mob)

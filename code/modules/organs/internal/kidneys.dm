@@ -1,11 +1,11 @@
-/obj/item/organ/kidneys
+/obj/item/organ/internal/kidneys
 	name = "kidneys"
 	icon_state = "kidneys"
 	gender = PLURAL
-	organ_tag = "kidneys"
-	parent_organ = "groin"
+	organ_tag = O_KIDNEYS
+	parent_organ = BP_GROIN
 
-/obj/item/organ/kidneys/process()
+/obj/item/organ/internal/kidneys/process()
 
 	..()
 

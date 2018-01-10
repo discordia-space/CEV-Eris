@@ -11,7 +11,7 @@
 	return is_open_container() && ..()
 
 /mob/living/can_be_injected_by(var/atom/injector)
-	return ..() && (can_inject(null, 0, "chest") || can_inject(null, 0, BP_GROIN))
+	return ..() && (can_inject(null, 0, BP_CHEST) || can_inject(null, 0, BP_GROIN))
 
 
 

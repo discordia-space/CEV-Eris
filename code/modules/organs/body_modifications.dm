@@ -180,8 +180,8 @@ var/global/list/modifications_types = list(
 /datum/body_modification/organ/robotize_organ/create_organ(var/mob/living/carbon/holder, O, color)
 	var/obj/item/organ/I = ..(holder,O,color)
 	I.status = ORGAN_ROBOT
-	if(istype(I, /obj/item/organ/eyes))
-		var/obj/item/organ/eyes/E = I
+	if(istype(I, /obj/item/organ/internal/eyes))
+		var/obj/item/organ/internal/eyes/E = I
 		E.robo_color = iscolor(color) ? color : "#FFFFFF"
 	return I
 
@@ -194,7 +194,7 @@ var/global/list/modifications_types = list(
 	desc = "One of your eyes was missed."
 	body_parts = list(O_EYES)
 	hascolor = TRUE
-	replace_limb = /obj/item/organ/eyes/oneeye
+	replace_limb = /obj/item/organ/internal/eyes/oneeye
 
 /datum/body_modification/organ/oneeye/get_mob_icon(organ, body_build, color, gender, species)
 	var/datum/species/S = all_species[species]
@@ -203,7 +203,7 @@ var/global/list/modifications_types = list(
 	return I
 
 /datum/body_modification/organ/oneeye/create_organ(var/mob/living/carbon/human/holder, var/organ, var/color)
-	var/obj/item/organ/eyes/E = ..(holder,organ,color)
+	var/obj/item/organ/internal/eyes/E = ..(holder,organ,color)
 	E.eyes_color = color
 	return E
 
@@ -211,7 +211,7 @@ var/global/list/modifications_types = list(
 	name = "One eye (right)"
 	short_name = "M: One eye (r)"
 	id = "missed_eye_right"
-	replace_limb = /obj/item/organ/eyes/oneeye/right
+	replace_limb = /obj/item/organ/internal/eyes/oneeye/right
 
 /datum/body_modification/organ/oneeye/right/get_mob_icon(organ, body_build, color, gender, species)
 	var/datum/species/S = all_species[species]
@@ -234,7 +234,7 @@ var/global/list/modifications_types = list(
 	return I
 
 /datum/body_modification/organ/heterochromia/create_organ(var/mob/living/carbon/holder, organ_type, color)
-	var/obj/item/organ/eyes/heterohromia/E = new(holder,organ_type,color)
+	var/obj/item/organ/internal/eyes/heterohromia/E = new(holder,organ_type,color)
 	E.second_color = color
 	return E
 
