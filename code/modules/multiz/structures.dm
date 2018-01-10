@@ -135,7 +135,7 @@
 		if(M.pulling)
 			moveWithMob += M.pulling
 		if(ishuman(M))
-			var/mob/living/carbon/human/H
+			var/mob/living/carbon/human/H = M
 			for(var/obj/item/weapon/grab/G in list(H.r_hand, H.l_hand))
 				moveWithMob += G.affecting
 		if(moveWithMob.len)
