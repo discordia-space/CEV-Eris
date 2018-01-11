@@ -72,6 +72,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	siemens_coefficient = 2.0
 	body_parts_covered = HEAD|FACE|EYES
+	item_flags = COVER_PREVENT_MANIPULATION
 
 /obj/item/clothing/head/greenbandana
 	name = "green bandana"
