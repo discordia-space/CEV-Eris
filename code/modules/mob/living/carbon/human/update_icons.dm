@@ -728,11 +728,6 @@ var/global/list/damage_icon_parts = list()
 				belt_layer = BELT_LAYER_ALT
 			else
 				overlays_standing[BELT_LAYER_ALT] = null
-			if(belt.contents.len)
-				for(var/obj/item/i in belt.contents)
-					var/i_state = i.item_state
-					if(!i_state) i_state = i.icon_state
-					standing.overlays	+= image(icon = body_build.belt_icon, icon_state = i_state)
 
 		standing.color = belt.color
 
