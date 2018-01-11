@@ -111,18 +111,14 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/put_in_l_hand(var/obj/item/W)
 	if(lying || !istype(W))
 		return FALSE
-	W.pixel_x = initial(W.pixel_x)
-	W.pixel_y = initial(W.pixel_y)
-	W.layer = initial(W.layer)
+	equip_to_slot(W, slot_l_hand)
 	return TRUE
 
 //Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
 /mob/proc/put_in_r_hand(var/obj/item/W)
 	if(lying || !istype(W))
 		return FALSE
-	W.pixel_x = initial(W.pixel_x)
-	W.pixel_y = initial(W.pixel_y)
-	W.layer = initial(W.layer)
+	equip_to_slot(W, slot_r_hand)
 	return TRUE
 
 //Puts the item into our active hand if possible. returns 1 on success.
