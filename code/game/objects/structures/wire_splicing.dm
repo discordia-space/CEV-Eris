@@ -37,10 +37,10 @@
 				C.powernet.trigger_warning()
 			if(user.stunned)
 				user << SPAN_WARNING("You got electrocuted by wire splicing!")
-				return 1
+				return TRUE
 		else
-			return 0
-	return 0
+			return FALSE
+	return FALSE
 
 /obj/structure/wire_splicing/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(iswirecutter(W))
