@@ -1141,6 +1141,23 @@
 	add_fingerprint(usr)
 	return
 
+/obj/mecha/verb/AIeject()
+	set name = "AI Eject"
+	set category = "Exosuit Interface"
+	set popup_menu = 0
+
+	var/atom/movable/mob_container
+	if(ishuman(occupant) || isAI(occupant))
+		mob_container = src.occupant
+
+	if(usr!=src.occupant)
+		return
+
+	if(isAI(mob_container))
+		var/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/AH = locate() in src
+		if(AH)
+			AH.go_out()
+
 
 /obj/mecha/proc/go_out()
 	if(!src.occupant) return
@@ -1156,6 +1173,10 @@
 		var/atom/movable/I = item
 		I.forceMove(loc)
 	dropped_items.Cut()
+
+	if(isAI(mob_container))
+		AIeject()
+		return
 
 	//Eject for AI in mecha
 	if(mob_container.forceMove(src.loc))//ejecting mob container
@@ -1179,10 +1200,7 @@
 		src.icon_state = src.reset_icon()+"-open"
 		src.set_dir(dir_in)
 
-	if(isAI(mob_container))
-		var/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/AH = locate() in src
-		if(AH)
-			AH.go_out()
+
 	if(mob_container.forceMove(src.loc))//ejecting mob container
 	/*
 		if(ishuman(occupant) && (return_pressure() > HAZARD_HIGH_PRESSURE))

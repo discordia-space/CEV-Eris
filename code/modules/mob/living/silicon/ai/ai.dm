@@ -98,12 +98,12 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/add_mecha_verbs()
 	verbs += /mob/living/silicon/ai/proc/view_mecha_stats
-	verbs += /mob/living/silicon/ai/proc/eject
+	verbs += /mob/living/silicon/ai/proc/AIeject
 
 
 /mob/living/silicon/ai/proc/remove_mecha_verbs()
 	verbs -= /mob/living/silicon/ai/proc/view_mecha_stats
-	verbs -= /mob/living/silicon/ai/proc/eject
+	verbs -= /mob/living/silicon/ai/proc/AIeject
 
 /mob/living/silicon/ai/proc/view_mecha_stats()
 	set name = "View Stats"
@@ -113,12 +113,12 @@ var/list/ai_verbs_default = list(
 		controlled_mech.view_stats()
 
 
-/mob/living/silicon/ai/proc/eject()
-	set name = "Eject"
+/mob/living/silicon/ai/proc/AIeject()
+	set name = "AI Eject"
 	set category = "Exosuit Interface"
 	set popup_menu = 0
 	if(controlled_mech)
-		controlled_mech.eject()
+		controlled_mech.AIeject()
 
 
 /mob/living/silicon/ai/MiddleClickOn(var/atom/A)
