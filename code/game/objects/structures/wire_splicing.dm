@@ -28,7 +28,7 @@
 
 /obj/structure/wire_splicing/proc/shock(mob/user as mob)
 	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
-		return 0
+		return FALSE
 	var/turf/T = get_turf(src)
 	var/obj/structure/cable/C = locate(/obj/structure/cable) in T
 	if(C)
@@ -39,8 +39,6 @@
 				user << SPAN_WARNING("You got electrocuted by wire splicing!")
 				return TRUE
 		else
-			return FALSE
-	return FALSE
 
 /obj/structure/wire_splicing/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(iswirecutter(W))
