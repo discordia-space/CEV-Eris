@@ -121,6 +121,14 @@ var/list/ai_verbs_default = list(
 		controlled_mech.eject()
 
 
+/mob/living/silicon/ai/MiddleClickOn(var/atom/A)
+    if(!control_disabled && A.AIMiddleClick(src))
+        return
+    if(controlled_mech) //Are we piloting a mech? Placed here so the modifiers are not overridden.
+        controlled_mech.click_action(A, src) //Override AI normal click behavior.  , params
+        return
+    ..()
+
 /mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
 	announcement = new()
 	announcement.title = "A.I. Announcement"
