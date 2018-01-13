@@ -38,7 +38,6 @@
 			if(user.stunned)
 				user << SPAN_WARNING("You got electrocuted by wire splicing!")
 				return TRUE
-		else
 
 /obj/structure/wire_splicing/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(iswirecutter(W))
