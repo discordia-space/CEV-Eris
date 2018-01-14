@@ -8,7 +8,6 @@ MASS SPECTROMETER
 REAGENT SCANNER
 */
 
-
 /obj/item/device/healthanalyzer
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
@@ -16,12 +15,14 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	throwforce = 3
 	w_class = ITEM_SIZE_SMALL
+	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 10
+
 	matter = list(DEFAULT_WALL_MATERIAL = 200)
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
+
 	var/mode = 1
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
@@ -199,19 +200,21 @@ REAGENT SCANNER
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 
+
 /obj/item/device/analyzer
 	name = "analyzer"
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	icon_state = "atmos"
 	item_state = "analyzer"
-	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
+	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
 
@@ -229,7 +232,6 @@ REAGENT SCANNER
 		return
 	flick("atmos2", src)
 	return atmosanalyzer_scan(src, air, user)
-
 
 /obj/item/device/analyzer/attack_self(mob/user as mob)
 	if(cell && cell.checked_use(3))
@@ -249,21 +251,21 @@ REAGENT SCANNER
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 
+
 /obj/item/device/mass_spectrometer
 	name = "mass spectrometer"
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT | OPENCONTAINER
 	slot_flags = SLOT_BELT
+	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
-
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
-
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+
 	var/details = 0
 	var/recent_fail = 0
 	var/obj/item/weapon/cell/cell = null
@@ -276,7 +278,6 @@ REAGENT SCANNER
 	R.my_atom = src
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
-
 
 /obj/item/device/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)
@@ -319,26 +320,28 @@ REAGENT SCANNER
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 
+
 /obj/item/device/mass_spectrometer/adv
 	name = "advanced mass spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
+
 /obj/item/device/reagent_scanner
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
+	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 4
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
-
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+
 	var/details = 0
 	var/recent_fail = 0
 	var/obj/item/weapon/cell/cell = null
@@ -382,23 +385,28 @@ REAGENT SCANNER
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 
+
 /obj/item/device/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
+
 /obj/item/device/slime_scanner
 	name = "slime scanner"
 	icon_state = "adv_spectrometer"
 	item_state = "analyzer"
-	origin_tech = list(TECH_BIO = 1)
-	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
+	slot_flags = SLOT_BELT
+	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 7
+
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	origin_tech = list(TECH_BIO = 1)
+
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
 
