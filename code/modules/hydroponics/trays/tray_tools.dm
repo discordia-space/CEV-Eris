@@ -17,8 +17,6 @@
 	set category = "Object"
 	set src = usr
 
-	if(usr.stat || usr.restrained() || usr.lying)
-		return
 	print_report(usr)
 
 /obj/item/device/scanner/analyzer/plant_analyzer/Topic(href, href_list)
@@ -41,6 +39,8 @@
 	return
 
 /obj/item/device/scanner/analyzer/plant_analyzer/attack_self(mob/user as mob)
+	if(user.incapacitated())
+		return
 	print_report(user)
 	return 0
 

@@ -62,6 +62,8 @@ REAGENT SCANNER
 
 /obj/item/device/scanner/healthanalyzer/attack(mob/living/M, mob/living/user)
 	cell_use_check(3)
+	if(user.incapacitated())
+		return
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << SPAN_WARNING("You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))
@@ -243,7 +245,7 @@ REAGENT SCANNER
 
 /obj/item/device/scanner/analyzer/attack_self(mob/user as mob)
 	if(cell && cell.checked_use(3))
-		if(user.stat)
+		if(user.incapacitated())
 			return
 		if(!user.IsAdvancedToolUser())
 			return
@@ -287,7 +289,7 @@ REAGENT SCANNER
 
 /obj/item/device/scanner/mass_spectrometer/attack_self(mob/user as mob)
 	cell_use_check(7)
-	if (user.stat)
+	if (user.incapacitated())
 		return
 	if (!user.IsAdvancedToolUser())
 		return
@@ -341,7 +343,7 @@ REAGENT SCANNER
 	cell_use_check(7)
 	if(!proximity)
 		return
-	if (user.stat)
+	if (user.incapacitated())
 		return
 	if (!user.IsAdvancedToolUser())
 		return
@@ -388,6 +390,8 @@ REAGENT SCANNER
 
 /obj/item/device/scanner/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	cell_use_check(7)
+	if(user.incapacitated())
+		return
 	if (!isslime(M))
 		user << "<B>This device can only scan slimes!</B>"
 		return
