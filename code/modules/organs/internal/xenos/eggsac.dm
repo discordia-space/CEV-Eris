@@ -45,7 +45,7 @@
 		return
 
 	var/obj/item/organ/affecting = M.get_organ(BP_CHEST)
-	if(!affecting || (affecting.status & ORGAN_ROBOT))
+	if(!affecting || (affecting.robotic >= ORGAN_ROBOT))
 		owner << SPAN_WARNING("This form is not compatible with our physiology.")
 		return
 
@@ -56,7 +56,8 @@
 	if(!do_mob(owner, M, 150))
 		return
 
-	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[O_HIVE]) || !affecting || (affecting.status & ORGAN_ROBOT))
+	//TODO: instead affecting.robotic use M.isSyntetic()
+	if(M.species.get_bodytype() == "Xenomorph" || !isnull(M.internal_organs_by_name[O_HIVE]) || !affecting || (affecting.robotic >= ORGAN_ROBOT))
 		return
 
 	if(!check_alien_ability(500, TRUE))
