@@ -1101,7 +1101,7 @@
 		src.add_fingerprint(H)
 		src.forceMove(src.loc)
 		src.log_append_to_last("[H] moved in as pilot.")
-		src.icon_state = src.update_icon()
+		src.update_icon()
 		set_dir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!hasInternalDamage())
@@ -1197,7 +1197,7 @@
 			src.occupant.canmove = 0
 			src.verbs += /obj/mecha/verb/eject
 		src.occupant = null
-		src.icon_state = src.update_icon()+"-open"
+		src.update_icon()
 		src.set_dir(dir_in)
 
 

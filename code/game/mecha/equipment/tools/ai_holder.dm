@@ -12,7 +12,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/go_out()
 	chassis.occupant = null
-	chassis.icon_state = chassis.update_icon()+"-open"
+	chassis.update_icon()
 	occupant.remove_mecha_verbs()
 	occupant.set_mecha(null)
 	if(occupant.eyeobj)
