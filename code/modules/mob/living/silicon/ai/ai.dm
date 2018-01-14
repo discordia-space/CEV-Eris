@@ -54,6 +54,7 @@ var/list/ai_verbs_default = list(
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
+	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/multitool/aiMulti = null
 	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
@@ -93,6 +94,40 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	src.verbs -= ai_verbs_default
+
+
+/mob/living/silicon/ai/proc/add_mecha_verbs()
+	verbs += /mob/living/silicon/ai/proc/view_mecha_stats
+	verbs += /mob/living/silicon/ai/proc/AIeject
+
+
+/mob/living/silicon/ai/proc/remove_mecha_verbs()
+	verbs -= /mob/living/silicon/ai/proc/view_mecha_stats
+	verbs -= /mob/living/silicon/ai/proc/AIeject
+
+/mob/living/silicon/ai/proc/view_mecha_stats()
+	set name = "View Stats"
+	set category = "Exosuit Interface"
+	set popup_menu = 0
+	if(controlled_mech)
+		controlled_mech.view_stats()
+
+
+/mob/living/silicon/ai/proc/AIeject()
+	set name = "AI Eject"
+	set category = "Exosuit Interface"
+	set popup_menu = 0
+	if(controlled_mech)
+		controlled_mech.AIeject()
+
+
+/mob/living/silicon/ai/MiddleClickOn(var/atom/A)
+    if(!control_disabled && A.AIMiddleClick(src))
+        return
+    if(controlled_mech) //Are we piloting a mech? Placed here so the modifiers are not overridden.
+        controlled_mech.click_action(A, src) //Override AI normal click behavior.  , params
+        return
+    ..()
 
 /mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
 	announcement = new()
@@ -444,14 +479,18 @@ var/list/ai_verbs_default = list(
 	return
 
 /mob/living/silicon/ai/reset_view(atom/A)
+	if(controlled_mech)
+		return ..(controlled_mech)
 	if(camera)
 		camera.set_light(0)
 	if(istype(A,/obj/machinery/camera))
 		camera = A
 	..()
 	if(istype(A,/obj/machinery/camera))
-		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
-		else				A.set_light(0)
+		if(camera_light_on)
+			A.set_light(AI_CAMERA_LUMINOSITY)
+		else
+			A.set_light(0)
 
 
 /mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)

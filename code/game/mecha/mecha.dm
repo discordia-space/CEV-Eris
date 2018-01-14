@@ -1099,7 +1099,7 @@
 		src.add_fingerprint(H)
 		src.forceMove(src.loc)
 		src.log_append_to_last("[H] moved in as pilot.")
-		update_icon()
+		src.update_icon()
 		set_dir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!hasInternalDamage())
@@ -1139,11 +1139,28 @@
 	add_fingerprint(usr)
 	return
 
+/obj/mecha/verb/AIeject()
+	set name = "AI Eject"
+	set category = "Exosuit Interface"
+	set popup_menu = 0
+
+	var/atom/movable/mob_container
+	if(ishuman(occupant) || isAI(occupant))
+		mob_container = src.occupant
+
+	if(usr!=src.occupant)
+		return
+
+	if(isAI(mob_container))
+		var/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/AH = locate() in src
+		if(AH)
+			AH.go_out()
+
 
 /obj/mecha/proc/go_out()
 	if(!src.occupant) return
 	var/atom/movable/mob_container
-	if(ishuman(occupant))
+	if(ishuman(occupant) || isAI(occupant))
 		mob_container = src.occupant
 	else if(isbrain(occupant))
 		var/mob/living/carbon/brain/brain = occupant
@@ -1154,6 +1171,34 @@
 		var/atom/movable/I = item
 		I.forceMove(loc)
 	dropped_items.Cut()
+
+	if(isAI(mob_container))
+		AIeject()
+		return
+
+	//Eject for AI in mecha
+	if(mob_container.forceMove(src.loc))//ejecting mob container
+
+		src.log_message("[mob_container] moved out.")
+		occupant.reset_view()
+		/*
+		if(src.occupant.client)
+			src.occupant.client.eye = src.occupant.client.mob
+			src.occupant.client.perspective = MOB_PERSPECTIVE
+		*/
+		src.occupant << browse(null, "window=exosuit")
+		if(istype(mob_container, /obj/item/device/mmi))
+			var/obj/item/device/mmi/mmi = mob_container
+			if(mmi.brainmob)
+				occupant.loc = mmi
+			mmi.mecha = null
+			src.occupant.canmove = 0
+			src.verbs += /obj/mecha/verb/eject
+		src.occupant = null
+		src.update_icon()
+		src.set_dir(dir_in)
+
+
 	if(mob_container.forceMove(src.loc))//ejecting mob container
 	/*
 		if(ishuman(occupant) && (return_pressure() > HAZARD_HIGH_PRESSURE))
@@ -1761,6 +1806,7 @@
 		cell.give(amount)
 		return 1
 	return 0
+
 
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)
 
