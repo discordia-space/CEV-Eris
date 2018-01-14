@@ -338,9 +338,9 @@
 	name = "Bicaridine"
 	id = "bicaridine"
 	result = "bicaridine"
-	required_reagents = list("inaprovaline" = 1, "carbon" = 1)
+	required_reagents = list("inaprovaline" = 2, "blattedin" = 1)
 	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
-	result_amount = 2
+	result_amount = 3
 
 /datum/chemical_reaction/hyperzine
 	name = "Hyperzine"
