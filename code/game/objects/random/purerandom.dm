@@ -15,8 +15,8 @@
 				prob(2);/obj/item/weapon/reagent_containers/syringe/inaprovaline,\
 				prob(4);/obj/item/weapon/cigbutt,\
 				prob(2);/obj/item/device/t_scanner,\
-				prob(2);/obj/item/device/analyzer,\
-				prob(2);/obj/item/device/healthanalyzer,\
+				prob(2);/obj/item/device/scanner/analyzer,\
+				prob(2);/obj/item/device/scanner/healthanalyzer,\
 				prob(5);/obj/item/weapon/screwdriver,\
 				prob(5);/obj/item/weapon/wirecutters,\
 				prob(5);/obj/item/weapon/weldingtool,\

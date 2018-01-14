@@ -92,7 +92,7 @@
 	gloves = /obj/item/clothing/gloves/botanic_leather
 	ear = /obj/item/device/radio/headset/headset_service
 	put_in_backpack = list(\
-		/obj/item/device/analyzer/plant_analyzer
+		/obj/item/device/scanner/analyzer/plant_analyzer
 		)
 
 /obj/landmark/join/start/hydro
