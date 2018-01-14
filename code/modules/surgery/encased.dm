@@ -12,7 +12,7 @@
 			return 0
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return affected && !(affected.status & ORGAN_ROBOT) && affected.encased && affected.open >= 2
+		return affected && !(affected.robotic >= ORGAN_ROBOT) && affected.encased && affected.open >= 2
 
 
 /datum/surgery_step/open_encased/saw
@@ -172,7 +172,7 @@
 
 		affected.createwound(BRUISE, 20)
 		affected.fracture()
-		
+
 		if(affected.internal_organs && affected.internal_organs.len)
 			if(prob(40))
 				var/obj/item/organ/O = pick(affected.internal_organs) //TODO weight by organ size

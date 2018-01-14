@@ -362,10 +362,11 @@
 	for(var/obj/item/organ/I in occ["internal_organs"])
 
 		var/mech = ""
-		if(I.robotic == ORGAN_ASSISTED)
-			mech = "Assisted:"
-		if(I.robotic == ORGAN_ROBOT)
-			mech = "Mechanical:"
+		switch(I.robotic)
+			if(ORGAN_ASSISTED)
+				mech = "Assisted:"
+			if(ORGAN_ROBOT)
+				mech = "Mechanical:"
 
 		var/infection = "None"
 		switch (I.germ_level)
