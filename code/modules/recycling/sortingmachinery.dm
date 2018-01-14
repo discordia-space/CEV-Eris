@@ -52,7 +52,7 @@
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
 				"You hear someone scribbling a note.")
-				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
 					nameset = 1
@@ -72,7 +72,7 @@
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
 				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
 				"You hear someone scribbling a note.")
-				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
 
 /obj/structure/bigDelivery/update_icon()
@@ -146,7 +146,7 @@
 				else
 					src.sortTag = O.currTag
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
-				playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.wav',100,2)
+				playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.ogg',100,2)
 			else
 				user << SPAN_WARNING("The package is already labeled for [O.currTag].")
 		else
@@ -162,7 +162,7 @@
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
 				"You hear someone scribbling a note.")
-				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
 					nameset = 1
@@ -183,7 +183,7 @@
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
 				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
 				"You hear someone scribbling a note.")
-				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
 
 /obj/item/smallDelivery/update_icon()
@@ -242,7 +242,7 @@
 		return
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
-	playsound(src,'sound/machines/PAPER_Fold_01_mono.wav',100,1)
+	playsound(src,'sound/machines/PAPER_Fold_01_mono.ogg',100,1)
 
 	if (istype(target, /obj/item) && !(istype(target, /obj/item/weapon/storage) && !istype(target,/obj/item/weapon/storage/box)))
 		var/obj/item/O = target
