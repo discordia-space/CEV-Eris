@@ -48,7 +48,7 @@ var/global/datum/controller/gameticker/ticker
 			pregame_timeleft = 180
 			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
 		else
-			pregame_timeleft = 20
+			pregame_timeleft = 40
 
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
 
@@ -244,6 +244,7 @@ var/global/datum/controller/gameticker/ticker
 		return
 
 	storyteller.process()
+	storyteller.process_events()
 
 	var/game_finished = (emergency_shuttle.returned() || ship_was_nuked  || universe_has_ended)
 
