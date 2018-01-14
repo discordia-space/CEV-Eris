@@ -621,7 +621,7 @@
 	New()
 		..()
 		reagents.add_reagent("protein", 3)
-		reagents.add_reagent("blattedin", 4)
+		reagents.add_reagent("blattedin", 10)
 		src.bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
