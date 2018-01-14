@@ -5,11 +5,8 @@
 	icon_state = "scell"
 	organ_tag = O_CELL
 	parent_organ = BP_CHEST
-	vital = 1
-
-/obj/item/organ/cell/New()
-	status |= ORGAN_ROBOT|ORGAN_ASSISTED
-	..()
+	robotic = ORGAN_ROBOT
+	vital = TRUE
 
 /obj/item/organ/cell/replaced()
 	..()
@@ -22,13 +19,10 @@
 	name = "optical sensor"
 	organ_tag = "optics"
 	parent_organ = BP_HEAD
+	robotic = ORGAN_ROBOT
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "camera"
 	dead_icon = "camera_broken"
-
-/obj/item/organ/optical_sensor/New()
-	status |= ORGAN_ROBOT|ORGAN_ASSISTED
-	..()
 
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/mmi_holder
@@ -67,8 +61,10 @@
 			owner.stat = 0
 			owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 
+/obj/item/organ/mmi_holder/posibrain
+	robotic = ORGAN_ROBOT
+
 /obj/item/organ/mmi_holder/posibrain/New()
-	status |= ORGAN_ROBOT|ORGAN_ASSISTED
 	stored_mmi = new /obj/item/device/mmi/digital/posibrain(src)
 	..()
 	spawn(30)

@@ -150,7 +150,7 @@
 					if(!affected)
 						user << SPAN_DANGER("\The [H] is missing that limb!")
 						return
-					else if(affected.status & ORGAN_ROBOT)
+					else if(affected.robotic >= ORGAN_ROBOT)
 						user << SPAN_DANGER("You cannot inject a robotic limb.")
 						return
 

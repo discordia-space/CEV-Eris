@@ -32,8 +32,8 @@
 				user << SPAN_WARNING("You can't apply [src] through [H.wear_suit]!")
 				return 1
 
-		if(affecting.status & ORGAN_ROBOT)
-			user << SPAN_WARNING("This isn't useful at all on a robotic limb..")
+		if(affecting.robotic >= ORGAN_ROBOT)
+			user << SPAN_WARNING("This isn't useful at all on a robotic limb.")
 			return 1
 
 		H.UpdateDamageIcon()
