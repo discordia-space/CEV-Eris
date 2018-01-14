@@ -1,11 +1,7 @@
 /obj/item/weapon/grenade/smokebomb
-	desc = "It is set to detonate in 2 seconds."
-	name = "smoke bomb"
-	icon = 'icons/obj/grenade.dmi'
-	icon_state = "flashbang"
+	name = "FS SG \"Reynolds\""
+	desc = "Smoke grenade, used to provide cover and hide movements."
 	det_time = 20
-	item_state = "flashbang"
-	slot_flags = SLOT_BELT
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 
 /obj/item/weapon/grenade/smokebomb/New()
@@ -35,5 +31,6 @@
 		B.health -= damage
 		B.update_icon()
 	sleep(80)
-	qdel(src)
+	icon_state = "grenade_off"
+	desc = "[initial(desc)] It has already been used."
 	return

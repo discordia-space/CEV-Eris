@@ -29,7 +29,7 @@
 		return
 
 	if(!cell || !cell.checked_use(5))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
 	if(!message)

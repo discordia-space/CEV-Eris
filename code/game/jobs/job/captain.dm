@@ -14,6 +14,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = 1
 	economic_modifier = 25
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 
 	ideal_character_age = 70 // Old geezer captains ftw
 
@@ -66,6 +67,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	idtype = /obj/item/weapon/card/id/hop
 	req_admin_notify = 1
 	economic_modifier = 15
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	ideal_character_age = 50
 
 	uniform = /obj/item/clothing/under/rank/first_officer

@@ -1,7 +1,7 @@
 /datum/gear/accessory
 	display_name = "armband, red"
 	path = /obj/item/clothing/accessory/armband
-	slot = slot_tie
+	slot = slot_accessory_buffer
 	sort_category = "Accessories"
 
 /datum/gear/accessory/cargo

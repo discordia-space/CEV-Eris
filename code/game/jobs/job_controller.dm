@@ -56,6 +56,7 @@ var/global/datum/controller/occupations/job_master
 			if((job.current_positions < position_limit) || position_limit == -1)
 				Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 				player.mind.assigned_role = rank
+				player.mind.assigned_job = job
 				unassigned -= player
 				job.current_positions++
 				return 1
@@ -116,6 +117,7 @@ var/global/datum/controller/occupations/job_master
 		for(var/mob/new_player/player in player_list)
 			if((player) && (player.mind))
 				player.mind.assigned_role = null
+				player.mind.assigned_job = null
 		//		player.mind.special_role = null
 		SetupOccupations()
 		unassigned = list()
@@ -325,8 +327,9 @@ var/global/datum/controller/occupations/job_master
 								custom_equip_leftovers.Add(thing)
 						else
 							spawn_in_storage += thing
-			//Equip job items.
+			//Equip job items and language stuff
 			job.equip(H)
+			job.add_additiional_language(H)
 			job.setup_account(H)
 
 			job.apply_fingerprints(H)
@@ -403,8 +406,8 @@ var/global/datum/controller/occupations/job_master
 					H << SPAN_DANGER("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.")
 
 		if(istype(H)) //give humans wheelchairs, if they need them.
-			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
-			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
+			var/obj/item/organ/external/l_foot = H.get_organ(BP_L_FOOT)
+			var/obj/item/organ/external/r_foot = H.get_organ(BP_R_FOOT)
 			if(!l_foot || !r_foot)
 				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
 				H.buckled = W

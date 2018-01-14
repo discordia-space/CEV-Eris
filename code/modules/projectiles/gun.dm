@@ -124,7 +124,7 @@
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
-			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
+			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
 				handle_post_fire(user, user)
 				user.visible_message(
 					SPAN_DANGER("\The [user] shoots \himself in the foot with \the [src]!"),
@@ -377,7 +377,7 @@
 		in_chamber.on_hit(M)
 		if (in_chamber.damage_type != HALLOSS)
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
+			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
 			user.death()
 		else
 			user << "<span class = 'notice'>Ow...</span>"
@@ -447,7 +447,6 @@
 
 /obj/item/weapon/gun/AltClick(mob/user)
 	if(!restrict_safety)
-		..()
 		if(user.incapacitated())
 			user << "<span class='warning'>You can't do that right now!</span>"
 			return

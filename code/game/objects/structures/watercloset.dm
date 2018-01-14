@@ -212,10 +212,8 @@
 					ismist = 1
 					mymist = PoolOrNew(/obj/effect/mist,loc)
 		else
-			ismist = 1
 			mymist = PoolOrNew(/obj/effect/mist,loc)
 	else if(ismist)
-		ismist = 1
 		mymist = PoolOrNew(/obj/effect/mist,loc)
 		spawn(250)
 			if(src && !on)
@@ -388,9 +386,9 @@
 /obj/structure/sink/attack_hand(mob/user as mob)
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 			return
@@ -447,9 +445,10 @@
 					R.cell.charge -= 20
 				else
 					B.deductcharge(B.hitcost)
-				user.visible_message( \
-					SPAN_DANGER("[user] was stunned by \his wet [O]!"), \
-					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
+				user.visible_message(
+					SPAN_DANGER("[user] was stunned by \his wet [O]!"),
+					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>"
+				)
 				return 1
 	else if(istype(O, /obj/item/weapon/mop))
 		O.reagents.add_reagent("water", 5)

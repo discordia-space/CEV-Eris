@@ -109,6 +109,7 @@
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/storage/box/teargas(src)
 	new /obj/item/weapon/storage/belt/security(src)
+	new /obj/item/clothing/mask/gas/ihs(src)
 	new /obj/item/clothing/gloves/stungloves(src)
 	new /obj/item/weapon/cell/medium/high(src)
 	new /obj/item/weapon/reagent_containers/spray/pepper(src)
@@ -119,7 +120,6 @@
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/gun/energy/gun/martin(src)
 	new /obj/item/weapon/storage/box/holobadge(src)
-	new /obj/item/clothing/head/beret/sec/navy/warden(src)
 	new /obj/item/clothing/accessory/badge/warden(src)
 
 
@@ -139,6 +139,7 @@
 	new /obj/item/weapon/storage/belt/security(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/reagent_containers/spray/pepper(src)
+	new /obj/item/clothing/mask/gas/ihs(src)
 	new /obj/item/clothing/gloves/stungloves(src)
 	new /obj/item/weapon/cell/medium/high(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)

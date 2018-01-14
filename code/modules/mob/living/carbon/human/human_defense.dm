@@ -43,11 +43,11 @@ meteor_act
 	agony_amount *= siemens_coeff
 
 	switch (def_zone)
-		if("head")
+		if(BP_HEAD)
 			agony_amount *= 1.50
-		if("l_hand", "r_hand")
+		if(BP_L_HAND, BP_R_HAND)
 			var/c_hand
-			if (def_zone == "l_hand")
+			if (def_zone == BP_L_HAND)
 				c_hand = l_hand
 			else
 				c_hand = r_hand
@@ -207,7 +207,7 @@ meteor_act
 		if(!(I.flags & NOBLOODY))
 			I.add_blood(src)
 
-		if(prob(33 + I.sharp*10))
+		if(prob(33 + I.sharp * 10))
 			var/turf/location = loc
 			if(istype(location, /turf/simulated))
 				location.add_blood(src)
@@ -218,7 +218,7 @@ meteor_act
 					H.bloody_hands(src)
 
 			switch(hit_zone)
-				if("head")
+				if(BP_HEAD)
 					if(wear_mask)
 						wear_mask.add_blood(src)
 						update_inv_wear_mask(0)
@@ -228,7 +228,7 @@ meteor_act
 					if(glasses && prob(33))
 						glasses.add_blood(src)
 						update_inv_glasses(0)
-				if("chest")
+				if(BP_CHEST)
 					bloody_body(src)
 
 	return 1
@@ -256,14 +256,14 @@ meteor_act
 					return
 
 		var/dtype = O.damtype
-		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
+		var/throw_damage = O.throwforce * (speed / THROWFORCE_SPEED_DIVISOR)
 
 		var/zone
 		if (isliving(O.thrower))
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.targeted_organ)
 		else
-			zone = ran_zone("chest",75)	//Hits a random part of the body, geared towards the chest
+			zone = ran_zone(BP_CHEST, 75)	//Hits a random part of the body, geared towards the chest
 
 		//check if we hit
 		var/miss_chance = 15

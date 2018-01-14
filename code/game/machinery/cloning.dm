@@ -16,7 +16,7 @@
 		//They need a brain!
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.species.has_organ["brain"] && !H.has_brain())
+			if(H.species.has_organ[O_BRAIN] && !H.has_brain())
 				continue
 		if(M.ckey == find_key)
 			selected = M

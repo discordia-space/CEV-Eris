@@ -25,7 +25,7 @@
 
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!cell || !cell.checked_use(5))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if((CLUMSY in user.mutations) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")

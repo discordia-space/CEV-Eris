@@ -24,7 +24,7 @@ var/global/datum/repository/crew/crew_repository = new()
 	var/tracked = scan()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
-		if((C) && (C.has_sensor) && (pos) && (T && pos.z == T.z) && (C.sensor_mode != SUIT_SENSOR_OFF))
+		if((C.has_sensor) && (pos) && is_on_same_plane_or_station(pos.z, T.z) && (C.sensor_mode != SUIT_SENSOR_OFF))
 			if(ishuman(C.loc))
 				var/mob/living/carbon/human/H = C.loc
 				if(H.w_uniform != C)
@@ -48,7 +48,7 @@ var/global/datum/repository/crew/crew_repository = new()
 
 				if(C.sensor_mode >= SUIT_SENSOR_TRACKING)
 					var/area/A = get_area(H)
-					crewmemberData["area"] = strip_improper(sanitize(A.name))
+					crewmemberData["area"] = sanitize(strip_improper(A.name))
 					crewmemberData["x"] = pos.x
 					crewmemberData["y"] = pos.y
 

@@ -114,7 +114,7 @@ var/global/list/string_slot_flags = list(
 	"feet" = SLOT_FEET,
 	"exo slot" = SLOT_OCLOTHING,
 	"body" = SLOT_ICLOTHING,
-	"uniform" = SLOT_TIE,
+	"uniform" = SLOT_ACCESSORY_BUFFER,
 	"holster" = SLOT_HOLSTER
 )
 

@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/taser
 	name = "NT SP \"Counselor\""
-	desc = "The NT SP \"Counselor\" is a taser gun used for non-lethal takedowns."
+	desc = "The NT SP \"Counselor\" is a taser gun used for non-lethal takedowns. Used by Nanotrasen security forces before Corporation Wars."
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
@@ -17,9 +17,13 @@
 
 /obj/item/weapon/gun/energy/stunrevolver
 	name = "NT SP \"Zeus\""
-	desc = "Also know as stunrevolver. Older and less precise NT solution for non-lethal takedowns."
+	desc = "Also know as stunrevolver. Older and less precise Nanotrasen solution for non-lethal takedowns. This gun have smaller capacity in exchange for S-cells use."
 	icon_state = "stunrevolver"
 	item_state = "stunrevolver"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
+	charge_meter = FALSE
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	charge_cost = 50
+	suitable_cell = /obj/item/weapon/cell/small
+	cell_type = /obj/item/weapon/cell/small
 	projectile_type = /obj/item/projectile/energy/electrode

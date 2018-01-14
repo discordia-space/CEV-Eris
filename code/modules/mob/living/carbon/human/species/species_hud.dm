@@ -17,29 +17,6 @@
 	//var/has_resist = 1    // Set to draw resist button.
 	var/has_internals = 1 // Set to draw the internals toggle button.
 
-	// Contains information on the position and tag for all inventory slots
-	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
-	// unless you know exactly what it does.
-/*	var/list/gear = list(
-		"i_clothing" =   slot_w_uniform,
-		"o_clothing" =   slot_wear_suit,
-		"mask" =         slot_wear_mask,
-		"gloves" =       slot_gloves,
-		"eyes" =         slot_glasses,
-		"l_ear" =        slot_l_ear,
-		"r_ear" =        slot_r_ear,
-		"head" =         slot_head,
-		"shoes" =        slot_shoes,
-		"suit storage" = slot_s_store,
-		"back" =         slot_back,
-		"id" =           slot_wear_id,
-		"storage1" =     slot_l_store,
-		"storage2" =     slot_r_store,
-		"belt" =         slot_belt,
-		"l_hand" =       slot_l_hand,
-		"r_hand" =       slot_r_hand
-		)*/
-
 	var/list/gear = list(
 		"Uniform" =   slot_w_uniform,
 		"Suit" =   slot_wear_suit,
@@ -74,7 +51,7 @@
 		equip_slots |= slot_in_backpack
 
 	if(slot_w_uniform in equip_slots)
-		equip_slots |= slot_tie
+		equip_slots |= slot_accessory_buffer
 
 	equip_slots |= slot_legcuffed
 

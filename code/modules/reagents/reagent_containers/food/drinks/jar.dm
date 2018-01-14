@@ -1,7 +1,3 @@
-
-
-///jar
-
 /obj/item/weapon/reagent_containers/food/drinks/jar
 	name = "empty jar"
 	desc = "A jar. You're not sure what it's supposed to hold."
