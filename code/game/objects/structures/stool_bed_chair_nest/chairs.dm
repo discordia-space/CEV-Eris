@@ -100,7 +100,7 @@
 			return
 
 		src.set_dir(turn(src.dir, 90))
-		playsound(src,'sound/effects/CREAK_Wood_Tree_Creak_10_Bright_Very_Subtle_mono.wav',100,1)
+		playsound(src,'sound/effects/CREAK_Wood_Tree_Creak_10_Bright_Very_Subtle_mono.ogg',100,1)
 		return
 
 /obj/structure/bed/chair/shuttle
