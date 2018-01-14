@@ -71,12 +71,3 @@
 		icon_state = src.icon_broken
 		visible_message(visual_feedback, audible_feedback)
 		return 1
-
-/obj/item/weapon/storage/lockbox/clusterbang
-	name = "lockbox of clusterbangs"
-	desc = "You have a bad feeling about opening this."
-	req_access = list(access_security)
-
-	New()
-		..()
-		new /obj/item/weapon/grenade/flashbang/clusterbang(src)

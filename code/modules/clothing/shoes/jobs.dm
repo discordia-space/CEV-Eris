@@ -20,18 +20,11 @@
 /obj/item/clothing/shoes/reinforced
 	name = "reinforced boots"
 	desc = "Slightly reinforced boots. Optimal for your journey into a wonderful world of maintenance."
-	icon_state = "laceups"
-	item_state = "laceups"
+	icon_state = "reinforced"
+	item_state = "reinforced"
 	force = 2
 	armor = list(melee = 10, bullet = 5, laser = 5, energy = 5, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
-
-/obj/item/clothing/shoes/jackboots/unathi
-	name = "toe-less jackboots"
-	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
-	item_state = "digiboots"
-	icon_state = "digiboots"
-	species_restricted = null
 
 /obj/item/clothing/shoes/workboots
 	name = "workboots"

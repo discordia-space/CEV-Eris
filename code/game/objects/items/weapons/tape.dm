@@ -7,9 +7,9 @@
 
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
-		if(user.targeted_organ == "eyes")
+		if(user.targeted_organ == O_EYES)
 
-			if(!H.organs_by_name["head"])
+			if(!H.organs_by_name[BP_HEAD])
 				user << SPAN_WARNING("\The [H] doesn't have a head.")
 				return
 			if(!H.has_eyes())
@@ -27,14 +27,14 @@
 				return
 
 			// Repeat failure checks.
-			if(!H || !src || !H.organs_by_name["head"] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
+			if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
 				return
 
 			user.visible_message(SPAN_DANGER("\The [user] has taped up \the [H]'s eyes!"))
 			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/blindfold/tape(H), slot_glasses)
 
-		else if(user.targeted_organ == "mouth" || user.targeted_organ == "head")
-			if(!H.organs_by_name["head"])
+		else if(user.targeted_organ == "mouth" || user.targeted_organ == BP_HEAD)
+			if(!H.organs_by_name[BP_HEAD])
 				user << SPAN_WARNING("\The [H] doesn't have a head.")
 				return
 			if(!H.check_has_mouth())
@@ -52,13 +52,13 @@
 				return
 
 			// Repeat failure checks.
-			if(!H || !src || !H.organs_by_name["head"] || !H.check_has_mouth() || H.wear_mask || (H.head && (H.head.body_parts_covered & FACE)))
+			if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.check_has_mouth() || H.wear_mask || (H.head && (H.head.body_parts_covered & FACE)))
 				return
 
 			user.visible_message(SPAN_DANGER("\The [user] has taped up \the [H]'s mouth!"))
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/muzzle/tape(H), slot_wear_mask)
 
-		else if(user.targeted_organ == "r_hand" || user.targeted_organ == "l_hand")
+		else if(user.targeted_organ == BP_R_HAND || user.targeted_organ == BP_L_HAND)
 			var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
 			if(!T.place_handcuffs(H, user))
 				user.unEquip(T)

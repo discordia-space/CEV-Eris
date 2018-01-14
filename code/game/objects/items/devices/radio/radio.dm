@@ -244,13 +244,10 @@ var/global/list/default_medbay_channels = list(
 	if (!connection)
 		return
 
-	var/mob/living/silicon/ai/A = new /mob/living/silicon/ai(src, null, null, 1)
-	A.SetName(from)
-	Broadcast_Message(connection, A,
+	Broadcast_Message(connection, null,
 						0, "*garbled automated announcement*", src,
 						message, from, "Automated Announcement", from, "synthesized voice",
 						4, 0, list(0), connection.frequency, "states")
-	qdel(A)
 	return
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum

@@ -20,7 +20,7 @@
 	death_message = "rapidly loses cohesion, splattering across the ground..."
 
 	has_organ = list(
-		"brain" = /obj/item/organ/brain/slime
+		O_BRAIN = /obj/item/organ/internal/brain/slime
 		)
 
 	breath_type = null

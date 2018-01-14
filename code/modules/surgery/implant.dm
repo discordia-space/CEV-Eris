@@ -13,22 +13,22 @@
 		return affected && affected.open == (affected.encased ? 3 : 2) && !(affected.status & ORGAN_BLEEDING)
 
 	proc/get_max_wclass(var/obj/item/organ/external/affected)
-		switch (affected.name)
-			if ("head")
+		switch (affected.organ_tag)
+			if(BP_HEAD)
 				return 1
-			if ("upper body")
+			if(BP_CHEST)
 				return 3
-			if ("lower body")
+			if(BP_GROIN)
 				return 2
 		return 0
 
 	proc/get_cavity(var/obj/item/organ/external/affected)
-		switch (affected.name)
-			if ("head")
+		switch (affected.organ_tag)
+			if(BP_HEAD)
 				return "cranial"
-			if ("upper body")
+			if(BP_CHEST)
 				return "thoracic"
-			if ("lower body")
+			if(BP_GROIN)
 				return "abdominal"
 		return ""
 
@@ -129,7 +129,7 @@
 
 		user.visible_message("\blue [user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.", \
 		"\blue You put \the [tool] inside [target]'s [get_cavity(affected)] cavity." )
-		if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && !(affected.status & ORGAN_ROBOT))
+		if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && !(affected.robotic >= ORGAN_ROBOT))
 			user << "\red You tear some blood vessels trying to fit such a big object in this cavity."
 			var/datum/wound/internal_bleeding/I = new (10)
 			affected.wounds += I
@@ -155,7 +155,7 @@
 	max_duration = 100
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/brain/sponge = target.internal_organs_by_name["brain"]
+		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[O_BRAIN]
 		return ..() && (!sponge || !sponge.damage)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

@@ -1,11 +1,12 @@
 /**********************Miner Lockers**************************/
 
-/obj/structure/closet/secure_closet/miner
+/obj/structure/closet/secure_closet/personal/miner
 	name = "miner's equipment"
 	icon_state = "mining"
-	req_access = list(access_mining)
+	req_access = list(access_merchant)
+	access_occupy = list(access_mining)
 
-/obj/structure/closet/secure_closet/miner/New()
+/obj/structure/closet/secure_closet/personal/miner/New()
 	..()
 	sleep(2)
 	if(prob(50))

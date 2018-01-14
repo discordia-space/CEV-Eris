@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/ionrifle
 	name = "NT IR \"Halicon\""
-	desc = "The NT IR Halicon is a man portable anti-armor weapon designed to disable mechanical threats, produced by NeoTheology. Not the best of its type, but gets job done.."
+	desc = "The NT IR Halicon is a man portable anti-armor weapon designed to disable mechanical threats, produced by NeoTheology. Not the best of its type, but gets job done."
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
 	fire_sound = 'sound/weapons/Laser.ogg'

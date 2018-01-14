@@ -151,6 +151,11 @@
 	var/obj/item/store	//What's in the book?
 
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
+	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.wav',\
+		'sound/items/BOOK_Turn_Page_2.wav',\
+		'sound/items/BOOK_Turn_Page_3.wav',\
+		'sound/items/BOOK_Turn_Page_4.wav',\
+		), rand(40,80), 1)
 	if(carved)
 		if(store)
 			user << SPAN_NOTICE("[store] falls out of [title]!")
@@ -252,7 +257,7 @@
 		..()
 
 /obj/item/weapon/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(user.targeted_organ == "eyes")
+	if(user.targeted_organ == O_EYES)
 		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
 			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")

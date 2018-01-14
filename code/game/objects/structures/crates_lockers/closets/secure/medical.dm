@@ -1,11 +1,11 @@
-/obj/structure/closet/secure_closet/medical1
+/obj/structure/closet/secure_closet/medicine
 	name = "medicine closet"
 	desc = "Filled with medical junk."
 	icon_state = "med"
 	req_access = list(access_medical_equip)
 
 
-/obj/structure/closet/secure_closet/medical1/populate_contents()
+/obj/structure/closet/secure_closet/medicine/populate_contents()
 	..()
 	new /obj/item/weapon/storage/box/autoinjectors(src)
 	new /obj/item/weapon/storage/box/syringes(src)
@@ -19,14 +19,14 @@
 	new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
 
 
-/obj/structure/closet/secure_closet/medical2
+/obj/structure/closet/secure_closet/anesthetics
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
 	icon_state = "med"
-	req_access = list(access_surgery)
+	req_access = list(access_medical)
 
 
-/obj/structure/closet/secure_closet/medical2/populate_contents()
+/obj/structure/closet/secure_closet/anesthetics/populate_contents()
 	..()
 	new /obj/item/weapon/tank/anesthetic(src)
 	new /obj/item/weapon/tank/anesthetic(src)
@@ -36,12 +36,13 @@
 	new /obj/item/clothing/mask/breath/medical(src)
 
 
-/obj/structure/closet/secure_closet/medical3
+/obj/structure/closet/secure_closet/personal/doctor
 	name = "moebius doctor's locker"
-	req_access = list(access_medical_equip)
+	req_access = list(access_cmo)
+	access_occupy = list(access_medical_equip)
 	icon_state = "med"
 
-/obj/structure/closet/secure_closet/medical3/populate_contents()
+/obj/structure/closet/secure_closet/personal/doctor/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)

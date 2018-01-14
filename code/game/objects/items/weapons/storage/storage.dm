@@ -70,14 +70,6 @@
 		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
 
-/*		switch(over_object.name)
-			if("r_hand")
-				usr.u_equip(src)
-				usr.put_in_r_hand(src)
-			if("l_hand")
-				usr.u_equip(src)
-				usr.put_in_l_hand(src)*/
-
 		if (istype(over_object, /obj/screen/inventory/hand))
 			var/obj/screen/inventory/hand/H = over_object
 			switch(H.slot_id)
@@ -512,6 +504,30 @@
 			usr << "[src] now picks up all items in a tile at once."
 		if(0)
 			usr << "[src] now picks up one item at a time."
+
+/obj/item/weapon/storage/proc/collectItems(var/turf/target, var/mob/user)
+	ASSERT(istype(target))
+	. = FALSE
+	var/limiter = 15
+	for(var/obj/item/I in target)
+		if(--limiter < 0)
+			break
+		if(can_be_inserted(I, TRUE))
+			. |= TRUE
+			handle_item_insertion(I, TRUE)
+
+	if(user)
+		if(.)
+			user << SPAN_NOTICE("You put some things in [src].")
+		else
+			user << SPAN_NOTICE("You fail to pick anything up with \the [src].")
+
+
+/obj/item/weapon/storage/resolve_attackby(atom/A, mob/user)
+	if(collection_mode && isturf(A) || istype(A, /obj/item))
+		if(collectItems(get_turf(A), user))
+			return
+	return ..()
 
 
 /obj/item/weapon/storage/verb/quick_empty()

@@ -51,7 +51,6 @@
 				/obj/structure/plushie/drone,\
 				/obj/structure/plushie/carp,\
 				/obj/structure/plushie/beepsky,\
-				/obj/item/toy/plushie/nymph,\
 				/obj/item/toy/plushie/mouse,\
 				/obj/item/toy/plushie/kitten,\
 				/obj/item/toy/plushie/lizard)

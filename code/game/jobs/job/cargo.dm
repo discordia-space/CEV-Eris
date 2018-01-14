@@ -11,10 +11,12 @@
 	supervisors = "your greed"
 	selection_color = "#dddddd"
 	economic_modifier = 20
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_heads,
-			access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors, access_eva, access_external_airlocks)
-	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_heads,
-			access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors, access_eva)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
+	access = list(
+		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
+		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
+		access_eva, access_external_airlocks
+	)
 	idtype = /obj/item/weapon/card/id/car
 	ideal_character_age = 40
 
@@ -45,8 +47,11 @@
 	spawn_positions = 2
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_mining_station)
-	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	access = list(
+		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
+		access_mining_station
+	)
 	idtype = /obj/item/weapon/card/id/car
 
 	uniform = /obj/item/clothing/under/rank/cargotech
@@ -59,7 +64,6 @@
 	icon_state = "player-beige"
 	join_tag = /datum/job/cargo_tech
 
-
 /datum/job/mining
 	title = "Guild Miner"
 	flag = MINER
@@ -71,8 +75,11 @@
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	economic_modifier = 5
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_mining_station)
-	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	access = list(
+		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
+		access_mining_station
+	)
 	idtype = /obj/item/weapon/card/id/car
 
 	uniform = /obj/item/clothing/under/rank/miner

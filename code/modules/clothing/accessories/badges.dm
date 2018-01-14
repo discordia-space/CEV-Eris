@@ -9,7 +9,7 @@
 	desc = "A Ironhammer Security badge, made from gold and set on false leather."
 	icon_state = "badge"
 	item_state = "marshalbadge"
-	slot_flags = SLOT_BELT | SLOT_TIE
+	slot_flags = SLOT_BELT | SLOT_ACCESSORY_BUFFER
 
 	var/stored_name
 	var/badge_string = "Ironhammer Security"
@@ -50,7 +50,7 @@
 
 /obj/item/clothing/accessory/badge/holo/cord
 	icon_state = "holobadge-cord"
-	slot_flags = SLOT_MASK | SLOT_TIE
+	slot_flags = SLOT_MASK | SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/badge/holo/attack_self(mob/user as mob)
 	if(!stored_name)
@@ -104,14 +104,14 @@
 	name = "Gunnery Sergeant badge"
 	desc = "A silver Ironhammer Security badge. Stamped with the words 'Sergeant.'"
 	icon_state = "silverbadge"
-	slot_flags = SLOT_TIE
+	slot_flags = SLOT_ACCESSORY_BUFFER
 
 
 /obj/item/clothing/accessory/badge/hos
 	name = "Commander's badge"
 	desc = "An immaculately polished gold Ironhammer Security badge. Labeled 'Commander.'"
 	icon_state = "goldbadge"
-	slot_flags = SLOT_TIE
+	slot_flags = SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/badge/marshal
 	name = "marshal's badge"

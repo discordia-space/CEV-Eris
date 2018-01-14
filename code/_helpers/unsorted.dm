@@ -1000,30 +1000,24 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 
 /proc/parse_zone(zone)
 	switch(zone)
-		if("r_hand")
-			return "right hand"
-		if("l_hand")
-			return "left hand"
-		if("l_arm")
+		if(BP_L_ARM)
 			return "left arm"
-		if("r_arm")
+		if(BP_R_ARM)
 			return "right arm"
-		if("l_leg")
-			return "left leg"
-		if("r_leg")
-			return "right leg"
-		if("l_foot")
-			return "left foot"
-		if("r_foot")
-			return "right foot"
-		if("l_hand")
-			return "left hand"
-		if("r_hand")
+		if(BP_R_HAND)
 			return "right hand"
-		if("l_foot")
+		if(BP_L_HAND)
+			return "left hand"
+
+		if(BP_L_LEG )
+			return "left leg"
+		if(BP_R_LEG)
+			return "right leg"
+		if(BP_L_FOOT)
 			return "left foot"
-		if("r_foot")
+		if(BP_R_FOOT)
 			return "right foot"
+
 		else
 			return zone
 

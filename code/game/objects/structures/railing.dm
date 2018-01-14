@@ -219,7 +219,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.apply_damage(8, def_zone = "head")
+			target.apply_damage(8, def_zone = BP_HEAD)
 			take_damage(8)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)

@@ -223,119 +223,145 @@ other types of metals and chemistry for reagents).
 	return C
 
 /datum/design/item/powercell/large/basic
-	name = "Asters \"Robustcell 1000L\""
+	name = "Moebius \"Power-Geyser 2000L\""
 	build_type = PROTOLATHE | MECHFAB
 	id = "basic_cell_b"
 	req_tech = list(TECH_POWER = 1)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
-	build_path = /obj/item/weapon/cell/large
+	build_path = /obj/item/weapon/cell/large/moebius
 	category = "Misc"
 	sort_string = "DAAAA"
 
 /datum/design/item/powercell/large/high
-	name = "Asters \"Robustcell 5000L\""
+	name = "Moebius \"Power-Geyser 7000L\""
 	build_type = PROTOLATHE | MECHFAB
 	id = "high_cell_b"
 	req_tech = list(TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
-	build_path = /obj/item/weapon/cell/large/high
+	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60, "gold" = 75)
+	build_path = /obj/item/weapon/cell/large/moebius/high
 	category = "Misc"
 	sort_string = "DAAAB"
 
 /datum/design/item/powercell/large/super
-	name = "Asters \"Robustcell 15000L\""
+	name = "Moebius \"Power-Geyser 13000L\""
 	id = "super_cell_b"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
-	build_path = /obj/item/weapon/cell/large/super
+	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70, "gold" = 100)
+	build_path = /obj/item/weapon/cell/large/moebius/super
 	category = "Misc"
 	sort_string = "DAAAC"
 
 /datum/design/item/powercell/large/hyper
-	name = "Asters \"Robustcell-X 20000L\""
+	name = "Moebius \"Power-Geyser 18000L\""
 	id = "hyper_cell_b"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70)
-	build_path = /obj/item/weapon/cell/large/hyper
+	build_path = /obj/item/weapon/cell/large/moebius/hyper
 	category = "Misc"
 	sort_string = "DAAAD"
 
 /datum/design/item/powercell/medium/basic
-	name = "Asters \"Robustcell 600M\""
+	name = "Moebius \"Power-Geyser 700M\""
 	build_type = PROTOLATHE | MECHFAB
 	id = "basic_cell_m"
 	req_tech = list(TECH_POWER = 1)
 	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
-	build_path = /obj/item/weapon/cell/medium
+	build_path = /obj/item/weapon/cell/medium/moebius
 	category = "Misc"
 	sort_string = "DAAAF"
 
 /datum/design/item/powercell/medium/high
-	name = "Asters \"Robustcell 800M\""
+	name = "Moebius \"Power-Geyser 900M\""
 	build_type = PROTOLATHE | MECHFAB
 	id = "high_cell_m"
 	req_tech = list(TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
-	build_path = /obj/item/weapon/cell/medium/high
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50, "gold" = 50)
+	build_path = /obj/item/weapon/cell/medium/moebius/high
 	category = "Misc"
 	sort_string = "DAAAI"
 
 /datum/design/item/powercell/medium/super
-	name = "Asters \"Robustcell 1000M\""
+	name = "Moebius \"Power-Geyser 1000M\""
 	id = "super_cell_m"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50)
-	build_path = /obj/item/weapon/cell/medium/super
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 50, "gold" = 75)
+	build_path = /obj/item/weapon/cell/medium/moebius/super
 	category = "Misc"
 	sort_string = "DAAAO"
 
 /datum/design/item/powercell/medium/hyper
-	name = "Asters \"Robustcell 1500M\""
+	name = "Moebius \"Power-Geyser 1300M\""
 	id = "hyper_cell_m"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 350, "gold" = 100, "silver" = 100, "glass" = 50)
-	build_path = /obj/item/weapon/cell/medium/hyper
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "gold" = 100, "silver" = 100, "glass" = 50)
+	build_path = /obj/item/weapon/cell/medium/moebius/hyper
 	category = "Misc"
 	sort_string = "DAAAP"
 
 /datum/design/item/powercell/small/basic
-	name = "Asters \"Robustcell 100S\""
+	name = "Moebius \"Power-Geyser 120S\""
 	build_type = PROTOLATHE | MECHFAB
 	id = "basic_cell_s"
 	req_tech = list(TECH_POWER = 1)
 	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
-	build_path = /obj/item/weapon/cell/small
+	build_path = /obj/item/weapon/cell/small/moebius
 	category = "Misc"
 	sort_string = "DAAAQ"
 
 /datum/design/item/powercell/small/high
-	name = "Asters \"Robustcell 200S\""
+	name = "Moebius \"Power-Geyser 250S\""
 	build_type = PROTOLATHE | MECHFAB
 	id = "high_cell_s"
 	req_tech = list(TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
-	build_path = /obj/item/weapon/cell/small/high
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30, "gold" = 30)
+	build_path = /obj/item/weapon/cell/small/moebius/high
 	category = "Misc"
 	sort_string = "DAAAZ"
 
 /datum/design/item/powercell/small/super
-	name = "Asters \"Robustcell 300S\""
+	name = "Moebius \"Power-Geyser 300S\""
 	id = "super_cell_s"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30)
-	build_path = /obj/item/weapon/cell/small/super
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 30, "gold" = 50)
+	build_path = /obj/item/weapon/cell/small/moebius/super
 	category = "Misc"
 	sort_string = "DAAAW"
 
 /datum/design/item/powercell/small/hyper
-	name = "Asters \"Robustcell 500S\""
+	name = "Moebius \"Power-Geyser 400S\""
 	id = "hyper_cell_s"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 200, "gold" = 70, "silver" = 70, "glass" = 30)
-	build_path = /obj/item/weapon/cell/small/hyper
+	build_path = /obj/item/weapon/cell/small/moebius/hyper
 	category = "Misc"
 	sort_string = "DAAAY"
 
+/datum/design/item/powercell/large/nuclear
+	name = "Moebius \"Atomcell 13000L\""
+	id = "nuke_cell_b"
+	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70, "uranium" = 500)
+	build_path = /obj/item/weapon/cell/large/moebius/nuclear
+	category = "Misc"
+	sort_string = "DAAAZ"
+
+/datum/design/item/powercell/medium/nuclear
+	name = "Moebius \"Atomcell 1000M\""
+	id = "nuke_cell_m"
+	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 350, "gold" = 100, "silver" = 100, "glass" = 50, "uranium" = 400)
+	build_path = /obj/item/weapon/cell/medium/moebius/nuclear
+	category = "Misc"
+	sort_string = "DAABA"
+
+/datum/design/item/powercell/small/nuclear
+	name = "Moebius \"Atomcell 300S\""
+	id = "nuke_cell_s"
+	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, "gold" = 70, "silver" = 70, "glass" = 30, "uranium" = 300)
+	build_path = /obj/item/weapon/cell/small/moebius/nuclear
+	category = "Misc"
+	sort_string = "DAABB"
 
 /datum/design/item/hud
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
@@ -590,20 +616,6 @@ other types of metals and chemistry for reagents).
 	materials = list("gold" = 5000,"uranium" = 10000, "mutagen" = 40)
 	build_path = /obj/item/weapon/gun/energy/decloner
 	sort_string = "TAAAE"
-
-/datum/design/item/weapon/smg
-	id = "smg"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 8000, "silver" = 2000, "diamond" = 1000)
-	build_path = /obj/item/weapon/gun/projectile/automatic
-	sort_string = "TAABA"
-
-/datum/design/item/weapon/ammo_9mm
-	id = "ammo_9mm"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 3750, "silver" = 100)
-	build_path = /obj/item/ammo_magazine/c9mm
-	sort_string = "TAACA"
 
 /datum/design/item/weapon/stunshell
 	desc = "A stunning shell for a shotgun."
@@ -1491,21 +1503,21 @@ CIRCUITS BELOW
 /datum/design/circuit/mecha/phazon_main
 	name = "'Phazon' central control"
 	id = "phazon_main"
-	req_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 5, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/main
 	sort_string = "NAAEA"
 
 /datum/design/circuit/mecha/phazon_peri
 	name = "'Phazon' peripherals control"
 	id = "phazon_peri"
-	req_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 5, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/peripherals
 	sort_string = "NAAEB"
 
 /datum/design/circuit/mecha/phazon_targ
 	name = "'Phazon' weapon control and targeting"
 	id = "phazon_targ"
-	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 3, TECH_BLUESPACE = 5)
+	req_tech = list(TECH_DATA = 5, TECH_COMBAT = 3, TECH_BLUESPACE = 5)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/targeting
 	sort_string = "NAAEC"
 

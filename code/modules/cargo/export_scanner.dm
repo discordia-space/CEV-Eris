@@ -25,7 +25,7 @@
 
 /obj/item/device/export_scanner/afterattack(obj/O, mob/user, proximity)
 	if(!cell || !cell.checked_use(3))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if(!istype(O) || !proximity)
 		return

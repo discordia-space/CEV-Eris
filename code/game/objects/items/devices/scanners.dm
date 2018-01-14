@@ -33,7 +33,7 @@ REAGENT SCANNER
 
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
 	if(!cell || !cell.checked_use(3))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << text(SPAN_WARNING("You try to analyze the floor's vitals!"))
@@ -84,7 +84,7 @@ REAGENT SCANNER
 			for(var/obj/item/organ/external/org in damaged)
 				user.show_message(text("<span class='notice'>     [][]: [][] - []</span>",
 				capitalize(org.name),
-				(org.status & ORGAN_ROBOT) ? "(Cybernetic)" : "",
+				(org.robotic >= ORGAN_ROBOT) ? "(Cybernetic)" : "",
 				(org.brute_dam > 0) ? SPAN_WARNING("[org.brute_dam]") : 0,
 				(org.status & ORGAN_BLEEDING)?SPAN_DANGER("\[Bleeding\]"):"",
 				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0),1)
@@ -144,22 +144,23 @@ REAGENT SCANNER
 		user.show_message(SPAN_WARNING("Significant brain damage detected. Subject may have had a concussion."))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		var/foundUnlocatedFracture = FALSE
 		for(var/name in H.organs_by_name)
-			var/obj/item/organ/external/e = H.organs_by_name[name]
-			if(!e)
+			var/obj/item/organ/external/E = H.organs_by_name[name]
+			if(!E)
 				continue
-			var/limb = e.name
-			if(e.status & ORGAN_BROKEN)
-				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg")) && (!(e.status & ORGAN_SPLINTED)))
-					user << SPAN_WARNING("Unsecured fracture in subject [limb]. Splinting recommended for transport.")
-			if(e.has_infected_wound())
-				user << SPAN_WARNING("Infected wound detected in subject [limb]. Disinfection recommended.")
+			if(E.status & ORGAN_BROKEN)
+				if(!(E.status & ORGAN_SPLINTED))
+					if(E.organ_tag in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
+						user << SPAN_WARNING("Unsecured fracture in subject [E]. Splinting recommended for transport.")
+					else
+						foundUnlocatedFracture = TRUE
+			if(E.has_infected_wound())
+				user << SPAN_WARNING("Infected wound detected in subject [E]. Disinfection recommended.")
 
-		for(var/name in H.organs_by_name)
-			var/obj/item/organ/external/e = H.organs_by_name[name]
-			if(e && e.status & ORGAN_BROKEN)
-				user.show_message(text(SPAN_WARNING("Bone fractures detected. Advanced scanner required for location.")), 1)
-				break
+			if(foundUnlocatedFracture)
+				user.show_message(SPAN_WARNING("Bone fractures detected. Advanced scanner required for location."), 1)
+
 		for(var/obj/item/organ/external/e in H.organs)
 			if(!e)
 				continue
@@ -221,7 +222,7 @@ REAGENT SCANNER
 
 /obj/item/device/analyzer/atmosanalyze(var/mob/user)
 	if(!cell || !cell.checked_use(5))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	var/air = user.return_air()
 	if (!air)
@@ -238,7 +239,7 @@ REAGENT SCANNER
 			return
 		analyze_gases(src, user)
 	else
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 
 /obj/item/device/analyzer/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
@@ -285,7 +286,7 @@ REAGENT SCANNER
 
 /obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
 	if(!cell || !cell.checked_use(7))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if (user.stat)
 		return
@@ -408,7 +409,7 @@ REAGENT SCANNER
 
 /obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!cell || !cell.checked_use(7))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if (!isslime(M))
 		user << "<B>This device can only scan slimes!</B>"

@@ -89,16 +89,6 @@
 	name = "Derpman, Enforcer of the State"
 	desc = "Here to protect and serve... your donuts! A generously proportioned man, he teaches you the value of hiding your snacks."
 
-/datum/poster/bay_19
-	icon_state="bsposter19"
-	name = "Respect a Unathi"
-	desc = "This poster depicts a well dressed looking Unathi receiving a prestigious award. It appears to espouse greater co-operation and harmony between the two races."
-
-/datum/poster/bay_20
-	icon_state="bsposter20"
-	name = "Skrell Twilight"
-	desc = "This poster depicts a mysteriously inscrutable, alien scene. Numerous Skrell can be seen conversing amidst great, crystalline towers rising above crashing waves"
-
 /datum/poster/bay_21
 	icon_state="bsposter21"
 	name = "Join the Fuzz!"
@@ -224,11 +214,6 @@
 	name = "Responsible engineering habits, No #1"
 	desc = "A safety poster featuring a blue haired engineer. \"When repairing a machine or construction, always aim for long-term solutions.\""
 
-/datum/poster/bay_46
-	icon_state="bsposter46"
-	name = "Inspirational lawyer"
-	desc = "An inspirational poster depicting a Skrellian lawyer. He seems to be shouting something, while pointing fiercely to the right."
-
 /datum/poster/bay_47
 	icon_state="bsposter47"
 	name = "Security pinup"
@@ -268,16 +253,6 @@
 	icon_state="bsposter54"
 	name = "firefighter poster"
 	desc = "This is a poster of a particularly stern looking firefighter. The caption reads, \"Only you can prevent space fires.\""
-
-/datum/poster/bay_55
-	icon_state="bsposter55"
-	name = "Earth appreciation poster"
-	desc = "This is a poster produced by the Generic Space Company, as a part of a series of commemorative posters on the wonders of space. Two of three."
-
-/datum/poster/bay_56
-	icon_state="bsposter56"
-	name = "Mars appreciation poster"
-	desc = "This is a poster produced by the Generic Space Company, as a part of a series of commemorative posters on the wonders of space. Three of three."
 
 /datum/poster/bay_57
 	icon_state="bsposter57"

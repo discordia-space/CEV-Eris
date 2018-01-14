@@ -1,24 +1,27 @@
 /obj/item/weapon/grenade/empgrenade
-	name = "classic emp grenade"
+	name = "FS EMPG \"Frye\""
+	desc = "EMP grenade, designed to disable electronics, augmentations and energy weapons."
 	icon_state = "emp"
 	item_state = "empgrenade"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 3)
 
-	prime()
-		..()
-		if(empulse(src, 4, 10))
-			qdel(src)
-		return
+/obj/item/weapon/grenade/empgrenade/prime()
+	..()
+	if(empulse(src, 4, 10))
+		icon_state = "emp_off"
+		desc = "[initial(desc)] It has already been used."
+	return
 
 /obj/item/weapon/grenade/empgrenade/low_yield
-	name = "low yield emp grenade"
-	desc = "A weaker variant of the classic emp grenade"
+	name = "FS EMPG \"Frye\" - C"
+	desc = "A weaker variant of the \"Frye\" emp grenade, with lesser radius."
 	icon_state = "lyemp"
-	item_state = "lyempgrenade"
+	item_state = "empgrenade"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 3)
 
-	prime()
-		..()
-		if(empulse(src, 4, 1))
-			qdel(src)
-		return
+/obj/item/weapon/grenade/empgrenade/low_yield/prime()
+	..()
+	if(empulse(src, 4, 1))
+		icon_state = "emp_off"
+		desc = "[initial(desc)] It has already been used."
+	return

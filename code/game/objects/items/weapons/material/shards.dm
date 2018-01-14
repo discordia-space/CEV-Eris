@@ -75,12 +75,12 @@
 
 			M << SPAN_DANGER("You step on \the [src]!")
 
-			var/list/check = list("l_foot", "r_foot")
+			var/list/check = list(BP_L_FOOT, BP_R_FOOT)
 			while(check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
 				if(affecting)
-					if(affecting.status & ORGAN_ROBOT)
+					if(affecting.robotic >= ORGAN_ROBOT)
 						return
 					if(affecting.take_damage(5, 0))
 						H.UpdateDamageIcon()

@@ -12,7 +12,7 @@
 	var/max_damage
 	var/organ_tag = "organ"
 
-	var/parent_organ = "chest"
+	var/parent_organ = BP_CHEST
 	var/obj/item/organ/external/parent
 	var/robotic = 0 //For being a robot
 	var/rejecting   // Is this organ already being rejected?
@@ -90,7 +90,7 @@
 		species = all_species[new_dna.species]
 
 /obj/item/organ/proc/die()
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return
 	damage = max_damage
 	status |= ORGAN_DEAD
@@ -114,7 +114,7 @@
 	if(istype(loc,/obj/structure/closet/body_bag/cryobag) || istype(loc,/obj/structure/closet/crate/freezer) || istype(loc,/obj/item/weapon/storage/box/freezer))
 		return
 	//Process infections
-	if ((status & ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
+	if ((robotic >= ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
 		germ_level = 0
 		return
 
@@ -238,7 +238,7 @@
 
 //Note: external organs have their own version of this proc
 /obj/item/organ/proc/take_damage(amount, var/silent=0)
-	if(src.status & ORGAN_ROBOT)
+	if(src.robotic >= ORGAN_ROBOT)
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else
 		src.damage = between(0, src.damage + amount, max_damage)
@@ -253,7 +253,7 @@
 	damage = max(damage, min_bruised_damage)
 
 /obj/item/organ/emp_act(severity)
-	if(!(status & ORGAN_ROBOT))
+	if(robotic < ORGAN_ROBOT)
 		return
 	switch (severity)
 		if (1)
@@ -313,8 +313,6 @@
 	target.internal_organs |= src
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src
-	if(robotic)
-		status |= ORGAN_ROBOT
 
 /obj/item/organ/proc/install(mob/living/carbon/human/H)
 	if(!istype(H))

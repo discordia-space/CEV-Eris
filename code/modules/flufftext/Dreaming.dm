@@ -10,8 +10,8 @@ var/list/dreams = list(
 	"the inspector","the gunnery sergeant","a member of the internal affairs","a station engineer","the janitor","atmospheric technician",
 	"the guild merchant","a guild technician","the botanist","a guild miner","the psychologist","the chemist","the geneticist",
 	"the virologist","the roboticist","the chef","the bartender","the preacher","the librarian","a mouse",
-	"a beach","the holodeck","a smokey room","a voice","the cold","a mouse","an operating table","the bar","the rain","a skrell",
-	"a unathi","a tajaran","the ai core","the mining station","the research station","a beaker of strange liquid",
+	"a beach","the holodeck","a smokey room","a voice","the cold","a mouse","an operating table","the bar","the rain",
+	"the ai core","the mining station","the research station","a beaker of strange liquid",
 	)
 
 mob/living/carbon/proc/dream()

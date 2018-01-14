@@ -6,13 +6,6 @@
 /datum/design/item/mechfab/robot
 	category = "Robot"
 
-//if the fabricator is a mech fab pass the manufacturer info over to the robot part constructor
-/datum/design/item/mechfab/robot/Fabricate(var/newloc, var/fabricator)
-	if(istype(fabricator, /obj/machinery/mecha_part_fabricator))
-		var/obj/machinery/mecha_part_fabricator/mechfab = fabricator
-		return new build_path(newloc, mechfab.manufacturer)
-	return ..()
-
 /datum/design/item/mechfab/robot/exoskeleton
 	name = "Robot exoskeleton"
 	id = "robot_exoskeleton"
@@ -95,6 +88,34 @@
 	name = "Armour plating"
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
+
+
+//Prosthesis ====================================
+
+/datum/design/item/mechfab/prosthesis
+	category = "Prosthesis"
+	materials = list(DEFAULT_WALL_MATERIAL = 18000)
+
+/datum/design/item/mechfab/prosthesis/r_arm
+	name = "right arm"
+	id = "prosthesis_simple_r_arm"
+	build_path = /obj/item/prosthesis/r_arm
+
+/datum/design/item/mechfab/prosthesis/l_arm
+	name = "left arm"
+	id = "prosthesis_simple_l_arm"
+	build_path = /obj/item/prosthesis/l_arm
+
+/datum/design/item/mechfab/prosthesis/r_leg
+	name = "right leg"
+	id = "prosthesis_simple_r_leg"
+	build_path = /obj/item/prosthesis/r_leg
+
+/datum/design/item/mechfab/prosthesis/l_leg
+	name = "left leg"
+	id = "prosthesis_simple_l_leg"
+	build_path = /obj/item/prosthesis/l_leg
+
 
 //Ripley ====================================
 
@@ -273,14 +294,14 @@
 	name = "Phazon chassis"
 	id = "phazon_chassis"
 	build_path = /obj/item/mecha_parts/chassis/phazon
-	time = 10
+	time = 60
 	materials = list(DEFAULT_WALL_MATERIAL = 25000)
 
 /datum/design/item/mechfab/phazon/torso
 	name = "Phazon torso"
 	id = "phazon_torso"
 	build_path = /obj/item/mecha_parts/part/phazon_torso
-	time = 10
+	time = 120
 	materials = list(DEFAULT_WALL_MATERIAL=35000,"glass"=10000,"plasma"=20000)
 
 /datum/design/item/mechfab/phazon/head
@@ -322,8 +343,8 @@
 	name = "Phazon armour plates"
 	id = "phazon_armour"
 	build_path = /obj/item/mecha_parts/part/phazon_armor
-	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL=20000,"plasma"=10000,"uranium"=10000,"silver"=3000,"diamond"=1000)
+	time = 120
+	materials = list(DEFAULT_WALL_MATERIAL=20000,"plasma"=10000,"uranium"=10000,"silver"=3000,"diamond"=500)
 
 //Durand ======================================================================
 
@@ -530,6 +551,12 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/jetpack
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
 
+/datum/design/item/mecha/ai_holder
+	name = "AI holder"
+	id = "mech_aiholder"
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/ai_holder
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000)
+
 //obj/item/mecha_parts/mecha_equipment/repair_droid,
 
 /datum/design/item/mecha/taser
@@ -582,14 +609,6 @@
 	id = "mech_grenade_launcher"
 	req_tech = list(TECH_COMBAT = 3)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
-
-/datum/design/item/mecha/weapon/clusterbang_launcher
-	name = "SOP-6 grenade launcher"
-	desc = "A weapon that violates the Geneva Convention at 6 rounds per minute."
-	id = "clusterbang_launcher"
-	req_tech = list(TECH_COMBAT= 5, TECH_MATERIAL = 5, TECH_ILLEGAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 20000, "gold" = 6000, "uranium" = 6000)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited
 
 // *** Nonweapon modules
 /datum/design/item/mecha/wormhole_gen

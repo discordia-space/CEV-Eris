@@ -2,7 +2,6 @@
 	name = "captain's locker"
 	req_access = list(access_captain)
 	icon_state = "cap"
-	icon_lock = "cabinet"
 
 /obj/structure/closet/secure_closet/reinforced/captains/populate_contents()
 	..()
@@ -74,10 +73,12 @@
 	new /obj/item/weapon/shield/riot(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/storage/belt/security(src)
+	new /obj/item/clothing/gloves/stungloves(src)
+	new /obj/item/weapon/cell/medium/high(src)
 	new /obj/item/device/flash(src)
-	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
-	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
-	new /obj/item/ammo_magazine/mg/cl44/rubber(src)
+	new /obj/item/ammo_magazine/cl44/rubber(src)
+	new /obj/item/ammo_magazine/cl44/rubber(src)
+	new /obj/item/ammo_magazine/cl44/rubber(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/gun/energy/gun/martin(src)
@@ -100,7 +101,7 @@
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/under/rank/warden(src)
-	new /obj/item/clothing/head/warden(src)
+	new /obj/item/clothing/head/beret/sec/navy/warden(src)
 	new /obj/item/weapon/cartridge/security(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
@@ -108,26 +109,29 @@
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/storage/box/teargas(src)
 	new /obj/item/weapon/storage/belt/security(src)
+	new /obj/item/clothing/mask/gas/ihs(src)
+	new /obj/item/clothing/gloves/stungloves(src)
+	new /obj/item/weapon/cell/medium/high(src)
 	new /obj/item/weapon/reagent_containers/spray/pepper(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/gun/energy/gun/martin(src)
 	new /obj/item/weapon/storage/box/holobadge(src)
-	new /obj/item/clothing/head/beret/sec/navy/warden(src)
 	new /obj/item/clothing/accessory/badge/warden(src)
 
 
 
-/obj/structure/closet/secure_closet/security
+/obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
-	req_access = list(access_brig)
+	req_access = list(access_hos)
+	access_occupy = list(access_brig)
 	icon_state = "sec"
 
 
-/obj/structure/closet/secure_closet/security/populate_contents()
+/obj/structure/closet/secure_closet/personal/security/populate_contents()
 	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
@@ -135,8 +139,9 @@
 	new /obj/item/weapon/storage/belt/security(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/reagent_containers/spray/pepper(src)
-	new /obj/item/weapon/grenade/chem_grenade/teargas(src)
-	new /obj/item/weapon/melee/baton/loaded(src)
+	new /obj/item/clothing/mask/gas/ihs(src)
+	new /obj/item/clothing/gloves/stungloves(src)
+	new /obj/item/weapon/cell/medium/high(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/taperoll/police(src)
 	new /obj/item/device/hailer(src)
@@ -146,9 +151,9 @@
 	new /obj/item/weapon/gun/projectile/shotgun/bull(src)
 	new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
 	new /obj/item/weapon/storage/box/shotgunammo/beanbags(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
-	new /obj/item/ammo_magazine/SMG_sol/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/ammo_magazine/sol65/rubber(src)
 
 
 
@@ -169,8 +174,8 @@
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/medspec(src)
 	new /obj/item/weapon/storage/briefcase/crimekit(src)
-	new /obj/item/ammo_magazine/mg/cl32/rubber(src)
-	new /obj/item/ammo_magazine/mg/cl32/rubber(src)
+	new /obj/item/ammo_magazine/cl32/rubber(src)
+	new /obj/item/ammo_magazine/cl32/rubber(src)
 
 
 
@@ -187,6 +192,8 @@
 	new /obj/item/clothing/suit/storage/det_trench(src)
 	new /obj/item/clothing/suit/storage/insp_trench(src)
 	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/gloves/stungloves(src)
+	new /obj/item/weapon/cell/medium/high(src)
 	new /obj/item/clothing/head/det(src)
 	new /obj/item/clothing/head/det/grey(src)
 	new /obj/item/clothing/shoes/reinforced(src)
@@ -199,9 +206,9 @@
 	new /obj/item/weapon/cell/small/high(src)
 	new /obj/item/weapon/gun/projectile/revolver/consul(src)
 	new /obj/item/clothing/accessory/holster/armpit(src)
-	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
-	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
-	new /obj/item/ammo_magazine/sl/cl44/rubber(src)
+	new /obj/item/ammo_magazine/sl44/rubber(src)
+	new /obj/item/ammo_magazine/sl44/rubber(src)
+	new /obj/item/ammo_magazine/sl44/rubber(src)
 
 
 

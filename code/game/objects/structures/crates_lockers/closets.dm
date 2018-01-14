@@ -33,6 +33,8 @@
 							  //then open it in a populated area to crash clients.
 	var/open_sound = 'sound/machines/Custom_closetopen.ogg'
 	var/close_sound = 'sound/machines/Custom_closetclose.ogg'
+	var/lock_on_sound = 'sound/machines/door_lock_on.ogg'
+	var/lock_off_sound = 'sound/machines/door_lock_off.ogg'
 
 	var/store_misc = 1
 	var/store_items = 1
@@ -193,6 +195,9 @@
 	else
 		user << SPAN_NOTICE("Access Denied")
 
+/obj/structure/closet/AltClick(mob/user as mob)
+	src.togglelock(user)
+
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
@@ -202,6 +207,10 @@
 		return
 
 	locked = newlocked
+	if(locked)
+		playsound(src.loc, lock_on_sound, 60, 1, -3)
+	else
+		playsound(src.loc, lock_off_sound, 60, 1, -3)
 	if(user)
 		for(var/mob/O in viewers(user, 3))
 			O.show_message( "<span class='notice'>The [ctype] has been [locked ? null : "un"]locked by [user].</span>", 1)
@@ -455,28 +464,28 @@
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
-	if(!opened)
+	if(opened)
+		if(icon_door)
+			add_overlay("[icon_door]_open")
+		else
+			add_overlay("[icon_state]_open")
+	else
 		if(icon_door)
 			add_overlay("[icon_door]_door")
 		else
 			add_overlay("[icon_state]_door")
 		if(welded)
 			add_overlay(icon_welded)
-	else
-		if(icon_door)
-			add_overlay("[icon_door]_open")
-		else
-			add_overlay("[icon_state]_open")
 
-	if(secure)
-		if(!broken)
-			if(locked)
-				add_overlay("[icon_lock]_locked")
+		if(secure)
+			if(!broken)
+				if(locked)
+					add_overlay("[icon_lock]_locked")
+				else
+					add_overlay("[icon_lock]_unlocked")
 			else
-				add_overlay("[icon_lock]_unlocked")
-		else
-			add_overlay("[icon_lock]_off")
-			add_overlay(icon_sparking)
+				add_overlay("[icon_lock]_off")
+				add_overlay(icon_sparking)
 
 /obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys", var/wallbreaker)
 	if(!damage || !wallbreaker)

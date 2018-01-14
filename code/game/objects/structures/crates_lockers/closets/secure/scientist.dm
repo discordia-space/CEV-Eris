@@ -1,9 +1,10 @@
-/obj/structure/closet/secure_closet/scientist
+/obj/structure/closet/secure_closet/personal/scientist
 	name = "moebius scientist's locker"
-	req_access = list(access_tox_storage)
+	req_access = list(access_rd)
+	access_occupy = list(access_tox_storage)
 	icon_state = "science"
 
-/obj/structure/closet/secure_closet/scientist/populate_contents()
+/obj/structure/closet/secure_closet/personal/scientist/populate_contents()
 	..()
 	new /obj/item/clothing/under/rank/scientist(src)
 	//new /obj/item/clothing/suit/labcoat/science(src)
@@ -16,7 +17,7 @@
 
 
 /obj/structure/closet/secure_closet/reinforced/RD
-	name = "research director's locker"
+	name = "Moebius Expedition Overseer locker"
 	req_access = list(access_rd)
 	icon_state = "rd"
 

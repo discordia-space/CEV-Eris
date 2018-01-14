@@ -33,7 +33,7 @@
 	name = "electrical supplies"
 	req_access = list(access_engine_equip)
 	icon_state = "eng"
-	icon_door = "end_elec"
+	icon_door = "eng_elec"
 
 /obj/structure/closet/secure_closet/engineering_electrical/populate_contents()
 	..()
@@ -54,7 +54,7 @@
 	name = "welding supplies"
 	req_access = list(access_construction)
 	icon_state = "eng"
-	icon_door = "end_weld"
+	icon_door = "eng_weld"
 
 /obj/structure/closet/secure_closet/engineering_welding/populate_contents()
 	..()
@@ -69,13 +69,14 @@
 	new /obj/item/weapon/weldpack(src)
 
 
-/obj/structure/closet/secure_closet/engineering_personal
+/obj/structure/closet/secure_closet/personal/engineering_personal
 	name = "technomancer's locker"
-	req_access = list(access_engine_equip)
+	req_access = list(access_ce)
+	access_occupy = list(access_engine_equip)
 	icon_state = "eng"
 	icon_door = "eng_secure"
 
-/obj/structure/closet/secure_closet/engineering_personal/populate_contents()
+/obj/structure/closet/secure_closet/personal/engineering_personal/populate_contents()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)

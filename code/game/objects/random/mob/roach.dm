@@ -7,7 +7,6 @@
 	return pick(prob(12);/mob/living/simple_animal/hostile/roach,\
 				prob(3);/mob/living/simple_animal/hostile/roach/tank,\
 				prob(3);/mob/living/simple_animal/hostile/roach/hunter,\
-				prob(3);/mob/living/simple_animal/hostile/roach/support,\
 				prob(1);/mob/living/simple_animal/hostile/roach/fuhrer)
 
 /obj/random/mob/roaches/low_chance
