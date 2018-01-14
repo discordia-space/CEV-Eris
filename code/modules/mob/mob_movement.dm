@@ -203,6 +203,11 @@
 		mob.ghostize()
 		return
 
+	if(isAI(mob))
+		var/mob/living/silicon/ai/AI = mob
+		if(AI.controlled_mech)
+			return AI.controlled_mech.relaymove(mob, direct)
+
 	// handle possible Eye movement
 	if(mob.eyeobj)
 		return mob.EyeMove(n,direct)
