@@ -9,7 +9,7 @@
 	response_disarm = "pushes aside"
 	response_harm = "stamps on"
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
-	meat_amount = 2
+	meat_amount = 3
 	speed = 4
 	maxHealth = 10
 	health = 10
