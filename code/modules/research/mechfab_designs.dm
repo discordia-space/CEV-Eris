@@ -294,14 +294,14 @@
 	name = "Phazon chassis"
 	id = "phazon_chassis"
 	build_path = /obj/item/mecha_parts/chassis/phazon
-	time = 10
+	time = 60
 	materials = list(DEFAULT_WALL_MATERIAL = 25000)
 
 /datum/design/item/mechfab/phazon/torso
 	name = "Phazon torso"
 	id = "phazon_torso"
 	build_path = /obj/item/mecha_parts/part/phazon_torso
-	time = 10
+	time = 120
 	materials = list(DEFAULT_WALL_MATERIAL=35000,"glass"=10000,"plasma"=20000)
 
 /datum/design/item/mechfab/phazon/head
@@ -343,8 +343,8 @@
 	name = "Phazon armour plates"
 	id = "phazon_armour"
 	build_path = /obj/item/mecha_parts/part/phazon_armor
-	time = 20
-	materials = list(DEFAULT_WALL_MATERIAL=20000,"plasma"=10000,"uranium"=10000,"silver"=3000,"diamond"=1000)
+	time = 120
+	materials = list(DEFAULT_WALL_MATERIAL=20000,"plasma"=10000,"uranium"=10000,"silver"=3000,"diamond"=500)
 
 //Durand ======================================================================
 
