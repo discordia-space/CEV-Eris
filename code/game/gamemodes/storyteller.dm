@@ -1,5 +1,3 @@
-#define ROLESET_WEIGHT_RANDOMIZE_MOD 0.09
-
 var/global/list/current_antags = list()
 var/global/list/current_factions = list()
 
@@ -9,42 +7,91 @@ var/global/list/current_factions = list()
 	var/welcome = "Welcome"
 	var/description = "You shouldn't see this"
 
-	var/role_spawn_timer = 0
-	var/role_spawn_stage = 0
+	var/event_spawn_timer = 0
+	var/event_spawn_stage = 0
 
-	var/min_role_spawn_delay = 20 MINUTES
-	var/max_role_spawn_delay = 30 MINUTES
+	var/min_spawn_delay = 20 MINUTES
+	var/max_spawn_delay = 30 MINUTES
 
-	var/min_start_role_spawn_delay = 10 MINUTES
-	var/max_start_role_spawn_delay = 18 MINUTES
-
-	var/list/disabled_antags = list()
-	var/list/disabled_events = list()
+	var/min_start_spawn_delay = 10 MINUTES
+	var/max_start_spawn_delay = 18 MINUTES
 
 	var/one_role_per_player = TRUE
 
 	var/force_spawn_now = FALSE
 
+	var/weight_randomizer = 0.15
+
+	var/list/processing_events = list()
+
+	var/list/dbglist
+	/*
+	//Fake crew values for test
+	var/f_crew = 10
+	var/f_heads = 2
+	var/f_sec = 4
+	var/f_eng = 3
+	var/f_med = 4
+	var/f_sci = 3
+	*/
+
 /datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
 	return TRUE
+	var/engineer = FALSE
+	var/captain = FALSE
+	for(var/mob/new_player/player in player_list)
+		if(player.ready && player.mind)
+			if(player.mind.assigned_role == "Captain")
+				captain = TRUE
+			if(player.mind.assigned_role in list("Technomancer Exultant","Technomancer"))
+				engineer = TRUE
+			if(captain && engineer)
+				return TRUE
+
+	if(announce)
+		if(!engineer && !captain)
+			world << "<b><font color='red'>Captain and technomancer are required to start round.</font></b>"
+		else if(!engineer)
+			world << "<b><font color='red'>Technomancer is required to start round.</font></b>"
+		else if(!captain)
+			world << "<b><font color='red'>Captain is required to start round.</font></b>"
+
+	return FALSE
 
 /datum/storyteller/proc/announce()
 	world << "<b><font size=3>Storyteller is [src.name].</font> <br>[welcome]</b>"
 
 /datum/storyteller/proc/set_up()
-	fill_rolesets_list()
-	set_role_timer(rand(min_start_role_spawn_delay, max_start_role_spawn_delay))
+	fill_storyevents_list()
+	set_timer(rand(min_start_spawn_delay, max_start_spawn_delay))
+	events_set_up()
+	dbglist = storyevents
 
-/datum/storyteller/proc/set_role_timer(var/time)
-	role_spawn_timer = world.time + time
+/datum/storyteller/proc/events_set_up()
+	return
 
-/datum/storyteller/proc/set_role_timer_default()
-	set_role_timer(rand(min_role_spawn_delay, max_role_spawn_delay))
+/datum/storyteller/proc/set_timer(var/time)
+	event_spawn_timer = world.time + time
 
 /datum/storyteller/proc/process()
-	if(force_spawn_now || (role_spawn_timer && role_spawn_timer <= world.time))
+	if(force_spawn_now || (event_spawn_timer && event_spawn_timer <= world.time))
 		force_spawn_now = FALSE
-		spawn_antagonist()
+		update_event_weights()
+		trigger_event()
+
+/datum/storyteller/proc/add_processing(var/datum/storyevent/S)
+	ASSERT(istype(S))
+	processing_events.Add(S)
+
+/datum/storyteller/proc/remove_processing(var/datum/storyevent/S)
+	processing_events.Remove(S)
+
+/datum/storyteller/proc/process_events()	//Called in ticker
+	for(var/datum/storyevent/S in processing_events)
+		if(S.processing)
+			S.process()
+			if(S.is_ended())
+				S.stop_processing(TRUE)
 
 /datum/storyteller/proc/update_objectives()
 	for(var/datum/antagonist/A in current_antags)
@@ -56,14 +103,14 @@ var/global/list/current_factions = list()
 		for(var/datum/objective/O in F.objectives)
 			O.update_completion()
 
-/datum/storyteller/proc/get_roleset_weight(var/datum/roleset/R)
+/datum/storyteller/proc/get_event_weight(var/datum/storyevent/R)
 	ASSERT(istype(R))
 
-	R.weight_cache = calculate_roleset_weight(R)
-	R.weight_cache *= 1-rand()*ROLESET_WEIGHT_RANDOMIZE_MOD
+	R.weight_cache = calculate_event_weight(R)
+	R.weight_cache *= 1-rand()*weight_randomizer
 	return R.weight_cache
 
-/datum/storyteller/proc/calculate_roleset_weight(var/datum/roleset/R)
+/datum/storyteller/proc/calculate_event_weight(var/datum/storyevent/R)
 	var/weight = 1
 
 	var/crew = 0
@@ -88,42 +135,58 @@ var/global/list/current_factions = list()
 					med++
 				if(job.department == "Science")
 					sci++
+	/*
+	//Fake crew values for tests
+	crew = f_crew
+	heads = f_heads
+	sec = f_sec
+	eng = f_eng
+	med = f_med
+	sci = f_sci
+	*/
 
-		weight *= crew_weight_mult(crew,R.req_crew,R.max_crew_diff)
-		weight *= crew_weight_mult(heads,R.req_heads,R.max_crew_diff)
-		weight *= crew_weight_mult(sec,R.req_sec,R.max_crew_diff)
-		weight *= crew_weight_mult(eng,R.req_eng,R.max_crew_diff)
-		weight *= crew_weight_mult(med,R.req_med,R.max_crew_diff)
-		weight *= crew_weight_mult(sci,R.req_sci,R.max_crew_diff)
+	weight *= weight_mult(crew,R.req_crew,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
+	weight *= weight_mult(heads,R.req_heads,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
+	weight *= weight_mult(sec,R.req_sec,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
+	weight *= weight_mult(eng,R.req_eng,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
+	weight *= weight_mult(med,R.req_med,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
+	weight *= weight_mult(sci,R.req_sci,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
 
-		if(R.req_stage >= 0)
-			weight *= max(R.max_stage_diff**2-(abs(role_spawn_stage-R.req_stage)**2),0)/R.max_stage_diff**2
+	weight *= weight_mult(event_spawn_stage,R.req_stage,R.max_stage_diff_lower,R.max_stage_diff_higher,TRUE)
 
-		if(R.spawn_times > 1 && weight > 0.30)
-			weight = weight - 0.2*R.spawn_times
+	weight *= weight_mult(R.spawn_times,0,0,R.spawn_times_max)
 
-		R.weight_cache = R.get_special_weight(weight)
-		return R.weight_cache
+	weight = R.get_special_weight(weight)
 
-/datum/storyteller/proc/crew_weight_mult(var/val, var/req, var/maxdiff)
-	if(req<0)
+	return weight
+
+/datum/storyteller/proc/weight_mult(var/val, var/req, var/min, var/max, var/atl = FALSE)
+	if(req < 0)
 		return 1
-	var/mod = maxdiff**2
+	if(val < min || (!atl && val > max))
+		return 0
+	if(atl && req < val)
+		return 1
+	var/mod = (min+max/2)**2
 	return max(mod-(abs(val-req)**2),0)/mod
 
-/datum/storyteller/proc/spawn_antagonist()
-	var/datum/roleset/role
-	for(var/datum/roleset/R in rolesets)
-		if(R.can_spawn())
-			if(!role || get_roleset_weight(R) > role.weight_cache)
-				role = R
+/datum/storyteller/proc/update_event_weights()
+	for(var/datum/storyevent/R in storyevents)
+		get_event_weight(R)
 
-	if(role.create())
-		set_role_timer_default()
-		role_spawn_stage++
+/datum/storyteller/proc/trigger_event()
+	var/datum/storyevent/E
+	for(var/datum/storyevent/R in storyevents)
+		if(R.can_spawn())
+			if(!E || R.weight_cache > E.weight_cache)
+				E = R
+
+	if(E.create())
+		set_timer(min_spawn_delay, max_spawn_delay)
+		event_spawn_stage++
 		return TRUE
 	else
-		set_role_timer(rand(2 MINUTES,5 MINUTES))
+		set_timer(rand(1 MINUTES,3 MINUTES))
 		return FALSE
 
 

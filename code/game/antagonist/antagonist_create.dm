@@ -35,8 +35,8 @@
 	if(doequip)
 		equip()
 
-	if(announce)
-		greet()
+	//if(announce)
+	//	greet()
 
 	return TRUE
 

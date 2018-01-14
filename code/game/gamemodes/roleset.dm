@@ -1,43 +1,16 @@
-var/global/list/rolesets = list()
+/datum/storyevent/roleset
+	id = "roleset"
 
-/proc/fill_rolesets_list()
-	for(var/type in typesof(/datum/roleset)-/datum/roleset)
-		rolesets.Add(new type)
-
-/datum/roleset
-	var/id = "roleset"
 	var/role_id = null
 
-	var/weight_cache = 0
-	var/spawn_times = 0
-
-	//Weight calculation settings. Set to negative to disable check
-	var/req_crew = -1
-	var/req_heads = -1
-	var/req_sec = -1
-	var/req_eng = -1
-	var/req_med = -1
-	var/req_sci = -1
-
-	var/req_stage = -1
-
-	var/max_crew_diff = 10	//Maximum difference between above values and real crew distribution. If difference is greater, weight will be 0
-	var/max_stage_diff = 2
-
-/datum/roleset/proc/get_special_weight(var/weight)
-	return weight
-
-/datum/roleset/proc/can_spawn()
+/datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
 
-/datum/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
-	return TRUE
-
-/datum/roleset/proc/get_candidates_count(var/a_type)	//For internal using
+/datum/storyevent/roleset/proc/get_candidates_count(var/a_type)	//For internal using
 	var/list/L = candidates_list(a_type)
 	return L.len
 
-/datum/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
+/datum/storyevent/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
 	var/datum/antagonist/temp
 
 	if(ispath(antag_types[antag]))
@@ -67,7 +40,7 @@ var/global/list/rolesets = list()
 	qdel(temp)
 	return candidates
 
-/datum/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE)
+/datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE)
 	var/datum/antagonist/temp
 
 	if(ispath(antag_types[antag]))
@@ -106,14 +79,7 @@ var/global/list/rolesets = list()
 	qdel(temp)
 	return candidates
 
-/datum/roleset/proc/create()
-	var/succ = spawn_roleset()
-	if(succ)
-		spawn_times++
-		log_admin("STORYTELLER: [id] roleset has been spawned! [storyteller_button()]")
-	return succ
-
-/datum/roleset/proc/spawn_roleset()
+/datum/storyevent/roleset/spawn_event()
 	var/antag = antag_types[role_id]
 	var/datum/antagonist/A = new antag
 
@@ -132,8 +98,14 @@ var/global/list/rolesets = list()
 	create_objectives(A)
 
 
-/datum/roleset/proc/create_objectives(var/datum/antagonist/A)
+/datum/storyevent/roleset/proc/create_objectives(var/datum/antagonist/A)
 	A.objectives.Cut()
 	A.create_objectives()
 	A.create_survive_objective()
+	A.greet()
 
+/datum/storyevent/roleset/announce()
+	return
+
+/datum/storyevent/roleset/announce_end()
+	return
