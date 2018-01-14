@@ -21,7 +21,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 4
 	attacktext = "bitten"
-	attack_sound = 'sound/voice/insect_battle_bite.wav'
+	attack_sound = 'sound/voice/insect_battle_bite.ogg'
 
 	faction = "roach"
 
@@ -30,7 +30,7 @@
 	. = ..()
 	if(.)
 		custom_emote(1,"charges at [.]!")
-		playsound(src, 'sound/voice/insect_battle_screeching.wav', 30, 1, -3)
+		playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 
 /mob/living/simple_animal/hostile/roach/AttackingTarget()
 	. =..()

@@ -156,6 +156,6 @@
 		return 1
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-	playsound(src,'sound/effects/Liquid_transfer_mono.wav',50,1)
+	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
 	user << SPAN_NOTICE("You transfer [trans] units of the solution to [target].")
 	return 1
