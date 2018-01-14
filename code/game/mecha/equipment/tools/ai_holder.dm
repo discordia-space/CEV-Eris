@@ -12,8 +12,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/proc/go_out()
 	chassis.occupant = null
-	//chassis.reset_icon()
-	chassis.icon_state = chassis.reset_icon()+"-open"
+	chassis.icon_state = chassis.update_icon()+"-open"
 	occupant.remove_mecha_verbs()
 	occupant.set_mecha(null)
 	if(occupant.eyeobj)
@@ -35,26 +34,26 @@
 	AI.set_mecha(chassis)
 	occupant = AI
 	chassis.occupant = occupant
-	chassis.reset_icon()
+	chassis.update_icon()
 	AI.add_mecha_verbs()
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/interact(var/mob/living/silicon/ai/user)
-	world << "Enter"
+	//Enter
 	if(!chassis)
-		world << "No chasis"
+		//No chasis
 		return
 	if(occupant)
-		world << "OC exist"
+		//OC exist
 		if(occupant == user)
 			go_out()
 		else
 			user << "Controller is already occupied!"
 	else
-		world << "No OC"
+		//No OC
 		if(isAI(user))
-			world << "user is AI"
+			//user is AI
 			occupied(user)
-	world << "Exit"
+			//"Exit"
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/attach()
 	..()
