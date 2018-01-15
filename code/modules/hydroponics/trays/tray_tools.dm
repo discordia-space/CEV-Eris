@@ -29,7 +29,8 @@
 	if(!last_data)
 		user << "There is no scan data to print."
 		return
-	cell_use_check(3)//printing costs less than analyzing ang calculating
+	if(!cell_use_check(3))
+		return
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
 	P.name = "paper - [form_title]"
 	P.info = "[last_data]"
@@ -45,7 +46,8 @@
 	return 0
 
 /obj/item/device/scanner/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
-	cell_use_check(5)
+	if(!cell_use_check(5))
+		return
 	if(!flag) return
 
 	var/datum/seed/grown_seed

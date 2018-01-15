@@ -39,9 +39,10 @@ REAGENT SCANNER
 
 //all user was replased on usr
 /obj/item/device/scanner/proc/cell_use_check(charge)
+	. = TRUE
 	if(!cell || !cell.checked_use(charge))
 		usr << SPAN_WARNING("[src] battery is dead or missing.")
-		return
+		. = FALSE
 
 /obj/item/device/scanner/New()
 	..()
@@ -61,7 +62,8 @@ REAGENT SCANNER
 	var/mode = 1
 
 /obj/item/device/scanner/healthanalyzer/attack(mob/living/M, mob/living/user)
-	cell_use_check(3)
+	if(!cell_use_check(3))
+		return
 	if(user.incapacitated())
 		return
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -236,7 +238,8 @@ REAGENT SCANNER
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 /obj/item/device/scanner/analyzer/atmosanalyze(var/mob/user)
-	cell_use_check(5)
+	if(!cell_use_check(5))
+		return
 	var/air = user.return_air()
 	if (!air)
 		return
@@ -288,7 +291,8 @@ REAGENT SCANNER
 		icon_state = initial(icon_state)
 
 /obj/item/device/scanner/mass_spectrometer/attack_self(mob/user as mob)
-	cell_use_check(7)
+	if(!cell_use_check(7))
+		return
 	if (user.incapacitated())
 		return
 	if (!user.IsAdvancedToolUser())
@@ -340,7 +344,8 @@ REAGENT SCANNER
 	var/recent_fail = 0
 
 /obj/item/device/scanner/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
-	cell_use_check(7)
+	if(!cell_use_check(7))
+		return
 	if(!proximity)
 		return
 	if (user.incapacitated())
@@ -389,7 +394,8 @@ REAGENT SCANNER
 	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/device/scanner/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
-	cell_use_check(7)
+	if(!cell_use_check(7))
+		return
 	if(user.incapacitated())
 		return
 	if (!isslime(M))
