@@ -44,6 +44,7 @@
 #define ROLE_REVOLUTIONARY "revolutionary"
 #define ROLE_MALFUNCTION "malf"
 #define ROLE_TRAITOR "traitor"
+#define ROLE_TRAITOR_SYNTH "robo_traitor"
 #define ROLE_MARSHAL "marshal"
 
 #define ROLE_INQUISITOR "inquisitor"

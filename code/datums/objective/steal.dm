@@ -36,7 +36,7 @@
 	)
 
 
-/datum/objective/steal/proc/set_target(var/item_name)
+/datum/objective/steal/proc/steal_target(var/item_name)
 	target_name = item_name
 	steal_target = possible_items[target_name]
 	if(!steal_target)
@@ -46,7 +46,7 @@
 
 
 /datum/objective/steal/find_target()
-	return set_target(pick(possible_items))
+	return steal_target(pick(possible_items))
 
 
 /datum/objective/steal/proc/select_target(var/mob/user)

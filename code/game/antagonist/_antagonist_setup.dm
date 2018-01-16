@@ -37,7 +37,6 @@ var/global/list/group_antag_types = list()
 var/global/list/antag_starting_locations = list()
 var/global/list/selectable_antag_types = list()
 var/global/list/antag_bantypes = list()
-var/global/list/antag_weights = list()
 
 // Global procs.
 /proc/clear_antagonist(var/datum/mind/player)
@@ -98,7 +97,6 @@ var/global/list/antag_weights = list()
 			selectable_antag_types[A.id] = A.role_type
 		if(A.faction_type)
 			group_antag_types[A.id] = antag_type
-		antag_weights[A.id] = A.weight
 		antag_names[A.id] = A.role_text
 		antag_bantypes[A.id] = A.bantype
 

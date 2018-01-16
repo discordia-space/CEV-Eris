@@ -87,7 +87,7 @@ var/datum/controller/vote/vote = new()
 
 	var/admin = FALSE
 	if(C.mob)
-		admin = check_rights(user = C.mob)
+		admin = check_rights(user = C.mob, show_msg=FALSE)
 
 	voters |= C
 

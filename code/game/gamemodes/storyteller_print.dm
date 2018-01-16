@@ -62,10 +62,9 @@
 /datum/storyteller/proc/storyteller_panel()
 	var/data = "<center><font size='3'><b>STORYTELLER PANEL v0.1</b></font></center>"
 	data += "<br>Current storyteller: [src.name] ([src.config_tag])"
-	data += "<br><br>Time to next role spawn: <a href='?src=\ref[src];edit_timer=1'>[(role_spawn_timer-world.time)/10]</a> <a href='?src=\ref[src];edit_timer_t=1'>\[as tick\]</a> s"
+	data += "<br><br>Time to next event: <a href='?src=\ref[src];edit_timer=1'>[(event_spawn_timer-world.time)/10]</a> <a href='?src=\ref[src];edit_timer_t=1'>\[as tick\]</a> s"
 	data += "<br><b><a href='?src=\ref[src];force_spawn=1'>\[FORCE ROLE SPAWN\]</a></b>"
-	data += "<br>Last spawn stage: [role_spawn_stage]."
-	data += "<br>Current round weight: [get_round_weight()]"
+	data += "<br>Last spawn stage: [event_spawn_stage]."
 
 	data += "<br><br>One role per player: <a href='?src=\ref[src];toggle_orpp=1'>[one_role_per_player?"Yes":"No"]</a>"
 
@@ -90,12 +89,12 @@
 		force_spawn_now = TRUE
 
 	if(href_list["edit_timer_t"])
-		var/time = input("Tick of next role spawn:","Storyteller time",role_spawn_timer) as num
-		set_role_timer(time)
+		var/time = input("Tick of next role spawn:","Storyteller time",event_spawn_timer) as num
+		set_timer(time)
 
 	if(href_list["edit_timer"])
-		var/time = input("Time to next role spawn:","Storyteller time",(role_spawn_timer-world.time)/10) as num
-		set_role_timer((time*10)+world.time)
+		var/time = input("Time to next role spawn:","Storyteller time",(event_spawn_timer-world.time)/10) as num
+		set_timer((time*10)+world.time)
 
 	if(href_list["toggle_orpp"])	//one role per player
 		one_role_per_player = !one_role_per_player

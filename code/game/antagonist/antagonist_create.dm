@@ -32,14 +32,11 @@
 
 	create_faction()
 
-	if(!objectives || !objectives.len)
-		create_objectives()
-
 	if(doequip)
 		equip()
 
-	if(announce)
-		greet()
+	//if(announce)
+	//	greet()
 
 	return TRUE
 
