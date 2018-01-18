@@ -32,15 +32,18 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /atom/proc/attackby(obj/item/W, mob/user)
 	return
 
-/atom/movable/attackby(obj/item/W, mob/user)
-	if(!(W.flags & NOBLUDGEON))
-		visible_message(SPAN_DANGER("[src] has been hit by [user] with [W]."))
+/atom/movable/attackby(obj/item/I, mob/living/user)
+	if(!(I.flags & NOBLUDGEON))
+		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
 
-/mob/living/attackby(obj/item/I, mob/user)
+/obj/item/attackby(obj/item/I, mob/living/user)
+	return
+
+/mob/living/attackby(obj/item/I, mob/living/user)
 	if(!ismob(user))
-		return 0
+		return FALSE
 	if(can_operate(src) && do_surgery(src, user, I)) //Surgery
-		return 1
+		return TRUE
 	return I.attack(src, user, user.targeted_organ)
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
@@ -53,16 +56,12 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		pixel_y = (text2num(click_params["icon-y"]) - 16)
 		layer = user.layer + 0.1
 
-		if(!isnum(click_params))
-			return
-	return
-
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, var/target_zone)
 	if(!force || (flags & NOBLUDGEON))
-		return 0
+		return FALSE
 	if(M == user && user.a_intent != I_HURT)
-		return 0
+		return FALSE
 
 	/////////////////////////
 	user.lastattacked = M
@@ -81,7 +80,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(hit_zone)
 		apply_hit_effect(M, user, hit_zone)
 
-	return 1
+	return TRUE
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
