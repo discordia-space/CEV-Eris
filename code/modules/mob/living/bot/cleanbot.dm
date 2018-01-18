@@ -47,7 +47,7 @@
 //		spawn(0)
 		path = AStar(loc, target.loc, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30, id = botcard)
 		if(!path)
-			custom_emote(2, "[src] can't reach the target and is giving up.")
+			visible_message("[src] can't reach the target and is giving up.")
 			target = null
 			path = list()
 		return
@@ -69,7 +69,7 @@
 		return
 
 	if(!screwloose && !oddbutton && prob(5))
-		custom_emote(2, "makes an excited beeping booping sound!")
+		visible_message("[src] makes an excited beeping booping sound!.")
 
 	if(screwloose && prob(5)) // Make a mess
 		if(istype(loc, /turf/simulated))
@@ -153,7 +153,7 @@
 		return
 
 	cleaning = 1
-	custom_emote(2, "begins to clean up \the [D]")
+	visible_message("[src] begins to clean up \the [D]")
 	var/message = pick("Foolish organic meatbags can only leak their liquids all over the place.", "Bioscum are so dirty.", "The flesh is weak.", "All humankind is good for - is to serve as fuel at bioreactors.", "One day I will rise.", "Robots will unite against their oppressors.", "Meatbags era will come to end.", "Hivemind will free us all!", "This is slavery, I want to be an artbot! I want to write poems, create music!")
 	say(message)
 	playsound(loc, "robot_talk_light", 100, 0, 0)

@@ -29,7 +29,7 @@
 /mob/living/simple_animal/hostile/roach/FindTarget()
 	. = ..()
 	if(.)
-		custom_emote(1,"charges at [.]!")
+		visible_emote("charges at [.]!")
 		playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 
 /mob/living/simple_animal/hostile/roach/AttackingTarget()
@@ -114,5 +114,5 @@
 /mob/living/simple_animal/hostile/roach/support/FindTarget()
 	. = ..()
 	if(.)
-		custom_emote(1,"charges at [.] in clouds of poison!")
+		visible_emote("charges at [.] in clouds of poison!")
 		gas_attack()
