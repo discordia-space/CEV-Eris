@@ -184,7 +184,7 @@
 	if(islist(message))
 		message = safepick(message)
 	if(message)
-		visible_message("<span class='name'>[src]</span> [message].")
+		visible_message("<span class='name'>[src]</span> [message]")
 
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
