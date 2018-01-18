@@ -69,7 +69,7 @@
 		return
 
 	if(!screwloose && !oddbutton && prob(5))
-		visible_message("[src] makes an excited beeping booping sound!.")
+		visible_message("[src] makes an excited beeping booping sound!")
 
 	if(screwloose && prob(5)) // Make a mess
 		if(istype(loc, /turf/simulated))
