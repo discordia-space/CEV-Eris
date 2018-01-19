@@ -417,8 +417,6 @@
 			return
 
 		set_occupant(affecting)
-		affecting << SPAN_NOTICE("[on_enter_occupant_message]")
-		affecting << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
 
 		// Book keeping!
 		var/turf/location = get_turf(src)
@@ -508,8 +506,8 @@
 		new_occupant.forceMove(src)
 		icon_state = occupied_icon_state
 
-		occupant << "<span class='notice'>[on_enter_occupant_message]</span>"
-		occupant << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
+		occupant << SPAN_NOTICE("[on_enter_occupant_message]")
+		occupant << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
 
 	else
 		icon_state = base_icon_state
