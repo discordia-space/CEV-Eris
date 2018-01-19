@@ -94,7 +94,7 @@
 	desc = "It is a black portable wireless stereo head hanging, blue LCD display built-in FM radio Mp3 headset."
 	icon_state = "headphones"
 	item_state = "headphones"
-	//icon_action_button = "action_music"
+	action_button_name = "action_music"
 	var/obj/item/device/player/player = null
 
 /obj/item/clothing/ears/earmuffs/mp3/New()
