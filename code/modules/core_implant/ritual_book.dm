@@ -6,10 +6,10 @@
 	var/list/rituals = list()
 
 /obj/item/weapon/book/ritual/attack_self(mob/living/carbon/human/H)
-	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.wav',\
-		'sound/items/BOOK_Turn_Page_2.wav',\
-		'sound/items/BOOK_Turn_Page_3.wav',\
-		'sound/items/BOOK_Turn_Page_4.wav',\
+	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
+		'sound/items/BOOK_Turn_Page_2.ogg',\
+		'sound/items/BOOK_Turn_Page_3.ogg',\
+		'sound/items/BOOK_Turn_Page_4.ogg',\
 		), rand(40,80), 1)
 	interact(H)
 

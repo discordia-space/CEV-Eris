@@ -5,17 +5,16 @@
 	var/current_track = ""
 	var/obj/item/holder = null
 	var/list/songs = list(
-		"Space Oddity" = 'sound/music/CustomMusic/space_oddity.ogg',
-		"Space Dwarfs" = 'sound/music/CustomMusic/b12_combined_start.ogg',
-		"Space Faunts" = 'sound/music/CustomMusic/faunts-das_malefitz.ogg',
-		"Space Fly" = 'sound/music/CustomMusic/main.ogg',
-		"Space Solus" = 'sound/music/CustomMusic/space.ogg',
-		"Space Asshole" = 'sound/music/CustomMusic/space_asshole.ogg',
-		"Space Thunderdome" = 'sound/music/CustomMusic/THUNDERDOME.ogg',
-		"Space Title1" = 'sound/music/CustomMusic/title1.ogg',
-		"Space Title2" = 'sound/music/CustomMusic/title2.ogg',
-		"Space Traitor" = 'sound/music/CustomMusic/traitor.ogg',
-		"Space Undertale" = 'sound/music/CustomMusic/undertale.ogg'
+		"Space Oddity" = 'sound/music/space_oddity.ogg',
+		"Space Dwarfs" = 'sound/music/b12_combined_start.ogg',
+		"Space Asshole" = 'sound/music/space_asshole.ogg',
+		"deus ex" = 'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
+		"faunts das malefitz" = 'sound/music/faunts-das_malefitz.ogg',
+		"I am waiting for you last summer neon fever" = 'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',
+		"My beautiful escape" = 'sound/music/nervous_testpilot _my_beautiful_escape.ogg',
+		"Paradise cracked skytown" = 'sound/music/paradise_cracked_skytown.ogg',
+		"paradise cracked title03" = 'sound/music/paradise_cracked_title03.ogg',
+		"Tonspender irritations" = 'sound/music/tonspender_irritations.ogg',
 	)
 
 /obj/item/device/player/New(var/obj/item/holder)
