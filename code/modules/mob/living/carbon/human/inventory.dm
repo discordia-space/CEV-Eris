@@ -262,6 +262,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				O.forceMove(src)
 				src.r_ear = O
 				O.layer = 20
+				O.screen_loc = find_inv_position(slot_l_ear)
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 
@@ -272,6 +273,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				O.forceMove(src)
 				src.l_ear = O
 				O.layer = 20
+				O.screen_loc = find_inv_position(slot_r_ear)
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 		if(slot_glasses)
