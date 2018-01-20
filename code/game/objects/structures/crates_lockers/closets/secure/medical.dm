@@ -133,7 +133,7 @@
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
 	icon_state = "med"
-	icon_door = "chemical"
+	icon_door = "chemical_door"
 	req_access = list(access_chemistry)
 
 
