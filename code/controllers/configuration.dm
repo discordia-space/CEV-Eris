@@ -494,9 +494,6 @@ var/list/storyteller_cache = list()
 				if("alert_green")
 					config.alert_desc_green = value
 
-				if("alert_delta")
-					config.alert_desc_delta = value
-
 				if("forbid_singulo_possession")
 					forbid_singulo_possession = 1
 
