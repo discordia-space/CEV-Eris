@@ -4,5 +4,5 @@
 	icon_state = "deckard"
 	caliber = ".44"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	max_shells = 6
+	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/cl44r
