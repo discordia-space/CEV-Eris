@@ -73,13 +73,23 @@
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "block"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	var/obj/item/master_item = null
 
-	New(var/obj/O)
-		name = O.name
-		desc = O.desc
-		icon = O.icon
-		icon_state = O.icon_state
-		set_dir(O.dir)
+/obj/item/clothing/ears/offear/New(var/obj/O)
+	name = O.name
+	desc = O.desc
+	icon = O.icon
+	icon_state = O.icon_state
+	set_dir(O.dir)
+	master_item = O
+
+/obj/item/clothing/ears/offear/mob_can_equip(mob/living/user, slot, disable_warning)
+	if(!slot || !user)
+		return
+	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
+	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
+		return FALSE
+	return TRUE
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
