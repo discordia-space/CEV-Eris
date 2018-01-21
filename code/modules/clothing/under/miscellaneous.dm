@@ -166,41 +166,6 @@
 	item_state = "gy_suit"
 
 
-/obj/item/clothing/under/suit_jacket/charcoal
-	name = "charcoal suit"
-	desc = "A charcoal suit and red tie. Very professional."
-	icon_state = "charcoal_suit"
-	item_state = "bl_suit"
-
-
-/obj/item/clothing/under/suit_jacket/navy
-	name = "navy suit"
-	desc = "A navy suit and red tie, intended for the station's finest."
-	icon_state = "navy_suit"
-	item_state = "bl_suit"
-
-
-/obj/item/clothing/under/suit_jacket/burgundy
-	name = "burgundy suit"
-	desc = "A burgundy suit and black tie. Somewhat formal."
-	icon_state = "burgundy_suit"
-	item_state = "r_suit"
-
-
-/obj/item/clothing/under/suit_jacket/checkered
-	name = "checkered suit"
-	desc = "That's a very nice suit you have there. Shame if something were to happen to it, eh?"
-	icon_state = "checkered_suit"
-	item_state = "gy_suit"
-
-
-/obj/item/clothing/under/suit_jacket/tan
-	name = "tan suit"
-	desc = "A tan suit with a yellow tie. Smart, but casual."
-	icon_state = "tan_suit"
-	item_state = "lb_suit"
-
-
 /obj/item/clothing/under/serviceoveralls
 	name = "workman outfit"
 	desc = "The very image of a working man. Not that you're probably doing work."
