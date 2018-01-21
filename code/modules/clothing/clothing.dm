@@ -73,13 +73,23 @@
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "block"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	var/obj/item/master_item = null
 
-	New(var/obj/O)
-		name = O.name
-		desc = O.desc
-		icon = O.icon
-		icon_state = O.icon_state
-		set_dir(O.dir)
+/obj/item/clothing/ears/offear/New(var/obj/O)
+	name = O.name
+	desc = O.desc
+	icon = O.icon
+	icon_state = O.icon_state
+	set_dir(O.dir)
+	master_item = O
+
+/obj/item/clothing/ears/offear/mob_can_equip(mob/living/user, slot, disable_warning)
+	if(!slot || !user)
+		return
+	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
+	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
+		return FALSE
+	return TRUE
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -87,6 +97,62 @@
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
+
+
+/obj/item/clothing/ears/earmuffs/mp3
+	name = "headphones with MP3"
+	desc = "It is a black portable wireless stereo head hanging, blue LCD display built-in FM radio Mp3 headset."
+	icon_state = "headphones"
+	item_state = "headphones"
+	action_button_name = "action_music"
+	var/obj/item/device/player/player = null
+	var/tick_cost = 0.1
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/clothing/ears/earmuffs/mp3/New()
+	..()
+	player = new(src)
+	processing_objects |= src
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
+
+
+
+/obj/item/clothing/ears/earmuffs/mp3/update_icon()
+	overlays.Cut()
+	..() //blood overlay, etc.
+	if(player.current_track)
+		overlays += "headphones_on"
+
+/obj/item/clothing/ears/earmuffs/mp3/ui_action_click()
+	player.OpenInterface(usr)
+
+/obj/item/clothing/ears/earmuffs/mp3/dropped(var/mob/user)
+	..()
+	player.stop(user)
+
+/obj/item/clothing/ears/earmuffs/mp3/equipped(var/mob/user, var/slot)
+	..()
+	if(cell && cell.checked_use(tick_cost))
+		player.active = TRUE
+		player.play(user)
+
+/obj/item/clothing/ears/earmuffs/mp3/process()
+	if(player.active)
+		if(!cell || !cell.checked_use(tick_cost))
+			if(ismob(src.loc))
+				player.outofenergy()
+				src.loc << SPAN_WARNING("[src] flashes with error - LOW POWER.")
+
+
+/obj/item/clothing/ears/earmuffs/mp3/MouseDrop(over_object)
+    if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+        cell = null
+
+/obj/item/clothing/ears/earmuffs/mp3/attackby(obj/item/C, mob/living/user)
+    if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+        src.cell = C
 
 ///////////////////////////////////////////////////////////////////////
 //Glasses
