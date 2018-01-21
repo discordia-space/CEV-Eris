@@ -41,6 +41,7 @@
 		desc = "It appears to be broken."
 		if(visual_feedback)
 			visible_message(SPAN_WARNING("[visual_feedback]"), SPAN_WARNING("[audible_feedback]"))
+		update_icon()
 		return 1
 
 /obj/structure/closet/secure_closet/personal/verb/reset()
@@ -63,3 +64,4 @@
 			src.locked = TRUE
 			src.registered_name = null
 			name = initial(name)
+			update_icon()
