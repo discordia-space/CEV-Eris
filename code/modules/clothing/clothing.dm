@@ -106,7 +106,7 @@
 	item_state = "headphones"
 	action_button_name = "action_music"
 	var/obj/item/device/player/player = null
-	var/tick_cost = 0.5
+	var/tick_cost = 0.1
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
 
@@ -139,9 +139,9 @@
 		player.play(user)
 
 /obj/item/clothing/ears/earmuffs/mp3/process()
-    if(player.active)
-        if(!cell || !cell.checked_use(tick_cost))
-            if(ismob(src.loc))
+	if(player.active)
+		if(!cell || !cell.checked_use(tick_cost))
+			if(ismob(src.loc))
 				player.outofenergy()
 				src.loc << SPAN_WARNING("[src] flashes with error - LOW POWER.")
 
