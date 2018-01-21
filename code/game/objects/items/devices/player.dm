@@ -41,6 +41,9 @@
 	current_track = null
 	update_icon()
 	active = FALSE
+	if(ishuman(holder.loc))
+		var/mob/living/carbon/human/H = holder.loc
+		H << sound(null, channel = MP3_CHANNEL)
 
 /obj/item/device/player/proc/play()
 	if(!current_track || !(current_track in songs))
