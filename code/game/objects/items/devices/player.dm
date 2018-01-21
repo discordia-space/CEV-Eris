@@ -2,6 +2,7 @@
 
 /obj/item/device/player
 	name = "Player"
+	var/active = FALSE
 	var/current_track = ""
 	var/obj/item/holder = null
 	var/list/songs = list(
@@ -33,7 +34,13 @@
 			affected = holder.loc
 		else
 			return
+	active = FALSE
 	affected << sound(null, channel = MP3_CHANNEL)
+
+/obj/item/device/player/proc/outofenergy()
+	current_track = null
+	update_icon()
+	active = FALSE
 
 /obj/item/device/player/proc/play()
 	if(!current_track || !(current_track in songs))
@@ -44,6 +51,7 @@
 		var/mob/living/carbon/human/H = holder.loc
 		if(holder in list(H.l_ear, H.r_ear))
 			H << sound(songs[current_track], channel = MP3_CHANNEL, volume=100)
+			active = TRUE
 
 /obj/item/device/player/proc/OpenInterface(mob/user as mob)
 

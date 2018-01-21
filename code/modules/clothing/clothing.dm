@@ -96,10 +96,18 @@
 	item_state = "headphones"
 	action_button_name = "action_music"
 	var/obj/item/device/player/player = null
+	var/tick_cost = 0.5 // Сколько заряда полгощается за проход
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/clothing/ears/earmuffs/mp3/New()
 	..()
 	player = new(src)
+	processing_objects |= src
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
+
+
 
 /obj/item/clothing/ears/earmuffs/mp3/update_icon()
 	overlays.Cut()
@@ -116,7 +124,25 @@
 
 /obj/item/clothing/ears/earmuffs/mp3/equipped(var/mob/user, var/slot)
 	..()
-	player.play(user)
+	if(cell && cell.checked_use(tick_cost))
+		player.active = TRUE
+		player.play(user)
+
+/obj/item/clothing/ears/earmuffs/mp3/process()
+    if(player.active)
+        if(!cell || !cell.checked_use(tick_cost))
+            if(ismob(src.loc))
+				player.outofenergy()
+				src.loc << SPAN_WARNING("[src] flashes with error - LOW POWER.")
+
+
+/obj/item/clothing/ears/earmuffs/mp3/MouseDrop(over_object)
+    if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+        cell = null
+
+/obj/item/clothing/ears/earmuffs/mp3/attackby(obj/item/C, mob/living/user)
+    if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+        src.cell = C
 
 ///////////////////////////////////////////////////////////////////////
 //Glasses
