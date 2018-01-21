@@ -89,7 +89,7 @@
 	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
 	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
 		return FALSE
-
+	return TRUE
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
