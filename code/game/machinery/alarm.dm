@@ -925,8 +925,6 @@ FIRE ALARM
 					new_color = "#1024A9"
 				if(SEC_LEVEL_RED)
 					new_color = COLOR_RED
-				if(SEC_LEVEL_DELTA)
-					new_color = "#FF6633"
 			set_light(l_range = 1.5, l_power = 0.5, l_color = new_color)
 		src.overlays += image('icons/obj/monitors.dmi', "overlay_[num2seclevel(seclevel)]")
 
