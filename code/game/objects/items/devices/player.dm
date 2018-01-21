@@ -9,13 +9,13 @@
 		"Space Oddity" = 'sound/music/space_oddity.ogg',
 		"Space Dwarfs" = 'sound/music/b12_combined_start.ogg',
 		"Space Asshole" = 'sound/music/space_asshole.ogg',
-		"deus ex" = 'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
-		"faunts das malefitz" = 'sound/music/faunts-das_malefitz.ogg',
-		"I am waiting for you last summer neon fever" = 'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',
+		"HQ" = 'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
+		"Faunts Das Malefitz" = 'sound/music/faunts-das_malefitz.ogg',
+		"Neon fever" = 'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',
 		"My beautiful escape" = 'sound/music/nervous_testpilot _my_beautiful_escape.ogg',
-		"Paradise cracked skytown" = 'sound/music/paradise_cracked_skytown.ogg',
-		"paradise cracked title03" = 'sound/music/paradise_cracked_title03.ogg',
-		"Tonspender irritations" = 'sound/music/tonspender_irritations.ogg',
+		"Skytown" = 'sound/music/paradise_cracked_skytown.ogg',
+		"paradise cracked" = 'sound/music/paradise_cracked_title03.ogg',
+		"Irritations" = 'sound/music/tonspender_irritations.ogg',
 	)
 
 /obj/item/device/player/New(var/obj/item/holder)
