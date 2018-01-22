@@ -404,8 +404,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!MayRespawn(1, ANIMAL_SPAWN_DELAY))
 		return
 
-	var/turf/T = get_turf(src)
-	if(!T || (T.z in config.admin_levels))
+	if(isOnAdminLevel(src))
 		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
 		return
 
@@ -418,7 +417,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
 	var/list/found_vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
-		if(!v.welded && v.z == T.z)
+		if(!v.welded && v.z == src.z)
 			found_vents.Add(v)
 	if(found_vents.len)
 		vent_found = pick(found_vents)

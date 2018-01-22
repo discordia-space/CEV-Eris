@@ -2,7 +2,8 @@
 	spawn()
 		var/list/pick_turfs = list()
 		for(var/turf/simulated/floor/T in turfs)
-			if(T.z in config.station_levels) // rebay: f((T.z < 5) && !istype(T, /turf/simulated/floor/engine/vacuum/hull) && !istype(src, /turf/simulated/floor/open))
+			// rebay: f((T.z < 5) && !istype(T, /turf/simulated/floor/engine/vacuum/hull) && !istype(src, /turf/simulated/floor/open))
+			if(isStationLevel(T.z))
 				pick_turfs += T
 
 		if(pick_turfs.len)

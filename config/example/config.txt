@@ -98,25 +98,6 @@ PROBABILITY EXTEND-A-TRAITORMONGOUS 6
 ## Enable asteroid tunnel/cave generation. Will behave strangely if turned off with a map that expects it on.
 GENERATE_ASTEROID
 
-
-##Multi-Z handling
-## If you've enabled asteroid generation, you need to supply which z-levels to apply it to, in integer form, and seperated using ;
-## An example: 1;4;5
-ASTEROID_Z_LEVELS 1;7
-
-#Defines which Z-levels the station exists on.
-STATION_LEVELS 1;2;3;4;5
-
-#Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
-ADMIN_LEVELS 6
-
-#Defines which Z-levels which, for example, a Code Red announcement may affect
-CONTACT_LEVELS 1;2;3;4;5
-
-#Defines all Z-levels a character can typically reach
-PLAYER_LEVELS 1;2;3;4;5
-		
-	
 ## Hash out to disable random events during the round.
 ALLOW_RANDOM_EVENTS
 

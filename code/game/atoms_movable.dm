@@ -164,8 +164,6 @@
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
 
-
-
 		while(src && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/space)) && src.throwing && istype(src.loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
@@ -255,42 +253,40 @@
 	return
 
 /atom/movable/proc/touch_map_edge()
+/*
 	if(z in config.sealed_levels)
 		return
+*/
 
 	if(config.use_overmap)
 		overmap_spacetravel(get_turf(src), src)
 		return
 
 	var/move_to_z = src.get_transit_zlevel()
+	var/move_to_x = x
+	var/move_to_y = y
 	if(move_to_z)
-		z = move_to_z
-
 		if(x <= TRANSITIONEDGE)
-			x = world.maxx - TRANSITIONEDGE - 2
-			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
+			move_to_x = world.maxx - TRANSITIONEDGE - 2
+			move_to_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
 		else if (x >= (world.maxx - TRANSITIONEDGE + 1))
-			x = TRANSITIONEDGE + 1
-			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
+			move_to_x = TRANSITIONEDGE + 1
+			move_to_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
 		else if (y <= TRANSITIONEDGE)
-			y = world.maxy - TRANSITIONEDGE -2
-			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
+			move_to_y = world.maxy - TRANSITIONEDGE -2
+			move_to_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
 		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
-			y = TRANSITIONEDGE + 1
-			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
+			move_to_y = TRANSITIONEDGE + 1
+			move_to_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-		spawn(0)
-			if(loc) loc.Entered(src)
-
-//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
-var/list/accessible_z_levels = list("1" = 5, "3" = 10, "4" = 15, "6" = 60)
+		forceMove(locate(move_to_x, move_to_y, move_to_z))
 
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
-	var/list/candidates = accessible_z_levels.Copy()
+	var/list/candidates = maps_data.accessable_levels.Copy()
 	candidates.Remove("[src.z]")
 
 	if(!candidates.len)

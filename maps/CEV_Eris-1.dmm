@@ -2079,7 +2079,7 @@
 "aNY" = (/obj/machinery/atmospherics/pipe/zpipe/up{tag = "icon-up (NORTH)"; icon_state = "up"; dir = 1},/obj/structure/cable/green,/obj/structure/cable/green{d1 = 12; d2 = 0; icon_state = "12-0"},/turf/simulated/floor/plating/under,/area/eris/maintenance/aftsec5port)
 "aNZ" = (/obj/machinery/door/airlock/external{frequency = 1379; icon_state = "door_locked"; id_tag = "atmos_airlock_door_ext"; locked = 1; name = "External Atmospherics Airlock"},/turf/simulated/floor/tiled/techfloor/grid,/area/eris/maintenance/aftsec5port)
 "aOa" = (/obj/machinery/access_button{command = "cycle_exterior"; frequency = 1379; master_tag = "atmos_access_console"; name = "Atmospherics External Access Button"; pixel_x = 25; pixel_y = 25},/turf/simulated/floor/hull,/area/space)
-"aOb" = (/obj/landmark/map_data{height = 5},/turf/space,/area/space)
+"aOb" = (/obj/map_data/multiz/station{height = 5},/turf/space,/area/space)
 "aOc" = (/obj/structure/lattice,/obj/structure/grille,/turf/space,/area/space)
 "aOd" = (/obj/structure/catwalk,/turf/simulated/open,/area/security/main)
 "aOe" = (/obj/structure/table/reinforced,/obj/machinery/recharger,/obj/structure/catwalk,/turf/simulated/open,/area/security/main)
