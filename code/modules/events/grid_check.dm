@@ -2,7 +2,7 @@
 	announceWhen		= 5
 
 /datum/event/grid_check/start()
-	power_failure(0, severity, config.contact_levels)
+	power_failure(0, severity, maps_data.contact_levels)
 
 /datum/event/grid_check/announce()
 	command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Automated Grid Check", new_sound = 'sound/AI/poweroff.ogg')
