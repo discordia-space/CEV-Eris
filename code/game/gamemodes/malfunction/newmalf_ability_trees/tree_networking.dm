@@ -117,7 +117,7 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/alert_target = input("Select new alert level:") in list("green", "blue", "red", "delta", "CANCEL")
+	var/alert_target = input("Select new alert level:") in list("green", "blue", "red", "CANCEL")
 	if(!alert_target || !ability_pay(user, price) || alert_target == "CANCEL")
 		user << "Hack Aborted"
 		return

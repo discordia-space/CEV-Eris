@@ -259,9 +259,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				O.forceMove(src)
-				src.r_ear = O
-				O.layer = 20
+				equip_to_slot_if_possible(O, slot_r_ear, TRUE, FALSE, FALSE)
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 
@@ -269,9 +267,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				O.forceMove(src)
-				src.l_ear = O
-				O.layer = 20
+				equip_to_slot_if_possible(O, slot_l_ear, TRUE, FALSE, FALSE)
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 		if(slot_glasses)
