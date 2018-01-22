@@ -813,7 +813,7 @@
 	products = list(/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/syringe = 12,
-					/obj/item/device/healthanalyzer = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
+					/obj/item/device/scanner/healthanalyzer = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
@@ -836,7 +836,7 @@
 	icon_deny = "wallmed-deny"
 	req_access = list(access_medical)
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/healthanalyzer = 1)
+	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/scanner/healthanalyzer = 1)
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
 
 /obj/machinery/vending/wallmed2
@@ -848,7 +848,7 @@
 	req_access = list(access_medical)
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
-					/obj/item/stack/medical/ointment =3,/obj/item/device/healthanalyzer = 3)
+					/obj/item/stack/medical/ointment =3,/obj/item/device/scanner/healthanalyzer = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
 
 /obj/machinery/vending/security
@@ -941,9 +941,9 @@
 	icon_state = "tool"
 	icon_deny = "tool-deny"
 	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/tool/crowbar = 5,/obj/item/weapon/tool/weldingtool = 3,/obj/item/weapon/tool/wirecutters = 5,
-					/obj/item/weapon/tool/wrench = 5,/obj/item/device/analyzer = 5,/obj/item/device/t_scanner = 5, /obj/item/weapon/tool/screwdriver = 5, /obj/item/weapon/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1)
+					/obj/item/weapon/tool/wrench = 5,/obj/item/device/scanner/analyzer = 5,/obj/item/device/t_scanner = 5, /obj/item/weapon/tool/screwdriver = 5, /obj/item/weapon/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1)
 	prices = list(/obj/item/stack/cable_coil/random = 100,/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/weldingtool = 30,/obj/item/weapon/tool/wirecutters = 30,
-					/obj/item/weapon/tool/wrench = 30,/obj/item/device/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/tool/screwdriver = 30, /obj/item/weapon/tool/weldingtool/hugetank = 150, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600)
+					/obj/item/weapon/tool/wrench = 30,/obj/item/device/scanner/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/tool/screwdriver = 30, /obj/item/weapon/tool/weldingtool/hugetank = 150, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -980,7 +980,7 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(/obj/item/clothing/suit/storage/toggle/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/device/flash = 4,
-					/obj/item/weapon/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/healthanalyzer = 3,
+					/obj/item/weapon/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/healthanalyzer = 3,
 					/obj/item/weapon/tool/scalpel = 2,/obj/item/weapon/tool/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/tool/screwdriver = 5,/obj/item/weapon/tool/crowbar = 5)
 
@@ -1002,7 +1002,7 @@
 
 /obj/machinery/vending/teomat
 	name = "NeoTheology Teo-Mat."
-	desc = "A cyber-ñhristianiant bible vending machine."
+	desc = "A cyber-Ã±hristianiant bible vending machine."
 	product_slogans = "Make the RIGHT choice!;Every answer can be found in Cyber Bible. Found out yourself!;Help humanity ascend, join us today!;Remember kids, Cyber-Jesus is wathing you. Always.;NeoTheology know what do you truly need. Join us!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
@@ -1012,8 +1012,8 @@
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
-	desc = "Trust is power, and there’s no power you can trust like Robustcell."
-	product_slogans = "Trust is power, and there’s no power you can trust like Robustcell.;No battery is stronger longer.;One that Last!;You can't top the copper top!"
+	desc = "Trust is power, and thereÂ’s no power you can trust like Robustcell."
+	product_slogans = "Trust is power, and thereÂ’s no power you can trust like Robustcell.;No battery is stronger longer.;One that Last!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
 	icon_state = "powermat"
 	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20)

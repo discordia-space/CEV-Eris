@@ -135,8 +135,8 @@
 				user << SPAN_NOTICE("Nothing happens.")
 				return
 
-	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		var/obj/item/device/analyzer/A = W
+	else if ((istype(W, /obj/item/device/scanner/analyzer)) && Adjacent(user))
+		var/obj/item/device/scanner/analyzer/A = W
 		A.analyze_gases(src, user)
 		return
 

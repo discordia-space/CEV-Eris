@@ -460,28 +460,28 @@ other types of metals and chemistry for reagents).
 	desc = "A device for analyzing chemicals in blood."
 	id = "mass_spectrometer"
 	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
-	build_path = /obj/item/device/mass_spectrometer
+	build_path = /obj/item/device/scanner/mass_spectrometer
 	sort_string = "MACAA"
 
 /datum/design/item/medical/adv_mass_spectrometer
 	desc = "A device for analyzing chemicals in blood and their quantities."
 	id = "adv_mass_spectrometer"
 	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
-	build_path = /obj/item/device/mass_spectrometer/adv
+	build_path = /obj/item/device/scanner/mass_spectrometer/adv
 	sort_string = "MACAB"
 
 /datum/design/item/medical/reagent_scanner
 	desc = "A device for identifying chemicals."
 	id = "reagent_scanner"
 	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
-	build_path = /obj/item/device/reagent_scanner
+	build_path = /obj/item/device/scanner/reagent_scanner
 	sort_string = "MACBA"
 
 /datum/design/item/medical/adv_reagent_scanner
 	desc = "A device for identifying chemicals and their proportions."
 	id = "adv_reagent_scanner"
 	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
-	build_path = /obj/item/device/reagent_scanner/adv
+	build_path = /obj/item/device/scanner/reagent_scanner/adv
 	sort_string = "MACBB"
 
 /datum/design/item/beaker/AssembleDesignName()

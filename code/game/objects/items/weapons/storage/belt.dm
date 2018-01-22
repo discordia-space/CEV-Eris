@@ -44,12 +44,12 @@
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/analyzer,
+		/obj/item/device/scanner/analyzer,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
-		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/device/scanner/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini
 		)
 
@@ -81,7 +81,7 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/device/scanner/healthanalyzer,
 		/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
