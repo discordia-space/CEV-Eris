@@ -1,6 +1,6 @@
 //Analyzer, pestkillers, weedkillers, nutrients, hatchets, cutters.
 
-/obj/item/device/analyzer/scanner/plant_analyzer
+/obj/item/device/scanner/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
