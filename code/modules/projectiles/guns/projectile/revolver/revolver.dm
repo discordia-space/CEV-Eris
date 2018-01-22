@@ -50,4 +50,3 @@
 
 /obj/item/weapon/gun/projectile/revolver/update_icon()
 	update_charge()
-

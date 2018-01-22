@@ -115,7 +115,7 @@
 		H << SPAN_WARNING("You cannot teleport into solid walls.")
 		return 0
 
-	if(T.z in config.admin_levels)
+	if(isAdminLevel(T.z))
 		H << SPAN_WARNING("You cannot use your teleporter on this Z-level.")
 		return 0
 

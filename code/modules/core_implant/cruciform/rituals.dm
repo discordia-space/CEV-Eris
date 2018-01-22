@@ -16,7 +16,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 
 
 /datum/ritual/cruciform/relief
-	name = "relief"
+	name = "Relief"
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
 	desc = "Short litany to relieve a pain of afflicted."
 	power = 50
@@ -28,7 +28,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 
 
 /datum/ritual/cruciform/soul_hunger
-	name = "soul hunger"
+	name = "Soul Hunger"
 	phrase = "Panem nostrum cotidianum da nobis hodie"
 	desc = "Litany of piligrims, helps better withstand hunger."
 	power = 50
@@ -41,7 +41,7 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 
 
 /datum/ritual/cruciform/entreaty
-	name = "entreaty"
+	name = "Entreaty"
 	phrase = "Deus meus ut quid dereliquisti me"
 	desc = "Call for help, that other cruciform bearers can hear."
 	power = 50
@@ -54,11 +54,35 @@ var/list/cruciform_base_rituals = typesof(/datum/ritual/cruciform)+typesof(/datu
 
 		var/obj/item/weapon/implant/external/core_implant/cruciform/CI = target.get_core_implant()
 
-		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(20))
+		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(50))
 			target << SPAN_DANGER("[H], faithful cruciform follower, cries for salvation!")
 	return TRUE
 
+/datum/ritual/cruciform/reveal
+	name = "Reveal Adversaries"
+	phrase = "Et fumus tormentorum eorum ascendet in saecula saeculorum: nec habent requiem die ac nocte, qui adoraverunt bestiam, et imaginem ejus, et si quis acceperit caracterem nominis ejus."
+	desc = "Gain knowledge of your surroundings, to reveal evil in people and places. Can tell you about hostile creatures around you, rarely can help you spot traps, and sometimes let you sense a changeling."
+	power = 35
 
+/datum/ritual/cruciform/reveal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C)
+	var/was_triggired = FALSE
+	if(prob(20)) //Aditional fail chance that hidded from user
+		H << SPAN_NOTICE("There is nothing there. You feel safe.")
+		return TRUE
+	if (locate(/mob/living/simple_animal/hostile) in range(14, H))
+		H << SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile.")
+		was_triggired = TRUE
+	if (prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
+		H << SPAN_WARNING("Something wrong with this area. Tread carefully.")
+		was_triggired = TRUE
+	if (prob(20))
+		for(var/mob/living/carbon/human/target in range(14, H))
+			if(target.mind && target.mind.changeling)
+				H << SPAN_DANGER("Something ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat.")
+				was_triggired = TRUE
+	if (!was_triggired)
+		H << SPAN_NOTICE("There is nothing there. You feel safe.")
+	return TRUE
 
 /datum/ritual/cruciform/priest
 	name = "priest"

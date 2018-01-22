@@ -90,12 +90,11 @@ var/list/storyteller_cache = list()
 	var/githuburl
 
 	//Alert level description
-	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	var/alert_desc_green = "All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
 	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
 	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
 	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
-	var/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
 
 	var/forbid_singulo_possession = 0
 
@@ -126,8 +125,6 @@ var/list/storyteller_cache = list()
 	var/welder_vision = 1
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
-
-	var/asteroid_z_levels = list()
 
 	//Used for modifying movement speed for mobs.
 	//Unversal modifiers
@@ -167,12 +164,6 @@ var/list/storyteller_cache = list()
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
-
-	var/list/station_levels = list(1, 2, 3, 4, 5)	// Defines which Z-levels the station exists on.
-	var/list/admin_levels= list(6)					// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
-	var/list/contact_levels = list(1, 2, 3, 4, 5)	// Defines which Z-levels which, for example, a Code Red announcement may affect
-	var/list/player_levels = list(1, 2, 3, 4, 5)	// Defines all Z-levels a character can typically reach
-	var/list/sealed_levels = list() 				// Defines levels that do not allow random transit at the edges.
 
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
@@ -328,12 +319,6 @@ var/list/storyteller_cache = list()
 
 				if ("generate_asteroid")
 					config.generate_asteroid = 1
-
-				if ("asteroid_z_levels")
-					config.asteroid_z_levels = splittext(value, ";")
-					//Numbers get stored as strings, so we'll fix that right now.
-					for(var/z_level in config.asteroid_z_levels)
-						z_level = text2num(z_level)
 
 				if ("no_click_cooldown")
 					config.no_click_cooldown = 1
@@ -495,9 +480,6 @@ var/list/storyteller_cache = list()
 				if("alert_green")
 					config.alert_desc_green = value
 
-				if("alert_delta")
-					config.alert_desc_delta = value
-
 				if("forbid_singulo_possession")
 					forbid_singulo_possession = 1
 
@@ -587,18 +569,6 @@ var/list/storyteller_cache = list()
 
 				if("use_overmap")
 					config.use_overmap = 1
-
-				if("station_levels")
-					config.station_levels = text2numlist(value, ";")
-
-				if("admin_levels")
-					config.admin_levels = text2numlist(value, ";")
-
-				if("contact_levels")
-					config.contact_levels = text2numlist(value, ";")
-
-				if("player_levels")
-					config.player_levels = text2numlist(value, ";")
 
 				if("expected_round_length")
 					config.expected_round_length = MinutesToTicks(text2num(value))

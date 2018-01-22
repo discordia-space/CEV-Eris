@@ -48,7 +48,7 @@ var/global/datum/controller/gameticker/ticker
 			pregame_timeleft = 180
 			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
 		else
-			pregame_timeleft = 20
+			pregame_timeleft = 40
 
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
 
@@ -158,8 +158,7 @@ var/global/datum/controller/gameticker/ticker
 	cinematic.screen_loc = "1,0"
 
 	for(var/mob/M in mob_list)
-		var/turf/T = get_turf(M)
-		if(T && T.z in config.station_levels)	//we don't use M.death(0) because it calls a for(/mob) loop and
+		if(isOnStationLevel(M))
 			if(M.client)
 				M.client.screen += cinematic
 			if(isliving(M))
@@ -244,6 +243,7 @@ var/global/datum/controller/gameticker/ticker
 		return
 
 	storyteller.process()
+	storyteller.process_events()
 
 	var/game_finished = (emergency_shuttle.returned() || ship_was_nuked  || universe_has_ended)
 

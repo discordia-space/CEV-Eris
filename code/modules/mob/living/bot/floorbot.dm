@@ -115,7 +115,7 @@
 		return
 
 	if(prob(5))
-		custom_emote(2, "makes an excited booping beeping sound!")
+		visible_message("[src] makes an excited booping beeping sound!")
 
 	if(ignorelist.len) // Don't stick forever
 		for(var/T in ignorelist)

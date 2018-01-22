@@ -5,9 +5,6 @@
 /mob/living/silicon/ai/var/max_locations = 10
 /mob/living/silicon/ai/var/stored_locations[0]
 
-/proc/InvalidPlayerTurf(turf/T as turf)
-	return !(T && T.z in config.player_levels)
-
 /mob/living/silicon/ai/proc/get_camera_list()
 	if(src.stat == 2)
 		return
@@ -59,7 +56,7 @@
 		return
 
 	var/L = src.eyeobj.getLoc()
-	if (InvalidPlayerTurf(get_turf(L)))
+	if(!isOnPlayerLevel(L))
 		src << SPAN_WARNING("Unable to store this location")
 		return
 
@@ -226,7 +223,7 @@ mob/living/proc/near_camera()
 	var/obj/item/weapon/card/id/id = GetIdCard()
 	if(id && id.prevent_tracking())
 		return TRACKING_TERMINATE
-	if(InvalidPlayerTurf(get_turf(src)))
+	if(!isOnPlayerLevel(src))
 		return TRACKING_TERMINATE
 	if(invisibility >= INVISIBILITY_LEVEL_ONE) //cloaked
 		return TRACKING_TERMINATE
@@ -255,8 +252,7 @@ mob/living/proc/near_camera()
 		return
 
 	if(. == TRACKING_NO_COVERAGE)
-		var/turf/T = get_turf(src)
-		if(T && (T.z in config.station_levels) && hassensorlevel(src, SUIT_SENSOR_TRACKING))
+		if(isOnStationLevel(src) && hassensorlevel(src, SUIT_SENSOR_TRACKING))
 			return TRACKING_POSSIBLE
 
 mob/living/proc/tracking_initiated()

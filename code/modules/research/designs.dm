@@ -1503,21 +1503,21 @@ CIRCUITS BELOW
 /datum/design/circuit/mecha/phazon_main
 	name = "'Phazon' central control"
 	id = "phazon_main"
-	req_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 5, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/main
 	sort_string = "NAAEA"
 
 /datum/design/circuit/mecha/phazon_peri
 	name = "'Phazon' peripherals control"
 	id = "phazon_peri"
-	req_tech = list(TECH_DATA = 4, TECH_BLUESPACE = 2)
+	req_tech = list(TECH_DATA = 5, TECH_BLUESPACE = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/peripherals
 	sort_string = "NAAEB"
 
 /datum/design/circuit/mecha/phazon_targ
 	name = "'Phazon' weapon control and targeting"
 	id = "phazon_targ"
-	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 3, TECH_BLUESPACE = 5)
+	req_tech = list(TECH_DATA = 5, TECH_COMBAT = 3, TECH_BLUESPACE = 5)
 	build_path = /obj/item/weapon/circuitboard/mecha/phazon/targeting
 	sort_string = "NAAEC"
 

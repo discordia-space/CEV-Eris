@@ -69,7 +69,7 @@
 						var/message = pick("Hey, [H.name]! Hold on, I'm coming.", "Wait [H.name]! I want to help!", "[H.name], you appear to be injured!")
 						say(message)
 						playsound(loc, "robot_talk_light", 100, 0, 0)
-						custom_emote(1, "points at [H.name].")
+						visible_message("[src] points at [H.name].")
 						last_newpatient_speak = world.time
 					break
 

@@ -7,7 +7,6 @@
 #define SEC_LEVEL_GREEN 0
 #define SEC_LEVEL_BLUE  1
 #define SEC_LEVEL_RED   2
-#define SEC_LEVEL_DELTA 3
 
 #define BE_PLANT "BE_PLANT"
 #define BE_SYNTH "BE_SYNTH"
@@ -44,6 +43,7 @@
 #define ROLE_REVOLUTIONARY "revolutionary"
 #define ROLE_MALFUNCTION "malf"
 #define ROLE_TRAITOR "traitor"
+#define ROLE_TRAITOR_SYNTH "robo_traitor"
 #define ROLE_MARSHAL "marshal"
 
 #define ROLE_INQUISITOR "inquisitor"

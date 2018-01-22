@@ -34,10 +34,8 @@
 			A.hacker = null
 			A.update_icon()
 	hacked_apcs = null
-	// Stop the delta alert, and, if applicable, self-destruct timer.
+	// Stop alert, and, if applicable, self-destruct timer.
 	bombing_station = 0
-	if(security_level == SEC_LEVEL_DELTA)
-		set_security_level(SEC_LEVEL_RED)
 	// Reset our verbs
 	src.verbs = null
 	add_ai_verbs()
@@ -71,7 +69,7 @@
 
 	// Off-Station APCs should not count towards CPU generation.
 	for(var/obj/machinery/power/apc/A in hacked_apcs)
-		if(A.z in config.station_levels)
+		if(isOnStationLevel(A))
 			cpu_gain += 0.004
 			cpu_storage += 10
 

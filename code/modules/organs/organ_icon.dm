@@ -16,7 +16,7 @@ var/global/list/limb_icon_cache = list()
 	skin_tone = null
 	skin_col = null
 	hair_col = null
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return
 	if(species && human.species && species.name != human.species.name)
 		return
@@ -30,7 +30,7 @@ var/global/list/limb_icon_cache = list()
 	skin_tone = null
 	skin_col = null
 	hair_col = null
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return
 	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
 		skin_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
@@ -44,7 +44,7 @@ var/global/list/limb_icon_cache = list()
 	if(!appearance_test.get_species_sprite)
 		part_key += "forced"
 	else
-		if(status & ORGAN_ROBOT || robotic & ORGAN_ROBOT)
+		if(robotic >= ORGAN_ROBOT)
 			part_key += "ROBOTIC"
 		else if(status & ORGAN_MUTATED)
 			part_key += "Mutated"
@@ -95,7 +95,7 @@ var/global/list/limb_icon_cache = list()
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips[owner.lip_style][owner.body_build.index]")
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
 
-	if(!(status & ORGAN_ROBOT))
+	if(robotic < ORGAN_ROBOT)
 		if(owner.f_style)
 			var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
 			if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
@@ -137,7 +137,7 @@ var/global/list/limb_icon_cache = list()
 			icon = src.force_icon
 		else if(!dna)
 			icon = 'icons/mob/human_races/r_human.dmi'
-		else if(status & ORGAN_ROBOT)
+		else if(robotic >= ORGAN_ROBOT)
 			icon = 'icons/mob/human_races/robotic.dmi'
 		else if(status & ORGAN_MUTATED)
 			icon = species.deform

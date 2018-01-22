@@ -184,7 +184,7 @@
 	if(islist(message))
 		message = safepick(message)
 	if(message)
-		visible_message("<span class='name'>[src]</span> [message].")
+		visible_message("<span class='name'>[src]</span> [message]")
 
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
@@ -254,7 +254,7 @@
 		else
 			user << SPAN_NOTICE("\The [src] is dead, medical items won't bring \him back to life.")
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
-		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
+		if(istype(O, /obj/item/weapon/material/knife))
 			harvest(user)
 	else
 		if(!O.force)

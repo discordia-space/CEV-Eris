@@ -9,7 +9,7 @@
 	response_disarm = "pushes aside"
 	response_harm = "stamps on"
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
-	meat_amount = 2
+	meat_amount = 3
 	speed = 4
 	maxHealth = 10
 	health = 10
@@ -21,7 +21,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 4
 	attacktext = "bitten"
-	attack_sound = 'sound/voice/insect_battle_bite.wav'
+	attack_sound = 'sound/voice/insect_battle_bite.ogg'
 
 	faction = "roach"
 
@@ -29,8 +29,8 @@
 /mob/living/simple_animal/hostile/roach/FindTarget()
 	. = ..()
 	if(.)
-		custom_emote(1,"charges at [.]!")
-		playsound(src, 'sound/voice/insect_battle_screeching.wav', 30, 1, -3)
+		visible_emote("charges at [.]!")
+		playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 
 /mob/living/simple_animal/hostile/roach/AttackingTarget()
 	. =..()
@@ -114,5 +114,5 @@
 /mob/living/simple_animal/hostile/roach/support/FindTarget()
 	. = ..()
 	if(.)
-		custom_emote(1,"charges at [.] in clouds of poison!")
+		visible_emote("charges at [.] in clouds of poison!")
 		gas_attack()

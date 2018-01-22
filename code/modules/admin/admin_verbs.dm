@@ -477,7 +477,7 @@ ADMIN_VERB_ADD(/client/proc/change_security_level, R_ADMIN, FALSE)
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return
-	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
+	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red")-get_security_level())
 	if(!sec_level)
 		return
 

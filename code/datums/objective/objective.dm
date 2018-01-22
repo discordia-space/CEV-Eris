@@ -17,13 +17,16 @@ var/global/list/all_objectives_types = null
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = FALSE				//currently only used for custom objectives.
 
-/datum/objective/New(var/datum/antagonist/new_owner, var/add_to_list = TRUE)
+/datum/objective/New(var/datum/antagonist/new_owner, var/datum/mind/target, var/add_to_list = FALSE)
 	antag = new_owner
 	if(add_to_list)
 		antag.objectives |= src
 	if(antag.owner)
 		owner = antag.owner
-	find_target()
+	if(!target)
+		find_target()
+	else
+		update_explanation()
 	all_objectives.Add(src)
 	..()
 
@@ -48,8 +51,12 @@ var/global/list/all_objectives_types = null
 /datum/objective/proc/find_target()
 	var/list/possible_targets = get_targets_list()
 	if(possible_targets.len > 0)
-		target = pick(possible_targets)
-	update_explanation()
+		set_target(pick(possible_targets))
+
+/datum/objective/proc/set_target(var/datum/mind/new_target)
+	if(new_target)
+		target = new_target
+		update_explanation()
 
 /datum/objective/proc/select_human_target(var/mob/user)
 	var/list/possible_targets = get_targets_list()
@@ -67,7 +74,7 @@ var/global/list/all_objectives_types = null
 /datum/objective/proc/get_panel_entry()
 	return explanation_text
 
-/datum/objective/proc/get_info()	//Text, returned by this proc will be displayed at round end
+/datum/objective/proc/get_info()	//Text returned by this proc will be displayed at the end of the round
 	return ""
 
 /datum/objective/Topic(href, href_list)

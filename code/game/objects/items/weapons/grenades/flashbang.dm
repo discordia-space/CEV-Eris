@@ -1,5 +1,5 @@
 /obj/item/weapon/grenade/flashbang
-	name = "flashbang"
+	name = "FS FBG \"Serra\""
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
