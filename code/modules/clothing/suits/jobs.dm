@@ -29,8 +29,8 @@
 	allowed = list (
 		/obj/item/device/analyzer, /obj/item/device/lighting/toggleable/flashlight, /obj/item/device/multitool,
 		/obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
-		/obj/item/weapon/crowbar, /obj/item/weapon/screwdriver, /obj/item/weapon/weldingtool,
-		/obj/item/weapon/wirecutters, /obj/item/weapon/wrench, /obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool,
+		/obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
 	)
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -48,9 +48,9 @@
 		/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
 		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,
 		/obj/item/device/analyzer, /obj/item/device/multitool, /obj/item/device/pipe_painter,
-		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/wirecutters,
-		/obj/item/weapon/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
+		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool, /obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
 		/obj/item/taperoll/engineering
 	)
 	armor = list(melee = 40, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
@@ -78,9 +78,9 @@
 		/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,
 		/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter,/obj/item/device/taperecorder,
 		/obj/item/device/analyzer, /obj/item/device/multitool, /obj/item/device/pipe_painter,
-		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/wirecutters,
-		/obj/item/weapon/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
+		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool, /obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/gas,
 		/obj/item/taperoll/engineering
 	)
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
@@ -156,8 +156,8 @@
 	allowed = list(
 		/obj/item/device/analyzer, /obj/item/device/lighting/toggleable/flashlight, /obj/item/device/multitool,
 		/obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
-		/obj/item/weapon/crowbar, /obj/item/weapon/screwdriver, /obj/item/weapon/weldingtool,
-		/obj/item/weapon/wirecutters, /obj/item/weapon/wrench, /obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool,
+		/obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
 	)
 	body_parts_covered = UPPER_TORSO
@@ -172,8 +172,8 @@
 	allowed = list(
 		/obj/item/device/analyzer, /obj/item/device/lighting/toggleable/flashlight, /obj/item/device/multitool,
 		/obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
-		/obj/item/weapon/crowbar, /obj/item/weapon/screwdriver, /obj/item/weapon/weldingtool,
-		/obj/item/weapon/wirecutters, /obj/item/weapon/wrench, /obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/tool/weldingtool,
+		/obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency_oxygen,
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
@@ -185,15 +185,15 @@
 	item_state = "surgeon"
 	blood_overlay_type = "armor"
 	allowed = list(
-		/obj/item/weapon/bonesetter,
-		/obj/item/weapon/cautery,
-		/obj/item/weapon/circular_saw,
-		/obj/item/weapon/hemostat,
-		/obj/item/weapon/retractor,
-		/obj/item/weapon/scalpel,
-		/obj/item/weapon/surgicaldrill,
-		/obj/item/weapon/bonegel,
-		/obj/item/weapon/FixOVein,
+		/obj/item/weapon/tool/bonesetter,
+		/obj/item/weapon/tool/cautery,
+		/obj/item/weapon/tool/circular_saw,
+		/obj/item/weapon/tool/hemostat,
+		/obj/item/weapon/tool/retractor,
+		/obj/item/weapon/tool/scalpel,
+		/obj/item/weapon/tool/surgicaldrill,
+		/obj/item/weapon/tool/bonegel,
+		/obj/item/weapon/tool/fixovein,
 		/obj/item/stack/medical/advanced/bruise_pack
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO

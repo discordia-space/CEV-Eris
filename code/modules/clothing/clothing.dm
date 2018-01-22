@@ -204,7 +204,7 @@ BLIND     // can't see anything
 	return 0 // return 1 to cancel attack_hand()
 
 /obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
 		if (clipped)
 			user << SPAN_NOTICE("The [src] have already been clipped!")
 			update_icon()
@@ -536,7 +536,7 @@ BLIND     // can't see anything
 	..()
 
 /obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
-	if(istype(I, /obj/item/weapon/screwdriver) && ishuman(U))
+	if(istype(I, /obj/item/weapon/tool/screwdriver) && ishuman(U))
 		set_sensors(U)
 	else
 		return ..()

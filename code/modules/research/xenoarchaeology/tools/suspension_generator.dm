@@ -166,14 +166,14 @@
 		user << "<span class='info'>You remove the power cell</span>"
 
 /obj/machinery/suspension_gen/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/screwdriver))
+	if (istype(W, /obj/item/weapon/tool/screwdriver))
 		if(!open)
 			if(screwed)
 				screwed = 0
 			else
 				screwed = 1
 			user << "<span class='info'>You [screwed ? "screw" : "unscrew"] the battery panel.</span>"
-	else if (istype(W, /obj/item/weapon/crowbar))
+	else if (istype(W, /obj/item/weapon/tool/crowbar))
 		if(!locked)
 			if(!screwed)
 				if(!suspension_field)
@@ -189,7 +189,7 @@
 				user << SPAN_WARNING("Unscrew [src]'s battery panel first.")
 		else
 			user << SPAN_WARNING("[src]'s security locks are engaged.")
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if (istype(W, /obj/item/weapon/tool/wrench))
 		if(!suspension_field)
 			if(anchored)
 				anchored = 0

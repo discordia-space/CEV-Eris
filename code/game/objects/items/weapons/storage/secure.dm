@@ -41,7 +41,7 @@
 				playsound(src.loc, "sparks", 50, 1)
 				return
 
-			if (istype(W, /obj/item/weapon/screwdriver))
+			if (istype(W, /obj/item/weapon/tool/screwdriver))
 				if (do_after(user, 20, src))
 					src.open =! src.open
 					user.show_message(SPAN_NOTICE("You [src.open ? "open" : "close"] the service panel."))

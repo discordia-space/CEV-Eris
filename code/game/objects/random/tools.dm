@@ -3,11 +3,11 @@
 	icon_state = "tool-grey"
 
 /obj/random/tool/item_to_spawn()
-	return pick(/obj/item/weapon/screwdriver,\
-				/obj/item/weapon/wirecutters,\
-				/obj/item/weapon/weldingtool,\
-				/obj/item/weapon/crowbar,\
-				/obj/item/weapon/wrench,\
+	return pick(/obj/item/weapon/tool/screwdriver,\
+				/obj/item/weapon/tool/wirecutters,\
+				/obj/item/weapon/tool/weldingtool,\
+				/obj/item/weapon/tool/crowbar,\
+				/obj/item/weapon/tool/wrench,\
 				/obj/item/device/assembly/igniter,\
 				/obj/item/device/assembly/infra,\
 				/obj/item/device/assembly/prox_sensor,\

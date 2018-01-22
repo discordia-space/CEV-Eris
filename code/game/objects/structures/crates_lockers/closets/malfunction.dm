@@ -8,6 +8,6 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/clothing/head/helmet/space/void(src)
 	new /obj/item/clothing/suit/space/void(src)
-	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/tool/crowbar(src)
 	new /obj/item/weapon/cell/large(src)
 	new /obj/item/device/multitool(src)

@@ -203,7 +203,7 @@ var/global/list/breach_burn_descriptors = list(
 			repair_breaches(BURN, use_amt * repair_power, user)
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool))
+	else if(istype(W, /obj/item/weapon/tool/weldingtool))
 
 		if(isliving(loc))
 			user << "\red How do you intend to patch a hardsuit while someone is wearing it?"
@@ -213,7 +213,7 @@ var/global/list/breach_burn_descriptors = list(
 			user << "There is no structural damage on \the [src] to repair."
 			return
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(5))
 			user << "\red You need more welding fuel to repair this suit."
 			return

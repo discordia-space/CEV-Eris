@@ -107,8 +107,8 @@
 			burn(is_hot(W))
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		if(istype(W, /obj/item/weapon/weldingtool) )
-			var/obj/item/weapon/weldingtool/WT = W
+		if(istype(W, /obj/item/weapon/tool/weldingtool) )
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				user << SPAN_NOTICE("You burn away the fungi with \the [WT].")
 				playsound(src, 'sound/items/Welder.ogg', 10, 1)
@@ -122,8 +122,8 @@
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
-		if( istype(W, /obj/item/weapon/weldingtool) )
-			var/obj/item/weapon/weldingtool/WT = W
+		if( istype(W, /obj/item/weapon/tool/weldingtool) )
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				thermitemelt(user)
 				return
@@ -145,9 +145,9 @@
 
 	var/turf/T = user.loc	//get user's location for delay checks
 
-	if(damage && istype(W, /obj/item/weapon/weldingtool))
+	if(damage && istype(W, /obj/item/weapon/tool/weldingtool))
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 
 		if(!WT.isOn())
 			return
@@ -170,8 +170,8 @@
 		var/dismantle_verb
 		var/dismantle_sound
 
-		if(istype(W,/obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(istype(W,/obj/item/weapon/tool/weldingtool))
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if(!WT.isOn())
 				return
 			if(!WT.remove_fuel(0,user))
@@ -211,7 +211,7 @@
 	else
 		switch(construction_stage)
 			if(6)
-				if (istype(W, /obj/item/weapon/wirecutters))
+				if (istype(W, /obj/item/weapon/tool/wirecutters))
 					playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 					construction_stage = 5
 					new /obj/item/stack/rods( src )
@@ -219,7 +219,7 @@
 					update_icon()
 					return
 			if(5)
-				if (istype(W, /obj/item/weapon/screwdriver))
+				if (istype(W, /obj/item/weapon/tool/screwdriver))
 					user << SPAN_NOTICE("You begin removing the support lines.")
 					playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 					if(!do_after(user,40,src) || !istype(src, /turf/simulated/wall) || construction_stage != 5)
@@ -238,8 +238,8 @@
 						return
 			if(4)
 				var/cut_cover
-				if(istype(W,/obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = W
+				if(istype(W,/obj/item/weapon/tool/weldingtool))
+					var/obj/item/weapon/tool/weldingtool/WT = W
 					if(!WT.isOn())
 						return
 					if(WT.remove_fuel(0,user))
@@ -259,7 +259,7 @@
 					user << SPAN_NOTICE("You press firmly on the cover, dislodging it.")
 					return
 			if(3)
-				if (istype(W, /obj/item/weapon/crowbar))
+				if (istype(W, /obj/item/weapon/tool/crowbar))
 					user << SPAN_NOTICE("You struggle to pry off the cover.")
 					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 					if(!do_after(user,100,src) || !istype(src, /turf/simulated/wall) || construction_stage != 3)
@@ -269,7 +269,7 @@
 					user << SPAN_NOTICE("You pry off the cover.")
 					return
 			if(2)
-				if (istype(W, /obj/item/weapon/wrench))
+				if (istype(W, /obj/item/weapon/tool/wrench))
 					user << SPAN_NOTICE("You start loosening the anchoring bolts which secure the support rods to their frame.")
 					playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 					if(!do_after(user,40,src) || !istype(src, /turf/simulated/wall) || construction_stage != 2)
@@ -280,8 +280,8 @@
 					return
 			if(1)
 				var/cut_cover
-				if(istype(W, /obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = W
+				if(istype(W, /obj/item/weapon/tool/weldingtool))
+					var/obj/item/weapon/tool/weldingtool/WT = W
 					if( WT.remove_fuel(0,user) )
 						cut_cover=1
 					else
@@ -300,7 +300,7 @@
 					user << SPAN_NOTICE("The support rods drop out as you cut them loose from the frame.")
 					return
 			if(0)
-				if(istype(W, /obj/item/weapon/crowbar))
+				if(istype(W, /obj/item/weapon/tool/crowbar))
 					user << SPAN_NOTICE("You struggle to pry off the outer sheath.")
 					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 					sleep(100)

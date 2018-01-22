@@ -74,7 +74,7 @@
 			user << SPAN_NOTICE("[src] is full.")
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/wrench))
+	if(istype(I, /obj/item/weapon/tool/wrench))
 		if(anchored)
 			user << SPAN_NOTICE("You lean down and unwrench [src].")
 			anchored = 0

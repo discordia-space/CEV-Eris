@@ -185,7 +185,7 @@
 /datum/unit_test/observation/moved_shall_only_trigger_for_recursive_drop/conduct_test()
 	var/turf/T = locate(20,20,1)
 	var/obj/mecha/mech = new(T)
-	var/obj/item/weapon/wrench/held_item = new(T)
+	var/obj/item/weapon/tool/wrench/held_item = new(T)
 	var/mob/living/carbon/human/dummy/held_mob = new(T)
 	var/mob/living/carbon/human/dummy/holding_mob = new(T)
 

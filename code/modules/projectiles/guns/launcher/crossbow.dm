@@ -162,7 +162,7 @@
 		else
 			user << SPAN_NOTICE("[src] already has a cell installed.")
 
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(istype(W, /obj/item/weapon/tool/screwdriver))
 		if(cell)
 			var/obj/item/C = cell
 			C.loc = get_turf(user)
@@ -226,9 +226,9 @@
 			else
 				user << SPAN_NOTICE("You need at least three rods to complete this task.")
 			return
-	else if(istype(W,/obj/item/weapon/weldingtool))
+	else if(istype(W,/obj/item/weapon/tool/weldingtool))
 		if(buildstate == 1)
-			var/obj/item/weapon/weldingtool/T = W
+			var/obj/item/weapon/tool/weldingtool/T = W
 			if(T.remove_fuel(0,user))
 				if(!src || !T.isOn()) return
 				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
@@ -264,7 +264,7 @@
 			else
 				user << SPAN_NOTICE("You need at least three plastic sheets to complete this task.")
 			return
-	else if(istype(W,/obj/item/weapon/screwdriver))
+	else if(istype(W,/obj/item/weapon/tool/screwdriver))
 		if(buildstate == 5)
 			user << SPAN_NOTICE("You secure the crossbow's various parts.")
 			new /obj/item/weapon/gun/launcher/crossbow(get_turf(src))

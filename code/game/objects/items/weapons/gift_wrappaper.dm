@@ -108,7 +108,7 @@
 /obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
-	if (!istype(W, /obj/item/weapon/wirecutters))
+	if (!istype(W, /obj/item/weapon/tool/wirecutters))
 		user << SPAN_WARNING("I need wirecutters for that.")
 		return
 
@@ -143,7 +143,7 @@
 	if (!( locate(/obj/structure/table, src.loc) ))
 		user << SPAN_WARNING("You MUST put the paper on a table!")
 	if (W.w_class < ITEM_SIZE_LARGE)
-		if ((istype(user.l_hand, /obj/item/weapon/wirecutters) || istype(user.r_hand, /obj/item/weapon/wirecutters)))
+		if ((istype(user.l_hand, /obj/item/weapon/tool/wirecutters) || istype(user.r_hand, /obj/item/weapon/tool/wirecutters)))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
 				user << SPAN_WARNING("You need more paper!")

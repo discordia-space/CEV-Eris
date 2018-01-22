@@ -29,7 +29,7 @@
 	update_icon()
 
 /obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		if(!BB)
 			user << "\blue There is no bullet in the casing to inscribe anything into."
 			return

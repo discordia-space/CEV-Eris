@@ -43,7 +43,7 @@ var/bomb_set
 	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob, params)
-	if (istype(O, /obj/item/weapon/screwdriver))
+	if (istype(O, /obj/item/weapon/tool/screwdriver))
 		src.add_fingerprint(user)
 		if (src.auth)
 			if (panel_open == 0)
@@ -67,7 +67,7 @@ var/bomb_set
 			flick("nuclearbombc", src)
 		return
 
-	if (panel_open && (istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/wirecutters)))
+	if (panel_open && (istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/tool/wirecutters)))
 		return attack_hand(user)
 
 	if (src.extended)
@@ -81,8 +81,8 @@ var/bomb_set
 	if (src.anchored)
 		switch(removal_stage)
 			if(0)
-				if(istype(O,/obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = O
+				if(istype(O,/obj/item/weapon/tool/weldingtool))
+					var/obj/item/weapon/tool/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if (WT.get_fuel() < 5) // uses up 5 fuel.
 						user << SPAN_WARNING("You need more fuel to complete this task.")
@@ -97,7 +97,7 @@ var/bomb_set
 				return
 
 			if(1)
-				if(istype(O,/obj/item/weapon/crowbar))
+				if(istype(O,/obj/item/weapon/tool/crowbar))
 					user.visible_message("[user] starts forcing open the bolt covers on [src].", "You start forcing open the anchoring bolt covers with [O]...")
 
 					if(do_after(user, 15, src))
@@ -107,9 +107,9 @@ var/bomb_set
 				return
 
 			if(2)
-				if(istype(O,/obj/item/weapon/weldingtool))
+				if(istype(O,/obj/item/weapon/tool/weldingtool))
 
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/weapon/tool/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if (WT.get_fuel() < 5) // uses up 5 fuel.
 						user << SPAN_WARNING("You need more fuel to complete this task.")
@@ -124,7 +124,7 @@ var/bomb_set
 				return
 
 			if(3)
-				if(istype(O,/obj/item/weapon/wrench))
+				if(istype(O,/obj/item/weapon/tool/wrench))
 
 					user.visible_message("[user] begins unwrenching the anchoring bolts on [src].", "You begin unwrenching the anchoring bolts...")
 
@@ -135,7 +135,7 @@ var/bomb_set
 				return
 
 			if(4)
-				if(istype(O,/obj/item/weapon/crowbar))
+				if(istype(O,/obj/item/weapon/tool/crowbar))
 
 					user.visible_message("[user] begins lifting [src] off of the anchors.", "You begin lifting the device off the anchors...")
 
