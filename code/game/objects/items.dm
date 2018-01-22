@@ -81,9 +81,6 @@
 		src.loc = null
 	return ..()
 
-/obj/item/device
-	icon = 'icons/obj/device.dmi'
-
 //Checks if the item is being held by a mob, and if so, updates the held icons
 /obj/item/proc/update_held_icon()
 	if(ismob(src.loc))
@@ -585,3 +582,5 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
 
+/obj/item/device
+	icon = 'icons/obj/device.dmi'

@@ -9,12 +9,12 @@
 	cost = 400
 	include_subtypes = FALSE
 	unit_name = "mass spectrometer"
-	export_types = list(/obj/item/device/mass_spectrometer)
+	export_types = list(/obj/item/device/scanner/mass_spectrometer)
 
 /datum/export/rnd/advanced_mass_spectrometer
 	cost = 700
 	unit_name = "advanced mass spectrometer"
-	export_types = list(/obj/item/device/mass_spectrometer/adv)
+	export_types = list(/obj/item/device/scanner/mass_spectrometer/adv)
 
 /datum/export/rnd/slime_extract
 	cost = 150
