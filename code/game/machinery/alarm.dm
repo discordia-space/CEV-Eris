@@ -1165,7 +1165,7 @@ FIRE ALARM
 		update_icon()
 
 /obj/machinery/firealarm/initialize()
-	if(z in config.contact_levels)
+	if(isContactLevel(src.z))
 		set_security_level(security_level? get_security_level() : "green")
 
 /*

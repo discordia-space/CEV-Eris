@@ -18,7 +18,7 @@ ADMIN_VERB_ADD(/client/proc/air_report, R_DEBUG, FALSE)
 	var/inactive_on_main_station = 0
 	for(var/zone/zone in air_master.zones)
 		var/turf/simulated/turf = locate() in zone.contents
-		if(turf && turf.z in config.station_levels)
+		if(isOnStationLevel(turf))
 			if(zone.needs_update)
 				active_on_main_station++
 			else

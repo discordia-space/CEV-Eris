@@ -157,8 +157,8 @@
 /obj/machinery/power/supermatter/get_transit_zlevel()
 	//don't send it back to the station -- most of the time
 	if(prob(99))
-		var/list/candidates = accessible_z_levels.Copy()
-		for(var/zlevel in config.station_levels)
+		var/list/candidates = maps_data.accessable_levels.Copy()
+		for(var/zlevel in maps_data.station_levels)
 			candidates.Remove("[zlevel]")
 		candidates.Remove("[src.z]")
 
