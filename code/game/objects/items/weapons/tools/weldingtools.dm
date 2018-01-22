@@ -1,16 +1,13 @@
 /obj/item/weapon/tool/weldingtool
 	name = "welding tool"
-	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
 	flags = CONDUCT
-	slot_flags = SLOT_BELT
 
 	//Amount of OUCH when it's thrown
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
 
 	//Cost to make in the autolathe
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)

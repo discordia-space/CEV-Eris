@@ -1,19 +1,16 @@
 /obj/item/weapon/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
-	icon = 'icons/obj/items.dmi'
 	icon_state = "cutters"
 	flags = CONDUCT
-	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_WEAK
 	throw_speed = 2
 	throw_range = 9
-	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 80)
 	attack_verb = list("pinched", "nipped")
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 /obj/item/weapon/tool/wirecutters/New()
 	if(prob(50))

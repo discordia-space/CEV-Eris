@@ -22,7 +22,7 @@
 
 	New()
 		..()
-		new /obj/item/weapon/tool/crowbar/red(src)
+		new /obj/item/weapon/tool/crowbar(src)
 		new /obj/item/weapon/extinguisher/mini(src)
 		if(prob(50))
 			new /obj/item/device/lighting/toggleable/flashlight(src)

@@ -1,15 +1,13 @@
 /obj/item/weapon/tool/scalpel
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
-	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel"
 	flags = CONDUCT
 	force = WEAPON_FORCE_DANGEROUS
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
-	throwforce = 5.0
 	throw_speed = WEAPON_FORCE_WEAK
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
