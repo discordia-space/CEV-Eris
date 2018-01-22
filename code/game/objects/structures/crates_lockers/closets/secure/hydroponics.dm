@@ -13,5 +13,5 @@
 	new /obj/item/clothing/head/greenbandana(src)
 	new /obj/item/weapon/material/minihoe(src)
 	new /obj/item/weapon/material/hatchet(src)
-	new /obj/item/weapon/tool/wirecutters/clippers(src)
+	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
