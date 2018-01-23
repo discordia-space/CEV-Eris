@@ -168,10 +168,11 @@
 				M << SPAN_NOTICE("You switch the [src] on.")
 			else if(T)
 				T.visible_message(SPAN_DANGER("\The [src] turns on."))
-			src.force = WEAPON_FORCE_PAINFULL
-			src.damtype = "fire"
-			src.w_class = ITEM_SIZE_LARGE
+			force = WEAPON_FORCE_PAINFULL
+			damtype = "fire"
+			w_class = ITEM_SIZE_LARGE
 			welding = 1
+			tool_qualities = list(QUALITY_WELDING = 3, QUALITY_CAUTERIZING = 1)
 			update_icon()
 			set_light(l_range = 1.4, l_power = 1, l_color = COLOR_ORANGE)
 			processing_objects |= src
@@ -186,10 +187,11 @@
 			M << SPAN_NOTICE("You switch \the [src] off.")
 		else if(T)
 			T.visible_message(SPAN_WARNING("\The [src] turns off."))
-		src.force = WEAPON_FORCE_WEAK
-		src.damtype = "brute"
-		src.w_class = initial(src.w_class)
-		src.welding = 0
+		force = WEAPON_FORCE_WEAK
+		damtype = "brute"
+		w_class = initial(w_class)
+		tool_qualities = initial(tool_qualities)
+		welding = 0
 		update_icon()
 		set_light(l_range = 0, l_power = 0, l_color = COLOR_ORANGE)
 

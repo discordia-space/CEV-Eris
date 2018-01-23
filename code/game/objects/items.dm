@@ -36,6 +36,8 @@
 
 	var/item_flags = 0 //Miscellaneous flags pertaining to equippable objects.
 
+	var/list/tool_qualities = null// List of item qualities for tools system. See qualities.dm.
+
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
@@ -581,6 +583,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
+
+/obj/item/proc/get_tool_type()
+
+
+
+
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'

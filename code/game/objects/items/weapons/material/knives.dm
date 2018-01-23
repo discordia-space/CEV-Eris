@@ -9,6 +9,7 @@
 	attack_verb = list("patted", "tapped")
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
+	tool_qualities = list(QUALITY_CUTTING = 2)
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
@@ -62,6 +63,7 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unbreakable = 1
 	slot_flags = SLOT_BELT
+	tool_qualities = list(QUALITY_CUTTING = 2)
 
 /obj/item/weapon/material/knife/hook
 	name = "meat hook"
