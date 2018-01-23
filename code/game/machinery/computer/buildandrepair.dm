@@ -34,14 +34,14 @@
 /obj/structure/computerframe/attackby(obj/item/P as obj, mob/user as mob)
 	switch(state)
 		if(0)
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/weapon/tool/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20, src))
 					user << SPAN_NOTICE("You wrench the frame into place.")
 					src.anchored = 1
 					src.state = 1
-			if(istype(P, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = P
+			if(istype(P, /obj/item/weapon/tool/weldingtool))
+				var/obj/item/weapon/tool/weldingtool/WT = P
 				if(!WT.remove_fuel(0, user))
 					user << "The welding tool must be on to complete this task."
 					return
@@ -52,7 +52,7 @@
 					new /obj/item/stack/material/steel( src.loc, 5 )
 					qdel(src)
 		if(1)
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/weapon/tool/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20, src))
 					user << SPAN_NOTICE("You unfasten the frame.")
@@ -69,12 +69,12 @@
 					P.forceMove(src)
 				else
 					user << SPAN_WARNING("This frame does not accept circuit boards of this type!")
-			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
+			if(istype(P, /obj/item/weapon/tool/screwdriver) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << SPAN_NOTICE("You screw the circuit board into place.")
 				src.state = 2
 				src.icon_state = "2"
-			if(istype(P, /obj/item/weapon/crowbar) && circuit)
+			if(istype(P, /obj/item/weapon/tool/crowbar) && circuit)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << SPAN_NOTICE("You remove the circuit board.")
 				src.state = 1
@@ -82,7 +82,7 @@
 				circuit.loc = src.loc
 				src.circuit = null
 		if(2)
-			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
+			if(istype(P, /obj/item/weapon/tool/screwdriver) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << SPAN_NOTICE("You unfasten the circuit board.")
 				src.state = 1
@@ -100,7 +100,7 @@
 						state = 3
 						icon_state = "3"
 		if(3)
-			if(istype(P, /obj/item/weapon/wirecutters))
+			if(istype(P, /obj/item/weapon/tool/wirecutters))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << SPAN_NOTICE("You remove the cables.")
 				src.state = 2
@@ -121,13 +121,13 @@
 						src.state = 4
 						src.icon_state = "4"
 		if(4)
-			if(istype(P, /obj/item/weapon/crowbar))
+			if(istype(P, /obj/item/weapon/tool/crowbar))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << SPAN_NOTICE("You remove the glass panel.")
 				src.state = 3
 				src.icon_state = "3"
 				new /obj/item/stack/material/glass(src.loc, 2)
-			if(istype(P, /obj/item/weapon/screwdriver))
+			if(istype(P, /obj/item/weapon/tool/screwdriver))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << SPAN_NOTICE("You connect the monitor.")
 				var/B = new src.circuit.build_path(src.loc, src.dir)

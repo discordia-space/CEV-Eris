@@ -64,7 +64,7 @@
 			return
 
 /obj/item/weapon/contraband/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/weapon/tool/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)
 			user << SPAN_NOTICE("You remove the remnants of the poster.")

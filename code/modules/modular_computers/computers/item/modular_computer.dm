@@ -433,7 +433,7 @@
 			try_install_component(user, C)
 		else
 			user << "This component is too large for \the [src]."
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/tool/wrench))
 		var/list/components = get_all_components()
 		if(components.len)
 			user << "Remove all components from \the [src] before disassembling it."
@@ -444,7 +444,7 @@
 		qdel(src)
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		var/list/all_components = get_all_components()
 		if(!all_components.len)
 			user << "This device doesn't have any components installed."

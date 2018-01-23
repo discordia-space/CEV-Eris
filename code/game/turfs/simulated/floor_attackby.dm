@@ -7,7 +7,7 @@
 		return ..(C, user)
 
 	if(flooring)
-		if(istype(C, /obj/item/weapon/crowbar))
+		if(istype(C, /obj/item/weapon/tool/crowbar))
 			if(broken || burnt)
 				user << SPAN_NOTICE("You remove the broken [flooring.descriptor].")
 				make_plating()
@@ -21,14 +21,14 @@
 				return
 			playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
 			return
-		else if(istype(C, /obj/item/weapon/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
+		else if(istype(C, /obj/item/weapon/tool/screwdriver) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 			if(broken || burnt)
 				return
 			user << SPAN_NOTICE("You unscrew and remove the [flooring.descriptor].")
 			make_plating(1)
 			playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
 			return
-		else if(istype(C, /obj/item/weapon/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
+		else if(istype(C, /obj/item/weapon/tool/wrench) && (flooring.flags & TURF_REMOVE_WRENCH))
 			user << SPAN_NOTICE("You unwrench and remove the [flooring.descriptor].")
 			make_plating(1)
 			playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
@@ -77,8 +77,8 @@
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				return
 		// Repairs.
-		else if(istype(C, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/welder = C
+		else if(istype(C, /obj/item/weapon/tool/weldingtool))
+			var/obj/item/weapon/tool/weldingtool/welder = C
 			if(welder.isOn() && (is_plating()))
 				if(broken || burnt)
 					if(welder.remove_fuel(0,user))

@@ -177,7 +177,7 @@ for reference:
 				visible_message(SPAN_WARNING("BZZzZZzZZzZT"))
 				return
 		return
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(health < maxhealth)
 			health = maxhealth
 			emagged = 0

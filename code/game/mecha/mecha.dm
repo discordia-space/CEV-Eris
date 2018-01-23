@@ -771,7 +771,7 @@
 				user << SPAN_WARNING("Invalid ID: Access denied.")
 		else
 			user << SPAN_WARNING("Maintenance protocols disabled by operator.")
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(state==1)
 			state = 2
 			user << "You undo the securing bolts."
@@ -779,7 +779,7 @@
 			state = 1
 			user << "You tighten the securing bolts."
 		return
-	else if(istype(W, /obj/item/weapon/crowbar))
+	else if(istype(W, /obj/item/weapon/tool/crowbar))
 		if(state==2)
 			state = 3
 			user << "You open the hatch to the power unit"
@@ -796,7 +796,7 @@
 			else
 				user << "There's not enough wire to finish the task."
 		return
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(istype(W, /obj/item/weapon/tool/screwdriver))
 		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
 			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
 			user << "You repair the damaged temperature controller."
@@ -835,8 +835,8 @@
 				user << "There's already a powercell installed."
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/weapon/tool/weldingtool) && user.a_intent != I_HURT)
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
 			if (hasInternalDamage(MECHA_INT_TANK_BREACH))
 				clearInternalDamage(MECHA_INT_TANK_BREACH)

@@ -54,7 +54,7 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) && state == 0)
+	if(istype(W, /obj/item/weapon/tool/wrench) && state == 0)
 		if(anchored && !reinf_material)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 			user << SPAN_NOTICE("Now disassembling the girder...")
@@ -80,7 +80,7 @@
 		user << SPAN_NOTICE("You drill through the girder!")
 		dismantle()
 
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(istype(W, /obj/item/weapon/tool/screwdriver))
 		if(state == 2)
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			user << SPAN_NOTICE("Now unsecuring support struts...")
@@ -93,7 +93,7 @@
 			reinforcing = !reinforcing
 			user << "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>"
 
-	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1)
+	else if(istype(W, /obj/item/weapon/tool/wirecutters) && state == 1)
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		user << SPAN_NOTICE("Now removing support struts...")
 		if(do_after(user, 40, src))
@@ -103,7 +103,7 @@
 			reinf_material = null
 			reset_girder()
 
-	else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored)
+	else if(istype(W, /obj/item/weapon/tool/crowbar) && state == 0 && anchored)
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		user << SPAN_NOTICE("Now dislodging the girder...")
 		if(do_after(user, 40, src))
@@ -231,7 +231,7 @@
 	qdel(src)
 
 /obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/tool/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		user << SPAN_NOTICE("Now disassembling the girder...")
 		if(do_after(user,40,src))

@@ -71,8 +71,8 @@
 	return
 
 /obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
-	if (istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
+	if (istype(C, /obj/item/weapon/tool/weldingtool))
+		var/obj/item/weapon/tool/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			user << "\blue Slicing lattice joints ..."

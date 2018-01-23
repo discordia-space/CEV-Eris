@@ -869,8 +869,8 @@ There are 9 wires.
 		return
 
 	src.add_fingerprint(user)
-	if(!repairing && (istype(C, /obj/item/weapon/weldingtool) && !( src.operating > 0 ) && src.density))
-		var/obj/item/weapon/weldingtool/W = C
+	if(!repairing && (istype(C, /obj/item/weapon/tool/weldingtool) && !( src.operating > 0 ) && src.density))
+		var/obj/item/weapon/tool/weldingtool/W = C
 		if(W.remove_fuel(0,user))
 			if(!src.welded)
 				src.welded = 1
@@ -881,7 +881,7 @@ There are 9 wires.
 			return
 		else
 			return
-	else if(istype(C, /obj/item/weapon/screwdriver))
+	else if(istype(C, /obj/item/weapon/tool/screwdriver))
 		if (src.p_open)
 			if (stat & BROKEN)
 				usr << SPAN_WARNING("The panel is broken and cannot be closed.")
@@ -892,7 +892,7 @@ There are 9 wires.
 			src.p_open = 1
 			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
 		src.update_icon()
-	else if(istype(C, /obj/item/weapon/wirecutters))
+	else if(istype(C, /obj/item/weapon/tool/wirecutters))
 		return src.attack_hand(user)
 	else if(istype(C, /obj/item/device/multitool))
 		return src.attack_hand(user)
@@ -901,7 +901,7 @@ There are 9 wires.
 	else if(istype(C, /obj/item/weapon/pai_cable))	// -- TLE
 		var/obj/item/weapon/pai_cable/cable = C
 		cable.plugin(src, user)
-	else if(!repairing && istype(C, /obj/item/weapon/crowbar))
+	else if(!repairing && istype(C, /obj/item/weapon/tool/crowbar))
 		if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")

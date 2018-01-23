@@ -253,7 +253,7 @@
 		update_icon()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/weapon/tool/wrench))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
 		user << SPAN_WARNING("You cannot unwrench \the [src], turn it off first.")

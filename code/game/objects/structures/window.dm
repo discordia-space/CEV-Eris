@@ -240,7 +240,7 @@
 	if(!istype(W)) return//I really wish I did not need this
 	if(W.flags & NOBLUDGEON) return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		if(reinf && state >= 1)
 			state = 3 - state
 			update_nearby_icons()
@@ -254,11 +254,11 @@
 			set_anchored(!anchored)
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			user << (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window."))
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
+	else if(istype(W, /obj/item/weapon/tool/crowbar) && reinf && state <= 1)
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
 		user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
-	else if(istype(W, /obj/item/weapon/wrench) && !anchored && (!state || !reinf))
+	else if(istype(W, /obj/item/weapon/tool/wrench) && !anchored && (!state || !reinf))
 		if(!glasstype)
 			user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
 		else

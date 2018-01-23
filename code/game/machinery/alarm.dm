@@ -776,7 +776,7 @@
 
 	switch(buildstage)
 		if(2)
-			if(istype(W, /obj/item/weapon/screwdriver))  // Opening that Air Alarm up.
+			if(istype(W, /obj/item/weapon/tool/screwdriver))  // Opening that Air Alarm up.
 				//user << "You pop the Air Alarm's maintence panel open."
 				wiresexposed = !wiresexposed
 				user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
@@ -785,7 +785,7 @@
 				update_icon()
 				return
 
-			if (wiresexposed && istype(W, /obj/item/weapon/wirecutters))
+			if (wiresexposed && istype(W, /obj/item/weapon/tool/wirecutters))
 				user.visible_message(SPAN_WARNING("[user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				new/obj/item/stack/cable_coil(get_turf(src), 5)
@@ -818,7 +818,7 @@
 					user << SPAN_WARNING("You need 5 pieces of cable to do wire \the [src].")
 					return
 
-			else if(istype(W, /obj/item/weapon/crowbar))
+			else if(istype(W, /obj/item/weapon/tool/crowbar))
 				user << "You start prying out the circuit."
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				if(do_after(user,20))
@@ -836,7 +836,7 @@
 				update_icon()
 				return
 
-			else if(istype(W, /obj/item/weapon/wrench))
+			else if(istype(W, /obj/item/weapon/tool/wrench))
 				user << "You remove the fire alarm assembly from the wall!"
 				new /obj/item/frame/air_alarm(get_turf(user))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
@@ -948,7 +948,7 @@ FIRE ALARM
 /obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if (istype(W, /obj/item/weapon/screwdriver) && buildstage == 2)
+	if (istype(W, /obj/item/weapon/tool/screwdriver) && buildstage == 2)
 		var/sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' : 'sound/machines/Custom_screwdriverclose.ogg'
 		playsound(src.loc, sound, 100, 1)
 		wiresexposed = !wiresexposed
@@ -964,7 +964,7 @@ FIRE ALARM
 						user.visible_message(SPAN_NOTICE("\The [user] has reconnected [src]'s detecting unit!"), SPAN_NOTICE("You have reconnected [src]'s detecting unit."))
 					else
 						user.visible_message(SPAN_NOTICE("\The [user] has disconnected [src]'s detecting unit!"), SPAN_NOTICE("You have disconnected [src]'s detecting unit."))
-				else if (istype(W, /obj/item/weapon/wirecutters))
+				else if (istype(W, /obj/item/weapon/tool/wirecutters))
 					user.visible_message(SPAN_NOTICE("\The [user] has cut the wires inside \the [src]!"), SPAN_NOTICE("You have cut the wires inside \the [src]."))
 					new/obj/item/stack/cable_coil(get_turf(src), 5)
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
@@ -980,7 +980,7 @@ FIRE ALARM
 					else
 						user << SPAN_WARNING("You need 5 pieces of cable to wire \the [src].")
 						return
-				else if(istype(W, /obj/item/weapon/crowbar))
+				else if(istype(W, /obj/item/weapon/tool/crowbar))
 					user << "You pry out the circuit!"
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 					spawn(20)
@@ -995,7 +995,7 @@ FIRE ALARM
 					buildstage = 1
 					update_icon()
 
-				else if(istype(W, /obj/item/weapon/wrench))
+				else if(istype(W, /obj/item/weapon/tool/wrench))
 					user << "You remove the fire alarm assembly from the wall!"
 					new /obj/item/frame/fire_alarm(get_turf(user))
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)

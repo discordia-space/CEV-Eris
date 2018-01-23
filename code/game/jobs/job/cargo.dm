@@ -88,7 +88,7 @@
 	survival_gear = /obj/item/weapon/storage/box/engineer
 
 	put_in_backpack = list(\
-		/obj/item/weapon/crowbar,\
+		/obj/item/weapon/tool/crowbar,\
 		/obj/item/weapon/storage/bag/ore
 		)
 

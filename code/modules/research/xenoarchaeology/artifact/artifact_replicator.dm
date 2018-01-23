@@ -41,27 +41,27 @@
 	/obj/item/device/radio/beacon,\
 	/obj/item/weapon/autopsy_scanner,\
 	/obj/item/weapon/bikehorn,\
-	/obj/item/weapon/bonesetter,\
+	/obj/item/weapon/tool/bonesetter,\
 	/obj/item/weapon/material/knife/butch,\
 	/obj/item/weapon/caution,\
 	/obj/item/weapon/caution/cone,\
-	/obj/item/weapon/crowbar,\
+	/obj/item/weapon/tool/crowbar,\
 	/obj/item/weapon/clipboard,\
 	/obj/item/weapon/cell/large,\
-	/obj/item/weapon/circular_saw,\
+	/obj/item/weapon/tool/circular_saw,\
 	/obj/item/weapon/material/hatchet,\
 	/obj/item/weapon/handcuffs,\
-	/obj/item/weapon/hemostat,\
+	/obj/item/weapon/tool/hemostat,\
 	/obj/item/weapon/material/knife,\
 	/obj/item/weapon/flame/lighter,\
 	/obj/item/weapon/light/bulb,\
 	/obj/item/weapon/light/tube,\
 	/obj/item/weapon/pickaxe,\
 	/obj/item/weapon/shovel,\
-	/obj/item/weapon/weldingtool,\
-	/obj/item/weapon/wirecutters,\
-	/obj/item/weapon/wrench,\
-	/obj/item/weapon/screwdriver,\
+	/obj/item/weapon/tool/weldingtool,\
+	/obj/item/weapon/tool/wirecutters,\
+	/obj/item/weapon/tool/wrench,\
+	/obj/item/weapon/tool/screwdriver,\
 	/obj/item/weapon/grenade/chem_grenade/cleaner,\
 	/obj/item/weapon/grenade/chem_grenade/metalfoam\
 	)

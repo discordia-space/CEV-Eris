@@ -61,7 +61,7 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
 
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(istype(W, /obj/item/weapon/tool/crowbar))
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message(SPAN_NOTICE("[user] begins to take the glass off the solar panel."))
 		if(do_after(user, 50,src))
@@ -227,13 +227,13 @@ var/list/solars_list = list()
 /obj/item/solar_assembly/attackby(var/obj/item/weapon/W, var/mob/user)
 
 	if(!anchored && isturf(loc))
-		if(istype(W, /obj/item/weapon/wrench))
+		if(istype(W, /obj/item/weapon/tool/wrench))
 			anchored = 1
 			user.visible_message(SPAN_NOTICE("[user] wrenches the solar assembly into place."))
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 			return 1
 	else
-		if(istype(W, /obj/item/weapon/wrench))
+		if(istype(W, /obj/item/weapon/tool/wrench))
 			anchored = 0
 			user.visible_message(SPAN_NOTICE("[user] unwrenches the solar assembly from it's place."))
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
@@ -262,7 +262,7 @@ var/list/solars_list = list()
 			user.visible_message(SPAN_NOTICE("[user] inserts the electronics into the solar assembly."))
 			return 1
 	else
-		if(istype(W, /obj/item/weapon/crowbar))
+		if(istype(W, /obj/item/weapon/tool/crowbar))
 			new /obj/item/weapon/tracker_electronics(src.loc)
 			tracker = 0
 			user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
@@ -403,7 +403,7 @@ var/list/solars_list = list()
 	return
 
 /obj/machinery/power/solar_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/weapon/tool/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20,src))
 			if (src.stat & BROKEN)

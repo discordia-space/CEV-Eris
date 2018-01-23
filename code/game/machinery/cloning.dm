@@ -221,7 +221,7 @@
 		user.drop_from_inventory(W)
 		qdel(W)
 		return
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(locked && (anchored || occupant))
 			user << SPAN_WARNING("Can not do that while [src] is in use.")
 		else

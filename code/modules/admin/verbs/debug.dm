@@ -571,7 +571,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/plain/monocle(M), slot_glasses)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(M), slot_wear_suit)
 			M.equip_to_slot_or_del(new /obj/item/weapon/material/knife(M), slot_l_store)
-			M.equip_to_slot_or_del(new /obj/item/weapon/scalpel(M), slot_r_store)
+			M.equip_to_slot_or_del(new /obj/item/weapon/tool/scalpel(M), slot_r_store)
 
 			var/obj/item/weapon/material/twohanded/fireaxe/fire_axe = new(M)
 			M.equip_to_slot_or_del(fire_axe, slot_r_hand)

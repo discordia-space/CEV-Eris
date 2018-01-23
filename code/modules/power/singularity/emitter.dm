@@ -150,7 +150,7 @@
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/tool/wrench))
 		if(active)
 			user << "Turn off [src] first."
 			return
@@ -173,8 +173,8 @@
 				user << SPAN_WARNING("\The [src] needs to be unwelded from the floor.")
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weapon/tool/weldingtool))
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(active)
 			user << "Turn off [src] first."
 			return

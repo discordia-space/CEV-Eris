@@ -14,14 +14,14 @@
 
 	switch(state)
 		if(0)
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/weapon/tool/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20, src))
 					user << SPAN_NOTICE("You wrench the frame into place.")
 					anchored = 1
 					state = 1
-			if(istype(P, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = P
+			if(istype(P, /obj/item/weapon/tool/weldingtool))
+				var/obj/item/weapon/tool/weldingtool/WT = P
 				if(!WT.isOn())
 					user << "The welder must be on for this task."
 					return
@@ -33,7 +33,7 @@
 					qdel(src)
 					return
 		if(1)
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/weapon/tool/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20, src))
 					user << SPAN_NOTICE("You unfasten the frame.")
@@ -46,12 +46,12 @@
 				circuit = P
 				user.drop_item()
 				P.loc = src
-			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
+			if(istype(P, /obj/item/weapon/tool/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << SPAN_NOTICE("You screw the circuit board into place.")
 				state = 2
 				icon_state = "2"
-			if(istype(P, /obj/item/weapon/crowbar) && circuit)
+			if(istype(P, /obj/item/weapon/tool/crowbar) && circuit)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << SPAN_NOTICE("You remove the circuit board.")
 				state = 1
@@ -59,7 +59,7 @@
 				circuit.loc = loc
 				circuit = null
 		if(2)
-			if(istype(P, /obj/item/weapon/screwdriver) && circuit)
+			if(istype(P, /obj/item/weapon/tool/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << SPAN_NOTICE("You unfasten the circuit board.")
 				state = 1
@@ -78,7 +78,7 @@
 						user << SPAN_NOTICE("You add cables to the frame.")
 				return
 		if(3)
-			if(istype(P, /obj/item/weapon/wirecutters))
+			if(istype(P, /obj/item/weapon/tool/wirecutters))
 				if (brain)
 					user << "Get that brain out of there first"
 				else
@@ -146,7 +146,7 @@
 				usr << "Added [P]."
 				icon_state = "3b"
 
-			if(istype(P, /obj/item/weapon/crowbar) && brain)
+			if(istype(P, /obj/item/weapon/tool/crowbar) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << SPAN_NOTICE("You remove the brain.")
 				brain.loc = loc
@@ -154,7 +154,7 @@
 				icon_state = "3"
 
 		if(4)
-			if(istype(P, /obj/item/weapon/crowbar))
+			if(istype(P, /obj/item/weapon/tool/crowbar))
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << SPAN_NOTICE("You remove the glass panel.")
 				state = 3
@@ -165,7 +165,7 @@
 				new /obj/item/stack/material/glass/reinforced( loc, 2 )
 				return
 
-			if(istype(P, /obj/item/weapon/screwdriver))
+			if(istype(P, /obj/item/weapon/tool/screwdriver))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << SPAN_NOTICE("You connect the monitor.")
 				if(!brain)
@@ -227,7 +227,7 @@
 		else
 			user << "<span class='danger'>ERROR:</span> Unable to locate artificial intelligence."
 		return
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(anchored)
 			user.visible_message(SPAN_NOTICE("\The [user] starts to unbolt \the [src] from the plating..."))
 			if(!do_after(user,40,src))

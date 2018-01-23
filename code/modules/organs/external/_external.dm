@@ -203,17 +203,17 @@
 /obj/item/organ/external/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	switch(stage)
 		if(0)
-			if(istype(W,/obj/item/weapon/scalpel))
+			if(istype(W,/obj/item/weapon/tool/scalpel))
 				user.visible_message(SPAN_DANGER("<b>[user]</b> cuts [src] open with [W]!"))
 				stage++
 				return
 		if(1)
-			if(istype(W,/obj/item/weapon/retractor))
+			if(istype(W,/obj/item/weapon/tool/retractor))
 				user.visible_message(SPAN_DANGER("<b>[user]</b> cracks [src] open like an egg with [W]!"))
 				stage++
 				return
 		if(2)
-			if(istype(W,/obj/item/weapon/hemostat))
+			if(istype(W,/obj/item/weapon/tool/hemostat))
 				if(contents.len)
 					var/obj/item/removing = pick(contents)
 					user.put_in_hands(removing)

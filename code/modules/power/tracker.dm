@@ -59,7 +59,7 @@
 
 /obj/machinery/power/tracker/attackby(var/obj/item/weapon/W, var/mob/user)
 
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(istype(W, /obj/item/weapon/tool/crowbar))
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message(SPAN_NOTICE("[user] begins to take the glass off the solar tracker."))
 		if(do_after(user, 50,src))

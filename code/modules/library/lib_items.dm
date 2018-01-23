@@ -36,11 +36,11 @@
 			return
 		else
 			name = ("bookcase ([newname])")
-	else if(istype(O,/obj/item/weapon/wrench))
+	else if(istype(O,/obj/item/weapon/tool/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		user << (anchored ? SPAN_NOTICE("You unfasten \the [src] from the floor.") : SPAN_NOTICE("You secure \the [src] to the floor."))
 		anchored = !anchored
-	else if(istype(O,/obj/item/weapon/screwdriver))
+	else if(istype(O,/obj/item/weapon/tool/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 		user << SPAN_NOTICE("You begin dismantling \the [src].")
 		if(do_after(user,25,src))
@@ -246,7 +246,7 @@
 							return
 					scanner.computer.inventory.Add(src)
 					user << "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
-	else if(istype(W, /obj/item/weapon/material/knife) || istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/weapon/material/knife) || istype(W, /obj/item/weapon/tool/wirecutters))
 		if(carved)	return
 		user << SPAN_NOTICE("You begin to carve out [title].")
 		if(do_after(user, 30, src))

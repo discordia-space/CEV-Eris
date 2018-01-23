@@ -312,8 +312,8 @@
 	if(src.opened)
 		if(istype(W,/obj/item/tk_grab))
 			return 0
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(istype(W, /obj/item/weapon/tool/weldingtool))
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
 				if(!WT.isOn())
 					return
@@ -345,8 +345,8 @@
 			W.forceMove(src.loc)
 	else if(istype(W, /obj/item/weapon/packageWrap))
 		return
-	else if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/weapon/tool/weldingtool))
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
 			if(!WT.isOn())
 				return

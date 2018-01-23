@@ -12,7 +12,7 @@
 	var/P_type_t = ""
 	var/max_metal = 50
 	var/metal = 10
-	var/obj/item/weapon/wrench/W
+	var/obj/item/weapon/tool/wrench/W
 	var/list/Pipes = list("regular pipes"=0,"scrubbers pipes"=31,"supply pipes"=29,"heat exchange pipes"=2)
 
 /obj/machinery/pipelayer/New()
@@ -39,13 +39,13 @@
 
 /obj/machinery/pipelayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
 
-	if (istype(W, /obj/item/weapon/wrench))
+	if (istype(W, /obj/item/weapon/tool/wrench))
 		P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
 		P_type = Pipes[P_type_t]
 		user.visible_message(SPAN_NOTICE("[user] has set \the [src] to manufacture [P_type_t]."), SPAN_NOTICE("You set \the [src] to manufacture [P_type_t]."))
 		return
 
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(istype(W, /obj/item/weapon/tool/crowbar))
 		a_dis=!a_dis
 		user.visible_message("<span class='notice'>[user] has [!a_dis?"de":""]activated auto-dismantling.</span>", "<span class='notice'>You [!a_dis?"de":""]activate auto-dismantling.</span>")
 		return
@@ -62,7 +62,7 @@
 
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		if(metal)
 			var/m = round(input(usr,"Please specify the amount of metal to remove","Remove metal",min(round(metal),50)) as num, 1)
 			m = min(m, 50)

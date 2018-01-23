@@ -1035,12 +1035,12 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 //Quick type checks for some tools
 var/global/list/common_tools = list(
 /obj/item/stack/cable_coil,
-/obj/item/weapon/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wirecutters,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/weldingtool,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/weapon/tool/wirecutters,
 /obj/item/device/multitool,
-/obj/item/weapon/crowbar)
+/obj/item/weapon/tool/crowbar)
 
 /proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
@@ -1048,12 +1048,12 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iswrench(O)
-	if(istype(O, /obj/item/weapon/wrench))
+	if(istype(O, /obj/item/weapon/tool/wrench))
 		return 1
 	return 0
 
 /proc/iswelder(O)
-	if(istype(O, /obj/item/weapon/weldingtool))
+	if(istype(O, /obj/item/weapon/tool/weldingtool))
 		return 1
 	return 0
 
@@ -1063,12 +1063,12 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iswirecutter(O)
-	if(istype(O, /obj/item/weapon/wirecutters))
+	if(istype(O, /obj/item/weapon/tool/wirecutters))
 		return 1
 	return 0
 
 /proc/isscrewdriver(O)
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/weapon/tool/screwdriver))
 		return 1
 	return 0
 
@@ -1078,7 +1078,7 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iscrowbar(O)
-	if(istype(O, /obj/item/weapon/crowbar))
+	if(istype(O, /obj/item/weapon/tool/crowbar))
 		return 1
 	return 0
 
@@ -1089,8 +1089,8 @@ var/global/list/common_tools = list(
 
 proc/is_hot(obj/item/W as obj)
 	switch(W.type)
-		if(/obj/item/weapon/weldingtool)
-			var/obj/item/weapon/weldingtool/WT = W
+		if(/obj/item/weapon/tool/weldingtool)
+			var/obj/item/weapon/tool/weldingtool/WT = W
 			if(WT.isOn())
 				return 3800
 			else
@@ -1138,9 +1138,9 @@ proc/is_hot(obj/item/W as obj)
 	if(W.sharp) return 1
 	return ( \
 		W.sharp													  || \
-		istype(W, /obj/item/weapon/screwdriver)                   || \
+		istype(W, /obj/item/weapon/tool/screwdriver)                   || \
 		istype(W, /obj/item/weapon/pen)                           || \
-		istype(W, /obj/item/weapon/weldingtool)					  || \
+		istype(W, /obj/item/weapon/tool/weldingtool)					  || \
 		istype(W, /obj/item/weapon/flame/lighter/zippo)			  || \
 		istype(W, /obj/item/weapon/flame/match)            		  || \
 		istype(W, /obj/item/clothing/mask/smokable/cigarette) 		      || \
@@ -1149,12 +1149,12 @@ proc/is_hot(obj/item/W as obj)
 
 /proc/is_surgery_tool(obj/item/W as obj)
 	return (	\
-	istype(W, /obj/item/weapon/scalpel)			||	\
-	istype(W, /obj/item/weapon/hemostat)		||	\
-	istype(W, /obj/item/weapon/retractor)		||	\
-	istype(W, /obj/item/weapon/cautery)			||	\
-	istype(W, /obj/item/weapon/bonegel)			||	\
-	istype(W, /obj/item/weapon/bonesetter)
+	istype(W, /obj/item/weapon/tool/scalpel)			||	\
+	istype(W, /obj/item/weapon/tool/hemostat)		||	\
+	istype(W, /obj/item/weapon/tool/retractor)		||	\
+	istype(W, /obj/item/weapon/tool/cautery)			||	\
+	istype(W, /obj/item/weapon/tool/bonegel)			||	\
+	istype(W, /obj/item/weapon/tool/bonesetter)
 	)
 
 //check if mob is lying down on something we can operate him on.

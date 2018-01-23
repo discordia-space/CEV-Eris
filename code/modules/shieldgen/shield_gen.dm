@@ -64,7 +64,7 @@
 			updateDialog()
 		else
 			user << "\red Access denied."
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		src.anchored = !src.anchored
 		src.visible_message("\blue \icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].")
 

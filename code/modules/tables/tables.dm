@@ -91,7 +91,7 @@
 
 /obj/structure/table/attackby(obj/item/weapon/W, mob/user)
 
-	if(reinforced && istype(W, /obj/item/weapon/screwdriver))
+	if(reinforced && istype(W, /obj/item/weapon/tool/screwdriver))
 		remove_reinforced(W, user)
 		if(!reinforced)
 			update_desc()
@@ -99,7 +99,7 @@
 			update_material()
 		return 1
 
-	if(carpeted && istype(W, /obj/item/weapon/crowbar))
+	if(carpeted && istype(W, /obj/item/weapon/tool/crowbar))
 		user.visible_message(SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
 		                              SPAN_NOTICE("You remove the carpet from \the [src]."))
 		new /obj/item/stack/tile/carpet(loc)
@@ -118,7 +118,7 @@
 		else
 			user << SPAN_WARNING("You don't have enough carpet!")
 
-	if(!reinforced && !carpeted && material && istype(W, /obj/item/weapon/wrench))
+	if(!reinforced && !carpeted && material && istype(W, /obj/item/weapon/tool/wrench))
 		remove_material(W, user)
 		if(!material)
 			update_connections(1)
@@ -129,12 +129,12 @@
 			update_material()
 		return 1
 
-	if(!carpeted && !reinforced && !material && istype(W, /obj/item/weapon/wrench))
+	if(!carpeted && !reinforced && !material && istype(W, /obj/item/weapon/tool/wrench))
 		dismantle(W, user)
 		return 1
 
-	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/F = W
+	if(health < maxhealth && istype(W, /obj/item/weapon/tool/weldingtool))
+		var/obj/item/weapon/tool/weldingtool/F = W
 		if(F.welding)
 			user << SPAN_NOTICE("You begin reparing damage to \the [src].")
 			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)

@@ -329,14 +329,14 @@ Class Procs:
 			user << SPAN_NOTICE("    [C.name]")
 	return 1
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/weapon/crowbar/C)
+/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/weapon/tool/crowbar/C)
 	if(!istype(C))
 		return 0
 	if(!panel_open)
 		return 0
 	. = dismantle()
 
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
+/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/tool/screwdriver/S)
 	if(!istype(S))
 		return 0
 	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)

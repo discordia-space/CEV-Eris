@@ -7,7 +7,7 @@
 /datum/surgery_step/fix_vein
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/FixOVein = 100,
+		/obj/item/weapon/tool/fixovein = 100,
 		/obj/item/stack/cable_coil = 75
 	)
 	can_infect = 1
@@ -61,7 +61,7 @@
 /datum/surgery_step/fix_dead_tissue		//Debridement
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,		\
+		/obj/item/weapon/tool/scalpel = 100,		\
 		/obj/item/weapon/material/knife = 75,	\
 		/obj/item/weapon/material/shard = 50, 		\
 	)
@@ -190,8 +190,8 @@
 
 /datum/surgery_step/hardsuit
 	allowed_tools = list(
-		/obj/item/weapon/weldingtool = 80,
-		/obj/item/weapon/circular_saw = 60,
+		/obj/item/weapon/tool/weldingtool = 80,
+		/obj/item/weapon/tool/circular_saw = 60,
 		/obj/item/weapon/pickaxe/plasmacutter = 100
 		)
 
@@ -204,8 +204,8 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(!istype(target))
 			return 0
-		if(istype(tool,/obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/welder = tool
+		if(istype(tool,/obj/item/weapon/tool/weldingtool))
+			var/obj/item/weapon/tool/weldingtool/welder = tool
 			if(!welder.isOn() || !welder.remove_fuel(1,user))
 				return 0
 		return (target_zone == BP_CHEST) && istype(target.back, /obj/item/weapon/rig) && !(target.back.canremove)

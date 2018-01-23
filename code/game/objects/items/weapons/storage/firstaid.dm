@@ -134,30 +134,30 @@
 	icon_state = "surgeon"
 	item_state = "firstaid-surgeon"
 	can_hold = list(
-		/obj/item/weapon/bonesetter,
-		/obj/item/weapon/cautery,
-		/obj/item/weapon/circular_saw,
-		/obj/item/weapon/hemostat,
-		/obj/item/weapon/retractor,
-		/obj/item/weapon/scalpel,
-		/obj/item/weapon/surgicaldrill,
-		/obj/item/weapon/bonegel,
-		/obj/item/weapon/FixOVein,
+		/obj/item/weapon/tool/bonesetter,
+		/obj/item/weapon/tool/cautery,
+		/obj/item/weapon/tool/circular_saw,
+		/obj/item/weapon/tool/hemostat,
+		/obj/item/weapon/tool/retractor,
+		/obj/item/weapon/tool/scalpel,
+		/obj/item/weapon/tool/surgicaldrill,
+		/obj/item/weapon/tool/bonegel,
+		/obj/item/weapon/tool/fixovein,
 		/obj/item/stack/medical/advanced/bruise_pack
 		)
 
 /obj/item/weapon/storage/firstaid/surgery/New()
 	..()
 	if (empty) return
-	new /obj/item/weapon/bonesetter(src)
-	new /obj/item/weapon/cautery(src)
-	new /obj/item/weapon/circular_saw(src)
-	new /obj/item/weapon/hemostat(src)
-	new /obj/item/weapon/retractor(src)
-	new /obj/item/weapon/scalpel(src)
-	new /obj/item/weapon/surgicaldrill(src)
-	new /obj/item/weapon/bonegel(src)
-	new /obj/item/weapon/FixOVein(src)
+	new /obj/item/weapon/tool/bonesetter(src)
+	new /obj/item/weapon/tool/cautery(src)
+	new /obj/item/weapon/tool/circular_saw(src)
+	new /obj/item/weapon/tool/hemostat(src)
+	new /obj/item/weapon/tool/retractor(src)
+	new /obj/item/weapon/tool/scalpel(src)
+	new /obj/item/weapon/tool/surgicaldrill(src)
+	new /obj/item/weapon/tool/bonegel(src)
+	new /obj/item/weapon/tool/fixovein(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 
 	make_exact_fit()

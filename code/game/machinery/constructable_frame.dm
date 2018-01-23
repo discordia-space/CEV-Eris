@@ -46,7 +46,7 @@
 						state = STATE_WIRES
 						icon_state = "[base_state]_1"
 			else
-				if(istype(P, /obj/item/weapon/wrench))
+				if(istype(P, /obj/item/weapon/tool/wrench))
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 					user << SPAN_NOTICE("You dismantle the frame")
 					new /obj/item/stack/material/steel(src.loc, 5)
@@ -75,7 +75,7 @@
 				else
 					user << SPAN_WARNING("This frame does not accept circuit boards of this type!")
 			else
-				if(istype(P, /obj/item/weapon/wirecutters))
+				if(istype(P, /obj/item/weapon/tool/wirecutters))
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 					user << SPAN_NOTICE("You remove the cables.")
 					state = STATE_NONE
@@ -84,7 +84,7 @@
 					A.amount = 5
 
 		if(STATE_CIRCUIT)
-			if(istype(P, /obj/item/weapon/crowbar))
+			if(istype(P, /obj/item/weapon/tool/crowbar))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				state = STATE_WIRES
 				circuit.loc = src.loc
@@ -99,7 +99,7 @@
 				req_components = null
 				components = null
 				icon_state = "[base_state]_1"
-			else if(istype(P, /obj/item/weapon/screwdriver))
+			else if(istype(P, /obj/item/weapon/tool/screwdriver))
 				var/component_check = 1
 				for(var/R in req_components)
 					if(req_components[R] > 0)

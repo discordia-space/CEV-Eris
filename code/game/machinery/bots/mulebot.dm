@@ -97,7 +97,7 @@
 		C.loc = src
 		src.cell = C
 		updateDialog()
-	else if(istype(I,/obj/item/weapon/screwdriver))
+	else if(istype(I,/obj/item/weapon/tool/screwdriver))
 		if(locked)
 			user << SPAN_NOTICE("The maintenance hatch cannot be opened or closed while the controls are locked.")
 			return
@@ -112,7 +112,7 @@
 			icon_state = "mulebot0"
 
 		updateDialog()
-	else if (istype(I, /obj/item/weapon/wrench))
+	else if (istype(I, /obj/item/weapon/tool/wrench))
 		if (src.health < maxhealth)
 			src.health = min(maxhealth, src.health+25)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)

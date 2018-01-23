@@ -54,7 +54,7 @@
 
 /datum/autolathe/recipe/crowbar
 	name = "crowbar"
-	path = /obj/item/weapon/crowbar
+	path = /obj/item/weapon/tool/crowbar
 	category = "Tools"
 
 /datum/autolathe/recipe/multitool
@@ -69,22 +69,22 @@
 
 /datum/autolathe/recipe/weldertool
 	name = "welding tool"
-	path = /obj/item/weapon/weldingtool
+	path = /obj/item/weapon/tool/weldingtool
 	category = "Tools"
 
 /datum/autolathe/recipe/screwdriver
 	name = "screwdriver"
-	path = /obj/item/weapon/screwdriver
+	path = /obj/item/weapon/tool/screwdriver
 	category = "Tools"
 
 /datum/autolathe/recipe/wirecutters
 	name = "wirecutters"
-	path = /obj/item/weapon/wirecutters
+	path = /obj/item/weapon/tool/wirecutters
 	category = "Tools"
 
 /datum/autolathe/recipe/wrench
 	name = "wrench"
-	path = /obj/item/weapon/wrench
+	path = /obj/item/weapon/tool/wrench
 	category = "Tools"
 
 /datum/autolathe/recipe/hatchet
@@ -173,32 +173,32 @@
 
 /datum/autolathe/recipe/scalpel
 	name = "scalpel"
-	path = /obj/item/weapon/scalpel
+	path = /obj/item/weapon/tool/scalpel
 	category = "Medical"
 
 /datum/autolathe/recipe/circularsaw
 	name = "circular saw"
-	path = /obj/item/weapon/circular_saw
+	path = /obj/item/weapon/tool/circular_saw
 	category = "Medical"
 
 /datum/autolathe/recipe/surgicaldrill
 	name = "surgical drill"
-	path = /obj/item/weapon/surgicaldrill
+	path = /obj/item/weapon/tool/surgicaldrill
 	category = "Medical"
 
 /datum/autolathe/recipe/retractor
 	name = "retractor"
-	path = /obj/item/weapon/retractor
+	path = /obj/item/weapon/tool/retractor
 	category = "Medical"
 
 /datum/autolathe/recipe/cautery
 	name = "cautery"
-	path = /obj/item/weapon/cautery
+	path = /obj/item/weapon/tool/cautery
 	category = "Medical"
 
 /datum/autolathe/recipe/hemostat
 	name = "hemostat"
-	path = /obj/item/weapon/hemostat
+	path = /obj/item/weapon/tool/hemostat
 	category = "Medical"
 
 /datum/autolathe/recipe/beaker
@@ -409,7 +409,7 @@
 
 /datum/autolathe/recipe/welder_industrial
 	name = "industrial welding tool"
-	path = /obj/item/weapon/weldingtool/largetank
+	path = /obj/item/weapon/tool/weldingtool/largetank
 	hidden = 1
 	category = "Tools"
 

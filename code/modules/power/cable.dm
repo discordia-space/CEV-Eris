@@ -135,7 +135,7 @@ var/list/possible_cable_coil_colours = list(
 	if(!T.is_plating())
 		return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/weapon/tool/wirecutters))
 		if(d1 == 12 || d2 == 12)
 			user << SPAN_WARNING("You must cut this cable from above.")
 			return

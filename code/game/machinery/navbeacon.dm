@@ -114,7 +114,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 		if(!T.is_plating())
 			return		// prevent intraction when T-scanner revealed
 
-		if(istype(I, /obj/item/weapon/screwdriver))
+		if(istype(I, /obj/item/weapon/tool/screwdriver))
 			open = !open
 
 			user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")

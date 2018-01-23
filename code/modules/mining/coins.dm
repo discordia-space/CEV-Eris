@@ -57,7 +57,7 @@
 		else
 			user << SPAN_NOTICE("This cable coil appears to be empty.")
 		return
-	else if(istype(W,/obj/item/weapon/wirecutters))
+	else if(istype(W,/obj/item/weapon/tool/wirecutters))
 		if(!string_attached)
 			..()
 			return
