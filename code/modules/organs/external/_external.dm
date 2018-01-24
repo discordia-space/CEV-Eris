@@ -13,67 +13,65 @@
 	max_damage = 0
 	dir = SOUTH
 	organ_tag = "limb"
+	var/icon_name = null
 	var/tally = 0
 
-	var/brute_mod = 1
-	var/burn_mod = 1
-	var/icon_name = null
-	var/body_part = null
-	var/icon_position = 0
-	var/model
+	// Strings
+	var/broken_description             // fracture string if any.
+	var/damage_state = "00"            // Modifier used for generating the on-mob damage overlay for this limb.
+	var/damage_msg = "\red You feel an intense pain"
 
+	// Damage vars.
+	var/brute_mod = 1                  // Multiplier for incoming brute damage.
+	var/burn_mod = 1                   // As above for burn.
+	var/brute_dam = 0                  // Actual current brute damage.
+	var/burn_dam = 0                   // Actual current burn damage.
+	var/last_dam = -1                  // used in healing/processing calculations.
+	var/perma_injury = 0
+
+	// Appearance vars.
+	var/body_part = null               // Part flag
+	var/icon_position = 0              // Used in mob overlay layering calculations.
+	var/model                          // Used when caching robolimb icons.
 	//var/default_icon	// Used to force override of species-specific limb icons (for prosthetics).
+	var/force_icon
+	var/icon/mob_icon                  // Cached icon for use in mob overlays.
+	var/gendered = null
+	var/skin_tone			// Skin tone.
+	var/skin_col			// skin colour
+	var/hair_col
 	var/tattoo
 	var/tattoo_color = "#000000"
 
-	var/force_icon
-	var/damage_state = "00"
-	var/brute_dam = 0
-	var/burn_dam = 0
+
+	// Wound and structural data.
+	var/wound_update_accuracy = 1		// how often wounds should be updated, a higher number means less often
+	var/list/wounds = list()			// wound datum list.
+	var/number_wounds = 0				// number of wounds, which is NOT wounds.len!
+	var/list/children = list()			// Sub-limbs.
+	var/list/internal_organs = list()	// Internal organs of this body part
+	var/list/implants = list()			// Currently implanted objects.
 	var/max_size = 0
-	var/last_dam = -1
-	var/icon/mob_icon
-	var/gendered_icon = 0
-	var/disfigured = 0
-	var/cannot_amputate
-	var/cannot_break
-	var/skin_tone
-	var/skin_col
-	var/hair_col
-	var/list/wounds = list()
-	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
-	var/perma_injury = 0
-//	var/obj/item/organ/external/parent
-	var/list/obj/item/organ/external/children
-	var/list/internal_organs = list() 	// Internal organs of this body part
-	var/damage_msg = "\red You feel an intense pain"
-	var/broken_description
+
+	var/list/drop_on_remove = null
+
+	var/obj/item/organ_module/active/module = null
+
+	// Joint/state stuff.
+	var/can_grasp			// It would be more appropriate if these two were named "affects_grasp" and "affects_stand" at this point
+	var/can_stand			// Modifies stance tally/ability to stand.
+	var/disfigured = 0		// Scarred/burned beyond recognition.
+	var/cannot_amputate		// Impossible to amputate.
+	var/cannot_break		// Impossible to fracture.
+	var/joint = "joint"		// Descriptive string used in dislocation.
+	var/amputation_point	// Descriptive string used in amputation.
+	var/dislocated = 0		// If you target a joint, you can dislocate the limb, impairing it's usefulness and causing pain
+	var/encased				// Needs to be opened with a saw to access the organs.
+
+	// Surgery vars.
 	var/open = 0
 	var/stage = 0
 	var/cavity = 0
-	var/encased       // Needs to be opened with a saw to access the organs.
-	var/list/implants = list()
-	var/wound_update_accuracy = 1 	// how often wounds should be updated, a higher number means less often
-	var/joint = "joint"   // Descriptive string used in dislocation.
-	var/amputation_point  // Descriptive string used in amputation.
-	var/dislocated = 0    // If you target a joint, you can dislocate the limb, causing temporary damage to the organ.
-	var/can_grasp //It would be more appropriate if these two were named "affects_grasp" and "affects_stand" at this point
-	var/can_stand
-	var/list/drop_on_remove
-
-/obj/item/organ/external/Destroy()
-	if(parent && parent.children)
-		parent.children -= src
-
-	if(children)
-		for(var/obj/item/organ/external/C in children)
-			qdel(C)
-
-	if(internal_organs)
-		for(var/obj/item/organ/O in internal_organs)
-			qdel(O)
-
-	return ..()
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder,var/datum/organ_description/OD)
 	..(holder)
@@ -84,6 +82,24 @@
 		sync_colour_to_human(owner)
 	spawn(1)
 		update_icon()
+
+/obj/item/organ/external/Destroy()
+	if(parent)
+		parent.children -= src
+
+	if(children)
+		for(var/obj/item/organ/external/C in children)
+			qdel(C)
+
+	if(internal_organs)
+		for(var/obj/item/organ/O in internal_organs)
+			qdel(O)
+
+	if(module)
+		qdel(module)
+		module = null
+
+	return ..()
 
 /obj/item/organ/external/proc/set_description(var/datum/organ_description/desc)
 	src.name = desc.name
@@ -118,14 +134,19 @@
 				break
 			parent.update_damages()
 
+	if(module)
+		module.organ_installed(src, owner)
 
-/obj/item/organ/external/removed(mob/living/user)
+/obj/item/organ/external/removed(mob/living/user, redraw_mob = TRUE)
 	if(!owner)
 		return
 
 	owner.organs -= src
 	owner.organs_by_name[organ_tag] = null // Remove from owner's vars.
 	owner.bad_external_organs -= src
+
+	if(module)
+		module.organ_removed(src, owner)
 
 	for(var/atom/movable/implant in implants)
 		//large items and non-item objs fall to the floor, everything else stays
@@ -158,7 +179,20 @@
 			organ.removed()
 			organ.loc = src
 
-	..()
+	var/mob/living/carbon/human/victim = owner
+
+	. = ..()
+
+	if(redraw_mob)
+		victim.update_body()
+
+/obj/item/organ/external/proc/activate_module()
+	set name = "Activate module"
+	set category = "Organs"
+	set src in usr
+
+	if(module)
+		module.activate(owner, src)
 
 /obj/item/organ/external/emp_act(severity)
 	if(robotic < ORGAN_ROBOT)
