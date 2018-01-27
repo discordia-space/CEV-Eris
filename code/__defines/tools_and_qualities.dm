@@ -13,3 +13,5 @@
 #define QUALITY_SHOVELING				"shoveling"
 #define QUALITY_DIGGING					"digging"
 #define QUALITY_CUTTING					"cutting"
+
+#define WORKSOUND_
