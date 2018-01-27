@@ -598,7 +598,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user << SPAN_WARNING("Pain distracts you from your task.")
 		fail_chance = fail_chance + 20
 	if(user.shock_stage >= 60)
-		fail_chance = fail_chance + 40
+		fail_chance = fail_chance + 20
 	if(forced_sound)
 		playsound(src.loc, forced_sound, 100, 1)
 	else
