@@ -587,32 +587,36 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /* QUALITY SYSTEM */
 
-/obj/item/proc/get_tool_type(quality_id)
-	return quality_id in tool_qualities ? tool_qualities[quality_id] : null
+/obj/item/proc/get_tool_quality(quality_id)
+	return tool_qualities[quality_id]
+
+/obj/item/proc/get_tool_type(var/mob/living/user, var/atom/target, var/list/required_qualitys)
+
 
 /obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 0, forced_sound = null)
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
 		return
-	if(user.shock_stage >= 30)
-		user << SPAN_WARNING("Pain distracts you from your task.")
-		fail_chance = fail_chance + 20
-	if(user.shock_stage >= 60)
-		fail_chance = fail_chance + 20
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.shock_stage >= 30)
+			user << SPAN_WARNING("Pain distracts you from your task.")
+			fail_chance += round(H.shock_stage/120 * 40)
+			base_time = round(base_time * H.shock_stage/120 * 3)
 	if(forced_sound)
 		playsound(src.loc, forced_sound, 100, 1)
 	else
 		playsound(src.loc, src.worksound, 100, 1)
-	if(instant_finish_tier && (instant_finish_tier > get_tool_type(required_quality)))
+	if(instant_finish_tier && (instant_finish_tier > get_tool_quality(required_quality)))
 		target.used_now = TRUE
-		var/time_to_finish = base_time / get_tool_type(required_quality)
+		var/time_to_finish = base_time / get_tool_quality(required_quality)
 		if(!do_after(user, time_to_finish, user))
 			user << SPAN_WARNING("You need to stand still to finish the task properly!.")
 			target.used_now = FALSE
 			return FALSE
 		else
 			target.used_now = FALSE
-	fail_chance = fail_chance - get_tool_type(required_quality) * 10
+	fail_chance += - get_tool_quality(required_quality) * 10
 	if(prob(fail_chance))
 		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% to screw this up.")
 		return FALSE

@@ -329,21 +329,16 @@ Class Procs:
 			user << SPAN_NOTICE("    [C.name]")
 	return 1
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/weapon/tool/crowbar/C)
-	if(!istype(C))
-		return 0
-	if(!panel_open)
-		return 0
-	. = dismantle()
+/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/O as obj)
+	if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+		. = dismantle()
 
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/tool/screwdriver/S)
-	if(!istype(S))
-		return 0
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-	panel_open = !panel_open
-	user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].</span>"
-	update_icon()
-	return 1
+/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/O as obj)
+	if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+		panel_open = !panel_open
+		user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].</span>"
+		update_icon()
+		return 1
 
 /obj/machinery/proc/create_frame(var/type)
 	if(type == FRAME_DEFAULT)
@@ -352,7 +347,6 @@ Class Procs:
 		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame/vertical, loc)
 
 /obj/machinery/proc/dismantle()
-	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
 	M.set_dir(src.dir)
 	M.state = 2

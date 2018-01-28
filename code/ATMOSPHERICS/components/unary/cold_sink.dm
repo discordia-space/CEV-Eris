@@ -165,10 +165,18 @@
 	power_rating = max_power_rating * (power_setting/100)
 
 /obj/machinery/atmospherics/unary/freezer/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
+	switch(O.get_tool_quality(user, src, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING)))
+		if(QUALITY_PRYING)
+			if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				user << SPAN_NOTICE("You remove the components of \the [src].")
+				dismantle()
+		if(QUALITY_SCREW_DRIVING)
+			if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].")
+				update_icon()
+		if(ADJCHECK_FAIL)
+			return
 	if(default_part_replacement(user, O))
 		return
 
