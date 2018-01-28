@@ -3,7 +3,7 @@
 	desc = "Folder contains some papers with important science data."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "scifolder0"
-	var/obj/landmark/storyevent/secdocs_spawn/landmark = null
+	var/obj/landmark/storyevent/midgame_stash_spawn/landmark = null
 
 /obj/item/weapon/secdocs/New()
 	icon_state = "scifolder[rand(0,3)]"
@@ -26,12 +26,12 @@
 
 /obj/item/weapon/secdocs/proc/place_docs()
 	var/list/L = list()
-	for(var/obj/landmark/storyevent/secdocs_spawn/S in landmarks_list)
+	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in landmarks_list)
 		L.Add(S)
 
 	L = shuffle(L)
 
-	for(var/obj/landmark/storyevent/secdocs_spawn/S in L)
+	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in L)
 		if(!S.is_visible())
 			landmark = S
 			break

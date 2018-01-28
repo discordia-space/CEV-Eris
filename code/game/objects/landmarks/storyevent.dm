@@ -2,7 +2,8 @@
 	return FALSE
 
 
-/obj/landmark/storyevent/secdocs_spawn
-	name = "secdocs-spawn"
+/obj/landmark/storyevent/midgame_stash_spawn
+	name = "midgame stash spawn"
 	icon_state = "spy-blue"
-	var/navigation = "Come to landmark. That's all."
+	alpha = 124
+	var/navigation = "But you forgot where you left it. Oops."
