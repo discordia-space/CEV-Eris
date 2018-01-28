@@ -128,6 +128,6 @@
 		user << SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first.")
 		return
 
-	user.unEquip(src.loc)
+	user.unEquip(W, src.loc)
 
 /obj/structure/table/attack_tk() // no telehulk sorry
