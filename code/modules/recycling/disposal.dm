@@ -121,18 +121,15 @@
 	if(!I)
 		return
 
-	user.drop_item()
-	if(I)
-		I.forceMove(src)
+	if(user.unEquip(I, src))
+		user << "You place \the [I] into the [src]."
+		for(var/mob/M in viewers(src))
+			if(M == user)
+				continue
+			M.show_message("[user.name] places \the [I] into the [src].", 3)
+			playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
 
-	user << "You place \the [I] into the [src]."
-	for(var/mob/M in viewers(src))
-		if(M == user)
-			continue
-		M.show_message("[user.name] places \the [I] into the [src].", 3)
-		playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
-
-	update()
+		update()
 
 // mouse drop another mob or self
 //
