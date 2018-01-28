@@ -27,7 +27,7 @@
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
-		user.drop_from_inventory(I, src)
+		user.unEquip(I, src)
 		mybag = I
 		update_icon()
 		updateUsrDialog()
@@ -43,21 +43,21 @@
 				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 				return
 		if(!mymop)
-			user.drop_from_inventory(I, src)
+			user.unEquip(I, src)
 			mymop = I
 			update_icon()
 			updateUsrDialog()
 			user << SPAN_NOTICE("You put [I] into [src].")
 
 	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && !myspray)
-		user.drop_from_inventory(I, src)
+		user.unEquip(I, src)
 		myspray = I
 		update_icon()
 		updateUsrDialog()
 		user << SPAN_NOTICE("You put [I] into [src].")
 
 	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
-		user.drop_from_inventory(I, src)
+		user.unEquip(I, src)
 		myreplacer = I
 		update_icon()
 		updateUsrDialog()
@@ -65,7 +65,7 @@
 
 	else if(istype(I, /obj/item/weapon/caution))
 		if(signs < 4)
-			user.drop_from_inventory(I, src)
+			user.unEquip(I, src)
 			signs++
 			update_icon()
 			updateUsrDialog()

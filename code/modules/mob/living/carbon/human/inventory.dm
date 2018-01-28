@@ -219,7 +219,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!istype(W)) return
 	if(!has_organ_for_slot(slot)) return
 	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
-	W.forceMove(src)
+	if(ismob(W.loc))
+		var/mob/M = W.loc
+		if(!M.unEquip(W, src))
+			return
+	else
+		W.forceMove(src)
 	switch(slot)
 		if(slot_back)
 			src.back = W
@@ -328,13 +333,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!(slot in list(slot_in_backpack, slot_accessory_buffer)))
 		W.screen_loc = find_inv_position(slot)
 	W.layer = 20
-
-	if((W == src.l_hand) && (slot != slot_l_hand))
-		src.l_hand = null
-		update_inv_l_hand() //So items actually disappear from hands.
-	else if((W == src.r_hand) && (slot != slot_r_hand))
-		src.r_hand = null
-		update_inv_r_hand()
 
 	if(W.action_button_name)
 		update_action_buttons()

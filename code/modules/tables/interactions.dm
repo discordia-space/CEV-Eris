@@ -58,16 +58,13 @@
 	return 1
 
 
-/obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/structure/table/MouseDrop_T(obj/item/O, mob/living/user)
 
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+	if(user.get_active_hand() != O)
 		return ..()
 	if(isrobot(user))
 		return
-	user.drop_item()
-	if (O.loc != src.loc)
-		step(O, get_dir(O, src))
-	return
+	user.unEquip(O, src.loc)
 
 
 /obj/structure/table/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
@@ -131,8 +128,6 @@
 		user << SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first.")
 		return
 
-	user.drop_item(src.loc)
-	return
+	user.unEquip(src.loc)
 
 /obj/structure/table/attack_tk() // no telehulk sorry
-	return

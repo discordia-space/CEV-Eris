@@ -141,7 +141,6 @@
 	var/obj/item/dropped = null
 	for(var/slot in drop_on_remove)
 		dropped = owner.get_equipped_item(slot)
-		owner.u_equip(dropped)
 		owner.drop_from_inventory(dropped)
 
 	if(parent)
