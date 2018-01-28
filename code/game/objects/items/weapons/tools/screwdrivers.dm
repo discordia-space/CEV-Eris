@@ -3,6 +3,7 @@
 	desc = "You can be totally screwwy with this."
 	icon_state = "screwdriver"
 	flags = CONDUCT
+	worksound = WORKSOUND_SCREW_DRIVING
 	slot_flags = SLOT_BELT | SLOT_EARS
 	w_class = ITEM_SIZE_TINY
 	throw_speed = 3

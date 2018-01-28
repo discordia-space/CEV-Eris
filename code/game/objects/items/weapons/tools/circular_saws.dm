@@ -2,7 +2,8 @@
 	name = "circular saw"
 	desc = "For heavy duty cutting."
 	icon_state = "saw"
-	hitsound = 'sound/weapons/circsawhit.ogg'
+	hitsound = WORKSOUND_CIRCULAR_SAW
+	worksound = WORKSOUND_CIRCULAR_SAW
 	flags = CONDUCT
 	force = WEAPON_FORCE_ROBUST
 	w_class = ITEM_SIZE_NORMAL
@@ -19,6 +20,7 @@
 	name = "metal saw"
 	desc = "For cutting wood and other objects to pieces. Or sawing bones, in case of emergency."
 	icon_state = "metal_saw"
+	hitsound = null
 	force = WEAPON_FORCE_WEAK
 	matter = list(DEFAULT_WALL_MATERIAL = 10000)
 	tool_qualities = list(QUALITY_SAWING = 2, QUALITY_CUTTING = 1)

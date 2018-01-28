@@ -119,11 +119,21 @@
 		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return
 
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
+	var/tool_type = O.get_tool_type(user, O, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				user << SPAN_NOTICE("You remove the components of \the [src].")
+				dismantle()
+				return
+		if(QUALITY_SCREW_DRIVING)
+			if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].")
+				update_icon()
+				return
+		if(ABORT_CHECK)
+			return
 	if(default_part_replacement(user, O))
 		return
 

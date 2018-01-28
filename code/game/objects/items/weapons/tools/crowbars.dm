@@ -5,6 +5,7 @@
 	item_state = "crowbar_red"
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFULL
+	worksound = WORKSOUND_EASY_CROWBAR
 	item_state = "crowbar"
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 1)

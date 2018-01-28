@@ -590,8 +590,23 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/get_tool_quality(quality_id)
 	return tool_qualities[quality_id]
 
-/obj/item/proc/get_tool_type(var/mob/living/user, var/atom/target, var/list/required_qualitys)
+/obj/item/proc/get_tool_type(var/mob/living/user, var/atom/target, var/list/required_qualities)
+	var/start_loc = user.loc
+	var/list/L = list()
+	for(var/Q in required_qualities)
+		if(Q in tool_qualities)
+			L.Add(Q)
 
+	if(!L.len)
+		return FALSE
+
+	var/return_quality = L[1]
+	if(L.len > 1)
+		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
+	if(user.loc != start_loc)
+		return ABORT_CHECK
+	else
+		return return_quality
 
 /obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 0, forced_sound = null)
 	if(target.used_now)

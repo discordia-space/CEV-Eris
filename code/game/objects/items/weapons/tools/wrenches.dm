@@ -4,6 +4,7 @@
 	icon_state = "wrench"
 	flags = CONDUCT
 	force = WEAPON_FORCE_NORMAL
+	worksound = WORKSOUND_WRENCHING
 	throwforce = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
