@@ -279,8 +279,7 @@
 
 				//Actually disarm them
 				for(var/obj/item/I in holding)
-					if(I)
-						drop_from_inventory(I)
+					if(I && src.unEquip(I))
 						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
