@@ -89,6 +89,47 @@
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
 
+//Modules ====================================
+
+/datum/design/item/mechfab/modules
+	category = "Prosthesis"
+	materials = list(DEFAULT_WALL_MATERIAL = 6000)
+	req_tech = list(TECH_BIO = 3)
+
+/datum/design/item/mechfab/modules/armor
+	name = "Subdermal body armor"
+	build_path = /obj/item/organ_module/armor
+	id = "organ_mod_armor_body"
+	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3)
+
+/datum/design/item/mechfab/modules/armblade
+	name = "embed handblade"
+	build_path = /obj/item/organ_module/active/simple/armblade
+	id = "organ_mod_armblade"
+	materials = list(DEFAULT_WALL_MATERIAL = 8000)
+	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3)
+
+/datum/design/item/mechfab/modules/runner
+	name = "Mechanical muscules"
+	build_path = /obj/item/organ_module/muscule
+	id = "organ_mod_runner"
+	req_tech = list(TECH_BIO = 4)
+
+
+/datum/design/item/mechfab/modules/multitool
+	materials = list(DEFAULT_WALL_MATERIAL = 18000)
+
+/datum/design/item/mechfab/modules/multitool/surgial
+	build_path = /obj/item/organ_module/active/multitool/surgial
+	name = "Surgial organ module"
+	id = "organ_mod_surgial"
+	req_tech = list(TECH_BIO = 4)
+
+/datum/design/item/mechfab/modules/multitool/engineer
+	build_path = /obj/item/organ_module/active/multitool/engineer
+	name = "Technomancer organ module"
+	id = "organ_mod_eng"
+	req_tech = list(TECH_BIO = 3, TECH_ENGINEERING = 3)
 
 //Prosthesis ====================================
 
