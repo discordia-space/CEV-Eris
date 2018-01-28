@@ -3,6 +3,7 @@
 	role_text = "Traitor"
 	role_text_plural = "Traitor"
 	bantype = "Syndicate"
+	role_type = ROLE_TRAITOR
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
 
@@ -22,8 +23,9 @@
 /datum/antagonist/secdoc_scientist
 	id = ROLE_SECDOC_DEFENDER
 	role_text = "Scientist"
-	role_text_plural = "Scientist"
-	bantype = "Syndicate"
+	role_text_plural = "Scientists"
+	bantype = "Crew-sided"
+	role_type = "crew-sided"
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
 
