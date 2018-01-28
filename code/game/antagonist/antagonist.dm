@@ -4,7 +4,7 @@
 	var/list/objectives = list()
 
 	var/list/possible_objectives = list()
-	var/survive_objective = null
+	var/survive_objective = /datum/objective/escape
 
 	var/datum/mind/owner = null
 
@@ -28,6 +28,7 @@
 	// Misc.
 	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
 	var/list/uplinks = list()
+	var/only_human = TRUE
 
 
 /datum/antagonist/New()

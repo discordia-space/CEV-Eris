@@ -34,14 +34,13 @@
 				else
 					deck_size += 1
 
-	/*
 	//Fake values for test
-	deck_size = 0
-	deck_size += f_heads*4
-	deck_size += f_sec*3
-	deck_size += f_eng*2
-	deck_size += f_med+f_sci
-	*/
+	if(debug_mode)
+		deck_size = 0
+		deck_size += f_heads*4
+		deck_size += f_sec*3
+		deck_size += f_eng*2
+		deck_size += f_med+f_sci
 
 /datum/storyteller/erida/trigger_event()
 	if(!mad && prob(10))

@@ -45,24 +45,24 @@
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
-var/list/slot_equipment_priority = list( \
-		slot_back,\
-		slot_wear_id,\
-		slot_w_uniform,\
-		slot_wear_suit,\
-		slot_wear_mask,\
-		slot_head,\
-		slot_shoes,\
-		slot_gloves,\
-		slot_l_ear,\
-		slot_r_ear,\
-		slot_glasses,\
-		slot_belt,\
-		slot_s_store,\
-		slot_accessory_buffer,\
-		slot_l_store,\
-		slot_r_store\
-	)
+var/list/slot_equipment_priority = list(
+	slot_back,
+	slot_wear_id,
+	slot_w_uniform,
+	slot_wear_suit,
+	slot_wear_mask,
+	slot_head,
+	slot_shoes,
+	slot_gloves,
+	slot_l_ear,
+	slot_r_ear,
+	slot_glasses,
+	slot_belt,
+	slot_s_store,
+	slot_accessory_buffer,
+	slot_l_store,
+	slot_r_store
+)
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/proc/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
@@ -71,7 +71,8 @@ var/list/slot_equipment_priority = list( \
 //puts the item "W" into an appropriate slot in a human's inventory
 //returns 0 if it cannot, 1 if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W)
-	if(!istype(W)) return FALSE
+	if(!istype(W))
+		return FALSE
 
 	for(var/slot in slot_equipment_priority)
 		if(equip_to_slot_if_possible(W, slot, del_on_fail=0, disable_warning=1, redraw_mob=1))
@@ -157,16 +158,16 @@ var/list/slot_equipment_priority = list( \
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
-	return drop_from_inventory(l_hand, Target)
+	return unEquip(l_hand, Target)
 
 //Drops the item in our right hand
 /mob/proc/drop_r_hand(var/atom/Target)
-	return drop_from_inventory(r_hand, Target)
+	return unEquip(r_hand, Target)
 
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(var/atom/Target)
 	var/obj/item/I = get_active_hand()
-	drop_from_inventory(I, Target, MOVED_DROP)
+	unEquip(I, Target, MOVED_DROP)
 
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
@@ -215,10 +216,9 @@ var/list/slot_equipment_priority = list( \
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
 /mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
-	if(!(force || canUnEquip(I)))
+	if(!canUnEquip(I))
 		return
-	drop_from_inventory(I,Target)
-	return TRUE
+	return drop_from_inventory(I,Target)
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O)

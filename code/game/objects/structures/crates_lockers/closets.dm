@@ -332,17 +332,17 @@
 			var/turf/T = get_turf(src)
 			for(var/obj/item/I in LB.contents)
 				LB.remove_from_storage(I, T)
-			user.visible_message(SPAN_NOTICE("[user] empties \the [LB] into \the [src]."), \
-								 SPAN_NOTICE("You empty \the [LB] into \the [src]."), \
-								 SPAN_NOTICE("You hear rustling of clothes."))
+			user.visible_message(
+				SPAN_NOTICE("[user] empties \the [LB] into \the [src]."), \
+				SPAN_NOTICE("You empty \the [LB] into \the [src]."), \
+				SPAN_NOTICE("You hear rustling of clothes.")
+			)
 			return
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
 			return
-		usr.drop_item()
-		if(W)
-			W.forceMove(src.loc)
+		usr.unEquip(W, src.loc)
 	else if(istype(W, /obj/item/weapon/packageWrap))
 		return
 	else if(istype(W, /obj/item/weapon/tool/weldingtool))
@@ -382,11 +382,13 @@
 		return
 	if(istype(O, /obj/structure/closet))
 		return
+	if(O in user)
+		if(!user.unEquip(O))
+			return
 	step_towards(O, src.loc)
 	if(user != O)
 		user.show_viewers(SPAN_DANGER("[user] stuffs [O] into [src]!"))
 	src.add_fingerprint(user)
-	return
 
 /obj/structure/closet/attack_ai(mob/user)
 	if(isrobot(user) && Adjacent(user)) // Robots can open/close it, but not the AI.
