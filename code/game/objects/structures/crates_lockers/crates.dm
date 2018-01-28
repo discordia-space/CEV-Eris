@@ -78,7 +78,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			return
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/weapon/tool/wirecutters))
 		if(rigged)
 			user  << SPAN_NOTICE("You cut away the wiring.")
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)

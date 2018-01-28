@@ -94,7 +94,7 @@
 	return ..()
 
 /obj/machinery/meter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
+	if (!istype(W, /obj/item/weapon/tool/wrench))
 		return ..()
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	user << SPAN_NOTICE("You begin to unfasten \the [src]...")

@@ -174,13 +174,13 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	var/old_broken_state = broken_state
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
-			if(istype(I, /obj/item/weapon/screwdriver))
+			if(istype(I, /obj/item/weapon/tool/screwdriver))
 				user << SPAN_NOTICE("You secure the screws of the framework.")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				broken_state++
 		if(GRAV_NEEDS_WELDING)
-			if(istype(I, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = I
+			if(istype(I, /obj/item/weapon/tool/weldingtool))
+				var/obj/item/weapon/tool/weldingtool/WT = I
 				if(WT.remove_fuel(1, user))
 					user << SPAN_NOTICE("You mend the damaged framework.")
 					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
@@ -198,7 +198,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 				else
 					user << SPAN_WARNING("You need 10 sheets of plasteel!")
 		if(GRAV_NEEDS_WRENCH)
-			if(istype(I, /obj/item/weapon/wrench))
+			if(istype(I, /obj/item/weapon/tool/wrench))
 				user << SPAN_NOTICE("You secure the plating to the framework.")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				set_fix()
@@ -290,8 +290,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	src.updateUsrDialog()
 
 /obj/machinery/gravity_generator/main/proc/grav_on()
-	if(!config.station_levels)
-		message_admins("config.station_levels is blank. Gravgen isn't properly established.")
+	if(!maps_data.station_levels.len)
+		message_admins("maps_data.station_levels is blank. Gravgen isn't properly established.")
 		return
 
 	gravity_is_on = 1
@@ -302,8 +302,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	message_admins("The gravity generator was brought fully online. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
 
 /obj/machinery/gravity_generator/main/proc/grav_off()
-	if(!config.station_levels)
-		message_admins("config.station_levels is blank. Gravgen isn't properly established.")
+	if(!maps_data.station_levels.len)
+		message_admins("maps_data.station_levels is blank. Gravgen isn't properly established.")
 		return
 
 	gravity_is_on = 0
@@ -316,7 +316,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 /obj/machinery/gravity_generator/main/proc/update_gravity(var/is_on)
 	for(var/area/A in world)
-		if(A.z in config.station_levels)
+		if(isStationLevel(A.z))
 			A.gravitychange(is_on,A)
 
 // Charge/Discharge and turn on/off gravity when you reach 0/100 percent.

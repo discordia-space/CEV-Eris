@@ -128,7 +128,7 @@
 			user << "You switch on the [src]."
 
 /obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/screwdriver))
+	if (istype(W, /obj/item/weapon/tool/screwdriver))
 		if(cover_open)
 			cover_open = 0
 			user << "You screw the panel into place."

@@ -63,7 +63,7 @@
 	item_state = "medical_voidsuit"
 	allowed = list(
 		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical
+		/obj/item/weapon/storage/firstaid,/obj/item/device/scanner/healthanalyzer,/obj/item/stack/medical
 	)
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 25, bio = 100, rad = 50)
 

@@ -271,7 +271,7 @@
 		return 1
 
 /obj/machinery/shieldgen/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 		if(is_open)
 			user << "\blue You close the panel."
@@ -291,7 +291,7 @@
 				user << SPAN_NOTICE("You repair the [src]!")
 				update_icon()
 
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/tool/wrench))
 		if(locked)
 			user << "The bolts are covered, unlocking this would retract the covers."
 			return

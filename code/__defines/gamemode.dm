@@ -47,6 +47,8 @@
 #define ROLE_MARSHAL "marshal"
 
 #define ROLE_INQUISITOR "inquisitor"
+#define ROLE_SECDOC_HUNTER "secdoc_hunter"
+#define ROLE_SECDOC_DEFENDER "secdoc_defender"
 
 #define FACTION_REVOLUTIONARY "revolutionary"
 #define FACTION_BORERS "borers"

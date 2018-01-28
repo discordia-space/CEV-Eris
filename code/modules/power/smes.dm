@@ -251,7 +251,7 @@
 
 
 /obj/machinery/power/smes/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		if(!open_hatch)
 			open_hatch = 1
 			user << SPAN_NOTICE("You open the maintenance hatch of [src].")
@@ -284,7 +284,7 @@
 		stat = 0
 		return 0
 
-	else if(istype(W, /obj/item/weapon/wirecutters) && terminal && !building_terminal)
+	else if(istype(W, /obj/item/weapon/tool/wirecutters) && terminal && !building_terminal)
 		building_terminal = 1
 		var/turf/tempTDir = terminal.loc
 		if (istype(tempTDir))
@@ -389,7 +389,7 @@
 	failure_timer = max(failure_timer, duration)
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(src.z in config.station_levels)
+	if(isStationLevel(src.z))
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)

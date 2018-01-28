@@ -46,8 +46,8 @@
 		src.visible_message("The [src] crumbles away, leaving some dust and gravel behind.")*/
 
 /obj/item/weapon/ore/strangerock/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/weldingtool/))
-		var/obj/item/weapon/weldingtool/w = W
+	if(istype(W,/obj/item/weapon/tool/weldingtool/))
+		var/obj/item/weapon/tool/weldingtool/w = W
 		if(w.isOn())
 			if(w.get_fuel() >= 4 && !src.method)
 				if(inside)
@@ -230,11 +230,11 @@
 		if(13)
 			item_type = "tool"
 			if(prob(25))
-				new_item = new /obj/item/weapon/wrench(src.loc)
+				new_item = new /obj/item/weapon/tool/wrench(src.loc)
 			else if(prob(25))
-				new_item = new /obj/item/weapon/crowbar(src.loc)
+				new_item = new /obj/item/weapon/tool/crowbar(src.loc)
 			else
-				new_item = new /obj/item/weapon/screwdriver(src.loc)
+				new_item = new /obj/item/weapon/tool/screwdriver(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
 			"You wonder what it was used for",\
 			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains on it")]."

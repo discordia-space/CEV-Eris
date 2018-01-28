@@ -35,42 +35,42 @@
 	item_state = "utility"
 	can_hold = list(
 		///obj/item/weapon/combitool,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/wirecutters,
-		/obj/item/weapon/wrench,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/weldingtool,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/device/multitool,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
-		/obj/item/device/analyzer,
+		/obj/item/device/scanner/analyzer,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,
-		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/device/scanner/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini
 		)
 
 
 /obj/item/weapon/storage/belt/utility/full/New()
 	..()
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/weapon/tool/screwdriver(src)
+	new /obj/item/weapon/tool/wrench(src)
+	new /obj/item/weapon/tool/weldingtool(src)
+	new /obj/item/weapon/tool/crowbar(src)
+	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 
 
 /obj/item/weapon/storage/belt/utility/atmostech/New()
 	..()
-	new /obj/item/weapon/screwdriver(src)
-	new /obj/item/weapon/wrench(src)
-	new /obj/item/weapon/weldingtool(src)
-	new /obj/item/weapon/crowbar(src)
-	new /obj/item/weapon/wirecutters(src)
+	new /obj/item/weapon/tool/screwdriver(src)
+	new /obj/item/weapon/tool/wrench(src)
+	new /obj/item/weapon/tool/weldingtool(src)
+	new /obj/item/weapon/tool/crowbar(src)
+	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/device/t_scanner(src)
 
 
@@ -81,7 +81,7 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/device/scanner/healthanalyzer,
 		/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
@@ -97,7 +97,7 @@
 		/obj/item/clothing/gloves/latex,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/clothing/glasses/hud/health,
-		/obj/item/weapon/crowbar,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/weapon/extinguisher/mini
 		)

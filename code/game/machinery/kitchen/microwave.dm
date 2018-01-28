@@ -54,7 +54,7 @@
 
 /obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(src.broken > 0)
-		if(src.broken == 2 && istype(O, /obj/item/weapon/screwdriver)) // If it's broken and they're using a screwdriver
+		if(src.broken == 2 && istype(O, /obj/item/weapon/tool/screwdriver)) // If it's broken and they're using a screwdriver
 			user.visible_message( \
 				SPAN_NOTICE("\The [user] starts to fix part of the microwave."), \
 				SPAN_NOTICE("You start to fix part of the microwave.") \
@@ -65,7 +65,7 @@
 					SPAN_NOTICE("You have fixed part of the microwave.") \
 				)
 				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && istype(O, /obj/item/weapon/wrench)) // If it's broken and they're doing the wrench
+		else if(src.broken == 1 && istype(O, /obj/item/weapon/tool/wrench)) // If it's broken and they're doing the wrench
 			user.visible_message( \
 				SPAN_NOTICE("\The [user] starts to fix part of the microwave."), \
 				SPAN_NOTICE("You start to fix part of the microwave.") \
@@ -131,7 +131,7 @@
 				user << SPAN_WARNING("Your [O] contains components unsuitable for cookery.")
 				return 1
 		return
-	else if(istype(O,/obj/item/weapon/crowbar))
+	else if(istype(O,/obj/item/weapon/tool/crowbar))
 		user.visible_message( \
 			"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave.</span>", \
 			"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the microwave.</span>"

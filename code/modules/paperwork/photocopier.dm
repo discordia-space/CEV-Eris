@@ -124,7 +124,7 @@
 			updateUsrDialog()
 		else
 			user << SPAN_NOTICE("This cartridge is not yet ready for replacement! Use up the rest of the toner.")
-	else if(istype(O, /obj/item/weapon/wrench))
+	else if(istype(O, /obj/item/weapon/tool/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
 		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"

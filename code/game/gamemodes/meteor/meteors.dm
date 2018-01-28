@@ -29,7 +29,7 @@
 ///////////////////////////////
 
 /proc/pick_meteor_start(var/startSide = pick(cardinal))
-	var/startLevel = pick(config.station_levels)
+	var/startLevel = pick(maps_data.station_levels)
 	var/pickedstart = spaceDebrisStartLoc(startSide, startLevel)
 
 	return list(startLevel, pickedstart)

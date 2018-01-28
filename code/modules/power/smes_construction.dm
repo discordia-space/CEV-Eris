@@ -333,7 +333,7 @@
 			failure_probability = 0
 
 		// Crowbar - Disassemble the SMES.
-		if(istype(W, /obj/item/weapon/crowbar))
+		if(istype(W, /obj/item/weapon/tool/crowbar))
 			if (terminal)
 				user << SPAN_WARNING("You have to disassemble the terminal first!")
 				return

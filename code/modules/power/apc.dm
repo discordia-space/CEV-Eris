@@ -438,7 +438,7 @@
 	if (issilicon(user) && get_dist(src,user)>1)
 		return src.attack_hand(user)
 	src.add_fingerprint(user)
-	if (istype(W, /obj/item/weapon/crowbar) && opened)
+	if (istype(W, /obj/item/weapon/tool/crowbar) && opened)
 		if (has_electronics==1)
 			if (terminal)
 				user << SPAN_WARNING("Disconnect wires first.")
@@ -462,7 +462,7 @@
 		else if (opened!=2) //cover isn't removed
 			opened = 0
 			update_icon()
-	else if (istype(W, /obj/item/weapon/crowbar) && !((stat & BROKEN) || hacker) )
+	else if (istype(W, /obj/item/weapon/tool/crowbar) && !((stat & BROKEN) || hacker) )
 		if(coverlocked && !(stat & MAINT))
 			user << SPAN_WARNING("The cover is locked and cannot be opened.")
 			return
@@ -488,7 +488,7 @@
 			SPAN_NOTICE("You insert the power cell."))
 		chargecount = 0
 		update_icon()
-	else if	(istype(W, /obj/item/weapon/screwdriver))	// haxing
+	else if	(istype(W, /obj/item/weapon/tool/screwdriver))	// haxing
 		if(opened)
 			if (cell)
 				user << SPAN_WARNING("Close the APC first.") //Less hints more mystery!
@@ -560,7 +560,7 @@
 					"You add cables to the APC frame.")
 				make_terminal()
 				terminal.connect_to_network()
-	else if (istype(W, /obj/item/weapon/wirecutters) && terminal && opened && has_electronics!=2)
+	else if (istype(W, /obj/item/weapon/tool/wirecutters) && terminal && opened && has_electronics!=2)
 		var/turf/T = loc
 		if(istype(T) && !T.is_plating())
 			user << SPAN_WARNING("You must remove the floor plating in front of the APC first.")
@@ -591,8 +591,8 @@
 	else if (istype(W, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
 		user << SPAN_WARNING("You cannot put the board inside, the frame is damaged.")
 		return
-	else if (istype(W, /obj/item/weapon/weldingtool) && opened && has_electronics==0 && !terminal)
-		var/obj/item/weapon/weldingtool/WT = W
+	else if (istype(W, /obj/item/weapon/tool/weldingtool) && opened && has_electronics==0 && !terminal)
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if (WT.get_fuel() < 3)
 			user << SPAN_WARNING("You need more welding fuel to complete this task.")
 			return
@@ -660,7 +660,7 @@
 				return src.attack_hand(user)
 			if (!opened && wiresexposed && \
 				(istype(W, /obj/item/device/multitool) || \
-				istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/assembly/signaler)))
+				istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/device/assembly/signaler)))
 				return src.attack_hand(user)
 			user.visible_message(SPAN_DANGER("The [src.name] has been hit with the [W.name] by [user.name]!"), \
 				SPAN_DANGER("You hit the [src.name] with your [W.name]!"), \

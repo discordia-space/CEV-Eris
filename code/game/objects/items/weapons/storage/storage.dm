@@ -369,7 +369,8 @@
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
 	if(usr)
-		usr.remove_from_mob(W)
+		if(!usr.unEquip(W))
+			return 0
 		usr.update_icons()	//update our overlays
 	W.loc = src
 	W.on_enter_storage(src)

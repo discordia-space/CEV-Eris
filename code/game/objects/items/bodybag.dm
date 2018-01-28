@@ -56,7 +56,7 @@
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/weapon/tool/wirecutters))
 		user << "You cut the tag off the bodybag"
 		src.name = "body bag"
 		src.overlays.Cut()
@@ -157,8 +157,8 @@
 	if(opened)
 		..()
 	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.
-		if(istype(W,/obj/item/device/healthanalyzer))
-			var/obj/item/device/healthanalyzer/analyzer = W
+		if(istype(W,/obj/item/device/scanner/healthanalyzer))
+			var/obj/item/device/scanner/healthanalyzer/analyzer = W
 			for(var/mob/living/L in contents)
 				analyzer.attack(L,user)
 		else

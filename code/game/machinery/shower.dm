@@ -16,7 +16,7 @@
 	var/list/effect = list()
 
 /obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/device/analyzer)
+	if(I.type == /obj/item/device/scanner/analyzer)
 		user << SPAN_NOTICE("The water temperature seems to be [watertemp].")
 
 /obj/machinery/cellshower/process()

@@ -58,8 +58,7 @@ var/global/ntnet_card_uid = 1
 		return 0
 
 	if(holder2)
-		var/turf/T = get_turf(holder2)
-		if((T && istype(T)) && T.z in config.station_levels)
+		if(isOnStationLevel(holder2))
 			return 2
 
 	if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.

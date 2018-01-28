@@ -117,8 +117,8 @@
 				icon_state = "ed209_shell"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(istype(W, /obj/item/weapon/tool/weldingtool))
+				var/obj/item/weapon/tool/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "shielded frame assembly"
@@ -172,7 +172,7 @@
 				qdel(W)
 
 		if(8)
-			if(istype(W, /obj/item/weapon/screwdriver))
+			if(istype(W, /obj/item/weapon/tool/screwdriver))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				var/turf/T = get_turf(user)
 				user << SPAN_NOTICE("Now attaching the gun to the frame...")

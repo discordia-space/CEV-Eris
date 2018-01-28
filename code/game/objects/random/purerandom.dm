@@ -15,13 +15,13 @@
 				prob(2);/obj/item/weapon/reagent_containers/syringe/inaprovaline,\
 				prob(4);/obj/item/weapon/cigbutt,\
 				prob(2);/obj/item/device/t_scanner,\
-				prob(2);/obj/item/device/analyzer,\
-				prob(2);/obj/item/device/healthanalyzer,\
-				prob(5);/obj/item/weapon/screwdriver,\
-				prob(5);/obj/item/weapon/wirecutters,\
-				prob(5);/obj/item/weapon/weldingtool,\
-				prob(5);/obj/item/weapon/crowbar,\
-				prob(5);/obj/item/weapon/wrench,\
+				prob(2);/obj/item/device/scanner/analyzer,\
+				prob(2);/obj/item/device/scanner/healthanalyzer,\
+				prob(5);/obj/item/weapon/tool/screwdriver,\
+				prob(5);/obj/item/weapon/tool/wirecutters,\
+				prob(5);/obj/item/weapon/tool/weldingtool,\
+				prob(5);/obj/item/weapon/tool/crowbar,\
+				prob(5);/obj/item/weapon/tool/wrench,\
 				prob(5);/obj/item/weapon/storage/belt/utility/full,\
 				prob(4);/obj/item/weapon/storage/belt/medical,\
 				prob(4);/obj/item/weapon/storage/belt/security,\
@@ -61,14 +61,14 @@
 				prob(2);/obj/item/weapon/storage/box/drinkingglasses,\
 				prob(2);/obj/item/weapon/hatton_magazine,\
 				prob(2);/obj/item/weapon/hand_labeler,\
-				prob(2);/obj/item/weapon/bonegel,\
-				prob(2);/obj/item/weapon/FixOVein,\
-				prob(2);/obj/item/weapon/bonesetter,\
-				prob(2);/obj/item/weapon/scalpel,\
-				prob(2);/obj/item/weapon/surgicaldrill,\
-				prob(2);/obj/item/weapon/cautery,\
-				prob(2);/obj/item/weapon/retractor,\
-				prob(2);/obj/item/weapon/circular_saw,\
+				prob(2);/obj/item/weapon/tool/bonegel,\
+				prob(2);/obj/item/weapon/tool/fixovein,\
+				prob(2);/obj/item/weapon/tool/bonesetter,\
+				prob(2);/obj/item/weapon/tool/scalpel,\
+				prob(2);/obj/item/weapon/tool/surgicaldrill,\
+				prob(2);/obj/item/weapon/tool/cautery,\
+				prob(2);/obj/item/weapon/tool/retractor,\
+				prob(2);/obj/item/weapon/tool/circular_saw,\
 				prob(3);/obj/item/weapon/mop,\
 				prob(3);/obj/item/weapon/lipstick/random,\
 				prob(2);/obj/item/weapon/inflatable_dispenser,\

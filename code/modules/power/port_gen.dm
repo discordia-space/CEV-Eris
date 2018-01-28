@@ -256,7 +256,7 @@
 		updateUsrDialog()
 		return
 	else if(!active)
-		if(istype(O, /obj/item/weapon/wrench))
+		if(istype(O, /obj/item/weapon/tool/wrench))
 
 			if(!anchored)
 				connect_to_network()
@@ -268,14 +268,14 @@
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			anchored = !anchored
 
-		else if(istype(O, /obj/item/weapon/screwdriver))
+		else if(istype(O, /obj/item/weapon/tool/screwdriver))
 			open = !open
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(open)
 				user << "\blue You open the access panel."
 			else
 				user << "\blue You close the access panel."
-		else if(istype(O, /obj/item/weapon/crowbar) && open)
+		else if(istype(O, /obj/item/weapon/tool/crowbar) && open)
 			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			for(var/obj/item/I in component_parts)
 				I.loc = src.loc

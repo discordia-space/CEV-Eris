@@ -16,8 +16,8 @@
 
 /obj/machinery/door/blast/shutters/glass/attackby(obj/item/I, mob/user, params)
 	if(density)
-		if(istype(I, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = I
+		if(istype(I, /obj/item/weapon/tool/weldingtool))
+			var/obj/item/weapon/tool/weldingtool/WT = I
 			if((stat&BROKEN) && have_glass)
 				if(WT.remove_fuel(0,user))
 					user << SPAN_NOTICE("You begin slicing [src]'s debris...")

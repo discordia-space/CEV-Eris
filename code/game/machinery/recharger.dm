@@ -68,7 +68,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		charging = G
 		update_icon()
 
-	else if(portable && istype(G, /obj/item/weapon/wrench))
+	else if(portable && istype(G, /obj/item/weapon/tool/wrench))
 		if(charging)
 			user << SPAN_WARNING("Remove [charging] first!")
 			return

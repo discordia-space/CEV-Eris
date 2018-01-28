@@ -24,10 +24,10 @@
 		overlays += "bomb_assembly"
 
 /obj/item/device/onetankbomb/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/analyzer))
+	if(istype(W, /obj/item/device/scanner/analyzer))
 		bombtank.attackby(W, user)
 		return
-	if(istype(W, /obj/item/weapon/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
+	if(istype(W, /obj/item/weapon/tool/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
 
 		user << SPAN_NOTICE("You disassemble [src].")
 
@@ -41,8 +41,8 @@
 
 		qdel(src)
 		return
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weapon/tool/weldingtool))
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1, user))
 			if(!status)
 				status = 1

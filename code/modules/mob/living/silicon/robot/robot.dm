@@ -480,7 +480,7 @@
 
 				return
 
-	if (istype(W, /obj/item/weapon/weldingtool))
+	if (istype(W, /obj/item/weapon/tool/weldingtool))
 		if (src == user)
 			user << SPAN_WARNING("You lack the reach to be able to repair yourself.")
 			return
@@ -488,7 +488,7 @@
 		if (!getBruteLoss())
 			user << "Nothing to fix here!"
 			return
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if (WT.remove_fuel(0))
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			adjustBruteLoss(-30)
@@ -512,7 +512,7 @@
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text("\red [user] has fixed some of the burnt wires on [src]!"), 1)
 
-	else if (istype(W, /obj/item/weapon/crowbar))	// crowbar means open or close the cover
+	else if (istype(W, /obj/item/weapon/tool/crowbar))	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
 				user << "You close the cover."
@@ -600,18 +600,18 @@
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/multitool))
+	else if (istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/device/multitool))
 		if (wiresexposed)
 			wires.Interact(user)
 		else
 			user << "You can't reach the wiring."
 
-	else if(istype(W, /obj/item/weapon/screwdriver) && opened && !cell)	// haxing
+	else if(istype(W, /obj/item/weapon/tool/screwdriver) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
 		updateicon()
 
-	else if(istype(W, /obj/item/weapon/screwdriver) && opened && cell)	// radio
+	else if(istype(W, /obj/item/weapon/tool/screwdriver) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
@@ -655,7 +655,7 @@
 
 
 	else
-		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
+		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/scanner/healthanalyzer)) )
 			spark_system.start()
 		return ..()
 

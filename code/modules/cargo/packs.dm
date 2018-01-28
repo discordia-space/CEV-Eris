@@ -788,17 +788,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/surgery
 	name = "Surgery crate"
-	contains = list(/obj/item/weapon/cautery,
-					/obj/item/weapon/surgicaldrill,
+	contains = list(/obj/item/weapon/tool/cautery,
+					/obj/item/weapon/tool/surgicaldrill,
 					/obj/item/clothing/mask/breath/medical,
 					/obj/item/weapon/tank/anesthetic,
-					/obj/item/weapon/FixOVein,
-					/obj/item/weapon/hemostat,
-					/obj/item/weapon/scalpel,
-					/obj/item/weapon/bonegel,
-					/obj/item/weapon/retractor,
-					/obj/item/weapon/bonesetter,
-					/obj/item/weapon/circular_saw)
+					/obj/item/weapon/tool/fixovein,
+					/obj/item/weapon/tool/hemostat,
+					/obj/item/weapon/tool/scalpel,
+					/obj/item/weapon/tool/bonegel,
+					/obj/item/weapon/tool/retractor,
+					/obj/item/weapon/tool/bonesetter,
+					/obj/item/weapon/tool/circular_saw)
 	cost = 2500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Surgery crate"
@@ -888,7 +888,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
 					/obj/item/weapon/material/hatchet,
 					/obj/item/weapon/material/minihoe,
-					/obj/item/device/analyzer/plant_analyzer,
+					/obj/item/device/scanner/analyzer/plant_analyzer,
 					/obj/item/clothing/gloves/botanic_leather,
 					/obj/item/clothing/suit/apron) // Updated with new things
 	cost = 1500

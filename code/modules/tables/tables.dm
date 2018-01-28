@@ -91,7 +91,7 @@
 
 /obj/structure/table/attackby(obj/item/weapon/W, mob/user)
 
-	if(reinforced && istype(W, /obj/item/weapon/screwdriver))
+	if(reinforced && istype(W, /obj/item/weapon/tool/screwdriver))
 		remove_reinforced(W, user)
 		if(!reinforced)
 			update_desc()
@@ -99,9 +99,11 @@
 			update_material()
 		return 1
 
-	if(carpeted && istype(W, /obj/item/weapon/crowbar))
-		user.visible_message(SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
-		                              SPAN_NOTICE("You remove the carpet from \the [src]."))
+	if(carpeted && istype(W, /obj/item/weapon/tool/crowbar))
+		user.visible_message(
+			SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
+			SPAN_NOTICE("You remove the carpet from \the [src].")
+		)
 		new /obj/item/stack/tile/carpet(loc)
 		carpeted = 0
 		update_icon()
@@ -110,15 +112,17 @@
 	if(!carpeted && material && istype(W, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = W
 		if(C.use(1))
-			user.visible_message(SPAN_NOTICE("\The [user] adds \the [C] to \the [src]."),
-			                              SPAN_NOTICE("You add \the [C] to \the [src]."))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] adds \the [C] to \the [src]."),
+				SPAN_NOTICE("You add \the [C] to \the [src].")
+			)
 			carpeted = 1
 			update_icon()
 			return 1
 		else
 			user << SPAN_WARNING("You don't have enough carpet!")
 
-	if(!reinforced && !carpeted && material && istype(W, /obj/item/weapon/wrench))
+	if(!reinforced && !carpeted && material && istype(W, /obj/item/weapon/tool/wrench))
 		remove_material(W, user)
 		if(!material)
 			update_connections(1)
@@ -129,19 +133,21 @@
 			update_material()
 		return 1
 
-	if(!carpeted && !reinforced && !material && istype(W, /obj/item/weapon/wrench))
+	if(!carpeted && !reinforced && !material && istype(W, /obj/item/weapon/tool/wrench))
 		dismantle(W, user)
 		return 1
 
-	if(health < maxhealth && istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/F = W
+	if(health < maxhealth && istype(W, /obj/item/weapon/tool/weldingtool))
+		var/obj/item/weapon/tool/weldingtool/F = W
 		if(F.welding)
 			user << SPAN_NOTICE("You begin reparing damage to \the [src].")
 			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 			if(!do_after(user, 20, src) || !F.remove_fuel(1, user))
 				return
-			user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."),
-			                              SPAN_NOTICE("You repair some damage to \the [src]."))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] repairs some damage to \the [src]."),
+				SPAN_NOTICE("You repair some damage to \the [src].")
+			)
 			health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
 			return 1
 

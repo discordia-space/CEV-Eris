@@ -182,7 +182,7 @@ var/list/mob_hat_cache = list()
 		user << SPAN_DANGER("\The [src] is not compatible with \the [W].")
 		return
 
-	else if (istype(W, /obj/item/weapon/crowbar))
+	else if (istype(W, /obj/item/weapon/tool/crowbar))
 		user << SPAN_DANGER("\The [src] is hermetically sealed. You can't open the case.")
 		return
 

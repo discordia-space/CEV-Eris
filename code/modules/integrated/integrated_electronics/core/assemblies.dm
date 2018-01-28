@@ -238,12 +238,12 @@
 			user << SPAN_NOTICE("You slide \the [I] inside \the [src].")
 			playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 			interact(user)
-	else if(istype(I, /obj/item/weapon/crowbar))
+	else if(istype(I, /obj/item/weapon/tool/crowbar))
 		playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
 		user << "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>"
 		update_icon()
-	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/screwdriver))
+	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/tool/screwdriver))
 		if(opened)
 			interact(user)
 		else

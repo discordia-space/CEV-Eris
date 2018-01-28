@@ -55,6 +55,7 @@
 
 /datum/antagonist/traitor/synth
 	id = ROLE_TRAITOR_SYNTH
+	only_human = FALSE
 
 	possible_objectives = list(
 	/datum/objective/assasinate = 100,

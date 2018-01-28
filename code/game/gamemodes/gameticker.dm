@@ -158,8 +158,7 @@ var/global/datum/controller/gameticker/ticker
 	cinematic.screen_loc = "1,0"
 
 	for(var/mob/M in mob_list)
-		var/turf/T = get_turf(M)
-		if(T && T.z in config.station_levels)	//we don't use M.death(0) because it calls a for(/mob) loop and
+		if(isOnStationLevel(M))
 			if(M.client)
 				M.client.screen += cinematic
 			if(isliving(M))

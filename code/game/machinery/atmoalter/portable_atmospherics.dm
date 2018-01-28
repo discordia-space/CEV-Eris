@@ -115,7 +115,7 @@
 		update_icon()
 		return
 
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if (istype(W, /obj/item/weapon/tool/wrench))
 		if(connected_port)
 			disconnect()
 			user << SPAN_NOTICE("You disconnect \the [src] from the port.")
@@ -135,8 +135,8 @@
 				user << SPAN_NOTICE("Nothing happens.")
 				return
 
-	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		var/obj/item/device/analyzer/A = W
+	else if ((istype(W, /obj/item/device/scanner/analyzer)) && Adjacent(user))
+		var/obj/item/device/scanner/analyzer/A = W
 		A.analyze_gases(src, user)
 		return
 
@@ -173,7 +173,7 @@
 		power_change()
 		return
 
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/weapon/tool/screwdriver))
 		if(!cell)
 			user << SPAN_WARNING("There is no power cell installed.")
 			return

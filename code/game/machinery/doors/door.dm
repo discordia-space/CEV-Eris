@@ -241,12 +241,12 @@
 
 		return
 
-	if(repairing && istype(I, /obj/item/weapon/weldingtool))
+	if(repairing && istype(I, /obj/item/weapon/tool/weldingtool))
 		if(!density)
 			user << SPAN_WARNING("\The [src] must be closed before you can repair it.")
 			return
 
-		var/obj/item/weapon/weldingtool/welder = I
+		var/obj/item/weapon/tool/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
 			user << SPAN_NOTICE("You start to fix dents and weld \the [repairing] into place.")
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
@@ -258,7 +258,7 @@
 				repairing = null
 		return
 
-	if(repairing && istype(I, /obj/item/weapon/crowbar))
+	if(repairing && istype(I, /obj/item/weapon/tool/crowbar))
 		user << SPAN_NOTICE("You remove \the [repairing].")
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
 		repairing.loc = user.loc

@@ -196,8 +196,8 @@
 			scan_cash(SC)
 	else if(istype(O, /obj/item/weapon/card/emag))
 		return ..()
-	else if(istype(O, /obj/item/weapon/wrench))
-		var/obj/item/weapon/wrench/W = O
+	else if(istype(O, /obj/item/weapon/tool/wrench))
+		var/obj/item/weapon/tool/wrench/W = O
 		toggle_anchors(W, user)
 	// Not paying: Look up price and add it to transaction_amount
 	else
