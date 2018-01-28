@@ -25,15 +25,14 @@ var/global/list/current_factions = list()
 	var/list/processing_events = list()
 
 	var/list/dbglist
-	/*
 	//Fake crew values for test
-	var/f_crew = 10
+	var/debug_mode = FALSE
+	var/f_crew = 11
 	var/f_heads = 2
 	var/f_sec = 4
 	var/f_eng = 3
 	var/f_med = 4
-	var/f_sci = 3
-	*/
+	var/f_sci = 5
 
 /datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
 	return TRUE
@@ -135,15 +134,16 @@ var/global/list/current_factions = list()
 					med++
 				if(job.department == "Science")
 					sci++
-	/*
+
 	//Fake crew values for tests
-	crew = f_crew
-	heads = f_heads
-	sec = f_sec
-	eng = f_eng
-	med = f_med
-	sci = f_sci
-	*/
+	if(debug_mode)
+		crew = f_crew
+		heads = f_heads
+		sec = f_sec
+		eng = f_eng
+		med = f_med
+		sci = f_sci
+
 
 	weight *= weight_mult(crew,R.req_crew,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
 	weight *= weight_mult(heads,R.req_heads,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
