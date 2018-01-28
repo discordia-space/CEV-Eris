@@ -145,11 +145,10 @@ FLOOR SAFES
 /obj/structure/safe/attackby(obj/item/I as obj, mob/user as mob)
 	if(open)
 		if(I.w_class + space <= maxspace)
-			space += I.w_class
-			user.drop_item()
-			I.loc = src
-			user << SPAN_NOTICE("You put [I] in [src].")
-			updateUsrDialog()
+			if(user.unEquip(I, src))
+				space += I.w_class
+				user << SPAN_NOTICE("You put [I] in [src].")
+				updateUsrDialog()
 			return
 		else
 			user << SPAN_NOTICE("[I] won't fit in [src].")

@@ -100,8 +100,10 @@
 		return 1
 
 	if(carpeted && istype(W, /obj/item/weapon/tool/crowbar))
-		user.visible_message(SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
-		                              SPAN_NOTICE("You remove the carpet from \the [src]."))
+		user.visible_message(
+			SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
+			SPAN_NOTICE("You remove the carpet from \the [src].")
+		)
 		new /obj/item/stack/tile/carpet(loc)
 		carpeted = 0
 		update_icon()
@@ -110,8 +112,10 @@
 	if(!carpeted && material && istype(W, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = W
 		if(C.use(1))
-			user.visible_message(SPAN_NOTICE("\The [user] adds \the [C] to \the [src]."),
-			                              SPAN_NOTICE("You add \the [C] to \the [src]."))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] adds \the [C] to \the [src]."),
+				SPAN_NOTICE("You add \the [C] to \the [src].")
+			)
 			carpeted = 1
 			update_icon()
 			return 1
@@ -140,8 +144,10 @@
 			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 			if(!do_after(user, 20, src) || !F.remove_fuel(1, user))
 				return
-			user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."),
-			                              SPAN_NOTICE("You repair some damage to \the [src]."))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] repairs some damage to \the [src]."),
+				SPAN_NOTICE("You repair some damage to \the [src].")
+			)
 			health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
 			return 1
 
