@@ -221,7 +221,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
 	if(ismob(W.loc))
 		var/mob/M = W.loc
-		if(M.get_inventory_slot(M) && !M.unEquip(W, src))
+		if(M.get_inventory_slot(W) && !M.unEquip(W, src))
 			return
 	W.forceMove(src)
 	switch(slot)
