@@ -103,7 +103,7 @@
 	return TRUE
 
 
-/obj/structure/table/attackby(obj/item/W, mob/living/user, var/click_params)
+/obj/structure/table/attackby(obj/item/W, mob/living/user, var/params)
 	if(!istype(W))
 		return
 
@@ -129,5 +129,14 @@
 		return
 
 	user.unEquip(W, src.loc)
+
+	var/list/click_params = params2list(params)
+	//Center the icon where the user clicked.
+	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
+		return
+	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
+	W.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+	W.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+
 
 /obj/structure/table/attack_tk() // no telehulk sorry
