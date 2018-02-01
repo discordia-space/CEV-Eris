@@ -195,16 +195,33 @@
 	return
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
-/obj/machinery/clonepod/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/clonepod/attackby(var/obj/item/I, mob/user as mob)
 	if(isnull(occupant))
-		if(default_deconstruction_screwdriver(user, W))
+
+		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+		switch(tool_type)
+			if(QUALITY_PRYING)
+				if(!panel_open)
+					user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+					return
+				if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD))
+					user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+					dismantle()
+					return
+			if(QUALITY_SCREW_DRIVING)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+					panel_open = !panel_open
+					user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+					update_icon()
+					return
+			if(ABORT_CHECK)
+				return
+
+		if(default_part_replacement(user, I))
 			return
-		if(default_deconstruction_crowbar(user, W))
-			return
-		if(default_part_replacement(user, W))
-			return
-	if(W.GetID())
-		if(!check_access(W))
+
+	if(I.GetID())
+		if(!check_access(I))
 			user << SPAN_WARNING("Access Denied.")
 			return
 		if(!locked || isnull(occupant))
@@ -215,13 +232,13 @@
 		else
 			locked = 0
 			user << "System unlocked."
-	else if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
-		user << SPAN_NOTICE("\The [src] processes \the [W].")
+	else if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
+		user << SPAN_NOTICE("\The [src] processes \the [I].")
 		biomass += 50
-		user.drop_from_inventory(W)
-		qdel(W)
+		user.drop_from_inventory(I)
+		qdel(I)
 		return
-	else if(istype(W, /obj/item/weapon/tool/wrench))
+	else if(istype(I, /obj/item/weapon/tool/wrench))
 		if(locked && (anchored || occupant))
 			user << SPAN_WARNING("Can not do that while [src] is in use.")
 		else

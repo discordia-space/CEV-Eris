@@ -329,17 +329,6 @@ Class Procs:
 			user << SPAN_NOTICE("    [C.name]")
 	return 1
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/O as obj)
-	if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
-		. = dismantle()
-
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/O as obj)
-	if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
-		panel_open = !panel_open
-		user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].</span>"
-		update_icon()
-		return 1
-
 /obj/machinery/proc/create_frame(var/type)
 	if(type == FRAME_DEFAULT)
 		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame, loc)

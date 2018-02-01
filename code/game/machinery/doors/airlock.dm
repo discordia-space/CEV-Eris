@@ -859,106 +859,92 @@ There are 9 wires.
 	update_icon()
 	return 1
 
-/obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
-	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
+/obj/machinery/door/airlock/attackby(obj/item/I, mob/user)
 	if(!issilicon(usr))
 		if(src.isElectrified())
 			if(src.shock(user, 75))
 				return
-	if(istype(C, /obj/item/taperoll))
+	if(istype(I, /obj/item/taperoll))
 		return
-
 	src.add_fingerprint(user)
-	if(!repairing && (istype(C, /obj/item/weapon/tool/weldingtool) && !( src.operating > 0 ) && src.density))
-		var/obj/item/weapon/tool/weldingtool/W = C
-		if(W.remove_fuel(0,user))
-			if(!src.welded)
-				src.welded = 1
-			else
-				src.welded = null
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			src.update_icon()
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING))
+	switch(tool_type)
+
+		if(QUALITY_PRYING)
+			if(!repairing)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_VERY_EASY))
+					if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
+						user << SPAN_NOTICE("You removed the airlock electronics!")
+
+						var/obj/structure/door_assembly/da = new assembly_type(src.loc)
+						if (istype(da, /obj/structure/door_assembly/multi_tile))
+							da.set_dir(src.dir)
+
+		 				da.anchored = 1
+						if(mineral)
+							da.glass = mineral
+						else if(glass && !da.glass)
+							da.glass = 1
+						da.state = 1
+						da.created_name = src.name
+						da.update_state()
+
+						if(operating == -1 || (stat & BROKEN))
+							new /obj/item/weapon/circuitboard/broken(src.loc)
+							operating = 0
+						else
+							if (!electronics) create_electronics()
+
+							electronics.loc = src.loc
+							electronics = null
+
+						qdel(src)
+						return
+					else if(arePowerSystemsOn())
+						user << SPAN_NOTICE("The airlock's motors resist your efforts to force it.")
+					else if(locked)
+						user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
+					else
+						if(density)
+							spawn(0)	open(1)
+						else
+							spawn(0)	close(1)
 			return
-		else
+
+		if(QUALITY_SCREW_DRIVING)
+			var/used_sound = p_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+				if (p_open)
+					if (stat & BROKEN)
+						usr << SPAN_WARNING("The panel is broken and cannot be closed.")
+					else
+						p_open = 0
+				else
+					p_open = 1
+				update_icon()
 			return
-	else if(istype(C, /obj/item/weapon/tool/screwdriver))
-		if (src.p_open)
-			if (stat & BROKEN)
-				usr << SPAN_WARNING("The panel is broken and cannot be closed.")
-			else
-				src.p_open = 0
-				playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
-		else
-			src.p_open = 1
-			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
-		src.update_icon()
-	else if(istype(C, /obj/item/weapon/tool/wirecutters))
+
+		if(QUALITY_WELDING)
+			if(!repairing && !( src.operating > 0 ) && src.density)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_VERY_EASY))
+					if(!src.welded)
+						src.welded = 1
+					else
+						src.welded = null
+					src.update_icon()
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/weapon/tool))
 		return src.attack_hand(user)
-	else if(istype(C, /obj/item/device/multitool))
+	else if(istype(I, /obj/item/device/assembly/signaler))
 		return src.attack_hand(user)
-	else if(istype(C, /obj/item/device/assembly/signaler))
-		return src.attack_hand(user)
-	else if(istype(C, /obj/item/weapon/pai_cable))	// -- TLE
-		var/obj/item/weapon/pai_cable/cable = C
+	else if(istype(I, /obj/item/weapon/pai_cable))	// -- TLE
+		var/obj/item/weapon/pai_cable/cable = I
 		cable.plugin(src, user)
-	else if(!repairing && istype(C, /obj/item/weapon/tool/crowbar))
-		if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40,src))
-				user << SPAN_NOTICE("You removed the airlock electronics!")
-
-				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
-				if (istype(da, /obj/structure/door_assembly/multi_tile))
-					da.set_dir(src.dir)
-
- 				da.anchored = 1
-				if(mineral)
-					da.glass = mineral
-				//else if(glass)
-				else if(glass && !da.glass)
-					da.glass = 1
-				da.state = 1
-				da.created_name = src.name
-				da.update_state()
-
-				if(operating == -1 || (stat & BROKEN))
-					new /obj/item/weapon/circuitboard/broken(src.loc)
-					operating = 0
-				else
-					if (!electronics) create_electronics()
-
-					electronics.loc = src.loc
-					electronics = null
-
-				qdel(src)
-				return
-		else if(arePowerSystemsOn())
-			user << SPAN_NOTICE("The airlock's motors resist your efforts to force it.")
-		else if(locked)
-			user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
-		else
-			if(density)
-				spawn(0)	open(1)
-			else
-				spawn(0)	close(1)
-
-	else if(istype(C, /obj/item/weapon/material/twohanded/fireaxe) && !arePowerSystemsOn())
-		if(locked)
-			user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
-		else if( !welded && !operating )
-			if(density)
-				var/obj/item/weapon/material/twohanded/fireaxe/F = C
-				if(F.wielded)
-					spawn(0)	open(1)
-				else
-					user << SPAN_WARNING("You need to be wielding \the [C] to do that.")
-			else
-				var/obj/item/weapon/material/twohanded/fireaxe/F = C
-				if(F.wielded)
-					spawn(0)	close(1)
-				else
-					user << SPAN_WARNING("You need to be wielding \the [C] to do that.")
 
 	else
 		..()

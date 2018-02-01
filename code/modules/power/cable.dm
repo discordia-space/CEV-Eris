@@ -175,7 +175,7 @@ var/list/possible_cable_coil_colours = list(
 			return
 		coil.cable_join(src, user)
 
-	else if(istype(W, /obj/item/device/multitool))
+	else if(istype(W, /obj/item/weapon/tool/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			user << SPAN_WARNING("[powernet.avail]W in power network.")

@@ -40,7 +40,7 @@
 		/obj/item/weapon/tool/weldingtool,
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench,
-		/obj/item/device/multitool,
+		/obj/item/weapon/tool/multitool,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,

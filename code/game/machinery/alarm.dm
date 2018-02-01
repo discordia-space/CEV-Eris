@@ -958,7 +958,7 @@ FIRE ALARM
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
-				if (istype(W, /obj/item/device/multitool))
+				if (istype(W, /obj/item/weapon/tool/multitool))
 					src.detecting = !( src.detecting )
 					if (src.detecting)
 						user.visible_message(SPAN_NOTICE("\The [user] has reconnected [src]'s detecting unit!"), SPAN_NOTICE("You have reconnected [src]'s detecting unit."))

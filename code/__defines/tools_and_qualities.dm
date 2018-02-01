@@ -1,6 +1,7 @@
 #define ABORT_CHECK						-1
 
 #define QUALITY_BOLT_TURNING			"bolt turning"
+#define QUALITY_PULSING					"pulsing"
 #define QUALITY_PRYING					"prying"
 #define QUALITY_WELDING					"welding"
 #define QUALITY_SCREW_DRIVING			"screw driving"
@@ -34,6 +35,8 @@
 #define FAILCHANCE_IMPOSSIBLY			100
 
 //Sounds for workong with tools
+#define NO_WORKSOUND					-1
+
 #define WORKSOUND_CIRCULAR_SAW			'sound/weapons/circsawhit.ogg'
 #define WORKSOUND_WRENCHING				'sound/items/Ratchet.ogg'
 #define WORKSOUND_WIRECUTTING			'sound/items/Wirecutter.ogg'

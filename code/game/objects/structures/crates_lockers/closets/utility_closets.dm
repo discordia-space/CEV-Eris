@@ -120,7 +120,7 @@
 	if(prob(30))
 		new /obj/item/stack/cable_coil/random(src)
 	if(prob(20))
-		new /obj/item/device/multitool(src)
+		new /obj/item/weapon/tool/multitool(src)
 	if(prob(5))
 		new /obj/item/clothing/gloves/insulated(src)
 	if(prob(40))

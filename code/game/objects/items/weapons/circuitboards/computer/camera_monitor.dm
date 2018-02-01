@@ -56,7 +56,7 @@
 			user << "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>"
 		else
 			user << SPAN_WARNING("Access denied.")
-	else if(istype(I,/obj/item/device/multitool))
+	else if(istype(I,/obj/item/weapon/tool/multitool))
 		if(locked)
 			user << SPAN_WARNING("Circuit controls are locked.")
 			return

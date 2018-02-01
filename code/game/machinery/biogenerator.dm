@@ -32,41 +32,57 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
+/obj/machinery/biogenerator/attackby(var/obj/item/I, var/mob/user as mob)
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(!panel_open)
+				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD))
+				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				dismantle()
+				return
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				update_icon()
+				return
+		if(ABORT_CHECK)
+			return
+
+	if(default_part_replacement(user, I))
 		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
-		return
-	if(istype(O, /obj/item/weapon/reagent_containers/glass))
+	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
 			user << SPAN_NOTICE("The [src] is already loaded.")
 		else
-			user.remove_from_mob(O)
-			O.loc = src
-			beaker = O
+			user.remove_from_mob(I)
+			I.loc = src
+			beaker = I
 			updateUsrDialog()
 	else if(processing)
 		user << SPAN_NOTICE("\The [src] is currently processing.")
-	else if(istype(O, /obj/item/weapon/storage/bag/plants))
+	else if(istype(I, /obj/item/weapon/storage/bag/plants))
 		var/i = 0
 		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			user << SPAN_NOTICE("\The [src] is already full! Activate it.")
 		else
-			for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in O.contents)
+			for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in I.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
 					user << SPAN_NOTICE("You fill \the [src] to its capacity.")
 					break
 			if(i < 10)
-				user << SPAN_NOTICE("You empty \the [O] into \the [src].")
+				user << SPAN_NOTICE("You empty \the [I] into \the [src].")
 
 
-	else if(!istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown))
+	else if(!istype(I, /obj/item/weapon/reagent_containers/food/snacks/grown))
 		user << SPAN_NOTICE("You cannot put this in \the [src].")
 	else
 		var/i = 0
@@ -75,9 +91,9 @@
 		if(i >= 10)
 			user << SPAN_NOTICE("\The [src] is full! Activate it.")
 		else
-			user.remove_from_mob(O)
-			O.loc = src
-			user << SPAN_NOTICE("You put \the [O] in \the [src]")
+			user.remove_from_mob(I)
+			I.loc = src
+			user << SPAN_NOTICE("You put \the [I] in \the [src]")
 	update_icon()
 	return
 

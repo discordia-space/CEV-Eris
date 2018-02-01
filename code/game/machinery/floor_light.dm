@@ -40,7 +40,7 @@ var/list/floor_light_cache = list()
 		stat &= ~BROKEN
 		damaged = null
 		update_brightness()
-	else if (istype(W, /obj/item/device/multitool))
+	else if (istype(W, /obj/item/weapon/tool/multitool))
 		if(on)
 			user << SPAN_WARNING("\The [src] must be turn off to change a color.")
 			return

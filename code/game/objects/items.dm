@@ -590,7 +590,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/get_tool_quality(quality_id)
 	return tool_qualities[quality_id]
 
-/obj/item/proc/get_tool_type(var/mob/living/user, var/atom/target, var/list/required_qualities)
+/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
 	var/start_loc = user.loc
 	var/list/L = list()
 	for(var/Q in required_qualities)
@@ -604,6 +604,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(L.len > 1)
 		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
 	if(user.loc != start_loc)
+		user << SPAN_WARNING("You need to stand still!")
 		return ABORT_CHECK
 	else
 		return return_quality
@@ -618,25 +619,39 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			user << SPAN_WARNING("Pain distracts you from your task.")
 			fail_chance += round(H.shock_stage/120 * 40)
 			base_time = round(base_time * H.shock_stage/120 * 3)
-	if(forced_sound)
-		playsound(src.loc, forced_sound, 100, 1)
-	else
-		playsound(src.loc, src.worksound, 100, 1)
-	if(instant_finish_tier && (instant_finish_tier > get_tool_quality(required_quality)))
+	if(forced_sound != NO_WORKSOUND)
+		if(forced_sound)
+			playsound(src.loc, forced_sound, 100, 1)
+		else
+			playsound(src.loc, src.worksound, 100, 1)
+	if(!(instant_finish_tier && (instant_finish_tier >= get_tool_quality(required_quality))))
 		target.used_now = TRUE
 		var/time_to_finish = base_time / get_tool_quality(required_quality)
 		if(!do_after(user, time_to_finish, user))
-			user << SPAN_WARNING("You need to stand still to finish the task properly!.")
+			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
 			return FALSE
 		else
 			target.used_now = FALSE
 	fail_chance += - get_tool_quality(required_quality) * 10
 	if(prob(fail_chance))
-		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% to screw this up.")
+		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
+		handle_failure(user, target)
 		return FALSE
 	return TRUE
 
+/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target)
+	if(prob(33))
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			attack(H, H, H.get_holding_hand(src))
+	if(prob(66))
+		if(ishuman(user))
+			if(ishuman(target))
+				var/mob/living/carbon/human/T = target
+				var/mob/living/carbon/human/H = user
+				attack(T, user, H.targeted_organ)
+	return
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'

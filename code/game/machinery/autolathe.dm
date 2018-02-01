@@ -113,28 +113,36 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user as mob)
 
 	if(busy)
 		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return
 
-	var/tool_type = O.get_tool_type(user, O, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
 	switch(tool_type)
 		if(QUALITY_PRYING)
-			if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
-				user << SPAN_NOTICE("You remove the components of \the [src].")
+			if(!panel_open)
+				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD))
+				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
 				dismantle()
 				return
+			else
+				return
 		if(QUALITY_SCREW_DRIVING)
-			if(O.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].")
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 				update_icon()
+				return
+			else
 				return
 		if(ABORT_CHECK)
 			return
-	if(default_part_replacement(user, O))
+
+	if(default_part_replacement(user, I))
 		return
 
 	if(stat)
@@ -142,18 +150,18 @@
 
 	if(panel_open)
 		//Don't eat multitools or wirecutters used on an open lathe.
-		if(istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/tool/wirecutters))
+		if(istype(I, /obj/item/weapon/tool/multitool) || istype(I, /obj/item/weapon/tool/wirecutters))
 			attack_hand(user)
 			return
 
-	if(O.loc != user && !(istype(O,/obj/item/stack)))
+	if(I.loc != user && !(istype(I,/obj/item/stack)))
 		return 0
 
-	if(is_robot_module(O))
+	if(is_robot_module(I))
 		return 0
 
 	//Resources are being loaded.
-	var/obj/item/eating = O
+	var/obj/item/eating = I
 	if(!eating.matter || !eating.matter.len)
 		user << "\The [eating] does not contain significant amounts of useful materials and cannot be accepted."
 		return
@@ -201,8 +209,8 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		user.remove_from_mob(O)
-		qdel(O)
+		user.remove_from_mob(I)
+		qdel(I)
 
 	updateUsrDialog()
 	return

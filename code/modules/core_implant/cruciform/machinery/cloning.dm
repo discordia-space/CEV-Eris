@@ -323,13 +323,26 @@
 	if(!closed)
 		eject_contents()
 
-/obj/machinery/neotheology/cloner/attackby(obj/item/O as obj, mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+/obj/machinery/neotheology/cloner/attackby(obj/item/I, mob/user as mob)
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD))
+				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				dismantle()
+				return
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				updateUsrDialog()
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				update_icon()
+				return
+		if(ABORT_CHECK)
+			return
+
+	if(default_part_replacement(user, I))
 		return
 
 /obj/machinery/neotheology/cloner/update_icon()
@@ -442,23 +455,36 @@
 	else
 		user << SPAN_NOTICE("Filled by [biomass]/[biomass_max].")
 
-/obj/machinery/neotheology/biomass_container/attackby(obj/item/O as obj, mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+/obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user as mob)
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD))
+				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				dismantle()
+				return
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				updateUsrDialog()
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				update_icon()
+				return
+		if(ABORT_CHECK)
+			return
+
+	if(default_part_replacement(user, I))
 		return
 
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/meat))
+	if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		if(biomass >= biomass_max)
 			user << SPAN_NOTICE("\The [src] is full.")
 			return
-		user << SPAN_NOTICE("You put [O] in [src].")
+		user << SPAN_NOTICE("You put [I] in [src].")
 		biomass += 50
 		user.drop_item()
-		qdel(O)
+		qdel(I)
 
 	src.add_fingerprint(user)
 
@@ -498,17 +524,33 @@
 	reading = FALSE
 	update_icon()
 
-/obj/machinery/neotheology/reader/attackby(obj/item/O as obj, mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+/obj/machinery/neotheology/reader/attackby(obj/item/I, mob/user as mob)
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(!panel_open)
+				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD))
+				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				dismantle()
+				return
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				updateUsrDialog()
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				update_icon()
+				return
+		if(ABORT_CHECK)
+			return
+
+	if(default_part_replacement(user, I))
 		return
 
-	if(istype(O, /obj/item/weapon/implant/external/core_implant/cruciform))
-		var/obj/item/weapon/implant/external/core_implant/cruciform/C = O
+	if(istype(I, /obj/item/weapon/implant/external/core_implant/cruciform))
+		var/obj/item/weapon/implant/external/core_implant/cruciform/C = I
 		user.drop_item()
 		C.forceMove(src)
 		implant = C
