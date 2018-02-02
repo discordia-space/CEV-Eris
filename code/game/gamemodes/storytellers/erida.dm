@@ -21,6 +21,14 @@
 
 /datum/storyteller/erida/proc/calculate_deck_size()
 	deck_size = 0
+
+	if(debug_mode)
+		deck_size += heads*4
+		deck_size += sec*3
+		deck_size += eng*2
+		deck_size += med+sci
+		return
+
 	for(var/mob/M in player_list)
 		if(M.client && (M.mind && !M.mind.antagonist.len) && M.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))
 			var/datum/job/job = job_master.GetJob(M.mind.assigned_role)
@@ -34,13 +42,20 @@
 				else
 					deck_size += 1
 
-	//Fake values for test
-	if(debug_mode)
-		deck_size = 0
-		deck_size += f_heads*4
-		deck_size += f_sec*3
-		deck_size += f_eng*2
-		deck_size += f_med+f_sci
+
+/datum/storyteller/erida/proc/pick_storyevent(var/list/L)
+	var/max = 0
+	var/target = 0
+	for(var/datum/storyevent/S in L)
+		max += S.weight_cache
+
+	target = rand()*max
+	max = 0
+
+	for(var/datum/storyevent/S in L)
+		max += S.weight_cache
+		if(max > target)
+			return S
 
 /datum/storyteller/erida/trigger_event()
 	if(!mad && prob(10))
@@ -53,30 +68,43 @@
 
 	var/list/sorted = list()
 	for(var/datum/storyevent/S in storyevents)
-		var/min_w = minimal_weight
-		if(mad)
-			min_w = minimal_weight * 0.2
-		if(S.can_spawn() && S.weight_cache >= min_w)
-			if(!sorted.len)
-				sorted.Insert(rand(1,sorted.len),S)
-			else
-				sorted.Add(S)
+		if(S.can_spawn() && S.weight_cache > 0)
+			sorted.Add(S)
 
 
-	//world << "[sorted.len] spawn variants available"
-	//world << "Deck size is [deck_size]"
+	debugmode("Deck size=[deck_size]; mad=[mad]; variants available=[sorted.len]")
 	var/currdeck = 0
-	for(var/datum/storyevent/S in sorted)
-		if(currdeck + S.cost < deck_size)
-			//world << "Spawning [S.id] with weight [S.weight_cache]... Currdeck: [currdeck] ([currdeck+S.cost])"
-			//currdeck += S.cost
-			//S.spawn_times++
-			if(S.create())
-				//world << "^ Success!"
-				currdeck += S.cost
-	event_spawn_stage++
+	var/list/spawned = list()
+	spawnparams["deck_full"] = TRUE
+	while(currdeck < deck_size)
+		var/datum/storyevent/S = pick_storyevent(sorted)
+		if(!S)
+			debug("Storyteller is out of storyevents. [spawned.len] events spawned")
+			spawnparams["deck_full"] = FALSE
+			break
+
+		if(S.cost + currdeck > deck_size)
+			sorted.Remove(S)
+
+		debugmode("Debug-spawning [S.id] with weight [S.weight_cache]; Currdeck: [currdeck]([currdeck+S.cost])/[deck_size]")
+
+		if(S.create())
+			currdeck += S.cost
+			spawned.Add(S.id)
+			if(!S.multispawn)
+				sorted.Remove(S)
+		else if(debug_mode)
+			debugmode("[S.id] fake-created")
+			currdeck += S.cost
+			S.spawn_times++
 
 	sorted.Cut()
+
+	spawnparams["mad"] = mad
+	if(mad)
+		spawnparams["mad_stage"] = mad_stages
+	spawnparams["deck_size"] = deck_size
+	spawnparams["deck_used"] = currdeck
 
 	if(mad_stages)
 		mad_stages--
@@ -91,5 +119,7 @@
 
 		else
 			set_timer(rand(20,35) MINUTES)
+
+	log_spawn(spawned)
 
 	return TRUE

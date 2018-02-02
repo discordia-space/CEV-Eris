@@ -311,6 +311,8 @@
 #include "code\game\gamemodes\storyevent.dm"
 #include "code\game\gamemodes\storyevent_helpers.dm"
 #include "code\game\gamemodes\storyteller.dm"
+#include "code\game\gamemodes\storyteller_helpers.dm"
+#include "code\game\gamemodes\storyteller_log.dm"
 #include "code\game\gamemodes\storyteller_print.dm"
 #include "code\game\gamemodes\changeling\changeling_powers.dm"
 #include "code\game\gamemodes\changeling\modularchangling.dm"

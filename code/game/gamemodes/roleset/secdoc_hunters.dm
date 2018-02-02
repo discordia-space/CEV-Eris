@@ -1,6 +1,7 @@
 /datum/storyevent/roleset/secdoc_hunters
 	id = "secdoc_hunters"
 	role_id = null
+	multispawn = TRUE
 
 	min_cost = 8
 	max_cost = 16
