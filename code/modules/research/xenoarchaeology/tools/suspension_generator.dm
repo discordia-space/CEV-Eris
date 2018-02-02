@@ -169,6 +169,7 @@
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING))
 	switch(tool_type)
+
 		if(QUALITY_PRYING)
 			if(!locked)
 				if(!screwed)
@@ -184,12 +185,14 @@
 			else
 				user << SPAN_WARNING("[src]'s security locks are engaged.")
 			return
+
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
 				screwed = !screwed
 				user << SPAN_NOTICE("You [screwed ? "screw" : "unscrew"] the battery panel with [I].")
 				update_icon()
 				return
+
 		if(QUALITY_BOLT_TURNING)
 			if(!suspension_field)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY))
@@ -199,6 +202,7 @@
 			else
 				user << SPAN_WARNING("You are unable to secure [src] while it is active!")
 			return
+
 		if(ABORT_CHECK)
 			return
 

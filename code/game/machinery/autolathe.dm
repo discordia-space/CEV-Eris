@@ -119,28 +119,8 @@
 		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
-	switch(tool_type)
-		if(QUALITY_PRYING)
-			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
-				return
-			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
-				dismantle()
-				return
-			else
-				return
-		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
-				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
-				update_icon()
-				return
-			else
-				return
-		if(ABORT_CHECK)
-			return
+	if(default_deconstruction(user, I))
+		return
 
 	if(default_part_replacement(user, I))
 		return
@@ -149,16 +129,14 @@
 		return
 
 	if(panel_open)
-		//Don't eat multitools or wirecutters used on an open lathe.
-		if(istype(I, /obj/item/weapon/tool/multitool) || istype(I, /obj/item/weapon/tool/wirecutters))
-			attack_hand(user)
-			return
+		//Don't eat anything used on an open lathe.
+		return FALSE
 
 	if(I.loc != user && !(istype(I,/obj/item/stack)))
-		return 0
+		return FALSE
 
 	if(is_robot_module(I))
-		return 0
+		return FALSE
 
 	//Resources are being loaded.
 	var/obj/item/eating = I

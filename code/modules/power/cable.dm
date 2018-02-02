@@ -129,13 +129,13 @@ var/list/possible_cable_coil_colours = list(
 //   - Cable coil : merge cables
 //   - Multitool : get the power currently passing through the cable
 //
-/obj/structure/cable/attackby(obj/item/W, mob/user)
+/obj/structure/cable/attackby(obj/item/I, mob/user)
 
 	var/turf/T = src.loc
 	if(!T.is_plating())
 		return
 
-	if(istype(W, /obj/item/weapon/tool/wirecutters))
+	if(I.get_tool_type(usr, list(QUALITY_CUTTING)))
 		if(d1 == 12 || d2 == 12)
 			user << SPAN_WARNING("You must cut this cable from above.")
 			return
@@ -168,14 +168,14 @@ var/list/possible_cable_coil_colours = list(
 		return
 
 
-	else if(istype(W, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = W
+	else if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = I
 		if (coil.get_amount() < 1)
 			user << "Not enough cable"
 			return
 		coil.cable_join(src, user)
 
-	else if(istype(W, /obj/item/weapon/tool/multitool))
+	else if(istype(I, /obj/item/weapon/tool/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			user << SPAN_WARNING("[powernet.avail]W in power network.")
@@ -186,7 +186,7 @@ var/list/possible_cable_coil_colours = list(
 		shock(user, 5, 0.2)
 
 	else
-		if (W.flags & CONDUCT)
+		if (I.flags & CONDUCT)
 			shock(user, 50, 0.7)
 
 	src.add_fingerprint(user)

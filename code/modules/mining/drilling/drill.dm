@@ -132,21 +132,8 @@
 /obj/machinery/mining/drill/attackby(obj/item/I, mob/user as mob)
 
 	if(!active)
-		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
-		switch(tool_type)
-			if(QUALITY_PRYING)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_VERY_EASY))
-					user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
-					dismantle()
-					return
-			if(QUALITY_SCREW_DRIVING)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
-					panel_open = !panel_open
-					user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
-					update_icon()
-					return
-			if(ABORT_CHECK)
-				return
+		if(default_deconstruction(user, I))
+			return
 
 		if(default_part_replacement(user, I))
 			return
@@ -303,6 +290,7 @@
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING))
 	switch(tool_type)
+
 		if(QUALITY_PRYING)
 			if(!panel_open)
 				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
@@ -311,12 +299,15 @@
 				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
 				dismantle()
 				return
+
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
 				panel_open = !panel_open
 				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 				update_icon()
 				return
+
 		if(QUALITY_BOLT_TURNING)
 			if(istype(get_turf(src), /turf/space))
 				user << SPAN_NOTICE("You can't anchor something to empty space. Idiot.")
@@ -328,6 +319,7 @@
 					connect()
 				else
 					disconnect()
+
 		if(ABORT_CHECK)
 			return
 

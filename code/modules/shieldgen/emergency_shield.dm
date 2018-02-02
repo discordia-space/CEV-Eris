@@ -274,6 +274,7 @@
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING))
 	switch(tool_type)
+
 		if(QUALITY_BOLT_TURNING)
 			if(locked)
 				user << SPAN_NOTICE("The bolts are covered, unlocking this would retract the covers.")
@@ -290,11 +291,13 @@
 					user << SPAN_NOTICE("You secure the [src] to the floor!")
 					anchored = TRUE
 			return
+
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
 				is_open = !is_open
 				user << SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I].")
 			return
+
 		if(ABORT_CHECK)
 			return
 

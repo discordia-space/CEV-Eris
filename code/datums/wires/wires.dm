@@ -120,7 +120,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 					var/colour = href_list["cut"]
 					CutWireColour(colour)
 				else
-					L << "<span class='error'>You need wirecutters!</span>"
+					L << "<span class='error'>You something that can cut!</span>"
 
 			else if(href_list["pulse"])
 				if(I.get_tool_type(usr, list(QUALITY_PULSING)))

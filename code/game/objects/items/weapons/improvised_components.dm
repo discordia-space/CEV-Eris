@@ -58,7 +58,7 @@
 		var/obj/item/weapon/material/tmp_shard = I
 		finished = new /obj/item/weapon/material/twohanded/spear(get_turf(user), tmp_shard.material.name)
 		user << SPAN_NOTICE("You fasten \the [I] to the top of the rod with the cable.")
-	else if(istype(I, /obj/item/weapon/tool/wirecutters))
+	else if(I.get_tool_type(usr, list(QUALITY_CUTTING)))
 		finished = new /obj/item/weapon/melee/baton/cattleprod(get_turf(user))
 		user << SPAN_NOTICE("You fasten the wirecutters to the top of the rod with the cable, prongs outward.")
 	if(finished)

@@ -19,8 +19,8 @@
 
 //Remember that base time devided by tool level, which is 3 for base tools
 #define WORKTIME_NEAR_INSTANT			60
-#define WORKTIME_FAST					100
-#define WORKTIME_NORMAL					200
+#define WORKTIME_FAST					80
+#define WORKTIME_NORMAL					150
 #define WORKTIME_SLOW					300
 #define WORKTIME_LONG					500
 #define WORKTIME_EXTREMELY_LONG			800

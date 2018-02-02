@@ -250,24 +250,55 @@
 	ui_interact(user)
 
 
-/obj/machinery/power/smes/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
-		if(!open_hatch)
-			open_hatch = 1
-			user << SPAN_NOTICE("You open the maintenance hatch of [src].")
-			return 0
-		else
-			open_hatch = 0
-			user << SPAN_NOTICE("You close the maintenance hatch of [src].")
-			return 0
+/obj/machinery/power/smes/attackby(var/obj/item/I, var/mob/user)
+
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
+	if(terminal && !building_terminal && !open_hatch)
+		usable_qualities.Add(QUALITY_WELDING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY))
+				open_hatch = !open_hatch
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+			return
+
+		if(QUALITY_CUTTING)
+			if(terminal && !building_terminal && !open_hatch)
+				var/turf/tempTDir = terminal.loc
+				if (istype(tempTDir))
+					if(!tempTDir.is_plating())
+						user << SPAN_WARNING("You must remove the floor plating first.")
+						return
+				if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_VERY_EASY))
+					building_terminal = 1
+					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+						s.set_up(5, 1, src)
+						s.start()
+						building_terminal = 0
+						if(usr.stunned)
+							return
+					new /obj/item/stack/cable_coil(loc,10)
+					user.visible_message(\
+						SPAN_NOTICE("[user.name] cut the cables and dismantled the power terminal."),\
+						SPAN_NOTICE("You cut the cables and dismantle the power terminal."))
+					qdel(terminal)
+					building_terminal = 0
+			return
+
+		if(ABORT_CHECK)
+			return
 
 	if (!open_hatch)
 		user << SPAN_WARNING("You need to open access hatch on [src] first!")
 		return 0
 
-	if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
+	if(istype(I, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 		building_terminal = 1
-		var/obj/item/stack/cable_coil/CC = W
+		var/obj/item/stack/cable_coil/CC = I
 		if (CC.get_amount() <= 10)
 			user << SPAN_WARNING("You need more cables.")
 			building_terminal = 0
@@ -284,31 +315,7 @@
 		stat = 0
 		return 0
 
-	else if(istype(W, /obj/item/weapon/tool/wirecutters) && terminal && !building_terminal)
-		building_terminal = 1
-		var/turf/tempTDir = terminal.loc
-		if (istype(tempTDir))
-			if(!tempTDir.is_plating())
-				user << SPAN_WARNING("You must remove the floor plating first.")
-			else
-				user << SPAN_NOTICE("You begin to cut the cables...")
-				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 50, src))
-					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
-						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-						s.set_up(5, 1, src)
-						s.start()
-						building_terminal = 0
-						if(usr.stunned)
-							return 0
-					new /obj/item/stack/cable_coil(loc,10)
-					user.visible_message(\
-						SPAN_NOTICE("[user.name] cut the cables and dismantled the power terminal."),\
-						SPAN_NOTICE("You cut the cables and dismantle the power terminal."))
-					qdel(terminal)
-		building_terminal = 0
-		return 0
-	return 1
+	return
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 

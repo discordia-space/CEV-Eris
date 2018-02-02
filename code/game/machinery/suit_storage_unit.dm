@@ -658,22 +658,24 @@
 		return TRUE
 
 
-/obj/machinery/suit_cycler/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/suit_cycler/attackby(obj/item/I, mob/user)
 
 	if(electrified != 0)
 		if(shock(user, 100))
 			return
 
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
+		var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+			panel_open = !panel_open
+			user << "You [panel_open ?  "open" : "close"] the maintenance panel."
+			updateUsrDialog()
+		return
+
 	//Hacking init.
-	if(istype(I, /obj/item/weapon/tool/multitool) || istype(I, /obj/item/weapon/tool/wirecutters))
+	else if(istype(I, /obj/item/weapon/tool))
 		if(panel_open)
 			attack_hand(user)
-		return
-	else if(istype(I,/obj/item/weapon/tool/screwdriver))
-
-		panel_open = !panel_open
-		user << "You [panel_open ?  "open" : "close"] the maintenance panel."
-		updateUsrDialog()
 		return
 
 	else if(istype(I,/obj/item/clothing/head/helmet/space) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
