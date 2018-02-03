@@ -17,7 +17,7 @@
 	new /obj/item/weapon/tool/crowbar(src)
 	new /obj/item/weapon/cell/large/high(src)
 	new /obj/item/weapon/card/id/syndicate(src)
-	new /obj/item/device/multitool(src)
+	new /obj/item/weapon/tool/multitool(src)
 	new /obj/item/weapon/shield/energy(src)
 	new /obj/item/clothing/shoes/magboots(src)
 

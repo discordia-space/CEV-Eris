@@ -16,6 +16,7 @@
 	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE
+	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
 	var/list/footstep_sounds = list() // Footsteps sound
 

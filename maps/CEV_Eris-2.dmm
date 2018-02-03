@@ -7,8 +7,8 @@
 "ag" = (/obj/structure/window/reinforced/crescent{dir = 4},/obj/structure/window/reinforced/crescent{dir = 8},/turf/unsimulated/wall,/area/space)
 "ah" = (/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/holofloor/grass,/area/holodeck/source_picnicarea)
 "ai" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/simulated/floor/holofloor/grass,/area/holodeck/source_picnicarea)
-"aj" = (/obj/structure/table/rack/holorack,/obj/item/clothing/head/hairflower,/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_theatre)
-"ak" = (/obj/landmark/costume,/obj/structure/table/rack/holorack,/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_theatre)
+"aj" = (/obj/item/clothing/head/hairflower,/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_theatre)
+"ak" = (/obj/landmark/costume,/obj/structure/table/holo_woodentable,/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_theatre)
 "al" = (/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_courtroom)
 "am" = (/obj/structure/window/reinforced/holowindow{dir = 4},/obj/structure/flora/pottedplant{tag = "icon-plant-10"; icon_state = "plant-10"},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_courtroom)
 "an" = (/obj/structure/table/holo_woodentable,/turf/simulated/floor/holofloor/wood,/area/holodeck/source_courtroom)
@@ -17,7 +17,7 @@
 "aq" = (/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_emptycourt)
 "ar" = (/obj/structure/holostool,/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
 "as" = (/obj/structure/holostool,/obj/structure/window/reinforced/holowindow{dir = 4},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
-"at" = (/obj/effect/floor_decal/corner/red/three_quarters{dir = 8},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
+"at" = (/obj/effect/floor_decal/corner/red{dir = 5},/obj/effect/floor_decal/corner/red{dir = 9},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
 "au" = (/obj/effect/floor_decal/corner/red{dir = 5},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
 "av" = (/obj/structure/window/reinforced/crescent{dir = 8},/turf/unsimulated/wall,/area/space)
 "aw" = (/obj/structure/flora/ausbushes/fullgrass,/turf/simulated/floor/holofloor/desert,/area/holodeck/source_desert)
@@ -118,7 +118,7 @@
 "cn" = (/obj/structure/bed/chair/holochair{dir = 1},/obj/effect/floor_decal/carpet{dir = 8},/obj/effect/floor_decal/carpet,/obj/effect/floor_decal/carpet{dir = 10},/turf/simulated/floor/holofloor/carpet,/area/holodeck/source_courtroom)
 "co" = (/obj/structure/bed/chair/holochair{dir = 1},/obj/effect/floor_decal/carpet,/turf/simulated/floor/holofloor/carpet,/area/holodeck/source_courtroom)
 "cp" = (/obj/structure/bed/chair/holochair{dir = 1},/obj/effect/floor_decal/carpet{dir = 4},/obj/effect/floor_decal/carpet,/obj/effect/floor_decal/carpet{dir = 6},/turf/simulated/floor/holofloor/carpet,/area/holodeck/source_courtroom)
-"cq" = (/obj/effect/floor_decal/corner/green/three_quarters,/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
+"cq" = (/obj/effect/floor_decal/corner/green{dir = 10},/obj/effect/floor_decal/corner/green{dir = 9},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
 "cr" = (/obj/effect/floor_decal/corner/green{dir = 10},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_emptycourt)
 "cs" = (/obj/structure/shuttle_part/cargo{tag = "icon-cargoshwall21"; icon_state = "cargoshwall21"},/turf/space,/area/supply/dock)
 "ct" = (/turf/simulated/shuttle/wall/cargo{tag = "icon-cargoshwall22"; icon_state = "cargoshwall22"},/area/supply/dock)
@@ -628,8 +628,8 @@
 "md" = (/obj/machinery/button/remote/blast_door{id = "syndieshutters_infirmary"; name = "remote shutter control"; pixel_x = -25},/obj/structure/mopbucket,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/syndicate_station/start)
 "me" = (/obj/machinery/light{dir = 4},/obj/item/device/radio/intercom/syndicate{dir = 8; pixel_x = 22},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/syndicate_station/start)
 "mf" = (/obj/machinery/door/window{dir = 1; name = "Secure Storage"; req_access = list(150)},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/syndicate_station/start)
-"mg" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/item/device/multitool,/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/syndicate_station/start)
-"mh" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/item/device/multitool,/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/syndicate_station/start)
+"mg" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/tool/multitool,/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/syndicate_station/start)
+"mh" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/tool/multitool,/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/syndicate_station/start)
 "mi" = (/obj/machinery/button/remote/blast_door{id = "syndieshutters_telebay"; name = "remote shutter control"; pixel_x = 0; pixel_y = -25; req_access = list(150)},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/syndicate_station/start)
 "mj" = (/obj/machinery/button/remote/blast_door{id = "syndieshutters_workshop"; name = "remote shutter control"; pixel_x = 25},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/syndicate_station/start)
 "mk" = (/obj/structure/window/reinforced/crescent{dir = 1},/obj/structure/table/standard,/obj/item/weapon/tool/bonesetter,/obj/item/weapon/tool/bonegel,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/syndicate_station/start)
@@ -847,7 +847,7 @@
 "qo" = (/obj/item/seeds/potatoseed,/obj/item/seeds/potatoseed,/obj/item/seeds/ambrosiavulgarisseed,/obj/item/weapon/material/minihoe,/obj/item/weapon/beartrap,/obj/structure/table/steel,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qp" = (/obj/machinery/vending/hydroseeds,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qq" = (/obj/structure/table/rack,/obj/item/weapon/melee/energy/sword/pirate,/obj/item/weapon/tank/oxygen,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/skipjack_station/start)
-"qr" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/storage/belt/utility/full,/obj/item/device/multitool,/obj/item/device/multitool,/obj/item/clothing/shoes/magboots,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
+"qr" = (/obj/structure/table/rack,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/storage/belt/utility/full,/obj/item/weapon/tool/multitool,/obj/item/weapon/tool/multitool,/obj/item/clothing/shoes/magboots,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qs" = (/obj/machinery/washing_machine,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qt" = (/obj/structure/table/standard,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter/zippo,/obj/item/clothing/gloves/insulated,/obj/item/stack/material/steel{amount = 50},/obj/item/stack/material/glass{amount = 50},/obj/item/weapon/card/emag,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
 "qu" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/sniperrifle,/obj/item/clothing/suit/space/void/mining,/obj/item/clothing/head/helmet/space/void/mining,/obj/item/clothing/head/helmet/space/void/atmos,/obj/item/clothing/suit/space/void/atmos,/obj/item/weapon/tank/oxygen,/obj/item/weapon/tank/oxygen,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
@@ -1086,7 +1086,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahNaaaaaaaaaaaaaaaaaahOhOhOaaaaaaaaaaiYlHlHlHlHlHjjjwjwjwjjlRjwjwjwlSiYaaaaaaaaaaihaahOhOhOiiiilTiiiihOhOhOhOhOhOhOhOhOhOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahNaaaaaaaaaaaaaaaaaahOhOaaaaaaaaaaaaiYlUlVlHlHlHlWjwjwjwlXjwjwjwlYlZiYaaaaaaaaaahPhQhQhOhOhOiiiiiihOhOhOhOhOhOhOhOhOhOhOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiYlHlHlHlHlHmajwjwjwmbjwjwjwjwmciYaaaaaaaaaahPaaaahQhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajjmdlHlHlHmejjiYmfiYjjmgmhmijwmjjjaaaaaaaaaaaaaaaaaahOhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajjmdlHlHlHmejjiYmfiYjjmhmgmijwmjjjaaaaaaaaaaaaaaaaaahOhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajjmkmlmmmnmojjmpjwmqjjmrjjjjmsjjjjaaaaaaaaaaaaaahPaahQhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajjmtlHmujjjjjjjwjwmvjjjjjjmwjwmxjjaaaaaaaaaaaaaahPhQhQhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajjmymzmAjjaajjmBmBmBjjaajjjnmCmDjjaaaaaaaaaaaaaahPaahQaahOhOhOhOhOhOhOhOhOhOhOhOhOhOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

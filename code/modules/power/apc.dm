@@ -659,7 +659,7 @@
 			if (issilicon(user))
 				return src.attack_hand(user)
 			if (!opened && wiresexposed && \
-				(istype(W, /obj/item/device/multitool) || \
+				(istype(W, /obj/item/weapon/tool/multitool) || \
 				istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/device/assembly/signaler)))
 				return src.attack_hand(user)
 			user.visible_message(SPAN_DANGER("The [src.name] has been hit with the [W.name] by [user.name]!"), \

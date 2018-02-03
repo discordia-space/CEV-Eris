@@ -323,13 +323,12 @@
 	if(!closed)
 		eject_contents()
 
-/obj/machinery/neotheology/cloner/attackby(obj/item/O as obj, mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
+/obj/machinery/neotheology/cloner/attackby(obj/item/I, mob/user as mob)
+
+	if(default_deconstruction(user, I))
 		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+
+	if(default_part_replacement(user, I))
 		return
 
 /obj/machinery/neotheology/cloner/update_icon()
@@ -442,23 +441,22 @@
 	else
 		user << SPAN_NOTICE("Filled by [biomass]/[biomass_max].")
 
-/obj/machinery/neotheology/biomass_container/attackby(obj/item/O as obj, mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+/obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user as mob)
+
+	if(default_deconstruction(user, I))
 		return
 
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/meat))
+	if(default_part_replacement(user, I))
+		return
+
+	if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		if(biomass >= biomass_max)
 			user << SPAN_NOTICE("\The [src] is full.")
 			return
-		user << SPAN_NOTICE("You put [O] in [src].")
+		user << SPAN_NOTICE("You put [I] in [src].")
 		biomass += 50
 		user.drop_item()
-		qdel(O)
+		qdel(I)
 
 	src.add_fingerprint(user)
 
@@ -498,17 +496,16 @@
 	reading = FALSE
 	update_icon()
 
-/obj/machinery/neotheology/reader/attackby(obj/item/O as obj, mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+/obj/machinery/neotheology/reader/attackby(obj/item/I, mob/user as mob)
+
+	if(default_deconstruction(user, I))
 		return
 
-	if(istype(O, /obj/item/weapon/implant/external/core_implant/cruciform))
-		var/obj/item/weapon/implant/external/core_implant/cruciform/C = O
+	if(default_part_replacement(user, I))
+		return
+
+	if(istype(I, /obj/item/weapon/implant/external/core_implant/cruciform))
+		var/obj/item/weapon/implant/external/core_implant/cruciform/C = I
 		user.drop_item()
 		C.forceMove(src)
 		implant = C

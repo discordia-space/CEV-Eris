@@ -195,16 +195,17 @@
 	return
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
-/obj/machinery/clonepod/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/clonepod/attackby(var/obj/item/I, mob/user as mob)
 	if(isnull(occupant))
-		if(default_deconstruction_screwdriver(user, W))
+
+		if(default_deconstruction(user, I))
 			return
-		if(default_deconstruction_crowbar(user, W))
+
+		if(default_part_replacement(user, I))
 			return
-		if(default_part_replacement(user, W))
-			return
-	if(W.GetID())
-		if(!check_access(W))
+
+	if(I.GetID())
+		if(!check_access(I))
 			user << SPAN_WARNING("Access Denied.")
 			return
 		if(!locked || isnull(occupant))
@@ -215,13 +216,13 @@
 		else
 			locked = 0
 			user << "System unlocked."
-	else if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
-		user << SPAN_NOTICE("\The [src] processes \the [W].")
+	else if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
+		user << SPAN_NOTICE("\The [src] processes \the [I].")
 		biomass += 50
-		user.drop_from_inventory(W)
-		qdel(W)
+		user.drop_from_inventory(I)
+		qdel(I)
 		return
-	else if(istype(W, /obj/item/weapon/tool/wrench))
+	else if(istype(I, /obj/item/weapon/tool/wrench))
 		if(locked && (anchored || occupant))
 			user << SPAN_WARNING("Can not do that while [src] is in use.")
 		else

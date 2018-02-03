@@ -63,10 +63,10 @@
 	return
 
 /obj/machinery/mech_recharger/attackby(var/obj/item/I, var/mob/user)
-	if(default_deconstruction_screwdriver(user, I))
+
+	if(default_deconstruction(user, I))
 		return
-	if(default_deconstruction_crowbar(user, I))
-		return
+
 	if(default_part_replacement(user, I))
 		return
 

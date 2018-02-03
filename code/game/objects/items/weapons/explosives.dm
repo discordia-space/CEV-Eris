@@ -28,7 +28,7 @@
 	if(istype(I, /obj/item/weapon/tool/screwdriver))
 		open_panel = !open_panel
 		user << "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>"
-	else if(istype(I, /obj/item/weapon/tool/wirecutters) || istype(I, /obj/item/device/multitool) || istype(I, /obj/item/device/assembly/signaler ))
+	else if(istype(I, /obj/item/weapon/tool))
 		wires.Interact(user)
 	else
 		..()

@@ -211,25 +211,48 @@
 		user << "You short out the product lock on \the [src]"
 		return 1
 
-/obj/machinery/vending/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/vending/attackby(obj/item/I, mob/user)
 
-	var/obj/item/weapon/card/id/I = W.GetID()
+	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+				anchored = !anchored
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+				panel_open = !panel_open
+				user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
+				overlays.Cut()
+				if(src.panel_open)
+					src.overlays += image(src.icon, "[initial(icon_state)]-panel")
+				nanomanager.update_uis(src)
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	var/obj/item/weapon/card/id/ID = I.GetID()
 
 	if (currently_vending && vendor_account && !vendor_account.suspended)
 		var/paid = 0
 		var/handled = 0
 
-		if (I) //for IDs and PDAs and wallets with IDs
-			paid = pay_with_card(I,W)
+		if (ID) //for IDs and PDAs and wallets with IDs
+			paid = pay_with_card(ID,I)
 			handled = 1
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
-		else if (istype(W, /obj/item/weapon/spacecash/ewallet))
-			var/obj/item/weapon/spacecash/ewallet/C = W
+		else if (istype(I, /obj/item/weapon/spacecash/ewallet))
+			var/obj/item/weapon/spacecash/ewallet/C = I
 			paid = pay_with_ewallet(C)
 			handled = 1
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 100, 1)
-		else if (istype(W, /obj/item/weapon/spacecash/bundle))
-			var/obj/item/weapon/spacecash/bundle/C = W
+		else if (istype(I, /obj/item/weapon/spacecash/bundle))
+			var/obj/item/weapon/spacecash/bundle/C = I
 			paid = pay_with_cash(C)
 			handled = 1
 
@@ -240,58 +263,26 @@
 			nanomanager.update_uis(src)
 			return // don't smack that machine with your 2 credits
 
-	if (I || istype(W, /obj/item/weapon/spacecash))
+	if (I || istype(I, /obj/item/weapon/spacecash))
 		attack_hand(user)
 		return
-	else if(istype(W, /obj/item/weapon/tool/screwdriver))
-		if (src.panel_open)
-			playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
-			src.panel_open = !src.panel_open
-			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
-			src.overlays.Cut()
-			if(src.panel_open)
-				src.overlays += image(src.icon, "[initial(icon_state)]-panel")
-			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
-			return
-		else
-			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
-			src.panel_open = !src.panel_open
-			user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
-			src.overlays.Cut()
-			if(src.panel_open)
-				src.overlays += image(src.icon, "[initial(icon_state)]-panel")
-			nanomanager.update_uis(src)  // Speaker switch is on the main UI, not wires UI
-			return
-	else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/weapon/tool/wirecutters))
+
+	else if(I.get_tool_type(usr, list(QUALITY_PULSING)) || I.get_tool_type(usr, list(QUALITY_CUTTING)))
 		if(src.panel_open)
 			attack_hand(user)
 		return
-	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
+	else if(istype(I, /obj/item/weapon/coin) && premium.len > 0)
 		user.drop_item()
-		W.loc = src
-		coin = W
+		I.loc = src
+		coin = I
 		categories |= CAT_COIN
-		user << SPAN_NOTICE("You insert \the [W] into \the [src].")
+		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
 		nanomanager.update_uis(src)
 		return
-	else if(istype(W, /obj/item/weapon/tool/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		if(anchored)
-			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
-		else
-			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-
-		if(do_after(user, 20, src))
-			if(!src) return
-			user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
-			anchored = !anchored
-		return
-
-	else
 
 		for(var/datum/data/vending_product/R in product_records)
-			if(istype(W, R.product_path))
-				stock(W, R, user)
+			if(istype(I, R.product_path))
+				stock(I, R, user)
 				return 1
 		..()
 
@@ -950,7 +941,7 @@
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
+	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 
@@ -962,13 +953,13 @@
 	icon_deny = "engi-deny"
 	products = list(/obj/item/clothing/head/hardhat = 4,
 					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/tool/screwdriver = 12,
-					/obj/item/weapon/tool/crowbar = 12,/obj/item/weapon/tool/wirecutters = 12,/obj/item/device/multitool = 12,/obj/item/weapon/tool/wrench = 12,/obj/item/device/t_scanner = 12,
+					/obj/item/weapon/tool/crowbar = 12,/obj/item/weapon/tool/wirecutters = 12,/obj/item/weapon/tool/multitool = 12,/obj/item/weapon/tool/wrench = 12,/obj/item/device/t_scanner = 12,
 					/obj/item/stack/cable_coil/heavyduty = 8, /obj/item/weapon/cell/large = 8, /obj/item/weapon/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5,/obj/item/weapon/stock_parts/micro_laser = 5,
 					/obj/item/weapon/stock_parts/matter_bin = 5,/obj/item/weapon/stock_parts/manipulator = 5,/obj/item/weapon/stock_parts/console_screen = 5)
 	prices = list(/obj/item/clothing/head/hardhat = 4,
 					/obj/item/weapon/storage/belt/utility = 150,/obj/item/clothing/glasses/meson = 300,/obj/item/clothing/gloves/insulated = 600, /obj/item/weapon/tool/screwdriver = 30,
-					/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/wirecutters = 30,/obj/item/device/multitool = 40,/obj/item/weapon/tool/wrench = 40,/obj/item/device/t_scanner = 50,
+					/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/wirecutters = 30,/obj/item/weapon/tool/multitool = 40,/obj/item/weapon/tool/wrench = 40,/obj/item/device/t_scanner = 50,
 					/obj/item/stack/cable_coil/heavyduty = 100, /obj/item/weapon/cell/large = 500, /obj/item/weapon/tool/weldingtool = 40,/obj/item/clothing/head/welding = 80,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 150, /obj/item/weapon/stock_parts/scanning_module = 40,/obj/item/weapon/stock_parts/micro_laser = 40,
 					/obj/item/weapon/stock_parts/matter_bin = 40,/obj/item/weapon/stock_parts/manipulator = 40,/obj/item/weapon/stock_parts/console_screen = 40)

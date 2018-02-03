@@ -67,7 +67,7 @@ var/bomb_set
 			flick("nuclearbombc", src)
 		return
 
-	if (panel_open && (istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/tool/wirecutters)))
+	if (panel_open && (istype(O, /obj/item/weapon/tool/multitool) || istype(O, /obj/item/weapon/tool/wirecutters)))
 		return attack_hand(user)
 
 	if (src.extended)
