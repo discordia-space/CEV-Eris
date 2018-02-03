@@ -18,12 +18,12 @@
 #define QUALITY_CUTTING					"cutting"
 
 //Remember that base time devided by tool level, which is 3 for base tools
-#define WORKTIME_NEAR_INSTANT			60
-#define WORKTIME_FAST					80
-#define WORKTIME_NORMAL					150
-#define WORKTIME_SLOW					300
-#define WORKTIME_LONG					500
-#define WORKTIME_EXTREMELY_LONG			800
+#define WORKTIME_NEAR_INSTANT			20
+#define WORKTIME_FAST					40
+#define WORKTIME_NORMAL					80
+#define WORKTIME_SLOW					100
+#define WORKTIME_LONG					150
+#define WORKTIME_EXTREMELY_LONG			200
 
 //Fail chance for tool system calculated in that way: basic chance - tool level * 10. It means that basic tools will have -30% chance to fail
 #define FAILCHANCE_VERY_EASY			20

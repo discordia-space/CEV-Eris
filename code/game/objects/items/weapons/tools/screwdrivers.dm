@@ -1,6 +1,6 @@
 /obj/item/weapon/tool/screwdriver
 	name = "screwdriver"
-	desc = "You can be totally screwwy with this."
+	desc = "You can use this to open panels and such things."
 	icon_state = "screwdriver"
 	flags = CONDUCT
 	worksound = WORKSOUND_SCREW_DRIVING
@@ -11,6 +11,18 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	attack_verb = list("stabbed")
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 3)
+
+/obj/item/weapon/tool/screwdriver/electric
+	name = "electric screwdriver"
+	desc = "Screwdriver powered by S class cell."
+	icon_state = "e-screwdriver"
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 4, QUALITY_DRILLING = 1)
+
+/obj/item/weapon/tool/screwdriver/combi_driver
+	name = "combi driver"
+	desc = "Drive screws, drive bolts, drill bones, you can do everything with it."
+	icon_state = "combi_driver"
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 5, QUALITY_BOLT_TURNING = 5, QUALITY_DRILLING = 2)
 
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")

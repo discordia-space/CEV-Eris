@@ -4,10 +4,16 @@
 
 /obj/random/tool/item_to_spawn()
 	return pick(/obj/item/weapon/tool/screwdriver,\
+				/obj/item/weapon/tool/screwdriver/electric,\
+				/obj/item/weapon/tool/screwdriver/combi_driver,\
 				/obj/item/weapon/tool/wirecutters,\
 				/obj/item/weapon/tool/weldingtool,\
 				/obj/item/weapon/tool/crowbar,\
 				/obj/item/weapon/tool/wrench,\
+				/obj/item/weapon/tool/big_wrench,\
+				/obj/item/weapon/tool/circular_saw,\
+				/obj/item/weapon/tool/circular_saw/simple,\
+				/obj/item/weapon/tool/circular_saw/advanced,\
 				/obj/item/device/assembly/igniter,\
 				/obj/item/device/assembly/infra,\
 				/obj/item/device/assembly/prox_sensor,\

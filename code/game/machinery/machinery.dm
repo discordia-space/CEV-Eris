@@ -300,26 +300,31 @@ Class Procs:
 	return 0
 
 /obj/machinery/proc/default_deconstruction(var/obj/item/I, var/mob/user)
+
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
 	switch(tool_type)
+
 		if(QUALITY_PRYING)
 			if(!panel_open)
 				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
 				return TRUE
-			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_HARD))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD))
 				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
 				dismantle()
 			return TRUE
+
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
 				updateUsrDialog()
 				panel_open = !panel_open
 				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 				update_icon()
 			return TRUE
+
 		if(ABORT_CHECK)
 			return TRUE
+
 	return FALSE //If got no qualities - continue base attackby proc
 
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)

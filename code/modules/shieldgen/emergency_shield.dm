@@ -279,7 +279,7 @@
 			if(locked)
 				user << SPAN_NOTICE("The bolts are covered, unlocking this would retract the covers.")
 				return
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 				if(anchored)
 					user << SPAN_NOTICE("You unsecure the [src] from the floor!")
 					if(active)
@@ -293,7 +293,7 @@
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
 				is_open = !is_open
 				user << SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I].")
 			return

@@ -132,6 +132,10 @@
 		//Don't eat anything used on an open lathe.
 		return FALSE
 
+	if(istype(I, /obj/item/weapon/tool))
+		//Don't eat tools.
+		return FALSE
+
 	if(I.loc != user && !(istype(I,/obj/item/stack)))
 		return FALSE
 

@@ -89,13 +89,13 @@
 	switch(tool_type)
 
 		if(QUALITY_PRYING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 				remove_cell(user)
 				return
 
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
 				if(!locked)
 					open = !open
 					update_icon()
@@ -106,7 +106,7 @@
 
 		if(QUALITY_CUTTING)
 			if(open)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_CUTTING, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 					passenger_allowed = !passenger_allowed
 					user.visible_message(
 						SPAN_NOTICE("[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src]."),
@@ -115,7 +115,7 @@
 			return
 
 		if(QUALITY_WELDING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 				health = min(maxhealth, health+10)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")

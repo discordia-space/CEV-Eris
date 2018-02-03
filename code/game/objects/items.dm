@@ -645,12 +645,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			attack(H, H, H.get_holding_hand(src))
-	if(prob(66))
-		if(ishuman(user))
-			if(ishuman(target))
-				var/mob/living/carbon/human/T = target
-				var/mob/living/carbon/human/H = user
-				attack(T, user, H.targeted_organ)
 	return
 
 /obj/item/device

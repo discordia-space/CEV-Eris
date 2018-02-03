@@ -260,7 +260,7 @@
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 				open_hatch = !open_hatch
 				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 			return
@@ -272,7 +272,7 @@
 					if(!tempTDir.is_plating())
 						user << SPAN_WARNING("You must remove the floor plating first.")
 						return
-				if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 					building_terminal = 1
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
