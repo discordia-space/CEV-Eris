@@ -6,6 +6,10 @@
 #define CLONING_HUMAN 	5		//autonomous body
 #define CLONING_DONE 	6
 
+#define ANIM_OPEN 1
+#define ANIM_NONE 0
+#define ANIM_CLOSE -1
+
 /obj/machinery/neotheology/cloner
 	name = "NeoTheology's clonpod"
 	desc = "The newest design and God's gift from NeoTheology, this automatic machine will return the flesh to the spirit in no time."
@@ -22,6 +26,10 @@
 	var/cloning_stage = CLONING_IDLE
 	var/stage_timer = 0
 	var/cloning = FALSE
+
+	var/animation = ANIM_NONE
+	var/image/anim0 = null
+	var/image/anim1 = null
 
 	var/closed = FALSE
 	var/power_cost = 250
@@ -58,19 +66,15 @@
 /obj/machinery/neotheology/cloner/proc/is_done()
 	return cloning_stage >= CLONING_DONE
 
-/obj/machinery/neotheology/cloner/proc/require_biomass(var/count, var/notenough = TRUE)
+/obj/machinery/neotheology/cloner/proc/require_biomass(var/count)
 	var/obj/machinery/neotheology/biomass_container/can = find_biomass_container()
 	if(!can)
 		if(count <= 0)	//If you need 0 or less biomass, you doesnt need the biocan
 			return TRUE
 		else
-			if(notenough)
-				not_enough_biomass()
 			return FALSE
 
 	if(can.biomass < count)
-		if(notenough)
-			not_enough_biomass()
 		return FALSE
 	else
 		can.biomass -= count
@@ -118,18 +122,47 @@
 	if(closed)
 		return
 
+	animation = ANIM_CLOSE
+	ready_anim()
 	closed = TRUE
 	update_icon()
 
-/obj/machinery/neotheology/cloner/proc/open(var/forced = FALSE)	//if not forced, pod will not open, if cloning not done
+	return TRUE
+
+/obj/machinery/neotheology/cloner/proc/open()
 	if(!closed)
 		return
 
-	if(forced || is_done())
-		closed = FALSE
+	update_icon()
+	animation = ANIM_OPEN
+	ready_anim()
+	closed = FALSE
+	update_icon()
+	spawn(16)
 		eject_contents()
 
+	return TRUE
+
+/obj/machinery/neotheology/cloner/proc/ready_anim()
+	var/atype = "opening"
+	if(animation == ANIM_CLOSE)
+		atype = "closing"
+
+	qdel(anim0)
+	anim0 = image(icon, "pod_[atype]0")
+	anim0.layer = 5.01
+
+	qdel(anim1)
+	anim1 = image(icon, "pod_[atype]1")
+	anim1.layer = 5.01
+	anim1.pixel_z = 32
+
 	update_icon()
+	spawn(20)
+		animation = ANIM_NONE
+		update_icon()
+		qdel(anim0)
+		qdel(anim1)
 
 /obj/machinery/neotheology/cloner/proc/eject_contents()
 	if(!occupant || closed)
@@ -161,21 +194,21 @@
 
 	visible_message(SPAN_NOTICE("Cloning started."))
 	update_icon()
+	return TRUE
 
-/obj/machinery/neotheology/cloner/proc/stop(var/forced = FALSE, var/open = TRUE)
+/obj/machinery/neotheology/cloner/proc/stop()
 	if(!cloning)
 		return
 
-	if(forced || is_done())
-		cloning = FALSE
-		if(open)
-			open(forced)
-		if(is_done())
-			visible_message(SPAN_NOTICE("Cloning done!"))
-		else
-			visible_message(SPAN_NOTICE("Cloning stopped!"))
-		cloning_stage = CLONING_IDLE
+	cloning = FALSE
+	if(is_done())
+		visible_message(SPAN_NOTICE("Cloning done!"))
+	else
+		visible_message(SPAN_NOTICE("Cloning stopped!"))
+	open()
+	cloning_stage = CLONING_IDLE
 	update_icon()
+	return TRUE
 
 /obj/machinery/neotheology/cloner/proc/mutate()
 	if(occupant && prob(20))
@@ -202,40 +235,13 @@
 			if(prob(40))
 				O.take_damage(5+rand(3))
 
-//Cloning errors
-/obj/machinery/neotheology/cloner/proc/not_enough_biomass()
-	if(biomass_error < 1)
-		visible_message(SPAN_WARNING("Not enough biomass!"))
-	if(biomass_error > 3)
-		if(occupant)
-			if(cloning_stage <= CLONING_BODY)
-				damage_internal()
-			else
-				damage_external()
-	if(biomass_error > 20 || cloning_stage <= CLONING_BONES)
-		stop(TRUE)
-	biomass_error += 1
-
-/obj/machinery/neotheology/cloner/proc/data_not_found()
-	if(data_error < 1)
-		visible_message(SPAN_WARNING("Implant read error!"))
-	if(data_error > 3)
-		if(occupant && cloning_stage <= CLONING_BODY)
-			mutate()
-	if(data_error > 20  || cloning_stage <= CLONING_BONES)
-		stop(TRUE)
-	data_error += 1
-
-/obj/machinery/neotheology/cloner/proc/unexpected_error()	//For specific errors
-	visible_message(SPAN_WARNING("Unexpected error!"))
-	stop(TRUE)
 
 ///////////////
 
 /obj/machinery/neotheology/cloner/process()
 	if(stat & NOPOWER)
 		if(cloning)
-			stop(TRUE)
+			stop()
 			visible_message(SPAN_WARNING("Power lost!"))
 			update_icon()
 			return
@@ -250,73 +256,90 @@
 
 			occupant.updatehealth()
 
-		if(world.time >= stage_timer)
+		if(world.time >= stage_timer && animation == ANIM_NONE && !anim0 && !anim1)
 
 			var/datum/core_module/cruciform/cloning/R = read_data()
 
 			var/has_bio = require_biomass(stage_biomass[get_next_stage()])
 
 			if(!R)
-				data_not_found()
+				if(data_error < 1)
+					visible_message(SPAN_WARNING("Implant read error!"))
+				if(data_error > 3)
+					if(occupant && cloning_stage <= CLONING_BODY)
+						mutate()
+				if(data_error > 20  || cloning_stage <= CLONING_BONES)
+					stop(TRUE)
+				data_error += 1
 			else
 				if(data_error)
 					data_error = 0
 
 			if(!has_bio)
-				not_enough_biomass()
+				if(biomass_error < 1)
+					visible_message(SPAN_WARNING("Not enough biomass!"))
+				if(biomass_error > 3)
+					if(occupant)
+						if(cloning_stage <= CLONING_BODY)
+							damage_internal()
+						else
+							damage_external()
+				if(biomass_error > 20 || cloning_stage <= CLONING_BONES)
+					stop(TRUE)
+				biomass_error += 1
 			else
 				if(biomass_error)
 					biomass_error = 0
 
 
-			if(cloning)
-				if(!biomass_error && !data_error)
-					if(!is_done())
-						cloning_stage = get_next_stage()
-						if(cloning_stage < CLONING_DONE)
-							visible_message(SPAN_NOTICE("Processing cloning stage [cloning_stage]/5."))
-						set_stage_timer(stage_time[cloning_stage])
+			if(!biomass_error && !data_error)
+				if(!is_done())
+					cloning_stage = get_next_stage()
+					if(cloning_stage < CLONING_DONE)
+						visible_message(SPAN_NOTICE("Processing cloning stage [cloning_stage]/5."))
+					set_stage_timer(stage_time[cloning_stage])
 
 
-					if(cloning_stage == CLONING_NONE)
-						close()
+				if(cloning_stage == CLONING_NONE)
+					close()
 
-					if(cloning_stage == CLONING_BONES)
-						occupant = new/mob/living/carbon/human(src)
-						occupant.dna = R.dna.Clone()
-						occupant.set_species()
-						occupant.real_name = R.dna.real_name
-						occupant.age = R.age
-						occupant.UpdateAppearance()
-						occupant.sync_organ_dna()
+				if(cloning_stage == CLONING_BONES)
+					occupant = new/mob/living/carbon/human(src)
+					occupant.dna = R.dna.Clone()
+					occupant.set_species()
+					occupant.real_name = R.dna.real_name
+					occupant.age = R.age
+					occupant.UpdateAppearance()
+					occupant.sync_organ_dna()
 
-					if(cloning_stage == CLONING_MEAT)
-						var/datum/effect/effect/system/spark_spread/s = new
-						s.set_up(3, 1, src)
-						s.start()
+				if(cloning_stage == CLONING_MEAT)
+					var/datum/effect/effect/system/spark_spread/s = new
+					s.set_up(3, 1, src)
+					s.start()
 
-					if(cloning_stage == CLONING_BODY)
-						if(!occupant)
-							unexpected_error()
-
-					if(cloning_stage == CLONING_HUMAN)
-						if(occupant)
-							occupant.flavor_text = R.flavor
-						else
-							unexpected_error()
-
-					if(cloning_stage >= CLONING_DONE)
-						stage_timer = 0
-						occupant.setCloneLoss(0)
-						occupant.setBrainLoss(0)
-						occupant.updatehealth()
+				if(cloning_stage == CLONING_BODY)
+					if(!occupant)
 						stop()
-						var/datum/effect/effect/system/smoke_spread/s = new
-						s.set_up(2, 1, src)
-						s.start()
 
-		update_icon()
-		use_power(power_cost)
+				if(cloning_stage == CLONING_HUMAN)
+					if(occupant)
+						occupant.flavor_text = R.flavor
+					else
+						stop()
+
+				if(cloning_stage >= CLONING_DONE)
+					stage_timer = 0
+					occupant.setCloneLoss(0)
+					occupant.setBrainLoss(0)
+					occupant.updatehealth()
+					stop()
+					var/datum/effect/effect/system/smoke_spread/s = new
+					s.set_up(2, 1, src)
+					s.start()
+
+			update_icon()
+
+	use_power(power_cost)
 
 
 /obj/machinery/neotheology/cloner/relaymove()
@@ -334,6 +357,7 @@
 
 /obj/machinery/neotheology/cloner/update_icon()
 	icon_state = "pod_base0"
+
 	overlays.Cut()
 
 	if(panel_open)
@@ -346,14 +370,15 @@
 	overlays.Add(I)
 
 	if(closed)
-		I = image(icon, "pod_under0")
+		I = image(icon, "pod_under")
 		I.layer = 5
 		overlays.Add(I)
 
-		I = image(icon, "pod_under1")
-		I.layer = 5
+		I = image(icon, "pod_top_on")
+		I.layer = 5.021
 		I.pixel_z = 32
 		overlays.Add(I)
+
 
 	/////////BODY
 	if(cloning_stage == CLONING_BONES || cloning_stage == CLONING_MEAT)
@@ -385,21 +410,35 @@
 	//////////////
 
 	if(closed)
-		I = image(icon, "pod_glass0")
-		I.layer = 5
-		overlays.Add(I)
+		if(animation == ANIM_NONE)
+			I = image(icon, "pod_glass0")
+			I.layer = 5.01
+			overlays.Add(I)
 
-		I = image(icon, "pod_glass1")
-		I.layer = 5
-		I.pixel_z = 32
-		overlays.Add(I)
+			I = image(icon, "pod_glass1")
+			I.layer = 5.01
+			I.pixel_z = 32
+			overlays.Add(I)
+
+			I = image(icon, "pod_liquid0")
+			I.layer = 5.01
+			overlays.Add(I)
+
+			I = image(icon, "pod_liquid1")
+			I.layer = 5.01
+			I.pixel_z = 32
+			overlays.Add(I)
+
+	if(animation != ANIM_NONE && anim0 && anim1)
+		overlays.Add(anim0)
+		overlays.Add(anim1)
 
 	I = image(icon, "pod_top0")
 	I.layer = layer
 	overlays.Add(I)
 
 	I = image(icon, "pod_top1")
-	I.layer = 5
+	I.layer = 5.02
 	I.pixel_z = 32
 	overlays.Add(I)
 
@@ -560,3 +599,7 @@
 
 /obj/machinery/neotheology
 	icon = 'icons/obj/neotheology_machinery.dmi'
+
+#undef ANIM_OPEN
+#undef ANIM_NONE
+#undef ANIM_CLOSE
