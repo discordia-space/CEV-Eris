@@ -167,7 +167,7 @@
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					construction_stage = 0
 					update_icon()
-					new /obj/item/stack/rods(user)
+					new /obj/item/stack/rods(user.loc)
 					user << SPAN_NOTICE("The support rods drop out as you cut them loose from the frame.")
 					return
 			return
@@ -193,7 +193,7 @@
 				user << SPAN_NOTICE("You begin cuting the outer grille...")
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					construction_stage = 5
-					new /obj/item/stack/rods(user)
+					new /obj/item/stack/rods(user.loc)
 					user << SPAN_NOTICE("You cut the outer grille.")
 					update_icon()
 					return
