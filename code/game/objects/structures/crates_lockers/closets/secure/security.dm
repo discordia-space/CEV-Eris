@@ -66,6 +66,7 @@
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/suit/armor/hos(src)
+	new /obj/item/clothing/under/rank/ih_commander(src)
 	new /obj/item/weapon/cartridge/hos(src)
 	new /obj/item/device/radio/headset/heads/hos(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
