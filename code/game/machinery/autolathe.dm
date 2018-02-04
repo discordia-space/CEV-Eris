@@ -113,16 +113,16 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user)
 
 	if(busy)
 		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return
 
-	if(default_deconstruction(user, I))
+	if(default_deconstruction(I, user))
 		return
 
-	if(default_part_replacement(user, I))
+	if(default_part_replacement(I, user))
 		return
 
 	if(stat)
