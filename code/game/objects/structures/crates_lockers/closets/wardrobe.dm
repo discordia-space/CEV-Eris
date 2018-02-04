@@ -100,7 +100,7 @@
 
 /obj/structure/closet/wardrobe/yellow
 	name = "yellow wardrobe"
-	icon_door = "yellow_door"
+	icon_door = "yellow"
 
 /obj/structure/closet/wardrobe/yellow/populate_contents()
 	..()
@@ -288,7 +288,7 @@
 
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"
-	icon_door = "black_door"
+	icon_door = "black"
 
 /obj/structure/closet/wardrobe/tactical/populate_contents()
 	..()
