@@ -1,4 +1,5 @@
 /obj/map_data/multiz
+	icon = 'icons/misc/landmarks.dmi'
 	icon_state = "config-green"
 	alpha = 255 //This one too important
 	invisibility = 101
