@@ -198,10 +198,10 @@
 /obj/machinery/clonepod/attackby(var/obj/item/I, mob/user as mob)
 	if(isnull(occupant))
 
-		if(default_deconstruction(user, I))
+		if(default_deconstruction(I, user))
 			return
 
-		if(default_part_replacement(user, I))
+		if(default_part_replacement(I, user))
 			return
 
 	if(I.GetID())

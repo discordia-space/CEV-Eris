@@ -64,10 +64,10 @@
 
 /obj/machinery/mech_recharger/attackby(var/obj/item/I, var/mob/user)
 
-	if(default_deconstruction(user, I))
+	if(default_deconstruction(I, user))
 		return
 
-	if(default_part_replacement(user, I))
+	if(default_part_replacement(I, user))
 		return
 
 /obj/machinery/mech_recharger/proc/start_charging(var/obj/mecha/M)
