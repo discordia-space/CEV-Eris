@@ -9,10 +9,7 @@
 
 	survive_objective = /datum/objective/escape
 
-/datum/antagonist/secoc/hunter/equip()
-	if(!owner.current)
-		return FALSE
-
+/datum/antagonist/secdoc_hunter/equip()
 	if(!..())
 		return FALSE
 

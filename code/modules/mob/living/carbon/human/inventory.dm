@@ -209,6 +209,19 @@ This saves us from having to call add_fingerprint() any time something is put in
 	update_action_buttons()
 	return 1
 
+/mob/living/carbon/human/proc/get_active_hand_organ()
+	if(hand)
+		return get_organ(BP_L_HAND)
+	else
+		return get_organ(BP_R_HAND)
+
+/mob/living/carbon/human/proc/get_holding_hand(var/obj/item/W)
+	switch(get_inventory_slot(W))
+		if(slot_l_hand)
+			return BP_L_HAND
+		if(slot_r_hand)
+			return BP_R_HAND
+
 
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
@@ -221,7 +234,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
 	if(ismob(W.loc))
 		var/mob/M = W.loc
-		if(M.get_inventory_slot(M) && !M.unEquip(W, src))
+		if(M.get_inventory_slot(W) && !M.unEquip(W, src))
 			return
 	W.forceMove(src)
 	switch(slot)

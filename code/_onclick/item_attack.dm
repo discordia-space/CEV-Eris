@@ -24,12 +24,12 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
-/obj/item/proc/resolve_attackby(atom/A, mob/user)
+/obj/item/proc/resolve_attackby(atom/A, mob/user, params)
 	add_fingerprint(user)
-	return A.attackby(src, user)
+	return A.attackby(src, user, params)
 
 // No comment
-/atom/proc/attackby(obj/item/W, mob/user)
+/atom/proc/attackby(obj/item/W, mob/user, params)
 	return
 
 /atom/movable/attackby(obj/item/I, mob/living/user)
@@ -49,18 +49,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, params)
-	if(istype(target, /obj/structure/table))
-		var/list/click_params = params2list(params)
-		//Center the icon where the user clicked.
-		pixel_x = (text2num(click_params["icon-x"]) - 16)
-		pixel_y = (text2num(click_params["icon-y"]) - 16)
-		layer = user.layer + 0.1
+	return
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, var/target_zone)
 	if(!force || (flags & NOBLUDGEON))
-		return FALSE
-	if(M == user && user.a_intent != I_HURT)
 		return FALSE
 
 	/////////////////////////

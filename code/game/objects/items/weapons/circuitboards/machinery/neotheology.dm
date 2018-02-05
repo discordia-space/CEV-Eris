@@ -1,7 +1,3 @@
-#ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
-#endif
-
 /obj/item/weapon/circuitboard/neotheology/cloner
 	name = T_BOARD("christian cloner")
 	build_path = /obj/machinery/neotheology/cloner

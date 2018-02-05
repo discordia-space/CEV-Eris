@@ -131,6 +131,7 @@
 		user << SPAN_NOTICE("\The [src] is now energised.")
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	tool_qualities = list(QUALITY_CUTTING = 3, QUALITY_WELDING = 1, QUALITY_CAUTERIZING = 1)
 	icon_state = "sword[blade_color]"
 
 /obj/item/weapon/melee/energy/sword/deactivate(mob/living/user)
@@ -138,6 +139,7 @@
 		user << SPAN_NOTICE("\The [src] deactivates!")
 	..()
 	attack_verb = list()
+	tool_qualities = initial(tool_qualities)
 	icon_state = initial(icon_state)
 
 /obj/item/weapon/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")

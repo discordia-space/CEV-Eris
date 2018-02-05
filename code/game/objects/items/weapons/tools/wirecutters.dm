@@ -4,6 +4,7 @@
 	icon_state = "cutters"
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
+	worksound = WORKSOUND_WIRECUTTING
 	throw_speed = 2
 	throw_range = 9
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
@@ -11,12 +12,7 @@
 	attack_verb = list("pinched", "nipped")
 	sharp = TRUE
 	edge = TRUE
-
-/obj/item/weapon/tool/wirecutters/New()
-	if(prob(50))
-		icon_state = "cutters-y"
-		item_state = "cutters_yellow"
-	..()
+	tool_qualities = list(QUALITY_RETRACTING = 2, QUALITY_CUTTING = 1)
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))

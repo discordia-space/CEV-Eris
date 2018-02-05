@@ -469,7 +469,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					else
 						user.apply_damage(2, BURN, BP_R_HAND)
 					user.visible_message(SPAN_NOTICE("After a few attempts, [user] manages to light the [src], they however burn their finger in the process."))
-
+			tool_qualities = list(QUALITY_CAUTERIZING = 1)
 			set_light(2)
 			processing_objects.Add(src)
 		else
@@ -482,7 +482,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				playsound(src, 'sound/items/lighter.ogg', 20, 1, 1)
 				user.visible_message(SPAN_NOTICE("[user] quietly shuts off the [src]."))
-
+			tool_qualities = initial(tool_qualities)
 			set_light(0)
 			processing_objects.Remove(src)
 	else

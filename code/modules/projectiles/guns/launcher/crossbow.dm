@@ -133,16 +133,16 @@
 		return
 
 
-/obj/item/weapon/gun/launcher/crossbow/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weapon/gun/launcher/crossbow/attackby(obj/item/I, mob/user)
 	if(!bolt)
-		if (istype(W,/obj/item/weapon/arrow))
-			user.drop_from_inventory(W, src)
-			bolt = W
+		if (istype(I,/obj/item/weapon/arrow))
+			user.drop_from_inventory(I, src)
+			bolt = I
 			user.visible_message("[user] slides [bolt] into [src].","You slide [bolt] into [src].")
 			update_icon()
 			return
-		else if(istype(W,/obj/item/stack/rods))
-			var/obj/item/stack/rods/R = W
+		else if(istype(I,/obj/item/stack/rods))
+			var/obj/item/stack/rods/R = I
 			if (R.use(1))
 				bolt = new /obj/item/weapon/arrow/rod(src)
 				bolt.fingerprintslast = src.fingerprintslast
@@ -152,21 +152,21 @@
 				superheat_rod(user)
 			return
 
-	if(istype(W, /obj/item/weapon/cell/large))
+	if(istype(I, /obj/item/weapon/cell/large))
 		if(!cell)
 			user.drop_item()
-			cell = W
+			cell = I
 			cell.loc = src
 			user << SPAN_NOTICE("You jam [cell] into [src] and wire it to the firing coil.")
 			superheat_rod(user)
 		else
 			user << SPAN_NOTICE("[src] already has a cell installed.")
 
-	else if(istype(W, /obj/item/weapon/tool/screwdriver))
+	else if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
 		if(cell)
 			var/obj/item/C = cell
 			C.loc = get_turf(user)
-			user << SPAN_NOTICE("You jimmy [cell] out of [src] with [W].")
+			user << SPAN_NOTICE("You jimmy [cell] out of [src] with [I].")
 			cell = null
 		else
 			user << SPAN_NOTICE("[src] doesn't have a cell installed.")
@@ -215,7 +215,7 @@
 		if(4) user << "It has a steel backbone, plastic lath and a cell mount installed."
 		if(5) user << "It has a steel cable loosely strung across the lath."
 
-/obj/item/weapon/crossbowframe/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weapon/crossbowframe/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/stack/rods))
 		if(buildstate == 0)
 			var/obj/item/stack/rods/R = W
@@ -264,7 +264,7 @@
 			else
 				user << SPAN_NOTICE("You need at least three plastic sheets to complete this task.")
 			return
-	else if(istype(W,/obj/item/weapon/tool/screwdriver))
+	else if(W.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
 		if(buildstate == 5)
 			user << SPAN_NOTICE("You secure the crossbow's various parts.")
 			new /obj/item/weapon/gun/launcher/crossbow(get_turf(src))

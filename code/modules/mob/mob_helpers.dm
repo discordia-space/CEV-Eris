@@ -577,7 +577,7 @@ proc/is_blind(A)
 
 #undef SAFE_PERP
 
-/mob/proc/get_multitool(var/obj/item/device/multitool/P)
+/mob/proc/get_multitool(var/obj/item/weapon/tool/multitool/P)
 	if(istype(P))
 		return P
 

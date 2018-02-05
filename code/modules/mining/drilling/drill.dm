@@ -129,25 +129,26 @@
 /obj/machinery/mining/drill/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/mining/drill/attackby(obj/item/I, mob/user as mob)
+
 	if(!active)
-		if(default_deconstruction_screwdriver(user, O))
+		if(default_deconstruction(I, user))
 			return
-		if(default_deconstruction_crowbar(user, O))
+
+		if(default_part_replacement(I, user))
 			return
-		if(default_part_replacement(user, O))
-			return
+
 	if(!panel_open || active) return ..()
 
-	if(istype(O, /obj/item/weapon/cell/large))
+	if(istype(I, /obj/item/weapon/cell/large))
 		if(cell)
 			user << "The drill already has a cell installed."
 		else
 			user.drop_item()
-			O.loc = src
-			cell = O
-			component_parts += O
-			user << "You install \the [O]."
+			I.loc = src
+			cell = I
+			component_parts += I
+			user << "You install \the [I]."
 		return
 	..()
 
@@ -282,30 +283,45 @@
 	circuit = /obj/item/weapon/circuitboard/miningdrillbrace
 	var/obj/machinery/mining/drill/connected
 
-/obj/machinery/mining/brace/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/mining/brace/attackby(var/obj/item/I, mob/user as mob)
 	if(connected && connected.active)
 		user << SPAN_NOTICE("You can't work with the brace of a running drill!")
 		return
 
-	if(default_deconstruction_screwdriver(user, W))
-		return
-	if(default_deconstruction_crowbar(user, W))
-		return
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING))
+	switch(tool_type)
 
-	if(istype(W,/obj/item/weapon/tool/wrench))
+		if(QUALITY_PRYING)
+			if(!panel_open)
+				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD))
+				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				dismantle()
+				return
 
-		if(istype(get_turf(src), /turf/space))
-			user << SPAN_NOTICE("You can't anchor something to empty space. Idiot.")
+		if(QUALITY_SCREW_DRIVING)
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				update_icon()
+				return
+
+		if(QUALITY_BOLT_TURNING)
+			if(istype(get_turf(src), /turf/space))
+				user << SPAN_NOTICE("You can't anchor something to empty space. Idiot.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				user << SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I].")
+				anchored = !anchored
+				if(anchored)
+					connect()
+				else
+					disconnect()
+
+		if(ABORT_CHECK)
 			return
-
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		user << "<span class='notice'>You [anchored ? "un" : ""]anchor the brace.</span>"
-
-		anchored = !anchored
-		if(anchored)
-			connect()
-		else
-			disconnect()
 
 /obj/machinery/mining/brace/proc/connect()
 
