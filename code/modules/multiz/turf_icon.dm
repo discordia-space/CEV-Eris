@@ -83,6 +83,7 @@
 		if(istype(elem, /turf/simulated/open) || istype(elem, /turf/space))
 			T = elem
 			T.update_icon()
+	return TRUE
 
 
 /atom/proc/update_openspace()
