@@ -131,7 +131,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if(default_part_replacement(user, I))
+	if(default_part_replacement(I, user))
 		return
 
 /obj/machinery/r_n_d/server/centcom

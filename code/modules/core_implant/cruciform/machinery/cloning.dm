@@ -325,10 +325,10 @@
 
 /obj/machinery/neotheology/cloner/attackby(obj/item/I, mob/user as mob)
 
-	if(default_deconstruction(user, I))
+	if(default_deconstruction(I, user))
 		return
 
-	if(default_part_replacement(user, I))
+	if(default_part_replacement(I, user))
 		return
 
 /obj/machinery/neotheology/cloner/update_icon()
@@ -443,10 +443,10 @@
 
 /obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user as mob)
 
-	if(default_deconstruction(user, I))
+	if(default_deconstruction(I, user))
 		return
 
-	if(default_part_replacement(user, I))
+	if(default_part_replacement(I, user))
 		return
 
 	if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
@@ -498,10 +498,10 @@
 
 /obj/machinery/neotheology/reader/attackby(obj/item/I, mob/user as mob)
 
-	if(default_deconstruction(user, I))
+	if(default_deconstruction(I, user))
 		return
 
-	if(default_part_replacement(user, I))
+	if(default_part_replacement(I, user))
 		return
 
 	if(istype(I, /obj/item/weapon/implant/external/core_implant/cruciform))

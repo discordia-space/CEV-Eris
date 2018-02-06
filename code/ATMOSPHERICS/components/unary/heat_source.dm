@@ -154,7 +154,7 @@
 
 /obj/machinery/atmospherics/unary/heater/attackby(var/obj/item/I as obj, var/mob/user as mob)
 
-	if(default_deconstruction(user, I))
+	if(default_deconstruction(I, user))
 		return
 
 	..()
