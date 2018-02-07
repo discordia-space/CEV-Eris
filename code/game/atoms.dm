@@ -30,6 +30,13 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+	var/auto_init = TRUE
+
+/atom/New()
+	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
+		initialize()
+
+
 /atom/Destroy()
 	if(reagents)
 		qdel(reagents)
