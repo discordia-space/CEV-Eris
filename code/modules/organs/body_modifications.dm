@@ -147,6 +147,18 @@ var/global/list/modifications_types = list(
 	short_name = "M: [name]"
 	name = "Mutation: [name]"
 
+////Organ Modules////
+/datum/body_modification/limb/organ_module
+	replace_limb = null
+	var/module_type = null
+
+/datum/body_modification/limb/organ_module/create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
+	var/obj/item/organ/external/E = ..()
+	if(module_type)
+		var/obj/item/organ_module/OM = new module_type()
+		OM.install(E)
+	return E
+
 ////Internals////
 
 /datum/body_modification/organ/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
