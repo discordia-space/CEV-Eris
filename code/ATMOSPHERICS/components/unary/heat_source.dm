@@ -152,12 +152,9 @@
 	power_setting = new_power_setting
 	power_rating = max_power_rating * (power_setting/100)
 
-/obj/machinery/atmospherics/unary/heater/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
-		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+/obj/machinery/atmospherics/unary/heater/attackby(var/obj/item/I as obj, var/mob/user as mob)
+
+	if(default_deconstruction(I, user))
 		return
 
 	..()

@@ -13,8 +13,8 @@
 	qdel(part2)
 	..()
 
-/obj/item/assembly/shock_kit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/wrench) && !status)
+/obj/item/assembly/shock_kit/attackby(obj/item/weapon/I, mob/user)
+	if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING)) && !status)
 		var/turf/T = loc
 		if(ismob(T))
 			T = T.loc
@@ -26,9 +26,9 @@
 		part2 = null
 		qdel(src)
 		return
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "secured" : "unsecured"]!</span>"
+		user << SPAN_NOTICE("[src] is now [status ? "secured" : "unsecured"]!")
 	add_fingerprint(user)
 	return
 

@@ -1,5 +1,5 @@
 /turf/simulated/open/update_icon()
-	if(!ticker || ticker.current_state < GAME_STATE_PLAYING)
+	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		return
 
 	overlays.Cut()
@@ -83,6 +83,7 @@
 		if(istype(elem, /turf/simulated/open) || istype(elem, /turf/space))
 			T = elem
 			T.update_icon()
+	return TRUE
 
 
 /atom/proc/update_openspace()

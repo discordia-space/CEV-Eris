@@ -10,4 +10,4 @@
 	new /obj/item/clothing/suit/space/void(src)
 	new /obj/item/weapon/tool/crowbar(src)
 	new /obj/item/weapon/cell/large(src)
-	new /obj/item/device/multitool(src)
+	new /obj/item/weapon/tool/multitool(src)

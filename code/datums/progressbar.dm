@@ -12,6 +12,10 @@
 	. = ..()
 	if(!istype(target))
 		EXCEPTION("Invalid target given")
+	else if(!isturf(target.loc))
+		var/turf/T = get_turf(target)
+		if(T)
+			target = T
 	if(goal_number)
 		goal = goal_number
 	bar = image('icons/effects/progessbar.dmi', target, "prog_bar_0", 3)

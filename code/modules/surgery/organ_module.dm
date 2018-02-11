@@ -45,7 +45,6 @@
 		if(!affected.module)
 			var/obj/item/organ_module/OM = tool
 			user.unEquip(OM, affected)
-			affected.module = OM
 			OM.install(affected)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -102,8 +101,6 @@
 
 		var/obj/item/organ_module/OM = affected.module
 		OM.remove(affected)
-		affected.module = null
-		OM.forceMove(get_turf(affected))
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

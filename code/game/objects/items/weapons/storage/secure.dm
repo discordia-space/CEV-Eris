@@ -46,7 +46,7 @@
 					src.open =! src.open
 					user.show_message(SPAN_NOTICE("You [src.open ? "open" : "close"] the service panel."))
 				return
-			if ((istype(W, /obj/item/device/multitool)) && (src.open == 1)&& (!src.l_hacking))
+			if ((istype(W, /obj/item/weapon/tool/multitool)) && (src.open == 1)&& (!src.l_hacking))
 				user.show_message(SPAN_NOTICE("Now attempting to reset internal memory, please hold."), 1)
 				src.l_hacking = 1
 				if (do_after(usr, 100, src))

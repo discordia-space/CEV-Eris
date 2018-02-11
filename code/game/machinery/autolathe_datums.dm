@@ -59,7 +59,7 @@
 
 /datum/autolathe/recipe/multitool
 	name = "multitool"
-	path = /obj/item/device/multitool
+	path = /obj/item/weapon/tool/multitool
 	category = "Tools"
 
 /datum/autolathe/recipe/t_scanner

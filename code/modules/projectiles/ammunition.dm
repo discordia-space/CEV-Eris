@@ -28,8 +28,8 @@
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
 
-/obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
+/obj/item/ammo_casing/attackby(obj/item/I, mob/user)
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING, QUALITY_CUTTING)))
 		if(!BB)
 			user << "\blue There is no bullet in the casing to inscribe anything into."
 			return
