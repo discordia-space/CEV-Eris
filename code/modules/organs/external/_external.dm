@@ -297,7 +297,7 @@
 		owner.verbs -= /mob/living/carbon/human/proc/undislocate
 
 /obj/item/organ/external/proc/setBleeding()
-	if(robotic >= ORGAN_ROBOT || H.species.flags & NO_BLOOD)
+	if(robotic >= ORGAN_ROBOT || owner.species.flags & NO_BLOOD)
 		return FALSE
 	status |= ORGAN_BLEEDING
 	return TRUE
@@ -604,13 +604,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	number_wounds = 0
 	brute_dam = 0
 	burn_dam = 0
-	src.stop_bleeding()
+	src.stopBleeding()
 
 	var/clamped = 0
-
-	var/mob/living/carbon/human/H
-	if(ishuman(owner))
-		H = owner
 
 	//update damage counts
 	for(var/datum/wound/W in wounds)
