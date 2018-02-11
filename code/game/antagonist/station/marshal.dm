@@ -2,7 +2,7 @@
 	id = ROLE_MARSHAL
 	role_text = "Ironhammer Marshal"
 	role_text_plural = "Ironhammer Marshals"
-	bantype = "marshal"
+	role_type = "Traitor"
 	welcome_text = "Here should be the marshal welcome text."
 	protected_jobs = list(JOBS_COMMAND,JOBS_SECURITY)
 

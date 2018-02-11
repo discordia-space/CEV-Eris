@@ -8,6 +8,9 @@ var/global/list/storyevents = list()
 	var/id = "event"
 	var/processing = FALSE
 
+	var/multispawn = FALSE //Set to TRUE to let the storyteller spawn more than 1 event of this type per stage
+	var/spawnable = TRUE
+
 	var/cost = 0
 	var/max_cost = 1
 	var/min_cost = 100
@@ -40,7 +43,7 @@ var/global/list/storyevents = list()
 /datum/storyevent/proc/can_spawn()
 	if(processing && is_processing())
 		return FALSE
-	return TRUE
+	return spawnable
 
 /datum/storyevent/proc/get_special_weight(var/weight)
 	return weight
@@ -52,7 +55,6 @@ var/global/list/storyevents = list()
 		last_spawn_time = world.time
 		if(processing)
 			start_processing(TRUE)
-		log_admin("STORYTELLER: [id] event has been dispatched! [storyteller_button()]")
 		return TRUE
 
 	return FALSE

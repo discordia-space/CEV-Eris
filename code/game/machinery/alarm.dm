@@ -106,12 +106,7 @@
 	return ..()
 
 /obj/machinery/alarm/New(var/loc, var/dir, var/building = 0)
-	..()
-
 	if(building)
-		if(loc)
-			src.loc = loc
-
 		if(dir)
 			src.set_dir(dir)
 
@@ -120,9 +115,11 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		update_icon()
-		return
 
-	first_run()
+	..()
+
+	if(!building)
+		first_run()
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -144,7 +141,7 @@
 
 /obj/machinery/alarm/initialize()
 	set_frequency(frequency)
-	if (!master_is_operating())
+	if(buildstage == 2 && !master_is_operating())
 		elect_master()
 
 /obj/machinery/alarm/process()

@@ -55,31 +55,86 @@
 	else
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
 	world << text
-
-/datum/storyteller/proc/antagonist_report()
-	return "Here might be storyteller antagonist report."
-
 /datum/storyteller/proc/storyteller_panel()
-	var/data = "<center><font size='3'><b>STORYTELLER PANEL v0.1</b></font></center>"
-	data += "<br>Current storyteller: [src.name] ([src.config_tag])"
-	data += "<br><br>Time to next event: <a href='?src=\ref[src];edit_timer=1'>[(event_spawn_timer-world.time)/10]</a> <a href='?src=\ref[src];edit_timer_t=1'>\[as tick\]</a> s"
-	data += "<br><b><a href='?src=\ref[src];force_spawn=1'>\[FORCE ROLE SPAWN\]</a></b>"
-	data += "<br>Last spawn stage: [event_spawn_stage]."
+	var/data = "<center><font size='3'><b>STORYTELLER PANEL</b></font></center>"
 
-	data += "<br><br>One role per player: <a href='?src=\ref[src];toggle_orpp=1'>[one_role_per_player?"Yes":"No"]</a>"
+	data += "<b><a href='?src=\ref[src];panel=1'>\[UPDATE\]</a></b>"
+	data += "<table><tr><td>"
+	data += "[src.name] ([src.config_tag])"
+	data += "<br>Round duration: <b>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</b>"
+	data += "<br>Time to next event: <b><a href='?src=\ref[src];edit_timer=1'>[(event_spawn_timer-world.time)/10]</a></b> s"
+	data += "<br>Last spawn stage: <b>[event_spawn_stage]</b>"
+	data += "<br>Debug mode: <b><a href='?src=\ref[src];toggle_debug=1'>\[[debug_mode?"ON":"OFF"]\]</a></b>"
+	data += "<br>One role per player: <b><a href='?src=\ref[src];toggle_orpp=1'>\[[one_role_per_player?"YES":"NO"]\]</a></b>"
+	data += "</td><td style=\"padding-left: 40px\">"
 
-	data += "<br><br><b>Current antags:</b>"
+	data += "Heads: [heads] "
+	if(debug_mode)
+		data += "<a href='?src=\ref[src];edit_heads=1'>\[EDIT\]</a>"
+	data += "<br>Security: [sec] "
+	if(debug_mode)
+		data += "<a href='?src=\ref[src];edit_sec=1'>\[EDIT\]</a>"
+	data += "<br>Engineering: [eng] "
+	if(debug_mode)
+		data += "<a href='?src=\ref[src];edit_eng=1'>\[EDIT\]</a>"
+	data += "<br>Medical: [med] "
+	if(debug_mode)
+		data += "<a href='?src=\ref[src];edit_med=1'>\[EDIT\]</a>"
+	data += "<br>Science: [sci] "
+	if(debug_mode)
+		data += "<a href='?src=\ref[src];edit_sci=1'>\[EDIT\]</a>"
+	data += "<br><b>Total: [crew]</b> "
+	if(debug_mode)
+		data += "<a href='?src=\ref[src];edit_crew=1'>\[EDIT\]</a>"
+
+	data += "</td></tr></table>"
+	data += "<hr>"
+	data += "<b>Settings:</b>"
+	data += "[storyteller_panel_extra()]"
+	data += "<hr>"
+	data += "<b><a href='?src=\ref[src];force_spawn=1'>\[FORCE ROLE SPAWN\]</a></b>"
+	data += "<hr>"
+	data += "<B>Emergency shuttle</B>"
+	if (!emergency_shuttle.online())
+		data += "<br><a href='?src=\ref[src];call_shuttle=1'>Call Shuttle</a>"
+	else
+		if (emergency_shuttle.waiting_to_leave())
+			var/timeleft = emergency_shuttle.estimate_prepare_time()
+			data += "<br>EPD: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
+			data += "<br><a href='?src=\ref[src];call_shuttle=2'>Send Back</a>"
+	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
+
+	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
 
 	for(var/datum/antagonist/A in current_antags)
-		if(!A.owner)
-			data += "<br>   [A.role_text] - no owner <a href='?src=\ref[A];panel=1'>\[EDIT\]</a>"
-		data += "<br>   [A.role_text] - [A.owner.name] <a href='?src=\ref[A];panel=1'>\[EDIT\]</a>"
+		var/act = "<font color=red>DEAD</font>"
+		if(!A.is_dead())
+			if(!A.is_active())
+				act = "<font color=silver>AFK</font>"
+			else
+				act = "OK"
 
-	data += "<br>"
+		data += "<li>[A.role_text] - [A.owner?(A.owner.name):"no owner"] ([act])<a href='?src=\ref[A];panel=1'>\[EDIT\]</a></li>"
 
-	data += "<br><br><a href='?src=\ref[src];panel=1'>UPDATE</a>"
+	data += "</ul></div><hr>"
+	data += "<br>Calculate weight: <b><a href='?src=\ref[src];toggle_weight_calc=1'>[calculate_weights?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
+	data += "<br><b>Events: <a href='?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style=\"border:1px solid black;\"><ul>"
+
+	for(var/datum/storyevent/S in storyevents)
+		data += "<li>[S.id] - weight: [S.weight_cache] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
+		if(!calculate_weights)
+			data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
+		data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.spawnable?"SPAWN":"NO"]\]</a>"
+		data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
+		data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[SPAWN\]</a></b></li>"
+		data += "</li>"
+
+	data += "</ul></div>"
 
 	usr << browse(data,"window=story")
+
+/datum/storyteller/proc/storyteller_panel_extra()
+	return ""
 
 /datum/storyteller/Topic(href,href_list)
 	if(!check_rights(R_ADMIN))
@@ -87,6 +142,34 @@
 
 	if(href_list["force_spawn"])
 		force_spawn_now = TRUE
+
+	if(href_list["toggle_debug"])
+		debug_mode = !debug_mode
+
+	if(href_list["edit_heads"])
+		heads = input("Enter new head crew count.","Debug",heads) as num
+
+	if(href_list["edit_crew"])
+		crew = input("Enter new total crew count.","Debug",crew) as num
+
+	if(href_list["edit_sec"])
+		sec = input("Enter new security crew count.","Debug",sec) as num
+
+	if(href_list["edit_med"])
+		med = input("Enter new medical crew count.","Debug",med) as num
+
+	if(href_list["edit_eng"])
+		eng = input("Enter new engineering crew count.","Debug",eng) as num
+
+	if(href_list["edit_sci"])
+		sci = input("Enter new science crew count.","Debug",sci) as num
+
+	if(href_list["toggle_weight_calc"])
+		calculate_weights = !calculate_weights
+
+	if(href_list["update_weights"])
+		for(var/datum/storyevent/R in storyevents)
+			update_event_weight(R)
 
 	if(href_list["edit_timer_t"])
 		var/time = input("Tick of next role spawn:","Storyteller time",event_spawn_timer) as num
@@ -99,7 +182,72 @@
 	if(href_list["toggle_orpp"])	//one role per player
 		one_role_per_player = !one_role_per_player
 
+	if(href_list["call_shuttle"])
+		switch(href_list["call_shuttle"])
+			if("1")
+				if(!ticker || !emergency_shuttle.location())
+					return
+				if(emergency_shuttle.can_call())
+					emergency_shuttle.call_evac()
+					log_admin("[key_name(usr)] started the evacuation")
+					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
+
+			if("2")
+				if(!ticker || !emergency_shuttle.location())
+					return
+				if(emergency_shuttle.can_call())
+					emergency_shuttle.call_evac()
+					log_admin("[key_name(usr)] started the evacuation")
+					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
+
+				else if(emergency_shuttle.can_recall())
+					emergency_shuttle.recall()
+					log_admin("[key_name(usr)] cancelled the evacuation")
+					message_admins("\blue [key_name_admin(usr)] cancelled the evacuation", 1)
+
+	if(href_list["edit_shuttle_time"])
+		if(check_rights(R_SERVER))
+			if (emergency_shuttle.waiting_to_leave())
+				var/new_time_left = input("Enter new pods launch countdown (seconds):","Edit Pods Launch Time", emergency_shuttle.estimate_launch_time() ) as num
+
+				emergency_shuttle.launch_time = world.time + new_time_left*10
+
+				log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
+				message_admins(SPAN_NOTICE(" [key_name_admin(usr)] edited the Emergency Pods launch time to [new_time_left*10]"), 1)
+			else
+				alert("The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
+
+	if(href_list["delay_round_end"])
+		if(!check_rights(R_SERVER))
+			ticker.delay_end = !ticker.delay_end
+			log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+			message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+
+	topic_extra(href,href_list)
+
+	if(href_list["event"])
+		var/datum/storyevent/evt = null
+		for(var/datum/storyevent/S in storyevents)
+			if(S.id == href_list["event"])
+				evt = S
+				break
+		if(evt)
+			if(href_list["ev_calc_weight"])
+				update_event_weight(evt)
+			if(href_list["ev_toggle"])
+				evt.spawnable = !evt.spawnable
+				message_admins("[evt.id] was [evt.spawnable?"allowed":"restricted"] to spawn by [key_name(usr)]")
+			if(href_list["ev_spawn"])
+				evt.create()
+				message_admins("[evt.id] was force spawned by [key_name(usr)]")
+			if(href_list["ev_debug"] && usr && usr.client)
+				usr.client.debug_variables(evt)
+			if(href_list["ev_set_weight"])
+				evt.weight_cache = input("Enter new weight.","Weight",evt.weight_cache) as num
+
+
 	storyteller_panel()
 
-
+/datum/storyteller/proc/topic_extra(href,href_list)
+	return
 
