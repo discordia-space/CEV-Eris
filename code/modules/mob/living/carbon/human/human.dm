@@ -1043,8 +1043,7 @@ var/list/rank_prefix = list(\
 					src << msg
 
 				organ.take_damage(rand(1,3), 0, 0)
-				if(organ.robotic < ORGAN_ROBOT && !(species.flags & NO_BLOOD)) //There is no blood in protheses.
-					organ.status |= ORGAN_BLEEDING
+				if(organ.setBleeding())
 					src.adjustToxLoss(rand(1,3))
 
 /mob/living/carbon/human/verb/check_pulse()

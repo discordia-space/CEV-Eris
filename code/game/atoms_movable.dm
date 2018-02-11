@@ -15,13 +15,6 @@
 	var/mob/pulledby = null
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 
-	var/auto_init = 1
-
-/atom/movable/New()
-	..()
-	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
-		initialize()
-
 /atom/movable/Del()
 	if(isnull(gcDestroyed) && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")

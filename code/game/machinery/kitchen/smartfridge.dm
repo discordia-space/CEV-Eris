@@ -203,7 +203,7 @@
 		nanomanager.update_uis(src)
 		return
 
-	if(istype(O, /obj/item/device/multitool)||istype(O, /obj/item/weapon/tool/wirecutters))
+	if(istype(O, /obj/item/weapon/tool/multitool)||istype(O, /obj/item/weapon/tool/wirecutters))
 		if(panel_open)
 			attack_hand(user)
 		return

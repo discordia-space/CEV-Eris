@@ -51,8 +51,8 @@
 		//Could be cleaner ...
 		affected.open = 1
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
-			affected.status |= ORGAN_BLEEDING
+		if(istype(target))
+			affected.setBleeding()
 
 		affected.createwound(CUT, 1)
 		affected.clamp()
@@ -91,8 +91,8 @@
 		"\blue You have constructed a prepared incision on and within [target]'s [affected.name] with \the [tool].",)
 		affected.open = 1
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
-			affected.status |= ORGAN_BLEEDING
+		if(istype(target))
+			affected.setBleeding()
 
 		affected.createwound(CUT, 1)
 		affected.clamp()
@@ -133,8 +133,8 @@
 		"\blue You have made an incision on [target]'s [affected.name] with \the [tool].",)
 		affected.open = 1
 
-		if(istype(target) && !(target.species.flags & NO_BLOOD))
-			affected.status |= ORGAN_BLEEDING
+		if(istype(target))
+			affected.setBleeding()
 		playsound(target.loc, 'sound/weapons/bladeslice.ogg', 50, 1)
 
 		affected.createwound(CUT, 1)
@@ -237,9 +237,9 @@
 
 /datum/surgery_step/generic/cauterize
 	allowed_tools = list(
-	/obj/item/weapon/tool/cautery = 100,			\
-	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/weapon/flame/lighter = 50,			\
+	/obj/item/weapon/tool/cautery = 100,
+	/obj/item/clothing/mask/smokable/cigarette = 75,
+	/obj/item/weapon/flame/lighter = 50,
 	/obj/item/weapon/tool/weldingtool = 25
 	)
 
@@ -264,7 +264,7 @@
 		"\blue You cauterize the incision on [target]'s [affected.name] with \the [tool].")
 		affected.open = 0
 		affected.germ_level = 0
-		affected.status &= ~ORGAN_BLEEDING
+		affected.stopBleeding()
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)

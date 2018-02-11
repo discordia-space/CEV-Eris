@@ -1,4 +1,5 @@
 /obj/map_data/multiz
+	icon = 'icons/misc/landmarks.dmi'
 	icon_state = "config-green"
 	alpha = 255 //This one too important
 	invisibility = 101
@@ -13,11 +14,12 @@
 	var/original_name = name
 	var/original_level = z
 
-	for(var/shift in 0 to height-1)
-		z_level = original_level + shift
-		name = "[original_name] stage [shift + 1]"
+	for(var/shift in 1 to height)
+		z_level = original_level + shift - 1
+		name = "[original_name] stage [shift]"
 		maps_data.registrate(src)
-		z_levels |= (1 << (z_level-1))
+		if(shift != height)
+			z_levels |= (1 << (z_level - 1))
 
 /obj/map_data/multiz/station
 	name = "ERIS"

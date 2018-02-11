@@ -51,6 +51,7 @@
 	var/drill_sound = 'sound/weapons/Genhit.ogg'
 	var/drill_verb = "drilling"
 	sharp = 1
+	tool_qualities = list(QUALITY_DIGGING = 3)
 
 	var/excavation_amount = 100
 
@@ -126,6 +127,7 @@
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
+	tool_qualities = list(QUALITY_DIGGING = 5, QUALITY_DRILLING = 2)
 
 /obj/item/weapon/pickaxe/borgdrill
 	name = "cyborg mining drill"
@@ -153,6 +155,7 @@
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharp = 0
 	edge = 1
+	tool_qualities = list(QUALITY_SHOVELING = 3)
 
 /obj/item/weapon/shovel/spade
 	name = "spade"
@@ -162,6 +165,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEM_SIZE_SMALL
+	tool_qualities = list(QUALITY_SHOVELING = 2)
 
 
 /**********************Mining car (Crate like thing, not the rail car)**************************/
