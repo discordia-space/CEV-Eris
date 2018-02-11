@@ -19,8 +19,14 @@
 
 /obj/landmark/join/start/AI
 	icon_state = "player-grey"
+	name = "AI"
 	join_tag = /datum/job/ai
 	delete_me = FALSE
+
+/obj/landmark/join/start/triai
+	icon_state = "ai-green"
+	name = "tripai"
+	join_tag = "tripai"
 
 
 /datum/job/cyborg
@@ -30,7 +36,7 @@
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "your laws and the AI"	//Nodrak
+	supervisors = "your laws and the AI"
 	selection_color = "#ddffdd"
 	account_allowed = 0
 	economic_modifier = 0

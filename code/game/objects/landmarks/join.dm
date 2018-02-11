@@ -5,6 +5,7 @@
 /obj/landmark/join/New()
 	if(join_tag)
 		var/datum/spawnpoint/SP = getSpawnPoint(join_tag)
+		SP.name = name
 		SP.turfs += src.loc
 	..()
 
@@ -19,6 +20,7 @@
 /obj/landmark/join/late/New()
 	if(join_tag)
 		var/datum/spawnpoint/SP = getSpawnPoint(join_tag)
+		SP.name = name
 		SP.turfs += src.loc
 		SP.display_name = join_tag
 		SP.restrict_job = restrict_job
@@ -48,8 +50,3 @@
 	invisibility = 101
 	join_tag = null
 	delete_me = TRUE
-
-/obj/landmark/join/start/triai
-	icon_state = "ai-green"
-	name = "tripai"
-	join_tag = "tripai"

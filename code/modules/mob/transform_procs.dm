@@ -65,6 +65,7 @@
 	return ..()
 
 /mob/proc/AIize(move=1)
+	world << "AIze()"
 	if(client)
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
 	var/mob/living/silicon/ai/O = new (loc, base_law_type,,1)//No MMI but safety is in effect.

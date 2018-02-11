@@ -1,7 +1,10 @@
 var/global/list/empty_playable_ai_cores = list()
 
 /hook/roundstart/proc/spawn_empty_ai()
+	testing("hook/spawn_empty_ai()")
+	testing("landmarks_list.len = [landmarks_list.len]")
 	for(var/obj/landmark/join/start/AI/S in landmarks_list)
+		testing("/obj/landmark/join/start/AI located in landmark_list")
 		if(locate(/mob/living) in S.loc)
 			continue
 		empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))
