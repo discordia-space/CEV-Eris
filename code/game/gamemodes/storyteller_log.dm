@@ -1,15 +1,13 @@
-/datum/storyteller/proc/debugmode(var/message)
-	if(debug_mode)
-		log_debug("STORY DBGMODE: [message]")
-
-/datum/storyteller/proc/debug(var/message)
+/datum/storyteller/proc/story_debug(var/message)
 	log_debug("STORYTELLER: [message]")
 
+/*
 /datum/storyteller/proc/log_spawn(var/list/spawned)
 	var/list/log = list()
 
 	log["storyteller"] = config_tag
 	log["time"] = world.time
+	log["realtime"] = time2text(world.realtime)
 	log["stage"] = event_spawn_stage
 	log["forced"] = force_spawn_now
 	log["debug"] = debug_mode
@@ -21,21 +19,17 @@
 	log["med"] = med
 	log["sci"] = sci
 
-	special_log(log)
-
-	log["evlen"] = spawned.len
+	for(var/t in spawnparams)
+		log[t] = spawnparams[t]
 
 	for(var/i = 1; i <= spawned.len; i++)
 		log["ev[i]"] = spawned[i]
 
-	spawn_log.Add(list2params(log))
+	log["evlen"] = spawned.len
 
-	log_debug("-= STORYTELLER SPAWN LOG ENTRY =-")
-	for(var/t in log)
-		log_debug("[t] - [log[t]]")
+	spawn_log["log[world.time]_[event_spawn_stage]"] = list2params(log)
 
-	log_debug("=================================")
+/datum/storyteller/proc/set_param(var/ptag, var/value)
+	spawnparams["[ptag]"] = value
+*/
 
-/datum/storyteller/proc/special_log(var/list/L)
-	for(var/t in spawnparams)
-		L[t] = spawnparams[t]

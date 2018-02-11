@@ -26,8 +26,11 @@
 					sci++
 
 /datum/storyteller/proc/update_event_weights()
+	if(!calculate_weights)
+		return
+
 	for(var/datum/storyevent/R in storyevents)
-		get_event_weight(R)
+		update_event_weight(R)
 
 /datum/storyteller/proc/calculate_event_weight(var/datum/storyevent/R)
 	var/weight = 1

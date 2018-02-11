@@ -4,22 +4,20 @@
 	welcome = "Welcome to CEV Eris!"
 	description = "Experimental storyteller based on card deck system"
 
-	weight_randomizer = 0.15
-
-	min_spawn_delay = 20 MINUTES
-	max_spawn_delay = 30 MINUTES
-
-	var/minimal_weight = 0.3
 	var/deck_size = 0
 
-	var/mad = FALSE
-	var/mad_stages = 0
+	var/calculate_deck = TRUE	//If FALSE, erida won't calculate deck_size, keeping value
 
-/datum/storyteller/erida/events_set_up()
+	var/mad = FALSE
+
+/datum/storyteller/erida/set_up_events()
 	for(var/datum/storyevent/S in storyevents)
 		S.cost = rand(S.min_cost,S.max_cost)
 
 /datum/storyteller/erida/proc/calculate_deck_size()
+	if(!calculate_deck)
+		return
+
 	deck_size = 0
 
 	if(debug_mode)
@@ -59,8 +57,7 @@
 
 /datum/storyteller/erida/trigger_event()
 	if(!mad && prob(10))
-		mad = TRUE
-		mad_stages = rand(1,3)
+		mad = rand(1,3)
 
 	calculate_deck_size()
 	if(mad)
@@ -72,21 +69,20 @@
 			sorted.Add(S)
 
 
-	debugmode("Deck size=[deck_size]; mad=[mad]; variants available=[sorted.len]")
+	story_debug("Stage=[event_spawn_stage]; Deck size=[deck_size]; mad=[mad]; variants available=[sorted.len]")
 	var/currdeck = 0
 	var/list/spawned = list()
-	spawnparams["deck_full"] = TRUE
 	while(currdeck < deck_size)
 		var/datum/storyevent/S = pick_storyevent(sorted)
 		if(!S)
-			debug("Storyteller is out of storyevents. [spawned.len] events spawned")
-			spawnparams["deck_full"] = FALSE
+			story_debug("Storyteller is out of storyevents. [spawned.len] events spawned")
 			break
 
 		if(S.cost + currdeck > deck_size)
 			sorted.Remove(S)
 
-		debugmode("Debug-spawning [S.id] with weight [S.weight_cache]; Currdeck: [currdeck]([currdeck+S.cost])/[deck_size]")
+		if(debug_mode)
+			story_debug("Debug-spawning [S.id] with weight [S.weight_cache]; Currdeck: [currdeck]([currdeck+S.cost])/[deck_size]")
 
 		if(S.create())
 			currdeck += S.cost
@@ -94,32 +90,46 @@
 			if(!S.multispawn)
 				sorted.Remove(S)
 		else if(debug_mode)
-			debugmode("[S.id] fake-created")
+			story_debug("[S.id] fake-created")
 			currdeck += S.cost
+			spawned.Add(S.id)
 			S.spawn_times++
+			if(!S.multispawn)
+				sorted.Remove(S)
 
 	sorted.Cut()
 
-	spawnparams["mad"] = mad
 	if(mad)
-		spawnparams["mad_stage"] = mad_stages
-	spawnparams["deck_size"] = deck_size
-	spawnparams["deck_used"] = currdeck
+		mad--
 
-	if(mad_stages)
-		mad_stages--
-	else
-		mad = FALSE
-
-	if(currdeck == 0)
+	if(!currdeck)
 		set_timer(rand(1,3) MINUTES)
 	else
 		if(mad)
-			set_timer(rand(7,15) MINUTES)
+			set_timer(rand(7,10) MINUTES)
 
 		else
 			set_timer(rand(20,35) MINUTES)
 
-	log_spawn(spawned)
-
 	return TRUE
+
+
+/datum/storyteller/erida/storyteller_panel_extra()
+	var/data = ""
+	var/ehref = "<a href='?src=\ref[src]:edit_deck=1'>\[SET\]</a>"
+	data += "<br>Deck size: <b>[deck_size]</b>[calculate_deck?"":" [ehref]"] <b><a href='?src=\ref[src];toggle_deck=1'>[calculate_deck?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
+	data +=	"<br>Mad mode: [mad?"[mad] stages":"no"] <b><a href='?src=\ref[src];edit_mad=1'>\[SET\]</a></b>"
+
+	return data
+
+/datum/storyteller/erida/topic_extra(href, href_list)
+	if(href_list["edit_deck"])
+		deck_size = input("Enter new deck size.","Deck edit",deck_size) as num
+
+	if(href_list["toggle_deck"])
+		calculate_deck = !calculate_deck
+
+	if(href_list["edit_mad"])
+		mad = input("Enter new mad length (0 to disable)","Mad mode",mad) as num
+		if(mad < 0)
+			mad = 0

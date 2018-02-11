@@ -9,6 +9,7 @@ var/global/list/storyevents = list()
 	var/processing = FALSE
 
 	var/multispawn = FALSE //Set to TRUE to let the storyteller spawn more than 1 event of this type per stage
+	var/spawnable = TRUE
 
 	var/cost = 0
 	var/max_cost = 1
@@ -42,7 +43,7 @@ var/global/list/storyevents = list()
 /datum/storyevent/proc/can_spawn()
 	if(processing && is_processing())
 		return FALSE
-	return TRUE
+	return spawnable
 
 /datum/storyevent/proc/get_special_weight(var/weight)
 	return weight

@@ -128,13 +128,12 @@ ADMIN_VERB_ADD(/client/proc/player_panel_new, R_ADMIN, TRUE)
 		holder.player_panel_new()
 
 
-ADMIN_VERB_ADD(/client/proc/check_antagonists, R_ADMIN|R_MOD, TRUE)
-/client/proc/check_antagonists()
-	set name = "Check Antagonists"
+ADMIN_VERB_ADD(/client/proc/storyteller_panel, R_ADMIN|R_MOD, TRUE)
+/client/proc/storyteller_panel()
+	set name = "Storyteller Panel"
 	set category = "Admin"
 	if(holder)
-		holder.check_antagonists()
-		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
+		holder.storyteller_panel()
 
 
 ADMIN_VERB_ADD(/client/proc/unban_panel, R_ADMIN, TRUE)

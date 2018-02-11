@@ -2,33 +2,23 @@ var/global/list/current_antags = list()
 var/global/list/current_factions = list()
 
 /datum/storyteller
+	//Strings
 	var/config_tag = ""
 	var/name = "Storyteller"
 	var/welcome = "Welcome"
 	var/description = "You shouldn't see this"
 
-	var/event_spawn_timer = 0
-	var/event_spawn_stage = 0
-
-	var/min_spawn_delay = 20 MINUTES
-	var/max_spawn_delay = 30 MINUTES
-
-	var/min_start_spawn_delay = 10 MINUTES
-	var/max_start_spawn_delay = 18 MINUTES
-
 	var/one_role_per_player = TRUE
 
-	var/force_spawn_now = FALSE
-
-	var/weight_randomizer = 0.15
-
-	var/list/processing_events = list()
-	var/list/spawn_log = list()
-
+	var/calculate_weights = TRUE
+	//Debug and logs
 	var/list/dbglist		//Reference to storyevents list for easy getting it by VV
-	var/list/spawnparams	//Associated list of values used in log_spawn()
 
 	var/debug_mode = FALSE	//Setting this to TRUE prevents normal storyteller functioning. Use it for testing on local server
+
+	//Misc
+	var/force_spawn_now = FALSE
+	var/list/processing_events = list()
 
 	var/crew = 11
 	var/heads = 2
@@ -37,8 +27,14 @@ var/global/list/current_factions = list()
 	var/med = 4
 	var/sci = 5
 
+	var/event_spawn_timer = 0
+	var/event_spawn_stage = 0
+
+
 /datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
-	return TRUE
+	if(debug_mode)
+		return TRUE
+
 	var/engineer = FALSE
 	var/captain = FALSE
 	for(var/mob/new_player/player in player_list)
@@ -65,11 +61,11 @@ var/global/list/current_factions = list()
 
 /datum/storyteller/proc/set_up()
 	fill_storyevents_list()
-	set_timer(rand(min_start_spawn_delay, max_start_spawn_delay))
-	events_set_up()
+	set_timer(rand(20,30) MINUTES)
+	set_up_events()
 	dbglist = storyevents
 
-/datum/storyteller/proc/events_set_up()
+/datum/storyteller/proc/set_up_events()
 	return
 
 /datum/storyteller/proc/set_timer(var/time)
@@ -79,7 +75,6 @@ var/global/list/current_factions = list()
 	if(force_spawn_now || (event_spawn_timer && event_spawn_timer <= world.time))
 		update_crew_count()
 		update_event_weights()
-		spawnparams = list()
 		trigger_event()
 		event_spawn_stage++
 		force_spawn_now = FALSE
@@ -108,15 +103,15 @@ var/global/list/current_factions = list()
 		for(var/datum/objective/O in F.objectives)
 			O.update_completion()
 
-/datum/storyteller/proc/get_event_weight(var/datum/storyevent/R)
+/datum/storyteller/proc/update_event_weight(var/datum/storyevent/R)
 	ASSERT(istype(R))
 
 	R.weight_cache = calculate_event_weight(R)
-	R.weight_cache *= 1-rand()*weight_randomizer
+	//R.weight_cache *= 1-rand()*weight_randomizer
 	return R.weight_cache
 
 /datum/storyteller/proc/trigger_event()
-	debug("Called trigger_event() of base type. Fix this shit!")
+	story_debug("Called trigger_event() of base type. Fix this shit!")
 
 
 /proc/storyteller_button()

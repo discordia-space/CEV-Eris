@@ -1,3 +1,5 @@
+//One day, someone will use this system.
+
 /datum/faction
 	var/id = "faction"
 	var/name = "faction"	//name displayed in many places
