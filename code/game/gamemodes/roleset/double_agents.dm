@@ -1,6 +1,7 @@
 /datum/storyevent/roleset/double_agents
 	id = "double_agents"
 	role_id = null
+	multispawn = TRUE
 
 	min_cost = 14
 	max_cost = 22

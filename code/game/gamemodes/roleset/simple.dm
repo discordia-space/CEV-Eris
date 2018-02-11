@@ -18,6 +18,7 @@
 /datum/storyevent/roleset/traitor
 	id = "traitor"
 	role_id = ROLE_TRAITOR
+	multispawn = TRUE
 
 	min_cost = 10
 	max_cost = 15
@@ -35,6 +36,7 @@
 /datum/storyevent/roleset/inquisitor
 	id = "inquisitor"
 	role_id = ROLE_INQUISITOR
+	multispawn = TRUE
 
 	min_cost = 8
 	max_cost = 16
@@ -78,6 +80,7 @@
 /datum/storyevent/roleset/marshal
 	id = "marshal"
 	role_id = ROLE_MARSHAL
+	multispawn = TRUE
 
 	min_cost = 7
 	max_cost = 15
@@ -105,6 +108,7 @@
 /datum/storyevent/roleset/changeling
 	id = "changeling"
 	role_id = ROLE_CHANGELING
+	multispawn = TRUE
 
 	min_cost = 12
 	max_cost = 19
