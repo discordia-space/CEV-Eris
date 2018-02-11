@@ -63,7 +63,7 @@
 	if(state == 0 && anchored)
 		usable_qualities.Add(QUALITY_PRYING)
 	if(state == 1)
-		usable_qualities.Add(QUALITY_CUTTING)
+		usable_qualities.Add(QUALITY_RETRACTING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
@@ -96,7 +96,7 @@
 					return
 			return
 
-		if(QUALITY_CUTTING)
+		if(QUALITY_RETRACTING)
 			if(state == 1)
 				user << SPAN_NOTICE("You start removing support struts...")
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))

@@ -23,122 +23,125 @@
 				4 = Screwdriver panel closed and is fully built (you cannot attach upgrades)
 	*/
 
-/obj/item/weapon/camera_assembly/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/weapon/camera_assembly/attackby(obj/item/I, mob/living/user)
 
-	switch(state)
+	var/list/usable_qualities = list()
+	if(state == 0 || state == 1)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if(state == 1 || state == 2)
+		usable_qualities.Add(QUALITY_WELDING)
+	if(state == 3)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(state == 3)
+		usable_qualities.Add(QUALITY_RETRACTING)
+	if(upgrades.len)
+		usable_qualities.Add(QUALITY_PRYING)
 
-		if(0)
-			// State 0
-			if(iswrench(W) && isturf(src.loc))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-				user << "You wrench the assembly into place."
-				anchored = 1
-				state = 1
-				update_icon()
-				auto_turn()
-				return
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
 
-		if(1)
-			// State 1
-			if(iswelder(W))
-				if(weld(W, user))
-					user << "You weld the assembly securely into place."
-					anchored = 1
+		if(QUALITY_BOLT_TURNING)
+			if(state == 0 || state == 1)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					anchored = !anchored
+					state = !state
+					update_icon()
+					auto_turn()
+					user << SPAN_NOTICE("You [anchored? "wrench" : "unattach"] the assembly.")
+					return
+			return
+
+		if(QUALITY_WELDING)
+			if(state == 1)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You weld the assembly securely into place.")
 					state = 2
-				return
-
-			else if(iswrench(W))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-				user << "You unattach the assembly from its place."
-				anchored = 0
-				update_icon()
-				state = 0
-				return
-
-		if(2)
-			// State 2
-			if(iscoil(W))
-				var/obj/item/stack/cable_coil/C = W
-				if(C.use(2))
-					user << SPAN_NOTICE("You add wires to the assembly.")
-					state = 3
-				else
-					user << SPAN_WARNING("You need 2 coils of wire to wire the assembly.")
-				return
-
-			else if(iswelder(W))
-
-				if(weld(W, user))
-					user << "You unweld the assembly from its place."
+			if(state == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You unweld the assembly from its place.")
 					state = 1
-					anchored = 1
-				return
+			return
 
-
-		if(3)
-			// State 3
-			if(isscrewdriver(W))
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-
-				var/input = sanitize(input(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: CEV Eris,Security,Secret", "Set Network", camera_network ? camera_network : NETWORK_CEV_ERIS))
-				if(!input)
-					usr << "No input found please hang up and try your call again."
+		if(QUALITY_RETRACTING)
+			if(state == 3)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					new/obj/item/stack/cable_coil(get_turf(src), 2)
+					user << SPAN_NOTICE("You remove the wires from the circuits.")
+					state = 2
 					return
+			return
 
-				var/list/tempnetwork = splittext(input, ",")
-				if(tempnetwork.len < 1)
-					usr << "No network found please hang up and try your call again."
+		if(QUALITY_SCREW_DRIVING)
+			if(state == 3)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					var/input = sanitize(input(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: CEV Eris,Security,Secret", "Set Network", camera_network ? camera_network : NETWORK_CEV_ERIS))
+					if(!input)
+						usr << "No input found please hang up and try your call again."
+						return
+
+					var/list/tempnetwork = splittext(input, ",")
+					if(tempnetwork.len < 1)
+						usr << "No network found please hang up and try your call again."
+						return
+
+					var/area/camera_area = get_area(src)
+					var/temptag = "[sanitize(camera_area.name)] ([rand(1, 999)])"
+					input = sanitizeSafe(input(usr, "How would you like to name the camera?", "Set Camera Name", camera_name ? camera_name : temptag), MAX_NAME_LEN)
+
+					state = 4
+					var/obj/machinery/camera/C = new(src.loc)
+					src.loc = C
+					C.assembly = src
+
+					C.auto_turn()
+
+					C.replace_networks(uniquelist(tempnetwork))
+
+					C.c_tag = input
+
+					for(var/i = 5; i >= 0; i -= 1)
+						var/direct = input(user, "Direction?", "Assembling Camera", null) in list("LEAVE IT", "NORTH", "EAST", "SOUTH", "WEST" )
+						if(direct != "LEAVE IT")
+							C.dir = text2dir(direct)
+						if(i != 0)
+							var/confirm = alert(user, "Is this what you want? Chances Remaining: [i]", "Confirmation", "Yes", "No")
+							if(confirm == "Yes")
+								break
 					return
+			return
 
-				var/area/camera_area = get_area(src)
-				var/temptag = "[sanitize(camera_area.name)] ([rand(1, 999)])"
-				input = sanitizeSafe(input(usr, "How would you like to name the camera?", "Set Camera Name", camera_name ? camera_name : temptag), MAX_NAME_LEN)
+		if(QUALITY_PRYING)
+			if(upgrades.len)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					var/obj/U = locate(/obj) in upgrades
+					if(U)
+						user << SPAN_NOTICE("You unattach an upgrade from the assembly.")
+						playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+						U.loc = get_turf(src)
+						upgrades -= U
+						return
+			return
 
-				state = 4
-				var/obj/machinery/camera/C = new(src.loc)
-				src.loc = C
-				C.assembly = src
+		if(ABORT_CHECK)
+			return
 
-				C.auto_turn()
+	if(state == 2)
+		if(istype(I, /obj/item/stack/cable_coil))
+			var/obj/item/stack/cable_coil/C = I
+			if(C.use(2))
+				user << SPAN_NOTICE("You add wires to the assembly.")
+				state = 3
+			else
+				user << SPAN_WARNING("You need 2 coils of wire to wire the assembly.")
+			return
 
-				C.replace_networks(uniquelist(tempnetwork))
-
-				C.c_tag = input
-
-				for(var/i = 5; i >= 0; i -= 1)
-					var/direct = input(user, "Direction?", "Assembling Camera", null) in list("LEAVE IT", "NORTH", "EAST", "SOUTH", "WEST" )
-					if(direct != "LEAVE IT")
-						C.dir = text2dir(direct)
-					if(i != 0)
-						var/confirm = alert(user, "Is this what you want? Chances Remaining: [i]", "Confirmation", "Yes", "No")
-						if(confirm == "Yes")
-							break
-				return
-
-			else if(iswirecutter(W))
-
-				new/obj/item/stack/cable_coil(get_turf(src), 2)
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
-				user << "You cut the wires from the circuits."
-				state = 2
-				return
 
 	// Upgrades!
-	if(is_type_in_list(W, possible_upgrades) && !is_type_in_list(W, upgrades)) // Is a possible upgrade and isn't in the camera already.
-		user << "You attach \the [W] into the assembly inner circuits."
-		upgrades += W
-		user.remove_from_mob(W)
-		W.loc = src
-		return
-
-	// Taking out upgrades
-	else if(iscrowbar(W) && upgrades.len)
-		var/obj/U = locate(/obj) in upgrades
-		if(U)
-			user << "You unattach an upgrade from the assembly."
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-			U.loc = get_turf(src)
-			upgrades -= U
+	if(is_type_in_list(I, possible_upgrades) && !is_type_in_list(I, upgrades)) // Is a possible upgrade and isn't in the camera already.
+		user << "You attach \the [I] into the assembly inner circuits."
+		upgrades += I
+		user.remove_from_mob(I)
+		I.loc = src
 		return
 
 	..()

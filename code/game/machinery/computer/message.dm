@@ -36,7 +36,7 @@
 		return
 	if(!istype(user))
 		return
-	if(isscrewdriver(O) && emag)
+	if(O.get_tool_type(user, list(QUALITY_SCREW_DRIVING)) && emag)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
 		user << SPAN_WARNING("It is too hot to mess with!")
 		return

@@ -407,12 +407,6 @@
 	hidden = 1
 	category = "Devices and Components"
 
-/datum/autolathe/recipe/welder_industrial
-	name = "industrial welding tool"
-	path = /obj/item/weapon/tool/weldingtool/largetank
-	hidden = 1
-	category = "Tools"
-
 /datum/autolathe/recipe/handcuffs
 	name = "handcuffs"
 	path = /obj/item/weapon/handcuffs

@@ -308,30 +308,24 @@
 	return FALSE
 
 
-/obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/attackby(obj/item/I, mob/user)
 	if(src.opened)
-		if(istype(W,/obj/item/tk_grab))
+		if(istype(I,/obj/item/tk_grab))
 			return 0
-		if(istype(W, /obj/item/weapon/tool/weldingtool))
-			var/obj/item/weapon/tool/weldingtool/WT = W
-			if(!WT.remove_fuel(0,user))
-				if(!WT.isOn())
-					return
-				else
-					user << SPAN_NOTICE("You need more welding fuel to complete this task.")
-					return
-			new /obj/item/stack/material/steel(src.loc)
-			src.visible_message(
-				SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."),
-				"You hear welding."
-			)
-			qdel(src)
-			return
-		if(istype(W, /obj/item/weapon/storage/laundry_basket) && W.contents.len)
-			var/obj/item/weapon/storage/laundry_basket/LB = W
+		if(QUALITY_WELDING in I.tool_qualities)
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+				new /obj/item/stack/material/steel(src.loc)
+				src.visible_message(
+					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
+					"You hear welding."
+				)
+				qdel(src)
+				return
+		if(istype(I, /obj/item/weapon/storage/laundry_basket) && I.contents.len)
+			var/obj/item/weapon/storage/laundry_basket/LB = I
 			var/turf/T = get_turf(src)
-			for(var/obj/item/I in LB.contents)
-				LB.remove_from_storage(I, T)
+			for(var/obj/item/II in LB.contents)
+				LB.remove_from_storage(II, T)
 			user.visible_message(
 				SPAN_NOTICE("[user] empties \the [LB] into \the [src]."), \
 				SPAN_NOTICE("You empty \the [LB] into \the [src]."), \
@@ -340,27 +334,21 @@
 			return
 		if(isrobot(user))
 			return
-		if(W.loc != user) // This should stop mounted modules ending up outside the module.
+		if(I.loc != user) // This should stop mounted modules ending up outside the module.
 			return
-		usr.unEquip(W, src.loc)
-	else if(istype(W, /obj/item/weapon/packageWrap))
+		usr.unEquip(I, src.loc)
+	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
-	else if(istype(W, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if(!WT.remove_fuel(0,user))
-			if(!WT.isOn())
-				return
-			else
-				user << SPAN_NOTICE("You need more welding fuel to complete this task.")
-				return
-		src.welded = !src.welded
-		src.update_icon()
-		for(var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
-	else if(istype(W,/obj/item/weapon/card/id))
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+			welded = !src.welded
+			update_icon()
+			for(var/mob/M in viewers(src))
+				M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
+	else if(istype(I,/obj/item/weapon/card/id))
 		src.togglelock(user)
 		return
-	else if(istype(W, /obj/item/weapon/melee/energy/blade) && secure)
+	else if(istype(I, /obj/item/weapon/melee/energy/blade) && secure)
 		emag_act(INFINITY, user)
 		return
 	else

@@ -205,8 +205,7 @@
 		if(!istype(target))
 			return 0
 		if(istype(tool,/obj/item/weapon/tool/weldingtool))
-			var/obj/item/weapon/tool/weldingtool/welder = tool
-			if(!welder.isOn() || !welder.remove_fuel(1,user))
+			if(!(QUALITY_WELDING in tool.tool_qualities))
 				return 0
 		return (target_zone == BP_CHEST) && istype(target.back, /obj/item/weapon/rig) && !(target.back.canremove)
 

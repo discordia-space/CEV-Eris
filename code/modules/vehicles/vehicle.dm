@@ -91,7 +91,7 @@
 		if(QUALITY_PRYING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 				remove_cell(user)
-				return
+			return
 
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
@@ -119,7 +119,7 @@
 				health = min(maxhealth, health+10)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
-				return
+			return
 
 		if(ABORT_CHECK)
 			return

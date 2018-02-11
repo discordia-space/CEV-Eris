@@ -613,17 +613,25 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
 		return
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.shock_stage >= 30)
 			user << SPAN_WARNING("Pain distracts you from your task.")
 			fail_chance += round(H.shock_stage/120 * 40)
 			base_time = round(base_time * H.shock_stage/120 * 3)
+
 	if(forced_sound != NO_WORKSOUND)
 		if(forced_sound)
 			playsound(src.loc, forced_sound, 100, 1)
 		else
 			playsound(src.loc, src.worksound, 100, 1)
+
+	if(istype(src, /obj/item/weapon/tool))
+		var/obj/item/weapon/tool/T = src
+		if(!T.check_tool_effects(user))
+			return
+
 	if(!(instant_finish_tier && (instant_finish_tier >= get_tool_quality(required_quality))))
 		target.used_now = TRUE
 		var/time_to_finish = base_time / get_tool_quality(required_quality)
@@ -633,6 +641,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			return FALSE
 		else
 			target.used_now = FALSE
+
 	fail_chance += - get_tool_quality(required_quality) * 10
 	if(prob(fail_chance))
 		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")

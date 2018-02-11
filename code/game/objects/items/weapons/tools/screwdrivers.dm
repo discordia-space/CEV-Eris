@@ -16,12 +16,14 @@
 	name = "electric screwdriver"
 	desc = "Screwdriver powered by S class cell."
 	icon_state = "e-screwdriver"
+	worksound = WORKSOUND_DRIVER_TOOL
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 4, QUALITY_DRILLING = 1)
 
 /obj/item/weapon/tool/screwdriver/combi_driver
 	name = "combi driver"
 	desc = "Drive screws, drive bolts, drill bones, you can do everything with it."
 	icon_state = "combi_driver"
+	worksound = WORKSOUND_DRIVER_TOOL
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 5, QUALITY_BOLT_TURNING = 5, QUALITY_DRILLING = 2)
 
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

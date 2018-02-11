@@ -131,8 +131,7 @@
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			if(istype(tool,/obj/item/weapon/tool/weldingtool))
-				var/obj/item/weapon/tool/weldingtool/welder = tool
-				if(!welder.isOn() || !welder.remove_fuel(1,user))
+				if(!(QUALITY_WELDING in I.tool_qualities))
 					return 0
 			return affected && affected.open == 2 && affected.brute_dam > 0 && target_zone != "mouth"
 

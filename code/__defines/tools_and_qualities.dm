@@ -38,6 +38,7 @@
 #define NO_WORKSOUND					-1
 
 #define WORKSOUND_CIRCULAR_SAW			'sound/weapons/circsawhit.ogg'
+#define WORKSOUND_SIMPLE_SAW			'sound/weapons/saw.ogg'
 #define WORKSOUND_WRENCHING				'sound/items/Ratchet.ogg'
 #define WORKSOUND_WIRECUTTING			'sound/items/Wirecutter.ogg'
 #define WORKSOUND_WELDING				'sound/items/Welder.ogg'
@@ -45,4 +46,6 @@
 #define WORKSOUND_SCREW_DRIVING			'sound/items/Screwdriver.ogg'
 #define WORKSOUND_EASY_CROWBAR			'sound/items/Crowbar.ogg'
 #define WORKSOUND_REMOVING				'sound/items/Deconstruct.ogg'
+#define WORKSOUND_DRIVER_TOOL			'sound/items/e_screwdriver.ogg'
+#define WORKSOUND_PICKAXE				'sound/items/pickaxe.ogg'
 #define WORKSOUND_HARD_SLASH			'sound/weapons/bladeslice.ogg.ogg'

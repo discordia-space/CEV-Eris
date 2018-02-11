@@ -348,27 +348,19 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if (WT.remove_fuel(0, user))
-			user << SPAN_NOTICE("Now welding the vent.")
-			if(do_after(user, 20, src))
-				if(!src || !WT.isOn()) return
-				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
-				if(!welded)
-					user.visible_message(SPAN_NOTICE("\The [user] welds the vent shut."), SPAN_NOTICE("You weld the vent shut."), "You hear welding.")
-					welded = 1
-					update_icon()
-				else
-					user.visible_message(SPAN_NOTICE("[user] unwelds the vent."), SPAN_NOTICE("You unweld the vent."), "You hear welding.")
-					welded = 0
-					update_icon()
+/obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/I, mob/user)
+	if(QUALITY_WELDING in I.tool_qualities)
+		user << SPAN_NOTICE("Now welding the vent.")
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+			if(!welded)
+				user.visible_message(SPAN_NOTICE("\The [user] welds the vent shut."), SPAN_NOTICE("You weld the vent shut."), "You hear welding.")
+				welded = 1
+				update_icon()
 			else
-				user << SPAN_NOTICE("The welding tool needs to be on to start this task.")
-		else
-			user << SPAN_WARNING("You need more welding fuel to complete this task.")
-			return 1
+				user.visible_message(SPAN_NOTICE("[user] unwelds the vent."), SPAN_NOTICE("You unweld the vent."), "You hear welding.")
+				welded = 0
+				update_icon()
+		return
 	else
 		..()
 
