@@ -5,8 +5,9 @@
 /obj/landmark/join/New()
 	if(join_tag)
 		var/datum/spawnpoint/SP = getSpawnPoint(join_tag)
-		SP.name = name
 		SP.turfs += src.loc
+		spawnpoints[join_tag] = SP
+		//join_tag = null? do i need to nullify this?
 	..()
 
 /obj/landmark/join/late
@@ -20,7 +21,6 @@
 /obj/landmark/join/late/New()
 	if(join_tag)
 		var/datum/spawnpoint/SP = getSpawnPoint(join_tag)
-		SP.name = name
 		SP.turfs += src.loc
 		SP.display_name = join_tag
 		SP.restrict_job = restrict_job

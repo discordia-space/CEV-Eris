@@ -65,7 +65,7 @@
 	return ..()
 
 /mob/proc/AIize(move=1)
-	world << "AIze()"
+
 	if(client)
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
 	var/mob/living/silicon/ai/O = new (loc, base_law_type,,1)//No MMI but safety is in effect.
@@ -80,7 +80,7 @@
 
 	if(move)
 		var/obj/new_location = null
-		for(var/turf/sloc in getSpawnLocations("AI"))
+		for(var/turf/sloc in getSpawnLocations(/datum/job/ai))
 			if(locate(/obj/structure/AIcore) in sloc)
 				continue
 			new_location = sloc
@@ -91,7 +91,7 @@
 				new_location = sloc
 		if (!new_location)
 			O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
-			new_location = pickSpawnLocation("AI", FALSE)
+			new_location = pickSpawnLocation(/datum/job/ai, FALSE)
 
 		O.forceMove(new_location)
 

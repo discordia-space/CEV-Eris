@@ -75,8 +75,6 @@
 /datum/job/proc/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 
-	testing("[src].equip([H])")
-
 	//Put items in hands
 	if(hand) H.equip_to_slot_or_del(new hand (H), slot_l_hand)
 

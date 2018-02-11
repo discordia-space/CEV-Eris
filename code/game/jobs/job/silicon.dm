@@ -21,7 +21,7 @@
 	icon_state = "player-grey"
 	name = "AI"
 	join_tag = /datum/job/ai
-	delete_me = FALSE
+	delete_me = FALSE//do we really need this huh??
 
 /obj/landmark/join/start/triai
 	icon_state = "ai-green"
