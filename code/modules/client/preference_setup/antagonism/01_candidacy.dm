@@ -22,7 +22,7 @@
 	. += "<table>"
 	for(var/antag_type in selectable_antag_types)
 		. += "<tr><td>[capitalize(antag_type)]:</td><td>"
-		if(jobban_isbanned(preference_mob(), antag_bantypes[antag_type]))
+		if(jobban_isbanned(preference_mob(), antag_bantypes[selectable_antag_types[antag_type]]))
 			. += "<span class='danger'>\[BANNED\]</span><br>"
 		else if(antag_type in pref.be_special_role)
 			. += "<b>Yes</b> / <a href='?src=\ref[src];del_special=[antag_type]'>No</a></br>"

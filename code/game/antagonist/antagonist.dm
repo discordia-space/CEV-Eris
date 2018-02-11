@@ -26,7 +26,7 @@
 	var/faction_type = null
 
 	// Misc.
-	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
+	var/bantype               // Ban to check when spawning this antag.
 	var/list/uplinks = list()
 	var/only_human = TRUE
 
@@ -34,7 +34,9 @@
 /datum/antagonist/New()
 	..()
 	if(!role_type)
-		role_type = id
+		role_type = role_text
+	if(!bantype)
+		bantype = role_type
 
 	if(!role_text_plural)
 		role_text_plural = role_text

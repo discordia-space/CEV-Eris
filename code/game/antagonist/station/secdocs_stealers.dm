@@ -2,7 +2,6 @@
 	id = ROLE_SECDOC_HUNTER
 	role_text = "Hunter"
 	role_text_plural = "Hunters"
-	bantype = "Syndicate"
 	role_type = "Traitor"
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Inspector", "Ironhammer Commander", "Captain", "Ironhammer Medical Specialist")
