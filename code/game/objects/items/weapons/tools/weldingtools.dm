@@ -263,13 +263,13 @@
 	if(reagents > max_fuel)
 		reagents = max_fuel
 
-/obj/item/weapon/tool/weldingtool/afterattack(var/mob/M, var/mob/user)
+/obj/item/weapon/tool/weldingtool/attack(var/mob/living/carbon/human/H, var/mob/living/user)
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+	if(ishuman(H))
 		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
-		if (!S) return
+		if(!S)
+			return
 		if(S.robotic < ORGAN_ROBOT || user.a_intent != I_HELP)
 			return ..()
 
@@ -277,11 +277,12 @@
 			if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 				S.heal_damage(15,0,0,1)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-				user.visible_message(SPAN_NOTICE("\The [user] patches some dents on \the [M]'s [S.name] with \the [src]."))
+				user.visible_message(
+					SPAN_NOTICE("\The [user] patches some dents on \the [H]'s [S.name] with \the [src].")
+				)
 			else if(S.open != 2)
 				user << SPAN_DANGER("The damage is far too severe to patch over externally.")
-			return 1
-		else if(S.open != 2)
+		else if(S.open != 2) // For surgery.
 			user << SPAN_NOTICE("Nothing to fix!")
 
 	else
