@@ -1039,7 +1039,7 @@ var/global/list/common_tools = list(
 /obj/item/weapon/tool/weldingtool,
 /obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/tool/wirecutters,
-/obj/item/device/multitool,
+/obj/item/weapon/tool/multitool,
 /obj/item/weapon/tool/crowbar)
 
 /proc/istool(O)
@@ -1073,7 +1073,7 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
+	if(istype(O, /obj/item/weapon/tool/multitool))
 		return 1
 	return 0
 

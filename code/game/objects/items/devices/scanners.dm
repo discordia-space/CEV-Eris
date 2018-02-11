@@ -186,8 +186,8 @@ REAGENT SCANNER
 			if(E.has_infected_wound())
 				user << SPAN_WARNING("Infected wound detected in subject [E]. Disinfection recommended.")
 
-			if(foundUnlocatedFracture)
-				user.show_message(SPAN_WARNING("Bone fractures detected. Advanced scanner required for location."), 1)
+		if(foundUnlocatedFracture)
+			user.show_message(SPAN_WARNING("Bone fractures detected. Advanced scanner required for location."), 1)
 
 		for(var/obj/item/organ/external/e in H.organs)
 			if(!e)

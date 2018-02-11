@@ -34,13 +34,7 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	can_hold = list(
-		///obj/item/weapon/combitool,
-		/obj/item/weapon/tool/crowbar,
-		/obj/item/weapon/tool/screwdriver,
-		/obj/item/weapon/tool/weldingtool,
-		/obj/item/weapon/tool/wirecutters,
-		/obj/item/weapon/tool/wrench,
-		/obj/item/device/multitool,
+		/obj/item/weapon/tool,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,

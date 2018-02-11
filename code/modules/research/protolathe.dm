@@ -86,20 +86,39 @@
 	else
 		icon_state = "protolathe"
 
-/obj/machinery/r_n_d/protolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/r_n_d/protolathe/attackby(var/obj/item/I, var/mob/user as mob)
 	if(busy)
 		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return 1
-	if(default_deconstruction_screwdriver(user, O))
-		if(linked_console)
-			linked_console.linked_lathe = null
-			linked_console = null
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(!panel_open)
+				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD))
+				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				dismantle()
+				return
+
+		if(QUALITY_SCREW_DRIVING)
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+				if(linked_console)
+					linked_console.linked_imprinter = null
+					linked_console = null
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				update_icon()
+				return
+
+		if(ABORT_CHECK)
+			return
+
+	if(default_part_replacement(I, user))
 		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
-		return
-	if(O.is_open_container())
+	if(I.is_open_container())
 		return 1
 	if(panel_open)
 		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")
@@ -107,9 +126,9 @@
 	if(!linked_console)
 		user << SPAN_NOTICE("\The [src] must be linked to an R&D console first!")
 		return 1
-	if(is_robot_module(O))
+	if(is_robot_module(I))
 		return 0
-	if(!istype(O, /obj/item/stack/material))
+	if(!istype(I, /obj/item/stack/material))
 		user << SPAN_NOTICE("You cannot insert this item into \the [src]!")
 		return 0
 	if(stat)
@@ -119,9 +138,9 @@
 		user << SPAN_NOTICE("\The [src]'s material bin is full. Please remove material before adding more.")
 		return 1
 
-	var/obj/item/stack/material/stack = O
+	var/obj/item/stack/material/stack = I
 	var/amount = round(input("How many sheets do you want to add?") as num)//No decimals
-	if(!O)
+	if(!I)
 		return
 	if(amount <= 0)//No negative numbers
 		return

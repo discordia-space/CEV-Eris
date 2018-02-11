@@ -16,6 +16,7 @@
 	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE
+	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
 	var/list/footstep_sounds = list() // Footsteps sound
 
@@ -28,6 +29,13 @@
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
+
+	var/auto_init = TRUE
+
+/atom/New()
+	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
+		initialize()
+
 
 /atom/Destroy()
 	if(reagents)

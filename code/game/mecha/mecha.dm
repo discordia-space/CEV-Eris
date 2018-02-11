@@ -811,7 +811,7 @@
 			user << "You screw the cell in place."
 		return
 
-	else if(istype(W, /obj/item/device/multitool))
+	else if(istype(W, /obj/item/weapon/tool/multitool))
 		if(state>=3 && src.occupant)
 			user << "You attempt to eject the pilot using the maintenance controls."
 			if(src.occupant.stat)

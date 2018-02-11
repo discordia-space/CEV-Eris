@@ -87,13 +87,13 @@
 		var/mob/M = safepick(ghost_candidates_list(role_id))
 		if(!M)
 			return FALSE
-		return A.create_from_ghost(M)
+		. = A.create_from_ghost(M)
 
 	else
 		var/datum/mind/M = safepick(candidates_list(role_id))
 		if(!M)
 			return FALSE
-		return A.create_antagonist(M)
+		. = A.create_antagonist(M)
 
 	create_objectives(A)
 

@@ -33,21 +33,21 @@
 			I.loc = src
 
 
-/obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/folder) || istype(P, /obj/item/weapon/photo) || istype(P, /obj/item/weapon/paper_bundle))
-		user << SPAN_NOTICE("You put [P] in [src].")
+/obj/structure/filingcabinet/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
+		user << SPAN_NOTICE("You put [I] in [src].")
 		user.drop_item()
-		P.loc = src
+		I.loc = src
 		icon_state = "[initial(icon_state)]-open"
 		sleep(5)
 		icon_state = initial(icon_state)
 		updateUsrDialog()
-	else if(istype(P, /obj/item/weapon/tool/wrench))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		anchored = !anchored
-		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+	else if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING)))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY))
+			anchored = !anchored
+			user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
 	else
-		user << SPAN_NOTICE("You can't put [P] in [src]!")
+		user << SPAN_NOTICE("You can't put [I] in [src]!")
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)

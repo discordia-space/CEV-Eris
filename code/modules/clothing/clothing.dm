@@ -536,7 +536,7 @@ BLIND     // can't see anything
 	..()
 
 /obj/item/clothing/under/rank/attackby(var/obj/item/I, var/mob/U)
-	if(istype(I, /obj/item/weapon/tool/screwdriver) && ishuman(U))
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)) && ishuman(U))
 		set_sensors(U)
 	else
 		return ..()

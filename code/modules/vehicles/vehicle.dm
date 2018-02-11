@@ -30,6 +30,8 @@
 	var/powered = 0		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 
+	var/passenger_allowed = 1
+
 	var/obj/item/weapon/cell/large/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 
@@ -74,40 +76,65 @@
 	else
 		return 0
 
-/obj/vehicle/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/hand_labeler))
-		return
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
-		if(!locked)
-			open = !open
-			update_icon()
-			user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
-	else if(istype(W, /obj/item/weapon/tool/crowbar) && cell && open)
-		remove_cell(user)
+/obj/vehicle/attackby(obj/item/I, mob/user)
 
-	else if(istype(W, /obj/item/weapon/cell/large) && !cell && open)
-		insert_cell(W, user)
-	else if(istype(W, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/T = W
-		if(T.welding)
-			if(health < maxhealth)
-				if(open)
-					health = min(maxhealth, health+10)
-					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-					user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
+	var/list/usable_qualities = list(QUALITY_PRYING, QUALITY_SCREW_DRIVING)
+	if(open)
+		usable_qualities.Add(QUALITY_CUTTING)
+	if(open && health < maxhealth)
+		usable_qualities.Add(QUALITY_WELDING)
+
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_PRYING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				remove_cell(user)
+				return
+
+		if(QUALITY_SCREW_DRIVING)
+			var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+				if(!locked)
+					open = !open
+					update_icon()
+					user << SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 				else
-					user << SPAN_NOTICE("Unable to repair with the maintenance panel closed.")
-			else
-				user << SPAN_NOTICE("[src] does not need a repair.")
-		else
-			user << SPAN_NOTICE("Unable to repair while [src] is off.")
-	else if(hasvar(W,"force") && hasvar(W,"damtype"))
+					user << SPAN_NOTICE("You fail to unsrew the cover, looks like its locked from the inside.")
+				return
+
+		if(QUALITY_CUTTING)
+			if(open)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+					passenger_allowed = !passenger_allowed
+					user.visible_message(
+						SPAN_NOTICE("[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src]."),
+						SPAN_NOTICE("You [passenger_allowed ? "cut" : "mend"] the load limiter cable.")
+					)
+			return
+
+		if(QUALITY_WELDING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				health = min(maxhealth, health+10)
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
+				return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/weapon/hand_labeler))
+		return
+	else if(istype(I, /obj/item/weapon/cell/large) && !cell && open)
+		insert_cell(I, user)
+	else if(hasvar(I,"force") && hasvar(I,"damtype"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		switch(W.damtype)
+		switch(I.damtype)
 			if("fire")
-				health -= W.force * fire_dam_coeff
+				health -= I.force * fire_dam_coeff
 			if("brute")
-				health -= W.force * brute_dam_coeff
+				health -= I.force * brute_dam_coeff
 		..()
 		healthcheck()
 	else

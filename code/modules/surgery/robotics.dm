@@ -265,7 +265,7 @@
 /datum/surgery_step/robotics/detatch_organ_robotic
 
 	allowed_tools = list(
-	/obj/item/device/multitool = 100
+	/obj/item/weapon/tool/multitool = 100
 	)
 
 	min_duration = 90

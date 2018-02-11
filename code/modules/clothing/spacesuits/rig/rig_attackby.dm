@@ -44,7 +44,7 @@
 	if(open)
 
 		// Hacking.
-		if(istype(W,/obj/item/weapon/tool/wirecutters) || istype(W,/obj/item/device/multitool))
+		if(istype(W,/obj/item/weapon/tool/wirecutters) || istype(W,/obj/item/weapon/tool/multitool))
 			if(open)
 				wires.Interact(user)
 			else

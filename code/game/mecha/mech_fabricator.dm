@@ -127,12 +127,12 @@
 /obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
 	if(busy)
 		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
-		return 1
-	if(default_deconstruction_screwdriver(user, I))
+		return TRUE
+
+	if(default_deconstruction(I, user))
 		return
-	if(default_deconstruction_crowbar(user, I))
-		return
-	if(default_part_replacement(user, I))
+
+	if(default_part_replacement(I, user))
 		return
 
 	var/material

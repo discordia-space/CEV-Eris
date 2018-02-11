@@ -78,4 +78,4 @@
 		new /obj/item/weapon/tool/weldingtool(src)
 		new /obj/item/weapon/tool/crowbar(src)
 		new /obj/item/weapon/tool/wirecutters(src)
-		new /obj/item/device/multitool(src)
+		new /obj/item/weapon/tool/multitool(src)

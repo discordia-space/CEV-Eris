@@ -268,22 +268,42 @@
 	if(!malfunction)
 		malfunction = 1
 		update_icon()
-		return 1
+		return TRUE
 
-/obj/machinery/shieldgen/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-		if(is_open)
-			user << "\blue You close the panel."
-			is_open = 0
-		else
-			user << "\blue You open the panel and expose the wiring."
-			is_open = 1
+/obj/machinery/shieldgen/attackby(obj/item/I, mob/user)
 
-	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
-		var/obj/item/stack/cable_coil/coil = W
+	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(locked)
+				user << SPAN_NOTICE("The bolts are covered, unlocking this would retract the covers.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+				if(anchored)
+					user << SPAN_NOTICE("You unsecure the [src] from the floor!")
+					if(active)
+						user << SPAN_NOTICE("The [src] shuts off!")
+						src.shields_down()
+					anchored = FALSE
+				else
+					if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
+					user << SPAN_NOTICE("You secure the [src] to the floor!")
+					anchored = TRUE
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+				is_open = !is_open
+				user << SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I].")
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/stack/cable_coil) && malfunction && is_open)
+		var/obj/item/stack/cable_coil/coil = I
 		user << SPAN_NOTICE("You begin to replace the wires.")
-		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
 		if(do_after(user, 30,src))
 			if (coil.use(1))
 				health = max_health
@@ -291,30 +311,12 @@
 				user << SPAN_NOTICE("You repair the [src]!")
 				update_icon()
 
-	else if(istype(W, /obj/item/weapon/tool/wrench))
-		if(locked)
-			user << "The bolts are covered, unlocking this would retract the covers."
-			return
-		if(anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-			user << "\blue You unsecure the [src] from the floor!"
-			if(active)
-				user << "\blue The [src] shuts off!"
-				src.shields_down()
-			anchored = 0
-		else
-			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-			user << "\blue You secure the [src] to the floor!"
-			anchored = 1
-
-
-	else if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
+	else if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
 			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
 		else
-			user << "\red Access denied."
+			user << SPAN_WARNING("Access denied.")
 
 	else
 		..()

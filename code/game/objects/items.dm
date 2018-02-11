@@ -10,6 +10,7 @@
 	var/burn_point = null
 	var/burning = null
 	var/hitsound = null
+	var/worksound = null
 	var/storage_cost = null
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
@@ -35,6 +36,8 @@
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
 	var/item_flags = 0 //Miscellaneous flags pertaining to equippable objects.
+
+	var/list/tool_qualities = null// List of item qualities for tools system. See qualities.dm.
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
@@ -581,6 +584,68 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
+
+/* QUALITY SYSTEM */
+
+/obj/item/proc/get_tool_quality(quality_id)
+	return tool_qualities[quality_id]
+
+/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
+	var/start_loc = user.loc
+	var/list/L = list()
+	for(var/Q in required_qualities)
+		if(Q in tool_qualities)
+			L.Add(Q)
+
+	if(!L.len)
+		return FALSE
+
+	var/return_quality = L[1]
+	if(L.len > 1)
+		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
+	if(user.loc != start_loc)
+		user << SPAN_WARNING("You need to stand still!")
+		return ABORT_CHECK
+	else
+		return return_quality
+
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 0, forced_sound = null)
+	if(target.used_now)
+		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
+		return
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.shock_stage >= 30)
+			user << SPAN_WARNING("Pain distracts you from your task.")
+			fail_chance += round(H.shock_stage/120 * 40)
+			base_time = round(base_time * H.shock_stage/120 * 3)
+	if(forced_sound != NO_WORKSOUND)
+		if(forced_sound)
+			playsound(src.loc, forced_sound, 100, 1)
+		else
+			playsound(src.loc, src.worksound, 100, 1)
+	if(!(instant_finish_tier && (instant_finish_tier >= get_tool_quality(required_quality))))
+		target.used_now = TRUE
+		var/time_to_finish = base_time / get_tool_quality(required_quality)
+		if(!do_after(user, time_to_finish, user))
+			user << SPAN_WARNING("You need to stand still to finish the task properly!")
+			target.used_now = FALSE
+			return FALSE
+		else
+			target.used_now = FALSE
+	fail_chance += - get_tool_quality(required_quality) * 10
+	if(prob(fail_chance))
+		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
+		handle_failure(user, target)
+		return FALSE
+	return TRUE
+
+/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target)
+	if(prob(33))
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			attack(H, H, H.get_holding_hand(src))
+	return
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'

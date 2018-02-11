@@ -2,7 +2,7 @@
 	id = ROLE_INQUISITOR
 	role_text = "NeoTheology Inquisitor"
 	role_text_plural = "NeoTheology Inquisitors"
-	bantype = "inquisitor"
+	bantype = "Inquisitor"
 	welcome_text = "Here should be the inquisitor welcome text."
 	protected_jobs = list("Cyberchristian Preacher")
 

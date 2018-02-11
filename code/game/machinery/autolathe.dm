@@ -113,37 +113,37 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user)
 
 	if(busy)
 		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return
 
-	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog()
+	if(default_deconstruction(I, user))
 		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+
+	if(default_part_replacement(I, user))
 		return
 
 	if(stat)
 		return
 
 	if(panel_open)
-		//Don't eat multitools or wirecutters used on an open lathe.
-		if(istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/tool/wirecutters))
-			attack_hand(user)
-			return
+		//Don't eat anything used on an open lathe.
+		return FALSE
 
-	if(O.loc != user && !(istype(O,/obj/item/stack)))
-		return 0
+	if(istype(I, /obj/item/weapon/tool))
+		//Don't eat tools.
+		return FALSE
 
-	if(is_robot_module(O))
-		return 0
+	if(I.loc != user && !(istype(I,/obj/item/stack)))
+		return FALSE
+
+	if(is_robot_module(I))
+		return FALSE
 
 	//Resources are being loaded.
-	var/obj/item/eating = O
+	var/obj/item/eating = I
 	if(!eating.matter || !eating.matter.len)
 		user << "\The [eating] does not contain significant amounts of useful materials and cannot be accepted."
 		return
@@ -191,8 +191,8 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		user.remove_from_mob(O)
-		qdel(O)
+		user.remove_from_mob(I)
+		qdel(I)
 
 	updateUsrDialog()
 	return
