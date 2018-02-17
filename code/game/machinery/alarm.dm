@@ -775,7 +775,7 @@
 	if(buildstage == 2)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(wiresexposed)
-		usable_qualities.Add(QUALITY_RETRACTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 	if(buildstage == 1)
 		usable_qualities.Add(QUALITY_PRYING)
 	if(buildstage == 0)
@@ -795,7 +795,7 @@
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(wiresexposed)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 					user.visible_message(SPAN_WARNING("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
@@ -972,7 +972,7 @@ FIRE ALARM
 	if(buildstage == 2)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(wiresexposed)
-		usable_qualities.Add(QUALITY_RETRACTING, QUALITY_PULSING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING, QUALITY_PULSING)
 	if(buildstage == 1)
 		usable_qualities.Add(QUALITY_PRYING)
 	if(buildstage == 0)
@@ -992,7 +992,7 @@ FIRE ALARM
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(wiresexposed)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 					user.visible_message(SPAN_WARNING("[user] has remove the wires from \the [src]!"), "You have removed the wires from \the [src].")

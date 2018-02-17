@@ -80,7 +80,7 @@
 
 	var/list/usable_qualities = list(QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 	if(open)
-		usable_qualities.Add(QUALITY_CUTTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 	if(open && health < maxhealth)
 		usable_qualities.Add(QUALITY_WELDING)
 
@@ -104,7 +104,7 @@
 					user << SPAN_NOTICE("You fail to unsrew the cover, looks like its locked from the inside.")
 				return
 
-		if(QUALITY_CUTTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(open)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 					passenger_allowed = !passenger_allowed

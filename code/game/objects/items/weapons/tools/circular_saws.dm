@@ -14,7 +14,7 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = TRUE
 	edge = TRUE
-	tool_qualities = list(QUALITY_SAWING = 4, QUALITY_CUTTING = 1)
+	tool_qualities = list(QUALITY_SAWING = 4, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 2)
 
 /obj/item/weapon/tool/circular_saw/simple
 	name = "metal saw"
@@ -23,11 +23,11 @@
 	hitsound = null
 	force = WEAPON_FORCE_WEAK
 	matter = list(DEFAULT_WALL_MATERIAL = 10000)
-	tool_qualities = list(QUALITY_SAWING = 3, QUALITY_CUTTING = 1)
+	tool_qualities = list(QUALITY_SAWING = 3, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 1)
 
 /obj/item/weapon/tool/circular_saw/advanced
 	name = "advanced saw"
 	desc = "You think you can cut anything with it."
 	icon_state = "advanced_saw"
 	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
-	tool_qualities = list(QUALITY_SAWING = 5, QUALITY_CUTTING = 1)
+	tool_qualities = list(QUALITY_SAWING = 5, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 3)

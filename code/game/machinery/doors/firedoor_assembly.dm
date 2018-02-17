@@ -20,7 +20,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 	if(!anchored)
 		usable_qualities.Add(QUALITY_WELDING)
 	if(wired)
-		usable_qualities.Add(QUALITY_RETRACTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
@@ -32,7 +32,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 				anchored = !anchored
 				update_icon()
 				return
-		return
+			return
 
 		if(QUALITY_WELDING)
 			if(!anchored)
@@ -44,7 +44,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(wired)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You cut the wires!")

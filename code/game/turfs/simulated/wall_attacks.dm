@@ -116,7 +116,7 @@
 	if(construction_stage == 5)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(construction_stage == 6)
-		usable_qualities.Add(QUALITY_RETRACTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
@@ -188,7 +188,7 @@
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(construction_stage == 6)
 				user << SPAN_NOTICE("You begin removing the outer grille...")
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))

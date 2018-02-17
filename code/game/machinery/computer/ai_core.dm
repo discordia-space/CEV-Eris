@@ -22,7 +22,7 @@
 	if((state == 1 && circuit) || (state == 3 && brain) || state == 4)
 		usable_qualities.Add(QUALITY_PRYING)
 	if(state == 3)
-		usable_qualities.Add(QUALITY_RETRACTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
@@ -108,7 +108,7 @@
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(state == 3)
 				if (brain)
 					user << "Get that brain out of there first"

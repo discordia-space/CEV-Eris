@@ -5,6 +5,7 @@
 #define QUALITY_PRYING					"prying"
 #define QUALITY_WELDING					"welding"
 #define QUALITY_SCREW_DRIVING			"screw driving"
+#define QUALITY_WIRE_CUTTING			"wire cutting"
 #define QUALITY_COMPRESSING				"compressing"
 #define QUALITY_CAUTERIZING				"cauterizing"
 #define QUALITY_RETRACTING				"retracting"
@@ -18,6 +19,7 @@
 #define QUALITY_CUTTING					"cutting"
 
 //Remember that base time devided by tool level, which is 3 for base tools
+#define WORKTIME_INSTANT				0
 #define WORKTIME_NEAR_INSTANT			20
 #define WORKTIME_FAST					40
 #define WORKTIME_NORMAL					80

@@ -131,8 +131,7 @@
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
 			if(istype(tool,/obj/item/weapon/tool/weldingtool))
-				if(!(QUALITY_WELDING in I.tool_qualities))
-					return 0
+				return 0
 			return affected && affected.open == 2 && affected.brute_dam > 0 && target_zone != "mouth"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

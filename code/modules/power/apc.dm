@@ -442,7 +442,7 @@
 	if(opened || !((stat & BROKEN) || hacker))
 		usable_qualities.Add(QUALITY_PRYING)
 	if(terminal && opened && has_electronics!=2)
-		usable_qualities.Add(QUALITY_RETRACTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 	if(opened && has_electronics==0 && !terminal)
 		usable_qualities.Add(QUALITY_WELDING)
 
@@ -483,7 +483,7 @@
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(terminal && opened && has_electronics!=2)
 				var/turf/T = loc
 				if(istype(T) && !T.is_plating())
@@ -676,7 +676,9 @@
 				return src.attack_hand(user)
 			if (!opened && wiresexposed && \
 				((QUALITY_PULSING in I.tool_qualities) || \
-				(QUALITY_RETRACTING in I.tool_qualities) || istype(I, /obj/item/device/assembly/signaler)))
+				(QUALITY_WIRE_CUTTING in I.tool_qualities) || \
+				(QUALITY_CUTTING in I.tool_qualities) || \
+				istype(I, /obj/item/device/assembly/signaler)))
 				return src.attack_hand(user)
 			user.visible_message(SPAN_DANGER("The [src.name] has been hit with the [I.name] by [user.name]!"), \
 				SPAN_DANGER("You hit the [src.name] with your [I.name]!"), \

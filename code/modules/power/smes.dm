@@ -265,7 +265,7 @@
 				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(terminal && !building_terminal && !open_hatch)
 				var/turf/tempTDir = terminal.loc
 				if (istype(tempTDir))

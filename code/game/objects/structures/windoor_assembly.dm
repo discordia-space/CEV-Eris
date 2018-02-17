@@ -75,7 +75,7 @@ obj/structure/windoor_assembly/Destroy()
 	if(state == "02" && electronics)
 		usable_qualities.Add(QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 	if(state == "02" && !electronics)
-		usable_qualities.Add(QUALITY_RETRACTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
@@ -160,7 +160,7 @@ obj/structure/windoor_assembly/Destroy()
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(state == "02" && !src.electronics)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You remove the windoor wires.!")
@@ -193,7 +193,7 @@ obj/structure/windoor_assembly/Destroy()
 	switch(state)
 		if("01")
 			//Adding plasteel makes the assembly a secure windoor assembly. Step 2 (optional) complete.
-			else if(istype(I, /obj/item/stack/rods) && !secure)
+			if(istype(I, /obj/item/stack/rods) && !secure)
 				var/obj/item/stack/rods/R = I
 				if(R.get_amount() < 4)
 					user << SPAN_WARNING("You need more rods to do this.")
@@ -228,7 +228,7 @@ obj/structure/windoor_assembly/Destroy()
 		if("02")
 
 			//Adding airlock electronics for access. Step 6 complete.
-			else if(istype(I, /obj/item/weapon/airlock_electronics) && I:icon_state != "door_electronics_smoked")
+			if(istype(I, /obj/item/weapon/airlock_electronics) && I:icon_state != "door_electronics_smoked")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 

@@ -133,7 +133,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	if(construction_state == 0 || construction_state == 1)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 	if(construction_state == 2)
-		usable_qualities.Add(QUALITY_RETRACTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 	if(construction_state == 2 || construction_state == 3)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 
@@ -159,7 +159,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(construction_state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user.visible_message("[user.name] removes some wires from the [src.name].", \
@@ -327,7 +327,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	if(construction_state == 0 || construction_state == 1)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 	if(construction_state == 2)
-		usable_qualities.Add(QUALITY_RETRACTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 	if(construction_state == 2 || construction_state == 3)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 
@@ -353,7 +353,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					return
 			return
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(construction_state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user.visible_message("[user.name] removes some wires from the [src.name].", \

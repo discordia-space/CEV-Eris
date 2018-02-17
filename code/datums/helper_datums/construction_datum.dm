@@ -28,7 +28,7 @@
 		return
 
 	proc/check_step(atom/used_atom, mob/user as mob) //check last step only
-		var/valid_step = is_right_key(used_atom)
+		var/valid_step = is_right_key(user, used_atom)
 		if(valid_step)
 			if(custom_action(valid_step, used_atom, user))
 				next_step()
@@ -85,16 +85,27 @@
 			set_desc(index)
 		return
 
-	is_right_key(atom/used_atom) // returns index step
+	is_right_key(var/mob/living/user, atom/used_atom) // returns index step
 		var/list/L = steps[index]
-		if(istype(used_atom, L["key"]))
-			return FORWARD //to the first step -> forward
-		else if(L["backkey"] && istype(used_atom, L["backkey"]))
-			return BACKWARD //to the last step -> backwards
-		return 0
+		var/list/possibleWays = list()
+		if(ispath(L["key"]))
+			if(istype(used_atom, L["key"]))
+				return FORWARD //to the first step -> forward
+		else
+			possibleWays[L["key"]] = FORWARD
+		if(ispath(L["backkey"]))
+			if(L["backkey"] && istype(used_atom, L["backkey"]))
+				return BACKWARD //to the last step -> backwards
+		else
+			possibleWays[L["backkey"]] = BACKWARD
+		if(istype(used_atom, /obj/item))
+			var/obj/item/I = used_atom
+			var/selected = I.get_tool_type(user, possibleWays)
+			return selected && possibleWays[selected]
+		return FALSE
 
 	check_step(atom/used_atom, mob/user as mob)
-		var/diff = is_right_key(used_atom)
+		var/diff = is_right_key(user, used_atom)
 		if(diff)
 			if(custom_action(index, diff, used_atom, user))
 				update_index(diff)

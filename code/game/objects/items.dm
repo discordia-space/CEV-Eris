@@ -592,10 +592,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
 	var/start_loc = user.loc
-	var/list/L = list()
-	for(var/Q in required_qualities)
-		if(Q in tool_qualities)
-			L.Add(Q)
+	var/list/L = required_qualities & tool_qualities
 
 	if(!L.len)
 		return FALSE
@@ -609,7 +606,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		return return_quality
 
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 0, forced_sound = null)
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 11, forced_sound = null)
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
 		return
@@ -632,7 +629,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(!T.check_tool_effects(user))
 			return
 
-	if(!(instant_finish_tier && (instant_finish_tier >= get_tool_quality(required_quality))))
+	if(base_time && (instant_finish_tier <= get_tool_quality(required_quality)))
 		target.used_now = TRUE
 		var/time_to_finish = base_time / get_tool_quality(required_quality)
 		if(!do_after(user, time_to_finish, user))

@@ -267,7 +267,7 @@
 		attack_hand(user)
 		return
 
-	else if(I.get_tool_type(usr, list(QUALITY_PULSING)) || I.get_tool_type(usr, list(QUALITY_CUTTING)))
+	else if(QUALITY_CUTTING in I.tool_qualities || QUALITY_WIRE_CUTTING in I.tool_qualities || QUALITY_PULSING in I.tool_qualities)
 		if(src.panel_open)
 			attack_hand(user)
 		return

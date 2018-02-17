@@ -44,6 +44,7 @@
 			if(glow_color)
 				set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
+	..()
 	return
 
 //Fuel and cell spawn
@@ -131,12 +132,12 @@
 /obj/item/weapon/tool/afterattack(obj/O, mob/user, proximity)
 	if(use_fuel_cost)
 		if(!proximity) return
-		if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && !switched_on)
+		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && !switched_on)
 			O.reagents.trans_to_obj(src, max_fuel)
 			user << SPAN_NOTICE("[src] refueled")
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
-		else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && switched_on)
+		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && switched_on)
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
 			user << SPAN_DANGER("You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.")
@@ -231,6 +232,7 @@
 							QUALITY_SCREW_DRIVING = 10,
 							QUALITY_COMPRESSING = 10,
 							QUALITY_CAUTERIZING = 10,
+							QUALITY_WIRE_CUTTING = 10,
 							QUALITY_RETRACTING = 10,
 							QUALITY_DRILLING = 10,
 							QUALITY_SAWING = 10,

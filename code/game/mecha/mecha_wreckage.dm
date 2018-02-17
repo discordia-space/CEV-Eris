@@ -32,10 +32,10 @@
 
 /obj/effect/decal/mecha_wreckage/attackby(obj/item/I, mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_RETRACTING, QUALITY_WELDING, QUALITY_PRYING))
+	var/tool_type = I.get_tool_type(user, list(QUALITY_WIRE_CUTTING, QUALITY_WELDING, QUALITY_PRYING))
 	switch(tool_type)
 
-		if(QUALITY_RETRACTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(salvage_num <= 0 || !isemptylist(wirecutters_salvage))
 				user << "You don't see anything that can be removed with [I]."
 				return
@@ -55,16 +55,16 @@
 				user << "You don't see anything that can be cut with [I]."
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
-			if(type)
-				var/N = new type(get_turf(user))
-				user.visible_message("[user] cuts [N] from [src]", "You cut [N] from [src]", "You hear a sound of welder nearby")
-				if(istype(N, /obj/item/mecha_parts/part))
-					welder_salvage -= type
-				salvage_num--
-				return
-			else
-				user << "You failed to salvage anything valuable from [src]."
-				return
+				if(type)
+					var/N = new type(get_turf(user))
+					user.visible_message("[user] cuts [N] from [src]", "You cut [N] from [src]", "You hear a sound of welder nearby")
+					if(istype(N, /obj/item/mecha_parts/part))
+						welder_salvage -= type
+					salvage_num--
+					return
+				else
+					user << "You failed to salvage anything valuable from [src]."
+					return
 			return
 
 		if(QUALITY_PRYING)

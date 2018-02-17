@@ -457,54 +457,150 @@
 	if(prob(75) && Proj.damage > 0) spark_system.start()
 	return 2
 
-/mob/living/silicon/robot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
+/mob/living/silicon/robot/attackby(obj/item/I, mob/user)
+	if (istype(I, /obj/item/weapon/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
 
 	if(opened) // Are they trying to insert something?
 		for(var/V in components)
 			var/datum/robot_component/C = components[V]
-			if(!C.installed && istype(W, C.external_type))
+			if(!C.installed && istype(I, C.external_type))
 				C.installed = 1
-				C.wrapped = W
+				C.wrapped = I
 				C.install()
 				user.drop_item()
-				W.loc = null
+				I.loc = null
 
-				var/obj/item/robot_parts/robot_component/WC = W
+				var/obj/item/robot_parts/robot_component/WC = I
 				if(istype(WC))
 					C.brute_damage = WC.brute
 					C.electronics_damage = WC.burn
 
-				usr << "\blue You install the [W.name]."
+				usr << SPAN_NOTICE("You install the [I.name].")
 
 				return
 
-	if (istype(W, /obj/item/weapon/tool/weldingtool))
-		if (src == user)
-			user << SPAN_WARNING("You lack the reach to be able to repair yourself.")
+	var/list/usable_qualities = list(QUALITY_WELDING, QUALITY_PRYING)
+	if((opened && !cell) || (opened && cell))
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(wiresexposed)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_WELDING)
+			if (src == user)
+				user << SPAN_WARNING("You lack the reach to be able to repair yourself.")
+				return
+
+			if (!getBruteLoss())
+				user << SPAN_NOTICE("Nothing to fix here!")
+				return
+
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+				adjustBruteLoss(-30)
+				updatehealth()
+				add_fingerprint(user)
+				for(var/mob/O in viewers(user, null))
+					O.show_message(text("\red [user] has fixed some of the dents on [src]!"), 1)
+				return
 			return
 
-		if (!getBruteLoss())
-			user << "Nothing to fix here!"
-			return
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if (WT.remove_fuel(0))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			adjustBruteLoss(-30)
-			updatehealth()
-			add_fingerprint(user)
-			for(var/mob/O in viewers(user, null))
-				O.show_message(text("\red [user] has fixed some of the dents on [src]!"), 1)
-		else
-			user << "Need more welding fuel!"
+		if(QUALITY_PRYING)
+			if(opened)
+				if(cell)
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+						user << SPAN_NOTICE("You close the cover.")
+						opened = 0
+						updateicon()
+						return
+				else if(wiresexposed && wires.IsAllCut())
+					//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
+					if(!mmi)
+						user << SPAN_NOTICE("\The [src] has no brain to remove.")
+						return
+
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+						user << SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi].")
+						user << SPAN_NOTICE("You damage some parts of the chassis, but eventually manage to rip out [mmi]!")
+						var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
+						C.l_leg = new/obj/item/robot_parts/l_leg(C)
+						C.r_leg = new/obj/item/robot_parts/r_leg(C)
+						C.l_arm = new/obj/item/robot_parts/l_arm(C)
+						C.r_arm = new/obj/item/robot_parts/r_arm(C)
+						C.updateicon()
+						new/obj/item/robot_parts/chest(loc)
+						qdel(src)
+						return
+				else
+					// Okay we're not removing the cell or an MMI, but maybe something else?
+					var/list/removable_components = list()
+					for(var/V in components)
+						if(V == "power cell") continue
+						var/datum/robot_component/C = components[V]
+						if(C.installed == 1 || C.installed == -1)
+							removable_components += V
+
+					var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
+					if(!remove)
+						return
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+						var/datum/robot_component/C = components[remove]
+						var/obj/item/robot_parts/robot_component/RC = C.wrapped
+						user << SPAN_NOTICE("You remove \the [RC].")
+						if(istype(RC))
+							RC.brute = C.brute_damage
+							RC.burn = C.electronics_damage
+
+						RC.loc = src.loc
+
+						if(C.installed == 1)
+							C.uninstall()
+						C.installed = 0
+						return
+
+			else
+				if(locked)
+					user << SPAN_WARNING("The cover is locked and cannot be opened.")
+				else
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+						user << SPAN_NOTICE("You open the cover.")
+						opened = 1
+						updateicon()
+						return
 			return
 
-	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || isdrone(src)))
+		if(QUALITY_WIRE_CUTTING)
+			if (wiresexposed)
+				wires.Interact(user)
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(opened && !cell)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					wiresexposed = !wiresexposed
+					user << SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]")
+					updateicon()
+					return
+			if(opened && cell)
+				if(!radio)
+					user << SPAN_WARNING("Unable to locate a radio.")
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					radio.attackby(I,user)//Push it to the radio to let it handle everything
+					updateicon()
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/stack/cable_coil) && (wiresexposed || isdrone(src)))
 		if (!getFireLoss())
 			user << "Nothing to fix here!"
 			return
-		var/obj/item/stack/cable_coil/coil = W
+		var/obj/item/stack/cable_coil/coil = I
 		if (coil.use(1))
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			adjustFireLoss(-30)
@@ -512,119 +608,46 @@
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text("\red [user] has fixed some of the burnt wires on [src]!"), 1)
 
-	else if (istype(W, /obj/item/weapon/tool/crowbar))	// crowbar means open or close the cover
-		if(opened)
-			if(cell)
-				user << "You close the cover."
-				opened = 0
-				updateicon()
-			else if(wiresexposed && wires.IsAllCut())
-				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
-				if(!mmi)
-					user << "\The [src] has no brain to remove."
-					return
-
-				user << "You jam the crowbar into the robot and begin levering [mmi]."
-				sleep(30)
-				user << "You damage some parts of the chassis, but eventually manage to rip out [mmi]!"
-				var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
-				C.l_leg = new/obj/item/robot_parts/l_leg(C)
-				C.r_leg = new/obj/item/robot_parts/r_leg(C)
-				C.l_arm = new/obj/item/robot_parts/l_arm(C)
-				C.r_arm = new/obj/item/robot_parts/r_arm(C)
-				C.updateicon()
-				new/obj/item/robot_parts/chest(loc)
-				qdel(src)
-			else
-				// Okay we're not removing the cell or an MMI, but maybe something else?
-				var/list/removable_components = list()
-				for(var/V in components)
-					if(V == "power cell") continue
-					var/datum/robot_component/C = components[V]
-					if(C.installed == 1 || C.installed == -1)
-						removable_components += V
-
-				var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
-				if(!remove)
-					return
-				var/datum/robot_component/C = components[remove]
-				var/obj/item/robot_parts/robot_component/I = C.wrapped
-				user << "You remove \the [I]."
-				if(istype(I))
-					I.brute = C.brute_damage
-					I.burn = C.electronics_damage
-
-				I.loc = src.loc
-
-				if(C.installed == 1)
-					C.uninstall()
-				C.installed = 0
-
-		else
-			if(locked)
-				user << "The cover is locked and cannot be opened."
-			else
-				user << "You open the cover."
-				opened = 1
-				updateicon()
-	else if (istype(W, /obj/item/weapon/stock_parts/matter_bin) && opened) // Installing/swapping a matter bin
+	else if (istype(I, /obj/item/weapon/stock_parts/matter_bin) && opened) // Installing/swapping a matter bin
 		if(storage)
-			user << "You replace \the [storage] with \the [W]"
+			user << "You replace \the [storage] with \the [I]"
 			storage.forceMove(get_turf(src))
 			storage = null
 		else
-			user << "You install \the [W]"
+			user << "You install \the [I]"
 		user.drop_item()
-		storage = W
-		W.forceMove(src)
+		storage = I
+		I.forceMove(src)
 		recalculate_synth_capacities()
 
-	else if (istype(W, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
+	else if (istype(I, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
 			user << "Close the panel first."
 		else if(cell)
 			user << "There is a power cell already installed."
-		else if(W.w_class != ITEM_SIZE_NORMAL)
-			user << "\The [W] is too [W.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
+		else if(I.w_class != ITEM_SIZE_NORMAL)
+			user << "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
 		else
 			user.drop_item()
-			W.loc = src
-			cell = W
+			I.loc = src
+			cell = I
 			user << "You insert the power cell."
 
 			C.installed = 1
-			C.wrapped = W
+			C.wrapped = I
 			C.install()
 			//This will mean that removing and replacing a power cell will repair the mount, but I don't care at this point. ~Z
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/multitool))
-		if (wiresexposed)
-			wires.Interact(user)
-		else
-			user << "You can't reach the wiring."
-
-	else if(istype(W, /obj/item/weapon/tool/screwdriver) && opened && !cell)	// haxing
-		wiresexposed = !wiresexposed
-		user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
-		updateicon()
-
-	else if(istype(W, /obj/item/weapon/tool/screwdriver) && opened && cell)	// radio
-		if(radio)
-			radio.attackby(W,user)//Push it to the radio to let it handle everything
-		else
-			user << "Unable to locate a radio."
-		updateicon()
-
-	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
+	else if(istype(I, /obj/item/device/encryptionkey/) && opened)
 		if(radio)//sanityyyyyy
-			radio.attackby(W,user)//GTFO, you have your own procs
+			radio.attackby(I,user)//GTFO, you have your own procs
 		else
 			user << "Unable to locate a radio."
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda)||istype(W, /obj/item/weapon/card/robot))			// trying to unlock the interface with an ID card
+	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda)||istype(I, /obj/item/weapon/card/robot))			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
 			user << "The interface seems slightly damaged"
 		if(opened)
@@ -637,8 +660,8 @@
 			else
 				user << "\red Access denied."
 
-	else if(istype(W, /obj/item/borg/upgrade/))
-		var/obj/item/borg/upgrade/U = W
+	else if(istype(I, /obj/item/borg/upgrade/))
+		var/obj/item/borg/upgrade/U = I
 		if(!opened)
 			usr << "You must access the borgs internals!"
 		else if(!src.module && U.require_module)
@@ -653,9 +676,8 @@
 			else
 				usr << "Upgrade error!"
 
-
 	else
-		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/scanner/healthanalyzer)) )
+		if( !(istype(I, /obj/item/device/robotanalyzer) || istype(I, /obj/item/device/scanner/healthanalyzer)) )
 			spark_system.start()
 		return ..()
 
