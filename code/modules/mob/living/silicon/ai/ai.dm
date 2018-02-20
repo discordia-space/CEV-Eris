@@ -3,6 +3,8 @@
 
 var/list/ai_list = list()
 var/list/ai_verbs_default = list(
+	/mob/living/silicon/ai/proc/ai_movement_up,
+	/mob/living/silicon/ai/proc/ai_movement_down,
 	/mob/living/silicon/ai/proc/ai_announcement,
 	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
@@ -331,6 +333,12 @@ var/list/ai_verbs_default = list(
 		use_power(50000) // Less optimalised but only called if AI is unwrenched. This prevents usage of wrenching as method to keep AI operational without power. Intellicard is for that.
 	if(powered_ai.anchored)
 		use_power = 2
+
+/mob/living/silicon/ai/proc/ai_movement_up()
+	return
+
+/mob/living/silicon/ai/proc/ai_movement_down()
+	return
 
 /mob/living/silicon/ai/proc/pick_icon()
 	set category = "Silicon Commands"
