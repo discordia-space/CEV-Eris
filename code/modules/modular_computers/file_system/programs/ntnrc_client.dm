@@ -29,6 +29,7 @@
 			return 1
 		var/mob/living/user = usr
 		var/message = sanitize(input(user, "Enter message or leave blank to cancel: "))
+		message = cp1251_to_utf8(message)
 		if(!message || !channel)
 			return
 		channel.add_message(message, username)
