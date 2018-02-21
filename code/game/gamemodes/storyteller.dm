@@ -35,9 +35,6 @@ var/global/list/current_factions = list()
 	if(debug_mode)
 		return TRUE
 
-	if(player_list.len <= 10)
-		return TRUE
-
 	var/engineer = FALSE
 	var/captain = FALSE
 	for(var/mob/new_player/player in player_list)
@@ -49,13 +46,21 @@ var/global/list/current_factions = list()
 			if(captain && engineer)
 				return TRUE
 
+	var/tcol = "red"
+	if(player_list.len <= 10)
+		tcol = "black"
+
 	if(announce)
 		if(!engineer && !captain)
-			world << "<b><font color='red'>Captain and technomancer are required to start round.</font></b>"
+			world << "<b><font color='[tcol]'>Captain and technomancer are required to start round.</font></b>"
 		else if(!engineer)
-			world << "<b><font color='red'>Technomancer is required to start round.</font></b>"
+			world << "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>"
 		else if(!captain)
-			world << "<b><font color='red'>Captain is required to start round.</font></b>"
+			world << "<b><font color='[tcol]'>Captain is required to start round.</font></b>"
+
+	if(player_list.len <= 10)
+		world << "<i>But there's less than 10 players, so this requirement will be ignored.</i>"
+		return TRUE
 
 	return FALSE
 
