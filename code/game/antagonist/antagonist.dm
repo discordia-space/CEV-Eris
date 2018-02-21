@@ -15,7 +15,7 @@
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
 
 	// Role data.
-	var/id = null                      		// Unique datum identifier.
+	var/id = null                      		// Unique type identifier.
 	var/role_type                           // Preferences option for this role. Defaults to the id if unset
 	var/role_text = "Traitor"               // special_role text.
 	var/role_text_plural = "Traitors"       // As above but plural.
@@ -26,7 +26,7 @@
 	var/faction_type = null
 
 	// Misc.
-	var/bantype = "Syndicate"               // Ban to check when spawning this antag.
+	var/bantype               // Ban to check when spawning this antag.
 	var/list/uplinks = list()
 	var/only_human = TRUE
 
@@ -34,12 +34,16 @@
 /datum/antagonist/New()
 	..()
 	if(!role_type)
-		role_type = id
+		role_type = role_text
+	if(!bantype)
+		bantype = role_type
 
 	if(!role_text_plural)
 		role_text_plural = role_text
 	if(config.protect_roles_from_antagonist)
 		restricted_jobs |= protected_jobs
+	if(selectable && !role_type)
+		role_type = role_text
 	/*if(antaghud_indicator)
 		if(!hud_icon_reference)
 			hud_icon_reference = list()

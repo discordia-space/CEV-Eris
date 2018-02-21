@@ -296,9 +296,18 @@
 				return
 		owner.verbs -= /mob/living/carbon/human/proc/undislocate
 
+/obj/item/organ/external/proc/setBleeding()
+	if(robotic >= ORGAN_ROBOT || owner.species.flags & NO_BLOOD)
+		return FALSE
+	status |= ORGAN_BLEEDING
+	return TRUE
+
+/obj/item/organ/external/proc/stopBleeding()
+	status &= ~ORGAN_BLEEDING
+
+
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
-	return
 
 
 /*
@@ -306,7 +315,6 @@ This function completely restores a damaged organ to perfect condition.
 */
 /obj/item/organ/external/rejuvenate()
 	damage_state = "00"
-	//Robotic organs stay robotic.  Fix because right click rejuvinate makes IPC's organs organic.
 	status = 0
 	perma_injury = 0
 	brute_dam = 0
@@ -596,12 +604,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	number_wounds = 0
 	brute_dam = 0
 	burn_dam = 0
-	status &= ~ORGAN_BLEEDING
-	var/clamped = 0
+	src.stopBleeding()
 
-	var/mob/living/carbon/human/H
-	if(ishuman(owner))
-		H = owner
+	var/clamped = 0
 
 	//update damage counts
 	for(var/datum/wound/W in wounds)
@@ -611,17 +616,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 			else
 				brute_dam += W.damage
 
-		if(!(robotic >= ORGAN_ROBOT) && W.bleeding() && (H && !(H.species.flags & NO_BLOOD)))
+		if(W.bleeding())
 			W.bleed_timer--
-			status |= ORGAN_BLEEDING
+			src.setBleeding()
 
 		clamped |= W.clamped
 
 		number_wounds += W.amount
 
 	//things tend to bleed if they are CUT OPEN
-	if (open && !clamped && (H && !(H.species.flags & NO_BLOOD)))
-		status |= ORGAN_BLEEDING
+	if (open && !clamped)
+		src.setBleeding()
 
 	//Bone fractures
 	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && robotic < ORGAN_ROBOT)
@@ -805,7 +810,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/proc/bandage()
 	var/rval = 0
-	status &= ~ORGAN_BLEEDING
+	stopBleeding()
 	for(var/datum/wound/W in wounds)
 		if(W.internal) continue
 		rval |= !W.bandaged
@@ -830,9 +835,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/proc/clamp()
 	var/rval = 0
-	src.status &= ~ORGAN_BLEEDING
+	src.stopBleeding()
 	for(var/datum/wound/W in wounds)
-		if(W.internal) continue
+		if(W.internal)
+			continue
 		rval |= !W.clamped
 		W.clamped = 1
 	return rval

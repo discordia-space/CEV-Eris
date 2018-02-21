@@ -121,7 +121,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		if(ABORT_CHECK)
 			return
 
-	if(default_part_replacement(user, I))
+	if(default_part_replacement(I, user))
 		return
 	if(panel_open)
 		user << SPAN_NOTICE("You can't load \the [src] while it's opened.")

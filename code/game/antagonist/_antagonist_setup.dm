@@ -94,7 +94,7 @@ var/global/list/antag_bantypes = list()
 		else
 			station_antag_types[A.id] = antag_type
 		if(A.selectable)
-			selectable_antag_types[A.id] = A.role_type
+			selectable_antag_types[A.role_type] = A.id
 		if(A.faction_type)
 			group_antag_types[A.id] = antag_type
 		antag_names[A.id] = A.role_text
@@ -106,6 +106,17 @@ var/global/list/antag_bantypes = list()
 		if(A.id == id)
 			L.Add(A)
 	return L
+
+/proc/get_player_antag_name(var/datum/mind/player)
+	if(!istype(player))
+		return "ERROR"
+	var/names
+	for(var/datum/antagonist/A in player.antagonist)
+		if(names)
+			names += ", "+A.role_text
+		else
+			names = A.role_text
+	return names
 
 /proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
 	for(var/datum/antagonist/antag in player.antagonist)

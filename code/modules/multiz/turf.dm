@@ -12,9 +12,10 @@
 	var/global/overlay_map = list()
 
 /turf/simulated/open/initialize()
-	..()
+	. = ..()
 	below = GetBelow(src)
 	ASSERT(HasBelow(z))
+	update_icon()
 
 /turf/simulated/open/is_plating()
 	return TRUE
