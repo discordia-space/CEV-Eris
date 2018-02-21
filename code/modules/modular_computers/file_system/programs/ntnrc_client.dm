@@ -29,6 +29,7 @@
 			return 1
 		var/mob/living/user = usr
 		var/message = sanitize(input(user, "Enter message or leave blank to cancel: "))
+		message = cp1251_to_utf8(message)
 		if(!message || !channel)
 			return
 		channel.add_message(message, username)
@@ -66,6 +67,7 @@
 		. = 1
 		var/mob/living/user = usr
 		var/channel_title = sanitize(input(user,"Enter channel name or leave blank to cancel:"))
+		channel_title = cp1251_to_utf8(channel_title)
 		if(!channel_title)
 			return
 		var/datum/ntnet_conversation/C = new/datum/ntnet_conversation()
@@ -96,6 +98,7 @@
 		. = 1
 		var/mob/living/user = usr
 		var/newname = sanitize(input(user,"Enter new nickname or leave blank to cancel:"))
+		newname = cp1251_to_utf8(newname)
 		if(!newname)
 			return 1
 		if(channel)
@@ -133,6 +136,7 @@
 			return 1
 		var/mob/living/user = usr
 		var/newname = sanitize(input(user, "Enter new channel name or leave blank to cancel:"))
+		newname = cp1251_to_utf8(newname)
 		if(!newname || !channel)
 			return
 		channel.add_status_message("Channel renamed from [channel.title] to [newname] by operator.")
