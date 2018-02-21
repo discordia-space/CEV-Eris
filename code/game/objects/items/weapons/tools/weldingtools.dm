@@ -4,11 +4,12 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
+	worksound = WORKSOUND_WELDING
 	throw_speed = 1
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)
 	origin_tech = list(TECH_ENGINEERING = 1)
-	tool_qualities = list(QUALITY_WELDING = 3, QUALITY_CAUTERIZING = 1)
+	switched_on_qualities = list(QUALITY_WELDING = 3, QUALITY_CAUTERIZING = 1)
 
 	sparks_on_use = TRUE
 	eye_hazard = TRUE

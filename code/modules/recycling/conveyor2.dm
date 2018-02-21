@@ -80,13 +80,14 @@
 
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/tool/crowbar))
-		if(!(stat & BROKEN))
-			var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(src.loc)
-			C.id = id
-			transfer_fingerprints_to(C)
-		user << SPAN_NOTICE("You remove the conveyor belt.")
-		qdel(src)
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PRYING, FAILCHANCE_EASY))
+			if(!(stat & BROKEN))
+				var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(src.loc)
+				C.id = id
+				transfer_fingerprints_to(C)
+			user << SPAN_NOTICE("You remove the conveyor belt.")
+			qdel(src)
 		return
 	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
 	if(I.loc != user)	return // This should stop mounted modules ending up outside the module.

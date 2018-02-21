@@ -178,7 +178,7 @@
 
 /datum/autolathe/recipe/circularsaw
 	name = "circular saw"
-	path = /obj/item/weapon/tool/circular_saw
+	path = /obj/item/weapon/tool/saw/circular
 	category = "Medical"
 
 /datum/autolathe/recipe/surgicaldrill

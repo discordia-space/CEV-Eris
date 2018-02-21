@@ -13,11 +13,13 @@
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = null	//Dont forget to edit this for a tool, if you want in to consume cells
 
-	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY
+	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
 	var/max_fuel = 0
 
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
-	var/switched_on = TRUE	//Switching it to FALSE will simple remove all of the tool qualites, until you swith it back. Dont edit this in subtypes, its for procs only.
+	var/switched_on = TRUE	//Switch it Dont edit this in subtypes vars, its for procs only.
+	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
+	var/switched_off_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	//Set this TRUE to ignite plasma on turf with tool upon activation
 	var/glow_color = null	//Set color of glow upon activation, or leave it null if you dont want any light
 
@@ -25,22 +27,24 @@
 /obj/item/weapon/tool/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
+		update_icon()
 
 /obj/item/weapon/tool/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
+		update_icon()
 
 //Turning it on/off
 /obj/item/weapon/tool/attack_self(mob/user)
 	if(toggleable)
 		switched_on = !switched_on
 		user << SPAN_NOTICE("You switch the [src] [switched_on ? "on" : "off"].")
-		if(!switched_on)
-			tool_qualities = null
+		if(switched_on)
+			tool_qualities = switched_on_qualities
 			if(glow_color)
 				set_light(l_range = 1.4, l_power = 1, l_color = glow_color)
 		else
-			tool_qualities = initial(tool_qualities)
+			tool_qualities = switched_off_qualities
 			if(glow_color)
 				set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
@@ -58,10 +62,6 @@
 		reagents = R
 		R.my_atom = src
 		R.add_reagent("fuel", max_fuel)
-
-	if(toggleable)
-		switched_on = FALSE
-		tool_qualities = null
 
 	update_icon()
 	return
@@ -105,8 +105,8 @@
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(src))
 		sparks.start()
-		qdel(sparks)
 
+	update_icon()
 	return TRUE
 
 //Returns the amount of fuel in tool
@@ -124,8 +124,7 @@
 			user << "The charge meter reads [round(cell.percent() )]%."
 
 	if(use_fuel_cost)
-		if(..(user, 0))
-			user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
+		user << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
 
 
 //Recharge the fuel at fueltank, also explode if switched on
@@ -140,7 +139,7 @@
 		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weapon/weldpack)) && get_dist(src,O) <= 1 && switched_on)
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
 			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-			user << SPAN_DANGER("You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.")
+			user << SPAN_DANGER("You begin welding on the [src] and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.")
 			var/obj/structure/reagent_dispensers/fueltank/tank = O
 			tank.explode()
 			return
@@ -222,10 +221,32 @@
 	else
 		return ..()
 
+/obj/item/weapon/tool/update_icon()
+	overlays.Cut()
+
+	if(switched_on && toggleable)
+		overlays += "[icon_state]_on"
+
+	if(use_power_cost)
+		var/ratio = 0
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(cell && cell.charge >= use_power_cost)
+			ratio = cell.charge / cell.maxcharge
+			ratio = max(round(ratio, 0.25) * 100, 25)
+			overlays += "[icon_state]-[ratio]"
+
+	if(use_fuel_cost)
+		var/ratio = 0
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(get_fuel() >= use_fuel_cost)
+			ratio = get_fuel() / max_fuel
+			ratio = max(round(ratio, 0.25) * 100, 25)
+			overlays += "[icon_state]-[ratio]"
+
 /obj/item/weapon/tool/admin_debug
 	name = "Electric Boogaloo 3000"
-	icon_state = "red_crowbar"
-	item_state = "crowbar_red"
+	icon_state = "omnitool"
+	item_state = "omnitool"
 	tool_qualities = list(QUALITY_BOLT_TURNING = 10,
 							QUALITY_PRYING = 10,
 							QUALITY_WELDING = 10,
@@ -241,4 +262,5 @@
 							QUALITY_BONE_FIXING = 10,
 							QUALITY_SHOVELING = 10,
 							QUALITY_DIGGING = 10,
+							QUALITY_EXCAVATION = 10,
 							QUALITY_CUTTING = 10)

@@ -1050,8 +1050,6 @@ proc/is_hot(obj/item/W as obj)
 				return 1000
 			else
 				return 0
-		if(/obj/item/weapon/pickaxe/plasmacutter)
-			return 3800
 		if(/obj/item/weapon/melee/energy)
 			return 3500
 		else
@@ -1077,14 +1075,12 @@ proc/is_hot(obj/item/W as obj)
 	if(!W) return 0
 	if(W.sharp) return 1
 	return ( \
-		W.sharp													  || \
-		istype(W, /obj/item/weapon/tool/screwdriver)                   || \
-		istype(W, /obj/item/weapon/pen)                           || \
-		istype(W, /obj/item/weapon/tool/weldingtool)					  || \
-		istype(W, /obj/item/weapon/flame/lighter/zippo)			  || \
-		istype(W, /obj/item/weapon/flame/match)            		  || \
-		istype(W, /obj/item/clothing/mask/smokable/cigarette) 		      || \
-		istype(W, /obj/item/weapon/shovel) \
+		W.sharp														|| \
+		istype(W, /obj/item/weapon/tool)							|| \
+		istype(W, /obj/item/weapon/pen)								|| \
+		istype(W, /obj/item/weapon/flame/lighter/zippo)				|| \
+		istype(W, /obj/item/weapon/flame/match)						|| \
+		istype(W, /obj/item/clothing/mask/smokable/cigarette)		\
 	)
 
 /proc/is_surgery_tool(obj/item/W as obj)

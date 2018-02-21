@@ -274,7 +274,7 @@
 
 /datum/surgery_step/generic/amputate
 	allowed_tools = list(
-	/obj/item/weapon/tool/circular_saw = 100, \
+	/obj/item/weapon/tool/saw/circular = 100, \
 	/obj/item/weapon/material/hatchet = 75
 	)
 
