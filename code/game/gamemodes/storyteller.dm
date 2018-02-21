@@ -35,6 +35,9 @@ var/global/list/current_factions = list()
 	if(debug_mode)
 		return TRUE
 
+	if(player_list.len <= 10)
+		return TRUE
+
 	var/engineer = FALSE
 	var/captain = FALSE
 	for(var/mob/new_player/player in player_list)
