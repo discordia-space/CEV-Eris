@@ -82,10 +82,14 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if((QUALITY_DIGGING in H.l_hand.tool_qualities) && (!H.hand))
-			attackby(H.l_hand,H)
-		else if((QUALITY_DIGGING in H.r_hand.tool_qualities) && H.hand)
-			attackby(H.r_hand,H)
+		if(istype(H.l_hand,/obj/item))
+			var/obj/item/I = H.l_hand
+			if((QUALITY_DIGGING in I.tool_qualities) && (!H.hand))
+				attackby(I,H)
+		if(istype(H.r_hand,/obj/item))
+			var/obj/item/I = H.r_hand
+			if((QUALITY_DIGGING in I.tool_qualities) && (H.hand))
+				attackby(I,H)
 
 	else if(isrobot(AM))
 		var/mob/living/silicon/robot/R = AM
@@ -120,7 +124,7 @@
 	new /obj/effect/mineral(src, mineral)
 
 //Not even going to touch this pile of spaghetti
-/turf/simulated/mineral/attackby(obj/item/weapon/I, mob/living/user)
+/turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION))
 	switch(tool_type)
@@ -207,8 +211,8 @@
 			var/fail_message
 			if(finds && finds.len)
 				//Chance to destroy / extract any finds here
-				fail_message = ". <b>[pick("There is a crunching noise","[I] collides with some different rock","Part of the rock face crumbles away","Something breaks under [I]")]</b>"
-			user <<  SPAN_NOTICE("You start digging the [src]. [fail_message ? fail_message : ""].")
+				fail_message = ". <b>[pick("There is a crunching noise [I] collides with some different rock.","Part of the rock face crumbles away.","Something breaks under [I].")]</b>"
+			user <<  SPAN_NOTICE("You start digging the [src]. [fail_message ? fail_message : ""]")
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 				user << SPAN_NOTICE("You finish digging the [src].")
 				if(fail_message && prob(90))
@@ -218,9 +222,9 @@
 						finds.Remove(finds[1])
 						if(prob(50))
 							artifact_debris()
+				var/obj/structure/boulder/B
 				if(excavation_level)
 					//if players have been excavating this turf, leave some rocky debris behind
-					var/obj/structure/boulder/B
 					if(artifact_find)
 						if( excavation_level > 0 || prob(15) )
 							//boulder with an artifact inside
@@ -232,10 +236,10 @@
 					else if(prob(15))
 						//empty boulder
 						B = new(src)
-					if(B)
-						GetDrilled(0)
-					else
-						GetDrilled(1)
+				if(B)
+					GetDrilled(0)
+				else
+					GetDrilled(1)
 				return
 			return
 

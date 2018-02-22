@@ -124,6 +124,10 @@
 	src.loc = T
 
 /obj/item/examine(mob/user, var/distance = -1)
+	var/message
+	for(var/Q in tool_qualities)
+		message += "This item posses [Q] quality of [tool_qualities[Q]] tier.<br>"
+
 	var/size
 	switch(src.w_class)
 		if(1.0)
@@ -136,7 +140,8 @@
 			size = "bulky"
 		if(5.0)
 			size = "huge"
-	return ..(user, distance, "", "It is a [size] item.")
+	message += "It is a [size] item."
+	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user) return
