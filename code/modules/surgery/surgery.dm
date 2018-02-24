@@ -116,11 +116,12 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		M.op_stage.in_progress += zone
 		selectedStep.begin_step(user, M, zone, tool)		//start on it
 		var/success = FALSE
+		var/timeDelay = rand(selectedStep.min_duration, selectedStep.max_duration)
 		//We had proper tools! (or RNG smiled.) and user did not move or change hands.
 		if(selectedStep.requedQuality)
-			success = tool.use_tool_extended(user, src, WORKTIME_NORMAL, selectedStep.requedQuality, FAILCHANCE_NORMAL)
+			success = tool.use_tool_extended(user, src, timeDelay, selectedStep.requedQuality, FAILCHANCE_NORMAL)
 		else
-			if(prob(selectedStep.tool_quality(tool)) &&  do_mob(user, M, rand(selectedStep.min_duration, selectedStep.max_duration)))
+			if(prob(selectedStep.tool_quality(tool)) &&  do_mob(user, M, timeDelay))
 				success = TOOL_USE_SUCCESS
 			else if((tool in user.contents) && user.Adjacent(M))
 				success = TOOL_USE_FAIL
