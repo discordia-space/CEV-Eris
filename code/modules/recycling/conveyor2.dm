@@ -239,12 +239,13 @@
 
 
 /obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/weapon/tool/crowbar))
-		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
-		C.id = id
-		transfer_fingerprints_to(C)
-		user << SPAN_NOTICE("You deattach the conveyor switch.")
-		qdel(src)
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY))
+			var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
+			C.id = id
+			transfer_fingerprints_to(C)
+			user << SPAN_NOTICE("You deattach the conveyor switch.")
+			qdel(src)
 
 /obj/machinery/conveyor_switch/oneway
 	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)
