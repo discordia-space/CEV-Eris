@@ -5,6 +5,7 @@
 
 	// type path referencing tools that can be used for this step, and how well are they suited for it
 	var/list/allowed_tools = null
+	var/requedQuality = null
 	// type paths referencing races that this step applies to.
 	var/list/allowed_species = null
 	var/list/disallowed_species = null
@@ -20,9 +21,12 @@
 
 	//returns how well tool is suited for this step
 	proc/tool_quality(obj/item/tool)
-		for (var/T in allowed_tools)
-			if (istype(tool,T))
-				return allowed_tools[T]
+		if(requedQuality)
+			return tool.tool_qualities[requedQuality]
+		else
+			for (var/T in allowed_tools)
+				if (istype(tool,T))
+					return allowed_tools[T]
 		return 0
 
 	// Checks if this step applies to the user mob at all
@@ -86,6 +90,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		user << SPAN_WARNING("You can't operate on this area while surgery is already in progress.")
 		return 1
+	var/datum/surgery_step/selectedStep = null
+	var/list/possibleSteps = list()
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool))
@@ -93,20 +99,46 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			if(step_is_valid && S.is_valid_target(M))
 				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
 					return 1
-				M.op_stage.in_progress += zone
-				S.begin_step(user, M, zone, tool)		//start on it
-				//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-				if(prob(S.tool_quality(tool)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
-					S.end_step(user, M, zone, tool)		//finish successfully
-				else if ((tool in user.contents) && user.Adjacent(M))			//or
-					S.fail_step(user, M, zone, tool)		//malpractice~
-				else // This failing silently was a pain.
-					user << SPAN_WARNING("You must remain close to your patient to conduct surgery.")
-				M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
-				if (ishuman(M))
-					var/mob/living/carbon/human/H = M
-					H.update_surgery()
-				return	1	  												//don't want to do weapony things after surgery
+				if(!S.requedQuality) // type-depend step
+					selectedStep = S
+					break
+				else
+					if(!possibleSteps[S.requedQuality]) //Keep priority
+						possibleSteps[S.requedQuality] = S
+
+	if(!selectedStep && possibleSteps.len)
+		var/selected = tool.get_tool_type(user, possibleSteps)
+		if(selected == ABORT_CHECK || !user.Adjacent(M))
+			return 1
+		selectedStep = possibleSteps[selected]
+
+	if(selectedStep && selectedStep.can_use(user, M, zone, tool) && selectedStep.is_valid_target(M))
+		M.op_stage.in_progress += zone
+		selectedStep.begin_step(user, M, zone, tool)		//start on it
+		var/success = FALSE
+		var/timeDelay = rand(selectedStep.min_duration, selectedStep.max_duration)
+		//We had proper tools! (or RNG smiled.) and user did not move or change hands.
+		if(selectedStep.requedQuality)
+			success = tool.use_tool_extended(user, src, timeDelay, selectedStep.requedQuality, FAILCHANCE_NORMAL)
+		else
+			if(prob(selectedStep.tool_quality(tool)) &&  do_mob(user, M, timeDelay))
+				success = TOOL_USE_SUCCESS
+			else if((tool in user.contents) && user.Adjacent(M))
+				success = TOOL_USE_FAIL
+			else
+				success = TOOL_USE_CANCEL
+
+		if(success == TOOL_USE_SUCCESS)
+			selectedStep.end_step(user, M, zone, tool)		//finish successfully
+		else if(success == TOOL_USE_FAIL)
+			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
+		else
+			user << SPAN_WARNING("You must remain close to your patient to conduct surgery.")
+		M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
+		if (ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.update_surgery()
+		return	1	  												//don't want to do weapony things after surgery
 
 	if (user.a_intent == I_HELP)
 		user << SPAN_WARNING("You can't see any useful way to use [tool] on [M].")
