@@ -14,7 +14,6 @@
 	var/camera_name
 	var/camera_network
 	var/state = 0
-	var/busy = 0
 	/*
 				0 = Nothing done to it
 				1 = Wrenched in place

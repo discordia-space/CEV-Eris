@@ -972,7 +972,7 @@
 	icon_deny = "robotics-deny"
 	products = list(/obj/item/clothing/suit/storage/toggle/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/device/flash = 4,
 					/obj/item/weapon/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/healthanalyzer = 3,
-					/obj/item/weapon/tool/scalpel = 2,/obj/item/weapon/tool/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
+					/obj/item/weapon/tool/scalpel = 2,/obj/item/weapon/tool/saw/circular = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/tool/screwdriver = 5,/obj/item/weapon/tool/crowbar = 5)
 
 //FOR ACTORS GUILD - mainly props that cannot be spawned otherwise

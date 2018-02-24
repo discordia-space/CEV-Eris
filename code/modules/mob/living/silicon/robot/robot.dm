@@ -1106,11 +1106,11 @@
 					src << SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and his commands.")
 					if(src.module)
 						var/rebuild = 0
-						for(var/obj/item/weapon/pickaxe/borgdrill/D in src.module.modules)
+						for(var/obj/item/weapon/tool/pickaxe/drill/D in src.module.modules)
 							qdel(D)
 							rebuild = 1
 						if(rebuild)
-							src.module.modules += new /obj/item/weapon/pickaxe/diamonddrill(src.module)
+							src.module.modules += new /obj/item/weapon/tool/pickaxe/diamonddrill(src.module)
 							src.module.rebuild()
 					updateicon()
 			else

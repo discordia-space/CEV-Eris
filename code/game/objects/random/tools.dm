@@ -11,9 +11,9 @@
 				/obj/item/weapon/tool/crowbar,\
 				/obj/item/weapon/tool/wrench,\
 				/obj/item/weapon/tool/big_wrench,\
-				/obj/item/weapon/tool/circular_saw,\
-				/obj/item/weapon/tool/circular_saw/simple,\
-				/obj/item/weapon/tool/circular_saw/advanced,\
+				/obj/item/weapon/tool/saw,\
+				/obj/item/weapon/tool/saw/circular,\
+				/obj/item/weapon/tool/saw/advanced_circular,\
 				/obj/item/device/assembly/igniter,\
 				/obj/item/device/assembly/infra,\
 				/obj/item/device/assembly/prox_sensor,\
@@ -27,8 +27,8 @@
 				/obj/item/weapon/extinguisher,\
 				/obj/item/stack/cable_coil,\
 				/obj/item/weapon/packageWrap,\
-				/obj/item/weapon/shovel,\
-				/obj/item/weapon/pickaxe,\
+				/obj/item/weapon/tool/shovel,\
+				/obj/item/weapon/tool/pickaxe,\
 				/obj/item/device/flash,\
 				/obj/item/weapon/mop,\
 				/obj/item/weapon/inflatable_dispenser,\

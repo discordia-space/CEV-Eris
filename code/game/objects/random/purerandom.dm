@@ -25,7 +25,7 @@
 				prob(5);/obj/item/weapon/storage/belt/utility/full,\
 				prob(4);/obj/item/weapon/storage/belt/medical,\
 				prob(4);/obj/item/weapon/storage/belt/security,\
-				prob(3);/obj/item/weapon/pickaxe,\
+				prob(3);/obj/item/weapon/tool/pickaxe,\
 				prob(3);/obj/item/weapon/pen,\
 				prob(3);/obj/item/weapon/storage/box/donkpockets,\
 				prob(2);/obj/item/weapon/locator,\
@@ -43,7 +43,7 @@
 				prob(1);/obj/item/weapon/cane/concealed,\
 				prob(2);/obj/item/weapon/staff/broom,\
 				prob(1);/obj/item/weapon/circuitboard/apc,\
-				prob(1);/obj/item/weapon/shovel,\
+				prob(1);/obj/item/weapon/tool/shovel,\
 				prob(2);/obj/item/weapon/folder,\
 				prob(2);/obj/item/weapon/folder/blue,\
 				prob(2);/obj/item/weapon/folder/red,\
@@ -68,7 +68,7 @@
 				prob(2);/obj/item/weapon/tool/surgicaldrill,\
 				prob(2);/obj/item/weapon/tool/cautery,\
 				prob(2);/obj/item/weapon/tool/retractor,\
-				prob(2);/obj/item/weapon/tool/circular_saw,\
+				prob(2);/obj/item/weapon/tool/saw/circular,\
 				prob(3);/obj/item/weapon/mop,\
 				prob(3);/obj/item/weapon/lipstick/random,\
 				prob(2);/obj/item/weapon/inflatable_dispenser,\

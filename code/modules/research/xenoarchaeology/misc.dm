@@ -73,7 +73,7 @@
 		new /obj/item/clothing/glasses/science(src)
 		new /obj/item/device/radio/headset/headset_sci(src)
 		new /obj/item/weapon/storage/belt/archaeology(src)
-		new /obj/item/weapon/storage/box/excavation(src)
+		new /obj/item/weapon/tool/pickaxe/excavation(src)
 		return
 
 /obj/structure/closet/excavation
@@ -86,7 +86,6 @@
 		..()
 		sleep(2)
 		new /obj/item/weapon/storage/belt/archaeology(src)
-		new /obj/item/weapon/storage/box/excavation(src)
 		new /obj/item/device/lighting/toggleable/lantern(src)
 		new /obj/item/device/ano_scanner(src)
 		new /obj/item/device/depth_scanner(src)
@@ -95,9 +94,9 @@
 		new /obj/item/device/beacon_locator(src)
 		new /obj/item/device/radio/beacon(src)
 		new /obj/item/clothing/glasses/meson(src)
-		new /obj/item/weapon/pickaxe(src)
+		new /obj/item/weapon/tool/pickaxe(src)
 		new /obj/item/device/measuring_tape(src)
-		new /obj/item/weapon/pickaxe/hand(src)
+		new /obj/item/weapon/tool/pickaxe/excavation(src)
 		new /obj/item/weapon/storage/bag/fossils(src)
 		new /obj/item/weapon/hand_labeler(src)
 		new /obj/item/taperoll/research(src)

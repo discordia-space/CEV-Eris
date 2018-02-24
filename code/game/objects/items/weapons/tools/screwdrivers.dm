@@ -19,12 +19,19 @@
 	worksound = WORKSOUND_DRIVER_TOOL
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 4, QUALITY_DRILLING = 1)
 
+	use_power_cost = 2
+	suitable_cell = /obj/item/weapon/cell/small
+
 /obj/item/weapon/tool/screwdriver/combi_driver
 	name = "combi driver"
 	desc = "Drive screws, drive bolts, drill bones, you can do everything with it."
 	icon_state = "combi_driver"
+	w_class = ITEM_SIZE_NORMAL
 	worksound = WORKSOUND_DRIVER_TOOL
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 5, QUALITY_BOLT_TURNING = 5, QUALITY_DRILLING = 2)
+
+	use_power_cost = 3
+	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")
