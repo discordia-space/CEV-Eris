@@ -118,15 +118,20 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		var/success = FALSE
 		//We had proper tools! (or RNG smiled.) and user did not move or change hands.
 		if(selectedStep.requedQuality)
-			success = tool.use_tool(user, src, WORKTIME_NORMAL, selectedStep.requedQuality, FAILCHANCE_NORMAL)
+			success = tool.use_tool_extended(user, src, WORKTIME_NORMAL, selectedStep.requedQuality, FAILCHANCE_NORMAL)
 		else
-			success = prob(selectedStep.tool_quality(tool)) &&  do_mob(user, M, rand(selectedStep.min_duration, selectedStep.max_duration))
+			if(prob(selectedStep.tool_quality(tool)) &&  do_mob(user, M, rand(selectedStep.min_duration, selectedStep.max_duration)))
+				success = TOOL_USE_SUCCESS
+			else if((tool in user.contents) && user.Adjacent(M))
+				success = TOOL_USE_FAIL
+			else
+				success = TOOL_USE_CANCEL
 
-		if(success)
+		if(success == TOOL_USE_SUCCESS)
 			selectedStep.end_step(user, M, zone, tool)		//finish successfully
-		else if ((tool in user.contents) && user.Adjacent(M))			//or
+		else if(success == TOOL_USE_FAIL)
 			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
-		else // This failing silently was a pain.
+		else
 			user << SPAN_WARNING("You must remain close to your patient to conduct surgery.")
 		M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
 		if (ishuman(M))
