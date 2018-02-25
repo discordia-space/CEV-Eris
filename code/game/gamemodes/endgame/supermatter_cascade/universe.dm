@@ -46,9 +46,8 @@ var/global/universe_has_ended = 0
 		if (M.HUDtech.Find("flash"))
 			flick("e_flash", M.HUDtech["flash"])
 
-	if(emergency_shuttle.can_recall())
+	if(evacuation_controller.cancel_evacuation())
 		priority_announcement.Announce("The evacuation has been aborted due to bluespace distortion.")
-		emergency_shuttle.recall()
 
 	AreaSet()
 	MiscSet()
