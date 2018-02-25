@@ -792,10 +792,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/tool/surgicaldrill,
 					/obj/item/clothing/mask/breath/medical,
 					/obj/item/weapon/tank/anesthetic,
-					/obj/item/weapon/tool/fixovein,
 					/obj/item/weapon/tool/hemostat,
 					/obj/item/weapon/tool/scalpel,
-					/obj/item/weapon/tool/bonegel,
 					/obj/item/weapon/tool/retractor,
 					/obj/item/weapon/tool/bonesetter,
 					/obj/item/weapon/tool/saw/circular)

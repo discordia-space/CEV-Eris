@@ -22,11 +22,7 @@
 		return 1
 
 /datum/surgery_step/robotics/unscrew_hatch
-	allowed_tools = list(
-		/obj/item/weapon/tool/screwdriver = 100,
-		/obj/item/weapon/coin = 50,
-		/obj/item/weapon/material/kitchen/utensil/knife = 50
-	)
+	requedQuality = QUALITY_SCREW_DRIVING
 
 	min_duration = 90
 	max_duration = 110
@@ -54,11 +50,7 @@
 		SPAN_WARNING("Your [tool] slips, failing to unscrew [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/open_hatch
-	allowed_tools = list(
-		/obj/item/weapon/tool/retractor = 100,
-		/obj/item/weapon/tool/crowbar = 100,
-		/obj/item/weapon/material/kitchen/utensil = 50
-	)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 30
 	max_duration = 40
@@ -86,11 +78,7 @@
 		SPAN_WARNING("Your [tool] slips, failing to open the hatch on [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/close_hatch
-	allowed_tools = list(
-		/obj/item/weapon/tool/retractor = 100,
-		/obj/item/weapon/tool/crowbar = 100,
-		/obj/item/weapon/material/kitchen/utensil = 50
-	)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 70
 	max_duration = 100
@@ -119,9 +107,7 @@
 		SPAN_WARNING("Your [tool.name] slips, failing to close the hatch on [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/repair_brute
-	allowed_tools = list(
-		/obj/item/weapon/tool/weldingtool = 100
-	)
+	requedQuality = QUALITY_WELDING
 
 	min_duration = 50
 	max_duration = 60
@@ -192,11 +178,7 @@
 		target.apply_damage(rand(5,10), BURN, affected)
 
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
-	allowed_tools = list(
-	/obj/item/stack/nanopaste = 100,		\
-	/obj/item/weapon/tool/bonegel = 30, 		\
-	/obj/item/weapon/tool/screwdriver = 70,	\
-	)
+	requedQuality = QUALITY_SCREW_DRIVING
 
 	min_duration = 70
 	max_duration = 90
@@ -260,10 +242,7 @@
 				I.take_damage(rand(3,5),0)
 
 /datum/surgery_step/robotics/detatch_organ_robotic
-
-	allowed_tools = list(
-	/obj/item/weapon/tool/multitool = 100
-	)
+	requedQuality = QUALITY_SAWING
 
 	min_duration = 90
 	max_duration = 110
@@ -310,9 +289,7 @@
 		SPAN_WARNING("Your hand slips, disconnecting \the [tool]."))
 
 /datum/surgery_step/robotics/attach_organ_robotic
-	allowed_tools = list(
-		/obj/item/weapon/tool/screwdriver = 100,
-	)
+	requedQuality = QUALITY_SCREW_DRIVING
 
 	min_duration = 100
 	max_duration = 120

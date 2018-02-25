@@ -6,10 +6,7 @@
 
 /datum/surgery_step/fix_vein
 	priority = 2
-	allowed_tools = list(
-		/obj/item/weapon/tool/fixovein = 100,
-		/obj/item/stack/cable_coil = 75
-	)
+	requedQuality = QUALITY_COMPRESSING
 	can_infect = 1
 	blood_level = 1
 
@@ -60,11 +57,7 @@
 
 /datum/surgery_step/fix_dead_tissue		//Debridement
 	priority = 2
-	allowed_tools = list(
-		/obj/item/weapon/tool/scalpel = 100,		\
-		/obj/item/weapon/material/knife = 75,	\
-		/obj/item/weapon/material/shard = 50, 		\
-	)
+	requedQuality = QUALITY_COMPRESSING
 
 	can_infect = 1
 	blood_level = 1
@@ -117,6 +110,7 @@
 		/obj/item/weapon/reagent_containers/glass/beaker = 75,
 		/obj/item/weapon/reagent_containers/spray = 50,
 		/obj/item/weapon/reagent_containers/glass/bucket = 50,
+		/obj/item/weapon/reagent_containers = 35,
 	)
 
 	can_infect = 0
@@ -189,10 +183,7 @@
 		//no damage or anything, just wastes medicine
 
 /datum/surgery_step/hardsuit
-	allowed_tools = list(
-		/obj/item/weapon/tool/weldingtool = 80,
-		/obj/item/weapon/tool/saw/circular = 60
-		)
+	requedQuality = QUALITY_WELDING
 
 	can_infect = 0
 	blood_level = 0
@@ -203,9 +194,6 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(!istype(target))
 			return 0
-		if(istype(tool,/obj/item/weapon/tool/weldingtool))
-			if(!(QUALITY_WELDING in tool.tool_qualities))
-				return 0
 		return (target_zone == BP_CHEST) && istype(target.back, /obj/item/weapon/rig) && !(target.back.canremove)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

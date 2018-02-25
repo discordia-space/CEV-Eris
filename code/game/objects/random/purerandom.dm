@@ -61,8 +61,6 @@
 				prob(2);/obj/item/weapon/storage/box/drinkingglasses,\
 				prob(2);/obj/item/weapon/hatton_magazine,\
 				prob(2);/obj/item/weapon/hand_labeler,\
-				prob(2);/obj/item/weapon/tool/bonegel,\
-				prob(2);/obj/item/weapon/tool/fixovein,\
 				prob(2);/obj/item/weapon/tool/bonesetter,\
 				prob(2);/obj/item/weapon/tool/scalpel,\
 				prob(2);/obj/item/weapon/tool/surgicaldrill,\

@@ -141,8 +141,6 @@
 		/obj/item/weapon/tool/retractor,
 		/obj/item/weapon/tool/scalpel,
 		/obj/item/weapon/tool/surgicaldrill,
-		/obj/item/weapon/tool/bonegel,
-		/obj/item/weapon/tool/fixovein,
 		/obj/item/stack/medical/advanced/bruise_pack
 		)
 
@@ -156,8 +154,6 @@
 	new /obj/item/weapon/tool/retractor(src)
 	new /obj/item/weapon/tool/scalpel(src)
 	new /obj/item/weapon/tool/surgicaldrill(src)
-	new /obj/item/weapon/tool/bonegel(src)
-	new /obj/item/weapon/tool/fixovein(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 
 	make_exact_fit()

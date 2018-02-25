@@ -3,9 +3,7 @@
 	icon_state = "meds-blue"
 
 /obj/random/surgery_tool/item_to_spawn()
-	return pick(/obj/item/weapon/tool/bonegel,\
-				/obj/item/weapon/tool/fixovein,\
-				/obj/item/weapon/tool/bonesetter,\
+	return pick(/obj/item/weapon/tool/bonesetter,\
 				/obj/item/weapon/tool/scalpel,\
 				/obj/item/weapon/tool/surgicaldrill,\
 				/obj/item/weapon/tool/cautery,\

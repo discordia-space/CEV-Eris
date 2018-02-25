@@ -526,15 +526,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/tool/scalpel/laser3
 	sort_string = "MBBAC"
 
-/datum/design/item/scalpel_manager
-	name = "Incision Management System"
-	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
-	id = "scalpel_manager"
-	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_DATA = 4)
-	materials = list (DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 1500, "gold" = 1500, "diamond" = 750)
-	build_path = /obj/item/weapon/tool/scalpel/manager
-	sort_string = "MBBAD"
-
 /datum/design/item/implant
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
 

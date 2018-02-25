@@ -126,7 +126,7 @@
 /obj/item/examine(mob/user, var/distance = -1)
 	var/message
 	for(var/Q in tool_qualities)
-		message += "This item posses [Q] quality of [tool_qualities[Q]] tier.<br>"
+		message += "This item posses [Q] quality of [tool_qualities[Q]] tier.\n"
 
 	var/size
 	switch(src.w_class)

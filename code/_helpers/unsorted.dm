@@ -1089,7 +1089,6 @@ proc/is_hot(obj/item/W as obj)
 	istype(W, /obj/item/weapon/tool/hemostat)		||	\
 	istype(W, /obj/item/weapon/tool/retractor)		||	\
 	istype(W, /obj/item/weapon/tool/cautery)			||	\
-	istype(W, /obj/item/weapon/tool/bonegel)			||	\
 	istype(W, /obj/item/weapon/tool/bonesetter)
 	)
 

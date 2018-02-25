@@ -43,11 +43,7 @@
 		target.apply_damage(10, BRUTE, null, sharp=1)
 
 /datum/surgery_step/limb/connect
-	allowed_tools = list(
-	/obj/item/weapon/tool/hemostat = 100,	\
-	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/device/assembly/mousetrap = 20
-	)
+	requedQuality = QUALITY_COMPRESSING
 	can_infect = 1
 
 	min_duration = 100

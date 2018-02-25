@@ -10,14 +10,14 @@
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	attack_verb = list("stabbed")
-	tool_qualities = list(QUALITY_SCREW_DRIVING = 3)
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 3, QUALITY_BONE_SETTING = 1)
 
 /obj/item/weapon/tool/screwdriver/electric
 	name = "electric screwdriver"
 	desc = "Screwdriver powered by S class cell."
 	icon_state = "e-screwdriver"
 	worksound = WORKSOUND_DRIVER_TOOL
-	tool_qualities = list(QUALITY_SCREW_DRIVING = 4, QUALITY_DRILLING = 1)
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 4, QUALITY_DRILLING = 1, QUALITY_BONE_SETTING = 1)
 
 	use_power_cost = 2
 	suitable_cell = /obj/item/weapon/cell/small

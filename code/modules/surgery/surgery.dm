@@ -119,7 +119,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		var/timeDelay = rand(selectedStep.min_duration, selectedStep.max_duration)
 		//We had proper tools! (or RNG smiled.) and user did not move or change hands.
 		if(selectedStep.requedQuality)
-			success = tool.use_tool_extended(user, src, timeDelay, selectedStep.requedQuality, FAILCHANCE_NORMAL)
+			success = tool.use_tool_extended(user, M, timeDelay, selectedStep.requedQuality, FAILCHANCE_NORMAL)
 		else
 			if(prob(selectedStep.tool_quality(tool)) &&  do_mob(user, M, timeDelay))
 				success = TOOL_USE_SUCCESS

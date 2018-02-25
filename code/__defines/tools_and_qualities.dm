@@ -15,12 +15,11 @@
 #define QUALITY_DRILLING				"drilling"
 #define QUALITY_SAWING					"sawing"
 #define QUALITY_BONE_SETTING			"bone setting"
-#define QUALITY_VEIN_FIXING				"vein fixing"
-#define QUALITY_BONE_FIXING				"bone fixing"
 #define QUALITY_SHOVELING				"shoveling"
 #define QUALITY_DIGGING					"digging"
 #define QUALITY_EXCAVATION				"excavation"
 #define QUALITY_CUTTING					"cutting"
+#define QUALITY_LASER_CUTTING			"laser cutting"	//laser scalpels and e-swords - bloodless cutting
 
 //Remember that base time devided by tool level, which is 3 for base tools
 #define WORKTIME_INSTANT				0

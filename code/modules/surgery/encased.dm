@@ -16,10 +16,7 @@
 
 
 /datum/surgery_step/open_encased/saw
-	allowed_tools = list(
-	/obj/item/weapon/tool/saw/circular = 100, \
-	/obj/item/weapon/material/hatchet = 75
-	)
+	requedQuality = QUALITY_SAWING
 
 	min_duration = 50
 	max_duration = 70
@@ -65,10 +62,7 @@
 
 
 /datum/surgery_step/open_encased/retract
-	allowed_tools = list(
-	/obj/item/weapon/tool/retractor = 100, 	\
-	/obj/item/weapon/tool/crowbar = 75
-	)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 30
 	max_duration = 40
@@ -103,10 +97,6 @@
 
 		affected.open = 3
 
-		// Whoops!
-		if(prob(10))
-			affected.fracture()
-
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		if (!hasorgans(target))
@@ -121,10 +111,7 @@
 		affected.fracture()
 
 /datum/surgery_step/open_encased/close
-	allowed_tools = list(
-	/obj/item/weapon/tool/retractor = 100, 	\
-	/obj/item/weapon/tool/crowbar = 75
-	)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 20
 	max_duration = 40
@@ -180,10 +167,7 @@
 				O.bruise()
 
 /datum/surgery_step/open_encased/mend
-	allowed_tools = list(
-	/obj/item/weapon/tool/bonegel = 100,	\
-	/obj/item/weapon/tool/screwdriver = 75
-	)
+	requedQuality = QUALITY_BONE_SETTING
 
 	min_duration = 20
 	max_duration = 40
@@ -201,8 +185,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "[user] starts applying \the [tool] to [target]'s [affected.encased]."
-		var/self_msg = "You start applying \the [tool] to [target]'s [affected.encased]."
+		var/msg = "[user] starts mending back [target]'s bones on [affected.encased] with \the [tool]."
+		var/self_msg = "You start mending back [target]'s bones on [affected.encased] with \the [tool]."
 		user.visible_message(msg, self_msg)
 		target.custom_pain("Something hurts horribly in your [affected.name]!",1)
 		..()
@@ -213,8 +197,8 @@
 			return
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		var/msg = "\blue [user] applied \the [tool] to [target]'s [affected.encased]."
-		var/self_msg = "\blue You applied \the [tool] to [target]'s [affected.encased]."
+		var/msg = "\blue [user] finish mending back [target]'s bones on [affected.encased] with \the [tool]."
+		var/self_msg = "\blue You finish mending back [target]'s bones on [affected.encased] with \the [tool]."
 		user.visible_message(msg, self_msg)
 
 		affected.open = 2
