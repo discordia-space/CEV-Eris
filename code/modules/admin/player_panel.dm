@@ -319,27 +319,9 @@
 	usr << browse(dat, "window=players;size=600x480")
 
 
-/datum/admins/proc/check_antagonists()
-	if (ticker && ticker.current_state >= GAME_STATE_PLAYING)
-		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
-		dat += "Current Storyteller: <B>[ticker.storyteller.name]</B><BR>"
-		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
-		dat += "<B>Evacuation</B><BR>"
-		if (!evacuation_controller.is_idle())
-			dat += "<a href='?src=\ref[src];call_shuttle=1'>Call Evacuation</a><br>"
-		else
-			var/timeleft = evacuation_controller.get_eta()
-			if (evacuation_controller.waiting_to_leave())
-				dat += "ETA: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
-				dat += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
-
-		dat += "<a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
-		dat += "<hr>"
-		if(ticker.storyteller)
-			dat += ticker.storyteller.antagonist_report()
-		else
-			dat += "<b><font color='red'>Storyteller not found.</font></b>"
-		dat += "</body></html>"
-		usr << browse(dat, "window=roundstatus;size=400x500")
+/datum/admins/proc/storyteller_panel()
+	if(ticker && ticker.storyteller)
+		ticker.storyteller.storyteller_panel()
 	else
-		alert("The game hasn't started yet!")
+		usr << SPAN_WARNING("There is no storyteller.")
+

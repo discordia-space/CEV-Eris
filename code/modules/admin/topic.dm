@@ -197,36 +197,6 @@
 
 		edit_admin_permissions()
 
-	else if(href_list["call_shuttle"])
-		if(!check_rights(R_ADMIN))	return
-
-		if (!ticker || !evacuation_controller)
-			return
-
-		switch(href_list["call_shuttle"])
-			if("1")
-				if (evacuation_controller.call_evacuation(usr, TRUE))
-					log_admin("[key_name(usr)] started the evacuation")
-					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
-
-			if("2")
-				if (evacuation_controller.call_evacuation(usr, TRUE))
-					log_admin("[key_name(usr)] called an evacuation.")
-					message_admins("\blue [key_name_admin(usr)] called an evacuation.", 1)
-				else if (evacuation_controller.cancel_evacuation())
-					log_admin("[key_name(usr)] cancelled an evacuation.")
-					message_admins("\blue [key_name_admin(usr)] cancelled an evacuation.", 1)
-
-		href_list["secretsadmin"] = "check_antagonist"
-
-	else if(href_list["delay_round_end"])
-		if(!check_rights(R_SERVER))	return
-
-		ticker.delay_end = !ticker.delay_end
-		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
-		href_list["secretsadmin"] = "check_antagonist"
-
 	else if(href_list["simplemake"])
 
 		if(!check_rights(R_FUN))
@@ -830,9 +800,6 @@
 		sleep(2)
 		C.jumptomob(M)
 
-	else if(href_list["check_antagonist"])
-		check_antagonists()
-
 	else if(href_list["adminplayerobservecoodjump"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -873,7 +840,7 @@
 			var/antag = ""
 			for(var/datum/antagonist/A in M.mind.antagonist)
 				antag += "[A.role_text], "
-			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>!TODO</b></font>; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
+			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[get_player_antag_name(M.mind)]</b></font>;"
 		else
 			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>; Has been rev: <i>Mind datum missing</i>;"
 
