@@ -94,14 +94,14 @@
 	data += "<hr>"
 	data += "<b><a href='?src=\ref[src];force_spawn=1'>\[FORCE ROLE SPAWN\]</a></b>"
 	data += "<hr>"
-	data += "<B>Emergency shuttle</B>"
-	if (!emergency_shuttle.online())
-		data += "<br><a href='?src=\ref[src];call_shuttle=1'>Call Shuttle</a>"
+	data += "<B>Evacuation</B>"
+	if (!evacuation_controller.is_idle())
+		dat += "<a href='?src=\ref[src];call_shuttle=1'>Call Evacuation</a><br>"
 	else
-		if (emergency_shuttle.waiting_to_leave())
-			var/timeleft = emergency_shuttle.estimate_prepare_time()
-			data += "<br>EPD: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
-			data += "<br><a href='?src=\ref[src];call_shuttle=2'>Send Back</a>"
+		var/timeleft = evacuation_controller.get_eta()
+		if (evacuation_controller.waiting_to_leave())
+			dat += "ETA: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
+			dat += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
 	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
 
 	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
