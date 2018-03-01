@@ -633,6 +633,7 @@
 #include "code\game\objects\items\stacks\sheets\leather.dm"
 #include "code\game\objects\items\stacks\tiles\tile_types.dm"
 #include "code\game\objects\items\weapons\AI_modules.dm"
+#include "code\game\objects\items\weapons\autolathe_discs.dm"
 #include "code\game\objects\items\weapons\autopsy.dm"
 #include "code\game\objects\items\weapons\candle.dm"
 #include "code\game\objects\items\weapons\cane.dm"
@@ -2027,7 +2028,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\CEV_Eris-1.dmm"
-#include "maps\CEV_Eris-2.dmm"
-#include "maps\CEV_Eris-3.dmm"
+#include "maps\exodus\test_map.dmm"
 // END_INCLUDE
