@@ -110,6 +110,7 @@
 	src.icon = other.icon
 	src.overlays = other.overlays.Copy()
 	src.underlays = other.underlays.Copy()
+	src.opacity = other.opacity
 	if(other.decals)
 		src.decals = other.decals.Copy()
 		src.update_icon()

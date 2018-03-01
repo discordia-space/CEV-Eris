@@ -16,16 +16,17 @@
 	var/engines_state = 1 //global on/off toggle for all engines
 	var/thrust_limit = 1 //global thrust limit for all engines, 0..1
 	var/triggers_events = 1
-//FIX LATER -Guap6512
+
 /obj/effect/overmap/ship/initialize()
 	. = ..()
-/*	for(var/datum/ship_engine/E in ship_engines)
+	for(var/datum/ship_engine/E in ship_engines)
 		if (E.holder.z in map_z)
 			engines |= E
 	for(var/obj/machinery/computer/engines/E in machines)
 		if (E.z in map_z)
 			E.linked = src
 			//testing("Engines console at level [E.z] linked to overmap object '[name]'.")
+
 	for(var/obj/machinery/computer/helm/H in machines)
 		if (H.z in map_z)
 			nav_control = H
@@ -36,7 +37,8 @@
 		if (N.z in map_z)
 			N.linked = src
 			//testing("Navigation console at level [N.z] linked to overmap object '[name]'.")
-	processing_objects.Add(src)*/
+
+	processing_objects.Add(src)
 
 /obj/effect/overmap/ship/relaymove(mob/user, direction)
 	accelerate(direction)
@@ -128,22 +130,22 @@
 		icon_state = "ship"
 
 /obj/effect/overmap/ship/proc/burn()
-/*
+
 	for(var/datum/ship_engine/E in engines)
 		. += E.burn()
-*/
+
 /obj/effect/overmap/ship/proc/get_total_thrust()
-/*
+
 	for(var/datum/ship_engine/E in engines)
 		. += E.get_thrust()
-*/
+
 /obj/effect/overmap/ship/proc/can_burn()
-/*
+
 	if (world.time < last_burn + burn_delay)
 		return 0
 	for(var/datum/ship_engine/E in engines)
 		. |= E.can_burn()
-*/
+
 
 //deciseconds to next step
 /obj/effect/overmap/ship/proc/ETA()
