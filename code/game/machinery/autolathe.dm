@@ -9,22 +9,26 @@
 	active_power_usage = 2000
 	circuit = /obj/item/weapon/circuitboard/autolathe
 
-	var/tmp/list/machine_recipes
-	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
+	var/obj/item/weapon/disk/autolathe_disk/disk = null
+
+	var/list/stored_material =  list()
 	var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0)
 	var/show_category = "All"
 
 	var/hacked = 0
 	var/disabled = 0
 	var/shocked = 0
-	var/tmp/busy = 0
+
+	var/making_left = 0
+	var/making_total = 0
+	var/datum/autolathe/recipe/making_recipe = null
+	var/not_enough_resources = FALSE
 
 	var/mat_efficiency = 1
 	var/build_time = 50
 
 	var/tmp/datum/wires/autolathe/wires = null
 
-	var/datum/browser/popup
 
 /obj/machinery/autolathe/New()
 	..()
@@ -36,86 +40,65 @@
 		wires = null
 	return ..()
 
-/obj/machinery/autolathe/proc/update_recipe_list()
-	if(!machine_recipes)
-		machine_recipes = autolathe_recipes
 
-/obj/machinery/autolathe/interact(mob/user as mob)
+/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+	var/list/data = list()
 
-	update_recipe_list()
+	data["disk"] = null
+	if(disk)
+		data["disk"] = disk.category
+		data["uses"] = disk.license
 
-	if(..() || (disabled && !panel_open))
-		user << SPAN_DANGER("\The [src] is disabled!")
-		return
+		var/list/L = list()
+		for(var/rtype in disk.recipes)
+			var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
+			var/list/LE = list()
+			LE["name"] = R.name
+			LE["enough"] = 1
 
-	if(shocked)
-		shock(user, 50)
+			for(var/mat in R.resources)
+				if(!(mat in stored_material) || R.resources[mat] > stored_material[mat])
+					LE["enough"] = 0
+					break
+			L.Add(LE)
 
-	var/dat = "<center><h1>Autolathe Control Panel</h1><hr/>"
+		data["recipes"] = L
 
-	if(!disabled)
-		dat += "<table width = '100%'>"
-		var/material_top = "<tr>"
-		var/material_bottom = "<tr>"
+		var/list/M = list()
+		for(var/mtype in storage_capacity)
+			var/list/ME = list()
+			ME["name"] = mtype
 
-		for(var/material in stored_material)
-			material_top += "<td width = '25%' align = center><b>[material]</b></td>"
-			material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
-
-		dat += "[material_top]</tr>[material_bottom]</tr></table><hr>"
-		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[show_category]</a></h3></center><table width = '100%'>"
-
-		var/index = 0
-		for(var/datum/autolathe/recipe/R in machine_recipes)
-			index++
-			if(R.hidden && !hacked || (show_category != "All" && show_category != R.category))
-				continue
-			var/can_make = 1
-			var/material_string = ""
-			var/multiplier_string = ""
-			var/max_sheets
-			var/comma
-			if(!R.resources || !R.resources.len)
-				material_string = "No resources required.</td>"
+			if(mtype in stored_material)
+				ME["count"] = stored_material[mtype]
 			else
-				//Make sure it's buildable and list requires resources.
-				for(var/material in R.resources)
-					var/sheets = round(stored_material[material]/round(R.resources[material]*mat_efficiency))
-					if(isnull(max_sheets) || max_sheets > sheets)
-						max_sheets = sheets
-					if(!isnull(stored_material[material]) && stored_material[material] < round(R.resources[material]*mat_efficiency))
-						can_make = 0
-					if(!comma)
-						comma = 1
-					else
-						material_string += ", "
-					material_string += "[round(R.resources[material] * mat_efficiency)] [material]"
-				material_string += ".<br></td>"
-				//Build list of multipliers for sheets.
-				if(R.is_stack)
-					if(max_sheets && max_sheets > 0)
-						multiplier_string  += "<br>"
-						for(var/i = 5;i<max_sheets;i*=2) //5,10,20,40...
-							multiplier_string  += "<a href='?src=\ref[src];make=[index];multiplier=[i]'>\[x[i]\]</a>"
-						multiplier_string += "<a href='?src=\ref[src];make=[index];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
+				ME["count"] = 0
 
-			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=[index];multiplier=1'>" : ""][R.name][can_make ? "</a>" : ""]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string]</td><td align = right>[material_string]</tr>"
+			M.Add(ME)
 
-		dat += "</table><hr>"
-	//Hacking.
-	if(panel_open)
-		dat += "<h2>Maintenance Panel</h2>"
-		dat += wires.GetInteractWindow()
+		data["materials"] = M
 
-		dat += "<hr>"
+	if(making_recipe)
+		var/datum/autolathe/recipe/R = making_recipe
+		data["busyname"] = R.name
+		data["busynow"] = making_left
+		data["busytotal"] = making_total
+		data["resout"] = not_enough_resources
 
-	popup = new(user, "autolathe","Autolathe", 400, 600, src)
-	popup.set_content(dat)
-	popup.open()
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 390, 655)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+
 
 /obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user)
 
-	if(busy)
+	if(making_recipe && !not_enough_resources)
 		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
 		return
 
@@ -142,10 +125,20 @@
 	if(is_robot_module(I))
 		return FALSE
 
+	if(!making_recipe && istype(I,/obj/item/weapon/disk/autolathe_disk))
+		if(disk)
+			user << SPAN_NOTICE("There's already a disk inside the autolathe.")
+			return
+		user.drop_item()
+		disk = I
+		I.forceMove(src)
+		user << SPAN_NOTICE("You put the disk into the autolathe.")
+		return
+
 	//Resources are being loaded.
 	var/obj/item/eating = I
 	if(!eating.matter || !eating.matter.len)
-		user << "\The [eating] does not contain significant amounts of useful materials and cannot be accepted."
+		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
 		return
 
 	var/filltype = 0       // Used to determine message.
@@ -153,9 +146,11 @@
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
 	for(var/material in eating.matter)
-
-		if(isnull(stored_material[material]) || isnull(storage_capacity[material]))
+		if(!(material in storage_capacity))
 			continue
+
+		if(!(material in stored_material))
+			stored_material[material] = 0
 
 		if(stored_material[material] >= storage_capacity[material])
 			continue
@@ -181,9 +176,9 @@
 		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
 		return
 	else if(filltype == 1)
-		user << "You fill \the [src] to capacity with \the [eating]."
+		user << SPAN_NOTICE("You fill \the [src] to capacity with \the [eating].")
 	else
-		user << "You fill \the [src] with \the [eating]."
+		user << SPAN_NOTICE("You fill \the [src] with \the [eating].")
 
 	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
@@ -194,12 +189,15 @@
 		user.remove_from_mob(I)
 		qdel(I)
 
-	updateUsrDialog()
+	if(making_recipe && making_left)
+		make(making_recipe,making_left)
+
+	nanomanager.update_uis(src)
 	return
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
 	user.set_machine(src)
-	interact(user)
+	ui_interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
 
@@ -208,70 +206,106 @@
 
 	add_fingerprint(usr)
 
-	if(href_list["close"])
-		popup.close(usr)
-		return
-
 	usr.set_machine(src)
+	if(!making_recipe)
+		if(href_list["eject_disk"] && disk)
+			disk.forceMove(src.loc)
+			disk = null
 
-	if(busy)
-		usr << SPAN_NOTICE("The autolathe is busy. Please wait for completion of previous operation.")
-		return
+		if(href_list["eject_material"])
+			var/material = href_list["eject_material"]
+			var/obj/item/stack/material/sheetType = get_material_stack_type(material)
+			var/perUnit = initial(sheetType.perunit)
 
-	if(href_list["change_category"])
+			var/num = input("Enter sheets count to eject. 0-[stored_material[material]/perUnit]","Eject",0) as num
+			num = min(max(num,0),stored_material[material]/perUnit)
 
-		var/choice = input("Which category do you wish to display?") as null|anything in autolathe_categories+"All"
-		if(!choice) return
-		show_category = choice
+			eject(material,num*perUnit)
 
-	if(href_list["make"] && machine_recipes)
+		if(href_list["print_one"] && disk)
+			var/recipe = disk.recipes[text2num(href_list["print_one"])]
+			make(recipe,1)
 
-		var/index = text2num(href_list["make"])
-		var/multiplier = text2num(href_list["multiplier"])
-		var/datum/autolathe/recipe/making
+		if(href_list["print_several"] && disk)
+			var/recipe = disk.recipes[text2num(href_list["print_one"])]
+			var/num = input("Enter items count to print.","Print") as num
+			make(recipe,num)
 
-		if(index > 0 && index <= machine_recipes.len)
-			making = machine_recipes[index]
+	if(href_list["abort_print"])
+		making_recipe = null
+		making_left = 0
+		making_total = 0
 
-		//Exploit detection, not sure if necessary after rewrite.
-		if(!making || multiplier < 0 || multiplier > 100)
-			var/turf/exploit_loc = get_turf(usr)
-			message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate an item! ([exploit_loc ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[exploit_loc.x];Y=[exploit_loc.y];Z=[exploit_loc.z]'>JMP</a>" : "null"])", 0)
-			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate an item!")
-			return
+	nanomanager.update_uis(src)
 
-		busy = 1
+/obj/machinery/autolathe/proc/make(var/recipe, var/amount)
+	not_enough_resources = FALSE
+	making_recipe = autolathe_recipes[recipe]
+	making_total = amount
+
+	for(making_left = amount; making_left <= 0;)
 		update_use_power(2)
 
+		if(!disk || disk.license < 0)
+			return
+
 		//Check if we still have the materials.
-		for(var/material in making.resources)
+		for(var/material in making_recipe.resources)
 			if(!isnull(stored_material[material]))
-				if(stored_material[material] < round(making.resources[material] * mat_efficiency) * multiplier)
+				if(stored_material[material] < round(making_recipe.resources[material] * mat_efficiency))
+					not_enough_resources = TRUE
 					return
 
 		//Consume materials.
-		for(var/material in making.resources)
+		for(var/material in making_recipe.resources)
 			if(!isnull(stored_material[material]))
-				stored_material[material] = max(0, stored_material[material] - round(making.resources[material] * mat_efficiency) * multiplier)
+				stored_material[material] = max(0, stored_material[material] - round(making_recipe.resources[material] * mat_efficiency))
+
 
 		//Fancy autolathe animation.
 		flick("autolathe_n", src)
 
-		sleep(build_time)
-
-		busy = 0
-		update_use_power(1)
+		if(ispath(making_recipe.path,/obj/item/stack))
+			sleep(max(5,round(build_time/30)))
+		else
+			sleep(build_time)
 
 		//Sanity check.
-		if(!making || !src) return
+		update_use_power(1)
+
+		if(!making_recipe || !src)
+			return
+
+		making_left--
+		disk.license--
 
 		//Create the desired item.
-		var/obj/item/I = new making.path(loc)
-		if(multiplier > 1 && istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			S.amount = multiplier
+		if(ispath(making_recipe.path,/obj/item/stack))
+			var/obj/item/stack/S = locate(making_recipe.path, loc)
+			if(S && S.max_amount < S.amount)
+				S.amount++
+			else
+				new making_recipe.path(loc)
+		else
+			new making_recipe.path(loc)
 
-	updateUsrDialog()
+		nanomanager.update_uis(src)
+
+	making_recipe = null
+	making_total = 0
+
+/obj/machinery/autolathe/proc/eject(var/material, var/amount)
+	if(!(material in stored_material))
+		return
+	var/obj/item/stack/material/sheetType = get_material_stack_type(material)
+	var/perUnit = initial(sheetType.perunit)
+	var/eject = round(stored_material[material] / perUnit)
+	eject = amount == -1 ? eject : min(eject, amount)
+	if(eject < 1)
+		return
+	var/obj/item/stack/material/S = new sheetType(loc)
+	S.amount = eject
+	stored_material[material] -= eject * perUnit
 
 /obj/machinery/autolathe/update_icon()
 	icon_state = (panel_open ? "autolathe_t" : "autolathe")

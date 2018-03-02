@@ -1,15 +1,12 @@
 /var/global/list/autolathe_recipes
-/var/global/list/autolathe_categories
 
 /proc/populate_lathe_recipes()
 
 	//Create global autolathe recipe list if it hasn't been made already.
 	autolathe_recipes = list()
-	autolathe_categories = list()
 	for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
 		var/datum/autolathe/recipe/recipe = new R
-		autolathe_recipes += recipe
-		autolathe_categories |= recipe.category
+		autolathe_recipes[recipe.type] = recipe
 
 		var/obj/item/I = new recipe.path
 		if(I.matter && !recipe.resources) //This can be overidden in the datums.
@@ -21,6 +18,7 @@
 /datum/autolathe/recipe
 	var/name = "object"
 	var/path
+	var/list/resources = list()
 
 /datum/autolathe/recipe/bucket
 	name = "bucket"
@@ -120,26 +118,6 @@
 /datum/autolathe/recipe/weldermask
 	name = "welding mask"
 	path = /obj/item/clothing/head/welding
-
-
-/datum/autolathe/recipe/metal
-	name = "steel sheets"
-	path = /obj/item/stack/material/steel
-
-
-/datum/autolathe/recipe/glass
-	name = "glass sheets"
-	path = /obj/item/stack/material/glass
-
-
-/datum/autolathe/recipe/rglass
-	name = "reinforced glass sheets"
-	path = /obj/item/stack/material/glass/reinforced
-
-
-/datum/autolathe/recipe/rods
-	name = "metal rods"
-	path = /obj/item/stack/rods
 
 
 /datum/autolathe/recipe/knife

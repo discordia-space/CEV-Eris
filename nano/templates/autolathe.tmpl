@@ -1,0 +1,53 @@
+<!-- 
+Title: Autolathe
+Used In File(s): \code\game\machinery\autolathe.dm
+ -->
+<div class="item">
+	<div class="statusDisplay">
+		{{for data.materials}}
+			<b>{{value.name}}: {{value.count}}  {{:helper.link('', 'eject', {'eject_material' : value.name})}}</b>
+		{{/for}}
+	</div>
+	<div class="statusDisplay">
+		{{if data.disk}}
+			<b>Disk: {{data.disk}}. Uses left: {{data.uses}}.</b> {{:helper.link('', 'eject', {'eject_disk' : 1})}}</b>
+		{{else}}
+			<b>Disk: not inserted.</b>
+		{{/if}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemContent">
+		{{if data.busy}}
+			<div class="itemGroup">
+				<span style="text-align: center;">
+					{{if data.resout}}
+						<div><b>Not enough resources.</b></div>
+					{{else}}
+						{{if data.expired}}
+							<div><b>Disk license is out. Please, insert a new one to proceed printing.</b></div>
+						{{else}}
+							<div><b>Printing...</b></div>
+						{{/if}}
+					{{/if}}
+					<div>Printing {{data.busyname}} ({{data.busynow}}/{{data.busytotal}})</div>
+					<div>{{:helper.link('Abort', '', {'abort_print' : 1})}}</div>
+				</span>
+			</div>
+		{{else}}
+			{{if data.expired}}
+				<div class="itemGroup">
+					<span style="text-align: center;">
+						<div><b>Disk license is out. Please, insert a new one.</b></div>
+					</span>
+				</div>
+			{{else}}
+				{{for data.recipes}}
+					{{value.name}}  {{if value.enough}}{{:helper.link('x1', '', {'print_one' : index})}} {{:helper.link('xN', '', {'print_several' : index})}} {{/if}}
+				{{/for}}
+			{{/if}}
+		{{/if}}
+	</div>
+</div>
+
+

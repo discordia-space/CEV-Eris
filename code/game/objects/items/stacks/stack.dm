@@ -360,3 +360,40 @@
 	New(title, recipes)
 		src.title = title
 		src.recipes = recipes
+
+
+proc/get_material_stack_type(var/name)
+	switch(name)
+		if(DEFAULT_WALL_MATERIAL)
+			return /obj/item/stack/material/steel
+		if("glass")
+			return /obj/item/stack/material/glass
+		if("gold")
+			return /obj/item/stack/material/gold
+		if("silver")
+			return /obj/item/stack/material/silver
+		if("plasma")
+			return /obj/item/stack/material/plasma
+		if("uranium")
+			return /obj/item/stack/material/uranium
+		if("diamond")
+			return /obj/item/stack/material/diamond
+	return null
+
+proc/get_material_stack_name(var/type)
+	switch(type)
+		if(/obj/item/stack/material/steel)
+			return DEFAULT_WALL_MATERIAL
+		if(/obj/item/stack/material/glass)
+			return "glass"
+		if(/obj/item/stack/material/gold)
+			return "gold"
+		if(/obj/item/stack/material/silver)
+			return "silver"
+		if(/obj/item/stack/material/plasma)
+			return "plasma"
+		if(/obj/item/stack/material/uranium)
+			return "uranium"
+		if(/obj/item/stack/material/diamond)
+			return "diamond"
+
