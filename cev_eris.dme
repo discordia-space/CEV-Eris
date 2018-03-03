@@ -1673,6 +1673,7 @@
 #include "code\modules\overmap\overmap_shuttle.dm"
 #include "code\modules\overmap\sectors.dm"
 #include "code\modules\overmap\spacetravel.dm"
+#include "code\modules\overmap\events\event.dm"
 #include "code\modules\overmap\ships\ship.dm"
 #include "code\modules\overmap\ships\computers\engine_control.dm"
 #include "code\modules\overmap\ships\computers\helm.dm"

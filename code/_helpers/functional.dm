@@ -22,3 +22,21 @@
 		CRASH("Expected list input. Was [input ? "[input.type]" : "null"]")
 	if(!istype(predicates))
 		CRASH("Expected predicate list. Was [predicates ? "[predicates.type]" : "null"]")
+
+/proc/can_locate(var/atom/container, var/container_thing)
+	return (locate(container_thing) in container)
+
+/proc/can_not_locate(var/atom/container, var/container_thing)
+	return !(locate(container_thing) in container) // We could just do !can_locate(container, container_thing) but BYOND is pretty awful when it comes to deep proc calls
+
+/proc/where(var/list/list_to_filter, var/list/predicates, var/list/extra_predicate_input)
+	. = list()
+	for(var/entry in list_to_filter)
+		var/predicate_input
+		if(extra_predicate_input)
+			predicate_input = (list(entry) + extra_predicate_input)
+		else
+			predicate_input = entry
+
+		if(all_predicates_true(predicate_input, predicates))
+			. += entry

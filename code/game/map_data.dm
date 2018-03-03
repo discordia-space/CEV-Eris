@@ -89,7 +89,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/list/names = new
 
 	var/overmap_z
-	var/overmap_size = 35
+	var/overmap_size = 50
 
 	var/emergency_shuttle_docked_message = "The escape pods are now unlocked. You have approximately %ETD% to board the escape pods."
 	var/emergency_shuttle_leaving_dock = "The escape pods have been launched, arriving at rendezvous point in %ETA%."

@@ -65,3 +65,4 @@
 
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
 
+#define LAZYADD(L, I) if(!L) { L = list(); } L += I;

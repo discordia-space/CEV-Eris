@@ -111,6 +111,8 @@
 	src.overlays = other.overlays.Copy()
 	src.underlays = other.underlays.Copy()
 	src.opacity = other.opacity
+	if(hasvar(src, "blocks_air"))
+		src.blocks_air = other.blocks_air
 	if(other.decals)
 		src.decals = other.decals.Copy()
 		src.update_icon()
