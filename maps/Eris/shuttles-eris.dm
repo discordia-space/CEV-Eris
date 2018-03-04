@@ -79,6 +79,7 @@
 	name = "Vasiliy Dokuchaev Dock"
 	landmark_tag = "nav_dock_expl"
 	docking_controller = "research_dock_airlock"
+	base_turf = /turf/space
 
 /obj/effect/shuttle_landmark/eris/transit/exploration_shuttle
 	name = "In transit"
@@ -98,6 +99,7 @@
 	name = "Hulk Dock"
 	landmark_tag = "nav_dock_hulk"
 	docking_controller = "mining_dock_airlock"
+	base_turf = /turf/space
 
 /obj/effect/shuttle_landmark/eris/transit/hulk
 	name = "In transit"
@@ -198,6 +200,7 @@
 	shuttle_area = /area/supply/dock
 	waypoint_offsite = "nav_cargo_start"
 	waypoint_station = "nav_cargo_vessel"
+	dock_target = "supply_shuttle"
 
 /obj/effect/shuttle_landmark/supply/centcom
 	name = "Centcom"
@@ -206,3 +209,4 @@
 /obj/effect/shuttle_landmark/supply/station
 	name = "Dock"
 	landmark_tag = "nav_cargo_vessel"
+	docking_controller = "cargo_bay"
