@@ -461,6 +461,14 @@ macro "macro"
 		name = "F12"
 		command = "F12"
 		is-disabled = false
+	elem 
+		name = "NORTHEAST"
+		command = "Move-Upwards"
+		is-disabled = false
+	elem 
+		name = "SOUTHEAST"
+		command = "Move-Downwards"
+		is-disabled = false
 
 macro "hotkeymode"
 	elem 
