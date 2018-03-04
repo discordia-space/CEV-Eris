@@ -1,6 +1,6 @@
 /obj/item/weapon/tool/wirecutters
 	name = "wirecutters"
-	desc = "This cuts wires."
+	desc = "Cuts wires and other objects with it."
 	icon_state = "cutters"
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
@@ -13,6 +13,13 @@
 	sharp = TRUE
 	edge = TRUE
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 3, QUALITY_RETRACTING = 1, QUALITY_BONE_SETTING = 1)
+
+/obj/item/weapon/tool/wirecutters/armature
+	name = "armature cutter"
+	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but dose its main job better."
+	icon_state = "arm-cutter"
+	force = WEAPON_FORCE_NORMAL
+	tool_qualities = list(QUALITY_WIRE_CUTTING = 4)
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))

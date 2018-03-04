@@ -156,7 +156,7 @@
 //Note: This should probably be moved to mob
 /obj/item/weapon/tool/proc/eyecheck(mob/user as mob)
 	if(!iscarbon(user))
-		return 1
+		return TRUE
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]

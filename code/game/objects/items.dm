@@ -126,7 +126,7 @@
 /obj/item/examine(mob/user, var/distance = -1)
 	var/message
 	for(var/Q in tool_qualities)
-		message += "\n<blue>This item posses [Q] quality of [tool_qualities[Q]] tier.<blue>"
+		message += "\n<blue>This item posses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
 	var/size
 	switch(src.w_class)
@@ -667,7 +667,22 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			attack(H, H, H.get_holding_hand(src))
-	return
+			return
+
+	if(prob(5))
+		if(istype(src, /obj/item/weapon/tool))
+			var/obj/item/weapon/tool/T = src
+			if(T.use_fuel_cost)
+				user << SPAN_DANGER("You ignite the fuel of the [src]!")
+				explosion(src.loc,-1,1,2)
+				qdel(src)
+				return
+			if(T.use_power_cost)
+				user << SPAN_DANGER("You overload the cell in the [src]!")
+				explosion(src.loc,-1,1,2)
+				qdel(src)
+				return
+
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'

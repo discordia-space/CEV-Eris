@@ -12,7 +12,7 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = TRUE
 	edge = TRUE
-	tool_qualities = list(QUALITY_SAWING = 3, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 1)
+	tool_qualities = list(QUALITY_SAWING = 3, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 2)
 
 /obj/item/weapon/tool/saw/circular
 	name = "circular saw"
@@ -22,20 +22,33 @@
 	worksound = WORKSOUND_CIRCULAR_SAW
 	force = WEAPON_FORCE_ROBUST
 	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
-	tool_qualities = list(QUALITY_SAWING = 4, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 2)
+	tool_qualities = list(QUALITY_SAWING = 4, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 3)
 
 	use_power_cost = 5
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/saw/advanced_circular
-	name = "advanced saw"
+	name = "advanced circular saw"
 	desc = "You think you can cut anything with it."
 	icon_state = "advanced_saw"
 	hitsound = WORKSOUND_CIRCULAR_SAW
 	worksound = WORKSOUND_CIRCULAR_SAW
 	force = WEAPON_FORCE_ROBUST
 	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
-	tool_qualities = list(QUALITY_SAWING = 5, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 3)
+	tool_qualities = list(QUALITY_SAWING = 5, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 4)
 
-	use_power_cost = 10
+	use_power_cost = 7
 	suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/weapon/tool/saw/chain
+	name = "chainsaw"
+	desc = "You can cut trees, people walls and zombies with it, just watch out for fuel."
+	icon_state = "saw"
+	hitsound = WORKSOUND_CHAINSAW
+	worksound = WORKSOUND_CHAINSAW
+	force = WEAPON_FORCE_ROBUST
+	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
+	tool_qualities = list(QUALITY_SAWING = 5, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 2)
+
+	use_fuel_cost = 4
+	max_fuel = 80

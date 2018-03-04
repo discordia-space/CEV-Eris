@@ -22,6 +22,9 @@
 	new /obj/item/device/lighting/toggleable/lantern(src)
 	new /obj/item/weapon/tool/shovel(src)
 	new /obj/item/weapon/tool/pickaxe(src)
+	new /obj/item/weapon/tool/pickaxe/jackhammer(src)
+	new /obj/item/weapon/cell/medium(src)
+	new /obj/item/weapon/cell/medium(src)
 
 /******************************Lantern*******************************/
 

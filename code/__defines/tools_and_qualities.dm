@@ -53,4 +53,5 @@
 #define WORKSOUND_REMOVING				'sound/items/Deconstruct.ogg'
 #define WORKSOUND_DRIVER_TOOL			'sound/items/e_screwdriver.ogg'
 #define WORKSOUND_PICKAXE				'sound/items/pickaxe.ogg'
-#define WORKSOUND_HARD_SLASH			'sound/weapons/bladeslice.ogg.ogg'
+#define WORKSOUND_HARD_SLASH			'sound/weapons/bladeslice.ogg'
+#define WORKSOUND_CHAINSAW				'sound/items/chainsaw.ogg'
