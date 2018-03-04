@@ -1,9 +1,13 @@
 /proc/all_predicates_true(var/list/input, var/list/predicates)
-	functional_sanity(input, predicates)
+	predicates = istype(predicates) ? predicates : list(predicates)
 
 	for(var/i = 1 to predicates.len)
-		if(!call(predicates[i])(arglist(input)))
-			return FALSE
+		if(istype(input))
+			if(!call(predicates[i])(arglist(input)))
+				return FALSE
+		else
+			if(!call(predicates[i])(input))
+				return FALSE
 	return TRUE
 
 /proc/any_predicate_true(var/list/input, var/list/predicates)

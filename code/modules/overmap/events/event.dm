@@ -11,11 +11,18 @@
 	// Acquire the list of not-yet utilized overmap turfs on this Z-level
 	var/list/events_by_turf = get_event_turfs_by_z_level(z_level)
 	var/list/candidate_turfs = block(locate(OVERMAP_EDGE, OVERMAP_EDGE, z_level),locate(overmap_size - OVERMAP_EDGE, overmap_size - OVERMAP_EDGE,z_level))
+//	if(!candidate_turfs.len)
+//		world << "candidate_tufs list is empty after creation"
 	candidate_turfs -= events_by_turf
+//	if(!candidate_turfs.len)
+//		world << "candidate_tufs list gets empty after removing events_by_turf"
 	candidate_turfs = where(candidate_turfs, /proc/can_not_locate, /obj/effect/overmap)
+//	if(!candidate_turfs.len)
+//		world << "candidate_tufs list gets empty after where()"
 
 	for(var/i = 1 to number_of_events)
 		if(!candidate_turfs.len)
+//			world << "No candidate_tufs"
 			break
 		var/overmap_event_type = pick(subtypesof(/datum/overmap_event))
 		var/datum/overmap_event/overmap_event = new overmap_event_type
@@ -25,10 +32,11 @@
 
 		for(var/event_turf in event_turfs)
 			events_by_turf[event_turf] = overmap_event
-//			GLOB.entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
-//			GLOB.exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
+			entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
+			exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
 
 			var/obj/effect/overmap_event/event = new(event_turf)
+//			world << "Created new event in [event.loc.x], [event.loc.y]"
 			event.name = overmap_event.name
 			event.icon_state = pick(overmap_event.event_icon_states)
 			event.opacity =  overmap_event.opacity
@@ -128,6 +136,7 @@
 	var/continuous = TRUE //if it should form continous blob, or can have gaps
 
 /datum/overmap_event/proc/enter(var/obj/effect/overmap/ship/victim)
+//	world << "Ship [victim] encountered [name]"
 	if(!event_manager)
 		admin_notice("<span class='danger'>Event manager not setup.</span>")
 		return

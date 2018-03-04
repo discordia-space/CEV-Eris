@@ -64,6 +64,11 @@ datum/controller/game_controller/proc/setup_objects()
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
 
+
+	if(config.use_overmap)
+		admin_notice(SPAN_DANGER("Initializing overmap events."), R_DEBUG)
+		overmap_event_handler.create_events(maps_data.overmap_z, maps_data.overmap_size, maps_data.overmap_event_areas)
+
 	// Set up antagonists.
 	populate_antag_type_list()
 

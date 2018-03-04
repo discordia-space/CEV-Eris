@@ -84,6 +84,7 @@
 /obj/effect/shuttle_landmark/eris/transit/exploration_shuttle
 	name = "In transit"
 	landmark_tag = "nav_transit_expl"
+	base_turf = /turf/space
 
 /datum/shuttle/autodock/overmap/hulk
 	name = "Hulk"
@@ -104,6 +105,7 @@
 /obj/effect/shuttle_landmark/eris/transit/hulk
 	name = "In transit"
 	landmark_tag = "nav_transit_hulk"
+	base_turf = /turf/space
 
 //Skipjack
 

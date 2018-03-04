@@ -178,11 +178,14 @@
 			powernets |= C.powernet
 
 	translate_turfs(turf_translation, current_location.base_area, current_location.base_turf)
+
 	if(current_location.base_turf != destination.base_turf)
+//		world << "Base_turfs don't match"
 		for(var/area/A in shuttle_area)
 			for(var/turf/Turf in A.contents)
 				if(istype(Turf, current_location.base_turf))
 					Turf.ChangeTurf(destination.base_turf, 1, 1)
+
 	current_location = destination
 
 	// if there's a zlevel above our destination, paint in a ceiling on it so we retain our air

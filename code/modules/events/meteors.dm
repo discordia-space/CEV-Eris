@@ -58,6 +58,14 @@
 	victim = null
 	. = ..()
 
+/*
+/datum/event/meteor_wave/overmap/worst_case_end()
+	if(endWhen == INFINITY)
+		return INFINITY
+	else
+		return ..()
+*/
+
 /datum/event/meteor_wave/overmap/tick()
 	if(victim && !victim.is_still()) //Meteors mostly fly in your face
 		start_side = prob(90) ? victim.fore_dir : pick(cardinal)
