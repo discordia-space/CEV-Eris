@@ -69,16 +69,16 @@
 
 	..()
 
-/obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/pipe/attackby(var/obj/item/I, var/mob/user)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/pipe/vent))
 		return ..()
 
-	if(istype(W,/obj/item/device/pipe_painter))
+	if(istype(I,/obj/item/device/pipe_painter))
 		return 0
 
-	if (!istype(W, /obj/item/weapon/tool/wrench))
+	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	var/turf/T = src.loc
 	if (level==1 && isturf(T) && !T.is_plating())
@@ -90,9 +90,8 @@
 		user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
 		add_fingerprint(user)
 		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
-	if (do_after(user, 40, src))
+	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 			SPAN_NOTICE("You have unfastened \the [src]."), \

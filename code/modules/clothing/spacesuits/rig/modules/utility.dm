@@ -28,18 +28,6 @@
 	var/device_type
 	var/obj/item/device
 
-/obj/item/rig_module/device/plasmacutter
-	name = "hardsuit plasma cutter"
-	desc = "A lethal-looking industrial cutter."
-	icon_state = "plasmacutter"
-	interface_name = "plasma cutter"
-	interface_desc = "A self-sustaining plasma arc capable of cutting through walls."
-	suit_overlay_active = "plasmacutter"
-	suit_overlay_inactive = "plasmacutter"
-	use_power_cost = 0.5
-
-	device_type = /obj/item/weapon/pickaxe/plasmacutter
-
 /obj/item/rig_module/device/healthscanner
 	name = "health scanner module"
 	desc = "A hardsuit-mounted health scanner."
@@ -59,7 +47,7 @@
 	suit_overlay_inactive = "mounted-drill"
 	use_power_cost = 0.1
 
-	device_type = /obj/item/weapon/pickaxe/diamonddrill
+	device_type = /obj/item/weapon/tool/pickaxe/diamonddrill
 
 /obj/item/rig_module/device/anomaly_scanner
 	name = "hardsuit anomaly scanner"

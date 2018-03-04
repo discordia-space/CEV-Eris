@@ -19,13 +19,13 @@
 	var/datum/construction/construct
 	flags = CONDUCT
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(!construct || !construct.action(W, user))
-			..()
-		return
+/obj/item/mecha_parts/chassis/attackby(obj/item/I, mob/user)
+	if(!construct || !construct.action(I, user))
+		..()
+	return
 
-	attack_hand()
-		return
+/obj/item/mecha_parts/chassis/attack_hand()
+	return
 
 /////////// Ripley
 

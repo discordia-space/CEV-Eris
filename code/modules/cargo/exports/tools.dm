@@ -41,11 +41,6 @@
 	export_types = list(/obj/item/weapon/tool/weldingtool)
 	include_subtypes = FALSE
 
-/datum/export/weldingtool/industrial
-	cost = 10
-	unit_name = "industrial welding tool"
-	export_types = list(/obj/item/weapon/tool/weldingtool/largetank, /obj/item/weapon/tool/weldingtool/hugetank)
-
 
 // Fire extinguishers
 /datum/export/extinguisher

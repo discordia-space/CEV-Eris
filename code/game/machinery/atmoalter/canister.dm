@@ -239,15 +239,10 @@ update_flag
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(!istype(W, /obj/item/weapon/tool/wrench) && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/scanner/analyzer) && !istype(W, /obj/item/device/pda))
-		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [W]!"))
-		src.health -= W.force
-		src.add_fingerprint(user)
-		healthcheck()
+/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/weapon/I, var/mob/user)
 
-	if(isrobot(user) && istype(W, /obj/item/weapon/tank/jetpack))
-		var/datum/gas_mixture/thejetpack = W:air_contents
+	if(isrobot(user) && istype(I, /obj/item/weapon/tank/jetpack))
+		var/datum/gas_mixture/thejetpack = I:air_contents
 		var/env_pressure = thejetpack.return_pressure()
 		var/pressure_delta = min(10*ONE_ATMOSPHERE - env_pressure, (air_contents.return_pressure() - env_pressure)/2)
 		//Can not have a pressure delta that would cause environment pressure > tank pressure
@@ -259,7 +254,17 @@ update_flag
 			user << "You pulse-pressurize your jetpack from the tank."
 		return
 
-	..()
+	else if((QUALITY_BOLT_TURNING in I.tool_qualities) && ((istype(I, /obj/item/weapon/tank) && !( src.destroyed ))))
+		..()
+		return
+
+	else
+		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
+		src.health -= I.force
+		src.add_fingerprint(user)
+		healthcheck()
+
+	return
 
 	nanomanager.update_uis(src) // Update all NanoUIs attached to src
 

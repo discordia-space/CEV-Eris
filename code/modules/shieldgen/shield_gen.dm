@@ -55,37 +55,39 @@
 	s.set_up(5, 1, src)
 	s.start()
 
-/obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = W
+/obj/machinery/shield_gen/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/card/id))
+		var/obj/item/weapon/card/id/C = I
 		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()
 		else
 			user << "\red Access denied."
-	else if(istype(W, /obj/item/weapon/tool/wrench))
-		src.anchored = !src.anchored
-		src.visible_message("\blue \icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].")
 
-		if(active)
-			toggle()
-		if(anchored)
-			spawn(0)
-				for(var/obj/machinery/shield_capacitor/cap in range(1, src))
-					if(cap.owned_gen)
-						continue
-					if(get_dir(cap, src) == cap.dir && cap.anchored)
-						owned_capacitor = cap
-						owned_capacitor.owned_gen = src
-						updateDialog()
-						update_icon()
-						break
-		else
-			if(owned_capacitor && owned_capacitor.owned_gen == src)
-				owned_capacitor.owned_gen = null
-			owned_capacitor = null
-			update_icon()
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+			src.anchored = !src.anchored
+			src.visible_message("\blue \icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].")
+
+			if(active)
+				toggle()
+			if(anchored)
+				spawn(0)
+					for(var/obj/machinery/shield_capacitor/cap in range(1, src))
+						if(cap.owned_gen)
+							continue
+						if(get_dir(cap, src) == cap.dir && cap.anchored)
+							owned_capacitor = cap
+							owned_capacitor.owned_gen = src
+							updateDialog()
+							update_icon()
+							break
+			else
+				if(owned_capacitor && owned_capacitor.owned_gen == src)
+					owned_capacitor.owned_gen = null
+				owned_capacitor = null
+				update_icon()
 	else
 		..()
 

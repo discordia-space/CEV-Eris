@@ -39,9 +39,9 @@
 				user << SPAN_WARNING("You got electrocuted by wire splicing!")
 				return TRUE
 
-/obj/structure/wire_splicing/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(iswirecutter(W))
-		if(!shock(user, 100))
-			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
-			user << SPAN_NOTICE("You remove the splicing.")
-			qdel(src)
+/obj/structure/wire_splicing/attackby(obj/item/I, mob/user)
+	if(QUALITY_WIRE_CUTTING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY))
+			if(!shock(user, 100))
+				user << SPAN_NOTICE("You remove the splicing.")
+				qdel(src)

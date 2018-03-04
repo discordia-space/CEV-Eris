@@ -158,30 +158,29 @@
 		CF.set_dir(field_dir)
 
 
-/obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
+/obj/machinery/shieldwallgen/attackby(obj/item/I, mob/user)
 
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+			if(active)
+				user << "Turn off the field generator first."
+				return
 
+			else if(state == 0)
+				state = 1
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+				user << "You secure the external reinforcing bolts to the floor."
+				src.anchored = 1
+				return
 
-	if(istype(W, /obj/item/weapon/tool/wrench))
-		if(active)
-			user << "Turn off the field generator first."
-			return
+			else if(state == 1)
+				state = 0
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+				user << "You undo the external reinforcing bolts."
+				src.anchored = 0
+				return
 
-		else if(state == 0)
-			state = 1
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			user << "You secure the external reinforcing bolts to the floor."
-			src.anchored = 1
-			return
-
-		else if(state == 1)
-			state = 0
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			user << "You undo the external reinforcing bolts."
-			src.anchored = 0
-			return
-
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
 		if (src.allowed(user))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -190,7 +189,7 @@
 
 	else
 		src.add_fingerprint(user)
-		visible_message("\red The [src.name] has been hit with \the [W.name] by [user.name]!")
+		visible_message("\red The [src.name] has been hit with \the [I.name] by [user.name]!")
 
 /obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
 	var/obj/machinery/shieldwall/F

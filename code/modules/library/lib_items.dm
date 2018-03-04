@@ -172,22 +172,22 @@
 	else
 		user << "This book is completely blank!"
 
-/obj/item/weapon/book/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/book/attackby(obj/item/I, mob/user)
 	if(carved)
 		if(!store)
-			if(W.w_class < ITEM_SIZE_NORMAL)
+			if(I.w_class < ITEM_SIZE_NORMAL)
 				user.drop_item()
-				W.loc = src
-				store = W
-				user << SPAN_NOTICE("You put [W] in [title].")
+				I.loc = src
+				store = I
+				user << SPAN_NOTICE("You put [I] in [title].")
 				return
 			else
-				user << SPAN_NOTICE("[W] won't fit in [title].")
+				user << SPAN_NOTICE("[I] won't fit in [title].")
 				return
 		else
 			user << SPAN_NOTICE("There's already something in [title]!")
 			return
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(I, /obj/item/weapon/pen))
 		if(unique)
 			user << "These pages don't seem to take the ink well. Looks like you can't modify it."
 			return
@@ -217,36 +217,36 @@
 					src.author = newauthor
 			else
 				return
-	else if(istype(W, /obj/item/weapon/barcodescanner))
-		var/obj/item/weapon/barcodescanner/scanner = W
+	else if(istype(I, /obj/item/weapon/barcodescanner))
+		var/obj/item/weapon/barcodescanner/scanner = I
 		if(!scanner.computer)
-			user << "[W]'s screen flashes: 'No associated computer found!'"
+			user << "[I]'s screen flashes: 'No associated computer found!'"
 		else
 			switch(scanner.mode)
 				if(0)
 					scanner.book = src
-					user << "[W]'s screen flashes: 'Book stored in buffer.'"
+					user << "[I]'s screen flashes: 'Book stored in buffer.'"
 				if(1)
 					scanner.book = src
 					scanner.computer.buffer_book = src.name
-					user << "[W]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'"
+					user << "[I]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'"
 				if(2)
 					scanner.book = src
 					for(var/datum/borrowbook/b in scanner.computer.checkouts)
 						if(b.bookname == src.name)
 							scanner.computer.checkouts.Remove(b)
-							user << "[W]'s screen flashes: 'Book stored in buffer. Book has been checked in.'"
+							user << "[I]'s screen flashes: 'Book stored in buffer. Book has been checked in.'"
 							return
-					user << "[W]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'"
+					user << "[I]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'"
 				if(3)
 					scanner.book = src
 					for(var/obj/item/weapon/book in scanner.computer.inventory)
 						if(book == src)
-							user << "[W]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'"
+							user << "[I]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'"
 							return
 					scanner.computer.inventory.Add(src)
-					user << "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
-	else if(istype(W, /obj/item/weapon/material/knife) || istype(W, /obj/item/weapon/tool/wirecutters))
+					user << "[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
+	else if(QUALITY_CUTTING in I.tool_qualities)
 		if(carved)	return
 		user << SPAN_NOTICE("You begin to carve out [title].")
 		if(do_after(user, 30, src))

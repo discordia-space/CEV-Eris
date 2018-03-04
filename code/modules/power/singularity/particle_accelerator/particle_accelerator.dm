@@ -127,10 +127,76 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return
 
 
-/obj/structure/particle_accelerator/attackby(obj/item/W, mob/user)
-	if(istool(W))
-		if(src.process_tool_hit(W,user))
+/obj/structure/particle_accelerator/attackby(obj/item/I, mob/user)
+
+	var/list/usable_qualities = list()
+	if(construction_state == 0 || construction_state == 1)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if(construction_state == 2)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+	if(construction_state == 2 || construction_state == 3)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(construction_state == 0)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] secures the [src.name] to the floor.", \
+						"You secure the external bolts.")
+					construction_state = 1
+					src.anchored = 1
+					update_icon()
+					return
+			if(construction_state == 1)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] secures the [src.name] to the floor.", \
+						"You secure the external bolts.")
+					construction_state = 0
+					anchored = 0
+					update_icon()
+					return
 			return
+
+		if(QUALITY_WIRE_CUTTING)
+			if(construction_state == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] removes some wires from the [src.name].", \
+						"You remove some wires.")
+					construction_state = 1
+					update_icon()
+					return
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(construction_state == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
+						"You close the access panel.")
+					construction_state = 3
+					update_icon()
+					return
+			if(construction_state == 3)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
+						"You close the access panel.")
+					construction_state = 2
+					update_state()
+					update_icon()
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = I
+		if(coil:use(1))
+			user.visible_message("[user.name] adds wires to the [src.name].", \
+				"You add some wires.")
+			construction_state = 2
+
 	..()
 	return
 
@@ -196,60 +262,6 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			return 1
 	return 0
 
-
-/obj/structure/particle_accelerator/proc/process_tool_hit(var/obj/O, var/mob/user)
-	if(!(O) || !(user))
-		return 0
-	if(!ismob(user) || !isobj(O))
-		return 0
-	var/temp_state = src.construction_state
-
-	switch(src.construction_state)//TODO:Might be more interesting to have it need several parts rather than a single list of steps
-		if(0)
-			if(iswrench(O))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = 1
-				user.visible_message("[user.name] secures the [src.name] to the floor.", \
-					"You secure the external bolts.")
-				temp_state++
-		if(1)
-			if(iswrench(O))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = 0
-				user.visible_message("[user.name] detaches the [src.name] from the floor.", \
-					"You remove the external bolts.")
-				temp_state--
-			else if(iscoil(O))
-				if(O:use(1,user))
-					user.visible_message("[user.name] adds wires to the [src.name].", \
-						"You add some wires.")
-					temp_state++
-		if(2)
-			if(iswirecutter(O))//TODO:Shock user if its on?
-				user.visible_message("[user.name] removes some wires from the [src.name].", \
-					"You remove some wires.")
-				temp_state--
-			else if(isscrewdriver(O))
-				user.visible_message("[user.name] closes the [src.name]'s access panel.", \
-					"You close the access panel.")
-				temp_state++
-		if(3)
-			if(isscrewdriver(O))
-				user.visible_message("[user.name] opens the [src.name]'s access panel.", \
-					"You open the access panel.")
-				temp_state--
-	if(temp_state == src.construction_state)//Nothing changed
-		return 0
-	else
-		src.construction_state = temp_state
-		if(src.construction_state < 3)//Was taken apart, update state
-			update_state()
-		update_icon()
-		return 1
-	return 0
-
-
-
 /obj/machinery/particle_accelerator
 	name = "Particle Accelerator"
 	desc = "Part of a Particle Accelerator."
@@ -309,10 +321,78 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return
 
 
-/obj/machinery/particle_accelerator/attackby(obj/item/W, mob/user)
-	if(istool(W))
-		if(src.process_tool_hit(W,user))
+/obj/machinery/particle_accelerator/attackby(obj/item/I, mob/user)
+
+	var/list/usable_qualities = list()
+	if(construction_state == 0 || construction_state == 1)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if(construction_state == 2)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+	if(construction_state == 2 || construction_state == 3)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(construction_state == 0)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] secures the [src.name] to the floor.", \
+						"You secure the external bolts.")
+					construction_state = 1
+					src.anchored = 1
+					update_icon()
+					return
+			if(construction_state == 1)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] secures the [src.name] to the floor.", \
+						"You secure the external bolts.")
+					construction_state = 0
+					anchored = 0
+					update_icon()
+					return
 			return
+
+		if(QUALITY_WIRE_CUTTING)
+			if(construction_state == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] removes some wires from the [src.name].", \
+						"You remove some wires.")
+					construction_state = 1
+					update_icon()
+					return
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(construction_state == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
+						"You close the access panel.")
+					construction_state = 3
+					use_power = 1
+					update_icon()
+					return
+			if(construction_state == 3)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
+						"You close the access panel.")
+					construction_state = 2
+					use_power = 0
+					update_state()
+					update_icon()
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = I
+		if(coil:use(1))
+			user.visible_message("[user.name] adds wires to the [src.name].", \
+				"You add some wires.")
+			construction_state = 2
+
 	..()
 	return
 
@@ -334,60 +414,4 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 
 /obj/machinery/particle_accelerator/proc/update_state()
-	return 0
-
-
-/obj/machinery/particle_accelerator/proc/process_tool_hit(var/obj/O, var/mob/user)
-	if(!(O) || !(user))
-		return 0
-	if(!ismob(user) || !isobj(O))
-		return 0
-	var/temp_state = src.construction_state
-	switch(src.construction_state)//TODO:Might be more interesting to have it need several parts rather than a single list of steps
-		if(0)
-			if(iswrench(O))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = 1
-				user.visible_message("[user.name] secures the [src.name] to the floor.", \
-					"You secure the external bolts.")
-				temp_state++
-		if(1)
-			if(iswrench(O))
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = 0
-				user.visible_message("[user.name] detaches the [src.name] from the floor.", \
-					"You remove the external bolts.")
-				temp_state--
-			else if(iscoil(O))
-				if(O:use(1))
-					user.visible_message("[user.name] adds wires to the [src.name].", \
-						"You add some wires.")
-					temp_state++
-		if(2)
-			if(iswirecutter(O))//TODO:Shock user if its on?
-				user.visible_message("[user.name] removes some wires from the [src.name].", \
-					"You remove some wires.")
-				temp_state--
-			else if(isscrewdriver(O))
-				user.visible_message("[user.name] closes the [src.name]'s access panel.", \
-					"You close the access panel.")
-				temp_state++
-		if(3)
-			if(isscrewdriver(O))
-				user.visible_message("[user.name] opens the [src.name]'s access panel.", \
-					"You open the access panel.")
-				temp_state--
-				active = 0
-	if(temp_state == src.construction_state)//Nothing changed
-		return 0
-	else
-		if(src.construction_state < 3)//Was taken apart, update state
-			update_state()
-			if(use_power)
-				use_power = 0
-		src.construction_state = temp_state
-		if(src.construction_state >= 3)
-			use_power = 1
-		update_icon()
-		return 1
 	return 0

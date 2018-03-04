@@ -100,11 +100,7 @@
 
 /datum/surgery_step/internal/detatch_organ
 
-	allowed_tools = list(
-	/obj/item/weapon/tool/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
-	)
+	requedQuality = QUALITY_CUTTING
 
 	min_duration = 90
 	max_duration = 110
@@ -159,12 +155,7 @@
 		affected.createwound(CUT, rand(30,50), 1)
 
 /datum/surgery_step/internal/remove_organ
-
-	allowed_tools = list(
-	/obj/item/weapon/tool/hemostat = 100,	\
-	/obj/item/weapon/tool/wirecutters = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 20
-	)
+	requedQuality = QUALITY_COMPRESSING
 
 	min_duration = 60
 	max_duration = 80
@@ -291,10 +282,7 @@
 			I.take_damage(rand(3,5),0)
 
 /datum/surgery_step/internal/attach_organ
-	allowed_tools = list(
-	/obj/item/weapon/tool/fixovein = 100, \
-	/obj/item/stack/cable_coil = 75
-	)
+	requedQuality = QUALITY_COMPRESSING
 
 	min_duration = 100
 	max_duration = 120

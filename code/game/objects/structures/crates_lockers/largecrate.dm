@@ -9,16 +9,17 @@
 	user << SPAN_NOTICE("You need a crowbar to pry this open!")
 	return
 
-/obj/structure/largecrate/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/crowbar))
-		new /obj/item/stack/material/wood(src)
-		var/turf/T = get_turf(src)
-		for(var/atom/movable/AM in contents)
-			if(AM.simulated) AM.forceMove(T)
-		user.visible_message(SPAN_NOTICE("[user] pries \the [src] open."), \
-							 SPAN_NOTICE("You pry open \the [src]."), \
-							 SPAN_NOTICE("You hear splitting wood."))
-		qdel(src)
+/obj/structure/largecrate/attackby(obj/item/I, mob/user)
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY))
+			new /obj/item/stack/material/wood(src)
+			var/turf/T = get_turf(src)
+			for(var/atom/movable/AM in contents)
+				if(AM.simulated) AM.forceMove(T)
+			user.visible_message(SPAN_NOTICE("[user] pries \the [src] open."), \
+								 SPAN_NOTICE("You pry open \the [src]."), \
+								 SPAN_NOTICE("You hear splitting wood."))
+			qdel(src)
 	else
 		return attack_hand(user)
 
@@ -30,16 +31,17 @@
 	desc = "It comes in a box for the fabricator's sake. Where does the wood come from? ... And why is it lighter?"
 	icon_state = "mulecrate"
 
-/obj/structure/largecrate/hoverpod/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/crowbar))
-		var/obj/item/mecha_parts/mecha_equipment/ME
-		var/obj/mecha/working/hoverpod/H = new (loc)
+/obj/structure/largecrate/hoverpod/attackby(obj/item/I, mob/user)
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY))
+			var/obj/item/mecha_parts/mecha_equipment/ME
+			var/obj/mecha/working/hoverpod/H = new (loc)
 
-		ME = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
-		ME.attach(H)
-		ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
-		ME.attach(H)
-	..()
+			ME = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
+			ME.attach(H)
+			ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
+			ME.attach(H)
+		..()
 
 /obj/structure/largecrate/animal
 	icon_state = "mulecrate"
