@@ -4,6 +4,8 @@
 	var/next_meteor = 6
 	var/waves = 1
 	var/start_side
+	var/next_meteor_lower = 10
+	var/next_meteor_upper = 15
 
 /datum/event/meteor_wave/setup()
 	waves = severity * rand(1,3)
@@ -22,7 +24,7 @@
 		var/pick_side = prob(80) ? start_side : (prob(50) ? turn(start_side, 90) : turn(start_side, -90))
 
 		spawn() spawn_meteors(severity * rand(1,2), get_meteors(), pick_side)
-		next_meteor += rand(15, 30) / severity
+		next_meteor += rand(next_meteor_lower, next_meteor_upper) / severity
 		waves--
 		endWhen = worst_case_end()
 
@@ -44,3 +46,29 @@
 			return meteors_threatening
 		else
 			return meteors_normal
+
+
+/datum/event/meteor_wave/overmap
+	next_meteor_lower = 5
+	next_meteor_upper = 10
+	next_meteor = 0
+	var/obj/effect/overmap/ship/victim
+
+/datum/event/meteor_wave/overmap/Destroy()
+	victim = null
+	. = ..()
+
+/*
+/datum/event/meteor_wave/overmap/worst_case_end()
+	if(endWhen == INFINITY)
+		return INFINITY
+	else
+		return ..()
+*/
+
+/datum/event/meteor_wave/overmap/tick()
+	if(victim && !victim.is_still()) //Meteors mostly fly in your face
+		start_side = prob(90) ? victim.fore_dir : pick(cardinal)
+	else //Unless you're standing
+		start_side = pick(cardinal)
+	..()

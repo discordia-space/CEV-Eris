@@ -37,7 +37,7 @@
 
 	if (emergency_evacuation)
 		// Abondon Ship
-		for (var/datum/shuttle/autodock/ferry/escape_pod/pod in escape_pods) // Launch the pods!
+		for (var/datum/shuttle/autodock/ferry/escape_pod/pod in escape_pods) // Launch the pods
 			if (!pod.arming_controller || pod.arming_controller.armed)
 				pod.move_time = (evac_transit_delay/10)
 				pod.launch(src)
@@ -48,6 +48,10 @@
 		priority_announcement.Announce(replacetext(replacetext(maps_data.shuttle_leaving_dock, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
 //		SetUniversalState(/datum/universal_state/bluespace_jump, arguments=list(maps_data.station_levels))
 
+		for (var/datum/shuttle/autodock/ferry/escape_pod/pod in escape_pods) // Launch the pods!
+			if (!pod.arming_controller || pod.arming_controller.armed)
+				pod.move_time = (evac_transit_delay/10)
+				pod.launch(src)
 /datum/evacuation_controller/starship/finish_evacuation()
 	..()
 	if(!emergency_evacuation) //bluespace jump

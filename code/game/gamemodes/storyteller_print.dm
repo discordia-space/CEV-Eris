@@ -96,12 +96,12 @@
 	data += "<hr>"
 	data += "<B>Evacuation</B>"
 	if (!evacuation_controller.is_idle())
-		dat += "<a href='?src=\ref[src];call_shuttle=1'>Call Evacuation</a><br>"
+		data += "<a href='?src=\ref[src];call_shuttle=1'>Call Evacuation</a><br>"
 	else
 		var/timeleft = evacuation_controller.get_eta()
 		if (evacuation_controller.waiting_to_leave())
-			dat += "ETA: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
-			dat += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
+			data += "ETA: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
+			data += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
 	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
 
 	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
@@ -185,37 +185,17 @@
 	if(href_list["call_shuttle"])
 		switch(href_list["call_shuttle"])
 			if("1")
-				if(!ticker || !emergency_shuttle.location())
-					return
-				if(emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
+				if (evacuation_controller.call_evacuation(usr, TRUE))
 					log_admin("[key_name(usr)] started the evacuation")
 					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
-
 			if("2")
-				if(!ticker || !emergency_shuttle.location())
-					return
-				if(emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
+				if (evacuation_controller.call_evacuation(usr, TRUE))
 					log_admin("[key_name(usr)] started the evacuation")
 					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
 
-				else if(emergency_shuttle.can_recall())
-					emergency_shuttle.recall()
+				else if (evacuation_controller.cancel_evacuation())
 					log_admin("[key_name(usr)] cancelled the evacuation")
 					message_admins("\blue [key_name_admin(usr)] cancelled the evacuation", 1)
-
-	if(href_list["edit_shuttle_time"])
-		if(check_rights(R_SERVER))
-			if (emergency_shuttle.waiting_to_leave())
-				var/new_time_left = input("Enter new pods launch countdown (seconds):","Edit Pods Launch Time", emergency_shuttle.estimate_launch_time() ) as num
-
-				emergency_shuttle.launch_time = world.time + new_time_left*10
-
-				log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-				message_admins(SPAN_NOTICE(" [key_name_admin(usr)] edited the Emergency Pods launch time to [new_time_left*10]"), 1)
-			else
-				alert("The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
 
 	if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))

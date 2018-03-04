@@ -12,6 +12,8 @@ var/global/list/map_sectors = list()
 /turf/unsimulated/map
 	icon = 'icons/turf/space.dmi'
 	icon_state = "map"
+	dynamic_lighting = 0
+	plane = OVER_OPENSPACE_PLANE
 
 /turf/unsimulated/map/edge
 	opacity = 1

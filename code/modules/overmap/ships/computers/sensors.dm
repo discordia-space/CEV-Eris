@@ -42,9 +42,8 @@
 			data["status"] = "DESTROYED"
 		else if(!sensors.powered())
 			data["status"] = "NO POWER"
-// TO FIX LATER -Guap6512
-//		else if(!sensors.in_vacuum())
-//			data["status"] = "VACUUM SEAL BROKEN"
+		else if(!sensors.in_vacuum())
+			data["status"] = "VACUUM SEAL BROKEN"
 		else
 			data["status"] = "OK"
 	else
@@ -129,28 +128,36 @@
 	var/heat = 0
 	var/range = 1
 	idle_power_usage = 5000
-/*
+
 /obj/machinery/shipsensors/attackby(obj/item/weapon/W, mob/user)
 	var/damage = max_health - health
-	if(damage && isWelder(W))
+	if(damage && iswelder(W))
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weapon/tool/weldingtool/WT = W
 
 		if(!WT.isOn())
 			return
 
 		if(WT.remove_fuel(0,user))
-			to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
+			user << "<span class='notice'>You start repairing the damage to [src].</span>"
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			if(do_after(user, max(5, damage / 5), src) && WT && WT.isOn())
-				to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
+				user << "<span class='notice'>You finish repairing the damage to [src].</span>"
 				take_damage(-damage)
 		else
-			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 			return
 		return
 	..()
-*/
+
+
+/obj/machinery/shipsensors/proc/in_vacuum()
+	var/turf/T=get_turf(src)
+	if(istype(T))
+		var/datum/gas_mixture/environment = T.return_air()
+		if(environment && environment.return_pressure() > MINIMUM_PRESSURE_DIFFERENCE_TO_SUSPEND)
+			return 0
+	return 1
 
 /obj/machinery/shipsensors/update_icon()
 	if(use_power)
@@ -184,8 +191,8 @@
 /obj/machinery/shipsensors/process()
 	..()
 	if(use_power) //can't run in non-vacuum
-//		if(!in_vacuum())
-//			toggle()
+		if(!in_vacuum())
+			toggle()
 		if(heat > critical_heat)
 			src.visible_message("<span class='danger'>\The [src] violently spews out sparks!</span>")
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
