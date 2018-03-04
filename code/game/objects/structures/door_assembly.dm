@@ -187,7 +187,7 @@
 	if(state == 2)
 		usable_qualities.Add(QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 	if(state == 1)
-		usable_qualities.Add(QUALITY_CUTTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
@@ -235,10 +235,10 @@
 			update_state()
 			return
 
-		if(QUALITY_CUTTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(state == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
-					user << SPAN_NOTICE("You cut the airlock wires!")
+					user << SPAN_NOTICE("You remove the airlock wires!")
 					new/obj/item/stack/cable_coil(src.loc, 1)
 					src.state = 0
 			update_state()

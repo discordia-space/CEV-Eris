@@ -48,20 +48,18 @@
 		else
 	return
 
-/obj/structure/lattice/attackby(obj/item/C as obj, mob/user as mob)
-
-	if (istype(C, /obj/item/stack/tile/floor))
+/obj/structure/lattice/attackby(obj/item/I, mob/user)
+	if (istype(I, /obj/item/stack/tile/floor))
 		var/turf/T = get_turf(src)
-		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
+		T.attackby(I, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
-	if (istype(C, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/WT = C
-		if(WT.remove_fuel(0, user))
+	if(I.get_tool_type(user, list(QUALITY_WELDING)))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
 			user << SPAN_NOTICE("Slicing lattice joints ...")
-		PoolOrNew(/obj/item/stack/rods, src.loc)
-		qdel(src)
-	if (istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
+			PoolOrNew(/obj/item/stack/rods, src.loc)
+			qdel(src)
+	if (istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = I
 		if(R.amount <= 2)
 			return
 		else

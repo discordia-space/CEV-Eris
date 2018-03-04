@@ -30,49 +30,60 @@
 	return
 
 
-/obj/effect/decal/mecha_wreckage/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if(salvage_num <= 0)
-			user << "You don't see anything that can be cut with [W]."
+/obj/effect/decal/mecha_wreckage/attackby(obj/item/I, mob/user)
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_WIRE_CUTTING, QUALITY_WELDING, QUALITY_PRYING))
+	switch(tool_type)
+
+		if(QUALITY_WIRE_CUTTING)
+			if(salvage_num <= 0 || !isemptylist(wirecutters_salvage))
+				user << "You don't see anything that can be removed with [I]."
+				return
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				var/type = prob(70)?pick(wirecutters_salvage):null
+				if(type)
+					var/N = new type(get_turf(user))
+					user.visible_message("[user] cuts [N] from [src].", "You cut [N] from [src].")
+					salvage_num--
+				else
+					user << "You failed to salvage anything valuable from [src]."
+					return
 			return
-		if (!isemptylist(welder_salvage) && WT.remove_fuel(0,user))
-			var/type = prob(70)?pick(welder_salvage):null
-			if(type)
-				var/N = new type(get_turf(user))
-				user.visible_message("[user] cuts [N] from [src]", "You cut [N] from [src]", "You hear a sound of welder nearby")
-				if(istype(N, /obj/item/mecha_parts/part))
-					welder_salvage -= type
-				salvage_num--
-			else
-				user << "You failed to salvage anything valuable from [src]."
-		else
-			user << SPAN_NOTICE("You need more welding fuel to complete this task.")
+
+		if(QUALITY_WELDING)
+			if(salvage_num <= 0 || !isemptylist(welder_salvage))
+				user << "You don't see anything that can be cut with [I]."
+				return
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(type)
+					var/N = new type(get_turf(user))
+					user.visible_message("[user] cuts [N] from [src]", "You cut [N] from [src]", "You hear a sound of welder nearby")
+					if(istype(N, /obj/item/mecha_parts/part))
+						welder_salvage -= type
+					salvage_num--
+					return
+				else
+					user << "You failed to salvage anything valuable from [src]."
+					return
 			return
-	if(istype(W, /obj/item/weapon/tool/wirecutters))
-		if(salvage_num <= 0)
-			user << "You don't see anything that can be cut with [W]."
+
+		if(QUALITY_PRYING)
+			if(!isemptylist(crowbar_salvage))
+				user << "You don't see anything that can be pried with [I]."
+				return
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				var/obj/S = pick(crowbar_salvage)
+				if(S)
+					S.loc = get_turf(user)
+					crowbar_salvage -= S
+					user.visible_message("[user] pries [S] from [src].", "You pry [S] from [src].")
+				return
 			return
-		else if(!isemptylist(wirecutters_salvage))
-			var/type = prob(70)?pick(wirecutters_salvage):null
-			if(type)
-				var/N = new type(get_turf(user))
-				user.visible_message("[user] cuts [N] from [src].", "You cut [N] from [src].")
-				salvage_num--
-			else
-				user << "You failed to salvage anything valuable from [src]."
-	if(istype(W, /obj/item/weapon/tool/crowbar))
-		if(!isemptylist(crowbar_salvage))
-			var/obj/S = pick(crowbar_salvage)
-			if(S)
-				S.loc = get_turf(user)
-				crowbar_salvage -= S
-				user.visible_message("[user] pries [S] from [src].", "You pry [S] from [src].")
+
+		if(ABORT_CHECK)
 			return
-		else
-			user << "You don't see anything that can be pried with [W]."
-	else
-		..()
+
+	..()
 	return
 
 

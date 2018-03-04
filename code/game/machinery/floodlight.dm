@@ -101,34 +101,49 @@
 	update_icon()
 
 
-/obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/tool/screwdriver))
-		if (!open)
+/obj/machinery/floodlight/attackby(obj/item/I, mob/user)
+
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
+	if(unlocked)
+		usable_qualities.Add(QUALITY_PRYING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_PRYING)
 			if(unlocked)
-				unlocked = 0
-				user << "You screw the battery panel in place."
-			else
-				unlocked = 1
-				user << "You unscrew the battery panel."
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD))
+					if(open)
+						open = 0
+						overlays = null
+						user << SPAN_NOTICE("You crowbar the battery panel in place.")
+					else
+						if(unlocked)
+							open = 1
+							user << SPAN_NOTICE("You remove the battery panel.")
+					update_icon()
+				return
+			return
 
-	if (istype(W, /obj/item/weapon/tool/crowbar))
-		if(unlocked)
-			if(open)
-				open = 0
-				overlays = null
-				user << "You crowbar the battery panel in place."
-			else
-				if(unlocked)
-					open = 1
-					user << "You remove the battery panel."
+		if(QUALITY_SCREW_DRIVING)
+			var/used_sound = unlocked ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+				unlocked = !unlocked
+				user << SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel of \the [src] with [I].")
+				update_icon()
+				return
+			return
 
-	if (istype(W, /obj/item/weapon/cell/large))
+		if(ABORT_CHECK)
+			return
+
+	if (istype(I, /obj/item/weapon/cell/large))
 		if(open)
 			if(cell)
-				user << "There is a power cell already installed."
+				user << SPAN_WARNING("There is a power cell already installed.")
 			else
 				user.drop_item()
-				W.loc = src
-				cell = W
-				user << "You insert the power cell."
-	update_icon()
+				I.loc = src
+				cell = I
+				user << SPAN_NOTICE("You insert the power cell.")
+		update_icon()

@@ -22,32 +22,47 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/prebuilt
 	anchored = 1
 
-/obj/machinery/floor_light/attackby(var/obj/item/W, var/mob/user)
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
-		anchored = !anchored
-		visible_message("<span class='notice'>\The [user] has [anchored ? "attached" : "detached"] \the [src].</span>")
-	else if(istype(W, /obj/item/weapon/tool/weldingtool) && (damaged || (stat & BROKEN)))
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if(!WT.remove_fuel(0, user))
-			user << SPAN_WARNING("\The [src] must be on to complete this task.")
+/obj/machinery/floor_light/attackby(var/obj/item/I, var/mob/user)
+
+	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_SCREW_DRIVING)
+	if((damaged || (stat & BROKEN)))
+		usable_qualities.Add(QUALITY_WELDING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_PULSING)
+			if(on)
+				user << SPAN_WARNING("\The [src] must be turn off to change a color.")
+				return
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
+				default_light_colour = new_light_colour
+				update_brightness()
+				return
 			return
-		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-		if(!do_after(user, 20, src))
+
+		if(QUALITY_WELDING)
+			if((damaged || (stat & BROKEN)))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					visible_message(SPAN_NOTICE("\The [user] has repaired \the [src]."))
+					stat &= ~BROKEN
+					damaged = null
+					update_brightness()
+					return
 			return
-		if(!src || !WT.isOn())
+
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				anchored = !anchored
+				visible_message("<span class='notice'>\The [user] has [anchored ? "attached" : "detached"] \the [src].</span>")
+				return
 			return
-		visible_message(SPAN_NOTICE("\The [user] has repaired \the [src]."))
-		stat &= ~BROKEN
-		damaged = null
-		update_brightness()
-	else if (istype(W, /obj/item/weapon/tool/multitool))
-		if(on)
-			user << SPAN_WARNING("\The [src] must be turn off to change a color.")
+
+		if(ABORT_CHECK)
 			return
-		var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
-		default_light_colour = new_light_colour
-		update_brightness()
-	else if(W.force && user.a_intent == "hurt")
+
+	if(I.force && user.a_intent == "hurt")
 		attack_hand(user)
 	return
 

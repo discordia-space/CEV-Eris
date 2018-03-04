@@ -22,12 +22,7 @@
 		return 1
 
 /datum/surgery_step/generic/cut_with_laser
-	allowed_tools = list(
-	/obj/item/weapon/tool/scalpel/laser3 = 95, \
-	/obj/item/weapon/tool/scalpel/laser2 = 85, \
-	/obj/item/weapon/tool/scalpel/laser1 = 75, \
-	/obj/item/weapon/melee/energy/sword = 5
-	)
+	requedQuality = QUALITY_LASER_CUTTING
 	priority = 2
 	min_duration = 90
 	max_duration = 110
@@ -65,52 +60,8 @@
 		affected.createwound(CUT, 7.5)
 		affected.createwound(BURN, 12.5)
 
-/datum/surgery_step/generic/incision_manager
-	allowed_tools = list(
-	/obj/item/weapon/tool/scalpel/manager = 100
-	)
-	priority = 2
-	min_duration = 80
-	max_duration = 120
-
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
-			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open == 0 && target_zone != "mouth"
-
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("[user] starts to construct a prepared incision on and within [target]'s [affected.name] with \the [tool].", \
-		"You start to construct a prepared incision on and within [target]'s [affected.name] with \the [tool].")
-		target.custom_pain("You feel a horrible, searing pain in your [affected.name] as it is pushed apart!",1)
-		..()
-
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\blue [user] has constructed a prepared incision on and within [target]'s [affected.name] with \the [tool].", \
-		"\blue You have constructed a prepared incision on and within [target]'s [affected.name] with \the [tool].",)
-		affected.open = 1
-
-		if(istype(target))
-			affected.setBleeding()
-
-		affected.createwound(CUT, 1)
-		affected.clamp()
-		affected.open = 2
-
-	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.name] with \the [tool]!", \
-		"\red Your hand jolts as the system sparks, ripping a gruesome hole in [target]'s [affected.name] with \the [tool]!")
-		affected.createwound(CUT, 20)
-		affected.createwound(BURN, 15)
-
 /datum/surgery_step/generic/cut_open
-	allowed_tools = list(
-	/obj/item/weapon/tool/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
-	)
+	requedQuality = QUALITY_CUTTING
 
 	min_duration = 90
 	max_duration = 110
@@ -146,11 +97,7 @@
 		affected.createwound(CUT, 10)
 
 /datum/surgery_step/generic/clamp_bleeders
-	allowed_tools = list(
-	/obj/item/weapon/tool/hemostat = 100,	\
-	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/device/assembly/mousetrap = 20
-	)
+	requedQuality = QUALITY_COMPRESSING
 
 	min_duration = 40
 	max_duration = 60
@@ -181,11 +128,7 @@
 		affected.createwound(CUT, 10)
 
 /datum/surgery_step/generic/retract_skin
-	allowed_tools = list(
-	/obj/item/weapon/tool/retractor = 100, 	\
-	/obj/item/weapon/tool/crowbar = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 50
-	)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 30
 	max_duration = 40
@@ -236,12 +179,7 @@
 		target.apply_damage(12, BRUTE, affected, sharp=1)
 
 /datum/surgery_step/generic/cauterize
-	allowed_tools = list(
-	/obj/item/weapon/tool/cautery = 100,
-	/obj/item/clothing/mask/smokable/cigarette = 75,
-	/obj/item/weapon/flame/lighter = 50,
-	/obj/item/weapon/tool/weldingtool = 25
-	)
+	requedQuality = QUALITY_CAUTERIZING
 
 	min_duration = 70
 	max_duration = 100
@@ -273,10 +211,7 @@
 		target.apply_damage(3, BURN, affected)
 
 /datum/surgery_step/generic/amputate
-	allowed_tools = list(
-	/obj/item/weapon/tool/circular_saw = 100, \
-	/obj/item/weapon/material/hatchet = 75
-	)
+	requedQuality = QUALITY_SAWING
 
 	min_duration = 110
 	max_duration = 160

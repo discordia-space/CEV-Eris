@@ -39,11 +39,7 @@
 		affected.createwound(CUT, 20)
 
 /datum/surgery_step/cavity/make_space
-	allowed_tools = list(
-	/obj/item/weapon/tool/surgicaldrill = 100,	\
-	/obj/item/weapon/pen = 75,	\
-	/obj/item/stack/rods = 50
-	)
+	requedQuality = QUALITY_DRILLING
 
 	min_duration = 60
 	max_duration = 80
@@ -68,12 +64,7 @@
 
 /datum/surgery_step/cavity/close_space
 	priority = 2
-	allowed_tools = list(
-	/obj/item/weapon/tool/cautery = 100,			\
-	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/weapon/flame/lighter = 50,			\
-	/obj/item/weapon/tool/weldingtool = 25
-	)
+	requedQuality = QUALITY_CAUTERIZING
 
 	min_duration = 60
 	max_duration = 80
@@ -145,11 +136,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/cavity/implant_removal
-	allowed_tools = list(
-	/obj/item/weapon/tool/hemostat = 100,	\
-	/obj/item/weapon/tool/wirecutters = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 20
-	)
+	requedQuality = QUALITY_COMPRESSING
 
 	min_duration = 80
 	max_duration = 100
@@ -237,4 +224,3 @@
 				playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
 				spawn(25)
 					imp.malfunction()
-

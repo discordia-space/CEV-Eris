@@ -45,11 +45,10 @@
 	if(severity && prob(30))
 		src.visible_message("The [src] crumbles away, leaving some dust and gravel behind.")*/
 
-/obj/item/weapon/ore/strangerock/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/tool/weldingtool/))
-		var/obj/item/weapon/tool/weldingtool/w = W
-		if(w.isOn())
-			if(w.get_fuel() >= 4 && !src.method)
+/obj/item/weapon/ore/strangerock/attackby(obj/item/I, mob/user)
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+			if(!src.method)
 				if(inside)
 					inside.loc = get_turf(src)
 					for(var/mob/M in viewers(world.view, user))
@@ -58,15 +57,13 @@
 					for(var/mob/M in viewers(world.view, user))
 						M.show_message("<span class='info'>[src] burns away into nothing.</span>",1)
 				qdel(src)
-				w.remove_fuel(4)
 			else
 				for(var/mob/M in viewers(world.view, user))
 					M.show_message("<span class='info'>A few sparks fly off [src], but nothing else happens.</span>",1)
-				w.remove_fuel(1)
 			return
 
-	else if(istype(W,/obj/item/device/core_sampler/))
-		var/obj/item/device/core_sampler/S = W
+	else if(istype(I,/obj/item/device/core_sampler/))
+		var/obj/item/device/core_sampler/S = I
 		S.sample_item(src, user)
 		return
 
