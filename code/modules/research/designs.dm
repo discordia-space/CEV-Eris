@@ -404,36 +404,22 @@ other types of metals and chemistry for reagents).
 	id = "jackhammer"
 	req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 500, "silver" = 500)
-	build_path = /obj/item/weapon/pickaxe/jackhammer
+	build_path = /obj/item/weapon/tool/pickaxe/jackhammer
 	sort_string = "KAAAA"
 
 /datum/design/item/weapon/mining/drill
 	id = "drill"
 	req_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 1000) //expensive, but no need for miners.
-	build_path = /obj/item/weapon/pickaxe/drill
+	build_path = /obj/item/weapon/tool/pickaxe/drill
 	sort_string = "KAAAB"
-
-/datum/design/item/weapon/mining/plasmacutter
-	id = "plasmacutter"
-	req_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 3, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 500, "gold" = 500, "plasma" = 500)
-	build_path = /obj/item/weapon/pickaxe/plasmacutter
-	sort_string = "KAAAC"
-
-/datum/design/item/weapon/mining/pick_diamond
-	id = "pick_diamond"
-	req_tech = list(TECH_MATERIAL = 6)
-	materials = list("diamond" = 3000)
-	build_path = /obj/item/weapon/pickaxe/diamond
-	sort_string = "KAAAD"
 
 /datum/design/item/weapon/mining/drill_diamond
 	id = "drill_diamond"
 	req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 1000, "diamond" = 2000)
-	build_path = /obj/item/weapon/pickaxe/diamonddrill
-	sort_string = "KAAAE"
+	build_path = /obj/item/weapon/tool/pickaxe/diamonddrill
+	sort_string = "KAAAC"
 ///////////////////////////////////
 /////////Shield Generators/////////
 ///////////////////////////////////
@@ -539,15 +525,6 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 2000, "gold" = 1500)
 	build_path = /obj/item/weapon/tool/scalpel/laser3
 	sort_string = "MBBAC"
-
-/datum/design/item/scalpel_manager
-	name = "Incision Management System"
-	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
-	id = "scalpel_manager"
-	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_DATA = 4)
-	materials = list (DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 1500, "gold" = 1500, "diamond" = 750)
-	build_path = /obj/item/weapon/tool/scalpel/manager
-	sort_string = "MBBAD"
 
 /datum/design/item/implant
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)

@@ -6,7 +6,7 @@
 "af" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/outpost/abandoned)
 "ag" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/outpost/abandoned)
 "ah" = (/turf/simulated/floor/asteroid,/area/mine/explored)
-"ai" = (/obj/item/weapon/shovel,/turf/simulated/floor/asteroid,/area/outpost/abandoned)
+"ai" = (/obj/item/weapon/tool/shovel,/turf/simulated/floor/asteroid,/area/outpost/abandoned)
 "aj" = (/obj/item/remains/human,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "ak" = (/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "al" = (/obj/random/gun_normal/low_chance,/turf/simulated/floor/asteroid,/area/outpost/abandoned)
@@ -82,7 +82,7 @@
 "bD" = (/obj/item/weapon/gun/projectile/colt,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "bE" = (/obj/structure/closet/oldstyle,/obj/item/weapon/hatton,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "bF" = (/obj/structure/closet/oldstyle,/obj/item/weapon/hatton_magazine,/obj/item/weapon/hatton_magazine,/obj/item/weapon/hatton_magazine,/turf/simulated/floor/tiled,/area/outpost/abandoned)
-"bG" = (/obj/structure/closet/oldstyle,/obj/item/weapon/pickaxe/plasmacutter,/turf/simulated/floor/tiled,/area/outpost/abandoned)
+"bG" = (/obj/structure/closet/oldstyle,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "bH" = (/obj/structure/closet/oldstyle,/obj/random/powercell/low_chance,/obj/random/powercell/low_chance,/obj/random/powercell/low_chance,/obj/random/powercell/low_chance,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "bI" = (/obj/structure/bed/chair{dir = 4},/obj/effect/floor_decal/rust,/mob/living/simple_animal/hostile/hivebot/range,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "bJ" = (/obj/structure/table/steel,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled,/area/outpost/abandoned)
@@ -344,3 +344,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 cMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+

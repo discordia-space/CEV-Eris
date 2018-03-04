@@ -265,7 +265,7 @@
 				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 			return
 
-		if(QUALITY_CUTTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(terminal && !building_terminal && !open_hatch)
 				var/turf/tempTDir = terminal.loc
 				if (istype(tempTDir))
@@ -283,8 +283,8 @@
 							return
 					new /obj/item/stack/cable_coil(loc,10)
 					user.visible_message(\
-						SPAN_NOTICE("[user.name] cut the cables and dismantled the power terminal."),\
-						SPAN_NOTICE("You cut the cables and dismantle the power terminal."))
+						SPAN_NOTICE("[user.name] remove the cables and dismantled the power terminal."),\
+						SPAN_NOTICE("You remove the cables and dismantle the power terminal."))
 					qdel(terminal)
 					building_terminal = 0
 			return

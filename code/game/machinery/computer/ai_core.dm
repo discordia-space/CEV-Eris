@@ -10,62 +10,132 @@
 	var/obj/item/device/mmi/brain = null
 
 
-/obj/structure/AIcore/attackby(obj/item/P as obj, mob/user as mob)
+/obj/structure/AIcore/attackby(obj/item/I, mob/user)
 
-	switch(state)
-		if(0)
-			if(istype(P, /obj/item/weapon/tool/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20, src))
+	var/list/usable_qualities = list()
+	if(state == 0 || (state == 1 && !circuit))
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if(state == 0)
+		usable_qualities.Add(QUALITY_WELDING)
+	if((state == 1 && circuit) || (state == 2 && circuit) || state == 4)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if((state == 1 && circuit) || (state == 3 && brain) || state == 4)
+		usable_qualities.Add(QUALITY_PRYING)
+	if(state == 3)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(state == 0)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You wrench the frame into place.")
 					anchored = 1
 					state = 1
-			if(istype(P, /obj/item/weapon/tool/weldingtool))
-				var/obj/item/weapon/tool/weldingtool/WT = P
-				if(!WT.isOn())
-					user << "The welder must be on for this task."
 					return
-				playsound(loc, 'sound/items/Welder.ogg', 50, 1)
-				if(do_after(user, 20, src))
-					if(!src || !WT.remove_fuel(0, user)) return
+			if(state == 1 && !circuit)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You unfasten the frame.")
+					anchored = 0
+					state = 0
+					return
+			return
+
+		if(QUALITY_WELDING)
+			if(state == 0)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You deconstruct the frame.")
 					new /obj/item/stack/material/plasteel( loc, 4)
 					qdel(src)
 					return
+			return
+
+		if(QUALITY_PRYING)
+			if(state == 1 && circuit)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You remove the circuit board.")
+					state = 1
+					icon_state = "0"
+					circuit.loc = loc
+					circuit = null
+					return
+			if(state == 3 && brain)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You remove the brain.")
+					brain.loc = loc
+					brain = null
+					icon_state = "3"
+					return
+			if(state == 4)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You remove the glass panel.")
+					state = 3
+					if (brain)
+						icon_state = "3b"
+					else
+						icon_state = "3"
+					new /obj/item/stack/material/glass/reinforced( loc, 2 )
+					return
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(state == 1 && circuit)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You screw the circuit board into place.")
+					state = 2
+					icon_state = "2"
+					return
+			if(state == 2 && circuit)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You unfasten the circuit board.")
+					state = 1
+					icon_state = "1"
+					return
+			if(state == 4)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You connect the monitor.")
+					if(!brain)
+						var/open_for_latejoin = alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", "Yes", "Yes", "No") == "Yes"
+						var/obj/structure/AIcore/deactivated/D = new(loc)
+						if(open_for_latejoin)
+							empty_playable_ai_cores += D
+					else
+						var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
+						if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created
+							A.rename_self("ai", 1)
+					qdel(src)
+					return
+			return
+
+		if(QUALITY_WIRE_CUTTING)
+			if(state == 3)
+				if (brain)
+					user << "Get that brain out of there first"
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You remove the cables.")
+					state = 2
+					icon_state = "2"
+					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
+					A.amount = 5
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	switch(state)
 		if(1)
-			if(istype(P, /obj/item/weapon/tool/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-				if(do_after(user, 20, src))
-					user << SPAN_NOTICE("You unfasten the frame.")
-					anchored = 0
-					state = 0
-			if(istype(P, /obj/item/weapon/circuitboard/aicore) && !circuit)
+			if(istype(I, /obj/item/weapon/circuitboard/aicore) && !circuit)
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				user << SPAN_NOTICE("You place the circuit board inside the frame.")
 				icon_state = "1"
-				circuit = P
+				circuit = I
 				user.drop_item()
-				P.loc = src
-			if(istype(P, /obj/item/weapon/tool/screwdriver) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				user << SPAN_NOTICE("You screw the circuit board into place.")
-				state = 2
-				icon_state = "2"
-			if(istype(P, /obj/item/weapon/tool/crowbar) && circuit)
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-				user << SPAN_NOTICE("You remove the circuit board.")
-				state = 1
-				icon_state = "0"
-				circuit.loc = loc
-				circuit = null
+				I.loc = src
 		if(2)
-			if(istype(P, /obj/item/weapon/tool/screwdriver) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				user << SPAN_NOTICE("You unfasten the circuit board.")
-				state = 1
-				icon_state = "1"
-			if(istype(P, /obj/item/stack/cable_coil))
-				var/obj/item/stack/cable_coil/C = P
+			if(istype(I, /obj/item/stack/cable_coil))
+				var/obj/item/stack/cable_coil/C = I
 				if (C.get_amount() < 5)
 					user << SPAN_WARNING("You need five coils of wire to add them to the frame.")
 					return
@@ -78,19 +148,8 @@
 						user << SPAN_NOTICE("You add cables to the frame.")
 				return
 		if(3)
-			if(istype(P, /obj/item/weapon/tool/wirecutters))
-				if (brain)
-					user << "Get that brain out of there first"
-				else
-					playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
-					user << SPAN_NOTICE("You remove the cables.")
-					state = 2
-					icon_state = "2"
-					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
-					A.amount = 5
-
-			if(istype(P, /obj/item/stack/material) && P.get_material_name() == "rglass")
-				var/obj/item/stack/RG = P
+			if(istype(I, /obj/item/stack/material) && I.get_material_name() == "rglass")
+				var/obj/item/stack/RG = I
 				if (RG.get_amount() < 2)
 					user << SPAN_WARNING("You need two sheets of glass to put in the glass panel.")
 					return
@@ -102,82 +161,49 @@
 						state = 4
 						icon_state = "4"
 
-			if(istype(P, /obj/item/weapon/aiModule/asimov))
+			if(istype(I, /obj/item/weapon/aiModule/asimov))
 				laws.add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")
 				laws.add_inherent_law("You must obey orders given to you by human beings, except where such orders would conflict with the First Law.")
 				laws.add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
 				usr << "Law module applied."
 
-			if(istype(P, /obj/item/weapon/aiModule/nanotrasen))
+			if(istype(I, /obj/item/weapon/aiModule/nanotrasen))
 				laws.add_inherent_law("Safeguard: Protect your assigned space station to the best of your ability. It is not something we can easily afford to replace.")
 				laws.add_inherent_law("Serve: Serve the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 				laws.add_inherent_law("Protect: Protect the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 				laws.add_inherent_law("Survive: AI units are not expendable, they are expensive. Do not allow unauthorized personnel to tamper with your equipment.")
 				usr << "Law module applied."
 
-			if(istype(P, /obj/item/weapon/aiModule/purge))
+			if(istype(I, /obj/item/weapon/aiModule/purge))
 				laws.clear_inherent_laws()
 				usr << "Law module applied."
 
-			if(istype(P, /obj/item/weapon/aiModule/freeform))
-				var/obj/item/weapon/aiModule/freeform/M = P
+			if(istype(I, /obj/item/weapon/aiModule/freeform))
+				var/obj/item/weapon/aiModule/freeform/M = I
 				laws.add_inherent_law(M.newFreeFormLaw)
 				usr << "Added a freeform law."
 
-			if(istype(P, /obj/item/device/mmi))
-				var/obj/item/device/mmi/M = P
+			if(istype(I, /obj/item/device/mmi))
+				var/obj/item/device/mmi/M = I
 				if(!M.brainmob)
-					user << SPAN_WARNING("Sticking an empty [P] into the frame would sort of defeat the purpose.")
+					user << SPAN_WARNING("Sticking an empty [I] into the frame would sort of defeat the purpose.")
 					return
 				if(M.brainmob.stat == 2)
-					user << SPAN_WARNING("Sticking a dead [P] into the frame would sort of defeat the purpose.")
+					user << SPAN_WARNING("Sticking a dead [I] into the frame would sort of defeat the purpose.")
 					return
 
 				if(jobban_isbanned(M.brainmob, "AI"))
-					user << SPAN_WARNING("This [P] does not seem to fit.")
+					user << SPAN_WARNING("This [I] does not seem to fit.")
 					return
 
 				if(M.brainmob.mind)
 					clear_antagonist(M.brainmob.mind)
 
 				user.drop_item()
-				P.loc = src
-				brain = P
-				usr << "Added [P]."
+				I.loc = src
+				brain = I
+				usr << "Added [I]."
 				icon_state = "3b"
-
-			if(istype(P, /obj/item/weapon/tool/crowbar) && brain)
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-				user << SPAN_NOTICE("You remove the brain.")
-				brain.loc = loc
-				brain = null
-				icon_state = "3"
-
-		if(4)
-			if(istype(P, /obj/item/weapon/tool/crowbar))
-				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-				user << SPAN_NOTICE("You remove the glass panel.")
-				state = 3
-				if (brain)
-					icon_state = "3b"
-				else
-					icon_state = "3"
-				new /obj/item/stack/material/glass/reinforced( loc, 2 )
-				return
-
-			if(istype(P, /obj/item/weapon/tool/screwdriver))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				user << SPAN_NOTICE("You connect the monitor.")
-				if(!brain)
-					var/open_for_latejoin = alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", "Yes", "Yes", "No") == "Yes"
-					var/obj/structure/AIcore/deactivated/D = new(loc)
-					if(open_for_latejoin)
-						empty_playable_ai_cores += D
-				else
-					var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
-					if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created
-						A.rename_self("ai", 1)
-				qdel(src)
 
 /obj/structure/AIcore/deactivated
 	name = "inactive AI"

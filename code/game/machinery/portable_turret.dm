@@ -674,23 +674,102 @@ var/list/turret_icons
 
 
 /obj/machinery/porta_turret_construct/attackby(obj/item/I, mob/user)
-	//this is a bit unwieldy but self-explanatory
+
+	var/list/usable_qualities = list()
+	if((build_step == 0 && !anchored) || build_step == 1 || build_step == 2 || build_step == 3)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if((build_step == 0 && !anchored) || build_step == 7)
+		usable_qualities.Add(QUALITY_PRYING)
+	if(build_step == 2 || build_step == 7)
+		usable_qualities.Add(QUALITY_WELDING)
+	if(build_step == 5 || build_step == 6)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(build_step == 0 && !anchored)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You secure the external bolts.")
+					anchored = 1
+					build_step = 1
+					return
+			if(build_step == 1)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You unfasten the external bolts.")
+					anchored = 0
+					build_step = 0
+					return
+			if(build_step == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You bolt the metal armor into place.")
+					build_step = 3
+					return
+			if(build_step == 3)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You remove the turret's metal armor bolts.")
+					build_step = 2
+					return
+			return
+
+		if(QUALITY_PRYING)
+			if(build_step == 0 && !anchored)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You dismantle the turret construction.")
+					new /obj/item/stack/material/steel( loc, 5)
+					qdel(src)
+					return
+			if(build_step == 7)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You pry off the turret's exterior armor.")
+					new /obj/item/stack/material/steel(loc, 2)
+					build_step = 6
+					return
+			return
+
+		if(QUALITY_WELDING)
+			if(build_step == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << "You remove the turret's interior metal armor."
+					new /obj/item/stack/material/steel( loc, 2)
+					build_step = 1
+					return
+			if(build_step == 7)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					build_step = 8
+					user << SPAN_NOTICE("You weld the turret's armor down.")
+
+					//The final step: create a full turret
+					var/obj/machinery/porta_turret/Turret = new target_type(loc)
+					Turret.name = finish_name
+					Turret.installation = installation
+					Turret.gun_charge = gun_charge
+					Turret.enabled = 0
+					Turret.setup()
+
+					qdel(src)
+					return
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(build_step == 5)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You close the internal access hatch.")
+					build_step = 6
+					return
+			if(build_step == 6)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You open the internal access hatch.")
+					build_step = 5
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+
 	switch(build_step)
-		if(0)	//first step
-			if(istype(I, /obj/item/weapon/tool/wrench) && !anchored)
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << SPAN_NOTICE("You secure the external bolts.")
-				anchored = 1
-				build_step = 1
-				return
-
-			else if(istype(I, /obj/item/weapon/tool/crowbar) && !anchored)
-				playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
-				user << SPAN_NOTICE("You dismantle the turret construction.")
-				new /obj/item/stack/material/steel( loc, 5)
-				qdel(src)
-				return
-
 		if(1)
 			if(istype(I, /obj/item/stack/material) && I.get_material_name() == DEFAULT_WALL_MATERIAL)
 				var/obj/item/stack/M = I
@@ -701,38 +780,6 @@ var/list/turret_icons
 				else
 					user << SPAN_WARNING("You need two sheets of metal to continue construction.")
 				return
-
-			else if(istype(I, /obj/item/weapon/tool/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user << SPAN_NOTICE("You unfasten the external bolts.")
-				anchored = 0
-				build_step = 0
-				return
-
-
-		if(2)
-			if(istype(I, /obj/item/weapon/tool/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << SPAN_NOTICE("You bolt the metal armor into place.")
-				build_step = 3
-				return
-
-			else if(istype(I, /obj/item/weapon/tool/weldingtool))
-				var/obj/item/weapon/tool/weldingtool/WT = I
-				if(!WT.isOn())
-					return
-				if(WT.get_fuel() < 5) //uses up 5 fuel.
-					user << SPAN_NOTICE("You need more fuel to complete this task.")
-					return
-
-				playsound(loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
-				if(do_after(user, 20, src))
-					if(!src || !WT.remove_fuel(5, user)) return
-					build_step = 1
-					user << "You remove the turret's interior metal armor."
-					new /obj/item/stack/material/steel( loc, 2)
-					return
-
 
 		if(3)
 			if(istype(I, /obj/item/weapon/gun/energy)) //the gun installation part
@@ -752,11 +799,7 @@ var/list/turret_icons
 				qdel(I) //delete the gun :(
 				return
 
-			else if(istype(I, /obj/item/weapon/tool/wrench))
-				playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-				user << SPAN_NOTICE("You remove the turret's metal armor bolts.")
-				build_step = 2
-				return
+			//attack_hand() removes the gun
 
 		if(4)
 			if(is_proximity_sensor(I))
@@ -766,15 +809,6 @@ var/list/turret_icons
 					return
 				user << SPAN_NOTICE("You add the prox sensor to the turret.")
 				qdel(I)
-				return
-
-			//attack_hand() removes the gun
-
-		if(5)
-			if(istype(I, /obj/item/weapon/tool/screwdriver))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
-				build_step = 6
-				user << SPAN_NOTICE("You close the internal access hatch.")
 				return
 
 			//attack_hand() removes the prox sensor
@@ -787,43 +821,6 @@ var/list/turret_icons
 					build_step = 7
 				else
 					user << SPAN_WARNING("You need two sheets of metal to continue construction.")
-				return
-
-			else if(istype(I, /obj/item/weapon/tool/screwdriver))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 100, 1)
-				build_step = 5
-				user << SPAN_NOTICE("You open the internal access hatch.")
-				return
-
-		if(7)
-			if(istype(I, /obj/item/weapon/tool/weldingtool))
-				var/obj/item/weapon/tool/weldingtool/WT = I
-				if(!WT.isOn()) return
-				if(WT.get_fuel() < 5)
-					user << SPAN_NOTICE("You need more fuel to complete this task.")
-
-				playsound(loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
-				if(do_after(user, 30, src))
-					if(!src || !WT.remove_fuel(5, user))
-						return
-					build_step = 8
-					user << SPAN_NOTICE("You weld the turret's armor down.")
-
-					//The final step: create a full turret
-					var/obj/machinery/porta_turret/Turret = new target_type(loc)
-					Turret.name = finish_name
-					Turret.installation = installation
-					Turret.gun_charge = gun_charge
-					Turret.enabled = 0
-					Turret.setup()
-
-					qdel(src) // qdel
-
-			else if(istype(I, /obj/item/weapon/tool/crowbar))
-				playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
-				user << SPAN_NOTICE("You pry off the turret's exterior armor.")
-				new /obj/item/stack/material/steel(loc, 2)
-				build_step = 6
 				return
 
 	if(istype(I, /obj/item/weapon/pen))	//you can rename turrets like bots!

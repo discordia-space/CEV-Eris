@@ -15,8 +15,9 @@
 /obj/get_fall_damage()
 	return w_class * 2
 
-/obj/examine(mob/user,distance=-1)
-	if(..(user,2))
+/obj/examine(mob/user, distance=-1, infix, suffix)
+	..(user, distance, infix, suffix)
+	if(get_dist(user, src) <= 2)
 		if (corporation)
 			if (corporation in global.global_corporations)
 				var/datum/corporation/C = global_corporations[corporation]

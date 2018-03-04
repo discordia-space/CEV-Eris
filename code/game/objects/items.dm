@@ -124,6 +124,10 @@
 	src.loc = T
 
 /obj/item/examine(mob/user, var/distance = -1)
+	var/message
+	for(var/Q in tool_qualities)
+		message += "\n<blue>This item posses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+
 	var/size
 	switch(src.w_class)
 		if(1.0)
@@ -136,7 +140,8 @@
 			size = "bulky"
 		if(5.0)
 			size = "huge"
-	return ..(user, distance, "", "It is a [size] item.")
+	message += "\nIt is a [size] item."
+	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user) return
@@ -592,10 +597,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
 	var/start_loc = user.loc
-	var/list/L = list()
-	for(var/Q in required_qualities)
-		if(Q in tool_qualities)
-			L.Add(Q)
+	var/list/L = required_qualities & tool_qualities
 
 	if(!L.len)
 		return FALSE
@@ -609,43 +611,78 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		return return_quality
 
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 0, forced_sound = null)
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 11, forced_sound = null)
+	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, instant_finish_tier, forced_sound)
+	switch(result)
+		if(TOOL_USE_CANCEL)
+			return FALSE
+		if(TOOL_USE_FAIL)
+			user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
+			handle_failure(user, target)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
+			return FALSE
+		if(TOOL_USE_SUCCESS)
+			return TRUE
+
+/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 11, forced_sound = null)
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
-		return
+		return TOOL_USE_CANCEL
+
+	if(istype(src, /obj/item/weapon/tool))
+		var/obj/item/weapon/tool/T = src
+		if(!T.check_tool_effects(user))
+			return TOOL_USE_CANCEL
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.shock_stage >= 30)
 			user << SPAN_WARNING("Pain distracts you from your task.")
 			fail_chance += round(H.shock_stage/120 * 40)
 			base_time = round(base_time * H.shock_stage/120 * 3)
+
 	if(forced_sound != NO_WORKSOUND)
 		if(forced_sound)
 			playsound(src.loc, forced_sound, 100, 1)
 		else
 			playsound(src.loc, src.worksound, 100, 1)
-	if(!(instant_finish_tier && (instant_finish_tier >= get_tool_quality(required_quality))))
+
+	if(base_time && (instant_finish_tier >= get_tool_quality(required_quality)))
 		target.used_now = TRUE
 		var/time_to_finish = base_time / get_tool_quality(required_quality)
 		if(!do_after(user, time_to_finish, user))
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
-			return FALSE
+			return TOOL_USE_CANCEL
 		else
 			target.used_now = FALSE
+
 	fail_chance += - get_tool_quality(required_quality) * 10
 	if(prob(fail_chance))
-		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
-		handle_failure(user, target)
-		return FALSE
-	return TRUE
+		return TOOL_USE_FAIL
+
+	return TOOL_USE_SUCCESS
 
 /obj/item/proc/handle_failure(var/mob/living/user, var/atom/target)
 	if(prob(33))
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			attack(H, H, H.get_holding_hand(src))
-	return
+			return
+
+	if(prob(5))
+		if(istype(src, /obj/item/weapon/tool))
+			var/obj/item/weapon/tool/T = src
+			if(T.use_fuel_cost)
+				user << SPAN_DANGER("You ignite the fuel of the [src]!")
+				explosion(src.loc,-1,1,2)
+				qdel(src)
+				return
+			if(T.use_power_cost)
+				user << SPAN_DANGER("You overload the cell in the [src]!")
+				explosion(src.loc,-1,1,2)
+				qdel(src)
+				return
+
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'

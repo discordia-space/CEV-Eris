@@ -792,13 +792,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/tool/surgicaldrill,
 					/obj/item/clothing/mask/breath/medical,
 					/obj/item/weapon/tank/anesthetic,
-					/obj/item/weapon/tool/fixovein,
 					/obj/item/weapon/tool/hemostat,
 					/obj/item/weapon/tool/scalpel,
-					/obj/item/weapon/tool/bonegel,
 					/obj/item/weapon/tool/retractor,
 					/obj/item/weapon/tool/bonesetter,
-					/obj/item/weapon/tool/circular_saw)
+					/obj/item/weapon/tool/saw/circular)
 	cost = 2500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Surgery crate"
@@ -1057,7 +1055,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(
 					/obj/item/weapon/reagent_containers/spray/cleaner,
 					/obj/item/device/lighting/toggleable/flashlight,
-					/obj/item/weapon/pickaxe/jackhammer)
+					/obj/item/weapon/tool/pickaxe/jackhammer)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/gear
 	crate_name = "Mining Supply Crate"

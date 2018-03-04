@@ -17,15 +17,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lit = 0
 
 /proc/isflamesource(A)
-	if(istype(A, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/WT = A
-		return (WT.isOn())
+	if(istype(A, /obj/item))
+		var/obj/item/I = A
+		if(QUALITY_WELDING in I.tool_qualities)
+			return TRUE
 	else if(istype(A, /obj/item/weapon/flame))
 		var/obj/item/weapon/flame/F = A
 		return (F.lit)
 	else if(istype(A, /obj/item/device/assembly/igniter))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 ///////////
 //MATCHES//

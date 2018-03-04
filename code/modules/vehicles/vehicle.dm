@@ -80,7 +80,7 @@
 
 	var/list/usable_qualities = list(QUALITY_PRYING, QUALITY_SCREW_DRIVING)
 	if(open)
-		usable_qualities.Add(QUALITY_CUTTING)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 	if(open && health < maxhealth)
 		usable_qualities.Add(QUALITY_WELDING)
 
@@ -91,7 +91,7 @@
 		if(QUALITY_PRYING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 				remove_cell(user)
-				return
+			return
 
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
@@ -104,7 +104,7 @@
 					user << SPAN_NOTICE("You fail to unsrew the cover, looks like its locked from the inside.")
 				return
 
-		if(QUALITY_CUTTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(open)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 					passenger_allowed = !passenger_allowed
@@ -119,7 +119,7 @@
 				health = min(maxhealth, health+10)
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
-				return
+			return
 
 		if(ABORT_CHECK)
 			return

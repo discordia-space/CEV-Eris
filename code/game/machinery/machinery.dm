@@ -325,7 +325,6 @@ Class Procs:
 		if(ABORT_CHECK)
 			return TRUE
 
-	user << SPAN_NOTICE("You cant use it here.")
 	return FALSE //If got no qualities - continue base attackby proc
 
 /obj/machinery/proc/default_part_replacement(var/obj/item/weapon/storage/part_replacer/R, var/mob/user)

@@ -187,13 +187,11 @@
 	allowed = list(
 		/obj/item/weapon/tool/bonesetter,
 		/obj/item/weapon/tool/cautery,
-		/obj/item/weapon/tool/circular_saw,
+		/obj/item/weapon/tool/saw/circular,
 		/obj/item/weapon/tool/hemostat,
 		/obj/item/weapon/tool/retractor,
 		/obj/item/weapon/tool/scalpel,
 		/obj/item/weapon/tool/surgicaldrill,
-		/obj/item/weapon/tool/bonegel,
-		/obj/item/weapon/tool/fixovein,
 		/obj/item/stack/medical/advanced/bruise_pack
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO

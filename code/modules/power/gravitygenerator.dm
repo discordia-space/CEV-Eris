@@ -170,42 +170,61 @@ var/const/GRAV_NEEDS_WRENCH = 3
 // Interaction
 
 // Fixing the gravity generator.
-/obj/machinery/gravity_generator/main/attackby(obj/item/I as obj, mob/user as mob, params)
+/obj/machinery/gravity_generator/main/attackby(obj/item/I, mob/user, params)
 	var/old_broken_state = broken_state
-	switch(broken_state)
-		if(GRAV_NEEDS_SCREWDRIVER)
-			if(istype(I, /obj/item/weapon/tool/screwdriver))
-				user << SPAN_NOTICE("You secure the screws of the framework.")
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				broken_state++
-		if(GRAV_NEEDS_WELDING)
-			if(istype(I, /obj/item/weapon/tool/weldingtool))
-				var/obj/item/weapon/tool/weldingtool/WT = I
-				if(WT.remove_fuel(1, user))
+
+	var/list/usable_qualities = list()
+	if(GRAV_NEEDS_WRENCH)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if(GRAV_NEEDS_WELDING)
+		usable_qualities.Add(QUALITY_WELDING)
+	if(GRAV_NEEDS_SCREWDRIVER)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(GRAV_NEEDS_WRENCH)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You secure the plating to the framework.")
+					set_fix()
+					return
+			return
+
+		if(QUALITY_WELDING)
+			if(GRAV_NEEDS_WELDING)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You mend the damaged framework.")
-					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 					broken_state++
-				else if(WT.isOn())
-					user << SPAN_WARNING("You don't have enough fuel to mend the damaged framework!")
-		if(GRAV_NEEDS_PLASTEEL)
-			if(istype(I, /obj/item/stack/material/plasteel))
-				var/obj/item/stack/material/plasteel/PS = I
-				if(PS.amount >= 10)
-					PS.use(10)
-					user << SPAN_NOTICE("You add the plating to the framework.")
-					playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
+					return
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(GRAV_NEEDS_SCREWDRIVER)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You secure the screws of the framework.")
 					broken_state++
-				else
-					user << SPAN_WARNING("You need 10 sheets of plasteel!")
-		if(GRAV_NEEDS_WRENCH)
-			if(istype(I, /obj/item/weapon/tool/wrench))
-				user << SPAN_NOTICE("You secure the plating to the framework.")
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				set_fix()
-		else
-			..()
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(GRAV_NEEDS_PLASTEEL)
+		if(istype(I, /obj/item/stack/material/plasteel))
+			var/obj/item/stack/material/plasteel/PS = I
+			if(PS.amount >= 10)
+				PS.use(10)
+				user << SPAN_NOTICE("You add the plating to the framework.")
+				playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
+				broken_state++
+			else
+				user << SPAN_WARNING("You need 10 sheets of plasteel!")
 	if(old_broken_state != broken_state)
 		update_icon()
+	else
+		..()
 
 /obj/machinery/gravity_generator/main/attack_hand(mob/user as mob)
 	if(!..())

@@ -37,24 +37,51 @@
 	user.visible_message("<span class='notice'>[user] has [!on?"de":""]activated \the [src].</span>", "<span class='notice'>You [!on?"de":""]activate \the [src].</span>")
 	return
 
-/obj/machinery/pipelayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/pipelayer/attackby(var/obj/item/I, var/mob/user)
 
-	if (istype(W, /obj/item/weapon/tool/wrench))
-		P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
-		P_type = Pipes[P_type_t]
-		user.visible_message(SPAN_NOTICE("[user] has set \the [src] to manufacture [P_type_t]."), SPAN_NOTICE("You set \the [src] to manufacture [P_type_t]."))
-		return
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_PRYING, QUALITY_BOLT_TURNING))
+	switch(tool_type)
 
-	if(istype(W, /obj/item/weapon/tool/crowbar))
-		a_dis=!a_dis
-		user.visible_message("<span class='notice'>[user] has [!a_dis?"de":""]activated auto-dismantling.</span>", "<span class='notice'>You [!a_dis?"de":""]activate auto-dismantling.</span>")
-		return
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+				if(metal)
+					var/m = round(input(usr,"Please specify the amount of metal to remove","Remove metal",min(round(metal),50)) as num, 1)
+					m = min(m, 50)
+					m = min(m, round(metal))
+					m = round(m)
+					if(m)
+						use_metal(m)
+						var/obj/item/stack/material/steel/MM = new (get_turf(src))
+						MM.amount = m
+						user.visible_message(SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."), SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))
+				else
+					user << "\The [src] is empty."
+				return
+			return
 
-	if(istype(W, /obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL)
+		if(QUALITY_PRYING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				a_dis=!a_dis
+				user.visible_message("<span class='notice'>[user] has [!a_dis?"de":""]activated auto-dismantling.</span>", "<span class='notice'>You [!a_dis?"de":""]activate auto-dismantling.</span>")
+				return
+			return
 
-		var/result = load_metal(W)
+		if(QUALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+				P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
+				P_type = Pipes[P_type_t]
+				user.visible_message(SPAN_NOTICE("[user] has set \the [src] to manufacture [P_type_t]."), SPAN_NOTICE("You set \the [src] to manufacture [P_type_t]."))
+				return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/stack/material) && I.get_material_name() == DEFAULT_WALL_MATERIAL)
+
+		var/result = load_metal(I)
 		if(isnull(result))
-			user << SPAN_WARNING("Unable to load [W] - no metal found.")
+			user << SPAN_WARNING("Unable to load [I] - no metal found.")
 		else if(!result)
 			user << SPAN_NOTICE("\The [src] is full.")
 		else
@@ -62,21 +89,7 @@
 
 		return
 
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
-		if(metal)
-			var/m = round(input(usr,"Please specify the amount of metal to remove","Remove metal",min(round(metal),50)) as num, 1)
-			m = min(m, 50)
-			m = min(m, round(metal))
-			m = round(m)
-			if(m)
-				use_metal(m)
-				var/obj/item/stack/material/steel/MM = new (get_turf(src))
-				MM.amount = m
-				user.visible_message(SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."), SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))
-		else
-			user << "\The [src] is empty."
-		return
-	..()
+	return
 
 /obj/machinery/pipelayer/examine(mob/user)
 	..()

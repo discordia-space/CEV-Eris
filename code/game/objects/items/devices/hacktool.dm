@@ -23,10 +23,11 @@
 	hack_state = null
 	return ..()
 
-/obj/item/weapon/tool/multitool/hacktool/attackby(var/obj/W, var/mob/user)
-	if(isscrewdriver(W))
-		in_hack_mode = !in_hack_mode
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+/obj/item/weapon/tool/multitool/hacktool/attackby(obj/item/I, mob/user)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+			in_hack_mode = !in_hack_mode
+			user << SPAN_NOTICE("You [in_hack_mode? "enable" : "disable"] the hach mode.")
 	else
 		..()
 

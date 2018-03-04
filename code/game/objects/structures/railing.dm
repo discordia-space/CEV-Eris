@@ -237,39 +237,48 @@
 
 
 
-/obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
-	// Dismantle
-	if(istype(W, /obj/item/weapon/tool/wrench) && !anchored)
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 20, src))
-			user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
-			new /obj/item/stack/material/steel(get_turf(usr))
-			new /obj/item/stack/material/steel(get_turf(usr))
-			qdel(src)
+/obj/structure/railing/attackby(obj/item/I, mob/user)
+
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
+	if(health < maxhealth)
+		usable_qualities.Add(QUALITY_WELDING)
+	if(!anchored)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				user << (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor."))
+				anchored = !anchored
+				update_icon()
+				return
 			return
 
-	// Repair
-	if(health < maxhealth && istype(W, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/F = W
-		if(F.welding)
-			playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-			if(do_after(user, 20, src))
-				user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."), SPAN_NOTICE("You repair some damage to \the [src]."))
-				health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
-				return
+		if(QUALITY_WELDING)
+			if(health < maxhealth)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."), SPAN_NOTICE("You repair some damage to \the [src]."))
+					health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
+					return
+			return
 
-	// Install
-	if(istype(W, /obj/item/weapon/tool/screwdriver))
-		user.visible_message(anchored ? SPAN_NOTICE("\The [user] begins unscrew \the [src].") : SPAN_NOTICE("\The [user] begins fasten \the [src].") )
-		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-		if(do_after(user, 10, src))
-			user << (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor."))
-			anchored = !anchored
-			update_icon()
+		if(QUALITY_BOLT_TURNING)
+			if(!anchored)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
+					new /obj/item/stack/material/steel(get_turf(usr))
+					new /obj/item/stack/material/steel(get_turf(usr))
+					qdel(src)
+					return
+			return
+
+		if(ABORT_CHECK)
 			return
 
 	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-	take_damage(W.force)
+	take_damage(I.force)
 
 	return ..()
 

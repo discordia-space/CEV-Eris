@@ -238,11 +238,11 @@
 			user << SPAN_NOTICE("You slide \the [I] inside \the [src].")
 			playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 			interact(user)
-	else if(istype(I, /obj/item/weapon/tool/crowbar))
-		playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
-		opened = !opened
-		user << "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>"
-		update_icon()
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY))
+			opened = !opened
+			user << "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>"
+			update_icon()
 	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/tool/screwdriver))
 		if(opened)
 			interact(user)

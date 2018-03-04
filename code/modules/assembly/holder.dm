@@ -104,20 +104,21 @@
 	..()
 
 
-/obj/item/device/assembly_holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(isscrewdriver(W))
-		if(!left_assembly || !right_assembly)
-			user << SPAN_WARNING("Assembly part missing!")
+/obj/item/device/assembly_holder/attackby(obj/item/I, mob/user)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+			if(!left_assembly || !right_assembly)
+				user << SPAN_WARNING("Assembly part missing!")
+				return
+			left_assembly.toggle_secure()
+			right_assembly.toggle_secure()
+			secured = !secured
+			if(secured)
+				user << SPAN_NOTICE("\The [src] is ready!")
+			else
+				user << SPAN_NOTICE("\The [src] can now be taken apart!")
+			update_icon()
 			return
-		left_assembly.toggle_secure()
-		right_assembly.toggle_secure()
-		secured = !secured
-		if(secured)
-			user << SPAN_NOTICE("\The [src] is ready!")
-		else
-			user << SPAN_NOTICE("\The [src] can now be taken apart!")
-		update_icon()
-		return
 	..()
 
 
