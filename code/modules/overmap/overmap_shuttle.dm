@@ -129,15 +129,16 @@
 		icon_state = icon_closed
 
 /obj/structure/fuel_port/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(iscrowbar(W))
-		if(opened)
-			user << "<spawn class='notice'>You tightly shut \the [src] door."
-			playsound(src.loc, 'sound/machines/Custom_closetclose.ogg', 25, 0, -3)
-			opened = 0
-		else
-			user << "<spawn class='notice'>You open up \the [src] door."
-			playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 15, 1, -3)
-			opened = 1
+	if(QUALITY_PRYING in W.tool_qualities)
+		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY))
+			if(opened)
+				user << "<spawn class='notice'>You tightly shut \the [src] door."
+				playsound(src.loc, 'sound/machines/Custom_closetclose.ogg', 25, 0, -3)
+				opened = 0
+			else
+				user << "<spawn class='notice'>You open up \the [src] door."
+				playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 15, 1, -3)
+				opened = 1
 	else if(istype(W,/obj/item/weapon/tank))
 		if(!opened)
 			user << "<spawn class='warning'>\The [src] door is still closed!"

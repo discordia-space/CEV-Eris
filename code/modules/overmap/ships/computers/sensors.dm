@@ -131,22 +131,12 @@
 
 /obj/machinery/shipsensors/attackby(obj/item/weapon/W, mob/user)
 	var/damage = max_health - health
-	if(damage && iswelder(W))
-
-		var/obj/item/weapon/tool/weldingtool/WT = W
-
-		if(!WT.isOn())
-			return
-
-		if(WT.remove_fuel(0,user))
-			user << "<span class='notice'>You start repairing the damage to [src].</span>"
+	if(damage && (QUALITY_WELDING in W.tool_qualities))
+		user << "<span class='notice'>You start repairing the damage to [src].</span>"
+		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_EASY))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, max(5, damage / 5), src) && WT && WT.isOn())
-				user << "<span class='notice'>You finish repairing the damage to [src].</span>"
-				take_damage(-damage)
-		else
-			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
-			return
+			user << "<span class='notice'>You finish repairing the damage to [src].</span>"
+			take_damage(-damage)
 		return
 	..()
 
