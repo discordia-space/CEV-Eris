@@ -70,6 +70,8 @@
 
 	var/override_enabled = 0	//when enabled, do not open/close doors or cycle airlocks and wait for the player to do it manually
 	var/received_confirm = 0	//for undocking, whether the server has recieved a confirmation from the client
+	var/docking_codes			//would only allow docking when receiving signal with these, if set
+	var/display_name			//how would it show up on docking monitoring program, area name + coordinates if unset
 
 /datum/computer/file/embedded_program/docking/New()
 	..()
@@ -107,12 +109,18 @@
 
 		if ("request_dock")
 			if (control_mode == MODE_NONE && dock_state == STATE_UNDOCKED)
+				tag_target = receive_tag
+
+				if(docking_codes)
+					var/code = signal.data["code"]
+					if(code != docking_codes)
+						return
+
 				control_mode = MODE_SERVER
 
 				dock_state = STATE_DOCKING
 				broadcast_docking_status()
 
-				tag_target = receive_tag
 				if (!override_enabled)
 					prepare_for_docking()
 				send_docking_command(tag_target, "confirm_dock")	//acknowledge the request
@@ -267,6 +275,7 @@
 	signal.data["tag"] = id_tag
 	signal.data["command"] = command
 	signal.data["recipient"] = recipient
+	signal.data["code"] = docking_codes
 	post_signal(signal)
 
 /datum/computer/file/embedded_program/docking/proc/broadcast_docking_status()
@@ -282,6 +291,9 @@
 		if (STATE_DOCKING) return "docking"
 		if (STATE_UNDOCKING) return "undocking"
 		if (STATE_DOCKED) return "docked"
+
+/datum/computer/file/embedded_program/docking/proc/get_name()
+	return display_name ? display_name : "[get_area(master)] ([master.x], [master.y])"
 
 
 #undef STATE_UNDOCKED

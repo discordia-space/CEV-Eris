@@ -73,14 +73,16 @@
 	if(current_viewing_message)
 		data["message_current"] = current_viewing_message
 
-	if(emergency_shuttle.location())
-		data["have_shuttle"] = 1
-		if(emergency_shuttle.online())
-			data["have_shuttle_called"] = 1
-		else
-			data["have_shuttle_called"] = 0
-	else
-		data["have_shuttle"] = 0
+	var/list/processed_evac_options = list()
+	if(!isnull(evacuation_controller))
+		for (var/datum/evacuation_option/EO in evacuation_controller.available_evac_options())
+			var/list/option = list()
+			option["option_text"] = EO.option_text
+			option["option_target"] = EO.option_target
+			option["needs_syscontrol"] = EO.needs_syscontrol
+			option["silicon_allowed"] = EO.silicon_allowed
+			processed_evac_options[++processed_evac_options.len] = option
+	data["evac_options"] = processed_evac_options
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
