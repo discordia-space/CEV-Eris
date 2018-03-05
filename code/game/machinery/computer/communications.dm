@@ -109,7 +109,7 @@
 		if("callshuttle2")
 			if(src.authenticated)
 				call_shuttle_proc(usr)
-				if(emergency_shuttle.online())
+				if(evacuation_controller.is_evacuating())
 					post_status("shuttle")
 			src.state = STATE_DEFAULT
 		if("cancelshuttle")
@@ -264,8 +264,8 @@
 
 	user.set_machine(src)
 	var/dat = "<head><title>Communications Console</title></head><body>"
-	if (emergency_shuttle.has_eta())
-		var/timeleft = emergency_shuttle.estimate_prepare_time()
+	if (evacuation_controller.is_prepared())
+		var/timeleft = evacuation_controller.get_eta()
 		dat += "<B>Emergency shuttle</B>\n<BR>\nETA: [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
 
 	if (issilicon(user))
@@ -289,11 +289,10 @@
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"
 
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
-				if(emergency_shuttle.location())
-					if (emergency_shuttle.online())
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel Emergency Pod Launch</A> \]"
-					else
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Initiate Emergency Pod Launch</A> \]"
+				if (evacuation_controller.is_prepared())
+					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel Emergency Pod Launch</A> \]"
+				else
+					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Initiate Emergency Pod Launch</A> \]"
 
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set Status Display</A> \]"
 			else
@@ -355,7 +354,7 @@
 	var/dat = ""
 	switch(src.aistate)
 		if(STATE_DEFAULT)
-			if(emergency_shuttle.location() && !emergency_shuttle.online())
+			if(evacuation_controller.is_idle())
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Initiate Emergency Pod Launch</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message List</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-status'>Set Status Display</A> \]"
@@ -402,40 +401,38 @@
 	for(var/obj/machinery/computer/prison_shuttle/PS in world)
 		PS.allowedtocall = !(PS.allowedtocall)
 
-/proc/call_shuttle_proc(var/mob/user)
-	if ((!( ticker ) || !emergency_shuttle.location()))
+/proc/call_shuttle_proc(var/mob/user, var/emergency)
+	if (!ticker || !evacuation_controller)
 		return
+
+	if(isnull(emergency))
+		emergency = 1
 
 	if(!universe.OnShuttleCall(usr))
 		user << SPAN_NOTICE("Cannot establish a bluespace connection. Please contact Asters Guild Customers Service.")
 		return
 
-	if(emergency_shuttle.deny_shuttle)
+	if(evacuation_controller.deny)
 		user << "The evacuation sequence procedure failed. Please contact Asters Guild Customers Service."
 		return
 
-	if(emergency_shuttle.going_to_centcom())
-		user << "The pods are already left the ship. Concider other ways of evacuation."
-		return
-
-	if(emergency_shuttle.online())
+	if(evacuation_controller.is_evacuating())
 		user << "The evacuation sequence is already started."
 		return
 
-	emergency_shuttle.call_evac()
-	log_game("[key_name(user)] has started evacuation.")
-	message_admins("[key_name_admin(user)] has started evacuation.", 1)
+	if(evacuation_controller.call_evacuation(user, _emergency_evac = emergency))
+		log_game("[key_name(user)] has started evacuation.")
+		message_admins("[key_name_admin(user)] has started evacuation.", 1)
 
 	return
 
 /proc/cancel_call_proc(var/mob/user)
-	if (!( ticker ) || !emergency_shuttle.can_recall())
+	if (!ticker || !evacuation_controller)
 		return
 
-	if(!emergency_shuttle.going_to_centcom()) //check that shuttle isn't already heading to centcomm
-		emergency_shuttle.recall()
-		log_game("[key_name(user)] has canceled evacuation.")
-		message_admins("[key_name_admin(user)] has canceled evacuation.", 1)
+	if(evacuation_controller.cancel_evacuation()) //check that shuttle isn't already heading to centcomm
+		log_game("[key_name(user)] has cancelled the evacuation.")
+		message_admins("[key_name_admin(user)] has cancelled the evacuation.", 1)
 	return
 
 

@@ -47,7 +47,6 @@ var/datum/maps_data/maps_data = new
 		return TRUE
 	return FALSE
 
-
 ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 /client/proc/test_MD()
 	set name = "Check level data"
@@ -79,13 +78,30 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 /datum/maps_data
 	var/list/all_levels        = new
-	var/list/station_levels    = new
-	var/list/admin_levels      = new
-	var/list/player_levels     = new
-	var/list/contact_levels    = new
+	var/list/station_levels    = new // Z-levels the station exists on
+	var/list/admin_levels      = new // Z-levels for admin functionality (Centcom, shuttle transit, etc)
+	var/list/player_levels     = new // Z-levels a character can typically reach
+	var/list/contact_levels    = new // Z-levels that can be contacted from the station, for eg announcements
+	var/list/sealed_levels	   = new // Z-levels that don't allow random transit at edge
 	var/list/asteroid_leves    = new
 	var/list/accessable_levels = new
+	var/list/empty_levels = null     // Empty Z-levels that may be used for various things
 	var/list/names = new
+
+	var/overmap_z
+	var/overmap_size = 50
+	var/overmap_event_areas = 40
+
+	var/emergency_shuttle_docked_message = "The escape pods are now unlocked. You have approximately %ETD% to board the escape pods."
+	var/emergency_shuttle_leaving_dock = "The escape pods have been launched, arriving at rendezvous point in %ETA%."
+	var/emergency_shuttle_called_message = "The emergency evacuation procedures are now in effect. Escape pods will unlock in %ETA%"
+	var/emergency_shuttle_recall_message = "Emergency evacuation sequence aborted. Return to normal operating conditions."
+
+	var/shuttle_docked_message = "Jump preparation complete. The bluespace drive is now spooling up, secure all stations for departure. Time to jump: approximately %ETD%."
+	var/shuttle_leaving_dock = "Jump initiated, exiting bluespace in %ETA%."
+	var/shuttle_called_message = "Jump sequence initiated. Transit procedures are now in effect. Jump in %ETA%."
+	var/shuttle_recall_message = "Jump sequence aborted, return to normal operating conditions."
+
 
 /datum/maps_data/proc/registrate(var/obj/map_data/MD)
 	var/level = MD.z_level
@@ -118,6 +134,12 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	if(MD.is_accessable_level)
 		accessable_levels[num2text(level)] = MD.is_accessable_level
+
+/datum/maps_data/proc/get_empty_zlevel()
+	if(empty_levels == null)
+		world.maxz++
+		empty_levels = list(world.maxz)
+	return pick(empty_levels)
 
 
 /obj/map_data
