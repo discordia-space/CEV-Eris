@@ -59,23 +59,20 @@ var/list/solars_list = list()
 
 
 
-/obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/power/solar/attackby(obj/item/weapon/I, mob/user)
 
-	if(istype(W, /obj/item/weapon/tool/crowbar))
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-		user.visible_message(SPAN_NOTICE("[user] begins to take the glass off the solar panel."))
-		if(do_after(user, 50,src))
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc
 				S.give_glass()
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
-	else if (W)
+	else if (I)
 		src.add_fingerprint(user)
-		src.health -= W.force
+		src.health -= I.force
 		src.healthcheck()
 	..()
 
@@ -224,25 +221,38 @@ var/list/solars_list = list()
 		glass_type = null
 
 
-/obj/item/solar_assembly/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/item/solar_assembly/attackby(var/obj/item/I, var/mob/user)
 
-	if(!anchored && isturf(loc))
-		if(istype(W, /obj/item/weapon/tool/wrench))
-			anchored = 1
-			user.visible_message(SPAN_NOTICE("[user] wrenches the solar assembly into place."))
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			return 1
-	else
-		if(istype(W, /obj/item/weapon/tool/wrench))
-			anchored = 0
-			user.visible_message(SPAN_NOTICE("[user] unwrenches the solar assembly from it's place."))
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			return 1
+	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
+	if(tracker)
+		usable_qualities.Add(QUALITY_PRYING)
 
-		if(istype(W, /obj/item/stack/material) && (W.get_material_name() == "glass" || W.get_material_name() == "rglass"))
-			var/obj/item/stack/material/S = W
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(tracker)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+					new /obj/item/weapon/tracker_electronics(src.loc)
+					tracker = 0
+					user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
+					return
+			return
+
+		if(QUALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+				anchored = !anchored
+				user.visible_message(SPAN_NOTICE("[user] [anchored ? "un" : ""]wrenches the solar assembly into place."))
+				return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(anchored && !isturf(loc))
+		if(istype(I, /obj/item/stack/material) && (I.get_material_name() == "glass" || I.get_material_name() == "rglass"))
+			var/obj/item/stack/material/S = I
 			if(S.use(2))
-				glass_type = W.type
+				glass_type = I.type
 				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 				user.visible_message(SPAN_NOTICE("[user] places the glass on the solar assembly."))
 				if(tracker)
@@ -252,21 +262,15 @@ var/list/solars_list = list()
 			else
 				user << SPAN_WARNING("You need two sheets of glass to put them into a solar panel.")
 				return
-			return 1
+			return
 
 	if(!tracker)
-		if(istype(W, /obj/item/weapon/tracker_electronics))
+		if(istype(I, /obj/item/weapon/tracker_electronics))
 			tracker = 1
 			user.drop_item()
-			qdel(W)
+			qdel(I)
 			user.visible_message(SPAN_NOTICE("[user] inserts the electronics into the solar assembly."))
-			return 1
-	else
-		if(istype(W, /obj/item/weapon/tool/crowbar))
-			new /obj/item/weapon/tracker_electronics(src.loc)
-			tracker = 0
-			user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
-			return 1
+			return
 	..()
 
 //

@@ -59,11 +59,7 @@
 /datum/surgery_step/internal/module_removal
 	priority = 3 // Before internal organs
 
-	allowed_tools = list(
-		/obj/item/weapon/tool/hemostat = 100,
-		/obj/item/weapon/tool/wirecutters = 75,
-		/obj/item/weapon/material/kitchen/utensil/fork = 20
-	)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 60
 	max_duration = 80

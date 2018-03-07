@@ -48,7 +48,7 @@
 	/obj/item/weapon/tool/crowbar,\
 	/obj/item/weapon/clipboard,\
 	/obj/item/weapon/cell/large,\
-	/obj/item/weapon/tool/circular_saw,\
+	/obj/item/weapon/tool/saw/circular,\
 	/obj/item/weapon/material/hatchet,\
 	/obj/item/weapon/handcuffs,\
 	/obj/item/weapon/tool/hemostat,\
@@ -56,8 +56,8 @@
 	/obj/item/weapon/flame/lighter,\
 	/obj/item/weapon/light/bulb,\
 	/obj/item/weapon/light/tube,\
-	/obj/item/weapon/pickaxe,\
-	/obj/item/weapon/shovel,\
+	/obj/item/weapon/tool/pickaxe,\
+	/obj/item/weapon/tool/shovel,\
 	/obj/item/weapon/tool/weldingtool,\
 	/obj/item/weapon/tool/wirecutters,\
 	/obj/item/weapon/tool/wrench,\

@@ -243,9 +243,10 @@
 		emagged = 1
 		return 1
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, sheet_path))
-		var/obj/item/stack/addstack = O
+/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/I, var/mob/user)
+
+	if(istype(I, sheet_path))
+		var/obj/item/stack/addstack = I
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
 			user << "\blue The [src.name] is full!"
@@ -255,36 +256,56 @@
 		addstack.use(amount)
 		updateUsrDialog()
 		return
-	else if(!active)
-		if(istype(O, /obj/item/weapon/tool/wrench))
 
-			if(!anchored)
-				connect_to_network()
-				user << "\blue You secure the generator to the floor."
-			else
-				disconnect_from_network()
-				user << "\blue You unsecure the generator from the floor."
+	if(active)
+		user << SPAN_NOTICE("You can't work with [src] while its running!")
 
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-			anchored = !anchored
+	else
 
-		else if(istype(O, /obj/item/weapon/tool/screwdriver))
-			open = !open
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			if(open)
-				user << "\blue You open the access panel."
-			else
-				user << "\blue You close the access panel."
-		else if(istype(O, /obj/item/weapon/tool/crowbar) && open)
-			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
-			for(var/obj/item/I in component_parts)
-				I.loc = src.loc
-			while ( sheets > 0 )
-				DropFuel()
+		var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING)
+		if(open)
+			usable_qualities.Add(QUALITY_PRYING)
 
-			new_frame.state = 2
-			new_frame.icon_state = "box_1"
-			qdel(src)
+		var/tool_type = I.get_tool_type(user, usable_qualities)
+		switch(tool_type)
+
+			if(QUALITY_PRYING)
+				if(open)
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD))
+						var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
+						for(var/obj/item/CP in component_parts)
+							CP.loc = src.loc
+						while ( sheets > 0 )
+							DropFuel()
+						new_frame.state = 2
+						new_frame.icon_state = "box_1"
+						qdel(src)
+					return
+				return
+
+			if(QUALITY_SCREW_DRIVING)
+				var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+					open = !open
+					user << SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+					update_icon()
+					return
+				return
+
+			if(QUALITY_BOLT_TURNING)
+				if(istype(get_turf(src), /turf/space))
+					user << SPAN_NOTICE("You can't anchor something to empty space. Idiot.")
+					return
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I].")
+					anchored = !anchored
+					if(anchored)
+						connect_to_network()
+					else
+						disconnect_from_network()
+
+			if(ABORT_CHECK)
+				return
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
 	..()

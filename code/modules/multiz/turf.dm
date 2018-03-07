@@ -1,3 +1,34 @@
+/*
+see multiz/movement.dm for some info.
+*/
+/turf/proc/CanZPass(atom/A, direction)
+	if(z == A.z) //moving FROM this turf
+		return direction == UP //can't go below
+	else
+		if(direction == UP) //on a turf below, trying to enter
+			return 0
+		if(direction == DOWN) //on a turf above, trying to enter
+			return !density
+
+/turf/simulated/open/CanZPass(atom/A, direction)
+	if(locate(/obj/structure/catwalk, src))
+		if(z == A.z)
+			if(direction == DOWN)
+				return 0
+		else if(direction == UP)
+			return 0
+	return 1
+
+/turf/space/CanZPass(atom/A, direction)
+	if(locate(/obj/structure/catwalk, src))
+		if(z == A.z)
+			if(direction == DOWN)
+				return 0
+		else if(direction == UP)
+			return 0
+	return 1
+/////////////////////////////////////
+
 /turf/simulated/open
 	name = "open space"
 	icon = 'icons/turf/space.dmi'

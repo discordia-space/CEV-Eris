@@ -69,18 +69,19 @@
 		user << SPAN_NOTICE("You attach \the [A] to \the [src]!")
 
 
-/obj/item/device/assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_assembly(W))
-		var/obj/item/device/assembly/A = W
+/obj/item/device/assembly/attackby(obj/item/weapon/I, mob/user)
+	if(is_assembly(I))
+		var/obj/item/device/assembly/A = I
 		if((!A.secured) && (!secured))
 			attach_assembly(A, user)
 			return
-	if(isscrewdriver(W))
-		if(toggle_secure())
-			user << SPAN_NOTICE("\The [src] is ready!")
-		else
-			user << SPAN_NOTICE("\The [src] can now be attached!")
-		return
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+			if(toggle_secure())
+				user << SPAN_NOTICE("\The [src] is ready!")
+			else
+				user << SPAN_NOTICE("\The [src] can now be attached!")
+			return
 	..()
 
 

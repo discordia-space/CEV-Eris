@@ -22,22 +22,20 @@
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
 
-/obj/item/weapon/flame/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/flame/candle/attackby(obj/item/I, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
-			light(SPAN_NOTICE("\The [user] casually lights the [name] with [W]."))
-	else if(istype(W, /obj/item/weapon/flame/lighter))
-		var/obj/item/weapon/flame/lighter/L = W
+	if(QUALITY_WELDING in I.tool_qualities) //Badasses dont get blinded by lighting their candle with a welding tool
+		light(SPAN_NOTICE("\The [user] casually lights the [name] with [I]."))
+	else if(istype(I, /obj/item/weapon/flame/lighter))
+		var/obj/item/weapon/flame/lighter/L = I
 		if(L.lit)
 			light()
-	else if(istype(W, /obj/item/weapon/flame/match))
-		var/obj/item/weapon/flame/match/M = W
+	else if(istype(I, /obj/item/weapon/flame/match))
+		var/obj/item/weapon/flame/match/M = I
 		if(M.lit)
 			light()
-	else if(istype(W, /obj/item/weapon/flame/candle))
-		var/obj/item/weapon/flame/candle/C = W
+	else if(istype(I, /obj/item/weapon/flame/candle))
+		var/obj/item/weapon/flame/candle/C = I
 		if(C.lit)
 			light()
 

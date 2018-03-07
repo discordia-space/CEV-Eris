@@ -102,7 +102,7 @@ var/global/datum/controller/gameticker/ticker
 
 	callHook("roundstart")
 
-	shuttle_controller.setup_shuttle_docks()
+	shuttle_controller.initialize_shuttles()
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		storyteller.set_up()
@@ -245,7 +245,7 @@ var/global/datum/controller/gameticker/ticker
 	storyteller.process()
 	storyteller.process_events()
 
-	var/game_finished = (emergency_shuttle.returned() || ship_was_nuked  || universe_has_ended)
+	var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
 
 	if(!nuke_in_progress && game_finished)
 		current_state = GAME_STATE_FINISHED
@@ -280,7 +280,7 @@ var/global/datum/controller/gameticker/ticker
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
-				if(emergency_shuttle.pods_departed)
+				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
 					if(isNotAdminLevel(playerTurf.z))
 						Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
 					else

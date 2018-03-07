@@ -610,29 +610,6 @@ var/list/name_to_material
 	melting_point = T0C+300
 	flags = MATERIAL_PADDING
 
-/material/cult
-	name = "cult"
-	display_name = "disturbing stone"
-	icon_base = "cult"
-	icon_colour = "#402821"
-	icon_reinf = "reinf_cult"
-	shard_type = SHARD_STONE_PIECE
-	sheet_singular_name = "brick"
-	sheet_plural_name = "bricks"
-
-/material/cult/place_dismantled_girder(var/turf/target)
-	new /obj/structure/girder/cult(target)
-
-/material/cult/place_dismantled_product(var/turf/target)
-	new /obj/effect/decal/cleanable/blood(target)
-
-/material/cult/reinf
-	name = "cult2"
-	display_name = "human remains"
-
-/material/cult/reinf/place_dismantled_product(var/turf/target)
-	new /obj/item/remains/human(target)
-
 /material/resin
 	name = "resin"
 	icon_colour = "#E85DD8"

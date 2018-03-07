@@ -386,42 +386,85 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/I, var/mob/user as mob)
 
-	if (O.is_open_container())
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING, QUALITY_BOLT_TURNING))
+	switch(tool_type)
+
+		if(QUALITY_SHOVELING)
+			if(weedlevel > 0)
+				user << SPAN_WARNING("This plot is completely devoid of weeds. It doesn't need uprooting.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				user.visible_message(SPAN_DANGER("[user] starts uprooting the weeds."), SPAN_DANGER("You remove the weeds from the [src]."))
+				weedlevel = 0
+				update_icon()
+				return
+			return
+
+		if(QUALITY_CUTTING)
+			if(!seed)
+				user << SPAN_NOTICE("There is nothing to take a sample from in \the [src].")
+				return
+
+			if(sampled)
+				user << SPAN_NOTICE("You have already sampled from this plant.")
+				return
+
+			if(dead)
+				user << SPAN_WARNING("The plant is dead.")
+				return
+
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				// Create a sample.
+				seed.harvest(user,yield_mod,1)
+				health -= (rand(3,5)*10)
+
+				if(prob(30))
+					sampled = 1
+
+				// Bookkeeping.
+				check_health()
+				force_update = 1
+				process()
+				return
+			return
+
+		if(QUALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
+					if(connected_port)
+						disconnect()
+						user << SPAN_NOTICE("You disconnect \the [src] from the port.")
+						update_icon()
+						return
+					else
+						var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
+						if(possible_port)
+							if(connect(possible_port))
+								user << SPAN_NOTICE("You connect \the [src] to the port.")
+								update_icon()
+								return
+							else
+								user << SPAN_NOTICE("\The [src] failed to connect to the port.")
+								return
+						else
+							user << SPAN_NOTICE("Nothing happens.")
+							return
+				user << SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src].")
+				anchored = !anchored
+				return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if (I.is_open_container())
 		return 0
 
-	if(istype(O, /obj/item/weapon/tool/wirecutters) || istype(O, /obj/item/weapon/tool/scalpel))
+	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 
-		if(!seed)
-			user << "There is nothing to take a sample from in \the [src]."
-			return
-
-		if(sampled)
-			user << "You have already sampled from this plant."
-			return
-
-		if(dead)
-			user << "The plant is dead."
-			return
-
-		// Create a sample.
-		seed.harvest(user,yield_mod,1)
-		health -= (rand(3,5)*10)
-
-		if(prob(30))
-			sampled = 1
-
-		// Bookkeeping.
-		check_health()
-		force_update = 1
-		process()
-
-		return
-
-	else if(istype(O, /obj/item/weapon/reagent_containers/syringe))
-
-		var/obj/item/weapon/reagent_containers/syringe/S = O
+		var/obj/item/weapon/reagent_containers/syringe/S = I
 
 		if (S.mode == 1)
 			if(seed)
@@ -437,16 +480,16 @@
 				user << "There's nothing to draw something from."
 			return 1
 
-	else if (istype(O, /obj/item/seeds))
+	else if (istype(I, /obj/item/seeds))
 
 		if(!seed)
 
-			var/obj/item/seeds/S = O
-			user.remove_from_mob(O)
+			var/obj/item/seeds/S = I
+			user.remove_from_mob(I)
 
 			if(!S.seed)
 				user << "The packet seems to be empty. You throw it away."
-				qdel(O)
+				qdel(I)
 				return
 
 			user << "You plant the [S.seed.seed_name] [S.seed.seed_noun]."
@@ -458,59 +501,40 @@
 			health = (istype(S, /obj/item/seeds/cutting) ? round(seed.get_trait(TRAIT_ENDURANCE)/rand(2,5)) : seed.get_trait(TRAIT_ENDURANCE))
 			lastcycle = world.time
 
-			qdel(O)
+			qdel(I)
 
 			check_health()
 
 		else
 			user << SPAN_DANGER("\The [src] already has seeds in it!")
 
-	else if (istype(O, /obj/item/weapon/material/minihoe))  // The minihoe
-
-		if(weedlevel > 0)
-			user.visible_message(SPAN_DANGER("[user] starts uprooting the weeds."), SPAN_DANGER("You remove the weeds from the [src]."))
-			weedlevel = 0
-			update_icon()
-		else
-			user << SPAN_DANGER("This plot is completely devoid of weeds. It doesn't need uprooting.")
-
-	else if (istype(O, /obj/item/weapon/storage/bag/plants))
+	else if (istype(I, /obj/item/weapon/storage/bag/plants))
 
 		attack_hand(user)
 
-		var/obj/item/weapon/storage/bag/plants/S = O
+		var/obj/item/weapon/storage/bag/plants/S = I
 		for (var/obj/item/weapon/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
 			if(!S.can_be_inserted(G))
 				return
 			S.handle_item_insertion(G, 1)
 
-	else if ( istype(O, /obj/item/weapon/plantspray) )
+	else if ( istype(I, /obj/item/weapon/plantspray) )
 
-		var/obj/item/weapon/plantspray/spray = O
-		user.remove_from_mob(O)
+		var/obj/item/weapon/plantspray/spray = I
+		user.remove_from_mob(I)
 		toxins += spray.toxicity
 		pestlevel -= spray.pest_kill_str
 		weedlevel -= spray.weed_kill_str
-		user << "You spray [src] with [O]."
+		user << "You spray [src] with [I]."
 		playsound(loc, 'sound/effects/spray3.ogg', 50, 1, -6)
-		qdel(O)
+		qdel(I)
 		check_health()
 
-	else if(mechanical && istype(O, /obj/item/weapon/tool/wrench))
-
-		//If there's a connector here, the portable_atmospherics setup can handle it.
-		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
-			return ..()
-
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		anchored = !anchored
-		user << "You [anchored ? "wrench" : "unwrench"] \the [src]."
-
-	else if(O.force && seed)
+	else if(I.force && seed)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		user.visible_message(SPAN_DANGER("\The [seed.display_name] has been attacked by [user] with \the [O]!"))
+		user.visible_message(SPAN_DANGER("\The [seed.display_name] has been attacked by [user] with \the [I]!"))
 		if(!dead)
-			health -= O.force
+			health -= I.force
 			check_health()
 	return
 

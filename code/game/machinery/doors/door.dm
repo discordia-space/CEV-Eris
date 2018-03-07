@@ -209,6 +209,31 @@
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
+	if(repairing)
+		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_WELDING))
+		switch(tool_type)
+
+			if(QUALITY_WELDING)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You finish repairing the damage to \the [src].")
+					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
+					update_icon()
+					qdel(repairing)
+					repairing = null
+					return
+				return
+
+			if(QUALITY_PRYING)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You remove \the [repairing].")
+					repairing.loc = user.loc
+					repairing = null
+					return
+				return
+
+			if(ABORT_CHECK)
+				return
+
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
 			user << SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now.")
@@ -239,30 +264,6 @@
 		if (transfer)
 			user << SPAN_NOTICE("You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src].")
 
-		return
-
-	if(repairing && istype(I, /obj/item/weapon/tool/weldingtool))
-		if(!density)
-			user << SPAN_WARNING("\The [src] must be closed before you can repair it.")
-			return
-
-		var/obj/item/weapon/tool/weldingtool/welder = I
-		if(welder.remove_fuel(0,user))
-			user << SPAN_NOTICE("You start to fix dents and weld \the [repairing] into place.")
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, 5 * repairing.amount, src) && welder && welder.isOn())
-				user << SPAN_NOTICE("You finish repairing the damage to \the [src].")
-				health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
-				update_icon()
-				qdel(repairing)
-				repairing = null
-		return
-
-	if(repairing && istype(I, /obj/item/weapon/tool/crowbar))
-		user << SPAN_NOTICE("You remove \the [repairing].")
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-		repairing.loc = user.loc
-		repairing = null
 		return
 
 	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.

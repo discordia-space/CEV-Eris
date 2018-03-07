@@ -267,7 +267,7 @@
 		attack_hand(user)
 		return
 
-	else if(I.get_tool_type(usr, list(QUALITY_PULSING)) || I.get_tool_type(usr, list(QUALITY_CUTTING)))
+	else if(QUALITY_CUTTING in I.tool_qualities || QUALITY_WIRE_CUTTING in I.tool_qualities || QUALITY_PULSING in I.tool_qualities)
 		if(src.panel_open)
 			attack_hand(user)
 		return
@@ -931,10 +931,10 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
-	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/tool/crowbar = 5,/obj/item/weapon/tool/weldingtool = 3,/obj/item/weapon/tool/wirecutters = 5,
-					/obj/item/weapon/tool/wrench = 5,/obj/item/device/scanner/analyzer = 5,/obj/item/device/t_scanner = 5, /obj/item/weapon/tool/screwdriver = 5, /obj/item/weapon/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1)
+	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/weapon/tool/crowbar = 5,/obj/item/weapon/tool/weldingtool = 5,/obj/item/weapon/tool/wirecutters = 5,
+					/obj/item/weapon/tool/wrench = 5,/obj/item/device/scanner/analyzer = 5,/obj/item/device/t_scanner = 5, /obj/item/weapon/tool/screwdriver = 5, /obj/item/clothing/gloves/insulated/cheap  = 2, /obj/item/clothing/gloves/insulated = 1)
 	prices = list(/obj/item/stack/cable_coil/random = 100,/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/weldingtool = 30,/obj/item/weapon/tool/wirecutters = 30,
-					/obj/item/weapon/tool/wrench = 30,/obj/item/device/scanner/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/tool/screwdriver = 30, /obj/item/weapon/tool/weldingtool/hugetank = 150, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600)
+					/obj/item/weapon/tool/wrench = 30,/obj/item/device/scanner/analyzer = 50,/obj/item/device/t_scanner = 50, /obj/item/weapon/tool/screwdriver = 30, /obj/item/clothing/gloves/insulated/cheap  = 80, /obj/item/clothing/gloves/insulated = 600)
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
@@ -954,13 +954,13 @@
 	products = list(/obj/item/clothing/head/hardhat = 4,
 					/obj/item/weapon/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/insulated = 4, /obj/item/weapon/tool/screwdriver = 12,
 					/obj/item/weapon/tool/crowbar = 12,/obj/item/weapon/tool/wirecutters = 12,/obj/item/weapon/tool/multitool = 12,/obj/item/weapon/tool/wrench = 12,/obj/item/device/t_scanner = 12,
-					/obj/item/stack/cable_coil/heavyduty = 8, /obj/item/weapon/cell/large = 8, /obj/item/weapon/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
+					/obj/item/weapon/cell/large = 8, /obj/item/weapon/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5,/obj/item/weapon/stock_parts/micro_laser = 5,
 					/obj/item/weapon/stock_parts/matter_bin = 5,/obj/item/weapon/stock_parts/manipulator = 5,/obj/item/weapon/stock_parts/console_screen = 5)
 	prices = list(/obj/item/clothing/head/hardhat = 4,
 					/obj/item/weapon/storage/belt/utility = 150,/obj/item/clothing/glasses/meson = 300,/obj/item/clothing/gloves/insulated = 600, /obj/item/weapon/tool/screwdriver = 30,
 					/obj/item/weapon/tool/crowbar = 30,/obj/item/weapon/tool/wirecutters = 30,/obj/item/weapon/tool/multitool = 40,/obj/item/weapon/tool/wrench = 40,/obj/item/device/t_scanner = 50,
-					/obj/item/stack/cable_coil/heavyduty = 100, /obj/item/weapon/cell/large = 500, /obj/item/weapon/tool/weldingtool = 40,/obj/item/clothing/head/welding = 80,
+					/obj/item/weapon/cell/large = 500, /obj/item/weapon/tool/weldingtool = 40,/obj/item/clothing/head/welding = 80,
 					/obj/item/weapon/light/tube = 10,/obj/item/clothing/suit/fire = 150, /obj/item/weapon/stock_parts/scanning_module = 40,/obj/item/weapon/stock_parts/micro_laser = 40,
 					/obj/item/weapon/stock_parts/matter_bin = 40,/obj/item/weapon/stock_parts/manipulator = 40,/obj/item/weapon/stock_parts/console_screen = 40)
 
@@ -972,7 +972,7 @@
 	icon_deny = "robotics-deny"
 	products = list(/obj/item/clothing/suit/storage/toggle/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/device/flash = 4,
 					/obj/item/weapon/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/healthanalyzer = 3,
-					/obj/item/weapon/tool/scalpel = 2,/obj/item/weapon/tool/circular_saw = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
+					/obj/item/weapon/tool/scalpel = 2,/obj/item/weapon/tool/saw/circular = 2,/obj/item/weapon/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/weapon/tool/screwdriver = 5,/obj/item/weapon/tool/crowbar = 5)
 
 //FOR ACTORS GUILD - mainly props that cannot be spawned otherwise

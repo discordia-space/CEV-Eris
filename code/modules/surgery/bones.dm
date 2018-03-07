@@ -3,11 +3,9 @@
 //						BONE SURGERY							//
 //////////////////////////////////////////////////////////////////
 
-/datum/surgery_step/glue_bone
-	allowed_tools = list(
-	/obj/item/weapon/tool/bonegel = 100,	\
-	/obj/item/weapon/tool/screwdriver = 75
-	)
+/datum/surgery_step/remove_bone_shards
+	requedQuality = QUALITY_RETRACTING
+
 	can_infect = 1
 	blood_level = 1
 
@@ -23,27 +21,25 @@
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if (affected.stage == 0)
-			user.visible_message("[user] starts applying medication to the damaged bones in [target]'s [affected.name] with \the [tool]." , \
-			"You start applying medication to the damaged bones in [target]'s [affected.name] with \the [tool].")
+			user.visible_message("[user] starts repairing damaged bones in [target]'s [affected.name] with \the [tool]." , \
+			"You start removing bone shards in [target]'s [affected.name] with \the [tool].")
 		target.custom_pain("Something in your [affected.name] is causing you a lot of pain!",1)
 		..()
 
 	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\blue [user] applies some [tool] to [target]'s bone in [affected.name]", \
-			"\blue You apply some [tool] to [target]'s bone in [affected.name] with \the [tool].")
+		user.visible_message("\blue [user] removed bone shards with [tool] in [target]'s bone in [affected.name]", \
+			"\blue You removed bone shards of [target]'s [affected.name] with \the [tool].")
 		affected.stage = 1
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("\red [user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!" , \
-		"\red Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!")
+		user.visible_message("\red [user]'s hand slips, damaging [target]'s [affected.name]!" , \
+		"\red Your hand slips, damaging [target]'s [affected.name]!")
+		affected.createwound(BRUISE, 5)
 
 /datum/surgery_step/set_bone
-	allowed_tools = list(
-	/obj/item/weapon/tool/bonesetter = 100,	\
-	/obj/item/weapon/tool/wrench = 75		\
-	)
+	requedQuality = QUALITY_BONE_SETTING
 
 	min_duration = 60
 	max_duration = 70
@@ -79,10 +75,7 @@
 		affected.createwound(BRUISE, 5)
 
 /datum/surgery_step/mend_skull
-	allowed_tools = list(
-	/obj/item/weapon/tool/bonesetter = 100,	\
-	/obj/item/weapon/tool/wrench = 75		\
-	)
+	requedQuality = QUALITY_BONE_SETTING
 
 	min_duration = 60
 	max_duration = 70
@@ -113,10 +106,8 @@
 		h.disfigured = 1
 
 /datum/surgery_step/finish_bone
-	allowed_tools = list(
-	/obj/item/weapon/tool/bonegel = 100,	\
-	/obj/item/weapon/tool/screwdriver = 75
-	)
+	requedQuality = QUALITY_BONE_SETTING
+
 	can_infect = 1
 	blood_level = 1
 

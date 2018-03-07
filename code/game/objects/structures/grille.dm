@@ -94,14 +94,14 @@
 
 /obj/structure/grille/attackby(obj/item/weapon/I, mob/user)
 
-	var/list/usable_qualities = list(QUALITY_CUTTING)
+	var/list/usable_qualities = list(QUALITY_WIRE_CUTTING)
 	if(anchored)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
 
-		if(QUALITY_CUTTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(!shock(user, 100))
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 					PoolOrNew(/obj/item/stack/rods, list(get_turf(src), destroyed ? 1 : 2))

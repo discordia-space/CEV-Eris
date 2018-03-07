@@ -3,6 +3,8 @@
 
 var/list/ai_list = list()
 var/list/ai_verbs_default = list(
+	/mob/living/silicon/ai/proc/ai_movement_up,
+	/mob/living/silicon/ai/proc/ai_movement_down,
 	/mob/living/silicon/ai/proc/ai_announcement,
 	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
@@ -332,6 +334,16 @@ var/list/ai_verbs_default = list(
 	if(powered_ai.anchored)
 		use_power = 2
 
+/mob/living/silicon/ai/proc/ai_movement_up()
+	set category = "Silicon Commands"
+	set name = "Move Upwards"
+	zMove(UP)
+
+/mob/living/silicon/ai/proc/ai_movement_down()
+	set category = "Silicon Commands"
+	set name = "Move Downwards"
+	zMove(DOWN)
+
 /mob/living/silicon/ai/proc/pick_icon()
 	set category = "Silicon Commands"
 	set name = "Set AI Core Display"
@@ -379,19 +391,13 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = alert("Are you sure you want to call the shuttle?", "Confirm Shuttle Call", "Yes", "No")
+	var/confirm = alert("Are you sure you want to evacuate?", "Confirm Evacuation", "Yes", "No")
 
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
 	if(confirm == "Yes")
 		call_shuttle_proc(src)
-
-	// hack to display shuttle timer
-	if(emergency_shuttle.online())
-		var/obj/machinery/computer/communications/C = locate() in machines
-		if(C)
-			C.post_status("shuttle")
 
 /mob/living/silicon/ai/proc/ai_recall_shuttle()
 	set category = "Silicon Commands"

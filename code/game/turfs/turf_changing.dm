@@ -101,3 +101,31 @@
 			lighting_build_overlay()
 		else
 			lighting_clear_overlay()
+
+/turf/proc/transport_properties_from(turf/other)
+	if(!istype(other, src.type))
+		return 0
+	src.set_dir(other.dir)
+	src.icon_state = other.icon_state
+	src.icon = other.icon
+	src.overlays = other.overlays.Copy()
+	src.underlays = other.underlays.Copy()
+	src.opacity = other.opacity
+	if(hasvar(src, "blocks_air"))
+		src.blocks_air = other.blocks_air
+	if(other.decals)
+		src.decals = other.decals.Copy()
+		src.update_icon()
+	return 1
+
+//I would name this copy_from() but we remove the other turf from their air zone for some reason
+/turf/simulated/transport_properties_from(turf/simulated/other)
+	if(!..())
+		return 0
+
+	if(other.zone)
+		if(!src.air)
+			src.make_air()
+		src.air.copy_from(other.zone.air)
+		other.zone.remove(other)
+	return 1
