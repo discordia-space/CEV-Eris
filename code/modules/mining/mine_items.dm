@@ -17,14 +17,16 @@
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/weapon/cell/medium(src)
+	new /obj/item/weapon/cell/medium(src)
+	new /obj/item/weapon/weldpack/canister(src)
+	new /obj/item/weapon/weldpack/canister(src)
 	new /obj/item/device/scanner/analyzer(src)
 	new /obj/item/weapon/storage/bag/ore(src)
 	new /obj/item/device/lighting/toggleable/lantern(src)
 	new /obj/item/weapon/tool/shovel(src)
 	new /obj/item/weapon/tool/pickaxe(src)
 	new /obj/item/weapon/tool/pickaxe/jackhammer(src)
-	new /obj/item/weapon/cell/medium(src)
-	new /obj/item/weapon/cell/medium(src)
 
 /******************************Lantern*******************************/
 
