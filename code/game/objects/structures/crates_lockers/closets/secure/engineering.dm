@@ -67,6 +67,12 @@
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
+	new /obj/item/weapon/weldpack/canister(src)
+	new /obj/item/weapon/weldpack/canister(src)
+	new /obj/item/weapon/weldpack/canister(src)
+	new /obj/item/weapon/weldpack/canister(src)
+	new /obj/item/weapon/weldpack/canister(src)
+	new /obj/item/weapon/weldpack/canister(src)
 
 
 /obj/structure/closet/secure_closet/personal/engineering_personal

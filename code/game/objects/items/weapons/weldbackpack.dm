@@ -1,11 +1,20 @@
 /obj/item/weapon/weldpack
-	name = "Welding kit"
+	name = "welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
 	slot_flags = SLOT_BACK
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "welderpack"
 	w_class = ITEM_SIZE_LARGE
 	var/max_fuel = 350
+
+
+/obj/item/weapon/weldpack/canister
+	name = "canister"
+	desc = "You may need it for draging around additional fuel."
+	slot_flags = null
+	icon_state = "canister"
+	w_class = ITEM_SIZE_NORMAL
+	max_fuel = 100
 
 /obj/item/weapon/weldpack/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
@@ -29,3 +38,13 @@
 	..(user)
 	user << text("\icon[] [] units of fuel left!", src, src.reagents.total_volume)
 	return
+
+/obj/item/weapon/weldpack/proc/explode()
+	if (reagents.total_volume > 150)
+		explosion(src.loc,1,2,4)
+	else if (reagents.total_volume > 50)
+		explosion(src.loc,0,1,3)
+	else if (reagents.total_volume > 0)
+		explosion(src.loc,-1,1,2)
+	if(src)
+		qdel(src)

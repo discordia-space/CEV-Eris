@@ -36,6 +36,7 @@
 				prob(5);/obj/item/clothing/head/welding,\
 				prob(5);/obj/item/weapon/extinguisher,\
 				prob(5);/obj/item/stack/cable_coil,\
+				prob(5);/obj/item/weapon/weldpack/canister,\
 				prob(5);/obj/item/weapon/packageWrap,\
 				prob(2);/obj/item/device/flash,\
 				prob(2);/obj/item/weapon/mop,\
