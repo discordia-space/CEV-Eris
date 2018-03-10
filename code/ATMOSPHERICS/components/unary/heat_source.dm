@@ -157,7 +157,10 @@
 	if(default_deconstruction(I, user))
 		return
 
-	..()
+	if(default_part_replacement(I, user))
+		return
+
+	return
 
 /obj/machinery/atmospherics/unary/heater/examine(mob/user)
 	..(user)

@@ -67,11 +67,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/external_implant/remove
-	allowed_tools = list(
-	/obj/item/weapon/tool/retractor = 100, 	\
-	/obj/item/weapon/tool/crowbar = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 50
-	)
+	requedQuality = QUALITY_COMPRESSING
 
 	min_duration = 80
 	max_duration = 90

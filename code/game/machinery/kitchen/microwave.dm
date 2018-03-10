@@ -52,38 +52,61 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/microwave/attackby(var/obj/item/I, var/mob/user)
 	if(src.broken > 0)
-		if(src.broken == 2 && istype(O, /obj/item/weapon/tool/screwdriver)) // If it's broken and they're using a screwdriver
-			user.visible_message( \
-				SPAN_NOTICE("\The [user] starts to fix part of the microwave."), \
-				SPAN_NOTICE("You start to fix part of the microwave.") \
-			)
-			if (do_after(user, 20, src))
-				user.visible_message( \
-					SPAN_NOTICE("\The [user] fixes part of the microwave."), \
-					SPAN_NOTICE("You have fixed part of the microwave.") \
-				)
-				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && istype(O, /obj/item/weapon/tool/wrench)) // If it's broken and they're doing the wrench
-			user.visible_message( \
-				SPAN_NOTICE("\The [user] starts to fix part of the microwave."), \
-				SPAN_NOTICE("You start to fix part of the microwave.") \
-			)
-			if (do_after(user, 20, src))
-				user.visible_message( \
-					SPAN_NOTICE("\The [user] fixes the microwave."), \
-					SPAN_NOTICE("You have fixed the microwave.") \
-				)
-				src.icon_state = "mw"
-				src.broken = 0 // Fix it!
-				src.dirty = 0 // just to be sure
-				src.flags = OPENCONTAINER
-		else
-			user << SPAN_WARNING("It's broken!")
-			return 1
+
+		var/list/usable_qualities = list()
+		if(broken == 2)
+			usable_qualities.Add(QUALITY_SCREW_DRIVING)
+		if(broken == 1)
+			usable_qualities.Add(QUALITY_BOLT_TURNING)
+
+
+		var/tool_type = I.get_tool_type(user, usable_qualities)
+		switch(tool_type)
+
+			if(QUALITY_SCREW_DRIVING)
+				if(broken == 2)
+					user.visible_message( \
+						SPAN_NOTICE("\The [user] starts to fix part of the microwave."), \
+						SPAN_NOTICE("You start to fix part of the microwave.") \
+					)
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+						user.visible_message( \
+							SPAN_NOTICE("\The [user] fixes part of the microwave."), \
+							SPAN_NOTICE("You have fixed part of the microwave.") \
+						)
+						src.broken = 1
+						return
+					return
+
+			if(QUALITY_BOLT_TURNING)
+				if(broken == 1)
+					user.visible_message( \
+						SPAN_NOTICE("\The [user] starts to fix part of the microwave."), \
+						SPAN_NOTICE("You start to fix part of the microwave.") \
+					)
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+						user.visible_message( \
+							SPAN_NOTICE("\The [user] fixes the microwave."), \
+							SPAN_NOTICE("You have fixed the microwave.") \
+						)
+						src.icon_state = "mw"
+						src.broken = 0 // Fix it!
+						src.dirty = 0 // just to be sure
+						src.flags = OPENCONTAINER
+						return
+					return
+
+			if(ABORT_CHECK)
+				return
+
+//If we dont fix it with code above - return
+		user << SPAN_WARNING("It's broken!")
+		return
+
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
-		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner)) // If they're trying to clean it then let them
+		if(istype(I, /obj/item/weapon/reagent_containers/spray/cleaner)) // If they're trying to clean it then let them
 			user.visible_message( \
 				SPAN_NOTICE("\The [user] starts to clean the microwave."), \
 				SPAN_NOTICE("You start to clean the microwave.") \
@@ -100,53 +123,51 @@
 		else //Otherwise bad luck!!
 			user << SPAN_WARNING("It's dirty!")
 			return 1
-	else if(is_type_in_list(O,acceptable_items))
+	else if(is_type_in_list(I,acceptable_items))
 		if (contents.len>=max_n_of_items)
 			user << SPAN_WARNING("This [src] is full of ingredients, you cannot put more.")
 			return 1
-		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
-			var/obj/item/stack/S = O
-			new O.type (src)
+		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
+			var/obj/item/stack/S = I
+			new I.type (src)
 			S.use(1)
 			user.visible_message( \
-				SPAN_NOTICE("\The [user] has added one of [O] to \the [src]."), \
-				SPAN_NOTICE("You add one of [O] to \the [src]."))
+				SPAN_NOTICE("\The [user] has added one of [I] to \the [src]."), \
+				SPAN_NOTICE("You add one of [I] to \the [src]."))
 			return
 		else
 		//	user.remove_from_mob(O)	//This just causes problems so far as I can tell. -Pete
 			user.drop_item()
-			O.loc = src
+			I.loc = src
 			user.visible_message( \
-				SPAN_NOTICE("\The [user] has added \the [O] to \the [src]."), \
-				SPAN_NOTICE("You add \the [O] to \the [src]."))
+				SPAN_NOTICE("\The [user] has added \the [I] to \the [src]."), \
+				SPAN_NOTICE("You add \the [I] to \the [src]."))
 			return
-	else if(istype(O,/obj/item/weapon/reagent_containers/glass) || \
-	        istype(O,/obj/item/weapon/reagent_containers/food/drinks) || \
-	        istype(O,/obj/item/weapon/reagent_containers/food/condiment) \
+	else if(istype(I,/obj/item/weapon/reagent_containers/glass) || \
+	        istype(I,/obj/item/weapon/reagent_containers/food/drinks) || \
+	        istype(I,/obj/item/weapon/reagent_containers/food/condiment) \
 		)
-		if (!O.reagents)
+		if (!I.reagents)
 			return 1
-		for (var/datum/reagent/R in O.reagents.reagent_list)
+		for (var/datum/reagent/R in I.reagents.reagent_list)
 			if (!(R.id in acceptable_reagents))
-				user << SPAN_WARNING("Your [O] contains components unsuitable for cookery.")
+				user << SPAN_WARNING("Your [I] contains components unsuitable for cookery.")
 				return 1
 		return
-	else if(istype(O,/obj/item/weapon/tool/crowbar))
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		user.visible_message( \
-			"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave.</span>", \
-			"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
-			)
-		if (do_after(user,20, src))
+		"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave.</span>", \
+		"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
+		)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
 			user.visible_message( \
 			"<span class='notice'>\The [user] [src.anchored ? "secures" : "unsecures"] the microwave.</span>", \
 			"<span class='notice'>You [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
 			)
 			src.anchored = !src.anchored
-		else
-			user << SPAN_NOTICE("You decide not to do that.")
 	else
 
-		user << SPAN_WARNING("You have no idea what you can cook with this [O].")
+		user << SPAN_WARNING("You have no idea what you can cook with this [I].")
 	..()
 	src.updateUsrDialog()
 

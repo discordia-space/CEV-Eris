@@ -431,37 +431,42 @@
 	return get_ranged_target_turf(src, dir, 10)
 
 /obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
-	if(!I || !user)
-		return
 
-	if(istype(I, /obj/item/weapon/tool/screwdriver))
-		if(c_mode==0)
-			c_mode=1
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "You remove the screws around the power connection."
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
+	if(c_mode == 1)
+		usable_qualities.Add(QUALITY_WELDING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(contents.len > 0)
+				user << "Eject the items first!"
+				return
+			if(mode<=0)
+				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+					if(c_mode==0) // It's off but still not unscrewed
+						c_mode=1 // Set it to doubleoff l0l
+						user << "You remove the screws around the power connection."
+						return
+					else if(c_mode==1)
+						c_mode=0
+						user << "You attach the screws around the power connection."
+						return
 			return
-		else if(c_mode==1)
-			c_mode=0
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "You attach the screws around the power connection."
-			return
-	else if(istype(I,/obj/item/weapon/tool/weldingtool) && c_mode==1)
-		var/obj/item/weapon/tool/weldingtool/W = I
-		if(W.remove_fuel(1,user))
-			user << "You start slicing the floorweld off the delivery chute."
-			if(do_after(user,20, src))
-				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-				if(!src || !W.isOn()) return
-				user << "You sliced the floorweld off the delivery chute."
-				var/obj/structure/disposalconstruct/C = new (src.loc)
-				C.pipe_type = PIPE_TYPE_INTAKE
-				C.update()
-				C.anchored = 1
-				C.density = 1
-				qdel(src)
-			return
-		else
-			user << "You need more welding fuel to complete this task."
+
+		if(QUALITY_WELDING)
+			if(mode==-1)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+					user << "You sliced the floorweld off the disposal unit."
+					var/obj/structure/disposalconstruct/C = new (src.loc)
+					src.transfer_fingerprints_to(C)
+					C.pipe_type = PIPE_TYPE_INTAKE
+					C.anchored = 1
+					C.density = 1
+					C.update()
+					qdel(src)
 			return
 
 /obj/machinery/disposal/deliveryChute/Destroy()

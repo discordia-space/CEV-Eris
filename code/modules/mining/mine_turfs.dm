@@ -82,15 +82,21 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if((istype(H.l_hand,/obj/item/weapon/pickaxe)) && (!H.hand))
-			attackby(H.l_hand,H)
-		else if((istype(H.r_hand,/obj/item/weapon/pickaxe)) && H.hand)
-			attackby(H.r_hand,H)
+		if(istype(H.l_hand,/obj/item))
+			var/obj/item/I = H.l_hand
+			if((QUALITY_DIGGING in I.tool_qualities) && (!H.hand))
+				attackby(I,H)
+		if(istype(H.r_hand,/obj/item))
+			var/obj/item/I = H.r_hand
+			if((QUALITY_DIGGING in I.tool_qualities) && (H.hand))
+				attackby(I,H)
 
 	else if(isrobot(AM))
 		var/mob/living/silicon/robot/R = AM
-		if(istype(R.module_active,/obj/item/weapon/pickaxe))
-			attackby(R.module_active,R)
+		if(istype(R.module_active,/obj/item))
+			var/obj/item/I = R.module_active
+			if(QUALITY_DIGGING in I.tool_qualities)
+				attackby(I,R)
 
 	else if(istype(AM,/obj/mecha))
 		var/obj/mecha/M = AM
@@ -118,131 +124,145 @@
 	new /obj/effect/mineral(src, mineral)
 
 //Not even going to touch this pile of spaghetti
-/turf/simulated/mineral/attackby(obj/item/weapon/W, mob/living/user)
+/turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
 
-	if (!user.IsAdvancedToolUser())
-		return
+	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION))
+	switch(tool_type)
 
-	if (istype(W, /obj/item/device/core_sampler))
-		geologic_data.UpdateNearbyArtifactInfo(src)
-		var/obj/item/device/core_sampler/C = W
-		C.sample_item(src, user)
-		return
+		if(QUALITY_EXCAVATION)
+			var/excavation_amount = input("How deep are you going to dig?", "Excavation depth", 0)
+			if(excavation_amount)
+				user << SPAN_NOTICE("You start exacavating [src].")
+				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL))
+					user << SPAN_NOTICE("You finish exacavating [src].")
+					if(finds && finds.len)
+						var/datum/find/F = finds[1]
+						if(round(excavation_level + excavation_amount) == F.excavation_required)
+							//Chance to extract any items here perfectly, otherwise just pull them out along with the rock surrounding them
+							if(excavation_level + excavation_amount > F.excavation_required)
+								//if you can get slightly over, perfect extraction
+								excavate_find(100, F)
+							else
+								excavate_find(80, F)
 
-	if (istype(W, /obj/item/device/depth_scanner))
-		var/obj/item/device/depth_scanner/C = W
-		C.scan_atom(user, src)
-		return
+						else if(excavation_level + excavation_amount > F.excavation_required - F.clearance_range)
+							//just pull the surrounding rock out
+							excavate_find(0, F)
 
-	if (istype(W, /obj/item/device/measuring_tape))
-		var/obj/item/device/measuring_tape/P = W
-		user.visible_message(SPAN_NOTICE("\The [user] extends [P] towards [src]."),SPAN_NOTICE("You extend [P] towards [src]."))
-		if(do_after(user,25, src))
-			user << SPAN_NOTICE("\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm.")
-		return
-
-	if (istype(W, /obj/item/weapon/pickaxe))
-		var/turf/T = user.loc
-		if (!( istype(T, /turf) ))
-			return
-
-		var/obj/item/weapon/pickaxe/P = W
-		if(last_act + P.digspeed > world.time)//prevents message spam
-			return
-		last_act = world.time
-
-		playsound(user, P.drill_sound, 20, 1)
-
-		//handle any archaeological finds we might uncover
-		var/fail_message
-		if(finds && finds.len)
-			var/datum/find/F = finds[1]
-			if(excavation_level + P.excavation_amount > F.excavation_required)
-				//Chance to destroy / extract any finds here
-				fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
-
-		user << "\red You start [P.drill_verb][fail_message ? fail_message : ""]."
-
-		if(fail_message && prob(90))
-			if(prob(25))
-				excavate_find(5, finds[1])
-			else if(prob(50))
-				finds.Remove(finds[1])
-				if(prob(50))
-					artifact_debris()
-
-		if(do_after(user,P.digspeed, src))
-			user << SPAN_NOTICE("You finish [P.drill_verb] the rock.")
-
-			if(finds && finds.len)
-				var/datum/find/F = finds[1]
-				if(round(excavation_level + P.excavation_amount) == F.excavation_required)
-					//Chance to extract any items here perfectly, otherwise just pull them out along with the rock surrounding them
-					if(excavation_level + P.excavation_amount > F.excavation_required)
-						//if you can get slightly over, perfect extraction
-						excavate_find(100, F)
-					else
-						excavate_find(80, F)
-
-				else if(excavation_level + P.excavation_amount > F.excavation_required - F.clearance_range)
-					//just pull the surrounding rock out
-					excavate_find(0, F)
-
-			if( excavation_level + P.excavation_amount >= 100 )
-				//if players have been excavating this turf, leave some rocky debris behind
-				var/obj/structure/boulder/B
-				if(artifact_find)
-					if( excavation_level > 0 || prob(15) )
-						//boulder with an artifact inside
-						B = new(src)
+					if(excavation_level + excavation_amount >= 100 )
+						//if players have been excavating this turf, leave some rocky debris behind
+						var/obj/structure/boulder/B
 						if(artifact_find)
-							B.artifact_find = artifact_find
-					else
-						artifact_debris(1)
-				else if(prob(15))
-					//empty boulder
-					B = new(src)
+							if( excavation_level > 0 || prob(15) )
+								//boulder with an artifact inside
+								B = new(src)
+								if(artifact_find)
+									B.artifact_find = artifact_find
+							else
+								artifact_debris(1)
+						else if(prob(15))
+							//empty boulder
+							B = new(src)
 
+						if(B)
+							GetDrilled(0)
+						else
+							GetDrilled(1)
+						return
+
+					excavation_level += excavation_amount
+
+					//archaeo overlays
+					if(!archaeo_overlay && finds && finds.len)
+						var/datum/find/F = finds[1]
+						if(F.excavation_required <= excavation_level + F.view_range)
+							archaeo_overlay = "overlay_archaeo[rand(1,3)]"
+							overlays += archaeo_overlay
+
+					//there's got to be a better way to do this
+					var/update_excav_overlay = 0
+					if(excavation_level >= 75)
+						if(excavation_level - excavation_amount < 75)
+							update_excav_overlay = 1
+					else if(excavation_level >= 50)
+						if(excavation_level - excavation_amount < 50)
+							update_excav_overlay = 1
+					else if(excavation_level >= 25)
+						if(excavation_level - excavation_amount < 25)
+							update_excav_overlay = 1
+
+					//update overlays displaying excavation level
+					if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
+						var/excav_quadrant = round(excavation_level / 25) + 1
+						excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
+						overlays += excav_overlay
+
+					//drop some rocks
+					next_rock += excavation_amount * 10
+					while(next_rock > 100)
+						next_rock -= 100
+						var/obj/item/weapon/ore/O = new(src)
+						geologic_data.UpdateNearbyArtifactInfo(src)
+						O.geologic_data = geologic_data
+				return
+			return
+
+		if(QUALITY_DIGGING)
+			var/fail_message
+			if(finds && finds.len)
+				//Chance to destroy / extract any finds here
+				fail_message = ". <b>[pick("There is a crunching noise [I] collides with some different rock.","Part of the rock face crumbles away.","Something breaks under [I].")]</b>"
+			user <<  SPAN_NOTICE("You start digging the [src]. [fail_message ? fail_message : ""]")
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				user << SPAN_NOTICE("You finish digging the [src].")
+				if(fail_message && prob(90))
+					if(prob(25))
+						excavate_find(5, finds[1])
+					else if(prob(50))
+						finds.Remove(finds[1])
+						if(prob(50))
+							artifact_debris()
+				var/obj/structure/boulder/B
+				if(excavation_level)
+					//if players have been excavating this turf, leave some rocky debris behind
+					if(artifact_find)
+						if( excavation_level > 0 || prob(15) )
+							//boulder with an artifact inside
+							B = new(src)
+							if(artifact_find)
+								B.artifact_find = artifact_find
+						else
+							artifact_debris(1)
+					else if(prob(15))
+						//empty boulder
+						B = new(src)
 				if(B)
 					GetDrilled(0)
 				else
 					GetDrilled(1)
 				return
+			return
 
-			excavation_level += P.excavation_amount
+		if(ABORT_CHECK)
+			return
 
-			//archaeo overlays
-			if(!archaeo_overlay && finds && finds.len)
-				var/datum/find/F = finds[1]
-				if(F.excavation_required <= excavation_level + F.view_range)
-					archaeo_overlay = "overlay_archaeo[rand(1,3)]"
-					overlays += archaeo_overlay
+	if (istype(I, /obj/item/device/core_sampler))
+		geologic_data.UpdateNearbyArtifactInfo(src)
+		var/obj/item/device/core_sampler/C = I
+		C.sample_item(src, user)
+		return
 
-			//there's got to be a better way to do this
-			var/update_excav_overlay = 0
-			if(excavation_level >= 75)
-				if(excavation_level - P.excavation_amount < 75)
-					update_excav_overlay = 1
-			else if(excavation_level >= 50)
-				if(excavation_level - P.excavation_amount < 50)
-					update_excav_overlay = 1
-			else if(excavation_level >= 25)
-				if(excavation_level - P.excavation_amount < 25)
-					update_excav_overlay = 1
+	if (istype(I, /obj/item/device/depth_scanner))
+		var/obj/item/device/depth_scanner/C = I
+		C.scan_atom(user, src)
+		return
 
-			//update overlays displaying excavation level
-			if( !(excav_overlay && excavation_level > 0) || update_excav_overlay )
-				var/excav_quadrant = round(excavation_level / 25) + 1
-				excav_overlay = "overlay_excv[excav_quadrant]_[rand(1,3)]"
-				overlays += excav_overlay
-
-			//drop some rocks
-			next_rock += P.excavation_amount * 10
-			while(next_rock > 100)
-				next_rock -= 100
-				var/obj/item/weapon/ore/O = new(src)
-				geologic_data.UpdateNearbyArtifactInfo(src)
-				O.geologic_data = geologic_data
+	if (istype(I, /obj/item/device/measuring_tape))
+		var/obj/item/device/measuring_tape/P = I
+		user.visible_message(SPAN_NOTICE("\The [user] extends [P] towards [src]."),SPAN_NOTICE("You extend [P] towards [src]."))
+		if(do_after(user,25, src))
+			user << SPAN_NOTICE("\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm.")
+		return
 
 	else
 		return ..()
@@ -444,42 +464,18 @@
 /turf/simulated/floor/asteroid/is_plating()
 	return !density
 
-/turf/simulated/floor/asteroid/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!W || !user)
-		return 0
+/turf/simulated/floor/asteroid/attackby(obj/item/I, mob/user)
 
-	var/list/usable_tools = list(
-		/obj/item/weapon/shovel,
-		/obj/item/weapon/pickaxe/diamonddrill,
-		/obj/item/weapon/pickaxe/drill,
-		/obj/item/weapon/pickaxe/borgdrill
-		)
-
-	var/valid_tool
-	for(var/valid_type in usable_tools)
-		if(istype(W,valid_type))
-			valid_tool = 1
-			break
-
-	if(valid_tool)
+	if(QUALITY_DIGGING in I.tool_qualities)
 		if (dug)
-			user << "\red This area has already been dug"
+			user << SPAN_WARNING("This area has already been dug")
 			return
-
-		var/turf/T = user.loc
-		if (!(istype(T)))
-			return
-
-		user << "\red You start digging."
-		playsound(user.loc, 'sound/effects/rustle1.ogg', 50, 1)
-
-		if(!do_after(user,40, src)) return
-
-		user << SPAN_NOTICE("You dug a hole.")
-		gets_dug()
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_DIGGING, FAILCHANCE_EASY))
+			user << SPAN_NOTICE("You dug a hole.")
+			gets_dug()
 
 	else
-		..(W,user)
+		..(I,user)
 
 /turf/simulated/floor/asteroid/proc/gets_dug()
 

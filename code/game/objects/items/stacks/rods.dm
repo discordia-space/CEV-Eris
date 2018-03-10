@@ -22,20 +22,18 @@
 	charge_costs = list(500)
 	stacktype = /obj/item/stack/rods
 
-/obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/rods/attackby(obj/item/I, mob/user)
 	..()
-	if (istype(W, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/WT = W
-
+	if(QUALITY_WELDING in I.tool_qualities)
 		if(get_amount() < 2)
 			user << SPAN_WARNING("You need at least two rods to do this.")
 			return
 
-		if(WT.remove_fuel(0,user))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_VERY_EASY))
 			var/obj/item/stack/material/steel/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
 			for (var/mob/M in viewers(src))
-				M.show_message(SPAN_NOTICE("[src] is shaped into metal by [user.name] with the weldingtool."), 3, SPAN_NOTICE("You hear welding."), 2)
+				M.show_message(SPAN_NOTICE("[src] is shaped into metal by [user.name] with the [I.name]."), 3, SPAN_NOTICE("You hear welding."), 2)
 			var/obj/item/stack/rods/R = src
 			src = null
 			var/replace = (user.get_inactive_hand()==R)

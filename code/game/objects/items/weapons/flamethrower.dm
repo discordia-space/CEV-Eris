@@ -71,26 +71,6 @@
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
-	if(iswrench(W) && !status)//Taking this apart
-		var/turf/T = get_turf(src)
-		if(weldtool)
-			weldtool.loc = T
-			weldtool = null
-		if(igniter)
-			igniter.loc = T
-			igniter = null
-		if(ptank)
-			ptank.loc = T
-			ptank = null
-		PoolOrNew(/obj/item/stack/rods, T)
-		qdel(src)
-		return
-
-	if(isscrewdriver(W) && igniter && !lit)
-		status = !status
-		user << "<span class='notice'>[igniter] is now [status ? "secured" : "unsecured"]!</span>"
-		update_icon()
-		return
 
 	if(is_igniter(W))
 		var/obj/item/device/assembly/igniter/I = W
@@ -201,8 +181,6 @@
 
 /obj/item/weapon/flamethrower/full/New(var/loc)
 	..()
-	weldtool = new /obj/item/weapon/tool/weldingtool(src)
-	weldtool.status = 0
 	igniter = new /obj/item/device/assembly/igniter(src)
 	igniter.secured = 0
 	status = 1

@@ -135,7 +135,7 @@ var/list/possible_cable_coil_colours = list(
 	if(!T.is_plating())
 		return
 
-	if(I.get_tool_type(usr, list(QUALITY_CUTTING)))
+	if(QUALITY_CUTTING in I.tool_qualities || QUALITY_WIRE_CUTTING in I.tool_qualities)
 		if(d1 == 12 || d2 == 12)
 			user << SPAN_WARNING("You must cut this cable from above.")
 			return

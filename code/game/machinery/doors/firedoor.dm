@@ -180,91 +180,77 @@
 				nextstate = FIREDOOR_CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/firedoor/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
-	if(istype(C, /obj/item/weapon/tool/weldingtool) && !repairing)
-		var/obj/item/weapon/tool/weldingtool/W = C
-		if(W.remove_fuel(0, user))
-			blocked = !blocked
-			user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
-			"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
-			"You hear something being welded.")
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			update_icon()
+
+	var/list/usable_qualities = list()
+	if(!repairing)
+		usable_qualities.Add(QUALITY_WELDING)
+	if(density)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if((blocked && hatch_open && !repairing) || (!operating))
+		usable_qualities.Add(QUALITY_PRYING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_WELDING)
+			if(!repairing)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					blocked = !blocked
+					user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [I].</span>",\
+					"You [blocked ? "weld" : "unweld"] \the [src] with \the [I].",\
+					"You hear something being welded.")
+					update_icon()
+					return
 			return
 
-	if(density && istype(C, /obj/item/weapon/tool/screwdriver))
-		hatch_open = !hatch_open
-		user.visible_message("<span class='danger'>[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch.</span>",
-									"You have [hatch_open ? "opened" : "closed"] the [src] maintenance hatch.")
-		update_icon()
-		return
+		if(QUALITY_SCREW_DRIVING)
+			if(density)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					hatch_open = !hatch_open
+					user.visible_message("<span class='danger'>[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch.</span>",
+												"You have [hatch_open ? "opened" : "closed"] the [src] maintenance hatch.")
+					update_icon()
+					return
+			return
 
-	if(blocked && istype(C, /obj/item/weapon/tool/crowbar) && !repairing)
-		if(!hatch_open)
-			user << SPAN_DANGER("You must open the maintenance hatch first!")
-		else
-			user.visible_message(SPAN_DANGER("[user] is removing the electronics from \the [src]."),
-									"You start to remove the electronics from [src].")
-			if(do_after(user,30,src))
-				if(blocked && density && hatch_open)
-					playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+		if(QUALITY_PRYING)
+			if(blocked && hatch_open && !repairing)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user.visible_message(SPAN_DANGER("[user] has removed the electronics from \the [src]."),
 										"You have removed the electronics from [src].")
-
 					if (stat & BROKEN)
 						new /obj/item/weapon/circuitboard/broken(src.loc)
 					else
 						new/obj/item/weapon/airalarm_electronics(src.loc)
-
 					var/obj/structure/firedoor_assembly/FA = new/obj/structure/firedoor_assembly(src.loc)
 					FA.anchored = 1
 					FA.density = 1
 					FA.wired = 1
 					FA.update_icon()
 					qdel(src)
-		return
-
-	if(blocked)
-		user << SPAN_DANGER("\The [src] is welded shut!")
-		return
-
-	if(istype(C, /obj/item/weapon/tool/crowbar) || istype(C,/obj/item/weapon/material/twohanded/fireaxe))
-		if(operating)
-			return
-
-		if(blocked && istype(C, /obj/item/weapon/tool/crowbar))
-			user.visible_message(SPAN_DANGER("\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!"),\
-			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
-			"You hear someone struggle and metal straining.")
-			return
-
-		if(istype(C,/obj/item/weapon/material/twohanded/fireaxe))
-			var/obj/item/weapon/material/twohanded/fireaxe/F = C
-			if(!F.wielded)
+					return
+			if(blocked)
+				user << SPAN_DANGER("\The [src] is welded shut!")
 				return
-
-		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-				"You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!",\
-				"You hear metal strain.")
-		if(do_after(user,30,src))
-			if(istype(C, /obj/item/weapon/tool/crowbar))
-				if(stat & (BROKEN|NOPOWER) || !density)
-					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-					"You force \the [src] [density ? "open" : "closed"] with \the [C]!",\
+			if(!operating)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [I]!</span>",\
+					"You force \the [src] [density ? "open" : "closed"] with \the [I]!",\
 					"You hear metal strain, and a door [density ? "open" : "close"].")
-			else
-				user.visible_message("<span class='danger'>\The [user] forces \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-					"You force \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \the [C]!",\
-					"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
-			if(density)
-				spawn(0)
-					open(1)
-			else
-				spawn(0)
-					close()
+					if(density)
+						spawn(0)
+							open(1)
+					else
+						spawn(0)
+							close()
+					return
+			return
+
+		if(ABORT_CHECK)
 			return
 
 	return ..()

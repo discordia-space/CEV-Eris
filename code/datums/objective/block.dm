@@ -5,7 +5,7 @@
 /datum/objective/block/check_completion()
 	if(!issilicon(owner.current))
 		return FALSE
-	if(!emergency_shuttle.returned())
+	if(!evacuation_controller.has_evacuated())
 		return FALSE
 	if(!owner.current)
 		return FALSE

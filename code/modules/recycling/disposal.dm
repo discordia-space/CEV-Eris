@@ -64,32 +64,40 @@
 		return
 
 	src.add_fingerprint(user)
-	if(mode<=0) // It's off
-		if(istype(I, /obj/item/weapon/tool/screwdriver))
-			if(contents.len > 0)
-				user << "Eject the items first!"
-				return
-			if(mode==0) // It's off but still not unscrewed
-				mode=-1 // Set it to doubleoff l0l
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				user << "You remove the screws around the power connection."
-				return
-			else if(mode==-1)
-				mode=0
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				user << "You attach the screws around the power connection."
-				return
-		else if(istype(I,/obj/item/weapon/tool/weldingtool) && mode==-1)
-			if(contents.len > 0)
-				user << "Eject the items first!"
-				return
-			var/obj/item/weapon/tool/weldingtool/W = I
-			if(W.remove_fuel(0,user))
-				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-				user << "You start slicing the floorweld off the disposal unit."
 
-				if(do_after(user,20,src))
-					if(!src || !W.isOn()) return
+	var/list/usable_qualities = list()
+	if(mode<=0)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(mode==-1)
+		usable_qualities.Add(QUALITY_WELDING)
+
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(contents.len > 0)
+				user << "Eject the items first!"
+				return
+			if(mode<=0)
+				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+					if(mode==0) // It's off but still not unscrewed
+						mode=-1 // Set it to doubleoff l0l
+						user << "You remove the screws around the power connection."
+						return
+					else if(mode==-1)
+						mode=0
+						user << "You attach the screws around the power connection."
+						return
+			return
+
+		if(QUALITY_WELDING)
+			if(contents.len > 0)
+				user << "Eject the items first!"
+				return
+			if(mode==-1)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 					user << "You sliced the floorweld off the disposal unit."
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
@@ -98,14 +106,11 @@
 					C.density = 1
 					C.update()
 					qdel(src)
-				return
-			else
-				user << "You need more welding fuel to complete this task."
-				return
+			return
 
-	if(istype(I, /obj/item/weapon/melee/energy/blade))
-		user << "You can't place that item inside the disposal unit."
-		return
+		if(ABORT_CHECK)
+			return
+
 
 	if(istype(I, /obj/item/weapon/storage/bag/trash))
 		var/obj/item/weapon/storage/bag/trash/T = I
@@ -857,21 +862,12 @@
 	if(!T.is_plating())
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/W = I
 
-		if(W.remove_fuel(0,user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-			user << "Slicing the disposal pipe."
-			if(do_after(user, 30, src))
-				if(!W.isOn())
-					return
-				welded()
-			else
-				user << "You must stay still while welding the pipe."
-		else
-			user << "You need more welding fuel to cut the pipe."
-			return
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY))
+			welded()
+
+	return
 
 	// called when pipe is cut with welder
 /obj/structure/disposalpipe/proc/welded()
@@ -1338,24 +1334,10 @@
 	if(!T.is_plating())
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/W = I
 
-		if(W.remove_fuel(0,user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-			// check if anything changed over 2 seconds
-			var/turf/uloc = user.loc
-			var/atom/wloc = W.loc
-			user << "Slicing the disposal pipe."
-			sleep(30)
-			if(!W.isOn()) return
-			if(user.loc == uloc && wloc == W.loc)
-				welded()
-			else
-				user << "You must stay still while welding the pipe."
-		else
-			user << "You need more welding fuel to cut the pipe."
-			return
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY))
+			welded()
 
 	// would transfer to next pipe segment, but we are in a trunk
 	// if not entering from disposal bin,
@@ -1456,35 +1438,45 @@
 	if(!I || !user)
 		return
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/tool/screwdriver))
-		if(mode == 0)
-			mode = 1
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "You remove the screws around the power connection."
+
+	var/list/usable_qualities = list()
+	if(mode<=0)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(mode==-1)
+		usable_qualities.Add(QUALITY_WELDING)
+
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(mode<=0)
+				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+					if(mode==0) // It's off but still not unscrewed
+						mode=-1 // Set it to doubleoff l0l
+						user << "You remove the screws around the power connection."
+						return
+					else if(mode==-1)
+						mode=0
+						user << "You attach the screws around the power connection."
+						return
 			return
-		else if(mode == 1)
-			mode = 0
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "You attach the screws around the power connection."
+
+		if(QUALITY_WELDING)
+			if(mode==-1)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+					user << "You sliced the floorweld off the disposal outlet."
+					var/obj/structure/disposalconstruct/C = new (src.loc)
+					src.transfer_fingerprints_to(C)
+					C.pipe_type = PIPE_TYPE_OUTLET
+					C.anchored = 1
+					C.density = 1
+					C.update()
+					qdel(src)
 			return
-	else if(istype(I,/obj/item/weapon/tool/weldingtool) && mode == 1)
-		var/obj/item/weapon/tool/weldingtool/W = I
-		if(W.remove_fuel(0, user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-			user << "You start slicing the floorweld off the disposal outlet."
-			if(do_after(user, 20, src))
-				if(!src || !W.isOn()) return
-				user << "You sliced the floorweld off the disposal outlet."
-				var/obj/structure/disposalconstruct/C = new (src.loc)
-				src.transfer_fingerprints_to(C)
-				C.pipe_type = PIPE_TYPE_OUTLET
-				C.update()
-				C.anchored = 1
-				C.density = 1
-				qdel(src)
-			return
-		else
-			user << "You need more welding fuel to complete this task."
+
+		if(ABORT_CHECK)
 			return
 
 // called when movable is expelled from a disposal pipe or outlet

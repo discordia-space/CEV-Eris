@@ -136,13 +136,11 @@
 	can_hold = list(
 		/obj/item/weapon/tool/bonesetter,
 		/obj/item/weapon/tool/cautery,
-		/obj/item/weapon/tool/circular_saw,
+		/obj/item/weapon/tool/saw/circular,
 		/obj/item/weapon/tool/hemostat,
 		/obj/item/weapon/tool/retractor,
 		/obj/item/weapon/tool/scalpel,
 		/obj/item/weapon/tool/surgicaldrill,
-		/obj/item/weapon/tool/bonegel,
-		/obj/item/weapon/tool/fixovein,
 		/obj/item/stack/medical/advanced/bruise_pack
 		)
 
@@ -151,13 +149,11 @@
 	if (empty) return
 	new /obj/item/weapon/tool/bonesetter(src)
 	new /obj/item/weapon/tool/cautery(src)
-	new /obj/item/weapon/tool/circular_saw(src)
+	new /obj/item/weapon/tool/saw/circular(src)
 	new /obj/item/weapon/tool/hemostat(src)
 	new /obj/item/weapon/tool/retractor(src)
 	new /obj/item/weapon/tool/scalpel(src)
 	new /obj/item/weapon/tool/surgicaldrill(src)
-	new /obj/item/weapon/tool/bonegel(src)
-	new /obj/item/weapon/tool/fixovein(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 
 	make_exact_fit()

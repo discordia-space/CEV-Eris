@@ -744,26 +744,120 @@
 ////// AttackBy //////
 //////////////////////
 
-/obj/mecha/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/mecha/attackby(obj/item/I, mob/user)
 
-	if(istype(W, /obj/item/mecha_parts/mecha_equipment))
-		var/obj/item/mecha_parts/mecha_equipment/E = W
+	var/list/usable_qualities = list()
+	if(state == 1 || state == 2)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if(user.a_intent != I_HURT)
+		usable_qualities.Add(QUALITY_WELDING)
+	if(hasInternalDamage(MECHA_INT_TEMP_CONTROL) || (state==3 && src.cell) || (state==4 && src.cell))
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(state == 2 || state == 3)
+		usable_qualities.Add(QUALITY_PRYING)
+	if(state >= 3 && src.occupant)
+		usable_qualities.Add(QUALITY_PULSING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(state == 1)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You undo the securing bolts.")
+					state = 2
+					return
+			if(state == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You tighten the securing bolts.")
+					state = 1
+					return
+			return
+
+		if(QUALITY_WELDING)
+			if(user.a_intent != I_HURT)
+				if(src.health >= initial(src.health))
+					user << SPAN_NOTICE("The [src.name] is at full integrity")
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if (hasInternalDamage(MECHA_INT_TANK_BREACH))
+						clearInternalDamage(MECHA_INT_TANK_BREACH)
+						user << SPAN_NOTICE("You repair the damaged gas tank.")
+					if(src.health<initial(src.health))
+						user << SPAN_NOTICE("You repair some damage to [src.name].")
+						user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+						src.health += min(10, initial(src.health)-src.health)
+					return
+			return
+
+		if(QUALITY_PRYING)
+			if(state == 2)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You open the hatch to the power unit.")
+					state = 3
+					return
+			if(state == 3)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You close the hatch to the power unit")
+					state = 2
+					return
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You repair the damaged temperature controller.")
+					clearInternalDamage(MECHA_INT_TEMP_CONTROL)
+					return
+			if(state == 3 && src.cell)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You unscrew and pry out the powercell.")
+					src.cell.forceMove(src.loc)
+					src.cell = null
+					state = 4
+					src.log_message("Powercell removed.")
+			if(state == 4 && src.cell)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					user << SPAN_NOTICE("You screw the cell in place.")
+					state = 3
+					return
+			return
+
+		if(QUALITY_PULSING)
+			if(state >= 3 && src.occupant)
+				user << "You attempt to eject the pilot using the maintenance controls."
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if(src.occupant.stat)
+						src.go_out()
+						src.log_message("[src.occupant] was ejected using the maintenance controls.")
+					else
+						user << SPAN_WARNING("Your attempt is rejected.")
+						src.occupant_message(SPAN_WARNING("An attempt to eject you was made using the maintenance controls."))
+						src.log_message("Eject attempt made using maintenance controls - rejected.")
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/mecha_parts/mecha_equipment))
+		var/obj/item/mecha_parts/mecha_equipment/E = I
 		spawn()
 			if(E.can_attach(src))
 				user.drop_item()
 				E.attach(src)
-				user.visible_message("[user] attaches [W] to [src]", "You attach [W] to [src]")
+				user.visible_message("[user] attaches [I] to [src]", "You attach [I] to [src]")
 			else
-				user << "You were unable to attach [W] to [src]"
+				user << "You were unable to attach [I] to [src]"
 		return
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+
+	if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(usr))
 				var/obj/item/weapon/card/id/id_card
-				if(istype(W, /obj/item/weapon/card/id))
-					id_card = W
+				if(istype(I, /obj/item/weapon/card/id))
+					id_card = I
 				else
-					var/obj/item/device/pda/pda = W
+					var/obj/item/device/pda/pda = I
 					id_card = pda.id
 				output_maintenance_dialog(id_card, user)
 				return
@@ -771,103 +865,45 @@
 				user << SPAN_WARNING("Invalid ID: Access denied.")
 		else
 			user << SPAN_WARNING("Maintenance protocols disabled by operator.")
-	else if(istype(W, /obj/item/weapon/tool/wrench))
-		if(state==1)
-			state = 2
-			user << "You undo the securing bolts."
-		else if(state==2)
-			state = 1
-			user << "You tighten the securing bolts."
-		return
-	else if(istype(W, /obj/item/weapon/tool/crowbar))
-		if(state==2)
-			state = 3
-			user << "You open the hatch to the power unit"
-		else if(state==3)
-			state=2
-			user << "You close the hatch to the power unit"
-		return
-	else if(istype(W, /obj/item/stack/cable_coil))
+
+	else if(istype(I, /obj/item/stack/cable_coil))
 		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
-			var/obj/item/stack/cable_coil/CC = W
+			var/obj/item/stack/cable_coil/CC = I
 			if(CC.use(2))
 				clearInternalDamage(MECHA_INT_SHORT_CIRCUIT)
 				user << "You replace the fused wires."
 			else
 				user << "There's not enough wire to finish the task."
 		return
-	else if(istype(W, /obj/item/weapon/tool/screwdriver))
-		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
-			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
-			user << "You repair the damaged temperature controller."
-		else if(state==3 && src.cell)
-			src.cell.forceMove(src.loc)
-			src.cell = null
-			state = 4
-			user << "You unscrew and pry out the powercell."
-			src.log_message("Powercell removed.")
-		else if(state==4 && src.cell)
-			state=3
-			user << "You screw the cell in place."
-		return
 
-	else if(istype(W, /obj/item/weapon/tool/multitool))
-		if(state>=3 && src.occupant)
-			user << "You attempt to eject the pilot using the maintenance controls."
-			if(src.occupant.stat)
-				src.go_out()
-				src.log_message("[src.occupant] was ejected using the maintenance controls.")
-			else
-				user << SPAN_WARNING("Your attempt is rejected.")
-				src.occupant_message(SPAN_WARNING("An attempt to eject you was made using the maintenance controls."))
-				src.log_message("Eject attempt made using maintenance controls - rejected.")
-		return
-
-	else if(istype(W, /obj/item/weapon/cell/large))
+	else if(istype(I, /obj/item/weapon/cell/large))
 		if(state==4)
 			if(!src.cell)
 				user << "You install the powercell"
 				user.drop_item()
-				W.forceMove(src)
-				src.cell = W
+				I.forceMove(src)
+				src.cell = I
 				src.log_message("Powercell installed")
 			else
 				user << "There's already a powercell installed."
 		return
 
-	else if(istype(W, /obj/item/weapon/tool/weldingtool) && user.a_intent != I_HURT)
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if (WT.remove_fuel(0,user))
-			if (hasInternalDamage(MECHA_INT_TANK_BREACH))
-				clearInternalDamage(MECHA_INT_TANK_BREACH)
-				user << SPAN_NOTICE("You repair the damaged gas tank.")
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		else
-			return
-		if(src.health<initial(src.health))
-			user << SPAN_NOTICE("You repair some damage to [src.name].")
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			src.health += min(10, initial(src.health)-src.health)
-		else
-			user << "The [src.name] is at full integrity"
-		return
-
-	else if(istype(W, /obj/item/mecha_parts/mecha_tracking))
-		user.drop_from_inventory(W)
-		W.forceMove(src)
-		user.visible_message("[user] attaches [W] to [src].", "You attach [W] to [src]")
+	else if(istype(I, /obj/item/mecha_parts/mecha_tracking))
+		user.drop_from_inventory(I)
+		I.forceMove(src)
+		user.visible_message("[user] attaches [I] to [src].", "You attach [I] to [src]")
 		return
 
 	else
-		src.log_message("Attacked by [W]. Attacker - [user]")
+		src.log_message("Attacked by [I]. Attacker - [user]")
 
 		if(deflect_hit(is_melee=1))
-			user << SPAN_DANGER("\The [W] bounces off [src.name].")
+			user << SPAN_DANGER("\The [I] bounces off [src.name].")
 			src.log_append_to_last("Armor saved.")
 		else
-			src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
-			user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
-			src.hit_damage(W.force, W.damtype, is_melee=1)
+			src.occupant_message("<font color='red'><b>[user] hits [src] with [I].</b></font>")
+			user.visible_message("<font color='red'><b>[user] hits [src] with [I].</b></font>", "<font color='red'><b>You hit [src] with [I].</b></font>")
+			src.hit_damage(I.force, I.damtype, is_melee=1)
 			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 
 	return

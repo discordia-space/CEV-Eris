@@ -1,5 +1,5 @@
 /obj/item/weapon/weldpack
-	name = "Welding kit"
+	name = "welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
 	slot_flags = SLOT_BACK
 	icon = 'icons/obj/storage.dmi'
@@ -7,32 +7,20 @@
 	w_class = ITEM_SIZE_LARGE
 	var/max_fuel = 350
 
+
+/obj/item/weapon/weldpack/canister
+	name = "canister"
+	desc = "You may need it for draging around additional fuel."
+	slot_flags = null
+	icon_state = "canister"
+	w_class = ITEM_SIZE_NORMAL
+	max_fuel = 100
+
 /obj/item/weapon/weldpack/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
-
-/obj/item/weapon/weldpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/weldingtool))
-		var/obj/item/weapon/tool/weldingtool/T = W
-		if(T.welding & prob(50))
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
-			log_game("[key_name(user)] triggered a fueltank explosion.")
-			user << SPAN_DANGER("That was stupid of you.")
-			explosion(get_turf(src),-1,0,2)
-			if(src)
-				qdel(src)
-			return
-		else
-			if(T.welding)
-				user << SPAN_DANGER("That was close!")
-			src.reagents.trans_to_obj(W, T.max_fuel)
-			user << SPAN_NOTICE("Welder refilled!")
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
-			return
-	user << SPAN_WARNING("The tank scoffs at your insolence. It only provides services to welders.")
-	return
 
 /obj/item/weapon/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
@@ -50,3 +38,13 @@
 	..(user)
 	user << text("\icon[] [] units of fuel left!", src, src.reagents.total_volume)
 	return
+
+/obj/item/weapon/weldpack/proc/explode()
+	if (reagents.total_volume > 150)
+		explosion(src.loc,1,2,4)
+	else if (reagents.total_volume > 50)
+		explosion(src.loc,0,1,3)
+	else if (reagents.total_volume > 0)
+		explosion(src.loc,-1,1,2)
+	if(src)
+		qdel(src)

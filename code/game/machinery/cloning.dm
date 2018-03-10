@@ -222,19 +222,6 @@
 		user.drop_from_inventory(I)
 		qdel(I)
 		return
-	else if(istype(I, /obj/item/weapon/tool/wrench))
-		if(locked && (anchored || occupant))
-			user << SPAN_WARNING("Can not do that while [src] is in use.")
-		else
-			anchored = !anchored
-			playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-			if(anchored)
-				user.visible_message("[user] secures [src] to the floor.", "You secure [src] to the floor.")
-			else
-				user.visible_message("[user] unsecures [src] from the floor.", "You unsecure [src] from the floor.")
-				if(connected)
-					connected.pods -= src
-					connected = null
 	else
 		..()
 

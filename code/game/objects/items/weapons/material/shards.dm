@@ -46,10 +46,9 @@
 		color = "#ffffff"
 		alpha = 255
 
-/obj/item/weapon/material/shard/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/tool/weldingtool) && material.shard_can_repair)
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
+/obj/item/weapon/material/shard/attackby(obj/item/I, mob/user)
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
 			material.place_sheet(loc)
 			qdel(src)
 			return

@@ -103,20 +103,21 @@
 // Parameters: 2 (C - Item this object was clicked with, user - Mob which clicked this object)
 // Description: If we are clicked with crowbar or wielded fire axe, try to manually open the door.
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
-/obj/machinery/door/blast/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/blast/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
-	if(istype(C, /obj/item/weapon/tool/crowbar) || (istype(C, /obj/item/weapon/material/twohanded/fireaxe) && C:wielded == 1))
-		if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
-			force_toggle()
-		else
-			usr << SPAN_NOTICE("[src]'s motors resist your effort.")
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY))
+			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
+				force_toggle()
+			else
+				usr << SPAN_NOTICE("[src]'s motors resist your effort.")
 		return
-	if(istype(C, /obj/item/stack/material) && C.get_material_name() == MATERIAL_PLASTEEL)
+	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
 		var/amt = Ceiling((maxhealth - health)/150)
 		if(!amt)
 			usr << SPAN_NOTICE("\The [src] is already fully repaired.")
 			return
-		var/obj/item/stack/P = C
+		var/obj/item/stack/P = I
 		if(P.amount < amt)
 			usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 			return

@@ -171,7 +171,8 @@
 
 	if(default_part_replacement(I, user))
 		return
-	..()
+
+	return
 
 /obj/machinery/atmospherics/unary/freezer/examine(mob/user)
 	..(user)

@@ -15,11 +15,7 @@
 		return target_zone == "mouth"
 
 /datum/surgery_step/generic/cut_face
-	allowed_tools = list(
-	/obj/item/weapon/tool/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
-	)
+	requedQuality = QUALITY_CUTTING
 
 	min_duration = 90
 	max_duration = 110
@@ -45,11 +41,7 @@
 		target.losebreath += 10
 
 /datum/surgery_step/face/mend_vocal
-	allowed_tools = list(
-	/obj/item/weapon/tool/hemostat = 100, 	\
-	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/device/assembly/mousetrap = 10	//I don't know. Don't ask me. But I'm leaving it because hilarity.
-	)
+	requedQuality = QUALITY_COMPRESSING
 
 	min_duration = 70
 	max_duration = 90
@@ -73,10 +65,7 @@
 		target.losebreath += 10
 
 /datum/surgery_step/face/fix_face
-	allowed_tools = list(
-	/obj/item/weapon/tool/retractor = 100, 	\
-	/obj/item/weapon/tool/crowbar = 55,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 75)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 80
 	max_duration = 100
@@ -101,12 +90,7 @@
 		target.apply_damage(10, BRUTE, affected, sharp=1, sharp=1)
 
 /datum/surgery_step/face/cauterize
-	allowed_tools = list(
-	/obj/item/weapon/tool/cautery = 100,			\
-	/obj/item/clothing/mask/smokable/cigarette = 75,	\
-	/obj/item/weapon/flame/lighter = 50,			\
-	/obj/item/weapon/tool/weldingtool = 25
-	)
+	requedQuality = QUALITY_CAUTERIZING
 
 	min_duration = 70
 	max_duration = 100

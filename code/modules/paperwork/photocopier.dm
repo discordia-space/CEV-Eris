@@ -103,31 +103,31 @@
 			sleep(15)
 		updateUsrDialog()
 
-/obj/machinery/photocopier/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo) || istype(O, /obj/item/weapon/paper_bundle))
+/obj/machinery/photocopier/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
 		if(!copyitem)
 			user.drop_item()
-			copyitem = O
-			O.loc = src
-			user << SPAN_NOTICE("You insert \the [O] into \the [src].")
+			copyitem = I
+			I.loc = src
+			user << SPAN_NOTICE("You insert \the [I] into \the [src].")
 			flick(insert_anim, src)
 			updateUsrDialog()
 		else
 			user << SPAN_NOTICE("There is already something in \the [src].")
-	else if(istype(O, /obj/item/device/toner))
+	else if(istype(I, /obj/item/device/toner))
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
 			user.drop_item()
 			user << SPAN_NOTICE("You insert the toner cartridge into \the [src].")
-			var/obj/item/device/toner/T = O
+			var/obj/item/device/toner/T = I
 			toner += T.toner_amount
-			qdel(O)
+			qdel(I)
 			updateUsrDialog()
 		else
 			user << SPAN_NOTICE("This cartridge is not yet ready for replacement! Use up the rest of the toner.")
-	else if(istype(O, /obj/item/weapon/tool/wrench))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		anchored = !anchored
-		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+			anchored = !anchored
+			user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
 	return
 
 /obj/machinery/photocopier/ex_act(severity)

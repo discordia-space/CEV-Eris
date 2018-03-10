@@ -374,9 +374,6 @@
 	path = /obj/item/weapon/beartrap
 
 
-/datum/autolathe/recipe/welder_industrial
-	name = "industrial welding tool"
-	path = /obj/item/weapon/tool/weldingtool/largetank
 
 /datum/autolathe/recipe/flash
 	name = "flash"

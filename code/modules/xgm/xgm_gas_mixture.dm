@@ -18,6 +18,9 @@
 /datum/gas_mixture/New(vol = CELL_VOLUME)
 	volume = vol
 
+/datum/gas_mixture/proc/get_total_moles()
+	return total_moles * group_multiplier
+
 //Takes a gas string and the amount of moles to adjust by.  Calls update_values() if update isn't 0.
 /datum/gas_mixture/proc/adjust_gas(gasid, moles, update = 1)
 	if(moles == 0)
@@ -267,6 +270,12 @@
 
 	return removed
 
+//Returns the amount of gas that has the given flag, in moles
+/datum/gas_mixture/proc/get_by_flag(flag)
+	. = 0
+	for(var/g in gas)
+		if(gas_data.flags[g] & flag)
+			. += gas[g]
 
 //Copies gas and temperature from another gas_mixture.
 /datum/gas_mixture/proc/copy_from(const/datum/gas_mixture/sample)
@@ -464,3 +473,12 @@
 			gasmix.multiply(gasmix.volume)
 
 	return 1
+
+/datum/gas_mixture/proc/get_mass()
+	for(var/g in gas)
+		. += gas[g] * gas_data.molar_mass[g] * group_multiplier
+
+/datum/gas_mixture/proc/specific_mass()
+	var/M = get_total_moles()
+	if(M)
+		return get_mass()/M
