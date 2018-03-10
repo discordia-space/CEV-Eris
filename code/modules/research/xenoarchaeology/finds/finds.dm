@@ -473,7 +473,7 @@
 		if(prob(30))
 			descriptors.Add("is encrusted with [pick("","synthetic ","multi-faceted ","uncut ","sparkling ") + pick("rubies","emeralds","diamonds","opals","lapiz lazuli")]")
 		if(prob(30))
-			descriptors.Add("is studded with [pick(MATERIAL_GOLD,MATERIAL_SILVER,"aluminium","titanium")]")
+			descriptors.Add("is studded with [pick("gold","gold","aluminium","titanium")]")
 		if(prob(30))
 			descriptors.Add("is encircled with bands of [pick("quadrinium","cordite","ferritic-alloy","plasteel","duranium")]")
 		if(prob(30))
