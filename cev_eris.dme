@@ -2048,6 +2048,7 @@
 #include "maps\CEV_Eris-1.dmm"
 #include "maps\CEV_Eris-2.dmm"
 #include "maps\CEV_Eris-3.dmm"
+#include "maps\CEV_Eris-4.dmm"
 #include "maps\Eris\asteroid.dm"
 #include "maps\Eris\overmap-eris.dm"
 #include "maps\Eris\shuttles-eris.dm"
