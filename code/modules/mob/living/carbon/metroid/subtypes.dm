@@ -14,10 +14,10 @@
 			slime_mutation[3] = "green"
 			slime_mutation[4] = "green"
 		if("metal")
-			slime_mutation[1] = "silver"
+			slime_mutation[1] = MATERIAL_SILVER
 			slime_mutation[2] = "yellow"
-			slime_mutation[3] = "gold"
-			slime_mutation[4] = "gold"
+			slime_mutation[3] = MATERIAL_GOLD
+			slime_mutation[4] = MATERIAL_GOLD
 		if("orange")
 			slime_mutation[1] = "dark purple"
 			slime_mutation[2] = "yellow"
@@ -25,7 +25,7 @@
 			slime_mutation[4] = "red"
 		if("blue")
 			slime_mutation[1] = "dark blue"
-			slime_mutation[2] = "silver"
+			slime_mutation[2] = MATERIAL_SILVER
 			slime_mutation[3] = "pink"
 			slime_mutation[4] = "pink"
 		//Tier 3
@@ -44,7 +44,7 @@
 			slime_mutation[2] = "metal"
 			slime_mutation[3] = "orange"
 			slime_mutation[4] = "orange"
-		if("silver")
+		if(MATERIAL_SILVER)
 			slime_mutation[1] = "metal"
 			slime_mutation[2] = "metal"
 			slime_mutation[3] = "blue"
@@ -60,9 +60,9 @@
 			slime_mutation[2] = "red"
 			slime_mutation[3] = "oil"
 			slime_mutation[4] = "oil"
-		if("gold")
-			slime_mutation[1] = "gold"
-			slime_mutation[2] = "gold"
+		if(MATERIAL_GOLD)
+			slime_mutation[1] = MATERIAL_GOLD
+			slime_mutation[2] = MATERIAL_GOLD
 			slime_mutation[3] = "adamantine"
 			slime_mutation[4] = "adamantine"
 		if("green")

@@ -1,5 +1,5 @@
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass
-	name = "glass"
+	name = MATERIAL_GLASS
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
 	amount_per_transfer_from_this = 5
@@ -32,7 +32,7 @@
 			center_of_mass = list("x"=16, "y"=10)
 	else
 		icon_state = "glass_empty"
-		name = "glass"
+		name = MATERIAL_GLASS
 		desc = "Your standard drinking glass."
 		center_of_mass = list("x"=16, "y"=10)
 		return

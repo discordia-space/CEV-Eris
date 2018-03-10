@@ -54,17 +54,17 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	switch(return_name)
 		if("metal")
 			return_name = "Metal"
-		if("glass")
-			return_name = "Glass"
-		if("gold")
+		if(MATERIAL_GLASS)
+			return_name = MATERIAL_GLASS
+		if(MATERIAL_GOLD)
 			return_name = "Gold"
-		if("silver")
+		if(MATERIAL_SILVER)
 			return_name = "Silver"
 		if("plasma")
 			return_name = "Solid Plasma"
-		if("uranium")
+		if(MATERIAL_URANIUM)
 			return_name = "Uranium"
-		if("diamond")
+		if(MATERIAL_DIAMOND)
 			return_name = "Diamond"
 	return return_name
 

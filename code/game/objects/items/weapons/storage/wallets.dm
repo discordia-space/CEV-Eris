@@ -51,10 +51,10 @@
 			if("id")
 				icon_state = "walletid"
 				return
-			if("silver")
+			if(MATERIAL_SILVER)
 				icon_state = "walletid_silver"
 				return
-			if("gold")
+			if(MATERIAL_GOLD)
 				icon_state = "walletid_gold"
 				return
 			if("centcom")

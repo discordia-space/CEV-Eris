@@ -205,7 +205,7 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/captains_spare
 	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
-	icon_state = "gold"
+	icon_state = MATERIAL_GOLD
 	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
@@ -246,7 +246,7 @@ var/const/NO_EMAG_ACT = -50
 		..()
 
 /obj/item/weapon/card/id/gold
-	icon_state = "gold"
+	icon_state = MATERIAL_GOLD
 	item_state = "gold_id"
 
 /obj/item/weapon/card/id/sci

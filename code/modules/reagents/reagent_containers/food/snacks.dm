@@ -2145,7 +2145,7 @@
 	nutriment_amt = 8
 	New()
 		..()
-		reagents.add_reagent("gold", 5)
+		reagents.add_reagent(MATERIAL_GOLD, 5)
 		bitesize = 3
 
 /////////////////////////////////////////////////Sliceable////////////////////////////////////////
