@@ -18,7 +18,7 @@
 /datum/autolathe/recipe
 	var/name = "object"
 	var/path
-	var/list/resources = list()
+	var/list/resources
 
 /datum/autolathe/recipe/bucket
 	name = "bucket"
@@ -388,9 +388,9 @@
 	path = /obj/item/weapon/handcuffs
 
 
-/datum/autolathe/recipe/legcuffs
-	name = "legcuffs"
-	path = /obj/item/weapon/legcuffs
+/datum/autolathe/recipe/oshoes
+	name = "orange shoes"
+	path = /obj/item/clothing/shoes/color/orange
 
 
 /datum/autolathe/recipe/mg_a50_rubber

@@ -14,7 +14,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 50000)
+	matter = list(MATERIAL_STEEL = 50000)
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/stored_matter = 0
 	var/working = 0
@@ -157,7 +157,7 @@
 	item_state = "rcdammo"
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 30000,"glass" = 15000)
+	matter = list(MATERIAL_STEEL = 30000,MATERIAL_GLASS = 15000)
 
 /obj/item/weapon/rcd/borg
 	canRwall = 1

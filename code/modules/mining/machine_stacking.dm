@@ -87,10 +87,10 @@
 		stack_paths[S.name] = stacktype
 		qdel(S)
 
-	stack_storage["glass"] = 0
-	stack_paths["glass"] = /obj/item/stack/material/glass
-	stack_storage[DEFAULT_WALL_MATERIAL] = 0
-	stack_paths[DEFAULT_WALL_MATERIAL] = /obj/item/stack/material/steel
+	stack_storage[MATERIAL_GLASS] = 0
+	stack_paths[MATERIAL_GLASS] = /obj/item/stack/material/glass
+	stack_storage[MATERIAL_STEEL] = 0
+	stack_paths[MATERIAL_STEEL] = /obj/item/stack/material/steel
 	stack_storage["plasteel"] = 0
 	stack_paths["plasteel"] = /obj/item/stack/material/plasteel
 

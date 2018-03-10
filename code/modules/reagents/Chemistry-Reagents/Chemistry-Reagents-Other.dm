@@ -147,7 +147,7 @@
 
 /datum/reagent/gold
 	name = "Gold"
-	id = "gold"
+	id = MATERIAL_GOLD
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
 	taste_description = "expensive metal"
 	reagent_state = SOLID
@@ -155,7 +155,7 @@
 
 /datum/reagent/silver
 	name = "Silver"
-	id = "silver"
+	id = MATERIAL_SILVER
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 	taste_description = "expensive yet reasonable metal"
 	reagent_state = SOLID
@@ -163,7 +163,7 @@
 
 /datum/reagent/uranium
 	name ="Uranium"
-	id = "uranium"
+	id = MATERIAL_URANIUM
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
 	taste_description = "the inside of a reactor"
 	reagent_state = SOLID
@@ -317,7 +317,7 @@
 	name = "Silicate"
 	id = "silicate"
 	description = "A compound that can be used to reinforce glass."
-	taste_description = "plastic"
+	taste_description = MATERIAL_PLASTIC
 	reagent_state = LIQUID
 	color = "#C7FFFF"
 

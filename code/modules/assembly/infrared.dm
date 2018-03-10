@@ -5,7 +5,7 @@
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
 	origin_tech = list(TECH_MAGNET = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "waste" = 100)
+	matter = list(MATERIAL_STEEL = 1000, MATERIAL_GLASS = 500, "waste" = 100)
 
 	wires = WIRE_PULSE
 
@@ -83,7 +83,7 @@
 
 
 /obj/item/device/assembly/infra/holder_movement()
-	if(!holder)	
+	if(!holder)
 		return
 	qdel(first)
 
@@ -105,7 +105,7 @@
 	user.set_machine(src)
 	var/dat = {"<tt><b>Infrared Laser</b><br>
 		<b>Status</b>: <a href='?src=\ref[src];state=[!on]'>[on ? "On" : "Off"]</a><br>
-		<b>Visibility</b>: <a href='?src=\ref[src];visible=[!visible]'>[visible ? "Visible" : "Invisible"]</a><br></tt> 
+		<b>Visibility</b>: <a href='?src=\ref[src];visible=[!visible]'>[visible ? "Visible" : "Invisible"]</a><br></tt>
 		<br><br><a href='?src=\ref[src];refresh=1'>Refresh</a>
 		<br><br><a href='?src=\ref[src];close=1'>Close</a>
 	"}

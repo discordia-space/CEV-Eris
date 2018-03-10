@@ -15,7 +15,7 @@
 	var/unbreakable
 	var/force_divisor = 0.5
 	var/thrown_force_divisor = 0.5
-	var/default_material = DEFAULT_WALL_MATERIAL
+	var/default_material = MATERIAL_STEEL
 	var/material/material
 	var/drops_debris = 1
 

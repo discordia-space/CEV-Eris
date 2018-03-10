@@ -62,7 +62,7 @@
 	seed_name = "glowberry"
 	display_name = "glowberry bush"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "uranium" = list(3,5))
+	chems = list("nutriment" = list(1,10), MATERIAL_URANIUM = list(3,5))
 
 /datum/seed/berry/glow/New()
 	..()
@@ -271,7 +271,7 @@
 	seed_name = "golden apple"
 	display_name = "gold apple tree"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "gold" = list(1,5))
+	chems = list("nutriment" = list(1,10), MATERIAL_GOLD = list(1,5))
 	kitchen_tag = "goldapple"
 
 /datum/seed/apple/gold/New()

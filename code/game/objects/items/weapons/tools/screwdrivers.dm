@@ -8,7 +8,7 @@
 	w_class = ITEM_SIZE_TINY
 	throw_speed = 3
 	throw_range = 5
-	matter = list(DEFAULT_WALL_MATERIAL = 75)
+	matter = list(MATERIAL_STEEL = 75)
 	attack_verb = list("stabbed")
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 3)
 

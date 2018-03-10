@@ -177,7 +177,7 @@
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
 	desc = "A prestigious golden medal."
-	icon_state = "gold"
+	icon_state = MATERIAL_GOLD
 
 /obj/item/clothing/accessory/medal/gold/captain
 	name = "medal of captaincy"

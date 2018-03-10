@@ -8,7 +8,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	matter = list(DEFAULT_WALL_MATERIAL = 30, "glass" = 10)
+	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)
 
 	var/list/recipes = list()
 
@@ -26,7 +26,13 @@
 		/datum/autolathe/recipe/extinguisher,
 		/datum/autolathe/recipe/radio_headset,
 		/datum/autolathe/recipe/radio_bounced,
+		/datum/autolathe/recipe/hatchet,
+		/datum/autolathe/recipe/minihoe,
+		/datum/autolathe/recipe/bucket,
+		/datum/autolathe/recipe/knife,
+		/datum/autolathe/recipe/ashtray_glass,
 		/datum/autolathe/recipe/beaker,
+		/datum/autolathe/recipe/beaker_large,
 	)
 	..()
 
@@ -84,7 +90,7 @@
 		/datum/autolathe/recipe/secflashlight,
 		/datum/autolathe/recipe/flash,
 		/datum/autolathe/recipe/handcuffs,
-		/datum/autolathe/recipe/legcuffs,
+		/datum/autolathe/recipe/oshoes,
 		/datum/autolathe/recipe/taperecorder,
 		/datum/autolathe/recipe/tacknife,
 		/datum/autolathe/recipe/beartrap,
@@ -158,24 +164,4 @@
 		/datum/autolathe/recipe/syringegun_ammo,
 	)
 	..()
-
-
-/obj/item/weapon/disk/autolathe_disk/misc
-	name = "Misc designs disk"
-	category = "Misc"
-
-/obj/item/weapon/disk/autolathe_disk/basic/New()
-	recipes = list(
-		/datum/autolathe/recipe/hatchet,
-		/datum/autolathe/recipe/minihoe,
-		/datum/autolathe/recipe/bucket,
-		/datum/autolathe/recipe/knife,
-		/datum/autolathe/recipe/ashtray_glass,
-		/datum/autolathe/recipe/beaker,
-		/datum/autolathe/recipe/beaker_large,
-	)
-	..()
-
-
-
 

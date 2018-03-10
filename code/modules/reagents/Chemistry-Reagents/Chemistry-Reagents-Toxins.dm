@@ -20,7 +20,7 @@
 	name = "Plasticide"
 	id = "plasticide"
 	description = "Liquid plastic, do not eat."
-	taste_description = "plastic"
+	taste_description = MATERIAL_PLASTIC
 	reagent_state = LIQUID
 	color = "#CF3600"
 	strength = 5

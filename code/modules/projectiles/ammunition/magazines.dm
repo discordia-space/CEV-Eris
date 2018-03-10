@@ -3,7 +3,7 @@
 	icon_state = "357"
 	caliber = "357"
 	ammo_type = /obj/item/ammo_casing/a357
-	matter = list(DEFAULT_WALL_MATERIAL = 1260)
+	matter = list(MATERIAL_STEEL = 1260)
 	max_ammo = 7
 	multiple_sprites = 1
 
@@ -11,7 +11,7 @@
 	name = "speed loader (.38)"
 	icon_state = "38"
 	caliber = "38"
-	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	matter = list(MATERIAL_STEEL = 360)
 	ammo_type = /obj/item/ammo_casing/c38
 	max_ammo = 6
 	multiple_sprites = 1
@@ -26,7 +26,7 @@
 	icon_state = "44"
 	caliber = ".44"
 	ammo_type = /obj/item/ammo_casing/cl44
-	matter = list(DEFAULT_WALL_MATERIAL = 450)
+	matter = list(MATERIAL_STEEL = 450)
 	max_ammo = 6
 	multiple_sprites = 1
 
@@ -40,7 +40,7 @@
 	icon_state = "45"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c45
-	matter = list(DEFAULT_WALL_MATERIAL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	matter = list(MATERIAL_STEEL = 525) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".45"
 	max_ammo = 7
 	multiple_sprites = 1
@@ -65,7 +65,7 @@
 	icon_state = "9x19p"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(DEFAULT_WALL_MATERIAL = 600)
+	matter = list(MATERIAL_STEEL = 600)
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 10
@@ -86,7 +86,7 @@
 	icon_state = "9mmt"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/c9mm
-	matter = list(DEFAULT_WALL_MATERIAL = 1200)
+	matter = list(MATERIAL_STEEL = 1200)
 	caliber = "9mm"
 	max_ammo = 20
 	multiple_sprites = 1
@@ -108,7 +108,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "10mm"
-	matter = list(DEFAULT_WALL_MATERIAL = 1500)
+	matter = list(MATERIAL_STEEL = 1500)
 	ammo_type = /obj/item/ammo_casing/a10mm
 	max_ammo = 20
 	multiple_sprites = 1
@@ -122,7 +122,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a556"
-	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	matter = list(MATERIAL_STEEL = 1800)
 	ammo_type = /obj/item/ammo_casing/a556
 	max_ammo = 10
 	multiple_sprites = 1
@@ -140,7 +140,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = ".50"
-	matter = list(DEFAULT_WALL_MATERIAL = 1260)
+	matter = list(MATERIAL_STEEL = 1260)
 	ammo_type = /obj/item/ammo_casing/a50
 	max_ammo = 7
 	multiple_sprites = 1
@@ -169,7 +169,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a762"
-	matter = list(DEFAULT_WALL_MATERIAL = 4500)
+	matter = list(MATERIAL_STEEL = 4500)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 50
 	multiple_sprites = 1
@@ -182,7 +182,7 @@
 	icon_state = "c762"
 	mag_type = MAGAZINE
 	caliber = "a762"
-	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	matter = list(MATERIAL_STEEL = 1800)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 20
 	multiple_sprites = 1
@@ -193,7 +193,7 @@
 	caliber = "caps"
 	color = "#FF0000"
 	ammo_type = /obj/item/ammo_casing/cap
-	matter = list(DEFAULT_WALL_MATERIAL = 600)
+	matter = list(MATERIAL_STEEL = 600)
 	max_ammo = 7
 	multiple_sprites = 1
 
@@ -203,7 +203,7 @@
 	mag_type = MAGAZINE
 	ammo_mag = "ih_sol"
 	ammo_type = /obj/item/ammo_casing/c65
-	matter = list(DEFAULT_WALL_MATERIAL = 2250) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	matter = list(MATERIAL_STEEL = 2250) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = "6.5mm"
 	max_ammo = 30
 	multiple_sprites = 1
@@ -218,7 +218,7 @@
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl44"
 	ammo_type = /obj/item/ammo_casing/cl44
-	matter = list(DEFAULT_WALL_MATERIAL = 750) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	matter = list(MATERIAL_STEEL = 750) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".44"
 	max_ammo = 10
 	multiple_sprites = 1
@@ -233,7 +233,7 @@
 	mag_type = MAGAZINE
 	ammo_mag = "mag_cl32"
 	ammo_type = /obj/item/ammo_casing/cl32
-	matter = list(DEFAULT_WALL_MATERIAL = 750)
+	matter = list(MATERIAL_STEEL = 750)
 	caliber = ".32"
 	max_ammo = 7
 	multiple_sprites = 1

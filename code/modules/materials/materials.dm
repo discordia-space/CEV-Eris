@@ -221,7 +221,7 @@ var/list/name_to_material
 
 // Datum definitions follow.
 /material/uranium
-	name = "uranium"
+	name = MATERIAL_URANIUM
 	stack_type = /obj/item/stack/material/uranium
 	radioactivity = 12
 	icon_base = "stone"
@@ -232,7 +232,7 @@ var/list/name_to_material
 	door_icon_base = "stone"
 
 /material/diamond
-	name = "diamond"
+	name = MATERIAL_DIAMOND
 	stack_type = /obj/item/stack/material/diamond
 	flags = MATERIAL_UNMELTABLE
 	cut_delay = 60
@@ -244,7 +244,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 6)
 
 /material/gold
-	name = "gold"
+	name = MATERIAL_GOLD
 	stack_type = /obj/item/stack/material/gold
 	icon_colour = "#EDD12F"
 	weight = 24
@@ -258,7 +258,7 @@ var/list/name_to_material
 	icon_colour = "#EDD12F"
 
 /material/silver
-	name = "silver"
+	name = MATERIAL_SILVER
 	stack_type = /obj/item/stack/material/silver
 	icon_colour = "#D1E6E3"
 	weight = 22
@@ -268,7 +268,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/plasma
-	name = "plasma"
+	name = MATERIAL_PLASMA
 	stack_type = /obj/item/stack/material/plasma
 	ignition_point = PLASMA_MINIMUM_BURN_TEMPERATURE
 	icon_base = "stone"
@@ -298,7 +298,7 @@ var/list/name_to_material
 */
 
 /material/stone
-	name = "sandstone"
+	name = MATERIAL_SANDSTONE
 	stack_type = /obj/item/stack/material/sandstone
 	icon_base = "stone"
 	icon_reinf = "reinf_stone"
@@ -311,7 +311,7 @@ var/list/name_to_material
 	sheet_plural_name = "bricks"
 
 /material/stone/marble
-	name = "marble"
+	name = MATERIAL_MARBLE
 	icon_colour = "#AAAAAA"
 	weight = 26
 	hardness = 100
@@ -319,7 +319,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/marble
 
 /material/steel
-	name = DEFAULT_WALL_MATERIAL
+	name = MATERIAL_STEEL
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
 	icon_base = "solid"
@@ -328,13 +328,13 @@ var/list/name_to_material
 	hitsound = 'sound/weapons/genhit.ogg'
 
 /material/steel/holographic
-	name = "holo" + DEFAULT_WALL_MATERIAL
-	display_name = DEFAULT_WALL_MATERIAL
+	name = "holo" + MATERIAL_STEEL
+	display_name = MATERIAL_STEEL
 	stack_type = null
 	shard_type = SHARD_NONE
 
 /material/plasteel
-	name = "plasteel"
+	name = MATERIAL_PLASTEEL
 	stack_type = /obj/item/stack/material/plasteel
 	integrity = 400
 	melting_point = 6000
@@ -345,11 +345,11 @@ var/list/name_to_material
 	hardness = 80
 	weight = 23
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list(DEFAULT_WALL_MATERIAL = 3750, "platinum" = 3750) //todo
+	composite_material = list(MATERIAL_STEEL = 3750, MATERIAL_PLATINUM = 3750) //todo
 	hitsound = 'sound/weapons/genhit.ogg'
 
 /material/plasteel/titanium
-	name = "titanium"
+	name = MATERIAL_TITANIUM
 	stack_type = null
 	icon_base = "metal"
 	door_icon_base = "metal"
@@ -357,7 +357,7 @@ var/list/name_to_material
 	icon_reinf = "reinf_metal"
 
 /material/glass
-	name = "glass"
+	name = MATERIAL_GLASS
 	stack_type = /obj/item/stack/material/glass
 	flags = MATERIAL_BRITTLE
 	icon_colour = "#00E1FF"
@@ -446,7 +446,7 @@ var/list/name_to_material
 	return (hardness > 35) //todo
 
 /material/glass/reinforced
-	name = "rglass"
+	name = MATERIAL_RGLASS
 	display_name = "reinforced glass"
 	stack_type = /obj/item/stack/material/glass/reinforced
 	flags = MATERIAL_BRITTLE
@@ -458,14 +458,14 @@ var/list/name_to_material
 	hardness = 40
 	weight = 30
 	stack_origin_tech = "materials=2"
-	composite_material = list(DEFAULT_WALL_MATERIAL = 1875,"glass" = 3750)
+	composite_material = list(MATERIAL_STEEL = 1875,MATERIAL_GLASS = 3750)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
 	wire_product = null
 	rod_product = null
 
 /material/glass/plasma
-	name = "borosilicate glass"
+	name = MATERIAL_PLASMAGLASS
 	display_name = "borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/plasmaglass
 	flags = MATERIAL_BRITTLE
@@ -477,7 +477,7 @@ var/list/name_to_material
 	rod_product = /obj/item/stack/material/glass/plasmarglass
 
 /material/glass/plasma/reinforced
-	name = "reinforced borosilicate glass"
+	name = MATERIAL_RPLASMAGLASS
 	display_name = "reinforced borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/plasmarglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
@@ -490,7 +490,7 @@ var/list/name_to_material
 	rod_product = null
 
 /material/plastic
-	name = "plastic"
+	name = MATERIAL_PLASTIC
 	stack_type = /obj/item/stack/material/plastic
 	flags = MATERIAL_BRITTLE
 	icon_base = "solid"
@@ -508,7 +508,7 @@ var/list/name_to_material
 	shard_type = SHARD_NONE
 
 /material/osmium
-	name = "osmium"
+	name = MATERIAL_OSMIUM
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
@@ -516,7 +516,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/tritium
-	name = "tritium"
+	name = MATERIAL_TRITIUM
 	stack_type = /obj/item/stack/material/tritium
 	icon_colour = "#777777"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
@@ -524,13 +524,13 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/mhydrogen
-	name = "mhydrogen"
+	name = MATERIAL_MHYDROGEN
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
 
 /material/platinum
-	name = "platinum"
+	name = MATERIAL_PLATINUM
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999FF"
 	weight = 27
@@ -539,7 +539,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/iron
-	name = "iron"
+	name = MATERIAL_IRON
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
@@ -549,7 +549,7 @@ var/list/name_to_material
 
 // Adminspawn only, do not let anyone get this.
 /material/voxalloy
-	name = "voxalloy"
+	name = MATERIAL_VOXALLOY
 	display_name = "durable alloy"
 	stack_type = null
 	icon_colour = "#6C7364"
@@ -560,7 +560,7 @@ var/list/name_to_material
 	weight = 500
 
 /material/wood
-	name = "wood"
+	name = MATERIAL_WOOD
 	stack_type = /obj/item/stack/material/wood
 	icon_colour = "#824B28"
 	integrity = 50
@@ -587,7 +587,7 @@ var/list/name_to_material
 	shard_type = SHARD_NONE
 
 /material/cardboard
-	name = "cardboard"
+	name = MATERIAL_CARDBOARD
 	stack_type = /obj/item/stack/material/cardboard
 	flags = MATERIAL_BRITTLE
 	integrity = 10
@@ -603,22 +603,12 @@ var/list/name_to_material
 	destruction_desc = "crumples"
 
 /material/cloth //todo
-	name = "cloth"
+	name = MATERIAL_CLOTH
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	door_icon_base = "wood"
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	flags = MATERIAL_PADDING
-
-/material/cult
-	name = "cult"
-	display_name = "disturbing stone"
-	icon_base = "cult"
-	icon_colour = "#402821"
-	icon_reinf = "reinf_cult"
-	shard_type = SHARD_STONE_PIECE
-	sheet_singular_name = "brick"
-	sheet_plural_name = "bricks"
 
 /material/cult/place_dismantled_girder(var/turf/target)
 	new /obj/structure/girder/cult(target)
@@ -634,7 +624,7 @@ var/list/name_to_material
 	new /obj/item/remains/human(target)
 
 /material/resin
-	name = "resin"
+	name = MATERIAL_RESIN
 	icon_colour = "#E85DD8"
 	dooropen_noise = 'sound/effects/attackblob.ogg'
 	door_icon_base = "resin"
@@ -650,7 +640,7 @@ var/list/name_to_material
 
 //TODO PLACEHOLDERS:
 /material/leather
-	name = "leather"
+	name = MATERIAL_LEATHER
 	icon_colour = "#5C4831"
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	flags = MATERIAL_PADDING
@@ -658,7 +648,7 @@ var/list/name_to_material
 	melting_point = T0C+300
 
 /material/carpet
-	name = "carpet"
+	name = MATERIAL_CARPET
 	display_name = "comfy"
 	use_name = "red upholstery"
 	icon_colour = "#DA020A"

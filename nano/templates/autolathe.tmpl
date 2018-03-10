@@ -2,49 +2,88 @@
 Title: Autolathe
 Used In File(s): \code\game\machinery\autolathe.dm
  -->
-<div class="item">
-	<div class="statusDisplay">
-		{{for data.materials}}
-			<b>{{value.name}}: {{value.count}}  {{:helper.link('', 'eject', {'eject_material' : value.name})}}</b>
-		{{/for}}
+<div class="statusDisplay">
+	<div style>
+	{{for data.materials}}
+		<div class="item">
+			<div class="itemLabelNarrow"><b>{{:value.name}}</div> 
+			<div class="itemContentNarrow">{{:value.count}}</div>
+			{{if value.ejectable}}
+				<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject_material' : value.name}, null, 'statusValue')}}</b></div>
+			{{/if}}
+		</div>
+	{{/for}}
 	</div>
-	<div class="statusDisplay">
+</div>
+<div class="statusDisplay">
+	<div class="item">
 		{{if data.disk}}
-			<b>Disk: {{data.disk}}. Uses left: {{data.uses}}.</b> {{:helper.link('', 'eject', {'eject_disk' : 1})}}</b>
+			{{if data.uses < 0}}
+				<div class="itemContentWide"><b>Disk: {{:data.disk}}. Disk is unlimited.</b></div>
+			{{else}}
+				<div class="itemContentWide"><b>Disk: {{:data.disk}}. Uses left: {{:data.uses}}.</b></div>
+			{{/if}}
+			<div class="itemlabelNarrow">{{:helper.link('', 'eject', {'eject_disk' : 1}, null, 'statusValue')}}</b></div>
 		{{else}}
-			<b>Disk: not inserted.</b>
+			<div class="itemContentWide"><b>Disk: not inserted.</b></div>
 		{{/if}}
 	</div>
 </div>
 <div class="item">
 	<div class="itemContent">
 		{{if data.busy}}
-			<div class="itemGroup">
-				<span style="text-align: center;">
-					{{if data.resout}}
-						<div><b>Not enough resources.</b></div>
+		<span style="text-align: center;">
+			<div class="item">
+				<div class="itemLabelWidest">Printing {{:data.busyname}} ({{:data.busynow}}/{{:data.busytotal}})</div>
+				{{if data.diskerr}}
+					<div class="itemContentWidest"><b>Design data not found.</b></div>
+				{{else}}
+					{{if data.uses == 0}}
+						<div class="itemContentWidest"><b>Disk license is out.</b></div>
 					{{else}}
-						{{if data.expired}}
-							<div><b>Disk license is out. Please, insert a new one to proceed printing.</b></div>
+						{{if data.resout}}
+							<div class="itemContentWidest"><b>Not enough resources.</b></div>
 						{{else}}
-							<div><b>Printing...</b></div>
+							<div class="itemContentWidest"><b>Printing...</b></div>
 						{{/if}}
 					{{/if}}
-					<div>Printing {{data.busyname}} ({{data.busynow}}/{{data.busytotal}})</div>
-					<div>{{:helper.link('Abort', '', {'abort_print' : 1})}}</div>
-				</span>
+				{{/if}}
+				<div class="itemGroup">
+					{{for data.req_materials}}
+						<div class="item">
+							<div class="itemLabelNerrow">{{:value.name}}: {{:value.req}}</div>
+						</div>
+					{{/for}}
+				</div>
+				<div class="itemContentWidest">{{:helper.link('Abort', 'close', {'abort_print' : 1}, null, 'statusValue')}}</div>
 			</div>
+		</span>
 		{{else}}
-			{{if data.expired}}
+			{{if !data.disk}}
 				<div class="itemGroup">
 					<span style="text-align: center;">
-						<div><b>Disk license is out. Please, insert a new one.</b></div>
+						<div ><b>No disk.</b></div>
 					</span>
 				</div>
 			{{else}}
-				{{for data.recipes}}
-					{{value.name}}  {{if value.enough}}{{:helper.link('x1', '', {'print_one' : index})}} {{:helper.link('xN', '', {'print_several' : index})}} {{/if}}
-				{{/for}}
+				{{if data.uses == 0}}
+					<div class="itemGroup">
+						<span style="text-align: center;">
+							<div ><b>Disk license is out. Insert a new one.</b></div>
+						</span>
+					</div>
+				{{else}}
+					{{for data.recipes}}
+						<div class="block">
+							<div class="item">
+								<div class="itemLabelWidest">{{:value.name}}</div> 
+								<div class="itemLabelNarrow">Print: </div>
+								<div class="itemContentNarrow">{{:helper.link('x1', 'plus', {'print_one' : value.type}, null, 'statusValue')}}</div>
+								<div class="itemContentNarrow">{{:helper.link('xN', 'plus', {'print_several' : value.type}, null, 'statusValue')}}</div>
+							</div>
+						</div>
+					{{/for}}
+				{{/if}}
 			{{/if}}
 		{{/if}}
 	</div>

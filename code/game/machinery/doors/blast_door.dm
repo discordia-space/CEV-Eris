@@ -111,7 +111,7 @@
 		else
 			usr << SPAN_NOTICE("[src]'s motors resist your effort.")
 		return
-	if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel")
+	if(istype(C, /obj/item/stack/material) && C.get_material_name() == MATERIAL_PLASTEEL)
 		var/amt = Ceiling((maxhealth - health)/150)
 		if(!amt)
 			usr << SPAN_NOTICE("\The [src] is already fully repaired.")

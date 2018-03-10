@@ -88,7 +88,7 @@
 	data["energy"] = round(energy)
 	data["maxEnergy"] = round(max_energy)
 	data["isBeakerLoaded"] = beaker ? 1 : 0
-	data["glass"] = accept_glass
+	data[MATERIAL_GLASS] = accept_glass
 	var beakerContents[0]
 	var beakerCurrentVolume = 0
 	if(beaker && beaker:reagents && beaker:reagents.reagent_list.len)
@@ -551,10 +551,10 @@
 	var/list/holdingitems = list()
 	var/list/sheet_reagents = list(
 		/obj/item/stack/material/iron = "iron",
-		/obj/item/stack/material/uranium = "uranium",
+		/obj/item/stack/material/uranium = MATERIAL_URANIUM,
 		/obj/item/stack/material/plasma = "plasma",
-		/obj/item/stack/material/gold = "gold",
-		/obj/item/stack/material/silver = "silver",
+		/obj/item/stack/material/gold = MATERIAL_GOLD,
+		/obj/item/stack/material/silver = MATERIAL_SILVER,
 		/obj/item/stack/material/mhydrogen = "hydrogen"
 		)
 

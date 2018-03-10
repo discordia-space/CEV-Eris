@@ -10,7 +10,7 @@
 	throw_range = 5
 
 	//Cost to make in the autolathe
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 30)
 
 	//R&D tech level
 	origin_tech = list(TECH_ENGINEERING = 1)
@@ -240,21 +240,21 @@
 	name = "industrial welding tool"
 	max_fuel = 40
 	origin_tech = list(TECH_ENGINEERING = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 60)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 60)
 
 /obj/item/weapon/tool/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 3)
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 120)
 
 /obj/item/weapon/tool/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_PLASMA = 3)
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_GLASS = 120)
 	var/last_gen = 0
 
 /obj/item/weapon/tool/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve

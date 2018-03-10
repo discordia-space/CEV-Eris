@@ -261,11 +261,11 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_tog_aliens, R_DEBUG, FALSE)
 			if(istype(H.wear_id, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = H.wear_id
 				id = pda.id
-			id.icon_state = "gold"
+			id.icon_state = MATERIAL_GOLD
 			id.access = get_all_accesses()
 		else
 			var/obj/item/weapon/card/id/id = new/obj/item/weapon/card/id(M);
-			id.icon_state = "gold"
+			id.icon_state = MATERIAL_GOLD
 			id.access = get_all_accesses()
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
