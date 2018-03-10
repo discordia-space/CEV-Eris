@@ -1,3 +1,5 @@
+#include "asteroid.dmm"
+
 //MINING-1 // CLUSTER
 /obj/effect/overmap/sector/asteroid
 	name = "asteroid"
