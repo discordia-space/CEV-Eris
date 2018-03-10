@@ -161,7 +161,7 @@
 
 /datum/autolathe/recipe/circularsaw
 	name = "circular saw"
-	path = /obj/item/weapon/tool/circular_saw
+	path = /obj/item/weapon/tool/saw/circular
 
 
 /datum/autolathe/recipe/surgicaldrill
