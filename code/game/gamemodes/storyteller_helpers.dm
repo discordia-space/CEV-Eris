@@ -51,9 +51,10 @@
 	return weight
 
 /datum/storyteller/proc/weight_mult(var/val, var/req, var/min, var/max, var/atl = FALSE)
+	var/diff = val-req
 	if(req < 0)
 		return 1
-	if(val < min || (!atl && val > max))
+	if(diff < -min || diff > max)
 		return 0
 	if(atl && req < val)
 		return 1
