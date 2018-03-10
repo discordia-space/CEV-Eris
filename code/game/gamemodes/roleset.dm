@@ -28,7 +28,7 @@
 				continue
 			if(!antagonist_suitable(candidate,temp))
 				continue
-			if(!(temp.id in candidate.current.client.prefs.be_special_role))
+			if(!(temp.role_type in candidate.current.client.prefs.be_special_role))
 				continue
 			if(ticker.storyteller && ticker.storyteller.one_role_per_player && candidate.antagonist.len)
 				continue
@@ -59,7 +59,7 @@
 				continue
 			if(!temp.can_become_antag_ghost(candidate))
 				continue
-			if(!(temp.id in candidate.client.prefs.be_special_role))
+			if(!(temp.role_type in candidate.client.prefs.be_special_role))
 				continue
 
 			any_candidates = TRUE

@@ -44,6 +44,10 @@
 /datum/storyteller/erida/proc/pick_storyevent(var/list/L)
 	var/max = 0
 	var/target = 0
+
+	if(!L.len)
+		return null
+
 	for(var/datum/storyevent/S in L)
 		max += S.weight_cache
 
@@ -85,17 +89,25 @@
 			story_debug("Debug-spawning [S.id] with weight [S.weight_cache]; Currdeck: [currdeck]([currdeck+S.cost])/[deck_size]")
 
 		if(S.create())
+			story_debug("Spawned [S.id] with weight [S.weight_cache]; Currdeck: [currdeck]([currdeck+S.cost])/[deck_size]")
 			currdeck += S.cost
 			spawned.Add(S.id)
 			if(!S.multispawn)
 				sorted.Remove(S)
-		else if(debug_mode)
-			story_debug("[S.id] fake-created")
-			currdeck += S.cost
-			spawned.Add(S.id)
-			S.spawn_times++
-			if(!S.multispawn)
+		else
+			if(debug_mode)
+				story_debug("[S.id] fake-created")
+				currdeck += S.cost
+				spawned.Add(S.id)
+				S.spawn_times++
+				if(!S.multispawn)
+					sorted.Remove(S)
+			else
 				sorted.Remove(S)
+
+		update_event_weight(S)
+		if(S.weight_cache <= 0)
+			sorted.Remove(S)
 
 	sorted.Cut()
 
