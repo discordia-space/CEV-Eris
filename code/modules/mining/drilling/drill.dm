@@ -18,10 +18,10 @@
 
 	var/ore_types = list(
 		"iron" = /obj/item/weapon/ore/iron,
-		"uranium" = /obj/item/weapon/ore/uranium,
-		"gold" = /obj/item/weapon/ore/gold,
-		"silver" = /obj/item/weapon/ore/silver,
-		"diamond" = /obj/item/weapon/ore/diamond,
+		MATERIAL_URANIUM = /obj/item/weapon/ore/uranium,
+		MATERIAL_GOLD = /obj/item/weapon/ore/gold,
+		MATERIAL_SILVER = /obj/item/weapon/ore/silver,
+		MATERIAL_DIAMOND = /obj/item/weapon/ore/diamond,
 		"plasma" = /obj/item/weapon/ore/plasma,
 		"osmium" = /obj/item/weapon/ore/osmium,
 		"hydrogen" = /obj/item/weapon/ore/hydrogen,

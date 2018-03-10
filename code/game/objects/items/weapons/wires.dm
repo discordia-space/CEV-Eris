@@ -7,7 +7,7 @@
 	var/amount = 1.0
 	var/laying = 0.0
 	var/old_lay = null
-	matter = list(DEFAULT_WALL_MATERIAL = 40)
+	matter = list(MATERIAL_STEEL = 40)
 	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
 
 /obj/item/weapon/wire/proc/update()

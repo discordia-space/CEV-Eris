@@ -9,7 +9,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = "materials=1"
-	matter = list(DEFAULT_WALL_MATERIAL = 18750)
+	matter = list(MATERIAL_STEEL = 18750)
 	var/deployed = 0
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)

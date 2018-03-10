@@ -2,7 +2,7 @@
 
 //All devices that link into the R&D console fall into thise type for easy identification and some shared procs.
 
-var/list/default_material_composition = list("steel" = 0, "glass" = 0, "gold" = 0, "silver" = 0, "plasma" = 0, "uranium" = 0, "diamond" = 0)
+var/list/default_material_composition = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_GOLD = 0, MATERIAL_SILVER = 0, MATERIAL_PLASMA = 0, MATERIAL_URANIUM = 0, MATERIAL_DIAMOND = 0)
 /obj/machinery/r_n_d
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
@@ -19,38 +19,38 @@ var/list/default_material_composition = list("steel" = 0, "glass" = 0, "gold" = 
 
 /obj/machinery/r_n_d/proc/getMaterialType(var/name)
 	switch(name)
-		if(DEFAULT_WALL_MATERIAL)
+		if(MATERIAL_STEEL)
 			return /obj/item/stack/material/steel
-		if("glass")
+		if(MATERIAL_GLASS)
 			return /obj/item/stack/material/glass
-		if("gold")
+		if(MATERIAL_GOLD)
 			return /obj/item/stack/material/gold
-		if("silver")
+		if(MATERIAL_SILVER)
 			return /obj/item/stack/material/silver
-		if("plasma")
+		if(MATERIAL_PLASMA)
 			return /obj/item/stack/material/plasma
-		if("uranium")
+		if(MATERIAL_URANIUM)
 			return /obj/item/stack/material/uranium
-		if("diamond")
+		if(MATERIAL_DIAMOND)
 			return /obj/item/stack/material/diamond
 	return null
 
 /obj/machinery/r_n_d/proc/getMaterialName(var/type)
 	switch(type)
 		if(/obj/item/stack/material/steel)
-			return DEFAULT_WALL_MATERIAL
+			return MATERIAL_STEEL
 		if(/obj/item/stack/material/glass)
-			return "glass"
+			return MATERIAL_GLASS
 		if(/obj/item/stack/material/gold)
-			return "gold"
+			return MATERIAL_GOLD
 		if(/obj/item/stack/material/silver)
-			return "silver"
+			return MATERIAL_SILVER
 		if(/obj/item/stack/material/plasma)
-			return "plasma"
+			return MATERIAL_PLASMA
 		if(/obj/item/stack/material/uranium)
-			return "uranium"
+			return MATERIAL_URANIUM
 		if(/obj/item/stack/material/diamond)
-			return "diamond"
+			return MATERIAL_DIAMOND
 
 /obj/machinery/r_n_d/proc/eject(var/material, var/amount)
 	if(!(material in materials))

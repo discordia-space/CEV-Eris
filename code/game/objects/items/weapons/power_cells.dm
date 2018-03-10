@@ -17,7 +17,7 @@
 	var/autorecharging = FALSE //For nucclear cells
 	var/recharge_time = 4 //How often nuclear cells will recharge
 	var/charge_tick = 0
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 50)
 
 /obj/item/weapon/cell/initialize()
 	..()
@@ -128,7 +128,7 @@
 	throw_speed = 5
 	throw_range = 7
 	maxcharge = 600
-	matter = list("metal" = 350, "glass" = 50)
+	matter = list("metal" = 350, MATERIAL_GLASS = 50)
 
 /obj/item/weapon/cell/medium/high
 	name = "Asters \"Robustcell 800M\""
@@ -197,7 +197,7 @@
 	throw_speed = 5
 	throw_range = 7
 	maxcharge = 100
-	matter = list("metal" = 200, "glass" = 30)
+	matter = list("metal" = 200, MATERIAL_GLASS = 30)
 
 /obj/item/weapon/cell/small/high
 	name = "Asters \"Robustcell 200S\""

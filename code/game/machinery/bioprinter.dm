@@ -80,7 +80,7 @@
 		qdel(W)
 		return
 	// Steel for matter.
-	if(prints_prosthetics && istype(W, /obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL)
+	if(prints_prosthetics && istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL)
 		var/obj/item/stack/S = W
 		stored_matter += S.amount * 10
 		user.drop_item()

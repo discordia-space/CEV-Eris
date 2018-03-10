@@ -11,14 +11,14 @@
 		icon_state = "plain_preview"
 		color = "#666666"
 		New()
-			material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+			material = get_material_by_name(MATERIAL_STEEL)
 			..()
 
 	marble
 		icon_state = "stone_preview"
 		color = "#CCCCCC"
 		New()
-			material = get_material_by_name("marble")
+			material = get_material_by_name(MATERIAL_MARBLE)
 			..()
 
 	reinforced
@@ -26,28 +26,28 @@
 		color = "#EEEEEE"
 		New()
 			material = get_material_by_name(DEFAULT_TABLE_MATERIAL)
-			reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+			reinforced = get_material_by_name(MATERIAL_STEEL)
 			..()
-	
+
 	steel_reinforced
 		icon_state = "reinf_preview"
 		color = "#666666"
 		New()
-			material = get_material_by_name(DEFAULT_WALL_MATERIAL)
-			reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+			material = get_material_by_name(MATERIAL_STEEL)
+			reinforced = get_material_by_name(MATERIAL_STEEL)
 			..()
 
 	woodentable
 		icon_state = "plain_preview"
 		color = "#824B28"
 		New()
-			material = get_material_by_name("wood")
+			material = get_material_by_name(MATERIAL_WOOD)
 			..()
 
 	gamblingtable
 		icon_state = "gamble_preview"
 		New()
-			material = get_material_by_name("wood")
+			material = get_material_by_name(MATERIAL_WOOD)
 			carpeted = 1
 			..()
 
@@ -56,7 +56,7 @@
 		color = "#00E1FF"
 		alpha = 77 // 0.3 * 255
 		New()
-			material = get_material_by_name("glass")
+			material = get_material_by_name(MATERIAL_GLASS)
 			..()
 
 	holotable

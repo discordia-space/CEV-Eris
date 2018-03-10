@@ -627,7 +627,7 @@
 	name = "EMP Pulse"
 	id = "emp_pulse"
 	result = null
-	required_reagents = list("uranium" = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
+	required_reagents = list(MATERIAL_URANIUM = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 	result_amount = 2
 
 /datum/chemical_reaction/emp_pulse/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -1452,14 +1452,14 @@
 	name = "Goldschlager"
 	id = "goldschlager"
 	result = "goldschlager"
-	required_reagents = list("vodka" = 10, "gold" = 1)
+	required_reagents = list("vodka" = 10, MATERIAL_GOLD = 1)
 	result_amount = 10
 
 /datum/chemical_reaction/patron
 	name = "Patron"
 	id = "patron"
 	result = "patron"
-	required_reagents = list("tequilla" = 10, "silver" = 1)
+	required_reagents = list("tequilla" = 10, MATERIAL_SILVER = 1)
 	result_amount = 10
 
 /datum/chemical_reaction/bilk
@@ -1487,7 +1487,7 @@
 	name = "Nuka Cola"
 	id = "nuka_cola"
 	result = "nuka_cola"
-	required_reagents = list("uranium" = 1, "cola" = 5)
+	required_reagents = list(MATERIAL_URANIUM = 1, "cola" = 5)
 	result_amount = 5
 
 /datum/chemical_reaction/moonshine
@@ -1707,7 +1707,7 @@
 	name = "Atomic Bomb"
 	id = "atomicbomb"
 	result = "atomicbomb"
-	required_reagents = list("b52" = 10, "uranium" = 1)
+	required_reagents = list("b52" = 10, MATERIAL_URANIUM = 1)
 	result_amount = 10
 
 /datum/chemical_reaction/margarita
@@ -1735,7 +1735,7 @@
 	name = "Three Mile Island Iced Tea"
 	id = "threemileisland"
 	result = "threemileisland"
-	required_reagents = list("longislandicedtea" = 10, "uranium" = 1)
+	required_reagents = list("longislandicedtea" = 10, MATERIAL_URANIUM = 1)
 	result_amount = 10
 
 /datum/chemical_reaction/whiskeysoda
@@ -1763,7 +1763,7 @@
 	name = "Manhattan Project"
 	id = "manhattan_proj"
 	result = "manhattan_proj"
-	required_reagents = list("manhattan" = 10, "uranium" = 1)
+	required_reagents = list("manhattan" = 10, MATERIAL_URANIUM = 1)
 	result_amount = 10
 
 /datum/chemical_reaction/vodka_tonic
