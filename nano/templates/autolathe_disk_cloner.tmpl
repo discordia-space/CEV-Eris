@@ -1,0 +1,95 @@
+<!-- 
+Title: Autolathe disk cloner
+Used In File(s): \code\game\machinery\autolathe_disk_cloner.dm
+ -->
+<div style="width:100%">
+	<div class="block">
+		<div class="item">
+			<div class="itemLabelWidest">
+				{{if data.copying}}
+					{{:helper.link('STOP', '', {'start' : 1})}} 
+				{{else}}
+					{{:helper.link('START', '', {'start' : 1})}} 
+				{{/if}}
+			</div>
+			<div class="itemContentWidest">
+				{{if data.copying}}
+					Copying {{:data.copyingnow}}/{{:data.copyingtotal}}
+				{{else}}
+					IDLE
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div style="display:inline-block">
+	<div class="block">
+		<div class="item">
+			{{if data.disk1}}
+				<div class="itemLabelWidest">Source: <b>{{:data.disk1}}</b></div>
+				<div class="itemContentSmall">
+					{{if data.disk1license}}
+						{{if !data.hacked}}
+							<font color="#FF0000">ENCRYPTED</font>
+						{{else}}
+							ENCRYPTED
+						{{/if}}
+					{{else}}
+						OK
+					{{/if}}
+				</div>
+				<div class="itemLabelWidest">{{:helper.link('', 'eject', {'eject' : 'f'}, null, 'statusValue')}}</div>
+			{{else}}
+				<div class="itemLabelWidest">Source: <b>No disk</b></div>
+				<div class="itemContentSmall"></div>
+				<div class="itemLabelWidest"></div>
+			{{/if}}
+		</div>
+		<div class="block">
+			<div class="item">
+				{{for data.disk1recipes}}
+					{{if value == 'ERROR'}}
+						<div class="itemLabelWide"><span style="background-color: #ff0000;">{{:value}}</span></div>
+					{{else}}
+						<div class="itemLabelWide">{{:value}}</div>
+					{{/if}}
+				{{empty}}
+					<div class="itemLabelWide">No data.</div>
+				{{/for}}
+			</div>
+		</div>
+	</div>
+	<div class="block">
+		<div class="item">
+			{{if data.disk2}}
+				<div class="itemLabelWidest">Target: <b>{{:data.disk2}}</b></div>
+				<div class="itemContentSmall">
+					{{if data.copyingnow && !data.copying}}
+						<font color="#FF0000">NOT EMPTY</font>
+					{{else}}
+						OK
+					{{/if}}
+				</div>
+				<div class="itemLabelWidest">{{:helper.link('', 'eject', {'eject' : 's'}, null, 'statusValue')}}</div>
+			{{else}}
+				<div class="itemLabelWidest">Target: <b>No disk</b></div>
+				<div class="itemContentSmall"></div>
+				<div class="itemLabelWidest"></div>
+			{{/if}}
+		</div>
+		<div class="block">
+			<div class="item">
+				{{for data.disk2recipes}}
+					{{if value == 'ERROR'}}
+						<div class="itemLabelWide"><span style="background-color: #ff0000;">{{:value}}</span></div>
+					{{else}}
+						<div class="itemLabelWide">{{:value}}</div>
+					{{/if}}
+				{{empty}}
+					<div class="itemLabelWide">Empty.</div>
+				{{/for}}
+			</div>
+		</div>
+	</div>
+</div>

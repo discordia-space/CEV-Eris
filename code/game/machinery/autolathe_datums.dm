@@ -8,6 +8,9 @@
 		var/datum/autolathe/recipe/recipe = new R
 		autolathe_recipes[recipe.type] = recipe
 
+		if(!recipe.path)
+			continue
+
 		var/obj/item/I = new recipe.path
 		if(I.matter && !recipe.resources) //This can be overidden in the datums.
 			recipe.resources = list()
@@ -19,6 +22,9 @@
 	var/name = "object"
 	var/path
 	var/list/resources
+
+/datum/autolathe/recipe/corrupted
+	name = "ERROR"
 
 /datum/autolathe/recipe/bucket
 	name = "bucket"

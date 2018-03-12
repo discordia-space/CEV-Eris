@@ -12,11 +12,15 @@
 
 	var/list/recipes = list()
 
-	var/category = ""
+	var/category = "Disk"
 	var/license = 10
 
 
-/obj/item/weapon/disk/autolathe_disk/basic
+/obj/item/weapon/disk/autolathe_disk/freeware
+	category = "Empty disk"
+	license = -1
+
+/obj/item/weapon/disk/autolathe_disk/freeware/basic
 	name = "Basic designs disk"
 	category = "Basic"
 
