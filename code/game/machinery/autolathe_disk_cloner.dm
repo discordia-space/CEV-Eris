@@ -28,8 +28,14 @@
 	for(var/obj/item/weapon/stock_parts/micro_laser/ML in component_parts)
 		laser_rating += ML.rating
 
-	copying_delay = 20-round(20/9*(scanner_rating+laser_rating))
-	hack_fail_chance = ((scanner_rating+laser_rating) >= 9) ? 15 : 35
+	if(scanner_rating+laser_rating >= 9)
+		copying_delay = 10
+	else if(scanner_rating+laser_rating >= 6)
+		copying_delay = 20
+	else
+		copying_delay = 40
+
+	hack_fail_chance = ((scanner_rating+laser_rating) >= 9) ? 20 : 40
 
 	if(laser_rating >= 4 && scanner_rating >= 2)
 		hacked = TRUE
@@ -77,7 +83,7 @@
 
 	if(original)
 		data["disk1"] = original.category
-		data["disk1license"] = original.license >= 0
+		data["disk1license"] = original.license
 
 		var/list/R = list()
 
@@ -152,17 +158,26 @@
 	copying = TRUE
 	nanomanager.update_uis(src)
 	if(original && copy && !copy.recipes.len)
+		if(!hacked)
+			copy.category = "[original.category] \[copy\]"
+			copy.name = "[original.name] copy"
+		else
+			copy.category = original.category
+			copy.name = original.name
 		for(var/r in original.recipes)
 			if(!(original && copy) || !copying)
 				break
 
 			if(original.license < 0)
 				copy.recipes.Add(r)
-			else if(hacked)
-				if(prob(hack_fail_chance))
-					copy.recipes.Add(/datum/autolathe/recipe/corrupted)
+			else
+				if(hacked)
+					if(prob(hack_fail_chance))
+						copy.recipes.Add(/datum/autolathe/recipe/corrupted)
+					else
+						copy.recipes.Add(r)
 				else
-					copy.recipes.Add(r)
+					break
 
 			nanomanager.update_uis(src)
 			sleep(copying_delay)

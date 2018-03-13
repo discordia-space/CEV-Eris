@@ -24,7 +24,7 @@
 	name = "Basic designs disk"
 	category = "Basic"
 
-/obj/item/weapon/disk/autolathe_disk/basic/New()
+/obj/item/weapon/disk/autolathe_disk/freeware/basic/New()
 	recipes = list(
 		/datum/autolathe/recipe/flashlight,
 		/datum/autolathe/recipe/extinguisher,
