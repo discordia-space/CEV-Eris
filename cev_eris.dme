@@ -2050,5 +2050,4 @@
 #include "maps\CEVEris\_map_data_Eris.dm"
 #include "maps\encounters\asteroid\asteroid.dm"
 #include "maps\encounters\spacefortress\spacefortress.dm"
-#include "maps\exodus\test_map.dmm"
 // END_INCLUDE
