@@ -3,16 +3,15 @@ Title: Autolathe
 Used In File(s): \code\game\machinery\autolathe.dm
  -->
 <div class="statusDisplay">
-	<div style>
 	{{for data.materials}}
 		<div class="item">
 			<div class="itemLabelNarrow"><b>{{:value.name}}</div> 
 			<div class="itemContentNarrow">{{:value.count}}</div>
-			{{if value.ejectable}}
-				<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject_material' : value.name}, null, 'statusValue')}}</b></div>
-			{{/if}}
+			<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject_material' : value.name}, null, 'statusValue')}}</b></div>
 		</div>
 	{{/for}}
+	<div class="item">
+		{{:helper.link('INSERT MATERIALS', '', {'insert' : 1}, null, 'bigButton')}}
 	</div>
 </div>
 <div class="statusDisplay">
@@ -26,29 +25,30 @@ Used In File(s): \code\game\machinery\autolathe.dm
 			<div class="itemlabelNarrow">{{:helper.link('', 'eject', {'eject_disk' : 1}, null, 'statusValue')}}</b></div>
 		{{else}}
 			<div class="itemContentWide"><b>Disk: not inserted.</b></div>
+			<div class="itemlabelNarrow">{{:helper.link('insert', 'eject', {'insert' : 1}, null, 'statusValue')}}</b></div>
 		{{/if}}
 	</div>
 </div>
 <div class="item">
-	<div class="itemContent">
+	<div class="itemContent" style="width:100%">
 		{{if data.busy}}
 		<span style="text-align: center;">
 			<div class="item">
 				<div class="itemLabelWidest">Printing {{:data.busyname}} ({{:data.busynow}}/{{:data.busytotal}})</div>
 				{{if data.diskerr}}
-					<div class="itemContentWidest"><b>Design data not found.</b></div>
+					<div class="itemContentWidest"><span class="bad">Design data not found.</span></div>
 				{{else}}
 					{{if data.uses == 0}}
-						<div class="itemContentWidest"><b>Disk license is out.</b></div>
+						<div class="itemContentWidest"><span class="bad">Disk license is out.</span></div>
 					{{else}}
 						{{if data.resout}}
-							<div class="itemContentWidest"><b>Not enough resources.</b></div>
+							<div class="itemContentWidest"><span class="bad">Not enough resources.</span></div>
 						{{else}}
-							<div class="itemContentWidest"><b>Printing...</b></div>
+							<div class="itemContentWidest"><span class="good"><b>Printing...</b></span></div>
 						{{/if}}
 					{{/if}}
 				{{/if}}
-				<div class="itemGroup">
+				<div class="blockWidest">
 					{{for data.req_materials}}
 						<div class="item">
 							<div class="itemLabelNerrow">{{:value.name}}: {{:value.req}}</div>
@@ -60,21 +60,21 @@ Used In File(s): \code\game\machinery\autolathe.dm
 		</span>
 		{{else}}
 			{{if !data.disk}}
-				<div class="itemGroup">
+				<div class="blockWidest">
 					<span style="text-align: center;">
-						<div ><b>No disk.</b></div>
+						<div class="bad">No disk.</div>
 					</span>
 				</div>
 			{{else}}
 				{{if data.uses == 0}}
-					<div class="itemGroup">
+					<div class="blockWidest">
 						<span style="text-align: center;">
-							<div ><b>Disk license is out. Insert a new one.</b></div>
+							<div class="bad">Disk license is out. Insert a new one./div>
 						</span>
 					</div>
 				{{else}}
 					{{for data.recipes}}
-						<div class="block">
+						<div class="blockWidest">
 							<div class="item">
 								<div class="itemLabelWidest">{{:value.name}}</div> 
 								<div class="itemLabelNarrow">Print: </div>

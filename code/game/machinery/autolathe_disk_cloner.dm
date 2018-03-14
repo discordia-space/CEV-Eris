@@ -55,7 +55,8 @@
 		else
 			user << SPAN_NOTICE("[src]'s slots is full.")
 
-	nanomanager.update_uis(src)
+	user.set_machine(src)
+	ui_interact(user)
 
 
 /obj/machinery/autolathe_disk_cloner/proc/put_disk(var/obj/item/weapon/disk/autolathe_disk/AD, var/mob/user)
@@ -112,7 +113,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe_disk_cloner.tmpl", "Autolathe disk cloner", 390, 655)
+		ui = new(user, src, ui_key, "autolathe_disk_cloner.tmpl", "Autolathe disk cloner", 480, 555)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -134,9 +135,11 @@
 		return
 
 	if(href_list["eject"])
-		var/mob/living/carbon/human/H = null
+		var/mob/living/H = null
+		var/obj/item/weapon/disk/autolathe_disk/D = null
 		if(ishuman(usr))
 			H = usr
+			D = H.get_active_hand()
 
 		if(href_list["eject"] == "f")
 			if(original)
@@ -144,12 +147,22 @@
 				if(H)
 					H.put_in_active_hand(original)
 				original = null
+			else
+				if(istype(D))
+					H.drop_item()
+					D.forceMove(src)
+					original = D
 		else
 			if(copy)
 				copy.forceMove(src.loc)
 				if(H)
 					H.put_in_active_hand(copy)
 				copy = null
+			else
+				if(istype(D))
+					H.drop_item()
+					D.forceMove(src)
+					copy = D
 
 	nanomanager.update_uis(src)
 

@@ -103,49 +103,111 @@
 
 
 /obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user)
-
-	if(istype(I,/obj/item/weapon/disk/autolathe_disk))
-		if(disk)
-			user << SPAN_NOTICE("There's already a disk inside the autolathe.")
-			return
-		user.drop_item()
-		disk = I
-		I.forceMove(src)
-		user << SPAN_NOTICE("You put the disk into the autolathe.")
-		nanomanager.update_uis(src)
-		if(making_recipe && making_left)
-			make(making_recipe.type,making_left)
-		return
-
-	if(making_recipe && !not_enough_resources && !disk_error)
-		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
-		return
-
 	if(default_deconstruction(I, user))
 		return
 
 	if(default_part_replacement(I, user))
 		return
 
+	user.set_machine(src)
+	ui_interact(user)
+
+
+/obj/machinery/autolathe/attack_hand(mob/user as mob)
+	if(..())
+		return
+
+	user.set_machine(src)
+	ui_interact(user)
+
+/obj/machinery/autolathe/Topic(href, href_list)
+
+	if(..())
+		return
+
+	add_fingerprint(usr)
+
+	usr.set_machine(src)
+
+	if(href_list["eject_disk"] && disk)
+		disk.forceMove(src.loc)
+
+		if(isliving(usr))
+			var/mob/living/L = usr
+			if(istype(L))
+				L.put_in_active_hand(disk)
+
+		disk = null
+
+	if(href_list["insert"])
+		eat(usr)
+
+	if(!making_recipe)
+		if(href_list["eject_material"])
+			var/material = href_list["eject_material"]
+			var/material/M = get_material_by_name(material)
+
+			if(!M.stack_type)
+				return
+
+			var/obj/item/stack/material/sheetType = M.stack_type
+			var/perUnit = initial(sheetType.perunit)
+
+			var/num = input("Enter sheets count to eject. 0-[round(stored_material[material]/perUnit)]","Eject",0) as num
+			num = min(max(num,0), round(stored_material[material]/perUnit))
+
+			eject(material, num)
+
+		if(href_list["print_one"] && disk)
+			if(!making_recipe)
+				make(text2path(href_list["print_one"]),1)
+
+		if(href_list["print_several"] && disk)
+			if(!making_recipe)
+				var/num = input("Enter items count to print.","Print") as num
+				make(text2path(href_list["print_several"]),num)
+
+	if(href_list["abort_print"])
+		making_recipe = null
+		making_left = 0
+		making_total = 0
+		disk_error = FALSE
+		not_enough_resources = FALSE
+
+	nanomanager.update_uis(src)
+
+
+/obj/machinery/autolathe/proc/eat(var/mob/living/user)
+	if(!istype(user))
+		return
+
+	var/obj/item/eating = user.get_active_hand()
+
+	if(!istype(eating))
+		return
+
+	if(istype(eating,/obj/item/weapon/disk/autolathe_disk))
+		if(disk)
+			user << SPAN_NOTICE("There's already a disk inside the autolathe.")
+			return
+		user.drop_item()
+		disk = eating
+		eating.forceMove(src)
+		user << SPAN_NOTICE("You put the disk into the autolathe.")
+		nanomanager.update_uis(src)
+		if(making_recipe && making_left)
+			make(making_recipe.type,making_left)
+		return
+
 	if(stat)
 		return
 
-	if(panel_open)
-		//Don't eat anything used on an open lathe.
+	if(eating.loc != user && !(istype(eating,/obj/item/stack)))
 		return FALSE
 
-	if(istype(I, /obj/item/weapon/tool))
-		//Don't eat tools.
+	if(is_robot_module(eating))
 		return FALSE
 
-	if(I.loc != user && !(istype(I,/obj/item/stack)))
-		return FALSE
-
-	if(is_robot_module(I))
-		return FALSE
-
-	//Resources are being loaded.
-	var/obj/item/eating = I
 	if(!eating.matter || !eating.matter.len)
 		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
 		return
@@ -185,7 +247,8 @@
 		mass_per_sheet += eating.matter[material]
 
 	if(!accept)
-		user << SPAN_NOTICE("\The [src] cannot hold this material.")
+		user << SPAN_NOTICE("\The [src] doesn't have capacity for this material.")
+		return
 
 	if(!filltype)
 		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
@@ -201,69 +264,11 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		user.remove_from_mob(I)
-		qdel(I)
+		user.remove_from_mob(eating)
+		qdel(eating)
 
 	if(making_recipe && making_left)
 		make(making_recipe.type,making_left)
-
-	nanomanager.update_uis(src)
-
-
-/obj/machinery/autolathe/attack_hand(mob/user as mob)
-	if(..())
-		return
-
-	user.set_machine(src)
-	ui_interact(user)
-
-/obj/machinery/autolathe/Topic(href, href_list)
-
-	if(..())
-		return
-
-	add_fingerprint(usr)
-
-	usr.set_machine(src)
-
-	if(href_list["eject_disk"] && disk)
-		disk.forceMove(src.loc)
-		disk = null
-
-	if(!making_recipe)
-		if(href_list["eject_material"])
-			var/material = href_list["eject_material"]
-			var/material/M = get_material_by_name(material)
-
-			if(!M.stack_type)
-				return
-
-			var/obj/item/stack/material/sheetType = M.stack_type
-			var/perUnit = initial(sheetType.perunit)
-
-			var/num = input("Enter sheets count to eject. 0-[round(stored_material[material]/perUnit)]","Eject",0) as num
-			num = min(max(num,0), round(stored_material[material]/perUnit))
-
-			eject(material, num)
-
-		if(href_list["print_one"] && disk)
-			if(!making_recipe)
-				make(text2path(href_list["print_one"]),1)
-
-		if(href_list["print_several"] && disk)
-			if(!making_recipe)
-				var/num = input("Enter items count to print.","Print") as num
-				make(text2path(href_list["print_several"]),num)
-
-	if(href_list["abort_print"])
-		making_recipe = null
-		making_left = 0
-		making_total = 0
-		disk_error = FALSE
-		not_enough_resources = FALSE
-
-	nanomanager.update_uis(src)
-
 
 /obj/machinery/autolathe/proc/make(var/recipe, var/amount)
 	disk_error = FALSE
