@@ -13,10 +13,12 @@
 
 /obj/effect/shuttle_landmark/fortress/nav1
 	name = "Abandoned Fortress Navpoint #1"
+	icon_state = "shuttle-green"
 	landmark_tag = "nav_fortress_1"
 	base_turf = /turf/space
 
 /obj/effect/shuttle_landmark/fortress/nav2
 	name = "Abandoned Fortress Navpoint #2"
+	icon_state = "shuttle-green"
 	landmark_tag = "nav_fortress_2"
 	base_turf = /turf/space
