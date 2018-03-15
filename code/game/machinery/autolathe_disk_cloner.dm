@@ -128,9 +128,6 @@
 		ui.open()
 
 /obj/machinery/autolathe_disk_cloner/Topic(href, href_list)
-	if(..())
-		return
-
 	add_fingerprint(usr)
 
 	usr.set_machine(src)

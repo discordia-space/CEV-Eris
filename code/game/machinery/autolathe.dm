@@ -115,15 +115,12 @@
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
 	if(..())
-		return
+		return TRUE
 
 	user.set_machine(src)
 	ui_interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
-	if(..())
-		return TRUE
-
 	add_fingerprint(usr)
 
 	usr.set_machine(src)
