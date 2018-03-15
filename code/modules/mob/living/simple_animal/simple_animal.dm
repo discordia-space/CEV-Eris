@@ -254,8 +254,9 @@
 		else
 			user << SPAN_NOTICE("\The [src] is dead, medical items won't bring \him back to life.")
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
-		if(istype(O, /obj/item/weapon/material/knife))
-			harvest(user)
+		if(QUALITY_CUTTING in O.tool_qualities)
+			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_VERY_EASY))
+				harvest(user)
 	else
 		if(!O.force)
 			visible_message(SPAN_NOTICE("[user] gently taps [src] with \the [O]."))

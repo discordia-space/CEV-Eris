@@ -503,10 +503,11 @@
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if (cell)
-				user << SPAN_WARNING("Close the APC first.") //Less hints more mystery!
+			if (cell && opened)
+				user << SPAN_WARNING("Close the APC first.")
 				return
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			var/used_sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
 				if(opened)
 					if (has_electronics==1 && terminal)
 						has_electronics = 2

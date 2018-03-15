@@ -21,6 +21,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/obj/item/I = A
 		if(QUALITY_WELDING in I.tool_qualities)
 			return TRUE
+		if(QUALITY_CAUTERIZING in I.tool_qualities)
+			return TRUE
 	else if(istype(A, /obj/item/weapon/flame))
 		var/obj/item/weapon/flame/F = A
 		return (F.lit)
@@ -70,6 +72,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/match/proc/burn_out()
 	lit = 0
 	burnt = 1
+	tool_qualities = null
 	damtype = "brute"
 	icon_state = "match_burnt"
 	item_state = "cigoff"

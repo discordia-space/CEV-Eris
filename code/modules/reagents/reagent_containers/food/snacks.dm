@@ -3034,11 +3034,12 @@
 	nutriment_amt = 3
 
 // potato + knife = raw sticks
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/kitchen/utensil/knife))
-		new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)
-		user << "You cut the potato."
-		qdel(src)
+/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user)
+	if(QUALITY_CUTTING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_CUTTING, FAILCHANCE_VERY_EASY))
+			new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)
+			user << "You cut the potato."
+			qdel(src)
 	else
 		..()
 

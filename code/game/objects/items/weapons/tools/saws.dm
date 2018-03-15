@@ -4,6 +4,7 @@
 	icon_state = "metal_saw"
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
+	worksound = WORKSOUND_SIMPLE_SAW
 	flags = CONDUCT
 	throw_speed = 3
 	throw_range = 5
