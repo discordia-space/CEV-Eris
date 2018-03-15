@@ -12,6 +12,7 @@
 	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
+	worksound = WORKSOUND_PULSING
 	throw_range = 15
 	throw_speed = 3
 	tool_qualities = list(QUALITY_PULSING = 3)

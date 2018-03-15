@@ -74,37 +74,6 @@
 	default_material = MATERIAL_PLASTIC
 
 /*
- * Knives
- */
-/obj/item/weapon/material/kitchen/utensil/knife
-	name = "knife"
-	desc = "A knife for eating with. Can cut through any food."
-	icon_state = "knife"
-	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
-	scoop_food = 0
-
-// Identical to the tactical knife but nowhere near as stabby.
-// Kind of like the toy esword compared to the real thing.
-/obj/item/weapon/material/kitchen/utensil/knife/boot
-	name = "boot knife"
-	desc = "A small fixed-blade knife for putting inside a boot."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "tacknife"
-	item_state = "knife"
-	applies_material_colour = 0
-	unbreakable = 1
-
-/obj/item/weapon/material/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << SPAN_WARNING("You accidentally cut yourself with \the [src].")
-		user.take_organ_damage(20)
-		return
-	return ..()
-
-/obj/item/weapon/material/kitchen/utensil/knife/plastic
-	default_material = MATERIAL_PLASTIC
-
-/*
  * Rolling Pins
  */
 

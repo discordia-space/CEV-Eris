@@ -218,7 +218,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
-				user << "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>"
+				user << SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!")
 				anchored = !anchored
 			return
 
@@ -226,7 +226,7 @@
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
 				panel_open = !panel_open
-				user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
+				user << SPAN_NOTICE("You [src.panel_open ? "open" : "close"] the maintenance panel.")
 				overlays.Cut()
 				if(src.panel_open)
 					src.overlays += image(src.icon, "[initial(icon_state)]-panel")
@@ -914,7 +914,7 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/material/kitchen/utensil/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/material/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/weapon/storage/lunchbox = 3,/obj/item/weapon/storage/lunchbox/rainbow = 3,/obj/item/weapon/storage/lunchbox/cat = 3)
+	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/material/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/material/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/weapon/storage/lunchbox = 3,/obj/item/weapon/storage/lunchbox/rainbow = 3,/obj/item/weapon/storage/lunchbox/cat = 3)
 	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2, /obj/item/weapon/material/knife/butch = 2)
 
 /obj/machinery/vending/sovietsoda
