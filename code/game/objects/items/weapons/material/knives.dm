@@ -66,6 +66,14 @@
 	slot_flags = SLOT_BELT
 	tool_qualities = list(QUALITY_CUTTING = 2,  QUALITY_WIRE_CUTTING = 1)
 
+/obj/item/weapon/material/knife/boot
+	name = "boot knife"
+	desc = "A small fixed-blade knife for putting inside a boot."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	applies_material_colour = 0
+
 /obj/item/weapon/material/knife/hook
 	name = "meat hook"
 	desc = "A sharp, metal hook what sticks into things."

@@ -60,7 +60,8 @@
 /obj/item/weapon/melee/baton/attack_self(mob/user)
 	if(cell && cell.charge > hitcost)
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
+		user << SPAN_NOTICE("[src] is now [status ? "on" : "off"].")
+		tool_qualities = status ? list(QUALITY_PULSING = 1) : null
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else

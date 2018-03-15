@@ -139,7 +139,7 @@
 						qdel(WR)
 					return
 			if(thermite)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT,tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_INSTANT,tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You ignite the termit with the [I]!")
 					thermitemelt(user)
 					return
@@ -150,21 +150,21 @@
 					return
 			if(isnull(construction_stage) || !reinf_material)
 				user << SPAN_NOTICE("You begin removing the outer plating...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You remove the outer plating.")
 					dismantle_wall()
 					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
 					return
 			if(construction_stage == 4)
 				user << SPAN_NOTICE("You begin removing the outer plating...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 					construction_stage = 3
 					update_icon()
 					user << SPAN_NOTICE("You press firmly on the cover, dislodging it.")
 					return
 			if(construction_stage == 1)
 				user << SPAN_NOTICE("You begin removing the support rods...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 					construction_stage = 0
 					update_icon()
 					new /obj/item/stack/rods(user.loc)
