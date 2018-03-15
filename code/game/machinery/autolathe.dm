@@ -121,9 +121,8 @@
 	ui_interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
-
 	if(..())
-		return
+		return TRUE
 
 	add_fingerprint(usr)
 
@@ -154,6 +153,10 @@
 			var/perUnit = initial(sheetType.perunit)
 
 			var/num = input("Enter sheets count to eject. 0-[round(stored_material[material]/perUnit)]","Eject",0) as num
+
+			if(!Adjacent(usr))
+				return
+
 			num = min(max(num,0), round(stored_material[material]/perUnit))
 
 			eject(material, num)

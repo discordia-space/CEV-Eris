@@ -59,17 +59,25 @@
 	ui_interact(user)
 
 
+/obj/machinery/autolathe_disk_cloner/dismantle()
+	original.forceMove(src.loc)
+	copy.forceMove(src.loc)
+	original = null
+	copy = null
+	..()
+	return TRUE
+
+
 /obj/machinery/autolathe_disk_cloner/proc/put_disk(var/obj/item/weapon/disk/autolathe_disk/AD, var/mob/user)
 	ASSERT(istype(AD))
 
-	user.drop_item()
-	AD.forceMove(src)
+	user.unEquip(AD,src)
 	return AD
 
 
 /obj/machinery/autolathe_disk_cloner/attack_hand(mob/user as mob)
 	if(..())
-		return
+		return TRUE
 
 	user.set_machine(src)
 	ui_interact(user)
