@@ -190,9 +190,8 @@
 		if(disk)
 			user << SPAN_NOTICE("There's already a disk inside the autolathe.")
 			return
-		user.drop_item()
+		user.unEquip(eating, src)
 		disk = eating
-		eating.forceMove(src)
 		user << SPAN_NOTICE("You put the disk into the autolathe.")
 		nanomanager.update_uis(src)
 		if(making_recipe && making_left)
