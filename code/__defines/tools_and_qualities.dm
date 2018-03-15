@@ -31,6 +31,7 @@
 #define WORKTIME_EXTREMELY_LONG			200
 
 //Fail chance for tool system calculated in that way: basic chance - tool level * 10. It means that basic tools will have -30% chance to fail
+#define FAILCHANCE_ZERO					0
 #define FAILCHANCE_VERY_EASY			20
 #define FAILCHANCE_EASY					30
 #define FAILCHANCE_NORMAL				40
@@ -43,7 +44,7 @@
 #define NO_WORKSOUND					-1
 
 #define WORKSOUND_CIRCULAR_SAW			'sound/weapons/circsawhit.ogg'
-#define WORKSOUND_SIMPLE_SAW			'sound/weapons/saw.ogg'
+#define WORKSOUND_SIMPLE_SAW			'sound/items/saw.ogg'
 #define WORKSOUND_WRENCHING				'sound/items/Ratchet.ogg'
 #define WORKSOUND_WIRECUTTING			'sound/items/Wirecutter.ogg'
 #define WORKSOUND_WELDING				'sound/items/Welder.ogg'

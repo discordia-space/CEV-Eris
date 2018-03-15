@@ -254,7 +254,7 @@ update_flag
 			user << "You pulse-pressurize your jetpack from the tank."
 		return
 
-	else if((QUALITY_BOLT_TURNING in I.tool_qualities) && ((istype(I, /obj/item/weapon/tank) && !( src.destroyed ))))
+	else if(((QUALITY_BOLT_TURNING in I.tool_qualities) || ((istype(I, /obj/item/weapon/tank)) && !(src.destroyed))))
 		..()
 		return
 
