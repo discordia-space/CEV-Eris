@@ -12,7 +12,7 @@
 	var/obj/item/weapon/disk/autolathe_disk/disk = null
 
 	var/list/stored_material =  list()
-	var/list/storage_capacity = list(MATERIAL_STEEL = 2500, MATERIAL_GLASS = 0)
+	var/list/storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_WOOD = 0)
 	var/show_category = "All"
 
 	var/hacked = 0
@@ -376,7 +376,7 @@
 
 
 	for(var/mat in storage_capacity)
-		storage_capacity[mat] = mb_rating * 20000
+		storage_capacity[mat] = mb_rating * SHEET_MATERIAL_AMOUNT * 25
 
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
