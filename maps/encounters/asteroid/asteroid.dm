@@ -16,12 +16,14 @@
 
 /obj/effect/shuttle_landmark/asteroid/nav1
 	name = "Asteroid Landing zone #1"
+	icon_state = "shuttle-green"
 	landmark_tag = "nav_asteroid_1"
 	base_area = /area/mine/explored
 	base_turf = /turf/simulated/floor/asteroid
 
 /obj/effect/shuttle_landmark/asteroid/nav2
 	name = "Asteroid Landing zone #2"
+	icon_state = "shuttle-green"
 	landmark_tag = "nav_asteroid_2"
 	base_area = /area/mine/explored
 	base_turf = /turf/simulated/floor/asteroid
