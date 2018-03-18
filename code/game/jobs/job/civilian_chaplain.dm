@@ -24,7 +24,7 @@
 	join_tag = /datum/job/chaplain
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H)
-	var/obj/item/weapon/implant/external/core_implant/cruciform/C = new /obj/item/weapon/implant/external/core_implant/cruciform(H)
+	var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
 	C.install(H)
 	C.activate()
 	C.add_module(new CRUCIFORM_PRIEST)

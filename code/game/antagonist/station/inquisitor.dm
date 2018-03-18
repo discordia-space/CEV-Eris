@@ -28,7 +28,7 @@
 	if(!owner.current)
 		return FALSE
 
-	var/obj/item/weapon/implant/external/core_implant/cruciform/C = owner.current.get_cruciform()
+	var/obj/item/weapon/implant/core_implant/cruciform/C = owner.current.get_cruciform()
 
 	if(!C)
 		return FALSE

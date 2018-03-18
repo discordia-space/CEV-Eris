@@ -16,6 +16,7 @@
 	var/is_legal = TRUE
 	var/list/allowed_organs = list()
 	var/position_flag = 0
+	var/external = FALSE
 
 
 /obj/item/weapon/implant/proc/trigger(emote, mob/living/source)
@@ -24,7 +25,7 @@
 /obj/item/weapon/implant/proc/malfunction(var/severity)
 
 /obj/item/weapon/implant/proc/is_external()
-	return istype(src, /obj/item/weapon/implant/external)
+	return external
 
 //return TRUE for implanter icon update.
 /obj/item/weapon/implant/proc/install(var/mob/living/carbon/human/target, var/organ, var/mob/user)
