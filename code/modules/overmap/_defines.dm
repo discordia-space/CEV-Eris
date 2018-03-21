@@ -71,7 +71,7 @@ proc/toggle_move_stars(zlevel, direction)
 				var/turf/space/T = locate(x,y,zlevel)
 				if (istype(T))
 					if(!gen_dir)
-						T.icon_state = "[((T.x + T.y) ^ ~(T.x * T.y) + T.z) % 25]"
+						T.icon_state = "white"
 					else
 						T.icon_state = "speedspace_[gen_dir]_[rand(1,15)]"
 						for(var/atom/movable/AM in T)
