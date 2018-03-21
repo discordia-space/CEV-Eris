@@ -129,24 +129,29 @@
 
 /obj/effect/shuttle_landmark/skipjack/start
 	name = "Raider Outpost"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_start"
 	docking_controller = "skipjack_base"
 
 /obj/effect/shuttle_landmark/skipjack/internim
 	name = "In transit"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_transition"
 /*
 /obj/effect/shuttle_landmark/skipjack/dock
 	name = "Docking Port"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_dock"
 	docking_controller = "skipjack_shuttle_dock_airlock"
 */
 /obj/effect/shuttle_landmark/skipjack/northwest
 	name = "Northwest of the Vessel"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_northwest"
 
 /obj/effect/shuttle_landmark/skipjack/southeast
 	name = "Southeast of the Vessel"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_skipjack_southeast"
 
 
@@ -172,24 +177,29 @@
 
 /obj/effect/shuttle_landmark/merc/start
 	name = "Mercenary Base"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_start"
 	docking_controller = "merc_base"
 
 /obj/effect/shuttle_landmark/merc/internim
 	name = "In transit"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_transition"
 
 /obj/effect/shuttle_landmark/merc/dock
 	name = "Docking Port"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_dock"
 	docking_controller = "nuke_shuttle_dock_airlock"
 
 /obj/effect/shuttle_landmark/merc/northeast
 	name = "Northeast of the Vessel"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_northeast"
 
 /obj/effect/shuttle_landmark/merc/southwest
 	name = "Southwest of the Vessel"
+	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_southwest"
 
 
