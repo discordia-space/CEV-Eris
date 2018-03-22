@@ -68,10 +68,11 @@
 	return create_antagonist(M.mind)
 
 /datum/antagonist/proc/create_faction()
+	/*
 	if(!faction && faction_type)
 		faction = create_or_get_faction(faction_type)
 		faction.add_member(src)
-
+	*/
 
 /datum/antagonist/proc/set_antag_name()
 	if(!owner || !owner.current)

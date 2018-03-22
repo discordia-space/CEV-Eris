@@ -4,7 +4,7 @@
 	role_text_plural = "NeoTheology Inquisitors"
 	bantype = "Inquisitor"
 	welcome_text = "Here should be the inquisitor welcome text."
-	protected_jobs = list("Cyberchristian Preacher")
+	restricted_jobs = list("Cyberchristian Preacher")
 
 	possible_objectives = list(
 	list(

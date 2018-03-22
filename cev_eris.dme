@@ -300,6 +300,7 @@
 #include "code\game\antagonist\station\changeling.dm"
 #include "code\game\antagonist\station\inquisitor.dm"
 #include "code\game\antagonist\station\marshal.dm"
+#include "code\game\antagonist\station\revolutionary.dm"
 #include "code\game\antagonist\station\rogue_ai.dm"
 #include "code\game\antagonist\station\secdocs_stealers.dm"
 #include "code\game\antagonist\station\traitor.dm"
