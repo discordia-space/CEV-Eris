@@ -284,6 +284,9 @@
 		nanomanager.update_uis(src)
 		update_use_power(2)
 
+		if(stat)
+			break
+
 		if(!disk || !(making_recipe.type in disk.recipes))
 			disk_error = TRUE
 

@@ -16,15 +16,17 @@
 	var/license = 10
 
 
-/obj/item/weapon/disk/autolathe_disk/freeware
-	category = "Empty disk"
+/obj/item/weapon/disk/autolathe_disk/blank
+	name = "Blank disk"
+	category = "Blank"
 	license = -1
 
-/obj/item/weapon/disk/autolathe_disk/freeware/basic
+/obj/item/weapon/disk/autolathe_disk/basic
 	name = "Basic designs disk"
 	category = "Basic"
+	license = -1
 
-/obj/item/weapon/disk/autolathe_disk/freeware/basic/New()
+/obj/item/weapon/disk/autolathe_disk/basic/New()
 	recipes = list(
 		/datum/autolathe/recipe/flashlight,
 		/datum/autolathe/recipe/extinguisher,

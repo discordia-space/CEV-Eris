@@ -1,7 +1,7 @@
 /obj/machinery/autolathe_disk_cloner
 	name = "Autolathe disk cloner"
 	desc = "Machine used for copying recipes from unprotected autolathe disks."
-	icon_state = "autolathe"
+	icon_state = "disk_cloner"
 	circuit = /obj/item/weapon/circuitboard/autolathe_disk_cloner
 	density = 1
 	anchored = 1
@@ -18,6 +18,10 @@
 
 	var/copying = FALSE
 
+
+/obj/machinery/autolathe_disk_cloner/New()
+	..()
+	update_icon()
 
 /obj/machinery/autolathe_disk_cloner/RefreshParts()
 	..()
@@ -40,8 +44,13 @@
 	if(laser_rating >= 4 && scanner_rating >= 2)
 		hacked = TRUE
 
-
 /obj/machinery/autolathe_disk_cloner/attackby(var/obj/item/I, var/mob/user)
+	if(default_deconstruction(I, user))
+		return
+
+	if(default_part_replacement(I, user))
+		return
+
 	if(panel_open)
 		return
 
@@ -57,16 +66,21 @@
 
 	user.set_machine(src)
 	ui_interact(user)
+	update_icon()
 
 
 /obj/machinery/autolathe_disk_cloner/dismantle()
-	original.forceMove(src.loc)
-	copy.forceMove(src.loc)
-	original = null
-	copy = null
+	if(original)
+		original.forceMove(src.loc)
+		original = null
+	if(copy)
+		copy.forceMove(src.loc)
+		copy = null
 	..()
 	return TRUE
 
+/obj/machinery/autolathe_disk_cloner/process()
+	update_icon()
 
 /obj/machinery/autolathe_disk_cloner/proc/put_disk(var/obj/item/weapon/disk/autolathe_disk/AD, var/mob/user)
 	ASSERT(istype(AD))
@@ -81,6 +95,7 @@
 
 	user.set_machine(src)
 	ui_interact(user)
+	update_icon()
 
 /obj/machinery/autolathe_disk_cloner/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
 	var/list/data = list()
@@ -170,18 +185,21 @@
 					copy = D
 
 	nanomanager.update_uis(src)
+	update_icon()
 
 
 /obj/machinery/autolathe_disk_cloner/proc/copy()
 	copying = TRUE
 	nanomanager.update_uis(src)
-	if(original && copy && !copy.recipes.len)
+	update_icon()
+	if(original && copy && !copy.recipes.len && (hacked || original.license < 0))
 		if(!hacked)
 			copy.category = "[original.category] \[copy\]"
 			copy.name = "[original.name] copy"
 		else
 			copy.category = original.category
 			copy.name = original.name
+
 		for(var/r in original.recipes)
 			if(!(original && copy) || !copying)
 				break
@@ -198,12 +216,36 @@
 					break
 
 			nanomanager.update_uis(src)
+			update_icon()
 			sleep(copying_delay)
 
 	copying = FALSE
 	nanomanager.update_uis(src)
+	update_icon()
 
 
-/obj/machinery/autolathe/update_icon()
-	icon_state = (panel_open ? "autolathe_t" : "autolathe")
+/obj/machinery/autolathe_disk_cloner/update_icon()
+	overlays.Cut()
+
+	if(panel_open)
+		overlays.Add(image(icon, icon_state = "disk_cloner_panel"))
+
+	if(!stat)
+		overlays.Add(image(icon, icon_state = "disk_cloner_screen"))
+		overlays.Add(image(icon, icon_state = "disk_cloner_keyboard"))
+
+		if(original)
+			overlays.Add(image(icon, icon_state = "disk_cloner_screen_disk1"))
+
+			if(original.recipes.len)
+				overlays.Add(image(icon, icon_state = "disk_cloner_screen_list1"))
+
+		if(copy)
+			overlays.Add(image(icon, icon_state = "disk_cloner_screen_disk2"))
+
+			if(copy.recipes.len)
+				overlays.Add(image(icon, icon_state = "disk_cloner_screen_list2"))
+
+		if(copying)
+			overlays.Add(image(icon, icon_state = "disk_cloner_cloning"))
 

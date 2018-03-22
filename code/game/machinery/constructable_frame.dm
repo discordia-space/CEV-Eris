@@ -165,7 +165,7 @@
 
 			if(istype(I, /obj/item))
 				for(var/CM in req_components)
-					if(istype(I, I) && (req_components[I] > 0))
+					if(istype(I, CM) && (req_components[CM] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 						if(istype(I, /obj/item/stack/cable_coil))
 							var/obj/item/stack/cable_coil/CP = I

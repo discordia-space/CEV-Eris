@@ -24,17 +24,22 @@
 				prob(2);/obj/item/weapon/tool/pickaxe/drill,\
 				prob(1);/obj/item/weapon/tool/pickaxe/diamonddrill,\
 				prob(2);/obj/item/weapon/tool/pickaxe/excavation,\
-				prob(5);/obj/item/device/assembly/igniter,\
-				prob(5);/obj/item/device/assembly/infra,\
-				prob(5);/obj/item/device/assembly/prox_sensor,\
-				prob(5);/obj/item/device/assembly/signaler,\
-				prob(5);/obj/item/device/assembly/timer,\
-				prob(5);/obj/item/device/assembly/voice,\
 				prob(5);/obj/item/weapon/storage/belt/utility,\
 				prob(5);/obj/item/weapon/storage/belt/utility/full,\
 				prob(5);/obj/item/clothing/gloves/insulated/cheap,\
 				prob(5);/obj/item/clothing/head/welding,\
 				prob(5);/obj/item/weapon/extinguisher,\
+				prob(2);/obj/item/device/t_scanner,\
+				prob(2);/obj/item/device/export_scanner,\
+				prob(1);/obj/item/device/antibody_scanner,\
+				prob(1);/obj/item/device/destTagger,\
+				prob(1);/obj/item/device/scanner/analyzer/plant_analyzer,\
+				prob(1);/obj/item/weapon/autopsy_scanner,\
+				prob(3);/obj/item/device/scanner/healthanalyzer,\
+				prob(1);/obj/item/device/scanner/mass_spectrometer,\
+				prob(1);/obj/item/device/robotanalyzer,\
+				prob(3);/obj/item/device/gps,\
+				prob(5);/obj/item/device/scanner/analyzer,\
 				prob(5);/obj/item/stack/cable_coil,\
 				prob(5);/obj/item/weapon/weldpack/canister,\
 				prob(5);/obj/item/weapon/packageWrap,\
@@ -47,28 +52,6 @@
 /obj/random/tool/low_chance
 	name = "low chance random tool"
 	icon_state = "tool-grey-low"
-	spawn_nothing_percentage = 60
-
-/obj/random/technology_scanner
-	name = "random scanner"
-	icon_state = "tech-green"
-
-/obj/random/technology_scanner/item_to_spawn()
-	return pick(prob(5);/obj/item/device/t_scanner,\
-				prob(2);/obj/item/device/export_scanner,\
-				prob(1);/obj/item/device/antibody_scanner,\
-				prob(3);/obj/item/device/destTagger,\
-				prob(3);/obj/item/device/scanner/analyzer/plant_analyzer,\
-				prob(1);/obj/item/weapon/autopsy_scanner,\
-				prob(5);/obj/item/device/scanner/healthanalyzer,\
-				prob(1);/obj/item/device/scanner/mass_spectrometer,\
-				prob(2);/obj/item/device/robotanalyzer,\
-				prob(1);/obj/item/device/gps,\
-				prob(5);/obj/item/device/scanner/analyzer)
-
-/obj/random/technology_scanner/low_chance
-	name = "low chance random scanner"
-	icon_state = "tech-green-low"
 	spawn_nothing_percentage = 60
 
 /obj/random/toolbox

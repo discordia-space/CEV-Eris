@@ -14,6 +14,12 @@
 				prob(3);/obj/item/weapon/computer_hardware/processor_unit/small,\
 				prob(1);/obj/item/weapon/computer_hardware/processor_unit/photonic,\
 				prob(3);/obj/item/weapon/computer_hardware/tesla_link,\
+				prob(4);/obj/item/device/assembly/igniter,\
+				prob(4);/obj/item/device/assembly/infra,\
+				prob(4);/obj/item/device/assembly/prox_sensor,\
+				prob(4);/obj/item/device/assembly/signaler,\
+				prob(4);/obj/item/device/assembly/timer,\
+				prob(3);/obj/item/device/assembly/voice,\
 				prob(5);/obj/item/weapon/stock_parts/console_screen,\
 				prob(5);/obj/item/weapon/stock_parts/capacitor,\
 				prob(1);/obj/item/weapon/stock_parts/capacitor/adv,\
