@@ -30,7 +30,7 @@
 "aD" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/asteroid,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "aE" = (/obj/effect/floor_decal/rust,/obj/item/weapon/gun/projectile/shotgun/pump,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "aF" = (/obj/effect/floor_decal/rust,/obj/structure/table/rack/shelf,/obj/random/firstaid/low_chance,/turf/simulated/floor/tiled,/area/outpost/abandoned)
-"aG" = (/obj/effect/floor_decal/rust,/obj/structure/table/rack/shelf,/obj/random/technology_scanner,/turf/simulated/floor/tiled,/area/outpost/abandoned)
+"aG" = (/obj/effect/floor_decal/rust,/obj/structure/table/rack/shelf,/obj/random/tool,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "aH" = (/obj/effect/floor_decal/rust,/obj/structure/table/rack/shelf,/obj/random/powercell/low_chance,/obj/random/powercell/low_chance,/obj/random/powercell/low_chance,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "aI" = (/obj/effect/floor_decal/rust,/obj/structure/table/rack/shelf,/obj/random/boxes,/obj/random/boxes/low_chance,/turf/simulated/floor/tiled,/area/outpost/abandoned)
 "aJ" = (/obj/structure/barricade,/turf/simulated/floor/plating,/area/outpost/abandoned)
