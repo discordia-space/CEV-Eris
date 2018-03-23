@@ -1,3 +1,7 @@
+/////////////////////////////////////////////
+//NOT USED BECAUSE OF NEW REVOLUTION SYSTEM//
+/////////////////////////////////////////////
+
 /datum/objective/faction/rev
 
 /datum/objective/faction/rev/get_panel_entry()

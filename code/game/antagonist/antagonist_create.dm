@@ -30,7 +30,7 @@
 	if(new_faction)
 		new_faction.add_member(src)
 
-	create_faction()
+	//create_faction()
 
 	if(doequip)
 		equip()
@@ -68,11 +68,9 @@
 	return create_antagonist(M.mind)
 
 /datum/antagonist/proc/create_faction()
-	/*
-	if(!faction && faction_type)
-		faction = create_or_get_faction(faction_type)
+	if(!faction && faction_id)
+		faction = create_or_get_faction(faction_id)
 		faction.add_member(src)
-	*/
 
 /datum/antagonist/proc/set_antag_name()
 	if(!owner || !owner.current)

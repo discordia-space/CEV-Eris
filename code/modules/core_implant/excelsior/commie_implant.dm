@@ -35,7 +35,7 @@ var/list/communists = list()
 		deactivate()
 
 
-
+////////////////////////////////
 
 /mob/proc/get_complant()
 	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant/complant, src)

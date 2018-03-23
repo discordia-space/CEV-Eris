@@ -3,7 +3,7 @@
 	role_text = "Changeling"
 	role_text_plural = "Changelings"
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = JOBS_SECURITY + JOBS_COMMAND
+	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
 
 	possible_objectives = list(

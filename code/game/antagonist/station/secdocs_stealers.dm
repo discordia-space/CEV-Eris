@@ -5,7 +5,7 @@
 	bantype = "Crew-sided"
 	role_type = "crew-sided"
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = JOBS_COMMAND
+	protected_jobs = list(JOBS_COMMAND)
 
 	survive_objective = /datum/objective/escape
 
