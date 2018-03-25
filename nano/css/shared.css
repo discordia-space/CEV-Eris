@@ -493,6 +493,10 @@ div.notice {
 	background: #ee0000;
 }
 
+.floatLeft {
+    float: left;
+}
+
 .floatRight {
     float: right;
 }

@@ -22,6 +22,8 @@
 	var/name = "object"
 	var/path
 	var/list/resources
+	var/reagent
+	var/reagent_amount = 0
 
 /datum/autolathe/recipe/corrupted
 	name = "ERROR"

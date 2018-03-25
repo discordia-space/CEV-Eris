@@ -13,6 +13,7 @@
 
 	var/list/stored_material =  list()
 	var/list/storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_WOOD = 0)
+	var/obj/item/weapon/reagent_containers/glass/container = null
 	var/show_category = "All"
 
 	var/hacked = 0
@@ -60,16 +61,30 @@
 
 		data["recipes"] = L
 
+	data["container"] = FALSE
+	data["reagent"] = null
+	data["reagents_mixed"] = FALSE
+	data["reagent_amt"] = 0
+	if(container)
+		data["container"] = TRUE
+		if(container.reagents && container.reagents.reagent_list.len)
+			if(container.reagents.reagent_list.len > 1)
+				data["reagents_mixed"] = TRUE
+			else
+				var/datum/reagent/R = container.reagents.get_master_reagent()
+				data["reagent"] = R.name
+				data["reagent_amt"] = R.volume
+
 	var/list/M = list()
 	for(var/mtype in storage_capacity)
-		var/list/ME = list("name" = mtype, "count" = 0, "ejectable" = TRUE)
+		if(!(mtype in stored_material) || stored_material[mtype] <= 0)
+			continue
+
+		var/list/ME = list("name" = mtype, "count" = stored_material[mtype], "ejectable" = TRUE)
 
 		var/material/MAT = get_material_by_name(mtype)
 		if(!MAT.stack_type)
 			ME["ejectable"] = FALSE
-
-		if(mtype in stored_material)
-			ME["count"] = stored_material[mtype]
 
 		M.Add(list(ME))
 
@@ -91,11 +106,15 @@
 
 		data["req_materials"] = RS
 
+		if(R.reagent)
+			data["req_reagent"] = R.reagent
+			data["req_reagent_amt"] = R.reagent_amount
+
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 390, 655)
+		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 450, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -158,6 +177,16 @@
 
 			eject(material, num)
 
+		if(href_list["eject_container"])
+			container.forceMove(src.loc)
+
+			if(isliving(usr))
+				var/mob/living/L = usr
+				if(istype(L))
+					L.put_in_active_hand(container)
+
+			container = null
+
 		if(href_list["print_one"] && disk)
 			if(!making_recipe)
 				make(text2path(href_list["print_one"]),1)
@@ -188,11 +217,23 @@
 
 	if(istype(eating,/obj/item/weapon/disk/autolathe_disk))
 		if(disk)
-			user << SPAN_NOTICE("There's already a disk inside the autolathe.")
+			user << SPAN_NOTICE("There's already \a [disk] inside the autolathe.")
 			return
 		user.unEquip(eating, src)
 		disk = eating
-		user << SPAN_NOTICE("You put the disk into the autolathe.")
+		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
+		nanomanager.update_uis(src)
+		if(making_recipe && making_left)
+			make(making_recipe.type,making_left)
+		return
+
+	if(istype(eating,/obj/item/weapon/reagent_containers/glass))
+		if(container)
+			user << SPAN_NOTICE("There's already \a [container] inside the autolathe.")
+			return
+		user.unEquip(eating, src)
+		container = eating
+		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
 		nanomanager.update_uis(src)
 		if(making_recipe && making_left)
 			make(making_recipe.type,making_left)
@@ -296,6 +337,17 @@
 				not_enough_resources = TRUE
 				break
 
+		if(making_recipe.reagent)
+			if(!container)
+				not_enough_resources = TRUE
+			else
+				if(!container.reagents || container.reagents.reagent_list.len != 1)
+					not_enough_resources = TRUE
+				else
+					if(!container.reagents.has_reagent(making_recipe.reagent, making_recipe.reagent_amount))
+						not_enough_resources = TRUE
+
+
 		if(disk_error || not_enough_resources || disk.license == 0)
 			return
 
@@ -303,6 +355,9 @@
 		for(var/material in making_recipe.resources)
 			stored_material[material] = max(0, stored_material[material] - round(making_recipe.resources[material] * mat_efficiency))
 
+
+		if(making_recipe.reagent)
+			container.reagents.remove_reagent(making_recipe.reagent, making_recipe.reagent_amount)
 
 		//Fancy autolathe animation.
 		flick("autolathe_n", src)

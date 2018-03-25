@@ -3,13 +3,55 @@ Title: Autolathe
 Used In File(s): \code\game\machinery\autolathe.dm
  -->
 <div class="statusDisplay">
-	{{for data.materials}}
-		<div class="item">
-			<div class="itemLabelNarrow"><b>{{:value.name}}</div> 
-			<div class="itemContentNarrow">{{:value.count}}</div>
-			<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject_material' : value.name}, null, 'statusValue')}}</b></div>
+	<div class="item">
+		<div class="floatLeft" style="width:59%; border-right:1px solid #40628a;  margin-right:-1px">
+			<div class="item">
+				<div class="itemLabelWidest"><b>Loaded materials</b></div>
+			</div>
+			{{for data.materials}}
+				<div class="item">
+					<div class="itemLabelNarrow">{{:value.name}}</div> 
+					<div class="itemContentNarrow">{{:value.count}}</div>
+					<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject_material' : value.name}, null, 'statusValue')}}</b></div>
+				</div>
+			{{empty}}
+				<div class="item">
+					<div class="itemLabelNarrow">empty</div> 
+				</div>
+			{{/for}}
 		</div>
-	{{/for}}
+		<div class="floatLeft" style="width:39%; border-left:1px solid #40628a; padding-left:5px;">
+			<div class="item">
+				<div class="itemLabelWidest"><b>Inserted beaker</b></div>
+			</div>
+			{{if data.container}}
+				<div class="item">
+					{{if data.reagents_mixed}}
+						<div class="itemLabelWidest">mixed</div>
+					{{else}}
+						{{if data.reagent}}
+							<div class="itemLabelWider">{{:data.reagent}} </div>
+							<div class="itemContentWidest">{{:data.reagent_amt}}</div>
+						{{else}}
+							<div class="itemLabelWidest">empty</div>
+						{{/if}}
+					{{/if}}
+				</div>
+				<div class="item">
+					<div class="itemContentWidest">{{:helper.link('', 'eject', {'eject_container' : 1}, null, 'statusValue')}}</b></div>
+				</div>
+			{{else}}
+				<div class="item">
+					<div class="itemLabelWidest">not inserted</div>
+				</div>
+				<div class="item">
+					<div class="itemContentWidest">{{:helper.link('insert', 'eject', {'insert' : 1}, null, 'statusValue')}}</b></div>
+				</div>
+			{{/if}}
+		</div>
+	</div>
+</div>
+<div class="statusDisplay">
 	<div class="item">
 		{{:helper.link('INSERT MATERIALS', '', {'insert' : 1}, null, 'bigButton')}}
 	</div>
@@ -49,12 +91,23 @@ Used In File(s): \code\game\machinery\autolathe.dm
 					{{/if}}
 				{{/if}}
 				<div class="blockWidest">
-					{{for data.req_materials}}
-						<div class="item">
-							<div class="itemLabelNerrow">{{:value.name}}: {{:value.req}}</div>
-						</div>
-					{{/for}}
+					<div class="item">
+						<div class="itemLabelWidest"><b>Materials</b></div>
+						{{for data.req_materials}}
+							<div class="item">
+								<div class="itemLabelNarrow">{{:value.name}}: {{:value.req}}</div>
+							</div>
+						{{/for}}
+					</div>
 				</div>
+				{{if data.req_reagent}}
+					<div class="blockWidest">
+						<div class="item">
+							<div class="itemLabelWidest"><b>Reagents</b></div>
+							<div class="itemLabelNarrow">{{:data.req_reagent}}: {{:data.req_reagent_amt}}</div>
+						</div>
+					</div>
+				{{/if}}
 				<div class="itemContentWidest">{{:helper.link('Abort', 'close', {'abort_print' : 1}, null, 'statusValue')}}</div>
 			</div>
 		</span>
