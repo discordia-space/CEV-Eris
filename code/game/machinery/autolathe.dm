@@ -62,18 +62,16 @@
 		data["recipes"] = L
 
 	data["container"] = FALSE
-	data["reagent"] = null
-	data["reagents_mixed"] = FALSE
-	data["reagent_amt"] = 0
 	if(container)
 		data["container"] = TRUE
-		if(container.reagents && container.reagents.reagent_list.len)
-			if(container.reagents.reagent_list.len > 1)
-				data["reagents_mixed"] = TRUE
-			else
-				var/datum/reagent/R = container.reagents.get_master_reagent()
-				data["reagent"] = R.name
-				data["reagent_amt"] = R.volume
+		if(container.reagents)
+			var/list/L = list()
+			for(var/datum/reagent/R in container.reagents.reagent_list)
+				var/list/LE = list("name" = R.name, "count" = "[R.volume]")
+
+				L.Add(list(LE))
+
+			data["reagents"] = L
 
 	var/list/M = list()
 	for(var/mtype in storage_capacity)
@@ -106,9 +104,15 @@
 
 		data["req_materials"] = RS
 
-		if(R.reagent)
-			data["req_reagent"] = R.reagent
-			data["req_reagent_amt"] = R.reagent_amount
+		RS = list()
+		for(var/reg in R.reagents)
+			var/datum/reagent/RG = chemical_reagents_list[reg]
+			if(RG)
+				RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
+			else
+				RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
+
+		data["req_reagents"] = RS
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -156,6 +160,12 @@
 
 	if(href_list["insert"])
 		eat(usr)
+
+	if(href_list["insert_disk"])
+		insert_disk(usr)
+
+	if(href_list["insert_beaker"])
+		insert_beaker(usr)
 
 	if(!making_recipe)
 		if(href_list["eject_material"])
@@ -205,8 +215,7 @@
 
 	nanomanager.update_uis(src)
 
-
-/obj/machinery/autolathe/proc/eat(var/mob/living/user)
+/obj/machinery/autolathe/proc/insert_disk(var/mob/living/user)
 	if(!istype(user))
 		return
 
@@ -225,6 +234,15 @@
 		nanomanager.update_uis(src)
 		if(making_recipe && making_left)
 			make(making_recipe.type,making_left)
+
+
+/obj/machinery/autolathe/proc/insert_beaker(var/mob/living/user)
+	if(!istype(user))
+		return
+
+	var/obj/item/eating = user.get_active_hand()
+
+	if(!istype(eating))
 		return
 
 	if(istype(eating,/obj/item/weapon/reagent_containers/glass))
@@ -237,6 +255,15 @@
 		nanomanager.update_uis(src)
 		if(making_recipe && making_left)
 			make(making_recipe.type,making_left)
+
+
+/obj/machinery/autolathe/proc/eat(var/mob/living/user)
+	if(!istype(user))
+		return
+
+	var/obj/item/eating = user.get_active_hand()
+
+	if(!istype(eating))
 		return
 
 	if(stat)
@@ -298,6 +325,21 @@
 	else
 		user << SPAN_NOTICE("You fill \the [src] with \the [eating].")
 
+	if(eating.matter_reagents)
+		if(container)
+			var/datum/reagents/RG = new(0)
+			for(var/r in eating.matter_reagents)
+				RG.maximum_volume += eating.matter_reagents[r]
+				RG.add_reagent(r ,eating.matter_reagents[r])
+
+			RG.trans_to(container, RG.total_volume)
+			user << SPAN_NOTICE("Some liquid flowed to \the [container].")
+		else
+			user << SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot.")
+
+	if(eating.reagents && container)
+		eating.reagents.trans_to(container,eating.reagents.total_volume)
+
 	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
 	if(istype(eating,/obj/item/stack))
@@ -337,16 +379,13 @@
 				not_enough_resources = TRUE
 				break
 
-		if(making_recipe.reagent)
-			if(!container)
-				not_enough_resources = TRUE
-			else
-				if(!container.reagents || container.reagents.reagent_list.len != 1)
+		if(!container || !container.reagents || !container.is_open_container())
+			not_enough_resources = TRUE
+		else
+			for(var/reagent in making_recipe.reagents)
+				if(!container.reagents.has_reagent(reagent, making_recipe.reagents[reagent]))
 					not_enough_resources = TRUE
-				else
-					if(!container.reagents.has_reagent(making_recipe.reagent, making_recipe.reagent_amount))
-						not_enough_resources = TRUE
-
+					break
 
 		if(disk_error || not_enough_resources || disk.license == 0)
 			return
@@ -356,8 +395,8 @@
 			stored_material[material] = max(0, stored_material[material] - round(making_recipe.resources[material] * mat_efficiency))
 
 
-		if(making_recipe.reagent)
-			container.reagents.remove_reagent(making_recipe.reagent, making_recipe.reagent_amount)
+		for(var/reagent in making_recipe.reagents)
+			container.reagents.remove_reagent(reagent, making_recipe.reagents[reagent])
 
 		//Fancy autolathe animation.
 		flick("autolathe_n", src)

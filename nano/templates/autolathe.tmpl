@@ -25,18 +25,16 @@ Used In File(s): \code\game\machinery\autolathe.dm
 				<div class="itemLabelWidest"><b>Inserted beaker</b></div>
 			</div>
 			{{if data.container}}
-				<div class="item">
-					{{if data.reagents_mixed}}
-						<div class="itemLabelWidest">mixed</div>
-					{{else}}
-						{{if data.reagent}}
-							<div class="itemLabelWider">{{:data.reagent}} </div>
-							<div class="itemContentWidest">{{:data.reagent_amt}}</div>
-						{{else}}
-							<div class="itemLabelWidest">empty</div>
-						{{/if}}
-					{{/if}}
-				</div>
+				{{for data.reagents}}
+					<div class="item">
+						<div class="itemLabelWider">{{:value.name}} </div>
+						<div class="itemContentWidest">{{:value.count}}</div>
+					</div>
+				{{empty}}
+					<div class="item">
+						<div class="itemLabelWidest">empty</div>
+					</div>
+				{{/for}}
 				<div class="item">
 					<div class="itemContentWidest">{{:helper.link('', 'eject', {'eject_container' : 1}, null, 'statusValue')}}</b></div>
 				</div>
@@ -45,7 +43,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 					<div class="itemLabelWidest">not inserted</div>
 				</div>
 				<div class="item">
-					<div class="itemContentWidest">{{:helper.link('insert', 'eject', {'insert' : 1}, null, 'statusValue')}}</b></div>
+					<div class="itemContentWidest">{{:helper.link('insert', 'eject', {'insert_beaker' : 1}, null, 'statusValue')}}</b></div>
 				</div>
 			{{/if}}
 		</div>
@@ -67,7 +65,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 			<div class="itemlabelNarrow">{{:helper.link('', 'eject', {'eject_disk' : 1}, null, 'statusValue')}}</b></div>
 		{{else}}
 			<div class="itemContentWide"><b>Disk: not inserted.</b></div>
-			<div class="itemlabelNarrow">{{:helper.link('insert', 'eject', {'insert' : 1}, null, 'statusValue')}}</b></div>
+			<div class="itemlabelNarrow">{{:helper.link('insert', 'eject', {'insert_disk' : 1}, null, 'statusValue')}}</b></div>
 		{{/if}}
 	</div>
 </div>
@@ -95,19 +93,23 @@ Used In File(s): \code\game\machinery\autolathe.dm
 						<div class="itemLabelWidest"><b>Materials</b></div>
 						{{for data.req_materials}}
 							<div class="item">
-								<div class="itemLabelNarrow">{{:value.name}}: {{:value.req}}</div>
+								<div class="itemLabel">{{:value.name}}</div>
+								<div class="itemContentSmall">{{:value.req}}</div>
 							</div>
 						{{/for}}
 					</div>
 				</div>
-				{{if data.req_reagent}}
-					<div class="blockWidest">
-						<div class="item">
-							<div class="itemLabelWidest"><b>Reagents</b></div>
-							<div class="itemLabelNarrow">{{:data.req_reagent}}: {{:data.req_reagent_amt}}</div>
-						</div>
+				<div class="blockWidest">
+					<div class="item">
+						<div class="itemLabelWidest"><b>Reagents</b></div>
+						{{for data.req_reagents}}
+							<div class="item">
+								<div class="itemLabel">{{:value.name}}</div>
+								<div class="itemContentSmall">{{:value.req}}</div>
+							</div>
+						{{/for}}
 					</div>
-				{{/if}}
+				</div>
 				<div class="itemContentWidest">{{:helper.link('Abort', 'close', {'abort_print' : 1}, null, 'statusValue')}}</div>
 			</div>
 		</span>
