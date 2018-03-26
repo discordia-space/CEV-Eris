@@ -102,6 +102,8 @@
 		else
 			lighting_clear_overlay()
 
+	update_openspace()
+
 /turf/proc/transport_properties_from(turf/other)
 	if(!istype(other, src.type))
 		return 0
