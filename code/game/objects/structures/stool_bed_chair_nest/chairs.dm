@@ -100,19 +100,7 @@
 			return
 
 		src.set_dir(turn(src.dir, 90))
-		playsound(src,'sound/effects/CREAK_Wood_Tree_Creak_10_Bright_Very_Subtle_mono.ogg',100,1)
-
-/obj/structure/bed/chair/buckle()
-	set name = "Sit down"
-	set category = "Object"
-	set src in view(0)
-
-	if(!ishuman(usr))
-		return
-
-	if(can_buckle)
-		user_buckle_mob(usr, usr)
-
+		playsound(src, 'sound/effects/CREAK_Wood_Tree_Creak_10_Bright_Very_Subtle_mono.ogg', 100, 1)
 
 /obj/structure/bed/chair/shuttle
 	name = "chair"

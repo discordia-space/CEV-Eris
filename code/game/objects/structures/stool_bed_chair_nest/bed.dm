@@ -160,7 +160,11 @@
 		padding_material.place_sheet(get_turf(src))
 
 /obj/structure/bed/verb/buckle()
-	set name = "Lay down"
+	var/verb_title = "Lay down"
+	if(istype(src, /obj/structure/bed/chair))
+		verb_title = "Sit down"
+
+	set name = verb_title
 	set category = "Object"
 	set src in view(0)
 
