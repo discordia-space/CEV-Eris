@@ -159,6 +159,18 @@
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 
+/obj/structure/bed/verb/buckle()
+	set name = "Buckle up"
+	set category = "Object"
+	set src in view(0)
+
+	if(!ishuman(usr))
+		return
+
+	if(can_buckle)
+		user_buckle_mob(usr, usr)
+
+
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"
 	desc = "For prime comfort during psychiatric evaluations."
