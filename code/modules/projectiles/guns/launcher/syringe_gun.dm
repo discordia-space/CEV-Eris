@@ -68,7 +68,7 @@
 	item_state = "syringegun"
 	w_class = ITEM_SIZE_NORMAL
 	force = 7
-	matter = list(MATERIAL_STEEL = 2000)
+	matter = list(MATERIAL_PLASTIC = 6000, MATERIAL_GLASS = 2000)
 	slot_flags = SLOT_BELT
 
 	fire_sound = 'sound/weapons/empty.ogg'
