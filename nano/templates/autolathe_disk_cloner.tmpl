@@ -1,0 +1,106 @@
+<!-- 
+Title: Autolathe disk cloner
+Used In File(s): \code\game\machinery\autolathe_disk_cloner.dm
+ -->
+<div class="fixedWidest" style="width:440px;">
+	<div class="block">
+		<div class="item">
+			<div class="itemContentWidest">
+				{{if data.copying}}
+					{{:helper.link('STOP', '', {'start' : 1}, null, 'bigRedButton')}} 
+				{{else}}
+					{{:helper.link('START', '', {'start' : 1}, null, 'bigButton')}} 
+				{{/if}}
+			</div>
+			<div class="itemContentWidest">
+				{{if data.copying}}
+					Copying {{:data.copyingnow}}/{{:data.copyingtotal}}
+				{{else}}
+					IDLE
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="fixedLeftWider">
+	<div class="block">
+		<div class="item">
+			{{if data.disk1}}
+				<div class="itemLabelWidest">Source disk</div>
+				<div class="itemContentWidest">{{:data.disk1}}</div>
+				<div class="itemContent">
+					{{if data.disk1license >= 0}}
+						{{if !data.hacked}}
+							<span class="bad">ENCRYPTED ({{:data.disk1license}})</span>
+						{{else}}
+							<span class="good">ENCRYPTED ({{:data.disk1license}})</span>
+						{{/if}}
+						
+					{{else}}
+						<span class="good">OK</span>
+					{{/if}}
+				</div>
+				<div class="itemLabelWidest">{{:helper.link('eject', 'eject', {'eject' : 'f'}, null, 'statusValue')}}</div>
+			{{else}}
+				<div class="itemLabelWidest">Source disk</div>
+				<div class="itemContentWidest">no disk</div>
+				<div class="itemContent"><span class="bad">EMPTY</span></div>
+				<div class="itemLabelWidest">{{:helper.link('insert', 'eject', {'eject' : 'f'}, null, 'statusValue')}}</div>
+			{{/if}}
+		</div>
+		<div class="block">
+			{{for data.disk1recipes}}
+				<div class="item">
+					{{if value == 'ERROR'}}
+						<div class="itemLabelWidest" style="background-color: #ff0000;">{{:value}}</div>
+					{{else}}
+						<div class="itemLabelWidest">{{:value}}</div>
+					{{/if}}
+				</div>
+			{{empty}}
+				<div class="item">
+					<div class="itemLabelWide">Empty.</div>
+				</div>
+			{{/for}}
+		</div>
+	</div>
+</div>
+<div class="fixedLeftWider">
+	<div class="block">
+		<div class="item">
+			{{if data.disk2}}
+				<div class="itemLabelWidest">Target disk</div>
+				<div class="itemContentWidest">{{:data.disk2}}</div>
+				<div class="itemContent">
+					{{if data.copyingnow && !data.copying}}
+						<span class="bad">NOT EMPTY</span>
+					{{else}}
+						<span class="good">OK</span>
+					{{/if}}
+				</div>
+				<div class="itemLabelWidest">{{:helper.link('eject', 'eject', {'eject' : 's'}, null, 'statusValue')}}</div>
+			{{else}}
+				<div class="itemLabelWidest">Target disk</div>
+				<div class="itemContentWidest">no disk</div>
+				<div class="itemContent"><span class="bad">EMPTY</span></div>
+				<div class="itemLabelWidest">{{:helper.link('insert', 'eject', {'eject' : 's'}, null, 'statusValue')}}</div>
+			{{/if}}
+		</div>
+		<div class="block">
+			{{for data.disk2recipes}}
+				<div class="item">
+					{{if value == 'ERROR'}}
+						<div class="itemLabelWidest" style="background-color: #ee0000;">{{:value}}</div>
+					{{else}}
+						<div class="itemLabelWidest">{{:value}}</div>
+					{{/if}}
+				</div>
+			{{empty}}
+				<div class="item">
+					<div class="itemLabelWide">Empty.</div>
+				</div>
+			{{/for}}
+		</div>
+	</div>
+</div>

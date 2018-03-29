@@ -56,7 +56,7 @@ REAGENT SCANNER
 	throw_speed = 5
 	throw_range = 10
 
-	matter = list(MATERIAL_STEEL = 200)
+	matter = list(MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 
 	var/mode = 1
@@ -234,7 +234,7 @@ REAGENT SCANNER
 	icon_state = "atmos"
 	item_state = "analyzer"
 
-	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 20)
+	matter = list(MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 /obj/item/device/scanner/analyzer/atmosanalyze(var/mob/user)
@@ -272,7 +272,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	flags = CONDUCT | OPENCONTAINER
 
-	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 20)
+	matter = list(MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 
 	var/details = 0
@@ -337,7 +337,7 @@ REAGENT SCANNER
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 20)
+	matter = list(MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 
 	var/details = 0
@@ -390,7 +390,7 @@ REAGENT SCANNER
 	throw_speed = 3
 	throw_range = 7
 
-	matter = list(MATERIAL_STEEL = 30,MATERIAL_GLASS = 20)
+	matter = list(MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
 	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/device/scanner/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)

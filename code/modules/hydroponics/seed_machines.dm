@@ -1,8 +1,8 @@
 /obj/item/weapon/disk/botany
 	name = "flora data disk"
 	desc = "A small disk used for carrying data on plant genetics."
-	icon = 'icons/obj/hydroponics_machines.dmi'
-	icon_state = "disk"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "green"
 	w_class = ITEM_SIZE_TINY
 
 	var/list/genes = list()

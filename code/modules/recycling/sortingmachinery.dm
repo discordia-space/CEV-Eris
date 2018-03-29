@@ -330,6 +330,7 @@
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
 	icon_state = "dest_tagger"
+	matter = list(MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
 	var/currTag = 0
 
 	w_class = ITEM_SIZE_SMALL

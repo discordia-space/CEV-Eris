@@ -23,10 +23,8 @@
 #define MATERIAL_PLATINUM "platinum"
 #define MATERIAL_SANDSTONE "sandstone"
 #define MATERIAL_TRITIUM "tritium"
-#define MATERIAL_URANIUM "uranium"
 #define MATERIAL_WOOD "wood"
 #define MATERIAL_XENOCHITIN "chitin"
 #define MATERIAL_VOXALLOY "voxalloy"
 #define MATERIAL_RESIN "resin"
 #define MATERIAL_CARPET "carpet"
-

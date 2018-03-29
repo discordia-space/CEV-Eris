@@ -30,7 +30,7 @@ hr {
     height: 1px;
 }
 
-.link, .linkOn, .linkOff, .selected, .disabled, .yellowButton, .redButton {
+.link, .linkOn, .linkOff, .selected, .disabled, .yellowButton, .redButton, .bigButton, .bigRedButton, .bigYellowButton {
     float: left;
     min-width: 15px;
     height: 16px;
@@ -178,6 +178,23 @@ h4 {
 }
 
 .yellowButton {
+    background: #cacc00;
+}
+
+.bigButton, .bigRedButton, .bigYellowButton {
+	clear: both;
+	float: none;
+	width: inherit;
+	height: auto;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.bigRedButton {
+    background: #ea0000;
+}
+
+.bigYellowButton {
     background: #cacc00;
 }
 
@@ -329,11 +346,15 @@ div.notice {
     float: left;
 }
 
-.block {
+.block , .blockWidest {
     padding: 8px;
     margin: 10px 4px 4px 4px;
     border: 1px solid #40628a;
     background-color: #202020;
+}
+
+.blockWidest {
+	width: inherit;
 }
 
 .block h3 {
@@ -416,8 +437,38 @@ div.notice {
     border-color: #666666;
 }
 
+.fixed {
+    width: 110px;
+    clear: both;
+}
+
+.fixedMedium {
+    width: 125px;
+    clear: both;
+}
+
+.fixedWide {
+    width: 165px;
+    clear: both;
+}
+
+.fixedWider {
+    width: 220px;
+    clear: both;
+}
+
+.fixedWidest {
+    width: 250px;
+    clear: both;
+}
+
 .fixedLeft {
     width: 110px;
+    float: left;
+}
+
+.fixedLeftMedium {
+    width: 125px;
     float: left;
 }
 
@@ -440,6 +491,10 @@ div.notice {
     width: 220px;
     float: left;
 	background: #ee0000;
+}
+
+.floatLeft {
+    float: left;
 }
 
 .floatRight {
