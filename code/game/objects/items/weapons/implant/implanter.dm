@@ -6,6 +6,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
+	matter = list(MATERIAL_PLASTIC = 2000)
 	var/obj/item/weapon/implant/implant = null
 
 /obj/item/weapon/implanter/New()

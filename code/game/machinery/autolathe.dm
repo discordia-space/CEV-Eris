@@ -12,7 +12,22 @@
 	var/obj/item/weapon/disk/autolathe_disk/disk = null
 
 	var/list/stored_material =  list()
-	var/list/storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_WOOD = 0)
+	var/list/storage_capacity = list(
+		MATERIAL_STEEL = 0,
+		MATERIAL_GLASS = 0,
+		MATERIAL_RGLASS = 0,
+		MATERIAL_PLASMAGLASS = 0,
+		MATERIAL_RPLASMAGLASS = 0,
+		MATERIAL_SILVER = 0,
+		MATERIAL_GOLD = 0,
+		MATERIAL_PLASMA = 0,
+		MATERIAL_URANIUM = 0,
+		MATERIAL_DIAMOND = 0,
+		MATERIAL_PLASTIC = 0,
+		MATERIAL_CARDBOARD = 0,
+		MATERIAL_PLASTEEL = 0,
+		MATERIAL_WOOD = 0,
+	)
 	var/obj/item/weapon/reagent_containers/glass/container = null
 	var/show_category = "All"
 
