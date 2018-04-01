@@ -5,11 +5,10 @@
 	w_class = ITEM_SIZE_NORMAL
 	throw_speed = 3
 	throw_range = 3
-	max_amount = 50
+	max_amount = 120
 
 	var/default_type = MATERIAL_STEEL
 	var/material/material
-	var/perunit = SHEET_MATERIAL_AMOUNT
 	var/apply_colour //temp pending icon rewrite
 
 /obj/item/stack/material/New()

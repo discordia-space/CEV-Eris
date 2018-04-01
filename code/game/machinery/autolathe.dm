@@ -190,15 +190,12 @@
 			if(!M.stack_type)
 				return
 
-			var/obj/item/stack/material/sheetType = M.stack_type
-			var/perUnit = initial(sheetType.perunit)
-
-			var/num = input("Enter sheets count to eject. 0-[round(stored_material[material]/perUnit)]","Eject",0) as num
+			var/num = input("Enter sheets count to eject. 0-[stored_material[material]]","Eject",0) as num
 
 			if(!Adjacent(usr))
 				return
 
-			num = min(max(num,0), round(stored_material[material]/perUnit))
+			num = min(max(num,0), stored_material[material])
 
 			eject(material, num)
 
@@ -462,15 +459,13 @@
 	if(!M.stack_type)
 		return
 
-	var/obj/item/stack/material/sheetType = M.stack_type
-	var/perUnit = initial(sheetType.perunit)
-	var/eject = round(stored_material[material] / perUnit)
+	var/eject = stored_material[material]
 	eject = amount == -1 ? eject : min(eject, amount)
 	if(eject < 1)
 		return
-	var/obj/item/stack/material/S = new sheetType(loc)
+	var/obj/item/stack/material/S = new M.stack_type(loc)
 	S.amount = eject
-	stored_material[material] -= eject * perUnit
+	stored_material[material] -= eject
 
 /obj/machinery/autolathe/update_icon()
 	icon_state = (panel_open ? "autolathe_t" : "autolathe")
@@ -485,9 +480,10 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
+	mb_rating /= 3
 
 	for(var/mat in storage_capacity)
-		storage_capacity[mat] = mb_rating * SHEET_MATERIAL_AMOUNT * 25
+		storage_capacity[mat] *= mb_rating
 
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
@@ -496,12 +492,19 @@
 
 	for(var/mat in stored_material)
 		var/material/M = get_material_by_name(mat)
-		if(!istype(M))
+		if(!istype(M) || stored_material[mat] <= 0)
 			continue
+
 		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-		if(stored_material[mat] > S.perunit)
-			S.amount = round(stored_material[mat] / S.perunit)
+
+		if(S.max_amount <= stored_material[mat])
+			S.amount = stored_material[mat]
 		else
-			qdel(S)
+			var/fullstacks = stored_material[mat] / S.max_amount
+			S.amount = stored_material[mat] % S.max_amount
+			for(var/i = 0; i < fullstacks; i++)
+				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
+				MS.amount = MS.max_amount
+
 	..()
 	return 1

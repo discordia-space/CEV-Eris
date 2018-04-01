@@ -55,10 +55,26 @@ var/list/name_to_material
 		populate_material_list()
 	return name_to_material[name]
 
+/proc/material_by_stack_type(stype)
+	if(!name_to_material)
+		populate_material_list()
+
+	for(var/name in name_to_material)
+		var/material/M = name_to_material[name]
+		if(M.stack_type == stype)
+			return M.name
+	return null
+
 /proc/material_display_name(name)
 	var/material/material = get_material_by_name(name)
 	if(material)
 		return material.display_name
+	return null
+
+/proc/material_stack_type(name)
+	var/material/material = get_material_by_name(name)
+	if(material)
+		return material.stack_type
 	return null
 
 // Material definition and procs follow.
@@ -169,8 +185,8 @@ var/list/name_to_material
 	if(islist(composite_material))
 		for(var/material_string in composite_material)
 			temp_matter[material_string] = composite_material[material_string]
-	else if(SHEET_MATERIAL_AMOUNT)
-		temp_matter[name] = SHEET_MATERIAL_AMOUNT
+	else
+		temp_matter[name] = 1
 	return temp_matter
 
 // As above.
