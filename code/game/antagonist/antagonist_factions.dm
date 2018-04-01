@@ -127,6 +127,28 @@
 
 /datum/faction/proc/customize(var/mob/leader)
 
+/datum/faction/proc/communicate(var/mob/user)
+	if(!is_member(user))
+		return
+
+	usr = user
+	var/text = input("Type message","[name] communication")
+
+	if(!text || !is_member(user))
+		return
+
+	text = capitalize_cp1251(sanitize(text))
+	user << "<span class='revolution'>You say, \"[text]\"</span>"
+	for(var/datum/antagonist/A in members)
+		if(A.owner.current != user)
+			A.owner.current << "<span class='revolution'>[user] says, \"[text]\"</span>"
+
+/datum/faction/proc/is_member(var/mob/user)
+	for(var/datum/antagonist/A in members)
+		if(A.owner.current == user)
+			return TRUE
+	return FALSE
+
 /datum/faction/proc/print_success()
 	if(!members.len)
 		return

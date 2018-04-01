@@ -5,8 +5,10 @@
 	role_type = "Excelsior Infiltrator"
 	welcome_text = "Viva la revolution!"
 
+	faction_id = FACTION_EXCELSIOR
+
 /datum/antagonist/revolutionary/excelsior/can_become_antag(var/datum/mind/M)
-	if(!..() || !owner.current.get_complant())
+	if(!..() || !player_is_antag_id(M, id))
 		return FALSE
 	return TRUE
 
@@ -19,3 +21,20 @@
 	welcome_text = ""
 
 	possible_antags = list(ROLE_EXCELSIOR_REV)
+	verbs = list(/datum/faction/revolutioanry/excelsior/proc/communicate_verb)
+
+
+/datum/faction/revolutioanry/excelsior/proc/communicate_verb()
+
+	set name = "Excelsior comms"
+	set category = "Cybernetics"
+
+	if(!ishuman(usr))
+		return
+
+	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
+
+	if(!F)
+		return
+
+	F.communicate(usr)
