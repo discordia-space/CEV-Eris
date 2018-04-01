@@ -156,10 +156,6 @@
 					user << desc
 				else
 					user << SPAN_WARNING("This frame does not accept circuit boards of this type!")
-			else
-				if(istype(I, /obj/item/weapon/tool/wirecutters))
-					playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
-
 
 		if(STATE_CIRCUIT)
 

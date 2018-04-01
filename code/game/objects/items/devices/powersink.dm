@@ -30,34 +30,35 @@
 	processing_power_items.Remove(src)
 	..()
 
-/obj/item/device/powersink/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/tool/screwdriver))
-		if(mode == 0)
-			var/turf/T = loc
-			if(isturf(T) && !!T.is_plating())
-				attached = locate() in T
-				if(!attached)
-					user << "No exposed cable here to attach to."
-					return
+/obj/item/device/powersink/attackby(obj/item/I, mob/user)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+			if(mode == 0)
+				var/turf/T = loc
+				if(isturf(T) && !!T.is_plating())
+					attached = locate() in T
+					if(!attached)
+						user << "No exposed cable here to attach to."
+						return
+					else
+						anchored = 1
+						mode = 1
+						src.visible_message(SPAN_NOTICE("[user] attaches [src] to the cable!"))
+						return
 				else
-					anchored = 1
-					mode = 1
-					src.visible_message(SPAN_NOTICE("[user] attaches [src] to the cable!"))
+					user << "Device must be placed over an exposed cable to attach to it."
 					return
 			else
-				user << "Device must be placed over an exposed cable to attach to it."
-				return
-		else
-			if (mode == 2)
-				processing_objects.Remove(src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
-				processing_power_items.Remove(src)
-			anchored = 0
-			mode = 0
-			src.visible_message(SPAN_NOTICE("[user] detaches [src] from the cable!"))
-			set_light(0)
-			icon_state = "powersink0"
+				if (mode == 2)
+					processing_objects.Remove(src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
+					processing_power_items.Remove(src)
+				anchored = 0
+				mode = 0
+				src.visible_message(SPAN_NOTICE("[user] detaches [src] from the cable!"))
+				set_light(0)
+				icon_state = "powersink0"
 
-			return
+				return
 	else
 		..()
 
