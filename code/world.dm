@@ -119,9 +119,6 @@ var/game_id = null
 		else
 			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
 
-	// Create autolathe recipes, as above.
-	populate_lathe_recipes()
-
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 

@@ -100,3 +100,8 @@
 //Antag jobs list (for resticted_jobs list)
 #define JOBS_SECURITY "Ironhammer Commander","Ironhammer Gunnery Sergeant","Ironhammer Inspector","Ironhammer Medical Specialist","Ironhammer Operative",
 #define JOBS_COMMAND "Captain","First Officer","Ironhammer Commander","Guild Merchant","Technomancer Exultant","Moebius Biolab Officer","Moebius Expedition Overseer"
+
+#define INITIALIZATION_NOW 1
+#define INITIALIZATION_HAS_BEGUN 2
+#define INITIALIZATION_COMPLETE 4
+#define INITIALIZATION_NOW_AND_COMPLETE (INITIALIZATION_NOW|INITIALIZATION_COMPLETE)
