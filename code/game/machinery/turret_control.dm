@@ -44,7 +44,7 @@
 			A.turret_controls -= src
 	..()
 
-/obj/machinery/turretid/initialize()
+/obj/machinery/turretid/Initialize()
 	if(!control_area)
 		control_area = get_area(src)
 	else if(istext(control_area))

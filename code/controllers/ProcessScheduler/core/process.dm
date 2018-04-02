@@ -34,9 +34,6 @@
 	/**
 	 * Config vars
 	 */
-	// Process name
-	var/name
-
 	// Process schedule interval
 	// This controls how often the process would run under ideal conditions.
 	// If the process scheduler sees that the process has finished, it will wait until

@@ -15,7 +15,7 @@
 /obj/landmark/proc/delete()
 	delete_me = TRUE
 
-/obj/landmark/initialize()
+/obj/landmark/Initialize()
 	..()
 	if(delete_me)
 		qdel(src)

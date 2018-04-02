@@ -43,7 +43,7 @@
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
 
-/obj/structure/closet/initialize()
+/obj/structure/closet/Initialize()
 	..()
 	populate_contents()
 	update_icon()

@@ -139,7 +139,7 @@
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
 
-/obj/machinery/alarm/initialize()
+/obj/machinery/alarm/Initialize()
 	set_frequency(frequency)
 	if(buildstage == 2 && !master_is_operating())
 		elect_master()
@@ -1216,7 +1216,7 @@ FIRE ALARM
 		seclevel = newlevel
 		update_icon()
 
-/obj/machinery/firealarm/initialize()
+/obj/machinery/firealarm/Initialize()
 	if(isContactLevel(src.z))
 		set_security_level(security_level? get_security_level() : "green")
 

@@ -78,7 +78,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 // Generator which spawns with the station.
 //
 
-/obj/machinery/gravity_generator/main/station/initialize()
+/obj/machinery/gravity_generator/main/station/Initialize()
 	..()
 	setup_parts()
 	middle.overlays += "activated"
@@ -89,7 +89,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 /obj/machinery/gravity_generator/main/station/admin/New()
 	..()
-	initialize()
+	Initialize()
 	grav_on()
 
 //

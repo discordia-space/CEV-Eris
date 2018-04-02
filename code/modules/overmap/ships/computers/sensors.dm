@@ -9,7 +9,7 @@
 	var/obj/machinery/shipsensors/sensors
 	var/viewing = 0
 
-/obj/machinery/computer/sensors/initialize()
+/obj/machinery/computer/sensors/Initialize()
 	. = ..()
 	linked = map_sectors["[z]"]
 	find_sensors()

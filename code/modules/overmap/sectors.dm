@@ -29,7 +29,7 @@
 	docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
 	..()
 
-/obj/effect/overmap/initialize()
+/obj/effect/overmap/Initialize()
 	. = ..()
 
 	if(!config.use_overmap)
@@ -94,7 +94,7 @@
 	icon_state = "sector"
 	anchored = 1
 
-/obj/effect/overmap/sector/initialize()
+/obj/effect/overmap/sector/Initialize()
 	. = ..()
 	if(known)
 		layer = 2

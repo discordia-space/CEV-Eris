@@ -124,22 +124,11 @@ var/game_id = null
 
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
-	spawn(1)
-		for(var/turf/T in world)
-			T.initialize()
-			turfs += T
-			if(config.generate_asteroid)
-				// Update all turfs to ensure everything looks good post-generation. Yes,
-				// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
-				if(istype(T, /turf/simulated/mineral))
-					var/turf/simulated/mineral/M = T
-					M.updateMineralOverlays()
-				if(istype(T, /turf/simulated/floor/asteroid))
-					var/turf/simulated/floor/asteroid/M = T
-					M.updateMineralOverlays()
-		processScheduler.deferSetupFor(/datum/controller/process/ticker)
-		processScheduler.setup()
-		master_controller.setup()
+
+	processScheduler.deferSetupFor(/datum/controller/process/ticker)
+	processScheduler.setup()
+	Master.Initialize(10, FALSE)
+
 #ifdef UNIT_TEST
 		initialize_unit_tests()
 #endif

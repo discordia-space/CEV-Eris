@@ -42,12 +42,12 @@ datum/controller/game_controller/proc/setup_objects()
 	sleep(-1)
 	for(var/atom/movable/object in world)
 		if(isnull(object.gcDestroyed))
-			object.initialize()
+			object.Initialize()
 
 	admin_notice(SPAN_DANGER("Initializing areas"), R_DEBUG)
 	sleep(-1)
 	for(var/area/area in all_areas)
-		area.initialize()
+		area.Initialize()
 
 	admin_notice(SPAN_DANGER("Initializing pipe networks"), R_DEBUG)
 	sleep(-1)
@@ -74,3 +74,8 @@ datum/controller/game_controller/proc/setup_objects()
 
 	admin_notice(SPAN_DANGER("Initializations complete."), R_DEBUG)
 	sleep(-1)
+
+
+/proc/report_progress(var/progress_message)
+	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)
+	world << progress_message

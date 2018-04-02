@@ -62,7 +62,7 @@
 	unwet_task = null
 	return ..()
 
-/turf/simulated/initialize()
+/turf/simulated/Initialize()
 	return
 
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")

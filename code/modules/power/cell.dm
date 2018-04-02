@@ -7,7 +7,7 @@
 	charge = maxcharge
 	update_icon()
 
-/obj/item/weapon/cell/initialize()
+/obj/item/weapon/cell/Initialize()
 	..()
 	update_icon()
 

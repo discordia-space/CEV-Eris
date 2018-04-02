@@ -99,13 +99,13 @@
 				else if(dir & (EAST|WEST))
 					initialize_directions = NORTH|SOUTH
 
-				initialize()
+				Initialize()
 				build_network()
 				if (node1)
-					node1.initialize()
+					node1.Initialize()
 					node1.build_network()
 				if (node2)
-					node2.initialize()
+					node2.Initialize()
 					node2.build_network()
 			else
 				if(node1)
@@ -157,7 +157,7 @@
 
 		return null
 
-	initialize()
+	Initialize()
 		if(node1 && node2) return
 
 		var/node2_connect = turn(dir, -90)

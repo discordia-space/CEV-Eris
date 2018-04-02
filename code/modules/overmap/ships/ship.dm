@@ -17,7 +17,7 @@
 	var/thrust_limit = 1 //global thrust limit for all engines, 0..1
 	var/triggers_events = 1
 
-/obj/effect/overmap/ship/initialize()
+/obj/effect/overmap/ship/Initialize()
 	. = ..()
 	for(var/datum/ship_engine/E in ship_engines)
 		if (E.holder.z in map_z)

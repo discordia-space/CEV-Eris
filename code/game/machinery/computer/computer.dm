@@ -14,7 +14,7 @@
 	var/light_range_on = 1.5
 	var/light_power_on = 2
 
-/obj/machinery/computer/initialize()
+/obj/machinery/computer/Initialize()
 	power_change()
 	update_icon()
 

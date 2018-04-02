@@ -26,7 +26,7 @@
 /obj/structure/multiz/proc/find_target()
 	return
 
-/obj/structure/multiz/initialize()
+/obj/structure/multiz/Initialize()
 	find_target()
 
 /obj/structure/multiz/attack_tk(mob/user)

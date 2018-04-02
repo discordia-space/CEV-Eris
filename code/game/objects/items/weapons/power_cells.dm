@@ -19,7 +19,7 @@
 	var/charge_tick = 0
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 50)
 
-/obj/item/weapon/cell/initialize()
+/obj/item/weapon/cell/Initialize()
 	..()
 	if(autorecharging)
 		processing_objects |= src

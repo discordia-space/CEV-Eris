@@ -66,3 +66,11 @@
 #define attack_animation(A) if(istype(A)) A.do_attack_animation(src)
 
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
+
+#define to_chat(target, message)                            target << message
+#define to_world(message)                                   world << message
+#define to_world_log(message)                               world.log << message
+
+#define QDEL_NULL_LIST(x) if(x) { for(var/y in x) { qdel(y) } ; x = null }
+
+#define QDEL_NULL(x) if(x) { qdel(x) ; x = null }

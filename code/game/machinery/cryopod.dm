@@ -217,7 +217,7 @@
 		occupant.resting = 1
 	..()
 
-/obj/machinery/cryopod/initialize()
+/obj/machinery/cryopod/Initialize()
 	..()
 
 	find_control_computer()
