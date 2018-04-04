@@ -1,4 +1,4 @@
-#define QDELETED(X) (!X || X.gcDestroyed)
+#define QDELETED(X) (!X || X.gc_destroyed)
 
 
 

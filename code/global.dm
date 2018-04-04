@@ -24,6 +24,7 @@ var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
 var/diary               = null
+var/world_qdel_log		= null
 var/href_logfile        = null
 var/station_name        = "CEV Eris"
 var/station_short       = "Eris"
