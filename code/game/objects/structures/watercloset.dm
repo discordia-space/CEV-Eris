@@ -183,14 +183,12 @@
 		for (var/atom/movable/G in src.loc)
 			G.clean_blood()
 
-/obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/shower/attackby(obj/item/I, mob/user)
 	if(I.type == /obj/item/device/scanner/analyzer)
 		user << SPAN_NOTICE("The water temperature seems to be [watertemp].")
-	if(istype(I, /obj/item/weapon/tool/wrench))
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
-		user << SPAN_NOTICE("You begin to adjust the temperature valve with \the [I].")
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 50, src))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
 			watertemp = newtemp
 			user.visible_message(SPAN_NOTICE("\The [user] adjusts \the [src] with \the [I]."), SPAN_NOTICE("You adjust the shower with \the [I]."))
 			add_fingerprint(user)

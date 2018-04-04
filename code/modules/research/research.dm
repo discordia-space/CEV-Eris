@@ -235,8 +235,8 @@ research holder datum.
 /obj/item/weapon/disk/tech_disk
 	name = "technology disk"
 	desc = "A disk for storing technology data for further research."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "blue"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)
@@ -249,8 +249,8 @@ research holder datum.
 /obj/item/weapon/disk/design_disk
 	name = "component design disk"
 	desc = "A disk for storing device design data for construction in lathes."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "yellow"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)

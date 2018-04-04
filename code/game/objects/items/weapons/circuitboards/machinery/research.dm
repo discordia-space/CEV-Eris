@@ -30,6 +30,17 @@
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 
+/obj/item/weapon/circuitboard/autolathe_disk_cloner
+	name = T_BOARD("autolathe disk cloner")
+	build_path = /obj/machinery/autolathe_disk_cloner
+	board_type = "machine"
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
+	req_components = list(
+		/obj/item/weapon/stock_parts/scanning_module = 1,
+		/obj/item/weapon/stock_parts/micro_laser = 2,
+		/obj/item/weapon/stock_parts/console_screen = 1
+	)
+
 /obj/item/weapon/circuitboard/protolathe
 	name = T_BOARD("protolathe")
 	build_path = /obj/machinery/r_n_d/protolathe

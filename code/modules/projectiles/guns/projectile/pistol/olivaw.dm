@@ -9,6 +9,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
 	accuracy = 2
+	matter = list(MATERIAL_PLASTEEL = 24000, MATERIAL_WOOD = 12000)
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
