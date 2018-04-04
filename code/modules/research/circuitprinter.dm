@@ -13,7 +13,6 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	circuit = /obj/item/weapon/circuitboard/circuit_imprinter
 
 	var/max_material_storage = 50
-	var/mat_efficiency = 1
 	var/speed = 1
 
 	use_power = 1
@@ -61,7 +60,6 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	T = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		T += M.rating
-	mat_efficiency = 1 - (T - 1) / 4
 	speed = T
 
 /obj/machinery/r_n_d/circuit_imprinter/update_icon()
@@ -203,14 +201,10 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	power = max(active_power_usage, power)
 	use_power(power)
 	for(var/M in D.materials)
-		materials[M] = max(0, materials[M] - D.materials[M] * mat_efficiency)
+		materials[M] = max(0, materials[M] - D.materials[M])
 	for(var/C in D.chemicals)
-		reagents.remove_reagent(C, D.chemicals[C] * mat_efficiency)
+		reagents.remove_reagent(C, D.chemicals[C])
 
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(src, src)
 		new_item.loc = loc
-		if(mat_efficiency != 1) // No matter out of nowhere
-			if(new_item.matter && new_item.matter.len > 0)
-				for(var/i in new_item.matter)
-					new_item.matter[i] = new_item.matter[i] * mat_efficiency
