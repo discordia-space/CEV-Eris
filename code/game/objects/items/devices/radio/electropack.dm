@@ -8,7 +8,7 @@
 	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 
-	matter = list(MATERIAL_STEEL = 10000,MATERIAL_GLASS = 2500)
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2)
 
 	var/code = 2
 

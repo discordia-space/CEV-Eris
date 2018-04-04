@@ -7,7 +7,7 @@
 	worksound = WORKSOUND_WELDING
 	throw_speed = 1
 	throw_range = 5
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 3)
 	origin_tech = list(TECH_ENGINEERING = 1)
 	switched_on_qualities = list(QUALITY_WELDING = 3, QUALITY_CAUTERIZING = 1)
 

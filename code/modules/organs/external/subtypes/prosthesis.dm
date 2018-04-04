@@ -6,7 +6,7 @@
 	icon_state = "blank"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	matter = list(MATERIAL_STEEL = 10000)
+	matter = list(MATERIAL_STEEL = 10)
 	var/construction_time = 100
 	var/list/construction_cost = list(MATERIAL_STEEL=18000)
 	var/list/part = null // Order of args is important for installing robolimbs.

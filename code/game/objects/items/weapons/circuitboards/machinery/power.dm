@@ -28,4 +28,4 @@
 	req_components = list(
 		/obj/item/weapon/cell/large = 3
 	)
-	matter = list(MATERIAL_STEEL = 50, MATERIAL_GLASS = 50)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)

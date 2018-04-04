@@ -17,7 +17,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	matter = list(MATERIAL_PLASTEEL = 30000, MATERIAL_WOOD = 10000)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 
 	burst_delay = 0
 	firemodes = list(

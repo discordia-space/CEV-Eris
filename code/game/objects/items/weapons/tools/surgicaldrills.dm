@@ -4,7 +4,7 @@
 	icon_state = "drill"
 	hitsound = WORKSOUND_DRIVER_TOOL
 	worksound = WORKSOUND_DRIVER_TOOL
-	matter = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 10000)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2)
 	flags = CONDUCT
 	force = WEAPON_FORCE_DANGEROUS
 	w_class = ITEM_SIZE_NORMAL
