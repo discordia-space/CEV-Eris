@@ -11,6 +11,7 @@
 				prob(10);/obj/item/weapon/tool/weldingtool,\
 				prob(3);/obj/item/weapon/tool/omnitool,\
 				prob(10);/obj/item/weapon/tool/crowbar,\
+				prob(7);/obj/item/weapon/tool/crowbar/pneumatic,\
 				prob(10);/obj/item/weapon/tool/wrench,\
 				prob(7);/obj/item/weapon/tool/big_wrench,\
 				prob(10);/obj/item/weapon/tool/saw,\
