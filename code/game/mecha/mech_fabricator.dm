@@ -138,7 +138,7 @@
 	if(!istype(I,/obj/item/stack/material))
 		return ..()
 
-	var/material = material_by_stack_type(I.type)
+	var/material = I.get_material_name()
 
 	if(!material || !(material in materials))
 		return ..()

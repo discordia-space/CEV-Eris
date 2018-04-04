@@ -482,6 +482,8 @@
 
 	mb_rating /= 3
 
+	storage_capacity = initial(storage_capacity)
+
 	for(var/mat in storage_capacity)
 		storage_capacity[mat] *= mb_rating
 

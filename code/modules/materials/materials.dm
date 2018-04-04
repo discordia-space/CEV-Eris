@@ -55,7 +55,7 @@ var/list/name_to_material
 		populate_material_list()
 	return name_to_material[name]
 
-/proc/material_by_stack_type(stype)
+/proc/get_material_name_by_stack_type(stype)
 	if(!name_to_material)
 		populate_material_list()
 

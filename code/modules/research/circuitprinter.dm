@@ -155,8 +155,8 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		amount = min(stack.get_amount(), max_material_storage - TotalMaterials())
 
 	busy = 1
-	use_power(max(1000, amount / 10))
-	var/t = material_by_stack_type(stack.type)
+	use_power(1000)
+	var/t = stack.get_material_name()
 	if(t)
 		if(do_after(usr, 16, src))
 			if(stack.use(amount))

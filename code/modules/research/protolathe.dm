@@ -149,13 +149,13 @@
 		if(max_material_storage - TotalMaterials() < amount) //Can't overfill
 			amount = min(stack.get_amount(), max_material_storage - TotalMaterials())
 
-	var/t = material_by_stack_type(stack.type)
+	var/t = stack.get_material_name()
 	overlays += "protolathe_[t]"
 	spawn(10)
 		overlays -= "protolathe_[t]"
 
 	busy = 1
-	use_power(max(1000, amount / 10))
+	use_power(1000)
 	if(t)
 		if(do_after(user, 16,src))
 			if(stack.use(amount))
