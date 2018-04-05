@@ -15,7 +15,6 @@
 	var/category = "Disk"
 	var/license = 10
 
-
 /obj/item/weapon/disk/autolathe_disk/blank
 	name = "Blank disk"
 	category = "Blank"
