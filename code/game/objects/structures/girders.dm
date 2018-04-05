@@ -203,7 +203,7 @@
 	reinforcing = 0
 
 /obj/structure/girder/proc/dismantle()
-	new /obj/item/stack/material/steel(get_turf(src))
+	new /obj/item/stack/material/steel(src.loc, 5)
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)

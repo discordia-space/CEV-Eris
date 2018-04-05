@@ -110,7 +110,7 @@
 			if(state == STATE_NONE)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You dismantle the frame")
-					new /obj/item/stack/material/steel(src.loc, 5)
+					new /obj/item/stack/material/steel(src.loc, 8)
 					qdel(src)
 					return
 				return
