@@ -13,7 +13,7 @@
 		var/datum/O = last_object
 		if(isnull(O.gc_destroyed))
 			try
-				O:process()
+				O:Process()
 			catch(var/exception/e)
 				catchException(e, O)
 			SCHECK

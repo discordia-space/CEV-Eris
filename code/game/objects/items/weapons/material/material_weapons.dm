@@ -88,7 +88,7 @@
 	qdel(src)
 /*
 Commenting this out pending rebalancing of radiation based on small objects.
-/obj/item/weapon/material/process()
+/obj/item/weapon/material/Process()
 	if(!material.radioactivity)
 		return
 	for(var/mob/living/L in range(1,src))

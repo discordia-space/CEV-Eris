@@ -733,7 +733,7 @@
 /mob/living/carbon/human/handle_regular_hud_updates()
 	for (var/obj/screen/H in HUDprocess)
 //		var/obj/screen/B = H
-		H.process()
+		H.Process()
 	if(!overlays_cache)
 		overlays_cache = list()
 		overlays_cache.len = 23

@@ -53,7 +53,7 @@
 		qdel(AM)
 	..()
 
-/obj/item/device/electronic_assembly/process()
+/obj/item/device/electronic_assembly/Process()
 	handle_idle_power()
 
 /obj/item/device/electronic_assembly/proc/handle_idle_power()

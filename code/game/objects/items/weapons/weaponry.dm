@@ -75,7 +75,7 @@
 		qdel(src)
 	return
 
-/obj/effect/energy_net/process()
+/obj/effect/energy_net/Process()
 
 	if(isnull(affecting) || affecting.loc != loc)
 		qdel(src)

@@ -61,7 +61,7 @@ field_generator power level display
 	connected_gens = list()
 	return
 
-/obj/machinery/field_generator/process()
+/obj/machinery/field_generator/Process()
 	if(Varedit_start == 1)
 		if(active == 0)
 			active = 1

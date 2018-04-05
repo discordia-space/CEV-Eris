@@ -104,7 +104,7 @@
 	if(owner && vital)
 		owner.death()
 
-/obj/item/organ/process()
+/obj/item/organ/Process()
 
 	if(loc != owner)
 		owner = null

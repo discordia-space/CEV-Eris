@@ -23,7 +23,7 @@
 	processing_objects.Remove(src)
 	..()
 
-/obj/item/weapon/gun/launcher/spikethrower/process()
+/obj/item/weapon/gun/launcher/spikethrower/Process()
 	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)
 		spikes++
 		last_regen = world.time

@@ -16,7 +16,7 @@
 		light_color = color
 	..()
 
-/obj/item/device/lighting/glowstick/process()
+/obj/item/device/lighting/glowstick/Process()
 	if(--fuel <= 0)
 		burn_out()
 

@@ -91,7 +91,7 @@
 
 	return canhear_range
 
-/obj/item/device/radio/intercom/process()
+/obj/item/device/radio/intercom/Process()
 	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
 		last_tick = world.timeofday
 

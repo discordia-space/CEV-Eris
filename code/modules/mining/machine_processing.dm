@@ -141,7 +141,7 @@
 		if(marker)
 			output_dir = get_dir(src, marker)
 
-/obj/machinery/mineral/processing_unit/process()
+/obj/machinery/mineral/processing_unit/Process()
 
 	if (!output_dir || !input_dir) return
 

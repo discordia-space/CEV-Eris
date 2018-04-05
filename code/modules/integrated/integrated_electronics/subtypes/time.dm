@@ -98,7 +98,7 @@
 		processing_objects -= src
 		ticks_completed = 0
 
-/obj/item/integrated_circuit/time/ticker/process()
+/obj/item/integrated_circuit/time/ticker/Process()
 	var/process_ticks = process_schedule_interval("obj")
 	ticks_completed += process_ticks
 	if(ticks_completed >= ticks_to_pulse)

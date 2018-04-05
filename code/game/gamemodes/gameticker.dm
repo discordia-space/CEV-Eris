@@ -54,7 +54,7 @@ var/global/datum/controller/gameticker/ticker
 
 		while(current_state == GAME_STATE_PREGAME)
 			sleep(10)
-			vote.process()
+			vote.Process()
 
 			if(round_progressing)
 				pregame_timeleft--
@@ -123,9 +123,9 @@ var/global/datum/controller/gameticker/ticker
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
-/*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
+/*	supply_controller.Process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
+	master_controller.Process()		//Start master_controller.Process()
+	lighting_controller.Process()	//Start processing DynamicAreaLighting updates
 	*/
 
 	processScheduler.start()
@@ -238,11 +238,11 @@ var/global/datum/controller/gameticker/ticker
 				M << "Captainship not forced on anyone."
 
 
-/datum/controller/gameticker/proc/process()
+/datum/controller/gameticker/Process()
 	if(current_state != GAME_STATE_PLAYING)
 		return
 
-	storyteller.process()
+	storyteller.Process()
 	storyteller.process_events()
 
 	var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)

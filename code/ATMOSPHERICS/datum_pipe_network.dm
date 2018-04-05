@@ -16,7 +16,7 @@ datum/pipe_network
 
 		..()
 
-	proc/process()
+	Process()
 		//Equalize gases amongst pipe if called for
 		if(update)
 			update = 0
@@ -24,7 +24,7 @@ datum/pipe_network
 
 		//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat - Mport
 		//for(var/datum/pipeline/line_member in line_members)
-		//	line_member.process()
+		//	line_member.Process()
 
 	proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
 		//Purpose: Generate membership roster
@@ -70,7 +70,7 @@ datum/pipe_network
 
 		for(var/datum/pipeline/line_member in line_members)
 			gases += line_member.air
-		
+
 		for(var/datum/gas_mixture/air in gases)
 			volume += air.volume
 

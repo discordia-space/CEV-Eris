@@ -99,7 +99,7 @@ var/list/floor_light_cache = list()
 		update_brightness()
 		return
 
-/obj/machinery/floor_light/process()
+/obj/machinery/floor_light/Process()
 	..()
 	var/need_update
 	if((!anchored || broken()) && on)
@@ -193,7 +193,7 @@ var/list/floor_light_cache = list()
 		return
 	return
 
-/obj/machinery/floor_light/neon/process()
+/obj/machinery/floor_light/neon/Process()
 	if(!(use_power || idle_power_usage || active_power_usage))
 		return PROCESS_KILL
 	var/need_update

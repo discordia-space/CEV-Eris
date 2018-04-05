@@ -73,7 +73,7 @@
 	return ..()
 
 //Ignite plasma around, if we need it
-/obj/item/weapon/tool/process()
+/obj/item/weapon/tool/Process()
 	if(switched_on && create_hot_spot)
 		var/turf/location = src.loc
 		if(istype(location, /mob/))

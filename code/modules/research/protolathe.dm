@@ -20,7 +20,7 @@
 	materials = default_material_composition.Copy()
 	..()
 
-/obj/machinery/r_n_d/protolathe/process()
+/obj/machinery/r_n_d/protolathe/Process()
 	..()
 	if(stat)
 		update_icon()

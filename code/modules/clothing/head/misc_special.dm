@@ -74,7 +74,7 @@
 	var/onfire = 0
 	body_parts_covered = HEAD
 
-/obj/item/clothing/head/cakehat/process()
+/obj/item/clothing/head/cakehat/Process()
 	if(!onfire)
 		processing_objects.Remove(src)
 		return

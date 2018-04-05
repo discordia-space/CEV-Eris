@@ -25,7 +25,7 @@
 /obj/machinery/air_sensor/update_icon()
 	icon_state = "gsensor[on]"
 
-/obj/machinery/air_sensor/process()
+/obj/machinery/air_sensor/Process()
 	if(on)
 		var/datum/signal/signal = new
 		signal.transmission_method = 1 //radio signal
@@ -98,7 +98,7 @@ obj/machinery/computer/general_air_control/Destroy()
 	user.set_machine(src)
 	onclose(user, "computer")
 
-/obj/machinery/computer/general_air_control/process()
+/obj/machinery/computer/general_air_control/Process()
 	..()
 	src.updateUsrDialog()
 
@@ -408,7 +408,7 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 	var/on_temperature = 1200
 	circuit = /obj/item/weapon/circuitboard/air_management/injector_control
 
-/obj/machinery/computer/general_air_control/fuel_injection/process()
+/obj/machinery/computer/general_air_control/fuel_injection/Process()
 	if(automation)
 		if(!radio_connection)
 			return 0

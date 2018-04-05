@@ -89,7 +89,7 @@
 
 	..()
 
-/obj/effect/spider/eggcluster/process()
+/obj/effect/spider/eggcluster/Process()
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
 		var/num = rand(6,24)
@@ -144,7 +144,7 @@
 	if(health <= 0)
 		die()
 
-/obj/effect/spider/spiderling/process()
+/obj/effect/spider/spiderling/Process()
 	if(travelling_in_vent)
 		if(istype(src.loc, /turf))
 			travelling_in_vent = 0

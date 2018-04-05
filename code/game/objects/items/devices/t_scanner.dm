@@ -36,7 +36,7 @@
 	update_icon()
 
 //If reset is set, then assume the client has none of our overlays, otherwise we only send new overlays.
-/obj/item/device/t_scanner/process()
+/obj/item/device/t_scanner/Process()
 	if(!on) return
 
 	//handle clients changing

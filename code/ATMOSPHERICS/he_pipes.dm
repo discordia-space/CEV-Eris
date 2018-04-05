@@ -51,7 +51,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/Initialize()
 	return
 
 
-obj/machinery/atmospherics/pipe/simple/heat_exchanging/process()
+obj/machinery/atmospherics/pipe/simple/heat_exchanging/Process()
 	if(!parent)
 		..()
 	else

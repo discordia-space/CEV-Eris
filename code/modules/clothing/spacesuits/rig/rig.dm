@@ -307,7 +307,7 @@
 			piece.item_flags |=  (STOPPRESSUREDAMAGE|AIRTIGHT)
 	update_icon(1)
 
-/obj/item/weapon/rig/process()
+/obj/item/weapon/rig/Process()
 
 	// If we've lost any parts, grab them back.
 	var/mob/living/M
@@ -360,7 +360,7 @@
 		malfunction()
 
 	for(var/obj/item/rig_module/module in installed_modules)
-		cell.use(module.process()*10)
+		cell.use(module.Process()*10)
 
 /obj/item/weapon/rig/proc/check_power_cost(var/mob/living/user, var/cost, var/use_unconcious, var/obj/item/rig_module/mod, var/user_is_ai)
 

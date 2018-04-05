@@ -243,7 +243,7 @@
 		..()
 		processing_objects.Add(src)
 
-	process()
+	Process()
 		var/mob/observer/ghost/ghost
 		for(var/mob/observer/ghost/O in src.loc)
 			if(!O.client)	continue

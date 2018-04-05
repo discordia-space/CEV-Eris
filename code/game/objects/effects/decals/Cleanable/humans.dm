@@ -55,7 +55,7 @@ var/global/list/image/splatter_cache=list()
 	drytime = world.time + DRYING_TIME * (amount+1)
 	processing_objects += src
 
-/obj/effect/decal/cleanable/blood/process()
+/obj/effect/decal/cleanable/blood/Process()
 	if(world.time > drytime)
 		dry()
 

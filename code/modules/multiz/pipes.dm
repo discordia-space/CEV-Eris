@@ -51,7 +51,7 @@ obj/machinery/atmospherics/pipe/zpipe/New()
 		invisibility = i ? 101 : 0
 	update_icon()
 
-obj/machinery/atmospherics/pipe/up/process()
+obj/machinery/atmospherics/pipe/up/Process()
 	if(!parent) //This should cut back on the overhead calling build_network thousands of times per cycle
 		..()
 	else

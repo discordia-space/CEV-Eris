@@ -30,7 +30,7 @@
 	cell = new/obj/item/weapon/cell/large()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
 	cell.loc = src
 
-/obj/item/device/suit_cooling_unit/process()
+/obj/item/device/suit_cooling_unit/Process()
 	if (!on || !cell)
 		return
 

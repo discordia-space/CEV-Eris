@@ -197,7 +197,7 @@
 	update_name()
 	update_icon()
 
-/obj/item/weapon/reagent_containers/glass/rag/process()
+/obj/item/weapon/reagent_containers/glass/rag/Process()
 	if(!can_ignite())
 		visible_message(SPAN_WARNING("\The [src] burns out."))
 		extinguish()

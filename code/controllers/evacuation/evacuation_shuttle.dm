@@ -78,7 +78,7 @@
 	return ..()
 
 // This is largely handled by the emergency shuttle datum.
-/datum/evacuation_controller/shuttle/process()
+/datum/evacuation_controller/shuttle/Process()
 	if(state == EVAC_PREPPING)
 		if(!isnull(shuttle_launch_time) && world.time > shuttle_launch_time && shuttle.moving_status == SHUTTLE_IDLE)
 			shuttle.launch()

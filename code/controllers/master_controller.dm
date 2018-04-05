@@ -1,5 +1,5 @@
 //simplified MC that is designed to fail when procs 'break'. When it fails it's just replaced with a new one.
-//It ensures master_controller.process() is never doubled up by killing the MC (hence terminating any of its sleeping procs)
+//It ensures master_controller.Process() is never doubled up by killing the MC (hence terminating any of its sleeping procs)
 //WIP, needs lots of work still
 
 var/global/datum/controller/game_controller/master_controller //Set in world.New()

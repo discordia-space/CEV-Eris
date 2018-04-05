@@ -45,7 +45,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
 
-/obj/item/weapon/flame/match/process()
+/obj/item/weapon/flame/match/Process()
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.IgniteMob()
@@ -104,7 +104,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 
-/obj/item/clothing/mask/smokable/process()
+/obj/item/clothing/mask/smokable/Process()
 	var/turf/location = get_turf(src)
 	smoketime--
 	if(smoketime < 1)
@@ -511,7 +511,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else
 		..()
 
-/obj/item/weapon/flame/lighter/process()
+/obj/item/weapon/flame/lighter/Process()
 	var/turf/location = get_turf(src)
 	if(location)
 		location.hotspot_expose(700, 5)

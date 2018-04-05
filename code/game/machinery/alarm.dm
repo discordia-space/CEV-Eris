@@ -144,7 +144,7 @@
 	if(buildstage == 2 && !master_is_operating())
 		elect_master()
 
-/obj/machinery/alarm/process()
+/obj/machinery/alarm/Process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
 		return
 
@@ -1059,7 +1059,7 @@ FIRE ALARM
 	src.alarm()
 	return
 
-/obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
+/obj/machinery/firealarm/Process()//Note: this processing was mostly phased out due to other code, and only runs when needed
 	if(stat & (NOPOWER|BROKEN))
 		return
 

@@ -43,7 +43,7 @@
 		process_cooldown()
 
 
-/obj/item/device/assembly/timer/process()
+/obj/item/device/assembly/timer/Process()
 	if(timing && (time > 0))
 		time--
 	if(timing && time <= 0)

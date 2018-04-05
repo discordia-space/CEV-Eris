@@ -50,7 +50,7 @@
 		processing_objects.Add(src)
 
 
-/obj/item/weapon/flame/candle/process()
+/obj/item/weapon/flame/candle/Process()
 	if(!lit)
 		return
 	wax--

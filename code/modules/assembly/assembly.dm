@@ -85,7 +85,7 @@
 	..()
 
 
-/obj/item/device/assembly/process()
+/obj/item/device/assembly/Process()
 	processing_objects.Remove(src)
 
 

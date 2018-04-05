@@ -24,11 +24,11 @@ var/global/datum/shuttle_controller/shuttle_controller
 /datum/shuttle_controller/proc/get_landmark(var/shuttle_landmark_tag)
 	return registered_shuttle_landmarks[shuttle_landmark_tag]
 
-/datum/shuttle_controller/proc/process()
+/datum/shuttle_controller/Process()
 	//process ferry shuttles
 	for (var/datum/shuttle/autodock/shuttle in process_shuttles)
 		if (shuttle.process_state)
-			shuttle.process()
+			shuttle.Process()
 
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
 /datum/shuttle_controller/proc/initialize_shuttles()

@@ -20,7 +20,7 @@
 	processing_objects.Remove(src)
 	..()
 
-/obj/item/device/beacon_locator/process()
+/obj/item/device/beacon_locator/Process()
 	if(target_radio)
 		set_dir(get_dir(src,target_radio))
 		switch(get_dist(src,target_radio))

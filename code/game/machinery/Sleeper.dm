@@ -21,7 +21,7 @@
 /obj/machinery/sleeper/Initialize()
 	update_icon()
 
-/obj/machinery/sleeper/process()
+/obj/machinery/sleeper/Process()
 	if(stat & (NOPOWER|BROKEN))
 		return
 

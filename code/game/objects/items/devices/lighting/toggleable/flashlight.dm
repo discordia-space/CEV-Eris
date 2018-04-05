@@ -24,7 +24,7 @@
 	if(. && user)
 		user.update_action_buttons()
 
-/obj/item/device/lighting/toggleable/flashlight/process()
+/obj/item/device/lighting/toggleable/flashlight/Process()
 	if(on)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))

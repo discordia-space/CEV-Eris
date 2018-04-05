@@ -73,7 +73,7 @@ Data storage vars:
 			if(check_for_null && has_null_args())
 				stop()
 				return 0
-			result = process(arglist(arg_list))
+			result = Process(arglist(arg_list))
 			for(var/sleep_time=delay;sleep_time>0;sleep_time--) //uhh, this is ugly. But I see no other way to terminate sleeping proc. Such disgrace.
 				if(!control_switch)
 					return 0
@@ -109,7 +109,7 @@ Data storage vars:
 				CRASH("The global_iterator loop \ref[src] failed to terminate in designated timeframe. This may be caused by server lagging.")
 		return 1
 
-	proc/process()
+	Process()
 		return
 
 	proc/active()

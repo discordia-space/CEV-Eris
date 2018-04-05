@@ -167,7 +167,7 @@
 
 	return ..()
 
-/obj/machinery/power/supermatter/process()
+/obj/machinery/power/supermatter/Process()
 
 	var/turf/L = loc
 

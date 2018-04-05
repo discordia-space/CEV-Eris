@@ -117,7 +117,7 @@
 	return 1
 
 
-/obj/item/device/powersink/process()
+/obj/item/device/powersink/Process()
 	drained_this_tick = 0
 	power_drained -= min(dissipation_rate, power_drained)
 	if(power_drained > max_power * 0.95)

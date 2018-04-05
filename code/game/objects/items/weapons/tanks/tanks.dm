@@ -226,7 +226,7 @@ var/list/global/tank_gauge_cache = list()
 
 	return remove_air(moles_needed)
 
-/obj/item/weapon/tank/process()
+/obj/item/weapon/tank/Process()
 	//Allow for reactions
 	air_contents.react() //cooking up air tanks - add plasma and oxygen, then heat above PLASMA_MINIMUM_BURN_TEMPERATURE
 	if(gauge_icon)

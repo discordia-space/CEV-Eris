@@ -2532,7 +2532,7 @@ area/space/atmosalert()
 		S.volume = 100
 		S.priority = 255
 		S.status = SOUND_UPDATE
-		process()
+		Process()
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		if(ismob(Obj))
@@ -2547,7 +2547,7 @@ area/space/atmosalert()
 				mysound.status = SOUND_PAUSED | SOUND_UPDATE
 				Obj << mysound
 
-	proc/process()
+	Process()
 		set background = 1
 
 		var/sound/S = null
@@ -2653,7 +2653,7 @@ var/list/the_station_areas = list (
 		S.volume = 100
 		S.priority = 255
 		S.status = SOUND_UPDATE
-		process()
+		Process()
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		if(ismob(Obj))
@@ -2668,7 +2668,7 @@ var/list/the_station_areas = list (
 				mysound.status = SOUND_PAUSED | SOUND_UPDATE
 				Obj << mysound
 
-	proc/process()
+	Process()
 		set background = 1
 
 		var/sound/S = null

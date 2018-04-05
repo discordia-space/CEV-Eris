@@ -150,7 +150,7 @@
 		if(can_access_camera(jump_to))
 			switch_to_camera(user,jump_to)
 
-/obj/machinery/computer/security/process()
+/obj/machinery/computer/security/Process()
 	if(cache_id != camera_repository.camera_cache_id)
 		cache_id = camera_repository.camera_cache_id
 		nanomanager.update_uis(src)

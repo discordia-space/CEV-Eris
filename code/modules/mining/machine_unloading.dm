@@ -23,7 +23,7 @@
 		if(marker)
 			output_dir = get_dir(src, marker)
 
-/obj/machinery/mineral/unloading_machine/process()
+/obj/machinery/mineral/unloading_machine/Process()
 	if(output_dir && input_dir)
 		var/turf/input = get_step(src, input_dir)
 		var/obj/structure/ore_box/BOX = locate() in input

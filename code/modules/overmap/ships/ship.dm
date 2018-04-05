@@ -109,7 +109,7 @@
 		if(direction & SOUTH)
 			adjust_speed(0, -get_burn_acceleration())
 
-/obj/effect/overmap/ship/process()
+/obj/effect/overmap/ship/Process()
 	if(!is_still())
 		var/list/deltas = list(0,0)
 		for(var/i=1, i<=2, i++)

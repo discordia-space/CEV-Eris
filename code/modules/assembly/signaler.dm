@@ -139,7 +139,7 @@
 	return
 
 
-/obj/item/device/assembly/signaler/process()
+/obj/item/device/assembly/signaler/Process()
 	if(!deadman)
 		processing_objects.Remove(src)
 	var/mob/M = src.loc

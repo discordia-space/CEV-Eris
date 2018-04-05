@@ -10,7 +10,7 @@ var/list/datum/list_of_ais = list()
 		var/datum/ai/AI = last_object
 		if(isnull(AI.gc_destroyed) && istype(AI))
 			try
-				if(AI.process() == PROCESS_KILL)
+				if(AI.Process() == PROCESS_KILL)
 					list_of_ais -= AI
 			catch(var/exception/e)
 				catchException(e, AI)

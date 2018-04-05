@@ -31,7 +31,7 @@
 		src.icon_state = _icon_state
 
 
-/obj/screen/process()
+/obj/screen/Process()
 	return
 
 /obj/screen/Destroy()
@@ -295,7 +295,7 @@
 	ovrls["health7"] += new /image(icon = src.icon, icon_state ="health7")
 	update_icon()
 
-/obj/screen/health/process()
+/obj/screen/health/Process()
 	//var/mob/living/carbon/human/H = parentmob
 	update_icon()
 
@@ -344,7 +344,7 @@
 	ovrls["nutrition4"] += new /image/no_recolor(icon = src.icon, icon_state ="nutrition4")
 	update_icon()
 
-/obj/screen/nutrition/process()
+/obj/screen/nutrition/Process()
 	//var/mob/living/carbon/human/H = parentmob
 	update_icon()
 
@@ -382,7 +382,7 @@
 	ovrls["temp-4"] += new /image/no_recolor(icon = src.icon, icon_state ="temp-4")
 	update_icon()
 
-/obj/screen/bodytemp/process()
+/obj/screen/bodytemp/Process()
 	update_icon()
 
 
@@ -442,7 +442,7 @@
 	update_icon()
 
 
-/obj/screen/pressure/process()
+/obj/screen/pressure/Process()
 	update_icon()
 
 /obj/screen/pressure/update_icon()
@@ -465,7 +465,7 @@
 	ovrls["tox1"] += new /image/no_recolor(icon = src.icon, icon_state ="tox1")
 	update_icon()
 
-/obj/screen/toxin/process()
+/obj/screen/toxin/Process()
 	update_icon()
 
 /obj/screen/toxin/update_icon()
@@ -493,7 +493,7 @@
 //	ovrls["oxy0"] += new /image/no_recolor(icon = src.icon, icon_state ="oxy0")
 	update_icon()
 
-/obj/screen/oxygen/process()
+/obj/screen/oxygen/Process()
 	update_icon()
 
 /obj/screen/oxygen/update_icon()
@@ -523,7 +523,7 @@
 	update_icon()
 //	ovrl.appearance_flags = RESET_COLOR
 
-/obj/screen/fire/process()
+/obj/screen/fire/Process()
 	update_icon()
 
 /obj/screen/fire/update_icon()
@@ -895,7 +895,7 @@
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 //	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
-/obj/screen/drugoverlay/process()
+/obj/screen/drugoverlay/Process()
 	update_icon()
 
 /obj/screen/drugoverlay/update_icon()
@@ -927,7 +927,7 @@
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 
-/obj/screen/damageoverlay/process()
+/obj/screen/damageoverlay/Process()
 	update_icon()
 	return
 
@@ -1033,7 +1033,7 @@
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 
 
-/obj/screen/glasses_overlay/process()
+/obj/screen/glasses_overlay/Process()
 	update_icon()
 	return
 

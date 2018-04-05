@@ -19,7 +19,7 @@
 // Due to how processes work, we'd receive two process calls - one from machinery type and one from our own type.
 // Since we want this to be in-sync with machinery (as it's hidden type for machinery-based computers) we'll ignore
 // non-relayed process calls.
-/obj/item/modular_computer/processor/process(var/relayed = 0)
+/obj/item/modular_computer/processor/Process(var/relayed = 0)
 	if(relayed)
 		..()
 	else

@@ -29,7 +29,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 
 	lastTickerTime = currentTime
 
-	ticker.process()
+	ticker.Process()
 
 /datum/controller/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

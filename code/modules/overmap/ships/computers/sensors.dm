@@ -107,7 +107,7 @@
 			sensors.toggle()
 			return 1
 
-/obj/machinery/computer/sensors/process()
+/obj/machinery/computer/sensors/Process()
 	..()
 	if(!linked)
 		return
@@ -178,7 +178,7 @@
 	use_power = !use_power
 	update_icon()
 
-/obj/machinery/shipsensors/process()
+/obj/machinery/shipsensors/Process()
 	..()
 	if(use_power) //can't run in non-vacuum
 		if(!in_vacuum())

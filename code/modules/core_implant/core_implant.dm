@@ -99,7 +99,7 @@
 /obj/item/weapon/implant/external/core_implant/proc/restore_power(var/value)
 	power = min(max_power, power + value)
 
-/obj/item/weapon/implant/external/core_implant/process()
+/obj/item/weapon/implant/external/core_implant/Process()
 	if(!active)
 		return
 	if((!wearer || loc != wearer) && active)

@@ -17,7 +17,7 @@
 		<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return data
 
-/obj/item/weapon/implant/death_alarm/process()
+/obj/item/weapon/implant/death_alarm/Process()
 	if (!implanted)
 		return
 	var/mob/M = wearer

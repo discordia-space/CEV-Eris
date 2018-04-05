@@ -10,7 +10,7 @@
 	processing_objects.Add(src)
 	spawning_id = pick("blood","lube","stoxin","ethanol","ice","glycerol","fuel","cleaner")
 
-/obj/item/weapon/reagent_containers/glass/replenishing/process()
+/obj/item/weapon/reagent_containers/glass/replenishing/Process()
 	reagents.add_reagent(spawning_id, 0.3)
 
 
@@ -30,7 +30,7 @@
 	remove_hearing()
 	return ..()
 
-/obj/item/clothing/mask/gas/poltergeist/process()
+/obj/item/clothing/mask/gas/poltergeist/Process()
 	if(heard_talk.len && isliving(loc) && prob(10))
 		var/mob/living/M = loc
 		M.say(pick(heard_talk))
@@ -69,7 +69,7 @@
 	remove_hearing()
 	..()
 
-/obj/item/weapon/vampiric/process()
+/obj/item/weapon/vampiric/Process()
 	//see if we've identified anyone nearby
 	if(world.time - last_bloodcall > bloodcall_interval && nearby_mobs.len)
 		var/mob/living/carbon/human/M = pop(nearby_mobs)
@@ -157,7 +157,7 @@
 	processing_objects.Add(src)
 	loc_last_process = src.loc
 
-/obj/effect/decal/cleanable/blood/splatter/animated/process()
+/obj/effect/decal/cleanable/blood/splatter/animated/Process()
 	if(target_turf && src.loc != target_turf)
 		step_towards(src,target_turf)
 		if(src.loc == loc_last_process)
@@ -186,7 +186,7 @@
 /obj/effect/shadow_wight/New()
 	processing_objects.Add(src)
 
-/obj/effect/shadow_wight/process()
+/obj/effect/shadow_wight/Process()
 	if(src.loc)
 		src.loc = get_turf(pick(orange(1,src)))
 		var/mob/living/carbon/M = locate() in src.loc

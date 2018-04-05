@@ -139,7 +139,7 @@ var/list/mechtoys = list(
 
 	// Supply shuttle ticker - handles supply point regeneration
 	// This is called by the process scheduler every thirty seconds
-	proc/process()
+	Process()
 		points += points_per_process
 
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.

@@ -63,7 +63,7 @@ var/global/list/storyevents = list()
 	return FALSE
 
 
-/datum/storyevent/proc/process()
+/datum/storyevent/Process()
 	return
 
 /datum/storyevent/proc/is_ended()

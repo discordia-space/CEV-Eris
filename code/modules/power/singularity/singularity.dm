@@ -78,7 +78,7 @@
 /obj/singularity/Bumped(atom/A)
 	consume(A)
 
-/obj/singularity/process()
+/obj/singularity/Process()
 	eat()
 	dissipate()
 	check_energy()

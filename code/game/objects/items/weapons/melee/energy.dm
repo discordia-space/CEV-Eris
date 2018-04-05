@@ -204,7 +204,7 @@
 /obj/item/weapon/melee/energy/blade/dropped()
 	spawn(1) if(src) qdel(src)
 
-/obj/item/weapon/melee/energy/blade/process()
+/obj/item/weapon/melee/energy/blade/Process()
 	if(!creator || loc != creator || (creator.l_hand != src && creator.r_hand != src))
 		// Tidy up a bit.
 		if(isliving(loc))

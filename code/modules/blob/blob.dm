@@ -172,7 +172,7 @@
 	processing_objects.Remove(src)
 	return ..()
 
-/obj/effect/blob/core/process()
+/obj/effect/blob/core/Process()
 	set waitfor = 0
 	if(!blob_may_process)
 		return

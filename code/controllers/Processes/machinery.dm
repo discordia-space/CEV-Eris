@@ -21,7 +21,7 @@
 	for(last_object in machines)
 		var/obj/machinery/M = last_object
 		if(M && !M.gc_destroyed)
-			if(M.process() == PROCESS_KILL)
+			if(M.Process() == PROCESS_KILL)
 				//M.inMachineList = 0 We don't use this debugging function
 				machines.Remove(M)
 				continue
@@ -53,7 +53,7 @@
 	for(last_object in pipe_networks)
 		var/datum/pipe_network/pipeNetwork = last_object
 		if(istype(pipeNetwork) && isnull(pipeNetwork.gc_destroyed))
-			pipeNetwork.process()
+			pipeNetwork.Process()
 			SCHECK
 			continue
 

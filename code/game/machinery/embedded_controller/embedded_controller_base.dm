@@ -22,11 +22,11 @@ obj/machinery/embedded_controller/radio/Destroy()
 
 	if(program)
 		program.receive_signal(signal, receive_method, receive_param)
-			//spawn(5) program.process() //no, program.process sends some signals and machines respond and we here again and we lag -rastaf0
+			//spawn(5) program.Process() //no, program.process sends some signals and machines respond and we here again and we lag -rastaf0
 
-/obj/machinery/embedded_controller/process()
+/obj/machinery/embedded_controller/Process()
 	if(program)
-		program.process()
+		program.Process()
 
 	update_icon()
 

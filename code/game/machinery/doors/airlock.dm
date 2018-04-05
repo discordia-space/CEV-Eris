@@ -292,7 +292,7 @@
 	mineral = MATERIAL_URANIUM
 	var/last_event = 0
 
-/obj/machinery/door/airlock/process()
+/obj/machinery/door/airlock/Process()
 	// Deliberate no call to parent.
 	if(main_power_lost_until > 0 && world.time >= main_power_lost_until)
 		regainMainPower()
@@ -305,7 +305,7 @@
 
 	..()
 
-/obj/machinery/door/airlock/uranium/process()
+/obj/machinery/door/airlock/uranium/Process()
 	if(world.time > last_event+20)
 		if(prob(50))
 			radiate()

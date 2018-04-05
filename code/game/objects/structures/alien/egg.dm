@@ -26,7 +26,7 @@
 	if(href_list["spawn"])
 		attack_ghost(usr)
 
-/obj/structure/alien/egg/process()
+/obj/structure/alien/egg/Process()
 	progress++
 	if(progress >= MAX_PROGRESS)
 		for(var/mob/M in dead_mob_list)

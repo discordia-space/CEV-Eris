@@ -89,7 +89,7 @@
 //		else
 //			hud.screen_loc = src.screen_loc
 
-/obj/item/weapon/grab/process()
+/obj/item/weapon/grab/Process()
 	if(gc_destroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
 		return PROCESS_KILL
 

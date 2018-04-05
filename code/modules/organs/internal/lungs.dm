@@ -23,7 +23,7 @@
 	poison_type = species.poison_type ? species.poison_type : "plasma"
 	exhale_type = species.exhale_type ? species.exhale_type : 0
 
-/obj/item/organ/internal/lungs/process()
+/obj/item/organ/internal/lungs/Process()
 	..()
 
 	if(!owner)

@@ -99,8 +99,8 @@
 	..(command)
 	airlock_program.receive_user_command(command)	//pass along to subprograms
 
-/datum/computer/file/embedded_program/docking/airlock/process()
-	airlock_program.process()
+/datum/computer/file/embedded_program/docking/airlock/Process()
+	airlock_program.Process()
 	..()
 
 /datum/computer/file/embedded_program/docking/airlock/receive_signal(datum/signal/signal, receive_method, receive_param)

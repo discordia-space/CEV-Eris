@@ -240,7 +240,7 @@ var/global/chicken_count = 0
 			processing_objects.Add(E)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/var/amount_grown = 0
-/obj/item/weapon/reagent_containers/food/snacks/egg/process()
+/obj/item/weapon/reagent_containers/food/snacks/egg/Process()
 	if(isturf(loc))
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)

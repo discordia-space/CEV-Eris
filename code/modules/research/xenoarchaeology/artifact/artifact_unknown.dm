@@ -72,16 +72,16 @@
 		if(prob(75))
 			my_effect.trigger = rand(1,4)
 
-/obj/machinery/artifact/process()
+/obj/machinery/artifact/Process()
 
 	var/turf/L = loc
 	if(isnull(L) || !istype(L)) 	// We're inside a container or on null turf, either way stop processing effects
 		return
 
 	if(my_effect)
-		my_effect.process()
+		my_effect.Process()
 	if(secondary_effect)
-		secondary_effect.process()
+		secondary_effect.Process()
 
 	if(pulledby)
 		Bumped(pulledby)

@@ -43,7 +43,7 @@ var/list/christians = list()
 	christians.Remove(wearer)
 	..()
 
-/obj/item/weapon/implant/external/core_implant/cruciform/process()
+/obj/item/weapon/implant/external/core_implant/cruciform/Process()
 	..()
 	if(world.time == round(world.time))
 		remove_cyber()

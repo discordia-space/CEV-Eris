@@ -11,7 +11,7 @@
 	var/produce_heat = 1500
 	turn_on_sound = 'sound/effects/Custom_flare.ogg'
 
-/obj/item/device/lighting/glowstick/flare/process()
+/obj/item/device/lighting/glowstick/flare/Process()
 	..()
 	if(on)
 		var/turf/pos = get_turf(src)

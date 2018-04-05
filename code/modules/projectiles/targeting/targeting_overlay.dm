@@ -76,7 +76,7 @@
 	if(aiming_at)
 		aiming_at << "<span class='[use_span]'>You are [message].</span>"
 
-/obj/aiming_overlay/process()
+/obj/aiming_overlay/Process()
 	if(!owner)
 		qdel(src)
 		return

@@ -136,7 +136,7 @@
 			user << SPAN_NOTICE("You take all filled honeycombs out.")
 		return
 
-/obj/machinery/beehive/process()
+/obj/machinery/beehive/Process()
 	if(closed && !smoked && bee_count)
 		pollinate_flowers()
 		update_icon()

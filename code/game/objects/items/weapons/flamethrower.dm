@@ -33,7 +33,7 @@
 	return
 
 
-/obj/item/weapon/flamethrower/process()
+/obj/item/weapon/flamethrower/Process()
 	if(!lit)
 		processing_objects.Remove(src)
 		return null

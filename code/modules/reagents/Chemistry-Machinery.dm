@@ -44,7 +44,7 @@
 	..()
 	nanomanager.update_uis(src) // update all UIs attached to src
 
-/obj/machinery/chemical_dispenser/process()
+/obj/machinery/chemical_dispenser/Process()
 	if(recharged <= 0)
 		recharge()
 		recharged = 15

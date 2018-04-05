@@ -13,7 +13,7 @@
 	processing_objects -= src
 	..()
 
-/obj/structure/alien/node/process()
+/obj/structure/alien/node/Process()
 	if(locate(/obj/effect/plant) in loc)
 		return
 	new /obj/effect/plant(get_turf(src), plant_controller.seeds["xenomorph"])

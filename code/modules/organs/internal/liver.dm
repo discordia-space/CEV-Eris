@@ -4,7 +4,7 @@
 	organ_tag = O_LIVER
 	parent_organ = BP_GROIN
 
-/obj/item/organ/internal/liver/process()
+/obj/item/organ/internal/liver/Process()
 
 	..()
 
