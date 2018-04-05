@@ -112,10 +112,10 @@
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
-			var/obj/O = getSpawnPoint("observer")
-			if(istype(O))
-				src << "<span class='notice'>You are observer now.</span>"
-				observer.forceMove(O.loc)
+			var/turf/T = pickSpawnLocation(/mob/observer)
+			if(istype(T))
+				src << SPAN_NOTICE("You are observer now.")
+				observer.forceMove(T)
 			else
 				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
