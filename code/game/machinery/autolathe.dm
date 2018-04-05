@@ -12,22 +12,8 @@
 	var/obj/item/weapon/disk/autolathe_disk/disk = null
 
 	var/list/stored_material =  list()
-	var/list/storage_capacity = list(
-		MATERIAL_STEEL = 0,
-		MATERIAL_GLASS = 0,
-		MATERIAL_RGLASS = 0,
-		MATERIAL_PLASMAGLASS = 0,
-		MATERIAL_RPLASMAGLASS = 0,
-		MATERIAL_SILVER = 0,
-		MATERIAL_GOLD = 0,
-		MATERIAL_PLASMA = 0,
-		MATERIAL_URANIUM = 0,
-		MATERIAL_DIAMOND = 0,
-		MATERIAL_PLASTIC = 0,
-		MATERIAL_CARDBOARD = 0,
-		MATERIAL_PLASTEEL = 0,
-		MATERIAL_WOOD = 0,
-	)
+	var/storage_capacity = 120
+
 	var/obj/item/weapon/reagent_containers/glass/container = null
 	var/show_category = "All"
 
@@ -294,18 +280,12 @@
 	var/filltype = 0       // Used to determine message.
 	var/total_used = 0     // Amount of material used.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
-	var/accept = FALSE
 
 	for(var/material in eating.matter)
-		if(!(material in storage_capacity))
-			continue
-
-		accept = TRUE
-
 		if(!(material in stored_material))
 			stored_material[material] = 0
 
-		if(stored_material[material] >= storage_capacity[material])
+		if(stored_material[material] >= storage_capacity)
 			continue
 
 		var/total_material = round(eating.matter[material])
@@ -315,8 +295,8 @@
 			var/obj/item/stack/material/stack = eating
 			total_material *= stack.get_amount()
 
-		if(stored_material[material] + total_material > storage_capacity[material])
-			total_material = storage_capacity[material] - stored_material[material]
+		if(stored_material[material] + total_material > storage_capacity)
+			total_material = storage_capacity - stored_material[material]
 			filltype = 1
 		else
 			filltype = 2
@@ -324,10 +304,6 @@
 		stored_material[material] += total_material
 		total_used += total_material
 		mass_per_sheet += eating.matter[material]
-
-	if(!accept)
-		user << SPAN_NOTICE("\The [src] doesn't have capacity for this material.")
-		return
 
 	if(!filltype)
 		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
@@ -480,12 +456,7 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
-	mb_rating /= 3
-
-	storage_capacity = initial(storage_capacity)
-
-	for(var/mat in storage_capacity)
-		storage_capacity[mat] *= mb_rating
+	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
 
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
