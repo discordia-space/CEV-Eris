@@ -5,6 +5,8 @@
 /obj/random/surgery_tool/item_to_spawn()
 	return pick(/obj/item/weapon/tool/bonesetter,\
 				/obj/item/weapon/tool/scalpel,\
+				/obj/item/weapon/tool/scalpel/advanced,\
+				/obj/item/weapon/tool/scalpel/laser,\
 				/obj/item/weapon/tool/surgicaldrill,\
 				/obj/item/weapon/tool/cautery,\
 				/obj/item/weapon/tool/retractor,\

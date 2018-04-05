@@ -5,6 +5,7 @@
 	item_state = "riotgun"
 	w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_NORMAL
+	matter = list(MATERIAL_STEEL = 60000, MATERIAL_PLASTIC = 20000)
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
@@ -15,7 +16,6 @@
 	var/obj/item/weapon/grenade/chambered
 	var/list/grenades = new/list()
 	var/max_grenades = 5 //holds this + one in the chamber
-	matter = list(MATERIAL_STEEL = 2000)
 
 //revolves the magazine, allowing players to choose between multiple grenade types
 /obj/item/weapon/gun/launcher/grenade/proc/pump(mob/M as mob)

@@ -8,6 +8,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
 	item_state = "locator"
+	matter = list(MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
 	w_class = ITEM_SIZE_SMALL
 
 /obj/item/device/gps/attack_self(var/mob/user as mob)

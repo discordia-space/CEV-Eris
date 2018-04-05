@@ -5,7 +5,7 @@
 	w_class = ITEM_SIZE_SMALL
 	item_state = "crossbow"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 2, TECH_ILLEGAL = 5)
-	matter = list(MATERIAL_STEEL = 2000)
+	matter = list(MATERIAL_PLASTEEL = 30000, MATERIAL_PLASTIC = 16000, MATERIAL_SILVER = 18000, MATERIAL_URANIUM = 16000)
 	slot_flags = SLOT_BELT
 	silenced = 1
 	fire_sound = 'sound/weapons/Genhit.ogg'
@@ -23,5 +23,5 @@
 	desc = "Energy crossbow, produced by old Nanotrasen, discontinued now. A weapon favored by mercenary infiltration teams."
 	w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_PAINFULL
-	matter = list(MATERIAL_STEEL = 200000)
+	matter = list(MATERIAL_PLASTEEL = 60000, MATERIAL_PLASTIC = 32000, MATERIAL_SILVER = 18000, MATERIAL_URANIUM = 16000)
 	projectile_type = /obj/item/projectile/energy/bolt/large

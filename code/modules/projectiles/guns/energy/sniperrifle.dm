@@ -11,9 +11,10 @@
 	fire_delay = 35
 	force = 10
 	w_class = ITEM_SIZE_LARGE
+	matter = list(MATERIAL_PLASTEEL = 30000, MATERIAL_WOOD = 16000, MATERIAL_SILVER = 18000, MATERIAL_URANIUM = 12000)
 	accuracy = -3 //shooting at the hip
 	scoped_accuracy = 0
-	cell_type = /obj/item/weapon/cell/medium/super
+	cell_type = /obj/item/weapon/cell/medium
 
 /obj/item/weapon/gun/energy/sniperrifle/verb/scope()
 	set category = "Object"
