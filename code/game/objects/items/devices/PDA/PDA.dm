@@ -1334,6 +1334,16 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		src.id.loc = get_turf(src.loc)
 	..()
 
+/obj/item/device/pda/AltClick()
+	if(can_use(usr))
+		if(id)
+			remove_id()
+		else
+			usr << SPAN_NOTICE("This PDA does not have an ID in it.")
+	else
+		usr << SPAN_NOTICE("You cannot do this while restrained.")
+	
+
 /obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
 	if (isliving(AM))
 		var/mob/living/M = AM

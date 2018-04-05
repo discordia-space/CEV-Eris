@@ -40,7 +40,7 @@
 /obj/landmark/join/observer
 	name = "observer-spawn"
 	icon_state = "player-grey-cluster"
-	join_tag = "observer"
+	join_tag = /mob/observer
 
 /obj/landmark/join/start
 	name = "start"
