@@ -215,7 +215,7 @@
 	if(D.time > progress)
 		return
 	for(var/M in D.materials)
-		materials[M] = max(0, roaund(materials[M] - D.materials[M] * mat_efficiency))
+		materials[M] = max(0, round(materials[M] - D.materials[M] * mat_efficiency))
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(loc, src)
 		visible_message("\The [src] pings, indicating that \the [D] is complete.", "You hear a ping.")
