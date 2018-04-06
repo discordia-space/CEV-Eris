@@ -75,8 +75,8 @@
 			data["reagents"] = L
 
 	var/list/M = list()
-	for(var/mtype in storage_capacity)
-		if(!(mtype in stored_material) || stored_material[mtype] <= 0)
+	for(var/mtype in stored_material)
+		if(stored_material[mtype] <= 0)
 			continue
 
 		var/list/ME = list("name" = mtype, "count" = stored_material[mtype], "ejectable" = TRUE)
@@ -101,7 +101,7 @@
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = R.resources[mat])))
+			RS.Add(list(list("name" = mat, "req" = round(R.resources[mat] * mat_efficiency))))
 
 		data["req_materials"] = RS
 
