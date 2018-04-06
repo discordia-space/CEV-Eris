@@ -14,7 +14,7 @@
 	var/speed = 1
 	var/mat_efficiency = 1
 	var/list/materials = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_GOLD = 0, MATERIAL_SILVER = 0, MATERIAL_DIAMOND = 0, MATERIAL_PLASMA = 0, MATERIAL_URANIUM = 0)
-	var/res_max_amount = 200000
+	var/res_max_amount = 120
 
 	var/datum/research/files
 	var/list/datum/design/queue = list()
@@ -215,14 +215,14 @@
 	if(D.time > progress)
 		return
 	for(var/M in D.materials)
-		materials[M] = max(0, materials[M] - D.materials[M] * mat_efficiency)
+		materials[M] = max(0, roaund(materials[M] - D.materials[M] * mat_efficiency))
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(loc, src)
 		visible_message("\The [src] pings, indicating that \the [D] is complete.", "You hear a ping.")
 		if(mat_efficiency != 1)
 			if(new_item.matter && new_item.matter.len > 0)
 				for(var/i in new_item.matter)
-					new_item.matter[i] = new_item.matter[i] * mat_efficiency
+					new_item.matter[i] = round(new_item.matter[i] * mat_efficiency)
 	remove_from_queue(1)
 
 /obj/machinery/mecha_part_fabricator/proc/get_queue_names()

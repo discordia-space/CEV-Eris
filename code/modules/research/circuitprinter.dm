@@ -12,7 +12,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	var/progress = 0
 	circuit = /obj/item/weapon/circuitboard/circuit_imprinter
 
-	var/max_material_storage = 50
+	var/max_material_storage = 120
 	var/speed = 1
 
 	use_power = 1
