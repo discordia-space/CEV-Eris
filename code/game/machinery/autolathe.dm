@@ -35,14 +35,19 @@
 	var/disabled = 0
 	var/shocked = 0
 
-	var/making_left = 0
-	var/making_total = 0
-	var/datum/autolathe/recipe/making_recipe = null
-	var/not_enough_resources = FALSE
-	var/disk_error = FALSE
-
+	var/error = null
+	var/working = FALSE
+	var/progress = 0
+	var/build_speed = 2
 	var/mat_efficiency = 1
-	var/build_time = 50
+
+	var/list/queue = list()
+	var/current = null
+
+	var/unfolded = null
+
+	var/list/categories = list()	//Categories for use when recipe list is too long (rnd autolathes)
+	var/category = null
 
 	var/tmp/datum/wires/autolathe/wires = null
 
@@ -71,6 +76,27 @@
 		for(var/rtype in disk.recipes)
 			var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
 			var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]")
+			LE["unfolded"] = FALSE
+
+			if(unfolded == rtype)
+				LE["unfolded"] = TRUE
+
+				var/list/RS = list()
+				for(var/mat in R.resources)
+					var/enough = (mat in stored_materials) && (stored_materials[mat] >= R.resources[mat])
+					RS.Add(list(list("name" = mat, "req" = R.resources[mat], "enough" = enough)))
+
+				LE["materials"] = RS
+
+				RS = list()
+				for(var/reg in R.reagents)
+					var/datum/reagent/RG = chemical_reagents_list[reg]
+					if(RG)
+						RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
+					else
+						RS.Add(list(list("name" = reg, "req" = R.reagents[reg])))
+
+				LE["reagents"] = RS
 
 			L.Add(list(LE))
 
@@ -93,7 +119,7 @@
 		if(!(mtype in stored_material) || stored_material[mtype] <= 0)
 			continue
 
-		var/list/ME = list("name" = mtype, "count" = stored_material[mtype], "ejectable" = TRUE)
+		var/list/ME = list("name" = mtype, "count" = stored_material[mtype], "max" = storage_capacity[mtype], "ejectable" = TRUE)
 
 		var/material/MAT = get_material_by_name(mtype)
 		if(!MAT.stack_type)
@@ -103,31 +129,36 @@
 
 	data["materials"] = M
 
-	data["busy"] = FALSE
-	if(making_recipe)
-		data["busy"] = TRUE
-		var/datum/autolathe/recipe/R = making_recipe
-		data["busyname"] = capitalize(R.name)
-		data["busynow"] = making_total - making_left + 1
-		data["busytotal"] = making_total
-		data["resout"] = not_enough_resources
-		data["diskerr"] = disk_error
+	var/list/Q = list()
+	for(var/i = 0; i < queue.len; i++)
+		var/rtype = queue[i]
+		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
+		var/pos = i == 0 ? -1 : (i == queue.len-1 ? 1 : 0)
+		Q.Add(list(list("name" = R.name, "type" = rtype, "pos" = pos)))
 
+	data["queue"] = Q
+
+	if(current)
+		var/datum/autolathe/recipe/curr_recipe = autolathe_recipes[current]
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = R.resources[mat])))
+			var/enough = (mat in stored_materials) && (stored_materials[mat] >= R.resources[mat])
+			RS.Add(list(list("name" = mat, "req" = R.resources[mat], "enough" = enough)))
 
-		data["req_materials"] = RS
-
-		RS = list()
+		var/list/RG = list()
 		for(var/reg in R.reagents)
-			var/datum/reagent/RG = chemical_reagents_list[reg]
-			if(RG)
-				RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
+			var/datum/reagent/RE = chemical_reagents_list[reg]
+			if(RE)
+				RG.Add(list(list("name" = RE.name, "req" = R.reagents[reg])))
 			else
-				RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
+				RG.Add(list(list("name" = reg, "req" = R.reagents[reg])))
 
-		data["req_reagents"] = RS
+
+
+		data["current"] = list("name" = curr_recipe.name, "type" = current, "pos" = pos, "materials" = RS, "reagents" = RG)
+
+	data["busy"] = working
+	data["error"] = error
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
