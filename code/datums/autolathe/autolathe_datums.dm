@@ -34,7 +34,6 @@
 	var/path
 	var/list/resources
 	var/list/reagents
-	var/heavy = FALSE	//If this TRUE, recipe can be builded by heavy autolathe. Items like mecha parts, etc
 
 /datum/autolathe/recipe/corrupted
 	name = "ERROR"
