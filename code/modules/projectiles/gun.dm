@@ -382,8 +382,9 @@
 	var/view_size = round(world.view + zoom_amount)
 
 	zoom(zoom_offset, view_size)
-	if(recoil)
-		recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
+	if(zoom)
+		if(recoil)
+			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
 
 //make sure accuracy and recoil are reset regardless of how the item is unzoomed.
 /obj/item/weapon/gun/zoom()
