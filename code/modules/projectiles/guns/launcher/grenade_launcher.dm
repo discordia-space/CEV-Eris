@@ -5,7 +5,7 @@
 	item_state = "riotgun"
 	w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_NORMAL
-	matter = list(MATERIAL_STEEL = 60000, MATERIAL_PLASTIC = 20000)
+	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 20)
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"

@@ -8,7 +8,7 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_LARGE
-	matter = list(MATERIAL_PLASTIC = 2000)
+	matter = list(MATERIAL_PLASTIC = 5)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 	tool_qualities = list(QUALITY_PRYING = 1)
 

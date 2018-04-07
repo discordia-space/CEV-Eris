@@ -11,6 +11,7 @@
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a10mm
 	auto_eject = TRUE
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.ogg'

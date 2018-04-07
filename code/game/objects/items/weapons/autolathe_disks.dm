@@ -8,7 +8,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 	var/list/recipes = list()
 

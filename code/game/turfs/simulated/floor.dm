@@ -17,7 +17,7 @@
 	var/flooring_override
 	var/initial_flooring
 	var/decl/flooring/flooring
-	var/mineral = DEFAULT_WALL_MATERIAL
+	var/mineral = MATERIAL_STEEL
 	var/set_update_icon
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
