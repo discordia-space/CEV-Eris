@@ -241,3 +241,13 @@
 /obj/item/ammo_magazine/cl32/rubber
 	name = "magazine (.32 rubber)"
 	ammo_type = /obj/item/ammo_casing/cl32r
+
+/obj/item/ammo_magazine/ak47
+	name = "magazine (7.62mm)"
+	icon_state = "AKMag"
+	mag_type = MAGAZINE
+	caliber = "a762"
+	matter = list(MATERIAL_STEEL = 4)
+	ammo_type = /obj/item/ammo_casing/a762
+	max_ammo = 30
+	multiple_sprites = 1

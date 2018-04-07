@@ -42,9 +42,15 @@
 /obj/item/weapon/gun/projectile/clarissa/update_icon()
 	..()
 	if(silenced)
-		icon_state = "pistol-silencer"
+		icon_state = "[initial(icon_state)]-silencer"
 	else
-		icon_state = "pistol"
+		icon_state = initial(icon_state)
+
+
+/obj/item/weapon/gun/projectile/clarissa/makarov
+	name = "Excelsior 9x19 \"Makarov\""
+	desc = "Old designed pistol of space communists. Small and easily concealable. Uses 9mm rounds."
+	icon_state = "makarov"
 
 /obj/item/weapon/silencer
 	name = "silencer"
