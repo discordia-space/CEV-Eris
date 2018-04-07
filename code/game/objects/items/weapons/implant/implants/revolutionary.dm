@@ -19,6 +19,9 @@
 	if(!wearer || !wearer.mind)
 		return
 
+	if(!F)
+		target << SPAN_WARNING("You feel nothing.")
+
 	for(var/datum/antagonist/A in target.mind.antagonist)
 		if(A.id == antag_id && A.faction && A.faction.id == faction_id)
 			return
@@ -34,6 +37,6 @@
 		if(A.id == antag_id)
 			A.remove_antagonist()
 
-	if(prob(33))
+	if(prob(66))
 		wearer.adjustBrainLoss(200)
-		wearer.death()
+		part.droplimb(FALSE, DROPLIMB_BLUNT)

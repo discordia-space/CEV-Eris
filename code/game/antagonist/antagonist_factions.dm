@@ -1,8 +1,6 @@
-//One day, someone will use this system.
-
 /datum/faction
 	var/id = null
-	var/name = "faction"	//name displayed in many places
+	var/name = "faction"	//name displayed in different places
 	var/antag = "antag"		//name for the faction members
 	var/antag_plural = "antags"
 	var/welcome_text = "Hello, antagonist!"
@@ -117,12 +115,7 @@
 		A.set_objectives(new_objs)
 
 /datum/faction/proc/update_members()
-	var/leaders_alive = FALSE
-	for(var/datum/antagonist/A in leaders)
-		if(A.is_active())
-			leaders_alive = TRUE
-
-	if(!members.len || !leaders_alive)
+	if(!members.len)
 		remove_faction()
 
 /datum/faction/proc/customize(var/mob/leader)
@@ -138,10 +131,8 @@
 		return
 
 	text = capitalize_cp1251(sanitize(text))
-	user << "<span class='revolution'>You say, \"[text]\"</span>"
 	for(var/datum/antagonist/A in members)
-		if(A.owner.current != user)
-			A.owner.current << "<span class='revolution'>[user] says, \"[text]\"</span>"
+		A.owner.current << "<span class='revolution'>[name] member, [user]: \"[text]\"</span>"
 
 /datum/faction/proc/is_member(var/mob/user)
 	for(var/datum/antagonist/A in members)
@@ -189,10 +180,10 @@
 	return text
 
 /datum/faction/proc/get_indicator(var/datum/antagonist/A)
-	if(antag in leaders)
+	if(A in leaders)
 		return get_leader_indicator()
 
-	if(antag in members)
+	if(A in members)
 		return get_member_indicator()
 
 /datum/faction/proc/get_member_indicator()
@@ -207,11 +198,11 @@
 
 	var/image/I
 
-	if(faction_icons[antag])
+	if(antag in faction_icons && faction_icons[antag])
 		I = faction_icons[antag]
 	else
 		I = get_indicator(antag)
-		I.loc = antag.owner.current.loc
+		I.loc = antag.owner.current
 		faction_icons[antag] = I
 
 	for(var/datum/antagonist/member in members)

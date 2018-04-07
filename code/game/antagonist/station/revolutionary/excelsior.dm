@@ -1,4 +1,7 @@
-/datum/antagonist/revolutionary
+/datum/antagonist/revolutionary/
+	id = null
+
+/datum/antagonist/revolutionary/excelsior
 	id = ROLE_EXCELSIOR_REV
 	role_text = "Infiltrator"
 	role_text_plural = "Infiltrators"
@@ -6,12 +9,6 @@
 	welcome_text = "Viva la revolution!"
 
 	faction_id = FACTION_EXCELSIOR
-
-/datum/antagonist/revolutionary/excelsior/can_become_antag(var/datum/mind/M)
-	if(!..() || !player_is_antag_id(M, id))
-		return FALSE
-	return TRUE
-
 
 /datum/faction/revolutionary/excelsior
 	id = FACTION_EXCELSIOR
@@ -22,6 +19,8 @@
 
 	possible_antags = list(ROLE_EXCELSIOR_REV)
 	verbs = list(/datum/faction/revolutioanry/excelsior/proc/communicate_verb)
+
+/datum/faction/revolutionary/excelsior/create_objectives()
 
 
 /datum/faction/revolutioanry/excelsior/proc/communicate_verb()

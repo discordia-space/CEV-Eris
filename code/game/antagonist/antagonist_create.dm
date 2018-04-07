@@ -95,6 +95,7 @@
 	if(owner.current)
 		BITSET(owner.current.hud_updateflag, SPECIALROLE_HUD)
 	current_antags.Remove(src)
+	owner.antagonist.Remove(src)
 	owner = null
 	return TRUE
 
