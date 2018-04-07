@@ -106,7 +106,7 @@
 	name = "embed handblade"
 	build_path = /obj/item/organ_module/active/simple/armblade
 	id = "organ_mod_armblade"
-	materials = list(MATERIAL_STEEL = 8000)
+	materials = list(MATERIAL_STEEL = 16)
 	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3)
 
 /datum/design/item/mechfab/modules/runner
@@ -117,7 +117,7 @@
 
 
 /datum/design/item/mechfab/modules/multitool
-	materials = list(MATERIAL_STEEL = 18000)
+	materials = list(MATERIAL_STEEL = 5)
 
 /datum/design/item/mechfab/modules/multitool/surgial
 	build_path = /obj/item/organ_module/active/multitool/surgial
@@ -180,7 +180,7 @@
 	id = "ripley_torso"
 	build_path = /obj/item/mecha_parts/part/ripley_torso
 	time = 20
-	materials = list(MATERIAL_STEEL = 40000, MATERIAL_GLASS = 25)
+	materials = list(MATERIAL_STEEL = 40, MATERIAL_GLASS = 25)
 
 /datum/design/item/mechfab/ripley/left_arm
 	name = "Ripley left arm"
@@ -235,7 +235,7 @@
 	id = "odysseus_head"
 	build_path = /obj/item/mecha_parts/part/odysseus_head
 	time = 10
-	materials = list(MATERIAL_STEEL = 2000, MATERIAL_GLASS = 15)
+	materials = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 15)
 
 /datum/design/item/mechfab/odysseus/left_arm
 	name = "Odysseus left arm"

@@ -551,7 +551,7 @@ other types of metals and chemistry for reagents).
 /datum/design/item/weapon/nuclear_gun
 	id = "nuclear_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
-	materials = list(MATERIAL_STEEL = 5000, MATERIAL_GLASS = 1000, MATERIAL_URANIUM = 500)
+	materials = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 10)
 	build_path = /obj/item/weapon/gun/energy/gun/nuclear
 	sort_string = "TAAAB"
 
@@ -814,7 +814,7 @@ other types of metals and chemistry for reagents).
 	id = "hdd_micro"
 	req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	build_type = PROTOLATHE
-	materials = list(MATERIAL_STEEL = 2000, MATERIAL_GLASS = 100)
+	materials = list(MATERIAL_PLASTIC = 5, MATERIAL_GLASS = 3)
 	build_path = /obj/item/weapon/computer_hardware/hard_drive/micro
 	sort_string = "VBAAF"
 
@@ -1538,7 +1538,7 @@ CIRCUITS BELOW
 
 /datum/design/circuit/shield
 	req_tech = list(TECH_BLUESPACE = 4, TECH_PLASMA = 3)
-	materials = list(MATERIAL_GLASS = 2000, MATERIAL_GOLD = 1000)
+	materials = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
 
 /datum/design/circuit/shield/AssembleDesignName()
 	name = "Shield generator circuit design ([name])"
@@ -1582,7 +1582,7 @@ CIRCUITS BELOW
 
 /datum/design/aimodule
 	build_type = IMPRINTER
-	materials = list(MATERIAL_GLASS = 2000, MATERIAL_GOLD = 100)
+	materials = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
 
 /datum/design/aimodule/AssembleDesignName()
 	name = "AI module design ([name])"
