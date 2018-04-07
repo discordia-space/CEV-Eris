@@ -169,7 +169,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	caliber = "a762"
-	matter = list(MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_STEEL = 8)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 50
 	multiple_sprites = 1
@@ -247,7 +247,7 @@
 	icon_state = "AKMag"
 	mag_type = MAGAZINE
 	caliber = "a762"
-	matter = list(MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_STEEL = 5)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 30
 	multiple_sprites = 1

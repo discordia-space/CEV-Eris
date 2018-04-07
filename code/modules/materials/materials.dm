@@ -335,7 +335,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/marble
 
 /material/steel
-	name = DEFAULT_WALL_MATERIAL
+	name = MATERIAL_STEEL
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
 	icon_base = "solid"
@@ -344,8 +344,8 @@ var/list/name_to_material
 	hitsound = 'sound/weapons/genhit.ogg'
 
 /material/steel/holographic
-	name = "holo" + DEFAULT_WALL_MATERIAL
-	display_name = DEFAULT_WALL_MATERIAL
+	name = "holo" + MATERIAL_STEEL
+	display_name = MATERIAL_STEEL
 	stack_type = null
 	shard_type = SHARD_NONE
 
@@ -361,7 +361,7 @@ var/list/name_to_material
 	hardness = 80
 	weight = 23
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list(DEFAULT_WALL_MATERIAL = 3750, "platinum" = 3750) //todo
+	composite_material = list(MATERIAL_STEEL = 3750, "platinum" = 3750) //todo
 	hitsound = 'sound/weapons/genhit.ogg'
 
 /material/plasteel/titanium
@@ -474,7 +474,7 @@ var/list/name_to_material
 	hardness = 40
 	weight = 30
 	stack_origin_tech = "materials=2"
-	composite_material = list(DEFAULT_WALL_MATERIAL = 1875,"glass" = 3750)
+	composite_material = list(MATERIAL_STEEL = 1875,"glass" = 3750)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
 	wire_product = null

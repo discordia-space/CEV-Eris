@@ -13,6 +13,7 @@ obj/item/weapon/gun/projectile/automatic/l6_saw
 	ammo_type = "/obj/item/ammo_casing/a762"
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/a762
+	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
 	unload_sound 	= 'sound/weapons/guns/interact/lmg_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
