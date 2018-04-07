@@ -425,10 +425,10 @@ other types of metals and chemistry for reagents).
 ///////////////////////////////////
 /datum/design/circuit/shield
 	req_tech = list(TECH_BLUESPACE = 4, TECH_PLASMA = 3)
-	materials = list("$glass" = 2000, "sacid" = 20, "$plasma" = 10000, "$diamond" = 5000, "$gold" = 10000)
+	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GOLD = 1)
 
 /datum/design/item/medical
-	materials = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 20)
+	materials = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
 /datum/design/item/medical/AssembleDesignName()
 	..()
