@@ -1245,19 +1245,19 @@ var/mob/dview/dview_mob = new
 
 	see_in_dark = 1e6
 
+/mob/dview/Destroy()
+	crash_with("Prevented attempt to delete dview mob: [log_info_line(src)]")
+	return QDEL_HINT_LETMELIVE // Prevents destruction
+
 /atom/proc/get_light_and_color(var/atom/origin)
 	if(origin)
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
-/mob/dview/New()
-	..()
+/mob/dview/Initialize()
+	. = ..()
 	// We don't want to be in any mob lists; we're a dummy not a mob.
-	mob_list -= src
-	if(stat == DEAD)
-		dead_mob_list -= src
-	else
-		living_mob_list -= src
+	STOP_PROCESSING(SSmobs, src)
 
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)

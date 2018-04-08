@@ -121,16 +121,12 @@ Class Procs:
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/frame_type = FRAME_DEFAULT
 
-/obj/machinery/New(l, d=0)
-	..(l)
+/obj/machinery/Initialize(mapload, d=0)
+	. = ..()
 	if(d)
 		set_dir(d)
 	InitCircuit()
-	if(!machinery_sort_required && ticker)
-		dd_insertObjectList(machines, src)
-	else
-		machines += src
-		machinery_sort_required = 1
+	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/Destroy()
 	machines -= src
