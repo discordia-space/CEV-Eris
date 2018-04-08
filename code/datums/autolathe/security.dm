@@ -25,3 +25,7 @@
 /datum/autolathe/recipe/sec/beartrap
 	name = "beartrap"
 	path = /obj/item/weapon/beartrap
+
+/datum/autolathe/recipe/sec/silencer
+	name = "silencer"
+	path = /obj/item/weapon/silencer
