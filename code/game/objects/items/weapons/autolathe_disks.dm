@@ -252,7 +252,7 @@
 		/datum/autolathe/recipe/gun/deagle,
 		/datum/autolathe/recipe/gun/smg_sol,
 		/datum/autolathe/recipe/gun/smg_sol_rds,
-		/datum/autolathe/recipe/gun/ak47_fs
+		/datum/autolathe/recipe/gun/ak47_fs,
 		/datum/autolathe/recipe/gun/grenade_launcher_lenar,
 	)
 	..()
@@ -368,10 +368,10 @@
 /obj/item/weapon/disk/autolathe_disk/lethal_ammo/New()
 	recipes = list(
 		/datum/autolathe/recipe/circuit/autolathe,
-		/datum/autolathe/recipe/gun/makarov
-		/datum/autolathe/recipe/sec/silencer
-		/datum/autolathe/recipe/ammo/magazine_mc9mm
-		/datum/autolathe/recipe/gun/ak47
-		/datum/autolathe/recipe/ammo/ak47
+		/datum/autolathe/recipe/gun/makarov,
+		/datum/autolathe/recipe/sec/silencer,
+		/datum/autolathe/recipe/ammo/magazine_mc9mm,
+		/datum/autolathe/recipe/gun/ak47,
+		/datum/autolathe/recipe/ammo/ak47,
 	)
 	..()
