@@ -152,13 +152,13 @@
 	)
 	..()
 
-/obj/item/weapon/disk/autolathe_disk/curcuitpack
+/obj/item/weapon/disk/autolathe_disk/circuitpack
 	name = "Technomacers ESPO-830 Curcuits"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
 
-/obj/item/weapon/disk/autolathe_disk/curcuitpack/New()
+/obj/item/weapon/disk/autolathe_disk/circuitpack/New()
 	recipes = list(
 		/datum/autolathe/recipe/circuit/airlockmodule,
 		/datum/autolathe/recipe/circuit/airalarm,
@@ -358,14 +358,14 @@
 	..()
 
 
-/obj/item/weapon/disk/autolathe_disk/lethal_ammo
+/obj/item/weapon/disk/autolathe_disk/excelsior
 	name = "Excelsior Means of Production"
 	category = "Security"
 	desc = "Seize it."
 	icon_state = "excelsior"
 	license = -1
 
-/obj/item/weapon/disk/autolathe_disk/lethal_ammo/New()
+/obj/item/weapon/disk/autolathe_disk/excelsior/New()
 	recipes = list(
 		/datum/autolathe/recipe/circuit/autolathe,
 		/datum/autolathe/recipe/gun/makarov,
@@ -373,5 +373,9 @@
 		/datum/autolathe/recipe/ammo/magazine_mc9mm,
 		/datum/autolathe/recipe/gun/ak47,
 		/datum/autolathe/recipe/ammo/ak47,
+		/datum/autolathe/recipe/device/excelsiormine,
+		/datum/autolathe/recipe/part/igniter,
+		/datum/autolathe/recipe/part/signaler,
+		/datum/autolathe/recipe/part/sensor_prox
 	)
 	..()

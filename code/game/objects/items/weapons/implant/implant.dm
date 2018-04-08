@@ -8,7 +8,7 @@
 	icon_state = "implant"
 	w_class = ITEM_SIZE_TINY
 	var/implanted = FALSE
-	var/mob/wearer = null
+	var/mob/living/carbon/human/wearer = null
 	var/obj/item/organ/external/part = null
 	var/implant_color = "b"
 	var/allow_reagents = FALSE
@@ -16,6 +16,7 @@
 	var/is_legal = TRUE
 	var/list/allowed_organs = list()
 	var/position_flag = 0
+	var/external = FALSE
 
 
 /obj/item/weapon/implant/proc/trigger(emote, mob/living/source)
@@ -24,7 +25,7 @@
 /obj/item/weapon/implant/proc/malfunction(var/severity)
 
 /obj/item/weapon/implant/proc/is_external()
-	return istype(src, /obj/item/weapon/implant/external)
+	return external
 
 //return TRUE for implanter icon update.
 /obj/item/weapon/implant/proc/install(var/mob/living/carbon/human/target, var/organ, var/mob/user)
@@ -44,21 +45,28 @@
 		user << SPAN_WARNING("[src] cannot be implanted in this limb.")
 		return
 
+	if(!can_install(target, affected))
+		user << SPAN_WARNING("You can't install [src].")
+		return
+
 	forceMove(target)
 	wearer = target
 	implanted = TRUE
 	if(affected)
 		affected.implants += src
 		part = affected
-	if(ishuman(wearer))
-		var/mob/living/carbon/human/H = wearer
-		H.update_implants()
+
 	on_install(target, affected)
+	wearer.update_implants()
+	return TRUE
+
+/obj/item/weapon/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)
 	return TRUE
 
 /obj/item/weapon/implant/proc/on_install(var/mob/living/target, var/obj/item/organ/external/E)
 
 /obj/item/weapon/implant/proc/uninstall()
+	on_uninstall()
 	forceMove(get_turf(wearer))
 	part.implants.Remove(src)
 	part = null
@@ -67,6 +75,8 @@
 		var/mob/living/carbon/human/H = wearer
 		H.update_implants()
 	wearer = null
+
+/obj/item/weapon/implant/proc/on_uninstall()
 
 /obj/item/weapon/implant/proc/get_data()
 	return "No information available"

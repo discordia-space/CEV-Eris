@@ -43,7 +43,7 @@
 				prob(3);/obj/item/weapon/disk/autolathe_disk/toolpack,\
 				prob(3);/obj/item/weapon/disk/autolathe_disk/component,\
 				prob(2);/obj/item/weapon/disk/autolathe_disk/advtoolpack,\
-				prob(2);/obj/item/weapon/disk/autolathe_disk/curcuitpack,\
+				prob(2);/obj/item/weapon/disk/autolathe_disk/circuitpack,\
 				prob(2);/obj/item/weapon/disk/autolathe_disk/medical,\
 				prob(2);/obj/item/weapon/disk/autolathe_disk/fs_cheap_guns,\
 				prob(1);/obj/item/weapon/disk/autolathe_disk/fs_kinetic_guns,\

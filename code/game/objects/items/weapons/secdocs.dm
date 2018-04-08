@@ -36,7 +36,7 @@
 			landmark = S
 			break
 
-	forceMove(get_turf(landmark))
+	forceMove(landmark.get_loc())
 
 
 //Interaction benefits code might be here, but no
