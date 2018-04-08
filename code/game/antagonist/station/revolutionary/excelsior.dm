@@ -22,9 +22,6 @@
 	possible_antags = list(ROLE_EXCELSIOR_REV)
 	verbs = list(/datum/faction/revolutioanry/excelsior/proc/communicate_verb)
 
-/datum/faction/revolutionary/excelsior/create_objectives()
-
-
 /datum/faction/revolutioanry/excelsior/proc/communicate_verb()
 
 	set name = "Excelsior comms"

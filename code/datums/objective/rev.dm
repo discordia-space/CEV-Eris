@@ -19,12 +19,18 @@
 		var/mob/living/carbon/human/H = target.current
 		if(!istype(H))
 			return TRUE
+
+		if(H.stat == DEAD)
+			return TRUE
 		// Check if they're converted
 		if(player_is_antag_faction(target, ROLE_EXCELSIOR_REV, faction))
 			return TRUE
 
 		if(!isOnStationLevel(target.current) && !isOnAdminLevel(target.current))
 			return TRUE
+
+	if(!target)
+		return TRUE
 
 	return FALSE
 

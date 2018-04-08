@@ -36,21 +36,31 @@
 			landmark = S
 			break
 
-	//if(!landmark)
-		//return FALSE
-
-	//TODO Spawn some shit
+	if(!landmark)
+		return FALSE
 
 	var/datum/mind/rev = pick(candidates)
 
 	var/datum/antagonist/R = get_antag_instance(ROLE_EXCELSIOR_REV)
 
 	var/datum/faction/revolutionary/excelsior/E = new
+	E.create_objectives()
 
-	R.create_antagonist(rev,announce = FALSE)
+	if(!R.create_antagonist(rev,announce = FALSE))
+		return FALSE
+
 	E.add_leader(R)
+
 	var/obj/item/weapon/implant/revolution/excelsior/implant = new(rev.current)
 	implant.install(rev.current)
+
+	var/turf/LM = landmark.get_loc()
+
+	new /obj/item/weapon/disk/autolathe_disk/excelsior(LM)
+	new /obj/item/weapon/circuitboard/autolathe(LM)
+
+	rev.current << SPAN_NOTICE("Use your excelsior supply stash. [landmark.navigation]")
+	rev.store_memory("Excelsior stash. [landmark.navigation]")
 
 	return TRUE
 

@@ -3,19 +3,22 @@
 	desc = "For the excelsior!"
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
+	w_class = ITEM_SIZE_LARGE
+	matter = list(MATERAIL_STEEL = 7)
+	matter_reagents = list("fuel" = 30)
 
 	var/obj/item/device/assembly_holder/detonator = null
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment/strong
-	var/spread_radius = 6
-	var/num_fragments = 250
-	var/fragment_damage = 15
+	var/spread_radius = 8
+	var/num_fragments = 350
+	var/fragment_damage = 10
 	var/damage_step = 2
 
 	var/explosion_d_size = -1
 	var/explosion_h_size = -1
-	var/explosion_l_size = 3
-	var/explosion_f_size = 10
+	var/explosion_l_size = -1
+	var/explosion_f_size = 15
 
 /obj/item/weapon/mine/proc/explode()
 	var/turf/T = get_turf(src)

@@ -1018,11 +1018,11 @@
 	icon_state = "discomat"
 	products = list(/obj/item/weapon/disk/autolathe_disk/blank = 20, /obj/item/weapon/disk/autolathe_disk/basic = 10,
 					/obj/item/weapon/disk/autolathe_disk/devices = 10, /obj/item/weapon/disk/autolathe_disk/toolpack = 10, /obj/item/weapon/disk/autolathe_disk/component = 10,
-					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 5, /obj/item/weapon/disk/autolathe_disk/curcuitpack = 5, /obj/item/weapon/disk/autolathe_disk/medical = 20,
+					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 5, /obj/item/weapon/disk/autolathe_disk/circuitpack = 5, /obj/item/weapon/disk/autolathe_disk/medical = 20,
 					/obj/item/weapon/disk/autolathe_disk/security = 5, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 5, /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 10,
 					/obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3)
 	prices = list(/obj/item/weapon/disk/autolathe_disk/blank = 150, /obj/item/weapon/disk/autolathe_disk/basic = 300,
 					/obj/item/weapon/disk/autolathe_disk/devices = 400, /obj/item/weapon/disk/autolathe_disk/toolpack = 400, /obj/item/weapon/disk/autolathe_disk/component = 500,
-					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 1800, /obj/item/weapon/disk/autolathe_disk/curcuitpack = 600, /obj/item/weapon/disk/autolathe_disk/medical = 400,
+					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 1800, /obj/item/weapon/disk/autolathe_disk/circuitpack = 600, /obj/item/weapon/disk/autolathe_disk/medical = 400,
 					/obj/item/weapon/disk/autolathe_disk/security = 600, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 3000, /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 700,
 					/obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000)

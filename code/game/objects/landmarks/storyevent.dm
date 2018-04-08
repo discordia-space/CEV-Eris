@@ -1,5 +1,5 @@
 /obj/landmark/storyevent/proc/is_visible() //Return TRUE if someone sees this place
-	for(var/mob/M in view())
+	for(var/mob/living/M in view(world.view,src))
 		if(M.client)
 			return TRUE
 
