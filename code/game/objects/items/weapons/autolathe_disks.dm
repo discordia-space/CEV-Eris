@@ -108,7 +108,7 @@
 
 
 /obj/item/weapon/disk/autolathe_disk/component
-	name = "Technomacers ARK-034 Component Pack"
+	name = "Technomacers ARK-034 Components"
 	category = "Devices and Components"
 	icon_state = "technomancers"
 	license = 20
@@ -132,7 +132,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/advtoolpack
-	name = "Technomacers IJIRO-451 Advanced Tool Pack"
+	name = "Technomacers IJIRO-451 Advanced Tools"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
@@ -153,7 +153,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/curcuitpack
-	name = "Technomacers ESPO-830 Curcuit Pack"
+	name = "Technomacers ESPO-830 Curcuits"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
@@ -252,6 +252,7 @@
 		/datum/autolathe/recipe/gun/deagle,
 		/datum/autolathe/recipe/gun/smg_sol,
 		/datum/autolathe/recipe/gun/smg_sol_rds,
+		/datum/autolathe/recipe/gun/ak47_fs,
 		/datum/autolathe/recipe/gun/grenade_launcher_lenar,
 	)
 	..()
@@ -352,5 +353,25 @@
 		/datum/autolathe/recipe/ammo/sl_cl44_brute,
 		/datum/autolathe/recipe/ammo/mg_a50,
 		/datum/autolathe/recipe/ammo/SMG_sol_brute,
+		/datum/autolathe/recipe/ammo/ak47
+	)
+	..()
+
+
+/obj/item/weapon/disk/autolathe_disk/lethal_ammo
+	name = "Excelsior Means of Production"
+	category = "Security"
+	desc = "Seize it."
+	icon_state = "excelsior"
+	license = -1
+
+/obj/item/weapon/disk/autolathe_disk/lethal_ammo/New()
+	recipes = list(
+		/datum/autolathe/recipe/circuit/autolathe,
+		/datum/autolathe/recipe/gun/makarov,
+		/datum/autolathe/recipe/sec/silencer,
+		/datum/autolathe/recipe/ammo/magazine_mc9mm,
+		/datum/autolathe/recipe/gun/ak47,
+		/datum/autolathe/recipe/ammo/ak47,
 	)
 	..()
