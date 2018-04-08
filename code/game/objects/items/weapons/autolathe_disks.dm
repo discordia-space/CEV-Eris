@@ -108,7 +108,7 @@
 
 
 /obj/item/weapon/disk/autolathe_disk/component
-	name = "Technomacers ARK-034 Component Pack"
+	name = "Technomacers ARK-034 Components"
 	category = "Devices and Components"
 	icon_state = "technomancers"
 	license = 20
@@ -132,7 +132,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/advtoolpack
-	name = "Technomacers IJIRO-451 Advanced Tool Pack"
+	name = "Technomacers IJIRO-451 Advanced Tools"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
@@ -153,7 +153,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/curcuitpack
-	name = "Technomacers ESPO-830 Curcuit Pack"
+	name = "Technomacers ESPO-830 Curcuits"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
