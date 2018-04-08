@@ -152,13 +152,13 @@
 	)
 	..()
 
-/obj/item/weapon/disk/autolathe_disk/curcuitpack
+/obj/item/weapon/disk/autolathe_disk/circuitpack
 	name = "Technomacers ESPO-830 Curcuits"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
 
-/obj/item/weapon/disk/autolathe_disk/curcuitpack/New()
+/obj/item/weapon/disk/autolathe_disk/circuitpack/New()
 	recipes = list(
 		/datum/autolathe/recipe/circuit/airlockmodule,
 		/datum/autolathe/recipe/circuit/airalarm,

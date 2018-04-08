@@ -7,7 +7,6 @@
 	role_text_plural = "Infiltrators"
 	role_type = "Excelsior Infiltrator"
 	welcome_text = "Viva la revolution!"
-	hud_indicator = "hudexcelsior"
 
 	faction_id = FACTION_EXCELSIOR
 
@@ -17,6 +16,8 @@
 	antag = "infiltrator"
 	antag_plural = "infiltrators"
 	welcome_text = ""
+
+	hud_indicator = "hudexcelsior"
 
 	possible_antags = list(ROLE_EXCELSIOR_REV)
 	verbs = list(/datum/faction/revolutioanry/excelsior/proc/communicate_verb)
