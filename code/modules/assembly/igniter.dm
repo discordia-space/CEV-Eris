@@ -3,7 +3,7 @@
 	desc = "A small electronic device able to ignite combustable substances."
 	icon_state = "igniter"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 500, MATERIAL_GLASS = 50, "waste" = 10)
+	matter = list(MATERIAL_PLASTIC = 1)
 	secured = TRUE
 	wires = WIRE_RECEIVE
 
@@ -23,6 +23,10 @@
 				var/obj/structure/reagent_dispensers/fueltank/tank = src.loc.loc
 				if(tank && tank.modded)
 					tank.explode()
+			if(istype(src.loc.loc, /obj/item/weapon/mine))
+				var/obj/item/weapon/mine/mine = src.loc.loc
+				if(mine)
+					mine.explode()
 
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, src)

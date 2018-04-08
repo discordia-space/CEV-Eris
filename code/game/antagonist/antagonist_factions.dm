@@ -1,13 +1,12 @@
-//One day, someone will use this system.
-
 /datum/faction
-	var/id = "faction"
-	var/name = "faction"	//name displayed in many places
+	var/id = null
+	var/name = "faction"	//name displayed in different places
 	var/antag = "antag"		//name for the faction members
 	var/antag_plural = "antags"
 	var/welcome_text = "Hello, antagonist!"
 
 	var/hud_indicator = null
+	var/leader_hud_indicator = null
 	var/faction_invisible = TRUE
 
 	var/list/faction_icons = list()
@@ -22,6 +21,8 @@
 	var/list/leader_verbs = list()
 
 /datum/faction/New()
+	if(!leader_hud_indicator)
+		leader_hud_indicator = hud_indicator
 	current_factions.Add(src)
 	create_objectives()
 
@@ -38,7 +39,7 @@
 	member.set_objectives(objectives)
 
 	member.owner.current.verbs |= verbs
-	add_icons()
+	add_icons(member)
 	update_members()
 	return TRUE
 
@@ -54,11 +55,14 @@
 	if(announce)
 		member.owner.current << SPAN_NOTICE("You became a <b>leader</b> of the [name].")
 	update_members()
+	update_icons(member)
 	return TRUE
 
 /datum/faction/proc/remove_leader(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !(member in leaders) || !member.owner.current)
 		return
+
+	update_icons(member)
 
 	leaders.Remove(member)
 	if(announce)
@@ -72,7 +76,7 @@
 	if(!(member in members))
 		return
 
-	remove_icons()
+	remove_icons(member)
 
 	members.Remove(member)
 
@@ -111,15 +115,30 @@
 		A.set_objectives(new_objs)
 
 /datum/faction/proc/update_members()
-	var/leaders_alive = FALSE
-	for(var/datum/antagonist/A in leaders)
-		if(A.is_active())
-			leaders_alive = TRUE
-
-	if(!members.len || !leaders_alive)
+	if(!members.len)
 		remove_faction()
 
 /datum/faction/proc/customize(var/mob/leader)
+
+/datum/faction/proc/communicate(var/mob/user)
+	if(!is_member(user))
+		return
+
+	usr = user
+	var/text = input("Type message","[name] communication")
+
+	if(!text || !is_member(user))
+		return
+
+	text = capitalize_cp1251(sanitize(text))
+	for(var/datum/antagonist/A in members)
+		A.owner.current << "<span class='revolution'>[name] member, [user]: \"[text]\"</span>"
+
+/datum/faction/proc/is_member(var/mob/user)
+	for(var/datum/antagonist/A in members)
+		if(A.owner.current == user)
+			return TRUE
+	return FALSE
 
 /datum/faction/proc/print_success()
 	if(!members.len)
@@ -160,20 +179,30 @@
 	// Display the results.
 	return text
 
-/datum/faction/proc/get_indicator()
+/datum/faction/proc/get_indicator(var/datum/antagonist/A)
+	if(A in leaders)
+		return get_leader_indicator()
+
+	if(A in members)
+		return get_member_indicator()
+
+/datum/faction/proc/get_member_indicator()
 	return image('icons/mob/mob.dmi', icon_state = hud_indicator, layer = LIGHTING_LAYER+0.1)
 
+/datum/faction/proc/get_leader_indicator()
+	return image('icons/mob/mob.dmi', icon_state = leader_hud_indicator, layer = LIGHTING_LAYER+0.1)
+
 /datum/faction/proc/add_icons(var/datum/antagonist/antag)
-	if(faction_invisible || !hud_indicator || !antag.owner || !antag.owner.current || !antag.owner.current.client)
+	if(faction_invisible || !hud_indicator || !leader_hud_indicator || !antag.owner || !antag.owner.current || !antag.owner.current.client)
 		return
 
 	var/image/I
 
-	if(faction_icons[antag])
+	if(antag in faction_icons && faction_icons[antag])
 		I = faction_icons[antag]
 	else
-		I = get_indicator()
-		I.loc = antag.owner.current.loc
+		I = get_indicator(antag)
+		I.loc = antag.owner.current
 		faction_icons[antag] = I
 
 	for(var/datum/antagonist/member in members)
@@ -184,9 +213,9 @@
 		member.owner.current.client.images |= I
 
 /datum/faction/proc/remove_icons(var/datum/antagonist/antag)
-	if(!hud_indicator || !antag.owner || !antag.owner.current || !antag.owner.current.client)
+	if(!faction_invisible || !antag.owner || !antag.owner.current || !antag.owner.current.client)
 		qdel(faction_icons[antag])
-		faction_icons[antag] = null
+		faction_icons.Remove(antag)
 		return
 
 	for(var/datum/antagonist/member in members)
@@ -212,6 +241,10 @@
 	clear_icons()
 	for(var/datum/antagonist/antag in members)
 		add_icons(antag)
+
+/datum/faction/proc/update_icons(var/datum/antagonist/A)
+	remove_icons(A)
+	add_icons(A)
 
 /datum/faction/proc/faction_panel()
 	var/data = "<center><font size='3'><b>FACTION PANEL</b></font></center>"

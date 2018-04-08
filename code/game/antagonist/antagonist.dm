@@ -23,7 +23,7 @@
 
 	// Faction data.
 	var/datum/faction/faction = null
-	var/faction_type = null
+	var/faction_id = null
 
 	// Misc.
 	var/bantype               // Ban to check when spawning this antag.

@@ -9,7 +9,7 @@
 /obj/item/ammo_magazine/ammobox/c9mm
 	name = "ammunition box (9mm)"
 	icon_state = "box9mm"
-	matter = list(MATERIAL_STEEL = 1800)
+	matter = list(MATERIAL_STEEL = 5)
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 30
@@ -32,7 +32,7 @@
 /obj/item/ammo_magazine/ammobox/a10mm
 	name = "ammunition box (10mm)"
 	icon_state = "box10mm"
-	matter = list(MATERIAL_STEEL = 2250)
+	matter = list(MATERIAL_STEEL = 6)
 	caliber = "10mm"
 	ammo_type = /obj/item/ammo_casing/a10mm
 	max_ammo = 30
@@ -40,7 +40,7 @@
 /obj/item/ammo_magazine/ammobox/c38
 	name = "ammunition box (.38)"
 	icon_state = "box38"
-	matter = list(MATERIAL_STEEL = 1800)
+	matter = list(MATERIAL_STEEL = 5)
 	caliber = "38"
 	ammo_type = /obj/item/ammo_casing/c38
 	max_ammo = 30
@@ -53,7 +53,7 @@
 /obj/item/ammo_magazine/ammobox/cl32
 	name = "ammunition box (.32)"
 	icon_state = "box32"
-	matter = list(MATERIAL_STEEL = 1200)
+	matter = list(MATERIAL_STEEL = 5)
 	caliber = "38"
 	ammo_type = /obj/item/ammo_casing/cl32
 	max_ammo = 40
@@ -66,7 +66,7 @@
 /obj/item/ammo_magazine/ammobox/c357
 	name = "ammunition box (.357)"
 	icon_state = "box357"
-	matter = list(MATERIAL_STEEL = 1800)
+	matter = list(MATERIAL_STEEL = 5)
 	caliber = "357"
 	ammo_type = /obj/item/ammo_casing/a357
 	max_ammo = 30
@@ -74,7 +74,7 @@
 /obj/item/ammo_magazine/ammobox/c44
 	name = "ammunition box (.44)"
 	icon_state = "box44"
-	matter = list(MATERIAL_STEEL = 1500)
+	matter = list(MATERIAL_STEEL = 5)
 	caliber = ".44"
 	ammo_type = /obj/item/ammo_casing/cl44
 	max_ammo = 20
@@ -87,7 +87,7 @@
 /obj/item/ammo_magazine/ammobox/c45
 	name = "ammunition box (.45)"
 	icon_state = "box45"
-	matter = list(MATERIAL_STEEL = 1800)
+	matter = list(MATERIAL_STEEL = 8)
 	caliber = ".45"
 	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 30
@@ -110,7 +110,7 @@
 /obj/item/ammo_magazine/ammobox/c50
 	name = "ammunition box (.50)"
 	icon_state = "box50"
-	matter = list(MATERIAL_STEEL = 1500)
+	matter = list(MATERIAL_STEEL = 10)
 	caliber = ".50"
 	ammo_type = /obj/item/ammo_casing/a50
 	max_ammo = 20
@@ -123,7 +123,7 @@
 /obj/item/ammo_magazine/ammobox/c65mm
 	name = "ammunition box (6.5mm)"
 	icon_state = "box65mm"
-	matter = list(MATERIAL_STEEL = 6000)
+	matter = list(MATERIAL_STEEL = 10)
 	w_class = ITEM_SIZE_LARGE
 	caliber = "6.5mm"
 	ammo_type = /obj/item/ammo_casing/c65
@@ -137,7 +137,7 @@
 /obj/item/ammo_magazine/ammobox/a556
 	name = "ammunition box (5.56mm)"
 	icon_state = "box556mm"
-	matter = list(MATERIAL_STEEL = 6000)
+	matter = list(MATERIAL_STEEL = 10)
 	w_class = ITEM_SIZE_LARGE
 	caliber = "a556"
 	ammo_type = /obj/item/ammo_casing/a556
@@ -151,7 +151,7 @@
 /obj/item/ammo_magazine/ammobox/a762
 	name = "ammunition box (7.62mm)"
 	icon_state = "box762mm"
-	matter = list(MATERIAL_STEEL = 6000)
+	matter = list(MATERIAL_STEEL = 10)
 	w_class = ITEM_SIZE_LARGE
 	caliber = "a762"
 	ammo_type = /obj/item/ammo_casing/a762
@@ -160,7 +160,7 @@
 /obj/item/ammo_magazine/ammobox/a145
 	name = "ammunition box (14.5mm)"
 	icon_state = "box145mm"
-	matter = list(MATERIAL_STEEL = 6000)
+	matter = list(MATERIAL_STEEL = 8)
 	w_class = ITEM_SIZE_LARGE
 	caliber = "14.5mm"
 	ammo_type = /obj/item/ammo_casing/a145

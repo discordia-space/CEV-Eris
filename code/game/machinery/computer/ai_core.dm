@@ -46,7 +46,7 @@
 			if(state == 0)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You deconstruct the frame.")
-					new /obj/item/stack/material/plasteel( loc, 4)
+					new /obj/item/stack/material/plasteel( loc, 8)
 					qdel(src)
 					return
 			return

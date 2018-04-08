@@ -9,4 +9,4 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	ammo_type = /obj/item/ammo_casing/c38
-	matter = list(MATERIAL_PLASTEEL = 24000, MATERIAL_WOOD = 12000)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)

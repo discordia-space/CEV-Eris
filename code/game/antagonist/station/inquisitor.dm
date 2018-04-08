@@ -4,7 +4,7 @@
 	role_text_plural = "NeoTheology Inquisitors"
 	bantype = "Inquisitor"
 	welcome_text = "Here should be the inquisitor welcome text."
-	protected_jobs = list("Cyberchristian Preacher")
+	restricted_jobs = list("Cyberchristian Preacher")
 
 	possible_objectives = list(
 	list(
@@ -28,7 +28,7 @@
 	if(!owner.current)
 		return FALSE
 
-	var/obj/item/weapon/implant/external/core_implant/cruciform/C = owner.current.get_cruciform()
+	var/obj/item/weapon/implant/core_implant/cruciform/C = owner.current.get_cruciform()
 
 	if(!C)
 		return FALSE

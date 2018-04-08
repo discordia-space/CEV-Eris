@@ -9,7 +9,7 @@
 	item_state = "shovel"
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
-	matter = list(MATERIAL_STEEL = 8000)
+	matter = list(MATERIAL_STEEL = 5)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharp = 0
 	edge = 1
@@ -20,6 +20,6 @@
 	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"
 	item_state = "spade"
-	matter = list(MATERIAL_STEEL = 4000)
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	w_class = ITEM_SIZE_SMALL
 	tool_qualities = list(QUALITY_SHOVELING = 2)

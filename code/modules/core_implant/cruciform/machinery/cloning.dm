@@ -521,7 +521,7 @@
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/neotheology/reader
 
-	var/obj/item/weapon/implant/external/core_implant/cruciform/implant
+	var/obj/item/weapon/implant/core_implant/cruciform/implant
 	var/reading = FALSE
 
 /obj/machinery/neotheology/reader/proc/start_reading()
@@ -543,8 +543,8 @@
 	if(default_part_replacement(I, user))
 		return
 
-	if(istype(I, /obj/item/weapon/implant/external/core_implant/cruciform))
-		var/obj/item/weapon/implant/external/core_implant/cruciform/C = I
+	if(istype(I, /obj/item/weapon/implant/core_implant/cruciform))
+		var/obj/item/weapon/implant/core_implant/cruciform/C = I
 		user.drop_item()
 		C.forceMove(src)
 		implant = C

@@ -14,6 +14,10 @@
 	name = "FS HG 9x19 \"Clarissa\""
 	path = /obj/item/weapon/gun/projectile/clarissa
 
+/datum/autolathe/recipe/gun/makarov
+	name = "Excelsior 9x19 \"Makarov\""
+	path = /obj/item/weapon/gun/projectile/clarissa/makarov
+
 /datum/autolathe/recipe/gun/mk58
 	name = "NT HG .45 \"Mk58\""
 	path = /obj/item/weapon/gun/projectile/mk58
@@ -65,6 +69,14 @@
 /datum/autolathe/recipe/gun/smg_sol_rds
 	name = "FS CAR 6.5x39 \"Sol\""
 	path = /obj/item/weapon/gun/projectile/automatic/sol/rds
+
+/datum/autolathe/recipe/gun/ak47
+	name = "Excelsior 7.62x39 AK-47"
+	path = /obj/item/weapon/gun/projectile/automatic/ak47
+
+/datum/autolathe/recipe/gun/ak47_fs
+	name = "FS AR 7.62x39 \"Kalashnikov\""
+	path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
 /datum/autolathe/recipe/gun/heavysniper
 	name = "NT AMR \"Penetrator\""

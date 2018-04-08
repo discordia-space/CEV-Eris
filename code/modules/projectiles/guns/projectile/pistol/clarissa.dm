@@ -7,7 +7,7 @@
 	caliber = "9mm"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
-	matter = list(MATERIAL_PLASTEEL = 24000, MATERIAL_PLASTIC = 12000)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 
@@ -56,5 +56,6 @@
 	name = "silencer"
 	desc = "a silencer"
 	icon = 'icons/obj/gun.dmi'
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
 	icon_state = "silencer"
 	w_class = ITEM_SIZE_SMALL

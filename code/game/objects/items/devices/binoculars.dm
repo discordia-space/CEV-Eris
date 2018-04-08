@@ -11,7 +11,7 @@
 	throw_range = 15
 	throw_speed = 3
 
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
 
 /obj/item/device/binoculars/attack_self(mob/user)
