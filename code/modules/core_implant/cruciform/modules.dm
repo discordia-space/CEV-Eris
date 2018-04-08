@@ -1,4 +1,4 @@
-/datum/core_module/cruciform/common/implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+/datum/core_module/cruciform/implant_type = /obj/item/weapon/implant/core_implant/cruciform
 
 /datum/core_module/cruciform/common/preinstall()
 	implant.remove_modules(CRUCIFORM_COMMON)
@@ -16,7 +16,6 @@
 		var/mob/living/carbon/human/H = implant.wearer
 		H.update_implants()
 
-/datum/core_module/cruciform/priest/implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
 
 /datum/core_module/cruciform/priest/preinstall()
 	implant.remove_modules(CRUCIFORM_COMMON)
@@ -36,7 +35,6 @@
 
 
 /datum/core_module/cruciform/inquisitor
-	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
 	var/telecrystals = 15
 
 /datum/core_module/cruciform/inquisitor/preinstall()
@@ -57,7 +55,6 @@
 
 /datum/core_module/cruciform/cloning
 	var/datum/dna/dna = null
-	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
 	var/age = 30
 	var/ckey = ""
 	var/mind = null
@@ -79,9 +76,6 @@
 		age = H.age
 
 
-/datum/core_module/cruciform/obey
-	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
-
 /datum/core_module/cruciform/obey/install()
 	var/laws = list("You are slavered. You must obey the laws below.",
 			"Only [user] and persons designated by him are Inquisition agents.",
@@ -100,10 +94,11 @@
 /datum/core_module/cruciform/obey/uninstall()
 	if(implant && ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
-		H << "<span class='info'>You are unslavered. Now you can to not obey the laws.</span>"
+		var/txt = "<span class='info'>You are unslavered. Now you can to not obey the laws.</span>"
+		H << txt
+		H.mind.store_memory(txt)
 
 
-/datum/core_module/activatable/cruciform/priest_convert/implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
 /datum/core_module/activatable/cruciform/priest_convert/set_up()
 	module = new CRUCIFORM_PRIEST
 
@@ -111,8 +106,6 @@
 	..()
 	implant.add_module(new CRUCIFORM_COMMON)
 
-/datum/core_module/activatable/cruciform/obey_activator
-	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
 
 /datum/core_module/activatable/cruciform/obey_activator/set_up()
 	module = new CRUCIFORM_OBEY

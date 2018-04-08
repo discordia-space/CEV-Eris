@@ -3,8 +3,7 @@
 	role_text = "Ironhammer Marshal"
 	role_text_plural = "Ironhammer Marshals"
 	role_type = "Traitor"
-	welcome_text = "Here should be the marshal welcome text."
-	protected_jobs = list(JOBS_COMMAND,JOBS_SECURITY)
+	protected_jobs = list(JOBS_COMMAND, JOBS_SECURITY)
 
 	possible_objectives = list(
 	/datum/objective/assassinate/marshal = 100,

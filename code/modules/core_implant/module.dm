@@ -1,6 +1,6 @@
 /datum/core_module
-	var/obj/item/weapon/implant/external/core_implant/implant
-	var/implant_type = /obj/item/weapon/implant/external/core_implant
+	var/obj/item/weapon/implant/core_implant/implant
+	var/implant_type = /obj/item/weapon/implant/core_implant
 	var/install_time = 0
 	var/time = 0
 	var/mob/living/user

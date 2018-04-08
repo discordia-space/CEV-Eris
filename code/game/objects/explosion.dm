@@ -108,3 +108,28 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 proc/secondaryexplosion(turf/epicenter, range)
 	for(var/turf/tile in range(range, epicenter))
 		tile.ex_act(2)
+
+proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = 10, var/f_step = 2)
+	if(!isturf(epicenter))
+		epicenter = get_turf(epicenter)
+
+	if(!epicenter || !f_type)
+		return
+
+	var/list/target_turfs = getcircle(epicenter, range)
+	var/fragments_per_projectile = round(f_amount/target_turfs.len)
+	for(var/turf/T in target_turfs)
+		sleep(0)
+		var/obj/item/projectile/bullet/pellet/fragment/P = new f_type(epicenter)
+
+		P.damage = f_damage
+		P.pellets = fragments_per_projectile
+		P.range_step = f_step
+
+		P.shot_from = epicenter
+
+		P.launch(T)
+
+		//Make sure to hit any mobs in the source turf
+		for(var/mob/living/M in epicenter)
+			P.attack_mob(M, 0, 100)

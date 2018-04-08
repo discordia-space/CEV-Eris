@@ -105,3 +105,7 @@
 /datum/autolathe/recipe/ammo/mg_cl32_brute
 	name = "magazine (.32 hollow point)"
 	path = /obj/item/ammo_magazine/cl32
+
+/datum/autolathe/recipe/ammo/ak47
+	name = "magazine (7.62mm)"
+	path = /obj/item/ammo_magazine/ak47
