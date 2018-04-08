@@ -77,7 +77,7 @@
 		if(ABORT_CHECK)
 			return
 
-	if(istype(I, /obj/item/stack/material) && I.get_material_name() == DEFAULT_WALL_MATERIAL)
+	if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
 
 		var/result = load_metal(I)
 		if(isnull(result))

@@ -3,6 +3,7 @@
 	desc = "The NT SP \"Counselor\" is a taser gun used for non-lethal takedowns. Used by Nanotrasen security forces before Corporation Wars."
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 3)
 	fire_sound = 'sound/weapons/Taser.ogg'
 	projectile_type = /obj/item/projectile/beam/stun
 
@@ -24,6 +25,7 @@
 	charge_meter = FALSE
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	charge_cost = 50
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6, MATERIAL_SILVER = 2)
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
 	projectile_type = /obj/item/projectile/energy/electrode

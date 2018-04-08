@@ -8,7 +8,7 @@
 	icon_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = ITEM_SIZE_NORMAL
-	matter = list(MATERIAL_STEEL = 1000)
+	matter = list(MATERIAL_STEEL = 1)
 	recoil = 1
 
 	var/caliber = "357"		//determines which casings will fit

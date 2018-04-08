@@ -17,7 +17,6 @@
 	var/autorecharging = FALSE //For nucclear cells
 	var/recharge_time = 4 //How often nuclear cells will recharge
 	var/charge_tick = 0
-	matter = list(MATERIAL_STEEL = 700, MATERIAL_GLASS = 50)
 
 /obj/item/weapon/cell/Initialize()
 	..()
@@ -39,6 +38,7 @@
 	desc = "Asters Guild branded rechargeable L-standardized power cell. This one is the cheapest you can find."
 	icon_state = "b_st"
 	maxcharge = 1000
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
 
 /obj/item/weapon/cell/large/high
 	name = "Asters \"Robustcell 5000L\""
@@ -128,7 +128,7 @@
 	throw_speed = 5
 	throw_range = 7
 	maxcharge = 600
-	matter = list("metal" = 350, MATERIAL_GLASS = 50)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
 
 /obj/item/weapon/cell/medium/high
 	name = "Asters \"Robustcell 800M\""
@@ -197,7 +197,7 @@
 	throw_speed = 5
 	throw_range = 7
 	maxcharge = 100
-	matter = list("metal" = 200, MATERIAL_GLASS = 30)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
 
 /obj/item/weapon/cell/small/high
 	name = "Asters \"Robustcell 200S\""

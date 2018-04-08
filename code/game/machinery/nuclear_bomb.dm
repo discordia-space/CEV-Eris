@@ -373,8 +373,8 @@ if(!N.lighthack)
 /obj/item/weapon/disk/nuclear
 	name = "nuclear authentication disk"
 	desc = "Better keep this safe."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "nucleardisk"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "red"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_TINY
 

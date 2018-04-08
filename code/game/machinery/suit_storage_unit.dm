@@ -499,12 +499,12 @@
 /obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
 	if(!ispowered)
 		return
-	if(istype(I, /obj/item/weapon/tool/screwdriver))
-		panelopen = !panelopen
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-		user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(panelopen ? "open up" : "close"))
-		updateUsrDialog()
-		return
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+			panelopen = !panelopen
+			user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(panelopen ? "open up" : "close"))
+			updateUsrDialog()
+			return
 	if(istype(I,/obj/item/clothing/suit/space))
 		if(!isopen)
 			return

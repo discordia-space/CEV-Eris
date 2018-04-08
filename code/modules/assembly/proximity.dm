@@ -3,7 +3,7 @@
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	icon_state = "prox"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 800, MATERIAL_GLASS = 200, "waste" = 50)
+	matter = list(MATERIAL_PLASTIC = 1)
 	flags = PROXMOVE
 	wires = WIRE_PULSE
 

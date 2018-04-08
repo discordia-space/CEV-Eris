@@ -3,6 +3,7 @@
 	desc = "A device used to project your voice. Loudly."
 	icon_state = "megaphone"
 	item_state = "radio"
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 

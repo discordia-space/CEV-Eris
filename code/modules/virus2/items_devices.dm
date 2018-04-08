@@ -6,6 +6,7 @@
 	icon_state = "health"
 	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	flags = CONDUCT
 
 /obj/item/device/antibody_scanner/attack(mob/M as mob, mob/user as mob)
@@ -97,8 +98,8 @@
 
 /obj/item/weapon/diseasedisk
 	name = "blank GNA disk"
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk0"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "purple"
 	w_class = ITEM_SIZE_TINY
 	var/datum/disease2/effectholder/effect = null
 	var/list/species = null

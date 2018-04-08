@@ -5,6 +5,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	var/form_title
 	var/last_data
 

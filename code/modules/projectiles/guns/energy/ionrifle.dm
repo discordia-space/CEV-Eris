@@ -10,6 +10,7 @@
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	charge_cost = 200
+	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10)
 	projectile_type = /obj/item/projectile/ion
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)

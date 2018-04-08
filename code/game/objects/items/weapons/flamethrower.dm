@@ -11,7 +11,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 1, TECH_PLASMA = 1)
-	matter = list(MATERIAL_STEEL = 500)
+	matter = list(MATERIAL_STEEL = 6)
 	var/status = 0
 	var/throw_amount = 100
 	var/lit = 0	//on or off

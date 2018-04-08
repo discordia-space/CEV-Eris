@@ -12,7 +12,9 @@
 	var/obj/item/weapon/disk/autolathe_disk/disk = null
 
 	var/list/stored_material =  list()
-	var/list/storage_capacity = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0)
+	var/storage_capacity = 120
+
+	var/obj/item/weapon/reagent_containers/glass/container = null
 	var/show_category = "All"
 
 	var/hacked = 0
@@ -60,16 +62,28 @@
 
 		data["recipes"] = L
 
+	data["container"] = FALSE
+	if(container)
+		data["container"] = TRUE
+		if(container.reagents)
+			var/list/L = list()
+			for(var/datum/reagent/R in container.reagents.reagent_list)
+				var/list/LE = list("name" = R.name, "count" = "[R.volume]")
+
+				L.Add(list(LE))
+
+			data["reagents"] = L
+
 	var/list/M = list()
-	for(var/mtype in storage_capacity)
-		var/list/ME = list("name" = mtype, "count" = 0, "ejectable" = TRUE)
+	for(var/mtype in stored_material)
+		if(stored_material[mtype] <= 0)
+			continue
+
+		var/list/ME = list("name" = mtype, "count" = stored_material[mtype], "ejectable" = TRUE)
 
 		var/material/MAT = get_material_by_name(mtype)
 		if(!MAT.stack_type)
 			ME["ejectable"] = FALSE
-
-		if(mtype in stored_material)
-			ME["count"] = stored_material[mtype]
 
 		M.Add(list(ME))
 
@@ -87,15 +101,25 @@
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = R.resources[mat])))
+			RS.Add(list(list("name" = mat, "req" = round(R.resources[mat] * mat_efficiency))))
 
 		data["req_materials"] = RS
+
+		RS = list()
+		for(var/reg in R.reagents)
+			var/datum/reagent/RG = chemical_reagents_list[reg]
+			if(RG)
+				RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
+			else
+				RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
+
+		data["req_reagents"] = RS
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 390, 655)
+		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 450, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -103,129 +127,46 @@
 
 
 /obj/machinery/autolathe/attackby(var/obj/item/I, var/mob/user)
-
-	if(istype(I,/obj/item/weapon/disk/autolathe_disk))
-		if(disk)
-			user << SPAN_NOTICE("There's already a disk inside the autolathe.")
-			return
-		user.drop_item()
-		disk = I
-		I.forceMove(src)
-		user << SPAN_NOTICE("You put the disk into the autolathe.")
-		nanomanager.update_uis(src)
-		if(making_recipe && making_left)
-			make(making_recipe.type,making_left)
-		return
-
-	if(making_recipe && !not_enough_resources && !disk_error)
-		user << SPAN_NOTICE("\The [src] is busy. Please wait for completion of previous operation.")
-		return
-
 	if(default_deconstruction(I, user))
 		return
 
 	if(default_part_replacement(I, user))
 		return
 
-	if(stat)
-		return
+	user.set_machine(src)
+	ui_interact(user)
 
-	if(panel_open)
-		//Don't eat anything used on an open lathe.
-		return FALSE
-
-	if(istype(I, /obj/item/weapon/tool))
-		//Don't eat tools.
-		return FALSE
-
-	if(I.loc != user && !(istype(I,/obj/item/stack)))
-		return FALSE
-
-	if(is_robot_module(I))
-		return FALSE
-
-	//Resources are being loaded.
-	var/obj/item/eating = I
-	if(!eating.matter || !eating.matter.len)
-		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
-		return
-
-	var/filltype = 0       // Used to determine message.
-	var/total_used = 0     // Amount of material used.
-	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
-	var/accept = FALSE
-
-	for(var/material in eating.matter)
-		if(!(material in storage_capacity))
-			continue
-
-		accept = TRUE
-
-		if(!(material in stored_material))
-			stored_material[material] = 0
-
-		if(stored_material[material] >= storage_capacity[material])
-			continue
-
-		var/total_material = round(eating.matter[material])
-
-		//If it's a stack, we eat multiple sheets.
-		if(istype(eating,/obj/item/stack))
-			var/obj/item/stack/material/stack = eating
-			total_material *= stack.get_amount()
-
-		if(stored_material[material] + total_material > storage_capacity[material])
-			total_material = storage_capacity[material] - stored_material[material]
-			filltype = 1
-		else
-			filltype = 2
-
-		stored_material[material] += total_material
-		total_used += total_material
-		mass_per_sheet += eating.matter[material]
-
-	if(!accept)
-		user << SPAN_NOTICE("\The [src] cannot hold this material.")
-
-	if(!filltype)
-		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
-		return
-	else if(filltype == 1)
-		user << SPAN_NOTICE("You fill \the [src] to capacity with \the [eating].")
-	else
-		user << SPAN_NOTICE("You fill \the [src] with \the [eating].")
-
-	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
-
-	if(istype(eating,/obj/item/stack))
-		var/obj/item/stack/stack = eating
-		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
-	else
-		user.remove_from_mob(I)
-		qdel(I)
-
-	if(making_recipe && making_left)
-		make(making_recipe.type,making_left)
-
-	nanomanager.update_uis(src)
-	return
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
+	if(..())
+		return TRUE
+
 	user.set_machine(src)
 	ui_interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
-
-	if(..())
-		return
-
 	add_fingerprint(usr)
 
 	usr.set_machine(src)
 
 	if(href_list["eject_disk"] && disk)
 		disk.forceMove(src.loc)
+
+		if(isliving(usr))
+			var/mob/living/L = usr
+			if(istype(L))
+				L.put_in_active_hand(disk)
+
 		disk = null
+
+	if(href_list["insert"])
+		eat(usr)
+
+	if(href_list["insert_disk"])
+		insert_disk(usr)
+
+	if(href_list["insert_beaker"])
+		insert_beaker(usr)
 
 	if(!making_recipe)
 		if(href_list["eject_material"])
@@ -235,13 +176,24 @@
 			if(!M.stack_type)
 				return
 
-			var/obj/item/stack/material/sheetType = M.stack_type
-			var/perUnit = initial(sheetType.perunit)
+			var/num = input("Enter sheets count to eject. 0-[stored_material[material]]","Eject",0) as num
 
-			var/num = input("Enter sheets count to eject. 0-[round(stored_material[material]/perUnit)]","Eject",0) as num
-			num = min(max(num,0), round(stored_material[material]/perUnit))
+			if(!Adjacent(usr))
+				return
+
+			num = min(max(num,0), stored_material[material])
 
 			eject(material, num)
+
+		if(href_list["eject_container"])
+			container.forceMove(src.loc)
+
+			if(isliving(usr))
+				var/mob/living/L = usr
+				if(istype(L))
+					L.put_in_active_hand(container)
+
+			container = null
 
 		if(href_list["print_one"] && disk)
 			if(!making_recipe)
@@ -261,6 +213,132 @@
 
 	nanomanager.update_uis(src)
 
+/obj/machinery/autolathe/proc/insert_disk(var/mob/living/user)
+	if(!istype(user))
+		return
+
+	var/obj/item/eating = user.get_active_hand()
+
+	if(!istype(eating))
+		return
+
+	if(istype(eating,/obj/item/weapon/disk/autolathe_disk))
+		if(disk)
+			user << SPAN_NOTICE("There's already \a [disk] inside the autolathe.")
+			return
+		user.unEquip(eating, src)
+		disk = eating
+		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
+		nanomanager.update_uis(src)
+		if(making_recipe && making_left)
+			make(making_recipe.type,making_left)
+
+
+/obj/machinery/autolathe/proc/insert_beaker(var/mob/living/user)
+	if(!istype(user))
+		return
+
+	var/obj/item/eating = user.get_active_hand()
+
+	if(!istype(eating))
+		return
+
+	if(istype(eating,/obj/item/weapon/reagent_containers/glass))
+		if(container)
+			user << SPAN_NOTICE("There's already \a [container] inside the autolathe.")
+			return
+		user.unEquip(eating, src)
+		container = eating
+		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
+		nanomanager.update_uis(src)
+		if(making_recipe && making_left)
+			make(making_recipe.type,making_left)
+
+
+/obj/machinery/autolathe/proc/eat(var/mob/living/user)
+	if(!istype(user))
+		return
+
+	var/obj/item/eating = user.get_active_hand()
+
+	if(!istype(eating))
+		return
+
+	if(stat)
+		return
+
+	if(eating.loc != user && !(istype(eating,/obj/item/stack)))
+		return FALSE
+
+	if(is_robot_module(eating))
+		return FALSE
+
+	if(!eating.matter || !eating.matter.len)
+		user << SPAN_NOTICE("\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
+		return
+
+	var/filltype = 0       // Used to determine message.
+	var/total_used = 0     // Amount of material used.
+	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
+
+	for(var/material in eating.matter)
+		if(!(material in stored_material))
+			stored_material[material] = 0
+
+		if(stored_material[material] >= storage_capacity)
+			continue
+
+		var/total_material = round(eating.matter[material])
+
+		//If it's a stack, we eat multiple sheets.
+		if(istype(eating,/obj/item/stack))
+			var/obj/item/stack/material/stack = eating
+			total_material *= stack.get_amount()
+
+		if(stored_material[material] + total_material > storage_capacity)
+			total_material = storage_capacity - stored_material[material]
+			filltype = 1
+		else
+			filltype = 2
+
+		stored_material[material] += total_material
+		total_used += total_material
+		mass_per_sheet += eating.matter[material]
+
+	if(!filltype)
+		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
+		return
+	else if(filltype == 1)
+		user << SPAN_NOTICE("You fill \the [src] to capacity with \the [eating].")
+	else
+		user << SPAN_NOTICE("You fill \the [src] with \the [eating].")
+
+	if(eating.matter_reagents)
+		if(container)
+			var/datum/reagents/RG = new(0)
+			for(var/r in eating.matter_reagents)
+				RG.maximum_volume += eating.matter_reagents[r]
+				RG.add_reagent(r ,eating.matter_reagents[r])
+
+			RG.trans_to(container, RG.total_volume)
+			user << SPAN_NOTICE("Some liquid flowed to \the [container].")
+		else
+			user << SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot.")
+
+	if(eating.reagents && container)
+		eating.reagents.trans_to(container,eating.reagents.total_volume)
+
+	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+
+	if(istype(eating,/obj/item/stack))
+		var/obj/item/stack/stack = eating
+		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
+	else
+		user.remove_from_mob(eating)
+		qdel(eating)
+
+	if(making_recipe && making_left)
+		make(making_recipe.type,making_left)
 
 /obj/machinery/autolathe/proc/make(var/recipe, var/amount)
 	disk_error = FALSE
@@ -277,6 +355,9 @@
 		nanomanager.update_uis(src)
 		update_use_power(2)
 
+		if(stat)
+			break
+
 		if(!disk || !(making_recipe.type in disk.recipes))
 			disk_error = TRUE
 
@@ -286,6 +367,14 @@
 				not_enough_resources = TRUE
 				break
 
+		if(!container || !container.reagents || !container.is_open_container())
+			not_enough_resources = TRUE
+		else
+			for(var/reagent in making_recipe.reagents)
+				if(!container.reagents.has_reagent(reagent, making_recipe.reagents[reagent]))
+					not_enough_resources = TRUE
+					break
+
 		if(disk_error || not_enough_resources || disk.license == 0)
 			return
 
@@ -293,6 +382,9 @@
 		for(var/material in making_recipe.resources)
 			stored_material[material] = max(0, stored_material[material] - round(making_recipe.resources[material] * mat_efficiency))
 
+
+		for(var/reagent in making_recipe.reagents)
+			container.reagents.remove_reagent(reagent, making_recipe.reagents[reagent])
 
 		//Fancy autolathe animation.
 		flick("autolathe_n", src)
@@ -343,15 +435,13 @@
 	if(!M.stack_type)
 		return
 
-	var/obj/item/stack/material/sheetType = M.stack_type
-	var/perUnit = initial(sheetType.perunit)
-	var/eject = round(stored_material[material] / perUnit)
+	var/eject = stored_material[material]
 	eject = amount == -1 ? eject : min(eject, amount)
 	if(eject < 1)
 		return
-	var/obj/item/stack/material/S = new sheetType(loc)
+	var/obj/item/stack/material/S = new M.stack_type(loc)
 	S.amount = eject
-	stored_material[material] -= eject * perUnit
+	stored_material[material] -= eject
 
 /obj/machinery/autolathe/update_icon()
 	icon_state = (panel_open ? "autolathe_t" : "autolathe")
@@ -366,8 +456,8 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
-	storage_capacity[MATERIAL_STEEL] = mb_rating  * 25000
-	storage_capacity[MATERIAL_GLASS] = mb_rating  * 12500
+	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
+
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
 
@@ -375,12 +465,19 @@
 
 	for(var/mat in stored_material)
 		var/material/M = get_material_by_name(mat)
-		if(!istype(M))
+		if(!istype(M) || stored_material[mat] <= 0)
 			continue
+
 		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-		if(stored_material[mat] > S.perunit)
-			S.amount = round(stored_material[mat] / S.perunit)
+
+		if(S.max_amount <= stored_material[mat])
+			S.amount = stored_material[mat]
 		else
-			qdel(S)
+			var/fullstacks = stored_material[mat] / S.max_amount
+			S.amount = stored_material[mat] % S.max_amount
+			for(var/i = 0; i < fullstacks; i++)
+				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
+				MS.amount = MS.max_amount
+
 	..()
 	return 1

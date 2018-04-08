@@ -8,7 +8,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
-	matter = list(MATERIAL_STEEL = 2000)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	projectile_type = /obj/item/projectile/beam/midlaser
 
 /obj/item/weapon/gun/energy/laser/mounted
@@ -18,6 +18,7 @@
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
 	desc = "A modified version of the NeoTheology brand laser carabin, this one fires less concentrated energy bolts designed for target practice."
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 2)
 	projectile_type = /obj/item/projectile/beam/practice
 
 obj/item/weapon/gun/energy/retro

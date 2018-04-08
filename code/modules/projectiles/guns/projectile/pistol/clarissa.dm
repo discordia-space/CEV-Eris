@@ -7,6 +7,7 @@
 	caliber = "9mm"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 
@@ -41,13 +42,20 @@
 /obj/item/weapon/gun/projectile/clarissa/update_icon()
 	..()
 	if(silenced)
-		icon_state = "pistol-silencer"
+		icon_state = "[initial(icon_state)]-silencer"
 	else
-		icon_state = "pistol"
+		icon_state = initial(icon_state)
+
+
+/obj/item/weapon/gun/projectile/clarissa/makarov
+	name = "Excelsior 9x19 \"Makarov\""
+	desc = "Old designed pistol of space communists. Small and easily concealable. Uses 9mm rounds."
+	icon_state = "makarov"
 
 /obj/item/weapon/silencer
 	name = "silencer"
 	desc = "a silencer"
 	icon = 'icons/obj/gun.dmi'
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
 	icon_state = "silencer"
 	w_class = ITEM_SIZE_SMALL

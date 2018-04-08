@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
 	action_button_name = "Toggle UV light"
-	matter = list(MATERIAL_STEEL = 150)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	var/list/scanned = list()

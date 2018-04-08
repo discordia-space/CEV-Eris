@@ -92,10 +92,9 @@
 	text = replacetext(text, "\n", "<BR>")
 	return text
 
-/obj/machinery/computer/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/tool/screwdriver) && circuit)
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20, src))
+/obj/machinery/computer/attackby(obj/item/I, mob/user)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
 			A.dir = src.dir
 			A.circuit = circuit
@@ -115,6 +114,7 @@
 			qdel(src)
 	else
 		..()
+
 /obj/machinery/computer/Topic(href, href_list)
 	if(..())
 		return 1

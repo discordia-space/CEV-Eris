@@ -219,7 +219,7 @@
 			else if(!anchored)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You dissasembled the airlock assembly!")
-					new /obj/item/stack/material/steel(src.loc, 4)
+					new /obj/item/stack/material/steel(src.loc, 8)
 					qdel (src)
 			update_state()
 			return

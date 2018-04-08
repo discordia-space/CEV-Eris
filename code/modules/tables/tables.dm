@@ -149,7 +149,7 @@
 				if(!material)
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
 						user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
-						new /obj/item/stack/material/steel(src.loc)
+						new /obj/item/stack/material/steel(src.loc, 2)
 						qdel(src)
 			return
 

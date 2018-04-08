@@ -7,6 +7,7 @@
 	flags = NOBLUDGEON
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 1
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	var/power = 0
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small

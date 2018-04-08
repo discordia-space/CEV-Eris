@@ -181,7 +181,7 @@ var/global/list/breach_burn_descriptors = list(
 	if(istype(I,/obj/item/stack/material))
 		var/repair_power = 0
 		switch(I.get_material_name())
-			if(DEFAULT_WALL_MATERIAL)
+			if(MATERIAL_STEEL)
 				repair_power = 2
 			if("plastic")
 				repair_power = 1
