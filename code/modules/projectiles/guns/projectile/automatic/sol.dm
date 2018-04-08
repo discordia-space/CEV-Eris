@@ -12,7 +12,7 @@
 	slot_flags = SLOT_BELT
 	multi_aim = 1
 	burst_delay = 2
-	matter = list(MATERIAL_PLASTEEL = 40000, MATERIAL_PLASTIC = 12000)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),

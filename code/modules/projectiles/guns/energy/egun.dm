@@ -5,7 +5,7 @@
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 150
-	matter = list(MATERIAL_PLASTEEL = 26000, MATERIAL_PLASTIC = 12000, MATERIAL_SILVER = 8000)
+	matter = list(MATERIAL_PLASTEEL = 13, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 6)
 
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
@@ -30,7 +30,7 @@
 	w_class = ITEM_SIZE_SMALL
 	charge_cost = 50
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
-	matter = list(MATERIAL_PLASTEEL = 16000, MATERIAL_PLASTIC = 8000, MATERIAL_SILVER = 2000)
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_SILVER = 1)
 	modifystate = null
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small

@@ -9,7 +9,7 @@
 	throwforce = WEAPON_FORCE_PAINFULL
 	throw_speed = 5
 	throw_range = 20
-	matter = list(MATERIAL_STEEL = 1875)
+	matter = list(MATERIAL_STEEL = 1)
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 

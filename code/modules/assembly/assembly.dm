@@ -5,7 +5,7 @@
 	icon_state = ""
 	flags = CONDUCT
 	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_STEEL = 100)
+	matter = list(MATERIAL_PLASTIC = 1)
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 10

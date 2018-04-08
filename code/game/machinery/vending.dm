@@ -1003,9 +1003,26 @@
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
-	desc = "Trust is power, and thereÂ’s no power you can trust like Robustcell."
-	product_slogans = "Trust is power, and thereÂ’s no power you can trust like Robustcell.;No battery is stronger longer.;One that Last!;You can't top the copper top!"
+	desc = "Trust is power, and there’s no power you can trust like Robustcell."
+	product_slogans = "Trust is power, and there’s no power you can trust like Robustcell.;No battery is stronger longer.;One that Last!;You can't top the copper top!"
 	product_ads = "Robust!;Trustworthy!;Durable!"
 	icon_state = "powermat"
 	products = list(/obj/item/weapon/cell/large = 10, /obj/item/weapon/cell/large/high = 10, /obj/item/weapon/cell/medium = 15, /obj/item/weapon/cell/medium/high = 15, /obj/item/weapon/cell/small = 20, /obj/item/weapon/cell/small/high = 20)
 	prices = list(/obj/item/weapon/cell/large = 500, /obj/item/weapon/cell/large/high = 700, /obj/item/weapon/cell/medium = 300, /obj/item/weapon/cell/medium/high = 400, /obj/item/weapon/cell/small = 100, /obj/item/weapon/cell/small/high = 200)
+
+/obj/machinery/vending/printomat
+	name = "Asters Guild Print-o-Mat"
+	desc = "Everything you can imagine (not really) on a disc! Print your own gun TODAY."
+	product_slogans = "Print your own gun TODAY!; The future is NOW!; Can't stop the industrial revolution!"
+	product_ads = "Almoust free!;Print it your-self!"
+	icon_state = "discomat"
+	products = list(/obj/item/weapon/disk/autolathe_disk/blank = 20, /obj/item/weapon/disk/autolathe_disk/basic = 10,
+					/obj/item/weapon/disk/autolathe_disk/devices = 10, /obj/item/weapon/disk/autolathe_disk/toolpack = 10, /obj/item/weapon/disk/autolathe_disk/component = 10,
+					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 5, /obj/item/weapon/disk/autolathe_disk/curcuitpack = 5, /obj/item/weapon/disk/autolathe_disk/medical = 20,
+					/obj/item/weapon/disk/autolathe_disk/security = 5, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 5, /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 10,
+					/obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3)
+	prices = list(/obj/item/weapon/disk/autolathe_disk/blank = 150, /obj/item/weapon/disk/autolathe_disk/basic = 300,
+					/obj/item/weapon/disk/autolathe_disk/devices = 400, /obj/item/weapon/disk/autolathe_disk/toolpack = 400, /obj/item/weapon/disk/autolathe_disk/component = 500,
+					/obj/item/weapon/disk/autolathe_disk/advtoolpack = 1800, /obj/item/weapon/disk/autolathe_disk/curcuitpack = 600, /obj/item/weapon/disk/autolathe_disk/medical = 400,
+					/obj/item/weapon/disk/autolathe_disk/security = 600, /obj/item/weapon/disk/autolathe_disk/fs_cheap_guns = 3000, /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo = 700,
+					/obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000)

@@ -4,7 +4,7 @@
 		icon_state = "plain_preview"
 		color = "#EEEEEE"
 		New()
-			material = get_material_by_name(DEFAULT_TABLE_MATERIAL)
+			material = get_material_by_name(MATERIAL_PLASTIC)
 			..()
 
 	steel
@@ -25,7 +25,7 @@
 		icon_state = "reinf_preview"
 		color = "#EEEEEE"
 		New()
-			material = get_material_by_name(DEFAULT_TABLE_MATERIAL)
+			material = get_material_by_name(MATERIAL_PLASTIC)
 			reinforced = get_material_by_name(MATERIAL_STEEL)
 			..()
 
@@ -63,7 +63,7 @@
 		icon_state = "holo_preview"
 		color = "#EEEEEE"
 		New()
-			material = get_material_by_name("holo[DEFAULT_TABLE_MATERIAL]")
+			material = get_material_by_name("holo[MATERIAL_PLASTIC]")
 			..()
 
 	holo_woodentable

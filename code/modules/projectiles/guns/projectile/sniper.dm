@@ -16,7 +16,7 @@
 	ammo_type = /obj/item/ammo_casing/a145
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
-	matter = list(MATERIAL_PLASTEEL = 80000, MATERIAL_PLASTIC = 30000)
+	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
 	var/bolt_open = 0
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
