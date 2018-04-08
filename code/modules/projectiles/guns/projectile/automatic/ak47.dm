@@ -12,6 +12,7 @@
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/ak47
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
@@ -37,5 +38,5 @@
 		 It is known for it easy maintaining and low price. This gun is not used by military anymore, but it found a wide spread within criminals and insurgents."
 	icon_state = "AK"
 	item_state = "AK"
-	w_class = ITEM_SIZE_LARGE
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	force = 20

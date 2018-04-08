@@ -12,22 +12,8 @@
 	var/obj/item/weapon/disk/autolathe_disk/disk = null
 
 	var/list/stored_material =  list()
-	var/list/storage_capacity = list(
-		MATERIAL_STEEL = 0,
-		MATERIAL_GLASS = 0,
-		MATERIAL_RGLASS = 0,
-		MATERIAL_PLASMAGLASS = 0,
-		MATERIAL_RPLASMAGLASS = 0,
-		MATERIAL_SILVER = 0,
-		MATERIAL_GOLD = 0,
-		MATERIAL_PLASMA = 0,
-		MATERIAL_URANIUM = 0,
-		MATERIAL_DIAMOND = 0,
-		MATERIAL_PLASTIC = 0,
-		MATERIAL_CARDBOARD = 0,
-		MATERIAL_PLASTEEL = 0,
-		MATERIAL_WOOD = 0,
-	)
+	var/storage_capacity = 120
+
 	var/obj/item/weapon/reagent_containers/glass/container = null
 	var/show_category = "All"
 
@@ -89,8 +75,8 @@
 			data["reagents"] = L
 
 	var/list/M = list()
-	for(var/mtype in storage_capacity)
-		if(!(mtype in stored_material) || stored_material[mtype] <= 0)
+	for(var/mtype in stored_material)
+		if(stored_material[mtype] <= 0)
 			continue
 
 		var/list/ME = list("name" = mtype, "count" = stored_material[mtype], "ejectable" = TRUE)
@@ -115,7 +101,7 @@
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = R.resources[mat])))
+			RS.Add(list(list("name" = mat, "req" = round(R.resources[mat] * mat_efficiency))))
 
 		data["req_materials"] = RS
 
@@ -190,15 +176,12 @@
 			if(!M.stack_type)
 				return
 
-			var/obj/item/stack/material/sheetType = M.stack_type
-			var/perUnit = initial(sheetType.perunit)
-
-			var/num = input("Enter sheets count to eject. 0-[round(stored_material[material]/perUnit)]","Eject",0) as num
+			var/num = input("Enter sheets count to eject. 0-[stored_material[material]]","Eject",0) as num
 
 			if(!Adjacent(usr))
 				return
 
-			num = min(max(num,0), round(stored_material[material]/perUnit))
+			num = min(max(num,0), stored_material[material])
 
 			eject(material, num)
 
@@ -297,18 +280,12 @@
 	var/filltype = 0       // Used to determine message.
 	var/total_used = 0     // Amount of material used.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
-	var/accept = FALSE
 
 	for(var/material in eating.matter)
-		if(!(material in storage_capacity))
-			continue
-
-		accept = TRUE
-
 		if(!(material in stored_material))
 			stored_material[material] = 0
 
-		if(stored_material[material] >= storage_capacity[material])
+		if(stored_material[material] >= storage_capacity)
 			continue
 
 		var/total_material = round(eating.matter[material])
@@ -318,8 +295,8 @@
 			var/obj/item/stack/material/stack = eating
 			total_material *= stack.get_amount()
 
-		if(stored_material[material] + total_material > storage_capacity[material])
-			total_material = storage_capacity[material] - stored_material[material]
+		if(stored_material[material] + total_material > storage_capacity)
+			total_material = storage_capacity - stored_material[material]
 			filltype = 1
 		else
 			filltype = 2
@@ -327,10 +304,6 @@
 		stored_material[material] += total_material
 		total_used += total_material
 		mass_per_sheet += eating.matter[material]
-
-	if(!accept)
-		user << SPAN_NOTICE("\The [src] doesn't have capacity for this material.")
-		return
 
 	if(!filltype)
 		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
@@ -462,15 +435,13 @@
 	if(!M.stack_type)
 		return
 
-	var/obj/item/stack/material/sheetType = M.stack_type
-	var/perUnit = initial(sheetType.perunit)
-	var/eject = round(stored_material[material] / perUnit)
+	var/eject = stored_material[material]
 	eject = amount == -1 ? eject : min(eject, amount)
 	if(eject < 1)
 		return
-	var/obj/item/stack/material/S = new sheetType(loc)
+	var/obj/item/stack/material/S = new M.stack_type(loc)
 	S.amount = eject
-	stored_material[material] -= eject * perUnit
+	stored_material[material] -= eject
 
 /obj/machinery/autolathe/update_icon()
 	icon_state = (panel_open ? "autolathe_t" : "autolathe")
@@ -485,9 +456,7 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
-
-	for(var/mat in storage_capacity)
-		storage_capacity[mat] = mb_rating * SHEET_MATERIAL_AMOUNT * 25
+	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
 
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
@@ -496,12 +465,19 @@
 
 	for(var/mat in stored_material)
 		var/material/M = get_material_by_name(mat)
-		if(!istype(M))
+		if(!istype(M) || stored_material[mat] <= 0)
 			continue
+
 		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-		if(stored_material[mat] > S.perunit)
-			S.amount = round(stored_material[mat] / S.perunit)
+
+		if(S.max_amount <= stored_material[mat])
+			S.amount = stored_material[mat]
 		else
-			qdel(S)
+			var/fullstacks = stored_material[mat] / S.max_amount
+			S.amount = stored_material[mat] % S.max_amount
+			for(var/i = 0; i < fullstacks; i++)
+				var/obj/item/stack/material/MS = new M.stack_type(get_turf(src))
+				MS.amount = MS.max_amount
+
 	..()
 	return 1

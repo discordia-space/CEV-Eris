@@ -6,7 +6,7 @@
 	icon_state = "health"
 	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
-	matter = list(MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	flags = CONDUCT
 
 /obj/item/device/antibody_scanner/attack(mob/M as mob, mob/user as mob)

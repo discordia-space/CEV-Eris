@@ -22,7 +22,7 @@
 	throw_speed = 4
 	throw_range = 20
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 400)
+	matter = list(MATERIAL_PLASTIC = 2)
 
 /obj/item/weapon/locator/attack_self(mob/user)
 	user.set_machine(src)
@@ -133,7 +133,7 @@ Frequency:
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)
-	matter = list(MATERIAL_STEEL = 10000)
+	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 1)
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
 

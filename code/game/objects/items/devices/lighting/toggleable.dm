@@ -5,7 +5,7 @@
 	item_state = "flashlight"
 	flags = CONDUCT
 
-	matter = list(MATERIAL_STEEL = 50,MATERIAL_GLASS = 20)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 	brightness_on = 5 //luminosity when on
 	turn_on_sound = 'sound/effects/Custom_flashlight.ogg'

@@ -717,7 +717,7 @@ var/list/turret_icons
 			if(build_step == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 					user << SPAN_NOTICE("You dismantle the turret construction.")
-					new /obj/item/stack/material/steel( loc, 5)
+					new /obj/item/stack/material/steel( loc, 8)
 					qdel(src)
 					return
 			if(build_step == 7)

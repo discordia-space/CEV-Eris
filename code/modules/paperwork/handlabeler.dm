@@ -3,7 +3,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler0"
 	item_state = "flight"
-	matter = list(MATERIAL_PLASTIC = 2000)
+	matter = list(MATERIAL_PLASTIC = 2)
 	var/label = null
 	var/labels_left = 30
 	var/mode = 0	//off or on.

@@ -196,7 +196,7 @@ proc/cardinalrange(var/center)
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 2
-	matter = list(MATERIAL_STEEL = 100, "waste" = 2000)
+	matter = list(MATERIAL_STEEL = 3)
 
 /obj/item/device/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/weapon/tool/multitool) && istype(src.loc,/turf))

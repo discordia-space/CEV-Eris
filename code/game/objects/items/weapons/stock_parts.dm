@@ -18,42 +18,42 @@
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MATERIAL_GLASS = 6000)
+	matter = list(MATERIAL_GLASS = 3)
 
 /obj/item/weapon/stock_parts/capacitor
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor"
 	origin_tech = list(TECH_POWER = 1)
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/scanning_module
 	name = "scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "scan_module"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/manipulator
 	name = "micro-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "micro_mani"
 	origin_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1)
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_PLASTIC = 2000)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/stock_parts/micro_laser
 	name = "micro-laser"
 	desc = "A tiny laser used in certain devices."
 	icon_state = "micro_laser"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/matter_bin
 	name = "matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "matter_bin"
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MATERIAL_PLASTIC = 4000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 //Rank 2
 
@@ -63,7 +63,7 @@
 	icon_state = "adv_capacitor"
 	origin_tech = list(TECH_POWER = 3)
 	rating = 2
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/scanning_module/adv
 	name = "advanced scanning module"
@@ -71,7 +71,7 @@
 	icon_state = "adv_scan_module"
 	origin_tech = list(TECH_MAGNET = 3)
 	rating = 2
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/manipulator/nano
 	name = "nano-manipulator"
@@ -79,7 +79,7 @@
 	icon_state = "nano_mani"
 	origin_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2)
 	rating = 2
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_PLASTIC = 2000)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/stock_parts/micro_laser/high
 	name = "high-power micro-laser"
@@ -87,7 +87,7 @@
 	icon_state = "high_micro_laser"
 	origin_tech = list(TECH_MAGNET = 3)
 	rating = 2
-	matter = list(MATERIAL_STEEL = 2000, MATERIAL_PLASTIC = 2000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/matter_bin/adv
 	name = "advanced matter bin"
@@ -95,7 +95,7 @@
 	icon_state = "advanced_matter_bin"
 	origin_tech = list(TECH_MATERIAL = 3)
 	rating = 2
-	matter = list(MATERIAL_PLASTIC = 4000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 //Rating 3
 
@@ -105,7 +105,7 @@
 	icon_state = "super_capacitor"
 	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	rating = 3
-	matter = list(MATERIAL_STEEL = 4000, MATERIAL_PLASTIC = 4000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/scanning_module/phasic
 	name = "phasic scanning module"
@@ -113,7 +113,7 @@
 	icon_state = "super_scan_module"
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
-	matter = list(MATERIAL_STEEL = 4000, MATERIAL_PLASTIC = 4000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/manipulator/pico
 	name = "pico-manipulator"
@@ -121,7 +121,7 @@
 	icon_state = "pico_mani"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
 	rating = 3
-	matter = list(MATERIAL_STEEL = 4000, MATERIAL_PLASTIC = 4000)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/weapon/stock_parts/micro_laser/ultra
 	name = "ultra-high-power micro-laser"
@@ -129,7 +129,7 @@
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
-	matter = list(MATERIAL_STEEL = 4000, MATERIAL_PLASTIC = 4000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/matter_bin/super
 	name = "super matter bin"
@@ -137,7 +137,7 @@
 	icon_state = "super_matter_bin"
 	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 3
-	matter = list(MATERIAL_PLASTIC = 6000, MATERIAL_GLASS = 2000)
+	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
 // Subspace stock parts
 
@@ -146,46 +146,46 @@
 	icon_state = "subspace_ansible"
 	desc = "A compact module capable of sensing extradimensional activity."
 	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 5 ,TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1, MATERIAL_SILVER = 2)
 
 /obj/item/weapon/stock_parts/subspace/filter
 	name = "hyperwave filter"
 	icon_state = "hyperwave_filter"
 	desc = "A tiny device capable of filtering and converting super-intense radiowaves."
 	origin_tech = list(TECH_DATA = 4, TECH_MAGNET = 2)
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1)
 
 /obj/item/weapon/stock_parts/subspace/amplifier
 	name = "subspace amplifier"
 	icon_state = "subspace_amplifier"
 	desc = "A compact micro-machine capable of amplifying weak subspace transmissions."
 	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1)
 
 /obj/item/weapon/stock_parts/subspace/treatment
 	name = "subspace treatment disk"
 	icon_state = "treatment_disk"
 	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
 	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 2, TECH_MATERIAL = 5, TECH_BLUESPACE = 2)
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1)
 
 /obj/item/weapon/stock_parts/subspace/analyzer
 	name = "subspace wavelength analyzer"
 	icon_state = "wavelength_analyzer"
 	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
 	origin_tech = list(TECH_DATA = 3, TECH_MAGNETS = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	matter = list(MATERIAL_STEEL = 30, MATERIAL_GLASS = 10)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1)
 
 /obj/item/weapon/stock_parts/subspace/crystal
 	name = "ansible crystal"
 	icon_state = "ansible_crystal"
 	desc = "A crystal made from pure glass used to transmit laser databursts to subspace."
 	origin_tech = list(TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)
-	matter = list(MATERIAL_GLASS = 50)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1, MATERIAL_SILVER = 2)
 
 /obj/item/weapon/stock_parts/subspace/transmitter
 	name = "subspace transmitter"
 	icon_state = "subspace_transmitter"
 	desc = "A large piece of equipment used to open a window into the subspace dimension."
 	origin_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5, TECH_BLUESPACE = 3)
-	matter = list(MATERIAL_STEEL = 50)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1)

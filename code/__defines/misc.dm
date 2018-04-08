@@ -153,9 +153,6 @@
 #define COIN_URANIUM "Uranium coin"
 #define COIN_PLATINUM "Platunum coin"
 
-#define DEFAULT_TABLE_MATERIAL "plastic"
-#define DEFAULT_WALL_MATERIAL "steel"
-
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
 #define SHARD_STONE_PIECE "piece"
@@ -225,7 +222,7 @@
 #define ANNOUNSER_NAME "CEV Eris System Announcer"
 
 
-#define LIST_OF_CONSONANT list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "á", "â", "ã", "ä", "æ", "ç", "é", "ê", "ë", "ì", "í", "ï", "ð", "ñ", "ò", "ô", "õ", "ö", "÷", "ø", "ù")
+#define LIST_OF_CONSONANT list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "Ã¡", "Ã¢", "Ã£", "Ã¤", "Ã¦", "Ã§", "Ã©", "Ãª", "Ã«", "Ã¬", "Ã­", "Ã¯", "Ã°", "Ã±", "Ã²", "Ã´", "Ãµ", "Ã¶", "Ã·", "Ã¸", "Ã¹")
 
 //Multi-z
 #define FALL_GIB_DAMAGE 999
@@ -244,6 +241,3 @@
 #define CRUCIFORM_PRIEST_CONVERT /datum/core_module/activatable/cruciform/priest_convert
 #define CRUCIFORM_OBEY_ACTIVATOR /datum/core_module/activatable/cruciform/obey_activator
 
-//Complant
-#define COMPLANT_COMMON /datum/core_module/complant/common
-#define COMPLANT_LEADER /datum/core_module/complant/leader

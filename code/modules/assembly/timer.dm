@@ -3,7 +3,7 @@
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 500, MATERIAL_GLASS = 50, "waste" = 10)
+	matter = list(MATERIAL_PLASTIC = 1)
 
 	wires = WIRE_PULSE
 

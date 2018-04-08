@@ -167,7 +167,7 @@
 			buildstate++
 			update_icon()
 			return
-	else if(istype(I,/obj/item/stack/material) && I.get_material_name() == DEFAULT_WALL_MATERIAL)
+	else if(istype(I,/obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
 		if(buildstate == 2)
 			var/obj/item/stack/material/M = I
 			if(M.use(5))

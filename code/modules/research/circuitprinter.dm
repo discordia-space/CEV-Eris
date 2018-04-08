@@ -12,8 +12,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	var/progress = 0
 	circuit = /obj/item/weapon/circuitboard/circuit_imprinter
 
-	var/max_material_storage = 75000
-	var/mat_efficiency = 1
+	var/max_material_storage = 120
 	var/speed = 1
 
 	use_power = 1
@@ -57,11 +56,10 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	create_reagents(T)
 	max_material_storage = 0
 	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
-		max_material_storage += M.rating * 75000
+		max_material_storage += M.rating * 25
 	T = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		T += M.rating
-	mat_efficiency = 1 - (T - 1) / 4
 	speed = T
 
 /obj/machinery/r_n_d/circuit_imprinter/update_icon()
@@ -83,11 +81,11 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		if(istype(I, /obj/item/weapon/reagent_containers/glass/beaker))
 			reagents.trans_to_obj(I, reagents.total_volume)
 	for(var/f in materials)
-		if(materials[f] >= SHEET_MATERIAL_AMOUNT)
-			var/path = getMaterialType(f)
+		if(materials[f] > 0)
+			var/path = material_stack_type(f)
 			if(path)
 				var/obj/item/stack/S = new f(loc)
-				S.amount = round(materials[f] / SHEET_MATERIAL_AMOUNT)
+				S.amount = materials[f]
 	..()
 
 /obj/machinery/r_n_d/circuit_imprinter/attackby(var/obj/item/I, var/mob/user as mob)
@@ -139,7 +137,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(stat)
 		return 1
 
-	if(TotalMaterials() + SHEET_MATERIAL_AMOUNT > max_material_storage)
+	if(TotalMaterials() + 1 > max_material_storage)
 		user << SPAN_NOTICE("\The [src]'s material bin is full. Please remove material before adding more.")
 		return 1
 
@@ -151,18 +149,17 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		return
 	if(amount > stack.get_amount())
 		amount = stack.get_amount()
-	if(max_material_storage - TotalMaterials() < (amount * SHEET_MATERIAL_AMOUNT)) //Can't overfill
-		amount = min(stack.get_amount(), round((max_material_storage - TotalMaterials()) / SHEET_MATERIAL_AMOUNT))
+	if(max_material_storage - TotalMaterials() < amount) //Can't overfill
+		amount = min(stack.get_amount(), max_material_storage - TotalMaterials())
 
 	busy = 1
-	use_power(max(1000, (SHEET_MATERIAL_AMOUNT * amount / 10)))
-	var/stacktype = stack.type
-	var/t = getMaterialName(stacktype)
+	use_power(1000)
+	var/t = stack.get_material_name()
 	if(t)
 		if(do_after(usr, 16, src))
 			if(stack.use(amount))
 				user << SPAN_NOTICE("You add [amount] sheet\s to \the [src].")
-				materials[t] += amount * SHEET_MATERIAL_AMOUNT
+				materials[t] += amount
 	busy = 0
 	updateUsrDialog()
 
@@ -204,14 +201,10 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	power = max(active_power_usage, power)
 	use_power(power)
 	for(var/M in D.materials)
-		materials[M] = max(0, materials[M] - D.materials[M] * mat_efficiency)
+		materials[M] = max(0, materials[M] - D.materials[M])
 	for(var/C in D.chemicals)
-		reagents.remove_reagent(C, D.chemicals[C] * mat_efficiency)
+		reagents.remove_reagent(C, D.chemicals[C])
 
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(src, src)
 		new_item.loc = loc
-		if(mat_efficiency != 1) // No matter out of nowhere
-			if(new_item.matter && new_item.matter.len > 0)
-				for(var/i in new_item.matter)
-					new_item.matter[i] = new_item.matter[i] * mat_efficiency
