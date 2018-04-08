@@ -86,5 +86,5 @@
 		process_glasses(O.visor.vision.glasses)
 
 /mob/living/carbon/human/proc/get_core_implant()
-	var/obj/item/weapon/implant/external/core_implant/C = locate(/obj/item/weapon/implant/external/core_implant, src)
+	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant, src)
 	return C

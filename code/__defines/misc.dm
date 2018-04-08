@@ -222,7 +222,7 @@
 #define ANNOUNSER_NAME "CEV Eris System Announcer"
 
 
-#define LIST_OF_CONSONANT list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "á", "â", "ã", "ä", "æ", "ç", "é", "ê", "ë", "ì", "í", "ï", "ð", "ñ", "ò", "ô", "õ", "ö", "÷", "ø", "ù")
+#define LIST_OF_CONSONANT list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "Ã¡", "Ã¢", "Ã£", "Ã¤", "Ã¦", "Ã§", "Ã©", "Ãª", "Ã«", "Ã¬", "Ã­", "Ã¯", "Ã°", "Ã±", "Ã²", "Ã´", "Ãµ", "Ã¶", "Ã·", "Ã¸", "Ã¹")
 
 //Multi-z
 #define FALL_GIB_DAMAGE 999
@@ -231,6 +231,7 @@
 #define CORE_GROUP_RITUAL /datum/core_module/group_ritual
 #define CORE_ACTIVATED /datum/core_module/activatable
 
+//Cruciform
 #define CRUCIFORM_COMMON /datum/core_module/cruciform/common
 #define CRUCIFORM_PRIEST /datum/core_module/cruciform/priest
 #define CRUCIFORM_INQUISITOR /datum/core_module/cruciform/inquisitor
@@ -239,3 +240,4 @@
 #define CRUCIFORM_OBEY /datum/core_module/cruciform/obey
 #define CRUCIFORM_PRIEST_CONVERT /datum/core_module/activatable/cruciform/priest_convert
 #define CRUCIFORM_OBEY_ACTIVATOR /datum/core_module/activatable/cruciform/obey_activator
+

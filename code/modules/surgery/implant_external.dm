@@ -11,16 +11,17 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/external_implant/install
 	allowed_tools = list(
-	/obj/item/weapon/implant/external = 100
+	/obj/item/weapon/implant = 100
 	)
 
 	min_duration = 100
 	max_duration = 110
 
 /datum/surgery_step/external_implant/install/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!istype(tool, /obj/item/weapon/implant/external))
-		return FALSE
-	var/obj/item/weapon/implant/external/I = tool
+	if(!istype(tool, /obj/item/weapon/implant))
+		return
+
+	var/obj/item/weapon/implant/I = tool
 
 	return ..() && (target_zone in I.allowed_organs)
 
@@ -33,18 +34,18 @@
 
 
 /datum/surgery_step/external_implant/install/end_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!istype(tool, /obj/item/weapon/implant/external))
+	if(!istype(tool, /obj/item/weapon/implant))
 		return
-	var/obj/item/weapon/implant/external/implant = tool
+
+	var/obj/item/weapon/implant/implant = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	for(var/obj/item/I in affected.implants)
 		if(istype(I,/obj/item/weapon/implant))
 			var/obj/item/weapon/implant/IM = I
-			if(IM.is_external())
-				if(implant.position_flag & IM.position_flag)
-					user << SPAN_WARNING("[implant] doesn't fit.")
-					return
+			if(!IM.is_external())
+				user << SPAN_WARNING("[implant] doesn't fit.")
+				return
 
 	user.visible_message(SPAN_NOTICE("[user] installed [tool] to [target]'s [affected]."), \
 	SPAN_NOTICE("You installed [tool] to [target]'s [affected].") )
@@ -105,7 +106,7 @@
 	if(!implants.len)
 		return
 
-	var/obj/item/weapon/implant/external/implant = input("Choose an implant to remove.", "Implant", implants[1]) in implants
+	var/obj/item/weapon/implant/implant = input("Choose an implant to remove.", "Implant", implants[1]) in implants
 
 	if(!implant)
 		return

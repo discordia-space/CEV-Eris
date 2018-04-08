@@ -3,8 +3,8 @@
 	desc = "Upgrade module for coreimplant. Must be activated after install."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "core_upgrade"
-	var/implant_type = /obj/item/weapon/implant/external/core_implant
-	var/obj/item/weapon/implant/external/core_implant/implant
+	var/implant_type = /obj/item/weapon/implant/core_implant
+	var/obj/item/weapon/implant/core_implant/implant
 	var/datum/core_module/module
 	var/remove_module = TRUE //if TRUE, module will removed on upgrade remove
 	var/mob/living/user
@@ -18,7 +18,7 @@
 		user << SPAN_WARNING("This upgrade is blank.")
 		return
 
-	var/obj/item/weapon/implant/external/core_implant/I = target.get_core_implant()
+	var/obj/item/weapon/implant/core_implant/I = target.get_core_implant()
 
 	if(!I || !istype(I, implant_type) || !I.active || !I.wearer)
 		user << SPAN_WARNING("[target] doesn't have an impant to install [src].")
