@@ -9,7 +9,7 @@
 	fire_delay = 0.6
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	load_method = MAGAZINE
-	matter = list(MATERIAL_PLASTEEL = 20000, MATERIAL_WOOD = 8000)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
 
 /obj/item/weapon/gun/projectile/giskard/update_icon()
 	..()

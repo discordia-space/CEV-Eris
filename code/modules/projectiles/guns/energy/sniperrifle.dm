@@ -11,7 +11,7 @@
 	fire_delay = 35
 	force = 10
 	w_class = ITEM_SIZE_LARGE
-	matter = list(MATERIAL_PLASTEEL = 30000, MATERIAL_WOOD = 16000, MATERIAL_SILVER = 18000, MATERIAL_URANIUM = 12000)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 8, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 6)
 	cell_type = /obj/item/weapon/cell/medium
 
 /obj/item/weapon/gun/energy/sniperrifle/verb/scope()
