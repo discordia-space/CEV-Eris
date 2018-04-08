@@ -56,5 +56,6 @@
 	name = "silencer"
 	desc = "a silencer"
 	icon = 'icons/obj/gun.dmi'
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
 	icon_state = "silencer"
 	w_class = ITEM_SIZE_SMALL
