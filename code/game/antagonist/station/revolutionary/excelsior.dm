@@ -7,6 +7,7 @@
 	role_text_plural = "Infiltrators"
 	role_type = "Excelsior Infiltrator"
 	welcome_text = "Viva la revolution!"
+	hud_indicator = "hudexcelsior"
 
 	faction_id = FACTION_EXCELSIOR
 
