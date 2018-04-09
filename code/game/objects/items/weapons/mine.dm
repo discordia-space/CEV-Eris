@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
 	w_class = ITEM_SIZE_LARGE
-	matter = list(MATERAIL_STEEL = 7)
+	matter = list(MATERIAL_STEEL = 7)
 	matter_reagents = list("fuel" = 30)
 
 	var/obj/item/device/assembly_holder/detonator = null

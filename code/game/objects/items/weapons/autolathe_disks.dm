@@ -360,7 +360,7 @@
 
 /obj/item/weapon/disk/autolathe_disk/excelsior
 	name = "Excelsior Means of Production"
-	category = "Security"
+	category = "Excelsior"
 	desc = "Seize it."
 	icon_state = "excelsior"
 	license = -1
