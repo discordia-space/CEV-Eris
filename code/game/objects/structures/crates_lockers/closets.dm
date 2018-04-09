@@ -354,6 +354,24 @@
 	else if(istype(I, /obj/item/weapon/melee/energy/blade) && secure)
 		emag_act(INFINITY, user)
 		return
+	else if(QUALITY_PULSING in I.tool_qualities)
+		var/required_time = rand(4,8)
+		user << SPAN_NOTICE("You see number [required_time] on multitool screen")
+		for(var/i in 1 to required_time)
+			user.visible_message(
+				SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
+				SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
+				)
+			playsound(src.loc, 'sound/items/glitch.ogg')
+			if(!do_after(user,200)||!locked)
+				return
+		locked = 0
+		broken = 1
+		src.update_icon()
+		user.visible_message(
+		SPAN_WARNING("[user] [locked?"locks":"unlocks"] [name] with a multitool,")
+		)
+		return
 	else
 		src.attack_hand(user)
 	return
