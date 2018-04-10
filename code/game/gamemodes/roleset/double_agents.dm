@@ -6,7 +6,7 @@
 	min_cost = 14
 	max_cost = 22
 
-	req_crew = 15
+	req_crew = 10
 	req_heads = -1
 	req_sec = 2
 	req_eng = -1

@@ -1,6 +1,3 @@
-/datum/antagonist/revolutionary/
-	id = null
-
 /datum/antagonist/revolutionary/excelsior
 	id = ROLE_EXCELSIOR_REV
 	role_text = "Infiltrator"

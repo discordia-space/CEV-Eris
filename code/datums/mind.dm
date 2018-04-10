@@ -140,7 +140,7 @@
 				var/answer = alert("[antag.role_text] is outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
 				ok = answer == "Yes"
 			else
-				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","No","Yes")
+				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","Confirmation","No","Yes")
 				ok = answer == "Yes"
 
 			if(!ok)
