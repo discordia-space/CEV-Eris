@@ -367,13 +367,14 @@
 				not_enough_resources = TRUE
 				break
 
-		if(!container || !container.reagents || !container.is_open_container())
-			not_enough_resources = TRUE
-		else
-			for(var/reagent in making_recipe.reagents)
-				if(!container.reagents.has_reagent(reagent, making_recipe.reagents[reagent]))
-					not_enough_resources = TRUE
-					break
+		if(making_recipe.reagents && making_recipe.reagents.len)
+			if(!container || !container.reagents || !container.is_open_container())
+				not_enough_resources = TRUE
+			else
+				for(var/reagent in making_recipe.reagents)
+					if(!container.reagents.has_reagent(reagent, making_recipe.reagents[reagent]))
+						not_enough_resources = TRUE
+						break
 
 		if(disk_error || not_enough_resources || disk.license == 0)
 			return

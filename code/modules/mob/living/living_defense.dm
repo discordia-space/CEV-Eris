@@ -56,13 +56,13 @@
 		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
 		if(signaler.deadman && prob(80))
 			log_and_message_admins("has triggered a signaler deadman's switch")
-			src.visible_message("\red [src] triggers their deadman's switch!")
+			src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
 			signaler.signal()
 
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, P.agony, def_zone, P)
-		src <<"\red You have been hit by [P]!"
+		src << SPAN_WARNING(" You have been hit by [P]!")
 		qdel(P)
 		return
 
@@ -108,7 +108,7 @@
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!</span>")
+	visible_message(SPAN_DANGER("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
 	var/blocked = run_armor_check(hit_zone, "melee")
 	standard_weapon_hit_effects(I, user, effective_force, blocked, hit_zone)
@@ -156,7 +156,7 @@
 			playsound(src, "miss_sound", 50, 1, -6)
 			return
 
-		src.visible_message("\red [src] has been hit by [O].")
+		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 2)
@@ -183,7 +183,7 @@
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
+			visible_message(SPAN_WARNING("[src] staggers under the impact!"),SPAN_WARNING("You stagger under the impact!"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
