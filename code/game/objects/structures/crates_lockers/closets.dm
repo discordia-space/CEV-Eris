@@ -25,6 +25,7 @@
 	var/opened = FALSE
 	var/welded = FALSE
 	var/dense_when_open = FALSE
+	var/hack_stage = 0
 	var/max_mob_size = 2
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	var/health = 100
@@ -354,24 +355,24 @@
 	else if(istype(I, /obj/item/weapon/melee/energy/blade) && secure)
 		emag_act(INFINITY, user)
 		return
-	else if(QUALITY_PULSING in I.tool_qualities)
-		var/required_time = rand(4,8)
-		user << SPAN_NOTICE("You see number [required_time] on multitool screen")
-		for(var/i in 1 to required_time)
-			user.visible_message(
-				SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
-				SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
-				)
-			playsound(src.loc, 'sound/items/glitch.ogg')
-			if(!do_after(user,200)||!locked)
-				return
-		locked = 0
-		broken = 1
-		src.update_icon()
+	else if(QUALITY_PULSING in I.tool_qualities && secure && locked)
 		user.visible_message(
-		SPAN_WARNING("[user] [locked?"locks":"unlocks"] [name] with a multitool,")
+		SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
+		SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
 		)
-		return
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_CHALLENGING))
+			if(hack_stage < 6)
+				hack_stage++
+				user <<SPAN_NOTICE("Multitool blinks <b>[hack_stage]</b> on screen.")
+			else
+				locked = FALSE
+				broken = TRUE
+				src.update_icon()
+				user.visible_message(
+				SPAN_WARNING("[user] [locked?"locks":"unlocks"] [name] with a multitool,"), \
+				SPAN_WARNING("You [locked? "locked" : "unlocked"] [name] with multitool")
+				)
+				return
 	else
 		src.attack_hand(user)
 	return
