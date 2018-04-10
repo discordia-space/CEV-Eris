@@ -9,6 +9,6 @@
 /obj/item/clothing/head/helmet/space/anomaly
 	name = "Expedition hood"
 	desc = "A pressure resistant expedition hood partially capable of insulating against exotic alien energies."
-	icon_state = "PLACEHOLDER"
-	item_state = "PLACEHOLDER"
+	icon_state = "cespace_helmet"
+	item_state = "cespace_helmet"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 100)
