@@ -40,74 +40,30 @@ var/const/ACTOR				=(1<<9)
 var/const/ASSISTANT			=(1<<10)
 
 
-var/list/assistant_occupations = list(
-)
+var/list/assistant_occupations = list()
 
 
-var/list/command_positions = list(
-	"Captain",
-	"First Officer",
-	"Ironhammer Commander",
-	"Technomancer Exultant",
-	"Guild Merchant",
-	"Moebius Expedition Overseer",
-	"Moebius Biolab Officer"
-)
+var/list/command_positions = list(JOBS_COMMAND)
 
 
-var/list/engineering_positions = list(
-	"Technomancer Exultant",
-	"Technomancer",
-)
+var/list/engineering_positions = list(JOBS_ENGINEERING)
 
 
-var/list/medical_positions = list(
-	"Moebius Biolab Officer",
-	"Moebius Doctor",
-	"Moebius Psychiatrist",
-	"Moebius Chemist",
-	"Moebius Paramedic"
-)
+var/list/medical_positions = list(JOBS_MEDICAL)
 
 
-var/list/science_positions = list(
-	"Moebius Expedition Overseer",
-	"Moebius Scientist",
-	"Moebius Roboticist",
-)
+var/list/science_positions = list(JOBS_SCIENCE)
 
 //BS12 EDIT
-var/list/cargo_positions = list(
-	"Guild Merchant",
-	"Guild Technician",
-	"Guild Miner"
-)
+var/list/cargo_positions = list(JOBS_CARGO)
 
-var/list/civilian_positions = list(
-	"First Officer",
-	"Bartender",
-	"Gardener",
-	"Chef",
-	"Janitor",
-	"Cyberchristian Preacher",
-	"Assistant"
-)
+var/list/civilian_positions = list(JOBS_CIVILIAN)
 
 
-var/list/security_positions = list(
-	"Ironhammer Commander",
-	"Ironhammer Gunnery Sergeant",
-	"Ironhammer Medical Specialist",
-	"Ironhammer Inspector",
-	"Ironhammer Operative"
-)
+var/list/security_positions = list(JOBS_SECURITY)
 
 
-var/list/nonhuman_positions = list(
-	"AI",
-	"Cyborg",
-	"pAI"
-)
+var/list/nonhuman_positions = list(JOBS_NONHUMAN)
 
 
 /proc/guest_jobbans(var/job)
