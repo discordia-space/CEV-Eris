@@ -5433,7 +5433,7 @@
 "cay" = (/obj/machinery/camera/xray/security{dir = 1},/turf/simulated/open,/area/turret_protected/ai)
 "caz" = (/obj/machinery/ai_slipper{icon_state = "motion0"},/obj/structure/cable/cyan{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/bluegrid,/area/turret_protected/ai)
 "caA" = (/obj/machinery/door/airlock/command{name = "AI Core"; req_access = newlist(); req_one_access = list(30,56)},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/tiled/dark,/area/turret_protected/ai)
-"caB" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/dark,/area/turret_protected/ai)
+"caB" = (/obj/machinery/light/small{dir = 4},/obj/machinery/turretid/stun{check_synth = 1; name = "AI Chamber turret control"; pixel_x = 0; pixel_y = 36},/turf/simulated/floor/tiled/dark,/area/turret_protected/ai)
 "caC" = (/turf/simulated/wall/r_wall,/area/tcommsat/computer)
 "caD" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/turf/simulated/floor/plating,/area/tcommsat/computer)
 "caE" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/machinery/telecomms/relay/preset/station,/turf/simulated/floor/tiled/techfloor/grid,/area/tcommsat/chamber)
