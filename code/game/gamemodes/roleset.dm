@@ -38,7 +38,7 @@
 			candidates.Add(candidate)
 
 	qdel(temp)
-	return candidates
+	return shuffle(candidates)
 
 /datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE)
 	var/datum/antagonist/temp
@@ -77,7 +77,7 @@
 			agree_time_out = TRUE
 
 	qdel(temp)
-	return candidates
+	return shuffle(candidates)
 
 /datum/storyevent/roleset/spawn_event()
 	var/antag = antag_types[role_id]

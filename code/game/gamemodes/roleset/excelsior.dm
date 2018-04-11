@@ -39,7 +39,14 @@
 	if(!landmark)
 		return FALSE
 
-	var/datum/mind/rev = pick(candidates)
+	var/datum/mind/rev = null
+	for(var/datum/mind/M in candidates)
+		if(!(M.assigned_role in list(JOBS_SECURITY, JOBS_COMMAND)))	//Don't select head or sec as a first rev, but allow convert
+			rev = M
+			break
+
+	if(!rev)
+		return FALSE
 
 	var/datum/antagonist/R = get_antag_instance(ROLE_EXCELSIOR_REV)
 

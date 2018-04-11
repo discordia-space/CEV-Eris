@@ -101,12 +101,22 @@ var/global/list/faction_types = list()
 			antag_starting_locations[id] = start_locs
 		else
 			station_antag_types[id] = antag_type
+
+		var/role_type = initial(A.role_type)
+		if(!role_type)
+			role_type = initial(A.role_text)
+
 		if(initial(A.selectable))
-			selectable_antag_types[initial(A.role_type)] = id
+			selectable_antag_types |= role_type
 		if(initial(A.faction_id))
 			group_antag_types[id] = antag_type
 		antag_names[id] = initial(A.role_text)
-		antag_bantypes[id] = initial(A.bantype)
+
+		var/bantype = initial(A.bantype)
+		if(!bantype)
+			bantype = role_type
+
+		antag_bantypes[id] = bantype
 
 	for(var/faction_type in typesof(/datum/faction)-/datum/faction)
 		var/datum/faction/F = faction_type
