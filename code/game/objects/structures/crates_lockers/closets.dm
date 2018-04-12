@@ -77,7 +77,7 @@
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > 0 && L.density)
 			if(user)
-				user << "<span class='danger'>There's something large on top of [src], preventing it from opening.</span>"
+				user << SPAN_DANGER("There's something large on top of [src], preventing it from opening.")
 			return FALSE
 	return TRUE
 
@@ -149,7 +149,7 @@
 	if(opened || !can_open(user))
 		return
 	playsound(loc, open_sound, 100, 1, -3)
-	opened = 1
+	opened = TRUE
 	if(!dense_when_open)
 		density = FALSE
 	dump_contents()
@@ -167,7 +167,7 @@
 		stored_units += store_items(stored_units)
 	if(store_mobs)
 		stored_units += store_mobs(stored_units)
-	opened = 0
+	opened = FALSE
 	update_icon()
 	playsound(src.loc, close_sound, 100, 1, -3)
 	density = 1
@@ -217,7 +217,7 @@
 		playsound(src.loc, lock_off_sound, 60, 1, -3)
 	if(user)
 		for(var/mob/O in viewers(user, 3))
-			O.show_message( "<span class='notice'>The [ctype] has been [locked ? null : "un"]locked by [user].</span>", 1)
+			O.show_message( SPAN_NOTICE("The [ctype] has been [locked ? null : "un"]locked by [user]."), 1)
 	update_icon()
 
 //Cham Projector Exception
@@ -348,7 +348,7 @@
 			welded = !src.welded
 			update_icon()
 			for(var/mob/M in viewers(src))
-				M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
+				M.show_message(SPAN_WARNING("[src] has been [welded?"welded shut":"unwelded"] by [user.name]."), 3, SPAN_WARNING("You hear welding."), 2)
 	else if(istype(I,/obj/item/weapon/card/id))
 		src.togglelock(user)
 		return
@@ -362,8 +362,9 @@
 		)
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_CHALLENGING))
 			if(hack_stage < 6)
+				playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
 				hack_stage++
-				user <<SPAN_NOTICE("Multitool blinks <b>[hack_stage]</b> on screen.")
+				user << SPAN_NOTICE("Multitool blinks <b>[hack_stage]</b> on screen.")
 			else
 				locked = FALSE
 				broken = TRUE
