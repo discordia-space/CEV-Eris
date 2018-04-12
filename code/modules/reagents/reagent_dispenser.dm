@@ -169,6 +169,10 @@
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()
 
+/obj/structure/reagent_dispensers/fueltank/ignite_act()
+	if(modded)
+		explode()
+
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
 	if (reagents.total_volume > 500)
 		explosion(src.loc,1,2,4)

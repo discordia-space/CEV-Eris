@@ -11,11 +11,13 @@
 		if(!recipe.path)
 			continue
 
+		recipe.time = 0
 		var/obj/item/I = new recipe.path
 		if(I.matter && !recipe.resources) //This can be overidden in the datums.
 			recipe.resources = list()
 			for(var/material in I.matter)
 				recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
+				recipe.time += recipe.resources[material]*2
 		if(!recipe.resources)
 			recipe.resources = list()
 
@@ -27,6 +29,7 @@
 		if(!recipe.reagents)
 			recipe.reagents = list()
 
+		recipe.time = max(recipe.time,30)
 		qdel(I)
 
 /datum/autolathe/recipe
@@ -34,6 +37,7 @@
 	var/path
 	var/list/resources
 	var/list/reagents
+	var/time = 100
 
 /datum/autolathe/recipe/corrupted
 	name = "ERROR"

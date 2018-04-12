@@ -54,13 +54,18 @@ Used In File(s): \code\game\machinery\autolathe.dm
 		{{:helper.link('INSERT MATERIALS', '', {'insert' : 1}, null, 'bigButton')}}
 	</div>
 </div>
+
 <div class="statusDisplay">
 	<div class="item">
 		{{if data.disk}}
-			{{if data.uses < 0}}
-				<div class="itemContentWide"><b>Disk: {{:data.disk}}. Disk is unlimited.</b></div>
+			{{if data.uses == -1}}
+				<div class="itemContentWide"><b>{{:data.disk}}. Disk is unlimited.</b></div>
 			{{else}}
-				<div class="itemContentWide"><b>Disk: {{:data.disk}}. Uses left: {{:data.uses}}.</b></div>
+				{{if data.uses < -1}}
+					<div class="itemContentWide"><b>{{:data.disk}}.</b></div>
+				{{else}}
+					<div class="itemContentWide"><b>{{:data.disk}}. {{:data.uses}} uses left.</b></div>
+				{{/if}}
 			{{/if}}
 			<div class="itemlabelNarrow">{{:helper.link('', 'eject', {'eject_disk' : 1}, null, 'statusValue')}}</b></div>
 		{{else}}
@@ -69,6 +74,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 		{{/if}}
 	</div>
 </div>
+
 <div class="item">
 	<div class="itemContent" style="width:100%">
 		{{if data.busy}}
