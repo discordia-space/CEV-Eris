@@ -113,7 +113,7 @@
 /obj/item/clothing/ears/earmuffs/mp3/New()
 	..()
 	player = new(src)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
 

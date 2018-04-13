@@ -184,9 +184,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			continue
 
 		//check if the turf is self-zone-blocked
-		var/c_airblock
-		ATMOS_CANPASS_TURF(c_airblock, T, T)
-		if(c_airblock & ZONE_BLOCKED)
+		if(T.c_airblock(T) & ZONE_BLOCKED)
 			deferred += T
 			if (no_mc_tick)
 				CHECK_TICK
@@ -292,12 +290,9 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	ASSERT(isturf(A))
 	ASSERT(isturf(B))
 	#endif
-	var/ablock
-	ATMOS_CANPASS_TURF(ablock, A, B)
-	if(ablock == BLOCKED)
-		return BLOCKED
-	ATMOS_CANPASS_TURF(., B, A)
-	return ablock | .
+	var/ablock = A.c_airblock(B)
+	if(ablock == BLOCKED) return BLOCKED
+	return ablock | B.c_airblock(A)
 
 /datum/controller/subsystem/air/proc/merge(zone/A, zone/B)
 	#ifdef ZASDBG
@@ -418,20 +413,11 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		return edge
 
 /datum/controller/subsystem/air/proc/has_same_air(turf/A, turf/B)
-	if(A.initial_gas)
-		if(!B.initial_gas)
-			return 0
-		for(var/g in A.initial_gas)
-			if(A.initial_gas[g] != B.initial_gas[g])
-				return 0
-	if(B.initial_gas)
-		if(!A.initial_gas)
-			return 0
-		for(var/g in B.initial_gas)
-			if(A.initial_gas[g] != B.initial_gas[g])
-				return 0
-	if(A.temperature != B.temperature)
-		return 0
+	if(A.oxygen != B.oxygen) return 0
+	if(A.nitrogen != B.nitrogen) return 0
+	if(A.plasma != B.plasma) return 0
+	if(A.carbon_dioxide != B.carbon_dioxide) return 0
+	if(A.temperature != B.temperature) return 0
 	return 1
 
 /datum/controller/subsystem/air/proc/remove_edge(connection_edge/E)

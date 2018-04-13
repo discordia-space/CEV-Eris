@@ -187,7 +187,7 @@
 	tmr.time=5
 	tmr.secured = 1
 	tmr.holder = src
-	processing_objects.Add(tmr)
+	START_PROCESSING(SSobj, tmr)
 	left_assembly = tmr
 	right_assembly = ign
 	secured = 1

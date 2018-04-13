@@ -7,7 +7,7 @@
 
 /obj/item/weapon/reagent_containers/glass/replenishing/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	spawning_id = pick("blood","lube","stoxin","ethanol","ice","glycerol","fuel","cleaner")
 
 /obj/item/weapon/reagent_containers/glass/replenishing/Process()
@@ -23,7 +23,7 @@
 
 /obj/item/clothing/mask/gas/poltergeist/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	add_hearing()
 
 /obj/item/clothing/mask/gas/poltergeist/Destroy()
@@ -62,7 +62,7 @@
 
 /obj/item/weapon/vampiric/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	add_hearing()
 
 /obj/item/weapon/vampiric/Destroy()
@@ -154,7 +154,7 @@
 
 /obj/effect/decal/cleanable/blood/splatter/animated/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	loc_last_process = src.loc
 
 /obj/effect/decal/cleanable/blood/splatter/animated/Process()
@@ -184,7 +184,7 @@
 	density = 1
 
 /obj/effect/shadow_wight/New()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/Process()
 	if(src.loc)
@@ -208,7 +208,7 @@
 			M.sleeping = max(M.sleeping,rand(5,10))
 			src.loc = null
 	else
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/Bump(var/atom/obstacle)
 	obstacle << "\red You feel a chill run down your spine!"

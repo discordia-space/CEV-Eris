@@ -21,7 +21,7 @@
 /obj/item/weapon/cell/Initialize()
 	..()
 	if(autorecharging)
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/cell/Process()
 	charge_tick++

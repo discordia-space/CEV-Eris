@@ -29,7 +29,7 @@
 
 	// No more available directions? Shut down process().
 	if(avail_dirs.len==0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return 1
 
 	// We're checking, reset the timer.

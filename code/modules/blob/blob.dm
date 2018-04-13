@@ -165,11 +165,11 @@
 	return
 
 /obj/effect/blob/core/New(loc)
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	return ..(loc)
 
 /obj/effect/blob/core/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/blob/core/Process()

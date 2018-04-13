@@ -40,7 +40,7 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 			debug_variables(tickerProcess)
 
 		if("Air")
-			debug_variables(air_master)
+			debug_variables(SSair)
 
 		if("Jobs")
 			debug_variables(job_master)

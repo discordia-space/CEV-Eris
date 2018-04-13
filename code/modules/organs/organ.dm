@@ -98,7 +98,7 @@
 		return
 	damage = max_damage
 	status |= ORGAN_DEAD
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	if(dead_icon)
 		icon_state = dead_icon
 	if(owner && vital)
@@ -281,7 +281,7 @@
 	if(affected) affected.internal_organs -= src
 
 	loc = get_turf(owner)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
@@ -313,7 +313,7 @@
 
 	owner = target
 	loc = owner
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	target.internal_organs |= src
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src
@@ -331,4 +331,4 @@
 		if(!blood_DNA)
 			blood_DNA = list()
 		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)

@@ -18,12 +18,12 @@
 	var/list/upgrades = list()
 
 /obj/item/weapon/implant/external/core_implant/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	deactivate()
 	..()
 
 /obj/item/weapon/implant/external/core_implant/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	add_hearing()
 	..()
 
@@ -49,7 +49,7 @@
 		return
 	remove_hearing()
 	active = FALSE
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/weapon/implant/external/core_implant/malfunction()
@@ -105,7 +105,7 @@
 	if((!wearer || loc != wearer) && active)
 		remove_hearing()
 		active = FALSE
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	restore_power(power_regen)
 
 /obj/item/weapon/implant/external/core_implant/proc/get_module(var/m_type)

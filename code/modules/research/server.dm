@@ -76,7 +76,7 @@
 
 //Backup files to centcomm to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()
-	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
+	for(var/obj/machinery/r_n_d/server/centcom/C in SSmachines.machinery)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
 		for(var/datum/design/D in files.known_designs)
@@ -142,7 +142,7 @@
 	..()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
-	for(var/obj/machinery/r_n_d/server/S in machines)
+	for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)
 		switch(S.server_id)
 			if(-1)
 				continue
@@ -193,20 +193,20 @@
 		temp_server = null
 		consoles = list()
 		servers = list()
-		for(var/obj/machinery/r_n_d/server/S in machines)
+		for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)
 			if(S.server_id == text2num(href_list["access"]) || S.server_id == text2num(href_list["data"]) || S.server_id == text2num(href_list["transfer"]))
 				temp_server = S
 				break
 		if(href_list["access"])
 			screen = 1
-			for(var/obj/machinery/computer/rdconsole/C in machines)
+			for(var/obj/machinery/computer/rdconsole/C in SSmachines.machinery)
 				if(C.sync)
 					consoles += C
 		else if(href_list["data"])
 			screen = 2
 		else if(href_list["transfer"])
 			screen = 3
-			for(var/obj/machinery/r_n_d/server/S in machines)
+			for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)
 				if(S == src)
 					continue
 				servers += S
@@ -256,7 +256,7 @@
 		if(0) //Main Menu
 			dat += "Connected Servers:<BR><BR>"
 
-			for(var/obj/machinery/r_n_d/server/S in machines)
+			for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)
 				if(istype(S, /obj/machinery/r_n_d/server/centcom) && !badmin)
 					continue
 				dat += "[S.name] || "

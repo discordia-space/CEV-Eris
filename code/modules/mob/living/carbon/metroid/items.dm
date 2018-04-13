@@ -241,7 +241,7 @@
 
 	New()
 		..()
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 	Process()
 		var/mob/observer/ghost/ghost

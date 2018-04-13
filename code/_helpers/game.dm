@@ -482,7 +482,7 @@ datum/projectile_data
 
 /proc/get_vents()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in SSmachines.machinery)
 		if(!temp_vent.welded && temp_vent.network && isOnStationLevel(temp_vent))
 			if(temp_vent.network.normal_members.len > 15)
 				vents += temp_vent

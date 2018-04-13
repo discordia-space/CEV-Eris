@@ -100,13 +100,13 @@
 		return 1
 
 /obj/item/modular_computer/New()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 	..()
 
 /obj/item/modular_computer/Destroy()
 	kill_program(1)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	for(var/obj/item/weapon/computer_hardware/CH in src.get_all_components())
 		qdel(CH)
 	return ..()

@@ -18,11 +18,11 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/holder/Destroy()
 	last_holder = null
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/holder/Process()

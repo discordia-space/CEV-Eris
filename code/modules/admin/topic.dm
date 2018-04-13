@@ -1020,7 +1020,7 @@
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
-		for(var/obj/machinery/photocopier/faxmachine/F in machines)
+		for(var/obj/machinery/photocopier/faxmachine/F in SSmachines.machinery)
 			if(F == fax)
 				if(! (F.stat & (BROKEN|NOPOWER) ) )
 

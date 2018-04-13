@@ -129,7 +129,7 @@ Class Procs:
 	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/Destroy()
-	machines -= src
+	STOP_PROCESSING(SSmachines, src)
 	if(component_parts)
 		for(var/atom/A in component_parts)
 			qdel(A)

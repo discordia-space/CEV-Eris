@@ -35,7 +35,7 @@
 
 /obj/item/weapon/flamethrower/Process()
 	if(!lit)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return null
 	var/turf/location = loc
 	if(istype(location, /mob/))
@@ -125,7 +125,7 @@
 		if(!status)	return
 		lit = !lit
 		if(lit)
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))

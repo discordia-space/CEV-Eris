@@ -16,7 +16,7 @@
 		return FALSE
 	. = ..()
 	if(. && user)
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 		user.update_action_buttons()
 
 /obj/item/device/lighting/toggleable/flashlight/turn_off(mob/user)

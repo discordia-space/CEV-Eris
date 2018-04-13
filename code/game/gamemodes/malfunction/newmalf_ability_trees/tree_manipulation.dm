@@ -47,7 +47,7 @@
 	if(!ability_prechecks(user, price) || !ability_pay(user,price))
 		return
 	user << "Sending feedback pulse..."
-	for(var/obj/machinery/power/apc/AP in machines)
+	for(var/obj/machinery/power/apc/AP in SSmachines.machinery)
 		if(prob(5))
 			AP.overload_lighting()
 		if(prob(1) && prob(1)) // Very very small chance to actually destroy the APC.
@@ -129,7 +129,7 @@
 		user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in machines)
+/datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in SSmachines.machinery)
 	set name = "Machine Overload"
 	set desc = "400 CPU - Causes cyclic short-circuit in machine, resulting in weak explosion after some time."
 	set category = "Software"

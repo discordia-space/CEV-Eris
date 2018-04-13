@@ -32,7 +32,7 @@
 	..()
 	if(self_recharge)
 		cell = new cell_type(src)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/item/weapon/gun/energy/Process()

@@ -93,7 +93,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 			if(last_request + 200 < world.time) //don't spam other people with requests either, you jerk!
 				last_request = world.time
 				var/list/holopadlist = list()
-				for(var/obj/machinery/hologram/holopad/H in machines)
+				for(var/obj/machinery/hologram/holopad/H in SSmachines.machinery)
 					if(isStationLevel(H.z) && H.operable())
 						holopadlist["[H.loc.loc.name]"] = H	//Define a list and fill it with the area of every holopad in the world
 				holopadlist = sortAssoc(holopadlist)

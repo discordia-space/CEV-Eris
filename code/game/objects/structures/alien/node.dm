@@ -7,10 +7,10 @@
 
 /obj/structure/alien/node/New()
 	..()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 
 /obj/structure/alien/node/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/structure/alien/node/Process()

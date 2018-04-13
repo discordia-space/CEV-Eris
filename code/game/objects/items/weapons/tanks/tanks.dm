@@ -33,7 +33,7 @@ var/list/global/tank_gauge_cache = list()
 	src.air_contents = new /datum/gas_mixture()
 	src.air_contents.volume = volume //liters
 	src.air_contents.temperature = T20C
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_gauge()
 	return
 
@@ -41,7 +41,7 @@ var/list/global/tank_gauge_cache = list()
 	if(air_contents)
 		qdel(air_contents)
 
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 	if(istype(loc, /obj/item/device/transfer_valve))
 		var/obj/item/device/transfer_valve/TTV = loc
