@@ -1,0 +1,932 @@
+Sun Apr  8 16:54:45 2018
+World opened on network port 2511.
+Welcome BYOND! (5.0 Public Version 511.1385)
+runtime error: Cannot read null.initialized
+proc name: New (/atom/New)
+  source file: atoms.dm,38
+  usr: (src)
+  src: the dview (/mob/dview)
+  src.loc: null
+  call stack:
+the dview (/mob/dview): New(null)
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+world: ()
+Running revision:
+NewMC
+2018-04-08
+da6cc3ed06ac63a2ac2d376a03797a6a0d0bf69f
+runtime error: WARNING: /obj/item/weapon/computer_hardware/tesla_link is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the tesla link (/obj/item/weapon/computer_hardware/tesla_link), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+runtime error: WARNING: /obj/item/weapon/computer_hardware/network_card/wired is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the wired NTNet network card (/obj/item/weapon/computer_hardware/network_card/wired), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+runtime error: WARNING: /obj/item/weapon/computer_hardware/hard_drive/super is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the super hard drive (/obj/item/weapon/computer_hardware/hard_drive/super), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+libmariadb.so: cannot open shared object file: No such file or directory
+Your server failed to establish a connection with the feedback database.
+
+## ERROR: Failed to connect to database in load_admins(). Reverting to legacy system.
+## ERROR: Hook '/hook/startup/proc/loadAdmins' failed or runtimed.
+
+## ERROR: Database connection failed. Reverting to the legacy ban system.
+Sun Apr  8 16:57:58 2018
+World opened on network port 2511.
+Welcome BYOND! (5.0 Public Version 511.1385)
+runtime error: Cannot read null.initialized
+proc name: New (/atom/New)
+  source file: atoms.dm,38
+  usr: (src)
+  src: the dview (/mob/dview)
+  src.loc: null
+  call stack:
+the dview (/mob/dview): New(null)
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+world: ()
+Running revision:
+NewMC
+2018-04-08
+da6cc3ed06ac63a2ac2d376a03797a6a0d0bf69f
+runtime error: WARNING: /obj/item/weapon/computer_hardware/tesla_link is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the tesla link (/obj/item/weapon/computer_hardware/tesla_link), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+runtime error: WARNING: /obj/item/weapon/computer_hardware/network_card/wired is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the wired NTNet network card (/obj/item/weapon/computer_hardware/network_card/wired), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+runtime error: WARNING: /obj/item/weapon/computer_hardware/hard_drive/super is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the super hard drive (/obj/item/weapon/computer_hardware/hard_drive/super), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+Feedback database connection established.
+## ERROR: Hook '/hook/startup/proc/loadAdmins' failed or runtimed.
+The BYOND hub reports that port 2511 is not reachable.
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/machinery/atmosp...")
+qdel(Scrubbers pipe (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers), 0)
+Scrubbers pipe (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers): Initialize(1)
+Atoms (/datum/controller/subsystem/atoms): InitAtom(Scrubbers pipe (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers), /list (/list))
+Atoms (/datum/controller/subsystem/atoms): InitializeAtoms(null)
+Atoms (/datum/controller/subsystem/atoms): Initialize(613728)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/hidden/supply is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/machinery/atmosp...")
+qdel(Air supply pipe (/obj/machinery/atmospherics/pipe/simple/hidden/supply), 0)
+Air supply pipe (/obj/machinery/atmospherics/pipe/simple/hidden/supply): Initialize(1)
+Atoms (/datum/controller/subsystem/atoms): InitAtom(Air supply pipe (/obj/machinery/atmospherics/pipe/simple/hidden/supply), /list (/list))
+Atoms (/datum/controller/subsystem/atoms): InitializeAtoms(null)
+Atoms (/datum/controller/subsystem/atoms): Initialize(613728)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/structure/table/woodentable is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/structure/table/...")
+qdel(the table frame (/obj/structure/table/woodentable), 0)
+the table frame (/obj/structure/table/woodentable): break to parts(1)
+the table frame (/obj/structure/table/woodentable): Initialize(1)
+Atoms (/datum/controller/subsystem/atoms): InitAtom(the table frame (/obj/structure/table/woodentable), /list (/list))
+Atoms (/datum/controller/subsystem/atoms): InitializeAtoms(null)
+Atoms (/datum/controller/subsystem/atoms): Initialize(613728)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/structure/lattice is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/structure/lattic...")
+qdel(the lattice (/obj/structure/lattice), 0)
+the lattice (/obj/structure/lattice): Initialize(1)
+Atoms (/datum/controller/subsystem/atoms): InitAtom(the lattice (/obj/structure/lattice), /list (/list))
+Atoms (/datum/controller/subsystem/atoms): InitializeAtoms(null)
+Atoms (/datum/controller/subsystem/atoms): Initialize(613728)
+Master (/datum/controller/master): Initialize(10, 0)
+Initialized Atoms subsystem within 27.9 seconds!
+Initialized Machines subsystem within 0 seconds!
+runtime error: WARNING: /obj/machinery/floor_light is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/machinery/floor_...")
+qdel(the floor light (/obj/machinery/floor_light), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /datum/reagent/water is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /datum/reagent/water ...")
+qdel(Water (/datum/reagent/water), 0)
+/datum/reagents (/datum/reagents): Destroy(0)
+qdel(/datum/reagents (/datum/reagents), 0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+qdel(the fire extinguisher (/obj/item/weapon/extinguisher), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /datum/reagents is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /datum/reagents is no...")
+qdel(/datum/reagents (/datum/reagents), 0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+qdel(the fire extinguisher (/obj/item/weapon/extinguisher), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/device/taperecorder is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/device/tape...")
+qdel(the universal recorder (/obj/item/device/taperecorder), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/ashtray/glass is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the glass ashtray (/obj/item/weapon/material/ashtray/glass), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/device/assembly/signaler is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/device/asse...")
+qdel(the remote signaling device (/obj/item/device/assembly/signaler), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /datum/reagent/fuel is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /datum/reagent/fuel i...")
+qdel(Welding fuel (/datum/reagent/fuel), 0)
+/datum/reagents (/datum/reagents): Destroy(0)
+qdel(/datum/reagents (/datum/reagents), 0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+qdel(the welding tool (/obj/item/weapon/tool/weldingtool), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/knife is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the steel kitchen knife (/obj/item/weapon/material/knife), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/hatchet/tacknife is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the steel tactical knife (/obj/item/weapon/material/hatchet/tacknife), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/hatchet is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the steel hatchet (/obj/item/weapon/material/hatchet), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/minihoe is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the steel mini hoe (/obj/item/weapon/material/minihoe), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(614007)
+Master (/datum/controller/master): Initialize(10, 0)
+Initialized Legacy subsystem within 5.3 seconds!
+runtime error: bad index
+proc name: OnTopic (/datum/category_item/player_setup_item/general/equipment/OnTopic)
+  source file: 04_equipment.dm,59
+runtime error: bad index
+proc name: OnTopic (/datum/category_item/player_setup_item/general/equipment/OnTopic)
+  source file: 04_equipment.dm,59
+runtime error: WARNING: /mob/new_player is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x202baad] | /obj/machinery/floor_light was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/item/organ/internal/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/item/device/pda is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /mob/shadow is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /mob/observer/ghost is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+### VarEdit by Clockrigger: /datum/configuration fps=40
+### VarEdit by Clockrigger: /datum/configuration fps=60
+runtime error: GC: -- [0x30000c3] | /mob/new_player was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+### VarEdit by Clockrigger: /datum/configuration fps=120
+### VarEdit by Clockrigger: /datum/configuration fps=60
+### VarEdit by Clockrigger: /datum/configuration fps=120
+runtime error: WARNING: /obj/structure/window/reinforced/plasma/full is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x2101ce83] | /datum/hud was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x202baee] | /obj/parallax was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x30000c7] | /mob/observer/ghost was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: Cannot read null.charge
+proc name: examine (/obj/item/weapon/gun/energy/examine)
+  source file: energy.dm,78
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: GC: -- [0xd0008f5] | /image was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: Cannot read null.charge
+proc name: examine (/obj/item/weapon/gun/energy/examine)
+  source file: energy.dm,78
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: WARNING: /obj/structure/window/reinforced/plasma is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: WARNING: /obj/structure/grille is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: Cannot read null.initialized
+proc name: New (/atom/New)
+  source file: atoms.dm,38
+  usr: (src)
+  src: the dview (/mob/dview)
+  src.loc: null
+  call stack:
+the dview (/mob/dview): New(null)
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+the dview (/mob/dview): New()
+world: ()
+Running revision:
+NewMC
+2018-04-08
+da6cc3ed06ac63a2ac2d376a03797a6a0d0bf69f
+runtime error: WARNING: /obj/item/weapon/computer_hardware/tesla_link is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the tesla link (/obj/item/weapon/computer_hardware/tesla_link), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+runtime error: WARNING: /obj/item/weapon/computer_hardware/network_card/wired is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the wired NTNet network card (/obj/item/weapon/computer_hardware/network_card/wired), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+runtime error: WARNING: /obj/item/weapon/computer_hardware/hard_drive/super is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/comp...")
+qdel(the super hard drive (/obj/item/weapon/computer_hardware/hard_drive/super), 0)
+the console (/obj/machinery/modular_computer/console/buildable): New(the floor (37,91,6) (/turf/simulated/floor/tiled/dark))
+Feedback database connection established.
+## ERROR: Hook '/hook/startup/proc/loadAdmins' failed or runtimed.
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/machinery/atmosp...")
+qdel(Scrubbers pipe (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers), 0)
+Scrubbers pipe (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers): Initialize(1)
+Atoms (/datum/controller/subsystem/atoms): InitAtom(Scrubbers pipe (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers), /list (/list))
+Atoms (/datum/controller/subsystem/atoms): InitializeAtoms(null)
+Atoms (/datum/controller/subsystem/atoms): Initialize(623793)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/hidden/supply is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/machinery/atmosp...")
+qdel(Air supply pipe (/obj/machinery/atmospherics/pipe/simple/hidden/supply), 0)
+Air supply pipe (/obj/machinery/atmospherics/pipe/simple/hidden/supply): Initialize(1)
+Atoms (/datum/controller/subsystem/atoms): InitAtom(Air supply pipe (/obj/machinery/atmospherics/pipe/simple/hidden/supply), /list (/list))
+Atoms (/datum/controller/subsystem/atoms): InitializeAtoms(null)
+Atoms (/datum/controller/subsystem/atoms): Initialize(623793)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/structure/table/woodentable is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/structure/table/...")
+qdel(the table frame (/obj/structure/table/woodentable), 0)
+the table frame (/obj/structure/table/woodentable): break to parts(1)
+the table frame (/obj/structure/table/woodentable): Initialize(1)
+Atoms (/datum/controller/subsystem/atoms): InitAtom(the table frame (/obj/structure/table/woodentable), /list (/list))
+Atoms (/datum/controller/subsystem/atoms): InitializeAtoms(null)
+Atoms (/datum/controller/subsystem/atoms): Initialize(623793)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/structure/lattice is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/structure/lattic...")
+qdel(the lattice (/obj/structure/lattice), 0)
+the lattice (/obj/structure/lattice): Initialize(1)
+Atoms (/datum/controller/subsystem/atoms): InitAtom(the lattice (/obj/structure/lattice), /list (/list))
+Atoms (/datum/controller/subsystem/atoms): InitializeAtoms(null)
+Atoms (/datum/controller/subsystem/atoms): Initialize(623793)
+Master (/datum/controller/master): Initialize(10, 0)
+Initialized Atoms subsystem within 21.1 seconds!
+Initialized Machines subsystem within 0 seconds!
+runtime error: WARNING: /obj/machinery/floor_light is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/machinery/floor_...")
+qdel(the floor light (/obj/machinery/floor_light), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /datum/reagent/water is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /datum/reagent/water ...")
+qdel(Water (/datum/reagent/water), 0)
+/datum/reagents (/datum/reagents): Destroy(0)
+qdel(/datum/reagents (/datum/reagents), 0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+qdel(the fire extinguisher (/obj/item/weapon/extinguisher), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /datum/reagents is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /datum/reagents is no...")
+qdel(/datum/reagents (/datum/reagents), 0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+the fire extinguisher (/obj/item/weapon/extinguisher): Destroy(0)
+qdel(the fire extinguisher (/obj/item/weapon/extinguisher), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/device/taperecorder is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/device/tape...")
+qdel(the universal recorder (/obj/item/device/taperecorder), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/ashtray/glass is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the glass ashtray (/obj/item/weapon/material/ashtray/glass), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/device/assembly/signaler is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/device/asse...")
+qdel(the remote signaling device (/obj/item/device/assembly/signaler), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /datum/reagent/fuel is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /datum/reagent/fuel i...")
+qdel(Welding fuel (/datum/reagent/fuel), 0)
+/datum/reagents (/datum/reagents): Destroy(0)
+qdel(/datum/reagents (/datum/reagents), 0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+the welding tool (/obj/item/weapon/tool/weldingtool): Destroy(0)
+qdel(the welding tool (/obj/item/weapon/tool/weldingtool), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/knife is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the steel kitchen knife (/obj/item/weapon/material/knife), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/hatchet/tacknife is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the steel tactical knife (/obj/item/weapon/material/hatchet/tacknife), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/hatchet is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the steel hatchet (/obj/item/weapon/material/hatchet), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+runtime error: WARNING: /obj/item/weapon/material/minihoe is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+  call stack:
+crash with("WARNING: /obj/item/weapon/mate...")
+qdel(the steel mini hoe (/obj/item/weapon/material/minihoe), 0)
+populate lathe recipes()
+/datum/controller/game_control... (/datum/controller/game_controller): setup objects()
+/datum/controller/game_control... (/datum/controller/game_controller): setup()
+Legacy (/datum/controller/subsystem/legacy): Initialize(624004)
+Master (/datum/controller/master): Initialize(10, 0)
+Initialized Legacy subsystem within 6.5 seconds!
+runtime error: WARNING: /mob/new_player is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x202b616] | /obj/machinery/floor_light was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/item/organ/internal/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/item/device/pda is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x30000b9] | /mob/new_player was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /mob/shadow is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0xd0008fc] | /image was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: undefined proc or verb /Error().
+
+proc name: catchException (/datum/controller/process/proc/catchException)
+  source file: process.dm,330
+runtime error: GC: -- [0x21024aa9] | /datum/scheduled_task was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/structure/reagent_dispensers/fueltank is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/structure/railing is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/structure/sign/faction/technomancers is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /datum/pipeline is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/visible/cyan is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/visible/green is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/manifold/visible/yellow is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/machinery/atmospherics/valve/digital is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /datum/reagent/ethanol/gin is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/manifold4w/visible/cyan is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/machinery/camera/network/engineering is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/visible/red is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/structure/cable/yellow is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x2101caa2] | /datum/pipe_network was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x2101caa6] | /datum/gas_mixture was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x2101caa4] | /datum/pipeline was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x200bacf] | /obj/machinery/atmospherics/pipe/simple/visible/cyan was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x200bb45] | /obj/machinery/atmospherics/pipe/manifold/visible/yellow was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x200bb4a] | /obj/machinery/atmospherics/valve/digital was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /datum/reagent/ethanol/beer is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/structure/grille is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/structure/window/reinforced/full is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x200bf93] | /obj/machinery/camera/network/engineering was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: GC: -- [0x200bfa0] | /obj/machinery/alarm was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /obj/structure/window/reinforced is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: WARNING: /datum/reagent/ethanol/cognac is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+Warning: further proc crash messages are being suppressed to prevent overload...
