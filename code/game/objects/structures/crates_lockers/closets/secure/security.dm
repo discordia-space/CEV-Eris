@@ -187,9 +187,9 @@
 
 /obj/structure/closet/secure_closet/detective/populate_contents()
 	..()
-	new /obj/item/clothing/under/det(src)
-	new /obj/item/clothing/under/det/black(src)
-	new /obj/item/clothing/under/inspector(src)
+	new /obj/item/clothing/under/rank/det(src)
+	new /obj/item/clothing/under/rank/det/black(src)
+	new /obj/item/clothing/under/rank/inspector(src)
 	new /obj/item/clothing/suit/storage/det_trench(src)
 	new /obj/item/clothing/suit/storage/insp_trench(src)
 	new /obj/item/clothing/gloves/thick(src)

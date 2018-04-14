@@ -123,7 +123,7 @@
 	)
 	idtype = /obj/item/weapon/card/id/det
 
-	uniform = /obj/item/clothing/under/inspector
+	uniform = /obj/item/clothing/under/rank/inspector
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
