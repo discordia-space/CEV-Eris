@@ -25,6 +25,7 @@
 	var/opened = FALSE
 	var/welded = FALSE
 	var/dense_when_open = FALSE
+	var/hack_require = null
 	var/hack_stage = 0
 	var/max_mob_size = 2
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
@@ -48,6 +49,7 @@
 	..()
 	populate_contents()
 	update_icon()
+	hack_require = rand(6,8)
 
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
@@ -361,11 +363,11 @@
 		SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
 		)
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_CHALLENGING))
-			if(hack_stage < 6)
+			if(hack_stage < hack_require)
 				playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
 				hack_stage++
-				user << SPAN_NOTICE("Multitool blinks <b>[hack_stage]</b> on screen.")
-			else
+				user << SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen.")
+			else if(hack_stage >= hack_require)
 				locked = FALSE
 				broken = TRUE
 				src.update_icon()
