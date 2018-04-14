@@ -43,6 +43,8 @@
 
 	var/mat_efficiency = 1
 
+	var/have_disk = TRUE
+
 	var/message_nolicense = "Disk license is out."
 	var/message_nomaterial = "Not enough materials."
 	var/message_noreagent = "Not enough reagents."
@@ -69,23 +71,25 @@
 	data["paused"] = paused
 	data["uses"] = disk_uses()
 	data["error"] = error
+	data["have_disk"] = have_disk
 
 	var/list/L = list()
 	for(var/rtype in recipe_list())
 		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
 		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
 
-		if(unfolded == rtype)
+		if(unfolded == "[rtype]")
 			LE["unfolded"] = TRUE
-			var/list/LM = list()
-			for(var/m in R.resources)
-				LM.Add(list(list("name" = m, "req" = R.resources[m])))
-			LE["resources"] = LM
 
-			LM = list()
+			var/text = ""
+			for(var/m in R.resources)
+				text += "[m]: [round(R.resources[m] * mat_efficiency)]<br>"
+			LE["resources"] = text == "" ? "None" : text
+
+			text = ""
 			for(var/m in R.reagents)
-				LM.Add(list(list("name" = m, "req" = R.resources[m])))
-			LE["reagents"] = LM
+				text += "[m]: [R.reagents[m]]<br>"
+			LE["reagents"] = text == "" ? "None" : text
 
 		L.Add(list(LE))
 
@@ -120,10 +124,12 @@
 	data["materials"] = M
 
 	data["current"] = null
+	data["progress"] = progress
 	if(current)
 		var/datum/autolathe/recipe/R = autolathe_recipes[current]
 		if(R)
 			data["current"] = R.name
+			data["current_time"] = R.time
 
 			var/list/RS = list()
 			for(var/mat in R.resources)
@@ -149,6 +155,9 @@
 			continue
 
 		var/datum/autolathe/recipe/R = autolathe_recipes[queue[i]]
+		if(!R)
+			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
+
 		var/list/QR = list("name" = R.name, "ind" = i)
 		QR["error"] = 0
 
@@ -176,7 +185,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 450, 655)
+		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 550, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -254,25 +263,25 @@
 
 
 	if(href_list["add_to_queue"])
-		if(ispath(href_list["add_to_queue"]))
-			var/recipe = href_list["add_to_queue"]
-			if(recipe in recipe_list() && queue.len < queue_max)
+		var/recipe = text2path(href_list["add_to_queue"])
+		if(recipe)
+			if(queue.len < queue_max)
 				queue.Add(recipe)
 
 	if(href_list["remove_from_queue"])
 		var/ind = text2num(href_list["remove_from_queue"])
-		if(ind != null && ind <= 1 && ind <= queue.len)
+		if(ind != null && ind >= 1 && ind <= queue.len)
 			queue[ind] = null
 			fix_queue()
 
 	if(href_list["move_up_queue"])
 		var/ind = text2num(href_list["move_up_queue"])
-		if(ind != null && ind <= 2 && ind <= queue.len)
+		if(ind != null && ind >= 2 && ind <= queue.len)
 			queue.Swap(ind,ind-1)
 
 	if(href_list["move_down_queue"])
 		var/ind = text2num(href_list["move_down_queue"])
-		if(ind != null && ind <= 1 && ind <= queue.len-1)
+		if(ind != null && ind >= 1 && ind <= queue.len-1)
 			queue.Swap(ind,ind+1)
 
 
@@ -282,6 +291,12 @@
 
 	if(href_list["toggle_pause"])
 		paused = !paused
+
+	if(href_list["unfold"])
+		if(unfolded == href_list["unfold"])
+			unfolded = null
+		else
+			unfolded = href_list["unfold"]
 
 	nanomanager.update_uis(src)
 
@@ -295,6 +310,9 @@
 		return
 
 	if(istype(eating,/obj/item/weapon/disk/autolathe_disk))
+		if(!have_disk)
+			return
+
 		if(disk)
 			user << SPAN_NOTICE("There's already \a [disk] inside the autolathe.")
 			return
@@ -418,15 +436,13 @@
 
 //Return -1 to infinite uses or lower value to disable uses display
 /obj/machinery/autolathe/proc/disk_uses()
-	return disk.license
+	if(disk)
+		return disk.license
 
 //Should return null if there is no disk
 /obj/machinery/autolathe/proc/disk_name()
 	if(disk)
 		return disk.category
-	else
-		return null
-
 
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
@@ -459,14 +475,15 @@
 				if(!container.reagents.has_reagent(rgn, R.reagents[rgn]))
 					return ERR_NOREAGENT
 
-	return TRUE
+	return ERR_OK
 
 
 /obj/machinery/autolathe/process()
 	if(stat & NOPOWER)
 		return
 
-	if(current && !paused)
+
+	if(current)
 		var/datum/autolathe/recipe/R = autolathe_recipes[current]
 		var/err = cannot_print(current)
 		if(err == ERR_NOLICENSE)
@@ -480,18 +497,21 @@
 		else if(err == ERR_OK)
 			error = null
 
-			if(progress <= 0)
-				consume_materials(current)
+			if(!paused)
+				if(progress <= 0)
+					consume_materials(current)
 
-			progress += speed
+				progress += speed
 
 		else
 			error = "Unknown error."
 
-		if(progress >= R.time)
+		if(R && progress >= R.time)
+			new R.path(src.loc)
 			next_recipe()
 	else
 		error = null
+		next_recipe()
 
 	fix_queue()
 	special_process()
@@ -517,6 +537,8 @@
 	progress = 0
 	if(queue.len)
 		current = queue[1]
+		queue[1] = null
+		fix_queue()
 
 /obj/machinery/autolathe/proc/special_process()
 	queue_max = hacked ? 16 : 8
@@ -525,12 +547,12 @@
 	var/list/Q = list()
 	var/cnt = 0
 	for(var/r in queue)
-		Q.Add(r)
-		cnt++
-		if(cnt > queue_max)
-			break
+		if(ispath(r))
+			Q.Add(r)
+			cnt++
+			if(cnt > queue_max)
+				break
 
-	qdel(queue)
 	queue = Q
 
 
@@ -568,7 +590,7 @@
 
 	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
 
-	speed = man_rating*2
+	speed = man_rating*3
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
 
 /obj/machinery/autolathe/dismantle()

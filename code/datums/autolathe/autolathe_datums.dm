@@ -29,7 +29,7 @@
 		if(!recipe.reagents)
 			recipe.reagents = list()
 
-		recipe.time = max(recipe.time,30)
+		recipe.time = max(recipe.time,15)
 		qdel(I)
 
 /datum/autolathe/recipe

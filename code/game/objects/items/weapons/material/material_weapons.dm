@@ -13,7 +13,7 @@
 
 	var/applies_material_colour = 1
 	var/unbreakable
-	var/force_divisor = 0.5
+	var/force_divisor = 1
 	var/thrown_force_divisor = 0.5
 	var/default_material = MATERIAL_STEEL
 	var/material/material
