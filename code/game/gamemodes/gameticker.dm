@@ -111,7 +111,7 @@ var/global/datum/controller/gameticker/ticker
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
-		for(var/mob/new_player/N in mob_list)
+		for(var/mob/new_player/N in SSmobs.mob_list)
 			N.new_player_panel_proc()
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
@@ -157,7 +157,7 @@ var/global/datum/controller/gameticker/ticker
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
 
-	for(var/mob/M in mob_list)
+	for(var/mob/M in SSmobs.mob_list)
 		if(isOnStationLevel(M))
 			if(M.client)
 				M.client.screen += cinematic
@@ -300,7 +300,7 @@ var/global/datum/controller/gameticker/ticker
 					Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
 	world << "<br>"
 
-	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in SSmobs.mob_list)
 		if(aiPlayer.stat != DEAD)
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
 		else
@@ -315,7 +315,7 @@ var/global/datum/controller/gameticker/ticker
 
 	var/dronecount = 0
 
-	for(var/mob/living/silicon/robot/robo in mob_list)
+	for(var/mob/living/silicon/robot/robo in SSmobs.mob_list)
 
 		if(isdrone(robo))
 			dronecount++

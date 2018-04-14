@@ -269,7 +269,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		var/list/match = list()
 
-		for(var/mob/M in mob_list)
+		for(var/mob/M in SSmobs.mob_list)
 			var/strings = list(M.name, M.ckey)
 			if(M.mind)
 				strings += M.mind.assigned_role

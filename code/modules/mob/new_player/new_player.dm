@@ -11,13 +11,13 @@
 	invisibility = 101
 
 	density = 0
-	stat = 2
+	stat = DEAD
 	canmove = 0
 
 	anchored = 1	//  don't get pushed around
-
+/*
 /mob/new_player/New()
-	mob_list += src
+	mob_list += src*/
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr
