@@ -63,8 +63,10 @@ var/global/datum/controller/gameticker/ticker
 				if(!vote.active_vote)
 					vote.autostoryteller()	//Quit calling this over and over and over and over.
 
-			if(pregame_timeleft <= 0)
+			if(pregame_timeleft <= 0 || ((initialization_stage & INITIALIZATION_NOW_AND_COMPLETE) == INITIALIZATION_NOW_AND_COMPLETE))
 				current_state = GAME_STATE_SETTING_UP
+				Master.SetRunLevel(RUNLEVEL_SETUP)
+
 			first_start_trying = FALSE
 	while (!setup())
 
@@ -76,6 +78,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(!src.storyteller)
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return 0
 
@@ -85,6 +88,7 @@ var/global/datum/controller/gameticker/ticker
 	if(!src.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		storyteller = null
 		story_vote_ended = FALSE
 		job_master.ResetOccupations()
@@ -95,6 +99,7 @@ var/global/datum/controller/gameticker/ticker
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
 	current_state = GAME_STATE_PLAYING
+	Master.SetRunLevel(RUNLEVEL_GAME)
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
@@ -249,6 +254,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(!nuke_in_progress && game_finished)
 		current_state = GAME_STATE_FINISHED
+		Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 		spawn
 			declare_completion()

@@ -410,17 +410,17 @@ var/global/datum/controller/master/Master = new
 
 	//keep running while we have stuff to run and we haven't gone over a tick
 	//	this is so subsystems paused eariler can use tick time that later subsystems never used
-	world << "trying to enter while in RunQueue"
+//	world << "trying to enter while in RunQueue"
 	while (ran && queue_head && TICK_USAGE < TICK_LIMIT_MC)
-		world << "entered first while in RunQueue"
+//		world << "entered first while in RunQueue"
 		ran = FALSE
 		bg_calc = FALSE
 		current_tick_budget = queue_priority_count
 		queue_node = queue_head
 		while (queue_node)
-			world << "entered second while in RunQueue"
+//			world << "entered second while in RunQueue"
 			if (ran && TICK_USAGE > TICK_LIMIT_RUNNING)
-				world << "break on (if ran&& TICK_USAGE...)"
+//				world << "break on (if ran&& TICK_USAGE...)"
 				break
 
 			queue_node_flags = queue_node.flags
@@ -438,7 +438,7 @@ var/global/datum/controller/master/Master = new
 					queue_priority_count += queue_node.queued_priority
 					current_tick_budget -= queue_node_priority
 					queue_node = queue_node.queue_next
-					world << "contunue on line 441"
+//					world << "contunue on line 441"
 					continue
 
 			if ((queue_node_flags & SS_BACKGROUND) && !bg_calc)
@@ -467,7 +467,7 @@ var/global/datum/controller/master/Master = new
 
 			tick_usage = TICK_USAGE
 			var/state = queue_node.ignite(queue_node_paused)
-			world << "Iginite() on [queue_node.name]"
+//			world << "Iginite() on [queue_node.name]"
 			tick_usage = TICK_USAGE - tick_usage
 
 			if (state == SS_RUNNING)
