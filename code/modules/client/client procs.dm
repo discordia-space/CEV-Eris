@@ -182,8 +182,11 @@
 	directory -= ckey
 	clients -= src
 	return ..()
-
-
+/*
+/client/Destroy()
+	..()
+	return QDEL_HINT_HARDDEL_NOW
+*/
 /client/proc/get_registration_date()
 	// Return data:
 	// Success: "2017-07-28"
