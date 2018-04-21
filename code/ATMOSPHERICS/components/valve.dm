@@ -86,7 +86,7 @@
 	node1 = null
 	node2 = null
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/valve/proc/open()
 	if(open) return 0

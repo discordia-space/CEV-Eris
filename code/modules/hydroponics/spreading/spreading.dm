@@ -68,7 +68,8 @@
 		plant_controller.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		plant_controller.add_plant(neighbor)
-	..()
+	. = ..()
+
 /obj/effect/plant/single
 	spread_chance = 0
 

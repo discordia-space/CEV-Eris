@@ -14,7 +14,7 @@
 
 /obj/structure/alien/egg/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/structure/alien/egg/CanUseTopic(var/mob/user)
 	return isghost(user) ? STATUS_INTERACTIVE : STATUS_CLOSE

@@ -21,7 +21,7 @@
 
 /obj/item/weapon/gun/launcher/spikethrower/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/weapon/gun/launcher/spikethrower/Process()
 	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)

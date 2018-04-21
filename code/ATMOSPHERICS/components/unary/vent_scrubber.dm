@@ -44,7 +44,7 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
-	..()
+	. = ..()
 
 
 /obj/machinery/atmospherics/unary/vent_scrubber/update_icon(var/safety = 0)
@@ -287,5 +287,4 @@
 	if(initial_loc)
 		initial_loc.air_scrub_info -= id_tag
 		initial_loc.air_scrub_names -= id_tag
-	..()
-	return
+	return ..()

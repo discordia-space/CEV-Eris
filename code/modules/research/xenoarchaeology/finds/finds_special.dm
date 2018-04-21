@@ -67,7 +67,7 @@
 
 /obj/item/weapon/vampiric/Destroy()
 	remove_hearing()
-	..()
+	. = ..()
 
 /obj/item/weapon/vampiric/Process()
 	//see if we've identified anyone nearby

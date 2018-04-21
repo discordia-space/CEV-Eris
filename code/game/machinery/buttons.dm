@@ -22,7 +22,7 @@
 /obj/machinery/button/Destroy()
 	qdel(wifi_sender)
 	wifi_sender = null
-	return..()
+	return ..()
 
 /obj/machinery/button/attack_ai(mob/user as mob)
 	return attack_hand(user)

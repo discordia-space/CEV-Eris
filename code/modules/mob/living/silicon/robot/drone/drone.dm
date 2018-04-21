@@ -90,7 +90,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
 		hat.loc = get_turf(src)
-	..()
+	. = ..()
 
 /mob/living/silicon/robot/drone/construction
 	icon_state = "constructiondrone"

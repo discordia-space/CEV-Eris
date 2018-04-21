@@ -11,7 +11,7 @@
 /obj/item/assembly/shock_kit/Destroy()
 	qdel(part1)
 	qdel(part2)
-	..()
+	. = ..()
 
 /obj/item/assembly/shock_kit/attackby(obj/item/weapon/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING)) && !status)

@@ -87,7 +87,7 @@
 		var/obj/item/organ/external/O = loc
 		O.implants -= src
 
-	..()
+	. = ..()
 
 /obj/effect/spider/eggcluster/Process()
 	amount_grown += rand(0,2)
@@ -127,7 +127,7 @@
 
 /obj/effect/spider/spiderling/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/effect/spider/spiderling/Bump(atom/user)
 	if(istype(user, /obj/structure/table))

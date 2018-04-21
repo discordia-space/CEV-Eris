@@ -83,7 +83,7 @@ var/list/mechtoys = list(
 
 /obj/structure/plasticflaps/mining/Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
 	update_turf_underneath(0)
-	..()
+	. = ..()
 
 /obj/structure/plasticflaps/mining/proc/update_turf_underneath(var/should_pass)
 	var/turf/T = get_turf(loc)

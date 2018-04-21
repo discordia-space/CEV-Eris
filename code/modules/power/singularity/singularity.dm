@@ -48,7 +48,7 @@
 
 /obj/singularity/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/singularity/attack_hand(mob/user as mob)
 	consume(user)

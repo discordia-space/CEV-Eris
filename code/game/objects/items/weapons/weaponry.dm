@@ -65,7 +65,7 @@
 		M << "You are free of the net!"
 
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/effect/energy_net/proc/healthcheck()
 

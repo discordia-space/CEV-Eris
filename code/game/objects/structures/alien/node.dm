@@ -11,7 +11,7 @@
 
 /obj/structure/alien/node/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/structure/alien/node/Process()
 	if(locate(/obj/effect/plant) in loc)

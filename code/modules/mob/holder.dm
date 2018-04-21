@@ -23,7 +23,7 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/Destroy()
 	last_holder = null
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/weapon/holder/Process()
 	update_state()

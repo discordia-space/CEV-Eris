@@ -116,7 +116,7 @@
 
 /obj/item/weapon/cartridge/signal/Destroy()
 	qdel(radio)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/quartermaster
 	name = "\improper Asters Guild Parts & Vendors cartridge"

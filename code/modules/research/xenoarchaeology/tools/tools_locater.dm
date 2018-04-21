@@ -18,7 +18,7 @@
 
 /obj/item/device/beacon_locator/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/device/beacon_locator/Process()
 	if(target_radio)

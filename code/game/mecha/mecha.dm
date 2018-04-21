@@ -168,7 +168,7 @@
 
 	mechas_list -= src //global mech list
 	remove_hearing()
-	..()
+	. = ..()
 
 /obj/mecha/update_icon()
 	if (initial_icon)

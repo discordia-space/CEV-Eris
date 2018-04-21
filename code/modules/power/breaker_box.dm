@@ -20,7 +20,7 @@
 	var/update_locked = 0
 
 /obj/machinery/power/breakerbox/Destroy()
-	..()
+	. = ..()
 	for(var/datum/nano_module/rcon/R in world)
 		R.FindDevices()
 

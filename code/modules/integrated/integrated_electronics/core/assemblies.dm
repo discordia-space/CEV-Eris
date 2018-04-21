@@ -51,7 +51,7 @@
 	STOP_PROCESSING(SSobj, src)
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	..()
+	. = ..()
 
 /obj/item/device/electronic_assembly/Process()
 	handle_idle_power()

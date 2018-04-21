@@ -599,7 +599,7 @@
 	Destroy()
 		qdel(pr_repair_droid)
 		pr_repair_droid = null
-		..()
+		. = ..()
 
 	attach(obj/mecha/M as obj)
 		..()
@@ -692,7 +692,7 @@
 	Destroy()
 		qdel(pr_energy_relay)
 		pr_energy_relay = null
-		..()
+		. = ..()
 
 	detach()
 		pr_energy_relay.stop()
@@ -780,7 +780,7 @@
 	Destroy()
 		qdel(pr_mech_generator)
 		pr_mech_generator = null
-		..()
+		. = ..()
 
 	proc/init()
 		fuel = new /obj/item/stack/material/plasma(src)

@@ -1230,9 +1230,7 @@ var/mob/dview/dview_mob = new
 		return
 
 	dview_mob.loc = center
-
 	dview_mob.see_invisible = invis_flags
-
 	. = view(range, dview_mob)
 	dview_mob.loc = null
 

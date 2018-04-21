@@ -20,7 +20,7 @@
 /obj/item/weapon/implant/external/core_implant/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	deactivate()
-	..()
+	. = ..()
 
 /obj/item/weapon/implant/external/core_implant/New()
 	START_PROCESSING(SSobj, src)

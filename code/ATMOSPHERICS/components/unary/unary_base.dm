@@ -37,7 +37,7 @@
 
 		node = null
 
-		..()
+		. = ..()
 
 	Initialize()
 		if(node) return

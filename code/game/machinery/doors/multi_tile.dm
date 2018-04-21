@@ -46,7 +46,7 @@
 /obj/machinery/door/airlock/multi_tile/metal/Destroy()
 	qdel(f5)
 	qdel(f6)
-	..()
+	. = ..()
 
 /obj/machinery/filler_object
 	name = ""

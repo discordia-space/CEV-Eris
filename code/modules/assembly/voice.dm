@@ -13,7 +13,7 @@
 
 /obj/item/device/assembly/voice/Destroy()
 	remove_hearing()
-	..()
+	. = ..()
 
 /obj/item/device/assembly/voice/hear_talk(mob/living/M as mob, msg)
 	if(listening)

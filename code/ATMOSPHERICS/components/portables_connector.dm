@@ -72,7 +72,7 @@
 
 	node = null
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/portables_connector/Initialize()
 	if(node) return

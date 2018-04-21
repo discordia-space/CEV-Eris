@@ -77,8 +77,8 @@
 /obj/machinery/door/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
-	return
+
+	return ..()
 
 /obj/machinery/door/Process()
 	if(close_door_at && world.time >= close_door_at)

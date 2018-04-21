@@ -99,7 +99,7 @@ obj/machinery/atmospherics/mains_pipe
 
 	Destroy()
 		disconnect()
-		..()
+		. = ..()
 
 	Initialize()
 		for(var/i = 1 to nodes.len)

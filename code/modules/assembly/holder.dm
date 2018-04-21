@@ -19,7 +19,7 @@
 
 /obj/item/device/assembly_holder/Destroy()
 	remove_hearing()
-	..()
+	. = ..()
 
 /obj/item/device/assembly_holder/proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
 	return

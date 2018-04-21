@@ -105,7 +105,7 @@
 	for(var/datum/computer_file/program/ntnet_dos/D in dos_sources)
 		D.target = null
 		D.error = "Connection to quantum relay severed"
-	..()
+	return ..()
 
 /obj/machinery/ntnet_relay/attackby(var/obj/item/I, var/mob/user)
 

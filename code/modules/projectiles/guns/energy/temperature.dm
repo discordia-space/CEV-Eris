@@ -19,7 +19,7 @@
 
 /obj/item/weapon/gun/energy/temperature/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 
 /obj/item/weapon/gun/energy/temperature/attack_self(mob/living/user as mob)

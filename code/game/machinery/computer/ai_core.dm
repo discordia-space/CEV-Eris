@@ -215,7 +215,7 @@
 /obj/structure/AIcore/deactivated/Destroy()
 	if(src in empty_playable_ai_cores)
 		empty_playable_ai_cores -= src
-	..()
+	. = ..()
 
 /obj/structure/AIcore/deactivated/proc/load_ai(var/mob/living/silicon/ai/transfer, var/obj/item/device/aicard/card, var/mob/user)
 
