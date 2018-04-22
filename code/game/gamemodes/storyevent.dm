@@ -30,7 +30,7 @@ var/global/list/storyevents = list()
 
 	var/req_stage = -1
 
-	var/max_crew_diff_lower = 2	//Maximum difference between above values and real crew distribution. If difference is greater, weight will be 0
+	var/max_crew_diff_lower = 10	//Maximum difference between above values and real crew distribution. If difference is greater, weight will be 0
 	var/max_crew_diff_higher = 10
 
 	var/max_stage_diff_lower = 0

@@ -97,10 +97,6 @@
 #define Sp_CHARGES	"charges"
 #define Sp_HOLDVAR	"holdervar"
 
-//Antag jobs list (for resticted_jobs list)
-#define JOBS_SECURITY "Ironhammer Commander","Ironhammer Gunnery Sergeant","Ironhammer Inspector","Ironhammer Medical Specialist","Ironhammer Operative"
-#define JOBS_COMMAND "Captain","First Officer","Ironhammer Commander","Guild Merchant","Technomancer Exultant","Moebius Biolab Officer","Moebius Expedition Overseer"
-
 #define INITIALIZATION_NOW 1
 #define INITIALIZATION_HAS_BEGUN 2
 #define INITIALIZATION_COMPLETE 4

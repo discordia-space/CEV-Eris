@@ -13,16 +13,16 @@
 	name = "projectile"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bullet"
-	density = 1
-	unacidable = 1
-	anchored = 1 //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
+	density = TRUE
+	unacidable = TRUE
+	anchored = TRUE //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
-	var/bumped = 0		//Prevents it from hitting more than one guy at once
+	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
 	var/hitsound_wall = ""//"ricochet"
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
-	var/silenced = 0	//Attack message
+	var/silenced = FALSE	//Attack message
 	var/yo = null
 	var/xo = null
 	var/current = null
@@ -34,18 +34,18 @@
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
 
-	var/accuracy = 0
 	var/dispersion = 0.0
 
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS are the only things that should be in here
-	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
-	var/taser_effect = 0 //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
+	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
+	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
 	var/check_armour = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
-		//Effects
+
+	//Effects
 	var/stun = 0
 	var/weaken = 0
 	var/paralyze = 0
@@ -56,7 +56,7 @@
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
 
-	var/hitscan = 0		// whether the projectile should be hitscan
+	var/hitscan = FALSE		// whether the projectile should be hitscan
 	var/step_delay = 1	// the delay between iterations if not a hitscan projectile
 
 	// effect types to be used
@@ -69,17 +69,17 @@
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
-//TODO: make it so this is called more reliably, instead of sometimes by bullet_act() and sometimes not
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(blocked >= 2)		return 0//Full block
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
 	var/mob/living/L = target
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
-	return 1
+	return TRUE
 
+// generate impact effect
 /obj/item/projectile/proc/on_impact(var/atom/A)
-	impact_effect(effect_transform)		// generate impact effect
+	impact_effect(effect_transform)
 	playsound(src, "hitsound_wall", 50, 1, -2)
 	return
 
@@ -87,17 +87,17 @@
 /obj/item/projectile/proc/can_embed()
 	//embed must be enabled and damage type must be brute
 	if(!embed || damage_type != BRUTE)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/item/projectile/proc/get_structure_damage()
 	if(damage_type == BRUTE || damage_type == BURN)
 		return damage
-	return 0
+	return FALSE
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
 /obj/item/projectile/proc/check_penetrate(var/atom/A)
-	return 1
+	return TRUE
 
 /obj/item/projectile/proc/check_fire(atom/target as mob, var/mob/living/user as mob)  //Checks if you can hit them or not.
 	check_trajectory(target, user, pass_flags, flags)
@@ -121,13 +121,13 @@
 	var/turf/curloc = get_turf(src)
 	var/turf/targloc = get_turf(target)
 	if (!istype(targloc) || !istype(curloc))
-		return 1
+		return TRUE
 
 	if(targloc == curloc) //Shooting something in the same turf
 		target.bullet_act(src, target_zone)
 		on_impact(target)
 		qdel(src)
-		return 0
+		return FALSE
 
 	original = target
 	def_zone = target_zone
@@ -136,14 +136,14 @@
 		setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
 		Process()
 
-	return 0
+	return FALSE
 
 //called to launch a projectile from a gun
 /obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
 	if(user == target) //Shooting yourself
 		user.bullet_act(src, target_zone)
 		qdel(src)
-		return 0
+		return FALSE
 
 	loc = get_turf(user) //move the projectile out into the world
 
@@ -175,12 +175,12 @@
 	var/result = PROJECTILE_FORCE_MISS
 	if(hit_zone)
 		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
-		result = target_mob.bullet_act(src, def_zone)
+		result = target_mob.bullet_act(src, def_zone)//this returns mob's armor_check and another - see modules/mob/living/living_defense.dm
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
 			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
-		return 0
+		return FALSE
 
 	//hit messages
 	if(silenced)
@@ -203,25 +203,24 @@
 
 	//sometimes bullet_act() will want the projectile to continue flying
 	if (result == PROJECTILE_CONTINUE)
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced=0)
 	if(A == src)
-		return 0 //no
-
+		return FALSE
 	if(A == firer)
 		loc = A.loc
-		return 0 //cannot shoot yourself
+		return FALSE //go fuck yourself in another place pls
 
 	if((bumped && !forced) || (A in permutated))
-		return 0
+		return FALSE
 
-	var/passthrough = 0 //if the projectile should continue flying
+	var/passthrough = FALSE //if the projectile should continue flying
 	var/distance = get_dist(starting,loc)
 
-	bumped = 1
+	bumped = TRUE
 	if(ismob(A))
 		var/mob/M = A
 		if(isliving(A))
@@ -234,7 +233,7 @@
 
 			passthrough = !attack_mob(M, distance)
 		else
-			passthrough = 1 //so ghosts don't stop bullets
+			passthrough = FALSE //so ghosts don't stop bullets
 	else
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
 		if(isturf(A))
@@ -246,7 +245,7 @@
 	//penetrating projectiles can pass through things that otherwise would not let them
 	if(!passthrough && penetrating > 0)
 		if(check_penetrate(A))
-			passthrough = 1
+			passthrough = TRUE
 		penetrating--
 
 	//the bullet passes through a dense object!
@@ -258,26 +257,26 @@
 			else
 				loc = A.loc
 			permutated.Add(A)
-		bumped = 0 //reset bumped variable!
-		return 0
+		bumped = FALSE //reset bumped variable!
+		return FALSE
 
 	//stop flying
 	on_impact(A)
 
-	density = 0
+	density = FALSE
 	invisibility = 101
 
 	qdel(src)
-	return 1
+	return TRUE
 
 /obj/item/projectile/ex_act()
 	return //explosions probably shouldn't delete projectiles
 
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	return 1
+	return TRUE
 
 /obj/item/projectile/Process()
-	var/first_step = 1
+	var/first_step = TRUE
 
 	spawn while(src && src.loc)
 		if(kill_count-- < 1)
@@ -308,7 +307,7 @@
 
 		if(first_step)
 			muzzle_effect(effect_transform)
-			first_step = 0
+			first_step = FALSE
 		else if(!bumped)
 			tracer_effect(effect_transform)
 
@@ -316,7 +315,7 @@
 			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
 
 /obj/item/projectile/proc/before_move()
-	return 0
+	return FALSE
 
 /obj/item/projectile/proc/setup_trajectory(turf/startloc, turf/targloc, var/x_offset = 0, var/y_offset = 0)
 	// setup projectile state

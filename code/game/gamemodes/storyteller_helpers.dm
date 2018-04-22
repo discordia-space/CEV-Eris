@@ -35,29 +35,25 @@
 /datum/storyteller/proc/calculate_event_weight(var/datum/storyevent/R)
 	var/weight = 1
 
-	weight *= weight_mult(crew,R.req_crew,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
-	weight *= weight_mult(heads,R.req_heads,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
-	weight *= weight_mult(sec,R.req_sec,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
-	weight *= weight_mult(eng,R.req_eng,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
-	weight *= weight_mult(med,R.req_med,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
-	weight *= weight_mult(sci,R.req_sci,R.max_crew_diff_lower,R.max_crew_diff_higher,TRUE)
+	weight *= weight_mult(crew,R.req_crew)
+	weight *= weight_mult(heads,R.req_heads)
+	weight *= weight_mult(sec,R.req_sec)
+	weight *= weight_mult(eng,R.req_eng)
+	weight *= weight_mult(med,R.req_med)
+	weight *= weight_mult(sci,R.req_sci)
 
-	weight *= weight_mult(event_spawn_stage,R.req_stage,R.max_stage_diff_lower,R.max_stage_diff_higher,TRUE)
+	weight *= weight_mult(event_spawn_stage,R.req_stage)
 
-	weight *= weight_mult(R.spawn_times,0,0,R.spawn_times_max)
+	weight *= weight_mult(R.spawn_times,0)
 
 	weight = R.get_special_weight(weight)
 
 	return weight
 
-/datum/storyteller/proc/weight_mult(var/val, var/req, var/min, var/max, var/atl = FALSE)
-	var/diff = val-req
-	if(req < 0)
+/datum/storyteller/proc/weight_mult(var/val, var/req)
+	if(req <= 0)
 		return 1
-	if(diff < -min || diff > max)
-		return 0
-	if(atl && req < val)
-		return 1
-	var/mod = (min+max/2)**2
-	return max(mod-(abs(val-req)**2),0)/mod
+	if(val <= 0)	//We need to spawn anything
+		return 0.75/req
+	return 1-((max(0,req-val)**3)/(req**3))
 

@@ -2,14 +2,14 @@
 	id = "borer"
 	role_id = ROLE_BORER
 
-	min_cost = 15
-	max_cost = 25
+	min_cost = 10
+	max_cost = 18
 
-	req_crew = 23
+	req_crew = 15
 	req_heads = -1
-	req_sec = -1
+	req_sec = 2
 	req_eng = -1
-	req_med = -1
+	req_med = 4
 	req_sci = -1
 	req_stage = -1
 
@@ -20,12 +20,12 @@
 	role_id = ROLE_TRAITOR
 	multispawn = TRUE
 
-	min_cost = 10
-	max_cost = 15
+	min_cost = 5
+	max_cost = 10
 
-	req_crew = 10
+	req_crew = 7
 	req_heads = -1
-	req_sec = 4
+	req_sec = 3
 	req_eng = -1
 	req_med = 1
 	req_sci = -1
@@ -38,12 +38,12 @@
 	role_id = ROLE_INQUISITOR
 	multispawn = TRUE
 
-	min_cost = 8
-	max_cost = 16
+	min_cost = 5
+	max_cost = 10
 
-	req_crew = 10
+	req_crew = 7
 	req_heads = -1
-	req_sec = 4
+	req_sec = 3
 	req_eng = -1
 	req_med = -1
 	req_sci = -1
@@ -65,10 +65,10 @@
 	id = "malf"
 	role_id = ROLE_MALFUNCTION
 
-	min_cost = 20
+	min_cost = 15
 	max_cost = 30
 
-	req_crew = 12
+	req_crew = 15
 	req_heads = 2
 	req_sec = 3
 	req_eng = 5
@@ -82,12 +82,12 @@
 	role_id = ROLE_MARSHAL
 	multispawn = TRUE
 
-	min_cost = 7
-	max_cost = 15
+	min_cost = 5
+	max_cost = 10
 
-	req_crew = 10
+	req_crew = 7
 	req_heads = -1
-	req_sec = 4
+	req_sec = 6
 	req_eng = -1
 	req_med = -1
 	req_sci = -1
@@ -110,10 +110,10 @@
 	role_id = ROLE_CHANGELING
 	multispawn = TRUE
 
-	min_cost = 12
-	max_cost = 19
+	min_cost = 6
+	max_cost = 10
 
-	req_crew = 15
+	req_crew = 7
 	req_heads = -1
 	req_sec = 4
 	req_eng = -1
