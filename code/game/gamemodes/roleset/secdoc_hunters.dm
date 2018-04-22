@@ -16,7 +16,7 @@
 	spawn_times_max = 3
 
 /datum/storyevent/roleset/secdoc_hunters/spawn_event()
-	var/list/hunters = candidates_list(ROLE_SECDOC_HUNTER)
+	var/list/hunters = candidates_list(ROLE_TRAITOR)
 	if(hunters.len < 1)
 		return FALSE
 
@@ -29,7 +29,7 @@
 
 	var/datum/mind/sci = pick(scientists)
 
-	var/datum/antagonist/H = get_antag_instance(ROLE_SECDOC_HUNTER)
+	var/datum/antagonist/H = get_antag_instance(ROLE_TRAITOR)
 	var/datum/antagonist/S = get_antag_instance(ROLE_SECDOC_DEFENDER)
 
 	H.create_antagonist(hunter, announce = FALSE)

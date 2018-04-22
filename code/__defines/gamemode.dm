@@ -26,7 +26,7 @@
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
 // Storyteller names macro
-#define STORYTELLER_BASE "shitgenerator"
+#define STORYTELLER_BASE "erida"
 
 // antag template macros.
 #define ROLE_BORER "borer"
@@ -40,17 +40,17 @@
 #define ROLE_MERCENARY "mercenary"
 #define ROLE_CHANGELING "changeling"
 #define ROLE_MONKEY "monkey"
-#define ROLE_REVOLUTIONARY "revolutionary"
 #define ROLE_MALFUNCTION "malf"
 #define ROLE_TRAITOR "traitor"
 #define ROLE_TRAITOR_SYNTH "robo_traitor"
 #define ROLE_MARSHAL "marshal"
 
+#define ROLE_EXCELSIOR_REV "excelsior_rev"
+
 #define ROLE_INQUISITOR "inquisitor"
-#define ROLE_SECDOC_HUNTER "secdoc_hunter"
 #define ROLE_SECDOC_DEFENDER "secdoc_defender"
 
-#define FACTION_REVOLUTIONARY "revolutionary"
+#define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"
 #define FACTION_XENOMORPHS "xenomorphs"
 
@@ -98,7 +98,7 @@
 #define Sp_HOLDVAR	"holdervar"
 
 //Antag jobs list (for resticted_jobs list)
-#define JOBS_SECURITY "Ironhammer Commander","Ironhammer Gunnery Sergeant","Ironhammer Inspector","Ironhammer Medical Specialist","Ironhammer Operative",
+#define JOBS_SECURITY "Ironhammer Commander","Ironhammer Gunnery Sergeant","Ironhammer Inspector","Ironhammer Medical Specialist","Ironhammer Operative"
 #define JOBS_COMMAND "Captain","First Officer","Ironhammer Commander","Guild Merchant","Technomancer Exultant","Moebius Biolab Officer","Moebius Expedition Overseer"
 
 #define INITIALIZATION_NOW 1

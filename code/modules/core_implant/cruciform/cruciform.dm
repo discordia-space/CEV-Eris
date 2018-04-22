@@ -1,21 +1,21 @@
 var/list/christians = list()
 
-/obj/item/weapon/implant/external/core_implant/cruciform
+/obj/item/weapon/implant/core_implant/cruciform
 	name = "cruciform"
 	icon_state = "cruciform_green"
-	position_flag = POS_FRONT_TOP
+	desc = "Soul holder for every christian."
 	allowed_organs = list(BP_CHEST)
-	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 
-/obj/item/weapon/implant/external/core_implant/cruciform/New()
+/obj/item/weapon/implant/core_implant/cruciform/New()
 	..()
 	add_module(new CRUCIFORM_COMMON)
 
-/obj/item/weapon/implant/external/core_implant/cruciform/get_mob_overlay(gender, body_build)
+/obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
 	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender][body_build]")
 
-/obj/item/weapon/implant/external/core_implant/cruciform/hard_eject()
+/obj/item/weapon/implant/core_implant/cruciform/hard_eject()
 	if(!ishuman(wearer))
 		return
 	var/mob/living/carbon/human/H = wearer
@@ -30,28 +30,28 @@ var/list/christians = list()
 	s.set_up(3, 1, src)
 	s.start()
 
-/obj/item/weapon/implant/external/core_implant/cruciform/activate()
+/obj/item/weapon/implant/core_implant/cruciform/activate()
 	if(!wearer || active)
 		return
 	..()
 	update_data()
 	christians |= wearer
 
-/obj/item/weapon/implant/external/core_implant/cruciform/deactivate()
+/obj/item/weapon/implant/core_implant/cruciform/deactivate()
 	if(!active || !wearer)
 		return
 	christians.Remove(wearer)
 	..()
 
-/obj/item/weapon/implant/external/core_implant/cruciform/Process()
+/obj/item/weapon/implant/core_implant/cruciform/Process()
 	..()
-	if(world.time == round(world.time))
+	if(active && round(world.time) % 5 == 0)
 		remove_cyber()
 	if(wearer && wearer.stat == DEAD)
 		deactivate()
 
 
-/obj/item/weapon/implant/external/core_implant/cruciform/proc/transfer_soul()
+/obj/item/weapon/implant/core_implant/cruciform/proc/transfer_soul()
 	if(!wearer || !activated)
 		return FALSE
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
@@ -70,7 +70,7 @@ var/list/christians = list()
 		update_data()
 		return TRUE
 
-/obj/item/weapon/implant/external/core_implant/cruciform/proc/remove_cyber()
+/obj/item/weapon/implant/core_implant/cruciform/proc/remove_cyber()
 	if(!wearer)
 		return
 	for(var/obj/O in wearer)
@@ -90,15 +90,13 @@ var/list/christians = list()
 			wearer.visible_message(SPAN_DANGER("[R.name] rips through [wearer]'s [R.part]."),\
 			SPAN_DANGER("[R.name] rips through your [R.part]."))
 			R.part.take_damage(rand(40)+20)
-			R.forceMove(get_turf(wearer))
-			R.wearer = null
-			R.part.implants.Remove(R)
+			R.uninstall()
 			R.malfunction = MALFUNCTION_PERMANENT
 	if(ishuman(wearer))
 		var/mob/living/carbon/human/H = wearer
 		H.update_implants()
 
-/obj/item/weapon/implant/external/core_implant/cruciform/proc/update_data()
+/obj/item/weapon/implant/core_implant/cruciform/proc/update_data()
 	if(!wearer)
 		return
 
@@ -108,17 +106,17 @@ var/list/christians = list()
 //////////////////////////
 //////////////////////////
 
-/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_common()
+/obj/item/weapon/implant/core_implant/cruciform/proc/make_common()
 	add_module(new CRUCIFORM_COMMON)
 
-/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_priest()
+/obj/item/weapon/implant/core_implant/cruciform/proc/make_priest()
 	add_module(new CRUCIFORM_PRIEST)
 
-/obj/item/weapon/implant/external/core_implant/cruciform/proc/make_inquisitor()
+/obj/item/weapon/implant/core_implant/cruciform/proc/make_inquisitor()
 	add_module(new CRUCIFORM_INQUISITOR)
 
 
 
 /mob/proc/get_cruciform()
-	var/obj/item/weapon/implant/external/core_implant/C = locate(/obj/item/weapon/implant/external/core_implant/cruciform, src)
+	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant/cruciform, src)
 	return C

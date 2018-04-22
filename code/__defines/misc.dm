@@ -231,6 +231,7 @@
 #define CORE_GROUP_RITUAL /datum/core_module/group_ritual
 #define CORE_ACTIVATED /datum/core_module/activatable
 
+//Cruciform
 #define CRUCIFORM_COMMON /datum/core_module/cruciform/common
 #define CRUCIFORM_PRIEST /datum/core_module/cruciform/priest
 #define CRUCIFORM_INQUISITOR /datum/core_module/cruciform/inquisitor
@@ -239,3 +240,4 @@
 #define CRUCIFORM_OBEY /datum/core_module/cruciform/obey
 #define CRUCIFORM_PRIEST_CONVERT /datum/core_module/activatable/cruciform/priest_convert
 #define CRUCIFORM_OBEY_ACTIVATOR /datum/core_module/activatable/cruciform/obey_activator
+
