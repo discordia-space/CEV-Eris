@@ -29,7 +29,7 @@
 	docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
 	..()
 
-/obj/effect/overmap/initialize()
+/obj/effect/overmap/Initialize()
 	. = ..()
 
 	if(!config.use_overmap)
@@ -79,7 +79,7 @@
 				admin_notice("Sector \"[name]\" containing Z [english_list(map_z)] could not find waypoint with tag [waypoint_tag]!")
 		restricted_waypoints[shuttle_name] = found_waypoints
 
-	for(var/obj/machinery/computer/sensors/S in machines)
+	for(var/obj/machinery/computer/sensors/S in SSmachines.machinery)
 		if (S.z in map_z)
 			S.linked = src
 
@@ -94,12 +94,12 @@
 	icon_state = "sector"
 	anchored = 1
 
-/obj/effect/overmap/sector/initialize()
+/obj/effect/overmap/sector/Initialize()
 	. = ..()
 	if(known)
 		layer = 2
 		plane = -1
-		for(var/obj/machinery/computer/helm/H in machines)
+		for(var/obj/machinery/computer/helm/H in SSmachines.machinery)
 			H.get_known_sectors()
 
 /proc/build_overmap()

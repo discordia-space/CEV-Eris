@@ -13,7 +13,7 @@
 	var/dy		//coordinates
 	var/speedlimit = 2 //top speed for autopilot
 
-/obj/machinery/computer/helm/initialize()
+/obj/machinery/computer/helm/Initialize()
 	. = ..()
 	linked = map_sectors["[z]"]
 	get_known_sectors()
@@ -29,7 +29,7 @@
 			known_sectors[S.name] = R
 	..()
 
-/obj/machinery/computer/helm/process()
+/obj/machinery/computer/helm/Process()
 	..()
 	if (autopilot && dx && dy)
 		var/turf/T = locate(dx,dy,maps_data.overmap_z)

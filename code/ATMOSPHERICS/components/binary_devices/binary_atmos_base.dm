@@ -57,9 +57,9 @@ obj/machinery/atmospherics/binary
 		node1 = null
 		node2 = null
 
-		..()
+		. = ..()
 
-	initialize()
+	Initialize()
 		if(node1 && node2) return
 
 		var/node2_connect = dir

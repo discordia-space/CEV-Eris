@@ -9,7 +9,7 @@
 	var/obj/machinery/shipsensors/sensors
 	var/viewing = 0
 
-/obj/machinery/computer/sensors/initialize()
+/obj/machinery/computer/sensors/Initialize()
 	. = ..()
 	linked = map_sectors["[z]"]
 	find_sensors()
@@ -19,7 +19,7 @@
 	. = ..()
 
 /obj/machinery/computer/sensors/proc/find_sensors()
-	for(var/obj/machinery/shipsensors/S in machines)
+	for(var/obj/machinery/shipsensors/S in SSmachines.machinery)
 		if (S.z in GetConnectedZlevels(z))
 			sensors = S
 			break
@@ -107,7 +107,7 @@
 			sensors.toggle()
 			return 1
 
-/obj/machinery/computer/sensors/process()
+/obj/machinery/computer/sensors/Process()
 	..()
 	if(!linked)
 		return
@@ -178,7 +178,7 @@
 	use_power = !use_power
 	update_icon()
 
-/obj/machinery/shipsensors/process()
+/obj/machinery/shipsensors/Process()
 	..()
 	if(use_power) //can't run in non-vacuum
 		if(!in_vacuum())

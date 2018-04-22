@@ -32,7 +32,7 @@ var/global/list/all_objectives_types = null
 
 /datum/objective/Destroy()
 	all_objectives.Remove(src)
-	..()
+	. = ..()
 
 /datum/objective/proc/update_completion()	//This is for objectives requiring mid-round check, like harm or baptize
 	return

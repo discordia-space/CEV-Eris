@@ -7,4 +7,4 @@
 		evacuation_controller.set_up()
 
 /datum/controller/process/evac/doWork()
-	evacuation_controller.process()
+	evacuation_controller.Process()

@@ -42,7 +42,7 @@ see multiz/movement.dm for some info.
 	var/list/underlay_references
 	var/global/overlay_map = list()
 
-/turf/simulated/open/initialize()
+/turf/simulated/open/LateInitialize()
 	. = ..()
 	below = GetBelow(src)
 	ASSERT(HasBelow(z))

@@ -21,15 +21,15 @@
 
 /turf/unsimulated/wall/supermatter/Destroy()
 	processing_turfs.Remove(src)
-	..()
+	. = ..()
 
-/turf/unsimulated/wall/supermatter/process()
+/turf/unsimulated/wall/supermatter/Process()
 	// Only check infrequently.
 	if(next_check>world.time) return
 
 	// No more available directions? Shut down process().
 	if(avail_dirs.len==0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return 1
 
 	// We're checking, reset the timer.

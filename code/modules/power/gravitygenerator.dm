@@ -51,7 +51,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	set_broken()
 	if(main_part)
 		qdel(main_part)
-	..()
+	. = ..()
 
 //
 // Part generator which is mostly there for looks
@@ -78,7 +78,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 // Generator which spawns with the station.
 //
 
-/obj/machinery/gravity_generator/main/station/initialize()
+/obj/machinery/gravity_generator/main/station/Initialize()
 	..()
 	setup_parts()
 	middle.overlays += "activated"
@@ -89,7 +89,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 /obj/machinery/gravity_generator/main/station/admin/New()
 	..()
-	initialize()
+	Initialize()
 	grav_on()
 
 //
@@ -120,7 +120,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	for(var/obj/machinery/gravity_generator/part/O in parts)
 		O.main_part = null
 		qdel(O)
-	..()
+	. = ..()
 
 /obj/machinery/gravity_generator/main/proc/setup_parts()
 	var/turf/our_turf = get_turf(src)
@@ -340,7 +340,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 // Charge/Discharge and turn on/off gravity when you reach 0/100 percent.
 // Also emit radiation and handle the overlays.
-/obj/machinery/gravity_generator/main/process()
+/obj/machinery/gravity_generator/main/Process()
 	if(stat & BROKEN)
 		return
 	if(charging_state != POWER_IDLE)
@@ -389,7 +389,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 // Shake everyone to let them know that gravity was enagaged/disenagaged.
 /obj/machinery/gravity_generator/main/proc/shake_everyone()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in SSmobs.mob_list)
 		var/turf/our_turf = get_turf(src.loc)
 		if(M.client)
 			shake_camera(M, 15, 1)

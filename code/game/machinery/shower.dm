@@ -19,9 +19,9 @@
 	if(I.type == /obj/item/device/scanner/analyzer)
 		user << SPAN_NOTICE("The water temperature seems to be [watertemp].")
 
-/obj/machinery/cellshower/process()
+/obj/machinery/cellshower/Process()
 	for(var/obj/effect/shower/S in effect)
-		S.process()
+		S.Process()
 
 /obj/machinery/cellshower/update_icon()
 	for(var/obj/effect/shower/S in effect)
@@ -189,7 +189,7 @@
 			if(istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
 				del(E)
 
-/obj/effect/shower/process()
+/obj/effect/shower/Process()
 	if(!master.on) return
 	for(var/mob/living/carbon/C in loc)
 		check_heat(C)

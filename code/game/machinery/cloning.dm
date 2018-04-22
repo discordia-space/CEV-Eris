@@ -144,7 +144,7 @@
 	return 1
 
 //Grow clones to maturity then kick them out.  FREELOADERS
-/obj/machinery/clonepod/process()
+/obj/machinery/clonepod/Process()
 
 	if(stat & NOPOWER) //Autoeject if power is lost
 		if(occupant)

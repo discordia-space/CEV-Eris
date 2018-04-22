@@ -41,7 +41,7 @@
 					CC.post_status("alert", "redalert")*/
 
 		var/obj/machinery/M = null
-		for(var/elem in machines)
+		for(var/elem in SSmachines.machinery)
 			M = elem
 			M.securityLevelChanged(security_level, previousLevel)
 

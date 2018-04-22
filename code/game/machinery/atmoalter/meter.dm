@@ -16,11 +16,11 @@
 	src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 	return 1
 
-/obj/machinery/meter/initialize()
+/obj/machinery/meter/Initialize()
 	if (!target)
 		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 
-/obj/machinery/meter/process()
+/obj/machinery/meter/Process()
 	if(!target)
 		icon_state = "meterX"
 		return 0
@@ -114,7 +114,7 @@
 	return 1
 
 
-/obj/machinery/meter/turf/initialize()
+/obj/machinery/meter/turf/Initialize()
 	if (!target)
 		src.target = loc
 

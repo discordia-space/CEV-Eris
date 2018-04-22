@@ -46,7 +46,7 @@
 	A.current = U
 	A.yo = U.y - T.y
 	A.xo = U.x - T.x
-	A.process()
+	A.Process()
 
 //If they right click to corrode, an error will flash if its an invalid target./N
 /obj/item/organ/internal/xenos/acidgland/proc/corrosive_acid(O as obj|turf in oview(1, owner))

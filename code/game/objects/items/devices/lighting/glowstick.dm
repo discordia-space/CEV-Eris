@@ -16,12 +16,12 @@
 		light_color = color
 	..()
 
-/obj/item/device/lighting/glowstick/process()
+/obj/item/device/lighting/glowstick/Process()
 	if(--fuel <= 0)
 		burn_out()
 
 /obj/item/device/lighting/glowstick/proc/burn_out()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	on = FALSE
 	update_icon()
 	if(ismob(loc))
@@ -66,7 +66,7 @@
 
 	. = ..()
 	if(.)
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/device/lighting/glowstick/red
 	name = "red glowstick"

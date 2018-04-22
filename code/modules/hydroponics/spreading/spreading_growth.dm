@@ -28,7 +28,7 @@
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		neighbor.neighbors -= T
 
-/obj/effect/plant/process()
+/obj/effect/plant/Process()
 
 	// Something is very wrong, kill ourselves.
 	if(!seed)
@@ -78,7 +78,7 @@
 	if(is_mature() && neighbors.len && prob(spread_chance))
 		//spread to 1-3 adjacent turfs depending on yield trait.
 		var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
-		
+
 		for(var/i in 1 to max_spread)
 			if(prob(spread_chance))
 				sleep(rand(3,5))

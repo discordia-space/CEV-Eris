@@ -16,4 +16,4 @@
 /obj/item/weapon/computer_hardware/tesla_link/Destroy()
 	if(holder && (holder.tesla_link == src))
 		holder.tesla_link = null
-	..()
+	return ..()

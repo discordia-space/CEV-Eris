@@ -41,7 +41,7 @@
 	update_pulling()
 
 	for(var/obj/item/weapon/grab/G in src)
-		G.process()
+		G.Process()
 
 	blinded = 0 // Placing this here just show how out of place it is.
 	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()

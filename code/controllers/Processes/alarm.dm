@@ -21,7 +21,7 @@ var/datum/controller/process/alarm/alarm_manager
 /datum/controller/process/alarm/doWork()
 	for(last_object in all_handlers)
 		var/datum/alarm_handler/AH = last_object
-		AH.process()
+		AH.Process()
 		SCHECK
 
 /datum/controller/process/alarm/proc/active_alarms()

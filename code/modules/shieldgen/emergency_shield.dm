@@ -17,7 +17,7 @@
 	desc = "A weak forcefield which seems to be projected by the station's emergency atmosphere containment field"
 	health = max_health/2 // Half health, it's not suposed to resist much.
 
-/obj/machinery/shield/malfai/process()
+/obj/machinery/shield/malfai/Process()
 	health -= 0.5 // Slowly lose integrity over time
 	check_failure()
 
@@ -36,7 +36,7 @@
 	opacity = 0
 	density = 0
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/machinery/shield/CanPass(atom/movable/mover, turf/target, height, air_group)
 	if(!height || air_group) return 0
@@ -135,7 +135,7 @@
 
 /obj/machinery/shieldgen/Destroy()
 	collapse_shields()
-	..()
+	. = ..()
 
 /obj/machinery/shieldgen/proc/shields_up()
 	if(active) return 0 //If it's already turned on, how did this get called?
@@ -181,7 +181,7 @@
 		create_shields()
 	update_icon()
 
-/obj/machinery/shieldgen/process()
+/obj/machinery/shieldgen/Process()
 	if (!active || (stat & NOPOWER))
 		return
 

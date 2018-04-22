@@ -44,7 +44,7 @@
 	..()
 	nanomanager.update_uis(src) // update all UIs attached to src
 
-/obj/machinery/chemical_dispenser/process()
+/obj/machinery/chemical_dispenser/Process()
 	if(recharged <= 0)
 		recharge()
 		recharged = 15
@@ -746,7 +746,7 @@
 				var/amount_to_take = max(0,min(stack.amount,round(remaining_volume/REAGENTS_PER_SHEET)))
 				if(amount_to_take)
 					stack.use(amount_to_take)
-					if(deleted(stack))
+					if(QDELETED(stack))
 						holdingitems -= stack
 					beaker.reagents.add_reagent(sheet_reagents[stack.type], (amount_to_take*REAGENTS_PER_SHEET))
 					continue

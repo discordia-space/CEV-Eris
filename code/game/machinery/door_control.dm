@@ -91,7 +91,7 @@
 	*/
 
 /obj/machinery/button/remote/airlock/trigger()
-	for(var/obj/machinery/door/airlock/D in machines)
+	for(var/obj/machinery/door/airlock/D in SSmachines.machinery)
 		if(D.id_tag == id)
 			if(specialfunctions & OPEN)
 				if(D.density)
@@ -135,7 +135,7 @@
 	desc = "It controls blast doors, remotely."
 
 /obj/machinery/button/remote/blast_door/trigger()
-	for(var/obj/machinery/door/blast/M in machines)
+	for(var/obj/machinery/door/blast/M in SSmachines.machinery)
 		if(M.id == id)
 			if(M.density)
 				spawn(0)
@@ -154,7 +154,7 @@
 	desc = "It controls emitters, remotely."
 
 /obj/machinery/button/remote/emitter/trigger(mob/user as mob)
-	for(var/obj/machinery/power/emitter/E in machines)
+	for(var/obj/machinery/power/emitter/E in SSmachines.machinery)
 		if(E.id == id)
 			spawn(0)
 				E.activate(user)
@@ -173,7 +173,7 @@
 	active = 1
 	update_icon()
 
-	for(var/obj/machinery/door/blast/M in machines)
+	for(var/obj/machinery/door/blast/M in SSmachines.machinery)
 		if(M.id == id)
 			spawn(0)
 				M.open()
@@ -181,13 +181,13 @@
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in machines)
+	for(var/obj/machinery/mass_driver/M in SSmachines.machinery)
 		if(M.id == id)
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/blast/M in machines)
+	for(var/obj/machinery/door/blast/M in SSmachines.machinery)
 		if(M.id == id)
 			spawn(0)
 				M.close()

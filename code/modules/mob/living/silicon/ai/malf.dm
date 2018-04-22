@@ -57,9 +57,9 @@
 		return
 	recalc_cpu()
 	if(APU_power || aiRestorePowerRoutine != 0)
-		research.process(1)
+		research.Process(1)
 	else
-		research.process(0)
+		research.Process(0)
 
 // Recalculates CPU time gain and storage capacities.
 /mob/living/silicon/ai/proc/recalc_cpu()

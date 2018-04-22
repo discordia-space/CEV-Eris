@@ -27,7 +27,7 @@
 	base_state = "pflash"
 	density = 1
 
-/obj/machinery/flasher/initialize()
+/obj/machinery/flasher/Initialize()
 	..()
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
@@ -142,7 +142,7 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/flasher/M in machines)
+	for(var/obj/machinery/flasher/M in SSmachines.machinery)
 		if(M.id == src.id)
 			spawn()
 				M.flash()

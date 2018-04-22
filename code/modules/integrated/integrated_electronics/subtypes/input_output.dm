@@ -219,7 +219,7 @@
 	var/code = 30
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/integrated_circuit/input/signaler/initialize()
+/obj/item/integrated_circuit/input/signaler/Initialize()
 	..()
 	set_frequency(frequency)
 	// Set the pins so when someone sees them, they won't show as null

@@ -100,7 +100,7 @@
 	for (var/ui_key in open_uis[src_object_key])
 		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
 			if(ui && ui.src_object && ui.user && ui.src_object.nano_host())
-				ui.process(1)
+				ui.Process(1)
 				update_count++
 	return update_count
 
@@ -140,7 +140,7 @@
 	var/update_count = 0
 	for (var/datum/nanoui/ui in user.open_uis)
 		if ((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
-			ui.process(1)
+			ui.Process(1)
 			update_count++
 
 	return update_count

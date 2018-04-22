@@ -19,7 +19,7 @@
 	disconnect_from_network()
 	disconnect_terminal()
 
-	..()
+	. = ..()
 
 ///////////////////////////////
 // General procedures

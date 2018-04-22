@@ -113,7 +113,7 @@
 /obj/item/clothing/ears/earmuffs/mp3/New()
 	..()
 	player = new(src)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
 
@@ -138,7 +138,7 @@
 		player.active = TRUE
 		player.play(user)
 
-/obj/item/clothing/ears/earmuffs/mp3/process()
+/obj/item/clothing/ears/earmuffs/mp3/Process()
 	if(player.active)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))

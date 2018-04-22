@@ -14,12 +14,12 @@
 
 /obj/item/weapon/gun/energy/temperature/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 
 /obj/item/weapon/gun/energy/temperature/Destroy()
-	processing_objects.Remove(src)
-	..()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 
 /obj/item/weapon/gun/energy/temperature/attack_self(mob/living/user as mob)
@@ -59,7 +59,7 @@
 	return
 
 
-/obj/item/weapon/gun/energy/temperature/process()
+/obj/item/weapon/gun/energy/temperature/Process()
 	switch(temperature)
 		if(0 to 100) charge_cost = 1000
 		if(100 to 250) charge_cost = 500

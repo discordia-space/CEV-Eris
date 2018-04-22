@@ -36,7 +36,7 @@
 	if(is_broken() && !oldbroken && owner && !owner.stat)
 		owner << SPAN_DANGER("You go blind!")
 
-/obj/item/organ/internal/eyes/process() //Eye damage replaces the old eye_stat var.
+/obj/item/organ/internal/eyes/Process() //Eye damage replaces the old eye_stat var.
 	..()
 	if(!owner)
 		return

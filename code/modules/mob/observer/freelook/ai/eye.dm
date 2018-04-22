@@ -58,7 +58,7 @@
 
 /mob/living/silicon/ai/Destroy()
 	destroy_eyeobj()
-	..()
+	. = ..()
 
 /atom/proc/move_camera_by_click()
 	if(isAI(usr))

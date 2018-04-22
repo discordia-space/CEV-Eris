@@ -66,7 +66,7 @@
 		return ..()
 
 
-/obj/machinery/iv_drip/process()
+/obj/machinery/iv_drip/Process()
 	set background = 1
 
 	if(src.attached)

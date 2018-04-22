@@ -86,7 +86,7 @@
 	node1 = null
 	node2 = null
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/valve/proc/open()
 	if(open) return 0
@@ -139,13 +139,13 @@
 	else
 		src.open()
 
-/obj/machinery/atmospherics/valve/process()
+/obj/machinery/atmospherics/valve/Process()
 	..()
 	. = PROCESS_KILL
 
 	return
 
-/obj/machinery/atmospherics/valve/initialize()
+/obj/machinery/atmospherics/valve/Initialize()
 	normalize_dir()
 
 	var/node1_dir
@@ -266,7 +266,7 @@
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/valve/digital/initialize()
+/obj/machinery/atmospherics/valve/digital/Initialize()
 	..()
 	if(frequency)
 		set_frequency(frequency)

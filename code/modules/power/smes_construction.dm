@@ -42,13 +42,13 @@
 
 // These are used on individual outposts as backup should power line be cut, or engineering outpost lost power.
 // 1M Charge, 150K I/O
-/obj/machinery/power/smes/buildable/outpost_substation/initialize()
+/obj/machinery/power/smes/buildable/outpost_substation/Initialize()
 	component_parts += new /obj/item/weapon/smes_coil/weak(src)
 	RefreshParts()
 
 // This one is pre-installed on engineering shuttle. Allows rapid charging/discharging for easier transport of power to outpost
 // 11M Charge, 2.5M I/O
-/obj/machinery/power/smes/buildable/power_shuttle/initialize()
+/obj/machinery/power/smes/buildable/power_shuttle/Initialize()
 	component_parts += new /obj/item/weapon/smes_coil/super_io(src)
 	component_parts += new /obj/item/weapon/smes_coil/super_io(src)
 	component_parts += new /obj/item/weapon/smes_coil(src)
@@ -85,7 +85,7 @@
 // Parameters: None
 // Description: Uses parent process, but if grounding wire is cut causes sparks to fly around.
 // This also causes the SMES to quickly discharge, and has small chance of damaging output APCs.
-/obj/machinery/power/smes/buildable/process()
+/obj/machinery/power/smes/buildable/Process()
 	if(!grounding && (Percentage() > 5))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
@@ -119,7 +119,7 @@
 // Proc: initialize()
 // Parameters: None
 // Description: Adds standard components for this SMES, and forces recalculation of properties.
-/obj/machinery/power/smes/buildable/initialize()
+/obj/machinery/power/smes/buildable/Initialize()
 	for(var/i = 1 to init_coils)
 		component_parts += new /obj/item/weapon/smes_coil(src)
 	RefreshParts()

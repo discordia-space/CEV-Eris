@@ -14,4 +14,4 @@
 	if(stored_card)
 		stored_card.forceMove(get_turf(holder2))
 	holder2 = null
-	..()
+	return ..()

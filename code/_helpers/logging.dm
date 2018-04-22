@@ -1,3 +1,6 @@
+//wrapper macros for easier grepping
+#define DIRECT_OUTPUT(A, B) A << B
+#define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
 //print an error message to world.log
 
 
@@ -92,6 +95,9 @@
 	world.log << "## UNIT_TEST ##: [text]"
 	log_debug(text)
 
+/proc/log_qdel(text)
+	WRITE_FILE(world_qdel_log, "\[[time_stamp()]]QDEL: [text]")
+
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)
 	var/list/comps = list()
@@ -166,3 +172,32 @@
 
 /proc/key_name_admin(var/whom, var/include_name = 1)
 	return key_name(whom, 1, include_name)
+
+// Helper procs for building detailed log lines
+/datum/proc/get_log_info_line()
+	return "[src] ([type]) ([any2ref(src)])"
+
+/area/get_log_info_line()
+	return "[..()] ([isnum(z) ? "[x],[y],[z]" : "0,0,0"])"
+
+/turf/get_log_info_line()
+	return "[..()] ([x],[y],[z]) ([loc ? loc.type : "NULL"])"
+
+/atom/movable/get_log_info_line()
+	var/turf/t = get_turf(src)
+	return "[..()] ([t ? t : "NULL"]) ([t ? "[t.x],[t.y],[t.z]" : "0,0,0"]) ([t ? t.type : "NULL"])"
+
+/mob/get_log_info_line()
+	return ckey ? "[..()] ([ckey])" : ..()
+
+/proc/log_info_line(var/datum/d)
+	if(isnull(d))
+		return "*null*"
+	if(islist(d))
+		var/list/L = list()
+		for(var/e in d)
+			L += log_info_line(e)
+		return "\[[jointext(L, ", ")]\]" // We format the string ourselves, rather than use json_encode(), because it becomes difficult to read recursively escaped "
+	if(!istype(d))
+		return json_encode(d)
+	return d.get_log_info_line()

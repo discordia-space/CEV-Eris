@@ -79,7 +79,7 @@
 	..()
 	return TRUE
 
-/obj/machinery/autolathe_disk_cloner/process()
+/obj/machinery/autolathe_disk_cloner/Process()
 	update_icon()
 
 /obj/machinery/autolathe_disk_cloner/proc/put_disk(var/obj/item/weapon/disk/autolathe_disk/AD, var/mob/user)

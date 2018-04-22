@@ -25,7 +25,7 @@
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/species = "Human"
 
-/obj/landmark/corpse/initialize()
+/obj/landmark/corpse/Initialize()
 	createCorpse()
 
 /obj/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.

@@ -153,7 +153,7 @@
 		signalPump(tag_airpump, 0)		//send a signal to stop pressurizing
 
 
-/datum/computer/file/embedded_program/airlock/process()
+/datum/computer/file/embedded_program/airlock/Process()
 	if(!state) //Idle
 		if(target_state)
 			switch(target_state)
@@ -216,7 +216,7 @@
 					memory["target_pressure"] = memory["internal_sensor_pressure"]
 					state = STATE_PREPARE
 					target_state = TARGET_NONE
-				
+
 				else if(memory["pump_status"] != "off")
 					signalPump(tag_airpump, 0)
 				else

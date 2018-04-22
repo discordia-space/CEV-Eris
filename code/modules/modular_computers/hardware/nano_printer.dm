@@ -59,4 +59,4 @@
 			qdel(P)
 		P = null
 	holder2 = null
-	..()
+	return ..()
