@@ -36,7 +36,7 @@
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
 
-/obj/machinery/door/airlock/Destroy()
+/obj/machinery/door/blast/Destroy()
 	qdel(wifi_receiver)
 	wifi_receiver = null
 	return ..()
@@ -129,7 +129,9 @@
 			else
 				usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 
-
+/obj/machinery/door/blast/attack_hand(mob/user as mob)
+	usr << SPAN_WARNING("You can't [density ? "open" : "close"] [src] by your own hands only.")
+	return
 
 // Proc: open()
 // Parameters: None
