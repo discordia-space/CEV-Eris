@@ -34,6 +34,10 @@
 /turf/proc/update_icon()
 	return
 
+/turf/Initialize()
+    turfs += src
+    . = ..()
+
 /turf/Destroy()
 	turfs -= src
 	..()
