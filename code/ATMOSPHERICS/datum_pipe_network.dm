@@ -1,4 +1,4 @@
-var/global/list/datum/pipe_network/pipe_networks = list()
+//var/global/list/datum/pipe_network/pipe_networks = list()
 
 datum/pipe_network
 	var/list/datum/gas_mixture/gases = list() //All of the gas_mixtures continuously connected in this network
@@ -15,6 +15,10 @@ datum/pipe_network
 		//air_transient = new()
 
 		..()
+
+	Destroy()
+		STOP_PROCESSING_PIPENET(src)
+		return ..()
 
 	Process()
 		//Equalize gases amongst pipe if called for
@@ -38,7 +42,7 @@ datum/pipe_network
 		update_network_gases()
 
 		if((normal_members.len>0)||(line_members.len>0))
-			pipe_networks += src
+			START_PROCESSING_PIPENET(src)
 		else
 			qdel(src)
 

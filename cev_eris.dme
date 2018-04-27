@@ -49,6 +49,7 @@
 #include "code\__defines\ZAS.dm"
 #include "code\__marcos\admin.dm"
 #include "code\__marcos\misc.dm"
+#include "code\__marcos\subsystems.dm"
 #include "code\__marcos\text.dm"
 #include "code\_compatibility\509\text.dm"
 #include "code\_compatibility\509\type2type.dm"
