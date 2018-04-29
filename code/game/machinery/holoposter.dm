@@ -18,6 +18,7 @@
 		"asters" = "#5FAE57",
 		"tehnomancers" = "#AA7039",
 		"moebius" = "#5D2971",
+		"med" = "#17A32D",
 	)
 
 /obj/machinery/holoposter/update_icon()
