@@ -35,8 +35,8 @@
 	return
 
 /turf/Initialize()
-    turfs += src
-    . = ..()
+	turfs += src
+	. = ..()
 
 /turf/Destroy()
 	turfs -= src
