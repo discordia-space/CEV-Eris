@@ -45,3 +45,9 @@
 			if(!shock(user, 100))
 				user << SPAN_NOTICE("You remove the splicing.")
 				qdel(src)
+
+	if(QUALITY_CUTTING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY))
+			if(!shock(user, 100))
+				user << SPAN_NOTICE("You remove the splicing.")
+				qdel(src)
