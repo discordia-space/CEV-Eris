@@ -6,7 +6,7 @@
 
 /datum/surgery_step/fix_vein
 	priority = 2
-	requedQuality = QUALITY_COMPRESSING
+	requedQuality = QUALITY_CLAMPING
 	can_infect = 1
 	blood_level = 1
 
@@ -57,7 +57,7 @@
 
 /datum/surgery_step/fix_dead_tissue		//Debridement
 	priority = 2
-	requedQuality = QUALITY_COMPRESSING
+	requedQuality = QUALITY_CLAMPING
 
 	can_infect = 1
 	blood_level = 1
