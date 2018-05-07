@@ -1,6 +1,6 @@
 ////FIELD GEN START //shameless copypasta from fieldgen, powersink, and grille
 /obj/machinery/shieldwallgen
-		name = "Shield Generator"
+		name = "shield generator"
 		desc = "A shield generator."
 		icon = 'icons/obj/stationobjs.dmi'
 		icon_state = "Shield_Gen"
@@ -25,34 +25,36 @@
 		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
 		var/max_stored_power = 50000 //50 kW
 		use_power = 0	//Draws directly from power net. Does not use APC power.
+		var/max_field_dist = 8
+		var/stunmode = FALSE
+		var/stun_chance = 50
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		user << "\red The shield generator needs to be firmly secured to the floor first."
+		user << "\red \The [src] needs to be firmly secured to the floor first."
 		return 1
 	if(src.locked && !issilicon(user))
 		user << "\red The controls are locked!"
 		return 1
 	if(power != 1)
-		user << "\red The shield generator needs to be powered by wire underneath."
+		user << "\red \The [src] needs to be powered by wire underneath."
 		return 1
 
 	if(src.active >= 1)
 		src.active = 0
-		icon_state = "Shield_Gen"
 
-		user.visible_message("[user] turned the shield generator off.", \
-			"You turn off the shield generator.", \
+		user.visible_message("[user] turned \the [src] off.", \
+			"You turn off \the [src].", \
 			"You hear heavy droning fade out.")
 		for(var/dir in list(1,2,4,8)) src.cleanup(dir)
 	else
 		src.active = 1
-		icon_state = "Shield_Gen +a"
-		user.visible_message("[user] turned the shield generator on.", \
-			"You turn on the shield generator.", \
+		user.visible_message("[user] turned \the [src] on.", \
+			"You turn on \the [src].", \
 			"You hear heavy droning.")
 	src.add_fingerprint(user)
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
+	update_icon()
 
 /obj/machinery/shieldwallgen/proc/power()
 	if(!anchored)
@@ -62,7 +64,8 @@
 
 	var/obj/structure/cable/C = T.get_cable_node()
 	var/datum/powernet/PN
-	if(C)	PN = C.powernet		// find the powernet of the connected cable
+	if(C)
+		PN = C.powernet		// find the powernet of the connected cable
 
 	if(!PN)
 		power = 0
@@ -80,8 +83,16 @@
 	power = 1	// IVE GOT THE POWER!
 	return 1
 
+/obj/machinery/shieldwallgen/update_icon()
+	icon_state = "Shield_Gen"
+	if(active)
+		icon_state = "Shield_Gen_active"
+		if(stunmode)
+			icon_state = "Shield_Gen_emagged"
+
 /obj/machinery/shieldwallgen/process()
 	power()
+
 	if(power)
 		storedpower -= 2500 //the generator post itself uses some power
 
@@ -89,73 +100,91 @@
 		storedpower = max_stored_power
 	if(storedpower <= 0)
 		storedpower = 0
-//	if(shieldload >= maxshieldload) //there was a loop caused by specifics of process(), so this was needed.
-//		shieldload = maxshieldload
 
-	if(src.active == 1)
-		if(!src.state == 1)
-			src.active = 0
+	if(active)
+		if(!state)
+			active = FALSE
 			return
-		spawn(1)
-			setup_field(1)
-		spawn(2)
-			setup_field(2)
-		spawn(3)
-			setup_field(4)
-		spawn(4)
-			setup_field(8)
-		src.active = 2
-	if(src.active >= 1)
-		if(src.power == 0)
-			src.visible_message("\red The [src.name] shuts down due to lack of power!", \
+
+		if(!stunmode)
+			for(var/fdir in cardinal)
+				setup_field(fdir)
+		else
+			stun()
+
+
+		if(!power)
+			visible_message("\red The [src.name] shuts down due to lack of power!", \
 				"You hear heavy droning fade out")
-			icon_state = "Shield_Gen"
-			src.active = 0
-			for(var/dir in list(1,2,4,8)) src.cleanup(dir)
+			active = FALSE
+			for(var/fdir in cardinal)
+				cleanup(fdir)
 
-/obj/machinery/shieldwallgen/proc/setup_field(var/NSEW = 0)
-	var/turf/T = src.loc
-	var/turf/T2 = src.loc
-	var/obj/machinery/shieldwallgen/G
-	var/steps = 0
-	var/oNSEW = 0
+			update_icon()
 
-	if(!NSEW)//Make sure its ran right
+/obj/machinery/shieldwallgen/proc/stun()
+	for(var/mob/M in range(src,max_field_dist))
+		if(can_stun(M) && prob(stun_chance))
+			var/obj/item/projectile/beam/stun/P = new(src.loc)
+			P.shot_from = src
+			P.launch(M)
+
+/obj/machinery/shieldwallgen/proc/can_stun(var/mob/M)
+	return TRUE
+
+
+/obj/machinery/shieldwallgen/proc/setup_field(var/f_dir = 0)
+	if(!f_dir)//Make sure its ran right
 		return
 
-	if(NSEW == 1)
-		oNSEW = 2
-	else if(NSEW == 2)
-		oNSEW = 1
-	else if(NSEW == 4)
-		oNSEW = 8
-	else if(NSEW == 8)
-		oNSEW = 4
+	var/field_found = 0
+	var/turf/T = src.loc
+	var/obj/machinery/shieldwallgen/G = null
+	for(var/dist = 1, dist <= max_field_dist, dist += 1) // checks out to [max_field_dist] tiles away for another generator
+		T = get_step(T, f_dir)
 
-	for(var/dist = 0, dist <= 9, dist += 1) // checks out to 8 tiles away for another generator
-		T = get_step(T2, NSEW)
-		T2 = T
-		steps += 1
-		if(locate(/obj/machinery/shieldwallgen) in T)
-			G = (locate(/obj/machinery/shieldwallgen) in T)
-			steps -= 1
-			if(!G.active)
-				return
-			G.cleanup(oNSEW)
+		var/obj/machinery/shieldwall/F = locate(/obj/machinery/shieldwall) in T
+		if(F && (F.dir == f_dir || F.dir == reverse_dir[f_dir]))
+			field_found++
+
+		G = (locate(/obj/machinery/shieldwallgen) in T)
+
+		if(G && G.active && !G.stunmode)
 			break
+		else
+			G = null
 
 	if(isnull(G))
 		return
 
-	T2 = src.loc
+	if(field_found > 0)	//if we already have the field
+		if(field_found < get_dist(src, G)-1)	//but it breached
+			cleanup(f_dir)
+		else
+			return
 
-	for(var/dist = 0, dist < steps, dist += 1) // creates each field tile
-		var/field_dir = get_dir(T2,get_step(T2, NSEW))
-		T = get_step(T2, NSEW)
-		T2 = T
+	T = src.loc
+	for(var/dist = 1, dist <= get_dist(src, G)-1, dist += 1) // creates each field tile
+		T = get_step(T, f_dir)
 		var/obj/machinery/shieldwall/CF = new/obj/machinery/shieldwall/(src, G) //(ref to this gen, ref to connected gen)
 		CF.loc = T
-		CF.set_dir(field_dir)
+		CF.set_dir(f_dir)
+
+
+/obj/machinery/shieldwallgen/proc/cleanup(var/c_dir)
+
+	var/turf/T = src.loc
+
+	for(var/dist = 1, dist <= max_field_dist, dist += 1) // checks out to 8 tiles away for fields
+		T = get_step(T, c_dir)
+
+		var/obj/machinery/shieldwall/F = locate(/obj/machinery/shieldwall) in T
+		if(F && (F.dir == c_dir || F.dir == reverse_dir[c_dir]))
+			qdel(F)
+
+		var/obj/machinery/shieldwallgen/G = (locate(/obj/machinery/shieldwallgen) in T)
+		if(G && G.active && !G.stunmode)
+			break
 
 
 /obj/machinery/shieldwallgen/attackby(obj/item/I, mob/user)
@@ -166,21 +195,21 @@
 				user << "Turn off the field generator first."
 				return
 
-			else if(state == 0)
-				state = 1
+			else if(!state)
+				state = TRUE
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				user << "You secure the external reinforcing bolts to the floor."
 				src.anchored = 1
 				return
 
-			else if(state == 1)
-				state = 0
+			else
+				state = FALSE
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				user << "You undo the external reinforcing bolts."
 				src.anchored = 0
 				return
 
-	if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
+	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))
 		if (src.allowed(user))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
@@ -191,29 +220,15 @@
 		src.add_fingerprint(user)
 		visible_message("\red The [src.name] has been hit with \the [I.name] by [user.name]!")
 
-/obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
-	var/obj/machinery/shieldwall/F
-	var/obj/machinery/shieldwallgen/G
-	var/turf/T = src.loc
-	var/turf/T2 = src.loc
 
-	for(var/dist = 0, dist <= 9, dist += 1) // checks out to 8 tiles away for fields
-		T = get_step(T2, NSEW)
-		T2 = T
-		if(locate(/obj/machinery/shieldwall) in T)
-			F = (locate(/obj/machinery/shieldwall) in T)
-			qdel(F)
-
-		if(locate(/obj/machinery/shieldwallgen) in T)
-			G = (locate(/obj/machinery/shieldwallgen) in T)
-			if(!G.active)
-				break
+/obj/machinery/shieldwallgen/emag_act()
+	stunmode = TRUE
 
 /obj/machinery/shieldwallgen/Destroy()
-	src.cleanup(1)
-	src.cleanup(2)
-	src.cleanup(4)
-	src.cleanup(8)
+	src.cleanup(NORTH)
+	src.cleanup(SOUTH)
+	src.cleanup(WEST)
+	src.cleanup(EAST)
 	..()
 
 /obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile/Proj)
@@ -221,6 +236,9 @@
 	..()
 	return
 
+/obj/machinery/shieldwallgen/emag_act()
+	stunmode = TRUE
+	return
 
 //////////////Containment Field START
 /obj/machinery/shieldwall
@@ -271,7 +289,7 @@
 			qdel(src)
 			return
 
-		if(!(gen_primary.active)||!(gen_secondary.active))
+		if(!(gen_primary.active) || !(gen_secondary.active) || (gen_primary.stunmode) || (gen_secondary.stunmode))
 			qdel(src)
 			return
 
