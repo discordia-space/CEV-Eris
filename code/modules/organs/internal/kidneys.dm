@@ -5,7 +5,7 @@
 	organ_tag = O_KIDNEYS
 	parent_organ = BP_GROIN
 
-/obj/item/organ/internal/kidneys/process()
+/obj/item/organ/internal/kidneys/Process()
 
 	..()
 

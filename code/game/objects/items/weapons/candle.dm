@@ -47,10 +47,10 @@
 		for(var/mob/O in viewers(usr, null))
 			O.show_message(flavor_text, 1)
 		set_light(CANDLE_LUM)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 
-/obj/item/weapon/flame/candle/process()
+/obj/item/weapon/flame/candle/Process()
 	if(!lit)
 		return
 	wax--

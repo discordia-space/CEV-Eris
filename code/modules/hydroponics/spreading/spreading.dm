@@ -14,7 +14,7 @@
 			var/obj/effect/plant/vine = new(T,seed)
 			vine.health = vine.max_health
 			vine.mature_time = 0
-			vine.process()
+			vine.Process()
 
 			log_and_message_admins("Spacevines spawned at \the [get_area(T)]", location = T)
 			return
@@ -68,7 +68,8 @@
 		plant_controller.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		plant_controller.add_plant(neighbor)
-	..()
+	. = ..()
+
 /obj/effect/plant/single
 	spread_chance = 0
 

@@ -35,7 +35,7 @@
 		base_area = locate(base_area || world.area)
 	name = name + " ([x],[y])"
 
-/obj/effect/shuttle_landmark/initialize()
+/obj/effect/shuttle_landmark/Initialize()
 	. = ..()
 	spawn(10)
 		if(docking_controller)
@@ -76,7 +76,7 @@
 	autoset = 1
 	var/shuttle_restricted //name of the shuttle, null for generic waypoint
 
-/obj/effect/shuttle_landmark/automatic/initialize()
+/obj/effect/shuttle_landmark/automatic/Initialize()
 	tag = landmark_tag+"-[x]-[y]"
 	. = ..()
 	base_area = get_area(src)

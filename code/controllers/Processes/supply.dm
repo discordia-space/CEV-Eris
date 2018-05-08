@@ -3,4 +3,4 @@
 	schedule_interval = 300 // every 30 seconds
 
 /datum/controller/process/supply/doWork()
-	supply_controller.process()
+	supply_controller.Process()

@@ -37,7 +37,7 @@
 
 /obj/item/device/radio/intercom/New()
 	..()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/device/radio/intercom/department/medbay/New()
 	..()
@@ -63,8 +63,8 @@
 	internal_channels[num2text(SYND_FREQ)] = list(access_syndicate)
 
 /obj/item/device/radio/intercom/Destroy()
-	processing_objects -= src
-	..()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /obj/item/device/radio/intercom/attack_ai(mob/user as mob)
 	src.add_fingerprint(user)
@@ -91,7 +91,7 @@
 
 	return canhear_range
 
-/obj/item/device/radio/intercom/process()
+/obj/item/device/radio/intercom/Process()
 	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
 		last_tick = world.timeofday
 

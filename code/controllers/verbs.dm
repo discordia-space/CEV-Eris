@@ -4,22 +4,6 @@
 //		- lighting done
 
 
-ADMIN_VERB_ADD(/client/proc/restart_controller, R_DEBUG, null)
-/client/proc/restart_controller(controller in list("Supply"))
-	set category = "Debug"
-	set name = "Restart Controller"
-	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
-
-	if(!holder)	return
-	usr = null
-	src = null
-	switch(controller)
-		if("Supply")
-			supply_controller.process()
-
-	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
-	return
-
 /*
 ADMIN_VERB_ADD(/client/proc/debug_antagonist_template, R_DEBUG, null)
 /client/proc/debug_antagonist_template(antag_type in all_antag_types)
@@ -56,7 +40,7 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 			debug_variables(tickerProcess)
 
 		if("Air")
-			debug_variables(air_master)
+			debug_variables(SSair)
 
 		if("Jobs")
 			debug_variables(job_master)

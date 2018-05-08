@@ -42,7 +42,7 @@
 	src.set_dir(turn(src.dir, 90))
 	return 1
 
-/obj/machinery/power/emitter/initialize()
+/obj/machinery/power/emitter/Initialize()
 	..()
 	if(state == 2 && anchored)
 		connect_to_network()
@@ -104,7 +104,7 @@
 			src.use_power = 1	*/
 	return 1
 
-/obj/machinery/power/emitter/process()
+/obj/machinery/power/emitter/Process()
 	if(stat & (BROKEN))
 		return
 	if(src.state != 2 || (!powernet && active_power_usage))

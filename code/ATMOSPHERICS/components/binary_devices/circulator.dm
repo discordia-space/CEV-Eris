@@ -67,7 +67,7 @@
 	stored_energy = 0
 	return last_stored_energy_transferred
 
-/obj/machinery/atmospherics/binary/circulator/process()
+/obj/machinery/atmospherics/binary/circulator/Process()
 	..()
 
 	if(last_worldtime_transfer < world.time - 50)
@@ -101,13 +101,13 @@
 			else if(dir & (EAST|WEST))
 				initialize_directions = EAST|WEST
 
-			initialize()
+			Initialize()
 			build_network()
 			if (node1)
-				node1.initialize()
+				node1.Initialize()
 				node1.build_network()
 			if (node2)
-				node2.initialize()
+				node2.Initialize()
 				node2.build_network()
 		else
 			if(node1)

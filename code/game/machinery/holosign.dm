@@ -15,7 +15,7 @@
 	var/_wifi_id
 	var/datum/wifi/receiver/button/holosign/wifi_receiver
 
-/obj/machinery/holosign/initialize()
+/obj/machinery/holosign/Initialize()
 	..()
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
@@ -66,7 +66,7 @@
 	active = !active
 	icon_state = "light[active]"
 
-	for(var/obj/machinery/holosign/M in machines)
+	for(var/obj/machinery/holosign/M in SSmachines.machinery)
 		if (M.id == src.id)
 			spawn( 0 )
 				M.toggle()

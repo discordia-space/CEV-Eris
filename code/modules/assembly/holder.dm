@@ -19,7 +19,7 @@
 
 /obj/item/device/assembly_holder/Destroy()
 	remove_hearing()
-	..()
+	. = ..()
 
 /obj/item/device/assembly_holder/proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
 	return
@@ -187,7 +187,7 @@
 	tmr.time=5
 	tmr.secured = 1
 	tmr.holder = src
-	processing_objects.Add(tmr)
+	START_PROCESSING(SSobj, tmr)
 	left_assembly = tmr
 	right_assembly = ign
 	secured = 1

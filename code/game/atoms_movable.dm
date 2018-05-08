@@ -16,7 +16,7 @@
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 
 /atom/movable/Del()
-	if(isnull(gcDestroyed) && loc)
+	if(isnull(gc_destroyed) && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
 		crash_with("GC: -- [type] was deleted via del() rather than qdel() --") // stick a stack trace in the runtime logs
 //	else if(isnull(gcDestroyed))

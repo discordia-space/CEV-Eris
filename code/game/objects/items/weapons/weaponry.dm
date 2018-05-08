@@ -54,7 +54,7 @@
 
 /obj/effect/energy_net/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/energy_net/Destroy()
 
@@ -64,8 +64,8 @@
 		M.captured = 0
 		M << "You are free of the net!"
 
-	processing_objects -= src
-	..()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /obj/effect/energy_net/proc/healthcheck()
 
@@ -75,7 +75,7 @@
 		qdel(src)
 	return
 
-/obj/effect/energy_net/process()
+/obj/effect/energy_net/Process()
 
 	if(isnull(affecting) || affecting.loc != loc)
 		qdel(src)

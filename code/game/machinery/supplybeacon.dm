@@ -97,9 +97,9 @@
 /obj/machinery/power/supply_beacon/Destroy()
 	if(use_power)
 		deactivate()
-	..()
+	. = ..()
 
-/obj/machinery/power/supply_beacon/process()
+/obj/machinery/power/supply_beacon/Process()
 	if(expended)
 		return PROCESS_KILL
 	if(!use_power)

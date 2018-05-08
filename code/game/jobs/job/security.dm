@@ -136,6 +136,7 @@
 	put_in_backpack = list(\
 		/obj/item/ammo_magazine/sl44/rubber,\
 		/obj/item/ammo_magazine/sl44/rubber,\
+		/obj/item/weapon/handcuffs,\
 		/obj/item/weapon/flame/lighter/zippo,\
 		/obj/item/weapon/storage/box/evidence,\
 		/obj/item/weapon/cell/small/high,\

@@ -324,7 +324,7 @@
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in contents)
 		AM.loc = T
-	..()
+	. = ..()
 
 /obj/item/device/destTagger
 	name = "destination tagger"
@@ -473,4 +473,4 @@
 /obj/machinery/disposal/deliveryChute/Destroy()
 	if(trunk)
 		trunk.linked = null
-	..()
+	. = ..()

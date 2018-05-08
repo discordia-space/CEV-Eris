@@ -239,7 +239,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(var/key)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in SSmobs.mob_list)
 		if(M.ckey == lowertext(key))
 			return M
 	return null
@@ -482,7 +482,7 @@ datum/projectile_data
 
 /proc/get_vents()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in SSmachines.machinery)
 		if(!temp_vent.welded && temp_vent.network && isOnStationLevel(temp_vent))
 			if(temp_vent.network.normal_members.len > 15)
 				vents += temp_vent

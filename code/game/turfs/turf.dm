@@ -34,9 +34,14 @@
 /turf/proc/update_icon()
 	return
 
+/turf/Initialize()
+	turfs += src
+	. = ..()
+
 /turf/Destroy()
 	turfs -= src
 	..()
+	return QDEL_HINT_IWILLGC
 
 /turf/ex_act(severity)
 	return 0
@@ -206,7 +211,7 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/proc/process()
+/turf/Process()
 	return PROCESS_KILL
 
 /turf/proc/contains_dense_objects()

@@ -6,4 +6,4 @@
 		shuttle_controller = new
 
 /datum/controller/process/Shuttle/doWork()
-	shuttle_controller.process()
+	shuttle_controller.Process()

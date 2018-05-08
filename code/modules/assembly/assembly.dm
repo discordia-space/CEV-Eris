@@ -85,8 +85,8 @@
 	..()
 
 
-/obj/item/device/assembly/process()
-	processing_objects.Remove(src)
+/obj/item/device/assembly/Process()
+	STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/device/assembly/examine(mob/user)

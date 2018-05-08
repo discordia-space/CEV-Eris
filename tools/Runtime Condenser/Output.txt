@@ -1,0 +1,440 @@
+Note: The source file, src and usr are all from the FIRST of the identical runtimes. Everything else is cropped.
+
+Total unique runtimes: 66
+Total runtimes: 138
+
+** Runtimes **
+
+The following runtime has occurred 32 time(s).
+runtime error: undefined proc or verb /Error().
+
+
+The following runtime has occurred 12 time(s).
+runtime error: bad index
+proc name: tool quality (/datum/surgery_step/proc/tool_quality)
+  source file: surgery.dm,25
+
+
+The following runtime has occurred 3 time(s).
+runtime error: Cannot read null.initialized
+proc name: New (/atom/New)
+  source file: atoms.dm,38
+  usr: (src)
+  src: the dview (/mob/dview)
+  src.loc: null
+
+
+The following runtime has occurred 3 time(s).
+runtime error: WARNING: /obj/item/weapon/computer_hardware/tesla_link is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 3 time(s).
+runtime error: WARNING: /obj/item/weapon/computer_hardware/network_card/wired is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 3 time(s).
+runtime error: WARNING: /obj/item/weapon/computer_hardware/hard_drive/super is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/weapon/material/ashtray/glass is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/machinery/floor_light is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: bad index
+proc name: OnTopic (/datum/category_item/player_setup_item/general/equipment/OnTopic)
+  source file: 04_equipment.dm,59
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/device/pda is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/weapon/material/minihoe is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/hidden/supply is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/structure/table/woodentable is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /datum/reagent/fuel is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/structure/lattice is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/weapon/material/knife is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/device/assembly/signaler is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /mob/new_player is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/weapon/material/hatchet/tacknife is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /datum/reagent/water is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/weapon/material/hatchet is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /datum/reagents is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/device/taperecorder is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+  usr: (src)
+  src: null
+
+
+The following runtime has occurred 2 time(s).
+runtime error: Cannot read null.charge
+proc name: examine (/obj/item/weapon/gun/energy/examine)
+  source file: energy.dm,78
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/item/organ/internal/brain is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /mob/shadow is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 2 time(s).
+runtime error: WARNING: /obj/structure/grille is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/structure/cable/yellow is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/machinery/atmospherics/valve/digital is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/structure/sign/faction/technomancers is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/structure/window/reinforced is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x30000b9] | /mob/new_player was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x202baad] | /obj/machinery/floor_light was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/visible/cyan is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/visible/red is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x2101caa6] | /datum/gas_mixture was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/structure/railing is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x30000c3] | /mob/new_player was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/structure/window/reinforced/plasma/full is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /mob/observer/ghost is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x2101caa2] | /datum/pipe_network was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0xd0008fc] | /image was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x2101ce83] | /datum/hud was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0xd0008f5] | /image was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x202baee] | /obj/parallax was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /datum/reagent/ethanol/cognac is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x30000c7] | /mob/observer/ghost was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/structure/window/reinforced/plasma is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /datum/pipeline is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x200bacf] | /obj/machinery/atmospherics/pipe/simple/visible/cyan was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x21024aa9] | /datum/scheduled_task was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x202b616] | /obj/machinery/floor_light was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/simple/visible/green is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/structure/reagent_dispensers/fueltank is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/manifold/visible/yellow is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x200bf93] | /obj/machinery/camera/network/engineering was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x2101caa4] | /datum/pipeline was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/machinery/atmospherics/pipe/manifold4w/visible/cyan is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/machinery/camera/network/engineering is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x200bb45] | /obj/machinery/atmospherics/pipe/manifold/visible/yellow was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x200bb4a] | /obj/machinery/atmospherics/valve/digital was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /datum/reagent/ethanol/beer is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /obj/structure/window/reinforced/full is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: GC: -- [0x200bfa0] | /obj/machinery/alarm was unable to be GC'd --
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+
+The following runtime has occurred 1 time(s).
+runtime error: WARNING: /datum/reagent/ethanol/gin is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.
+proc name: crash with (/proc/crash_with)
+  source file: unsorted.dm,1264
+
+

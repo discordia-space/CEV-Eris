@@ -108,7 +108,7 @@ steam.start() -- spawns the effect
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
 
-/obj/effect/sparks/initialize()
+/obj/effect/sparks/Initialize()
 	..()
 	schedule_task_in(10 SECONDS, /proc/qdel, list(src))
 

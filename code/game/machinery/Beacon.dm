@@ -23,7 +23,7 @@
 	Destroy()
 		if(Beacon)
 			qdel(Beacon)
-		..()
+		. = ..()
 
 	// update the invisibility and icon
 	hide(var/intact)
@@ -40,7 +40,7 @@
 		else
 			icon_state = "[state]"
 
-	process()
+	Process()
 		if(!Beacon)
 			var/turf/T = loc
 			Beacon = new /obj/item/device/radio/beacon

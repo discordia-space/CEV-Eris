@@ -8,7 +8,7 @@
 	var/state = "status"
 	var/obj/effect/overmap/ship/linked
 
-/obj/machinery/computer/engines/initialize()
+/obj/machinery/computer/engines/Initialize()
 	. = ..()
 	linked = map_sectors["[z]"]
 

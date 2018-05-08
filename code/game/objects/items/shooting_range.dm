@@ -16,7 +16,7 @@
 			T.pinned_target = null
 			T.density = 1
 			break
-	..() // delete target
+	. = ..() // delete target
 
 /obj/item/target/Move()
 	..()

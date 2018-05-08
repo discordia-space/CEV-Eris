@@ -25,9 +25,9 @@
 	src.talking_atom = new (src)
 	if(prob(50))
 		icon_state = "talk_crystal2"
-	//processing_objects.Add(src)
+	//START_PROCESSING(SSobj, src)
 
 
 ///obj/item/weapon/crystal/Destroy()
 	//..()
-	//processing_objects.Remove(src)
+	//STOP_PROCESSING(SSobj, src)

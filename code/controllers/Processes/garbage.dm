@@ -197,14 +197,6 @@ world/loop_checks = 0
 /turf/finalize_qdel()
 	del(src)
 
-// Default implementation of clean-up code.
-// This should be overridden to remove all references pointing to the object being destroyed.
-// Return true if the the GC controller should allow the object to continue existing. (Useful if pooling objects.)
-/datum/proc/Destroy()
-	nanomanager.close_uis(src)
-	tag = null
-	return
-
 
 #ifdef TESTING
 /client/var/running_find_references
@@ -278,3 +270,14 @@ world/loop_checks = 0
 #ifdef GC_FINDREF
 #undef GC_FINDREF
 #endif
+
+/datum/qdel_item
+	var/name = ""
+	var/qdels = 0			//Total number of times it's passed thru qdel.
+	var/destroy_time = 0	//Total amount of milliseconds spent processing this type's Destroy()
+	var/failures = 0		//Times it was queued for soft deletion but failed to soft delete.
+	var/hard_deletes = 0 	//Different from failures because it also includes QDEL_HINT_HARDDEL deletions
+	var/hard_delete_time = 0//Total amount of milliseconds spent hard deleting this type.
+	var/no_respect_force = 0//Number of times it's not respected force=TRUE
+	var/no_hint = 0			//Number of times it's not even bother to give a qdel hint
+	var/slept_destroy = 0	//Number of times it's slept in its destroy

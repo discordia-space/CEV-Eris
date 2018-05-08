@@ -37,7 +37,7 @@
 /obj/machinery/atmospherics/portables_connector/hide(var/i)
 	update_underlays()
 
-/obj/machinery/atmospherics/portables_connector/process()
+/obj/machinery/atmospherics/portables_connector/Process()
 	..()
 	if(!on)
 		return
@@ -72,9 +72,9 @@
 
 	node = null
 
-	..()
+	. = ..()
 
-/obj/machinery/atmospherics/portables_connector/initialize()
+/obj/machinery/atmospherics/portables_connector/Initialize()
 	if(node) return
 
 	var/node_connect = dir

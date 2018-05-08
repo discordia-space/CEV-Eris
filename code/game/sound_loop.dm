@@ -149,7 +149,7 @@ datum/sound_loop/proc/update_listener(var/mob/M, var/sound/S)
 
 	M << S
 
-datum/sound_loop/proc/process()
+datum/sound_loop/Process()
 	if(source.loc != source_loc)
 		force_update = TRUE
 		source_loc = source.loc

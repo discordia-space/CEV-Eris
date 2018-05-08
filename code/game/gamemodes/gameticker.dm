@@ -54,7 +54,7 @@ var/global/datum/controller/gameticker/ticker
 
 		while(current_state == GAME_STATE_PREGAME)
 			sleep(10)
-			vote.process()
+			vote.Process()
 
 			if(round_progressing)
 				pregame_timeleft--
@@ -63,8 +63,10 @@ var/global/datum/controller/gameticker/ticker
 				if(!vote.active_vote)
 					vote.autostoryteller()	//Quit calling this over and over and over and over.
 
-			if(pregame_timeleft <= 0)
+			if(pregame_timeleft <= 0 || ((initialization_stage & INITIALIZATION_NOW_AND_COMPLETE) == INITIALIZATION_NOW_AND_COMPLETE))
 				current_state = GAME_STATE_SETTING_UP
+				Master.SetRunLevel(RUNLEVEL_SETUP)
+
 			first_start_trying = FALSE
 	while (!setup())
 
@@ -76,6 +78,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(!src.storyteller)
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return 0
 
@@ -85,6 +88,7 @@ var/global/datum/controller/gameticker/ticker
 	if(!src.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		storyteller = null
 		story_vote_ended = FALSE
 		job_master.ResetOccupations()
@@ -95,6 +99,7 @@ var/global/datum/controller/gameticker/ticker
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
 	current_state = GAME_STATE_PLAYING
+	Master.SetRunLevel(RUNLEVEL_GAME)
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
@@ -111,7 +116,7 @@ var/global/datum/controller/gameticker/ticker
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
-		for(var/mob/new_player/N in mob_list)
+		for(var/mob/new_player/N in SSmobs.mob_list)
 			N.new_player_panel_proc()
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
@@ -123,9 +128,9 @@ var/global/datum/controller/gameticker/ticker
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
-/*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
+/*	supply_controller.Process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
+	master_controller.Process()		//Start master_controller.Process()
+	lighting_controller.Process()	//Start processing DynamicAreaLighting updates
 	*/
 
 	processScheduler.start()
@@ -157,7 +162,7 @@ var/global/datum/controller/gameticker/ticker
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
 
-	for(var/mob/M in mob_list)
+	for(var/mob/M in SSmobs.mob_list)
 		if(isOnStationLevel(M))
 			if(M.client)
 				M.client.screen += cinematic
@@ -238,17 +243,18 @@ var/global/datum/controller/gameticker/ticker
 				M << "Captainship not forced on anyone."
 
 
-/datum/controller/gameticker/proc/process()
+/datum/controller/gameticker/Process()
 	if(current_state != GAME_STATE_PLAYING)
 		return
 
-	storyteller.process()
+	storyteller.Process()
 	storyteller.process_events()
 
 	var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
 
 	if(!nuke_in_progress && game_finished)
 		current_state = GAME_STATE_FINISHED
+		Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 		spawn
 			declare_completion()
@@ -300,7 +306,7 @@ var/global/datum/controller/gameticker/ticker
 					Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
 	world << "<br>"
 
-	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in SSmobs.mob_list)
 		if(aiPlayer.stat != DEAD)
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
 		else
@@ -315,7 +321,7 @@ var/global/datum/controller/gameticker/ticker
 
 	var/dronecount = 0
 
-	for(var/mob/living/silicon/robot/robo in mob_list)
+	for(var/mob/living/silicon/robot/robo in SSmobs.mob_list)
 
 		if(isdrone(robo))
 			dronecount++

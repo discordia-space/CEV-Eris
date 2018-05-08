@@ -41,9 +41,9 @@
 /turf/simulated/wall/Destroy()
 	processing_turfs -= src
 	dismantle_wall(null,null,1)
-	..()
+	. = ..()
 
-/turf/simulated/wall/process()
+/turf/simulated/wall/Process()
 	// Calling parent will kill processing
 	if(!radiate())
 		return PROCESS_KILL

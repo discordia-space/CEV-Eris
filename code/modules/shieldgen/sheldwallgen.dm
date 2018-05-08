@@ -80,7 +80,7 @@
 	power = 1	// IVE GOT THE POWER!
 	return 1
 
-/obj/machinery/shieldwallgen/process()
+/obj/machinery/shieldwallgen/Process()
 	power()
 	if(power)
 		storedpower -= 2500 //the generator post itself uses some power
@@ -214,7 +214,7 @@
 	src.cleanup(2)
 	src.cleanup(4)
 	src.cleanup(8)
-	..()
+	. = ..()
 
 /obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile/Proj)
 	storedpower -= 400 * Proj.get_structure_damage()
@@ -259,13 +259,13 @@
 
 /obj/machinery/shieldwall/Destroy()
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/machinery/shieldwall/attack_hand(mob/user as mob)
 	return
 
 
-/obj/machinery/shieldwall/process()
+/obj/machinery/shieldwall/Process()
 	if(needs_power)
 		if(isnull(gen_primary)||isnull(gen_secondary))
 			qdel(src)

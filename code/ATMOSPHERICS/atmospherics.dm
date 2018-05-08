@@ -87,7 +87,7 @@ obj/machinery/atmospherics/proc/check_connect_types(obj/machinery/atmospherics/a
 
 	return node.pipe_color
 
-/obj/machinery/atmospherics/process()
+/obj/machinery/atmospherics/Process()
 	last_flow_rate = 0
 	last_power_draw = 0
 

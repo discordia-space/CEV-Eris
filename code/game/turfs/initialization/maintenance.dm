@@ -1,4 +1,4 @@
-/datum/turf_initializer/maintenance/initialize(var/turf/simulated/T)
+/datum/turf_initializer/maintenance/Initialize(var/turf/simulated/T)
 	if(T.density)
 		return
 	// Quick and dirty check to avoid placing things inside windows

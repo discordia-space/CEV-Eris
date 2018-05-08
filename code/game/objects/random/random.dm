@@ -13,7 +13,7 @@
 	if(!prob(spawn_nothing_percentage))
 		spawn_item()
 
-/obj/random/initialize()
+/obj/random/Initialize()
 	..()
 	qdel(src)
 

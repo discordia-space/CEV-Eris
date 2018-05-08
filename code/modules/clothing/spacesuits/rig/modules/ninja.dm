@@ -185,7 +185,7 @@
 /obj/item/rig_module/self_destruct/deactivate()
 	return
 
-/obj/item/rig_module/self_destruct/process()
+/obj/item/rig_module/self_destruct/Process()
 
 	// Not being worn, leave it alone.
 	if(!holder || !holder.wearer || !holder.wearer.wear_suit == holder)

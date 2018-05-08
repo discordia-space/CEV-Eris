@@ -11,9 +11,9 @@
 /datum/controller/process/obj/doWork()
 	for(last_object in processing_objects)
 		var/datum/O = last_object
-		if(isnull(O.gcDestroyed))
+		if(isnull(O.gc_destroyed))
 			try
-				O:process()
+				O:Process()
 			catch(var/exception/e)
 				catchException(e, O)
 			SCHECK

@@ -733,7 +733,7 @@
 /mob/living/carbon/human/handle_regular_hud_updates()
 	for (var/obj/screen/H in HUDprocess)
 //		var/obj/screen/B = H
-		H.process()
+		H.Process()
 	if(!overlays_cache)
 		overlays_cache = list()
 		overlays_cache.len = 23
@@ -957,7 +957,7 @@
 					stomach_contents.Remove(M)
 					qdel(M)
 					continue
-				if(air_master.current_cycle%3==1)
+				if(SSair.times_fired%3==1)
 					if(!(M.status_flags & GODMODE))
 						M.adjustBruteLoss(5)
 					nutrition += 10

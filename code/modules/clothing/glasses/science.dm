@@ -17,7 +17,7 @@
 		cell = new suitable_cell(src)
 	overlay = global_hud.science
 
-/obj/item/clothing/glasses/science/process()
+/obj/item/clothing/glasses/science/Process()
 	if(active)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))

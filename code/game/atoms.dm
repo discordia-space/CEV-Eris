@@ -32,22 +32,46 @@
 
 	var/auto_init = TRUE
 
-/atom/New()
-	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
-		initialize()
+	var/initialized = FALSE
 
+/atom/New(loc, ...)
+	var/do_initialize = SSatoms.initialized
+	if(do_initialize > INITIALIZATION_INSSATOMS)
+		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
+		if(SSatoms.InitAtom(src, args))
+			//we were deleted
+			return
+
+	var/list/created = SSatoms.created_atoms
+	if(created)
+		created += src
+
+//Called after New if the map is being loaded. mapload = TRUE
+//Called from base of New if the map is not being loaded. mapload = FALSE
+//This base must be called or derivatives must set initialized to TRUE
+//must not sleep
+//Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
+//Must return an Initialize hint. Defined in __DEFINES/subsystems.dm
+
+/atom/proc/Initialize(mapload, ...)
+	if(initialized)
+		crash_with("Warning: [src]([type]) initialized multiple times!")
+	initialized = TRUE
+
+	if(light_power && light_range)
+		update_light()
+
+	return INITIALIZE_HINT_NORMAL
+
+//called if Initialize returns INITIALIZE_HINT_LATELOAD
+/atom/proc/LateInitialize()
+	return
 
 /atom/Destroy()
-	if(reagents)
-		qdel(reagents)
-		reagents = null
+	QDEL_NULL(reagents)
 	spawn()
 		update_openspace()
 	. = ..()
-
-/atom/proc/initialize()
-	if(!isnull(gcDestroyed))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/proc/reveal_blood()
 	return

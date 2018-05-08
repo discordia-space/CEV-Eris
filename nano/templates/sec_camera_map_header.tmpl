@@ -4,7 +4,7 @@ Used In File(s): \code\game\machinery\computer\camera.dm
 -->
 {{:helper.link('Show Camera List', 'script', {'showMap' : 0})}}
 {{:helper.link('Reset', 'refresh', {'reset' : 1})}}
-<div style="float:left;">
+<div>
     <div class='item'>
         <div class='itemLabel'>Current Camera:&nbsp;</div>
         {{if data.current_camera}}
@@ -14,6 +14,14 @@ Used In File(s): \code\game\machinery\computer\camera.dm
         {{/if}}
     </div>
 </div>
+
+<div class='item'>
+    <div class='itemLabel'>Floor:&nbsp;</div>
+    {{for config.mapZLevels}}
+        {{:helper.link(value, 'close', {'mapZLevel' : value}, null, config.mapZLevel == value ? 'selected' : null)}}
+    {{/for}}
+</div>
+
 <div style="float: right; width: 240px;">
     <span style="float: left;">Zoom Level:&nbsp;</span>
     <div unselectable="on" class="link zoomLink" data-zoom-level="4">x1.0</div>

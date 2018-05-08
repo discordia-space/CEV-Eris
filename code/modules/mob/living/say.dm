@@ -214,7 +214,7 @@ proc/get_radio_key_from_channel(var/channel)
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
 		var/list/hear = hear(message_range, T)
 
-		for(var/mob/M in mob_list)
+		for(var/mob/M in SSmobs.mob_list)
 			if(M.locs.len && M.locs[1] in hear)
 				listening |= M
 			else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
@@ -229,9 +229,13 @@ proc/get_radio_key_from_channel(var/channel)
 	spawn(30)
 		qdel(speech_bubble)
 
+	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
-		M << speech_bubble
+		if(M.client)
+			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+
+	flick_overlay(speech_bubble, speech_bubble_recipients, 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)

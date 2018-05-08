@@ -44,16 +44,16 @@
 /obj/item/device/electronic_assembly/New()
 	..()
 	battery = new(src)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/device/electronic_assembly/Destroy()
 	battery = null
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	..()
+	. = ..()
 
-/obj/item/device/electronic_assembly/process()
+/obj/item/device/electronic_assembly/Process()
 	handle_idle_power()
 
 /obj/item/device/electronic_assembly/proc/handle_idle_power()

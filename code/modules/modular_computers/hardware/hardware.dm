@@ -20,4 +20,4 @@
 
 /obj/item/weapon/computer_hardware/Destroy()
 	holder2 = null
-	..()
+	return ..()

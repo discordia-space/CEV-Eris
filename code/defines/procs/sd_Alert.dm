@@ -95,7 +95,7 @@ sd_alert
 
 	Destroy()
 		target << browse(null, "window=\ref[src]")
-		..()
+		. = ..()
 
 	New(who, tag)
 		..()

@@ -169,7 +169,7 @@
 // Description: Returns a list of all unhacked APCs
 /proc/get_unhacked_apcs(var/mob/living/silicon/ai/user)
 	var/list/H = list()
-	for(var/obj/machinery/power/apc/A in machines)
+	for(var/obj/machinery/power/apc/A in SSmachines.machinery)
 		if(A.hacker && A.hacker == user)
 			continue
 		H.Add(A)
@@ -182,7 +182,7 @@
 		return
 
 	var/list/L = list()
-	for(var/mob/living/silicon/robot/RB in mob_list)
+	for(var/mob/living/silicon/robot/RB in SSmobs.mob_list)
 		if(isdrone(RB))
 			continue
 		if(RB.connected_ai == A)
@@ -200,7 +200,7 @@
 		return
 
 	var/list/L = list()
-	for(var/mob/living/silicon/ai/AT in mob_list)
+	for(var/mob/living/silicon/ai/AT in SSmobs.mob_list)
 		if(L == A)
 			continue
 		L.Add(AT)
