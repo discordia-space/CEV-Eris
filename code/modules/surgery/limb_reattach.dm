@@ -43,7 +43,7 @@
 		target.apply_damage(10, BRUTE, null, sharp=1)
 
 /datum/surgery_step/limb/connect
-	requedQuality = QUALITY_COMPRESSING
+	requedQuality = QUALITY_CLAMPING
 	can_infect = 1
 
 	min_duration = 100

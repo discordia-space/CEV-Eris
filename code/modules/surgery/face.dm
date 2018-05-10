@@ -41,7 +41,7 @@
 		target.losebreath += 10
 
 /datum/surgery_step/face/mend_vocal
-	requedQuality = QUALITY_COMPRESSING
+	requedQuality = QUALITY_CLAMPING
 
 	min_duration = 70
 	max_duration = 90

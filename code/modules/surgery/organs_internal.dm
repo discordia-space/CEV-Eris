@@ -155,7 +155,7 @@
 		affected.createwound(CUT, rand(30,50), 1)
 
 /datum/surgery_step/internal/remove_organ
-	requedQuality = QUALITY_COMPRESSING
+	requedQuality = QUALITY_CLAMPING
 
 	min_duration = 60
 	max_duration = 80
@@ -282,7 +282,7 @@
 			I.take_damage(rand(3,5),0)
 
 /datum/surgery_step/internal/attach_organ
-	requedQuality = QUALITY_COMPRESSING
+	requedQuality = QUALITY_CLAMPING
 
 	min_duration = 100
 	max_duration = 120
