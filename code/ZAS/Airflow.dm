@@ -110,11 +110,11 @@ obj/item/check_airflow_movable(n)
 			if(airflow_time++ >= airflow_speed - 7)
 				if(od)
 					density = 0
-				sleep(1 * tick_multiplier)
+				sleep(1 * (config.Ticklag*2))
 		else
 			if(od)
 				density = 0
-			sleep(max(1,10-(airflow_speed+3)) * tick_multiplier)
+			sleep(max(1,10-(airflow_speed+3)) * (config.Ticklag*2))
 		if(od)
 			density = 1
 		if ((!( src.airflow_dest ) || src.loc == src.airflow_dest))
@@ -167,9 +167,9 @@ obj/item/check_airflow_movable(n)
 		airflow_speed -= vsc.airflow_speed_decay
 		if(airflow_speed > 7)
 			if(airflow_time++ >= airflow_speed - 7)
-				sleep(1 * tick_multiplier)
+				sleep(1 * (config.Ticklag*2))
 		else
-			sleep(max(1,10-(airflow_speed+3)) * tick_multiplier)
+			sleep(max(1,10-(airflow_speed+3)) * (config.Ticklag*2))
 		if ((!( src.airflow_dest ) || src.loc == src.airflow_dest))
 			src.airflow_dest = locate(min(max(src.x + xo, 1), world.maxx), min(max(src.y + yo, 1), world.maxy), src.z)
 		if ((src.x == 1 || src.x == world.maxx || src.y == 1 || src.y == world.maxy))

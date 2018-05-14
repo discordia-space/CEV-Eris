@@ -25,7 +25,7 @@
 	initialize_directions = dir
 	..()
 
-/obj/machinery/atmospherics/unary/heater/initialize()
+/obj/machinery/atmospherics/unary/heater/Initialize()
 	if(node)
 		return
 
@@ -58,7 +58,7 @@
 	return
 
 
-/obj/machinery/atmospherics/unary/heater/process()
+/obj/machinery/atmospherics/unary/heater/Process()
 	..()
 
 	if(stat & (NOPOWER|BROKEN) || !use_power)

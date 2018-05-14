@@ -7,6 +7,7 @@
 		anchored = 0
 		density = 1
 		req_access = list(access_engine_equip)
+		circuit = /obj/item/weapon/circuitboard/shieldwallgen
 		var/active = 0
 		var/power = 0
 		var/state = 0
@@ -27,7 +28,7 @@
 		use_power = 0	//Draws directly from power net. Does not use APC power.
 		var/max_field_dist = 8
 		var/stunmode = FALSE
-		var/stun_chance = 50
+		var/stun_chance = 1
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
@@ -90,7 +91,11 @@
 		if(stunmode)
 			icon_state = "Shield_Gen_emagged"
 
-/obj/machinery/shieldwallgen/process()
+	overlays.Cut()
+	if(panel_open)
+		overlays.Add(image(icon,"Shield_Gen_panel"))
+
+/obj/machinery/shieldwallgen/Process()
 	power()
 
 	if(power)
@@ -104,6 +109,8 @@
 	if(active)
 		if(!state)
 			active = FALSE
+			for(var/fdir in cardinal)
+				cleanup(fdir)
 			return
 
 		if(!stunmode)
@@ -189,6 +196,13 @@
 
 /obj/machinery/shieldwallgen/attackby(obj/item/I, mob/user)
 
+	if(default_deconstruction(I, user))
+		return
+
+	if(default_part_replacement(I, user))
+		return
+
+
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
 			if(active)
@@ -229,7 +243,7 @@
 	src.cleanup(SOUTH)
 	src.cleanup(WEST)
 	src.cleanup(EAST)
-	..()
+	. = ..()
 
 /obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile/Proj)
 	storedpower -= 400 * Proj.get_structure_damage()
@@ -277,13 +291,13 @@
 
 /obj/machinery/shieldwall/Destroy()
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/machinery/shieldwall/attack_hand(mob/user as mob)
 	return
 
 
-/obj/machinery/shieldwall/process()
+/obj/machinery/shieldwall/Process()
 	if(needs_power)
 		if(isnull(gen_primary)||isnull(gen_secondary))
 			qdel(src)

@@ -258,7 +258,7 @@
 	if(A)
 		on = 0
 //		A.update_lights()
-	..()
+	. = ..()
 
 /obj/machinery/light/update_icon()
 
@@ -639,7 +639,7 @@
 #define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
 
 
-/obj/machinery/light/process()
+/obj/machinery/light/Process()
 	if(on)
 		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
 

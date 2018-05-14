@@ -19,12 +19,12 @@
 	var/list/upgrades = list()
 
 /obj/item/weapon/implant/core_implant/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	deactivate()
-	..()
+	. = ..()
 
 /obj/item/weapon/implant/core_implant/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	add_hearing()
 	..()
 
@@ -51,7 +51,7 @@
 	remove_hearing()
 	active = FALSE
 	remove_ritual_verbs()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/weapon/implant/core_implant/proc/add_ritual_verbs()
 	if(!wearer || !active)
@@ -118,13 +118,13 @@
 /obj/item/weapon/implant/core_implant/proc/restore_power(var/value)
 	power = min(max_power, power + value)
 
-/obj/item/weapon/implant/core_implant/process()
+/obj/item/weapon/implant/core_implant/Process()
 	if(!active)
 		return
 	if((!wearer || loc != wearer) && active)
 		remove_hearing()
 		active = FALSE
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	restore_power(power_regen)
 
 /obj/item/weapon/implant/core_implant/proc/get_module(var/m_type)

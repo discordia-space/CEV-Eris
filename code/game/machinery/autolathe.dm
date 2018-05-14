@@ -29,6 +29,9 @@
 	var/shocked = FALSE
 	var/paused = FALSE
 
+	var/working = FALSE
+	var/anim = 0
+
 	var/error = null
 
 	var/unfolded = null
@@ -286,8 +289,12 @@
 
 
 	if(href_list["abort_print"])
+		if(working)
+			print_post()
+			working = FALSE
 		current = null
 		paused = TRUE
+		working = FALSE
 
 	if(href_list["toggle_pause"])
 		paused = !paused
@@ -414,7 +421,7 @@
 	if(eating.reagents && container)
 		eating.reagents.trans_to(container,eating.reagents.total_volume)
 
-	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+	res_load() // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
@@ -446,10 +453,13 @@
 
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
-	update_icon()
+	return
 
 /obj/machinery/autolathe/proc/print_post()
-	update_icon()
+	return
+
+/obj/machinery/autolathe/proc/res_load()
+	flick("autolathe_o", src)
 
 
 /obj/machinery/autolathe/proc/cannot_print(var/recipe)
@@ -478,45 +488,65 @@
 	return ERR_OK
 
 
-/obj/machinery/autolathe/process()
+/obj/machinery/autolathe/Process()
 	if(stat & NOPOWER)
+		if(working)
+			print_post()
+			working = FALSE
+		update_icon()
 		return
 
+	if(anim < world.time)
+		if(current)
+			var/datum/autolathe/recipe/R = autolathe_recipes[current]
+			var/err = cannot_print(current)
+			if(err == ERR_NOLICENSE)
+				error = message_nolicense
+			else if(err == ERR_NOMATERIAL)
+				error = message_nomaterial
+			else if(err == ERR_NOREAGENT)
+				error = message_noreagent
+			else if(err == ERR_NOTFOUND)
+				error = message_notfound
+			else if(err == ERR_OK)
+				error = null
 
-	if(current)
-		var/datum/autolathe/recipe/R = autolathe_recipes[current]
-		var/err = cannot_print(current)
-		if(err == ERR_NOLICENSE)
-			error = message_nolicense
-		else if(err == ERR_NOMATERIAL)
-			error = message_nomaterial
-		else if(err == ERR_NOREAGENT)
-			error = message_noreagent
-		else if(err == ERR_NOTFOUND)
-			error = message_notfound
-		else if(err == ERR_OK)
-			error = null
+				working = TRUE
 
-			if(!paused)
-				if(progress <= 0)
-					consume_materials(current)
+				if(!paused)
+					if(progress <= 0)
+						consume_materials(current)
 
-				progress += speed
+					progress += speed
+
+			else
+				error = "Unknown error."
+
+			if(R && progress >= R.time)
+				print_post()
+				new R.path(src.loc)
+				working = FALSE
+				current = null
 
 		else
-			error = "Unknown error."
-
-		if(R && progress >= R.time)
-			new R.path(src.loc)
+			error = null
+			working = FALSE
 			next_recipe()
-	else
-		error = null
-		next_recipe()
 
 	fix_queue()
 	special_process()
+	update_icon()
 	nanomanager.update_uis(src)
 
+/obj/machinery/autolathe/update_icon()
+	overlays.Cut()
+
+	icon_state = "autolathe"
+	if(panel_open)
+		overlays.Add(image(icon,"autolathe_p"))
+
+	if(working)
+		icon_state = "autolathe_n"
 
 /obj/machinery/autolathe/proc/consume_materials(var/recipe)
 	var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
@@ -537,8 +567,13 @@
 	progress = 0
 	if(queue.len)
 		current = queue[1]
+		print_pre()
+		working = TRUE
 		queue[1] = null
 		fix_queue()
+	else
+		current = null
+		working = FALSE
 
 /obj/machinery/autolathe/proc/special_process()
 	queue_max = hacked ? 16 : 8
@@ -572,11 +607,6 @@
 	var/obj/item/stack/material/S = new M.stack_type(loc)
 	S.amount = eject
 	stored_material[material] -= eject
-
-/obj/machinery/autolathe/update_icon()
-	overlays.Cut()
-	if(panel_open)
-		overlays.Add(image(icon,"autolathe_p"))
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()

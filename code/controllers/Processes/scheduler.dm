@@ -19,7 +19,7 @@
 			if(world.time > scheduled_task.trigger_time)
 				unschedule(scheduled_task)
 				scheduled_task.pre_process()
-				scheduled_task.process()
+				scheduled_task.Process()
 				scheduled_task.post_process()
 		catch(var/exception/e)
 			catchException(e, last_object)
@@ -96,7 +96,7 @@
 /datum/scheduled_task/proc/pre_process()
 	task_triggered_event.raise_event(src)
 
-/datum/scheduled_task/proc/process()
+/datum/scheduled_task/Process()
 	if(procedure)
 		call(procedure)(arglist(arguments))
 
@@ -119,7 +119,7 @@
 	source = null
 	return ..()
 
-/datum/scheduled_task/source/process()
+/datum/scheduled_task/source/Process()
 	call(source, procedure)(arglist(arguments))
 
 /datum/scheduled_task/source/proc/source_destroyed()

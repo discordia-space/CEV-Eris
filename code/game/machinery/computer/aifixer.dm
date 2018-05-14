@@ -92,7 +92,7 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/aifixer/process()
+/obj/machinery/computer/aifixer/Process()
 	if(..())
 		src.updateDialog()
 		return

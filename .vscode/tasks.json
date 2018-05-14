@@ -1,0 +1,34 @@
+{
+	// Build the thing!
+	// Except the thing is SS13 code in a shitty C like language!
+	// Why would you ever want to build this?!
+	"version": "2.0.0",
+	"presentation" : { "reveal": "always" },
+	"tasks":[
+		{
+			"label": "Build Release",
+			"group": "build",
+			"type": "shell",
+			"command": "WINEARCH=win32 WINEPREFIX=~/.byondinst wine C:/Program\\ Files/BYOND/bin/dm.exe",
+			"args": ["/home/guap6512/Space\\ Station\\ 13/CEV-Eris/cev_eris.dme"],
+			"problemMatcher": {
+				"owner": "dm",
+				"fileLocation": ["relative", "${workspaceRoot}"],
+				"pattern": {
+					"regexp": "^([\\\\\/0-9a-zA-Z\\._ -]+):(\\d+):(warning|error): (.*)",
+					"file": 1,
+					"line": 2,
+					"severity": 3,
+					"message": 4
+				}
+			}
+		},
+		{
+			"label": "Run Server",
+			"group": "test",
+			"type": "shell",
+			"command": "WINEARCH=win32 WINEPREFIX=~/.byondinst wine C:/Program\\ Files/BYOND/bin/dreamdaemon.exe",
+			"args": ["/home/guap6512/Space\\ Station\\ 13/CEV-Eris/cev_eris.dmb", "-trusted", "-invisible", "-close"]
+		}
+	]
+}

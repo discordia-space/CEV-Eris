@@ -20,7 +20,7 @@
 	var/update_locked = 0
 
 /obj/machinery/power/breakerbox/Destroy()
-	..()
+	. = ..()
 	for(var/datum/nano_module/rcon/R in world)
 		R.FindDevices()
 
@@ -28,7 +28,7 @@
 	icon_state = "bbox_on"
 
 	// Enabled on server startup. Used in substations to keep them in bypass mode.
-/obj/machinery/power/breakerbox/activated/initialize()
+/obj/machinery/power/breakerbox/activated/Initialize()
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
@@ -132,5 +132,5 @@
 		spawn(600)
 			update_locked = 0
 
-/obj/machinery/power/breakerbox/process()
+/obj/machinery/power/breakerbox/Process()
 	return 1

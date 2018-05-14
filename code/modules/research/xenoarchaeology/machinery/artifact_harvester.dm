@@ -70,7 +70,7 @@
 	user << browse(dat, "window=artharvester;size=450x500")
 	onclose(user, "artharvester")
 
-/obj/machinery/artifact_harvester/process()
+/obj/machinery/artifact_harvester/Process()
 	if(stat & (NOPOWER|BROKEN))
 		return
 
@@ -95,7 +95,7 @@
 
 		//do the effect
 		if(inserted_battery.battery_effect)
-			inserted_battery.battery_effect.process()
+			inserted_battery.battery_effect.Process()
 
 			//if the effect works by touch, activate it on anyone viewing the console
 			if(inserted_battery.battery_effect.effect == EFFECT_TOUCH)

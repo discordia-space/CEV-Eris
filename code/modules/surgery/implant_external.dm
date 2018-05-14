@@ -68,7 +68,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/external_implant/remove
-	requedQuality = QUALITY_COMPRESSING
+	requedQuality = QUALITY_CLAMPING
 
 	min_duration = 80
 	max_duration = 90

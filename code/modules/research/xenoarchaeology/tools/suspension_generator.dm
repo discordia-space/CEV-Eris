@@ -19,7 +19,7 @@
 	src.cell = new/obj/item/weapon/cell/large/high(src)
 	..()
 
-/obj/machinery/suspension_gen/process()
+/obj/machinery/suspension_gen/Process()
 	set background = 1
 
 	if (suspension_field)
@@ -319,7 +319,7 @@
 /obj/machinery/suspension_gen/Destroy()
 	//safety checks: clear the field and drop anything it's holding
 	deactivate()
-	..()
+	. = ..()
 
 /obj/machinery/suspension_gen/verb/rotate_ccw()
 	set src in view(1)
@@ -351,4 +351,4 @@
 /obj/effect/suspension_field/Destroy()
 	for(var/obj/I in src)
 		I.loc = src.loc
-	..()
+	. = ..()

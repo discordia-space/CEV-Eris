@@ -138,7 +138,7 @@ var/list/escape_pods_by_name = list()
 		return
 	..(command)
 
-/datum/computer/file/embedded_program/docking/simple/escape_pod/process()
+/datum/computer/file/embedded_program/docking/simple/escape_pod/Process()
 	..()
 	if (eject_time && world.time >= eject_time && !closing)
 		close_door()

@@ -18,12 +18,12 @@
 	var/recharge_time = 4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 
-/obj/item/weapon/cell/initialize()
+/obj/item/weapon/cell/Initialize()
 	..()
 	if(autorecharging)
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/cell/process()
+/obj/item/weapon/cell/Process()
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0

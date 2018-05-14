@@ -18,6 +18,7 @@
 		"asters" = "#5FAE57",
 		"tehnomancers" = "#AA7039",
 		"moebius" = "#5D2971",
+		"med" = "#17A32D",
 	)
 
 /obj/machinery/holoposter/update_icon()
@@ -71,7 +72,7 @@
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/holoposter/process()
+/obj/machinery/holoposter/Process()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if((world.time > last_launch + 1 MINUTE) && (!icon_forced))

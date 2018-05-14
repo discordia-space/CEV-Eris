@@ -24,10 +24,10 @@
 /obj/item/device/assembly/timer/toggle_secure()
 	secured = !secured
 	if(secured)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	else
 		timing = 0
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	return secured
 
@@ -43,7 +43,7 @@
 		process_cooldown()
 
 
-/obj/item/device/assembly/timer/process()
+/obj/item/device/assembly/timer/Process()
 	if(timing && (time > 0))
 		time--
 	if(timing && time <= 0)

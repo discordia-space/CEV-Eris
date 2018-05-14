@@ -3,4 +3,4 @@
 	schedule_interval = 10 // every second
 
 /datum/controller/process/vote/doWork()
-	vote.process()
+	vote.Process()

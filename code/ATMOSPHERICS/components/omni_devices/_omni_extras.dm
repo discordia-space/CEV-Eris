@@ -40,10 +40,10 @@
 /datum/omni_port/proc/connect()
 	if(node)
 		return
-	master.initialize()
+	master.Initialize()
 	master.build_network()
 	if(node)
-		node.initialize()
+		node.Initialize()
 		node.build_network()
 
 /datum/omni_port/proc/disconnect()

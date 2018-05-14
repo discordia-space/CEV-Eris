@@ -52,7 +52,7 @@
 /datum/storyevent/meteors/is_ended()
 	return waves <= 0
 
-/datum/storyevent/meteors/process()
+/datum/storyevent/meteors/Process()
 	if(waves && world.time > timer)
 		waves--
 		spawn()

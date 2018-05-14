@@ -1,5 +1,5 @@
 //CORTICAL BORER ORGANS.
-/obj/item/organ/borer/process()
+/obj/item/organ/borer/Process()
 
 	// Borer husks regenerate health, feel no pain, and are resistant to stuns and brainloss.
 	for(var/chem in list("tricordrazine","tramadol","hyperzine","alkysine"))

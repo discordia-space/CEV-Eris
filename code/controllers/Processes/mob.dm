@@ -18,7 +18,7 @@
 		if(isnull(M))
 			return
 
-		if(isnull(M.gcDestroyed))
+		if(isnull(M.gc_destroyed))
 			try
 				M.Life()
 			catch(var/exception/e)

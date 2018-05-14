@@ -41,7 +41,7 @@
 
 	lighting_update_overlays -= src;
 
-	..()
+	. = ..()
 
 /atom/movable/lighting_overlay/proc/update_overlay()
 	var/turf/T = loc

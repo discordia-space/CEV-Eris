@@ -198,7 +198,7 @@
 
 	for (var/obj/screen/H in HUDprocess)
 //		var/obj/screen/B = H
-		H.process()
+		H.Process()
 
 /*	if (src.healths)
 		if (src.stat != 2)

@@ -23,7 +23,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	materials = default_material_composition.Copy()
 	..()
 
-/obj/machinery/r_n_d/circuit_imprinter/process()
+/obj/machinery/r_n_d/circuit_imprinter/Process()
 	..()
 	if(stat)
 		update_icon()

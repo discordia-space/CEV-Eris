@@ -47,7 +47,7 @@ ADMIN_VERB_ADD(/proc/release, R_FUN, FALSE)
 	usr.control_object = null
 
 
-/proc/givetestverbs(mob/M as mob in mob_list)
+/proc/givetestverbs(mob/M as mob in SSmobs.mob_list)
 	set desc = "Give this guy possess/release verbs"
 	set category = "Debug"
 	set name = "Give Possessing Verbs"

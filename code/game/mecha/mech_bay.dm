@@ -35,7 +35,7 @@
 		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
 			repair += P.rating * 2
 
-/obj/machinery/mech_recharger/process()
+/obj/machinery/mech_recharger/Process()
 	..()
 	if(!charging)
 		return

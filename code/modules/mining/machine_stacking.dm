@@ -104,7 +104,7 @@
 		if(marker)
 			output_dir = get_dir(src, marker)
 
-/obj/machinery/mineral/stacking_machine/process()
+/obj/machinery/mineral/stacking_machine/Process()
 	if(src.output_dir && src.input_dir)
 		var/turf/T = get_step(src, input_dir)
 		for(var/obj/item/O in T.contents)

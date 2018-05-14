@@ -97,7 +97,7 @@ var/list/possible_cable_coil_colours = list(
 	if(powernet)
 		cut_cable_from_powernet()				// update the powernets
 	cable_list -= src							//remove it from global cable list
-	..()										// then go ahead and delete the cable
+	. = ..()										// then go ahead and delete the cable
 
 ///////////////////////////////////
 // General procedures
@@ -131,42 +131,23 @@ var/list/possible_cable_coil_colours = list(
 //
 /obj/structure/cable/attackby(obj/item/I, mob/user)
 
+	src.add_fingerprint(user)
+
 	var/turf/T = src.loc
 	if(!T.is_plating())
 		return
 
-	if(QUALITY_CUTTING in I.tool_qualities || QUALITY_WIRE_CUTTING in I.tool_qualities)
-		if(d1 == 12 || d2 == 12)
-			user << SPAN_WARNING("You must cut this cable from above.")
-			return
-
-		if(breaker_box)
-			user << "\red This cable is connected to nearby breaker box. Use breaker box to interact with it."
-			return
-
-		if (shock(user, 50))
-			return
-
-		if(src.d1)	// 0-X cables are 1 unit, X-X cables are 2 units long
-			new/obj/item/stack/cable_coil(T, 2, color)
-		else
-			new/obj/item/stack/cable_coil(T, 1, color)
-
-		for(var/mob/O in viewers(src, null))
-			O.show_message(SPAN_WARNING("[user] cuts the cable."), 1)
-
-		if(d1 == 11 || d2 == 11)
-			var/turf/turf = GetBelow(src)
-			if(turf)
-				for(var/obj/structure/cable/c in turf)
-					if(c.d1 == 12 || c.d2 == 12)
-						qdel(c)
-
-		investigate_log("was cut by [key_name(usr, usr.client)] in [user.loc.loc]","wires")
-
-		qdel(src)
+	if(QUALITY_WIRE_CUTTING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY))
+			if(!shock(user, 50))
+				cutting(user)
 		return
 
+	if(QUALITY_CUTTING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_CUTTING, FAILCHANCE_EASY))
+			if(!shock(user, 50))
+				cutting(user)
+		return
 
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
@@ -189,7 +170,38 @@ var/list/possible_cable_coil_colours = list(
 		if (I.flags & CONDUCT)
 			shock(user, 50, 0.7)
 
-	src.add_fingerprint(user)
+
+/obj/structure/cable/proc/cutting(mob/user)
+
+	var/turf/T = src.loc
+
+	if(d1 == 12 || d2 == 12)
+		user << SPAN_WARNING("You must cut this cable from above.")
+		return
+
+	if(breaker_box)
+		user << SPAN_WARNING("This cable is connected to nearby breaker box. Use breaker box to interact with it.")
+		return
+
+	if(src.d1)	// 0-X cables are 1 unit, X-X cables are 2 units long
+		new/obj/item/stack/cable_coil(T, 2, color)
+	else
+		new/obj/item/stack/cable_coil(T, 1, color)
+
+	for(var/mob/O in viewers(src, null))
+		O.show_message(SPAN_WARNING("[user] cuts the cable."), 1)
+
+	if(d1 == 11 || d2 == 11)
+		var/turf/turf = GetBelow(src)
+		if(turf)
+			for(var/obj/structure/cable/c in turf)
+				if(c.d1 == 12 || c.d2 == 12)
+					qdel(c)
+
+	investigate_log("was cut by [key_name(usr, usr.client)] in [user.loc.loc]","wires")
+
+	qdel(src)
+	return
 
 // shock the user with probability prb
 /obj/structure/cable/proc/shock(mob/user, prb, var/siemens_coeff = 1.0)

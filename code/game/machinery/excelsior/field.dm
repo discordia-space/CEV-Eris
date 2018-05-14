@@ -3,6 +3,7 @@
 	desc = "A shield generator."
 	icon = 'icons/obj/machines/excelsior/field.dmi'
 	stun_chance = 90
+	circuit = /obj/item/weapon/circuitboard/excelsiorshieldwallgen
 
 /obj/machinery/shieldwallgen/excelsior/can_stun(var/mob/M)
 	if(locate(/obj/item/weapon/implant/revolution/excelsior) in M)

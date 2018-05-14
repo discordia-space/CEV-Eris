@@ -68,12 +68,12 @@
 
 //For killing processes like hot spots
 /obj/item/weapon/tool/Destroy()
-	if (src in processing_objects)
-		processing_objects -= src
+	if (src in SSobj.processing)
+		STOP_PROCESSING(SSobj, src)
 	return ..()
 
 //Ignite plasma around, if we need it
-/obj/item/weapon/tool/process()
+/obj/item/weapon/tool/Process()
 	if(switched_on && create_hot_spot)
 		var/turf/location = src.loc
 		if(istype(location, /mob/))
@@ -251,7 +251,7 @@
 							QUALITY_PRYING = 10,
 							QUALITY_WELDING = 10,
 							QUALITY_SCREW_DRIVING = 10,
-							QUALITY_COMPRESSING = 10,
+							QUALITY_CLAMPING = 10,
 							QUALITY_CAUTERIZING = 10,
 							QUALITY_WIRE_CUTTING = 10,
 							QUALITY_RETRACTING = 10,

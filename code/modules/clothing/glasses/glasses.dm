@@ -15,7 +15,7 @@
 
 /obj/item/clothing/glasses/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	if(toggleable)	// We need to spawn them switched off, because they consume power
 		toggle(null, active)
 

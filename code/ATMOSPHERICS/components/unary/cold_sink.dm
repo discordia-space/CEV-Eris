@@ -24,7 +24,7 @@
 	initialize_directions = dir
 	..()
 
-/obj/machinery/atmospherics/unary/freezer/initialize()
+/obj/machinery/atmospherics/unary/freezer/Initialize()
 	if(node)
 		return
 
@@ -109,7 +109,7 @@
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	add_fingerprint(usr)
 
-/obj/machinery/atmospherics/unary/freezer/process()
+/obj/machinery/atmospherics/unary/freezer/Process()
 	..()
 
 	if(stat & (NOPOWER|BROKEN) || !use_power)

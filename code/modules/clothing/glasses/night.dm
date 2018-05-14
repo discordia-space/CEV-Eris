@@ -21,7 +21,7 @@
 		cell = new /obj/item/weapon/cell/small/super(src)	 //More advanced power cell
 	overlay = global_hud.nvg
 
-obj/item/clothing/glasses/night/process()
+obj/item/clothing/glasses/night/Process()
 	if(active)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))

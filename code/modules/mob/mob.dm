@@ -1,5 +1,5 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	mob_list -= src
+	STOP_PROCESSING(SSmobs, src)
 	dead_mob_list -= src
 	living_mob_list -= src
 	unset_machine()
@@ -11,6 +11,7 @@
 		client.screen = list()
 	ghostize()
 	..()
+	return QDEL_HINT_HARDDEL
 
 /mob/get_fall_damage()
 	return 15
@@ -40,8 +41,8 @@
 //	spell_masters = null
 	zone_sel = null
 
-/mob/New()
-	mob_list += src
+/mob/Initialize()
+	START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
 		dead_mob_list += src
 	else
@@ -133,7 +134,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in SSmobs.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0
@@ -480,7 +481,7 @@
 			creatures[name] = O
 
 
-	for(var/mob/M in sortAtom(mob_list))
+	for(var/mob/M in sortAtom(SSmobs.mob_list))
 		var/name = M.name
 		if (names.Find(name))
 			namecounts[name]++
@@ -674,11 +675,25 @@
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
-				stat("CPU:","[world.cpu]")
-				stat("Instances:","[world.contents.len]")
 			if(statpanel("Processes"))
 				if(processScheduler)
 					processScheduler.statProcesses()
+			if(statpanel("MC"))
+				stat("CPU:","[world.cpu]")
+				stat("Instances:","[world.contents.len]")
+				stat(null)
+				if(Master)
+					Master.stat_entry()
+				else
+					stat("Master Controller:", "ERROR")
+				if(Failsafe)
+					Failsafe.stat_entry()
+				else
+					stat("Failsafe Controller:", "ERROR")
+				if(Master)
+					stat(null)
+					for(var/datum/controller/subsystem/SS in Master.subsystems)
+						SS.stat_entry()
 
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))

@@ -599,7 +599,7 @@
 	Destroy()
 		qdel(pr_repair_droid)
 		pr_repair_droid = null
-		..()
+		. = ..()
 
 	attach(obj/mecha/M as obj)
 		..()
@@ -641,7 +641,7 @@
 
 /datum/global_iterator/mecha_repair_droid
 
-	process(var/obj/item/mecha_parts/mecha_equipment/repair_droid/RD as obj)
+	Process(var/obj/item/mecha_parts/mecha_equipment/repair_droid/RD as obj)
 		if(!RD.chassis)
 			stop()
 			RD.set_ready_state(1)
@@ -692,7 +692,7 @@
 	Destroy()
 		qdel(pr_energy_relay)
 		pr_energy_relay = null
-		..()
+		. = ..()
 
 	detach()
 		pr_energy_relay.stop()
@@ -729,7 +729,7 @@
 
 /datum/global_iterator/mecha_energy_relay
 
-	process(var/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/ER)
+	Process(var/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/ER)
 		if(!ER.chassis || ER.chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
 			stop()
 			ER.set_ready_state(1)
@@ -780,7 +780,7 @@
 	Destroy()
 		qdel(pr_mech_generator)
 		pr_mech_generator = null
-		..()
+		. = ..()
 
 	proc/init()
 		fuel = new /obj/item/stack/material/plasma(src)
@@ -867,7 +867,7 @@
 
 /datum/global_iterator/mecha_generator
 
-	process(var/obj/item/mecha_parts/mecha_equipment/generator/EG)
+	Process(var/obj/item/mecha_parts/mecha_equipment/generator/EG)
 		if(!EG.chassis)
 			stop()
 			EG.set_ready_state(1)
@@ -916,7 +916,7 @@
 
 /datum/global_iterator/mecha_generator/nuclear
 
-	process(var/obj/item/mecha_parts/mecha_equipment/generator/nuclear/EG)
+	Process(var/obj/item/mecha_parts/mecha_equipment/generator/nuclear/EG)
 		if(..())
 			for(var/mob/living/carbon/M in view(EG.chassis))
 				if(ishuman(M))

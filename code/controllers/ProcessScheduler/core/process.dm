@@ -34,9 +34,6 @@
 	/**
 	 * Config vars
 	 */
-	// Process name
-	var/name
-
 	// Process schedule interval
 	// This controls how often the process would run under ideal conditions.
 	// If the process scheduler sees that the process has finished, it will wait until
@@ -128,7 +125,7 @@
 
 /datum/controller/process/proc/setup()
 
-/datum/controller/process/proc/process()
+/datum/controller/process/Process()
 	started()
 	doWork()
 	finished()
@@ -356,6 +353,6 @@
 			exceptions[eid] = 0
 
 /datum/controller/process/proc/catchBadType(var/datum/caught)
-	if(isnull(caught) || !istype(caught) || !isnull(caught.gcDestroyed))
+	if(isnull(caught) || !istype(caught) || !isnull(caught.gc_destroyed))
 		return // Only bother with types we can identify and that don't belong
 	catchException("Type [caught.type] does not belong in process' queue")

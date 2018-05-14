@@ -77,8 +77,8 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 /obj/machinery/message_server/Destroy()
 	message_servers -= src
-	..()
-	return
+
+	return ..()
 
 /obj/machinery/message_server/proc/GenerateKey()
 	//Feel free to move to Helpers.
@@ -88,7 +88,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	newKey += pick("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 	return newKey
 
-/obj/machinery/message_server/process()
+/obj/machinery/message_server/Process()
 	//if(decryptkey == "password")
 	//	decryptkey = generateKey()
 	if(active && (stat & (BROKEN|NOPOWER)))
@@ -220,8 +220,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 		if(blackbox != BR)
 			blackbox = BR
-	..()
-
+	. = ..()
 
 
 // Sanitize inputs to avoid SQL injection attacks

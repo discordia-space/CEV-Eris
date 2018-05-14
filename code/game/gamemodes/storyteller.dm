@@ -79,7 +79,7 @@ var/global/list/current_factions = list()
 /datum/storyteller/proc/set_timer(var/time)
 	event_spawn_timer = world.time + time
 
-/datum/storyteller/proc/process()
+/datum/storyteller/Process()
 	if(force_spawn_now || (event_spawn_timer && event_spawn_timer <= world.time))
 		update_crew_count()
 		update_event_weights()
@@ -97,7 +97,7 @@ var/global/list/current_factions = list()
 /datum/storyteller/proc/process_events()	//Called in ticker
 	for(var/datum/storyevent/S in processing_events)
 		if(S.processing)
-			S.process()
+			S.Process()
 			if(S.is_ended())
 				S.stop_processing(TRUE)
 

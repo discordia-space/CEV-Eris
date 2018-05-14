@@ -1,6 +1,6 @@
 /obj/item/weapon/mine
-	name = "excelsior mine"
-	desc = "For Excelsior!"
+	name = "Excelsior Mine"
+	desc = "For the excelsior! Just add igniter with signaler or sensor in it, and it's ready to blow."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
 	w_class = ITEM_SIZE_LARGE

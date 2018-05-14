@@ -14,6 +14,6 @@
 		client.images.Remove(i)
 		static_overlays.Remove(i)
 
-	for(var/mob/living/L in mob_list)
+	for(var/mob/living/L in SSmobs.mob_list)
 		static_overlays |= L.static_overlay
 		client.images |= L.static_overlay

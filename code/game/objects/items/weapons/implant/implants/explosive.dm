@@ -14,7 +14,7 @@
 
 /obj/item/weapon/implant/explosive/Destroy()
 	remove_hearing()
-	..()
+	. = ..()
 
 /obj/item/weapon/implant/explosive/get_data()
 	var/data = {"

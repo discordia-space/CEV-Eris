@@ -182,7 +182,7 @@
 
 ///////////////
 
-/obj/machinery/neotheology/cloner/process()
+/obj/machinery/neotheology/cloner/Process()
 	if(stat & NOPOWER)
 		return
 
