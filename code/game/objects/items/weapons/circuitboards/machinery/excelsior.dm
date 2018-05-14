@@ -21,3 +21,13 @@
 		/obj/item/weapon/stock_parts/manipulator = 1,
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
+
+/obj/item/weapon/circuitboard/excelsiorreconstructor
+	name = T_BOARD("excelsior implant reconstructor")
+	build_path = /obj/machinery/complant_maker
+	board_type = "machine"
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_BIOTECH = 3, TECH_ILLEGAL = 2)
+	req_components = list(
+		/obj/item/weapon/stock_parts/manipulator = 3,
+		/obj/item/weapon/stock_parts/console_screen = 1
+	)
