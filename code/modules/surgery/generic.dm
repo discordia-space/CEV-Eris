@@ -97,7 +97,7 @@
 		affected.createwound(CUT, 10)
 
 /datum/surgery_step/generic/clamp_bleeders
-	requedQuality = QUALITY_COMPRESSING
+	requedQuality = QUALITY_CLAMPING
 
 	min_duration = 40
 	max_duration = 60
