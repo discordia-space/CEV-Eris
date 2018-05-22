@@ -43,6 +43,9 @@
 		/obj/item/weapon/storage/backpack/satchel
 		)
 
+	//Character stats modifers
+	var/list/stat_modifers = list()
+
 	//This will be put in backpack. List ordered by priority!
 	var/list/put_in_backpack = list()
 
@@ -128,6 +131,15 @@
 
 		C.install(H)
 		C.activate()
+
+	return TRUE
+
+/datum/job/proc/add_stats(var/mob/living/carbon/human/target)
+	world << "qrya"
+	if(!ishuman(target))
+		return FALSE
+	for(var/name in src.stat_modifers)
+		target.stats.changeStat(name, stat_modifers[name])
 
 	return TRUE
 

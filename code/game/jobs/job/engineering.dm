@@ -23,6 +23,12 @@
 		access_heads, access_construction, access_sec_doors,
 		access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload
 	)
+
+	stat_modifers = list(
+		STAT_CNS = 30,
+		STAT_INV = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/exultant
 	suit = /obj/item/clothing/suit/storage/hazardvest
 	shoes = /obj/item/clothing/shoes/jackboots
@@ -67,6 +73,11 @@
 		access_external_airlocks, access_construction, access_atmospherics
 	)
 	idtype = /obj/item/weapon/card/id/engie
+
+	stat_modifers = list(
+		STAT_CNS = 20,
+		STAT_INV = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/engineer
 	suit = /obj/item/clothing/suit/storage/hazardvest

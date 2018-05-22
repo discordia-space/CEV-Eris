@@ -21,6 +21,12 @@
 	)
 	ideal_character_age = 50
 
+	stat_modifers = list(
+		STAT_CNS = 20,
+		STAT_INV = 30,
+		STAT_BIO = 20,
+	)
+
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
 	pda = /obj/item/device/pda/heads/rd
 	ear = /obj/item/device/radio/headset/heads/rd
@@ -59,6 +65,12 @@
 	)
 	idtype = /obj/item/weapon/card/id/sci
 
+	stat_modifers = list(
+		STAT_CNS = 10,
+		STAT_INV = 20,
+		STAT_BIO = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/scientist
 	pda = /obj/item/device/pda/science
 	ear = /obj/item/device/radio/headset/headset_sci
@@ -93,6 +105,12 @@
 		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research
 	) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	idtype = /obj/item/weapon/card/id/dkgrey
+
+	stat_modifers = list(
+		STAT_CNS = 20,
+		STAT_INV = 10,
+		STAT_BIO = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/roboticist
 	pda = /obj/item/device/pda/roboticist
