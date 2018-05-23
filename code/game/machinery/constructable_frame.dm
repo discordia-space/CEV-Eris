@@ -78,7 +78,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(state == STATE_WIRES)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You remove the cables.")
 					state = STATE_NONE
 					icon_state = "[base_state]_0"
@@ -89,7 +89,7 @@
 
 		if(QUALITY_PRYING)
 			if(state == STATE_CIRCUIT)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 					state = STATE_WIRES
 					circuit.loc = src.loc
 					circuit = null
@@ -108,7 +108,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(state == STATE_NONE)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You dismantle the frame")
 					new /obj/item/stack/material/steel(src.loc, 8)
 					qdel(src)

@@ -143,7 +143,7 @@
 
 		if(QUALITY_WELDING)
 			if((wires.CanDeconstruct() || (stat & BROKEN)))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You weld the assembly securely into place.")
 					if(assembly)
 						assembly.loc = src.loc
@@ -166,7 +166,7 @@
 
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 				panel_open = !panel_open
 				user.visible_message("<span class='warning'>[user] screws the camera's panel [panel_open ? "open" : "closed"]!</span>",
 				"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")

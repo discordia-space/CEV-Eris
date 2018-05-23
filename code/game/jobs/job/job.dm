@@ -135,7 +135,6 @@
 	return TRUE
 
 /datum/job/proc/add_stats(var/mob/living/carbon/human/target)
-	world << "qrya"
 	if(!ishuman(target))
 		return FALSE
 	for(var/name in src.stat_modifers)

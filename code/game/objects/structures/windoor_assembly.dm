@@ -82,7 +82,7 @@ obj/structure/windoor_assembly/Destroy()
 
 		if(QUALITY_BOLT_TURNING)
 			if(state == "01" && !anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You've secured the windoor assembly!")
 					src.anchored = 1
 					if(src.secure)
@@ -91,7 +91,7 @@ obj/structure/windoor_assembly/Destroy()
 						src.name = "Anchored Windoor Assembly"
 					return
 			if(state == "01" && anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You've unsecured the windoor assembly!")
 					anchored = 0
 					if(src.secure)
@@ -103,7 +103,7 @@ obj/structure/windoor_assembly/Destroy()
 
 		if(QUALITY_WELDING)
 			if(state == "01" && !anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You dissasembled the windoor assembly!")
 					new /obj/item/stack/material/glass/reinforced(get_turf(src), 5)
 					if(secure)
@@ -114,7 +114,7 @@ obj/structure/windoor_assembly/Destroy()
 
 		if(QUALITY_PRYING)
 			if(state == "02" && !electronics)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					usr << browse(null, "window=windoor_access")
 					density = 1 //Shouldn't matter but just incase
 					user << SPAN_NOTICE("You finish the windoor!")
@@ -162,7 +162,7 @@ obj/structure/windoor_assembly/Destroy()
 
 		if(QUALITY_WIRE_CUTTING)
 			if(state == "02" && !src.electronics)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You remove the windoor wires.!")
 					new/obj/item/stack/cable_coil(get_turf(user), 1)
 					src.state = "01"
@@ -175,7 +175,7 @@ obj/structure/windoor_assembly/Destroy()
 
 		if(QUALITY_SCREW_DRIVING)
 			if(state == "02" && !electronics)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You've removed the airlock electronics!")
 					if(src.secure)
 						src.name = "Secure Wired Windoor Assembly"

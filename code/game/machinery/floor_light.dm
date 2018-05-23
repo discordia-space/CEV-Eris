@@ -35,7 +35,7 @@ var/list/floor_light_cache = list()
 			if(on)
 				user << SPAN_WARNING("\The [src] must be turn off to change a color.")
 				return
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 				var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
 				default_light_colour = new_light_colour
 				update_brightness()
@@ -44,7 +44,7 @@ var/list/floor_light_cache = list()
 
 		if(QUALITY_WELDING)
 			if((damaged || (stat & BROKEN)))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 					visible_message(SPAN_NOTICE("\The [user] has repaired \the [src]."))
 					stat &= ~BROKEN
 					damaged = null
@@ -53,7 +53,7 @@ var/list/floor_light_cache = list()
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 				anchored = !anchored
 				visible_message("<span class='notice'>\The [user] has [anchored ? "attached" : "detached"] \the [src].</span>")
 				return

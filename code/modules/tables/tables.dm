@@ -106,7 +106,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(reinforced)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_CNS))
 					remove_reinforced(I, user)
 					if(!reinforced)
 						update_desc()
@@ -116,7 +116,7 @@
 
 		if(QUALITY_PRYING)
 			if(carpeted)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_CNS))
 					user.visible_message(
 						SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
 						SPAN_NOTICE("You remove the carpet from \the [src].")
@@ -128,7 +128,7 @@
 
 		if(QUALITY_WELDING)
 			if(health < maxhealth)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_CNS))
 					user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."),SPAN_NOTICE("You repair some damage to \the [src]."))
 					health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
 			return
@@ -136,7 +136,7 @@
 		if(QUALITY_BOLT_TURNING)
 			if(!reinforced && !carpeted)
 				if(material)
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_CNS))
 						remove_material(I, user)
 						if(!material)
 							update_connections(1)
@@ -147,7 +147,7 @@
 							update_material()
 							return
 				if(!material)
-					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_CNS))
 						user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
 						new /obj/item/stack/material/steel(src.loc, 2)
 						qdel(src)

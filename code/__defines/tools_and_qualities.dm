@@ -21,24 +21,26 @@
 #define QUALITY_CUTTING					"cutting"
 #define QUALITY_LASER_CUTTING			"laser cutting"	//laser scalpels and e-swords - bloodless cutting
 
-//Remember that base time devided by tool level, which is 3 for base tools
+//Time for a work for tool system calculated in that way: basic time - 2*(tool level + stat check).
+//It means that basic tools will give -60 on time, and people on right job should have -40 at least, or even more.
 #define WORKTIME_INSTANT				0
-#define WORKTIME_NEAR_INSTANT			20
-#define WORKTIME_FAST					40
-#define WORKTIME_NORMAL					80
-#define WORKTIME_SLOW					100
-#define WORKTIME_LONG					150
-#define WORKTIME_EXTREMELY_LONG			200
+#define WORKTIME_NEAR_INSTANT			60
+#define WORKTIME_FAST					120
+#define WORKTIME_NORMAL					160
+#define WORKTIME_SLOW					200
+#define WORKTIME_LONG					250
+#define WORKTIME_EXTREMELY_LONG			300
 
-//Fail chance for tool system calculated in that way: basic chance - tool level * 10. It means that basic tools will have -30% chance to fail
+//Fail chance for tool system calculated in that way: basic chance - tool level - stat check.
+//Basic tools will give -30% on fail chance, and people on right job should have -20% at least.
 #define FAILCHANCE_ZERO					0
-#define FAILCHANCE_VERY_EASY			20
-#define FAILCHANCE_EASY					30
-#define FAILCHANCE_NORMAL				40
-#define FAILCHANCE_HARD					50
-#define FAILCHANCE_CHALLENGING			60
-#define FAILCHANCE_VERY_HARD			70
-#define FAILCHANCE_IMPOSSIBLY			100
+#define FAILCHANCE_VERY_EASY			30
+#define FAILCHANCE_EASY					50
+#define FAILCHANCE_NORMAL				60
+#define FAILCHANCE_HARD					80
+#define FAILCHANCE_CHALLENGING			90
+#define FAILCHANCE_VERY_HARD			120
+#define FAILCHANCE_IMPOSSIBLY			150
 
 //Sounds for workong with tools
 #define NO_WORKSOUND					-1

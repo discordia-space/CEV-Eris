@@ -17,7 +17,7 @@
 
 /obj/machinery/the_singularitygen/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_CNS))
 			anchored = !anchored
 			if(anchored)
 				user.visible_message("[user.name] secures [src.name] to the floor.", \

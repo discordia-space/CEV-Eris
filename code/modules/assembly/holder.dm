@@ -106,7 +106,7 @@
 
 /obj/item/device/assembly_holder/attackby(obj/item/I, mob/user)
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_INV))
 			if(!left_assembly || !right_assembly)
 				user << SPAN_WARNING("Assembly part missing!")
 				return

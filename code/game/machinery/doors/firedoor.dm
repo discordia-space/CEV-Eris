@@ -198,7 +198,7 @@
 
 		if(QUALITY_WELDING)
 			if(!repairing)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 					blocked = !blocked
 					user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [I].</span>",\
 					"You [blocked ? "weld" : "unweld"] \the [src] with \the [I].",\
@@ -209,7 +209,8 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(density)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				var/used_sound = hatch_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS, instant_finish_tier = 30, forced_sound = used_sound))
 					hatch_open = !hatch_open
 					user.visible_message("<span class='danger'>[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch.</span>",
 												"You have [hatch_open ? "opened" : "closed"] the [src] maintenance hatch.")
@@ -219,7 +220,7 @@
 
 		if(QUALITY_PRYING)
 			if(blocked && hatch_open && !repairing)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 					user.visible_message(SPAN_DANGER("[user] has removed the electronics from \the [src]."),
 										"You have removed the electronics from [src].")
 					if (stat & BROKEN)
@@ -237,7 +238,7 @@
 				user << SPAN_DANGER("\The [src] is welded shut!")
 				return
 			if(!operating)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
 					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [I]!</span>",\
 					"You force \the [src] [density ? "open" : "closed"] with \the [I]!",\
 					"You hear metal strain, and a door [density ? "open" : "close"].")

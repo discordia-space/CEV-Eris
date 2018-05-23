@@ -52,7 +52,7 @@
 			var/excavation_amount = input("How deep are you going to dig?", "Excavation depth", 0) as num
 			if(excavation_amount)
 				user << SPAN_NOTICE("You start exacavating [src].")
-				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL))
+				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_INV))
 					user << SPAN_NOTICE("You finish exacavating [src].")
 					excavation_level += excavation_amount
 
@@ -81,7 +81,7 @@
 			return
 
 		if(QUALITY_DIGGING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_ZERO, required_stat = STAT_STR))
 				user.visible_message(SPAN_DANGER("[src] suddenly crumbles away."),\
 				SPAN_WARNING("[src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
 				qdel(src)

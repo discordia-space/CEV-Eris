@@ -611,7 +611,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		return return_quality
 
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 11, forced_sound = null)
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
 	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, instant_finish_tier, forced_sound)
 	switch(result)
 		if(TOOL_USE_CANCEL)
@@ -623,7 +623,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(TOOL_USE_SUCCESS)
 			return TRUE
 
-/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 11, forced_sound = null)
+/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
 		return TOOL_USE_CANCEL
@@ -638,7 +638,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(H.shock_stage >= 30)
 			user << SPAN_WARNING("Pain distracts you from your task.")
 			fail_chance += round(H.shock_stage/120 * 40)
-			base_time = round(base_time * H.shock_stage/120 * 3)
+			base_time += round(H.shock_stage/120 * 40)
 
 	if(forced_sound != NO_WORKSOUND)
 		if(forced_sound)
@@ -648,7 +648,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(base_time && (instant_finish_tier >= get_tool_quality(required_quality)))
 		target.used_now = TRUE
-		var/time_to_finish = base_time / get_tool_quality(required_quality)
+		var/time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 		if(!do_after(user, time_to_finish, user))
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
@@ -656,7 +656,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		else
 			target.used_now = FALSE
 
-	fail_chance += - get_tool_quality(required_quality) * 10
+	fail_chance = fail_chance - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 	if(prob(fail_chance))
 		return TOOL_USE_FAIL
 

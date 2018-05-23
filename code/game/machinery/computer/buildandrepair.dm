@@ -50,13 +50,13 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(state == 0)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You wrench the frame into place.")
 					anchored = 1
 					state = 1
 					return
 			if(state == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You unfasten the frame.")
 					anchored = 0
 					state = 0
@@ -65,7 +65,7 @@
 
 		if(QUALITY_WELDING)
 			if(state == 0)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You deconstruct the frame.")
 					new /obj/item/stack/material/steel( src.loc, 5 )
 					qdel(src)
@@ -74,7 +74,7 @@
 
 		if(QUALITY_PRYING)
 			if(state == 1 && circuit)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You remove the circuit board.")
 					state = 1
 					icon_state = "0"
@@ -82,7 +82,7 @@
 					circuit = null
 					return
 			if(state == 4)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You remove the glass panel.")
 					state = 3
 					icon_state = "3"
@@ -92,19 +92,19 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(state == 1 && circuit)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You screw the circuit board into place.")
 					state = 2
 					icon_state = "2"
 					return
 			if(state == 2 && circuit)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You unfasten the circuit board.")
 					state = 1
 					icon_state = "1"
 					return
 			if(state == 4)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You connect the monitor.")
 					var/B = new src.circuit.build_path(src.loc, src.dir)
 					src.circuit.construct(B)
@@ -114,7 +114,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(state == 3)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
 					user << SPAN_NOTICE("You remove the cables.")
 					state = 2
 					icon_state = "2"

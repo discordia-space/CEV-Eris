@@ -500,7 +500,7 @@
 	if(!ispowered)
 		return
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_CNS))
 			panelopen = !panelopen
 			user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(panelopen ? "open up" : "close"))
 			updateUsrDialog()
@@ -666,7 +666,7 @@
 
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
 		var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS, instant_finish_tier = 30, forced_sound = used_sound))
 			panel_open = !panel_open
 			user << "You [panel_open ?  "open" : "close"] the maintenance panel."
 			updateUsrDialog()
