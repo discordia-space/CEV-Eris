@@ -612,13 +612,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return return_quality
 
 /obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
-	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, instant_finish_tier, forced_sound)
+	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
 	switch(result)
 		if(TOOL_USE_CANCEL)
 			return FALSE
 		if(TOOL_USE_FAIL)
-			user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
-			handle_failure(user, target)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
+			handle_failure(user, target, required_stat = required_stat)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
 			return FALSE
 		if(TOOL_USE_SUCCESS)
 			return TRUE
@@ -658,18 +657,27 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	fail_chance = fail_chance - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 	if(prob(fail_chance))
+		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
 		return TOOL_USE_FAIL
 
 	return TOOL_USE_SUCCESS
 
-/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target)
-	if(prob(33))
+/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null)
+
+	var/crit_fail_chance = 25
+	if(required_stat)
+		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
+	else
+		crit_fail_chance = 10
+
+	if(prob(crit_fail_chance))
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
+			user << SPAN_DANGER("Your hand slips while working with [src]!")
 			attack(H, H, H.get_holding_hand(src))
 			return
 
-	if(prob(5))
+	if(prob(crit_fail_chance / 4))
 		if(istype(src, /obj/item/weapon/tool))
 			var/obj/item/weapon/tool/T = src
 			if(T.use_fuel_cost)

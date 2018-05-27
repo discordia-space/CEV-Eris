@@ -21,15 +21,15 @@
 #define QUALITY_CUTTING					"cutting"
 #define QUALITY_LASER_CUTTING			"laser cutting"	//laser scalpels and e-swords - bloodless cutting
 
-//Time for a work for tool system calculated in that way: basic time - 2*(tool level + stat check).
-//It means that basic tools will give -60 on time, and people on right job should have -40 at least, or even more.
+//Time for a work for tool system calculated in that way: basic time - tool level - stat check..
+//It means that basic tools will give -30 on time, and people on right job should have -20 at least, or even more.
 #define WORKTIME_INSTANT				0
-#define WORKTIME_NEAR_INSTANT			60
-#define WORKTIME_FAST					120
-#define WORKTIME_NORMAL					160
-#define WORKTIME_SLOW					200
-#define WORKTIME_LONG					250
-#define WORKTIME_EXTREMELY_LONG			300
+#define WORKTIME_NEAR_INSTANT			30
+#define WORKTIME_FAST					60
+#define WORKTIME_NORMAL					90
+#define WORKTIME_SLOW					120
+#define WORKTIME_LONG					170
+#define WORKTIME_EXTREMELY_LONG			250
 
 //Fail chance for tool system calculated in that way: basic chance - tool level - stat check.
 //Basic tools will give -30% on fail chance, and people on right job should have -20% at least.
