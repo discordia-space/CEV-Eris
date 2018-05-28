@@ -24,7 +24,6 @@ var/bomb_set
 	var/datum/wires/nuclearbomb/wires = null
 
 	var/eris_ship_bomb = FALSE           // if TRUE (1 in map editor), then Heads will get parts of code for this bomb. Obviously used in map editor. Single mapped bomb supported.
-	var/ship_nuke_code_rotation_part = 1 // Which part of code next spawned Head gets. See "get_next_nuke_code_part()" proc.
 
 /obj/machinery/nuclearbomb/New()
 	..()
@@ -246,6 +245,9 @@ var/bomb_set
 					yes_code = 0
 					code = null
 				else
+					if(code == "ERROR") // for codes with 6 digits or more, it will look awkward when user enters 8 and sees ERROR8, -
+						nanomanager.update_uis(src)
+						return // - so we force user to press R before entering new code as it was with 5-digit codes.
 					lastentered = text("[]", href_list["type"])
 					if (text2num(lastentered) == null)
 						var/turf/LOC = get_turf(usr)
@@ -253,7 +255,7 @@ var/bomb_set
 						log_admin("EXPLOIT: [key_name(usr)] tried to exploit a nuclear bomb by entering non-numerical codes: [lastentered]!")
 					else
 						code += lastentered
-						if (length(code) > 5)
+						if (length(code) > length(r_code))
 							code = "ERROR"
 		if (yes_code)
 			if (href_list["time"])
