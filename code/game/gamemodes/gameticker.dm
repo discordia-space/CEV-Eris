@@ -31,6 +31,8 @@ var/global/datum/controller/gameticker/ticker
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 
 	var/ship_was_nuked = 0              // See nuclearbomb.dm and malfunction.dm.
+	var/ship_nuke_code = "NO CODE"       // Heads will get parts of this code.
+	var/ship_nuke_code_rotation_part = 1 // What part of code next Head will get.
 	var/nuke_in_progress = 0           	// Sit back and relax
 
 	var/newscaster_announcements = null
@@ -207,6 +209,25 @@ var/global/datum/controller/gameticker/ticker
 
 	if(cinematic)
 		qdel(cinematic)		//end the cinematic
+
+
+/datum/controller/gameticker/proc/get_next_nuke_code_part() // returns code string as "XX56XX"
+	var/this_many = 2 // how many digits to return (this proc only tested with this value and 6 digit passwords).
+
+	if(ship_nuke_code == initial(ship_nuke_code) || length(ship_nuke_code) < this_many)
+		return initial(ship_nuke_code)
+
+	var/part_of_code = "[copytext(ship_nuke_code, ship_nuke_code_rotation_part, ship_nuke_code_rotation_part + this_many)]"
+	var/hidden_digit = "X"
+
+	if(ship_nuke_code_rotation_part > 1)
+		. = add_characters(hidden_digit, ship_nuke_code_rotation_part - 1) + part_of_code + add_characters(hidden_digit, length(ship_nuke_code) - ship_nuke_code_rotation_part - 1)
+	else
+		. = part_of_code + add_characters(hidden_digit, length(ship_nuke_code) - this_many)
+
+	ship_nuke_code_rotation_part += this_many // new head of staff gets next this_many digits
+	if(ship_nuke_code_rotation_part > length(ship_nuke_code)) // or we start over if we moved out of range
+		ship_nuke_code_rotation_part = 1
 
 
 /datum/controller/gameticker/proc/create_characters()
