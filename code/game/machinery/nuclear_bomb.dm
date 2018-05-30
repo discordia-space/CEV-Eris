@@ -23,10 +23,20 @@ var/bomb_set
 	var/previous_level = ""
 	var/datum/wires/nuclearbomb/wires = null
 
+	var/eris_ship_bomb = FALSE           // if TRUE (1 in map editor), then Heads will get parts of code for this bomb. Obviously used in map editor. Single mapped bomb supported.
+
 /obj/machinery/nuclearbomb/New()
 	..()
-	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
+	if(eris_ship_bomb)
+		r_code = "[rand(100000, 999999)]" // each time new Head spawns, s/he gets 2 numbers of code.
+	else                                  // i decided not to touch normal bombs code length.
+		r_code = "[rand(10000, 99999.0)]" //Creates a random code upon object spawn.
 	wires = new/datum/wires/nuclearbomb(src)
+
+/obj/machinery/nuclearbomb/Initialize()
+	. = ..()
+	if(eris_ship_bomb) // this is in initialize because there is no ticker at world init.
+		ticker.ship_nuke_code = r_code // even if this bomb stops to exist, heads of staff still gets this password, so it won't affect meta or whatever.
 
 /obj/machinery/nuclearbomb/Destroy()
 	qdel(wires)
@@ -235,6 +245,9 @@ var/bomb_set
 					yes_code = 0
 					code = null
 				else
+					if(code == "ERROR") // for codes with 6 digits or more, it will look awkward when user enters 8 and sees ERROR8, -
+						nanomanager.update_uis(src)
+						return // - so we force user to press R before entering new code as it was with 5-digit codes.
 					lastentered = text("[]", href_list["type"])
 					if (text2num(lastentered) == null)
 						var/turf/LOC = get_turf(usr)
@@ -242,7 +255,7 @@ var/bomb_set
 						log_admin("EXPLOIT: [key_name(usr)] tried to exploit a nuclear bomb by entering non-numerical codes: [lastentered]!")
 					else
 						code += lastentered
-						if (length(code) > 5)
+						if (length(code) > length(r_code))
 							code = "ERROR"
 		if (yes_code)
 			if (href_list["time"])

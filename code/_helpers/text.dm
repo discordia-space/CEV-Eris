@@ -199,6 +199,15 @@
 		t = "[t] "
 	return t
 
+/proc/add_characters(c, n = 0) //Adds whatever character in 'c' and repeats that process 'n' times then returns text string as "XXXXXXXXXX"
+	. = ""
+	if(length(c) > 1) // if someone ever needs to add more than single character, it shouldn't be hard to edit this proc.
+		return
+	if(n > 25) // should be enough for anything
+		return
+	for(var/i in 1 to n)
+		. += "[c]"
+
 //Returns a string with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
 	for (var/i = 1 to length(text))
