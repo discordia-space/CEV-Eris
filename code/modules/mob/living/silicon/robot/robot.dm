@@ -105,7 +105,10 @@
 
 	robot_modules_background = new(_name = "storage")
 	robot_modules_background.icon_state = "block"
-	robot_modules_background.layer = 19 //Objects that appear on screen are on layer 20, UI should be just below it.
+	//Objects that appear on screen are on layer ABOVE_HUD_LAYER, UI should be just below it.
+	robot_modules_background.layer = HUD_LAYER
+	robot_modules_background.plane = HUD_PLANE
+
 	ident = rand(1, 999)
 	module_sprites["Basic"] = "robot"
 	icontype = "Basic"

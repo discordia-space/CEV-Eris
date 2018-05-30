@@ -3,7 +3,9 @@
 	name = "\proper space"
 	icon_state = "0"
 	dynamic_lighting = 0
-	plane = SPACE_PLANE
+
+	plane = PLANE_SPACE
+	layer = SPACE_LAYER
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT

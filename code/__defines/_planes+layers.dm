@@ -1,50 +1,46 @@
-/*This file is a list of all preclaimed planes & layers
+//Defines for atom layers and planes
+//KEEP THESE IN A NICE ACSCENDING ORDER, PLEASE
 
-All planes & layers should be given a value here instead of using a magic/arbitrary number.
+#define CLICKCATCHER_PLANE -99
 
-After fiddling with planes and layers for some time, I figured I may as well provide some documentation:
+#define PLANE_SPACE -95
+#define PLANE_SPACE_PARALLAX -90
 
-What are planes?
-	Think of Planes as a sort of layer for a layer - if plane X is a larger number than plane Y, the highest number for a layer in X will be below the lowest
-	number for a layer in Y.
-	Planes also have the added bonus of having planesmasters.
+#define OPENSPACE_PLANE -10
+#define OVER_OPENSPACE_PLANE -8
 
-What are Planesmasters?
-	Planesmasters, when in the sight of a player, will have its appearance properties (for example, colour matrices, alpha, transform, etc)
-	applied to all the other objects in the plane. This is all client sided.
-	Usually you would want to add the planesmaster as an invisible image in the client's screen.
+#define FLOOR_PLANE -2
+#define GAME_PLANE -1
+#define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+#define SPACE_LAYER 1.8
+//#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
+#define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
+#define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
 
-What can I do with Planesmasters?
-	You can: Make certain players not see an entire plane,
-	Make an entire plane have a certain colour matrices,
-	Make an entire plane transform in a certain way,
-	Make players see a plane which is hidden to normal players - I intend to implement this with the antag HUDs for example.
-	Planesmasters can be used as a neater way to deal with client images or potentially to do some neat things
+#define LIGHTING_PLANE 15
+#define LIGHTING_LAYER 15
 
-How do planes work?
-	A plane can be any integer from -100 to 100. (If you want more, bug lummox.)
-	All planes above 0, the 'base plane', are visible even when your character cannot 'see' them, for example, the HUD.
-	All planes below 0, the 'base plane', are only visible when a character can see them.
+#define ABOVE_LIGHTING_PLANE 16
+#define ABOVE_LIGHTING_LAYER 16
 
-How do I add a plane?
-	Think of where you want the plane to appear, look through the pre-existing planes and find where it is above and where it is below
-	Slot it in in that place, and change the pre-existing planes, making sure no plane shares a number.
-	Add a description with a comment as to what the plane does.
+#define BYOND_LIGHTING_PLANE 17
+#define BYOND_LIGHTING_LAYER 17
 
-How do I make something a planesmaster?
-	Add the PLANE_MASTER appearance flag to the appearance_flags variable.
+//HUD layer defines
 
-What is the naming convention for planes or layers?
-	Make sure to use the name of your object before the _LAYER or _PLANE, eg: [NAME_OF_YOUR_OBJECT HERE]_LAYER or [NAME_OF_YOUR_OBJECT HERE]_PLANE
-	Also, as it's a define, it is standard practice to use capital letters for the variable so people know this.
+#define FULLSCREEN_PLANE 18
 
-*/
+#define FULLSCREEN_LAYER 18.1
 
-#define SPACE_PLANE     -10
+#define HUD_PLANE 19
+#define HUD_LAYER 19
+#define ABOVE_HUD_PLANE 20
+#define ABOVE_HUD_LAYER 20
 
-#define PARALLAX_PLANE  -9
 
-#define OPENSPACE_PLANE -8
 
-#define OVER_OPENSPACE_PLANE -7
+// Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
+#define OBFUSCATION_LAYER 21	//Where images covering the view for eyes are put
+#define SCREEN_LAYER 22			//Mob HUD/effects layer
+
 

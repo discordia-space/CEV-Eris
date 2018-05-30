@@ -53,7 +53,9 @@ var/global/list/robot_modules = list(
 	R.choose_icon(R.module_sprites.len + 1, R.module_sprites)
 
 	for(var/obj/item/I in modules)
-		I.canremove = 0
+		I.canremove = FALSE
+		I.layer = ABOVE_HUD_LAYER
+		I.plane = ABOVE_HUD_PLANE
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -257,7 +259,8 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/reagent_containers/dropper/industrial(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/extinguisher/mini(src)
-	src.modules += new /obj/item/weapon/inflatable_dispenser(src) // Allows usage of inflatables. Since they are basically robotic alternative to EMTs, they should probably have them.
+	// Allows usage of inflatables. Since they are basically robotic alternative to EMTs, they should probably have them.
+	src.modules += new /obj/item/weapon/inflatable_dispenser(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"

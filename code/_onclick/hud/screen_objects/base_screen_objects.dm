@@ -13,7 +13,8 @@
 /obj/screen
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
-	layer = 20.0
+	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	unacidable = 1
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
 	var/mob/living/parentmob
@@ -204,6 +205,8 @@
 
 /obj/screen/storage
 	name = "storage"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/storage/Click()
 	if(!usr.canClick())
@@ -222,7 +225,8 @@
 /obj/screen/inventory
 	var/slot_id //The indentifier for the slot. It has nothing to do with ID cards.
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	layer = 19
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/inventory/New(_name = "unnamed", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)//(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
 	src.name = _name
@@ -708,6 +712,8 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "act_drop"
 	screen_loc = "15:-16,2"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/drop/Click()
 	if(usr.client)
@@ -720,6 +726,8 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "act_resist"
 	screen_loc = "14:16,2"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/resist/Click()
 	if(isliving(parentmob))
@@ -780,6 +788,8 @@
 	name = "swap hand"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "swap-l"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/swap/New()
 	..()

@@ -1,6 +1,7 @@
 /atom
 	layer = 2
-	appearance_flags = TILE_BOUND
+	plane = GAME_PLANE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints
