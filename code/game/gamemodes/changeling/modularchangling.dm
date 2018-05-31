@@ -24,6 +24,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	name = "Transform"
 	desc = "We take on the apperance and voice of one we have absorbed."
 	genomecost = 0
+	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_transform
 
 /datum/power/changeling/fakedeath
