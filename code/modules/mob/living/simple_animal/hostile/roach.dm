@@ -25,6 +25,8 @@
 
 	faction = "roach"
 
+	var/blattedin_revives_left = 1 // how many times blattedin can get us back to life (as num for adminbus fun).
+
 
 /mob/living/simple_animal/hostile/roach/FindTarget()
 	. = ..()
@@ -93,8 +95,8 @@
 	create_reagents(100)
 
 /mob/living/simple_animal/hostile/roach/support/proc/gas_attack()
-	if(!(reagents.has_reagent("blattedin", 20) && health <= 0))
-		return
+	if(!reagents.has_reagent("blattedin", 20) || stat != CONSCIOUS)
+		return FALSE
 	var/location = get_turf(src)
 	var/datum/effect/effect/system/smoke_spread/chem/S = new
 	S.attach(location)
@@ -103,16 +105,17 @@
 	spawn(0)
 		S.start()
 	reagents.clear_reagents()
-	return
+	return TRUE
 
 /mob/living/simple_animal/hostile/roach/support/Life()
 	..()
+	if(stat != CONSCIOUS)
+		return
 	reagents.add_reagent("blattedin", 1)
-	if(reagents.has_reagent("blattedin", 20)&&prob(7))
+	if(prob(7))
 		gas_attack()
 
 /mob/living/simple_animal/hostile/roach/support/FindTarget()
 	. = ..()
-	if(.)
+	if(. && gas_attack())
 		visible_emote("charges at [.] in clouds of poison!")
-		gas_attack()
