@@ -1,5 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 //NOTE: Breathing happens once per FOUR TICKS, unless the last breath fails. In which case it happens once per ONE TICK! So oxyloss healing is done once per 4 ticks while oxyloss damage is applied once per tick!
 #define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
 #define HUMAN_CRIT_MAX_OXYLOSS ( 2.0 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
@@ -338,7 +336,7 @@
 		failed_last_breath = 1
 		if(prob(20))
 			emote("gasp")
-		if(health > config.health_threshold_crit)
+		if(health > HEALTH_THRESHOLD_CRIT)
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
@@ -630,14 +628,14 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= config.health_threshold_dead || (species.has_organ[O_BRAIN] && !has_brain()))
+		if(health <= HEALTH_THRESHOLD_DEAD || (species.has_organ[O_BRAIN] && !has_brain()))
 			death()
 			blinded = 1
 			silent = 0
 			return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > (species.total_health/2)) || (health <= config.health_threshold_crit))
+		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_STR))))
 			Paralyse(3)
 
 		if(hallucination)
@@ -971,12 +969,12 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(species && species.flags & NO_PAIN) return
 
-	if(health < config.health_threshold_softcrit)// health 0 makes you immediately collapse
+	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_STR)))// health 0 - stat makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < config.health_threshold_softcrit)
+	else if(health < HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_STR))
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)
@@ -1030,7 +1028,7 @@
 		if(stat == DEAD)
 			holder.icon_state = "hudhealth-100" 	// X_X
 		else
-			var/percentage_health = RoundHealth((health-config.health_threshold_crit)/(maxHealth-config.health_threshold_crit)*100)
+			var/percentage_health = RoundHealth((health-HEALTH_THRESHOLD_CRIT)/(maxHealth-HEALTH_THRESHOLD_CRIT)*100)
 			holder.icon_state = "hud[percentage_health]"
 		hud_list[HEALTH_HUD] = holder
 
