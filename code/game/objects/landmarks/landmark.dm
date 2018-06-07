@@ -16,9 +16,9 @@
 	delete_me = TRUE
 
 /obj/landmark/Initialize()
-	..()
+	. = ..()
 	if(delete_me)
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/landmark/Destroy()
 	landmarks_list -= src

@@ -60,7 +60,7 @@
 
 /obj/item/weapon/cartridge/security/Initialize()
 	radio = new /obj/item/radio/integrated/beepsky(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/detective
 	name = "\improper D.E.T.E.C.T. cartridge"
@@ -111,8 +111,8 @@
 	access_atmos = 1
 
 /obj/item/weapon/cartridge/signal/Initialize()
-    radio = new /obj/item/radio/integrated/signal(src)
-    ..()
+	radio = new /obj/item/radio/integrated/signal(src)
+	. = ..()
 
 /obj/item/weapon/cartridge/signal/Destroy()
 	qdel(radio)
@@ -126,7 +126,7 @@
 
 /obj/item/weapon/cartridge/quartermaster/Initialize()
 	radio = new /obj/item/radio/integrated/mule(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/head
 	name = "\improper Easy-Record DELUXE"
@@ -143,6 +143,7 @@
 
 /obj/item/weapon/cartridge/hop/Initialize()
 	radio = new /obj/item/radio/integrated/mule(src)
+	. = ..()
 
 /obj/item/weapon/cartridge/hos
 	name = "\improper R.O.B.U.S.T. DELUXE"
@@ -152,7 +153,7 @@
 
 /obj/item/weapon/cartridge/hos/Initialize()
 	radio = new /obj/item/radio/integrated/beepsky(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/ce
 	name = "\improper Power-On DELUXE"
@@ -177,7 +178,7 @@
 
 /obj/item/weapon/cartridge/rd/Initialize()
 	radio = new /obj/item/radio/integrated/signal(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/captain
 	name = "\improper Value-PAK cartridge"

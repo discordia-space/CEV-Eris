@@ -72,11 +72,11 @@
 	..()
 
 /obj/machinery/computer/message_monitor/Initialize()
+	. = ..()
 	//Is the server isn't linked to a server, and there's a server available, default it to the first one in the list.
 	if(!linkedServer)
 		if(message_servers && message_servers.len > 0)
 			linkedServer = message_servers[1]
-	return
 
 /obj/machinery/computer/message_monitor/attack_hand(var/mob/living/user as mob)
 	if(..())
