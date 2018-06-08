@@ -57,12 +57,6 @@ datum/controller/game_controller/proc/setup_objects()
 	report_progress("Initializing lathe recipes")
 	populate_lathe_recipes()
 
-
-	admin_notice(SPAN_DANGER("Initializing areas"), R_DEBUG)									//Also needs to be rewritten
-	sleep(-1)
-	for(var/area/area in all_areas)
-		area.Initialize()
-
 	// Set up antagonists.
 	populate_antag_type_list()
 

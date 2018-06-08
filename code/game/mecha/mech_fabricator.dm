@@ -30,6 +30,7 @@
 	files = new /datum/research(src) //Setup the research data holder.
 
 /obj/machinery/mecha_part_fabricator/Initialize()
+	. = ..()
 	update_categories()
 
 /obj/machinery/mecha_part_fabricator/Process()

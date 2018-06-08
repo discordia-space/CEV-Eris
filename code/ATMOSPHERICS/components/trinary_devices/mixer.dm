@@ -194,7 +194,7 @@ obj/machinery/atmospherics/trinary/mixer/t_mixer/New()
 		if(WEST)
 			initialize_directions = WEST|NORTH|SOUTH
 
-obj/machinery/atmospherics/trinary/mixer/t_mixer/Initialize()
+obj/machinery/atmospherics/trinary/mixer/t_mixer/atmos_init()
 	..()
 	if(node1 && node2 && node3) return
 
@@ -240,7 +240,7 @@ obj/machinery/atmospherics/trinary/mixer/m_mixer/New()
 		if(WEST)
 			initialize_directions = WEST|SOUTH|EAST
 
-obj/machinery/atmospherics/trinary/mixer/m_mixer/Initialize()
+obj/machinery/atmospherics/trinary/mixer/m_mixer/atmos_init()
 	..()
 	if(node1 && node2 && node3) return
 
