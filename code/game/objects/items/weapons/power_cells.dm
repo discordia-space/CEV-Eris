@@ -19,7 +19,7 @@
 	var/charge_tick = 0
 
 /obj/item/weapon/cell/Initialize()
-	..()
+	. = ..()
 	if(autorecharging)
 		START_PROCESSING(SSobj, src)
 

@@ -11,11 +11,11 @@
 	//	flags = CONDUCT
 
 /obj/structure/lattice/Initialize()
-	..()
+	. = ..()
 ///// Z-Level Stuff
 	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/floor/hull))) // || istype(src.loc, /turf/simulated/floor/open)
 ///// Z-Level Stuff
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
 			qdel(LAT)

@@ -46,7 +46,7 @@
 	return TRUE
 
 /obj/structure/closet/Initialize()
-	..()
+	. = ..()
 	populate_contents()
 	update_icon()
 	hack_require = rand(6,8)

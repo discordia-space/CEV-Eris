@@ -24,6 +24,7 @@
 	..()
 
 /area/Initialize()
+	. = ..()
 	if(!requires_power || !apc)
 		power_light = 0
 		power_equip = 0

@@ -17,6 +17,7 @@
 	return 1
 
 /obj/machinery/meter/Initialize()
+	. = ..()
 	if (!target)
 		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 
@@ -115,6 +116,7 @@
 
 
 /obj/machinery/meter/turf/Initialize()
+	. = ..()
 	if (!target)
 		src.target = loc
 

@@ -26,7 +26,9 @@
 	var/species = "Human"
 
 /obj/landmark/corpse/Initialize()
+	..()
 	createCorpse()
+	return INITIALIZE_HINT_QDEL
 
 /obj/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
@@ -74,7 +76,6 @@
 		W.assignment = corpseidjob
 		M.set_id_info(W)
 		M.equip_to_slot_or_del(W, slot_wear_id)
-	qdel(src)
 
 
 

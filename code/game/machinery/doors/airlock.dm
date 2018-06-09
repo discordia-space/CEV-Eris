@@ -1163,7 +1163,7 @@ There are 9 wires.
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break
-	..()
+	. = ..()
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)

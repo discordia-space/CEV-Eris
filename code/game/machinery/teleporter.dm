@@ -17,7 +17,7 @@
 	return
 
 /obj/machinery/computer/teleporter/Initialize()
-	..()
+	. = ..()
 	var/obj/machinery/teleport/station/station
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
 		station = locate(/obj/machinery/teleport/station, get_step(src, dir))
@@ -100,7 +100,7 @@
 		var/turf/T = get_turf(R)
 		if (!T)
 			continue
-		if(isPlayerLevel(T.z))
+		if(!isPlayerLevel(T.z))
 			continue
 		var/tmpname = T.loc.name
 		if(areaindex[tmpname])
