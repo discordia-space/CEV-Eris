@@ -39,6 +39,7 @@
 		MineralSpread()
 
 /turf/simulated/mineral/Initialize()
+	. = ..()
 	spawn(2)
 		updateMineralOverlays(1)
 

@@ -15,6 +15,7 @@
 	var/light_power_on = 2
 
 /obj/machinery/computer/Initialize()
+	. = ..()
 	power_change()
 	update_icon()
 

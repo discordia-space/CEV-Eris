@@ -60,8 +60,6 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 var/datum/configuration/config      = null
 var/datum/sun/sun                   = new
 
-var/list/powernets = list()
-
 var/Debug2 = 0
 
 var/gravity_is_on = 1

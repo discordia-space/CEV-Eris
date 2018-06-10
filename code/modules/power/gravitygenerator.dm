@@ -79,7 +79,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 //
 
 /obj/machinery/gravity_generator/main/station/Initialize()
-	..()
+	. = ..()
 	setup_parts()
 	middle.overlays += "activated"
 
@@ -87,9 +87,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 // Generator an admin can spawn
 //
 
-/obj/machinery/gravity_generator/main/station/admin/New()
-	..()
-	Initialize()
+/obj/machinery/gravity_generator/main/station/admin/Initialize()
+	. = ..()
 	grav_on()
 
 //

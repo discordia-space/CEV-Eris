@@ -132,6 +132,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			listening_levels |= z_level
 
 /obj/machinery/telecomms/Initialize()
+	. = ..()
 	if(autolinkers.len)
 		// Links nearby machines
 		if(!long_range_link)

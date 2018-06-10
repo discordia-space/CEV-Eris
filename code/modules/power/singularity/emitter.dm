@@ -43,7 +43,7 @@
 	return 1
 
 /obj/machinery/power/emitter/Initialize()
-	..()
+	. = ..()
 	if(state == 2 && anchored)
 		connect_to_network()
 		if(_wifi_id)

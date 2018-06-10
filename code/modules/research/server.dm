@@ -15,10 +15,6 @@
 	req_access = list(access_rd) //Only the R&D can change server settings.
 	circuit = /obj/item/weapon/circuitboard/rdserver
 
-/obj/machinery/r_n_d/server/New()
-	..()
-	Initialize()
-
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
 	. = ..()
@@ -30,6 +26,7 @@
 	idle_power_usage /= max(1, tot_rating)
 
 /obj/machinery/r_n_d/server/Initialize()
+	. = ..()
 	if(!files)
 		files = new /datum/research(src)
 	var/list/temp_list
@@ -139,7 +136,7 @@
 	server_id = -1
 
 /obj/machinery/r_n_d/server/centcom/Initialize()
-	..()
+	. = ..()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
 	for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)

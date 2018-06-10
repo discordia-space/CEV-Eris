@@ -218,7 +218,7 @@
 	. = ..()
 
 /obj/machinery/cryopod/Initialize()
-	..()
+	. = ..()
 
 	find_control_computer()
 

@@ -134,6 +134,17 @@ SUBSYSTEM_DEF(atoms)
 	if(initlog)
 		text2file(initlog, "data/logs/initialize.log")
 
+ADMIN_VERB_ADD(/client/proc/cmd_display_init_log, R_DEBUG, null)
+/client/proc/cmd_display_init_log()
+	set category = "Debug"
+	set name = "Display Initialize() Log"
+	set desc = "Displays a list of things that didn't handle Initialize() properly."
+
+	if(!LAZYLEN(SSatoms.BadInitializeCalls))
+		usr << SPAN_NOTICE("BadInit list is empty.")
+	else
+		usr << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+
 #undef BAD_INIT_QDEL_BEFORE
 #undef BAD_INIT_DIDNT_INIT
 #undef BAD_INIT_SLEPT

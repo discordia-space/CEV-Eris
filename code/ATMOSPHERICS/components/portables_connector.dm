@@ -74,7 +74,7 @@
 
 	. = ..()
 
-/obj/machinery/atmospherics/portables_connector/Initialize()
+/obj/machinery/atmospherics/portables_connector/atmos_init()
 	if(node) return
 
 	var/node_connect = dir
