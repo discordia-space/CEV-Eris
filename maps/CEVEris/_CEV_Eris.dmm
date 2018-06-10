@@ -7482,7 +7482,7 @@
 "cNT" = (/turf/simulated/shuttle/wall/mining{icon_state = "5,23"},/area/shuttle/mining/station)
 "cNU" = (/turf/simulated/shuttle/wall/mining{icon_state = "6,23"},/area/shuttle/mining/station)
 "cNV" = (/turf/simulated/shuttle/wall/mining{icon_state = "7,23"},/area/shuttle/mining/station)
-"cNW" = (/obj/machinery/door/airlock/multi_tile/metal{dir = 4; frequency = 1380; icon_state = "door_locked"; id_tag = "mining_shuttle_outer"; locked = 1; name = "Hulk External Access"},/obj/machinery/access_button{command = "cycle_exterior"; frequency = 1380; master_tag = "mining_shuttle"; name = "exterior access button"; pixel_x = -25; pixel_y = 0},/turf/simulated/shuttle/floor/mining{icon_state = "8,23"},/area/shuttle/mining/station)
+"cNW" = (/obj/machinery/door/airlock/multi_tile/metal{dir = 4; frequency = 1380; icon_state = "door_locked"; id_tag = "mining_shuttle_outer"; locked = 1; name = "Hulk External Access"},/obj/machinery/access_button{command = "cycle_exterior"; frequency = 1380; master_tag = "hulk_shuttle"; name = "exterior access button"; pixel_x = -25; pixel_y = 0},/turf/simulated/shuttle/floor/mining{icon_state = "8,23"},/area/shuttle/mining/station)
 "cNX" = (/obj/effect/shuttle_landmark/eris/dock/hulk,/turf/simulated/shuttle/floor/mining{icon_state = "9,23"},/area/shuttle/mining/station)
 "cNY" = (/turf/simulated/shuttle/wall/mining{icon_state = "10,23"},/area/shuttle/mining/station)
 "cNZ" = (/turf/simulated/shuttle/wall/mining,/area/shuttle/mining/station)
@@ -7614,7 +7614,7 @@
 "cQv" = (/obj/machinery/suit_cycler/mining,/turf/simulated/shuttle/floor/mining{icon_state = "5,20"},/area/shuttle/mining/station)
 "cQw" = (/turf/simulated/shuttle/wall/mining{icon_state = "6,20"},/area/shuttle/mining/station)
 "cQx" = (/turf/simulated/shuttle/wall/mining{icon_state = "7,20"},/area/shuttle/mining/station)
-"cQy" = (/obj/machinery/door/airlock/multi_tile/metal{dir = 4; frequency = 1380; icon_state = "door_locked"; id_tag = "mining_shuttle_inner"; locked = 1; name = "Hulk External Access"},/obj/machinery/access_button{command = "cycle_interior"; frequency = 1380; master_tag = "mining_shuttle"; name = "interior access button"; pixel_x = -25; pixel_y = 0},/turf/simulated/shuttle/floor/mining{icon_state = "8,20"},/area/shuttle/mining/station)
+"cQy" = (/obj/machinery/door/airlock/multi_tile/metal{dir = 4; frequency = 1380; icon_state = "door_locked"; id_tag = "mining_shuttle_inner"; locked = 1; name = "Hulk External Access"},/obj/machinery/access_button{command = "cycle_interior"; frequency = 1380; master_tag = "hulk_shuttle"; name = "interior access button"; pixel_x = -25; pixel_y = 0},/turf/simulated/shuttle/floor/mining{icon_state = "8,20"},/area/shuttle/mining/station)
 "cQz" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/shuttle/floor/mining{icon_state = "9,20"},/area/shuttle/mining/station)
 "cQA" = (/turf/simulated/shuttle/wall/mining{icon_state = "10,20"},/area/shuttle/mining/station)
 "cQB" = (/turf/simulated/shuttle/wall/mining{icon_state = "11,20"},/area/shuttle/mining/station)
@@ -14003,4 +14003,3 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-
