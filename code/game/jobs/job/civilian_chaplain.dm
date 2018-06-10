@@ -12,6 +12,11 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	idtype = /obj/item/weapon/card/id/chaplain
+
+	stat_modifers = list(
+		STAT_ROB = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/chaplain
 	suit = /obj/item/clothing/suit/chaplain_hoodie
 	shoes = /obj/item/clothing/shoes/reinforced

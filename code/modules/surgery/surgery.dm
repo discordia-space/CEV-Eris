@@ -119,7 +119,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		var/timeDelay = rand(selectedStep.min_duration, selectedStep.max_duration)
 		//We had proper tools! (or RNG smiled.) and user did not move or change hands.
 		if(selectedStep.requedQuality)
-			success = tool.use_tool_extended(user, M, timeDelay, selectedStep.requedQuality, FAILCHANCE_NORMAL)
+			success = tool.use_tool_extended(user, M, timeDelay, selectedStep.requedQuality, FAILCHANCE_NORMAL, required_stat = STAT_BIO)
 		else
 			if(prob(selectedStep.tool_quality(tool)) &&  do_mob(user, M, timeDelay))
 				success = TOOL_USE_SUCCESS
@@ -131,6 +131,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(success == TOOL_USE_SUCCESS)
 			selectedStep.end_step(user, M, zone, tool)		//finish successfully
 		else if(success == TOOL_USE_FAIL)
+			tool.handle_failure(user, M, required_stat = STAT_BIO)
 			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
 		else
 			user << SPAN_WARNING("You must remain close to your patient to conduct surgery.")

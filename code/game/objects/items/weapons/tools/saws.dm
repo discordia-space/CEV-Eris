@@ -13,7 +13,7 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = TRUE
 	edge = TRUE
-	tool_qualities = list(QUALITY_SAWING = 3, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 2)
+	tool_qualities = list(QUALITY_SAWING = 30, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 20)
 
 /obj/item/weapon/tool/saw/circular
 	name = "circular saw"
@@ -23,7 +23,7 @@
 	worksound = WORKSOUND_CIRCULAR_SAW
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_SAWING = 4, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 3)
+	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 30)
 
 	use_power_cost = 1
 	suitable_cell = /obj/item/weapon/cell/small
@@ -36,7 +36,7 @@
 	worksound = WORKSOUND_CIRCULAR_SAW
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_SAWING = 5, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 4)
+	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 40)
 
 	use_power_cost = 2
 	suitable_cell = /obj/item/weapon/cell/small
@@ -49,7 +49,7 @@
 	worksound = WORKSOUND_CHAINSAW
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 3)
-	tool_qualities = list(QUALITY_SAWING = 5, QUALITY_CUTTING = 1, QUALITY_WIRE_CUTTING = 2)
+	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 20)
 
 	use_fuel_cost = 1
 	max_fuel = 80

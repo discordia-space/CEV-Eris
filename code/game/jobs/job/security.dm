@@ -21,6 +21,12 @@
 		access_external_airlocks
 	)
 
+	stat_modifers = list(
+		STAT_PHY = 30,
+		STAT_ROB = 20,
+		STAT_AGI = 20,
+	)
+
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
 	hat = /obj/item/clothing/head/HoS
@@ -71,6 +77,12 @@
 		access_external_airlocks
 	)
 	idtype = /obj/item/weapon/card/id/sec
+
+	stat_modifers = list(
+		STAT_PHY = 20,
+		STAT_ROB = 20,
+		STAT_AGI = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/warden
 	suit = /obj/item/clothing/suit/armor/vest/security
@@ -123,6 +135,13 @@
 	)
 	idtype = /obj/item/weapon/card/id/det
 
+	stat_modifers = list(
+		STAT_BIO = 10,
+		STAT_PHY = 10,
+		STAT_ROB = 10,
+		STAT_AGI = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/inspector
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
@@ -167,6 +186,10 @@
 	)
 	idtype = /obj/item/weapon/card/id/medcpec
 
+	stat_modifers = list(
+		STAT_BIO = 20,
+	)
+
 	uniform = /obj/item/clothing/under/rank/medspec
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
@@ -205,6 +228,12 @@
 		access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks
 	)
 	idtype = /obj/item/weapon/card/id/sec
+
+	stat_modifers = list(
+		STAT_PHY = 10,
+		STAT_ROB = 20,
+		STAT_AGI = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest/security

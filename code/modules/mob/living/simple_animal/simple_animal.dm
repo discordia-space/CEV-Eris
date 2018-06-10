@@ -255,7 +255,7 @@
 			user << SPAN_NOTICE("\The [src] is dead, medical items won't bring \him back to life.")
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(QUALITY_CUTTING in O.tool_qualities)
-			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_VERY_EASY))
+			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_NORMAL, required_stat = STAT_BIO))
 				harvest(user)
 	else
 		if(!O.force)
@@ -323,7 +323,7 @@
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
-		if(!L.stat && L.health >= (ishuman(L) ? config.health_threshold_crit : 0))
+		if(!L.stat && L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
 			return (0)
 	if (istype(target_mob,/obj/mecha))
 		var/obj/mecha/M = target_mob

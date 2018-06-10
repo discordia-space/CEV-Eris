@@ -587,7 +587,7 @@
 			W.lit = 1
 			W.damtype = "burn"
 			W.icon_state = "match_lit"
-			W.tool_qualities = list(QUALITY_CAUTERIZING = 1)
+			W.tool_qualities = list(QUALITY_CAUTERIZING = 10)
 			START_PROCESSING(SSobj, W)
 		W.update_icon()
 		return

@@ -498,7 +498,7 @@
 				user << SPAN_NOTICE("Nothing to fix here!")
 				return
 
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 				adjustBruteLoss(-30)
 				updatehealth()
@@ -511,7 +511,7 @@
 		if(QUALITY_PRYING)
 			if(opened)
 				if(cell)
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 						user << SPAN_NOTICE("You close the cover.")
 						opened = 0
 						updateicon()
@@ -522,7 +522,7 @@
 						user << SPAN_NOTICE("\The [src] has no brain to remove.")
 						return
 
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 						user << SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi].")
 						user << SPAN_NOTICE("You damage some parts of the chassis, but eventually manage to rip out [mmi]!")
 						var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
@@ -546,7 +546,7 @@
 					var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
 					if(!remove)
 						return
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 						var/datum/robot_component/C = components[remove]
 						var/obj/item/robot_parts/robot_component/RC = C.wrapped
 						user << SPAN_NOTICE("You remove \the [RC].")
@@ -565,7 +565,7 @@
 				if(locked)
 					user << SPAN_WARNING("The cover is locked and cannot be opened.")
 				else
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 						user << SPAN_NOTICE("You open the cover.")
 						opened = 1
 						updateicon()
@@ -579,7 +579,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(opened && !cell)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					wiresexposed = !wiresexposed
 					user << SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 					updateicon()
@@ -587,7 +587,7 @@
 			if(opened && cell)
 				if(!radio)
 					user << SPAN_WARNING("Unable to locate a radio.")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					radio.attackby(I,user)//Push it to the radio to let it handle everything
 					updateicon()
 					return

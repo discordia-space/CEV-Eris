@@ -229,7 +229,7 @@
 
 		if(QUALITY_WELDING)
 			if(buildstate == 1)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You weld the rods into place.")
 					buildstate++
 					update_icon()
@@ -238,7 +238,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(buildstate == 3)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You secure the crossbow's various parts.")
 					new /obj/item/weapon/gun/launcher/crossbow(get_turf(src))
 					qdel(src)
