@@ -28,6 +28,8 @@ var/global/datum/controller/gameticker/ticker
 
 	var/triai = 0//Global holder for Triumvirate
 
+	var/quoted = FALSE
+
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 
 	var/ship_was_nuked = 0              // See nuclearbomb.dm and malfunction.dm.
@@ -53,6 +55,10 @@ var/global/datum/controller/gameticker/ticker
 			pregame_timeleft = 40
 
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+
+		if(pregame_timeleft <= 600 && !quoted)
+			send_quote_of_the_round()
+			quoted = TRUE
 
 		while(current_state == GAME_STATE_PREGAME)
 			sleep(10)
@@ -229,6 +235,13 @@ var/global/datum/controller/gameticker/ticker
 	if(ship_nuke_code_rotation_part > length(ship_nuke_code)) // or we start over if we moved out of range
 		ship_nuke_code_rotation_part = 1
 
+/datum/controller/gameticker/proc/send_quote_of_the_round()
+	var/message
+	var/list/quotes = file2list("strings/quotes.txt")
+	if(quotes.len)
+		message = pick(quotes)
+	if(message)
+		world << SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>")
 
 /datum/controller/gameticker/proc/create_characters()
 	for(var/mob/new_player/player in player_list)
