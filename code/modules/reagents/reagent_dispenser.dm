@@ -124,7 +124,7 @@
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_PRD))
 			user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 				"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 			modded = modded ? 0 : 1
@@ -225,7 +225,7 @@
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_PRD))
 			src.add_fingerprint(user)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")

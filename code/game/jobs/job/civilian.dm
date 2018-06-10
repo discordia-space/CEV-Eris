@@ -11,6 +11,11 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
 	access = list(access_hydroponics, access_bar, access_kitchen)
+
+	stat_modifers = list(
+		STAT_AGI = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/bartender
 	pda = /obj/item/device/pda/bar
 	ear = /obj/item/device/radio/headset/headset_service
@@ -86,6 +91,10 @@
 	access = list(access_hydroponics, access_bar, access_kitchen)
 	idtype = /obj/item/weapon/card/id/hydro
 
+	stat_modifers = list(
+		STAT_BIO = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	pda = /obj/item/device/pda/botanist
 	suit = /obj/item/clothing/suit/apron
@@ -113,6 +122,11 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_maint_tunnels, access_theatre)
+
+	stat_modifers = list(
+		STAT_ROB = 10,
+		STAT_AGI = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -158,6 +172,10 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_janitor, access_maint_tunnels)
+
+	stat_modifers = list(
+		STAT_AGI = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/janitor
 	pda = /obj/item/device/pda/janitor

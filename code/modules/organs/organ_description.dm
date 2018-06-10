@@ -24,7 +24,7 @@
 	name = "upper body"
 	default_type = /obj/item/organ/external/chest
 
-	min_broken_damage = 35
+	min_broken_damage = 60
 	max_damage = 100
 	w_class = ITEM_SIZE_HUGE
 
@@ -36,7 +36,7 @@
 	name = "lower body"
 	default_type = /obj/item/organ/external/groin
 
-	min_broken_damage = 35
+	min_broken_damage = 60
 	max_damage = 100
 	w_class = ITEM_SIZE_LARGE
 
@@ -51,7 +51,7 @@
 	default_type = /obj/item/organ/external/head
 
 	max_damage = 75
-	min_broken_damage = 35
+	min_broken_damage = 60
 	w_class = ITEM_SIZE_NORMAL
 
 	body_part = HEAD
@@ -62,7 +62,7 @@
 
 /datum/organ_description/arm
 	max_damage = 50
-	min_broken_damage = 30
+	min_broken_damage = 50
 	w_class = ITEM_SIZE_NORMAL
 	parent_organ = BP_CHEST
 	can_grasp = TRUE
@@ -82,8 +82,8 @@
 	amputation_point = "right shoulder"
 
 /datum/organ_description/leg
-	max_damage = 50
-	min_broken_damage = 30
+	max_damage = 60
+	min_broken_damage = 50
 	w_class = ITEM_SIZE_NORMAL
 	parent_organ = BP_GROIN
 	can_stand = TRUE
@@ -105,7 +105,7 @@
 	amputation_point = "right hip"
 
 /datum/organ_description/hand
-	min_broken_damage = 15
+	min_broken_damage = 40
 	w_class = ITEM_SIZE_SMALL
 	can_grasp = TRUE
 	drop_on_remove = list(slot_gloves, slot_handcuffed)
@@ -127,7 +127,7 @@
 	amputation_point = "right wrist"
 
 /datum/organ_description/foot
-	min_broken_damage = 15
+	min_broken_damage = 40
 	can_stand = TRUE
 	drop_on_remove = list(slot_shoes, slot_legcuffed)
 

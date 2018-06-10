@@ -473,7 +473,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					else
 						user.apply_damage(2, BURN, BP_R_HAND)
 					user.visible_message(SPAN_NOTICE("After a few attempts, [user] manages to light the [src], they however burn their finger in the process."))
-			tool_qualities = list(QUALITY_CAUTERIZING = 1)
+			tool_qualities = list(QUALITY_CAUTERIZING = 10)
 			set_light(2)
 			START_PROCESSING(SSobj, src)
 		else

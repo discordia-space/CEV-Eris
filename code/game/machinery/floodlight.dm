@@ -112,7 +112,7 @@
 
 		if(QUALITY_PRYING)
 			if(unlocked)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_PRD))
 					if(open)
 						open = 0
 						overlays = null
@@ -127,7 +127,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = unlocked ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 30, forced_sound = used_sound))
 				unlocked = !unlocked
 				user << SPAN_NOTICE("You [unlocked ? "screw" : "unscrew"] the battery panel of \the [src] with [I].")
 				update_icon()

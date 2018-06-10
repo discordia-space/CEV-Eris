@@ -114,7 +114,7 @@ field_generator power level display
 
 		if(QUALITY_BOLT_TURNING)
 			if(state == 0)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					user.visible_message("[user.name] secures [src.name] to the floor.", \
 						"You secure the external reinforcing bolts to the floor.", \
 						"You hear ratchet")
@@ -122,7 +122,7 @@ field_generator power level display
 					state = 1
 					return
 			if(state == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
 						"You undo the external reinforcing bolts.", \
 						"You hear ratchet")
@@ -133,12 +133,12 @@ field_generator power level display
 
 		if(QUALITY_WELDING)
 			if(state == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You weld the field generator to the floor.")
 					state = 2
 					return
 			if(state == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You cut the [src] free from the floor.")
 					state = 1
 					return

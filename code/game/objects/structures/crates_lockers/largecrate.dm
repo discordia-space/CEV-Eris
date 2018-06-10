@@ -11,7 +11,7 @@
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user)
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_PHY))
 			new /obj/item/stack/material/wood(src)
 			var/turf/T = get_turf(src)
 			for(var/atom/movable/AM in contents)
@@ -33,7 +33,7 @@
 
 /obj/structure/largecrate/hoverpod/attackby(obj/item/I, mob/user)
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			var/obj/item/mecha_parts/mecha_equipment/ME
 			var/obj/mecha/working/hoverpod/H = new (loc)
 

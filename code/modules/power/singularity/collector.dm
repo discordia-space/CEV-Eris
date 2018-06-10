@@ -66,14 +66,14 @@ var/global/list/rad_collectors = list()
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(P && !src.locked)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					eject()
 					return
 			return
 
 		if(QUALITY_BOLT_TURNING)
 			if(!P)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					src.anchored = !src.anchored
 					user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
 						"You [anchored? "secure":"undo"] the external bolts.", \

@@ -20,7 +20,6 @@
 	idtype = /obj/item/weapon/card/id/car
 	ideal_character_age = 40
 
-
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/qm_coat
 	shoes = /obj/item/clothing/shoes/color/brown
@@ -54,6 +53,12 @@
 	)
 	idtype = /obj/item/weapon/card/id/car
 
+	stat_modifers = list(
+		STAT_PHY = 10,
+		STAT_ROB = 10,
+		STAT_AGI = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
 	pda = /obj/item/device/pda/cargo
@@ -81,6 +86,12 @@
 		access_mining_station
 	)
 	idtype = /obj/item/weapon/card/id/car
+
+	stat_modifers = list(
+		STAT_PHY = 20,
+		STAT_ROB = 20,
+		STAT_AGI = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/miner
 	pda = /obj/item/device/pda/shaftminer

@@ -395,7 +395,7 @@
 			if(weedlevel > 0)
 				user << SPAN_WARNING("This plot is completely devoid of weeds. It doesn't need uprooting.")
 				return
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
 				user.visible_message(SPAN_DANGER("[user] starts uprooting the weeds."), SPAN_DANGER("You remove the weeds from the [src]."))
 				weedlevel = 0
 				update_icon()
@@ -415,7 +415,7 @@
 				user << SPAN_WARNING("The plant is dead.")
 				return
 
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
 				// Create a sample.
 				seed.harvest(user,yield_mod,1)
 				health -= (rand(3,5)*10)
@@ -431,7 +431,7 @@
 			return
 
 		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
 				if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
 					if(connected_port)
 						disconnect()
