@@ -207,7 +207,7 @@
 
 			if(S.brute_dam)
 				if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
-					if(use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+					if(use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 						S.heal_damage(15,0,0,1)
 						user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 						user.visible_message(

@@ -254,7 +254,7 @@
 				if(!glasstype)
 					user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
 					return
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
 					if(dir == SOUTHWEST)
 						var/obj/item/stack/material/mats = new glasstype(loc)
@@ -267,7 +267,7 @@
 
 		if(QUALITY_PRYING)
 			if(reinf && state <= 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					state = 1 - state
 					user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
 			return
@@ -275,13 +275,13 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(reinf && state >= 1)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					state = 3 - state
 					update_nearby_icons()
 					user << (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame."))
 					return
 			if(reinf && state == 0)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					set_anchored(!anchored)
 					user << (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor."))
 					return

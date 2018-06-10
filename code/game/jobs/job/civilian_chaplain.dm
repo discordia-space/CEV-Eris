@@ -14,7 +14,7 @@
 	idtype = /obj/item/weapon/card/id/chaplain
 
 	stat_modifers = list(
-		STAT_END = 10,
+		STAT_ROB = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/chaplain

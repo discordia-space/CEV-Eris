@@ -46,14 +46,14 @@ Note: Must be placed within 3 tiles of the R&D Console
 			if(!panel_open)
 				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
 				return
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
 				dismantle()
 				return
 
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS, instant_finish_tier = 30, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD, instant_finish_tier = 30, forced_sound = used_sound))
 				if(linked_console)
 					linked_console.linked_imprinter = null
 					linked_console = null

@@ -100,7 +100,7 @@
 
 		if(QUALITY_WELDING)
 			if(build_step == 3)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You welded the vest to [src].")
 					build_step++
 					name = "shielded frame assembly"
@@ -109,7 +109,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(build_step == 8)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("Taser gun attached.")
 					build_step++
 					name = "armed [name]"

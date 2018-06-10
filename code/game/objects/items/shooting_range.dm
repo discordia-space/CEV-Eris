@@ -34,7 +34,7 @@
 
 /obj/item/target/attackby(obj/item/I, mob/user)
 	if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			overlays.Cut()
 			user << SPAN_NOTICE("You slice off [src]'s uneven chunks of aluminum and scorch marks.")
 			return

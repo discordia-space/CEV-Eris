@@ -138,13 +138,13 @@ var/list/possible_cable_coil_colours = list(
 		return
 
 	if(QUALITY_WIRE_CUTTING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			if(!shock(user, 50))
 				cutting(user)
 		return
 
 	if(QUALITY_CUTTING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			if(!shock(user, 50))
 				cutting(user)
 		return

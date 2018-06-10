@@ -197,7 +197,7 @@
 	//If it's emagged, crowbar can pry electronics out.
 	if (src.operating == -1 && (QUALITY_PRYING in I.tool_qualities))
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			user << SPAN_NOTICE("You removed the windoor electronics!")
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)

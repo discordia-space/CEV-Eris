@@ -39,7 +39,7 @@
 			if(salvage_num <= 0 || !isemptylist(wirecutters_salvage))
 				user << "You don't see anything that can be removed with [I]."
 				return
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 				var/type = prob(70)?pick(wirecutters_salvage):null
 				if(type)
 					var/N = new type(get_turf(user))
@@ -54,7 +54,7 @@
 			if(salvage_num <= 0 || !isemptylist(welder_salvage))
 				user << "You don't see anything that can be cut with [I]."
 				return
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 				if(type)
 					var/N = new type(get_turf(user))
 					user.visible_message("[user] cuts [N] from [src]", "You cut [N] from [src]", "You hear a sound of welder nearby")
@@ -71,7 +71,7 @@
 			if(!isemptylist(crowbar_salvage))
 				user << "You don't see anything that can be pried with [I]."
 				return
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 				var/obj/S = pick(crowbar_salvage)
 				if(S)
 					S.loc = get_turf(user)

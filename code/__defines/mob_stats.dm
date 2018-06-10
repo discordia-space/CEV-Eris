@@ -1,8 +1,8 @@
 #define STAT_VALUE_DEFAULT				0
 
-#define STAT_CNS						"Construction"
-#define STAT_INV						"Inventing"
+#define STAT_PRD						"Productivity"
+#define STAT_COG						"Cognition"
 #define STAT_BIO						"Biology"
-#define STAT_STR						"Strength"
-#define STAT_END						"Endurance"
+#define STAT_PHY						"Physique"
+#define STAT_ROB						"Robustness"
 #define STAT_AGI						"Agility"

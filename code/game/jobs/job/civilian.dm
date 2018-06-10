@@ -124,8 +124,8 @@
 	access = list(access_maint_tunnels, access_theatre)
 
 	stat_modifers = list(
-		STAT_END = 10,
-		STAT_AGI = 10,
+		STAT_ROB = 10,
+		STAT_AGI = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/clown

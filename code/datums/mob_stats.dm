@@ -64,26 +64,26 @@
 
 
 
-/datum/stat/construction
-	name = STAT_CNS
-	desc = "Character's skill in building constructions and using various tools. Affects the speed and successfulness of wall dismantling, machinery designing."
+/datum/stat/productivity
+	name = STAT_PRD
+	desc = "The world hadn’t ever had so many moving parts or so few labels. Character's ability in building and using various tools.."
 
-/datum/stat/inventing
-	name = STAT_INV
-	desc = "Knowings and abilities in creating new items. The higher your skill — the more recipes you know. Also increases your crafting speed."
+/datum/stat/cognition
+	name = STAT_COG
+	desc = "Too many dots, not enough lines. Knowledge and ability to create new items."
 
 /datum/stat/biology
 	name = STAT_BIO
-	desc = "Competence in physiology and chemistry. Affects your surgery skill, increases efficiency of medkits."
+	desc = "What’s the difference between being dead, and just not knowing you’re alive? Competence in physiology and chemistry."
 
-/datum/stat/strength
-	name = STAT_STR
-	desc = "Increases your health, damage in unarmed combat, affects on knockdown chance."
+/datum/stat/physique
+	name = STAT_PHY
+	desc = "Violence is what people do when they run out of good ideas. Increases your health, damage in unarmed combat, affect the knockdown chance."
 
-/datum/stat/endurance
-	name = STAT_END
-	desc = "This characteristic increases your resistance to poisons and also boosts your speed in uncomfortable clothes."
+/datum/stat/robustness
+	name = STAT_ROB
+	desc = "You’re a tough guy, but I’m a nightmare wrapped in the apocalypse. Enhances your resistance to poisons and also raises your speed in uncomfortable clothes."
 
 /datum/stat/agility
 	name = STAT_AGI
-	desc = "Affects on unarmed combat: increases your chances in hitting and disarming, boosts your grab speed."
+	desc = "We see in order to move; we move in order to see. Affect the unarmed combat: increases your chances in hitting and disarming, enhances your grab speed."

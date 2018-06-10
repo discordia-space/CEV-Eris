@@ -89,7 +89,7 @@
 
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			anchored = !anchored
 			user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
 						"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \

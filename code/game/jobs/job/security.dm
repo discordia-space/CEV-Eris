@@ -22,8 +22,8 @@
 	)
 
 	stat_modifers = list(
-		STAT_STR = 30,
-		STAT_END = 20,
+		STAT_PHY = 30,
+		STAT_ROB = 20,
 		STAT_AGI = 20,
 	)
 
@@ -79,8 +79,8 @@
 	idtype = /obj/item/weapon/card/id/sec
 
 	stat_modifers = list(
-		STAT_STR = 20,
-		STAT_END = 20,
+		STAT_PHY = 20,
+		STAT_ROB = 20,
 		STAT_AGI = 10,
 	)
 
@@ -137,8 +137,8 @@
 
 	stat_modifers = list(
 		STAT_BIO = 10,
-		STAT_STR = 10,
-		STAT_END = 10,
+		STAT_PHY = 10,
+		STAT_ROB = 10,
 		STAT_AGI = 10,
 	)
 
@@ -230,8 +230,8 @@
 	idtype = /obj/item/weapon/card/id/sec
 
 	stat_modifers = list(
-		STAT_STR = 10,
-		STAT_END = 20,
+		STAT_PHY = 10,
+		STAT_ROB = 20,
 		STAT_AGI = 10,
 	)
 

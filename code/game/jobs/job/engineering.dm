@@ -25,8 +25,8 @@
 	)
 
 	stat_modifers = list(
-		STAT_CNS = 30,
-		STAT_INV = 10,
+		STAT_PRD = 30,
+		STAT_COG = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/exultant
@@ -75,8 +75,8 @@
 	idtype = /obj/item/weapon/card/id/engie
 
 	stat_modifers = list(
-		STAT_CNS = 20,
-		STAT_INV = 10,
+		STAT_PRD = 20,
+		STAT_COG = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/engineer

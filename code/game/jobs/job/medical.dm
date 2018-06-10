@@ -110,7 +110,7 @@
 	idtype = /obj/item/weapon/card/id/chem
 
 	stat_modifers = list(
-		STAT_INV = 10,
+		STAT_COG = 10,
 		STAT_BIO = 20,
 	)
 
@@ -188,8 +188,8 @@
 
 	stat_modifers = list(
 		STAT_BIO = 10,
-		STAT_STR = 10,
-		STAT_END = 10,
+		STAT_PHY = 10,
+		STAT_ROB = 10,
 	)
 
 	pda = /obj/item/device/pda/medical

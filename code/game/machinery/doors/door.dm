@@ -219,7 +219,7 @@
 		switch(tool_type)
 
 			if(QUALITY_WELDING)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You finish repairing the damage to \the [src].")
 					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
 					update_icon()
@@ -229,7 +229,7 @@
 				return
 
 			if(QUALITY_PRYING)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_STR))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_PHY))
 					user << SPAN_NOTICE("You remove \the [repairing].")
 					repairing.loc = user.loc
 					repairing = null

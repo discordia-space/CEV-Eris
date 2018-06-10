@@ -43,7 +43,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(open)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					var/list/current_mounts = list()
 					if(cell) current_mounts   += "cell"
 					if(installed_modules && installed_modules.len) current_mounts += "system module"
@@ -119,7 +119,7 @@
 
 		if(QUALITY_PRYING)
 			if(!open && locked)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					open = !open
 					user << SPAN_NOTICE("You [open ? "open" : "close"] the access panel.")
 					return
@@ -130,7 +130,7 @@
 				if(!air_supply)
 					user << "There is not tank to remove."
 					return
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					if(user.l_hand && user.r_hand)
 						air_supply.forceMove(get_turf(user))
 					else

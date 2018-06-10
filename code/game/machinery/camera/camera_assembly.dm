@@ -41,7 +41,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(state == 0 || state == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					anchored = !anchored
 					state = !state
 					update_icon()
@@ -52,18 +52,18 @@
 
 		if(QUALITY_WELDING)
 			if(state == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You weld the assembly securely into place.")
 					state = 2
 			if(state == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You unweld the assembly from its place.")
 					state = 1
 			return
 
 		if(QUALITY_WIRE_CUTTING)
 			if(state == 3)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					new/obj/item/stack/cable_coil(get_turf(src), 2)
 					user << SPAN_NOTICE("You remove the wires from the circuits.")
 					state = 2
@@ -72,7 +72,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(state == 3)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					var/input = sanitize(input(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: CEV Eris,Security,Secret", "Set Network", camera_network ? camera_network : NETWORK_CEV_ERIS))
 					if(!input)
 						usr << "No input found please hang up and try your call again."
@@ -111,7 +111,7 @@
 
 		if(QUALITY_PRYING)
 			if(upgrades.len)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					var/obj/U = locate(/obj) in upgrades
 					if(U)
 						user << SPAN_NOTICE("You unattach an upgrade from the assembly.")

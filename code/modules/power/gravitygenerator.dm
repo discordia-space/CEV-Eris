@@ -186,7 +186,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_BOLT_TURNING)
 			if(GRAV_NEEDS_WRENCH)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You secure the plating to the framework.")
 					set_fix()
 					return
@@ -194,7 +194,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_WELDING)
 			if(GRAV_NEEDS_WELDING)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You mend the damaged framework.")
 					broken_state++
 					return
@@ -202,7 +202,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_SCREW_DRIVING)
 			if(GRAV_NEEDS_SCREWDRIVER)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You secure the screws of the framework.")
 					broken_state++
 					return

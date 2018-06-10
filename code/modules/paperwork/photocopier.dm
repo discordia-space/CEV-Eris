@@ -125,7 +125,7 @@
 		else
 			user << SPAN_NOTICE("This cartridge is not yet ready for replacement! Use up the rest of the toner.")
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_PRD))
 			anchored = !anchored
 			user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
 	return

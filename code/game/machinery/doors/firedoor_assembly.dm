@@ -26,7 +26,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_CNS))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 				user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
 									  "You have [anchored ? "" : "un" ]secured \the [src]!")
 				anchored = !anchored
@@ -36,7 +36,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 
 		if(QUALITY_WELDING)
 			if(!anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					user.visible_message(SPAN_WARNING("[user] has dissassembled \the [src]."),
 										"You have dissassembled \the [src].")
 					new /obj/item/stack/material/steel(src.loc, 2)
@@ -46,7 +46,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 
 		if(QUALITY_WIRE_CUTTING)
 			if(wired)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You cut the wires!")
 					new/obj/item/stack/cable_coil(src.loc, 1)
 					wired = 0

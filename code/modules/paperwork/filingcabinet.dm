@@ -43,7 +43,7 @@
 		icon_state = initial(icon_state)
 		updateUsrDialog()
 	else if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING)))
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 			anchored = !anchored
 			user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
 	else

@@ -170,7 +170,7 @@
 
 /obj/effect/meteor/attackby(obj/item/I, mob/user, params)
 	if(QUALITY_DIGGING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_STR))
+		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_PHY))
 			user << SPAN_NOTICE("You broke the meteor in harmless dust.")
 			qdel(src)
 			return

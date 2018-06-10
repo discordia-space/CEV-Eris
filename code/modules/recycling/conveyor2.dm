@@ -81,7 +81,7 @@
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			if(!(stat & BROKEN))
 				var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(src.loc)
 				C.id = id
@@ -240,7 +240,7 @@
 
 /obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user, params)
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
 			C.id = id
 			transfer_fingerprints_to(C)

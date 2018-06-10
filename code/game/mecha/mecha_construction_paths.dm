@@ -21,7 +21,7 @@
 	if(!ispath(step[key]))
 		if(istype(used_atom, /obj/item))
 			var/obj/item/I = used_atom
-			return I.use_tool(user, src, WORKTIME_NORMAL, step[key], FAILCHANCE_NORMAL, required_stat = STAT_CNS)
+			return I.use_tool(user, src, WORKTIME_NORMAL, step[key], FAILCHANCE_NORMAL, required_stat = STAT_PRD)
 
 	else if(istype(used_atom, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = used_atom

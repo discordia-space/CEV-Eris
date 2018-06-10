@@ -635,7 +635,7 @@
 			return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_STR))))
+		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_PHY))))
 			Paralyse(3)
 
 		if(hallucination)
@@ -969,12 +969,12 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(species && species.flags & NO_PAIN) return
 
-	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_STR)))// health 0 - stat makes you immediately collapse
+	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_PHY)))// health 0 - stat makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_STR))
+	else if(health < HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_PHY))
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)

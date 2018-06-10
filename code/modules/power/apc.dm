@@ -455,7 +455,7 @@
 					if (terminal)
 						user << SPAN_WARNING("Disconnect wires first.")
 						return
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					if (has_electronics==1)
 						has_electronics = 0
 						if ((stat & BROKEN))
@@ -470,14 +470,14 @@
 							new /obj/item/weapon/circuitboard/apc(loc)
 						return
 			if(opened!=2) //cover isn't removed
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					opened = 0
 					update_icon()
 			if(!((stat & BROKEN) || hacker))
 				if(coverlocked && !(stat & MAINT))
 					user << SPAN_WARNING("The cover is locked and cannot be opened.")
 					return
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					opened = 1
 					update_icon()
 					return
@@ -489,7 +489,7 @@
 				if(istype(T) && !T.is_plating())
 					user << SPAN_WARNING("You must remove the floor plating in front of the APC first.")
 					return
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)
@@ -507,7 +507,7 @@
 				user << SPAN_WARNING("Close the APC first.")
 				return
 			var/used_sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS, instant_finish_tier = 30, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD, instant_finish_tier = 30, forced_sound = used_sound))
 				if(opened)
 					if (has_electronics==1 && terminal)
 						has_electronics = 2
@@ -531,7 +531,7 @@
 
 		if(QUALITY_WELDING)
 			if(opened && has_electronics==0 && !terminal)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_CNS))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					if (emagged || (stat & BROKEN) || opened==2)
 						new /obj/item/stack/material/steel(loc)
 						user.visible_message(\

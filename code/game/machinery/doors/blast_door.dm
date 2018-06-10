@@ -106,7 +106,7 @@
 /obj/machinery/door/blast/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_STR))
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_PHY))
 			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 				force_toggle()
 			else

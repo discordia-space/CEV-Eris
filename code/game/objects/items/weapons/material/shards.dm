@@ -48,7 +48,7 @@
 
 /obj/item/weapon/material/shard/attackby(obj/item/I, mob/user)
 	if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_INV))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			material.place_sheet(loc)
 			qdel(src)
 			return

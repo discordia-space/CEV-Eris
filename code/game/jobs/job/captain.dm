@@ -19,8 +19,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 70 // Old geezer captains ftw
 
 	stat_modifers = list(
-		STAT_STR = 10,
-		STAT_END = 10,
+		STAT_PHY = 10,
+		STAT_ROB = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/captain
@@ -75,7 +75,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 50
 
 	stat_modifers = list(
-		STAT_END = 10,
+		STAT_ROB = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/first_officer

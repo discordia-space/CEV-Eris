@@ -60,7 +60,7 @@
 /obj/machinery/power/tracker/attackby(obj/item/I, mob/user)
 
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_CNS))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc

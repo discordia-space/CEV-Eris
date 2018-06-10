@@ -54,8 +54,8 @@
 	idtype = /obj/item/weapon/card/id/car
 
 	stat_modifers = list(
-		STAT_STR = 10,
-		STAT_END = 10,
+		STAT_PHY = 10,
+		STAT_ROB = 10,
 		STAT_AGI = 10,
 	)
 
@@ -88,8 +88,8 @@
 	idtype = /obj/item/weapon/card/id/car
 
 	stat_modifers = list(
-		STAT_STR = 20,
-		STAT_END = 20,
+		STAT_PHY = 20,
+		STAT_ROB = 20,
 		STAT_AGI = 20,
 	)
 
