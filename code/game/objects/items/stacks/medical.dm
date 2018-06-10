@@ -10,7 +10,7 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if (!istype(M))
 		user << SPAN_WARNING("\The [src] cannot be applied to [M]!")
 		return 1
@@ -45,7 +45,10 @@
 			SPAN_NOTICE("[M] has been applied with [src] by [user]."),
 			SPAN_NOTICE("You apply \the [src] to [M].")
 		)
-		use(1)
+		if(prob(10 + user.stats.getStat(STAT_BIO)))
+			user << SPAN_NOTICE("You have managed to waste less [src].")
+		else
+			use(1)
 
 	M.updatehealth()
 
@@ -56,7 +59,7 @@
 	icon_state = "brutepack"
 	origin_tech = list(TECH_BIO = 1)
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if(..())
 		return 1
 
@@ -102,7 +105,10 @@
 							SPAN_NOTICE("You place a bandaid over \a [W.desc] on [M]'s [affecting.name].")
 						)
 					W.bandage()
-					used++
+					if(prob(10 + user.stats.getStat(STAT_BIO)))
+						user << SPAN_NOTICE("You have managed to waste less [src].")
+					else
+						used++
 				affecting.update_damages()
 				if(used == amount)
 					if(affecting.is_bandaged())
@@ -126,7 +132,7 @@
 	heal_burn = 1
 	origin_tech = list(TECH_BIO = 1)
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if(..())
 		return 1
 
@@ -150,14 +156,17 @@
 					SPAN_NOTICE("[user] salved wounds on [M]'s [affecting.name]."),
 					SPAN_NOTICE("You salved wounds on [M]'s [affecting.name].")
 				)
-				use(1)
+				if(prob(10 + user.stats.getStat(STAT_BIO)))
+					user << SPAN_NOTICE("You have managed to waste less [src].")
+				else
+					use(1)
 				affecting.salve()
 		else
 			if (can_operate(H))        //Checks if mob is lying down on table for surgery
 				if (do_surgery(H,user,src))
 					return
 			else
-				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
+				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!")
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
@@ -167,7 +176,7 @@
 	heal_brute = 0
 	origin_tech = list(TECH_BIO = 1)
 
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if(..())
 		return 1
 
@@ -215,7 +224,10 @@
 				W.bandage()
 				W.disinfect()
 				W.heal_damage(heal_brute)
-				used++
+				if(prob(10 + user.stats.getStat(STAT_BIO)))
+					user << SPAN_NOTICE("You have managed to waste less [src].")
+				else
+					used++
 			affecting.update_damages()
 			if(used == amount)
 				if(affecting.is_bandaged())
@@ -239,7 +251,7 @@
 	origin_tech = list(TECH_BIO = 1)
 
 
-/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if(..())
 		return 1
 
@@ -264,7 +276,10 @@
 					SPAN_NOTICE("You cover wounds on [M]'s [affecting.name] with regenerative membrane.")
 				)
 				affecting.heal_damage(0,heal_burn)
-				use(1)
+				if(prob(10 + user.stats.getStat(STAT_BIO)))
+					user << SPAN_NOTICE("You have managed to waste less [src].")
+				else
+					use(1)
 				affecting.salve()
 		else
 			if (can_operate(H))        //Checks if mob is lying down on table for surgery
@@ -280,7 +295,7 @@
 	amount = 5
 	max_amount = 5
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if(..())
 		return 1
 
@@ -309,7 +324,7 @@
 				SPAN_DANGER("You start to apply \the [src] to your [limb]."),
 				SPAN_DANGER("You hear something being wrapped.")
 			)
-		if(do_after(user, 50, M))
+		if(do_after(user, max(0, 60 - user.stats.getStat(STAT_BIO)), M))
 			if (M != user)
 				user.visible_message(
 					SPAN_DANGER("[user] finishes applying \the [src] to [M]'s [limb]."),
@@ -317,7 +332,7 @@
 					SPAN_DANGER("You hear something being wrapped.")
 				)
 			else
-				if(prob(25))
+				if(prob(25 + user.stats.getStat(STAT_BIO)))
 					user.visible_message(
 						SPAN_DANGER("[user] successfully applies \the [src] to their [limb]."),
 						SPAN_DANGER("You successfully apply \the [src] to your [limb]."),
@@ -331,5 +346,8 @@
 					)
 					return
 			affecting.status |= ORGAN_SPLINTED
-			use(1)
+			if(prob(10 + user.stats.getStat(STAT_BIO)))
+				user << SPAN_NOTICE("You have managed to waste less [src].")
+			else
+				use(1)
 		return

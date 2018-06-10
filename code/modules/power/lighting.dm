@@ -62,7 +62,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(stage == 2)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					switch(fixture_type)
 						if ("tube")
 							src.icon_state = "tube-empty"
@@ -90,7 +90,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(stage == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					src.stage = 1
 					switch(fixture_type)
 						if ("tube")
@@ -110,7 +110,7 @@
 			if(stage == 1)
 				if (src.stage == 1)
 					user << "You begin deconstructing \a [src]."
-					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 						new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 						user.visible_message("[user.name] deconstructs [src].", \
 							"You deconstruct [src].", "You hear a noise.")
@@ -445,7 +445,7 @@
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
 		if(QUALITY_SCREW_DRIVING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 				user.visible_message("[user.name] opens [src]'s casing.", \
 					"You open [src]'s casing.", "You hear a noise.")
 				var/obj/machinery/light_construct/newlight = null

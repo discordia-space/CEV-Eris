@@ -67,7 +67,7 @@ var/bomb_set
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 				if (src.auth)
 					if (panel_open == 0)
 						panel_open = 1
@@ -91,7 +91,7 @@ var/bomb_set
 
 		if(QUALITY_WELDING)
 			if(anchored && (removal_stage == 0 || removal_stage == 2))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					if(removal_stage == 0)
 						user.visible_message("\The [user] cuts through the bolt covers on \the [src].", "You cut through the bolt cover.")
 						removal_stage = 1
@@ -104,7 +104,7 @@ var/bomb_set
 
 		if(QUALITY_BOLT_TURNING)
 			if(anchored && (removal_stage == 3))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user.visible_message("[user] unwrenches the anchoring bolts on [src].", "You unwrench the anchoring bolts.")
 					removal_stage = 4
 					return
@@ -112,7 +112,7 @@ var/bomb_set
 
 		if(QUALITY_PRYING)
 			if(anchored && (removal_stage == 1 || removal_stage == 4))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PHY))
 					if(removal_stage == 1)
 						user.visible_message("\The [user] forces open the bolt covers on \the [src].", "You force open the bolt covers.")
 						removal_stage = 2

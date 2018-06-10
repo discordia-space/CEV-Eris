@@ -19,7 +19,7 @@
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = ITEM_SIZE_NORMAL
-		tool_qualities = list(QUALITY_CUTTING = 2, QUALITY_WIRE_CUTTING = 1)
+		tool_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10)
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		force = WEAPON_FORCE_WEAK
@@ -64,7 +64,7 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unbreakable = 1
 	slot_flags = SLOT_BELT
-	tool_qualities = list(QUALITY_CUTTING = 2,  QUALITY_WIRE_CUTTING = 1)
+	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10)
 
 /obj/item/weapon/material/knife/boot
 	name = "boot knife"

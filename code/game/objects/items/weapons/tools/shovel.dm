@@ -13,7 +13,7 @@
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharp = 0
 	edge = 1
-	tool_qualities = list(QUALITY_SHOVELING = 3)
+	tool_qualities = list(QUALITY_SHOVELING = 30)
 
 /obj/item/weapon/tool/shovel/spade
 	name = "spade"
@@ -22,4 +22,4 @@
 	item_state = "spade"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	w_class = ITEM_SIZE_SMALL
-	tool_qualities = list(QUALITY_SHOVELING = 2)
+	tool_qualities = list(QUALITY_SHOVELING = 20)

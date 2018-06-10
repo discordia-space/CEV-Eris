@@ -46,7 +46,7 @@
 				playsound(user, fire_sound, 50, 1)
 			user.visible_message(SPAN_DANGER("The shotgun goes off!"), SPAN_DANGER("The shotgun goes off in your face!"))
 			return
-		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_EASY))
+		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_COG))
 			icon_state = "sawnshotgun"
 			item_state = "sawnshotgun"
 			w_class = ITEM_SIZE_NORMAL

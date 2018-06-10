@@ -21,6 +21,10 @@
 
 	ideal_character_age = 50
 
+	stat_modifers = list(
+		STAT_BIO = 30,
+	)
+
 	uniform = /obj/item/clothing/under/rank/moebius_biolab_officer
 	shoes = /obj/item/clothing/shoes/reinforced
 	pda = /obj/item/device/pda/heads/cmo
@@ -63,6 +67,10 @@
 	)
 	idtype = /obj/item/weapon/card/id/med
 
+	stat_modifers = list(
+		STAT_BIO = 20,
+	)
+
 	uniform = /obj/item/clothing/under/rank/medical
 	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
@@ -101,6 +109,10 @@
 	)
 	idtype = /obj/item/weapon/card/id/chem
 
+	stat_modifers = list(
+		STAT_COG = 10,
+		STAT_BIO = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/chemist
 	shoes = /obj/item/clothing/shoes/reinforced
@@ -137,6 +149,10 @@
 		access_genetics, access_psychiatrist
 	)
 
+	stat_modifers = list(
+		STAT_BIO = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/psych
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
@@ -168,6 +184,12 @@
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
+	)
+
+	stat_modifers = list(
+		STAT_BIO = 10,
+		STAT_PHY = 10,
+		STAT_ROB = 10,
 	)
 
 	pda = /obj/item/device/pda/medical

@@ -5,4 +5,4 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "hit", "bludgeoned")
-	tool_qualities = list(QUALITY_BONE_SETTING = 3)
+	tool_qualities = list(QUALITY_BONE_SETTING = 30)

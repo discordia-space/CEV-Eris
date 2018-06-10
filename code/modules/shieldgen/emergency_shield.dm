@@ -33,8 +33,6 @@
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/machinery/shield/Destroy()
-	opacity = 0
-	density = 0
 	update_nearby_tiles()
 	. = ..()
 
@@ -54,8 +52,10 @@
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 75, 1)
 
 	check_failure()
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(TRUE)
+	spawn(20)
+		if(src)
+			set_opacity(FALSE)
 
 	..()
 
@@ -63,8 +63,10 @@
 	health -= Proj.get_structure_damage()
 	..()
 	check_failure()
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(TRUE)
+	spawn(20)
+		if(src)
+			set_opacity(FALSE)
 
 /obj/machinery/shield/ex_act(severity)
 	switch(severity)
@@ -107,8 +109,10 @@
 	check_failure()
 
 	//The shield becomes dense to absorb the blow.. purely asthetic.
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(TRUE)
+	spawn(20)
+		if(src)
+			set_opacity(FALSE)
 
 	..()
 	return
@@ -279,7 +283,7 @@
 			if(locked)
 				user << SPAN_NOTICE("The bolts are covered, unlocking this would retract the covers.")
 				return
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_PRD))
 				if(anchored)
 					user << SPAN_NOTICE("You unsecure the [src] from the floor!")
 					if(active)
@@ -293,7 +297,7 @@
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_PRD, instant_finish_tier = 30))
 				is_open = !is_open
 				user << SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I].")
 			return

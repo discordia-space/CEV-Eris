@@ -1,4 +1,4 @@
-#define UPGRADE_COOLDOWN	40
+#define UPGRADE_COOLDOWN	50
 #define UPGRADE_KILL_TIMER	100
 
 ///Process_Grab()
@@ -231,7 +231,7 @@
 		return
 	if(!assailant.canClick())
 		return
-	if(world.time < (last_action + UPGRADE_COOLDOWN))
+	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN - assailant.stats.getStat(STAT_AGI))))
 		return
 	if(!assailant.canmove || assailant.lying)
 		qdel(src)

@@ -187,17 +187,17 @@
 			return
 	else if(QUALITY_WELDING in I.tool_qualities)
 		if(buildstate == 1)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 				user << SPAN_NOTICE("You weld the pipe into place.")
 				buildstate++
 				update_icon()
 		if(buildstate == 3)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 				user << SPAN_NOTICE("You weld the metal chassis together.")
 				buildstate++
 				update_icon()
 		if(buildstate == 5)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 				user << SPAN_NOTICE("You weld the valve into place.")
 				new /obj/item/weapon/gun/launcher/pneumatic(get_turf(src))
 				qdel(src)
