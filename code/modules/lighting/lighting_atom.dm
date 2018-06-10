@@ -60,7 +60,7 @@
 /atom/movable/Destroy()
 	var/turf/T = loc
 	if(opacity && istype(T))
-		opacity = 0
+		set_opacity(FALSE)
 		T.recalc_atom_opacity()
 		T.reconsider_lights()
 	return ..()

@@ -183,7 +183,7 @@
 
 	if(growth>2 && growth == max_growth)
 		layer = (seed && seed.force_layer) ? seed.force_layer : 5
-		opacity = 1
+		set_opacity(TRUE)
 		if(islist(seed.chems) && !isnull(seed.chems["woodpulp"]))
 			density = 1
 	else
