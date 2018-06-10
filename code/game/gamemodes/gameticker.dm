@@ -56,12 +56,14 @@ var/global/datum/controller/gameticker/ticker
 
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
 
-		if(pregame_timeleft <= 600 && !quoted)
-			send_quote_of_the_round()
-			quoted = TRUE
 
 		while(current_state == GAME_STATE_PREGAME)
 			sleep(10)
+
+			if(!quoted)
+				send_quote_of_the_round()
+				quoted = TRUE
+
 			vote.Process()
 
 			if(round_progressing)
