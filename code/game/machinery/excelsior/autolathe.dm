@@ -37,3 +37,17 @@
 /obj/machinery/autolathe/excelsior/res_load()
 	return //Well, i don't have	that sprite
 
+/obj/machinery/autolathe/excelsior/RefreshParts()
+	..()
+	var/mb_rating = 0
+	var/man_rating = 0
+	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+		mb_rating += MB.rating
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+		man_rating += M.rating
+
+	storage_capacity = round(initial(storage_capacity)*(mb_rating/2))
+
+	speed = man_rating*4
+	mat_efficiency = 1.1 - man_rating * 0.1
+

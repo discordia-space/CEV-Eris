@@ -367,7 +367,10 @@
 
 /obj/item/weapon/disk/autolathe_disk/excelsior/New()
 	recipes = list(
-		/datum/autolathe/recipe/circuit/autolathe,
+		/datum/autolathe/recipe/circuit/autolathe_excelsior,
+		/datum/autolathe/recipe/circuit/shieldgen_excelsior,
+		/datum/autolathe/recipe/circuit/reconstructor_excelsior,
+		/datum/autolathe/recipe/device/implanter,
 		/datum/autolathe/recipe/gun/makarov,
 		/datum/autolathe/recipe/sec/silencer,
 		/datum/autolathe/recipe/ammo/magazine_mc9mm,
@@ -376,6 +379,6 @@
 		/datum/autolathe/recipe/device/excelsiormine,
 		/datum/autolathe/recipe/part/igniter,
 		/datum/autolathe/recipe/part/signaler,
-		/datum/autolathe/recipe/part/sensor_prox
+		/datum/autolathe/recipe/part/sensor_prox,
 	)
 	..()

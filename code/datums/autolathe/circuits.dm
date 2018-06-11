@@ -21,6 +21,10 @@
 	name = "autolathe"
 	path = /obj/item/weapon/circuitboard/autolathe
 
+/datum/autolathe/recipe/circuit/autolathe_excelsior
+	name = "excelsior autolathe"
+	path = /obj/item/weapon/circuitboard/excelsiorautolathe
+
 /datum/autolathe/recipe/circuit/autolathe_disk_cloner
 	name = "autolathe disk cloner"
 	path = /obj/item/weapon/circuitboard/autolathe_disk_cloner
@@ -64,4 +68,12 @@
 /datum/autolathe/recipe/circuit/nav
 	name = "navigation console"
 	path = /obj/item/weapon/circuitboard/nav
+
+/datum/autolathe/recipe/circuit/shieldgen_excelsior
+	name = "excelsior shield wall generator"
+	path = /obj/item/weapon/circuitboard/excelsiorshieldwallgen
+
+/datum/autolathe/recipe/circuit/reconstructor_excelsior
+	name = "excelsior implant reconstructor"
+	path = /obj/item/weapon/circuitboard/excelsiorreconstructor
 
