@@ -207,7 +207,7 @@
 
 			if(S.brute_dam)
 				if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
-					if(use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+					if(use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 						S.heal_damage(15,0,0,1)
 						user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 						user.visible_message(
@@ -247,20 +247,20 @@
 	name = "Electric Boogaloo 3000"
 	icon_state = "omnitool"
 	item_state = "omnitool"
-	tool_qualities = list(QUALITY_BOLT_TURNING = 10,
-							QUALITY_PRYING = 10,
-							QUALITY_WELDING = 10,
-							QUALITY_SCREW_DRIVING = 10,
-							QUALITY_CLAMPING = 10,
-							QUALITY_CAUTERIZING = 10,
-							QUALITY_WIRE_CUTTING = 10,
-							QUALITY_RETRACTING = 10,
-							QUALITY_DRILLING = 10,
-							QUALITY_SAWING = 10,
-							QUALITY_VEIN_FIXING = 10,
-							QUALITY_BONE_SETTING = 10,
-							QUALITY_BONE_FIXING = 10,
-							QUALITY_SHOVELING = 10,
-							QUALITY_DIGGING = 10,
-							QUALITY_EXCAVATION = 10,
-							QUALITY_CUTTING = 10)
+	tool_qualities = list(QUALITY_BOLT_TURNING = 100,
+							QUALITY_PRYING = 100,
+							QUALITY_WELDING = 100,
+							QUALITY_SCREW_DRIVING = 100,
+							QUALITY_CLAMPING = 100,
+							QUALITY_CAUTERIZING = 100,
+							QUALITY_WIRE_CUTTING = 100,
+							QUALITY_RETRACTING = 100,
+							QUALITY_DRILLING = 100,
+							QUALITY_SAWING = 100,
+							QUALITY_VEIN_FIXING = 100,
+							QUALITY_BONE_SETTING = 100,
+							QUALITY_BONE_FIXING = 100,
+							QUALITY_SHOVELING = 100,
+							QUALITY_DIGGING = 100,
+							QUALITY_EXCAVATION = 100,
+							QUALITY_CUTTING = 100)

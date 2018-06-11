@@ -79,7 +79,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 //
 
 /obj/machinery/gravity_generator/main/station/Initialize()
-	..()
+	. = ..()
 	setup_parts()
 	middle.overlays += "activated"
 
@@ -87,9 +87,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 // Generator an admin can spawn
 //
 
-/obj/machinery/gravity_generator/main/station/admin/New()
-	..()
-	Initialize()
+/obj/machinery/gravity_generator/main/station/admin/Initialize()
+	. = ..()
 	grav_on()
 
 //
@@ -186,7 +185,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_BOLT_TURNING)
 			if(GRAV_NEEDS_WRENCH)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You secure the plating to the framework.")
 					set_fix()
 					return
@@ -194,7 +193,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_WELDING)
 			if(GRAV_NEEDS_WELDING)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You mend the damaged framework.")
 					broken_state++
 					return
@@ -202,7 +201,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_SCREW_DRIVING)
 			if(GRAV_NEEDS_SCREWDRIVER)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You secure the screws of the framework.")
 					broken_state++
 					return

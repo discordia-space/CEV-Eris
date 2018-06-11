@@ -257,7 +257,7 @@
 					user << "There is already a [nice_type] at that location."
 					return
 
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 				if(anchored)
 					anchored = 0
 					if(is_pipe)

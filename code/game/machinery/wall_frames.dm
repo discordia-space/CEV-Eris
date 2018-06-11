@@ -12,7 +12,7 @@
 
 /obj/item/frame/attackby(obj/item/weapon/I, mob/user)
 	if(I.get_tool_type(user, QUALITY_BOLT_TURNING))
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 			new refund_type( get_turf(src.loc), refund_amt)
 			qdel(src)
 			return

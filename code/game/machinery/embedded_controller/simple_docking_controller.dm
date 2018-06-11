@@ -6,7 +6,7 @@
 	var/progtype = /datum/computer/file/embedded_program/docking/simple/
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/Initialize()
-	..()
+	. = ..()
 	docking_program = new progtype(src)
 	program = docking_program
 

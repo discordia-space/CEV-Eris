@@ -41,7 +41,7 @@
 /obj/item/weapon/mine/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 	if(detonator && QUALITY_SCREW_DRIVING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			if(detonator)
 				user.visible_message("[user] detaches \the [detonator] from [src].", \
 					"You detach \the [detonator] from [src].")

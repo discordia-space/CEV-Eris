@@ -89,7 +89,7 @@
 
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			anchored = !anchored
 			user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
 						"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
@@ -101,13 +101,13 @@
 			else if(dir & (EAST|WEST))
 				initialize_directions = EAST|WEST
 
-			Initialize()
+			atmos_init()
 			build_network()
 			if (node1)
-				node1.Initialize()
+				node1.atmos_init()
 				node1.build_network()
 			if (node2)
-				node2.Initialize()
+				node2.atmos_init()
 				node2.build_network()
 		else
 			if(node1)

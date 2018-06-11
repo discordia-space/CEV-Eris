@@ -105,7 +105,7 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 	report_progress("Initializing atmos machinery")
 	for(var/obj/machinery/atmospherics/A in machines)
-		A.Initialize()
+		A.atmos_init()
 		CHECK_TICK
 
 	for(var/obj/machinery/atmospherics/unary/U in machines)

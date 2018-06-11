@@ -10,11 +10,11 @@
 	//	flags = CONDUCT
 
 /obj/structure/lattice/Initialize()
-	..()
+	. = ..()
 ///// Z-Level Stuff
 	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/floor/hull))) // || istype(src.loc, /turf/simulated/floor/open)
 ///// Z-Level Stuff
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
 			qdel(LAT)
@@ -54,7 +54,7 @@
 		T.attackby(I, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
 	if(I.get_tool_type(user, list(QUALITY_WELDING)))
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			user << SPAN_NOTICE("Slicing lattice joints ...")
 			PoolOrNew(/obj/item/stack/rods, src.loc)
 			qdel(src)

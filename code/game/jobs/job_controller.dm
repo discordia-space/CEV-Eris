@@ -329,6 +329,7 @@ var/global/datum/controller/occupations/job_master
 							spawn_in_storage += thing
 			//Equip job items and language stuff
 			job.equip(H)
+			job.add_stats(H)
 			job.add_additiional_language(H)
 			job.setup_account(H)
 
@@ -372,6 +373,7 @@ var/global/datum/controller/occupations/job_master
 				remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
 				remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
 				remembered_info += "<b>Your department's account funds are:</b> $[department_account.money]<br>"
+			remembered_info += "<b>Your part of nuke code:</b> [ticker.get_next_nuke_code_part()]<br>"
 
 			H.mind.store_memory(remembered_info)
 

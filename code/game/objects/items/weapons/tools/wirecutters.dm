@@ -12,7 +12,7 @@
 	attack_verb = list("pinched", "nipped")
 	sharp = TRUE
 	edge = TRUE
-	tool_qualities = list(QUALITY_WIRE_CUTTING = 3, QUALITY_RETRACTING = 1, QUALITY_BONE_SETTING = 1)
+	tool_qualities = list(QUALITY_WIRE_CUTTING = 30, QUALITY_RETRACTING = 10, QUALITY_BONE_SETTING = 10)
 
 /obj/item/weapon/tool/wirecutters/armature
 	name = "armature cutter"
@@ -20,7 +20,7 @@
 	icon_state = "arm-cutter"
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 1)
-	tool_qualities = list(QUALITY_WIRE_CUTTING = 4)
+	tool_qualities = list(QUALITY_WIRE_CUTTING = 40)
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))

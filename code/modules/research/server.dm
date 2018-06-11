@@ -15,10 +15,6 @@
 	req_access = list(access_rd) //Only the R&D can change server settings.
 	circuit = /obj/item/weapon/circuitboard/rdserver
 
-/obj/machinery/r_n_d/server/New()
-	..()
-	Initialize()
-
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
 	. = ..()
@@ -30,6 +26,7 @@
 	idle_power_usage /= max(1, tot_rating)
 
 /obj/machinery/r_n_d/server/Initialize()
+	. = ..()
 	if(!files)
 		files = new /datum/research(src)
 	var/list/temp_list
@@ -115,14 +112,14 @@
 			if(!panel_open)
 				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
 				return
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
 				dismantle()
 				return
 
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 3, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
 				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 				update_icon()
@@ -139,7 +136,7 @@
 	server_id = -1
 
 /obj/machinery/r_n_d/server/centcom/Initialize()
-	..()
+	. = ..()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
 	for(var/obj/machinery/r_n_d/server/S in SSmachines.machinery)

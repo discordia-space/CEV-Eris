@@ -98,7 +98,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		sleep(8)
 
 		if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
-			makepowernets()
+			SSmachines.makepowernets()
 			defer_powernet_rebuild = 0
 
 	return 1

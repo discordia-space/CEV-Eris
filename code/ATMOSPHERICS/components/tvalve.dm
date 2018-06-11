@@ -188,7 +188,7 @@
 
 	return
 
-/obj/machinery/atmospherics/tvalve/Initialize()
+/obj/machinery/atmospherics/tvalve/atmos_init()
 	var/node1_dir
 	var/node2_dir
 	var/node3_dir
@@ -322,7 +322,7 @@
 
 
 
-/obj/machinery/atmospherics/tvalve/digital/Initialize()
+/obj/machinery/atmospherics/tvalve/digital/atmos_init()
 	..()
 	if(frequency)
 		set_frequency(frequency)
@@ -359,7 +359,7 @@
 		add_fingerprint(user)
 		return 1
 	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
-	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 			SPAN_NOTICE("You have unfastened \the [src]."), \
@@ -385,7 +385,7 @@
 		if(WEST)
 			initialize_directions = EAST|WEST|SOUTH
 
-/obj/machinery/atmospherics/tvalve/mirrored/Initialize()
+/obj/machinery/atmospherics/tvalve/mirrored/atmos_init()
 	var/node1_dir
 	var/node2_dir
 	var/node3_dir
@@ -459,7 +459,7 @@
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/tvalve/mirrored/digital/Initialize()
+/obj/machinery/atmospherics/tvalve/mirrored/digital/atmos_init()
 	..()
 	if(frequency)
 		set_frequency(frequency)

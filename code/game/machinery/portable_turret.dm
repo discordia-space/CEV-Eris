@@ -690,24 +690,24 @@ var/list/turret_icons
 
 		if(QUALITY_BOLT_TURNING)
 			if(build_step == 0 && !anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You secure the external bolts.")
 					anchored = 1
 					build_step = 1
 					return
 			if(build_step == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You unfasten the external bolts.")
 					anchored = 0
 					build_step = 0
 					return
 			if(build_step == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You bolt the metal armor into place.")
 					build_step = 3
 					return
 			if(build_step == 3)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You remove the turret's metal armor bolts.")
 					build_step = 2
 					return
@@ -715,13 +715,13 @@ var/list/turret_icons
 
 		if(QUALITY_PRYING)
 			if(build_step == 0 && !anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You dismantle the turret construction.")
 					new /obj/item/stack/material/steel( loc, 8)
 					qdel(src)
 					return
 			if(build_step == 7)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You pry off the turret's exterior armor.")
 					new /obj/item/stack/material/steel(loc, 2)
 					build_step = 6
@@ -730,13 +730,13 @@ var/list/turret_icons
 
 		if(QUALITY_WELDING)
 			if(build_step == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << "You remove the turret's interior metal armor."
 					new /obj/item/stack/material/steel( loc, 2)
 					build_step = 1
 					return
 			if(build_step == 7)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					build_step = 8
 					user << SPAN_NOTICE("You weld the turret's armor down.")
 
@@ -754,12 +754,12 @@ var/list/turret_icons
 
 		if(QUALITY_SCREW_DRIVING)
 			if(build_step == 5)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You close the internal access hatch.")
 					build_step = 6
 					return
 			if(build_step == 6)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user << SPAN_NOTICE("You open the internal access hatch.")
 					build_step = 5
 					return

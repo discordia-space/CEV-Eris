@@ -59,7 +59,7 @@ obj/machinery/atmospherics/binary
 
 		. = ..()
 
-	Initialize()
+	atmos_init()
 		if(node1 && node2) return
 
 		var/node2_connect = dir

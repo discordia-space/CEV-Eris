@@ -74,7 +74,7 @@
 
 	. = ..()
 
-/obj/machinery/atmospherics/portables_connector/Initialize()
+/obj/machinery/atmospherics/portables_connector/atmos_init()
 	if(node) return
 
 	var/node_connect = dir
@@ -145,7 +145,7 @@
 		add_fingerprint(user)
 		return 1
 	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
-	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 			SPAN_NOTICE("You have unfastened \the [src]."), \
