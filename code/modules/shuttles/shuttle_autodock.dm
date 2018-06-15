@@ -27,9 +27,7 @@
 	if(active_docking_controller)
 		set_docking_codes(active_docking_controller.docking_codes)
 	else if(config.use_overmap)
-		var/obj/effect/overmap/location = map_sectors["[current_location.z]"]
-		if(location && location.docking_codes)
-			set_docking_codes(location.docking_codes)
+		initialize_overmap_docking_codes()
 	dock()
 
 	//Optional transition area
@@ -42,6 +40,11 @@
 	landmark_transition = null
 
 	return ..()
+
+/datum/shuttle/autodock/proc/initialize_overmap_docking_codes()
+	var/obj/effect/overmap/location = map_sectors["[current_location.z]"]
+	if(location && location.docking_codes)
+		set_docking_codes(location.docking_codes)
 
 /datum/shuttle/autodock/proc/set_docking_codes(var/code)
 	docking_codes = code

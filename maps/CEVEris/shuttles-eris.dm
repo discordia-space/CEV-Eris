@@ -214,6 +214,12 @@
 	waypoint_station = "nav_cargo_vessel"
 	dock_target = "supply_shuttle"
 
+/datum/shuttle/autodock/ferry/supply/drone/initialize_overmap_docking_codes()
+	var/obj/effect/shuttle_landmark/supply/station/LM = locate() // no "LM == null" check because landmark should exist always anyway and if it runtimes, then it means time to look in to this proc.
+	var/obj/effect/overmap/location = map_sectors["[LM.z]"]
+	if(location && location.docking_codes)
+		set_docking_codes(location.docking_codes)
+
 /obj/effect/shuttle_landmark/supply/centcom
 	name = "Centcom"
 	landmark_tag = "nav_cargo_start"
