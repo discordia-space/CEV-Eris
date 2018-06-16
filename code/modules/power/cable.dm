@@ -33,6 +33,7 @@ var/list/possible_cable_coil_colours = list(
 	)
 
 /obj/structure/cable
+	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	level = 1
 	anchored =1
 	var/datum/powernet/powernet
@@ -42,7 +43,6 @@ var/list/possible_cable_coil_colours = list(
 	icon_state = "0-1"
 	var/d1 = 0
 	var/d2 = 1
-	layer = 2.44 //Just below unary stuff, which is at 2.45 and above pipes, which are at 2.4
 	color = COLOR_RED_LIGHT
 	var/obj/machinery/power/breakerbox/breaker_box
 

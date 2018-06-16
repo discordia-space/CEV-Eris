@@ -7,7 +7,7 @@
 	plane = FLOOR_PLANE
 	anchored = TRUE
 	w_class = ITEM_SIZE_NORMAL
-	layer = 2.3 //under pipes
+	layer = LATTICE_LAYER //under pipes
 	//	flags = CONDUCT
 
 /obj/structure/lattice/Initialize()

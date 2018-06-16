@@ -16,6 +16,7 @@
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
+	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = 1	// item mode 0=off 1=charging 2=charged
 	var/flush = 0	// true if flush handle is pulled

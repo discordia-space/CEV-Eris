@@ -21,6 +21,7 @@
 
 	var/area/initial_loc
 	level = 1
+	layer = GAS_SCRUBBER_LAYER
 	var/area_uid
 	var/id_tag = null
 

@@ -1,5 +1,5 @@
 /obj/effect/damagedfloor
-	layer = 2.01
+	layer = TURF_DECAL_LAYER
 	icon = 'icons/turf/damage_overlays.dmi'
 	icon_state = "damaged1"
 

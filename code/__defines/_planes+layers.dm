@@ -14,6 +14,23 @@
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define SPACE_LAYER 1.8
 //#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
+#define TURF_PLATING_DECAL_LAYER 2.031
+#define TURF_DECAL_LAYER 2.039 //Makes turf decals appear in DM how they will look inworld.
+#define ABOVE_OPEN_TURF_LAYER 2.04
+#define CLOSED_TURF_LAYER 2.05
+#define ABOVE_NORMAL_TURF_LAYER 2.08
+#define LATTICE_LAYER 2.2
+#define DISPOSAL_PIPE_LAYER 2.3
+#define GAS_PIPE_HIDDEN_LAYER 2.35
+#define WIRE_LAYER 2.4
+#define WIRE_TERMINAL_LAYER 2.45
+#define GAS_SCRUBBER_LAYER 2.46
+#define GAS_PIPE_VISIBLE_LAYER 2.47
+#define GAS_FILTER_LAYER 2.48
+#define GAS_PUMP_LAYER 2.49
+
+
+
 #define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
 #define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
 

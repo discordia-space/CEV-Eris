@@ -21,7 +21,7 @@ Pipelines + Other Objects -> Pipe network
 	var/power_rating //the maximum amount of power the machine can use to do work, affects how powerful the machine is, in Watts
 
 	plane = FLOOR_PLANE
-	layer = 2.4 //under wires with their 2.44
+	layer = GAS_PIPE_HIDDEN_LAYER //under wires
 
 	var/connect_types = CONNECT_TYPE_REGULAR
 	var/icon_connect_type = "" //"-supply" or "-scrubbers"

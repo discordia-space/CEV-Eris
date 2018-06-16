@@ -94,13 +94,13 @@ mob/living/carbon/proc/handle_hallucinations()
 						switch(rand(1,3))
 							if(1)
 								//src << "Space"
-								halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]",TURF_LAYER)
+								halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]", ABOVE_OPEN_TURF_LAYER)
 							if(2)
 								//src << "Fire"
-								halimage = image('icons/effects/fire.dmi',target,"1",TURF_LAYER)
+								halimage = image('icons/effects/fire.dmi',target,"1", ABOVE_OPEN_TURF_LAYER)
 							if(3)
 								//src << "C4"
-								halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)
+								halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2", OBJ_LAYER+0.01)
 
 
 						if(client) client.images += halimage
