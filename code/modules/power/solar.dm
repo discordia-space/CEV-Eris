@@ -62,7 +62,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/attackby(obj/item/weapon/I, mob/user)
 
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc
@@ -231,7 +231,7 @@ var/list/solars_list = list()
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(tracker)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					new /obj/item/weapon/tracker_electronics(src.loc)
 					tracker = 0
 					user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
@@ -239,7 +239,7 @@ var/list/solars_list = list()
 			return
 
 		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				anchored = !anchored
 				user.visible_message(SPAN_NOTICE("[user] [anchored ? "un" : ""]wrenches the solar assembly into place."))
 				return
@@ -408,7 +408,7 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar_control/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			if (src.stat & BROKEN)
 				user << SPAN_NOTICE("The broken glass falls out.")
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )

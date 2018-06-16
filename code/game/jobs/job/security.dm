@@ -22,9 +22,8 @@
 	)
 
 	stat_modifers = list(
-		STAT_PHY = 30,
-		STAT_ROB = 20,
-		STAT_AGI = 20,
+		STAT_ROB = 30,
+		STAT_TGH = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/ih_commander
@@ -79,9 +78,8 @@
 	idtype = /obj/item/weapon/card/id/sec
 
 	stat_modifers = list(
-		STAT_PHY = 20,
 		STAT_ROB = 20,
-		STAT_AGI = 10,
+		STAT_TGH = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/warden
@@ -137,9 +135,8 @@
 
 	stat_modifers = list(
 		STAT_BIO = 10,
-		STAT_PHY = 10,
 		STAT_ROB = 10,
-		STAT_AGI = 10,
+		STAT_TGH = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/inspector
@@ -230,9 +227,8 @@
 	idtype = /obj/item/weapon/card/id/sec
 
 	stat_modifers = list(
-		STAT_PHY = 10,
-		STAT_ROB = 20,
-		STAT_AGI = 10,
+		STAT_ROB = 10,
+		STAT_TGH = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/security

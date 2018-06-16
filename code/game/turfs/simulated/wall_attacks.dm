@@ -124,7 +124,7 @@
 		if(QUALITY_BOLT_TURNING)
 			if(construction_stage == 2)
 				user << SPAN_NOTICE("You begin removing the bolts anchoring the support rods...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 1
 					update_icon()
 					user << SPAN_NOTICE("You remove the bolts anchoring the support rods.")
@@ -133,38 +133,38 @@
 
 		if(QUALITY_WELDING)
 			if(locate(/obj/effect/overlay/wallrot) in src)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You burn away the fungi with \the [I].")
 					for(var/obj/effect/overlay/wallrot/WR in src)
 						qdel(WR)
 					return
 			if(thermite)
-				if(I.use_tool(user, src, WORKTIME_INSTANT,tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_INSTANT,tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You ignite the termit with the [I]!")
 					thermitemelt(user)
 					return
 			if(damage)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You repair the damage to [src].")
 					take_damage(-damage)
 					return
 			if(isnull(construction_stage) || !reinf_material)
 				user << SPAN_NOTICE("You begin removing the outer plating...")
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You remove the outer plating.")
 					dismantle_wall()
 					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
 					return
 			if(construction_stage == 4)
 				user << SPAN_NOTICE("You begin removing the outer plating...")
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 3
 					update_icon()
 					user << SPAN_NOTICE("You press firmly on the cover, dislodging it.")
 					return
 			if(construction_stage == 1)
 				user << SPAN_NOTICE("You begin removing the support rods...")
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 0
 					update_icon()
 					new /obj/item/stack/rods(user.loc)
@@ -175,14 +175,14 @@
 		if(QUALITY_PRYING)
 			if(construction_stage == 3)
 				user << SPAN_NOTICE("You begin to prying off the cover...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 2
 					update_icon()
 					user << SPAN_NOTICE("You pry off the cover.")
 					return
 			if(construction_stage == 0)
 				user << SPAN_NOTICE("You struggle to pry off the outer sheath...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You pry off the outer sheath.")
 					dismantle_wall()
 					return
@@ -191,7 +191,7 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(construction_stage == 6)
 				user << SPAN_NOTICE("You begin removing the outer grille...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 5
 					new /obj/item/stack/rods(user.loc)
 					user << SPAN_NOTICE("You removing the outer grille.")
@@ -202,7 +202,7 @@
 		if(QUALITY_SCREW_DRIVING)
 			if(construction_stage == 5)
 				user << SPAN_NOTICE("You begin removing the support lines...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 4
 					update_icon()
 					user << SPAN_NOTICE("You remove the support lines.")

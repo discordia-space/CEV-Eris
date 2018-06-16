@@ -17,5 +17,5 @@
 	icon_state = "big-wrench"
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40)
 	matter = list(MATERIAL_STEEL = 4)
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL

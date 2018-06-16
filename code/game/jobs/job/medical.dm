@@ -188,8 +188,8 @@
 
 	stat_modifers = list(
 		STAT_BIO = 10,
-		STAT_PHY = 10,
 		STAT_ROB = 10,
+		STAT_TGH = 10,
 	)
 
 	pda = /obj/item/device/pda/medical

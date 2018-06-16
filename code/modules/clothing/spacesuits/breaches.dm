@@ -213,7 +213,7 @@ var/global/list/breach_burn_descriptors = list(
 			user << SPAN_WARNING("There is no structural damage on \the [src] to repair.")
 			return
 
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			repair_breaches(BRUTE, 3, user)
 			user << SPAN_NOTICE("You repair the damage on the [src].")
 			return

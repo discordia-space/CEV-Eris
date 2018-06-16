@@ -132,7 +132,7 @@
 				attack_generic(H,rand(1,3),"punched")
 				return
 
-			var/stat_damage = 2 + max(0, 2 * (H.stats.getStat(STAT_PHY) / 10))
+			var/stat_damage = 2 + max(0, 2 * (H.stats.getStat(STAT_ROB) / 10))
 			var/block = 0
 			var/accurate = 0
 			var/hit_zone = H.targeted_organ
@@ -149,7 +149,7 @@
 					accurate = 1
 				if(I_HURT, I_GRAB)
 					// We're in a fighting stance, there's a chance we block
-					if(src.canmove && src!=H && prob(10 + round(src.stats.getStat(STAT_ROB) / 3)))
+					if(src.canmove && src!=H && prob(10 + round(src.stats.getStat(STAT_TGH) / 3)))
 						block = 1
 
 			if (M.grabbed_by.len)
@@ -179,9 +179,9 @@
 						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
-				if(prob(50 - H.stats.getStat(STAT_AGI)))
+				if(prob(50 - H.stats.getStat(STAT_ROB)))
 					hit_zone = ran_zone(hit_zone)
-				if(prob(25 - H.stats.getStat(STAT_AGI)) && hit_zone != BP_CHEST) // Missed!
+				if(prob(25 - H.stats.getStat(STAT_ROB)) && hit_zone != BP_CHEST) // Missed!
 					if(!src.lying)
 						attack_message = "[H] attempted to strike [src], but missed!"
 					else
@@ -205,7 +205,7 @@
 				H.visible_message(SPAN_DANGER("[attack_message]"))
 
 			//The stronger you are, the louder you strike!
-			var/attack_volume = 25 + H.stats.getStat(STAT_AGI)
+			var/attack_volume = 25 + H.stats.getStat(STAT_ROB)
 			playsound(loc, ((miss_type) ? (miss_type == 1 ? attack.miss_sound : 'sound/weapons/thudswoosh.ogg') : attack.attack_sound), attack_volume, 1, -1)
 			H.attack_log += text("\[[time_stamp()]\] <font color='red'>[miss_type ? (miss_type == 1 ? "Missed" : "Blocked") : "[pick(attack.attack_verb)]"] [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>[miss_type ? (miss_type == 1 ? "Was missed by" : "Has blocked") : "Has Been [pick(attack.attack_verb)]"] by [H.name] ([H.ckey])</font>")
@@ -255,9 +255,9 @@
 						return W.afterattack(target,src)
 
 			var/randn = rand(1, 100)
-			randn = max(1, randn - H.stats.getStat(STAT_AGI))
+			randn = max(1, randn - H.stats.getStat(STAT_ROB))
 			if(!(species.flags & NO_SLIP) && randn <= 20)
-				var/armor_check = run_armor_check(affecting, "melee", armour_pen = H.stats.getStat(STAT_AGI))
+				var/armor_check = run_armor_check(affecting, "melee", armour_pen = H.stats.getStat(STAT_ROB))
 				apply_effect(3, WEAKEN, armor_check)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				if(armor_check < 2)

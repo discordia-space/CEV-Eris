@@ -22,7 +22,7 @@
 	ideal_character_age = 50
 
 	stat_modifers = list(
-		STAT_PRD = 20,
+		STAT_MEC = 20,
 		STAT_COG = 30,
 		STAT_BIO = 20,
 	)
@@ -66,7 +66,7 @@
 	idtype = /obj/item/weapon/card/id/sci
 
 	stat_modifers = list(
-		STAT_PRD = 10,
+		STAT_MEC = 10,
 		STAT_COG = 20,
 		STAT_BIO = 10,
 	)
@@ -107,7 +107,7 @@
 	idtype = /obj/item/weapon/card/id/dkgrey
 
 	stat_modifers = list(
-		STAT_PRD = 20,
+		STAT_MEC = 20,
 		STAT_COG = 10,
 		STAT_BIO = 20,
 	)
