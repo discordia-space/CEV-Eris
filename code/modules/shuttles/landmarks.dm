@@ -43,10 +43,6 @@
 			docking_controller = locate(docking_tag)
 			if(!istype(docking_controller))
 				admin_notice("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
-			if(config.use_overmap)
-				var/obj/effect/overmap/location = map_sectors["[z]"]
-				if(location && location.docking_codes)
-					docking_controller.docking_codes = location.docking_codes
 		shuttle_controller.register_landmark(tag, src)
 
 /obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
