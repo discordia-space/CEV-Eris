@@ -3,9 +3,8 @@
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
 	density = 1
-	w_class = ITEM_SIZE_NORMAL
 
-	layer = 3.2//Just above doors
+	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = 1.0
 	flags = ON_BORDER
 	var/maxhealth = 40

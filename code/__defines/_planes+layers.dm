@@ -38,10 +38,15 @@
 #define BELOW_OBJ_LAYER 2.9
 #define LOW_ITEM_LAYER 2.95
 //#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
+#define CLOSED_BLASTDOOR_LAYER 3.05
+#define CLOSED_DOOR_LAYER 3.1
+#define CLOSED_FIREDOOR_LAYER 3.11
+#define SHUTTER_LAYER 3.12 // HERE BE DRAGONS
+#define ABOVE_OBJ_LAYER 3.2
+#define ABOVE_WINDOW_LAYER 3.3
+#define SIGN_LAYER 3.4
 
 
-
-#define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
 
 #define LIGHTING_PLANE 15
 #define LIGHTING_LAYER 15

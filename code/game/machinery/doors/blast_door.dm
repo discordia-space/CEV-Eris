@@ -14,6 +14,7 @@
 
 	var/id = 1.0
 	layer = BLASTDOOR_LAYER
+	open_layer = BLASTDOOR_LAYER
 	closed_layer = CLOSED_BLASTDOOR_LAYER
 
 	icon_state = null
@@ -196,6 +197,9 @@
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
+	layer = SHUTTER_LAYER
+	open_layer = SHUTTER_LAYER
+	closed_layer = SHUTTER_LAYER
 
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))

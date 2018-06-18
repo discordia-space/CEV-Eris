@@ -11,7 +11,7 @@
 	density = 1
 	layer = OPEN_DOOR_LAYER
 	var/open_layer = OPEN_DOOR_LAYER
-	var/closed_layer = DOOR_CLOSED_LAYER
+	var/closed_layer = CLOSED_DOOR_LAYER
 
 	var/visible = 1
 	var/p_open = 0

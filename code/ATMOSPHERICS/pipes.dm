@@ -1056,6 +1056,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 	density = 1
+	layer = ABOVE_WINDOW_LAYER
 
 	var/obj/machinery/atmospherics/node1
 
