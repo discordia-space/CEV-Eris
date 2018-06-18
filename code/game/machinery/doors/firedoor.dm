@@ -16,7 +16,7 @@
 	req_one_access = list(access_atmospherics, access_engine_equip)
 	opacity = 0
 	density = 0
-	layer = DOOR_OPEN_LAYER - 0.01
+	layer = BELOW_OPEN_DOOR_LAYER
 	open_layer = DOOR_OPEN_LAYER - 0.01 // Just below doors when open
 	closed_layer = DOOR_CLOSED_LAYER + 0.01 // Just above doors when closed
 

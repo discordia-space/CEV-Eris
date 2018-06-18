@@ -37,7 +37,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	icon_state = "holopad0"
 
 	plane = FLOOR_PLANE
-	layer = TURF_LAYER+0.1
+	layer = LOW_OBJ_LAYER
 
 	var/power_per_hologram = 500 //per usage per hologram
 	idle_power_usage = 5

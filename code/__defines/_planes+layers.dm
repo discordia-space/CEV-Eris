@@ -28,7 +28,9 @@
 #define GAS_PIPE_VISIBLE_LAYER 2.47
 #define GAS_FILTER_LAYER 2.48
 #define GAS_PUMP_LAYER 2.49
+#define LOW_OBJ_LAYER 2.5
 
+#define BELOW_OPEN_DOOR_LAYER 2.6
 
 
 #define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
