@@ -4,11 +4,11 @@
 	icon_state = "closed"
 	opacity = 1
 	density = 0
-	layer = SIGN_LAYER
+	layer = WALL_OBJ_LAYER
 
 /obj/structure/curtain/open
 	icon_state = "open"
-	layer = SHOWER_CLOSED_LAYER
+	layer = SIGN_LAYER
 	opacity = 0
 
 /obj/structure/curtain/bullet_act(obj/item/projectile/P, def_zone)

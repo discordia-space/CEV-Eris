@@ -785,6 +785,12 @@
 		update_icon = 0
 		regenerate_icons()
 	else if( lying != lying_prev )
+		if(lying)
+			if(layer == initial(layer)) //to avoid special cases like hiding larvas.
+				layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+		else
+			if(layer == LYING_MOB_LAYER)
+				layer = initial(layer)
 		update_icons()
 
 	return canmove

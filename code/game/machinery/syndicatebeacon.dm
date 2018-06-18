@@ -14,6 +14,7 @@
 
 	anchored = 1
 	density = 1
+	layer = BELOW_MOB_LAYER //so people can't hide it and it's REALLY OBVIOUS
 
 	var/temptext = ""
 	var/selfdestructing = 0

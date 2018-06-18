@@ -46,6 +46,19 @@
 #define ABOVE_WINDOW_LAYER 3.3
 #define SIGN_LAYER 3.4
 
+#define BELOW_MOB_LAYER 3.7
+#define LYING_MOB_LAYER 3.8
+//#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
+#define ABOVE_MOB_LAYER 4.1
+#define WALL_OBJ_LAYER 4.25
+#define EDGED_TURF_LAYER 4.3
+#define ABOVE_ALL_MOB_LAYER 4.5
+
+#define SPACEVINE_LAYER 4.8
+//#define FLY_LAYER 5 //For easy recordkeeping; this is a byond define
+
+
+
 
 
 #define LIGHTING_PLANE 15

@@ -6,7 +6,7 @@
 	use_power = 2
 	idle_power_usage = 5
 	active_power_usage = 10
-	layer = 5
+	layer = WALL_OBJ_LAYER
 
 	var/list/network = list(NETWORK_CEV_ERIS)
 	var/c_tag = null

@@ -8,7 +8,7 @@
 	opacity = 0
 	anchored = 1
 	density = 0
-	layer = OBJ_LAYER + 0.9
+	layer = EDGED_TURF_LAYER
 	mouse_opacity = 0
 	animate_movement = 0
 	var/amount = 3
@@ -135,6 +135,7 @@
 	density = 1
 	opacity = 1 // changed in New()
 	anchored = 1
+	layer = EDGED_TURF_LAYER
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	var/metal = 1 // 1 = aluminum, 2 = iron
