@@ -31,9 +31,16 @@
 #define LOW_OBJ_LAYER 2.5
 
 #define BELOW_OPEN_DOOR_LAYER 2.6
+#define BLASTDOOR_LAYER 2.65
+#define OPEN_DOOR_LAYER 2.7
+#define PROJECTILE_HIT_THRESHHOLD_LAYER 2.75 //projectiles won't hit objects at or below this layer if possible
+#define TABLE_LAYER 2.8
+#define BELOW_OBJ_LAYER 2.9
+#define LOW_ITEM_LAYER 2.95
+//#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
 
 
-#define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
+
 #define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
 
 #define LIGHTING_PLANE 15
@@ -61,5 +68,3 @@
 // Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
 #define OBFUSCATION_LAYER 21	//Where images covering the view for eyes are put
 #define SCREEN_LAYER 22			//Mob HUD/effects layer
-
-

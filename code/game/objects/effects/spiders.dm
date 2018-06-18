@@ -108,7 +108,7 @@
 	desc = "It never stays still for long."
 	icon_state = "spiderling"
 	anchored = 0
-	layer = 2.7
+	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	health = 3
 	var/last_itch = 0
 	var/amount_grown = -1

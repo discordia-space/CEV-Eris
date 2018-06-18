@@ -4,6 +4,7 @@
 	icon_state = "autolathe"
 	density = 1
 	anchored = 1
+	layer = BELOW_OBJ_LAYER
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000

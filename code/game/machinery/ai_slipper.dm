@@ -3,6 +3,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion0"
 	plane = FLOOR_PLANE
+	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	anchored = 1.0
 	use_power = 1
 	idle_power_usage = 10

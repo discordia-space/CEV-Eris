@@ -11,6 +11,7 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
 	density = 1
+	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_HUGE
 	var/locked = FALSE
 	var/broken = FALSE
@@ -480,11 +481,13 @@
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
 	if(opened)
+		layer = BELOW_OBJ_LAYER
 		if(icon_door)
 			add_overlay("[icon_door]_open")
 		else
 			add_overlay("[icon_state]_open")
 	else
+		layer = OBJ_LAYER
 		if(icon_door)
 			add_overlay("[icon_door]_door")
 		else

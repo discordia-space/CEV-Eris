@@ -9,8 +9,8 @@
 	anchored = 1
 	opacity = 1
 	density = 1
-	layer = DOOR_OPEN_LAYER
-	var/open_layer = DOOR_OPEN_LAYER
+	layer = OPEN_DOOR_LAYER
+	var/open_layer = OPEN_DOOR_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 
 	var/visible = 1

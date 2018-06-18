@@ -2,7 +2,7 @@
 	icon_state = "girder"
 	anchored = 1
 	density = 1
-	layer = 2
+	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_HUGE
 	var/state = 0
 	var/health = 200
