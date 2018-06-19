@@ -18,6 +18,7 @@
 	icon_state = "pneumo_crowbar"
 	item_state = "jackhammer"
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
+	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 15)
 
 	use_power_cost = 5
 	suitable_cell = /obj/item/weapon/cell/medium
