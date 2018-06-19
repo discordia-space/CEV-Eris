@@ -6,6 +6,7 @@
 	unacidable = TRUE
 	simulated = FALSE
 	invisibility = 101
+	layer = MID_LANDMARK_LAYER
 	var/delete_me = FALSE
 
 /obj/landmark/New()

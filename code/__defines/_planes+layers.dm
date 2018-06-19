@@ -56,10 +56,15 @@
 
 #define SPACEVINE_LAYER 4.8
 //#define FLY_LAYER 5 //For easy recordkeeping; this is a byond define
+#define GASFIRE_LAYER 5.05
 
-
-
-
+#define GHOST_LAYER 6
+#define LOW_LANDMARK_LAYER 9
+#define MID_LANDMARK_LAYER 9.1
+#define HIGH_LANDMARK_LAYER 9.2
+#define AREA_LAYER 10
+#define MASSIVE_OBJ_LAYER 11
+#define POINT_LAYER 12
 
 #define LIGHTING_PLANE 15
 #define LIGHTING_LAYER 15
@@ -73,16 +78,12 @@
 //HUD layer defines
 
 #define FULLSCREEN_PLANE 18
-
+#define FLASH_LAYER 18
 #define FULLSCREEN_LAYER 18.1
+#define UI_DAMAGE_LAYER 18.2
 
 #define HUD_PLANE 19
 #define HUD_LAYER 19
 #define ABOVE_HUD_PLANE 20
 #define ABOVE_HUD_LAYER 20
 
-
-
-// Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
-#define OBFUSCATION_LAYER 21	//Where images covering the view for eyes are put
-#define SCREEN_LAYER 22			//Mob HUD/effects layer

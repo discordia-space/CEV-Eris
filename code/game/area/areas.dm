@@ -9,10 +9,11 @@
 	var/tmp/camera_id = 0 // For automatic c_tag setting
 	//Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
 	plane = BLACKNESS_PLANE
+	layer = AREA_LAYER
 
 /area/New()
 	icon_state = ""
-	layer = 10
+	layer = AREA_LAYER
 	uid = ++global_uid
 	all_areas += src
 

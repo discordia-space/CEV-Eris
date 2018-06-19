@@ -933,7 +933,7 @@
 	screen_loc = "1,1"
 	mouse_opacity = 0
 	process_flag = TRUE
-	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	layer = UI_DAMAGE_LAYER
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 

@@ -101,7 +101,7 @@
 		var/turf/t = turf
 		if(obscuredTurfs[t])
 			if(!t.obfuscations[obfuscation.type])
-				var/image/I = image(obfuscation.icon, t, obfuscation.icon_state, BYOND_LIGHTING_LAYER)
+				var/image/I = image(obfuscation.icon, t, obfuscation.icon_state, BYOND_LIGHTING_LAYER+0.1)
 				I.plane = BYOND_LIGHTING_PLANE
 				t.obfuscations[obfuscation.type] = I
 
@@ -142,7 +142,7 @@
 	for(var/turf in obscuredTurfs)
 		var/turf/t = turf
 		if(!t.obfuscations[obfuscation.type])
-			var/image/I = image(obfuscation.icon, t, obfuscation.icon_state, BYOND_LIGHTING_LAYER)
+			var/image/I = image(obfuscation.icon, t, obfuscation.icon_state, BYOND_LIGHTING_LAYER+0.1)
 			I.plane = BYOND_LIGHTING_PLANE
 			t.obfuscations[obfuscation.type] = I
 		obscured += t.obfuscations[obfuscation.type]

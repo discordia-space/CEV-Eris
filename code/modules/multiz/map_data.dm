@@ -3,7 +3,7 @@
 	icon_state = "config-green"
 	alpha = 255 //This one too important
 	invisibility = 101
-
+	layer = POINT_LAYER
 	var/height = -1     ///< The number of Z-Levels in the map.
 
 // If the height is more than 1, we mark all contained levels as connected.
