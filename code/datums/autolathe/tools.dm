@@ -44,7 +44,7 @@
 
 /datum/autolathe/recipe/tool/big_wrench
 	name = "big wrench"
-	path = /obj/item/weapon/tool/big_wrench
+	path = /obj/item/weapon/tool/wrench/big_wrench
 
 /datum/autolathe/recipe/tool/pickaxe
 	name = "pickaxe"
