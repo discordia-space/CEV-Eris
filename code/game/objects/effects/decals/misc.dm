@@ -11,4 +11,4 @@
 /obj/effect/decal/spraystill
 	density = 0
 	anchored = 1
-	layer = 50
+	layer = ABOVE_ALL_MOB_LAYER

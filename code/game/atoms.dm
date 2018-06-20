@@ -1,5 +1,5 @@
 /atom
-	layer = 2
+	layer = TURF_LAYER
 	plane = GAME_PLANE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/level = 2
