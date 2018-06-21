@@ -6,7 +6,6 @@
 	dead_icon = "heart-off"
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
-	var/beat_sound = 'sound/effects/singlebeat.ogg'
 	var/efficiency = 1
 
 /obj/item/organ/internal/heart/Process()
@@ -40,7 +39,6 @@
 
 		if(heartbeat >= rate)
 			heartbeat = 0
-			owner << sound(beat_sound,0,0,0,50)
 		else
 			heartbeat++
 
