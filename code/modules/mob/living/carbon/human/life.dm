@@ -987,7 +987,6 @@
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
-		eye_blurry = max(2, eye_blurry)
 		stuttering = max(stuttering, 5)
 
 	if(shock_stage == 40)
