@@ -240,7 +240,8 @@ var/list/mob/living/forced_ambiance_list = new
 		return
 
 	var/mob/living/L = A
-	if(!L.ckey)	return
+	if(!L.ckey)
+		return
 
 	if(!L.lastarea)
 		L.lastarea = get_area(L.loc)
@@ -252,6 +253,11 @@ var/list/mob/living/forced_ambiance_list = new
 
 	L.lastarea = newarea
 	play_ambience(L)
+
+	for(var/obj/machinery/light/LI in src)
+		if(istype(LI) && !LI.awoken)
+			LI.awaken()
+			sleep(3)
 
 /area/proc/play_ambience(var/mob/living/L)
     // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch

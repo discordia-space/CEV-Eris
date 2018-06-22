@@ -185,6 +185,7 @@
 	var/rigged = 0				// true if rigged to explode
 	var/firealarmed = 0
 	var/atmosalarmed = 0
+	var/awoken = TRUE
 // the smaller bulb light fixture
 
 /obj/machinery/light/floor
@@ -241,17 +242,23 @@
 
 	spawn(2)
 		var/area/A = get_area(src)
-		if(A && !A.requires_power)
-			on = 1
-
-		if(src.z == 1 || src.z == 5)
+		if(A && !A.requires_power && !(src.z in 1 to 5)) // On levels, that are not z-levels of the ship lights work normally.
+			on = TRUE
+		else // Otherwise... They need to "awaken".
+			on = FALSE
+			awoken = FALSE
 			switch(fitting)
 				if("tube","bulb")
 					if(prob(2))
 						broken(1)
 
 		spawn(1)
-			update(0)
+			update(FALSE)
+
+/obj/machinery/light/proc/awaken()
+	seton(TRUE)
+	flicker(rand(1, 2))
+	awoken = TRUE
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
@@ -565,7 +572,6 @@
 	status = LIGHT_EMPTY
 	update()
 
-
 /obj/machinery/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
 		user << "There is no [fitting] in this light."
@@ -647,7 +653,8 @@
 // called when area power state changes
 /obj/machinery/light/power_change()
 	spawn(10)
-		seton(has_power())
+		if(awoken)
+			seton(has_power())
 
 // called when on fire
 
