@@ -75,6 +75,9 @@
 
 /obj/item/weapon/gun/energy/examine(mob/user)
 	..(user)
+	if(!cell)
+		user << SPAN_NOTICE("Has no battery cell inserted.")
+		return
 	var/shots_remaining = round(cell.charge / charge_cost)
 	user << "Has [shots_remaining] shot\s remaining."
 	return

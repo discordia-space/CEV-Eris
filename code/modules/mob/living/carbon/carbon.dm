@@ -30,6 +30,7 @@
 	ingested.clear_reagents()
 	touching.clear_reagents()
 	nutrition = 400
+	shock_stage = 0
 	..()
 
 /mob/living/carbon/Move(NewLoc, direct)
