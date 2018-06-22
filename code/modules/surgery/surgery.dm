@@ -21,7 +21,7 @@
 
 	//returns how well tool is suited for this step
 	proc/tool_quality(obj/item/tool)
-		if(requedQuality)
+		if(requedQuality && tool.tool_qualities)
 			return tool.tool_qualities[requedQuality]
 		else
 			for (var/T in allowed_tools)
