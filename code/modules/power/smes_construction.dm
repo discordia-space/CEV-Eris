@@ -117,6 +117,8 @@
 		input_level_max += C.IOCapacity
 		output_level_max += C.IOCapacity
 	charge = between(0, charge, capacity)
+	input_level = between(0, input_level, input_level_max)
+	output_level = between(0, output_level, output_level_max)
 	return 1
 
 // Proc: total_system_failure()
