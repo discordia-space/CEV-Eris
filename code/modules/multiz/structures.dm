@@ -90,7 +90,8 @@
 	)
 
 	if(do_after(M, 10, src))
-		M.Move(T)
+		M.forceMove(T)
+		try_resolve_mob_pulling(M, src)
 
 
 
@@ -129,23 +130,8 @@
 		return
 
 	AM.forceMove(get_turf(target))
+	try_resolve_mob_pulling(AM, ES)
 
-	if(ismob(AM) && (ES && ES.istop == istop))
-		var/list/moveWithMob = list()
-		var/mob/M = AM
-		if(M.pulling)
-			moveWithMob += M.pulling
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			for(var/obj/item/weapon/grab/G in list(H.r_hand, H.l_hand))
-				moveWithMob += G.affecting
-		if(moveWithMob.len)
-			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)
-			if(!pull_target)
-				pull_target = get_turf(M)
-			for(var/Elem in moveWithMob)
-				var/atom/movable/A = Elem
-				A.forceMove(pull_target)
 
 /obj/structure/multiz/stairs/active/attack_robot(mob/user)
 	. = ..()
