@@ -18,7 +18,7 @@
 /obj/machinery/cellshower/Destroy()
 	for(var/obj/effect/S in effect)
 		qdel(S)
-	effect = list()
+	effect = null
 	return ..()
 
 /obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user as mob)
