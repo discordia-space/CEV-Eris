@@ -5,7 +5,6 @@
 	icon_state = "cargo"
 
 /obj/structure/closet/secure_closet/personal/cargotech/populate_contents()
-	..()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/device/radio/headset/headset_cargo(src)
@@ -18,9 +17,7 @@
 	req_access = list(access_merchant)
 	icon_state = "qm"
 
-
 /obj/structure/closet/secure_closet/reinforced/quartermaster/populate_contents()
-	..()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/color/brown(src)
 	new /obj/item/device/radio/headset/headset_cargo(src)

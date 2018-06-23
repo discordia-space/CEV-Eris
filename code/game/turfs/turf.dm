@@ -137,7 +137,7 @@ var/const/enterloopsanity = 100
 			inertial_drift(M)
 		else if(is_space())
 			M.inertia_dir = 0
-			M.make_floating(0)
+		M.update_floating(TRUE) // no Check_Dense_Object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)

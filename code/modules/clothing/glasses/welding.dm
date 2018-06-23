@@ -5,12 +5,11 @@
 	item_state = "welding-g"
 	action_button_name = "Flip Welding Goggles"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 2)
-	var/up = FALSE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
 
 /obj/item/clothing/glasses/welding/attack_self()
-	toggle()
+	adjust()
 
 
 /obj/item/clothing/glasses/welding/verb/adjust()
@@ -19,8 +18,8 @@
 	set src in usr
 
 	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(src.up)
-			src.up = !src.up
+		if(!src.active)
+			src.active = !src.active
 			flags_inv |= HIDEEYES
 			body_parts_covered |= EYES
 			icon_state = initial(icon_state)
@@ -28,7 +27,7 @@
 			tint = initial(tint)
 			usr << "You flip \the [src] down to protect your eyes."
 		else
-			src.up = !src.up
+			src.active = !src.active
 			flags_inv &= ~HIDEEYES
 			body_parts_covered &= ~EYES
 			icon_state = "[initial(icon_state)]up"

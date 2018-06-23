@@ -138,7 +138,6 @@
 	icon_state = "o2crate"
 
 /obj/structure/closet/crate/internals/populate_contents()
-	..()
 	new /obj/item/weapon/tank/emergency_oxygen(src)
 	new /obj/item/weapon/tank/emergency_oxygen(src)
 	new /obj/item/weapon/tank/emergency_oxygen(src)
@@ -188,7 +187,6 @@
 	icon_state = "crate"
 
 /obj/structure/closet/crate/rcd/populate_contents()
-	..()
 	new /obj/item/weapon/rcd_ammo(src)
 	new /obj/item/weapon/rcd_ammo(src)
 	new /obj/item/weapon/rcd_ammo(src)
@@ -198,7 +196,6 @@
 	name = "solar pack crate"
 
 /obj/structure/closet/crate/solar/populate_contents()
-	..()
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
 	new /obj/item/solar_assembly(src)
@@ -235,7 +232,6 @@
 
 
 /obj/structure/closet/crate/freezer/rations/populate_contents()
-	..()
 	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
 	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
 	new /obj/item/weapon/reagent_containers/food/snacks/liquidfood(src)
@@ -253,7 +249,6 @@
 	icon_state = "radiation"
 
 /obj/structure/closet/crate/radiation/populate_contents()
-	..()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
 	new /obj/item/clothing/suit/radiation(src)
@@ -341,7 +336,6 @@
 				if(!M.anchored)
 					M.forceMove(src)
 					break
-	return
 
 //fluff variant
 /obj/structure/closet/crate/secure/large/reinforced
