@@ -37,6 +37,7 @@
 
 /obj/effect/shuttle_landmark/escape_pod/out/New()
 	landmark_tag = "escape_pod_[number]_out"
+	docking_controller = "escape_pod_[number]_recovery"
 	..()
 
 

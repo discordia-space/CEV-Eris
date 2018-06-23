@@ -183,7 +183,6 @@ var/global/datum/controller/master/Master = new
 
 	var/msg = "Initializations complete within [time] second\s!"
 	report_progress(msg)
-	world << msg
 
 	if (!current_runlevel)
 		SetRunLevel(RUNLEVEL_LOBBY)

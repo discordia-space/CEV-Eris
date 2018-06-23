@@ -15,6 +15,12 @@
 	var/last_spray
 	var/list/effect = list()
 
+/obj/machinery/cellshower/Destroy()
+	for(var/obj/effect/S in effect)
+		qdel(S)
+	effect = list()
+	return ..()
+
 /obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/scanner/analyzer)
 		user << SPAN_NOTICE("The water temperature seems to be [watertemp].")
@@ -78,13 +84,18 @@
 	for (var/atom/movable/G in src.loc)
 		G.clean_blood()
 
+/obj/effect/shower/Destroy()
+	mymist = null
+	master = null
+	return ..()
+
 /obj/effect/shower/update_icon()
 	overlays.Cut()
 	if(mymist)
 		qdel(mymist)
 		mymist = null
 
-	if(master.on)
+	if(master && master.on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
 		if(master.watertemp == "freezing")
 			return
@@ -98,7 +109,7 @@
 	else if(ismist)
 		mymist = new /obj/effect/mist(loc)
 		spawn(150)
-			if(src && !master.on)
+			if(src && !master || !master.on)
 				ismist = 0
 				qdel(mymist)
 				mymist = null
@@ -106,7 +117,8 @@
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/effect/shower/proc/wash(atom/movable/O as obj|mob)
-	if(!master.on) return
+	if(!master || !master.on)
+		return
 
 	if(isliving(O))
 		var/mob/living/L = O
@@ -190,12 +202,14 @@
 				del(E)
 
 /obj/effect/shower/Process()
-	if(!master.on) return
+	if(!master ||!master.on)
+		return
 	for(var/mob/living/carbon/C in loc)
 		check_heat(C)
 
 /obj/effect/shower/proc/check_heat(mob/M as mob)
-	if(!master.on || master.watertemp == "normal") return
+	if(!master.on || master.watertemp == "normal")
+		return
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 
