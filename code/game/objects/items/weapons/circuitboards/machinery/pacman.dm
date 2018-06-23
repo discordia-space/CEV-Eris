@@ -20,6 +20,7 @@
 	build_path = /obj/machinery/power/port_gen/pacman/mrs
 	origin_tech = list(TECH_DATA = 3, TECH_POWER = 5, TECH_ENGINEERING = 5)
 
+/*
 /obj/item/weapon/circuitboard/diesel
 	name = T_BOARD("diesel generator")
 	build_path = /obj/machinery/power/port_gen/diesel
@@ -31,3 +32,4 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/weapon/stock_parts/capacitor = 1
 	)
+*/

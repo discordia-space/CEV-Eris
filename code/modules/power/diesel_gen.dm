@@ -1,94 +1,13 @@
-//Baseline portable generator. Has all the default handling. Not intended to be used on it's own (since it generates unlimited power).
-/obj/machinery/power/port_gen
-	name = "Placeholder Generator"	//seriously, don't use this. It can't be anchored without VV magic.
-	desc = "A portable generator for emergency backup power"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "portgen0"
-	density = 1
-	anchored = 0
-	use_power = 0
-
-	var/active = 0
-	var/power_gen = 5000
-	var/open = 0
-	var/recent_fault = 0
-	var/power_output = 1
-
-/obj/machinery/power/port_gen/proc/IsBroken()
-	return (stat & (BROKEN|EMPED))
-
-/obj/machinery/power/port_gen/proc/HasFuel() //Placeholder for fuel check.
-	return 1
-
-/obj/machinery/power/port_gen/proc/UseFuel() //Placeholder for fuel use.
-	return
-
-/obj/machinery/power/port_gen/proc/DropFuel()
-	return
-
-/obj/machinery/power/port_gen/proc/handleInactive()
-	return
-
-/obj/machinery/power/port_gen/Process()
-	if(active && HasFuel() && !IsBroken() && anchored && powernet)
-		add_avail(power_gen * power_output)
-		UseFuel()
-		src.updateDialog()
-	else
-		active = 0
-		icon_state = initial(icon_state)
-		handleInactive()
-
-/obj/machinery/power/powered()
-	return 1 //doesn't require an external power source
-
-/obj/machinery/power/port_gen/attack_hand(mob/user as mob)
-	if(..())
-		return
-	if(!anchored)
-		return
-
-/obj/machinery/power/port_gen/examine(mob/user)
-	if(!..(user,1 ))
-		return
-	if(active)
-		user << SPAN_NOTICE("The generator is on.")
-	else
-		user << SPAN_NOTICE("The generator is off.")
-
-/obj/machinery/power/port_gen/emp_act(severity)
-	var/duration = 6000 //ten minutes
-	switch(severity)
-		if(1)
-			stat &= BROKEN
-			if(prob(75)) explode()
-		if(2)
-			if(prob(25)) stat &= BROKEN
-			if(prob(10)) explode()
-		if(3)
-			if(prob(10)) stat &= BROKEN
-			duration = 300
-
-	stat |= EMPED
-	if(duration)
-		spawn(duration)
-			stat &= ~EMPED
-
-/obj/machinery/power/port_gen/proc/explode()
-	explosion(src.loc, -1, 3, 5, -1)
-	qdel(src)
-
-#define TEMPERATURE_DIVISOR 40
-#define TEMPERATURE_CHANGE_MAX 20
-
-//A power generator that runs on solid plasma sheets.
+///////////////////////////////
+//UNFINISHED CUZ I'M TOO LAZY//
+//        DO NOT READ        //
+///////////////////////////////
 /obj/machinery/power/port_gen/pacman
 	name = "\improper P.A.C.M.A.N.-type Portable Generator"
 	desc = "A power generator that runs on solid plasma sheets. Rated for 80 kW max safe output."
 
-	var/sheet_name = "Plasma Sheets"
-	var/sheet_path = /obj/item/stack/material/plasma
-	circuit = /obj/item/weapon/circuitboard/pacman
+	var/fuel_type = "fuel"
+	circuit = /obj/item/weapon/circuitboard/diesel
 
 	/*
 		These values were chosen so that the generator can run safely up to 80 kW
@@ -104,8 +23,8 @@
 	var/max_temperature = 300	//max temperature before overheating increases
 	var/temperature_gain = 50	//how much the temperature increases per power output level, in degrees per level
 
-	var/sheets = 0			//How many sheets of material are loaded in the generator
-	var/sheet_left = 0		//How much is left of the current sheet
+	var/fuel_stored = 0
+	var/fuel_max = 1000
 	var/temperature = 0		//The current temperature
 	var/overheating = 0		//if this gets high enough the generator explodes
 
@@ -403,52 +322,3 @@
 		if (href_list["action"] == "higher_power")
 			if (power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
 				power_output++
-
-/obj/machinery/power/port_gen/pacman/super
-	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
-	desc = "A power generator that utilizes uranium sheets as fuel. Can run for much longer than the standard PACMAN type generators. Rated for 80 kW max safe output."
-	icon_state = "portgen1"
-	sheet_path = /obj/item/stack/material/uranium
-	sheet_name = "Uranium Sheets"
-	time_per_sheet = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
-	circuit = /obj/item/weapon/circuitboard/pacman/super
-
-/obj/machinery/power/port_gen/pacman/super/UseFuel()
-	//produces a tiny amount of radiation when in use
-	if (prob(2*power_output))
-		for (var/mob/living/L in range(src, 5))
-			L.apply_effect(1, IRRADIATE) //should amount to ~5 rads per minute at max safe power
-	..()
-
-/obj/machinery/power/port_gen/pacman/super/explode()
-	//a nice burst of radiation
-	var/rads = 50 + (sheets + sheet_left)*1.5
-	for (var/mob/living/L in range(src, 10))
-		//should really fall with the square of the distance, but that makes the rads value drop too fast
-		//I dunno, maybe physics works different when you live in 2D -- SM radiation also works like this, apparently
-		L.apply_effect(max(20, round(rads/get_dist(L,src))), IRRADIATE)
-
-	explosion(src.loc, 3, 3, 5, 3)
-	qdel(src)
-
-/obj/machinery/power/port_gen/pacman/mrs
-	name = "M.R.S.P.A.C.M.A.N.-type Portable Generator"
-	desc = "An advanced power generator that runs on tritium. Rated for 200 kW maximum safe output!"
-	icon_state = "portgen2"
-	sheet_path = /obj/item/stack/material/tritium
-	sheet_name = "Tritium Fuel Sheets"
-
-	//I don't think tritium has any other use, so we might as well make this rewarding for players
-	//max safe power output (power level = 8) is 200 kW and lasts for 1 hour - 3 or 4 of these could power the station
-	power_gen = 25000 //watts
-	max_power_output = 10
-	max_safe_output = 8
-	time_per_sheet = 576
-	max_temperature = 800
-	temperature_gain = 90
-	circuit = /obj/item/weapon/circuitboard/pacman/mrs
-
-/obj/machinery/power/port_gen/pacman/mrs/explode()
-	//no special effects, but the explosion is pretty big (same as a supermatter shard).
-	explosion(src.loc, 3, 6, 12, 16, 1)
-	qdel(src)
