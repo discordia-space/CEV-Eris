@@ -141,6 +141,8 @@
 	if(!owner)
 		return
 
+	var/mob/living/carbon/human/victim = owner // Used to keep and put into other's removed procs.
+
 	owner.organs -= src
 	owner.organs_by_name[organ_tag] = null // Remove from owner's vars.
 	owner.bad_external_organs -= src
@@ -170,15 +172,13 @@
 
 	if(children)
 		for(var/obj/item/organ/external/child in children)
-			child.removed()
+			child.removed(owner_ = victim)
 			child.loc = src
 
 	if(internal_organs)
 		for(var/obj/item/organ/organ in internal_organs)
-			organ.removed()
+			organ.removed(owner_ = victim)
 			organ.loc = src
-
-	var/mob/living/carbon/human/victim = owner
 
 	. = ..()
 

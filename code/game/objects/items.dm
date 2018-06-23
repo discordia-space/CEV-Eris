@@ -424,6 +424,9 @@ var/list/global/slot_flags_enumeration = list(
 
 		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[O_EYES]
 
+		if(!eyes)
+			return
+
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
 				O.show_message(SPAN_DANGER("[M] has been stabbed in the eye with [src] by [user]."), 1)
@@ -456,7 +459,6 @@ var/list/global/slot_flags_enumeration = list(
 	else
 		M.take_organ_damage(7)
 	M.eye_blurry += rand(3,4)
-	return
 
 /obj/item/clean_blood()
 	. = ..()
