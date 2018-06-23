@@ -4,7 +4,6 @@
 	icon_state = "cap"
 
 /obj/structure/closet/secure_closet/reinforced/captains/populate_contents()
-	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/captain(src)
 	else
@@ -26,15 +25,12 @@
 	new /obj/item/clothing/head/caphat/formal(src)
 	new /obj/item/clothing/under/captainformal(src)
 
-
-
 /obj/structure/closet/secure_closet/reinforced/hop
 	name = "First Officer's locker"
 	req_access = list(access_hop)
 	icon_state = "hop"
 
 /obj/structure/closet/secure_closet/reinforced/hop/populate_contents()
-	..()
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/under/rank/first_officer(src)
 	new /obj/item/clothing/head/caphat/hop(src)
@@ -51,15 +47,12 @@
 	new /obj/item/ammo_magazine/a50/rubber(src)
 	new /obj/item/device/flash(src)
 
-
-
 /obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
 	req_access = list(access_hos)
 	icon_state = "hos"
 
 /obj/structure/closet/secure_closet/reinforced/hos/populate_contents()
-	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
@@ -88,16 +81,12 @@
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/accessory/badge/hos(src)
 
-
-
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
 	req_access = list(access_armory)
 	icon_state = "warden"
 
-
 /obj/structure/closet/secure_closet/warden/populate_contents()
-	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
@@ -123,17 +112,13 @@
 	new /obj/item/weapon/storage/box/holobadge(src)
 	new /obj/item/clothing/accessory/badge/warden(src)
 
-
-
 /obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
 	req_access = list(access_hos)
 	access_occupy = list(access_brig)
 	icon_state = "sec"
 
-
 /obj/structure/closet/secure_closet/personal/security/populate_contents()
-	..()
 	new /obj/item/weapon/storage/backpack/security(src)
 	new /obj/item/weapon/storage/backpack/satchel_sec(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
@@ -156,16 +141,12 @@
 	new /obj/item/ammo_magazine/sol65/rubber(src)
 	new /obj/item/ammo_magazine/sol65/rubber(src)
 
-
-
 /obj/structure/closet/secure_closet/medspec
 	name = "Ironhammer Medical Specialist locker"
 	req_access = list(access_medspec)
 	icon_state = "sec"
 
-
 /obj/structure/closet/secure_closet/medspec/populate_contents()
-	..()
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/taperoll/police(src)
 	new /obj/item/clothing/under/rank/medspec(src)
@@ -178,15 +159,12 @@
 	new /obj/item/ammo_magazine/cl32/rubber(src)
 	new /obj/item/ammo_magazine/cl32/rubber(src)
 
-
-
 /obj/structure/closet/secure_closet/detective
 	name = "Ironhammer Inspector locker"
 	req_access = list(access_forensics_lockers)
 	icon_state = "cabinetdetective"
 
 /obj/structure/closet/secure_closet/detective/populate_contents()
-	..()
 	new /obj/item/clothing/under/rank/det(src)
 	new /obj/item/clothing/under/rank/det/black(src)
 	new /obj/item/clothing/under/rank/inspector(src)
@@ -211,20 +189,14 @@
 	new /obj/item/ammo_magazine/sl44/rubber(src)
 	new /obj/item/ammo_magazine/sl44/rubber(src)
 
-
-
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
 	req_access = list(access_captain)
 	icon_state = "secure"
 
-
 /obj/structure/closet/secure_closet/injection/populate_contents()
-	..()
 	new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
 	new /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral(src)
-
-
 
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"
@@ -234,11 +206,8 @@
 	var/id
 
 /obj/structure/closet/secure_closet/brig/populate_contents()
-	..()
-	new /obj/item/clothing/under/color/orange( src )
-	new /obj/item/clothing/shoes/color/orange( src )
-
-
+	new /obj/item/clothing/under/color/orange(src)
+	new /obj/item/clothing/shoes/color/orange(src)
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
@@ -246,12 +215,11 @@
 	icon_state = "sec"
 
 /obj/structure/closet/secure_closet/courtroom/populate_contents()
-	..()
 	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/weapon/paper/Court (src)
-	new /obj/item/weapon/paper/Court (src)
-	new /obj/item/weapon/paper/Court (src)
-	new /obj/item/weapon/pen (src)
-	new /obj/item/clothing/suit/judgerobe (src)
-	new /obj/item/clothing/head/powdered_wig (src)
+	new /obj/item/weapon/paper/Court(src)
+	new /obj/item/weapon/paper/Court(src)
+	new /obj/item/weapon/paper/Court(src)
+	new /obj/item/weapon/pen(src)
+	new /obj/item/clothing/suit/judgerobe(src)
+	new /obj/item/clothing/head/powdered_wig(src)
 	new /obj/item/weapon/storage/briefcase(src)
