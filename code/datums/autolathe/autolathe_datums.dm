@@ -12,12 +12,28 @@
 			continue
 
 		var/obj/item/I = new recipe.path
-		if(I.matter && !recipe.resources) //This can be overidden in the datums.
+		if(I.matter && I.matter.len && !recipe.resources) //This can be overidden in the datums.
 			recipe.resources = list()
-			for(var/material in I.matter)
-				recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
+
+			for(var/obj/O in I.GetAllContents(includeSelf = TRUE)) // we also count any additional matter that comes with item itself, like battery inside a flashlight
+				if(!O.matter || !O.matter.len)
+					continue
+
+				var/obj/item/stack/material/stack
+				if(istype(O, /obj/item/stack))
+					stack = O
+
+				for(var/material in O.matter)
+					if(stack) // "if" instead of "?" for readability
+						recipe.resources[material] += stack.matter[material] * stack.get_amount()
+					else
+						recipe.resources[material] += O.matter[material]
+
 		if(!recipe.resources)
 			recipe.resources = list()
+		else
+			for(var/material in recipe.resources)
+				recipe.resources[material] = round(recipe.resources[material] * 1.25, 1) // More expensive to produce than they are to recycle.
 
 		if(I.matter_reagents && !recipe.reagents) //This can be overidden in the datums.
 			recipe.reagents = list()
