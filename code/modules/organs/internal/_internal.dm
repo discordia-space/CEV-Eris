@@ -4,7 +4,7 @@
 /obj/item/organ/internal/Destroy()
 	if(owner)
 		owner.internal_organs -= src
-		owner.internal_organs_by_name -= src.name
+		owner.internal_organs_by_name -= src.organ_tag
 
 	return ..()
 
@@ -14,7 +14,7 @@
 		for(var/proc_path in owner_verbs)
 			verbs += proc_path
 
-/obj/item/organ/internal/removed(mob/living/carbon/human/owner_)
+/obj/item/organ/internal/removed()
 	..()
 	for(var/verb_path in owner_verbs)
 		verbs -= verb_path

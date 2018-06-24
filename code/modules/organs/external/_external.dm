@@ -97,7 +97,7 @@
 
 	if(owner)
 		owner.organs -= src
-		owner.organs_by_name -= src.name
+		owner.organs_by_name -= src.organ_tag
 
 	if(module)
 		QDEL_NULL(module)
@@ -140,25 +140,22 @@
 	if(module)
 		module.organ_installed(src, owner)
 
-/obj/item/organ/external/removed(mob/living/user, redraw_mob = TRUE, mob/living/carbon/human/owner_)
-
-	var/mob/living/carbon/human/victim = owner_ ? owner_ : owner // Used to keep and put into other's removed procs.
-
-	if(!victim)
+/obj/item/organ/external/removed(mob/living/user, redraw_mob = TRUE)
+	if(!owner)
 		return
 
-	victim.organs -= src
-	victim.organs_by_name -= src.name
-	victim.bad_external_organs -= src
+	owner.organs -= src
+	owner.organs_by_name -= src.organ_tag
+	owner.bad_external_organs -= src
 
 	if(module)
-		module.organ_removed(src, victim)
+		module.organ_removed(src, owner)
 
 	for(var/atom/movable/implant in implants)
 		//large items and non-item objs fall to the floor, everything else stays
 		var/obj/item/I = implant
 		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
-			implant.loc = get_turf(victim)
+			implant.loc = get_turf(owner)
 		else
 			implant.loc = src
 	implants.Cut()
@@ -168,7 +165,7 @@
 	var/obj/item/dropped = null
 	for(var/slot in drop_on_remove)
 		dropped = owner.get_equipped_item(slot)
-		victim.drop_from_inventory(dropped)
+		owner.drop_from_inventory(dropped)
 
 	if(parent)
 		parent.children -= src
@@ -176,13 +173,15 @@
 
 	if(children)
 		for(var/obj/item/organ/external/child in children)
-			child.removed(owner_ = victim)
+			child.removed()
 			child.loc = src
 
 	if(internal_organs)
 		for(var/obj/item/organ/organ in internal_organs)
-			organ.removed(owner_ = victim)
+			organ.removed()
 			organ.loc = src
+
+	var/mob/living/carbon/human/victim = owner
 
 	. = ..()
 
@@ -752,8 +751,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/organ/I in internal_organs)
-				I.removed()
 				if(istype(loc,/turf))
+					internal_organs -= src
 					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/I in src)

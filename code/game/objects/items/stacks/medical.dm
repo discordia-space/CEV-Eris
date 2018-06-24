@@ -25,6 +25,7 @@
 
 		if(!affecting)
 			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			return TRUE
 
 		if(affecting.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -72,6 +73,7 @@
 
 		if(!affecting)
 			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			return TRUE
 
 		if(affecting.open == 0)
 			if(affecting.is_bandaged())
@@ -148,6 +150,7 @@
 
 		if(!affecting)
 			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			return TRUE
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
@@ -197,6 +200,7 @@
 
 	if(!affecting)
 		to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+		return TRUE
 
 	if(affecting.open == 0)
 		if(affecting.is_bandaged() && affecting.is_disinfected())
@@ -273,6 +277,7 @@
 
 		if(!affecting)
 			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			return TRUE
 
 		if(affecting.open == 0)
 			if(affecting.is_salved())
@@ -320,6 +325,7 @@
 
 		if(!affecting)
 			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+			return TRUE
 
 		var/limb = affecting.name
 		if(!(affecting.organ_tag in list(BP_L_ARM,BP_R_ARM,BP_L_LEG ,BP_R_LEG)))
