@@ -178,11 +178,7 @@
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
 /mob/living/proc/handle_hud_icons()
-	handle_hud_icons_health()
 	handle_hud_glasses()
-
-/mob/living/proc/handle_hud_icons_health()
-	return
 
 /*/mob/living/proc/HUD_create()
 	if (!usr.client)

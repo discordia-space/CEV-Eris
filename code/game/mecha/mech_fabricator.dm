@@ -14,7 +14,7 @@
 	var/speed = 1
 	var/mat_efficiency = 1
 	var/list/materials = list(MATERIAL_STEEL = 0, MATERIAL_GLASS = 0, MATERIAL_GOLD = 0, MATERIAL_SILVER = 0, MATERIAL_DIAMOND = 0, MATERIAL_PLASMA = 0, MATERIAL_URANIUM = 0)
-	var/res_max_amount = 120
+	var/res_max_amount = 240
 
 	var/datum/research/files
 	var/list/datum/design/queue = list()
@@ -62,7 +62,7 @@
 /obj/machinery/mecha_part_fabricator/RefreshParts()
 	res_max_amount = 0
 	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
-		res_max_amount += M.rating * 100000 // 200k -> 600k
+		res_max_amount += M.rating * 120
 	var/T = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		T += M.rating

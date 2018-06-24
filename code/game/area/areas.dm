@@ -324,6 +324,12 @@ var/list/mob/living/forced_ambiance_list = new
 /area/space/has_gravity()
 	return 0
 
+/area/proc/are_living_present()
+	for(var/mob/living/L in src)
+		if(L.stat != DEAD)
+			return TRUE
+	return FALSE
+
 /proc/has_gravity(atom/AT, turf/T)
 	if(!T)
 		T = get_turf(AT)

@@ -38,6 +38,8 @@
 
 			T.corners[i] = new/datum/lighting_corner(T, LIGHTING_CORNER_DIAGONAL[i])
 
+/var/mob/dview/dview_mob = new
+
 /world/New()
 	. = ..()
 

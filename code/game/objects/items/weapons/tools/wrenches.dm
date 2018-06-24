@@ -11,7 +11,7 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	tool_qualities = list(QUALITY_BOLT_TURNING = 30)
 
-/obj/item/weapon/tool/big_wrench
+/obj/item/weapon/tool/wrench/big_wrench
 	name = "big wrench"
 	desc = "If everything else failed - bring a bigger wrench."
 	icon_state = "big-wrench"

@@ -58,6 +58,7 @@
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
 				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : O_EYES] on [H]!</span>"
+				return
 
 			user.visible_message(SPAN_NOTICE("\The [user] directs [src] to [M]'s eyes."), \
 							 	 SPAN_NOTICE("You direct [src] to [M]'s eyes."))

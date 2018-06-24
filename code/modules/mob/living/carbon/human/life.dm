@@ -729,6 +729,7 @@
 	return 1
 
 /mob/living/carbon/human/handle_regular_hud_updates()
+	. = ..()
 	for (var/obj/screen/H in HUDprocess)
 //		var/obj/screen/B = H
 		H.Process()
@@ -764,7 +765,7 @@
 
 	// now handle what we see on our screen
 
-	if(!..())
+	if(!.)
 		return
 
 //	if(damageoverlay.overlays)
@@ -986,7 +987,6 @@
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
-		eye_blurry = max(2, eye_blurry)
 		stuttering = max(stuttering, 5)
 
 	if(shock_stage == 40)
