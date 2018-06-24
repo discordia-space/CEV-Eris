@@ -14,7 +14,6 @@
 	icon_door = "black"
 
 /obj/structure/closet/gmcloset/populate_contents()
-	..()
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/device/radio/headset/headset_service(src)
@@ -36,7 +35,6 @@
 	icon_door = "black"
 
 /obj/structure/closet/chefcloset/populate_contents()
-	..()
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/device/radio/headset/headset_service(src)
@@ -55,7 +53,6 @@
 	icon_door = "mixed"
 
 /obj/structure/closet/jcloset/populate_contents()
-	..()
 	new /obj/item/clothing/under/rank/janitor(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/weapon/cartridge/janitor(src)

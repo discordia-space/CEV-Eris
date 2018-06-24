@@ -6,7 +6,6 @@
 /obj/random/closet/item_to_spawn()
 	return pick(prob(4);/obj/structure/closet,\
 				prob(8);/obj/structure/closet/firecloset,\
-				prob(5);/obj/structure/closet/firecloset/full,\
 				prob(6);/obj/structure/closet/emcloset,\
 				prob(1);/obj/structure/closet/wardrobe/black,\
 				prob(1);/obj/structure/closet/wardrobe/green,\
@@ -29,7 +28,6 @@
 
 /obj/random/closet_tech/item_to_spawn()
 	return pick(prob(4);/obj/structure/closet/firecloset,\
-				prob(3);/obj/structure/closet/firecloset/full,\
 				prob(2);/obj/structure/closet/emcloset,\
 				prob(4);/obj/structure/closet/toolcloset)
 

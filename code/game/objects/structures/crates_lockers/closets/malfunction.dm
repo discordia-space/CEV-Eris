@@ -3,7 +3,6 @@
 	icon_state = "syndicate"
 
 /obj/structure/closet/malf/suits/populate_contents()
-	..()
 	new /obj/item/weapon/tank/jetpack/void(src)
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/clothing/head/helmet/space/void(src)
