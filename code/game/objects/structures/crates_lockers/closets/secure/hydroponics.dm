@@ -1,10 +1,9 @@
-/obj/structure/closet/secure_closet/hydroponics
+/obj/structure/closet/secure_closet/personal/hydroponics
 	name = "botanist's locker"
 	req_access = list(access_hydroponics)
 	icon_state = "hydro"
 
-/obj/structure/closet/secure_closet/hydroponics/populate_contents()
-	..()
+/obj/structure/closet/secure_closet/personal/hydroponics/populate_contents()
 	new /obj/item/clothing/suit/apron(src)
 	new /obj/item/weapon/storage/bag/plants(src)
 	new /obj/item/clothing/under/rank/hydroponics(src)
