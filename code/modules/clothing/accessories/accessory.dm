@@ -117,6 +117,8 @@
 							sound = "no heartbeat"
 							if(heartbeat)
 								var/obj/item/organ/internal/heart/heart = M.internal_organs_by_name[O_HEART]
+								if(!heart)
+									return
 								if(heart.is_bruised() || M.getOxyLoss() > 50)
 									sound = "[pick("odd noises in","weak")] heartbeat"
 								else
@@ -129,7 +131,7 @@
 								sound += " and [pick("wheezing","gurgling")] sounds"
 							else
 								sound += " and healthy respiration"
-						if(O_EYES,"mouth")
+						if(O_EYES, O_MOUTH)
 							sound_strength = "cannot hear"
 							sound = "anything"
 						else
@@ -138,7 +140,6 @@
 								sound = "pulse"
 
 				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
-				return
 	return ..(M,user)
 
 
