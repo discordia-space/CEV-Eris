@@ -45,6 +45,7 @@
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
+	prescription = TRUE
 
 	New()
 		..()
