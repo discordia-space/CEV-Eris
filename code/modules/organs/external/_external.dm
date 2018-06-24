@@ -95,9 +95,12 @@
 		for(var/obj/item/organ/O in internal_organs)
 			qdel(O)
 
+	if(owner)
+		owner.organs -= src
+		owner.organs_by_name -= src.name
+
 	if(module)
-		qdel(module)
-		module = null
+		QDEL_NULL(module)
 
 	return ..()
 
@@ -137,24 +140,25 @@
 	if(module)
 		module.organ_installed(src, owner)
 
-/obj/item/organ/external/removed(mob/living/user, redraw_mob = TRUE)
-	if(!owner)
+/obj/item/organ/external/removed(mob/living/user, redraw_mob = TRUE, mob/living/carbon/human/owner_)
+
+	var/mob/living/carbon/human/victim = owner_ ? owner_ : owner // Used to keep and put into other's removed procs.
+
+	if(!victim)
 		return
 
-	var/mob/living/carbon/human/victim = owner // Used to keep and put into other's removed procs.
-
-	owner.organs -= src
-	owner.organs_by_name[organ_tag] = null // Remove from owner's vars.
-	owner.bad_external_organs -= src
+	victim.organs -= src
+	victim.organs_by_name -= src.name
+	victim.bad_external_organs -= src
 
 	if(module)
-		module.organ_removed(src, owner)
+		module.organ_removed(src, victim)
 
 	for(var/atom/movable/implant in implants)
 		//large items and non-item objs fall to the floor, everything else stays
 		var/obj/item/I = implant
 		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
-			implant.loc = get_turf(owner)
+			implant.loc = get_turf(victim)
 		else
 			implant.loc = src
 	implants.Cut()
@@ -164,7 +168,7 @@
 	var/obj/item/dropped = null
 	for(var/slot in drop_on_remove)
 		dropped = owner.get_equipped_item(slot)
-		owner.drop_from_inventory(dropped)
+		victim.drop_from_inventory(dropped)
 
 	if(parent)
 		parent.children -= src
