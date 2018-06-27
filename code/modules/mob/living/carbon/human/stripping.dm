@@ -118,11 +118,9 @@
 // Set internals on or off.
 /mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)
 	if(internal)
+		visible_message(SPAN_DANGER("\The [user] disables \the [src]'s internals!"))
 		internal.add_fingerprint(user)
 		internal = null
-		if(HUDneed.Find("internal"))
-			var/obj/screen/HUDelm = HUDneed["internal"]
-			HUDelm.icon_state = "internal0"
 	else
 		// Check for airtight mask/helmet.
 		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
@@ -134,14 +132,9 @@
 			internal = s_store
 		else if(istype(belt, /obj/item/weapon/tank))
 			internal = belt
-
-	if(internal)
 		visible_message(SPAN_WARNING("\The [src] is now running on internals!"))
 		internal.add_fingerprint(user)
-/*		if (internals)
-			internals.icon_state = "internal1"*/
-		if(HUDneed.Find("internal"))
-			var/obj/screen/HUDelm = HUDneed["internal"]
-			HUDelm.icon_state = "internal1"
-	else
-		visible_message(SPAN_DANGER("\The [user] disables \the [src]'s internals!"))
+
+	if(HUDneed.Find("internal"))
+		var/obj/screen/HUDelm = HUDneed["internal"]
+		HUDelm.update_icon()

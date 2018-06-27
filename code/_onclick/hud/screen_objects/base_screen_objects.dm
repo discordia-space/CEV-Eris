@@ -34,6 +34,9 @@
 /obj/screen/Process()
 	return
 
+/obj/screen/proc/DEADelize()
+	return
+
 /obj/screen/Destroy()
 	master = null
 	return ..()
@@ -56,7 +59,6 @@
 		else
 			return FALSE
 	return TRUE
-
 //--------------------------------------------------close---------------------------------------------------------
 
 /obj/screen/close
@@ -300,7 +302,7 @@
 	update_icon()
 
 /obj/screen/health/update_icon()
-	if(parentmob:stat != DEAD) // They are dead, let death() handle their hud update on this.
+	if(parentmob:stat != DEAD)
 		overlays.Cut()
 		if (parentmob:analgesic > 100)
 //			icon_state = "health_numb"
@@ -320,6 +322,10 @@
 						if(20 to 40)			overlays += ovrls["health4"]
 						if(0 to 20)				overlays += ovrls["health5"]
 						else					overlays += ovrls["health6"]
+
+/obj/screen/health/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["health7"]
 /*/obj/screen/health/New()
 	if(usr.client)
 		usr.client.screen += src
@@ -358,6 +364,10 @@
 		if(250 to 350)					overlays += ovrls["nutrition2"]
 		if(150 to 250)					overlays += ovrls["nutrition3"]
 		else							overlays += ovrls["nutrition4"]
+
+/obj/screen/nutrition/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["nutrition4"]
 //--------------------------------------------------nutrition end---------------------------------------------------------
 
 //--------------------------------------------------bodytemp---------------------------------------------------------
@@ -421,6 +431,10 @@
 			overlays += ovrls["temp-1"]
 		else
 			overlays += ovrls["temp0"]
+
+/obj/screen/bodytemp/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["temp-4"]
 //--------------------------------------------------bodytemp end---------------------------------------------------------
 
 
@@ -450,6 +464,10 @@
 //	icon_state = "pressure[H.pressure_alert]"
 	overlays.Cut()
 	overlays += ovrls["pressure[H.pressure_alert]"]
+
+/obj/screen/pressure/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["pressure-2"]
 //--------------------------------------------------pressure end---------------------------------------------------------
 
 //--------------------------------------------------toxin---------------------------------------------------------
@@ -476,6 +494,10 @@
 //		icon_state = "tox1"
 //	else
 //		icon_state = "tox0"
+
+/obj/screen/toxin/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["tox1"]
 //--------------------------------------------------toxin end---------------------------------------------------------
 
 //--------------------------------------------------oxygen---------------------------------------------------------
@@ -504,6 +526,10 @@
 //		icon_state = "oxy1"
 //	else
 //		icon_state = "oxy0"
+
+/obj/screen/oxygen/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["oxy1"]
 //--------------------------------------------------oxygen end---------------------------------------------------------
 
 //--------------------------------------------------fire---------------------------------------------------------
@@ -534,6 +560,10 @@
 //	icon_state = "fire[H.fire_alert]"
 	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
 	else										icon_state = "fire0"*/
+
+obj/screen/fire/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["fire-1"]
 //--------------------------------------------------fire end---------------------------------------------------------
 /*/obj/screen/slot_object
 	name = "slot"
@@ -648,13 +678,20 @@
 						playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
 						C.internal = tankcheck[best]
 
-
-					if(C.internal)
-						//icon_state = "internal1"
-						overlays += ovrls["internal1"]
-					else
+					if(!C.internal)
 						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>"
+					update_icon()
+
+/obj/screen/internal/update_icon()
+	overlays.Cut()
+	if(parentmob:internal)
+		overlays += ovrls["internal1"]
+
+/obj/screen/internal/DEADelize()
+	overlays.Cut()
 //-----------------------internal END------------------------------
+
+//-----------------------Pull------------------------------
 
 /obj/screen/pull
 	name = "pull"
@@ -676,6 +713,8 @@
 		icon_state = "pull1"
 	else
 		icon_state = "pull0"
+
+//-----------------------Pull end------------------------------
 //-----------------------throw------------------------------
 /obj/screen/HUDthrow
 	name = "throw"
@@ -788,6 +827,7 @@
 /obj/screen/swap/Click()
 	parentmob.swap_hand()
 //-----------------------swap END------------------------------
+
 //-----------------------intent------------------------------
 /obj/screen/intent
 	name = "intent"
@@ -827,6 +867,7 @@
 		if(I_DISARM)
 			src.overlays += ovrls["disarm"]
 //-----------------------intent END------------------------------
+
 /obj/screen/fastintent
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
