@@ -37,7 +37,8 @@
 		if(HUDneed.Find("internal"))
 			var/obj/screen/HUDelm = HUDneed["internal"]
 			HUDelm.update_icon()
-		return internal.remove_air_volume(volume_needed)
+		if(internal)
+			return internal.remove_air_volume(volume_needed)
 	return null
 
 /mob/living/carbon/proc/get_breath_from_environment(var/volume_needed=BREATH_VOLUME)
