@@ -471,16 +471,16 @@
 						return
 			if(opened!=2) //cover isn't removed
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
-					opened = 0
-					update_icon()
-			if(!((stat & BROKEN) || hacker))
-				if(coverlocked && !(stat & MAINT))
-					user << SPAN_WARNING("The cover is locked and cannot be opened.")
-					return
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
-					opened = 1
-					update_icon()
-					return
+					if (opened == 1)
+						opened = 0
+						update_icon()
+					else if(!((stat & BROKEN) || hacker))
+						if(coverlocked && !(stat & MAINT))
+							user << SPAN_WARNING("The cover is locked and cannot be opened.")
+						else
+							opened = 1
+							update_icon()
+							return
 			return
 
 		if(QUALITY_WIRE_CUTTING)
