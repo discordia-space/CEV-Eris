@@ -111,7 +111,8 @@ datum/preferences
 		client_ckey = C.ckey
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
-			load_preferences()
+			if(!load_preferences()) // mostly TRUE for new player that has no savefils yet on server
+				sanitize_preferences() // gives such player default values.
 			load_and_update_character()
 
 /datum/preferences/proc/load_and_update_character(var/slot)
