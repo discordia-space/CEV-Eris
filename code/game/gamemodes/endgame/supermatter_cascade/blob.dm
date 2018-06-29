@@ -8,7 +8,8 @@
 
 	//luminosity = 5
 	//l_color="#0066FF"
-	layer = LIGHTING_LAYER+1
+	plane = ABOVE_LIGHTING_PLANE
+	layer = ABOVE_LIGHTING_LAYER
 
 	var/spawned=0 // DIR mask
 	var/next_check=0

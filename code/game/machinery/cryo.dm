@@ -198,7 +198,7 @@
 	var/image/I
 
 	I = image(icon, "pod[on]_top")
-	I.layer = 5 // this needs to be fairly high so it displays over most things, but it needs to be under lighting (at 10)
+	I.layer = WALL_OBJ_LAYER
 	I.pixel_z = 32
 	overlays += I
 
@@ -206,15 +206,15 @@
 		var/image/pickle = image(occupant.icon, occupant.icon_state)
 		pickle.overlays = occupant.overlays
 		pickle.pixel_z = 18
-		pickle.layer = 5
+		pickle.layer = WALL_OBJ_LAYER
 		overlays += pickle
 
 	I = image(icon, "lid[on]")
-	I.layer = 5
+	I.layer = WALL_OBJ_LAYER
 	overlays += I
 
 	I = image(icon, "lid[on]_top")
-	I.layer = 5
+	I.layer = WALL_OBJ_LAYER
 	I.pixel_z = 32
 	overlays += I
 
