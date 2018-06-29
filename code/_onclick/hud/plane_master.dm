@@ -30,7 +30,7 @@
 
 /obj/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
-	if(mymob.client.is_preference_enabled(/datum/client_preference/ambient_occlusion))
+	if(mymob.client && mymob.client.is_preference_enabled(/datum/client_preference/ambient_occlusion))
 		filters += AMBIENT_OCCLUSION
 
 /obj/screen/plane_master/lighting
@@ -43,12 +43,12 @@
 	mymob.overlay_fullscreen("lighting_backdrop_lit", /obj/screen/fullscreen/lighting_backdrop/lit)
 	mymob.overlay_fullscreen("lighting_backdrop_unlit", /obj/screen/fullscreen/lighting_backdrop/unlit)
 */
+/*
 /obj/screen/plane_master/parallax
 	name = "parallax plane master"
 	plane = PLANE_SPACE_PARALLAX
-	blend_mode = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
+*/
 /obj/screen/plane_master/parallax_white
 	name = "parallax whitifier plane master"
 	plane = PLANE_SPACE

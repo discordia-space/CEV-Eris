@@ -4,7 +4,7 @@
 	var/datum/pipeline/parent
 	var/volume = 0
 
-	layer = 2.4 //under wires with their 2.44
+	layer = GAS_PIPE_HIDDEN_LAYER
 	use_power = 0
 
 	var/alert_pressure = 80*ONE_ATMOSPHERE
@@ -318,6 +318,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible
 	icon_state = "intact"
 	level = 2
+	layer = GAS_PIPE_VISIBLE_LAYER
 
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers
 	name = "Scrubbers pipe"
@@ -355,9 +356,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/blue
 	color = PIPE_COLOR_BLUE
 
-
 /obj/machinery/atmospherics/pipe/simple/hidden
 	icon_state = "intact"
+	layer = GAS_PIPE_HIDDEN_LAYER
 	level = 1
 	alpha = 128		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
 
@@ -1005,7 +1006,6 @@
 	desc = "An endcap for scrubbers pipes"
 	icon_state = "cap-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -1014,7 +1014,6 @@
 	desc = "An endcap for supply pipes"
 	icon_state = "cap-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -1028,7 +1027,6 @@
 	desc = "An endcap for scrubbers pipes"
 	icon_state = "cap-f-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -1037,7 +1035,6 @@
 	desc = "An endcap for supply pipes"
 	icon_state = "cap-f-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
