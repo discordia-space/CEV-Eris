@@ -31,3 +31,14 @@
 		/obj/item/weapon/stock_parts/manipulator = 3,
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
+
+/obj/item/weapon/circuitboard/diesel
+	name = T_BOARD("excelsior diesel generator")
+	build_path = /obj/machinery/power/port_gen/pacman/diesel
+	board_type = "machine"
+	origin_tech = list(TECH_DATA = 3, TECH_POWER = 3, TECH_PLASMA = 3, TECH_ENGINEERING = 3, TECH_ILLEGAL = 2)
+	req_components = list(
+		/obj/item/weapon/stock_parts/manipulator = 3,
+		/obj/item/weapon/stock_parts/console_screen = 1
+	)
+

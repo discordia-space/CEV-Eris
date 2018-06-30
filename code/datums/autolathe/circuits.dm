@@ -77,3 +77,7 @@
 	name = "excelsior implant reconstructor"
 	path = /obj/item/weapon/circuitboard/excelsiorreconstructor
 
+/datum/autolathe/recipe/circuit/diesel_excelsior
+	name = "excelsior diesel generator"
+	path = /obj/item/weapon/circuitboard/diesel
+

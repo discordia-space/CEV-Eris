@@ -370,6 +370,7 @@
 		/datum/autolathe/recipe/circuit/autolathe_excelsior,
 		/datum/autolathe/recipe/circuit/shieldgen_excelsior,
 		/datum/autolathe/recipe/circuit/reconstructor_excelsior,
+		/datum/autolathe/recipe/circuit/diesel_excelsior,
 		/datum/autolathe/recipe/device/implanter,
 		/datum/autolathe/recipe/gun/makarov,
 		/datum/autolathe/recipe/sec/silencer,

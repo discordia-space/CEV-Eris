@@ -22,7 +22,7 @@
 
 /obj/item/weapon/circuitboard/diesel
 	name = T_BOARD("diesel generator")
-	build_path = /obj/machinery/power/port_gen/diesel
+	build_path = /obj/machinery/power/port_gen/pacman/diesel
 	board_type = "machine"
 	origin_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
 	req_components = list(
