@@ -81,3 +81,7 @@
 	name = "excelsior diesel generator"
 	path = /obj/item/weapon/circuitboard/diesel
 
+/datum/autolathe/recipe/circuit/teleporter_excelsior
+	name = "excelsior long-range teleporter"
+	path = /obj/item/weapon/circuitboard/excelsior_teleporter
+
