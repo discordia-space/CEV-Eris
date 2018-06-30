@@ -873,7 +873,7 @@ There are 9 wires.
 
 		if(QUALITY_PRYING)
 			if(!repairing)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_PHY))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
 					if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
 						user << SPAN_NOTICE("You removed the airlock electronics!")
 
@@ -914,7 +914,7 @@ There are 9 wires.
 
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = p_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD, instant_finish_tier = 30, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				if (p_open)
 					if (stat & BROKEN)
 						usr << SPAN_WARNING("The panel is broken and cannot be closed.")
@@ -927,7 +927,7 @@ There are 9 wires.
 
 		if(QUALITY_WELDING)
 			if(!repairing && !( src.operating > 0 ) && src.density)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					if(!src.welded)
 						src.welded = 1
 					else

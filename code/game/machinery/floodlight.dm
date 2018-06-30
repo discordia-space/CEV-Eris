@@ -112,7 +112,7 @@
 
 		if(QUALITY_PRYING)
 			if(unlocked)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
 					if(open)
 						open = 0
 						overlays = null

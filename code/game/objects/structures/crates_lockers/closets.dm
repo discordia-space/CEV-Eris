@@ -321,7 +321,7 @@
 		if(istype(I,/obj/item/tk_grab))
 			return 0
 		if(QUALITY_WELDING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				new /obj/item/stack/material/steel(src.loc)
 				src.visible_message(
 					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
@@ -348,7 +348,7 @@
 	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
 	if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			welded = !src.welded
 			update_icon()
 			for(var/mob/M in viewers(src))
@@ -364,7 +364,7 @@
 		SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
 		SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
 		)
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
 			if(hack_stage < hack_require)
 				playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
 				hack_stage++

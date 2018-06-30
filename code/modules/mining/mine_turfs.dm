@@ -216,7 +216,7 @@
 				//Chance to destroy / extract any finds here
 				fail_message = ". <b>[pick("There is a crunching noise [I] collides with some different rock.","Part of the rock face crumbles away.","Something breaks under [I].")]</b>"
 			user <<  SPAN_NOTICE("You start digging the [src]. [fail_message ? fail_message : ""]")
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PHY))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 				user << SPAN_NOTICE("You finish digging the [src].")
 				if(fail_message && prob(90))
 					if(prob(25))
@@ -473,7 +473,7 @@
 		if (dug)
 			user << SPAN_WARNING("This area has already been dug")
 			return
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_PHY))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			user << SPAN_NOTICE("You dug a hole.")
 			gets_dug()
 
