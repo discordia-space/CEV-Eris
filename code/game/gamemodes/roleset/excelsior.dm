@@ -65,6 +65,7 @@
 
 	new /obj/item/weapon/disk/autolathe_disk/excelsior(LM)
 	new /obj/item/weapon/circuitboard/autolathe(LM)
+	new /obj/item/weapon/circuitboard/excelsior_teleporter(LM)
 
 	rev.current << SPAN_NOTICE("Use your excelsior supply stash. [landmark.navigation]")
 	rev.store_memory("Excelsior stash. [landmark.navigation]")

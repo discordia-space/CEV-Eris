@@ -77,3 +77,14 @@
 	name = "excelsior implant reconstructor"
 	path = /obj/item/weapon/circuitboard/excelsiorreconstructor
 
+/datum/autolathe/recipe/circuit/diesel_excelsior
+	name = "excelsior diesel generator"
+	path = /obj/item/weapon/circuitboard/diesel
+
+/datum/autolathe/recipe/circuit/teleporter_excelsior
+	name = "excelsior long-range teleporter"
+	path = /obj/item/weapon/circuitboard/excelsior_teleporter
+
+/datum/autolathe/recipe/circuit/turret_excelsior
+	name = "excelsior turret"
+	path = /obj/item/weapon/circuitboard/excelsior_turret

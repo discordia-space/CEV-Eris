@@ -609,6 +609,9 @@ var/list/turret_icons
 	if(!raised) //the turret has to be raised in order to fire - makes sense, right?
 		return
 
+	launch_projectile(target)
+
+/obj/machinery/porta_turret/proc/launch_projectile(mob/living/target)
 	update_icon()
 	var/obj/item/projectile/A
 	if(emagged || lethal)
