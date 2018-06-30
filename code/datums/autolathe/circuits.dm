@@ -85,3 +85,6 @@
 	name = "excelsior long-range teleporter"
 	path = /obj/item/weapon/circuitboard/excelsior_teleporter
 
+/datum/autolathe/recipe/circuit/turret_excelsior
+	name = "excelsior turret"
+	path = /obj/item/weapon/circuitboard/excelsior_turret

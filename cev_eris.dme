@@ -525,6 +525,7 @@
 #include "code\game\machinery\excelsior\autolathe.dm"
 #include "code\game\machinery\excelsior\diesel.dm"
 #include "code\game\machinery\excelsior\ex_teleporter.dm"
+#include "code\game\machinery\excelsior\ex_turret.dm"
 #include "code\game\machinery\excelsior\field.dm"
 #include "code\game\machinery\excelsior\implantmaker.dm"
 #include "code\game\machinery\kitchen\gibber.dm"
