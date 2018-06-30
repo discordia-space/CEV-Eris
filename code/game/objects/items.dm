@@ -424,6 +424,9 @@ var/list/global/slot_flags_enumeration = list(
 
 		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[O_EYES]
 
+		if(!eyes)
+			return
+
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
 				O.show_message(SPAN_DANGER("[M] has been stabbed in the eye with [src] by [user]."), 1)
@@ -456,7 +459,6 @@ var/list/global/slot_flags_enumeration = list(
 	else
 		M.take_organ_damage(7)
 	M.eye_blurry += rand(3,4)
-	return
 
 /obj/item/clean_blood()
 	. = ..()
@@ -614,19 +616,18 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		return return_quality
 
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 11, forced_sound = null)
-	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, instant_finish_tier, forced_sound)
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
+	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
 	switch(result)
 		if(TOOL_USE_CANCEL)
 			return FALSE
 		if(TOOL_USE_FAIL)
-			user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
-			handle_failure(user, target)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
+			handle_failure(user, target, required_stat = required_stat)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
 			return FALSE
 		if(TOOL_USE_SUCCESS)
 			return TRUE
 
-/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, instant_finish_tier = 11, forced_sound = null)
+/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
 		return TOOL_USE_CANCEL
@@ -641,7 +642,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(H.shock_stage >= 30)
 			user << SPAN_WARNING("Pain distracts you from your task.")
 			fail_chance += round(H.shock_stage/120 * 40)
-			base_time = round(base_time * H.shock_stage/120 * 3)
+			base_time += round(H.shock_stage/120 * 40)
 
 	if(forced_sound != NO_WORKSOUND)
 		if(forced_sound)
@@ -651,7 +652,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(base_time && (instant_finish_tier >= get_tool_quality(required_quality)))
 		target.used_now = TRUE
-		var/time_to_finish = base_time / get_tool_quality(required_quality)
+		var/time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 		if(!do_after(user, time_to_finish, user))
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
@@ -659,20 +660,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		else
 			target.used_now = FALSE
 
-	fail_chance += - get_tool_quality(required_quality) * 10
+	fail_chance = fail_chance - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 	if(prob(fail_chance))
+		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
 		return TOOL_USE_FAIL
 
 	return TOOL_USE_SUCCESS
 
-/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target)
-	if(prob(33))
+/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null)
+
+	var/crit_fail_chance = 25
+	if(required_stat)
+		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
+	else
+		crit_fail_chance = 10
+
+	if(prob(crit_fail_chance))
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
+			user << SPAN_DANGER("Your hand slips while working with [src]!")
 			attack(H, H, H.get_holding_hand(src))
 			return
 
-	if(prob(5))
+	if(prob(crit_fail_chance / 4))
 		if(istype(src, /obj/item/weapon/tool))
 			var/obj/item/weapon/tool/T = src
 			if(T.use_fuel_cost)

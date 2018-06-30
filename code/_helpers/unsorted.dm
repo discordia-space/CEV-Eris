@@ -581,8 +581,11 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	return round(GaussRand(sigma), roundto)
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
-/atom/proc/GetAllContents(searchDepth = 5)
+/atom/proc/GetAllContents(searchDepth = 5, includeSelf = FALSE)
 	var/list/toReturn = list()
+
+	if(includeSelf)
+		toReturn += src
 
 	for(var/atom/part in contents)
 		toReturn += part
@@ -1221,8 +1224,6 @@ var/list/FLOORITEMS = list(
 				temp_col  = "0[temp_col]"
 			colour += temp_col
 	return "#[colour]"
-
-var/mob/dview/dview_mob = new
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)

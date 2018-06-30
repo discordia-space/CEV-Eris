@@ -38,32 +38,11 @@
 	IOCapacity = 1000000
 
 
-// SMES SUBTYPES - THESE ARE MAPPED IN AND CONTAIN DIFFERENT TYPES OF COILS
-
-// These are used on individual outposts as backup should power line be cut, or engineering outpost lost power.
-// 1M Charge, 150K I/O
-/obj/machinery/power/smes/buildable/outpost_substation/PopulateSmesComponents()
-	component_parts += new /obj/item/weapon/smes_coil/weak(src)
-
-
-
-// This one is pre-installed on engineering shuttle. Allows rapid charging/discharging for easier transport of power to outpost
-// 11M Charge, 2.5M I/O
-/obj/machinery/power/smes/buildable/power_shuttle/PopulateSmesComponents()
-	component_parts += new /obj/item/weapon/smes_coil/super_io(src)
-	component_parts += new /obj/item/weapon/smes_coil/super_io(src)
-	component_parts += new /obj/item/weapon/smes_coil(src)
-
-// END SMES SUBTYPES
-
-
-
 
 // SMES itself
 /obj/machinery/power/smes/buildable
 	var/max_coils = 6 			//30M capacity, 1.5MW input/output when fully upgraded /w default coils
 	var/cur_coils = 1 			// Current amount of installed coils
-	var/init_coils = 1		// Amount of coils for map placed SMES
 	var/safeties_enabled = 1 	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
 	var/failing = 0 			// If 1 critical failure has occured and SMES explosion is imminent.
 	var/datum/wires/smes/wires
@@ -116,18 +95,6 @@
 	..()
 	src.wires = new /datum/wires/smes(src)
 
-// Proc: initialize()
-// Parameters: None
-// Description: Adds standard components for this SMES, and forces recalculation of properties.
-/obj/machinery/power/smes/buildable/Initialize()
-	PopulateSmesComponents()
-	RefreshParts()
-	. = ..()
-
-/obj/machinery/power/smes/buildable/proc/PopulateSmesComponents() // Okay Smes! Your Initialize weren't disigned to properly work with parent calls, here is your crutch.
-	for(var/i = 1 to init_coils)
-		component_parts += new /obj/item/weapon/smes_coil(src)
-
 // Proc: attack_hand()
 // Parameters: None
 // Description: Opens the UI as usual, and if cover is removed opens the wiring panel.
@@ -150,6 +117,8 @@
 		input_level_max += C.IOCapacity
 		output_level_max += C.IOCapacity
 	charge = between(0, charge, capacity)
+	input_level = between(0, input_level, input_level_max)
+	output_level = between(0, output_level, output_level_max)
 	return 1
 
 // Proc: total_system_failure()

@@ -30,6 +30,7 @@
 	ingested.clear_reagents()
 	touching.clear_reagents()
 	nutrition = 400
+	shock_stage = 0
 	..()
 
 /mob/living/carbon/Move(NewLoc, direct)
@@ -142,7 +143,7 @@
 		swap_hand()
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (src.health >= config.health_threshold_crit)
+	if (src.health >= HEALTH_THRESHOLD_CRIT)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			src.visible_message(

@@ -211,3 +211,11 @@
 		if (HUD.process_flag)//Если худ нужно процессить
 			H.HUDprocess += HUD//Вливаем в соотвествующий список
 	return
+
+
+
+/mob/living/carbon/human/dead_HUD()
+	for (var/i=1,i<=HUDneed.len,i++)
+		var/obj/screen/H = HUDneed[HUDneed[i]]
+		H.DEADelize()
+	return

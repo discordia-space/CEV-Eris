@@ -542,7 +542,7 @@
 /mob/proc/pull_damage()
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.health - H.halloss <= config.health_threshold_softcrit)
+		if(H.health - H.halloss <= HEALTH_THRESHOLD_SOFTCRIT)
 			for(var/name in H.organs_by_name)
 				var/obj/item/organ/external/e = H.organs_by_name[name]
 				if(e && H.lying)
@@ -777,6 +777,13 @@
 		if(G.state >= GRAB_AGGRESSIVE)
 			canmove = 0
 			break
+
+	if(lying)
+		if(layer == initial(layer)) //to avoid special cases like hiding larvas.
+			layer = MOB_LAYER - 0.1 //so mob lying always appear behind standing mobs
+	else
+		if(layer == MOB_LAYER - 0.1)
+			layer = initial(layer)
 
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.

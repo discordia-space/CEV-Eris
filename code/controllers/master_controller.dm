@@ -63,4 +63,3 @@ datum/controller/game_controller/proc/setup_objects()
 
 /proc/report_progress(var/progress_message)
 	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)
-	world << progress_message

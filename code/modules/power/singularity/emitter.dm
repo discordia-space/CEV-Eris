@@ -162,7 +162,7 @@
 			if(active)
 				user << SPAN_WARNING("Turn off [src] first.")
 				return
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 				state = !state
 				anchored = !anchored
 				user.visible_message("[user.name] [anchored? "un":""]secures [src] reinforcing bolts [anchored? "to":"from"] the floor.", \
@@ -179,13 +179,13 @@
 					user << SPAN_WARNING("\The [src] needs to be wrenched to the floor.")
 					return
 				if(1)
-					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 						state = 2
 						user << SPAN_NOTICE("You weld [src] to the floor.")
 						connect_to_network()
 						return
 				if(2)
-					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+					if (I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
 						state = 1
 						user << SPAN_NOTICE("You cut [src] free from the floor.")
 						disconnect_from_network()

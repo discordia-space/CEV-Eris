@@ -24,7 +24,6 @@
 		..()
 
 /mob/living/carbon/human/death(gibbed)
-
 	if(stat == DEAD) return
 
 	BITSET(hud_updateflag, HEALTH_HUD)
@@ -51,8 +50,7 @@
 				B.host_brain.ckey = null
 				B.host_brain.name = "host brain"
 				B.host_brain.real_name = "host brain"
-
-		verbs -= /mob/living/carbon/proc/release_control
+			verbs -= /mob/living/carbon/proc/release_control
 
 	callHook("death", list(src, gibbed))
 
@@ -66,9 +64,11 @@
 		dizziness = 0
 		jitteriness = 0
 		handle_organs()
+		dead_HUD()
 		if(species.death_sound)
 			playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
+
 
 /mob/living/carbon/human/proc/ChangeToHusk()
 	if(HUSK in mutations)	return

@@ -10,7 +10,7 @@
 	throw_range = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	attack_verb = list("stabbed")
-	tool_qualities = list(QUALITY_SCREW_DRIVING = 3, QUALITY_BONE_SETTING = 1)
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 30, QUALITY_BONE_SETTING = 10)
 
 /obj/item/weapon/tool/screwdriver/electric
 	name = "electric screwdriver"
@@ -18,7 +18,7 @@
 	icon_state = "e-screwdriver"
 	worksound = WORKSOUND_DRIVER_TOOL
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
-	tool_qualities = list(QUALITY_SCREW_DRIVING = 4, QUALITY_DRILLING = 1, QUALITY_BONE_SETTING = 1)
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 40, QUALITY_DRILLING = 10, QUALITY_BONE_SETTING = 10)
 
 	use_power_cost = 2
 	suitable_cell = /obj/item/weapon/cell/small
@@ -30,7 +30,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	worksound = WORKSOUND_DRIVER_TOOL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_SCREW_DRIVING = 5, QUALITY_BOLT_TURNING = 5, QUALITY_DRILLING = 2)
+	tool_qualities = list(QUALITY_SCREW_DRIVING = 50, QUALITY_BOLT_TURNING = 50, QUALITY_DRILLING = 20)
 
 	use_power_cost = 3
 	suitable_cell = /obj/item/weapon/cell/small

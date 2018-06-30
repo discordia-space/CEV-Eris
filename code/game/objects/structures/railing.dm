@@ -108,7 +108,6 @@
 			if (UpdateNeighbors)
 				R.update_icon(0)
 
-
 /*	for(var/obj/structure/railing/R in get_step(src, src.dir))
 		if ((R.dir == Lturn) && R.anchored)//Проверка левой стороны
 			src.LeftSide[3] = 1
@@ -146,7 +145,6 @@
 						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = -32)
 					if (WEST)
 						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = 32)
-
 
 //obj/structure/railing/proc/NeighborsCheck2()
 
@@ -235,10 +233,7 @@
 		visible_message(SPAN_DANGER("[user] throws [target] over \the [src]!"))
 	return TRUE
 
-
-
 /obj/structure/railing/attackby(obj/item/I, mob/user)
-
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
 	if(health < maxhealth)
 		usable_qualities.Add(QUALITY_WELDING)
@@ -249,33 +244,31 @@
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 				user << (anchored ? SPAN_NOTICE("You have unfastened \the [src] from the floor.") : SPAN_NOTICE("You have fastened \the [src] to the floor."))
 				anchored = !anchored
 				update_icon()
-				return
 			return
 
 		if(QUALITY_WELDING)
 			if(health < maxhealth)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."), SPAN_NOTICE("You repair some damage to \the [src]."))
 					health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
-					return
 			return
 
 		if(QUALITY_BOLT_TURNING)
 			if(!anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
 					new /obj/item/stack/material/steel(src.loc, 4)
 					qdel(src)
-					return
 			return
 
 		if(ABORT_CHECK)
 			return
 
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 	take_damage(I.force)
 

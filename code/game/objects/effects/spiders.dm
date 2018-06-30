@@ -29,7 +29,7 @@
 	var/damage = I.force / 4.0
 
 	if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WELDING, FAILCHANCE_ZERO))
 			damage = 15
 
 	health -= damage
@@ -159,8 +159,6 @@
 					entry_vent = null
 					return
 				var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = pick(vents)
-				/*if(prob(50))
-					src.visible_message("<B>[src] scrambles into the ventillation ducts!</B>")*/
 
 				spawn(rand(20,60))
 					loc = exit_vent
@@ -197,7 +195,7 @@
 				walk_to(src, target_atom, 5)
 				if(prob(25))
 					src.visible_message("<span class='notice'>\The [src] skitters[pick(" away"," around","")].</span>")
-		else if(prob(5))
+		else if(prob(1))
 			//vent crawl!
 			for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))
 				if(!v.welded)

@@ -21,7 +21,7 @@
 	origin_tech = "materials=2;combat=1"
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
-	tool_qualities = list(QUALITY_CUTTING = 2)
+	tool_qualities = list(QUALITY_CUTTING = 20)
 
 /obj/item/weapon/material/hatchet/tacknife
 	name = "tactical knife"
@@ -57,4 +57,4 @@
 	slot_flags = SLOT_BACK
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
-	tool_qualities = list(QUALITY_CUTTING = 2)
+	tool_qualities = list(QUALITY_CUTTING = 20)

@@ -96,9 +96,12 @@
 		for(var/obj/item/organ/O in internal_organs)
 			qdel(O)
 
+	if(owner)
+		owner.organs -= src
+		owner.organs_by_name -= src.organ_tag
+
 	if(module)
-		qdel(module)
-		module = null
+		QDEL_NULL(module)
 
 	return ..()
 
@@ -143,7 +146,7 @@
 		return
 
 	owner.organs -= src
-	owner.organs_by_name[organ_tag] = null // Remove from owner's vars.
+	owner.organs_by_name -= src.organ_tag
 	owner.bad_external_organs -= src
 
 	if(module)
@@ -583,7 +586,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
 		heal_amt = heal_amt * wound_update_accuracy
 		//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
-		heal_amt = heal_amt * config.organ_regeneration_multiplier
+		heal_amt = heal_amt * ORGAN_REGENERATION_MULTIPLIER
 		// amount of healing is spread over all the wounds
 		heal_amt = heal_amt / (wounds.len + 1)
 		// making it look prettier on scanners
@@ -630,7 +633,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		src.setBleeding()
 
 	//Bone fractures
-	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && robotic < ORGAN_ROBOT)
+	if(config.bones_can_break && brute_dam > min_broken_damage * ORGAN_HEALTH_MULTIPLIER && robotic < ORGAN_ROBOT)
 		src.fracture()
 
 //Returns 1 if damage_state changed
@@ -749,8 +752,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/organ/I in internal_organs)
-				I.removed()
 				if(istype(loc,/turf))
+					internal_organs -= src
 					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/I in src)
@@ -889,7 +892,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/mend_fracture()
 	if(robotic >= ORGAN_ROBOT)
 		return 0	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
-	if(brute_dam > min_broken_damage * config.organ_health_multiplier)
+	if(brute_dam > min_broken_damage * ORGAN_HEALTH_MULTIPLIER)
 		return 0	//will just immediately fracture again
 
 	status &= ~ORGAN_BROKEN

@@ -329,6 +329,7 @@ var/global/datum/controller/occupations/job_master
 							spawn_in_storage += thing
 			//Equip job items and language stuff
 			job.equip(H)
+			job.add_stats(H)
 			job.add_additiional_language(H)
 			job.setup_account(H)
 

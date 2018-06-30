@@ -182,3 +182,21 @@
 	set name = "Move Downwards"
 	set category = null
 	zMove(DOWN)
+
+// Laders and stairs pulling movement
+/obj/structure/multiz/proc/try_resolve_mob_pulling(mob/M, obj/structure/multiz/ES)
+	if(istype(M) && (ES && ES.istop == istop))
+		var/list/moveWithMob = list()
+		if(M.pulling)
+			moveWithMob += M.pulling
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			for(var/obj/item/weapon/grab/G in list(H.r_hand, H.l_hand))
+				moveWithMob += G.affecting
+		if(moveWithMob.len)
+			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)
+			if(!pull_target)
+				pull_target = get_turf(M)
+			for(var/Elem in moveWithMob)
+				var/atom/movable/A = Elem
+				A.forceMove(pull_target)

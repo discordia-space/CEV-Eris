@@ -115,7 +115,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 			return		// prevent intraction when T-scanner revealed
 
 		if(QUALITY_SCREW_DRIVING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 				open = !open
 
 				user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")

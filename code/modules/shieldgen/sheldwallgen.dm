@@ -161,7 +161,7 @@
 /obj/machinery/shieldwallgen/attackby(obj/item/I, mob/user)
 
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_PRD))
 			if(active)
 				user << "Turn off the field generator first."
 				return

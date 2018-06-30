@@ -51,6 +51,17 @@
 	populate_contents()
 	update_icon()
 	hack_require = rand(6,8)
+	if(!opened) // if closed, any item at the crate's loc is put in the contents
+		var/obj/item/I
+		for(I in src.loc)
+			if(I.density || I.anchored || I == src) continue
+			I.forceMove(src)
+		// adjust locker size to hold all items with 5 units of free store room
+		var/content_size = 0
+		for(I in src.contents)
+			content_size += Ceiling(I.w_class/2)
+		if(content_size > storage_capacity-5)
+			storage_capacity = content_size + 5
 
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
@@ -279,17 +290,7 @@
 				qdel(src)
 
 /obj/structure/closet/proc/populate_contents()
-	if(!opened)		// if closed, any item at the crate's loc is put in the contents
-		var/obj/item/I
-		for(I in src.loc)
-			if(I.density || I.anchored || I == src) continue
-			I.forceMove(src)
-		// adjust locker size to hold all items with 5 units of free store room
-		var/content_size = 0
-		for(I in src.contents)
-			content_size += Ceiling(I.w_class/2)
-		if(content_size > storage_capacity-5)
-			storage_capacity = content_size + 5
+	return
 
 /obj/structure/closet/proc/damage(var/damage)
 	health -= damage
@@ -320,7 +321,7 @@
 		if(istype(I,/obj/item/tk_grab))
 			return 0
 		if(QUALITY_WELDING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 				new /obj/item/stack/material/steel(src.loc)
 				src.visible_message(
 					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
@@ -347,7 +348,7 @@
 	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
 	if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
 			welded = !src.welded
 			update_icon()
 			for(var/mob/M in viewers(src))
@@ -363,7 +364,7 @@
 		SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
 		SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
 		)
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_CHALLENGING))
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_PRD))
 			if(hack_stage < hack_require)
 				playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
 				hack_stage++

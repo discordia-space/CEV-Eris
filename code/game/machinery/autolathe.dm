@@ -1,3 +1,5 @@
+#define SANITIZE_LATHE_COST(n) max(1, n) // makes sure that discounted prices from upgraded lathe no less than 1 unit.
+
 /obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
@@ -102,7 +104,7 @@
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
-			RS.Add(list(list("name" = mat, "req" = round(R.resources[mat] * mat_efficiency))))
+			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(round(R.resources[mat] * mat_efficiency)))))
 
 		data["req_materials"] = RS
 
@@ -255,7 +257,6 @@
 		if(making_recipe && making_left)
 			make(making_recipe.type,making_left)
 
-
 /obj/machinery/autolathe/proc/eat(var/mob/living/user)
 	if(!istype(user))
 		return
@@ -279,32 +280,50 @@
 		return
 
 	var/filltype = 0       // Used to determine message.
+	var/reagents_filltype = 0
 	var/total_used = 0     // Amount of material used.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
-	for(var/material in eating.matter)
-		if(!(material in stored_material))
-			stored_material[material] = 0
+	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
+		if(O.matter && O.matter.len)
+			for(var/material in O.matter)
+				if(!(material in stored_material))
+					stored_material[material] = 0
 
-		if(stored_material[material] >= storage_capacity)
-			continue
+				if(stored_material[material] >= storage_capacity)
+					continue
 
-		var/total_material = round(eating.matter[material])
+				var/total_material = round(O.matter[material])
 
-		//If it's a stack, we eat multiple sheets.
-		if(istype(eating,/obj/item/stack))
-			var/obj/item/stack/material/stack = eating
-			total_material *= stack.get_amount()
+				//If it's a stack, we eat multiple sheets.
+				if(istype(O,/obj/item/stack))
+					var/obj/item/stack/material/stack = O
+					total_material *= stack.get_amount()
 
-		if(stored_material[material] + total_material > storage_capacity)
-			total_material = storage_capacity - stored_material[material]
-			filltype = 1
-		else
-			filltype = 2
+				if(stored_material[material] + total_material > storage_capacity)
+					total_material = storage_capacity - stored_material[material]
+					filltype = 1
+				else
+					filltype = 2
 
-		stored_material[material] += total_material
-		total_used += total_material
-		mass_per_sheet += eating.matter[material]
+				stored_material[material] += total_material
+				total_used += total_material
+				mass_per_sheet += O.matter[material]
+
+		if(O.matter_reagents)
+			if(container)
+				var/datum/reagents/RG = new(0)
+				for(var/r in O.matter_reagents)
+					RG.maximum_volume += O.matter_reagents[r]
+					RG.add_reagent(r ,O.matter_reagents[r])
+				reagents_filltype = 1
+				RG.trans_to(container, RG.total_volume)
+
+			else
+				reagents_filltype = 2
+
+		if(O.reagents && container)
+			O.reagents.trans_to(container, O.reagents.total_volume)
 
 	if(!filltype)
 		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
@@ -314,20 +333,10 @@
 	else
 		user << SPAN_NOTICE("You fill \the [src] with \the [eating].")
 
-	if(eating.matter_reagents)
-		if(container)
-			var/datum/reagents/RG = new(0)
-			for(var/r in eating.matter_reagents)
-				RG.maximum_volume += eating.matter_reagents[r]
-				RG.add_reagent(r ,eating.matter_reagents[r])
-
-			RG.trans_to(container, RG.total_volume)
-			user << SPAN_NOTICE("Some liquid flowed to \the [container].")
-		else
-			user << SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot.")
-
-	if(eating.reagents && container)
-		eating.reagents.trans_to(container,eating.reagents.total_volume)
+	if(reagents_filltype == 1)
+		user << SPAN_NOTICE("Some liquid flowed to \the [container].")
+	else if(reagents_filltype == 2)
+		user << SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot.")
 
 	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
@@ -364,7 +373,7 @@
 
 		//Check if we have enough materials.
 		for(var/material in making_recipe.resources)
-			if(isnull(stored_material[material]) || stored_material[material] < round(making_recipe.resources[material] * mat_efficiency))
+			if(isnull(stored_material[material]) || stored_material[material] < SANITIZE_LATHE_COST(round(making_recipe.resources[material] * mat_efficiency)))
 				not_enough_resources = TRUE
 				break
 
@@ -382,7 +391,7 @@
 
 		//Consume materials.
 		for(var/material in making_recipe.resources)
-			stored_material[material] = max(0, stored_material[material] - round(making_recipe.resources[material] * mat_efficiency))
+			stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(round(making_recipe.resources[material] * mat_efficiency)))
 
 
 		for(var/reagent in making_recipe.reagents)
@@ -483,3 +492,5 @@
 
 	..()
 	return 1
+
+#undef SANITIZE_LATHE_COST

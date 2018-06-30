@@ -55,8 +55,7 @@
 	else
 		user << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
 
-/obj/item/organ/internal/brain/removed(var/mob/living/user)
-
+/obj/item/organ/internal/brain/removed(mob/living/user)
 	name = "[owner.real_name]'s brain"
 
 	var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()

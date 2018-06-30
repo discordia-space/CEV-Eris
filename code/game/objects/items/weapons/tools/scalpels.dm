@@ -13,14 +13,14 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MATERIAL_STEEL = 4)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	tool_qualities = list(QUALITY_CUTTING = 3, QUALITY_WIRE_CUTTING = 1)
+	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 10)
 
 /obj/item/weapon/tool/scalpel/advanced
 	name = "advanced scalpel"
 	desc = "Made of more expensive materials, sharper and generally more reliable."
 	icon_state = "scalpel_t4"
 	matter = list(MATERIAL_STEEL = 5)
-	tool_qualities = list(QUALITY_CUTTING = 4, QUALITY_WIRE_CUTTING = 1)
+	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 10)
 
 /obj/item/weapon/tool/scalpel/laser
 	name = "laser scalpel"
@@ -29,7 +29,7 @@
 	damtype = "fire"
 	force = WEAPON_FORCE_DANGEROUS
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
-	tool_qualities = list(QUALITY_CUTTING = 5, QUALITY_WIRE_CUTTING = 2, QUALITY_LASER_CUTTING = 4)
+	tool_qualities = list(QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40)
 
 	use_power_cost = 1
 	suitable_cell = /obj/item/weapon/cell/small

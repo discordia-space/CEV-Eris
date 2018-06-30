@@ -164,7 +164,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		return
 
 	changeling.isabsorbing = 1
-	for(var/stage = 1, stage<=3, stage++)
+	for(var/stage in 1 to 3)
 		switch(stage)
 			if(1)
 				src << SPAN_NOTICE("This creature is compatible. We must hold still...")
@@ -172,10 +172,13 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 				src << SPAN_NOTICE("We extend a proboscis.")
 				src.visible_message(SPAN_WARNING("[src] extends a proboscis!"))
 			if(3)
+				var/obj/item/organ/external/affecting = T.get_organ(src.targeted_organ)
+				if(!affecting)
+					to_chat(src, SPAN_WARNING("It seems [targeted_organ] is not a place to stab our probscis with. We need to find another"))
+					return
 				src << SPAN_NOTICE("We stab [T] with the proboscis.")
 				src.visible_message(SPAN_DANGER("[src] stabs [T] with the proboscis!"))
 				T << SPAN_DANGER("You feel a sharp stabbing pain!")
-				var/obj/item/organ/external/affecting = T.get_organ(src.targeted_organ)
 				if(affecting.take_damage(39,0,1,0,"large organic needle"))
 					T:UpdateDamageIcon()
 

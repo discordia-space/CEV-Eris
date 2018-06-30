@@ -18,6 +18,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	ideal_character_age = 70 // Old geezer captains ftw
 
+	stat_modifers = list(
+		STAT_PHY = 10,
+		STAT_ROB = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/captain
 	shoes = /obj/item/clothing/shoes/color/brown
@@ -69,6 +73,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	economic_modifier = 15
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	ideal_character_age = 50
+
+	stat_modifers = list(
+		STAT_ROB = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/first_officer
 	shoes = /obj/item/clothing/shoes/reinforced

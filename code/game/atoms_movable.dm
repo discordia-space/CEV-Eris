@@ -217,9 +217,10 @@
 
 	//done throwing, either because it hit something or it finished moving
 	var/turf/new_loc = get_turf(src)
-	if(isobj(src))
-		src.throw_impact(new_loc,speed)
-	new_loc.Entered(src)
+	if(new_loc)
+		if(isobj(src))
+			src.throw_impact(new_loc,speed)
+		new_loc.Entered(src)
 	src.throwing = 0
 	src.thrower = null
 	src.throw_source = null

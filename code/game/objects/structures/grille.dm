@@ -103,7 +103,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(!shock(user, 100))
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					PoolOrNew(/obj/item/stack/rods, list(get_turf(src), destroyed ? 1 : 2))
 					qdel(src)
 					return
@@ -111,7 +111,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
 					anchored = !anchored
 					user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
 										 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
