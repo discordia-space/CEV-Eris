@@ -169,13 +169,7 @@ var/list/global/tank_gauge_cache = list()
 			var/mob/living/carbon/location = loc
 			if(location.internal == src)
 				location.internal = null
-//				location.internals.icon_state = "internal0"
-				if(location.HUDneed.Find("internal"))
-					var/obj/screen/HUDelm = location.HUDneed["internal"]
-					HUDelm.icon_state = "internal0"
 				usr << SPAN_NOTICE("You close the tank release valve.")
-/*				if (location.internals)
-					location.internals.icon_state = "internal0"*/
 			else
 
 				var/can_open_valve
@@ -190,13 +184,11 @@ var/list/global/tank_gauge_cache = list()
 					location.internal = src
 					usr << SPAN_NOTICE("You open \the [src] valve.")
 					playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
-/*					if (location.internals)
-						location.internals.icon_state = "internal1"*/
-					if(location.HUDneed.Find("internal"))
-						var/obj/screen/HUDelm = location.HUDneed["internal"]
-						HUDelm.icon_state = "internal1"
 				else
 					usr << SPAN_WARNING("You need something to connect to \the [src].")
+				if(location.HUDneed.Find("internal"))
+					var/obj/screen/HUDelm = location.HUDneed["internal"]
+					HUDelm.update_icon()
 
 	src.add_fingerprint(usr)
 	return 1

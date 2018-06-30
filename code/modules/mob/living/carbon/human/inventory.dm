@@ -160,10 +160,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
-		if(internal)
-			if(HUDneed.Find("internal"))
-				var/obj/screen/HUDelm = HUDneed["internal"]
-				HUDelm.icon_state = "internal0"
+		if(HUDneed.Find("internal"))
+			var/obj/screen/HUDelm = HUDneed["internal"]
+			HUDelm.update_icon()
 /*			if(internals)
 				internals.icon_state = "internal0"*/
 			internal = null
