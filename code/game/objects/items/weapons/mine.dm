@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
 	w_class = ITEM_SIZE_LARGE
-	matter = list(MATERIAL_STEEL = 7)
+	matter = list(MATERIAL_STEEL = 10)
 	matter_reagents = list("fuel" = 30)
 
 	var/obj/item/device/assembly_holder/detonator = null
@@ -19,6 +19,9 @@
 	var/explosion_h_size = -1
 	var/explosion_l_size = -1
 	var/explosion_f_size = 15
+
+/obj/item/weapon/mine/ignite_act()
+	explode()
 
 /obj/item/weapon/mine/proc/explode()
 	var/turf/T = get_turf(src)

@@ -39,3 +39,16 @@
 		/obj/item/weapon/stock_parts/console_screen = 1,
 		/obj/item/stack/cable_coil = 5
 	)
+
+/obj/item/weapon/circuitboard/shieldwallgen
+	name = T_BOARD("shield wall generator")
+	board_type = "machine"
+	build_path = /obj/machinery/shieldwallgen
+	origin_tech = list(TECH_BLUESPACE = 3, TECH_MAGNET = 3)
+	req_components = list(
+		/obj/item/weapon/stock_parts/subspace/transmitter = 1,
+		/obj/item/weapon/stock_parts/subspace/crystal = 1,
+		/obj/item/weapon/stock_parts/subspace/amplifier = 1,
+		/obj/item/weapon/stock_parts/capacitor = 3,
+		/obj/item/stack/cable_coil = 30
+	)

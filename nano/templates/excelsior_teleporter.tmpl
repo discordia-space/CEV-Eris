@@ -1,0 +1,31 @@
+<!-- 
+Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
+ -->
+<div class="item">
+	<div class="itemLabel">
+		Energy:
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.energy, 0, data.maxEnergy, 'good', data.energy + ' Units')}}
+	</div>
+</div>
+<hr>
+<div class="item">
+	<div class="itemLabel" style="width: 100%;">
+		Order List:
+	</div>
+</div>
+<table class='itemContent' style="width: 100%;">
+	<tr>
+		<td><b>Name</b></td>
+		<td><b>Amount</b></td>
+		<td><b>Energy Cost</b></td>
+	</tr>
+	{{for data.buy_list}}
+		<tr>
+		<td>{{:value.title}}</td>
+		<td>{{:value.amount}}</td>
+		<td>{{:helper.link(value.price, 'circle-arrow-s', value.commands, null, null)}}</td>
+		</tr>
+	{{/for}}
+</table>

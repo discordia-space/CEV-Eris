@@ -1,5 +1,12 @@
 #define SANITIZE_LATHE_COST(n) max(1, n) // makes sure that discounted prices from upgraded lathe no less than 1 unit.
 
+#define ERR_OK 0
+#define ERR_NOTFOUND 1
+#define ERR_NOMATERIAL 2
+#define ERR_NOREAGENT 3
+#define ERR_NOLICENSE 4
+
+
 /obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
@@ -20,18 +27,34 @@
 	var/obj/item/weapon/reagent_containers/glass/container = null
 	var/show_category = "All"
 
-	var/hacked = 0
-	var/disabled = 0
-	var/shocked = 0
+	var/hacked = FALSE
+	var/disabled = FALSE
+	var/shocked = FALSE
+	var/paused = FALSE
 
-	var/making_left = 0
-	var/making_total = 0
-	var/datum/autolathe/recipe/making_recipe = null
-	var/not_enough_resources = FALSE
-	var/disk_error = FALSE
+	var/working = FALSE
+	var/anim = 0
+
+	var/error = null
+
+	var/unfolded = null
+
+	var/current = null
+	var/list/queue = list()
+	var/queue_max = 8
+
+	var/speed = 2
+
+	var/progress = 0
 
 	var/mat_efficiency = 1
-	var/build_time = 50
+
+	var/have_disk = TRUE
+
+	var/message_nolicense = "Disk license is out."
+	var/message_nomaterial = "Not enough materials."
+	var/message_noreagent = "Not enough reagents."
+	var/message_notfound = "Design data not found."
 
 	var/tmp/datum/wires/autolathe/wires = null
 
@@ -50,26 +73,39 @@
 /obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
 	var/list/data = list()
 
-	data["disk"] = null
-	data["uses"] = 0
-	if(disk)
-		data["disk"] = disk.category
-		data["uses"] = disk.license
+	data["disk"] = disk_name()
+	data["paused"] = paused
+	data["uses"] = disk_uses()
+	data["error"] = error
+	data["have_disk"] = have_disk
 
-		var/list/L = list()
-		for(var/rtype in disk.recipes)
-			var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
-			var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]")
+	var/list/L = list()
+	for(var/rtype in recipe_list())
+		var/datum/autolathe/recipe/R = autolathe_recipes[rtype]
+		var/list/LE = list("name" = capitalize(R.name), "type" = "[rtype]", "time" = R.time)
 
-			L.Add(list(LE))
+		if(unfolded == "[rtype]")
+			LE["unfolded"] = TRUE
 
-		data["recipes"] = L
+			var/text = ""
+			for(var/m in R.resources)
+				text += "[m]: [round(R.resources[m] * mat_efficiency)]<br>"
+			LE["resources"] = text == "" ? "None" : text
+
+			text = ""
+			for(var/m in R.reagents)
+				text += "[m]: [R.reagents[m]]<br>"
+			LE["reagents"] = text == "" ? "None" : text
+
+		L.Add(list(LE))
+
+	data["recipes"] = L
 
 	data["container"] = FALSE
 	if(container)
 		data["container"] = TRUE
 		if(container.reagents)
-			var/list/L = list()
+			L = list()
 			for(var/datum/reagent/R in container.reagents.reagent_list)
 				var/list/LE = list("name" = R.name, "count" = "[R.volume]")
 
@@ -77,6 +113,7 @@
 
 			data["reagents"] = L
 
+	data["mat_capacity"] = storage_capacity
 	var/list/M = list()
 	for(var/mtype in stored_material)
 		if(stored_material[mtype] <= 0)
@@ -92,37 +129,69 @@
 
 	data["materials"] = M
 
-	data["busy"] = FALSE
-	if(making_recipe)
-		data["busy"] = TRUE
-		var/datum/autolathe/recipe/R = making_recipe
-		data["busyname"] = capitalize(R.name)
-		data["busynow"] = making_total - making_left + 1
-		data["busytotal"] = making_total
-		data["resout"] = not_enough_resources
-		data["diskerr"] = disk_error
+	data["current"] = null
+	data["progress"] = progress
+	if(current)
+		var/datum/autolathe/recipe/R = autolathe_recipes[current]
+		if(R)
+			data["current"] = R.name
+			data["current_time"] = R.time
 
 		var/list/RS = list()
 		for(var/mat in R.resources)
 			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(round(R.resources[mat] * mat_efficiency)))))
 
-		data["req_materials"] = RS
+			data["req_materials"] = RS
 
-		RS = list()
-		for(var/reg in R.reagents)
-			var/datum/reagent/RG = chemical_reagents_list[reg]
-			if(RG)
-				RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
-			else
-				RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
+			RS = list()
+			for(var/reg in R.reagents)
+				var/datum/reagent/RG = chemical_reagents_list[reg]
+				if(RG)
+					RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
+				else
+					RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
 
-		data["req_reagents"] = RS
+			data["req_reagents"] = RS
+
+	var/list/Q = list()
+	var/list/qmats = stored_material.Copy()
+
+	for(var/i = 1; i <= queue.len; i++)
+		if(!queue[i])
+			continue
+
+		var/datum/autolathe/recipe/R = autolathe_recipes[queue[i]]
+		if(!R)
+			Q.Add(list(list("name" = "ERROR", "ind" = i, "error" = 2)))
+
+		var/list/QR = list("name" = R.name, "ind" = i)
+		QR["error"] = 0
+
+		if(disk_uses() >= 0 && disk_uses() <= i)
+			QR["error"] = 1
+
+		for(var/rmat in R.resources)
+			if(!(rmat in qmats))
+				qmats[rmat] = 0
+
+			qmats[rmat]	-= R.resources[rmat]
+			if(qmats[rmat] < 0)
+				QR["error"] = 1
+
+		if(cannot_print(queue[i]) != ERR_OK)
+			QR["error"] = 2
+
+		Q.Add(list(QR))
+
+	data["queue"] = Q
+	data["queue_len"] = queue.len
+	data["queue_max"] = queue_max
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 450, 655)
+		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 550, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -171,7 +240,7 @@
 	if(href_list["insert_beaker"])
 		insert_beaker(usr)
 
-	if(!making_recipe)
+	if(!current || paused)
 		if(href_list["eject_material"])
 			var/material = href_list["eject_material"]
 			var/material/M = get_material_by_name(material)
@@ -179,7 +248,7 @@
 			if(!M.stack_type)
 				return
 
-			var/num = input("Enter sheets count to eject. 0-[stored_material[material]]","Eject",0) as num
+			var/num = input("Enter sheets number to eject. 0-[stored_material[material]]","Eject",0) as num
 
 			if(!Adjacent(usr))
 				return
@@ -198,21 +267,46 @@
 
 			container = null
 
-		if(href_list["print_one"] && disk)
-			if(!making_recipe)
-				make(text2path(href_list["print_one"]),1)
 
-		if(href_list["print_several"] && disk)
-			if(!making_recipe)
-				var/num = input("Enter items count to print.","Print") as num
-				make(text2path(href_list["print_several"]),num)
+	if(href_list["add_to_queue"])
+		var/recipe = text2path(href_list["add_to_queue"])
+		if(recipe)
+			if(queue.len < queue_max)
+				queue.Add(recipe)
+
+	if(href_list["remove_from_queue"])
+		var/ind = text2num(href_list["remove_from_queue"])
+		if(ind != null && ind >= 1 && ind <= queue.len)
+			queue[ind] = null
+			fix_queue()
+
+	if(href_list["move_up_queue"])
+		var/ind = text2num(href_list["move_up_queue"])
+		if(ind != null && ind >= 2 && ind <= queue.len)
+			queue.Swap(ind,ind-1)
+
+	if(href_list["move_down_queue"])
+		var/ind = text2num(href_list["move_down_queue"])
+		if(ind != null && ind >= 1 && ind <= queue.len-1)
+			queue.Swap(ind,ind+1)
+
 
 	if(href_list["abort_print"])
-		making_recipe = null
-		making_left = 0
-		making_total = 0
-		disk_error = FALSE
-		not_enough_resources = FALSE
+		if(working)
+			print_post()
+			working = FALSE
+		current = null
+		paused = TRUE
+		working = FALSE
+
+	if(href_list["toggle_pause"])
+		paused = !paused
+
+	if(href_list["unfold"])
+		if(unfolded == href_list["unfold"])
+			unfolded = null
+		else
+			unfolded = href_list["unfold"]
 
 	nanomanager.update_uis(src)
 
@@ -226,6 +320,9 @@
 		return
 
 	if(istype(eating,/obj/item/weapon/disk/autolathe_disk))
+		if(!have_disk)
+			return
+
 		if(disk)
 			user << SPAN_NOTICE("There's already \a [disk] inside the autolathe.")
 			return
@@ -233,8 +330,6 @@
 		disk = eating
 		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
 		nanomanager.update_uis(src)
-		if(making_recipe && making_left)
-			make(making_recipe.type,making_left)
 
 
 /obj/machinery/autolathe/proc/insert_beaker(var/mob/living/user)
@@ -254,8 +349,6 @@
 		container = eating
 		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
 		nanomanager.update_uis(src)
-		if(making_recipe && making_left)
-			make(making_recipe.type,making_left)
 
 /obj/machinery/autolathe/proc/eat(var/mob/living/user)
 	if(!istype(user))
@@ -338,7 +431,7 @@
 	else if(reagents_filltype == 2)
 		user << SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot.")
 
-	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+	res_load() // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
@@ -347,95 +440,167 @@
 		user.remove_from_mob(eating)
 		qdel(eating)
 
-	if(making_recipe && making_left)
-		make(making_recipe.type,making_left)
 
-/obj/machinery/autolathe/proc/make(var/recipe, var/amount)
-	disk_error = FALSE
-	not_enough_resources = FALSE
 
-	if(!(recipe in autolathe_recipes))
+//////////////////////////////////////////
+//Helper procs for derive possibility
+//////////////////////////////////////////
+/obj/machinery/autolathe/proc/recipe_list()
+	if(disk)
+		return disk.recipes
+	else
+		return list()
+
+//Return -1 to infinite uses or lower value to disable uses display
+/obj/machinery/autolathe/proc/disk_uses()
+	if(disk)
+		return disk.license
+
+//Should return null if there is no disk
+/obj/machinery/autolathe/proc/disk_name()
+	if(disk)
+		return disk.category
+
+//Procs for handling print animation
+/obj/machinery/autolathe/proc/print_pre()
+	return
+
+/obj/machinery/autolathe/proc/print_post()
+	return
+
+
+/obj/machinery/autolathe/proc/res_load()
+	flick("autolathe_o", src)
+
+
+/obj/machinery/autolathe/proc/cannot_print(var/recipe)
+	var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
+	if(!R || !(recipe in recipe_list()))
+		return ERR_NOTFOUND
+
+	if(disk_uses() == 0 )
+		return ERR_NOLICENSE
+
+	for(var/rmat in R.resources)
+		if(!(rmat in stored_material))
+			return ERR_NOMATERIAL
+
+		if(stored_material[rmat] < SANITIZE_LATHE_COST(round(R.resources[rmat] * mat_efficiency)))
+			return ERR_NOMATERIAL
+
+	if(R.reagents.len)
+		if(!container || !container.reagents || !container.is_open_container())
+			return ERR_NOREAGENT
+		else
+			for(var/rgn in R.reagents)
+				if(!container.reagents.has_reagent(rgn, R.reagents[rgn]))
+					return ERR_NOREAGENT
+
+	return ERR_OK
+
+
+/obj/machinery/autolathe/Process()
+	if(stat & NOPOWER)
+		if(working)
+			print_post()
+			working = FALSE
+		update_icon()
 		return
 
-	making_recipe = autolathe_recipes[recipe]
-	making_total = amount
-	making_left = amount
+	if(anim < world.time)
+		if(current)
+			var/datum/autolathe/recipe/R = autolathe_recipes[current]
+			var/err = cannot_print(current)
+			if(err == ERR_NOLICENSE)
+				error = message_nolicense
+			else if(err == ERR_NOMATERIAL)
+				error = message_nomaterial
+			else if(err == ERR_NOREAGENT)
+				error = message_noreagent
+			else if(err == ERR_NOTFOUND)
+				error = message_notfound
+			else if(err == ERR_OK)
+				error = null
 
-	for(making_left = amount; making_left > 0;)
-		nanomanager.update_uis(src)
-		update_use_power(2)
+				working = TRUE
 
-		if(stat)
-			break
+				if(!paused)
+					if(progress <= 0)
+						consume_materials(current)
 
-		if(!disk || !(making_recipe.type in disk.recipes))
-			disk_error = TRUE
+					progress += speed
 
-		//Check if we have enough materials.
-		for(var/material in making_recipe.resources)
-			if(isnull(stored_material[material]) || stored_material[material] < SANITIZE_LATHE_COST(round(making_recipe.resources[material] * mat_efficiency)))
-				not_enough_resources = TRUE
+			else
+				error = "Unknown error."
+
+			if(R && progress >= R.time)
+				print_post()
+				new R.path(src.loc)
+				working = FALSE
+				current = null
+
+		else
+			error = null
+			working = FALSE
+			next_recipe()
+
+	fix_queue()
+	special_process()
+	update_icon()
+	nanomanager.update_uis(src)
+
+/obj/machinery/autolathe/update_icon()
+	overlays.Cut()
+
+	icon_state = "autolathe"
+	if(panel_open)
+		overlays.Add(image(icon,"autolathe_p"))
+
+	if(working)
+		icon_state = "autolathe_n"
+
+/obj/machinery/autolathe/proc/consume_materials(var/recipe)
+	var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
+	if(!R)
+		return FALSE
+
+	for(var/material in R.resources)
+		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(round(R.resources[material] * mat_efficiency)))
+
+	for(var/reagent in R.reagents)
+		container.reagents.remove_reagent(reagent, R.reagents[reagent])
+
+	return TRUE
+
+
+/obj/machinery/autolathe/proc/next_recipe()
+	current = null
+	progress = 0
+	if(queue.len)
+		current = queue[1]
+		print_pre()
+		working = TRUE
+		queue[1] = null
+		fix_queue()
+	else
+		current = null
+		working = FALSE
+
+/obj/machinery/autolathe/proc/special_process()
+	queue_max = hacked ? 16 : 8
+
+/obj/machinery/autolathe/proc/fix_queue()
+	var/list/Q = list()
+	var/cnt = 0
+	for(var/r in queue)
+		if(ispath(r))
+			Q.Add(r)
+			cnt++
+			if(cnt > queue_max)
 				break
 
-		if(making_recipe.reagents && making_recipe.reagents.len)
-			if(!container || !container.reagents || !container.is_open_container())
-				not_enough_resources = TRUE
-			else
-				for(var/reagent in making_recipe.reagents)
-					if(!container.reagents.has_reagent(reagent, making_recipe.reagents[reagent]))
-						not_enough_resources = TRUE
-						break
+	queue = Q
 
-		if(disk_error || not_enough_resources || disk.license == 0)
-			return
-
-		//Consume materials.
-		for(var/material in making_recipe.resources)
-			stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(round(making_recipe.resources[material] * mat_efficiency)))
-
-
-		for(var/reagent in making_recipe.reagents)
-			container.reagents.remove_reagent(reagent, making_recipe.reagents[reagent])
-
-		//Fancy autolathe animation.
-		flick("autolathe_n", src)
-
-		if(ispath(making_recipe.path,/obj/item/stack))
-			sleep(max(5,round(build_time/30)))
-		else
-			sleep(build_time)
-
-		update_use_power(1)
-
-		//Sanity check.
-		if(!making_recipe || !src)
-			return
-
-		if(!disk || !(making_recipe.type in disk.recipes))
-			disk_error = TRUE
-
-		if(disk_error || disk.license == 0)
-			return
-
-		making_left--
-		disk.license--
-
-		//Create the desired item.
-		if(ispath(making_recipe.path,/obj/item/stack))
-			var/obj/item/stack/S = locate(making_recipe.path, loc)
-			if(S && S.max_amount < S.amount)
-				S.amount++
-			else
-				new making_recipe.path(loc)
-		else
-			new making_recipe.path(loc)
-
-		nanomanager.update_uis(src)
-
-	making_recipe = null
-	making_total = 0
-	making_left = 0
-	nanomanager.update_uis(src)
 
 /obj/machinery/autolathe/proc/eject(var/material, var/amount)
 	if(!(material in stored_material))
@@ -454,9 +619,6 @@
 	S.amount = eject
 	stored_material[material] -= eject
 
-/obj/machinery/autolathe/update_icon()
-	icon_state = (panel_open ? "autolathe_t" : "autolathe")
-
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
 	..()
@@ -469,7 +631,7 @@
 
 	storage_capacity = round(initial(storage_capacity)*(mb_rating/3))
 
-	build_time = 50 / man_rating
+	speed = man_rating*3
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.8. Maximum rating of parts is 3
 
 /obj/machinery/autolathe/dismantle()
@@ -492,5 +654,11 @@
 
 	..()
 	return 1
+
+#undef ERR_OK
+#undef ERR_NOTFOUND
+#undef ERR_NOMATERIAL
+#undef ERR_NOREAGENT
+#undef ERR_NOLICENSE
 
 #undef SANITIZE_LATHE_COST
