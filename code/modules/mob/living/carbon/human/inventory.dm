@@ -343,7 +343,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(!(slot in list(slot_in_backpack, slot_accessory_buffer)))
 		W.screen_loc = find_inv_position(slot)
-	W.layer = 20
+	W.layer = ABOVE_HUD_LAYER
+	W.plane = ABOVE_HUD_PLANE
 
 	if(W.action_button_name)
 		update_action_buttons()

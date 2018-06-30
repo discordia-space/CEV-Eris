@@ -7,7 +7,7 @@
 	icon_state = "singularity_s1"
 	anchored = 1
 	density = 1
-	layer = 6
+	layer = MASSIVE_OBJ_LAYER
 	//light_range = 6
 	unacidable = 1 //Don't comment this out.
 	allow_spin = 0

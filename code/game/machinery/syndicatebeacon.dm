@@ -14,6 +14,7 @@
 
 	anchored = 1
 	density = 1
+	layer = BELOW_MOB_LAYER //so people can't hide it and it's REALLY OBVIOUS
 
 	var/temptext = ""
 	var/selfdestructing = 0
@@ -84,7 +85,7 @@
 
 	anchored = 0
 	density = 1
-	layer = MOB_LAYER - 0.1 //so people can't hide it and it's REALLY OBVIOUS
+	layer = LOW_OBJ_LAYER
 	stat = 0
 
 	var/active = 0

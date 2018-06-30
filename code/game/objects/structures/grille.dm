@@ -1,12 +1,12 @@
 /obj/structure/grille
-	name = "grille"
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
+	name = "grille"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
 	density = 1
 	anchored = 1
 	flags = CONDUCT
-	layer = 2.9
+	layer = BELOW_OBJ_LAYER
 	explosion_resistance = 1
 	var/health = 50
 	var/destroyed = 0

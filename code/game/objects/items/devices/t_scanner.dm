@@ -81,7 +81,8 @@
 	if(scanned in overlay_cache)
 		. = overlay_cache[scanned]
 	else
-		var/image/I = image(loc = scanned, icon = scanned.icon, icon_state = scanned.icon_state, layer = HUD_LAYER)
+		var/image/I = image(loc = scanned, icon = scanned.icon, icon_state = scanned.icon_state, layer = ABOVE_HUD_LAYER)
+		I.plane = ABOVE_HUD_PLANE
 
 		//Pipes are special
 		if(istype(scanned, /obj/machinery/atmospherics/pipe))

@@ -286,6 +286,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.master = src
+		animation.layer = ABOVE_MOB_LAYER
 		flick("monkey2h", animation)
 		sleep(48)
 
@@ -383,6 +384,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
+	animation.layer = ABOVE_MOB_LAYER
 	flick("monkey2h", animation)
 	sleep(48)
 	qdel(animation)

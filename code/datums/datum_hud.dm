@@ -11,7 +11,18 @@
 	var/list/ConteinerData // for space_orient_objs and slot_orient_objs
 	var/list/IconUnderlays //underlays data for HUD objects
 	var/MinStyleFlag = FALSE //that HUD style have compact version?
+	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
 
+/datum/hud/proc/buildPlaneMasters(mob/mymob)
+	for(var/mytype in subtypesof(/obj/screen/plane_master))
+		var/obj/screen/plane_master/instance = new mytype()
+		plane_masters["[instance.plane]"] = instance
+		mymob.client.screen += instance
+		instance.backdrop(mymob)
+
+/datum/hud/New(mob/mymob)
+	if(mymob)
+		buildPlaneMasters(mymob)
 
 /datum/hud/human
 	name = "ErisStyle"
@@ -119,7 +130,7 @@
 
 
 /datum/hud/human/New()
-
+	..()
 	IconUnderlays = list(
 		"back0" = new /image(src.icon, "t0"),
 		"back1" = new /image(src.icon, "t1"),

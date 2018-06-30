@@ -29,12 +29,8 @@ var/list/global_huds = list(
 	var/obj/screen/science
 
 /datum/global_hud/proc/setup_overlay(var/icon_state)
-	var/obj/screen/screen = new /obj/screen()
-	screen.screen_loc = "1,1"
-	screen.icon = 'icons/obj/hud_full.dmi'
+	var/obj/screen/screen = new /obj/screen/fullscreen()
 	screen.icon_state = icon_state
-	screen.layer = 17
-	screen.mouse_opacity = 0
 
 	return screen
 
@@ -43,17 +39,20 @@ var/list/global_huds = list(
 	druggy = new /obj/screen()
 	druggy.screen_loc = ui_entire_screen
 	druggy.icon_state = "druggy"
-	druggy.layer = 17
+	druggy.layer = FULLSCREEN_LAYER
+	druggy.plane = FULLSCREEN_PLANE
 	druggy.mouse_opacity = 0
 
 	//that white blurry effect you get when you eyes are damaged
 	blurry = new /obj/screen()
 	blurry.screen_loc = ui_entire_screen
 	blurry.icon_state = "blurry"
-	blurry.layer = 17
+	blurry.layer = FULLSCREEN_LAYER
+	blurry.plane = FULLSCREEN_PLANE
 	blurry.mouse_opacity = 0
 
 	nvg = setup_overlay("nvg_hud")
+	nvg.plane = LIGHTING_PLANE
 	thermal = setup_overlay("thermal_hud")
 	meson = setup_overlay("meson_hud")
 	science = setup_overlay("science_hud")

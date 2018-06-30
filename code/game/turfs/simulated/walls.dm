@@ -3,6 +3,7 @@
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "generic"
+	layer = CLOSED_TURF_LAYER
 	opacity = 1
 	density = 1
 	blocks_air = 1

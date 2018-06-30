@@ -11,6 +11,7 @@
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER //connects to regular and scrubber pipes
 
 	level = 1
+	layer = GAS_SCRUBBER_LAYER
 
 	var/area/initial_loc
 	var/id_tag = null

@@ -5,6 +5,7 @@
 	mouse_opacity = 0
 	density = 0
 	anchored = 1
+	layer = FLASH_LAYER
 	var/ore_key
 	var/image/scanner_image
 
@@ -13,8 +14,6 @@
 	name = "[M.display_name] deposit"
 	ore_key = M.name
 	icon_state = "rock_[ore_key]"
-	var/turf/T = get_turf(src)
-	layer = T.layer+0.1
 
 /obj/effect/mineral/proc/get_scan_overlay()
 	if(!scanner_image)

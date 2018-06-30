@@ -28,7 +28,7 @@
 
 	anchored = 0
 	density = 1
-	layer = MOB_LAYER - 0.1
+	layer = LOW_OBJ_LAYER
 	stat = 0
 
 	var/target_drop_time
