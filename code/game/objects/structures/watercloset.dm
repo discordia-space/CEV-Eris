@@ -7,6 +7,7 @@
 	icon_state = "toilet00"
 	density = 0
 	anchored = 1
+	layer = SIGN_LAYER
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
@@ -169,7 +170,7 @@
 	name = "mist"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
-	layer = MOB_LAYER + 1
+	layer = FLY_LAYER
 	anchored = 1
 	mouse_opacity = 0
 
@@ -200,7 +201,7 @@
 		mymist = null
 
 	if(on)
-		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+		overlays += image('icons/obj/watercloset.dmi', src, "water", ABOVE_MOB_LAYER, dir)
 		if(temperature_settings[watertemp] < T20C)
 			return //no mist for cold water
 		if(!ismist)

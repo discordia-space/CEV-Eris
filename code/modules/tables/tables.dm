@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	climbable = 1
-	layer = 2.8
+	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	throwpass = 1
 	var/flipped = 0
 	var/maxhealth = 10
@@ -30,8 +30,13 @@
 	var/old_maxhealth = maxhealth
 	if(!material)
 		maxhealth = 10
+		if(can_plate)
+			layer = PROJECTILE_HIT_THRESHHOLD_LAYER
+		else
+			layer = TABLE_LAYER
 	else
 		maxhealth = material.integrity / 2
+		layer = TABLE_LAYER
 
 		if(reinforced)
 			maxhealth += reinforced.integrity / 2

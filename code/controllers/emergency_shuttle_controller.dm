@@ -198,7 +198,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	name = "star"
 	var/speed = 10
 	var/direction = SOUTH
-	layer = 2 // TURF_LAYER
+	plane = FLOOR_PLANE
+	layer = TURF_DECAL_LAYER
 
 /obj/effect/bgstar/New()
 	..()

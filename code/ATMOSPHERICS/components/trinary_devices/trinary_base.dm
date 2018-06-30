@@ -1,5 +1,6 @@
 obj/machinery/atmospherics/trinary
 	dir = SOUTH
+	layer = GAS_FILTER_LAYER
 	initialize_directions = SOUTH|NORTH|WEST
 	use_power = 0
 

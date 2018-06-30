@@ -17,6 +17,7 @@
 	var/on = 0
 	use_power = 0
 	level = 1
+	layer = GAS_FILTER_LAYER
 
 
 /obj/machinery/atmospherics/portables_connector/New()

@@ -1,6 +1,9 @@
 /obj/machinery/door/window
 	name = "interior door"
 	desc = "A strong door."
+	layer = ABOVE_WINDOW_LAYER
+	open_layer = ABOVE_WINDOW_LAYER
+	closed_layer = ABOVE_WINDOW_LAYER
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	var/base_state = "left"

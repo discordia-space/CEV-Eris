@@ -3,6 +3,7 @@
 	desc = "It measures something."
 	icon = 'icons/obj/meter.dmi'
 	icon_state = "meterX"
+	layer = GAS_PUMP_LAYER
 	var/obj/machinery/atmospherics/pipe/target = null
 	anchored = 1.0
 	power_channel = ENVIRON

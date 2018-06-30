@@ -5,6 +5,7 @@
 	icon_state = "rock-dark"
 	blocks_air = 1
 	density = 1
+	layer = EDGED_TURF_LAYER
 
 /turf/simulated/mineral //wall piece
 	name = "Rock"
@@ -14,6 +15,7 @@
 	nitrogen = 0
 	opacity = 1
 	density = 1
+	layer = EDGED_TURF_LAYER
 	blocks_air = 1
 	temperature = T0C
 	var/mined_turf = /turf/simulated/floor/asteroid

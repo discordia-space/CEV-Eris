@@ -187,10 +187,14 @@
 		return get_member_indicator()
 
 /datum/faction/proc/get_member_indicator()
-	return image('icons/mob/mob.dmi', icon_state = hud_indicator, layer = LIGHTING_LAYER+0.1)
+	var/image/I = image('icons/mob/mob.dmi', icon_state = hud_indicator, layer = ABOVE_LIGHTING_LAYER)
+	I.plane = ABOVE_LIGHTING_PLANE
+	return I
 
 /datum/faction/proc/get_leader_indicator()
-	return image('icons/mob/mob.dmi', icon_state = leader_hud_indicator, layer = LIGHTING_LAYER+0.1)
+	var/image/I = image('icons/mob/mob.dmi', icon_state = leader_hud_indicator, layer = ABOVE_LIGHTING_LAYER)
+	I.plane = ABOVE_LIGHTING_PLANE
+	return I
 
 /datum/faction/proc/add_icons(var/datum/antagonist/antag)
 	if(faction_invisible || !hud_indicator || !leader_hud_indicator || !antag.owner || !antag.owner.current || !antag.owner.current.client)

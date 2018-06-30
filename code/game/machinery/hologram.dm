@@ -36,7 +36,8 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	desc = "It's a floor-mounted device for projecting holographic images."
 	icon_state = "holopad0"
 
-	layer = TURF_LAYER+0.1
+	plane = FLOOR_PLANE
+	layer = LOW_OBJ_LAYER
 
 	var/power_per_hologram = 500 //per usage per hologram
 	idle_power_usage = 5

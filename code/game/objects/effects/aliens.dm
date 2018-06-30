@@ -6,6 +6,7 @@
 	desc = "Burbling corrosive stuff. Probably a bad idea to roll around in it."
 	icon_state = "acid"
 	icon = 'icons/mob/alien.dmi'
+	layer = ABOVE_NORMAL_TURF_LAYER
 
 	density = 0
 	opacity = 0

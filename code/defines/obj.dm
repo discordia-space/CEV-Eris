@@ -15,16 +15,15 @@
 				user.forceMove(pickSpawnLocation())
 			if("No")
 				return
-
+/* LETHALGHOSDT: WTF is this? Layer was set to 99
 /obj/effect/mark
 	var/mark = ""
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "blank"
 	anchored = 1
-	layer = 99
 	mouse_opacity = 0
 	unacidable = 1//Just to be sure.
-
+*/
 /obj/effect/beam
 	name = "beam"
 	density = 0
