@@ -11,6 +11,7 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
 	density = 1
+	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_HUGE
 	var/locked = FALSE
 	var/broken = FALSE
@@ -320,7 +321,7 @@
 		if(istype(I,/obj/item/tk_grab))
 			return 0
 		if(QUALITY_WELDING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				new /obj/item/stack/material/steel(src.loc)
 				src.visible_message(
 					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
@@ -347,7 +348,7 @@
 	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
 	if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			welded = !src.welded
 			update_icon()
 			for(var/mob/M in viewers(src))
@@ -363,7 +364,7 @@
 		SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
 		SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
 		)
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
 			if(hack_stage < hack_require)
 				playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
 				hack_stage++
@@ -481,11 +482,13 @@
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
 	if(opened)
+		layer = BELOW_OBJ_LAYER
 		if(icon_door)
 			add_overlay("[icon_door]_open")
 		else
 			add_overlay("[icon_state]_open")
 	else
+		layer = OBJ_LAYER
 		if(icon_door)
 			add_overlay("[icon_door]_door")
 		else

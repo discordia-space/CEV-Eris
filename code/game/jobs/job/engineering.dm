@@ -25,7 +25,7 @@
 	)
 
 	stat_modifers = list(
-		STAT_PRD = 30,
+		STAT_MEC = 30,
 		STAT_COG = 10,
 	)
 
@@ -75,7 +75,7 @@
 	idtype = /obj/item/weapon/card/id/engie
 
 	stat_modifers = list(
-		STAT_PRD = 20,
+		STAT_MEC = 20,
 		STAT_COG = 10,
 	)
 

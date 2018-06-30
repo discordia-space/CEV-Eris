@@ -14,6 +14,7 @@
 			var/obj/effect/plant/vine = new(T,seed)
 			vine.health = vine.max_health
 			vine.mature_time = 0
+			vine.layer = SPACEVINE_LAYER
 			vine.Process()
 
 			log_and_message_admins("Spacevines spawned at \the [get_area(T)]", location = T)

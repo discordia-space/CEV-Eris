@@ -11,6 +11,7 @@
 	throwforce = 1.0
 	throw_speed = 3
 	throw_range = 5
+	layer = ABOVE_MOB_LAYER
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 	var/mob/living/carbon/brain/brainmob = null
@@ -54,8 +55,7 @@
 	else
 		user << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
 
-/obj/item/organ/internal/brain/removed(var/mob/living/user)
-
+/obj/item/organ/internal/brain/removed(mob/living/user)
 	name = "[owner.real_name]'s brain"
 
 	var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()

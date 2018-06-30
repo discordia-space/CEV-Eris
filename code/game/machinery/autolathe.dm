@@ -1,3 +1,5 @@
+#define SANITIZE_LATHE_COST(n) max(1, n) // makes sure that discounted prices from upgraded lathe no less than 1 unit.
+
 #define ERR_OK 0
 #define ERR_NOTFOUND 1
 #define ERR_NOMATERIAL 2
@@ -11,6 +13,7 @@
 	icon_state = "autolathe"
 	density = 1
 	anchored = 1
+	layer = BELOW_OBJ_LAYER
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
@@ -134,9 +137,9 @@
 			data["current"] = R.name
 			data["current_time"] = R.time
 
-			var/list/RS = list()
-			for(var/mat in R.resources)
-				RS.Add(list(list("name" = mat, "req" = round(R.resources[mat] * mat_efficiency))))
+		var/list/RS = list()
+		for(var/mat in R.resources)
+			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(round(R.resources[mat] * mat_efficiency)))))
 
 			data["req_materials"] = RS
 
@@ -347,7 +350,6 @@
 		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
 		nanomanager.update_uis(src)
 
-
 /obj/machinery/autolathe/proc/eat(var/mob/living/user)
 	if(!istype(user))
 		return
@@ -371,32 +373,50 @@
 		return
 
 	var/filltype = 0       // Used to determine message.
+	var/reagents_filltype = 0
 	var/total_used = 0     // Amount of material used.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
-	for(var/material in eating.matter)
-		if(!(material in stored_material))
-			stored_material[material] = 0
+	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
+		if(O.matter && O.matter.len)
+			for(var/material in O.matter)
+				if(!(material in stored_material))
+					stored_material[material] = 0
 
-		if(stored_material[material] >= storage_capacity)
-			continue
+				if(stored_material[material] >= storage_capacity)
+					continue
 
-		var/total_material = round(eating.matter[material])
+				var/total_material = round(O.matter[material])
 
-		//If it's a stack, we eat multiple sheets.
-		if(istype(eating,/obj/item/stack))
-			var/obj/item/stack/material/stack = eating
-			total_material *= stack.get_amount()
+				//If it's a stack, we eat multiple sheets.
+				if(istype(O,/obj/item/stack))
+					var/obj/item/stack/material/stack = O
+					total_material *= stack.get_amount()
 
-		if(stored_material[material] + total_material > storage_capacity)
-			total_material = storage_capacity - stored_material[material]
-			filltype = 1
-		else
-			filltype = 2
+				if(stored_material[material] + total_material > storage_capacity)
+					total_material = storage_capacity - stored_material[material]
+					filltype = 1
+				else
+					filltype = 2
 
-		stored_material[material] += total_material
-		total_used += total_material
-		mass_per_sheet += eating.matter[material]
+				stored_material[material] += total_material
+				total_used += total_material
+				mass_per_sheet += O.matter[material]
+
+		if(O.matter_reagents)
+			if(container)
+				var/datum/reagents/RG = new(0)
+				for(var/r in O.matter_reagents)
+					RG.maximum_volume += O.matter_reagents[r]
+					RG.add_reagent(r ,O.matter_reagents[r])
+				reagents_filltype = 1
+				RG.trans_to(container, RG.total_volume)
+
+			else
+				reagents_filltype = 2
+
+		if(O.reagents && container)
+			O.reagents.trans_to(container, O.reagents.total_volume)
 
 	if(!filltype)
 		user << SPAN_NOTICE("\The [src] is full. Please remove material from the autolathe in order to insert more.")
@@ -406,20 +426,10 @@
 	else
 		user << SPAN_NOTICE("You fill \the [src] with \the [eating].")
 
-	if(eating.matter_reagents)
-		if(container)
-			var/datum/reagents/RG = new(0)
-			for(var/r in eating.matter_reagents)
-				RG.maximum_volume += eating.matter_reagents[r]
-				RG.add_reagent(r ,eating.matter_reagents[r])
-
-			RG.trans_to(container, RG.total_volume)
-			user << SPAN_NOTICE("Some liquid flowed to \the [container].")
-		else
-			user << SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot.")
-
-	if(eating.reagents && container)
-		eating.reagents.trans_to(container,eating.reagents.total_volume)
+	if(reagents_filltype == 1)
+		user << SPAN_NOTICE("Some liquid flowed to \the [container].")
+	else if(reagents_filltype == 2)
+		user << SPAN_NOTICE("Some liquid flowed to the floor from autolathe beaker slot.")
 
 	res_load() // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
@@ -458,6 +468,7 @@
 /obj/machinery/autolathe/proc/print_post()
 	return
 
+
 /obj/machinery/autolathe/proc/res_load()
 	flick("autolathe_o", src)
 
@@ -474,7 +485,7 @@
 		if(!(rmat in stored_material))
 			return ERR_NOMATERIAL
 
-		if(stored_material[rmat] < R.resources[rmat])
+		if(stored_material[rmat] < SANITIZE_LATHE_COST(round(R.resources[rmat] * mat_efficiency)))
 			return ERR_NOMATERIAL
 
 	if(R.reagents.len)
@@ -554,7 +565,7 @@
 		return FALSE
 
 	for(var/material in R.resources)
-		stored_material[material] = max(0, stored_material[material] - round(R.resources[material] * mat_efficiency))
+		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(round(R.resources[material] * mat_efficiency)))
 
 	for(var/reagent in R.reagents)
 		container.reagents.remove_reagent(reagent, R.reagents[reagent])
@@ -649,3 +660,5 @@
 #undef ERR_NOMATERIAL
 #undef ERR_NOREAGENT
 #undef ERR_NOLICENSE
+
+#undef SANITIZE_LATHE_COST

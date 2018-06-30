@@ -1,12 +1,12 @@
 /obj/structure/grille
-	name = "grille"
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
+	name = "grille"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
 	density = 1
 	anchored = 1
 	flags = CONDUCT
-	layer = 2.9
+	layer = BELOW_OBJ_LAYER
 	explosion_resistance = 1
 	var/health = 50
 	var/destroyed = 0
@@ -103,7 +103,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(!shock(user, 100))
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					PoolOrNew(/obj/item/stack/rods, list(get_turf(src), destroyed ? 1 : 2))
 					qdel(src)
 					return
@@ -111,7 +111,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					anchored = !anchored
 					user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
 										 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")

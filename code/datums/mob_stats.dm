@@ -65,7 +65,7 @@
 
 
 /datum/stat/productivity
-	name = STAT_PRD
+	name = STAT_MEC
 	desc = "The world hadn’t ever had so many moving parts or so few labels. Character's ability in building and using various tools.."
 
 /datum/stat/cognition
@@ -77,13 +77,9 @@
 	desc = "What’s the difference between being dead, and just not knowing you’re alive? Competence in physiology and chemistry."
 
 /datum/stat/physique
-	name = STAT_PHY
+	name = STAT_ROB
 	desc = "Violence is what people do when they run out of good ideas. Increases your health, damage in unarmed combat, affect the knockdown chance."
 
 /datum/stat/robustness
-	name = STAT_ROB
+	name = STAT_TGH
 	desc = "You’re a tough guy, but I’m a nightmare wrapped in the apocalypse. Enhances your resistance to poisons and also raises your speed in uncomfortable clothes."
-
-/datum/stat/agility
-	name = STAT_AGI
-	desc = "We see in order to move; we move in order to see. Affect the unarmed combat: increases your chances in hitting and disarming, enhances your grab speed."

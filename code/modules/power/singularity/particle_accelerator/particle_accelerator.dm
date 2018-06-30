@@ -142,7 +142,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 		if(QUALITY_BOLT_TURNING)
 			if(construction_state == 0)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] secures the [src.name] to the floor.", \
 						"You secure the external bolts.")
 					construction_state = 1
@@ -150,7 +150,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					update_icon()
 					return
 			if(construction_state == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] secures the [src.name] to the floor.", \
 						"You secure the external bolts.")
 					construction_state = 0
@@ -161,7 +161,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 		if(QUALITY_WIRE_CUTTING)
 			if(construction_state == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] removes some wires from the [src.name].", \
 						"You remove some wires.")
 					construction_state = 1
@@ -171,14 +171,14 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 		if(QUALITY_SCREW_DRIVING)
 			if(construction_state == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
 						"You close the access panel.")
 					construction_state = 3
 					update_icon()
 					return
 			if(construction_state == 3)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
 						"You close the access panel.")
 					construction_state = 2
@@ -336,7 +336,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 		if(QUALITY_BOLT_TURNING)
 			if(construction_state == 0)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] secures the [src.name] to the floor.", \
 						"You secure the external bolts.")
 					construction_state = 1
@@ -344,7 +344,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					update_icon()
 					return
 			if(construction_state == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] secures the [src.name] to the floor.", \
 						"You secure the external bolts.")
 					construction_state = 0
@@ -355,7 +355,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 		if(QUALITY_WIRE_CUTTING)
 			if(construction_state == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] removes some wires from the [src.name].", \
 						"You remove some wires.")
 					construction_state = 1
@@ -365,7 +365,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 		if(QUALITY_SCREW_DRIVING)
 			if(construction_state == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
 						"You close the access panel.")
 					construction_state = 3
@@ -373,7 +373,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					update_icon()
 					return
 			if(construction_state == 3)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user.visible_message("[user.name] closes the [src.name]'s access panel.", \
 						"You close the access panel.")
 					construction_state = 2

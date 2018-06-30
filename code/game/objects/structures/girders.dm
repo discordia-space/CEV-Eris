@@ -2,7 +2,7 @@
 	icon_state = "girder"
 	anchored = 1
 	density = 1
-	layer = 2
+	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_HUGE
 	var/state = 0
 	var/health = 200
@@ -72,13 +72,13 @@
 			if(state == 0)
 				if(anchored && !reinf_material)
 					user << SPAN_NOTICE("You start disassembling the girder...")
-					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You dissasembled the girder!")
 						dismantle()
 						return
 				if(!anchored)
 					user << SPAN_NOTICE("You start securing the girder...")
-					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You secured the girder!")
 						reset_girder()
 						return
@@ -87,7 +87,7 @@
 		if(QUALITY_PRYING)
 			if(state == 0 && anchored)
 				user << SPAN_NOTICE("You start dislodging the girder...")
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You dislodged the girder!")
 					icon_state = "displaced"
 					anchored = 0
@@ -99,7 +99,7 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(state == 1)
 				user << SPAN_NOTICE("You start removing support struts...")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You removed the support struts!")
 					reinf_material.place_dismantled_product(get_turf(src))
 					reinf_material = null
@@ -110,12 +110,12 @@
 		if(QUALITY_SCREW_DRIVING)
 			if(state == 2)
 				user << SPAN_NOTICE("Now unsecuring support struts...")
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You unsecured the support struts!")
 					state = 1
 					return
 			if(anchored && !reinf_material)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					reinforcing = !reinforcing
 					user << SPAN_NOTICE("The [src] can now be [reinforcing? "reinforced" : "constructed"]!")
 					return

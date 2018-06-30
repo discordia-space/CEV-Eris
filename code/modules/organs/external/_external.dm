@@ -12,6 +12,7 @@
 	min_broken_damage = 30
 	max_damage = 0
 	dir = SOUTH
+	layer = BELOW_MOB_LAYER
 	organ_tag = "limb"
 	var/icon_name = null
 	var/tally = 0
@@ -95,9 +96,12 @@
 		for(var/obj/item/organ/O in internal_organs)
 			qdel(O)
 
+	if(owner)
+		owner.organs -= src
+		owner.organs_by_name -= src.organ_tag
+
 	if(module)
-		qdel(module)
-		module = null
+		QDEL_NULL(module)
 
 	return ..()
 
@@ -142,7 +146,7 @@
 		return
 
 	owner.organs -= src
-	owner.organs_by_name[organ_tag] = null // Remove from owner's vars.
+	owner.organs_by_name -= src.organ_tag
 	owner.bad_external_organs -= src
 
 	if(module)
@@ -748,8 +752,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/organ/I in internal_organs)
-				I.removed()
 				if(istype(loc,/turf))
+					internal_organs -= src
 					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/I in src)

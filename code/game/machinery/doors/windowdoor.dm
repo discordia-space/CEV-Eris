@@ -1,6 +1,9 @@
 /obj/machinery/door/window
 	name = "interior door"
 	desc = "A strong door."
+	layer = ABOVE_WINDOW_LAYER
+	open_layer = ABOVE_WINDOW_LAYER
+	closed_layer = ABOVE_WINDOW_LAYER
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	var/base_state = "left"
@@ -197,7 +200,7 @@
 	//If it's emagged, crowbar can pry electronics out.
 	if (src.operating == -1 && (QUALITY_PRYING in I.tool_qualities))
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user << SPAN_NOTICE("You removed the windoor electronics!")
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)

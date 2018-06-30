@@ -135,7 +135,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 			middle = part
 		if(count <= 3) // Their sprite is the top part of the generator
 			part.density = 0
-			part.layer = MOB_LAYER + 0.1
+			part.layer = WALL_OBJ_LAYER
 		part.sprite_number = count
 		part.main_part = src
 		parts += part
@@ -185,7 +185,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_BOLT_TURNING)
 			if(GRAV_NEEDS_WRENCH)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You secure the plating to the framework.")
 					set_fix()
 					return
@@ -193,7 +193,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_WELDING)
 			if(GRAV_NEEDS_WELDING)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You mend the damaged framework.")
 					broken_state++
 					return
@@ -201,7 +201,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 		if(QUALITY_SCREW_DRIVING)
 			if(GRAV_NEEDS_SCREWDRIVER)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You secure the screws of the framework.")
 					broken_state++
 					return

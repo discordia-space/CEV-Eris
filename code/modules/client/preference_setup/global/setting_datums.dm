@@ -67,6 +67,16 @@ var/list/_client_preferences_by_type
 		preference_mob << sound(null, repeat = 0, wait = 0, volume = 0, channel = 1)
 		preference_mob << sound(null, repeat = 0, wait = 0, volume = 0, channel = 2)
 
+/datum/client_preference/ambient_occlusion
+	description ="Ambient occlusion"
+	key = "AMBIENT_OCCLUSION"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
+
+/datum/client_preference/ambient_occlusion/toggled(var/mob/preference_mob, var/enabled)
+	var/obj/screen/plane_master/game_world/PM = locate() in preference_mob.client.screen
+	PM.backdrop(preference_mob)
+
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
 	key = "CHAT_GHOSTEARS"

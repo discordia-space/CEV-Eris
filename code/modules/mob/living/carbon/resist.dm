@@ -40,11 +40,11 @@
 	var/obj/item/weapon/handcuffs/HC = handcuffed
 
 	//A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
-	var/breakouttime = 1200 - src.stats.getStat(STAT_AGI) * 10
+	var/breakouttime = 1200 - src.stats.getStat(STAT_ROB) * 10
 	var/displaytime = round(breakouttime / 600) //Minutes to display in the "this will take X minutes."
 	//If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
 	if(istype(HC))
-		breakouttime = HC.breakouttime - src.stats.getStat(STAT_AGI) * 10
+		breakouttime = HC.breakouttime - src.stats.getStat(STAT_ROB) * 10
 		displaytime = round(breakouttime / 600) //Minutes
 
 	var/mob/living/carbon/human/H = src

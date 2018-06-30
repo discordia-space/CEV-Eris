@@ -13,7 +13,8 @@
 /obj/screen
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
-	layer = 20.0
+	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	unacidable = 1
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
 	var/mob/living/parentmob
@@ -32,6 +33,9 @@
 
 
 /obj/screen/Process()
+	return
+
+/obj/screen/proc/DEADelize()
 	return
 
 /obj/screen/Destroy()
@@ -56,7 +60,6 @@
 		else
 			return FALSE
 	return TRUE
-
 //--------------------------------------------------close---------------------------------------------------------
 
 /obj/screen/close
@@ -204,6 +207,8 @@
 
 /obj/screen/storage
 	name = "storage"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/storage/Click()
 	if(!usr.canClick())
@@ -222,7 +227,8 @@
 /obj/screen/inventory
 	var/slot_id //The indentifier for the slot. It has nothing to do with ID cards.
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	layer = 19
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/inventory/New(_name = "unnamed", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)//(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
 	src.name = _name
@@ -300,7 +306,7 @@
 	update_icon()
 
 /obj/screen/health/update_icon()
-	if(parentmob:stat != DEAD) // They are dead, let death() handle their hud update on this.
+	if(parentmob:stat != DEAD)
 		overlays.Cut()
 		if (parentmob:analgesic > 100)
 //			icon_state = "health_numb"
@@ -320,6 +326,10 @@
 						if(20 to 40)			overlays += ovrls["health4"]
 						if(0 to 20)				overlays += ovrls["health5"]
 						else					overlays += ovrls["health6"]
+
+/obj/screen/health/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["health7"]
 /*/obj/screen/health/New()
 	if(usr.client)
 		usr.client.screen += src
@@ -358,6 +368,10 @@
 		if(250 to 350)					overlays += ovrls["nutrition2"]
 		if(150 to 250)					overlays += ovrls["nutrition3"]
 		else							overlays += ovrls["nutrition4"]
+
+/obj/screen/nutrition/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["nutrition4"]
 //--------------------------------------------------nutrition end---------------------------------------------------------
 
 //--------------------------------------------------bodytemp---------------------------------------------------------
@@ -421,6 +435,10 @@
 			overlays += ovrls["temp-1"]
 		else
 			overlays += ovrls["temp0"]
+
+/obj/screen/bodytemp/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["temp-4"]
 //--------------------------------------------------bodytemp end---------------------------------------------------------
 
 
@@ -450,6 +468,10 @@
 //	icon_state = "pressure[H.pressure_alert]"
 	overlays.Cut()
 	overlays += ovrls["pressure[H.pressure_alert]"]
+
+/obj/screen/pressure/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["pressure-2"]
 //--------------------------------------------------pressure end---------------------------------------------------------
 
 //--------------------------------------------------toxin---------------------------------------------------------
@@ -476,6 +498,10 @@
 //		icon_state = "tox1"
 //	else
 //		icon_state = "tox0"
+
+/obj/screen/toxin/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["tox1"]
 //--------------------------------------------------toxin end---------------------------------------------------------
 
 //--------------------------------------------------oxygen---------------------------------------------------------
@@ -504,6 +530,10 @@
 //		icon_state = "oxy1"
 //	else
 //		icon_state = "oxy0"
+
+/obj/screen/oxygen/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["oxy1"]
 //--------------------------------------------------oxygen end---------------------------------------------------------
 
 //--------------------------------------------------fire---------------------------------------------------------
@@ -534,6 +564,10 @@
 //	icon_state = "fire[H.fire_alert]"
 	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
 	else										icon_state = "fire0"*/
+
+obj/screen/fire/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["fire-1"]
 //--------------------------------------------------fire end---------------------------------------------------------
 /*/obj/screen/slot_object
 	name = "slot"
@@ -648,13 +682,20 @@
 						playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
 						C.internal = tankcheck[best]
 
-
-					if(C.internal)
-						//icon_state = "internal1"
-						overlays += ovrls["internal1"]
-					else
+					if(!C.internal)
 						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>"
+					update_icon()
+
+/obj/screen/internal/update_icon()
+	overlays.Cut()
+	if(parentmob:internal)
+		overlays += ovrls["internal1"]
+
+/obj/screen/internal/DEADelize()
+	overlays.Cut()
 //-----------------------internal END------------------------------
+
+//-----------------------Pull------------------------------
 
 /obj/screen/pull
 	name = "pull"
@@ -676,6 +717,8 @@
 		icon_state = "pull1"
 	else
 		icon_state = "pull0"
+
+//-----------------------Pull end------------------------------
 //-----------------------throw------------------------------
 /obj/screen/HUDthrow
 	name = "throw"
@@ -708,6 +751,8 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "act_drop"
 	screen_loc = "15:-16,2"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/drop/Click()
 	if(usr.client)
@@ -720,6 +765,8 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "act_resist"
 	screen_loc = "14:16,2"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/resist/Click()
 	if(isliving(parentmob))
@@ -780,6 +827,8 @@
 	name = "swap hand"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "swap-l"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
 /obj/screen/swap/New()
 	..()
@@ -788,6 +837,7 @@
 /obj/screen/swap/Click()
 	parentmob.swap_hand()
 //-----------------------swap END------------------------------
+
 //-----------------------intent------------------------------
 /obj/screen/intent
 	name = "intent"
@@ -827,6 +877,7 @@
 		if(I_DISARM)
 			src.overlays += ovrls["disarm"]
 //-----------------------intent END------------------------------
+
 /obj/screen/fastintent
 	name = "fastintent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
@@ -923,7 +974,7 @@
 	screen_loc = "1,1"
 	mouse_opacity = 0
 	process_flag = TRUE
-	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+	layer = UI_DAMAGE_LAYER
 	var/global/image/blind_icon = image('icons/mob/screen1_full.dmi', "blackimageoverlay")
 
 

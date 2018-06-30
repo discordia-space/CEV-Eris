@@ -205,8 +205,17 @@
 		var/obj/screen/HUD = new HUDtype(techobject,H, HUDdatum.HUDoverlays[techobject]["loc"],\
 		 HUDdatum.HUDoverlays[techobject]["icon"] ? HUDdatum.HUDoverlays[techobject]["icon"] : null,\
 		 HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
+		HUD.layer = FLASH_LAYER
 
 		H.HUDtech[HUD.name] += HUD//Добавляем в список худов
 		if (HUD.process_flag)//Если худ нужно процессить
 			H.HUDprocess += HUD//Вливаем в соотвествующий список
+	return
+
+
+
+/mob/living/carbon/human/dead_HUD()
+	for (var/i=1,i<=HUDneed.len,i++)
+		var/obj/screen/H = HUDneed[HUDneed[i]]
+		H.DEADelize()
 	return

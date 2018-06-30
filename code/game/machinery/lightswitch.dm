@@ -48,11 +48,13 @@
 	if(stat & NOPOWER)
 		icon_state = "light-p"
 		set_light(0)
-		layer = OBJ_LAYER
+		layer = initial(layer)
+		plane = initial(plane)
 	else
 		icon_state = "light[on]"
 		set_light(2, 1.5, on ? "#82FF4C" : "#F86060")
-		layer = LIGHTING_LAYER+0.1
+		plane = ABOVE_LIGHTING_PLANE
+		layer = ABOVE_LIGHTING_LAYER
 
 /obj/machinery/light_switch/examine(mob/user)
 	if(..(user, 1))

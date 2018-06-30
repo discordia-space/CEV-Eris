@@ -174,7 +174,7 @@
 			if(!locked)
 				if(!screwed)
 					if(!suspension_field)
-						if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+						if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 							open = !open
 							user << SPAN_NOTICE("You open the battery panel [open ? "open" : "in place"].")
 							icon_state = "suspension[open ? (cell ? "1" : "0") : "2"]"
@@ -187,7 +187,7 @@
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD, instant_finish_tier = 30))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30))
 				screwed = !screwed
 				user << SPAN_NOTICE("You [screwed ? "screw" : "unscrew"] the battery panel with [I].")
 				update_icon()
@@ -195,7 +195,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(!suspension_field)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					anchored = !anchored
 					user << SPAN_NOTICE("You wrench the stabilising legs [anchored ? "into place" : "up against the body"].")
 					update_icon()

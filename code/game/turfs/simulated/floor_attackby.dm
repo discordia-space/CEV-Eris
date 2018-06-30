@@ -23,17 +23,17 @@
 
 			if(QUALITY_PRYING)
 				if(broken || burnt)
-					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You remove the broken [flooring.descriptor].")
 						make_plating()
 					return
 				else if(flooring.flags & TURF_IS_FRAGILE)
-					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						user << SPAN_DANGER("You forcefully pry off the [flooring.descriptor], destroying them in the process.")
 						make_plating()
 					return
 				else if(flooring.flags & TURF_REMOVE_CROWBAR)
-					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You lever off the [flooring.descriptor].")
 						make_plating(1)
 					return
@@ -41,21 +41,21 @@
 
 			if(QUALITY_SCREW_DRIVING)
 				if(!(broken || burnt) || flooring.flags & TURF_REMOVE_SCREWDRIVER)
-					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You unscrew and remove the [flooring.descriptor].")
 						make_plating(1)
 				return
 
 			if(QUALITY_BOLT_TURNING)
 				if(flooring.flags & TURF_REMOVE_WRENCH)
-					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You unwrench and remove the [flooring.descriptor].")
 						make_plating(1)
 				return
 
 			if(QUALITY_SHOVELING)
 				if(flooring.flags & TURF_REMOVE_SHOVEL)
-					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You shovel off the [flooring.descriptor].")
 						make_plating(1)
 				return
@@ -104,7 +104,7 @@
 		// Repairs.
 		if(broken || burnt)
 			if(I.get_tool_type(usr, list(QUALITY_WELDING)))
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You fix some dents on the broken plating.")
 					playsound(src, 'sound/items/Welder.ogg', 80, 1)
 					icon_state = "plating"

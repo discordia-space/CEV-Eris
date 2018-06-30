@@ -16,7 +16,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = 1
-	layer = 5
+	layer = WALL_OBJ_LAYER
 	var/stage = 1
 	var/fixture_type = "tube"
 	var/sheets_refunded = 2
@@ -62,7 +62,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(stage == 2)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					switch(fixture_type)
 						if ("tube")
 							src.icon_state = "tube-empty"
@@ -90,7 +90,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(stage == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					src.stage = 1
 					switch(fixture_type)
 						if ("tube")
@@ -110,7 +110,7 @@
 			if(stage == 1)
 				if (src.stage == 1)
 					user << "You begin deconstructing \a [src]."
-					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 						user.visible_message("[user.name] deconstructs [src].", \
 							"You deconstruct [src].", "You hear a noise.")
@@ -165,7 +165,7 @@
 	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = 1
-	layer = 5  					// They were appearing under mobs which is a little weird - Ostaf
+	layer = WALL_OBJ_LAYER
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
@@ -445,7 +445,7 @@
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
 		if(QUALITY_SCREW_DRIVING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_PRD))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				user.visible_message("[user.name] opens [src]'s casing.", \
 					"You open [src]'s casing.", "You hear a noise.")
 				var/obj/machinery/light_construct/newlight = null

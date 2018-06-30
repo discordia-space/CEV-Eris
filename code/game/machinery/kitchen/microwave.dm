@@ -3,7 +3,7 @@
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
-	layer = 2.9
+	layer = BELOW_OBJ_LAYER
 	density = 1
 	anchored = 1
 	use_power = 1
@@ -71,7 +71,7 @@
 						SPAN_NOTICE("\The [user] starts to fix part of the microwave."), \
 						SPAN_NOTICE("You start to fix part of the microwave.") \
 					)
-					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						user.visible_message( \
 							SPAN_NOTICE("\The [user] fixes part of the microwave."), \
 							SPAN_NOTICE("You have fixed part of the microwave.") \
@@ -86,7 +86,7 @@
 						SPAN_NOTICE("\The [user] starts to fix part of the microwave."), \
 						SPAN_NOTICE("You start to fix part of the microwave.") \
 					)
-					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						user.visible_message( \
 							SPAN_NOTICE("\The [user] fixes the microwave."), \
 							SPAN_NOTICE("You have fixed the microwave.") \
@@ -159,7 +159,7 @@
 		"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave.</span>", \
 		"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
 		)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			user.visible_message( \
 			"<span class='notice'>\The [user] [src.anchored ? "secures" : "unsecures"] the microwave.</span>", \
 			"<span class='notice'>You [src.anchored ? "secure" : "unsecure"] the microwave.</span>"

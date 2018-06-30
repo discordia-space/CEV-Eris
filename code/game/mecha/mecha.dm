@@ -16,7 +16,7 @@
 	opacity = 1 ///opaque. Menacing.
 	anchored = 1 //no pulling around.
 	unacidable = 1 //and no deleting hoomans inside
-	layer = MOB_LAYER //icon draw layer
+	layer = BELOW_MOB_LAYER//icon draw layer
 	infra_luminosity = 15 //byond implementation is bugged.
 	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/can_move = 1
@@ -763,12 +763,12 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(state == 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You undo the securing bolts.")
 					state = 2
 					return
 			if(state == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You tighten the securing bolts.")
 					state = 1
 					return
@@ -778,7 +778,7 @@
 			if(user.a_intent != I_HURT)
 				if(src.health >= initial(src.health))
 					user << SPAN_NOTICE("The [src.name] is at full integrity")
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					if (hasInternalDamage(MECHA_INT_TANK_BREACH))
 						clearInternalDamage(MECHA_INT_TANK_BREACH)
 						user << SPAN_NOTICE("You repair the damaged gas tank.")
@@ -791,12 +791,12 @@
 
 		if(QUALITY_PRYING)
 			if(state == 2)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You open the hatch to the power unit.")
 					state = 3
 					return
 			if(state == 3)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You close the hatch to the power unit")
 					state = 2
 					return
@@ -804,19 +804,19 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You repair the damaged temperature controller.")
 					clearInternalDamage(MECHA_INT_TEMP_CONTROL)
 					return
 			if(state == 3 && src.cell)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You unscrew and pry out the powercell.")
 					src.cell.forceMove(src.loc)
 					src.cell = null
 					state = 4
 					src.log_message("Powercell removed.")
 			if(state == 4 && src.cell)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You screw the cell in place.")
 					state = 3
 					return
@@ -825,7 +825,7 @@
 		if(QUALITY_PULSING)
 			if(state >= 3 && src.occupant)
 				user << "You attempt to eject the pilot using the maintenance controls."
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					if(src.occupant.stat)
 						src.go_out()
 						src.log_message("[src.occupant] was ejected using the maintenance controls.")

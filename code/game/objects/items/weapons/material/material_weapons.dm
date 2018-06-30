@@ -32,7 +32,7 @@
 	if(matter.len)
 		for(var/material_type in matter)
 			if(!isnull(matter[material_type]))
-				matter[material_type] *= force_divisor // May require a new var instead.
+				matter[material_type] = round(max(1, matter[material_type] * force_divisor)) // current system uses rounded values, so no less than 1.
 
 /obj/item/weapon/material/get_material()
 	return material
