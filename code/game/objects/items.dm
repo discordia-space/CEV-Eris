@@ -660,7 +660,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		else
 			target.used_now = FALSE
 
-	fail_chance = fail_chance - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
+	var/stat_modifer = 0
+	if(required_stat)
+		stat_modifer = user.stats.getStat(required_stat)
+	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
 	if(prob(fail_chance))
 		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
 		return TOOL_USE_FAIL
