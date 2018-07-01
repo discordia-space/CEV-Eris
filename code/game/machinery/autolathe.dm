@@ -1,4 +1,5 @@
-#define SANITIZE_LATHE_COST(n) max(1, n) // makes sure that discounted prices from upgraded lathe no less than 1 unit.
+// makes sure that discounted prices from upgraded lathe no less than 1 unit.
+#define SANITIZE_LATHE_COST(n) max(1, n) // helps to fix prices where "* mat_efficiency" is used.
 
 #define ERR_OK 0
 #define ERR_NOTFOUND 1
@@ -89,7 +90,7 @@
 
 			var/text = ""
 			for(var/m in R.resources)
-				text += "[m]: [round(R.resources[m] * mat_efficiency)]<br>"
+				text += "[m]: [SANITIZE_LATHE_COST(round(R.resources[m] * mat_efficiency))]<br>"
 			LE["resources"] = text == "" ? "None" : text
 
 			text = ""
@@ -141,17 +142,17 @@
 		for(var/mat in R.resources)
 			RS.Add(list(list("name" = mat, "req" = SANITIZE_LATHE_COST(round(R.resources[mat] * mat_efficiency)))))
 
-			data["req_materials"] = RS
+		data["req_materials"] = RS
 
-			RS = list()
-			for(var/reg in R.reagents)
-				var/datum/reagent/RG = chemical_reagents_list[reg]
-				if(RG)
-					RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
-				else
-					RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
+		RS = list()
+		for(var/reg in R.reagents)
+			var/datum/reagent/RG = chemical_reagents_list[reg]
+			if(RG)
+				RS.Add(list(list("name" = RG.name, "req" = R.reagents[reg])))
+			else
+				RS.Add(list(list("name" = "UNKNOWN", "req" = R.reagents[reg])))
 
-			data["req_reagents"] = RS
+		data["req_reagents"] = RS
 
 	var/list/Q = list()
 	var/list/qmats = stored_material.Copy()
@@ -174,7 +175,7 @@
 			if(!(rmat in qmats))
 				qmats[rmat] = 0
 
-			qmats[rmat]	-= R.resources[rmat]
+			qmats[rmat] -= R.resources[rmat]
 			if(qmats[rmat] < 0)
 				QR["error"] = 1
 
@@ -190,7 +191,7 @@
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "autolathe.tmpl", "Autolathe", 550, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -474,27 +475,28 @@
 
 
 /obj/machinery/autolathe/proc/cannot_print(var/recipe)
-	var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
-	if(!R || !(recipe in recipe_list()))
-		return ERR_NOTFOUND
+	if(progress <= 0)
+		var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
+		if(!R || !(recipe in recipe_list()))
+			return ERR_NOTFOUND
 
-	if(disk_uses() == 0 )
-		return ERR_NOLICENSE
+		if(disk_uses() == 0 )
+			return ERR_NOLICENSE
 
-	for(var/rmat in R.resources)
-		if(!(rmat in stored_material))
-			return ERR_NOMATERIAL
+		for(var/rmat in R.resources)
+			if(!(rmat in stored_material))
+				return ERR_NOMATERIAL
 
-		if(stored_material[rmat] < SANITIZE_LATHE_COST(round(R.resources[rmat] * mat_efficiency)))
-			return ERR_NOMATERIAL
+			if(stored_material[rmat] < SANITIZE_LATHE_COST(round(R.resources[rmat] * mat_efficiency)))
+				return ERR_NOMATERIAL
 
-	if(R.reagents.len)
-		if(!container || !container.reagents || !container.is_open_container())
-			return ERR_NOREAGENT
-		else
-			for(var/rgn in R.reagents)
-				if(!container.reagents.has_reagent(rgn, R.reagents[rgn]))
-					return ERR_NOREAGENT
+		if(R.reagents.len)
+			if(!container || !container.reagents || !container.is_open_container())
+				return ERR_NOREAGENT
+			else
+				for(var/rgn in R.reagents)
+					if(!container.reagents.has_reagent(rgn, R.reagents[rgn]))
+						return ERR_NOREAGENT
 
 	return ERR_OK
 
@@ -556,7 +558,7 @@
 	if(panel_open)
 		overlays.Add(image(icon,"autolathe_p"))
 
-	if(working)
+	if(working && !error) // if error, work animation looks awkward.
 		icon_state = "autolathe_n"
 
 /obj/machinery/autolathe/proc/consume_materials(var/recipe)

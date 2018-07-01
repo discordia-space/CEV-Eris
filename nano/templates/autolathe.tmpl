@@ -156,10 +156,10 @@ Used In File(s): \code\game\machinery\autolathe.dm
 				{{/if}}
 			</div>
 			{{if data.current}}
+				<div class="itemLabelWidest">Printing {{:data.current}}</div>
 				{{if data.error}}
 					<div class="itemLabelWidest"><div class="bad">{{:data.error}}</div></div>
 				{{else}}
-					<div class="itemLabelWidest">Printing {{:data.current}}</div>
 					<div class="itemLabelWidest">{{:data.progress}}/{{:data.current_time}}</div>
 				{{/if}}
 				<div class="item">
