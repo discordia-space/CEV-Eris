@@ -15,7 +15,7 @@
 	anchored = 1
 	flags = NOREACT
 
-	blend_mode       = BLEND_MULTIPLY
+	blend_mode       = BLEND_OVERLAY
 
 	var/needs_update = FALSE
 
