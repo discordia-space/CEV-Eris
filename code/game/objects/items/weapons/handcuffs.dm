@@ -65,7 +65,11 @@
 
 	//user.visible_message(SPAN_DANGER("\The [user] is attempting to put [cuff_type] on \the [H]!"))
 
-	if(!do_after(user,0, target))
+	if(istype(user, /mob/living/silicon/robot))
+		if(!do_after(user, 30, target))
+			return 0
+
+	else if(!do_after(user, 0, target))
 		return 0
 
 	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed by [user.name] ([user.ckey])</font>")
