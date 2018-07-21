@@ -113,6 +113,11 @@
 /obj/structure/multiz/stairs/active
 	density = TRUE
 
+/obj/structure/multiz/stairs/active/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(istype(mover)) // if mover is not null, e.g. mob
+		return FALSE
+	return TRUE // if mover is null (air movement)
+
 /obj/structure/multiz/stairs/active/find_target()
 	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
