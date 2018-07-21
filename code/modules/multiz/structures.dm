@@ -38,8 +38,9 @@
 	user.Move(get_turf(target))
 
 /obj/structure/multiz/attack_ai(mob/living/silicon/ai/user)
-	var/turf/T = get_turf(target)
-	T.move_camera_by_click()
+	if(target)
+		var/turf/T = get_turf(target)
+		T.move_camera_by_click()
 
 /obj/structure/multiz/attackby(obj/item/C, mob/user)
 	. = ..()
