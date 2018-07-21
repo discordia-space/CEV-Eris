@@ -251,3 +251,13 @@
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 30
 	multiple_sprites = 1
+
+/obj/item/ammo_magazine/maxim
+	name = "pan magazine (7.62mm)"
+	icon_state = "maxim"
+	mag_type = MAGAZINE
+	caliber = "a762"
+	matter = list(MATERIAL_STEEL = 10)
+	ammo_type = /obj/item/ammo_casing/a762
+	max_ammo = 96
+	multiple_sprites = 1

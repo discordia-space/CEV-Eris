@@ -109,3 +109,7 @@
 /datum/autolathe/recipe/ammo/ak47
 	name = "magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/ak47
+
+/datum/autolathe/recipe/ammo/box_a762
+	name = "ammunition box (7.62mm)"
+	path = /obj/item/ammo_magazine/ammobox/a762

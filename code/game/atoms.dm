@@ -289,6 +289,9 @@ its easier to just keep the beam vertical.
 /atom/proc/melt()
 	return
 
+/atom/proc/ignite_act()	//Proc called on connected igniter activation
+	return
+
 /atom/proc/hitby(atom/movable/AM as mob|obj)
 	if (density)
 		AM.throwing = FALSE
