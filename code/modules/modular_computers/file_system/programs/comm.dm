@@ -73,10 +73,7 @@
 	if(current_viewing_message)
 		data["message_current"] = current_viewing_message
 
-	var/list/processed_
-  
-  
-  _options = list()
+	var/list/processed_evac_options = list()
 	if(!isnull(evacuation_controller))
 		for (var/datum/evacuation_option/EO in evacuation_controller.available_evac_options())
 			var/list/option = list()
