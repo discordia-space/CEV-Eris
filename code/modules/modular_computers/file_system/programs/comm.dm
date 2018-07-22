@@ -194,7 +194,6 @@
 						post_status(href_list["target"])
 
 		if("setalert")
-			usr << "You press button, but red light flashes and nothing happens." //This should never happenp
 			if(is_autenthicated(user) && !issilicon(usr) && ntn_cont && ntn_comm)
 				var/current_level = text2num(href_list["target"])
 				var/confirm = alert("Are you sure you want to change alert level to [num2seclevel(current_level)]?", name, "No", "Yes")
