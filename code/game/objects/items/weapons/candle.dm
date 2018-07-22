@@ -22,22 +22,20 @@
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
 
-/obj/item/weapon/flame/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/flame/candle/attackby(obj/item/I, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
-		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
-			light(SPAN_NOTICE("\The [user] casually lights the [name] with [W]."))
-	else if(istype(W, /obj/item/weapon/flame/lighter))
-		var/obj/item/weapon/flame/lighter/L = W
+	if(QUALITY_WELDING in I.tool_qualities) //Badasses dont get blinded by lighting their candle with a welding tool
+		light(SPAN_NOTICE("\The [user] casually lights the [name] with [I]."))
+	else if(istype(I, /obj/item/weapon/flame/lighter))
+		var/obj/item/weapon/flame/lighter/L = I
 		if(L.lit)
 			light()
-	else if(istype(W, /obj/item/weapon/flame/match))
-		var/obj/item/weapon/flame/match/M = W
+	else if(istype(I, /obj/item/weapon/flame/match))
+		var/obj/item/weapon/flame/match/M = I
 		if(M.lit)
 			light()
-	else if(istype(W, /obj/item/weapon/flame/candle))
-		var/obj/item/weapon/flame/candle/C = W
+	else if(istype(I, /obj/item/weapon/flame/candle))
+		var/obj/item/weapon/flame/candle/C = I
 		if(C.lit)
 			light()
 
@@ -49,10 +47,10 @@
 		for(var/mob/O in viewers(usr, null))
 			O.show_message(flavor_text, 1)
 		set_light(CANDLE_LUM)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 
-/obj/item/weapon/flame/candle/process()
+/obj/item/weapon/flame/candle/Process()
 	if(!lit)
 		return
 	wax--

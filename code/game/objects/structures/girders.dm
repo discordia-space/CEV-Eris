@@ -2,7 +2,7 @@
 	icon_state = "girder"
 	anchored = 1
 	density = 1
-	layer = 2
+	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_HUGE
 	var/state = 0
 	var/health = 200
@@ -53,73 +53,83 @@
 	if(reinf_material)
 		reinforce_girder()
 
-/obj/structure/girder/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench) && state == 0)
-		if(anchored && !reinf_material)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-			user << SPAN_NOTICE("Now disassembling the girder...")
-			if(do_after(user, 40,src))
-				if(!src) return
-				user << SPAN_NOTICE("You dissasembled the girder!")
-				dismantle()
-		else if(!anchored)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-			user << SPAN_NOTICE("Now securing the girder...")
-			if(get_turf(user, 40))
-				user << SPAN_NOTICE("You secured the girder!")
-				reset_girder()
+/obj/structure/girder/attackby(obj/item/I, mob/user)
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
-		user << SPAN_NOTICE("Now slicing apart the girder...")
-		if(do_after(user,30,src))
-			if(!src) return
-			user << SPAN_NOTICE("You slice apart the girder!")
-			dismantle()
+	var/list/usable_qualities = list()
+	if(state == 0 && ((anchored && !reinf_material) || !anchored))
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if(state == 2 || (anchored && !reinf_material))
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(state == 0 && anchored)
+		usable_qualities.Add(QUALITY_PRYING)
+	if(state == 1)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
 
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
-		user << SPAN_NOTICE("You drill through the girder!")
-		dismantle()
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
 
-	else if(istype(W, /obj/item/weapon/screwdriver))
-		if(state == 2)
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-			user << SPAN_NOTICE("Now unsecuring support struts...")
-			if(do_after(user, 40,src))
-				if(!src) return
-				user << SPAN_NOTICE("You unsecured the support struts!")
-				state = 1
-		else if(anchored && !reinf_material)
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-			reinforcing = !reinforcing
-			user << "<span class='notice'>\The [src] can now be [reinforcing? "reinforced" : "constructed"]!</span>"
+		if(QUALITY_BOLT_TURNING)
+			if(state == 0)
+				if(anchored && !reinf_material)
+					user << SPAN_NOTICE("You start disassembling the girder...")
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+						user << SPAN_NOTICE("You dissasembled the girder!")
+						dismantle()
+						return
+				if(!anchored)
+					user << SPAN_NOTICE("You start securing the girder...")
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+						user << SPAN_NOTICE("You secured the girder!")
+						reset_girder()
+						return
+			return
 
-	else if(istype(W, /obj/item/weapon/wirecutters) && state == 1)
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
-		user << SPAN_NOTICE("Now removing support struts...")
-		if(do_after(user, 40,src))
-			if(!src) return
-			user << SPAN_NOTICE("You removed the support struts!")
-			reinf_material.place_dismantled_product(get_turf(src))
-			reinf_material = null
-			reset_girder()
+		if(QUALITY_PRYING)
+			if(state == 0 && anchored)
+				user << SPAN_NOTICE("You start dislodging the girder...")
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					user << SPAN_NOTICE("You dislodged the girder!")
+					icon_state = "displaced"
+					anchored = 0
+					health = 50
+					cover = 25
+					return
+			return
 
-	else if(istype(W, /obj/item/weapon/crowbar) && state == 0 && anchored)
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-		user << SPAN_NOTICE("Now dislodging the girder...")
-		if(do_after(user, 40,src))
-			if(!src) return
-			user << SPAN_NOTICE("You dislodged the girder!")
-			icon_state = "displaced"
-			anchored = 0
-			health = 50
-			cover = 25
+		if(QUALITY_WIRE_CUTTING)
+			if(state == 1)
+				user << SPAN_NOTICE("You start removing support struts...")
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					user << SPAN_NOTICE("You removed the support struts!")
+					reinf_material.place_dismantled_product(get_turf(src))
+					reinf_material = null
+					reset_girder()
+					return
+			return
 
-	else if(istype(W, /obj/item/stack/material))
+		if(QUALITY_SCREW_DRIVING)
+			if(state == 2)
+				user << SPAN_NOTICE("Now unsecuring support struts...")
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					user << SPAN_NOTICE("You unsecured the support struts!")
+					state = 1
+					return
+			if(anchored && !reinf_material)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					reinforcing = !reinforcing
+					user << SPAN_NOTICE("The [src] can now be [reinforcing? "reinforced" : "constructed"]!")
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/stack/material))
 		if(reinforcing && !reinf_material)
-			if(!reinforce_with_material(W, user))
+			if(!reinforce_with_material(I, user))
 				return ..()
 		else
-			if(!construct_wall(W, user))
+			if(!construct_wall(I, user))
 				return ..()
 
 	else
@@ -193,7 +203,7 @@
 	reinforcing = 0
 
 /obj/structure/girder/proc/dismantle()
-	new /obj/item/stack/material/steel(get_turf(src))
+	new /obj/item/stack/material/steel(src.loc, 5)
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)
@@ -219,32 +229,3 @@
 			return
 		else
 	return
-
-/obj/structure/girder/cult
-	icon= 'icons/obj/cult.dmi'
-	icon_state= "cultgirder"
-	health = 250
-	cover = 70
-
-/obj/structure/girder/cult/dismantle()
-	new /obj/item/remains/human(get_turf(src))
-	qdel(src)
-
-/obj/structure/girder/cult/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		user << SPAN_NOTICE("Now disassembling the girder...")
-		if(do_after(user,40,src))
-			user << SPAN_NOTICE("You dissasembled the girder!")
-			dismantle()
-
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
-		user << SPAN_NOTICE("Now slicing apart the girder...")
-		if(do_after(user,30,src))
-			user << SPAN_NOTICE("You slice apart the girder!")
-		dismantle()
-
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
-		user << SPAN_NOTICE("You drill through the girder!")
-		new /obj/item/remains/human(get_turf(src))
-		dismantle()

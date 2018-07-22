@@ -19,7 +19,8 @@
 	density = 1
 	opacity = 1
 
-/obj/structure/bookcase/initialize()
+/obj/structure/bookcase/Initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/weapon/book))
 			I.loc = src
@@ -36,11 +37,11 @@
 			return
 		else
 			name = ("bookcase ([newname])")
-	else if(istype(O,/obj/item/weapon/wrench))
+	else if(istype(O,/obj/item/weapon/tool/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		user << (anchored ? SPAN_NOTICE("You unfasten \the [src] from the floor.") : SPAN_NOTICE("You secure \the [src] to the floor."))
 		anchored = !anchored
-	else if(istype(O,/obj/item/weapon/screwdriver))
+	else if(istype(O,/obj/item/weapon/tool/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 		user << SPAN_NOTICE("You begin dismantling \the [src].")
 		if(do_after(user,25,src))
@@ -151,6 +152,11 @@
 	var/obj/item/store	//What's in the book?
 
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
+	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
+		'sound/items/BOOK_Turn_Page_2.ogg',\
+		'sound/items/BOOK_Turn_Page_3.ogg',\
+		'sound/items/BOOK_Turn_Page_4.ogg',\
+		), rand(40,80), 1)
 	if(carved)
 		if(store)
 			user << SPAN_NOTICE("[store] falls out of [title]!")
@@ -167,22 +173,22 @@
 	else
 		user << "This book is completely blank!"
 
-/obj/item/weapon/book/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/book/attackby(obj/item/I, mob/user)
 	if(carved)
 		if(!store)
-			if(W.w_class < ITEM_SIZE_NORMAL)
+			if(I.w_class < ITEM_SIZE_NORMAL)
 				user.drop_item()
-				W.loc = src
-				store = W
-				user << SPAN_NOTICE("You put [W] in [title].")
+				I.loc = src
+				store = I
+				user << SPAN_NOTICE("You put [I] in [title].")
 				return
 			else
-				user << SPAN_NOTICE("[W] won't fit in [title].")
+				user << SPAN_NOTICE("[I] won't fit in [title].")
 				return
 		else
 			user << SPAN_NOTICE("There's already something in [title]!")
 			return
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(I, /obj/item/weapon/pen))
 		if(unique)
 			user << "These pages don't seem to take the ink well. Looks like you can't modify it."
 			return
@@ -212,36 +218,36 @@
 					src.author = newauthor
 			else
 				return
-	else if(istype(W, /obj/item/weapon/barcodescanner))
-		var/obj/item/weapon/barcodescanner/scanner = W
+	else if(istype(I, /obj/item/weapon/barcodescanner))
+		var/obj/item/weapon/barcodescanner/scanner = I
 		if(!scanner.computer)
-			user << "[W]'s screen flashes: 'No associated computer found!'"
+			user << "[I]'s screen flashes: 'No associated computer found!'"
 		else
 			switch(scanner.mode)
 				if(0)
 					scanner.book = src
-					user << "[W]'s screen flashes: 'Book stored in buffer.'"
+					user << "[I]'s screen flashes: 'Book stored in buffer.'"
 				if(1)
 					scanner.book = src
 					scanner.computer.buffer_book = src.name
-					user << "[W]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'"
+					user << "[I]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'"
 				if(2)
 					scanner.book = src
 					for(var/datum/borrowbook/b in scanner.computer.checkouts)
 						if(b.bookname == src.name)
 							scanner.computer.checkouts.Remove(b)
-							user << "[W]'s screen flashes: 'Book stored in buffer. Book has been checked in.'"
+							user << "[I]'s screen flashes: 'Book stored in buffer. Book has been checked in.'"
 							return
-					user << "[W]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'"
+					user << "[I]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'"
 				if(3)
 					scanner.book = src
 					for(var/obj/item/weapon/book in scanner.computer.inventory)
 						if(book == src)
-							user << "[W]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'"
+							user << "[I]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'"
 							return
 					scanner.computer.inventory.Add(src)
-					user << "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
-	else if(istype(W, /obj/item/weapon/material/knife) || istype(W, /obj/item/weapon/wirecutters))
+					user << "[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'"
+	else if(QUALITY_CUTTING in I.tool_qualities)
 		if(carved)	return
 		user << SPAN_NOTICE("You begin to carve out [title].")
 		if(do_after(user, 30, src))
@@ -252,7 +258,7 @@
 		..()
 
 /obj/item/weapon/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(user.targeted_organ == "eyes")
+	if(user.targeted_organ == O_EYES)
 		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
 			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")

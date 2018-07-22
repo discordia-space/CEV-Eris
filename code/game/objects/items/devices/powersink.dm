@@ -11,7 +11,7 @@
 	throw_speed = 1
 	throw_range = 2
 
-	matter = list(DEFAULT_WALL_MATERIAL = 750,"waste" = 750)
+	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_STEEL = 8, MATERIAL_GLASS = 3)
 
 	origin_tech = list(TECH_POWER = 3, TECH_ILLEGAL = 5)
 	var/drain_rate = 1500000		// amount of power to drain per tick
@@ -26,38 +26,38 @@
 	var/obj/structure/cable/attached		// the attached cable
 
 /obj/item/device/powersink/Destroy()
-	processing_objects.Remove(src)
-	processing_power_items.Remove(src)
-	..()
+	if(mode == 2)
+		STOP_PROCESSING_POWER_OBJECT(src)
+	. = ..()
 
-/obj/item/device/powersink/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/screwdriver))
-		if(mode == 0)
-			var/turf/T = loc
-			if(isturf(T) && !!T.is_plating())
-				attached = locate() in T
-				if(!attached)
-					user << "No exposed cable here to attach to."
-					return
+/obj/item/device/powersink/attackby(obj/item/I, mob/user)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			if(mode == 0)
+				var/turf/T = loc
+				if(isturf(T) && !!T.is_plating())
+					attached = locate() in T
+					if(!attached)
+						user << "No exposed cable here to attach to."
+						return
+					else
+						anchored = 1
+						mode = 1
+						src.visible_message(SPAN_NOTICE("[user] attaches [src] to the cable!"))
+						return
 				else
-					anchored = 1
-					mode = 1
-					src.visible_message(SPAN_NOTICE("[user] attaches [src] to the cable!"))
+					user << "Device must be placed over an exposed cable to attach to it."
 					return
 			else
-				user << "Device must be placed over an exposed cable to attach to it."
-				return
-		else
-			if (mode == 2)
-				processing_objects.Remove(src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
-				processing_power_items.Remove(src)
-			anchored = 0
-			mode = 0
-			src.visible_message(SPAN_NOTICE("[user] detaches [src] from the cable!"))
-			set_light(0)
-			icon_state = "powersink0"
+				if (mode == 2)
+					STOP_PROCESSING_POWER_OBJECT(src)
+				anchored = 0
+				mode = 0
+				src.visible_message(SPAN_NOTICE("[user] detaches [src] from the cable!"))
+				set_light(0)
+				icon_state = "powersink0"
 
-			return
+				return
 	else
 		..()
 
@@ -72,15 +72,13 @@
 			src.visible_message(SPAN_NOTICE("[user] activates [src]!"))
 			mode = 2
 			icon_state = "powersink1"
-			processing_objects.Add(src)
-			processing_power_items.Add(src)
+			START_PROCESSING_POWER_OBJECT(src)
 		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
 			src.visible_message(SPAN_NOTICE("[user] deactivates [src]!"))
 			mode = 1
 			set_light(0)
 			icon_state = "powersink0"
-			processing_objects.Remove(src)
-			processing_power_items.Remove(src)
+			STOP_PROCESSING_POWER_OBJECT(src)
 
 /obj/item/device/powersink/pwr_drain()
 	if(!attached)
@@ -117,7 +115,7 @@
 	return 1
 
 
-/obj/item/device/powersink/process()
+/obj/item/device/powersink/Process()
 	drained_this_tick = 0
 	power_drained -= min(dissipation_rate, power_drained)
 	if(power_drained > max_power * 0.95)

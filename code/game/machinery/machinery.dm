@@ -121,19 +121,15 @@ Class Procs:
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/frame_type = FRAME_DEFAULT
 
-/obj/machinery/New(l, d=0)
-	..(l)
+/obj/machinery/Initialize(mapload, d=0)
+	. = ..()
 	if(d)
 		set_dir(d)
 	InitCircuit()
-	if(!machinery_sort_required && ticker)
-		dd_insertObjectList(machines, src)
-	else
-		machines += src
-		machinery_sort_required = 1
+	START_PROCESSING(SSmachines, src)
 
 /obj/machinery/Destroy()
-	machines -= src
+	STOP_PROCESSING(SSmachines, src)
 	if(component_parts)
 		for(var/atom/A in component_parts)
 			qdel(A)
@@ -142,7 +138,7 @@ Class Procs:
 			qdel(A)
 	return ..()
 
-/obj/machinery/process()//If you dont use process or power why are you here
+/obj/machinery/Process()//If you dont use process or power why are you here
 	if(!(use_power || idle_power_usage || active_power_usage))
 		return PROCESS_KILL
 
@@ -299,7 +295,35 @@ Class Procs:
 			return 1
 	return 0
 
-/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
+/obj/machinery/proc/default_deconstruction(var/obj/item/I, var/mob/user)
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
+	switch(tool_type)
+
+		if(QUALITY_PRYING)
+			if(!panel_open)
+				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
+				return TRUE
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
+				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				dismantle()
+			return TRUE
+
+		if(QUALITY_SCREW_DRIVING)
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				updateUsrDialog()
+				panel_open = !panel_open
+				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				update_icon()
+			return TRUE
+
+		if(ABORT_CHECK)
+			return TRUE
+
+	return FALSE //If got no qualities - continue base attackby proc
+
+/obj/machinery/proc/default_part_replacement(var/obj/item/weapon/storage/part_replacer/R, var/mob/user)
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -329,22 +353,6 @@ Class Procs:
 			user << SPAN_NOTICE("    [C.name]")
 	return 1
 
-/obj/machinery/proc/default_deconstruction_crowbar(var/mob/user, var/obj/item/weapon/crowbar/C)
-	if(!istype(C))
-		return 0
-	if(!panel_open)
-		return 0
-	. = dismantle()
-
-/obj/machinery/proc/default_deconstruction_screwdriver(var/mob/user, var/obj/item/weapon/screwdriver/S)
-	if(!istype(S))
-		return 0
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-	panel_open = !panel_open
-	user << "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of \the [src].</span>"
-	update_icon()
-	return 1
-
 /obj/machinery/proc/create_frame(var/type)
 	if(type == FRAME_DEFAULT)
 		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame, loc)
@@ -352,7 +360,6 @@ Class Procs:
 		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame/vertical, loc)
 
 /obj/machinery/proc/dismantle()
-	playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
 	M.set_dir(src.dir)
 	M.state = 2

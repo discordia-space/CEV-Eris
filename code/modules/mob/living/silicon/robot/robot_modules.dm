@@ -53,7 +53,9 @@ var/global/list/robot_modules = list(
 	R.choose_icon(R.module_sprites.len + 1, R.module_sprites)
 
 	for(var/obj/item/I in modules)
-		I.canremove = 0
+		I.canremove = FALSE
+		I.layer = ABOVE_HUD_LAYER
+		I.plane = ABOVE_HUD_PLANE
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -170,11 +172,11 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/standard/New()
 	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/weapon/melee/baton/loaded(src)
+	src.modules += new /obj/item/weapon/melee/baton(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/crowbar(src)
-	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/weapon/tool/wrench(src)
+	src.modules += new /obj/item/weapon/tool/crowbar(src)
+	src.modules += new /obj/item/device/scanner/healthanalyzer(src)
 	src.emag = new /obj/item/weapon/melee/energy/sword(src)
 	..()
 
@@ -198,17 +200,15 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/medical/surgeon/New()
 	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/device/scanner/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/surgeon(src)
-	src.modules += new /obj/item/weapon/scalpel(src)
-	src.modules += new /obj/item/weapon/hemostat(src)
-	src.modules += new /obj/item/weapon/retractor(src)
-	src.modules += new /obj/item/weapon/cautery(src)
-	src.modules += new /obj/item/weapon/bonegel(src)
-	src.modules += new /obj/item/weapon/FixOVein(src)
-	src.modules += new /obj/item/weapon/bonesetter(src)
-	src.modules += new /obj/item/weapon/circular_saw(src)
-	src.modules += new /obj/item/weapon/surgicaldrill(src)
+	src.modules += new /obj/item/weapon/tool/scalpel(src)
+	src.modules += new /obj/item/weapon/tool/hemostat(src)
+	src.modules += new /obj/item/weapon/tool/retractor(src)
+	src.modules += new /obj/item/weapon/tool/cautery(src)
+	src.modules += new /obj/item/weapon/tool/bonesetter(src)
+	src.modules += new /obj/item/weapon/tool/saw/circular(src)
+	src.modules += new /obj/item/weapon/tool/surgicaldrill(src)
 	src.modules += new /obj/item/weapon/extinguisher/mini(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
@@ -251,15 +251,16 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/medical/crisis/New()
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/hud/med(src)
-	src.modules += new /obj/item/device/healthanalyzer(src)
-	src.modules += new /obj/item/device/reagent_scanner/adv(src)
+	src.modules += new /obj/item/device/scanner/healthanalyzer(src)
+	src.modules += new /obj/item/device/scanner/reagent_scanner/adv(src)
 	src.modules += new /obj/item/roller_holder(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/crisis(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/reagent_containers/dropper/industrial(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/extinguisher/mini(src)
-	src.modules += new /obj/item/weapon/inflatable_dispenser(src) // Allows usage of inflatables. Since they are basically robotic alternative to EMTs, they should probably have them.
+	// Allows usage of inflatables. Since they are basically robotic alternative to EMTs, they should probably have them.
+	src.modules += new /obj/item/weapon/inflatable_dispenser(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"
@@ -319,14 +320,14 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
-	src.modules += new /obj/item/weapon/weldingtool/largetank(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/crowbar(src)
-	src.modules += new /obj/item/weapon/wirecutters(src)
-	src.modules += new /obj/item/device/multitool(src)
+	src.modules += new /obj/item/weapon/tool/weldingtool(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver(src)
+	src.modules += new /obj/item/weapon/tool/wrench(src)
+	src.modules += new /obj/item/weapon/tool/crowbar(src)
+	src.modules += new /obj/item/weapon/tool/wirecutters(src)
+	src.modules += new /obj/item/weapon/tool/multitool(src)
 	src.modules += new /obj/item/device/t_scanner(src)
-	src.modules += new /obj/item/device/analyzer(src)
+	src.modules += new /obj/item/device/scanner/analyzer(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
@@ -417,8 +418,8 @@ var/global/list/robot_modules = list(
 	else
 		T.charge_tick = 0
 	var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules
-	if(B && B.bcell)
-		B.bcell.give(amount)
+	if(B && B.cell)
+		B.cell.give(amount)
 
 /obj/item/weapon/robot_module/janitor
 	name = "janitorial robot module"
@@ -437,6 +438,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/storage/bag/trash(src)
 	src.modules += new /obj/item/weapon/mop(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
+	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("lube", 250)
 	src.emag.name = "Lube spray"
@@ -472,7 +474,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
 	src.modules += new /obj/item/weapon/material/minihoe(src)
 	src.modules += new /obj/item/weapon/material/hatchet(src)
-	src.modules += new /obj/item/device/analyzer/plant_analyzer(src)
+	src.modules += new /obj/item/device/scanner/analyzer/plant_analyzer(src)
 	src.modules += new /obj/item/weapon/storage/bag/plants(src)
 	src.modules += new /obj/item/weapon/robot_harvester(src)
 
@@ -542,15 +544,14 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/miner/New()
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/material(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
+	src.modules += new /obj/item/weapon/tool/wrench(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver(src)
 	src.modules += new /obj/item/weapon/storage/bag/ore(src)
-	src.modules += new /obj/item/weapon/pickaxe/borgdrill(src)
+	src.modules += new /obj/item/weapon/tool/pickaxe/drill(src)
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
-	src.modules += new /obj/item/weapon/crowbar(src)
-	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.modules += new /obj/item/weapon/tool/crowbar(src)
 	..()
 
 /obj/item/weapon/robot_module/research
@@ -569,11 +570,11 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/device/robotanalyzer(src)
 	src.modules += new /obj/item/weapon/card/robot(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
-	src.modules += new /obj/item/weapon/crowbar(src)
-	src.modules += new /obj/item/weapon/scalpel(src)
-	src.modules += new /obj/item/weapon/circular_saw(src)
+	src.modules += new /obj/item/weapon/tool/wrench(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver(src)
+	src.modules += new /obj/item/weapon/tool/crowbar(src)
+	src.modules += new /obj/item/weapon/tool/scalpel(src)
+	src.modules += new /obj/item/weapon/tool/saw/circular(src)
 	src.modules += new /obj/item/weapon/extinguisher/mini(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
@@ -627,7 +628,6 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/borg/sight/thermal(src)
 	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)
-	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
 	src.emag = new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
@@ -640,12 +640,12 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_ENGINEERING)
 
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/robot)
-	src.modules += new /obj/item/weapon/weldingtool(src)
-	src.modules += new /obj/item/weapon/screwdriver(src)
-	src.modules += new /obj/item/weapon/wrench(src)
-	src.modules += new /obj/item/weapon/crowbar(src)
-	src.modules += new /obj/item/weapon/wirecutters(src)
-	src.modules += new /obj/item/device/multitool(src)
+	src.modules += new /obj/item/weapon/tool/weldingtool(src)
+	src.modules += new /obj/item/weapon/tool/screwdriver(src)
+	src.modules += new /obj/item/weapon/tool/wrench(src)
+	src.modules += new /obj/item/weapon/tool/crowbar(src)
+	src.modules += new /obj/item/weapon/tool/wirecutters(src)
+	src.modules += new /obj/item/weapon/tool/multitool(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/soap(src)
@@ -658,9 +658,6 @@ var/global/list/robot_modules = list(
 //	src.modules += robot.internals
 
 	src.modules += new/obj/item/weapon/tank/jetpack/carbondioxide(src)
-
-	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
-	src.emag.name = "Plasma Cutter"
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(25000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)

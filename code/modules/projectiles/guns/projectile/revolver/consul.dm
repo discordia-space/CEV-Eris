@@ -6,6 +6,6 @@
 	drawChargeMeter = FALSE
 	caliber = ".44"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
-	handle_casings = CYCLE_CASINGS
 	max_shells = 6
 	ammo_type = /obj/item/ammo_casing/cl44r
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)

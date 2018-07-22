@@ -13,7 +13,7 @@
 	idle_power_usage = 15000
 	active_power_usage = 15000
 
-/obj/machinery/bluespacerelay/process()
+/obj/machinery/bluespacerelay/Process()
 
 	update_power()
 
@@ -33,12 +33,12 @@
 	else
 		on = 1
 
-/obj/machinery/bluespacerelay/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(default_deconstruction_screwdriver(user, O))
+/obj/machinery/bluespacerelay/attackby(var/obj/item/I, var/mob/user as mob)
+
+	if(default_deconstruction(I, user))
 		return
-	if(default_deconstruction_crowbar(user, O))
-		return
-	if(default_part_replacement(user, O))
+
+	if(default_part_replacement(I, user))
 		return
 
 	..()

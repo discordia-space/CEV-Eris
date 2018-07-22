@@ -52,7 +52,7 @@
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
 				"You hear someone scribbling a note.")
-				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
 					nameset = 1
@@ -72,7 +72,7 @@
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
 				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
 				"You hear someone scribbling a note.")
-				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
 
 /obj/structure/bigDelivery/update_icon()
@@ -146,7 +146,7 @@
 				else
 					src.sortTag = O.currTag
 				playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
-				playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.wav',100,2)
+				playsound(src,'sound/effects/FOLEY_Gaffer_Tape_Tear_mono.ogg',100,2)
 			else
 				user << SPAN_WARNING("The package is already labeled for [O.currTag].")
 		else
@@ -162,7 +162,7 @@
 				user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
 				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
 				"You hear someone scribbling a note.")
-				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 				name = "[name] ([str])"
 				if(!examtext && !nameset)
 					nameset = 1
@@ -183,7 +183,7 @@
 				user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
 				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
 				"You hear someone scribbling a note.")
-				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.wav', 50, 1)
+				playsound(src.loc, 'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg', 50, 1)
 	return
 
 /obj/item/smallDelivery/update_icon()
@@ -242,7 +242,7 @@
 		return
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
-	playsound(src,'sound/machines/PAPER_Fold_01_mono.wav',100,1)
+	playsound(src,'sound/machines/PAPER_Fold_01_mono.ogg',100,1)
 
 	if (istype(target, /obj/item) && !(istype(target, /obj/item/weapon/storage) && !istype(target,/obj/item/weapon/storage/box)))
 		var/obj/item/O = target
@@ -324,12 +324,13 @@
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in contents)
 		AM.loc = T
-	..()
+	. = ..()
 
 /obj/item/device/destTagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
 	icon_state = "dest_tagger"
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	var/currTag = 0
 
 	w_class = ITEM_SIZE_SMALL
@@ -431,40 +432,45 @@
 	return get_ranged_target_turf(src, dir, 10)
 
 /obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
-	if(!I || !user)
-		return
 
-	if(istype(I, /obj/item/weapon/screwdriver))
-		if(c_mode==0)
-			c_mode=1
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "You remove the screws around the power connection."
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
+	if(c_mode == 1)
+		usable_qualities.Add(QUALITY_WELDING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(contents.len > 0)
+				user << "Eject the items first!"
+				return
+			if(mode<=0)
+				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+					if(c_mode==0) // It's off but still not unscrewed
+						c_mode=1 // Set it to doubleoff l0l
+						user << "You remove the screws around the power connection."
+						return
+					else if(c_mode==1)
+						c_mode=0
+						user << "You attach the screws around the power connection."
+						return
 			return
-		else if(c_mode==1)
-			c_mode=0
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "You attach the screws around the power connection."
-			return
-	else if(istype(I,/obj/item/weapon/weldingtool) && c_mode==1)
-		var/obj/item/weapon/weldingtool/W = I
-		if(W.remove_fuel(1,user))
-			user << "You start slicing the floorweld off the delivery chute."
-			if(do_after(user,20, src))
-				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-				if(!src || !W.isOn()) return
-				user << "You sliced the floorweld off the delivery chute."
-				var/obj/structure/disposalconstruct/C = new (src.loc)
-				C.pipe_type = PIPE_TYPE_INTAKE
-				C.update()
-				C.anchored = 1
-				C.density = 1
-				qdel(src)
-			return
-		else
-			user << "You need more welding fuel to complete this task."
+
+		if(QUALITY_WELDING)
+			if(mode==-1)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+					user << "You sliced the floorweld off the disposal unit."
+					var/obj/structure/disposalconstruct/C = new (src.loc)
+					src.transfer_fingerprints_to(C)
+					C.pipe_type = PIPE_TYPE_INTAKE
+					C.anchored = 1
+					C.density = 1
+					C.update()
+					qdel(src)
 			return
 
 /obj/machinery/disposal/deliveryChute/Destroy()
 	if(trunk)
 		trunk.linked = null
-	..()
+	. = ..()

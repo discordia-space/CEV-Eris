@@ -86,7 +86,7 @@
 		if(3)
 			var/obj/item/clothing/suit/armor/a_i_a_ptank/R = new /obj/item/clothing/suit/armor/a_i_a_ptank(src.loc)
 			var/obj/item/weapon/tank/plasma/p4 = new /obj/item/weapon/tank/plasma(R)
-			var/obj/item/device/healthanalyzer/p1 = new /obj/item/device/healthanalyzer(R)
+			var/obj/item/device/healthanalyzer/p1 = new /obj/item/device/scanner/healthanalyzer(R)
 			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
 			var/obj/item/clothing/suit/armor/vest/p3 = new /obj/item/clothing/suit/armor/vest(R)
 			R.part1 = p1
@@ -152,14 +152,14 @@
 	name = "TTV bomb - proximity"
 	assembly_type = /obj/item/device/assembly/prox_sensor
 
-/obj/effect/spawner/newbomb/radio/custom/New(var/newloc, ph, ox, co)
+/obj/effect/spawner/newbomb/radio/custom/Initialize(mapload, ph, ox, co)
 	if(ph != null) plasma_amt = ph
 	if(ox != null) oxygen_amt = ox
 	if(co != null) carbon_amt = co
-	..()
+	. = ..()
 
-/obj/effect/spawner/newbomb/New(newloc)
-	..(newloc)
+/obj/effect/spawner/newbomb/Initialize()
+	..()
 
 	var/obj/item/device/transfer_valve/V = new(src.loc)
 	var/obj/item/weapon/tank/plasma/PT = new(V)
@@ -190,4 +190,4 @@
 
 	V.update_icon()
 
-	qdel(src)
+	return INITIALIZE_HINT_QDEL

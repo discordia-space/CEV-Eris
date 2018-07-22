@@ -1,6 +1,9 @@
 /mob/proc/create_HUD()
 	return
 
+/mob/proc/dead_HUD()
+	return
+
 /mob/proc/minimalize_HUD()
 	return
 

@@ -28,7 +28,7 @@
 /obj/structure/alien/resin/Destroy()
 	var/turf/T = get_turf(src)
 	T.thermal_conductivity = initial(T.thermal_conductivity)
-	..()
+	. = ..()
 
 /obj/structure/alien/resin/attack_hand(var/mob/user)
 	if (HULK in user.mutations)
@@ -38,7 +38,7 @@
 		// Aliens can get straight through these.
 		if(iscarbon(user))
 			var/mob/living/carbon/M = user
-			if(locate(/obj/item/organ/xenos/hivenode) in M.internal_organs)
+			if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 				visible_message("<span class='alium'>\The [user] strokes \the [name] and it melts away!</span>")
 				health = 0
 				healthcheck()

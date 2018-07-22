@@ -90,7 +90,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
 		hat.loc = get_turf(src)
-	..()
+	. = ..()
 
 /mob/living/silicon/robot/drone/construction
 	icon_state = "constructiondrone"
@@ -180,10 +180,6 @@ var/list/mob_hat_cache = list()
 		return
 	else if(istype(W, /obj/item/borg/upgrade/))
 		user << SPAN_DANGER("\The [src] is not compatible with \the [W].")
-		return
-
-	else if (istype(W, /obj/item/weapon/crowbar))
-		user << SPAN_DANGER("\The [src] is hermetically sealed. You can't open the case.")
 		return
 
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
@@ -347,7 +343,7 @@ var/list/mob_hat_cache = list()
 
 /proc/too_many_active_drones()
 	var/drones = 0
-	for(var/mob/living/silicon/robot/drone/D in mob_list)
+	for(var/mob/living/silicon/robot/drone/D in SSmobs.mob_list)
 		if(D.key && D.client)
 			drones++
 	return drones >= config.max_maint_drones

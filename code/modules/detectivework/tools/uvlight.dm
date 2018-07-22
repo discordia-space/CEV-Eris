@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
 	action_button_name = "Toggle UV light"
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	var/list/scanned = list()
@@ -21,12 +21,12 @@
 	on = !on
 	if(on)
 		set_light(range, 2, "#007fff")
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 		icon_state = "uv_on"
 	else
 		set_light(0)
 		clear_last_scan()
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 		icon_state = "uv_off"
 
 /obj/item/device/uv_light/proc/clear_last_scan()
@@ -46,7 +46,7 @@
 			if(I.fluorescent == 2) I.fluorescent = 1
 		reset_objects.Cut()
 
-/obj/item/device/uv_light/process()
+/obj/item/device/uv_light/Process()
 	clear_last_scan()
 	if(on)
 		step_alpha = round(255/range)

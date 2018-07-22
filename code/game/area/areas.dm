@@ -7,10 +7,13 @@
 	var/global/global_uid = 0
 	var/uid
 	var/tmp/camera_id = 0 // For automatic c_tag setting
+	//Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
+	plane = BLACKNESS_PLANE
+	layer = AREA_LAYER
 
 /area/New()
 	icon_state = ""
-	layer = 10
+	layer = AREA_LAYER
 	uid = ++global_uid
 	all_areas += src
 
@@ -21,7 +24,8 @@
 
 	..()
 
-/area/initialize()
+/area/Initialize()
+	. = ..()
 	if(!requires_power || !apc)
 		power_light = 0
 		power_equip = 0
@@ -150,7 +154,6 @@
 /area/proc/updateicon()
 	if ((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire)
-			//icon_state = "blue"
 			for(var/obj/machinery/light/L in src)
 				if(istype(L, /obj/machinery/light/small))
 					continue
@@ -161,11 +164,12 @@
 					continue
 				L.set_blue()
 		else if(!fire && eject && !party && !(atmosalm == 2))
-			icon_state = "red"
+			for(var/obj/machinery/light/L in src)
+				if(istype(L, /obj/machinery/light/small))
+					continue
+				L.set_red()
 		else if(party && !fire && !eject && !(atmosalm == 2))
 			icon_state = "party"
-		//else
-			//icon_state = "blue-red"
 	else
 	//	new lighting behaviour with obj lights
 		icon_state = null
@@ -322,6 +326,12 @@ var/list/mob/living/forced_ambiance_list = new
 
 /area/space/has_gravity()
 	return 0
+
+/area/proc/are_living_present()
+	for(var/mob/living/L in src)
+		if(L.stat != DEAD)
+			return TRUE
+	return FALSE
 
 /proc/has_gravity(atom/AT, turf/T)
 	if(!T)

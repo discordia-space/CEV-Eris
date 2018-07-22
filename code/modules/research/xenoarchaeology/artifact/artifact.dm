@@ -43,79 +43,89 @@
 	icon_state = "boulder[rand(1,4)]"
 	excavation_level = rand(5,50)
 
-/obj/structure/boulder/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/device/core_sampler))
+/obj/structure/boulder/attackby(obj/item/weapon/I, mob/user )
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION))
+	switch(tool_type)
+
+		if(QUALITY_EXCAVATION)
+			var/excavation_amount = input("How deep are you going to dig?", "Excavation depth", 0) as num
+			if(excavation_amount)
+				user << SPAN_NOTICE("You start exacavating [src].")
+				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_COG))
+					user << SPAN_NOTICE("You finish exacavating [src].")
+					excavation_level += excavation_amount
+
+					if(excavation_level > 100)
+						//failure
+						user.visible_message(SPAN_DANGER("[src] suddenly crumbles away."),\
+						SPAN_WARNING("[src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
+						qdel(src)
+						return
+
+					if(prob(excavation_level))
+						//success
+						if(artifact_find)
+							var/spawn_type = artifact_find.artifact_find_type
+							var/obj/O = new spawn_type(get_turf(src))
+							if(istype(O,/obj/machinery/artifact))
+								var/obj/machinery/artifact/X = O
+								if(X.my_effect)
+									X.my_effect.artifact_id = artifact_find.artifact_id
+							src.visible_message("<font color='red'><b>[src] suddenly crumbles away.</b></font>")
+						else
+							user.visible_message("<font color='red'><b>[src] suddenly crumbles away.</b></font>",\
+							"\blue [src] has been whittled away under your careful excavation, but there was nothing of interest inside.")
+						qdel(src)
+					return
+			return
+
+		if(QUALITY_DIGGING)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_ZERO, required_stat = STAT_ROB))
+				user.visible_message(SPAN_DANGER("[src] suddenly crumbles away."),\
+				SPAN_WARNING("[src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
+				qdel(src)
+				return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if (istype(I, /obj/item/device/core_sampler))
 		src.geological_data.artifact_distance = rand(-100,100) / 100
 		src.geological_data.artifact_id = artifact_find.artifact_id
 
-		var/obj/item/device/core_sampler/C = W
+		var/obj/item/device/core_sampler/C = I
 		C.sample_item(src, user)
 		return
 
-	if (istype(W, /obj/item/device/depth_scanner))
-		var/obj/item/device/depth_scanner/C = W
+	if (istype(I, /obj/item/device/depth_scanner))
+		var/obj/item/device/depth_scanner/C = I
 		C.scan_atom(user, src)
 		return
 
-	if (istype(W, /obj/item/device/measuring_tape))
-		var/obj/item/device/measuring_tape/P = W
+	if (istype(I, /obj/item/device/measuring_tape))
+		var/obj/item/device/measuring_tape/P = I
 		user.visible_message("<span class='notice'>[user] extends [P] towards [src].","\blue You extend [P] towards [src].</span>")
 		if(do_after(user,40,src))
 			user << SPAN_NOTICE("[src] has been excavated to a depth of [2*src.excavation_level]cm.")
 		return
 
-	if (istype(W, /obj/item/weapon/pickaxe))
-		var/obj/item/weapon/pickaxe/P = W
-
-		if(last_act + P.digspeed > world.time)//prevents message spam
-			return
-		last_act = world.time
-
-		user << "\red You start [P.drill_verb] [src]."
-
-
-
-		if(!do_after(user,P.digspeed, src))
-			return
-
-		user << SPAN_NOTICE("You finish [P.drill_verb] [src].")
-		excavation_level += P.excavation_amount
-
-		if(excavation_level > 100)
-			//failure
-			user.visible_message(SPAN_DANGER("[src] suddenly crumbles away."),\
-			SPAN_WARNING("[src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
-			qdel(src)
-			return
-
-		if(prob(excavation_level))
-			//success
-			if(artifact_find)
-				var/spawn_type = artifact_find.artifact_find_type
-				var/obj/O = new spawn_type(get_turf(src))
-				if(istype(O,/obj/machinery/artifact))
-					var/obj/machinery/artifact/X = O
-					if(X.my_effect)
-						X.my_effect.artifact_id = artifact_find.artifact_id
-				src.visible_message("<font color='red'><b>[src] suddenly crumbles away.</b></font>")
-			else
-				user.visible_message("<font color='red'><b>[src] suddenly crumbles away.</b></font>",\
-				"\blue [src] has been whittled away under your careful excavation, but there was nothing of interest inside.")
-			qdel(src)
-
 /obj/structure/boulder/Bumped(AM)
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if((istype(H.l_hand,/obj/item/weapon/pickaxe)) && (!H.hand))
+		if((QUALITY_DIGGING in H.l_hand.tool_qualities) && (!H.hand))
 			attackby(H.l_hand,H)
-		else if((istype(H.r_hand,/obj/item/weapon/pickaxe)) && H.hand)
+		else if((QUALITY_DIGGING in H.r_hand.tool_qualities) && H.hand)
 			attackby(H.r_hand,H)
 
 	else if(isrobot(AM))
 		var/mob/living/silicon/robot/R = AM
-		if(istype(R.module_active,/obj/item/weapon/pickaxe))
-			attackby(R.module_active,R)
+		if(istype(R.module_active,/obj/item))
+			var/obj/item/I = R.module_active
+			if(QUALITY_DIGGING in I.tool_qualities)
+				attackby(I,R)
 
 	else if(istype(AM,/obj/mecha))
 		var/obj/mecha/M = AM

@@ -60,7 +60,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		fuel_objs.Cut()
 
 	if(!fire_tiles.len)
-		air_master.active_fire_zones.Remove(src)
+		SSair.active_fire_zones.Remove(src)
 
 /zone/proc/remove_liquidfuel(var/used_liquid_fuel, var/remove_fire=0)
 	if(!fuel_objs.len)
@@ -97,7 +97,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		return 1
 
 	fire = new(src, fl)
-	air_master.active_fire_zones |= zone
+	SSair.active_fire_zones |= zone
 
 	var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in src
 	zone.fire_tiles |= src
@@ -116,16 +116,16 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
 	light_color = "#ED9200"
-	layer = TURF_LAYER
+	layer = GASFIRE_LAYER
 
 	var/firelevel = 1 //Calculated by gas_mixture.calculate_firelevel()
 
-/obj/fire/process()
+/obj/fire/Process()
 	. = 1
 
 	var/turf/simulated/my_tile = loc
 	if(!istype(my_tile) || !my_tile.zone)
-		if(my_tile.fire == src)
+		if(my_tile && my_tile.fire == src)
 			my_tile.fire = null
 		RemoveFire()
 		return 1
@@ -194,7 +194,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	set_light(3, 1, color)
 
 	firelevel = fl
-	air_master.active_hotspots.Add(src)
+	SSair.active_hotspots.Add(src)
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
@@ -203,7 +203,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 /obj/fire/Destroy()
 	RemoveFire()
 
-	..()
+	. = ..()
 
 /obj/fire/proc/RemoveFire()
 	var/turf/T = loc
@@ -212,7 +212,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 		T.fire = null
 		loc = null
-	air_master.active_hotspots.Remove(src)
+	SSair.active_hotspots.Remove(src)
 
 
 /turf/simulated/var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.
@@ -390,7 +390,7 @@ datum/gas_mixture/proc/check_recombustability(list/fuel_objs)
 
 /mob/living/proc/FireBurn(var/firelevel, var/last_temperature, var/pressure)
 	var/mx = 5 * firelevel/vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
-	apply_damage(2.5*mx, BURN)
+	apply_damage(2.5 * mx, BURN)
 
 
 /mob/living/carbon/human/FireBurn(var/firelevel, var/last_temperature, var/pressure)
@@ -425,10 +425,10 @@ datum/gas_mixture/proc/check_recombustability(list/fuel_objs)
 
 	//Always check these damage procs first if fire damage isn't working. They're probably what's wrong.
 
-	apply_damage(2.5*mx*head_exposure, BURN, "head", 0, 0, "Fire")
-	apply_damage(2.5*mx*chest_exposure, BURN, "chest", 0, 0, "Fire")
-	apply_damage(2.0*mx*groin_exposure, BURN, "groin", 0, 0, "Fire")
-	apply_damage(0.6*mx*legs_exposure, BURN, "l_leg", 0, 0, "Fire")
-	apply_damage(0.6*mx*legs_exposure, BURN, "r_leg", 0, 0, "Fire")
-	apply_damage(0.4*mx*arms_exposure, BURN, "l_arm", 0, 0, "Fire")
-	apply_damage(0.4*mx*arms_exposure, BURN, "r_arm", 0, 0, "Fire")
+	apply_damage(2.5 * mx * head_exposure,  BURN, BP_HEAD,  0, 0, "Fire")
+	apply_damage(2.5 * mx * chest_exposure, BURN, BP_CHEST, 0, 0, "Fire")
+	apply_damage(2.0 * mx * groin_exposure, BURN, BP_GROIN, 0, 0, "Fire")
+	apply_damage(0.6 * mx * legs_exposure,  BURN, BP_L_LEG , 0, 0, "Fire")
+	apply_damage(0.6 * mx * legs_exposure,  BURN, BP_R_LEG, 0, 0, "Fire")
+	apply_damage(0.4 * mx * arms_exposure,  BURN, BP_L_ARM, 0, 0, "Fire")
+	apply_damage(0.4 * mx * arms_exposure,  BURN, BP_R_ARM, 0, 0, "Fire")

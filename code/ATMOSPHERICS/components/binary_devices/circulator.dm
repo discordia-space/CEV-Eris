@@ -10,7 +10,7 @@
 	icon_state = "circ-off"
 	anchored = 0
 
-	var/kinetic_efficiency = 0.04 //combined kinetic and kinetic-to-electric efficiency
+	var/kinetic_efficiency = 0.06 //combined kinetic and kinetic-to-electric efficiency
 	var/volume_ratio = 0.2
 
 	var/recent_moles_transferred = 0
@@ -67,7 +67,7 @@
 	stored_energy = 0
 	return last_stored_energy_transferred
 
-/obj/machinery/atmospherics/binary/circulator/process()
+/obj/machinery/atmospherics/binary/circulator/Process()
 	..()
 
 	if(last_worldtime_transfer < world.time - 50)
@@ -87,13 +87,13 @@
 
 	return 1
 
-/obj/machinery/atmospherics/binary/circulator/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-		anchored = !anchored
-		user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
-					"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
-					"You hear a ratchet")
+/obj/machinery/atmospherics/binary/circulator/attackby(obj/item/I, mob/user)
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			anchored = !anchored
+			user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
+						"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
+						"You hear a ratchet")
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))
@@ -101,13 +101,13 @@
 			else if(dir & (EAST|WEST))
 				initialize_directions = EAST|WEST
 
-			initialize()
+			atmos_init()
 			build_network()
 			if (node1)
-				node1.initialize()
+				node1.atmos_init()
 				node1.build_network()
 			if (node2)
-				node2.initialize()
+				node2.atmos_init()
 				node2.build_network()
 		else
 			if(node1)

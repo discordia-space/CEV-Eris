@@ -26,7 +26,8 @@
 /obj/structure/multiz/proc/find_target()
 	return
 
-/obj/structure/multiz/initialize()
+/obj/structure/multiz/Initialize()
+	. = ..()
 	find_target()
 
 /obj/structure/multiz/attack_tk(mob/user)
@@ -89,7 +90,8 @@
 	)
 
 	if(do_after(M, 10, src))
-		M.Move(T)
+		M.forceMove(T)
+		try_resolve_mob_pulling(M, src)
 
 
 
@@ -111,6 +113,11 @@
 /obj/structure/multiz/stairs/active
 	density = TRUE
 
+/obj/structure/multiz/stairs/active/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(istype(mover)) // if mover is not null, e.g. mob
+		return FALSE
+	return TRUE // if mover is null (air movement)
+
 /obj/structure/multiz/stairs/active/find_target()
 	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
@@ -128,13 +135,8 @@
 		return
 
 	AM.forceMove(get_turf(target))
+	try_resolve_mob_pulling(AM, ES)
 
-	if(ismob(AM) && (ES && ES.istop == istop))
-		var/mob/M = AM
-		if(M.pulling)
-			var/atom/movable/P = M.pulling
-			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)
-			P.forceMove(pull_target ? pull_target : get_turf(M))
 
 /obj/structure/multiz/stairs/active/attack_robot(mob/user)
 	. = ..()

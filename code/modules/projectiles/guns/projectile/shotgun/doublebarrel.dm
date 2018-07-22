@@ -17,6 +17,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 
 	burst_delay = 0
 	firemodes = list(
@@ -37,7 +38,7 @@
 
 //this is largely hacky and bad :(	-Pete
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
-	if(istype(A, /obj/item/weapon/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter))
+	if(QUALITY_SAWING in A.tool_qualities)
 		user << SPAN_NOTICE("You begin to shorten the barrel of \the [src].")
 		if(loaded.len)
 			for(var/i in 1 to max_shells)
@@ -45,7 +46,7 @@
 				playsound(user, fire_sound, 50, 1)
 			user.visible_message(SPAN_DANGER("The shotgun goes off!"), SPAN_DANGER("The shotgun goes off in your face!"))
 			return
-		if(do_after(user, 30, src))	//SHIT IS STEALTHY EYYYYY
+		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_COG))
 			icon_state = "sawnshotgun"
 			item_state = "sawnshotgun"
 			w_class = ITEM_SIZE_NORMAL

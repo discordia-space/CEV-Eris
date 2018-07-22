@@ -11,7 +11,7 @@
 	throw_speed = 2
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MATERIAL_STEEL = 2)
 	var/elastic
 	var/dispenser = 0
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
@@ -65,7 +65,11 @@
 
 	//user.visible_message(SPAN_DANGER("\The [user] is attempting to put [cuff_type] on \the [H]!"))
 
-	if(!do_after(user,0, target))
+	if(istype(user, /mob/living/silicon/robot))
+		if(!do_after(user, 30, target))
+			return 0
+
+	else if(!do_after(user, 0, target))
 		return 0
 
 	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed by [user.name] ([user.ckey])</font>")
@@ -101,7 +105,7 @@ var/last_chew = 0
 	if (H.wear_mask) return
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 
-	var/obj/item/organ/external/O = H.organs_by_name[H.hand?"l_hand":"r_hand"]
+	var/obj/item/organ/external/O = H.organs_by_name[H.hand ? BP_L_HAND : BP_R_HAND]
 	if (!O) return
 
 	var/s = SPAN_WARNING("[H.name] chews on \his [O.name]!")

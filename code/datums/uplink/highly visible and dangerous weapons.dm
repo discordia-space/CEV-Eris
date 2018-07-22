@@ -31,7 +31,7 @@
 
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"
-	item_cost = 12
+	item_cost = 10
 	path = /obj/item/weapon/gun/projectile/revolver
 
 //These are for traitors (or other antags, perhaps) to have the option of purchasing some merc gear.
@@ -42,10 +42,10 @@
 
 /datum/uplink_item/item/visible_weapons/assaultrifle
 	name = "Assault Rifle"
-	item_cost = 14
+	item_cost = 11
 	path = /obj/item/weapon/gun/projectile/automatic/sts35
 
 /datum/uplink_item/item/visible_weapons/heavysniper
 	name = "Anti-materiel Rifle"
-	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
+	item_cost = 14
 	path = /obj/item/weapon/gun/projectile/heavysniper

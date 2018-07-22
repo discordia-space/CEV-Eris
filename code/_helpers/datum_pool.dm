@@ -58,8 +58,8 @@ var/global/list/GlobalPool = list()
 		#ifdef DEBUG_ATOM_POOL
 		world << text("DEBUG_DATUM_POOL: PlaceInPool([]) exceeds []. Discarding.", D.type, ATOM_POOL_COUNT)
 		#endif
-		if(garbage_collector)
-			garbage_collector.AddTrash(D)
+		if(SSgarbage)
+			qdel(D)
 		else
 			del(D)
 		return

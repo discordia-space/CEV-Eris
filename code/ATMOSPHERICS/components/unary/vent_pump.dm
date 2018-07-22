@@ -21,6 +21,7 @@
 
 	var/area/initial_loc
 	level = 1
+	layer = GAS_SCRUBBER_LAYER
 	var/area_uid
 	var/id_tag = null
 
@@ -82,7 +83,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/Destroy()
 	unregister_radio(src, frequency)
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "Large Air Vent"
@@ -155,7 +156,7 @@
 		return 0
 	return 1
 
-/obj/machinery/atmospherics/unary/vent_pump/process()
+/obj/machinery/atmospherics/unary/vent_pump/Process()
 	..()
 
 	if (hibernate > world.time)
@@ -251,7 +252,7 @@
 	return 1
 
 
-/obj/machinery/atmospherics/unary/vent_pump/initialize()
+/obj/machinery/atmospherics/unary/vent_pump/atmos_init()
 	..()
 
 	//some vents work his own special way
@@ -348,14 +349,14 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
-		if (WT.remove_fuel(0, user))
+/obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/I, mob/user)
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING, QUALITY_BOLT_TURNING))
+	switch(tool_type)
+
+		if(QUALITY_WELDING)
 			user << SPAN_NOTICE("Now welding the vent.")
-			if(do_after(user, 20, src))
-				if(!src || !WT.isOn()) return
-				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(!welded)
 					user.visible_message(SPAN_NOTICE("\The [user] welds the vent shut."), SPAN_NOTICE("You weld the vent shut."), "You hear welding.")
 					welded = 1
@@ -364,13 +365,41 @@
 					user.visible_message(SPAN_NOTICE("[user] unwelds the vent."), SPAN_NOTICE("You unweld the vent."), "You hear welding.")
 					welded = 0
 					update_icon()
-			else
-				user << SPAN_NOTICE("The welding tool needs to be on to start this task.")
-		else
-			user << SPAN_WARNING("You need more welding fuel to complete this task.")
-			return 1
-	else
-		..()
+					return
+			return
+
+
+
+		if(QUALITY_BOLT_TURNING)
+			if (!(stat & NOPOWER) && use_power)
+				user << SPAN_WARNING("You cannot unwrench \the [src], turn it off first.")
+				return 1
+			var/turf/T = src.loc
+			if (node && node.level==1 && isturf(T) && !T.is_plating())
+				user << SPAN_WARNING("You must remove the plating first.")
+				return 1
+			var/datum/gas_mixture/int_air = return_air()
+			var/datum/gas_mixture/env_air = loc.return_air()
+			if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+				user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
+				add_fingerprint(user)
+				return 1
+
+			user << SPAN_NOTICE("You begin to unfasten \the [src]...")
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				user.visible_message( \
+					SPAN_NOTICE("\The [user] unfastens \the [src]."), \
+					SPAN_NOTICE("You have unfastened \the [src]."), \
+					"You hear a ratchet.")
+				new /obj/item/pipe(loc, make_from=src)
+				qdel(src)
+				return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	return
 
 /obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
 	if(..(user, 1))
@@ -386,38 +415,11 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
-		return ..()
-	if (!(stat & NOPOWER) && use_power)
-		user << SPAN_WARNING("You cannot unwrench \the [src], turn it off first.")
-		return 1
-	var/turf/T = src.loc
-	if (node && node.level==1 && isturf(T) && !T.is_plating())
-		user << SPAN_WARNING("You must remove the plating first.")
-		return 1
-	var/datum/gas_mixture/int_air = return_air()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
-		add_fingerprint(user)
-		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
-	if (do_after(user, 40, src))
-		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
-		qdel(src)
-
 /obj/machinery/atmospherics/unary/vent_pump/Destroy()
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
 		initial_loc.air_vent_names -= id_tag
-	..()
-	return
+	return ..()
 
 #undef DEFAULT_PRESSURE_DELTA
 

@@ -37,7 +37,8 @@ var/global/list/group_antag_types = list()
 var/global/list/antag_starting_locations = list()
 var/global/list/selectable_antag_types = list()
 var/global/list/antag_bantypes = list()
-var/global/list/antag_weights = list()
+
+var/global/list/faction_types = list()
 
 // Global procs.
 /proc/clear_antagonist(var/datum/mind/player)
@@ -79,28 +80,47 @@ var/global/list/antag_weights = list()
 /proc/update_antag_icons(var/datum/mind/player)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if(antag.faction)
-			antag.faction.add_icons(antag)
+			antag.faction.update_icons(antag)
 
 /proc/populate_antag_type_list()
 	for(var/antag_type in typesof(/datum/antagonist)-/datum/antagonist)
-		var/datum/antagonist/A = new antag_type
-		antag_types[A.id] = antag_type
-		if(A.outer)
-			outer_antag_types[A.id] = antag_type
+		var/datum/antagonist/A = antag_type
+		var/id = initial(A.id)
+
+		if(!id)
+			continue
+
+		antag_types[id] = antag_type
+		if(initial(A.outer))
+			outer_antag_types[id] = antag_type
 			var/list/start_locs = list()
+			var/landmark_id = initial(A.landmark_id)
 			for(var/obj/landmark/L in landmarks_list)
-				if(L.name == A.landmark_id)
+				if(L.name == landmark_id)
 					start_locs |= get_turf(L)
-			antag_starting_locations[A.id] = start_locs
+			antag_starting_locations[id] = start_locs
 		else
-			station_antag_types[A.id] = antag_type
-		if(A.selectable)
-			selectable_antag_types[A.id] = A.role_type
-		if(A.faction_type)
-			group_antag_types[A.id] = antag_type
-		antag_weights[A.id] = A.weight
-		antag_names[A.id] = A.role_text
-		antag_bantypes[A.id] = A.bantype
+			station_antag_types[id] = antag_type
+
+		var/role_type = initial(A.role_type)
+		if(!role_type)
+			role_type = initial(A.role_text)
+
+		if(initial(A.selectable))
+			selectable_antag_types |= role_type
+		if(initial(A.faction_id))
+			group_antag_types[id] = antag_type
+		antag_names[id] = initial(A.role_text)
+
+		var/bantype = initial(A.bantype)
+		if(!bantype)
+			bantype = role_type
+
+		antag_bantypes[id] = bantype
+
+	for(var/faction_type in typesof(/datum/faction)-/datum/faction)
+		var/datum/faction/F = faction_type
+		faction_types[initial(F.id)] = faction_type
 
 /proc/get_antags(var/id)
 	var/list/L = list()
@@ -108,6 +128,17 @@ var/global/list/antag_weights = list()
 		if(A.id == id)
 			L.Add(A)
 	return L
+
+/proc/get_player_antag_name(var/datum/mind/player)
+	if(!istype(player))
+		return "ERROR"
+	var/names
+	for(var/datum/antagonist/A in player.antagonist)
+		if(names)
+			names += ", "+A.role_text
+		else
+			names = A.role_text
+	return names
 
 /proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
 	for(var/datum/antagonist/antag in player.antagonist)
@@ -171,10 +202,15 @@ var/global/list/antag_weights = list()
 			active_antags++
 	return active_antags
 
-/proc/get_factions_by_type(var/f_type)
+/proc/get_faction_by_id(var/f_id)
+	for(var/datum/faction/F in current_factions)
+		if(F.id == f_id)
+			return F
+
+/proc/get_factions_by_id(var/f_id)
 	var/list/L = list()
 	for(var/datum/faction/F in current_factions)
-		if(F.id == f_type)
+		if(F.id == f_id)
 			L.Add(F)
 	return L
 
@@ -184,13 +220,13 @@ var/global/list/antag_weights = list()
 			return TRUE
 	return FALSE
 
-/proc/create_or_get_faction(var/f_type)
+/proc/create_or_get_faction(var/f_id)
 	var/list/factions = list()
 	for(var/datum/faction/F in current_factions)
-		if(F.type == f_type)
+		if(F.id == f_id)
 			factions.Add(F)
 
 	if(!factions.len)
-		return new f_type
+		return new f_id
 	else
 		return factions[1]

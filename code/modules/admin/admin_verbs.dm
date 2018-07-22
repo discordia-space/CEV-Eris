@@ -128,13 +128,12 @@ ADMIN_VERB_ADD(/client/proc/player_panel_new, R_ADMIN, TRUE)
 		holder.player_panel_new()
 
 
-ADMIN_VERB_ADD(/client/proc/check_antagonists, R_ADMIN|R_MOD, TRUE)
-/client/proc/check_antagonists()
-	set name = "Check Antagonists"
+ADMIN_VERB_ADD(/client/proc/storyteller_panel, R_ADMIN|R_MOD, TRUE)
+/client/proc/storyteller_panel()
+	set name = "Storyteller Panel"
 	set category = "Admin"
 	if(holder)
-		holder.check_antagonists()
-		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
+		holder.storyteller_panel()
 
 
 ADMIN_VERB_ADD(/client/proc/unban_panel, R_ADMIN, TRUE)
@@ -266,7 +265,7 @@ ADMIN_VERB_ADD(/client/proc/drop_bomb, R_FUN, FALSE)
 	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
 
 
-/client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
+/client/proc/give_disease2(mob/T as mob in SSmobs.mob_list) // -- Giacom
 	set category = "Fun"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
@@ -477,7 +476,7 @@ ADMIN_VERB_ADD(/client/proc/change_security_level, R_ADMIN, FALSE)
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	return
-	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
+	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red")-get_security_level())
 	if(!sec_level)
 		return
 
@@ -531,7 +530,7 @@ ADMIN_VERB_ADD(/client/proc/toggledrones, R_ADMIN, FALSE)
 
 
 ADMIN_VERB_ADD(/client/proc/man_up, R_ADMIN, FALSE)
-/client/proc/man_up(mob/T as mob in mob_list)
+/client/proc/man_up(mob/T as mob in SSmobs.mob_list)
 	set category = "Fun"
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
@@ -548,7 +547,7 @@ ADMIN_VERB_ADD(/client/proc/global_man_up, R_ADMIN, FALSE)
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 
-	for (var/mob/T as mob in mob_list)
+	for (var/mob/T as mob in SSmobs.mob_list)
 		T << "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.</span></center><br>"
 		T << 'sound/voice/ManUp1.ogg'
 

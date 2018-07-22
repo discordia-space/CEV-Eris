@@ -14,6 +14,7 @@ var/global/datum/global_init/init = new ()
 /*
 	Pre-map initialization stuff should go here.
 */
+
 /datum/global_init/New()
 	generate_gameid()
 
@@ -107,10 +108,8 @@ var/game_id = null
 	if(config.generate_asteroid)
 		// These values determine the specific area that the map is applied to.
 		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
-		if(config.asteroid_z_levels)
-			for(var/z_level in config.asteroid_z_levels)
-				// In case we got fed a string instead of a number...
-				z_level = text2num(z_level)
+		if(maps_data.asteroid_leves)
+			for(var/z_level in maps_data.asteroid_leves)
 				if(!isnum(z_level))
 					// If it's still not a number, we probably got fed some nonsense string.
 					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
@@ -121,30 +120,13 @@ var/game_id = null
 		else
 			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
 
-	// Create autolathe recipes, as above.
-	populate_lathe_recipes()
-
-	// Create robolimbs for chargen.
-	populate_robolimb_list()
-
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
-	spawn(1)
-		for(var/turf/T in world)
-			T.initialize()
-			turfs += T
-			if(config.generate_asteroid)
-				// Update all turfs to ensure everything looks good post-generation. Yes,
-				// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
-				if(istype(T, /turf/simulated/mineral))
-					var/turf/simulated/mineral/M = T
-					M.updateMineralOverlays()
-				if(istype(T, /turf/simulated/floor/asteroid))
-					var/turf/simulated/floor/asteroid/M = T
-					M.updateMineralOverlays()
-		processScheduler.deferSetupFor(/datum/controller/process/ticker)
-		processScheduler.setup()
-		master_controller.setup()
+
+	processScheduler.deferSetupFor(/datum/controller/process/ticker)
+	processScheduler.setup()
+	Master.Initialize(10, FALSE)
+
 #ifdef UNIT_TEST
 		initialize_unit_tests()
 #endif
@@ -288,7 +270,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		var/list/match = list()
 
-		for(var/mob/M in mob_list)
+		for(var/mob/M in SSmobs.mob_list)
 			var/strings = list(M.name, M.ckey)
 			if(M.mind)
 				strings += M.mind.assigned_role
@@ -315,10 +297,12 @@ var/world_topic_spam_protect_time = world.timeofday
 			info["key"] = M.key
 			info["name"] = M.name == M.real_name ? M.name : "[M.name] ([M.real_name])"
 			info["role"] = M.mind ? (M.mind.assigned_role ? M.mind.assigned_role : "No role") : "No mind"
+/*
 			var/turf/MT = get_turf(M)
 			info["loc"] = M.loc ? "[M.loc]" : "null"
 			info["turf"] = MT ? "[MT] @ [MT.x], [MT.y], [MT.z]" : "null"
 			info["area"] = MT ? "[MT.loc]" : "null"
+*/
 			info["antag"] = M.mind ? (M.mind.antagonist.len ? "Antag" : "Not antag") : "No mind"
 			info["hasbeenrev"] = M.mind ? M.mind.has_been_rev : "No mind"
 			info["stat"] = M.stat

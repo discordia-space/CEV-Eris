@@ -32,7 +32,7 @@ var/list/solars_list = list()
 
 /obj/machinery/power/solar/Destroy()
 	unset_control() //remove from control computer
-	..()
+	. = ..()
 
 //set the control of the panel to a given computer if closer than SOLAR_MAX_DIST
 /obj/machinery/power/solar/proc/set_control(var/obj/machinery/power/solar_control/SC)
@@ -59,23 +59,20 @@ var/list/solars_list = list()
 
 
 
-/obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/power/solar/attackby(obj/item/weapon/I, mob/user)
 
-	if(istype(W, /obj/item/weapon/crowbar))
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-		user.visible_message(SPAN_NOTICE("[user] begins to take the glass off the solar panel."))
-		if(do_after(user, 50,src))
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc
 				S.give_glass()
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
-	else if (W)
+	else if (I)
 		src.add_fingerprint(user)
-		src.health -= W.force
+		src.health -= I.force
 		src.healthcheck()
 	..()
 
@@ -120,7 +117,7 @@ var/list/solars_list = list()
 	sunfrac = cos(p_angle) ** 2
 	//isn't the power recieved from the incoming light proportionnal to cos(p_angle) (Lambert's cosine law) rather than cos(p_angle)^2 ?
 
-/obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
+/obj/machinery/power/solar/Process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
 	if(stat & BROKEN)
 		return
 	if(!sun || !control) //if there's no sun or the panel is not linked to a solar control computer, no need to proceed
@@ -169,7 +166,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/fake/New(var/turf/loc, var/obj/item/solar_assembly/S)
 	..(loc, S, 0)
 
-/obj/machinery/power/solar/fake/process()
+/obj/machinery/power/solar/fake/Process()
 	. = PROCESS_KILL
 	return
 
@@ -224,25 +221,38 @@ var/list/solars_list = list()
 		glass_type = null
 
 
-/obj/item/solar_assembly/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/item/solar_assembly/attackby(var/obj/item/I, var/mob/user)
 
-	if(!anchored && isturf(loc))
-		if(istype(W, /obj/item/weapon/wrench))
-			anchored = 1
-			user.visible_message(SPAN_NOTICE("[user] wrenches the solar assembly into place."))
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			return 1
-	else
-		if(istype(W, /obj/item/weapon/wrench))
-			anchored = 0
-			user.visible_message(SPAN_NOTICE("[user] unwrenches the solar assembly from it's place."))
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			return 1
+	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
+	if(tracker)
+		usable_qualities.Add(QUALITY_PRYING)
 
-		if(istype(W, /obj/item/stack/material) && (W.get_material_name() == "glass" || W.get_material_name() == "rglass"))
-			var/obj/item/stack/material/S = W
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(tracker)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					new /obj/item/weapon/tracker_electronics(src.loc)
+					tracker = 0
+					user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
+					return
+			return
+
+		if(QUALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				anchored = !anchored
+				user.visible_message(SPAN_NOTICE("[user] [anchored ? "un" : ""]wrenches the solar assembly into place."))
+				return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(anchored && !isturf(loc))
+		if(istype(I, /obj/item/stack/material) && (I.get_material_name() == "glass" || I.get_material_name() == "rglass"))
+			var/obj/item/stack/material/S = I
 			if(S.use(2))
-				glass_type = W.type
+				glass_type = I.type
 				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 				user.visible_message(SPAN_NOTICE("[user] places the glass on the solar assembly."))
 				if(tracker)
@@ -252,21 +262,15 @@ var/list/solars_list = list()
 			else
 				user << SPAN_WARNING("You need two sheets of glass to put them into a solar panel.")
 				return
-			return 1
+			return
 
 	if(!tracker)
-		if(istype(W, /obj/item/weapon/tracker_electronics))
+		if(istype(I, /obj/item/weapon/tracker_electronics))
 			tracker = 1
 			user.drop_item()
-			qdel(W)
+			qdel(I)
 			user.visible_message(SPAN_NOTICE("[user] inserts the electronics into the solar assembly."))
-			return 1
-	else
-		if(istype(W, /obj/item/weapon/crowbar))
-			new /obj/item/weapon/tracker_electronics(src.loc)
-			tracker = 0
-			user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
-			return 1
+			return
 	..()
 
 //
@@ -303,7 +307,7 @@ var/list/solars_list = list()
 		M.unset_control()
 	if(connected_tracker)
 		connected_tracker.unset_control()
-	..()
+	. = ..()
 
 /obj/machinery/power/solar_control/disconnect_from_network()
 	..()
@@ -348,8 +352,8 @@ var/list/solars_list = list()
 	updateDialog()
 
 
-/obj/machinery/power/solar_control/initialize()
-	..()
+/obj/machinery/power/solar_control/Initialize()
+	. = ..()
 	if(!connect_to_network()) return
 	set_panels(cdir)
 
@@ -402,12 +406,11 @@ var/list/solars_list = list()
 
 	return
 
-/obj/machinery/power/solar_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20,src))
+/obj/machinery/power/solar_control/attackby(obj/item/I, mob/user)
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			if (src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
+				user << SPAN_NOTICE("The broken glass falls out.")
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/weapon/material/shard( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
@@ -419,7 +422,7 @@ var/list/solars_list = list()
 				A.anchored = 1
 				qdel(src)
 			else
-				user << "\blue You disconnect the monitor."
+				user << SPAN_NOTICE("You disconnect the monitor.")
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)
@@ -433,7 +436,7 @@ var/list/solars_list = list()
 		src.attack_hand(user)
 	return
 
-/obj/machinery/power/solar_control/process()
+/obj/machinery/power/solar_control/Process()
 	lastgen = gen
 	gen = 0
 

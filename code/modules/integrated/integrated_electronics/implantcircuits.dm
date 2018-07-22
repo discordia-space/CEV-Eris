@@ -13,7 +13,7 @@
 /obj/item/weapon/implant/integrated_circuit/Destroy()
 	IC.implant = null
 	qdel(IC)
-	..()
+	. = ..()
 
 /obj/item/weapon/implant/integrated_circuit/get_data()
 	var/dat = {"
@@ -36,7 +36,7 @@
 	IC.examine(user)
 
 /obj/item/weapon/implant/integrated_circuit/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/crowbar) || istype(O, /obj/item/device/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || istype(O, /obj/item/weapon/screwdriver) || istype(O, /obj/item/weapon/cell/small) )
+	if(istype(O, /obj/item/weapon/tool/crowbar) || istype(O, /obj/item/device/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || istype(O, /obj/item/weapon/tool/screwdriver) || istype(O, /obj/item/weapon/cell/small) )
 		IC.attackby(O, user)
 	else
 		..()

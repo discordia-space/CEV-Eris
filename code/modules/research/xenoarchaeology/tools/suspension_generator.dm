@@ -19,7 +19,7 @@
 	src.cell = new/obj/item/weapon/cell/large/high(src)
 	..()
 
-/obj/machinery/suspension_gen/process()
+/obj/machinery/suspension_gen/Process()
 	set background = 1
 
 	if (suspension_field)
@@ -165,60 +165,65 @@
 		cell = null
 		user << "<span class='info'>You remove the power cell</span>"
 
-/obj/machinery/suspension_gen/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/screwdriver))
-		if(!open)
-			if(screwed)
-				screwed = 0
-			else
-				screwed = 1
-			user << "<span class='info'>You [screwed ? "screw" : "unscrew"] the battery panel.</span>"
-	else if (istype(W, /obj/item/weapon/crowbar))
-		if(!locked)
-			if(!screwed)
-				if(!suspension_field)
-					if(open)
-						open = 0
+/obj/machinery/suspension_gen/attackby(obj/item/I, mob/user as mob)
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING))
+	switch(tool_type)
+
+		if(QUALITY_PRYING)
+			if(!locked)
+				if(!screwed)
+					if(!suspension_field)
+						if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+							open = !open
+							user << SPAN_NOTICE("You open the battery panel [open ? "open" : "in place"].")
+							icon_state = "suspension[open ? (cell ? "1" : "0") : "2"]"
 					else
-						open = 1
-					user << "<span class='info'>You crowbar the battery panel [open ? "open" : "in place"].</span>"
-					icon_state = "suspension[open ? (cell ? "1" : "0") : "2"]"
+						user << SPAN_WARNING("[src]'s safety locks are engaged, shut it down first.")
 				else
-					user << SPAN_WARNING("[src]'s safety locks are engaged, shut it down first.")
+					user << SPAN_WARNING("Unscrew [src]'s battery panel first.")
 			else
-				user << SPAN_WARNING("Unscrew [src]'s battery panel first.")
-		else
-			user << SPAN_WARNING("[src]'s security locks are engaged.")
-	else if (istype(W, /obj/item/weapon/wrench))
-		if(!suspension_field)
-			if(anchored)
-				anchored = 0
+				user << SPAN_WARNING("[src]'s security locks are engaged.")
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30))
+				screwed = !screwed
+				user << SPAN_NOTICE("You [screwed ? "screw" : "unscrew"] the battery panel with [I].")
+				update_icon()
+				return
+
+		if(QUALITY_BOLT_TURNING)
+			if(!suspension_field)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					anchored = !anchored
+					user << SPAN_NOTICE("You wrench the stabilising legs [anchored ? "into place" : "up against the body"].")
+					update_icon()
 			else
-				anchored = 1
-			user << "<span class='info'>You wrench the stabilising legs [anchored ? "into place" : "up against the body"].</span>"
-			if(anchored)
-				desc = "It is resting securely on four stubby legs."
-			else
-				desc = "It has stubby legs bolted up against it's body for stabilising."
-		else
-			user << SPAN_WARNING("You are unable to secure [src] while it is active!")
-	else if (istype(W, /obj/item/weapon/cell/large))
+				user << SPAN_WARNING("You are unable to secure [src] while it is active!")
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if (istype(I, /obj/item/weapon/cell/large))
 		if(open)
 			if(cell)
 				user << SPAN_WARNING("There is a power cell already installed.")
 			else
 				user.drop_item()
-				W.loc = src
-				cell = W
+				I.loc = src
+				cell = I
 				user << "<span class='info'>You insert the power cell.</span>"
 				icon_state = "suspension1"
-	else if(istype(W, /obj/item/weapon/card))
-		var/obj/item/weapon/card/I = W
+
+	if(istype(I, /obj/item/weapon/card))
+		var/obj/item/weapon/card/C = I
 		if(!auth_card)
-			if(attempt_unlock(I, user))
-				user << "<span class='info'>You swipe [I], the console flashes \'<i>Access granted.</i>\'</span>"
+			if(attempt_unlock(C, user))
+				user << "<span class='info'>You swipe [C], the console flashes \'<i>Access granted.</i>\'</span>"
 			else
-				user << SPAN_WARNING("You swipe [I], console flashes \'<i>Access denied.</i>\'")
+				user << SPAN_WARNING("You swipe [C], console flashes \'<i>Access denied.</i>\'")
 		else
 			user << SPAN_WARNING("Remove [auth_card] first.")
 
@@ -314,7 +319,7 @@
 /obj/machinery/suspension_gen/Destroy()
 	//safety checks: clear the field and drop anything it's holding
 	deactivate()
-	..()
+	. = ..()
 
 /obj/machinery/suspension_gen/verb/rotate_ccw()
 	set src in view(1)
@@ -346,4 +351,4 @@
 /obj/effect/suspension_field/Destroy()
 	for(var/obj/I in src)
 		I.loc = src.loc
-	..()
+	. = ..()

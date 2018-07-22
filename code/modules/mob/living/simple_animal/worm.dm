@@ -6,7 +6,7 @@
 	status_flags = 0
 
 	speak_emote = list("transmits") //not supposed to be used under AI control
-	emote_hear = list("transmits")  //I'm just adding it so it doesn't runtime if controlled by player who speaks
+	emote_see = list("transmits")  //I'm just adding it so it doesn't runtime if controlled by player who speaks
 
 	response_help  = "touches"
 	response_disarm = "flails at"
@@ -98,7 +98,7 @@
 	Destroy() //if a chunk a destroyed, make a new worm out of the split halves
 		if(previous)
 			previous.Detach()
-		..()
+		. = ..()
 
 	Move()
 		var/attachementNextPosition = loc

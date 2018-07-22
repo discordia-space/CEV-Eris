@@ -16,6 +16,7 @@
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
+	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = 1	// item mode 0=off 1=charging 2=charged
 	var/flush = 0	// true if flush handle is pulled
@@ -48,38 +49,56 @@
 		trunk.linked = null
 	return ..()
 
+/obj/machinery/disposal/affect_grab(var/mob/living/user, var/mob/living/target)
+	user.visible_message("[user] starts putting [target] into the disposal.")
+	if(do_after(user, 20, src) && Adjacent(target))
+		target.forceMove(src)
+		visible_message(SPAN_NOTICE("[target] has been placed in the [src] by [user]."))
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target] ([target.ckey]) in disposals.</font>")
+		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
+		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+		return TRUE
+
 // attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
 	if(stat & BROKEN || !I || !user)
 		return
 
 	src.add_fingerprint(user)
-	if(mode<=0) // It's off
-		if(istype(I, /obj/item/weapon/screwdriver))
-			if(contents.len > 0)
-				user << "Eject the items first!"
-				return
-			if(mode==0) // It's off but still not unscrewed
-				mode=-1 // Set it to doubleoff l0l
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				user << "You remove the screws around the power connection."
-				return
-			else if(mode==-1)
-				mode=0
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				user << "You attach the screws around the power connection."
-				return
-		else if(istype(I,/obj/item/weapon/weldingtool) && mode==-1)
-			if(contents.len > 0)
-				user << "Eject the items first!"
-				return
-			var/obj/item/weapon/weldingtool/W = I
-			if(W.remove_fuel(0,user))
-				playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-				user << "You start slicing the floorweld off the disposal unit."
 
-				if(do_after(user,20,src))
-					if(!src || !W.isOn()) return
+	var/list/usable_qualities = list()
+	if(mode<=0)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(mode==-1)
+		usable_qualities.Add(QUALITY_WELDING)
+
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(contents.len > 0)
+				user << "Eject the items first!"
+				return
+			if(mode<=0)
+				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+					if(mode==0) // It's off but still not unscrewed
+						mode=-1 // Set it to doubleoff l0l
+						user << "You remove the screws around the power connection."
+						return
+					else if(mode==-1)
+						mode=0
+						user << "You attach the screws around the power connection."
+						return
+			return
+
+		if(QUALITY_WELDING)
+			if(contents.len > 0)
+				user << "Eject the items first!"
+				return
+			if(mode==-1)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					user << "You sliced the floorweld off the disposal unit."
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
@@ -88,14 +107,11 @@
 					C.density = 1
 					C.update()
 					qdel(src)
-				return
-			else
-				user << "You need more welding fuel to complete this task."
-				return
+			return
 
-	if(istype(I, /obj/item/weapon/melee/energy/blade))
-		user << "You can't place that item inside the disposal unit."
-		return
+		if(ABORT_CHECK)
+			return
+
 
 	if(istype(I, /obj/item/weapon/storage/bag/trash))
 		var/obj/item/weapon/storage/bag/trash/T = I
@@ -106,42 +122,20 @@
 		update()
 		return
 
-	var/obj/item/weapon/grab/G = I
-	if(istype(G))	// handle grabbed mob
-		if(ismob(G.affecting))
-			var/mob/GM = G.affecting
-			for (var/mob/V in viewers(usr))
-				V.show_message("[usr] starts putting [GM.name] into the disposal.", 3)
-			if(do_after(usr, 20, src))
-				if (GM.client)
-					GM.client.perspective = EYE_PERSPECTIVE
-					GM.client.eye = src
-				GM.forceMove(src)
-				for (var/mob/C in viewers(src))
-					C.show_message("\red [GM.name] has been placed in the [src] by [user].", 3)
-				qdel(G)
-				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [GM.name] ([GM.ckey]) in disposals.</font>")
-				GM.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [usr.name] ([usr.ckey])</font>")
-				msg_admin_attack("[usr] ([usr.ckey]) placed [GM] ([GM.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
-		return
-
 	if(isrobot(user))
 		return
 	if(!I)
 		return
 
-	user.drop_item()
-	if(I)
-		I.forceMove(src)
+	if(user.unEquip(I, src))
+		user << "You place \the [I] into the [src]."
+		for(var/mob/M in viewers(src))
+			if(M == user)
+				continue
+			M.show_message("[user.name] places \the [I] into the [src].", 3)
+			playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
 
-	user << "You place \the [I] into the [src]."
-	for(var/mob/M in viewers(src))
-		if(M == user)
-			continue
-		M.show_message("[user.name] places \the [I] into the [src].", 3)
-		playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
-
-	update()
+		update()
 
 // mouse drop another mob or self
 //
@@ -351,7 +345,7 @@
 
 // timed process
 // charge the gas reservoir and perform flush if ready
-/obj/machinery/disposal/process()
+/obj/machinery/disposal/Process()
 	if(!air_contents || (stat & BROKEN))			// nothing can happen if broken
 		update_use_power(0)
 		return
@@ -652,6 +646,8 @@
 	icon = 'icons/obj/pipes/disposal.dmi'
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
+	plane = FLOOR_PLANE
+	layer = DISPOSAL_PIPE_LAYER
 	anchored = 1
 	density = 0
 
@@ -692,7 +688,7 @@
 		// otherwise, do normal expel from turf
 		if(H)
 			expel(H, T, 0)
-	..()
+	. = ..()
 
 	// returns the direction of the next pipe object, given the entrance dir
 	// by default, returns the bitmask of remaining directions
@@ -869,21 +865,12 @@
 	if(!T.is_plating())
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
 
-		if(W.remove_fuel(0,user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-			user << "Slicing the disposal pipe."
-			if(do_after(user, 30, src))
-				if(!W.isOn())
-					return
-				welded()
-			else
-				user << "You must stay still while welding the pipe."
-		else
-			user << "You need more welding fuel to cut the pipe."
-			return
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			welded()
+
+	return
 
 	// called when pipe is cut with welder
 /obj/structure/disposalpipe/proc/welded()
@@ -943,13 +930,13 @@
 				AM.forceMove(T)
 				AM.pipe_eject(0)
 			qdel(H)
-			..()
-			return
+
+			return ..()
 
 		// otherwise, do normal expel from turf
 		if(H)
 			expel(H, T, 0)
-	..()
+	. = ..()
 
 /obj/structure/disposalpipe/hides_under_flooring()
 	return TRUE
@@ -1350,24 +1337,10 @@
 	if(!T.is_plating())
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
 
-		if(W.remove_fuel(0,user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-			// check if anything changed over 2 seconds
-			var/turf/uloc = user.loc
-			var/atom/wloc = W.loc
-			user << "Slicing the disposal pipe."
-			sleep(30)
-			if(!W.isOn()) return
-			if(user.loc == uloc && wloc == W.loc)
-				welded()
-			else
-				user << "You must stay still while welding the pipe."
-		else
-			user << "You need more welding fuel to cut the pipe."
-			return
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			welded()
 
 	// would transfer to next pipe segment, but we are in a trunk
 	// if not entering from disposal bin,
@@ -1468,35 +1441,45 @@
 	if(!I || !user)
 		return
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/screwdriver))
-		if(mode == 0)
-			mode = 1
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "You remove the screws around the power connection."
+
+	var/list/usable_qualities = list()
+	if(mode<=0)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(mode==-1)
+		usable_qualities.Add(QUALITY_WELDING)
+
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(mode<=0)
+				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+					if(mode==0) // It's off but still not unscrewed
+						mode=-1 // Set it to doubleoff l0l
+						user << "You remove the screws around the power connection."
+						return
+					else if(mode==-1)
+						mode=0
+						user << "You attach the screws around the power connection."
+						return
 			return
-		else if(mode == 1)
-			mode = 0
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			user << "You attach the screws around the power connection."
+
+		if(QUALITY_WELDING)
+			if(mode==-1)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					user << "You sliced the floorweld off the disposal outlet."
+					var/obj/structure/disposalconstruct/C = new (src.loc)
+					src.transfer_fingerprints_to(C)
+					C.pipe_type = PIPE_TYPE_OUTLET
+					C.anchored = 1
+					C.density = 1
+					C.update()
+					qdel(src)
 			return
-	else if(istype(I,/obj/item/weapon/weldingtool) && mode == 1)
-		var/obj/item/weapon/weldingtool/W = I
-		if(W.remove_fuel(0, user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
-			user << "You start slicing the floorweld off the disposal outlet."
-			if(do_after(user, 20, src))
-				if(!src || !W.isOn()) return
-				user << "You sliced the floorweld off the disposal outlet."
-				var/obj/structure/disposalconstruct/C = new (src.loc)
-				src.transfer_fingerprints_to(C)
-				C.pipe_type = PIPE_TYPE_OUTLET
-				C.update()
-				C.anchored = 1
-				C.density = 1
-				qdel(src)
-			return
-		else
-			user << "You need more welding fuel to complete this task."
+
+		if(ABORT_CHECK)
 			return
 
 // called when movable is expelled from a disposal pipe or outlet

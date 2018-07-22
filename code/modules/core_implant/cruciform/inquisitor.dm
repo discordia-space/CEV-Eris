@@ -2,14 +2,14 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 /datum/ritual/inquisitor
 	name = "inquisitor"
-	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
 
 
 /datum/ritual/targeted/inquisitor
 	name = "inquisitor targeted"
-	implant_type = /obj/item/weapon/implant/external/core_implant/cruciform
+	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
 
@@ -19,12 +19,12 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Mihi vindicta \[Target human]"
 	desc = "Trow guilty believers on relentless agony."
 
-/datum/ritual/targeted/inquisitor/whip/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+/datum/ritual/targeted/inquisitor/whip/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	if(!targets.len)
 		fail("Target not found.",user,C,targets)
 		return FALSE
 
-	var/obj/item/weapon/implant/external/core_implant/CI = targets[1]
+	var/obj/item/weapon/implant/core_implant/CI = targets[1]
 
 	if(!CI.active || !CI.wearer || CI.get_module(CRUCIFORM_INQUISITOR))
 
@@ -47,7 +47,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 	return TRUE
 
-/datum/ritual/targeted/inquisitor/whip/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
+/datum/ritual/targeted/inquisitor/whip/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
 	target.update_address()
 	if(index == 1 && target.address == text)
 		if(target.wearer && target.get_module(CRUCIFORM_INQUISITOR) && \
@@ -60,8 +60,8 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Sicut dilexit me Pater et ego dilexi, vos manete in dilectione mea"
 	desc = "Bound believer to your will."
 
-/datum/ritual/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/external/core_implant/CI = get_grabbed(user)
+/datum/ritual/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	var/obj/item/weapon/implant/core_implant/CI = get_grabbed(user)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active || CI.get_module(CRUCIFORM_INQUISITOR))
 
@@ -87,7 +87,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Dominus autem dirigat corda vestra in caritate Dei et patientia Christi"
 	desc = "Withstand the ravages of wounds and pain."
 
-/datum/ritual/inquisitor/crusader_litany/perform(mob/living/carbon/human/H, obj/item/weapon/implant/external/core_implant/C,list/targets)
+/datum/ritual/inquisitor/crusader_litany/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C,list/targets)
 	H << "<span class='info'>You feel relieved. The pain goes away, the wounds heal.</span>"
 	H.add_chemical_effect(CE_PAINKILLER, 20)
 	H.adjustBruteLoss(-20)
@@ -101,8 +101,8 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Venite ad me, omnes qui laboratis, et onerati estis et ego reficiam vos"
 	desc = "Heal loyal believers"
 
-/datum/ritual/inquisitor/healing_palm/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/external/core_implant/cruciform/CI = get_grabbed(user)
+/datum/ritual/inquisitor/healing_palm/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
 
 	if(!CI || !CI.active || !CI.wearer)
 		fail("Cruciform not found.", user, C)
@@ -128,12 +128,12 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Non enim est aliquid absconditum, nisi ut manifestitur \[Target human]"
 	desc = "Look on the world from the eyes of the believer."
 
-/datum/ritual/targeted/inquisitor/god_eye/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+/datum/ritual/targeted/inquisitor/god_eye/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	if(!targets.len)
 		fail("Target not found.",user,C,targets)
 		return FALSE
 
-	var/obj/item/weapon/implant/external/core_implant/CI = targets[1]
+	var/obj/item/weapon/implant/core_implant/CI = targets[1]
 
 	if(!CI.active || !CI.wearer || CI.get_module(CRUCIFORM_INQUISITOR))
 
@@ -159,7 +159,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	return TRUE
 
 
-/datum/ritual/targeted/inquisitor/god_eye/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
+/datum/ritual/targeted/inquisitor/god_eye/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
 	if(index == 1 && target.address == text && target.active)
 		if(target.wearer && target.wearer.stat != DEAD)
 			return target
@@ -169,12 +169,12 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Audite \[Target human] et responde mihi \[Target words]"
 	desc = "Send message to other believer."
 
-/datum/ritual/targeted/inquisitor/message/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+/datum/ritual/targeted/inquisitor/message/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	if(targets.len < 2)
 		fail("Target not found.",user,C,targets)
 		return FALSE
 
-	var/obj/item/weapon/implant/external/core_implant/CI = targets[1]
+	var/obj/item/weapon/implant/core_implant/CI = targets[1]
 
 	if(!CI.active || !CI.wearer)
 		fail("Cruciform not found.", user, C)
@@ -190,7 +190,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 	H << "<span class='notice'>You hear a strange voice in your head. It says: \"[text]\"</span>"
 
-/datum/ritual/targeted/inquisitor/message/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
+/datum/ritual/targeted/inquisitor/message/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
 	switch(index)
 		if(1)
 			if(target.address == text && target.wearer)
@@ -204,8 +204,8 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Habe fiduciam in Domino ex toto corde tuo et ne innitaris prudentiae tuae, in omnibus viis tuis cogita illum et ipse diriget gressus tuos"
 	desc = "Grant the power of priest to one of believers."
 
-/datum/ritual/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/external/core_implant/CI = get_grabbed(user)
+/datum/ritual/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
+	var/obj/item/weapon/implant/core_implant/CI = get_grabbed(user)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 		fail("Cruciform not found",user,C)
@@ -231,7 +231,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Cor sapientis quaerit doctrinam, et os stultorum pascetur inperitia"
 	desc = "Find out the limits of your power, how much telecrystals you have now."
 
-/datum/ritual/inquisitor/check_telecrystals/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+/datum/ritual/inquisitor/check_telecrystals/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	var/datum/core_module/cruciform/inquisitor/I = C.get_module(CRUCIFORM_INQUISITOR)
 
 	if(I && I.telecrystals)
@@ -247,7 +247,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	phrase = "Dona mihi viam meam \[Target words]"
 	desc = "Receive item needed in your jorney."
 
-/datum/ritual/targeted/inquisitor/spawn_item/perform(mob/living/carbon/human/user, obj/item/weapon/implant/external/core_implant/C,list/targets)
+/datum/ritual/targeted/inquisitor/spawn_item/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	var/datum/core_module/cruciform/inquisitor/I = C.get_module(CRUCIFORM_INQUISITOR)
 
 	if(!targets.len)
@@ -284,5 +284,5 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	I.telecrystals -= price
 	return TRUE
 
-/datum/ritual/targeted/inquisitor/spawn_item/process_target(var/index, var/obj/item/weapon/implant/external/core_implant/target, var/text)
+/datum/ritual/targeted/inquisitor/spawn_item/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
 	return text

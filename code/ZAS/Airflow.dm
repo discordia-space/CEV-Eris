@@ -110,11 +110,11 @@ obj/item/check_airflow_movable(n)
 			if(airflow_time++ >= airflow_speed - 7)
 				if(od)
 					density = 0
-				sleep(1 * tick_multiplier)
+				sleep(1 * (config.Ticklag*2))
 		else
 			if(od)
 				density = 0
-			sleep(max(1,10-(airflow_speed+3)) * tick_multiplier)
+			sleep(max(1,10-(airflow_speed+3)) * (config.Ticklag*2))
 		if(od)
 			density = 1
 		if ((!( src.airflow_dest ) || src.loc == src.airflow_dest))
@@ -167,9 +167,9 @@ obj/item/check_airflow_movable(n)
 		airflow_speed -= vsc.airflow_speed_decay
 		if(airflow_speed > 7)
 			if(airflow_time++ >= airflow_speed - 7)
-				sleep(1 * tick_multiplier)
+				sleep(1 * (config.Ticklag*2))
 		else
-			sleep(max(1,10-(airflow_speed+3)) * tick_multiplier)
+			sleep(max(1,10-(airflow_speed+3)) * (config.Ticklag*2))
 		if ((!( src.airflow_dest ) || src.loc == src.airflow_dest))
 			src.airflow_dest = locate(min(max(src.x + xo, 1), world.maxx), min(max(src.y + yo, 1), world.maxy), src.z)
 		if ((src.x == 1 || src.x == world.maxx || src.y == 1 || src.y == world.maxy))
@@ -224,14 +224,14 @@ mob/living/carbon/human/airflow_hit(atom/A)
 		bloody_body(src)
 	var/b_loss = airflow_speed * vsc.airflow_damage
 
-	var/blocked = run_armor_check("head","melee")
-	apply_damage(b_loss/3, BRUTE, "head", blocked, 0, "Airflow")
+	var/blocked = run_armor_check(BP_HEAD,"melee")
+	apply_damage(b_loss/3, BRUTE, BP_HEAD, blocked, 0, "Airflow")
 
-	blocked = run_armor_check("chest","melee")
-	apply_damage(b_loss/3, BRUTE, "chest", blocked, 0, "Airflow")
+	blocked = run_armor_check(BP_CHEST,"melee")
+	apply_damage(b_loss/3, BRUTE, BP_CHEST, blocked, 0, "Airflow")
 
-	blocked = run_armor_check("groin","melee")
-	apply_damage(b_loss/3, BRUTE, "groin", blocked, 0, "Airflow")
+	blocked = run_armor_check(BP_GROIN,"melee")
+	apply_damage(b_loss/3, BRUTE, BP_GROIN, blocked, 0, "Airflow")
 
 	if(airflow_speed > 10)
 		Paralyse(round(airflow_speed * vsc.airflow_stun))

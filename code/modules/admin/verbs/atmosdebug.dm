@@ -48,7 +48,7 @@
 		return
 
 
-	for (var/datum/powernet/PN in powernets)
+	for (var/datum/powernet/PN in SSmachines.powernets)
 		if (!PN.nodes || !PN.nodes.len)
 			if(PN.cables && (PN.cables.len > 1))
 				var/obj/structure/cable/C = PN.cables[1]

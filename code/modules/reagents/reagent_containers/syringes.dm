@@ -11,7 +11,7 @@
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
-	matter = list("glass" = 150)
+	matter = list(MATERIAL_GLASS = 1)
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	volume = 15
@@ -150,7 +150,7 @@
 					if(!affected)
 						user << SPAN_DANGER("\The [H] is missing that limb!")
 						return
-					else if(affected.status & ORGAN_ROBOT)
+					else if(affected.robotic >= ORGAN_ROBOT)
 						user << SPAN_DANGER("You cannot inject a robotic limb.")
 						return
 

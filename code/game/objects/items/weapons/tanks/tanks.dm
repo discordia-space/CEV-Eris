@@ -33,7 +33,7 @@ var/list/global/tank_gauge_cache = list()
 	src.air_contents = new /datum/gas_mixture()
 	src.air_contents.volume = volume //liters
 	src.air_contents.temperature = T20C
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_gauge()
 	return
 
@@ -41,13 +41,13 @@ var/list/global/tank_gauge_cache = list()
 	if(air_contents)
 		qdel(air_contents)
 
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 	if(istype(loc, /obj/item/device/transfer_valve))
 		var/obj/item/device/transfer_valve/TTV = loc
 		TTV.remove_tank(src)
 
-	..()
+	. = ..()
 
 /obj/item/weapon/tank/examine(mob/user)
 	. = ..(user, 0)
@@ -74,8 +74,8 @@ var/list/global/tank_gauge_cache = list()
 	if (istype(src.loc, /obj/item/assembly))
 		icon = src.loc
 
-	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
-		var/obj/item/device/analyzer/A = W
+	if ((istype(W, /obj/item/device/scanner/analyzer)) && get_dist(user, src) <= 1)
+		var/obj/item/device/scanner/analyzer/A = W
 		A.analyze_gases(src, user)
 	else if (istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
@@ -169,13 +169,7 @@ var/list/global/tank_gauge_cache = list()
 			var/mob/living/carbon/location = loc
 			if(location.internal == src)
 				location.internal = null
-//				location.internals.icon_state = "internal0"
-				if(location.HUDneed.Find("internal"))
-					var/obj/screen/HUDelm = location.HUDneed["internal"]
-					HUDelm.icon_state = "internal0"
 				usr << SPAN_NOTICE("You close the tank release valve.")
-/*				if (location.internals)
-					location.internals.icon_state = "internal0"*/
 			else
 
 				var/can_open_valve
@@ -190,13 +184,11 @@ var/list/global/tank_gauge_cache = list()
 					location.internal = src
 					usr << SPAN_NOTICE("You open \the [src] valve.")
 					playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
-/*					if (location.internals)
-						location.internals.icon_state = "internal1"*/
-					if(location.HUDneed.Find("internal"))
-						var/obj/screen/HUDelm = location.HUDneed["internal"]
-						HUDelm.icon_state = "internal1"
 				else
 					usr << SPAN_WARNING("You need something to connect to \the [src].")
+				if(location.HUDneed.Find("internal"))
+					var/obj/screen/HUDelm = location.HUDneed["internal"]
+					HUDelm.update_icon()
 
 	src.add_fingerprint(usr)
 	return 1
@@ -226,7 +218,7 @@ var/list/global/tank_gauge_cache = list()
 
 	return remove_air(moles_needed)
 
-/obj/item/weapon/tank/process()
+/obj/item/weapon/tank/Process()
 	//Allow for reactions
 	air_contents.react() //cooking up air tanks - add plasma and oxygen, then heat above PLASMA_MINIMUM_BURN_TEMPERATURE
 	if(gauge_icon)

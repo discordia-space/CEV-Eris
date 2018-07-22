@@ -5,7 +5,7 @@
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
 	origin_tech = list(TECH_MAGNET = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "waste" = 100)
+	matter = list(MATERIAL_PLASTIC = 1)
 
 	wires = WIRE_PULSE
 
@@ -27,11 +27,11 @@
 /obj/item/device/assembly/infra/toggle_secure()
 	secured = !secured
 	if(secured)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	else
 		on = 0
 		if(first)	qdel(first)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	return secured
 
@@ -47,7 +47,7 @@
 		holder.update_icon()
 
 
-/obj/item/device/assembly/infra/process()//Old code
+/obj/item/device/assembly/infra/Process()//Old code
 	if(!on)
 		if(first)
 			qdel(first)
@@ -66,7 +66,7 @@
 			spawn(0)
 				if(I)
 					I.limit = 8
-					I.process()
+					I.Process()
 
 
 
@@ -83,7 +83,7 @@
 
 
 /obj/item/device/assembly/infra/holder_movement()
-	if(!holder)	
+	if(!holder)
 		return
 	qdel(first)
 
@@ -105,7 +105,7 @@
 	user.set_machine(src)
 	var/dat = {"<tt><b>Infrared Laser</b><br>
 		<b>Status</b>: <a href='?src=\ref[src];state=[!on]'>[on ? "On" : "Off"]</a><br>
-		<b>Visibility</b>: <a href='?src=\ref[src];visible=[!visible]'>[visible ? "Visible" : "Invisible"]</a><br></tt> 
+		<b>Visibility</b>: <a href='?src=\ref[src];visible=[!visible]'>[visible ? "Visible" : "Invisible"]</a><br></tt>
 		<br><br><a href='?src=\ref[src];refresh=1'>Refresh</a>
 		<br><br><a href='?src=\ref[src];close=1'>Close</a>
 	"}
@@ -176,7 +176,7 @@
 			next.vis_spread(v)
 
 
-/obj/effect/beam/i_beam/process()
+/obj/effect/beam/i_beam/Process()
 
 	if((loc && loc.density) || !master)
 		qdel(src)
@@ -207,14 +207,14 @@
 			spawn(0)
 				if((I && limit > 0))
 					I.limit = limit - 1
-					I.process()
+					I.Process()
 				return
 		else
 			qdel(I)
 	else
 		qdel(next)
 	spawn(10)
-		process()
+		Process()
 
 /obj/effect/beam/i_beam/Bump()
 	qdel(src)
@@ -234,4 +234,4 @@
 	if(next)
 		qdel(next)
 		next = null
-	..()
+	. = ..()

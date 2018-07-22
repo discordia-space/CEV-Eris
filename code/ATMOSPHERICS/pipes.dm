@@ -4,7 +4,7 @@
 	var/datum/pipeline/parent
 	var/volume = 0
 
-	layer = 2.4 //under wires with their 2.44
+	layer = GAS_PIPE_HIDDEN_LAYER
 	use_power = 0
 
 	var/alert_pressure = 80*ONE_ATMOSPHERE
@@ -67,18 +67,18 @@
 	if(air_temporary)
 		loc.assume_air(air_temporary)
 
-	..()
+	. = ..()
 
-/obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/pipe/attackby(var/obj/item/I, var/mob/user)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/pipe/vent))
 		return ..()
 
-	if(istype(W,/obj/item/device/pipe_painter))
+	if(istype(I,/obj/item/device/pipe_painter))
 		return 0
 
-	if (!istype(W, /obj/item/weapon/wrench))
+	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	var/turf/T = src.loc
 	if (level==1 && isturf(T) && !T.is_plating())
@@ -90,9 +90,8 @@
 		user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
 		add_fingerprint(user)
 		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
-	if (do_after(user, 40, src))
+	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 			SPAN_NOTICE("You have unfastened \the [src]."), \
@@ -192,7 +191,7 @@
 		invisibility = i ? 101 : 0
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/simple/process()
+/obj/machinery/atmospherics/pipe/simple/Process()
 	if(!parent) //This should cut back on the overhead calling build_network thousands of times per cycle
 		..()
 	else
@@ -233,7 +232,7 @@
 	if(node2)
 		node2.disconnect(src)
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/simple/pipeline_expansion()
 	return list(node1, node2)
@@ -270,7 +269,7 @@
 /obj/machinery/atmospherics/pipe/simple/update_underlays()
 	return
 
-/obj/machinery/atmospherics/pipe/simple/initialize()
+/obj/machinery/atmospherics/pipe/simple/atmos_init()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -319,13 +318,14 @@
 /obj/machinery/atmospherics/pipe/simple/visible
 	icon_state = "intact"
 	level = 2
+	layer = GAS_PIPE_VISIBLE_LAYER
 
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers
 	name = "Scrubbers pipe"
 	desc = "A one meter section of scrubbers pipe"
 	icon_state = "intact-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -334,7 +334,7 @@
 	desc = "A one meter section of supply pipe"
 	icon_state = "intact-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -356,9 +356,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/blue
 	color = PIPE_COLOR_BLUE
 
-
 /obj/machinery/atmospherics/pipe/simple/hidden
 	icon_state = "intact"
+	layer = GAS_PIPE_HIDDEN_LAYER
 	level = 1
 	alpha = 128		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
 
@@ -367,7 +367,7 @@
 	desc = "A one meter section of scrubbers pipe"
 	icon_state = "intact-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -376,7 +376,7 @@
 	desc = "A one meter section of supply pipe"
 	icon_state = "intact-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -427,7 +427,7 @@
 	var/obj/machinery/atmospherics/node3
 
 	level = 1
-	layer = 2.4 //under wires with their 2.44
+	layer = GAS_PIPE_VISIBLE_LAYER
 
 /obj/machinery/atmospherics/pipe/manifold/New()
 	..()
@@ -452,7 +452,7 @@
 /obj/machinery/atmospherics/pipe/manifold/pipeline_expansion()
 	return list(node1, node2, node3)
 
-/obj/machinery/atmospherics/pipe/manifold/process()
+/obj/machinery/atmospherics/pipe/manifold/Process()
 	if(!parent)
 		..()
 	else
@@ -466,7 +466,7 @@
 	if(node3)
 		node3.disconnect(src)
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/manifold/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -538,7 +538,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/manifold/initialize()
+/obj/machinery/atmospherics/pipe/manifold/atmos_init()
 	var/connect_directions = (NORTH|SOUTH|EAST|WEST)&(~dir)
 
 	for(var/direction in cardinal)
@@ -593,7 +593,7 @@
 	desc = "A manifold composed of scrubbers pipes"
 	icon_state = "map-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -602,7 +602,7 @@
 	desc = "A manifold composed of supply pipes"
 	icon_state = "map-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -635,7 +635,7 @@
 	desc = "A manifold composed of scrubbers pipes"
 	icon_state = "map-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -644,7 +644,7 @@
 	desc = "A manifold composed of supply pipes"
 	icon_state = "map-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -683,7 +683,7 @@
 	var/obj/machinery/atmospherics/node4
 
 	level = 1
-	layer = 2.4 //under wires with their 2.44
+	layer = GAS_PIPE_VISIBLE_LAYER
 
 /obj/machinery/atmospherics/pipe/manifold4w/New()
 	..()
@@ -693,7 +693,7 @@
 /obj/machinery/atmospherics/pipe/manifold4w/pipeline_expansion()
 	return list(node1, node2, node3, node4)
 
-/obj/machinery/atmospherics/pipe/manifold4w/process()
+/obj/machinery/atmospherics/pipe/manifold4w/Process()
 	if(!parent)
 		..()
 	else
@@ -709,7 +709,7 @@
 	if(node4)
 		node4.disconnect(src)
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -808,7 +808,7 @@
 		invisibility = i ? 101 : 0
 	update_icon()
 
-/obj/machinery/atmospherics/pipe/manifold4w/initialize()
+/obj/machinery/atmospherics/pipe/manifold4w/atmos_init()
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, 1))
 		if(target.initialize_directions & 2)
@@ -851,7 +851,7 @@
 	desc = "A manifold composed of scrubbers pipes"
 	icon_state = "map_4way-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -860,7 +860,7 @@
 	desc = "A manifold composed of supply pipes"
 	icon_state = "map_4way-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -892,7 +892,7 @@
 	desc = "A manifold composed of scrubbers pipes"
 	icon_state = "map_4way-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -901,7 +901,7 @@
 	desc = "A manifold composed of supply pipes"
 	icon_state = "map_4way-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
+	layer = GAS_PIPE_VISIBLE_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -929,7 +929,7 @@
 	icon = 'icons/atmos/pipes.dmi'
 	icon_state = ""
 	level = 2
-	layer = 2.4 //under wires with their 2.44
+	layer = GAS_PIPE_VISIBLE_LAYER
 
 	volume = 35
 
@@ -950,7 +950,7 @@
 /obj/machinery/atmospherics/pipe/cap/pipeline_expansion()
 	return list(node)
 
-/obj/machinery/atmospherics/pipe/cap/process()
+/obj/machinery/atmospherics/pipe/cap/Process()
 	if(!parent)
 		..()
 	else
@@ -959,7 +959,7 @@
 	if(node)
 		node.disconnect(src)
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/cap/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node)
@@ -986,7 +986,7 @@
 	overlays.Cut()
 	overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "cap")
 
-/obj/machinery/atmospherics/pipe/cap/initialize()
+/obj/machinery/atmospherics/pipe/cap/atmos_init()
 	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
 		if(target.initialize_directions & get_dir(target, src))
 			if (check_connect_types(target, src))
@@ -1006,7 +1006,6 @@
 	desc = "An endcap for scrubbers pipes"
 	icon_state = "cap-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -1015,7 +1014,6 @@
 	desc = "An endcap for supply pipes"
 	icon_state = "cap-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -1029,7 +1027,6 @@
 	desc = "An endcap for scrubbers pipes"
 	icon_state = "cap-f-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
-	layer = 2.38
 	icon_connect_type = "-scrubbers"
 	color = PIPE_COLOR_RED
 
@@ -1038,7 +1035,6 @@
 	desc = "An endcap for supply pipes"
 	icon_state = "cap-f-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
-	layer = 2.39
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
@@ -1057,6 +1053,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 	density = 1
+	layer = ABOVE_WINDOW_LAYER
 
 	var/obj/machinery/atmospherics/node1
 
@@ -1065,7 +1062,7 @@
 	initialize_directions = dir
 	..()
 
-/obj/machinery/atmospherics/pipe/tank/process()
+/obj/machinery/atmospherics/pipe/tank/Process()
 	if(!parent)
 		..()
 	else
@@ -1075,7 +1072,7 @@
 	if(node1)
 		node1.disconnect(src)
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/tank/pipeline_expansion()
 	return list(node1)
@@ -1091,7 +1088,7 @@
 /obj/machinery/atmospherics/pipe/tank/hide()
 	update_underlays()
 
-/obj/machinery/atmospherics/pipe/tank/initialize()
+/obj/machinery/atmospherics/pipe/tank/atmos_init()
 	var/connect_direction = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))
@@ -1116,8 +1113,8 @@
 	if(istype(W, /obj/item/device/pipe_painter))
 		return
 
-	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
-		var/obj/item/device/analyzer/A = W
+	if(istype(W, /obj/item/device/scanner/analyzer) && in_range(user, src))
+		var/obj/item/device/scanner/analyzer/A = W
 		A.analyze_gases(src, user)
 
 /obj/machinery/atmospherics/pipe/tank/air
@@ -1232,7 +1229,7 @@
 	name = "Larger vent"
 	volume = 1000
 
-/obj/machinery/atmospherics/pipe/vent/process()
+/obj/machinery/atmospherics/pipe/vent/Process()
 	if(!parent)
 		if(build_killswitch <= 0)
 			. = PROCESS_KILL
@@ -1247,7 +1244,7 @@
 	if(node1)
 		node1.disconnect(src)
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/vent/pipeline_expansion()
 	return list(node1)
@@ -1261,7 +1258,7 @@
 	else
 		icon_state = "exposed"
 
-/obj/machinery/atmospherics/pipe/vent/initialize()
+/obj/machinery/atmospherics/pipe/vent/atmos_init()
 	var/connect_direction = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))

@@ -12,14 +12,19 @@
 	idtype = /obj/item/weapon/card/id/hos
 	req_admin_notify = 1
 	economic_modifier = 10
-	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
-			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
-			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
-	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
-			            access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
-			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
+		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
+		access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
+		access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway,
+		access_external_airlocks
+	)
+
+	stat_modifers = list(
+		STAT_ROB = 30,
+		STAT_TGH = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
@@ -27,16 +32,17 @@
 	pda = /obj/item/device/pda/heads/hos
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick/swat
-	glasses = /obj/item/clothing/glasses/sunglasses/sechud
+	gloves = /obj/item/clothing/gloves/stungloves
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/lamia
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/mg/cl44/rubber,\
-		/obj/item/ammo_magazine/mg/cl44/rubber,\
+		/obj/item/ammo_magazine/cl44/rubber,\
+		/obj/item/ammo_magazine/cl44/rubber,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
+		/obj/item/weapon/cell/small/high,\
+		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/gun/energy/gun/martin,\
-		/obj/item/weapon/melee/baton/loaded
 	)
 
 	backpacks = list(
@@ -63,10 +69,18 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
-			            access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
-	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	access = list(
+		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue,
+		access_external_airlocks
+	)
 	idtype = /obj/item/weapon/card/id/sec
+
+	stat_modifers = list(
+		STAT_ROB = 20,
+		STAT_TGH = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/warden
 	suit = /obj/item/clothing/suit/armor/vest/security
@@ -74,19 +88,18 @@
 	pda = /obj/item/device/pda/warden
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick/swat
-	glasses = /obj/item/clothing/glasses/sunglasses/sechud
+	gloves = /obj/item/clothing/gloves/stungloves
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/SMG_sol/rubber,\
-		/obj/item/ammo_magazine/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/sol65/rubber,\
+		/obj/item/ammo_magazine/sol65/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/cell/small/high,\
-		/obj/item/weapon/melee/baton/loaded
 	)
 
 	backpacks = list(
@@ -112,24 +125,34 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
-			            access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_external_airlocks)
-	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	access = list(
+		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
+		access_external_airlocks
+	)
 	idtype = /obj/item/weapon/card/id/det
 
-	uniform = /obj/item/clothing/under/inspector
+	stat_modifers = list(
+		STAT_BIO = 10,
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+	)
+
+	uniform = /obj/item/clothing/under/rank/inspector
 	pda = /obj/item/device/pda/detective
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
-	gloves = /obj/item/clothing/gloves/thick
+	gloves = /obj/item/clothing/gloves/stungloves
 	hat = /obj/item/clothing/head/det
 	suit = /obj/item/clothing/suit/storage/insp_trench
 	hand = /obj/item/weapon/storage/briefcase/crimekit
 	belt = /obj/item/weapon/gun/projectile/revolver/consul
 
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/sl/cl44/rubber,\
-		/obj/item/ammo_magazine/sl/cl44/rubber,\
+		/obj/item/ammo_magazine/sl44/rubber,\
+		/obj/item/ammo_magazine/sl44/rubber,\
+		/obj/item/weapon/handcuffs,\
 		/obj/item/weapon/flame/lighter/zippo,\
 		/obj/item/weapon/storage/box/evidence,\
 		/obj/item/weapon/cell/small/high,\
@@ -154,9 +177,15 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
-	access = list(access_security, access_medical, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
-	minimal_access = list(access_security, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	access = list(
+		access_security, access_medical, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels
+	)
 	idtype = /obj/item/weapon/card/id/medcpec
+
+	stat_modifers = list(
+		STAT_BIO = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/medspec
 	pda = /obj/item/device/pda/detective
@@ -168,8 +197,8 @@
 	belt = /obj/item/weapon/gun/projectile/olivaw
 
 	put_in_backpack = list(\
-		/obj/item/ammo_magazine/mg/cl32/rubber,\
-		/obj/item/ammo_magazine/mg/cl32/rubber,\
+		/obj/item/ammo_magazine/cl32/rubber,\
+		/obj/item/ammo_magazine/cl32/rubber,\
 		/obj/item/weapon/storage/box/evidence,\
 	)
 
@@ -190,32 +219,39 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 4
-	access = list(access_security, access_medical, access_research, access_engine, access_mailsorting,
-			            access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks)
-	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_external_airlocks)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
+	access = list(
+		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks
+	)
 	idtype = /obj/item/weapon/card/id/sec
+
+	stat_modifers = list(
+		STAT_ROB = 10,
+		STAT_TGH = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest/security
 	hat = /obj/item/clothing/head/helmet
+	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	mask = /obj/item/clothing/mask/balaclava/tactical
 	pda = /obj/item/device/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
-	gloves = /obj/item/clothing/gloves/thick/swat
+	gloves = /obj/item/clothing/gloves/stungloves
 	belt = /obj/item/weapon/gun/projectile/automatic/sol/rds
 
 	put_in_backpack = list(\
 		/obj/item/weapon/handcuffs,\
 		/obj/item/weapon/handcuffs,\
-		/obj/item/ammo_magazine/SMG_sol/rubber,\
-		/obj/item/ammo_magazine/SMG_sol/rubber,\
+		/obj/item/ammo_magazine/sol65/rubber,\
+		/obj/item/ammo_magazine/sol65/rubber,\
 		/obj/item/device/flash,\
 		/obj/item/device/lighting/toggleable/flashlight/seclite,\
 		/obj/item/weapon/gun/energy/gun/martin,\
 		/obj/item/weapon/cell/small/high,\
 		/obj/item/weapon/cell/small/high,\
-		/obj/item/weapon/melee/baton/loaded
 	)
 
 	backpacks = list(

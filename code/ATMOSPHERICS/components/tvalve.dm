@@ -118,7 +118,7 @@
 	node2 = null
 	node3 = null
 
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/tvalve/proc/go_to_side()
 
@@ -181,14 +181,14 @@
 	else
 		src.go_to_side()
 
-/obj/machinery/atmospherics/tvalve/process()
+/obj/machinery/atmospherics/tvalve/Process()
 	..()
 	. = PROCESS_KILL
 	//machines.Remove(src)
 
 	return
 
-/obj/machinery/atmospherics/tvalve/initialize()
+/obj/machinery/atmospherics/tvalve/atmos_init()
 	var/node1_dir
 	var/node2_dir
 	var/node3_dir
@@ -322,7 +322,7 @@
 
 
 
-/obj/machinery/atmospherics/tvalve/digital/initialize()
+/obj/machinery/atmospherics/tvalve/digital/atmos_init()
 	..()
 	if(frequency)
 		set_frequency(frequency)
@@ -346,8 +346,8 @@
 			else
 				go_to_side()
 
-/obj/machinery/atmospherics/tvalve/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
+/obj/machinery/atmospherics/tvalve/attackby(var/obj/item/I, var/mob/user)
+	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/tvalve/digital))
 		user << SPAN_WARNING("You cannot unwrench \the [src], it's too complicated.")
@@ -358,9 +358,8 @@
 		user << "<span class='warnng'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>"
 		add_fingerprint(user)
 		return 1
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
-	if (do_after(user, 40, src))
+	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 			SPAN_NOTICE("You have unfastened \the [src]."), \
@@ -386,7 +385,7 @@
 		if(WEST)
 			initialize_directions = EAST|WEST|SOUTH
 
-/obj/machinery/atmospherics/tvalve/mirrored/initialize()
+/obj/machinery/atmospherics/tvalve/mirrored/atmos_init()
 	var/node1_dir
 	var/node2_dir
 	var/node3_dir
@@ -460,7 +459,7 @@
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/tvalve/mirrored/digital/initialize()
+/obj/machinery/atmospherics/tvalve/mirrored/digital/atmos_init()
 	..()
 	if(frequency)
 		set_frequency(frequency)

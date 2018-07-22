@@ -10,6 +10,7 @@
 	unacidable = 1
 	use_power = 0
 	light_range = 4
+	layer = ABOVE_OBJ_LAYER
 	flags = PROXMOVE
 	var/obj/machinery/field_generator/FG1 = null
 	var/obj/machinery/field_generator/FG2 = null
@@ -20,7 +21,7 @@
 		FG1.cleanup()
 	if(FG2 && !FG2.clean_up)
 		FG2.cleanup()
-	..()
+	. = ..()
 
 /obj/machinery/containment_field/attack_hand(mob/user as mob)
 	if(get_dist(src, user) > 1)

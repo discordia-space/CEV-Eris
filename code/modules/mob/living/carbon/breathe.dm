@@ -2,7 +2,7 @@
 
 //Start of a breath chain, calls breathe()
 /mob/living/carbon/handle_breathing()
-	if(life_tick%2==0 || failed_last_breath || (health < config.health_threshold_crit)) 	//First, resolve location and get a breath
+	if(life_tick%2==0 || failed_last_breath || (health < HEALTH_THRESHOLD_CRIT)) 	//First, resolve location and get a breath
 		breathe()
 
 /mob/living/carbon/proc/breathe()
@@ -12,7 +12,7 @@
 	var/datum/gas_mixture/breath = null
 
 	//First, check if we can breathe at all
-	if(health < config.health_threshold_crit && !(CE_STABLE in chem_effects)) //crit aka circulatory shock
+	if(health < HEALTH_THRESHOLD_CRIT && !(CE_STABLE in chem_effects)) //crit aka circulatory shock
 		losebreath++
 
 	if(losebreath>0) //Suffocating so do not take a breath
@@ -34,19 +34,11 @@
 			internal = null
 		if (!(wear_mask && (wear_mask.item_flags & AIRTIGHT)))
 			internal = null
+		if(HUDneed.Find("internal"))
+			var/obj/screen/HUDelm = HUDneed["internal"]
+			HUDelm.update_icon()
 		if(internal)
-/*			if (internals)
-				internals.icon_state = "internal1"*/
-			if(HUDneed.Find("internal"))
-				var/obj/screen/HUDelm = HUDneed["internal"]
-				HUDelm.icon_state = "internal1"
 			return internal.remove_air_volume(volume_needed)
-		else
-/*			if (internals)
-				internals.icon_state = "internal0"*/
-			if(HUDneed.Find("internal"))
-				var/obj/screen/HUDelm = HUDneed["internal"]
-				HUDelm.icon_state = "internal0"
 	return null
 
 /mob/living/carbon/proc/get_breath_from_environment(var/volume_needed=BREATH_VOLUME)

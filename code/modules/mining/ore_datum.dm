@@ -24,10 +24,10 @@ var/global/list/ore_data = list()
 		display_name = name
 
 /ore/uranium
-	name = "uranium"
+	name = MATERIAL_URANIUM
 	display_name = "pitchblende"
-	smelts_to = "uranium"
-	result_amount = 5
+	smelts_to = MATERIAL_URANIUM
+	result_amount = 10
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/uranium
 	scan_icon = "mineral_uncommon"
@@ -42,7 +42,7 @@ var/global/list/ore_data = list()
 	display_name = "hematite"
 	smelts_to = "iron"
 	alloy = 1
-	result_amount = 5
+	result_amount = 10
 	spread_chance = 25
 	ore = /obj/item/weapon/ore/iron
 	scan_icon = "mineral_common"
@@ -50,9 +50,9 @@ var/global/list/ore_data = list()
 /ore/coal
 	name = "carbon"
 	display_name = "raw carbon"
-	smelts_to = "plastic"
+	smelts_to = MATERIAL_PLASTIC
 	alloy = 1
-	result_amount = 5
+	result_amount = 10
 	spread_chance = 25
 	ore = /obj/item/weapon/ore/coal
 	scan_icon = "mineral_common"
@@ -60,15 +60,15 @@ var/global/list/ore_data = list()
 /ore/glass
 	name = "sand"
 	display_name = "sand"
-	smelts_to = "glass"
-	compresses_to = "sandstone"
+	smelts_to = MATERIAL_GLASS
+	compresses_to = MATERIAL_SANDSTONE
 
 /ore/plasma
 	name = "plasma"
 	display_name = "plasma crystals"
 	compresses_to = "plasma"
 	//smelts_to = something that explodes violently on the conveyor, huhuhuhu
-	result_amount = 5
+	result_amount = 8
 	spread_chance = 25
 	ore = /obj/item/weapon/ore/plasma
 	scan_icon = "mineral_uncommon"
@@ -83,17 +83,17 @@ var/global/list/ore_data = list()
 /ore/silver
 	name = "silver"
 	display_name = "native silver"
-	smelts_to = "silver"
-	result_amount = 5
+	smelts_to = MATERIAL_SILVER
+	result_amount = 8
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/silver
 	scan_icon = "mineral_uncommon"
 
 /ore/gold
-	smelts_to = "gold"
+	smelts_to = MATERIAL_GOLD
 	name = "gold"
 	display_name = "native gold"
-	result_amount = 5
+	result_amount = 8
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/gold
 	scan_icon = "mineral_uncommon"
@@ -107,7 +107,7 @@ var/global/list/ore_data = list()
 /ore/diamond
 	name = "diamond"
 	display_name = "diamond"
-	compresses_to = "diamond"
+	compresses_to = MATERIAL_DIAMOND
 	result_amount = 5
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/diamond
@@ -117,7 +117,7 @@ var/global/list/ore_data = list()
 /ore/platinum
 	name = "platinum"
 	display_name = "raw platinum"
-	smelts_to = "platinum"
+	smelts_to = MATERIAL_PLATINUM
 	compresses_to = "osmium"
 	alloy = 1
 	result_amount = 5

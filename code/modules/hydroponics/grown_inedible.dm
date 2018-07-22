@@ -43,10 +43,10 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/weapon/corncob/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/corncob/attackby(obj/item/I, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/material/hatchet) || istype(W, /obj/item/weapon/material/kitchen/utensil/knife) || istype(W, /obj/item/weapon/material/knife) || istype(W, /obj/item/weapon/material/knife/ritual))
-		user << SPAN_NOTICE("You use [W] to fashion a pipe out of the corn cob!")
+	if(QUALITY_CUTTING in I.tool_qualities)
+		user << SPAN_NOTICE("You use [I] to fashion a pipe out of the corn cob!")
 		new /obj/item/clothing/mask/smokable/pipe/cobpipe (user.loc)
 		qdel(src)
 		return

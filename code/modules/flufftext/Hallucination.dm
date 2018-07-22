@@ -47,7 +47,8 @@ mob/living/carbon/proc/handle_hallucinations()
 						if(!H.r_store) slots_free += ui_storage2
 					if(slots_free.len)
 						halitem.screen_loc = pick(slots_free)
-						halitem.layer = 50
+						halitem.layer = ABOVE_HUD_LAYER
+						halitem.plane = ABOVE_HUD_PLANE
 						switch(rand(1,6))
 							if(1) //revolver
 								halitem.icon = 'icons/obj/gun.dmi'
@@ -93,13 +94,13 @@ mob/living/carbon/proc/handle_hallucinations()
 						switch(rand(1,3))
 							if(1)
 								//src << "Space"
-								halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]",TURF_LAYER)
+								halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]", ABOVE_OPEN_TURF_LAYER)
 							if(2)
 								//src << "Fire"
-								halimage = image('icons/effects/fire.dmi',target,"1",TURF_LAYER)
+								halimage = image('icons/effects/fire.dmi',target,"1", ABOVE_OPEN_TURF_LAYER)
 							if(3)
 								//src << "C4"
-								halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)
+								halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2", OBJ_LAYER+0.01)
 
 
 						if(client) client.images += halimage
@@ -332,7 +333,7 @@ proc/check_panel(mob/M)
 		qdel(O)
 	return
 
-var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/item/ammo_magazine/a357,\
+var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/item/ammo_magazine/sl357,\
 	/obj/item/weapon/gun/energy/crossbow, /obj/item/weapon/melee/energy/sword,\
 	/obj/item/weapon/storage/box/syndicate, /obj/item/weapon/storage/box/emps,\
 	/obj/item/weapon/cartridge/syndicate, /obj/item/clothing/under/chameleon,\
@@ -342,7 +343,7 @@ var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/ite
 	/obj/item/weapon/storage/toolbox/syndicate, /obj/item/weapon/aiModule,\
 	/obj/item/device/radio/headset/syndicate,	/obj/item/weapon/plastique,\
 	/obj/item/device/powersink, /obj/item/weapon/storage/box/syndie_kit,\
-	/obj/item/toy/syndicateballoon, /obj/item/weapon/gun/energy/captain,\
+	/obj/item/weapon/gun/energy/captain,\
 	/obj/item/weapon/hand_tele, /obj/item/weapon/rcd, /obj/item/weapon/tank/jetpack,\
 	/obj/item/clothing/under/rank/captain, /obj/item/device/aicard,\
 	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/weapon/disk/nuclear,\

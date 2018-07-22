@@ -9,8 +9,6 @@
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 
-	var/passenger_allowed = 1
-
 	var/active_engines = 0
 	var/train_length = 0
 
@@ -21,7 +19,8 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/train/initialize()
+/obj/vehicle/train/Initialize()
+	. = ..()
 	for(var/obj/vehicle/train/T in orange(1, src))
 		latch(T)
 

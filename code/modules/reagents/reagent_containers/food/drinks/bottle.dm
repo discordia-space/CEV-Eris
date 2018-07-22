@@ -74,7 +74,7 @@
 		var/mob/living/L = against
 		L.IgniteMob()
 
-	playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.wav',100,1)
+	playsound(src,'sound/effects/GLASS_Rattle_Many_Fragments_01_stereo.ogg',100,1)
 	src.transfer_fingerprints_to(B)
 
 	qdel(src)
@@ -174,6 +174,7 @@
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = 1
 	edge = 0
+	tool_qualities = list(QUALITY_CUTTING = 10)
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -243,15 +244,6 @@
 	New()
 		..()
 		reagents.add_reagent("rum", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/holywater
-	name = "Flask of Holy Water"
-	desc = "A flask of the preacher's holy water."
-	icon_state = "holyflask"
-	center_of_mass = list("x"=17, "y"=10)
-	New()
-		..()
-		reagents.add_reagent("holywater", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth
 	name = "Goldeneye Vermouth"
@@ -441,4 +433,3 @@
 	New()
 		..()
 		reagents.add_reagent("ale", 30)
-

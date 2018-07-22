@@ -72,6 +72,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	siemens_coefficient = 2.0
 	body_parts_covered = HEAD|FACE|EYES
+	item_flags = COVER_PREVENT_MANIPULATION
 
 /obj/item/clothing/head/greenbandana
 	name = "green bandana"
@@ -237,23 +238,3 @@
 	desc = "An orange piece of cloth, worn on the head."
 	icon_state = "orange_bandana"
 	body_parts_covered = 0
-
-/obj/item/clothing/head/hijab
-	name = "hijab"
-	desc = "A veil that is wrapped to cover the head and chest"
-	icon_state = "hijab"
-	body_parts_covered = 0
-	flags_inv = BLOCKHAIR
-
-/obj/item/clothing/head/kippa
-	name = "kippa"
-	desc = "A small, brimless cap."
-	icon_state = "kippa"
-	body_parts_covered = 0
-
-/obj/item/clothing/head/turban
-	name = "turban"
-	desc = "A cloth used to wind around the head"
-	icon_state = "turban"
-	body_parts_covered = 0
-	flags_inv = BLOCKHAIR

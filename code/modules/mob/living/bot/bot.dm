@@ -66,14 +66,14 @@
 			else
 				user << SPAN_WARNING("Access denied.")
 		return
-	else if(istype(O, /obj/item/weapon/screwdriver))
+	else if(istype(O, /obj/item/weapon/tool/screwdriver))
 		if(!locked)
 			open = !open
 			user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
 		else
 			user << SPAN_NOTICE("You need to unlock the controls first.")
 		return
-	else if(istype(O, /obj/item/weapon/weldingtool))
+	else if(istype(O, /obj/item/weapon/tool/weldingtool))
 		if(health < maxHealth)
 			if(open)
 				health = min(maxHealth, health + 10)

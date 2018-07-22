@@ -5,7 +5,7 @@
 	item_state = "analyzer"
 	w_class = ITEM_SIZE_SMALL
 
-	matter = list(DEFAULT_WALL_MATERIAL = 60,"glass" = 30)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 	var/emagged = 0.0
 	var/recording = 0.0
@@ -26,7 +26,7 @@
 
 /obj/item/device/taperecorder/Destroy()
 	remove_hearing()
-	..()
+	. = ..()
 
 /obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
 	if(recording)

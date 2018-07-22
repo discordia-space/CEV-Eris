@@ -4,9 +4,7 @@
 	desc = "RawrRawr!!"
 	icon_state = "bear"
 	icon_gib = "bear_gib"
-	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
-	emote_hear = list("rawrs","grumbles","grawls")
 	emote_see = list("stares ferociously", "stomps")
 	speak_chance = 1
 	turns_per_move = 5
@@ -75,9 +73,9 @@
 					src.set_dir(get_dir(src,target_mob))	//Keep staring at the mob
 
 					if(stance_step in list(1,4,7)) //every 3 ticks
-						var/action = pick( list( "growls at [target_mob]", "stares angrily at [target_mob]", "prepares to attack [target_mob]", "closely watches [target_mob]" ) )
+						var/action = pick( list( "growls at [target_mob].", "stares angrily at [target_mob].", "prepares to attack [target_mob]!", "closely watches [target_mob]." ) )
 						if(action)
-							custom_emote(1,action)
+							visible_emote(action)
 			if(!found_mob)
 				stance_step--
 
@@ -88,7 +86,7 @@
 
 		if(HOSTILE_STANCE_ATTACKING)
 			if(stance_step >= 20)	//attacks for 20 ticks, then it gets tired and needs to rest
-				custom_emote(1, "is worn out and needs to rest." )
+				visible_emote("is worn out and needs to rest.")
 				stance = HOSTILE_STANCE_TIRED
 				stance_step = 0
 				walk(src, 0) //This stops the bear's walking
@@ -116,7 +114,7 @@
 /mob/living/simple_animal/hostile/bear/FindTarget()
 	. = ..()
 	if(.)
-		custom_emote(1,"stares alertly at [.]")
+		visible_emote("stares alertly at [.].")
 		stance = HOSTILE_STANCE_ALERT
 
 /mob/living/simple_animal/hostile/bear/LoseTarget()
@@ -125,13 +123,13 @@
 /mob/living/simple_animal/hostile/bear/AttackingTarget()
 	if(!Adjacent(target_mob))
 		return
-	custom_emote(1, pick( list("slashes at [target_mob]", "bites [target_mob]") ) )
+	visible_emote(list("slashes at [target_mob]!", "bites [target_mob]!"))
 
 	var/damage = rand(20,30)
 
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
-		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
+		var/dam_zone = pick(BP_CHEST, BP_L_HAND, BP_R_HAND, BP_L_LEG , BP_R_LEG)
 		var/obj/item/organ/external/affecting = H.get_organ(ran_zone(dam_zone))
 		H.apply_damage(damage, BRUTE, affecting, H.run_armor_check(affecting, "melee"), sharp=1, edge=1)
 		return H

@@ -34,10 +34,8 @@
 	pass_flags = PASSTABLE
 	mob_size = MOB_SMALL
 
-	speak = list("Hi","Hello!","Cracker?","BAWWWWK george mellons griffing me")
 	speak_emote = list("squawks","says","yells")
-	emote_hear = list("squawks","bawks")
-	emote_see = list("flutters its wings")
+	emote_see = list("flutters its wings","squawks","bawks")
 
 	speak_chance = 1//1% (1 in 100) chance every tick; So about once per 150 seconds, assuming an average tick is 1.5s
 	turns_per_move = 5
@@ -52,7 +50,7 @@
 	var/parrot_state = PARROT_WANDER //Hunt for a perch when created
 	var/parrot_sleep_max = 25 //The time the parrot sits while perched before looking around. Mosly a way to avoid the parrot's AI in life() being run every single tick.
 	var/parrot_sleep_dur = 25 //Same as above, this is the var that physically counts down
-	var/parrot_dam_zone = list("chest", "head", "l_arm", "l_leg", "r_arm", "r_leg") //For humans, select a bodypart to attack
+	var/parrot_dam_zone = list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_L_LEG, BP_R_ARM, BP_R_LEG) //For humans, select a bodypart to attack
 
 	var/parrot_speed = 5 //"Delay in world ticks between movement." according to byond. Yeah, that's BS but it does directly affect movement. Higher number = slower.
 	var/parrot_been_shot = 0 //Parrots get a speed bonus after being shot. This will deincrement every Life() and at 0 the parrot will return to regular speed.
@@ -70,13 +68,15 @@
 	//Parrots will generally sit on their pertch unless something catches their eye.
 	//These vars store their preffered perch and if they dont have one, what they can use as a perch
 	var/obj/parrot_perch = null
-	var/obj/desired_perches = list(/obj/structure/computerframe, 		/obj/structure/displaycase, \
-									/obj/structure/filingcabinet,		/obj/machinery/teleport, \
-									/obj/machinery/computer,			/obj/machinery/clonepod, \
-									/obj/machinery/dna_scannernew,		/obj/machinery/telecomms, \
-									/obj/machinery/nuclearbomb,			/obj/machinery/particle_accelerator, \
-									/obj/machinery/recharge_station,	/obj/machinery/smartfridge, \
-									/obj/machinery/suit_storage_unit)
+	var/obj/desired_perches = list(
+		/obj/structure/computerframe, 		/obj/structure/displaycase,
+		/obj/structure/filingcabinet,		/obj/machinery/teleport,
+		/obj/machinery/computer,			/obj/machinery/clonepod,
+		/obj/machinery/dna_scannernew,		/obj/machinery/telecomms,
+		/obj/machinery/nuclearbomb,			/obj/machinery/particle_accelerator,
+		/obj/machinery/recharge_station,	/obj/machinery/smartfridge,
+		/obj/machinery/suit_storage_unit
+	)
 
 	//Parrots are kleptomaniacs. This variable ... stores the item a parrot is holding.
 	var/obj/item/held_item = null
@@ -94,10 +94,12 @@
 
 	parrot_sleep_dur = parrot_sleep_max //In case someone decides to change the max without changing the duration var
 
-	verbs.Add(/mob/living/simple_animal/parrot/proc/steal_from_ground, \
-			  /mob/living/simple_animal/parrot/proc/steal_from_mob, \
-			  /mob/living/simple_animal/parrot/verb/drop_held_item_player, \
-			  /mob/living/simple_animal/parrot/proc/perch_player)
+	verbs.Add(
+		/mob/living/simple_animal/parrot/proc/steal_from_ground,
+		/mob/living/simple_animal/parrot/proc/steal_from_mob,
+		/mob/living/simple_animal/parrot/verb/drop_held_item_player,
+		/mob/living/simple_animal/parrot/proc/perch_player
+	)
 
 
 /mob/living/simple_animal/parrot/death()
@@ -338,7 +340,7 @@
 			//Search for item to steal
 			parrot_interest = search_for_item()
 			if(parrot_interest)
-				visible_emote("looks in [parrot_interest]'s direction and takes flight")
+				visible_message("looks in [parrot_interest]'s direction and takes flight")
 				parrot_state = PARROT_SWOOP | PARROT_STEAL
 				icon_state = "parrot_fly"
 			return
@@ -360,7 +362,8 @@
 			if(AM)
 				if(istype(AM, /obj/item) || isliving(AM))	//If stealable item
 					parrot_interest = AM
-					visible_emote("turns and flies towards [parrot_interest]")
+					var/msg2 = ("turns and flies towards [parrot_interest]")
+					src.visible_message("<span class='name'>[src]</span> [msg2].")
 					parrot_state = PARROT_SWOOP | PARROT_STEAL
 					return
 				else	//Else it's a perch
@@ -474,11 +477,12 @@
 				var/obj/item/organ/external/affecting = H.get_organ(ran_zone(pick(parrot_dam_zone)))
 
 				H.apply_damage(damage, BRUTE, affecting, H.run_armor_check(affecting, "melee"), sharp=1)
-				visible_emote(pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
-
+				var/msg3 = (pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
+				src.visible_message("<span class='name'>[src]</span> [msg3].")
 			else
 				L.adjustBruteLoss(damage)
-				visible_emote(pick("pecks at [L].", "claws [L]."))
+				var/msg3 = (pick("pecks at [L].", "claws [L]."))
+				src.visible_message("<span class='name'>[src]</span> [msg3].")
 			return
 
 		//Otherwise, fly towards the mob!
@@ -606,7 +610,11 @@
 			C.remove_from_mob(stolen_item)
 			held_item = stolen_item
 			stolen_item.loc = src
-			visible_message("[src] grabs the [held_item] out of [C]'s hand!", "\blue You snag the [held_item] out of [C]'s hand!", "You hear the sounds of wings flapping furiously.")
+			visible_message(
+				"[src] grabs the [held_item] out of [C]'s hand!",
+				SPAN_NOTICE("You snag the [held_item] out of [C]'s hand!"),
+				"You hear the sounds of wings flapping furiously."
+			)
 			return held_item
 
 	src << "\red There is nothing of interest to take."
@@ -675,7 +683,13 @@
 /mob/living/simple_animal/parrot/Poly
 	name = "Poly"
 	desc = "Poly the Parrot. An expert on quantum cracker theory."
-	speak = list("Poly wanna cracker!", ":e Check the singlo, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS FREE CALL THE SHUTTLE")
+	speak = list(
+		"Poly wanna cracker!",
+		":e Check the singlo, you chucklefucks!",
+		":e Wire the solars, you lazy bums!",
+		":e WHO TOOK THE DAMN HARDSUITS?",
+		":e OH GOD ITS FREE CALL THE SHUTTLE"
+	)
 
 /mob/living/simple_animal/parrot/Poly/New()
 	ears = new /obj/item/device/radio/headset/headset_eng(src)

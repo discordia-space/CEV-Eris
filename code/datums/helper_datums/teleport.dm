@@ -178,7 +178,7 @@
 			teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
 		return 0
 
-	if(destination.z in config.admin_levels) //centcomm z-level
+	if(isAdminLevel(destination.z))
 		if(istype(teleatom, /obj/mecha))
 			var/obj/mecha/MM = teleatom
 			MM.occupant << SPAN_DANGER("\The [MM] would not survive the jump to a location so far away!")

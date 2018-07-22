@@ -1,20 +1,3 @@
-/obj/item/clothing/mask/balaclava
-	name = "balaclava"
-	desc = "LOADSAMONEY"
-	icon_state = "balaclava"
-	item_state = "balaclava"
-	flags_inv = HIDEFACE|BLOCKHAIR
-	body_parts_covered = FACE|HEAD
-	w_class = ITEM_SIZE_SMALL
-
-/obj/item/clothing/mask/balaclava/tactical
-	name = "green balaclava"
-	desc = "Designed to both hide identities and keep your face comfy and warm."
-	icon_state = "swatclava"
-	item_state = "balaclava"
-	flags_inv = HIDEFACE|BLOCKHAIR
-	w_class = ITEM_SIZE_SMALL
-
 /obj/item/clothing/mask/luchador
 	name = "Luchador Mask"
 	desc = "Worn by robust fighters, flying high to defeat their foes!"

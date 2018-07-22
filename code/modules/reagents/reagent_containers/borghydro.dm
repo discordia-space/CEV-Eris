@@ -31,13 +31,13 @@
 		var/datum/reagent/R = chemical_reagents_list[T]
 		reagent_names += R.name
 
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/reagent_containers/borghypo/Destroy()
-	processing_objects.Remove(src)
-	..()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
-/obj/item/weapon/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
+/obj/item/weapon/reagent_containers/borghypo/Process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
 	if(++charge_tick < recharge_time)
 		return 0
 	charge_tick = 0
@@ -65,7 +65,7 @@
 		if(!affected)
 			user << SPAN_DANGER("\The [H] is missing that limb!")
 			return
-		else if(affected.status & ORGAN_ROBOT)
+		else if(affected.robotic >= ORGAN_ROBOT)
 			user << SPAN_DANGER("You cannot inject a robotic limb.")
 			return
 

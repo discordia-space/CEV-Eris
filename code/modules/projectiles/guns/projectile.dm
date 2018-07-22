@@ -8,7 +8,7 @@
 	icon_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = ITEM_SIZE_NORMAL
-	matter = list(DEFAULT_WALL_MATERIAL = 1000)
+	matter = list(MATERIAL_STEEL = 1)
 	recoil = 1
 
 	var/caliber = "357"		//determines which casings will fit
@@ -119,14 +119,17 @@
 					user << SPAN_WARNING("[src] is full!")
 					return
 				var/count = 0
-				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
-					if(loaded.len >= max_shells)
-						break
-					if(C.caliber == caliber)
-						C.loc = src
-						loaded += C
-						AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
-						count++
+				if(AM.reload_delay)
+					user << SPAN_NOTICE("It takes some time to reload [src] with [AM]...")
+				if (do_after(user, AM.reload_delay, user))
+					for(var/obj/item/ammo_casing/C in AM.stored_ammo)
+						if(loaded.len >= max_shells)
+							break
+						if(C.caliber == caliber)
+							C.loc = src
+							loaded += C
+							AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
+							count++
 				if(count)
 					user.visible_message("[user] reloads [src].", SPAN_NOTICE("You load [count] round\s into [src]."))
 					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)

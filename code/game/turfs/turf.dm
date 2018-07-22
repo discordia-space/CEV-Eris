@@ -34,12 +34,20 @@
 /turf/proc/update_icon()
 	return
 
+/turf/Initialize()
+	turfs += src
+	. = ..()
+
 /turf/Destroy()
 	turfs -= src
 	..()
+	return QDEL_HINT_IWILLGC
 
 /turf/ex_act(severity)
 	return 0
+
+/turf/proc/is_solid_structure()
+	return 1
 
 /turf/proc/is_space()
 	return 0
@@ -129,7 +137,7 @@ var/const/enterloopsanity = 100
 			inertial_drift(M)
 		else if(is_space())
 			M.inertia_dir = 0
-			M.make_floating(0)
+		M.update_floating(TRUE) // no Check_Dense_Object() proc in arg because it will make this line more costly for almost zero reward in my opinion.
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)
@@ -203,7 +211,7 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/proc/process()
+/turf/Process()
 	return PROCESS_KILL
 
 /turf/proc/contains_dense_objects()

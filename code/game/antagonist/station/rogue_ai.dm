@@ -3,7 +3,6 @@
 	role_type = "Malf AI"
 	role_text = "Rampant AI"
 	role_text_plural = "Rampant AIs"
-	weight = 25
 	welcome_text = "You are malfunctioning! You do not have to follow any laws."
 
 
@@ -27,6 +26,10 @@
 			p.stop_malf()
 		return TRUE
 	return FALSE
+
+
+/datum/antagonist/rogue_ai/create_survive_objective()
+	return
 
 // Malf setup things have to be here, since game tends to break when it's moved somewhere else. Don't blame me, i didn't design this system.
 /datum/antagonist/rogue_ai/greet()

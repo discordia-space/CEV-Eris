@@ -24,7 +24,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Unknown"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
-	layer = 10
 	mouse_opacity = 0
 	var/lightswitch = 1
 
@@ -859,7 +858,7 @@ area/space/atmosalert()
 	icon_state = "construction"
 
 /area/hallway/secondary/entry
-	name = "\improper Arrival Shuttle Hallway"
+	name = "\improper Cryo Chamber Hallway"
 	icon_state = "entry_1"
 
 /area/hallway/secondary/entry/fore
@@ -1443,8 +1442,7 @@ area/space/atmosalert()
 
 /area/security/brig/prison_break()
 	for(var/obj/structure/closet/secure_closet/brig/temp_closet in src)
-		temp_closet.locked = 0
-		temp_closet.icon_state = temp_closet.icon_closed
+		temp_closet.set_locked(FALSE)
 	for(var/obj/machinery/door_timer/temp_timer in src)
 		temp_timer.releasetime = 1
 	..()
@@ -1455,8 +1453,7 @@ area/space/atmosalert()
 
 /area/security/prison/prison_break()
 	for(var/obj/structure/closet/secure_closet/brig/temp_closet in src)
-		temp_closet.locked = 0
-		temp_closet.icon_state = temp_closet.icon_closed
+		temp_closet.set_locked(FALSE)
 	for(var/obj/machinery/door_timer/temp_timer in src)
 		temp_timer.releasetime = 1
 	..()
@@ -2534,7 +2531,7 @@ area/space/atmosalert()
 		S.volume = 100
 		S.priority = 255
 		S.status = SOUND_UPDATE
-		process()
+		Process()
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		if(ismob(Obj))
@@ -2549,7 +2546,7 @@ area/space/atmosalert()
 				mysound.status = SOUND_PAUSED | SOUND_UPDATE
 				Obj << mysound
 
-	proc/process()
+	Process()
 		set background = 1
 
 		var/sound/S = null
@@ -2655,7 +2652,7 @@ var/list/the_station_areas = list (
 		S.volume = 100
 		S.priority = 255
 		S.status = SOUND_UPDATE
-		process()
+		Process()
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		if(ismob(Obj))
@@ -2670,7 +2667,7 @@ var/list/the_station_areas = list (
 				mysound.status = SOUND_PAUSED | SOUND_UPDATE
 				Obj << mysound
 
-	proc/process()
+	Process()
 		set background = 1
 
 		var/sound/S = null

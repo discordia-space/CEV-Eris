@@ -69,7 +69,7 @@
 						var/message = pick("Hey, [H.name]! Hold on, I'm coming.", "Wait [H.name]! I want to help!", "[H.name], you appear to be injured!")
 						say(message)
 						playsound(loc, "robot_talk_light", 100, 0, 0)
-						custom_emote(1, "points at [H.name].")
+						visible_message("[src] points at [H.name].")
 						last_newpatient_speak = world.time
 					break
 
@@ -248,7 +248,7 @@
 
 	new /obj/item/weapon/storage/firstaid(Tsec)
 	new /obj/item/device/assembly/prox_sensor(Tsec)
-	new /obj/item/device/healthanalyzer(Tsec)
+	new /obj/item/device/scanner/healthanalyzer(Tsec)
 	if (prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
 
@@ -345,7 +345,7 @@
 	else
 		switch(build_step)
 			if(0)
-				if(istype(W, /obj/item/device/healthanalyzer))
+				if(istype(W, /obj/item/device/scanner/healthanalyzer))
 					user.drop_item()
 					qdel(W)
 					build_step++

@@ -89,17 +89,6 @@
 #define MIN_SUPPLIED_LAW_NUMBER 15
 #define MAX_SUPPLIED_LAW_NUMBER 50
 
-//default item on-mob icons
-#define INV_HEAD_DEF_ICON 'icons/mob/head.dmi'
-#define INV_BACK_DEF_ICON 'icons/mob/back.dmi'
-#define INV_L_HAND_DEF_ICON 'icons/mob/items/lefthand.dmi'
-#define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
-#define INV_W_UNIFORM_DEF_ICON 'icons/mob/uniform.dmi'
-#define INV_ACCESSORIES_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_SUIT_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_SUIT_DEF_ICON 'icons/mob/suit.dmi'
-#define MAX_SUPPLIED_LAW_NUMBER 50
-
 // NT's alignment towards the character
 #define COMPANY_LOYAL 			"Loyal"
 #define COMPANY_SUPPORTATIVE	"Supportive"
@@ -163,3 +152,10 @@
 //Ambience
 #define SOUND_CHANNEL_AMBIENCE 2
 
+//Health
+#define HEALTH_THRESHOLD_SOFTCRIT 0
+#define HEALTH_THRESHOLD_CRIT -50
+#define HEALTH_THRESHOLD_DEAD -100
+
+#define ORGAN_HEALTH_MULTIPLIER 1
+#define ORGAN_REGENERATION_MULTIPLIER 0.2

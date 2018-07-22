@@ -7,6 +7,7 @@
 	icon_state = "toilet00"
 	density = 0
 	anchored = 1
+	layer = SIGN_LAYER
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
@@ -18,7 +19,11 @@
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)
-		usr.visible_message(SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"), SPAN_NOTICE("You slam the toilet seat onto [swirlie.name]'s head!"), "You hear reverberating porcelain.")
+		usr.visible_message(
+			SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"),
+			SPAN_NOTICE("You slam the toilet seat onto [swirlie.name]'s head!"),
+			"You hear reverberating porcelain."
+		)
 		swirlie.adjustBruteLoss(8)
 		return
 
@@ -43,37 +48,13 @@
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/crowbar))
+	if(QUALITY_PRYING in I.tool_qualities)
 		user << "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>"
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
-		if(do_after(user, 30, src))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user.visible_message("<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "You hear grinding porcelain.")
 			cistern = !cistern
 			update_icon()
 			return
-
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
-
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
-
-			if(G.state>1)
-				if(!GM.loc == get_turf(src))
-					user << SPAN_NOTICE("[GM.name] needs to be on the toilet.")
-					return
-				if(open && !swirlie)
-					user.visible_message(SPAN_DANGER("[user] starts to give [GM.name] a swirlie!"), SPAN_NOTICE("You start to give [GM.name] a swirlie!"))
-					swirlie = GM
-					if(do_after(user, 30, src))
-						user.visible_message(SPAN_DANGER("[user] gives [GM.name] a swirlie!"), SPAN_NOTICE("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
-						GM.adjustOxyLoss(5)
-					swirlie = null
-				else
-					user.visible_message(SPAN_DANGER("[user] slams [GM.name] into the [src]!"), SPAN_NOTICE("You slam [GM.name] into the [src]!"))
-					GM.adjustBruteLoss(8)
-			else
-				user << SPAN_NOTICE("You need a tighter grip.")
 
 	if(cistern && !isrobot(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class >= ITEM_SIZE_LARGE)
@@ -99,6 +80,42 @@
 			user << SPAN_NOTICE("You empty the [O] into the [src].")
 
 
+/obj/structure/toilet/affect_grab(var/mob/user, var/mob/living/target, var/state)
+	if(state == GRAB_PASSIVE)
+		user << SPAN_NOTICE("You need a tighter grip.")
+		return FALSE
+	if(!target.loc == src.loc)
+		user << SPAN_NOTICE("[target] needs to be on the toilet.")
+		return FALSE
+	if(open && !swirlie)
+		user.visible_message(
+			SPAN_DANGER("[user] starts to give [target] a swirlie!"),
+			SPAN_NOTICE("You start to give [target] a swirlie!")
+		)
+		swirlie = target
+		if (do_after(user, 30, src) || !Adjacent(target))
+			user.visible_message(
+				SPAN_DANGER("[user] gives [target] a swirlie!"),
+				SPAN_NOTICE("You give [target] a swirlie!"),
+				"You hear a toilet flushing."
+			)
+			var/mob/living/carbon/C = target
+			if(!istype(C) || !C.internal)
+				target.adjustOxyLoss(5)
+		swirlie = null
+	else
+		user.visible_message(
+			SPAN_DANGER("[user] slams [target] into the [src]!"),
+			SPAN_NOTICE("You slam [target] into the [src]!")
+		)
+		admin_attack_log(user, target,
+			"slams <b>[key_name(target)]</b> into the [src]",
+			"Was slamed by <b>[key_name(user)] into the [src]</b>",
+			"slamed into the [src]"
+		)
+		target.adjustBruteLoss(8)
+	return TRUE
+
 
 /obj/structure/urinal
 	name = "urinal"
@@ -108,20 +125,24 @@
 	density = 0
 	anchored = 1
 
-/obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
-			if(G.state>1)
-				if(!GM.loc == get_turf(src))
-					user << SPAN_NOTICE("[GM.name] needs to be on the urinal.")
-					return
-				user.visible_message(SPAN_DANGER("[user] slams [GM.name] into the [src]!"), SPAN_NOTICE("You slam [GM.name] into the [src]!"))
-				GM.adjustBruteLoss(8)
-			else
-				user << SPAN_NOTICE("You need a tighter grip.")
-
+/obj/structure/urinal/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+	if(state == GRAB_PASSIVE)
+		user << SPAN_NOTICE("You need a tighter grip.")
+		return FALSE
+	if(!target.loc == src.loc)
+		user << SPAN_NOTICE("[target] needs to be on the urinal.")
+		return
+	user.visible_message(
+		SPAN_DANGER("[user] slams [target] into the [src]!"),
+		SPAN_NOTICE("You slam [target] into the [src]!")
+	)
+	admin_attack_log(user, target,
+		"slams <b>[key_name(target)]</b> into the [src]",
+		"Was slamed by <b>[key_name(user)] into the [src]</b>",
+		"slamed into the [src]"
+	)
+	target.adjustBruteLoss(8)
+	return TRUE
 
 
 /obj/machinery/shower
@@ -149,7 +170,7 @@
 	name = "mist"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
-	layer = MOB_LAYER + 1
+	layer = FLY_LAYER
 	anchored = 1
 	mouse_opacity = 0
 
@@ -163,14 +184,12 @@
 		for (var/atom/movable/G in src.loc)
 			G.clean_blood()
 
-/obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/device/analyzer)
+/obj/machinery/shower/attackby(obj/item/I, mob/user)
+	if(I.type == /obj/item/device/scanner/analyzer)
 		user << SPAN_NOTICE("The water temperature seems to be [watertemp].")
-	if(istype(I, /obj/item/weapon/wrench))
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
-		user << SPAN_NOTICE("You begin to adjust the temperature valve with \the [I].")
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 50, src))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			watertemp = newtemp
 			user.visible_message(SPAN_NOTICE("\The [user] adjusts \the [src] with \the [I]."), SPAN_NOTICE("You adjust the shower with \the [I]."))
 			add_fingerprint(user)
@@ -182,7 +201,7 @@
 		mymist = null
 
 	if(on)
-		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+		overlays += image('icons/obj/watercloset.dmi', src, "water", ABOVE_MOB_LAYER, dir)
 		if(temperature_settings[watertemp] < T20C)
 			return //no mist for cold water
 		if(!ismist)
@@ -191,10 +210,8 @@
 					ismist = 1
 					mymist = PoolOrNew(/obj/effect/mist,loc)
 		else
-			ismist = 1
 			mymist = PoolOrNew(/obj/effect/mist,loc)
 	else if(ismist)
-		ismist = 1
 		mymist = PoolOrNew(/obj/effect/mist,loc)
 		spawn(250)
 			if(src && !on)
@@ -296,7 +313,7 @@
 
 	reagents.splash(O, 10)
 
-/obj/machinery/shower/process()
+/obj/machinery/shower/Process()
 	if(!on) return
 
 	for(var/thing in loc)
@@ -367,9 +384,9 @@
 /obj/structure/sink/attack_hand(mob/user as mob)
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 			return
@@ -415,8 +432,8 @@
 
 	else if (istype(O, /obj/item/weapon/melee/baton))
 		var/obj/item/weapon/melee/baton/B = O
-		if(B.bcell)
-			if(B.bcell.charge > 0 && B.status == 1)
+		if(B.cell)
+			if(B.cell.charge > 0 && B.status == 1)
 				flick("baton_active", src)
 				user.Stun(10)
 				user.stuttering = 10
@@ -426,9 +443,10 @@
 					R.cell.charge -= 20
 				else
 					B.deductcharge(B.hitcost)
-				user.visible_message( \
-					SPAN_DANGER("[user] was stunned by \his wet [O]!"), \
-					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
+				user.visible_message(
+					SPAN_DANGER("[user] was stunned by \his wet [O]!"),
+					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>"
+				)
 				return 1
 	else if(istype(O, /obj/item/weapon/mop))
 		O.reagents.add_reagent("water", 5)

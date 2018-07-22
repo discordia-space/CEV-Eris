@@ -15,65 +15,54 @@
 	var/construct_op = 0
 
 
-/obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
+/obj/machinery/telecomms/attackby(obj/item/I, mob/user)
 
-	// Using a multitool lets you access the receiver's interface
-	if(istype(P, /obj/item/device/multitool))
-		attack_hand(user)
-
-
-	// REPAIRING: Use Nanopaste to repair 10-20 integrity points.
-	if(istype(P, /obj/item/stack/nanopaste))
-		var/obj/item/stack/nanopaste/T = P
-		if (integrity < 100)               								//Damaged, let's repair!
-			if (T.use(1))
-				integrity = between(0, integrity + rand(10,20), 100)
-				usr << "You apply the Nanopaste to [src], repairing some of the damage."
-		else
-			usr << "This machine is already in perfect condition."
-		return
+	var/list/usable_qualities = list(QUALITY_PULSING)
+	if(construct_op == 0 || construct_op == 1)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(construct_op == 2)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+	if(construct_op == 3)
+		usable_qualities.Add(QUALITY_PRYING)
+	if(construct_op == 1 || construct_op == 2)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
 
 
-	switch(construct_op)
-		if(0)
-			if(istype(P, /obj/item/weapon/screwdriver))
-				user << "You unfasten the bolts."
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				construct_op ++
-		if(1)
-			if(istype(P, /obj/item/weapon/screwdriver))
-				user << "You fasten the bolts."
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-				construct_op --
-			if(istype(P, /obj/item/weapon/wrench))
-				user << "You dislodge the external plating."
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				construct_op ++
-		if(2)
-			if(istype(P, /obj/item/weapon/wrench))
-				user << "You secure the external plating."
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				construct_op --
-			if(istype(P, /obj/item/weapon/wirecutters))
-				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
-				user << "You remove the cables."
-				construct_op ++
-				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
-				A.amount = 5
-				stat |= BROKEN // the machine's been borked!
-		if(3)
-			if(istype(P, /obj/item/stack/cable_coil))
-				var/obj/item/stack/cable_coil/A = P
-				if (A.use(5))
-					user << SPAN_NOTICE("You insert the cables.")
-					construct_op--
-					stat &= ~BROKEN // the machine's not borked anymore!
-				else
-					user << SPAN_WARNING("You need five coils of wire for this.")
-			if(istype(P, /obj/item/weapon/crowbar))
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(construct_op == 0 || construct_op == 1)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if(construct_op == 0)
+						user << "You unfasten the bolts."
+						construct_op ++
+					if(construct_op == 1)
+						user << "You fasten the bolts."
+						construct_op --
+					return
+				return
+
+		if(QUALITY_WIRE_CUTTING)
+			if(construct_op == 2)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					user << "You remove the cables."
+					construct_op ++
+					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
+					A.amount = 5
+					stat |= BROKEN // the machine's been borked!
+					return
+			return
+
+		if(QUALITY_PULSING)
+			attack_hand(user)
+			return
+
+
+		if(QUALITY_PRYING)
+			if(construct_op == 3)
 				user << "You begin prying out the circuit board other components..."
-				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-				if(do_after(user,60, src))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << "You finish prying out the components."
 
 					// Drop all the component stuff
@@ -86,13 +75,13 @@
 						// manually find the components and drop them!
 						var/newpath = text2path(circuitboard)
 						var/obj/item/weapon/circuitboard/C = new newpath
-						for(var/I in C.req_components)
-							for(var/i = 1, i <= C.req_components[I], i++)
-								newpath = text2path(I)
+						for(var/RC in C.req_components)
+							for(var/i = 1, i <= C.req_components[RC], i++)
+								newpath = text2path(RC)
 								var/obj/item/s = new newpath
 								s.loc = user.loc
-								if(istype(P, /obj/item/stack/cable_coil))
-									var/obj/item/stack/cable_coil/A = P
+								if(istype(I, /obj/item/stack/cable_coil))
+									var/obj/item/stack/cable_coil/A = I
 									A.amount = 1
 
 						// Drop a circuit board too
@@ -102,6 +91,45 @@
 					var/obj/machinery/constructable_frame/machine_frame/F = new
 					F.loc = src.loc
 					qdel(src)
+					return
+			return
+
+		if(QUALITY_BOLT_TURNING)
+			if(construct_op == 1 || construct_op == 2)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					if(construct_op == 1)
+						user << "You dislodge the external plating."
+						construct_op ++
+					if(construct_op == 2)
+						user << "You secure the external plating."
+						construct_op --
+					return
+				return
+
+		if(ABORT_CHECK)
+			return
+
+
+	// REPAIRING: Use Nanopaste to repair 10-20 integrity points.
+	if(istype(I, /obj/item/stack/nanopaste))
+		var/obj/item/stack/nanopaste/T = I
+		if (integrity < 100)               								//Damaged, let's repair!
+			if (T.use(1))
+				integrity = between(0, integrity + rand(10,20), 100)
+				usr << "You apply the Nanopaste to [src], repairing some of the damage."
+		else
+			usr << "This machine is already in perfect condition."
+		return
+
+	if(istype(I, /obj/item/stack/cable_coil))
+		if(construct_op == 3)
+			var/obj/item/stack/cable_coil/A = I
+			if (A.use(5))
+				user << SPAN_NOTICE("You insert the cables.")
+				construct_op--
+				stat &= ~BROKEN // the machine's not borked anymore!
+			else
+				user << SPAN_WARNING("You need five coils of wire for this.")
 
 
 /obj/machinery/telecomms/attack_ai(var/mob/user as mob)
@@ -112,13 +140,13 @@
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
 		// istype returns false if the value is null
-		if(!istype(user.get_active_hand(), /obj/item/device/multitool))
+		if(!istype(user.get_active_hand(), /obj/item/weapon/tool/multitool))
 			return
 
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	var/obj/item/device/multitool/P = get_multitool(user)
+	var/obj/item/weapon/tool/multitool/P = get_multitool(user)
 
 	user.set_machine(src)
 	var/dat
@@ -199,15 +227,15 @@
 
 /obj/machinery/telecomms/proc/get_multitool(mob/user as mob)
 
-	var/obj/item/device/multitool/P = null
+	var/obj/item/weapon/tool/multitool/P = null
 	// Let's double check
-	if(!issilicon(user) && istype(user.get_active_hand(), /obj/item/device/multitool))
+	if(!issilicon(user) && istype(user.get_active_hand(), /obj/item/weapon/tool/multitool))
 		P = user.get_active_hand()
 	else if(isAI(user))
 		var/mob/living/silicon/ai/U = user
 		P = U.aiMulti
 	else if(isrobot(user) && in_range(user, src))
-		if(istype(user.get_active_hand(), /obj/item/device/multitool))
+		if(istype(user.get_active_hand(), /obj/item/weapon/tool/multitool))
 			P = user.get_active_hand()
 	return P
 
@@ -292,13 +320,13 @@
 /obj/machinery/telecomms/Topic(href, href_list)
 
 	if(!issilicon(usr))
-		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+		if(!istype(usr.get_active_hand(), /obj/item/weapon/tool/multitool))
 			return
 
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	var/obj/item/device/multitool/P = get_multitool(usr)
+	var/obj/item/weapon/tool/multitool/P = get_multitool(usr)
 
 	if(href_list["input"])
 		switch(href_list["input"])

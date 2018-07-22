@@ -1,7 +1,6 @@
 /obj/machinery/atmospherics/unary
 	dir = SOUTH
 	initialize_directions = SOUTH
-	//layer = TURF_LAYER+0.1
 
 	var/datum/gas_mixture/air_contents
 
@@ -37,9 +36,9 @@
 
 		node = null
 
-		..()
+		. = ..()
 
-	initialize()
+	atmos_init()
 		if(node) return
 
 		var/node_connect = dir

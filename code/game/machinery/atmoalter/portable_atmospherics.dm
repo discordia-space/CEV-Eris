@@ -23,9 +23,9 @@
 /obj/machinery/portable_atmospherics/Destroy()
 	qdel(air_contents)
 	qdel(holding)
-	..()
+	. = ..()
 
-/obj/machinery/portable_atmospherics/initialize()
+/obj/machinery/portable_atmospherics/Initialize()
 	. = ..()
 	spawn()
 		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
@@ -33,7 +33,7 @@
 			connect(port)
 			update_icon()
 
-/obj/machinery/portable_atmospherics/process()
+/obj/machinery/portable_atmospherics/Process()
 	if(!connected_port) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
 		air_contents.react()
@@ -43,7 +43,7 @@
 /obj/machinery/portable_atmospherics/Destroy()
 	qdel(air_contents)
 
-	..()
+	. = ..()
 
 /obj/machinery/portable_atmospherics/proc/StandardAirMix()
 	return list(
@@ -103,11 +103,11 @@
 	if (network)
 		network.update = 1
 
-/obj/machinery/portable_atmospherics/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if ((istype(W, /obj/item/weapon/tank) && !( src.destroyed )))
+/obj/machinery/portable_atmospherics/attackby(var/obj/item/I, var/mob/user)
+	if ((istype(I, /obj/item/weapon/tank) && !( src.destroyed )))
 		if (src.holding)
 			return
-		var/obj/item/weapon/tank/T = W
+		var/obj/item/weapon/tank/T = I
 		user.drop_item()
 		T.loc = src
 		src.holding = T
@@ -115,28 +115,29 @@
 		update_icon()
 		return
 
-	else if (istype(W, /obj/item/weapon/wrench))
-		if(connected_port)
-			disconnect()
-			user << SPAN_NOTICE("You disconnect \the [src] from the port.")
-			update_icon()
-			return
-		else
-			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
-			if(possible_port)
-				if(connect(possible_port))
-					user << SPAN_NOTICE("You connect \the [src] to the port.")
-					update_icon()
-					return
-				else
-					user << SPAN_NOTICE("\The [src] failed to connect to the port.")
-					return
-			else
-				user << SPAN_NOTICE("Nothing happens.")
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+			if(connected_port)
+				disconnect()
+				user << SPAN_NOTICE("You disconnect \the [src] from the port.")
+				update_icon()
 				return
+			else
+				var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
+				if(possible_port)
+					if(connect(possible_port))
+						user << SPAN_NOTICE("You connect \the [src] to the port.")
+						update_icon()
+						return
+					else
+						user << SPAN_NOTICE("\The [src] failed to connect to the port.")
+						return
+				else
+					user << SPAN_NOTICE("Nothing happens.")
+					return
 
-	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		var/obj/item/device/analyzer/A = W
+	else if (istype(I, /obj/item/device/scanner/analyzer))
+		var/obj/item/device/scanner/analyzer/A = I
 		A.analyze_gases(src, user)
 		return
 
@@ -173,18 +174,59 @@
 		power_change()
 		return
 
-	if(istype(I, /obj/item/weapon/screwdriver))
-		if(!cell)
-			user << SPAN_WARNING("There is no power cell installed.")
+	if ((istype(I, /obj/item/weapon/tank) && !( src.destroyed )))
+		if (src.holding)
+			return
+		var/obj/item/weapon/tank/T = I
+		user.drop_item()
+		T.loc = src
+		src.holding = T
+		playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
+		update_icon()
+		return
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING, QUALITY_BOLT_TURNING))
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(!cell)
+				user << SPAN_WARNING("There is no power cell installed.")
+				return
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and removes [cell]."), SPAN_NOTICE("You open the panel on [src] and remove [cell]."))
+				cell.add_fingerprint(user)
+				cell.loc = src.loc
+				cell = null
+				power_change()
+				return
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and removes [cell]."), SPAN_NOTICE("You open the panel on [src] and remove [cell]."))
-		cell.add_fingerprint(user)
-		cell.loc = src.loc
-		cell = null
-		power_change()
-		return
-	..()
+		if(QUALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				if(connected_port)
+					disconnect()
+					user << SPAN_NOTICE("You disconnect \the [src] from the port.")
+					update_icon()
+					return
+				else
+					var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
+					if(possible_port)
+						if(connect(possible_port))
+							user << SPAN_NOTICE("You connect \the [src] to the port.")
+							update_icon()
+							return
+						else
+							user << SPAN_NOTICE("\The [src] failed to connect to the port.")
+							return
+					else
+						user << SPAN_NOTICE("Nothing happens.")
+						return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	return
 
 /obj/machinery/portable_atmospherics/proc/log_open()
 	if(air_contents.gas.len == 0)

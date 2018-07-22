@@ -121,14 +121,6 @@
 //Area flags, possibly more to come
 #define RAD_SHIELDED 1 //shielded from radiation, clearly
 
-// Custom layer definitions, supplementing the default TURF_LAYER, MOB_LAYER, etc.
-#define DOOR_OPEN_LAYER 2.7		//Under all objects if opened. 2.7 due to tables being at 2.6
-#define DOOR_CLOSED_LAYER 3.1	//Above most items if closed
-#define LIGHTING_LAYER 11
-#define HUD_LAYER 20			//Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
-#define OBFUSCATION_LAYER 21	//Where images covering the view for eyes are put
-#define SCREEN_LAYER 22			//Mob HUD/effects layer
-
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.
 #ifndef CUSTOM_ITEM_OBJ
@@ -152,9 +144,6 @@
 #define COIN_PLASMA "Solid plasma coin"
 #define COIN_URANIUM "Uranium coin"
 #define COIN_PLATINUM "Platunum coin"
-
-#define DEFAULT_TABLE_MATERIAL "plastic"
-#define DEFAULT_WALL_MATERIAL "steel"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
@@ -225,7 +214,7 @@
 #define ANNOUNSER_NAME "CEV Eris System Announcer"
 
 
-#define LIST_OF_CONSONANT list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "á", "â", "ã", "ä", "æ", "ç", "é", "ê", "ë", "ì", "í", "ï", "ð", "ñ", "ò", "ô", "õ", "ö", "÷", "ø", "ù")
+#define LIST_OF_CONSONANT list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "Ã¡", "Ã¢", "Ã£", "Ã¤", "Ã¦", "Ã§", "Ã©", "Ãª", "Ã«", "Ã¬", "Ã­", "Ã¯", "Ã°", "Ã±", "Ã²", "Ã´", "Ãµ", "Ã¶", "Ã·", "Ã¸", "Ã¹")
 
 //Multi-z
 #define FALL_GIB_DAMAGE 999
@@ -234,6 +223,7 @@
 #define CORE_GROUP_RITUAL /datum/core_module/group_ritual
 #define CORE_ACTIVATED /datum/core_module/activatable
 
+//Cruciform
 #define CRUCIFORM_COMMON /datum/core_module/cruciform/common
 #define CRUCIFORM_PRIEST /datum/core_module/cruciform/priest
 #define CRUCIFORM_INQUISITOR /datum/core_module/cruciform/inquisitor
@@ -243,3 +233,10 @@
 #define CRUCIFORM_PRIEST_CONVERT /datum/core_module/activatable/cruciform/priest_convert
 #define CRUCIFORM_OBEY_ACTIVATOR /datum/core_module/activatable/cruciform/obey_activator
 
+//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
+#define MOUSE_OPACITY_TRANSPARENT 0
+#define MOUSE_OPACITY_ICON 1
+#define MOUSE_OPACITY_OPAQUE 2
+
+//Filters
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")

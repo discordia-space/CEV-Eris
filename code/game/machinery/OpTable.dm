@@ -20,7 +20,7 @@
 			computer.table = src
 			break
 //	spawn(100) //Wont the MC just call this process() before and at the 10 second mark anyway?
-//		process()
+//		Process()
 
 /obj/machinery/optable/ex_act(severity)
 
@@ -66,7 +66,7 @@
 	icon_state = "optable-idle"
 	return 0
 
-/obj/machinery/optable/process()
+/obj/machinery/optable/Process()
 	check_victim()
 
 /obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user as mob)
@@ -109,13 +109,9 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
-	if (istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
-		if(iscarbon(G.affecting) && check_table(G.affecting))
-			take_victim(G.affecting,usr)
-			qdel(W)
-			return
+/obj/machinery/optable/affect_grab(var/mob/user, var/mob/target)
+	take_victim(target,user)
+	return TRUE
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	check_victim()

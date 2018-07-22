@@ -9,8 +9,13 @@
 	spawn_positions = 1
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_bar)
+
+	stat_modifers = list(
+		STAT_ROB = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/bartender
 	pda = /obj/item/device/pda/bar
 	ear = /obj/item/device/radio/headset/headset_service
@@ -44,7 +49,6 @@
 	join_tag = /datum/job/bartender
 
 
-
 /datum/job/chef
 	title = "Chef"
 	flag = CHEF
@@ -55,8 +59,8 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_kitchen)
 	idtype = /obj/item/weapon/card/id/ltgrey
 
 	uniform = /obj/item/clothing/under/rank/chef
@@ -83,9 +87,13 @@
 	spawn_positions = 1
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_hydroponics, access_bar, access_kitchen)
-	minimal_access = list(access_hydroponics)
 	idtype = /obj/item/weapon/card/id/hydro
+
+	stat_modifers = list(
+		STAT_BIO = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	pda = /obj/item/device/pda/botanist
@@ -93,7 +101,7 @@
 	gloves = /obj/item/clothing/gloves/botanic_leather
 	ear = /obj/item/device/radio/headset/headset_service
 	put_in_backpack = list(\
-		/obj/item/device/analyzer/plant_analyzer
+		/obj/item/device/scanner/analyzer/plant_analyzer
 		)
 
 /obj/landmark/join/start/hydro
@@ -112,8 +120,13 @@
 	spawn_positions = 2
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
-	access = list(access_maint_tunnels)
-	minimal_access = list(access_maint_tunnels, access_theatre)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
+	access = list(access_maint_tunnels, access_theatre)
+
+	stat_modifers = list(
+		STAT_TGH = 10,
+		STAT_ROB = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -157,8 +170,12 @@
 	spawn_positions = 1
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_janitor, access_maint_tunnels)
-	minimal_access = list(access_janitor, access_maint_tunnels)
+
+	stat_modifers = list(
+		STAT_ROB = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/janitor
 	pda = /obj/item/device/pda/janitor

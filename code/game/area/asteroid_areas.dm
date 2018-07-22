@@ -29,6 +29,10 @@
 	name = "Abandoned Outpost"
 	icon_state = "dark"
 
+/area/outpost/abandoned_fortress
+	name = "Abandoned Fortress"
+	icon_state = "yellow"
+
 // Main mining outpost
 /area/outpost/mining_main
 	icon_state = "outpost_mine_main"

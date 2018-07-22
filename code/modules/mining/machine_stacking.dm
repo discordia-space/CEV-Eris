@@ -87,10 +87,10 @@
 		stack_paths[S.name] = stacktype
 		qdel(S)
 
-	stack_storage["glass"] = 0
-	stack_paths["glass"] = /obj/item/stack/material/glass
-	stack_storage[DEFAULT_WALL_MATERIAL] = 0
-	stack_paths[DEFAULT_WALL_MATERIAL] = /obj/item/stack/material/steel
+	stack_storage[MATERIAL_GLASS] = 0
+	stack_paths[MATERIAL_GLASS] = /obj/item/stack/material/glass
+	stack_storage[MATERIAL_STEEL] = 0
+	stack_paths[MATERIAL_STEEL] = /obj/item/stack/material/steel
 	stack_storage["plasteel"] = 0
 	stack_paths["plasteel"] = /obj/item/stack/material/plasteel
 
@@ -104,7 +104,7 @@
 		if(marker)
 			output_dir = get_dir(src, marker)
 
-/obj/machinery/mineral/stacking_machine/process()
+/obj/machinery/mineral/stacking_machine/Process()
 	if(src.output_dir && src.input_dir)
 		var/turf/T = get_step(src, input_dir)
 		for(var/obj/item/O in T.contents)

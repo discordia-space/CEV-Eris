@@ -23,17 +23,27 @@ var/bomb_set
 	var/previous_level = ""
 	var/datum/wires/nuclearbomb/wires = null
 
+	var/eris_ship_bomb = FALSE           // if TRUE (1 in map editor), then Heads will get parts of code for this bomb. Obviously used in map editor. Single mapped bomb supported.
+
 /obj/machinery/nuclearbomb/New()
 	..()
-	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
+	if(eris_ship_bomb)
+		r_code = "[rand(100000, 999999)]" // each time new Head spawns, s/he gets 2 numbers of code.
+	else                                  // i decided not to touch normal bombs code length.
+		r_code = "[rand(10000, 99999.0)]" //Creates a random code upon object spawn.
 	wires = new/datum/wires/nuclearbomb(src)
+
+/obj/machinery/nuclearbomb/Initialize()
+	. = ..()
+	if(eris_ship_bomb) // this is in initialize because there is no ticker at world init.
+		ticker.ship_nuke_code = r_code // even if this bomb stops to exist, heads of staff still gets this password, so it won't affect meta or whatever.
 
 /obj/machinery/nuclearbomb/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/machinery/nuclearbomb/process()
+/obj/machinery/nuclearbomb/Process()
 	if (src.timing)
 		src.timeleft = max(timeleft - 2, 0) // 2 seconds per process()
 		if (timeleft <= 0)
@@ -42,109 +52,92 @@ var/bomb_set
 		nanomanager.update_uis(src)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob, params)
-	if (istype(O, /obj/item/weapon/screwdriver))
-		src.add_fingerprint(user)
-		if (src.auth)
-			if (panel_open == 0)
-				panel_open = 1
-				overlays += image(icon, "npanel_open")
-				user << "You unscrew the control panel of [src]."
-				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-			else
-				panel_open = 0
-				overlays -= image(icon, "npanel_open")
-				user << "You screw the control panel of [src] back on."
-				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		else
-			if (panel_open == 0)
-				user << "\The [src] emits a buzzing noise, the panel staying locked in."
-			if (panel_open == 1)
-				panel_open = 0
-				overlays -= image(icon, "npanel_open")
-				user << "You screw the control panel of \the [src] back on."
-				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-			flick("nuclearbombc", src)
-		return
+/obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
+	src.add_fingerprint(user)
 
-	if (panel_open && (istype(O, /obj/item/device/multitool) || istype(O, /obj/item/weapon/wirecutters)))
-		return attack_hand(user)
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
+	if(anchored && (removal_stage == 0 || removal_stage == 2))
+		usable_qualities.Add(QUALITY_WELDING)
+	if(anchored && (removal_stage == 3))
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if(anchored && (removal_stage == 1 || removal_stage == 4))
+		usable_qualities.Add(QUALITY_PRYING)
 
-	if (src.extended)
-		if (istype(O, /obj/item/weapon/disk/nuclear))
-			usr.drop_item()
-			O.loc = src
-			src.auth = O
-			src.add_fingerprint(user)
-			return attack_hand(user)
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
 
-	if (src.anchored)
-		switch(removal_stage)
-			if(0)
-				if(istype(O,/obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = O
-					if(!WT.isOn()) return
-					if (WT.get_fuel() < 5) // uses up 5 fuel.
-						user << SPAN_WARNING("You need more fuel to complete this task.")
-						return
+		if(QUALITY_SCREW_DRIVING)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				if (src.auth)
+					if (panel_open == 0)
+						panel_open = 1
+						overlays += image(icon, "npanel_open")
+						user << SPAN_NOTICE("You unscrew the control panel of [src].")
+					else
+						panel_open = 0
+						overlays -= image(icon, "npanel_open")
+						user << SPAN_NOTICE("You screw the control panel of [src] back on.")
+				else
+					if (panel_open == 0)
+						user << SPAN_NOTICE("\The [src] emits a buzzing noise, the panel staying locked in.")
+					if (panel_open == 1)
+						panel_open = 0
+						overlays -= image(icon, "npanel_open")
+						user << SPAN_NOTICE("You screw the control panel of \the [src] back on.")
+						playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+					flick("nuclearbombc", src)
+				return
+			return
 
-					user.visible_message("[user] starts cutting loose the anchoring bolt covers on [src].", "You start cutting loose the anchoring bolt covers with [O]...")
-
-					if(do_after(user,40, src))
-						if(!src || !user || !WT.remove_fuel(5, user)) return
+		if(QUALITY_WELDING)
+			if(anchored && (removal_stage == 0 || removal_stage == 2))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if(removal_stage == 0)
 						user.visible_message("\The [user] cuts through the bolt covers on \the [src].", "You cut through the bolt cover.")
 						removal_stage = 1
-				return
-
-			if(1)
-				if(istype(O,/obj/item/weapon/crowbar))
-					user.visible_message("[user] starts forcing open the bolt covers on [src].", "You start forcing open the anchoring bolt covers with [O]...")
-
-					if(do_after(user, 15, src))
-						if(!src || !user) return
-						user.visible_message("\The [user] forces open the bolt covers on \the [src].", "You force open the bolt covers.")
-						removal_stage = 2
-				return
-
-			if(2)
-				if(istype(O,/obj/item/weapon/weldingtool))
-
-					var/obj/item/weapon/weldingtool/WT = O
-					if(!WT.isOn()) return
-					if (WT.get_fuel() < 5) // uses up 5 fuel.
-						user << SPAN_WARNING("You need more fuel to complete this task.")
 						return
-
-					user.visible_message("[user] starts cutting apart the anchoring system sealant on [src].", "You start cutting apart the anchoring system's sealant with [O]...")
-
-					if(do_after(user, 40, src))
-						if(!src || !user || !WT.remove_fuel(5, user)) return
+					if(removal_stage == 2)
 						user.visible_message("\The [user] cuts apart the anchoring system sealant on \the [src].", "You cut apart the anchoring system's sealant.")
 						removal_stage = 3
-				return
+						return
+			return
 
-			if(3)
-				if(istype(O,/obj/item/weapon/wrench))
+		if(QUALITY_BOLT_TURNING)
+			if(anchored && (removal_stage == 3))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					user.visible_message("[user] unwrenches the anchoring bolts on [src].", "You unwrench the anchoring bolts.")
+					removal_stage = 4
+					return
+			return
 
-					user.visible_message("[user] begins unwrenching the anchoring bolts on [src].", "You begin unwrenching the anchoring bolts...")
-
-					if(do_after(user, 50, src))
-						if(!src || !user) return
-						user.visible_message("[user] unwrenches the anchoring bolts on [src].", "You unwrench the anchoring bolts.")
-						removal_stage = 4
-				return
-
-			if(4)
-				if(istype(O,/obj/item/weapon/crowbar))
-
-					user.visible_message("[user] begins lifting [src] off of the anchors.", "You begin lifting the device off the anchors...")
-
-					if(do_after(user, 80, src))
-						if(!src || !user) return
+		if(QUALITY_PRYING)
+			if(anchored && (removal_stage == 1 || removal_stage == 4))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+					if(removal_stage == 1)
+						user.visible_message("\The [user] forces open the bolt covers on \the [src].", "You force open the bolt covers.")
+						removal_stage = 2
+						return
+					if(removal_stage == 4)
 						user.visible_message("\The [user] crowbars \the [src] off of the anchors. It can now be moved.", "You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
 						anchored = 0
 						removal_stage = 5
-				return
+						return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if (panel_open && (istype(I, /obj/item/weapon/tool)))
+		return attack_hand(user)
+
+	if (src.extended)
+		if (istype(I, /obj/item/weapon/disk/nuclear))
+			usr.drop_item()
+			I.loc = src
+			src.auth = I
+			src.add_fingerprint(user)
+			return attack_hand(user)
+
 	..()
 
 /obj/machinery/nuclearbomb/attack_ghost(mob/user as mob)
@@ -252,6 +245,9 @@ var/bomb_set
 					yes_code = 0
 					code = null
 				else
+					if(code == "ERROR") // for codes with 6 digits or more, it will look awkward when user enters 8 and sees ERROR8, -
+						nanomanager.update_uis(src)
+						return // - so we force user to press R before entering new code as it was with 5-digit codes.
 					lastentered = text("[]", href_list["type"])
 					if (text2num(lastentered) == null)
 						var/turf/LOC = get_turf(usr)
@@ -259,7 +255,7 @@ var/bomb_set
 						log_admin("EXPLOIT: [key_name(usr)] tried to exploit a nuclear bomb by entering non-numerical codes: [lastentered]!")
 					else
 						code += lastentered
-						if (length(code) > 5)
+						if (length(code) > length(r_code))
 							code = "ERROR"
 		if (yes_code)
 			if (href_list["time"])
@@ -345,7 +341,7 @@ var/bomb_set
 
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)
-	if(bomb_location && (bomb_location.z in config.station_levels))
+	if(bomb_location && isStationLevel(bomb_location.z))
 		if( (bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)) )
 			off_station = 1
 	else
@@ -390,8 +386,8 @@ if(!N.lighthack)
 /obj/item/weapon/disk/nuclear
 	name = "nuclear authentication disk"
 	desc = "Better keep this safe."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "nucleardisk"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "red"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_TINY
 

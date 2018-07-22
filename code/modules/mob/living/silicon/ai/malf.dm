@@ -34,10 +34,8 @@
 			A.hacker = null
 			A.update_icon()
 	hacked_apcs = null
-	// Stop the delta alert, and, if applicable, self-destruct timer.
+	// Stop alert, and, if applicable, self-destruct timer.
 	bombing_station = 0
-	if(security_level == SEC_LEVEL_DELTA)
-		set_security_level(SEC_LEVEL_RED)
 	// Reset our verbs
 	src.verbs = null
 	add_ai_verbs()
@@ -59,9 +57,9 @@
 		return
 	recalc_cpu()
 	if(APU_power || aiRestorePowerRoutine != 0)
-		research.process(1)
+		research.Process(1)
 	else
-		research.process(0)
+		research.Process(0)
 
 // Recalculates CPU time gain and storage capacities.
 /mob/living/silicon/ai/proc/recalc_cpu()
@@ -71,7 +69,7 @@
 
 	// Off-Station APCs should not count towards CPU generation.
 	for(var/obj/machinery/power/apc/A in hacked_apcs)
-		if(A.z in config.station_levels)
+		if(isOnStationLevel(A))
 			cpu_gain += 0.004
 			cpu_storage += 10
 
@@ -114,7 +112,7 @@
 
 // Returns percentage of AI's remaining hardware integrity (maxhealth - (bruteloss + fireloss))
 /mob/living/silicon/ai/proc/hardware_integrity()
-	return (health-config.health_threshold_dead)/2
+	return (health-HEALTH_THRESHOLD_DEAD)/2
 
 // Shows capacitor charge and hardware integrity information to the AI in Status tab.
 /mob/living/silicon/ai/show_system_integrity()

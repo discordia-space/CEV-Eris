@@ -1,6 +1,7 @@
 /obj
 	//Used to store information about the contents of the object.
 	var/list/matter
+	var/list/matter_reagents
 	var/w_class // Size of the object.
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
@@ -15,8 +16,9 @@
 /obj/get_fall_damage()
 	return w_class * 2
 
-/obj/examine(mob/user,distance=-1)
-	if(..(user,2))
+/obj/examine(mob/user, distance=-1, infix, suffix)
+	..(user, distance, infix, suffix)
+	if(get_dist(user, src) <= 2)
 		if (corporation)
 			if (corporation in global.global_corporations)
 				var/datum/corporation/C = global_corporations[corporation]
@@ -29,7 +31,7 @@
 
 
 /obj/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
@@ -78,8 +80,8 @@
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 
-/obj/proc/process()
-	processing_objects.Remove(src)
+/obj/Process()
+	STOP_PROCESSING(SSobj, src)
 	return 0
 
 /obj/assume_air(datum/gas_mixture/giver)

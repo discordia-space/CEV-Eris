@@ -1,40 +1,3 @@
-
-/obj/item/weapon/nullrod
-	name = "null rod"
-	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
-	icon_state = "nullrod"
-	item_state = "nullrod"
-	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFULL
-	throw_speed = 1
-	throw_range = 4
-	throwforce = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_SMALL
-
-/obj/item/weapon/nullrod/attack(mob/M as mob, mob/living/user as mob) //Paste from old-code to decult with a null rod.
-
-	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to attack [M.name] ([M.ckey])</font>")
-
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.do_attack_animation(M)
-
-	if(!user.IsAdvancedToolUser())
-		return
-
-	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='danger'>The rod slips out of your hand and hits your head.</span>"
-		user.take_organ_damage(10)
-		user.Paralyse(20)
-		return
-
-
-/obj/item/weapon/nullrod/afterattack(atom/A, mob/user as mob, proximity)
-	if(!proximity)
-		return
-
 /obj/item/weapon/energy_net
 	name = "energy net"
 	desc = "It's a net made of green energy."
@@ -80,6 +43,7 @@
 	opacity = 0
 	mouse_opacity = 1
 	anchored = 1
+	layer = ABOVE_ALL_MOB_LAYER
 
 	var/health = 25
 	var/mob/living/affecting = null //Who it is currently affecting, if anyone.
@@ -91,7 +55,7 @@
 
 /obj/effect/energy_net/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/energy_net/Destroy()
 
@@ -101,8 +65,8 @@
 		M.captured = 0
 		M << "You are free of the net!"
 
-	processing_objects -= src
-	..()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /obj/effect/energy_net/proc/healthcheck()
 
@@ -112,7 +76,7 @@
 		qdel(src)
 	return
 
-/obj/effect/energy_net/process()
+/obj/effect/energy_net/Process()
 
 	if(isnull(affecting) || affecting.loc != loc)
 		qdel(src)

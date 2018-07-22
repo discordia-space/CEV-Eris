@@ -19,7 +19,7 @@
 
 	dat += "<br>"
 
-	if(faction_type)
+	if(faction_id)
 		dat += "<b>Faction: </b>"
 		if(faction)
 			dat += "<b>\"[faction.name]\" ([faction.antag])</b>"
@@ -119,10 +119,10 @@
 	else if(href_list["edit_faction"] && faction)
 		faction.faction_panel()
 
-	else if(href_list["add_faction"] && faction_type && !faction)
+	else if(href_list["add_faction"] && faction_id && !faction)
 		var/list/L = list()
 		for(var/datum/faction/F in current_factions)
-			L["[F.name] of [F.antag] ([F.id])"] = F
+			L["[F.name], faction of [F.antag] ([F.id])"] = F
 
 		L["CANCEL"] = null
 
@@ -133,8 +133,9 @@
 			F.add_member(src)
 
 
-	else if(href_list["new_faction"] && faction_type && !faction)
-		var/datum/faction/F = new faction_type
+	else if(href_list["new_faction"] && faction_id && !faction)
+		var/t = faction_types[faction_id]
+		var/datum/faction/F = new t
 		F.customize()
 		F.add_leader(src)
 

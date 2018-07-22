@@ -6,7 +6,7 @@
 	icon_state = "conveyor0"
 	name = "conveyor belt"
 	desc = "A conveyor belt."
-	layer = 2			// so they appear under stuff
+	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = 1
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
@@ -60,7 +60,7 @@
 
 	// machine process
 	// move items to the target location
-/obj/machinery/conveyor/process()
+/obj/machinery/conveyor/Process()
 	if(stat & (BROKEN | NOPOWER))
 		return
 	if(!operating)
@@ -80,13 +80,14 @@
 
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/crowbar))
-		if(!(stat & BROKEN))
-			var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(src.loc)
-			C.id = id
-			transfer_fingerprints_to(C)
-		user << SPAN_NOTICE("You remove the conveyor belt.")
-		qdel(src)
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			if(!(stat & BROKEN))
+				var/obj/item/conveyor_construct/C = new/obj/item/conveyor_construct(src.loc)
+				C.id = id
+				transfer_fingerprints_to(C)
+			user << SPAN_NOTICE("You remove the conveyor belt.")
+			qdel(src)
 		return
 	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
 	if(I.loc != user)	return // This should stop mounted modules ending up outside the module.
@@ -199,7 +200,7 @@
 // timed process
 // if the switch changed, update the linked conveyors
 
-/obj/machinery/conveyor_switch/process()
+/obj/machinery/conveyor_switch/Process()
 	if(!operated)
 		return
 	operated = 0
@@ -214,7 +215,7 @@
 		user << SPAN_WARNING("Access denied.")
 		return
 
-	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
+	playsound(user,'sound/machines/Conveyor_switch.ogg',100,1)
 	if(position == 0)
 		if(last_pos < 0)
 			position = 1
@@ -238,12 +239,13 @@
 
 
 /obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/weapon/crowbar))
-		var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
-		C.id = id
-		transfer_fingerprints_to(C)
-		user << SPAN_NOTICE("You deattach the conveyor switch.")
-		qdel(src)
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
+			C.id = id
+			transfer_fingerprints_to(C)
+			user << SPAN_NOTICE("You deattach the conveyor switch.")
+			qdel(src)
 
 /obj/machinery/conveyor_switch/oneway
 	var/convdir = 1 //Set to 1 or -1 depending on which way you want the convayor to go. (In other words keep at 1 and set the proper dir on the belts.)
@@ -251,7 +253,7 @@
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/oneway/attack_hand(mob/user)
-	playsound(user,'sound/machines/Conveyor_switch.wav',100,1)
+	playsound(user,'sound/machines/Conveyor_switch.ogg',100,1)
 	if(position == 0)
 		position = convdir
 	else

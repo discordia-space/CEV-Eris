@@ -47,7 +47,7 @@
 	return
 
 
-/obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/dispenser/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
 		if(oxygentanks < 10)
 			user.drop_item()
@@ -74,14 +74,15 @@
 			user << SPAN_NOTICE("[src] is full.")
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/wrench))
-		if(anchored)
-			user << SPAN_NOTICE("You lean down and unwrench [src].")
-			anchored = 0
-		else
-			user << SPAN_NOTICE("You wrench [src] into place.")
-			anchored = 1
-		return
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+			if(anchored)
+				user << SPAN_NOTICE("You lean down and unwrench [src].")
+				anchored = 0
+			else
+				user << SPAN_NOTICE("You wrench [src] into place.")
+				anchored = 1
+			return
 
 /obj/structure/dispenser/Topic(href, href_list)
 	if(usr.stat || usr.restrained())

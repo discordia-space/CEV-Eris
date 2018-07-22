@@ -16,8 +16,8 @@
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "telecomp-wires")
 	return
 
-/obj/machinery/computer/teleporter/initialize()
-	..()
+/obj/machinery/computer/teleporter/Initialize()
+	. = ..()
 	var/obj/machinery/teleport/station/station
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
 		station = locate(/obj/machinery/teleport/station, get_step(src, dir))
@@ -74,7 +74,7 @@
 				//
 			else
 				for(var/mob/O in hearers(src, null))
-					O.show_message(SPAN_NOTICE("Locked In"), 2)
+					O.show_message(SPAN_NOTICE("Portal locked in"), 2)
 				src.locked = L
 				one_time_use = 1
 
@@ -100,7 +100,7 @@
 		var/turf/T = get_turf(R)
 		if (!T)
 			continue
-		if(!(T.z in config.player_levels))
+		if(!isPlayerLevel(T.z))
 			continue
 		var/tmpname = T.loc.name
 		if(areaindex[tmpname])
@@ -135,7 +135,7 @@
 
 	src.locked = L[desc]
 	for(var/mob/O in hearers(src, null))
-		O.show_message(SPAN_NOTICE("Locked In"), 2)
+		O.show_message(SPAN_NOTICE("Portal locked in."), 2)
 	src.add_fingerprint(usr)
 	return
 

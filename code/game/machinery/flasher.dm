@@ -27,8 +27,8 @@
 	base_state = "pflash"
 	density = 1
 
-/obj/machinery/flasher/initialize()
-	..()
+/obj/machinery/flasher/Initialize()
+	. = ..()
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
 
@@ -48,7 +48,7 @@
 
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wirecutters))
+	if (istype(W, /obj/item/weapon/tool/wirecutters))
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)
@@ -85,7 +85,7 @@
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod
-			var/obj/item/organ/eyes/E = H.internal_organs_by_name["eyes"]
+			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 			if(!E)
 				return
 			if(E.is_bruised() && prob(E.damage + 50))
@@ -116,7 +116,7 @@
 			src.flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
+	if (istype(W, /obj/item/weapon/tool/wrench))
 		add_fingerprint(user)
 		src.anchored = !src.anchored
 
@@ -142,7 +142,7 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/flasher/M in machines)
+	for(var/obj/machinery/flasher/M in SSmachines.machinery)
 		if(M.id == src.id)
 			spawn()
 				M.flash()

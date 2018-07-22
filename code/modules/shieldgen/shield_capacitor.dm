@@ -37,33 +37,34 @@
 	s.set_up(5, 1, src)
 	s.start()
 
-/obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
+/obj/machinery/shield_capacitor/attackby(obj/item/I, mob/user)
 
-	if(istype(W, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = W
+	if(istype(I, /obj/item/weapon/card/id))
+		var/obj/item/weapon/card/id/C = I
 		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()
 		else
 			user << "\red Access denied."
-	else if(istype(W, /obj/item/weapon/wrench))
-		src.anchored = !src.anchored
-		src.visible_message("\blue \icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].")
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+			src.anchored = !src.anchored
+			src.visible_message("\blue \icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].")
 
-		if(anchored)
-			spawn(0)
-				for(var/obj/machinery/shield_gen/gen in range(1, src))
-					if(get_dir(src, gen) == src.dir && !gen.owned_capacitor && gen.anchored)
-						owned_gen = gen
-						owned_gen.owned_capacitor = src
-						owned_gen.updateDialog()
-						owned_gen.update_icon()
-		else
-			if(owned_gen && owned_gen.owned_capacitor == src)
-				owned_gen.update_icon()
-				owned_gen.owned_capacitor = null
-			owned_gen = null
+			if(anchored)
+				spawn(0)
+					for(var/obj/machinery/shield_gen/gen in range(1, src))
+						if(get_dir(src, gen) == src.dir && !gen.owned_capacitor && gen.anchored)
+							owned_gen = gen
+							owned_gen.owned_capacitor = src
+							owned_gen.updateDialog()
+							owned_gen.update_icon()
+			else
+				if(owned_gen && owned_gen.owned_capacitor == src)
+					owned_gen.update_icon()
+					owned_gen.owned_capacitor = null
+				owned_gen = null
 	else
 		..()
 
@@ -101,7 +102,7 @@
 	user << browse(t, "window=shield_capacitor;size=500x400")
 	user.set_machine(src)
 
-/obj/machinery/shield_capacitor/process()
+/obj/machinery/shield_capacitor/Process()
 	if (!anchored)
 		active = 0
 

@@ -1,14 +1,15 @@
 /mob/living/simple_animal/hostile/roach
 	name = "Kampfer Roach"
-	desc = "A monstrous cockroach the size of a grown dog. These huge mutants can be everywhere where humans are, on ships, planets and stations."
+	desc = "A monstrous, dog-sized cockroach. These huge mutants can be everywhere where humans are, on ships, planets and stations."
 	icon_state = "roach"
-	speak_chance = 0
+	emote_see = list("chirps loudly", "cleans its whiskers with forelegs")
+	speak_chance = 5
 	turns_per_move = 3
 	response_help = "pets the"
 	response_disarm = "pushes aside"
 	response_harm = "stamps on"
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
-	meat_amount = 2
+	meat_amount = 3
 	speed = 4
 	maxHealth = 10
 	health = 10
@@ -20,16 +21,18 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 4
 	attacktext = "bitten"
-	attack_sound = 'sound/voice/insect_battle_bite.wav'
+	attack_sound = 'sound/voice/insect_battle_bite.ogg'
 
 	faction = "roach"
+
+	var/blattedin_revives_left = 1 // how many times blattedin can get us back to life (as num for adminbus fun).
 
 
 /mob/living/simple_animal/hostile/roach/FindTarget()
 	. = ..()
 	if(.)
-		custom_emote(1,"charges at [.]!")
-		playsound(src, 'sound/voice/insect_battle_screeching.wav', 30, 1, -3)
+		visible_emote("charges at [.]!")
+		playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 
 /mob/living/simple_animal/hostile/roach/AttackingTarget()
 	. =..()
@@ -41,7 +44,7 @@
 
 /mob/living/simple_animal/hostile/roach/tank
 	name = "Panzer Roach"
-	desc = "A monstrous cockroach the size of a huge dog. This one looks more robust than others."
+	desc = "A monstrous, dog-sized cockroach. This one looks more robust than others."
 	icon_state = "panzer"
 	meat_amount = 4
 	turns_per_move = 2
@@ -53,7 +56,7 @@
 
 /mob/living/simple_animal/hostile/roach/hunter
 	name = "Jager Roach"
-	desc = "A monstrous cockroach the size of a grown dog. This one have a bigger claws."
+	desc = "A monstrous, dog-sized cockroach. This one have a bigger claws."
 	icon_state = "jager"
 	meat_amount = 3
 	turns_per_move = 2
@@ -77,7 +80,7 @@
 
 /mob/living/simple_animal/hostile/roach/support
 	name = "Seuche Roach"
-	desc = "A monstrous cockroach the size of a grown dog. This one smells like hell and secrete strange vapors."
+	desc = "A monstrous, dog-sized cockroach. This one smells like hell and secretes strange vapors."
 	icon_state = "seuche"
 	meat_amount = 3
 	turns_per_move = 4
@@ -92,8 +95,8 @@
 	create_reagents(100)
 
 /mob/living/simple_animal/hostile/roach/support/proc/gas_attack()
-	if(!(reagents.has_reagent("blattedin", 20) && health <= 0))
-		return
+	if(!reagents.has_reagent("blattedin", 20) || stat != CONSCIOUS)
+		return FALSE
 	var/location = get_turf(src)
 	var/datum/effect/effect/system/smoke_spread/chem/S = new
 	S.attach(location)
@@ -102,16 +105,17 @@
 	spawn(0)
 		S.start()
 	reagents.clear_reagents()
-	return
+	return TRUE
 
 /mob/living/simple_animal/hostile/roach/support/Life()
 	..()
+	if(stat != CONSCIOUS)
+		return
 	reagents.add_reagent("blattedin", 1)
-	if(reagents.has_reagent("blattedin", 20)&&prob(7))
+	if(prob(7))
 		gas_attack()
 
 /mob/living/simple_animal/hostile/roach/support/FindTarget()
 	. = ..()
-	if(.)
-		custom_emote(1,"charges at [.] in clouds of poison!")
-		gas_attack()
+	if(. && gas_attack())
+		visible_emote("charges at [.] in clouds of poison!")

@@ -7,6 +7,7 @@
 	flags = NOBLUDGEON
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 1
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	var/power = 0
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
@@ -24,8 +25,8 @@
 		user << "<span class='notice'>The [src] is currently not linked to a cargo console.</span>"
 
 /obj/item/device/export_scanner/afterattack(obj/O, mob/user, proximity)
-	if(!cell || !cell.checked_use(10))
-		user << "<span class='warning'>[src] battery is dead or missing</span>"
+	if(!cell || !cell.checked_use(3))
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if(!istype(O) || !proximity)
 		return

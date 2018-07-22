@@ -7,7 +7,6 @@
 	unacidable = 1//Can't destroy energy portals.
 	var/failchance = 5
 	var/obj/item/target = null
-	var/creator = null
 	anchored = TRUE
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
@@ -28,7 +27,7 @@
 		return
 	return
 
-/obj/effect/portal/New(loc, lifetime)
+/obj/effect/portal/New(loc, lifetime = 300)
 	..(loc)
 	spawn(lifetime)
 		qdel(src)
@@ -57,5 +56,5 @@
 	failchance = 0
 
 /obj/effect/portal/wormhole/New(loc, exit, lifetime)
-	..(lifetime)
+	..(loc, lifetime)
 	target = exit

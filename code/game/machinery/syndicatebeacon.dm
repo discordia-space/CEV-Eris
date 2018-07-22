@@ -14,6 +14,7 @@
 
 	anchored = 1
 	density = 1
+	layer = BELOW_MOB_LAYER //so people can't hide it and it's REALLY OBVIOUS
 
 	var/temptext = ""
 	var/selfdestructing = 0
@@ -84,7 +85,7 @@
 
 	anchored = 0
 	density = 1
-	layer = MOB_LAYER - 0.1 //so people can't hide it and it's REALLY OBVIOUS
+	layer = LOW_OBJ_LAYER
 	stat = 0
 
 	var/active = 0
@@ -128,7 +129,7 @@
 
 
 /obj/machinery/power/singularity_beacon/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
+	if(istype(W,/obj/item/weapon/tool/screwdriver))
 		if(active)
 			user << SPAN_DANGER("You need to deactivate the beacon first!")
 			return
@@ -152,7 +153,7 @@
 /obj/machinery/power/singularity_beacon/Destroy()
 	if(active)
 		Deactivate()
-	..()
+	. = ..()
 
 //stealth direct power usage
 /obj/machinery/power/singularity_beacon/process()

@@ -40,7 +40,7 @@
 	qdel(src.stored_continue)
 	qdel(src.stored_end)
 	qdel(closer)
-	..()
+	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if(!canremove)
@@ -69,14 +69,6 @@
 
 		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
 			return
-
-/*		switch(over_object.name)
-			if("r_hand")
-				usr.u_equip(src)
-				usr.put_in_r_hand(src)
-			if("l_hand")
-				usr.u_equip(src)
-				usr.put_in_l_hand(src)*/
 
 		if (istype(over_object, /obj/screen/inventory/hand))
 			var/obj/screen/inventory/hand/H = over_object
@@ -181,7 +173,8 @@
 	src.boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
 	for(var/obj/O in src.contents)
 		O.screen_loc = "[cx],[cy]"
-		O.layer = 20
+		O.layer = ABOVE_HUD_LAYER
+		O.plane = ABOVE_HUD_PLANE
 		cx++
 		if (cx > mx)
 			cx = tx
@@ -199,7 +192,8 @@
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
-			ND.sample_object.layer = 20
+			ND.sample_object.layer = ABOVE_HUD_LAYER
+			ND.sample_object.plane = ABOVE_HUD_PLANE
 			cx++
 			if (cx > (Xcord+cols))
 				cx = Xcord
@@ -208,7 +202,8 @@
 		for(var/obj/O in contents)
 			O.screen_loc = "[cx]:16,[cy]:16"
 			O.maptext = ""
-			O.layer = 20
+			O.layer = ABOVE_HUD_LAYER
+			O.plane = ABOVE_HUD_PLANE
 			cx++
 			if (cx > (Xcord+cols))
 				cx = Xcord
@@ -256,7 +251,8 @@
 
 		O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
 		O.maptext = ""
-		O.layer = 20
+		O.layer = ABOVE_HUD_LAYER
+		O.plane = ABOVE_HUD_PLANE
 
 	src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 	return
@@ -415,13 +411,9 @@
 			if (M.client)
 				M.client.screen -= W
 
+	W.layer = initial(W.layer)
+	W.plane = initial(W.plane)
 	if(new_location)
-		if(ismob(loc))
-			W.dropped(usr)
-		if(ismob(new_location))
-			W.layer = 20
-		else
-			W.layer = initial(W.layer)
 		W.loc = new_location
 	else
 		W.loc = get_turf(src)
@@ -513,6 +505,30 @@
 		if(0)
 			usr << "[src] now picks up one item at a time."
 
+/obj/item/weapon/storage/proc/collectItems(var/turf/target, var/mob/user)
+	ASSERT(istype(target))
+	. = FALSE
+	var/limiter = 15
+	for(var/obj/item/I in target)
+		if(--limiter < 0)
+			break
+		if(can_be_inserted(I, TRUE))
+			. |= TRUE
+			handle_item_insertion(I, TRUE)
+
+	if(user)
+		if(.)
+			user << SPAN_NOTICE("You put some things in [src].")
+		else
+			user << SPAN_NOTICE("You fail to pick anything up with \the [src].")
+
+
+/obj/item/weapon/storage/resolve_attackby(atom/A, mob/user)
+	if(collection_mode && isturf(A) || istype(A, /obj/item))
+		if(collectItems(get_turf(A), user))
+			return
+	return ..()
+
 
 /obj/item/weapon/storage/verb/quick_empty()
 	set name = "Empty Contents"
@@ -549,41 +565,51 @@
 	src.boxes.master = src
 	src.boxes.icon_state = "block"
 	src.boxes.screen_loc = "7,7 to 10,8"
-	src.boxes.layer = 19
+	src.boxes.layer = HUD_LAYER
+	src.boxes.plane = HUD_PLANE
 
 	src.storage_start = new /obj/screen/storage(  )
 	src.storage_start.name = "storage"
 	src.storage_start.master = src
 	src.storage_start.icon_state = "storage_start"
 	src.storage_start.screen_loc = "7,7 to 10,8"
-	src.storage_start.layer = 19
+	src.storage_start.layer = HUD_LAYER
+	src.storage_start.plane = HUD_PLANE
+
 	src.storage_continue = new /obj/screen/storage(  )
 	src.storage_continue.name = "storage"
 	src.storage_continue.master = src
 	src.storage_continue.icon_state = "storage_continue"
 	src.storage_continue.screen_loc = "7,7 to 10,8"
-	src.storage_continue.layer = 19
+	src.storage_continue.layer = HUD_LAYER
+	src.storage_continue.plane = HUD_PLANE
+
 	src.storage_end = new /obj/screen/storage(  )
 	src.storage_end.name = "storage"
 	src.storage_end.master = src
 	src.storage_end.icon_state = "storage_end"
 	src.storage_end.screen_loc = "7,7 to 10,8"
-	src.storage_end.layer = 19
+	src.storage_end.layer = HUD_LAYER
+	src.storage_end.plane = HUD_PLANE
 
 	src.stored_start = new /obj //we just need these to hold the icon
 	src.stored_start.icon_state = "stored_start"
-	src.stored_start.layer = 19
+	src.stored_start.layer = HUD_LAYER
+	src.stored_start.plane = HUD_PLANE
 	src.stored_continue = new /obj
 	src.stored_continue.icon_state = "stored_continue"
-	src.stored_continue.layer = 19
+	src.stored_continue.layer = HUD_LAYER
+	src.stored_continue.plane = HUD_PLANE
 	src.stored_end = new /obj
 	src.stored_end.icon_state = "stored_end"
-	src.stored_end.layer = 19
+	src.stored_end.layer = HUD_LAYER
+	src.stored_end.plane = HUD_PLANE
 
 	src.closer = new /obj/screen/close(  )
 	src.closer.master = src
 	src.closer.icon_state = "x"
-	src.closer.layer = 20
+	src.closer.layer = HUD_LAYER
+	src.closer.plane = HUD_PLANE
 	orient2hud()
 
 /obj/item/weapon/storage/emp_act(severity)

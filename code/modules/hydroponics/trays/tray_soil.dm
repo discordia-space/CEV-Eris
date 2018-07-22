@@ -6,8 +6,10 @@
 	mechanical = 0
 	tray_light = 0
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O,/obj/item/weapon/tank))
+/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/I, var/mob/user)
+	//You cant move soil with wrench
+	if((QUALITY_BOLT_TURNING in I.tool_qualities) && ((istype(I, /obj/item/weapon/tank) && !( src.destroyed ))))
+		..()
 		return
 	else
 		..()
@@ -51,7 +53,7 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/invisible/die()
 	qdel(src)
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/process()
+/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Process()
 	if(!seed)
 		qdel(src)
 		return
@@ -64,4 +66,4 @@
 	for(var/obj/effect/plant/plant in get_turf(src))
 		if(plant.invisibility == INVISIBILITY_MAXIMUM)
 			plant.invisibility = initial(plant.invisibility)
-	..()
+	. = ..()

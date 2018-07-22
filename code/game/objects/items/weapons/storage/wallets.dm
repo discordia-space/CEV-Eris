@@ -21,7 +21,7 @@
 		/obj/item/weapon/pen,
 		/obj/item/weapon/photo,
 		/obj/item/weapon/reagent_containers/dropper,
-		/obj/item/weapon/screwdriver,
+		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/stamp)
 	slot_flags = SLOT_ID
 
@@ -51,10 +51,10 @@
 			if("id")
 				icon_state = "walletid"
 				return
-			if("silver")
+			if(MATERIAL_SILVER)
 				icon_state = "walletid_silver"
 				return
-			if("gold")
+			if(MATERIAL_GOLD)
 				icon_state = "walletid_gold"
 				return
 			if("centcom")

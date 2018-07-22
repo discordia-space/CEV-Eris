@@ -41,7 +41,7 @@
 	update_pulling()
 
 	for(var/obj/item/weapon/grab/G in src)
-		G.process()
+		G.Process()
 
 	blinded = 0 // Placing this here just show how out of place it is.
 	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
@@ -178,11 +178,7 @@
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
 /mob/living/proc/handle_hud_icons()
-	handle_hud_icons_health()
 	handle_hud_glasses()
-
-/mob/living/proc/handle_hud_icons_health()
-	return
 
 /*/mob/living/proc/HUD_create()
 	if (!usr.client)

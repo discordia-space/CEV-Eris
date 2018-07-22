@@ -3,6 +3,7 @@
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "generic"
+	layer = CLOSED_TURF_LAYER
 	opacity = 1
 	density = 1
 	blocks_air = 1
@@ -30,7 +31,7 @@
 	..(newloc)
 	icon_state = "blank"
 	if(!materialtype)
-		materialtype = DEFAULT_WALL_MATERIAL
+		materialtype = MATERIAL_STEEL
 	material = get_material_by_name(materialtype)
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
@@ -41,20 +42,23 @@
 /turf/simulated/wall/Destroy()
 	processing_turfs -= src
 	dismantle_wall(null,null,1)
-	..()
+	. = ..()
 
-/turf/simulated/wall/process()
+/turf/simulated/wall/Process()
 	// Calling parent will kill processing
 	if(!radiate())
 		return PROCESS_KILL
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj,/obj/item/projectile/beam))
-		burn(2500)
+		burn(500)//TODO : fucking write these two procs not only for plasma (see plasma in materials.dm:283) ~
 	else if(istype(Proj,/obj/item/projectile/ion))
 		burn(500)
 
-	var/proj_damage = Proj.get_structure_damage()
+	//cut some projectile damage here and not in projectile.dm, becouse we need not to all things what are using get_str_dam() becomes thin and weak.
+	//in general, bullets have 35-95 damage, and they are plased in ~30 bullets magazines, so 50*30 = 150, but plasteel walls have only 400 hp =|
+	//but you may also increase materials thickness or etc.
+	var/proj_damage = Proj.get_structure_damage() / 3//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	var/damage = min(proj_damage, 100)
@@ -241,7 +245,7 @@
 	return total_radiation
 
 /turf/simulated/wall/proc/burn(temperature)
-	if(material.combustion_effect(src, temperature, 0.7))
+	if(material.combustion_effect(src, temperature, 0.7))//it wont return something in any way, this proc is commented and it belongs to plasma material.(see materials.dm:283)
 		spawn(2)
 			new /obj/structure/girder(src)
 			src.ChangeTurf(/turf/simulated/floor)

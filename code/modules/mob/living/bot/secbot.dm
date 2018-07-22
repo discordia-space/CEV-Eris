@@ -332,7 +332,7 @@
 		if(threat >= 4)
 			target = M
 			say("Level [threat] infraction alert!")
-			custom_emote(1, "points at [M.name]!")
+			visible_message(SPAN_DANGER("[src] points at [M.name]!"))
 			mode = SECBOT_HUNT
 			break
 	return
@@ -507,43 +507,42 @@
 	var/build_step = 0
 	var/created_name = "Securitron"
 
-/obj/item/weapon/secbot_assembly/attackby(var/obj/item/O, var/mob/user)
+/obj/item/weapon/secbot_assembly/attackby(obj/item/I, mob/user)
 	..()
-	if(istype(O, /obj/item/weapon/weldingtool) && !build_step)
-		var/obj/item/weapon/weldingtool/WT = O
-		if(WT.remove_fuel(0, user))
+	if((QUALITY_WELDING in I.tool_qualities) && !build_step)
+		if(QUALITY_WELDING in I.tool_qualities)
 			build_step = 1
 			overlays += image('icons/obj/aibots.dmi', "hs_hole")
 			user << "You weld a hole in \the [src]."
 
-	else if(is_proximity_sensor(O) && (build_step == 1))
+	else if(is_proximity_sensor(I) && (build_step == 1))
 		user.drop_item()
 		build_step = 2
-		user << "You add \the [O] to [src]."
+		user << "You add \the [I] to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		overlays += image('icons/obj/aibots.dmi', "hs_eye")
 		name = "helmet/signaler/prox sensor assembly"
-		qdel(O)
+		qdel(I)
 
-	else if((istype(O, /obj/item/robot_parts/l_arm) || istype(O, /obj/item/robot_parts/r_arm)) && build_step == 2)
+	else if((istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm)) && build_step == 2)
 		user.drop_item()
 		build_step = 3
-		user << "You add \the [O] to [src]."
+		user << "You add \the [I] to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "helmet/signaler/prox sensor/robot arm assembly"
 		overlays += image('icons/obj/aibots.dmi', "hs_arm")
-		qdel(O)
+		qdel(I)
 
-	else if(istype(O, /obj/item/weapon/melee/baton) && build_step == 3)
+	else if(istype(I, /obj/item/weapon/melee/baton) && build_step == 3)
 		user.drop_item()
 		user << "You complete the Securitron! Beep boop."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))
 		S.name = created_name
-		qdel(O)
+		qdel(I)
 		qdel(src)
 
-	else if(istype(O, /obj/item/weapon/pen))
+	else if(istype(I, /obj/item/weapon/pen))
 		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
 		if(!t)
 			return

@@ -182,8 +182,11 @@
 	directory -= ckey
 	clients -= src
 	return ..()
-
-
+/*
+/client/Destroy()
+	..()
+	return QDEL_HINT_HARDDEL_NOW
+*/
 /client/proc/get_registration_date()
 	// Return data:
 	// Success: "2017-07-28"
@@ -281,7 +284,7 @@
 	else
 		if(query.NextRow())
 			// client already registered so we fetch all needed data
-			query = dbcon.NewQuery("SELECT id, registered FROM players WHERE id = [src.id]")
+			query = dbcon.NewQuery("SELECT id, registered FROM players WHERE id = [query.item[1]]")
 			query.Execute()
 			if(query.NextRow())
 				src.id = query.item[1]

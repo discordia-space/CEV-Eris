@@ -35,7 +35,7 @@
 		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
 			repair += P.rating * 2
 
-/obj/machinery/mech_recharger/process()
+/obj/machinery/mech_recharger/Process()
 	..()
 	if(!charging)
 		return
@@ -63,11 +63,11 @@
 	return
 
 /obj/machinery/mech_recharger/attackby(var/obj/item/I, var/mob/user)
-	if(default_deconstruction_screwdriver(user, I))
+
+	if(default_deconstruction(I, user))
 		return
-	if(default_deconstruction_crowbar(user, I))
-		return
-	if(default_part_replacement(user, I))
+
+	if(default_part_replacement(I, user))
 		return
 
 /obj/machinery/mech_recharger/proc/start_charging(var/obj/mecha/M)

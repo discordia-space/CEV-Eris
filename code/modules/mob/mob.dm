@@ -1,5 +1,5 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	mob_list -= src
+	STOP_PROCESSING(SSmobs, src)
 	dead_mob_list -= src
 	living_mob_list -= src
 	unset_machine()
@@ -11,6 +11,7 @@
 		client.screen = list()
 	ghostize()
 	..()
+	return QDEL_HINT_HARDDEL
 
 /mob/get_fall_damage()
 	return 15
@@ -40,13 +41,13 @@
 //	spell_masters = null
 	zone_sel = null
 
-/mob/New()
-	mob_list += src
+/mob/Initialize()
+	START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
 		dead_mob_list += src
 	else
 		living_mob_list += src
-	..()
+	. = ..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
@@ -133,7 +134,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in SSmobs.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0
@@ -237,31 +238,31 @@
 
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
-	if ((!( istype(l_hand, /obj/item/weapon/grab) ) && !( istype(r_hand, /obj/item/weapon/grab) )))
-		if (!( L ))
+	if(!istype(l_hand, /obj/item/weapon/grab) && !istype(r_hand, /obj/item/weapon/grab))
+		if (!L)
 			return null
 		else
 			return L.container
 	else
-		if (!( L ))
-			L = new /obj/effect/list_container/mobl( null )
+		if(!L)
+			L = new /obj/effect/list_container/mobl(null)
 			L.container += src
 			L.master = src
-		if (istype(l_hand, /obj/item/weapon/grab))
+		if(istype(l_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = l_hand
-			if (!( L.container.Find(G.affecting) ))
+			if (!L.container.Find(G.affecting))
 				L.container += G.affecting
 				if (G.affecting)
 					G.affecting.ret_grab(L, 1)
-		if (istype(r_hand, /obj/item/weapon/grab))
+		if(istype(r_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = r_hand
-			if (!( L.container.Find(G.affecting) ))
+			if (!L.container.Find(G.affecting))
 				L.container += G.affecting
 				if (G.affecting)
 					G.affecting.ret_grab(L, 1)
-		if (!( flag ))
+		if(!flag)
 			if (L.master == src)
-				var/list/temp = list(  )
+				var/list/temp = list()
 				temp += L.container
 				//L = null
 				qdel(L)
@@ -480,7 +481,7 @@
 			creatures[name] = O
 
 
-	for(var/mob/M in sortAtom(mob_list))
+	for(var/mob/M in sortAtom(SSmobs.mob_list))
 		var/name = M.name
 		if (names.Find(name))
 			namecounts[name]++
@@ -541,7 +542,7 @@
 /mob/proc/pull_damage()
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.health - H.halloss <= config.health_threshold_softcrit)
+		if(H.health - H.halloss <= HEALTH_THRESHOLD_SOFTCRIT)
 			for(var/name in H.organs_by_name)
 				var/obj/item/organ/external/e = H.organs_by_name[name]
 				if(e && H.lying)
@@ -674,11 +675,25 @@
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
-				stat("CPU:","[world.cpu]")
-				stat("Instances:","[world.contents.len]")
 			if(statpanel("Processes"))
 				if(processScheduler)
 					processScheduler.statProcesses()
+			if(statpanel("MC"))
+				stat("CPU:","[world.cpu]")
+				stat("Instances:","[world.contents.len]")
+				stat(null)
+				if(Master)
+					Master.stat_entry()
+				else
+					stat("Master Controller:", "ERROR")
+				if(Failsafe)
+					Failsafe.stat_entry()
+				else
+					stat("Failsafe Controller:", "ERROR")
+				if(Master)
+					stat(null)
+					for(var/datum/controller/subsystem/SS in Master.subsystems)
+						SS.stat_entry()
 
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
@@ -763,6 +778,13 @@
 			canmove = 0
 			break
 
+	if(lying)
+		if(layer == initial(layer)) //to avoid special cases like hiding larvas.
+			layer = MOB_LAYER - 0.1 //so mob lying always appear behind standing mobs
+	else
+		if(layer == MOB_LAYER - 0.1)
+			layer = initial(layer)
+
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
 	//It just makes sense for now. ~Carn
@@ -770,6 +792,12 @@
 		update_icon = 0
 		regenerate_icons()
 	else if( lying != lying_prev )
+		if(lying)
+			if(layer == initial(layer)) //to avoid special cases like hiding larvas.
+				layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+		else
+			if(layer == LYING_MOB_LAYER)
+				layer = initial(layer)
 		update_icons()
 
 	return canmove

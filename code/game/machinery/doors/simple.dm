@@ -16,7 +16,7 @@
 /obj/machinery/door/unpowered/simple/New(var/newloc, var/material_name)
 	..()
 	if(!material_name)
-		material_name = DEFAULT_WALL_MATERIAL
+		material_name = MATERIAL_STEEL
 	material = get_material_by_name(material_name)
 	if(!material)
 		qdel(src)
@@ -158,22 +158,22 @@
 
 
 /obj/machinery/door/unpowered/simple/iron/New(var/newloc,var/material_name)
-	..(newloc, "iron")
+	..(newloc, MATERIAL_IRON)
 
 /obj/machinery/door/unpowered/simple/silver/New(var/newloc,var/material_name)
-	..(newloc, "silver")
+	..(newloc, MATERIAL_SILVER)
 
 /obj/machinery/door/unpowered/simple/gold/New(var/newloc,var/material_name)
-	..(newloc, "gold")
+	..(newloc, MATERIAL_GOLD)
 
 /obj/machinery/door/unpowered/simple/uranium/New(var/newloc,var/material_name)
-	..(newloc, "uranium")
+	..(newloc, MATERIAL_URANIUM)
 
 /obj/machinery/door/unpowered/simple/sandstone/New(var/newloc,var/material_name)
-	..(newloc, "sandstone")
+	..(newloc, MATERIAL_SANDSTONE)
 
 /obj/machinery/door/unpowered/simple/diamond/New(var/newloc,var/material_name)
-	..(newloc, "diamond")
+	..(newloc, MATERIAL_DIAMOND)
 
 /obj/machinery/door/unpowered/simple/wood
 	icon_state = "wood"

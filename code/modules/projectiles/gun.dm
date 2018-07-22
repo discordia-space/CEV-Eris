@@ -19,7 +19,7 @@
 		if(propname == "mode_name")
 			name = propvalue
 		else if(isnull(propvalue))
-			settings[propname] = gun.vars[propname] //better than initial() as it handles list vars like burst_accuracy
+			settings[propname] = gun.vars[propname] //better than initial() as it handles list vars like dispersion
 		else
 			settings[propname] = propvalue
 
@@ -40,7 +40,7 @@
 	item_state = "gun"
 	flags =  CONDUCT
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	matter = list(MATERIAL_STEEL = 6)
 	w_class = ITEM_SIZE_NORMAL
 	throwforce = 5
 	throw_speed = 4
@@ -59,9 +59,6 @@
 	var/recoil = 0		//screen shake
 	var/silenced = 0
 	var/muzzle_flash = 3
-	var/accuracy = 0   //accuracy is measured in tiles. +1 accuracy means that everything is effectively one tile closer for the purpose of miss chance, -1 means the opposite. launchers are not supported, at the moment.
-	var/scoped_accuracy = null
-	var/list/burst_accuracy = list(0) //allows for different accuracies for each shot in a burst. Applied on top of accuracy
 	var/list/dispersion = list(0)
 	var/requires_two_hands
 	var/wielded_icon = "gun_wielded"
@@ -88,9 +85,6 @@
 	for(var/i in 1 to firemodes.len)
 		firemodes[i] = new /datum/firemode(src, firemodes[i])
 
-	if(isnull(scoped_accuracy))
-		scoped_accuracy = accuracy
-
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
 
@@ -113,18 +107,18 @@
 /obj/item/weapon/gun/proc/special_check(var/mob/user)
 
 	if(!isliving(user))
-		return 0
+		return FALSE
 	if(!user.IsAdvancedToolUser())
-		return 0
+		return FALSE
 
 	var/mob/living/M = user
 	if(HULK in M.mutations)
 		M << SPAN_DANGER("Your fingers are much too large for the trigger guard!")
-		return 0
+		return FALSE
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
-			if(process_projectile(P, user, user, pick("l_foot", "r_foot")))
+			if(process_projectile(P, user, user, pick(BP_L_FOOT, BP_R_FOOT)))
 				handle_post_fire(user, user)
 				user.visible_message(
 					SPAN_DANGER("\The [user] shoots \himself in the foot with \the [src]!"),
@@ -133,13 +127,13 @@
 				M.drop_item()
 		else
 			handle_click_empty(user)
-		return 0
+		return FALSE
 	if(!restrict_safety)
 		if(safety)
-			user << "<span class='danger'>The gun's safety is on!</span>"
+			user << SPAN_DANGER("The gun's safety is on!")
 			handle_click_empty(user)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/item/weapon/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -199,11 +193,9 @@
 	user.setMoveCooldown(shoot_time) //no moving while shooting either
 	next_fire_time = world.time + shoot_time
 
-	var/held_acc_mod = 0
 	var/held_disp_mod = 0
 	if(requires_two_hands)
 		if((user.l_hand == src && user.r_hand) || (user.r_hand == src && user.l_hand))
-			held_acc_mod = -3
 			held_disp_mod = 3
 
 	//actually attempt to shoot
@@ -214,9 +206,8 @@
 			handle_click_empty(user)
 			break
 
-		var/acc = burst_accuracy[min(i, burst_accuracy.len)] + held_acc_mod
 		var/disp = dispersion[min(i, dispersion.len)] + held_disp_mod
-		process_accuracy(projectile, user, target, acc, disp)
+		process_accuracy(projectile, user, target, disp)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -275,7 +266,7 @@
 			)
 		else
 			user.visible_message(
-				"<span class='danger'>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!</span>",
+				SPAN_WARNING("\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!"),
 				SPAN_WARNING("You fire \the [src]!"),
 				"You hear a [fire_sound_text]!"
 				)
@@ -310,27 +301,21 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, acc_mod, dispersion)
+/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
-		return //default behaviour only applies to true projectiles
+		return
 
-	//Accuracy modifiers
-	P.accuracy = accuracy + acc_mod
 	P.dispersion = dispersion
 
-	//accuracy bonus from aiming
 	if (aim_targets && (target in aim_targets))
-		//If you aim at someone beforehead, it'll hit more often.
-		//Kinda balanced by fact you need like 2 seconds to aim
-		//As opposed to no-delay pew pew
-		P.accuracy += 2
+		P.dispersion -= 0.3//less dispersion is better - radius = round(dispersion*9, 1), it is also accepts negative values
 
 //does the actual launching of the projectile
 /obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
-		return 0 //default behaviour only applies to true projectiles
+		return FALSE //default behaviour only applies to true projectiles
 
 	if(params)
 		P.set_clickpoint(params)
@@ -350,44 +335,44 @@
 	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
 
 //Suicide handling.
-/obj/item/weapon/gun/var/mouthshoot = 0 //To stop people from suiciding twice... >.>
+/obj/item/weapon/gun/var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/M = user
 
-	mouthshoot = 1
+	mouthshoot = TRUE
 	M.visible_message(SPAN_DANGER("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 	if(!do_after(user, 40, progress=0))
 		M.visible_message(SPAN_NOTICE("[user] decided life was worth living"))
-		mouthshoot = 0
+		mouthshoot = FALSE
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
-		user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
+		user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
 		if(silenced)
 			playsound(user, fire_sound, 10, 1)
 		else
 			playsound(user, fire_sound, 60, 1)
 		if(istype(in_chamber, /obj/item/projectile/beam/lastertag))
-			user.show_message("<span class = 'warning'>You feel rather silly, trying to commit suicide with a toy.</span>")
-			mouthshoot = 0
+			user.show_message(SPAN_WARNING("You feel rather silly, trying to commit suicide with a toy."))
+			mouthshoot = FALSE
 			return
 
 		in_chamber.on_hit(M)
 		if (in_chamber.damage_type != HALLOSS)
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
+			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp=1)
 			user.death()
 		else
-			user << "<span class = 'notice'>Ow...</span>"
+			user << SPAN_NOTICE("Ow...")
 			user.apply_effect(110,AGONY,0)
 		qdel(in_chamber)
-		mouthshoot = 0
+		mouthshoot = FALSE
 		return
 	else
 		handle_click_empty(user)
-		mouthshoot = 0
+		mouthshoot = FALSE
 		return
 
 /obj/item/weapon/gun/proc/toggle_scope(var/zoom_amount=2.0)
@@ -395,11 +380,9 @@
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
 	var/zoom_offset = round(world.view * zoom_amount)
 	var/view_size = round(world.view + zoom_amount)
-	var/scoped_accuracy_mod = zoom_offset
 
 	zoom(zoom_offset, view_size)
 	if(zoom)
-		accuracy = scoped_accuracy + scoped_accuracy_mod
 		if(recoil)
 			recoil = round(recoil*zoom_amount+1) //recoil is worse when looking through a scope
 
@@ -407,18 +390,17 @@
 /obj/item/weapon/gun/zoom()
 	..()
 	if(!zoom)
-		accuracy = initial(accuracy)
 		recoil = initial(recoil)
 
 /obj/item/weapon/gun/examine(mob/user)
 	..()
 	if(firemodes.len > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		user << "The fire selector is set to [current_mode.name]."
+		user << SPAN_NOTICE("The fire selector is set to [current_mode.name].")
 	if(safety)
-		user << "<span class='notice'>The safety is on.</span>"
+		user << SPAN_NOTICE("The safety is on.")
 	else
-		user << "<span class='notice'>The safety is off.</span>"
+		user << SPAN_NOTICE("The safety is off.")
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
@@ -443,13 +425,12 @@
 		if(src == user.get_active_hand())//returns the thing in our active hand
 			safety = !safety
 			playsound(user, 'sound/weapons/selector.ogg', 50, 1)
-			user << "<span class='notice'>You toggle the safety [safety ? "on":"off"].</span>"
+			user << SPAN_NOTICE("You toggle the safety [safety ? "on":"off"].")
 
 /obj/item/weapon/gun/AltClick(mob/user)
 	if(!restrict_safety)
-		..()
 		if(user.incapacitated())
-			user << "<span class='warning'>You can't do that right now!</span>"
+			user << SPAN_WARNING("You can't do that right now!")
 			return
 
 		check_safety(user)

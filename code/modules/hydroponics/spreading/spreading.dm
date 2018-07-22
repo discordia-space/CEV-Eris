@@ -14,7 +14,8 @@
 			var/obj/effect/plant/vine = new(T,seed)
 			vine.health = vine.max_health
 			vine.mature_time = 0
-			vine.process()
+			vine.layer = SPACEVINE_LAYER
+			vine.Process()
 
 			log_and_message_admins("Spacevines spawned at \the [get_area(T)]", location = T)
 			return
@@ -68,7 +69,8 @@
 		plant_controller.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		plant_controller.add_plant(neighbor)
-	..()
+	. = ..()
+
 /obj/effect/plant/single
 	spread_chance = 0
 
@@ -182,7 +184,7 @@
 
 	if(growth>2 && growth == max_growth)
 		layer = (seed && seed.force_layer) ? seed.force_layer : 5
-		opacity = 1
+		set_opacity(TRUE)
 		if(islist(seed.chems) && !isnull(seed.chems["woodpulp"]))
 			density = 1
 	else
@@ -230,7 +232,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	plant_controller.add_plant(src)
 
-	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
 		if(sampled)
 			user << SPAN_WARNING("\The [src] has already been sampled recently.")
 			return

@@ -49,7 +49,7 @@
 
 /obj/structure/inflatable/Destroy()
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 0
@@ -143,7 +143,7 @@
 	name = "inflatable door"
 	density = 1
 	anchored = 1
-	opacity = 0
+	opacity = FALSE
 
 	icon_state = "door_closed"
 	undeploy_path = /obj/item/inflatable/door
@@ -191,20 +191,18 @@
 
 /obj/structure/inflatable/door/proc/Open()
 	isSwitchingStates = 1
-	flick("door_opening",src)
+	flick("door_opening", src)
 	sleep(10)
 	density = 0
-	opacity = 0
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
 
 /obj/structure/inflatable/door/proc/Close()
 	isSwitchingStates = 1
-	flick("door_closing",src)
+	flick("door_closing", src)
 	sleep(10)
 	density = 1
-	opacity = 0
 	state = 0
 	update_icon()
 	isSwitchingStates = 0

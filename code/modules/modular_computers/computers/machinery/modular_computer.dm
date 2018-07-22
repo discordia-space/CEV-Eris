@@ -71,11 +71,11 @@
 			user << "You need to stand in front of [src.name] keyboard!"
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
-/obj/machinery/modular_computer/process()
+/obj/machinery/modular_computer/Process()
 	if(cpu)
 		// Keep names in sync.
 		cpu.name = src.name
-		cpu.process(1)
+		cpu.Process(1)
 
 // Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null
 /obj/machinery/modular_computer/proc/find_hardware_by_name(var/N)

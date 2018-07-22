@@ -18,10 +18,11 @@
 	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 
-/obj/machinery/sleeper/initialize()
+/obj/machinery/sleeper/Initialize()
+	. = ..()
 	update_icon()
 
-/obj/machinery/sleeper/process()
+/obj/machinery/sleeper/Process()
 	if(stat & (NOPOWER|BROKEN))
 		return
 
@@ -132,6 +133,9 @@
 		else
 			user << SPAN_WARNING("\The [src] has a beaker already.")
 		return
+
+/obj/machinery/sleeper/affect_grab(var/mob/user, var/mob/target)
+	go_in(target, user)
 
 /obj/machinery/sleeper/MouseDrop_T(var/mob/target, var/mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))

@@ -31,10 +31,11 @@
 /obj/item/weapon/gun/energy/New()
 	..()
 	if(self_recharge)
-		processing_objects.Add(src)
+		cell = new cell_type(src)
+		START_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/weapon/gun/energy/process()
+/obj/item/weapon/gun/energy/Process()
 	if(self_recharge) //Every [recharge_time] ticks, recharge a shot for the cyborg
 		charge_tick++
 		if(charge_tick < recharge_time) return 0
@@ -74,6 +75,9 @@
 
 /obj/item/weapon/gun/energy/examine(mob/user)
 	..(user)
+	if(!cell)
+		user << SPAN_NOTICE("Has no battery cell inserted.")
+		return
 	var/shots_remaining = round(cell.charge / charge_cost)
 	user << "Has [shots_remaining] shot\s remaining."
 	return
@@ -103,8 +107,14 @@
 		usr << SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!.")
 
 /obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C
-		update_icon()
-	else
+	if(self_recharge)
 		usr << SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries.")
+		return
+
+	if(cell)
+		usr << SPAN_WARNING("[src] is already loaded.")
+		return
+
+	if(istype(C, suitable_cell) && insert_item(C, user))
+		cell = C
+		update_icon()

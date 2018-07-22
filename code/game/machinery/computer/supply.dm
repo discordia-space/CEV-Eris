@@ -21,7 +21,7 @@
 	var/list/supply_packs = list()
 	//shuttle movement
 	var/movetime = 1200
-	var/datum/shuttle/ferry/supply/shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle
 
 /datum/controller/supply/New()
 	ordernum = rand(1, 9000)
@@ -34,7 +34,7 @@
 
 // Supply shuttle ticker - handles supply point regeneration
 // This is called by the process scheduler every thirty seconds
-/datum/controller/supply/proc/process()
+/datum/controller/supply/Process()
 	points += points_per_process
 
 //To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
@@ -55,18 +55,16 @@
 
 //Sellin
 /datum/controller/supply/proc/sell()
-	var/area/area_shuttle = shuttle.get_location_area()
-	if(!area_shuttle)
-		return
 
 	var/msg = ""
 	var/sold_atoms = ""
 
-	for(var/atom/movable/AM in area_shuttle)
-		if(AM.anchored)
-			continue
+	for(var/area/subarea in shuttle.shuttle_area)
+		for(var/atom/movable/AM in subarea)
+			if(AM.anchored)
+				continue
 
-		sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
+			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
 
 	for(var/a in exports_list)
 		var/datum/export/E = a
@@ -85,24 +83,21 @@
 	if(!shoppinglist.len)
 		return
 
-	var/area/area_shuttle = shuttle.get_location_area()
-	if(!area_shuttle)
-		return
-
 	var/list/clear_turfs = list()
 
-	for(var/turf/T in area_shuttle)
-		if(T.density)
-			continue
-
-		var/contcount
-		for(var/atom/A in T.contents)
-			if(!A.simulated)
+	for(var/area/subarea in shuttle.shuttle_area)
+		for(var/turf/T in subarea)
+			if(T.density)
 				continue
-			contcount++
-		if(contcount)
-			continue
-		clear_turfs += T
+
+			var/contcount
+			for(var/atom/A in T.contents)
+				if(!A.simulated)
+					continue
+				contcount++
+			if(contcount)
+				continue
+			clear_turfs += T
 
 	for(var/S in shoppinglist)
 		if(!clear_turfs.len)
@@ -207,7 +202,7 @@
 	if(temp)
 		dat = temp
 	else
-		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+		var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
 			dat += {"<BR><B>Supply shuttle</B><HR>
 			Location: [shuttle.has_arrive_time() ? "Moving to station ([shuttle.eta_minutes()] Mins.)":shuttle.at_station() ? "Docked":"Away"]<BR>
@@ -335,7 +330,7 @@
 	if (temp)
 		dat = temp
 	else
-		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+		var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
 			dat += "<BR><B>Supply shuttle</B><HR>"
 			dat += "\nLocation: "
@@ -343,15 +338,10 @@
 				dat += "In transit ([shuttle.eta_minutes()] Mins.)<BR>"
 			else
 				if (shuttle.at_station())
-					if (shuttle.docking_controller)
-						switch(shuttle.docking_controller.get_docking_status())
-							if ("docked") dat += "Docked at station<BR>"
-							if ("undocked") dat += "Undocked from station<BR>"
-							if ("docking") dat += "Docking with station [shuttle.can_force()? SPAN_WARNING("<A href='?src=\ref[src];force_send=1'>Force Launch</A>") : ""]<BR>"
-							if ("undocking") dat += "Undocking from station [shuttle.can_force()? SPAN_WARNING("<A href='?src=\ref[src];force_send=1'>Force Launch</A>") : ""]<BR>"
+					if (!shuttle.can_launch())
+						dat += "Docking/Undocking<BR>"
 					else
 						dat += "Station<BR>"
-
 					if (shuttle.can_launch())
 						dat += "<A href='?src=\ref[src];send=1'>Send away</A>"
 					else if (shuttle.can_cancel())
@@ -391,7 +381,7 @@
 	if(!supply_controller)
 		world.log << "## ERROR: Eek. The supply_controller controller datum is missing somehow."
 		return
-	var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
 	if (!shuttle)
 		world.log << "## ERROR: Eek. The supply/shuttle datum is missing somehow."
 		return

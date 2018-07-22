@@ -16,6 +16,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_instert.ogg'
 	var/recentpump = 0 // to prevent spammage
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)

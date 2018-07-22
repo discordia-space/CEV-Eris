@@ -377,7 +377,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			data["records"] = cartridge.create_NanoUI_values()
 
 		if(mode == 0)
-			cartdata["name"] = cartridge.name
+			cartdata["name"] = strip_improper(cartridge.name)
 			if(isnull(cartridge.radio))
 				cartdata["radio"] = 0
 			else
@@ -979,7 +979,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			var/who = src.owner
 			if(prob(50))
 				who = P.owner
-			for(var/mob/living/silicon/ai/ai in mob_list)
+			for(var/mob/living/silicon/ai/ai in SSmobs.mob_list)
 				// Allows other AIs to intercept the message but the AI won't intercept their own message.
 				if(ai.aiPDA != P && ai.aiPDA != src)
 					ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
@@ -1332,7 +1332,17 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	PDAs -= src
 	if (src.id && prob(90)) //IDs are kept in 90% of the cases
 		src.id.loc = get_turf(src.loc)
-	..()
+	. = ..()
+
+/obj/item/device/pda/AltClick()
+	if(can_use(usr))
+		if(id)
+			remove_id()
+		else
+			usr << SPAN_NOTICE("This PDA does not have an ID in it.")
+	else
+		usr << SPAN_NOTICE("You cannot do this while restrained.")
+
 
 /obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
 	if (isliving(AM))

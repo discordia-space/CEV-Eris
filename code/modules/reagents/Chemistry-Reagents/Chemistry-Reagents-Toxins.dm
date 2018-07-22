@@ -52,12 +52,13 @@
 	color = "#0F4800"
 	strength = 5
 
-/datum/reagent/toxin/blattedin/touch_mob(var/mob/living/L, var/amount)
-	if(istype(L, /mob/living/simple_animal/hostile/roach))
-		if(L.health <= 0)
-			if(prob(70))//Roaches sometimes can come back to life from healing vapors
+/datum/reagent/toxin/blattedin/touch_mob(mob/living/simple_animal/hostile/roach/bug, amount)
+	if(istype(bug))
+		if(bug.stat == DEAD)
+			if(!bug.blattedin_revives_left || prob(70))//Roaches sometimes can come back to life from healing vapors
 				return
-		L.heal_organ_damage(amount * 0.5)
+			bug.blattedin_revives_left = max(0, bug.blattedin_revives_left - 1)
+		bug.heal_organ_damage(amount * 0.5)
 	else
 		..()
 
@@ -167,7 +168,7 @@
 	if(holder && holder.my_atom && ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~FAKEDEATH
-	..()
+	. = ..()
 
 /datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
 	name = "fertilizer"

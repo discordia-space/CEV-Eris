@@ -177,11 +177,11 @@ var/global/list/breach_burn_descriptors = list(
 
 //Handles repairs (and also upgrades).
 
-/obj/item/clothing/suit/space/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/stack/material))
+/obj/item/clothing/suit/space/attackby(obj/item/I, mob/user)
+	if(istype(I,/obj/item/stack/material))
 		var/repair_power = 0
-		switch(W.get_material_name())
-			if(DEFAULT_WALL_MATERIAL)
+		switch(I.get_material_name())
+			if(MATERIAL_STEEL)
 				repair_power = 2
 			if("plastic")
 				repair_power = 1
@@ -197,28 +197,27 @@ var/global/list/breach_burn_descriptors = list(
 			user << "There is no surface damage on \the [src] to repair."
 			return
 
-		var/obj/item/stack/P = W
+		var/obj/item/stack/P = I
 		var/use_amt = min(P.get_amount(), 3)
 		if(use_amt && P.use(use_amt))
 			repair_breaches(BURN, use_amt * repair_power, user)
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool))
+	else if(QUALITY_WELDING in I.tool_qualities)
 
 		if(isliving(loc))
-			user << "\red How do you intend to patch a hardsuit while someone is wearing it?"
+			user << SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?")
 			return
 
 		if (!damage || ! brute_damage)
-			user << "There is no structural damage on \the [src] to repair."
+			user << SPAN_WARNING("There is no structural damage on \the [src] to repair.")
 			return
 
-		var/obj/item/weapon/weldingtool/WT = W
-		if(!WT.remove_fuel(5))
-			user << "\red You need more welding fuel to repair this suit."
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+			repair_breaches(BRUTE, 3, user)
+			user << SPAN_NOTICE("You repair the damage on the [src].")
 			return
 
-		repair_breaches(BRUTE, 3, user)
 		return
 
 	..()

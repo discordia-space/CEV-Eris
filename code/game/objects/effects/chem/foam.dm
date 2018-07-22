@@ -8,7 +8,7 @@
 	opacity = 0
 	anchored = 1
 	density = 0
-	layer = OBJ_LAYER + 0.9
+	layer = EDGED_TURF_LAYER
 	mouse_opacity = 0
 	animate_movement = 0
 	var/amount = 3
@@ -21,10 +21,10 @@
 	metal = ismetal
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
 	spawn(3 + metal * 3)
-		process()
+		Process()
 		checkReagents()
 	spawn(120)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		sleep(30)
 		if(metal)
 			var/obj/structure/foamedmetal/M = new(src.loc)
@@ -42,7 +42,7 @@
 		for(var/obj/O in T)
 			reagents.touch_obj(O)
 
-/obj/effect/effect/foam/process()
+/obj/effect/effect/foam/Process()
 	if(--amount < 0)
 		return
 
@@ -64,9 +64,11 @@
 			F.create_reagents(10)
 			if(reagents)
 				for(var/datum/reagent/R in reagents.reagent_list)
-					F.reagents.add_reagent(R.id, 1, safety = 1) //added safety check since reagents in the foam have already had a chance to react
+					//added safety check since reagents in the foam have already had a chance to react
+					F.reagents.add_reagent(R.id, 1, safety = 1)
 
-/obj/effect/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume) // foam disolves when heated, except metal foams
+// foam disolves when heated, except metal foams
+/obj/effect/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
 
@@ -95,7 +97,11 @@
 	carried_reagents = list()
 	metal = metalfoam
 
-	// bit of a hack here. Foam carries along any reagent also present in the glass it is mixed with (defaults to water if none is present). Rather than actually transfer the reagents, this makes a list of the reagent ids and spawns 1 unit of that reagent when the foam disolves.
+	// bit of a hack here.
+	// Foam carries along any reagent also present in the glass it is mixed with
+	// (defaults to water if none is present).
+	// Rather than actually transfer the reagents, this makes a list of the reagent ids
+	// and spawns 1 unit of that reagent when the foam disolves.
 
 	if(carry && !metal)
 		for(var/datum/reagent/R in carry.reagent_list)
@@ -116,7 +122,8 @@
 
 			if(carried_reagents)
 				for(var/id in carried_reagents)
-					F.reagents.add_reagent(id, 1, safety = 1) //makes a safety call because all reagents should have already reacted anyway
+					//makes a safety call because all reagents should have already reacted anyway
+					F.reagents.add_reagent(id, 1, safety = 1)
 			else
 				F.reagents.add_reagent("water", 1, safety = 1)
 
@@ -128,6 +135,7 @@
 	density = 1
 	opacity = 1 // changed in New()
 	anchored = 1
+	layer = EDGED_TURF_LAYER
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	var/metal = 1 // 1 = aluminum, 2 = iron
@@ -139,7 +147,7 @@
 /obj/structure/foamedmetal/Destroy()
 	density = 0
 	update_nearby_tiles(1)
-	..()
+	. = ..()
 
 /obj/structure/foamedmetal/proc/updateicon()
 	if(metal == 1)
@@ -156,23 +164,30 @@
 
 /obj/structure/foamedmetal/attack_hand(var/mob/user)
 	if ((HULK in user.mutations) || (prob(75 - metal * 25)))
-		user.visible_message(SPAN_WARNING("[user] smashes through the foamed metal."), SPAN_NOTICE("You smash through the metal foam wall."))
+		user.visible_message(
+			SPAN_WARNING("[user] smashes through the foamed metal."),
+			SPAN_NOTICE("You smash through the metal foam wall.")
+		)
 		qdel(src)
 	else
 		user << SPAN_NOTICE("You hit the metal foam but bounce off it.")
 	return
 
-/obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
-		G.affecting.loc = src.loc
-		visible_message(SPAN_WARNING("[G.assailant] smashes [G.affecting] through the foamed metal wall."))
-		qdel(I)
-		qdel(src)
-		return
+/obj/structure/foamedmetal/affect_grab(var/mob/living/user, var/mob/living/target)
+	target.forceMove(src.loc)
+	visible_message(SPAN_WARNING("[user] smashes [target] through the foamed metal wall."))
+	target.Weaken(5)
+	qdel(src)
+	return TRUE
 
+/obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
+	if(!istype(I))
+		return
 	if(prob(I.force * 20 - metal * 25))
-		user.visible_message(SPAN_WARNING("[user] smashes through the foamed metal."), SPAN_NOTICE("You smash through the foamed metal with \the [I]."))
+		user.visible_message(
+			SPAN_WARNING("[user] smashes through the foamed metal."),
+			SPAN_NOTICE("You smash through the foamed metal with \the [I].")
+		)
 		qdel(src)
 	else
 		user << SPAN_NOTICE("You hit the metal foam to no effect.")

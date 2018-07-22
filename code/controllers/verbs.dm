@@ -4,22 +4,6 @@
 //		- lighting done
 
 
-ADMIN_VERB_ADD(/client/proc/restart_controller, R_DEBUG, null)
-/client/proc/restart_controller(controller in list("Supply"))
-	set category = "Debug"
-	set name = "Restart Controller"
-	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
-
-	if(!holder)	return
-	usr = null
-	src = null
-	switch(controller)
-		if("Supply")
-			supply_controller.process()
-
-	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
-	return
-
 /*
 ADMIN_VERB_ADD(/client/proc/debug_antagonist_template, R_DEBUG, null)
 /client/proc/debug_antagonist_template(antag_type in all_antag_types)
@@ -37,7 +21,7 @@ ADMIN_VERB_ADD(/client/proc/debug_antagonist_template, R_DEBUG, null)
 ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 /client/proc/debug_controller(controller in list(
 		"Master", "Ticker", "Ticker Process", "Air", "Jobs", "Sun", "Radio", "Supply",
-		"Shuttles", "Emergency Shuttle", "Configuration", "pAI", "Cameras", "Transfer Controller",
+		"Shuttles", "Evacuation", "Configuration", "pAI", "Cameras", "Transfer Controller",
 		"Gas Data", "Event", "Plants", "Alarm", "Nano", "Chemistry", "Wireless", "Observation")
 	)
 	set category = "Debug"
@@ -56,7 +40,7 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 			debug_variables(tickerProcess)
 
 		if("Air")
-			debug_variables(air_master)
+			debug_variables(SSair)
 
 		if("Jobs")
 			debug_variables(job_master)
@@ -73,8 +57,8 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 		if("Shuttles")
 			debug_variables(shuttle_controller)
 
-		if("Emergency Shuttle")
-			debug_variables(emergency_shuttle)
+		if("Evacuation")
+			debug_variables(evacuation_controller)
 
 		if("Configuration")
 			debug_variables(config)

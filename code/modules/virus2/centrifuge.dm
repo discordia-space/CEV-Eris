@@ -10,7 +10,7 @@
 	var/datum/disease2/disease/virus2 = null
 
 /obj/machinery/computer/centrifuge/attackby(var/obj/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/weapon/tool/screwdriver))
 		return ..(O,user)
 
 	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial))
@@ -77,7 +77,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/machinery/computer/centrifuge/process()
+/obj/machinery/computer/centrifuge/Process()
 	..()
 	if (stat & (NOPOWER|BROKEN)) return
 

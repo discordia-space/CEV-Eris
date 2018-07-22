@@ -1,16 +1,12 @@
-#ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
-#endif
-
 /obj/item/weapon/circuitboard/unary_atmos
 	board_type = "machine"
 
 /obj/item/weapon/circuitboard/unary_atmos/construct(var/obj/machinery/atmospherics/unary/U)
 	//TODO: Move this stuff into the relevant constructor when pipe/construction.dm is cleaned up.
-	U.initialize()
+	U.atmos_init()
 	U.build_network()
 	if (U.node)
-		U.node.initialize()
+		U.node.atmos_init()
 		U.node.build_network()
 
 /obj/item/weapon/circuitboard/unary_atmos/heater

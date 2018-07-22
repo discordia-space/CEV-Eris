@@ -19,13 +19,13 @@
 	var/datum/construction/construct
 	flags = CONDUCT
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(!construct || !construct.action(W, user))
-			..()
-		return
+/obj/item/mecha_parts/chassis/attackby(obj/item/I, mob/user)
+	if(!construct || !construct.action(I, user))
+		..()
+	return
 
-	attack_hand()
-		return
+/obj/item/mecha_parts/chassis/attack_hand()
+	return
 
 /////////// Ripley
 
@@ -281,10 +281,3 @@
 	desc="A Odysseus right leg. Contains somewhat complex servodrives and balance maintaining systems."
 	icon_state = "odysseus_r_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-
-/*/obj/item/mecha_parts/part/odysseus_armour
-	name="Odysseus Carapace"
-	icon_state = "odysseus_armour"
-	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
-	construction_time = 200
-	construction_cost = list(DEFAULT_WALL_MATERIAL=15000)*/

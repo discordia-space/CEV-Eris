@@ -20,7 +20,7 @@
 	var/update_locked = 0
 
 /obj/machinery/power/breakerbox/Destroy()
-	..()
+	. = ..()
 	for(var/datum/nano_module/rcon/R in world)
 		R.FindDevices()
 
@@ -28,7 +28,8 @@
 	icon_state = "bbox_on"
 
 	// Enabled on server startup. Used in substations to keep them in bypass mode.
-/obj/machinery/power/breakerbox/activated/initialize()
+/obj/machinery/power/breakerbox/activated/Initialize()
+	. = ..()
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
@@ -82,7 +83,7 @@
 	busy = 0
 
 /obj/machinery/power/breakerbox/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/device/multitool))
+	if(istype(W, /obj/item/weapon/tool/multitool))
 		var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 		if(newtag)
 			RCon_tag = newtag
@@ -132,5 +133,5 @@
 		spawn(600)
 			update_locked = 0
 
-/obj/machinery/power/breakerbox/process()
+/obj/machinery/power/breakerbox/Process()
 	return 1

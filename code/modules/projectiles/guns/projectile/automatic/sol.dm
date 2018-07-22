@@ -12,10 +12,11 @@
 	slot_flags = SLOT_BELT
 	multi_aim = 1
 	burst_delay = 2
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 
 	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    dispersion=list(0.0, 0.6, 1.0)),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()
@@ -28,11 +29,10 @@
 	overlays += "sol_[ratio]"
 
 /obj/item/weapon/gun/projectile/automatic/sol/update_icon()
-	icon_state = initial(icon_state) + (ammo_magazine ? null : "-empty")
+	icon_state = initial(icon_state) + (ammo_magazine ?  "-full" : "")
 	overlays.Cut()
 	update_charge()
 
-obj/item/weapon/gun/projectile/automatic/sol/rds
+/obj/item/weapon/gun/projectile/automatic/sol/rds
 	desc = "A standard-issued weapon used by Ironhammer operatives. Compact and reliable. Uses 6.5x39 rounds. This one somes with red dot sight."
 	icon_state = "sol-eot"
-	accuracy = 2

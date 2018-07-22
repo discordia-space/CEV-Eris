@@ -1,52 +1,105 @@
 var/global/list/current_antags = list()
 var/global/list/current_factions = list()
 
-var/global/list/rolespawn_log = list()
-
 /datum/storyteller
+	//Strings
 	var/config_tag = ""
 	var/name = "Storyteller"
 	var/welcome = "Welcome"
 	var/description = "You shouldn't see this"
 
-	var/role_spawn_timer = 0
-	var/role_spawn_stage = 0
-
-	var/min_role_spawn_delay = 20 MINUTES
-	var/max_role_spawn_delay = 30 MINUTES
-
-	var/min_start_role_spawn_delay = 10 MINUTES
-	var/max_start_role_spawn_delay = 18 MINUTES
-
-	var/list/disabled_antags = list()
-	var/list/disabled_events = list()
-
 	var/one_role_per_player = TRUE
 
+	var/calculate_weights = TRUE
+	//Debug and logs
+	var/list/dbglist		//Reference to storyevents list for easy getting it by VV
+
+	var/debug_mode = FALSE	//Setting this to TRUE prevents normal storyteller functioning. Use it for testing on local server
+
+	//Misc
 	var/force_spawn_now = FALSE
+	var/list/processing_events = list()
+
+	var/crew = 11
+	var/heads = 2
+	var/sec = 4
+	var/eng = 3
+	var/med = 4
+	var/sci = 5
+
+	var/event_spawn_timer = 0
+	var/event_spawn_stage = 0
+
 
 /datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
-	return TRUE
+	if(debug_mode)
+		return TRUE
+
+	var/engineer = FALSE
+	var/captain = FALSE
+	for(var/mob/new_player/player in player_list)
+		if(player.ready && player.mind)
+			if(player.mind.assigned_role == "Captain")
+				captain = TRUE
+			if(player.mind.assigned_role in list("Technomancer Exultant","Technomancer"))
+				engineer = TRUE
+			if(captain && engineer)
+				return TRUE
+
+	var/tcol = "red"
+	if(player_list.len <= 10)
+		tcol = "black"
+
+	if(announce)
+		if(!engineer && !captain)
+			world << "<b><font color='[tcol]'>Captain and technomancer are required to start round.</font></b>"
+		else if(!engineer)
+			world << "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>"
+		else if(!captain)
+			world << "<b><font color='[tcol]'>Captain is required to start round.</font></b>"
+
+	if(player_list.len <= 10)
+		world << "<i>But there's less than 10 players, so this requirement will be ignored.</i>"
+		return TRUE
+
+	return FALSE
 
 /datum/storyteller/proc/announce()
 	world << "<b><font size=3>Storyteller is [src.name].</font> <br>[welcome]</b>"
 
 /datum/storyteller/proc/set_up()
-	fill_rolesets_list()
-	set_role_timer(rand(min_start_role_spawn_delay, max_start_role_spawn_delay))
+	fill_storyevents_list()
+	set_timer(rand(20,30) MINUTES)
+	set_up_events()
+	dbglist = storyevents
 
-/datum/storyteller/proc/set_role_timer(var/time)
-	role_spawn_timer = world.time + time
+/datum/storyteller/proc/set_up_events()
+	return
 
-/datum/storyteller/proc/set_role_timer_default()
-	set_role_timer(rand(min_role_spawn_delay, max_role_spawn_delay))
+/datum/storyteller/proc/set_timer(var/time)
+	event_spawn_timer = world.time + time
 
-/datum/storyteller/proc/process()
-	if(force_spawn_now || (role_spawn_timer && role_spawn_timer <= world.time))
+/datum/storyteller/Process()
+	if(force_spawn_now || (event_spawn_timer && event_spawn_timer <= world.time))
+		update_crew_count()
+		update_event_weights()
+		trigger_event()
+		event_spawn_stage++
 		force_spawn_now = FALSE
-		set_role_timer_default()
-		role_spawn_stage++
-		spawn_antagonist()
+
+/datum/storyteller/proc/add_processing(var/datum/storyevent/S)
+	ASSERT(istype(S))
+	processing_events.Add(S)
+
+/datum/storyteller/proc/remove_processing(var/datum/storyevent/S)
+	processing_events.Remove(S)
+
+/datum/storyteller/proc/process_events()	//Called in ticker
+	for(var/datum/storyevent/S in processing_events)
+		if(S.processing)
+			S.Process()
+			if(S.is_ended())
+				S.stop_processing(TRUE)
 
 /datum/storyteller/proc/update_objectives()
 	for(var/datum/antagonist/A in current_antags)
@@ -58,78 +111,21 @@ var/global/list/rolespawn_log = list()
 		for(var/datum/objective/O in F.objectives)
 			O.update_completion()
 
-/datum/storyteller/proc/get_player_weight(var/mob/M)
-	var/weight = 0
-	if(M.client && (M.mind && !M.mind.antagonist.len) && M.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))
-		weight += 1
-		if(isAI(M))
-			weight += 5
-		var/datum/job/job = job_master.GetJob(M.mind.assigned_role)
-		if(job)
-			if(job.flag == CAPTAIN)
-				weight += 2
-			if(job.head_position)
-				weight += 2
-			if(job.department_flag == ENGSEC)
-				weight += 1
-			if(job.department_flag == MEDSCI)
-				weight += 0.5
+/datum/storyteller/proc/update_event_weight(var/datum/storyevent/R)
+	ASSERT(istype(R))
 
-	return weight
+	R.weight_cache = calculate_event_weight(R)
+	//R.weight_cache *= 1-rand()*weight_randomizer
+	return R.weight_cache
 
-/datum/storyteller/proc/get_round_weight()
-	var/weight = 0
+/datum/storyteller/proc/trigger_event()
+	story_debug("Called trigger_event() of base type. Fix this shit!")
 
-	for(var/mob/M in player_list)
-		weight += get_player_weight(M)
-
-	weight += (role_spawn_stage) * 4
-
-	return weight
-
-/datum/storyteller/proc/get_roleset_weight(var/datum/roleset/R)
-	return R.get_roles_weight()+R.get_special_weight()
-
-/datum/storyteller/proc/spawn_antagonist()
-	var/weight = get_round_weight()
-
-	//Shuffle roleset list to make rolesets with equal weight follow randomly
-	var/list/shuffled_rolesets = list()
-	for(var/datum/roleset/R in rolesets)
-		shuffled_rolesets.Insert(rand(1,shuffled_rolesets.len),R)
-
-	//Now, sort possiblities by closeness to the round weight
-	var/list/possiblities = list()
-	var/list/weight_cache = list()
-	for(var/datum/roleset/R in shuffled_rolesets)
-		if(R.can_spawn())
-			var/added = FALSE
-			var/rweight = get_roleset_weight(R)
-			weight_cache[R] = rweight
-			if(possiblities.len)
-				for(var/i = 1; i<=possiblities.len; i++)
-					var/datum/roleset/R2 = possiblities[i]
-					if(!istype(R2))
-						log_debug("Wrong element in storyteller possiblities sort list! ([R2])")
-						continue
-					if(abs(rweight-weight) <= abs(weight_cache[R2]-weight))
-						added = TRUE
-						possiblities.Insert(i,R)
-						break
-			if(!added)
-				possiblities.Add(R)
-	spawn()
-		for(var/datum/roleset/R in possiblities)
-			if(R.spawn_roleset())
-				rolespawn_log.Add(R)
-				break
-
-		log_admin("STORYTELLER: All rolesets failed. There's no antag in this time. [storyteller_button()]")
-
-
-	return TRUE
 
 /proc/storyteller_button()
-	return "<a href='?src=\ref[ticker.storyteller];panel=1'>\[STORY\]</a>"
+	if(ticker && ticker.storyteller)
+		return "<a href='?src=\ref[ticker.storyteller];panel=1'>\[STORY\]</a>"
+	else
+		return "<s>\[STORY\]</s>"
 
 

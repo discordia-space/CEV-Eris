@@ -97,7 +97,7 @@
 		C.loc = src
 		src.cell = C
 		updateDialog()
-	else if(istype(I,/obj/item/weapon/screwdriver))
+	else if(istype(I,/obj/item/weapon/tool/screwdriver))
 		if(locked)
 			user << SPAN_NOTICE("The maintenance hatch cannot be opened or closed while the controls are locked.")
 			return
@@ -112,7 +112,7 @@
 			icon_state = "mulebot0"
 
 		updateDialog()
-	else if (istype(I, /obj/item/weapon/wrench))
+	else if (istype(I, /obj/item/weapon/tool/wrench))
 		if (src.health < maxhealth)
 			src.health = min(maxhealth, src.health+25)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -483,7 +483,7 @@
 	mode = 0
 
 
-/obj/machinery/bot/mulebot/process()
+/obj/machinery/bot/mulebot/Process()
 	if(!has_power())
 		on = 0
 		return
@@ -724,12 +724,12 @@
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
-	H.apply_damage(2*damage, BRUTE, "head")
-	H.apply_damage(2*damage, BRUTE, "chest")
-	H.apply_damage(0.5*damage, BRUTE, "l_leg")
-	H.apply_damage(0.5*damage, BRUTE, "r_leg")
-	H.apply_damage(0.5*damage, BRUTE, "l_arm")
-	H.apply_damage(0.5*damage, BRUTE, "r_arm")
+	H.apply_damage( 2  * damage, BRUTE, BP_HEAD)
+	H.apply_damage( 2  * damage, BRUTE, BP_CHEST)
+	H.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
+	H.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)
+	H.apply_damage(0.5 * damage, BRUTE, BP_L_ARM)
+	H.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
 
 	blood_splatter(src,H,1)
 	bloodiness += 4

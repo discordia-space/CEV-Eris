@@ -77,7 +77,7 @@ h1.alert, h2.alert		{color: #000000;}
 .info					{color: #0000CC;}
 .notice					{color: #000099;}
 .alium					{color: #00ff00;}
-.cult					{color: #800080; font-weight: bold; font-style: italic;}
+.revolution				{color: #B00030; font-weight: bold; font-style: italic;}
 
 .reflex_shoot			{color: #000099; font-style: italic;}
 
@@ -88,6 +88,7 @@ h1.alert, h2.alert		{color: #000000;}
 .changeling				{color: #800080;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
+.russian				{color: #635d17}
 
 .interface				{color: #330033;}
 

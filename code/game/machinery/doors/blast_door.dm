@@ -11,16 +11,19 @@
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
-	icon_state = null
 
+	var/id = 1.0
+	layer = BLASTDOOR_LAYER
+	open_layer = BLASTDOOR_LAYER
+	closed_layer = CLOSED_BLASTDOOR_LAYER
+
+	icon_state = null
 	// Icon states for different shutter types. Simply change this instead of rewriting the update_icon proc.
 	var/icon_state_open = null
 	var/icon_state_opening = null
 	var/icon_state_closed = null
 	var/icon_state_closing = null
 
-	closed_layer = 3.3 // Above airlocks when closed
-	var/id = 1.0
 	dir = 1
 	explosion_resistance = 25
 
@@ -31,12 +34,12 @@
 	var/_wifi_id
 	var/datum/wifi/receiver/button/door/wifi_receiver
 
-/obj/machinery/door/blast/initialize()
-	..()
+/obj/machinery/door/blast/Initialize()
+	. = ..()
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
 
-/obj/machinery/door/airlock/Destroy()
+/obj/machinery/door/blast/Destroy()
 	qdel(wifi_receiver)
 	wifi_receiver = null
 	return ..()
@@ -103,20 +106,21 @@
 // Parameters: 2 (C - Item this object was clicked with, user - Mob which clicked this object)
 // Description: If we are clicked with crowbar or wielded fire axe, try to manually open the door.
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
-/obj/machinery/door/blast/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/blast/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
-	if(istype(C, /obj/item/weapon/crowbar) || (istype(C, /obj/item/weapon/material/twohanded/fireaxe) && C:wielded == 1))
-		if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
-			force_toggle()
-		else
-			usr << SPAN_NOTICE("[src]'s motors resist your effort.")
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
+			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
+				force_toggle()
+			else
+				usr << SPAN_NOTICE("[src]'s motors resist your effort.")
 		return
-	if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel")
+	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
 		var/amt = Ceiling((maxhealth - health)/150)
 		if(!amt)
 			usr << SPAN_NOTICE("\The [src] is already fully repaired.")
 			return
-		var/obj/item/stack/P = C
+		var/obj/item/stack/P = I
 		if(P.amount < amt)
 			usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 			return
@@ -128,7 +132,9 @@
 			else
 				usr << SPAN_WARNING("You don't have enough sheets to repair this! You need at least [amt] sheets.")
 
-
+/obj/machinery/door/blast/attack_hand(mob/user as mob)
+	usr << SPAN_WARNING("You can't [density ? "open" : "close"] [src] by your own hands only.")
+	return
 
 // Proc: open()
 // Parameters: None
@@ -191,6 +197,9 @@
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
+	layer = SHUTTER_LAYER
+	open_layer = SHUTTER_LAYER
+	closed_layer = SHUTTER_LAYER
 
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))

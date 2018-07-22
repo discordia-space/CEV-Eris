@@ -22,7 +22,7 @@
 /obj/structure/simple_door/New(var/newloc, var/material_name)
 	..()
 	if(!material_name)
-		material_name = DEFAULT_WALL_MATERIAL
+		material_name = MATERIAL_STEEL
 	material = get_material_by_name(material_name)
 	if(!material)
 		qdel(src)
@@ -32,17 +32,17 @@
 	name = "[material.display_name] door"
 	color = material.icon_colour
 	if(material.opacity < 0.5)
-		opacity = 0
+		set_opacity(FALSE)
 	else
-		opacity = 1
+		set_opacity(TRUE)
 	if(material.products_need_process())
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/simple_door/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/structure/simple_door/get_material()
 	return material
@@ -99,7 +99,7 @@
 	flick("[material.door_icon_base]opening",src)
 	sleep(10)
 	density = 0
-	opacity = 0
+	set_opacity(FALSE)
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -111,7 +111,7 @@
 	flick("[material.door_icon_base]closing",src)
 	sleep(10)
 	density = 1
-	opacity = 1
+	set_opacity(TRUE)
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
@@ -134,8 +134,8 @@
 		hardness -= W.force/100
 		user << "You hit the [name] with your [W.name]!"
 		CheckHardness()
-	else if(istype(W,/obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W,/obj/item/weapon/tool/weldingtool))
+		var/obj/item/weapon/tool/weldingtool/WT = W
 		if(material.ignition_point && WT.remove_fuel(0, user))
 			TemperatureAct(150)
 	else

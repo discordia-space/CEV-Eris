@@ -16,7 +16,7 @@
 	var/lightfail = 0
 
 //override for failcheck behaviour
-/obj/item/weapon/gun/energy/gun/nuclear/process()
+/obj/item/weapon/gun/energy/gun/nuclear/Process()
 	charge_tick++
 	if(charge_tick < 4) return 0
 	charge_tick = 0

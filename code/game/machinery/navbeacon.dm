@@ -11,7 +11,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
 	level = 1		// underfloor
-	layer = 2.5
+	layer = LOW_OBJ_LAYER
 	anchored = 1
 
 	var/open = 0		// true if cover is open
@@ -114,12 +114,13 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 		if(!T.is_plating())
 			return		// prevent intraction when T-scanner revealed
 
-		if(istype(I, /obj/item/weapon/screwdriver))
-			open = !open
+		if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				open = !open
 
-			user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
+				user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
 
-			updateicon()
+				updateicon()
 
 		else if(I.GetID())
 			if(open)
@@ -254,4 +255,4 @@ Transponder Codes:<UL>"}
 	navbeacons.Remove(src)
 	if(radio_controller)
 		radio_controller.remove_object(src, freq)
-	..()
+	. = ..()

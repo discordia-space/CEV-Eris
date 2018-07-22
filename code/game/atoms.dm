@@ -1,6 +1,7 @@
 /atom
-	layer = 2
-	appearance_flags = TILE_BOUND
+	layer = TURF_LAYER
+	plane = GAME_PLANE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/level = 2
 	var/flags = 0
 	var/list/fingerprints
@@ -16,6 +17,7 @@
 	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE
+	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
 	var/list/footstep_sounds = list() // Footsteps sound
 
@@ -29,18 +31,48 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+	var/auto_init = TRUE
+
+	var/initialized = FALSE
+
+/atom/New(loc, ...)
+	var/do_initialize = SSatoms.initialized
+	if(do_initialize > INITIALIZATION_INSSATOMS)
+		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
+		if(SSatoms.InitAtom(src, args))
+			//we were deleted
+			return
+
+	var/list/created = SSatoms.created_atoms
+	if(created)
+		created += src
+
+//Called after New if the map is being loaded. mapload = TRUE
+//Called from base of New if the map is not being loaded. mapload = FALSE
+//This base must be called or derivatives must set initialized to TRUE
+//must not sleep
+//Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
+//Must return an Initialize hint. Defined in __DEFINES/subsystems.dm
+
+/atom/proc/Initialize(mapload, ...)
+	if(initialized)
+		crash_with("Warning: [src]([type]) initialized multiple times!")
+	initialized = TRUE
+
+	if(light_power && light_range)
+		update_light()
+
+	return INITIALIZE_HINT_NORMAL
+
+//called if Initialize returns INITIALIZE_HINT_LATELOAD
+/atom/proc/LateInitialize()
+	return
+
 /atom/Destroy()
-	if(reagents)
-		qdel(reagents)
-		reagents = null
+	QDEL_NULL(reagents)
 	spawn()
 		update_openspace()
 	. = ..()
-
-/atom/proc/initialize()
-	if(!isnull(gcDestroyed))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
-
 
 /atom/proc/reveal_blood()
 	return
@@ -255,6 +287,9 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/melt()
+	return
+
+/atom/proc/ignite_act()	//Proc called on connected igniter activation
 	return
 
 /atom/proc/hitby(atom/movable/AM as mob|obj)

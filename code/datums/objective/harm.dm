@@ -39,8 +39,9 @@
 			if(!found)
 				harm_points += 2
 
-		var/obj/item/organ/external/head/head = H.get_organ("head")
-		if(head.disfigured)
+		var/obj/item/organ/external/head/head = H.get_organ(BP_HEAD)
+
+		if(head && head.disfigured) // If you cut off the head, it's not quite "harm"
 			harm_points += 1
 
 		if(harm_points >= 4)

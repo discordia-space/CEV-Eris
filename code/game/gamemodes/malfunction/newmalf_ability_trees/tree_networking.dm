@@ -117,7 +117,7 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/alert_target = input("Select new alert level:") in list("green", "blue", "red", "delta", "CANCEL")
+	var/alert_target = input("Select new alert level:") in list("green", "blue", "red", "CANCEL")
 	if(!alert_target || !ability_pay(user, price) || alert_target == "CANCEL")
 		user << "Hack Aborted"
 		return
@@ -144,15 +144,15 @@
 			user << "You already started the system override sequence."
 		return
 	var/list/remaining_apcs = list()
-	for(var/obj/machinery/power/apc/A in machines)
-		if(!(A.z in config.station_levels)) 		// Only station APCs
+	for(var/obj/machinery/power/apc/A in SSmachines.machinery)
+		if(isNotStationLevel(A.z))
 			continue
-		if(A.hacker == user || A.aidisabled) 		// This one is already hacked, or AI control is disabled on it.
+		if(A.hacker == user || A.aidisabled) 	// This one is already hacked, or AI control is disabled on it.
 			continue
 		remaining_apcs += A
 
-	var/duration = (remaining_apcs.len * 100)		// Calculates duration for announcing system
-	if(duration > 3000)								// Two types of announcements. Short hacks trigger immediate warnings. Long hacks are more "progressive".
+	var/duration = (remaining_apcs.len * 100)	// Calculates duration for announcing system
+	if(duration > 3000)							// Two types of announcements. Short hacks trigger immediate warnings. Long hacks are more "progressive".
 		spawn(0)
 			sleep(duration/5)
 			if(!user || user.stat == DEAD)
@@ -190,8 +190,8 @@
 	user << "## REACHABLE APC SYSTEMS OVERTAKEN. BYPASSING PRIMARY FIREWALL."
 	sleep(300)
 	// Hack all APCs, including those built during hack sequence.
-	for(var/obj/machinery/power/apc/A in machines)
-		if((!A.hacker || A.hacker != src) && !A.aidisabled && A.z in config.station_levels)
+	for(var/obj/machinery/power/apc/A in SSmachines.machinery)
+		if((!A.hacker || A.hacker != src) && !A.aidisabled && isStationLevel(A.z))
 			A.ai_hack(src)
 
 

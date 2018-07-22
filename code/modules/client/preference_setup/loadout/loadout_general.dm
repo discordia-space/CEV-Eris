@@ -40,7 +40,7 @@
 
 /datum/gear/boot_knife
 	display_name = "boot knife"
-	path = /obj/item/weapon/material/kitchen/utensil/knife/boot
+	path = /obj/item/weapon/material/knife/boot
 	cost = 3
 
 /datum/gear/mirror

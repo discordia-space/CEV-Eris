@@ -66,7 +66,7 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/curer/process()
+/obj/machinery/computer/curer/Process()
 	..()
 
 	if(stat & (NOPOWER|BROKEN))

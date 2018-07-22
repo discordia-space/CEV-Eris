@@ -16,27 +16,18 @@
 
 /obj/machinery/door/blast/shutters/glass/attackby(obj/item/I, mob/user, params)
 	if(density)
-		if(istype(I, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = I
+		if(QUALITY_WELDING in I.tool_qualities)
 			if((stat&BROKEN) && have_glass)
-				if(WT.remove_fuel(0,user))
-					user << SPAN_NOTICE("You begin slicing [src]'s debris...")
-					playsound(loc, 'sound/items/Welder.ogg', 40, 1)
-					if(do_after(user, 40, src))
-						have_glass = FALSE
-						update_icon()
-						playsound(loc, 'sound/items/Welder2.ogg', 50, 1)
-						return
+				if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					have_glass = FALSE
+					update_icon()
+					return
 			else
 				if(user.a_intent == I_HELP)
 					if(health < maxhealth)
-						if(WT.remove_fuel(0,user))
-							user << SPAN_NOTICE("You begin repairing [src]...")
-							playsound(loc, 'sound/items/Welder.ogg', 40, 1)
-							if(do_after(user, 40, src))
-								health = maxhealth
-								playsound(loc, 'sound/items/Welder2.ogg', 50, 1)
-								update_icon()
+						if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+							health = maxhealth
+							update_icon()
 					return
 		else if(istype(I,/obj/item/stack/material/glass/reinforced))
 			if(!have_glass)

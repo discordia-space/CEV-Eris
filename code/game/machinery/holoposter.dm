@@ -1,5 +1,6 @@
 /obj/machinery/holoposter
 	name = "Holographic Poster"
+	desc = "Wall-mounted holographic projector. Looks like those factions pay owner of this place for advertisement."
 	icon = 'icons/obj/holoposter.dmi'
 	icon_state = "off"
 	anchored = 1
@@ -17,6 +18,7 @@
 		"asters" = "#5FAE57",
 		"tehnomancers" = "#AA7039",
 		"moebius" = "#5D2971",
+		"med" = "#17A32D",
 	)
 
 /obj/machinery/holoposter/update_icon()
@@ -44,7 +46,7 @@
 	src.add_fingerprint(user)
 	if(stat & (NOPOWER))
 		return
-	if (istype(W, /obj/item/device/multitool))
+	if (istype(W, /obj/item/weapon/tool/multitool))
 		playsound(user.loc, 'sound/items/multitool_pulse.ogg', 60, 1)
 		icon_state = input("Available Posters", "Holographic Poster") as null|anything in  postertypes + "random"
 		if(icon_state == "random")
@@ -70,7 +72,7 @@
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/holoposter/process()
+/obj/machinery/holoposter/Process()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if((world.time > last_launch + 1 MINUTE) && (!icon_forced))

@@ -1,35 +1,32 @@
 //Analyzer, pestkillers, weedkillers, nutrients, hatchets, cutters.
 
-/obj/item/weapon/wirecutters/clippers
-	name = "plant clippers"
-	desc = "A tool used to take samples from plants."
-
-/obj/item/device/analyzer/plant_analyzer
+/obj/item/device/scanner/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	var/form_title
 	var/last_data
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report_verb()
+/obj/item/device/scanner/analyzer/plant_analyzer/proc/print_report_verb()
 	set name = "Print Plant Report"
 	set category = "Object"
 	set src = usr
 
-	if(usr.stat || usr.restrained() || usr.lying)
-		return
 	print_report(usr)
 
-/obj/item/device/analyzer/plant_analyzer/Topic(href, href_list)
+/obj/item/device/scanner/analyzer/plant_analyzer/Topic(href, href_list)
 	if(..())
 		return
 	if(href_list["print"])
 		print_report(usr)
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
+/obj/item/device/scanner/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
 	if(!last_data)
 		user << "There is no scan data to print."
+		return
+	if(!cell_use_check(3))
 		return
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
 	P.name = "paper - [form_title]"
@@ -39,13 +36,14 @@
 	user.visible_message("\The [src] spits out a piece of paper.")
 	return
 
-/obj/item/device/analyzer/plant_analyzer/attack_self(mob/user as mob)
+/obj/item/device/scanner/analyzer/plant_analyzer/attack_self(mob/user as mob)
+	if(user.incapacitated())
+		return
 	print_report(user)
 	return 0
 
-/obj/item/device/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
-	if(!cell || !cell.checked_use(5))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+/obj/item/device/scanner/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
+	if(!cell_use_check(5))
 		return
 	if(!flag) return
 
@@ -175,7 +173,7 @@
 		if(1)
 			dat += "<br>It is carnivorous and will eat tray pests for sustenance."
 		if(2)
-			dat	+= "<br>It is carnivorous and poses a significant threat to living things around it."
+			dat += "<br>It is carnivorous and poses a significant threat to living things around it."
 
 	if(grown_seed.get_trait(TRAIT_PARASITE))
 		dat += "<br>It is capable of parisitizing and gaining sustenance from tray weeds."

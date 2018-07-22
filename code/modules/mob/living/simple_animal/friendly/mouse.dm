@@ -3,9 +3,7 @@
 	real_name = "mouse"
 	desc = "It's a small rodent."
 	icon_state = "mouse_gray"
-	speak = list("Squeek!","SQUEEK!","Squeek?")
 	speak_emote = list("squeeks","squeeks","squiks")
-	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 	pass_flags = PASSTABLE
 	speak_chance = 1
@@ -50,7 +48,7 @@
 			icon_state = "mouse_[body_color]"
 			wander = 1
 		else if(prob(5))
-			audible_emote("snuffles.")
+			visible_emote("snuffles.")
 
 /mob/living/simple_animal/mouse/lay_down()
 	..()

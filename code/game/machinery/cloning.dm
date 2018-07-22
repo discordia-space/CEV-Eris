@@ -16,7 +16,7 @@
 		//They need a brain!
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.species.has_organ["brain"] && !H.has_brain())
+			if(H.species.has_organ[O_BRAIN] && !H.has_brain())
 				continue
 		if(M.ckey == find_key)
 			selected = M
@@ -144,7 +144,7 @@
 	return 1
 
 //Grow clones to maturity then kick them out.  FREELOADERS
-/obj/machinery/clonepod/process()
+/obj/machinery/clonepod/Process()
 
 	if(stat & NOPOWER) //Autoeject if power is lost
 		if(occupant)
@@ -195,16 +195,17 @@
 	return
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
-/obj/machinery/clonepod/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/clonepod/attackby(var/obj/item/I, mob/user as mob)
 	if(isnull(occupant))
-		if(default_deconstruction_screwdriver(user, W))
+
+		if(default_deconstruction(I, user))
 			return
-		if(default_deconstruction_crowbar(user, W))
+
+		if(default_part_replacement(I, user))
 			return
-		if(default_part_replacement(user, W))
-			return
-	if(W.GetID())
-		if(!check_access(W))
+
+	if(I.GetID())
+		if(!check_access(I))
 			user << SPAN_WARNING("Access Denied.")
 			return
 		if(!locked || isnull(occupant))
@@ -215,25 +216,12 @@
 		else
 			locked = 0
 			user << "System unlocked."
-	else if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
-		user << SPAN_NOTICE("\The [src] processes \the [W].")
+	else if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
+		user << SPAN_NOTICE("\The [src] processes \the [I].")
 		biomass += 50
-		user.drop_from_inventory(W)
-		qdel(W)
+		user.drop_from_inventory(I)
+		qdel(I)
 		return
-	else if(istype(W, /obj/item/weapon/wrench))
-		if(locked && (anchored || occupant))
-			user << SPAN_WARNING("Can not do that while [src] is in use.")
-		else
-			anchored = !anchored
-			playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-			if(anchored)
-				user.visible_message("[user] secures [src] to the floor.", "You secure [src] to the floor.")
-			else
-				user.visible_message("[user] unsecures [src] from the floor.", "You unsecure [src] from the floor.")
-				if(connected)
-					connected.pods -= src
-					connected = null
 	else
 		..()
 

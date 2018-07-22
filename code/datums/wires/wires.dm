@@ -116,16 +116,23 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 			var/obj/item/I = L.get_active_hand()
 			holder.add_hiddenprint(L)
 			if(href_list["cut"]) // Toggles the cut/mend status
-				if(istype(I, /obj/item/weapon/wirecutters))
-					var/colour = href_list["cut"]
-					CutWireColour(colour)
+				var/tool_type = null
+				if(QUALITY_CUTTING in I.tool_qualities)
+					tool_type = QUALITY_CUTTING
+				if(QUALITY_WIRE_CUTTING in I.tool_qualities)
+					tool_type = QUALITY_WIRE_CUTTING
+				if(tool_type)
+					if(I.use_tool(L, holder, WORKTIME_INSTANT, tool_type, FAILCHANCE_ZERO))
+						var/colour = href_list["cut"]
+						CutWireColour(colour)
 				else
-					L << "<span class='error'>You need wirecutters!</span>"
+					L << "<span class='error'>You need something that can cut!</span>"
 
 			else if(href_list["pulse"])
-				if(istype(I, /obj/item/device/multitool))
-					var/colour = href_list["pulse"]
-					PulseColour(colour)
+				if(I.get_tool_type(usr, list(QUALITY_PULSING)))
+					if(I.use_tool(L, holder, WORKTIME_INSTANT, QUALITY_PULSING, FAILCHANCE_ZERO))
+						var/colour = href_list["pulse"]
+						PulseColour(colour)
 				else
 					L << "<span class='error'>You need a multitool!</span>"
 

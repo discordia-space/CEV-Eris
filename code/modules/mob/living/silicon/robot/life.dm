@@ -83,7 +83,7 @@
 	if(src.resting)
 		Weaken(5)
 
-	if(health < config.health_threshold_dead && src.stat != 2) //die only once
+	if(health < HEALTH_THRESHOLD_DEAD && src.stat != 2) //die only once
 		death()
 
 	if (src.stat != 2) //Alive.
@@ -180,7 +180,7 @@
 		src.sight &= ~SEE_MOBS
 		src.sight &= ~SEE_TURFS
 		src.sight &= ~SEE_OBJS
-		src.see_in_dark = 8 			 // see_in_dark means you can FAINTLY see in the dark, humans have a range of 3 or so, tajaran have it at 8
+		src.see_in_dark = 8 			 // see_in_dark means you can FAINTLY see in the dark, humans have a range of 3 or so
 		src.see_invisible = SEE_INVISIBLE_LIVING // This is normal vision (25), setting it lower for normal vision means you don't "see" things like darkness since darkness
 							 // has a "invisible" value of 15
 
@@ -198,7 +198,7 @@
 
 	for (var/obj/screen/H in HUDprocess)
 //		var/obj/screen/B = H
-		H.process()
+		H.Process()
 
 /*	if (src.healths)
 		if (src.stat != 2)
@@ -230,7 +230,7 @@
 						src.healths.icon_state = "health3"
 					if(0 to 50)
 						src.healths.icon_state = "health4"
-					if(config.health_threshold_dead to 0)
+					if(HEALTH_THRESHOLD_DEAD to 0)
 						src.healths.icon_state = "health5"
 					else
 						src.healths.icon_state = "health6"

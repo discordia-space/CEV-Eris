@@ -5,7 +5,7 @@
 	icon_state = "forensic0-old" //GET A BETTER SPRITE.
 	item_state = "electronic"
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
 	user << "You begin sweeping \the [src] about, scanning for metal deposits."
@@ -30,8 +30,8 @@
 
 			switch(metal)
 				if("silicates", "carbonaceous rock", "iron")	ore_type = "surface minerals"
-				if("gold", "silver", "diamond")					ore_type = "precious metals"
-				if("uranium")									ore_type = "nuclear fuel"
+				if(MATERIAL_GOLD, MATERIAL_SILVER, MATERIAL_DIAMOND)					ore_type = "precious metals"
+				if(MATERIAL_URANIUM)									ore_type = "nuclear fuel"
 				if("plasma", "osmium", "hydrogen")				ore_type = "exotic matter"
 
 			if(ore_type) metals[ore_type] += T.resources[metal]

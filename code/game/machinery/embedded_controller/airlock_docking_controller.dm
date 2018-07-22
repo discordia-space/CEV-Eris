@@ -5,8 +5,8 @@
 	var/datum/computer/file/embedded_program/docking/airlock/docking_program
 	tag_secure = 1
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/initialize()
-	..()
+/obj/machinery/embedded_controller/radio/airlock/docking_port/Initialize()
+	. = ..()
 	airlock_program = new/datum/computer/file/embedded_program/airlock/docking(src)
 	docking_program = new/datum/computer/file/embedded_program/docking/airlock(src, airlock_program)
 	program = docking_program
@@ -81,8 +81,8 @@
 	..(command)
 	airlock_program.receive_user_command(command)	//pass along to subprograms
 
-/datum/computer/file/embedded_program/docking/airlock/process()
-	airlock_program.process()
+/datum/computer/file/embedded_program/docking/airlock/Process()
+	airlock_program.Process()
 	..()
 
 /datum/computer/file/embedded_program/docking/airlock/receive_signal(datum/signal/signal, receive_method, receive_param)

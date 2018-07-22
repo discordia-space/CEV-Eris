@@ -11,13 +11,13 @@
 	invisibility = 101
 
 	density = 0
-	stat = 2
+	stat = DEAD
 	canmove = 0
 
 	anchored = 1	//  don't get pushed around
-
+/*
 /mob/new_player/New()
-	mob_list += src
+	mob_list += src*/
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr
@@ -112,10 +112,10 @@
 
 			observer.started_as_observer = 1
 			close_spawn_windows()
-			var/obj/O = locate("observer-spawn")
-			if(istype(O))
-				src << "<span class='notice'>You are observer now.</span>"
-				observer.forceMove(O.loc)
+			var/turf/T = pickSpawnLocation(/mob/observer)
+			if(istype(T))
+				src << SPAN_NOTICE("You are observer now.")
+				observer.forceMove(T)
 			else
 				src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
@@ -288,11 +288,13 @@
 	dat += "<b>Welcome, [name].<br></b>"
 	dat += "Round Duration: [roundduration2text()]<br>"
 
-	if(emergency_shuttle) //In case Nanotrasen decides reposess CentComm's shuttles.
-		if(emergency_shuttle.going_to_centcom()) //Shuttle is going to centcomm, not recalled
-			dat += "<font color='red'><b>The vessel has been evacuated.</b></font><br>"
-		if(emergency_shuttle.online())
+	if(evacuation_controller.has_evacuated()) //In case Nanotrasen decides reposess CentComm's shuttles.
+		dat += "<font color='red'><b>The vessel has been evacuated.</b></font><br>"
+	else if(evacuation_controller.is_evacuating())
+		if(evacuation_controller.emergency_evacuation) // Emergency shuttle is past the point of no recall
 			dat += "<font color='red'>The vessel is currently undergoing evacuation procedures.</font><br>"
+		else                                           // Crew transfer initiated
+			dat += "<font color='red'>The vessel is currently undergoing crew transfer procedures.</font><br>"
 
 	dat += "Choose from the following open/valid positions:<br>"
 	for(var/datum/job/job in job_master.occupations)
@@ -348,7 +350,7 @@
 	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
 
 	if(mind)
-		mind.active = 0					//we wish to transfer the key manually
+		mind.active = 0//we wish to transfer the key manually
 		mind.original = new_character
 		if(client.prefs.relations.len)
 			for(var/T in client.prefs.relations)
@@ -375,7 +377,7 @@
 	new_character.force_update_limbs()
 	new_character.update_eyes()
 	new_character.regenerate_icons()
-	new_character.key = key		//Manually transfer the key to log them in
+	new_character.key = key//Manually transfer the key to log them in
 
 	return new_character
 

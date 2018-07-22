@@ -37,7 +37,8 @@
 /obj/effect/bmode//Cleaning up the tree a bit
 	density = 1
 	anchored = 1
-	layer = 20
+	plane = ABOVE_HUD_PLANE
+	layer = ABOVE_HUD_LAYER
 	dir = NORTH
 	icon = 'icons/misc/buildmode.dmi'
 	var/obj/effect/bmode/buildholder/master = null
@@ -194,7 +195,7 @@
 						if("number")
 							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value", 123) as num
 						if("mob-reference")
-							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in mob_list
+							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in SSmobs.mob_list
 						if("obj-reference")
 							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in world
 						if("turf-reference")
@@ -214,6 +215,10 @@
 		if(1)
 			if(istype(object,/turf) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
 				if(istype(object,/turf/space))
+					var/turf/T = object
+					T.ChangeTurf(/turf/simulated/floor)
+					return
+				if(istype(object,/turf/simulated/open))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
 					return

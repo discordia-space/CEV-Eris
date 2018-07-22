@@ -1,48 +1,42 @@
-var/list/organ_cache = list()
-
 /obj/item/organ
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
-	var/dead_icon
-	var/mob/living/carbon/human/owner = null
-	var/status = 0
-	var/vital 		//Lose a vital limb, die immediately.
-	var/damage = 0 	// amount of damage to the organ
-
-	var/min_bruised_damage = 10
-	var/min_broken_damage = 30
-	var/max_damage
-	var/organ_tag = "organ"
-
-	var/parent_organ = "chest"
-	var/obj/item/organ/external/parent
-	var/robotic = 0 //For being a robot
-	var/rejecting   // Is this organ already being rejected?
-
-	var/list/transplant_data
-	var/list/datum/autopsy_data/autopsy_data = list()
-	var/list/trace_chemicals = list() // traces of chemicals in the organ,
-									  // links chemical IDs to number of ticks for which they'll stay in the blood
 	germ_level = 0
+
+	// Strings.
+	var/organ_tag = "organ"           // Unique identifier.
+	var/parent_organ = BP_CHEST       // Organ holding this object.
+	var/dead_icon
+
+	// Status tracking.
+	var/status = 0                    // Various status flags
+	var/vital                         // Lose a vital limb, die immediately.
+	var/damage = 0                    // Current damage to the organ
+	var/robotic = 0
+
+	// Reference data.
+	var/mob/living/carbon/human/owner // Current mob owning the organ.
+	var/obj/item/organ/external/parent
+	var/list/transplant_data          // Transplant match data.
+	var/list/autopsy_data = list()    // Trauma data for forensics.
+	var/list/trace_chemicals = list() // Traces of chemicals in the organ.
 	var/datum/dna/dna
 	var/datum/species/species
 
-/obj/item/organ/Destroy()
-	if(!owner)
-		return ..()
+	// Damage vars.
+	var/min_bruised_damage = 10       // Damage before considered bruised
+	var/min_broken_damage = 30        // Damage before becoming broken
+	var/max_damage                    // Damage cap
+	var/rejecting                     // Is this organ already being rejected?
 
-	if(iscarbon(owner))
-		if((owner.internal_organs) && (src in owner.internal_organs))
-			owner.internal_organs -= src
-		if(ishuman(owner))
-			if((owner.internal_organs_by_name) && (src in owner.internal_organs_by_name))
-				owner.internal_organs_by_name -= src
-			if((owner.organs) && (src in owner.organs))
-				owner.organs -= src
-			if((owner.organs_by_name) && (src in owner.organs_by_name))
-				owner.organs_by_name -= src
-	if(src in owner.contents)
-		owner.contents -= src
+/obj/item/organ/Destroy()
+	if(owner)
+		if(src in owner.contents)
+			owner.contents -= src
+		owner = null
+	parent = null
+	QDEL_NULL(dna)
+	species = null
 
 	return ..()
 
@@ -92,17 +86,17 @@ var/list/organ_cache = list()
 		species = all_species[new_dna.species]
 
 /obj/item/organ/proc/die()
-	if(status & ORGAN_ROBOT)
+	if(robotic >= ORGAN_ROBOT)
 		return
 	damage = max_damage
 	status |= ORGAN_DEAD
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	if(dead_icon)
 		icon_state = dead_icon
 	if(owner && vital)
 		owner.death()
 
-/obj/item/organ/process()
+/obj/item/organ/Process()
 
 	if(loc != owner)
 		owner = null
@@ -116,7 +110,7 @@ var/list/organ_cache = list()
 	if(istype(loc,/obj/structure/closet/body_bag/cryobag) || istype(loc,/obj/structure/closet/crate/freezer) || istype(loc,/obj/item/weapon/storage/box/freezer))
 		return
 	//Process infections
-	if ((status & ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
+	if ((robotic >= ORGAN_ROBOT) || (owner && owner.species && (owner.species.flags & IS_PLANT)))
 		germ_level = 0
 		return
 
@@ -240,7 +234,7 @@ var/list/organ_cache = list()
 
 //Note: external organs have their own version of this proc
 /obj/item/organ/proc/take_damage(amount, var/silent=0)
-	if(src.status & ORGAN_ROBOT)
+	if(src.robotic >= ORGAN_ROBOT)
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else
 		src.damage = between(0, src.damage + amount, max_damage)
@@ -254,24 +248,8 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
 
-/obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
-	robotic = 2
-	src.status &= ~ORGAN_BROKEN
-	src.status &= ~ORGAN_BLEEDING
-	src.status &= ~ORGAN_SPLINTED
-	src.status &= ~ORGAN_CUT_AWAY
-	src.status |= ORGAN_ROBOT
-	src.status |= ORGAN_ASSISTED
-
-/obj/item/organ/proc/mechassist() //Used to add things like pacemakers, etc
-	robotize()
-	src.status &= ~ORGAN_ROBOT
-	robotic = 1
-	min_bruised_damage = 15
-	min_broken_damage = 35
-
 /obj/item/organ/emp_act(severity)
-	if(!(status & ORGAN_ROBOT))
+	if(robotic < ORGAN_ROBOT)
 		return
 	switch (severity)
 		if (1)
@@ -295,7 +273,7 @@ var/list/organ_cache = list()
 	if(affected) affected.internal_organs -= src
 
 	loc = get_turf(owner)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
@@ -327,44 +305,10 @@ var/list/organ_cache = list()
 
 	owner = target
 	loc = owner
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	target.internal_organs |= src
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src
-	if(robotic)
-		status |= ORGAN_ROBOT
-
-/obj/item/organ/proc/bitten(mob/user)
-
-	if(robotic)
-		return
-
-	user << "\blue You take an experimental bite out of \the [src]."
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
-	blood_splatter(src,B,1)
-
-	user.drop_from_inventory(src)
-	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
-	O.name = name
-	O.icon = icon
-	O.icon_state = icon_state
-
-	// Pass over the blood.
-	reagents.trans_to(O, reagents.total_volume)
-
-	if(fingerprints) O.fingerprints = fingerprints.Copy()
-	if(fingerprintshidden) O.fingerprintshidden = fingerprintshidden.Copy()
-	if(fingerprintslast) O.fingerprintslast = fingerprintslast
-
-	user.put_in_active_hand(O)
-	qdel(src)
-
-/obj/item/organ/attack_self(mob/user as mob)
-
-	// Convert it to an edible form, yum yum.
-	if(!robotic && user.a_intent == I_HELP && user.targeted_organ == "mouth")
-		bitten(user)
-		return
 
 /obj/item/organ/proc/install(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -379,4 +323,4 @@ var/list/organ_cache = list()
 		if(!blood_DNA)
 			blood_DNA = list()
 		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)

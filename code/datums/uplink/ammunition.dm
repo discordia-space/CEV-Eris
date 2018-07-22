@@ -23,7 +23,7 @@
 /datum/uplink_item/item/ammo/a357
 	name = ".357"
 	item_cost = 2
-	path = /obj/item/ammo_magazine/a357
+	path = /obj/item/ammo_magazine/sl357
 
 /datum/uplink_item/item/ammo/a762
 	name = "7.62mm"

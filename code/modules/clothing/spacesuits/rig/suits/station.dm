@@ -34,7 +34,7 @@
 
 	allowed = list(
 		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/t_scanner,
-		/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/weapon/pickaxe,
+		/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/weapon/tool/pickaxe,
 		/obj/item/weapon/rcd
 	)
 
@@ -45,7 +45,6 @@
 /obj/item/weapon/rig/industrial/equipped
 
 	initial_modules = list(
-		/obj/item/rig_module/device/plasmacutter,
 		/obj/item/rig_module/device/drill,
 		/obj/item/rig_module/device/orescanner,
 		/obj/item/rig_module/device/rcd,
@@ -76,7 +75,6 @@
 /obj/item/weapon/rig/eva/equipped
 
 	initial_modules = list(
-		/obj/item/rig_module/device/plasmacutter,
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/rcd,
 		/obj/item/rig_module/vision/meson
@@ -98,7 +96,7 @@
 
 	allowed = list(
 		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe,
+		/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/tool/pickaxe,
 		/obj/item/weapon/rcd
 	)
 
@@ -116,7 +114,6 @@
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/maneuvering_jets,
-		/obj/item/rig_module/device/plasmacutter,
 		/obj/item/rig_module/device/rcd,
 		/obj/item/rig_module/vision/meson
 		)
@@ -143,10 +140,10 @@
 
 	allowed = list(
 		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/stack/flag,/obj/item/weapon/storage/box/excavation,/obj/item/weapon/pickaxe,
-		/obj/item/device/healthanalyzer,/obj/item/device/measuring_tape,/obj/item/device/ano_scanner,
+		/obj/item/stack/flag,/obj/item/weapon/tool,
+		/obj/item/device/scanner/healthanalyzer,/obj/item/device/measuring_tape,/obj/item/device/ano_scanner,
 		/obj/item/device/depth_scanner,/obj/item/device/core_sampler,/obj/item/device/gps,
-		/obj/item/device/beacon_locator,/obj/item/device/radio/beacon,/obj/item/weapon/pickaxe/hand,
+		/obj/item/device/beacon_locator,/obj/item/device/radio/beacon,
 		/obj/item/weapon/storage/bag/fossils
 	)
 
@@ -177,7 +174,7 @@
 
 	allowed = list(
 		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical,
+		/obj/item/weapon/storage/firstaid,/obj/item/device/scanner/healthanalyzer,/obj/item/stack/medical,
 		/obj/item/roller
 	)
 

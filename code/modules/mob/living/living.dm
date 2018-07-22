@@ -368,8 +368,8 @@ default behaviour is:
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter:targeted_organ
-	if ((t in list( "eyes", "mouth" )))
-		t = "head"
+	if(t in list(O_EYES, "mouth"))
+		t = BP_HEAD
 	var/obj/item/organ/external/def_zone = ran_zone(t)
 	return def_zone
 
@@ -953,7 +953,7 @@ default behaviour is:
 		pulled.inertia_dir = 0
 
 
-// Static Overlays
+// Static Overlays and Stats
 
 /mob/living/proc/generate_static_overlay()
 	static_overlay = image(get_static_icon(new/icon(icon, icon_state)), loc = src)
@@ -961,6 +961,8 @@ default behaviour is:
 
 /mob/living/New()
 	..()
+	stats = new /datum/stat_holder
+
 	generate_static_overlay()
 	for(var/mob/observer/eye/angel/A in player_list)
 		if(A)

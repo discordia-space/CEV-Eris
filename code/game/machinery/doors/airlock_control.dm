@@ -8,7 +8,7 @@ obj/machinery/door/airlock
 	var/datum/radio_frequency/radio_connection
 	var/cur_command = null	//the command the door is currently attempting to complete
 
-obj/machinery/door/airlock/process()
+obj/machinery/door/airlock/Process()
 	..()
 	if (arePowerSystemsOn())
 		execute_current_command()
@@ -129,8 +129,8 @@ obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
 
-obj/machinery/door/airlock/initialize()
-	..()
+obj/machinery/door/airlock/Initialize()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
 
@@ -149,7 +149,7 @@ obj/machinery/door/airlock/New()
 obj/machinery/door/airlock/Destroy()
 	if(frequency && radio_controller)
 		radio_controller.remove_object(src,frequency)
-	..()
+	. = ..()
 
 obj/machinery/airlock_sensor
 	icon = 'icons/obj/airlock_machines.dmi'
@@ -188,7 +188,7 @@ obj/machinery/airlock_sensor/attack_hand(mob/user)
 	radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 	flick("airlock_sensor_cycle", src)
 
-obj/machinery/airlock_sensor/process()
+obj/machinery/airlock_sensor/Process()
 	if(on)
 		var/datum/gas_mixture/air_sample = return_air()
 		var/pressure = round(air_sample.return_pressure(),0.1)
@@ -213,7 +213,8 @@ obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
-obj/machinery/airlock_sensor/initialize()
+obj/machinery/airlock_sensor/Initialize()
+	. = ..()
 	set_frequency(frequency)
 
 obj/machinery/airlock_sensor/New()
@@ -224,7 +225,7 @@ obj/machinery/airlock_sensor/New()
 obj/machinery/airlock_sensor/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
-	..()
+	. = ..()
 
 obj/machinery/airlock_sensor/airlock_interior
 	command = "cycle_interior"
@@ -284,7 +285,8 @@ obj/machinery/access_button/proc/set_frequency(new_frequency)
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
 
-obj/machinery/access_button/initialize()
+obj/machinery/access_button/Initialize()
+	. = ..()
 	set_frequency(frequency)
 
 
@@ -297,7 +299,7 @@ obj/machinery/access_button/New()
 obj/machinery/access_button/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
-	..()
+	. = ..()
 
 obj/machinery/access_button/airlock_interior
 	frequency = 1379

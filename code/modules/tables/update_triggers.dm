@@ -11,7 +11,7 @@
 		T.update_connections()
 		T.update_icon()
 	loc=oldloc
-	..()
+	. = ..()
 
 /obj/structure/window/Move()
 	var/oldloc = loc

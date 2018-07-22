@@ -29,7 +29,7 @@
 ///////////////////////////////
 
 /proc/pick_meteor_start(var/startSide = pick(cardinal))
-	var/startLevel = pick(config.station_levels)
+	var/startLevel = pick(maps_data.station_levels)
 	var/pickedstart = spaceDebrisStartLoc(startSide, startLevel)
 
 	return list(startLevel, pickedstart)
@@ -131,7 +131,7 @@
 
 /obj/effect/meteor/Destroy()
 	walk(src,0) //this cancels the walk_towards() proc
-	..()
+	. = ..()
 
 /obj/effect/meteor/New()
 	..()
@@ -168,10 +168,12 @@
 /obj/effect/meteor/ex_act()
 	return
 
-/obj/effect/meteor/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
-	if(istype(W, /obj/item/weapon/pickaxe))
-		qdel(src)
-		return
+/obj/effect/meteor/attackby(obj/item/I, mob/user, params)
+	if(QUALITY_DIGGING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_ROB))
+			user << SPAN_NOTICE("You broke the meteor in harmless dust.")
+			qdel(src)
+			return
 	..()
 
 /obj/effect/meteor/proc/make_debris()

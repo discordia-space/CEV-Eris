@@ -8,7 +8,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (isslime(target))
 			return 0
-		if (target_zone == "eyes")	//there are specific steps for eye surgery
+		if (target_zone == O_EYES)	//there are specific steps for eye surgery
 			return 0
 		if (!hasorgans(target))
 			return 0
@@ -17,16 +17,12 @@
 			return 0
 		if (affected.status & ORGAN_DESTROYED)
 			return 0
-		if (!(affected.status & ORGAN_ROBOT))
+		if (!(affected.robotic >= ORGAN_ROBOT))
 			return 0
 		return 1
 
 /datum/surgery_step/robotics/unscrew_hatch
-	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
-		/obj/item/weapon/coin = 50,
-		/obj/item/weapon/material/kitchen/utensil/knife = 50
-	)
+	requedQuality = QUALITY_SCREW_DRIVING
 
 	min_duration = 90
 	max_duration = 110
@@ -54,11 +50,7 @@
 		SPAN_WARNING("Your [tool] slips, failing to unscrew [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/open_hatch
-	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 100,
-		/obj/item/weapon/material/kitchen/utensil = 50
-	)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 30
 	max_duration = 40
@@ -86,11 +78,7 @@
 		SPAN_WARNING("Your [tool] slips, failing to open the hatch on [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/close_hatch
-	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 100,
-		/obj/item/weapon/material/kitchen/utensil = 50
-	)
+	requedQuality = QUALITY_RETRACTING
 
 	min_duration = 70
 	max_duration = 100
@@ -119,10 +107,7 @@
 		SPAN_WARNING("Your [tool.name] slips, failing to close the hatch on [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/repair_brute
-	allowed_tools = list(
-		/obj/item/weapon/weldingtool = 100,
-		/obj/item/weapon/pickaxe/plasmacutter = 50
-	)
+	requedQuality = QUALITY_WELDING
 
 	min_duration = 50
 	max_duration = 60
@@ -130,10 +115,8 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			if(istype(tool,/obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/welder = tool
-				if(!welder.isOn() || !welder.remove_fuel(1,user))
-					return 0
+			if(istype(tool,/obj/item/weapon/tool/weldingtool))
+				return 0
 			return affected && affected.open == 2 && affected.brute_dam > 0 && target_zone != "mouth"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -195,11 +178,7 @@
 		target.apply_damage(rand(5,10), BURN, affected)
 
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
-	allowed_tools = list(
-	/obj/item/stack/nanopaste = 100,		\
-	/obj/item/weapon/bonegel = 30, 		\
-	/obj/item/weapon/screwdriver = 70,	\
-	)
+	requedQuality = QUALITY_SCREW_DRIVING
 
 	min_duration = 70
 	max_duration = 90
@@ -263,10 +242,7 @@
 				I.take_damage(rand(3,5),0)
 
 /datum/surgery_step/robotics/detatch_organ_robotic
-
-	allowed_tools = list(
-	/obj/item/device/multitool = 100
-	)
+	requedQuality = QUALITY_SAWING
 
 	min_duration = 90
 	max_duration = 110
@@ -274,7 +250,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!(affected && (affected.status & ORGAN_ROBOT)))
+		if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 			return 0
 		if(affected.open != 2)
 			return 0
@@ -313,9 +289,7 @@
 		SPAN_WARNING("Your hand slips, disconnecting \the [tool]."))
 
 /datum/surgery_step/robotics/attach_organ_robotic
-	allowed_tools = list(
-		/obj/item/weapon/screwdriver = 100,
-	)
+	requedQuality = QUALITY_SCREW_DRIVING
 
 	min_duration = 100
 	max_duration = 120
@@ -323,7 +297,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		if(!(affected && (affected.status & ORGAN_ROBOT)))
+		if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 			return 0
 		if(affected.open != 2)
 			return 0
@@ -333,7 +307,7 @@
 		var/list/removable_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if(I && (I.status & ORGAN_CUT_AWAY) && (I.status & ORGAN_ROBOT) && I.parent_organ == target_zone)
+			if(I && (I.status & ORGAN_CUT_AWAY) && (I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
 				removable_organs |= organ
 
 		var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
@@ -370,7 +344,7 @@
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
-		if(target_zone != "head")
+		if(target_zone != BP_HEAD)
 			return
 
 		var/obj/item/device/mmi/M = tool
@@ -385,7 +359,7 @@
 			user << SPAN_DANGER("That brain is not usable.")
 			return SURGERY_FAILURE
 
-		if(!(affected.status & ORGAN_ROBOT))
+		if(!(affected.robotic >= ORGAN_ROBOT))
 			user << SPAN_DANGER("You cannot install a computer brain into a meat skull.")
 			return SURGERY_FAILURE
 
@@ -393,11 +367,11 @@
 			user << SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker.")
 			return SURGERY_FAILURE
 
-		if(!target.species.has_organ["brain"])
+		if(!target.species.has_organ[O_BRAIN])
 			user << SPAN_DANGER("You're pretty sure [target.species.name_plural] don't normally have a brain.")
 			return SURGERY_FAILURE
 
-		if(!isnull(target.internal_organs["brain"]))
+		if(!isnull(target.internal_organs[O_BRAIN]))
 			user << SPAN_DANGER("Your subject already has a brain.")
 			return SURGERY_FAILURE
 
@@ -416,7 +390,7 @@
 
 		var/obj/item/device/mmi/M = tool
 		var/obj/item/organ/mmi_holder/holder = new(target, 1)
-		target.internal_organs_by_name["brain"] = holder
+		target.internal_organs_by_name[O_BRAIN] = holder
 		user.drop_from_inventory(tool)
 		tool.loc = holder
 		holder.stored_mmi = tool

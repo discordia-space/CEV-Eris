@@ -37,7 +37,7 @@ var/global/ntnet_card_uid = 1
 	if(holder2 && (holder2.network_card == src))
 		holder2.network_card = null
 	holder2 = null
-	..()
+	return ..()
 
 // Returns a string identifier of this network card
 /obj/item/weapon/computer_hardware/network_card/proc/get_network_tag()
@@ -58,8 +58,7 @@ var/global/ntnet_card_uid = 1
 		return 0
 
 	if(holder2)
-		var/turf/T = get_turf(holder2)
-		if((T && istype(T)) && T.z in config.station_levels)
+		if(isOnStationLevel(holder2))
 			return 2
 
 	if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.
@@ -70,4 +69,4 @@ var/global/ntnet_card_uid = 1
 /obj/item/weapon/computer_hardware/network_card/Destroy()
 	if(holder2 && (holder2.network_card == src))
 		holder2.network_card = null
-	..()
+	return ..()

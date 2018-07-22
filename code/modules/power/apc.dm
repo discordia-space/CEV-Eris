@@ -433,89 +433,145 @@
 
 //attack with an item - open/close cover, insert cell, or (un)lock interface
 
-/obj/machinery/power/apc/attackby(obj/item/W, mob/user)
-
+/obj/machinery/power/apc/attackby(obj/item/I, mob/user)
 	if (issilicon(user) && get_dist(src,user)>1)
 		return src.attack_hand(user)
-	src.add_fingerprint(user)
-	if (istype(W, /obj/item/weapon/crowbar) && opened)
-		if (has_electronics==1)
-			if (terminal)
-				user << SPAN_WARNING("Disconnect wires first.")
-				return
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-			user << "You are trying to remove the power control board..." //lpeters - fixed grammar issues
-			if(do_after(user, 50, src))
+	add_fingerprint(user)
+
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
+	if(opened || !((stat & BROKEN) || hacker))
+		usable_qualities.Add(QUALITY_PRYING)
+	if(terminal && opened && has_electronics!=2)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+	if(opened && has_electronics==0 && !terminal)
+		usable_qualities.Add(QUALITY_WELDING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_PRYING)
+			if(opened)
 				if (has_electronics==1)
-					has_electronics = 0
-					if ((stat & BROKEN))
-						user.visible_message(\
-							SPAN_WARNING("[user.name] has broken the power control board inside [src.name]!"),\
-							SPAN_NOTICE("You broke the charred power control board and remove the remains."),
-							"You hear a crack!")
-						//ticker.mode:apcs-- //XSI said no and I agreed. -rastaf0
-					else
-						user.visible_message(\
-							SPAN_WARNING("[user.name] has removed the power control board from [src.name]!"),\
-							SPAN_NOTICE("You remove the power control board."))
-						new /obj/item/weapon/circuitboard/apc(loc)
-		else if (opened!=2) //cover isn't removed
-			opened = 0
-			update_icon()
-	else if (istype(W, /obj/item/weapon/crowbar) && !((stat & BROKEN) || hacker) )
-		if(coverlocked && !(stat & MAINT))
-			user << SPAN_WARNING("The cover is locked and cannot be opened.")
+					if (terminal)
+						user << SPAN_WARNING("Disconnect wires first.")
+						return
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if (has_electronics==1)
+						has_electronics = 0
+						if ((stat & BROKEN))
+							user.visible_message(\
+								SPAN_WARNING("[user.name] has broken the power control board inside [src.name]!"),\
+								SPAN_NOTICE("You broke the charred power control board and remove the remains."),
+								"You hear a crack!")
+						else
+							user.visible_message(\
+								SPAN_WARNING("[user.name] has removed the power control board from [src.name]!"),\
+								SPAN_NOTICE("You remove the power control board."))
+							new /obj/item/weapon/circuitboard/apc(loc)
+						return
+			if(opened!=2) //cover isn't removed
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if (opened == 1)
+						opened = 0
+						update_icon()
+					else if(!((stat & BROKEN) || hacker))
+						if(coverlocked && !(stat & MAINT))
+							user << SPAN_WARNING("The cover is locked and cannot be opened.")
+						else
+							opened = 1
+							update_icon()
+							return
 			return
-		else
-			opened = 1
-			update_icon()
-	else if	(istype(W, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
+
+		if(QUALITY_WIRE_CUTTING)
+			if(terminal && opened && has_electronics!=2)
+				var/turf/T = loc
+				if(istype(T) && !T.is_plating())
+					user << SPAN_WARNING("You must remove the floor plating in front of the APC first.")
+					return
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+						s.set_up(5, 1, src)
+						s.start()
+						if(usr.stunned)
+							return
+					new /obj/item/stack/cable_coil(loc,10)
+					user << SPAN_NOTICE("You remove the cables and dismantle the power terminal.")
+					qdel(terminal)
+					return
+			return
+
+		if(QUALITY_SCREW_DRIVING)
+			if (cell && opened)
+				user << SPAN_WARNING("Close the APC first.")
+				return
+			var/used_sound = wiresexposed ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				if(opened)
+					if (has_electronics==1 && terminal)
+						has_electronics = 2
+						stat &= ~MAINT
+						user << "You screw the circuit electronics into place."
+					else if (has_electronics==2)
+						has_electronics = 1
+						stat |= MAINT
+						user << "You unfasten the electronics."
+					else /* has_electronics==0 */
+						user << SPAN_WARNING("There is nothing to secure.")
+						return
+					update_icon()
+				else
+					wiresexposed = !wiresexposed
+					user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+					var/sound = wiresexposed ?'sound/machines/Custom_screwdriveropen.ogg' : 'sound/machines/Custom_screwdriverclose.ogg'
+					playsound(src.loc, sound, 100, 1)
+					update_icon()
+					return
+
+		if(QUALITY_WELDING)
+			if(opened && has_electronics==0 && !terminal)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if (emagged || (stat & BROKEN) || opened==2)
+						new /obj/item/stack/material/steel(loc)
+						user.visible_message(\
+							SPAN_WARNING("[src] has been cut apart by [user.name] with the weldingtool."),\
+							SPAN_NOTICE("You disassembled the broken APC frame."),\
+							"You hear welding.")
+					else
+						new /obj/item/frame/apc(loc)
+						user.visible_message(\
+							SPAN_WARNING("[src] has been cut from the wall by [user.name] with the weldingtool."),\
+							SPAN_NOTICE("You cut the APC frame from the wall."),\
+							"You hear welding.")
+					qdel(src)
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if (istype(I, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
 		if(cell)
 			user << "There is a power cell already installed."
 			return
 		if (stat & MAINT)
 			user << SPAN_WARNING("There is no connector for your power cell.")
 			return
-		if(W.w_class != ITEM_SIZE_NORMAL)
-			user << "\The [W] is too [W.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
+		if(I.w_class != ITEM_SIZE_NORMAL)
+			user << "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
 			return
 
 		user.drop_item()
-		W.forceMove(src)
-		cell = W
+		I.forceMove(src)
+		cell = I
 		user.visible_message(\
 			SPAN_WARNING("[user.name] has inserted the power cell to [src.name]!"),\
 			SPAN_NOTICE("You insert the power cell."))
 		chargecount = 0
 		update_icon()
-	else if	(istype(W, /obj/item/weapon/screwdriver))	// haxing
-		if(opened)
-			if (cell)
-				user << SPAN_WARNING("Close the APC first.") //Less hints more mystery!
-				return
-			else
-				if (has_electronics==1 && terminal)
-					has_electronics = 2
-					stat &= ~MAINT
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-					user << "You screw the circuit electronics into place."
-				else if (has_electronics==2)
-					has_electronics = 1
-					stat |= MAINT
-					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-					user << "You unfasten the electronics."
-				else /* has_electronics==0 */
-					user << SPAN_WARNING("There is nothing to secure.")
-					return
-				update_icon()
-		else
-			wiresexposed = !wiresexposed
-			user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
-			var/sound = wiresexposed ?'sound/machines/Custom_screwdriveropen.ogg' : 'sound/machines/Custom_screwdriverclose.ogg'
-			playsound(src.loc, sound, 100, 1)
-			update_icon()
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))			// trying to unlock the interface with an ID card
 		if(emagged)
 			user << "The interface is broken."
 		else if(opened)
@@ -533,12 +589,13 @@
 				update_icon()
 			else
 				user << SPAN_WARNING("Access denied.")
-	else if (istype(W, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
+
+	else if (istype(I, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
 		var/turf/T = loc
 		if(istype(T) && !T.is_plating())
 			user << SPAN_WARNING("You must remove the floor plating in front of the APC first.")
 			return
-		var/obj/item/stack/cable_coil/C = W
+		var/obj/item/stack/cable_coil/C = I
 		if(C.get_amount() < 10)
 			user << SPAN_WARNING("You need ten lengths of cable for APC.")
 			return
@@ -560,26 +617,8 @@
 					"You add cables to the APC frame.")
 				make_terminal()
 				terminal.connect_to_network()
-	else if (istype(W, /obj/item/weapon/wirecutters) && terminal && opened && has_electronics!=2)
-		var/turf/T = loc
-		if(istype(T) && !T.is_plating())
-			user << SPAN_WARNING("You must remove the floor plating in front of the APC first.")
-			return
-		user.visible_message(SPAN_WARNING("[user.name] dismantles the power terminal from [src]."), \
-							"You begin to cut the cables...")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		if(do_after(user, 50, src))
-			if(terminal && opened && has_electronics!=2)
-				if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-					s.set_up(5, 1, src)
-					s.start()
-					if(usr.stunned)
-						return
-				new /obj/item/stack/cable_coil(loc,10)
-				user << SPAN_NOTICE("You cut the cables and dismantle the power terminal.")
-				qdel(terminal)
-	else if (istype(W, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && !((stat & BROKEN)))
+
+	else if (istype(I, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && !((stat & BROKEN)))
 		user.visible_message(SPAN_WARNING("[user.name] inserts the power control board into [src]."), \
 							"You start to insert the power control board into the frame...")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -587,45 +626,23 @@
 			if(has_electronics==0)
 				has_electronics = 1
 				user << SPAN_NOTICE("You place the power control board inside the frame.")
-				qdel(W)
-	else if (istype(W, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
+				qdel(I)
+
+	else if (istype(I, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
 		user << SPAN_WARNING("You cannot put the board inside, the frame is damaged.")
 		return
-	else if (istype(W, /obj/item/weapon/weldingtool) && opened && has_electronics==0 && !terminal)
-		var/obj/item/weapon/weldingtool/WT = W
-		if (WT.get_fuel() < 3)
-			user << SPAN_WARNING("You need more welding fuel to complete this task.")
-			return
-		user.visible_message(SPAN_WARNING("[user.name] welds [src]."), \
-							"You start welding the APC frame...", \
-							"You hear welding.")
-		playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
-		if(do_after(user, 50, src))
-			if(!src || !WT.remove_fuel(3, user)) return
-			if (emagged || (stat & BROKEN) || opened==2)
-				new /obj/item/stack/material/steel(loc)
-				user.visible_message(\
-					SPAN_WARNING("[src] has been cut apart by [user.name] with the weldingtool."),\
-					SPAN_NOTICE("You disassembled the broken APC frame."),\
-					"You hear welding.")
-			else
-				new /obj/item/frame/apc(loc)
-				user.visible_message(\
-					SPAN_WARNING("[src] has been cut from the wall by [user.name] with the weldingtool."),\
-					SPAN_NOTICE("You cut the APC frame from the wall."),\
-					"You hear welding.")
-			qdel(src)
-			return
-	else if (istype(W, /obj/item/frame/apc) && opened && emagged)
+
+	else if (istype(I, /obj/item/frame/apc) && opened && emagged)
 		emagged = 0
 		if (opened==2)
 			opened = 1
 		user.visible_message(\
 			SPAN_WARNING("[user.name] has replaced the damaged APC frontal panel with a new one."),\
 			SPAN_NOTICE("You replace the damaged APC frontal panel with a new one."))
-		qdel(W)
+		qdel(I)
 		update_icon()
-	else if (istype(W, /obj/item/frame/apc) && opened && ((stat & BROKEN) || hacker))
+
+	else if (istype(I, /obj/item/frame/apc) && opened && ((stat & BROKEN) || hacker))
 		if (has_electronics)
 			user << SPAN_WARNING("You cannot repair this APC until you remove the electronics still inside.")
 			return
@@ -635,7 +652,7 @@
 			user.visible_message(\
 				SPAN_NOTICE("[user.name] has replaced the damaged APC frame with new one."),\
 				"You replace the damaged APC frame with new one.")
-			qdel(W)
+			qdel(I)
 			stat &= ~BROKEN
 			// Malf AI, removes the APC from AI's hacked APCs list.
 			if(hacker && hacker.hacked_apcs && (src in hacker.hacked_apcs))
@@ -647,23 +664,25 @@
 	else
 		if (((stat & BROKEN) || hacker) \
 				&& !opened \
-				&& W.force >= 5 \
-				&& W.w_class >= ITEM_SIZE_NORMAL \
+				&& I.force >= 5 \
+				&& I.w_class >= ITEM_SIZE_NORMAL \
 				&& prob(20) )
 			opened = 2
-			user.visible_message(SPAN_DANGER("The APC cover was knocked down with the [W.name] by [user.name]!"), \
-				SPAN_DANGER("You knock down the APC cover with your [W.name]!"), \
+			user.visible_message(SPAN_DANGER("The APC cover was knocked down with the [I.name] by [user.name]!"), \
+				SPAN_DANGER("You knock down the APC cover with your [I.name]!"), \
 				"You hear bang")
 			update_icon()
 		else
 			if (issilicon(user))
 				return src.attack_hand(user)
 			if (!opened && wiresexposed && \
-				(istype(W, /obj/item/device/multitool) || \
-				istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/assembly/signaler)))
+				((QUALITY_PULSING in I.tool_qualities) || \
+				(QUALITY_WIRE_CUTTING in I.tool_qualities) || \
+				(QUALITY_CUTTING in I.tool_qualities) || \
+				istype(I, /obj/item/device/assembly/signaler)))
 				return src.attack_hand(user)
-			user.visible_message(SPAN_DANGER("The [src.name] has been hit with the [W.name] by [user.name]!"), \
-				SPAN_DANGER("You hit the [src.name] with your [W.name]!"), \
+			user.visible_message(SPAN_DANGER("The [src.name] has been hit with the [I.name] by [user.name]!"), \
+				SPAN_DANGER("You hit the [src.name] with your [I.name]!"), \
 				"You hear bang")
 
 // attack with hand - remove cell (if cover open) or interact with the APC
@@ -985,7 +1004,7 @@
 	else
 		return 0
 
-/obj/machinery/power/apc/process()
+/obj/machinery/power/apc/Process()
 
 	if(stat & (BROKEN|MAINT))
 		return

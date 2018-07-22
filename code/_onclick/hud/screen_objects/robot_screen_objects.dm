@@ -84,7 +84,7 @@
 	icon_state = "charge0"
 	process_flag = TRUE
 
-/obj/screen/silicon/cell/process()
+/obj/screen/silicon/cell/Process()
 	update_icon()
 
 /obj/screen/silicon/cell/update_icon()
@@ -105,7 +105,7 @@
 	else
 		icon_state = "charge-empty"
 
-/obj/screen/health/cyborg/process()
+/obj/screen/health/cyborg/Process()
 	update_icon()
 	return
 
@@ -139,7 +139,7 @@
 					icon_state = "health3"
 				if(0 to 50)
 					icon_state = "health4"
-				if(config.health_threshold_dead to 0)
+				if(HEALTH_THRESHOLD_DEAD to 0)
 					icon_state = "health5"
 				else
 					icon_state = "health6"

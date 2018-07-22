@@ -22,7 +22,7 @@
 	throw_speed = 4
 	throw_range = 20
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 400)
+	matter = list(MATERIAL_PLASTIC = 2)
 
 /obj/item/weapon/locator/attack_self(mob/user)
 	user.set_machine(src)
@@ -123,8 +123,8 @@ Frequency:
  * Hand-tele
  */
 /obj/item/weapon/hand_tele
-	name = "hand tele"
-	desc = "A portable item using blue-space technology."
+	name = "NT BSD \"Jumper\""
+	desc = "Also known as hand teleporter, this is old and unreliable way to create stable blue-space portals. Yet it become popular due its size and low energy consumption."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele"
 	item_state = "electronic"
@@ -133,9 +133,19 @@ Frequency:
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)
-	matter = list(DEFAULT_WALL_MATERIAL = 10000)
+	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 1)
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/weapon/hand_tele/New()
+	..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
 
 /obj/item/weapon/hand_tele/attack_self(mob/user)
+	if(!cell || !cell.checked_use(33))
+		user << SPAN_WARNING("[src] battery is dead or missing.")
+		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location||current_location.z==2||current_location.z>=7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		user << SPAN_NOTICE("\The [src] is malfunctioning.")
@@ -160,18 +170,18 @@ Frequency:
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") in L
 	if ((user.get_active_hand() != src || user.stat || user.restrained()))
 		return
-	var/count = 0	//num of portals from this teleport in world
-	for(var/obj/effect/portal/PO in world)
-		if(PO.creator == src)	count++
-	if(count >= 3)
-		user.show_message(SPAN_NOTICE("\The [src] is recharging!"))
-		flick("hand_tele_recharging",src)
-		return
 	var/T = L[t1]
-	for(var/mob/O in hearers(user, null))
-		O.show_message(SPAN_NOTICE("Locked In."), 2)
+	user << SPAN_NOTICE("Portal locked in.")
 	var/obj/effect/portal/P = new /obj/effect/portal( get_turf(src) )
 	P.target = T
-	P.creator = src
 	src.add_fingerprint(user)
+
 	return
+
+/obj/item/weapon/hand_tele/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+
+/obj/item/weapon/hand_tele/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C

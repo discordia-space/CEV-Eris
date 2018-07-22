@@ -3,7 +3,9 @@
 	name = "\proper space"
 	icon_state = "0"
 	dynamic_lighting = 0
-	plane = SPACE_PLANE
+
+	plane = PLANE_SPACE
+	layer = SPACE_LAYER
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -22,6 +24,9 @@
 /turf/space/levelupdate()
 	for(var/obj/O in src)
 		O.hide(0)
+
+/turf/space/is_solid_structure()
+	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice
 
 /turf/space/proc/update_starlight()
 	if(!config.starlight)

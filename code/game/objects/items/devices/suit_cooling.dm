@@ -25,12 +25,12 @@
 	//TODO: make it heat up the surroundings when not in space
 
 /obj/item/device/suit_cooling_unit/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 	cell = new/obj/item/weapon/cell/large()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
 	cell.loc = src
 
-/obj/item/device/suit_cooling_unit/process()
+/obj/item/device/suit_cooling_unit/Process()
 	if (!on || !cell)
 		return
 
@@ -128,7 +128,7 @@
 			user << "You switch on the [src]."
 
 /obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/screwdriver))
+	if (istype(W, /obj/item/weapon/tool/screwdriver))
 		if(cover_open)
 			cover_open = 0
 			user << "You screw the panel into place."

@@ -12,14 +12,18 @@
 	idtype = /obj/item/weapon/card/id/cmo
 	req_admin_notify = 1
 	economic_modifier = 10
-	access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
-			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-			access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks)
-	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
-			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-			access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
+		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
+		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks
+	)
 
 	ideal_character_age = 50
+
+	stat_modifers = list(
+		STAT_BIO = 30,
+	)
 
 	uniform = /obj/item/clothing/under/rank/moebius_biolab_officer
 	shoes = /obj/item/clothing/shoes/reinforced
@@ -56,9 +60,16 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 7
-	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
-	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_virology)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
+		access_genetics
+	)
 	idtype = /obj/item/weapon/card/id/med
+
+	stat_modifers = list(
+		STAT_BIO = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/medical
 	shoes = /obj/item/clothing/shoes/reinforced
@@ -91,10 +102,17 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 5
-	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
-	minimal_access = list(access_medical, access_medical_equip, access_chemistry)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
+		access_genetics
+	)
 	idtype = /obj/item/weapon/card/id/chem
 
+	stat_modifers = list(
+		STAT_COG = 10,
+		STAT_BIO = 20,
+	)
 
 	uniform = /obj/item/clothing/under/rank/chemist
 	shoes = /obj/item/clothing/shoes/reinforced
@@ -125,8 +143,15 @@
 	economic_modifier = 5
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
-	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_psychiatrist)
-	minimal_access = list(access_medical, access_medical_equip, access_psychiatrist)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
+		access_genetics, access_psychiatrist
+	)
+
+	stat_modifers = list(
+		STAT_BIO = 10,
+	)
 
 	uniform = /obj/item/clothing/under/rank/psych
 	pda = /obj/item/device/pda/medical
@@ -155,8 +180,17 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 4
-	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist)
-	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_eva, access_maint_tunnels, access_external_airlocks)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	access = list(
+		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
+		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
+	)
+
+	stat_modifers = list(
+		STAT_BIO = 10,
+		STAT_ROB = 10,
+		STAT_TGH = 10,
+	)
 
 	pda = /obj/item/device/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med

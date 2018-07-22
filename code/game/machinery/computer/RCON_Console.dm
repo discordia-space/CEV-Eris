@@ -22,7 +22,7 @@
 /obj/machinery/computer/rcon/Destroy()
 	qdel(rcon)
 	rcon = null
-	..()
+	. = ..()
 
 // Proc: attack_hand()
 // Parameters: 1 (user - Person which clicked this computer)

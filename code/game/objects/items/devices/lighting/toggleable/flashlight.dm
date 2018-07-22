@@ -12,11 +12,11 @@
 /obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
 	if(!cell || !cell.check_charge(tick_cost))
 		playsound(loc, 'sound/machines/button.ogg', 50, 1)
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return FALSE
 	. = ..()
 	if(. && user)
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 		user.update_action_buttons()
 
 /obj/item/device/lighting/toggleable/flashlight/turn_off(mob/user)
@@ -24,7 +24,7 @@
 	if(. && user)
 		user.update_action_buttons()
 
-/obj/item/device/lighting/toggleable/flashlight/process()
+/obj/item/device/lighting/toggleable/flashlight/Process()
 	if(on)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
@@ -41,7 +41,7 @@
 
 /obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
 	add_fingerprint(user)
-	if(on && user.targeted_organ == "eyes")
+	if(on && user.targeted_organ == O_EYES)
 
 		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
@@ -57,7 +57,8 @@
 			if(H.species.vision_organ)
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
-				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>"
+				user << "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : O_EYES] on [H]!</span>"
+				return
 
 			user.visible_message(SPAN_NOTICE("\The [user] directs [src] to [M]'s eyes."), \
 							 	 SPAN_NOTICE("You direct [src] to [M]'s eyes."))
@@ -112,10 +113,7 @@
 	suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/device/lighting/toggleable/flashlight/seclite
-	name = "security flashlight"
-	desc = "A hand-held security flashlight. Very robust."
+	name = "Ironhammer flashlight"
+	desc = "A hand-held security flashlight."
 	icon_state = "seclite"
 	item_state = "seclite"
-	brightness_on = 5
-	force = WEAPON_FORCE_NORMAL
-	hitsound = 'sound/weapons/genhit1.ogg'

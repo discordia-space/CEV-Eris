@@ -215,10 +215,10 @@
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant.resting = 1
-	..()
+	. = ..()
 
-/obj/machinery/cryopod/initialize()
-	..()
+/obj/machinery/cryopod/Initialize()
+	. = ..()
 
 	find_control_computer()
 
@@ -253,7 +253,7 @@
 	return 1
 
 //Lifted from Unity stasis.dm and refactored. ~Zuhayr
-/obj/machinery/cryopod/process()
+/obj/machinery/cryopod/Process()
 	if(occupant)
 		//Allow a ten minute gap between entering the pod and actually despawning.
 		if(world.time - time_entered < time_till_despawn)
@@ -341,6 +341,7 @@
 	clear_antagonist(occupant.mind)
 
 	// Delete them from datacore.
+
 	if(PDA_Manifest.len)
 		PDA_Manifest.Cut()
 	for(var/datum/data/record/R in data_core.medical)
@@ -370,51 +371,62 @@
 	occupant.ckey = null
 
 	// Delete the mob.
-	var/mob/living/M = occupant
+	qdel(occupant)
 	set_occupant(null)
-	qdel(M)
 
 
-/obj/machinery/cryopod/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
+/obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
+	put_inside(target, user)
+	return TRUE
 
-	if(istype(G, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/grab = G
-		if(occupant)
-			user << "<span class='notice'>\The [src] is in use.</span>"
-			return
+/obj/machinery/cryopod/MouseDrop_T(var/mob/living/L, mob/living/user)
+	if(istype(L) && istype(user))
+		put_inside(L, user)
 
-		if(!ismob(grab.affecting))
-			return
+/obj/machinery/cryopod/proc/put_inside(var/mob/living/affecting, var/mob/living/user)
+	if(occupant)
+		user << "<span class='notice'>\The [src] is in use.</span>"
+		return
 
-		if(!check_occupant_allowed(grab.affecting))
-			return
+	if(!ismob(affecting) || !Adjacent(affecting) || !Adjacent(user))
+		return
 
-		var/willing = null //We don't want to allow people to be forced into despawning.
-		var/mob/M = G:affecting
+	if(!check_occupant_allowed(affecting))
+		return
 
-		if(M.client)
-			if(alert(M,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
-				if(!M || !grab || !grab.affecting) return
-				willing = 1
-		else
+	var/willing = null //We don't want to allow people to be forced into despawning.
+
+	if(affecting != user && affecting.client)
+		if(alert(affecting,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
+			if(!affecting)
+				return
 			willing = 1
+	else
+		willing = 1
 
-		if(willing)
+	if(willing)
 
-			visible_message("[user] starts putting [grab.affecting.name] into \the [src].")
+		visible_message("[user] starts putting [affecting] into \the [src].")
 
-			if(do_after(user, 20, src))
-				if(!M || !grab || !grab.affecting) return
+		if(!do_after(user, 20, src))
+			return
 
-			set_occupant(M)
+		if(!user || !Adjacent(user))
+			return
+		if(!affecting || !Adjacent(affecting))
+			return
 
-			// Book keeping!
-			var/turf/location = get_turf(src)
-			log_admin("[key_name_admin(M)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-			message_admins("<span class='notice'>[key_name_admin(M)] has entered a stasis pod.</span>")
+		set_occupant(affecting)
 
-			//Despawning occurs when process() is called with an occupant without a client.
-			src.add_fingerprint(M)
+		// Book keeping!
+		var/turf/location = get_turf(src)
+		log_admin("[key_name_admin(affecting)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		message_admins("<span class='notice'>[key_name_admin(affecting)] has entered a stasis pod.</span>")
+		if(user == affecting)
+			src.add_fingerprint(affecting)
+
+		//Despawning occurs when process() is called with an occupant without a client.
+		src.add_fingerprint(user)
 
 /obj/machinery/cryopod/verb/eject()
 	set name = "Eject Pod"
@@ -494,8 +506,8 @@
 		new_occupant.forceMove(src)
 		icon_state = occupied_icon_state
 
-		occupant << "<span class='notice'>[on_enter_occupant_message]</span>"
-		occupant << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
+		occupant << SPAN_NOTICE("[on_enter_occupant_message]")
+		occupant << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
 
 	else
 		icon_state = base_icon_state

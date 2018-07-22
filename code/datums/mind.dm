@@ -123,6 +123,8 @@
 	for(var/datum/antagonist/antag in antagonist)
 		out += "<br><b>[antag.role_text]</b> <a href='?src=\ref[antag]'>\[EDIT\]</a> <a href='?src=\ref[antag];remove_antagonist=1'>\[DEL\]</a>"
 	out += "</table><hr>"
+	out += "<br>[memory]"
+	out += "<br><a href='?src=\ref[src];edit_memory=1'>"
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)
@@ -138,7 +140,7 @@
 				var/answer = alert("[antag.role_text] is outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
 				ok = answer == "Yes"
 			else
-				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","No","Yes")
+				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","Confirmation","No","Yes")
 				ok = answer == "Yes"
 
 			if(!ok)

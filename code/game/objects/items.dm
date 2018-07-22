@@ -10,6 +10,7 @@
 	var/burn_point = null
 	var/burning = null
 	var/hitsound = null
+	var/worksound = null
 	var/storage_cost = null
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
@@ -35,6 +36,8 @@
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
 	var/item_flags = 0 //Miscellaneous flags pertaining to equippable objects.
+
+	var/list/tool_qualities = null// List of item qualities for tools system. See qualities.dm.
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
@@ -81,9 +84,6 @@
 		src.loc = null
 	return ..()
 
-/obj/item/device
-	icon = 'icons/obj/device.dmi'
-
 //Checks if the item is being held by a mob, and if so, updates the held icons
 /obj/item/proc/update_held_icon()
 	if(ismob(src.loc))
@@ -124,6 +124,10 @@
 	src.loc = T
 
 /obj/item/examine(mob/user, var/distance = -1)
+	var/message
+	for(var/Q in tool_qualities)
+		message += "\n<blue>This item posses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+
 	var/size
 	switch(src.w_class)
 		if(1.0)
@@ -136,15 +140,16 @@
 			size = "bulky"
 		if(5.0)
 			size = "huge"
-	return ..(user, distance, "", "It is a [size] item.")
+	message += "\nIt is a [size] item."
+	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user) return
 	if (hasorgans(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 			return
@@ -174,39 +179,6 @@
 		var/mob/living/silicon/robot/R = user
 		R.activate_module(src)
 //		R.hud_used.update_robot_modules_display()
-
-// Due to storage type consolidation this should get used more now.
-// I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = W
-		if(S.use_to_pickup)
-			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
-				if(isturf(src.loc))
-					var/list/rejections = list()
-					var/success = 0
-					var/failure = 0
-
-					for(var/obj/item/I in src.loc)
-						if(I.type in rejections) // To limit bag spamming: any given type only complains once
-							continue
-						if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
-							rejections += I.type	// therefore full bags are still a little spammy
-							failure = 1
-							continue
-						success = 1
-						S.handle_item_insertion(I, 1)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
-					if(success && !failure)
-						user << SPAN_NOTICE("You put everything in [S].")
-					else if(success)
-						user << SPAN_NOTICE("You put some things in [S].")
-					else
-						user << SPAN_NOTICE("You fail to pick anything up with \the [S].")
-
-			else if(S.can_be_inserted(src))
-				S.handle_item_insertion(src)
-
-	return
 
 /obj/item/proc/talk_into(mob/M as mob, text)
 	return
@@ -260,7 +232,7 @@ var/list/global/slot_flags_enumeration = list(
 	"[slot_r_ear]" = SLOT_EARS|SLOT_TWOEARS,
 	"[slot_w_uniform]" = SLOT_ICLOTHING,
 	"[slot_wear_id]" = SLOT_ID,
-	"[slot_tie]" = SLOT_TIE,
+	"[slot_accessory_buffer]" = SLOT_ACCESSORY_BUFFER,
 	)
 
 //the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
@@ -343,7 +315,7 @@ var/list/global/slot_flags_enumeration = list(
 					allow = 1
 			if(!allow)
 				return 0
-		if(slot_tie)
+		if(slot_accessory_buffer)
 			if(!H.w_uniform && (slot_w_uniform in mob_equip))
 				if(!disable_warning)
 					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
@@ -450,7 +422,10 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(istype(H))
 
-		var/obj/item/organ/eyes/eyes = H.internal_organs_by_name["eyes"]
+		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[O_EYES]
+
+		if(!eyes)
+			return
 
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
@@ -478,13 +453,12 @@ var/list/global/slot_flags_enumeration = list(
 			if (eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
 					M << SPAN_WARNING("You go blind!")
-		var/obj/item/organ/external/affecting = H.get_organ("head")
+		var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()
 	else
 		M.take_organ_damage(7)
 	M.eye_blurry += rand(3,4)
-	return
 
 /obj/item/clean_blood()
 	. = ..()
@@ -524,18 +498,21 @@ var/list/global/slot_flags_enumeration = list(
 		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	return 1 //we applied blood to the item
 
+var/global/list/items_blood_overlay_by_type = list()
 /obj/item/proc/generate_blood_overlay()
 	if(blood_overlay)
 		return
 
-	var/icon/I = new /icon(icon, icon_state)
-	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD) //fills the icon_state with white (except where it's transparent)
-	I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
-
-	//not sure if this is worth it. It attaches the blood_overlay to every item of the same type if they don't have one already made.
-	for(var/obj/item/A in world)
-		if(A.type == type && !A.blood_overlay)
-			A.blood_overlay = image(I)
+	var/image/IMG = items_blood_overlay_by_type[type]
+	if(IMG)
+		blood_overlay = IMG
+	else
+		var/icon/ICO = new /icon(icon, icon_state)
+		ICO.Blend(new /icon('icons/effects/blood.dmi', rgb(255, 255, 255)), ICON_ADD) // fills the icon_state with white (except where it's transparent)
+		ICO.Blend(new /icon('icons/effects/blood.dmi', "itemblood"), ICON_MULTIPLY)   // adds blood and the remaining white areas become transparant
+		IMG = image("icon" = ICO)
+		items_blood_overlay_by_type[type] = IMG
+		blood_overlay = IMG
 
 /obj/item/proc/showoff(mob/user)
 	for (var/mob/M in view(user))
@@ -618,3 +595,110 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
 
+/* QUALITY SYSTEM */
+
+/obj/item/proc/get_tool_quality(quality_id)
+	return tool_qualities[quality_id]
+
+/obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
+	var/start_loc = user.loc
+	var/list/L = required_qualities & tool_qualities
+
+	if(!L.len)
+		return FALSE
+
+	var/return_quality = L[1]
+	if(L.len > 1)
+		return_quality = input(user,"What quality you using?", "Tool options", ABORT_CHECK) in L
+	if(user.loc != start_loc)
+		user << SPAN_WARNING("You need to stand still!")
+		return ABORT_CHECK
+	else
+		return return_quality
+
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
+	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
+	switch(result)
+		if(TOOL_USE_CANCEL)
+			return FALSE
+		if(TOOL_USE_FAIL)
+			handle_failure(user, target, required_stat = required_stat)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
+			return FALSE
+		if(TOOL_USE_SUCCESS)
+			return TRUE
+
+/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
+	if(target.used_now)
+		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
+		return TOOL_USE_CANCEL
+
+	if(istype(src, /obj/item/weapon/tool))
+		var/obj/item/weapon/tool/T = src
+		if(!T.check_tool_effects(user))
+			return TOOL_USE_CANCEL
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.shock_stage >= 30)
+			user << SPAN_WARNING("Pain distracts you from your task.")
+			fail_chance += round(H.shock_stage/120 * 40)
+			base_time += round(H.shock_stage/120 * 40)
+
+	if(forced_sound != NO_WORKSOUND)
+		if(forced_sound)
+			playsound(src.loc, forced_sound, 100, 1)
+		else
+			playsound(src.loc, src.worksound, 100, 1)
+
+	if(base_time && (instant_finish_tier >= get_tool_quality(required_quality)))
+		target.used_now = TRUE
+		var/time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
+		if(!do_after(user, time_to_finish, user))
+			user << SPAN_WARNING("You need to stand still to finish the task properly!")
+			target.used_now = FALSE
+			return TOOL_USE_CANCEL
+		else
+			target.used_now = FALSE
+
+	var/stat_modifer = 0
+	if(required_stat)
+		stat_modifer = user.stats.getStat(required_stat)
+	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
+	if(prob(fail_chance))
+		user << SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up.")
+		return TOOL_USE_FAIL
+
+	return TOOL_USE_SUCCESS
+
+/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null)
+
+	var/crit_fail_chance = 25
+	if(required_stat)
+		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
+	else
+		crit_fail_chance = 10
+
+	if(prob(crit_fail_chance))
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			user << SPAN_DANGER("Your hand slips while working with [src]!")
+			attack(H, H, H.get_holding_hand(src))
+			return
+
+	if(prob(crit_fail_chance / 4))
+		if(istype(src, /obj/item/weapon/tool))
+			var/obj/item/weapon/tool/T = src
+			if(T.use_fuel_cost)
+				user << SPAN_DANGER("You ignite the fuel of the [src]!")
+				explosion(src.loc,-1,1,2)
+				qdel(src)
+				return
+			if(T.use_power_cost)
+				user << SPAN_DANGER("You overload the cell in the [src]!")
+				explosion(src.loc,-1,1,2)
+				qdel(src)
+				return
+
+
+/obj/item/device
+	icon = 'icons/obj/device.dmi'

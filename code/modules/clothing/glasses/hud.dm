@@ -45,6 +45,7 @@
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
+	prescription = TRUE
 
 	New()
 		..()
@@ -52,6 +53,6 @@
 		return
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
-	name = "tactical HUD"
+	name = "Ironhammer tactical HUD"
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"

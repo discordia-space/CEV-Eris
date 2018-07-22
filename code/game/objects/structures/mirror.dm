@@ -68,7 +68,7 @@
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
 		qdel(AC)
 	ui_users.Cut()
-	..()
+	. = ..()
 
 /obj/item/weapon/mirror
 	name = "mirror"
@@ -92,4 +92,4 @@
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
 		qdel(AC)
 	ui_users.Cut()
-	..()
+	. = ..()

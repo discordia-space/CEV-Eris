@@ -90,20 +90,18 @@
 		src.update_icon()
 		return 1
 
-	if (istype(O, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = O
-		if (WT.remove_fuel(0))
-			if(health < maxHealth)
+	if(QUALITY_WELDING in O.tool_qualities)
+		if(health < maxHealth)
+			if(O.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				health += pick(1,1,1,2,2,3)
 				if(health > maxHealth)
 					health = maxHealth
 				add_fingerprint(user)
 				src.visible_message(SPAN_NOTICE("\The [user] has spot-welded some of the damage to \the [src]!"))
-			else
-				user << SPAN_WARNING("\The [src] is undamaged!")
 		else
-			user << SPAN_DANGER("You need more welding fuel for this task!")
-			return
+			user << SPAN_WARNING("\The [src] is undamaged!")
+		return
+
 	else if(istype(O, /obj/item/weapon/card/id)||istype(O, /obj/item/device/pda))
 		if (!mmi)
 			user << SPAN_DANGER("There's no reason to swipe your ID - \the [src] has no brain to remove.")
@@ -181,7 +179,7 @@
 
 /mob/living/simple_animal/spiderbot/Destroy()
 	eject_brain()
-	..()
+	. = ..()
 
 /mob/living/simple_animal/spiderbot/New()
 

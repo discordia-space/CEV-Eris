@@ -6,6 +6,7 @@
 	unacidable = TRUE
 	simulated = FALSE
 	invisibility = 101
+	layer = MID_LANDMARK_LAYER
 	var/delete_me = FALSE
 
 /obj/landmark/New()
@@ -15,10 +16,10 @@
 /obj/landmark/proc/delete()
 	delete_me = TRUE
 
-/obj/landmark/initialize()
-	..()
+/obj/landmark/Initialize()
+	. = ..()
 	if(delete_me)
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/landmark/Destroy()
 	landmarks_list -= src

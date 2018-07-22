@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses
 	name = "glasses"
-	icon = 'icons/obj/clothing/glasses.dmi'
+	icon = 'icons/inventory/eyes/icon.dmi'
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	var/off_state = "degoggles"
@@ -15,7 +15,7 @@
 
 /obj/item/clothing/glasses/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	if(toggleable)	// We need to spawn them switched off, because they consume power
 		toggle(null, active)
 

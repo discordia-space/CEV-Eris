@@ -15,17 +15,17 @@
 				prob(2);/obj/item/weapon/reagent_containers/syringe/inaprovaline,\
 				prob(4);/obj/item/weapon/cigbutt,\
 				prob(2);/obj/item/device/t_scanner,\
-				prob(2);/obj/item/device/analyzer,\
-				prob(2);/obj/item/device/healthanalyzer,\
-				prob(5);/obj/item/weapon/screwdriver,\
-				prob(5);/obj/item/weapon/wirecutters,\
-				prob(5);/obj/item/weapon/weldingtool,\
-				prob(5);/obj/item/weapon/crowbar,\
-				prob(5);/obj/item/weapon/wrench,\
+				prob(2);/obj/item/device/scanner/analyzer,\
+				prob(2);/obj/item/device/scanner/healthanalyzer,\
+				prob(5);/obj/item/weapon/tool/screwdriver,\
+				prob(5);/obj/item/weapon/tool/wirecutters,\
+				prob(5);/obj/item/weapon/tool/weldingtool,\
+				prob(5);/obj/item/weapon/tool/crowbar,\
+				prob(5);/obj/item/weapon/tool/wrench,\
 				prob(5);/obj/item/weapon/storage/belt/utility/full,\
 				prob(4);/obj/item/weapon/storage/belt/medical,\
 				prob(4);/obj/item/weapon/storage/belt/security,\
-				prob(3);/obj/item/weapon/pickaxe,\
+				prob(3);/obj/item/weapon/tool/pickaxe,\
 				prob(3);/obj/item/weapon/pen,\
 				prob(3);/obj/item/weapon/storage/box/donkpockets,\
 				prob(2);/obj/item/weapon/locator,\
@@ -43,7 +43,7 @@
 				prob(1);/obj/item/weapon/cane/concealed,\
 				prob(2);/obj/item/weapon/staff/broom,\
 				prob(1);/obj/item/weapon/circuitboard/apc,\
-				prob(1);/obj/item/weapon/shovel,\
+				prob(1);/obj/item/weapon/tool/shovel,\
 				prob(2);/obj/item/weapon/folder,\
 				prob(2);/obj/item/weapon/folder/blue,\
 				prob(2);/obj/item/weapon/folder/red,\
@@ -61,14 +61,12 @@
 				prob(2);/obj/item/weapon/storage/box/drinkingglasses,\
 				prob(2);/obj/item/weapon/hatton_magazine,\
 				prob(2);/obj/item/weapon/hand_labeler,\
-				prob(2);/obj/item/weapon/bonegel,\
-				prob(2);/obj/item/weapon/FixOVein,\
-				prob(2);/obj/item/weapon/bonesetter,\
-				prob(2);/obj/item/weapon/scalpel,\
-				prob(2);/obj/item/weapon/surgicaldrill,\
-				prob(2);/obj/item/weapon/cautery,\
-				prob(2);/obj/item/weapon/retractor,\
-				prob(2);/obj/item/weapon/circular_saw,\
+				prob(2);/obj/item/weapon/tool/bonesetter,\
+				prob(2);/obj/item/weapon/tool/scalpel,\
+				prob(2);/obj/item/weapon/tool/surgicaldrill,\
+				prob(2);/obj/item/weapon/tool/cautery,\
+				prob(2);/obj/item/weapon/tool/retractor,\
+				prob(2);/obj/item/weapon/tool/saw/circular,\
 				prob(3);/obj/item/weapon/mop,\
 				prob(3);/obj/item/weapon/lipstick/random,\
 				prob(2);/obj/item/weapon/inflatable_dispenser,\
@@ -122,11 +120,16 @@
 				prob(1);/obj/item/weapon/stock_parts/subspace/treatment,\
 				prob(1);/obj/item/weapon/aiModule/reset,\
 				prob(1);/obj/item/weapon/circuitboard/autolathe,\
-				prob(1);/obj/item/ammo_magazine/mg/cl32/rubber,\
-				prob(1);/obj/item/ammo_magazine/mg/cl32/brute,\
+				prob(1);/obj/item/ammo_magazine/cl32/rubber,\
+				prob(1);/obj/item/ammo_magazine/cl32,\
+				prob(1);/obj/item/ammo_magazine/sl357,\
+				prob(1);/obj/item/ammo_magazine/sl38,\
+				prob(1);/obj/item/ammo_magazine/sl38/rubber,\
 				prob(1);/obj/item/weapon/flamethrower,\
 				prob(1);/obj/item/weapon/gun/projectile/mk58,\
-				prob(1);/obj/item/weapon/gun/projectile/giskard)
+				prob(1);/obj/item/weapon/gun/projectile/giskard,\
+				prob(1);/obj/item/weapon/gun/projectile/revolver/deckard,\
+				prob(1);/obj/item/weapon/gun/projectile/revolver/detective)
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

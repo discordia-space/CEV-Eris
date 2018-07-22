@@ -10,7 +10,7 @@
 	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
 	icon_state = "guard"
 	speak_emote = list("chitters")
-	emote_hear = list("chitters")
+	emote_see = list("chitters", "rubs its legs")
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 10
@@ -77,7 +77,7 @@
 		var/mob/living/carbon/human/H = target
 		if(prob(poison_per_bite))
 			var/obj/item/organ/external/O = pick(H.organs)
-			if(!(O.status & ORGAN_ROBOT))
+			if(!(O.robotic >= ORGAN_ROBOT))
 				var/eggs = PoolOrNew(/obj/effect/spider/eggcluster/, list(O, src))
 				O.implants += eggs
 

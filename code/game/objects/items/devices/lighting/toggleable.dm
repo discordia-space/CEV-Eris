@@ -5,7 +5,7 @@
 	item_state = "flashlight"
 	flags = CONDUCT
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 	brightness_on = 5 //luminosity when on
 	turn_on_sound = 'sound/effects/Custom_flashlight.ogg'

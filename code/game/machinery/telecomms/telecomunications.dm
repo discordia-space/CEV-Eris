@@ -131,7 +131,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		while(HasBelow(z_level--))
 			listening_levels |= z_level
 
-/obj/machinery/telecomms/initialize()
+/obj/machinery/telecomms/Initialize()
+	. = ..()
 	if(autolinkers.len)
 		// Links nearby machines
 		if(!long_range_link)
@@ -146,7 +147,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	for(var/obj/machinery/telecomms/comm in telecomms_list)
 		comm.links -= src
 	links = list()
-	..()
+	. = ..()
 
 // Used in auto linking
 /obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)
@@ -174,7 +175,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	else
 		on = 0
 
-/obj/machinery/telecomms/process()
+/obj/machinery/telecomms/Process()
 	update_power()
 
 	// Check heat and generate some

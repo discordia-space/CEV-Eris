@@ -2,8 +2,6 @@
 
 	//The name of the job
 	var/title = "NOPE"
-	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
 	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 	var/flag = 0 	                      // Bitflags for the job
 	var/department_flag = 0
@@ -19,6 +17,7 @@
 	var/head_position = 0                 // Is this position Command?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
+	var/list/also_known_languages = list()// additional chance based languages to all jobs.
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
@@ -43,6 +42,9 @@
 		/obj/item/weapon/storage/backpack/satchel_norm,
 		/obj/item/weapon/storage/backpack/satchel
 		)
+
+	//Character stats modifers
+	var/list/stat_modifers = list()
 
 	//This will be put in backpack. List ordered by priority!
 	var/list/put_in_backpack = list()
@@ -124,13 +126,38 @@
 				new path(H.l_hand)
 
 
-	if(H.religion == "Christianity" && !locate(/obj/item/weapon/implant/external/core_implant/cruciform, H))
-		var/obj/item/weapon/implant/external/core_implant/cruciform/C = new /obj/item/weapon/implant/external/core_implant/cruciform(H)
+	if(H.religion == "Christianity" && !locate(/obj/item/weapon/implant/core_implant/cruciform, H))
+		var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
 
 		C.install(H)
 		C.activate()
 
-	return 1
+	return TRUE
+
+/datum/job/proc/add_stats(var/mob/living/carbon/human/target)
+	if(!ishuman(target))
+		return FALSE
+	for(var/name in src.stat_modifers)
+		target.stats.changeStat(name, stat_modifers[name])
+
+	return TRUE
+
+/datum/job/proc/add_additiional_language(var/mob/living/carbon/human/target)
+	if(!ishuman(target))
+		return FALSE
+
+	var/mob/living/carbon/human/H = target
+
+	if(!also_known_languages.len)
+		return FALSE
+
+	var/i
+
+	for(i in also_known_languages)
+		if(prob(also_known_languages[i]))
+			H.add_language(i)
+
+	return TRUE
 
 /datum/job/proc/setup_account(var/mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
@@ -162,10 +189,7 @@
 	return (rand(5,50) + rand(5, 50)) * economic_modifier * custom_factor
 
 /datum/job/proc/get_access()
-	if(!config || config.jobs_have_minimal_access)
-		return src.minimal_access.Copy()
-	else
-		return src.access.Copy()
+	return src.access.Copy()
 
 /datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
 	if(!istype(target))

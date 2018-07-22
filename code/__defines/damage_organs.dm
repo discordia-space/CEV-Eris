@@ -33,6 +33,8 @@
 #define O_LIVER    "liver"
 #define O_KIDNEYS  "kidneys"
 #define O_APPENDIX "appendix"
+#define O_CELL     "cell"
+
 #define O_PLASMA   "plasma vessel"
 #define O_HIVE     "hive node"
 #define O_NUTRIENT "nutrient vessel"
@@ -56,6 +58,8 @@
 #define BP_HEAD   "head"
 #define BP_CHEST  "chest"
 #define BP_GROIN  "groin"
+
+#define BP_LEGS list(BP_R_LEG, BP_L_LEG, BP_R_FOOT, BP_L_FOOT)
 #define BP_ALL list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
 
 
@@ -64,15 +68,19 @@
 #define ORGAN_BLEEDING   (1<<1)
 #define ORGAN_BROKEN     (1<<2)
 #define ORGAN_DESTROYED  (1<<3)
-#define ORGAN_ROBOT      (1<<4)
-#define ORGAN_SPLINTED   (1<<5)
-#define ORGAN_DEAD       (1<<6)
-#define ORGAN_MUTATED    (1<<7)
-#define ORGAN_ASSISTED   (1<<8)
+#define ORGAN_SPLINTED   (1<<4)
+#define ORGAN_DEAD       (1<<5)
+#define ORGAN_MUTATED    (1<<6)
 
 #define DROPLIMB_EDGE 0
 #define DROPLIMB_BLUNT 1
 #define DROPLIMB_BURN 2
+
+#define ORGAN_ASSISTED 1 // Like pacemakers, not robotic
+#define ORGAN_ROBOT    2 // Fully robotic, no organic parts
+#define ORGAN_LIFELIKE 3 // Robotic, made to appear organic
+
+#define ORGAN_PROCESS_ACCURACY 10
 
 // Damage above this value must be repaired with surgery.
 #define ROBOLIMB_SELF_REPAIR_CAP 30

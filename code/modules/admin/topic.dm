@@ -197,56 +197,6 @@
 
 		edit_admin_permissions()
 
-	else if(href_list["call_shuttle"])
-		if(!check_rights(R_ADMIN))	return
-
-		switch(href_list["call_shuttle"])
-			if("1")
-				if ((!( ticker ) || !emergency_shuttle.location()))
-					return
-				if (emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] started the evacuation")
-					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
-
-			if("2")
-				if (!( ticker ) || !emergency_shuttle.location())
-					return
-				if (emergency_shuttle.can_call())
-					emergency_shuttle.call_evac()
-					log_admin("[key_name(usr)] started the evacuation")
-					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
-
-				else if (emergency_shuttle.can_recall())
-					emergency_shuttle.recall()
-					log_admin("[key_name(usr)] cancelled the evacuation")
-					message_admins("\blue [key_name_admin(usr)] cancelled the evacuation", 1)
-
-		href_list["secretsadmin"] = "check_antagonist"
-
-	else if(href_list["edit_shuttle_time"])
-		if(!check_rights(R_SERVER))	return
-
-		if (emergency_shuttle.waiting_to_leave())
-			var/new_time_left = input("Enter new pods launch countdown (seconds):","Edit Pods Launch Time", emergency_shuttle.estimate_launch_time() ) as num
-
-			emergency_shuttle.launch_time = world.time + new_time_left*10
-
-			log_admin("[key_name(usr)] edited the Emergency Shuttle's launch time to [new_time_left]")
-			message_admins(SPAN_NOTICE(" [key_name_admin(usr)] edited the Emergency Pods launch time to [new_time_left*10]"), 1)
-		else
-			alert("The shuttle is neither counting down to launch nor is it in transit. Please try again when it is.")
-
-		href_list["secretsadmin"] = "check_antagonist"
-
-	else if(href_list["delay_round_end"])
-		if(!check_rights(R_SERVER))	return
-
-		ticker.delay_end = !ticker.delay_end
-		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
-		href_list["secretsadmin"] = "check_antagonist"
-
 	else if(href_list["simplemake"])
 
 		if(!check_rights(R_FUN))
@@ -850,9 +800,6 @@
 		sleep(2)
 		C.jumptomob(M)
 
-	else if(href_list["check_antagonist"])
-		check_antagonists()
-
 	else if(href_list["adminplayerobservecoodjump"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -893,7 +840,7 @@
 			var/antag = ""
 			for(var/datum/antagonist/A in M.mind.antagonist)
 				antag += "[A.role_text], "
-			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>!TODO</b></font>; Has been rev: [(M.mind.has_been_rev)?"Yes":"No"]"
+			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[get_player_antag_name(M.mind)]</b></font>;"
 		else
 			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>; Has been rev: <i>Mind datum missing</i>;"
 
@@ -1073,7 +1020,7 @@
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
-		for(var/obj/machinery/photocopier/faxmachine/F in machines)
+		for(var/obj/machinery/photocopier/faxmachine/F in SSmachines.machinery)
 			if(F == fax)
 				if(! (F.stat & (BROKEN|NOPOWER) ) )
 

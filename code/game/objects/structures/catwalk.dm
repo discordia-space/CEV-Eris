@@ -25,7 +25,7 @@
 
 /obj/structure/catwalk/Destroy()
 	redraw_nearby_catwalks()
-	..()
+	. = ..()
 
 /obj/structure/catwalk/proc/redraw_nearby_catwalks()
 	for(var/direction in alldirs)
@@ -70,10 +70,9 @@
 			qdel(src)
 	return
 
-/obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
-	if (istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
-		if(WT.remove_fuel(0, user))
+/obj/structure/catwalk/attackby(obj/item/I, mob/user)
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			user << "\blue Slicing lattice joints ..."
 			new /obj/item/stack/rods(src.loc)

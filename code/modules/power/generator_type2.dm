@@ -36,7 +36,7 @@
 #define GENRATE 800		// generator output coefficient from Q
 
 
-/obj/machinery/power/generator_type2/process()
+/obj/machinery/power/generator_type2/Process()
 	if(!input1 || !input2)
 		return
 

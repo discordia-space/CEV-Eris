@@ -1,9 +1,9 @@
-/obj/item/organ/lungs
+/obj/item/organ/internal/lungs
 	name = "lungs"
 	icon_state = "lungs"
 	gender = PLURAL
-	organ_tag = "lungs"
-	parent_organ = "chest"
+	organ_tag = O_LUNGS
+	parent_organ = BP_CHEST
 
 	var/breath_type
 	var/poison_type
@@ -16,14 +16,14 @@
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
 
-/obj/item/organ/lungs/set_dna(var/datum/dna/new_dna)
+/obj/item/organ/internal/lungs/set_dna(var/datum/dna/new_dna)
 	..()
 	min_breath_pressure = species.breath_pressure
 	breath_type = species.breath_type ? species.breath_type : "oxygen"
 	poison_type = species.poison_type ? species.poison_type : "plasma"
 	exhale_type = species.exhale_type ? species.exhale_type : 0
 
-/obj/item/organ/lungs/process()
+/obj/item/organ/internal/lungs/Process()
 	..()
 
 	if(!owner)
@@ -42,7 +42,7 @@
 			owner.losebreath += 15
 
 
-/obj/item/organ/lungs/proc/handle_breath(datum/gas_mixture/breath)
+/obj/item/organ/internal/lungs/proc/handle_breath(datum/gas_mixture/breath)
 	if(!owner)
 		return 0
 	if(!breath)
@@ -78,7 +78,8 @@
 			owner.emote("gasp")
 
 		var/ratio = inhale_pp/safe_pressure_min
-		owner.adjustOxyLoss(max(HUMAN_MAX_OXYLOSS*(1-ratio), 0))	// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
+		// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
+		owner.adjustOxyLoss(max(HUMAN_MAX_OXYLOSS*(1-ratio), 0))
 		failed_inhale = 1
 
 	owner.oxygen_alert = failed_inhale
@@ -151,7 +152,7 @@
 	breath.update_values()
 	return !failed_breath
 
-/obj/item/organ/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
+/obj/item/organ/internal/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
 	// Hot air hurts :(
 	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
 		var/damage = 0
@@ -167,7 +168,7 @@
 				else
 					damage = COLD_GAS_DAMAGE_LEVEL_1
 
-			owner.apply_damage(damage, BURN, "head", used_weapon = "Excessive Cold")
+			owner.apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Cold")
 			owner.fire_alert = 1
 		else if(breath.temperature >= species.heat_level_1)
 			if(prob(20))
@@ -181,7 +182,7 @@
 				else
 					damage = HEAT_GAS_DAMAGE_LEVEL_3
 
-			owner.apply_damage(damage, BURN, "head", used_weapon = "Excessive Heat")
+			owner.apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 			owner.fire_alert = 2
 
 		//breathing in hot/cold air also heats/cools you a bit

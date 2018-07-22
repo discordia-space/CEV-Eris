@@ -3,6 +3,7 @@
 	desc = "A device used to project your voice. Loudly."
 	icon_state = "megaphone"
 	item_state = "radio"
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 
@@ -29,7 +30,7 @@
 		return
 
 	if(!cell || !cell.checked_use(5))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
 	if(!message)

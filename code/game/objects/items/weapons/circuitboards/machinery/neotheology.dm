@@ -1,7 +1,3 @@
-#ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
-#endif
-
 /obj/item/weapon/circuitboard/neotheology/cloner
 	name = T_BOARD("christian cloner")
 	build_path = /obj/machinery/neotheology/cloner
@@ -12,7 +8,7 @@
 		/obj/item/weapon/stock_parts/scanning_module = 1,
 		/obj/item/weapon/stock_parts/matter_bin = 1,
 		/obj/item/weapon/stock_parts/manipulator = 3,
-		/obj/item/weapon/implant/external/core_implant/cruciform = 1
+		/obj/item/weapon/implant/core_implant/cruciform = 1
 	)
 
 /obj/item/weapon/circuitboard/neotheology/reader
@@ -22,7 +18,7 @@
 	origin_tech = list(TECH_DATA = 3, TECH_MAGNET = 2)
 	req_components = list(
 		/obj/item/weapon/stock_parts/scanning_module = 2,
-		/obj/item/weapon/implant/external/core_implant/cruciform = 1
+		/obj/item/weapon/implant/core_implant/cruciform = 1
 	)
 
 /obj/item/weapon/circuitboard/neotheology/biocan
@@ -32,5 +28,5 @@
 	origin_tech = list(TECH_DATA = 2)
 	req_components = list(
 		/obj/item/weapon/stock_parts/matter_bin = 3,
-		/obj/item/weapon/implant/external/core_implant/cruciform = 1
+		/obj/item/weapon/implant/core_implant/cruciform = 1
 	)

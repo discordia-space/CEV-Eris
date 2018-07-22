@@ -15,7 +15,7 @@
 		H.defaultHUD = H.client.prefs.UI_style
 		recreate_flag = TRUE
 
-	if (recreate_flag)
+	if(recreate_flag)
 		H.destroy_HUD()
 		H.create_HUD()
 
@@ -91,8 +91,11 @@
 					break
 		for (var/obj/screen/frippery/HUDfri in H.HUDfrippery)
 			H.client.screen += HUDfri
-
-	update_inv_w_uniform(0)
+	//update_equip_icon_position()
+	for(var/obj/item/I in get_equipped_items(1))
+		var/slotID = get_inventory_slot(I)
+		I.screen_loc = find_inv_position(slotID)
+/*	update_inv_w_uniform(0)
 	update_inv_wear_id(0)
 	update_inv_gloves(0)
 	update_inv_glasses(0)
@@ -108,7 +111,7 @@
 	update_inv_l_hand(0)
 	update_inv_handcuffed(0)
 	update_inv_legcuffed(0)
-	update_inv_pockets(0)
+	update_inv_pockets(0)*/
 //	H.regenerate_icons()
 	return
 
@@ -202,8 +205,17 @@
 		var/obj/screen/HUD = new HUDtype(techobject,H, HUDdatum.HUDoverlays[techobject]["loc"],\
 		 HUDdatum.HUDoverlays[techobject]["icon"] ? HUDdatum.HUDoverlays[techobject]["icon"] : null,\
 		 HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
+		HUD.layer = FLASH_LAYER
 
 		H.HUDtech[HUD.name] += HUD//Добавляем в список худов
 		if (HUD.process_flag)//Если худ нужно процессить
 			H.HUDprocess += HUD//Вливаем в соотвествующий список
+	return
+
+
+
+/mob/living/carbon/human/dead_HUD()
+	for (var/i=1,i<=HUDneed.len,i++)
+		var/obj/screen/H = HUDneed[HUDneed[i]]
+		H.DEADelize()
 	return

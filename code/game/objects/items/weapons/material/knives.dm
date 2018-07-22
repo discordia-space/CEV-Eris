@@ -19,6 +19,7 @@
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = ITEM_SIZE_NORMAL
+		tool_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10)
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		force = WEAPON_FORCE_WEAK
@@ -27,6 +28,7 @@
 		hitsound = initial(hitsound)
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)
+		tool_qualities = null
 		attack_verb = initial(attack_verb)
 
 /obj/item/weapon/material/butterfly/switchblade
@@ -56,11 +58,21 @@
 	flags = CONDUCT
 	sharp = 1
 	edge = 1
-	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
-	matter = list(DEFAULT_WALL_MATERIAL = 12000)
+	force_divisor = 0.3 // 18 when wielded with hardness 60 (steel)
+	matter = list(MATERIAL_STEEL = 3)
 	origin_tech = "materials=1"
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unbreakable = 1
+	slot_flags = SLOT_BELT
+	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10)
+
+/obj/item/weapon/material/knife/boot
+	name = "boot knife"
+	desc = "A small fixed-blade knife for putting inside a boot."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "tacknife"
+	item_state = "knife"
+	applies_material_colour = 0
 
 /obj/item/weapon/material/knife/hook
 	name = "meat hook"
@@ -77,8 +89,15 @@
 
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
-	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
-	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
+	force_divisor = 0.4 // 24 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+
+/obj/item/weapon/material/knife/neotritual
+	name = "NeoTheology ritual knife"
+	desc = "Cyberchristians priests use this for ending followers agony. When nothing can help, and only new body can bring salvation, use this."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "neot-knife"
+	item_state = "knife"
+	applies_material_colour = 0

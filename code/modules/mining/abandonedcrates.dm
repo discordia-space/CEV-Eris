@@ -2,8 +2,6 @@
 	name = "abandoned crate"
 	desc = "What could be inside?"
 	icon_state = "securecrate"
-	icon_opened = "securecrateopen"
-	icon_closed = "securecrate"
 	var/list/code = list()
 	var/list/lastattempt = list()
 	var/attempts = 10
@@ -29,7 +27,7 @@
 			new/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus(src)
 			new/obj/item/weapon/flame/lighter/zippo(src)
 		if(6 to 10)
-			new/obj/item/weapon/pickaxe/drill(src)
+			new/obj/item/weapon/tool/pickaxe/drill(src)
 			new/obj/item/device/taperecorder(src)
 			new/obj/item/clothing/suit/space(src)
 			new/obj/item/clothing/head/helmet/space(src)
@@ -62,9 +60,7 @@
 		if(55 to 56)
 			var/newitem = pick(typesof(/obj/item/toy/prize) - /obj/item/toy/prize)
 			new newitem(src)
-		if(57 to 58)
-			new/obj/item/toy/syndicateballoon(src)
-		if(59 to 60)
+		if(57 to 60)
 			new/obj/item/weapon/rig(src)
 		if(61 to 62)
 			for(var/i = 0, i < 12, ++i)
@@ -79,21 +75,13 @@
 			for(var/i = 0, i < t, ++i)
 				var/newitem = pick(typesof(/obj/item/weapon/stock_parts) - /obj/item/weapon/stock_parts - /obj/item/weapon/stock_parts/subspace)
 				new newitem(src)
-		if(69 to 70)
-			new/obj/item/weapon/pickaxe/silver(src)
-		if(71 to 72)
-			new/obj/item/weapon/pickaxe/drill(src)
+		if(69 to 72)
+			new/obj/item/weapon/tool/pickaxe/drill(src)
 		if(73 to 74)
-			new/obj/item/weapon/pickaxe/jackhammer(src)
-		if(75 to 76)
-			new/obj/item/weapon/pickaxe/diamond(src)
-		if(77 to 78)
-			new/obj/item/weapon/pickaxe/diamonddrill(src)
-		if(79 to 80)
-			new/obj/item/weapon/pickaxe/gold(src)
-		if(81 to 82)
-			new/obj/item/weapon/pickaxe/plasmacutter(src)
-		if(83 to 84)
+			new/obj/item/weapon/tool/pickaxe/jackhammer(src)
+		if(75 to 78)
+			new/obj/item/weapon/tool/pickaxe/diamonddrill(src)
+		if(79 to 84)
 			new/obj/item/toy/katana(src)
 		if(85 to 86)
 			new/obj/item/seeds/random(src)
@@ -102,9 +90,9 @@
 		if(88)
 			new/obj/item/xenos_claw(src)
 		if(89)
-			new/obj/item/organ/xenos/plasmavessel(src)
+			new/obj/item/organ/internal/xenos/plasmavessel(src)
 		if(90)
-			new/obj/item/organ/heart(src)
+			new/obj/item/organ/internal/heart(src)
 		if(91)
 			new/obj/item/weapon/material/sword/katana(src)
 		if(92)
@@ -182,7 +170,7 @@
 
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(locked)
-		if (istype(W, /obj/item/device/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
+		if (istype(W, /obj/item/weapon/tool/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
 			user << SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:")
 			if (attempts == 1)
 				user << SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt.")

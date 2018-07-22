@@ -9,9 +9,9 @@
 	anchored = 1
 	opacity = 1
 	density = 1
-	layer = DOOR_OPEN_LAYER
-	var/open_layer = DOOR_OPEN_LAYER
-	var/closed_layer = DOOR_CLOSED_LAYER
+	layer = OPEN_DOOR_LAYER
+	var/open_layer = OPEN_DOOR_LAYER
+	var/closed_layer = CLOSED_DOOR_LAYER
 
 	var/visible = 1
 	var/p_open = 0
@@ -77,10 +77,10 @@
 /obj/machinery/door/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
-	return
 
-/obj/machinery/door/process()
+	return ..()
+
+/obj/machinery/door/Process()
 	if(close_door_at && world.time >= close_door_at)
 		if(autoclose)
 			close_door_at = next_close_time()
@@ -199,7 +199,12 @@
 	return src.attack_hand(user)
 
 /obj/machinery/door/attack_hand(mob/user as mob)
-	return src.attackby(user, user)
+	if(src.allowed(user) && operable())
+		if(src.density)
+			open()
+		else
+			close()
+		return
 
 /obj/machinery/door/attack_tk(mob/user as mob)
 	if(requiresID() && !allowed(null))
@@ -208,6 +213,31 @@
 
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user)
+
+	if(repairing)
+		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_WELDING))
+		switch(tool_type)
+
+			if(QUALITY_WELDING)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					user << SPAN_NOTICE("You finish repairing the damage to \the [src].")
+					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
+					update_icon()
+					qdel(repairing)
+					repairing = null
+					return
+				return
+
+			if(QUALITY_PRYING)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_ROB))
+					user << SPAN_NOTICE("You remove \the [repairing].")
+					repairing.loc = user.loc
+					repairing = null
+					return
+				return
+
+			if(ABORT_CHECK)
+				return
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
@@ -241,30 +271,6 @@
 
 		return
 
-	if(repairing && istype(I, /obj/item/weapon/weldingtool))
-		if(!density)
-			user << SPAN_WARNING("\The [src] must be closed before you can repair it.")
-			return
-
-		var/obj/item/weapon/weldingtool/welder = I
-		if(welder.remove_fuel(0,user))
-			user << SPAN_NOTICE("You start to fix dents and weld \the [repairing] into place.")
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, 5 * repairing.amount, src) && welder && welder.isOn())
-				user << SPAN_NOTICE("You finish repairing the damage to \the [src].")
-				health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
-				update_icon()
-				qdel(repairing)
-				repairing = null
-		return
-
-	if(repairing && istype(I, /obj/item/weapon/crowbar))
-		user << SPAN_NOTICE("You remove \the [repairing].")
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-		repairing.loc = user.loc
-		repairing = null
-		return
-
 	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
 	if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
 		var/obj/item/weapon/W = I
@@ -282,13 +288,6 @@
 	if(src.operating > 0 || isrobot(user))	return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
 
 	if(src.operating) return
-
-	if(src.allowed(user) && operable())
-		if(src.density)
-			open()
-		else
-			close()
-		return
 
 	if(src.density)
 		do_animate("deny")
@@ -413,6 +412,7 @@
 	return world.time + (normalspeed ? 150 : 5)
 
 /obj/machinery/door/proc/close(var/forced = 0)
+	set waitfor = FALSE
 	if(!can_close(forced))
 		return
 	operating = 1
@@ -451,12 +451,12 @@
 	return ..(M)
 
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
-	if(!air_master)
+	if(!SSair)
 		return 0
 
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
-		air_master.mark_for_update(turf)
+		SSair.mark_for_update(turf)
 
 	return 1
 

@@ -4,17 +4,18 @@
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "latticefull"
 	density = 0
-	anchored = 1.0
+	plane = FLOOR_PLANE
+	anchored = TRUE
 	w_class = ITEM_SIZE_NORMAL
-	layer = 2.3 //under pipes
+	layer = LATTICE_LAYER //under pipes
 	//	flags = CONDUCT
 
-/obj/structure/lattice/initialize()
-	..()
+/obj/structure/lattice/Initialize()
+	. = ..()
 ///// Z-Level Stuff
 	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/floor/hull))) // || istype(src.loc, /turf/simulated/floor/open)
 ///// Z-Level Stuff
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
 			qdel(LAT)
@@ -33,7 +34,7 @@
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays(src.loc)
-	..()
+	. = ..()
 
 /obj/structure/lattice/ex_act(severity)
 	switch(severity)
@@ -48,20 +49,18 @@
 		else
 	return
 
-/obj/structure/lattice/attackby(obj/item/C as obj, mob/user as mob)
-
-	if (istype(C, /obj/item/stack/tile/floor))
+/obj/structure/lattice/attackby(obj/item/I, mob/user)
+	if (istype(I, /obj/item/stack/tile/floor))
 		var/turf/T = get_turf(src)
-		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
+		T.attackby(I, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
-	if (istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
-		if(WT.remove_fuel(0, user))
+	if(I.get_tool_type(user, list(QUALITY_WELDING)))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user << SPAN_NOTICE("Slicing lattice joints ...")
-		PoolOrNew(/obj/item/stack/rods, src.loc)
-		qdel(src)
-	if (istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
+			PoolOrNew(/obj/item/stack/rods, src.loc)
+			qdel(src)
+	if (istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = I
 		if(R.amount <= 2)
 			return
 		else

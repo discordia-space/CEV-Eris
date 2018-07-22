@@ -6,7 +6,7 @@ var/list/directory = list()							//list of all ckeys with associated client
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
 var/global/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player
-var/global/list/mob_list = list()					//List of all mobs, including clientless
+//var/global/list/mob_list = list()					//List of all mobs, including clientless   --Removed
 var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
 var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
@@ -114,7 +114,7 @@ var/global/list/string_slot_flags = list(
 	"feet" = SLOT_FEET,
 	"exo slot" = SLOT_OCLOTHING,
 	"body" = SLOT_ICLOTHING,
-	"uniform" = SLOT_TIE,
+	"uniform" = SLOT_ACCESSORY_BUFFER,
 	"holster" = SLOT_HOLSTER
 )
 

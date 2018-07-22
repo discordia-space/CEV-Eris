@@ -12,7 +12,7 @@
 	thrown_force_divisor = 0.4 // 4 with weight 15 (glass)
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
-	default_material = "glass"
+	default_material = MATERIAL_GLASS
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
 
@@ -46,10 +46,9 @@
 		color = "#ffffff"
 		alpha = 255
 
-/obj/item/weapon/material/shard/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool) && material.shard_can_repair)
-		var/obj/item/weapon/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
+/obj/item/weapon/material/shard/attackby(obj/item/I, mob/user)
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			material.place_sheet(loc)
 			qdel(src)
 			return
@@ -75,12 +74,12 @@
 
 			M << SPAN_DANGER("You step on \the [src]!")
 
-			var/list/check = list("l_foot", "r_foot")
+			var/list/check = list(BP_L_FOOT, BP_R_FOOT)
 			while(check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
 				if(affecting)
-					if(affecting.status & ORGAN_ROBOT)
+					if(affecting.robotic >= ORGAN_ROBOT)
 						return
 					if(affecting.take_damage(5, 0))
 						H.UpdateDamageIcon()
@@ -93,7 +92,7 @@
 
 // Preset types - left here for the code that uses them
 /obj/item/weapon/material/shard/shrapnel/New(loc)
-	..(loc, "steel")
+	..(loc, MATERIAL_STEEL)
 
 /obj/item/weapon/material/shard/plasma/New(loc)
-	..(loc, "phglass")
+	..(loc, MATERIAL_PLASMAGLASS)

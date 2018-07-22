@@ -1,8 +1,8 @@
 /obj/item/weapon/disk/botany
 	name = "flora data disk"
 	desc = "A small disk used for carrying data on plant genetics."
-	icon = 'icons/obj/hydroponics_machines.dmi'
-	icon_state = "disk"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "green"
 	w_class = ITEM_SIZE_TINY
 
 	var/list/genes = list()
@@ -42,7 +42,6 @@
 	var/obj/item/seeds/seed // Currently loaded seed packet.
 	var/obj/item/weapon/disk/botany/loaded_disk //Currently loaded data disk.
 
-	var/open = 0
 	var/active = 0
 	var/action_time = 5
 	var/last_action = 0
@@ -50,7 +49,7 @@
 	var/failed_task = 0
 	var/disk_needs_genes = 0
 
-/obj/machinery/botany/process()
+/obj/machinery/botany/Process()
 
 	..()
 	if(!active) return
@@ -79,37 +78,34 @@
 			visible_message("\icon[src] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
 
-/obj/machinery/botany/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/seeds))
+/obj/machinery/botany/attackby(obj/item/I, mob/user)
+
+	if(default_deconstruction(I, user))
+		return
+
+	if(default_part_replacement(I, user))
+		return
+
+	if(istype(I,/obj/item/seeds))
 		if(seed)
 			user << "There is already a seed loaded."
 			return
-		var/obj/item/seeds/S =W
+		var/obj/item/seeds/S = I
 		if(S.seed && S.seed.get_trait(TRAIT_IMMUTABLE) > 0)
 			user << "That seed is not compatible with our genetics technology."
 		else
-			user.drop_from_inventory(W)
-			W.loc = src
-			seed = W
-			user << "You load [W] into [src]."
+			user.drop_from_inventory(I)
+			I.loc = src
+			seed = I
+			user << "You load [I] into [src]."
 		return
 
-	if(istype(W,/obj/item/weapon/screwdriver))
-		open = !open
-		user << "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>"
-		return
-
-	if(open)
-		if(istype(W, /obj/item/weapon/crowbar))
-			dismantle()
-			return
-
-	if(istype(W,/obj/item/weapon/disk/botany))
+	if(istype(I,/obj/item/weapon/disk/botany))
 		if(loaded_disk)
 			user << "There is already a data disk loaded."
 			return
 		else
-			var/obj/item/weapon/disk/botany/B = W
+			var/obj/item/weapon/disk/botany/B = I
 
 			if(B.genes && B.genes.len)
 				if(!disk_needs_genes)
@@ -120,10 +116,10 @@
 					user << "That disk does not have any gene data loaded."
 					return
 
-			user.drop_from_inventory(W)
-			W.loc = src
-			loaded_disk = W
-			user << "You load [W] into [src]."
+			user.drop_from_inventory(I)
+			I.loc = src
+			loaded_disk = I
+			user << "You load [I] into [src]."
 
 		return
 	..()
@@ -136,7 +132,7 @@
 	var/datum/seed/genetics // Currently scanned seed genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 
-/obj/machinery/botany/extractor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/botany/extractor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_panel_open = 1)
 
 	if(!user)
 		return
@@ -170,7 +166,7 @@
 		data["hasGenetics"] = 0
 		data["sourceName"] = 0
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_panel_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "botany_isolator.tmpl", "Lysis-isolation Centrifuge UI", 470, 450)
 		ui.set_initial_data(data)
@@ -267,7 +263,7 @@
 	icon_state = "traitgun"
 	disk_needs_genes = 1
 
-/obj/machinery/botany/editor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/botany/editor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_panel_open = 1)
 
 	if(!user)
 		return
@@ -300,7 +296,7 @@
 	else
 		data["loaded"] = 0
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_panel_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "botany_editor.tmpl", "Bioballistic Delivery UI", 470, 450)
 		ui.set_initial_data(data)

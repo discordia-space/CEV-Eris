@@ -2,7 +2,7 @@
 //Robotic Component Analyser, basically a health analyser for robots
 //
 /obj/item/device/robotanalyzer
-	name = "cyborg analyzer"
+	name = "robot analyzer"
 	icon_state = "robotanalyzer"
 	item_state = "analyzer"
 	desc = "A hand-held scanner able to diagnose robotic injuries."
@@ -13,7 +13,7 @@
 	throw_speed = 5
 	throw_range = 10
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 200)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	var/mode = 1;
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
@@ -25,7 +25,7 @@
 
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!cell || !cell.checked_use(5))
-		user << SPAN_WARNING("[src] battery is dead or missing")
+		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	if((CLUMSY in user.mutations) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
@@ -83,7 +83,7 @@
 			var/organ_found
 			if(H.internal_organs.len)
 				for(var/obj/item/organ/external/E in H.organs)
-					if(!(E.status & ORGAN_ROBOT))
+					if(!(E.robotic >= ORGAN_ROBOT))
 						continue
 					organ_found = 1
 					user << "[E.name]: <font color='red'>[E.brute_dam]</font> <font color='#FFA500'>[E.burn_dam]</font>"
@@ -94,7 +94,7 @@
 			organ_found = null
 			if(H.internal_organs.len)
 				for(var/obj/item/organ/O in H.internal_organs)
-					if(!(O.status & ORGAN_ROBOT))
+					if(!(O.robotic >= ORGAN_ROBOT))
 						continue
 					organ_found = 1
 					user << "[O.name]: <font color='red'>[O.damage]</font>"

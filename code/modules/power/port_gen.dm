@@ -29,15 +29,16 @@
 /obj/machinery/power/port_gen/proc/handleInactive()
 	return
 
-/obj/machinery/power/port_gen/process()
+/obj/machinery/power/port_gen/Process()
 	if(active && HasFuel() && !IsBroken() && anchored && powernet)
 		add_avail(power_gen * power_output)
 		UseFuel()
 		src.updateDialog()
 	else
 		active = 0
-		icon_state = initial(icon_state)
 		handleInactive()
+
+	update_icon()
 
 /obj/machinery/power/powered()
 	return 1 //doesn't require an external power source
@@ -47,6 +48,10 @@
 		return
 	if(!anchored)
 		return
+
+/obj/machinery/power/port_gen/update_icon()
+	if(!active)
+		icon_state = initial(icon_state)
 
 /obj/machinery/power/port_gen/examine(mob/user)
 	if(!..(user,1 ))
@@ -99,8 +104,8 @@
 	power_gen = 20000			//Watts output per power_output level
 	var/max_power_output = 5	//The maximum power setting without emagging.
 	var/max_safe_output = 4		// For UI use, maximal output that won't cause overheat.
-	var/time_per_sheet = 96		//fuel efficiency - how long 1 sheet lasts at power level 1
-	var/max_sheets = 100 		//max capacity of the hopper
+	var/time_per_fuel_unit = 96		//fuel efficiency - how long 1 unit of sheet/reagent lasts at power level 1
+	var/max_fuel_volume = 100 		//max capacity of the hopper
 	var/max_temperature = 300	//max temperature before overheating increases
 	var/temperature_gain = 50	//how much the temperature increases per power output level, in degrees per level
 
@@ -109,10 +114,17 @@
 	var/temperature = 0		//The current temperature
 	var/overheating = 0		//if this gets high enough the generator explodes
 
-/obj/machinery/power/port_gen/pacman/initialize()
-	..()
+	var/use_reagents_as_fuel = FALSE // designed to work with premade classes, rather than for in-game VV editing.
+	var/fuel_name // uses reagent id to get the name
+	var/fuel_reagent_id = "fuel"
+
+/obj/machinery/power/port_gen/pacman/Initialize()
+	. = ..()
 	if(anchored)
 		connect_to_network()
+	if(use_reagents_as_fuel)
+		fuel_name = chemical_reagents_list[fuel_reagent_id]
+		desc = "A power generator that runs on [fuel_name]. Rated for [(power_gen * max_safe_output) / 1000] kW max safe output."
 
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
@@ -122,7 +134,11 @@
 	var/temp_rating = 0
 	for(var/obj/item/weapon/stock_parts/SP in component_parts)
 		if(istype(SP, /obj/item/weapon/stock_parts/matter_bin))
-			max_sheets = SP.rating * SP.rating * 50
+			if(!use_reagents_as_fuel)
+				max_fuel_volume = SP.rating * SP.rating * 50
+			else
+				max_fuel_volume = SP.rating * 300
+				create_reagents(max_fuel_volume)
 		else if(istype(SP, /obj/item/weapon/stock_parts/micro_laser) || istype(SP, /obj/item/weapon/stock_parts/capacitor))
 			temp_rating += SP.rating
 
@@ -131,36 +147,49 @@
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	..(user)
 	user << "\The [src] appears to be producing [power_gen*power_output] W."
-	user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	if(IsBroken()) user << SPAN_WARNING("\The [src] seems to have broken down.")
-	if(overheating) user << SPAN_DANGER("\The [src] is overheating!")
+	if(!use_reagents_as_fuel)
+		user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
+	else
+		user << "The fuel counter reports [reagents.total_volume] units of reagents in the hopper."
+	if(IsBroken())
+		user << SPAN_WARNING("\The [src] seems to have broken down.")
+	if(overheating)
+		user << SPAN_DANGER("\The [src] is overheating!")
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
-	var/needed_sheets = power_output / time_per_sheet
-	if(sheets >= needed_sheets - sheet_left)
-		return 1
-	return 0
+	var/needed_fuel = power_output / time_per_fuel_unit
+	if(!use_reagents_as_fuel)
+		if(sheets >= needed_fuel - sheet_left)
+			return TRUE
+	else
+		if(reagents.has_reagent(fuel_reagent_id, needed_fuel))
+			return TRUE
+	return FALSE
 
-//Removes one stack's worth of material from the generator.
+//Removes one stack's worth of material or purge all reagents from the generator.
 /obj/machinery/power/port_gen/pacman/DropFuel()
 	if(sheets)
 		var/obj/item/stack/material/S = new sheet_path(loc)
 		var/amount = min(sheets, S.max_amount)
 		S.amount = amount
 		sheets -= amount
+	if(use_reagents_as_fuel)
+		reagents.clear_reagents()
 
 /obj/machinery/power/port_gen/pacman/UseFuel()
 
 	//how much material are we using this iteration?
-	var/needed_sheets = power_output / time_per_sheet
-
-	//HasFuel() should guarantee us that there is enough fuel left, so no need to check that
-	//the only thing we need to worry about is if we are going to rollover to the next sheet
-	if (needed_sheets > sheet_left)
-		sheets--
-		sheet_left = (1 + sheet_left) - needed_sheets
+	var/needed_fuel = power_output / time_per_fuel_unit
+	if(!use_reagents_as_fuel)
+		//HasFuel() should guarantee us that there is enough fuel left, so no need to check that
+		//the only thing we need to worry about is if we are going to rollover to the next sheet
+		if (needed_fuel > sheet_left)
+			sheets--
+			sheet_left = (1 + sheet_left) - needed_fuel
+		else
+			sheet_left -= needed_fuel
 	else
-		sheet_left -= needed_sheets
+		reagents.remove_reagent(fuel_reagent_id, needed_fuel)
 
 	//calculate the "target" temperature range
 	//This should probably depend on the external temperature somehow, but whatever.
@@ -226,13 +255,19 @@
 	//Vapourize all the plasma
 	//When ground up in a grinder, 1 sheet produces 20 u of plasma -- Chemistry-Machinery.dm
 	//1 mol = 10 u? I dunno. 1 mol of carbon is definitely bigger than a pill
-	var/plasma = (sheets+sheet_left)*20
+	var/plasma = 0
+	if(!use_reagents_as_fuel)
+		plasma = (sheets+sheet_left)*20
+		sheets = 0
+		sheet_left = 0
+	else
+		plasma = reagents.get_reagent_amount(fuel_reagent_id)*20
+		reagents.clear_reagents()
+
 	var/datum/gas_mixture/environment = loc.return_air()
 	if (environment)
 		environment.adjust_gas_temp("plasma", plasma/10, temperature + T0C)
 
-	sheets = 0
-	sheet_left = 0
 	..()
 
 /obj/machinery/power/port_gen/pacman/emag_act(var/remaining_charges, var/mob/user)
@@ -243,10 +278,11 @@
 		emagged = 1
 		return 1
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, sheet_path))
-		var/obj/item/stack/addstack = O
-		var/amount = min((max_sheets - sheets), addstack.amount)
+/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/I, var/mob/user)
+
+	if(!use_reagents_as_fuel && istype(I, sheet_path))
+		var/obj/item/stack/addstack = I
+		var/amount = min((max_fuel_volume - sheets), addstack.amount)
 		if(amount < 1)
 			user << "\blue The [src.name] is full!"
 			return
@@ -255,36 +291,56 @@
 		addstack.use(amount)
 		updateUsrDialog()
 		return
-	else if(!active)
-		if(istype(O, /obj/item/weapon/wrench))
 
-			if(!anchored)
-				connect_to_network()
-				user << "\blue You secure the generator to the floor."
-			else
-				disconnect_from_network()
-				user << "\blue You unsecure the generator from the floor."
+	if(active)
+		user << SPAN_NOTICE("You can't work with [src] while its running!")
 
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-			anchored = !anchored
+	else
 
-		else if(istype(O, /obj/item/weapon/screwdriver))
-			open = !open
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			if(open)
-				user << "\blue You open the access panel."
-			else
-				user << "\blue You close the access panel."
-		else if(istype(O, /obj/item/weapon/crowbar) && open)
-			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
-			for(var/obj/item/I in component_parts)
-				I.loc = src.loc
-			while ( sheets > 0 )
-				DropFuel()
+		var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING)
+		if(open)
+			usable_qualities.Add(QUALITY_PRYING)
 
-			new_frame.state = 2
-			new_frame.icon_state = "box_1"
-			qdel(src)
+		var/tool_type = I.get_tool_type(user, usable_qualities)
+		switch(tool_type)
+
+			if(QUALITY_PRYING)
+				if(open)
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+						var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
+						for(var/obj/item/CP in component_parts)
+							CP.loc = src.loc
+						while ( sheets > 0 )
+							DropFuel()
+						new_frame.state = 2
+						new_frame.icon_state = "box_1"
+						qdel(src)
+					return
+				return
+
+			if(QUALITY_SCREW_DRIVING)
+				var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+					open = !open
+					user << SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+					update_icon()
+					return
+				return
+
+			if(QUALITY_BOLT_TURNING)
+				if(istype(get_turf(src), /turf/space) && !anchored)
+					user << SPAN_NOTICE("You can't anchor something to empty space. Idiot.")
+					return
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					user << SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I].")
+					anchored = !anchored
+					if(anchored)
+						connect_to_network()
+					else
+						disconnect_from_network()
+
+			if(ABORT_CHECK)
+				return
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
 	..()
@@ -301,12 +357,14 @@
 
 	var/data[0]
 	data["active"] = active
+
 	if(isAI(user))
 		data["is_ai"] = 1
 	else if(isrobot(user) && !Adjacent(user))
 		data["is_ai"] = 1
 	else
 		data["is_ai"] = 0
+
 	data["output_set"] = power_output
 	data["output_max"] = max_power_output
 	data["output_safe"] = max_safe_output
@@ -315,12 +373,12 @@
 	data["temperature_max"] = src.max_temperature
 	data["temperature_overheat"] = overheating
 	// 1 sheet = 1000cm3?
-	data["fuel_stored"] = round((sheets * 1000) + (sheet_left * 1000))
-	data["fuel_capacity"] = round(max_sheets * 1000, 0.1)
-	data["fuel_usage"] = active ? round((power_output / time_per_sheet) * 1000) : 0
-	data["fuel_type"] = sheet_name
-
-
+	data["fuel_stored"] = !use_reagents_as_fuel ?  round((sheets * 1000) + (sheet_left * 1000)) : round(reagents.total_volume * 1000, 0.1)
+	data["fuel_capacity"] = round(max_fuel_volume * 1000, 0.1)
+	data["fuel_usage"] = active ? round((power_output / time_per_fuel_unit) * 1000) : 0
+	data["fuel_type"] = !use_reagents_as_fuel ? sheet_name : fuel_name
+	data["fuel_units"] = "sheets"
+	data["fuel_ejectable"] = TRUE
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -358,6 +416,12 @@
 	onclose(user, "port_gen")
 */
 
+/obj/machinery/power/port_gen/pacman/update_icon()
+	if(active)
+		icon_state = "portgen1"
+	else
+		icon_state = "portgen0"
+
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
 	if(..())
 		return
@@ -367,11 +431,11 @@
 		if(href_list["action"] == "enable")
 			if(!active && HasFuel() && !IsBroken())
 				active = 1
-				icon_state = "portgen1"
+				update_icon()
 		if(href_list["action"] == "disable")
 			if (active)
 				active = 0
-				icon_state = "portgen0"
+				update_icon()
 		if(href_list["action"] == "eject")
 			if(!active)
 				DropFuel()
@@ -388,7 +452,7 @@
 	icon_state = "portgen1"
 	sheet_path = /obj/item/stack/material/uranium
 	sheet_name = "Uranium Sheets"
-	time_per_sheet = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
+	time_per_fuel_unit = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
 	circuit = /obj/item/weapon/circuitboard/pacman/super
 
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
@@ -421,7 +485,7 @@
 	power_gen = 25000 //watts
 	max_power_output = 10
 	max_safe_output = 8
-	time_per_sheet = 576
+	time_per_fuel_unit = 576
 	max_temperature = 800
 	temperature_gain = 90
 	circuit = /obj/item/weapon/circuitboard/pacman/mrs

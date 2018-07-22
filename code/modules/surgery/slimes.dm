@@ -10,11 +10,7 @@
 		return target.stat == 2
 
 /datum/surgery_step/slime/cut_flesh
-	allowed_tools = list(
-	/obj/item/weapon/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
-	)
+	requedQuality = QUALITY_CUTTING
 
 	min_duration = 30
 	max_duration = 50
@@ -36,11 +32,7 @@
 		"\red Your hand slips, tearing [target]'s flesh with \the [tool]!")
 
 /datum/surgery_step/slime/cut_innards
-	allowed_tools = list(
-	/obj/item/weapon/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
-	)
+	requedQuality = QUALITY_CUTTING
 
 	min_duration = 30
 	max_duration = 50
@@ -62,10 +54,7 @@
 		"\red Your hand slips, tearing [target]'s innards with \the [tool]!")
 
 /datum/surgery_step/slime/saw_core
-	allowed_tools = list(
-	/obj/item/weapon/circular_saw = 100, \
-	/obj/item/weapon/material/hatchet = 75
-	)
+	requedQuality = QUALITY_SAWING
 
 	min_duration = 50
 	max_duration = 70

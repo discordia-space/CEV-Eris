@@ -33,7 +33,7 @@
 
 /obj/machinery/chemical_dispenser/proc/recharge()
 	if(stat & (BROKEN|NOPOWER)) return
-	var/addenergy = 2
+	var/addenergy = 6
 	var/oldenergy = energy
 	energy = min(energy + addenergy, max_energy)
 	if(energy != oldenergy)
@@ -44,7 +44,7 @@
 	..()
 	nanomanager.update_uis(src) // update all UIs attached to src
 
-/obj/machinery/chemical_dispenser/process()
+/obj/machinery/chemical_dispenser/Process()
 	if(recharged <= 0)
 		recharge()
 		recharged = 15
@@ -88,7 +88,7 @@
 	data["energy"] = round(energy)
 	data["maxEnergy"] = round(max_energy)
 	data["isBeakerLoaded"] = beaker ? 1 : 0
-	data["glass"] = accept_glass
+	data[MATERIAL_GLASS] = accept_glass
 	var beakerContents[0]
 	var beakerCurrentVolume = 0
 	if(beaker && beaker:reagents && beaker:reagents.reagent_list.len)
@@ -181,6 +181,7 @@
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
+	layer = WALL_OBJ_LAYER
 	ui_title = "Soda Dispens-o-matic"
 	energy = 100
 	accept_glass = 1
@@ -189,7 +190,7 @@
 
 /obj/machinery/chemical_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
-	if(istype(B, /obj/item/device/multitool))
+	if(istype(B, /obj/item/weapon/tool/multitool))
 		if(hackedcheck == 0)
 			user << "You change the mode from 'McNano' to 'Pizza King'."
 			dispensable_reagents += list("thirteenloko","grapesoda")
@@ -215,7 +216,7 @@
 /obj/machinery/chemical_dispenser/beer/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
 	..()
 
-	if(istype(B, /obj/item/device/multitool))
+	if(istype(B, /obj/item/weapon/tool/multitool))
 		if(hackedcheck == 0)
 			user << "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes."
 			dispensable_reagents += list("goldschlager","patron","watermelonjuice","berryjuice")
@@ -252,6 +253,7 @@
 	name = "ChemMaster 3000"
 	density = 1
 	anchored = 1
+	layer = BELOW_OBJ_LAYER
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	use_power = 1
@@ -539,7 +541,7 @@
 	name = "All-In-One Grinder"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
-	layer = 2.9
+	layer = BELOW_OBJ_LAYER
 	density = 0
 	anchored = 0
 	use_power = 1
@@ -551,10 +553,10 @@
 	var/list/holdingitems = list()
 	var/list/sheet_reagents = list(
 		/obj/item/stack/material/iron = "iron",
-		/obj/item/stack/material/uranium = "uranium",
+		/obj/item/stack/material/uranium = MATERIAL_URANIUM,
 		/obj/item/stack/material/plasma = "plasma",
-		/obj/item/stack/material/gold = "gold",
-		/obj/item/stack/material/silver = "silver",
+		/obj/item/stack/material/gold = MATERIAL_GOLD,
+		/obj/item/stack/material/silver = MATERIAL_SILVER,
 		/obj/item/stack/material/mhydrogen = "hydrogen"
 		)
 
@@ -746,7 +748,7 @@
 				var/amount_to_take = max(0,min(stack.amount,round(remaining_volume/REAGENTS_PER_SHEET)))
 				if(amount_to_take)
 					stack.use(amount_to_take)
-					if(deleted(stack))
+					if(QDELETED(stack))
 						holdingitems -= stack
 					beaker.reagents.add_reagent(sheet_reagents[stack.type], (amount_to_take*REAGENTS_PER_SHEET))
 					continue

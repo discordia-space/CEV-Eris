@@ -92,9 +92,9 @@ var/global/datum/controller/processScheduler/processScheduler
 	timeAllowanceMax = world.tick_lag
 	updateStartDelays()
 	spawn(0)
-		process()
+		Process()
 
-/datum/controller/processScheduler/proc/process()
+/datum/controller/processScheduler/Process()
 	updateCurrentTickData()
 
 	for(var/i=world.tick_lag, i<world.tick_lag*50, i+=world.tick_lag)
@@ -206,7 +206,7 @@ var/global/datum/controller/processScheduler/processScheduler
 
 /datum/controller/processScheduler/proc/runProcess(var/datum/controller/process/process)
 	spawn(0)
-		process.process()
+		process.Process()
 
 /datum/controller/processScheduler/proc/processStarted(var/datum/controller/process/process)
 	setRunningProcessState(process)

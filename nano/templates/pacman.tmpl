@@ -35,22 +35,22 @@
 	<div class="itemContent">
 		{{if data.fuel_stored >= 5000}}
 			{{:helper.displayBar(data.fuel_stored, 0, data.fuel_capacity, 'good')}}
-			<br><span class="good">{{:data.fuel_stored}}/{{:data.fuel_capacity}} cm3</span>
+			<br><span class="good">{{:data.fuel_stored}}/{{:data.fuel_capacity}} {{:data.fuel_unit}}</span>
 		{{else data.fuel_stored >= 1000}}
 			{{:helper.displayBar(data.fuel_stored, 0, data.fuel_capacity, 'average')}}
-			<br><span class="average">{{:data.fuel_stored}}/{{:data.fuel_capacity}} cm3</span>
+			<br><span class="average">{{:data.fuel_stored}}/{{:data.fuel_capacity}} {{:data.fuel_unit}}</span>
 		{{else}}
 			{{:helper.displayBar(data.fuel_stored, 0, data.fuel_capacity, 'bad')}}
-			<br><span class="bad">{{:data.fuel_stored}}/{{:data.fuel_capacity}} cm3</span>
+			<br><span class="bad">{{:data.fuel_stored}}/{{:data.fuel_capacity}} {{:data.fuel_unit}}</span>
 		{{/if}}
 	</div>
 	<div class="itemLabel">
 		Fuel Usage:
 	</div>
 	<div class="itemContent">
-		<span class="good">{{:data.fuel_usage}} cm3/s</span>
+		<span class="good">{{:data.fuel_usage}} {{:data.fuel_unit}}</span>
 	</div>
-	{{if !data.is_ai}}
+	{{if !data.is_ai && data.fuel_ejectable}}
 		<div class="itemLabel">
 			Control:
 		</div>

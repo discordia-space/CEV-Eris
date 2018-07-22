@@ -1,5 +1,5 @@
 //CORTICAL BORER ORGANS.
-/obj/item/organ/borer/process()
+/obj/item/organ/borer/Process()
 
 	// Borer husks regenerate health, feel no pain, and are resistant to stuns and brainloss.
 	for(var/chem in list("tricordrazine","tramadol","hyperzine","alkysine"))
@@ -25,9 +25,9 @@
 	name = "cortical borer"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borer"
-	organ_tag = "brain"
+	organ_tag = O_BRAIN
 	desc = "A disgusting space slug."
-	parent_organ = "head"
+	parent_organ = BP_HEAD
 	vital = 1
 
 /obj/item/organ/borer/removed(var/mob/living/user)

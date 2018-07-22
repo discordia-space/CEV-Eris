@@ -27,9 +27,9 @@ var/datum/controller/vote/vote = new()
 	C << browse(interface(C),"window=vote;can_close=0;can_resize=0;can_minimize=0")
 
 
-/datum/controller/vote/proc/process()	//called by master_controller
+/datum/controller/vote/Process()	//called by master_controller
 	if(active_vote)
-		active_vote.process()
+		active_vote.Process()
 
 		if(get_vote_time() >= active_vote.time)
 			active_vote.check_winners()
@@ -87,7 +87,7 @@ var/datum/controller/vote/vote = new()
 
 	var/admin = FALSE
 	if(C.mob)
-		admin = check_rights(user = C.mob)
+		admin = check_rights(user = C.mob, show_msg=FALSE)
 
 	voters |= C
 
@@ -240,7 +240,7 @@ var/datum/controller/vote/vote = new()
 
 
 
-/datum/poll/proc/process()
+/datum/poll/Process()
 	return
 
 
@@ -379,7 +379,7 @@ var/datum/controller/vote/vote = new()
 		CS.new_storyteller = ch
 		choices.Add(CS)
 
-/datum/poll/storyteller/process()
+/datum/poll/storyteller/Process()
 	if(ticker.current_state != GAME_STATE_PREGAME)
 		vote.stop_vote()
 		world << "<b>Voting aborted due to game start.</b>"

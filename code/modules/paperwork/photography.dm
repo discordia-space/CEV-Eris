@@ -97,10 +97,10 @@ var/global/photo_count = 0
 		playsound(loc, "rustle", 50, 1, -5)
 		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
-				if("r_hand")
+				if(BP_R_HAND)
 					M.u_equip(src)
 					M.put_in_r_hand(src)
-				if("l_hand")
+				if(BP_L_HAND)
 					M.u_equip(src)
 					M.put_in_l_hand(src)
 			add_fingerprint(usr)
@@ -124,18 +124,19 @@ var/global/photo_count = 0
 	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_GLASS = 2)
 	var/pictures_max = 10
 	var/pictures_left = 10
 	var/on = 1
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
 	var/size = 3
+	var/flash_power = 6
 
 /obj/item/device/camera/verb/change_size()
 	set name = "Set Photo Focus"
 	set category = "Object"
-	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3,5,7)
+	var/nsize = input("Photo Size","Pick a size of resulting photo.") as null|anything in list(1,3)
 	if(nsize)
 		size = nsize
 		usr << SPAN_NOTICE("Camera will now take [size]x[size] photos.")
@@ -186,6 +187,9 @@ var/global/photo_count = 0
 
 /obj/item/device/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(!on || !pictures_left || ismob(target.loc)) return
+	set_light(light_range + flash_power)
+	spawn(3)
+		set_light(light_range - flash_power)
 	captureimage(target, user, flag)
 
 	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)

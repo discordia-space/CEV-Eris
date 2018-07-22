@@ -10,11 +10,12 @@
 	var/refund_type = /obj/item/stack/material/steel
 	var/reverse = 0 //if resulting object faces opposite its dir (like light fixtures)
 
-/obj/item/frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
-		new refund_type( get_turf(src.loc), refund_amt)
-		qdel(src)
-		return
+/obj/item/frame/attackby(obj/item/weapon/I, mob/user)
+	if(I.get_tool_type(user, QUALITY_BOLT_TURNING))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+			new refund_type( get_turf(src.loc), refund_amt)
+			qdel(src)
+			return
 	..()
 
 /obj/item/frame/proc/try_build(turf/on_wall)
@@ -90,11 +91,13 @@
 /obj/item/frame/fire_alarm
 	name = "fire alarm frame"
 	desc = "Used for building fire alarms."
+	icon_state = "fire_bitem"
 	build_machine_type = /obj/machinery/firealarm
 
 /obj/item/frame/air_alarm
 	name = "air alarm frame"
 	desc = "Used for building air alarms."
+	icon_state = "alarm_bitem"
 	build_machine_type = /obj/machinery/alarm
 
 /obj/item/frame/light

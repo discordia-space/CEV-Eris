@@ -77,6 +77,7 @@
 	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
+	item_flags = COVER_PREVENT_MANIPULATION
 
 
 /obj/item/clothing/suit/chickensuit

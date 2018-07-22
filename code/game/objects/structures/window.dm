@@ -3,9 +3,8 @@
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
 	density = 1
-	w_class = ITEM_SIZE_NORMAL
 
-	layer = 3.2//Just above doors
+	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = 1.0
 	flags = ON_BORDER
 	var/maxhealth = 40
@@ -211,69 +210,98 @@
 		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
 	return 1
 
-/obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
-	if(!istype(W)) return//I really wish I did not need this
-	if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
-		if(isliving(G.affecting))
-			var/mob/living/M = G.affecting
-			var/state = G.state
-			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
-			switch (state)
-				if(1)
-					M.visible_message(SPAN_WARNING("[user] slams [M] against \the [src]!"))
-					M.apply_damage(7)
-					hit(10)
-				if(2)
-					M.visible_message(SPAN_DANGER("[user] bashes [M] against \the [src]!"))
-					if (prob(50))
-						M.Weaken(1)
-					M.apply_damage(10)
-					hit(25)
-				if(3)
-					M.visible_message(SPAN_DANGER("<big>[user] crushes [M] against \the [src]!</big>"))
-					M.Weaken(5)
-					M.apply_damage(20)
-					hit(50)
+/obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+	switch(state)
+		if(GRAB_PASSIVE)
+			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
+			target.apply_damage(7)
+			hit(10)
+		if(GRAB_AGGRESSIVE)
+			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
+			if(prob(50))
+				target.Weaken(1)
+			target.apply_damage(10)
+			hit(25)
+		if(GRAB_NECK)
+			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
+			target.Weaken(5)
+			target.apply_damage(20)
+			hit(50)
+	admin_attack_log(user, target,
+		"Smashed [key_name(target)] against \the [src]",
+		"Smashed against \the [src] by [key_name(user)]",
+		"smashed [key_name(target)] against \the [src]."
+	)
+	return TRUE
+
+
+/obj/structure/window/attackby(obj/item/I, mob/user)
+
+	var/list/usable_qualities = list()
+	if(!anchored && (!state || !reinf))
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+	if((reinf && state >= 1) || (reinf && state == 0) || (!reinf))
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(reinf && state >= 1)
+		usable_qualities.Add(QUALITY_PRYING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+
+		if(QUALITY_BOLT_TURNING)
+			if(!anchored && (!state || !reinf))
+				if(!glasstype)
+					user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
+					return
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
+					if(dir == SOUTHWEST)
+						var/obj/item/stack/material/mats = new glasstype(loc)
+						mats.amount = is_fulltile() ? 4 : 2
+					else
+						new glasstype(loc)
+					qdel(src)
+					return
 			return
 
-	if(W.flags & NOBLUDGEON) return
+		if(QUALITY_PRYING)
+			if(reinf && state <= 1)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					state = 1 - state
+					user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
+			return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
-		if(reinf && state >= 1)
-			state = 3 - state
-			update_nearby_icons()
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-			user << (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame."))
-		else if(reinf && state == 0)
-			set_anchored(!anchored)
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-			user << (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor."))
-		else if(!reinf)
-			set_anchored(!anchored)
-			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-			user << (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window."))
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
-		state = 1 - state
-		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
-		user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
-	else if(istype(W, /obj/item/weapon/wrench) && !anchored && (!state || !reinf))
-		if(!glasstype)
-			user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
-		else
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-			visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
-			if(dir == SOUTHWEST)
-				var/obj/item/stack/material/mats = new glasstype(loc)
-				mats.amount = is_fulltile() ? 4 : 2
-			else
-				new glasstype(loc)
-			qdel(src)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(reinf && state >= 1)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					state = 3 - state
+					update_nearby_icons()
+					user << (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame."))
+					return
+			if(reinf && state == 0)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					set_anchored(!anchored)
+					user << (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor."))
+					return
+			if(!reinf)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+					set_anchored(!anchored)
+					user << (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window."))
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(!istype(I)) return//I really wish I did not need this
+	if(I.flags & NOBLUDGEON) return
+
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(W.damtype == BRUTE || W.damtype == BURN)
+		if(I.damtype == BRUTE || I.damtype == BURN)
 			user.do_attack_animation(src)
-			hit(W.force)
+			hit(I.force)
 			if(health <= 7)
 				set_anchored(FALSE)
 				step(src, get_dir(user, src))
@@ -351,8 +379,7 @@
 	for(var/obj/structure/window/W in orange(location, 1))
 		W.update_icon()
 	loc = location
-	..()
-
+	. = ..()
 
 /obj/structure/window/Move()
 	var/ini_dir = dir

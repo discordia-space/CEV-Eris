@@ -9,10 +9,18 @@
 	spawn_positions = 1
 	supervisors = "the NeoTheology Church and God"
 	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
-	minimal_access = list(access_morgue, access_chapel_office, access_crematorium)
 	idtype = /obj/item/weapon/card/id/chaplain
+
+	stat_modifers = list(
+		STAT_TGH = 10,
+	)
+
 	uniform = /obj/item/clothing/under/rank/chaplain
+	suit = /obj/item/clothing/suit/chaplain_hoodie
+	shoes = /obj/item/clothing/shoes/reinforced
+	gloves = /obj/item/clothing/gloves/thick
 	pda = /obj/item/device/pda/chaplain
 
 /obj/landmark/join/start/chaplain
@@ -21,7 +29,7 @@
 	join_tag = /datum/job/chaplain
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H)
-	var/obj/item/weapon/implant/external/core_implant/cruciform/C = new /obj/item/weapon/implant/external/core_implant/cruciform(H)
+	var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
 	C.install(H)
 	C.activate()
 	C.add_module(new CRUCIFORM_PRIEST)

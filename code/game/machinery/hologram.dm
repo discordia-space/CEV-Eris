@@ -36,7 +36,8 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	desc = "It's a floor-mounted device for projecting holographic images."
 	icon_state = "holopad0"
 
-	layer = TURF_LAYER+0.1
+	plane = FLOOR_PLANE
+	layer = LOW_OBJ_LAYER
 
 	var/power_per_hologram = 500 //per usage per hologram
 	idle_power_usage = 5
@@ -59,7 +60,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 
 /obj/machinery/hologram/holopad/Destroy()
 	remove_hearing()
-	..()
+	. = ..()
 
 /obj/machinery/hologram/holopad/attack_hand(var/mob/living/carbon/human/user) //Carn: Hologram requests.
 	if(!istype(user))
@@ -93,8 +94,8 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 			if(last_request + 200 < world.time) //don't spam other people with requests either, you jerk!
 				last_request = world.time
 				var/list/holopadlist = list()
-				for(var/obj/machinery/hologram/holopad/H in machines)
-					if((H.z in config.station_levels) && H.operable())
+				for(var/obj/machinery/hologram/holopad/H in SSmachines.machinery)
+					if(isStationLevel(H.z) && H.operable())
 						holopadlist["[H.loc.loc.name]"] = H	//Define a list and fill it with the area of every holopad in the world
 				holopadlist = sortAssoc(holopadlist)
 				var/temppad = input(user, "Which holopad would you like to contact?", "holopad list") as null|anything in holopadlist
@@ -274,7 +275,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	return 1
 
 
-/obj/machinery/hologram/holopad/process()
+/obj/machinery/hologram/holopad/Process()
 	for (var/mob/living/silicon/ai/master in masters)
 		var/active_ai = (master && !master.incapacitated() && master.client && master.eyeobj)//If there is an AI with an eye attached, it's not incapacitated, and it has a client
 		if((stat & NOPOWER) || !active_ai)
@@ -353,7 +354,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 /obj/machinery/hologram/holopad/Destroy()
 	for (var/mob/living/master in masters)
 		clear_holo(master)
-	..()
+	. = ..()
 
 /*
 Holographic project of everything else.

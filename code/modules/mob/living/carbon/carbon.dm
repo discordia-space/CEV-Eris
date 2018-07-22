@@ -30,6 +30,7 @@
 	ingested.clear_reagents()
 	touching.clear_reagents()
 	nutrition = 400
+	shock_stage = 0
 	..()
 
 /mob/living/carbon/Move(NewLoc, direct)
@@ -56,7 +57,7 @@
 				var/d = rand(round(I.force / 4), I.force)
 				if(ishuman(src))
 					var/mob/living/carbon/human/H = src
-					var/obj/item/organ/external/organ = H.get_organ("chest")
+					var/obj/item/organ/external/organ = H.get_organ(BP_CHEST)
 					if (istype(organ))
 						if(organ.take_damage(d, 0))
 							H.UpdateDamageIcon()
@@ -85,9 +86,9 @@
 /mob/living/carbon/attack_hand(mob/M as mob)
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (H.hand)
-			temp = H.organs_by_name["l_hand"]
+			temp = H.organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			H << "\red You can't use your [temp.name]"
 			return
@@ -142,7 +143,7 @@
 		swap_hand()
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (src.health >= config.health_threshold_crit)
+	if (src.health >= HEALTH_THRESHOLD_CRIT)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			src.visible_message(
@@ -300,14 +301,8 @@
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 
-	if(!item) return //Grab processing has a chance of returning null
-
-
-	src.remove_from_mob(item)
-	item.loc = src.loc
-
-	//actually throw it!
-	if (item)
+	//Grab processing has a chance of returning null
+	if(item && src.unEquip(item, loc))
 		src.visible_message("\red [src] has thrown [item].")
 
 		if(!src.lastarea)
@@ -357,8 +352,6 @@
 		update_inv_legcuffed()
 	else
 	 ..()
-
-	return
 
 /mob/living/carbon/verb/mob_sleep()
 	set name = "Sleep"

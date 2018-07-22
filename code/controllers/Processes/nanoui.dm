@@ -9,9 +9,9 @@
 /datum/controller/process/nanoui/doWork()
 	for(last_object in nanomanager.processing_uis)
 		var/datum/nanoui/NUI = last_object
-		if(istype(NUI) && isnull(NUI.gcDestroyed))
+		if(istype(NUI) && isnull(NUI.gc_destroyed))
 			try
-				NUI.process()
+				NUI.Process()
 			catch(var/exception/e)
 				catchException(e, NUI)
 		else

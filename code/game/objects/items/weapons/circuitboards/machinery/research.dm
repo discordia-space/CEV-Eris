@@ -1,8 +1,4 @@
-#ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
-#endif
-
-obj/item/weapon/circuitboard/rdserver
+/obj/item/weapon/circuitboard/rdserver
 	name = T_BOARD("R&D server")
 	build_path = /obj/machinery/r_n_d/server
 	board_type = "machine"
@@ -31,6 +27,17 @@ obj/item/weapon/circuitboard/rdserver
 	req_components = list(
 		/obj/item/weapon/stock_parts/matter_bin = 3,
 		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/console_screen = 1
+	)
+
+/obj/item/weapon/circuitboard/autolathe_disk_cloner
+	name = T_BOARD("autolathe disk cloner")
+	build_path = /obj/machinery/autolathe_disk_cloner
+	board_type = "machine"
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
+	req_components = list(
+		/obj/item/weapon/stock_parts/scanning_module = 1,
+		/obj/item/weapon/stock_parts/micro_laser = 2,
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 

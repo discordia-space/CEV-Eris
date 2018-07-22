@@ -7,7 +7,7 @@
 	icon_state = "singularity_s1"
 	anchored = 1
 	density = 1
-	layer = 6
+	layer = MASSIVE_OBJ_LAYER
 	//light_range = 6
 	unacidable = 1 //Don't comment this out.
 	allow_spin = 0
@@ -39,16 +39,16 @@
 			qdel(src)
 
 	..()
-	processing_objects += src
-/*	for(var/obj/machinery/power/singularity_beacon/singubeacon in machines)
+	START_PROCESSING(SSobj, src)
+/*	for(var/obj/machinery/power/singularity_beacon/singubeacon in SSmachines.machinery)
 		if(singubeacon.active)
 			target = singubeacon
 			break
 */
 
 /obj/singularity/Destroy()
-	processing_objects -= src
-	..()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /obj/singularity/attack_hand(mob/user as mob)
 	consume(user)
@@ -78,7 +78,7 @@
 /obj/singularity/Bumped(atom/A)
 	consume(A)
 
-/obj/singularity/process()
+/obj/singularity/Process()
 	eat()
 	dissipate()
 	check_energy()

@@ -21,11 +21,6 @@
 			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
 				remove_splints(user)
 			return
-		if("sensors")
-			visible_message(SPAN_DANGER("\The [user] is trying to set \the [src]'s sensors!"))
-			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 0))
-				toggle_sensors(user)
-			return
 		if("internals")
 			visible_message(SPAN_DANGER("\The [usr] is trying to set \the [src]'s internals!"))
 			if(do_mob(user,src,HUMAN_STRIP_DELAY, progress = 0))
@@ -96,19 +91,6 @@
 		unEquip(l_store)
 	visible_message(SPAN_DANGER("\The [user] empties \the [src]'s pockets!"))
 
-// Modify the current target sensor level.
-/mob/living/carbon/human/proc/toggle_sensors(var/mob/living/user)
-	var/obj/item/clothing/under/suit = w_uniform
-	if(!suit)
-		user << SPAN_WARNING("\The [src] is not wearing a suit with sensors.")
-		return
-	if (suit.has_sensor >= 2)
-		user << SPAN_WARNING("\The [src]'s suit sensor controls are locked.")
-		return
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their sensors toggled by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [name]'s ([ckey]) sensors</font>")
-	suit.set_sensors(user)
-
 // Remove all splints.
 /mob/living/carbon/human/proc/remove_splints(var/mob/living/user)
 
@@ -121,7 +103,7 @@
 
 	if(can_reach_splints)
 		var/removed_splint
-		for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
+		for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/o = get_organ(organ)
 			if (o && o.status & ORGAN_SPLINTED)
 				var/obj/item/W = new /obj/item/stack/medical/splint(get_turf(src), 1)
@@ -136,11 +118,9 @@
 // Set internals on or off.
 /mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)
 	if(internal)
+		visible_message(SPAN_DANGER("\The [user] disables \the [src]'s internals!"))
 		internal.add_fingerprint(user)
 		internal = null
-		if(HUDneed.Find("internal"))
-			var/obj/screen/HUDelm = HUDneed["internal"]
-			HUDelm.icon_state = "internal0"
 	else
 		// Check for airtight mask/helmet.
 		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
@@ -152,14 +132,9 @@
 			internal = s_store
 		else if(istype(belt, /obj/item/weapon/tank))
 			internal = belt
-
-	if(internal)
 		visible_message(SPAN_WARNING("\The [src] is now running on internals!"))
 		internal.add_fingerprint(user)
-/*		if (internals)
-			internals.icon_state = "internal1"*/
-		if(HUDneed.Find("internal"))
-			var/obj/screen/HUDelm = HUDneed["internal"]
-			HUDelm.icon_state = "internal1"
-	else
-		visible_message(SPAN_DANGER("\The [user] disables \the [src]'s internals!"))
+
+	if(HUDneed.Find("internal"))
+		var/obj/screen/HUDelm = HUDneed["internal"]
+		HUDelm.update_icon()

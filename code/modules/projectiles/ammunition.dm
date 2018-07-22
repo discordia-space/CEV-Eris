@@ -28,8 +28,8 @@
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
 
-/obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+/obj/item/ammo_casing/attackby(obj/item/I, mob/user)
+	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING, QUALITY_CUTTING)))
 		if(!BB)
 			user << "\blue There is no bullet in the casing to inscribe anything into."
 			return
@@ -63,12 +63,12 @@
 /obj/item/ammo_magazine
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
-	icon_state = "357"
+	icon_state = "place-holder-box"
 	icon = 'icons/obj/ammo.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "syringe_kit"
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MATERIAL_STEEL = 2)
 	throwforce = 5
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
@@ -79,6 +79,7 @@
 	var/caliber = "357"
 	var/ammo_mag = "default"
 	var/max_ammo = 7
+	var/reload_delay = 0 //when we need to make reload slower
 
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
 	var/initial_ammo = null
@@ -101,7 +102,7 @@
 			stored_ammo += new ammo_type(src)
 	update_icon()
 
-/obj/item/ammo_magazine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(C.caliber != caliber)
@@ -114,12 +115,35 @@
 		C.loc = src
 		stored_ammo.Insert(1, C) //add to the head of the list
 		update_icon()
+	else if(istype(W, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/other = W
+		if(!src.stored_ammo.len)
+			user << SPAN_WARNING("There is no ammo in [src]!")
+			return
+		if(!do_after(user, src.reload_delay, src))
+			user << SPAN_WARNING("You stop loading ammo into [other]")
+			return
+		for(var/obj/item/ammo in src.stored_ammo)
+			other.attackby(ammo, user)
+			if(ammo in other.stored_ammo)
+				src.stored_ammo -= ammo
+			else
+				return
+		user << SPAN_NOTICE("You're done here")
+
+/obj/item/ammo_magazine/attack_hand(mob/living/user)
+	if(user.get_inactive_hand() == src && stored_ammo.len)
+		var/obj/item/ammo_casing/AC = stored_ammo[1]
+		if(user.put_in_active_hand(AC))
+			stored_ammo -= AC
+	else
+		return ..()
 
 /obj/item/ammo_magazine/attack_self(mob/user)
 	if(!stored_ammo.len)
 		user << SPAN_NOTICE("[src] is already empty!")
 		return
-	user << SPAN_NOTICE("You empty [src].")
+	user << SPAN_NOTICE("You take ammo from [src].")
 	for(var/obj/item/ammo_casing/C in stored_ammo)
 		C.loc = user.loc
 		C.set_dir(pick(cardinal))
@@ -165,4 +189,3 @@
 
 	magazine_icondata_keys["[M.type]"] = icon_keys
 	magazine_icondata_states["[M.type]"] = ammo_states
-

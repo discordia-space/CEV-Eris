@@ -1,12 +1,12 @@
 /turf/simulated/open/update_icon()
-	if(!ticker || ticker.current_state < GAME_STATE_PLAYING)
+	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		return
 
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
 	if(below)
 		if(below.is_space())
-			plane = SPACE_PLANE
+			plane = PLANE_SPACE
 		else
 			plane = OPENSPACE_PLANE
 		icon = below.icon
@@ -45,7 +45,7 @@
 	var/turf/below = GetBelow(src)
 	if(below)
 		if(below.icon == 'icons/turf/space.dmi')
-			plane = SPACE_PLANE
+			plane = PLANE_SPACE
 		else
 			plane = OPENSPACE_PLANE
 			var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
@@ -83,6 +83,7 @@
 		if(istype(elem, /turf/simulated/open) || istype(elem, /turf/space))
 			T = elem
 			T.update_icon()
+	return TRUE
 
 
 /atom/proc/update_openspace()

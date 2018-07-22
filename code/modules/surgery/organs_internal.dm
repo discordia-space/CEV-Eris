@@ -100,11 +100,7 @@
 
 /datum/surgery_step/internal/detatch_organ
 
-	allowed_tools = list(
-	/obj/item/weapon/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
-	)
+	requedQuality = QUALITY_CUTTING
 
 	min_duration = 90
 	max_duration = 110
@@ -116,7 +112,7 @@
 
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-		if(!(affected && !(affected.status & ORGAN_ROBOT)))
+		if(!(affected && !(affected.robotic >= ORGAN_ROBOT)))
 			return 0
 
 		target.op_stage.current_organ = null
@@ -159,12 +155,7 @@
 		affected.createwound(CUT, rand(30,50), 1)
 
 /datum/surgery_step/internal/remove_organ
-
-	allowed_tools = list(
-	/obj/item/weapon/hemostat = 100,	\
-	/obj/item/weapon/wirecutters = 75,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 20
-	)
+	requedQuality = QUALITY_CLAMPING
 
 	min_duration = 60
 	max_duration = 80
@@ -232,7 +223,7 @@
 		if(!istype(O))
 			return 0
 
-		if((affected.status & ORGAN_ROBOT) && !(O.status & ORGAN_ROBOT))
+		if((affected.robotic >= ORGAN_ROBOT) && !(O.robotic >= ORGAN_ROBOT))
 			user << SPAN_DANGER("You cannot install a naked organ into a robotic body.")
 			return SURGERY_FAILURE
 
@@ -244,10 +235,7 @@
 		var/o_a =  (O.gender == PLURAL) ? "" : "a "
 		var/o_do = (O.gender == PLURAL) ? "don't" : "doesn't"
 
-		if(O.organ_tag == "limb")
-			return 0
-		else if(target.species.has_organ[O.organ_tag])
-
+		if(target.species.has_organ[O.organ_tag])
 			if(O.damage > (O.max_damage * 0.75))
 				user << SPAN_WARNING("\The [O.organ_tag] [o_is] in no state to be transplanted.")
 				return SURGERY_FAILURE
@@ -258,7 +246,7 @@
 				user << SPAN_WARNING("\The [target] already has [o_a][O.organ_tag].")
 				return SURGERY_FAILURE
 
-			if(O && affected.limb_name == O.parent_organ)
+			if(O && affected.organ_tag == O.parent_organ)
 				organ_compatible = 1
 			else
 				user << SPAN_WARNING("\The [O.organ_tag] [o_do] normally go in \the [affected.name].")
@@ -294,10 +282,7 @@
 			I.take_damage(rand(3,5),0)
 
 /datum/surgery_step/internal/attach_organ
-	allowed_tools = list(
-	/obj/item/weapon/FixOVein = 100, \
-	/obj/item/stack/cable_coil = 75
-	)
+	requedQuality = QUALITY_CLAMPING
 
 	min_duration = 100
 	max_duration = 120
@@ -312,7 +297,7 @@
 		var/list/removable_organs = list()
 		for(var/organ in target.internal_organs_by_name)
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
-			if(I && (I.status & ORGAN_CUT_AWAY) && !(I.status & ORGAN_ROBOT) && I.parent_organ == target_zone)
+			if(I && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
 				removable_organs |= organ
 
 		var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
@@ -348,7 +333,7 @@
 // To be finished after some tests.
 // /datum/surgery_step/ribcage/heart/cut
 //	allowed_tools = list(
-//	/obj/item/weapon/scalpel = 100,		\
+//	/obj/item/weapon/tool/scalpel = 100,		\
 //	/obj/item/weapon/material/knife = 75,	\
 //	/obj/item/weapon/material/shard = 50, 		\
 //	)

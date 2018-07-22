@@ -12,7 +12,6 @@
 		/obj/item/device/gps,
 		/obj/item/device/measuring_tape,
 		/obj/item/device/lighting/toggleable/flashlight,
-		/obj/item/weapon/pickaxe,
 		/obj/item/device/depth_scanner,
 		/obj/item/device/camera,
 		/obj/item/weapon/paper,
@@ -23,8 +22,7 @@
 		/obj/item/weapon/clipboard,
 		/obj/item/weapon/anodevice,
 		/obj/item/clothing/glasses,
-		/obj/item/weapon/wrench,
-		/obj/item/weapon/storage/box/excavation,
+		/obj/item/weapon/tool,
 		/obj/item/weapon/anobattery,
 		/obj/item/device/ano_scanner
 		)

@@ -6,6 +6,8 @@
 	if(join_tag)
 		var/datum/spawnpoint/SP = getSpawnPoint(join_tag)
 		SP.turfs += src.loc
+		spawnpoints[join_tag] = SP
+		//join_tag = null? do i need to nullify this?
 	..()
 
 /obj/landmark/join/late
@@ -38,7 +40,7 @@
 /obj/landmark/join/observer
 	name = "observer-spawn"
 	icon_state = "player-grey-cluster"
-	join_tag = "observer"
+	join_tag = /mob/observer
 
 /obj/landmark/join/start
 	name = "start"
@@ -48,8 +50,3 @@
 	invisibility = 101
 	join_tag = null
 	delete_me = TRUE
-
-/obj/landmark/join/start/triai
-	icon_state = "ai-green"
-	name = "tripai"
-	join_tag = "tripai"

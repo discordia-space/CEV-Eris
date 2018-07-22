@@ -68,7 +68,8 @@ var/const/tk_maxrange = 15
 	flags = NOBLUDGEON
 	//item_state = null
 	w_class = ITEM_SIZE_NO_CONTAINER
-	layer = 20
+	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 
 	var/last_throw = 0
 	var/atom/movable/focus = null
@@ -164,6 +165,11 @@ var/const/tk_maxrange = 15
 
 /obj/item/tk_grab/update_icon()
 	overlays.Cut()
-	if(focus && focus.icon && focus.icon_state)
-		overlays += icon(focus.icon, focus.icon_state)
-	return
+	if(focus)
+		var/old_layer = focus.layer
+		var/old_plane = focus.plane
+		focus.layer = layer+0.01
+		focus.plane = ABOVE_HUD_PLANE
+		overlays += focus //this is kind of ick, but it's better than using icon()
+		focus.layer = old_layer
+		focus.plane = old_plane

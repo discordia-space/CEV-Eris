@@ -58,57 +58,54 @@
 	return 1
 
 
-/obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/structure/table/MouseDrop_T(obj/item/O, mob/living/user)
 
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+	if(user.get_active_hand() != O)
 		return ..()
 	if(isrobot(user))
 		return
-	user.drop_item()
-	if (O.loc != src.loc)
-		step(O, get_dir(O, src))
-	return
+	user.unEquip(O, src.loc)
 
 
-/obj/structure/table/attackby(obj/item/W as obj, mob/user as mob)
-	if (!W) return
-
-	// Handle harm intent grabbing/tabling.
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
-		if (isliving(G.affecting))
-			var/mob/living/M = G.affecting
-			var/obj/occupied = turf_is_crowded()
-			if(occupied)
-				user << SPAN_DANGER("There's \a [occupied] in the way.")
-				return
-			if (G.state < 2)
-				if(user.a_intent == I_HURT)
-					if (prob(15))	M.Weaken(5)
-					M.apply_damage(8,def_zone = "head")
-					visible_message(SPAN_DANGER("[G.assailant] slams [G.affecting]'s face against \the [src]!"))
-					if(material)
-						playsound(loc, material.tableslam_noise, 50, 1)
-					else
-						playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
-					var/list/L = take_damage(rand(1,5))
-					// Shards. Extra damage, plus potentially the fact YOU LITERALLY HAVE A PIECE OF GLASS/METAL/WHATEVER IN YOUR FACE
-					for(var/obj/item/weapon/material/shard/S in L)
-						if(prob(50))
-							M.visible_message(SPAN_DANGER("\The [S] slices [M]'s face messily!"),
-							                   SPAN_DANGER("\The [S] slices your face messily!"))
-							M.apply_damage(10, def_zone = "head")
-							if(prob(2))
-								M.embed(S, def_zone = "head")
-				else
-					user << SPAN_DANGER("You need a better grip to do that!")
-					return
+/obj/structure/table/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+	var/obj/occupied = turf_is_crowded()
+	if(occupied)
+		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		return
+	if(state < GRAB_AGGRESSIVE || target.loc==src.loc)
+		if(user.a_intent == I_HURT)
+			if(prob(15))
+				target.Weaken(5)
+			target.apply_damage(8, def_zone = BP_HEAD)
+			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+			if(material)
+				playsound(loc, material.tableslam_noise, 50, 1)
 			else
-				G.affecting.loc = src.loc
-				G.affecting.Weaken(5)
-				visible_message(SPAN_DANGER("[G.assailant] puts [G.affecting] on \the [src]."))
-			qdel(W)
+				playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
+			var/list/L = take_damage(rand(1,5))
+			// Shards. Extra damage, plus potentially the fact YOU LITERALLY HAVE A PIECE OF GLASS/METAL/WHATEVER IN YOUR FACE
+			for(var/obj/item/weapon/material/shard/S in L)
+				if(prob(50))
+					target.visible_message(
+						SPAN_DANGER("\The [S] slices [target]'s face messily!"),
+						SPAN_DANGER("\The [S] slices your face messily!")
+					)
+					target.apply_damage(10, def_zone = BP_HEAD)
+					if(prob(2))
+						target.embed(S, def_zone = BP_HEAD)
+		else
+			user << SPAN_DANGER("You need a better grip to do that!")
 			return
+	else
+		target.forceMove(loc)
+		target.Weaken(5)
+		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
+	return TRUE
+
+
+/obj/structure/table/attackby(obj/item/W, mob/living/user, var/params)
+	if(!istype(W))
+		return
 
 	// Handle dismantling or placing things on the table from here on.
 	if(isrobot(user))
@@ -131,8 +128,15 @@
 		user << SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first.")
 		return
 
-	user.drop_item(src.loc)
-	return
+	user.unEquip(W, src.loc)
+
+	var/list/click_params = params2list(params)
+	//Center the icon where the user clicked.
+	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
+		return
+	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
+	W.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+	W.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+
 
 /obj/structure/table/attack_tk() // no telehulk sorry
-	return

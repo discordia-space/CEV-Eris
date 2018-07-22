@@ -3,7 +3,7 @@
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 50, "waste" = 10)
+	matter = list(MATERIAL_PLASTIC = 1)
 
 	wires = WIRE_PULSE
 
@@ -24,10 +24,10 @@
 /obj/item/device/assembly/timer/toggle_secure()
 	secured = !secured
 	if(secured)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	else
 		timing = 0
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	return secured
 
@@ -43,7 +43,7 @@
 		process_cooldown()
 
 
-/obj/item/device/assembly/timer/process()
+/obj/item/device/assembly/timer/Process()
 	if(timing && (time > 0))
 		time--
 	if(timing && time <= 0)

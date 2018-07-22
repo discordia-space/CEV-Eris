@@ -44,16 +44,16 @@
 /obj/item/device/electronic_assembly/New()
 	..()
 	battery = new(src)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/device/electronic_assembly/Destroy()
 	battery = null
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	..()
+	. = ..()
 
-/obj/item/device/electronic_assembly/process()
+/obj/item/device/electronic_assembly/Process()
 	handle_idle_power()
 
 /obj/item/device/electronic_assembly/proc/handle_idle_power()
@@ -238,12 +238,12 @@
 			user << SPAN_NOTICE("You slide \the [I] inside \the [src].")
 			playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 			interact(user)
-	else if(istype(I, /obj/item/weapon/crowbar))
-		playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
-		opened = !opened
-		user << "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>"
-		update_icon()
-	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/screwdriver))
+	if(QUALITY_PRYING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			opened = !opened
+			user << "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>"
+			update_icon()
+	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/tool/screwdriver))
 		if(opened)
 			interact(user)
 		else

@@ -142,7 +142,7 @@
 	switch(W.damtype)
 		if("fire")
 			damage = (W.force / fire_resist)
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(istype(W, /obj/item/weapon/tool/weldingtool))
 				playsound(loc, 'sound/items/Welder.ogg', 100, 1)
 		if("brute")
 			damage = (W.force / brute_resist)
@@ -165,14 +165,14 @@
 	return
 
 /obj/effect/blob/core/New(loc)
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	return ..(loc)
 
 /obj/effect/blob/core/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/blob/core/process()
+/obj/effect/blob/core/Process()
 	set waitfor = 0
 	if(!blob_may_process)
 		return
@@ -200,7 +200,7 @@
 /obj/effect/blob/shield/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/effect/blob/shield/update_icon()
 	if(health > maxHealth * 2 / 3)

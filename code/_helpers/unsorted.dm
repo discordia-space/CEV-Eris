@@ -473,7 +473,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortAtom(mob_list)
+	var/list/sortmob = sortAtom(SSmobs.mob_list)
 	for(var/mob/observer/eye/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/silicon/ai/M in sortmob)
@@ -581,8 +581,11 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	return round(GaussRand(sigma), roundto)
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
-/atom/proc/GetAllContents(searchDepth = 5)
+/atom/proc/GetAllContents(searchDepth = 5, includeSelf = FALSE)
 	var/list/toReturn = list()
+
+	if(includeSelf)
+		toReturn += src
 
 	for(var/atom/part in contents)
 		toReturn += part
@@ -979,66 +982,47 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 
 	if(toupdate.len)
 		for(var/turf/simulated/T1 in toupdate)
-			air_master.mark_for_update(T1)
+			SSair.mark_for_update(T1)
 
 	return copiedobjs
 
 
 
-proc/get_cardinal_dir(atom/A, atom/B)
+/proc/get_cardinal_dir(atom/A, atom/B)
 	var/dx = abs(B.x - A.x)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
 
-//chances are 1:value. anyprob(1) will always return true
-proc/anyprob(value)
-	return (rand(1, value)==value)
-
-proc/view_or_range(distance = world.view , center = usr , type)
-	switch(type)
-		if("view")
-			. = view(distance, center)
-		if("range")
-			. = range(distance, center)
-	return
-
-proc/oview_or_orange(distance = world.view , center = usr , type)
-	switch(type)
-		if("view")
-			. = oview(distance, center)
-		if("range")
-			. = orange(distance, center)
-	return
-
-proc/get_mob_with_client_list()
+/proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in SSmobs.mob_list)
 		if (M.client)
 			mobs += M
 	return mobs
 
 
 /proc/parse_zone(zone)
-	if(zone == "r_hand") return "right hand"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "l_arm") return "left arm"
-	else if (zone == "r_arm") return "right arm"
-	else if (zone == "l_leg") return "left leg"
-	else if (zone == "r_leg") return "right leg"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "r_hand") return "right hand"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else return zone
+	switch(zone)
+		if(BP_L_ARM)
+			return "left arm"
+		if(BP_R_ARM)
+			return "right arm"
+		if(BP_R_HAND)
+			return "right hand"
+		if(BP_L_HAND)
+			return "left hand"
 
-//gets the turf the atom is located in (or itself, if it is a turf).
-//returns null if the atom is not in a turf.
-/proc/get_turf(atom/A)
-	if(!istype(A)) return
-	for(A, A && !isturf(A), A=A.loc);
-	return A
+		if(BP_L_LEG )
+			return "left leg"
+		if(BP_R_LEG)
+			return "right leg"
+		if(BP_L_FOOT)
+			return "left foot"
+		if(BP_R_FOOT)
+			return "right foot"
+
+		else
+			return zone
 
 /proc/get(atom/loc, type)
 	while(loc)
@@ -1050,70 +1034,10 @@ proc/get_mob_with_client_list()
 /proc/get_turf_or_move(turf/location)
 	return get_turf(location)
 
-
-//Quick type checks for some tools
-var/global/list/common_tools = list(
-/obj/item/stack/cable_coil,
-/obj/item/weapon/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wirecutters,
-/obj/item/device/multitool,
-/obj/item/weapon/crowbar)
-
-/proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
-		return 1
-	return 0
-
-/proc/iswrench(O)
-	if(istype(O, /obj/item/weapon/wrench))
-		return 1
-	return 0
-
-/proc/iswelder(O)
-	if(istype(O, /obj/item/weapon/weldingtool))
-		return 1
-	return 0
-
-/proc/iscoil(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
-/proc/iswirecutter(O)
-	if(istype(O, /obj/item/weapon/wirecutters))
-		return 1
-	return 0
-
-/proc/isscrewdriver(O)
-	if(istype(O, /obj/item/weapon/screwdriver))
-		return 1
-	return 0
-
-/proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
-		return 1
-	return 0
-
-/proc/iscrowbar(O)
-	if(istype(O, /obj/item/weapon/crowbar))
-		return 1
-	return 0
-
-/proc/iswire(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
 proc/is_hot(obj/item/W as obj)
+	if(QUALITY_WELDING in W.tool_qualities)
+		return 3800
 	switch(W.type)
-		if(/obj/item/weapon/weldingtool)
-			var/obj/item/weapon/weldingtool/WT = W
-			if(WT.isOn())
-				return 3800
-			else
-				return 0
 		if(/obj/item/weapon/flame/lighter)
 			if(W:lit)
 				return 1500
@@ -1129,8 +1053,6 @@ proc/is_hot(obj/item/W as obj)
 				return 1000
 			else
 				return 0
-		if(/obj/item/weapon/pickaxe/plasmacutter)
-			return 3800
 		if(/obj/item/weapon/melee/energy)
 			return 3500
 		else
@@ -1156,24 +1078,21 @@ proc/is_hot(obj/item/W as obj)
 	if(!W) return 0
 	if(W.sharp) return 1
 	return ( \
-		W.sharp													  || \
-		istype(W, /obj/item/weapon/screwdriver)                   || \
-		istype(W, /obj/item/weapon/pen)                           || \
-		istype(W, /obj/item/weapon/weldingtool)					  || \
-		istype(W, /obj/item/weapon/flame/lighter/zippo)			  || \
-		istype(W, /obj/item/weapon/flame/match)            		  || \
-		istype(W, /obj/item/clothing/mask/smokable/cigarette) 		      || \
-		istype(W, /obj/item/weapon/shovel) \
+		W.sharp														|| \
+		istype(W, /obj/item/weapon/tool)							|| \
+		istype(W, /obj/item/weapon/pen)								|| \
+		istype(W, /obj/item/weapon/flame/lighter/zippo)				|| \
+		istype(W, /obj/item/weapon/flame/match)						|| \
+		istype(W, /obj/item/clothing/mask/smokable/cigarette)		\
 	)
 
 /proc/is_surgery_tool(obj/item/W as obj)
 	return (	\
-	istype(W, /obj/item/weapon/scalpel)			||	\
-	istype(W, /obj/item/weapon/hemostat)		||	\
-	istype(W, /obj/item/weapon/retractor)		||	\
-	istype(W, /obj/item/weapon/cautery)			||	\
-	istype(W, /obj/item/weapon/bonegel)			||	\
-	istype(W, /obj/item/weapon/bonesetter)
+	istype(W, /obj/item/weapon/tool/scalpel)			||	\
+	istype(W, /obj/item/weapon/tool/hemostat)		||	\
+	istype(W, /obj/item/weapon/tool/retractor)		||	\
+	istype(W, /obj/item/weapon/tool/cautery)			||	\
+	istype(W, /obj/item/weapon/tool/bonesetter)
 	)
 
 //check if mob is lying down on something we can operate him on.
@@ -1306,17 +1225,13 @@ var/list/FLOORITEMS = list(
 			colour += temp_col
 	return "#[colour]"
 
-var/mob/dview/dview_mob = new
-
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
 	if(!center)
 		return
 
 	dview_mob.loc = center
-
 	dview_mob.see_invisible = invis_flags
-
 	. = view(range, dview_mob)
 	dview_mob.loc = null
 
@@ -1329,19 +1244,17 @@ var/mob/dview/dview_mob = new
 
 	see_in_dark = 1e6
 
+/mob/dview/Destroy()
+	crash_with("Prevented attempt to delete dview mob: [log_info_line(src)]")
+	return QDEL_HINT_LETMELIVE // Prevents destruction
+
 /atom/proc/get_light_and_color(var/atom/origin)
 	if(origin)
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
-/mob/dview/New()
-	..()
-	// We don't want to be in any mob lists; we're a dummy not a mob.
-	mob_list -= src
-	if(stat == DEAD)
-		dead_mob_list -= src
-	else
-		living_mob_list -= src
+/mob/dview/Initialize() // Properly prevents this mob from gaining huds or joining any global lists
+	return
 
 // call to generate a stack trace and print to runtime logs
 /proc/crash_with(msg)

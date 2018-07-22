@@ -12,7 +12,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	flags = CONDUCT
-	matter = list(DEFAULT_WALL_MATERIAL = 3000)
+	matter = list(MATERIAL_STEEL = 3)
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
 
@@ -45,7 +45,7 @@
 	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
 
-	if(!(user.targeted_organ == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
+	if(!(user.targeted_organ in list(O_EYES, BP_HEAD))) //////////////hitting anything else other than the eyes
 		if(prob(33))
 			src.add_blood(H)
 			var/turf/location = H.loc

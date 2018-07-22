@@ -23,9 +23,9 @@ var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector/Destroy()
 	rad_collectors -= src
-	..()
+	. = ..()
 
-/obj/machinery/power/rad_collector/process()
+/obj/machinery/power/rad_collector/Process()
 	//so that we don't zero out the meter if the SM is processed first.
 	last_power = last_power_new
 	last_power_new = 0
@@ -54,38 +54,54 @@ var/global/list/rad_collectors = list()
 ..()
 
 
-/obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/tank/plasma))
+/obj/machinery/power/rad_collector/attackby(obj/item/I, mob/user)
+
+	var/list/usable_qualities = list()
+	if(P && !src.locked)
+		usable_qualities.Add(QUALITY_PRYING)
+	if(!P)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(P && !src.locked)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					eject()
+					return
+			return
+
+		if(QUALITY_BOLT_TURNING)
+			if(!P)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					src.anchored = !src.anchored
+					user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
+						"You [anchored? "secure":"undo"] the external bolts.", \
+						"You hear a ratchet")
+					if(anchored)
+						connect_to_network()
+					else
+						disconnect_from_network()
+					return
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/weapon/tank/plasma))
 		if(!src.anchored)
 			user << "\red The [src] needs to be secured to the floor first."
-			return 1
+			return
 		if(src.P)
 			user << "\red There's already a plasma tank loaded."
-			return 1
+			return
 		user.drop_item()
-		src.P = W
-		W.loc = src
+		src.P = I
+		I.loc = src
 		update_icons()
-		return 1
-	else if(istype(W, /obj/item/weapon/crowbar))
-		if(P && !src.locked)
-			eject()
-			return 1
-	else if(istype(W, /obj/item/weapon/wrench))
-		if(P)
-			user << "\blue Remove the plasma tank first."
-			return 1
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-		src.anchored = !src.anchored
-		user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
-			"You [anchored? "secure":"undo"] the external bolts.", \
-			"You hear a ratchet")
-		if(anchored)
-			connect_to_network()
-		else
-			disconnect_from_network()
-		return 1
-	else if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+		return
+
+	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
 		if (src.allowed(user))
 			if(active)
 				src.locked = !src.locked
@@ -95,7 +111,7 @@ var/global/list/rad_collectors = list()
 				user << "\red The controls can only be locked when the [src] is active"
 		else
 			user << "\red Access denied!"
-		return 1
+		return
 	return ..()
 
 /obj/machinery/power/rad_collector/examine(mob/user)

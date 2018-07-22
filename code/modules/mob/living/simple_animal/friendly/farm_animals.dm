@@ -3,9 +3,7 @@
 	name = "goat"
 	desc = "Not known for their pleasant disposition."
 	icon_state = "goat"
-	speak = list("EHEHEHEHEH","eh?")
 	speak_emote = list("brays")
-	emote_hear = list("brays")
 	emote_see = list("shakes its head", "stamps a foot", "glares around")
 	speak_chance = 1
 	turns_per_move = 5
@@ -86,9 +84,7 @@
 	desc = "Known for their milk, just don't tip them over."
 	icon_state = "cow"
 	icon_gib = "cow_gib"
-	speak = list("moo?","moo","MOOOOOO")
 	speak_emote = list("moos","moos hauntingly")
-	emote_hear = list("brays")
 	emote_see = list("shakes its head")
 	speak_chance = 1
 	turns_per_move = 5
@@ -146,10 +142,8 @@
 	desc = "Adorable! They make such a racket though."
 	icon_state = "chick"
 	icon_gib = "chick_gib"
-	speak = list("Cherp.","Cherp?","Chirrup.","Cheep!")
 	speak_emote = list("cheeps")
-	emote_hear = list("cheeps")
-	emote_see = list("pecks at the ground","flaps its tiny wings")
+	emote_see = list("pecks at the ground","flaps its tiny wings","cheeps")
 	speak_chance = 2
 	turns_per_move = 2
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
@@ -184,10 +178,8 @@ var/global/chicken_count = 0
 /mob/living/simple_animal/chicken
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
-	icon_state = "chicken"
+	icon_state = "chicken_brown"
 	speak = list("Cluck!","BWAAAAARK BWAK BWAK BWAK!","Bwaak bwak.")
-	speak_emote = list("clucks","croons")
-	emote_hear = list("clucks")
 	emote_see = list("pecks at the ground","flaps its wings viciously")
 	speak_chance = 2
 	turns_per_move = 3
@@ -245,16 +237,17 @@ var/global/chicken_count = 0
 		E.pixel_x = rand(-6,6)
 		E.pixel_y = rand(-6,6)
 		if(chicken_count < MAX_CHICKENS && prob(10))
-			processing_objects.Add(E)
+			START_PROCESSING(SSobj, E)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/var/amount_grown = 0
-/obj/item/weapon/reagent_containers/food/snacks/egg/process()
+/obj/item/weapon/reagent_containers/food/snacks/egg/Process()
 	if(isturf(loc))
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
 			visible_message("[src] hatches with a quiet cracking sound.")
 			new /mob/living/simple_animal/chick(get_turf(src))
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 			qdel(src)
 	else
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)

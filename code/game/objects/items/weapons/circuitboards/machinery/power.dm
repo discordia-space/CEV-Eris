@@ -1,7 +1,3 @@
-#ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
-#endif
-
 /obj/item/weapon/circuitboard/smes
 	name = T_BOARD("superconductive magnetic energy storage")
 	build_path = /obj/machinery/power/smes/buildable
@@ -32,4 +28,4 @@
 	req_components = list(
 		/obj/item/weapon/cell/large = 3
 	)
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)

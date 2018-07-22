@@ -115,7 +115,7 @@
 		return
 
 	if(prob(5))
-		custom_emote(2, "makes an excited booping beeping sound!")
+		visible_message("[src] makes an excited booping beeping sound!")
 
 	if(ignorelist.len) // Don't stick forever
 		for(var/T in ignorelist)
@@ -309,7 +309,7 @@
 		update_icons()
 	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
 		var/obj/item/stack/material/M = A
-		if(M.get_material_name() == DEFAULT_WALL_MATERIAL)
+		if(M.get_material_name() == MATERIAL_STEEL)
 			visible_message(SPAN_NOTICE("\The [src] begins to make tiles."))
 			var/message = pick("Hard work pays off.", "I don't like all this standing around.", "My masterpiece!")
 			say(message)

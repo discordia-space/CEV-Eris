@@ -58,6 +58,9 @@
 /mob/proc/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
 	if(hard_to_hear)
 		return "Unknown"
+	if(!speaker)
+		return voice_name
+
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
@@ -71,7 +74,7 @@
 
 /mob/living/silicon/ai/get_hear_name(speaker, hard_to_hear, voice_name)
 	var/speaker_name = ..()
-	if(hard_to_hear)
+	if(hard_to_hear || !speaker)
 		return speaker_name
 
 	var/changed_voice
@@ -85,7 +88,7 @@
 			changed_voice = TRUE
 			var/mob/living/carbon/human/I
 
-			for(var/mob/living/carbon/human/M in mob_list)
+			for(var/mob/living/carbon/human/M in SSmobs.mob_list)
 				if(M.real_name == speaker_name)
 					I = M
 					break
@@ -120,10 +123,14 @@
 		return "<a href=\"byond://?src=\ref[src];trackname=[rhtml_encode(speaker_name)];track=\ref[speaker]\">[speaker_name] ([jobname])</a>"
 
 /mob/observer/ghost/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
-	var/speaker_name = ..()
-	if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
-		speaker_name = "[speaker.real_name] ([speaker_name])"
-	return "[speaker_name] ([ghost_follow_link(speaker, src)])"
+	. = ..()
+	if(!speaker)
+		return .
+
+	if(. != speaker.real_name && !isAI(speaker))
+	 //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
+		. = "[speaker.real_name] ([.])"
+	return "[.] ([ghost_follow_link(speaker, src)])"
 
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"

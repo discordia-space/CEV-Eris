@@ -5,22 +5,22 @@
 #define CANDLE_LUM 3 // For how bright candles are.
 
 // Item inventory slot bitmasks.
-#define SLOT_OCLOTHING  0x1
-#define SLOT_ICLOTHING  0x2
-#define SLOT_GLOVES     0x4
-#define SLOT_EYES       0x8
-#define SLOT_EARS       0x10
-#define SLOT_MASK       0x20
-#define SLOT_HEAD       0x40
-#define SLOT_FEET       0x80
-#define SLOT_ID         0x100
-#define SLOT_BELT       0x200
-#define SLOT_BACK       0x400
-#define SLOT_POCKET     0x800  // This is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_DENYPOCKET 0x1000  // This is to  deny items with a w_class of 2 or 1 from fitting in pockets.
-#define SLOT_TWOEARS    0x2000
-#define SLOT_TIE        0x4000
-#define SLOT_HOLSTER	0x8000 //16th bit - higher than this will overflow
+#define SLOT_OCLOTHING         0x1
+#define SLOT_ICLOTHING         0x2
+#define SLOT_GLOVES            0x4
+#define SLOT_EYES              0x8
+#define SLOT_EARS              0x10
+#define SLOT_MASK              0x20
+#define SLOT_HEAD              0x40
+#define SLOT_FEET              0x80
+#define SLOT_ID                0x100
+#define SLOT_BELT              0x200
+#define SLOT_BACK              0x400
+#define SLOT_POCKET            0x800  // This is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define SLOT_DENYPOCKET        0x1000  // This is to  deny items with a w_class of 2 or 1 from fitting in pockets.
+#define SLOT_TWOEARS           0x2000
+#define SLOT_ACCESSORY_BUFFER  0x4000
+#define SLOT_HOLSTER	       0x8000 //16th bit - higher than this will overflow
 
 // Flags bitmasks.
 #define NOBLUDGEON         0x1    // When an item has this it produces no "X has been hit by Y with Z" message with the default handler.
@@ -33,12 +33,14 @@
 #define PROXMOVE           0x80  // Does this object require proximity checking in Enter()?
 
 //Flags for items (equipment)
-#define THICKMATERIAL          0x1  // Prevents syringes, parapens and hyposprays if equiped to slot_suit or slot_head.
-#define STOPPRESSUREDAMAGE     0x2  // Counts towards pressure protection. Note that like temperature protection, body_parts_covered is considered here as well.
-#define AIRTIGHT               0x4  // Functions with internals.
-#define NOSLIP                 0x8  // Prevents from slipping on wet floors, in space, etc.
-#define BLOCK_GAS_SMOKE_EFFECT 0x10 // Blocks the effect that chemical clouds would have on a mob -- glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
-#define FLEXIBLEMATERIAL       0x20 // At the moment, masks with this flag will not prevent eating even if they are covering your face.
+#define THICKMATERIAL              0x1  // Prevents syringes, parapens and hyposprays if equiped to slot_suit or slot_head.
+#define STOPPRESSUREDAMAGE         0x2  // Counts towards pressure protection. Note that like temperature protection, body_parts_covered is considered here as well.
+#define AIRTIGHT                   0x4  // Functions with internals.
+#define NOSLIP                     0x8  // Prevents from slipping on wet floors, in space, etc.
+#define BLOCK_GAS_SMOKE_EFFECT     0x10 // Blocks the effect that chemical clouds would have on a mob -- glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
+#define FLEXIBLEMATERIAL           0x20 // At the moment, masks with this flag will not prevent eating even if they are covering your face.
+#define COVER_PREVENT_MANIPULATION 0x40 // Only clothing with this flag will prevent manipulation under it. Its for space suits and such, unlike from usual Bay12 rules of clothing manipulation.
+
 
 // Flags for pass_flags.
 #define PASSTABLE  0x1
@@ -84,7 +86,7 @@
 #define slot_legcuffed   19
 #define slot_r_ear       20
 #define slot_legs        21
-#define slot_tie         22
+#define slot_accessory_buffer         22
 
 // Inventory slot strings.
 // since numbers cannot be used as associative list keys.
@@ -100,20 +102,21 @@
 #define HEAD        0x1
 #define FACE        0x2
 #define EYES        0x4
-#define UPPER_TORSO 0x8
-#define LOWER_TORSO 0x10
-#define LEG_LEFT    0x20
-#define LEG_RIGHT   0x40
-#define LEGS        0x60   //  LEG_LEFT | LEG_RIGHT
-#define FOOT_LEFT   0x80
-#define FOOT_RIGHT  0x100
-#define FEET        0x180  // FOOT_LEFT | FOOT_RIGHT
-#define ARM_LEFT    0x200
-#define ARM_RIGHT   0x400
-#define ARMS        0x600 //  ARM_LEFT | ARM_RIGHT
-#define HAND_LEFT   0x800
-#define HAND_RIGHT  0x1000
-#define HANDS       0x1800 // HAND_LEFT | HAND_RIGHT
+#define EARS        0x8
+#define UPPER_TORSO 0x10
+#define LOWER_TORSO 0x20
+#define LEG_LEFT    0x40
+#define LEG_RIGHT   0x80
+#define LEGS        0xC0    //  LEG_LEFT | LEG_RIGHT
+#define FOOT_LEFT   0x100
+#define FOOT_RIGHT  0x200
+#define FEET        0x300   // FOOT_LEFT | FOOT_RIGHT
+#define ARM_LEFT    0x400
+#define ARM_RIGHT   0x800
+#define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
+#define HAND_LEFT   0x1000
+#define HAND_RIGHT  0x2000
+#define HANDS       0x3000  // HAND_LEFT | HAND_RIGHT
 #define FULL_BODY   0xFFFF
 
 // Bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
@@ -177,3 +180,12 @@
 #define SUIT_SENSOR_BINARY   1
 #define SUIT_SENSOR_VITAL    2
 #define SUIT_SENSOR_TRACKING 3
+
+//default item on-mob icons
+#define INV_HEAD_DEF_ICON 'icons/inventory/head/mob.dmi'
+#define INV_BACK_DEF_ICON 'icons/inventory/back/mob.dmi'
+#define INV_L_HAND_DEF_ICON 'icons/mob/items/lefthand.dmi'
+#define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
+#define INV_W_UNIFORM_DEF_ICON 'icons/inventory/uniform/mob.dmi'
+#define INV_ACCESSORIES_DEF_ICON 'icons/inventory/accessory/mob.dmi'
+#define INV_SUIT_DEF_ICON 'icons/inventory/suit/mob.dmi'

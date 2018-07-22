@@ -47,7 +47,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	verbs += /datum/changeling/proc/EvolutionMenu
 	add_language(LANGUAGE_CHANGELING)
 
-	var/lesser_form = !ishuman(src)
+
+	var/lesser_form = isMonkey()
 
 	if(!powerinstances.len)
 		for(var/P in powers)
@@ -163,7 +164,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		return
 
 	changeling.isabsorbing = 1
-	for(var/stage = 1, stage<=3, stage++)
+	for(var/stage in 1 to 3)
 		switch(stage)
 			if(1)
 				src << SPAN_NOTICE("This creature is compatible. We must hold still...")
@@ -171,10 +172,13 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 				src << SPAN_NOTICE("We extend a proboscis.")
 				src.visible_message(SPAN_WARNING("[src] extends a proboscis!"))
 			if(3)
+				var/obj/item/organ/external/affecting = T.get_organ(src.targeted_organ)
+				if(!affecting)
+					to_chat(src, SPAN_WARNING("It seems [targeted_organ] is not a place to stab our probscis with. We need to find another"))
+					return
 				src << SPAN_NOTICE("We stab [T] with the proboscis.")
 				src.visible_message(SPAN_DANGER("[src] stabs [T] with the proboscis!"))
 				T << SPAN_DANGER("You feel a sharp stabbing pain!")
-				var/obj/item/organ/external/affecting = T.get_organ(src.targeted_organ)
 				if(affecting.take_damage(39,0,1,0,"large organic needle"))
 					T:UpdateDamageIcon()
 
@@ -244,6 +248,9 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	set category = "Changeling"
 	set name = "Transform (5)"
 
+	if (transforming)
+		return
+
 	var/datum/changeling/changeling = changeling_power(5,1,0)
 	if(!changeling)	return
 
@@ -267,9 +274,39 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	src.UpdateAppearance()
 	domutcheck(src, null)
 
-	src.verbs -= /mob/proc/changeling_transform
-	spawn(10)	src.verbs += /mob/proc/changeling_transform
+	if(isMonkey())
+		var/mob/living/carbon/human/H = src // isMonkey TRUE only for human type mobs.
+		H.remove_changeling_powers()
+		H.transforming = 1
+		H.canmove = 0
+		H.icon = null
+		H.overlays.Cut()
+		H.invisibility = 101
+		var/atom/movable/overlay/animation = new /atom/movable/overlay( H.loc )
+		animation.icon_state = "blank"
+		animation.icon = 'icons/mob/mob.dmi'
+		animation.master = src
+		animation.layer = ABOVE_MOB_LAYER
+		flick("monkey2h", animation)
+		sleep(48)
 
+		H.transforming = 0
+		H.stunned = 0
+		H.update_canmove()
+		H.invisibility = initial(invisibility)
+
+		for(var/obj/item/W in src)
+			H.drop_from_inventory(W)
+
+		H.set_species(H.species.greater_form)
+		src << "<B>You are now [H.species.name]. </B>"
+		qdel(animation)
+
+		make_changeling()
+	else
+		src.verbs -= /mob/proc/changeling_transform
+		spawn(10)
+			src.verbs += /mob/proc/changeling_transform
 
 	return 1
 
@@ -278,6 +315,9 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 /mob/proc/changeling_lesser_form()
 	set category = "Changeling"
 	set name = "Lesser Form (1)"
+
+	if (transforming)
+		return
 
 	var/datum/changeling/changeling = changeling_power(1,0,0)
 	if(!changeling)	return
@@ -301,6 +341,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	for(var/obj/item/weapon/implant/W in H)
 		implants += W
 	H.monkeyize()
+	H.make_changeling()
 
 	return 1
 
@@ -343,6 +384,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
+	animation.layer = ABOVE_MOB_LAYER
 	flick("monkey2h", animation)
 	sleep(48)
 	qdel(animation)

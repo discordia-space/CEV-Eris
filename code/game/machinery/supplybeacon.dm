@@ -28,7 +28,7 @@
 
 	anchored = 0
 	density = 1
-	layer = MOB_LAYER - 0.1
+	layer = LOW_OBJ_LAYER
 	stat = 0
 
 	var/target_drop_time
@@ -45,7 +45,7 @@
 	drop_type = "supermatter"
 
 /obj/machinery/power/supply_beacon/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(!use_power && istype(W, /obj/item/weapon/wrench))
+	if(!use_power && istype(W, /obj/item/weapon/tool/wrench))
 		if(!anchored && !connect_to_network())
 			user << SPAN_WARNING("This device must be placed over an exposed cable.")
 			return
@@ -97,9 +97,9 @@
 /obj/machinery/power/supply_beacon/Destroy()
 	if(use_power)
 		deactivate()
-	..()
+	. = ..()
 
-/obj/machinery/power/supply_beacon/process()
+/obj/machinery/power/supply_beacon/Process()
 	if(expended)
 		return PROCESS_KILL
 	if(!use_power)

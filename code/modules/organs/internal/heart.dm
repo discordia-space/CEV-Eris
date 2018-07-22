@@ -1,23 +1,22 @@
-/obj/item/organ/heart
+/obj/item/organ/internal/heart
 	name = "heart"
 	icon_state = "heart-on"
-	organ_tag = "heart"
-	parent_organ = "chest"
+	organ_tag = O_HEART
+	parent_organ = BP_CHEST
 	dead_icon = "heart-off"
 	var/pulse = PULSE_NORM
 	var/heartbeat = 0
-	var/beat_sound = 'sound/effects/singlebeat.ogg'
 	var/efficiency = 1
 
-/obj/item/organ/heart/process()
+/obj/item/organ/internal/heart/Process()
 	if(owner)
 		handle_pulse()
 		if(pulse)	handle_heartbeat()
 		handle_blood()
 	..()
 
-/obj/item/organ/heart/proc/handle_pulse()
-	if(owner.stat == DEAD || status & ORGAN_ROBOT)
+/obj/item/organ/internal/heart/proc/handle_pulse()
+	if(owner.stat == DEAD || robotic >= ORGAN_ROBOT)
 		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
 		return
 	if(owner.life_tick % 5 == 0)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
@@ -31,7 +30,7 @@
 
 		pulse = Clamp(pulse + owner.chem_effects[CE_PULSE], PULSE_SLOW, PULSE_2FAST)
 
-/obj/item/organ/heart/proc/handle_heartbeat()
+/obj/item/organ/internal/heart/proc/handle_heartbeat()
 	if(pulse >= PULSE_2FAST || owner.shock_stage >= 10 || istype(get_turf(owner), /turf/space))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.
 		//High pulse value corresponds to a fast rate of heartbeat.
@@ -40,11 +39,10 @@
 
 		if(heartbeat >= rate)
 			heartbeat = 0
-			owner << sound(beat_sound,0,0,0,50)
 		else
 			heartbeat++
 
-/obj/item/organ/heart/proc/handle_blood()
+/obj/item/organ/internal/heart/proc/handle_blood()
 	if(!owner)
 		return
 	if(owner.stat == DEAD && owner.bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
@@ -67,7 +65,7 @@
 	switch(blood_volume)
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			if(prob(1))
-				owner << "<span class='warning'>You feel [pick("dizzy","woosey","faint")]</span>"
+				owner << SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]")
 			if(owner.getOxyLoss() < 20)
 				owner.adjustOxyLoss(3)
 		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -77,12 +75,12 @@
 			owner.adjustOxyLoss(1)
 			if(prob(15))
 				owner.Paralyse(rand(1,3))
-				owner << "<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
+				owner << SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]")
 		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 			owner.adjustOxyLoss(5)
 			owner.adjustToxLoss(3)
 			if(prob(15))
-				owner << "<span class='warning'>You feel extremely [pick("dizzy","woosey","faint")]</span>"
+				owner << SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]")
 		else if(blood_volume < BLOOD_VOLUME_SURVIVE)
 			owner.death()
 
@@ -99,28 +97,3 @@
 			owner.nutrition -= 10
 		else if(owner.nutrition >= 200)
 			owner.nutrition -= 3
-
-/obj/item/organ/lungs
-	name = "lungs"
-	icon_state = "lungs"
-	gender = PLURAL
-	organ_tag = "lungs"
-	parent_organ = "chest"
-
-/obj/item/organ/lungs/process()
-	..()
-
-	if(!owner)
-		return
-
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(5))
-			owner.emote("cough")		//respitory tract infection
-
-	if(is_bruised())
-		if(prob(2))
-			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(4))
-			spawn owner.emote("me", 1, "gasps for air!")
-			owner.losebreath += 15

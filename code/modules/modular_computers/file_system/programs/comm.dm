@@ -62,8 +62,7 @@
 	data["boss_short"] = boss_short
 	data["current_security_level"] = security_level
 	data["current_security_level_title"] = num2seclevel(security_level)
-	
-	data["def_SEC_LEVEL_DELTA"] = SEC_LEVEL_DELTA
+
 	data["def_SEC_LEVEL_BLUE"] = SEC_LEVEL_BLUE
 	data["def_SEC_LEVEL_GREEN"] = SEC_LEVEL_GREEN
 
@@ -74,7 +73,10 @@
 	if(current_viewing_message)
 		data["message_current"] = current_viewing_message
 
-	var/list/processed_evac_options = list()
+	var/list/processed_
+  
+  
+  _options = list()
 	if(!isnull(evacuation_controller))
 		for (var/datum/evacuation_option/EO in evacuation_controller.available_evac_options())
 			var/list/option = list()

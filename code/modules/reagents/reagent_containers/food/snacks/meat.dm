@@ -10,13 +10,14 @@
 		reagents.add_reagent("protein", 9)
 		src.bitesize = 3
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/knife))
-		new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
-		user << "You cut the meat into thin strips."
-		qdel(src)
+/obj/item/weapon/reagent_containers/food/snacks/meat/attackby(obj/item/I, mob/user)
+	if(QUALITY_CUTTING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_ZERO, required_stat = STAT_BIO))
+			user << SPAN_NOTICE("You cut the meat into thin strips.")
+			new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
+			new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
+			new /obj/item/weapon/reagent_containers/food/snacks/rawcutlet(src)
+			qdel(src)
 	else
 		..()
 

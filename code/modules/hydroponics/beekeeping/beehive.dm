@@ -36,12 +36,12 @@
 		user << "The lid is open."
 
 /obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/crowbar))
+	if(istype(I, /obj/item/weapon/tool/crowbar))
 		closed = !closed
 		user.visible_message("<span class='notice'>\The [user] [closed ? "closes" : "opens"] \the [src].</span>", "<span class='notice'>You [closed ? "close" : "open"] \the [src].</span>")
 		update_icon()
 		return
-	else if(istype(I, /obj/item/weapon/wrench))
+	else if(istype(I, /obj/item/weapon/tool/wrench))
 		anchored = !anchored
 		user.visible_message("<span class='notice'>\The [user] [anchored ? "wrenches" : "unwrenches"] \the [src].</span>", "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 		return
@@ -94,7 +94,7 @@
 			B.fill()
 		update_icon()
 		return
-	else if(istype(I, /obj/item/device/analyzer/plant_analyzer))
+	else if(istype(I, /obj/item/device/scanner/analyzer/plant_analyzer))
 		user << SPAN_NOTICE("Scan result of \the [src]...")
 		user << "Beehive is [bee_count ? "[round(bee_count)]% full" : "empty"].[bee_count > 90 ? " Colony is ready to split." : ""]"
 		if(frames)
@@ -106,7 +106,7 @@
 		if(smoked)
 			user << "The hive is smoked."
 		return 1
-	else if(istype(I, /obj/item/weapon/screwdriver))
+	else if(istype(I, /obj/item/weapon/tool/screwdriver))
 		if(bee_count)
 			user << SPAN_NOTICE("You can't dismantle \the [src] with these bees inside.")
 			return
@@ -136,7 +136,7 @@
 			user << SPAN_NOTICE("You take all filled honeycombs out.")
 		return
 
-/obj/machinery/beehive/process()
+/obj/machinery/beehive/Process()
 	if(closed && !smoked && bee_count)
 		pollinate_flowers()
 		update_icon()

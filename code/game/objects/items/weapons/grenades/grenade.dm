@@ -24,25 +24,6 @@
 		return 0
 	return 1
 
-
-/*/obj/item/weapon/grenade/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-	if (istype(target, /obj/item/weapon/storage)) return ..() // Trying to put it in a full container
-	if (istype(target, /obj/item/weapon/gun/grenadelauncher)) return ..()
-	if((user.get_active_hand() == src) && (!active) && (clown_check(user)) && target.loc != src.loc)
-		user << SPAN_WARNING("You prime the [name]! [det_time/10] seconds!")
-		active = 1
-		icon_state = initial(icon_state) + "_active"
-		playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
-		spawn(det_time)
-			prime()
-			return
-		user.set_dir(get_dir(user, target))
-		user.drop_item()
-		var/t = (isturf(target) ? target : target.loc)
-		walk_towards(src, t, 3)
-	return*/
-
-
 /obj/item/weapon/grenade/examine(mob/user)
 	if(..(user, 0))
 		if(det_time > 1)
@@ -83,28 +64,28 @@
 
 
 /obj/item/weapon/grenade/proc/prime()
-//	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
 
 
-/obj/item/weapon/grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(isscrewdriver(W))
-		switch(det_time)
-			if (1)
-				det_time = 10
-				user << SPAN_NOTICE("You set the [name] for 1 second detonation time.")
-			if (10)
-				det_time = 30
-				user << SPAN_NOTICE("You set the [name] for 3 second detonation time.")
-			if (30)
-				det_time = 50
-				user << SPAN_NOTICE("You set the [name] for 5 second detonation time.")
-			if (50)
-				det_time = 1
-				user << SPAN_NOTICE("You set the [name] for instant detonation.")
-		add_fingerprint(user)
+/obj/item/weapon/grenade/attackby(obj/item/I, mob/user as mob)
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
+			switch(det_time)
+				if (1)
+					det_time = 10
+					user << SPAN_NOTICE("You set the [name] for 1 second detonation time.")
+				if (10)
+					det_time = 30
+					user << SPAN_NOTICE("You set the [name] for 3 second detonation time.")
+				if (30)
+					det_time = 50
+					user << SPAN_NOTICE("You set the [name] for 5 second detonation time.")
+				if (50)
+					det_time = 1
+					user << SPAN_NOTICE("You set the [name] for instant detonation.")
+			add_fingerprint(user)
 	..()
 	return
 

@@ -131,7 +131,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
 	density = 1
-	layer = 2.0
+	layer = BELOW_OBJ_LAYER
 	var/obj/structure/morgue/connected = null
 	anchored = 1
 	throwpass = 1
@@ -189,8 +189,8 @@
 	var/_wifi_id
 	var/datum/wifi/receiver/button/crematorium/wifi_receiver
 
-/obj/structure/crematorium/initialize()
-	..()
+/obj/structure/crematorium/Initialize()
+	. = ..()
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
 

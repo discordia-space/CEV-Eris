@@ -194,7 +194,7 @@
 	if(contents)
 		for(var/atom/movable/something in contents)
 			something.loc = get_turf(src)
-	..()
+	. = ..()
 
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
@@ -560,20 +560,6 @@
 		..()
 		reagents.add_reagent("protein", 2)
 
-/obj/item/weapon/reagent_containers/food/snacks/organ
-	name = "organ"
-	desc = "It's good for you."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "appendix"
-	filling_color = "#E00D34"
-	center_of_mass = list("x"=16, "y"=16)
-
-	New()
-		..()
-		reagents.add_reagent("protein", rand(3,5))
-		reagents.add_reagent("toxin", rand(1,3))
-		src.bitesize = 3
-
 /obj/item/weapon/reagent_containers/food/snacks/tofu
 	name = "Tofu"
 	icon_state = "tofu"
@@ -635,7 +621,7 @@
 	New()
 		..()
 		reagents.add_reagent("protein", 3)
-		reagents.add_reagent("blattedin", 4)
+		reagents.add_reagent("blattedin", 10)
 		src.bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
@@ -2159,7 +2145,7 @@
 	nutriment_amt = 8
 	New()
 		..()
-		reagents.add_reagent("gold", 5)
+		reagents.add_reagent(MATERIAL_GOLD, 5)
 		bitesize = 3
 
 /////////////////////////////////////////////////Sliceable////////////////////////////////////////
@@ -3048,11 +3034,12 @@
 	nutriment_amt = 3
 
 // potato + knife = raw sticks
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/kitchen/utensil/knife))
-		new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)
-		user << "You cut the potato."
-		qdel(src)
+/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user)
+	if(QUALITY_CUTTING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_CUTTING, FAILCHANCE_ZERO, required_stat = STAT_BIO))
+			new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)
+			user << "You cut the potato."
+			qdel(src)
 	else
 		..()
 
@@ -3093,15 +3080,3 @@
 	New()
 		..()
 		bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
-	name = "\improper SkrellSnax"
-	desc = "Cured fungus shipped all the way from Jargon 4, almost like jerky! Almost."
-	icon_state = "skrellsnacks"
-	filling_color = "#A66829"
-	center_of_mass = list("x"=15, "y"=12)
-	nutriment_desc = list("mushroom" = 5, "salt" = 5)
-	nutriment_amt = 10
-	New()
-		..()
-		bitesize = 3

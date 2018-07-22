@@ -1,36 +1,16 @@
-var/global/list/rolesets = list()
+/datum/storyevent/roleset
+	id = "roleset"
 
-/proc/fill_rolesets_list()
-	for(var/type in typesof(/datum/roleset)-/datum/roleset)
-		rolesets.Add(new type)
+	var/role_id = null
 
-/datum/roleset
-	var/id = "roleset"
-	var/list/roles = list()
-
-/datum/roleset/proc/get_roles_weight()
-	var/W = 0
-	for(var/role in roles)
-		W += antag_weights[role] * roles[role]
-	return W
-
-/datum/roleset/proc/get_special_weight()
-	return 0
-
-/datum/roleset/proc/get_weight()
-	return get_roles_weight() + get_special_weight()
-
-/datum/roleset/proc/can_spawn()
+/datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
 
-/datum/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
-	return TRUE
-
-/datum/roleset/proc/get_candidates_count(var/a_type)	//For internal using
+/datum/storyevent/roleset/proc/get_candidates_count(var/a_type)	//For internal using
 	var/list/L = candidates_list(a_type)
 	return L.len
 
-/datum/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
+/datum/storyevent/roleset/proc/candidates_list(var/antag, var/oneantag = TRUE)
 	var/datum/antagonist/temp
 
 	if(ispath(antag_types[antag]))
@@ -48,7 +28,7 @@ var/global/list/rolesets = list()
 				continue
 			if(!antagonist_suitable(candidate,temp))
 				continue
-			if(!(temp.id in candidate.current.client.prefs.be_special_role))
+			if(!(temp.role_type in candidate.current.client.prefs.be_special_role))
 				continue
 			if(ticker.storyteller && ticker.storyteller.one_role_per_player && candidate.antagonist.len)
 				continue
@@ -57,9 +37,10 @@ var/global/list/rolesets = list()
 
 			candidates.Add(candidate)
 
-	return candidates
+	qdel(temp)
+	return shuffle(candidates)
 
-/datum/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE)
+/datum/storyevent/roleset/proc/ghost_candidates_list(var/antag, var/act_test = TRUE)
 	var/datum/antagonist/temp
 
 	if(ispath(antag_types[antag]))
@@ -78,12 +59,12 @@ var/global/list/rolesets = list()
 				continue
 			if(!temp.can_become_antag_ghost(candidate))
 				continue
-			if(!(temp.id in candidate.client.prefs.be_special_role))
+			if(!(temp.role_type in candidate.client.prefs.be_special_role))
 				continue
 
 			any_candidates = TRUE
 
-			//Activity test)))
+			//Activity test
 			if(act_test)
 				spawn()
 					usr = candidate
@@ -91,15 +72,40 @@ var/global/list/rolesets = list()
 						if(!agree_time_out)
 							candidates.Add(candidate)
 
-		if(any_candidates && act_test)	//we won't need to wait, if there's no candidates
+		if(any_candidates && act_test)	//we don't need to wait if there's no candidates
 			sleep(20 SECONDS)
 			agree_time_out = TRUE
 
-	return candidates
+	qdel(temp)
+	return shuffle(candidates)
 
-/datum/roleset/proc/spawn_roleset()
+/datum/storyevent/roleset/spawn_event()
+	var/antag = antag_types[role_id]
+	var/datum/antagonist/A = new antag
+
+	if(role_id in outer_antag_types)
+		var/mob/M = safepick(ghost_candidates_list(role_id))
+		if(!M)
+			return FALSE
+		. = A.create_from_ghost(M)
+
+	else
+		var/datum/mind/M = safepick(candidates_list(role_id))
+		if(!M)
+			return FALSE
+		. = A.create_antagonist(M)
+
+	create_objectives(A)
+
+
+/datum/storyevent/roleset/proc/create_objectives(var/datum/antagonist/A)
+	A.objectives.Cut()
+	A.create_objectives()
+	A.create_survive_objective()
+	A.greet()
+
+/datum/storyevent/roleset/announce()
 	return
 
-
-/datum/roleset/proc/log_roleset(var/text)
-	log_admin("ROLESET: [text] <a href='?src=\ref[ticker.storyteller];panel=1'>\[STRT\]</a>")
+/datum/storyevent/roleset/announce_end()
+	return

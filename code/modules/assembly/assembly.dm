@@ -5,7 +5,7 @@
 	icon_state = ""
 	flags = CONDUCT
 	w_class = ITEM_SIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 100)
+	matter = list(MATERIAL_PLASTIC = 1)
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 10
@@ -69,23 +69,24 @@
 		user << SPAN_NOTICE("You attach \the [A] to \the [src]!")
 
 
-/obj/item/device/assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_assembly(W))
-		var/obj/item/device/assembly/A = W
+/obj/item/device/assembly/attackby(obj/item/weapon/I, mob/user)
+	if(is_assembly(I))
+		var/obj/item/device/assembly/A = I
 		if((!A.secured) && (!secured))
 			attach_assembly(A, user)
 			return
-	if(isscrewdriver(W))
-		if(toggle_secure())
-			user << SPAN_NOTICE("\The [src] is ready!")
-		else
-			user << SPAN_NOTICE("\The [src] can now be attached!")
-		return
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
+			if(toggle_secure())
+				user << SPAN_NOTICE("\The [src] is ready!")
+			else
+				user << SPAN_NOTICE("\The [src] can now be attached!")
+			return
 	..()
 
 
-/obj/item/device/assembly/process()
-	processing_objects.Remove(src)
+/obj/item/device/assembly/Process()
+	STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/device/assembly/examine(mob/user)

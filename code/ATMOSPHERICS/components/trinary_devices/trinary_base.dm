@@ -1,5 +1,6 @@
 obj/machinery/atmospherics/trinary
 	dir = SOUTH
+	layer = GAS_FILTER_LAYER
 	initialize_directions = SOUTH|NORTH|WEST
 	use_power = 0
 
@@ -69,9 +70,9 @@ obj/machinery/atmospherics/trinary
 		node2 = null
 		node3 = null
 
-		..()
+		. = ..()
 
-	initialize()
+	atmos_init()
 		if(node1 && node2 && node3) return
 
 		var/node1_connect = turn(dir, -180)

@@ -5,19 +5,19 @@
 	icon_state = "flamethrowerbase"
 	item_state = "flamethrower_0"
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 1, TECH_PLASMA = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MATERIAL_STEEL = 6)
 	var/status = 0
 	var/throw_amount = 100
 	var/lit = 0	//on or off
 	var/operating = 0//cooldown
 	var/turf/previousturf = null
-	var/obj/item/weapon/weldingtool/weldtool = null
+	var/obj/item/weapon/tool/weldingtool/weldtool = null
 	var/obj/item/device/assembly/igniter/igniter = null
 	var/obj/item/weapon/tank/plasma/ptank = null
 
@@ -29,13 +29,13 @@
 		qdel(igniter)
 	if(ptank)
 		qdel(ptank)
-	..()
-	return
+
+	return ..()
 
 
-/obj/item/weapon/flamethrower/process()
+/obj/item/weapon/flamethrower/Process()
 	if(!lit)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return null
 	var/turf/location = loc
 	if(istype(location, /mob/))
@@ -71,26 +71,6 @@
 
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
-	if(iswrench(W) && !status)//Taking this apart
-		var/turf/T = get_turf(src)
-		if(weldtool)
-			weldtool.loc = T
-			weldtool = null
-		if(igniter)
-			igniter.loc = T
-			igniter = null
-		if(ptank)
-			ptank.loc = T
-			ptank = null
-		PoolOrNew(/obj/item/stack/rods, T)
-		qdel(src)
-		return
-
-	if(isscrewdriver(W) && igniter && !lit)
-		status = !status
-		user << "<span class='notice'>[igniter] is now [status ? "secured" : "unsecured"]!</span>"
-		update_icon()
-		return
 
 	if(is_igniter(W))
 		var/obj/item/device/assembly/igniter/I = W
@@ -112,8 +92,8 @@
 		update_icon()
 		return
 
-	if(istype(W, /obj/item/device/analyzer))
-		var/obj/item/device/analyzer/A = W
+	if(istype(W, /obj/item/device/scanner/analyzer))
+		var/obj/item/device/scanner/analyzer/A = W
 		A.analyze_gases(src, user)
 		return
 	..()
@@ -145,7 +125,7 @@
 		if(!status)	return
 		lit = !lit
 		if(lit)
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 	if(href_list["amount"])
 		throw_amount = throw_amount + text2num(href_list["amount"])
 		throw_amount = max(50, min(5000, throw_amount))
@@ -201,8 +181,6 @@
 
 /obj/item/weapon/flamethrower/full/New(var/loc)
 	..()
-	weldtool = new /obj/item/weapon/weldingtool(src)
-	weldtool.status = 0
 	igniter = new /obj/item/device/assembly/igniter(src)
 	igniter.secured = 0
 	status = 1

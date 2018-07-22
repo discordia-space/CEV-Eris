@@ -28,9 +28,13 @@ var/global/datum/controller/gameticker/ticker
 
 	var/triai = 0//Global holder for Triumvirate
 
+	var/quoted = FALSE
+
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 
 	var/ship_was_nuked = 0              // See nuclearbomb.dm and malfunction.dm.
+	var/ship_nuke_code = "NO CODE"       // Heads will get parts of this code.
+	var/ship_nuke_code_rotation_part = 1 // What part of code next Head will get.
 	var/nuke_in_progress = 0           	// Sit back and relax
 
 	var/newscaster_announcements = null
@@ -48,13 +52,19 @@ var/global/datum/controller/gameticker/ticker
 			pregame_timeleft = 180
 			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
 		else
-			pregame_timeleft = 20
+			pregame_timeleft = 40
 
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
 
+
 		while(current_state == GAME_STATE_PREGAME)
 			sleep(10)
-			vote.process()
+
+			if(!quoted)
+				send_quote_of_the_round()
+				quoted = TRUE
+
+			vote.Process()
 
 			if(round_progressing)
 				pregame_timeleft--
@@ -63,8 +73,10 @@ var/global/datum/controller/gameticker/ticker
 				if(!vote.active_vote)
 					vote.autostoryteller()	//Quit calling this over and over and over and over.
 
-			if(pregame_timeleft <= 0)
+			if(pregame_timeleft <= 0 || ((initialization_stage & INITIALIZATION_NOW_AND_COMPLETE) == INITIALIZATION_NOW_AND_COMPLETE))
 				current_state = GAME_STATE_SETTING_UP
+				Master.SetRunLevel(RUNLEVEL_SETUP)
+
 			first_start_trying = FALSE
 	while (!setup())
 
@@ -76,6 +88,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(!src.storyteller)
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return 0
 
@@ -85,6 +98,7 @@ var/global/datum/controller/gameticker/ticker
 	if(!src.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		storyteller = null
 		story_vote_ended = FALSE
 		job_master.ResetOccupations()
@@ -95,6 +109,7 @@ var/global/datum/controller/gameticker/ticker
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
 	current_state = GAME_STATE_PLAYING
+	Master.SetRunLevel(RUNLEVEL_GAME)
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
@@ -102,7 +117,7 @@ var/global/datum/controller/gameticker/ticker
 
 	callHook("roundstart")
 
-	shuttle_controller.setup_shuttle_docks()
+	shuttle_controller.initialize_shuttles()
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		storyteller.set_up()
@@ -111,7 +126,7 @@ var/global/datum/controller/gameticker/ticker
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
-		for(var/mob/new_player/N in mob_list)
+		for(var/mob/new_player/N in SSmobs.mob_list)
 			N.new_player_panel_proc()
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
@@ -123,9 +138,9 @@ var/global/datum/controller/gameticker/ticker
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
-/*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
+/*	supply_controller.Process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
+	master_controller.Process()		//Start master_controller.Process()
+	lighting_controller.Process()	//Start processing DynamicAreaLighting updates
 	*/
 
 	processScheduler.start()
@@ -153,13 +168,13 @@ var/global/datum/controller/gameticker/ticker
 	cinematic = new(src)
 	cinematic.icon = 'icons/effects/station_explosion.dmi'
 	cinematic.icon_state = "station_intact"
-	cinematic.layer = 30
+	cinematic.plane = CINEMATIC_PLANE
+	cinematic.layer = CINEMATIC_LAYER
 	cinematic.mouse_opacity = 0
 	cinematic.screen_loc = "1,0"
 
-	for(var/mob/M in mob_list)
-		var/turf/T = get_turf(M)
-		if(T && T.z in config.station_levels)	//we don't use M.death(0) because it calls a for(/mob) loop and
+	for(var/mob/M in SSmobs.mob_list)
+		if(isOnStationLevel(M))
 			if(M.client)
 				M.client.screen += cinematic
 			if(isliving(M))
@@ -205,6 +220,32 @@ var/global/datum/controller/gameticker/ticker
 		qdel(cinematic)		//end the cinematic
 
 
+/datum/controller/gameticker/proc/get_next_nuke_code_part() // returns code string as "XX56XX"
+	var/this_many = 2 // how many digits to return (this proc only tested with this value and 6 digit passwords).
+
+	if(ship_nuke_code == initial(ship_nuke_code) || length(ship_nuke_code) < this_many)
+		return initial(ship_nuke_code)
+
+	var/part_of_code = "[copytext(ship_nuke_code, ship_nuke_code_rotation_part, ship_nuke_code_rotation_part + this_many)]"
+	var/hidden_digit = "X"
+
+	if(ship_nuke_code_rotation_part > 1)
+		. = add_characters(hidden_digit, ship_nuke_code_rotation_part - 1) + part_of_code + add_characters(hidden_digit, length(ship_nuke_code) - ship_nuke_code_rotation_part - 1)
+	else
+		. = part_of_code + add_characters(hidden_digit, length(ship_nuke_code) - this_many)
+
+	ship_nuke_code_rotation_part += this_many // new head of staff gets next this_many digits
+	if(ship_nuke_code_rotation_part > length(ship_nuke_code)) // or we start over if we moved out of range
+		ship_nuke_code_rotation_part = 1
+
+/datum/controller/gameticker/proc/send_quote_of_the_round()
+	var/message
+	var/list/quotes = file2list("strings/quotes.txt")
+	if(quotes.len)
+		message = pick(quotes)
+	if(message)
+		world << SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>")
+
 /datum/controller/gameticker/proc/create_characters()
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready && player.mind)
@@ -239,16 +280,18 @@ var/global/datum/controller/gameticker/ticker
 				M << "Captainship not forced on anyone."
 
 
-/datum/controller/gameticker/proc/process()
+/datum/controller/gameticker/Process()
 	if(current_state != GAME_STATE_PLAYING)
 		return
 
-	storyteller.process()
+	storyteller.Process()
+	storyteller.process_events()
 
-	var/game_finished = (emergency_shuttle.returned() || ship_was_nuked  || universe_has_ended)
+	var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
 
 	if(!nuke_in_progress && game_finished)
 		current_state = GAME_STATE_FINISHED
+		Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 		spawn
 			declare_completion()
@@ -280,7 +323,7 @@ var/global/datum/controller/gameticker/ticker
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
-				if(emergency_shuttle.pods_departed)
+				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
 					if(isNotAdminLevel(playerTurf.z))
 						Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
 					else
@@ -300,7 +343,7 @@ var/global/datum/controller/gameticker/ticker
 					Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
 	world << "<br>"
 
-	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in SSmobs.mob_list)
 		if(aiPlayer.stat != DEAD)
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
 		else
@@ -315,7 +358,7 @@ var/global/datum/controller/gameticker/ticker
 
 	var/dronecount = 0
 
-	for(var/mob/living/silicon/robot/robo in mob_list)
+	for(var/mob/living/silicon/robot/robo in SSmobs.mob_list)
 
 		if(isdrone(robo))
 			dronecount++

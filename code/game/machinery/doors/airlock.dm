@@ -5,7 +5,12 @@
 	power_channel = ENVIRON
 
 	explosion_resistance = 10
-	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
+
+	var/aiControlDisabled = 0
+	//If 1, AI control is disabled until the AI hacks back in and disables the lock.
+	//If 2, the AI has bypassed the lock.
+	//If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
+
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
 	var/electrified_until = 0			//World time when the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
 	var/main_power_lost_until = 0	 	//World time when main power is restored.
@@ -54,7 +59,7 @@
 /obj/machinery/door/airlock/get_material()
 	if(mineral)
 		return get_material_by_name(mineral)
-	return get_material_by_name(DEFAULT_WALL_MATERIAL)
+	return get_material_by_name(MATERIAL_STEEL)
 
 /obj/machinery/door/airlock/command
 	name = "Airlock"
@@ -268,26 +273,26 @@
 /obj/machinery/door/airlock/gold
 	name = "Gold Airlock"
 	icon = 'icons/obj/doors/Doorgold.dmi'
-	mineral = "gold"
+	mineral = MATERIAL_GOLD
 
 /obj/machinery/door/airlock/silver
 	name = "Silver Airlock"
 	icon = 'icons/obj/doors/Doorsilver.dmi'
-	mineral = "silver"
+	mineral = MATERIAL_SILVER
 
 /obj/machinery/door/airlock/diamond
 	name = "Diamond Airlock"
 	icon = 'icons/obj/doors/Doordiamond.dmi'
-	mineral = "diamond"
+	mineral = MATERIAL_DIAMOND
 
 /obj/machinery/door/airlock/uranium
 	name = "Uranium Airlock"
 	desc = "And they said I was crazy."
 	icon = 'icons/obj/doors/Dooruranium.dmi'
-	mineral = "uranium"
+	mineral = MATERIAL_URANIUM
 	var/last_event = 0
 
-/obj/machinery/door/airlock/process()
+/obj/machinery/door/airlock/Process()
 	// Deliberate no call to parent.
 	if(main_power_lost_until > 0 && world.time >= main_power_lost_until)
 		regainMainPower()
@@ -300,7 +305,7 @@
 
 	..()
 
-/obj/machinery/door/airlock/uranium/process()
+/obj/machinery/door/airlock/uranium/Process()
 	if(world.time > last_event+20)
 		if(prob(50))
 			radiate()
@@ -340,7 +345,7 @@
 /obj/machinery/door/airlock/sandstone
 	name = "Sandstone Airlock"
 	icon = 'icons/obj/doors/Doorsand.dmi'
-	mineral = "sandstone"
+	mineral = MATERIAL_SANDSTONE
 
 /obj/machinery/door/airlock/science
 	name = "Airlock"
@@ -363,16 +368,45 @@
 
 /*
 About the new airlock wires panel:
-*	An airlock wire dialog can be accessed by the normal way or by using wirecutters or a multitool on the door while the wire-panel is open. This would show the following wires, which you can either wirecut/mend or send a multitool pulse through. There are 9 wires.
-*		one wire from the ID scanner. Sending a pulse through this flashes the red light on the door (if the door has power). If you cut this wire, the door will stop recognizing valid IDs. (If the door has 0000 access, it still opens and closes, though)
-*		two wires for power. Sending a pulse through either one causes a breaker to trip, disabling the door for 10 seconds if backup power is connected, or 1 minute if not (or until backup power comes back on, whichever is shorter). Cutting either one disables the main door power, but unless backup power is also cut, the backup power re-powers the door in 10 seconds. While unpowered, the door may be open, but bolts-raising will not work. Cutting these wires may electrocute the user.
-*		one wire for door bolts. Sending a pulse through this drops door bolts (whether the door is powered or not) or raises them (if it is). Cutting this wire also drops the door bolts, and mending it does not raise them. If the wire is cut, trying to raise the door bolts will not work.
-*		two wires for backup power. Sending a pulse through either one causes a breaker to trip, but this does not disable it unless main power is down too (in which case it is disabled for 1 minute or however long it takes main power to come back, whichever is shorter). Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but may electocute the user.
-*		one wire for opening the door. Sending a pulse through this while the door has power makes it open the door if no access is required.
-*		one wire for AI control. Sending a pulse through this blocks AI control for a second or so (which is enough to see the AI control light on the panel dialog go off and back on again). Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute). If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
-*		one wire for electrifying the door. Sending a pulse through this electrifies the door for 30 seconds. Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted. (Currently it is also STAYING electrified until someone mends the wire)
-*		one wire for controling door safetys.  When active, door does not close on someone.  When cut, door will ruin someone's shit.  When pulsed, door will immedately ruin someone's shit.
-*		one wire for controlling door speed.  When active, dor closes at normal rate.  When cut, door does not close manually.  When pulsed, door attempts to close every tick.
+*An airlock wire dialog can be accessed by the normal way or by using wirecutters or a multitool on the door while the wire-panel is open.
+This would show the following wires, which you can either wirecut/mend or send a multitool pulse through.
+There are 9 wires.
+*	one wire from the ID scanner.
+		Sending a pulse through this flashes the red light on the door (if the door has power).
+		If you cut this wire, the door will stop recognizing valid IDs.
+		(If the door has 0000 access, it still opens and closes, though)
+*	two wires for power.
+		Sending a pulse through either one causes a breaker to trip,
+		disabling the door for 10 seconds if backup power is connected,
+		or 1 minute if not (or until backup power comes back on, whichever is shorter).
+		Cutting either one disables the main door power, but unless backup power is also cut,
+		the backup power re-powers the door in 10 seconds.
+		While unpowered, the door may be open, but bolts-raising will not work.
+		Cutting these wires may electrocute the user.
+*	one wire for door bolts.
+		Sending a pulse through this drops door bolts (whether the door is powered or not) or raises them (if it is).
+		Cutting this wire also drops the door bolts, and mending it does not raise them. If the wire is cut, trying to raise the door bolts will not work.
+*	two wires for backup power.
+		Sending a pulse through either one causes a breaker to trip,
+		but this does not disable it unless main power is down too
+		(in which case it is disabled for 1 minute or however long it takes main power to come back, whichever is shorter).
+		Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but may electocute the user.
+*	one wire for opening the door.
+		Sending a pulse through this while the door has power makes it open the door if no access is required.
+*	one wire for AI control.
+		Sending a pulse through this blocks AI control for a second or so (which is enough to see the AI control light on the panel dialog go off and back on again).
+		Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute).
+		If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
+*	one wire for electrifying the door.
+		Sending a pulse through this electrifies the door for 30 seconds.
+		Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted.
+		(Currently it is also STAYING electrified until someone mends the wire)
+*	one wire for controling door safetys.
+		When active, door does not close on someone.  When cut, door will ruin someone's shit.
+		When pulsed, door will immedately ruin someone's shit.
+*	one wire for controlling door speed.
+		When active, dor closes at normal rate.  When cut, door does not close manually.
+		When pulsed, door attempts to close every tick.
 */
 
 
@@ -598,12 +632,60 @@ About the new airlock wires panel:
 	data["open"] = !density
 
 	var/commands[0]
-	commands[++commands.len] = list("name" = "IdScan",					"command"= "idscan",				"active" = !aiDisabledIdScanner,	"enabled" = "Enabled",	"disabled" = "Disable",		"danger" = 0, "act" = 1)
-	commands[++commands.len] = list("name" = "Bolts",					"command"= "bolts",					"active" = !locked,					"enabled" = "Raised ",	"disabled" = "Dropped",		"danger" = 0, "act" = 0)
-	commands[++commands.len] = list("name" = "Bolt Lights",				"command"= "lights",				"active" = lights,					"enabled" = "Enabled",	"disabled" = "Disable",		"danger" = 0, "act" = 1)
-	commands[++commands.len] = list("name" = "Safeties",				"command"= "safeties",				"active" = safe,					"enabled" = "Nominal",	"disabled" = "Overridden",	"danger" = 1, "act" = 0)
-	commands[++commands.len] = list("name" = "Timing",					"command"= "timing",				"active" = normalspeed,				"enabled" = "Nominal",	"disabled" = "Overridden",	"danger" = 1, "act" = 0)
-	commands[++commands.len] = list("name" = "Door State",				"command"= "open",					"active" = density,					"enabled" = "Closed",	"disabled" = "Opened", 		"danger" = 0, "act" = 0)
+	commands[++commands.len] = list(
+		"name" = "IdScan",
+		"command" = "idscan",
+		"active" = !aiDisabledIdScanner,
+		"enabled" = "Enabled",
+		"disabled" = "Disable",
+		"danger" = 0,
+		"act" = 1
+	)
+	commands[++commands.len] = list(
+		"name" = "Bolts",
+		"command" = "bolts",
+		"active" = !locked,
+		"enabled" = "Raised ",
+		"disabled" = "Dropped",
+		"danger" = 0,
+		"act" = 0
+	)
+	commands[++commands.len] = list(
+		"name" = "Bolt Lights",
+		"command" = "lights",
+		"active" = lights,
+		"enabled" = "Enabled",
+		"disabled" = "Disable",
+		"danger" = 0,
+		"act" = 1
+	)
+	commands[++commands.len] = list(
+		"name" = "Safeties",
+		"command"= "safeties",
+		"active" = safe,
+		"enabled" = "Nominal",
+		"disabled" = "Overridden",
+		"danger" = 1,
+		"act" = 0
+	)
+	commands[++commands.len] = list(
+		"name" = "Timing",
+		"command" = "timing",
+		"active" = normalspeed,
+		"enabled" = "Nominal",
+		"disabled" = "Overridden",
+		"danger" = 1,
+		"act" = 0
+	)
+	commands[++commands.len] = list(
+		"name" = "Door State",
+		"command" = "open",
+		"active" = density,
+		"enabled" = "Closed",
+		"disabled" = "Opened",
+		"danger" = 0,
+		"act" = 0
+	)
 
 	data["commands"] = commands
 
@@ -666,7 +748,7 @@ About the new airlock wires panel:
 	if (src.isElectrified())
 		if (istype(mover, /obj/item))
 			var/obj/item/i = mover
-			if (i.matter && (DEFAULT_WALL_MATERIAL in i.matter) && i.matter[DEFAULT_WALL_MATERIAL] > 0)
+			if (i.matter && (MATERIAL_STEEL in i.matter) && i.matter[MATERIAL_STEEL] > 0)
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()
@@ -686,7 +768,7 @@ About the new airlock wires panel:
 			playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
 				visible_message(SPAN_WARNING("[user] headbutts the airlock."))
-				var/obj/item/organ/external/affecting = H.get_organ("head")
+				var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 				H.Stun(8)
 				H.Weaken(5)
 				if(affecting.take_damage(10, 0))
@@ -777,106 +859,92 @@ About the new airlock wires panel:
 	update_icon()
 	return 1
 
-/obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
-	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
+/obj/machinery/door/airlock/attackby(obj/item/I, mob/user)
 	if(!issilicon(usr))
 		if(src.isElectrified())
 			if(src.shock(user, 75))
 				return
-	if(istype(C, /obj/item/taperoll))
+	if(istype(I, /obj/item/taperoll))
 		return
-
 	src.add_fingerprint(user)
-	if(!repairing && (istype(C, /obj/item/weapon/weldingtool) && !( src.operating > 0 ) && src.density))
-		var/obj/item/weapon/weldingtool/W = C
-		if(W.remove_fuel(0,user))
-			if(!src.welded)
-				src.welded = 1
-			else
-				src.welded = null
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			src.update_icon()
+
+	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING))
+	switch(tool_type)
+
+		if(QUALITY_PRYING)
+			if(!repairing)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
+					if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
+						user << SPAN_NOTICE("You removed the airlock electronics!")
+
+						var/obj/structure/door_assembly/da = new assembly_type(src.loc)
+						if (istype(da, /obj/structure/door_assembly/multi_tile))
+							da.set_dir(src.dir)
+
+		 				da.anchored = 1
+						if(mineral)
+							da.glass = mineral
+						else if(glass && !da.glass)
+							da.glass = 1
+						da.state = 1
+						da.created_name = src.name
+						da.update_state()
+
+						if(operating == -1 || (stat & BROKEN))
+							new /obj/item/weapon/circuitboard/broken(src.loc)
+							operating = 0
+						else
+							if (!electronics) create_electronics()
+
+							electronics.loc = src.loc
+							electronics = null
+
+						qdel(src)
+						return
+					else if(arePowerSystemsOn())
+						user << SPAN_NOTICE("The airlock's motors resist your efforts to force it.")
+					else if(locked)
+						user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
+					else
+						if(density)
+							spawn(0)	open(1)
+						else
+							spawn(0)	close(1)
 			return
-		else
+
+		if(QUALITY_SCREW_DRIVING)
+			var/used_sound = p_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				if (p_open)
+					if (stat & BROKEN)
+						usr << SPAN_WARNING("The panel is broken and cannot be closed.")
+					else
+						p_open = 0
+				else
+					p_open = 1
+				update_icon()
 			return
-	else if(istype(C, /obj/item/weapon/screwdriver))
-		if (src.p_open)
-			if (stat & BROKEN)
-				usr << SPAN_WARNING("The panel is broken and cannot be closed.")
-			else
-				src.p_open = 0
-				playsound(src.loc, 'sound/machines/Custom_screwdriverclose.ogg', 50, 1)
-		else
-			src.p_open = 1
-			playsound(src.loc, 'sound/machines/Custom_screwdriveropen.ogg', 50, 1)
-		src.update_icon()
-	else if(istype(C, /obj/item/weapon/wirecutters))
+
+		if(QUALITY_WELDING)
+			if(!repairing && !( src.operating > 0 ) && src.density)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if(!src.welded)
+						src.welded = 1
+					else
+						src.welded = null
+					src.update_icon()
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	if(istype(I, /obj/item/weapon/tool))
 		return src.attack_hand(user)
-	else if(istype(C, /obj/item/device/multitool))
+	else if(istype(I, /obj/item/device/assembly/signaler))
 		return src.attack_hand(user)
-	else if(istype(C, /obj/item/device/assembly/signaler))
-		return src.attack_hand(user)
-	else if(istype(C, /obj/item/weapon/pai_cable))	// -- TLE
-		var/obj/item/weapon/pai_cable/cable = C
+	else if(istype(I, /obj/item/weapon/pai_cable))	// -- TLE
+		var/obj/item/weapon/pai_cable/cable = I
 		cable.plugin(src, user)
-	else if(!repairing && istype(C, /obj/item/weapon/crowbar))
-		if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40,src))
-				user << SPAN_NOTICE("You removed the airlock electronics!")
-
-				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
-				if (istype(da, /obj/structure/door_assembly/multi_tile))
-					da.set_dir(src.dir)
-
- 				da.anchored = 1
-				if(mineral)
-					da.glass = mineral
-				//else if(glass)
-				else if(glass && !da.glass)
-					da.glass = 1
-				da.state = 1
-				da.created_name = src.name
-				da.update_state()
-
-				if(operating == -1 || (stat & BROKEN))
-					new /obj/item/weapon/circuitboard/broken(src.loc)
-					operating = 0
-				else
-					if (!electronics) create_electronics()
-
-					electronics.loc = src.loc
-					electronics = null
-
-				qdel(src)
-				return
-		else if(arePowerSystemsOn())
-			user << SPAN_NOTICE("The airlock's motors resist your efforts to force it.")
-		else if(locked)
-			user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
-		else
-			if(density)
-				spawn(0)	open(1)
-			else
-				spawn(0)	close(1)
-
-	else if(istype(C, /obj/item/weapon/material/twohanded/fireaxe) && !arePowerSystemsOn())
-		if(locked)
-			user << SPAN_NOTICE("The airlock's bolts prevent it from being forced.")
-		else if( !welded && !operating )
-			if(density)
-				var/obj/item/weapon/material/twohanded/fireaxe/F = C
-				if(F.wielded)
-					spawn(0)	open(1)
-				else
-					user << SPAN_WARNING("You need to be wielding \the [C] to do that.")
-			else
-				var/obj/item/weapon/material/twohanded/fireaxe/F = C
-				if(F.wielded)
-					spawn(0)	close(1)
-				else
-					user << SPAN_WARNING("You need to be wielding \the [C] to do that.")
 
 	else
 		..()
@@ -1082,21 +1150,20 @@ About the new airlock wires panel:
 		set_dir(assembly.dir)
 
 	//wires
-	var/turf/T = get_turf(newloc)
-	if(T && (T.z in config.admin_levels))
+	if(isOnAdminLevel(newloc))
 		secured_wires = 1
 	if (secured_wires)
 		wires = new/datum/wires/airlock/secure(src)
 	else
 		wires = new/datum/wires/airlock(src)
 
-/obj/machinery/door/airlock/initialize()
+/obj/machinery/door/airlock/Initialize()
 	if(src.closeOtherId != null)
 		for (var/obj/machinery/door/airlock/A in world)
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break
-	..()
+	. = ..()
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)

@@ -27,7 +27,7 @@
 
 	var/global/possible_items_special[] = list(
 		"nuclear gun" = /obj/item/weapon/gun/energy/gun/nuclear,
-		"diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
+		"diamond drill" = /obj/item/weapon/tool/pickaxe/diamonddrill,
 		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
 		"hyper-capacity cell" = /obj/item/weapon/cell/large/hyper,
 		"10 diamonds" = /obj/item/stack/material/diamond,
@@ -36,7 +36,7 @@
 	)
 
 
-/datum/objective/steal/proc/set_target(var/item_name)
+/datum/objective/steal/proc/steal_target(var/item_name)
 	target_name = item_name
 	steal_target = possible_items[target_name]
 	if(!steal_target)
@@ -46,7 +46,7 @@
 
 
 /datum/objective/steal/find_target()
-	return set_target(pick(possible_items))
+	return steal_target(pick(possible_items))
 
 
 /datum/objective/steal/proc/select_target(var/mob/user)

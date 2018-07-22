@@ -109,7 +109,7 @@
 	projectile_type = /obj/item/projectile/bullet/c65
 
 /obj/item/ammo_casing/c65r
-	desc = "A .6.5mm rubber bullet casing."
+	desc = "A 6.5mm rubber bullet casing."
 	caliber = "6.5mm"
 	projectile_type = /obj/item/projectile/bullet/c65r
 
@@ -120,7 +120,7 @@
 	spent_icon = "lcasing-spent"
 	caliber = "14.5mm"
 	projectile_type = /obj/item/projectile/bullet/a145
-	matter = list(DEFAULT_WALL_MATERIAL = 1250)
+	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/ammo_casing/shotgun
 	name = "shotgun slug"
@@ -128,35 +128,35 @@
 	icon_state = "slshell"
 	caliber = "shotgun"
 	projectile_type = /obj/item/projectile/bullet/shotgun
-	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/ammo_casing/shotgun/pellet
 	name = "shotgun shell"
 	desc = "A 12 gauge shell."
 	icon_state = "gshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
-	matter = list(DEFAULT_WALL_MATERIAL = 360)
+	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/ammo_casing/shotgun/blank
 	name = "shotgun shell"
 	desc = "A blank shell."
 	icon_state = "blshell"
 	projectile_type = /obj/item/projectile/bullet/blank
-	matter = list(DEFAULT_WALL_MATERIAL = 90)
+	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/ammo_casing/shotgun/practice
 	name = "shotgun shell"
 	desc = "A practice shell."
 	icon_state = "pshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/practice
-	matter = list("metal" = 90)
+	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag shell"
 	desc = "A beanbag shell."
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
-	matter = list(DEFAULT_WALL_MATERIAL = 180)
+	matter = list(MATERIAL_STEEL = 1)
 
 //Can stun in one hit if aimed at the head, but
 //is blocked by clothing that stops tasers and is vulnerable to EMP
@@ -166,7 +166,7 @@
 	icon_state = "stunshell"
 	spent_icon = "stunshell-spent"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
-	matter = list(DEFAULT_WALL_MATERIAL = 360, "glass" = 720)
+	matter = list(MATERIAL_STEEL = 1, SILVER = 1)
 
 /obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
 	if(prob(100/severity)) BB = null
@@ -178,7 +178,7 @@
 	desc = "A chemical shell used to signal distress or provide illumination."
 	icon_state = "fshell"
 	projectile_type = /obj/item/projectile/energy/flash/flare
-	matter = list(DEFAULT_WALL_MATERIAL = 90, "glass" = 90)
+	matter = list(MATERIAL_STEEL = 1, SILVER = 1)
 
 /obj/item/ammo_casing/rocket
 	name = "rocket shell"

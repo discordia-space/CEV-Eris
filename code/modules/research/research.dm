@@ -235,11 +235,11 @@ research holder datum.
 /obj/item/weapon/disk/tech_disk
 	name = "technology disk"
 	desc = "A disk for storing technology data for further research."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "blue"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 30, "glass" = 10)
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/datum/tech/stored
 
 /obj/item/weapon/disk/tech_disk/New()
@@ -249,11 +249,11 @@ research holder datum.
 /obj/item/weapon/disk/design_disk
 	name = "component design disk"
 	desc = "A disk for storing device design data for construction in lathes."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "yellow"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 30, "glass" = 10)
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	var/datum/design/blueprint
 
 /obj/item/weapon/disk/design_disk/New()

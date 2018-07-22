@@ -36,7 +36,7 @@
 	else
 		icon_state = "bus_off"
 
-/obj/machinery/ntnet_relay/process()
+/obj/machinery/ntnet_relay/Process()
 	if(is_operational())
 		use_power = 2
 	else
@@ -105,24 +105,14 @@
 	for(var/datum/computer_file/program/ntnet_dos/D in dos_sources)
 		D.target = null
 		D.error = "Connection to quantum relay severed"
-	..()
+	return ..()
 
-/obj/machinery/ntnet_relay/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		panel_open = !panel_open
-		user << "You [panel_open ? "open" : "close"] the maintenance hatch"
-		return
-	if(istype(W, /obj/item/weapon/crowbar))
-		if(!panel_open)
-			user << "Open the maintenance panel first."
-			return
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-		user << "You disassemble \the [src]!"
+/obj/machinery/ntnet_relay/attackby(var/obj/item/I, var/mob/user)
 
-		for(var/atom/movable/A in component_parts)
-			A.forceMove(src.loc)
-		new/obj/machinery/constructable_frame/machine_frame(src.loc)
-		qdel(src)
+	if(default_deconstruction(I, user))
 		return
+
+	if(default_part_replacement(I, user))
+		return
+
 	..()

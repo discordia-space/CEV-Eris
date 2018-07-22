@@ -100,13 +100,13 @@
 		return 1
 
 /obj/item/modular_computer/New()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 	..()
 
 /obj/item/modular_computer/Destroy()
 	kill_program(1)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	for(var/obj/item/weapon/computer_hardware/CH in src.get_all_components())
 		qdel(CH)
 	return ..()
@@ -192,7 +192,7 @@
 			user << "You press the power button but \the [src] does not respond"
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
-/obj/item/modular_computer/process()
+/obj/item/modular_computer/Process()
 	if(!enabled) // The computer is turned off
 		last_power_usage = 0
 		return 0
@@ -433,7 +433,7 @@
 			try_install_component(user, C)
 		else
 			user << "This component is too large for \the [src]."
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/weapon/tool/wrench))
 		var/list/components = get_all_components()
 		if(components.len)
 			user << "Remove all components from \the [src] before disassembling it."
@@ -444,7 +444,7 @@
 		qdel(src)
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/tool/screwdriver))
 		var/list/all_components = get_all_components()
 		if(!all_components.len)
 			user << "This device doesn't have any components installed."

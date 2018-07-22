@@ -124,37 +124,7 @@
 	//Speaking
 	if(!client && speak_chance)
 		if(rand(0,200) < speak_chance)
-			if(speak && speak.len)
-				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
-					var/length = speak.len
-					if(emote_hear && emote_hear.len)
-						length += emote_hear.len
-					if(emote_see && emote_see.len)
-						length += emote_see.len
-					var/randomValue = rand(1,length)
-					if(randomValue <= speak.len)
-						say(pick(speak))
-					else
-						randomValue -= speak.len
-						if(emote_see && randomValue <= emote_see.len)
-							visible_emote("[pick(emote_see)].")
-						else
-							audible_emote("[pick(emote_hear)].")
-				else
-					say(pick(speak))
-			else
-				if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					visible_emote("[pick(emote_see)].")
-				if((emote_hear && emote_hear.len) && !(emote_see && emote_see.len))
-					audible_emote("[pick(emote_hear)].")
-				if((emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					var/length = emote_hear.len + emote_see.len
-					var/pick = rand(1,length)
-					if(pick <= emote_see.len)
-						visible_emote("[pick(emote_see)].")
-					else
-						audible_emote("[pick(emote_hear)].")
-
+			visible_emote(emote_see)
 
 	//Atmos
 	var/atmos_suitable = 1
@@ -210,22 +180,18 @@
 		adjustBruteLoss(unsuitable_atoms_damage)
 	return 1
 
+/mob/living/simple_animal/proc/visible_emote(message)
+	if(islist(message))
+		message = safepick(message)
+	if(message)
+		visible_message("<span class='name'>[src]</span> [message]")
+
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
 		purge -= 1
 
 /mob/living/simple_animal/gib()
 	..(icon_gib,1)
-
-/mob/living/simple_animal/emote(var/act, var/type, var/desc)
-	if(act)
-		..(act, type, desc)
-
-/mob/living/simple_animal/proc/visible_emote(var/act_desc)
-	custom_emote(1, act_desc)
-
-/mob/living/simple_animal/proc/audible_emote(var/act_desc)
-	custom_emote(2, act_desc)
 
 /mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj || Proj.nodamage)
@@ -288,8 +254,9 @@
 		else
 			user << SPAN_NOTICE("\The [src] is dead, medical items won't bring \him back to life.")
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
-		if(istype(O, /obj/item/weapon/material/knife) || istype(O, /obj/item/weapon/material/knife/butch))
-			harvest(user)
+		if(QUALITY_CUTTING in O.tool_qualities)
+			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_NORMAL, required_stat = STAT_BIO))
+				harvest(user)
 	else
 		if(!O.force)
 			visible_message(SPAN_NOTICE("[user] gently taps [src] with \the [O]."))
@@ -307,9 +274,6 @@
 	var/damage = O.force
 	if (O.damtype == HALLOSS)
 		damage = 0
-	if(supernatural && istype(O,/obj/item/weapon/nullrod))
-		damage *= 2
-		purge = 3
 	adjustBruteLoss(damage)
 
 	return 0
@@ -359,7 +323,7 @@
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
-		if(!L.stat && L.health >= 0)
+		if(!L.stat && L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
 			return (0)
 	if (istype(target_mob,/obj/mecha))
 		var/obj/mecha/M = target_mob
@@ -370,15 +334,6 @@
 		if(B.health > 0)
 			return (0)
 	return 1
-
-/mob/living/simple_animal/say(var/message)
-	var/verb = "says"
-	if(speak_emote.len)
-		verb = pick(speak_emote)
-
-	message = sanitize(message)
-
-	..(message, null, verb)
 
 /mob/living/simple_animal/get_speech_ending(verb, var/ending)
 	return verb

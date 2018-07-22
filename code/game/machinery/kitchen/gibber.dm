@@ -6,6 +6,7 @@
 	icon_state = "grinder"
 	density = 1
 	anchored = 1
+	layer = BELOW_OBJ_LAYER
 	req_access = list(access_kitchen,access_morgue)
 
 	var/operating = 0 //Is it on?
@@ -84,18 +85,12 @@
 	user <<  SPAN_DANGER("You [emagged ? "disable" : "enable"] the gibber safety guard.")
 	return 1
 
-/obj/machinery/gibber/attackby(var/obj/item/W, var/mob/user)
-	var/obj/item/weapon/grab/G = W
-
-	if(!istype(G))
-		return ..()
-
-	if(G.state < 2)
+/obj/machinery/gibber/affect_grab(var/mob/user, var/mob/target, var/state)
+	if(state < GRAB_NECK)
 		user << SPAN_DANGER("You need a better grip to do that!")
-		return
-
-	move_into_gibber(user,G.affecting)
-	// Grab() process should clean up the grab item, no need to del it.
+		return FALSE
+	move_into_gibber(user, target)
+	return TRUE
 
 /obj/machinery/gibber/MouseDrop_T(mob/target, mob/user)
 	if(user.stat || user.restrained())
@@ -129,10 +124,8 @@
 	src.add_fingerprint(user)
 	if(do_after(user, 30, src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(SPAN_DANGER("\The [user] stuffs \the [victim] into the gibber!"))
-		if(victim.client)
-			victim.client.perspective = EYE_PERSPECTIVE
-			victim.client.eye = src
-		victim.loc = src
+		victim.forceMove(src)
+		victim.reset_view(src)
 		src.occupant = victim
 		update_icon()
 

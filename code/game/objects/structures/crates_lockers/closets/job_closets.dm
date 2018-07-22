@@ -11,18 +11,14 @@
 /obj/structure/closet/gmcloset
 	name = "formal closet"
 	desc = "It's a storage unit for formal clothing."
-	icon_state = "black"
-	icon_closed = "black"
+	icon_door = "black"
 
-/obj/structure/closet/gmcloset/New()
-	..()
+/obj/structure/closet/gmcloset/populate_contents()
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/clothing/head/hairflower
-	//new /obj/item/clothing/under/sl_suit(src)
-	//new /obj/item/clothing/under/sl_suit(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/suit/wcoat(src)
@@ -36,11 +32,9 @@
 /obj/structure/closet/chefcloset
 	name = "chef's closet"
 	desc = "It's a storage unit for foodservice garments."
-	icon_state = "black"
-	icon_closed = "black"
+	icon_door = "black"
 
-/obj/structure/closet/chefcloset/New()
-	..()
+/obj/structure/closet/chefcloset/populate_contents()
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/device/radio/headset/headset_service(src)
@@ -56,11 +50,9 @@
 /obj/structure/closet/jcloset
 	name = "custodial closet"
 	desc = "It's a storage unit for janitorial clothes and gear."
-	icon_state = "mixed"
-	icon_closed = "mixed"
+	icon_door = "mixed"
 
-/obj/structure/closet/jcloset/New()
-	..()
+/obj/structure/closet/jcloset/populate_contents()
 	new /obj/item/clothing/under/rank/janitor(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/weapon/cartridge/janitor(src)
@@ -75,17 +67,3 @@
 	new /obj/item/device/lightreplacer(src)
 	new /obj/item/weapon/storage/bag/trash(src)
 	new /obj/item/clothing/shoes/galoshes(src)
-
-/*
- * Lawyer
- */
-/obj/structure/closet/lawcloset
-	name = "legal closet"
-	desc = "It's a storage unit for courtroom apparel and items."
-	icon_state = "blue"
-	icon_closed = "blue"
-
-/obj/structure/closet/lawcloset/New()
-	..()
-	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/clothing/shoes/black(src)

@@ -50,7 +50,7 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/powered/scrubber/process()
+/obj/machinery/portable_atmospherics/powered/scrubber/Process()
 	..()
 
 	var/power_draw = -1
@@ -182,7 +182,7 @@
 	if (old_stat != stat)
 		update_icon()
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/process()
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/Process()
 	if(!on || (stat & (NOPOWER|BROKEN)))
 		update_use_power(0)
 		last_flow_rate = 0
@@ -205,7 +205,7 @@
 		update_connected_network()
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/wrench))
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(on)
 			user << SPAN_WARNING("Turn \the [src] off first!")
 			return
@@ -219,21 +219,21 @@
 	//doesn't use power cells
 	if(istype(I, /obj/item/weapon/cell/large))
 		return
-	if (istype(I, /obj/item/weapon/screwdriver))
+	if (istype(I, /obj/item/weapon/tool/screwdriver))
 		return
 
 	//doesn't hold tanks
 	if(istype(I, /obj/item/weapon/tank))
 		return
 
-	..()
+	return
 
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
 	name = "Stationary Air Scrubber"
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/wrench))
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		user << SPAN_WARNING("The bolts are too tight for you to unscrew!")
 		return
 
