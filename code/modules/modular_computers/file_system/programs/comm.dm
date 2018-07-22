@@ -62,7 +62,7 @@
 	data["boss_short"] = boss_short
 	data["current_security_level"] = security_level
 	data["current_security_level_title"] = num2seclevel(security_level)
-
+	
 	data["def_SEC_LEVEL_DELTA"] = SEC_LEVEL_DELTA
 	data["def_SEC_LEVEL_BLUE"] = SEC_LEVEL_BLUE
 	data["def_SEC_LEVEL_GREEN"] = SEC_LEVEL_GREEN
@@ -74,14 +74,16 @@
 	if(current_viewing_message)
 		data["message_current"] = current_viewing_message
 
-	if(emergency_shuttle.location())
-		data["have_shuttle"] = 1
-		if(emergency_shuttle.online())
-			data["have_shuttle_called"] = 1
-		else
-			data["have_shuttle_called"] = 0
-	else
-		data["have_shuttle"] = 0
+	var/list/processed_evac_options = list()
+	if(!isnull(evacuation_controller))
+		for (var/datum/evacuation_option/EO in evacuation_controller.available_evac_options())
+			var/list/option = list()
+			option["option_text"] = EO.option_text
+			option["option_target"] = EO.option_target
+			option["needs_syscontrol"] = EO.needs_syscontrol
+			option["silicon_allowed"] = EO.silicon_allowed
+			processed_evac_options[++processed_evac_options.len] = option
+	data["evac_options"] = processed_evac_options
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -192,6 +194,7 @@
 						post_status(href_list["target"])
 
 		if("setalert")
+			usr << "You press button, but red light flashes and nothing happens." //This should never happenp
 			if(is_autenthicated(user) && !issilicon(usr) && ntn_cont && ntn_comm)
 				var/current_level = text2num(href_list["target"])
 				var/confirm = alert("Are you sure you want to change alert level to [num2seclevel(current_level)]?", name, "No", "Yes")
@@ -225,6 +228,19 @@
 						usr << SPAN_NOTICE("Hardware error: Printer was unable to print the file. It may be out of paper.")
 					else
 						program.computer.visible_message(SPAN_NOTICE("\The [program.computer] prints out paper."))
+		if("evac")
+			. = 1
+			if(is_autenthicated(user))
+				var/datum/evacuation_option/selected_evac_option = evacuation_controller.evacuation_options[href_list["target"]]
+				if (isnull(selected_evac_option) || !istype(selected_evac_option))
+					return
+				if (!selected_evac_option.silicon_allowed && issilicon(user))
+					return
+				if (selected_evac_option.needs_syscontrol && !ntn_cont)
+					return
+				var/confirm = alert("Are you sure you want to [selected_evac_option.option_desc]?", name, "No", "Yes")
+				if (confirm == "Yes" && can_still_topic())
+					evacuation_controller.handle_evac_option(selected_evac_option.option_target, user)
 
 	nanomanager.update_uis(src)
 
@@ -277,7 +293,7 @@ proc/post_comm_message(var/message_title, var/message_text)
 		l.Add(message)
 
 	//Old console support
-	for (var/obj/machinery/computer/communications/comm in machines)
+	for (var/obj/machinery/computer/communications/comm in SSmachines.machinery)
 		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
 			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper( comm.loc )
 			intercept.name = message_title
