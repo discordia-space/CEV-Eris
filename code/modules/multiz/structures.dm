@@ -128,6 +128,8 @@
 		return
 
 	if(!target)
+		if(ismob(AM))
+			AM << SPAN_NOTICE("There are no stairs above.")
 		log_debug("[src.type] at [src.x], [src.y], [src.z] have non-existant target")
 		return
 
@@ -142,6 +144,7 @@
 /obj/structure/multiz/stairs/active/attack_ai(mob/living/silicon/ai/user)
 	. = ..()
 	if(!target)
+		user << SPAN_NOTICE("There are no stairs above.")
 		log_debug("[src.type] at [src.x], [src.y], [src.z] have non-existant target")
 
 /obj/structure/multiz/stairs/active/attack_robot(mob/user)
