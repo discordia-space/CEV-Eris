@@ -128,6 +128,7 @@
 		return
 
 	if(!target)
+		log_debug("[src.type] at [src.x], [src.y], [src.z] have non-existant target")
 		return
 
 	var/obj/structure/multiz/stairs/enter/ES = locate(/obj/structure/multiz/stairs/enter) in get_turf(AM)
@@ -138,6 +139,10 @@
 	AM.forceMove(get_turf(target))
 	try_resolve_mob_pulling(AM, ES)
 
+/obj/structure/multiz/stairs/active/attack_ai(mob/living/silicon/ai/user)
+	. = ..()
+	if(!target)
+		log_debug("[src.type] at [src.x], [src.y], [src.z] have non-existant target")
 
 /obj/structure/multiz/stairs/active/attack_robot(mob/user)
 	. = ..()
