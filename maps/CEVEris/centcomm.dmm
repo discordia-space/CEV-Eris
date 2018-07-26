@@ -187,7 +187,7 @@
 "dE" = (/obj/machinery/door/window/holowindoor{base_state = "right"; dir = 2; icon_state = "right"; name = "Red Corner"},/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_boxingcourt)
 "dF" = (/obj/structure/window/reinforced/holowindow,/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_boxingcourt)
 "dG" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/holofloor/snow,/area/holodeck/source_snowfield)
-"dH" = (/turf/simulated/floor/holofloor/lino,/area/holodeck/source_meetinghall)
+"dH" = (/turf/simulated/floor/holofloor/carpet,/area/holodeck/source_meetinghall)
 "dI" = (/obj/item/weapon/beach_ball,/turf/simulated/floor/holofloor/beach/sand,/area/holodeck/source_beach)
 "dJ" = (/obj/structure/window/reinforced/holowindow{dir = 4},/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_boxingcourt)
 "dK" = (/obj/effect/floor_decal/corner/red/three_quarters{dir = 8},/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_boxingcourt)
@@ -1068,3 +1068,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 qIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+

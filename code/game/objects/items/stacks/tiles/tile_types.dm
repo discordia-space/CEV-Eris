@@ -4,7 +4,6 @@
  *		Grass
  *		Wood
  *		Carpet
- *		Linoleum
  */
 
 /obj/item/stack/tile
@@ -140,14 +139,3 @@
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/floor
 	build_type = /obj/item/stack/tile/floor
-
-/obj/item/stack/tile/linoleum
-	name = "linoleum"
-	singular_name = "linoleum"
-	desc = "A piece of linoleum. It is the same size as a normal floor tile!"
-	icon_state = "tile-linoleum"
-	force = 1.0
-	throwforce = 1.0
-	throw_speed = 5
-	throw_range = 20
-	flags = 0
