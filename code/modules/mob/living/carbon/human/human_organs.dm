@@ -109,7 +109,7 @@
 
 	// You should not be able to pick anything up, but stranger things have happened.
 	if(l_hand)
-		for(var/limb_tag in list(BP_L_HAND, BP_L_ARM))
+		for(var/limb_tag in list(BP_L_ARM))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
 				visible_message(SPAN_DANGER("Lacking a functioning left hand, \the [src] drops \the [l_hand]."))
@@ -117,7 +117,7 @@
 				break
 
 	if(r_hand)
-		for(var/limb_tag in list(BP_R_HAND, BP_R_ARM))
+		for(var/limb_tag in list(BP_R_ARM))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
 				visible_message(SPAN_DANGER("Lacking a functioning right hand, \the [src] drops \the [r_hand]."))
@@ -134,11 +134,11 @@
 
 		if(E.is_broken() || E.is_dislocated())
 			switch(E.body_part)
-				if(HAND_LEFT, ARM_LEFT)
+				if(ARM_LEFT)
 					if(!l_hand)
 						continue
 					drop_from_inventory(l_hand)
-				if(HAND_RIGHT, ARM_RIGHT)
+				if(ARM_RIGHT)
 					if(!r_hand)
 						continue
 					drop_from_inventory(r_hand)
@@ -148,11 +148,11 @@
 
 		else if(E.is_malfunctioning())
 			switch(E.body_part)
-				if(HAND_LEFT, ARM_LEFT)
+				if(ARM_LEFT)
 					if(!l_hand)
 						continue
 					drop_from_inventory(l_hand)
-				if(HAND_RIGHT, ARM_RIGHT)
+				if(ARM_RIGHT)
 					if(!r_hand)
 						continue
 					drop_from_inventory(r_hand)

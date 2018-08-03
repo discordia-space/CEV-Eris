@@ -45,9 +45,9 @@ meteor_act
 	switch (def_zone)
 		if(BP_HEAD)
 			agony_amount *= 1.50
-		if(BP_L_HAND, BP_R_HAND)
+		if(BP_L_ARM, BP_R_ARM)
 			var/c_hand
-			if (def_zone == BP_L_HAND)
+			if (def_zone == BP_L_ARM)
 				c_hand = l_hand
 			else
 				c_hand = r_hand

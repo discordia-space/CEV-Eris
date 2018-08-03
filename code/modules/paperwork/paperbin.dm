@@ -17,10 +17,10 @@
 		if(!isslime(usr) && !isanimal(usr))
 			if( !usr.get_active_hand() )		//if active hand is empty
 				var/mob/living/carbon/human/H = user
-				var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
+				var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
 
 				if (H.hand)
-					temp = H.organs_by_name[BP_L_HAND]
+					temp = H.organs_by_name[BP_L_ARM]
 				if(temp && !temp.is_usable())
 					user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 					return
@@ -33,9 +33,9 @@
 /obj/item/weapon/paper_bin/attack_hand(mob/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
 		if (H.hand)
-			temp = H.organs_by_name[BP_L_HAND]
+			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
 			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
 			return

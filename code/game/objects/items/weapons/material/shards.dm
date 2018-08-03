@@ -74,7 +74,7 @@
 
 			M << SPAN_DANGER("You step on \the [src]!")
 
-			var/list/check = list(BP_L_FOOT, BP_R_FOOT)
+			var/list/check = list(BP_L_LEG, BP_R_LEG)
 			while(check.len)
 				var/picked = pick(check)
 				var/obj/item/organ/external/affecting = H.get_organ(picked)
