@@ -105,7 +105,7 @@ var/last_chew = 0
 	if (H.wear_mask) return
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 
-	var/obj/item/organ/external/O = H.organs_by_name[H.hand ? BP_L_HAND : BP_R_HAND]
+	var/obj/item/organ/external/O = H.organs_by_name[H.hand ? BP_L_ARM : BP_R_ARM]
 	if (!O) return
 
 	var/s = SPAN_WARNING("[H.name] chews on \his [O.name]!")

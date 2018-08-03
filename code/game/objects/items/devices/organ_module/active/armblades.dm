@@ -10,7 +10,7 @@
 	name = "embed blade"
 	verb_name = "Deploy embed blade"
 	icon_state = "armblade"
-	allowed_organs = list(BP_R_HAND, BP_L_HAND)
+	allowed_organs = list(BP_R_ARM, BP_L_ARM)
 	holding_type = /obj/item/weapon/material/hatchet/tacknife/armblade
 
 
@@ -23,6 +23,6 @@
 	name = "embed claws"
 	verb_name = "Deploy embed claws"
 	icon_state = "wolverine"
-	allowed_organs = list(BP_R_HAND, BP_L_HAND)
+	allowed_organs = list(BP_R_ARM, BP_L_ARM)
 	holding_type = /obj/item/weapon/material/hatchet/tacknife/armblade/claws
 

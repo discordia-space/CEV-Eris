@@ -136,15 +136,7 @@
 	var/old_selecting = parentmob.targeted_organ //We're only going to update_icon() if there's been a change
 
 	switch(icon_y)
-		if(1 to 3) //Feet
-			switch(icon_x)
-				if(10 to 15)
-					parentmob.targeted_organ = BP_R_FOOT
-				if(17 to 22)
-					parentmob.targeted_organ = BP_L_FOOT
-				else
-					return TRUE
-		if(4 to 9) //Legs
+		if(1 to 9) //Legs
 			switch(icon_x)
 				if(10 to 15)
 					parentmob.targeted_organ = BP_R_LEG
@@ -152,14 +144,14 @@
 					parentmob.targeted_organ = BP_L_LEG
 				else
 					return TRUE
-		if(10 to 13) //Hands and groin
+		if(10 to 13) //Arms and groin
 			switch(icon_x)
 				if(8 to 11)
-					parentmob.targeted_organ = BP_R_HAND
+					parentmob.targeted_organ = BP_R_ARM
 				if(12 to 20)
 					parentmob.targeted_organ = BP_GROIN
 				if(21 to 24)
-					parentmob.targeted_organ = BP_L_HAND
+					parentmob.targeted_organ = BP_L_ARM
 				else
 					return TRUE
 		if(14 to 22) //Chest and arms to shoulders

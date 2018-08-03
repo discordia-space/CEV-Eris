@@ -26,7 +26,7 @@
 		tally += wear_suit.slowdown
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
-		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
+		for(var/organ_name in list(BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E)
 				tally += 4
@@ -121,7 +121,7 @@
 			if(footwear.silence_steps)
 				return //silent
 
-		if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))
+		if(!has_organ(BP_L_LEG) && !has_organ(BP_R_LEG))
 			return //no feet no footsteps
 
 		if(buckled || lying || throwing)
