@@ -677,7 +677,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 //Critical failture rolls. If you use use_tool_extended, you might want to call that proc as well.
 /obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null, required_quality)
 
-	var/crit_fail_chance = 125
+	var/crit_fail_chance = 25
 	if(required_stat)
 		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
 	else
