@@ -707,6 +707,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					var/mob/living/carbon/human/H = user
 					var/throw_target = pick(trange(6, user))
 					user << SPAN_DANGER("Your [src] flies away!")
+					H.unEquip(src)
 					src.throw_at(throw_target, src.throw_range, src.throw_speed, H)
 					return
 
@@ -714,7 +715,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					user << SPAN_DANGER("You accidentally stuck [src] in your hand!")
-					H.get_holding_hand(src).embed(src)
+					H.get_organ(H.get_holding_hand(src)).embed(src)
 					return
 
 			if(85 to 93)
