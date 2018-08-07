@@ -118,7 +118,7 @@
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Robust people can drink a lot
-	strength = max(10, strength + M.stats.getStat(STAT_ROB))
+	strength = max(10, strength + M.stats.getStat(STAT_TGH))
 
 	if(dose * strength_mod >= strength) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick

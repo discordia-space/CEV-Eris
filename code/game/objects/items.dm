@@ -595,11 +595,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
 
-/* QUALITY SYSTEM */
+/* QUALITY AND TOOL SYSTEM */
 
 /obj/item/proc/get_tool_quality(quality_id)
 	return tool_qualities[quality_id]
 
+//We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
 /obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
 	var/start_loc = user.loc
 	var/list/L = required_qualities & tool_qualities
@@ -616,17 +617,20 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	else
 		return return_quality
 
+//Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
+//Editionaly, handle_failure proc will be called for a critical failure roll.
 /obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
 	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
 	switch(result)
 		if(TOOL_USE_CANCEL)
 			return FALSE
 		if(TOOL_USE_FAIL)
-			handle_failure(user, target, required_stat = required_stat)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
+			handle_failure(user, target, required_stat = required_stat, required_quality = required_quality)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
 			return FALSE
 		if(TOOL_USE_SUCCESS)
 			return TRUE
 
+//Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
 /obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
@@ -670,7 +674,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	return TOOL_USE_SUCCESS
 
-/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null)
+//Critical failture rolls. If you use use_tool_extended, you might want to call that proc as well.
+/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, required_stat = null, required_quality)
 
 	var/crit_fail_chance = 25
 	if(required_stat)
@@ -679,25 +684,59 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		crit_fail_chance = 10
 
 	if(prob(crit_fail_chance))
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			user << SPAN_DANGER("Your hand slips while working with [src]!")
-			attack(H, H, H.get_holding_hand(src))
-			return
+		var/fail_type = rand(0, 100)
 
-	if(prob(crit_fail_chance / 4))
-		if(istype(src, /obj/item/weapon/tool))
-			var/obj/item/weapon/tool/T = src
-			if(T.use_fuel_cost)
-				user << SPAN_DANGER("You ignite the fuel of the [src]!")
-				explosion(src.loc,-1,1,2)
+		switch(fail_type)
+
+			if(0 to 29)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					user << SPAN_DANGER("You drop [src] on the floor.")
+					H.drop_item()
+					return
+
+			if(30 to 49)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					user << SPAN_DANGER("Your hand slips while working with [src]!")
+					attack(H, H, H.get_holding_hand(src))
+					return
+
+			if(50 to 79)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					var/throw_target = pick(trange(6, user))
+					user << SPAN_DANGER("Your [src] flies away!")
+					H.unEquip(src)
+					src.throw_at(throw_target, src.throw_range, src.throw_speed, H)
+					return
+
+			if(70 to 84)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					user << SPAN_DANGER("You accidentally stuck [src] in your hand!")
+					H.get_organ(H.get_holding_hand(src)).embed(src)
+					return
+
+			if(85 to 93)
+				user << SPAN_DANGER("Your [src] broke beyond repair!")
+				new /obj/item/weapon/material/shard/shrapnel(user.loc)
 				qdel(src)
 				return
-			if(T.use_power_cost)
-				user << SPAN_DANGER("You overload the cell in the [src]!")
-				explosion(src.loc,-1,1,2)
-				qdel(src)
-				return
+
+			if(94 to 100)
+				if(istype(src, /obj/item/weapon/tool))
+					var/obj/item/weapon/tool/T = src
+					if(T.use_fuel_cost)
+						user << SPAN_DANGER("You ignite the fuel of the [src]!")
+						explosion(src.loc,-1,1,2)
+						qdel(src)
+						return
+					if(T.use_power_cost)
+						user << SPAN_DANGER("You overload the cell in the [src]!")
+						explosion(src.loc,-1,1,2)
+						qdel(src)
+						return
 
 
 /obj/item/device
