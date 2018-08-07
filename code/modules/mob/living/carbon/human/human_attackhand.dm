@@ -132,7 +132,7 @@
 				attack_generic(H,rand(1,3),"punched")
 				return
 
-			var/stat_damage = 4 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
 			var/block = 0
 			var/accurate = 0
 			var/hit_zone = H.targeted_organ
