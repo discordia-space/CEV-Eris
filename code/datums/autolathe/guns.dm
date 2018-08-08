@@ -78,6 +78,14 @@
 	name = "FS AR 7.62x39 \"Kalashnikov\""
 	path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
+/datum/autolathe/recipe/gun/idaho
+	name = "FS SMG 9x19 \"Idaho\""
+	path = /obj/item/weapon/gun/projectile/automatic/idaho
+
+/datum/autolathe/recipe/gun/atreides
+	name = "FS SMG .45 \"Atreides\""
+	path = /obj/item/weapon/gun/projectile/automatic/atreides
+
 /datum/autolathe/recipe/gun/heavysniper
 	name = "NT AMR \"Penetrator\""
 	path = /obj/item/weapon/gun/projectile/heavysniper
