@@ -6,7 +6,7 @@
 	icon_state = "black-AK"
 	item_state = "black-AK"
 	w_class = ITEM_SIZE_LARGE
-	force = 17
+	force = WEAPON_FORCE_PAINFULL
 	caliber = "a762"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
 	slot_flags = SLOT_BACK

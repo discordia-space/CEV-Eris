@@ -16,6 +16,10 @@
 				prob(2);/obj/item/ammo_magazine/ammobox/cl32/rubber,\
 				prob(1);/obj/item/ammo_magazine/ammobox/c9mm,\
 				prob(2);/obj/item/ammo_magazine/ammobox/c9mm/rubber,\
+				prob(1);/obj/item/ammo_magazine/c45smg,\
+				prob(1);/obj/item/ammo_magazine/c45smg/rubber,\
+				prob(1);/obj/item/ammo_magazine/smg9mm,\
+				prob(1);/obj/item/ammo_magazine/smg9mm/rubber,\
 				prob(2);/obj/item/ammo_magazine/c45m,\
 				prob(4);/obj/item/ammo_magazine/c45m/rubber,\
 				prob(4);/obj/item/ammo_magazine/c45m/flash,\
