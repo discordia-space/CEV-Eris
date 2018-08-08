@@ -37,9 +37,9 @@
 	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
 
-	cold_protection = HANDS
+	cold_protection = ARMS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HANDS
+	heat_protection = ARMS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/thick/swat

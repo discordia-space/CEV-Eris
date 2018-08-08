@@ -92,9 +92,7 @@ var/global/list/string_part_flags = list(
 	"upper body" = UPPER_TORSO,
 	"lower body" = LOWER_TORSO,
 	"legs" = LEGS,
-	"feet" = FEET,
-	"arms" = ARMS,
-	"hands" = HANDS
+	"arms" = ARMS
 )
 
 // Strings which corraspond to slot flags, useful for outputting what slot something is.
