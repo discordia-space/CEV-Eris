@@ -69,7 +69,7 @@
 			if(H.species.siemens_coefficient<0.5) //Thick skin.
 				return
 
-			if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
+			if(H.shoes)
 				return
 
 			M << SPAN_DANGER("You step on \the [src]!")

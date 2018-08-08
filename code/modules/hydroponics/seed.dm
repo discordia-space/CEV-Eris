@@ -148,7 +148,7 @@
 		return
 	if(chems && chems.len)
 
-		var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+		var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
 		for(var/obj/item/clothing/clothes in target)
 			if(target.l_hand == clothes|| target.r_hand == clothes)
@@ -181,7 +181,7 @@
 		for(var/mob/living/M in T.contents)
 			if(!M.reagents)
 				continue
-			var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+			var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 			for(var/obj/item/clothing/clothes in M)
 				if(M.l_hand == clothes || M.r_hand == clothes)
 					continue

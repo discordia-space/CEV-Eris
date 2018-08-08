@@ -108,15 +108,9 @@
 #define LEG_LEFT    0x40
 #define LEG_RIGHT   0x80
 #define LEGS        0xC0    //  LEG_LEFT | LEG_RIGHT
-#define FOOT_LEFT   0x100
-#define FOOT_RIGHT  0x200
-#define FEET        0x300   // FOOT_LEFT | FOOT_RIGHT
 #define ARM_LEFT    0x400
 #define ARM_RIGHT   0x800
 #define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
-#define HAND_LEFT   0x1000
-#define HAND_RIGHT  0x2000
-#define HANDS       0x3000  // HAND_LEFT | HAND_RIGHT
 #define FULL_BODY   0xFFFF
 
 // Bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
@@ -125,14 +119,10 @@
 #define THERMAL_PROTECTION_HEAD        0.3
 #define THERMAL_PROTECTION_UPPER_TORSO 0.15
 #define THERMAL_PROTECTION_LOWER_TORSO 0.15
-#define THERMAL_PROTECTION_LEG_LEFT    0.075
-#define THERMAL_PROTECTION_LEG_RIGHT   0.075
-#define THERMAL_PROTECTION_FOOT_LEFT   0.025
-#define THERMAL_PROTECTION_FOOT_RIGHT  0.025
-#define THERMAL_PROTECTION_ARM_LEFT    0.075
-#define THERMAL_PROTECTION_ARM_RIGHT   0.075
-#define THERMAL_PROTECTION_HAND_LEFT   0.025
-#define THERMAL_PROTECTION_HAND_RIGHT  0.025
+#define THERMAL_PROTECTION_LEG_LEFT    0.1
+#define THERMAL_PROTECTION_LEG_RIGHT   0.1
+#define THERMAL_PROTECTION_ARM_LEFT    0.1
+#define THERMAL_PROTECTION_ARM_RIGHT   0.1
 
 // Pressure limits.
 #define  HAZARD_HIGH_PRESSURE 550 // This determines at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)
