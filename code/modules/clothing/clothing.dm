@@ -190,7 +190,7 @@ BLIND     // can't see anything
 	siemens_coefficient = 0.75
 	var/wired = 0
 	var/clipped = 0
-	body_parts_covered = HANDS
+	body_parts_covered = ARMS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 
@@ -341,7 +341,7 @@ BLIND     // can't see anything
 	desc = "Comfortable-looking shoes."
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
-	body_parts_covered = FEET
+	body_parts_covered = LEGS
 	slot_flags = SLOT_FEET
 
 	var/can_hold_knife
