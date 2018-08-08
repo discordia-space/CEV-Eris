@@ -100,6 +100,12 @@
 	embed = 0
 	sharp = 0
 
+/obj/item/projectile/bullet/c10x24
+	damage = 35
+	armor_penetration = 10
+	penetrating = 1
+	sharp = 0
+
 /obj/item/projectile/bullet/a145
 	damage = 80
 	stun = 3

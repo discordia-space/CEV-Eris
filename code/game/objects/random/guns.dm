@@ -20,11 +20,13 @@
 	icon_state = "gun-green"
 
 /obj/random/gun_normal/item_to_spawn()
-	return pick(prob(1);/obj/item/weapon/gun/projectile/lamia,\
-				prob(1);/obj/item/weapon/gun/projectile/deagle,\
-				prob(2);/obj/item/weapon/gun/projectile/colt,\
-				prob(2);/obj/item/weapon/gun/projectile/revolver/consul,\
-				prob(2);/obj/item/weapon/gun/projectile/revolver)
+	return pick(prob(2);/obj/item/weapon/gun/projectile/lamia,\
+				prob(1);/obj/item/weapon/gun/projectile/automatic/idaho,\
+				prob(1);/obj/item/weapon/gun/projectile/automatic/atreides,\
+				prob(2);/obj/item/weapon/gun/projectile/deagle,\
+				prob(4);/obj/item/weapon/gun/projectile/colt,\
+				prob(4);/obj/item/weapon/gun/projectile/revolver/consul,\
+				prob(4);/obj/item/weapon/gun/projectile/revolver)
 
 /obj/random/gun_normal/low_chance
 	name = "low chance random normal gun"
