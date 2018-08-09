@@ -10,10 +10,10 @@ Used In File(s): \code\game\machinery\biogenerator.dm
         <div class='item'>
             {{for data.recipes}}
                 {{if value.is_category}}
-                    <h3>:value.name</h3>
+                    <h3>{{:value.name}}</h3>
                 {{else}}
-                    <div class='itemLabel'>:value.name</div> 
-                    <div class='itemContent'>{{:helper.link(value.coust, 'eject', {'action' : 'create', 'item' : 'value.name'})}}
+                    <div class='itemLabel'>{{:value.name}}</div> 
+                    <div class='itemContent'>{{:helper.link(value.cost, 'eject', {'action' : 'create', 'item' : 'value.name'})}}
                     {{if value.allow_multiple}}
                         {{:helper.link('X5', 'eject', {'action' : 'create', 'item' : 'value.name'})}}
                     {{/if}}

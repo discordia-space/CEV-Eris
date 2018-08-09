@@ -117,26 +117,23 @@
 		data["beaker"] = beaker
 		if(beaker)
 
-			// collect the list of categories.
-			var/list/categories = list()
-			for(var/C in recipes)
-				categories[C] = list("name" = C)
-
-				//fill the list of recipes of category
-				var/list/C_recipes = list()
-				for(var/recipe in recipes[C])
-					var/list/params = recipes[C][recipe]
-					C_recipes += list(list(
-						name = recipe,
-						cost = round(params["cost"]/build_eff),
-//						"allow_multiple"rc = "allow_multiple" in params
+			var/list/tmp_recipes = list()
+			for(var/smth in recipes)
+				if(istext(smth))
+					tmp_recipes += list(list(
+						"is_category" = 1,
+						"name" = smth,
+					))
+				else
+					var/list/L = smth
+					tmp_recipes += list(list(
+						"is_category" = 0,
+						"name" = L["name"],
+						"cost" = round(L["cost"]/build_eff),
+						"allow_multiple" = L["allow_multiple"],
 					))
 
-				//Bind the recipes to the category
-				categories[C]["recipes"] = C_recipes
-
-			data["recipes"] = categories
-
+			data["recipes"] = tmp_recipes
 
 	data["processing"] = processing
 	data["menustat"] = menustat
