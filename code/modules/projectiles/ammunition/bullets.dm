@@ -113,6 +113,11 @@
 	caliber = "6.5mm"
 	projectile_type = /obj/item/projectile/bullet/c65r
 
+/obj/item/ammo_casing/c10x24
+	desc = "A 10mm x 24 caseless ammo."
+	caliber = "10x24"
+	projectile_type = /obj/item/projectile/bullet/c10x24
+
 /obj/item/ammo_casing/a145
 	name = "shell casing"
 	desc = "A 14.5mm shell."

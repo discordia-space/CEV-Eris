@@ -14,17 +14,17 @@
 /obj/item/clothing/gloves/rig
 	name = "gauntlets"
 	item_flags = THICKMATERIAL
-	body_parts_covered = HANDS
-	heat_protection =    HANDS
-	cold_protection =    HANDS
+	body_parts_covered = ARMS 
+	heat_protection =    ARMS
+	cold_protection =    ARMS
 	species_restricted = null
 	gender = PLURAL
 
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"
-	body_parts_covered = FEET
-	cold_protection = FEET
-	heat_protection = FEET
+	body_parts_covered = LEGS
+	cold_protection = LEGS
+	heat_protection = LEGS
 	species_restricted = null
 	gender = PLURAL
 	icon_base = null
@@ -92,17 +92,17 @@
 
 /obj/item/clothing/shoes/lightrig
 	name = "boots"
-	body_parts_covered = FEET
-	cold_protection = FEET
-	heat_protection = FEET
+	body_parts_covered = LEGS
+	cold_protection = LEGS
+	heat_protection = LEGS
 	species_restricted = null
 	gender = PLURAL
 
 /obj/item/clothing/gloves/lightrig
 	name = "gloves"
 	flags = THICKMATERIAL
-	body_parts_covered = HANDS
-	heat_protection =    HANDS
-	cold_protection =    HANDS
+	body_parts_covered = LEGS
+	heat_protection =    LEGS
+	cold_protection =    LEGS
 	species_restricted = null
 	gender = PLURAL
