@@ -16,7 +16,7 @@
 	icon_state = "disposal"
 	anchored = 1
 	density = 1
-	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
+	layer = LOW_OBJ_LAYER //This allows disposal bins to be underneath tables
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = 1	// item mode 0=off 1=charging 2=charged
 	var/flush = 0	// true if flush handle is pulled
@@ -1401,6 +1401,7 @@
 	icon_state = "outlet"
 	density = 1
 	anchored = 1
+	layer = BELOW_OBJ_LAYER //So we can see things that are being ejected
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	var/mode = 0
