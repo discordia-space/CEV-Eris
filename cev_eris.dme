@@ -849,6 +849,7 @@
 #include "code\game\objects\random\powercells.dm"
 #include "code\game\objects\random\purerandom.dm"
 #include "code\game\objects\random\random.dm"
+#include "code\game\objects\random\random_reagent_mushrooms.dm"
 #include "code\game\objects\random\structures.dm"
 #include "code\game\objects\random\surgerytools.dm"
 #include "code\game\objects\random\tanks.dm"
