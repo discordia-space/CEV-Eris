@@ -58,17 +58,7 @@
 		var/ricochet_temp_id = rand(1,1000)
 		if(!ischance) Proj.ricochet_id = ricochet_temp_id
 		var/turf/curloc = get_turf(src)
-		/* it's left here for possible use in future
-		if(!ischance && ((curloc.x == Proj.starting.x) || (curloc.y == Proj.starting.y)))
-			visible_message("\red <B>\The [Proj] critically misses!</B>")
-			var/critical_x = Proj.starting.x
-			var/critical_y = Proj.starting.y
-			if(istype(Proj,/obj/item/projectile/bullet))
-				critical_x = critical_x + pick(-1, 0, 0, 1)
-				critical_y = critical_y + pick(-1, 0, 0, 1)
-			Proj.redirect(critical_x, critical_y, curloc, src)
-			return
-		*/
+
 		var/check_x0 = 32 * curloc.x
 		var/check_y0 = 32 * curloc.y
 		var/check_x1 = 32 * Proj.starting.x
