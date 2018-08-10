@@ -50,13 +50,14 @@
 	if(!radiate())
 		return PROCESS_KILL
 
-// Extracts angle's tan if ischance = 1.
+// Extracts angle's tan if ischance = TRUE.
 // In other case it just makes bullets and lazorz go where they're supposed to.
 
-/turf/simulated/wall/proc/projectile_reflection(var/obj/item/projectile/Proj, var/ischance = 0)
+/turf/simulated/wall/proc/projectile_reflection(var/obj/item/projectile/Proj, var/ischance = FALSE)
 	if(Proj.starting)
 		var/ricochet_temp_id = rand(1,1000)
-		if(!ischance) Proj.ricochet_id = ricochet_temp_id
+		if(!ischance)
+			Proj.ricochet_id = ricochet_temp_id
 		var/turf/curloc = get_turf(src)
 
 		var/check_x0 = 32 * curloc.x
@@ -157,7 +158,7 @@
 			ricochetchance = 2 + round((60 - proj_damage) / 5)
 			ricochetchance = min(ricochetchance * ricochetchance, 100)
 		// here it is multiplied by 1/2 temporally, changes will be required when new wall system gets implemented
-		ricochetchance = round(ricochetchance * projectile_reflection(Proj, 1) / 2)
+		ricochetchance = round(ricochetchance * projectile_reflection(Proj, TRUE) / 2)
 		ricochetchance = min(max(ricochetchance, 0), 100)
 		if(prob(ricochetchance))
 			var/damagediff = round(proj_damage / 2 + proj_damage * ricochetchance / 200) // projectile loses up to 50% of its damage when it ricochets, depending on situation

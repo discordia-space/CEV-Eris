@@ -17,12 +17,12 @@
 
 /obj/item/projectile/bullet/a10mm
 	damage = 35
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl32
 	damage = 20
 	sharp = 0
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl32r
 	damage = 6
@@ -32,11 +32,11 @@
 
 /obj/item/projectile/bullet/a357
 	damage = 60
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c38
 	damage = 40
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c38r
 	damage = 8
@@ -46,7 +46,7 @@
 
 /obj/item/projectile/bullet/cl44
 	damage = 51
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl44r
 	damage = 10
@@ -56,7 +56,7 @@
 
 /obj/item/projectile/bullet/c45
 	damage = 55
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c45p
 	damage = 7
@@ -72,7 +72,7 @@
 
 /obj/item/projectile/bullet/a50
 	damage = 65
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a50r
 	damage = 10
@@ -84,13 +84,13 @@
 	damage = 25
 	armor_penetration = 20
 	penetrating = 1
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a556
 	damage = 35
 	armor_penetration = 20
 	penetrating = 1
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a556p
 	damage = 10
@@ -103,7 +103,7 @@
 	armor_penetration = 20
 	penetrating = 1
 	sharp = 0
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c65r
 	damage = 8
@@ -116,7 +116,7 @@
 	armor_penetration = 10
 	penetrating = 1
 	sharp = 0
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a145
 	damage = 80
@@ -125,7 +125,7 @@
 	penetrating = 5
 	armor_penetration = 80
 	hitscan = 1 //so the PTR isn't useless as a sniper weapon
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /* Shotguns */
 

@@ -36,7 +36,7 @@
 
 	var/dispersion = 0.0
 
-	var/can_ricochet = 0 // defines if projectile can or cannot ricochet.
+	var/can_ricochet = FALSE // defines if projectile can or cannot ricochet.
 	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
 
 	var/damage = 10

@@ -117,7 +117,7 @@
 	desc = "A 10mm x 24 caseless ammo."
 	caliber = "10x24"
 	projectile_type = /obj/item/projectile/bullet/c10x24
-	is_caseless = 1
+	is_caseless = TRUE
 
 /obj/item/ammo_casing/a145
 	name = "shell casing"
