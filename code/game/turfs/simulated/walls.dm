@@ -141,11 +141,11 @@
 
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
-	if(ricochet_id != 0)
-		if(ricochet_id == Proj.ricochet_id)
-			ricochet_id = 0
+	if(src.ricochet_id != 0)
+		if(src.ricochet_id == Proj.ricochet_id)
+			src.ricochet_id = 0
 			return PROJECTILE_CONTINUE
-		ricochet_id = 0
+		src.ricochet_id = 0
 	var/proj_damage = Proj.get_structure_damage()
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(500)//TODO : fucking write these two procs not only for plasma (see plasma in materials.dm:283) ~
@@ -164,7 +164,7 @@
 			var/damagediff = round(proj_damage / 2 + proj_damage * ricochetchance / 200) // projectile loses up to 50% of its damage when it ricochets, depending on situation
 			Proj.damage = damagediff
 			take_damage(min(proj_damage - damagediff, 100))
-			visible_message("\red <B>\The [Proj] ricochets from the surface of wall!</B>")
+			visible_message("<span class='danger'>The [Proj] ricochets from the surface of wall!</span>")
 			projectile_reflection(Proj)
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
