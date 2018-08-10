@@ -1,7 +1,7 @@
 /obj/item/projectile/bullet/c9mm
 	damage = 18
 	sharp = 0
-	can_ricochet = 1
+	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c9mmr
 	damage = 4
