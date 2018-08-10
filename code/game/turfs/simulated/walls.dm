@@ -96,17 +96,21 @@
 			if (tempwall.x == curloc.x)
 				if (tempwall.y == (curloc.y - 1))
 					wallnorth = 1
-					if (!ischance) W.ricochet_id = ricochet_temp_id
+					if (!ischance)
+						W.ricochet_id = ricochet_temp_id
 				else if (tempwall.y == (curloc.y + 1))
 					wallsouth = 1
-					if (!ischance) W.ricochet_id = ricochet_temp_id
+					if (!ischance)
+						W.ricochet_id = ricochet_temp_id
 			if (tempwall.y == curloc.y)
 				if (tempwall.x == (curloc.x + 1))
 					walleast = 1
-					if (!ischance) W.ricochet_id = ricochet_temp_id
+					if (!ischance)
+						W.ricochet_id = ricochet_temp_id
 				else if (tempwall.x == (curloc.x - 1))
 					wallwest = 1
-					if (!ischance) W.ricochet_id = ricochet_temp_id
+					if (!ischance)
+						W.ricochet_id = ricochet_temp_id
 
 		if((wallnorth || wallsouth) && ((Proj.starting.y - curloc.y)*(wallsouth - wallnorth) >= 0))
 			if(!ischance)
