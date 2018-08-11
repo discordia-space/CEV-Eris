@@ -1250,6 +1250,7 @@
 	glass_center_of_mass = list("x"=15, "y"=7)
 
 /datum/reagent/ethanol/ntcahors/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
 	M.hallucination = max(0, M.hallucination - 9 * removed)
 	M.adjustToxLoss(-5 * removed)
 
