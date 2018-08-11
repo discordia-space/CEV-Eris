@@ -993,7 +993,7 @@
 
 /obj/machinery/vending/teomat
 	name = "NeoTheology Teo-Mat."
-	desc = "A cyber-Christianiant bible vending machine."
+	desc = "A Cyber-Christian bible vending machine."
 	product_slogans = "Make the RIGHT choice!;Every answer can be found in Cyber Bible. Found out yourself!;Help humanity ascend, join us today!;Remember kids, Cyber-Jesus is wathing you. Always.;NeoTheology know what do you truly need. Join us!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
