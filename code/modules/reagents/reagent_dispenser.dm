@@ -254,6 +254,16 @@
 		..()
 		reagents.add_reagent("beer",1000)
 
+/obj/structure/reagent_dispensers/cahorsbarrel
+	name = "NeoTheology Cahors barrel"
+	desc = "Barrel a day - keeps liver away."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "barrel"
+	amount_per_transfer_from_this = 10
+	New()
+		..()
+		reagents.add_reagent("ntcahors",800)
+
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
 	desc = "A dispenser of virus food."
