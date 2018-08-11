@@ -138,25 +138,29 @@
 
 	set name = "Eject Voidsuit Tank"
 	set category = "Object"
-	set src in usr
+	set src in view()
 
-	if(!isliving(src.loc))
+	if(!isliving(usr))
+		return
+
+	if (get_dist(usr, get_turf(src)) > 1)
+		usr << "<span class='warning'>You're too far away to eject the tank.</span>"
 		return
 
 	if(!tank)
-		usr << "There is no tank inserted."
+		usr << "<span class='warning'>There is no tank inserted.</span>"
 		return
 
-	var/mob/living/carbon/human/H = usr
+
+
+	var/mob/living/H = usr
 
 	if(!istype(H))
 		return
 	if(H.stat)
 		return
-	if(H.wear_suit != src)
-		return
 
-	H << "<span class='info'>You press the emergency release, ejecting \the [tank] from your suit.</span>"
+	H.visible_message("<span class='info'>[H] presses the emergency release, ejecting \the [tank] from the suit.</span>", "<span class='info'>You press the emergency release, ejecting \the [tank] from the suit.</span>", "<span class='info'>You hear a click and a hiss</span>")
 	tank.canremove = 1
 	H.drop_from_inventory(tank)
 	src.tank = null
@@ -211,7 +215,7 @@
 			W.forceMove(src)
 			boots = W
 		return
-	else if(istype(W,/obj/item/weapon/tank))
+	if(istype(W,/obj/item/weapon/tank))
 		if(tank)
 			user << "\The [src] already has an airtank installed."
 		else if(istype(W,/obj/item/weapon/tank/plasma))
