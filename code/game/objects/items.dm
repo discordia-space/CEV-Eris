@@ -65,15 +65,7 @@
 /obj/item/get_fall_damage()
 	return w_class * 2
 
-/obj/item/equipped()
-	..()
-	var/mob/M = loc
-	if(!istype(M))
-		return
-	if(M.l_hand)
-		M.l_hand.update_held_icon()
-	if(M.r_hand)
-		M.r_hand.update_held_icon()
+
 
 /obj/item/Destroy()
 	if(ismob(loc))
@@ -186,10 +178,21 @@
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
 
-// apparently called whenever an item is removed from a slot, container, or anything else.
+
+//Called whenever an item is dropped on the floor, thrown, or placed into a container.
+//It is called after loc is set, so if placed in a container its loc will be that container.
 /obj/item/proc/dropped(mob/user as mob)
 	..()
 	if(zoom) zoom() //binoculars, scope, etc
+
+
+// Called whenever an object is moved around inside the mob's contents.
+// Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
+// This exists so that dropped() could exclusively be called when an item is dropped.
+/obj/item/proc/on_slotmove(var/mob/user)
+	if (zoom)
+zoom(user)
+
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -209,14 +212,22 @@
 
 // called after an item is placed in an equipment slot
 // user is mob that equipped it
-// slot uses the slot_X defines found in setup.dm
+// slot uses the slot_X defines found in items_clothing.dm
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(var/mob/user, var/slot)
+	if(!istype(user))
+		equip_slot = slot_none
+		return
+
+	equip_slot = slot
 	layer = 20
 	if(user.client)	user.client.screen |= src
 	if(user.pulling == src) user.stop_pulling()
-	return
+	if(user.l_hand)
+		user.l_hand.update_held_icon()
+	if(user.r_hand)
+		user.r_hand.update_held_icon()
 
 //Defines which slots correspond to which slot flags
 var/list/global/slot_flags_enumeration = list(
