@@ -19,8 +19,3 @@
 
 /datum/antagonist/borer/create_survive_objective()
 	return
-
-/datum/antagonist/borer/place_antagonist()
-	if(owner.current)
-		owner.current.forceMove(get_turf(pick(get_vents())))
-
