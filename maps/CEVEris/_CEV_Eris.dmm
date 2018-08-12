@@ -11750,7 +11750,7 @@
 "erX" = (/obj/machinery/light,/obj/machinery/light_switch{pixel_y = -28},/turf/simulated/floor/carpet/bcarpet,/area/chapel/office)
 "erY" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/turf/simulated/floor/carpet/bcarpet,/area/chapel/office)
 "erZ" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/briefcase,/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 8},/obj/item/device/radio/intercom{dir = 8; pixel_x = 22},/turf/simulated/floor/carpet/bcarpet,/area/chapel/office)
-"esa" = (/obj/effect/floor_decal/borderfloorblack{tag = "icon-borderfloor_black (NORTHWEST)"; icon_state = "borderfloor_black"; dir = 9},/obj/machinery/vending/teomat,/turf/simulated/floor/tiled/dark,/area/chapel/main)
+"esa" = (/obj/effect/floor_decal/borderfloorblack{tag = "icon-borderfloor_black (NORTHWEST)"; icon_state = "borderfloor_black"; dir = 9},/obj/machinery/vending/theomat,/turf/simulated/floor/tiled/dark,/area/chapel/main)
 "esb" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/fancy/crayons,/obj/effect/floor_decal/borderfloorblack{tag = "icon-borderfloor_black (NORTH)"; icon_state = "borderfloor_black"; dir = 1},/turf/simulated/floor/tiled/dark,/area/chapel/main)
 "esc" = (/obj/structure/table/woodentable,/obj/item/weapon/hand_labeler,/obj/effect/floor_decal/borderfloorblack{tag = "icon-borderfloor_black (NORTH)"; icon_state = "borderfloor_black"; dir = 1},/turf/simulated/floor/tiled/dark,/area/chapel/main)
 "esd" = (/obj/structure/bookcase{name = "bookcase (Religious)"},/obj/effect/floor_decal/borderfloorblack{tag = "icon-borderfloor_black (NORTHEAST)"; icon_state = "borderfloor_black"; dir = 5},/turf/simulated/floor/tiled/dark,/area/chapel/main)
