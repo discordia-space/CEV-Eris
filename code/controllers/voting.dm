@@ -149,7 +149,7 @@ var/datum/controller/vote/vote = new()
 
 		data += "</ul><hr>"
 	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
-	return data
+	return russian_to_utf8(data)
 
 
 /datum/controller/vote/Topic(href,href_list[],hsrc)
