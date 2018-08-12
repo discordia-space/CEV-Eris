@@ -109,7 +109,7 @@ var/list/storyteller_cache = list()
 	var/organ_damage_spillover_multiplier = 0.5
 
 	var/bones_can_break = 0
-	var/limbs_can_break = 0
+	var/limbs_can_break = 1
 
 	var/revival_pod_plants = 1
 	var/revival_cloning = 1
