@@ -108,7 +108,7 @@
 
 
 /obj/item/weapon/disk/autolathe_disk/component
-	name = "Technomacers ARK-034 Components"
+	name = "Technomancers ARK-034 Components"
 	category = "Devices and Components"
 	icon_state = "technomancers"
 	license = 20
@@ -132,7 +132,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/advtoolpack
-	name = "Technomacers IJIRO-451 Advanced Tools"
+	name = "Technomancers IJIRO-451 Advanced Tools"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
@@ -153,7 +153,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/circuitpack
-	name = "Technomacers ESPO-830 Curcuits"
+	name = "Technomacers ESPO-830 Circuits"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
@@ -274,7 +274,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/nt_old_guns
-	name = "NeoTheology Armory of Old Testament"
+	name = "NeoTheology Armory of the Old Testament"
 	category = "Security"
 	icon_state = "neotheology"
 	license = 3
@@ -293,7 +293,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/nt_new_guns
-	name = "NeoTheology Armory of New Testament"
+	name = "NeoTheology Armory of the New Testament"
 	category = "Security"
 	icon_state = "neotheology"
 	license = 3
@@ -310,7 +310,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo
-	name = "Frozen Star Nonlethal Ammo Pack"
+	name = "Frozen Star Non-lethal Ammo Pack"
 	category = "Ammo"
 	icon_state = "frozenstar"
 	license = 20

@@ -27,7 +27,7 @@
 
 
 /obj/item/clothing/suit/armor/riot
-	name = "Riot Suit"
+	name = "riot suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "riot"
@@ -40,7 +40,7 @@
 
 
 /obj/item/clothing/suit/armor/bulletproof
-	name = "Bulletproof Vest"
+	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
 	item_state = "armor"
@@ -49,7 +49,7 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/laserproof
-	name = "Ablative Armor Vest"
+	name = "ablative armor vest"
 	desc = "A vest that excels in protecting the wearer against energy projectiles."
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
@@ -107,7 +107,7 @@
 //Reactive armor
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive
-	name = "Reactive Teleport Armor"
+	name = "reactive teleport armor"
 	desc = "Someone separated our Research Director from their own head!"
 	var/active = 0.0
 	icon_state = "reactiveoff"
