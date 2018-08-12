@@ -5,7 +5,10 @@ obj/machinery/recharger
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 4
-	active_power_usage = 15000	//15 kW
+	var/max_power_usage = 24000	//22 kW. This is the highest power the charger can draw and use,
+	//though it may draw less when charging weak cells due to their charging rate limits
+	active_power_usage = 24000//The actual power the charger uses right now. This is recalculated based on the cell when it's inserted
+	var/efficiency = 0.85
 	var/obj/item/charging = null
 	var/obj/item/weapon/cell/cell = null
 	var/list/allowed_devices = list(
@@ -63,6 +66,13 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			else
 				src.cell = C.battery_module.battery
 
+		if (!cell)
+			return //We don't want to go any farther if we failed to find a cell
+		else
+			active_power_usage = min(max_power_usage, (cell.maxcharge*cell.max_chargerate)/CELLRATE)
+			//If trying to charge a really small cell, we won't waste more power than it can intake
+
+
 		user.unEquip(G)
 		G.forceMove(src)
 		charging = G
@@ -101,7 +111,7 @@ obj/machinery/recharger/Process()
 		if(cell)
 			if(!cell.fully_charged())
 				icon_state = icon_state_charging
-				cell.give(active_power_usage*CELLRATE)
+				cell.give((active_power_usage*CELLRATE)*efficiency)
 				update_use_power(2)
 			else
 				icon_state = icon_state_charged
@@ -137,7 +147,7 @@ obj/machinery/recharger/wallcharger
 	name = "wall recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"
-	active_power_usage = 25000	//25 kW , It's more specialized than the standalone recharger (guns and batons only) so make it more powerful
+	active_power_usage = 32000	//40 kW , It's more specialized than the standalone recharger (guns and batons only) so make it more powerful
 	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton)
 	icon_state_charged = "wrecharger2"
 	icon_state_charging = "wrecharger1"
