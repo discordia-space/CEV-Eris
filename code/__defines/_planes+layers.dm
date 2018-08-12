@@ -41,9 +41,9 @@
 #define CLOSED_BLASTDOOR_LAYER 3.05
 #define CLOSED_DOOR_LAYER 3.1
 #define CLOSED_FIREDOOR_LAYER 3.11
-#define SHUTTER_LAYER 3.12 // HERE BE DRAGONS
 #define ABOVE_OBJ_LAYER 3.2
 #define ABOVE_WINDOW_LAYER 3.3
+#define SHUTTER_LAYER 3.35 //Shutters need to be above windows
 #define SIGN_LAYER 3.4
 
 #define BELOW_MOB_LAYER 3.7

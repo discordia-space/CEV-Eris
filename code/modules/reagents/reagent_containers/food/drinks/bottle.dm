@@ -290,6 +290,15 @@
 		..()
 		reagents.add_reagent("wine", 100)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors
+	name = "NeoTheology Cahors Wine"
+	desc = "Ritual drink that cleanses the soul and body."
+	icon_state = "ntcahors"
+	center_of_mass = list("x"=16, "y"=4)
+	New()
+		..()
+		reagents.add_reagent("ntcahors", 100)
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe
 	name = "Jailbreaker Verte"
 	desc = "One sip of this and you just know you're gonna have a good time."
