@@ -993,13 +993,13 @@
 
 /obj/machinery/vending/teomat
 	name = "NeoTheology Teo-Mat."
-	desc = "A cyber-ñhristianiant bible vending machine."
+	desc = "A Cyber-Christian bible vending machine."
 	product_slogans = "Make the RIGHT choice!;Every answer can be found in Cyber Bible. Found out yourself!;Help humanity ascend, join us today!;Remember kids, Cyber-Jesus is wathing you. Always.;NeoTheology know what do you truly need. Join us!"
 	product_ads = "Praise!;Pray!;Obey!"
 	icon_state = "teomat"
-	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10)
+	products = list(/obj/item/weapon/book/ritual/cruciform = 10, /obj/item/weapon/storage/fancy/candle_box = 10, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 20)
 	contraband = list(/obj/item/weapon/implant/core_implant/cruciform = 3)
-	prices = list(/obj/item/weapon/book/ritual/cruciform = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/implant/core_implant/cruciform = 1000)
+	prices = list(/obj/item/weapon/book/ritual/cruciform = 500, /obj/item/weapon/storage/fancy/candle_box = 200, /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors = 250, /obj/item/weapon/implant/core_implant/cruciform = 1000)
 
 /obj/machinery/vending/powermat
 	name = "Asters Guild Power-Mat"
