@@ -13,6 +13,7 @@
  * SQL sanitization
  */
 
+
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
 /proc/sanitizeSQL(var/t as text)
 	var/sqltext = dbcon.Quote(t);
