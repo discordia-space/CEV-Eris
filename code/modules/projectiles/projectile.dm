@@ -36,6 +36,9 @@
 
 	var/dispersion = 0.0
 
+	var/can_ricochet = FALSE // defines if projectile can or cannot ricochet.
+	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
+
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
