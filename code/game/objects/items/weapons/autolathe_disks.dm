@@ -310,7 +310,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/nonlethal_ammo
-	name = "Frozen Star Non-lethal Ammo Pack"
+	name = "Frozen Star Nonlethal Ammo Pack"
 	category = "Ammo"
 	icon_state = "frozenstar"
 	license = 20
