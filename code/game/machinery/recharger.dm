@@ -5,9 +5,9 @@ obj/machinery/recharger
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 4
-	var/max_power_usage = 22000	//22 kW. This is the highest power the charger can draw and use,
+	var/max_power_usage = 24000	//22 kW. This is the highest power the charger can draw and use,
 	//though it may draw less when charging weak cells due to their charging rate limits
-	active_power_usage = 22000//The actual power the charger uses right now. This is recalculated based on the cell when it's inserted
+	active_power_usage = 24000//The actual power the charger uses right now. This is recalculated based on the cell when it's inserted
 	var/efficiency = 0.85
 	var/obj/item/charging = null
 	var/obj/item/weapon/cell/cell = null
