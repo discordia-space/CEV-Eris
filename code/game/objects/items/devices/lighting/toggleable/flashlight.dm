@@ -1,6 +1,6 @@
 /obj/item/device/lighting/toggleable/flashlight
 	action_button_name = "Toggle Flashlight"
-	var/tick_cost = 0.5
+	var/tick_cost = 0.4
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
 
@@ -109,7 +109,7 @@
 	icon_state = "heavyduty"
 	item_state = "heavyduty"
 	brightness_on = 6
-	tick_cost = 1
+	tick_cost = 0.8
 	suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/device/lighting/toggleable/flashlight/seclite
