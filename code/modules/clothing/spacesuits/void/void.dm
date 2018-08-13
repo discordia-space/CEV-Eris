@@ -173,7 +173,7 @@
 	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
 		return ..()
 
-	if(isliving(src.loc))
+	if(is_worn())
 		user << SPAN_WARNING("You cannot modify \the [src] while it is being worn.")
 		return
 
