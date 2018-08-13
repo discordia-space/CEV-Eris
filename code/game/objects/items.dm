@@ -215,6 +215,15 @@
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 
+
+//Called just before an item is placed in an equipment slot.
+//Use this to do any necessary preparations for equipping
+//Immediately after this, the equipping will be handled and then equipped will be called.
+//Returning a non-zero value will silently abort the equip operation
+/obj/item/proc/pre_equip(var/mob/user, var/slot)
+	return 0
+
+
 // called after an item is placed in an equipment slot
 // user is mob that equipped it
 // slot uses the slot_X defines found in items_clothing.dm

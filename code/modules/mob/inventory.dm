@@ -32,6 +32,10 @@
 				src << "\red You are unable to equip that." //Only print if del_on_fail is false
 		return FALSE
 
+	//Pre-equip intercepts here to let the item know it's about to be equipped
+	if (W.pre_equip(slot, src))
+		return FALSE
+
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 	return TRUE
 
@@ -244,6 +248,7 @@ var/list/slot_equipment_priority = list(
 	if (src.client)
 		src.client.screen -= I
 	I.layer = initial(I.layer)
+	I.plane = initial(I.plane)
 	I.screen_loc = null
 	I.on_slotmove(src)
 	return 1
