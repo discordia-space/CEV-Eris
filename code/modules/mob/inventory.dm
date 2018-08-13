@@ -4,7 +4,7 @@
 	var/obj/item/E = get_equipped_item(slot)
 	if (istype(E))
 		if(istype(W))
-			E.attackby(W,src)
+			W.resolve_attackby(E, src)
 		else
 			E.attack_hand(src)
 	else
@@ -33,7 +33,7 @@
 		return FALSE
 
 	//Pre-equip intercepts here to let the item know it's about to be equipped
-	if (W.pre_equip(slot, src))
+	if (W.pre_equip(src, slot))
 		return FALSE
 
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
