@@ -33,7 +33,7 @@
 
 // Item inventory slot bitmasks.
 //These are usually hardcoded to define what slots an item CAN equip to
-#d efine SLOT_OCLOTHING         0x1
+#define SLOT_OCLOTHING         0x1
 #define SLOT_ICLOTHING         0x2
 #define SLOT_GLOVES            0x4
 #define SLOT_EYES              0x8

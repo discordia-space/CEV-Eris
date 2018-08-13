@@ -560,6 +560,9 @@
 
 /obj/item/weapon/rig/equipped(mob/living/carbon/human/M)
 	..()
+	if (is_held())
+		remove()
+		return
 
 	if(seal_delay > 0 && istype(M) && M.back == src)
 		M.visible_message("<font color='blue'>[M] starts putting on \the [src]...</font>", "<font color='blue'>You start putting on \the [src]...</font>")
@@ -683,8 +686,15 @@
 
 /obj/item/weapon/rig/dropped(var/mob/user)
 	..()
-	for(var/piece in list("helmet","gauntlets","chest","boots"))
-		toggle_piece(piece, user, ONLY_RETRACT)
+	remove()
+
+/obj/item/weapon/rig/proc/retract()
+	if (wearer)
+		for(var/piece in list("helmet","gauntlets","chest","boots"))
+			toggle_piece(piece, wearer, ONLY_RETRACT)
+
+/obj/item/weapon/rig/proc/remove()
+	retract()
 	if(wearer)
 		wearer.wearing_rig = null
 		wearer = null

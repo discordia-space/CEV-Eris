@@ -155,7 +155,7 @@
 
 	src.throwing = 0
 	if (src.loc == user)
-		if(!user.unEquip(src))
+		if(!user.prepare_for_slotmove(src))
 			return
 	else
 		if(isliving(src.loc))
@@ -186,12 +186,12 @@
 	if(zoom) zoom() //binoculars, scope, etc
 
 
-// Called whenever an object is moved around inside the mob's contents.
+// Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere
 // Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
 // This exists so that dropped() could exclusively be called when an item is dropped.
 /obj/item/proc/on_slotmove(var/mob/user)
 	if (zoom)
-zoom(user)
+		zoom(user)
 
 
 // called just as an item is picked up (loc is not yet changed)
@@ -752,3 +752,30 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
+
+//Returns true if the object is equipped to a mob, in any slot
+/obj/item/proc/is_equipped()
+	if (istype(loc, /mob))
+		if (equip_slot != slot_none)
+			return TRUE
+	return FALSE
+
+
+//Returns true if the object is worn on a mob's body.
+//Returns false if held in their hands, or if not on a mob at all
+/obj/item/proc/is_worn()
+	if (istype(loc, /mob))
+		if (equip_slot != slot_none && equip_slot != slot_l_hand && equip_slot != slot_r_hand)
+			return TRUE
+	return FALSE
+
+
+//Returns true if the object is held in a mob's hands
+//Returns false if worn on their body, or if not on a mob at all
+/obj/item/proc/is_held()
+	if (istype(loc, /mob))
+		if (equip_slot == slot_l_hand || equip_slot == slot_r_hand)
+			return TRUE
+	return FALSE
+
+//if any species is added with more than 2 arms, these will need updating

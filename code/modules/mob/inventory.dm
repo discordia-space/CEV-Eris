@@ -235,6 +235,19 @@ var/list/slot_equipment_priority = list(
 		I.dropped(src)
 	return TRUE
 
+//This function is an unsafe proc used to prepare an item for being moved to a slot, or from a mob to a container
+//It should be equipped to a new slot or forcemoved somewhere immediately after this is called
+/mob/proc/prepare_for_slotmove(obj/item/I)
+	if(!canUnEquip(I))
+		return 0
+	src.u_equip(I)
+	if (src.client)
+		src.client.screen -= I
+	I.layer = initial(I.layer)
+	I.screen_loc = null
+	I.on_slotmove(src)
+	return 1
+
 
 //Returns the item equipped to the specified slot, if any.
 /mob/proc/get_equipped_item(var/slot)
