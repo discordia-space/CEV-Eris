@@ -62,6 +62,11 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
+	var/equip_slot = 0 //The slot that this item was most recently equipped to.
+	//Note that this is, by design, not zeroed out when the item is removed from a mob
+		//In that case, it holds the number of the slot it was last in, which is potentially useful info
+	//For an accurate reading of the current slot, use item/get_equip_slot() which will return zero if not currently on a mob
+
 /obj/item/get_fall_damage()
 	return w_class * 2
 
@@ -779,3 +784,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return FALSE
 
 //if any species is added with more than 2 arms, these will need updating
+
+//This is the correct way to get an object's equip slot. Will return zero if the object is not currently equipped to anyone
+/obj/item/proc/get_equip_slot()
+	if (istype(loc, /mob))
+		return equip_slot
+	else
+		return slot_none
