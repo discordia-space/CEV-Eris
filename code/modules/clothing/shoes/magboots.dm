@@ -35,7 +35,7 @@
 	user.update_action_buttons()
 
 
-/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot)
+/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = 0)
 	user << "Attempting to equip magboots in slot: [slot]"
 	if (slot == slot_shoes)
 		var/mob/living/carbon/human/H = user
@@ -43,7 +43,8 @@
 		if(H.shoes)
 			shoes = H.shoes
 			if(shoes.overshoes)
-				user << "You are unable to wear \the [src] as \the [H.shoes] are in the way."
+				if (!disable_warning)
+					user << "You are unable to wear \the [src] as \the [H.shoes] are in the way."
 				shoes = null
 				return 0
 		return 1
@@ -52,8 +53,14 @@
 	else
 		return ..()
 
-
-
+//When the magboots are used on worn boots, this indicates that we want to wear them.
+/obj/item/clothing/shoes/magboots/pre_attack(atom/a, mob/user)
+	if (istype(a, /obj/item))
+		var/obj/item/i = a
+		//Ensure that the thing you clicked on is a pair of shoes which are currently being worn
+		if (i.get_equip_slot() == slot_shoes)
+			user.equip_to_slot_if_possible(src,slot_shoes)
+			return 1
 
 /obj/item/clothing/shoes/magboots/dropped()
 	..()
@@ -66,28 +73,18 @@
 	else if (is_worn())
 		wearer = loc
 
-//This proc handles wearing the magboots.
-//Attack is called when you attempt to wear the magboots over existing shoes in your UI.
-//It'll also be called if you hit yourself with them, that's fine too
-/obj/item/clothing/shoes/magboots/attack(mob/living/M, mob/living/user, var/target_zone)
-	if (M == user)
-		var/mob/living/carbon/human/H = user
+//This proc handles sucking up the old shoes before we equip the magboots.
+/obj/item/clothing/shoes/magboots/pre_equip(mob/M, slot)
+	if (slot == slot_shoes)
+		var/mob/living/carbon/human/H = M
 
 		if(H.shoes)
 			shoes = H.shoes
 			H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
 			shoes.forceMove(src)
-			if(H.equip_to_slot_if_possible(src, slot_shoes))
-				user << "You slip \the [src] on over \the [shoes]."
-				return 1
+	return 0
 
-		else
-			if(H.equip_to_slot_if_possible(src, slot_shoes))
-				set_slowdown()
-				wearer = H
-				return 1
-	else
-		..()
+
 
 
 /obj/item/clothing/shoes/magboots/proc/remove()
