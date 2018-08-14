@@ -124,6 +124,7 @@
 		helmet.canremove = 1
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
+		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	else
 		if(H.head)
 			H << SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head].")
@@ -132,6 +133,7 @@
 			helmet.pickup(H)
 			helmet.canremove = 0
 			H << "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>"
+			playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	helmet.update_light(H)
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
@@ -205,6 +207,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			src.helmet = W
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
 	else if(istype(W,/obj/item/clothing/shoes/magboots))
 		if(boots)
@@ -214,6 +217,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			boots = W
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
 	if(istype(W,/obj/item/weapon/tank))
 		if(tank)
@@ -225,6 +229,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			tank = W
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
 
 	..()

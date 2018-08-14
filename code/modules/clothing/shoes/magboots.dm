@@ -36,7 +36,6 @@
 
 
 /obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = 0)
-	user << "Attempting to equip magboots in slot: [slot]"
 	if (slot == slot_shoes)
 		var/mob/living/carbon/human/H = user
 
