@@ -43,6 +43,9 @@
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
 
+	if (is_held())
+		retract()
+
 	var/mob/living/carbon/human/H = M
 
 	if(!istype(H)) return
@@ -71,7 +74,10 @@
 
 /obj/item/clothing/suit/space/void/dropped()
 	..()
+	retract()
 
+
+/obj/item/clothing/suit/space/void/proc/retract()
 	var/mob/living/carbon/human/H
 
 	if(helmet)

@@ -62,18 +62,15 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
+	var/equip_slot = 0 //The slot that this item was most recently equipped to.
+	//Note that this is, by design, not zeroed out when the item is removed from a mob
+		//In that case, it holds the number of the slot it was last in, which is potentially useful info
+	//For an accurate reading of the current slot, use item/get_equip_slot() which will return zero if not currently on a mob
+
 /obj/item/get_fall_damage()
 	return w_class * 2
 
-/obj/item/equipped()
-	..()
-	var/mob/M = loc
-	if(!istype(M))
-		return
-	if(M.l_hand)
-		M.l_hand.update_held_icon()
-	if(M.r_hand)
-		M.r_hand.update_held_icon()
+
 
 /obj/item/Destroy()
 	if(ismob(loc))
@@ -163,7 +160,7 @@
 
 	src.throwing = 0
 	if (src.loc == user)
-		if(!user.unEquip(src))
+		if(!user.prepare_for_slotmove(src))
 			return
 	else
 		if(isliving(src.loc))
@@ -186,10 +183,21 @@
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
 
-// apparently called whenever an item is removed from a slot, container, or anything else.
+
+//Called whenever an item is dropped on the floor, thrown, or placed into a container.
+//It is called after loc is set, so if placed in a container its loc will be that container.
 /obj/item/proc/dropped(mob/user as mob)
 	..()
 	if(zoom) zoom() //binoculars, scope, etc
+
+
+// Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere
+// Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
+// This exists so that dropped() could exclusively be called when an item is dropped.
+/obj/item/proc/on_slotmove(var/mob/user)
+	if (zoom)
+		zoom(user)
+
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -207,16 +215,33 @@
 /obj/item/proc/on_found(mob/finder as mob)
 	return
 
+
+//Called just before an item is placed in an equipment slot.
+//Use this to do any necessary preparations for equipping
+//Immediately after this, the equipping will be handled and then equipped will be called.
+//Returning a non-zero value will silently abort the equip operation
+/obj/item/proc/pre_equip(var/mob/user, var/slot)
+	return 0
+
+
 // called after an item is placed in an equipment slot
 // user is mob that equipped it
-// slot uses the slot_X defines found in setup.dm
+// slot uses the slot_X defines found in items_clothing.dm
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(var/mob/user, var/slot)
+	if(!istype(user))
+		equip_slot = slot_none
+		return
+
+	equip_slot = slot
 	layer = 20
 	if(user.client)	user.client.screen |= src
 	if(user.pulling == src) user.stop_pulling()
-	return
+	if(user.l_hand)
+		user.l_hand.update_held_icon()
+	if(user.r_hand)
+		user.r_hand.update_held_icon()
 
 //Defines which slots correspond to which slot flags
 var/list/global/slot_flags_enumeration = list(
@@ -741,3 +766,37 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
+
+//Returns true if the object is equipped to a mob, in any slot
+/obj/item/proc/is_equipped()
+	if (istype(loc, /mob))
+		if (equip_slot != slot_none)
+			return TRUE
+	return FALSE
+
+
+//Returns true if the object is worn on a mob's body.
+//Returns false if held in their hands, or if not on a mob at all
+/obj/item/proc/is_worn()
+	if (istype(loc, /mob))
+		if (equip_slot != slot_none && equip_slot != slot_l_hand && equip_slot != slot_r_hand)
+			return TRUE
+	return FALSE
+
+
+//Returns true if the object is held in a mob's hands
+//Returns false if worn on their body, or if not on a mob at all
+/obj/item/proc/is_held()
+	if (istype(loc, /mob))
+		if (equip_slot == slot_l_hand || equip_slot == slot_r_hand)
+			return TRUE
+	return FALSE
+
+//if any species is added with more than 2 arms, these will need updating
+
+//This is the correct way to get an object's equip slot. Will return zero if the object is not currently equipped to anyone
+/obj/item/proc/get_equip_slot()
+	if (istype(loc, /mob))
+		return equip_slot
+	else
+		return slot_none
