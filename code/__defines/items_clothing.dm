@@ -4,12 +4,40 @@
 
 #define CANDLE_LUM 3 // For how bright candles are.
 
+
+// Item equipment slots.
+//This is the value used for the equip_slot variable to tell what slot an item is currently equipped into
+#define slot_none		 0
+#define slot_back        1
+#define slot_wear_mask   2
+#define slot_handcuffed  3
+#define slot_l_hand      4
+#define slot_r_hand      5
+#define slot_belt        6
+#define slot_wear_id     7
+#define slot_l_ear       8
+#define slot_glasses     9
+#define slot_gloves      10
+#define slot_head        11
+#define slot_shoes       12
+#define slot_wear_suit   13
+#define slot_w_uniform   14
+#define slot_l_store     15
+#define slot_r_store     16
+#define slot_s_store     17
+#define slot_in_backpack 18
+#define slot_legcuffed   19
+#define slot_r_ear       20
+#define slot_legs        21
+#define slot_accessory_buffer         22
+
 // Item inventory slot bitmasks.
+//These are usually hardcoded to define what slots an item CAN equip to
 #define SLOT_OCLOTHING         0x1
 #define SLOT_ICLOTHING         0x2
 #define SLOT_GLOVES            0x4
 #define SLOT_EYES              0x8
-#define SLOT_EARS              0x10
+#define SLOT_EARS              0x10	//Anything that can go on an ear, can go on either ear
 #define SLOT_MASK              0x20
 #define SLOT_HEAD              0x40
 #define SLOT_FEET              0x80
@@ -64,29 +92,7 @@
 #define BLOCKHEADHAIR   0x20    // Hides the user's hair overlay. Leaves facial hair.
 #define BLOCKHAIR       0x40    // Hides the user's hair, facial and otherwise.
 
-// Slots.
-#define slot_back        1
-#define slot_wear_mask   2
-#define slot_handcuffed  3
-#define slot_l_hand      4
-#define slot_r_hand      5
-#define slot_belt        6
-#define slot_wear_id     7
-#define slot_l_ear       8
-#define slot_glasses     9
-#define slot_gloves      10
-#define slot_head        11
-#define slot_shoes       12
-#define slot_wear_suit   13
-#define slot_w_uniform   14
-#define slot_l_store     15
-#define slot_r_store     16
-#define slot_s_store     17
-#define slot_in_backpack 18
-#define slot_legcuffed   19
-#define slot_r_ear       20
-#define slot_legs        21
-#define slot_accessory_buffer         22
+
 
 // Inventory slot strings.
 // since numbers cannot be used as associative list keys.

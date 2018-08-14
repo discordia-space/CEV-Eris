@@ -171,7 +171,7 @@
 			user << SPAN_NOTICE("Looks like the packet is out of cigarettes.")
 			return
 
-		// Instead of running equip_to_slot_if_possible() we check here first,
+		// We check here first,
 		// to avoid dousing cig with reagents if we're not going to equip it
 		if(!cig.mob_can_equip(user, slot_wear_mask))
 			return
@@ -179,7 +179,7 @@
 		// We call remove_from_storage first to manage the reagent transfer and
 		// UI updates.
 		remove_from_storage(cig, null)
-		user.equip_to_slot(cig, slot_wear_mask)
+		user.equip_to_slot_if_possible(cig, slot_wear_mask) //This check is redundant but it ensures pre_equip is called
 
 		reagents.maximum_volume = 15 * contents.len
 		user << SPAN_NOTICE("You take a cigarette out of the pack.")

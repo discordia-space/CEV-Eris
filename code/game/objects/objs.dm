@@ -13,6 +13,8 @@
 	var/armor_penetration = 0
 	var/corporation = null
 
+
+
 /obj/get_fall_damage()
 	return w_class * 2
 

@@ -4,7 +4,7 @@
 	var/obj/item/E = get_equipped_item(slot)
 	if (istype(E))
 		if(istype(W))
-			E.attackby(W,src)
+			W.resolve_attackby(E, src)
 		else
 			E.attack_hand(src)
 	else
@@ -30,6 +30,10 @@
 		else
 			if(!disable_warning)
 				src << "\red You are unable to equip that." //Only print if del_on_fail is false
+		return FALSE
+
+	//Pre-equip intercepts here to let the item know it's about to be equipped
+	if (W.pre_equip(src, slot))
 		return FALSE
 
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
@@ -234,6 +238,20 @@ var/list/slot_equipment_priority = list(
 		I.forceMove(src.loc, MOVED_DROP)
 		I.dropped(src)
 	return TRUE
+
+//This function is an unsafe proc used to prepare an item for being moved to a slot, or from a mob to a container
+//It should be equipped to a new slot or forcemoved somewhere immediately after this is called
+/mob/proc/prepare_for_slotmove(obj/item/I)
+	if(!canUnEquip(I))
+		return 0
+	src.u_equip(I)
+	if (src.client)
+		src.client.screen -= I
+	I.layer = initial(I.layer)
+	I.plane = initial(I.plane)
+	I.screen_loc = null
+	I.on_slotmove(src)
+	return 1
 
 
 //Returns the item equipped to the specified slot, if any.
