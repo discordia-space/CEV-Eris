@@ -116,30 +116,20 @@
 		// contents of a mob inside the contents of a welded shut locker we essentially get a list of turfs and see if the mob is on one of them.
 
 	if(T)
-		var/list/hear = hear(7,T)
+		var/list/hear = range(7,T)
 		var/list/hearturfs = list()
-
-		for(var/I in hear)
-			if(ismob(I))
-				var/mob/M = I
-				listening |= M.client
-				hearturfs += M.locs[1]
-			else if(isobj(I))
-				var/obj/O = I
-				hearturfs |= O.locs[1]
-				listening_obj |= O
 
 		for(var/mob/M in player_list)
 			if(!M.is_preference_enabled(/datum/client_preference/show_looc))
 				continue
 			if(isAI(M))
 				var/mob/living/silicon/ai/A = M
-				if(A.eyeobj && (A.eyeobj.locs[1] in hearturfs))
+				if(A.eyeobj && get_turf(A.eyeobj) in hearturfs))
 					eye_heard |= M.client
 					listening |= M.client
 					continue
 
-			if(M.loc && M.locs[1] in hearturfs)
+			if(get_turf(M) in hearturfs)
 				listening |= M.client
 
 
