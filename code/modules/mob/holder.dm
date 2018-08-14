@@ -19,9 +19,10 @@ var/list/holder_mob_icon_cache = list()
 	var/isalive
 
 	var/static/list/unsafe_containers
-
+	pixel_y = 8
 	var/last_loc_general	//This stores a general location of the object. Ie, a container or a mob
 	var/last_loc_specific	//This stores specific extra information about the location, pocket, hand, worn on head, etc. Only relevant to mobs
+	var/last_holder
 
 //A list of things a mob can't be safely released inside.
 /obj/item/weapon/holder/proc/setup_unsafe_list()
@@ -65,11 +66,6 @@ var/list/holder_mob_icon_cache = list()
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
 	slot_flags = SLOT_HEAD | SLOT_OCLOTHING | SLOT_HOLSTER
 
-/obj/item/weapon/holder/drone
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
-
-/obj/item/weapon/holder/mouse
-	w_class = 1
 
 /obj/item/weapon/holder/borer
 	origin_tech = list(TECH_BIO = 6)
@@ -286,81 +282,29 @@ var/list/holder_mob_icon_cache = list()
 
 
 /obj/item/weapon/holder/proc/sync(var/mob/living/M)
-	src.name = M.name
-	src.overlays = M.overlays
-	dir = M.dir
-	reagents = M.reagents
+	dir = 2
+	overlays.Cut()
+	icon = M.icon
+	icon_state = M.icon_state
+	item_state = M.item_state
+	color = M.color
+	name = M.name
+	desc = M.desc
+	overlays |= M.overlays
+	var/mob/living/carbon/human/H = loc
+	last_holder = H
+	register_all_movement(H, M)
+
+	if(istype(H))
+		if(H.l_hand == src)
+			H.update_inv_l_hand()
+		else if(H.r_hand == src)
+			H.update_inv_r_hand()
+		else
+			H.regenerate_icons()
 
 
-//The block below is for resomi, not currently relevant
-/*
-/obj/item/weapon/holder/human/sync(var/mob/living/M)
-	cut_overlays()
-	// Generate appropriate on-mob icons.
-	var/mob/living/carbon/human/owner = M
-	if(!icon && istype(owner) && owner.species)
-		var/icon/I = new /icon()
 
-		var/skin_colour = rgb(owner.r_skin, owner.g_skin, owner.b_skin)
-		var/hair_colour = rgb(owner.r_hair, owner.g_hair, owner.b_hair)
-		var/eye_colour =  rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes)
-		var/species_name = lowertext(owner.species.get_bodytype())
-
-		for(var/cache_entry in generate_for_slots)
-			var/cache_key = "[owner.species]-[cache_entry]-[skin_colour]-[hair_colour]"
-			if(!holder_mob_icon_cache[cache_key])
-
-				// Generate individual icons.
-				var/icon/mob_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_base")
-				mob_icon.Blend(skin_colour, ICON_ADD)
-				var/icon/hair_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_hair")
-				hair_icon.Blend(hair_colour, ICON_ADD)
-				var/icon/eyes_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_eyes")
-				eyes_icon.Blend(eye_colour, ICON_ADD)
-
-				// Blend them together.
-				mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-				mob_icon.Blend(hair_icon, ICON_OVERLAY)
-
-				// Add to the cache.
-				holder_mob_icon_cache[cache_key] = mob_icon
-
-			var/newstate
-			switch (cache_entry)
-				if (slot_l_hand_str)
-					newstate = "[species_name]_lh"
-				if (slot_r_hand_str)
-					newstate = "[species_name]_rh"
-				if (slot_back_str)
-					newstate = "[species_name]_ba"
-
-			I.Insert(holder_mob_icon_cache[cache_key], newstate)
-
-
-		dir = 2
-		var/icon/mob_icon = icon(owner.icon, owner.icon_state)
-		I.Insert(mob_icon, species_name)
-		icon = I
-		icon_state = species_name
-		item_state = species_name
-
-		contained_sprite = 1
-
-		color = M.color
-		name = M.name
-		desc = M.desc
-		copy_overlays(M)
-		var/mob/living/carbon/human/H = loc
-		if(istype(H))
-			if(H.l_hand == src)
-				H.update_inv_l_hand()
-			else if(H.r_hand == src)
-				H.update_inv_r_hand()
-			else
-				H.regenerate_icons()
-
-		..()
-*/
 
 
 //#TODO-MERGE
@@ -432,6 +376,13 @@ var/list/holder_mob_icon_cache = list()
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 
 
+/obj/item/weapon/holder/corgi
+	name = "corgi"
+	icon_state = "corgi"
+	item_state = "corgi"
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	w_class = 3
+
 /obj/item/weapon/holder/borer
 	name = "cortical borer"
 	desc = "It's a slimy brain slug. Gross."
@@ -458,7 +409,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "mouse_brown_sleep"
 	item_state = "mouse_brown"
 	icon_state_dead = "mouse_brown_dead"
-	slot_flags = SLOT_EARS
+	slot_flags = SLOT_EARS | SLOT_HEAD
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 	origin_tech = list(TECH_BIO = 2)
 	w_class = 1
@@ -723,12 +674,7 @@ var/list/holder_mob_icon_cache = list()
 
 //corgi
 
-/obj/item/weapon/holder/corgi
-	name = "corgi"
-	icon_state = "corgi"
-	item_state = "corgi"
-	contained_sprite = 1
-	w_class = 3
+
 
 
 
@@ -767,4 +713,74 @@ var/list/holder_mob_icon_cache = list()
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
 	slot_flags = SLOT_HEAD | SLOT_OCLOTHING
 	w_class = 2
+*/
+
+//The block below is for resomi, not currently relevant
+/*
+/obj/item/weapon/holder/human/sync(var/mob/living/M)
+	cut_overlays()
+	// Generate appropriate on-mob icons.
+	var/mob/living/carbon/human/owner = M
+	if(!icon && istype(owner) && owner.species)
+		var/icon/I = new /icon()
+
+		var/skin_colour = rgb(owner.r_skin, owner.g_skin, owner.b_skin)
+		var/hair_colour = rgb(owner.r_hair, owner.g_hair, owner.b_hair)
+		var/eye_colour =  rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes)
+		var/species_name = lowertext(owner.species.get_bodytype())
+
+		for(var/cache_entry in generate_for_slots)
+			var/cache_key = "[owner.species]-[cache_entry]-[skin_colour]-[hair_colour]"
+			if(!holder_mob_icon_cache[cache_key])
+
+				// Generate individual icons.
+				var/icon/mob_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_base")
+				mob_icon.Blend(skin_colour, ICON_ADD)
+				var/icon/hair_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_hair")
+				hair_icon.Blend(hair_colour, ICON_ADD)
+				var/icon/eyes_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_eyes")
+				eyes_icon.Blend(eye_colour, ICON_ADD)
+
+				// Blend them together.
+				mob_icon.Blend(eyes_icon, ICON_OVERLAY)
+				mob_icon.Blend(hair_icon, ICON_OVERLAY)
+
+				// Add to the cache.
+				holder_mob_icon_cache[cache_key] = mob_icon
+
+			var/newstate
+			switch (cache_entry)
+				if (slot_l_hand_str)
+					newstate = "[species_name]_lh"
+				if (slot_r_hand_str)
+					newstate = "[species_name]_rh"
+				if (slot_back_str)
+					newstate = "[species_name]_ba"
+
+			I.Insert(holder_mob_icon_cache[cache_key], newstate)
+
+
+		dir = 2
+		var/icon/mob_icon = icon(owner.icon, owner.icon_state)
+		I.Insert(mob_icon, species_name)
+		icon = I
+		icon_state = species_name
+		item_state = species_name
+
+		contained_sprite = 1
+
+		color = M.color
+		name = M.name
+		desc = M.desc
+		copy_overlays(M)
+		var/mob/living/carbon/human/H = loc
+		if(istype(H))
+			if(H.l_hand == src)
+				H.update_inv_l_hand()
+			else if(H.r_hand == src)
+				H.update_inv_r_hand()
+			else
+				H.regenerate_icons()
+
+		..()
 */
