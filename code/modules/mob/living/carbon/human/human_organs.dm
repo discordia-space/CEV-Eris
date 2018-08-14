@@ -83,7 +83,7 @@
 				spawn(10)
 					qdel(spark_system)
 		else if (E.is_broken() || !E.is_usable())
-			stance_damage += 1
+			stance_damage += 2
 		else if (E.is_dislocated())
 			stance_damage += 0.5
 

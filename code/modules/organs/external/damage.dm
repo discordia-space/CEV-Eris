@@ -19,6 +19,9 @@
 			I.take_damage(brute / 2)
 			brute -= brute / 2
 
+	if(brute_dam > min_broken_damage && prob(brute_dam + brute))
+		fracture()
+
 	if(status & ORGAN_BROKEN && prob(40) && brute)
 		if (!(owner.species && (owner.species.flags & NO_PAIN)))
 			owner.emote("scream")	//getting hit on broken hand hurts
