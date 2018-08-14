@@ -1,6 +1,6 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
-/client/verb/wiki()
-	set name = "wiki"
+/client/verb/wikiurl()
+	set name = "wikiurl"
 	set desc = "Visit the wiki."
 	set hidden = 1
 	if( config.wikiurl )
@@ -11,17 +11,30 @@
 		src << SPAN_WARNING("The wiki URL is not set in the server configuration.")
 	return
 
-/client/verb/forum()
-	set name = "forum"
-	set desc = "Visit the forum."
+/client/verb/discordurl()
+	set name = "discordurl"
+	set desc = "Visit the Discordia Github."
 	set hidden = 1
-	if( config.forumurl )
-		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
+	if( config.discordurl )
+		if(alert("This will open the Discordia Discord  invite in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config.forumurl)
+		src << link(config.discordurl)
 	else
-		src << SPAN_WARNING("The forum URL is not set in the server configuration.")
+		src << SPAN_WARNING("The Discordia Discord invite is not set in the server configuration.")
 	return
+
+/client/verb/githuburl()
+	set name = "githuburl"
+	set desc = "Visit the Discordia Github."
+	set hidden = 1
+	if( config.githuburl )
+		if(alert("This will open the Discordia Github page in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.githuburl)
+	else
+		src << SPAN_WARNING("The Discordia Github is not set in the server configuration.")
+	return
+
 
 #define RULES_FILE "config/rules.html"
 /client/verb/rules()

@@ -90,6 +90,7 @@ var/list/storyteller_cache = list()
 	var/wikiurl
 	var/forumurl
 	var/githuburl
+	var/discordurl
 
 	//Alert level description
 	var/alert_desc_green = "All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
@@ -108,7 +109,7 @@ var/list/storyteller_cache = list()
 	var/organ_damage_spillover_multiplier = 0.5
 
 	var/bones_can_break = 0
-	var/limbs_can_break = 0
+	var/limbs_can_break = 1
 
 	var/revival_pod_plants = 1
 	var/revival_cloning = 1
@@ -385,6 +386,9 @@ var/list/storyteller_cache = list()
 
 				if ("wikiurl")
 					config.wikiurl = value
+
+				if ("discordurl")
+					config.discordurl = value
 
 				if ("forumurl")
 					config.forumurl = value
