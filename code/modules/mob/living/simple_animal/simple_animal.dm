@@ -14,6 +14,10 @@
 	var/icon_dead = ""
 	var/icon_gib = null	//We only try to show a gibbing animation if this exists.
 
+	//Napping
+	var/can_nap = 0
+	var/icon_rest = null
+
 	var/list/speak = list()
 	var/speak_chance = 0
 	var/list/emote_hear = list()	//Hearable emotes
@@ -366,3 +370,48 @@
 	return
 /mob/living/simple_animal/ExtinguishMob()
 	return
+
+
+//I wanted to call this proc alert but it already exists.
+//Basically makes the mob pay attention to the world, resets sleep timers, awakens it from a sleeping state sometimes
+/mob/living/simple_animal/proc/poke(var/force_wake = 0)
+	if (stat != DEAD)
+		if (force_wake || (!client && prob(30)))
+			wake_up()
+
+//Puts the mob to sleep
+/mob/living/simple_animal/proc/fall_asleep()
+	if (stat != DEAD)
+		resting = 1
+		stat = UNCONSCIOUS
+		canmove = 0
+		wander = 0
+		walk_to(src,0)
+		update_icons()
+
+//Wakes the mob up from sleeping
+/mob/living/simple_animal/proc/wake_up()
+	if (stat != DEAD)
+		stat = CONSCIOUS
+		resting = 0
+		canmove = 1
+		wander = 1
+		update_icons()
+
+/mob/living/simple_animal/update_icons()
+	if (stat == DEAD)
+		icon_state = icon_dead
+	else if ((stat == UNCONSCIOUS || resting) && icon_rest)
+		icon_state = icon_rest
+	else if (icon_living)
+		icon_state = icon_living
+
+/mob/living/simple_animal/lay_down()
+	set name = "Rest"
+	set category = "Abilities"
+	if (resting)
+		wake_up()
+	else
+		fall_asleep()
+	src << span("notice","You are now [resting ? "resting" : "getting up"]")
+	update_icons()
