@@ -24,7 +24,7 @@
 	item_state = "lunchbox_rainbow"
 
 /obj/item/weapon/storage/lunchbox/cat
-	name = "cat luncbox"
+	name = "cat lunchbox"
 	desc = "Meowbox."
 	icon_state = "lunchbox_cat"
 	item_state = "lunchbox_cat"
