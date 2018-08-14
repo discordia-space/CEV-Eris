@@ -483,6 +483,162 @@ var/list/holder_mob_icon_cache = list()
 	item_state = "mouse_brown"
 	icon_state_dead = "mouse_brown_dead"
 
+
+
+//This function provides a verbose message describing where something is on a person. Intended for mobs in holders
+/obj/proc/report_onmob_location(var/justmoved, var/slot = null, var/mob/reportto)
+	var/mob/living/carbon/human/H//The person who the item is on
+	var/newlocation
+	var/preposition= ""
+	var/action = ""
+	var/action3 = ""
+	if (!reportto)
+		return 0
+
+	if (istype(loc, /mob/living/carbon/human))//This function is for finding where we are on a human. not valid otherwise
+		H = loc
+
+	else
+		H = get_holding_mob()
+
+
+	if (slot != null)
+
+		if (slot_l_hand == slot)
+			if (justmoved)
+				action += "now "
+			preposition = "in"
+			action += "being held"
+			action3 = "holds"
+			newlocation = "left hand"
+		else if (slot_r_hand == slot)
+			if (justmoved)
+				action += "now "
+			preposition = "in"
+			action += "being held"
+			action3 = "holds"
+			newlocation = "right hand"
+		else if (slot_l_store == slot)
+			if (justmoved)
+				preposition = "into"
+				action = "placed"
+				action3 = "places"
+			else
+				preposition = "inside"
+			newlocation = "left pocket"
+		else if (slot_r_store == slot)
+			if (justmoved)
+				preposition = "into"
+				action = "placed"
+				action3 = "places"
+			else
+				preposition = "inside"
+			newlocation = "right pocket"
+		else if (slot_s_store == slot)
+			if (justmoved)
+				preposition = "into"
+				action = "placed"
+				action3 = "places"
+			else
+				preposition = "inside"
+			newlocation = "suit storage"
+		else
+			if (justmoved)
+				action += "now "
+			action += "being worn"
+
+			if (slot_head == slot)
+				preposition = "as"
+				action3 = "wears"
+				newlocation = "hat"
+			else if (slot_wear_suit == slot)
+				preposition = "over"
+				action3 = "wears"
+				newlocation = "uniform"
+			else if (slot_wear_mask == slot)
+				preposition = "on"
+				action3 = "wears"
+				newlocation = "face"
+			else if (slot_wear_id == slot)
+				preposition = "as"
+				action3 = "wears"
+				newlocation = "ID"
+			else if (slot_w_uniform == slot)
+				preposition = "on"
+				action3 = "wears"
+				newlocation = "body"
+			else if (slot_gloves == slot)
+				preposition = "on"
+				action3 = "wears"
+				newlocation = "hands"
+			else if (slot_belt == slot)
+				preposition = "around"
+				action3 = "wears"
+				newlocation = "waist"
+			else if (slot_back == slot)
+				preposition = "on"
+				action3 = "wears"
+				newlocation = "back"
+			else if (slot_r_ear == slot)
+				preposition = "on"
+				action3 = "wears"
+				newlocation = "right shoulder"//Ill use ear slots for wearing mobs on the shoulder in future
+			else if (slot_l_ear == slot)
+				preposition = "on"
+				action3 = "wears"
+				newlocation = "left shoulder"
+			else if (slot_shoes == slot)
+				preposition = "on"
+				action3 = "wears"
+				newlocation = "feet"
+	else if (istype(loc,/obj/item/device/pda))
+		var/obj/item/device/pda/S = loc
+		newlocation = S.name
+		if (justmoved)
+			preposition = "into"
+			action = "slotted"
+			action3 = "slots"
+		else
+			action = "installed"
+			preposition = "in"
+	else if (istype(loc,/obj/item/weapon/storage))
+		var/obj/item/weapon/storage/S = loc
+		newlocation = S.name
+		if (justmoved)
+			preposition = "into"
+			action = "placed"
+			action3 = "places"
+		else
+			action = "tucked"
+			preposition = "inside"
+
+	if (justmoved)
+		reportto.contained_visible_message(H,  "<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "", 1)
+	else
+reportto << "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>"
+
+
+
+/atom/proc/get_holding_mob()
+	//This function will return the mob which is holding this holder, or null if it's not held
+	//It recurses up the hierarchy out of containers until it reaches a mob, or a turf, or hits the limit
+	var/x = 0//As a safety, we'll crawl up a maximum of five layers
+	var/atom/a = src
+	while (x < 5)
+		x++
+		if (isnull(a))
+			return null
+
+		a = a.loc
+		if (istype(a, /turf))
+			return null//We must be on a table or a floor, or maybe in a wall. Either way we're not held.
+
+		if (istype(a, /mob))
+			return a
+		//If none of the above are true, we must be inside a box or backpack or something. Keep recursing up.
+
+return null//If we get here, the holder must be buried many layers deep in nested containers. Shouldn't happen
+
 /*
 //Lizards
 
