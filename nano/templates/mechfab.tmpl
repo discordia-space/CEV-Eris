@@ -13,11 +13,11 @@
 	</div>
 	{{for data.buildable}}
 		{{if value.category == data.category}}
-			<div class="item">
-				<div class="itemLabelWide">
+			<div class="flexContainer">
+				<div class="flexBox">
 					{{:helper.link(value.name, null, {'build' : value.id})}}
 				</div>
-				<div class="itemContentMedium">
+				<div class="flexBox">
 					{{:value.resourses}}, {{:value.time}}
 				</div>
 			</div>
