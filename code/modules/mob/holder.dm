@@ -7,6 +7,10 @@ var/list/holder_mob_icon_cache = list()
 	icon = 'icons/mob/held_mobs.dmi'
 	slot_flags = 0
 	//sprite_sheets = list("Vox" = 'icons/mob/species/vox/head.dmi')
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_holder.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_holder.dmi',
+	)
 	origin_tech = null
 	var/mob/living/contained = null
 	var/icon_state_dead
@@ -37,7 +41,7 @@ var/list/holder_mob_icon_cache = list()
 	if (!item_state)
 		item_state = icon_state
 
-	flags_inv |= ALWAYSDRAW
+	//flags_inv |= ALWAYSDRAW //Part of contained sprites overhaul, not ported yet
 
 	START_PROCESSING(SSprocessing, src)
 
@@ -70,7 +74,7 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/borer
 	origin_tech = list(TECH_BIO = 6)
 
-/obj/item/weapon/holder/process()
+/obj/item/weapon/holder/Process()
 	if (!contained)
 		qdel(src)
 
@@ -365,16 +369,7 @@ var/list/holder_mob_icon_cache = list()
 
 //Mob specific holders.
 //w_class mainly determines whether they can fit in trashbags. <=2 can, >=3 cannot
-/obj/item/weapon/holder/diona
-	name = "diona nymph"
-	desc = "It's a little plant critter."
-	desc_dead = "It used to be a little plant critter."
-	icon = 'icons/mob/diona.dmi'
-	icon_state = "nymph"
-	icon_state_dead = "nymph_dead"
-	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
-	slot_flags = SLOT_HEAD | SLOT_OCLOTHING
-	w_class = 2
+
 
 
 /obj/item/weapon/holder/drone
@@ -385,7 +380,7 @@ var/list/holder_mob_icon_cache = list()
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 	slot_flags = SLOT_HEAD
 	w_class = 4
-	contained_sprite = 1
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 
 /obj/item/weapon/holder/drone/heavy
 	name = "construction drone"
@@ -434,7 +429,7 @@ var/list/holder_mob_icon_cache = list()
 	slot_flags = SLOT_HEAD
 	w_class = 1
 	item_state = "penny"
-	contained_sprite = 1
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 
 
 /obj/item/weapon/holder/borer
@@ -450,7 +445,7 @@ var/list/holder_mob_icon_cache = list()
 	icon_state = "monkey"
 	item_state = "monkey"
 	slot_flags = SLOT_HEAD
-	contained_sprite = 1
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 	w_class = 3
 
 
@@ -464,7 +459,7 @@ var/list/holder_mob_icon_cache = list()
 	item_state = "mouse_brown"
 	icon_state_dead = "mouse_brown_dead"
 	slot_flags = SLOT_EARS
-	contained_sprite = 1
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 	origin_tech = list(TECH_BIO = 2)
 	w_class = 1
 
@@ -613,9 +608,9 @@ var/list/holder_mob_icon_cache = list()
 			preposition = "inside"
 
 	if (justmoved)
-		reportto.contained_visible_message(H,  "<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "", 1)
+		reportto.visible_message(H,  "<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "", 1)
 	else
-reportto << "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>"
+		reportto << "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>"
 
 
 
@@ -637,7 +632,7 @@ reportto << "<span class='notice'>You are [action] [preposition] [H]'s [newlocat
 			return a
 		//If none of the above are true, we must be inside a box or backpack or something. Keep recursing up.
 
-return null//If we get here, the holder must be buried many layers deep in nested containers. Shouldn't happen
+	return null//If we get here, the holder must be buried many layers deep in nested containers. Shouldn't happen
 
 /*
 //Lizards
@@ -760,4 +755,16 @@ return null//If we get here, the holder must be buried many layers deep in neste
 	item_state = "neaera"
 	slot_flags = SLOT_HEAD
 	w_class = 3
+
+
+/obj/item/weapon/holder/diona
+	name = "diona nymph"
+	desc = "It's a little plant critter."
+	desc_dead = "It used to be a little plant critter."
+	icon = 'icons/mob/diona.dmi'
+	icon_state = "nymph"
+	icon_state_dead = "nymph_dead"
+	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
+	slot_flags = SLOT_HEAD | SLOT_OCLOTHING
+	w_class = 2
 */

@@ -129,6 +129,7 @@
 	if(!client && speak_chance)
 		if(rand(0,200) < speak_chance)
 			visible_emote(emote_see)
+			speak_audio()
 
 	//Atmos
 	var/atmos_suitable = 1
@@ -361,6 +362,18 @@
 			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
 			gib()
 
+//For picking up small animals
+/mob/living/simple_animal/MouseDrop(atom/over_object)
+	if (holder_type)//we need a defined holder type in order for picking up to work
+		var/mob/living/carbon/H = over_object
+		if(!istype(H) || !Adjacent(H))
+			return ..()
+
+		get_scooped(H, usr)
+		return
+	return ..()
+
+
 /mob/living/simple_animal/handle_fire()
 	return
 
@@ -415,3 +428,8 @@
 		fall_asleep()
 	src << span("notice","You are now [resting ? "resting" : "getting up"]")
 	update_icons()
+
+
+//This is called when an animal 'speaks'. It does nothing here, but descendants should override it to add audio
+/mob/living/simple_animal/proc/speak_audio()
+	return

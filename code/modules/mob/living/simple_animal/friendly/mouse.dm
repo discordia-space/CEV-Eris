@@ -20,7 +20,7 @@
 	'sound/effects/creatures/mouse_squeaks_4.ogg')
 	var/last_softsqueak = null//Used to prevent the same soft squeak twice in a row
 	var/squeals = 5//Spam control.
-	var/maxSqueals = 2//SPAM PROTECTION
+	var/maxSqueals = 5//SPAM PROTECTION
 	var/last_squealgain = 0// #TODO-FUTURE: Remove from life() once something else is created
 	var/squeakcooldown = 0
 	pass_flags = PASSTABLE
@@ -131,9 +131,11 @@
 /mob/living/simple_animal/mouse/speak_audio()
 	squeak_soft(0)
 
+/*
 /mob/living/simple_animal/mouse/beg(var/atom/thing, var/atom/holder)
 	squeak_soft(0)
 	visible_emote("squeaks timidly, sniffs the air and gazes longingly up at \the [thing.name].",0)
+*/ //Part of animal eating work, not yet ported
 
 /mob/living/simple_animal/mouse/attack_hand(mob/living/carbon/human/M as mob)
 	if (src.stat == DEAD)//If the mouse is dead, we don't pet it, we just pickup the corpse on click
@@ -152,11 +154,9 @@
 //This is triggered when a mob steps on an NPC mouse, or manually by a playermouse
 /mob/living/simple_animal/mouse/proc/squeak(var/manual = 1)
 	if (stat == CONSCIOUS)
-		if (squeakcooldown > world.time) return
-		squeakcooldown = world.time + 2 SECONDS
 		playsound(src, 'sound/effects/mousesqueek.ogg', 70, 1)
 		if (manual)
-			log_say("[key_name(src)] squeaks! ",ckey=key_name(src))
+			log_say("[key_name(src)] squeaks! ")
 
 
 //Plays a random selection of four sounds, at a low volume
@@ -167,26 +167,21 @@
 		var/sound = pick(new_squeaks)
 
 		last_softsqueak = sound
-		if (squeakcooldown > world.time) return
-
-		squeakcooldown = world.time + 2 SECONDS
 		playsound(src, sound, 5, 1, -4.6)
 
 		if (manual)
-			log_say("[key_name(src)] squeaks softly! ",ckey=key_name(src))
+			log_say("[key_name(src)] squeaks softly! ")
 
 
 //Plays a loud sound
 //Triggered manually, when a mouse dies, or rarely when its stepped on
 /mob/living/simple_animal/mouse/proc/squeak_loud(var/manual = 0)
 	if (stat == CONSCIOUS)
-		if (squeakcooldown > world.time) return
-		squeakcooldown = world.time + 4 SECONDS
 
 		if (squeals > 0 || !manual)
-			playsound(src, 'sound/effects/creatures/mouse_squeak_loud.ogg', 50, 1)
+			playsound(src, 'sound/effects/creatures/mouse_squeak_loud.ogg', 40, 1)
 			squeals --
-			log_say("[key_name(src)] squeals! ",ckey=key_name(src))
+			log_say("[key_name(src)] squeals! ")
 		else
 			src << "<span class='warning'>Your hoarse mousey throat can't squeal just now, stop and take a breath!</span>"
 
@@ -196,9 +191,7 @@
 	set name = "Squeal!"
 	set category = "Abilities"
 
-	if (usr.client.handle_spam_prevention(null, MUTE_IC))
-		return
-	else if (usr.client.prefs.muted & MUTE_IC)
+	if (usr.client.prefs.muted & MUTE_IC)
 		usr << "<span class='danger'>You are muted from IC emotes.</span>"
 		return
 
@@ -208,9 +201,7 @@
 	set name = "Soft Squeaking"
 	set category = "Abilities"
 
-	if (usr.client.handle_spam_prevention(null, MUTE_IC))
-		return
-	else if (usr.client.prefs.muted & MUTE_IC)
+	if (usr.client.prefs.muted & MUTE_IC)
 		usr << "<span class='danger'>You are muted from IC emotes.</span>"
 		return
 
@@ -220,9 +211,7 @@
 	set name = "Squeak"
 	set category = "Abilities"
 
-	if (usr.client.handle_spam_prevention(null, MUTE_IC))
-		return
-	else if (usr.client.prefs.muted & MUTE_IC)
+	if (usr.client.prefs.muted & MUTE_IC)
 		usr << "<span class='danger'>You are muted from IC emotes.</span>"
 		return
 
@@ -248,7 +237,7 @@
 
 /mob/living/simple_animal/mouse/death()
 	layer = MOB_LAYER
-	if (stat != DEAD && (ckey || prob(20)))
+	if (stat != DEAD && (ckey || prob(35)))
 		squeak_loud(0)//deathgasp
 
 
