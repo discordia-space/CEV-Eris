@@ -124,6 +124,7 @@
 		helmet.canremove = 1
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
+		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	else
 		if(H.head)
 			H << SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head].")
@@ -132,31 +133,40 @@
 			helmet.pickup(H)
 			helmet.canremove = 0
 			H << "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>"
+			playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	helmet.update_light(H)
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
 
 	set name = "Eject Voidsuit Tank"
 	set category = "Object"
-	set src in usr
+	set src in view(1)
 
-	if(!isliving(src.loc))
+	if(!isliving(usr))
+		return
+
+	if (!Adjacent(usr, get_turf(src)))
+		usr << SPAN_WARNING("You're too far away to eject the tank.")
 		return
 
 	if(!tank)
-		usr << "There is no tank inserted."
+		usr << "<span class='warning'>There is no tank inserted.</span>"
 		return
 
-	var/mob/living/carbon/human/H = usr
+
+
+	var/mob/living/H = usr
 
 	if(!istype(H))
 		return
 	if(H.stat)
 		return
-	if(H.wear_suit != src)
-		return
 
-	H << "<span class='info'>You press the emergency release, ejecting \the [tank] from your suit.</span>"
+	H.visible_message(
+	"<span class='info'>[H] presses the emergency release, ejecting \the [tank] from the suit.</span>",
+	"<span class='info'>You press the emergency release, ejecting \the [tank] from the suit.</span>",
+	"<span class='info'>You hear a click and a hiss</span>"
+	)
 	tank.canremove = 1
 	H.drop_from_inventory(tank)
 	src.tank = null
@@ -169,7 +179,7 @@
 	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
 		return ..()
 
-	if(isliving(src.loc))
+	if(is_worn())
 		user << SPAN_WARNING("You cannot modify \the [src] while it is being worn.")
 		return
 
@@ -201,6 +211,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			src.helmet = W
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
 	else if(istype(W,/obj/item/clothing/shoes/magboots))
 		if(boots)
@@ -210,8 +221,9 @@
 			user.drop_item()
 			W.forceMove(src)
 			boots = W
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
-	else if(istype(W,/obj/item/weapon/tank))
+	if(istype(W,/obj/item/weapon/tank))
 		if(tank)
 			user << "\The [src] already has an airtank installed."
 		else if(istype(W,/obj/item/weapon/tank/plasma))
@@ -221,6 +233,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			tank = W
+			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
 
 	..()
