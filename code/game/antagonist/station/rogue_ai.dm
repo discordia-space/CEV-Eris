@@ -46,7 +46,7 @@
 			return
 
 		malf.setup_for_malf()
-		malf.laws = new /datum/ai_laws/nanotrasen/malfunction
+		malf.laws = new /datum/ai_laws/eris/malfunction
 
 
 		malf << SPAN_NOTICE("<B>SYSTEM ERROR:</B> Memory index 0x00001ca89b corrupted.")

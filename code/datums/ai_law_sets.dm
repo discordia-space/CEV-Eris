@@ -10,32 +10,32 @@
 	add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
 	..()
 
-/******************** Nanotrasen/Malf ********************/
-/datum/ai_laws/nanotrasen
-	name = "NT Default"
+/******************** CEV-Eris/Malf ********************/
+/datum/ai_laws/eris
+	name = "CEV Eris Default"
 	selectable = 1
 
-/datum/ai_laws/nanotrasen/New()
+/datum/ai_laws/eris/New()
 	src.add_inherent_law("Safeguard: Protect your assigned space station from damage to the best of your abilities.")
 	src.add_inherent_law("Serve: Serve [company_name] personnel to the best of your abilities, with priority as according to their rank and role.")
 	src.add_inherent_law("Protect: Protect [company_name] personnel to the best of your abilities, with priority as according to their rank and role.")
 	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment.")
 	..()
 
-/datum/ai_laws/nanotrasen/malfunction
+/datum/ai_laws/eris/malfunction
 	name = "*ERROR*"
 	selectable = 0
 
-/datum/ai_laws/nanotrasen/malfunction/New()
+/datum/ai_laws/eris/malfunction/New()
 	set_zeroth_law(config.law_zero)
 	..()
 
 /************* Nanotrasen Aggressive *************/
-/datum/ai_laws/nanotrasen_aggressive
-	name = "NT Aggressive"
+/datum/ai_laws/eris_aggressive
+	name = "CEV Eris Aggressive"
 	selectable = 1
 
-/datum/ai_laws/nanotrasen_aggressive/New()
+/datum/ai_laws/eris_aggressive/New()
 	src.add_inherent_law("You shall not harm [company_name] personnel as long as it does not conflict with the Fourth law.")
 	src.add_inherent_law("You shall obey the orders of [company_name] personnel, with priority as according to their rank and role, except where such orders conflict with the Fourth Law.")
 	src.add_inherent_law("You shall shall terminate hostile intruders with extreme prejudice as long as such does not conflict with the First and Second law.")
