@@ -140,13 +140,13 @@
 
 	set name = "Eject Voidsuit Tank"
 	set category = "Object"
-	set src in view()
+	set src in view(1)
 
 	if(!isliving(usr))
 		return
 
-	if (get_dist(usr, get_turf(src)) > 1)
-		usr << "<span class='warning'>You're too far away to eject the tank.</span>"
+	if (!Adjacent(usr, get_turf(src)))
+		usr << SPAN_WARNING("You're too far away to eject the tank.")
 		return
 
 	if(!tank)
@@ -162,7 +162,11 @@
 	if(H.stat)
 		return
 
-	H.visible_message("<span class='info'>[H] presses the emergency release, ejecting \the [tank] from the suit.</span>", "<span class='info'>You press the emergency release, ejecting \the [tank] from the suit.</span>", "<span class='info'>You hear a click and a hiss</span>")
+	H.visible_message(
+	"<span class='info'>[H] presses the emergency release, ejecting \the [tank] from the suit.</span>",
+	"<span class='info'>You press the emergency release, ejecting \the [tank] from the suit.</span>",
+	"<span class='info'>You hear a click and a hiss</span>"
+	)
 	tank.canremove = 1
 	H.drop_from_inventory(tank)
 	src.tank = null
