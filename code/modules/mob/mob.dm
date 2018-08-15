@@ -820,7 +820,6 @@
 
 
 /mob/proc/facedir(var/ndir)
-	visible_message("Facing direction [ndir]")
 	if(!canface() || client.moving || world.time < client.move_delay)
 		return 0
 	set_dir(ndir)

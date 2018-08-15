@@ -443,7 +443,7 @@ var/list/holder_mob_icon_cache = list()
 			preposition = "inside"
 
 	if (justmoved)
-		reportto.visible_message(H,  "<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "", 1)
+		reportto.visible_message("<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "")
 	else
 		reportto << "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>"
 
