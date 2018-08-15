@@ -541,6 +541,7 @@ its easier to just keep the beam vertical.
 		else if(blind_message)
 			M.show_message(blind_message, 2)
 
+
 // Show a message to all mobs and objects in earshot of this atom
 // Use for objects performing audible actions
 // message is the message output to anyone who can hear.

@@ -293,7 +293,6 @@ var/list/holder_mob_icon_cache = list()
 	overlays |= M.overlays
 	var/mob/living/carbon/human/H = loc
 	last_holder = H
-	register_all_movement(H, M)
 
 	if(istype(H))
 		if(H.l_hand == src)
@@ -308,126 +307,11 @@ var/list/holder_mob_icon_cache = list()
 
 
 //#TODO-MERGE
-//Port the reduced-duplication holder method from baystation upstream:
-//https://github.com/Baystation12/Baystation12/blob/master/code/modules/mob/holder.dm
-
-//Mob specific holders.
-//w_class mainly determines whether they can fit in trashbags. <=2 can, >=3 cannot
 
 
 
-/obj/item/weapon/holder/drone
-	name = "maintenance drone"
-	desc = "It's a small maintenance robot."
-	icon_state = "drone"
-	item_state = "drone"
-	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
-	slot_flags = SLOT_HEAD
-	w_class = 4
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
-
-/obj/item/weapon/holder/drone/heavy
-	name = "construction drone"
-	desc = "It's a really big maintenance robot."
-	icon_state = "constructiondrone"
-	item_state = "constructiondrone"
-	w_class = 6//You're not fitting this thing in a backpack
-
-/obj/item/weapon/holder/drone/mining
-	name = "mining drone"
-	desc = "It's a plucky mining drone."
-	icon_state = "mdrone"
-	item_state = "mdrone"
-
-/obj/item/weapon/holder/cat
-	name = "cat"
-	desc = "It's a cat. Meow."
-	desc_dead = "It's a dead cat."
-	icon_state = "cat_tabby"
-	icon_state_dead = "cat_tabby_dead"
-	item_state = "cat"
-//Setting item state to cat saves on some duplication for the in-hand versions, but we cant use it for head.
-//Instead, the head versions are done by duplicating the cat
-	slot_flags = SLOT_HEAD
-	w_class = 3
-
-/obj/item/weapon/holder/cat/black
-	icon_state = "cat_black"
-	icon_state_dead = "cat_black_dead"
-	slot_flags = SLOT_HEAD
-	item_state = "cat"
-
-/obj/item/weapon/holder/cat/kitten
-	name = "kitten"
-	icon_state = "cat_kitten"
-	icon_state_dead = "cat_kitten_dead"
-	slot_flags = SLOT_HEAD
-	w_class = 1
-	item_state = "cat"
-
-/obj/item/weapon/holder/cat/penny
-	name = "Penny"
-	desc = "An important cat, straight from Central Command."
-	icon_state = "penny"
-	icon_state_dead = "penny_dead"
-	slot_flags = SLOT_HEAD
-	w_class = 1
-	item_state = "penny"
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 
 
-/obj/item/weapon/holder/corgi
-	name = "corgi"
-	icon_state = "corgi"
-	item_state = "corgi"
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
-	w_class = 3
-
-/obj/item/weapon/holder/borer
-	name = "cortical borer"
-	desc = "It's a slimy brain slug. Gross."
-	icon_state = "brainslug"
-	origin_tech = list(TECH_BIO = 6)
-	w_class = 1
-
-/obj/item/weapon/holder/monkey
-	name = "monkey"
-	desc = "It's a monkey. Ook."
-	icon_state = "monkey"
-	item_state = "monkey"
-	slot_flags = SLOT_HEAD
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
-	w_class = 3
-
-
-//Holders for mice
-/obj/item/weapon/holder/mouse
-	name = "mouse"
-	desc = "It's a fuzzy little critter."
-	desc_dead = "It's filthy vermin, throw it in the trash."
-	icon = 'icons/mob/mouse.dmi'
-	icon_state = "mouse_brown_sleep"
-	item_state = "mouse_brown"
-	icon_state_dead = "mouse_brown_dead"
-	slot_flags = SLOT_EARS | SLOT_HEAD
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
-	origin_tech = list(TECH_BIO = 2)
-	w_class = 1
-
-/obj/item/weapon/holder/mouse/white
-	icon_state = "mouse_white_sleep"
-	item_state = "mouse_white"
-	icon_state_dead = "mouse_white_dead"
-
-/obj/item/weapon/holder/mouse/gray
-	icon_state = "mouse_gray_sleep"
-	item_state = "mouse_gray"
-	icon_state_dead = "mouse_gray_dead"
-
-/obj/item/weapon/holder/mouse/brown
-	icon_state = "mouse_brown_sleep"
-	item_state = "mouse_brown"
-	icon_state_dead = "mouse_brown_dead"
 
 
 
@@ -584,6 +468,123 @@ var/list/holder_mob_icon_cache = list()
 		//If none of the above are true, we must be inside a box or backpack or something. Keep recursing up.
 
 	return null//If we get here, the holder must be buried many layers deep in nested containers. Shouldn't happen
+
+
+//Mob specific holders.
+//w_class mainly determines whether they can fit in containers and pockets
+
+
+
+/obj/item/weapon/holder/drone
+	name = "maintenance drone"
+	desc = "It's a small maintenance robot."
+	icon_state = "drone"
+	item_state = "drone"
+	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
+	slot_flags = SLOT_HEAD
+	w_class = 4
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+
+/obj/item/weapon/holder/drone/heavy
+	name = "construction drone"
+	desc = "It's a really big maintenance robot."
+	icon_state = "constructiondrone"
+	item_state = "constructiondrone"
+	w_class = 6//You're not fitting this thing in a backpack
+
+
+/obj/item/weapon/holder/cat
+	name = "cat"
+	desc = "It's a cat. Meow."
+	desc_dead = "It's a dead cat."
+	icon_state = "cat_tabby"
+	icon_state_dead = "cat_tabby_dead"
+	item_state = "cat"
+//Setting item state to cat saves on some duplication for the in-hand versions, but we cant use it for head.
+//Instead, the head versions are done by duplicating the cat
+	slot_flags = SLOT_HEAD
+	w_class = 3
+
+/obj/item/weapon/holder/cat/black
+	icon_state = "cat_black"
+	icon_state_dead = "cat_black_dead"
+	slot_flags = SLOT_HEAD
+	item_state = "cat"
+
+/obj/item/weapon/holder/cat/kitten
+	name = "kitten"
+	icon_state = "cat_kitten"
+	icon_state_dead = "cat_kitten_dead"
+	slot_flags = SLOT_HEAD
+	w_class = 1
+	item_state = "cat"
+
+/obj/item/weapon/holder/cat/penny
+	name = "Penny"
+	desc = "An important cat, straight from Central Command."
+	icon_state = "penny"
+	icon_state_dead = "penny_dead"
+	slot_flags = SLOT_HEAD
+	w_class = 1
+	item_state = "penny"
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+
+
+/obj/item/weapon/holder/corgi
+	name = "corgi"
+	icon_state = "corgi"
+	item_state = "corgi"
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	w_class = 3
+
+/obj/item/weapon/holder/borer
+	name = "cortical borer"
+	desc = "It's a slimy brain slug. Gross."
+	icon_state = "brainslug"
+	origin_tech = list(TECH_BIO = 6)
+	w_class = 1
+
+/obj/item/weapon/holder/monkey
+	name = "monkey"
+	desc = "It's a monkey. Ook."
+	icon_state = "monkey"
+	item_state = "monkey"
+	slot_flags = SLOT_HEAD
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	w_class = 3
+
+
+//Holders for mice
+/obj/item/weapon/holder/mouse
+	name = "mouse"
+	desc = "It's a fuzzy little critter."
+	desc_dead = "It's filthy vermin, throw it in the trash."
+	icon = 'icons/mob/mouse.dmi'
+	icon_state = "mouse_brown_sleep"
+	item_state = "mouse_brown"
+	icon_state_dead = "mouse_brown_dead"
+	slot_flags = SLOT_EARS | SLOT_HEAD
+	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	origin_tech = list(TECH_BIO = 2)
+	w_class = 1
+
+/obj/item/weapon/holder/mouse/white
+	icon_state = "mouse_white_sleep"
+	item_state = "mouse_white"
+	icon_state_dead = "mouse_white_dead"
+
+/obj/item/weapon/holder/mouse/gray
+	icon_state = "mouse_gray_sleep"
+	item_state = "mouse_gray"
+	icon_state_dead = "mouse_gray_dead"
+
+/obj/item/weapon/holder/mouse/brown
+	icon_state = "mouse_brown_sleep"
+	item_state = "mouse_brown"
+	icon_state_dead = "mouse_brown_dead"
+
+
+
 
 /*
 //Lizards
