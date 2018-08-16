@@ -1,3 +1,5 @@
+
+
 //trees
 /obj/structure/flora/tree
 	name = "tree"
@@ -81,7 +83,7 @@
 	name = "potted plant"
 	icon = 'icons/obj/plants.dmi'
 	icon_state = "plant-26"
-	var/dead = 0
+	var/dead = FALSE
 	var/obj/item/stored_item
 	layer = ABOVE_MOB_LAYER
 
@@ -95,7 +97,7 @@
 		icon_state = "plant-dead"
 		name = "dead [name]"
 		desc = "It looks dead."
-		dead = 1
+		dead = TRUE
 //No complex interactions, just make them fragile
 /obj/structure/flora/pottedplant/ex_act(var/severity = 2.0)
 	death()
@@ -106,6 +108,9 @@
 	return ..()
 
 /obj/structure/flora/pottedplant/attackby(obj/item/W, mob/user)
+	if (!user.canUnEquip(W))
+		return
+
 	user.visible_message("[user] begins digging around inside of \the [src].", "You begin digging around in \the [src], trying to hide \the [W].")
 	if(do_after(user, 20, target = src))
 		if(!stored_item)
@@ -153,8 +158,7 @@
 	..()
 	if (prob(cyber_chance))
 		new /obj/structure/cyberplant(loc)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	var/number = rand(1,36)
 	if (number == 36)
@@ -287,3 +291,82 @@
 /obj/structure/flora/ausbushes/fullgrass/New()
 	..()
 	icon_state = "fullgrass_[rand(1, 3)]"
+
+
+//Debug verb for previewing all potted plants
+/*
+/client/verb/preview_all_plants()
+	set category = "OOC"
+	set name = "Preview Plants"
+
+	world << "Preview plants running"
+	//First clear the area
+	//We will need 36 tiles, roughly centred on the player
+	var/list/offsets = list(-3,2,\
+	-2,2, \
+	-1,2,\
+	0,2,\
+	1,2,\
+	2,2,\
+	-3,1,\
+	-2,1,\
+	-1,1,\
+	0,1,\
+	1,1,\
+	2,1,\
+	-3,0,\
+	-2,0,\
+	-1,0,\
+	0,0,\
+	1,0,\
+	2,0,\
+	-3,-1,\
+	-2,-1,\
+	-1,-1,\
+	0,-1,\
+	1,-1,\
+	2,-1,\
+	-3,-2,\
+	-2,-2,\
+	-1,-2,\
+	0,-2,\
+	1,-2,\
+	2,-2,\
+	-3,-3,\
+	-2,-3,\
+	-1,-3,\
+	0,-3,\
+	1,-3,\
+	2,-3)
+	world << "Total offsets = [offsets.len] This should be 72"
+	var/i = 1
+	var/plantnum = 1
+	while (i <= offsets.len)
+		var/turf/T = get_turf(mob)
+		var/x = T.x + offsets[i]
+		i++
+		var/y = T.y + offsets[i]
+		i++
+
+		var/turf/CT = locate(x,y,T.z)
+		//world << "Tile to clear [CT], [CT.x], [CT.y], [CT.z]"
+
+		//Ok now we have a turf
+		//Lets clean it of all junk
+		for (var/atom/movable/AM in CT)
+			if (AM.layer >= LOW_OBJ_LAYER)
+				world << "Deleting [AM]"
+				qdel(AM)
+
+		//Now lets place a plant there
+		var/obj/structure/flora/pottedplant/P = new(CT)
+		if (plantnum < 10)
+			P.icon_state = "plant-0[plantnum]"
+			world << "Spawned plant plant-0[plantnum]"
+		else
+			P.icon_state = "plant-[plantnum]"
+			world << "Spawned plant plant-[plantnum]"
+		plantnum++
+
+	world << "Preview plants done running, because [i] is now >= [offsets.len]"
+	*/
