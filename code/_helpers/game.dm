@@ -168,7 +168,7 @@
 			if (!mobs[M])
 				mobs[M] = TRUE
 
-	for(var/o in listening_objects)
+	for(var/o in hearing_objects)
 		var/obj/O = o
 		if(O && O.loc && hearturfs[O.locs[1]])
 			if (!objs[O])
