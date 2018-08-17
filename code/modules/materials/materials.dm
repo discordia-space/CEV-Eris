@@ -1,4 +1,4 @@
-/*
+ficon/*
 	MATERIAL DATUMS
 	This data is used by various parts of the game for basic physical properties and behaviors
 	of the metals/materials used for constructing many objects. Each var is commented and should be pretty
@@ -338,8 +338,8 @@ var/list/name_to_material
 	name = MATERIAL_STEEL
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
-	icon_base = "solid"
-	icon_reinf = "reinf_over"
+	icon_base = "eris"
+	//icon_reinf = "reinf_over"
 	icon_colour = "#666666"
 	hitsound = 'sound/weapons/genhit.ogg'
 
@@ -354,9 +354,9 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/plasteel
 	integrity = 400
 	melting_point = 6000
-	icon_base = "solid"
-	icon_reinf = "reinf_over"
-	icon_colour = "#777777"
+	icon_base = "eris"
+	//icon_reinf = "reinf_over"
+	icon_colour = PLASTEEL_COLOUR//"#777777"
 	explosion_resistance = 25
 	hardness = 80
 	weight = 23

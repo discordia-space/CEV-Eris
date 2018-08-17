@@ -28,3 +28,5 @@
 #define MATERIAL_VOXALLOY "voxalloy"
 #define MATERIAL_RESIN "resin"
 #define MATERIAL_CARPET "carpet"
+
+#define PLASTEEL_COLOUR "#b0bcbe"
