@@ -265,18 +265,6 @@ div.notice {
     clear: both;
 }
 
-.itemContentNarrow, .itemContent {
-    float: left;
-}
-
-.itemContentNarrow {
-    width: 30%;
-}
-
-.itemContent {
-    width: 69%;
-}
-
 .itemLabelNarrow, .itemLabel, .itemLabelWide, .itemLabelWider, .itemLabelWidest {
     float: left;
     color: #e9c183;
@@ -302,10 +290,14 @@ div.notice {
     width: 100%;
 }
 
-.itemContentWide {
+.itemContentNarrow, .itemContent {
     float: left;
-    width: 79%;
 }
+
+.itemContentNarrow {
+    width: 30%;
+}
+
 
 .itemContentSmall {
     float: left;
@@ -315,6 +307,20 @@ div.notice {
 .itemContentMedium {
     float: left;
     width: 55%;
+}
+
+.itemContent {
+    width: 69%;
+}
+
+.itemContentWide {
+    float: left;
+    width: 79%;
+}
+
+.itemContentWidest {
+    float: left;
+    width: 100%;
 }
 
 .statusDisplay {

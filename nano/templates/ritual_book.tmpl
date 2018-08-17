@@ -1,0 +1,24 @@
+<!-- 
+Title: Ritual Book
+Used In File(s): \code\modules\core_implant\ritual_book.dm
+ -->
+ 
+{{if data.noimplant}}
+	<div class="itemContentWidest">
+		<div style="text-align: center;">
+			You see blank pages.
+		</div>
+	</div>
+{{else}}
+	<div class="statusDisplay">
+		<div class="item">
+			<div class="itemContentWidest">
+				{{for data.categroies}}
+					{{:helper.link(value, '', {'set_category' : value}, null, 'statusValue'}}
+				{{/for}}
+			</div>
+		</div>
+	</div>
+	
+	
+{{/if}}

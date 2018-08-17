@@ -24,8 +24,6 @@
 	. = ..()
 
 /obj/item/weapon/implant/core_implant/New()
-	START_PROCESSING(SSobj, src)
-	add_hearing()
 	..()
 
 /obj/item/weapon/implant/core_implant/install(var/mob/M)
@@ -44,6 +42,8 @@
 	active = TRUE
 	activated = TRUE
 	add_ritual_verbs()
+	START_PROCESSING(SSobj, src)
+	add_hearing()
 
 /obj/item/weapon/implant/core_implant/deactivate()
 	if(!active)
@@ -52,6 +52,14 @@
 	active = FALSE
 	remove_ritual_verbs()
 	STOP_PROCESSING(SSobj, src)
+
+/obj/item/weapon/implant/core_implant/proc/update_rituals()
+	rituals = list()
+	for(var/datum/core_module/rituals/M in modules)
+		if(istype(src,M.implant_type))
+			for(var/R in M.rituals)
+				if(!R in rituals)
+					rituals.Add(R)
 
 /obj/item/weapon/implant/core_implant/proc/add_ritual_verbs()
 	if(!wearer || !active)
@@ -138,6 +146,12 @@
 /obj/item/weapon/implant/core_implant/proc/add_module(var/datum/core_module/CM)
 	if(!istype(src,CM.implant_type))
 		return FALSE
+
+	if(CM.unique)
+		for(var/datum/core_module/EM in modules)
+			if(EM.type == CM.type)
+				return
+
 	CM.set_up()
 	CM.implant = src
 	CM.install_time = world.time
@@ -165,4 +179,5 @@
 		if(CM.time > 0 && CM.install_time + CM.time <= world.time)
 			CM.uninstall()
 
-
+/obj/item/weapon/implant/core_implant/proc/get_rituals()
+	return rituals

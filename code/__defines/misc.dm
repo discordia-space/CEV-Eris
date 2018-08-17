@@ -224,9 +224,12 @@
 #define CORE_ACTIVATED /datum/core_module/activatable
 
 //Cruciform
-#define CRUCIFORM_COMMON /datum/core_module/cruciform/common
-#define CRUCIFORM_PRIEST /datum/core_module/cruciform/priest
-#define CRUCIFORM_INQUISITOR /datum/core_module/cruciform/inquisitor
+#define CRUCIFORM_COMMON /datum/core_module/rituals/cruciform/base
+#define CRUCIFORM_PRIEST /datum/core_module/rituals/cruciform/priest
+#define CRUCIFORM_INQUISITOR /datum/core_module/rituals/cruciform/inquisitor
+#define CRUCIFORM_CRUSADER /datum/core_module/rituals/cruciform/crusader
+#define CRUCIFORM_UPLINK /datum/core_module/cruciform/uplink
+#define CRUCIFORM_REDLIGHT /datum/core_module/cruciform/red_light
 #define CRUCIFORM_CLONING /datum/core_module/cruciform/cloning
 
 #define CRUCIFORM_OBEY /datum/core_module/cruciform/obey
