@@ -36,22 +36,21 @@
 	)
 
 
-/datum/objective/steal/proc/steal_target(var/item_name)
+/datum/objective/steal/set_target(var/item_name)
 	target_name = item_name
 	steal_target = possible_items[target_name]
 	if(!steal_target)
 		steal_target = possible_items_special[target_name]
-	explanation_text = "Steal [target_name]."
+	update_explanation()
 	return steal_target
 
-
 /datum/objective/steal/find_target()
-	return steal_target(pick(possible_items))
+	return set_target(pick(possible_items))
 
 
 /datum/objective/steal/proc/select_target(var/mob/user)
 	var/list/possible_items_all = possible_items + possible_items_special
-	var/new_target = input(user, "Select target:", "Objective target", steal_target) as null|anything in possible_items_all
+	var/new_target = input(user, "Select target:", "Objective target", target_name) as null|anything in possible_items_all
 	if(!new_target)
 		return
 
@@ -109,8 +108,12 @@
 /datum/objective/steal/get_panel_entry()
 	return "Steal <a href='?src=\ref[src];switch_item=1'>[target_name]</a>."
 
+/datum/objective/steal/update_explanation()
+	explanation_text = "Steal [target_name]."
+
 /datum/objective/steal/Topic(href, href_list)
 	if(..())
 		return TRUE
 	if(href_list["switch_item"])
 		select_target(usr)
+		antag.antagonist_panel()

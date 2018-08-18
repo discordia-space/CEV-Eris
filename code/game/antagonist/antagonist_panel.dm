@@ -105,7 +105,7 @@
 		var/datum/objective/objective = locate(href_list["obj_delete"])
 		if(!istype(objective))
 			return
-		objectives -= objective
+		qdel(objective)
 
 	else if(href_list["obj_completed"])
 		var/datum/objective/objective = locate(href_list["obj_completed"])
