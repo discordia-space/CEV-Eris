@@ -184,14 +184,13 @@
 			if(H.species.can_shred(H))
 				attack_generic(H,25)
 				return
-
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
+		playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 		user.do_attack_animation(src)
 		usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
 							SPAN_DANGER("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
+		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
 		usr.visible_message("[usr.name] knocks on the [src.name].",
 							"You knock on the [src.name].",
 							"You hear a knocking sound.")
