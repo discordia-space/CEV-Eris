@@ -41,7 +41,10 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/New()
 	..()
+	fall_to_floor()
 	update_icon()
+
+
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
 	if(src.type == /obj/effect/decal/cleanable/blood)
@@ -239,3 +242,16 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/New()
 	spawn(DRYING_TIME * 2)
 		dry=1
+
+//This proc prevents blood on openspace tiles, by causing them to fall down until they hit the ground
+/obj/effect/decal/cleanable/blood/proc/fall_to_floor()
+	if (istype(loc, /turf/simulated/open))
+		anchored = 0 //Anchored things can't fall
+		while (istype(loc, /turf/simulated/open))
+			var/turf/simulated/open/T = loc
+			T.fallThrough(src)
+
+			//A failsafe. If falling through the floor somehow fails to send us anywhere new, we break out to avoid an infinite loop
+			if (loc == T)
+				break
+	anchored = initial(anchored) //Reset it
