@@ -186,6 +186,7 @@
 	energy = 100
 	accept_glass = 1
 	max_energy = 100
+	density = 0
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 
 /obj/machinery/chemical_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
@@ -210,6 +211,7 @@
 	energy = 100
 	accept_glass = 1
 	max_energy = 100
+	density = 0
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
 

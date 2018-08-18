@@ -293,7 +293,7 @@
 	return 0
 
 //Splashing reagents is messier than trans_to, the target's loc gets some of the reagents as well.
-/datum/reagents/proc/splash(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/min_spill=0, var/max_spill=60)
+/datum/reagents/proc/splash(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/min_spill=10, var/max_spill=60)
 	var/spill = 0
 	if(!isturf(target) && target.loc)
 		spill = amount*(rand(min_spill, max_spill)/100)
@@ -301,7 +301,11 @@
 	if(spill)
 		splash(target.loc, spill, multiplier, copy, min_spill, max_spill)
 
-	trans_to(target, amount, multiplier, copy)
+	//Here we attempt to transfer some reagents to the target. But it can often fail,
+	//like if you try to splash reagents onto an object that isn't an open container
+	if (!trans_to(target, amount, multiplier, copy) && total_volume > 0)
+		//If it fails, but we still have some volume, then we'll just destroy some of our reagents
+		remove_any(amount) //If we don't do this, then only the spill amount above is removed, and someone can keep splashing with the same beaker endlessly
 
 /datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1)
 	if (!target || !target.reagents || !target.simulated)
