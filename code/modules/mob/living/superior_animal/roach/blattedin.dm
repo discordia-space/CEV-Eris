@@ -1,4 +1,4 @@
-/datum/reagent/toxin/blattedin/touch_mob(mob/living/roach/bug, amount)
+/datum/reagent/toxin/blattedin/touch_mob(mob/living/superior_animal/roach/bug, amount)
 	if(istype(bug))
 		if(bug.stat == DEAD)
 			if(!bug.blattedin_revives_left || prob(70))//Roaches sometimes can come back to life from healing vapors

@@ -1,4 +1,4 @@
-/mob/living/roach/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/superior_animal/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj || Proj.nodamage)
 		return
 
@@ -6,7 +6,7 @@
 	return 0
 
 
-/mob/living/roach/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/superior_animal/attack_hand(mob/living/carbon/human/M as mob)
 	..()
 
 	switch(M.a_intent)
@@ -45,7 +45,7 @@
 	return
 
 
-/mob/living/roach/attackby(var/obj/item/O, var/mob/user)
+/mob/living/superior_animal/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O
@@ -71,7 +71,7 @@
 			O.attack(src, user, user.targeted_organ)
 
 
-/mob/living/roach/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/superior_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
 	visible_message(SPAN_DANGER("\The [src] has been attacked with \the [O] by [user]."))
 
@@ -87,7 +87,7 @@
 	return 0
 
 
-/mob/living/roach/ex_act(severity)
+/mob/living/superior_animal/ex_act(severity)
 	if(!blinded)
 		if(HUDtech.Find("flash"))
 			flick("flash", HUDtech["flash"])
@@ -101,15 +101,15 @@
 			adjustBruteLoss(30)
 
 
-/mob/living/roach/adjustBruteLoss(damage)
+/mob/living/superior_animal/adjustBruteLoss(damage)
 	health = Clamp(health - damage, 0, maxHealth)
 
 
-/mob/living/roach/handle_fire()
+/mob/living/superior_animal/handle_fire()
 	return
-/mob/living/roach/update_fire()
+/mob/living/superior_animal/update_fire()
 	return
-/mob/living/roach/IgniteMob()
+/mob/living/superior_animal/IgniteMob()
 	return
-/mob/living/roach/ExtinguishMob()
+/mob/living/superior_animal/ExtinguishMob()
 	return

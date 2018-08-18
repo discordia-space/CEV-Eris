@@ -5,9 +5,9 @@
 
 /obj/random/mob/spiders/item_to_spawn()
 	return pick(prob(30);/obj/effect/spider/spiderling,\
-				prob(4);/mob/living/simple_animal/hostile/giant_spider,\
-				prob(2);/mob/living/simple_animal/hostile/giant_spider/nurse,\
-				prob(2);/mob/living/simple_animal/hostile/giant_spider/hunter)
+				prob(4);/mob/living/superior_animal/giant_spider,\
+				prob(2);/mob/living/superior_animal/giant_spider/nurse,\
+				prob(2);/mob/living/superior_animal/giant_spider/hunter)
 
 /obj/random/mob/spiders/low_chance
 	name = "low chance random spider"

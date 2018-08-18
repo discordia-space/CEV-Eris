@@ -1,4 +1,4 @@
-/mob/living/roach/support
+/mob/living/superior_animal/roach/support
 	name = "Seuche Roach"
 	desc = "A monstrous, dog-sized cockroach. This one smells like hell and secretes strange vapors."
 	icon_state = "seuche"
@@ -10,11 +10,11 @@
 	melee_damage_upper = 3
 
 
-/mob/living/simple_animal/hostile/roach/support/New()
+/mob/living/superior_animal/roach/support/New()
 	..()
 	create_reagents(100)
 
-/mob/living/simple_animal/hostile/roach/support/proc/gas_attack()
+/mob/living/superior_animal/roach/support/proc/gas_attack()
 	if(!reagents.has_reagent("blattedin", 20) || stat != CONSCIOUS)
 		return FALSE
 	var/location = get_turf(src)
@@ -27,7 +27,7 @@
 	reagents.clear_reagents()
 	return TRUE
 
-/mob/living/simple_animal/hostile/roach/support/Life()
+/mob/living/superior_animal/roach/support/Life()
 	..()
 	if(stat != CONSCIOUS)
 		return
@@ -35,7 +35,7 @@
 	if(prob(7))
 		gas_attack()
 
-/mob/living/simple_animal/hostile/roach/support/FindTarget()
+/mob/living/superior_animal/roach/support/FindTarget()
 	. = ..()
 	if(. && gas_attack())
 		visible_emote("charges at [.] in clouds of poison!")

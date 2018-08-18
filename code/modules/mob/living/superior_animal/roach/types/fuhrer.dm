@@ -1,4 +1,4 @@
-/mob/living/roach/fuhrer
+/mob/living/superior_animal/roach/fuhrer
 	name = "Fuhrer Roach"
 	desc = "A glorious leader of cockroaches. Literally Hitler."
 	icon_state = "fuhrer"

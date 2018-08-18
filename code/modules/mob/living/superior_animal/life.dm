@@ -1,13 +1,13 @@
-/mob/living/roach/updatehealth()
+/mob/living/superior_animal/updatehealth()
 	return
 
 
-/mob/living/roach/proc/handle_supernatural()
+/mob/living/superior_animal/proc/handle_supernatural()
 	if(purge)
 		purge -= 1
 
 
-/mob/living/roach/Life()
+/mob/living/superior_animal/Life()
 	..()
 
 	//Health
@@ -39,7 +39,7 @@
 		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
+				if(!(stop_automated_movement_when_pulled && pulledby)) //Some animals don't move when pulled
 					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
 					moving_to = pick(cardinal)
 					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
@@ -104,32 +104,14 @@
 	if(!atmos_suitable)
 		adjustBruteLoss(unsuitable_atoms_damage)
 
-	if(client)
-		return 0
-
-	if(!stat)
-		switch(stance)
-			if(HOSTILE_STANCE_IDLE)
-				target_mob = FindTarget()
-
-			if(HOSTILE_STANCE_ATTACK)
-				if(destroy_surroundings)
-					DestroySurroundings()
-				MoveToTarget()
-
-			if(HOSTILE_STANCE_ATTACKING)
-				if(destroy_surroundings)
-					DestroySurroundings()
-				AttackTarget()
-
 	return 1
 
 
-/mob/living/roach/gib()
+/mob/living/superior_animal/gib()
 	..(icon_gib,1)
 
 
-/mob/living/roach/death(gibbed, deathmessage = "dies!")
+/mob/living/superior_animal/death(gibbed, deathmessage = "dies!")
 	icon_state = icon_dead
 	density = 0
 	walk(src, 0)

@@ -1,4 +1,4 @@
-/mob/living/roach/hunter
+/mob/living/superior_animal/roach/hunter
 	name = "Jager Roach"
 	desc = "A monstrous, dog-sized cockroach. This one have a bigger claws."
 	icon_state = "jager"
