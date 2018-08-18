@@ -15,8 +15,8 @@
 	mob_path = /mob/living/simple_animal/borer
 
 /datum/antagonist/borer/create_objectives()
-	objectives.Add(new /datum/objective/borer_survive (src))
-	objectives.Add(new /datum/objective/borer_reproduce (src))
+	new /datum/objective/borer_survive (src)
+	new /datum/objective/borer_reproduce (src)
 
 /datum/antagonist/borer/create_survive_objective()
 	return
