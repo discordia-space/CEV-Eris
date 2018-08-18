@@ -104,4 +104,3 @@
 		return
 	var/turf/T = pick_mobless_turf_if_exists(antag_starting_locations[id])
 	owner.current.forceMove(T)
-
