@@ -8,14 +8,14 @@
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 
-	var/show_stat_health = 1	//does the percentage health show in the stat panel for the mob
+	var/show_stat_health = TRUE	//does the percentage health show in the stat panel for the mob
 
 	var/icon_living = ""
 	var/icon_dead = ""
 	var/icon_gib = null	//We only try to show a gibbing animation if this exists.
 
 	//Napping
-	var/can_nap = 0
+	var/can_nap = FALSE
 	var/icon_rest = null
 
 	var/list/speak = list()
@@ -28,9 +28,9 @@
 	universal_speak = 0		//No, just no.
 	var/meat_amount = 0
 	var/meat_type
-	var/stop_automated_movement = 0 //Use this to temporarely stop random movement or to if you write special movement code for animals.
-	var/wander = 1	// Does the mob wander around when idle?
-	var/stop_automated_movement_when_pulled = 1 //When set to 1 this stops the animal from moving when someone is pulling it.
+	var/stop_automated_movement = FALSE //Use this to temporarely stop random movement or to if you write special movement code for animals.
+	var/wander = TRUE	// Does the mob wander around when idle?
+	var/stop_automated_movement_when_pulled = TRUE //When set to 1 this stops the animal from moving when someone is pulling it.
 
 	//Interaction
 	var/response_help   = "tries to help"
@@ -395,10 +395,10 @@
 //Puts the mob to sleep
 /mob/living/simple_animal/proc/fall_asleep()
 	if (stat != DEAD)
-		resting = 1
+		resting = TRUE
 		stat = UNCONSCIOUS
-		canmove = 0
-		wander = 0
+		canmove = FALSE
+		wander = FALSE
 		walk_to(src,0)
 		update_icons()
 
@@ -406,9 +406,9 @@
 /mob/living/simple_animal/proc/wake_up()
 	if (stat != DEAD)
 		stat = CONSCIOUS
-		resting = 0
-		canmove = 1
-		wander = 1
+		resting = FALSE
+		canmove = TRUE
+		wander = TRUE
 		update_icons()
 
 /mob/living/simple_animal/update_icons()

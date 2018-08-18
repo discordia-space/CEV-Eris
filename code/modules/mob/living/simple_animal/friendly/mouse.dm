@@ -9,7 +9,7 @@
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
 	icon_rest = "mouse_gray_sleep"
-	can_nap = 1
+	can_nap = TRUE
 	speak = list("Squeek!","SQUEEK!","Squeek?")
 	speak_emote = list("squeeks","squeeks","squiks")
 	emote_hear = list("squeeks","squeaks","squiks")
@@ -41,15 +41,15 @@
 	min_oxy = 16 //Require atleast 16kPA oxygen
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323	//Above 50 Degrees Celcius
-	universal_speak = 0
-	universal_understand = 1
+	universal_speak = FALSE
+	universal_understand = TRUE
 	holder_type = /obj/item/weapon/holder/mouse
 	//digest_factor = 0.05 //These are for animal-eating code, not yet ported
 	//min_scan_interval = 2
 	//max_scan_interval = 20
 	//seek_speed = 1
 
-	can_pull_size = 1
+	can_pull_size = ITEM_SIZE_TINY
 	can_pull_mobs = MOB_PULL_NONE
 
 	var/decompose_time = 18000

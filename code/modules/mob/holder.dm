@@ -95,7 +95,7 @@ var/list/holder_mob_icon_cache = list()
 //This function releases mobs into wherever the holder currently is. Its not safe to call from a lot of places
 //Use release_to_floor for a simple, safe release
 /obj/item/weapon/holder/proc/release_mob()
-	for(var/mob/M in contents)
+	for(var/mob/living/M in contents)
 		var/atom/movable/mob_container
 		mob_container = M
 		mob_container.forceMove(src.loc)//if the holder was placed into a disposal, this should place the animal in the disposal
@@ -110,7 +110,7 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/proc/release_to_floor()
 	var/turf/T = get_turf(src)
 
-	for(var/mob/M in contents)
+	for(var/mob/living/M in contents)
 		M.forceMove(T) //if the holder was placed into a disposal, this should place the animal in the disposal
 		M.reset_view()
 		M.Released()
