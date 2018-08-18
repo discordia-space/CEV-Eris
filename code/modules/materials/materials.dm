@@ -339,7 +339,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
 	icon_base = "eris"
-	//icon_reinf = "reinf_over"
+	icon_reinf = "reinf_eris"
 	icon_colour = "#666666"
 	hitsound = 'sound/weapons/genhit.ogg'
 
@@ -355,7 +355,7 @@ var/list/name_to_material
 	integrity = 400
 	melting_point = 6000
 	icon_base = "eris"
-	//icon_reinf = "reinf_over"
+	icon_reinf = "reinf_eris"
 	icon_colour = PLASTEEL_COLOUR//"#777777"
 	explosion_resistance = 25
 	hardness = 80

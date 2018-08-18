@@ -29,4 +29,4 @@
 #define MATERIAL_RESIN "resin"
 #define MATERIAL_CARPET "carpet"
 
-#define PLASTEEL_COLOUR "#b0bcbe"
+#define PLASTEEL_COLOUR "#8e9799"
