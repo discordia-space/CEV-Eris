@@ -347,7 +347,7 @@
 		usr.unEquip(I, src.loc)
 	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
-	if(QUALITY_WELDING in I.tool_qualities)
+	else if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			welded = !src.welded
 			update_icon()

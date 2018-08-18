@@ -4,6 +4,7 @@
 	real_name = "corgi"
 	desc = "It's a corgi."
 	icon_state = "corgi"
+	item_state = "corgi"
 	speak_emote = list("barks", "woofs")
 	emote_see = list("shakes its head", "shivers")
 	speak_chance = 1
@@ -16,7 +17,7 @@
 	see_in_dark = 5
 	mob_size = 8
 	possession_candidate = 1
-
+	holder_type = /obj/item/weapon/holder/corgi
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
 
