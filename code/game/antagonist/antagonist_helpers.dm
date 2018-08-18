@@ -9,7 +9,7 @@
 		return FALSE
 	if(player.current.stat || !player.active)
 		return FALSE
-	if(!only_human || !ishuman(player.current))
+	if(only_human && !ishuman(player.current))
 		return FALSE
 
 	return TRUE
