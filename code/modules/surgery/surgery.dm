@@ -131,7 +131,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(success == TOOL_USE_SUCCESS)
 			selectedStep.end_step(user, M, zone, tool)		//finish successfully
 		else if(success == TOOL_USE_FAIL)
-			tool.handle_failure(user, M, required_stat = STAT_BIO)
+			tool.handle_failure(user, M, required_stat = STAT_BIO, selectedStep.requedQuality)
 			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
 		else
 			user << SPAN_WARNING("You must remain close to your patient to conduct surgery.")

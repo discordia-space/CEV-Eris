@@ -265,6 +265,20 @@ div.notice {
     clear: both;
 }
 
+.flexContainer {
+    width: 100%;
+    margin: 4px 0 0 0;
+    clear: both;
+    display: flex;
+    align-content: : wrap;
+    align-items: stretch;
+
+}
+
+.flexBox {
+    display: flex;
+}
+
 .itemContentNarrow, .itemContent {
     float: left;
 }

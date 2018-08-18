@@ -557,7 +557,7 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"}
 
 	if (message)
 		log_emote("[name]/[key] : [message]")
-		custom_emote(m_type,message)
+		send_emote(message, m_type)
 
 
 /mob/living/carbon/human/verb/pose()

@@ -45,9 +45,9 @@ meteor_act
 	switch (def_zone)
 		if(BP_HEAD)
 			agony_amount *= 1.50
-		if(BP_L_HAND, BP_R_HAND)
+		if(BP_L_ARM, BP_R_ARM)
 			var/c_hand
-			if (def_zone == BP_L_HAND)
+			if (def_zone == BP_L_ARM)
 				c_hand = l_hand
 			else
 				c_hand = r_hand
@@ -397,9 +397,7 @@ meteor_act
 		"upper_torso" = THERMAL_PROTECTION_UPPER_TORSO,
 		"lower_torso" = THERMAL_PROTECTION_LOWER_TORSO,
 		"legs" = THERMAL_PROTECTION_LEG_LEFT + THERMAL_PROTECTION_LEG_RIGHT,
-		"feet" = THERMAL_PROTECTION_FOOT_LEFT + THERMAL_PROTECTION_FOOT_RIGHT,
 		"arms" = THERMAL_PROTECTION_ARM_LEFT + THERMAL_PROTECTION_ARM_RIGHT,
-		"hands" = THERMAL_PROTECTION_HAND_LEFT + THERMAL_PROTECTION_HAND_RIGHT
 		)
 
 	for(var/obj/item/clothing/C in src.get_equipped_items())
@@ -413,12 +411,8 @@ meteor_act
 			perm_by_part["lower_torso"] *= C.permeability_coefficient
 		if(C.body_parts_covered & LEGS)
 			perm_by_part["legs"] *= C.permeability_coefficient
-		if(C.body_parts_covered & FEET)
-			perm_by_part["feet"] *= C.permeability_coefficient
 		if(C.body_parts_covered & ARMS)
 			perm_by_part["arms"] *= C.permeability_coefficient
-		if(C.body_parts_covered & HANDS)
-			perm_by_part["hands"] *= C.permeability_coefficient
 
 	for(var/part in perm_by_part)
 		perm += perm_by_part[part]

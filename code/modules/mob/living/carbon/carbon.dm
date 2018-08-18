@@ -86,9 +86,9 @@
 /mob/living/carbon/attack_hand(mob/M as mob)
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
 		if (H.hand)
-			temp = H.organs_by_name[BP_L_HAND]
+			temp = H.organs_by_name[BP_L_ARM]
 		if(temp && !temp.is_usable())
 			H << "\red You can't use your [temp.name]"
 			return

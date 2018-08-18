@@ -374,7 +374,7 @@
 	desc = "A chute for big and small packages alike!"
 	density = 1
 	icon_state = "intake"
-
+	layer = BELOW_OBJ_LAYER //So that things being ejected are visible
 	var/c_mode = 0
 
 /obj/machinery/disposal/deliveryChute/New()

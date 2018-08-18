@@ -117,21 +117,31 @@
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
+//Robust people can drink a lot
+	strength = max(10, strength + M.stats.getStat(STAT_TGH))
+
 	if(dose * strength_mod >= strength) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
+
 	if(dose * strength_mod >= strength * 2) // Slurring
 		M.slurring = max(M.slurring, 30)
+
 	if(dose * strength_mod >= strength * 3) // Confusion - walking in random directions
 		M.confused = max(M.confused, 20)
+
 	if(dose * strength_mod >= strength * 4) // Blurry vision
 		M.eye_blurry = max(M.eye_blurry, 10)
+
 	if(dose * strength_mod >= strength * 5) // Drowsyness - periodically falling asleep
 		M.drowsyness = max(M.drowsyness, 20)
-	if(dose * strength_mod >= strength * 6) // Toxic dose
-		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
+
 	if(dose * strength_mod >= strength * 7) // Pass out
 		M.paralysis = max(M.paralysis, 20)
 		M.sleeping  = max(M.sleeping, 30)
+
+	if(dose * strength_mod >= strength * 9) // Toxic dose
+		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
+
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)

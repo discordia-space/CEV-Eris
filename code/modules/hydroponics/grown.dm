@@ -306,7 +306,7 @@
 			return
 		reagents.remove_any(rand(1,3)) //Todo, make it actually remove the reagents the seed uses.
 		seed.do_thorns(H,src)
-		seed.do_sting(H,src,pick(BP_R_HAND, BP_L_HAND))
+		seed.do_sting(H,src,pick(BP_R_ARM, BP_L_ARM))
 
 // Predefined types for placing on the map.
 

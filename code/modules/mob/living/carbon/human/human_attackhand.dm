@@ -12,9 +12,9 @@
 
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
-		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
+		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
 		if(H.hand)
-			temp = H.organs_by_name[BP_L_HAND]
+			temp = H.organs_by_name[BP_L_ARM]
 		if(!temp || !temp.is_usable())
 			H << "\red You can't use your hand."
 			return
@@ -132,7 +132,7 @@
 				attack_generic(H,rand(1,3),"punched")
 				return
 
-			var/stat_damage = 4 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
 			var/block = 0
 			var/accurate = 0
 			var/hit_zone = H.targeted_organ

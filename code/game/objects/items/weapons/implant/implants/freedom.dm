@@ -10,7 +10,7 @@
 	var/install_organ = INSTALL_HANDS
 	is_legal = FALSE
 	origin_tech = list(TECH_COMBAT=5, TECH_MAGNET=3, TECH_BIO=4, TECH_ILLEGAL=2)
-	allowed_organs = list(BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)
+	allowed_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 
 /obj/item/weapon/implant/freedom/New()
 	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
@@ -48,7 +48,7 @@
 					W.layer = initial(W.layer)
 
 /obj/item/weapon/implant/freedom/on_install(mob/living/carbon/source, obj/item/organ/O)
-	if(O.organ_tag in list(BP_L_FOOT, BP_R_FOOT))
+	if(O.organ_tag in list(BP_L_LEG, BP_R_LEG))
 		install_organ = INSTALL_FOOTS
 		source.mind.store_memory("Freedom implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.", 0, 0)
 		source << "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."

@@ -80,13 +80,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_wear_mask)
 			return has_organ(BP_HEAD)
 		if(slot_handcuffed)
-			return has_organ(BP_L_HAND) && has_organ(BP_R_HAND)
+			return has_organ(BP_L_ARM) && has_organ(BP_R_ARM)
 		if(slot_legcuffed)
 			return has_organ(BP_L_LEG ) && has_organ(BP_R_LEG)
 		if(slot_l_hand)
-			return has_organ(BP_L_HAND)
+			return has_organ(BP_L_ARM)
 		if(slot_r_hand)
-			return has_organ(BP_R_HAND)
+			return has_organ(BP_R_ARM)
 		if(slot_belt)
 			return has_organ(BP_CHEST)
 		if(slot_wear_id)
@@ -95,11 +95,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_l_ear, slot_r_ear, slot_glasses)
 			return has_organ(BP_HEAD)
 		if(slot_gloves)
-			return has_organ(BP_L_HAND) || has_organ(BP_R_HAND)
+			return has_organ(BP_L_ARM) || has_organ(BP_R_ARM)
 		if(slot_head)
 			return has_organ(BP_HEAD)
 		if(slot_shoes)
-			return has_organ(BP_R_FOOT) || has_organ(BP_L_FOOT)
+			return has_organ(BP_R_LEG) || has_organ(BP_L_LEG)
 		if(slot_wear_suit, slot_w_uniform, slot_l_store, slot_r_store, slot_s_store)
 			return has_organ(BP_CHEST)
 		if(slot_in_backpack)
@@ -210,16 +210,16 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/proc/get_active_hand_organ()
 	if(hand)
-		return get_organ(BP_L_HAND)
+		return get_organ(BP_L_ARM)
 	else
-		return get_organ(BP_R_HAND)
+		return get_organ(BP_R_ARM)
 
 /mob/living/carbon/human/proc/get_holding_hand(var/obj/item/W)
 	switch(get_inventory_slot(W))
 		if(slot_l_hand)
-			return BP_L_HAND
+			return BP_L_ARM
 		if(slot_r_hand)
-			return BP_R_HAND
+			return BP_R_ARM
 
 
 
@@ -233,7 +233,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
 	if(ismob(W.loc))
 		var/mob/M = W.loc
-		if(M.get_inventory_slot(W) && !M.unEquip(W, src))
+		if(M.get_inventory_slot(W) && !M.prepare_for_slotmove(W))
 			return
 	W.forceMove(src)
 	switch(slot)

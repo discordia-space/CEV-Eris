@@ -165,3 +165,11 @@
 	caliber = "14.5mm"
 	ammo_type = /obj/item/ammo_casing/a145
 	max_ammo = 30
+
+/obj/item/ammo_magazine/ammobox/c10x24
+	name = "ammunition box (10mm x 24 caseless)"
+	icon_state = "box10x24"
+	matter = list(MATERIAL_STEEL = 8)
+	caliber = "10x24"
+	ammo_type = /obj/item/ammo_casing/c10x24
+	max_ammo = 200
