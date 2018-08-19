@@ -13,3 +13,9 @@
 	icon_state = "spy-blue"
 	alpha = 124
 	var/navigation = "But you forgot where you left it. Oops."
+
+/obj/landmark/storyevent/hidden_vent_antag
+	name = "hidden-vent-antag"
+	icon_state = "spy-green"
+	alpha = 124
+	var/navigation = "But you forgot where you left it. Oops."

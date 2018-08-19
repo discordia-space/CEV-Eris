@@ -448,6 +448,10 @@
     turn(dir, angle) turns dir by angle degrees counter-clockwise
 */
 
+//This function is more complex than it appears.
+//Previously, each corner can have up to three neighbors. One clockwise (45 degrees), one anticlockwise, and one diagonal from it
+//This function takes that and assigns a bitfield to that corner based on which neighbors it has. Giving a value between 0 to 7, inclusive
+//This number is used to choose the sprite file to draw that corner of the wall/table from. There are eight overlay files for each
 /proc/dirs_to_corner_states(list/dirs)
 	if(!istype(dirs)) return
 
