@@ -17,10 +17,9 @@ var/global/list/all_objectives_types = null
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = FALSE				//currently only used for custom objectives.
 
-/datum/objective/New(var/datum/antagonist/new_owner, var/datum/mind/target, var/add_to_list = FALSE)
+/datum/objective/New(var/datum/antagonist/new_owner, var/datum/mind/target)
 	antag = new_owner
-	if(add_to_list)
-		antag.objectives |= src
+	antag.objectives += src
 	if(antag.owner)
 		owner = antag.owner
 	if(!target)
@@ -31,6 +30,13 @@ var/global/list/all_objectives_types = null
 	..()
 
 /datum/objective/Destroy()
+	if(antag)
+		antag.objectives -= src
+		antag = null
+	if(owner)
+		owner = null
+	if(target)
+		target = null
 	all_objectives.Remove(src)
 	. = ..()
 
@@ -83,4 +89,4 @@ var/global/list/all_objectives_types = null
 
 	if(href_list["switch_target"])
 		select_human_target(usr)
-		owner.edit_memory()
+		antag.antagonist_panel()
