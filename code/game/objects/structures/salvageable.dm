@@ -25,6 +25,7 @@
 
 
 /obj/structure/salvageable/machine
+	name = "broken machine"
 	icon_state = "machine"
 	salvageable_parts = list(
 		/obj/item/weapon/stock_parts/console_screen = 80,
@@ -46,7 +47,27 @@
 		/obj/item/weapon/stock_parts/matter_bin/adv = 20,
 	)
 
+/obj/structure/salvageable/computer
+	name = "broken computer"
+	icon_state = "computer"
+	salvageable_parts = list(
+		/obj/item/weapon/stock_parts/console_screen = 80,
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/computer_hardware/network_card = 40,
+		/obj/item/weapon/computer_hardware/network_card = 40,
+		/obj/item/weapon/computer_hardware/processor_unit = 40,
+		/obj/item/weapon/computer_hardware/processor_unit = 40,
+		/obj/item/weapon/computer_hardware/card_slot = 40,
+		/obj/item/weapon/computer_hardware/card_slot = 40,
+		/obj/item/weapon/stock_parts/capacitor/adv = 30,
+		/obj/item/weapon/computer_hardware/network_card/advanced = 20,
+	)
+
 /obj/structure/salvageable/autolathe
+	name = "broken autolathe"
 	icon_state = "autolathe"
 	salvageable_parts = list(
 		/obj/item/weapon/stock_parts/console_screen = 80,
@@ -73,4 +94,72 @@
 		/obj/item/stack/material/silver{amount = 10} = 20,
 		/obj/item/stack/material/gold{amount = 10} = 20,
 		/obj/item/stack/material/plasma{amount = 10} = 20,
+	)
+
+/obj/structure/salvageable/implant_container
+	name = "old container"
+	icon_state = "implant-container"
+	salvageable_parts = list(
+		/obj/item/weapon/stock_parts/console_screen = 80,
+		/obj/item/stack/cable_coil{amount = 5} = 80,
+		/obj/item/weapon/implant/death_alarm = 15,
+		/obj/item/weapon/implant/explosive = 10,
+		/obj/item/weapon/implant/freedom = 5,
+		/obj/item/weapon/implant/tracking = 10,
+		/obj/item/weapon/implant/chem = 10,
+		/obj/item/prosthesis/l_arm = 20,
+		/obj/item/prosthesis/r_arm = 20,
+		/obj/item/prosthesis/l_leg = 20,
+		/obj/item/prosthesis/r_leg = 20,
+		/obj/item/weapon/implantcase = 30,
+		/obj/item/weapon/implanter = 30,
+		/obj/item/stack/material/steel{amount = 10} = 30,
+		/obj/item/stack/material/glass{amount = 10} = 30,
+		/obj/item/stack/material/silver{amount = 10} = 30,
+	)
+
+/obj/structure/salvageable/data
+	name = "broken data storage"
+	icon_state = "data"
+	salvageable_parts = list(
+		/obj/item/weapon/stock_parts/console_screen = 80,
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/computer_hardware/network_card = 40,
+		/obj/item/weapon/computer_hardware/network_card = 40,
+		/obj/item/weapon/computer_hardware/processor_unit = 40,
+		/obj/item/weapon/computer_hardware/processor_unit = 40,
+		/obj/item/weapon/computer_hardware/hard_drive = 50,
+		/obj/item/weapon/computer_hardware/hard_drive = 50,
+		/obj/item/weapon/computer_hardware/hard_drive = 50,
+		/obj/item/weapon/computer_hardware/hard_drive = 50,
+		/obj/item/weapon/computer_hardware/hard_drive = 50,
+		/obj/item/weapon/computer_hardware/hard_drive = 50,
+		/obj/item/weapon/computer_hardware/hard_drive/advanced = 30,
+		/obj/item/weapon/computer_hardware/hard_drive/advanced = 30,
+		/obj/item/weapon/computer_hardware/network_card/advanced = 20,
+	)
+
+/obj/structure/salvageable/server
+	name = "broken server"
+	icon_state = "server"
+	salvageable_parts = list(
+		/obj/item/weapon/stock_parts/console_screen = 80,
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/computer_hardware/network_card = 40,
+		/obj/item/weapon/computer_hardware/network_card = 40,
+		/obj/item/weapon/computer_hardware/processor_unit = 40,
+		/obj/item/weapon/computer_hardware/processor_unit = 40,
+		/obj/item/weapon/stock_parts/subspace/amplifier = 40,
+		/obj/item/weapon/stock_parts/subspace/amplifier = 40,
+		/obj/item/weapon/stock_parts/subspace/analyzer = 40,
+		/obj/item/weapon/stock_parts/subspace/analyzer = 40,
+		/obj/item/weapon/stock_parts/subspace/ansible = 40,
+		/obj/item/weapon/stock_parts/subspace/ansible = 40,
+		/obj/item/weapon/stock_parts/subspace/transmitter = 40,
+		/obj/item/weapon/stock_parts/subspace/transmitter = 40,
+		/obj/item/weapon/stock_parts/subspace/crystal = 30,
+		/obj/item/weapon/stock_parts/subspace/crystal = 30,
+		/obj/item/weapon/computer_hardware/network_card/advanced = 20,
 	)
