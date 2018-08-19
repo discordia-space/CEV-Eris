@@ -22,7 +22,7 @@
 	ideal_character_age = 50
 
 	stat_modifers = list(
-		STAT_BIO = 30,
+		STAT_BIO = 40,
 	)
 
 	uniform = /obj/item/clothing/under/rank/moebius_biolab_officer
@@ -68,7 +68,7 @@
 	idtype = /obj/item/weapon/card/id/med
 
 	stat_modifers = list(
-		STAT_BIO = 20,
+		STAT_BIO = 30,
 	)
 
 	uniform = /obj/item/clothing/under/rank/medical
@@ -110,7 +110,7 @@
 
 	stat_modifers = list(
 		STAT_COG = 10,
-		STAT_BIO = 20,
+		STAT_BIO = 30,
 	)
 
 	uniform = /obj/item/clothing/under/rank/chemist
@@ -148,7 +148,7 @@
 	)
 
 	stat_modifers = list(
-		STAT_BIO = 10,
+		STAT_BIO = 15,
 	)
 
 	uniform = /obj/item/clothing/under/rank/psych
@@ -178,14 +178,14 @@
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 4
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_surgery,
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
 	)
 
 	stat_modifers = list(
-		STAT_BIO = 10,
+		STAT_BIO = 20,
 		STAT_ROB = 10,
 		STAT_TGH = 10,
 	)
