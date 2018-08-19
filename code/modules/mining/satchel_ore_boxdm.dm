@@ -17,10 +17,13 @@
 	if (istype(W, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = W
 		S.hide_from(usr)
-		for(var/obj/item/weapon/ore/O in S.contents)
-			S.remove_from_storage(O, src) //This will move the item to this item's contents
-		user << "\blue You empty the satchel into the box."
-
+		if (locate(/obj/item/weapon/ore) in S.contents)
+			for(var/obj/item/weapon/ore/O in S.contents)
+				S.remove_from_storage(O, src) //This will move the item to this item's contents
+			playsound(loc, S.use_sound, 50, 1, -5)
+			user.visible_message(SPAN_NOTICE("[user.name] empties the [S] into the box"), SPAN_NOTICE("You empty the [S] into the box."), SPAN_NOTICE("You hear a rustling sound"))
+		else
+			user << SPAN_WARNING("There's no ore inside the [S] to empty into here")
 	update_ore_count()
 
 	return
