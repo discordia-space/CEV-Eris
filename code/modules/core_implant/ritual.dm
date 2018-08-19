@@ -7,6 +7,7 @@
 	var/success_message = "Ritual successed."
 	var/fail_message = "Ritual failed."
 	var/implant_type = /obj/item/weapon/implant/core_implant
+	var/category = "???"
 
 //code of ritual, returns true on success, can be interrupted with fail(H, C, targets) and return FALSE
 /datum/ritual/proc/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)

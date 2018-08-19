@@ -33,6 +33,7 @@
 	C.install(H)
 	C.activate()
 	C.add_module(new CRUCIFORM_PRIEST)
+	C.add_module(new CRUCIFORM_REDLIGHT)
 
 	H.religion = "Christianity"
 

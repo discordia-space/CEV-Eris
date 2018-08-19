@@ -5,7 +5,7 @@
 /datum/ritual/targeted
 	name = "targeted ritual"
 	desc = "Basic ritual that does nothing."
-	phrase = ""
+	phrase = null
 
 /datum/ritual/targeted/get_say_phrase()
 	if(!phrase || phrase == "")
