@@ -68,6 +68,9 @@
 /obj/item/weapon/gun/projectile/proc/process_chambered()
 	if (!chambered) return
 
+	if(chambered.is_caseless)
+		QDEL_NULL(chambered)
+		return
 	// Aurora forensics port, gunpowder residue.
 	if(chambered.leaves_residue)
 		var/mob/living/carbon/human/H = loc

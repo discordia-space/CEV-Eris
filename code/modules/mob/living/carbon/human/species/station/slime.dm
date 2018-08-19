@@ -37,11 +37,7 @@
 		BP_L_ARM =  new /datum/organ_description/arm/left/slime,
 		BP_R_ARM =  new /datum/organ_description/arm/right/slime,
 		BP_L_LEG =  new /datum/organ_description/leg/left/slime,
-		BP_R_LEG =  new /datum/organ_description/leg/right/slime,
-		BP_L_HAND = new /datum/organ_description/hand/left/slime,
-		BP_R_HAND = new /datum/organ_description/hand/right/slime,
-		BP_L_FOOT = new /datum/organ_description/foot/left/slime,
-		BP_R_FOOT = new /datum/organ_description/foot/right/slime
+		BP_R_LEG =  new /datum/organ_description/leg/right/slime
 	)
 
 /datum/species/slime/handle_death(var/mob/living/carbon/human/H)

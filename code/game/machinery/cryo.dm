@@ -7,6 +7,7 @@
 	density = 1
 	anchored = 1.0
 	layer = ABOVE_WINDOW_LAYER
+	plane = GAME_PLANE
 	interact_offline = 1
 
 	var/on = 0

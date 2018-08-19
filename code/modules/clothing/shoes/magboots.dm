@@ -34,37 +34,68 @@
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_action_buttons()
 
-/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user)
-	var/mob/living/carbon/human/H = user
 
-	if(H.shoes)
-		shoes = H.shoes
-		if(shoes.overshoes)
-			user << "You are unable to wear \the [src] as \the [H.shoes] are in the way."
-			shoes = null
-			return 0
-		H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
-		shoes.forceMove(src)
+//We want to allow the user to equip magboots even if they're already wearing shoes
+//As long as those shoes are not themselves magboots or similar overshoe-shoes
+/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = 0)
+	if (slot == slot_shoes)
+		var/mob/living/carbon/human/H = user
 
-	if(!..())
-		if(shoes) 	//Put the old shoes back on if the check fails.
-			if(H.equip_to_slot_if_possible(shoes, slot_shoes))
-				src.shoes = null
-		return 0
+		if(H.shoes)
+			if (istype(H.shoes, /obj/item/clothing/shoes))
+				var/obj/item/clothing/shoes/S = H.shoes
+				if(S.overshoes)
+					if (!disable_warning)
+						user << "You are unable to wear \the [src] as \the [H.shoes] are in the way."
+					return 0
+		return 1
 
-	if (shoes)
-		user << "You slip \the [src] on over \the [shoes]."
-	set_slowdown()
-	wearer = H
-	return 1
+
+	else
+		return ..()
+
+//When the magboots are used on worn boots, this indicates that we want to wear them.
+/obj/item/clothing/shoes/magboots/pre_attack(atom/a, mob/user)
+	if (istype(a, /obj/item))
+		var/obj/item/i = a
+		//Ensure that the thing you clicked on is a pair of shoes which are currently being worn
+		if (i.get_equip_slot() == slot_shoes)
+			//Start the equipping process. This will run through mob_can_equip and pre_equip
+			user.equip_to_slot_if_possible(src,slot_shoes)
+			return 1
 
 /obj/item/clothing/shoes/magboots/dropped()
 	..()
+	remove()
+
+/obj/item/clothing/shoes/magboots/equipped()
+	..()
+	if (is_held())
+		remove() //If the magboots are taken into hands, release the shoes
+	else if (is_worn())
+		wearer = loc
+
+//This proc handles sucking up the old shoes before we equip the magboots.
+/obj/item/clothing/shoes/magboots/pre_equip(mob/M, slot)
+	if (slot == slot_shoes)
+		var/mob/living/carbon/human/H = M
+
+		if(H.shoes)
+			shoes = H.shoes
+			H.drop_from_inventory(shoes)	//Remove the old shoes so you can put on the magboots.
+			shoes.forceMove(src) //Old shoes are sucked up inside the magboots, they'll be released when the magboots are removed
+	return 0
+
+
+
+//This proc releases any contained shoes back onto the wearer, then nulls all the relevant values.
+//It is called when the magboots are dropped from the mob, or taken to any non-worn slot (ie, the hands)
+/obj/item/clothing/shoes/magboots/proc/remove()
 	var/mob/living/carbon/human/H = wearer
 	if(shoes)
 		if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
 			shoes.forceMove(get_turf(src))
-		src.shoes = null
+		shoes = null
 	wearer = null
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)

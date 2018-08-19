@@ -4,12 +4,40 @@
 
 #define CANDLE_LUM 3 // For how bright candles are.
 
+
+// Item equipment slots.
+//This is the value used for the equip_slot variable to tell what slot an item is currently equipped into
+#define slot_none		 0
+#define slot_back        1
+#define slot_wear_mask   2
+#define slot_handcuffed  3
+#define slot_l_hand      4
+#define slot_r_hand      5
+#define slot_belt        6
+#define slot_wear_id     7
+#define slot_l_ear       8
+#define slot_glasses     9
+#define slot_gloves      10
+#define slot_head        11
+#define slot_shoes       12
+#define slot_wear_suit   13
+#define slot_w_uniform   14
+#define slot_l_store     15
+#define slot_r_store     16
+#define slot_s_store     17
+#define slot_in_backpack 18
+#define slot_legcuffed   19
+#define slot_r_ear       20
+#define slot_legs        21
+#define slot_accessory_buffer         22
+
 // Item inventory slot bitmasks.
+//These are usually hardcoded to define what slots an item CAN equip to
 #define SLOT_OCLOTHING         0x1
 #define SLOT_ICLOTHING         0x2
 #define SLOT_GLOVES            0x4
 #define SLOT_EYES              0x8
-#define SLOT_EARS              0x10
+#define SLOT_EARS              0x10	//Anything that can go on an ear, can go on either ear
 #define SLOT_MASK              0x20
 #define SLOT_HEAD              0x40
 #define SLOT_FEET              0x80
@@ -64,29 +92,7 @@
 #define BLOCKHEADHAIR   0x20    // Hides the user's hair overlay. Leaves facial hair.
 #define BLOCKHAIR       0x40    // Hides the user's hair, facial and otherwise.
 
-// Slots.
-#define slot_back        1
-#define slot_wear_mask   2
-#define slot_handcuffed  3
-#define slot_l_hand      4
-#define slot_r_hand      5
-#define slot_belt        6
-#define slot_wear_id     7
-#define slot_l_ear       8
-#define slot_glasses     9
-#define slot_gloves      10
-#define slot_head        11
-#define slot_shoes       12
-#define slot_wear_suit   13
-#define slot_w_uniform   14
-#define slot_l_store     15
-#define slot_r_store     16
-#define slot_s_store     17
-#define slot_in_backpack 18
-#define slot_legcuffed   19
-#define slot_r_ear       20
-#define slot_legs        21
-#define slot_accessory_buffer         22
+
 
 // Inventory slot strings.
 // since numbers cannot be used as associative list keys.
@@ -108,15 +114,9 @@
 #define LEG_LEFT    0x40
 #define LEG_RIGHT   0x80
 #define LEGS        0xC0    //  LEG_LEFT | LEG_RIGHT
-#define FOOT_LEFT   0x100
-#define FOOT_RIGHT  0x200
-#define FEET        0x300   // FOOT_LEFT | FOOT_RIGHT
 #define ARM_LEFT    0x400
 #define ARM_RIGHT   0x800
 #define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
-#define HAND_LEFT   0x1000
-#define HAND_RIGHT  0x2000
-#define HANDS       0x3000  // HAND_LEFT | HAND_RIGHT
 #define FULL_BODY   0xFFFF
 
 // Bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
@@ -125,14 +125,10 @@
 #define THERMAL_PROTECTION_HEAD        0.3
 #define THERMAL_PROTECTION_UPPER_TORSO 0.15
 #define THERMAL_PROTECTION_LOWER_TORSO 0.15
-#define THERMAL_PROTECTION_LEG_LEFT    0.075
-#define THERMAL_PROTECTION_LEG_RIGHT   0.075
-#define THERMAL_PROTECTION_FOOT_LEFT   0.025
-#define THERMAL_PROTECTION_FOOT_RIGHT  0.025
-#define THERMAL_PROTECTION_ARM_LEFT    0.075
-#define THERMAL_PROTECTION_ARM_RIGHT   0.075
-#define THERMAL_PROTECTION_HAND_LEFT   0.025
-#define THERMAL_PROTECTION_HAND_RIGHT  0.025
+#define THERMAL_PROTECTION_LEG_LEFT    0.1
+#define THERMAL_PROTECTION_LEG_RIGHT   0.1
+#define THERMAL_PROTECTION_ARM_LEFT    0.1
+#define THERMAL_PROTECTION_ARM_RIGHT   0.1
 
 // Pressure limits.
 #define  HAZARD_HIGH_PRESSURE 550 // This determines at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)

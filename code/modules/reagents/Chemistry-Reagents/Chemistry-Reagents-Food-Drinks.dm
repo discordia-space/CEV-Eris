@@ -1236,6 +1236,24 @@
 	glass_desc = "A very classy looking drink."
 	glass_center_of_mass = list("x"=15, "y"=7)
 
+/datum/reagent/ethanol/ntcahors
+	name = "NeoTheology Cahors Wine"
+	id = "ntcahors"
+	description = "Ritual drink that cleanses the soul and body."
+	taste_description = "sweet charcoal"
+	color = "#7E4043" // rgb: 126, 64, 67
+	strength = 45
+
+	glass_icon_state = "wineglass"
+	glass_name = "glass of cahors"
+	glass_desc = "It looks like wine, but more dark."
+	glass_center_of_mass = list("x"=15, "y"=7)
+
+/datum/reagent/ethanol/ntcahors/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.hallucination = max(0, M.hallucination - 9 * removed)
+	M.adjustToxLoss(-5 * removed)
+
 // Cocktails
 
 /datum/reagent/ethanol/acid_spit

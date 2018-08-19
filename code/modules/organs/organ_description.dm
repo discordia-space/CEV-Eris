@@ -104,51 +104,6 @@
 	joint = "right knee"
 	amputation_point = "right hip"
 
-/datum/organ_description/hand
-	min_broken_damage = 40
-	w_class = ITEM_SIZE_SMALL
-	can_grasp = TRUE
-	drop_on_remove = list(slot_gloves, slot_handcuffed)
-
-/datum/organ_description/hand/left
-	organ_tag = BP_L_HAND
-	name = "left hand"
-	body_part = HAND_LEFT
-	parent_organ = BP_L_ARM
-	joint = "left wrist"
-	amputation_point = "left wrist"
-
-/datum/organ_description/hand/right
-	organ_tag = BP_R_HAND
-	name = "right hand"
-	body_part = HAND_RIGHT
-	parent_organ = BP_R_ARM
-	joint = "right wrist"
-	amputation_point = "right wrist"
-
-/datum/organ_description/foot
-	min_broken_damage = 40
-	can_stand = TRUE
-	drop_on_remove = list(slot_shoes, slot_legcuffed)
-
-/datum/organ_description/foot/left
-	organ_tag = BP_L_FOOT
-	name = "left foot"
-	body_part = FOOT_LEFT
-	icon_position = LEFT
-	parent_organ = BP_L_LEG
-	joint = "left ankle"
-	amputation_point = "left ankle"
-
-/datum/organ_description/foot/right
-	organ_tag = BP_R_FOOT
-	name = "right foot"
-	body_part = FOOT_RIGHT
-	icon_position = RIGHT
-	parent_organ = BP_R_LEG
-	joint = "right ankle"
-	amputation_point = "right ankle"
-
 ////SLIME////
 /datum/organ_description/chest/slime
 	name = "upper body"
@@ -172,17 +127,3 @@
 
 /datum/organ_description/leg/right/slime
 	default_type = /obj/item/organ/external/unbreakable
-
-/datum/organ_description/hand/left/slime
-	default_type = /obj/item/organ/external/unbreakable
-
-/datum/organ_description/hand/right/slime
-	default_type = /obj/item/organ/external/unbreakable
-
-/datum/organ_description/foot/left/slime
-	default_type = /obj/item/organ/external/unbreakable
-
-/datum/organ_description/foot/right/slime
-	default_type = /obj/item/organ/external/unbreakable
-
-

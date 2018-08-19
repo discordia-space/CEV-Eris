@@ -373,7 +373,7 @@
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
 	if(usr)
-		usr.remove_from_mob(W)
+		usr.prepare_for_slotmove(W)
 		usr.update_icons()	//update our overlays
 	W.loc = src
 	W.on_enter_storage(src)
@@ -518,7 +518,9 @@
 
 	if(user)
 		if(.)
-			user << SPAN_NOTICE("You put some things in [src].")
+			user.visible_message(SPAN_NOTICE("[user] puts some things in [src]."),SPAN_NOTICE("You put some things in [src]."),SPAN_NOTICE("You hear rustling."))
+			if (src.use_sound)
+				playsound(src.loc, src.use_sound, 50, 1, -5)
 		else
 			user << SPAN_NOTICE("You fail to pick anything up with \the [src].")
 

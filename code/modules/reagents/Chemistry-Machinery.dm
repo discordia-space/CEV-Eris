@@ -181,11 +181,12 @@
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
-	layer = WALL_OBJ_LAYER
+	layer = OBJ_LAYER
 	ui_title = "Soda Dispens-o-matic"
 	energy = 100
 	accept_glass = 1
 	max_energy = 100
+	density = 0
 	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
 
 /obj/machinery/chemical_dispenser/soda/attackby(var/obj/item/weapon/B as obj, var/mob/user as mob)
@@ -206,10 +207,12 @@
 /obj/machinery/chemical_dispenser/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
+	layer = OBJ_LAYER
 	ui_title = "Booze Portal 9001"
 	energy = 100
 	accept_glass = 1
 	max_energy = 100
+	density = 0
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","wine","vodka","gin","rum","tequilla","vermouth","cognac","ale","mead")
 

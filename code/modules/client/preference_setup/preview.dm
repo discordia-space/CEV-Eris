@@ -33,9 +33,9 @@ datum/preferences/proc/update_preview_icon()
 
 	var/list/organ_list = list(BP_CHEST,BP_GROIN,BP_HEAD)
 	if(preview_dir & (SOUTH|WEST))
-		organ_list += list(BP_R_ARM,BP_R_HAND,BP_R_LEG,BP_R_FOOT, BP_L_LEG,BP_L_FOOT,BP_L_ARM,BP_L_HAND)
+		organ_list += list(BP_R_ARM, BP_R_LEG, BP_L_LEG, BP_L_ARM)
 	else
-		organ_list += list(BP_L_LEG,BP_L_FOOT,BP_L_ARM,BP_L_HAND, BP_R_ARM,BP_R_HAND,BP_R_LEG,BP_R_FOOT)
+		organ_list += list(BP_L_LEG, BP_L_ARM, BP_R_ARM, BP_R_LEG)
 	for(var/organ in organ_list)
 		var/datum/body_modification/mod = get_modification(organ)
 		var/datum/organ_description/OD = current_species.has_limbs[organ]

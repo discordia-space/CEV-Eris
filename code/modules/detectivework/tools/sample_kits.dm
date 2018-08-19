@@ -94,13 +94,13 @@
 		user.visible_message(SPAN_DANGER("\The [user] tries to take prints from \the [H], but they move away."))
 		return 1
 
-	if(user.targeted_organ == BP_R_HAND || user.targeted_organ == BP_L_HAND)
+	if(user.targeted_organ == BP_R_ARM || user.targeted_organ == BP_L_ARM)
 		var/has_hand
-		var/obj/item/organ/external/O = H.organs_by_name[BP_R_HAND]
+		var/obj/item/organ/external/O = H.organs_by_name[BP_R_ARM]
 		if(istype(O) && !O.is_stump())
 			has_hand = 1
 		else
-			O = H.organs_by_name[BP_L_HAND]
+			O = H.organs_by_name[BP_L_ARM]
 			if(istype(O) && !O.is_stump())
 				has_hand = 1
 		if(!has_hand)

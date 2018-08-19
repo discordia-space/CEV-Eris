@@ -60,6 +60,23 @@
 	name = "magazine (.45 flash)"
 	ammo_type = /obj/item/ammo_casing/c45f
 
+/obj/item/ammo_magazine/c45smg
+	name = "smg magazine (.45)"
+	icon_state = "smg45"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c45
+	matter = list(MATERIAL_STEEL = 4)
+	caliber = ".45"
+	max_ammo = 20
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/c45smg/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/c45smg/rubber
+	name = "smg magazine (.45 rubber)"
+	ammo_type = /obj/item/ammo_casing/c45r
+
 /obj/item/ammo_magazine/mc9mm
 	name = "magazine (9mm)"
 	icon_state = "9x19p"
@@ -101,6 +118,23 @@
 /obj/item/ammo_magazine/mc9mmt/practice
 	name = "top mounted magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/c9mmp
+
+/obj/item/ammo_magazine/smg9mm
+	name = "smg magazine (9mm)"
+	icon_state = "smg9mm"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/c9mm
+	matter = list(MATERIAL_STEEL = 4)
+	caliber = "9mm"
+	max_ammo = 25
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/smg9mm/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/smg9mm/rubber
+	name = "smg magazine (9mm rubber)"
+	ammo_type = /obj/item/ammo_casing/c9mmr
 
 /obj/item/ammo_magazine/a10mm
 	name = "magazine (10mm)"
@@ -185,6 +219,16 @@
 	matter = list(MATERIAL_STEEL = 4)
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 20
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/c10x24
+	name = "magazine (10mm x 24 caseless)"
+	icon_state = "10x24"
+	mag_type = MAGAZINE
+	caliber = "10x24"
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 1)
+	ammo_type = /obj/item/ammo_casing/c10x24
+	max_ammo = 99
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/caps

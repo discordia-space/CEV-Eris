@@ -20,7 +20,6 @@
 	icon_state = BP_L_ARM
 	part = list(
 		BP_L_ARM = /obj/item/organ/external/robotic/limb,
-		BP_L_HAND= /obj/item/organ/external/robotic/tiny
 	)
 
 /obj/item/prosthesis/r_arm
@@ -28,7 +27,6 @@
 	icon_state = "r_arm"
 	part = list(
 		BP_R_ARM = /obj/item/organ/external/robotic/limb,
-		BP_R_HAND= /obj/item/organ/external/robotic/tiny
 	)
 
 /obj/item/prosthesis/l_leg
@@ -37,7 +35,6 @@
 	construction_cost = list(MATERIAL_STEEL=15)
 	part = list(
 		BP_L_LEG = /obj/item/organ/external/robotic/limb,
-		BP_L_FOOT= /obj/item/organ/external/robotic/tiny
 	)
 
 /obj/item/prosthesis/r_leg
@@ -46,6 +43,5 @@
 	construction_cost = list(MATERIAL_STEEL=15)
 	part = list(
 		BP_R_LEG = /obj/item/organ/external/robotic/limb,
-		BP_R_FOOT= /obj/item/organ/external/robotic/tiny
 	)
 

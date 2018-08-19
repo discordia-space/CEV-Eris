@@ -108,7 +108,7 @@
 
 
 /obj/item/weapon/disk/autolathe_disk/component
-	name = "Technomacers ARK-034 Components"
+	name = "Technomancers ARK-034 Components"
 	category = "Devices and Components"
 	icon_state = "technomancers"
 	license = 20
@@ -132,7 +132,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/advtoolpack
-	name = "Technomacers IJIRO-451 Advanced Tools"
+	name = "Technomancers IJIRO-451 Advanced Tools"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
@@ -153,7 +153,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/circuitpack
-	name = "Technomacers ESPO-830 Curcuits"
+	name = "Technomacers ESPO-830 Circuits"
 	category = "Engineering"
 	icon_state = "technomancers"
 	license = 10
@@ -252,6 +252,8 @@
 		/datum/autolathe/recipe/gun/deagle,
 		/datum/autolathe/recipe/gun/smg_sol,
 		/datum/autolathe/recipe/gun/smg_sol_rds,
+		/datum/autolathe/recipe/gun/idaho,
+		/datum/autolathe/recipe/gun/atreides,
 		/datum/autolathe/recipe/gun/ak47_fs,
 		/datum/autolathe/recipe/gun/grenade_launcher_lenar,
 	)
@@ -272,7 +274,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/nt_old_guns
-	name = "NeoTheology Armory of Old Testament"
+	name = "NeoTheology Armory of the Old Testament"
 	category = "Security"
 	icon_state = "neotheology"
 	license = 3
@@ -291,7 +293,7 @@
 	..()
 
 /obj/item/weapon/disk/autolathe_disk/nt_new_guns
-	name = "NeoTheology Armory of New Testament"
+	name = "NeoTheology Armory of the New Testament"
 	category = "Security"
 	icon_state = "neotheology"
 	license = 3
@@ -328,6 +330,8 @@
 		/datum/autolathe/recipe/ammo/sl_cl44_rubber,
 		/datum/autolathe/recipe/ammo/mg_a50_rubber,
 		/datum/autolathe/recipe/ammo/SMG_sol_rubber,
+		/datum/autolathe/recipe/ammo/smg9mm_rubber,
+		/datum/autolathe/recipe/ammo/c45smg_rubber,
 	)
 	..()
 
@@ -353,7 +357,9 @@
 		/datum/autolathe/recipe/ammo/sl_cl44_brute,
 		/datum/autolathe/recipe/ammo/mg_a50,
 		/datum/autolathe/recipe/ammo/SMG_sol_brute,
-		/datum/autolathe/recipe/ammo/ak47
+		/datum/autolathe/recipe/ammo/ak47,
+		/datum/autolathe/recipe/ammo/smg9mm_brute,
+		/datum/autolathe/recipe/ammo/c45smg_brute,
 	)
 	..()
 

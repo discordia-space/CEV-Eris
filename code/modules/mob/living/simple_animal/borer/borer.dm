@@ -16,7 +16,7 @@
 	wander = 0
 	pass_flags = PASSTABLE
 	universal_understand = 1
-	holder_type = /obj/item/weapon/holder/borer
+	//holder_type = /obj/item/weapon/holder/borer //Theres no inhand sprites for holding borers, it turns you into a pink square
 
 	var/used_dominate
 	var/chemicals = 10                      // Chemicals used for reproduction and spitting neurotoxin.

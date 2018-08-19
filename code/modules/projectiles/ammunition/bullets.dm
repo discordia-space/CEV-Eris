@@ -113,6 +113,12 @@
 	caliber = "6.5mm"
 	projectile_type = /obj/item/projectile/bullet/c65r
 
+/obj/item/ammo_casing/c10x24
+	desc = "A 10mm x 24 caseless ammo."
+	caliber = "10x24"
+	projectile_type = /obj/item/projectile/bullet/c10x24
+	is_caseless = TRUE
+
 /obj/item/ammo_casing/a145
 	name = "shell casing"
 	desc = "A 14.5mm shell."
@@ -166,7 +172,7 @@
 	icon_state = "stunshell"
 	spent_icon = "stunshell-spent"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
-	matter = list(MATERIAL_STEEL = 1, SILVER = 1)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 1)
 
 /obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
 	if(prob(100/severity)) BB = null
@@ -178,7 +184,7 @@
 	desc = "A chemical shell used to signal distress or provide illumination."
 	icon_state = "fshell"
 	projectile_type = /obj/item/projectile/energy/flash/flare
-	matter = list(MATERIAL_STEEL = 1, SILVER = 1)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 1)
 
 /obj/item/ammo_casing/rocket
 	name = "rocket shell"
