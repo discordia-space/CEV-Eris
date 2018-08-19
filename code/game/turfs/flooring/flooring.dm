@@ -56,6 +56,13 @@ var/list/flooring_types
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
 
+/decl/flooring/reinforced/plating
+	name = "plating"
+	icon = 'icons/turf/floors.dmi'
+	icon_base = "plating"
+	build_type = null
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | SMOOTH_ONLY_WITH_ITSELF
+	can_paint = 1
 
 /decl/flooring/hull
 	name = "hull"
@@ -219,7 +226,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
 	build_type = null
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_EDGES | TURF_HAS_CORNERS | SMOOTH_ONLY_WITH_ITSELF
 	can_paint = 1
 
 /decl/flooring/reinforced/circuit/green
