@@ -629,6 +629,79 @@ proc/dd_sortedTextList(list/incoming)
 		L += new path()
 	return L
 
+
+//returns a new list with only atoms that are in typecache L
+/proc/typecache_filter_list(list/atoms, list/typecache)
+	. = list()
+	for(var/thing in atoms)
+		var/atom/A = thing
+		if (typecache[A.type])
+			. += A
+
+/proc/typecache_filter_list_reverse(list/atoms, list/typecache)
+	. = list()
+	for(var/thing in atoms)
+		var/atom/A = thing
+		if(!typecache[A.type])
+			. += A
+
+/proc/typecache_filter_multi_list_exclusion(list/atoms, list/typecache_include, list/typecache_exclude)
+	. = list()
+	for(var/thing in atoms)
+		var/atom/A = thing
+		if(typecache_include[A.type] && !typecache_exclude[A.type])
+			. += A
+
+/proc/range_in_typecache(dist, center, list/typecache)
+	for (var/thing in range(dist, center))
+		var/atom/A = thing
+		if (typecache[A.type])
+			return TRUE
+
+/proc/typecache_first_match(list/target, list/typecache)
+	for (var/thing in target)
+		var/datum/D = thing
+		if (typecache[D.type])
+			return D
+
+//Like typesof() or subtypesof(), but returns a typecache instead of a list
+/proc/typecacheof(path, ignore_root_path, only_root_path = FALSE)
+	if(ispath(path))
+		var/list/types = list()
+		if(only_root_path)
+			types = list(path)
+		else
+			types = ignore_root_path ? subtypesof(path) : typesof(path)
+		var/list/L = list()
+		for(var/T in types)
+			L[T] = TRUE
+		return L
+	else if(islist(path))
+		var/list/pathlist = path
+		var/list/L = list()
+		if(ignore_root_path)
+			for(var/P in pathlist)
+				for(var/T in subtypesof(P))
+					L[T] = TRUE
+		else
+			for(var/P in pathlist)
+				if(only_root_path)
+					L[P] = TRUE
+				else
+					for(var/T in typesof(P))
+						L[T] = TRUE
+		return L
+
+//Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
+/proc/is_type_in_typecache(atom/A, list/L)
+	if(!L || !L.len || !A)
+
+		return 0
+	return L[A.type]
+
+#define listequal(A, B) (A.len == B.len && !length(A^B))
+
+
 //Move a single element from position fromIndex within a list, to position toIndex
 //All elements in the range [1,toIndex) before the move will be before the pivot afterwards
 //All elements in the range [toIndex, L.len+1) before the move will be after the pivot afterwards

@@ -81,23 +81,33 @@
 // self_message (optional) is what the src mob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 
-/mob/visible_message(var/message, var/self_message, var/blind_message)
-	var/list/see = get_mobs_or_objects_in_view(world.view,src) | viewers(world.view,src)
+/mob/visible_message(var/message, var/self_message, var/blind_message, var/range = world.view)
+	var/list/messageturfs = list()//List of turfs we broadcast to.
+	var/list/messagemobs = list()//List of living mobs nearby who can hear it, and distant ghosts who've chosen to hear it
+	for (var/turf in view(range, get_turf(src)))
 
-	for(var/I in see)
-		if(isobj(I))
-			spawn(0)
-				if(I) //It's possible that it could be deleted in the meantime.
-					var/obj/O = I
-					O.show_message( message, 1, blind_message, 2)
-		else if(ismob(I))
-			var/mob/M = I
-			if(self_message && M==src)
-				M.show_message( self_message, 1, blind_message, 2)
-			else if(M.see_invisible >= invisibility) // Cannot view the invisible
-				M.show_message( message, 1, blind_message, 2)
-			else if (blind_message)
+		messageturfs += turf
+
+	for(var/A in player_list)
+		var/mob/M = A
+		if (QDELETED(M))
+			player_list -= M
+			continue
+		if (!M.client || istype(M, /mob/new_player))
+			continue
+		if(get_turf(M) in messageturfs)
+			messagemobs += M
+
+	for(var/A in messagemobs)
+		var/mob/M = A
+		if(self_message && M==src)
+			M.show_message(self_message, 1, blind_message, 2)
+		else if(M.see_invisible < invisibility)  // Cannot view the invisible, but you can hear it.
+			if(blind_message)
 				M.show_message(blind_message, 2)
+		else
+			M.show_message(message, 1, blind_message, 2)
+
 
 // Returns an amount of power drawn from the object (-1 if it's not viable).
 // If drain_check is set it will not actually drain power, just return a value.
@@ -117,20 +127,26 @@
 	var/range = world.view
 	if(hearing_distance)
 		range = hearing_distance
-	var/list/hear = get_mobs_or_objects_in_view(range,src)
 
-	for(var/I in hear)
-		if(isobj(I))
-			spawn(0)
-				if(I) //It's possible that it could be deleted in the meantime.
-					var/obj/O = I
-					O.show_message( message, 2, deaf_message, 1)
-		else if(ismob(I))
-			var/mob/M = I
-			var/msg = message
-			if(self_message && M==src)
-				msg = self_message
-			M.show_message( msg, 2, deaf_message, 1)
+	var/turf/T = get_turf(src)
+
+	var/list/mobs = list()
+	var/list/objs = list()
+	get_mobs_and_objs_in_view_fast(T, range, mobs, objs)
+
+
+	for(var/m in mobs)
+		var/mob/M = m
+		if(self_message && M==src)
+			M.show_message(self_message,2,deaf_message,1)
+			continue
+
+		M.show_message(message,2,deaf_message,1)
+
+	for(var/o in objs)
+		var/obj/O = o
+		O.show_message(message,2,deaf_message,1)
+
 
 
 /mob/proc/findname(msg)
@@ -1167,4 +1183,9 @@ mob/proc/yank_out_object()
 			break*/
 
 /mob/proc/swap_hand()
+	return
+
+/mob/living/proc/Released()
+	//This is called when the mob is let out of a holder
+	//Override for mob-specific functionality
 	return

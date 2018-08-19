@@ -271,7 +271,7 @@
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10
 	anchored = 1
-
+	density = 0
 	New()
 		..()
 		reagents.add_reagent("virusfood", 1000)
@@ -283,7 +283,7 @@
 	icon_state = "acidtank"
 	amount_per_transfer_from_this = 10
 	anchored = 1
-
+	density = 0
 	New()
 		..()
 		reagents.add_reagent("sacid", 1000)
