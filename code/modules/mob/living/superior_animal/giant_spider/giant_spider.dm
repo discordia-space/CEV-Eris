@@ -5,7 +5,7 @@
 #define SPINNING_COCOON 4
 
 //basic spider mob, these generally guard nests
-/mob/living/simple_animal/hostile/giant_spider
+/mob/living/superior_animal/giant_spider
 	name = "giant spider"
 	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
 	icon_state = "guard"
@@ -15,9 +15,6 @@
 	turns_per_move = 5
 	see_in_dark = 10
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
-	response_help  = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm   = "pokes"
 	stop_automated_movement_when_pulled = 0
 	maxHealth = 200
 	health = 200
@@ -34,7 +31,7 @@
 	speed = 3
 
 //nursemaids - these create webs and eggs
-/mob/living/simple_animal/hostile/giant_spider/nurse
+/mob/living/superior_animal/giant_spider/nurse
 	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes."
 	icon_state = "nurse"
 	maxHealth = 40
@@ -47,7 +44,7 @@
 	var/fed = 0
 
 //hunters have the most poison and move the fastest, so they can find prey
-/mob/living/simple_animal/hostile/giant_spider/hunter
+/mob/living/superior_animal/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	icon_state = "hunter"
 	maxHealth = 120
@@ -57,11 +54,11 @@
 	poison_per_bite = 5
 	move_to_delay = 4
 
-/mob/living/simple_animal/hostile/giant_spider/New(var/location, var/atom/parent)
+/mob/living/superior_animal/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
 	..()
 
-/mob/living/simple_animal/hostile/giant_spider/AttackingTarget()
+/mob/living/superior_animal/giant_spider/AttackingTarget()
 	var/target = ..()
 	if(isliving(target))
 		var/mob/living/L = target
@@ -71,7 +68,7 @@
 				L << "\red You feel a tiny prick."
 				L.reagents.add_reagent(poison_type, 5)
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/AttackingTarget()
+/mob/living/superior_animal/giant_spider/nurse/AttackingTarget()
 	var/target = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -81,7 +78,7 @@
 				var/eggs = PoolOrNew(/obj/effect/spider/eggcluster/, list(O, src))
 				O.implants += eggs
 
-/mob/living/simple_animal/hostile/giant_spider/Life()
+/mob/living/superior_animal/giant_spider/Life()
 	..()
 	if(!stat)
 		if(stance == HOSTILE_STANCE_IDLE)
@@ -96,7 +93,7 @@
 					stop_automated_movement = 0
 					walk(src,0)
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/proc/GiveUp(var/C)
+/mob/living/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
 	spawn(100)
 		if(busy == MOVING_TO_TARGET)
 			if(cocoon_target == C && get_dist(src,cocoon_target) > 1)
@@ -104,7 +101,7 @@
 			busy = 0
 			stop_automated_movement = 0
 
-/mob/living/simple_animal/hostile/giant_spider/nurse/Life()
+/mob/living/superior_animal/giant_spider/nurse/Life()
 	..()
 	if(!stat)
 		if(stance == HOSTILE_STANCE_IDLE)
@@ -176,7 +173,7 @@
 								C.pixel_x = cocoon_target.pixel_x
 								C.pixel_y = cocoon_target.pixel_y
 								for(var/mob/living/M in C.loc)
-									if(istype(M, /mob/living/simple_animal/hostile/giant_spider))
+									if(istype(M, /mob/living/superior_animal/giant_spider))
 										continue
 									large_cocoon = 1
 									fed++
