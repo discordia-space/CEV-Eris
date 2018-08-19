@@ -6,10 +6,9 @@ var/list/christians = list()
 	desc = "Soul holder for every christian."
 	allowed_organs = list(BP_CHEST)
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
-
-/obj/item/weapon/implant/core_implant/cruciform/New()
-	..()
-	add_module(new CRUCIFORM_COMMON)
+	power = 50
+	max_power = 50
+	power_regen = 0.5
 
 /obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender, body_build)
 	gender = (gender == MALE) ? "m" : "f"
@@ -34,6 +33,7 @@ var/list/christians = list()
 	if(!wearer || active)
 		return
 	..()
+	add_module(new CRUCIFORM_COMMON)
 	update_data()
 	christians |= wearer
 
@@ -107,15 +107,18 @@ var/list/christians = list()
 //////////////////////////
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/make_common()
-	add_module(new CRUCIFORM_COMMON)
+	remove_modules(CRUCIFORM_PRIEST)
+	remove_modules(CRUCIFORM_INQUISITOR)
+	remove_modules(/datum/core_module/cruciform/red_light)
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/make_priest()
 	add_module(new CRUCIFORM_PRIEST)
+	add_module(new CRUCIFORM_REDLIGHT)
 
 /obj/item/weapon/implant/core_implant/cruciform/proc/make_inquisitor()
+	add_module(new CRUCIFORM_PRIEST)
 	add_module(new CRUCIFORM_INQUISITOR)
-
-
+	remove_modules(/datum/core_module/cruciform/red_light)
 
 /mob/proc/get_cruciform()
 	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant/cruciform, src)

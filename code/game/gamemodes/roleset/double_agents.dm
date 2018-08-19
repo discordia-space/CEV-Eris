@@ -37,11 +37,9 @@
 /datum/storyevent/roleset/double_agents/create_objectives(var/datum/antagonist/A, var/datum/antagonist/B)
 	var/datum/objective/assassinate/O = new(A)
 	O.set_target(B.owner)
-	A.objectives.Add(O)
 
 	O = new(B)
 	O.set_target(A.owner)
-	B.objectives.Add(O)
 
 	A.create_survive_objective()
 	B.create_survive_objective()
