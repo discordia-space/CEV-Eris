@@ -523,7 +523,7 @@
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,6)
 	set_trait(TRAIT_YIELD,10)
-	set_trait(TRAIT_POTENCY,25)
+	set_trait(TRAIT_POTENCY,15)
 	set_trait(TRAIT_REQUIRES_NUTRIENTS, FALSE)
 	set_trait(TRAIT_REQUIRES_WATER, FALSE)
 	set_trait(TRAIT_PRODUCT_ICON,"mushroom3")
