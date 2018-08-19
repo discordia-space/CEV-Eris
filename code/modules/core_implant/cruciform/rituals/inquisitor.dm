@@ -1,10 +1,9 @@
-var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/ritual/targeted/inquisitor)
-
 /datum/ritual/inquisitor
 	name = "inquisitor"
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
+	category = "Inquisitor"
 
 
 /datum/ritual/targeted/inquisitor
@@ -12,6 +11,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
+	category = "Inquisitor"
 
 
 /datum/ritual/targeted/inquisitor/whip
@@ -26,7 +26,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 	var/obj/item/weapon/implant/core_implant/CI = targets[1]
 
-	if(!CI.active || !CI.wearer || CI.get_module(CRUCIFORM_INQUISITOR))
+	if(!CI.active || !CI.wearer)
 
 		fail("Cruciform not found.", user, C)
 		return FALSE
@@ -50,8 +50,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 /datum/ritual/targeted/inquisitor/whip/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
 	target.update_address()
 	if(index == 1 && target.address == text)
-		if(target.wearer && target.get_module(CRUCIFORM_INQUISITOR) && \
-		 (target.loc && target.locs[1] in view()))
+		if(target.wearer && (target.loc && target.locs[1] in view()))
 			return target
 
 
@@ -63,7 +62,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 /datum/ritual/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	var/obj/item/weapon/implant/core_implant/CI = get_grabbed(user)
 
-	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active || CI.get_module(CRUCIFORM_INQUISITOR))
+	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 
 		fail("Cruciform not found",user,C)
 		return FALSE
@@ -135,7 +134,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 	var/obj/item/weapon/implant/core_implant/CI = targets[1]
 
-	if(!CI.active || !CI.wearer || CI.get_module(CRUCIFORM_INQUISITOR))
+	if(!CI.active || !CI.wearer)
 
 		fail("Cruciform not found.", user, C)
 		return FALSE
@@ -232,7 +231,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	desc = "Find out the limits of your power, how much telecrystals you have now."
 
 /datum/ritual/inquisitor/check_telecrystals/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/datum/core_module/cruciform/inquisitor/I = C.get_module(CRUCIFORM_INQUISITOR)
+	var/datum/core_module/cruciform/uplink/I = C.get_module(CRUCIFORM_UPLINK)
 
 	if(I && I.telecrystals)
 		user << "<span class='info'>You have [I.telecrystals] telecrystals.</span>"
@@ -248,7 +247,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 	desc = "Receive item needed in your jorney."
 
 /datum/ritual/targeted/inquisitor/spawn_item/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/datum/core_module/cruciform/inquisitor/I = C.get_module(CRUCIFORM_INQUISITOR)
+	var/datum/core_module/cruciform/uplink/I = C.get_module(CRUCIFORM_UPLINK)
 
 	if(!targets.len)
 		fail("Item name was wrong.",user,C,targets)
@@ -276,7 +275,7 @@ var/list/inquisitor_rituals = typesof(/datum/ritual/inquisitor)+typesof(/datum/r
 
 	return TRUE
 
-/datum/ritual/targeted/inquisitor/spawn_item/proc/try_to_spawn(var/type, var/price, var/datum/core_module/cruciform/inquisitor/I, var/turf/T)
+/datum/ritual/targeted/inquisitor/spawn_item/proc/try_to_spawn(var/type, var/price, var/datum/core_module/cruciform/uplink/I, var/turf/T)
 	if(!I || I.telecrystals < price || !isturf(T) || !ispath(type))
 		return FALSE
 

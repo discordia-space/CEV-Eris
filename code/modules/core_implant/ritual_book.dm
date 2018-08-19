@@ -3,7 +3,12 @@
 	desc = "Contains rituals."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book"
-	var/list/rituals = list()
+	var/has_reference = FALSE
+
+	var/expanded_group = null
+	var/current_category = ""
+	var/reference_mode = FALSE
+
 
 /obj/item/weapon/book/ritual/attack_self(mob/living/carbon/human/H)
 	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
@@ -13,37 +18,108 @@
 		), rand(40,80), 1)
 	interact(H)
 
+/obj/item/weapon/book/ritual/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = user.get_cruciform()
+
+	var/data = list()
+	data["noimplant"] = FALSE
+	data["refmode"] = reference_mode
+	data["hasref"] = has_reference
+
+	if(CI && istype(CI))
+		var/list/rdata = list()
+		var/list/cdata = list()
+
+		for(var/RT in CI.rituals)
+			var/datum/ritual/R = new RT
+
+			if(!(R.category in cdata))
+				cdata.Add(R.category)
+
+			if(current_category != "" && current_category != R.category)
+				continue
+
+			if(R.phrase)
+				if(istype(R,/datum/ritual/group))
+					var/datum/ritual/group/GR = R
+
+					var/list/L = list(
+						"group" = TRUE,
+						"name" = capitalize(R.name),
+						"desc" = R.desc,
+						"type" = "[RT]",
+					)
+
+					var/list/P = list()
+					for(var/i = 1; i <= GR.phrases.len; i++)
+						P.Add(list(list("ind" = i, "phrase" = GR.phrases[i], "type" = "[RT]")))
+
+					L["phrases"] = P
+					rdata.Add(list(L))
+
+				else
+					var/list/L = list(
+						"group" = FALSE,
+						"name" = capitalize(R.name),
+						"desc" = R.desc,
+						"phrase" = R.get_display_phrase(),
+						"type" = "[RT]",
+					)
+
+
+					rdata.Add(list(L))
+
+		data["rituals"] = rdata
+		data["categories"] = cdata
+
+		data["firstcat"] = ""
+		if(cdata.len >= 1)
+			data["firstcat"] = cdata[1]
+
+		data["currcat"] = current_category
+		data["currexp"] = expanded_group
+	else
+		data["noimplant"] = TRUE
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		// the ui does not exist, so we'll create a new() one
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "ritual_book.tmpl", "Bible", 550, 655)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+
+
 /obj/item/weapon/book/ritual/interact(mob/living/carbon/human/H)
-	var/data = null
-	for(var/RT in rituals)
-		var/datum/ritual/R = new RT
-		if(!R.phrase || R.phrase == "")
-			continue
-		data += ritual(R)
-	H << browse(data, "window=[src.name]")
+	ui_interact(H)
 
-/obj/item/weapon/book/ritual/proc/href(var/datum/ritual/R)
-	var/rtype = replacetext("[R.type]","/","")
-	return "byond://?src=\ref[src];[rtype]=1"
-
-/obj/item/weapon/book/ritual/proc/ritual(var/datum/ritual/R)
-	var/data = ""
-
-	data += "<div style='margin-bottom:10px;'>"
-	data += "<b>[capitalize(R.name)]</b><br>"
-	data += "<a href='[href(R)]'>[R.get_display_phrase()]</a><br>"
-	data += "<i>[R.desc]</i></div>"
-	return data
 
 /obj/item/weapon/book/ritual/Topic(href, href_list)
+	if(!ishuman(usr))
+		return
 	var/mob/living/carbon/human/H = usr
 	if(H.stat)
 		return
 
-	for(var/RT in rituals)
-		var/rtype = replacetext("[RT]","/","")
-		if(href_list[rtype])
-			var/datum/ritual/R = new RT
-			H.say(R.get_say_phrase())
-			break
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = H.get_cruciform()
+
+	if(href_list["set_category"])
+		current_category = href_list["set_category"]
+
+	if(href_list["unfold"])
+		expanded_group = href_list["unfold"]
+
+	if(href_list["say"] || href_list["say_group"])
+		for(var/RT in CI.rituals)
+			if("[RT]" == href_list["say"])
+				var/datum/ritual/R = new RT
+				H.say(R.get_say_phrase())
+				break
+			if("[RT]" == href_list["say_group"] && ispath(RT, /datum/ritual/group))
+				var/ind = text2num(href_list["say_id"])
+				var/datum/ritual/group/R = new RT
+				H.say(R.get_group_say_phrase(ind))
+				break
 	return TRUE
