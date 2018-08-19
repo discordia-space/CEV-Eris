@@ -185,3 +185,11 @@ see multiz/movement.dm for some info.
 			return
 		else
 			user << SPAN_WARNING("The plating is going to need some support.")
+
+
+//Some effect handling procs for openspaces
+
+//Add tracks is called when a mob with bloody feet walks across the tile.
+//Since there's no floor to walk on, this will simply not happen. Return without doing anything
+/turf/simulated/open/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+	return

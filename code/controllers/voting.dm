@@ -31,11 +31,12 @@ var/datum/controller/vote/vote = new()
 	if(active_vote)
 		active_vote.Process()
 
-		if(get_vote_time() >= active_vote.time)
-			active_vote.check_winners()
-			stop_vote()
+		if(active_vote)//Need to check again because the active vote can be nulled during its process. For example if an admin forces start
+			if(get_vote_time() >= active_vote.time)
+				active_vote.check_winners()
+				stop_vote()
 
-		update_voters()
+			update_voters()
 
 /datum/controller/vote/proc/autostoryteller()
 	start_vote(/datum/poll/storyteller)

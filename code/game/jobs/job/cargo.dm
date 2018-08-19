@@ -48,7 +48,7 @@
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(
-		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
+		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining,
 		access_mining_station
 	)
 	idtype = /obj/item/weapon/card/id/car
@@ -81,7 +81,7 @@
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(
-		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
+		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining,
 		access_mining_station
 	)
 	idtype = /obj/item/weapon/card/id/car

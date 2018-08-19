@@ -29,7 +29,7 @@
 			obj = chosen
 
 		if(ispath(obj))
-			objectives.Add(new obj(src))
+			new obj(src)
 
 	if(survive)
 		create_survive_objective()
