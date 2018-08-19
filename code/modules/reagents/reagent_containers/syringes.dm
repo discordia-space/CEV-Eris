@@ -76,7 +76,7 @@
 					mode = SYRINGE_INJECT
 					return
 
-				if(ismob(target))//Blood!
+				else if(ismob(target))//Blood!
 					if(reagents.has_reagent("blood"))
 						user << SPAN_NOTICE("There is already a blood sample in this syringe.")
 						return
@@ -117,7 +117,7 @@
 						user << SPAN_NOTICE("[target] is empty.")
 						return
 
-					if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract))
+					if(!target.is_open_container() && !istype(target, /obj/structure/reagent_dispensers) && !istype(target, /obj/item/slime_extract) && !istype(target, /obj/effect/plant))
 						user << SPAN_NOTICE("You cannot directly remove reagents from this object.")
 						return
 

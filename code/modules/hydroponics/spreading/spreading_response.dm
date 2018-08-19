@@ -1,5 +1,17 @@
 /obj/effect/plant/HasProximity(var/atom/movable/AM)
 
+	if(seed.get_trait(TRAIT_CHEM_SPRAYER))
+		spawn(0)
+			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
+			var/turf/my_target = get_turf(AM)
+			D.create_reagents(10*seed.chems.len)
+			if(!src)
+				return
+			for (var/reagent in seed.chems)
+				D.reagents.add_reagent(reagent, 10)
+			D.set_color()
+			D.set_up(my_target, 1, 10)
+
 	if(!is_mature() || seed.get_trait(TRAIT_SPREAD) != 2)
 		return
 
@@ -7,7 +19,7 @@
 	if(!istype(M))
 		return
 
-	if(!buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/6))))
+	if(!istype(seed, /datum/seed/mushroom/maintshroom) && !buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/6))))
 		//wait a tick for the Entered() proc that called HasProximity() to finish (and thus the moving animation),
 		//so we don't appear to teleport from two tiles away when moving into a turf adjacent to vines.
 		spawn(1)

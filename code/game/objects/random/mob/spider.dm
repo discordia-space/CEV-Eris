@@ -5,6 +5,7 @@
 
 /obj/random/mob/spiders/item_to_spawn()
 	return pick(prob(30);/obj/effect/spider/spiderling,\
+				prob(4);/obj/effect/spawner/maintshroom,\
 				prob(4);/mob/living/superior_animal/giant_spider,\
 				prob(2);/mob/living/superior_animal/giant_spider/nurse,\
 				prob(2);/mob/living/superior_animal/giant_spider/hunter)
