@@ -31,9 +31,9 @@
 	icon_state = "un"
 	icon = 'icons/turf/un.dmi'
 	var/icon_base = "un"
+	initial_flooring = null
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	var/has_base_range = null
-	//style = "underplating"
 
 
 /turf/simulated/floor/plating/under/update_icon(var/update_neighbors)

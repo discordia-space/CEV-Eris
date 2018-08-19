@@ -79,17 +79,17 @@
 				return
 
 		if(standard_splash_mob(user, target))
-			return
+			return 1
 		if(standard_dispenser_refill(user, target))
-			return
+			return 1
 		if(standard_pour_into(user, target))
-			return
+			return 1
 
 		if(reagents.total_volume)
 			playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
 			user << SPAN_NOTICE("You splash the solution onto [target].")
 			reagents.splash(target, reagents.total_volume)
-			return
+			return 1
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/lighting/toggleable/flashlight/pen))

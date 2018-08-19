@@ -49,6 +49,7 @@
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_state = "bcircuit"
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	initial_flooring = /decl/flooring/reinforced/circuit
 
 /turf/simulated/floor/greengrid
@@ -323,6 +324,19 @@
 	nitrogen = 0
 	temperature = TCMB
 
+/turf/simulated/floor/plating
+	icon = 'icons/turf/floors.dmi'
+	name = "plating"
+	icon_state = "plating"
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
+	initial_flooring = /decl/flooring/reinforced/plating
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/plating1.ogg',\
+		'sound/effects/footstep/plating2.ogg',\
+		'sound/effects/footstep/plating3.ogg',\
+		'sound/effects/footstep/plating4.ogg',\
+		'sound/effects/footstep/plating5.ogg'))
+
 // Placeholders
 /turf/simulated/floor/airless/lava
 /turf/simulated/floor/light
@@ -330,14 +344,6 @@
 /turf/simulated/floor/beach/coastline
 /turf/simulated/floor/plating/snow
 /turf/simulated/floor/airless/ceiling
-
-/turf/simulated/floor/plating
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/plating1.ogg',\
-		'sound/effects/footstep/plating2.ogg',\
-		'sound/effects/footstep/plating3.ogg',\
-		'sound/effects/footstep/plating4.ogg',\
-		'sound/effects/footstep/plating5.ogg'))
 
 /turf/simulated/floor/beach
 	name = "beach"
