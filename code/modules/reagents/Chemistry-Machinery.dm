@@ -181,7 +181,7 @@
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
-	layer = WALL_OBJ_LAYER
+	layer = OBJ_LAYER
 	ui_title = "Soda Dispens-o-matic"
 	energy = 100
 	accept_glass = 1
@@ -207,6 +207,7 @@
 /obj/machinery/chemical_dispenser/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
+	layer = OBJ_LAYER
 	ui_title = "Booze Portal 9001"
 	energy = 100
 	accept_glass = 1

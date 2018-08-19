@@ -88,11 +88,14 @@
 
 
 /obj/item/weapon/paper_bin/examine(mob/user)
+	..()
 	if(get_dist(src, user) <= 1)
 		if(amount)
 			user << "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
 		else
 			user << SPAN_NOTICE("There are no papers in the bin.")
+	else
+		user << SPAN_NOTICE("If you got closer you could see how much paper is in it.")
 	return
 
 

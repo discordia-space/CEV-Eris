@@ -45,4 +45,4 @@
 		else
 			target_amount = new_target
 			update_explanation()
-			owner.edit_memory()
+			antag.antagonist_panel()

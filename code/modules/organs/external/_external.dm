@@ -98,6 +98,7 @@
 
 	if(owner)
 		owner.organs -= src
+		owner.bad_external_organs -= src
 		owner.organs_by_name -= src.organ_tag
 
 	if(module)

@@ -64,7 +64,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/examine(mob/user)
 	if(..(user, 1))
-		user << "The time [stationtime2text()] is displayed in the corner of the screen."
+		var/turf/T = get_turf(src)
+		user << "The time [stationtime2text()], and Coordinates: [T.x],[T.y],[T.z] are displayed in the corner of the screen."
 
 /obj/item/device/pda/medical
 	default_cartridge = /obj/item/weapon/cartridge/medical
@@ -334,7 +335,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	lastmode = mode
 
 	var/title = "Personal Data Assistant"
-
+	var/turf/T = get_turf(src) //The coordinates of the PDA will be displayed onscreen
 	var/data[0]  // This is the data that will be sent to the PDA
 
 	data["owner"] = owner					// Who is your daddy...
@@ -392,6 +393,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			cartdata["charges"] = cartridge.charges ? cartridge.charges : 0
 		data["cartridge"] = cartdata
 
+	data["location"] = "[T.x],[T.y],[T.z]"
 	data["stationTime"] = stationtime2text()
 	data["new_Message"] = new_message
 	data["new_News"] = new_news
@@ -434,7 +436,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 
 	if(mode==3)
-		var/turf/T = get_turf(user.loc)
 		if(!isnull(T))
 			var/datum/gas_mixture/environment = T.return_air()
 
