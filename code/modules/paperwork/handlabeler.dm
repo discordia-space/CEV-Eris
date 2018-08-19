@@ -63,7 +63,7 @@
 		if(!str || !length(str))
 			user << SPAN_NOTICE("Invalid text.")
 			return
-		label = str
+		label = replacetext(str, "&#255;", "ß")
 		user << SPAN_NOTICE("You set the text to '[str]'.")
 	else
 		user << SPAN_NOTICE("You turn off \the [src].")

@@ -101,7 +101,7 @@
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
 
-	recipient << browse(output, "window=memory")
+	recipient << browse(russian_to_utf8(output), "window=memory")
 
 /datum/mind/proc/edit_memory()
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
