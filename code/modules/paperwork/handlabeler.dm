@@ -59,11 +59,11 @@
 	if(mode)
 		user << SPAN_NOTICE("You turn on \the [src].")
 		//Now let them chose the text.
-		var/str = sanitizeSafe(input(user,"Label text?","Set label",""), MAX_NAME_LEN)
+		var/str = sanitizeName(input(user,"Label text?","Set label",""), MAX_NAME_LEN) //Only A-Z, 1-9 and `-`
 		if(!str || !length(str))
 			user << SPAN_NOTICE("Invalid text.")
 			return
-		label = replacetext(str, "&#255;", "ß")
+		label = str
 		user << SPAN_NOTICE("You set the text to '[str]'.")
 	else
 		user << SPAN_NOTICE("You turn off \the [src].")
