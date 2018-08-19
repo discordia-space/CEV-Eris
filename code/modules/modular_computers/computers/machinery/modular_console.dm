@@ -13,7 +13,7 @@
 	base_idle_power_usage = 100
 	base_active_power_usage = 500
 	max_hardware_size = 3
-	steel_sheet_cost = 20
+	steel_sheet_cost = 10
 
 /obj/machinery/modular_computer/console/buildable/New()
 	..()
