@@ -8,6 +8,7 @@
 				prob(3);/mob/living/superior_animal/roach/tank,\
 				prob(3);/mob/living/superior_animal/roach/hunter,\
 				prob(2);/mob/living/superior_animal/roach/support,\
+				prob(1);/obj/effect/spawner/maintshroom,\
 				prob(1);/mob/living/superior_animal/roach/fuhrer)
 
 /obj/random/mob/roaches/low_chance
