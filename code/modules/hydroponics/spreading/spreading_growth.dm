@@ -49,7 +49,7 @@
 		refresh_icon()
 		if(health > max_health)
 			health = max_health
-	else if(health == max_health && !plant)
+	else if(health == max_health && !plant && (seed.type != /datum/seed/mushroom/maintshroom))
 		plant = new(T,seed)
 		plant.dir = src.dir
 		plant.transform = src.transform
@@ -97,6 +97,16 @@
 	check_health()
 	if(neighbors.len || health != max_health)
 		plant_controller.add_plant(src)
+
+	if (!spray_cooldown)
+		var/turf/mainloc = get_turf(src)
+		for(var/mob/living/A in range(1,mainloc))
+			if(A.move_speed < 12)
+				HasProximity(A)
+				A.visible_message(SPAN_WARNING("[src] spray something on [A.name]!"), SPAN_WARNING("[src] spray something on you!"))
+				spray_cooldown = TRUE
+				spawn(10)
+					spray_cooldown = FALSE
 
 /obj/effect/plant/proc/die_off()
 	// Kill off our plant.
