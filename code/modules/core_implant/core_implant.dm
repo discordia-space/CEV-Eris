@@ -42,6 +42,7 @@
 	active = TRUE
 	activated = TRUE
 	add_ritual_verbs()
+	update_rituals()
 	START_PROCESSING(SSobj, src)
 	add_hearing()
 
@@ -58,7 +59,7 @@
 	for(var/datum/core_module/rituals/M in modules)
 		if(istype(src,M.implant_type))
 			for(var/R in M.rituals)
-				if(!R in rituals)
+				if(!(R in rituals))
 					rituals.Add(R)
 
 /obj/item/weapon/implant/core_implant/proc/add_ritual_verbs()
@@ -102,10 +103,11 @@
 	address = null
 
 /obj/item/weapon/implant/core_implant/hear_talk(mob/living/carbon/human/H, message)
+	for(var/datum/core_module/group_ritual/GR in src.modules)
+		GR.hear(H, message)
+
 	if(wearer != H)
 		return
-
-	remove_module(get_module(CORE_GROUP_RITUAL))
 
 	for(var/RT in rituals)
 		var/datum/ritual/R = new RT
@@ -147,10 +149,13 @@
 	if(!istype(src,CM.implant_type))
 		return FALSE
 
+	if(!CM.can_install(src))
+		return FALSE
+
 	if(CM.unique)
 		for(var/datum/core_module/EM in modules)
 			if(EM.type == CM.type)
-				return
+				return FALSE
 
 	CM.set_up()
 	CM.implant = src
@@ -165,6 +170,7 @@
 		CM.uninstall()
 		modules.Remove(CM)
 		CM.implant = null
+		qdel(CM)
 
 /obj/item/weapon/implant/core_implant/proc/remove_modules(var/m_type)
 	if(!ispath(m_type))

@@ -220,8 +220,8 @@
 #define FALL_GIB_DAMAGE 999
 
 //Core implants
-#define CORE_GROUP_RITUAL /datum/core_module/group_ritual
 #define CORE_ACTIVATED /datum/core_module/activatable
+#define GROUP_RITUAL_COOLDOWN 45*60*10
 
 //Cruciform
 #define CRUCIFORM_COMMON /datum/core_module/rituals/cruciform/base

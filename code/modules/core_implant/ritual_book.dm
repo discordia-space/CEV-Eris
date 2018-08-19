@@ -39,19 +39,45 @@
 			if(current_category != "" && current_category != R.category)
 				continue
 
-			if(R.phrase && R.distinct)
-				var/list/L = list(
-					"name" = capitalize(R.name),
-					"phrase" = R.get_display_phrase(),
-					"category" = R.category,
-					"type" = "[RT]",
-				)
+			if(R.phrase)
+				if(istype(R,/datum/ritual/group))
+					var/datum/ritual/group/GR = R
+
+					var/list/L = list(
+						"group" = TRUE,
+						"name" = capitalize(R.name),
+						"desc" = R.desc,
+						"type" = "[RT]",
+					)
+
+					var/list/P = list()
+					for(var/i = 1; i <= GR.phrases.len; i++)
+						P.Add(list(list("ind" = i, "phrase" = GR.phrases[i], "type" = "[RT]")))
+
+					L["phrases"] = P
+					rdata.Add(list(L))
+
+				else
+					var/list/L = list(
+						"group" = FALSE,
+						"name" = capitalize(R.name),
+						"desc" = R.desc,
+						"phrase" = R.get_display_phrase(),
+						"type" = "[RT]",
+					)
 
 
-				rdata.Add(list(L))
+					rdata.Add(list(L))
 
 		data["rituals"] = rdata
 		data["categories"] = cdata
+
+		data["firstcat"] = ""
+		if(cdata.len >= 1)
+			data["firstcat"] = cdata[1]
+
+		data["currcat"] = current_category
+		data["currexp"] = expanded_group
 	else
 		data["noimplant"] = TRUE
 
@@ -59,7 +85,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "ritual_book.tmpl", "Autolathe", 550, 655)
+		ui = new(user, src, ui_key, "ritual_book.tmpl", "Bible", 550, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -67,27 +93,33 @@
 
 
 /obj/item/weapon/book/ritual/interact(mob/living/carbon/human/H)
-	/*var/data = null
-	for(var/RT in rituals)
-		var/datum/ritual/R = new RT
-		if(!R.phrase || R.phrase == "")
-			continue
-		data += ritual(R)
-	H << browse(data, "window=[src.name]")*/
 	ui_interact(H)
 
 
 /obj/item/weapon/book/ritual/Topic(href, href_list)
+	if(!ishuman(usr))
+		return
 	var/mob/living/carbon/human/H = usr
 	if(H.stat)
 		return
 
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = H.get_cruciform()
 
-	for(var/RT in CI.rituals)
-		var/rtype = replacetext("[RT]","/","")
-		if(href_list[rtype])
-			var/datum/ritual/R = new RT
-			H.say(R.get_say_phrase())
-			break
+	if(href_list["set_category"])
+		current_category = href_list["set_category"]
+
+	if(href_list["unfold"])
+		expanded_group = href_list["unfold"]
+
+	if(href_list["say"] || href_list["say_group"])
+		for(var/RT in CI.rituals)
+			if("[RT]" == href_list["say"])
+				var/datum/ritual/R = new RT
+				H.say(R.get_say_phrase())
+				break
+			if("[RT]" == href_list["say_group"] && ispath(RT, /datum/ritual/group))
+				var/ind = text2num(href_list["say_id"])
+				var/datum/ritual/group/R = new RT
+				H.say(R.get_group_say_phrase(ind))
+				break
 	return TRUE

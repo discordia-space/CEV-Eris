@@ -4,12 +4,14 @@
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
+	category = "Common"
 
 
 /datum/ritual/targeted/cruciform/base
 	name = "cruciform targeted"
 	phrase = null
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
+	category = "Common"
 
 
 /datum/ritual/cruciform/base/relief

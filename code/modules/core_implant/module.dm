@@ -7,6 +7,9 @@
 
 	var/unique = TRUE
 
+/datum/core_module/proc/can_install(var/obj/item/weapon/implant/core_implant/I)
+	return TRUE
+
 /datum/core_module/proc/install()
 
 /datum/core_module/proc/uninstall()
@@ -14,8 +17,6 @@
 /datum/core_module/proc/preinstall()
 
 /datum/core_module/proc/set_up()
-
-/datum/core_module/group_ritual
 
 
 //ACTIVATABLE

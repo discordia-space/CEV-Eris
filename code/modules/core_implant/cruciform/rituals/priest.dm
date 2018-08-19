@@ -2,11 +2,13 @@
 	name = "priest"
 	phrase = null
 	desc = ""
+	category = "Priest"
 
 /datum/ritual/targeted/cruciform/priest
 	name = "priest targeted"
 	phrase = null
 	desc = ""
+	category = "Priest"
 
 
 /datum/ritual/cruciform/priest/epiphany

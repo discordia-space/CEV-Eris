@@ -82,6 +82,7 @@
 	module.user = user
 
 ///////////
+
 /datum/core_module/rituals/cruciform
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 
@@ -92,6 +93,7 @@
 
 /datum/core_module/rituals/cruciform/priest/set_up()
 	rituals = subtypesof(/datum/ritual/cruciform/priest)+subtypesof(/datum/ritual/targeted/cruciform/priest)
+	rituals += subtypesof(/datum/ritual/group/cruciform)
 
 
 /datum/core_module/rituals/cruciform/inquisitor/set_up()
