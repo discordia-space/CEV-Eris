@@ -129,7 +129,7 @@
 	if(seed.get_trait(TRAIT_CHEMS) > 0)
 		src.create_reagents(5*(seed.chems.len))
 		for (var/reagent in seed.chems)
-			reagents.add_reagent(reagent, 5)
+			src.reagents.add_reagent(reagent, 5)
 
 	spawn(1) // Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
 		set_dir(calc_dir())
