@@ -515,7 +515,7 @@
 /datum/seed/mushroom/maintshroom
 	name = "maintshroom"
 	seed_name = "maintenance tunnel mushroom"
-	display_name = "maintshrooms"
+	display_name = "maintshroom"
 	mutants = null
 
 /datum/seed/mushroom/maintshroom/New()
@@ -531,6 +531,7 @@
 	set_trait(TRAIT_PLANT_COLOUR,"#FFFFFF")
 	set_trait(TRAIT_PLANT_ICON,"maintshroom")
 	set_trait(TRAIT_SPREAD, 2)
+	set_trait(TRAIT_CHEMS, 1)
 	set_trait(TRAIT_CHEM_SPRAYER, TRUE)
 
 	chems = list()
@@ -571,7 +572,8 @@
 		"mindbreaker",
 		"stoxin",
 		"acetone",
-		"hydrazine"
+		"hydrazine",
+		"blattedin"
 		)
 
 	var/new_chem = pick(possible_chems)

@@ -98,15 +98,22 @@
 	if(neighbors.len || health != max_health)
 		plant_controller.add_plant(src)
 
-	if (!spray_cooldown)
+	if (seed.get_trait(TRAIT_CHEM_SPRAYER) && !spray_cooldown)
 		var/turf/mainloc = get_turf(src)
 		for(var/mob/living/A in range(1,mainloc))
 			if(A.move_speed < 12)
 				HasProximity(A)
-				A.visible_message(SPAN_WARNING("[src] spray something on [A.name]!"), SPAN_WARNING("[src] spray something on you!"))
+				A.visible_message(SPAN_WARNING("[src] sprays something on [A.name]!"), SPAN_WARNING("[src] sprays something on you!"))
 				spray_cooldown = TRUE
 				spawn(10)
 					spray_cooldown = FALSE
+
+	if(seed.get_trait(TRAIT_CHEMS) && reagents.get_free_space() && !chem_regen_cooldown)
+		for (var/reagent in seed.chems)
+			src.reagents.add_reagent(reagent, 1)
+		chem_regen_cooldown = TRUE
+		spawn(600)
+			chem_regen_cooldown = FALSE
 
 /obj/effect/plant/proc/die_off()
 	// Kill off our plant.
