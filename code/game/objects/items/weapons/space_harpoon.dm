@@ -23,6 +23,11 @@
 		cell = new suitable_cell(src)
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
+	if(istype(A, /obj/item/weapon/storage/))
+		return
+	else if(istype(A, /obj/structure/table/))
+		return
+
 	if(!cell || !cell.checked_use(100))
 		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
