@@ -64,6 +64,7 @@
 	var/last_tick = 0
 	var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/plant
 	var/spray_cooldown = FALSE
+	var/chem_regen_cooldown = FALSE
 
 /obj/effect/plant/Destroy()
 	if(plant_controller)
@@ -288,3 +289,18 @@
 
 /obj/effect/plant/proc/is_mature()
 	return (health >= (max_health/3) && world.time > mature_time)
+
+/obj/effect/plant/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
+		return
+	. = ..()
+
+/obj/effect/plant/examine()
+	. = ..()
+	if(seed.get_trait(TRAIT_CHEMS))
+		if(!reagents.total_volume)
+			usr << SPAN_NOTICE("It looks totally dried.")
+		else if (!reagents.get_free_space())
+			usr << SPAN_NOTICE("It looks juicy.")
+		else
+			usr << SPAN_NOTICE("It looks a bit dry.")

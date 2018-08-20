@@ -21,7 +21,7 @@
 	var/datum/effect/effect/system/smoke_spread/chem/S = new
 	S.attach(location)
 	S.set_up(src.reagents, src.reagents.total_volume, 0, location)
-	src.visible_message(SPAN_DANGER("\the [src] secrete strange vapors!"))
+	src.visible_message(SPAN_DANGER("\the [src] secretes strange vapors!"))
 	spawn(0)
 		S.start()
 	reagents.clear_reagents()
