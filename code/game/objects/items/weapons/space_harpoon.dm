@@ -23,9 +23,9 @@
 		cell = new suitable_cell(src)
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
-	if(istype(target, /obj/item/weapon/storage/))
+	if(istype(A, /obj/item/weapon/storage/))
 		return
-	else if(istype(target, /obj/structure/table/))
+	else if(istype(A, /obj/structure/table/))
 		return
 
 	if(!cell || !cell.checked_use(100))
