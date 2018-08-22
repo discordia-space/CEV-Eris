@@ -575,3 +575,8 @@ its easier to just keep the beam vertical.
 
 /atom/proc/get_footstep_sound()
 	return
+
+
+/atom/proc/set_density(var/new_density)
+	if(density != new_density)
+		density = !!new_density

@@ -1,8 +1,10 @@
+//Todo: make this thing work under new shield system
 /obj/machinery/shieldwallgen/excelsior
+/*
 	name = "Excelsior Shield Generator"
 	desc = "A shield generator."
 	icon = 'icons/obj/machines/excelsior/field.dmi'
-	stun_chance = 90
+	//stun_chance = 90
 	circuit = /obj/item/weapon/circuitboard/excelsiorshieldwallgen
 
 /obj/machinery/shieldwallgen/excelsior/can_stun(var/mob/M)
@@ -24,4 +26,4 @@
 		usr << SPAN_NOTICE("You toggle on [src]'s stun mode.")
 	else
 		usr << SPAN_NOTICE("You toggle off [src]'s stun mode.")
-
+*/

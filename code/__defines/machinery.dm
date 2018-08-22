@@ -122,3 +122,7 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 #define SORT_TYPE_WILDCARD 1
 #define SORT_TYPE_UNTAGGED 2
 
+
+#define KILOWATTS *1000
+#define MEGAWATTS *1000000
+#define GIGAWATTS *1000000000

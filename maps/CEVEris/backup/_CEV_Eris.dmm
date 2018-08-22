@@ -12145,7 +12145,7 @@
 "ezC" = (/turf/simulated/floor/tiled/techfloor,/area/engineering/shield_generator)
 "ezD" = (/obj/effect/floor_decal/techfloor{tag = "icon-techfloor_edges (NORTHWEST)"; icon_state = "techfloor_edges"; dir = 9},/turf/simulated/floor/tiled/techfloor,/area/engineering/shield_generator)
 "ezE" = (/turf/simulated/floor/reinforced,/area/engineering/shield_generator)
-"ezF" = (/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/power/shield_generator/hull/installed,/turf/simulated/floor/reinforced,/area/engineering/shield_generator)
+"ezF" = (/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/power/shield_generator/installed,/turf/simulated/floor/reinforced,/area/engineering/shield_generator)
 "ezG" = (/obj/effect/floor_decal/techfloor{tag = "icon-techfloor_edges (NORTHEAST)"; icon_state = "techfloor_edges"; dir = 5},/obj/machinery/camera/network/engineering,/turf/simulated/floor/tiled/techfloor,/area/engineering/shield_generator)
 "ezH" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/machinery/door/blast/regular{id = "shieldroom"; name = "Shield Generator Screen"},/turf/simulated/floor/plating,/area/engineering/shield_generator)
 "ezI" = (/turf/simulated/floor/hull,/area/engineering/engine_room)
