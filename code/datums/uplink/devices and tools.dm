@@ -9,6 +9,12 @@
 	item_cost = 2
 	path = /obj/item/weapon/storage/toolbox/syndicate
 
+/datum/uplink_item/item/tools/shield_diffuser
+	name = "Shield Diffuser"
+	item_cost = 4
+	path = /obj/item/device/shield_diffuser
+	desc = "A handheld device that disrupts shields, allowing you to effortlessly pass through. Be sure to bring some spare power cells!."
+
 /datum/uplink_item/item/tools/money
 	name = "Operations Funding"
 	item_cost = 2
