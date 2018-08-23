@@ -1,6 +1,6 @@
 /datum/category_item/player_setup_item/player_global/language
 	name = "Language"
-	sort_order = 3
+	sort_order = 5
 
 /datum/category_item/player_setup_item/player_global/language/load_preferences(var/savefile/S)
 	S["language_prefixes"]	>> pref.language_prefixes
