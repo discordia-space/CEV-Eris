@@ -1,3 +1,9 @@
+#define EVENT_DAMAGE_PHYSICAL 	0
+#define EVENT_DAMAGE_EM 		1
+#define EVENT_DAMAGE_HEAT 		2
+#define EVENT_ENABLED 			3
+#define EVENT_DISABLED 			4
+#define EVENT_RECONFIGURED		5
 /obj/machinery/power/shield_generator
 	name = "advanced shield generator"
 	desc = "A heavy-duty shield generator and capacitor, capable of generating energy shields at large distances."
@@ -8,7 +14,8 @@
 	var/datum/wires/shield_generator/wires
 	var/list/field_segments = list()	// List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()	// List of shield segments that have failed and are currently regenerating.
-
+	var/list/event_log() = list()				// List of relevant events for this shield
+	var/max_log_entries = 200			// A safety to prevent players generating endless logs and maybe endangering server memory
 
 	var/shield_modes = 0				// Enabled shield mode flags
 	var/mitigation_em = 0				// Current EM mitigation
@@ -24,14 +31,12 @@
 	var/upkeep_multiplier = 1			// Multiplier of upkeep values.
 	var/power_usage = 0					// Total power usage last tick.
 	var/overloaded = 0					// Whether the field has overloaded and shut down to regenerate.
-	var/hacked = 0						// Whether the generator has been hacked by cutting the safety wire.
 	var/offline_for = 0					// The generator will be inoperable for this duration in ticks.
 	var/input_cut = 0					// Whether the input wire is cut.
 	var/mode_changes_locked = 0			// Whether the control wire is cut, locking out changes.
 	var/ai_control_disabled = 0			// Whether the AI control is disabled.
 	var/list/mode_list = null			// A list of shield_mode datums.
 	var/emergency_shutdown = FALSE		// Whether the generator is currently recovering from an emergency shutdown
-
 	var/list/default_modes = list()
 	// The shield mode flags which should be enabled on this generator by default
 
@@ -183,8 +188,15 @@
 	// We are shutting down, therefore our stored energy disperses faster than usual.
 	else if(running == SHIELD_DISCHARGING)
 		if (offline_for <= 0)
-			running = SHIELD_OFF //We've finished the winding down period and now turn off
+			shutdown_field() //We've finished the winding down period and now turn off
 			offline_for += 30 //Another minute before it can be turned back on again
+
+	mitigation_em = between(0, mitigation_em - MITIGATION_LOSS_PASSIVE, mitigation_max)
+	mitigation_heat = between(0, mitigation_heat - MITIGATION_LOSS_PASSIVE, mitigation_max)
+	mitigation_physical = between(0, mitigation_physical - MITIGATION_LOSS_PASSIVE, mitigation_max)
+
+	upkeep_power_usage = round((field_segments.len - damaged_segments.len) * ENERGY_UPKEEP_PER_TILE * upkeep_multiplier)
+
 	if(powernet && (running == SHIELD_RUNNING) && !input_cut)
 		var/energy_buffer = 0
 		energy_buffer = draw_power(min(upkeep_power_usage, input_cap))
@@ -232,6 +244,7 @@
 	//TODO: Implement unwrenching in a proper centralised location. Having to copypaste this around sucks
 	if(QUALITY_BOLT_TURNING in O.tool_qualities)
 		wrench(user, O)
+		return
 
 	if(istype(O, /obj/item/weapon/tool))
 		return src.attack_hand(user)
@@ -252,6 +265,7 @@
 
 	data["running"] = running
 	data["modes"] = get_flag_descriptions()
+	data["logs"] = get_logs()
 	data["overloaded"] = overloaded
 	data["mitigation_max"] = mitigation_max
 	data["mitigation_physical"] = round(mitigation_physical, 0.1)
@@ -266,13 +280,13 @@
 	data["input_cap_kw"] = round(input_cap / 1000)
 	data["upkeep_power_usage"] = round(upkeep_power_usage / 1000, 0.1)
 	data["power_usage"] = round(power_usage / 1000)
-	data["hacked"] = hacked
 	data["offline_for"] = offline_for * 2
 	data["shutdown"] = emergency_shutdown
 
+
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 600, 800)
+		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 650, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -313,18 +327,23 @@
 	if(..())
 		return 1
 
+	//Doesn't respond while disabled
+	if(offline_for)
+		return
+
 	if(href_list["begin_shutdown"])
 		if(running != SHIELD_RUNNING)
 			return
 		running = SHIELD_DISCHARGING
 		offline_for += 30 //It'll take one minute to shut down
 		. = 1
+		log_event(EVENT_DISABLED, src)
 
 	if(href_list["start_generator"])
-		if(offline_for)
-			return
 		running = SHIELD_RUNNING
 		regenerate_field()
+		log_event(EVENT_ENABLED, src)
+		offline_for = 3 //This is to prevent cases where you startup the shield and then turn it off again immediately while spamclicking
 		. = 1
 
 	// Instantly drops the shield, but causes a cooldown before it may be started again. Also carries a risk of EMP at high charge.
@@ -341,12 +360,13 @@
 		offline_for += 300 //5 minutes, given that procs happen every 2 seconds
 		shutdown_field()
 		emergency_shutdown = TRUE
+		log_event(EVENT_DISABLED, src)
 		if(prob(temp_integrity - 50) * 1.75)
 			spawn()
 				empulse(src, 7, 14)
 		. = 1
 
-	if(mode_changes_locked)
+	if(mode_changes_locked || offline_for)
 		return 1
 
 	if(href_list["set_range"])
@@ -355,6 +375,7 @@
 			return
 		field_radius = between(1, new_range, world.maxx)
 		regenerate_field()
+		log_event(EVENT_RECONFIGURED, src)
 		. = 1
 
 	if(href_list["set_input_cap"])
@@ -363,16 +384,16 @@
 			input_cap = 0
 			return
 		input_cap = max(0, new_cap) * 1000
+		log_event(EVENT_RECONFIGURED, src)
 		. = 1
 
 	if(href_list["toggle_mode"])
-		// Toggling hacked-only modes requires the hacked var to be set to 1
-		if((text2num(href_list["toggle_mode"]) & (MODEFLAG_BYPASS | MODEFLAG_OVERCHARGE)) && !hacked)
-			return
 
 		toggle_flag(text2num(href_list["toggle_mode"]))
+		log_event(EVENT_RECONFIGURED, src)
 		. = 1
 
+	ui_interact(usr)
 
 /obj/machinery/power/shield_generator/proc/field_integrity()
 	if(max_energy)
@@ -381,7 +402,7 @@
 
 
 // Takes specific amount of damage
-/obj/machinery/power/shield_generator/proc/take_damage(var/damage, var/shield_damtype)
+/obj/machinery/power/shield_generator/proc/take_damage(var/damage, var/shield_damtype, var/atom/damager = null)
 	var/energy_to_use = damage * ENERGY_PER_HP
 	if(check_flag(MODEFLAG_MODULATE))
 		mitigation_em -= MITIGATION_HIT_LOSS
@@ -404,6 +425,14 @@
 		mitigation_physical = between(0, mitigation_physical, mitigation_max)
 
 	current_energy -= energy_to_use
+
+	switch(shield_damtype)
+		if(SHIELD_DAMTYPE_PHYSICAL)
+			log_event(EVENT_DAMAGE_PHYSICAL, damager)
+		if(SHIELD_DAMTYPE_EM)
+			log_event(EVENT_DAMAGE_EM, damager)
+		if(SHIELD_DAMTYPE_HEAT)
+			log_event(EVENT_DAMAGE_HEAT, damager)
 
 	// Overload the shield, which will shut it down until we recharge above 5% again
 	if(current_energy < 0)
@@ -444,17 +473,22 @@
 /obj/machinery/power/shield_generator/proc/get_flag_descriptions()
 	var/list/all_flags = list()
 	for(var/datum/shield_mode/SM in mode_list)
-		if(SM.hacked_only && !hacked)
-			continue
 		all_flags.Add(list(list(
 			"name" = SM.mode_name,
 			"desc" = SM.mode_desc,
 			"flag" = SM.mode_flag,
 			"status" = check_flag(SM.mode_flag),
-			"hacked" = SM.hacked_only,
 			"multiplier" = SM.multiplier
 		)))
 	return all_flags
+
+/obj/machinery/power/shield_generator/proc/get_logs()
+	var/list/all_logs = list()
+	for(var/entry in event_log)
+		all_logs.Add(list(list(
+			"entry" = entry
+		)))
+	return all_logs
 
 
 // These two procs determine tiles that should be shielded given the field range. They are quite CPU intensive and may trigger BYOND infinite loop checks, therefore they are set
@@ -597,3 +631,68 @@
 			user << SPAN_NOTICE("You secure the [src] to the floor!")
 			anchored = TRUE
 		return
+
+//This proc keeps an internal log of shield impacts, activations, deactivations, and a vague log of config changes
+/obj/machinery/power/shield_generator/proc/log_event(var/event_type, var/atom/origin_atom)
+	var/logstring = "[stationtime2text()]: "
+	switch (event_type)
+		if(EVENT_DAMAGE_PHYSICAL to EVENT_DAMAGE_HEAT)
+			switch (event_type)
+				if (EVENT_DAMAGE_PHYSICAL)
+					logstring += "Impact registered"
+				if (EVENT_DAMAGE_EM)
+					logstring += "EM Signature"
+				if (EVENT_DAMAGE_HEAT)
+					logstring += "Energy discharge"
+				else
+					return
+
+
+			if (origin_atom)
+				var/turf/T = get_turf(origin_atom)
+				if (T)
+					logstring += " at [T.x],[T.y],[T.z]"
+
+			logstring += " Integrity [round(field_integrity())]%"
+
+		if (EVENT_ENABLED to EVENT_RECONFIGURED)
+			switch (event_type)
+				if (EVENT_ENABLED)
+					logstring += "Shield powered up"
+				if (EVENT_DISABLED)
+					logstring += "Shield powered down"
+				if (EVENT_RECONFIGURED)
+					logstring += "Configuration altered"
+				else
+					return
+
+			if (origin_atom == src)
+				logstring += " via Physical Access"
+			else
+				logstring += " from console at"
+				var/area/A = get_area(origin_atom)
+				if (A)
+					logstring += " [strip_improper(A.name)]"
+				else
+					logstring += " Unknown Area"
+
+				if (origin_atom)
+					logstring += ", [origin_atom.x],[origin_atom.y],[origin_atom.z]"
+
+
+	if (logstring != "")
+		//Insert this string into the log
+		event_log.Add(logstring)
+
+		//If we're over the limit, cut the oldest entry
+		if (event_log.len > max_log_entries)
+			world << "Too many logs, pruning"
+			event_log.Cut(1,2)
+
+
+#undef EVENT_DAMAGE_PHYSICAL
+#undef EVENT_DAMAGE_EM
+#undef EVENT_DAMAGE_HEAT
+#undef EVENT_ENABLED
+#undef EVENT_DISABLED
+#undef EVENT_RECONFIGURED

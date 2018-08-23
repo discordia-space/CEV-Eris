@@ -84,6 +84,7 @@ What is the naming convention for planes or layers?
 
 #define OPEN_DOOR_LAYER 2.7
 #define PROJECTILE_HIT_THRESHHOLD_LAYER 2.75 //projectiles won't hit objects at or below this layer if possible
+#define BLASTDOOR_LAYER 2.8 //Hidden below windows and grilles when not closed
 #define TABLE_LAYER 2.8
 #define BELOW_OBJ_LAYER 2.9
 #define LOW_ITEM_LAYER 2.95
@@ -94,7 +95,7 @@ What is the naming convention for planes or layers?
 #define ABOVE_OBJ_LAYER 3.2
 #define ABOVE_WINDOW_LAYER 3.3
 #define SHUTTER_LAYER 3.35 //Shutters need to be above windows
-#define BLASTDOOR_LAYER 3.4
+
 #define CLOSED_BLASTDOOR_LAYER 3.4
 #define SIGN_LAYER 3.4
 

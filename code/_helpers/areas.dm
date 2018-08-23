@@ -19,3 +19,17 @@
 	var/list/turfs = get_area_turfs(areatype, predicates)
 	if(turfs && turfs.len)
 		return pick(turfs)
+
+/proc/is_matching_vessel(var/atom/A, var/atom/B)
+	var/area/area1 = get_area(A)
+	var/area/area2 = get_area(B)
+	if (!area1 || !area2)
+		return FALSE
+
+	if (area1.vessel == area2.vessel)
+		return TRUE
+	return FALSE
+
+/atom/proc/get_vessel()
+	var/area/A = get_area(src)
+	return A.vessel

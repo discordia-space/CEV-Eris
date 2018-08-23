@@ -50,6 +50,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 
+	var/vessel = "CEV Eris" //The ship or station this area is on. This is so far just for the benefit of shield generators
+	//Consoles can only control shields on the same vessel as them
+
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 var/list/teleportlocs = list()
@@ -101,6 +104,7 @@ var/list/ghostteleportlocs = list()
 	power_environ = 0
 	flags = AREA_FLAG_EXTERNAL
 	ambience = list('sound/ambience/ambispace.ogg')
+	vessel = null
 
 area/space/atmosalert()
 	return
@@ -341,7 +345,7 @@ area/space/atmosalert()
 	name = "\improper Alien base"
 	icon_state = "yellow"
 	requires_power = 0
-
+	vessel = "alien"
 // CENTCOM
 
 /area/centcom
@@ -349,6 +353,7 @@ area/space/atmosalert()
 	icon_state = "centcom"
 	requires_power = 0
 	dynamic_lighting = 0
+	vessel = "centcom"
 
 /area/centcom/control
 	name = "\improper Centcom Control"
@@ -397,6 +402,7 @@ area/space/atmosalert()
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
+	vessel = "syndicate mothership"
 
 /area/syndicate_mothership/control
 	name = "\improper Mercenary Control Room"

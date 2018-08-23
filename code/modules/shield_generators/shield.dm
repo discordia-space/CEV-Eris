@@ -99,7 +99,7 @@
 /obj/effect/shield/proc/diffuse(var/duration)
 	// The shield is trying to counter diffusers. Cause lasting stress on the shield.
 	if(gen.check_flag(MODEFLAG_BYPASS) && !diffused_for && !disabled_for)
-		take_damage(duration * rand(8, 12), SHIELD_DAMTYPE_EM)
+		take_damage(duration * rand(8, 12), SHIELD_DAMTYPE_EM, src)
 		return
 
 	diffused_for = max(duration, 0)
@@ -111,7 +111,7 @@
 	update_explosion_resistance()
 
 /obj/effect/shield/attack_generic(var/source, var/damage, var/emote)
-	take_damage(damage, SHIELD_DAMTYPE_PHYSICAL)
+	take_damage(damage, SHIELD_DAMTYPE_PHYSICAL, src)
 	if(gen.check_flag(MODEFLAG_OVERCHARGE) && istype(source, /mob/living/))
 		overcharge_shock(source)
 	..(source, damage, emote)
@@ -145,7 +145,7 @@
 	new/obj/effect/shield_impact(get_turf(src))
 	gen.handle_reporting() //This will queue up a damage report if one isnt already. It's delayed so its fine to call it before the damage is applied
 	var/list/field_segments = gen.field_segments
-	switch(gen.take_damage(damage, damtype))
+	switch(gen.take_damage(damage, damtype, hitby))
 		if(SHIELD_ABSORBED)
 			shield_impact_sound(get_turf(src), 50, 50)
 			return
@@ -195,29 +195,29 @@
 // EMP. It may seem weak but keep in mind that multiple shield segments are likely to be affected.
 /obj/effect/shield/emp_act(var/severity)
 	if(!disabled_for)
-		take_damage(rand(30,60) / severity, SHIELD_DAMTYPE_EM)
+		take_damage(rand(30,60) / severity, SHIELD_DAMTYPE_EM, src)
 
 
 // Explosions
 /obj/effect/shield/ex_act(var/severity)
 	if(!disabled_for)
-		take_damage(rand(10,15) / severity, SHIELD_DAMTYPE_PHYSICAL)
+		take_damage(rand(10,15) / severity, SHIELD_DAMTYPE_PHYSICAL, src)
 
 
 // Fire
 /obj/effect/shield/fire_act()
 	if(!disabled_for)
-		take_damage(rand(5,10), SHIELD_DAMTYPE_HEAT)
+		take_damage(rand(5,10), SHIELD_DAMTYPE_HEAT, src)
 
 
 // Projectiles
 /obj/effect/shield/bullet_act(var/obj/item/projectile/proj)
 	if(proj.damage_type == BURN)
-		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_HEAT)
+		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_HEAT, proj)
 	else if (proj.damage_type == BRUTE)
-		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_PHYSICAL)
+		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_PHYSICAL, proj)
 	else
-		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_EM)
+		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_EM, proj)
 
 
 // Attacks with hand tools. Blocked by Hyperkinetic flag.
@@ -228,11 +228,11 @@
 	if(gen.check_flag(MODEFLAG_HYPERKINETIC))
 		user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [I]!</span>")
 		if(I.damtype == BURN)
-			take_damage(I.force, SHIELD_DAMTYPE_HEAT)
+			take_damage(I.force, SHIELD_DAMTYPE_HEAT, user)
 		else if (I.damtype == BRUTE)
-			take_damage(I.force, SHIELD_DAMTYPE_PHYSICAL)
+			take_damage(I.force, SHIELD_DAMTYPE_PHYSICAL, user)
 		else
-			take_damage(I.force, SHIELD_DAMTYPE_EM)
+			take_damage(I.force, SHIELD_DAMTYPE_EM, user)
 	else
 		user.visible_message("<span class='danger'>\The [user] tries to attack \the [src] with \the [I], but it passes through!</span>")
 
@@ -250,7 +250,7 @@
 	M.adjustFireLoss(rand(20, 40))
 	M.Weaken(5)
 	to_chat(M, "<span class='danger'>As you come into contact with \the [src] a surge of energy paralyses you!</span>")
-	take_damage(10, SHIELD_DAMTYPE_EM)
+	take_damage(10, SHIELD_DAMTYPE_EM, src)
 
 // Called when a flag is toggled. Can be used to add on-toggle behavior, such as visual changes.
 /obj/effect/shield/proc/flags_updated()
@@ -314,16 +314,15 @@
 /obj/effect/meteor/shield_impact(var/obj/effect/shield/S)
 	if(!S.gen.check_flag(MODEFLAG_HYPERKINETIC))
 		return
-
-	//Logging. A meteor impact sends a message to admins with a clickable link.
-	//This allows them to jump over and see what happened, its tremendously interesting
+	/*
+	//Logging for shield impacts disabled. Logging is still enabled for meteors that succesfully hit the hull
 	if (istype(hit_location))
 		var/area/A = get_area(hit_location)
 		var/where = "[A? A.name : "Unknown Location"] | [hit_location.x], [hit_location.y]"
 		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[hit_location.x];Y=[hit_location.y];Z=[hit_location.z]'>[where]</a>"
 		message_admins("A meteor has impacted shields at ([whereLink])", 0, 1)
 		log_game("A meteor has impacted shields at ([where]).")
-
+	*/
 	S.take_damage(get_shield_damage(), SHIELD_DAMTYPE_PHYSICAL, src)
 	visible_message("<span class='danger'>\The [src] breaks into dust!</span>")
 	make_debris()

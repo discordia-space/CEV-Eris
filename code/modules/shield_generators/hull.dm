@@ -1,5 +1,6 @@
 //The main hull shield. Moving a few variables here to make it easier to branch off the parent for shortrange bubble shields and such
 /obj/machinery/power/shield_generator/hull
+	name = "Hull Shield Core"
 	report_integrity = TRUE
 	default_modes = list(MODEFLAG_HYPERKINETIC, MODEFLAG_HULL, MODEFLAG_MULTIZ)
 	// Foolproof defaults for a hull shield to block meteors
@@ -32,19 +33,27 @@
 
 
 /obj/machinery/power/shield_generator/hull/update_icon()
-	..()
+	..() //Parent calls overlays.Cut()
 	if (tendrils_deployed)
 		for (var/D in tendril_dirs)
 			var/I = image(icon,"capacitor_connected", dir = D)
 			overlays += I
+
+	for (var/obj/machinery/shield_conduit/S in tendrils)
+		if (running)
+			S.icon_state = "conduit_1"
+		else
+			S.icon_state = "conduit_0"
+
 
 
 //New shield generators don't use capacitors anymore. But capacitors still looked cool
 //So this proc will create dummy objects around the shield generator just for visuals and to make it suitably large
 /obj/machinery/power/shield_generator/hull/proc/toggle_tendrils(var/on = null)
 	//This can be called with true, false or null. to set the tendrils to deployed, retracted, or the opposite of their current state
+
 	var/target_state
-	if (on)
+	if (!isnull(on))
 		target_state = on //If a specific target was passed, we aim for that
 	else
 		target_state = ~tendrils_deployed //Otherwise we're toggling
@@ -91,7 +100,7 @@
 /obj/machinery/shield_conduit
 	name = "Shield"
 	icon = 'icons/obj/machines/shielding.dmi'
-	icon_state = "capacitor"
+	icon_state = "conduit_0"
 	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy"
 	description_info = "This is purely visual. They are created and removed when you wrench/unwrench the shield generator"
 	density = TRUE
