@@ -123,7 +123,7 @@
 		return
 
 	user << "Emergency forcefield projection completed."
-	//new/obj/machinery/shield/malfai(T) //TODO: Fix this before submitting PR, or else remove this ability
+	new/obj/machinery/shield/malfai(T)
 	user.hacking = 1
 	spawn(20)
 		user.hacking = 0
