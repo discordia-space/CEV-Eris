@@ -19,7 +19,8 @@
 							MODEFLAG_MULTIZ,
 							MODEFLAG_EM)
 
-
+	input_cap = 0.1 MEGAWATTS //By default, the shield charges at a uselessly slow speed, so that it won't drain the station of power
+	//This should be increased as soon as you get the engine started
 	var/list/tendrils = list()
 	var/list/tendril_dirs = list(NORTH, EAST, WEST)
 	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
