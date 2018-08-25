@@ -208,3 +208,4 @@
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(src, src)
 		new_item.loc = loc
+		new_item.Created()
