@@ -72,7 +72,7 @@ var/list/ventcrawl_machinery = list(
 	return ..()
 
 /mob/living/proc/ventcrawl_carry()
-	for(var/atom/A in contents)
+	for(var/atom/A in get_equipped_items())
 		if(!is_allowed_vent_crawl_item(A))
 			to_chat(src, "<span class='warning'>You can't carry \the [A] while ventcrawling!</span>")
 			return FALSE
