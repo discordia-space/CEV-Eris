@@ -1035,8 +1035,6 @@ There are 9 wires.
 	health -= crush_damage
 	healthcheck()
 
-/obj/effect/energy_field/airlock_crush(var/crush_damage)
-	Stress(crush_damage)
 
 /obj/structure/closet/airlock_crush(var/crush_damage)
 	..()

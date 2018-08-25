@@ -819,7 +819,7 @@
 	return canmove
 
 
-/mob/proc/facedir(var/ndir)
+/mob/facedir(var/ndir)
 	if(!canface() || client.moving || world.time < client.move_delay)
 		return 0
 	set_dir(ndir)
