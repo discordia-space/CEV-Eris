@@ -846,6 +846,7 @@
 #include "code\game\objects\random\circuitboards.dm"
 #include "code\game\objects\random\closet.dm"
 #include "code\game\objects\random\contraband.dm"
+#include "code\game\objects\random\flora.dm"
 #include "code\game\objects\random\food.dm"
 #include "code\game\objects\random\guns.dm"
 #include "code\game\objects\random\junk.dm"

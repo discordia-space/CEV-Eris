@@ -1,4 +1,4 @@
-// makes sure that discounted prices from upgraded lathe no less than 1 unit.
+s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 #define SANITIZE_LATHE_COST(n) max(1, n) // helps to fix prices where "* mat_efficiency" is used.
 
 #define ERR_OK 0
@@ -6,6 +6,7 @@
 #define ERR_NOMATERIAL 2
 #define ERR_NOREAGENT 3
 #define ERR_NOLICENSE 4
+#define ERR_PAUSED 5
 
 
 /obj/machinery/autolathe
@@ -52,10 +53,11 @@
 
 	var/have_disk = TRUE
 
-	var/message_nolicense = "Disk license is out."
+	var/message_nolicense = "Disk licenses have been exhausted."
+	var/message_notfound = "Design data not found."
 	var/message_nomaterial = "Not enough materials."
 	var/message_noreagent = "Not enough reagents."
-	var/message_notfound = "Design data not found."
+	var/message_paused = "***Construction Paused***"
 
 	var/tmp/datum/wires/autolathe/wires = null
 
@@ -223,14 +225,7 @@
 	usr.set_machine(src)
 
 	if(href_list["eject_disk"] && disk)
-		disk.forceMove(src.loc)
-
-		if(isliving(usr))
-			var/mob/living/L = usr
-			if(istype(L))
-				L.put_in_active_hand(disk)
-
-		disk = null
+		eject_disk()
 
 	if(href_list["insert"])
 		eat(usr)
@@ -293,12 +288,7 @@
 
 
 	if(href_list["abort_print"])
-		if(working)
-			print_post()
-			working = FALSE
-		current = null
-		paused = TRUE
-		working = FALSE
+		abort()
 
 	if(href_list["toggle_pause"])
 		paused = !paused
@@ -462,6 +452,22 @@
 	if(disk)
 		return disk.category
 
+//Attempts to consume a license from the disk.
+//Returns true if success or disk is infinite
+//Returns false if disk is missing or doesnt have enough licenses
+/obj/machinery/autolathe/proc/disk_use_license()
+	if (!disk)
+		return FALSE
+
+	if(disk_uses() == -1)
+		return TRUE
+
+	return disk.use_license()
+
+
+	return FALSE
+
+
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
 	return
@@ -477,7 +483,7 @@
 /obj/machinery/autolathe/proc/cannot_print(var/recipe)
 	if(progress <= 0)
 		var/datum/autolathe/recipe/R = autolathe_recipes[recipe]
-		if(!R || !(recipe in recipe_list()))
+		if(!R)
 			return ERR_NOTFOUND
 
 		if(disk_uses() == 0 )
@@ -497,6 +503,10 @@
 				for(var/rgn in R.reagents)
 					if(!container.reagents.has_reagent(rgn, R.reagents[rgn]))
 						return ERR_NOREAGENT
+
+
+	if (paused)
+		return ERR_PAUSED
 
 	return ERR_OK
 
@@ -521,25 +531,23 @@
 				error = message_noreagent
 			else if(err == ERR_NOTFOUND)
 				error = message_notfound
+			else if(err == ERR_PAUSED)
+				error = message_paused
 			else if(err == ERR_OK)
 				error = null
 
 				working = TRUE
 
-				if(!paused)
-					if(progress <= 0)
-						consume_materials(current)
+				if(progress <= 0)
+					consume_materials(current)
 
-					progress += speed
+				progress += speed
 
 			else
 				error = "Unknown error."
 
 			if(R && progress >= R.time)
-				print_post()
-				new R.path(src.loc)
-				working = FALSE
-				current = null
+				finish_construction()
 
 		else
 			error = null
@@ -550,6 +558,8 @@
 	special_process()
 	update_icon()
 	nanomanager.update_uis(src)
+
+
 
 /obj/machinery/autolathe/update_icon()
 	overlays.Cut()
@@ -656,6 +666,70 @@
 
 	..()
 	return 1
+
+
+//Cancels the current construction
+/obj/machinery/autolathe/proc/abort()
+	if(working)
+		print_post()
+		working = FALSE
+	current = null
+	paused = TRUE
+	working = FALSE
+
+//Finishing current construction
+/obj/machinery/autolathe/proc/finish_construction()
+	var/datum/autolathe/recipe/R = autolathe_recipes[current]
+	//First of all, we check whether our current thing came from the disk which is currently inserted
+	if (locate(current) in recipe_list())
+		//It did, in that case we need to consume a license from the current disk.
+		if (disk_use_license()) //In the case of an unlimited disk, this will always be true
+			//We consumed a license, or the disk was infinite. Either way we're clear to proceed
+			var/atom/A = new R.path(src.loc)
+			A.Created()
+			working = FALSE
+			current = null
+			print_post()
+		else
+			//If we get here, then the user attempted to print something but the disk had run out of its limited licenses
+			//Those dirty cheaters will not get their item. It is aborted before it finishes
+			abort()
+	else
+		//If we get here, we're working on a recipe that was queued up from a previous unlimited disk which is now ejected
+		//This is fine, just complete it
+		var/atom/A = new R.path(src.loc)
+		A.Created()
+		working = FALSE
+		current = null
+		print_post()
+
+//This proc ejects the autolathe disk, but it also does some DRM fuckery to prevent exploits
+/obj/machinery/autolathe/proc/eject_disk()
+
+	//First of all check if we're using a limited disk.
+	if (disk_uses() != -1)
+
+		//If we are, then we'll go through the queue and remove any recipes we find which came from this disk
+		for(var/rtype in queue)
+			if (locate(rtype) in recipe_list())
+				queue -= rtype
+
+		//Check the current too
+		if (locate(current) in recipe_list())
+			//And abort it if it came from this disk
+			abort()
+
+
+	//Digital Rights have been successfully managed. The corporations win again.
+	//Now they will graciously allow you to eject the disk
+	disk.forceMove(src.loc)
+
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(istype(L))
+			L.put_in_active_hand(disk)
+
+	disk = null
 
 #undef ERR_OK
 #undef ERR_NOTFOUND

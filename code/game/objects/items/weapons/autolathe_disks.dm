@@ -15,6 +15,15 @@
 	var/category = "Disk"
 	var/license = 10
 
+/obj/item/weapon/disk/autolathe_disk/proc/use_license(var/num = 1)
+	if (license == -1)
+		return TRUE
+
+	if (license >= num)
+		license -= num
+		return TRUE
+
+	return FALSE
 
 /obj/item/weapon/disk/autolathe_disk/blank
 	name = "Blank disk"
@@ -26,6 +35,7 @@
 	category = "Basic"
 	icon_state = "guild"
 	license = -1
+
 
 /obj/item/weapon/disk/autolathe_disk/basic/New()
 	recipes = list(

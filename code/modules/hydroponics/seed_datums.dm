@@ -513,9 +513,9 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom10")
 
 /datum/seed/mushroom/maintshroom
-	name = "maintshroom"
-	seed_name = "maintenance tunnel mushroom"
-	display_name = "maintshroom"
+	name = "fungoartiglieria"
+	seed_name = "Fungo di Artiglieria mushroom"
+	display_name = "Fungo di Artiglieria"
 	mutants = null
 
 /datum/seed/mushroom/maintshroom/New()
@@ -529,7 +529,7 @@
 	set_trait(TRAIT_PRODUCT_ICON,"mushroom3")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#3EBCD5")
 	set_trait(TRAIT_PLANT_COLOUR,"#FFFFFF")
-	set_trait(TRAIT_PLANT_ICON,"maintshroom")
+	set_trait(TRAIT_PLANT_ICON,"fungoartiglieria")
 	set_trait(TRAIT_SPREAD, 2)
 	set_trait(TRAIT_CHEMS, 1)
 	set_trait(TRAIT_CHEM_SPRAYER, TRUE)
