@@ -576,6 +576,10 @@ its easier to just keep the beam vertical.
 /atom/proc/get_footstep_sound()
 	return
 
+/atom/proc/set_density(var/new_density)
+	if(density != new_density)
+		density = !!new_density
+
 //This proc is called when objects are created during the round by players.
 //This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
 /atom/proc/Created()
@@ -591,3 +595,4 @@ its easier to just keep the beam vertical.
 		//An item is spawned by events
 		//An item is delivered on the cargo shuttle
 		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
+

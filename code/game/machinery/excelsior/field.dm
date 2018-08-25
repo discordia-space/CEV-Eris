@@ -1,4 +1,6 @@
+//Todo: make this thing work under new shield system
 /obj/machinery/shieldwallgen/excelsior
+
 	name = "Excelsior Shield Generator"
 	desc = "A shield generator."
 	icon = 'icons/obj/machines/excelsior/field.dmi'

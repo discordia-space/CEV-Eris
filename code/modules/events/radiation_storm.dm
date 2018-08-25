@@ -36,7 +36,7 @@
 			continue
 		if(!isNotStationLevel(A.z))
 			continue
-		if(A.flags & RAD_SHIELDED)
+		if(A.flags & AREA_FLAG_RAD_SHIELDED)
 			continue
 
 		if(ishuman(C))
