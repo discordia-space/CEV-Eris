@@ -95,6 +95,13 @@
 	forceMove(destination)
 	return 1
 
+/mob/living/zMove(direction)
+	if (is_ventcrawling)
+		var/obj/machinery/atmospherics/pipe/zpipe/P = loc
+		if (istype(P) && P.can_z_crawl(src, direction))
+			return P.handle_z_crawl(src, direction)
+
+	return ..()
 
 /atom/proc/CanMoveOnto(atom/movable/mover, turf/target, height=1.5, direction = 0)
 	//Purpose: Determines if the object can move through this
