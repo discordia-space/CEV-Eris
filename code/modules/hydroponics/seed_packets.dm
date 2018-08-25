@@ -177,7 +177,7 @@ var/global/list/plant_seed_sprites = list()
 	seed_type = "glowshroom"
 
 /obj/item/seeds/maintshroom
-	seed_type = "maintshroom"
+	seed_type = "fungoartiglieria"
 
 /obj/item/seeds/plumpmycelium
 	seed_type = "plumphelmet"
