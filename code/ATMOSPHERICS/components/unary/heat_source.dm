@@ -26,29 +26,29 @@
 	..()
 
 /obj/machinery/atmospherics/unary/heater/atmos_init()
-	if(node)
+	if(node1)
 		return
 
-	var/node_connect = dir
+	var/node1_connect = dir
 
 	//check that there is something to connect to
-	for(var/obj/machinery/atmospherics/target in get_step(src, node_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
 		if(target.initialize_directions & get_dir(target, src))
-			node = target
+			node1 = target
 			break
 
 	//copied from pipe construction code since heaters/freezers don't use fittings and weren't doing this check - this all really really needs to be refactored someday.
 	//check that there are no incompatible pipes/machinery in our own location
 	for(var/obj/machinery/atmospherics/M in src.loc)
-		if(M != src && (M.initialize_directions & node_connect) && M.check_connect_types(M, src))	// matches at least one direction on either type of pipe & same connection type
-			node = null
+		if(M != src && (M.initialize_directions & node1_connect) && M.check_connect_types(M, src))	// matches at least one direction on either type of pipe & same connection type
+			node1 = null
 			break
 
 	update_icon()
 
 
 /obj/machinery/atmospherics/unary/heater/update_icon()
-	if(node)
+	if(node1)
 		if(use_power && heating)
 			icon_state = "heater_1"
 		else

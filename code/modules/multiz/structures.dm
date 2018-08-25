@@ -69,6 +69,9 @@
 		qdel(target)
 	return ..()
 
+/obj/structure/multiz/ladder/attack_generic(var/mob/M)
+	attack_hand(M)
+
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
 	if(!target || !istype(target.loc, /turf))
 		M << SPAN_NOTICE("\The [src] is incomplete and can't be climbed.")
