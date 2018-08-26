@@ -746,9 +746,9 @@ Buildable meters
 			V.level = !T.is_plating() ? 2 : 1
 			V.atmos_init()
 			V.build_network()
-			if (V.node)
-				V.node.atmos_init()
-				V.node.build_network()
+			if (V.node1)
+				V.node1.atmos_init()
+				V.node1.build_network()
 
 
 		if(PIPE_MVALVE)		//manual valve
@@ -897,9 +897,9 @@ Buildable meters
 			S.level = !T.is_plating() ? 2 : 1
 			S.atmos_init()
 			S.build_network()
-			if (S.node)
-				S.node.atmos_init()
-				S.node.build_network()
+			if (S.node1)
+				S.node1.atmos_init()
+				S.node1.build_network()
 
 		if(PIPE_INSULATED_STRAIGHT, PIPE_INSULATED_BENT)
 			var/obj/machinery/atmospherics/pipe/simple/insulated/P = new( src.loc )
@@ -1033,9 +1033,9 @@ Buildable meters
 			C.level = !T.is_plating() ? 2 : 1
 			C.atmos_init()
 			C.build_network()
-			if (C.node)
-				C.node.atmos_init()
-				C.node.build_network()
+			if (C.node1)
+				C.node1.atmos_init()
+				C.node1.build_network()
 ///// Z-Level stuff
 		if(PIPE_UP)
 			var/obj/machinery/atmospherics/pipe/zpipe/up/P = new(src.loc)

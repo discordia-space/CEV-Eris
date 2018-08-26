@@ -56,5 +56,6 @@
 	var/list/reagents
 	var/time = 100
 
+
 /datum/autolathe/recipe/corrupted
 	name = "ERROR"

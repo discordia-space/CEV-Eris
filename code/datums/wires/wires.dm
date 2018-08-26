@@ -26,6 +26,8 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/window_x = 370
 	var/window_y = 470
 
+	var/list/descriptions // Descriptions of wires (datum/wire_description) for use with examining.
+
 /datum/wires/New(var/atom/holder)
 	..()
 	src.holder = holder
@@ -36,6 +38,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	// Generate new wires
 	if(random)
 		GenerateWires()
+
 	// Get the same wires
 	else
 		// We don't have any wires to copy yet, generate some and then copy it.
@@ -68,6 +71,23 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		src.wires[colour] = index
 		//wires = shuffle(wires)
 
+/datum/wires/proc/examine(index, mob/user)
+	. = "You aren't sure what this wire does."
+
+	var/datum/wire_description/wd = get_description(index)
+	if(!wd)
+		return
+	//TODO: Port bay wires fully and integrate eris' skill system
+	//if(wd.skill_level && !user.skill_check(SKILL_ELECTRICAL, wd.skill_level))
+		//return
+	return wd.description
+
+
+
+/datum/wires/proc/get_description(index)
+	for(var/datum/wire_description/desc in descriptions)
+		if(desc.index == index)
+			return desc
 
 /datum/wires/proc/Interact(var/mob/living/user)
 
