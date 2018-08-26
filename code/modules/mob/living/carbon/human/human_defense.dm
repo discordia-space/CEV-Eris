@@ -24,7 +24,9 @@ meteor_act
 			P.on_hit(src, 2, def_zone)
 			return 2
 	//Checking abosrb for spawning shrapnel
-	var/check_absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
+	.=..(P , def_zone) 
+	
+	var/check_absorb = .
 	//Shrapnel
 	if(P.can_embed() && (check_absorb < 2))
 		var/armor = getarmor_organ(organ, "bullet")
