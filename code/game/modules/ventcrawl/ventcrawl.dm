@@ -53,7 +53,7 @@ var/list/ventcrawl_machinery = list(
 		return !get_inventory_slot(carried_item)
 
 /mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	if((carried_item in stomach_contents))
+	if(carried_item in stomach_contents)
 		return 1
 	return ..()
 

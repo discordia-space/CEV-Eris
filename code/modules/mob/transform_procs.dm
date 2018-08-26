@@ -23,6 +23,7 @@
 
 	transforming = 0
 	stunned = 0
+
 	update_canmove()
 	invisibility = initial(invisibility)
 
@@ -32,13 +33,13 @@
 
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
+
 	set_species(species.primitive_form)
 	dna.SetSEState(MONKEYBLOCK,1)
 	dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
 
 	src << "<B>You are now [species.name]. </B>"
 	qdel(animation)
-
 	return src
 
 /mob/new_player/AIize()
