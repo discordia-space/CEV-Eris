@@ -124,7 +124,8 @@
 	for(var/obj/structure/catwalk/C in get_turf(src))
 		return
 
-	if(!ishuman(M) || !has_gravity(src))
+	//BSTs need this or they generate tons of soundspam while flying through the ship
+	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(src))
 		return
 	if(M.m_intent == "run")
 		if(prob(75))

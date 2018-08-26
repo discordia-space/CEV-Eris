@@ -113,6 +113,8 @@
 	return FALSE
 
 /mob/living/carbon/human/can_overcome_gravity()
+	if (incorporeal_move)
+		return TRUE
 /*	//First do species check
 	Not for now, again. First is implementig CLIBMBABLE things and structures, and then this shit below
 	if(species && species.can_overcome_gravity(src))//also NO ANY CLIMBING SPECIES, so this is deadcode and we need to clear it out in future
@@ -182,12 +184,12 @@
 
 /mob/observer/ghost/verb/moveup()
 	set name = "Move Upwards"
-	set category = null
+	set category = "Ghost"
 	zMove(UP)
 
 /mob/observer/ghost/verb/movedown()
 	set name = "Move Downwards"
-	set category = null
+	set category = "Ghost"
 	zMove(DOWN)
 
 // Laders and stairs pulling movement
