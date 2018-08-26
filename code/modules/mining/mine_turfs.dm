@@ -37,29 +37,15 @@
 
 /turf/simulated/mineral/New()
 	..()
+	icon_state = "rock[rand(0,4)]"
 	spawn(0)
 		MineralSpread()
-
-/turf/simulated/mineral/Initialize()
-	. = ..()
-	spawn(2)
-		updateMineralOverlays(1)
 
 /turf/simulated/mineral/can_build_cable()
 	return !density
 
 /turf/simulated/mineral/is_plating()
 	return 1
-
-/turf/simulated/mineral/proc/updateMineralOverlays(var/update_neighbors)
-	var/list/step_overlays = list("s" = NORTH, "n" = SOUTH, "w" = EAST, "e" = WEST)
-	for(var/direction in step_overlays)
-		var/turf/turf_to_check = get_step(src,step_overlays[direction])
-		if(update_neighbors && istype(turf_to_check,/turf/simulated/floor/asteroid))
-			var/turf/simulated/floor/asteroid/T = turf_to_check
-			T.updateMineralOverlays()
-		else if(istype(turf_to_check,/turf/space) || istype(turf_to_check,/turf/simulated/floor))
-			turf_to_check.overlays += image('icons/turf/walls.dmi', "rock_side", dir = turn(step_overlays[direction], 180))
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)
@@ -313,21 +299,9 @@
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)
 
-
-	var/list/step_overlays = list("n" = NORTH, "s" = SOUTH, "e" = EAST, "w" = WEST)
-
 	//Add some rubble,  you did just clear out a big chunk of rock.
 
 	var/turf/simulated/floor/asteroid/N = ChangeTurf(mined_turf)
-
-	// Kill and update the space overlays around us.
-	for(var/direction in step_overlays)
-		var/turf/space/T = get_step(src, step_overlays[direction])
-		if(istype(T))
-			T.overlays.Cut()
-			for(var/next_direction in step_overlays)
-				if(istype(get_step(T, step_overlays[next_direction]),/turf/simulated/mineral))
-					T.overlays += image('icons/turf/walls.dmi', "rock_side", dir = step_overlays[next_direction])
 
 	if(istype(N))
 		N.overlay_detail = "asteroid[rand(0,9)]"
@@ -450,8 +424,10 @@
 
 /turf/simulated/floor/asteroid/New()
 	..()
+	icon_state = "asteroid[rand(0,2)]"
 	if(prob(20))
-		overlay_detail = "asteroid[rand(0,9)]"
+		overlay_detail = "asteroid[rand(0,8)]"
+		updateMineralOverlays(1)
 
 /turf/simulated/floor/asteroid/ex_act(severity)
 	switch(severity)
@@ -501,9 +477,6 @@
 
 		if(istype(get_step(src, step_overlays[direction]), /turf/space))
 			overlays += image('icons/turf/flooring/asteroid.dmi', "asteroid_edges", dir = step_overlays[direction])
-
-		if(istype(get_step(src, step_overlays[direction]), /turf/simulated/mineral))
-			overlays += image('icons/turf/walls.dmi', "rock_side", dir = step_overlays[direction])
 
 	//todo cache
 	if(overlay_detail) overlays |= image(icon = 'icons/turf/flooring/decals.dmi', icon_state = overlay_detail)
