@@ -14,6 +14,8 @@
 	var/projectile_type					//The bullet type to create when New() is called
 	var/obj/item/projectile/BB = null	//The loaded bullet - make it so that the projectiles are created only when needed?
 	var/spent_icon = null
+	var/amount = 1
+	var/maxamount = 15
 
 /obj/item/ammo_casing/New()
 	..()
@@ -28,6 +30,26 @@
 	BB = null
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
+
+/obj/item/ammo_casing/attack_hand(mob/user)
+	if((src.amount > 1) && (src == user.get_inactive_hand()))
+		src.amount -= 1
+		var/obj/item/ammo_casing/new_casing = new /obj/item/ammo_casing(get_turf(user))
+		new_casing.desc = src.desc
+		new_casing.caliber = src.caliber
+		new_casing.projectile_type = src.projectile_type
+		new_casing.icon_state = src.icon_state
+		new_casing.spent_icon = src.spent_icon
+		new_casing.maxamount = src.maxamount
+		if(ispath(new_casing.projectile_type) && src.BB)
+			new_casing.BB = new new_casing.projectile_type(new_casing)
+		else
+			new_casing.BB = null
+		new_casing.update_icon()
+		src.update_icon()
+		user.put_in_active_hand(new_casing)
+	else
+		return ..()
 
 /obj/item/ammo_casing/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING, QUALITY_CUTTING)))
@@ -45,15 +67,41 @@
 		else
 			user << "\blue You inscribe \"[label_text]\" into \the [initial(BB.name)]."
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
+	else if(istype(I, /obj/item/ammo_casing) && (src.amount != src.maxamount) && (src.desc == I.desc))
+		var/obj/item/ammo_casing/merged_casing = I
+		if((!src.BB && !merged_casing.BB) || (src.BB && merged_casing.BB))
+			if(merged_casing.amount > 1)
+				src.amount += 1
+				merged_casing.amount -= 1
+				merged_casing.update_icon()
+			else
+				src.amount += 1
+				QDEL_NULL(merged_casing)
+			src.update_icon()
+
 
 /obj/item/ammo_casing/update_icon()
 	if(spent_icon && !BB)
 		icon_state = spent_icon
+	src.overlays.Cut()
+	if(amount > 1)
+		src.pixel_x = 0
+		src.pixel_y = 0
+	var/icon_amount
+	for(icon_amount = 1; icon_amount < src.amount, icon_amount++)
+		var/image/temp_image = image(src.icon, src.icon_state)
+		temp_image.pixel_x = (-1) ** round(icon_amount/2) * round(11 * icon_amount/src.maxamount) + pick(-1, 0, 1)
+		temp_image.pixel_y = (-1) ** round((icon_amount + 1)/2) * round(11 * icon_amount/src.maxamount) + pick(-1, 0, 1)
+		var/matrix/temp_image_matrix = matrix()
+		temp_image_matrix.Turn(round(45 * rand(0, 16) / 2))
+		temp_image.transform = temp_image_matrix
+		src.overlays += temp_image
 
 /obj/item/ammo_casing/examine(mob/user)
 	..()
+	user << "There [(amount == 1)? "is" : "are"] [amount] round\s left!"
 	if (!BB)
-		user << "This one is spent."
+		user << "[(amount == 1)? "This one is" : "These ones are"] spent."
 
 //Gun loading types
 #define SINGLE_CASING 	1	//The gun only accepts ammo_casings. ammo_magazines should never have this as their mag_type.
@@ -112,9 +160,24 @@
 		if(stored_ammo.len >= max_ammo)
 			user << SPAN_WARNING("[src] is full!")
 			return
-		user.remove_from_mob(C)
-		C.loc = src
-		stored_ammo.Insert(1, C) //add to the head of the list
+		if(C.amount > 1)
+			C.amount -= 1
+			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
+			inserted_casing.desc = C.desc
+			inserted_casing.caliber = C.caliber
+			inserted_casing.projectile_type = C.projectile_type
+			inserted_casing.icon_state = C.icon_state
+			inserted_casing.spent_icon = C.spent_icon
+			inserted_casing.maxamount = C.maxamount
+			if(ispath(inserted_casing.projectile_type) && C.BB)
+				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
+			C.update_icon()
+			inserted_casing.update_icon()
+			stored_ammo.Insert(1, inserted_casing)
+		else
+			user.remove_from_mob(C)
+			C.loc = src
+			stored_ammo.Insert(1, C) //add to the head of the list
 		update_icon()
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
@@ -137,6 +200,7 @@
 		var/obj/item/ammo_casing/AC = stored_ammo[1]
 		if(user.put_in_active_hand(AC))
 			stored_ammo -= AC
+		update_icon()
 	else
 		return ..()
 

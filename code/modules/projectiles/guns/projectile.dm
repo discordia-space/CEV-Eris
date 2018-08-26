@@ -84,6 +84,18 @@
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.
 			chambered.loc = get_turf(src)
+			for(var/obj/item/ammo_casing/temp_casing in chambered.loc)
+				if((temp_casing.desc == chambered.desc) && !temp_casing.BB)
+					var/temp_amount = temp_casing.amount + chambered.amount
+					if(temp_amount > chambered.maxamount)
+						temp_casing.amount -= (chambered.maxamount - chambered.amount)
+						chambered.amount = chambered.maxamount
+						temp_casing.update_icon()
+					else
+						chambered.amount = temp_amount
+						QDEL_NULL(temp_casing)
+					chambered.update_icon()
+
 			playsound(src.loc, casing_sound, 50, 1)
 		if(CYCLE_CASINGS) //cycle the casing back to the end.
 			if(ammo_magazine)
