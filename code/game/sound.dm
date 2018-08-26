@@ -116,7 +116,7 @@ var/list/bullet_hit_object_sound = list('sound/weapons/guns/misc/bullethit.ogg')
 			var/z_dist = abs(T.z - turf_source.z)
 			z_dist *= 0.5 //The reduction in volume over zlevels was too much
 			if(T && z_dist <= 1)
-				M.playsound_local(turf_source, soundin, vol/(1+z_dist), vary, frequency, falloff, is_global, use_pressure)
+				M.playsound_local(turf_source, soundin, vol/(1+z_dist), vary, extrarange, frequency, falloff, is_global, use_pressure)
 
 var/const/FALLOFF_SOUNDS = 0.5
 

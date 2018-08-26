@@ -19,6 +19,7 @@
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 
+
 /obj/structure/window/can_prevent_fall()
 	return !is_fulltile()
 
@@ -108,7 +109,7 @@
 	if(!proj_damage) return
 
 	..()
-	take_damage(proj_damage)
+	hit(proj_damage)
 	return
 
 
@@ -163,7 +164,7 @@
 	if(health - tforce <= 7 && !reinf)
 		set_anchored(FALSE)
 		step(src, get_dir(AM, src))
-	take_damage(tforce)
+	hit(tforce)
 
 /obj/structure/window/attack_tk(mob/user as mob)
 	user.visible_message(SPAN_NOTICE("Something knocks on [src]."))
@@ -200,16 +201,18 @@
 	if(istype(user))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
-	if(!damage)
-		return
 	if(damage >= 10)
 		visible_message(SPAN_DANGER("[user] smashes into [src]!"))
-		take_damage(damage)
+		hit(damage)
 	else
 		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
+		playsound(src.loc, 'sound/effects/glasshit.ogg', 40, 1)
+		return
 	return 1
 
 /obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+	world << "Smashing [target] against [src]"
+	target.do_attack_animation(src)
 	switch(state)
 		if(GRAB_PASSIVE)
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
@@ -231,6 +234,7 @@
 		"Smashed against \the [src] by [key_name(user)]",
 		"smashed [key_name(target)] against \the [src]."
 	)
+	sleep(5) //Allow a littleanimating time
 	return TRUE
 
 
@@ -244,54 +248,56 @@
 	if(reinf && state >= 1)
 		usable_qualities.Add(QUALITY_PRYING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
-	switch(tool_type)
+	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
+	if (usr.a_intent != I_HURT)
+		var/tool_type = I.get_tool_type(user, usable_qualities)
+		switch(tool_type)
 
-		if(QUALITY_BOLT_TURNING)
-			if(!anchored && (!state || !reinf))
-				if(!glasstype)
-					user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
-					return
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
-					if(dir == SOUTHWEST)
-						var/obj/item/stack/material/mats = new glasstype(loc)
-						mats.amount = is_fulltile() ? 4 : 2
-					else
-						new glasstype(loc)
-					qdel(src)
-					return
-			return
+			if(QUALITY_BOLT_TURNING)
+				if(!anchored && (!state || !reinf))
+					if(!glasstype)
+						user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
+						return
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
+						if(dir == SOUTHWEST)
+							var/obj/item/stack/material/mats = new glasstype(loc)
+							mats.amount = is_fulltile() ? 4 : 2
+						else
+							new glasstype(loc)
+						qdel(src)
+						return
+				return 1 //No whacking the window with tools unless harm intent
 
-		if(QUALITY_PRYING)
-			if(reinf && state <= 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					state = 1 - state
-					user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
-			return
+			if(QUALITY_PRYING)
+				if(reinf && state <= 1)
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+						state = 1 - state
+						user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
+				return 1 //No whacking the window with tools unless harm intent
 
 
-		if(QUALITY_SCREW_DRIVING)
-			if(reinf && state >= 1)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					state = 3 - state
-					update_nearby_icons()
-					user << (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame."))
-					return
-			if(reinf && state == 0)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					set_anchored(!anchored)
-					user << (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor."))
-					return
-			if(!reinf)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
-					set_anchored(!anchored)
-					user << (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window."))
-					return
-			return
+			if(QUALITY_SCREW_DRIVING)
+				if(reinf && state >= 1)
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+						state = 3 - state
+						update_nearby_icons()
+						user << (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame."))
+						return
+				if(reinf && state == 0)
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+						set_anchored(!anchored)
+						user << (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor."))
+						return
+				if(!reinf)
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
+						set_anchored(!anchored)
+						user << (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window."))
+						return
+				return 1 //No whacking the window with tools unless harm intent
 
-		if(ABORT_CHECK)
-			return
+			if(ABORT_CHECK)
+				return
 
 	if(!istype(I)) return//I really wish I did not need this
 	if(I.flags & NOBLUDGEON) return
@@ -309,9 +315,11 @@
 		..()
 	return
 
-/obj/structure/window/proc/hit(var/damage, var/sound_effect = 1)
+/obj/structure/window/proc/hit(var/damage, var/sound_effect = TRUE)
 	if(reinf) damage *= 0.5
 	take_damage(damage)
+	if (sound_effect)
+		playsound(src.loc, 'sound/effects/glasshit.ogg', damage*4, 1, damage*0.5, damage*0.5) //The harder the hit, the louder and farther travelling the sound
 	return
 
 
