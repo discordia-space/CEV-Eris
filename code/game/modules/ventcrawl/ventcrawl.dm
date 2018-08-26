@@ -53,15 +53,11 @@ var/list/ventcrawl_machinery = list(
 		return !get_inventory_slot(carried_item)
 
 /mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	if((carried_item in internal_organs) || (carried_item in stomach_contents))
+	if((carried_item in stomach_contents)
 		return 1
 	return ..()
 
 /mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
-	if(carried_item in organs)
-		return 1
-	if(carried_item in list(w_uniform, gloves, glasses, wear_mask, l_ear, r_ear, belt, l_store, r_store))
-		return 1
 	if(carried_item in list(l_hand,r_hand))
 		return carried_item.w_class <= ITEM_SIZE_NORMAL
 	return ..()
@@ -72,7 +68,7 @@ var/list/ventcrawl_machinery = list(
 	return ..()
 
 /mob/living/proc/ventcrawl_carry()
-	for(var/atom/A in contents)
+	for(var/atom/A in get_equipped_items())
 		if(!is_allowed_vent_crawl_item(A))
 			to_chat(src, "<span class='warning'>You can't carry \the [A] while ventcrawling!</span>")
 			return FALSE

@@ -1546,25 +1546,19 @@ CIRCUITS BELOW
 	if(!desc)
 		desc = "Allows for the construction of \a [name] shield generator."
 
-/datum/design/circuit/shield/bubble
-	name = "bubble"
-	id = "shield_gen"
-	build_path = /obj/item/weapon/circuitboard/shield_gen
-	sort_string = "VAAAA"
-
 /datum/design/circuit/shield/hull
 	name = "hull"
-	id = "shield_gen_ex"
-	build_path = /obj/item/weapon/circuitboard/shield_gen_ex
+	id = "shield_gen"
+	build_path = /obj/item/weapon/circuitboard/shield_generator
 	sort_string = "VAAAB"
-
+/*
 /datum/design/circuit/shield/capacitor
 	name = "capacitor"
 	desc = "Allows for the construction of a shield capacitor circuit board."
 	id = "shield_cap"
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
 	build_path = /obj/item/weapon/circuitboard/shield_cap
-	sort_string = "VAAAC"
+	sort_string = "VAAAC"*/
 
 /datum/design/circuit/ntnet_relay
 	name = "NTNet Quantum Relay"

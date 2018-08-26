@@ -295,6 +295,8 @@ Class Procs:
 			return 1
 	return 0
 
+
+//Tool qualities are stored in \code\__defines\tools_and_qualities.dm
 /obj/machinery/proc/default_deconstruction(var/obj/item/I, var/mob/user)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING))
@@ -358,6 +360,7 @@ Class Procs:
 		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame, loc)
 	if(type == FRAME_VERTICAL)
 		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame/vertical, loc)
+
 
 /obj/machinery/proc/dismantle()
 	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)

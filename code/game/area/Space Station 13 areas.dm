@@ -50,6 +50,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 
+	var/vessel = "CEV Eris" //The ship or station this area is on. This is so far just for the benefit of shield generators
+	//Consoles can only control shields on the same vessel as them
+
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
 var/list/teleportlocs = list()
@@ -99,7 +102,9 @@ var/list/ghostteleportlocs = list()
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
+	flags = AREA_FLAG_EXTERNAL
 	ambience = list('sound/ambience/ambispace.ogg')
+	vessel = null
 
 area/space/atmosalert()
 	return
@@ -154,7 +159,7 @@ area/space/atmosalert()
 
 /area/shuttle/escape
 	name = "\improper Emergency Shuttle"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/escape/station
 	name = "\improper Emergency Shuttle Station"
@@ -170,7 +175,7 @@ area/space/atmosalert()
 
 /area/shuttle/escape_pod1
 	name = "\improper Escape Pod One"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/escape_pod1/station
 	icon_state = "shuttle2"
@@ -183,7 +188,7 @@ area/space/atmosalert()
 
 /area/shuttle/escape_pod2
 	name = "\improper Escape Pod Two"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/escape_pod2/station
 	icon_state = "shuttle2"
@@ -196,7 +201,7 @@ area/space/atmosalert()
 
 /area/shuttle/escape_pod3
 	name = "\improper Escape Pod Three"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/escape_pod3/station
 	icon_state = "shuttle2"
@@ -209,7 +214,7 @@ area/space/atmosalert()
 
 /area/shuttle/escape_pod5 //Pod 4 was lost to meteors
 	name = "\improper Escape Pod Five"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/escape_pod5/station
 	icon_state = "shuttle2"
@@ -261,7 +266,7 @@ area/space/atmosalert()
 
 /area/shuttle/specops/centcom
 	name = "\improper Special Ops Shuttle"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/specops/centcom
 	icon_state = "shuttlered"
@@ -271,7 +276,7 @@ area/space/atmosalert()
 
 /area/shuttle/syndicate_elite
 	name = "\improper Merc Elite Shuttle"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/syndicate_elite/mothership
 	icon_state = "shuttlered"
@@ -280,7 +285,7 @@ area/space/atmosalert()
 	icon_state = "shuttlered2"
 
 /area/shuttle/administration
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/administration/centcom
 	name = "\improper Administration Shuttle Centcom"
@@ -340,7 +345,7 @@ area/space/atmosalert()
 	name = "\improper Alien base"
 	icon_state = "yellow"
 	requires_power = 0
-
+	vessel = "alien"
 // CENTCOM
 
 /area/centcom
@@ -348,6 +353,7 @@ area/space/atmosalert()
 	icon_state = "centcom"
 	requires_power = 0
 	dynamic_lighting = 0
+	vessel = "centcom"
 
 /area/centcom/control
 	name = "\improper Centcom Control"
@@ -396,6 +402,7 @@ area/space/atmosalert()
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
+	vessel = "syndicate mothership"
 
 /area/syndicate_mothership/control
 	name = "\improper Mercenary Control Room"
@@ -467,7 +474,7 @@ area/space/atmosalert()
 	name = "\improper Independant Station"
 	icon_state = "yellow"
 	requires_power = 0
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/syndicate_station/start
 	name = "\improper Mercenary Forward Operating Base"
@@ -648,7 +655,7 @@ area/space/atmosalert()
 //Maintenance
 
 /area/maintenance
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
 	forced_ambience = list('sound/ambience/maintambience.ogg')
@@ -961,7 +968,7 @@ area/space/atmosalert()
 /area/crew_quarters
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
-	flags = RAD_SHIELDED
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/crew_quarters/toilet
 	name = "\improper Dormitory Toilets"
@@ -1133,6 +1140,10 @@ area/space/atmosalert()
 /area/engineering/gravity_generator
 	name = "Gravity Generator Room"
 	icon_state = "blue"
+
+/area/engineering/shield_generator
+	name = "Shield Generator Room"
+	icon_state = "blueold"
 
 /area/engineering/atmos
  	name = "\improper Atmospherics"
