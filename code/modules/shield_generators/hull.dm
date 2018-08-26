@@ -87,6 +87,7 @@
 
 		tendrils_deployed = TRUE
 		update_icon()
+
 		return TRUE
 
 	else if (target_state == FALSE)
@@ -95,8 +96,18 @@
 			qdel(SC)
 		tendrils_deployed = FALSE
 		update_icon()
+
 		return FALSE
 
+/obj/machinery/power/shield_generator/hull/Process()
+	if (anchored)
+		return ..()
+	else
+		return
+
+/obj/machinery/power/shield_generator/hull/Topic(href, href_list)
+	if (anchored)
+		return ..(href, href_list)
 
 /obj/machinery/shield_conduit
 	name = "Shield"
@@ -114,7 +125,6 @@
 		if(anchored)
 			user << SPAN_NOTICE("You unsecure the [src] from the floor!")
 			toggle_tendrils(FALSE)
-
 			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
