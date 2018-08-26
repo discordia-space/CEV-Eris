@@ -127,6 +127,10 @@
 	caliber = "14.5mm"
 	projectile_type = /obj/item/projectile/bullet/a145
 	matter = list(MATERIAL_STEEL = 1)
+	maxamount = 5
+
+/obj/item/ammo_casing/a145/prespawned
+	amount = 5
 
 /obj/item/ammo_casing/shotgun
 	name = "shotgun slug"
@@ -135,6 +139,10 @@
 	caliber = "shotgun"
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	matter = list(MATERIAL_STEEL = 1)
+	maxamount = 5
+
+/obj/item/ammo_casing/shotgun/prespawned
+	amount = 5
 
 /obj/item/ammo_casing/shotgun/pellet
 	name = "shotgun shell"
@@ -142,6 +150,10 @@
 	icon_state = "gshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
 	matter = list(MATERIAL_STEEL = 1)
+	maxamount = 5
+
+/obj/item/ammo_casing/shotgun/pellet/prespawned
+	amount = 5
 
 /obj/item/ammo_casing/shotgun/blank
 	name = "shotgun shell"
@@ -149,6 +161,10 @@
 	icon_state = "blshell"
 	projectile_type = /obj/item/projectile/bullet/blank
 	matter = list(MATERIAL_STEEL = 1)
+	maxamount = 5
+
+/obj/item/ammo_casing/shotgun/blank/prespawned
+	amount = 5
 
 /obj/item/ammo_casing/shotgun/practice
 	name = "shotgun shell"
@@ -156,6 +172,10 @@
 	icon_state = "pshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/practice
 	matter = list(MATERIAL_STEEL = 1)
+	maxamount = 5
+
+/obj/item/ammo_casing/shotgun/practice/prespawned
+	amount = 5
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag shell"
@@ -163,6 +183,10 @@
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
 	matter = list(MATERIAL_STEEL = 1)
+	maxamount = 5
+
+/obj/item/ammo_casing/shotgun/beanbag/prespawned
+	amount = 5
 
 //Can stun in one hit if aimed at the head, but
 //is blocked by clothing that stops tasers and is vulnerable to EMP
@@ -173,10 +197,14 @@
 	spent_icon = "stunshell-spent"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 1)
+	maxamount = 5
 
 /obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
 	if(prob(100/severity)) BB = null
 	update_icon()
+
+/obj/item/ammo_casing/shotgun/stunshell/prespawned
+	amount = 5
 
 //Does not stun, only blinds, but has area of effect.
 /obj/item/ammo_casing/shotgun/flash
@@ -185,6 +213,10 @@
 	icon_state = "fshell"
 	projectile_type = /obj/item/projectile/energy/flash/flare
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 1)
+	maxamount = 5
+
+/obj/item/ammo_casing/shotgun/flash/prespawned
+	amount = 5
 
 /obj/item/ammo_casing/rocket
 	name = "rocket shell"
@@ -192,6 +224,7 @@
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/missile
 	caliber = "rocket"
+	maxamount = 1
 
 /obj/item/ammo_casing/a75
 	desc = "A 20mm bullet casing."

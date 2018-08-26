@@ -84,6 +84,18 @@
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.
 			chambered.loc = get_turf(src)
+			for(var/obj/item/ammo_casing/temp_casing in chambered.loc)
+				if((temp_casing.desc == chambered.desc) && !temp_casing.BB)
+					var/temp_amount = temp_casing.amount + chambered.amount
+					if(temp_amount > chambered.maxamount)
+						temp_casing.amount -= (chambered.maxamount - chambered.amount)
+						chambered.amount = chambered.maxamount
+						temp_casing.update_icon()
+					else
+						chambered.amount = temp_amount
+						QDEL_NULL(temp_casing)
+					chambered.update_icon()
+
 			playsound(src.loc, casing_sound, 50, 1)
 		if(CYCLE_CASINGS) //cycle the casing back to the end.
 			if(ammo_magazine)
@@ -146,9 +158,24 @@
 			user << SPAN_WARNING("[src] is full.")
 			return
 
-		user.remove_from_mob(C)
-		C.loc = src
-		loaded.Insert(1, C) //add to the head of the list
+		if(C.amount > 1)
+			C.amount -= 1
+			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
+			inserted_casing.desc = C.desc
+			inserted_casing.caliber = C.caliber
+			inserted_casing.projectile_type = C.projectile_type
+			inserted_casing.icon_state = C.icon_state
+			inserted_casing.spent_icon = C.spent_icon
+			inserted_casing.maxamount = C.maxamount
+			if(ispath(inserted_casing.projectile_type) && C.BB)
+				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
+			C.update_icon()
+			inserted_casing.update_icon()
+			loaded.Insert(1, inserted_casing)
+		else
+			user.remove_from_mob(C)
+			C.loc = src
+			loaded.Insert(1, C) //add to the head of the list
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 
