@@ -35,7 +35,7 @@
 
 	has_resources = 1
 
-/turf/simulated/mineral/New()
+/turf/simulated/mineral/Initialize()
 	..()
 	icon_state = "rock[rand(0,4)]"
 	spawn(0)
