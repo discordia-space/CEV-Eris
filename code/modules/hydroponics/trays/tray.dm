@@ -392,7 +392,7 @@
 	switch(tool_type)
 
 		if(QUALITY_SHOVELING)
-			if(weedlevel > 0)
+			if(weedlevel == 0)
 				user << SPAN_WARNING("This plot is completely devoid of weeds. It doesn't need uprooting.")
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
