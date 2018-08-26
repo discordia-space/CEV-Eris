@@ -664,16 +664,11 @@
 		if(shock(user, 100))
 			return
 
-	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING)))
-		var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
-			panel_open = !panel_open
-			user << "You [panel_open ?  "open" : "close"] the maintenance panel."
-			updateUsrDialog()
+	if(default_deconstruction_screwdriver(I, user))
 		return
 
 	//Hacking init.
-	else if(istype(I, /obj/item/weapon/tool))
+	if(istype(I, /obj/item/weapon/tool))
 		if(panel_open)
 			attack_hand(user)
 		return

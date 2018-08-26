@@ -301,12 +301,8 @@
 				return
 
 		if(QUALITY_SCREW_DRIVING)
-			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
-				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
-				update_icon()
-				return
+			default_deconstruction_screwdriver(I, user)
+			return
 
 		if(QUALITY_BOLT_TURNING)
 			if(istype(get_turf(src), /turf/space))
