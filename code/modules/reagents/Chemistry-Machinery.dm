@@ -181,6 +181,7 @@
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
+	layer = OBJ_LAYER
 	ui_title = "Soda Dispens-o-matic"
 	energy = 100
 	accept_glass = 1
@@ -205,6 +206,7 @@
 /obj/machinery/chemical_dispenser/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
+	layer = OBJ_LAYER
 	ui_title = "Booze Portal 9001"
 	energy = 100
 	accept_glass = 1
@@ -252,6 +254,7 @@
 	name = "ChemMaster 3000"
 	density = 1
 	anchored = 1
+	layer = BELOW_OBJ_LAYER
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	use_power = 1
@@ -539,7 +542,7 @@
 	name = "All-In-One Grinder"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
-	layer = 2.9
+	layer = BELOW_OBJ_LAYER
 	density = 0
 	anchored = 0
 	use_power = 1

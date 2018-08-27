@@ -124,7 +124,7 @@
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 				"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 			modded = modded ? 0 : 1
@@ -168,6 +168,10 @@
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()
+
+/obj/structure/reagent_dispensers/fueltank/ignite_act()
+	if(modded)
+		explode()
 
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
 	if (reagents.total_volume > 500)
@@ -225,7 +229,7 @@
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			src.add_fingerprint(user)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
@@ -249,6 +253,16 @@
 	New()
 		..()
 		reagents.add_reagent("beer",1000)
+
+/obj/structure/reagent_dispensers/cahorsbarrel
+	name = "NeoTheology Cahors barrel"
+	desc = "Barrel a day - keeps liver away."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "barrel"
+	amount_per_transfer_from_this = 10
+	New()
+		..()
+		reagents.add_reagent("ntcahors",800)
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"

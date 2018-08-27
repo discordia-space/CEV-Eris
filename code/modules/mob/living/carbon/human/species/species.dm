@@ -148,11 +148,7 @@
 		BP_L_ARM =  new /datum/organ_description/arm/left,
 		BP_R_ARM =  new /datum/organ_description/arm/right,
 		BP_L_LEG =  new /datum/organ_description/leg/left,
-		BP_R_LEG =  new /datum/organ_description/leg/right,
-		BP_L_HAND = new /datum/organ_description/hand/left,
-		BP_R_HAND = new /datum/organ_description/hand/right,
-		BP_L_FOOT = new /datum/organ_description/foot/left,
-		BP_R_FOOT = new /datum/organ_description/foot/right
+		BP_R_LEG =  new /datum/organ_description/leg/right
 		)
 
 	// Misc

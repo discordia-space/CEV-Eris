@@ -12,4 +12,4 @@
 		if(!new_explane)
 			return
 		explanation_text = new_explane
-		owner.edit_memory()
+		antag.antagonist_panel()

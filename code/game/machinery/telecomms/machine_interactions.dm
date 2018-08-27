@@ -33,7 +33,7 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(construct_op == 0 || construct_op == 1)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					if(construct_op == 0)
 						user << "You unfasten the bolts."
 						construct_op ++
@@ -45,7 +45,7 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(construct_op == 2)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << "You remove the cables."
 					construct_op ++
 					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
@@ -62,7 +62,7 @@
 		if(QUALITY_PRYING)
 			if(construct_op == 3)
 				user << "You begin prying out the circuit board other components..."
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << "You finish prying out the components."
 
 					// Drop all the component stuff
@@ -96,7 +96,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(construct_op == 1 || construct_op == 2)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					if(construct_op == 1)
 						user << "You dislodge the external plating."
 						construct_op ++

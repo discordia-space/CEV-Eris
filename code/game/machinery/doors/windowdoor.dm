@@ -1,6 +1,9 @@
 /obj/machinery/door/window
 	name = "interior door"
 	desc = "A strong door."
+	layer = ABOVE_WINDOW_LAYER
+	open_layer = ABOVE_WINDOW_LAYER
+	closed_layer = ABOVE_WINDOW_LAYER
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	var/base_state = "left"
@@ -197,7 +200,7 @@
 	//If it's emagged, crowbar can pry electronics out.
 	if (src.operating == -1 && (QUALITY_PRYING in I.tool_qualities))
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_PRD))
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user << SPAN_NOTICE("You removed the windoor electronics!")
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
@@ -251,8 +254,28 @@
 		else
 			close()
 
-	else if (src.density)
-		flick(text("[]deny", src.base_state), src)
+	else
+
+		if (src.density)
+			flick(text("[]deny", src.base_state), src)
+			if (usr.a_intent == I_HURT)
+
+				if (ishuman(usr))
+					var/mob/living/carbon/human/H = usr
+					if(H.species.can_shred(H))
+						attack_generic(H,25)
+						return
+				playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
+				user.do_attack_animation(src)
+				usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
+									SPAN_DANGER("You bang against \the [src]!"),
+									"You hear a banging sound.")
+			else
+				playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
+				usr.visible_message("[usr.name] knocks on the [src.name].",
+									"You knock on the [src.name].",
+									"You hear a knocking sound.")
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	return
 

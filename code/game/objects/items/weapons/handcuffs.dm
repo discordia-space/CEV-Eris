@@ -65,7 +65,11 @@
 
 	//user.visible_message(SPAN_DANGER("\The [user] is attempting to put [cuff_type] on \the [H]!"))
 
-	if(!do_after(user,0, target))
+	if(istype(user, /mob/living/silicon/robot))
+		if(!do_after(user, 30, target))
+			return 0
+
+	else if(!do_after(user, 0, target))
 		return 0
 
 	H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed by [user.name] ([user.ckey])</font>")
@@ -101,7 +105,7 @@ var/last_chew = 0
 	if (H.wear_mask) return
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 
-	var/obj/item/organ/external/O = H.organs_by_name[H.hand ? BP_L_HAND : BP_R_HAND]
+	var/obj/item/organ/external/O = H.organs_by_name[H.hand ? BP_L_ARM : BP_R_ARM]
 	if (!O) return
 
 	var/s = SPAN_WARNING("[H.name] chews on \his [O.name]!")

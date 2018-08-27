@@ -12,6 +12,7 @@
 	min_broken_damage = 30
 	max_damage = 0
 	dir = SOUTH
+	layer = BELOW_MOB_LAYER
 	organ_tag = "limb"
 	var/icon_name = null
 	var/tally = 0
@@ -97,6 +98,7 @@
 
 	if(owner)
 		owner.organs -= src
+		owner.bad_external_organs -= src
 		owner.organs_by_name -= src.organ_tag
 
 	if(module)
@@ -776,12 +778,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		holder = owner
 	if(!holder)
 		return
-	if (holder.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT))
+	if (holder.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT))
 		holder.visible_message(\
 			"\The [holder.handcuffed.name] falls off of [holder.name].",\
 			"\The [holder.handcuffed.name] falls off you.")
 		holder.drop_from_inventory(holder.handcuffed)
-	if (holder.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
+	if (holder.legcuffed && body_part in list(LEG_LEFT, LEG_RIGHT))
 		holder.visible_message(\
 			"\The [holder.legcuffed.name] falls off of [holder.name].",\
 			"\The [holder.legcuffed.name] falls off you.")

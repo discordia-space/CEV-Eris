@@ -25,7 +25,6 @@
 //	if(buildmode && !istype(target, /obj/screen))
 //		buildmode.build_click(src.mob, params, target)
 //		return
-
 	if(!isHUDobj(target) && CH)
 		if(CH.mob_check(mob))
 			if (CH.use_ability(mob,target) && CH.one_use_flag)

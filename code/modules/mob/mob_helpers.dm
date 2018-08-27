@@ -82,12 +82,8 @@ var/list/global/base_miss_chance = list(
 	BP_L_LEG  = 20,
 	BP_R_LEG = 20,
 	BP_L_ARM = 20,
-	BP_R_ARM = 20,
-	BP_L_HAND = 50,
-	BP_R_HAND = 50,
-	BP_L_FOOT = 50,
-	BP_R_FOOT = 50,
-)
+	BP_R_ARM = 20
+	)
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
@@ -98,11 +94,7 @@ var/list/global/organ_rel_size = list(
 	BP_L_LEG  = 25,
 	BP_R_LEG = 25,
 	BP_L_ARM = 25,
-	BP_R_ARM = 25,
-	BP_L_HAND = 10,
-	BP_R_HAND = 10,
-	BP_L_FOOT = 10,
-	BP_R_FOOT = 10,
+	BP_R_ARM = 25
 )
 
 /proc/check_zone(zone)
@@ -133,10 +125,6 @@ var/list/global/organ_rel_size = list(
 			organ_rel_size[BP_R_ARM]; BP_R_ARM,
 			organ_rel_size[BP_L_LEG ]; BP_L_LEG ,
 			organ_rel_size[BP_R_LEG]; BP_R_LEG,
-			organ_rel_size[BP_L_HAND]; BP_L_HAND,
-			organ_rel_size[BP_R_HAND]; BP_R_HAND,
-			organ_rel_size[BP_L_FOOT]; BP_L_FOOT,
-			organ_rel_size[BP_R_FOOT]; BP_R_FOOT,
 		)
 
 	return ran_zone

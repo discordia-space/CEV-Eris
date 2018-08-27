@@ -1,50 +1,92 @@
-/*This file is a list of all preclaimed planes & layers
+//Defines for atom layers and planes
+//KEEP THESE IN A NICE ACSCENDING ORDER, PLEASE
 
-All planes & layers should be given a value here instead of using a magic/arbitrary number.
+#define CLICKCATCHER_PLANE -99
 
-After fiddling with planes and layers for some time, I figured I may as well provide some documentation:
+#define PLANE_SPACE -95
+#define PLANE_SPACE_PARALLAX -80
 
-What are planes?
-	Think of Planes as a sort of layer for a layer - if plane X is a larger number than plane Y, the highest number for a layer in X will be below the lowest
-	number for a layer in Y.
-	Planes also have the added bonus of having planesmasters.
+#define OPENSPACE_PLANE -10
+#define OVER_OPENSPACE_PLANE -8
 
-What are Planesmasters?
-	Planesmasters, when in the sight of a player, will have its appearance properties (for example, colour matrices, alpha, transform, etc)
-	applied to all the other objects in the plane. This is all client sided.
-	Usually you would want to add the planesmaster as an invisible image in the client's screen.
+#define FLOOR_PLANE -2
+#define GAME_PLANE -1
+#define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+#define SPACE_LAYER 1.8
+//#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
+#define TURF_PLATING_DECAL_LAYER 2.031
+#define TURF_DECAL_LAYER 2.039 //Makes turf decals appear in DM how they will look inworld.
+#define ABOVE_OPEN_TURF_LAYER 2.04
+#define CLOSED_TURF_LAYER 2.05
+#define ABOVE_NORMAL_TURF_LAYER 2.08
+#define LATTICE_LAYER 2.2
+#define DISPOSAL_PIPE_LAYER 2.3
+#define GAS_PIPE_HIDDEN_LAYER 2.35
+#define WIRE_LAYER 2.4
+#define WIRE_TERMINAL_LAYER 2.45
+#define GAS_SCRUBBER_LAYER 2.46
+#define GAS_PIPE_VISIBLE_LAYER 2.47
+#define GAS_FILTER_LAYER 2.48
+#define GAS_PUMP_LAYER 2.49
+#define LOW_OBJ_LAYER 2.5
 
-What can I do with Planesmasters?
-	You can: Make certain players not see an entire plane,
-	Make an entire plane have a certain colour matrices,
-	Make an entire plane transform in a certain way,
-	Make players see a plane which is hidden to normal players - I intend to implement this with the antag HUDs for example.
-	Planesmasters can be used as a neater way to deal with client images or potentially to do some neat things
+#define BELOW_OPEN_DOOR_LAYER 2.6
+#define BLASTDOOR_LAYER 2.65
+#define OPEN_DOOR_LAYER 2.7
+#define PROJECTILE_HIT_THRESHHOLD_LAYER 2.75 //projectiles won't hit objects at or below this layer if possible
+#define TABLE_LAYER 2.8
+#define BELOW_OBJ_LAYER 2.9
+#define LOW_ITEM_LAYER 2.95
+//#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
+#define CLOSED_BLASTDOOR_LAYER 3.05
+#define CLOSED_DOOR_LAYER 3.1
+#define CLOSED_FIREDOOR_LAYER 3.11
+#define ABOVE_OBJ_LAYER 3.2
+#define ABOVE_WINDOW_LAYER 3.3
+#define SHUTTER_LAYER 3.35 //Shutters need to be above windows
+#define SIGN_LAYER 3.4
 
-How do planes work?
-	A plane can be any integer from -100 to 100. (If you want more, bug lummox.)
-	All planes above 0, the 'base plane', are visible even when your character cannot 'see' them, for example, the HUD.
-	All planes below 0, the 'base plane', are only visible when a character can see them.
+#define BELOW_MOB_LAYER 3.7
+#define LYING_MOB_LAYER 3.8
+//#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
+#define ABOVE_MOB_LAYER 4.1
+#define WALL_OBJ_LAYER 4.25
+#define EDGED_TURF_LAYER 4.3
+#define ABOVE_ALL_MOB_LAYER 4.5
 
-How do I add a plane?
-	Think of where you want the plane to appear, look through the pre-existing planes and find where it is above and where it is below
-	Slot it in in that place, and change the pre-existing planes, making sure no plane shares a number.
-	Add a description with a comment as to what the plane does.
+#define SPACEVINE_LAYER 4.8
+//#define FLY_LAYER 5 //For easy recordkeeping; this is a byond define
+#define GASFIRE_LAYER 5.05
 
-How do I make something a planesmaster?
-	Add the PLANE_MASTER appearance flag to the appearance_flags variable.
+#define GHOST_LAYER 6
+#define LOW_LANDMARK_LAYER 9
+#define MID_LANDMARK_LAYER 9.1
+#define HIGH_LANDMARK_LAYER 9.2
+#define AREA_LAYER 10
+#define MASSIVE_OBJ_LAYER 11
+#define POINT_LAYER 12
 
-What is the naming convention for planes or layers?
-	Make sure to use the name of your object before the _LAYER or _PLANE, eg: [NAME_OF_YOUR_OBJECT HERE]_LAYER or [NAME_OF_YOUR_OBJECT HERE]_PLANE
-	Also, as it's a define, it is standard practice to use capital letters for the variable so people know this.
+#define LIGHTING_PLANE 15
+#define LIGHTING_LAYER 15
 
-*/
+#define ABOVE_LIGHTING_PLANE 16
+#define ABOVE_LIGHTING_LAYER 16
 
-#define SPACE_PLANE     -10
+#define BYOND_LIGHTING_PLANE 17
+#define BYOND_LIGHTING_LAYER 17
 
-#define PARALLAX_PLANE  -9
+//HUD layer defines
 
-#define OPENSPACE_PLANE -8
+#define FULLSCREEN_PLANE 18
+#define FLASH_LAYER 18
+#define FULLSCREEN_LAYER 18.1
+#define UI_DAMAGE_LAYER 18.2
 
-#define OVER_OPENSPACE_PLANE -7
+#define HUD_PLANE 19
+#define HUD_LAYER 19
+#define ABOVE_HUD_PLANE 20
+#define ABOVE_HUD_LAYER 20
+
+#define CINEMATIC_PLANE 21
+#define CINEMATIC_LAYER 21
 

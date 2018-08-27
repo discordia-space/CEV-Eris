@@ -11,9 +11,9 @@
 
 /obj/item/organ_module/active/simple/proc/deploy(mob/living/carbon/human/H, obj/item/organ/external/E)
 	var/slot = null
-	if(E.organ_tag in list(BP_L_ARM, BP_L_HAND))
+	if(E.organ_tag in list(BP_L_ARM))
 		slot = slot_l_hand
-	else if(E.organ_tag in list(BP_R_ARM, BP_R_HAND))
+	else if(E.organ_tag in list(BP_R_ARM))
 		slot = slot_r_hand
 	if(H.equip_to_slot_if_possible(holding, slot))
 		H.visible_message(

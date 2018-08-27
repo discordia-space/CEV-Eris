@@ -7,7 +7,7 @@
 	icon = 'icons/obj/pipes/transit_tube.dmi'
 	icon_state = "E-W"
 	density = 1
-	layer = 3.1
+	layer = LOW_ITEM_LAYER
 	anchored = 1.0
 	var/list/tube_dirs = null
 	var/exit_delay = 2
@@ -42,6 +42,7 @@
 	animate_movement = FORWARD_STEPS
 	anchored = 1.0
 	density = 1
+	layer = BELOW_OBJ_LAYER
 	var/moving = 0
 	var/datum/gas_mixture/air_contents = new()
 

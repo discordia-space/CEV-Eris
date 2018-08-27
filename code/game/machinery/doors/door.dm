@@ -9,9 +9,9 @@
 	anchored = 1
 	opacity = 1
 	density = 1
-	layer = DOOR_OPEN_LAYER
-	var/open_layer = DOOR_OPEN_LAYER
-	var/closed_layer = DOOR_CLOSED_LAYER
+	layer = OPEN_DOOR_LAYER
+	var/open_layer = OPEN_DOOR_LAYER
+	var/closed_layer = CLOSED_DOOR_LAYER
 
 	var/visible = 1
 	var/p_open = 0
@@ -219,7 +219,7 @@
 		switch(tool_type)
 
 			if(QUALITY_WELDING)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You finish repairing the damage to \the [src].")
 					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
 					update_icon()
@@ -229,7 +229,7 @@
 				return
 
 			if(QUALITY_PRYING)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_PHY))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_ROB))
 					user << SPAN_NOTICE("You remove \the [repairing].")
 					repairing.loc = user.loc
 					repairing = null

@@ -109,3 +109,23 @@
 /datum/autolathe/recipe/ammo/ak47
 	name = "magazine (7.62mm)"
 	path = /obj/item/ammo_magazine/ak47
+
+/datum/autolathe/recipe/ammo/box_a762
+	name = "ammunition box (7.62mm)"
+	path = /obj/item/ammo_magazine/ammobox/a762
+
+/datum/autolathe/recipe/ammo/smg9mm_brute
+	name = "smg magazine (9mm)"
+	path = /obj/item/ammo_magazine/smg9mm
+
+/datum/autolathe/recipe/ammo/smg9mm_rubber
+	name = "smg magazine (9mm rubber)"
+	path = /obj/item/ammo_magazine/smg9mm/rubber
+
+/datum/autolathe/recipe/ammo/c45smg_brute
+	name = "smg magazine (.45)"
+	path = /obj/item/ammo_magazine/c45smg
+
+/datum/autolathe/recipe/ammo/c45smg_rubber
+	name = "smg magazine (.45 rubber)"
+	path = /obj/item/ammo_magazine/c45smg/rubber

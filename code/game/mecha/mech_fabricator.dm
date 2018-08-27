@@ -8,7 +8,6 @@
 	use_power = 1
 	idle_power_usage = 20
 	active_power_usage = 5000
-	req_access = list(access_robotics)
 	circuit = /obj/item/weapon/circuitboard/mechfab
 
 	var/speed = 1
@@ -73,8 +72,6 @@
 
 /obj/machinery/mecha_part_fabricator/attack_hand(var/mob/user)
 	if(..())
-		return
-	if(!allowed(user))
 		return
 	ui_interact(user)
 
@@ -161,26 +158,6 @@
 
 	user << "You insert [load] [sname] into the fabricator."
 	update_busy()
-
-
-/obj/machinery/mecha_part_fabricator/emag_act(var/remaining_charges, var/mob/user)
-	switch(emagged)
-		if(0)
-			emagged = 0.5
-			visible_message("\icon[src] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
-			sleep(10)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"Attempting auto-repair\"")
-			sleep(15)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
-			sleep(30)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"User DB truncated. Please contact your [company_name] system operator for future assistance.\"")
-			req_access = null
-			emagged = 1
-			return 1
-		if(0.5)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
-		if(1)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"No records in User DB\"")
 
 /obj/machinery/mecha_part_fabricator/proc/update_busy()
 	if(queue.len)

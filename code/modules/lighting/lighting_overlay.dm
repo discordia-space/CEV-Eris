@@ -7,6 +7,7 @@
 	color            = LIGHTING_BASE_MATRIX
 
 	mouse_opacity    = 0
+	plane            = LIGHTING_PLANE
 	layer            = LIGHTING_LAYER
 	invisibility     = INVISIBILITY_LIGHTING
 
@@ -14,7 +15,7 @@
 	anchored = 1
 	flags = NOREACT
 
-	blend_mode       = BLEND_MULTIPLY
+	blend_mode       = BLEND_OVERLAY
 
 	var/needs_update = FALSE
 

@@ -13,7 +13,7 @@
 	access = list(access_hydroponics, access_bar, access_kitchen)
 
 	stat_modifers = list(
-		STAT_AGI = 10,
+		STAT_ROB = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/bartender
@@ -124,8 +124,8 @@
 	access = list(access_maint_tunnels, access_theatre)
 
 	stat_modifers = list(
-		STAT_ROB = 10,
-		STAT_AGI = 20,
+		STAT_TGH = 10,
+		STAT_ROB = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/clown
@@ -174,7 +174,7 @@
 	access = list(access_janitor, access_maint_tunnels)
 
 	stat_modifers = list(
-		STAT_AGI = 10,
+		STAT_ROB = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/janitor

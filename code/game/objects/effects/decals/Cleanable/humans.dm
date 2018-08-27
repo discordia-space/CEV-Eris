@@ -10,7 +10,6 @@ var/global/list/image/splatter_cache=list()
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
@@ -42,7 +41,10 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/New()
 	..()
+	fall_to_floor()
 	update_icon()
+
+
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
 	if(src.type == /obj/effect/decal/cleanable/blood)
@@ -69,10 +71,10 @@ var/global/list/image/splatter_cache=list()
 	if(amount < 1)
 		return
 
-	var/obj/item/organ/external/l_foot = perp.get_organ(BP_L_FOOT)
-	var/obj/item/organ/external/r_foot = perp.get_organ(BP_R_FOOT)
+	var/obj/item/organ/external/l_leg = perp.get_organ(BP_L_LEG)
+	var/obj/item/organ/external/r_leg = perp.get_organ(BP_R_LEG)
 	var/hasfeet = 1
-	if((!l_foot || l_foot.is_stump()) && (!r_foot || r_foot.is_stump()))
+	if((!l_leg || l_leg.is_stump()) && (!r_leg || r_leg.is_stump()))
 		hasfeet = 0
 	if(perp.shoes && !perp.buckled)//Adding blood to shoes
 		var/obj/item/clothing/shoes/S = perp.shoes
@@ -173,7 +175,7 @@ var/global/list/image/splatter_cache=list()
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
+	layer = LOW_OBJ_LAYER
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
@@ -230,7 +232,6 @@ var/global/list/image/splatter_cache=list()
 	gender = PLURAL
 	density = 0
 	anchored = 1
-	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
@@ -241,3 +242,16 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/New()
 	spawn(DRYING_TIME * 2)
 		dry=1
+
+//This proc prevents blood on openspace tiles, by causing them to fall down until they hit the ground
+/obj/effect/decal/cleanable/blood/proc/fall_to_floor()
+	if (istype(loc, /turf/simulated/open))
+		anchored = 0 //Anchored things can't fall
+		while (istype(loc, /turf/simulated/open))
+			var/turf/simulated/open/T = loc
+			T.fallThrough(src)
+
+			//A failsafe. If falling through the floor somehow fails to send us anywhere new, we break out to avoid an infinite loop
+			if (loc == T)
+				break
+	anchored = initial(anchored) //Reset it

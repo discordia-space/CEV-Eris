@@ -15,10 +15,38 @@
 	var/eat_eff = 1
 
 
+	var/list/recipes = list(
+		"Food",
+			list(name="10 Milk", cost=20, path="milk"),
+			list(name="Slab of meat", cost=50, path=/obj/item/weapon/reagent_containers/food/snacks/meat),
+		"Nutrient",
+			list(name="EZ-Nutrient", cost=10, path=/obj/item/weapon/reagent_containers/glass/fertilizer/ez, allow_multiple = 1),
+			list(name="Left4Zed", cost=20, path=/obj/item/weapon/reagent_containers/glass/fertilizer/l4z, allow_multiple = 1),
+			list(name="Robust Harvest", cost=25, path=/obj/item/weapon/reagent_containers/glass/fertilizer/rh, allow_multiple = 1),
+		"Leather",
+			list(name="Wallet", cost=100, path=/obj/item/weapon/storage/wallet),
+			list(name="Botanical gloves", cost=250, path=/obj/item/clothing/gloves/botanic_leather),
+			list(name="Utility belt", cost=300, path=/obj/item/weapon/storage/belt/utility),
+			list(name="Leather Satchel", cost=400, path=/obj/item/weapon/storage/backpack/satchel),
+			list(name="Cash Bag", cost=400, path=/obj/item/weapon/storage/bag/cash),
+			list(name="Medical belt", cost=300, path=/obj/item/weapon/storage/belt/medical),
+			list(name="Security belt", cost=300, path=/obj/item/weapon/storage/belt/security),
+			list(name="EMT belt", cost=300, path=/obj/item/weapon/storage/belt/medical/emt),
+			list(name="Champion belt", cost=500, path=/obj/item/weapon/storage/belt/champion),
+		"Medicine",
+			list(name="Medical splints", cost=100, path=/obj/item/stack/medical/splint),
+			list(name="Roll of gauze", cost=100, path=/obj/item/stack/medical/bruise_pack),
+			list(name="Ointment", cost=100, path=/obj/item/stack/medical/ointment),
+			list(name="Advanced trauma kit", cost=200, path=/obj/item/stack/medical/advanced/bruise_pack),
+			list(name="Advanced burn kit", cost=200, path=/obj/item/stack/medical/advanced/ointment),
+	)
+
+
 /obj/machinery/biogenerator/New()
 	..()
 	create_reagents(1000)
-	beaker = new(src)
+	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+
 
 /obj/machinery/biogenerator/on_reagent_change()			//When the reagents change, change the icon as well.
 	update_icon()
@@ -81,52 +109,53 @@
 	update_icon()
 	return
 
-/obj/machinery/biogenerator/interact(mob/user as mob)
-	if(stat & BROKEN)
-		return
+/obj/machinery/biogenerator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = outside_state)
 	user.set_machine(src)
-	var/dat = "<TITLE>Biogenerator</TITLE>Biogenerator:<BR>"
-	if (processing)
-		dat += "<FONT COLOR=red>Biogenerator is processing! Please wait...</FONT>"
-	else
-		dat += "Biomass: [points] points.<HR>"
-		switch(menustat)
-			if("menu")
-				if (beaker)
-					dat += "<A href='?src=\ref[src];action=activate'>Activate Biogenerator!</A><BR>"
-					dat += "<A href='?src=\ref[src];action=detach'>Detach Container</A><BR><BR>"
-					dat += "Food<BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=milk;cost=20'>10 milk</A> <FONT COLOR=blue>([round(20/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>([round(50/build_eff)])</FONT><BR>"
-					dat += "Nutrient<BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=ez;cost=10'>E-Z-Nutrient</A> <FONT COLOR=blue>([round(10/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=ez5;cost=50'>x5</A><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=l4z;cost=20'>Left 4 Zed</A> <FONT COLOR=blue>([round(20/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=l4z5;cost=100'>x5</A><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=rh;cost=25'>Robust Harvest</A> <FONT COLOR=blue>([round(25/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=rh5;cost=125'>x5</A><BR>"
-					dat += "Leather<BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=wallet;cost=100'>Wallet</A> <FONT COLOR=blue>([round(100/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=gloves;cost=250'>Botanical gloves</A> <FONT COLOR=blue>([round(250/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=tbelt;cost=300'>Utility belt</A> <FONT COLOR=blue>([round(300/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=satchel;cost=400'>Leather Satchel</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=cashbag;cost=400'>Cash Bag</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>"
-					//dat += "Other<BR>"
-					//dat += "<A href='?src=\ref[src];action=create;item=monkey;cost=500'>Monkey</A> <FONT COLOR=blue>(500)</FONT><BR>"
+	var/list/data = list()
+
+	if(menustat == "menu")
+		data["beaker"] = beaker
+		if(beaker)
+
+			var/list/tmp_recipes = list()
+			for(var/smth in recipes)
+				if(istext(smth))
+					tmp_recipes += list(list(
+						"is_category" = 1,
+						"name" = smth,
+					))
 				else
-					dat += "<BR><FONT COLOR=red>No beaker inside. Please insert a beaker.</FONT><BR>"
-			if("nopoints")
-				dat += "You do not have biomass to create products.<BR>Please, put growns into reactor and activate it.<BR>"
-				dat += "<A href='?src=\ref[src];action=menu'>Return to menu</A>"
-			if("complete")
-				dat += "Operation complete.<BR>"
-				dat += "<A href='?src=\ref[src];action=menu'>Return to menu</A>"
-			if("void")
-				dat += "<FONT COLOR=red>Error: No growns inside.</FONT><BR>Please, put growns into reactor.<BR>"
-				dat += "<A href='?src=\ref[src];action=menu'>Return to menu</A>"
-	user << browse(dat, "window=biogenerator")
-	onclose(user, "biogenerator")
-	return
+					var/list/L = smth
+					tmp_recipes += list(list(
+						"is_category" = 0,
+						"name" = L["name"],
+						"cost" = round(L["cost"]/build_eff),
+						"allow_multiple" = L["allow_multiple"],
+					))
+
+			data["recipes"] = tmp_recipes
+
+	data["processing"] = processing
+	data["menustat"] = menustat
+	if(menustat == "menu")
+		data["beaker"] = beaker
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		// the ui does not exist, so we'll create a new() one
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "biogenerator.tmpl", "Biogenerator", 550, 655)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
 
 /obj/machinery/biogenerator/attack_hand(mob/user as mob)
-	interact(user)
+	if(..())
+		return TRUE
+
+	user.set_machine(src)
+	ui_interact(user)
 
 /obj/machinery/biogenerator/proc/activate()
 	if (usr.stat)
@@ -156,57 +185,42 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item, var/cost)
-	cost = round(cost/build_eff)
+/obj/machinery/biogenerator/proc/create_product(var/item, var/amount)
+	var/list/recipe = null
+
+	if(processing)
+		return
+
+	for(var/list/R in recipes)
+		if(R["name"] == item)
+			recipe = R
+			break
+	if(!recipe)
+		return
+
+	if(!"allow_multiple" in recipe)
+		amount = 1
+	else
+		amount = max(amount, 1)
+
+	var/cost = recipe["cost"] * amount / build_eff
+
 	if(cost > points)
 		menustat = "nopoints"
 		return 0
+
 	processing = 1
 	update_icon()
-	updateUsrDialog()
+	updateUsrDialog() //maybe we can remove it
 	points -= cost
 	sleep(30)
-	switch(item)
-		if("milk")
-			beaker.reagents.add_reagent("milk", 10)
-		if("meat")
-			new/obj/item/weapon/reagent_containers/food/snacks/meat(loc)
-		if("ez")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-		if("l4z")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-		if("rh")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-		if("ez5") //It's not an elegant method, but it's safe and easy. -Cheridan
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/ez(loc)
-		if("l4z5")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/l4z(loc)
-		if("rh5")
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-			new/obj/item/weapon/reagent_containers/glass/fertilizer/rh(loc)
-		if("wallet")
-			new/obj/item/weapon/storage/wallet(loc)
-		if("gloves")
-			new/obj/item/clothing/gloves/botanic_leather(loc)
-		if("tbelt")
-			new/obj/item/weapon/storage/belt/utility(loc)
-		if("satchel")
-			new/obj/item/weapon/storage/backpack/satchel(loc)
-		if("cashbag")
-			new/obj/item/weapon/storage/bag/cash(loc)
-		if("monkey")
-			new/mob/living/carbon/human/monkey(loc)
+
+	var/creating = recipe["path"]
+	if(creating) //For reagents like milk
+		beaker.reagents.add_reagent(creating, 10)
+	else
+		for(var/i in 1 to amount)
+			new creating(loc)
 	processing = 0
 	menustat = "complete"
 	update_icon()
@@ -228,7 +242,7 @@
 				beaker = null
 				update_icon()
 		if("create")
-			create_product(href_list["item"], text2num(href_list["cost"]))
+			create_product(href_list["item"], text2num(href_list["amount"]))
 		if("menu")
 			menustat = "menu"
 	updateUsrDialog()

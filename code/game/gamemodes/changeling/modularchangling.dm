@@ -97,7 +97,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	desc = "We silently sting a human, injecting a retrovirus that forces them to transform into another."
 	helptext = "Does not provide a warning to others. The victim will transform much like a changeling would."
 	genomecost = 3
-	verbpath = /mob/proc/changeling_transformation_sting
+	verbpath = /mob/proc/changeling_prepare_transformation_sting
 
 /datum/power/changeling/paralysis_sting
 	name = "Paralysis Sting"

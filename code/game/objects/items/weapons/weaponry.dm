@@ -43,6 +43,7 @@
 	opacity = 0
 	mouse_opacity = 1
 	anchored = 1
+	layer = ABOVE_ALL_MOB_LAYER
 
 	var/health = 25
 	var/mob/living/affecting = null //Who it is currently affecting, if anyone.

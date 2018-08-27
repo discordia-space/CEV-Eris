@@ -130,7 +130,7 @@
 
 /obj/structure/fuel_port/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(QUALITY_PRYING in W.tool_qualities)
-		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_PHY))
+		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			if(opened)
 				user << "<spawn class='notice'>You tightly shut \the [src] door."
 				playsound(src.loc, 'sound/machines/Custom_closetclose.ogg', 25, 0, -3)

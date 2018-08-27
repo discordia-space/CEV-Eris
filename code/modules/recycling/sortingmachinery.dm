@@ -374,7 +374,7 @@
 	desc = "A chute for big and small packages alike!"
 	density = 1
 	icon_state = "intake"
-
+	layer = BELOW_OBJ_LAYER //So that things being ejected are visible
 	var/c_mode = 0
 
 /obj/machinery/disposal/deliveryChute/New()
@@ -446,7 +446,7 @@
 				return
 			if(mode<=0)
 				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD, instant_finish_tier = 30, forced_sound = used_sound))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 					if(c_mode==0) // It's off but still not unscrewed
 						c_mode=1 // Set it to doubleoff l0l
 						user << "You remove the screws around the power connection."

@@ -81,7 +81,7 @@
 			return
 
 		if(QUALITY_DIGGING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_ZERO, required_stat = STAT_PHY))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_ZERO, required_stat = STAT_ROB))
 				user.visible_message(SPAN_DANGER("[src] suddenly crumbles away."),\
 				SPAN_WARNING("[src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
 				qdel(src)

@@ -283,12 +283,6 @@
 	icon_state = "freezer"
 	initial_flooring = /decl/flooring/tiling/freezer
 
-/turf/simulated/floor/lino
-	name = "lino"
-	icon = 'icons/turf/flooring/linoleum.dmi'
-	icon_state = "lino"
-	initial_flooring = /decl/flooring/linoleum
-
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
 	name = "reinforced floor"

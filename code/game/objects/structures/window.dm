@@ -3,9 +3,8 @@
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
 	density = 1
-	w_class = ITEM_SIZE_NORMAL
 
-	layer = 3.2//Just above doors
+	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = 1.0
 	flags = ON_BORDER
 	var/maxhealth = 40
@@ -185,14 +184,13 @@
 			if(H.species.can_shred(H))
 				attack_generic(H,25)
 				return
-
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
+		playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 		user.do_attack_animation(src)
 		usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
 							SPAN_DANGER("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
+		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
 		usr.visible_message("[usr.name] knocks on the [src.name].",
 							"You knock on the [src.name].",
 							"You hear a knocking sound.")
@@ -254,7 +252,7 @@
 				if(!glasstype)
 					user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
 					return
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
 					if(dir == SOUTHWEST)
 						var/obj/item/stack/material/mats = new glasstype(loc)
@@ -267,7 +265,7 @@
 
 		if(QUALITY_PRYING)
 			if(reinf && state <= 1)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					state = 1 - state
 					user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
 			return
@@ -275,13 +273,13 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(reinf && state >= 1)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					state = 3 - state
 					update_nearby_icons()
 					user << (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame."))
 					return
 			if(reinf && state == 0)
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					set_anchored(!anchored)
 					user << (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor."))
 					return

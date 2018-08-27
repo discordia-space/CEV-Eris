@@ -108,8 +108,7 @@
 
 /obj/item/weapon/melee/energy/sword/dropped(var/mob/user)
 	..()
-	if(!istype(loc,/mob))
-		deactivate(user)
+	deactivate(user)
 
 /obj/item/weapon/melee/energy/sword/New()
 	blade_color = pick("red","blue","green","purple")

@@ -32,7 +32,7 @@
 		updateicon()
 
 		if(area.are_living_present())
-			set_on(FALSE)
+			set_on(TRUE)
 
 /obj/machinery/light_switch/Process()
 	if(check_time < world.time && !(round(world.time) % 10 SECONDS)) // Each 10 seconds it checks if anyone is in the area, but also whether the light wasn't switched on recently.
@@ -42,17 +42,19 @@
 					dramatic_turning()
 					set_on(TRUE)
 		else
-			set_on(FALSE)
+			set_on(FALSE, FALSE)
 
 /obj/machinery/light_switch/proc/updateicon()
 	if(stat & NOPOWER)
 		icon_state = "light-p"
 		set_light(0)
-		layer = OBJ_LAYER
+		layer = initial(layer)
+		plane = initial(plane)
 	else
 		icon_state = "light[on]"
 		set_light(2, 1.5, on ? "#82FF4C" : "#F86060")
-		layer = LIGHTING_LAYER+0.1
+		plane = ABOVE_LIGHTING_PLANE
+		layer = ABOVE_LIGHTING_LAYER
 
 /obj/machinery/light_switch/examine(mob/user)
 	if(..(user, 1))
@@ -76,12 +78,13 @@
 
 	slow_turning_on = FALSE
 
-/obj/machinery/light_switch/proc/set_on(on_ = TRUE)
+/obj/machinery/light_switch/proc/set_on(on_ = TRUE, play_sound = TRUE)
 	on = on_
 
 	area.lightswitch = on_
 	area.updateicon()
-	playsound(src, 'sound/machines/button.ogg', 100, 1, 0)
+	if(play_sound)
+		playsound(src, 'sound/machines/button.ogg', 100, 1, 0)
 
 	for(var/obj/machinery/light_switch/L in area)
 		L.on = on_

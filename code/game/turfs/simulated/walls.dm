@@ -3,12 +3,14 @@
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "generic"
+	layer = CLOSED_TURF_LAYER
 	opacity = 1
 	density = 1
 	blocks_air = 1
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
+	var/ricochet_id = 0
 	var/damage = 0
 	var/damage_overlay = 0
 	var/global/damage_overlays[16]
@@ -48,16 +50,128 @@
 	if(!radiate())
 		return PROCESS_KILL
 
+// Extracts angle's tan if ischance = TRUE.
+// In other case it just makes bullets and lazorz go where they're supposed to.
+
+/turf/simulated/wall/proc/projectile_reflection(var/obj/item/projectile/Proj, var/ischance = FALSE)
+	if(Proj.starting)
+		var/ricochet_temp_id = rand(1,1000)
+		if(!ischance)
+			Proj.ricochet_id = ricochet_temp_id
+		var/turf/curloc = get_turf(src)
+
+		var/check_x0 = 32 * curloc.x
+		var/check_y0 = 32 * curloc.y
+		var/check_x1 = 32 * Proj.starting.x
+		var/check_y1 = 32 * Proj.starting.y
+		var/check_x2 = 32 * Proj.original.x
+		var/check_y2 = 32 * Proj.original.y
+		var/corner_x0 = check_x0
+		var/corner_y0 = check_y0
+		if(check_y0 - check_y1 > 0)
+			corner_y0 = corner_y0 - 16
+		else
+			corner_y0 = corner_y0 + 16
+		if(check_x0 - check_x1 > 0)
+			corner_x0 = corner_x0 - 16
+		else
+			corner_x0 = corner_x0 + 16
+
+		// Checks if original is lower or upper than line connecting proj's starting and wall
+		// In specific coordinate system that has wall as (0,0) and 'starting' as (r, 0), where r > 0.
+		// So, this checks whether 'original's' y-coordinate is positive or negative in new c.s.
+		// In order to understand, in which direction bullet will ricochet.
+		// Actually new_y isn't y-coordinate, but it has the same sign.
+		var/new_y = (check_y2 - corner_y0) * (check_x1 - corner_x0) - (check_x2 - corner_x0) * (check_y1 - corner_y0)
+		// Here comes the thing which differs two situations:
+		// First - bullet comes from north-west or south-east, with negative func value. Second - NE or SW.
+		var/new_func = (corner_x0 - check_x1) * (corner_y0 - check_y1)
+
+		// Added these wall things because my original code works well with one-tiled walls, but ignores adjacent turfs which in my current opinion was pretty wrong.
+		var/wallnorth = 0
+		var/wallsouth = 0
+		var/walleast = 0
+		var/wallwest = 0
+		for (var/turf/simulated/wall/W in range(2, curloc))
+			var/turf/tempwall = get_turf(W)
+			if (tempwall.x == curloc.x)
+				if (tempwall.y == (curloc.y - 1))
+					wallnorth = 1
+					if (!ischance)
+						W.ricochet_id = ricochet_temp_id
+				else if (tempwall.y == (curloc.y + 1))
+					wallsouth = 1
+					if (!ischance)
+						W.ricochet_id = ricochet_temp_id
+			if (tempwall.y == curloc.y)
+				if (tempwall.x == (curloc.x + 1))
+					walleast = 1
+					if (!ischance)
+						W.ricochet_id = ricochet_temp_id
+				else if (tempwall.x == (curloc.x - 1))
+					wallwest = 1
+					if (!ischance)
+						W.ricochet_id = ricochet_temp_id
+
+		if((wallnorth || wallsouth) && ((Proj.starting.y - curloc.y)*(wallsouth - wallnorth) >= 0))
+			if(!ischance)
+				Proj.redirect(round(check_x1 / 32), round((2 * check_y0 - check_y1)/32), curloc, src)
+				return
+			else
+				return abs((check_y0 - check_y1) / (check_x0 - check_x1))
+
+		if((walleast || wallwest) && ((Proj.starting.x - curloc.x)*(walleast-wallwest) >= 0))
+			if(!ischance)
+				Proj.redirect(round((2 * check_x0 - check_x1) / 32), round(check_y1 / 32), curloc, src)
+				return
+			else
+				return abs((check_x0 - check_x1) / (check_y0 - check_y1))
+
+		if((new_y * new_func) > 0)
+			if(!ischance)
+				Proj.redirect(round((2 * check_x0 - check_x1) / 32), round(check_y1 / 32), curloc, src)
+			else
+				return abs((check_x0 - check_x1) / (check_y0 - check_y1))
+		else
+			if(!ischance)
+				Proj.redirect(round(check_x1 / 32), round((2 * check_y0 - check_y1)/32), curloc, src)
+			else
+				return abs((check_y0 - check_y1) / (check_x0 - check_x1))
+		return
+
+
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
+	if(src.ricochet_id != 0)
+		if(src.ricochet_id == Proj.ricochet_id)
+			src.ricochet_id = 0
+			return PROJECTILE_CONTINUE
+		src.ricochet_id = 0
+	var/proj_damage = Proj.get_structure_damage()
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(500)//TODO : fucking write these two procs not only for plasma (see plasma in materials.dm:283) ~
 	else if(istype(Proj,/obj/item/projectile/ion))
 		burn(500)
 
+	if(Proj.can_ricochet && proj_damage != 0 && (src.x != Proj.starting.x) && (src.y != Proj.starting.y))
+		var/ricochetchance = 1
+		if(proj_damage <= 60)
+			ricochetchance = 2 + round((60 - proj_damage) / 5)
+			ricochetchance = min(ricochetchance * ricochetchance, 100)
+		// here it is multiplied by 1/2 temporally, changes will be required when new wall system gets implemented
+		ricochetchance = round(ricochetchance * projectile_reflection(Proj, TRUE) / 2)
+		ricochetchance = min(max(ricochetchance, 0), 100)
+		if(prob(ricochetchance))
+			var/damagediff = round(proj_damage / 2 + proj_damage * ricochetchance / 200) // projectile loses up to 50% of its damage when it ricochets, depending on situation
+			Proj.damage = damagediff
+			take_damage(min(proj_damage - damagediff, 100))
+			visible_message("<span class='danger'>The [Proj] ricochets from the surface of wall!</span>")
+			projectile_reflection(Proj)
+			return PROJECTILE_CONTINUE // complete projectile permutation
+
 	//cut some projectile damage here and not in projectile.dm, becouse we need not to all things what are using get_str_dam() becomes thin and weak.
 	//in general, bullets have 35-95 damage, and they are plased in ~30 bullets magazines, so 50*30 = 150, but plasteel walls have only 400 hp =|
 	//but you may also increase materials thickness or etc.
-	var/proj_damage = Proj.get_structure_damage() / 3//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
+	proj_damage = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
 
 	//cap the amount of damage, so that things like emitters can't destroy walls in one hit.
 	var/damage = min(proj_damage, 100)

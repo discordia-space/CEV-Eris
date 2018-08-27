@@ -67,16 +67,4 @@
 	if (message)
 		log_emote("[name]/[key] : [message]")
 
-		for(var/mob/M in dead_mob_list)
-			if (!M.client || isnewplayer(M))
-				continue //skip monkeys, leavers, and new_players
-			if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_sight) && !(M in viewers(src,null)))
-				M.show_message(message)
-
-
-		if (m_type & 1)
-			for (var/mob/O in viewers(src, null))
-				O.show_message(message, m_type)
-		else if (m_type & 2)
-			for (var/mob/O in hearers(src.loc, null))
-				O.show_message(message, m_type)
+		send_emote(message, m_type)

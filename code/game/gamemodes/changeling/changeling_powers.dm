@@ -285,6 +285,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.master = src
+		animation.layer = ABOVE_MOB_LAYER
 		flick("monkey2h", animation)
 		sleep(48)
 
@@ -382,6 +383,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
+	animation.layer = ABOVE_MOB_LAYER
 	flick("monkey2h", animation)
 	sleep(48)
 	qdel(animation)
@@ -796,12 +798,6 @@ var/list/datum/dna/hivemind_bank = list()
 
 
 
-/*/mob/proc/changeling_prepare_transformation_sting()
-	set category = "Changeling"
-	set name = "Transformation Sting (40)"
-	set desc="Sting target"
-	check_CH("Transformation Sting",/datum/click_handler/changeling/changeling_paralysis_sting)
-	return*/
 
 
 /*/mob/proc/changeling_transformation_sting()
@@ -848,16 +844,37 @@ var/list/datum/dna/hivemind_bank = list()
 		return 1
 	return*/
 
-/mob/proc/changeling_transformation_sting()
+
+/mob/proc/changeling_prepare_transformation_sting()
 	set category = "Changeling"
-	set name = "Transformation sting (40)"
+	set name = "Transformation Sting (40)"
 	set desc="Sting target"
 
-	var/datum/changeling/changeling = changeling_power(40)
-	if(!changeling)	return 0
+	var/list/names = list()
 
+	if(istype(src.client.CH, /datum/click_handler/changeling/changeling_transformation_sting))
+		check_CH("Transformation Sting",/datum/click_handler/changeling/changeling_transformation_sting)
+		return
 
+	for(var/datum/dna/DNA in mind.changeling.absorbed_dna)
+		names += "[DNA.real_name]"
 
+	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
+	if(!S)
+		return
+
+	var/datum/dna/chosen_dna = mind.changeling.GetDNA(S)
+	if(!chosen_dna)
+		return
+	check_CH("Transformation Sting",/datum/click_handler/changeling/changeling_transformation_sting, chosen_dna)
+
+	return
+
+/mob/proc/changeling_transformation_sting(atom/A, datum/dna/chosen_dna)
+	var/mob/living/carbon/T = changeling_sting(40,A)
+	if(!T)	return 0
+	world << "get [chosen_dna]"
+/*
 	var/list/names = list()
 	for(var/datum/dna/DNA in changeling.absorbed_dna)
 		names += "[DNA.real_name]"
@@ -868,9 +885,7 @@ var/list/datum/dna/hivemind_bank = list()
 	var/datum/dna/chosen_dna = changeling.GetDNA(S)
 	if(!chosen_dna)
 		return
-
-	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_transformation_sting)
-	if(!T)	return 0
+*/
 	if((HUSK in T.mutations) || (!ishuman(T) && !issmall(T)))
 		src << SPAN_WARNING("Our sting appears ineffective against its DNA.")
 		return 0

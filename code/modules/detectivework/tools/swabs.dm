@@ -43,13 +43,13 @@
 		dna = list(H.dna.unique_enzymes)
 		sample_type = "DNA"
 
-	else if(user.targeted_organ == BP_R_HAND || user.targeted_organ == BP_L_HAND)
+	else if(user.targeted_organ == BP_R_ARM || user.targeted_organ == BP_L_ARM)
 		var/has_hand
-		var/obj/item/organ/external/O = H.organs_by_name[BP_R_HAND]
+		var/obj/item/organ/external/O = H.organs_by_name[BP_R_ARM]
 		if(istype(O) && !O.is_stump())
 			has_hand = 1
 		else
-			O = H.organs_by_name[BP_L_HAND]
+			O = H.organs_by_name[BP_L_ARM]
 			if(istype(O) && !O.is_stump())
 				has_hand = 1
 		if(!has_hand)

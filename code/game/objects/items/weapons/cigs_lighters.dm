@@ -469,9 +469,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				else
 					user << SPAN_WARNING("You burn yourself while lighting the lighter.")
 					if (user.l_hand == src)
-						user.apply_damage(2, BURN, BP_L_HAND)
+						user.apply_damage(2, BURN, BP_L_ARM)
 					else
-						user.apply_damage(2, BURN, BP_R_HAND)
+						user.apply_damage(2, BURN, BP_R_ARM)
 					user.visible_message(SPAN_NOTICE("After a few attempts, [user] manages to light the [src], they however burn their finger in the process."))
 			tool_qualities = list(QUALITY_CAUTERIZING = 10)
 			set_light(2)

@@ -54,9 +54,8 @@
 	idtype = /obj/item/weapon/card/id/car
 
 	stat_modifers = list(
-		STAT_PHY = 10,
 		STAT_ROB = 10,
-		STAT_AGI = 10,
+		STAT_TGH = 10,
 	)
 
 	uniform = /obj/item/clothing/under/rank/cargotech
@@ -88,9 +87,8 @@
 	idtype = /obj/item/weapon/card/id/car
 
 	stat_modifers = list(
-		STAT_PHY = 20,
 		STAT_ROB = 20,
-		STAT_AGI = 20,
+		STAT_TGH = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/miner

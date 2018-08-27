@@ -18,9 +18,9 @@
 			target = T
 	if(goal_number)
 		goal = goal_number
-	bar = image('icons/effects/progessbar.dmi', target, "prog_bar_0", 3)
+	bar = image('icons/effects/progessbar.dmi', target, "prog_bar_0", HUD_LAYER)
 	bar.alpha = 0
-	bar.plane = 4
+	bar.plane = HUD_PLANE
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	user = User
 	if(user)

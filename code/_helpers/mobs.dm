@@ -269,12 +269,8 @@ Proc for attack log creation, because really why not
 	BP_GROIN = LOWER_TORSO,
 	BP_L_ARM = ARM_LEFT,
 	BP_R_ARM = ARM_RIGHT,
-	BP_L_HAND = HAND_LEFT,
-	BP_R_HAND = HAND_RIGHT,
 	BP_L_LEG = LEG_LEFT,
 	BP_R_LEG = LEG_RIGHT,
-	BP_L_FOOT = FOOT_LEFT,
-	BP_R_FOOT = FOOT_RIGHT,
 	)
 
 	for(var/obj/item/clothing/C in src)

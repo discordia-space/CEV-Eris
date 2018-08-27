@@ -5,7 +5,8 @@ var/list/floor_light_cache = list()
 	icon = 'icons/obj/machines/floor_light.dmi'
 	icon_state = "base"
 	desc = "A backlit floor panel."
-	layer = TURF_LAYER+0.001
+	plane = FLOOR_PLANE
+	layer = ABOVE_OPEN_TURF_LAYER
 	anchored = 0
 	use_power = 2
 	idle_power_usage = 2
@@ -35,7 +36,7 @@ var/list/floor_light_cache = list()
 			if(on)
 				user << SPAN_WARNING("\The [src] must be turn off to change a color.")
 				return
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
 				default_light_colour = new_light_colour
 				update_brightness()
@@ -44,7 +45,7 @@ var/list/floor_light_cache = list()
 
 		if(QUALITY_WELDING)
 			if((damaged || (stat & BROKEN)))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					visible_message(SPAN_NOTICE("\The [user] has repaired \the [src]."))
 					stat &= ~BROKEN
 					damaged = null
@@ -53,7 +54,7 @@ var/list/floor_light_cache = list()
 			return
 
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				anchored = !anchored
 				visible_message("<span class='notice'>\The [user] has [anchored ? "attached" : "detached"] \the [src].</span>")
 				return
@@ -132,7 +133,7 @@ var/list/floor_light_cache = list()
 			if(!floor_light_cache[cache_key])
 				var/image/I = image("on")
 				I.color = default_light_colour
-				I.layer = layer+0.001
+				I.layer = ABOVE_OPEN_TURF_LAYER
 				floor_light_cache[cache_key] = I
 			overlays |= floor_light_cache[cache_key]
 		else
@@ -142,7 +143,7 @@ var/list/floor_light_cache = list()
 			if(!floor_light_cache[cache_key])
 				var/image/I = image("flicker[damaged]")
 				I.color = default_light_colour
-				I.layer = layer+0.001
+				I.layer = ABOVE_OPEN_TURF_LAYER
 				floor_light_cache[cache_key] = I
 			overlays |= floor_light_cache[cache_key]
 

@@ -64,16 +64,16 @@
 		var/cache_key = "[base_icon]-armrest-[padding_material.name]"
 		if(isnull(stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
-			I.layer = MOB_LAYER + 0.1
+			I.layer = ABOVE_MOB_LAYER
 			I.color = padding_material.icon_colour
 			stool_cache[cache_key] = I
 		overlays |= stool_cache[cache_key]
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)
-		src.layer = FLY_LAYER
+		layer = ABOVE_MOB_LAYER
 	else
-		src.layer = OBJ_LAYER
+		layer = OBJ_LAYER
 
 /obj/structure/bed/chair/set_dir()
 	..()

@@ -38,8 +38,9 @@
 	user.Move(get_turf(target))
 
 /obj/structure/multiz/attack_ai(mob/living/silicon/ai/user)
-	var/turf/T = get_turf(target)
-	T.move_camera_by_click()
+	if(target)
+		var/turf/T = get_turf(target)
+		T.move_camera_by_click()
 
 /obj/structure/multiz/attackby(obj/item/C, mob/user)
 	. = ..()
@@ -113,6 +114,11 @@
 /obj/structure/multiz/stairs/active
 	density = TRUE
 
+/obj/structure/multiz/stairs/active/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(istype(mover)) // if mover is not null, e.g. mob
+		return FALSE
+	return TRUE // if mover is null (air movement)
+
 /obj/structure/multiz/stairs/active/find_target()
 	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
@@ -122,6 +128,9 @@
 		return
 
 	if(!target)
+		if(ismob(AM))
+			AM << SPAN_NOTICE("There are no stairs above.")
+		log_debug("[src.type] at [src.x], [src.y], [src.z] have non-existant target")
 		return
 
 	var/obj/structure/multiz/stairs/enter/ES = locate(/obj/structure/multiz/stairs/enter) in get_turf(AM)
@@ -132,6 +141,11 @@
 	AM.forceMove(get_turf(target))
 	try_resolve_mob_pulling(AM, ES)
 
+/obj/structure/multiz/stairs/active/attack_ai(mob/living/silicon/ai/user)
+	. = ..()
+	if(!target)
+		user << SPAN_NOTICE("There are no stairs above.")
+		log_debug("[src.type] at [src.x], [src.y], [src.z] have non-existant target")
 
 /obj/structure/multiz/stairs/active/attack_robot(mob/user)
 	. = ..()

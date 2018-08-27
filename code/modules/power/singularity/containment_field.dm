@@ -10,6 +10,7 @@
 	unacidable = 1
 	use_power = 0
 	light_range = 4
+	layer = ABOVE_OBJ_LAYER
 	flags = PROXMOVE
 	var/obj/machinery/field_generator/FG1 = null
 	var/obj/machinery/field_generator/FG2 = null
