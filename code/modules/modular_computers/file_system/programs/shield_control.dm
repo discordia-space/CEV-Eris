@@ -68,9 +68,8 @@
 		genloc = ""
 
 /datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
 
-
+	var/list/data = program.get_header_data()
 
 	if (istype(gen))
 		data["genloc"] = genloc
@@ -115,11 +114,14 @@
 		. = 1
 		return
 
-	if (!gen || gen.ai_control_disabled)
+	if (!gen || gen.ai_control_disabled || !gen.anchored)
 		//Remote software control works the same as AI control.  Cutting that wire disables remote
+		//If the generator has been unwrenched we also lose connection
 		playsound_host('sound/machines/buzz-two.ogg', 50)
 		gen = null //Cut our connection, and we'll be unable to reconnect
 		return
+
+
 
 	//Doesn't respond while disabled
 	if (gen.offline_for)
