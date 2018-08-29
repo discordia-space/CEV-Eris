@@ -280,6 +280,8 @@
 
 	if(user)
 		var/datum/hud/HUDdatum = global.HUDdatums[user.defaultHUD]
+		if (!istype(HUDdatum) || !HUDdatum.ConteinerData || !HUDdatum.ConteinerData.len)
+			return //Something went wrong
 		Xcor = HUDdatum.ConteinerData["Xspace"]
 		Ycor = HUDdatum.ConteinerData["Yspace"]
 		ColCountDatum = HUDdatum.ConteinerData["ColCount"]

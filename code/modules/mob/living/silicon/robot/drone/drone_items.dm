@@ -12,6 +12,14 @@
 	var/datum/matter_synth/wood = null
 	var/datum/matter_synth/plastic = null
 
+//These caused failed GC runtime errors
+/obj/item/weapon/matter_decompiler/Destroy()
+	metal = null
+	glass = null
+	wood = null
+	plastic = null
+	return ..()
+
 /obj/item/weapon/matter_decompiler/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	return
 

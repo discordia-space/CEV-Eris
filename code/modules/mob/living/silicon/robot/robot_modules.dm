@@ -6,10 +6,10 @@ var/global/list/robot_modules = list(
 	"Rescue" 		= /obj/item/weapon/robot_module/medical/rescue,
 	"Medical" 		= /obj/item/weapon/robot_module/medical/general,
 	"Security" 		= /obj/item/weapon/robot_module/security/general,
-	"Combat" 		= /obj/item/weapon/robot_module/combat,
 	"Engineering"	= /obj/item/weapon/robot_module/engineering/general,
 	"Construction"	= /obj/item/weapon/robot_module/engineering/construction,
 	"Custodial" 	= /obj/item/weapon/robot_module/custodial
+	//"Combat" 		= /obj/item/weapon/robot_module/combat,
 	)
 
 /obj/item/weapon/robot_module
@@ -58,9 +58,10 @@ var/global/list/robot_modules = list(
 	desc = "This is a robot module parent class. You shouldn't see this description"
 
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
-	if (!R)
-		return
+
 	..()
+	if (!istype(R))
+		return
 	R.module = src
 
 	add_camera_networks(R)
@@ -108,12 +109,8 @@ var/global/list/robot_modules = list(
 	R.choose_icon()
 
 /obj/item/weapon/robot_module/Destroy()
-	for(var/module in modules)
-		qdel(module)
-	for(var/synth in synths)
-		qdel(synth)
-	modules.Cut()
-	synths.Cut()
+	QDEL_NULL_LIST(modules)
+	QDEL_NULL_LIST(synths)
 	qdel(emag)
 	qdel(jetpack)
 	qdel(malfAImodule)
@@ -205,6 +202,9 @@ var/global/list/robot_modules = list(
 
 
 
+
+
+
 //The generic robot, a good choice for any situation. Moderately good at everything
 /obj/item/weapon/robot_module/standard
 	name = "standard robot module"
@@ -264,7 +264,7 @@ var/global/list/robot_modules = list(
 				"Sleek - Chemistry" = "sleekchemistry"
 				)
 
-	desc = "A versatile medical droid, equipped with all the tools necessary for surgery, chemistry, and\
+	desc = "A versatile medical droid, equipped with all the tools necessary for surgery, chemistry, and \
 	 general patient treatments. Medical has a vast array of items, but this comes at a hefty cost. \
 	 The medical module is essentially shackled to the medbay and can't afford to stray too far. \
 	 Its low power efficiency means it needs to charge regularly"
@@ -373,6 +373,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/scanner/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/roller_holder(src)
+	src.modules += new /obj/item/weapon/hatton/robot(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/rescue(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
 	src.modules += new /obj/item/weapon/extinguisher/mini(src)
@@ -466,6 +467,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/floor_painter(src)// to make america great again (c)
 	src.modules += new /obj/item/weapon/inflatable_dispenser(src) // to stop those pesky human beings entering the zone
 	src.modules += new /obj/item/weapon/tool/pickaxe/drill(src)
+	src.modules += new /obj/item/weapon/hatton/robot(src)
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
 	//src.malfAImodule += new /obj/item/weapon/rtf(src) //We don't have these features
 
@@ -659,12 +661,12 @@ var/global/list/robot_modules = list(
 	channels = list("Service" = 1)
 	sprites = list(
 					"Basic" = "robotjani",
-					"Mopbot"  = "custodialrobot",
+					"Mopbot"  = "janitorrobot",
 					"Mop Gear Rex" = "mopgearrex",
-					"Drone" = "drone-custodial",
+					"Drone" = "drone-janitor",
 					"Classic" = "janbot2",
 					"Buffer" = "mechaduster",
-					"Sleek" = "sleekcustodial",
+					"Sleek" = "sleekjanitor",
 					"Maid" = "maidbot"
 					)
 	health = 250 //Bulky
@@ -680,7 +682,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/weapon/soap/nanotrasen(src)
-	src.modules += new /obj/item/weapon/storage/bag/trash(src)
+	src.modules += new /obj/item/weapon/storage/bag/trash/robot(src)
 	src.modules += new /obj/item/weapon/mop(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src) // a hydroponist's bucket
@@ -730,7 +732,7 @@ var/global/list/robot_modules = list(
 					"Maid" = "maidbot"
 				  	)
 
-	health = 100 //Ultra fragile
+	health = 80 //Ultra fragile
 	speed_factor = 1.2 //Quick
 	power_efficiency = 0.8 //Inefficient
 

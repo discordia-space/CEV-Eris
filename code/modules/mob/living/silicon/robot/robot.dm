@@ -282,15 +282,19 @@
 	"[modtype] module", "Yes", "No"))
 		if("No")
 			//They changed their mind, abort, abort!
-			qdel(RM)
+			QDEL_NULL(RM)
+			modtype = null
 			spawn()
 				pick_module() //Bring up the pick menu again
 			return //And abort out of this
 		if ("Yes")
 			//This time spawn the real module
-			qdel(RM)
-			RM = new module_type(src)
-//	hands.icon_state = lowertext(modtype)
+			QDEL_NULL(RM)
+			new module_type(src)
+
+	//Fallback incase of runtimes
+	if (RM)
+		QDEL_NULL(RM)
 
 	updatename()
 	recalculate_synth_capacities()
@@ -1062,7 +1066,7 @@
 	if(cell.charge == 0)
 		return 0
 
-	var/power_use = amount * CYBORG_POWER_USAGE_MULTIPLIER / power_efficiency
+	var/power_use = (amount * CYBORG_POWER_USAGE_MULTIPLIER) / power_efficiency
 	if(cell.checked_use(CELLRATE * power_use))
 		used_power_this_tick += power_use
 		return 1
