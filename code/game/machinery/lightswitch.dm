@@ -36,11 +36,14 @@
 
 /obj/machinery/light_switch/Process()
 	if(check_time < world.time && !(round(world.time) % 10 SECONDS)) // Each 10 seconds it checks if anyone is in the area, but also whether the light wasn't switched on recently.
-		if(area.are_living_present() && !on)
-			spawn(0)
-				if(!on)
-					dramatic_turning()
-					set_on(TRUE)
+		if(area.are_living_present())
+			if(!on)
+				spawn(0)
+					if(!on)
+						dramatic_turning()
+						set_on(TRUE)
+			else
+				check_time = world.time + 10 MINUTES
 		else
 			set_on(FALSE, FALSE)
 
