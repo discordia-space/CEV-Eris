@@ -74,7 +74,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		user << SPAN_NOTICE("\The [src] must be linked to an R&D console first.")
 		return
 	if(!loaded_item)
-		if(isrobot(user)) //Don't put your module items in there!
+		if(!dropsafety(I))
 			return
 		if(!I.origin_tech)
 			user << SPAN_NOTICE("This doesn't seem to have a tech origin.")

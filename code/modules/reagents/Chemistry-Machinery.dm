@@ -154,7 +154,7 @@
 	return 1 // update UIs attached to this object
 
 /obj/machinery/chemical_dispenser/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
-	if(isrobot(user))
+	if(!dropsafety(B))
 		return
 	if(src.beaker)
 		user << "Something is already loaded into the machine."
@@ -587,6 +587,11 @@
 			update_icon()
 			src.updateUsrDialog()
 			return 0
+
+	//Useability tweak for borgs
+	if (istype(O,/obj/item/weapon/gripper))
+		interact(user)
+		return
 
 	if(holdingitems && holdingitems.len >= limit)
 		usr << "The machine cannot hold anymore items."

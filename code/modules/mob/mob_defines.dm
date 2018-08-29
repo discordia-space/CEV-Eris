@@ -178,3 +178,6 @@
 	var/defaultHUD = "" //Default mob hud
 
 	var/list/progressbars = null
+
+
+	var/speed_factor = 1.0

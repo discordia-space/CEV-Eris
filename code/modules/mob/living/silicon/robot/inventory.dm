@@ -266,6 +266,30 @@
 	else
 		src << SPAN_NOTICE("You need to disable a module first!")
 
-/mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
-	W.loc = get_turf(src)
-	return 1
+
+//Attempt to grip the item in a gripper.
+//Parent call will drop it on the floor if gripper can't hold it
+/mob/living/silicon/robot/put_in_hands(var/obj/item/W)
+	var/obj/item/weapon/gripper/G = null
+	if (istype(module_state_1, /obj/item/weapon/gripper))
+		G = module_state_1
+		if (!G.wrapped && G.grip_item(W, src, 1))
+			return 1
+	else if (istype(module_state_2, /obj/item/weapon/gripper))
+		G = module_state_2
+		if (!G.wrapped && G.grip_item(W, src, 0))
+			return 1
+	else if (istype(module_state_3, /obj/item/weapon/gripper))
+		G = module_state_3
+		if (!G.wrapped && G.grip_item(W, src, 0))
+			return 1
+	else
+		return ..(W)
+
+
+/mob/living/silicon/robot/canUnEquip(obj/item/I) //Force overrides NODROP for things like wizarditis and admin undress.
+	if(!I || !I.loc)
+		return TRUE
+	if (istype(I.loc, /obj/item/weapon/gripper)) //Robots are allowed to drop the things in their gripper
+		return TRUE
+	return ..(I) //This will be false for things directly equipped

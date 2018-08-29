@@ -49,6 +49,21 @@
 		icon_state = "trashbag3"
 
 
+//The custodial robot gets a larger bag since it only has one and no cart
+/obj/item/weapon/storage/bag/trash/robot
+	max_storage_space = ITEM_SIZE_SMALL * 48
+
+/obj/item/weapon/storage/bag/trash/robot/update_icon()
+	if(contents.len == 0)
+		icon_state = "trashbag0"
+	else if(contents.len < 24)
+		icon_state = "trashbag1"
+	else if(contents.len < 42)
+		icon_state = "trashbag2"
+	else
+		icon_state = "trashbag3"
+
+
 // -----------------------------
 //        Plastic Bag
 // -----------------------------

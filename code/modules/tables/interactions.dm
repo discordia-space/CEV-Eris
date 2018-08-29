@@ -62,7 +62,7 @@
 
 	if(user.get_active_hand() != O)
 		return ..()
-	if(isrobot(user))
+	if(!dropsafety(O))
 		return
 	user.unEquip(O, src.loc)
 
@@ -103,15 +103,13 @@
 	return TRUE
 
 
+
 /obj/structure/table/attackby(obj/item/W, mob/living/user, var/params)
 	if(!istype(W))
 		return
 
 	// Handle dismantling or placing things on the table from here on.
-	if(isrobot(user))
-		return
-
-	if(W.loc != user) // This should stop mounted modules ending up outside the module.
+	if(!dropsafety(W))
 		return
 
 	if(istype(W, /obj/item/weapon/melee/energy/blade))
@@ -133,6 +131,7 @@
 	var/list/click_params = params2list(params)
 	//Center the icon where the user clicked.
 	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
+		world << "[click_params]"
 		return
 	//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
 	W.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)

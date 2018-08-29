@@ -550,6 +550,19 @@
 
 		if(ABORT_CHECK)
 			return
+	if (istype(I, /obj/item/weapon/gripper))//Gripper can extract cell
+		var/obj/item/weapon/gripper/Gri = I
+		if(opened && cell)
+			if (Gri.grip_item(cell, user))
+				cell.add_fingerprint(user)
+				cell.update_icon()
+				cell = null
+				user.visible_message("<span class='warning'>[user.name] removes the power cell from [src.name]!</span>",\
+									 "<span class='notice'>You remove the power cell.</span>")
+				//user << "You remove the power cell."
+				charging = 0
+				src.update_icon()
+				return
 
 	if (istype(I, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
 		if(cell)

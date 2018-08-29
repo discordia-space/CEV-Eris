@@ -122,7 +122,7 @@
 		update()
 		return
 
-	if(isrobot(user))
+	if(!dropsafety(I))
 		return
 	if(!I)
 		return

@@ -340,9 +340,7 @@
 				SPAN_NOTICE("You hear rustling of clothes.")
 			)
 			return
-		if(isrobot(user))
-			return
-		if(I.loc != user) // This should stop mounted modules ending up outside the module.
+		if(!dropsafety(I))
 			return
 		usr.unEquip(I, src.loc)
 	else if(istype(I, /obj/item/weapon/packageWrap))
@@ -459,7 +457,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 
-	if(ishuman(usr))
+	if(ishuman(usr) || isrobot(usr))
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
@@ -473,7 +471,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
 
-	if(ishuman(usr))
+	if(ishuman(usr) || isrobot(usr))
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
