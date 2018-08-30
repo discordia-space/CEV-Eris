@@ -56,6 +56,7 @@
 
 /mob/living/superior_animal/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
+	parent = null
 	..()
 
 /mob/living/superior_animal/giant_spider/AttackingTarget()

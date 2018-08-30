@@ -1,3 +1,5 @@
+#define GC_FAILURE_HARD_LOOKUP TRUE
+#define TESTING TRUE
 SUBSYSTEM_DEF(garbage)
 	name = "Garbage"
 	priority = SS_PRIORITY_GARBAGE
@@ -315,7 +317,7 @@ SUBSYSTEM_DEF(garbage)
 				SSgarbage.HardDelete(D)
 			if (QDEL_HINT_FINDREFERENCE)//qdel will, if TESTING is enabled, display all references to this object, then queue the object for deletion.
 				SSgarbage.PreQueue(D)
-				#ifdef TESTING
+				#ifdef GC_FAILURE_HARD_LOOKUP
 				D.find_references()
 				#endif
 			else
@@ -326,7 +328,10 @@ SUBSYSTEM_DEF(garbage)
 	else if(D.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
 		CRASH("[D.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
 
-#ifdef TESTING
+
+#ifdef GC_FAILURE_HARD_LOOKUP
+/client/var/running_find_references = FALSE
+world/loop_checks = FALSE
 
 /datum/verb/find_refs()
 	set category = "Debug"
@@ -337,6 +342,7 @@ SUBSYSTEM_DEF(garbage)
 	find_references(FALSE)
 
 /datum/proc/find_references(skip_alert)
+
 	running_find_references = type
 	if(usr && usr.client)
 		if(usr.client.running_find_references)
@@ -398,20 +404,19 @@ SUBSYSTEM_DEF(garbage)
 				else if(islist(variable))
 					if(src in variable)
 						testing("Found [src.type] \ref[src] in [D.type]'s [varname] list var. Global: [Xname]")
-#ifdef GC_FAILURE_HARD_LOOKUP
+
 					for(var/I in variable)
 						DoSearchVar(I, TRUE)
 				else
 					DoSearchVar(variable, "[Xname]: [varname]")
-#endif
+
 	else if(islist(X))
 		if(src in X)
 			testing("Found [src.type] \ref[src] in list [Xname].")
-#ifdef GC_FAILURE_HARD_LOOKUP
+
 		for(var/I in X)
 			DoSearchVar(I, Xname + ": list")
-#else
+
 	CHECK_TICK
-#endif
 
 #endif
