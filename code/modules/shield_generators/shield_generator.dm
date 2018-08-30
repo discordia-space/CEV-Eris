@@ -132,7 +132,6 @@
 		qdel(S)
 
 	running = SHIELD_OFF
-	current_energy = 0
 	mitigation_em = 0
 	mitigation_physical = 0
 	mitigation_heat = 0
@@ -182,14 +181,13 @@
 		offline_for = max(0, offline_for - 1)
 		if (offline_for <= 0)
 			emergency_shutdown = FALSE
-	// We're turned off.
-	if(!running)
-		return
+
 	// We are shutting down, therefore our stored energy disperses faster than usual.
 	else if(running == SHIELD_DISCHARGING)
 		if (offline_for <= 0)
 			shutdown_field() //We've finished the winding down period and now turn off
 			offline_for += 30 //Another minute before it can be turned back on again
+		return
 
 	mitigation_em = between(0, mitigation_em - MITIGATION_LOSS_PASSIVE, mitigation_max)
 	mitigation_heat = between(0, mitigation_heat - MITIGATION_LOSS_PASSIVE, mitigation_max)
@@ -197,7 +195,7 @@
 
 	upkeep_power_usage = round((field_segments.len - damaged_segments.len) * ENERGY_UPKEEP_PER_TILE * upkeep_multiplier)
 
-	if(powernet && (running == SHIELD_RUNNING) && !input_cut)
+	if(powernet && !input_cut && (running == SHIELD_RUNNING || running == SHIELD_OFF))
 		var/energy_buffer = 0
 		energy_buffer = draw_power(min(upkeep_power_usage, input_cap))
 		power_usage += round(energy_buffer)
@@ -254,7 +252,8 @@
 	if(running == SHIELD_DISCHARGING)
 		shutdown_field()
 	else
-		current_energy = 0
+		if (current_energy < 0)
+			current_energy = 0
 		overloaded = 1
 		for(var/obj/effect/shield/S in field_segments)
 			S.fail(1)
@@ -624,7 +623,6 @@
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
 			user << SPAN_NOTICE("You unsecure the [src] from the floor!")
-
 			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
