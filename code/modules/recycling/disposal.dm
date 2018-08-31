@@ -122,8 +122,6 @@
 		update()
 		return
 
-	if(!dropsafety(I))
-		return
 	if(!I)
 		return
 

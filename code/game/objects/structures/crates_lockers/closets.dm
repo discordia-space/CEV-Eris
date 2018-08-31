@@ -317,6 +317,11 @@
 
 
 /obj/structure/closet/attackby(obj/item/I, mob/user)
+
+	if (istype(I, /obj/item/weapon/gripper))
+		//Empty gripper attacks will call attack_AI
+		return 0
+
 	if(src.opened)
 		if(istype(I,/obj/item/tk_grab))
 			return 0
@@ -340,9 +345,8 @@
 				SPAN_NOTICE("You hear rustling of clothes.")
 			)
 			return
-		if(!dropsafety(I))
-			return
 		usr.unEquip(I, src.loc)
+		return
 	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
 	else if(QUALITY_WELDING in I.tool_qualities)

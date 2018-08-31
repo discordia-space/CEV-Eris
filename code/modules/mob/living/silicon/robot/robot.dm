@@ -24,6 +24,8 @@
 
 	var/power_efficiency = 1.0
 
+	mob_size = 16
+
 //Icon stuff
 
 	var/icontype 				//Persistent icontype tracking allows for cleaner icon updates
@@ -1031,7 +1033,7 @@
 	icon_state = module_sprites[icontype]
 	updateicon()
 
-	if (module_sprites.len > 1 && icon_selection_tries >= 1 && client)
+	if (module_sprites.len > 1 && icon_selection_tries >= 0 && client)
 		icon_selection_tries--
 		var/choice = input("Look at your icon - is this what you want?") in list("Yes","No")
 		if(choice=="No")

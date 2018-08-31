@@ -47,7 +47,7 @@
 	if(magazine)
 		if(magazine.charge)
 			icon_state="Hatton_Hammer_1"
-			overlays += icon(icon, "3/3")
+			overlays += icon(icon, "[magazine.charge]/3")
 		else
 			icon_state="Hatton_Hammer_1_empty"
 			overlays += icon(icon, "1/3")
@@ -94,11 +94,10 @@
 
 /obj/item/weapon/hatton/proc/click_empty(mob/user = null)
 	if (user)
-		user.visible_message("*click click*", "\red <b>*click*</b>")
-		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+		user.visible_message(SPAN_DANGER("*click*"),  SPAN_DANGER("*click*"))
 	else
-		src.visible_message("*click click*")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
+		src.visible_message(SPAN_DANGER("*click*"))
+	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
 
 
 /obj/item/weapon/hatton/proc/use_charge()
@@ -109,17 +108,17 @@
 
 /obj/item/weapon/hatton/proc/Fire(atom/target as mob|obj|turf, mob/living/user as mob|obj, params)
 	if (world.time < last_fired + fire_cooldown)
-		user << "\red [src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds"
+		user << SPAN_WARNING("[src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds")
 		click_empty()
 		return
 
 	if(isliving(user))
 		var/mob/living/M = user
 		if (HULK in M.mutations)
-			M << "\red Your meaty finger is much too large for the trigger guard!"
+			M << SPAN_WARNING("Your meaty finger is much too large for the trigger guard!")
 			return
 	if (!Adjacent(loc, target))
-		user << "\red You're too far away to breach that!"
+		user << SPAN_WARNING("\red You're too far away to breach that!")
 		return
 	/*if(ishuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")
@@ -225,7 +224,7 @@
 	ex_act(1)
 
 /obj/machinery/deployable/barrier/hatton_act()
-	visible_message("\red <B>The [src] is blown apart!</B>")
+	visible_message(SPAN_DANGER("The [src] is blown apart!"))
 	qdel(src)
 
 

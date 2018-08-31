@@ -9,8 +9,7 @@
 		camera.status = 0
 	if(module)
 		for (var/obj/item/weapon/gripper/G in module)
-			if(G)
-				G.drop_item()
+			G.drop_item()
 	remove_robot_verbs()
 
 	..(gibbed,"shudders violently for a moment, then becomes motionless, its eyes slowly darkening.")

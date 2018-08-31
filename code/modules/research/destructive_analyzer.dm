@@ -74,22 +74,20 @@ Note: Must be placed within 3 tiles of the R&D Console
 		user << SPAN_NOTICE("\The [src] must be linked to an R&D console first.")
 		return
 	if(!loaded_item)
-		if(!dropsafety(I))
-			return
 		if(!I.origin_tech)
 			user << SPAN_NOTICE("This doesn't seem to have a tech origin.")
 			return
 		if(I.origin_tech.len == 0)
 			user << SPAN_NOTICE("You cannot deconstruct this item.")
 			return
-		busy = 1
-		loaded_item = I
-		user.drop_item()
-		I.loc = src
-		user << SPAN_NOTICE("You add \the [I] to \the [src].")
-		flick("d_analyzer_la", src)
-		spawn(10)
-			update_icon()
-			busy = 0
-		return 1
+
+		if(user.unEquip(I, src))
+			busy = 1
+			loaded_item = I
+			user << SPAN_NOTICE("You add \the [I] to \the [src].")
+			flick("d_analyzer_la", src)
+			spawn(10)
+				update_icon()
+				busy = 0
+			return 1
 	return

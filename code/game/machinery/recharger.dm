@@ -39,7 +39,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			else
 				user << "<span class='danger'>Your gripper cannot hold \the [charging].</span>"
 
-	if(!dropsafety(G))
+	if(!user.canUnEquip(G))
 		return
 
 	var/allowed = 0

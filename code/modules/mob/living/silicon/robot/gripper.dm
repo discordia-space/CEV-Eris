@@ -40,7 +40,7 @@
 
 /proc/grippersafety(var/obj/item/weapon/gripper/G)
 	if (!G || !G.wrapped)//The object must have been lost
-		return 0
+		return FALSE
 
 	//The object left the gripper but it still exists. Maybe placed on a table
 	if (G.wrapped.loc != G)
@@ -49,37 +49,42 @@
 		G.wrapped = null
 		G.force_holder = null
 		G.update_icon()
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 
 
 /obj/item/weapon/gripper/proc/grip_item(obj/item/I as obj, mob/user as mob, var/feedback = 1)
 	//This function returns 1 if we successfully took the item, or 0 if it was invalid. This information is useful to the caller
 	if (!wrapped)
-		for(var/typepath in can_hold)
-			if(istype(I,typepath))
-				if (feedback)
-					user << "You collect \the [I]."
-				I.forceMove(src)
-				wrapped = I
-				update_icon()
-				return 1
+		if(is_type_in_list(I,can_hold))
+			if (feedback)
+				user << "You collect \the [I]."
+			I.forceMove(src)
+			wrapped = I
+			update_icon()
+			return TRUE
 		if (feedback)
 			user << "<span class='danger'>Your gripper cannot hold \the [I].</span>"
-		return 0
+		return FALSE
 	if (feedback)
 		user << "<span class='danger'>Your gripper is already holding \the [wrapped].</span>"
-	return 0
+	return FALSE
 
+
+//This places a little image of the gripped item in the gripper, so you can see visually what you're holding
 /obj/item/weapon/gripper/update_icon()
 	underlays.Cut()
 	if (wrapped && wrapped.icon)
 		var/mutable_appearance/MA = new(wrapped)
 		MA.layer = ABOVE_HUD_LAYER
 		MA.plane = ABOVE_HUD_PLANE
-		MA.pixel_y = -8
+
+		//Reset pixel offsets to initial values, incase being on a table messed them up
+		//And then subtract 8 from the Y value so it appears in the claw at the bottom
+		MA.pixel_y = initial(MA.pixel_y)-8
+		MA.pixel_x = initial(MA.pixel_x)
 
 		underlays += MA
 
@@ -109,7 +114,7 @@
 		wrapped.forceMove(target)
 	wrapped = null
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
@@ -118,18 +123,18 @@
 		wrapped.attack(M,user)
 		if(QDELETED(wrapped))
 			wrapped = null
-		return 1
+		return TRUE
 	else// mob interactions
 		switch (user.a_intent)
-			if ("help")
+			if (I_HELP)
 				user.visible_message("[user] [pick("boops", "squeezes", "pokes", "prods", "strokes", "bonks")] [M] with \the [src]")
-			if ("harm")
+			if (I_HURT)
 				M.attack_generic(user,user.mob_size,"crushed")//about 16 dmg for a cyborg
 				//Attack generic does a visible message so we dont need one here
-				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*3)
+				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*4)
 				playsound(user, 'sound/effects/attackblob.ogg', 60, 1)
 				//Slow,powerful attack for borgs. No spamclicking
-	return 0
+	return FALSE
 
 /obj/item/weapon/gripper/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (wrapped)

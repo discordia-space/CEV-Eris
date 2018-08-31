@@ -154,8 +154,6 @@
 	return 1 // update UIs attached to this object
 
 /obj/machinery/chemical_dispenser/attackby(var/obj/item/weapon/reagent_containers/B as obj, var/mob/user as mob)
-	if(!dropsafety(B))
-		return
 	if(src.beaker)
 		user << "Something is already loaded into the machine."
 		return
@@ -163,11 +161,10 @@
 		if(!accept_glass && istype(B,/obj/item/weapon/reagent_containers/food))
 			user << SPAN_NOTICE("This machine only accepts beakers")
 		src.beaker =  B
-		user.drop_item()
-		B.loc = src
-		user << "You set [B] on the machine."
-		nanomanager.update_uis(src) // update all UIs attached to src
-		return
+		if (usr.unEquip(B, src))
+			user << "You set [B] on the machine."
+			nanomanager.update_uis(src) // update all UIs attached to src
+			return
 
 /obj/machinery/chemical_dispenser/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -296,12 +293,12 @@
 		if(src.beaker)
 			user << "A beaker is already loaded into the machine."
 			return
-		src.beaker = B
-		user.drop_item()
-		B.loc = src
-		user << "You add the beaker to the machine!"
-		src.updateUsrDialog()
-		icon_state = "mixer1"
+
+		if (usr.unEquip(B, src))
+			src.beaker = B
+			user << "You add the beaker to the machine!"
+			src.updateUsrDialog()
+			icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/weapon/storage/pill_bottle))
 
@@ -309,11 +306,11 @@
 			user << "A pill bottle is already loaded into the machine."
 			return
 
-		src.loaded_pill_bottle = B
-		user.drop_item()
-		B.loc = src
-		user << "You add the pill bottle into the dispenser slot!"
-		src.updateUsrDialog()
+
+		if (usr.unEquip(B, src))
+			src.loaded_pill_bottle = B
+			user << "You add the pill bottle into the dispenser slot!"
+			src.updateUsrDialog()
 	return
 
 /obj/machinery/chem_master/Topic(href, href_list)

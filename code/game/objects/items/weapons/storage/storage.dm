@@ -43,7 +43,7 @@
 	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
-	if(!canremove)
+	if(!canremove && istype(loc, /mob))
 		return
 
 	if ((ishuman(usr) || issmall(usr)) && !ismouse(usr)) //so monkeys can take off their backpacks -- Urist
@@ -79,9 +79,13 @@
 				if(slot_l_hand)
 					usr.u_equip(src)
 					usr.put_in_l_hand(src)
-
+			return
 
 		src.add_fingerprint(usr)
+	return ..()
+
+
+
 
 
 /obj/item/weapon/storage/proc/return_inv()
@@ -322,9 +326,6 @@
 	if(usr && usr.isEquipped(W) && !usr.canUnEquip(W))
 		return 0
 
-	if(!dropsafety(W))
-		return
-
 	if(src.loc == W)
 		return 0 //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
@@ -436,9 +437,6 @@
 //This proc is called when you want to place an item into the storage item.
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-
-	if(!dropsafety(W))
-		return
 
 	if(istype(W, /obj/item/device/lightreplacer))
 		var/obj/item/device/lightreplacer/LP = W
