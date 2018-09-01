@@ -24,7 +24,7 @@
 	level = 1
 
 /turf/simulated/shuttle/plating/is_plating()
-	return 1
+	return TRUE
 
 /turf/simulated/floor/plating/under
 	name = "underplating"
