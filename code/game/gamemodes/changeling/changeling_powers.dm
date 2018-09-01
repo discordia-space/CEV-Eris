@@ -702,6 +702,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	src << SPAN_NOTICE("We stealthily sting [T].")
 	T << SPAN_WARNING("You feel a tiny prick.")
+	log_attack("[src] use [src.client.CH.handler_name] on [T]")
 	if(!T.mind || !T.mind.changeling)
 		return T //T will be affected by the sting
 	return
@@ -853,7 +854,7 @@ var/list/datum/dna/hivemind_bank = list()
 	var/list/names = list()
 
 	if(istype(src.client.CH, /datum/click_handler/changeling/changeling_transformation_sting))
-		check_CH("Transformation Sting",/datum/click_handler/changeling/changeling_transformation_sting)
+		kill_CH()
 		return
 
 	for(var/datum/dna/DNA in mind.changeling.absorbed_dna)
@@ -873,7 +874,6 @@ var/list/datum/dna/hivemind_bank = list()
 /mob/proc/changeling_transformation_sting(atom/A, datum/dna/chosen_dna)
 	var/mob/living/carbon/T = changeling_sting(40,A)
 	if(!T)	return 0
-	world << "get [chosen_dna]"
 /*
 	var/list/names = list()
 	for(var/datum/dna/DNA in changeling.absorbed_dna)

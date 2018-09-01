@@ -90,7 +90,10 @@
 		var/mob/living/L = src
 		if(L.HUDneed.Find("health"))
 			var/obj/screen/health/H = L.HUDneed["health"]
-			H.icon_state = "health7"
+			//H.icon_state = "health7" hm... need recode this moment...
+			H.DEADelize()
+	if(client))
+		kill_CH() //We dead... clear any prepared abilities...
 
 	timeofdeath = world.time
 	if(mind)

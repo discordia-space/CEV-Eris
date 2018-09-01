@@ -1187,17 +1187,20 @@ mob/proc/yank_out_object()
 
 /mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
 	var/list/exarglist = list()
-	exarglist.Add(src.client)
-	if(second_arg)
-		exarglist.Add(second_arg)
+
+	isnull(second_arg) ? exarglist.Add(src.client) : exarglist.Add(src.client,second_arg)
+
 	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
 		src.client.CH = PoolOrNew(CH_type,exarglist)
-		src << "<span class='warning'>You prepare [CH_name].</span>"
+		src << SPAN_WARNING("You prepare [CH_name].")
 	else
-		src << "<span class='notice'>You unprepare [CH_name].</span>"
-		qdel(src.client.CH)
+		kill_CH()
 	return
 
+/mob/proc/kill_CH()
+	if (src.client.CH)
+		src << SPAN_NOTICE ("You unprepare [src.client.CH.handler_name].")
+		qdel(src.client.CH)
 
 
 /mob/living/proc/Released()
