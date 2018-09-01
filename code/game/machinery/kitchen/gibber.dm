@@ -15,6 +15,9 @@
 	var/gib_time = 40        // Time from starting until meat appears
 	var/gib_throw_dir = WEST // Direction to spit meat and gibs in.
 
+	var/hack_require = 6 //for hacking with multitool
+	var/hack_stage = 0
+
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 500
@@ -75,6 +78,27 @@
 		return
 	else
 		src.startgibbing(user)
+
+/obj/machinery/gibber/attackby(obj/item/I, mob/user)
+	..()
+	if(QUALITY_PULSING in I.tool_qualities)
+		user.visible_message(
+		SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
+		SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
+		)
+		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
+			if(hack_stage < hack_require)
+				playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
+				hack_stage++
+				user << SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen.")
+			else if(hack_stage >= hack_require)
+				emagged = !emagged
+				src.update_icon()
+				user.visible_message(
+				SPAN_WARNING("[user] [emagged?"disable":"enable"] the safety guard of [name] with a multitool,"), \
+				SPAN_WARNING("You [emagged? "disable" : "enable"] the safety guard of [name] with multitool")
+				)
+				return
 
 /obj/machinery/gibber/examine()
 	..()

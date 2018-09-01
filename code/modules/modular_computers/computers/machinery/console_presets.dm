@@ -31,7 +31,7 @@
 	cpu.hard_drive.store_file(new/datum/computer_file/program/alarm_monitor())
 	cpu.hard_drive.store_file(new/datum/computer_file/program/atmos_control())
 	cpu.hard_drive.store_file(new/datum/computer_file/program/rcon_console())
-
+	cpu.hard_drive.store_file(new/datum/computer_file/program/shield_control())
 
 // ===== MEDICAL CONSOLE =====
 /obj/machinery/modular_computer/console/preset/medical

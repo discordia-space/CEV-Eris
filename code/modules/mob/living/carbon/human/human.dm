@@ -1140,12 +1140,15 @@ var/list/rank_prefix = list(\
 
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
+	check_HUD()
+	/*
 	if(client && client.screen)//HUD HERE!!!!!!!!!!
 		client.screen.Cut()
-//		if(hud_used)
-//			qdel(hud_used)
-//		hud_used = new /datum/hud(src)
-
+		if(hud_used)
+			qdel(hud_used)
+		hud_used = new /datum/hud(src)
+		update_hud()
+	*/
 	if(species)
 		return 1
 	else

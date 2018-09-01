@@ -95,6 +95,13 @@
 	forceMove(destination)
 	return 1
 
+/mob/living/zMove(direction)
+	if (is_ventcrawling)
+		var/obj/machinery/atmospherics/pipe/zpipe/P = loc
+		if (istype(P) && P.can_z_crawl(src, direction))
+			return P.handle_z_crawl(src, direction)
+
+	return ..()
 
 /atom/proc/CanMoveOnto(atom/movable/mover, turf/target, height=1.5, direction = 0)
 	//Purpose: Determines if the object can move through this
@@ -106,6 +113,8 @@
 	return FALSE
 
 /mob/living/carbon/human/can_overcome_gravity()
+	if (incorporeal_move)
+		return TRUE
 /*	//First do species check
 	Not for now, again. First is implementig CLIBMBABLE things and structures, and then this shit below
 	if(species && species.can_overcome_gravity(src))//also NO ANY CLIMBING SPECIES, so this is deadcode and we need to clear it out in future
@@ -175,12 +184,12 @@
 
 /mob/observer/ghost/verb/moveup()
 	set name = "Move Upwards"
-	set category = null
+	set category = "Ghost"
 	zMove(UP)
 
 /mob/observer/ghost/verb/movedown()
 	set name = "Move Downwards"
-	set category = null
+	set category = "Ghost"
 	zMove(DOWN)
 
 // Laders and stairs pulling movement

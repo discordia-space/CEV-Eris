@@ -161,13 +161,15 @@
 
 	New()
 		..()
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
-		new /obj/item/ammo_casing/shotgun(src)
+		new /obj/item/ammo_casing/shotgun/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/prespawned(src)
+		for(var/obj/item/ammo_casing/temp_casing in src)
+			temp_casing.update_icon()
 
 
 /obj/item/weapon/storage/box/shotgunammo/blanks
@@ -175,78 +177,90 @@
 
 	New()
 		..()
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
-		new /obj/item/ammo_casing/shotgun/blank(src)
+		new /obj/item/ammo_casing/shotgun/blank/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/blank/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/blank/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/blank/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/blank/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/blank/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/blank/prespawned(src)
+		for(var/obj/item/ammo_casing/temp_casing in src)
+			temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/shotgunammo/beanbags
 	name = "box of beanbag shells"
 
 	New()
 		..()
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
-		new /obj/item/ammo_casing/shotgun/beanbag(src)
+		new /obj/item/ammo_casing/shotgun/beanbag/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/beanbag/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/beanbag/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/beanbag/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/beanbag/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/beanbag/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/beanbag/prespawned(src)
+		for(var/obj/item/ammo_casing/temp_casing in src)
+			temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/shotgunammo/buckshot
 	name = "box of shotgun shells"
 
 	New()
 		..()
-		new /obj/item/ammo_casing/shotgun/pellet(src)
-		new /obj/item/ammo_casing/shotgun/pellet(src)
-		new /obj/item/ammo_casing/shotgun/pellet(src)
-		new /obj/item/ammo_casing/shotgun/pellet(src)
-		new /obj/item/ammo_casing/shotgun/pellet(src)
-		new /obj/item/ammo_casing/shotgun/pellet(src)
-		new /obj/item/ammo_casing/shotgun/pellet(src)
+		new /obj/item/ammo_casing/shotgun/pellet/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/pellet/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/pellet/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/pellet/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/pellet/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/pellet/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/pellet/prespawned(src)
+		for(var/obj/item/ammo_casing/temp_casing in src)
+			temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/shotgunammo/flashshells
 	name = "box of illumination shells"
 
 	New()
 		..()
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
-		new /obj/item/ammo_casing/shotgun/flash(src)
+		new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
+		for(var/obj/item/ammo_casing/temp_casing in src)
+			temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/shotgunammo/stunshells
 	name = "box of stun shells"
 
 	New()
 		..()
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
-		new /obj/item/ammo_casing/shotgun/stunshell(src)
+		new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
+		for(var/obj/item/ammo_casing/temp_casing in src)
+			temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/shotgunammo/practiceshells
 	name = "box of practice shells"
 
 	New()
 		..()
-		new /obj/item/ammo_casing/shotgun/practice(src)
-		new /obj/item/ammo_casing/shotgun/practice(src)
-		new /obj/item/ammo_casing/shotgun/practice(src)
-		new /obj/item/ammo_casing/shotgun/practice(src)
-		new /obj/item/ammo_casing/shotgun/practice(src)
-		new /obj/item/ammo_casing/shotgun/practice(src)
-		new /obj/item/ammo_casing/shotgun/practice(src)
+		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
+		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
+		for(var/obj/item/ammo_casing/temp_casing in src)
+			temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of 14.5mm shells"
@@ -255,13 +269,15 @@
 
 	New()
 		..()
-		new /obj/item/ammo_casing/a145(src)
-		new /obj/item/ammo_casing/a145(src)
-		new /obj/item/ammo_casing/a145(src)
-		new /obj/item/ammo_casing/a145(src)
-		new /obj/item/ammo_casing/a145(src)
-		new /obj/item/ammo_casing/a145(src)
-		new /obj/item/ammo_casing/a145(src)
+		new /obj/item/ammo_casing/a145/prespawned(src)
+		new /obj/item/ammo_casing/a145/prespawned(src)
+		new /obj/item/ammo_casing/a145/prespawned(src)
+		new /obj/item/ammo_casing/a145/prespawned(src)
+		new /obj/item/ammo_casing/a145/prespawned(src)
+		new /obj/item/ammo_casing/a145/prespawned(src)
+		new /obj/item/ammo_casing/a145/prespawned(src)
+		for(var/obj/item/ammo_casing/temp_casing in src)
+			temp_casing.update_icon()
 
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs"

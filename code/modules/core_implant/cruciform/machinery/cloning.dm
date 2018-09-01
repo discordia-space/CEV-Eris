@@ -32,7 +32,7 @@
 
 	var/progress = 0
 
-	var/time_multiplier = 10	//Try to avoid use of non integer values
+	var/time_multiplier = 1	//Try to avoid use of non integer values
 	var/biomass_multiplier = 1
 
 	var/image/anim0 = null
@@ -282,7 +282,7 @@
 
 		I = image(IC)
 		I.layer = 5
-		I.pixel_z = 11
+		I.pixel_z = 11 + crop
 
 		overlays.Add(I)
 

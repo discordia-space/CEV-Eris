@@ -106,7 +106,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/update_icon(var/safety = 0)
 	if(!check_icon_cache())
 		return
-	if (!node)
+	if (!node1)
 		use_power = 0
 
 	overlays.Cut()
@@ -117,7 +117,7 @@
 	if(!istype(T))
 		return
 
-	if(!T.is_plating() && node && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
+	if(!T.is_plating() && node1 && node1.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe))
 		vent_icon += "h"
 
 	if(welded)
@@ -135,11 +135,11 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(!T.is_plating() && node && node.level == 1 && istype(node, /obj/machinery/atmospherics/pipe))
+		if(!T.is_plating() && node1 && node1.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe))
 			return
 		else
-			if(node)
-				add_underlay(T, node, dir, node.icon_connect_type)
+			if(node1)
+				add_underlay(T, node1, dir, node1.icon_connect_type)
 			else
 				add_underlay(T,, dir)
 
@@ -162,7 +162,7 @@
 	if (hibernate > world.time)
 		return 1
 
-	if (!node)
+	if (!node1)
 		use_power = 0
 	if(!can_pump())
 		return 0
@@ -356,7 +356,7 @@
 
 		if(QUALITY_WELDING)
 			user << SPAN_NOTICE("Now welding the vent.")
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(!welded)
 					user.visible_message(SPAN_NOTICE("\The [user] welds the vent shut."), SPAN_NOTICE("You weld the vent shut."), "You hear welding.")
 					welded = 1
@@ -375,7 +375,7 @@
 				user << SPAN_WARNING("You cannot unwrench \the [src], turn it off first.")
 				return 1
 			var/turf/T = src.loc
-			if (node && node.level==1 && isturf(T) && !T.is_plating())
+			if (node1 && node1.level==1 && isturf(T) && !T.is_plating())
 				user << SPAN_WARNING("You must remove the plating first.")
 				return 1
 			var/datum/gas_mixture/int_air = return_air()

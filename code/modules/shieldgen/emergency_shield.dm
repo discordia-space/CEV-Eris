@@ -1,3 +1,4 @@
+
 /obj/machinery/shield
 	name = "Emergency energy shield"
 	desc = "An energy shield used to contain hull breaches."

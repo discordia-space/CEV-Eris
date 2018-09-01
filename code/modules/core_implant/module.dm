@@ -5,6 +5,11 @@
 	var/time = 0
 	var/mob/living/user
 
+	var/unique = TRUE
+
+/datum/core_module/proc/can_install(var/obj/item/weapon/implant/core_implant/I)
+	return TRUE
+
 /datum/core_module/proc/install()
 
 /datum/core_module/proc/uninstall()
@@ -12,8 +17,6 @@
 /datum/core_module/proc/preinstall()
 
 /datum/core_module/proc/set_up()
-
-/datum/core_module/group_ritual
 
 
 //ACTIVATABLE
@@ -38,3 +41,16 @@
 
 /datum/core_module/activatable/uninstall()
 	deactivate()
+
+//RITUAL HOLDER
+
+/datum/core_module/rituals
+	unique = TRUE
+	var/list/rituals = list()
+	implant_type = /obj/item/weapon/implant/core_implant
+
+/datum/core_module/rituals/install()
+	implant.update_rituals()
+
+/datum/core_module/rituals/uninstall()
+	implant.update_rituals()

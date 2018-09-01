@@ -15,6 +15,8 @@
 #define isangel(A) istype(A, /mob/observer/eye/angel)
 
 #define isnewplayer(A) istype(A, /mob/new_player)
+
+#define isbst(A) istype(A, /mob/living/carbon/human/bst)
 //++++++++++++++++++++++++++++++++++++++++++++++
 
 #define isliving(A) istype(A, /mob/living)

@@ -63,6 +63,8 @@
 	var/mature_time		//minimum maturation time
 	var/last_tick = 0
 	var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/plant
+	var/spray_cooldown = FALSE
+	var/chem_regen_cooldown = FALSE
 
 /obj/effect/plant/Destroy()
 	if(plant_controller)
@@ -103,7 +105,10 @@
 		growth_threshold = max_health/VINE_GROWTH_STAGES
 		icon = 'icons/obj/hydroponics_vines.dmi'
 		growth_type = 2 // Vines by default.
-		if(seed.get_trait(TRAIT_CARNIVOROUS) == 2)
+		if(seed.type == /datum/seed/mushroom/maintshroom)
+			growth_type = 0 // this is maintshroom
+			density = FALSE
+		else if(seed.get_trait(TRAIT_CARNIVOROUS) == 2)
 			growth_type = 1 // WOOOORMS.
 		else if(!(seed.seed_noun in list("seeds","pits")))
 			if(seed.seed_noun == "nodes")
@@ -121,6 +126,11 @@
 	spread_chance = seed.get_trait(TRAIT_POTENCY)
 	spread_distance = ((growth_type>0) ? round(spread_chance*0.6) : round(spread_chance*0.3))
 	update_icon()
+
+	if(seed.get_trait(TRAIT_CHEMS) > 0)
+		src.create_reagents(5*(seed.chems.len))
+		for (var/reagent in seed.chems)
+			src.reagents.add_reagent(reagent, 5)
 
 	spawn(1) // Plants will sometimes be spawned in the turf adjacent to the one they need to end up in, for the sake of correct dir/etc being set.
 		set_dir(calc_dir())
@@ -148,7 +158,7 @@
 				M.Turn(270)
 		src.transform = M
 	var/icon_colour = seed.get_trait(TRAIT_PLANT_COLOUR)
-	if(icon_colour)
+	if(icon_colour && (seed.type != /datum/seed/mushroom/maintshroom))
 		color = icon_colour
 	// Apply colour and light from seed datum.
 	if(seed.get_trait(TRAIT_BIOLUM))
@@ -184,7 +194,8 @@
 
 	if(growth>2 && growth == max_growth)
 		layer = (seed && seed.force_layer) ? seed.force_layer : 5
-		set_opacity(TRUE)
+		if(seed.type != /datum/seed/mushroom/maintshroom)
+			set_opacity(TRUE)
 		if(islist(seed.chems) && !isnull(seed.chems["woodpulp"]))
 			density = 1
 	else
@@ -278,3 +289,18 @@
 
 /obj/effect/plant/proc/is_mature()
 	return (health >= (max_health/3) && world.time > mature_time)
+
+/obj/effect/plant/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
+		return
+	. = ..()
+
+/obj/effect/plant/examine()
+	. = ..()
+	if(seed.get_trait(TRAIT_CHEMS))
+		if(!reagents.total_volume)
+			usr << SPAN_NOTICE("It looks totally dried.")
+		else if (!reagents.get_free_space())
+			usr << SPAN_NOTICE("It looks juicy.")
+		else
+			usr << SPAN_NOTICE("It looks a bit dry.")

@@ -4,6 +4,7 @@
 	icon_state = "mining"
 	forced_ambience = list('sound/ambience/mineambience.ogg')
 	sound_env = ASTEROID
+	vessel = null
 
 /area/mine/explored
 	name = "Mine"

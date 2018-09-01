@@ -118,8 +118,11 @@
 
 #define DEFAULT_JOB_TYPE /datum/job/assistant
 
+
 //Area flags, possibly more to come
-#define RAD_SHIELDED 1 //shielded from radiation, clearly
+#define AREA_FLAG_RAD_SHIELDED 1 // shielded from radiation, clearly
+#define AREA_FLAG_EXTERNAL     2 // External as in exposed to space, not outside in a nice, green, forest
+#define AREA_FLAG_ION_SHIELDED 4 // shielded from ionospheric anomalies as an FBP / IPC
 
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.
@@ -220,13 +223,16 @@
 #define FALL_GIB_DAMAGE 999
 
 //Core implants
-#define CORE_GROUP_RITUAL /datum/core_module/group_ritual
 #define CORE_ACTIVATED /datum/core_module/activatable
+#define GROUP_RITUAL_COOLDOWN 45*60*10
 
 //Cruciform
-#define CRUCIFORM_COMMON /datum/core_module/cruciform/common
-#define CRUCIFORM_PRIEST /datum/core_module/cruciform/priest
-#define CRUCIFORM_INQUISITOR /datum/core_module/cruciform/inquisitor
+#define CRUCIFORM_COMMON /datum/core_module/rituals/cruciform/base
+#define CRUCIFORM_PRIEST /datum/core_module/rituals/cruciform/priest
+#define CRUCIFORM_INQUISITOR /datum/core_module/rituals/cruciform/inquisitor
+#define CRUCIFORM_CRUSADER /datum/core_module/rituals/cruciform/crusader
+#define CRUCIFORM_UPLINK /datum/core_module/cruciform/uplink
+#define CRUCIFORM_REDLIGHT /datum/core_module/cruciform/red_light
 #define CRUCIFORM_CLONING /datum/core_module/cruciform/cloning
 
 #define CRUCIFORM_OBEY /datum/core_module/cruciform/obey

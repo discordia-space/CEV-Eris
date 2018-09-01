@@ -335,7 +335,7 @@
 		src << SPAN_WARNING("You're out of energy!  You need food!")
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
-/mob/proc/face_atom(var/atom/A)
+/atom/movable/proc/face_atom(var/atom/A)
 	if(!A || !x || !y || !A.x || !A.y) return
 	var/dx = A.x - x
 	var/dy = A.y - y
@@ -350,3 +350,8 @@
 		else		direction = WEST
 	if(direction != dir)
 		facedir(direction)
+
+
+/atom/movable/proc/facedir(var/ndir)
+	set_dir(ndir)
+	return 1

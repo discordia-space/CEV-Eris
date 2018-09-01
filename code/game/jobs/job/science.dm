@@ -23,9 +23,9 @@
 	ideal_character_age = 50
 
 	stat_modifers = list(
-		STAT_MEC = 20,
-		STAT_COG = 30,
-		STAT_BIO = 20,
+		STAT_MEC = 30,
+		STAT_COG = 40,
+		STAT_BIO = 30,
 	)
 
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
@@ -67,9 +67,9 @@
 	idtype = /obj/item/weapon/card/id/sci
 
 	stat_modifers = list(
-		STAT_MEC = 10,
-		STAT_COG = 20,
-		STAT_BIO = 10,
+		STAT_MEC = 20,
+		STAT_COG = 30,
+		STAT_BIO = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/scientist
@@ -108,9 +108,9 @@
 	idtype = /obj/item/weapon/card/id/dkgrey
 
 	stat_modifers = list(
-		STAT_MEC = 20,
-		STAT_COG = 10,
-		STAT_BIO = 20,
+		STAT_MEC = 30,
+		STAT_COG = 20,
+		STAT_BIO = 30,
 	)
 
 	uniform = /obj/item/clothing/under/rank/roboticist

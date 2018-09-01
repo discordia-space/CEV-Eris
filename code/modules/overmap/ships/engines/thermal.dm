@@ -45,7 +45,7 @@
 	use_power = 0
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
-	opacity = 1
+	opacity = 0
 	density = 1
 	var/on = 1
 	var/datum/ship_engine/gas_thruster/controller

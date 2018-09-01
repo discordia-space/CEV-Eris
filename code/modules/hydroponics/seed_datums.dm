@@ -512,6 +512,73 @@
 	set_trait(TRAIT_PLANT_COLOUR,"#E6E6E6")
 	set_trait(TRAIT_PLANT_ICON,"mushroom10")
 
+/datum/seed/mushroom/maintshroom
+	name = "fungoartiglieria"
+	seed_name = "Fungo di Artiglieria mushroom"
+	display_name = "Fungo di Artiglieria"
+	mutants = null
+
+/datum/seed/mushroom/maintshroom/New()
+	..()
+	set_trait(TRAIT_MATURATION,6)
+	set_trait(TRAIT_PRODUCTION,6)
+	set_trait(TRAIT_YIELD,10)
+	set_trait(TRAIT_POTENCY,15)
+	set_trait(TRAIT_REQUIRES_NUTRIENTS, FALSE)
+	set_trait(TRAIT_REQUIRES_WATER, FALSE)
+	set_trait(TRAIT_PRODUCT_ICON,"mushroom3")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#3EBCD5")
+	set_trait(TRAIT_PLANT_COLOUR,"#FFFFFF")
+	set_trait(TRAIT_PLANT_ICON,"fungoartiglieria")
+	set_trait(TRAIT_SPREAD, 2)
+	set_trait(TRAIT_CHEMS, 1)
+	set_trait(TRAIT_CHEM_SPRAYER, TRUE)
+
+	chems = list()
+	var/list/possible_chems = list(
+		"woodpulp",
+		"bicaridine",
+		"hyperzine",
+		"cryoxadone",
+		"blood",
+		"water",
+		"potassium",
+		"plasticide",
+		"mutationtoxin",
+		"amutationtoxin",
+		"inaprovaline",
+		"space_drugs",
+		"paroxetine",
+		"mercury",
+		"sugar",
+		"radium",
+		"ryetalyn",
+		"alkysine",
+		"thermite",
+		"tramadol",
+		"cryptobiolin",
+		"dermaline",
+		"dexalin",
+		"plasma",
+		"synaptizine",
+		"impedrezene",
+		"hyronalin",
+		"peridaxon",
+		"toxin",
+		"rezadone",
+		"ethylredoxrazine",
+		"slimejelly",
+		"cyanide",
+		"mindbreaker",
+		"stoxin",
+		"acetone",
+		"hydrazine",
+		"blattedin"
+		)
+
+	var/new_chem = pick(possible_chems)
+	chems[new_chem] = list(rand(1,5),rand(5,10))
+
 //Flowers/varieties
 /datum/seed/flower
 	name = "harebells"

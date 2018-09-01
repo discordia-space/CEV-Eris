@@ -211,6 +211,6 @@
 			src << "\blue Unusable emote '[act]'. Say *help for a list."
 
 	if ((message && src.stat == 0))
-		send_emote(message, m_type)
+		custom_emote(m_type, message)
 
 	return
