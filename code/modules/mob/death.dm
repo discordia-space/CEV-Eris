@@ -92,7 +92,7 @@
 			var/obj/screen/health/H = L.HUDneed["health"]
 			//H.icon_state = "health7" hm... need recode this moment...
 			H.DEADelize()
-	if(client))
+	if(client)
 		kill_CH() //We dead... clear any prepared abilities...
 
 	timeofdeath = world.time
