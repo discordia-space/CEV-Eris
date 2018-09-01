@@ -161,7 +161,7 @@
 		if(!accept_glass && istype(B,/obj/item/weapon/reagent_containers/food))
 			user << SPAN_NOTICE("This machine only accepts beakers")
 		src.beaker =  B
-		if (usr.unEquip(B, src))
+		if (user.unEquip(B, src))
 			user << "You set [B] on the machine."
 			nanomanager.update_uis(src) // update all UIs attached to src
 			return

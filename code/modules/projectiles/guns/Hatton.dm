@@ -173,8 +173,8 @@
 //Just imagine the robot is using that power to run an internal air compressor to refill the tube.
 //This also explains the cooldown between uses
 /obj/item/weapon/hatton/robot
-	var/power_cost = 150 KILOWATTS //This uses about 7.5% of the charge on a rescue robot
-	fire_cooldown = 100 //ten second cooldown between uses
+	var/power_cost = 200 KILOWATTS //This uses about 7.5% of the charge on a rescue robot
+	fire_cooldown = 150 //fifteen second cooldown between uses
 	desc = "More instrument than a weapon, this breaching device was designed for emergency situations. It uses a massive surge of power to break down obstacles."
 
 /obj/item/weapon/hatton/robot/use_charge()

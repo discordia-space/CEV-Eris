@@ -55,6 +55,17 @@ var/global/list/robot_modules = list(
 	var/speed_factor = 1.0 //Speed factor, applied as a divisor on movement delay
 	var/power_efficiency = 1.0 //Power efficiency, applied as a divisor on power taken from the internal cell
 
+	//Stat modifiers for skillchecks
+	var/list/stat_modifers = list(
+		STAT_BIO = 5,
+		STAT_COG = 5,
+		STAT_ROB = 5,
+		STAT_TGH = 5,
+		STAT_MEC = 5
+	)
+
+
+
 	desc = "This is a robot module parent class. You shouldn't see this description"
 
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
@@ -80,6 +91,8 @@ var/global/list/robot_modules = list(
 	R.speed_factor = speed_factor
 	R.power_efficiency = power_efficiency
 
+	for(var/name in stat_modifers)
+		R.stats.changeStat(name, stat_modifers[name])
 
 	R.set_module_sprites(sprites)
 	R.icon_selected = 0
@@ -100,6 +113,12 @@ var/global/list/robot_modules = list(
 	remove_languages(R)
 	remove_subsystems(R)
 	remove_status_flags(R)
+
+	R.maxHealth = initial(R.maxHealth)
+	R.speed_factor = initial(R.speed_factor)
+	R.power_efficiency = initial(R.power_efficiency)
+	for(var/name in stat_modifers)
+		R.stats.changeStat(name, stat_modifers[name]*-1)
 
 	if(R.radio)
 		R.radio.recalculateChannels()
@@ -217,6 +236,14 @@ var/global/list/robot_modules = list(
 				  )
 
 	desc = "The baseline, jack of all trades. Can do a little of everything. Some DIY, some healing, some combat."
+	stat_modifers = list(
+		STAT_BIO = 15,
+		STAT_COG = 15,
+		STAT_ROB = 15,
+		STAT_TGH = 15,
+		STAT_MEC = 15
+	)
+
 
 /obj/item/weapon/robot_module/standard/New(var/mob/living/silicon/robot/R)
 
@@ -226,14 +253,15 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/wrench/robotic(src)
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/scanner/healthanalyzer(src)
+	src.modules += new /obj/item/weapon/gripper(src)
 	src.emag = new /obj/item/weapon/melee/energy/sword(src)
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
 	synths += medicine
 
 	//Comes with bandages and ointment, the basic/weak versions only
-	var/obj/item/stack/medical/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
-	var/obj/item/stack/medical/ointment/O = new /obj/item/stack/medical/advanced/ointment(src)
+	var/obj/item/stack/medical/bruise_pack/B = new /obj/item/stack/medical/bruise_pack(src)
+	var/obj/item/stack/medical/ointment/O = new /obj/item/stack/medical/ointment(src)
 	B.uses_charge = 1
 	B.charge_costs = list(1000)
 	B.synths = list(medicine)
@@ -274,6 +302,11 @@ var/global/list/robot_modules = list(
 	health = 140 //Fragile
 	speed_factor = 0.8 //Kinda slow
 	power_efficiency = 0.6 //Very poor, shackled to a charger
+
+	stat_modifers = list(
+		STAT_BIO = 40,
+		STAT_COG = 10
+	)
 
 /obj/item/weapon/robot_module/medical/general/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
@@ -360,10 +393,18 @@ var/global/list/robot_modules = list(
 	speed_factor = 1.3 //Turbospeed!
 	power_efficiency = 1.2 //Good for long journeys
 
+	stat_modifers = list(
+		STAT_BIO = 20,
+		STAT_ROB = 10,
+		STAT_TGH = 10
+	)
+
 	desc = "The rescue borg fills the role of paramedic. \
 	Fearlessly venturing out into danger in order to pick up the wounded, stabilise them and bring \
 	them home. It has a relatively small toolset, mostly gear for getting where it needs to go and \
 	finding its way around. This streamlined design allows it to be the fastest of all droid modules."
+
+
 
 //TODO: Give the rescue module some kind of powerful melee weapon to use as a breaching tool.
 //Possibly a robot equivilant of the fire axe
@@ -437,11 +478,16 @@ var/global/list/robot_modules = list(
 	as well as occasional repair work here and there. It's a good all rounder that can serve most \
 	engineering tasks."
 
+	stat_modifers = list(
+		STAT_COG = 20,
+		STAT_MEC = 40
+	)
+
 /obj/item/weapon/robot_module/engineering/construction
 	name = "construction robot module"
 	no_slip = 1
 	health = 270 //tough
-	speed_factor = 0.7 //Very slow!
+	speed_factor = 0.65 //Very slow!
 	power_efficiency = 1.3 //Good for the long haul
 
 	desc = "The construction module is a ponderous, overgeared monstrosity, huge and bulky. \
@@ -619,6 +665,11 @@ var/global/list/robot_modules = list(
 	desc = "Focused on keeping the peace and fighting off threats to the ship, the security module is a \
 	heavily armored, though lightly armed battle unit."
 
+	stat_modifers = list(
+		STAT_ROB = 30,
+		STAT_TGH = 20
+	)
+
 /obj/item/weapon/robot_module/security/general
 	sprites = list(
 					"Basic" = "robotsecy",
@@ -675,6 +726,10 @@ var/global/list/robot_modules = list(
 	speed_factor = 0.85 //Slow
 	power_efficiency = 0.8 //Poor
 
+	stat_modifers = list(
+		STAT_ROB = 20
+	)
+
 	desc = "A vast machine designed for cleaning up trash and scrubbing floors. A fairly specialised task, \
 	but requiring a large capacity. The huge chassis consequentially grants it a degree of toughness, \
 	though it is slow and cheaply made"
@@ -683,6 +738,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/custodial/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
+	src.modules += new /obj/item/weapon/gripper/service(src)
 	src.modules += new /obj/item/weapon/soap/nanotrasen(src)
 	src.modules += new /obj/item/weapon/storage/bag/trash/robot(src)
 	src.modules += new /obj/item/weapon/mop(src)
@@ -814,6 +870,11 @@ var/global/list/robot_modules = list(
 	speed_factor = 0.9 //meh
 	power_efficiency = 1.5 //Best efficiency
 
+	stat_modifers = list(
+		STAT_ROB = 20,
+		STAT_TGH = 20
+	)
+
 	desc = "Built for digging on asteroids, excavating the ores and materials to keep the ship running, \
 	this is heavy and powerful unit with a fairly singleminded purpose. It needs to withstand impacts \
 	from falling boulders, and exist for long periods out on an airless rock, often far from a charging \
@@ -852,6 +913,12 @@ var/global/list/robot_modules = list(
 	desc = "Built for working in a well-equipped lab, and designed to handle a wide variety of research \
 	duties, this module prioritises flexibility over efficiency. Capable of working in R&D, Toxins, \
 	chemistry, xenobiology and robotics."
+
+	stat_modifers = list(
+		STAT_BIO = 30,
+		STAT_COG = 40,
+		STAT_MEC = 30
+	)
 
 /obj/item/weapon/robot_module/research/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)

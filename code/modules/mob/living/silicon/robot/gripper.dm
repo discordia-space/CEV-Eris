@@ -129,7 +129,7 @@
 			if (I_HELP)
 				user.visible_message("[user] [pick("boops", "squeezes", "pokes", "prods", "strokes", "bonks")] [M] with \the [src]")
 			if (I_HURT)
-				M.attack_generic(user,user.mob_size,"crushed")//about 16 dmg for a cyborg
+				M.attack_generic(user,user.mob_size*0.5,"crushed")//about 20 dmg for a cyborg
 				//Attack generic does a visible message so we dont need one here
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*4)
 				playsound(user, 'sound/effects/attackblob.ogg', 60, 1)

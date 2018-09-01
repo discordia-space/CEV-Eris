@@ -24,7 +24,7 @@
 
 	var/power_efficiency = 1.0
 
-	mob_size = 16
+	mob_size = MOB_LARGE
 
 //Icon stuff
 
