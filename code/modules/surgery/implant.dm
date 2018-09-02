@@ -142,6 +142,15 @@
 	max_duration = 100
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+
+		//A somewhat hacky solution
+		//Disallow this if the target has internal bleeding, so that can be fixed first instead
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		if(!affected)
+			return FALSE
+		for(var/datum/wound/W in affected.wounds) if(W.internal)
+			return FALSE
+
 		var/obj/item/organ/internal/brain/sponge = target.internal_organs_by_name[O_BRAIN]
 		return ..() && (!sponge || !sponge.damage)
 
