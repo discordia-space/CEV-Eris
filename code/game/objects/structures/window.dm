@@ -549,6 +549,10 @@
 	desc = "Adjusts its tint with voltage. Might take a few good hits to shatter it."
 	var/id
 
+/obj/structure/window/reinforced/polarized/full
+	dir = SOUTH|EAST
+	icon_state = "fwindow"
+
 /obj/structure/window/reinforced/polarized/proc/toggle()
 	if(opacity)
 		animate(src, color="#FFFFFF", time=5)
