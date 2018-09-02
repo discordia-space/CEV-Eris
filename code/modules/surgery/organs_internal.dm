@@ -122,14 +122,26 @@
 			var/obj/item/organ/I = target.internal_organs_by_name[organ]
 			if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 				attached_organs |= organ
-
-		var/organ_to_remove = input(user, "Which organ do you want to prepare for removal?") as null|anything in attached_organs
-		if(!organ_to_remove)
+		if(!attached_organs.len)
 			return 0
 
-		target.op_stage.current_organ = organ_to_remove
 
-		return ..() && organ_to_remove
+
+		return ..()
+
+
+	prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/list/attached_organs = list()
+		for(var/organ in target.internal_organs_by_name)
+			var/obj/item/organ/I = target.internal_organs_by_name[organ]
+			if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
+				attached_organs |= organ
+		var/organ_to_remove = input(user, "Which organ do you want to prepare for removal?") as null|anything in attached_organs
+		if(!organ_to_remove)
+			return FALSE
+
+		target.op_stage.current_organ = organ_to_remove
+		return TRUE
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
@@ -173,12 +185,25 @@
 			if((I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 				removable_organs |= organ
 
-		var/organ_to_remove = input(user, "Which organ do you want to remove?") as null|anything in removable_organs
-		if(!organ_to_remove)
+		if(!removable_organs.len)
 			return 0
 
-		target.op_stage.current_organ = organ_to_remove
 		return ..()
+
+
+	prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/list/attached_organs = list()
+		for(var/organ in target.internal_organs_by_name)
+			var/obj/item/organ/I = target.internal_organs_by_name[organ]
+			if(I && I.status & ORGAN_CUT_AWAY && I.parent_organ == target_zone)
+				attached_organs |= organ
+		var/organ_to_remove = input(user, "Which organ do you want to remove?") as null|anything in attached_organs
+		if(!organ_to_remove)
+			return FALSE
+
+		target.op_stage.current_organ = organ_to_remove
+		return TRUE
+
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
@@ -282,7 +307,7 @@
 			I.take_damage(rand(3,5),0)
 
 /datum/surgery_step/internal/attach_organ
-	requedQuality = QUALITY_CLAMPING
+	requedQuality = QUALITY_CAUTERIZING
 
 	min_duration = 100
 	max_duration = 120
@@ -300,12 +325,24 @@
 			if(I && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
 				removable_organs |= organ
 
-		var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
-		if(!organ_to_replace)
+		if(!removable_organs.len)
 			return 0
 
-		target.op_stage.current_organ = organ_to_replace
 		return ..()
+
+	prepare_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		var/list/removable_organs = list()
+		for(var/organ in target.internal_organs_by_name)
+			var/obj/item/organ/I = target.internal_organs_by_name[organ]
+			if(I && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
+				removable_organs |= organ
+
+		var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
+		if(!organ_to_replace)
+			return FALSE
+
+		target.op_stage.current_organ = organ_to_replace
+		return TRUE
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
