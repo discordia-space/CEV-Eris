@@ -212,7 +212,8 @@
 
 /obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
 	world << "Smashing [target] against [src]"
-	target.do_attack_animation(src)
+	target.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
+	//So we pass false on the use_item flag so it doesn't look like they hit the window with something
 	switch(state)
 		if(GRAB_PASSIVE)
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
