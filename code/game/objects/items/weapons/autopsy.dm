@@ -83,6 +83,9 @@
 		usr << "You must be conscious to do that!"
 		return
 
+	if (!usr.IsAdvancedToolUser())
+		return
+
 	var/scan_data = ""
 
 	if(timeofdeath)
