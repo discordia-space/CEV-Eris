@@ -404,7 +404,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 		"strip",
 		"job",
 		"standard space gear",
-		"tournament standard red",
+		"tournament standard grey",
 		"tournament standard green",
 		"tournament gangster",
 		"tournament chef",
@@ -414,26 +414,20 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 		"soviet admiral",
 		"tunnel clown",
 		"masked killer",
-		"assassin",
-		"death commando",
-		"syndicate commando",
-		"special ops officer",
-		"blue wizard",
-		"red wizard",
-		"marisa wizard",
-		"nanotrasen representative",
-		"nanotrasen officer",
-		"nanotrasen captain"
+		"special ops officer"
 		)
 	var/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
 	if (isnull(dresscode))
 		return
 
 	for (var/obj/item/I in M)
-		if (istype(I, /obj/item/weapon/implant))
+		if (istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/organ))
 			continue
-		M.drop_from_inventory(I)
-		if(I.loc != M)
+
+		if (!I.get_equip_slot())
+			continue
+
+		if (M.unEquip(I))
 			qdel(I)
 	switch(dresscode)
 		if ("strip")
