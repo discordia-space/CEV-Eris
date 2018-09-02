@@ -127,6 +127,8 @@
 
 /obj/effect/spider/spiderling/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	if(entry_vent)
+		entry_vent = null
 	. = ..()
 
 /obj/effect/spider/spiderling/Bump(atom/user)
