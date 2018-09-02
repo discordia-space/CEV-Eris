@@ -79,8 +79,11 @@
 	set category = "Object"
 	set src in view(usr, 1)
 	set name = "Print Data"
-	if(usr.stat || !(ishuman(usr)))
-		usr << "No."
+	if(usr.stat)
+		usr << "You must be conscious to do that!"
+		return
+
+	if (!usr.IsAdvancedToolUser())
 		return
 
 	var/scan_data = ""
@@ -161,6 +164,7 @@
 
 	// place the item in the usr's hand if possible
 	usr.put_in_hands(P)
+	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*4) //To stop people spamclicking and generating tons of paper
 
 
 /obj/item/weapon/autopsy_scanner/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
@@ -168,6 +172,7 @@
 		return
 
 	if(!can_operate(M))
+		user << SPAN_WARNING("You need to lay the cadaver down on a table first!")
 		return
 
 	if(target_name != M.name)
@@ -192,3 +197,7 @@
 	src.add_data(S)
 
 	return 1
+
+
+/obj/item/weapon/autopsy_scanner/attack_self()
+	print_data()

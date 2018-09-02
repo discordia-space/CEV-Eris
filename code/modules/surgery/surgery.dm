@@ -51,6 +51,11 @@
 	proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		return 0
 
+	// Does preparatory work such as allowing the user to choose which organ to target.
+	// Returning false cancels the step
+	proc/prepare_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+		return TRUE
+
 	// does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
 	proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -112,7 +117,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			return 1
 		selectedStep = possibleSteps[selected]
 
-	if(selectedStep && selectedStep.can_use(user, M, zone, tool) && selectedStep.is_valid_target(M))
+	if(selectedStep && selectedStep.can_use(user, M, zone, tool) && selectedStep.is_valid_target(M) && selectedStep.prepare_step(user, M, zone, tool))
 		M.op_stage.in_progress += zone
 		selectedStep.begin_step(user, M, zone, tool)		//start on it
 		var/success = FALSE
@@ -131,7 +136,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		if(success == TOOL_USE_SUCCESS)
 			selectedStep.end_step(user, M, zone, tool)		//finish successfully
 		else if(success == TOOL_USE_FAIL)
-			tool.handle_failure(user, M, required_stat = STAT_BIO, selectedStep.requedQuality)
+			tool.handle_failure(user, M, required_stat = STAT_BIO, required_quality = selectedStep.requedQuality)
 			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
 		else
 			user << SPAN_WARNING("You must remain close to your patient to conduct surgery.")
@@ -143,6 +148,12 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 	if (user.a_intent == I_HELP)
 		user << SPAN_WARNING("You can't see any useful way to use [tool] on [M].")
+
+		if (tool.tool_qualities)
+			return 1 //Prevents attacking the patient when trying to do surgery
+			//We check if tool qualities is populated here, so that, if it's not, we can return zero
+			//This will allow afterattack to be called for things which aren't exactly surgery tools, such as the autopsy scanner
+
 	return 0
 
 proc/sort_surgeries()

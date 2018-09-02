@@ -157,8 +157,8 @@
 		var/msg = "\blue [user] keeps the incision open on [target]'s [affected.name] with \the [tool]."
 		var/self_msg = "\blue You keep the incision open on [target]'s [affected.name] with \the [tool]."
 		if (target_zone == BP_CHEST)
-			msg = "\blue [user] keeps the ribcage open on [target]'s torso with \the [tool]."
-			self_msg = "\blue You keep the ribcage open on [target]'s torso with \the [tool]."
+			msg = "\blue [user] keeps the incision open on [target]'s torso with \the [tool]."
+			self_msg = "\blue You keep the incision open on [target]'s torso with \the [tool]."
 		if (target_zone == BP_GROIN)
 			msg = "\blue [user] keeps the incision open on [target]'s lower abdomen with \the [tool]."
 			self_msg = "\blue You keep the incision open on [target]'s lower abdomen with \the [tool]."
@@ -187,7 +187,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.open && target_zone != "mouth"
+			return affected && affected.open && affected.open <= 2.5 && target_zone != "mouth"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
