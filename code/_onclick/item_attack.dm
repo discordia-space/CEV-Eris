@@ -26,12 +26,12 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 // Called at the start of resolve_attackby(), before the actual attack.
 // Return a nonzero value to abort the attack
-/obj/item/proc/pre_attack(atom/a, mob/user)
+/obj/item/proc/pre_attack(atom/a, mob/user, var/params)
 	return
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
 /obj/item/proc/resolve_attackby(atom/A, mob/user, params)
-	if (pre_attack(A, user))
+	if (pre_attack(A, user, params))
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
 	return A.attackby(src, user, params)
@@ -42,12 +42,16 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /atom/movable/attackby(obj/item/I, mob/living/user)
 	if(!(I.flags & NOBLUDGEON))
+		user.do_attack_animation(src)
+		if (I.hitsound)
+			playsound(loc, I.hitsound, 50, 1, -1)
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-/obj/item/attackby(obj/item/I, mob/living/user)
+/obj/item/attackby(obj/item/I, mob/living/user, var/params)
 	return
 
-/mob/living/attackby(obj/item/I, mob/living/user)
+/mob/living/attackby(obj/item/I, mob/living/user, var/params)
 	if(!ismob(user))
 		return FALSE
 	if(can_operate(src) && do_surgery(src, user, I)) //Surgery

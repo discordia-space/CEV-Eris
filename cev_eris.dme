@@ -1557,6 +1557,7 @@
 #include "code\modules\mob\living\silicon\robot\death.dm"
 #include "code\modules\mob\living\silicon\robot\emote.dm"
 #include "code\modules\mob\living\silicon\robot\examine.dm"
+#include "code\modules\mob\living\silicon\robot\gripper.dm"
 #include "code\modules\mob\living\silicon\robot\inventory.dm"
 #include "code\modules\mob\living\silicon\robot\laws.dm"
 #include "code\modules\mob\living\silicon\robot\life.dm"

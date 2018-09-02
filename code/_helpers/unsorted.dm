@@ -1258,4 +1258,3 @@ var/list/FLOORITEMS = list(
 	else
 		return 0
 
-
