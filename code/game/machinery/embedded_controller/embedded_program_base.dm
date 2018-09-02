@@ -11,6 +11,8 @@
 		var/obj/machinery/embedded_controller/radio/R = M
 		id_tag = R.id_tag
 
+	id_tag = copytext(id_tag, 1)
+
 /datum/computer/file/embedded_program/proc/receive_user_command(command)
 	return
 
