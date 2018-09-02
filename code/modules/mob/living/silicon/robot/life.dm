@@ -134,10 +134,6 @@
 		src.druggy--
 		src.druggy = max(0, src.druggy)
 
-	//update the state of modules and components here
-	if (src.stat != 0)
-		uneq_all()
-
 	if(radio)
 		if(!is_component_functioning("radio"))
 			radio.on = 0

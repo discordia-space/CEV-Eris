@@ -911,3 +911,35 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 
 	return cap
 
+
+//This is used mostly when placing items on tables
+//Takes an atom and a click params
+//Sets the atom's pixel offset so it is visually about the same spot as where the user clicked
+//Can optionally animate the offsetting. This should be used when the object is moving between turfs,
+//but not when being dropped from a mob
+proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
+	var/list/click_params = params2list(params)
+	//Center the icon where the user clicked.
+	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
+		return
+
+
+	//We really need vector math, this will do for now ~Nanako
+	if (animate)
+		var/target_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		var/target_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+
+		//Get the distance in pixels, used for the animation time so it slides at a consistent speed
+		var/pixeldist_x = abs(A.pixel_x - target_x)
+		var/pixeldist_y = abs(A.pixel_y - target_y)
+		var/pixeldist = sqrt((pixeldist_x*pixeldist_x)+(pixeldist_y*pixeldist_y))
+
+		animate(A, pixel_x = target_x,\
+		pixel_y = target_y,\
+		time=pixeldist*0.5 )
+		return
+	else
+		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
+		A.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		A.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+

@@ -30,7 +30,7 @@
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0
-	give(maxcharge * 0.04)
+	give(maxcharge * 0.03)
 	update_icon()
 	return 1
 

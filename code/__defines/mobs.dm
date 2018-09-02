@@ -163,3 +163,5 @@
 
 #define ORGAN_HEALTH_MULTIPLIER 1
 #define ORGAN_REGENERATION_MULTIPLIER 0.2
+#define WOUND_BLEED_MULTIPLIER 0.02 //Bleeding wounds drip damage*this units of blood per process tick
+#define OPEN_ORGAN_BLEED_AMOUNT 1.5 //Wounds with open, unclamped incisions bleed this many units of blood per process tick

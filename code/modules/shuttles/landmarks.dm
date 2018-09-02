@@ -25,7 +25,7 @@
 
 /obj/effect/shuttle_landmark/New()
 	..()
-	tag = landmark_tag //since tags cannot be set at compile time
+	tag = copytext(landmark_tag, 1) //since tags cannot be set at compile time
 	if(autoset)
 		base_area = get_area(src)
 		var/turf/T = get_turf(src)
