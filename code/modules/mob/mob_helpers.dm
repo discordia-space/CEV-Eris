@@ -539,6 +539,9 @@ proc/is_blind(A)
 		threatcount += 4
 	return threatcount
 
+
+
+
 #undef SAFE_PERP
 
 /mob/proc/get_multitool(var/obj/item/weapon/tool/multitool/P)
@@ -556,3 +559,23 @@ proc/is_blind(A)
 
 /mob/living/silicon/ai/get_multitool()
 	return ..(aiMulti)
+
+//This proc retrieves the relevant time of death from
+/mob/proc/get_death_time(var/which)
+	var/datum/preferences/P
+	if (client)
+		P = client.prefs
+	else if (ckey)
+		P = preferences_datums[ckey]
+	else return null
+	return P.time_of_death[which]
+/mob/proc/set_death_time(var/which, var/value)
+	var/datum/preferences/P
+	if (client)
+		P = client.prefs
+	else if (ckey)
+		P = preferences_datums[ckey]
+	else
+		return 0
+	P.time_of_death[which] = value
+	return 1

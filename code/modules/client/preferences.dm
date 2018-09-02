@@ -14,6 +14,9 @@ var/list/preferences_datums = list()
 	var/last_ip
 	var/last_id
 
+
+	var/list/time_of_death = list()//This is a list of last times of death for various things with different respawn timers
+
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
@@ -46,7 +49,7 @@ var/list/preferences_datums = list()
 	var/list/language_prefixes = list() //Kanguage prefix keys
 	var/list/gear						//Custom/fluff item loadout.
 
-		//Some faction information.
+	//Some faction information.
 	var/religion = "None"               //Religious association.
 
 		//Mob preview

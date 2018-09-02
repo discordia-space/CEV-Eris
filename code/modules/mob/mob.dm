@@ -9,7 +9,10 @@
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
-	ghostize()
+
+	//Only living mobs can become ghosts
+	if (istype(src, /mob/living))
+		ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
 
