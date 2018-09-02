@@ -317,6 +317,11 @@
 
 
 /obj/structure/closet/attackby(obj/item/I, mob/user)
+
+	if (istype(I, /obj/item/weapon/gripper))
+		//Empty gripper attacks will call attack_AI
+		return 0
+
 	if(src.opened)
 		if(istype(I,/obj/item/tk_grab))
 			return 0
@@ -340,11 +345,8 @@
 				SPAN_NOTICE("You hear rustling of clothes.")
 			)
 			return
-		if(isrobot(user))
-			return
-		if(I.loc != user) // This should stop mounted modules ending up outside the module.
-			return
 		usr.unEquip(I, src.loc)
+		return
 	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
 	else if(QUALITY_WELDING in I.tool_qualities)
@@ -459,7 +461,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 
-	if(ishuman(usr))
+	if(ishuman(usr) || isrobot(usr))
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
@@ -473,7 +475,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
 
-	if(ishuman(usr))
+	if(ishuman(usr) || isrobot(usr))
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else

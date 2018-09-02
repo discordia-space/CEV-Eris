@@ -212,12 +212,11 @@ var/list/slot_equipment_priority = list(
 	return slot && I.mob_can_unequip(src, slot)
 
 /mob/proc/get_inventory_slot(obj/item/I)
-	var/slot = 0
-	for(var/s in slot_back to slot_accessory_buffer) //kind of worries me
-		if(get_equipped_item(s) == I)
-			slot = s
-			break
+	var/slot = slot_none
+	if (I.get_holding_mob() == src)
+		slot = I.get_equip_slot()
 	return slot
+
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
 /mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.

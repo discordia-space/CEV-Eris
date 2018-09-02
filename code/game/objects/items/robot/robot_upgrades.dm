@@ -27,7 +27,6 @@
 	if(..()) return 0
 	R.uneq_all()
 	R.modtype = initial(R.modtype)
-	R.hands.icon_state = initial(R.hands.icon_state)
 
 	R.notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, R.module.name)
 	R.module.Reset(R)

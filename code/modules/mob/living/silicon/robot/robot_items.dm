@@ -404,3 +404,22 @@
 
 	user << "You fail to pick up \the [A] with \the [src]"
 	return
+
+/obj/item/weapon/tool/crowbar/robotic
+	icon = 'icons/obj/robot_items.dmi'
+
+/obj/item/weapon/tool/wrench/robotic
+	icon = 'icons/obj/robot_items.dmi'
+
+/obj/item/weapon/tool/screwdriver/robotic
+	icon = 'icons/obj/robot_items.dmi'
+	//random_icon = FALSE
+
+/obj/item/weapon/tool/multitool/robotic
+	icon = 'icons/obj/robot_items.dmi'
+
+/obj/item/weapon/tool/wirecutters/robotic
+	icon = 'icons/obj/robot_items.dmi'
+
+/obj/item/weapon/tool/weldingtool/robotic
+	icon = 'icons/obj/robot_items.dmi'

@@ -9,11 +9,13 @@
 
 	var/datum/computer/file/embedded_program/docking/multi/docking_program
 
-/obj/machinery/embedded_controller/radio/docking_port_multi/Initialize()
+/obj/machinery/embedded_controller/radio/docking_port_multi/New()
 	. = ..()
 	docking_program = new/datum/computer/file/embedded_program/docking/multi(src)
 	program = docking_program
 
+/obj/machinery/embedded_controller/radio/docking_port_multi/Initialize()
+	.=..()
 	var/list/names = splittext(child_names_txt, ";")
 	var/list/tags = splittext(child_tags_txt, ";")
 
