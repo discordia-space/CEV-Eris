@@ -31,10 +31,14 @@
 	return
 
 /obj/item/stack/Destroy()
-	if(uses_charge)
-		return 1
+	if (synths)
+		synths.Cut() //Preventing runtimes
+	//if(uses_charge)
+		//return 1
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
+
+
 	return ..()
 
 /obj/item/stack/examine(mob/user)

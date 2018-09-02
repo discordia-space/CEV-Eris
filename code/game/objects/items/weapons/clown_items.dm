@@ -28,11 +28,12 @@
 
 /obj/item/weapon/soap/New()
 	..()
-	create_reagents(5)
+	create_reagents(20)
 	wet()
 
 /obj/item/weapon/soap/proc/wet()
-	reagents.add_reagent("cleaner", 5)
+	playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+	reagents.add_reagent("cleaner", 20)
 
 /obj/item/weapon/soap/Crossed(AM as mob|obj)
 	if (isliving(AM))
@@ -41,24 +42,41 @@
 
 /obj/item/weapon/soap/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return
+
+	else if(istype(target,/obj/effect/decal/cleanable))
+		user << "<span class='notice'>You scrub \the [target.name] out.</span>"
+		qdel(target)
+		return
+	else if(istype(target,/turf))
+		user << "You start scrubbing the [target.name]"
+		if (do_after(user, 50, target)) //Soap should be slower and worse than mop
+			user << "<span class='notice'>You scrub \the [target.name] clean.</span>"
+			var/turf/T = target
+			T.clean(src, user)
+			return
+	else if(istype(target,/obj/structure/sink) || istype(target,/obj/structure/sink))
+		user << "<span class='notice'>You wet \the [src] in the sink.</span>"
+		wet()
+		return
+	else if (istype(target, /obj/structure/mopbucket) || istype(target, /obj/item/weapon/reagent_containers/glass) || istype(target, /obj/structure/reagent_dispensers/watertank))
+		if (target.reagents && target.reagents.total_volume)
+			user << "<span class='notice'>You wet \the [src] in the [target].</span>"
+			wet()
+			return
+		else
+			user << "\The [target] is empty!"
+
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
-		user << SPAN_NOTICE("You need to take that [target.name] off before cleaning it.")
-	else if(istype(target,/obj/effect/decal/cleanable))
-		user << SPAN_NOTICE("You scrub \the [target.name] out.")
-		qdel(target)
-	else if(istype(target,/turf))
-		user << SPAN_NOTICE("You scrub \the [target.name] clean.")
-		var/turf/T = target
-		T.clean(src, user)
-	else if(istype(target,/obj/structure/sink))
-		user << SPAN_NOTICE("You wet \the [src] in the sink.")
-		wet()
+		user << "<span class='notice'>You need to take that [target.name] off before cleaning it.</span>"
+		return
 	else
-		user << SPAN_NOTICE("You clean \the [target.name].")
+		user << "<span class='notice'>You clean \the [target.name].</span>"
 		target.clean_blood()
-	return
+		return
+
+
 
 //attack_as_weapon
 /obj/item/weapon/soap/attack(mob/living/target, mob/living/user, var/target_zone)

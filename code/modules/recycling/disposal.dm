@@ -122,8 +122,6 @@
 		update()
 		return
 
-	if(isrobot(user))
-		return
 	if(!I)
 		return
 

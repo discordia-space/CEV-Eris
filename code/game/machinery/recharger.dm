@@ -21,7 +21,25 @@ obj/machinery/recharger
 	var/portable = 1
 
 obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
-	if(issilicon(user))
+
+	if(portable && istype(G, /obj/item/weapon/tool/wrench))
+		if(charging)
+			user << SPAN_WARNING("Remove [charging] first!")
+			return
+		anchored = !anchored
+		user << "You [anchored ? "attached" : "detached"] the recharger."
+		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
+
+	else if (istype(G, /obj/item/weapon/gripper))//Code for allowing cyborgs to use rechargers
+		var/obj/item/weapon/gripper/Gri = G
+		if (charging)//If there's something in the charger
+			if (Gri.grip_item(charging, user))//we attempt to grab it
+				charging = null
+				update_icon()
+			else
+				user << "<span class='danger'>Your gripper cannot hold \the [charging].</span>"
+
+	if(!user.canUnEquip(G))
 		return
 
 	var/allowed = 0
@@ -78,13 +96,8 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		charging = G
 		update_icon()
 
-	else if(portable && istype(G, /obj/item/weapon/tool/wrench))
-		if(charging)
-			user << SPAN_WARNING("Remove [charging] first!")
-			return
-		anchored = !anchored
-		user << "You [anchored ? "attached" : "detached"] the recharger."
-		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
+
+
 
 obj/machinery/recharger/attack_hand(mob/user as mob)
 	if(issilicon(user))

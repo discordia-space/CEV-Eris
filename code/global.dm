@@ -94,12 +94,7 @@ var/DBConnection/dbcon     = new() // Feedback    database (New database)
 var/global/list/alphabet_uppercase = list("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
 
 
-// Used by robots and robot preferences.
-var/list/robot_module_types = list(
-	"Standard", "Engineering", "Surgeon",  "Crisis",
-	"Miner",    "Janitor",     "Service",      "Clerical", "Security",
-	"Research"
-)
+
 
 // Some scary sounds.
 var/static/list/scarySounds = list(
