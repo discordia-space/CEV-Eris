@@ -1,4 +1,4 @@
-#define HUB_ENABLED 1
+#define HUB_ENABLED TRUE
 /world
 	hub = "Exadv1.spacestation13"
 	name = "Space Station 13"
