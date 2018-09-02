@@ -222,10 +222,18 @@
 		if(2.0)
 			if (prob(30))
 				dismantle()
-			return
+				return
+			else
+				health -= rand(60,180)
+
 		if(3.0)
 			if (prob(5))
 				dismantle()
-			return
+				return
+			else
+				health -= rand(40,80)
 		else
+
+	if(health <= 0)
+		dismantle()
 	return

@@ -244,6 +244,8 @@
 	return
 
 /mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O, /obj/item/weapon/gripper))
+		return ..(O, user)
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O

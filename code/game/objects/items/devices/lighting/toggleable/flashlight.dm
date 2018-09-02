@@ -34,6 +34,8 @@
 /obj/item/device/lighting/toggleable/flashlight/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
+	else
+		return ..()
 
 /obj/item/device/lighting/toggleable/flashlight/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
