@@ -569,15 +569,15 @@
 				return 1 //A nonzero return value will cause the equipping operation to fail
 
 
-/obj/item/weapon/rig/equipped(mob/living/carbon/human/M)
+/obj/item/weapon/rig/equipped(var/mob/user, var/slot)
 	..()
 	if (is_held())
 		remove()
 		return
 
 	if (slot == rig_wear_slot)
-		M.visible_message("<font color='blue'><b>[M] struggles into \the [src].</b></font>", "<font color='blue'><b>You struggle into \the [src].</b></font>")
-		wearer = M
+		user.visible_message("<font color='blue'><b>[user] struggles into \the [src].</b></font>", "<font color='blue'><b>You struggle into \the [src].</b></font>")
+		wearer = user
 		wearer.wearing_rig = src
 		update_icon()
 
