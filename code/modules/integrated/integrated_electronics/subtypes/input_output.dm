@@ -1,6 +1,3 @@
-#define qdel_null(x) if(x) { qdel(x) ; x = null }
-
-
 /obj/item/integrated_circuit/input
 	var/can_be_asked_input = 0
 	category_text = "Input"
@@ -650,7 +647,7 @@
 	on_data_written()
 
 /obj/item/integrated_circuit/output/video_camera/Destroy()
-	qdel_null(camera)
+	QDEL_NULL(camera)
 	return ..()
 
 /obj/item/integrated_circuit/output/video_camera/proc/set_camera_status(var/status)

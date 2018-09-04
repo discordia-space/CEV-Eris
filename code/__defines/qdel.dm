@@ -18,8 +18,9 @@
 #define GC_QUEUED_FOR_HARD_DEL -2
 #define GC_CURRENTLY_BEING_QDELETED -3
 
-// Delete "item" and nullify var, where it was.
-#define QDEL_NULL(item) if(item) { qdel(item); item = null }
+#define QDEL_NULL_LIST(x) if(x) { for(var/y in x) { qdel(y) } ; x = null }
+
+#define QDEL_NULL(x) if(x) { qdel(x) ; x = null }
 
 #define QDELING(X) (X.gc_destroyed)
 #define QDELETED(X) (!X || QDELING(X))

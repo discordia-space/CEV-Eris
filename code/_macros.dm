@@ -73,10 +73,6 @@
 
 #define any2ref(x) "\ref[x]"
 
-#define QDEL_NULL_LIST(x) if(x) { for(var/y in x) { qdel(y) } ; x = null }
-
-#define QDEL_NULL(x) if(x) { qdel(x) ; x = null }
-
 // Spawns multiple objects of the same type
 #define cast_new(type, num, args...) if((num) == 1) { new type(args) } else { for(var/i=0;i<(num),i++) { new type(args) } }
 
