@@ -66,7 +66,7 @@
 	name = "clown shoes"
 	icon_state = "clown"
 	item_state = "clown_shoes"
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = 1
 	force = 0
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
@@ -122,7 +122,7 @@
 	name = "swimming fins"
 	icon_state = "flippers"
 	item_flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = 1
 	species_restricted = null
 
 /obj/item/clothing/shoes/leather

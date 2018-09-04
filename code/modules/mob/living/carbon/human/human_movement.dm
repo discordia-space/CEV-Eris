@@ -34,7 +34,7 @@
 				tally += E.get_tally()
 	else
 		if(shoes)
-			tally += shoes.slowdown
+			tally += shoes.slowdown - SHOES_SPEEDUP
 
 		for(var/organ_name in BP_LEGS)
 			var/obj/item/organ/external/E = get_organ(organ_name)
