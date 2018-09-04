@@ -629,7 +629,7 @@
 		if(!last_header_icons)
 			last_header_icons = current_header_icons
 
-		else if(!listequal(last_header_icons, current_header_icons))
+		else if(!(last_header_icons ~= current_header_icons))
 			last_header_icons = current_header_icons
 			ui_updated_needed = 1
 		else

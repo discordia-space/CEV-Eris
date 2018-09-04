@@ -699,8 +699,6 @@ proc/dd_sortedTextList(list/incoming)
 		return 0
 	return L[A.type]
 
-#define listequal(A, B) (A.len == B.len && !length(A^B))
-
 
 //Move a single element from position fromIndex within a list, to position toIndex
 //All elements in the range [1,toIndex) before the move will be before the pivot afterwards
@@ -741,8 +739,6 @@ proc/dd_sortedTextList(list/incoming)
 			L.Insert(toIndex, null)
 			L.Swap(fromIndex, toIndex)
 			L.Cut(fromIndex, fromIndex+1)
-
-#define listequal(A, B) (A.len == B.len && !length(A^B))
 
 //Picks from the list, with some safeties, and returns the "default" arg if it fails
 #define DEFAULTPICK(L, default) ((istype(L, /list) && L:len) ? pick(L) : default)
