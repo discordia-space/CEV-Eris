@@ -104,8 +104,6 @@ if(Datum.is_processing) {\
 #define SS_SLEEPING 4	//fire() slept.
 #define SS_PAUSING 5 	//in the middle of pausing
 
-#define GLOBAL_REAL_VAR(X) var/global/##X
-#define GLOBAL_REAL(X, Typepath) var/global##Typepath/##X
 
 #define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
 /datum/controller/subsystem/##X/New(){\
