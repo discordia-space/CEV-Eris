@@ -12,19 +12,6 @@
 #define BE_SYNTH "BE_SYNTH"
 #define BE_PAI   "BE_PAI"
 
-// Antagonist datum flags.
-#define ANTAG_OVERRIDE_JOB        0x1 // Assigned job is set to MODE when spawning.
-#define ANTAG_OVERRIDE_MOB        0x2 // Mob is recreated from datum mob_type var when spawning.
-#define ANTAG_CLEAR_EQUIPMENT     0x4 // All preexisting equipment is purged.
-#define ANTAG_CHOOSE_NAME         0x8 // Antagonists are prompted to enter a name.
-#define ANTAG_IMPLANT_IMMUNE     0x10 // Cannot be loyalty implanted.
-#define ANTAG_SUSPICIOUS         0x20 // Shows up on roundstart report.
-#define ANTAG_HAS_LEADER         0x40 // Generates a leader antagonist.
-#define ANTAG_HAS_NUKE           0x80 // Will spawn a nuke at supplied location.
-#define ANTAG_RANDSPAWN         0x100 // Potentially randomly spawns due to events.
-#define ANTAG_VOTABLE           0x200 // Can be voted as an additional antagonist before roundstart.
-#define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
-
 // Storyteller names macro
 #define STORYTELLER_BASE "erida"
 

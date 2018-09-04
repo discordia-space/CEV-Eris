@@ -7,9 +7,6 @@
 
 */
 
-#define STATION_Z list(1,2,3,4,5)
-#define TELECOMM_Z 3
-
 /obj/machinery/telecomms
 	var/temp = "" // output message
 	var/construct_op = 0
