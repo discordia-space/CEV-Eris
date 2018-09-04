@@ -93,3 +93,6 @@
 	user << browse(dat, "window=communications;size=400x500")
 	onclose(user, "communications")
 
+#undef STATE_DEFAULT
+#undef STATE_INJECTOR
+#undef STATE_ENGINE
