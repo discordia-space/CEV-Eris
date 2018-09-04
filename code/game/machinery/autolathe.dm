@@ -1,4 +1,4 @@
-s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
+// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 #define SANITIZE_LATHE_COST(n) max(1, n) // helps to fix prices where "* mat_efficiency" is used.
 
 #define ERR_OK 0
