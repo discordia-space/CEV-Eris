@@ -428,8 +428,6 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
 	price_tag = 150
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey
-	price_tag = 150
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/patron
 	price_tag = 150
