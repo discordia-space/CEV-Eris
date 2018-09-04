@@ -6,7 +6,7 @@
 	description = "A toxic chemical."
 	taste_description = "bitterness"
 	taste_mult = 1.2
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#CF3600"
 	metabolism = REM * 0.05 // 0.01 by default. They last a while and slowly kill you.
 	var/strength = 4 // How much damage it deals per unit
@@ -21,7 +21,7 @@
 	id = "plasticide"
 	description = "Liquid plastic, do not eat."
 	taste_description = "plastic"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#CF3600"
 	strength = 5
 
@@ -30,7 +30,7 @@
 	id = "amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
 	taste_description = "mushroom"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#792300"
 	strength = 10
 
@@ -39,7 +39,7 @@
 	id = "carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded space carp."
 	taste_description = "fish"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#003333"
 	strength = 10
 
@@ -48,7 +48,7 @@
 	id = "blattedin"
 	description = "A powerful toxin produced by those omnipresent roaches."
 	taste_description = "chicken"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#0F4800"
 	strength = 5
 
@@ -57,7 +57,7 @@
 	id = "plasma"
 	description = "Plasma in its liquid form."
 	taste_mult = 1.5
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#9D14DB"
 	strength = 30
 	touch_met = 5
@@ -82,7 +82,7 @@
 	id = "cyanide"
 	description = "A highly toxic chemical."
 	taste_mult = 0.6
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#CF3600"
 	strength = 20
 	metabolism = REM * 2
@@ -97,7 +97,7 @@
 	id = "potassium_chloride"
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
 	taste_description = "salt"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#FFFFFF"
 	strength = 0
 	overdose = REAGENTS_OVERDOSE
@@ -119,7 +119,7 @@
 	id = "potassium_chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	taste_description = "salt"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#FFFFFF"
 	strength = 10
 	overdose = 20
@@ -140,7 +140,7 @@
 	id = "zombiepowder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	taste_description = "death"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#669900"
 	metabolism = REM
 	strength = 3
@@ -166,7 +166,7 @@
 	description = "A chemical mix good for growing plants with."
 	taste_description = "plant food"
 	taste_mult = 0.5
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	strength = 0.5 // It's not THAT poisonous.
 	color = "#664330"
 
@@ -187,7 +187,7 @@
 	id = "plantbgone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
 	taste_mult = 1
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#49002E"
 	strength = 4
 
@@ -208,7 +208,7 @@
 	id = "pacid"
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
 	taste_description = "acid"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#8E18A9"
 	power = 10
 	meltdose = 4
@@ -218,7 +218,7 @@
 	id = "lexorin"
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
 	taste_description = "acid"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 
@@ -233,7 +233,7 @@
 	description = "Might cause unpredictable mutations. Keep away from children."
 	taste_description = "slime"
 	taste_mult = 0.9
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#13BC5E"
 
 /datum/reagent/mutagen/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
@@ -265,7 +265,7 @@
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
 	taste_description = "slime"
 	taste_mult = 1.3
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#801E28"
 
 /datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -280,7 +280,7 @@
 	id = "stoxin"
 	description = "An effective hypnotic used to treat insomnia."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#009CA8"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
@@ -309,7 +309,7 @@
 	id = "chloralhydrate"
 	description = "A powerful sedative."
 	taste_description = "bitterness"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#000067"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE * 0.5
@@ -336,7 +336,7 @@
 	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	taste_description = "shitty piss water"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#664300"
 
 	glass_icon_state = "beerglass"
@@ -352,7 +352,7 @@
 	description = "An illegal chemical compound used as drug."
 	taste_description = "bitterness"
 	taste_mult = 0.4
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#60A584"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
@@ -370,7 +370,7 @@
 	id = "serotrotium"
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#202040"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
@@ -385,7 +385,7 @@
 	id = "cryptobiolin"
 	description = "Cryptobiolin causes confusion and dizzyness."
 	taste_description = "sourness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#000055"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
@@ -399,7 +399,7 @@
 	id = "impedrezene"
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
 	taste_description = "numbness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 
@@ -417,7 +417,7 @@
 	id = "mindbreaker"
 	description = "A powerful hallucinogen, it can cause fatal effects in users."
 	taste_description = "sourness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#B31008"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
@@ -464,7 +464,7 @@
 	id = "nicotine"
 	description = "A highly addictive stimulant extracted from the tobacco plant."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#181818"
 
 /datum/reagent/nicotine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -478,7 +478,7 @@
 	id = "mutationtoxin"
 	description = "A corruptive toxin produced by slimes."
 	taste_description = "sludge"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#13BC5E"
 
 /datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -493,7 +493,7 @@
 	id = "amutationtoxin"
 	description = "An advanced corruptive toxin produced by slimes."
 	taste_description = "sludge"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#13BC5E"
 
 /datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // TODO: check if there's similar code anywhere else
@@ -526,7 +526,7 @@
 	id = "nanites"
 	description = "Microscopic construction robots."
 	taste_description = "slimey metal"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#535E66"
 
 /datum/reagent/xenomicrobes
@@ -534,5 +534,5 @@
 	id = "xenomicrobes"
 	description = "Microbes with an entirely alien cellular structure."
 	taste_description = "sludge"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#535E66"

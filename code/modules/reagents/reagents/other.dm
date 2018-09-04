@@ -5,7 +5,7 @@
 	id = "crayon_dust"
 	description = "Intensely coloured powder obtained by grinding crayons."
 	taste_description = "the back of class"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#888888"
 	overdose = 5
 
@@ -54,7 +54,7 @@
 	id = "paint"
 	description = "This paint will stick to almost any object."
 	taste_description = "chalk"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#808080"
 	overdose = REAGENTS_OVERDOSE * 0.5
 	color_weight = 20
@@ -111,7 +111,7 @@
 	id = "adminordrazine"
 	description = "It's magic. We don't have to explain it."
 	taste_description = "100% abuse"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#C8A5DC"
 	affects_dead = 1 //This can even heal dead people.
 
@@ -150,7 +150,7 @@
 	id = "gold"
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
 	taste_description = "expensive metal"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#F7C430"
 
 /datum/reagent/silver
@@ -158,7 +158,7 @@
 	id = "silver"
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 	taste_description = "expensive yet reasonable metal"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#D0D0D0"
 
 /datum/reagent/uranium
@@ -166,7 +166,7 @@
 	id = "uranium"
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
 	taste_description = "the inside of a reactor"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#B8B8C0"
 
 /datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
@@ -188,7 +188,7 @@
 	id = "adrenaline"
 	description = "Adrenaline is a hormone used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#C8A5DC"
 
 /datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -206,7 +206,7 @@
 	id = "diethylamine"
 	description = "A secondary amine, mildly corrosive."
 	taste_description = "iron"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#604030"
 
 /datum/reagent/surfactant // Foam precursor
@@ -214,7 +214,7 @@
 	id = "surfactant"
 	description = "A isocyanate liquid that forms a foam when mixed with water."
 	taste_description = "metal"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#9E6B38"
 
 /datum/reagent/foaming_agent // Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
@@ -222,7 +222,7 @@
 	id = "foaming_agent"
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
 	taste_description = "metal"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#664B63"
 
 /datum/reagent/thermite
@@ -230,7 +230,7 @@
 	id = "thermite"
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
 	taste_description = "sweet tasting metal"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#673910"
 	touch_met = 50
 
@@ -255,7 +255,7 @@
 	id = "cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	taste_description = "sourness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#A5F0EE"
 	touch_met = 50
 
@@ -304,7 +304,7 @@
 	id = "lube"
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	taste_description = "slime"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#009CA8"
 
 /datum/reagent/lube/touch_turf(var/turf/simulated/T)
@@ -318,7 +318,7 @@
 	id = "silicate"
 	description = "A compound that can be used to reinforce glass."
 	taste_description = "plastic"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#C7FFFF"
 
 /datum/reagent/silicate/touch_obj(var/obj/O)
@@ -333,7 +333,7 @@
 	id = "glycerol"
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
 	taste_description = "sweetness"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#808080"
 
 /datum/reagent/nitroglycerin
@@ -341,7 +341,7 @@
 	id = "nitroglycerin"
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
 	taste_description = "oil"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#808080"
 
 /datum/reagent/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -354,7 +354,7 @@
 	description = "Industrial cooling substance."
 	taste_description = "sourness"
 	taste_mult = 1.1
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#C8A5DC"
 
 /datum/reagent/ultraglue
@@ -369,7 +369,7 @@
 	id = "woodpulp"
 	description = "A mass of wood fibers."
 	taste_description = "wood"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#B97A57"
 
 /datum/reagent/luminol
@@ -377,7 +377,7 @@
 	id = "luminol"
 	description = "A compound that interacts with blood on the molecular level."
 	taste_description = "metal"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#F2F3F4"
 
 /datum/reagent/luminol/touch_obj(var/obj/O)

@@ -5,7 +5,7 @@
 	id = "nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	taste_mult = 4
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	metabolism = REM * 4
 	var/nutriment_factor = 30 // Per unit
 	var/injectable = 0
@@ -76,7 +76,7 @@
 	id = "flour"
 	description = "This is what you rub all over yourself to pretend to be a ghost."
 	taste_description = "chalky wheat"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	nutriment_factor = 1
 	color = "#FFFFFF"
 
@@ -90,7 +90,7 @@
 	description = "A fatty, bitter paste made from coco beans."
 	taste_description = "bitterness"
 	taste_mult = 1.3
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	nutriment_factor = 5
 	color = "#302000"
 
@@ -100,7 +100,7 @@
 	description = "A salty sauce made from the soy plant."
 	taste_description = "umami"
 	taste_mult = 1.1
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	nutriment_factor = 2
 	color = "#792300"
 
@@ -109,7 +109,7 @@
 	id = "ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
 	taste_description = "ketchup"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	nutriment_factor = 5
 	color = "#731008"
 
@@ -119,7 +119,7 @@
 	description = "Enjoy the great taste of nothing."
 	taste_description = "rice"
 	taste_mult = 0.4
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	nutriment_factor = 1
 	color = "#FFFFFF"
 
@@ -129,7 +129,7 @@
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
 	taste_description = "cherry"
 	taste_mult = 1.3
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	nutriment_factor = 1
 	color = "#801E28"
 
@@ -139,7 +139,7 @@
 	description = "An oil derived from various types of corn."
 	taste_description = "slime"
 	taste_mult = 0.1
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	nutriment_factor = 20
 	color = "#302000"
 
@@ -164,7 +164,7 @@
 	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
 	taste_description = "vomit"
 	taste_mult = 2
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	nutriment_factor = 2
 	color = "#899613"
 
@@ -181,7 +181,7 @@
 	id = "mint"
 	description = "Also known as Mentha."
 	taste_description = "mint"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#CF3600"
 
 /datum/reagent/lipozine // The anti-nutriment.
@@ -189,7 +189,7 @@
 	id = "lipozine"
 	description = "A chemical compound that causes a powerful fat-burning reaction."
 	taste_description = "mothballs"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#BBEDA4"
 	overdose = REAGENTS_OVERDOSE
 
@@ -203,7 +203,7 @@
 	id = "sodiumchloride"
 	description = "A salt made of sodium chloride. Commonly used to season food."
 	taste_description = "salt"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#FFFFFF"
 	overdose = REAGENTS_OVERDOSE
 
@@ -212,7 +212,7 @@
 	id = "blackpepper"
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
 	taste_description = "pepper"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#000000"
 
 /datum/reagent/enzyme
@@ -221,7 +221,7 @@
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
 	taste_description = "sweetness"
 	taste_mult = 0.7
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#365E30"
 	overdose = REAGENTS_OVERDOSE
 
@@ -231,7 +231,7 @@
 	description = "A special oil that noticably chills the body. Extracted from Ice Peppers."
 	taste_description = "mint"
 	taste_mult = 1.5
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#B31008"
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -248,7 +248,7 @@
 	description = "This is what makes chilis hot."
 	taste_description = "hot peppers"
 	taste_mult = 1.5
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#B31008"
 	var/agony_dose = 5
 	var/agony_amount = 2
@@ -281,7 +281,7 @@
 	description = "A chemical agent used for self-defense and in police work."
 	taste_description = "satan's piss"
 	taste_mult = 10
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	touch_met = 50 // Get rid of it quickly
 	color = "#B31008"
 	agony_dose = 0.5
@@ -358,7 +358,7 @@
 	name = "Drink"
 	id = "drink"
 	description = "Uh, some kind of drink."
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#E78108"
 	var/nutrition = 0 // Per unit
 	var/adj_dizzy = 0 // Per tick
@@ -673,7 +673,7 @@
 	id = "hot_coco"
 	description = "Made with love! And cocoa beans."
 	taste_description = "creamy chocolate"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#403010"
 	nutrition = 2
 	adj_temp = 5
@@ -829,7 +829,7 @@
 	id = "cola"
 	description = "A refreshing beverage."
 	taste_description = "cola"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#100800"
 	adj_drowsy = -3
 	adj_temp = -5
@@ -894,7 +894,7 @@
 	id = "doctorsdelight"
 	description = "A gulp a day keeps the MediBot away. That's probably for the best."
 	taste_description = "homely fruit"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#FF8CFF"
 	nutrition = 1
 
@@ -918,7 +918,7 @@
 	id = "dry_ramen"
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
 	taste_description = "dry and cheap noodles"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	nutrition = 1
 	color = "#302000"
 
@@ -927,7 +927,7 @@
 	id = "hot_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	taste_description = "wet and cheap noodles"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#302000"
 	nutrition = 5
 	adj_temp = 5
@@ -937,7 +937,7 @@
 	id = "hell_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	taste_description = "wet and cheap noodles on fire"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#302000"
 	nutrition = 5
 
@@ -951,7 +951,7 @@
 	description = "Frozen water, your dentist wouldn't like you chewing this."
 	taste_description = "ice"
 	taste_mult = 1.5
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#619494"
 	adj_temp = -5
 
@@ -1261,7 +1261,7 @@
 	id = "acidspit"
 	description = "A drink for the daring, can be deadly if incorrectly prepared!"
 	taste_description = "stomach acid"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#365000"
 	strength = 30
 
@@ -1301,7 +1301,7 @@
 	id = "amasec"
 	description = "Official drink of the Gun Club!"
 	taste_description = "dark and metallic"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#664300"
 	strength = 25
 
@@ -1343,7 +1343,7 @@
 	id = "atomicbomb"
 	description = "Nuclear proliferation never tasted so good."
 	taste_description = "da bomb"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#666300"
 	strength = 10
 	druggy = 50
@@ -1412,7 +1412,7 @@
 	description = "Deny drinking this and prepare for THE LAW."
 	taste_description = "JUSTICE"
 	taste_mult = 2
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#664300"
 	strength = 12
 
@@ -1586,7 +1586,7 @@
 	id = "grog"
 	description = "Watered-down rum, pirate approved!"
 	taste_description = "a poor excuse for alcohol"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#664300"
 	strength = 100
 
@@ -1613,7 +1613,7 @@
 	description = "Whoah, this stuff looks volatile!"
 	taste_description = "your brains smashed out by a lemon wrapped around a gold brick"
 	taste_mult = 5
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#664300"
 	strength = 10
 
@@ -1654,7 +1654,7 @@
 	id = "hippiesdelight"
 	description = "You just don't get it maaaan."
 	taste_description = "giving peace a chance"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#664300"
 	strength = 15
 	druggy = 50
@@ -1801,7 +1801,7 @@
 	id = "mead"
 	description = "A Viking's drink, though a cheap one."
 	taste_description = "sweet, sweet alcohol"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#664300"
 	strength = 30
 	nutriment_factor = 1
@@ -1829,7 +1829,7 @@
 	id = "neurotoxin"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	taste_description = "a numbing sensation"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#2E2E61"
 	strength = 10
 
@@ -2023,7 +2023,7 @@
 	id = "plasmaspecial"
 	description = "This thing is ON FIRE! CALL THE DAMN SHUTTLE!"
 	taste_description = "spicy toxins"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#664300"
 	strength = 10
 	adj_temp = 15

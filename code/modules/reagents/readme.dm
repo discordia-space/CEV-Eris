@@ -1,4 +1,3 @@
-/*
 NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.
 
 Structure: ///////////////////          //////////////////////////
@@ -105,10 +104,10 @@ About the Holder:
 			Calls each reagent's touch_obj(target).
 
 		trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
-			The general proc for applying reagents to things externally (as opposed to directly injected into the contents). 
+			The general proc for applying reagents to things externally (as opposed to directly injected into the contents).
 			It first calls touch, then the appropriate trans_to_*() or splash_mob().
 			If for some reason you want touch effects to be bypassed (e.g. injecting stuff directly into a reagent container or person), call the appropriate trans_to_*() proc.
-			
+
 			Calls touch() before checking the type of [target], calling splash_mob(target, amount), trans_to_turf(target, amount, multiplier, copy), or trans_to_obj(target, amount, multiplier, copy).
 
 		trans_id_to(var/atom/target, var/id, var/amount = 1)
@@ -150,7 +149,7 @@ About Reagents:
 			Reference to holder.
 
 		reagent_state
-			Could be GAS, LIQUID, or SOLID. Affects nothing. Reserved for future use.
+			Could be CHEM_GAS, CHEM_LIQUID, or CHEM_SOLID. Affects nothing. Reserved for future use.
 
 		list/data
 			Use varies by reagent. Custom variable. For example, blood stores blood group and viruses.
@@ -301,5 +300,3 @@ About the Tools:
 			If it's 0, you'll need to write your own custom reagent
 			transfer code since you will not be able to use the standard
 			tools to manipulate it.
-
-*/

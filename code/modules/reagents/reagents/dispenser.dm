@@ -3,7 +3,7 @@
 	id = "acetone"
 	description = "A colorless liquid solvent used in chemical synthesis."
 	taste_description = "acid"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#808080"
 	metabolism = REM * 0.2
 
@@ -30,7 +30,7 @@
 	taste_description = "metal"
 	taste_mult = 1.1
 	description = "A silvery white and ductile member of the boron group of chemical elements."
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#A8A8A8"
 
 /datum/reagent/ammonia
@@ -39,7 +39,7 @@
 	taste_description = "mordant"
 	taste_mult = 2
 	description = "A caustic substance commonly used in fertilizer or household cleaners."
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#404030"
 	metabolism = REM * 0.5
 
@@ -52,7 +52,7 @@
 	description = "A chemical element, the builing block of life."
 	taste_description = "sour chalk"
 	taste_mult = 1.5
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#1C1300"
 	ingest_met = REM * 5
 
@@ -85,7 +85,7 @@
 	id = "ethanol"
 	description = "A well-known alcohol with a variety of applications."
 	taste_description = "pure alcohol"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#404030"
 	touch_met = 5
 	var/nutriment_factor = 0
@@ -173,7 +173,7 @@
 	id = "hydrazine"
 	description = "A toxic, colorless, flammable liquid with a strong ammonia-like odor, in hydrate form."
 	taste_description = "sweet tasting metal"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#808080"
 	metabolism = REM * 0.2
 	touch_met = 5
@@ -195,7 +195,7 @@
 	id = "iron"
 	description = "Pure iron is a metal."
 	taste_description = "metal"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#353535"
 
 /datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -206,7 +206,7 @@
 	id = "lithium"
 	description = "A chemical element, used as antidepressant."
 	taste_description = "metal"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#808080"
 
 /datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -220,7 +220,7 @@
 	id = "mercury"
 	description = "A chemical element."
 	taste_mult = 0 //mercury apparently is tasteless. IDK
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#484848"
 
 /datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -235,7 +235,7 @@
 	id = "phosphorus"
 	description = "A chemical element, the backbone of biological energy carriers."
 	taste_description = "vinegar"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#832828"
 
 /datum/reagent/potassium
@@ -243,7 +243,7 @@
 	id = "potassium"
 	description = "A soft, low-melting solid that can easily be cut with a knife. Reacts violently with water."
 	taste_description = "sweetness" //potassium is bitter in higher doses but sweet in lower ones.
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#A0A0A0"
 
 /datum/reagent/radium
@@ -251,7 +251,7 @@
 	id = "radium"
 	description = "Radium is an alkaline earth metal. It is extremely radioactive."
 	taste_description = "the color blue, and regret"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#C7C7C7"
 
 /datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -279,7 +279,7 @@
 	id = "sacid"
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
 	taste_description = "acid"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#DB5008"
 	metabolism = REM * 2
 	touch_met = 50 // It's acid!
@@ -366,7 +366,7 @@
 	id = "hclacid"
 	description = "A very corrosive mineral acid with the molecular formula HCl."
 	taste_description = "stomach acid"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#808080"
 	power = 3
 	meltdose = 8
@@ -375,7 +375,7 @@
 	name = "Silicon"
 	id = "silicon"
 	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#A8A8A8"
 
 /datum/reagent/sodium
@@ -383,7 +383,7 @@
 	id = "sodium"
 	description = "A chemical element, readily reacts with water."
 	taste_description = "salty metal"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#808080"
 
 /datum/reagent/sugar
@@ -392,7 +392,7 @@
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	taste_description = "sugar"
 	taste_mult = 1.8
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#FFFFFF"
 	glass_icon_state = "iceglass"
 	glass_name = "glass of sugar"
@@ -406,7 +406,7 @@
 	id = "sulfur"
 	description = "A chemical element with a pungent smell."
 	taste_description = "old eggs"
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#BF8C00"
 
 /datum/reagent/tungsten
@@ -414,5 +414,5 @@
 	id = "tungsten"
 	description = "A chemical element, and a strong oxidising agent."
 	taste_mult = 0 //no taste
-	reagent_state = SOLID
+	reagent_state = CHEM_SOLID
 	color = "#DCDCDC"

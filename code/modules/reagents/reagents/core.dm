@@ -2,7 +2,7 @@
 	data = new/list("donor" = null, "viruses" = null, "species" = "Human", "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
 	name = "Blood"
 	id = "blood"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	metabolism = REM * 5
 	color = "#C80000"
 	taste_description = "iron"
@@ -72,7 +72,7 @@
 	name = "Antibodies"
 	taste_description = "slime"
 	id = "antibodies"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#0050F0"
 
 /datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -85,7 +85,7 @@
 	name = "Water"
 	id = "water"
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#0064C877"
 	metabolism = REM * 10
 	taste_description = "water"
@@ -150,7 +150,7 @@
 	id = "fuel"
 	description = "Required for welders. Flamable."
 	taste_description = "gross metal"
-	reagent_state = LIQUID
+	reagent_state = CHEM_LIQUID
 	color = "#660000"
 	touch_met = 5
 

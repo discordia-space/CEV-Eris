@@ -8,9 +8,9 @@
 
 #define MINIMUM_CHEMICAL_VOLUME 0.01
 
-#define SOLID 1
-#define LIQUID 2
-#define GAS 3
+#define CHEM_SOLID 1
+#define CHEM_LIQUID 2
+#define CHEM_GAS 3
 
 #define REAGENTS_OVERDOSE 30
 
