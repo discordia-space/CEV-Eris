@@ -126,3 +126,9 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 #define KILOWATTS *1000
 #define MEGAWATTS *1000000
 #define GIGAWATTS *1000000000
+
+// status values shared between lighting fixtures and items
+#define LIGHT_OK 0
+#define LIGHT_EMPTY 1
+#define LIGHT_BROKEN 2
+#define LIGHT_BURNED 3
