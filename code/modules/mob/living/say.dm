@@ -226,6 +226,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
+	speech_bubble.layer = ABOVE_MOB_LAYER
 	spawn(30)
 		qdel(speech_bubble)
 
