@@ -13,7 +13,7 @@
 		typing_indicator = new
 		typing_indicator.icon = 'icons/mob/talk.dmi'
 		typing_indicator.icon_state = "typing"
-
+		typing_indicator.layer = ABOVE_MOB_LAYER
 	if(client && !stat)
 		typing_indicator.invisibility = invisibility
 		if(!is_preference_enabled(/datum/client_preference/show_typing_indicator))
