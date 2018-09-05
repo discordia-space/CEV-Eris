@@ -192,11 +192,11 @@
 	//And do some screenshake for everyone in the vicinity
 	for (var/mob/M in range(20, src))
 		var/dist = get_dist(M, src)
-
-		if (dist <= 0)
+		dist *= 0.5
+		if (dist <= 1)
 			dist = 1 //Prevent runtime errors
 
-		shake_camera(M, 6, 5/dist)
+		shake_camera(M, 10/dist, 2.5/dist, 0.12)
 
 	playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
 	spawn(1)

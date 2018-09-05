@@ -234,15 +234,14 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 
 
-
-/proc/shake_camera(mob/M, duration, strength=1)
+//Shakes the mob's camera
+//Strength is not recommended to set higher than 4, and even then its a bit wierd
+/proc/shake_camera(mob/M, duration, strength=1, var/taper = 0.25)
 	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
 		return
-	M.shakecamera = 1
-	spawn(1)
-		if(isnull(M))
-			return
 
+	M.shakecamera = 1
+	spawn(2)
 		if(!M.client)
 			return
 
@@ -258,6 +257,20 @@ note dizziness decrements automatically in the mob's Life() proc.
 			else
 				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
 			sleep(1)
+
+		//Taper code added by nanako.
+		//Will make the strength falloff after the duration.
+		//This helps to reduce jarring effects of major screenshaking suddenly returning to stability
+		//Recommended taper values are 0.05-0.1
+		if (taper > 0)
+			while (strength > 0)
+				strength -= taper
+				if(aiEyeFlag)
+					M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
+				else
+					M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
+				sleep(1)
+
 		M.client.eye=oldeye
 		M.shakecamera = 0
 
