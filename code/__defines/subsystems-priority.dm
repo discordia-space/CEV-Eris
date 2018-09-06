@@ -14,6 +14,7 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 #define SS_PRIORITY_MOB            100	// Mob Life().
 #define SS_PRIORITY_MACHINERY      100	// Machinery + powernet ticks.
 #define SS_PRIORITY_AIR            80	// ZAS processing.
+#define SS_PRIORITY_ALARM          20	// Alarm processing.
 #define SS_PRIORITY_AIRFLOW        15	// Object movement from ZAS airflow.
 
 // SS_BACKGROUND
