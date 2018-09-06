@@ -103,6 +103,7 @@ What is the naming convention for planes or layers?
 #define LYING_MOB_LAYER 3.8
 //#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
 #define ABOVE_MOB_LAYER 4.1
+#define ON_MOB_HUD_LAYER 4.2
 #define WALL_OBJ_LAYER 4.25
 #define EDGED_TURF_LAYER 4.3
 #define ABOVE_ALL_MOB_LAYER 4.5

@@ -14,7 +14,6 @@
 				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla,\
 				prob(2);/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,\
 				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,\
 				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,\
 				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,\
 				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,\
