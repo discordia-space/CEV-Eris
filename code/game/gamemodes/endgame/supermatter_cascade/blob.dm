@@ -11,30 +11,25 @@
 	plane = ABOVE_LIGHTING_PLANE
 	layer = ABOVE_LIGHTING_LAYER
 
-	var/spawned=0 // DIR mask
-	var/next_check=0
 	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
 
 /turf/unsimulated/wall/supermatter/New()
 	..()
-	processing_turfs.Add(src)
-	next_check = world.time+5 SECONDS
+	START_PROCESSING(SSturf, src)
 
 /turf/unsimulated/wall/supermatter/Destroy()
-	processing_turfs.Remove(src)
+	STOP_PROCESSING(SSturf, src)
 	. = ..()
 
-/turf/unsimulated/wall/supermatter/Process()
+/turf/unsimulated/wall/supermatter/Process(wait, times_fired)
 	// Only check infrequently.
-	if(next_check>world.time) return
+	var/how_often = max(round(5 SECONDS / wait), 1)
+	if(times_fired % how_often)
+		return
 
-	// No more available directions? Shut down process().
-	if(avail_dirs.len==0)
-		STOP_PROCESSING(SSobj, src)
-		return 1
-
-	// We're checking, reset the timer.
-	next_check = world.time+5 SECONDS
+	// No more available directions? Stop processing.
+	if(!avail_dirs.len)
+		return PROCESS_KILL
 
 	// Choose a direction.
 	var/pdir = pick(avail_dirs)
@@ -56,10 +51,6 @@
 					else
 						qdel(A)
 			T.ChangeTurf(type)
-
-	if((spawned & (NORTH|SOUTH|EAST|WEST)) == (NORTH|SOUTH|EAST|WEST))
-		processing_turfs -= src
-		return
 
 /turf/unsimulated/wall/supermatter/attack_generic(mob/user as mob)
 	if(istype(user))
