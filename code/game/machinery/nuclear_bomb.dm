@@ -49,7 +49,7 @@ var/bomb_set
 		if (timeleft <= 0)
 			spawn
 				explode()
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
@@ -187,7 +187,7 @@ var/bomb_set
 		if (yes_code)
 			data["message"] = "*****"
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "nuclear_bomb.tmpl", "Nuke Control Panel", 300, 510)
 		ui.set_initial_data(data)
@@ -246,7 +246,7 @@ var/bomb_set
 					code = null
 				else
 					if(code == "ERROR") // for codes with 6 digits or more, it will look awkward when user enters 8 and sees ERROR8, -
-						nanomanager.update_uis(src)
+						SSnano.update_uis(src)
 						return // - so we force user to press R before entering new code as it was with 5-digit codes.
 					lastentered = text("[]", href_list["type"])
 					if (text2num(lastentered) == null)
@@ -264,19 +264,19 @@ var/bomb_set
 				timeleft = Clamp(timeleft, 120, 600)
 			if (href_list["timer"])
 				if (timing == -1)
-					nanomanager.update_uis(src)
+					SSnano.update_uis(src)
 					return
 				if (!anchored)
 					usr << SPAN_WARNING("\The [src] needs to be anchored.")
-					nanomanager.update_uis(src)
+					SSnano.update_uis(src)
 					return
 				if (safety)
 					usr << SPAN_WARNING("The safety is still on.")
-					nanomanager.update_uis(src)
+					SSnano.update_uis(src)
 					return
 				if (wires.IsIndexCut(NUCLEARBOMB_WIRE_TIMING))
 					usr << SPAN_WARNING("Nothing happens, something might be wrong with the wiring.")
-					nanomanager.update_uis(src)
+					SSnano.update_uis(src)
 					return
 
 				if (!timing && !safety)
@@ -289,7 +289,7 @@ var/bomb_set
 			if (href_list["safety"])
 				if (wires.IsIndexCut(NUCLEARBOMB_WIRE_SAFETY))
 					usr << SPAN_WARNING("Nothing happens, something might be wrong with the wiring.")
-					nanomanager.update_uis(src)
+					SSnano.update_uis(src)
 					return
 				safety = !safety
 				if(safety)
@@ -298,7 +298,7 @@ var/bomb_set
 				if(removal_stage == 5)
 					anchored = 0
 					visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
-					nanomanager.update_uis(src)
+					SSnano.update_uis(src)
 					return
 
 				if(!isinspace())
@@ -311,7 +311,7 @@ var/bomb_set
 				else
 					usr << SPAN_WARNING("There is nothing to anchor to!")
 
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 /obj/machinery/nuclearbomb/proc/secure_device()
 	if(timing <= 0)

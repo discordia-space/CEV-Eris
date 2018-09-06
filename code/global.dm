@@ -66,8 +66,6 @@ var/gravity_is_on = 1
 
 var/join_motd = null
 
-var/datum/nanomanager/nanomanager		= new() // NanoManager, the manager for Nano UIs.
-
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
 
 // MySQL configuration

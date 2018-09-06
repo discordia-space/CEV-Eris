@@ -240,7 +240,7 @@
 	data["hw_cpu"] = dev_cpu
 	data["totalprice"] = "[total_price]$"
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "computer_fabricator.tmpl", "Personal Computer Vendor", 500, 400)
 		ui.set_initial_data(data)
