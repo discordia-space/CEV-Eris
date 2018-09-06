@@ -22,7 +22,7 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 /client/proc/debug_controller(controller in list(
 		"Master", "Ticker", "Ticker Process", "Air", "Jobs", "Sun", "Radio", "Supply",
 		"Shuttles", "Evacuation", "Configuration", "pAI", "Cameras", "Transfer Controller",
-		"Gas Data", "Event", "Plants", "Nano", "Chemistry", "Wireless", "Observation")
+		"Gas Data", "Event", "Plants", "Nano", "Wireless", "Observation")
 	)
 	set category = "Debug"
 	set name = "Debug Controller"
@@ -80,9 +80,6 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 
 		if("Nano")
 			debug_variables(nanomanager)
-
-		if("Chemistry")
-			debug_variables(chemistryProcess)
 
 		if("Wireless")
 			debug_variables(wirelessProcess)
