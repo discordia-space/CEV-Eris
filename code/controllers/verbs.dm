@@ -21,7 +21,7 @@ ADMIN_VERB_ADD(/client/proc/debug_antagonist_template, R_DEBUG, null)
 ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 /client/proc/debug_controller(controller in list(
 		"Master", "Air", "Jobs", "Sun", "Radio",
-		"Shuttles", "Evacuation", "Configuration", "pAI", "Cameras", "Transfer Controller",
+		"Evacuation", "Configuration", "pAI", "Cameras", "Transfer Controller",
 		"Gas Data", "Plants", "Observation")
 	)
 	set category = "Debug"
@@ -44,9 +44,6 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 
 		if("Radio")
 			debug_variables(radio_controller)
-
-		if("Shuttles")
-			debug_variables(shuttle_controller)
 
 		if("Evacuation")
 			debug_variables(evacuation_controller)

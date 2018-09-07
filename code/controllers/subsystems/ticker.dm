@@ -164,8 +164,6 @@ SUBSYSTEM_DEF(ticker)
 
 	callHook("roundstart")
 
-	shuttle_controller.initialize_shuttles()
-
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		storyteller.set_up()
 		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
