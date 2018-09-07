@@ -29,7 +29,7 @@
 	. = ..()
 	if(!win_path)
 		return
-	if(ticker && ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		if(activated)
 			return
 		activate()

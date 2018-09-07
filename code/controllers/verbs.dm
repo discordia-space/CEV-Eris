@@ -20,7 +20,7 @@ ADMIN_VERB_ADD(/client/proc/debug_antagonist_template, R_DEBUG, null)
 
 ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 /client/proc/debug_controller(controller in list(
-		"Master", "Ticker", "Ticker Process", "Air", "Jobs", "Sun", "Radio",
+		"Master", "Air", "Jobs", "Sun", "Radio",
 		"Shuttles", "Evacuation", "Configuration", "pAI", "Cameras", "Transfer Controller",
 		"Gas Data", "Plants", "Observation")
 	)
@@ -32,12 +32,6 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 	switch(controller)
 		if("Master")
 			debug_variables(master_controller)
-
-		if("Ticker")
-			debug_variables(ticker)
-
-		if("Ticker Process")
-			debug_variables(tickerProcess)
 
 		if("Air")
 			debug_variables(SSair)

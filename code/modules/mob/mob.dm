@@ -382,7 +382,7 @@
 	if (!( config.abandon_allowed ))
 		usr << "<span class='notice'>Respawn is disabled.</span>"
 		return
-	if ((stat != DEAD || !( ticker )))
+	if (stat != DEAD)
 		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
 		return
 	else if(!MayRespawn(1, config.respawn_delay))
@@ -684,7 +684,7 @@
 	. = (is_client_active(10 MINUTES))
 
 	if(.)
-		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
+		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 

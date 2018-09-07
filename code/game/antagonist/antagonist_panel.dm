@@ -59,7 +59,7 @@
 		if(!owner)
 			if(!outer)
 				var/list/MN = list()
-				for(var/datum/mind/M in ticker.minds)
+				for(var/datum/mind/M in SSticker.minds)
 					if(can_become_antag(M))
 						MN[M.name] = M
 				MN["CANCEL"] = null

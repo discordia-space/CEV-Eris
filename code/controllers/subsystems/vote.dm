@@ -374,20 +374,20 @@ SUBSYSTEM_DEF(vote)
 		choices.Add(CS)
 
 /datum/poll/storyteller/Process()
-	if(ticker.current_state != GAME_STATE_PREGAME)
+	if(SSticker.current_state != GAME_STATE_PREGAME)
 		SSvote.stop_vote()
 		world << "<b>Voting aborted due to game start.</b>"
 	return
 
 /datum/poll/storyteller/can_start()
-	return ticker && ticker.current_state == GAME_STATE_PREGAME
+	return SSticker.current_state == GAME_STATE_PREGAME
 
 /datum/poll/storyteller/on_start()
 	round_progressing = FALSE
 	world << "<b>Game start has been delayed.</b>"
 
 /datum/poll/storyteller/on_end()
-	ticker.story_vote_ended = TRUE
+	SSticker.story_vote_ended = TRUE
 	round_progressing = TRUE
 	world << "<b>The game will start soon.</b>"
 

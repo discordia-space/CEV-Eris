@@ -104,7 +104,7 @@
 	recipient << browse(russian_to_utf8(output), "window=memory")
 
 /datum/mind/proc/edit_memory()
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		alert("Not before round-start!", "Alert")
 		return
 
@@ -290,10 +290,7 @@
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
-		if(ticker)
-			ticker.minds += mind
-		else
-			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
+		SSticker.minds += mind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
 

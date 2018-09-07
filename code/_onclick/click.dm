@@ -171,11 +171,6 @@
 	return
 
 /mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
-
-	if(!ticker)
-		src << "You cannot attack people before the game has started."
-		return 0
-
 	if(stat)
 		return 0
 

@@ -36,7 +36,7 @@ var/bomb_set
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
 	if(eris_ship_bomb) // this is in initialize because there is no ticker at world init.
-		ticker.ship_nuke_code = r_code // even if this bomb stops to exist, heads of staff still gets this password, so it won't affect meta or whatever.
+		SSticker.ship_nuke_code = r_code // even if this bomb stops to exist, heads of staff still gets this password, so it won't affect meta or whatever.
 
 /obj/machinery/nuclearbomb/Destroy()
 	qdel(wires)
@@ -335,8 +335,7 @@ var/bomb_set
 	src.safety = 1
 	update_icon()
 	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
-	if (ticker)
-		ticker.nuke_in_progress = TRUE
+	SSticker.nuke_in_progress = TRUE
 	sleep(100)
 
 	var/off_station = 0
@@ -347,8 +346,8 @@ var/bomb_set
 	else
 		off_station = 2
 
-	if(ticker && ticker.storyteller)
-		ticker.nuke_in_progress = FALSE
+	if(SSticker.storyteller)
+		SSticker.nuke_in_progress = FALSE
 		if(off_station == 1)
 			world << "<b>A nuclear device was set off, but the explosion was out of reach of the ship!</b>"
 		else if(off_station == 2)
@@ -356,10 +355,10 @@ var/bomb_set
 		else
 			world << "<b>The ship was destoyed by the nuclear blast!</b>"
 
-		ticker.ship_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
+		SSticker.ship_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 														//kinda shit but I couldn't  get permission to do what I wanted to do.
 
-		ticker.station_explosion_cinematic(off_station)
+		SSticker.station_explosion_cinematic(off_station)
 
 	return
 

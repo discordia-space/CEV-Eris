@@ -1,5 +1,5 @@
 /turf/simulated/open/update_icon()
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
 	overlays.Cut()
@@ -38,7 +38,7 @@
 		ChangeTurf(/turf/space)
 
 /turf/space/update_icon()
-	if(!ticker || ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
 	overlays.Cut()

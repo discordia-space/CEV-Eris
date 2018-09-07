@@ -123,7 +123,6 @@ var/game_id = null
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 
-	processScheduler.deferSetupFor(/datum/controller/process/ticker)
 	processScheduler.setup()
 	Master.Initialize(10, FALSE)
 
@@ -488,7 +487,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	var/list/features = list()
 
-	if(ticker)
+	if(SSticker)
 		if(master_storyteller)
 			features += master_storyteller
 	else
