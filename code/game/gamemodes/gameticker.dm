@@ -64,14 +64,12 @@ var/global/datum/controller/gameticker/ticker
 				send_quote_of_the_round()
 				quoted = TRUE
 
-			vote.Process()
-
 			if(round_progressing)
 				pregame_timeleft--
 
 			if(!story_vote_ended && (pregame_timeleft == config.vote_autogamemode_timeleft || !first_start_trying))
-				if(!vote.active_vote)
-					vote.autostoryteller()	//Quit calling this over and over and over and over.
+				if(!SSvote.active_vote)
+					SSvote.autostoryteller()	//Quit calling this over and over and over and over.
 
 			if(pregame_timeleft <= 0 || ((initialization_stage & INITIALIZATION_NOW_AND_COMPLETE) == INITIALIZATION_NOW_AND_COMPLETE))
 				current_state = GAME_STATE_SETTING_UP

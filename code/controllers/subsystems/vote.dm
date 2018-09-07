@@ -1,33 +1,27 @@
-var/datum/controller/vote/vote = new()
+SUBSYSTEM_DEF(vote)
+	name = "Vote"
+	wait = 1 SECOND
+	flags = SS_KEEP_TIMING | SS_NO_INIT
+	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
-/datum/controller/vote
 	var/list/votes = list()
 	var/list/voters = list()	//List of clients with opened vote window
 	var/datum/poll/active_vote = null
 	var/vote_start_time = 0
 
-/datum/controller/vote/New()
-	if(vote != src)
-		if(istype(vote))
-			del(vote)
-		vote = src
-
-	init_votes()
-
-/datum/controller/vote/proc/init_votes()
-	for(var/T in typesof(/datum/poll)-/datum/poll)
+/datum/controller/subsystem/vote/PreInit()
+	for(var/T in subtypesof(/datum/poll))
 		var/datum/poll/P = new T
 		votes[T] = P
 
-/datum/controller/vote/proc/update_voters()
+/datum/controller/subsystem/vote/proc/update_voters()
 	for(var/client/C in voters)
 		interface_client(C)
 
-/datum/controller/vote/proc/interface_client(var/client/C)
+/datum/controller/subsystem/vote/proc/interface_client(client/C)
 	C << browse(interface(C),"window=vote;can_close=0;can_resize=0;can_minimize=0")
 
-
-/datum/controller/vote/Process()	//called by master_controller
+/datum/controller/subsystem/vote/fire()
 	if(active_vote)
 		active_vote.Process()
 
@@ -38,10 +32,10 @@ var/datum/controller/vote/vote = new()
 
 			update_voters()
 
-/datum/controller/vote/proc/autostoryteller()
+/datum/controller/subsystem/vote/proc/autostoryteller()
 	start_vote(/datum/poll/storyteller)
 
-/datum/controller/vote/proc/start_vote(var/newvote)
+/datum/controller/subsystem/vote/proc/start_vote(newvote)
 	if(active_vote)
 		return FALSE
 
@@ -68,7 +62,7 @@ var/datum/controller/vote/vote = new()
 
 	return TRUE
 
-/datum/controller/vote/proc/stop_vote()
+/datum/controller/subsystem/vote/proc/stop_vote()
 	if(!active_vote)
 		return FALSE
 
@@ -78,10 +72,10 @@ var/datum/controller/vote/vote = new()
 	active_vote = null
 	return TRUE
 
-/datum/controller/vote/proc/get_vote_time()	//How many seconds vote lasts
+/datum/controller/subsystem/vote/proc/get_vote_time()	//How many seconds vote lasts
 	return round((world.time - vote_start_time)/10)
 
-/datum/controller/vote/proc/interface(var/client/C)
+/datum/controller/subsystem/vote/proc/interface(client/C)
 	if(!C)
 		return
 	var/data = "<html><head><title>Voting Panel</title></head><body>"
@@ -153,7 +147,7 @@ var/datum/controller/vote/vote = new()
 	return russian_to_utf8(data)
 
 
-/datum/controller/vote/Topic(href,href_list[],hsrc)
+/datum/controller/subsystem/vote/Topic(href,href_list[],hsrc)
 	if(href_list["vote"])
 		if(active_vote)
 			var/datum/vote_choice/choice = locate(href_list["vote"]) in active_vote.choices
@@ -220,7 +214,7 @@ var/datum/controller/vote/vote = new()
 		initiator = "server"
 
 	on_start()
-	vote.active_vote = src
+	SSvote.active_vote = src
 	return TRUE
 
 /datum/poll/proc/can_start()
@@ -236,8 +230,8 @@ var/datum/controller/vote/vote = new()
 	on_end()
 	choices.Cut()
 	initiator = null
-	if(vote.active_vote == src)
-		vote.active_vote = null
+	if(SSvote.active_vote == src)
+		SSvote.active_vote = null
 
 
 
@@ -245,7 +239,7 @@ var/datum/controller/vote/vote = new()
 	return
 
 
-/datum/poll/proc/vote(var/datum/vote_choice/choice, var/client/CL)
+/datum/poll/proc/vote(datum/vote_choice/choice, client/CL)
 	var/key = CL.key
 	if(key in choice.voters)
 		if(can_revote && can_unvote)
@@ -321,8 +315,7 @@ var/datum/controller/vote/vote = new()
 	set category = "OOC"
 	set name = "Vote"
 
-	if(vote)
-		vote.interface_client(client)
+	SSvote.interface_client(client)
 
 
 ///////////////////////////////////////////////
@@ -382,7 +375,7 @@ var/datum/controller/vote/vote = new()
 
 /datum/poll/storyteller/Process()
 	if(ticker.current_state != GAME_STATE_PREGAME)
-		vote.stop_vote()
+		SSvote.stop_vote()
 		world << "<b>Voting aborted due to game start.</b>"
 	return
 
@@ -458,6 +451,3 @@ var/datum/controller/vote/vote = new()
 
 /datum/vote_choice/custom
 	text = "Vote choice"
-
-
-
