@@ -136,8 +136,7 @@ var/global/datum/controller/gameticker/ticker
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
-/*	supply_controller.Process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.Process()		//Start master_controller.Process()
+/*	master_controller.Process()		//Start master_controller.Process() // handled in scheduler
 	lighting_controller.Process()	//Start processing DynamicAreaLighting updates
 	*/
 

@@ -18,6 +18,7 @@ var/list/bitflags = list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
 #define SS_PRIORITY_EVENT          20	// Event processing.
 #define SS_PRIORITY_AIRFLOW        15	// Object movement from ZAS airflow.
 #define SS_PRIORITY_INACTIVITY     10	// Idle kicking.
+#define SS_PRIORITY_SUPPLY         10	// Supply point accumulation.
 
 // SS_BACKGROUND
 #define SS_PRIORITY_OBJECTS       60	// processing_objects processing.
