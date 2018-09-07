@@ -110,7 +110,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/sparks/Initialize()
 	. = ..()
-	schedule_task_in(10 SECONDS, /proc/qdel, list(src))
+	QDEL_IN(src, 10 SECONDS)
 
 /obj/effect/sparks/Destroy()
 	var/turf/T = src.loc

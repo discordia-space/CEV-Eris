@@ -187,8 +187,6 @@ SUBSYSTEM_DEF(ticker)
 	lighting_controller.Process()	//Start processing DynamicAreaLighting updates
 	*/
 
-	processScheduler.start()
-
 	if(config.sql_enabled)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
 
