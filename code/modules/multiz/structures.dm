@@ -67,6 +67,22 @@
 	icon_state = "ladderup"
 	istop = FALSE
 
+/obj/structure/multiz/ladder/up/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/multiz/ladder/up/LateInitialize()
+	..()
+	//Special initialize behaviour for upward ladders to stop artefacts from mobs going behind them but drawing infront of them)
+
+	//Normally a ladder will hug the back wall of a tile and mobs will go over it
+
+	//If the tile to the north is acessible, change our behaviour to hug the south of a tile and draw over all mobs
+	var/turf/T = get_step(src, NORTH)
+	if (turf_clear(T))
+		pixel_y = -4
+		layer = ABOVE_MOB_LAYER
+
 /obj/structure/multiz/ladder/Destroy()
 	if(target && istop)
 		qdel(target)
@@ -114,7 +130,7 @@
 	icon_state = "ramptop"
 
 /obj/structure/multiz/stairs/enter/bottom
-	icon_state = "rampbottom"
+	icon_state = "rampdark"
 	istop = FALSE
 
 /obj/structure/multiz/stairs/active
@@ -163,5 +179,5 @@
 	Bumped(user)
 
 /obj/structure/multiz/stairs/active/bottom
-	icon_state = "rampdark"
+	icon_state = "rampup"
 	istop = FALSE
