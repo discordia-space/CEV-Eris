@@ -129,6 +129,10 @@
 	STOP_PROCESSING(SSobj, src)
 	if(entry_vent)
 		entry_vent = null
+	walk(src, 0)
+	if (istype(loc, /obj/item/organ/external))
+		var/obj/item/organ/external/O = loc
+		O.implants -= src
 	. = ..()
 
 /obj/effect/spider/spiderling/Bump(atom/user)
@@ -163,6 +167,10 @@
 				var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = pick(vents)
 
 				spawn(rand(20,60))
+					//Dirty hack
+					if(!isnull(gc_destroyed))
+						return
+
 					loc = exit_vent
 					var/travel_time = round(get_dist(loc, exit_vent.loc) / 2)
 					spawn(travel_time)
@@ -175,7 +183,9 @@
 						if(prob(50))
 							src.visible_message(SPAN_NOTICE("You hear something squeezing through the ventilation ducts."),2)
 						sleep(travel_time)
-
+						//Dirty hack
+						if(!isnull(gc_destroyed))
+							return
 						if(!exit_vent || exit_vent.welded)
 							loc = entry_vent
 							entry_vent = null
