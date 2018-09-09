@@ -61,6 +61,9 @@
 	target = locate(/obj/structure/multiz/ladder) in targetTurf
 
 /obj/structure/multiz/ladder/up
+	//Ladders which go up use a tall 32x64 sprite, in a seperate dmi
+	icon = 'icons/obj/structures/ladder_tall.dmi'
+	pixel_y = 16
 	icon_state = "ladderup"
 	istop = FALSE
 
