@@ -199,6 +199,7 @@
 #include "code\datums\corporations.dm"
 #include "code\datums\datacore.dm"
 #include "code\datums\datum.dm"
+#include "code\datums\datum_click_handlers.dm"
 #include "code\datums\datum_hud.dm"
 #include "code\datums\mind.dm"
 #include "code\datums\mixed.dm"

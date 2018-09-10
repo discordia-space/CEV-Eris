@@ -51,3 +51,9 @@
 	preload_rsc = 1
 
 	fps = 60
+
+
+		////////////////
+		//Mouse things//
+		////////////////
+	var/datum/click_handler/CH

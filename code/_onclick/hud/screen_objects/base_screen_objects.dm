@@ -729,6 +729,7 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/HUDthrow/Click()
 	parentmob.toggle_throw_mode()
+	update_icon()
 
 /obj/screen/HUDthrow/update_icon()
 	if (parentmob.in_throw_mode)

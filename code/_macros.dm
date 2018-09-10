@@ -61,7 +61,7 @@
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
-
+#define isHUDobj(A) istype(A, /obj/screen)
 
 #define islist(A) istype(A, /list)
 
