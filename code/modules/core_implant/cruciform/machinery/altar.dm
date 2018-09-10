@@ -3,3 +3,5 @@
 	desc = "The altar."
 	icon = 'icons/obj/neotheology_machinery.dmi'
 	icon_state = "optable-idle"
+	y_offset = 10
+
