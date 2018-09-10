@@ -123,18 +123,18 @@
 /obj/structure/multiz/stairs
 	name = "Stairs"
 	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
-	icon_state = "rampup"
+	icon_state = "ramptop"
 	layer = 2.4
 
 /obj/structure/multiz/stairs/enter
 	icon_state = "ramptop"
 
 /obj/structure/multiz/stairs/enter/bottom
-	icon_state = "rampdark"
 	istop = FALSE
 
 /obj/structure/multiz/stairs/active
 	density = TRUE
+	icon_state = "rampdown"
 
 /obj/structure/multiz/stairs/active/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover)) // if mover is not null, e.g. mob
