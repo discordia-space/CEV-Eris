@@ -109,6 +109,7 @@ see multiz/movement.dm for some info.
 		playsound(src, 'sound/hallucinations/scream.ogg', 100)
 
 	if(!soft)
+
 		if(!isliving(mover))
 			if(istype(below, /turf/simulated/open))
 				mover.visible_message(
@@ -134,17 +135,12 @@ see multiz/movement.dm for some info.
 				)
 
 			// Handle people getting hurt, it's funny!
-			if (ishuman(mover))
-				var/mob/living/carbon/human/H = mover
-				var/damage = 5
-				for(var/organ in list(BP_CHEST, BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
-					H.apply_damage(rand(0, damage), BRUTE, organ)
+			mover.fall_impact(src, below)
 
-				H.Weaken(4)
-				H.updatehealth()
 
-		var/fall_damage = mover.get_fall_damage()
+
 		for(var/mob/living/M in below)
+			var/fall_damage = mover.get_fall_damage()
 			if(M == mover)
 				continue
 			M.Weaken(10)
