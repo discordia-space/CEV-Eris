@@ -20,9 +20,9 @@ ADMIN_VERB_ADD(/client/proc/debug_antagonist_template, R_DEBUG, null)
 
 ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 /client/proc/debug_controller(controller in list(
-		"Master", "Ticker", "Ticker Process", "Air", "Jobs", "Sun", "Radio", "Supply",
-		"Shuttles", "Evacuation", "Configuration", "pAI", "Cameras", "Transfer Controller",
-		"Gas Data", "Event", "Plants", "Alarm", "Nano", "Chemistry", "Wireless", "Observation")
+		"Master", "Air", "Jobs", "Sun", "Radio",
+		"Evacuation", "Configuration", "pAI", "Cameras", "Transfer Controller",
+		"Gas Data", "Plants", "Observation")
 	)
 	set category = "Debug"
 	set name = "Debug Controller"
@@ -32,12 +32,6 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 	switch(controller)
 		if("Master")
 			debug_variables(master_controller)
-
-		if("Ticker")
-			debug_variables(ticker)
-
-		if("Ticker Process")
-			debug_variables(tickerProcess)
 
 		if("Air")
 			debug_variables(SSair)
@@ -50,12 +44,6 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 
 		if("Radio")
 			debug_variables(radio_controller)
-
-		if("Supply")
-			debug_variables(supply_controller)
-
-		if("Shuttles")
-			debug_variables(shuttle_controller)
 
 		if("Evacuation")
 			debug_variables(evacuation_controller)
@@ -72,23 +60,8 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 		if("Gas Data")
 			debug_variables(gas_data)
 
-		if("Event")
-			debug_variables(event_manager)
-
 		if("Plants")
 			debug_variables(plant_controller)
-
-		if("Alarm")
-			debug_variables(alarm_manager)
-
-		if("Nano")
-			debug_variables(nanomanager)
-
-		if("Chemistry")
-			debug_variables(chemistryProcess)
-
-		if("Wireless")
-			debug_variables(wirelessProcess)
 
 		if("Observation")
 			debug_variables(all_observable_events)

@@ -76,13 +76,11 @@ var/datum/controller/process/open_space/OS_controller = null
 */
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()
-	if(ticker)
-		OS_controller.add_turf(src)
+	OS_controller.add_turf(src)
 
 /turf/simulated/open/New()
 	..()
-	if(ticker)
-		OS_controller.add_turf(src)
+	OS_controller.add_turf(src)
 
 /datum/ospace_data
 	var/z = 0

@@ -48,7 +48,7 @@
 /obj/machinery/clonepod/New()
 	set_extension(src, /datum/extension/multitool, /datum/extension/multitool/store)
 	..()
-	if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		biomass = CLONE_BIOMASS * 3
 
 /obj/machinery/clonepod/Destroy()

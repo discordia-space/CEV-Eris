@@ -53,9 +53,6 @@
 
 	var/dat
 
-	if (!( ticker ))
-		return
-
 	dat += "<hr/><br/><b>[storage_name]</b><br/>"
 	dat += "<i>Welcome, [user.real_name].</i><br/><br/><hr/>"
 	dat += "<a href='?src=\ref[src];log=1'>View storage log</a>.<br>"

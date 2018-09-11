@@ -45,7 +45,7 @@
 
 /obj/machinery/complant_teleporter/power_change()
 	..()
-	nanomanager.update_uis(src) // update all UIs attached to src
+	SSnano.update_uis(src) // update all UIs attached to src
 
 /obj/machinery/complant_teleporter/Process()
 	if(stat & (BROKEN|NOPOWER))
@@ -60,7 +60,7 @@
 		var/oldenergy = energy
 		energy = min(energy + addenergy, max_energy)
 		if(energy != oldenergy)
-			nanomanager.update_uis(src)
+			SSnano.update_uis(src)
 
 /obj/machinery/complant_teleporter/ex_act(severity)
 	switch(severity)
@@ -106,7 +106,7 @@
 
 	data["buy_list"] = order_list
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "excelsior_teleporter.tmpl", name, 390, 450)
 		ui.set_initial_data(data)
