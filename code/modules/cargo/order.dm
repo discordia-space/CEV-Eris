@@ -30,7 +30,7 @@
 	var/datum/supply_pack/object
 
 /datum/supply_order/New(datum/supply_pack/object, orderer, orderer_rank, orderer_ckey, reason)
-	id = supply_controller.ordernum++
+	id = SSsupply.ordernum++
 	src.object = object
 	src.orderer = orderer
 	src.orderer_rank = orderer_rank

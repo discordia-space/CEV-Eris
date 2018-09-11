@@ -402,7 +402,7 @@
 		PS.allowedtocall = !(PS.allowedtocall)
 
 /proc/call_shuttle_proc(var/mob/user, var/emergency)
-	if (!ticker || !evacuation_controller)
+	if (!evacuation_controller)
 		return
 
 	if(isnull(emergency))
@@ -427,7 +427,7 @@
 	return
 
 /proc/cancel_call_proc(var/mob/user)
-	if (!ticker || !evacuation_controller)
+	if (!evacuation_controller)
 		return
 
 	if(evacuation_controller.cancel_evacuation()) //check that shuttle isn't already heading to centcomm

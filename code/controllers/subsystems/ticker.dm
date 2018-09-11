@@ -1,8 +1,12 @@
-var/global/datum/controller/gameticker/ticker
+SUBSYSTEM_DEF(ticker)
+	name = "Ticker"
+	init_order = INIT_ORDER_TICKER
+	priority = SS_PRIORITY_TICKER
+	flags = SS_KEEP_TIMING
+	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
 
-/datum/controller/gameticker
 	var/const/restart_timeout = 600
-	var/current_state = GAME_STATE_PREGAME
+	var/current_state = GAME_STATE_STARTUP
 
 	//setup vars
 	var/first_start_trying = TRUE
@@ -39,7 +43,11 @@ var/global/datum/controller/gameticker/ticker
 
 	var/newscaster_announcements = null
 
-/datum/controller/gameticker/proc/pregame()
+	//station_explosion used to be a variable for every mob's hud. Which was a waste!
+	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
+	var/obj/screen/cinematic = null
+
+/datum/controller/subsystem/ticker/PreInit()
 	login_music = pick(list(
 		'sound/music/tonspender_irritations.ogg',
 		'sound/music/i_am_waiting_for_you_last_summer_neon_fever.ogg',
@@ -47,62 +55,101 @@ var/global/datum/controller/gameticker/ticker
 		'sound/music/nervous_testpilot _my_beautiful_escape.ogg',
 		'sound/music/deus_ex_unatco_nervous_testpilot_remix.ogg',
 		'sound/music/paradise_cracked_title03.ogg'))
-	do
-		if(first_start_trying)
-			pregame_timeleft = 180
-			world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
-		else
-			pregame_timeleft = 40
 
-		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+/datum/controller/subsystem/ticker/Initialize(start_timeofday)
+	return ..()
 
+/datum/controller/subsystem/ticker/fire()
+	switch(current_state)
+		if(GAME_STATE_STARTUP)
+			if(first_start_trying)
+				pregame_timeleft = initial(pregame_timeleft)
+				world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
+			else
+				pregame_timeleft = 40
 
-		while(current_state == GAME_STATE_PREGAME)
-			sleep(10)
+			world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+			current_state = GAME_STATE_PREGAME
+
+		if(GAME_STATE_PREGAME)
+			//countdown
+			if(pregame_timeleft < 0)
+				return
+
+			if(round_progressing)
+				pregame_timeleft--
 
 			if(!quoted)
 				send_quote_of_the_round()
 				quoted = TRUE
 
-			vote.Process()
-
-			if(round_progressing)
-				pregame_timeleft--
-
 			if(!story_vote_ended && (pregame_timeleft == config.vote_autogamemode_timeleft || !first_start_trying))
-				if(!vote.active_vote)
-					vote.autostoryteller()	//Quit calling this over and over and over and over.
+				if(!SSvote.active_vote)
+					SSvote.autostoryteller()	//Quit calling this over and over and over and over.
 
 			if(pregame_timeleft <= 0 || ((initialization_stage & INITIALIZATION_NOW_AND_COMPLETE) == INITIALIZATION_NOW_AND_COMPLETE))
 				current_state = GAME_STATE_SETTING_UP
 				Master.SetRunLevel(RUNLEVEL_SETUP)
 
 			first_start_trying = FALSE
-	while (!setup())
+
+		if(GAME_STATE_SETTING_UP)
+			if(!setup())
+				//setup failed
+				current_state = GAME_STATE_STARTUP
+				Master.SetRunLevel(RUNLEVEL_LOBBY)
+
+		if(GAME_STATE_PLAYING)
+			storyteller.Process()
+			storyteller.process_events()
+
+			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
+
+			if(!nuke_in_progress && game_finished)
+				current_state = GAME_STATE_FINISHED
+				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+
+				spawn
+					declare_completion()
+
+				spawn(50)
+					callHook("roundend")
+
+					if(universe_has_ended)
+						if(!delay_end)
+							world << SPAN_NOTICE("<b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b>")
+					else
+						if(!delay_end)
+							world << SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>")
 
 
-/datum/controller/gameticker/proc/setup()
+					if(!delay_end)
+						sleep(restart_timeout)
+						if(!delay_end)
+							world.Reboot()
+						else
+							world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
+					else
+						world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
+
+/datum/controller/subsystem/ticker/proc/setup()
 	//Create and announce mode
 
 	src.storyteller = config.pick_storyteller(master_storyteller)
 
 	if(!src.storyteller)
-		current_state = GAME_STATE_PREGAME
-		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
-		return 0
+		return FALSE
 
 	job_master.ResetOccupations()
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
-		current_state = GAME_STATE_PREGAME
-		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		storyteller = null
 		story_vote_ended = FALSE
 		job_master.ResetOccupations()
-		return 0
+		return FALSE
 
 	src.storyteller.announce()
 
@@ -116,8 +163,6 @@ var/global/datum/controller/gameticker/ticker
 	data_core.manifest()
 
 	callHook("roundstart")
-
-	shuttle_controller.initialize_shuttles()
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		storyteller.set_up()
@@ -138,25 +183,17 @@ var/global/datum/controller/gameticker/ticker
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
-/*	supply_controller.Process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.Process()		//Start master_controller.Process()
+/*	master_controller.Process()		//Start master_controller.Process() // handled in scheduler
 	lighting_controller.Process()	//Start processing DynamicAreaLighting updates
 	*/
-
-	processScheduler.start()
 
 	if(config.sql_enabled)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
 
-	return 1
+	return TRUE
 
-/datum/controller/gameticker
-	//station_explosion used to be a variable for every mob's hud. Which was a waste!
-	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
-	var/obj/screen/cinematic = null
-
-	//Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-/datum/controller/gameticker/proc/station_explosion_cinematic(var/ship_missed = 0)
+// Provides an easy way to make cinematics for other events. Just use this as a template :)
+/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/ship_missed = 0)
 	if(cinematic)
 		return	//already a cinematic in progress!
 
@@ -219,8 +256,7 @@ var/global/datum/controller/gameticker/ticker
 	if(cinematic)
 		qdel(cinematic)		//end the cinematic
 
-
-/datum/controller/gameticker/proc/get_next_nuke_code_part() // returns code string as "XX56XX"
+/datum/controller/subsystem/ticker/proc/get_next_nuke_code_part() // returns code string as "XX56XX"
 	var/this_many = 2 // how many digits to return (this proc only tested with this value and 6 digit passwords).
 
 	if(ship_nuke_code == initial(ship_nuke_code) || length(ship_nuke_code) < this_many)
@@ -238,7 +274,7 @@ var/global/datum/controller/gameticker/ticker
 	if(ship_nuke_code_rotation_part > length(ship_nuke_code)) // or we start over if we moved out of range
 		ship_nuke_code_rotation_part = 1
 
-/datum/controller/gameticker/proc/send_quote_of_the_round()
+/datum/controller/subsystem/ticker/proc/send_quote_of_the_round()
 	var/message
 	var/list/quotes = file2list("strings/quotes.txt")
 	if(quotes.len)
@@ -246,7 +282,7 @@ var/global/datum/controller/gameticker/ticker
 	if(message)
 		world << SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>")
 
-/datum/controller/gameticker/proc/create_characters()
+/datum/controller/subsystem/ticker/proc/create_characters()
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready && player.mind)
 			if(player.mind.assigned_role == "AI")
@@ -259,13 +295,13 @@ var/global/datum/controller/gameticker/ticker
 				qdel(player)
 
 
-/datum/controller/gameticker/proc/collect_minds()
+/datum/controller/subsystem/ticker/proc/collect_minds()
 	for(var/mob/living/player in player_list)
 		if(player.mind)
-			ticker.minds.Add(player.mind)
+			SSticker.minds.Add(player.mind)
 
 
-/datum/controller/gameticker/proc/equip_characters()
+/datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless = TRUE
 	for(var/mob/living/carbon/human/player in player_list)
 		if(player && player.mind && player.mind.assigned_role)
@@ -280,44 +316,7 @@ var/global/datum/controller/gameticker/ticker
 				M << "Captainship not forced on anyone."
 
 
-/datum/controller/gameticker/Process()
-	if(current_state != GAME_STATE_PLAYING)
-		return
-
-	storyteller.Process()
-	storyteller.process_events()
-
-	var/game_finished = (evacuation_controller.round_over() || ship_was_nuked  || universe_has_ended)
-
-	if(!nuke_in_progress && game_finished)
-		current_state = GAME_STATE_FINISHED
-		Master.SetRunLevel(RUNLEVEL_POSTGAME)
-
-		spawn
-			declare_completion()
-
-		spawn(50)
-			callHook("roundend")
-
-			if(universe_has_ended)
-				if(!delay_end)
-					world << SPAN_NOTICE("<b>Rebooting due to destruction of station in [restart_timeout/10] seconds</b>")
-			else
-				if(!delay_end)
-					world << SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>")
-
-
-			if(!delay_end)
-				sleep(restart_timeout)
-				if(!delay_end)
-					world.Reboot()
-				else
-					world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
-			else
-				world << SPAN_NOTICE("<b>An admin has delayed the round end</b>")
-
-
-/datum/controller/gameticker/proc/declare_completion()
+/datum/controller/subsystem/ticker/proc/declare_completion()
 	world << "<br><br><br><H1>A round has ended!</H1>"
 	for(var/mob/Player in player_list)
 		if(Player.mind && !isnewplayer(Player))
@@ -379,7 +378,7 @@ var/global/datum/controller/gameticker/ticker
 	storyteller.declare_completion()//To declare normal completion.
 
 	//Ask the event manager to print round end information
-	event_manager.RoundEnd()
+	SSevent.RoundEnd()
 
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()

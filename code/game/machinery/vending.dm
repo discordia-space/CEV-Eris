@@ -230,7 +230,7 @@
 				overlays.Cut()
 				if(src.panel_open)
 					src.overlays += image(src.icon, "[initial(icon_state)]-panel")
-				nanomanager.update_uis(src)
+				SSnano.update_uis(src)
 			return
 
 		if(ABORT_CHECK)
@@ -260,7 +260,7 @@
 			src.vend(currently_vending, usr)
 			return
 		else if(handled)
-			nanomanager.update_uis(src)
+			SSnano.update_uis(src)
 			return // don't smack that machine with your 2 credits
 
 	if (I || istype(I, /obj/item/weapon/spacecash))
@@ -277,7 +277,7 @@
 		coin = I
 		categories |= CAT_COIN
 		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 		return
 
 		for(var/datum/data/vending_product/R in product_records)
@@ -449,7 +449,7 @@
 	else
 		data["panel"] = 0
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "vending_machine.tmpl", src.name, 440, 600)
 		ui.set_initial_data(data)
@@ -509,7 +509,7 @@
 
 		src.add_fingerprint(usr)
 		playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
@@ -519,7 +519,7 @@
 	src.vend_ready = 0 //One thing at a time!!
 	src.status_message = "Vending..."
 	src.status_error = 0
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 	if (R.category & CAT_COIN)
 		if(!coin)
@@ -551,7 +551,7 @@
 		src.status_error = 0
 		src.vend_ready = 1
 		currently_vending = null
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 /**
  * Add item to the machine
@@ -566,7 +566,7 @@
 	user << SPAN_NOTICE("You insert \the [W] in the product receptor.")
 	R.add_product(W)
 
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 /obj/machinery/vending/Process()
 	if(stat & (BROKEN|NOPOWER))

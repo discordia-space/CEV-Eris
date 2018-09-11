@@ -57,7 +57,7 @@
 		))
 	data["items"] = items
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "craft.tmpl", "[src]", 800, 450, state = state)
 		ui.set_initial_data(data)
@@ -76,7 +76,7 @@
 	else if(href_list["category"])
 		if(set_category(href_list["category"], usr))
 			set_item(null, usr)
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 	else if(href_list["item"])
 		set_item(href_list["item"], usr)
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)

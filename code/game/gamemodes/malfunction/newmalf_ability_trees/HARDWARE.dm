@@ -104,9 +104,8 @@
 			radio.autosay("Self destructing now. Have a nice day.", "Self-Destruct Control")
 		timer--
 
-	if(ticker)
-		ticker.station_explosion_cinematic(0,null)
-		if(ticker.storyteller)
-			ticker.ship_was_nuked = TRUE
+	SSticker.station_explosion_cinematic(0,null)
+	if(SSticker.storyteller)
+		SSticker.ship_was_nuked = TRUE
 
 

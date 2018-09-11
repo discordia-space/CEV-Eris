@@ -54,7 +54,7 @@
 	data["electronic_warfare"] = electronic_warfare
 	data["entries"] = entries
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "agent_id_card.tmpl", "Agent id", 600, 400)
 		ui.set_initial_data(data)
@@ -181,7 +181,7 @@
 					. = 1
 
 	// Always update the UI, or buttons will spin indefinitely
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 /var/global/list/id_card_states
 /proc/id_card_states()
