@@ -12,16 +12,16 @@
 
 
 /proc/error(msg)
-	world.log << "## ERROR: [msg][log_end]"
+	log_world("## ERROR: [msg][log_end]")
 
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
 //print a warning message to world.log
 /proc/warning(msg)
-	world.log << "## WARNING: [msg][log_end]"
+	log_world("## WARNING: [msg][log_end]")
 
 //print a testing-mode debug message to world.log
 /proc/testing(msg)
-	world.log << "## TESTING: [msg][log_end]"
+	log_world("## TESTING: [msg][log_end]")
 
 /proc/game_log(category, text)
 	diary << "\[[time_stamp()]] [game_id] [category]: [text][log_end]"
@@ -84,7 +84,7 @@
 		game_log("PDA", text)
 
 /proc/log_to_dd(text)
-	world.log << text //this comes before the config check because it can't possibly runtime
+	log_world(text)
 	if(config.log_world_output)
 		game_log("DD_OUTPUT", text)
 
@@ -92,7 +92,7 @@
 	game_log("MISC", text)
 
 /proc/log_unit_test(text)
-	world.log << "## UNIT_TEST ##: [text]"
+	log_world("## UNIT_TEST ##: [text]")
 	log_debug(text)
 
 /proc/log_qdel(text)
