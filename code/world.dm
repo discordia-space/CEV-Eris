@@ -75,9 +75,6 @@ var/game_id = null
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
-	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime, "YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
-
 	callHook("startup")
 	//Emergency Fix
 	load_mods()

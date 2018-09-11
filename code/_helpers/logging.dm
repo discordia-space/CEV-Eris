@@ -202,6 +202,12 @@
 		return json_encode(d)
 	return d.get_log_info_line()
 
+/proc/log_world(text) //general logging; displayed both in DD and in the text file
+	if(config && config.log_runtime)
+		runtime_diary << text	//save to it
+	world.log << text	//do that
+
+
 // Helper proc for building detailed log lines
 /proc/datum_info_line(var/datum/d)
 	if(!istype(d))
