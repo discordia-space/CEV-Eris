@@ -1,5 +1,6 @@
 /datum/craft_recipe/machinery
 	category = "Machinery"
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 
 /datum/craft_recipe/machinery/machine_frame
 	name = "machine frame"
@@ -58,6 +59,7 @@
 	steps = (
 		list(/obj/item/stack/material/steel, 2),
 	)
+	flags = null
 
 /datum/craft_recipe/machinery/wall/lightfixture
 	name = "light fixture frame"
@@ -88,3 +90,9 @@
 		list(/obj/item/stack/material/steel, 2),
 	)
 
+/datum/craft_recipe/machinery/AI_core
+	name = "AI core"
+	result = /obj/structure/AIcore
+	steps = list(
+		list(/obj/item/stack/material/plasteel, 10),
+	)

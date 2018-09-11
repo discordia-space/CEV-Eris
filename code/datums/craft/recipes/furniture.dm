@@ -39,6 +39,75 @@
 		list(/obj/item/stack/material/steel, 3),
 	)
 
+/datum/craft_recipe/furniture/crate/plasteel
+	name = "Metal crate"
+	result = /obj/structure/closet/crate
+	steps = (
+		list(/obj/item/stack/material/plasteel, 10, time = 50),
+	)
+
+/datum/craft_recipe/furniture/crate/plastic
+	name = "plastic crate"
+	result = /obj/structure/closet/crate/plastic
+	steps = (
+		list(/obj/item/stack/material/plastic, 10),
+	)
+
+/datum/craft_recipe/furniture/bookshelf
+	name = "book shelf"
+	result = /obj/structure/bookcase
+	steps = (
+		list(/obj/item/stack/material/wood, 10),
+	)
+
+/datum/craft_recipe/furniture/closet
+	name = "book shelf"
+	result = /obj/structure/bookcase
+	steps = (
+		list(/obj/item/stack/material/wood, 10),
+	)
+
+/datum/craft_recipe/furniture/barricade
+	name = "barricade"
+	result = /obj/structure/barricade
+	steps = (
+		list(/obj/item/stack/material/wood, 5, time = 50),
+	)
+
+/datum/craft_recipe/furniture/coffin
+	name = "coffin"
+	result = /obj/structure/closet/coffin
+	steps = (
+		list(/obj/item/stack/material/wood, 10),
+	)
+
+/datum/craft_recipe/furniture/bed
+	name = "bed"
+	result = /obj/structure/bed
+	steps = list(
+		list(/obj/item/stack/material/steel, 5),
+	)
+
+/datum/craft_recipe/furniture/stool
+	name = "stool"
+	result = /obj/item/weapon/stool
+	flags = null
+
+
+//Common chairs
+/datum/craft_recipe/furniture/chair
+	name = "chair"
+	result = /obj/structure/bed/chair
+	steps = list(
+		list(/obj/item/stack/material/steel, 5),
+	)
+
+/datum/craft_recipe/furniture/wooden_chair
+	name = "wooden chair"
+	result = /obj/structure/bed/chair/wood
+	steps = (
+		list(/obj/item/stack/material/wood, 6, time = 10),
+	)
 
 // Office chairs
 /datum/craft_recipe/furniture/office_chair
@@ -91,5 +160,4 @@
 /datum/craft_recipe/furniture/comfy_chair/green
 	name = "green comfy chair"
 	result = /obj/structure/bed/chair/comfy/green
-
 
