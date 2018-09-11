@@ -86,7 +86,7 @@
 
 /obj/item/weapon/reagent_containers/glass/fertilizer
 	name = "fertilizer bottle"
-	desc = "A small glass bottle. Can hold up to 10 units."
+	desc = "A small glass bottle. Can hold up to 60 units."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	flags = OPENCONTAINER
@@ -96,8 +96,8 @@
 	var/fertilizer //Reagent contained, if any.
 
 	//Like a shot glass!
-	amount_per_transfer_from_this = 10
-	volume = 10
+	amount_per_transfer_from_this = 2
+	volume = 60
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/New()
 	..()
@@ -106,7 +106,7 @@
 	src.pixel_y = rand(-5.0, 5)
 
 	if(fertilizer)
-		reagents.add_reagent(fertilizer,10)
+		reagents.add_reagent(fertilizer,60)
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"

@@ -54,6 +54,8 @@ Admin:
 \tF6 = player-panel-new
 \tF7 = admin-pm
 \tF8 = Invisimin
+Admin Ghost:
+\tShift + Ctrl + Click = View Variables
 </font>"}
 
 	var/hotkey_mode = {"<font color='purple'>
