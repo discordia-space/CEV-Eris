@@ -95,7 +95,7 @@
 	else
 		data["nogen"] = TRUE //Special flag so the template can tell between console and physical
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 600, 800)
 		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
@@ -219,7 +219,7 @@
 	if(focus)
 		data["focus"] = focus.return_reading_data()
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "power_monitor.tmpl", "Power Monitoring Console", 800, 500, state = state)
 		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.

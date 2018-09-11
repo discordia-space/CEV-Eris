@@ -16,16 +16,6 @@ var/list/VVckey_edit = list("key", "ckey")
 
 */
 
-/client/proc/cmd_modify_ticker_variables()
-	set category = "Debug"
-	set name = "Edit Ticker Variables"
-
-	if (ticker == null)
-		src << "Game hasn't started yet."
-	else
-		src.modify_variables(ticker)
-
-
 /client/proc/mod_list_add_ass()
 	var/class = "text"
 	var/list/class_input = list("text","num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")

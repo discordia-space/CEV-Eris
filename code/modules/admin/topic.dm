@@ -647,7 +647,7 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(ticker && ticker.storyteller)
+		if(SSticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 		for(var/mode in config.storytellers)
@@ -658,7 +658,7 @@
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if (ticker && ticker.storyteller)
+		if (SSticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		master_storyteller = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
@@ -1082,7 +1082,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
-		if(!ticker || !ticker.storyteller)
+		if(!SSticker.storyteller)
 			alert("The game hasn't started yet!")
 			return
 

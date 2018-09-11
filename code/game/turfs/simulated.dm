@@ -14,8 +14,6 @@
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
 
-	var/datum/scheduled_task/unwet_task
-
 // This is not great.
 /turf/simulated/proc/wet_floor(var/wet_val = 1)
 	if(wet_val < wet)
@@ -26,16 +24,7 @@
 		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
 		overlays += wet_overlay
 
-	if(unwet_task)
-		unwet_task.trigger_task_in(8 SECONDS)
-	else
-		unwet_task = schedule_task_in(8 SECONDS)
-		task_triggered_event.register(unwet_task, src, /turf/simulated/proc/task_unwet_floor)
-
-/turf/simulated/proc/task_unwet_floor(var/triggered_task)
-	if(triggered_task == unwet_task)
-		unwet_task = null
-		unwet_floor(TRUE)
+	addtimer(CALLBACK(src, .proc/unwet_floor, TRUE), 8 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /turf/simulated/proc/unwet_floor(var/check_very_wet)
 	if(check_very_wet && wet >= 2)
@@ -56,11 +45,6 @@
 	if(istype(loc, /area/chapel))
 		holy = 1
 	levelupdate()
-
-/turf/simulated/Destroy()
-	qdel(unwet_task)
-	unwet_task = null
-	return ..()
 
 /turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src

@@ -123,8 +123,8 @@ var/global/list/current_factions = list()
 
 
 /proc/storyteller_button()
-	if(ticker && ticker.storyteller)
-		return "<a href='?src=\ref[ticker.storyteller];panel=1'>\[STORY\]</a>"
+	if(SSticker.storyteller)
+		return "<a href='?src=\ref[SSticker.storyteller];panel=1'>\[STORY\]</a>"
 	else
 		return "<s>\[STORY\]</s>"
 
