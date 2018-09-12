@@ -149,39 +149,28 @@
 
 /mob/living/silicon/robot/handle_regular_hud_updates()
 
-	if (src.stat == 2 || (XRAY in mutations) || (src.sight_mode & BORGXRAY))
-		src.sight |= SEE_TURFS
-		src.sight |= SEE_MOBS
-		src.sight |= SEE_OBJS
-		src.see_in_dark = 8
-		src.see_invisible = SEE_INVISIBLE_MINIMUM
-	else if ((src.sight_mode & BORGMESON) && (src.sight_mode & BORGTHERM))
-		src.sight |= SEE_TURFS
-		src.sight |= SEE_MOBS
-		src.see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_MINIMUM
-	else if (src.sight_mode & BORGMESON)
-		src.sight |= SEE_TURFS
-		src.see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_MINIMUM
-	else if (src.sight_mode & BORGMATERIAL)
-		src.sight |= SEE_OBJS
-		src.see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_MINIMUM
-	else if (src.sight_mode & BORGTHERM)
-		src.sight |= SEE_MOBS
-		src.see_in_dark = 8
-		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if (src.stat != 2)
-		src.sight &= ~SEE_MOBS
-		src.sight &= ~SEE_TURFS
-		src.sight &= ~SEE_OBJS
-		src.see_in_dark = 8 			 // see_in_dark means you can FAINTLY see in the dark, humans have a range of 3 or so
-		src.see_invisible = SEE_INVISIBLE_LIVING // This is normal vision (25), setting it lower for normal vision means you don't "see" things like darkness since darkness
-							 // has a "invisible" value of 15
+	.=..()
+	if (!.)//Parent function will return zero if no client
+		return
 
+
+
+
+
+
+
+	for (var/obj/screen/H in HUDprocess)
+//		var/obj/screen/B = H
+		H.Process()
+
+
+
+	return 1
+
+
+/mob/living/silicon/robot/handle_vision()
 	..()
-
+	client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 	var/obj/item/borg/sight/hud/hud = (locate(/obj/item/borg/sight/hud) in src)
 	if(hud && hud.hud)
 		hud.hud.process_hud(src)
@@ -192,119 +181,52 @@
 			if (MED_HUD)
 				process_med_hud(src,0)
 
-	for (var/obj/screen/H in HUDprocess)
-//		var/obj/screen/B = H
-		H.Process()
 
-/*	if (src.healths)
-		if (src.stat != 2)
-			if(isdrone(src))
-				switch(health)
-					if(35 to INFINITY)
-						src.healths.icon_state = "health0"
-					if(25 to 34)
-						src.healths.icon_state = "health1"
-					if(15 to 24)
-						src.healths.icon_state = "health2"
-					if(5 to 14)
-						src.healths.icon_state = "health3"
-					if(0 to 4)
-						src.healths.icon_state = "health4"
-					if(-35 to 0)
-						src.healths.icon_state = "health5"
-					else
-						src.healths.icon_state = "health6"
-			else
-				switch(health)
-					if(200 to INFINITY)
-						src.healths.icon_state = "health0"
-					if(150 to 200)
-						src.healths.icon_state = "health1"
-					if(100 to 150)
-						src.healths.icon_state = "health2"
-					if(50 to 100)
-						src.healths.icon_state = "health3"
-					if(0 to 50)
-						src.healths.icon_state = "health4"
-					if(HEALTH_THRESHOLD_DEAD to 0)
-						src.healths.icon_state = "health5"
-					else
-						src.healths.icon_state = "health6"
-		else
-			src.healths.icon_state = "health7"*/
+/mob/living/silicon/robot/update_sight()
+	if(stat == DEAD || eyeobj)
+		update_dead_sight()
+	else
+		if (is_ventcrawling)
+			sight |= SEE_TURFS|SEE_OBJS|BLIND
 
-/*	if (src.syndicate && src.client)
-		for(var/datum/mind/tra in get_antags_list(ROLE_TRAITOR))
-			if(tra.current)
-				// TODO: Update to new antagonist system.
-				var/I = image('icons/mob/mob.dmi', loc = tra.current, icon_state = "traitor")
-				src.client.images += I
-		src.disconnect_from_ai()
-		if(src.mind)
-			// TODO: Update to new antagonist system.
-			if(!src.mind.special_role)
-				src.mind.special_role = "traitor"
-				traitors.current_antagonists |= src.mind*/
+		if ((src.sight_mode & BORGXRAY))
+			src.sight |= SEE_TURFS
+			src.sight |= SEE_MOBS
+			src.sight |= SEE_OBJS
+			src.see_in_dark = 8
+			src.see_invisible = SEE_INVISIBLE_MINIMUM
+		else if ((src.sight_mode & BORGMESON) && (src.sight_mode & BORGTHERM))
+			src.sight |= SEE_TURFS
+			src.sight |= SEE_MOBS
+			src.see_in_dark = 8
+			see_invisible = SEE_INVISIBLE_MINIMUM
+		else if (src.sight_mode & BORGMESON)
+			src.sight |= SEE_TURFS
+			src.see_in_dark = 8
+			see_invisible = SEE_INVISIBLE_MINIMUM
+		else if (src.sight_mode & BORGMATERIAL)
+			src.sight |= SEE_OBJS
+			src.see_in_dark = 8
+			see_invisible = SEE_INVISIBLE_MINIMUM
+		else if (src.sight_mode & BORGTHERM)
+			src.sight |= SEE_MOBS
+			src.see_in_dark = 8
+			src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
+		else if (src.stat != 2)
+			src.sight &= ~SEE_MOBS
+			src.sight &= ~SEE_TURFS
+			src.sight &= ~SEE_OBJS
+			src.see_in_dark = 8 			 // see_in_dark means you can FAINTLY see in the dark, humans have a range of 3 or so
+			src.see_invisible = SEE_INVISIBLE_LIVING // This is normal vision (25), setting it lower for normal vision means you don't "see" things like darkness since darkness
+								 // has a "invisible" value of 15
 
-/*	if (src.cells)
-		if (src.cell)
-			var/cellcharge = src.cell.charge/src.cell.maxcharge
-			switch(cellcharge)
-				if(0.75 to INFINITY)
-					src.cells.icon_state = "charge4"
-				if(0.5 to 0.75)
-					src.cells.icon_state = "charge3"
-				if(0.25 to 0.5)
-					src.cells.icon_state = "charge2"
-				if(0 to 0.25)
-					src.cells.icon_state = "charge1"
-				else
-					src.cells.icon_state = "charge0"
-		else
-			src.cells.icon_state = "charge-empty"*/
+/mob/living/silicon/robot/update_dead_sight()
+	src.sight |= SEE_TURFS
+	src.sight |= SEE_MOBS
+	src.sight |= SEE_OBJS
+	src.see_in_dark = 8
+	src.see_invisible = SEE_INVISIBLE_MINIMUM
 
-/*	if(bodytemp)
-		switch(src.bodytemperature) //310.055 optimal body temp
-			if(335 to INFINITY)
-				src.bodytemp.icon_state = "temp2"
-			if(320 to 335)
-				src.bodytemp.icon_state = "temp1"
-			if(300 to 320)
-				src.bodytemp.icon_state = "temp0"
-			if(260 to 300)
-				src.bodytemp.icon_state = "temp-1"
-			else
-				src.bodytemp.icon_state = "temp-2"*/
-
-//Oxygen and fire does nothing yet!!
-//	if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"
-//	if (src.fire) src.fire.icon_state = "fire[src.fire_alert ? 1 : 0]"
-
-	client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
-
-/*	if ((src.blind && src.stat != 2))
-		if(src.blinded)
-			src.blind.alpha = 255
-		else
-			src.blind.alpha = 0
-			if (src.disabilities & NEARSIGHTED)
-				src.client.screen += global_hud.vimpaired
-
-			if (src.eye_blurry)
-				src.client.screen += global_hud.blurry
-
-			if (src.druggy)
-				src.client.screen += global_hud.druggy*/
-
-	if (src.stat != 2)
-		if (src.machine)
-			if (src.machine.check_eye(src) < 0)
-				src.reset_view(null)
-		else
-			if(client && !client.adminobs)
-				reset_view(null)
-
-	return 1
 
 /mob/living/silicon/robot/proc/update_items()
 	if (src.client)

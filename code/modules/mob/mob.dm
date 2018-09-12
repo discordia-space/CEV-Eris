@@ -13,8 +13,13 @@
 	..()
 	return QDEL_HINT_HARDDEL
 
-/mob/get_fall_damage()
-	return 15
+/mob/get_fall_damage(var/turf/from, var/turf/dest)
+	return 0
+
+/mob/fall_impact(var/turf/from, var/turf/dest)
+	return
+
+/mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
 
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT
 //	flash = null

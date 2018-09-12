@@ -1,3 +1,6 @@
+#define SLIM "_slim"
+#define FAT "_fat"
+
 var/datum/body_build/default_body_build = new
 /datum/body_build
 	var/name			= "Default"
