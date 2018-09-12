@@ -51,6 +51,13 @@
 	icon_state = "bcircuit"
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	initial_flooring = /decl/flooring/reinforced/circuit
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/plating1.ogg',\
+		'sound/effects/footstep/plating2.ogg',\
+		'sound/effects/footstep/plating3.ogg',\
+		'sound/effects/footstep/plating4.ogg',\
+		'sound/effects/footstep/plating5.ogg'))
+
 
 /turf/simulated/floor/greengrid
 	name = "mainframe floor"
