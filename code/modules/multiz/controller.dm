@@ -41,7 +41,7 @@ var/datum/controller/process/open_space/OS_controller = null
 /datum/controller/process/open_space/proc/add_z_level(var/level)
 #ifdef DEBUG_OPENSPACE
 	world << "OPENSPACE: ADD [level] z lelel"
-	world.log << "OPENSPACE: ADD [level] z lelel"
+	log_world("OPENSPACE: ADD [level] z lelel")
 #endif
 	if(levels.len < level)
 		levels.len = level
