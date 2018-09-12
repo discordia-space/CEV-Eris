@@ -133,7 +133,7 @@
 
 				message_admins("[key_name_admin(usr)] removed [adm_ckey] from the admins list")
 				log_admin("[key_name(usr)] removed [adm_ckey] from the admins list")
-				log_admin_rank_modification(adm_ckey, "Removed")
+				log_admin_rank_modification(adm_ckey, "player")
 
 		else if(task == "rank")
 			var/new_rank
@@ -193,7 +193,7 @@
 			C << "[key_name_admin(usr)] has toggled your permission: [new_permission]."
 			message_admins("[key_name_admin(usr)] toggled the [new_permission] permission of [adm_ckey]")
 			log_admin("[key_name(usr)] toggled the [new_permission] permission of [adm_ckey]")
-			log_admin_permission_modification(adm_ckey, permissionlist[new_permission])
+			log_admin_permission_modification(adm_ckey, permissionlist[new_permission], new_permission)
 
 		edit_admin_permissions()
 
