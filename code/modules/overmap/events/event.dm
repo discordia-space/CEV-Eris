@@ -137,7 +137,7 @@
 
 /datum/overmap_event/proc/enter(var/obj/effect/overmap/ship/victim)
 //	world << "Ship [victim] encountered [name]"
-	if(!event_manager)
+	if(!SSevent)
 		admin_notice("<span class='danger'>Event manager not setup.</span>")
 		return
 	if(victim in victims)

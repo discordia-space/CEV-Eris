@@ -31,7 +31,7 @@
 
 /obj/machinery/bioprinter/New()
 	..()
-	if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		stored_matter = 200
 
 
@@ -88,4 +88,4 @@
 		qdel(W)
 		return
 
-	return..()
+	return ..()

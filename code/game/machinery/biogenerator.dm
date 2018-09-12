@@ -17,12 +17,12 @@
 
 	var/list/recipes = list(
 		"Food",
-			list(name="10 Milk", cost=20, path="milk"),
+			list(name="Milk, 30u", cost=60, reagent="milk"),
 			list(name="Slab of meat", cost=50, path=/obj/item/weapon/reagent_containers/food/snacks/meat),
 		"Nutrient",
-			list(name="EZ-Nutrient", cost=10, path=/obj/item/weapon/reagent_containers/glass/fertilizer/ez, allow_multiple = 1),
-			list(name="Left4Zed", cost=20, path=/obj/item/weapon/reagent_containers/glass/fertilizer/l4z, allow_multiple = 1),
-			list(name="Robust Harvest", cost=25, path=/obj/item/weapon/reagent_containers/glass/fertilizer/rh, allow_multiple = 1),
+			list(name="EZ-Nutrient, 30u", cost=30, reagent="eznutrient"),
+			list(name="Left4Zed, 30u", cost=60, reagent="left4zed"),
+			list(name="Robust Harvest, 30u", cost=75, reagent="robustharvest"),
 		"Leather",
 			list(name="Wallet", cost=100, path=/obj/item/weapon/storage/wallet),
 			list(name="Botanical gloves", cost=250, path=/obj/item/clothing/gloves/botanic_leather),
@@ -112,7 +112,7 @@
 /obj/machinery/biogenerator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = outside_state)
 	user.set_machine(src)
 	var/list/data = list()
-
+	data["points"] = points
 	if(menustat == "menu")
 		data["beaker"] = beaker
 		if(beaker)
@@ -140,7 +140,7 @@
 	if(menustat == "menu")
 		data["beaker"] = beaker
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -170,7 +170,7 @@
 		S += 5
 		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
 			points += 1
-		else points += I.reagents.get_reagent_amount("nutriment") * 10 * eat_eff
+		else points += I.reagents.get_reagent_amount("nutriment") * 8 * eat_eff
 		qdel(I)
 	if(S)
 		processing = 1
@@ -187,7 +187,6 @@
 
 /obj/machinery/biogenerator/proc/create_product(var/item, var/amount)
 	var/list/recipe = null
-
 	if(processing)
 		return
 
@@ -213,11 +212,12 @@
 	update_icon()
 	updateUsrDialog() //maybe we can remove it
 	points -= cost
-	sleep(30)
+	sleep(cost*0.5)
 
 	var/creating = recipe["path"]
-	if(creating) //For reagents like milk
-		beaker.reagents.add_reagent(creating, 10)
+	var/reagent = recipe["reagent"]
+	if(reagent) //For reagents like milk
+		beaker.reagents.add_reagent(reagent, 30)
 	else
 		for(var/i in 1 to amount)
 			new creating(loc)
@@ -230,7 +230,6 @@
 	if(stat & BROKEN) return
 	if(usr.stat || usr.restrained()) return
 	if(!in_range(src, usr)) return
-
 	usr.set_machine(src)
 
 	switch(href_list["action"])

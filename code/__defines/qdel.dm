@@ -21,6 +21,12 @@
 // Delete "item" and nullify var, where it was.
 #define QDEL_NULL(item) if(item) { qdel(item); item = null }
 
+/**
+ * Delete `item` after `time` passed.
+ * Return `id` for timer, so deletion process could be stopped.
+ */
+#define QDEL_IN(item, time) addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, item), time, TIMER_STOPPABLE)
+
 #define QDELING(X) (X.gc_destroyed)
 #define QDELETED(X) (!X || QDELING(X))
 #define QDESTROYING(X) (!X || X.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)

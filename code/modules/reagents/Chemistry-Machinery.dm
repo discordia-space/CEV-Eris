@@ -38,11 +38,11 @@
 	energy = min(energy + addenergy, max_energy)
 	if(energy != oldenergy)
 		use_power(CHEM_SYNTH_ENERGY / chemical_dispenser_ENERGY_COST) // This thing uses up "alot" of power (this is still low as shit for creating reagents from thin air)
-		nanomanager.update_uis(src) // update all UIs attached to src
+		SSnano.update_uis(src) // update all UIs attached to src
 
 /obj/machinery/chemical_dispenser/power_change()
 	..()
-	nanomanager.update_uis(src) // update all UIs attached to src
+	SSnano.update_uis(src) // update all UIs attached to src
 
 /obj/machinery/chemical_dispenser/Process()
 	if(recharged <= 0)
@@ -112,7 +112,7 @@
 	data["chemicals"] = chemicals
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -163,7 +163,7 @@
 		src.beaker =  B
 		if (user.unEquip(B, src))
 			user << "You set [B] on the machine."
-			nanomanager.update_uis(src) // update all UIs attached to src
+			SSnano.update_uis(src) // update all UIs attached to src
 			return
 
 /obj/machinery/chemical_dispenser/attack_ai(mob/user as mob)

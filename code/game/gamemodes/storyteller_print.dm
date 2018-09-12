@@ -102,7 +102,7 @@
 		if (evacuation_controller.waiting_to_leave())
 			data += "ETA: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
 			data += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
-	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
+	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
 
 	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
 
@@ -199,9 +199,9 @@
 
 	if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))
-			ticker.delay_end = !ticker.delay_end
-			log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-			message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+			SSticker.delay_end = !SSticker.delay_end
+			log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+			message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 
 	topic_extra(href,href_list)
 

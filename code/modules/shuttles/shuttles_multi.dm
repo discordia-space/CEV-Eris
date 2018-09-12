@@ -10,7 +10,7 @@
 	next_location = destinations_cache[destination_key]
 
 /datum/shuttle/autodock/multi/proc/get_destinations()
-	if (last_cache_rebuild_time < shuttle_controller.last_landmark_registration_time)
+	if (last_cache_rebuild_time < SSshuttle.last_landmark_registration_time)
 		build_destinations_cache()
 	return destinations_cache
 
@@ -18,7 +18,7 @@
 	last_cache_rebuild_time = world.time
 	destinations_cache.Cut()
 	for(var/destination_tag in destination_tags)
-		var/obj/effect/shuttle_landmark/landmark = shuttle_controller.get_landmark(destination_tag)
+		var/obj/effect/shuttle_landmark/landmark = SSshuttle.get_landmark(destination_tag)
 		if (istype(landmark))
 			destinations_cache["[landmark.name]"] = landmark
 

@@ -267,7 +267,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		return
 	var/admin_id = query.item[1]
 
-	var/sql_update = "UPDATE bans SET unbanned = 1, unbanned_time = Now(), unbanned_by_id = [admin_id], WHERE id = [id]"
+	var/sql_update = "UPDATE bans SET unbanned = 1, unbanned_time = Now(), unbanned_by_id = [admin_id] WHERE id = [id]"
 
 	var/DBQuery/query_update = dbcon.NewQuery(sql_update)
 	if(!query_update.Execute())
@@ -386,7 +386,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 			output += "</tr>"
 
 			var/player_id
-			var/DBQuery/query = dbcon.NewQuery("SELECT id, FROM players WHERE ckey='[playerckey]'")
+			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[playerckey]'")
 			query.Execute()
 			if(query.NextRow())
 				player_id = query.item[1]

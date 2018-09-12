@@ -362,7 +362,7 @@
 
 /obj/machinery/neotheology/biomass_container/New()
 	..()
-	if(!(ticker && ticker.current_state == GAME_STATE_PLAYING))
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		biomass = 300
 
 /obj/machinery/neotheology/biomass_container/RefreshParts()

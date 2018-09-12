@@ -70,17 +70,17 @@ var/global/list/storyevents = list()
 	return TRUE
 
 /datum/storyevent/proc/start_processing(var/announce = FALSE)
-	ticker.storyteller.add_processing(src)
+	SSticker.storyteller.add_processing(src)
 	if(announce)
 		announce()
 
 /datum/storyevent/proc/stop_processing(var/announce = FALSE)
-	ticker.storyteller.remove_processing(src)
+	SSticker.storyteller.remove_processing(src)
 	if(announce)
 		announce_end()
 
 /datum/storyevent/proc/is_processing()
-	return (src in ticker.storyteller.processing_events)
+	return (src in SSticker.storyteller.processing_events)
 
 /datum/storyevent/proc/weight_mult(var/val, var/req, var/min, var/max)
 	if(req < 0)
