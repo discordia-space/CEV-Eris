@@ -132,7 +132,7 @@
 
 		data["copyingnow"] = copy.recipes.len
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -184,13 +184,13 @@
 					D.forceMove(src)
 					copy = D
 
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 	update_icon()
 
 
 /obj/machinery/autolathe_disk_cloner/proc/copy()
 	copying = TRUE
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 	update_icon()
 	if(original && copy && !copy.recipes.len && (hacked || original.license < 0))
 		if(!hacked)
@@ -215,12 +215,12 @@
 				else
 					break
 
-			nanomanager.update_uis(src)
+			SSnano.update_uis(src)
 			update_icon()
 			sleep(copying_delay)
 
 	copying = FALSE
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 	update_icon()
 
 

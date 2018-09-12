@@ -35,8 +35,8 @@
 
 	CI.wearer << "<span class='info'>Your cruciform vibrates and warms up.</span>"
 
-	if(ticker && ticker.storyteller)	//Call objectives update to check inquisitor objective completion
-		ticker.storyteller.update_objectives()
+	if(SSticker.storyteller)	//Call objectives update to check inquisitor objective completion
+		SSticker.storyteller.update_objectives()
 
 	return TRUE
 

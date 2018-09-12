@@ -160,7 +160,7 @@
 		programs.Add(list(program))
 
 	data["programs"] = programs
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "laptop_mainscreen.tmpl", "NTOS Main Menu", 400, 500)
 		ui.auto_update_layout = 1
@@ -339,7 +339,7 @@
 
 		idle_threads.Add(active_program)
 		active_program.program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
-		nanomanager.close_uis(active_program.NM ? active_program.NM : active_program)
+		SSnano.close_uis(active_program.NM ? active_program.NM : active_program)
 		active_program = null
 		update_icon()
 		if(user && istype(user))
@@ -602,11 +602,11 @@
 
 /obj/item/modular_computer/proc/update_uis()
 	if(active_program) //Should we update program ui or computer ui?
-		nanomanager.update_uis(active_program)
+		SSnano.update_uis(active_program)
 		if(active_program.NM)
-			nanomanager.update_uis(active_program.NM)
+			SSnano.update_uis(active_program.NM)
 	else
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 /obj/item/modular_computer/proc/check_update_ui_need()
 	var/ui_updated_needed = 0

@@ -133,7 +133,7 @@
 
 				message_admins("[key_name_admin(usr)] removed [adm_ckey] from the admins list")
 				log_admin("[key_name(usr)] removed [adm_ckey] from the admins list")
-				log_admin_rank_modification(adm_ckey, "Removed")
+				log_admin_rank_modification(adm_ckey, "player")
 
 		else if(task == "rank")
 			var/new_rank
@@ -193,7 +193,7 @@
 			C << "[key_name_admin(usr)] has toggled your permission: [new_permission]."
 			message_admins("[key_name_admin(usr)] toggled the [new_permission] permission of [adm_ckey]")
 			log_admin("[key_name(usr)] toggled the [new_permission] permission of [adm_ckey]")
-			log_admin_permission_modification(adm_ckey, permissionlist[new_permission])
+			log_admin_permission_modification(adm_ckey, permissionlist[new_permission], new_permission)
 
 		edit_admin_permissions()
 
@@ -647,7 +647,7 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(ticker && ticker.storyteller)
+		if(SSticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 		for(var/mode in config.storytellers)
@@ -658,7 +658,7 @@
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if (ticker && ticker.storyteller)
+		if (SSticker.storyteller)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		master_storyteller = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
@@ -1082,7 +1082,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
-		if(!ticker || !ticker.storyteller)
+		if(!SSticker.storyteller)
 			alert("The game hasn't started yet!")
 			return
 

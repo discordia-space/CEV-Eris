@@ -2,11 +2,10 @@
 /*
 	The initialization of the game happens roughly like this:
 
-	1. All global variables are initialized (including the global_init instance).
+	1. All global variables are initialized (including the global_init and tgstation's master controller instances including subsystems).
 	2. The map is initialized, and map objects are created.
-	3. world/New() runs, creating the process scheduler (and the old master controller) and spawning their setup.
-	4. processScheduler/setup() runs, creating all the processes. game_controller/setup() runs, calling initialize() on all movable atoms in the world.
-	5. The gameticker is created.
+	3. world/New() runs.
+	4. tgstation's MC runs initialization for various subsystems (refer to its own defines for the load order).
 
 */
 var/global/datum/global_init/init = new ()
@@ -120,11 +119,8 @@ var/game_id = null
 		else
 			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
 
-	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 
-	processScheduler.deferSetupFor(/datum/controller/process/ticker)
-	processScheduler.setup()
 	Master.Initialize(10, FALSE)
 
 #ifdef UNIT_TEST
@@ -387,8 +383,6 @@ var/world_topic_spam_protect_time = world.timeofday
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
 
-	processScheduler.stop()
-
 	for(var/client/C in clients)
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
@@ -488,7 +482,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	var/list/features = list()
 
-	if(ticker)
+	if(SSticker)
 		if(master_storyteller)
 			features += master_storyteller
 	else

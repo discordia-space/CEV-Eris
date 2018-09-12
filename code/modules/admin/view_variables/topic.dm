@@ -475,7 +475,7 @@
 			usr << "This can only be done on mobs with clients"
 			return
 
-		nanomanager.close_uis(H)
+		SSnano.close_uis(H)
 		H.client.cache.Cut()
 		var/datum/asset/assets = get_asset_datum(/datum/asset/nanoui)
 		assets.send(H)

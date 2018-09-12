@@ -33,7 +33,7 @@
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
 
-	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
 			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
 		else
@@ -75,11 +75,11 @@
 /mob/new_player/Stat()
 	..()
 
-	if(statpanel("Lobby") && ticker)
+	if(statpanel("Lobby"))
 		stat("Storyteller:", "[master_storyteller]") // Old setting for showing the game mode
 
-		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
+		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
@@ -96,7 +96,7 @@
 		return 1
 
 	if(href_list["ready"])
-		if(!ticker || ticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
+		if(SSticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = text2num(href_list["ready"])
 		else
 			ready = 0
@@ -142,7 +142,7 @@
 
 	if(href_list["late_join"])
 
-		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+		if(SSticker.current_state != GAME_STATE_PLAYING)
 			usr << "\red The round is either not ready, or has already finished..."
 			return
 
@@ -166,7 +166,7 @@
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
 			return
-		else if(ticker && ticker.nuke_in_progress)
+		else if(SSticker.nuke_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
 
@@ -222,7 +222,7 @@
 /mob/new_player/proc/AttemptLateSpawn(rank,var/spawning_at)
 	if(src != usr)
 		return 0
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+	if(SSticker.current_state != GAME_STATE_PLAYING)
 		usr << "\red The round is either not ready, or has already finished..."
 		return 0
 	if(!config.enter_allowed)
@@ -270,7 +270,7 @@
 	if(character.mind.assigned_role != "Cyborg")
 		data_core.manifest_inject(character)
 		matchmaker.do_matchmaking()
-		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+		SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
 		//Grab some data from the character prefs for use in random news procs.
 
@@ -281,7 +281,7 @@
 	qdel(src)
 
 /mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message)
-	if (ticker.current_state == GAME_STATE_PLAYING)
+	if (SSticker.current_state == GAME_STATE_PLAYING)
 		// can't use their name here, since cyborg namepicking is done post-spawn, so we'll just say "A new Cyborg has arrived"/"A new Android has arrived"/etc.
 		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has completed cryogenic revival"].", "Arrivals Announcement Computer")
 
@@ -344,7 +344,7 @@
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
 
-	if(ticker.random_players)
+	if(SSticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)

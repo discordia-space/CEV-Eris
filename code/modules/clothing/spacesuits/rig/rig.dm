@@ -77,6 +77,8 @@
 
 	var/emp_protection = 0
 
+	var/rig_wear_slot = slot_back //Changing this allows for rigs that are worn as a belt or a tie or something
+
 	// Wiring! How exciting.
 	var/datum/wires/rig/wires
 	var/datum/effect/effect/system/spark_spread/spark_system
@@ -465,7 +467,7 @@
 	if(module_list.len)
 		data["modules"] = module_list
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, ((src.loc != user) ? ai_interface_path : interface_path), interface_title, 480, 550, state = nano_state)
 		ui.set_initial_data(data)
@@ -558,24 +560,24 @@
 			module.integrated_ai << "[message]"
 			. = 1
 
-/obj/item/weapon/rig/equipped(mob/living/carbon/human/M)
+//Delayed equipping of rigs
+/obj/item/weapon/rig/pre_equip(var/mob/user, var/slot)
+	if (slot == rig_wear_slot)
+		if(seal_delay > 0)
+			user.visible_message("<font color='blue'>[user] starts putting on \the [src]...</font>", "<font color='blue'>You start putting on \the [src]...</font>")
+			if(!do_after(user,seal_delay,src))
+				return 1 //A nonzero return value will cause the equipping operation to fail
+
+
+/obj/item/weapon/rig/equipped(var/mob/user, var/slot)
 	..()
 	if (is_held())
 		remove()
 		return
 
-	if(seal_delay > 0 && istype(M) && M.back == src)
-		M.visible_message("<font color='blue'>[M] starts putting on \the [src]...</font>", "<font color='blue'>You start putting on \the [src]...</font>")
-		if(!do_after(M,seal_delay,src))
-			if(M && M.back == src)
-				if(!M.unEquip(src))
-					return
-			src.forceMove(get_turf(src))
-			return
-
-	if(istype(M) && M.back == src)
-		M.visible_message("<font color='blue'><b>[M] struggles into \the [src].</b></font>", "<font color='blue'><b>You struggle into \the [src].</b></font>")
-		wearer = M
+	if (slot == rig_wear_slot)
+		user.visible_message("<font color='blue'><b>[user] struggles into \the [src].</b></font>", "<font color='blue'><b>You struggle into \the [src].</b></font>")
+		wearer = user
 		wearer.wearing_rig = src
 		update_icon()
 
@@ -624,17 +626,16 @@
 				holder = use_obj.loc
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
-						wearer << "<font color='blue'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></font>"
 						use_obj.canremove = 1
-						holder.drop_from_inventory(use_obj)
-						use_obj.forceMove(get_turf(src))
-						use_obj.dropped()
+						if (wearer.unEquip(use_obj, src))
+							wearer << "<font color='blue'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></font>"
 						use_obj.canremove = 0
-						use_obj.forceMove(src)
+
 
 		else if (deploy_mode != ONLY_RETRACT)
 			if(check_slot && check_slot == use_obj)
 				return
+
 			use_obj.forceMove(wearer)
 			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, 0, 1))
 				use_obj.forceMove(src)
