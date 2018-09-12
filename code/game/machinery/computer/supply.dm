@@ -220,7 +220,7 @@
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if (!shuttle)
-		world.log << "## ERROR: Eek. The supply/shuttle datum is missing somehow."
+		log_world("## ERROR: Eek. The supply/shuttle datum is missing somehow.")
 		return
 	if(..())
 		return TRUE

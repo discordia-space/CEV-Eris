@@ -73,7 +73,7 @@ world/IsBanned(key, address, computer_id)
 			)")
 
 		if(!query.Execute())
-			world.log << "Trying to fetch ban record for [ckeytext] but got error: [query.ErrorMsg()]."
+			log_world("Trying to fetch ban record for [ckeytext] but got error: [query.ErrorMsg()].")
 			return
 
 		while(query.NextRow())
