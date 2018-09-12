@@ -8031,7 +8031,7 @@
 "cYw" = (/turf/simulated/shuttle/floor/mining{icon_state = "9,8"},/area/shuttle/mining/station)
 "cYx" = (/turf/simulated/shuttle/wall/mining{icon_state = "10,8"},/area/shuttle/mining/station)
 "cYy" = (/turf/simulated/shuttle/wall/mining{icon_state = "11,8"; opacity = 0},/area/shuttle/mining/station)
-"cYz" = (/turf/simulated/shuttle/wall/mining{icon_state = "12,8"},/area/shuttle/mining/station)
+"cYz" = (/turf/simulated/shuttle/wall/mining{icon_state = "12,8"; opacity = 0},/area/shuttle/mining/station)
 "cYA" = (/turf/simulated/shuttle/wall/mining{icon_state = "13,8"},/area/shuttle/mining/station)
 "cYB" = (/obj/machinery/mineral/processing_unit,/turf/simulated/floor/tiled/dark,/area/shuttle/mining/station)
 "cYC" = (/turf/simulated/shuttle/wall/mining{icon_state = "15,8"},/area/shuttle/mining/station)
@@ -8097,7 +8097,7 @@
 "cZK" = (/obj/machinery/camera/network/mining{dir = 1},/turf/simulated/shuttle/floor/mining{icon_state = "10,6"},/area/shuttle/mining/station)
 "cZL" = (/obj/machinery/conveyor_switch/oneway{id = "mining_internal"; name = "mining conveyor"},/turf/simulated/shuttle/floor/mining{icon_state = "11,6"},/area/shuttle/mining/station)
 "cZM" = (/turf/simulated/shuttle/floor/mining{icon_state = "12,6"},/area/shuttle/mining/station)
-"cZN" = (/turf/simulated/shuttle/wall/mining{icon_state = "13,6"},/area/shuttle/mining/station)
+"cZN" = (/turf/simulated/shuttle/wall/mining{icon_state = "13,6"; opacity = 0},/area/shuttle/mining/station)
 "cZO" = (/turf/simulated/shuttle/wall/mining{icon_state = "15,6"; opacity = 0},/area/shuttle/mining/station)
 "cZP" = (/obj/structure/shuttle_part/mining{icon_state = "16,6"},/turf/space,/area/shuttle/mining/station)
 "cZQ" = (/obj/structure/multiz/ladder/up,/turf/simulated/floor/hull{flooring_override = "hullcenter18"; icon_state = "hullcenter18"; tag = "icon-hullcenter18"},/area/space)
@@ -13893,4 +13893,3 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-
