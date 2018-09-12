@@ -13,8 +13,8 @@
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(user))
 		sparks.start()
-
-		user.Move(pick(trange(50, get_turf(holder))))
+		var/turf/TLoc = get_turf(holder)
+		user.Move(pick(trange(50, TLoc)))
 
 		sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, user.loc)

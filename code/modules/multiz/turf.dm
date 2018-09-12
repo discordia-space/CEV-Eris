@@ -41,6 +41,12 @@ see multiz/movement.dm for some info.
 	var/turf/below
 	var/list/underlay_references
 	var/global/overlay_map = list()
+	is_hole = TRUE
+
+	// A lazy list to contain a list of mobs who are currently scaling
+	// up this turf. Used in human/can_fall.
+
+	var/tmp/list/climbers
 
 /turf/simulated/open/LateInitialize()
 	. = ..()

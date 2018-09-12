@@ -509,8 +509,7 @@ its easier to just keep the beam vertical.
 		return FALSE
 
 //Multi-z falling procs
-/atom/movable/proc/can_fall()
-	return !anchored
+
 
 //Execution by grand piano!
 /atom/movable/proc/get_fall_damage(var/turf/from, var/turf/dest)

@@ -138,3 +138,31 @@
 		return 1
 	qdel(G)
 	return
+
+
+/proc/GetJetpack(var/mob/living/L)
+	// Search the human for a jetpack. Either on back or on a RIG that's on
+	// on their back.
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		// Skip sanity check for H.back, as istype can safely handle a null.
+		if (istype(H.back, /obj/item/weapon/tank/jetpack))
+			return H.back
+		else if (istype(H.s_store, /obj/item/weapon/tank/jetpack))
+			return H.s_store
+		else if (istype(H.back, /obj/item/weapon/rig))
+			var/obj/item/weapon/rig/rig = H.back
+			for (var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
+				return module.jets
+	// See if we have a robot instead, and look for their jetpack.
+	else if (isrobot(L))
+		var/mob/living/silicon/robot/R = L
+		if (R.module)
+			for (var/obj/item/weapon/tank/jetpack/J in R.module.modules)
+				return J
+		// Synthetic jetpacks don't install into modules. They go into contents.
+		for (var/obj/item/weapon/tank/jetpack/J in R.contents)
+			return J
+
+	return null
+

@@ -159,7 +159,8 @@ Frequency:
 			else
 				L["[com.id] (Inactive)"] = com.locked
 	var/list/turfs = list()
-	for(var/turf/T in trange(10, get_turf(src)) - src)
+	var/turf/TLoc = get_turf(src)
+	for(var/turf/T in trange(10, TLoc) - TLoc)
 		if(T.x > world.maxx - 8 || T.x < 8) //putting them at the edge is dumb
 			continue
 		if(T.y > world.maxy - 8 || T.y < 8)

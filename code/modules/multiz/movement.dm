@@ -1,3 +1,43 @@
+#define Z_MOVE_PHASE			1 	//Used by ghosts, AI eye and mobs with incorp move
+#define Z_MOVE_JETPACK_NOGRAV	2	//Fast, safe and minimal fuel use
+#define Z_MOVE_JETPACK_GRAVITY	3	//Flying to resist gravity. Moderately fast, consumes a fair bit of fuel
+#define Z_MOVE_CLIMB_GRAVITY   	4 	//Can be used by any mob, but only under specific circumstances which are usually untrue. If it is doable its quite slow
+#define Z_MOVE_CLIMB_NOGRAV 	5 	//Shimmying up a wall in zero G. Kind of slow but safe
+#define Z_MOVE_CLIMB_MAG		6	//Walking up a wall with magboots in zero G. Fast and safe
+#define Z_MOVE_JUMP_GRAVITY		7	//Attempting to leap up to another floor. Requires superhuman abilities
+#define Z_MOVE_JUMP_NOGRAV		8	//A graceful leap in zero G. Fast but very unreliable, you will slip around.
+
+
+var/list/z_movement_methods = list(
+1 = list()
+
+)
+
+//This proc does all the checks and handling of a specific Zmove method
+//It requires a mob, obviously, and a method - one of the defines listed above
+//If check_only is true, then this proc will only check to see if its possible but not send any actions
+//If feedback is true, the mob will do visible messages describing what they're attempting to do
+/proc/zmove_method(var/mob/M, var/method = 0, var/check_only = FALSE, var/feedback = TRUE)
+	if (!istype(M) || !method)
+		return FALSE
+
+
+	var/turf/start = get_turf(src)
+	var/area/area = get_area(src)
+
+	switch (method)
+		if (Z_MOVE_PHASE)
+			if (istype(M, /mob/observer))
+				return TRUE
+			if (M.incorporeal_move)
+				return TRUE
+		if (Z_MOVE_JETPACK_NOGRAV)
+			if (area.hasgravity())
+				return FALSE
+
+	return FALSE
+
+
 /atom/movable
 	/** Used to check wether or not an atom is being handled by SSfalling. */
 	var/tmp/multiz_falling = 0
@@ -30,7 +70,7 @@
  * @return	TRUE if the mob has been successfully moved a Z-level.
  *			FALSE otherwise.
  */
-/mob/proc/zMove(direction)
+/mob/proc/zMove(direction, var/method = 0)
 	// In the case of an active eyeobj, move that instead.
 	if (eyeobj)
 		return eyeobj.zMove(direction)
@@ -51,12 +91,10 @@
 
 	var/turf/start = get_turf(src)
 	if(!start.CanZPass(src, direction))
-		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
+		to_chat(src, "<span class='warning'>\The [start] under you is in the way.</span>")
 		return FALSE
 
-	if(!destination.CanZPass(src, direction))
-		to_chat(src, "<span class='warning'>You bump against \the [destination].</span>")
-		return FALSE
+
 
 	var/area/area = get_area(src)
 
@@ -64,6 +102,10 @@
 	// to check if this move is possible.
 	if(direction == UP && area.has_gravity() && !CanAvoidGravity())
 		to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
+		return FALSE
+
+	if(!destination.CanZPass(src, direction))
+		to_chat(src, "<span class='warning'>You bump against \the [destination] above your head.</span>")
 		return FALSE
 
 	// Check for blocking atoms at the destination.
@@ -84,7 +126,7 @@
 
 	return ..()
 
-/mob/eye/zMove(direction)
+/mob/observer/eye/zMove(direction)
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	if(destination)
 		setLoc(destination)
@@ -126,7 +168,7 @@ abstra
 	if(Allow_Spacemove())
 		return TRUE
 
-	for(var/turf/simulated/T in RANGE_TURFS(1,src))
+	for(var/turf/simulated/T in trange(1,src))
 		if(T.density)
 			if(Check_Shoegrip(FALSE))
 				return TRUE
@@ -163,21 +205,16 @@ abstra
 	if(direction == DOWN)
 		stack_turf = destination
 
-	if(species && !species.natural_climbing)
-		for(var/obj/O in stack_turf)
-			if(O.w_class >= 4.0 || O.anchored) //if an object is anchored it's stable footing
-				climb_chance = min(100, climb_chance + O.w_class) //large items increase your reach
-				speed_bonus = min(15, speed_bonus + 1)
-			else
-				climb_chance = max(0, climb_chance - O.w_class) //small items destabilize your footing
-				speed_bonus = max(0, speed_bonus - 1)
-		if(climb_bonus)
-			climb_chance = min(100, climb_chance + climb_bonus)
-	else
-		climb_chance = 100
+	for(var/obj/O in stack_turf)
+		if(O.w_class >= 4.0 || O.anchored) //if an object is anchored it's stable footing
+			climb_chance = min(100, climb_chance + O.w_class) //large items increase your reach
+			speed_bonus = min(15, speed_bonus + 1)
+		else
+			climb_chance = max(0, climb_chance - O.w_class) //small items destabilize your footing
+			speed_bonus = max(0, speed_bonus - 1)
+	if(climb_bonus)
+		climb_chance = min(100, climb_chance + climb_bonus)
 
-	if(species && species.climb_coeff)
-		climb_speed = round(max(1, (species.climb_coeff * climb_speed) - speed_bonus), 1)
 
 	if(prob(climb_chance))
 		will_succeed = TRUE
@@ -214,7 +251,7 @@ abstra
 	if(Allow_Spacemove()) //Checks for active jetpack
 		return TRUE
 
-	for(var/turf/simulated/T in RANGE_TURFS(1,src)) //Robots get "magboots"
+	for(var/turf/simulated/T in trange(1,src)) //Robots get "magboots"
 		if(T.density)
 			return TRUE
 
@@ -275,21 +312,9 @@ abstra
 	if(anchored)
 		return FALSE
 
-	// Lattices, ladders, and stairs stop things from falling.
-	if(locate(/obj/structure/lattice, dest) || locate(/obj/structure/stairs, dest))
-		return FALSE
-
-	if(ismob(src) && locate(/obj/structure/ladder, dest)) //hmmm how is this locker just floating here?
-		return FALSE
-
 	// The var/climbers API is implemented here.
 	if (LAZYLEN(dest.climbers) && (src in dest.climbers))
 		return FALSE
-
-	// See if something prevents us from falling.
-	for (var/atom/A in below)
-		if(!A.CanPass(src, dest))
-			return FALSE
 
 	// True otherwise.
 	return TRUE
@@ -350,6 +375,23 @@ abstra
 	return ..()
 
 
+// Ladders and stairs pulling movement
+/obj/structure/multiz/proc/try_resolve_mob_pulling(mob/M, obj/structure/multiz/ES)
+	if(istype(M) && (ES && ES.istop == istop))
+		var/list/moveWithMob = list()
+		if(M.pulling)
+			moveWithMob += M.pulling
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			for(var/obj/item/weapon/grab/G in list(H.r_hand, H.l_hand))
+				moveWithMob += G.affecting
+		if(moveWithMob.len)
+			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)
+			if(!pull_target)
+				pull_target = get_turf(M)
+			for(var/Elem in moveWithMob)
+				var/atom/movable/A = Elem
+				A.forceMove(pull_target)
 
 /*
 
@@ -548,21 +590,5 @@ abstra
 	set category = "Ghost"
 	zMove(DOWN)
 
-// Laders and stairs pulling movement
-/obj/structure/multiz/proc/try_resolve_mob_pulling(mob/M, obj/structure/multiz/ES)
-	if(istype(M) && (ES && ES.istop == istop))
-		var/list/moveWithMob = list()
-		if(M.pulling)
-			moveWithMob += M.pulling
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			for(var/obj/item/weapon/grab/G in list(H.r_hand, H.l_hand))
-				moveWithMob += G.affecting
-		if(moveWithMob.len)
-			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)
-			if(!pull_target)
-				pull_target = get_turf(M)
-			for(var/Elem in moveWithMob)
-				var/atom/movable/A = Elem
-				A.forceMove(pull_target)
+
 */
