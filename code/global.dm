@@ -23,6 +23,7 @@ var/global/list/global_map = null
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
+var/runtime_diary		= null
 var/diary               = null
 var/world_qdel_log		= null
 var/href_logfile        = null
