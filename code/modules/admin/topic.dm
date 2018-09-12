@@ -1441,6 +1441,17 @@
 
 			show_player_panel(M)
 
+	else if(href_list["viewruntime"])
+		if(check_rights(R_DEBUG))
+			var/datum/ErrorViewer/error_viewer = locate(href_list["viewruntime"])
+			if(!istype(error_viewer))
+				to_chat(usr, "<span class='warning'>That runtime viewer no longer exists.</span>")
+				return
+			if(href_list["viewruntime_backto"])
+				error_viewer.showTo(usr, locate(href_list["viewruntime_backto"]), href_list["viewruntime_linear"])
+			else
+				error_viewer.showTo(usr, null, href_list["viewruntime_linear"])
+
 mob/living/proc/can_centcom_reply()
 	return 0
 
