@@ -33,16 +33,6 @@
 	melee_damage_upper = 4
 
 
-/mob/living/superior_animal/roach/New()
-	..()
-	if(!icon_living)
-		icon_living = icon_state
-	if(!icon_dead)
-		icon_dead = "[icon_state]_dead"
-
-	verbs -= /mob/verb/observe
-
-
 /mob/living/superior_animal/roach/Login()
 	if(src && src.client)
 		src.client.screen = null
