@@ -16,7 +16,7 @@
 	for(var/obj/structure/multiz/M in loc)
 		if(M != src)
 			spawn(1)
-				world.log << "##MAP_ERROR: Multiple [initial(name)] at ([x],[y],[z])"
+				log_world("##MAP_ERROR: Multiple [initial(name)] at ([x],[y],[z])")
 				qdel(src)
 			return .
 
