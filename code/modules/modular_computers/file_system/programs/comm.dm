@@ -84,7 +84,7 @@
 			processed_evac_options[++processed_evac_options.len] = option
 	data["evac_options"] = processed_evac_options
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "communication.tmpl", name, 550, 420, state = state)
 		ui.auto_update_layout = 1
@@ -121,11 +121,11 @@
 					crew_announcement.announcer = "Unknown"
 				if(announcment_cooldown)
 					usr << "Please allow at least one minute to pass between announcements"
-					nanomanager.update_uis(src)
+					SSnano.update_uis(src)
 					return
 				var/input = input(usr, "Please write a message to announce to the station crew.", "Priority Announcement") as null|text
 				if(!input || !can_still_topic())
-					nanomanager.update_uis(src)
+					SSnano.update_uis(src)
 					return
 				crew_announcement.Announce(input)
 				announcment_cooldown = 1
@@ -137,11 +137,11 @@
 					if(is_autenthicated(user) && program.computer_emagged && !issilicon(usr) && ntn_comm)
 						if(centcomm_message_cooldown)
 							usr << SPAN_WARNING("Arrays recycling. Please stand by.")
-							nanomanager.update_uis(src)
+							SSnano.update_uis(src)
 							return
 						var/input = sanitize(input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 						if(!input || !can_still_topic())
-							nanomanager.update_uis(src)
+							SSnano.update_uis(src)
 							return
 						usr << SPAN_NOTICE("No response from the remote server. Please, contact your system administrator.")
 						log_say("[key_name(usr)] has made an illegal announcement: [input]")
@@ -150,15 +150,15 @@
 				if(is_autenthicated(user) && !issilicon(usr) && ntn_comm)
 					if(centcomm_message_cooldown)
 						usr << SPAN_WARNING("Arrays recycling. Please stand by.")
-						nanomanager.update_uis(src)
+						SSnano.update_uis(src)
 						return
 					if(!is_relay_online())//Contact Centcom has a check, Syndie doesn't to allow for Traitor funs.
 						usr <<SPAN_WARNING("No Emergency Bluespace Relay detected. Unable to transmit message.")
-						nanomanager.update_uis(src)
+						SSnano.update_uis(src)
 						return
 					var/input = sanitize(input("Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 					if(!input || !can_still_topic())
-						nanomanager.update_uis(src)
+						SSnano.update_uis(src)
 						return
 					usr << SPAN_NOTICE("No response from the remote server. Please, contact your system administrator.")
 					log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
@@ -240,7 +240,7 @@
 				if (confirm == "Yes" && can_still_topic())
 					evacuation_controller.handle_evac_option(selected_evac_option.option_target, user)
 
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 /datum/nano_module/program/comm/proc/post_status(var/command, var/data1, var/data2)
 

@@ -61,8 +61,27 @@
 	target = locate(/obj/structure/multiz/ladder) in targetTurf
 
 /obj/structure/multiz/ladder/up
+	//Ladders which go up use a tall 32x64 sprite, in a seperate dmi
+	icon = 'icons/obj/structures/ladder_tall.dmi'
+	pixel_y = 16
 	icon_state = "ladderup"
 	istop = FALSE
+
+/obj/structure/multiz/ladder/up/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/multiz/ladder/up/LateInitialize()
+	..()
+	//Special initialize behaviour for upward ladders to stop artefacts from mobs going behind them but drawing infront of them)
+
+	//Normally a ladder will hug the back wall of a tile and mobs will go over it
+
+	//If the tile to the north is acessible, change our behaviour to hug the south of a tile and draw over all mobs
+	var/turf/T = get_step(src, NORTH)
+	if (turf_clear(T))
+		pixel_y = -4
+		layer = ABOVE_MOB_LAYER
 
 /obj/structure/multiz/ladder/Destroy()
 	if(target && istop)
@@ -104,18 +123,18 @@
 /obj/structure/multiz/stairs
 	name = "Stairs"
 	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
-	icon_state = "rampup"
+	icon_state = "ramptop"
 	layer = 2.4
 
 /obj/structure/multiz/stairs/enter
 	icon_state = "ramptop"
 
 /obj/structure/multiz/stairs/enter/bottom
-	icon_state = "rampbottom"
 	istop = FALSE
 
 /obj/structure/multiz/stairs/active
 	density = TRUE
+	icon_state = "rampdown"
 
 /obj/structure/multiz/stairs/active/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover)) // if mover is not null, e.g. mob
@@ -160,5 +179,5 @@
 	Bumped(user)
 
 /obj/structure/multiz/stairs/active/bottom
-	icon_state = "rampdark"
+	icon_state = "rampup"
 	istop = FALSE

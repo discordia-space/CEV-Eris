@@ -113,7 +113,7 @@
 
 	data["locations"] = locations
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "helm.tmpl", "[linked.name] Helm Control", 380, 530)
 		ui.set_initial_data(data)
@@ -235,7 +235,7 @@
 	else
 		data["ETAnext"] = "N/A"
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "nav.tmpl", "[linked.name] Navigation Screen", 380, 530)
 		ui.set_initial_data(data)

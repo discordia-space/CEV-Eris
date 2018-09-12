@@ -3,6 +3,7 @@ Title: Biogenerator
 Used In File(s): \code\game\machinery\biogenerator.dm
  -->
 <h2>Biogenerator</h2>
+ <div class='itemLabel'>Useable Biomass: </div> <div class='itemContent'>{{:data.points}}g</div> 
 {{if data.menustat=="menu"}}
     {{if data.beaker!=null}}
         {{:helper.link('Activate Biogenerator', 'arrowreturnthick-1-s', { "action" : "activate" })}}
@@ -13,7 +14,7 @@ Used In File(s): \code\game\machinery\biogenerator.dm
                     <h3>{{:value.name}}</h3>
                 {{else}}
                     <div class='itemLabel'>{{:value.name}}</div> 
-                    <div class='itemContent'>{{:helper.link(value.cost, 'eject', {'action' : 'create', 'item' : 'value.name'})}}
+                    <div class='itemContent'>{{:helper.link(value.cost, 'eject', {'action' : 'create', 'item' : value.name})}}
                     {{if value.allow_multiple}}
                         {{:helper.link('X5', 'eject', {'action' : 'create', 'item' : 'value.name'})}}
                     {{/if}}

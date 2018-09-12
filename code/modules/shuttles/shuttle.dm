@@ -43,23 +43,23 @@
 	if(!istype(current_location))
 		CRASH("Shuttle \"[name]\" could not find its starting location.")
 
-	if(src.name in shuttle_controller.shuttles)
+	if(src.name in SSshuttle.shuttles)
 		CRASH("A shuttle with the name '[name]' is already defined.")
-	shuttle_controller.shuttles[src.name] = src
+	SSshuttle.shuttles[src.name] = src
 	if(flags & SHUTTLE_FLAGS_PROCESS)
-		shuttle_controller.process_shuttles += src
+		SSshuttle.process_shuttles += src
 	if(flags & SHUTTLE_FLAGS_SUPPLY)
-		if(supply_controller.shuttle)
+		if(SSsupply.shuttle)
 			CRASH("A supply shuttle is already defined.")
-		supply_controller.shuttle = src
+		SSsupply.shuttle = src
 
 /datum/shuttle/Destroy()
 	current_location = null
 
-	shuttle_controller.shuttles -= src.name
-	shuttle_controller.process_shuttles -= src
-	if(supply_controller.shuttle == src)
-		supply_controller.shuttle = null
+	SSshuttle.shuttles -= src.name
+	SSshuttle.process_shuttles -= src
+	if(SSsupply.shuttle == src)
+		SSsupply.shuttle = null
 
 	. = ..()
 

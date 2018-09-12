@@ -30,7 +30,7 @@
 	if(download_progress >= loaded_article.size)
 		downloading = 0
 		requires_ntnet = 0 // Turn off NTNet requirement as we already loaded the file into local memory.
-	nanomanager.update_uis(NM)
+	SSnano.update_uis(NM)
 
 /datum/computer_file/program/newsbrowser/kill_program()
 	..()
@@ -76,7 +76,7 @@
 		N.filename = savename
 		HDD.store_file(N)
 	if(.)
-		nanomanager.update_uis(NM)
+		SSnano.update_uis(NM)
 
 
 /datum/nano_module/program/computer_newsbrowser
@@ -111,7 +111,7 @@
 			)))
 		data["all_articles"] = all_articles
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "news_browser.tmpl", "NTNet/ExoNet News Browser", 575, 700, state = state)
 		ui.auto_update_layout = 1

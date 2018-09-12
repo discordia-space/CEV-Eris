@@ -23,7 +23,7 @@
 
 /datum/objective/assasinate/marshal/get_targets_list()
 	var/list/possible_targets = list()
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in SSticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2) && \
  		player_is_ship_antag(possible_target))
 			possible_targets.Add(possible_target)
