@@ -11,7 +11,8 @@
 	var/step_definations = steps
 	steps = new
 	for(var/i in step_definations)
-		steps += new /datum/craft_step(i)
+		if(i)
+			steps += new /datum/craft_step(i)
 
 
 /datum/craft_recipe/proc/is_compelete(step)
@@ -60,12 +61,8 @@
 		user << SPAN_WARNING("You can't find reqed item!")
 		return
 
-	var/A = !user.get_inventory_slot(I) in list(slot_l_hand, slot_r_hand)
-	if(A)
-		world << "FUck A!"
-	else
-		world << "Fuck not A!"
-	if(A && !user.put_in_hands(I))
+	var/in_hands = user.get_inventory_slot(I) in list(slot_l_hand, slot_r_hand)
+	if(!in_hands && !user.put_in_hands(I))
 		user << SPAN_WARNING("You should hold [I] in hands for doing that!")
 		return
 

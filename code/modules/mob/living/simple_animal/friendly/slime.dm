@@ -18,21 +18,13 @@
 		feeder << "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!"
 	return 0
 
-/mob/living/simple_animal/adultslime
-	name = "pet slime"
-	desc = "A lovable, domesticated slime."
-	icon = 'icons/mob/slimes.dmi'
+/mob/living/simple_animal/slime/adult
 	health = 200
 	maxHealth = 200
 	icon_state = "grey adult slime"
 	icon_dead = "grey baby slime dead"
-	response_help  = "pets"
-	response_disarm = "shoos"
-	response_harm   = "stomps on"
-	emote_see = list("jiggles", "bounces in place")
-	var/colour = "grey"
 
-/mob/living/simple_animal/adultslime/New()
+/mob/living/simple_animal/slime/adult/New()
 	..()
 	overlays += "aslime-:33"
 

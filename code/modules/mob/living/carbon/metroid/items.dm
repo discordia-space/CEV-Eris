@@ -171,7 +171,7 @@
 		if(M.mind)
 			user << SPAN_WARNING(" The slime resists!")
 			return ..()
-		var/mob/living/simple_animal/adultslime/pet = new /mob/living/simple_animal/adultslime(M.loc)
+		var/mob/living/simple_animal/slime/adult/pet = new (M.loc)
 		pet.icon_state = "[M.colour] adult slime"
 		pet.icon_living = "[M.colour] adult slime"
 		pet.icon_dead = "[M.colour] baby slime dead"

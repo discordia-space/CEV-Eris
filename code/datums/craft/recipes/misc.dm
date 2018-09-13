@@ -13,6 +13,14 @@
 		list(/obj/item/stack/material/steel, 1)
 	)
 
+/datum/craft_recipe/box
+	name = "box"
+	result = /obj/item/weapon/storage/box
+	steps = list(
+		list(/obj/item/stack/material/cardboard, 1)
+	)
+
+
 /datum/craft_recipe/plastic_bag
 	name = "plastic bag"
 	result = /obj/item/weapon/storage/bag/plasticbag
@@ -47,6 +55,22 @@
 	steps = list(
 		list(/obj/item/stack/material/wood, 1)
 	)
+
+/datum/craft_recipe/canister
+	name = "canister"
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	steps = list(
+		list(/obj/item/stack/material/steel, 10)
+	)
+
+/datum/craft_recipe/cannon_frame
+	name = "cannon frame"
+	result = /obj/item/weapon/cannonframe
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	steps = list(
+		list(/obj/item/stack/material/steel, 10)
+	)
+
 
 
 /datum/craft_recipe/folder
