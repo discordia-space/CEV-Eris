@@ -46,6 +46,7 @@ var/list/mob_hat_cache = list()
 	mob_push_flags = SIMPLE_ANIMAL
 	mob_always_swap = 1
 
+	//If you update this mob size, remember to update the fall damage too
 	mob_size = MOB_MEDIUM // Small mobs can't open doors, it's a huge pain for drones.
 
 	//Used for self-mailing.
@@ -347,3 +348,7 @@ var/list/mob_hat_cache = list()
 		if(D.key && D.client)
 			drones++
 	return drones >= config.max_maint_drones
+
+
+
+

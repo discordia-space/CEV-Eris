@@ -513,8 +513,10 @@ its easier to just keep the beam vertical.
 	return !anchored
 
 //Execution by grand piano!
-/atom/movable/proc/get_fall_damage()
+/atom/movable/proc/get_fall_damage(var/turf/from, var/turf/dest)
 	return 42
+
+/atom/movable/proc/fall_impact(var/turf/from, var/turf/dest)
 
 //If atom stands under open space, it can prevent fall, or not
 /atom/proc/can_prevent_fall()

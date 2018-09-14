@@ -216,6 +216,66 @@ note dizziness decrements automatically in the mob's Life() proc.
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
 
+
+
+
+/atom/proc/SpinAnimation(speed = 10, loops = -1)
+	var/matrix/m120 = matrix(transform)
+	m120.Turn(120)
+	var/matrix/m240 = matrix(transform)
+	m240.Turn(240)
+	var/matrix/m360 = matrix(transform)
+	speed /= 3      //Gives us 3 equal time segments for our three turns.
+	                //Why not one turn? Because byond will see that the start and finish are the same place and do nothing
+	                //Why not two turns? Because byond will do a flip instead of a turn
+	animate(src, transform = m120, time = speed, loops)
+	animate(transform = m240, time = speed)
+	animate(transform = m360, time = speed)
+
+
+
+//Shakes the mob's camera
+//Strength is not recommended to set higher than 4, and even then its a bit wierd
+/proc/shake_camera(mob/M, duration, strength=1, var/taper = 0.25)
+	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
+		return
+
+	M.shakecamera = 1
+	spawn(2)
+		if(!M.client)
+			return
+
+		var/atom/oldeye=M.client.eye
+		var/aiEyeFlag = 0
+		if(istype(oldeye, /mob/observer/eye/aiEye))
+			aiEyeFlag = 1
+
+		var/x
+		for(x=0; x<duration, x++)
+			if(aiEyeFlag)
+				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
+			else
+				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
+			sleep(1)
+
+		//Taper code added by nanako.
+		//Will make the strength falloff after the duration.
+		//This helps to reduce jarring effects of major screenshaking suddenly returning to stability
+		//Recommended taper values are 0.05-0.1
+		if (taper > 0)
+			while (strength > 0)
+				strength -= taper
+				if(aiEyeFlag)
+					M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
+				else
+					M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
+				sleep(1)
+
+		M.client.eye=oldeye
+		M.shakecamera = 0
+
+
+//Deprecated, use SpinAnimation when possible
 /mob/proc/spin(spintime, speed)
 	spawn()
 		var/D = dir

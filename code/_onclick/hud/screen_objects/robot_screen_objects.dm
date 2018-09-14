@@ -176,4 +176,26 @@
 			return TRUE
 		else
 			R << "You haven't selected a module yet."
+
+
+
+/obj/screen/silicon/glasses_overlay
+	icon = null
+	name = "glasses"
+	screen_loc = "1,1"
+	mouse_opacity = 0
+	process_flag = TRUE
+	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
+
+
+/obj/screen/silicon/glasses_overlay/Process()
+	update_icon()
+	return
+
+/obj/screen/silicon/glasses_overlay/update_icon()
+	overlays.Cut()
+	var/mob/living/silicon/robot/R = parentmob
+	for (var/obj/item/borg/sight/S in list(R.module_state_1, R.module_state_2, R.module_state_3))
+		if(S.overlay)
+			overlays |= S.overlay
 //-----------------------ROBOT stuff end---------------------
