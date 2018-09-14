@@ -3,10 +3,6 @@ ADMIN_VERB_ADD(/client/proc/air_report, R_DEBUG, FALSE)
 	set category = "Debug"
 	set name = "Show Air Report"
 
-	if(!master_controller || !SSair)
-		alert(usr,"Master_controller or SSair not found.","Air Report")
-		return
-
 	var/active_groups = SSair.active_zones
 	var/inactive_groups = SSair.zones.len - active_groups
 

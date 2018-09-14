@@ -47,6 +47,10 @@ SUBSYSTEM_DEF(ticker)
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
 
+	//Xenoarcheology things.
+	var/list/artifact_spawning_turfs = list()
+	var/list/digsite_spawning_turfs = list()
+
 /datum/controller/subsystem/ticker/PreInit()
 	login_music = pick(list(
 		'sound/music/tonspender_irritations.ogg',
@@ -57,7 +61,27 @@ SUBSYSTEM_DEF(ticker)
 		'sound/music/paradise_cracked_title03.ogg'))
 
 /datum/controller/subsystem/ticker/Initialize(start_timeofday)
+	world.tick_lag = config.Ticklag
+
+	if(!syndicate_code_phrase)
+		syndicate_code_phrase = generate_code_phrase()
+	if(!syndicate_code_response)
+		syndicate_code_response = generate_code_phrase()
+
+	setup_objects()
+	setup_genetics()
+	SetupXenoarch()
+
 	return ..()
+
+/datum/controller/subsystem/ticker/proc/setup_objects()
+	// Do these first since character setup will rely on them
+	if(config.use_overmap)
+		admin_notice(SPAN_DANGER("Initializing overmap events."), R_DEBUG)
+		overmap_event_handler.create_events(maps_data.overmap_z, maps_data.overmap_size, maps_data.overmap_event_areas)
+
+	populate_lathe_recipes()
+	populate_antag_type_list() // Set up antagonists.
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
@@ -182,10 +206,6 @@ SUBSYSTEM_DEF(ticker)
 			admins_number++
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
-
-/*	master_controller.Process()		//Start master_controller.Process() // handled in scheduler
-	lighting_controller.Process()	//Start processing DynamicAreaLighting updates
-	*/
 
 	if(config.sql_enabled)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE

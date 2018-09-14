@@ -337,15 +337,12 @@ ADMIN_VERB_ADD(/client/proc/kill_air, R_DEBUG, FALSE)
 	set category = "Debug"
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
-	if(air_processing_killed)
-		air_processing_killed = 0
-		usr << "<b>Enabled air processing.</b>"
-	else
-		air_processing_killed = 1
-		usr << "<b>Disabled air processing.</b>"
 
-	log_admin("[key_name(usr)] used 'kill air'.")
-	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
+	SSair.can_fire = !SSair.can_fire
+
+	var/msg = "[SSair.can_fire ? "Enabled" : "Disabled"] SSair processing."
+	log_admin("[key_name(usr)] used 'kill air'. [msg]")
+	message_admins("\blue [key_name_admin(usr)] used 'kill air'. [msg]", 1)
 
 /client/proc/readmin_self()
 	set name = "Re-Admin self"

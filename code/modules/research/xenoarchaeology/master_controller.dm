@@ -1,15 +1,10 @@
-
-/datum/controller/game_controller
-	var/list/artifact_spawning_turfs = list()
-	var/list/digsite_spawning_turfs = list()
-
 #define XENOARCH_SPAWN_CHANCE 0.5
 #define DIGSITESIZE_LOWER 4
 #define DIGSITESIZE_UPPER 12
 #define ARTIFACTSPAWNNUM_LOWER 6
 #define ARTIFACTSPAWNNUM_UPPER 12
 
-datum/controller/game_controller/proc/SetupXenoarch()
+/datum/controller/subsystem/ticker/proc/SetupXenoarch()
 	//create digsites
 	for(var/turf/simulated/mineral/M in block(locate(1,1,1), locate(world.maxx, world.maxy, world.maxz)))
 		if(isnull(M.geologic_data))

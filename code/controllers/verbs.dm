@@ -30,9 +30,6 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 
 	if(!holder)	return
 	switch(controller)
-		if("Master")
-			debug_variables(master_controller)
-
 		if("Air")
 			debug_variables(SSair)
 
