@@ -10,8 +10,6 @@ var/global/last_tick_duration = 0
 var/global/air_processing_killed = 0
 var/global/pipe_processing_killed = 0
 
-var/global/initialization_stage = 0
-
 datum/controller/game_controller
 	var/list/shuttle_list	                    // For debugging and VV
 	var/init_immediately = FALSE
@@ -35,14 +33,11 @@ datum/controller/game_controller/proc/setup()
 	SetupXenoarch()
 
 	report_progress("Initializations complete")
-	initialization_stage |= INITIALIZATION_COMPLETE
 
 datum/controller/game_controller/proc/setup_objects()
 	set background=1
 
 	// Do these first since character setup will rely on them
-
-	initialization_stage |= INITIALIZATION_HAS_BEGUN
 
 	if(config.use_overmap)
 		admin_notice(SPAN_DANGER("Initializing overmap events."), R_DEBUG)

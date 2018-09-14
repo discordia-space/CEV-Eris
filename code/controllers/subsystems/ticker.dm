@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(ticker)
 				if(!SSvote.active_vote)
 					SSvote.autostoryteller()	//Quit calling this over and over and over and over.
 
-			if(pregame_timeleft <= 0 || ((initialization_stage & INITIALIZATION_NOW_AND_COMPLETE) == INITIALIZATION_NOW_AND_COMPLETE))
+			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
 				Master.SetRunLevel(RUNLEVEL_SETUP)
 
