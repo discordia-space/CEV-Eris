@@ -212,12 +212,11 @@ var/list/slot_equipment_priority = list(
 	return slot && I.mob_can_unequip(src, slot)
 
 /mob/proc/get_inventory_slot(obj/item/I)
-	var/slot = 0
-	for(var/s in slot_back to slot_accessory_buffer) //kind of worries me
-		if(get_equipped_item(s) == I)
-			slot = s
-			break
+	var/slot = slot_none
+	if (I.get_holding_mob() == src)
+		slot = I.get_equip_slot()
 	return slot
+
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
 /mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
@@ -242,8 +241,6 @@ var/list/slot_equipment_priority = list(
 //This function is an unsafe proc used to prepare an item for being moved to a slot, or from a mob to a container
 //It should be equipped to a new slot or forcemoved somewhere immediately after this is called
 /mob/proc/prepare_for_slotmove(obj/item/I)
-	if(!canUnEquip(I))
-		return 0
 	src.u_equip(I)
 	if (src.client)
 		src.client.screen -= I

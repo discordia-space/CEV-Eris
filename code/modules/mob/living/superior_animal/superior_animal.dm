@@ -65,6 +65,14 @@
 	var/supernatural = 0
 	var/purge = 0
 
+/mob/living/superior_animal/New()
+	..()
+	if(!icon_living)
+		icon_living = icon_state
+	if(!icon_dead)
+		icon_dead = "[icon_state]_dead"
+
+	verbs -= /mob/verb/observe
 
 /mob/living/superior_animal/proc/visible_emote(message)
 	if(islist(message))

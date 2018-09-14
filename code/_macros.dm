@@ -71,7 +71,7 @@
 
 #define to_chat(target, message)                            target << message
 #define to_world(message)                                   world << message
-#define to_world_log(message)                               world.log << message
+#define to_world_log(message)                               log_world(message)
 
 #define any2ref(x) "\ref[x]"
 

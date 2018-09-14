@@ -53,9 +53,9 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 		if(!(temp.status & ORGAN_BLEEDING) || (temp.robotic >= ORGAN_ROBOT))
 			continue
 		for(var/datum/wound/W in temp.wounds) if(W.bleeding())
-			blood_max += W.damage / 40
+			blood_max += W.damage * WOUND_BLEED_MULTIPLIER
 		if (temp.open)
-			blood_max += 2  //Yer stomach is cut open
+			blood_max += OPEN_ORGAN_BLEED_AMOUNT  //Yer stomach is cut open
 	drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob

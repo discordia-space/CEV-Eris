@@ -744,24 +744,26 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					return
 
 			if(85 to 93)
-				user << SPAN_DANGER("Your [src] broke beyond repair!")
-				new /obj/item/weapon/material/shard/shrapnel(user.loc)
-				qdel(src)
-				return
+				if(ishuman(user))
+					user << SPAN_DANGER("Your [src] broke beyond repair!")
+					new /obj/item/weapon/material/shard/shrapnel(user.loc)
+					qdel(src)
+					return
 
 			if(94 to 100)
-				if(istype(src, /obj/item/weapon/tool))
-					var/obj/item/weapon/tool/T = src
-					if(T.use_fuel_cost)
-						user << SPAN_DANGER("You ignite the fuel of the [src]!")
-						explosion(src.loc,-1,1,2)
-						qdel(src)
-						return
-					if(T.use_power_cost)
-						user << SPAN_DANGER("You overload the cell in the [src]!")
-						explosion(src.loc,-1,1,2)
-						qdel(src)
-						return
+				if(ishuman(user))
+					if(istype(src, /obj/item/weapon/tool))
+						var/obj/item/weapon/tool/T = src
+						if(T.use_fuel_cost)
+							user << SPAN_DANGER("You ignite the fuel of the [src]!")
+							explosion(src.loc,-1,1,2)
+							qdel(src)
+							return
+						if(T.use_power_cost)
+							user << SPAN_DANGER("You overload the cell in the [src]!")
+							explosion(src.loc,-1,1,2)
+							qdel(src)
+							return
 
 
 /obj/item/device

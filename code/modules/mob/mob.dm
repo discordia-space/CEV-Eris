@@ -13,8 +13,13 @@
 	..()
 	return QDEL_HINT_HARDDEL
 
-/mob/get_fall_damage()
-	return 15
+/mob/get_fall_damage(var/turf/from, var/turf/dest)
+	return 0
+
+/mob/fall_impact(var/turf/from, var/turf/dest)
+	return
+
+/mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
 
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT
 //	flash = null
@@ -382,7 +387,7 @@
 	if (!( config.abandon_allowed ))
 		usr << "<span class='notice'>Respawn is disabled.</span>"
 		return
-	if ((stat != DEAD || !( ticker )))
+	if (stat != DEAD)
 		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
 		return
 	else if(!MayRespawn(1, config.respawn_delay))
@@ -684,16 +689,13 @@
 	. = (is_client_active(10 MINUTES))
 
 	if(.)
-		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
+		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
-			if(statpanel("Processes"))
-				if(processScheduler)
-					processScheduler.statProcesses()
 			if(statpanel("MC"))
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
@@ -857,16 +859,19 @@
 	if(status_flags & CANSTUN)
 		facing_dir = null
 		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
+		update_canmove()
 	return
 
 /mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
 	if(status_flags & CANSTUN)
 		stunned = max(amount,0)
+		update_canmove()
 	return
 
 /mob/proc/AdjustStunned(amount)
 	if(status_flags & CANSTUN)
 		stunned = max(stunned + amount,0)
+		update_canmove()
 	return
 
 /mob/proc/Weaken(amount)

@@ -76,7 +76,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 				C.req_one_access = list()
 
 		spawn(5 MINUTES)
-			ticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
+			SSticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
 			universe_has_ended = 1
 		return
 

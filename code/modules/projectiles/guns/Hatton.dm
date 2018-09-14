@@ -1,8 +1,12 @@
+//The hatton is a breaching tool in the form of a melee-range "gun" which uses compressed gas to breach walls, airlocks and similar obstacles.
+//The gas is supplied in expendable tubes, magazines essentially
+//There's also a robot version which uses power instead of gas tubes.
+
 /obj/item/weapon/hatton_magazine
 	name="Excelsior BD \"Hatton\" gas tube"
 	icon_state="Hatton_box1"
 	icon='icons/obj/Hatton.dmi'
-	var/charge=1
+	var/charge=3
 	//m_amt = 15
 
 /obj/item/weapon/hatton_magazine/New()
@@ -30,6 +34,8 @@
 	attack_verb = list("struck", "hit", "bashed")
 	var/obj/item/weapon/hatton_magazine/magazine=new()
 	var/fire_sound = 'sound/weapons/pulse.ogg'
+	var/fire_cooldown = 0
+	var/last_fired = 0
 
 
 
@@ -41,7 +47,7 @@
 	if(magazine)
 		if(magazine.charge)
 			icon_state="Hatton_Hammer_1"
-			overlays += icon(icon, "3/3")
+			overlays += icon(icon, "[magazine.charge]/3")
 		else
 			icon_state="Hatton_Hammer_1_empty"
 			overlays += icon(icon, "1/3")
@@ -88,27 +94,32 @@
 
 /obj/item/weapon/hatton/proc/click_empty(mob/user = null)
 	if (user)
-		user.visible_message("*click click*", "\red <b>*click*</b>")
-		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+		user.visible_message(SPAN_DANGER("*click*"),  SPAN_DANGER("*click*"))
 	else
-		src.visible_message("*click click*")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
+		src.visible_message(SPAN_DANGER("*click*"))
+	playsound(src.loc, 'sound/weapons/empty.ogg', 100, 1)
 
 
-
-
+/obj/item/weapon/hatton/proc/use_charge()
+	if (magazine && magazine.charge > 0)
+		magazine.charge--
+		return TRUE
+	return FALSE
 
 /obj/item/weapon/hatton/proc/Fire(atom/target as mob|obj|turf, mob/living/user as mob|obj, params)
-
-	if (!user.IsAdvancedToolUser())
-		user << "\red You don't have the dexterity to do this!"
+	if (world.time < last_fired + fire_cooldown)
+		user << SPAN_WARNING("[src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds")
+		click_empty()
 		return
 
 	if(isliving(user))
 		var/mob/living/M = user
 		if (HULK in M.mutations)
-			M << "\red Your meaty finger is much too large for the trigger guard!"
+			M << SPAN_WARNING("Your meaty finger is much too large for the trigger guard!")
 			return
+	if (!Adjacent(loc, target))
+		user << SPAN_WARNING("\red You're too far away to breach that!")
+		return
 	/*if(ishuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")
 			user << "\red Your metal fingers don't fit in the trigger guard!"
@@ -116,9 +127,7 @@
 
 	add_fingerprint(user)
 
-	if(!magazine || !magazine.charge)
-		click_empty()
-		return
+
 
 	if(isliving(user))
 		var/mob/living/M = user
@@ -129,23 +138,53 @@
 			del(src)
 			return
 
-	playsound(user, fire_sound, 70, 1)
-	magazine.charge--
-	update_icon()
-	var/turf/target_turf = get_turf(target)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-	s.set_up(4, 1, target_turf)
-	s.start()
-	new /obj/effect/effect/smoke(target_turf)
-	for(var/atom/A in target_turf.contents)
-		A.hatton_act()
-	target_turf.hatton_act()
-	new /obj/effect/effect/smoke(src.loc)
+	if (use_charge())
+		last_fired = world.time
+		playsound(user, fire_sound, 70, 1)
+		update_icon()
+		var/turf/target_turf = get_turf(target)
+
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(4, 1, target_turf)
+		s.start()
+
+		new /obj/effect/effect/smoke(target_turf)
+
+		//The recoil stops you for a few seconds
+		user.Stun(2)
+		shake_camera(user, 3, 1)
+		//and knocks you back a tile
+		var/dir = turn(get_dir(get_turf(src), target_turf), 180)
+		user.Move(get_step(get_turf(src), dir))
+
+		for(var/atom/A in target_turf.contents)
+			A.hatton_act()
+		target_turf.hatton_act()
+		new /obj/effect/effect/smoke(src.loc)
+	else
+		click_empty()
 
 
 
 
 
+//Variants
+//Robot variation draws power from internal cell instead of using magazines
+//Just imagine the robot is using that power to run an internal air compressor to refill the tube.
+//This also explains the cooldown between uses
+/obj/item/weapon/hatton/robot
+	var/power_cost = 200 KILOWATTS //This uses about 7.5% of the charge on a rescue robot
+	fire_cooldown = 150 //fifteen second cooldown between uses
+	desc = "More instrument than a weapon, this breaching device was designed for emergency situations. It uses a massive surge of power to break down obstacles."
+
+/obj/item/weapon/hatton/robot/use_charge()
+	var/mob/living/silicon/robot/R = loc
+	if (!istype(R))
+		return FALSE
+
+	if (R.cell_use_power(power_cost))
+		return TRUE
+	return FALSE
 
 
 
@@ -175,35 +214,17 @@
 
 
 
-//sturcutres
+//strucutres
 
-/obj/structure/hatton_act()
-	ex_act(2)
 
 /*/obj/structure/mineral_door/hatton_act()
 	Dismantle()*/
 
-/obj/structure/girder/hatton_act()
-	new /obj/item/stack/material/steel(src.loc)
-	qdel(src)
-
-/obj/structure/grille/hatton_act()
-	new /obj/item/stack/rods(loc)
-	qdel(src)
-
-
-/obj/structure/table/hatton_act()// ÑÄÅËÀÒÜ ÏÐÎÂÅÐÊÓ ÈÇ ÊÀÊÎÃÎ ÌÀÒÅÐÈÀËÀ ÑÄÅËÀÍ ÑÒÎË ???
-	new /obj/item/stack/material/steel(src.loc)
-	qdel(src)
-
-
-/obj/structure/barricade/hatton_act()
-	visible_message("\red <B>The [src] is blown apart!</B>")
-	qdel(src)
-
+/obj/structure/hatton_act()
+	ex_act(1)
 
 /obj/machinery/deployable/barrier/hatton_act()
-	visible_message("\red <B>The [src] is blown apart!</B>")
+	visible_message(SPAN_DANGER("The [src] is blown apart!"))
 	qdel(src)
 
 
@@ -215,6 +236,7 @@
 	ex_act(2)
 
 /obj/machinery/computer/hatton_act()
+	..()
 	set_broken()
 	return
 

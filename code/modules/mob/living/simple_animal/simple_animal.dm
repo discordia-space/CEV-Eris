@@ -244,6 +244,8 @@
 	return
 
 /mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
+	if(istype(O, /obj/item/weapon/gripper))
+		return ..(O, user)
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O
@@ -433,3 +435,7 @@
 //This is called when an animal 'speaks'. It does nothing here, but descendants should override it to add audio
 /mob/living/simple_animal/proc/speak_audio()
 	return
+
+//Animals are generally good at falling, small ones are immune
+/mob/living/simple_animal/get_fall_damage()
+	return mob_size - 1

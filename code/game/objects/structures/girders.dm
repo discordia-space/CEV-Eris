@@ -19,7 +19,7 @@
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
 	if(!damage || !wallbreaker)
 		return 0
-	attack_animation(user)
+	user.do_attack_animation(src)
 	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
 	spawn(1) dismantle()
 	return 1
@@ -222,10 +222,18 @@
 		if(2.0)
 			if (prob(30))
 				dismantle()
-			return
+				return
+			else
+				health -= rand(60,180)
+
 		if(3.0)
 			if (prob(5))
 				dismantle()
-			return
+				return
+			else
+				health -= rand(40,80)
 		else
+
+	if(health <= 0)
+		dismantle()
 	return

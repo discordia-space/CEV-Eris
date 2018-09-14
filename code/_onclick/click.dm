@@ -131,7 +131,7 @@
 			setMoveCooldown(10) //getting something out of a backpack
 
 		if(W)
-			var/resolved = W.resolve_attackby(A, src)
+			var/resolved = W.resolve_attackby(A, src, params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
@@ -193,11 +193,6 @@
 	return
 
 /mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
-
-	if(!ticker)
-		src << "You cannot attack people before the game has started."
-		return 0
-
 	if(stat)
 		return 0
 
