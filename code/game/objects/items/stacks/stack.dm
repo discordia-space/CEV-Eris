@@ -127,7 +127,7 @@
 
 	if (recipe.time)
 		user << SPAN_NOTICE("Building [recipe.title] ...")
-		if (!do_after(user, recipe.time))
+		if (!do_after(user, recipe.time, user))
 			return
 
 	if (use(required))

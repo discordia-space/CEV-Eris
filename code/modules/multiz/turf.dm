@@ -41,6 +41,7 @@ see multiz/movement.dm for some info.
 	var/turf/below
 	var/list/underlay_references
 	var/global/overlay_map = list()
+	is_hole = TRUE
 
 /turf/simulated/open/LateInitialize()
 	. = ..()

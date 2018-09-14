@@ -92,10 +92,7 @@
 	if(!proximity) return
 	..()
 	if(A && wielded)
-		if(istype(A,/obj/structure/window))
-			var/obj/structure/window/W = A
-			W.shatter()
-		else if(istype(A,/obj/structure/grille))
+		if(istype(A,/obj/structure/grille))
 			qdel(A)
 		else if(istype(A,/obj/effect/plant))
 			var/obj/effect/plant/P = A

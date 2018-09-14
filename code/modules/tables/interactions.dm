@@ -59,19 +59,24 @@
 
 //Drag and drop onto tables
 //This is mainly so that janiborg can put things on tables
-/obj/structure/table/MouseDrop_T(var/obj/item/O, mob/user, src_location, over_location, src_control, over_control, params)
-	if(istype(O.loc, /mob))
-		user.unEquip(O, loc)
-		set_pixel_click_offset(O, params)
+/obj/structure/table/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
+	if(istype(A.loc, /mob))
+		user.unEquip(A, loc)
+		set_pixel_click_offset(A, params)
 		return
 
-	if (istype(O) && istype(O.loc, /turf) && (O.Adjacent(src) || user.Adjacent(src)))
+	if (istype(A, /obj/item) && istype(A.loc, /turf) && (A.Adjacent(src) || user.Adjacent(src)))
+		var/obj/item/O = A
 		//Mice can push around pens and paper, but not heavy tools
 		if (O.w_class <= user.can_pull_size)
 			O.forceMove(loc)
 			set_pixel_click_offset(O, params, animate=TRUE)
+			return
 		else
 			user << SPAN_WARNING("[O] is too heavy for you to move!")
+			return
+
+	return ..()
 
 
 /obj/structure/table/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
