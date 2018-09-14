@@ -13,7 +13,7 @@
 	use_power = 0
 
 	var/id = 0
-	var/sun_angle = 0		// sun angle as set by sun datum
+	var/sun_angle = 0		// sun angle as set by SSsun
 	var/obj/machinery/power/solar_control/control = null
 
 /obj/machinery/power/tracker/New(var/turf/loc, var/obj/item/solar_assembly/S)
