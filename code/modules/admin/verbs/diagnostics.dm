@@ -126,9 +126,6 @@ ADMIN_VERB_ADD(/client/proc/jump_to_dead_group, R_DEBUG, FALSE)
 		src << "Only administrators may use this command."
 		return
 
-	if(!SSair)
-		usr << "Cannot find air_system"
-		return
 	var/datum/air_group/dead_groups = list()
 	for(var/datum/air_group/group in SSair.air_groups)
 		if (!group.group_processing)
@@ -147,10 +144,6 @@ ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG, FALSE)
 	set category = "Debug"
 	if(!holder)
 		src << "Only administrators may use this command."
-		return
-
-	if(!SSair)
-		usr << "Cannot find air_system"
 		return
 
 	var/turf/T = get_turf(usr)
