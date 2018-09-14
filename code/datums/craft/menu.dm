@@ -1,16 +1,18 @@
+/mob/living
+	var/datum/nano_module/craft/CM
+
 /mob/living/verb/craft_menu()
-	var/datum/nano_module/craft/CM = new(src)
+	set name = "Craft Menu"
+	set category = "IC"
+
+	if(!CM)
+		CM = new(src)
 	CM.ui_interact(src)
 
 
 /datum/nano_module/craft
 	name = "Craft menu"
 	available_to_ai = FALSE
-	var/mob/living/carbon/human/owner = null
-
-/datum/nano_module/craft/New(mob/living/L)
-	..()
-	owner = L
 
 /datum/nano_module/craft/proc/get_category(mob/mob)
 	var/ckey = mob.ckey
@@ -32,12 +34,12 @@
 
 
 /datum/nano_module/craft/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
-	if(!owner || usr != owner)
+	if(usr.incapacitated())
 		return
 
 	var/list/data = list()
 	var/curr_category = get_category(usr)
-	data["is_admin"] = check_rights()
+	data["is_admin"] = check_rights(show_msg = FALSE)
 	data["categories"] = SScraft.cat_names
 	data["cur_category"] = curr_category
 	var/datum/craft_recipe/CR = get_item(usr)
@@ -67,6 +69,9 @@
 /datum/nano_module/craft/Topic(href, href_list)
 	if(..())
 		return TRUE
+
+	if(usr.incapacitated())
+		return
 
 	if(href_list["build"])
 		var/datum/craft_recipe/CR = locate(href_list["build"])

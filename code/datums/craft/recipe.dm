@@ -11,8 +11,7 @@
 	var/step_definations = steps
 	steps = new
 	for(var/i in step_definations)
-		if(i)
-			steps += new /datum/craft_step(i)
+		steps += new /datum/craft_step(i)
 
 
 /datum/craft_recipe/proc/is_compelete(step)
@@ -23,7 +22,7 @@
 	var/atom/movable/M = new result(get_turf(C))
 	var/slot = user.get_inventory_slot(C)
 	qdel(C)
-	if(! (flags & CRAFT_ON_FLOOR) && slot in list(slot_r_hand, slot_l_hand))
+	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
 		user.put_in_hands(M)
 
 
@@ -41,7 +40,7 @@
 /datum/craft_recipe/proc/can_build(obj/item/I, mob/living/user)
 	if(flags & (CRAFT_ONE_PER_TURF|CRAFT_ON_FLOOR))
 		if(locate(result) in get_turf(I))
-			user << user << SPAN_WARNING("You can't create more [name] here!")
+			user << SPAN_WARNING("You can't create more [name] here!")
 			return FALSE
 	return TRUE
 
@@ -58,7 +57,7 @@
 	var/obj/item/I = CS.find_item(user)
 
 	if(!I)
-		user << SPAN_WARNING("You can't find reqed item!")
+		user << SPAN_WARNING("You can't find required item!")
 		return
 
 	var/in_hands = user.get_inventory_slot(I) in list(slot_l_hand, slot_r_hand)
