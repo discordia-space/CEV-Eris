@@ -141,14 +141,14 @@ SUBSYSTEM_DEF(ticker)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return FALSE
 
-	job_master.ResetOccupations()
-	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
+	SSjob.ResetOccupations()
+	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		storyteller = null
 		story_vote_ended = FALSE
-		job_master.ResetOccupations()
+		SSjob.ResetOccupations()
 		return FALSE
 
 	src.storyteller.announce()
@@ -308,7 +308,7 @@ SUBSYSTEM_DEF(ticker)
 			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
-				job_master.EquipRank(player, player.mind.assigned_role, 0)
+				SSjob.EquipRank(player, player.mind.assigned_role, 0)
 				equip_custom_items(player)
 	if(captainless)
 		for(var/mob/M in player_list)

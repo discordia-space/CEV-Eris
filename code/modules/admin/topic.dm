@@ -315,9 +315,6 @@
 		if(!M.ckey)	//sanity
 			usr << "This mob has no ckey"
 			return
-		if(!job_master)
-			usr << "Job Master has not been setup!"
-			return
 
 		var/dat = ""
 		var/header = {"
@@ -381,48 +378,44 @@
 				alert("You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
-		if(!job_master)
-			usr << "Job Master has not been setup!"
-			return
-
 		//get jobs for department if specified, otherwise just returnt he one job in a list.
 		var/list/joblist = list()
 		switch(href_list["jobban3"])
 			if("commanddept")
 				for(var/jobPos in command_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("securitydept")
 				for(var/jobPos in security_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("engineeringdept")
 				for(var/jobPos in engineering_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("medicaldept")
 				for(var/jobPos in medical_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("sciencedept")
 				for(var/jobPos in science_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("civiliandept")
 				for(var/jobPos in civilian_positions)
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("nonhumandept")
 				joblist += "pAI"
 				for(var/jobPos in nonhuman_positions)
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			else

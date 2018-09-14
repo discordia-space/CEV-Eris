@@ -430,13 +430,13 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 			if (isnull(selected_job))
 				return
 
-			var/datum/job/job = job_master.GetJob(selected_job)
+			var/datum/job/job = SSjob.GetJob(selected_job)
 			if(!job)
 				return
 
 			job.equip(M)
 			job.apply_fingerprints(M)
-			job_master.spawnId(M, selected_job)
+			SSjob.spawnId(M, selected_job)
 
 		if ("standard space gear")
 			M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), slot_shoes)
