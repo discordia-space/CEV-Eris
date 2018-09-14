@@ -100,3 +100,30 @@
 		M.forceMove(new_turf)
 
 	return new_turf
+
+
+/proc/is_turf_near_space(var/turf/T)
+	var/area/A = get_area(T)
+	if (A.flags & AREA_FLAG_EXTERNAL)
+		return TRUE
+
+	for (var/a in trange(1, T))
+		var/turf/U = a //This is a speed hack.
+		//Manual casting when the type is known skips an istype check in the loop
+		if (A.flags & AREA_FLAG_EXTERNAL)
+			return TRUE
+
+		else if (istype(U, /turf/space) || istype(U, /turf/simulated/floor/hull))
+			return TRUE
+
+	return FALSE
+
+
+/proc/cardinal_turfs(var/atom/A)
+	var/list/turf/turfs = list()
+	var/turf/origin = get_turf(A)
+	for (var/a in cardinal)
+		var/turf/T = get_step(origin, a)
+		if (T)
+			turfs.Add(T)
+	return turfs

@@ -10,6 +10,7 @@
 	density = 1
 	anchored = 1.0
 	var/win_path = /obj/structure/window/basic/full
+	var/wall_path = /obj/structure/low_wall
 	var/activated = FALSE
 
 // stops ZAS expanding zones past us, the windows will block the zone anyway
@@ -37,10 +38,11 @@
 
 /obj/effect/window_lwall_spawn/proc/handle_window_spawn(var/obj/structure/window/W)
 	PoolOrNew(win_path, src.loc)
+
 	return
 
 /obj/effect/window_lwall_spawn/proc/activate()
-	PoolOrNew(/obj/structure/grille, src.loc)
+	PoolOrNew(wall_path, src.loc)
 	handle_window_spawn(src)
 	activated = TRUE
 	return
@@ -55,11 +57,18 @@
 	icon_state = "sp-smart_full-window"
 
 /obj/effect/window_lwall_spawn/smartspawn/handle_window_spawn(var/obj/structure/window/W)
-	if ((locate(/turf/space) in range(1, src)) || (locate(/turf/simulated/floor/hull) in range(1, src)))
+	if (is_turf_near_space(loc))
 		PoolOrNew(/obj/structure/window/reinforced/full, src.loc)
 	else
+		for (var/a in cardinal_turfs(loc))
+			var/turf/T = a
+			if (is_turf_near_space(T))
+				if ((locate(/obj/structure/window) in T) || (locate(/obj/effect/window_lwall_spawn) in T))
+					PoolOrNew(/obj/structure/window/reinforced/full, src.loc)
+					return
+
 		PoolOrNew(/obj/structure/window/basic/full, src.loc)
-	return
+		return
 
 /obj/effect/window_lwall_spawn/plasma
 	name = "plasma window grille spawner"

@@ -409,21 +409,22 @@ var/list/name_to_material
 	if(!choice || !used_stack || !user || used_stack.loc != user || user.stat || user.loc != T)
 		return 1
 
-	// Get data for building windows here.
-	var/list/possible_directions = cardinal.Copy()
-	var/window_count = 0
-	for (var/obj/structure/window/check_window in user.loc)
-		window_count++
-		possible_directions  -= check_window.dir
-
 	// Get the closest available dir to the user's current facing.
 	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
-	var/failed_to_build
+	if(choice in list("One Direction","Windoor"))
+		// Get data for building windows here.
+		var/list/possible_directions = cardinal.Copy()
+		var/window_count = 0
+		for (var/obj/structure/window/check_window in user.loc)
+			window_count++
+			possible_directions  -= check_window.dir
 
-	if(window_count >= 4)
-		failed_to_build = 1
-	else
-		if(choice in list("One Direction","Windoor"))
+
+		var/failed_to_build
+
+		if(window_count >= 4)
+			failed_to_build = 1
+		else
 			if(possible_directions.len)
 				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
 					if(direction in possible_directions)
@@ -437,9 +438,31 @@ var/list/name_to_material
 					return
 				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
 					failed_to_build = 1
-	if(failed_to_build)
-		user << SPAN_WARNING("There is no room in this location.")
-		return 1
+
+		if(failed_to_build)
+			user << SPAN_WARNING("There is no room in this location.")
+			return 1
+
+	else
+		build_dir = SOUTHWEST
+		//We're attempting to build a full window.
+		//We need to find a suitable low wall to build ontop of
+		var/obj/structure/low_wall/mount = null
+		//We will check the tile infront of the user
+		var/turf/t = get_step(T, user.dir)
+		mount = locate(/obj/structure/low_wall) in t
+
+
+		if (!mount)
+			user << SPAN_WARNING("Full windows must be mounted on a low wall infront of you.")
+			return 1
+
+		if (locate(/obj/structure/window) in t)
+			user << SPAN_WARNING("The target tile must be clear of other windows")
+			return 1
+
+		//building will be successful, lets set the build location
+		T = t
 
 	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]
@@ -474,7 +497,7 @@ var/list/name_to_material
 	weight = 30
 	stack_origin_tech = "materials=2"
 	composite_material = list(MATERIAL_STEEL = 2,MATERIAL_GLASS = 3)
-	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 5)
+	window_options = list("One Direction" = 1, "Full Window" = 6, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
 	wire_product = null
 	rod_product = null

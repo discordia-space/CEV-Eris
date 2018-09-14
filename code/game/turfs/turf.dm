@@ -24,6 +24,8 @@
 
 	var/list/decals
 
+	var/is_hole = FALSE
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)

@@ -9,6 +9,7 @@
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	is_hole = TRUE
 //	heat_capacity = 700000 No.
 
 /turf/space/New()

@@ -78,12 +78,17 @@ What is the naming convention for planes or layers?
 #define GAS_PIPE_VISIBLE_LAYER 2.47
 #define GAS_FILTER_LAYER 2.48
 #define GAS_PUMP_LAYER 2.49
-#define LOW_OBJ_LAYER 2.5
+
+#define HIDE_LAYER 2.54
+#define LOW_OBJ_LAYER 2.55
 
 #define BELOW_OPEN_DOOR_LAYER 2.6
 
+
 #define OPEN_DOOR_LAYER 2.7
+#define LOW_WALL_LAYER 2.71 	//Low walls have to be above fire shutters or they look awful
 #define PROJECTILE_HIT_THRESHHOLD_LAYER 2.75 //projectiles won't hit objects at or below this layer if possible
+
 #define BLASTDOOR_LAYER 2.8 //Hidden below windows and grilles when not closed
 #define TABLE_LAYER 2.8
 #define BELOW_OBJ_LAYER 2.9
@@ -91,8 +96,8 @@ What is the naming convention for planes or layers?
 //#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
 
 #define CLOSED_DOOR_LAYER 3.1
-#define CLOSED_FIREDOOR_LAYER 3.11
 #define ABOVE_OBJ_LAYER 3.2
+#define CLOSED_FIREDOOR_LAYER 3.21
 #define ABOVE_WINDOW_LAYER 3.3
 #define SHUTTER_LAYER 3.35 //Shutters need to be above windows
 
