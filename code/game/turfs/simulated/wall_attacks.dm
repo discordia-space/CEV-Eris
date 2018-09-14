@@ -152,7 +152,7 @@
 					return
 			if(isnull(construction_stage) || !reinf_material)
 				user << SPAN_NOTICE("You begin removing the outer plating...")
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					user << SPAN_NOTICE("You remove the outer plating.")
 					dismantle_wall()
 					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))

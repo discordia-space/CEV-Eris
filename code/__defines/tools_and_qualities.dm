@@ -42,7 +42,7 @@
 #define FAILCHANCE_VERY_HARD			120
 #define FAILCHANCE_IMPOSSIBLY			150
 
-//Sounds for workong with tools
+//Sounds for working with tools
 #define NO_WORKSOUND					-1
 
 #define WORKSOUND_CIRCULAR_SAW			'sound/weapons/circsawhit.ogg'
