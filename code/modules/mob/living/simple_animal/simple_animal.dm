@@ -435,3 +435,7 @@
 //This is called when an animal 'speaks'. It does nothing here, but descendants should override it to add audio
 /mob/living/simple_animal/proc/speak_audio()
 	return
+
+//Animals are generally good at falling, small ones are immune
+/mob/living/simple_animal/get_fall_damage()
+	return mob_size - 1

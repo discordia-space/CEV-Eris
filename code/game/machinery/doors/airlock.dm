@@ -873,7 +873,7 @@ There are 9 wires.
 
 		if(QUALITY_PRYING)
 			if(!repairing)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
 					if(src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN)))) )
 						user << SPAN_NOTICE("You removed the airlock electronics!")
 

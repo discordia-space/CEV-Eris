@@ -110,7 +110,7 @@
 	//Добавляем технические элементы(damage,flash,pain... оверлеи)
 	for (var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
-		var/obj/screen/HUD = new HUDtype(techobject, HUDdatum.HUDoverlays[techobject]["loc"], H)
+		var/obj/screen/HUD = new HUDtype(_name = techobject, _parentmob = H)// _screen_loc = HUDdatum.HUDoverlays[techobject]["loc"]
 		if(HUDdatum.HUDoverlays[techobject]["icon"])//Анализ на овверайд icon
 			HUD.icon = HUDdatum.HUDoverlays[techobject]["icon"]
 		else

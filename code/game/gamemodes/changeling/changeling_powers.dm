@@ -93,7 +93,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	var/datum/changeling/changeling = src.mind.changeling
 	if(!changeling)
-		world.log << "[src] has the changeling_transform() verb but is not a changeling."
+		log_world("[src] has the changeling_transform() verb but is not a changeling.")
 		return
 
 	if(src.stat > max_stat)
@@ -126,8 +126,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	add_language(LANGUAGE_CHANGELING)
 
 	return
-
-
+/
 //Absorbs the victim's DNA making them uncloneable. Requires a strong grip on the victim.
 //Doesn't cost anything as it's the most basic ability.
 /mob/proc/changeling_absorb_dna()
@@ -421,7 +420,6 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	O.make_changeling()
 	O.changeling_update_languages(changeling.absorbed_languages)
 
-
 	qdel(C)
 	return 1
 
@@ -484,7 +482,6 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	changeling.sting_range = 2
 	src.verbs -= /mob/proc/changeling_boost_range
 	spawn(5)	src.verbs += /mob/proc/changeling_boost_range
-
 	return 1
 
 
@@ -508,7 +505,6 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	src.verbs -= /mob/proc/changeling_unstun
 	spawn(5)	src.verbs += /mob/proc/changeling_unstun
-
 	return 1
 
 
@@ -544,7 +540,6 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	src.verbs -= /mob/proc/changeling_digitalcamo
 	spawn(5)	src.verbs += /mob/proc/changeling_digitalcamo
-
 	return 1
 
 
@@ -570,7 +565,6 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	src.verbs -= /mob/proc/changeling_rapidregen
 	spawn(5)	src.verbs += /mob/proc/changeling_rapidregen
-
 	return 1
 
 // HIVE MIND UPLOAD/DOWNLOAD DNA
@@ -604,7 +598,6 @@ var/list/datum/dna/hivemind_bank = list()
 	changeling.chem_charges -= 10
 	hivemind_bank += chosen_dna
 	src << SPAN_NOTICE("We channel the DNA of [S] to the air.")
-
 	return 1
 
 /mob/proc/changeling_hivedownload()
@@ -633,7 +626,6 @@ var/list/datum/dna/hivemind_bank = list()
 	changeling.chem_charges -= 20
 	changeling.absorbed_dna += chosen_dna
 	src << SPAN_NOTICE("We absorb the DNA of [S] from the air.")
-
 	return 1
 
 // Fake Voice
@@ -662,7 +654,6 @@ var/list/datum/dna/hivemind_bank = list()
 	src << SPAN_NOTICE("Use this power again to return to our original voice and reproduce chemicals again.")
 
 
-
 	spawn(0)
 		while(src && src.mind && src.mind.changeling && src.mind.changeling.mimicing)
 			src.mind.changeling.chem_charges = max(src.mind.changeling.chem_charges - 1, 0)
@@ -686,101 +677,141 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 //Handles the general sting code to reduce on copypasta (seeming as somebody decided to make SO MANY dumb abilities)
-/mob/proc/changeling_sting(var/required_chems=0, var/verb_path)
-	var/datum/changeling/changeling = changeling_power(required_chems)
-	if(!changeling)								return
+/mob/proc/changeling_sting(var/required_chems=0,var/mob/living/carbon/T)//(var/required_chems=0, var/verb_path,var/mob/living/carbon/T)
+	if (!ishuman(T) || (T==src))
+		T.Click()
+		return
 
-	var/list/victims = list()
-	for(var/mob/living/carbon/C in oview(changeling.sting_range))
-		victims += C
-	var/mob/living/carbon/T = input(src, "Who will we sting?") as null|anything in victims
+	var/datum/changeling/changeling = changeling_power(required_chems)
+	if(!changeling)
+		return
+
+
 
 	if(!T) return
-	if(!(T in view(changeling.sting_range))) return
+	if(!(T in view(changeling.sting_range)))
+		src << "<span class='warning'>Too Far</span>"
+		return
 	if(!sting_can_reach(T, changeling.sting_range)) return
 	if(!changeling_power(required_chems)) return
 
 	changeling.chem_charges -= required_chems
 	changeling.sting_range = 1
-	src.verbs -= verb_path
-	spawn(10)	src.verbs += verb_path
+//	src.verbs -= verb_path
+//	spawn(10)	src.verbs += verb_path
 
 	src << SPAN_NOTICE("We stealthily sting [T].")
-	if(!T.mind || !T.mind.changeling)	return T	//T will be affected by the sting
 	T << SPAN_WARNING("You feel a tiny prick.")
+	log_attack("[src] use [src.client.CH.handler_name] on [T]")
+	if(!T.mind || !T.mind.changeling)
+		return T //T will be affected by the sting
 	return
 
-
-/mob/proc/changeling_lsdsting()
+/mob/proc/changeling_prepare_lsdsting()
 	set category = "Changeling"
 	set name = "Hallucination Sting (15)"
 	set desc = "Causes terror in the target."
 
-	var/mob/living/carbon/T = changeling_sting(15,/mob/proc/changeling_lsdsting)
+	check_CH("Hallucination Sting",/datum/click_handler/changeling/changeling_lsdsting)
+
+	return
+
+/mob/proc/changeling_lsdsting(atom/A)
+	var/mob/living/carbon/T = changeling_sting(15, A)
 	if(!T)	return 0
 	spawn(rand(300,600))
 		if(T)	T.hallucination += 400
-
 	return 1
 
-/mob/proc/changeling_silence_sting()
+
+
+/mob/proc/changeling_prepare_silence_sting()
 	set category = "Changeling"
 	set name = "Silence sting (10)"
-	set desc="Sting target"
+	set desc = "Sting target"
 
-	var/mob/living/carbon/T = changeling_sting(10,/mob/proc/changeling_silence_sting)
+	check_CH("Silence Sting",/datum/click_handler/changeling/changeling_silence_sting)
+
+	return
+
+/mob/proc/changeling_silence_sting(atom/A)
+	var/mob/living/carbon/T = changeling_sting(10,A)
 	if(!T)	return 0
 	T.silent += 30
-
 	return 1
 
-/mob/proc/changeling_blind_sting()
+
+
+/mob/proc/changeling_prepare_blind_sting()
 	set category = "Changeling"
 	set name = "Blind sting (20)"
 	set desc="Sting target"
 
-	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
-	if(!T)	return 0
-	T << SPAN_DANGER("Your eyes burn horrificly!")
-	T.disabilities |= NEARSIGHTED
-	spawn(300)	T.disabilities &= ~NEARSIGHTED
-	T.eye_blind = 10
-	T.eye_blurry = 20
+	check_CH("Blind Sting",/datum/click_handler/changeling/changeling_blind_sting)
 
+	return
+
+/mob/proc/changeling_blind_sting(atom/A)
+	var/mob/living/carbon/T = changeling_sting(20,A)
+	if(!T)	return 0
+	T << "<span class='danger'>Your eyes burn horrificly!</span>"
+	T.disabilities |= NEARSIGHTED
+	spawn(600)	T.disabilities &= ~NEARSIGHTED
+	T.eye_blind = 20
+	T.eye_blurry = 40
 	return 1
 
-/mob/proc/changeling_deaf_sting()
-	set category = "Changeling"
-	set name = "Deaf sting (5)"
-	set desc="Sting target:"
 
-	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_deaf_sting)
+
+/mob/proc/changeling_prepare_deaf_sting()
+	set category = "Changeling"
+	set name = "Deaf Sting (5)"
+	set desc="Sting target"
+
+	check_CH("Deaf Sting",/datum/click_handler/changeling/changeling_deaf_sting)
+	return
+
+/mob/proc/changeling_deaf_sting(atom/A)
+	var/mob/living/carbon/T = changeling_sting(5,A)
 	if(!T)	return 0
 	T << SPAN_DANGER("Your ears pop and begin ringing loudly!")
 	T.sdisabilities |= DEAF
 	spawn(300)	T.sdisabilities &= ~DEAF
-
 	return 1
 
-/mob/proc/changeling_paralysis_sting()
+
+
+/mob/proc/changeling_prepare_paralysis_sting()
 	set category = "Changeling"
-	set name = "Paralysis sting (30)"
+	set name = "Paralysis Sting (30)"
 	set desc="Sting target"
 
-	var/mob/living/carbon/T = changeling_sting(30,/mob/proc/changeling_paralysis_sting)
+	check_CH("Paralysis Sting",/datum/click_handler/changeling/changeling_paralysis_sting)
+	return
+
+
+/mob/proc/changeling_paralysis_sting(atom/A)
+	var/mob/living/carbon/T = changeling_sting(30,A)
 	if(!T)	return 0
 	T << SPAN_DANGER("Your muscles begin to painfully tighten.")
 	T.Weaken(20)
-
 	return 1
 
-/mob/proc/changeling_transformation_sting()
-	set category = "Changeling"
-	set name = "Transformation sting (40)"
-	set desc="Sting target"
 
+
+
+
+/*/mob/proc/changeling_transformation_sting()
 	var/datum/changeling/changeling = changeling_power(40)
 	if(!changeling)	return 0
+
+	var/obj/item/weapon/grab/G = src.get_active_hand()
+	if(!istype(G))
+		src << "<span class='warning'>We must be grabbing a creature in our active hand to transform them.</span>"
+		return 0
+	if(G.state < GRAB_NECK)
+		src << "<span class='warning'>We must have a tighter grip to transform this creature.</span>"
+		return 0
 
 
 
@@ -795,8 +826,66 @@ var/list/datum/dna/hivemind_bank = list()
 	if(!chosen_dna)
 		return
 
-	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_transformation_sting)
+	changeling.chem_charges -= 40
+	src.verbs -= /mob/proc/changeling_transformation_sting
+	spawn(10)	src.verbs += /mob/proc/changeling_transformation_sting
+
+	var/mob/living/carbon/T = G.affecting
+	if((HUSK in T.mutations) || (!ishuman(T) && !issmall(T)))
+		src << SPAN_WARNING("Our sting appears ineffective against its DNA.")
+		return 0
+	src << "<span class='notice'>We stealthily sting [T] in the neck.</span>"
+	T << "<span class='warning'>You feel a tiny prick.</span>"
+	if(!T.mind || !T.mind.changeling)
+		T.visible_message("<span class='warning'>[T] transforms!</span>")
+		T.dna = chosen_dna.Clone()
+		T.real_name = chosen_dna.real_name
+		T.UpdateAppearance()
+		domutcheck(T, null)
+		return 1
+	return*/
+
+
+/mob/proc/changeling_prepare_transformation_sting()
+	set category = "Changeling"
+	set name = "Transformation Sting (40)"
+	set desc="Sting target"
+
+	var/list/names = list()
+
+	if(istype(src.client.CH, /datum/click_handler/changeling/changeling_transformation_sting))
+		kill_CH()
+		return
+
+	for(var/datum/dna/DNA in mind.changeling.absorbed_dna)
+		names += "[DNA.real_name]"
+
+	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
+	if(!S)
+		return
+
+	var/datum/dna/chosen_dna = mind.changeling.GetDNA(S)
+	if(!chosen_dna)
+		return
+	check_CH("Transformation Sting",/datum/click_handler/changeling/changeling_transformation_sting, chosen_dna)
+
+	return
+
+/mob/proc/changeling_transformation_sting(atom/A, datum/dna/chosen_dna)
+	var/mob/living/carbon/T = changeling_sting(40,A)
 	if(!T)	return 0
+/*
+	var/list/names = list()
+	for(var/datum/dna/DNA in changeling.absorbed_dna)
+		names += "[DNA.real_name]"
+
+	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
+	if(!S)	return
+
+	var/datum/dna/chosen_dna = changeling.GetDNA(S)
+	if(!chosen_dna)
+		return
+*/
 	if((HUSK in T.mutations) || (!ishuman(T) && !issmall(T)))
 		src << SPAN_WARNING("Our sting appears ineffective against its DNA.")
 		return 0
@@ -808,51 +897,63 @@ var/list/datum/dna/hivemind_bank = list()
 
 	return 1
 
-/mob/proc/changeling_unfat_sting()
+
+/mob/proc/changeling_prepare_unfat_sting()
 	set category = "Changeling"
-	set name = "Unfat sting (5)"
+	set name = "Unfat Sting (5)"
 	set desc = "Sting target"
+	check_CH("Unfat Sting",/datum/click_handler/changeling/changeling_unfat_sting)
+	return
 
-	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_unfat_sting)
+/mob/proc/changeling_unfat_sting(atom/A)
+	var/mob/living/carbon/T = changeling_sting(5,A)
 	if(!T)	return 0
-	T << SPAN_DANGER("you feel a small prick as stomach churns violently and you become to feel skinnier.")
+	T << SPAN_DANGER("You feel a small prick as stomach churns violently and you become to feel skinnier.")
 	T.nutrition -= 100
-
 	return 1
 
-/mob/proc/changeling_DEATHsting()
+
+/mob/proc/changeling_prepare_DEATHsting()
 	set category = "Changeling"
 	set name = "Death Sting (40)"
 	set desc = "Causes spasms onto death."
 
-	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_DEATHsting)
+	check_CH("Death Sting",/datum/click_handler/changeling/changeling_DEATHsting)
+	return
+
+/mob/proc/changeling_DEATHsting(atom/A)
+	var/mob/living/carbon/T = changeling_sting(40,A)
 	if(!T)	return 0
 	T << SPAN_DANGER("You feel a small prick and your chest becomes tight.")
 	T.silent = 10
 	T.Paralyse(10)
 	T.make_jittery(1000)
 	if(T.reagents)	T.reagents.add_reagent("lexorin", 40)
-
 	return 1
 
-/mob/proc/changeling_extract_dna_sting()
+
+/mob/proc/changeling_prepare_extract_dna_sting()
 	set category = "Changeling"
 	set name = "Extract DNA Sting (40)"
 	set desc="Stealthily sting a target to extract their DNA."
 
+	check_CH("Extract DNA Sting",/datum/click_handler/changeling/changeling_extract_dna_sting)
+	return
+
+/mob/proc/changeling_extract_dna_sting(atom/A)
 	var/datum/changeling/changeling = null
 	if(src.mind && src.mind.changeling)
 		changeling = src.mind.changeling
-	if(!changeling)
+	else
 		return 0
+//	if(!changeling)
+//		return 0
 
-	var/mob/living/carbon/human/T = changeling_sting(40, /mob/proc/changeling_extract_dna_sting)
+	var/mob/living/carbon/human/T = changeling_sting(40, A)
 	if(!T)	return 0
 
 	T.dna.real_name = T.real_name
 	changeling.absorbed_dna |= T.dna
 	if(T.species && !(T.species.name in changeling.absorbed_species))
 		changeling.absorbed_species += T.species.name
-
-
 	return 1

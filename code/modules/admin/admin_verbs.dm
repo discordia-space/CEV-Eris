@@ -25,7 +25,7 @@ var/list/admin_verbs = list("default" = list(), "hideable" = list())
 	if(holder)
 		verbs += admin_verbs["default"]
 		for(var/text_right in admin_verbs)
-			if(text2num(text_right)|holder.rights)
+			if(text2num(text_right) & holder.rights)
 				verbs += admin_verbs[text_right]
 
 /client/proc/remove_admin_verbs()

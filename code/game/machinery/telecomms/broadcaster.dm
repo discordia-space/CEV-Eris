@@ -622,7 +622,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	if(do_sleep)
 		sleep(rand(10,25))
 
-	//world.log << "Level: [signal.data["level"]] - Done: [signal.data["done"]]"
+	//log_world("Level: [signal.data["level"]] - Done: [signal.data["done"]]")
 
 	return signal
 

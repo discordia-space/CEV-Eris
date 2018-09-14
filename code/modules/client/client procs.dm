@@ -25,7 +25,7 @@
 
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
-		world.log << "Attempted use of scripts within a topic call, by [src]"
+		log_world("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
 		return
@@ -178,7 +178,7 @@
 	if(dbcon.IsConnected())
 		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")
 		if(!query.Execute())
-			world.log << "Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()]."
+			log_world("Failed to update players table for user with id [src.id]. Error message: [query.ErrorMsg()].")
 	directory -= ckey
 	clients -= src
 	return ..()
@@ -204,9 +204,9 @@
 				src.registration_date = "[year]-[month]-[day]"
 				return src.registration_date
 			else
-				world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+				log_world("Failed retrieving registration date for player [src.ckey] from byond site.")
 	else
-		world.log << "Failed retrieving registration date for player [src.ckey] from byond site."
+		log_world("Failed retrieving registration date for player [src.ckey] from byond site.")
 	return null
 
 
@@ -247,7 +247,7 @@
 			src.country_code = response[3]
 			return list("country" = src.country, "country_code" = src.country_code)
 
-	world.log << "Failed on retrieving location for player [src.ckey] from byond site."
+	log_world("Failed on retrieving location for player [src.ckey] from byond site.")
 	return null
 
 
@@ -257,7 +257,7 @@
 
 	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version], '[src.country_code]')")
 	if(!query_insert.Execute())
-		world.log << "##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()]."
+		log_world("##CRITICAL: Failed to create player record for user [ckey]. Error message: [query_insert.ErrorMsg()].")
 		return
 
 	else
@@ -278,7 +278,7 @@
 	// check if client already registered in db
 	var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
 	if(!query.Execute())
-		world.log << "Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()]."
+		log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
 		// don't know how to properly handle this case so let's just quit
 		return
 	else
@@ -295,7 +295,7 @@
 				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]', country = '[src.country_code]' WHERE id = [src.id]")
 
 				if(!query_update.Execute())
-					world.log << "Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()]."
+					log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
 					return
 		else
 			src.register_in_db()
@@ -351,3 +351,5 @@
 	set category = "Preferences"
 	if(prefs)
 		prefs.ShowChoices(usr)
+
+
