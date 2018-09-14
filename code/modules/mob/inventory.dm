@@ -287,7 +287,7 @@ var/list/slot_equipment_priority = list(
 	'sound/misc/inventory/short_3.ogg'
 	)
 
-	var picked_sound = pick(sounds)
+	var/picked_sound = pick(sounds)
 
 	playsound(src, picked_sound, 100, 1, 1)
 
@@ -298,6 +298,6 @@ var/list/slot_equipment_priority = list(
 	'sound/misc/inventory/long_3.ogg'
 	)
 
-	var picked_sound = pick(sounds)
+	var/picked_sound = pick(sounds)
 
 	playsound(src, picked_sound, 100, 1, 1)
