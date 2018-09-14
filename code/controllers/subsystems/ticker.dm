@@ -47,10 +47,6 @@ SUBSYSTEM_DEF(ticker)
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
 
-	//Xenoarcheology things.
-	var/list/artifact_spawning_turfs = list()
-	var/list/digsite_spawning_turfs = list()
-
 /datum/controller/subsystem/ticker/PreInit()
 	login_music = pick(list(
 		'sound/music/tonspender_irritations.ogg',
@@ -70,7 +66,6 @@ SUBSYSTEM_DEF(ticker)
 
 	setup_objects()
 	setup_genetics()
-	SetupXenoarch()
 
 	return ..()
 
