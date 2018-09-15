@@ -27,6 +27,7 @@
 		..()
 		damtype = BURN
 		force = WEAPON_FORCE_PAINFULL
+		START_PROCESSING(SSobj, src)
 	else
 		user << SPAN_WARNING("[src] has no fuel!")
 
