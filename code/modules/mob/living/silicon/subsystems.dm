@@ -103,3 +103,4 @@
 
 /stat_silicon_subsystem/Click()
 	subsystem.ui_interact(usr, state = ui_state)
+	return TRUE
