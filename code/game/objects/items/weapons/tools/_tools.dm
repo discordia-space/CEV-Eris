@@ -39,19 +39,28 @@
 //Turning it on/off
 /obj/item/weapon/tool/attack_self(mob/user)
 	if(toggleable)
-		switched_on = !switched_on
-		user << SPAN_NOTICE("You switch the [src] [switched_on ? "on" : "off"].")
-		if(switched_on)
-			tool_qualities = switched_on_qualities
-			if(glow_color)
-				set_light(l_range = 1.4, l_power = 1, l_color = glow_color)
+		if (switched_on)
+			turn_off()
 		else
-			tool_qualities = switched_off_qualities
-			if(glow_color)
-				set_light(l_range = 0, l_power = 0, l_color = glow_color)
-	update_icon()
+			turn_on()
+
+
 	..()
 	return
+
+/obj/item/weapon/tool/proc/turn_on(mob/user)
+	switched_on = TRUE
+	tool_qualities = switched_on_qualities
+	if(glow_color)
+		set_light(l_range = 1.4, l_power = 1, l_color = glow_color)
+	update_icon()
+
+/obj/item/weapon/tool/proc/turn_off(mob/user)
+	switched_on = FALSE
+	tool_qualities = switched_off_qualities
+	if(glow_color)
+		set_light(l_range = 0, l_power = 0, l_color = glow_color)
+	update_icon()
 
 //Fuel and cell spawn
 /obj/item/weapon/tool/New()
@@ -219,9 +228,9 @@
 					user << SPAN_DANGER("The damage is far too severe to patch over externally.")
 			else if(S.open != 2) // For surgery.
 				user << SPAN_NOTICE("Nothing to fix!")
+			return
 
-	else
-		return ..()
+	return ..()
 
 /obj/item/weapon/tool/update_icon()
 	overlays.Cut()
