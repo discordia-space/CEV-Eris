@@ -33,6 +33,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!W)
 		return FALSE
 	if(put_in_active_hand(W) || put_in_inactive_hand(W))
+		world << "Successfully put in hand"
 		return TRUE
 	else
 		return ..()
@@ -371,6 +372,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
 		return 0
+
+	if (!has_organ_for_slot(slot))
+		return FALSE
+
 	return 1
 
 /mob/living/carbon/human/get_equipped_item(var/slot)
