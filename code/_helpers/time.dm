@@ -70,8 +70,6 @@ var/next_station_date_change = 1 DAY
 /proc/worlddate2text()
 	return num2text(game_year) + "-" + time2text(world.timeofday, "MM-DD")
 
-/proc/time_stamp()
-return time2text(world.timeofday, "hh:mm:ss")
 
 /* Returns 1 if it is the selected month and day */
 proc/isDay(var/month, var/day)

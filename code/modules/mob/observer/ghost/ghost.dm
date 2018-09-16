@@ -30,7 +30,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	incorporeal_move = 1
 
 /mob/observer/ghost/New(mob/body)
-	if (istype(body, /mob/dead/observer))
+	if (istype(body, /mob/observer/ghost))
 		return//A ghost can't become a ghost.
 
 	see_in_dark = 100
@@ -452,19 +452,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Become mouse"
 	set category = "Ghost"
 
-	if(config.disable_player_mice)
-		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
-		return
-
-	if(!ROUND_IS_STARTED)
-		src << "<span class='warning'>You can not spawn as a mouse before round start!</span>"
-		return
 
 	if(!MayRespawn(1, ANIMAL))
 		return
 
 	var/turf/T = get_turf(src)
-	if(!T || (T.z in current_map.admin_levels))
+	if(!T || !(T.z in maps_data.station_levels))
 		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
 		return
 
@@ -495,7 +488,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	//If we hit the limit without finding a valid one, then the best one we found is selected
 
 	var/list/found_vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in SSmachinery.processing_machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in SSmachines.machinery)
 		if(!v.welded && v.z == ZLevel)
 			found_vents.Add(v)
 
@@ -729,7 +722,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		client.images |= ghost_sightless_images
 	client.images -= ghost_image //remove ourself
 
-/mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_time = 0)
+/mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_type = 0)
 	if(!client)
 		return 0
 	if(config.antag_hud_restricted && has_enabled_antagHUD == 1)
@@ -769,7 +762,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	. += target.extra_ghost_link(ghost)
 
 
-/mob/dead/observer/proc/initialise_postkey()
+/mob/observer/proc/initialise_postkey()
 	//This function should be run after a ghost has been created and had a ckey assigned
 	//Death times are initialised if they were unset
 	//get/set death_time functions are in mob_helpers.dm
