@@ -87,6 +87,19 @@ var/list/casing_sound = list (
 	'sound/weapons/guns/misc/casingfall3.ogg'
 )
 var/list/bullet_hit_object_sound = list('sound/weapons/guns/misc/bullethit.ogg')
+
+var/list/gunshot_sound = list('sound/weapons/Gunshot.ogg',
+						'sound/weapons/guns/fire/batrifle_fire.ogg',
+						'sound/weapons/guns/fire/hpistol_fire.ogg',
+						'sound/weapons/guns/fire/lmg_fire.ogg',
+						'sound/weapons/guns/fire/ltrifle_fire.ogg',
+						'sound/weapons/guns/fire/m41_shoot.ogg',
+						'sound/weapons/guns/fire/pistol_fire.ogg',
+						'sound/weapons/guns/fire/revolver_fire.ogg',
+						'sound/weapons/guns/fire/sfrifle_fire.ogg',
+						'sound/weapons/guns/fire/shotgunp_fire.ogg',
+						'sound/weapons/guns/fire/smg_fire.ogg',
+						'sound/weapons/guns/fire/sniper_fire.ogg')
 /*var/list/gun_sound = list(
 	'sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg',
 	'sound/weapons/Gunshot4.ogg'
