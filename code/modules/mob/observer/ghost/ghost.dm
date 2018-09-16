@@ -731,7 +731,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0
 
 	var/timedifference = world.time- get_death_time(respawn_type)
-var/respawn_time = 0
+	var/respawn_time = 0
 	if (respawn_type == CREW)
 		respawn_time = config.respawn_delay MINUTES
 	else if (respawn_type == ANIMAL)
