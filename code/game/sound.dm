@@ -87,6 +87,11 @@ var/list/casing_sound = list (
 	'sound/weapons/guns/misc/casingfall3.ogg'
 )
 var/list/bullet_hit_object_sound = list('sound/weapons/guns/misc/bullethit.ogg')
+
+var/list/climb_sound = list('sound/effects/ladder.ogg',
+'sound/effects/ladder2.ogg',
+'sound/effects/ladder3.ogg',
+	'sound/effects/ladder4.ogg')
 /*var/list/gun_sound = list(
 	'sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg',
 	'sound/weapons/Gunshot4.ogg'
