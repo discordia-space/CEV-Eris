@@ -10,7 +10,7 @@
 
 
 /obj/structure/mopbucket/New()
-	create_reagents(100)
+	create_reagents(480)
 	..()
 
 /obj/structure/mopbucket/examine(mob/user)
@@ -22,7 +22,8 @@
 		if(reagents.total_volume < 1)
 			user << SPAN_WARNING("\The [src] is out of water!")
 		else
-			reagents.trans_to_obj(I, 5)
+			var/obj/item/weapon/mop/mop = I
+			reagents.trans_to_obj(I, mop.reagents.maximum_volume)
 			user << SPAN_NOTICE("You wet \the [I] in \the [src].")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 

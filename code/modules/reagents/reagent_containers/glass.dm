@@ -238,7 +238,8 @@
 		if(reagents.total_volume < 1)
 			user << SPAN_WARNING("\The [src] is empty!")
 		else
-			reagents.trans_to_obj(D, 5)
+			var/obj/item/weapon/mop/mop = D
+			reagents.trans_to_obj(D, mop.reagents.maximum_volume)
 			user << SPAN_NOTICE("You wet \the [D] in \the [src].")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
