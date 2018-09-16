@@ -448,7 +448,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		host.ckey = src.ckey
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
 */
-/mob/abstract/observer/verb/become_mouse()
+/mob/observer/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
 
@@ -461,7 +461,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
 		return
 
-	var/response = alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?","Squeek!","Nope!")
+	var/response = alert(src, "Are you -sure- you want to become a mouse? This will not affect your crew or drone respawn time.","Are you sure you want to squeek?","Squeek!","Nope!")
 	if(response != "Squeek!") return  //Hit the wrong key...again.
 
 
@@ -731,16 +731,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0
 
 	var/timedifference = world.time- get_death_time(respawn_type)
-	var/respawn_time = 0
+var/respawn_time = 0
 	if (respawn_type == CREW)
 		respawn_time = config.respawn_delay MINUTES
 	else if (respawn_type == ANIMAL)
 		respawn_time = ANIMAL_SPAWN_DELAY
 	else if (respawn_type == MINISYNTH)
 		respawn_time = DRONE_SPAWN_DELAY
-	if(respawn_time && timeofdeath && timedifference < respawn_time MINUTES)
-		var/timedifference_text = time2text(respawn_time MINUTES - timedifference,"mm:ss")
-		src << "<span class='warning'>You must have been dead for [respawn_time] minute\s to respawn. You have [timedifference_text] left.</span>"
+
+	if(respawn_time &&  timedifference > respawn_time)
+		return TRUE
+	else
+		var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
+		src << "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>"
 		return 0
 
 	return 1
@@ -773,3 +776,45 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		set_death_time(MINISYNTH, world.time - DRONE_SPAWN_DELAY) //allow instant drone spawning
 	if (!get_death_time(CREW))
 		set_death_time(CREW, world.time)
+
+
+/mob/verb/abandon_mob()
+	set name = "Respawn"
+	set category = "OOC"
+
+	if (!( config.abandon_allowed ))
+		usr << "<span class='notice'>Respawn is disabled.</span>"
+		return
+	if (stat != DEAD)
+		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
+		return
+	else if(!MayRespawn(1, CREW))
+		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
+			return
+
+	usr << "You can respawn now, enjoy your new life!"
+
+	log_game("[usr.name]/[usr.key] used abandon mob.")
+
+	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
+
+	if(!client)
+		log_game("[usr.key] AM failed due to disconnect.")
+		return
+	client.screen.Cut()
+	if(!client)
+		log_game("[usr.key] AM failed due to disconnect.")
+		return
+
+	announce_ghost_joinleave(client, 0)
+
+	var/mob/new_player/M = new /mob/new_player()
+	if(!client)
+		log_game("[usr.key] AM failed due to disconnect.")
+		qdel(M)
+		return
+
+	M.key = key
+	if(M.mind)
+		M.mind.reset()
+	return

@@ -567,8 +567,11 @@ proc/is_blind(A)
 		P = client.prefs
 	else if (ckey)
 		P = preferences_datums[ckey]
-	else return null
+	else
+		return null
+
 	return P.time_of_death[which]
+
 /mob/proc/set_death_time(var/which, var/value)
 	var/datum/preferences/P
 	if (client)

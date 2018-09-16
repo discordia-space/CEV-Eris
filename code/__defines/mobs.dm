@@ -132,8 +132,8 @@
 #define ANIMAL	"animal"//Used for mice and any other simple animals
 #define MINISYNTH	"minisynth"//Used for drones and pAIs
 
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
+#define ANIMAL_SPAWN_DELAY 5 MINUTES
+#define DRONE_SPAWN_DELAY  10 MINUTES
 
 
 // Incapacitation flags, used by the mob/proc/incapacitated() proc

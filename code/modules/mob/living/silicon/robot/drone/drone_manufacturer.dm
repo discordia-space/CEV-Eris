@@ -105,7 +105,7 @@
 		user << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
 		return
 
-	if(!user.MayRespawn(1, DRONE_SPAWN_DELAY))
+	if(!user.MayRespawn(1, MINISYNTH))
 		return
 
 	if(!fabricator)
@@ -120,7 +120,7 @@
 			user << SPAN_DANGER("There are no available drone spawn points, sorry.")
 			return
 
-		var/choice = input(user,"Which fabricator do you wish to use?") as null|anything in all_fabricators
+		var/choice = input(user,"Spawning as a drone will not affect your crew or mouse respawn timers. Which fabricator do you wish to use?") as null|anything in all_fabricators
 		if(!choice || !all_fabricators[choice])
 			return
 		fabricator = all_fabricators[choice]
