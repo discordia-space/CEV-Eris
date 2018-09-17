@@ -284,6 +284,11 @@
 	var/list/candidates = maps_data.accessable_levels.Copy()
 	candidates.Remove("[src.z]")
 
+	//If something was ejected from the ship, it does not end up on another part of the ship.
+	if (z in maps_data.station_levels)
+		for (var/n in maps_data.station_levels)
+			candidates.Remove("[n]")
+
 	if(!candidates.len)
 		return null
 	return text2num(pickweight(candidates))
