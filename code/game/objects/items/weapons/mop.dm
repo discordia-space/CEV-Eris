@@ -12,6 +12,13 @@
 	matter = list(MATERIAL_PLASTIC = 3)
 	var/mopping = 0
 	var/mopcount = 0
+	//check is too bulky, so here a list. Just add stuff here
+	var/get_wet_containers = list(/obj/item/weapon/reagent_containers/glass/bucket,
+								/obj/structure/bed/chair/janicart,
+								/obj/structure/mopbucket,
+								/obj/structure/sink,
+								/obj/structure/janitorialcart)
+
 
 
 /obj/item/weapon/mop/New()
@@ -33,6 +40,28 @@
 			if(T)
 				T.clean(src, user)
 			user << SPAN_NOTICE("You have finished mopping!")
+	else
+		makeWet(A, user)
+
+
+/obj/item/weapon/mop/proc/makeWet(atom/A, mob/user)
+	for(var/container in get_wet_containers)
+		if(istype(A, container))
+			if(A.reagents)
+				if(!A.is_open_container())
+					user << SPAN_WARNING("\The [A] is closed!")
+					return
+				if(A.reagents.total_volume < 1)
+					user << SPAN_WARNING("\The [A] is out of water!")
+					return
+				A.reagents.trans_to_obj(src, reagents.maximum_volume)
+			else
+				reagents.add_reagent("water", reagents.maximum_volume)
+
+			user << SPAN_NOTICE("You wet \the [src] in \the [A].")
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			break
+
 
 
 /obj/effect/attackby(obj/item/I, mob/user)

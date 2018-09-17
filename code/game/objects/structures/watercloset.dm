@@ -449,9 +449,6 @@
 				)
 				return 1
 	else if(istype(O, /obj/item/weapon/mop))
-		O.reagents.add_reagent("water", 5)
-		user << SPAN_NOTICE("You wet \the [O] in \the [src].")
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
 
 	var/turf/location = user.loc
