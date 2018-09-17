@@ -85,7 +85,6 @@
 	var/turf/pickedgoal = spaceDebrisFinishLoc(startSide, zlevel)
 
 	var/Me = pickweight(meteortypes)
-	world << "Spawning meteor at  [pickedstart], [pickedstart.x], [pickedstart.y], [pickedstart.z]"
 	var/obj/effect/meteor/M = new Me(pickedstart)
 	M.dest = pickedgoal
 	spawn(0)
