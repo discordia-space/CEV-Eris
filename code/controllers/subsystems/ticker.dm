@@ -7,6 +7,8 @@ SUBSYSTEM_DEF(ticker)
 
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_STARTUP
+	// If true, there is no lobby phase, the game starts immediately.
+	var/start_immediately = FALSE
 
 	//setup vars
 	var/first_start_trying = TRUE
@@ -87,10 +89,14 @@ SUBSYSTEM_DEF(ticker)
 			else
 				pregame_timeleft = 40
 
-			world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+			if(!start_immediately)
+				world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds."
 			current_state = GAME_STATE_PREGAME
 
 		if(GAME_STATE_PREGAME)
+			if(start_immediately)
+				pregame_timeleft = 0
+
 			//countdown
 			if(pregame_timeleft < 0)
 				return
