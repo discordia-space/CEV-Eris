@@ -153,6 +153,7 @@
 		if(!temp)
 			user << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
 			return
+	var/atom/old_loc = src.loc
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
@@ -165,7 +166,11 @@
 	else
 		if(isliving(src.loc))
 			return
-	user.put_in_active_hand(src)
+	if(user.put_in_active_hand(src))
+		if (isturf(old_loc) || isturf(old_loc.loc))
+			var/obj/effect/temp_visual/obj_pickup_ghost/ghost = new(get_turf(old_loc), src)
+			ghost.animate_towards(user)
+
 	return
 
 /obj/item/attack_ai(mob/user as mob)
