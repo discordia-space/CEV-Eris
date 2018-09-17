@@ -236,7 +236,7 @@ ADMIN_VERB_ADD(/client/proc/allow_character_respawn, R_ADMIN, FALSE)
 
 	G.has_enabled_antagHUD = 2
 	G.can_reenter_corpse = 1
-
+	G << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 	G:show_message(text("\blue <B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B>"), 1)
 	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the 30 minute respawn limit")
 	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the 30 minute respawn limit", 1)

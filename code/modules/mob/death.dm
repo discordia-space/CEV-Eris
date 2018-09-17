@@ -110,3 +110,55 @@
 	updateicon()
 
 	return 1
+
+
+
+
+//This proc retrieves the relevant time of death from
+/mob/proc/get_death_time(var/which)
+	var/datum/preferences/P = get_preferences(src)
+	if (!P)
+		return FALSE
+
+	return P.time_of_death[which]
+
+/mob/proc/set_death_time(var/which, var/value)
+	var/datum/preferences/P = get_preferences(src)
+	if (!P)
+		return FALSE
+	P.time_of_death[which] = value
+	return 1
+
+
+
+//These functions get and set the bonuses to respawn time
+//Bonuses can be applied by things like going to cryosleep
+/mob/proc/get_respawn_bonus(var/which)
+	var/datum/preferences/P = get_preferences(src)
+	if (!P)
+		return FALSE
+
+	if (which)
+		return P.crew_respawn_bonuses[which]
+	else
+		//Passing in no specific request will instead return the total of all the respawn bonuses
+		//This behaviour is utilised in mayrespawn
+		var/total = 0
+		for (var/v in P.crew_respawn_bonuses)
+			total += P.crew_respawn_bonuses[v]
+		return total
+
+/mob/proc/set_respawn_bonus(var/which, var/value)
+	var/datum/preferences/P = get_preferences(src)
+	if (!P)
+		return FALSE
+	P.crew_respawn_bonuses[which] = value
+	return 1
+
+//Wipes all respawn bonuses. Called when a player actually respawns
+/mob/proc/clear_respawn_bonus()
+	var/datum/preferences/P = get_preferences(src)
+	if (!P)
+		return FALSE
+	P.crew_respawn_bonuses.Cut()
+	return 1
