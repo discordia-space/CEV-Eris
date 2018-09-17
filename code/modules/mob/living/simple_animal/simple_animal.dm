@@ -90,16 +90,6 @@
 /mob/living/simple_animal/Life()
 	..()
 
-	//Health
-	if(stat == DEAD)
-		if(health > 0)
-			icon_state = icon_living
-			dead_mob_list -= src
-			living_mob_list += src
-			stat = CONSCIOUS
-			density = 1
-		return 0
-
 
 	if(health <= 0)
 		death()
@@ -204,6 +194,12 @@
 
 	adjustBruteLoss(Proj.damage)
 	return 0
+
+/mob/living/simple_animal/rejuvenate()
+	..()
+	health = maxHealth
+	density = initial(density)
+	update_icons()
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
 	..()
