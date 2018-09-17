@@ -229,7 +229,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(!slot) return
 	if(!istype(W)) return
-	if(!has_organ_for_slot(slot)) return
 	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
 	if(ismob(W.loc))
 		var/mob/M = W.loc
@@ -426,3 +425,20 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_s_store)    items += s_store
 
 	return items
+
+
+//The parent does all the checks, this one is just for feedback messages
+/mob/living/carbon/human/can_pickup(var/obj/item/I, var/feedback = TRUE)
+	.=..()
+
+	if (!. && feedback)
+		//Feedback moved here from item attackhand
+		var/obj/item/organ/external/temp = organs_by_name[BP_R_ARM]
+		if (hand)
+			temp = organs_by_name[BP_L_ARM]
+		if(temp && !temp.is_usable())
+			src << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
+			return
+		if(!temp)
+			src << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
+			return

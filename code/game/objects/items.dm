@@ -142,17 +142,9 @@
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user) return
-	if (hasorgans(user))
-		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
-		if (user.hand)
-			temp = H.organs_by_name[BP_L_ARM]
-		if(temp && !temp.is_usable())
-			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
-			return
-		if(!temp)
-			user << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
-			return
+	if (!user.can_pickup(src))
+		return
+
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
