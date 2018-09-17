@@ -51,7 +51,9 @@
 
 /obj/machinery/disposal/affect_grab(var/mob/living/user, var/mob/living/target)
 	user.visible_message("[user] starts putting [target] into the disposal.")
-	if(do_after(user, 20, src) && Adjacent(target))
+	var/time_to_put = target.mob_size //size is perfectly suit
+	if(do_after(user, time_to_put, src) && Adjacent(target))
+		user.face_atom(src)
 		target.forceMove(src)
 		visible_message(SPAN_NOTICE("[target] has been placed in the [src] by [user]."))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target] ([target.ckey]) in disposals.</font>")
