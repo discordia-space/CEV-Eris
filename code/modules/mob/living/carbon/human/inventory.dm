@@ -33,7 +33,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!W)
 		return FALSE
 	if(put_in_active_hand(W) || put_in_inactive_hand(W))
-		world << "Successfully put in hand"
 		return TRUE
 	else
 		return ..()
