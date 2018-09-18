@@ -16,7 +16,7 @@
 
 
 /obj/structure/janitorialcart/New()
-	create_reagents(220)
+	create_reagents(460)
 
 
 /obj/structure/janitorialcart/examine(mob/user)
