@@ -127,3 +127,8 @@
 		if (T)
 			turfs.Add(T)
 	return turfs
+
+//Returns true if this floor is directly over a space tile
+/proc/is_over_space(var/turf/simulated/floor/F)
+	if (!istype(F))
+		return FALSE

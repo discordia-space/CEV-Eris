@@ -92,7 +92,7 @@
 	name = "hull"
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_state = "hullcenter0"
-	initial_flooring = /decl/flooring/hull
+	initial_flooring = /decl/flooring/reinforced/plating/hull
 	footstep_sounds = list("human" = list(\
 		'sound/effects/footstep/hull1.ogg',\
 		'sound/effects/footstep/hull2.ogg',\
@@ -337,18 +337,7 @@
 	nitrogen = 0
 	temperature = TCMB
 
-/turf/simulated/floor/plating
-	icon = 'icons/turf/floors.dmi'
-	name = "plating"
-	icon_state = "plating"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
-	initial_flooring = /decl/flooring/reinforced/plating
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/plating1.ogg',\
-		'sound/effects/footstep/plating2.ogg',\
-		'sound/effects/footstep/plating3.ogg',\
-		'sound/effects/footstep/plating4.ogg',\
-		'sound/effects/footstep/plating5.ogg'))
+/
 
 // Placeholders
 /turf/simulated/floor/airless/lava

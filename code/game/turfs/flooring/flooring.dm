@@ -38,6 +38,21 @@ var/list/flooring_types
 	var/flags
 	var/can_paint
 
+	var/is_plating = FALSE
+
+	//Plating types, can be overridden
+	var/plating_type = /decl/flooring/reinforced/plating
+
+	var/health = 50
+
+/decl/flooring/proc/get_plating_type(var/turf/location)
+	return plating_type
+
+
+//Used to check if we can build the specified type of floor ontop of this one
+/decl/flooring/proc/can_build_floor(var/decl/flooring/newfloor)
+	return FALSE
+
 /decl/flooring/grass
 	name = "grass"
 	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
@@ -61,10 +76,41 @@ var/list/flooring_types
 	icon = 'icons/turf/floors.dmi'
 	icon_base = "plating"
 	build_type = null
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
+	can_paint = 1
+	plating_type = /decl/flooring/reinforced/plating/under
+	is_plating = TRUE
+
+//Normal plating allows anything, except other types of plating
+/decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
+	if (istype(newfloor, /decl/flooring/reinforced/plating))
+		return FALSE
+	return TRUE
+
+/decl/flooring/reinforced/plating/under
+	name = "plating"
+	icon = 'icons/turf/floors.dmi'
+	icon_base = "plating"
+	build_type = null
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | SMOOTH_ONLY_WITH_ITSELF
 	can_paint = 1
+	plating_type = /decl/flooring/reinforced/plating/hull
+	is_plating = TRUE
 
-/decl/flooring/hull
+
+//Underplating can only be upgraded to normal plating
+/decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
+	if (newfloor.type == /decl/flooring/reinforced/plating)
+		return TRUE
+	return FALSE
+
+/decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
+	if (location.z	 == 1) //Hull plating is only on the lowest level of the ship
+		return plating_type
+
+
+
+/decl/flooring/reinforced/plating/hull
 	name = "hull"
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_base = "hullcenter"
@@ -72,6 +118,14 @@ var/list/flooring_types
 	build_type = null
 	has_base_range = 35
 	//try_update_icon = 0
+	plating_type = null
+	is_plating = TRUE
+
+//Hull can upgrade to underplating
+/decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
+	if (istype(newfloor, /decl/flooring/reinforced/plating/under))
+		return TRUE
+	return FALSE
 
 /decl/flooring/carpet
 	name = "carpet"
@@ -80,7 +134,7 @@ var/list/flooring_types
 	icon_base = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | SMOOTH_ONLY_WITH_ITSELF
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | SMOOTH_ONLY_WITH_ITSELF | TURF_HIDES_THINGS
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
@@ -124,7 +178,7 @@ var/list/flooring_types
 	icon_base = "steel"
 	has_damage_range = 2 //RECHECK THIS. MAYBE MISTAKE
 	damage_temperature = T0C+1400
-	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
 
@@ -206,7 +260,7 @@ var/list/flooring_types
 	damage_temperature = T0C+200
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
-	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER
+	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER | TURF_HIDES_THINGS
 
 /decl/flooring/reinforced
 	name = "reinforced floor"
@@ -226,7 +280,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
 	build_type = null
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_EDGES | TURF_HAS_CORNERS | SMOOTH_ONLY_WITH_ITSELF
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_EDGES | TURF_HAS_CORNERS | SMOOTH_ONLY_WITH_ITSELF | TURF_HIDES_THINGS
 	can_paint = 1
 
 /decl/flooring/reinforced/circuit/green
@@ -240,5 +294,5 @@ var/list/flooring_types
 	icon_base = "cult"
 	build_type = null
 	has_damage_range = 6
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HIDES_THINGS
 	can_paint = null

@@ -26,16 +26,35 @@
 /turf/simulated/shuttle/plating/is_plating()
 	return TRUE
 
+
+turf/simulated/floor/plating
+	icon = 'icons/turf/floors.dmi'
+	name = "plating"
+	icon_state = "plating"
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
+	initial_flooring = /decl/flooring/reinforced/plating
+	var/plating_level = 3
+	//Plating of 3 = plating
+	//2 = underplating
+	//1 = hull
+	//0 = normal floor
+	footstep_sounds = list("human" = list(\
+		'sound/effects/footstep/plating1.ogg',\
+		'sound/effects/footstep/plating2.ogg',\
+		'sound/effects/footstep/plating3.ogg',\
+		'sound/effects/footstep/plating4.ogg',\
+		'sound/effects/footstep/plating5.ogg'))
+
 /turf/simulated/floor/plating/under
 	name = "underplating"
 	icon_state = "un"
 	icon = 'icons/turf/un.dmi'
 	var/icon_base = "un"
-	initial_flooring = null
+	initial_flooring = /decl/flooring/reinforced/plating/under
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	var/has_base_range = null
-
-
+	plating_level = 2
+/*
 /turf/simulated/floor/plating/under/update_icon(var/update_neighbors)
 	if(lava)
 		return
@@ -107,17 +126,14 @@
 		for(var/turf/simulated/floor/F in trange(1, src) - src)
 			F.update_icon()
 
+
 /turf/simulated/floor/plating/under/proc/get_flooring_overlayu(var/cache_key, var/icon_base, var/icon_dir = 0)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
 		flooring_cache[cache_key] = I
 	return flooring_cache[cache_key]
-
-
-/turf/simulated/floor/plating/under/New()
-	..()
-	update_icon(1)
+*/
 
 /turf/simulated/floor/plating/under/Entered(mob/living/M as mob)
 	..()
@@ -128,7 +144,7 @@
 	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(src))
 		return
 	if(M.m_intent == "run")
-		if(prob(75))
+		if(prob(40))
 			M.adjustBruteLoss(5)
 			M.slip(null, 6)
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
