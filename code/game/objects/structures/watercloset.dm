@@ -365,6 +365,7 @@
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
 	anchored = 1
+	flags = OPENCONTAINER
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
