@@ -29,7 +29,11 @@
 
 
 /turf/simulated/floor/is_plating()
-	return flooring.is_plating
+	if (flooring)
+		return flooring.is_plating
+	else
+		//TODO: FIND OUT WHY ANYTHING COULD HAVE NULL FLOORING
+		return TRUE
 
 /turf/simulated/floor/New(var/newloc, var/floortype)
 	..(newloc)

@@ -60,8 +60,17 @@ var/list/flooring_types
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
-	flags = TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL | SMOOTH_ONLY_WITH_ITSELF | TURF_HAS_EDGES | TURF_EDGES_EXTERNAL
 	build_type = /obj/item/stack/tile/grass
+	plating_type = /decl/flooring/dirt
+
+/decl/flooring/dirt
+	name = "dirt"
+	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
+	icon = 'icons/turf/flooring/dirt.dmi'
+	icon_base = "dirt"
+	flags = TURF_REMOVE_SHOVEL | SMOOTH_ONLY_WITH_ITSELF
+	build_type = null //Todo: add bags of fertilised soil or something to create dirt floors
 
 /decl/flooring/asteroid
 	name = "coarse sand"
@@ -73,10 +82,10 @@ var/list/flooring_types
 
 /decl/flooring/reinforced/plating
 	name = "plating"
-	icon = 'icons/turf/floors.dmi'
+	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
 	build_type = null
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WELDER
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
 	is_plating = TRUE
@@ -89,10 +98,10 @@ var/list/flooring_types
 
 /decl/flooring/reinforced/plating/under
 	name = "plating"
-	icon = 'icons/turf/floors.dmi'
-	icon_base = "plating"
+	icon = 'icons/turf/flooring/plating.dmi'
+	icon_base = "under"
 	build_type = null
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | SMOOTH_ONLY_WITH_ITSELF
+	flags = 0
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
 	is_plating = TRUE

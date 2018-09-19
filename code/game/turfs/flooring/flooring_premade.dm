@@ -77,33 +77,7 @@
 		'sound/effects/footstep/wood4.ogg',\
 		'sound/effects/footstep/wood5.ogg'))
 
-/turf/simulated/floor/grass
-	name = "grass patch"
-	icon = 'icons/turf/flooring/grass.dmi'
-	icon_state = "grass0"
-	initial_flooring = /decl/flooring/grass
 
-/turf/simulated/floor/dirt
-	name = "dirt"
-	icon = 'icons/turf/flooring/dirt.dmi'
-	icon_state = "dirt"
-
-/turf/simulated/floor/hull
-	name = "hull"
-	icon = 'icons/turf/flooring/hull.dmi'
-	icon_state = "hullcenter0"
-	initial_flooring = /decl/flooring/reinforced/plating/hull
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/hull1.ogg',\
-		'sound/effects/footstep/hull2.ogg',\
-		'sound/effects/footstep/hull3.ogg',\
-		'sound/effects/footstep/hull4.ogg',\
-		'sound/effects/footstep/hull5.ogg'))
-
-/turf/simulated/floor/hull/New()
-	if(icon_state != "hullcenter0")
-		overrided_icon_state = icon_state
-	..()
 
 /turf/simulated/floor/tiled
 	name = "floor"
