@@ -39,8 +39,7 @@
 		usr.ClickOn(target, params)
 
 /atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	if(src)
-		usr.ClickOn(src, params)
+	return
 
 /atom/DblClick(var/location, var/control, var/params)
 	if(src)

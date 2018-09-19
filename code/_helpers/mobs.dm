@@ -235,8 +235,16 @@ Proc for attack log creation, because really why not
 	var/holding = user.get_active_hand()
 
 	var/datum/progressbar/progbar
+
+	var/atom/progtarget = target
+	if (!progtarget && progress) //Fallback behaviour. If no target is set, but the progress bar is enabled
+		//Then we'll use the user as the target for the progress bar
+		progtarget = user
+
+		//This means there will always be a bar if progress is true
+
 	if (progress)
-		progbar = new(user, delay, target)
+		progbar = new(user, delay, progtarget)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time

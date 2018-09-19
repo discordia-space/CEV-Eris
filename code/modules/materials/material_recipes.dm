@@ -56,7 +56,8 @@
 
 	recipes += new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 2, 2, 60)
 	recipes += new/datum/stack_recipe("computer frame", /obj/structure/computerframe, 5, time = 25, one_per_turf = 1, on_floor = 1)
-	recipes += new/datum/stack_recipe("wall girders", /obj/structure/girder, 5, time = 50, one_per_turf = 1, on_floor = 1)
+	recipes += new/datum/stack_recipe("wall girders", /obj/structure/girder, 5, time = WORKTIME_NORMAL, one_per_turf = 1, on_floor = 1)
+	recipes += new/datum/stack_recipe("low girders", /obj/structure/girder/low, 3, time = WORKTIME_FAST, one_per_turf = 1, on_floor = 1)
 	recipes += new/datum/stack_recipe("railing", /obj/structure/railing, 4, time = 50, one_per_turf = 0, on_floor = 1)
 	recipes += new/datum/stack_recipe("machine frame", /obj/machinery/constructable_frame/machine_frame, 8, time = 25, one_per_turf = 1, on_floor = 1)
 	recipes += new/datum/stack_recipe("vertical machine frame", /obj/machinery/constructable_frame/machine_frame/vertical, 8, time = 40, one_per_turf = 1, on_floor = 1)

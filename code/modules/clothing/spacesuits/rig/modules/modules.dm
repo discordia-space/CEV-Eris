@@ -267,6 +267,7 @@
 							)
 		AddHref(href_list)
 		module.holder.Topic(usr, href_list)
+		return TRUE
 
 /stat_rig_module/DblClick()
 	return Click()
