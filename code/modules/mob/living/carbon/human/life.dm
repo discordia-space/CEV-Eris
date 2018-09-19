@@ -630,7 +630,7 @@
 
 		if(hallucination)
 			if(hallucination >= 20)
-				if(prob(3))
+				if(prob(1))
 					fake_attack(src)
 				if(!handling_hal)
 					spawn handle_hallucinations() //The not boring kind!
