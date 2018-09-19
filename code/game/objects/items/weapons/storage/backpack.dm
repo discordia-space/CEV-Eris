@@ -20,17 +20,36 @@
 	w_class = ITEM_SIZE_LARGE
 	slot_flags = SLOT_BACK
 	max_w_class = ITEM_SIZE_LARGE
-	max_storage_space = 28
+	max_storage_space = 49
+	var/can_access_backpack = FALSE
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..()
 
+/obj/item/weapon/storage/backpack/attack_hand(mob/user)
+	if(!can_access_backpack && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.back == src)
+			to_chat(H, "<span class='notice'>Oh no! You haven't got so long hands to open [src] from your back!</span>")
+			return
+	..()
+
 /obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
 	if (slot == slot_back && src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
+		if(!can_access_backpack && user.s_active == src) //currently looking into the backpack
+			close(user)
 	..(user, slot)
+
+/obj/item/weapon/storage/backpack/open(mob/user)
+	if(!can_access_backpack && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.back == src)
+			to_chat(H, "<span class='notice'>Oh no! You haven't got so long hands to open [src] from your back!")
+			return
+	..()
 
 /*
 /obj/item/weapon/storage/backpack/dropped(mob/user as mob)
@@ -117,6 +136,8 @@
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel"
+	max_storage_space = 24
+	can_access_backpack = TRUE
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
 	New()
@@ -127,6 +148,8 @@
 	name = "satchel"
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
+	max_storage_space = 24
+	can_access_backpack = TRUE
 
 /obj/item/weapon/storage/backpack/satchel_eng
 	name = "industrial satchel"
@@ -136,6 +159,8 @@
 		slot_l_hand_str = "engiepack",
 		slot_r_hand_str = "engiepack",
 		)
+	max_storage_space = 24
+	can_access_backpack = TRUE
 
 /obj/item/weapon/storage/backpack/satchel_med
 	name = "medical satchel"
@@ -145,6 +170,8 @@
 		slot_l_hand_str = "medicalpack",
 		slot_r_hand_str = "medicalpack",
 		)
+	max_storage_space = 24
+	can_access_backpack = TRUE
 
 /obj/item/weapon/storage/backpack/satchel_sec
 	name = "security satchel"
@@ -154,6 +181,8 @@
 		slot_l_hand_str = "securitypack",
 		slot_r_hand_str = "securitypack",
 		)
+	max_storage_space = 24
+	can_access_backpack = TRUE
 
 /obj/item/weapon/storage/backpack/satchel_cap
 	name = "captain's satchel"
@@ -163,3 +192,5 @@
 		slot_l_hand_str = "satchel-cap",
 		slot_r_hand_str = "satchel-cap",
 		)
+	max_storage_space = 24
+	can_access_backpack = TRUE
