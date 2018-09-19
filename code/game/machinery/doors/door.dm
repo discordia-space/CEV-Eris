@@ -451,9 +451,6 @@
 	return ..(M)
 
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
-	if(!SSair)
-		return 0
-
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
 		SSair.mark_for_update(turf)

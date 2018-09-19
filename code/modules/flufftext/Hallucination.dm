@@ -32,7 +32,7 @@ mob/living/carbon/proc/handle_hallucinations()
 				hal_screwyhud = pick(1,2,3,3,4,4)
 				spawn(rand(100,250))
 					hal_screwyhud = 0
-			if(16 to 25)
+			if(16 to 20)
 				//Strange items
 				//src << "Traitor Items"
 				if(!halitem)
@@ -81,7 +81,7 @@ mob/living/carbon/proc/handle_hallucinations()
 							if(client)
 								client.screen -= halitem
 							halitem = null
-			if(26 to 40)
+			if(21 to 35)
 				//Flashes of danger
 				//src << "Danger Flash"
 				if(!halimage)
@@ -109,31 +109,57 @@ mob/living/carbon/proc/handle_hallucinations()
 							halimage = null
 
 
-			if(41 to 65)
+			if(36 to 65)
 				//Strange audio
 				//src << "Strange Audio"
 				switch(rand(1,12))
-					if(1) src << 'sound/machines/airlock.ogg'
+					if(1) hallucination_sound(src, 'sound/machines/airlock.ogg')
 					if(2)
-						if(prob(50))src << 'sound/effects/Explosion1.ogg'
-						else src << 'sound/effects/Explosion2.ogg'
-					if(3) src << 'sound/effects/explosionfar.ogg'
-					if(4) src << 'sound/effects/Glassbr1.ogg'
-					if(5) src << 'sound/effects/Glassbr2.ogg'
-					if(6) src << 'sound/effects/Glassbr3.ogg'
-					if(7) src << 'sound/machines/twobeep.ogg'
-					if(8) src << 'sound/machines/windowdoor.ogg'
+						if(prob(50))
+							hallucination_sound(src, 'sound/effects/Explosion1.ogg')
+						else
+							hallucination_sound(src, 'sound/effects/Explosion2.ogg')
+					if(3)
+						hallucination_sound(src, 'sound/effects/explosionfar.ogg')
+					if(4)
+						//Shattering glass.
+						//Randomised number with a random delay
+						hallucination_sound(src, pick(shatter_sound))
+						spawn(rand(1,4))
+							while (!prob(90))
+								hallucination_sound(src, pick(shatter_sound))
+								sleep(rand(1,5))
+					if(5)
+						//Sounds of meteors impacting on the shields
+						hallucination_sound(src, 'sound/effects/impacts/shield_impact_1.ogg')
+						spawn(rand(1,8))
+							while (!prob(90))
+								hallucination_sound(src, 'sound/effects/impacts/shield_impact_1.ogg')
+								sleep(rand(1,8))
+					if(6)
+						hallucination_sound(src, 'sound/effects/Glassbr3.ogg')
+					if(7)
+						hallucination_sound(src, 'sound/machines/twobeep.ogg')
+					if(8)
+						hallucination_sound(src, 'sound/machines/windowdoor.ogg')
 					if(9)
+
+
+						var/soundplay = pick(gunshot_sound)
 						//To make it more realistic, I added two gunshots (enough to kill)
-						src << 'sound/weapons/Gunshot.ogg'
-						spawn(rand(10,30))
-							src << 'sound/weapons/Gunshot.ogg'
-					if(10) src << 'sound/weapons/smash.ogg'
+						hallucination_sound(src, soundplay)
+						spawn(rand(1,40))
+							while(prob(60))
+								hallucination_sound(src, soundplay)
+								sleep(rand(1,15))
+					if(10)
+						hallucination_sound(src, 'sound/weapons/smash.ogg')
 					if(11)
 						//Same as above, but with tasers.
-						src << 'sound/weapons/Taser.ogg'
+
+						hallucination_sound(src, 'sound/weapons/Taser.ogg')
 						spawn(rand(10,30))
-							src << 'sound/weapons/Taser.ogg'
+							hallucination_sound(src, 'sound/weapons/Taser.ogg')
 				//Rare audio
 					if(12)
 //These sounds are (mostly) taken from Hidden: Source
@@ -142,7 +168,8 @@ mob/living/carbon/proc/handle_hallucinations()
 							'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
 							'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
 							'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
-						src << pick(creepyasssounds)
+						hallucination_sound(src, pick(creepyasssounds))
+
 			if(66 to 70)
 				//Flashes of danger
 				//src << "Danger Flash"
@@ -180,6 +207,15 @@ mob/living/carbon/proc/handle_hallucinations()
 	handling_hal = 0
 
 
+
+//Plays a sound just to the victim. The sound will come from a random nearby location if none is chosen
+/proc/hallucination_sound(var/mob/victim, soundin, var/atom/source = null)
+	var/frequency = get_rand_frequency()
+	if (!source)
+		var/turf/T = get_turf(victim)
+		source = pick(trange(9, T))
+
+	victim.playsound_local(source, soundin, 100, 1, 0, frequency, FALLOFF_SOUNDS, FALSE, FALSE)
 
 
 /*obj/machinery/proc/mockpanel(list/buttons,start_txt,end_txt,list/mid_txts)
@@ -300,7 +336,7 @@ proc/check_panel(mob/M)
 				step_towards(src,my_target)
 				updateimage()
 			else
-				if(prob(15))
+				if(prob(7))
 					if(weapon_name)
 						my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
 						my_target.show_message("\red <B>[my_target] has been attacked with [weapon_name] by [src.name] </B>", 1)

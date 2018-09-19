@@ -1,26 +1,29 @@
+SUBSYSTEM_DEF(xenoarch)
+	name = "Xenoarch"
+	flags = SS_NO_FIRE
+	init_order = INIT_ORDER_XENOARCH
 
-/datum/controller/game_controller
+	var/const/xenoarch_spawn_chance = 0.5
+	var/const/digsite_size_lower = 4
+	var/const/digsite_size_upper = 12
+	var/const/artifact_spawnnum_lower = 6
+	var/const/artifact_spawnnum_upper = 12
+
 	var/list/artifact_spawning_turfs = list()
 	var/list/digsite_spawning_turfs = list()
 
-#define XENOARCH_SPAWN_CHANCE 0.5
-#define DIGSITESIZE_LOWER 4
-#define DIGSITESIZE_UPPER 12
-#define ARTIFACTSPAWNNUM_LOWER 6
-#define ARTIFACTSPAWNNUM_UPPER 12
-
-datum/controller/game_controller/proc/SetupXenoarch()
+/datum/controller/subsystem/xenoarch/Initialize(start_timeofday)
 	//create digsites
 	for(var/turf/simulated/mineral/M in block(locate(1,1,1), locate(world.maxx, world.maxy, world.maxz)))
 		if(isnull(M.geologic_data))
 			M.geologic_data = new/datum/geosample(M)
 
-		if(!prob(XENOARCH_SPAWN_CHANCE))
+		if(!prob(xenoarch_spawn_chance))
 			continue
 
 		digsite_spawning_turfs.Add(M)
 		var/digsite = get_random_digsite_type()
-		var/target_digsite_size = rand(DIGSITESIZE_LOWER, DIGSITESIZE_UPPER)
+		var/target_digsite_size = rand(digsite_size_lower, digsite_size_upper)
 		var/list/processed_turfs = list()
 		var/list/turfs_to_process = list(M)
 		while(turfs_to_process.len)
@@ -66,7 +69,7 @@ datum/controller/game_controller/proc/SetupXenoarch()
 				artifact_spawning_turfs.Add(archeo_turf)
 
 	//create artifact machinery
-	var/num_artifacts_spawn = rand(ARTIFACTSPAWNNUM_LOWER, ARTIFACTSPAWNNUM_UPPER)
+	var/num_artifacts_spawn = rand(artifact_spawnnum_lower, artifact_spawnnum_upper)
 	while(artifact_spawning_turfs.len > num_artifacts_spawn)
 		pick_n_take(artifact_spawning_turfs)
 
@@ -75,8 +78,4 @@ datum/controller/game_controller/proc/SetupXenoarch()
 		var/turf/simulated/mineral/artifact_turf = pop(artifacts_spawnturf_temp)
 		artifact_turf.artifact_find = new()
 
-#undef XENOARCH_SPAWN_CHANCE
-#undef DIGSITESIZE_LOWER
-#undef DIGSITESIZE_UPPER
-#undef ARTIFACTSPAWNNUM_LOWER
-#undef ARTIFACTSPAWNNUM_UPPER
+	return ..()
