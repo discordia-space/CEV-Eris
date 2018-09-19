@@ -69,10 +69,10 @@ var/global/list/robot_modules = list(
 	desc = "This is a robot module parent class. You shouldn't see this description"
 
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
-
 	..()
 	if (!istype(R))
 		return
+
 	R.module = src
 
 	add_camera_networks(R)
@@ -1015,6 +1015,10 @@ var/global/list/robot_modules = list(
 	name = "drone module"
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
+	stat_modifers = list(
+		STAT_COG = 15,
+		STAT_MEC = 30
+	)
 
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/tool/weldingtool/robotic(src)

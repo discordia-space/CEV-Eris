@@ -1,8 +1,8 @@
 /obj/machinery/computer/helm
 	name = "helm control console"
-	icon_state = "thick"
+	icon_state = "computer"
 	icon_keyboard = "teleport_key"
-	icon_screen = "helm"
+	icon_screen = "eris_control"
 	light_color = "#7faaff"
 	circuit = /obj/item/weapon/circuitboard/helm
 	var/obj/effect/overmap/ship/linked			//connected overmap object
