@@ -43,13 +43,7 @@
 	pref.job_engsec_med 	= sanitize_integer(pref.job_engsec_med, 0, 65535, initial(pref.job_engsec_med))
 	pref.job_engsec_low 	= sanitize_integer(pref.job_engsec_low, 0, 65535, initial(pref.job_engsec_low))
 
-	if(!job_master)
-		return
-
 /datum/category_item/player_setup_item/occupation/content(mob/user, limit = 18, list/splitJobs = list("Moebius Biolab Officer"))
-	if(!job_master)
-		return
-
 	. = list()
 	. += "<tt><center>"
 	. += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>"
@@ -57,9 +51,7 @@
 	. += "<table width='100%' cellpadding='1' cellspacing='0' style='color:black;'>"
 	var/index = -1
 
-	if(!job_master)
-		return
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in SSjob.occupations)
 
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
@@ -140,7 +132,7 @@
 
 
 /datum/category_item/player_setup_item/occupation/proc/SetJob(mob/user, role)
-	var/datum/job/job = job_master.GetJob(role)
+	var/datum/job/job = SSjob.GetJob(role)
 	if(!job)
 		return 0
 

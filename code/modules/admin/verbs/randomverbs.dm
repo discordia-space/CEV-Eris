@@ -378,8 +378,8 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 	var/player_key = G_found.key
 
 	//Now for special roles and equipment.
-	job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)
-	job_master.LateSpawn(new_character.client, new_character.mind.assigned_role)
+	SSjob.EquipRank(new_character, new_character.mind.assigned_role, 1)
+	SSjob.LateSpawn(new_character.client, new_character.mind.assigned_role)
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
@@ -500,9 +500,8 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_list_open_jobs, R_DEBUG, FALSE)
 	if (!holder)
 		src << "Only administrators may use this command."
 		return
-	if(job_master)
-		for(var/datum/job/job in job_master.occupations)
-			src << "[job.title]: [job.total_positions]"
+	for(var/datum/job/job in SSjob.occupations)
+		src << "[job.title]: [job.total_positions]"
 
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in range(world.view))

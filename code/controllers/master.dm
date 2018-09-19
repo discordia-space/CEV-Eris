@@ -183,6 +183,7 @@ var/global/datum/controller/master/Master = new
 
 	var/msg = "Initializations complete within [time] second\s!"
 	report_progress(msg)
+	log_world(msg)
 
 	if (!current_runlevel)
 		SetRunLevel(RUNLEVEL_LOBBY)
@@ -586,3 +587,6 @@ var/global/datum/controller/master/Master = new
 	for(var/S in subsystems)
 		var/datum/controller/subsystem/SS = S
 		SS.StopLoadingMap()
+
+/proc/report_progress(progress_message)
+	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)

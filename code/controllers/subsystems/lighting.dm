@@ -1,18 +1,19 @@
-/var/list/lighting_update_lights    = list()    // List of lighting sources  queued for update.
+/var/list/lighting_update_lights = list() // List of lighting sources queued for update.
 
-/var/lighting_processing            = 1
+SUBSYSTEM_DEF(lighting)
+	name = "Lighting"
+	wait = 1
+	init_order = INIT_ORDER_LIGHTING
+	flags = SS_TICKER
 
-/world/New()
-	. = ..()
-	lighting_start_process()
+/datum/controller/subsystem/lighting/stat_entry()
+	..("L:[lighting_update_lights.len]")
 
-/proc/lighting_start_process()
-	set waitfor = FALSE
-	while(lighting_processing)
-		sleep(LIGHTING_INTERVAL)
-		lighting_process()
+/datum/controller/subsystem/lighting/Initialize(start_timeofday)
+	fire() // for now, this proc also acts as initialize step, so Eris won't stay in dark until round starts.
+	return ..()
 
-/proc/lighting_process()
+/datum/controller/subsystem/lighting/fire()
 	for(var/A in lighting_update_lights)
 		if(!A)
 			continue

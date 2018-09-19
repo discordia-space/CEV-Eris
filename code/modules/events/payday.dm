@@ -6,9 +6,9 @@
 
 	for(var/record in data_core.general)
 		var/datum/data/record/R = record
-		var/datum/job/temp_job = job_master.GetJob(R.fields["real_rank"])
+		var/datum/job/temp_job = SSjob.GetJob(R.fields["real_rank"])
 		if(!temp_job)
-			job_master.GetJob("Assistant")
+			SSjob.GetJob("Assistant")
 		var/datum/money_account/pay_accaunt = get_account(R.fields["pay_account"])
 
 		var/money_amount = temp_job.one_time_payment()
