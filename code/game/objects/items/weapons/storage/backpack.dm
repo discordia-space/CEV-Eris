@@ -32,7 +32,7 @@
 	if(!can_access_backpack && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
-			to_chat(H, "<span class='notice'>Oh no! You haven't got so long hands to open [src] from your back!</span>")
+			to_chat(H, "<span class='notice'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
 			return
 	..()
 
@@ -47,7 +47,7 @@
 	if(!can_access_backpack && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
-			to_chat(H, "<span class='notice'>Oh no! You haven't got so long hands to open [src] from your back!")
+			to_chat(H, "<span class='notice'>Oh no! Your arms are not long enough to open [src] while it is on your back!")
 			return
 	..()
 
