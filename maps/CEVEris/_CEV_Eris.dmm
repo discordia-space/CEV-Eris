@@ -5248,7 +5248,7 @@
 "bWV" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 8},/turf/simulated/floor/tiled/dark,/area/eris/security/inspectors_office)
 "bWW" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/dark,/area/eris/security/inspectors_office)
 "bWX" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -26},/turf/simulated/floor/carpet,/area/eris/security/inspectors_office)
-"bWY" = (/obj/structure/table/woodentable,/obj/item/weapon/material/ashtray/bronze,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/carpet,/area/eris/security/inspectors_office)
+"bWY" = (/obj/structure/table/woodentable,/obj/item/weapon/material/ashtray,/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,/turf/simulated/floor/carpet,/area/eris/security/inspectors_office)
 "bWZ" = (/obj/structure/bed/chair/wood{tag = "icon-wooden_chair (WEST)"; icon_state = "wooden_chair"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor/carpet,/area/eris/security/inspectors_office)
 "bXa" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/structure/disposalpipe/junction{icon_state = "pipe-j2"; dir = 4},/turf/simulated/floor/carpet,/area/eris/security/inspectors_office)
 "bXb" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/plating,/area/rnd/mixing)
