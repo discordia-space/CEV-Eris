@@ -3,11 +3,140 @@
 	var/tick_cost = 0.4
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
+	brightness_on = 2
+	dir = WEST
 
+	var/obj/effect/effect/light/light_spot
+	var/light_spot_brightness = 3
+	var/light_spot_range = 3
+	var/spot_locked = 0		//this flag needed for lightspot to stay in place when player clicked on turf, will reset when moved or turned
+
+	var/light_direction
+	//var/list/lightSpotBlacklist = list(/obj/machinery/door/airlock)	//list of items that stops lightspot despite that they are not opaque
+	
 /obj/item/device/lighting/toggleable/flashlight/New()
 	..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
+
+/obj/item/device/lighting/toggleable/flashlight/Destroy()
+	..()
+	qdel(light_spot)
+
+/obj/item/device/lighting/toggleable/flashlight/proc/calculate_dir(var/turf/old_loc)
+	if (istype(src.loc,/obj/item/weapon/storage) || istype(src.loc,/obj/structure/closet))
+		return
+	if (istype(src.loc,/mob/living))
+		var/mob/living/L = src.loc 
+		set_dir(L.dir)
+	else if (pulledby && old_loc)
+		var/x_diff = src.x - old_loc.x
+		var/y_diff = src.y - old_loc.y
+		if (x_diff > 0)
+			set_dir(EAST)
+		else if (x_diff < 0)
+			set_dir(WEST)
+		else if (y_diff > 0)
+			set_dir(NORTH)
+		else if (y_diff < 0)
+			set_dir(SOUTH)
+
+/obj/item/device/lighting/toggleable/flashlight/set_dir(new_dir)
+	var/turf/NT = get_turf(src)	//supposed location for lightspot
+	var/turf/L = get_turf(src)	//current location of flashlight in world
+
+	light_direction = new_dir
+
+	if (istype(src.loc,/obj/item/weapon/storage) || istype(src.loc,/obj/structure/closet))	//no point in finding spot for light if flashlight is inside container
+		place_lightspot(NT,light_direction)
+		return
+
+	switch(light_direction)
+		if(NORTH)
+			for(var/i = 1,i <= light_spot_range, i++)
+				var/turf/T = locate(L.x,L.y + i,L.z)
+				if (lightSpotPassable(T))
+					NT = T
+				else 
+					break
+		if(SOUTH)
+			for(var/i = 1,i <= light_spot_range, i++)
+				var/turf/T = locate(L.x,L.y - i,L.z)
+				if (lightSpotPassable(T))
+					NT = T
+				else 
+					break
+		if(EAST)
+			for(var/i = 1,i <= light_spot_range, i++)
+				var/turf/T = locate(L.x + i,L.y,L.z)
+				if (lightSpotPassable(T))
+					NT = T
+				else 
+					break
+		if(WEST)
+			for(var/i = 1,i <= light_spot_range, i++)
+				var/turf/T = locate(L.x - i,L.y,L.z)
+				if (lightSpotPassable(T))
+					NT = T
+				else 
+					break
+
+	place_lightspot(NT,light_direction)
+
+	if (!istype(src.loc,/mob/living))
+		dir = new_dir
+
+/obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(var/turf/T, var/direction)
+	if (light_spot && on && !T.is_space())
+		light_spot.forceMove(T)
+		light_spot.icon_state = "nothing"
+		if (lightSpotPlaceable(T))
+			light_spot.icon_state = "light_spot"
+		light_spot.set_dir(direction)
+
+/obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPassable(var/turf/T)
+	if (is_opaque(T) || is_blocked_turf(T))
+		return 0
+	/*for(var/obj/O in T)
+		if(O.type in lightSpotBlacklist)
+			return 0*/
+	return 1
+
+/obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPlaceable(var/turf/T)	//check if we can place icon there, light will be still applied
+	if(T == get_turf(src) || !isfloor(T))
+		return 0
+	for(var/obj/O in T)
+		if(istype(O, /obj/structure/window))
+			return 0
+	return 1
+
+/obj/item/device/lighting/toggleable/flashlight/moved(mob/user, old_loc)
+	spot_locked = 0
+	calculate_dir(old_loc)
+
+/obj/item/device/lighting/toggleable/flashlight/entered_with_container()
+	spot_locked = 0
+	calculate_dir()
+
+/obj/item/device/lighting/toggleable/flashlight/container_dir_changed(new_dir)
+	spot_locked = 0
+	set_dir(new_dir)
+
+/obj/item/device/lighting/toggleable/flashlight/pickup(mob/user)
+	..()
+	calculate_dir()
+	dir = WEST
+
+/obj/item/device/lighting/toggleable/flashlight/dropped(mob/user as mob)
+	if(light_direction)
+		set_dir(light_direction)
+
+/obj/item/device/lighting/toggleable/flashlight/afterattack(atom/A, mob/user)
+	var/turf/T = get_turf(A)
+	if(can_see(user,T) && lightSpotPassable(T) && light_spot_range >= get_dist(get_turf(src),T))
+		spot_locked = 1
+		light_direction = get_dir(src,T)
+		place_lightspot(T, light_direction)
 
 /obj/item/device/lighting/toggleable/flashlight/turn_on(mob/user)
 	if(!cell || !cell.check_charge(tick_cost))
@@ -15,17 +144,23 @@
 		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return FALSE
 	. = ..()
+	light_spot = new(get_turf(src),light_spot_brightness)
+	light_spot.icon_state = "light_spot"
+	calculate_dir()
 	if(. && user)
 		START_PROCESSING(SSobj, src)
 		user.update_action_buttons()
 
 /obj/item/device/lighting/toggleable/flashlight/turn_off(mob/user)
 	. = ..()
+	qdel(light_spot)
 	if(. && user)
 		user.update_action_buttons()
 
 /obj/item/device/lighting/toggleable/flashlight/Process()
 	if(on)
+		if(!spot_locked)
+			calculate_dir()
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
 				src.loc << SPAN_WARNING("Your flashlight dies. You are alone now.")
@@ -92,10 +227,6 @@
 	else
 		return ..()
 
-
-
-
-
 /obj/item/device/lighting/toggleable/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
@@ -103,6 +234,8 @@
 	item_state = ""
 	slot_flags = SLOT_EARS
 	brightness_on = 2
+	light_spot_brightness = 2
+	light_spot_range = 1
 	w_class = ITEM_SIZE_TINY
 
 /obj/item/device/lighting/toggleable/flashlight/heavy
@@ -110,7 +243,9 @@
 	desc = "A hand-held heavy-duty light."
 	icon_state = "heavyduty"
 	item_state = "heavyduty"
-	brightness_on = 6
+	brightness_on = 3
+	light_spot_brightness = 4
+	light_spot_range = 4
 	tick_cost = 0.8
 	suitable_cell = /obj/item/weapon/cell/medium
 

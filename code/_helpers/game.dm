@@ -521,3 +521,11 @@ datum/projectile_data
 			if(temp_vent.network.normal_members.len > 15)
 				vents += temp_vent
 	return vents
+
+/proc/is_opaque(var/turf/T)
+	if (T.opacity == 1)
+		return 1
+	for(var/obj/O in T.contents)
+		if (O.opacity == 1)
+			return 1
+	return 0
