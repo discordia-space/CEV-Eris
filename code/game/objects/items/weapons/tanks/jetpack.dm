@@ -71,6 +71,16 @@
 	qdel(G)
 	return
 
+
+//A check only version of the above, does not alter any values
+/obj/item/weapon/tank/jetpack/proc/check_thrust(num, mob/living/user as mob)
+	if(!(src.on))
+		return FALSE
+	if((src.air_contents.total_moles < num))
+		return FALSE
+
+	return TRUE
+
 /obj/item/weapon/tank/jetpack/ui_action_click()
 	toggle()
 
@@ -139,6 +149,20 @@
 	qdel(G)
 	return
 
+
+/obj/item/weapon/tank/jetpack/rig/check_thrust(num, mob/living/user as mob)
+	if(!(src.on))
+		return 0
+
+	if(!istype(holder) || !holder.air_supply)
+		return 0
+
+	var/obj/item/weapon/tank/pressure_vessel = holder.air_supply
+
+	if((num < 0.005 || pressure_vessel.air_contents.total_moles < num))
+		return 0
+
+	return 1
 
 /proc/GetJetpack(var/mob/living/L)
 	// Search the human for a jetpack. Either on back or on a RIG that's on
