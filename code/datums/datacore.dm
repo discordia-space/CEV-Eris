@@ -241,7 +241,7 @@ var/global/ManifestJSON
 	preview_icon.Blend(temp, ICON_OVERLAY)
 
 
-	var/datum/job/J = job_master.GetJob(H.mind.assigned_role)
+	var/datum/job/J = SSjob.GetJob(H.mind.assigned_role)
 	if(J)
 		var/t_state
 		var/obj/item/clothing/under/UF = J.uniform

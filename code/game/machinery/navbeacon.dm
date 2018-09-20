@@ -39,8 +39,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 
 		spawn(5)	// must wait for map loading to finish
-			if(radio_controller)
-				radio_controller.add_object(src, freq, RADIO_NAVBEACONS)
+			SSradio.add_object(src, freq, RADIO_NAVBEACONS)
 
 	// set the transponder codes assoc list from codes_txt
 	proc/set_codes()
@@ -94,7 +93,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 	proc/post_signal()
 
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+		var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 
 		if(!frequency) return
 
@@ -253,6 +252,5 @@ Transponder Codes:<UL>"}
 
 /obj/machinery/navbeacon/Destroy()
 	navbeacons.Remove(src)
-	if(radio_controller)
-		radio_controller.remove_object(src, freq)
+	SSradio.remove_object(src, freq)
 	. = ..()

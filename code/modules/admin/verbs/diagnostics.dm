@@ -3,10 +3,6 @@ ADMIN_VERB_ADD(/client/proc/air_report, R_DEBUG, FALSE)
 	set category = "Debug"
 	set name = "Show Air Report"
 
-	if(!master_controller || !SSair)
-		alert(usr,"Master_controller or SSair not found.","Air Report")
-		return
-
 	var/active_groups = SSair.active_zones
 	var/inactive_groups = SSair.zones.len - active_groups
 
@@ -78,9 +74,9 @@ ADMIN_VERB_ADD(/client/proc/air_report, R_DEBUG, FALSE)
 	set name = "Radio report"
 
 	var/output = "<b>Radio Report</b><hr>"
-	for (var/fq in radio_controller.frequencies)
+	for (var/fq in SSradio.frequencies)
 		output += "<b>Freq: [fq]</b><br>"
-		var/list/datum/radio_frequency/fqs = radio_controller.frequencies[fq]
+		var/list/datum/radio_frequency/fqs = SSradio.frequencies[fq]
 		if (!fqs)
 			output += "&nbsp;&nbsp;<b>ERROR</b><br>"
 			continue
@@ -130,9 +126,6 @@ ADMIN_VERB_ADD(/client/proc/jump_to_dead_group, R_DEBUG, FALSE)
 		src << "Only administrators may use this command."
 		return
 
-	if(!SSair)
-		usr << "Cannot find air_system"
-		return
 	var/datum/air_group/dead_groups = list()
 	for(var/datum/air_group/group in SSair.air_groups)
 		if (!group.group_processing)
@@ -151,10 +144,6 @@ ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG, FALSE)
 	set category = "Debug"
 	if(!holder)
 		src << "Only administrators may use this command."
-		return
-
-	if(!SSair)
-		usr << "Cannot find air_system"
 		return
 
 	var/turf/T = get_turf(usr)

@@ -1,31 +1,13 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+SUBSYSTEM_DEF(pai)
+	name = "pAI"
+	flags = SS_NO_INIT|SS_NO_FIRE
 
-// Recruiting observers to play as pAIs
-
-var/datum/paiController/paiController			// Global handler for pAI candidates
-
-/datum/paiCandidate
-	var/name
-	var/key
-	var/description
-	var/role
-	var/comments
-	var/ready = 0
-
-
-/hook/startup/proc/paiControllerSetup()
-	paiController = new /datum/paiController()
-	return 1
-
-
-/datum/paiController
 	var/inquirer = null
 	var/list/pai_candidates = list()
 	var/list/asked = list()
+	var/askDelay = 1 MINUTE
 
-	var/askDelay = 10 * 60 * 1	// One minute [ms * sec * min]
-
-/datum/paiController/Topic(href, href_list[])
+/datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
 		var/obj/item/device/paicard/card = locate(href_list["device"])
@@ -95,7 +77,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 		recruitWindow(usr, href_list["allow_submit"] != "0")
 
-/datum/paiController/proc/recruitWindow(var/mob/M as mob, allowSubmit = 1)
+/datum/controller/subsystem/pai/proc/recruitWindow(mob/M, allowSubmit = TRUE)
 	var/datum/paiCandidate/candidate
 	for(var/datum/paiCandidate/c in pai_candidates)
 		if(!istype(c) || !istype(M))
@@ -227,10 +209,10 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 	M << browse(dat, "window=paiRecruit;size=580x580;")
 
-/datum/paiController/proc/findPAI(var/obj/item/device/paicard/p, var/mob/user)
+/datum/controller/subsystem/pai/proc/findPAI(obj/item/device/paicard/p, mob/user)
 	requestRecruits(user)
 	var/list/available = list()
-	for(var/datum/paiCandidate/c in paiController.pai_candidates)
+	for(var/datum/paiCandidate/c in pai_candidates)
 		if(c.ready)
 			var/found = 0
 			for(var/mob/observer/ghost/o in player_list)
@@ -344,7 +326,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 	user << browse(dat, "window=findPai")
 
 
-/datum/paiController/proc/requestRecruits(var/mob/user)
+/datum/controller/subsystem/pai/proc/requestRecruits(mob/user)
 	inquirer = user
 	for(var/mob/observer/ghost/O in player_list)
 		if(!O.MayRespawn())
@@ -360,14 +342,24 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 			if(BE_PAI in O.client.prefs.be_special_role)
 				question(O.client)
 
-/datum/paiController/proc/question(var/client/C)
+/datum/controller/subsystem/pai/proc/question(client/C)
 	spawn(0)
-		if(!C)	return
+		if(!C)
+			return
 		asked.Add(C.key)
 		asked[C.key] = world.time
 		var/response = alert(C, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", "Yes", "No", "Never for this round")
-		if(!C)	return		//handle logouts that happen whilst the alert is waiting for a response.
+		if(!C)
+			return // handle logouts that happen whilst the alert is waiting for a response.
 		if(response == "Yes")
 			recruitWindow(C.mob)
 		else if (response == "Never for this round")
 			C.prefs.be_special_role -= BE_PAI
+
+/datum/paiCandidate
+	var/name
+	var/key
+	var/description
+	var/role
+	var/comments
+	var/ready = FALSE
