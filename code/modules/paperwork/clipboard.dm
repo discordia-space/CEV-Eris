@@ -46,8 +46,7 @@
 /obj/item/weapon/clipboard/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo))
-		user.drop_item()
-		W.loc = src
+		user.drop_active_hand(W, src)
 		if(istype(W, /obj/item/weapon/paper))
 			toppaper = W
 		user << SPAN_NOTICE("You clip the [W] onto \the [src].")
@@ -99,9 +98,7 @@
 		else if(href_list["addpen"])
 			if(!haspen)
 				var/obj/item/weapon/pen/W = usr.get_active_hand()
-				if(istype(W, /obj/item/weapon/pen))
-					usr.drop_item()
-					W.loc = src
+				if(istype(W, /obj/item/weapon/pen) && usr.unEquip(W, src))
 					haspen = W
 					usr << SPAN_NOTICE("You slot the pen into \the [src].")
 

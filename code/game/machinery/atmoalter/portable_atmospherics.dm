@@ -107,12 +107,11 @@
 	if ((istype(I, /obj/item/weapon/tank) && !( src.destroyed )))
 		if (src.holding)
 			return
-		var/obj/item/weapon/tank/T = I
-		user.drop_item()
-		T.loc = src
-		src.holding = T
-		playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
-		update_icon()
+		if(user.unEquip(I, src))
+			var/obj/item/weapon/tank/T = I
+			src.holding = T
+			playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
+			update_icon()
 		return
 
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
@@ -164,25 +163,25 @@
 			user << "There is already a power cell installed."
 			return
 
-		var/obj/item/weapon/cell/large/C = I
-
-		user.drop_item()
-		C.add_fingerprint(user)
-		src.cell = C
-		C.loc = src
-		user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and inserts [C]."), SPAN_NOTICE("You open the panel on [src] and insert [C]."))
-		power_change()
+		if(user.unEquip(I, src))
+			var/obj/item/weapon/cell/large/C = I
+			C.add_fingerprint(user)
+			src.cell = C
+			user.visible_message(
+				SPAN_NOTICE("[user] opens the panel on [src] and inserts [C]."),
+				SPAN_NOTICE("You open the panel on [src] and insert [C].")
+			)
+			power_change()
 		return
 
 	if ((istype(I, /obj/item/weapon/tank) && !( src.destroyed )))
 		if (src.holding)
 			return
-		var/obj/item/weapon/tank/T = I
-		user.drop_item()
-		T.loc = src
-		src.holding = T
-		playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
-		update_icon()
+		if(user.unEquip(I, src))
+			var/obj/item/weapon/tank/T = I
+			src.holding = T
+			playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
+			update_icon()
 		return
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING, QUALITY_BOLT_TURNING))

@@ -185,7 +185,7 @@
 
 	H.cards += cards
 	cards.Cut();
-	user.drop_item()
+	user.drop_from_inventory(src)
 	qdel(src)
 
 	H.update_icon()

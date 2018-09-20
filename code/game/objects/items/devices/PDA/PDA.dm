@@ -1149,8 +1149,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	..()
 	if(istype(C, /obj/item/weapon/cartridge) && !cartridge)
 		cartridge = C
-		user.drop_item()
-		cartridge.loc = src
+		user.drop_from_inventory(C, src)
 		user << SPAN_NOTICE("You insert [cartridge] into [src].")
 		SSnano.update_uis(src) // update all UIs attached to src
 		if(cartridge.radio)
@@ -1177,8 +1176,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			return	//Return in case of failed check or when successful.
 		updateSelfDialog()//For the non-input related code.
 	else if(istype(C, /obj/item/device/paicard) && !src.pai)
-		user.drop_item()
-		C.loc = src
+		user.drop_from_inventory(C, src)
 		pai = C
 		user << SPAN_NOTICE("You slot \the [C] into [src].")
 		SSnano.update_uis(src) // update all UIs attached to src
@@ -1187,7 +1185,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if(O)
 			user << SPAN_NOTICE("There is already a pen in \the [src].")
 		else
-			user.drop_item()
+			user.drop_from_inventory(C, src)
 			C.loc = src
 			user << SPAN_NOTICE("You slide \the [C] into \the [src].")
 			update_icon()

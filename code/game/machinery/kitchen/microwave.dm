@@ -107,14 +107,14 @@
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(I, /obj/item/weapon/reagent_containers/spray/cleaner)) // If they're trying to clean it then let them
-			user.visible_message( \
-				SPAN_NOTICE("\The [user] starts to clean the microwave."), \
-				SPAN_NOTICE("You start to clean the microwave.") \
+			user.visible_message(
+				SPAN_NOTICE("\The [user] starts to clean the microwave."),
+				SPAN_NOTICE("You start to clean the microwave.")
 			)
 			if (do_after(user, 20, src))
-				user.visible_message( \
-					SPAN_NOTICE("\The [user] has cleaned the microwave."), \
-					SPAN_NOTICE("You have cleaned the microwave.") \
+				user.visible_message(
+					SPAN_NOTICE("\The [user] has cleaned the microwave."),
+					SPAN_NOTICE("You have cleaned the microwave.")
 				)
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
@@ -131,17 +131,17 @@
 			var/obj/item/stack/S = I
 			new I.type (src)
 			S.use(1)
-			user.visible_message( \
-				SPAN_NOTICE("\The [user] has added one of [I] to \the [src]."), \
-				SPAN_NOTICE("You add one of [I] to \the [src]."))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] has added one of [I] to \the [src]."),
+				SPAN_NOTICE("You add one of [I] to \the [src].")
+			)
 			return
 		else
-		//	user.remove_from_mob(O)	//This just causes problems so far as I can tell. -Pete
-			user.drop_item()
-			I.loc = src
-			user.visible_message( \
-				SPAN_NOTICE("\The [user] has added \the [I] to \the [src]."), \
-				SPAN_NOTICE("You add \the [I] to \the [src]."))
+			user.drop_from_inventory(I, src)
+			user.visible_message(
+				SPAN_NOTICE("\The [user] has added \the [I] to \the [src]."),
+				SPAN_NOTICE("You add \the [I] to \the [src].")
+			)
 			return
 	else if(istype(I,/obj/item/weapon/reagent_containers/glass) || \
 	        istype(I,/obj/item/weapon/reagent_containers/food/drinks) || \
@@ -156,13 +156,13 @@
 		return
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		user.visible_message( \
-		"<span class='notice'>\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave.</span>", \
-		"<span class='notice'>You attempt to [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
+			SPAN_NOTICE("\The [user] begins [src.anchored ? "securing" : "unsecuring"] the microwave."),
+			SPAN_NOTICE("You attempt to [src.anchored ? "secure" : "unsecure"] the microwave.")
 		)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			user.visible_message( \
-			"<span class='notice'>\The [user] [src.anchored ? "secures" : "unsecures"] the microwave.</span>", \
-			"<span class='notice'>You [src.anchored ? "secure" : "unsecure"] the microwave.</span>"
+				SPAN_NOTICE("\The [user] [src.anchored ? "secures" : "unsecures"] the microwave."),
+				SPAN_NOTICE("You [src.anchored ? "secure" : "unsecure"] the microwave.")
 			)
 			src.anchored = !src.anchored
 	else

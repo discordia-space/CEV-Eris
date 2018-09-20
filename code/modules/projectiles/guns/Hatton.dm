@@ -59,12 +59,9 @@
 /obj/item/weapon/hatton/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/hatton_magazine))
 		if(!magazine)
-			user.drop_item()
+			user.drop_from_inventory(magazine, src)
 			magazine = W
-			magazine.loc = src
 			update_icon()
-			return
-	return
 
 
 /obj/item/weapon/hatton/attack_self(mob/living/user as mob)
@@ -133,7 +130,7 @@
 		var/mob/living/M = user
 		if ((CLUMSY in M.mutations) && prob(50))
 			M << SPAN_DANGER("[src] blows up in your face.")
-			M.drop_item()
+			M.drop_from_inventory(src)
 			Fire(get_turf(M))
 			del(src)
 			return

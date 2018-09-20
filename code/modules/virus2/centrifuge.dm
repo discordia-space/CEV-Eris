@@ -18,14 +18,11 @@
 			user << "\The [src] is already loaded."
 			return
 
-		sample = O
-		user.drop_item()
-		O.loc = src
+		if(user.unEquip(O, src))
+			sample = O
 
-		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
-		SSnano.update_uis(src)
-
-	src.attack_hand(user)
+			user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
+			SSnano.update_uis(src)
 
 /obj/machinery/computer/centrifuge/update_icon()
 	..()

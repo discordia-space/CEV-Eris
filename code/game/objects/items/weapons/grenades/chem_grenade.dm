@@ -105,12 +105,11 @@
 			return
 		else
 			if(W.reagents.total_volume)
-				user << SPAN_NOTICE("You add \the [W] to the assembly.")
-				user.drop_item()
-				W.loc = src
-				beakers += W
-				stage = 1
-				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+				if(user.unEquip(W, src))
+					user << SPAN_NOTICE("You add \the [W] to the assembly.")
+					beakers += W
+					stage = 1
+					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 			else
 				user << SPAN_WARNING("\The [W] is empty.")
 

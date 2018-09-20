@@ -413,8 +413,7 @@ log transactions
 					else
 						var/obj/item/I = usr.get_active_hand()
 						if (istype(I, /obj/item/weapon/card/id))
-							usr.drop_item()
-							I.loc = src
+							usr.drop_from_inventory(I, src)
 							held_card = I
 				else
 					release_held_id(usr)

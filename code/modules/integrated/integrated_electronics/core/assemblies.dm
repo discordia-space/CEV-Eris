@@ -257,8 +257,7 @@
 			user << SPAN_WARNING("\The [src] already has \a [battery] inside.  Remove it first if you want to replace it.")
 			return FALSE
 		var/obj/item/weapon/cell/small/cell = I
-		user.drop_item(cell)
-		cell.forceMove(src)
+		user.drop_from_inventory(cell, src)
 		battery = cell
 		playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 		user << SPAN_NOTICE("You slot \the [cell] inside \the [src]'s power supplier.")

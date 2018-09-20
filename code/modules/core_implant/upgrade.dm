@@ -33,8 +33,7 @@
 		SPAN_DANGER("You are trying to install [src] in the [target]'s \the [I]."))
 
 	if(do_after(user,50,target))
-		user.drop_item(src)
-		forceMove(I)
+		user.drop_from_inventory(src, I)
 		implant = I
 		on_install(target,user,target_zone)
 		implant.upgrades.Add(src)

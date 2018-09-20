@@ -274,10 +274,6 @@
 			user << "\icon[ME] [ME]"
 	return
 
-
-/obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
-	return
-
 /obj/mecha/hear_talk(mob/M as mob, text)
 	if(M==occupant && radio.broadcasting)
 		radio.talk_into(M, text)
@@ -843,7 +839,7 @@
 		var/obj/item/mecha_parts/mecha_equipment/E = I
 		spawn()
 			if(E.can_attach(src))
-				user.drop_item()
+				user.drop_from_inventory(E, src)
 				E.attach(src)
 				user.visible_message("[user] attaches [I] to [src]", "You attach [I] to [src]")
 			else
@@ -880,8 +876,7 @@
 		if(state==4)
 			if(!src.cell)
 				user << "You install the powercell"
-				user.drop_item()
-				I.forceMove(src)
+				user.drop_from_inventory(I, src)
 				src.cell = I
 				src.log_message("Powercell installed")
 			else

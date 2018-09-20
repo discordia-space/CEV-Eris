@@ -577,13 +577,11 @@
 
 		if (beaker)
 			return 1
-		else
+		else if(user.unEquip(O, src))
 			src.beaker =  O
-			user.drop_item()
-			O.loc = src
 			update_icon()
 			src.updateUsrDialog()
-			return 0
+			return FALSE
 
 	//Useability tweak for borgs
 	if (istype(O,/obj/item/weapon/gripper))

@@ -208,8 +208,7 @@
 			user << "\The [src] already has a helmet installed."
 		else
 			user << "You attach \the [W] to \the [src]'s helmet mount."
-			user.drop_item()
-			W.forceMove(src)
+			user.drop_from_inventory(W, src)
 			src.helmet = W
 			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
@@ -218,8 +217,7 @@
 			user << "\The [src] already has magboots installed."
 		else
 			user << "You attach \the [W] to \the [src]'s boot mounts."
-			user.drop_item()
-			W.forceMove(src)
+			user.drop_from_inventory(W, src)
 			boots = W
 			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
@@ -230,8 +228,7 @@
 			user << "\The [W] cannot be inserted into \the [src]'s storage compartment."
 		else
 			user << "You insert \the [W] into \the [src]'s storage compartment."
-			user.drop_item()
-			W.forceMove(src)
+			user.drop_from_inventory(W, src)
 			tank = W
 			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return

@@ -154,9 +154,8 @@
 
 	if(istype(I, /obj/item/weapon/cell/large))
 		if(!cell)
-			user.drop_item()
+			user.drop_from_inventory(cell, src)
 			cell = I
-			cell.loc = src
 			user << SPAN_NOTICE("You jam [cell] into [src] and wire it to the firing coil.")
 			superheat_rod(user)
 		else

@@ -169,9 +169,8 @@
 				original = null
 			else
 				if(istype(D))
-					H.drop_item()
-					D.forceMove(src)
-					original = D
+					if(H && H.unEquip(D, src))
+						original = D
 		else
 			if(copy)
 				copy.forceMove(src.loc)

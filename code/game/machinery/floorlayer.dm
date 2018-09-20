@@ -45,7 +45,7 @@
 
 	if(istype(W, /obj/item/stack/tile))
 		user << SPAN_NOTICE("\The [W] successfully loaded.")
-		user.drop_item(T)
+		user.drop_from_inventory(W, T)
 		TakeTile(T)
 		return
 

@@ -7,48 +7,17 @@ This saves us from having to call add_fingerprint() any time something is put in
 	set name = "quick-equip"
 	set hidden = 1
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		var/obj/item/I = H.get_active_hand()
-		if(!I)
-			H << SPAN_NOTICE("You are not holding anything to equip.")
-			return
-		if(H.equip_to_appropriate_slot(I))
-			if(hand)
-				update_inv_l_hand(0)
-			else
-				update_inv_r_hand(0)
+	var/obj/item/I = get_active_hand()
+	if(!I)
+		src << SPAN_NOTICE("You are not holding anything to equip.")
+		return
+	if(equip_to_appropriate_slot(I))
+		if(hand)
+			update_inv_l_hand(0)
 		else
-			H << "\red You are unable to equip that."
-
-//Puts the item into our active hand if possible. returns 1 on success.
-/mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
-	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
-
-//Puts the item into our inactive hand if possible. returns 1 on success.
-/mob/living/carbon/human/put_in_inactive_hand(var/obj/item/W)
-	return (hand ? put_in_r_hand(W) : put_in_l_hand(W))
-
-/mob/living/carbon/human/put_in_hands(var/obj/item/W)
-	if(!W)
-		return FALSE
-	if(put_in_active_hand(W) || put_in_inactive_hand(W))
-		return TRUE
+			update_inv_r_hand(0)
 	else
-		return ..()
-
-/mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
-	if(!..())
-		return 0
-	W.add_fingerprint(src)
-	return 1
-
-/mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
-	if(!..())
-		return 0
-	W.add_fingerprint(src)
-	return 1
-
+		src << "\red You are unable to equip that."
 
 //Find HUD position on screen
 /mob/living/carbon/human/proc/find_inv_position(var/slot_id)
@@ -68,10 +37,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return null
 
 
-/mob/living/carbon/human/proc/has_organ(name)
+/mob/living/carbon/human/proc/has_organ(name, check_usablility = FALSE)
 	var/obj/item/organ/external/O = organs_by_name[name]
 
-	return (O && !O.is_stump())
+	return (O && !O.is_stump() && (!check_usablility || O.is_usable()))
 
 /mob/living/carbon/human/proc/has_organ_for_slot(slot)
 	switch(slot)
@@ -84,9 +53,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_legcuffed)
 			return has_organ(BP_L_LEG ) && has_organ(BP_R_LEG)
 		if(slot_l_hand)
-			return has_organ(BP_L_ARM)
+			return has_organ(BP_L_ARM, TRUE)
 		if(slot_r_hand)
-			return has_organ(BP_R_ARM)
+			return has_organ(BP_R_ARM, TRUE)
 		if(slot_belt)
 			return has_organ(BP_CHEST)
 		if(slot_wear_id)
@@ -207,19 +176,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	update_action_buttons()
 	return 1
-
-/mob/living/carbon/human/proc/get_active_hand_organ()
-	if(hand)
-		return get_organ(BP_L_ARM)
-	else
-		return get_organ(BP_R_ARM)
-
-/mob/living/carbon/human/proc/get_holding_hand(var/obj/item/W)
-	switch(get_inventory_slot(W))
-		if(slot_l_hand)
-			return BP_L_ARM
-		if(slot_r_hand)
-			return BP_R_ARM
 
 
 
@@ -367,6 +323,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 			covering = src.head
 		if(slot_gloves, slot_w_uniform)
 			covering = src.wear_suit
+		if(slot_l_hand, slot_r_hand)
+			if(lying)
+				return FALSE
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
@@ -399,18 +358,18 @@ This saves us from having to call add_fingerprint() any time something is put in
 /mob/living/carbon/human/get_equipped_items(var/include_carried = 0)
 	var/list/items = new/list()
 
-	if(back) items += back
-	if(belt) items += belt
-	if(l_ear) items += l_ear
-	if(r_ear) items += r_ear
-	if(glasses) items += glasses
-	if(gloves) items += gloves
-	if(head) items += head
-	if(shoes) items += shoes
-	if(wear_id) items += wear_id
-	if(wear_mask) items += wear_mask
-	if(wear_suit) items += wear_suit
-	if(w_uniform) items += w_uniform
+	if(back)		items += back
+	if(belt)		items += belt
+	if(l_ear)		items += l_ear
+	if(r_ear)		items += r_ear
+	if(glasses)		items += glasses
+	if(gloves)		items += gloves
+	if(head)		items += head
+	if(shoes)		items += shoes
+	if(wear_id)		items += wear_id
+	if(wear_mask)	items += wear_mask
+	if(wear_suit)	items += wear_suit
+	if(w_uniform)	items += w_uniform
 
 	if(include_carried)
 		if(slot_l_hand)     items += l_hand

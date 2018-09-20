@@ -144,8 +144,7 @@
 		if(cell)
 			user << "The drill already has a cell installed."
 		else
-			user.drop_item()
-			I.loc = src
+			user.drop_from_inventory(I, src)
 			cell = I
 			component_parts += I
 			user << "You install \the [I]."

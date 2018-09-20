@@ -215,8 +215,10 @@ var/global/chicken_count = 0
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = O
 		if(G.seed && G.seed.kitchen_tag == "wheat")
 			if(!stat && eggsleft < 8)
-				user.visible_message("\blue [user] feeds [O] to [name]! It clucks happily.","\blue You feed [O] to [name]! It clucks happily.")
-				user.drop_item()
+				user.visible_message(
+					"\blue [user] feeds [O] to [name]! It clucks happily.",
+					"\blue You feed [O] to [name]! It clucks happily."
+				)
 				qdel(O)
 				eggsleft += rand(1, 4)
 			else

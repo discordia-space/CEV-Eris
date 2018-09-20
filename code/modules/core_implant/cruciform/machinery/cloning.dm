@@ -394,7 +394,7 @@
 			return
 		user << SPAN_NOTICE("You put [I] into [src]'s load hatch.")
 		biomass += 50
-		user.drop_item()
+		user.drop_from_inventory(I)
 		qdel(I)
 
 	src.add_fingerprint(user)
@@ -434,10 +434,8 @@
 		return
 
 	if(istype(I, /obj/item/weapon/implant/core_implant/cruciform))
-		var/obj/item/weapon/implant/core_implant/cruciform/C = I
-		user.drop_item()
-		C.forceMove(src)
-		implant = C
+		user.drop_from_inventory(I, src)
+		implant = I
 
 	src.add_fingerprint(user)
 	update_icon()

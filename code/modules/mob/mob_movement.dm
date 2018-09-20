@@ -63,7 +63,7 @@
 				if(!C.get_active_hand())
 					usr << "\red You have nothing to drop in your hand."
 					return
-				drop_item()
+				drop_active_hand()
 			else
 				usr << "\red This mob type cannot drop items."
 			return
@@ -108,9 +108,7 @@
 /client/verb/drop_item()
 	set hidden = 1
 	if(!isrobot(mob) && mob.stat == CONSCIOUS && isturf(mob.loc))
-		return mob.drop_item()
-	return
-
+		return mob.drop_active_hand()
 
 /client/Center()
 	/* No 3D movement in 2D spessman game. dir 16 is Z Up

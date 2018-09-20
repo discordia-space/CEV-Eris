@@ -118,7 +118,7 @@ datum/uplink_item/dd_SortValue()
 
 	if(istype(I) && ishuman(user))
 		var/mob/living/carbon/human/A = user
-		A.put_in_any_hand_if_possible(I)
+		A.put_in_any_hands(I)
 	return I
 
 /datum/uplink_item/item/get_goods(var/obj/item/device/uplink/U, var/loc)

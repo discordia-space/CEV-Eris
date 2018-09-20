@@ -124,7 +124,7 @@
 					SPAN_DANGER("\The [user] shoots \himself in the foot with \the [src]!"),
 					SPAN_DANGER("You shoot yourself in the foot with \the [src]!")
 					)
-				M.drop_item()
+				M.drop_active_hand()
 		else
 			handle_click_empty(user)
 		return FALSE

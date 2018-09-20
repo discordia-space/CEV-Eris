@@ -235,13 +235,10 @@ obj/structure/windoor_assembly/Destroy()
 				if(do_after(user, 40,src))
 					if(!src) return
 
-					user.drop_item()
-					I.loc = src
+					user.drop_from_inventory(I, src)
 					user << SPAN_NOTICE("You've installed the airlock electronics!")
 					src.name = "Near finished Windoor Assembly"
 					src.electronics = I
-				else
-					I.loc = src.loc
 
 			else
 				..()

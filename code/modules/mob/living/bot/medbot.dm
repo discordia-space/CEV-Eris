@@ -170,10 +170,9 @@
 			user << SPAN_NOTICE("There is already a beaker loaded.")
 			return
 
-		user.drop_item()
-		O.loc = src
-		reagent_glass = O
-		user << SPAN_NOTICE("You insert [O].")
+		if(user.unEquip(O, src))
+			reagent_glass = O
+			user << SPAN_NOTICE("You insert [O].")
 		return
 	else
 		..()
@@ -346,17 +345,16 @@
 		switch(build_step)
 			if(0)
 				if(istype(W, /obj/item/device/scanner/healthanalyzer))
-					user.drop_item()
-					qdel(W)
-					build_step++
-					user << SPAN_NOTICE("You add the health sensor to [src].")
-					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
-					name = "First aid/robot arm/health analyzer assembly"
-					overlays += image('icons/obj/aibots.dmi', "na_scanner")
+					if(user.unEquip(W, src))
+						build_step++
+						user << SPAN_NOTICE("You add the [W] to [src].")
+						qdel(W)
+						playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
+						name = "First aid/robot arm/health analyzer assembly"
+						overlays += image('icons/obj/aibots.dmi', "na_scanner")
 
 			if(1)
 				if(is_proximity_sensor(W))
-					user.drop_item()
 					qdel(W)
 					user << SPAN_NOTICE("You complete the Medibot! Beep boop.")
 					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
@@ -364,5 +362,4 @@
 					var/mob/living/bot/medbot/S = new /mob/living/bot/medbot(T)
 					S.skin = skin
 					S.name = created_name
-					user.drop_from_inventory(src)
 					qdel(src)

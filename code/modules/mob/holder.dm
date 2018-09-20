@@ -222,22 +222,16 @@ var/list/holder_mob_icon_cache = list()
 
 		src.forceMove(H)
 
-
 		H.contained = src
-
-
 
 		if (src.stat == DEAD)
 			H.held_death()//We've scooped up an animal that's already dead. use the proper dead icons
 		else
 			H.isalive = 1//We note that the mob is alive when picked up. If it dies later, we can know that its death happened while held, and play its deathmessage for it
 
-
-
-
 		var/success = 0
 		if (src == user)
-			success = grabber.put_in_any_hand_if_possible(H, 0,1,1)
+			success = grabber.put_in_any_hands(H, 0,1,1)
 		else
 			H.attack_hand(grabber)//We put this last to prevent some race conditions
 			if (H.loc == grabber)

@@ -185,9 +185,8 @@
 			else
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card/id))
-					usr.drop_item()
-					I.loc = src
-					src.scan = I
+					if(usr.unEquip(I, src))
+						src.scan = I
 
 		else if (href_list["logout"])
 			src.authenticated = null

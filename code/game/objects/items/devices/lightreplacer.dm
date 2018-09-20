@@ -85,12 +85,10 @@
 			if(uses < max_uses)
 				AddUses(1)
 				user << "You insert \the [L.name] into \the [src.name]. You have [uses] light\s remaining."
-				user.drop_item()
+				user.drop_from_inventory(L)
 				qdel(L)
-				return
 		else
 			user << "You need a working light."
-			return
 
 /obj/item/device/lightreplacer/attack_self(mob/user)
 	/* // This would probably be a bit OP. If you want it though, uncomment the code.

@@ -21,15 +21,13 @@
 
 /obj/structure/bookcase/Initialize()
 	. = ..()
-	for(var/obj/item/I in loc)
-		if(istype(I, /obj/item/weapon/book))
-			I.loc = src
+	for(var/obj/item/weapon/book/B in loc)
+		B.forceMove(src)
 	update_icon()
 
 /obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/book))
-		user.drop_item()
-		O.loc = src
+		user.drop_from_inventory(O, src)
 		update_icon()
 	else if(istype(O, /obj/item/weapon/pen))
 		var/newname = sanitizeSafe(input("What would you like to title this bookshelf?"), MAX_NAME_LEN)
@@ -177,8 +175,7 @@
 	if(carved)
 		if(!store)
 			if(I.w_class < ITEM_SIZE_NORMAL)
-				user.drop_item()
-				I.loc = src
+				user.drop_from_inventory(I, src)
 				store = I
 				user << SPAN_NOTICE("You put [I] in [title].")
 				return

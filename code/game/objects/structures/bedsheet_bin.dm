@@ -17,13 +17,12 @@ LINEN BINS
 	w_class = ITEM_SIZE_SMALL
 
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
-	user.drop_item()
+	user.drop_from_inventory(src)
 	if(layer == initial(layer))
 		layer = ABOVE_MOB_LAYER
 	else
 		layer = initial(layer)
 	add_fingerprint(user)
-	return
 
 /obj/item/weapon/bedsheet/attackby(obj/item/I, mob/user)
 	if(is_sharp(I))
@@ -120,15 +119,13 @@ LINEN BINS
 
 /obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/bedsheet))
-		user.drop_item()
-		I.loc = src
+		user.drop_from_inventory(I, src)
 		sheets.Add(I)
 		amount++
 		user << SPAN_NOTICE("You put [I] in [src].")
 	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 	else if(amount && !hidden && I.w_class < ITEM_SIZE_LARGE)
-		user.drop_item()
-		I.loc = src
+		user.drop_from_inventory(I, src)
 		hidden = I
 		user << SPAN_NOTICE("You hide [I] among the sheets.")
 

@@ -107,7 +107,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 /mob/living/carbon/human/bst/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	user << span("alert", "The [src] disarms you before you can inject them.")
-	user.drop_item()
+	user.drop_active_hand()
 	return 0
 
 /mob/living/carbon/human/bst/binarycheck()

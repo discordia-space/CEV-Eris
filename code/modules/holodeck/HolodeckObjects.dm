@@ -288,7 +288,7 @@
 
 /obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_item(src.loc)
+		user.drop_from_inventory(src.loc)
 		visible_message(SPAN_NOTICE("[user] dunks [W] into the [src]!"), 3)
 		return
 

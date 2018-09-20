@@ -49,14 +49,11 @@
 /obj/item/weapon/moneybag/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if (istype(W, /obj/item/weapon/coin))
-		var/obj/item/weapon/coin/C = W
-		user << "\blue You add the [C.name] into the bag."
-		usr.drop_item()
-		contents += C
+		user << "\blue You add the [W] into the bag."
+		usr.drop_from_inventory(W, src)
 	if (istype(W, /obj/item/weapon/moneybag))
-		var/obj/item/weapon/moneybag/C = W
-		for (var/obj/O in C.contents)
-			contents += O;
+		for (var/obj/O in W)
+			O.forceMove(src)
 		user << "\blue You empty the [C.name] into the bag."
 	return
 

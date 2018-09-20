@@ -272,8 +272,7 @@
 			attack_hand(user)
 		return
 	else if(istype(I, /obj/item/weapon/coin) && premium.len > 0)
-		user.drop_item()
-		I.loc = src
+		user.drop_from_inventory(I, src)
 		coin = I
 		categories |= CAT_COIN
 		user << SPAN_NOTICE("You insert \the [I] into \the [src].")

@@ -465,13 +465,13 @@ var/list/global/slot_flags_enumeration = list(
 
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
-			if(M.stat != 2)
-				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
+			if(M.stat != DEAD)
+				if(eyes.robotic <= ORGAN_ASSISTED) //robot eyes bleeding might be a bit silly
 					M << SPAN_DANGER("Your eyes start to bleed profusely!")
 			if(prob(50))
-				if(M.stat != 2)
+				if(M.stat != DEAD)
 					M << SPAN_WARNING("You drop what you're holding and clutch at your eyes!")
-					M.drop_item()
+					M.drop_active_hand()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
@@ -715,9 +715,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 			if(0 to 29)
 				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
 					user << SPAN_DANGER("You drop [src] on the floor.")
-					H.drop_item()
+					user.drop_from_inventory(src)
 					return
 
 			if(30 to 49)

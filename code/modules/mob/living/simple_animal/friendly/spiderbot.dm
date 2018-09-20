@@ -82,11 +82,10 @@
 			positronic = 1
 			add_language(LANGUAGE_ROBOT)
 
-		user.drop_item()
+		user.drop_active_hand(O, src)
 		src.mmi = O
 		src.transfer_personality(O)
 
-		O.loc = src
 		src.update_icon()
 		return 1
 

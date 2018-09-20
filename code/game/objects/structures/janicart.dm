@@ -200,8 +200,7 @@
 		user << "Hold [I] in one of your hands while you drive this [callme]."
 	else if(istype(I, /obj/item/weapon/storage/bag/trash))
 		user << SPAN_NOTICE("You hook the trashbag onto the [callme].")
-		user.drop_item()
-		I.loc = src
+		user.drop_from_inventory(I, src)
 		mybag = I
 
 

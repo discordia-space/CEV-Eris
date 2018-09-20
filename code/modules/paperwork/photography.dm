@@ -159,7 +159,6 @@ var/global/photo_count = 0
 			user << SPAN_NOTICE("[src] still has some film in it!")
 			return
 		user << SPAN_NOTICE("You insert [I] into [src].")
-		user.drop_item()
 		qdel(I)
 		pictures_left = pictures_max
 		return

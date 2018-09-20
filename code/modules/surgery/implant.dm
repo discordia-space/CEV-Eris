@@ -125,10 +125,9 @@
 			var/datum/wound/internal_bleeding/I = new (10)
 			affected.wounds += I
 			affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
-		user.drop_item()
+		user.drop_from_inventory(tool, affected)
 		affected.implants += tool
 		target.update_implants()
-		tool.loc = affected
 		affected.cavity = 0
 
 //////////////////////////////////////////////////////////////////

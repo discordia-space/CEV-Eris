@@ -2780,9 +2780,8 @@
 				boxestoadd += i
 
 			if( (boxes.len+1) + boxestoadd.len <= 5 )
-				user.drop_item()
+				user.drop_from_inventory(box, src)
 
-				box.loc = src
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
 				src.boxes.Add( boxestoadd )
 
@@ -2800,8 +2799,7 @@
 	if( istype(I, /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/) ) // Long ass fucking object name
 
 		if( src.open )
-			user.drop_item()
-			I.loc = src
+			user.drop_from_inventory(I, src)
 			src.pizza = I
 
 			update_icon()

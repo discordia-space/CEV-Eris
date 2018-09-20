@@ -143,8 +143,7 @@
 			if(cell)
 				user << "There is a [cell] already installed here."
 			else
-				user.drop_item()
-				W.loc = src
+				user.drop_from_inventory(W, src)
 				cell = W
 				user << "You insert the [cell]."
 		updateicon()

@@ -575,12 +575,12 @@
 			user << "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
 			return
 
-		user.drop_item()
-		I.forceMove(src)
+		user.drop_active_hand(I, src)
 		cell = I
-		user.visible_message(\
-			SPAN_WARNING("[user.name] has inserted the power cell to [src.name]!"),\
-			SPAN_NOTICE("You insert the power cell."))
+		user.visible_message(
+			SPAN_WARNING("[user.name] has inserted the power cell to [src.name]!"),
+			SPAN_NOTICE("You insert the power cell.")
+		)
 		chargecount = 0
 		update_icon()
 

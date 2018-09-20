@@ -495,7 +495,7 @@
 				C.installed = 1
 				C.wrapped = I
 				C.install()
-				user.drop_item()
+				user.drop_from_inventory(I, src)
 				I.loc = null
 
 				var/obj/item/robot_parts/robot_component/WC = I
@@ -661,9 +661,8 @@
 			storage = null
 		else
 			user << "You install \the [I]"
-		user.drop_item()
+		user.drop_from_inventory(I, src)
 		storage = I
-		I.forceMove(src)
 		recalculate_synth_capacities()
 
 	else if (istype(I, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
@@ -675,8 +674,7 @@
 		else if(I.w_class != ITEM_SIZE_NORMAL)
 			user << "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here."
 		else
-			user.drop_item()
-			I.loc = src
+			user.drop_from_inventory(I, src)
 			cell = I
 			user << "You insert the power cell."
 
@@ -717,8 +715,7 @@
 		else
 			if(U.action(src))
 				usr << "You apply the upgrade to [src]!"
-				usr.drop_item()
-				U.loc = src
+				usr.drop_from_inventory(U, src)
 			else
 				usr << "Upgrade error!"
 

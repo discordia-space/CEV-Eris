@@ -95,9 +95,8 @@ var/global/list/rad_collectors = list()
 		if(src.P)
 			user << "\red There's already a plasma tank loaded."
 			return
-		user.drop_item()
+		user.drop_active_hand(I, src)
 		src.P = I
-		I.loc = src
 		update_icons()
 		return
 

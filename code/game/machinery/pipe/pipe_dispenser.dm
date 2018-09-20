@@ -102,7 +102,7 @@
 	src.add_fingerprint(usr)
 	if (istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
 		usr << SPAN_NOTICE("You put [I] back to [src].")
-		user.drop_item()
+		user.drop_from_inventory(I)
 		qdel(I)
 		return
 	else if (istype(I, /obj/item/weapon/tool/wrench))

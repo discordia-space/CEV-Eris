@@ -142,8 +142,7 @@
 			if(cell)
 				user << SPAN_WARNING("There is a power cell already installed.")
 			else
-				user.drop_item()
-				I.loc = src
+				user.drop_from_inventory(I, src)
 				cell = I
 				user << SPAN_NOTICE("You insert the power cell.")
 		update_icon()

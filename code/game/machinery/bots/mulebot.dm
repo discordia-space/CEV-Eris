@@ -90,10 +90,8 @@
 // other: chance to knock rider off bot
 /obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I,/obj/item/weapon/cell/large) && open && !cell)
-		var/obj/item/weapon/cell/large/C = I
-		user.drop_item()
-		C.loc = src
-		src.cell = C
+		user.drop_from_inventory(I, src)
+		src.cell = I
 		updateDialog()
 	else if(istype(I,/obj/item/weapon/tool/screwdriver))
 		if(locked)
@@ -283,9 +281,8 @@
 				if(open && !cell)
 					var/obj/item/weapon/cell/large/C = usr.get_active_hand()
 					if(istype(C))
-						usr.drop_item()
+						usr.drop_from_inventory(C, src)
 						src.cell = C
-						C.loc = src
 						C.add_fingerprint(usr)
 
 						usr.visible_message(SPAN_NOTICE("[usr] inserts a power cell into [src]."), SPAN_NOTICE("You insert the power cell into [src]."))

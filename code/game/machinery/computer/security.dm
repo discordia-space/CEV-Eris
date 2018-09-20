@@ -43,10 +43,10 @@
 
 /obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
 	if(istype(O, /obj/item/weapon/card/id) && !scan)
-		usr.drop_item()
-		O.loc = src
-		scan = O
-		user << "You insert [O]."
+		if(usr.unEquip(I, src))
+			scan = O
+			user << "You insert [O]."
+			return
 	..()
 
 /obj/machinery/computer/secure_data/attack_ai(mob/user as mob)

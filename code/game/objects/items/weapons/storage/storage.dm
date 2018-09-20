@@ -379,14 +379,10 @@
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
 	if(usr)
-		usr.prepare_for_slotmove(W)
-		usr.update_icons()	//update our overlays
+		usr.drop_from_mob(W)
 	W.loc = src
 	W.on_enter_storage(src)
 	if(usr)
-		if (usr.client && usr.s_active != src)
-			usr.client.screen -= W
-		W.dropped(usr)
 		add_fingerprint(usr)
 
 		if(!prevent_warning)
