@@ -69,7 +69,7 @@
 
 	if(thrust)
 		world << "Has Jetpack"
-		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(0.01, src)))
+		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(JETPACK_MOVE_COST, src)))
 			world << "Jetpack works"
 			inertia_dir = 0
 			return 1

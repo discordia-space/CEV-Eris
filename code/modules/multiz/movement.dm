@@ -17,7 +17,7 @@ var/list/z_movement_methods = list(
 //It requires a mob, obviously, and a method - one of the defines listed above
 //If check_only is true, then this proc will only check to see if its possible but not send any actions
 //If feedback is true, the mob will do visible messages describing what they're attempting to do
-/proc/zmove_method(var/mob/M, var/method = 0, var/check_only = FALSE, var/feedback = TRUE)
+/proc/zmove_method(var/mob/M, var/method = 0, var/turf/start = null, var/turf/destination = null, var/direction =  var/check_only = FALSE, var/feedback = TRUE)
 	if (!istype(M) || !method)
 		return FALSE
 
@@ -31,9 +31,34 @@ var/list/z_movement_methods = list(
 				return TRUE
 			if (M.incorporeal_move)
 				return TRUE
+
 		if (Z_MOVE_JETPACK_NOGRAV)
-			if (area.hasgravity())
+			if (area.has_gravity())
 				return FALSE
+
+			var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(src)
+			if (thrust.allow_thrust(JETPACK_MOVE_COST*5, src))
+				return TRUE //Do animation here
+			else if (feedback)
+				//It failed, lets tell the user why
+				if (!thrust.on)
+
+
+
+		if (Z_MOVE_JETPACK_GRAVITY)
+			var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(src)
+			if (thrust.allow_thrust(JETPACK_MOVE_COST*40, src))
+				return TRUE //Do animation here
+
+		if (Z_MOVE_CLIMB_NOGRAV)
+			if (area.has_gravity())
+				return FALSE
+
+
+		if (Z_MOVE_CLIMB_GRAVITY)
+		if (Z_MOVE_CLIMB_MAG)
+		if (Z_MOVE_JUMP_NOGRAV)
+		if (Z_MOVE_JUMP_GRAVITY)
 
 	return FALSE
 

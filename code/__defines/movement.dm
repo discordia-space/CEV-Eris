@@ -1,0 +1,1 @@
+#define JETPACK_MOVE_COST	0.01
