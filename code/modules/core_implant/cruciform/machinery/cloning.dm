@@ -33,7 +33,8 @@
 	var/progress = 0
 
 	var/time_multiplier = 1	//Try to avoid use of non integer values
-	var/biomass_multiplier = 1
+
+	var/biomass_consumption = 2
 
 	var/image/anim0 = null
 	var/image/anim1 = null
@@ -195,6 +196,15 @@
 
 		progress++
 		var/progress_percent = get_progress()
+
+		if(progress <= CLONING_DONE)
+			if(container)
+				if(container.biomass - biomass_consumption < 0)
+					stop()
+				else
+					container.biomass -= biomass_consumption
+			else
+				stop()
 
 		if(occupant && ishuman(occupant))
 			occupant.setCloneLoss(CLONING_DONE-progress_percent)

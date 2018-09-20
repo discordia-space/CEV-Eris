@@ -11,7 +11,7 @@
 
 	for(var/mob/M in player_list)
 		if(M.client && (M.mind && !M.mind.antagonist.len) && M.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))
-			var/datum/job/job = job_master.GetJob(M.mind.assigned_role)
+			var/datum/job/job = SSjob.GetJob(M.mind.assigned_role)
 			if(job)
 				crew++
 				if(job.head_position)
