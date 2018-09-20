@@ -364,6 +364,7 @@
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
 	anchored = 1
+	flags = OPENCONTAINER
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
@@ -448,9 +449,6 @@
 				)
 				return 1
 	else if(istype(O, /obj/item/weapon/mop))
-		O.reagents.add_reagent("water", 5)
-		user << SPAN_NOTICE("You wet \the [O] in \the [src].")
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
 
 	var/turf/location = user.loc
