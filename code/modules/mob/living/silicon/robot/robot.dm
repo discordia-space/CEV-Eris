@@ -571,12 +571,7 @@
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi].")
 						user << SPAN_NOTICE("You damage some parts of the chassis, but eventually manage to rip out [mmi]!")
-						var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
-						C.l_leg = new/obj/item/robot_parts/l_leg(C)
-						C.r_leg = new/obj/item/robot_parts/r_leg(C)
-						C.l_arm = new/obj/item/robot_parts/l_arm(C)
-						C.r_arm = new/obj/item/robot_parts/r_arm(C)
-						C.updateicon()
+						new /obj/item/robot_parts/robot_suit/with_limbs (loc)
 						new/obj/item/robot_parts/chest(loc)
 						qdel(src)
 						return
