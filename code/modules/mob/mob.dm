@@ -10,9 +10,7 @@
 			qdel(AM)
 		client.screen = list()
 
-	//Only living mobs can become ghosts
-	if (istype(src, /mob/living))
-		ghostize()
+	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
 

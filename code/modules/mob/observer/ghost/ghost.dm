@@ -30,8 +30,6 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	incorporeal_move = 1
 
 /mob/observer/ghost/New(mob/body)
-	if (istype(body, /mob/observer/ghost))
-		return//A ghost can't become a ghost.
 
 	see_in_dark = 100
 	verbs += /mob/observer/ghost/proc/dead_tele
@@ -785,6 +783,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (!( config.abandon_allowed ))
 		usr << "<span class='notice'>Respawn is disabled.</span>"
 		return
+
+	if (!istype(src, /mob/new_player))
+		usr << "<span class='notice'><B>You are already at the menu select join to join the game!</B></span>"
+		return
+
 	if (stat != DEAD)
 		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
 		return
