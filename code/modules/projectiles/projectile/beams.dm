@@ -2,7 +2,7 @@
 	name = "laser"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage = 40
+	damage = 30
 	damage_type = BURN
 	check_armour = "laser"
 	eyeblur = 4
@@ -14,6 +14,8 @@
 	tracer_type = /obj/effect/projectile/laser/tracer
 	impact_type = /obj/effect/projectile/laser/impact
 
+	heat = 100
+
 /obj/item/projectile/beam/practice
 	name = "laser"
 	icon_state = "laser"
@@ -24,13 +26,13 @@
 	eyeblur = 2
 
 /obj/item/projectile/beam/midlaser
-	damage = 40
+	damage = 30
 	armor_penetration = 10
 
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
-	damage = 60
+	damage = 50
 	armor_penetration = 30
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
@@ -50,7 +52,7 @@
 /obj/item/projectile/beam/pulse
 	name = "pulse"
 	icon_state = "u_laser"
-	damage = 50
+	damage = 40
 	armor_penetration = 30
 
 	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
@@ -130,7 +132,7 @@
 	name = "sniper beam"
 	icon_state = "xray"
 	damage = 50
-	armor_penetration = 10
+	armor_penetration = 20
 	stun = 3
 	weaken = 3
 	stutter = 3

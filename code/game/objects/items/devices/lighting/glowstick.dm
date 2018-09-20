@@ -47,7 +47,7 @@
 		set_light(brightness_on)
 	else
 		icon_state = initial(icon_state)
-	update_held_icon()
+	update_wear_icon()
 
 /obj/item/device/lighting/glowstick/attack_self(mob/user)
 	if(turn_on(user))

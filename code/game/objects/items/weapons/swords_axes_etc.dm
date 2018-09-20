@@ -15,6 +15,7 @@
 	item_state = "classic_baton"
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_PAINFULL
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -39,6 +40,7 @@
 	w_class = ITEM_SIZE_SMALL
 	force = 3
 	var/on = 0
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 
 /obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
@@ -51,6 +53,7 @@
 		)
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
+		update_wear_icon()
 		w_class = ITEM_SIZE_NORMAL
 		force = WEAPON_FORCE_PAINFULL//quite robust
 		attack_verb = list("smacked", "struck", "slapped")
@@ -62,14 +65,10 @@
 		)
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"
+		update_wear_icon()
 		w_class = ITEM_SIZE_SMALL
 		force = 3//not so robust now
 		attack_verb = list("hit", "punched")
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand()
-		H.update_inv_r_hand()
 
 	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 	add_fingerprint(user)

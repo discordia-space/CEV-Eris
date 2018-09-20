@@ -241,7 +241,7 @@ var/global/ManifestJSON
 	preview_icon.Blend(temp, ICON_OVERLAY)
 
 
-	var/datum/job/J = job_master.GetJob(H.mind.assigned_role)
+	var/datum/job/J = SSjob.GetJob(H.mind.assigned_role)
 	if(J)
 		var/t_state
 		var/obj/item/clothing/under/UF = J.uniform
@@ -351,14 +351,14 @@ var/global/ManifestJSON
 		if(R.fields[field] == value)
 			return R
 
-/proc/GetAssignment(var/mob/living/carbon/human/H)
+/*/proc/GetAssignment(var/mob/living/carbon/human/H)
 	if(H.mind.assigned_role)
 		return H.mind.assigned_role
 	else if(H.job)
 		return H.job
 	else
 		return "Unassigned"
-
+*/
 /var/list/acting_rank_prefixes = list("acting", "temporary", "interim", "provisional")
 
 /proc/make_list_rank(rank)

@@ -4,18 +4,17 @@
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 
 	possible_objectives = list(
-	list(
-	/datum/objective/assasinate = 30,
-	/datum/objective/brig = 15,
-	/datum/objective/harm = 15,
-	/datum/objective/steal = 30,
-	))
+		/datum/objective/assasinate = 30,
+		/datum/objective/brig = 15,
+		/datum/objective/harm = 15,
+		/datum/objective/steal = 30,
+	)
 
 	survive_objective = /datum/objective/escape
 
 
 /datum/antagonist/traitor/get_extra_panel_options()
-	if(owner.current)
+	if(owner && owner.current)
 		return "<a href='?src=\ref[owner];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[owner.current]'>\[spawn uplink\]</a>"
 
 /datum/antagonist/traitor/Topic(href, href_list)
@@ -65,7 +64,7 @@
 	survive_objective = /datum/objective/survive
 
 /datum/antagonist/traitor/synth/can_become_antag(var/datum/mind/player)
-	return issilicon(player) && ..(player)
+	return issilicon(player.current) && ..(player)
 
 /datum/antagonist/traitor/synth/equip()
 	add_law_zero()

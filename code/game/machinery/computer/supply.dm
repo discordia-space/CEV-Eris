@@ -220,7 +220,7 @@
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if (!shuttle)
-		world.log << "## ERROR: Eek. The supply/shuttle datum is missing somehow."
+		log_world("## ERROR: Eek. The supply/shuttle datum is missing somehow.")
 		return
 	if(..())
 		return TRUE
@@ -404,7 +404,7 @@
 
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 
 	if(!frequency) return
 

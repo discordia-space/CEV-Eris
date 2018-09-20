@@ -39,10 +39,12 @@
 	var/memory
 
 	var/assigned_role
+	var/role_alt_title
 //	var/special_role
 	var/list/antagonist = list()
 
 	var/datum/job/assigned_job
+
 
 	var/has_been_rev = FALSE	//Tracks if this mind has been a rev or not
 
@@ -59,13 +61,23 @@
 	var/list/known_connections //list of known (RNG) relations between people
 	var/gen_relations_info
 
+	var/list/initial_email_login = list("login" = "", "password" = "")
+
+
+	var/last_activity = 0
+	/*
+		The world time when this mind was last in a mob, controlled by a client which did something.
+		Only updated once per minute, set by the inactivity subsystem
+		If this is 0, the mind has never had a cliented mob
+	*/
+
 /datum/mind/New(var/key)
 	src.key = key
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	if(!istype(new_character))
-		world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
+		log_world("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")
 	if(current)					//remove ourself from our old body's mind variable
 		if(changeling)
 			current.remove_changeling_powers()
@@ -84,6 +96,7 @@
 
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
+		last_activity = world.time
 
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
@@ -157,7 +170,10 @@
 	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
 		if (!new_role) return
-		assigned_role = new_role
+		var/datum/job/job = SSjob.GetJob(new_role)
+		if(job)
+			assigned_role = job.title
+			role_alt_title = new_role
 
 	else if(href_list["memory_edit"])
 		var/new_memo = sanitize(input("Write new memory", "Memory", memory) as null|message)
@@ -248,13 +264,8 @@
 	var/is_currently_brigged = 0
 	if(istype(T.loc,/area/security/brig))
 		is_currently_brigged = 1
-		for(var/obj/item/weapon/card/id/card in current)
+		if(current.GetIdCard())
 			is_currently_brigged = 0
-			break // if they still have ID they're not brigged
-		for(var/obj/item/device/pda/P in current)
-			if(P.id)
-				is_currently_brigged = 0
-				break // if they still have ID they're not brigged
 
 	if(!is_currently_brigged)
 		brigged_since = -1
@@ -272,6 +283,7 @@
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
 	changeling =      null
+	role_alt_title =  null
 	initial_account = null
 	has_been_rev =    0
 	rev_cooldown =    0
@@ -312,7 +324,7 @@
 //BORG
 /mob/living/silicon/robot/mind_initialize()
 	..()
-	mind.assigned_role = "Cyborg"
+	mind.assigned_role = "Robot"
 
 //PAI
 /mob/living/silicon/pai/mind_initialize()
@@ -328,3 +340,25 @@
 	..()
 	mind.assigned_role = "Corgi"
 
+
+
+/datum/mind/proc/manifest_status(var/datum/computer_file/report/crew_record/CR)
+	var/inactive_time = world.time - last_activity
+	if (inactive_time >= 60 MINUTES)
+		return null //The server hasn't seen us alive in an hour.
+		//We will not show on the manifest at all
+
+	//Ok we're definitely going to show on the manifest, lets see if any status is set for us in the records
+	var/status = CR.get_status()
+	.=status //We'll return the status as a fallback
+
+	//If the records have a specific status set, we'll return that
+	//Active is the default state, it means nothing else has specifically been set.
+	if (status != "Active")
+		return
+
+
+	//Ok the records say active, that means nothing.
+	//In that case we'll show as inactive if the mob has been inactive longer than 15 minutes
+	if (inactive_time >= 15 MINUTES)
+		return "Inactive"

@@ -1,21 +1,18 @@
 /datum/storyevent/roleset/excelsior
 	id = "excelsior"
+	name = "excelsior"
 	role_id = null
-	multispawn = FALSE
 
-	min_cost = 10
-	max_cost = 20
+	//min_cost = 10
+	//max_cost = 20
 
-	req_crew = 10
-	req_heads = 1
-	req_sec = 3
-	req_eng = -1
-	req_med = -1
-	req_sci = -1
+	base_quantity = 2 //They're a group antag, we want a few of em
+	scaling_threshold = 8
 
-	spawn_times_max = 1
+	req_crew = 6
 
-/datum/storyevent/roleset/excelsior/spawn_event()
+
+/datum/storyevent/roleset/excelsior/trigger_event()
 	if(get_faction_by_id(FACTION_EXCELSIOR))
 		return FALSE
 

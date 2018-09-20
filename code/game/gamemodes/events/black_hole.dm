@@ -1,3 +1,8 @@
+/*
+	This file is included but not used, there is no black hole event yet.
+	Maybe in future when i can think of a fun and interesting way to make an event out of it
+*/
+
 /obj/effect/bhole
 	name = "black hole"
 	icon = 'icons/obj/objects.dmi'

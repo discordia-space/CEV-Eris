@@ -112,7 +112,7 @@ var/global/economy_init = 0
 		station_account.remote_access_pin = rand(1111, 111111)
 
 		//create an entry in the account transaction log for when it was created
-		var/datum/transaction/T = PoolOrNew(/datum/transaction, list(75000, station_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277"))
+		var/datum/transaction/T = new(75000, station_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277")
 		T.date = "2nd April, 2555"
 		T.time = "11:24"
 
@@ -129,7 +129,7 @@ var/global/economy_init = 0
 	department_account.remote_access_pin = rand(1111, 111111)
 
 	//create an entry in the account transaction log for when it was created
-	var/datum/transaction/T = PoolOrNew(/datum/transaction, list(5000, department_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277"))
+	var/datum/transaction/T = new(5000, department_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277")
 	T.date = "2nd April, 2555"
 	T.time = "11:24"
 

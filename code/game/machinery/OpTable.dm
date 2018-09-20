@@ -3,11 +3,14 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "optable-idle"
+
+	layer = TABLE_LAYER
 	density = 1
 	anchored = 1.0
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5
+
 	var/mob/living/carbon/human/victim = null
 
 	var/obj/machinery/computer/operating/computer = null
@@ -45,13 +48,19 @@
 	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
+	if (user.incapacitated(INCAPACITATION_DEFAULT))
+		return
+	if (victim)
+		user_unbuckle_mob(user)
+		return
 	if (HULK in usr.mutations)
 		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
 		src.density = 0
 		qdel(src)
-	if (victim && !user.incapacitated(INCAPACITATION_DEFAULT))
-		user_unbuckle_mob(user)
-	return
+
+/obj/machinery/optable/unbuckle_mob()
+	. = ..()
+	check_victim()
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
@@ -62,12 +71,11 @@
 		return 0
 
 /obj/machinery/optable/proc/check_victim()
-	if(locate(/mob/living/carbon/human, src.loc))
-		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
-		if(M.lying)
-			src.victim = M
-			icon_state = M.pulse() ? "optable-active" : "optable-idle"
-			return 1
+	if (istype(buckled_mob,/mob/living/carbon/human))
+		var/mob/living/carbon/human/M = buckled_mob
+		src.victim = M
+		icon_state = M.pulse() ? "optable-active" : "optable-idle"
+		return 1
 
 	src.victim = null
 	icon_state = "optable-idle"
@@ -90,9 +98,6 @@
 	for(var/obj/O in src)
 		O.loc = src.loc
 	src.add_fingerprint(user)
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		src.victim = H
 	buckle_mob(C)
 
 

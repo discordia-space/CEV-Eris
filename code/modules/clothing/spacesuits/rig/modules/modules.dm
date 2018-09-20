@@ -54,6 +54,13 @@
 
 	var/list/stat_rig_module/stat_modules = new()
 
+/obj/item/rig_module/Destroy()
+	if (holder)
+		holder.uninstall(src)
+	.=..()
+
+
+
 /obj/item/rig_module/examine()
 	..()
 	switch(damage)
@@ -134,10 +141,17 @@
 	stat_modules +=	new/stat_rig_module/select(src)
 	stat_modules +=	new/stat_rig_module/charge(src)
 
-// Called when the module is installed into a suit.
-/obj/item/rig_module/proc/installed(var/obj/item/weapon/rig/new_holder)
-	holder = new_holder
+// Called after the module is installed into a suit. The holder var is already set to the new suit
+/obj/item/rig_module/proc/installed(var/mob/living/user)
 	return
+
+// Called after the module is removed from a suit.
+//The holder var is already set null
+//Former contains the suit we came from
+/obj/item/rig_module/proc/uninstalled(var/obj/item/weapon/rig/former, var/mob/living/user)
+	return
+
+
 
 //Proc for one-use abilities like teleport.
 /obj/item/rig_module/proc/engage()
@@ -208,11 +222,6 @@
 
 	return 1
 
-// Called when the module is uninstalled from a suit.
-/obj/item/rig_module/proc/removed()
-	deactivate()
-	holder = null
-	return
 
 // Called by the hardsuit each rig process tick.
 /obj/item/rig_module/Process()
@@ -267,6 +276,7 @@
 							)
 		AddHref(href_list)
 		module.holder.Topic(usr, href_list)
+		return TRUE
 
 /stat_rig_module/DblClick()
 	return Click()

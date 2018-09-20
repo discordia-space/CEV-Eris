@@ -16,7 +16,7 @@
 	for(var/obj/structure/multiz/M in loc)
 		if(M != src)
 			spawn(1)
-				world.log << "##MAP_ERROR: Multiple [initial(name)] at ([x],[y],[z])"
+				log_world("##MAP_ERROR: Multiple [initial(name)] at ([x],[y],[z])")
 				qdel(src)
 			return .
 
@@ -55,7 +55,7 @@
 	name = "ladder"
 	desc = "A ladder.  You can climb it up and down."
 	icon_state = "ladderdown"
-	var/climb_delay = 25
+	var/climb_delay = 30
 
 /obj/structure/multiz/ladder/find_target()
 	var/turf/targetTurf = istop ? GetBelow(src) : GetAbove(src)
@@ -107,10 +107,18 @@
 		return
 
 	var/turf/T = target.loc
+	var/mob/tempMob
 	for(var/atom/A in T)
-		if(A.density)
+		if(!A.CanPass(M))
 			M << SPAN_NOTICE("\A [A] is blocking \the [src].")
 			return
+		else if (A.density && istype(A, /mob))
+			tempMob = A
+			continue
+
+	if (tempMob)
+		M << SPAN_NOTICE("\A [tempMob] is blocking \the [src], making it harder to climb.")
+		delay = delay * 1.5
 
 	//Robots are a quarter ton of steel and most of them lack legs or arms of any appreciable sorts.
 	//Even being able to climb ladders at all is a violation of newton'slaws. It shall at least be slow and communicated as such
@@ -125,6 +133,7 @@
 			"<span class='danger'>You hear the tortured sound of strained metal.</span>"
 		)
 		playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, 5,5)
+
 	else
 		M.visible_message(
 			"<span class='notice'>\A [M] climbs [istop ? "down" : "up"] \a [src]!</span>",
@@ -135,6 +144,7 @@
 			"<span class='warning'>Someone climbs [istop ? "down" : "up"] \a [src]!</span>",
 			"You hear the grunting and clanging of a metal ladder being used."
 		)
+		playsound(src, pick(climb_sound), 100, 1, 5,5)
 
 	if(do_after(M, delay, src))
 		M.forceMove(T)

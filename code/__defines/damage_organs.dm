@@ -6,6 +6,7 @@
 #define OXY       "oxy"
 #define CLONE     "clone"
 #define HALLOSS   "halloss"
+#define BLAST	  "blast"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
@@ -88,3 +89,6 @@
 #define INFECTION_LEVEL_ONE   100
 #define INFECTION_LEVEL_TWO   500
 #define INFECTION_LEVEL_THREE 1000
+
+//plug before baymed
+#define BP_IS_ROBOTIC(org)  (org.status & ORGAN_ROBOT)

@@ -2,7 +2,7 @@
 	id = ROLE_CHANGELING
 	role_text = "Changeling"
 	role_text_plural = "Changelings"
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("AI", "Robot")
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
 
@@ -13,6 +13,7 @@
 	)
 
 	survive_objective = /datum/objective/escape
+	allow_neotheology = FALSE
 
 /datum/antagonist/changeling/get_special_objective_text()
 	if(owner && owner.changeling)
@@ -29,6 +30,8 @@
 				if(H.isSynthetic())
 					return FALSE
 				if(H.species.flags & NO_SCAN)
+					return FALSE
+				if(H.get_cruciform())
 					return FALSE
 				return TRUE
 	return FALSE

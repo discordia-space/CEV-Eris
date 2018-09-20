@@ -48,6 +48,7 @@
 				revive_cell(current_cell, next_map, (iteration == iterations))
 			else
 				kill_cell(current_cell, next_map, (iteration == iterations))
+			CHECK_TICK
 	map = next_map
 
 // Check if a given tile counts as alive for the automata generations.

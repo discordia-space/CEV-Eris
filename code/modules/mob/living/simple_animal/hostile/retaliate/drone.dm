@@ -16,8 +16,8 @@
 	emote_see = list("beeps menacingly","whirrs threateningly","scans its immediate vicinity")
 	a_intent = I_HURT
 	stop_automated_movement_when_pulled = 0
-	health = 300
-	maxHealth = 300
+	health = 150
+	maxHealth = 150
 	speed = 8
 	projectiletype = /obj/item/projectile/beam/drone
 	projectilesound = 'sound/weapons/laser3.ogg'
@@ -113,10 +113,10 @@
 		explode_chance = 0
 	else if(health / maxHealth > 0.5)
 		icon_state = "drone1"
-		explode_chance = 0.5
+		explode_chance = 0.1
 	else if(health / maxHealth > 0.3)
 		icon_state = "drone0"
-		explode_chance = 5
+		explode_chance = 1
 	else if(health > 0)
 		//if health gets too low, shut down
 		icon_state = "drone_dead"
@@ -182,16 +182,16 @@
 			step_to(O, get_turf(pick(view(7, src))))
 
 		//rods
-		O = PoolOrNew(/obj/item/stack/rods, src.loc)
+		O = new /obj/item/stack/rods(loc)
 		step_to(O, get_turf(pick(view(7, src))))
 		if(prob(75))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(loc)
 			step_to(O, get_turf(pick(view(7, src))))
 		if(prob(50))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(loc)
 			step_to(O, get_turf(pick(view(7, src))))
 		if(prob(25))
-			O = PoolOrNew(/obj/item/stack/rods, src.loc)
+			O = new /obj/item/stack/rods(loc)
 			step_to(O, get_turf(pick(view(7, src))))
 
 		//plasteel

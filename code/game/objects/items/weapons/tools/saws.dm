@@ -2,8 +2,8 @@
 	name = "metal saw"
 	desc = "For cutting wood and other objects to pieces. Or sawing bones, in case of emergency."
 	icon_state = "metal_saw"
-	force = WEAPON_FORCE_WEAK
-	throwforce = WEAPON_FORCE_WEAK
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	worksound = WORKSOUND_SIMPLE_SAW
 	flags = CONDUCT
 	throw_speed = 3
@@ -13,7 +13,15 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = TRUE
 	edge = TRUE
-	tool_qualities = list(QUALITY_SAWING = 30, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 20)
+	tool_qualities = list(QUALITY_SAWING = 30, QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 20)
+
+/obj/item/weapon/tool/saw/improvised
+	name = "choppa"
+	desc = "A wicked serrated blade made of whatever nasty sharp things you could find. It would make a pretty decent weapon"
+	icon_state = "impro_saw"
+	force = WEAPON_FORCE_PAINFULL
+	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)
+	degradation = 3
 
 /obj/item/weapon/tool/saw/circular
 	name = "circular saw"
@@ -23,9 +31,9 @@
 	worksound = WORKSOUND_CIRCULAR_SAW
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 30)
+	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
 
-	use_power_cost = 1
+	use_power_cost = 0.12
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/saw/advanced_circular
@@ -36,9 +44,9 @@
 	worksound = WORKSOUND_CIRCULAR_SAW
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 40)
-
-	use_power_cost = 2
+	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
+	degradation = 0.12
+	use_power_cost = 0.18
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/saw/chain
@@ -49,7 +57,7 @@
 	worksound = WORKSOUND_CHAINSAW
 	force = WEAPON_FORCE_ROBUST
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 3)
-	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 20)
+	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
 
-	use_fuel_cost = 1
+	use_fuel_cost = 0.1
 	max_fuel = 80

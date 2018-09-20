@@ -43,12 +43,18 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
+	var/dismantle_material = /obj/item/stack/material/steel
+
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
 
-/obj/structure/closet/Initialize()
-	. = ..()
+/obj/structure/closet/Initialize(mapload)
+	..()
 	populate_contents()
+	return mapload ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
+
+/obj/structure/closet/LateInitialize()
+	. = ..()
 	update_icon()
 	hack_require = rand(6,8)
 	if(!opened) // if closed, any item at the crate's loc is put in the contents
@@ -62,6 +68,8 @@
 			content_size += Ceiling(I.w_class/2)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
+
+
 
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
@@ -211,10 +219,17 @@
 		user << SPAN_NOTICE("Access Denied")
 
 /obj/structure/closet/AltClick(mob/user as mob)
-	src.togglelock(user)
+	if(Adjacent(user))
+		src.togglelock(user)
 
 /obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	return allowed(user) || (istype(id_card) && check_access_list(id_card.GetAccess()))
+	if (istype(user))
+		id_card = id_card || user.GetIdCard()
+
+	if (istype(id_card))
+		return check_access_list(id_card.GetAccess())
+
+	return allowed(user)
 
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
@@ -327,7 +342,7 @@
 			return 0
 		if(QUALITY_WELDING in I.tool_qualities)
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				new /obj/item/stack/material/steel(src.loc)
+				new dismantle_material(src.loc, 10)
 				src.visible_message(
 					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
 					"You hear welding."

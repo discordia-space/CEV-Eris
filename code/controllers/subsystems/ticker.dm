@@ -4,15 +4,18 @@ SUBSYSTEM_DEF(ticker)
 	priority = SS_PRIORITY_TICKER
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
+	wait = 1 SECONDS //Tick every second
 
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_STARTUP
+	// If true, there is no lobby phase, the game starts immediately.
+	var/start_immediately = FALSE
 
 	//setup vars
 	var/first_start_trying = TRUE
 	var/story_vote_ended = FALSE
 
-	var/datum/storyteller/storyteller = null
+
 	var/event_time = null
 	var/event = 0
 
@@ -57,7 +60,19 @@ SUBSYSTEM_DEF(ticker)
 		'sound/music/paradise_cracked_title03.ogg'))
 
 /datum/controller/subsystem/ticker/Initialize(start_timeofday)
+	if(!syndicate_code_phrase)
+		syndicate_code_phrase = generate_code_phrase()
+	if(!syndicate_code_response)
+		syndicate_code_response = generate_code_phrase()
+
+	setup_objects()
+	setup_genetics()
+
 	return ..()
+
+/datum/controller/subsystem/ticker/proc/setup_objects()
+	populate_lathe_recipes()
+	populate_antag_type_list() // Set up antagonists. Do these first since character setup will rely on them
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
@@ -68,13 +83,14 @@ SUBSYSTEM_DEF(ticker)
 			else
 				pregame_timeleft = 40
 
-			world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+			if(!start_immediately)
+				world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds."
 			current_state = GAME_STATE_PREGAME
+			send_assets()
 
 		if(GAME_STATE_PREGAME)
-			//countdown
-			if(pregame_timeleft < 0)
-				return
+			if(start_immediately)
+				pregame_timeleft = 0
 
 			if(round_progressing)
 				pregame_timeleft--
@@ -87,7 +103,7 @@ SUBSYSTEM_DEF(ticker)
 				if(!SSvote.active_vote)
 					SSvote.autostoryteller()	//Quit calling this over and over and over and over.
 
-			if(pregame_timeleft <= 0 || ((initialization_stage & INITIALIZATION_NOW_AND_COMPLETE) == INITIALIZATION_NOW_AND_COMPLETE))
+			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
 				Master.SetRunLevel(RUNLEVEL_SETUP)
 
@@ -135,23 +151,24 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/setup()
 	//Create and announce mode
 
-	src.storyteller = config.pick_storyteller(master_storyteller)
+	if(!storyteller)
+		set_storyteller(announce = FALSE)
 
-	if(!src.storyteller)
+	if(!storyteller)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return FALSE
 
-	job_master.ResetOccupations()
-	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
+	SSjob.ResetOccupations()
+	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!src.storyteller.can_start(TRUE))
+	if(!storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		storyteller = null
 		story_vote_ended = FALSE
-		job_master.ResetOccupations()
+		SSjob.ResetOccupations()
 		return FALSE
 
-	src.storyteller.announce()
+	storyteller.announce()
 
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
@@ -160,6 +177,10 @@ SUBSYSTEM_DEF(ticker)
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
+	for(var/mob/living/carbon/human/H in player_list)
+		if(!H.mind || player_is_antag(H.mind, only_offstation_roles = 1) || !SSjob.ShouldCreateRecords(H.mind.assigned_role))
+			continue
+		CreateModularRecord(H)
 	data_core.manifest()
 
 	callHook("roundstart")
@@ -182,10 +203,6 @@ SUBSYSTEM_DEF(ticker)
 			admins_number++
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
-
-/*	master_controller.Process()		//Start master_controller.Process() // handled in scheduler
-	lighting_controller.Process()	//Start processing DynamicAreaLighting updates
-	*/
 
 	if(config.sql_enabled)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
@@ -298,7 +315,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/collect_minds()
 	for(var/mob/living/player in player_list)
 		if(player.mind)
-			SSticker.minds.Add(player.mind)
+			SSticker.minds |= player.mind
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
@@ -308,7 +325,7 @@ SUBSYSTEM_DEF(ticker)
 			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
-				job_master.EquipRank(player, player.mind.assigned_role, 0)
+				SSjob.EquipRank(player, player.mind.assigned_role, 0)
 				equip_custom_items(player)
 	if(captainless)
 		for(var/mob/M in player_list)

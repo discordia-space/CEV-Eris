@@ -34,7 +34,7 @@ var/intercom_range_display_status = 0
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "yellow"
 
-/obj/effect/debugging/marker/Move()
+/obj/effect/debugging/marker/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	return 0
 
 /client/proc/do_not_use_these()
@@ -67,10 +67,6 @@ var/intercom_range_display_status = 0
 /client/proc/sec_camera_report()
 	set category = "Mapping"
 	set name = "Camera Report"
-
-	if(!master_controller)
-		alert(usr,"Master_controller not found.","Sec Camera Report")
-		return 0
 
 	var/list/obj/machinery/camera/CL = list()
 
@@ -145,7 +141,7 @@ var/list/debug_verbs = list (
 	,/datum/admins/proc/show_traitor_panel
 	,/client/proc/print_jobban_old
 	,/client/proc/print_jobban_old_filter
-	,/client/proc/forceEvent
+	//,/client/proc/forceEvent //Todo: Replace
 	,/client/proc/break_all_air_groups
 	,/client/proc/regroup_all_air_groups
 	,/client/proc/kill_pipe_processing

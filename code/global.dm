@@ -6,6 +6,8 @@
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
 var/global/list/all_areas                = list()
+var/global/list/ship_areas                = list()
+
 //var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed
 //var/global/list/processing_power_items   = list()		//Removed
@@ -23,6 +25,7 @@ var/global/list/global_map = null
 var/list/hit_appends = list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 
 
+var/runtime_diary		= null
 var/diary               = null
 var/world_qdel_log		= null
 var/href_logfile        = null
@@ -58,7 +61,6 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 )
 
 var/datum/configuration/config      = null
-var/datum/sun/sun                   = new
 
 var/Debug2 = 0
 
@@ -121,3 +123,4 @@ var/max_explosion_range = 14
 var/global/obj/item/device/radio/intercom/global_announcer = new(null)
 
 var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")
+

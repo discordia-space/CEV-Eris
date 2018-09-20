@@ -89,7 +89,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/research
 	name = "research tape"
 	desc = "A length of research tape. Better not cross it."
-	req_one_access = list(access_research)
+	req_one_access = list(access_moebius)
 	color = COLOR_PURPLE
 
 /obj/item/taperoll/medical
@@ -101,7 +101,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape/medical
 	name = "medical tape"
 	desc = "A length of medical tape. Better not cross it."
-	req_one_access = list(access_medical)
+	req_one_access = list(access_moebius)
 	color = COLOR_GREEN
 
 /obj/item/taperoll/update_icon()

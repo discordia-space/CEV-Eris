@@ -99,7 +99,7 @@
 			var/material/glass/G = material
 			G.place_shard(src.loc)
 			if (G.is_reinforced())
-				PoolOrNew(/obj/item/stack/rods, src.loc)
+				new /obj/item/stack/rods(loc)
 			playsound(src, "shatter", 70, 1)
 			material = null
 	update_connections(1)

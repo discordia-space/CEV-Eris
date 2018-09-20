@@ -28,6 +28,8 @@
 			new /obj/item/device/lighting/toggleable/flashlight(src)
 		else
 			new /obj/item/device/lighting/glowstick/flare(src)
+		if (prob(40))
+			new /obj/item/weapon/tool/tape_roll(src)
 		new /obj/item/device/radio(src)
 
 /obj/item/weapon/storage/toolbox/mechanical
@@ -58,6 +60,8 @@
 		new /obj/item/weapon/tool/crowbar(src)
 		new /obj/item/stack/cable_coil(src,30,color)
 		new /obj/item/stack/cable_coil(src,30,color)
+		if (prob(60))
+			new /obj/item/weapon/tool/tape_roll(src)
 		if(prob(5))
 			new /obj/item/clothing/gloves/insulated(src)
 		else

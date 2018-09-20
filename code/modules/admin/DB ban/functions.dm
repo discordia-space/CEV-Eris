@@ -81,7 +81,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	var/sql = "INSERT INTO bans (target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id) VALUES ([target_id], Now(), '[server]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[computerid]', '[ip]', [banned_by_id])"
 	var/DBQuery/query_insert = dbcon.NewQuery(sql)
 	if(!query_insert.Execute())
-		world.log << "[key_name_admin(usr)] attempted to ban [ckey] but got error: [query_insert.ErrorMsg()]."
+		log_world("[key_name_admin(usr)] attempted to ban [ckey] but got error: [query_insert.ErrorMsg()].")
 		return
 	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.")
 
@@ -139,7 +139,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	query = dbcon.NewQuery(sql)
 	if(!query.Execute())
-		world.log << "[key_name_admin(usr)] attempted to unban [ckey], but got error: [query.ErrorMsg()]."
+		log_world("[key_name_admin(usr)] attempted to unban [ckey], but got error: [query.ErrorMsg()].")
 		return
 	while(query.NextRow())
 		ban_id = query.item[1]
@@ -210,7 +210,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					return
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET reason = '[value]', WHERE id = [banid]")
 			if(!update_query.Execute())
-				world.log << "[key_name_admin(usr)] tried to edit ban for [ckey] but got error: [update_query.ErrorMsg()]."
+				log_world("[key_name_admin(usr)] tried to edit ban for [ckey] but got error: [update_query.ErrorMsg()].")
 				return
 			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s reason from [reason] to [value]")
 
@@ -222,7 +222,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 					return
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE bans SET duration = [value], expiration_time = DATE_ADD(time, INTERVAL '[value]' MINUTE) WHERE id = [banid]")
 			if(!update_query.Execute())
-				world.log << "[key_name_admin(usr)] tried to edit a ban duration for [ckey] but got error: [update_query.ErrorMsg()]."
+				log_world("[key_name_admin(usr)] tried to edit a ban duration for [ckey] but got error: [update_query.ErrorMsg()].")
 				return
 			message_admins("[key_name_admin(usr)] has edited a ban for [ckey]'s duration from [duration] to [value]")
 
@@ -267,11 +267,11 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		return
 	var/admin_id = query.item[1]
 
-	var/sql_update = "UPDATE bans SET unbanned = 1, unbanned_time = Now(), unbanned_by_id = [admin_id], WHERE id = [id]"
+	var/sql_update = "UPDATE bans SET unbanned = 1, unbanned_time = Now(), unbanned_by_id = [admin_id] WHERE id = [id]"
 
 	var/DBQuery/query_update = dbcon.NewQuery(sql_update)
 	if(!query_update.Execute())
-		world.log << "[key_name_admin(usr)] tried to unban [ckey] but got error: [query_update.ErrorMsg()]."
+		log_world("[key_name_admin(usr)] tried to unban [ckey] but got error: [query_update.ErrorMsg()].")
 		return
 	message_admins("[key_name_admin(usr)] has lifted [ckey]'s ban.")
 
@@ -386,7 +386,7 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 			output += "</tr>"
 
 			var/player_id
-			var/DBQuery/query = dbcon.NewQuery("SELECT id, FROM players WHERE ckey='[playerckey]'")
+			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[playerckey]'")
 			query.Execute()
 			if(query.NextRow())
 				player_id = query.item[1]

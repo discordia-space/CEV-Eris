@@ -72,6 +72,10 @@
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+/obj/item/projectile/is_hot()
+	if (damage_type == BURN)
+		return damage*heat
+
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(blocked >= 2)		return 0//Full block
 	if(!isliving(target))	return 0
@@ -223,6 +227,8 @@
 	var/passthrough = FALSE //if the projectile should continue flying
 	var/distance = get_dist(starting,loc)
 
+	var/tempLoc = get_turf(A)
+
 	bumped = TRUE
 	if(ismob(A))
 		var/mob/M = A
@@ -253,12 +259,13 @@
 
 	//the bullet passes through a dense object!
 	if(passthrough)
-		//move ourselves onto A so we can continue on our way.
-		if(A)
-			if(istype(A, /turf))
-				loc = A
-			else
-				loc = A.loc
+		//move ourselves onto A so we can continue on our way
+		if (!tempLoc)
+			qdel(src)
+			return TRUE
+
+		loc = tempLoc
+		if (A)
 			permutated.Add(A)
 		bumped = FALSE //reset bumped variable!
 		return FALSE
@@ -345,6 +352,10 @@
 	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
 
 /obj/item/projectile/proc/muzzle_effect(var/matrix/T)
+	//This can happen when firing inside a wall, safety check
+	if (!location)
+		return
+
 	if(silenced)
 		return
 
@@ -358,6 +369,11 @@
 			M.activate()
 
 /obj/item/projectile/proc/tracer_effect(var/matrix/M)
+
+	//This can happen when firing inside a wall, safety check
+	if (!location)
+		return
+
 	if(ispath(tracer_type))
 		var/obj/effect/projectile/P = new tracer_type(location.loc)
 
@@ -371,6 +387,10 @@
 				P.activate()
 
 /obj/item/projectile/proc/impact_effect(var/matrix/M)
+	//This can happen when firing inside a wall, safety check
+	if (!location)
+		return
+
 	if(ispath(tracer_type))
 		var/obj/effect/projectile/P = new impact_type(location.loc)
 

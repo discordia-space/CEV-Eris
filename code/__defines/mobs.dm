@@ -67,6 +67,7 @@
 #define ROBOT_NOTIFICATION_NEW_NAME 2
 #define ROBOT_NOTIFICATION_NEW_MODULE 3
 #define ROBOT_NOTIFICATION_MODULE_RESET 4
+#define ROBOT_NOTIFICATION_SIGNAL_LOST 5
 
 // Appearance change flags
 #define APPEARANCE_UPDATE_DNA  0x1
@@ -124,20 +125,30 @@
 #define FLASH_PROTECTION_NONE 0
 #define FLASH_PROTECTION_MODERATE 1
 #define FLASH_PROTECTION_MAJOR 2
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
 
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
+
+//Time of Death constants
+//Used with a list in preference datums to track times of death
+#define	CREW 	"crew"//Used for crewmembers, AI, cyborgs, nymphs, antags
+#define ANIMAL	"animal"//Used for mice and any other simple animals
+#define MINISYNTH	"minisynth"//Used for drones and pAIs
+
+#define ANIMAL_SPAWN_DELAY 5 MINUTES
+#define DRONE_SPAWN_DELAY  10 MINUTES
+
+#define CRYOPOD_SPAWN_BONUS	20 MINUTES //Going to sleep in a cryopod takes this much off your respawn time
+
 
 // Incapacitation flags, used by the mob/proc/incapacitated() proc
 #define INCAPACITATION_RESTRAINED 1
 #define INCAPACITATION_BUCKLED_PARTIALLY 2
 #define INCAPACITATION_BUCKLED_FULLY 4
-#define INCAPACITATION_DISABLED 8
+#define INCAPACITATION_STUNNED 8
+#define INCAPACITATION_UNCONSCIOUS 16
 
 #define INCAPACITATION_DEFAULT (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_DISABLED)
 #define INCAPACITATION_ALL (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_PARTIALLY|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_DISABLED)
+#define INCAPACITATION_DISABLED (INCAPACITATION_STUNNED | INCAPACITATION_UNCONSCIOUS)
 
 #define MOB_PULL_NONE 0
 #define MOB_PULL_SMALLER 1
@@ -165,3 +176,5 @@
 #define ORGAN_REGENERATION_MULTIPLIER 0.2
 #define WOUND_BLEED_MULTIPLIER 0.02 //Bleeding wounds drip damage*this units of blood per process tick
 #define OPEN_ORGAN_BLEED_AMOUNT 1.5 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
+
+#define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob

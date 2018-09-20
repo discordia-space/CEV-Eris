@@ -9,6 +9,10 @@
 	src:Topic(href, href_list)
 	return null
 
+/proc/get_z(O)
+	var/turf/loc = get_turf(O)
+	return loc ? loc.z : 0
+
 /proc/get_area(O)
 	var/turf/loc = get_turf(O)
 	if(loc)
@@ -515,3 +519,23 @@ datum/projectile_data
 			if(temp_vent.network.normal_members.len > 15)
 				vents += temp_vent
 	return vents
+
+
+/proc/is_opaque(var/turf/T)
+	if (T.opacity)
+		return TRUE
+	for(var/obj/O in T.contents)
+		if (O.opacity)
+			return TRUE
+	return FALSE
+
+/proc/get_preferences(var/mob/target)
+	var/datum/preferences/P = null
+	if (target.client)
+		P = target.client.prefs
+	else if (target.ckey)
+		P = preferences_datums[target.ckey]
+	else if (target.mind && target.mind.key)
+		P = preferences_datums[target.mind.key]
+
+	return P

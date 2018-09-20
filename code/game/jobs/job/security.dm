@@ -2,8 +2,8 @@
 	title = "Ironhammer Commander"
 	flag = IHC
 	head_position = 1
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -16,7 +16,7 @@
 	access = list(
 		access_security, access_eva, access_sec_doors, access_brig, access_armory, access_medspec,
 		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-		access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
+		access_moebius, access_engine, access_mining, access_moebius, access_construction, access_mailsorting,
 		access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway,
 		access_external_airlocks
 	)
@@ -26,10 +26,15 @@
 		STAT_TGH = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
 	hat = /obj/item/clothing/head/HoS
-	pda = /obj/item/device/pda/heads/hos
+	pda = /obj/item/modular_computer/pda/heads/hos
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -61,8 +66,8 @@
 /datum/job/gunserg
 	title = "Ironhammer Gunnery Sergeant"
 	flag = GUNSERG
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -71,7 +76,7 @@
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
 	access = list(
-		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
 		access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue,
 		access_external_airlocks
 	)
@@ -82,10 +87,13 @@
 		STAT_TGH = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/warden
 	suit = /obj/item/clothing/suit/armor/vest/security
 	hat = /obj/item/clothing/head/beret/sec/navy/warden
-	pda = /obj/item/device/pda/warden
+	pda = /obj/item/modular_computer/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -117,8 +125,8 @@
 /datum/job/inspector
 	title = "Ironhammer Inspector"
 	flag = INSPECTOR
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -127,7 +135,7 @@
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)
 	access = list(
-		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
 		access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels,
 		access_external_airlocks
 	)
@@ -139,8 +147,11 @@
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/inspector
-	pda = /obj/item/device/pda/detective
+	pda = /obj/item/modular_computer/pda/forensics
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -169,17 +180,17 @@
 /datum/job/medspec
 	title = "Ironhammer Medical Specialist"
 	flag = MEDSPEC
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER
 	faction = "CEV Eris"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
 	access = list(
-		access_security, access_medical, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels
+		access_security, access_moebius, access_sec_doors, access_medspec, access_morgue, access_maint_tunnels
 	)
 	idtype = /obj/item/weapon/card/id/medcpec
 
@@ -187,8 +198,12 @@
 		STAT_BIO = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/medspec
-	pda = /obj/item/device/pda/detective
+	pda = /obj/item/modular_computer/pda/forensics
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
@@ -211,8 +226,8 @@
 /datum/job/ihoper
 	title = "Ironhammer Operative"
 	flag = IHOPER
-	department = "Security"
-	department_flag = ENGSEC
+	department = "Ironhammer"
+	department_flag = IRONHAMMER
 	faction = "CEV Eris"
 	total_positions = 6
 	spawn_positions = 6
@@ -221,7 +236,7 @@
 	economic_modifier = 4
 	also_known_languages = list(LANGUAGE_CYRILLIC = 5)
 	access = list(
-		access_security, access_medical, access_research, access_engine, access_mailsorting,
+		access_security, access_moebius, access_moebius, access_engine, access_mailsorting,
 		access_eva, access_sec_doors, access_brig, access_maint_tunnels, access_morgue, access_external_airlocks
 	)
 	idtype = /obj/item/weapon/card/id/sec
@@ -231,12 +246,15 @@
 		STAT_TGH = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest/security
 	hat = /obj/item/clothing/head/helmet
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	mask = /obj/item/clothing/mask/balaclava/tactical
-	pda = /obj/item/device/pda/security
+	pda = /obj/item/modular_computer/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves

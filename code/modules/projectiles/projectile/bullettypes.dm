@@ -16,7 +16,7 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a10mm
-	damage = 35
+	damage = 30
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl32
@@ -31,7 +31,7 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a357
-	damage = 60
+	damage = 48
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c38
@@ -45,7 +45,7 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/cl44
-	damage = 51
+	damage = 40
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/cl44r
@@ -55,7 +55,7 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c45
-	damage = 55
+	damage = 44
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/c45p
@@ -71,23 +71,23 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/a50
-	damage = 65
+	damage = 50
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a50r
 	damage = 10
-	agony = 85
+	agony = 75
 	embed = 0
 	sharp = 0
 
 /obj/item/projectile/bullet/a762
-	damage = 25
+	damage = 22
 	armor_penetration = 20
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a556
-	damage = 35
+	damage = 30
 	armor_penetration = 20
 	penetrating = 1
 	can_ricochet = TRUE
@@ -99,8 +99,8 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c65
-	damage = 24
-	armor_penetration = 20
+	damage = 22
+	armor_penetration = 15
 	penetrating = 1
 	sharp = 0
 	can_ricochet = TRUE
@@ -112,14 +112,14 @@
 	sharp = 0
 
 /obj/item/projectile/bullet/c10x24
-	damage = 35
+	damage = 30
 	armor_penetration = 10
 	penetrating = 1
 	sharp = 0
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/a145
-	damage = 80
+	damage = 70
 	stun = 3
 	weaken = 3
 	penetrating = 5
@@ -138,7 +138,7 @@
 	name = "beanbag"
 	check_armour = "melee"
 	damage = 15
-	agony = 60
+	agony = 50
 	embed = 0
 	sharp = 0
 
@@ -146,7 +146,7 @@
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
-	damage = 13
+	damage = 12
 	pellets = 6
 	range_step = 1
 	spread_step = 10
@@ -154,6 +154,7 @@
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice"
 	damage = 5
+	embed = 0
 
 /* Miscellaneous */
 

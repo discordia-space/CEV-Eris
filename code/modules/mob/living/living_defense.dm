@@ -50,6 +50,8 @@
 
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
+	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		IgniteMob()
 
 	//Being hit while using a deadman switch
 	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
@@ -155,6 +157,9 @@
 			visible_message("\blue \The [O] misses [src] narrowly!")
 			playsound(src, "miss_sound", 50, 1, -6)
 			return
+
+		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+			IgniteMob()
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 		var/armor = run_armor_check(null, "melee")
@@ -297,7 +302,7 @@
 
 	//Scale quadratically so that single digit numbers of fire stacks don't burn ridiculously hot.
 	//lower limit of 700 K, same as matches and roughly the temperature of a cool flame.
-	return max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700)
+	return min(5200,max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700))
 
 /mob/living/proc/reagent_permeability()
 	return 1

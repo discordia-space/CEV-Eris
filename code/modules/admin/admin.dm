@@ -25,6 +25,10 @@ proc/admin_notice(var/message, var/rights)
 		if(check_rights(rights, 0, M))
 			M << message
 
+// Not happening.
+/datum/admins/SDQL_update(var/const/var_name, var/new_value)
+	return 0
+
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
@@ -476,8 +480,8 @@ ADMIN_VERB_ADD(/datum/admins/proc/access_news_network, R_ADMIN, FALSE)
 		return
 
 	var/dat = "<center><B>Game Panel</B></center><hr>"
-	if(SSticker.storyteller && (SSticker.current_state != GAME_STATE_PREGAME))
-		dat += "<A href='?src=\ref[SSticker.storyteller]'>Storyteller Panel</A><br>"
+	if(get_storyteller() && (SSticker.current_state != GAME_STATE_PREGAME))
+		dat += "<A href='?src=\ref[get_storyteller()]'>Storyteller Panel</A><br>"
 	else
 		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"
 
@@ -631,14 +635,16 @@ ADMIN_VERB_ADD(/datum/admins/proc/startnow, R_SERVER, FALSE)
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		SSticker.current_state = GAME_STATE_SETTING_UP
+		SSticker.start_immediately = TRUE
 		log_admin("[usr.key] has started the game.")
-		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
-
-		return 1
+		var/msg = ""
+		if(SSticker.current_state == GAME_STATE_STARTUP)
+			msg = " (The server is still setting up, but the round will be \
+				started as soon as possible.)"
+		message_admins("<font color='blue'>\
+			[usr.key] has started the game.[msg]</font>")
 	else
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
-		return 0
 
 ADMIN_VERB_ADD(/datum/admins/proc/toggleenter, R_ADMIN, FALSE)
 //toggles whether people can join the current game
@@ -911,11 +917,11 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_game_mode, R_ADMIN, FALSE)
 	set desc = "Show the current round storyteller."
 	set name = "Show Storyteller"
 
-	if(!SSticker.storyteller)
+	if(!get_storyteller())
 		alert("Not before roundstart!", "Alert")
 		return
 
-	var/out = "<font size=3><b>Current storyteller: [SSticker.storyteller.name] (<a href='?src=\ref[SSticker.storyteller];debug_antag=self'>[SSticker.storyteller.config_tag]</a>)</b></font><br/>"
+	var/out = "<font size=3><b>Current storyteller: [get_storyteller().name] (<a href='?src=\ref[get_storyteller()];debug_antag=self'>[get_storyteller().config_tag]</a>)</b></font><br/>"
 	out += "<hr>"
 
 	if(SSticker.mode.antag_tags && SSticker.mode.antag_tags.len)

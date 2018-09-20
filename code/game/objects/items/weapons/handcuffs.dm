@@ -55,7 +55,7 @@
 	if(!istype(H))
 		return 0
 
-	if (!H.has_organ_for_slot(slot_handcuffed))
+	if(!mob_can_equip(H, src, slot_handcuffed))
 		user << SPAN_DANGER("\The [H] needs at least two wrists before you can cuff them together!")
 		return 0
 
@@ -164,6 +164,10 @@ var/last_chew = 0
 
 /obj/item/weapon/handcuffs/cyborg
 	dispenser = 1
+
+/obj/item/weapon/handcuffs/cyborg/afterattack(atom/A, mob/user as mob, proximity)
+	if (istype(A,/obj/item/weapon/handcuffs))
+		qdel(A)
 
 /obj/item/weapon/handcuffs/cable/tape
 	name = "tape restraints"

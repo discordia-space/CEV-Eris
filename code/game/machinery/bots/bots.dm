@@ -110,7 +110,7 @@
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
-	PoolOrNew(/obj/effect/overlay/pulse, src.loc)
+	new /obj/effect/overlay/pulse(loc)
 
 	if(on)
 		turn_off()

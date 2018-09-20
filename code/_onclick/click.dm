@@ -16,9 +16,30 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 
+/client/Click(var/atom/target, location, control, params)
+//	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
+//		return
+
+//	next_click = world.time + 1
+
+//	if(buildmode && !istype(target, /obj/screen))
+//		buildmode.build_click(src.mob, params, target)
+//		return
+	if(!isHUDobj(target) && CH)
+		if(CH.mob_check(mob))
+			if (CH.use_ability(mob,target) && CH.one_use_flag)
+				qdel(CH)// = null
+				return
+		else
+			src << "For some reason you can't use [CH.handler_name] ability"
+			qdel(CH)// = null
+			return
+
+	if(!target.Click(location, control, params))
+		usr.ClickOn(target, params)
+
 /atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	if(src)
-		usr.ClickOn(src, params)
+	return
 
 /atom/DblClick(var/location, var/control, var/params)
 	if(src)
@@ -51,6 +72,9 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
+		return 1
+	if(modifiers["ctrl"] && modifiers["alt"])
+		CtrlAltClickOn(A)
 		return 1
 	if(modifiers["middle"])
 		MiddleClickOn(A)
@@ -94,10 +118,6 @@
 
 	if(W == A) // Handle attack_self
 		W.attack_self(src)
-		if(hand)
-			update_inv_l_hand(0)
-		else
-			update_inv_r_hand(0)
 		return 1
 
 	//Atoms on your person
@@ -105,9 +125,6 @@
 	var/sdepth = A.storage_depth(src)
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		// faster access to objects already on you
-		if(A.loc != src)
-			setMoveCooldown(10) //getting something out of a backpack
-
 		if(W)
 			var/resolved = W.resolve_attackby(A, src, params)
 			if(!resolved && A && W)
@@ -126,8 +143,6 @@
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
 		if(A.Adjacent(src)) // see adjacent.dm
-			setMoveCooldown(5)
-
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 				var/resolved = W.resolve_attackby(A, src, params)
@@ -189,16 +204,11 @@
 	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 	else if(TK in mutations)
-		switch(get_dist(src, A))
-			if(1 to 5) // not adjacent may mean blocked by window
-				setMoveCooldown(2)
-			if(5 to 7)
-				setMoveCooldown(5)
-			if(8 to tk_maxrange)
-				setMoveCooldown(10)
-			else
-				return
-		A.attack_tk(src)
+		var/d = (get_dist(src, A))
+		if (d == 0)
+			return
+		if (d <= tk_maxrange)
+			A.attack_tk(src)
 /*
 	Restrained ClickOn
 
@@ -233,6 +243,16 @@
 /atom/proc/ShiftClick(var/mob/user)
 	if(user.client && user.client.eye == user)
 		user.examinate(src)
+	return
+
+/*
+	Control+Alt click
+*/
+/mob/proc/CtrlAltClickOn(var/atom/A)
+	A.CtrlAltClick(src)
+	return
+
+/atom/proc/CtrlAltClick(var/mob/user)
 	return
 
 /*

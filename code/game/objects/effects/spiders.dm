@@ -50,6 +50,7 @@
 		healthcheck()
 
 /obj/effect/spider/stickyweb
+	health = 5
 	icon_state = "stickyweb1"
 	New()
 		if(prob(50))
@@ -57,7 +58,7 @@
 
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
-	if(istype(mover, /mob/living/superior_animal/giant_spider))
+	if(istype(mover, /mob/living/carbon/superior_animal/giant_spider))
 		return 1
 	else if(isliving(mover))
 		if(prob(50))
@@ -98,7 +99,7 @@
 			O = loc
 
 		for(var/i=0, i<num, i++)
-			var/spiderling = PoolOrNew(/obj/effect/spider/spiderling, list(src.loc, src))
+			var/spiderling = new /obj/effect/spider/spiderling(loc, src)
 			if(O)
 				O.implants += spiderling
 		qdel(src)
@@ -143,7 +144,7 @@
 
 /obj/effect/spider/spiderling/proc/die()
 	visible_message("<span class='alert'>[src] dies!</span>")
-	PoolOrNew(/obj/effect/decal/cleanable/spiderling_remains, src.loc)
+	new /obj/effect/decal/cleanable/spiderling_remains(loc)
 	qdel(src)
 
 /obj/effect/spider/spiderling/healthcheck()
@@ -216,7 +217,7 @@
 					break
 
 		if(amount_grown >= 100)
-			var/spawn_type = pick(typesof(/mob/living/superior_animal/giant_spider))
+			var/spawn_type = pick(typesof(/mob/living/carbon/superior_animal/giant_spider))
 			new spawn_type(src.loc, src)
 			qdel(src)
 	else if(isorgan(loc))
@@ -249,10 +250,17 @@
 	name = "cocoon"
 	desc = "Something wrapped in silky spider web"
 	icon_state = "cocoon1"
-	health = 60
+	health = 5
+
+	var/is_large_cocoon
 
 	New()
 		icon_state = pick("cocoon1","cocoon2","cocoon3")
+
+	proc/becomeLarge()
+		health = 20
+		is_large_cocoon = 1
+		icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
 
 /obj/effect/spider/cocoon/Destroy()
 	src.visible_message(SPAN_WARNING("\The [src] splits open."))

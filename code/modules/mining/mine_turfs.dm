@@ -415,13 +415,6 @@
 	var/overlay_detail
 	has_resources = 1
 
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/asteroid1.ogg',\
-		'sound/effects/footstep/asteroid2.ogg',\
-		'sound/effects/footstep/asteroid3.ogg',\
-		'sound/effects/footstep/asteroid4.ogg',\
-		'sound/effects/footstep/asteroid5.ogg'))
-
 /turf/simulated/floor/asteroid/New()
 	..()
 	icon_state = "asteroid[rand(0,2)]"

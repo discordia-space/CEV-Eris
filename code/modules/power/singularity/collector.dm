@@ -51,7 +51,7 @@ var/global/list/rad_collectors = list()
 		else
 			user << "\red The controls are locked!"
 			return
-..()
+	..()
 
 
 /obj/machinery/power/rad_collector/attackby(obj/item/I, mob/user)
@@ -101,7 +101,7 @@ var/global/list/rad_collectors = list()
 		update_icons()
 		return
 
-	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
+	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
 		if (src.allowed(user))
 			if(active)
 				src.locked = !src.locked

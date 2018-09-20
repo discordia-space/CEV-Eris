@@ -86,7 +86,7 @@
 		else
 			name = "Unknown ANGEL"
 			// this should not happen usually
-			world.log << "DEBUG: say_angel_direct() invoked when client has no .mob property"
+			log_world("DEBUG: say_angel_direct() invoked when client has no .mob property")
 			log_debug("say_angel_direct() invoked when client has no .mob property")
 
 	for(var/mob/M in player_list)

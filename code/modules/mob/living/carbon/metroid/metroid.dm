@@ -7,8 +7,8 @@
 	speak_emote = list("chirps")
 
 	layer = 5
-	maxHealth = 150
-	health = 150
+	maxHealth = 120
+	health = 120
 	gender = NEUTER
 
 	update_icon = 0
@@ -75,11 +75,20 @@
 	regenerate_icons()
 	..(location)
 
+/mob/living/carbon/slime/proc/set_mutation(var/colour="grey")
+	src.colour = colour
+	name = "[colour] [is_adult ? "adult" : "baby"] slime ([number])"
+	slime_mutation = mutation_table(colour)
+	mutation_chance = rand(25, 35)
+	var/sanitizedcolour = replacetext(colour, " ", "")
+	coretype = text2path("/obj/item/slime_extract/[sanitizedcolour]")
+	regenerate_icons()
+
 /mob/living/carbon/slime/movement_delay()
 	if (bodytemperature >= 330.23) // 135 F
-		return -1	// slimes become supercharged at high temperatures
+		return 0	// slimes become supercharged at high temperatures
 
-	var/tally = 0
+	var/tally = MOVE_DELAY_BASE
 
 	var/health_deficiency = (maxHealth - health)
 	if(health_deficiency >= 30) tally += (health_deficiency / 25)
@@ -97,7 +106,7 @@
 	if(health <= 0) // if damaged, the slime moves twice as slow
 		tally *= 2
 
-	return tally + config.slime_delay
+	return tally
 
 /mob/living/carbon/slime/Bump(atom/movable/AM as mob|obj, yes)
 	if ((!(yes) || now_pushing))

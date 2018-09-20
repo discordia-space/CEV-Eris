@@ -13,7 +13,6 @@
 		//OTHER//
 		/////////
 	var/datum/preferences/prefs = null
-	var/move_delay		= 1
 	var/moving			= null
 	var/adminobs		= null
 	var/area			= null
@@ -50,4 +49,11 @@
 	// But we change it.
 	preload_rsc = 1
 
-	fps = 60
+	//fps = 60
+
+
+		////////////////
+		//Mouse things//
+		////////////////
+	var/datum/click_handler/CH
+	var/datum/delay_controller/move_delayer = new

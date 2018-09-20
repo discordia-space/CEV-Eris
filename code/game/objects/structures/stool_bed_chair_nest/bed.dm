@@ -144,6 +144,10 @@
 	else
 		..()
 
+/obj/structure/bed/attack_robot(var/mob/user)
+	if(Adjacent(user)) // Robots can buckle/unbuckle but not the AI.
+		attack_hand(user)
+
 /obj/structure/bed/proc/remove_padding()
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
@@ -155,7 +159,7 @@
 	update_icon()
 
 /obj/structure/bed/proc/dismantle()
-	material.place_sheet(get_turf(src))
+	new material(loc, 5)
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 
@@ -252,11 +256,11 @@
 	held = null
 
 
-/obj/structure/bed/roller/Move()
-	..()
+/obj/structure/bed/roller/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
-			buckled_mob.loc = src.loc
+			buckled_mob.forceMove(loc, glide_size_override=glide_size)
 		else
 			buckled_mob = null
 

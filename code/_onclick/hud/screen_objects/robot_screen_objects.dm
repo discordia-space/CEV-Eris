@@ -10,7 +10,7 @@
 
 /obj/screen/silicon/radio/Click()
 	usr:radio_menu()
-
+	return TRUE
 
 
 /obj/screen/silicon/panel
@@ -19,6 +19,7 @@
 
 /obj/screen/silicon/panel/Click()
 	usr:installed_modules()
+	return TRUE
 
 /obj/screen/silicon/store
 	name = "store"
@@ -33,6 +34,8 @@
 			inv.update_icon()
 	else
 		R << "You haven't selected a module yet."
+	return TRUE
+
 
 /obj/screen/silicon/module
 	name = "moduleNo"
@@ -75,9 +78,9 @@
 	if (isrobot(parentmob))
 		var/mob/living/silicon/robot/R = parentmob
 		R.toggle_module(module_num)
-		return
+		return TRUE
 	log_debug("[parentmob] have type [parentmob.type], but try use /obj/screen/silicon/module/Click() from [src]")
-	return
+	return TRUE
 
 /obj/screen/silicon/cell
 	name = "cell"
@@ -159,6 +162,7 @@
 			return TRUE
 		R.pick_module()
 		update_icon()
+	return TRUE
 
 /obj/screen/silicon/module_select/update_icon()
 	var/mob/living/silicon/robot/R = parentmob
@@ -173,9 +177,11 @@
 		var/mob/living/silicon/robot/R = parentmob
 		if(R.module)
 			R.toggle_show_robot_modules()
-			return TRUE
 		else
 			R << "You haven't selected a module yet."
+
+	return TRUE
+
 
 
 

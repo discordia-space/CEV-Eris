@@ -1,4 +1,4 @@
-s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
+// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 #define SANITIZE_LATHE_COST(n) max(1, n) // helps to fix prices where "* mat_efficiency" is used.
 
 #define ERR_OK 0
@@ -369,15 +369,16 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
 	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
-		if(O.matter && O.matter.len)
-			for(var/material in O.matter)
+		var/list/_matter = O.get_matter()
+		if(_matter)
+			for(var/material in _matter)
 				if(!(material in stored_material))
 					stored_material[material] = 0
 
 				if(stored_material[material] >= storage_capacity)
 					continue
 
-				var/total_material = round(O.matter[material])
+				var/total_material = _matter[material]
 
 				//If it's a stack, we eat multiple sheets.
 				if(istype(O,/obj/item/stack))
@@ -616,6 +617,10 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 
 /obj/machinery/autolathe/proc/eject(var/material, var/amount)
 	if(!(material in stored_material))
+		return
+
+	amount = round(amount) //The autolathe can contain less than a full sheet, but only ejects whole sheets
+	if (!amount)
 		return
 
 	var/material/M = get_material_by_name(material)

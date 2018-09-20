@@ -23,7 +23,7 @@ var/list/storyteller_cache = list()
 	var/log_pda = 0						// log pda messages
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
-	var/log_world_output = 0			// log world.log << messages
+	var/log_world_output = 0			// log log_world(messages)
 	var/sql_enabled = 1					// for sql switching
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
@@ -43,10 +43,8 @@ var/list/storyteller_cache = list()
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/fps = 20
 	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
-	var/Ticklag = 0.9
-	var/Tickcomp = 0
+	var/Ticklag = 0.33
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
@@ -121,20 +119,6 @@ var/list/storyteller_cache = list()
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
 
-	//Used for modifying movement speed for mobs.
-	//Unversal modifiers
-	var/run_speed = 0
-	var/walk_speed = 0
-
-	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/human_delay = 0
-	var/robot_delay = 0
-	var/monkey_delay = 0
-	var/alien_delay = 0
-	var/slime_delay = 0
-	var/animal_delay = 0
-
-
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 
@@ -168,6 +152,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = null,
 		EVENT_LEVEL_MODERATE = null,
 		EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000),
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = list("lower" = 16000, "upper" = 20000),
 	)
 	// The lowest delay until next event
@@ -176,6 +161,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = 6000,
 		EVENT_LEVEL_MODERATE = 18000,
 		EVENT_LEVEL_MAJOR = 30000,
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 	// The upper delay until next event
@@ -184,6 +170,7 @@ var/list/storyteller_cache = list()
 		EVENT_LEVEL_MUNDANE = 9000,
 		EVENT_LEVEL_MODERATE = 27000,
 		EVENT_LEVEL_MAJOR = 42000,
+		EVENT_LEVEL_ROLESET = null,
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 
@@ -207,6 +194,8 @@ var/list/storyteller_cache = list()
 	var/ghosts_can_possess_animals = 0
 
 /datum/configuration/New()
+	fill_storyevents_list()
+
 	var/list/L = typesof(/datum/storyteller)-/datum/storyteller
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -311,6 +300,10 @@ var/list/storyteller_cache = list()
 
 				if ("log_runtime")
 					config.log_runtime = 1
+					var/newlog = file("data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log")
+					if(runtime_diary != newlog)
+						world.log << "Now logging runtimes to data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log"
+						runtime_diary = newlog
 
 				if ("generate_asteroid")
 					config.generate_asteroid = 1
@@ -496,9 +489,6 @@ var/list/storyteller_cache = list()
 				if("ticklag")
 					Ticklag = text2num(value)
 
-				if("fps")
-					fps = text2num(value)
-
 				if("tick_limit_mc_init")
 					tick_limit_mc_init = text2num(value)
 
@@ -509,9 +499,6 @@ var/list/storyteller_cache = list()
 
 				if("socket_talk")
 					socket_talk = text2num(value)
-
-				if("tickcomp")
-					Tickcomp = 1
 
 				if("humans_need_surnames")
 					humans_need_surnames = 1
@@ -663,24 +650,6 @@ var/list/storyteller_cache = list()
 				if("limbs_can_break")
 					config.limbs_can_break = value
 
-				if("run_speed")
-					config.run_speed = value
-				if("walk_speed")
-					config.walk_speed = value
-
-				if("human_delay")
-					config.human_delay = value
-				if("robot_delay")
-					config.robot_delay = value
-				if("monkey_delay")
-					config.monkey_delay = value
-				if("alien_delay")
-					config.alien_delay = value
-				if("slime_delay")
-					config.slime_delay = value
-				if("animal_delay")
-					config.animal_delay = value
-
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
@@ -741,6 +710,8 @@ var/list/storyteller_cache = list()
 		if(S)
 			runnable_storytellers |= S
 	return runnable_storytellers
+
+
 
 /datum/configuration/proc/post_load()
 	//apply a default value to config.python_path, if needed

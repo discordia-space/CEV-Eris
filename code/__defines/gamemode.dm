@@ -28,7 +28,7 @@
 #define ANTAG_SET_APPEARANCE    0x400 // Causes antagonists to use an appearance modifier on spawn.
 
 // Storyteller names macro
-#define STORYTELLER_BASE "erida"
+#define STORYTELLER_BASE "guide"
 
 // antag template macros.
 #define ROLE_BORER "borer"
@@ -98,8 +98,3 @@
 #define Sp_RECHARGE	"recharge"
 #define Sp_CHARGES	"charges"
 #define Sp_HOLDVAR	"holdervar"
-
-#define INITIALIZATION_NOW 1
-#define INITIALIZATION_HAS_BEGUN 2
-#define INITIALIZATION_COMPLETE 4
-#define INITIALIZATION_NOW_AND_COMPLETE (INITIALIZATION_NOW|INITIALIZATION_COMPLETE)

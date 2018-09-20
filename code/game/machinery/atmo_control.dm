@@ -60,17 +60,16 @@
 
 
 /obj/machinery/air_sensor/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/air_sensor/Initialize()
 	. = ..()
 	set_frequency(frequency)
 
 obj/machinery/air_sensor/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
+	SSradio.remove_object(src,frequency)
 	. = ..()
 
 /obj/machinery/computer/general_air_control
@@ -88,8 +87,7 @@ obj/machinery/air_sensor/Destroy()
 	circuit = /obj/item/weapon/circuitboard/air_management
 
 obj/machinery/computer/general_air_control/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	. = ..()
 
 /obj/machinery/computer/general_air_control/attack_hand(mob/user)
@@ -150,9 +148,9 @@ obj/machinery/computer/general_air_control/Destroy()
 	return output
 
 /obj/machinery/computer/general_air_control/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/computer/general_air_control/Initialize()
 	. = ..()

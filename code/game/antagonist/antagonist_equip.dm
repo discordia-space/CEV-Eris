@@ -64,12 +64,12 @@
 	if(traitor_mob.client.prefs.uplinklocation == "Headset")
 		R = locate(/obj/item/device/radio) in traitor_mob.contents
 		if(!R)
-			R = locate(/obj/item/device/pda) in traitor_mob.contents
+			R = locate(/obj/item/modular_computer/pda) in traitor_mob.contents
 			traitor_mob << "Could not locate a Radio, installing in PDA instead!"
 		if (!R)
 			traitor_mob << "Unfortunately, neither a radio or a PDA relay could be installed."
 	else if(traitor_mob.client.prefs.uplinklocation == "PDA")
-		R = locate(/obj/item/device/pda) in traitor_mob.contents
+		R = locate(/obj/item/modular_computer/pda) in traitor_mob.contents
 		if(!R)
 			R = locate(/obj/item/device/radio) in traitor_mob.contents
 			traitor_mob << "Could not locate a PDA, installing into a Radio instead!"
@@ -80,7 +80,7 @@
 		R = null
 	else
 		traitor_mob << "You have not selected a location for your relay in the antagonist options! Defaulting to PDA!"
-		R = locate(/obj/item/device/pda) in traitor_mob.contents
+		R = locate(/obj/item/modular_computer/pda) in traitor_mob.contents
 		if (!R)
 			R = locate(/obj/item/device/radio) in traitor_mob.contents
 			traitor_mob << "Could not locate a PDA, installing into a Radio instead!"
@@ -108,12 +108,22 @@
 		traitor_mob << "A portable object teleportation relay has been installed in your [R.name] [loc]. Simply dial the frequency [format_frequency(freq)] to unlock its hidden features."
 		traitor_mob.mind.store_memory("<B>Radio Freq:</B> [format_frequency(freq)] ([R.name] [loc]).")
 
-	else if (istype(R, /obj/item/device/pda))
-		// generate a passcode if the uplink is hidden in a PDA
-		var/pda_pass = "[rand(100,999)] [pick("Alpha","Bravo","Delta","Omega")]"
-		var/obj/item/device/uplink/hidden/T = new(R, traitor_mob.mind)
-		R.hidden_uplink = T
-		var/obj/item/device/pda/P = R
-		P.lock_code = pda_pass
-		traitor_mob << "A portable object teleportation relay has been installed in your [R.name] [loc]. Simply enter the code \"[pda_pass]\" into the ringtone select to unlock its hidden features."
-		traitor_mob.mind.store_memory("<B>Uplink Passcode:</B> [pda_pass] ([R.name] [loc]).")
+	else if (istype(R, /obj/item/modular_computer/pda))
+		var/obj/item/modular_computer/pda/P = locate(/obj/item/modular_computer/pda) in traitor_mob.contents
+		if(!P || !P.hard_drive)
+			log_debug("TRAIOR [owner.name] couldn't recive uplink in PDA: Ether it not exist or no hardrive installed).")
+			return FALSE
+
+		var/pda_login = "[rand(100,999)] [pick("Alpha","Bravo","Delta","Omega")]"
+		var/obj/item/device/uplink/hidden/T = new(P, traitor_mob.mind)
+		T.pda_login = pda_login
+		P.hidden_uplink = T
+		var/datum/computer_file/program/uplink/program = new()
+		if(!P.hard_drive.try_store_file(program))
+			P.hard_drive.remove_file(P.hard_drive.find_file_by_name(program.filename))	//Maybe it already has a fake copy.
+		if(!P.hard_drive.try_store_file(program))
+			log_debug("TRAIOR [owner.name] couldn't recive uplink program in PDA: Not enough space or other issues.")
+			return FALSE	//Not enough space or other issues.
+		P.hard_drive.store_file(program)
+		to_chat(traitor_mob, "<span class='notice'>A portable object teleportation relay has been installed in your [P.name]. Simply enter the code \"[pda_login]\" in your new program called 'TaxQuickly 2559' to unlock its hidden features.</span>")
+		traitor_mob.mind.store_memory("<B>Uplink passcode:</B> [pda_login] ([P.name]).")

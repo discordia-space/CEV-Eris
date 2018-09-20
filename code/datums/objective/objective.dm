@@ -24,8 +24,7 @@ var/global/list/all_objectives_types = null
 		owner = antag.owner
 	if(!target)
 		find_target()
-	else
-		update_explanation()
+	update_explanation()
 	all_objectives.Add(src)
 	..()
 

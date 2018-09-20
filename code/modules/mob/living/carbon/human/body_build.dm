@@ -42,7 +42,7 @@ var/datum/body_build/default_body_build = new
 			if("hidden")  I = BB.hidden_icon
 			if("rig")     I = BB.rig_back*/
 			else
-				world.log << "##ERROR. Wrong sprite group for mob icon \"[slot]\""
+				log_world("##ERROR. Wrong sprite group for mob icon \"[slot]\"")
 		if(icon_state in icon_states(I))
 			break
 

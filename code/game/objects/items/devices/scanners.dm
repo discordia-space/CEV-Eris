@@ -236,24 +236,13 @@ REAGENT SCANNER
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
-/obj/item/device/scanner/analyzer/atmosanalyze(var/mob/user)
-	if(!cell_use_check(5))
+/obj/item/device/scanner/analyzer/attack_self(mob/user as mob)
+	if (!user.IsAdvancedToolUser())
 		return
-	var/air = user.return_air()
-	if (!air)
+	if(!cell_use_check(3))
 		return
 	flick("atmos2", src)
-	return atmosanalyzer_scan(src, air, user)
-
-/obj/item/device/scanner/analyzer/attack_self(mob/user as mob)
-	if(cell && cell.checked_use(3))
-		if(user.incapacitated())
-			return
-		if(!user.IsAdvancedToolUser())
-			return
-		analyze_gases(src, user)
-	else
-		user << SPAN_WARNING("[src] battery is dead or missing.")
+	analyze_gases(user.loc, user)
 
 /obj/item/device/scanner/analyzer/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
@@ -262,6 +251,18 @@ REAGENT SCANNER
 /obj/item/device/scanner/analyzer/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
+
+/obj/item/device/scanner/analyzer/afterattack(obj/O, mob/user, proximity)
+	if(!proximity)
+		return
+	if (!user.IsAdvancedToolUser())
+		return
+	if(!(istype(O) && O.simulated))
+		return
+	if(!cell_use_check(5))
+		return
+	flick("atmos2", src)
+	analyze_gases(O, user)
 
 
 /obj/item/device/scanner/mass_spectrometer

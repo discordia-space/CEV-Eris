@@ -26,7 +26,8 @@
 
 	var/is_hole = FALSE			// If true, turf is open to vertical transitions through it.
 								// This is a more generic way of handling open space turfs
-
+	var/is_wall = FALSE 	//True for wall turfs, but also true if they contain a low wall object
+								
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
@@ -39,6 +40,11 @@
 
 /turf/Initialize()
 	turfs += src
+	var/area/A = loc
+	if (!A.ship_area)
+		if (z in maps_data.station_levels)
+			A.set_ship_area()
+
 	. = ..()
 
 /turf/Destroy()
@@ -173,10 +179,10 @@ var/const/enterloopsanity = 100
 		spawn(5)
 			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
 				if(M.inertia_dir)
-					step(M, M.inertia_dir)
+					step_glide(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 					return
 				M.inertia_dir = M.last_move
-				step(M, M.inertia_dir)
+				step(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 	return
 
 /turf/proc/levelupdate()
@@ -245,8 +251,21 @@ var/const/enterloopsanity = 100
 
 	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
 	if(catwalk)
-		sound = safepick(catwalk.footstep_sounds[mobtype])
+		sound = footstep_sound("catwalk")
 	else
-		sound = safepick(footstep_sounds[mobtype])
+		sound =  footstep_sound("floor")
+
+	return sound
+
+
+/turf/simulated/floor/get_footstep_sound(var/mobtype)
+
+	var/sound
+
+	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
+	if(catwalk)
+		sound = footstep_sound("catwalk")
+	else
+		sound =  footstep_sound(flooring.footstep_sound)
 
 	return sound

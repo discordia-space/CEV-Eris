@@ -131,6 +131,12 @@
 			else
 				user << SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!")
 
+/obj/item/stack/medical/bruise_pack/handmade
+	name = "non sterile bandage"
+	singular_name = "non sterile bandage"
+	desc = "Parts of clothes that can be wrapped around bloody stumps."
+	icon_state = "hm_brutepack"
+
 /obj/item/stack/medical/ointment
 	name = "ointment"
 	desc = "Used to treat those nasty burns."

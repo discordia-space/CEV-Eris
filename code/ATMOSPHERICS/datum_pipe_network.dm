@@ -18,7 +18,18 @@ datum/pipe_network
 
 	Destroy()
 		STOP_PROCESSING_PIPENET(src)
-		return ..()
+
+		for(var/obj/machinery/atmospherics/normal_member in normal_members)
+			normal_member.reassign_network(src,null)
+
+		for(var/datum/pipeline/line_member in line_members)
+			line_member.network = null
+
+		gases.Cut()
+		normal_members.Cut()
+		line_members.Cut()
+
+		. = ..()
 
 	Process()
 		//Equalize gases amongst pipe if called for
@@ -36,6 +47,7 @@ datum/pipe_network
 
 		if(!start_normal)
 			qdel(src)
+			return
 
 		start_normal.network_expand(src, reference)
 

@@ -13,8 +13,8 @@
 	T = new/obj/item/stack/tile/floor(src)
 	..()
 
-/obj/machinery/floorlayer/Move(new_turf,M_Dir)
-	..()
+/obj/machinery/floorlayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	. = ..()
 
 	if(on)
 		if(mode["dismantle"])
@@ -27,7 +27,7 @@
 			CollectTiles(old_turf)
 
 
-	old_turf = new_turf
+	old_turf = NewLoc
 
 /obj/machinery/floorlayer/attack_hand(mob/user as mob)
 	on=!on

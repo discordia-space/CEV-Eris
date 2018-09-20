@@ -5,7 +5,7 @@
 	icon_state = "generic"
 	layer = CLOSED_TURF_LAYER
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
@@ -13,7 +13,6 @@
 	var/ricochet_id = 0
 	var/damage = 0
 	var/damage_overlay = 0
-	var/global/damage_overlays[16]
 	var/active
 	var/can_open = 0
 	var/material/material
@@ -22,6 +21,9 @@
 	var/construction_stage
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections = list("0", "0", "0", "0")
+ 
+	var/static/list/damage_overlays
+	is_wall = TRUE
 
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()
@@ -29,19 +31,52 @@
 		O.hide(1)
 
 /turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
-	..(newloc)
+	if (!damage_overlays)
+		damage_overlays = new
+
+		var/overlayCount = 16
+		var/alpha_inc = 256 / overlayCount
+
+		for(var/i = 1; i <= overlayCount; i++)
+			var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
+			img.blend_mode = BLEND_MULTIPLY
+			img.alpha = (i * alpha_inc) - 1
+			damage_overlays.Add(img)
+
+
 	icon_state = "blank"
 	if(!materialtype)
 		materialtype = MATERIAL_STEEL
 	material = get_material_by_name(materialtype)
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
-	update_material()
-	hitsound = material.hitsound
+	update_material(FALSE) //We call update material with update set to false, so it won't update connections or icon yet
+	..(newloc)
 
-/turf/simulated/wall/Initialize()
-	START_PROCESSING(SSturf, src) //Used for radiation.
-	. = ..()
+
+/turf/simulated/wall/Initialize(var/mapload)
+	..()
+
+	if (mapload)
+		//We defer icon updates to late initialize at roundstart
+		return INITIALIZE_HINT_LATELOAD
+
+	else
+		//If we get here, this wall was built during the round
+		//We'll update its connections and icons as normal
+		update_connections(TRUE)
+		update_icon()
+
+
+/turf/simulated/wall/LateInitialize()
+	//If we get here, this wall was mapped in at roundstart
+	update_connections(FALSE)
+	/*We set propagate to false when updating connections at roundstart
+	This ensures that each wall will only update itself, once.
+	*/
+
+	update_icon()
+
 
 /turf/simulated/wall/Destroy()
 	STOP_PROCESSING(SSturf, src)
@@ -261,7 +296,11 @@
 		cap = cap / 10
 
 	if(damage >= cap)
-		dismantle_wall()
+		var/leftover = damage - cap
+		if (leftover > 150)
+			dismantle_wall(no_product = TRUE)
+		else
+			dismantle_wall()
 	else
 		update_icon()
 
@@ -304,25 +343,15 @@
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(get_base_turf(src.z))
-			return
+			take_damage(rand(500, 800))
 		if(2.0)
-			if(prob(75))
-				take_damage(rand(150, 250))
-			else
-				dismantle_wall(1,1)
+			take_damage(rand(200, 500))
 		if(3.0)
-			take_damage(rand(0, 250))
+			take_damage(rand(90, 250))
 		else
 	return
 
-// Wall-rot effect, a nasty fungus that destroys walls.
-/turf/simulated/wall/proc/rot()
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		return
-	var/number_rots = rand(2,3)
-	for(var/i=0, i<number_rots, i++)
-		new/obj/effect/overlay/wallrot(src)
+
 
 /turf/simulated/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)

@@ -36,15 +36,10 @@
 
 	if ( !ispath(src.foldable) )
 		return
-	var/found = 0
+
 	// Close any open UI windows first
-	for(var/mob/M in range(1))
-		if (M.s_active == src)
-			src.close(M)
-		if ( M == user )
-			found = 1
-	if ( !found )	// User is too far away
-		return
+	close_all()
+
 	// Now make the cardboard
 	user << SPAN_NOTICE("You fold [src] flat.")
 	new src.foldable(get_turf(src))
@@ -665,3 +660,12 @@
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
 	max_storage_space = 21
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+
+/obj/item/weapon/storage/box/autolathe_blank
+	name = "Autolathe Diskette Box"
+	icon_state = "disk_kit"
+
+/obj/item/weapon/storage/box/autolathe_blank/New()
+	..()
+	for(var/i in 1 to 7)
+		new /obj/item/weapon/disk/autolathe_disk/blank(src)

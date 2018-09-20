@@ -30,8 +30,8 @@
 		var/list/rdata = list()
 		var/list/cdata = list()
 
-		for(var/RT in CI.rituals)
-			var/datum/ritual/R = new RT
+		for(var/RT in CI.known_rituals)
+			var/datum/ritual/R = GLOB.all_rituals[RT]
 
 			if(!(R.category in cdata))
 				cdata.Add(R.category)
@@ -47,7 +47,7 @@
 						"group" = TRUE,
 						"name" = capitalize(R.name),
 						"desc" = R.desc,
-						"type" = "[RT]",
+						"type" = "[R.name]",
 					)
 
 					var/list/P = list()
@@ -112,14 +112,20 @@
 		expanded_group = href_list["unfold"]
 
 	if(href_list["say"] || href_list["say_group"])
-		for(var/RT in CI.rituals)
+		var/incantation = ""
+		for(var/RT in CI.known_rituals)
+
 			if("[RT]" == href_list["say"])
-				var/datum/ritual/R = new RT
-				H.say(R.get_say_phrase())
+				var/datum/ritual/R = GLOB.all_rituals[RT]
+				incantation = R.get_say_phrase()
 				break
-			if("[RT]" == href_list["say_group"] && ispath(RT, /datum/ritual/group))
+			if("[RT]" == href_list["say_group"])
 				var/ind = text2num(href_list["say_id"])
-				var/datum/ritual/group/R = new RT
-				H.say(R.get_group_say_phrase(ind))
+				var/datum/ritual/group/R = GLOB.all_rituals[RT]
+				incantation = R.get_group_say_phrase(ind)
 				break
+		if (incantation != "")
+			//Speaking a long phrase takes a little time
+			if (do_after(H, length(incantation)*0.25))
+				H.say(incantation)
 	return TRUE

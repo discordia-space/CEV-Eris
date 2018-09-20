@@ -1,4 +1,6 @@
 /*
+This file is included but not used. This overpowered event is too game-ruining to enable for now
+
 Immovable rod random event.
 The rod will spawn at some location outside the station, and travel in a straight line to the opposite side of the station
 Everything solid in the way will be ex_act()'d

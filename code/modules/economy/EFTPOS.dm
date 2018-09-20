@@ -3,6 +3,7 @@
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "eftpos"
+	w_class = ITEM_SIZE_SMALL
 	var/machine_id = ""
 	var/eftpos_name = "Default EFTPOS scanner"
 	var/transaction_locked = 0
@@ -112,7 +113,7 @@
 
 /obj/item/device/eftpos/attackby(obj/item/O as obj, user as mob)
 
-	var/obj/item/weapon/card/id/I = O.GetID()
+	var/obj/item/weapon/card/id/I = O.GetIdCard()
 
 	if(I)
 		if(linked_account)
@@ -133,10 +134,7 @@
 						E.worth -= transaction_amount
 
 						//create entry in the EFTPOS linked account transaction log
-						var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-							transaction_amount, E.owner_name,
-							transaction_purpose ? transaction_purpose : "None supplied.", machine_id
-						))
+						var/datum/transaction/T = new(transaction_amount, E.owner_name, transaction_purpose ? transaction_purpose : "None supplied.", machine_id)
 						T.apply_to(linked_account)
 					else
 						usr << "\icon[src]<span class='warning'>\The [O] doesn't have that much money!</span>"
@@ -248,10 +246,7 @@
 
 								//transfer the money
 								//create entries in the two account transaction logs
-								var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-									-transaction_amount, "[linked_account.owner_name] (via [eftpos_name])",
-									transaction_purpose, machine_id
-								))
+								var/datum/transaction/T = new(-transaction_amount, "[linked_account.owner_name] (via [eftpos_name])", transaction_purpose, machine_id)
 								T.apply_to(D)
 								//
 								T = new(

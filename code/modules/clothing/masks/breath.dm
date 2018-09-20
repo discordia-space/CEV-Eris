@@ -25,7 +25,7 @@
 			item_flags = initial(item_flags)
 			icon_state = initial(icon_state)
 			user << "You pull the mask up to cover your face."
-		update_clothing_icon()
+		update_wear_icon()
 
 /obj/item/clothing/mask/breath/attack_self(mob/user)
 	adjust_mask(user)

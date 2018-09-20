@@ -20,6 +20,8 @@
 #define QUALITY_EXCAVATION				"excavation"
 #define QUALITY_CUTTING					"cutting"
 #define QUALITY_LASER_CUTTING			"laser cutting"	//laser scalpels and e-swords - bloodless cutting
+#define QUALITY_ADHESIVE				"adhesive"
+#define QUALITY_SEALING					"sealing"
 
 //Time for a work for tool system calculated in that way: basic time - tool level - stat check..
 //It means that basic tools will give -30 on time, and people on right job should have -20 at least, or even more.
@@ -42,7 +44,7 @@
 #define FAILCHANCE_VERY_HARD			120
 #define FAILCHANCE_IMPOSSIBLY			150
 
-//Sounds for workong with tools
+//Sounds for working with tools
 #define NO_WORKSOUND					-1
 
 #define WORKSOUND_CIRCULAR_SAW			'sound/weapons/circsawhit.ogg'
@@ -58,3 +60,4 @@
 #define WORKSOUND_PICKAXE				'sound/items/pickaxe.ogg'
 #define WORKSOUND_HARD_SLASH			'sound/weapons/bladeslice.ogg'
 #define WORKSOUND_CHAINSAW				'sound/items/chainsaw.ogg'
+#define WORKSOUND_TAPE					'sound/items/duct_tape.ogg'

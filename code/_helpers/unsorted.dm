@@ -316,14 +316,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
 					if(!search_pda)	break
 					search_id = 0
-
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
-				if(PDA.owner == oldname)
-					PDA.owner = newname
-					PDA.name = "PDA-[newname] ([PDA.ownjob])"
-					if(!search_id)	break
-					search_pda = 0
 	return 1
 
 
@@ -360,8 +352,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
-				//world << "<b>[newname] is the AI!</b>"
-				//world << sound('sound/AI/newAI.ogg')
+
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -1121,7 +1112,7 @@ var/list/WALLITEMS = list(
 	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",
 	"/obj/machinery/computer/security/telescreen", "/obj/machinery/embedded_controller/radio/simple_vent_controller",
 	"/obj/item/weapon/storage/secure/safe", "/obj/machinery/door_timer", "/obj/machinery/flasher", "/obj/machinery/keycard_auth",
-	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet", "/obj/machinery/computer/security/telescreen/entertainment",
+	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet","/obj/item/modular_computer/telescreen",
 	"/obj/machinery/light_construct", "/obj/machinery/light"
 	)
 /proc/gotwallitem(loc, dir)
@@ -1224,6 +1215,8 @@ var/list/FLOORITEMS = list(
 	dview_mob.see_invisible = invis_flags
 	. = view(range, dview_mob)
 	dview_mob.loc = null
+
+/var/mob/dview/dview_mob = new
 
 /mob/dview
 	invisibility = 101

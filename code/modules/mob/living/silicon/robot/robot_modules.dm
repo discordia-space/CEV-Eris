@@ -19,6 +19,7 @@ var/global/list/robot_modules = list(
 	w_class = 100.0
 	item_state = "electronic"
 	flags = CONDUCT
+	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
 	var/languages = list(							//Any listed language will be understandable. Any set to 1 will be speakable
@@ -69,10 +70,10 @@ var/global/list/robot_modules = list(
 	desc = "This is a robot module parent class. You shouldn't see this description"
 
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
-
 	..()
 	if (!istype(R))
 		return
+
 	R.module = src
 
 	add_camera_networks(R)
@@ -106,6 +107,9 @@ var/global/list/robot_modules = list(
 		I.canremove = 0
 		I.plane = ABOVE_HUD_PLANE
 		I.layer = ABOVE_HUD_LAYER
+
+	for (var/obj/item/weapon/tool/T in modules)
+		T.degradation = 0 //We don't want robot tools breaking
 
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
@@ -817,7 +821,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/form_printer(src)
 	src.modules += new /obj/item/weapon/gripper/paperwork(src)
 	src.modules += new /obj/item/weapon/hand_labeler(src)
-	src.modules += new /obj/item/weapon/tape_roll(src) //allows it to place flyers
+	src.modules += new /obj/item/weapon/tool/tape_roll(src) //allows it to place flyers
 	src.modules += new /obj/item/weapon/stamp/denied(src) //why was this even a emagged item before smh
 
 	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
@@ -956,6 +960,7 @@ var/global/list/robot_modules = list(
 //Syndicate borg is intended for summoning by traitors. Not currently implemented
 /obj/item/weapon/robot_module/syndicate
 	name = "syndicate robot module"
+	hide_on_manifest = TRUE
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
 					LANGUAGE_TRADEBAND = 1,
@@ -993,6 +998,7 @@ var/global/list/robot_modules = list(
 //Not currently implemented, needs discussion
 /obj/item/weapon/robot_module/combat
 	name = "combat robot module"
+	hide_on_manifest = TRUE
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/datum/nano_module/crew_monitor)
@@ -1013,8 +1019,13 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/drone
 	name = "drone module"
+	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
+	stat_modifers = list(
+		STAT_COG = 15,
+		STAT_MEC = 30
+	)
 
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/tool/weldingtool/robotic(src)
@@ -1036,8 +1047,8 @@ var/global/list/robot_modules = list(
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(25000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)
-	var/datum/matter_synth/wood = new /datum/matter_synth/wood(4000)
-	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(2000)
+	var/datum/matter_synth/wood = new /datum/matter_synth/wood(10000)
+	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(10000)
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire(15)
 	synths += metal
 	synths += glass

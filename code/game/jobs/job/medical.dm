@@ -3,7 +3,7 @@
 	flag = MBO
 	head_position = 1
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL | COMMAND
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -14,7 +14,7 @@
 	economic_modifier = 10
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
+		access_moebius, access_medical_equip, access_morgue, access_genetics, access_heads,
 		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
 		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks
 	)
@@ -25,9 +25,14 @@
 		STAT_BIO = 40,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/moebius_biolab_officer
 	shoes = /obj/item/clothing/shoes/reinforced
-	pda = /obj/item/device/pda/heads/cmo
+	pda = /obj/item/modular_computer/pda/heads/cmo
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	ear = /obj/item/device/radio/headset/heads/cmo
 	hand = /obj/item/weapon/storage/firstaid/adv
@@ -53,16 +58,16 @@
 	title = "Moebius Doctor"
 	flag = DOCTOR
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 5
-	spawn_positions = 3
+	spawn_positions = 5
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 7
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
+		access_moebius, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
 		access_genetics
 	)
 	idtype = /obj/item/weapon/card/id/med
@@ -71,10 +76,13 @@
 		STAT_BIO = 30,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/medical
 	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
-	pda = /obj/item/device/pda/medical
+	pda = /obj/item/modular_computer/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
 	hand = /obj/item/weapon/storage/firstaid/adv
 
@@ -95,7 +103,7 @@
 	title = "Moebius Chemist"
 	flag = CHEMIST
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -104,7 +112,7 @@
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology
+		access_moebius, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology
 	)
 	idtype = /obj/item/weapon/card/id/chem
 
@@ -113,9 +121,11 @@
 		STAT_BIO = 30,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/scanner)
+
 	uniform = /obj/item/clothing/under/rank/chemist
 	shoes = /obj/item/clothing/shoes/reinforced
-	pda = /obj/item/device/pda/chemist
+	pda = /obj/item/modular_computer/pda/chemistry
 	ear = /obj/item/device/radio/headset/headset_med
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 
@@ -135,7 +145,7 @@
 	title = "Moebius Psychiatrist"
 	flag = PSYCHIATRIST
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -144,15 +154,18 @@
 	selection_color = "#ffeef0"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_psychiatrist
+		access_moebius, access_medical_equip, access_morgue, access_psychiatrist
 	)
 
 	stat_modifers = list(
 		STAT_BIO = 15,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/psych
-	pda = /obj/item/device/pda/medical
+	pda = /obj/item/modular_computer/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
 	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
@@ -171,16 +184,16 @@
 	title = "Moebius Paramedic"
 	flag = PARAMEDIC
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#ffeef0"
 	economic_modifier = 4
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_surgery,
+		access_moebius, access_medical_equip, access_morgue, access_surgery,
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
 	)
 
@@ -190,7 +203,10 @@
 		STAT_TGH = 10,
 	)
 
-	pda = /obj/item/device/pda/medical
+	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor)
+
+	pda = /obj/item/modular_computer/pda/medical
 	ear = /obj/item/device/radio/headset/headset_med
 	shoes = /obj/item/clothing/shoes/jackboots
 	belt = /obj/item/weapon/storage/belt/medical/emt
