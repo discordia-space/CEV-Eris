@@ -70,7 +70,6 @@
 #define INIT_ORDER_XENOARCH	-50
 #define INIT_ORDER_PERSISTENCE -100
 #define INIT_OPEN_SPACE -150
-#define INIT_BAY_LEGACY -200
 
 // SS runlevels
 

@@ -627,6 +627,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /* QUALITY AND TOOL SYSTEM */
 
+/obj/item/proc/has_quality(quality_id)
+	return quality_id in tool_qualities
+
 /obj/item/proc/get_tool_quality(quality_id)
 	return tool_qualities[quality_id]
 

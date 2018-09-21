@@ -30,5 +30,7 @@
 					return FALSE
 				if(H.species.flags & NO_SCAN)
 					return FALSE
+				if(H.get_cruciform())
+					return FALSE
 				return TRUE
 	return FALSE

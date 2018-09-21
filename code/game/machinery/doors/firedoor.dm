@@ -404,8 +404,6 @@
 
 
 	update_nearby_tiles(need_rebuild)
-		if(!SSair) return 0
-
 		var/turf/simulated/source = loc
 		var/turf/simulated/destination = get_step(source,dir)
 

@@ -14,6 +14,7 @@
 	var/suitable_cell = null	//Dont forget to edit this for a tool, if you want in to consume cells
 
 	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
+	var/passive_fuel_cost = 0.02 //Fuel consumed per process tick while active
 	var/max_fuel = 0
 
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
@@ -39,19 +40,29 @@
 //Turning it on/off
 /obj/item/weapon/tool/attack_self(mob/user)
 	if(toggleable)
-		switched_on = !switched_on
-		user << SPAN_NOTICE("You switch the [src] [switched_on ? "on" : "off"].")
-		if(switched_on)
-			tool_qualities = switched_on_qualities
-			if(glow_color)
-				set_light(l_range = 1.4, l_power = 1, l_color = glow_color)
+		if (switched_on)
+			turn_off()
 		else
-			tool_qualities = switched_off_qualities
-			if(glow_color)
-				set_light(l_range = 0, l_power = 0, l_color = glow_color)
-	update_icon()
+			turn_on()
+
+
 	..()
 	return
+
+/obj/item/weapon/tool/proc/turn_on(mob/user)
+	switched_on = TRUE
+	tool_qualities = switched_on_qualities
+	if(glow_color)
+		set_light(l_range = 1.4, l_power = 1, l_color = glow_color)
+	update_icon()
+
+/obj/item/weapon/tool/proc/turn_off(mob/user)
+	switched_on = FALSE
+	STOP_PROCESSING(SSobj, src)
+	tool_qualities = switched_off_qualities
+	if(glow_color)
+		set_light(l_range = 0, l_power = 0, l_color = glow_color)
+	update_icon()
 
 //Fuel and cell spawn
 /obj/item/weapon/tool/New()
@@ -76,14 +87,19 @@
 
 //Ignite plasma around, if we need it
 /obj/item/weapon/tool/Process()
-	if(switched_on && create_hot_spot)
-		var/turf/location = src.loc
-		if(istype(location, /mob/))
-			var/mob/M = location
-			if(M.l_hand == src || M.r_hand == src)
-				location = get_turf(M)
-		if (istype(location, /turf))
-			location.hotspot_expose(700, 5)
+	if(switched_on)
+		if(create_hot_spot)
+			var/turf/location = src.loc
+			if(istype(location, /mob/))
+				var/mob/M = location
+				if(M.l_hand == src || M.r_hand == src)
+					location = get_turf(M)
+			if (istype(location, /turf))
+				location.hotspot_expose(700, 5)
+
+		if (passive_fuel_cost)
+			if(!consume_fuel(passive_fuel_cost))
+				turn_off()
 
 //Power and fuel drain, sparks spawn
 /obj/item/weapon/tool/proc/check_tool_effects(mob/living/user)
@@ -94,9 +110,7 @@
 			return FALSE
 
 	if(use_fuel_cost)
-		if(get_fuel() >= use_fuel_cost)
-			reagents.remove_reagent("fuel", use_fuel_cost)
-		else
+		if(!consume_fuel(use_fuel_cost))
 			user << SPAN_NOTICE("You need more welding fuel to complete this task.")
 			return FALSE
 
@@ -114,6 +128,12 @@
 //Returns the amount of fuel in tool
 /obj/item/weapon/tool/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
+
+/obj/item/weapon/tool/proc/consume_fuel(var/volume)
+	if (get_fuel() >= volume)
+		reagents.remove_reagent("fuel", volume)
+		return TRUE
+	return FALSE
 
 /obj/item/weapon/tool/examine(mob/user)
 	if(!..(user,2))
@@ -219,9 +239,9 @@
 					user << SPAN_DANGER("The damage is far too severe to patch over externally.")
 			else if(S.open != 2) // For surgery.
 				user << SPAN_NOTICE("Nothing to fix!")
+			return
 
-	else
-		return ..()
+	return ..()
 
 /obj/item/weapon/tool/update_icon()
 	overlays.Cut()

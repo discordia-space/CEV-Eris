@@ -54,9 +54,8 @@
 	listener.secbot = src
 
 	spawn(5) // Since beepsky is made on the start... this delay is necessary
-		if(radio_controller)
-			radio_controller.add_object(listener, control_freq, filter = RADIO_SECBOT)
-			radio_controller.add_object(listener, beacon_freq, filter = RADIO_NAVBEACONS)
+		SSradio.add_object(listener, control_freq, filter = RADIO_SECBOT)
+		SSradio.add_object(listener, beacon_freq, filter = RADIO_NAVBEACONS)
 
 /mob/living/bot/secbot/turn_off()
 	..()
@@ -402,7 +401,7 @@
 	post_signal_multiple(freq, list("[key]" = value))
 
 /obj/secbot_listener/proc/post_signal_multiple(var/freq, var/list/keyval) // send a radio signal with multiple data key/values
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 	if(!frequency)
 		return
 

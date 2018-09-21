@@ -20,3 +20,20 @@
 	toggleable = TRUE
 	create_hot_spot = TRUE
 	glow_color = COLOR_ORANGE
+
+
+/obj/item/weapon/tool/weldingtool/turn_on(mob/user)
+	if (get_fuel() > 0)
+		..()
+		damtype = BURN
+		force = WEAPON_FORCE_PAINFULL
+		START_PROCESSING(SSobj, src)
+	else
+		user << SPAN_WARNING("[src] has no fuel!")
+
+	//Todo: Add a better hit sound for a turned_on welder
+
+/obj/item/weapon/tool/weldingtool/turn_off(mob/user)
+	..()
+	damtype = initial(damtype)
+	force = initial(force)
