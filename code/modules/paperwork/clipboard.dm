@@ -5,6 +5,7 @@
 	item_state = "clipboard"
 	throwforce = 0
 	w_class = ITEM_SIZE_SMALL
+	item_flags = DRAG_N_DROP_UNEQUIP
 	throw_speed = 3
 	throw_range = 10
 	var/obj/item/weapon/pen/haspen		//The stored pen.
@@ -13,25 +14,6 @@
 
 /obj/item/weapon/clipboard/New()
 	update_icon()
-
-/obj/item/weapon/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
-	if(ishuman(usr))
-		var/mob/M = usr
-		if(!(istype(over_object, /obj/screen) ))
-			return ..()
-
-		if(!M.restrained() && !M.stat && istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
-			switch(H.slot_id)
-				if(slot_r_hand)
-					M.u_equip(src)
-					M.put_in_r_hand(src)
-				if(slot_l_hand)
-					M.u_equip(src)
-					M.put_in_l_hand(src)
-
-			add_fingerprint(usr)
-			return
 
 /obj/item/weapon/clipboard/update_icon()
 	overlays.Cut()

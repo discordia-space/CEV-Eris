@@ -18,8 +18,7 @@
 /obj/item/device/flash/proc/clown_check(var/mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
 		user << SPAN_WARNING("\The [src] slips out of your hand.")
-		user.drop_active_hand()
-		user.drop_inactive_hand()
+		user.drop_all_hands()
 		return 0
 	return 1
 

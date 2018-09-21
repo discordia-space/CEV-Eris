@@ -216,10 +216,7 @@
 		if(getBrainLoss() >= 35)
 			if(7 <= rn && rn <= 9) if(get_active_hand())
 				src << SPAN_DANGER("Your hand won't respond properly, you drop what you're holding!")
-				if(prob(50))
-					drop_active_hand()
-				else
-					drop_inactive_hand()
+				drop_all_hands(TRUE)
 		if(getBrainLoss() >= 45)
 			if(10 <= rn && rn <= 12)
 				if(prob(50))

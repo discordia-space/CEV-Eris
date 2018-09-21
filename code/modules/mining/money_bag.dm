@@ -54,7 +54,7 @@
 	if (istype(W, /obj/item/weapon/moneybag))
 		for (var/obj/O in W)
 			O.forceMove(src)
-		user << "\blue You empty the [C.name] into the bag."
+		user << "\blue You empty the [W.name] into the bag."
 	return
 
 /obj/item/weapon/moneybag/Topic(href, href_list)

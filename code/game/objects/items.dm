@@ -771,6 +771,43 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 
+/obj/item/MouseDrop(obj/over_object)
+	if(item_flags & DRAG_N_DROP_UNEQUIP && isliving(usr))
+		if(try_uneqip(over_object, usr))
+			return
+	return ..()
+
+/obj/item/proc/try_uneqip(target, mob/living/user)
+	if(!canremove || !istype(loc, /mob))
+		return
+
+	if (ishuman(user))
+		var/mob/living/carbon/human/H = user
+
+		if (!istype(target, /obj/screen))
+			return
+
+		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
+		//there's got to be a better way of doing this.
+		if(src.loc != H || H.incapacitated())
+			return
+
+		if (!H.unEquip(src))
+			return
+
+		if (istype(target, /obj/screen/inventory/hand))
+			var/obj/screen/inventory/hand/Hand = target
+			switch(Hand.slot_id)
+				if(slot_r_hand)
+					H.u_equip(src)
+					H.put_in_r_hand(src)
+				if(slot_l_hand)
+					H.u_equip(src)
+					H.put_in_l_hand(src)
+			src.add_fingerprint(usr)
+			return TRUE
+
+
 //Returns true if the object is equipped to a mob, in any slot
 /obj/item/proc/is_equipped()
 	if (istype(loc, /mob))

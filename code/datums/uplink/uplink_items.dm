@@ -107,7 +107,7 @@ datum/uplink_item/dd_SortValue()
 *	Physical Uplink Entries		*
 *                           	*
 ********************************/
-/datum/uplink_item/item/buy(var/obj/item/device/uplink/U, var/mob/user)
+/datum/uplink_item/item/buy(var/obj/item/device/uplink/U, var/mob/living/user)
 	var/obj/item/I = ..()
 	if(!I)
 		return
@@ -116,9 +116,8 @@ datum/uplink_item/dd_SortValue()
 		var/list/L = I
 		if(L.len) I = L[1]
 
-	if(istype(I) && ishuman(user))
-		var/mob/living/carbon/human/A = user
-		A.put_in_any_hands(I)
+	if(istype(I))
+		user.put_in_hands(I)
 	return I
 
 /datum/uplink_item/item/get_goods(var/obj/item/device/uplink/U, var/loc)

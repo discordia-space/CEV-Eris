@@ -61,9 +61,7 @@ var/list/slot_equipment_priority = list(
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 
 
-	if( !istype(W, /obj/item/clothing/suit/storage) || \
-		!istype(W, /obj/item/weapon/storage)
-		)
+	if(!istype(W, /obj/item/clothing/suit/storage) || !istype(W, /obj/item/weapon/storage))
 		if(W.w_class > ITEM_SIZE_NORMAL)
 			play_long()
 		else
@@ -127,10 +125,10 @@ var/list/slot_equipment_priority = list(
 	W.dropped()
 	return FALSE
 
-//Drops the item in our active/inactive hand
+//Drops the item in our active hand or all hands
 //Declarations. Overrided in human/robots subtypes
 /mob/proc/drop_active_hand(var/atom/Target)
-/mob/proc/drop_inactive_hand(var/atom/Target)
+/mob/proc/drop_all_hands(var/pick_one = FALSE) // Pick_one - drop one random hand else drop all
 
 
 /*

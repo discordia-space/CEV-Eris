@@ -9,6 +9,7 @@
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
 	w_class = ITEM_SIZE_NORMAL
+	item_flags = DRAG_N_DROP_UNEQUIP
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
@@ -43,45 +44,10 @@
 	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
-	if(!canremove && istype(loc, /mob))
-		return
-
-	if ((ishuman(usr) || issmall(usr)) && !ismouse(usr)) //so monkeys can take off their backpacks -- Urist
-
-		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
-			return
-
-		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
+	if(ismob(loc) && ishuman(usr))
+		if(over_object == usr && Adjacent(usr) && !usr.incapacitated())
 			src.open(usr)
 			return
-
-		if (!( istype(over_object, /obj/screen) ))
-			return ..()
-
-		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
-		//there's got to be a better way of doing this.
-		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
-			return
-
-		if (( usr.restrained() ) || ( usr.stat ))
-			return
-
-
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
-			return
-
-		if (istype(over_object, /obj/screen/inventory/hand))
-			var/obj/screen/inventory/hand/H = over_object
-			switch(H.slot_id)
-				if(slot_r_hand)
-					usr.u_equip(src)
-					usr.put_in_r_hand(src)
-				if(slot_l_hand)
-					usr.u_equip(src)
-					usr.put_in_l_hand(src)
-			return
-
-		src.add_fingerprint(usr)
 	return ..()
 
 
@@ -379,8 +345,9 @@
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
 	if(usr)
-		usr.drop_from_mob(W)
-	W.loc = src
+		usr.drop_from_inventory(W,src)
+	else
+		W.loc = src
 	W.on_enter_storage(src)
 	if(usr)
 		add_fingerprint(usr)

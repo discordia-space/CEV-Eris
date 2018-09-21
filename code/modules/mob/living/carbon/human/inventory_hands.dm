@@ -75,6 +75,14 @@
 	if(hand)	return drop_l_hand(Target)
 	else		return drop_r_hand(Target)
 
-/mob/living/carbon/human/drop_inactive_hand(var/atom/Target)
-	if(hand)	return drop_r_hand(Target)
-	else		return drop_l_hand(Target)
+/mob/living/carbon/human/drop_all_hands(pick_one = FALSE)
+	if(pick_one)
+		if(prob(50))
+			return drop_r_hand()
+		else
+			return drop_l_hand()
+	else
+		drop_r_hand() 
+		drop_l_hand()
+
+

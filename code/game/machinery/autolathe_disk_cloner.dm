@@ -178,9 +178,7 @@
 					H.put_in_active_hand(copy)
 				copy = null
 			else
-				if(istype(D))
-					H.drop_item()
-					D.forceMove(src)
+				if(istype(D) && H.unEquip(D, src))
 					copy = D
 
 	SSnano.update_uis(src)

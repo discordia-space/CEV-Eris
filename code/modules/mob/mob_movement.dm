@@ -63,7 +63,7 @@
 				if(!C.get_active_hand())
 					usr << "\red You have nothing to drop in your hand."
 					return
-				drop_active_hand()
+				C.drop_active_hand()
 			else
 				usr << "\red This mob type cannot drop items."
 			return

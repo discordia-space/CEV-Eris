@@ -41,9 +41,9 @@
 		usr << "There is nothing to remove from the console."
 	return
 
-/obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
+/obj/machinery/computer/secure_data/attackby(obj/item/O, mob/living/user)
 	if(istype(O, /obj/item/weapon/card/id) && !scan)
-		if(usr.unEquip(I, src))
+		if(user.unEquip(O, src))
 			scan = O
 			user << "You insert [O]."
 			return
