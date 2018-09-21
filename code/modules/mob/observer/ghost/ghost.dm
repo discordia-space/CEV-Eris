@@ -30,6 +30,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	incorporeal_move = 1
 
 /mob/observer/ghost/New(mob/body)
+
 	see_in_dark = 100
 	verbs += /mob/observer/ghost/proc/dead_tele
 
@@ -137,7 +138,18 @@ Works together with spawning an observer, noted above.
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
-		ghost.key = key
+			//This is duplicated for robustness in cases where death might not be called.
+		//It is also set in the mob/death proc
+		if (isanimal(src))
+			set_death_time(ANIMAL, world.time)
+		else if (ispAI(src) || isdrone(src))
+			set_death_time(MINISYNTH, world.time)
+		else
+			set_death_time(CREW, world.time)//Crew is the fallback
+
+		ghost.ckey = ckey
+		ghost.client = client
+		ghost.initialise_postkey()
 		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
 			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 		return ghost
@@ -394,6 +406,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)"
 		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
 
+
+/*
 /mob/observer/ghost/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
@@ -402,8 +416,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
 		return
 
-	if(!MayRespawn(1, ANIMAL_SPAWN_DELAY))
-		return
+
 
 	if(isOnAdminLevel(src))
 		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
@@ -432,6 +445,133 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		announce_ghost_joinleave(src, 0, "They are now a mouse.")
 		host.ckey = src.ckey
 		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
+*/
+/mob/observer/verb/become_mouse()
+	set name = "Become mouse"
+	set category = "Ghost"
+
+
+	if(!MayRespawn(1, ANIMAL))
+		return
+
+	var/turf/T = get_turf(src)
+	if(!T || !(T.z in maps_data.station_levels))
+		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
+		return
+
+	var/response = alert(src, "Are you -sure- you want to become a mouse? This will not affect your crew or drone respawn time.","Are you sure you want to squeek?","Squeek!","Nope!")
+	if(response != "Squeek!") return  //Hit the wrong key...again.
+
+
+	//find a viable mouse candidate
+	var/mob/living/simple_animal/mouse/host
+	var/obj/machinery/atmospherics/unary/vent_pump/spawnpoint = find_mouse_spawnpoint(T.z)
+
+	if (spawnpoint)
+		host = new /mob/living/simple_animal/mouse(spawnpoint.loc)
+	else
+		src << "<span class='warning'>Unable to find any safe, unwelded vents to spawn mice at. The station must be quite a mess!  Trying again might work, if you think there's still a safe place. </span>"
+
+	if(host)
+		if(config.uneducated_mice)
+			host.universal_understand = 0
+		announce_ghost_joinleave(src, 0, "They are now a mouse.")
+		host.ckey = src.ckey
+		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
+
+/proc/find_mouse_spawnpoint(var/ZLevel)
+	//This function will attempt to find a good spawnpoint for mice, and prevent them from spawning in closed vent systems with no escape
+	//It does this by bruteforce: Picks a random vent, tests if it has enough connections, if not, repeat
+	//Continues either until a valid one is found (in which case we return it), or until we hit a limit on attempts..
+	//If we hit the limit without finding a valid one, then the best one we found is selected
+
+	var/list/found_vents = list()
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in SSmachines.machinery)
+		if(!v.welded && v.z == ZLevel)
+			found_vents.Add(v)
+
+	if (found_vents.len == 0)
+		return null//Every vent on the map is welded? Sucks to be a mouse
+
+	var/attempts = 0
+	var/max_attempts = min(20, found_vents.len)
+	var/target_connections = 30//Any vent with at least this many connections is good enough
+
+	var/obj/machinery/atmospherics/unary/vent_pump/bestvent = null
+	var/best_connections = 0
+	while (attempts < max_attempts)
+		attempts++
+		var/obj/machinery/atmospherics/unary/vent_pump/testvent = pick(found_vents)
+
+		if (!testvent.network)//this prevents runtime errors
+			continue
+
+		var/turf/T = get_turf(testvent)
+
+
+
+		//We test the environment of the tile, to see if its habitable for a mouse
+		//-----------------------------------
+		var/atmos_suitable = 1
+
+		var/maxtemp = 390
+		var/mintemp = 210
+		var/min_oxy = 5
+		var/max_phoron = 1
+		var/max_co2 = 5
+		var/min_pressure = 80
+
+		var/datum/gas_mixture/Environment = T.return_air()
+		if(Environment)
+
+			if(Environment.temperature > maxtemp)
+				atmos_suitable = 0
+			else if (Environment.temperature < mintemp)
+				atmos_suitable = 0
+			else if(Environment.gas["oxygen"] < min_oxy)
+				atmos_suitable = 0
+			else if(Environment.gas["phoron"] > max_phoron)
+				atmos_suitable = 0
+			else if(Environment.gas["carbon_dioxide"] > max_co2)
+				atmos_suitable = 0
+			else if(Environment.return_pressure() < min_pressure)
+				atmos_suitable = 0
+		else
+			atmos_suitable = 0
+
+		if (!atmos_suitable)
+			continue
+		//----------------------
+
+
+
+
+		//Now we test the vent connections, and ensure the vent we spawn at is connected enough to give the mouse free movement
+		var/list/connections = list()
+		for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in testvent.network.normal_members)
+			if(temp_vent.welded)
+				continue
+			if(temp_vent == testvent)//Our testvent shouldn't count itself as a connection
+				continue
+
+			connections += temp_vent
+
+		if(connections.len > best_connections)
+			best_connections = connections.len
+			bestvent = testvent
+
+		if (connections.len >= target_connections)
+			return testvent
+			//If we've found one that's good enough, then we stop looking
+
+
+	//IF we get here, then we hit the limit without finding a valid one.
+	//This would probably only be likely to happen if the station is full of holes and pipes are broken everywhere
+	if (bestvent == null)
+		//If bestvent is null, then every vent we checked was either welded or unsafe to spawn at. The user will be given a message reflecting this.
+		return null
+	else
+		return bestvent
 
 /mob/observer/ghost/verb/view_manfiest()
 	set name = "Show Crew Manifest"
@@ -580,22 +720,28 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		client.images |= ghost_sightless_images
 	client.images -= ghost_image //remove ourself
 
-/mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_time = 0)
+/mob/observer/ghost/MayRespawn(var/feedback = 0, var/respawn_type = 0)
 	if(!client)
-		return 0
-	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
-		if(feedback)
-			src << "<span class='warning'>Your non-dead body prevent you from respawning.</span>"
 		return 0
 	if(config.antag_hud_restricted && has_enabled_antagHUD == 1)
 		if(feedback)
 			src << "<span class='warning'>antagHUD restrictions prevent you from respawning.</span>"
 		return 0
 
-	var/timedifference = world.time - timeofdeath
-	if(respawn_time && timeofdeath && timedifference < respawn_time MINUTES)
-		var/timedifference_text = time2text(respawn_time MINUTES - timedifference,"mm:ss")
-		src << "<span class='warning'>You must have been dead for [respawn_time] minute\s to respawn. You have [timedifference_text] left.</span>"
+	var/timedifference = world.time- get_death_time(respawn_type)
+	var/respawn_time = 0
+	if (respawn_type == CREW)
+		respawn_time = config.respawn_delay MINUTES
+	else if (respawn_type == ANIMAL)
+		respawn_time = ANIMAL_SPAWN_DELAY
+	else if (respawn_type == MINISYNTH)
+		respawn_time = DRONE_SPAWN_DELAY
+
+	if(respawn_time &&  timedifference > respawn_time)
+		return TRUE
+	else
+		var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
+		src << "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>"
 		return 0
 
 	return 1
@@ -615,3 +761,63 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if((!target) || (!ghost)) return
 	. = "<a href='byond://?src=\ref[ghost];track=\ref[target]'>follow</a>"
 	. += target.extra_ghost_link(ghost)
+
+
+/mob/observer/proc/initialise_postkey()
+	//This function should be run after a ghost has been created and had a ckey assigned
+	//Death times are initialised if they were unset
+	//get/set death_time functions are in mob_helpers.dm
+	//These initialised times are designed to allow a player to immediately be a mouse or drone if they joined as observer from lobby
+	if (!get_death_time(ANIMAL))
+		set_death_time(ANIMAL, world.time - ANIMAL_SPAWN_DELAY)//allow instant mouse spawning
+	if (!get_death_time(MINISYNTH))
+		set_death_time(MINISYNTH, world.time - DRONE_SPAWN_DELAY) //allow instant drone spawning
+	if (!get_death_time(CREW))
+		set_death_time(CREW, world.time)
+
+
+/mob/verb/abandon_mob()
+	set name = "Respawn"
+	set category = "OOC"
+
+	if (!( config.abandon_allowed ))
+		usr << "<span class='notice'>Respawn is disabled.</span>"
+		return
+
+	if (!istype(src, /mob/new_player))
+		usr << "<span class='notice'><B>You are already at the menu select join to join the game!</B></span>"
+		return
+
+	if (stat != DEAD)
+		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
+		return
+	else if(!MayRespawn(1, CREW))
+		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
+			return
+
+	usr << "You can respawn now, enjoy your new life!"
+
+	log_game("[usr.name]/[usr.key] used abandon mob.")
+
+	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
+
+	if(!client)
+		log_game("[usr.key] AM failed due to disconnect.")
+		return
+	client.screen.Cut()
+	if(!client)
+		log_game("[usr.key] AM failed due to disconnect.")
+		return
+
+	announce_ghost_joinleave(client, 0)
+
+	var/mob/new_player/M = new /mob/new_player()
+	if(!client)
+		log_game("[usr.key] AM failed due to disconnect.")
+		qdel(M)
+		return
+
+	M.key = key
+	if(M.mind)
+		M.mind.reset()
+	return
