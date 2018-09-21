@@ -98,7 +98,7 @@ datum/preferences/proc/update_preview_icon()
 
 	var/icon/clothes = null
 	//This gives the preview icon clothes depending on which job(if any) is set to 'high'
-	if(job_civilian_low & ASSISTANT || !job_master)
+	if(job_civilian_low & ASSISTANT)
 		clothes = new /icon(bodybuild.uniform_icon, "grey")
 		clothes.Blend(new /icon(bodybuild.shoes_icon, "black"), ICON_UNDERLAY)
 		if(backbag == 2)
@@ -107,7 +107,7 @@ datum/preferences/proc/update_preview_icon()
 			clothes.Blend(new /icon(bodybuild.backpack_icon, "satchel"), ICON_OVERLAY)
 
 	else
-		var/datum/job/J = job_master.GetJob(high_job_title)
+		var/datum/job/J = SSjob.GetJob(high_job_title)
 		if(J)
 			var/t_state
 

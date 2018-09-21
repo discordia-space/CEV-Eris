@@ -36,7 +36,7 @@
 		if(!partner)
 			return 0
 
-		if(!SSair || SSair.times_fired <= update_cycle)
+		if(SSair.times_fired <= update_cycle)
 			return 0
 
 		update_cycle = SSair.times_fired

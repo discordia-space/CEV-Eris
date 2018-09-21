@@ -631,14 +631,16 @@ ADMIN_VERB_ADD(/datum/admins/proc/startnow, R_SERVER, FALSE)
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		SSticker.current_state = GAME_STATE_SETTING_UP
+		SSticker.start_immediately = TRUE
 		log_admin("[usr.key] has started the game.")
-		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
-
-		return 1
+		var/msg = ""
+		if(SSticker.current_state == GAME_STATE_STARTUP)
+			msg = " (The server is still setting up, but the round will be \
+				started as soon as possible.)"
+		message_admins("<font color='blue'>\
+			[usr.key] has started the game.[msg]</font>")
 	else
 		usr << "<font color='red'>Error: Start Now: Game has already started.</font>"
-		return 0
 
 ADMIN_VERB_ADD(/datum/admins/proc/toggleenter, R_ADMIN, FALSE)
 //toggles whether people can join the current game
