@@ -95,6 +95,12 @@
 		kill_CH() //We dead... clear any prepared abilities...
 
 	timeofdeath = world.time
+	if (isanimal(src))
+		set_death_time(ANIMAL, world.time)
+	else if (ispAI(src) || isdrone(src))
+		set_death_time(MINISYNTH, world.time)
+	else if (isliving(src))
+		set_death_time(CREW, world.time)//Crew is the fallback
 	if(mind)
 		mind.store_memory("Time of death: [stationtime2text()]", 0)
 	living_mob_list -= src
