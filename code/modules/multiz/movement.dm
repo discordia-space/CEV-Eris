@@ -1,4 +1,4 @@
-#define Z_MOVE_PHASE			1 	//Used by ghosts, AI eye and mobs with incorp move
+#define Z_MOVE_PHASE			1 	//Used by ghosts, AI eye and mobs with incorp move. Instant and goes through obstacle. It's basically an OOC action
 #define Z_MOVE_JETPACK_NOGRAV	2	//Fast, safe and minimal fuel use
 #define Z_MOVE_JETPACK_GRAVITY	3	//Flying to resist gravity. Moderately fast, consumes a fair bit of fuel
 #define Z_MOVE_CLIMB_GRAVITY   	4 	//Can be used by any mob, but only under specific circumstances which are usually untrue. If it is doable its quite slow
@@ -15,50 +15,204 @@ var/list/z_movement_methods = list(
 
 //This proc does all the checks and handling of a specific Zmove method
 //It requires a mob, obviously, and a method - one of the defines listed above
-//If check_only is true, then this proc will only check to see if its possible but not send any actions
-//If feedback is true, the mob will do visible messages describing what they're attempting to do
-/proc/zmove_method(var/mob/M, var/method = 0, var/turf/start = null, var/turf/destination = null, var/direction =  var/check_only = FALSE, var/feedback = TRUE)
+//If feedback is true, the mob will recieve messages when something is wrong that they could concievably fix
+/proc/zmove_method(var/mob/M, var/method = 0, var/turf/start = null, var/turf/destination = null, var/direction = UP,  var/check_only = FALSE, var/feedback = TRUE)
+	world << "=========================================="
+	world << "ZMove method: Mob: [M] -- Method: [method] -- Start: [start] -- Dest: [destination] -- Dir: [direction] [dir2text(direction)] -- Check: [check_only] -- Feedback: [feedback]"
 	if (!istype(M) || !method)
+		world << "Fail because no mob or method"
 		return FALSE
 
+	var/area/area = get_area(start)
+	var/dirmult = 1
+	if (direction == DOWN)
+		dirmult = -1
 
-	var/turf/start = get_turf(src)
-	var/area/area = get_area(src)
-
+	var/time = 30 //The time it takes to transition.
+	//When going against gravity it takes longer
+	//In zero G, time is the same in either direction
+	//var/area/darea = get_area(destination)
 	switch (method)
+//================================
 		if (Z_MOVE_PHASE)
+			time = 0
 			if (istype(M, /mob/observer))
-				return TRUE
+				.= TRUE
 			if (M.incorporeal_move)
-				return TRUE
+				.= TRUE
 
+			if (. && !check_only)
+				if (do_after(M, time))
+					M.Move(destination)
+			return
+//================================
 		if (Z_MOVE_JETPACK_NOGRAV)
+			time = 30
+			world << "Testing jetpack nograv"
 			if (area.has_gravity())
+				world << "Fail because gravity"
 				return FALSE
 
-			var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(src)
-			if (thrust.allow_thrust(JETPACK_MOVE_COST*5, src))
-				return TRUE //Do animation here
+
+			var/cost = JETPACK_MOVE_COST*5
+			var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(M)
+			if (!istype(thrust))
+				return FALSE
+
+			if (thrust.allow_thrust(cost, M))
+				.=TRUE
+				world << "Success, thrust is allowed"
 			else if (feedback)
 				//It failed, lets tell the user why
 				if (!thrust.on)
+					M << "You could go [dir2text(direction)] with your [thrust], if it were turned on!"
 
+				if (thrust.get_total_moles() < JETPACK_MOVE_COST*5)
+					M << "Your [thrust] doesn't have enough gas to go [dir2text(direction)]!"
 
+			if (. && !check_only)
+				var/target_Yif (. && !check_only)
+				M.face_atom(W)
+				animate(M, alpha = 0, pixel_y = 64, time = time, easing = SINE_EASING)
+				if (do_after(M, time))
+					M.Move(destination)
+					M.alpha = 255
+					M.pixel_y = 0
+			returnY
+				animate(M, alpha = 0, pixel_y = 64, time = time, easing = SINE_EASING)
+				if (do_after(M, time))
+					M.Move(destination)
+				M.alpha = 255
+				M.pixel_y = 0
+			return
 
+//================================
 		if (Z_MOVE_JETPACK_GRAVITY)
-			var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(src)
-			if (thrust.allow_thrust(JETPACK_MOVE_COST*40, src))
-				return TRUE //Do animation here
+			time = 50
+			world << "Testing jetpack grav"
+			var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(M)
+			if (!istype(thrust))
+				return FALSE
+			world << "Got jetpack"
+			var/cost = JETPACK_MOVE_COST*20
+			if (direction == UP)
+				time = 75
+				cost *= 2 //Overcoming gravity is harder
+				world << "Doubling cost because up"
 
+			if (thrust.allow_thrust(cost, M))
+				world << "Thrust allowed! Success"
+				.=TRUE
+
+			else if (feedback)
+				//It failed, lets tell the user why
+				if (!thrust.on)
+					M << "You could go [dir2text(direction)] with your [thrust], if it were turned on!"
+
+				if (thrust.get_total_moles() < JETPACK_MOVE_COST*5)
+					M << "Your [thrust] doesn't have enough gas to go [dir2text(direction)]!"
+
+			if (. && !check_only)
+				animate(M, alpha = 0, pixel_y = 64, time = time, easing = SINE_EASING)
+				if (do_after(M, time))
+					M.Move(destination)
+				M.alpha = 255
+				M.pixel_y = 0
+			return
+//================================
 		if (Z_MOVE_CLIMB_NOGRAV)
+			time = 80
 			if (area.has_gravity())
 				return FALSE
 
+			//Climbing in 0G requires a continuous wall to ascend or descend
+			var/turf/simulated/wall/W = null
 
+			//Lets examine the walls around us
+			for (var/d in cardinal)
+				var/turf/simulated/wall/WA = get_step(start, d)
+				if (istype(WA))
+					//We've found a wall, now lets look at the destination floor
+					var/turf/simulated/wall/WB = get_step(destination, d)
+					if (istype(WB))
+						//We've successfully located a smooth wall that spans both floors, we can climb it
+						W = WA
+						break
+			if (W)
+				.=TRUE
+			else if (feedback)
+				M << "There are no suitable walls to climb!"
+
+			if (. && !check_only)
+				M.face_atom(W)
+				animate(M, alpha = 0, pixel_y = 64, time = time, easing = LINEAR_EASING)
+				if (do_after(M, time))
+					M.Move(destination)
+				M.alpha = 255
+				M.pixel_y = 0
+			return
+//================================
 		if (Z_MOVE_CLIMB_GRAVITY)
-		if (Z_MOVE_CLIMB_MAG)
+			return FALSE //This isn't possible for now, but methods will be added in future
+
+//================================
+		if (Z_MOVE_CLIMB_MAG) //Climbing with magboots has all the same checks as nograv climbing, plus the boots themselves
+			//It is faster and safer though
+			if (area.has_gravity())
+				return FALSE
+
+			//This checks for magboots
+			if (!M.Check_Shoegrip())
+				return FALSE
+
+			//Climbing in 0G requires a continuous wall to ascend or descend
+			var/turf/simulated/wall/W = null
+
+			//Lets examine the walls around us
+			for (var/d in cardinal)
+				var/turf/simulated/wall/WA = get_step(start, d)
+				if (istype(WA))
+					//We've found a wall, now lets look at the destination floor
+					var/turf/simulated/wall/WB = get_step(destination, d)
+					if (istype(WB))
+						//We've successfully located a smooth wall that spans both floors, we can climb it
+						W = WA
+						break
+			if (W)
+				.=TRUE
+			else if (feedback)
+				M << "There are no suitable walls to climb!"
+
+			if (. && !check_only)
+				M.face_atom(W)
+				animate(M, alpha = 0, pixel_y = 64, time = time, easing = LINEAR_EASING)
+				if (do_after(M, time))
+					M.Move(destination)
+				M.alpha = 255
+				M.pixel_y = 0
+			return
+
+//================================
 		if (Z_MOVE_JUMP_NOGRAV)
+			time = 20
+			if (area.has_gravity())
+				return FALSE
+
+			//Requires something to jump off of
+			if (!M.Check_Dense_Object())
+				return FALSE
+
+			.=TRUE
+			if (. && !check_only)
+				animate(M, alpha = 0, pixel_y = 64, time = time, easing = BACK_EASING)
+				if (do_after(M, time))
+					M.Move(destination)
+				M.alpha = 255
+				M.pixel_y = 0
+			return
+//================================
 		if (Z_MOVE_JUMP_GRAVITY)
+			return FALSE //This isn't possible for now, but methods will be added in future
 
 	return FALSE
 
@@ -100,37 +254,35 @@ var/list/z_movement_methods = list(
 	if (eyeobj)
 		return eyeobj.zMove(direction)
 
+	//Todo: Implement mech zmovement
 	if (istype(src.loc,/obj/mecha))
 		return FALSE
 
-	// Check if we can actually travel a Z-level.
-	if (!can_ztravel(direction))
-		to_chat(src, "<span class='warning'>You lack means of travel in that direction.</span>")
-		return FALSE
+
 
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-
+	var/turf/start = get_turf(src)
 	if(!destination)
 		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 		return FALSE
 
-	var/turf/start = get_turf(src)
+	//After checking that there's a valid destination, we'll first attempt phase movement as a shortcut.
+	//Since it can pass through obstacles, we'll do this before checking whether anything is blocking us
+	zmove_method(src, Z_MOVE_PHASE, start, destination, direction,  check_only = FALSE, feedback = TRUE)
+
+
+	var/list/possible_methods = list(
+	Z_MOVE_JETPACK_NOGRAV,
+	Z_MOVE_JETPACK_GRAVITY,
+	//Z_MOVE_CLIMB_GRAVITY,	//Not yet implemented
+	Z_MOVE_CLIMB_NOGRAV,
+	Z_MOVE_CLIMB_MAG,
+	//Z_MOVE_JUMP_GRAVITY,	//Not yet implemented
+	Z_MOVE_JUMP_NOGRAV
+	)
+
 	if(!start.CanZPass(src, direction))
 		to_chat(src, "<span class='warning'>\The [start] under you is in the way.</span>")
-		return FALSE
-
-
-
-	var/area/area = get_area(src)
-
-	// If we want to move up,but the current area has gravity. Invoke CanAvoidGravity()
-	// to check if this move is possible.
-	if(direction == UP && area.has_gravity() && !CanAvoidGravity())
-		to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-		return FALSE
-
-	if(!destination.CanZPass(src, direction))
-		to_chat(src, "<span class='warning'>You bump against \the [destination] above your head.</span>")
 		return FALSE
 
 	// Check for blocking atoms at the destination.
@@ -139,9 +291,14 @@ var/list/z_movement_methods = list(
 			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
 			return FALSE
 
+	for (var/a in possible_methods)
+		world << "Testing [a]"
+		if (zmove_method(src, a, start, destination, direction,  check_only = FALSE, feedback = TRUE))
+			world << "Success"
+			return TRUE
 	// Actually move.
-	Move(destination)
-	return TRUE
+	//Move(destination)
+	return FALSE
 
 /mob/living/zMove(direction)
 	if (is_ventcrawling)

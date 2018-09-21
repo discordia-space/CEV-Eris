@@ -372,13 +372,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 /mob/living/carbon/human/bst/restrained()
 	return 0
 
-//TODO: Refactor zmove to check incorpmove so bsts don't need an override
-/mob/living/carbon/human/bst/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		forceMove(destination)
-	else
-		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 
 /mob/living/carbon/human/bst/can_fall()
 	return fall_override ? FALSE : ..()

@@ -68,13 +68,9 @@
 	var/obj/item/weapon/tank/jetpack/thrust = GetJetpack(src)
 
 	if(thrust)
-		world << "Has Jetpack"
 		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(JETPACK_MOVE_COST, src)))
-			world << "Jetpack works"
 			inertia_dir = 0
 			return 1
-	else
-		world << "Has no jetpack"
 
 	//If no working jetpack then use the other checks
 	. = ..()
