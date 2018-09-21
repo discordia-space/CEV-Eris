@@ -127,6 +127,7 @@
 	if(!target || !src)	return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
+	set_dir(pick(cardinal))
 	src.throwing = 1
 	if(target.allow_spin && src.allow_spin)
 		SpinAnimation(5,1)
