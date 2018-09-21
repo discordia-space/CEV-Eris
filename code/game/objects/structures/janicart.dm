@@ -16,7 +16,7 @@
 
 
 /obj/structure/janitorialcart/New()
-	create_reagents(100)
+	create_reagents(460)
 
 
 /obj/structure/janitorialcart/examine(mob/user)
@@ -34,20 +34,7 @@
 		user << SPAN_NOTICE("You put [I] into [src].")
 
 	else if(istype(I, /obj/item/weapon/mop))
-		if(I.reagents.total_volume < I.reagents.maximum_volume)	//if it's not completely soaked we assume they want to wet it, otherwise store it
-			if(reagents.total_volume < 1)
-				user << SPAN_WARNING("[src] is out of water!")
-			else
-				reagents.trans_to_obj(I, 5)	//
-				user << SPAN_NOTICE("You wet [I] in [src].")
-				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-				return
-		if(!mymop)
-			user.unEquip(I, src)
-			mymop = I
-			update_icon()
-			updateUsrDialog()
-			user << SPAN_NOTICE("You put [I] into [src].")
+		return
 
 	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && !myspray)
 		user.unEquip(I, src)
@@ -75,6 +62,16 @@
 
 	else if(mybag)
 		mybag.attackby(I, user)
+
+
+/obj/structure/janitorialcart/AltClick(var/mob/living/user)
+	var/mop = user.get_active_hand()
+	if(istype(mop, /obj/item/weapon/mop) && !mymop)
+		user.unEquip(mop, src)
+		mymop = mop
+		update_icon()
+		updateUsrDialog()
+		user << SPAN_NOTICE("You put [mop] into [src].")
 
 
 /obj/structure/janitorialcart/attack_hand(mob/user)
@@ -189,14 +186,7 @@
 
 
 /obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/mop))
-		if(reagents.total_volume > 1)
-			reagents.trans_to_obj(I, 2)
-			user << SPAN_NOTICE("You wet [I] in the [callme].")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		else
-			user << SPAN_NOTICE("This [callme] is out of water!")
-	else if(istype(I, /obj/item/key))
+	if(istype(I, /obj/item/key))
 		user << "Hold [I] in one of your hands while you drive this [callme]."
 	else if(istype(I, /obj/item/weapon/storage/bag/trash))
 		user << SPAN_NOTICE("You hook the trashbag onto the [callme].")
