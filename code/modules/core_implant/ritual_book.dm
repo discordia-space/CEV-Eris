@@ -112,14 +112,20 @@
 		expanded_group = href_list["unfold"]
 
 	if(href_list["say"] || href_list["say_group"])
+		var/incantation = ""
 		for(var/RT in CI.rituals)
+
 			if("[RT]" == href_list["say"])
 				var/datum/ritual/R = new RT
-				H.say(R.get_say_phrase())
+				incantation = R.get_say_phrase()
 				break
 			if("[RT]" == href_list["say_group"] && ispath(RT, /datum/ritual/group))
 				var/ind = text2num(href_list["say_id"])
 				var/datum/ritual/group/R = new RT
-				H.say(R.get_group_say_phrase(ind))
+				incantation = R.get_group_say_phrase(ind)
 				break
+		if (incantation != "")
+			//Speaking a long phrase takes a little time
+			if (do_after(H, length(incantation)*0.25))
+				H.say(incantation)
 	return TRUE
