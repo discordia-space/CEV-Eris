@@ -29,7 +29,7 @@ var/global/list/empty_playable_ai_cores = list()
 	//Handle job slot/tater cleanup.
 	var/job = mind.assigned_role
 
-	job_master.FreeRole(job)
+	SSjob.FreeRole(job)
 
 	clear_antagonist(mind)
 

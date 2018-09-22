@@ -22,7 +22,6 @@
 	if(!material)
 		return INITIALIZE_HINT_QDEL
 
-	recipes = material.get_recipes()
 	stacktype = material.stack_type
 	if(islist(material.stack_origin_tech))
 		origin_tech = material.stack_origin_tech.Copy()
@@ -35,6 +34,9 @@
 
 	matter = material.get_matter()
 	update_strings()
+
+/obj/item/stack/material/attack_self(mob/living/user)
+	user.craft_menu()
 
 /obj/item/stack/material/get_material()
 	return material
