@@ -61,32 +61,85 @@
 	return
 
 /obj/structure/morgue/attack_hand(mob/user as mob)
+
 	if (src.connected)
-		for(var/atom/movable/A as mob|obj in src.connected.loc)
-			if (!( A.anchored ))
-				A.forceMove(src)
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		qdel(src.connected)
-		src.connected = null
+		close(user)
+
 	else
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		src.connected = new /obj/structure/m_tray( src.loc )
-		step(src.connected, src.dir)
-		src.connected.layer = OBJ_LAYER
-		var/turf/T = get_step(src, src.dir)
-		if (T.contents.Find(src.connected))
-			src.connected.connected = src
-			src.icon_state = "morgue0"
-			for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(src.connected.loc)
-			src.connected.icon_state = "morguet"
-			src.connected.set_dir(src.dir)
-		else
-			qdel(src.connected)
-			src.connected = null
+		open(user)
+
 	src.add_fingerprint(user)
 	update()
 	return
+
+
+/obj/structure/morgue/proc/open(var/mob/living/user)
+	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+	src.connected = new /obj/structure/m_tray( src.loc )
+	step(src.connected, src.dir)
+	src.connected.layer = LOW_OBJ_LAYER
+	var/turf/T = get_step(src, src.dir)
+	if (T.contents.Find(src.connected))
+		src.connected.connected = src
+		src.icon_state = "morgue0"
+		for(var/atom/movable/A as mob|obj in src)
+			A.forceMove(src.connected.loc)
+		src.connected.icon_state = "morguet"
+		src.connected.set_dir(src.dir)
+	else
+		qdel(src.connected)
+		src.connected = null
+
+/obj/structure/morgue/proc/close(var/mob/living/user)
+	//We only allow one mob or bodybag containing a mob, per morgue drawer
+	var/mob/living/occupant = null
+
+	for(var/atom/movable/A as mob|obj in src.connected.loc)
+		if (ismob(A))
+			if (!isliving(A))
+				//Don't eat ghosts and AI eyes please
+				continue
+			if (occupant)
+				//Only one mob per drawer
+				continue
+			occupant = A
+			A.forceMove(src)
+
+		else if (istype(A, /obj/structure/closet))
+			//Closet includes coffins and deployed bodybags
+			if (occupant)
+				//One of these is allowed in if it contains a mob and we dont already have a mob
+				continue
+			//Try to find a mob inside it
+			var/mob/M = locate(/mob/living) in A.contents
+			if (istype(M))
+				//There's a mob in it, we'll accept it
+				occupant = M
+				A.forceMove(src)
+
+
+		else if (!( A.anchored ))
+			//Allowing it to suck up any non anchored atom is definitely open to exploits,
+			//But fixing that is beyond my scope for now.
+			//TODO: Add maximum size and maximum total volume to these
+			A.forceMove(src)
+	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+	qdel(src.connected)
+	src.connected = null
+
+
+	//If this drawer contains a corpse that used to be a player..
+	if (occupant && occupant.mind && occupant.mind.key && occupant.stat == DEAD)
+		//Whoever inhabited this body is long gone, we need some black magic to find where and who they are now
+		var/mob/M = key2mob(occupant.mind.key)
+		if (!(M.get_respawn_bonus("CORPSE_HANDLING")))
+			//We send a message to the occupant's current mob - probably a ghost, but who knows.
+			M << SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 8 minutes.")
+			M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
+
+		//Going safely to cryo will allow the patient to respawn more quickly
+		M.set_respawn_bonus("CORPSE_HANDLING", 8 MINUTES)
+
 
 /obj/structure/morgue/attackby(P as obj, mob/user as mob)
 	if (istype(P, /obj/item/weapon/pen))
