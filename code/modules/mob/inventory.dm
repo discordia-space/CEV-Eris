@@ -217,6 +217,26 @@ var/list/slot_equipment_priority = list(
 	return list()
 
 
+//Returns the inventory slot for the current hand
+/mob/proc/get_active_hand_slot()
+	if (hand)
+		return slot_l_hand
+	return slot_r_hand
+
+
+/mob/proc/can_pickup(var/obj/item/I, var/feedback = TRUE)
+	if(!canmove || stat || restrained() || !Adjacent(usr))
+		return
+
+	var/slot = get_active_hand_slot()
+	if (!I || !I.mob_can_equip(src, slot, TRUE))
+		//Picking up is going to fail, maybe we can tell the user why
+
+		return
+
+	return TRUE
+
+
 //////
 //Some inventory sounds.
 //occurs when you click and put up or take off something from you (any UI slot acceptable)

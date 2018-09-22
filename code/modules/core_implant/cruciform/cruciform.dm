@@ -6,6 +6,7 @@ var/list/christians = list()
 	desc = "Soul holder for every christian."
 	allowed_organs = list(BP_CHEST)
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
+	layer = ABOVE_MOB_LAYER
 	power = 50
 	max_power = 50
 	power_regen = 0.5

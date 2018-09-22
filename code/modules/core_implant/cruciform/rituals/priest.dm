@@ -17,7 +17,7 @@
 	desc = "Cyberchristianity's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology corporation's  special altar."
 
 /datum/ritual/cruciform/priest/epiphany/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one.", user, C)
@@ -77,7 +77,7 @@
 	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
 
 /datum/ritual/cruciform/priest/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)
@@ -128,17 +128,8 @@
 	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
 
 /datum/ritual/cruciform/priest/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
-	var/obj/item/weapon/implant/core_implant/cruciform/CI
-
-	if(G && G.affecting && ishuman(G.affecting))
-		CI = G.affecting.get_cruciform()
-	else
-		fail("You must hold patient's hand.", user, C)
-		return FALSE
-
-	var/mob/living/H = G.affecting
-
+	var/mob/living/H = get_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 	if(CI)
 		fail("[H] already have a cruciform installed.", user, C)
 		return FALSE
@@ -197,7 +188,7 @@
 	desc = "This litany will command cruciform to detach from bearer if one bearing it is dead. You will be able to attach this cruciform later, or use it in scaner for Resurrection."
 
 /datum/ritual/cruciform/priest/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)
@@ -229,7 +220,7 @@
 	desc = "This litany will remove any upgrade from "
 
 /datum/ritual/cruciform/priest/unupgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one.", user, C)
