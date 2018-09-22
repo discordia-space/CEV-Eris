@@ -763,8 +763,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "<span class='notice'>Respawn is disabled.</span>"
 		return
 
-	if (!istype(src, /mob/new_player))
-		usr << "<span class='notice'><B>You are already at the menu select join to join the game!</B></span>"
+	if (istype(src, /mob/new_player))
+		usr << "<span class='notice'><B>You are already at the lobby!</B></span>"
 		return
 
 	if (stat != DEAD)
