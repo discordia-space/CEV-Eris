@@ -91,24 +91,34 @@
 		light_spot.forceMove(T)
 		light_spot.icon_state = "nothing"
 		if (lightSpotPlaceable(T))
-			light_spot.icon_state = "light_spot"
+			var/distance = get_dist(get_turf(src),T)
+			switch(distance)
+				if (1)
+					light_spot.icon_state = "lightspot_vclose"
+				if (2)
+					light_spot.icon_state = "lightspot_close"
+				if (3)
+					light_spot.icon_state = "lightspot_medium"
+				if (4)
+					light_spot.icon_state = "lightspot_far"
+			
 		light_spot.set_dir(direction)
 
 /obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPassable(var/turf/T)
-	if (is_opaque(T) || is_blocked_turf(T))
-		return 0
+	if (is_opaque(T))
+		return FALSE
 	/*for(var/obj/O in T)
 		if(O.type in lightSpotBlacklist)
-			return 0*/
-	return 1
+			return FALSE*/
+	return TRUE
 
 /obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPlaceable(var/turf/T)	//check if we can place icon there, light will be still applied
 	if(T == get_turf(src) || !isfloor(T))
-		return 0
+		return FALSE
 	for(var/obj/O in T)
 		if(istype(O, /obj/structure/window))
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/item/device/lighting/toggleable/flashlight/moved(mob/user, old_loc)
 	spot_locked = 0
@@ -145,7 +155,10 @@
 		return FALSE
 	. = ..()
 	light_spot = new(get_turf(src),light_spot_brightness)
-	light_spot.icon_state = "light_spot"
+	light_spot.icon = 'icons/effects/64x64.dmi'
+	light_spot.pixel_x = -16
+	light_spot.pixel_y = -16
+	light_spot.plane = HIDE_LAYER
 	calculate_dir()
 	if(. && user)
 		START_PROCESSING(SSobj, src)

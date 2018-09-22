@@ -524,8 +524,8 @@ datum/projectile_data
 
 /proc/is_opaque(var/turf/T)
 	if (T.opacity == 1)
-		return 1
+		return TRUE
 	for(var/obj/O in T.contents)
 		if (O.opacity == 1)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
