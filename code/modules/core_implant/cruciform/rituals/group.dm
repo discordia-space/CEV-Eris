@@ -4,6 +4,11 @@
 	fail_message = "The Cruciform feels cold against your chest."
 	cooldown = FALSE
 
+/datum/ritual/group/cruciform/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+	if(!C.get_module(CRUCIFORM_PRIEST) && !C.get_module(CRUCIFORM_INQUISITOR))
+		return FALSE
+	return TRUE
+
 /datum/ritual/group/cruciform/mechanical
 	name = "Mechanical"
 	desc = "Boosts Mechanical stat to 3 + 1 for each participant."
@@ -114,4 +119,30 @@
 	M.stats.changeStat(STAT_TGH, stat)
 
 
+/datum/ritual/group/cruciform/crusade
+	name = "Crusade"
+	desc = "Reveal crusade litanies to cyberchristians. Depends on participants amount."
+	phrase = "Locutus est Dominus ad Mosen dicens."
+	phrases = list(
+		"Locutus est Dominus ad Mosen dicens.",
+		"Fac tibi duas tubas argenteas ductiles quibus convocare possis multitudinem quando movenda sunt castra.",
+		"Cumque increpueris tubis congregabitur ad te omnis turba ad ostium foederis tabernaculi.",
+		"Si semel clangueris venient ad te principes et capita multitudinis Israhel.",
+		"Sin autem prolixior atque concisus clangor increpuerit movebunt castra primi qui sunt ad orientalem plagam.",
+		"In secundo autem sonitu et pari ululatu tubae levabunt tentoria qui habitant ad meridiem et iuxta hunc modum reliqui facient ululantibus tubis in profectione.",
+		"Quando autem congregandus est populus simplex tubarum clangor erit et non concise ululabunt.",
+		"Filii Aaron sacerdotes clangent tubis eritque hoc legitimum sempiternum in generationibus vestris.",
+		"Si exieritis ad bellum de terra vestra contra hostes qui dimicant adversum vos clangetis ululantibus tubis et erit recordatio vestri coram Domino Deo vestro ut eruamini de manibus inimicorum vestrorum."
+	)
+	effect_type = /datum/group_ritual_effect/cruciform/crusade
+
+/datum/group_ritual_effect/cruciform/crusade/success(var/mob/living/M, var/cnt)
+	var/obj/item/weapon/implant/core_implant/CI = M.get_cruciform()
+	if(CI)
+		if(cnt >= 3)
+			if(!locate(/datum/ritual/cruciform/crusader/battle_call) in CI.rituals)
+				CI.rituals += /datum/ritual/cruciform/crusader/battle_call
+		if(cnt >= 4)
+			if(!locate(/datum/ritual/cruciform/crusader/flash) in CI.rituals)
+				CI.rituals += /datum/ritual/cruciform/crusader/flash
 
