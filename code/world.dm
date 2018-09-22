@@ -86,11 +86,7 @@ var/game_id = null
 
 	. = ..()
 
-#ifndef UNIT_TEST
-
-	sleep_offline = 1
-
-#else
+#ifdef UNIT_TEST
 	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
 	load_unit_test_changes()
 #endif
@@ -116,12 +112,10 @@ var/game_id = null
 		else
 			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
 
-	master_controller = new /datum/controller/game_controller()
-
 	Master.Initialize(10, FALSE)
 
 #ifdef UNIT_TEST
-		initialize_unit_tests()
+	initialize_unit_tests()
 #endif
 
 

@@ -47,7 +47,7 @@
 
 
 /datum/core_module/cruciform/obey/install()
-	var/laws = list("You are slavered. You must obey the laws below.",
+	var/laws = list("You are enslaved. You must obey the laws below.",
 			"Only [user] and persons designated by him are Inquisition agents.",
 			"You may not injure an Inquisition agent or, through inaction, allow an Inquisitor to come to harm.",
 			"You must obey orders given to you by Inquisition agent, except where such orders would conflict with the First Law.",
@@ -89,11 +89,11 @@
 
 /datum/core_module/rituals/cruciform/base/set_up()
 	rituals = subtypesof(/datum/ritual/cruciform/base)+subtypesof(/datum/ritual/targeted/cruciform/base)
-
+	rituals += subtypesof(/datum/ritual/group/cruciform)
 
 /datum/core_module/rituals/cruciform/priest/set_up()
 	rituals = subtypesof(/datum/ritual/cruciform/priest)+subtypesof(/datum/ritual/targeted/cruciform/priest)
-	rituals += subtypesof(/datum/ritual/group/cruciform)
+
 
 
 /datum/core_module/rituals/cruciform/inquisitor/set_up()

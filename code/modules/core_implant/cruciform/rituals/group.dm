@@ -1,7 +1,7 @@
 /datum/ritual/group/cruciform
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
-	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
+	fail_message = "The Cruciform feels cold against your chest."
 	cooldown = FALSE
 
 /datum/ritual/group/cruciform/mechanical

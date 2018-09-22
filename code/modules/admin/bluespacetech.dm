@@ -199,8 +199,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 //Bag o Holding
 /obj/item/weapon/storage/backpack/holding/bst
 	canremove = 0
-	storage_slots = 56
-	max_w_class = 400
+	worn_access = TRUE
 
 /obj/item/device/radio/headset/ert/bst/attack_hand()
 	if(!usr)

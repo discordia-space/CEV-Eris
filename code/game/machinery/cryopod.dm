@@ -333,7 +333,7 @@
 	//Handle job slot/tater cleanup.
 	var/job = occupant.mind.assigned_role
 
-	job_master.FreeRole(job)
+	SSjob.FreeRole(job)
 
 	clear_antagonist(occupant.mind)
 
