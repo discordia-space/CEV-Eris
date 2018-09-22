@@ -38,9 +38,9 @@
 	name = "light bulb"
 	path = /obj/item/weapon/light/bulb
 
-/datum/autolathe/recipe/misc/ashtray_glass
+/datum/autolathe/recipe/misc/ashtray
 	name = "glass ashtray"
-	path = /obj/item/weapon/material/ashtray/glass
+	path = /obj/item/weapon/material/ashtray
 
 /datum/autolathe/recipe/misc/cane
 	name = "cane"

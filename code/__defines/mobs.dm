@@ -124,11 +124,17 @@
 #define FLASH_PROTECTION_NONE 0
 #define FLASH_PROTECTION_MODERATE 1
 #define FLASH_PROTECTION_MAJOR 2
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
 
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
+
+//Time of Death constants
+//Used with a list in preference datums to track times of death
+#define	CREW 	"crew"//Used for crewmembers, AI, cyborgs, nymphs, antags
+#define ANIMAL	"animal"//Used for mice and any other simple animals
+#define MINISYNTH	"minisynth"//Used for drones and pAIs
+
+#define ANIMAL_SPAWN_DELAY 5 MINUTES
+#define DRONE_SPAWN_DELAY  10 MINUTES
+
 
 // Incapacitation flags, used by the mob/proc/incapacitated() proc
 #define INCAPACITATION_RESTRAINED 1
@@ -165,3 +171,5 @@
 #define ORGAN_REGENERATION_MULTIPLIER 0.2
 #define WOUND_BLEED_MULTIPLIER 0.02 //Bleeding wounds drip damage*this units of blood per process tick
 #define OPEN_ORGAN_BLEED_AMOUNT 1.5 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
+
+

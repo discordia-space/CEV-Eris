@@ -160,6 +160,11 @@
 		fail("[H] must be undressed.", user, C)
 		return FALSE
 
+	if(H.mind && H.mind.changeling)
+		playsound(H.loc, 'sound/hallucinations/wail.ogg', 55, 1)
+		H.gib()
+		return
+
 	CI.install(H)
 
 	if(CI.wearer != H)
