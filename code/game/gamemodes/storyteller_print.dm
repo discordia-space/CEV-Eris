@@ -124,9 +124,9 @@
 		data += "<li>[S.id] - weight: [S.weight_cache] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
 		if(!calculate_weights)
 			data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
-		data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.spawnable?"SPAWN":"NO"]\]</a>"
+		data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.spawnable?"ALLOWED":"FORBIDDEN"]\]</a>"
 		data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
-		data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[SPAWN\]</a></b></li>"
+		data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[FORCE\]</a></b></li>"
 		data += "</li>"
 
 	data += "</ul></div>"
@@ -216,10 +216,13 @@
 				update_event_weight(evt)
 			if(href_list["ev_toggle"])
 				evt.spawnable = !evt.spawnable
-				message_admins("[evt.id] was [evt.spawnable?"allowed":"restricted"] to spawn by [key_name(usr)]")
+				message_admins("Event \"[evt.id]\" was [evt.spawnable?"allowed":"restricted"] to spawn by [key_name(usr)]")
 			if(href_list["ev_spawn"])
-				evt.create()
-				message_admins("[evt.id] was force spawned by [key_name(usr)]")
+				var/result = evt.create()
+				if (result)
+					message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
+				else
+					message_admins("[key_name(usr)] failed to force spawn \"[evt.id]\".")
 			if(href_list["ev_debug"] && usr && usr.client)
 				usr.client.debug_variables(evt)
 			if(href_list["ev_set_weight"])
