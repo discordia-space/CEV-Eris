@@ -100,8 +100,7 @@
 
 /datum/storyevent/roleset/proc/create_objectives(var/datum/antagonist/A)
 	A.objectives.Cut()
-	A.create_objectives()
-	A.create_survive_objective()
+	A.create_objectives(survive = TRUE)
 	A.greet()
 
 /datum/storyevent/roleset/announce()
