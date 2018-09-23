@@ -135,6 +135,8 @@
 #define ANIMAL_SPAWN_DELAY 5 MINUTES
 #define DRONE_SPAWN_DELAY  10 MINUTES
 
+#define CRYOPOD_SPAWN_BONUS	20 MINUTES //Going to sleep in a cryopod takes this much off your respawn time
+
 
 // Incapacitation flags, used by the mob/proc/incapacitated() proc
 #define INCAPACITATION_RESTRAINED 1

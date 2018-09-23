@@ -560,25 +560,30 @@ proc/is_blind(A)
 /mob/living/silicon/ai/get_multitool()
 	return ..(aiMulti)
 
-//This proc retrieves the relevant time of death from
-/mob/proc/get_death_time(var/which)
-	var/datum/preferences/P
-	if (client)
-		P = client.prefs
-	else if (ckey)
-		P = preferences_datums[ckey]
-	else
-		return null
 
-	return P.time_of_death[which]
+//This proc returns true if the mob has no health problems. EG, no damaged organs, alive, not poisoned, etc
+//It is used by cryopods to allow people to quickly respawn during peaceful times
+/mob/proc/in_perfect_health()
+	return
 
-/mob/proc/set_death_time(var/which, var/value)
-	var/datum/preferences/P
-	if (client)
-		P = client.prefs
-	else if (ckey)
-		P = preferences_datums[ckey]
-	else
-		return 0
-	P.time_of_death[which] = value
-	return 1
+/mob/living/in_perfect_health()
+	if (stat == DEAD)
+		return FALSE
+
+	if (brainloss || bruteloss || cloneloss || fireloss || halloss || oxyloss || toxloss)
+		return FALSE
+
+
+	return TRUE
+
+/mob/living/carbon/human/in_perfect_health()
+	for (var/a in bad_external_organs)
+		return FALSE
+
+	for (var/obj/item/organ/o in internal_organs)
+		if (o.damage)
+			return FALSE
+
+	return ..()
+
+
