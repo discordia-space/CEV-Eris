@@ -16,3 +16,12 @@
 // recieve a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
 	return
+
+/atom/proc/CanMouseDrop(atom/over, var/mob/user = usr, var/incapacitation_flags)
+	if(!user || !over)
+		return FALSE
+	if(user.incapacitated(incapacitation_flags))
+		return FALSE
+	if(!src.Adjacent(user) || !over.Adjacent(user))
+		return FALSE // should stop you from dragging through windows
+	return TRUE

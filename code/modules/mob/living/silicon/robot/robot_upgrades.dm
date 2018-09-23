@@ -90,6 +90,7 @@
 	R.stat = CONSCIOUS
 	dead_mob_list -= R
 	living_mob_list |= R
+	R.death_notified = FALSE
 	R.notify_ai(ROBOT_NOTIFICATION_NEW_UNIT)
 	return 1
 
