@@ -87,6 +87,8 @@
 		updateSilicate()
 
 /obj/structure/window/proc/updateSilicate()
+	if (is_full_window())
+		return
 	if (overlays)
 		overlays.Cut()
 
@@ -386,12 +388,10 @@
 	update_nearby_tiles(need_rebuild=1)
 	return
 
-/obj/structure/window/New(Loc, start_dir=null, constructed=0)
+/obj/structure/window/New(Loc, start_dir=null)
 	..()
 
 	//player-constructed windows
-	if (constructed)
-		set_anchored(FALSE)
 
 	if (start_dir)
 		set_dir(start_dir)
@@ -402,6 +402,9 @@
 
 	update_nearby_tiles(need_rebuild=1)
 	update_nearby_icons()
+
+/obj/structure/window/Created()
+	set_anchored(FALSE)
 
 
 /obj/structure/window/Destroy()
