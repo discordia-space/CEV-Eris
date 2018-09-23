@@ -166,7 +166,7 @@
 	var/disallow_occupant_types = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
-	var/time_till_despawn = 18000 // 30 minutes-ish safe period before being despawned.
+	var/time_till_despawn = 6000  // 10 minutes-ish safe period before being despawned.
 	var/time_entered = 0          // Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 
@@ -364,6 +364,22 @@
 	announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
 	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
 
+
+	//When the occupant is put into storage, their respawn time is reduced.
+	//This check exists for the benefit of people who get put into cryostorage while SSD and come back later
+	if (occupant.in_perfect_health())
+		if (occupant.mind && occupant.mind.key)
+
+			//Whoever inhabited this body is long gone, we need some black magic to find where and who they are now
+			var/mob/M = key2mob(occupant.mind.key)
+			if (!(M.get_respawn_bonus("CRYOSLEEP")))
+				//We send a message to the occupant's current mob - probably a ghost, but who knows.
+				M << SPAN_NOTICE("Because your body was put into cryostorage, your crew respawn time has been reduced by 20 minutes.")
+				M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
+
+			//Going safely to cryo will allow the patient to respawn more quickly
+			M.set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
+
 	//This should guarantee that ghosts don't spawn.
 	occupant.ckey = null
 
@@ -505,10 +521,15 @@
 
 		occupant << SPAN_NOTICE("[on_enter_occupant_message]")
 		occupant << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
+		if (occupant.in_perfect_health())
+			occupant << SPAN_NOTICE("<b>Your respawn time will be reduced by 20 minutes, allowing you to respawn as a crewmember much more quickly.</b>")
+		else
+			occupant << SPAN_DANGER("<b>Because you are not in perfect health, going into cryosleep will not reduce your crew respawn time. \
+			If you wish to respawn as a different crewmember, you should treat your injuries at medical first</b>")
 
 	else
 		icon_state = base_icon_state
-		if(occupant)
+		if(occupant && !QDELETED(occupant))
 			occupant.forceMove(get_turf(src))
 			occupant.reset_view(null)
 			if(ishuman(occupant) && applies_stasis)

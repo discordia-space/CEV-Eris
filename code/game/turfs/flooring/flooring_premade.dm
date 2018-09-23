@@ -261,6 +261,12 @@
 	oxygen = 0
 	nitrogen = 0
 
+/turf/simulated/floor/reinforced/engine
+	oxygen = 825
+	nitrogen = 0
+	plasma = 2500
+	temperature = 374
+
 /turf/simulated/floor/reinforced/n20/New()
 	..()
 	sleep(-1)

@@ -9,6 +9,7 @@
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
+
 	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
@@ -380,46 +381,7 @@
 	return
 */
 
-/mob/verb/abandon_mob()
-	set name = "Respawn"
-	set category = "OOC"
 
-	if (!( config.abandon_allowed ))
-		usr << "<span class='notice'>Respawn is disabled.</span>"
-		return
-	if (stat != DEAD)
-		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
-		return
-	else if(!MayRespawn(1, config.respawn_delay))
-		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
-			return
-
-	usr << "You can respawn now, enjoy your new life!"
-
-	log_game("[usr.name]/[usr.key] used abandon mob.")
-
-	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
-
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		return
-	client.screen.Cut()
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		return
-
-	announce_ghost_joinleave(client, 0)
-
-	var/mob/new_player/M = new /mob/new_player()
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		qdel(M)
-		return
-
-	M.key = key
-	if(M.mind)
-		M.mind.reset()
-	return
 
 /client/verb/changes()
 	set name = "Changelog"

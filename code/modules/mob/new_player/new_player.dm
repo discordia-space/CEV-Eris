@@ -107,7 +107,7 @@
 
 	if(href_list["observe"])
 
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able to respawn!","Player Setup","Yes","No") == "Yes")
+		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able join the crew! But you can play as a mouse or drone immediately.","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
 			var/mob/observer/ghost/observer = new()
 
@@ -135,7 +135,9 @@
 			observer.name = observer.real_name
 			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				observer.verbs -= /mob/observer/ghost/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
-			observer.key = key
+			//observer.key = key
+			observer.ckey = ckey
+			observer.initialise_postkey()
 			qdel(src)
 
 			return 1

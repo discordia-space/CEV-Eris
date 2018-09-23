@@ -447,7 +447,7 @@ macro "macro"
 		is-disabled = false
 	elem 
 		name = "F6"
-		command = "Player-Panel-New"
+		command = "Player-Panel"
 		is-disabled = false
 	elem 
 		name = "F7"
@@ -729,7 +729,7 @@ macro "hotkeymode"
 		is-disabled = false
 	elem 
 		name = "F6"
-		command = "Player-Panel-New"
+		command = "Player-Panel"
 		is-disabled = false
 	elem 
 		name = "F7"
@@ -927,7 +927,7 @@ macro "borgmacro"
 		is-disabled = false
 	elem 
 		name = "F6"
-		command = "Player-Panel-New"
+		command = "Player-Panel"
 		is-disabled = false
 	elem 
 		name = "F7"

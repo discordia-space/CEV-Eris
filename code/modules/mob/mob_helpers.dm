@@ -539,6 +539,9 @@ proc/is_blind(A)
 		threatcount += 4
 	return threatcount
 
+
+
+
 #undef SAFE_PERP
 
 /mob/proc/get_multitool(var/obj/item/weapon/tool/multitool/P)
@@ -556,3 +559,31 @@ proc/is_blind(A)
 
 /mob/living/silicon/ai/get_multitool()
 	return ..(aiMulti)
+
+
+//This proc returns true if the mob has no health problems. EG, no damaged organs, alive, not poisoned, etc
+//It is used by cryopods to allow people to quickly respawn during peaceful times
+/mob/proc/in_perfect_health()
+	return
+
+/mob/living/in_perfect_health()
+	if (stat == DEAD)
+		return FALSE
+
+	if (brainloss || bruteloss || cloneloss || fireloss || halloss || oxyloss || toxloss)
+		return FALSE
+
+
+	return TRUE
+
+/mob/living/carbon/human/in_perfect_health()
+	for (var/a in bad_external_organs)
+		return FALSE
+
+	for (var/obj/item/organ/o in internal_organs)
+		if (o.damage)
+			return FALSE
+
+	return ..()
+
+
