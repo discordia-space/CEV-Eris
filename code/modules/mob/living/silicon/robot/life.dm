@@ -20,6 +20,10 @@
 		process_killswitch()
 		process_locks()
 		process_queued_alarms()
+	else
+		if (!src.death_notified && src.connected_ai)
+			src.notify_ai(ROBOT_NOTIFICATION_SIGNAL_LOST)
+			src.death_notified = TRUE
 	update_canmove()
 
 /mob/living/silicon/robot/proc/clamp_values()
