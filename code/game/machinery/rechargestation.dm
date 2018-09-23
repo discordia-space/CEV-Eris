@@ -271,7 +271,7 @@
 	go_in(usr)
 
 /obj/machinery/recharge_station/MouseDrop_T(var/mob/target, var/mob/user)
-	if(!CanMouseDrop(target, user))
+	if(!CanMouseDrop(src, target, user))
 		return
 	if(!istype(target,/mob/living/silicon))
 		return
@@ -280,5 +280,5 @@
 		return
 	user.visible_message("<span class='notice'>\The [user] started hauling \the [target] into \the [src].</span>",
 							"<span class='notice'>You started hauling \the [target] into \the [src].</span>")
-	if(user.stat != DEAD && do_after(user,100,src))
+	if(user.stat != DEAD && do_after(user,rand(150,200),src))
 		go_in(target, user)
