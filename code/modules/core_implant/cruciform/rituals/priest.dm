@@ -296,7 +296,7 @@
 
 /datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	participant.stats.changeStat(stat, -amount)
-	participant << SPAN_WARNING("You almost forgot something that you were got of [get_stats_to_text()]. The last piece of that knoweledge has disappeared.")
+	participant << SPAN_WARNING("The knoweledge of [get_stats_to_text()] has disappeared.")
 
 /datum/ritual/cruciform/priest/short_boost/proc/get_stats_to_text()
 	if(stats_to_boost.len == 1)
@@ -317,19 +317,19 @@
 /datum/ritual/cruciform/priest/short_boost/mechanical
 	name = "Pounding Whisper"
 	phrase = "Vocavitque nomen eius Noe dicens iste consolabitur nos ab operibus et laboribus manuum nostrarum in terra cui maledixit Dominus"
-	stats_to_boost = list(STAT_MEC = 4)
+	stats_to_boost = list(STAT_MEC = 10)
 
 /datum/ritual/cruciform/priest/short_boost/cognition
 	name = "Revelation of Secrets"
 	phrase = "Quia Dominus dat sapientiam et ex ore eius scientia et prudentia"
-	stats_to_boost = list(STAT_COG = 4)
+	stats_to_boost = list(STAT_COG = 10)
 
 /datum/ritual/cruciform/priest/short_boost/biology
 	name = "Lisp of Vitae"
 	phrase = "Ecce ego obducam ei cicatricem et sanitatem et curabo eos et revelabo illis deprecationem pacis et veritatis"
-	stats_to_boost = list(STAT_BIO = 4)
+	stats_to_boost = list(STAT_BIO = 10)
 
 /datum/ritual/cruciform/priest/short_boost/courage
 	name = "Canto of Courage"
 	phrase = "Huic David ad te Domine clamabo Deus meus ne sileas a me nequando taceas a me et adsimilabor descendentibus in lacum"
-	stats_to_boost = list(STAT_ROB = 4, STAT_TGH = 4)
+	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10)

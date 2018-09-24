@@ -6,7 +6,7 @@
 
 /datum/ritual/cruciform/crusader/battle_call
 	name = "Call to Battle"
-	phrase = "Deus, qui corda fidolium Sancti Spiritus illustratione docuisti."
+	phrase = "Si exieritis ad bellum de terra vestra contra hostes qui dimicant adversum vos clangetis ululantibus tubis et erit recordatio vestri coram Domino Deo vestro ut eruamini de manibus inimicorum vestrorum."
 	desc = "Inspires the prayer and gives him strength to protect the other cyberchristians. True strength in unity."
 	cooldown = TRUE
 	cooldown_time = 10 MINUTES
@@ -23,7 +23,7 @@
 	var/count = 0
 	for(var/mob/living/carbon/human/brother in view(user))
 		if(brother.get_cruciform())
-			count++
+			count += 2
 
 	user.stats.changeStat(STAT_TGH, count)
 	user.stats.changeStat(STAT_ROB, count)
