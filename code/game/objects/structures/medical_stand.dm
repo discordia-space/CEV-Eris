@@ -100,7 +100,7 @@
 	if(!..())
 		return
 	if(istype(target))
-		if(usr.stat == DEAD || usr.incapacitated() || !CanMouseDrop(src,target))
+		if(usr.stat == DEAD || !CanMouseDrop(src,target))
 			return
 		var/list/available_options = list()
 		if (tank)
@@ -113,6 +113,8 @@
 			action_type = input(usr, "What do you want to attach/detach?") as null|anything in available_options
 		else
 			action_type = available_options[1]
+		if(usr.stat == DEAD || !CanMouseDrop(src,target))
+			return
 		switch (action_type)
 			if("Gas mask")
 				if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
@@ -147,14 +149,14 @@
 				return
 			if("Drip needle")
 				if(attached)
-					if(!do_mob(usr, target, 20) || !can_apply_to_target(target, usr))
+					if(!do_mob(usr, target, 20))
 						return
 					visible_message("\The [attached] is taken off \the [src]")
 					attached = null
 				else if(ishuman(target))
 					usr.visible_message("<span class='notice'>\The [usr] begins inserting needle into [target]'s vein.</span>",
 									"<span class='notice'>You begin inserting needle into [target]'s vein.</span>")
-					if(!do_mob(usr, target, 50) || !can_apply_to_target(target, usr))
+					if(!do_mob(usr, target, 50))
 						usr.visible_message("<span class='notice'>\The [usr]'s hand slips and pricks \the [target].</span>",
 									"<span class='notice'>Your hand slips and pricks \the [target].</span>")
 						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM))
