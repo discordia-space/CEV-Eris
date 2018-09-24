@@ -29,6 +29,7 @@
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/clothing/mask/breath/medical(src)
+	new /obj/item/weapon/tool/wrench(src)
 
 /obj/structure/closet/secure_closet/personal/doctor
 	name = "moebius doctor's locker"

@@ -92,10 +92,10 @@
 
 
 // Misc
-/datum/export/large/iv
+/datum/export/large/medical_stand
 	cost = 300
-	unit_name = "iv drip"
-	export_types = list(/obj/machinery/iv_drip)
+	unit_name = "medical stand"
+	export_types = list(/obj/structure/medical_stand)
 
 /datum/export/large/barrier
 	cost = 325
