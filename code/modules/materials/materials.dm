@@ -1,4 +1,4 @@
-ficon/*
+/*
 	MATERIAL DATUMS
 	This data is used by various parts of the game for basic physical properties and behaviors
 	of the metals/materials used for constructing many objects. Each var is commented and should be pretty
@@ -113,6 +113,7 @@ var/list/name_to_material
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
+	var/created_window_full
 	var/rod_product
 	var/wire_product
 	var/list/window_options = list()
@@ -384,8 +385,9 @@ var/list/name_to_material
 	weight = 15
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
-	window_options = list("One Direction" = 1, "Full Window" = 4)
+	window_options = list("One Direction" = 1, "Full Window" = 6)
 	created_window = /obj/structure/window/basic
+	created_window_full = /obj/structure/window/basic/full
 	rod_product = /obj/item/stack/material/glass/reinforced
 	hitsound = 'sound/effects/Glasshit.ogg'
 
@@ -468,6 +470,8 @@ var/list/name_to_material
 	var/sheets_needed = window_options[choice]
 	if(choice == "Windoor")
 		build_dir = user.dir
+	else if (choice == "Full Window")
+		build_path = created_window_full
 	else
 		build_path = created_window
 
@@ -477,7 +481,8 @@ var/list/name_to_material
 
 	// Build the structure and update sheet count etc.
 	used_stack.use(sheets_needed)
-	new build_path(T, build_dir, 1)
+	var/obj/O = new build_path(T, build_dir)
+	O.Created()
 	return 1
 
 /material/glass/proc/is_reinforced()
@@ -499,6 +504,7 @@ var/list/name_to_material
 	composite_material = list(MATERIAL_STEEL = 2,MATERIAL_GLASS = 3)
 	window_options = list("One Direction" = 1, "Full Window" = 6, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
+	created_window_full = /obj/structure/window/reinforced
 	wire_product = null
 	rod_product = null
 
@@ -511,6 +517,7 @@ var/list/name_to_material
 	icon_colour = "#FC2BC5"
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	created_window = /obj/structure/window/plasmabasic
+	created_window_full = /obj/structure/window/plasmabasic/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/plasmarglass
 
@@ -521,6 +528,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
 	created_window = /obj/structure/window/reinforced/plasma
+	created_window = /obj/structure/window/reinforced/plasma/full
 	hardness = 40
 	weight = 30
 	//stack_origin_tech = list(TECH_MATERIAL = 2)

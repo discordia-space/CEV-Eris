@@ -112,12 +112,10 @@ var/game_id = null
 		else
 			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
 
-	master_controller = new /datum/controller/game_controller()
-
 	Master.Initialize(10, FALSE)
 
 #ifdef UNIT_TEST
-		initialize_unit_tests()
+	initialize_unit_tests()
 #endif
 
 

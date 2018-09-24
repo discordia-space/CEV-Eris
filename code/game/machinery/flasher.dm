@@ -94,6 +94,8 @@
 				E.damage += rand(1, 5)
 		else
 			if(!O.blinded)
+				if (istype(O,/mob/living/silicon/ai))
+					return
 				if (O.HUDtech.Find("flash"))
 					flick("flash", O.HUDtech["flash"])
 		O.Weaken(flash_time)

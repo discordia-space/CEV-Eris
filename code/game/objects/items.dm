@@ -141,18 +141,11 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user) return
-	if (hasorgans(user))
-		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
-		if (user.hand)
-			temp = H.organs_by_name[BP_L_ARM]
-		if(temp && !temp.is_usable())
-			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
-			return
-		if(!temp)
-			user << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
-			return
+	if (!user || !user.can_pickup(src))
+		return
+
+	var/atom/old_loc = src.loc
+
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
@@ -165,7 +158,11 @@
 	else
 		if(isliving(src.loc))
 			return
-	user.put_in_active_hand(src)
+	if(user.put_in_active_hand(src))
+		if (isturf(old_loc) || isturf(old_loc.loc))
+			var/obj/effect/temp_visual/obj_pickup_ghost/ghost = new(get_turf(old_loc), src)
+			ghost.animate_towards(user)
+
 	return
 
 /obj/item/attack_ai(mob/user as mob)
@@ -620,6 +617,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return 0 // Process Kill
 
 /* QUALITY AND TOOL SYSTEM */
+
+/obj/item/proc/has_quality(quality_id)
+	return quality_id in tool_qualities
 
 /obj/item/proc/get_tool_quality(quality_id)
 	return tool_qualities[quality_id]

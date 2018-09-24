@@ -109,7 +109,9 @@
 	base_turf = /turf/space
 
 //Skipjack
-
+//antag Shuttles disabled by nanako, 2018-09-15
+//These shuttles are created with a subtypesof loop at runtime. Starting points for the skipjack and merc shuttle are not currentl mapped in
+/*
 /datum/shuttle/autodock/multi/antag/skipjack
 	name = "Skipjack"
 	warmup_time = 0
@@ -127,7 +129,7 @@
 	home_waypoint = "nav_skipjack_start"
 	arrival_message = "Attention, vessel detected entering vessel proximity."
 	departure_message = "Attention, vessel detected leaving vessel proximity."
-
+*/
 /obj/effect/shuttle_landmark/skipjack/start
 	name = "Raider Outpost"
 	icon_state = "shuttle-red"
@@ -157,7 +159,7 @@
 
 
 //Merc
-
+/*
 /datum/shuttle/autodock/multi/antag/mercenary
 	name = "Mercenary"
 	warmup_time = 0
@@ -175,7 +177,7 @@
 	home_waypoint = "nav_merc_start"
 	arrival_message = "Attention, vessel detected entering vessel proximity."
 	departure_message = "Attention, vessel detected leaving vessel proximity."
-
+*/
 /obj/effect/shuttle_landmark/merc/start
 	name = "Mercenary Base"
 	icon_state = "shuttle-red"

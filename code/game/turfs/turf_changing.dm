@@ -49,8 +49,7 @@
 		if(tell_universe)
 			universe.OnTurfChange(W)
 
-		if(SSair)
-			SSair.mark_for_update(src) //handle the addition of the new turf.
+		SSair.mark_for_update(src) //handle the addition of the new turf.
 
 		W.levelupdate()
 		. = W
@@ -65,8 +64,7 @@
 		if(tell_universe)
 			universe.OnTurfChange(W)
 
-		if(SSair)
-			SSair.mark_for_update(src)
+		SSair.mark_for_update(src)
 
 		W.levelupdate()
 		. =  W

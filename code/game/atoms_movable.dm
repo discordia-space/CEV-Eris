@@ -130,6 +130,7 @@
 	if(!target || !src)	return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
+	set_dir(pick(cardinal))
 	src.throwing = 1
 	if(target.allow_spin && src.allow_spin)
 		SpinAnimation(5,1)
@@ -285,6 +286,11 @@
 /atom/movable/proc/get_transit_zlevel()
 	var/list/candidates = maps_data.accessable_levels.Copy()
 	candidates.Remove("[src.z]")
+
+	//If something was ejected from the ship, it does not end up on another part of the ship.
+	if (z in maps_data.station_levels)
+		for (var/n in maps_data.station_levels)
+			candidates.Remove("[n]")
 
 	if(!candidates.len)
 		return null
