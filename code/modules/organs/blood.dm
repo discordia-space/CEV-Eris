@@ -238,3 +238,7 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 	B.fluorescent  = 0
 	B.invisibility = 0
 	return B
+
+//Percentage of maximum blood volume.
+/mob/living/carbon/human/proc/get_blood_volume()
+	return round((vessel.get_reagent_amount(/datum/reagent/blood)/species.blood_volume)*100)

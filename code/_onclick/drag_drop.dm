@@ -6,12 +6,14 @@
 	almost anything into a trash can.
 */
 /atom/MouseDrop(var/atom/over, src_location, over_location, src_control, over_control, params)
-	if(!usr || !over) return
-	if(!Adjacent(usr) || !over.Adjacent(usr)) return // should stop you from dragging through windows
+	if(!usr || !over) 
+		return FALSE
+	if(!Adjacent(usr) || !over.Adjacent(usr)) // should stop you from dragging through windows
+		return FALSE
 
 	spawn(0)
 		over.MouseDrop_T(src, usr, src_location, over_location, src_control, over_control, params)
-	return
+	return TRUE
 
 // recieve a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
