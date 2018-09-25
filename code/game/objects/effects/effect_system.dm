@@ -230,19 +230,24 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 /obj/effect/effect/light
 	name = "light"
-	opacity = 0
-	mouse_opacity = 0
+	opacity = FALSE
+	mouse_opacity = FALSE
 	icon_state = "nothing"
-	var/brightness = 3
+	var/radius = 3
+	var/brightness = 2
 
-/obj/effect/effect/light/New(var/newloc, var/brightness_amount)
+/obj/effect/effect/light/New(var/newloc, var/radius, var/brightness)
 	..()
-	brightness = brightness_amount
-	set_light(brightness)
 
-/obj/effect/effect/light/proc/set_brightness(var/brightness_amount)
-	brightness = brightness_amount
-	set_light(brightness)
+	src.radius = radius
+	src.brightness = brightness
+
+	set_light(radius,brightness)
+
+/obj/effect/effect/light/set_light(l_range, l_power, l_color)
+	..()
+	radius = l_range
+	brightness = l_power
 
 /obj/effect/effect/smoke/illumination
 	name = "illumination"

@@ -34,6 +34,9 @@
 	update_icon()
 	return 1
 
+/obj/item/weapon/cell/proc/get_charge_percent()
+	return charge/maxcharge * 100
+
 //BIG CELLS - for APC, borgs and machinery.
 
 /obj/item/weapon/cell/large
