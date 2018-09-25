@@ -45,6 +45,8 @@ var/list/flooring_types
 
 	var/health = 50
 
+	var/removal_time = 20
+
 /decl/flooring/proc/get_plating_type(var/turf/location)
 	return plating_type
 
@@ -89,6 +91,8 @@ var/list/flooring_types
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
 	is_plating = TRUE
+	removal_time = 50
+	health = 100
 
 //Normal plating allows anything, except other types of plating
 /decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
@@ -96,16 +100,23 @@ var/list/flooring_types
 		return FALSE
 	return TRUE
 
+/decl/flooring/reinforced/plating/get_plating_type(var/turf/location)
+	if (turf_is_upper_hull(location))
+		return null
+	return plating_type
+
+
 /decl/flooring/reinforced/plating/under
 	name = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "under"
 	build_type = null
-	flags = 0
+	flags = TURF_REMOVE_WRENCH
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
 	is_plating = TRUE
-
+	removal_time = 100
+	health = 150
 
 //Underplating can only be upgraded to normal plating
 /decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
@@ -114,27 +125,45 @@ var/list/flooring_types
 	return FALSE
 
 /decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
-	if (location.z	 == 1) //Hull plating is only on the lowest level of the ship
+	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return plating_type
+	else if (turf_is_upper_hull(location))
+		return /decl/flooring/reinforced/plating
+	else return null
 
+/decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
+	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
+		return plating_type
+	else if (turf_is_upper_hull(location))
+		return /decl/flooring/reinforced/plating
+	else return null
 
 
 /decl/flooring/reinforced/plating/hull
 	name = "hull"
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_base = "hullcenter"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON | TURF_REMOVE_WELDER
 	build_type = null
 	has_base_range = 35
 	//try_update_icon = 0
 	plating_type = null
 	is_plating = TRUE
+	health = 200
+	removal_time = 300 //Cutting through the hull is very slow work
 
 //Hull can upgrade to underplating
 /decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
-	if (istype(newfloor, /decl/flooring/reinforced/plating/under))
-		return TRUE
-	return FALSE
+	return FALSE //Not allowed to build directly on hull, you must first remove it and then build on the underplating
+
+
+/decl/flooring/reinforced/plating/hull/get_plating_type(var/turf/location)
+	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
+		return null
+	else if (turf_is_upper_hull(location))
+		return /decl/flooring/reinforced/plating/under
+	else
+		return null //This should never happen, hull plating should only be on the exterior
 
 /decl/flooring/carpet
 	name = "carpet"
