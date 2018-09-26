@@ -23,6 +23,10 @@ var/list/flooring_types
 	var/icon
 	var/icon_base
 
+	//TODO: Implement sounds
+	var/footstep_sound = "floor"
+	var/hit_sound = null
+
 	var/has_base_range
 	var/has_damage_range
 	var/has_burn_range
@@ -35,7 +39,7 @@ var/list/flooring_types
 	var/build_time = 0  // BYOND ticks.
 
 	var/descriptor = "tiles"
-	var/flags
+	var/flags = TURF_CAN_BURN | TURF_CAN_BREAK
 	var/can_paint
 
 	var/is_plating = FALSE
@@ -43,10 +47,16 @@ var/list/flooring_types
 	//Plating types, can be overridden
 	var/plating_type = /decl/flooring/reinforced/plating
 
+	//Resistance is subtracted from all incoming damage
+	var/resistance = 0
+
+	//Damage the floor can take before being destroyed
 	var/health = 50
 
-	var/removal_time = 20
+	var/removal_time = 30
 
+
+//Flooring Procs
 /decl/flooring/proc/get_plating_type(var/turf/location)
 	return plating_type
 
@@ -54,6 +64,15 @@ var/list/flooring_types
 //Used to check if we can build the specified type of floor ontop of this one
 /decl/flooring/proc/can_build_floor(var/decl/flooring/newfloor)
 	return FALSE
+
+
+//Used when someone attacks the floor
+/decl/flooring/proc/attackby(var/obj/item/I, var/mob/user, var/turf/T)
+	return FALSE
+
+
+
+
 
 /decl/flooring/grass
 	name = "grass"
@@ -65,6 +84,7 @@ var/list/flooring_types
 	flags = TURF_REMOVE_SHOVEL | SMOOTH_ONLY_WITH_ITSELF | TURF_HAS_EDGES | TURF_EDGES_EXTERNAL
 	build_type = /obj/item/stack/tile/grass
 	plating_type = /decl/flooring/dirt
+	footstep_sound = "grass"
 
 /decl/flooring/dirt
 	name = "dirt"
@@ -73,25 +93,35 @@ var/list/flooring_types
 	icon_base = "dirt"
 	flags = TURF_REMOVE_SHOVEL | SMOOTH_ONLY_WITH_ITSELF
 	build_type = null //Todo: add bags of fertilised soil or something to create dirt floors
+	footstep_sound = "gravel"
 
 /decl/flooring/asteroid
 	name = "coarse sand"
 	desc = "Gritty and unpleasant."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = null
+	footstep_sound = "asteroid"
 
+
+
+
+
+
+//=========PLATING==========
 /decl/flooring/reinforced/plating
 	name = "plating"
+	descriptor = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
-	build_type = null
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WELDER
+	build_type = /obj/item/stack/material/steel
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
 	is_plating = TRUE
-	removal_time = 50
+	footstep_sound = "plating"
+	removal_time = 150
 	health = 100
 
 //Normal plating allows anything, except other types of plating
@@ -106,17 +136,23 @@ var/list/flooring_types
 	return plating_type
 
 
+
+
+//==========UNDERPLATING==============
 /decl/flooring/reinforced/plating/under
-	name = "plating"
+	name = "underplating"
 	icon = 'icons/turf/flooring/plating.dmi'
+	descriptor = "support beams"
 	icon_base = "under"
-	build_type = null
-	flags = TURF_REMOVE_WRENCH
+	build_type = /obj/item/stack/material/steel //Same type as the normal plating, we'll use can_build_floor to control it
+	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
 	is_plating = TRUE
-	removal_time = 100
-	health = 150
+	removal_time = 250
+	health = 200
+	resistance = 10
+	footstep_sound = "catwalk"
 
 //Underplating can only be upgraded to normal plating
 /decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
@@ -124,12 +160,20 @@ var/list/flooring_types
 		return TRUE
 	return FALSE
 
-/decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
-	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
-		return plating_type
-	else if (turf_is_upper_hull(location))
-		return /decl/flooring/reinforced/plating
-	else return null
+/decl/flooring/reinforced/plating/under/attackby(var/obj/item/I, var/mob/user, var/turf/T)
+	if (istype(I, /obj/item/stack/rods))
+		.=TRUE
+		var/obj/item/stack/rods/R = I
+		if(R.amount <= 3)
+			return
+		else
+			R.use(3)
+			user << SPAN_NOTICE("You start connecting [R.name]s to [src.name], creating catwalk ...")
+			if(do_after(user,60))
+				T.alpha = 0
+				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(T)
+				T.contents += CT
+
 
 /decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
@@ -138,19 +182,35 @@ var/list/flooring_types
 		return /decl/flooring/reinforced/plating
 	else return null
 
+/decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
+	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
+		return plating_type
+	else if (turf_is_upper_hull(location))
+		return /decl/flooring/reinforced/plating
+	else return null
 
+
+
+
+
+
+//============HULL PLATING=========
 /decl/flooring/reinforced/plating/hull
 	name = "hull"
+	descriptor = "outer hull"
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_base = "hullcenter"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON | TURF_REMOVE_WELDER
-	build_type = null
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
+	build_type = /obj/item/stack/material/plasteel
 	has_base_range = 35
 	//try_update_icon = 0
 	plating_type = null
 	is_plating = TRUE
-	health = 200
-	removal_time = 300 //Cutting through the hull is very slow work
+	health = 300
+	resistance = 15
+	removal_time = 1 MINUTE //Cutting through the hull is very slow work
+	footstep_sound = "hull"
+
 
 //Hull can upgrade to underplating
 /decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
@@ -170,6 +230,7 @@ var/list/flooring_types
 	desc = "Imported and comfy."
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_base = "carpet"
+	footstep_sound = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | SMOOTH_ONLY_WITH_ITSELF | TURF_HIDES_THINGS
@@ -219,6 +280,7 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
+	resistance = 4
 
 /decl/flooring/tiling/tech
 //	name = "techfloor"
@@ -237,81 +299,96 @@ var/list/flooring_types
 	icon_base = "tile_full"
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
 	build_type = null
+	footstep_sound = "tile" //This Sound is for ceramic tiles, but not for metal ones
 
 /decl/flooring/tiling/new_tile/cargo_one
 //	name = "cargo one"
 	icon_base = "cargo_one_full"
+	footstep_sound = "floor"
 
 /decl/flooring/tiling/new_tile/kafel
 //	name = "kafel"
 	icon_base = "kafel_full"
+	footstep_sound = "tile"
 
 /decl/flooring/tiling/new_tile/techmaint
 //	name = "techmaint"
 	icon_base = "techmaint"
+	footstep_sound = "floor"
 
 /decl/flooring/tiling/new_tile/monofloor
 //	name = "monofloor"
 	icon_base = "monofloor"
+	footstep_sound = "floor"
 
 /decl/flooring/tiling/new_tile/monotile
 //	name = "monotile"
 	icon_base = "monotile"
+	footstep_sound = "floor"
 
 /decl/flooring/tiling/new_tile/steel_grid
 //	name = "steelgrid"
 	icon_base = "steel_grid"
+	footstep_sound = "floor"
 
 /decl/flooring/tiling/new_tile/steel_ridged
 //	name = "steelridged"
 	icon_base = "steel_ridged"
+	footstep_sound = "floor"
 
 /decl/flooring/tiling/steel
 	name = "floor"
 	icon_base = "steel"
 	build_type = /obj/item/stack/tile/floor/steel
+	footstep_sound = "floor"
 
 /decl/flooring/tiling/white
 	name = "floor"
 	desc = "How sterile."
 	icon_base = "white"
 	build_type = /obj/item/stack/tile/floor/white
+	footstep_sound = "tile"
 
 /decl/flooring/tiling/dark
 	name = "floor"
 	desc = "How ominous."
 	icon_base = "dark"
 	build_type = /obj/item/stack/tile/floor/dark
+	footstep_sound = "tile"
 
 /decl/flooring/tiling/freezer
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "freezer"
 	build_type = /obj/item/stack/tile/floor/freezer
+	footstep_sound = "tile"
 
 /decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
+	footstep_sound = "wood"
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_base = "wood"
 	has_damage_range = 6
 	damage_temperature = T0C+200
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
-	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER | TURF_HIDES_THINGS
+	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER | TURF_HIDES_THINGS
 
 /decl/flooring/reinforced
 	name = "reinforced floor"
 	desc = "Heavily reinforced with steel rods."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "reinforced"
-	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE
+	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = /obj/item/stack/rods
 	build_cost = 2
 	build_time = 30
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
 	can_paint = 1
+	resistance = 7
+	footstep_sound = "plating"
 
 /decl/flooring/reinforced/circuit
 	name = "processing strata"

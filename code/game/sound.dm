@@ -109,6 +109,107 @@ var/list/gunshot_sound = list('sound/weapons/Gunshot.ogg',
 	'sound/weapons/Gunshot4.ogg'
 )*/
 
+
+
+
+
+
+
+var/list/footstep_asteroid = list(\
+		'sound/effects/footstep/asteroid1.ogg',\
+		'sound/effects/footstep/asteroid2.ogg',\
+		'sound/effects/footstep/asteroid3.ogg',\
+		'sound/effects/footstep/asteroid4.ogg',\
+		'sound/effects/footstep/asteroid5.ogg')
+
+var/list/footstep_carpet = list(\
+		'sound/effects/footstep/carpet1.ogg',\
+		'sound/effects/footstep/carpet2.ogg',\
+		'sound/effects/footstep/carpet3.ogg',\
+		'sound/effects/footstep/carpet4.ogg',\
+		'sound/effects/footstep/carpet5.ogg')
+
+var/list/footstep_catwalk = list(\
+		'sound/effects/footstep/catwalk1.ogg',\
+		'sound/effects/footstep/catwalk2.ogg',\
+		'sound/effects/footstep/catwalk3.ogg',\
+		'sound/effects/footstep/catwalk4.ogg',\
+		'sound/effects/footstep/catwalk5.ogg')
+
+var/list/footstep_floor = list(\
+		'sound/effects/footstep/floor1.ogg',\
+		'sound/effects/footstep/floor2.ogg',\
+		'sound/effects/footstep/floor3.ogg',\
+		'sound/effects/footstep/floor4.ogg',\
+		'sound/effects/footstep/floor5.ogg')
+
+var/list/footstep_grass = list(\
+		'sound/effects/footstep/grass1.wav',\
+		'sound/effects/footstep/grass2.wav',\
+		'sound/effects/footstep/grass3.wav',\
+		'sound/effects/footstep/grass4.wav')
+
+var/list/footstep_gravel = list(\
+		'sound/effects/footstep/gravel1.wav',\
+		'sound/effects/footstep/gravel2.wav',\
+		'sound/effects/footstep/gravel3.wav',\
+		'sound/effects/footstep/gravel4.wav')
+
+var/list/footstep_hull = list(\
+		'sound/effects/footstep/hull1.ogg',\
+		'sound/effects/footstep/hull2.ogg',\
+		'sound/effects/footstep/hull3.ogg',\
+		'sound/effects/footstep/hull4.ogg',\
+		'sound/effects/footstep/hull5.ogg')
+
+var/list/footstep_plating =list(\
+		'sound/effects/footstep/plating1.ogg',\
+		'sound/effects/footstep/plating2.ogg',\
+		'sound/effects/footstep/plating3.ogg',\
+		'sound/effects/footstep/plating4.ogg',\
+		'sound/effects/footstep/plating5.ogg')
+
+var/list/footstep_tile = list(\
+		'sound/effects/footstep/gravel1.wav',\
+		'sound/effects/footstep/gravel2.wav',\
+		'sound/effects/footstep/gravel3.wav',\
+		'sound/effects/footstep/gravel4.wav')
+
+var/list/footstep_wood = list(\
+		'sound/effects/footstep/wood1.ogg',\
+		'sound/effects/footstep/wood2.ogg',\
+		'sound/effects/footstep/wood3.ogg',\
+		'sound/effects/footstep/wood4.ogg',\
+		'sound/effects/footstep/wood5.ogg')
+
+
+/proc/footstep_sound(var/turf/T, var/sound, var/volume)
+	var/toplay
+	switch (sound)
+		if ("asteroid")
+			toplay = pick(footstep_asteroid)
+		if ("carpet")
+			toplay = pick(footstep_carpet)
+		if ("catwalk")
+			toplay = pick(footstep_catwalk)
+		if ("floor")
+			toplay = pick(footstep_floor)
+		if ("grass")
+			toplay = pick(footstep_grass)
+		if ("gravel")
+			toplay = pick(footstep_gravel)
+		if ("hull")
+			toplay = pick(footstep_hull)
+		if ("plating")
+			toplay = pick(footstep_plating)
+		if ("tile")
+			toplay = pick(footstep_tile)
+		if ("wood")
+			toplay = pick(footstep_wood)
+
+	if (toplay)
+		playsound(T, toplay, volume, TRUE, -1)
+
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
 
 	soundin = get_sfx(soundin) // same sound for everyone

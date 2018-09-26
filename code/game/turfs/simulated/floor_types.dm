@@ -33,12 +33,6 @@ turf/simulated/floor/plating
 	icon_state = "plating"
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	initial_flooring = /decl/flooring/reinforced/plating
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/plating1.ogg',\
-		'sound/effects/footstep/plating2.ogg',\
-		'sound/effects/footstep/plating3.ogg',\
-		'sound/effects/footstep/plating4.ogg',\
-		'sound/effects/footstep/plating5.ogg'))
 
 /turf/simulated/floor/plating/under
 	name = "underplating"
@@ -63,21 +57,6 @@ turf/simulated/floor/plating
 			M << SPAN_WARNING("You tripped over!")
 			return
 
-/turf/simulated/floor/plating/under/attackby(obj/item/C as obj, mob/user as mob)
-	if (istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		if(R.amount <= 2)
-			return
-		else
-			R.use(2)
-			user << SPAN_NOTICE("You start connecting [R.name]s to [src.name], creating catwalk ...")
-			if(do_after(user,50))
-				src.alpha = 0
-				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(src.loc)
-				src.contents += CT
-			return
-	return
-
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon = 'icons/turf/flooring/grass.dmi'
@@ -95,12 +74,7 @@ turf/simulated/floor/plating
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_state = "hullcenter0"
 	initial_flooring = /decl/flooring/reinforced/plating/hull
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/hull1.ogg',\
-		'sound/effects/footstep/hull2.ogg',\
-		'sound/effects/footstep/hull3.ogg',\
-		'sound/effects/footstep/hull4.ogg',\
-		'sound/effects/footstep/hull5.ogg'))
+
 
 /turf/simulated/floor/hull/New()
 	if(icon_state != "hullcenter0")

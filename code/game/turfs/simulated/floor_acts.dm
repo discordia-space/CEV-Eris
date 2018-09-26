@@ -1,27 +1,23 @@
+//EX act uses new damage type blast, which allows it to get burn AND damage overlays simultaneously
 /turf/simulated/floor/ex_act(severity)
 	//set src in oview(1)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(get_base_turf_by_area(src))
+			take_damage(rand(450, 700), BLAST) //Breaks through 3 - 4 layers
 		if(2.0)
-			switch(pick(40;1,40;2,3))
-				if (1)
-					if(prob(33)) new /obj/item/stack/material/steel(src)
-					src.ReplaceWithLattice()
-				if(2)
-					src.ChangeTurf(get_base_turf_by_area(src))
-				if(3)
-					if(prob(33)) new /obj/item/stack/material/steel(src)
-					if(prob(80))
-						src.break_tile_to_plating()
-					else
-						src.break_tile()
-					src.hotspot_expose(1000,CELL_VOLUME)
+			take_damage(rand(150, 550), BLAST) //Breaks through 2 - 3 layers
 		if(3.0)
-			if (prob(50))
-				src.break_tile()
-				src.hotspot_expose(1000,CELL_VOLUME)
-	return
+			take_damage(rand(40, 170), BLAST) //Breaks 1-2 layers
+
+	//Health values for balancing:
+	//Normal floor, 50 HP, total 50
+	//Plating, 100, total 150
+	//Underplating 200, total 350
+	//Hull 300, total 650
+
+	//EX act 1 can only rarely break through all four layers and cause a hull breach
+	//As a result, most bombs will not breach the hull unless they're near a window
+
 
 /turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 
@@ -31,7 +27,7 @@
 	else if(temp_destroy && exposed_temperature >= (temp_destroy + 100) && prob(1) && !is_plating())
 		make_plating() //destroy the tile, exposing plating
 		burn_tile(exposed_temperature)
-	return
+
 
 //should be a little bit lower than the temperature required to destroy the material
 /turf/simulated/floor/proc/get_damage_temperature()

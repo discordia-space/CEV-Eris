@@ -91,6 +91,10 @@
 	if(istype(T,/turf/simulated/open) || istype(T,/turf/space))
 		T.update_icon()
 
+/turf/simulated/open/update_openspace()
+	update_icon()
+	..()
+
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()
 	update_openspace()

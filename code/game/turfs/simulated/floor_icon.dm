@@ -159,14 +159,20 @@ var/list/flooring_cache = list()
 	if(decals && decals.len)
 		overlays |= decals
 
-	if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
-		icon = 'icons/turf/flooring/plating.dmi'
-		icon_state = "dmg[rand(1,4)]"
-	else if(flooring)
-		if(!isnull(broken) && (flooring.flags & TURF_CAN_BREAK))
-			overlays |= get_flooring_overlay("[flooring.icon_base]-broken-[broken]", "broken[broken]")
-		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
-			overlays |= get_flooring_overlay("[flooring.icon_base]-burned-[burnt]", "burned[burnt]")
+	if(broken || burnt)
+		if(!isnull(broken))
+			if(flooring.has_damage_range)
+				overlays |= get_flooring_overlay("[flooring.icon_base]-broken-[broken]", "broken[broken]")
+			else
+				var/n = rand(1,3)
+				overlays |= get_damage_overlay("damaged[n]", "damaged[n]")
+
+		if(!isnull(burnt))
+			if(flooring.has_burn_range)
+				overlays |= get_flooring_overlay("[flooring.icon_base]-burned-[burnt]", "burned[burnt]")
+			else
+				var/n = rand(1,3)
+				overlays |= get_damage_overlay("scorched[n]", "scorched[n]")
 
 	if(update_neighbors)
 		for(var/turf/simulated/floor/F in trange(1, src))
@@ -174,6 +180,16 @@ var/list/flooring_cache = list()
 				continue
 			F.update_icon()
 	update_openspace()
+
+/turf/simulated/floor/proc/get_damage_overlay(var/cache_key, var/icon_base	)
+	if(!flooring_cache[cache_key])
+		var/image/I = image(icon = 'icons/turf/damage_overlays.dmi', icon_state = icon_base)
+
+		I.plane = FLOOR_PLANE
+		I.layer = TURF_DECAL_LAYER+0.1
+		flooring_cache[cache_key] = I
+	return flooring_cache[cache_key]
+
 
 /turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/external = FALSE)
 	if(!flooring_cache[cache_key])

@@ -50,10 +50,7 @@
 	return
 
 /obj/structure/lattice/attackby(obj/item/I, mob/user)
-	if (istype(I, /obj/item/stack/tile/floor))
-		var/turf/T = get_turf(src)
-		T.attackby(I, user) //BubbleWrap - hand this off to the underlying turf instead
-		return
+
 	if(I.get_tool_type(user, list(QUALITY_WELDING)))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user << SPAN_NOTICE("Slicing lattice joints ...")
@@ -64,13 +61,17 @@
 		if(R.amount <= 2)
 			return
 		else
-			R.use(2)
+
 			user << SPAN_NOTICE("You start connecting [R.name] to [src.name] ...")
-			if(do_after(user,50))
+			if(do_after(user,50, src))
+				R.use(2)
 				src.alpha = 0
 				new /obj/structure/catwalk(src.loc)
 				qdel(src)
 			return
+	if (istype(I, /obj/item/stack))
+		var/turf/T = get_turf(src)
+		return T.attackby(I, user) //BubbleWrap - hand this off to the underlying turf instead
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
@@ -91,3 +92,7 @@
 
 		icon_state = "lattice[dir_sum]"
 		return
+
+
+/obj/structure/lattice/can_prevent_fall()
+	return TRUE
