@@ -4,6 +4,21 @@
 	desc = ""
 	category = "Crusader"
 
+
+/datum/ritual/cruciform/crusader/brotherhood
+	name = "Eternal Brotherhood"
+	phrase = "Ita multi unum corpus sumus in Christo singuli autem alter alterius membra."
+	desc = "Reveals other cyberchristians to speaker."
+
+
+/datum/ritual/cruciform/crusader/brotherhood/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	if(!C.get_module(/datum/core_module/cruciform/christianhud))
+		C.add_module(new /datum/core_module/cruciform/christianhud)
+	else
+		C.remove_module(C.get_module(/datum/core_module/cruciform/christianhud))
+	return TRUE
+
+
 /datum/ritual/cruciform/crusader/battle_call
 	name = "Call to Battle"
 	phrase = "Si exieritis ad bellum de terra vestra contra hostes qui dimicant adversum vos clangetis ululantibus tubis et erit recordatio vestri coram Domino Deo vestro ut eruamini de manibus inimicorum vestrorum."
@@ -12,12 +27,6 @@
 	cooldown_time = 10 MINUTES
 	cooldown_category = "battle call"
 	effect_time = 10 MINUTES
-
-/datum/ritual/cruciform/crusader/battle_call/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
-	if(cooldown && is_on_cooldown(H))
-		fail("This type of litany can't be spoken too often.", H, C)
-		return FALSE
-	return TRUE
 
 /datum/ritual/cruciform/crusader/battle_call/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/count = 0
@@ -44,12 +53,6 @@
 	cooldown = TRUE
 	cooldown_time = 2 MINUTES
 	cooldown_category = "flash"
-
-/datum/ritual/cruciform/crusader/flash/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
-	if(cooldown && is_on_cooldown(H))
-		fail("This type of litany can't be spoken too often.", H, C)
-		return FALSE
-	return TRUE
 
 /datum/ritual/cruciform/crusader/flash/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	user.Weaken(10)

@@ -2,7 +2,6 @@
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "The Cruciform feels cold against your chest."
-	cooldown = FALSE
 
 /datum/ritual/group/cruciform/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
 	if(!C.get_module(CRUCIFORM_PRIEST) && !C.get_module(CRUCIFORM_INQUISITOR))
@@ -28,8 +27,7 @@
 	effect_type = /datum/group_ritual_effect/cruciform/mechanical
 
 /datum/group_ritual_effect/cruciform/mechanical/success(var/mob/living/M, var/cnt)
-	var/stat = M.stats.getStat(STAT_MEC)
-	stat += 3 + cnt
+	var/stat = 3 + cnt
 	M.stats.changeStat(STAT_MEC, stat)
 
 
@@ -49,8 +47,7 @@
 	effect_type = /datum/group_ritual_effect/cruciform/cognition
 
 /datum/group_ritual_effect/cruciform/cognition/success(var/mob/living/M, var/cnt)
-	var/stat = M.stats.getStat(STAT_COG)
-	stat += 3 + cnt
+	var/stat = 3 + cnt
 	M.stats.changeStat(STAT_COG, stat)
 
 
@@ -71,8 +68,7 @@
 	effect_type = /datum/group_ritual_effect/cruciform/biology
 
 /datum/group_ritual_effect/cruciform/biology/success(var/mob/living/M, var/cnt)
-	var/stat = M.stats.getStat(STAT_BIO)
-	stat += 3 + cnt
+	var/stat = 3 + cnt
 	M.stats.changeStat(STAT_BIO, stat)
 
 
@@ -92,8 +88,7 @@
 	effect_type = /datum/group_ritual_effect/cruciform/robustness
 
 /datum/group_ritual_effect/cruciform/robustness/success(var/mob/living/M, var/cnt)
-	var/stat = M.stats.getStat(STAT_ROB)
-	stat += 3 + cnt
+	var/stat = 3 + cnt
 	M.stats.changeStat(STAT_ROB, stat)
 
 
@@ -114,8 +109,7 @@
 	effect_type = /datum/group_ritual_effect/cruciform/toughness
 
 /datum/group_ritual_effect/cruciform/toughness/success(var/mob/living/M, var/cnt)
-	var/stat = M.stats.getStat(STAT_TGH)
-	stat += 3 + cnt
+	var/stat = 3 + cnt
 	M.stats.changeStat(STAT_TGH, stat)
 
 
@@ -139,6 +133,9 @@
 /datum/group_ritual_effect/cruciform/crusade/success(var/mob/living/M, var/cnt)
 	var/obj/item/weapon/implant/core_implant/CI = M.get_cruciform()
 	if(CI)
+		if(cnt >= 2)
+			if(!locate(/datum/ritual/cruciform/crusader/brotherhood) in CI.rituals)
+				CI.rituals += /datum/ritual/cruciform/crusader/brotherhood
 		if(cnt >= 3)
 			if(!locate(/datum/ritual/cruciform/crusader/battle_call) in CI.rituals)
 				CI.rituals += /datum/ritual/cruciform/crusader/battle_call

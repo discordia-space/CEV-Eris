@@ -24,6 +24,9 @@ var/list/global_ritual_cooldowns = list() // internal lists. Use ritual's cooldo
 
 //ritual will be proceed only if this returns true
 /datum/ritual/proc/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
+	if(cooldown && is_on_cooldown(H))
+		fail("Litanies of this type can't be spoken too often.", H, C)
+		return FALSE
 	return TRUE
 
 //code of ritual fail, called by fail(H,C,targets)		'on_chance' will be true, if ritual failed on chance check

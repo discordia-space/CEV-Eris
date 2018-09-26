@@ -259,13 +259,6 @@
 		desc = "This litany boosts [get_stats_to_text()] stats of everyone who's hear you on the short time."
 
 
-/datum/ritual/cruciform/priest/short_boost/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
-	if(cooldown && is_on_cooldown(H))
-		fail("Litanies of this type can't be spoken too often.", H, C)
-		return FALSE
-	return TRUE
-
-
 /datum/ritual/cruciform/priest/short_boost/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/list/people_around = list()
 	for(var/mob/living/carbon/human/H in view(user))
