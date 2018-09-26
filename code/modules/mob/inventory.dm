@@ -71,9 +71,8 @@
 		return
 
 	var/slot = get_active_hand_slot()
-	if (!I || !I.mob_can_equip(src, slot, TRUE))
+	if (!I || !I.can_be_equipped(src, slot, TRUE) || can_equip(I, slot, TRUE))
 		//Picking up is going to fail, maybe we can tell the user why
-
 		return
 
 	return TRUE

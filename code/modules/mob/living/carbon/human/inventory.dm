@@ -266,6 +266,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
+	var/datum/slot/S = get_inventory_slot_datum(slot)
+	if(!S.can_equip(I, src, user))
+		return FALSE
+
 	var/obj/item/covering = null
 	var/check_flags = 0
 
@@ -286,9 +290,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
-		return FALSE
-
-	if (!has_organ_for_slot(slot))
 		return FALSE
 
 	return TRUE

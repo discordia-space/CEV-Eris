@@ -7,8 +7,10 @@
 			if(!initial(S.id))
 				continue
 			S = new S()
+			if(S.id > datums.len)
+				datums.len = S.id
 			datums[S.id] = S
-	return slot in datums ? datums[slot] : null
+	return datums.len > slot ? datums[slot] : null
 
 /datum/slot
 	var/name
@@ -33,7 +35,7 @@
 	if(req_organ)
 		if(islist(req_organ))
 			for(var/organ in req_organ)
-				if(!owner.has_organ(organ))
+				if(!owner.has_organ(organ, req_organ[organ]))
 					return FALSE
 		else
 			if(!owner.has_organ(req_organ))
@@ -86,11 +88,13 @@
 /datum/slot/hand/left
 	name = "Left hand"
 	id = slot_l_hand
+	req_organ = list(BP_L_ARM = 1)
 	update_proc = /mob/proc/update_inv_l_hand
 
 /datum/slot/hand/rigth
 	name = "Right hand"
 	id = slot_r_hand
+	req_organ = list(BP_R_ARM = 1)
 	update_proc = /mob/proc/update_inv_r_hand
 
 /datum/slot/belt

@@ -27,6 +27,9 @@
 		var/mob/Wearer = Item.loc
 		if(!Wearer.unEquip(Item))
 			return FALSE
+	else if(istype(Item.loc, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/S = Item.loc
+		S.remove_from_storage(Item, null)
 
 	equip_to_slot(Item, slot, redraw_mob) //This proc should not ever fail.
 
