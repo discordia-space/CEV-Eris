@@ -185,7 +185,7 @@
 	light_spot.pixel_x = -16
 	light_spot.pixel_y = -16
 	light_spot.layer = ABOVE_OBJ_LAYER
-	if (cell.get_charge_percent() <= 15)
+	if (cell.percent() <= 15)
 		apply_power_deficiency()
 	calculate_dir()
 	if(. && user)
@@ -201,7 +201,7 @@
 /obj/item/device/lighting/toggleable/flashlight/proc/apply_power_deficiency()
 	if (!cell || !light_spot)
 		return
-	switch (cell.get_charge_percent())
+	switch (cell.percent())
 		if(0 to 5)
 			light_spot.set_light(max(2, round(light_spot_radius/100 * 15)), light_spot_power/100 * 30)
 			set_light(l_power = radiance_power/100 * 15)
@@ -220,7 +220,7 @@
 			if(ismob(src.loc))
 				src.loc << SPAN_WARNING("Your flashlight dies. You are alone now.")
 			turn_off()
-		else if (cell.get_charge_percent() <= 25)
+		else if (cell.percent() <= 25)
 			apply_power_deficiency()
 
 /obj/item/device/lighting/toggleable/flashlight/MouseDrop(over_object)
