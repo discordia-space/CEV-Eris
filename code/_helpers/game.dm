@@ -522,6 +522,15 @@ datum/projectile_data
 				vents += temp_vent
 	return vents
 
+
+/proc/is_opaque(var/turf/T)
+	if (T.opacity)
+		return TRUE
+	for(var/obj/O in T.contents)
+		if (O.opacity)
+			return TRUE
+	return FALSE
+
 /proc/get_preferences(var/mob/target)
 	var/datum/preferences/P = null
 	if (target.client)
@@ -532,3 +541,4 @@ datum/projectile_data
 		P = preferences_datums[target.mind.key]
 
 	return P
+

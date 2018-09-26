@@ -180,7 +180,6 @@
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
 
-
 //Called whenever an item is dropped on the floor, thrown, or placed into a container.
 //It is called after loc is set, so if placed in a container its loc will be that container.
 /obj/item/proc/dropped(mob/user as mob)

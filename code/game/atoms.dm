@@ -273,9 +273,15 @@ its easier to just keep the beam vertical.
 	if(new_dir == old_dir)
 		return FALSE
 
+	for(var/i in src.contents)
+		var/atom/A = i
+		A.container_dir_changed(new_dir)
 	dir = new_dir
 	dir_set_event.raise_event(src, old_dir, new_dir)
 	return TRUE
+
+/atom/proc/container_dir_changed(new_dir)
+	return
 
 /atom/proc/ex_act()
 	return
@@ -567,9 +573,13 @@ its easier to just keep the beam vertical.
 		O.show_message(message,2,deaf_message,1)
 
 /atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
-	if(loc && MOVED_DROP == special_event)
-		AM.forceMove(loc, MOVED_DROP)
-		return CANCEL_MOVE_EVENT
+	if(loc)
+		for(var/i in AM.contents)
+			var/atom/movable/A = i
+			A.entered_with_container(old_loc)
+		if(MOVED_DROP == special_event)
+			AM.forceMove(loc, MOVED_DROP)
+			return CANCEL_MOVE_EVENT
 	return ..()
 
 /turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
