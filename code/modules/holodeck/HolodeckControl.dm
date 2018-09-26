@@ -214,7 +214,7 @@
 	if(isobj(obj))
 		var/mob/M = obj.loc
 		if(ismob(M))
-			M.remove_from_mob(obj)
+			M.drop_from_inventory(obj)
 			M.update_icons()	//so their overlays update
 
 	if(!silent)

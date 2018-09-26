@@ -162,10 +162,8 @@
 				return
 
 			user << SPAN_WARNING("You slip \the [W] inside \the [src].")
-			user.remove_from_mob(W)
-			W.dropped(user)
+			user.drop_from_inventory(W, src)
 			add_fingerprint(user)
-			contents += W
 			return
 
 		if (has_edge(W))

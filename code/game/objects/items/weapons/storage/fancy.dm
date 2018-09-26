@@ -162,12 +162,9 @@
 
 	if(M == user && user.targeted_organ == "mouth")
 		// Find ourselves a cig. Note that we could be full of lighters.
-		var/obj/item/clothing/mask/smokable/cigarette/cig = null
-		for(var/obj/item/clothing/mask/smokable/cigarette/C in contents)
-			cig = C
-			break
+		var/obj/item/clothing/mask/smokable/cigarette/cig = locate() in src
 
-		if(cig == null)
+		if(!cig)
 			user << SPAN_NOTICE("Looks like the packet is out of cigarettes.")
 			return
 

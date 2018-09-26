@@ -217,8 +217,7 @@
 			user << SPAN_NOTICE("\The [src] is full.")
 			return 1
 		else
-			user.remove_from_mob(O)
-			O.loc = src
+			user.drop_from_inventory(O, src)
 			if(item_quants[O.name])
 				item_quants[O.name]++
 			else

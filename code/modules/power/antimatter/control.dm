@@ -157,12 +157,13 @@
 			user << "\red There is already a [fueljar] inside!"
 			return
 		fueljar = I
-		user.remove_from_mob(I)
-		I.loc = src
+		user.drop_from_inventory(I, src)
 		user.update_icons()
-		user.visible_message("[user.name] loads an [I.name] into the [src.name].", \
-				"You load an [I.name].", \
-				"You hear a thunk.")
+		user.visible_message(
+			"[user.name] loads an [I.name] into the [src.name].",
+			"You load an [I.name].",
+			"You hear a thunk."
+		)
 		return
 
 	if(I.force >= 20)

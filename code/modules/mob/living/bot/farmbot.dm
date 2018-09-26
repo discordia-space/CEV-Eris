@@ -345,7 +345,7 @@
 		user << "You add the plant analyzer to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly"
-		user.remove_from_mob(W)
+		user.drop_from_inventory(W, 0)
 		qdel(W)
 
 	else if((istype(W, /obj/item/weapon/reagent_containers/glass/bucket)) && (build_step == 1))
@@ -353,7 +353,7 @@
 		user << "You add a bucket to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly with bucket"
-		user.remove_from_mob(W)
+		user.drop_from_inventory(W, 0)
 		qdel(W)
 
 	else if((istype(W, /obj/item/weapon/material/minihoe)) && (build_step == 2))
@@ -361,7 +361,7 @@
 		user << "You add a minihoe to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly with bucket and minihoe"
-		user.remove_from_mob(W)
+		user.drop_from_inventory(W, 0)
 		qdel(W)
 
 	else if((is_proximity_sensor(W)) && (build_step == 3))
@@ -373,7 +373,7 @@
 			wTank.loc = S
 			S.tank = wTank
 		S.name = created_name
-		user.remove_from_mob(W)
+		user.drop_from_inventory(W, 0)
 		qdel(W)
 		qdel(src)
 

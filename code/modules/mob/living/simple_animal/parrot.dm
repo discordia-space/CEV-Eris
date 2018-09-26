@@ -606,17 +606,16 @@
 			stolen_item = C.r_hand
 
 		if(stolen_item)
-			C.remove_from_mob(stolen_item)
-			held_item = stolen_item
-			stolen_item.loc = src
-			visible_message(
-				"[src] grabs the [held_item] out of [C]'s hand!",
-				SPAN_NOTICE("You snag the [held_item] out of [C]'s hand!"),
-				"You hear the sounds of wings flapping furiously."
-			)
-			return held_item
+			if(C.unEquip(stolen_item, src))
+				held_item = stolen_item
+				visible_message(
+					"[src] grabs the [held_item] out of [C]'s hand!",
+					SPAN_NOTICE("You snag the [held_item] out of [C]'s hand!"),
+					"You hear the sounds of wings flapping furiously."
+				)
+				return held_item
 
-	src << "\red There is nothing of interest to take."
+	src << SPAN_WARNING("There is nothing of interest to take.")
 	return 0
 
 /mob/living/simple_animal/parrot/verb/drop_held_item_player()

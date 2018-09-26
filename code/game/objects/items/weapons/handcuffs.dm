@@ -55,8 +55,8 @@
 	if(!istype(H))
 		return 0
 
-	if (!H.has_organ_for_slot(slot_handcuffed))
-		user << SPAN_DANGER("\The [H] needs at least two wrists before you can cuff them together!")
+	if (!H.can_equip(src, slot_handcuffed) || !can_be_equipped(H, slot_handcuffed))
+		//user << SPAN_DANGER("\The [H] needs at least two wrists before you can cuff them together!")
 		return 0
 
 	if(istype(H.gloves,/obj/item/clothing/gloves/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.

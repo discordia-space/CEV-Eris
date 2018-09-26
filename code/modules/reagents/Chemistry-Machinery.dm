@@ -623,8 +623,7 @@
 		user << "\The [O] is not suitable for blending."
 		return 1
 
-	user.remove_from_mob(O)
-	O.loc = src
+	user.drop_from_inventory(O, src)
 	holdingitems += O
 	src.updateUsrDialog()
 	return 0

@@ -62,8 +62,7 @@
 		path = 1
 		user << SPAN_NOTICE("You add [W] to the metal casing.")
 		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
-		user.remove_from_mob(det)
-		det.loc = src
+		user.drop_from_inventory(det, src)
 		detonator = det
 		if(is_timer(detonator.left_assembly))
 			var/obj/item/device/assembly/timer/T = detonator.left_assembly

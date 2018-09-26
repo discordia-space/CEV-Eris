@@ -165,20 +165,12 @@
 		for(var/obj/item/stack/material/sheet in contents)
 			if(S.type == sheet.type) // we are violating the amount limitation because these are not sane objects
 				sheet.amount += amount	// they should only be removed through procs in this file, which split them up.
-				S.amount -= amount
+				S.use(amount)
 				inserted = 1
 				break
 
-		if(!inserted || !S.amount)
-			usr.remove_from_mob(S)
-			usr.update_icons()	//update our overlays
-			if (usr.client && usr.s_active != src)
-				usr.client.screen -= S
-			S.dropped(usr)
-			if(!S.amount)
-				qdel(S)
-			else
-				S.loc = src
+		if(!inserted && !QDELETED(S))
+			usr.drop_from_inventory(S, src)
 
 		orient2hud(usr)
 		if(usr.s_active)

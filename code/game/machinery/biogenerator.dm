@@ -71,10 +71,9 @@
 		if(beaker)
 			user << SPAN_NOTICE("The [src] is already loaded.")
 		else
-			user.remove_from_mob(I)
-			I.loc = src
-			beaker = I
-			updateUsrDialog()
+			if(user.unEquip(I, src))
+				beaker = I
+				updateUsrDialog()
 	else if(processing)
 		user << SPAN_NOTICE("\The [src] is currently processing.")
 	else if(istype(I, /obj/item/weapon/storage/bag/plants))
@@ -103,8 +102,7 @@
 		if(i >= 10)
 			user << SPAN_NOTICE("\The [src] is full! Activate it.")
 		else
-			user.remove_from_mob(I)
-			I.loc = src
+			user.drop_from_inventory(I, src)
 			user << SPAN_NOTICE("You put \the [I] in \the [src]")
 	update_icon()
 	return

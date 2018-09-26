@@ -17,7 +17,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		else
 			update_inv_r_hand(0)
 	else
-		src << "\red You are unable to equip that."
+		src << SPAN_WARNING("You are unable to equip that.")
 
 //Find HUD position on screen
 /mob/living/carbon/human/proc/find_inv_position(var/slot_id)
@@ -39,46 +39,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/proc/has_organ(name, check_usablility = FALSE)
 	var/obj/item/organ/external/O = organs_by_name[name]
-
 	return (O && !O.is_stump() && (!check_usablility || O.is_usable()))
 
-/mob/living/carbon/human/proc/has_organ_for_slot(slot)
-	switch(slot)
-		if(slot_back)
-			return has_organ(BP_CHEST)
-		if(slot_wear_mask)
-			return has_organ(BP_HEAD)
-		if(slot_handcuffed)
-			return has_organ(BP_L_ARM) && has_organ(BP_R_ARM)
-		if(slot_legcuffed)
-			return has_organ(BP_L_LEG ) && has_organ(BP_R_LEG)
-		if(slot_l_hand)
-			return has_organ(BP_L_ARM, TRUE)
-		if(slot_r_hand)
-			return has_organ(BP_R_ARM, TRUE)
-		if(slot_belt)
-			return has_organ(BP_CHEST)
-		if(slot_wear_id)
-			// the only relevant check for this is the uniform check
-			return 1
-		if(slot_l_ear, slot_r_ear, slot_glasses)
-			return has_organ(BP_HEAD)
-		if(slot_gloves)
-			return has_organ(BP_L_ARM) || has_organ(BP_R_ARM)
-		if(slot_head)
-			return has_organ(BP_HEAD)
-		if(slot_shoes)
-			return has_organ(BP_R_LEG) || has_organ(BP_L_LEG)
-		if(slot_wear_suit, slot_w_uniform, slot_l_store, slot_r_store, slot_s_store)
-			return has_organ(BP_CHEST)
-		if(slot_in_backpack)
-			return 1
-		if(slot_accessory_buffer)
-			return 1
-
-/mob/living/carbon/human/u_equip(obj/W as obj)
-	if(!W)	return 0
-
+/mob/living/carbon/human/u_equip(obj/item/W as obj)
 	if (W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
@@ -181,11 +144,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
-
-	if(!slot) return
-	if(!istype(W)) return
-	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1)
 	if(ismob(W.loc))
 		var/mob/M = W.loc
 		if(M.get_inventory_slot(W) && !M.prepare_for_slotmove(W))
@@ -287,8 +246,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			update_inv_s_store(redraw_mob)
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
-				src.remove_from_mob(W)
-			W.forceMove(src.back)
+				src.drop_from_inventory(W, src.back)
 		if(slot_accessory_buffer)
 			var/obj/item/clothing/under/uniform = src.w_uniform
 			uniform.attackby(W,src)
@@ -328,12 +286,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
-		return 0
+		return FALSE
 
 	if (!has_organ_for_slot(slot))
 		return FALSE
 
-	return 1
+	return TRUE
 
 /mob/living/carbon/human/get_equipped_item(var/slot)
 	switch(slot)

@@ -117,7 +117,7 @@
 			B.forceMove(get_turf(src))
 			user << SPAN_NOTICE("You armed the robot frame.")
 			if (user.get_inactive_hand() == src)
-				user.remove_from_mob(src)
+				user.drop_from_inventory(src)
 				user.put_in_inactive_hand(B)
 			qdel(src)
 		else

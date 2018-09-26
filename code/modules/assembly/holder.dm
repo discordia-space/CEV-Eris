@@ -33,12 +33,10 @@
 /obj/item/device/assembly_holder/attach(var/obj/item/device/assembly/D, var/obj/item/device/assembly/D2, var/mob/user)
 	if(!(D.is_attachable() || D.is_attachable()))
 		return FALSE
-	user.remove_from_mob(D)
-	user.remove_from_mob(D2)
+	user.drop_from_inventory(D, src)
+	user.drop_from_inventory(D2,src)
 	D.holder = src
 	D2.holder = src
-	D.loc = src
-	D2.loc = src
 	left_assembly = D
 	right_assembly = D2
 	name = "[D.name]-[D2.name] assembly"

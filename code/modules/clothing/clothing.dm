@@ -84,7 +84,7 @@
 	set_dir(O.dir)
 	master_item = O
 
-/obj/item/clothing/ears/offear/mob_can_equip(mob/living/user, slot, disable_warning)
+/obj/item/clothing/ears/offear/can_be_equipped(mob/living/user, slot, disable_warning)
 	if(!slot || !user)
 		return
 	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear

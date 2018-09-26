@@ -74,7 +74,7 @@
 	if(!ispath(gift_type,/obj/item))	return
 
 	var/obj/item/I = new gift_type(M)
-	M.remove_from_mob(src)
+	M.drop_from_inventory(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
 	qdel(src)

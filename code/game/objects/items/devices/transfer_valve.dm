@@ -43,9 +43,8 @@
 		if(attached_device)
 			user << SPAN_WARNING("There is already an device attached to the valve, remove it first.")
 			return
-		user.remove_from_mob(item)
+		user.drop_from_inventory(A, src)
 		attached_device = A
-		A.loc = src
 		user << SPAN_NOTICE("You attach the [item] to the valve controls and secure it.")
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).

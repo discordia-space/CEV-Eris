@@ -160,10 +160,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			var/mob/living/M = loc
 			if (!nomessage)
 				M << SPAN_NOTICE("Your [name] goes out.")
-			M.remove_from_mob(src) //un-equip it so the overlays can update
-			M.update_inv_wear_mask(0)
-			M.update_inv_l_hand(0)
-			M.update_inv_r_hand(1)
+			M.drop_from_inventory(src)
 		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 	else
