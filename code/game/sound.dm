@@ -170,10 +170,10 @@ var/list/footstep_plating =list(\
 		'sound/effects/footstep/plating5.ogg')
 
 var/list/footstep_tile = list(\
-		'sound/effects/footstep/gravel1.wav',\
-		'sound/effects/footstep/gravel2.wav',\
-		'sound/effects/footstep/gravel3.wav',\
-		'sound/effects/footstep/gravel4.wav')
+		'sound/effects/footstep/tile1.wav',\
+		'sound/effects/footstep/tile2.wav',\
+		'sound/effects/footstep/tile3.wav',\
+		'sound/effects/footstep/tile4.wav')
 
 var/list/footstep_wood = list(\
 		'sound/effects/footstep/wood1.ogg',\
@@ -183,7 +183,7 @@ var/list/footstep_wood = list(\
 		'sound/effects/footstep/wood5.ogg')
 
 
-/proc/footstep_sound(var/turf/T, var/sound, var/volume)
+/proc/footstep_sound(var/sound)
 	var/toplay
 	switch (sound)
 		if ("asteroid")
@@ -207,8 +207,7 @@ var/list/footstep_wood = list(\
 		if ("wood")
 			toplay = pick(footstep_wood)
 
-	if (toplay)
-		playsound(T, toplay, volume, TRUE, -1)
+	return toplay
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
 
