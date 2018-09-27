@@ -193,14 +193,11 @@ var/list/flooring_types
 
 
 /decl/flooring/reinforced/plating/under/Entered(mob/living/M as mob)
-	world << "Underplating entered"
 	for(var/obj/structure/catwalk/C in get_turf(M))
-		world << "Catwalk found, no tripping"
 		return
 
 	//BSTs need this or they generate tons of soundspam while flying through the ship
 	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(get_turf(M)))
-		world << "Nothuman, or incorp, or nogravity"
 		return
 	if(M.m_intent == "run")
 		if(prob(40))

@@ -26,12 +26,7 @@ var/list/flooring_cache = list()
 
 	overlays += I
 
-/turf/simulated/floor/update_icon(var/update_neighbors, var/debug = FALSE)
-	var/stackID = rand(0,9999)
-	if (debug)
-		world << "Floor updateicon called [src], ID: [stackID]"
-
-
+/turf/simulated/floor/update_icon(var/update_neighbors)
 
 	if(lava) //Wtf why
 		return
@@ -59,42 +54,22 @@ var/list/flooring_cache = list()
 		// Apply edges, corners, and inner corners.
 		overlays.Cut()
 		var/has_border = 0
-		if (debug) world << "About to start checking neighbors [set_update_icon]"
 		if(flooring.flags & SMOOTH_ONLY_WITH_ITSELF) // for carpets and stuff like that
-			if (debug) world << "Selfsmooth"
 			if(isnull(set_update_icon) && (flooring.flags & TURF_HAS_EDGES))
-				if (debug) world << "Has Edges. Now checking dirs"
 				for(var/step_dir in cardinal)
-					world << "Checking Dir [dir2text(step_dir)] ID: [stackID]"
 					var/turf/simulated/floor/T = get_step(src, step_dir)
 					if(!istype(T) || !T.flooring || T.flooring.name != flooring.name)
-						if (debug)
-							world << "============================================="
-							world << SPAN_WARNING("Found a border: [T] [dir2text(step_dir)] ID: [stackID]")
-							//But why?
-							if (!istype(T))
-								world << "NOT A FLOOR"
-							else if (!T.flooring)
-								world << "Is a floor but has no flooring"
-							else
-								world << "Different flooring name. Them: '[T.flooring.name]' Us: '[flooring.name]'"
-							var/idir = turn(step_dir, 180)
-							world << "The border's dir is [step_dir] [dir2text(step_dir)] and when rotated 180 it is [idir] [dir2text(idir)]"
+
 						has_border |= step_dir
 						if ((flooring.flags & TURF_EDGES_EXTERNAL))
 
 							var/odir = turn(step_dir, 180)
-							if (debug) world << "Now applying external border: [dir2text(odir)] ID: [stackID]"
 							var/image/I = get_flooring_overlay("[flooring.icon_base]-ext-edge-[odir]", "[flooring.icon_base]_edges", odir, TRUE)
-							if (debug) world << "External icon with direction [dir2text(I.dir)] [I.dir]  \ref[src]"
-							if (debug) world << "Pixel XY [I.pixel_x], [I.pixel_y]"
 							overlays |= I
 						else
 							overlays |= get_flooring_overlay("[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir)
 
-				//if (debug)
-					//for(var/i in overlays)
-						//world << json_encode(i:vars)
+
 
 				if ((flooring.flags & TURF_USE0ICON) && has_border)
 					icon_state = flooring.icon_base+"0"
@@ -216,7 +191,6 @@ var/list/flooring_cache = list()
 
 		//External overlays will be offsetted out of this tile
 		if (external)
-			world << "External icon with direction [dir2text(icon_dir)] [icon_dir]"
 			if (icon_dir & NORTH)
 				I.pixel_y = -32
 			else if (icon_dir & SOUTH)

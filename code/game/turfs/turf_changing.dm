@@ -29,7 +29,6 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/list/old_lighting_corners = corners
 
-	//world << "Replacing [src.type] with [N]"
 
 	if(connections) connections.erase_all()
 

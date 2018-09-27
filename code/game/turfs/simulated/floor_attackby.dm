@@ -40,9 +40,7 @@
 		return
 
 	if (is_plating())
-		world << "Plating attackby"
 		if(istype(I, /obj/item/stack))
-			world << "Is stack"
 			if(is_damaged())
 				user << SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage.")
 				return
@@ -53,15 +51,10 @@
 				if(!F.build_type)
 					continue
 				if((ispath(S.type, F.build_type) || ispath(S.build_type, F.build_type)) && ((S.type == F.build_type) || (S.build_type == F.build_type)))
-					world << "Found a match: [F]"
 					if (flooring && flooring.can_build_floor(F))
-						world << "We are allowed to build it"
 						use_flooring = F
 						break
-					else
-						world << "Not allowed to build it"
 			if(!use_flooring)
-				world << "Failed to find any compatible floors"
 				return
 			// Do we have enough?
 			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)

@@ -1,5 +1,4 @@
 /turf/simulated/floor/proc/gets_drilled()
-	world << "Floor drilled"
 	return
 
 /turf/simulated/floor/proc/break_tile_to_plating()
