@@ -312,8 +312,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(I, transform = matrix(), time = 1)
 	sleep(1)
 
-	var/to_x = (target.x - old_loc.x) * 32 + pixel_x
-	var/to_y = (target.y - old_loc.y) * 32 + pixel_y
+	var/to_x = (target.x - old_loc.x) * 32
+	var/to_y = (target.y - old_loc.y) * 32
 
 	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix() * 0, easing = CUBIC_EASING)
 	sleep(3)
@@ -333,10 +333,16 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	var/to_x = (target.x - old_loc.x) * 32 + pixel_x
 	var/to_y = (target.y - old_loc.y) * 32 + pixel_y
+	var/old_x = pixel_x
+	var/old_y = pixel_y
+	pixel_x = 0
+	pixel_y = 0
 
 	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
 	sleep(3)
 	invisibility = old_invisibility
+	pixel_x = old_x
+	pixel_y = old_y
 
 /atom/movable/proc/simple_move_animation(atom/target)
 	set waitfor = FALSE

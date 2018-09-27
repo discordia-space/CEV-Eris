@@ -219,9 +219,6 @@ var/list/holder_mob_icon_cache = list()
 
 	spawn(2)
 		var/obj/item/weapon/holder/H = new holder_type(loc)
-		var/old_loc = src.loc
-		var/obj/effect/temp_visual/obj_pickup_ghost/ghost = new(old_loc, src)
-
 		src.forceMove(H)
 
 		H.contained = src

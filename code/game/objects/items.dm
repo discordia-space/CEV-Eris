@@ -144,8 +144,6 @@
 	if (!user || !user.can_pickup(src))
 		return
 
-	var/atom/old_loc = src.loc
-
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
