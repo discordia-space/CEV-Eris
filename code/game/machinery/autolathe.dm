@@ -342,7 +342,7 @@
 		SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/eat(var/mob/living/user)
-	if(!istype(user))
+	if(!istype(user) || stat)
 		return
 
 	var/obj/item/eating = user.get_active_hand()
@@ -350,13 +350,7 @@
 	if(!istype(eating))
 		return
 
-	if(stat)
-		return
-
 	if(eating.loc != user && !(istype(eating,/obj/item/stack)))
-		return FALSE
-
-	if(is_robot_module(eating))
 		return FALSE
 
 	if(!eating.matter || !eating.matter.len)
@@ -428,8 +422,8 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		user.drop_from_inventory(eating)
-		qdel(eating)
+		if(user.unEquip(eating))
+			qdel(eating)
 
 
 

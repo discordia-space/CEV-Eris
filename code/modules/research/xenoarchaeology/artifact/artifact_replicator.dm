@@ -126,9 +126,9 @@
 	user << browse(dat, "window=alien_replicator")
 
 /obj/machinery/replicator/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
-	user.drop_from_inventory(W, src)
-	stored_materials.Add(W)
-	src.visible_message("\blue [user] inserts [W] into [src].")
+	if(user.unEquip(W, src))
+		stored_materials.Add(W)
+		src.visible_message("\blue [user] inserts [W] into [src].")
 
 /obj/machinery/replicator/Topic(href, href_list)
 

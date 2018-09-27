@@ -303,11 +303,10 @@
 
 		spawn(20)
 			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
-				user.visible_message("<span class='[class]'>[user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
-				"<span class='[class]'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
-
-				if(user.get_inactive_hand() == src)
-					user.drop_from_inventory(src)
+				user.visible_message(
+					"<span class='[class]'>[user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
+					"<span class='[class]'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>"
+				)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
 				qdel(src)
@@ -398,42 +397,20 @@
 				user << SPAN_NOTICE("Take off the carbon copy first.")
 				add_fingerprint(user)
 				return
-		var/obj/item/weapon/paper_bundle/B = new(src.loc)
+		var/obj/item/weapon/paper_bundle/B = new(get_turf(src))
 		if (name != "paper")
 			B.name = name
 		else if (P.name != "paper" && P.name != "photo")
 			B.name = P.name
-		user.drop_from_inventory(P)
-		if (ishuman(user))
-			var/mob/living/carbon/human/h_user = user
-			if (h_user.r_hand == src)
-				h_user.drop_from_inventory(src)
-				h_user.put_in_r_hand(B)
-			else if (h_user.l_hand == src)
-				h_user.drop_from_inventory(src)
-				h_user.put_in_l_hand(B)
-			else if (h_user.l_store == src)
-				h_user.drop_from_inventory(src)
-				B.loc = h_user
-				B.layer = 20
-				h_user.l_store = B
-				h_user.update_inv_pockets()
-			else if (h_user.r_store == src)
-				h_user.drop_from_inventory(src)
-				B.loc = h_user
-				B.layer = 20
-				h_user.r_store = B
-				h_user.update_inv_pockets()
-			else if (h_user.head == src)
-				h_user.u_equip(src)
-				h_user.put_in_hands(B)
-			else if (!istype(src.loc, /turf))
-				src.loc = get_turf(h_user)
-				if(h_user.client)	h_user.client.screen -= src
-				h_user.put_in_hands(B)
-		user << "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>"
-		src.loc = B
-		P.loc = B
+		user.drop_from_inventory(P, B)
+		if(ismob(src.loc))
+			var/mob/Holder = src.loc
+			var/slot = Holder.get_inventory_slot(src)
+			Holder.drop_from_inventory(src, B)
+			Holder.equip_to_slot_if_possible(B, slot)
+		else
+			src.forceMove(B)
+		user << SPAN_NOTICE("You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].")
 
 		B.pages.Add(src)
 		B.pages.Add(P)

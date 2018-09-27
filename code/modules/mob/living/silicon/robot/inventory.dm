@@ -290,7 +290,8 @@
 		return ..(W)
 
 
-/mob/living/silicon/robot/canUnEquip(obj/item/I) //Force overrides NODROP for things like wizarditis and admin undress.
+//Force overrides NODROP for things like wizarditis and admin undress.
+/mob/living/silicon/robot/can_unequip(obj/item/I)
 	if(!I || !I.loc)
 		return TRUE
 	if (istype(I.loc, /obj/item/weapon/gripper)) //Robots are allowed to drop the things in their gripper

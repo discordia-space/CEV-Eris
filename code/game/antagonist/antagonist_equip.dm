@@ -16,10 +16,14 @@
 
 	var/mob/living/carbon/human/player = owner.current
 
-	for(var/obj/item/thing in player.contents)
-		player.drop_from_inventory(thing)
-		if(thing.loc != player)
-			qdel(thing)
+	var/list/to_delete = list()
+	for(var/obj/item/thing in player.get_equipped_items())
+		player.unEquip(thing)
+		to_delete += thing
+	for(var/elem in to_delete)
+		var/obj/item/I = elem
+		if(I.loc != player)
+			qdel(I)
 
 	return TRUE
 

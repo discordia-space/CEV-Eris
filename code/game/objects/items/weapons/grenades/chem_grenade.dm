@@ -144,7 +144,9 @@
 
 	var/has_reagents = 0
 	for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
-		if(G.reagents.total_volume) has_reagents = 1
+		if(G.reagents.total_volume)
+			has_reagents = 1
+			break
 
 	active = 0
 	if(!has_reagents)
@@ -174,10 +176,9 @@
 			if( A == src ) continue
 			src.reagents.touch(A)
 
-	if(iscarbon(loc))		//drop dat grenade if it goes off in your hand
-		var/mob/living/carbon/C = loc
-		C.drop_from_inventory(src)
-		C.throw_mode_off()
+	if(ismob(loc))		//drop dat grenade if it goes off in your hand
+		var/mob/M = loc
+		M.drop_from_inventory(src)
 
 	invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?
 	spawn(50)		   //To make sure all reagents can work

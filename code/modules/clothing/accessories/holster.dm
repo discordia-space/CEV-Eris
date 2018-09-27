@@ -16,13 +16,15 @@
 
 	if(istype(user))
 		user.stop_aiming(no_message=1)
-	holstered = I
-	user.drop_from_inventory(holstered)
-	holstered.loc = src
-	holstered.add_fingerprint(user)
-	w_class = max(w_class, holstered.w_class)
-	user.visible_message(SPAN_NOTICE("[user] holsters \the [holstered]."), SPAN_NOTICE("You holster \the [holstered]."))
-	name = "occupied [initial(name)]"
+	if(user.unEquip(I, src))
+		holstered = I
+		holstered.add_fingerprint(user)
+		w_class = max(w_class, holstered.w_class)
+		user.visible_message(
+			SPAN_NOTICE("[user] holsters \the [holstered]."),
+			SPAN_NOTICE("You holster \the [holstered].")
+		)
+		name = "occupied [initial(name)]"
 
 /obj/item/clothing/accessory/holster/proc/clear_holster()
 	holstered = null

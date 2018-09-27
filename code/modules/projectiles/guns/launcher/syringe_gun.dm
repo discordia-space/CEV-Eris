@@ -19,10 +19,9 @@
 		underlays += syringe.filling
 
 /obj/item/weapon/syringe_cartridge/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
+	if(istype(I, /obj/item/weapon/reagent_containers/syringe) && user.unEquip(I, src))
 		syringe = I
 		user << SPAN_NOTICE("You carefully insert [syringe] into [src].")
-		user.drop_from_inventory(syringe, src)
 		sharp = 1
 		name = "syringe dart"
 		update_icon()

@@ -94,8 +94,7 @@
 		if(S.seed && S.seed.get_trait(TRAIT_IMMUTABLE) > 0)
 			user << "That seed is not compatible with our genetics technology."
 		else
-			user.drop_from_inventory(I)
-			I.loc = src
+			user.drop_from_inventory(I, src)
 			seed = I
 			user << "You load [I] into [src]."
 		return
@@ -116,8 +115,7 @@
 					user << "That disk does not have any gene data loaded."
 					return
 
-			user.drop_from_inventory(I)
-			I.loc = src
+			user.drop_from_inventory(I, src)
 			loaded_disk = I
 			user << "You load [I] into [src]."
 

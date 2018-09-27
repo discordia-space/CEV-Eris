@@ -530,7 +530,7 @@
 		overlays += image('icons/obj/aibots.dmi', "hs_arm")
 		qdel(I)
 
-	else if(istype(I, /obj/item/weapon/melee/baton) && build_step == 3)
+	else if(istype(I, /obj/item/weapon/melee/baton) && build_step == 3 && user.unEquip(I, src))
 		user << "You complete the Securitron! Beep boop."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))

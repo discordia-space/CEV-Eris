@@ -36,18 +36,18 @@ obj/item/weapon/board/attackby(obj/item/I as obj, mob/user as mob)
 /obj/item/weapon/board/proc/addPiece(obj/item/I as obj, mob/user as mob, var/tile = 0)
 	if(I.w_class != ITEM_SIZE_TINY) //only small stuff
 		user.show_message(SPAN_WARNING("\The [I] is too big to be used as a board piece."))
-		return 0
+		return FALSE
 	if(num == 64)
 		user.show_message(SPAN_WARNING("\The [src] is already full!"))
-		return 0
+		return FALSE
 	if(tile > 0 && board["[tile]"])
 		user.show_message(SPAN_WARNING("That space is already filled!"))
-		return 0
+		return FALSE
 	if(!user.Adjacent(src))
-		return 0
+		return FALSE
 
-	user.drop_from_inventory(I)
-	I.forceMove(src)
+	if(!user.unEquip(I, src))
+		return FALSE
 	num++
 
 

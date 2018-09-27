@@ -77,8 +77,7 @@
 		if(contains != 1)
 			return
 		user.visible_message(SPAN_NOTICE("[user] puts [W] into \the [src]."))
-		user.drop_from_inventory(W)
-		W.forceMove(src)
+		user.drop_from_inventory(W, src)
 		update_icon()
 
 /obj/item/glass_jar/update_icon() // Also updates name and desc

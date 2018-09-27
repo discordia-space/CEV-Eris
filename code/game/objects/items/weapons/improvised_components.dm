@@ -51,19 +51,22 @@
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 
-/obj/item/weapon/material/wirerod/attackby(var/obj/item/I, mob/user as mob)
+/obj/item/weapon/material/wirerod/attackby(var/obj/item/I, mob/user)
 	..()
 	var/obj/item/finished
 	if(istype(I, /obj/item/weapon/material/shard))
+		if(!user.unEquip(I,src))
+			return
 		var/obj/item/weapon/material/tmp_shard = I
 		finished = new /obj/item/weapon/material/twohanded/spear(get_turf(user), tmp_shard.material.name)
 		user << SPAN_NOTICE("You fasten \the [I] to the top of the rod with the cable.")
 	else if(QUALITY_CUTTING in I.tool_qualities || QUALITY_WIRE_CUTTING in I.tool_qualities)
+		if(!user.unEquip(I,src))
+			return
 		finished = new /obj/item/weapon/melee/baton/cattleprod(get_turf(user))
 		user << SPAN_NOTICE("You fasten the wirecutters to the top of the rod with the cable, prongs outward.")
 	if(finished)
 		user.drop_from_inventory(src)
-		user.drop_from_inventory(I)
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(finished)

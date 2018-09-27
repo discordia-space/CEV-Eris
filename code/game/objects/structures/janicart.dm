@@ -188,9 +188,8 @@
 /obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/key))
 		user << "Hold [I] in one of your hands while you drive this [callme]."
-	else if(istype(I, /obj/item/weapon/storage/bag/trash))
+	else if(istype(I, /obj/item/weapon/storage/bag/trash) && user.unEquip(I, src))
 		user << SPAN_NOTICE("You hook the trashbag onto the [callme].")
-		user.drop_from_inventory(I, src)
 		mybag = I
 
 

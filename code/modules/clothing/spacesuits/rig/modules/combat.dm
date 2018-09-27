@@ -54,11 +54,11 @@
 		user << SPAN_DANGER("Another grenade of that type will not fit into the module.")
 		return 0
 
-	user << "<font color='blue'><b>You slot \the [input_device] into the suit module.</b></font>"
-	user.drop_from_inventory(input_device)
-	qdel(input_device)
-	accepted_item.charges++
-	return 1
+	if(user.unEquip(input_device))
+		user << "<font color='blue'><b>You slot \the [input_device] into the suit module.</b></font>"
+		qdel(input_device)
+		accepted_item.charges++
+		return 1
 
 /obj/item/rig_module/grenade_launcher/engage(atom/target)
 

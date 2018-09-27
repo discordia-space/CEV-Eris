@@ -136,10 +136,10 @@
 
 
 	// Upgrades!
-	if(is_type_in_list(I, possible_upgrades) && !is_type_in_list(I, upgrades)) // Is a possible upgrade and isn't in the camera already.
+	// Is a possible upgrade and isn't in the camera already.
+	if(is_type_in_list(I, possible_upgrades) && !is_type_in_list(I, upgrades) && user.unEquip(I, src))
 		user << "You attach \the [I] into the assembly inner circuits."
 		upgrades += I
-		user.drop_from_inventory(I, src)
 		return
 
 	..()

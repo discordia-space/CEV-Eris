@@ -71,7 +71,8 @@
 		/obj/item/weapon/storage/belt/utility/full,
 		/obj/item/clothing/accessory/horrible)
 
-	if(!ispath(gift_type,/obj/item))	return
+	if(!ispath(gift_type,/obj/item))
+		return
 
 	var/obj/item/I = new gift_type(M)
 	M.drop_from_inventory(src)

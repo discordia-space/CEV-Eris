@@ -110,11 +110,6 @@
 		if(padding_material)
 			user << "\The [src] is already padded."
 			return
-		var/obj/item/stack/C = W
-		if(C.get_amount() < 1) // How??
-			user.drop_from_inventory(C)
-			qdel(C)
-			return
 		var/padding_type //This is awful but it needs to be like this until tiles are given a material var.
 		if(istype(W,/obj/item/stack/tile/carpet))
 			padding_type = "carpet"
@@ -125,10 +120,9 @@
 		if(!padding_type)
 			user << "You cannot pad \the [src] with that."
 			return
-		C.use(1)
-		if(!istype(src.loc, /turf))
-			user.drop_from_inventory(src)
-			src.loc = get_turf(src)
+		var/obj/item/stack/S = W
+		if(!S.use(1))
+			return
 		user << "You add padding to \the [src]."
 		add_padding(padding_type)
 		return

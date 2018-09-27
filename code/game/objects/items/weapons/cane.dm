@@ -44,10 +44,9 @@
 			SPAN_WARNING("[user] has sheathed \a [W] into \his [src]!"),
 			"You sheathe \the [W] into \the [src]."
 		)
-		user.drop_from_inventory(W)
-		W.forceMove(src)
-		src.concealed_blade = W
-		update_icon()
+		if(user.unEquip(W, src))
+			src.concealed_blade = W
+			update_icon()
 	else
 		..()
 

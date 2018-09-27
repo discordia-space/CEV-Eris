@@ -216,8 +216,7 @@
 		if(contents.len >= max_n_of_items)
 			user << SPAN_NOTICE("\The [src] is full.")
 			return 1
-		else
-			user.drop_from_inventory(O, src)
+		else if(user.unEquip(O, src))
 			if(item_quants[O.name])
 				item_quants[O.name]++
 			else

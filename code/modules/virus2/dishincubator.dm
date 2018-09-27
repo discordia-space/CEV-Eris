@@ -21,9 +21,10 @@
 			user << "\The [src] is already loaded."
 			return
 
-		beaker = O
-		user.drop_from_inventory(O, src)
+		if(!user.unEquip(O, src))
+			return
 
+		beaker = O
 		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
 		SSnano.update_uis(src)
 

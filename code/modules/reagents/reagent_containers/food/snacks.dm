@@ -158,11 +158,10 @@
 		var/hide_item = !has_edge(W) || !can_slice_here
 
 		if (hide_item)
-			if (W.w_class >= src.w_class || is_robot_module(W))
+			if (W.w_class >= src.w_class || !user.unEquip(W, src))
 				return
 
 			user << SPAN_WARNING("You slip \the [W] inside \the [src].")
-			user.drop_from_inventory(W, src)
 			add_fingerprint(user)
 			return
 

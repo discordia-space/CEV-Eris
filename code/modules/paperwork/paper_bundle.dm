@@ -60,8 +60,7 @@
 	else if(istype(sheet, /obj/item/weapon/photo))
 		user << "<span class='notice'>You add [(sheet.name == "photo") ? "the photo" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>"
 
-	user.drop_from_inventory(sheet)
-	sheet.loc = src
+	user.drop_from_inventory(sheet, src)
 
 	pages.Insert(index, sheet)
 
@@ -83,8 +82,9 @@
 				user.visible_message("<span class='[class]'>[user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 				"<span class='[class]'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
-				if(user.get_inactive_hand() == src)
-					user.drop_from_inventory(src)
+				if(ismob(loc))
+					var/mob/M = loc
+					M.drop_from_inventory(src)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
 				qdel(src)

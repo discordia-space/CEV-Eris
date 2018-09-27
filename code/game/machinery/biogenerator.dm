@@ -64,9 +64,9 @@
 
 	if(default_deconstruction(I, user))
 		return
-
 	if(default_part_replacement(I, user))
 		return
+
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
 			user << SPAN_NOTICE("The [src] is already loaded.")
@@ -102,8 +102,8 @@
 		if(i >= 10)
 			user << SPAN_NOTICE("\The [src] is full! Activate it.")
 		else
-			user.drop_from_inventory(I, src)
-			user << SPAN_NOTICE("You put \the [I] in \the [src]")
+			if(user.unEquip(I, src))
+				user << SPAN_NOTICE("You put \the [I] in \the [src]")
 	update_icon()
 	return
 

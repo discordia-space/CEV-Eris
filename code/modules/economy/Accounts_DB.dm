@@ -41,8 +41,7 @@
 	if(!istype(O, /obj/item/weapon/card/id))
 		return ..()
 
-	if(!held_card)
-		user.drop_from_inventory(O, src)
+	if(!held_card && user.unEquip(O, src))
 		held_card = O
 
 		SSnano.update_uis(src)
@@ -161,10 +160,8 @@
 
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id))
-						var/obj/item/weapon/card/id/C = I
-						usr.drop_from_inventory(C, src)
-						held_card = C
+					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I, src))
+						held_card = I
 
 			if("view_account_detail")
 				var/index = text2num(href_list["account_index"])

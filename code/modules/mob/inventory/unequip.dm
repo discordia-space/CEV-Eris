@@ -22,6 +22,6 @@
 	var/slot = get_inventory_slot(Item)
 	if(!slot)
 		return FALSE
-	if(!canUnEquip(Item, slot) || !Item.can_be_unequipped(src, slot))
+	if(!can_unequip(Item, slot) || !Item.can_be_unequipped(src, slot))
 		return FALSE
 	return drop_from_inventory(Item, Target)

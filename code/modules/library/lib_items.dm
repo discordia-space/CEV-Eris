@@ -175,16 +175,14 @@
 	if(carved)
 		if(!store)
 			if(I.w_class < ITEM_SIZE_NORMAL)
-				user.drop_from_inventory(I, src)
-				store = I
-				user << SPAN_NOTICE("You put [I] in [title].")
-				return
+				if(user.unEquip(I, src))
+					store = I
+					user << SPAN_NOTICE("You put [I] in [title].")
 			else
 				user << SPAN_NOTICE("[I] won't fit in [title].")
-				return
 		else
 			user << SPAN_NOTICE("There's already something in [title]!")
-			return
+		return
 	if(istype(I, /obj/item/weapon/pen))
 		if(unique)
 			user << "These pages don't seem to take the ink well. Looks like you can't modify it."

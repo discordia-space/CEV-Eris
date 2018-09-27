@@ -124,8 +124,7 @@ LINEN BINS
 		amount++
 		user << SPAN_NOTICE("You put [I] in [src].")
 	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
-	else if(amount && !hidden && I.w_class < ITEM_SIZE_LARGE)
-		user.drop_from_inventory(I, src)
+	else if(amount && !hidden && I.w_class < ITEM_SIZE_LARGE && user.unEquip(I, src))
 		hidden = I
 		user << SPAN_NOTICE("You hide [I] among the sheets.")
 

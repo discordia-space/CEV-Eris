@@ -287,10 +287,8 @@
 	return TRUE
 
 /obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_from_inventory(src.loc)
+	if (istype(W, /obj/item) && get_dist(src,user)<2 && user.unEquip(W))
 		visible_message(SPAN_NOTICE("[user] dunks [W] into the [src]!"), 3)
-		return
 
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover,/obj/item) && mover.throwing)

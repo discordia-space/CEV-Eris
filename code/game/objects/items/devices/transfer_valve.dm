@@ -21,13 +21,11 @@
 			user << SPAN_WARNING("There are already two tanks attached, remove one first.")
 			return
 
-		if(!tank_one)
+		if(!tank_one && user.unEquip(item, src))
 			tank_one = item
-			user.drop_from_inventory(item, src)
 			user << SPAN_NOTICE("You attach the tank to the transfer valve.")
-		else if(!tank_two)
+		else if(!tank_two && user.unEquip(item, src))
 			tank_two = item
-			user.drop_from_inventory(item, src)
 			user << SPAN_NOTICE("You attach the tank to the transfer valve.")
 			message_admins("[key_name_admin(user)] attached both tanks to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
@@ -43,18 +41,17 @@
 		if(attached_device)
 			user << SPAN_WARNING("There is already an device attached to the valve, remove it first.")
 			return
-		user.drop_from_inventory(A, src)
-		attached_device = A
-		user << SPAN_NOTICE("You attach the [item] to the valve controls and secure it.")
-		A.holder = src
-		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
+		if(user.unEquip(A, src))
+			attached_device = A
+			user << SPAN_NOTICE("You attach the [item] to the valve controls and secure it.")
+			A.holder = src
+			A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
-		bombers += "[key_name(user)] attached a [item] to a transfer valve."
-		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
-		attacher = user
-		SSnano.update_uis(src) // update all UIs attached to src
-	return
+			bombers += "[key_name(user)] attached a [item] to a transfer valve."
+			message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+			log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
+			attacher = user
+			SSnano.update_uis(src) // update all UIs attached to src
 
 
 /obj/item/device/transfer_valve/HasProximity(atom/movable/AM as mob|obj)

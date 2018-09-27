@@ -49,7 +49,7 @@
 
 	return slot_is_accessible(slot, Item, disable_warning? null : src)
 
-/mob/proc/canUnEquip(obj/item/Item, slot, disable_warning = FALSE)
+/mob/proc/can_unequip(obj/item/Item, slot, disable_warning = FALSE)
 	return slot_is_accessible(slot, Item, disable_warning? null : src)
 
 

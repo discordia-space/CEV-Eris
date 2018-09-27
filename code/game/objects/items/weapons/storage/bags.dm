@@ -170,7 +170,7 @@
 				break
 
 		if(!inserted && !QDELETED(S))
-			usr.drop_from_inventory(S, src)
+			usr.unEquip(S, src)
 
 		orient2hud(usr)
 		if(usr.s_active)

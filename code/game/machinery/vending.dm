@@ -272,17 +272,17 @@
 			attack_hand(user)
 		return
 	else if(istype(I, /obj/item/weapon/coin) && premium.len > 0)
-		user.drop_from_inventory(I, src)
-		coin = I
-		categories |= CAT_COIN
-		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
-		SSnano.update_uis(src)
-		return
+		if(user.unEquip(I, src))
+			coin = I
+			categories |= CAT_COIN
+			user << SPAN_NOTICE("You insert \the [I] into \the [src].")
+			SSnano.update_uis(src)
+			return
 
-		for(var/datum/data/vending_product/R in product_records)
-			if(istype(I, R.product_path))
-				stock(I, R, user)
-				return 1
+			for(var/datum/data/vending_product/R in product_records)
+				if(istype(I, R.product_path))
+					stock(I, R, user)
+					return 1
 		..()
 
 /**

@@ -140,8 +140,7 @@
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << SPAN_NOTICE("You add the circuit board to the frame.")
 					circuit = I
-					user.drop_from_inventory(I)
-					I.forceMove(src)
+					user.drop_from_inventory(I, src)
 					icon_state = "[base_state]_2"
 					state = STATE_CIRCUIT
 					components = list()
@@ -177,8 +176,7 @@
 								req_components[CM] -= camt
 								update_desc()
 								break
-						if(user.drop_from_inventory(I))
-							I.forceMove(src)
+						if(user.unEquip(I, src))
 							components += I
 							req_components[CM]--
 							update_desc()

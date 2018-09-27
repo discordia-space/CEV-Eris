@@ -31,7 +31,7 @@
 	return
 
 /obj/item/device/assembly_holder/attach(var/obj/item/device/assembly/D, var/obj/item/device/assembly/D2, var/mob/user)
-	if(!(D.is_attachable() || D.is_attachable()))
+	if(!(D.is_attachable() && D2.is_attachable()))
 		return FALSE
 	user.drop_from_inventory(D, src)
 	user.drop_from_inventory(D2,src)

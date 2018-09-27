@@ -119,10 +119,9 @@
 		if(beaker)
 			user << SPAN_WARNING("A beaker is already loaded into the machine.")
 			return
-		beaker = item
-		user.drop_from_inventory(item)
-		item.forceMove(src)
-		user.visible_message("\The [user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
+		if(user.unEquip(item, src))
+			beaker = item
+			user.visible_message("\The [user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
 		return
 
 /obj/machinery/dna_scannernew/proc/put_in(var/mob/M)
@@ -218,9 +217,7 @@
 
 /obj/machinery/computer/scan_consolenew/attackby(obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/weapon/disk/data)) //INSERT SOME diskS
-		if (!src.disk)
-			user.drop_from_inventory(I)
-			I.forceMove(src)
+		if (!src.disk && user.unEquip(I, src))
 			src.disk = I
 			user << "You insert [I]."
 			SSnano.update_uis(src) // update all UIs attached to src

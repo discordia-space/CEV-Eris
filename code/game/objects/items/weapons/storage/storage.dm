@@ -289,7 +289,7 @@
 /obj/item/weapon/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W)) return //Not an item
 
-	if(usr && usr.get_inventory_slot(W) && !usr.canUnEquip(W))
+	if(usr && usr.get_inventory_slot(W) && (!usr.can_unequip(W) || !W.can_be_unequipped(usr)))
 		return 0
 
 	if(src.loc == W)
@@ -343,11 +343,13 @@
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
-	if(!istype(W)) return 0
-	if(usr)
-		usr.drop_from_inventory(W,src)
+	if(!istype(W))
+		return 0
+	if(usr && usr.unEquip(W,src))
+		return
 	else
-		W.loc = src
+		W.forceMove(src)
+
 	W.on_enter_storage(src)
 	if(usr)
 		add_fingerprint(usr)

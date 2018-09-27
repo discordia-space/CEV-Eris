@@ -1183,12 +1183,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)
 			user << SPAN_NOTICE("There is already a pen in \the [src].")
-		else
-			user.drop_from_inventory(C, src)
-			C.loc = src
+		else if(user.unEquip(C, src))
 			user << SPAN_NOTICE("You slide \the [C] into \the [src].")
 			update_icon()
-	return
 
 /obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
 	if (iscarbon(C))

@@ -180,7 +180,7 @@
 				return
 
 		if(7)
-			if(istype(I, /obj/item/weapon/gun/energy/taser))
+			if(istype(I, /obj/item/weapon/gun/energy/taser) && user.unEquip(I, src))
 				name = "taser ED-209 assembly"
 				build_step++
 				user << SPAN_NOTICE("You add [I] to [src].")

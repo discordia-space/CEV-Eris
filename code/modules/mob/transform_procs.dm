@@ -1,3 +1,4 @@
+// TODO: should be rewrited and updated
 /mob/living/carbon/human/proc/monkeyize()
 	if (transforming)
 		return

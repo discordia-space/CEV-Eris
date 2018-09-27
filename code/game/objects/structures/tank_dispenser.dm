@@ -50,24 +50,24 @@
 /obj/structure/dispenser/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
 		if(oxygentanks < 10)
-			user.drop_from_inventory(I, src)
-			oxytanks.Add(I)
-			oxygentanks++
-			user << SPAN_NOTICE("You put [I] in [src].")
-			if(oxygentanks < 5)
-				update_icon()
+			if(user.unEquip(I, src))
+				oxytanks.Add(I)
+				oxygentanks++
+				user << SPAN_NOTICE("You put [I] in [src].")
+				if(oxygentanks < 5)
+					update_icon()
 		else
 			user << SPAN_NOTICE("[src] is full.")
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/weapon/tank/plasma))
 		if(plasmatanks < 10)
-			user.drop_from_inventory(I, src)
-			platanks.Add(I)
-			plasmatanks++
-			user << SPAN_NOTICE("You put [I] in [src].")
-			if(oxygentanks < 6)
-				update_icon()
+			if(user.unEquip(I, src))
+				platanks.Add(I)
+				plasmatanks++
+				user << SPAN_NOTICE("You put [I] in [src].")
+				if(oxygentanks < 6)
+					update_icon()
 		else
 			user << SPAN_NOTICE("[src] is full.")
 		updateUsrDialog()

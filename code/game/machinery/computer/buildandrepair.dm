@@ -135,8 +135,7 @@
 					user << SPAN_NOTICE("You place the circuit board inside the frame.")
 					src.icon_state = "1"
 					src.circuit = I
-					user.drop_from_inventory(I)
-					I.forceMove(src)
+					user.drop_from_inventory(I, src)
 				else
 					user << SPAN_WARNING("This frame does not accept circuit boards of this type!")
 		if(2)

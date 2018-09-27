@@ -82,10 +82,9 @@
 	// Steel for matter.
 	if(prints_prosthetics && istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL)
 		var/obj/item/stack/S = W
-		stored_matter += S.amount * 10
-		user.drop_from_inventory(S, src)
+		S.use(1)
+		stored_matter += 10
 		user << "<span class='info'>\The [src] processes \the [S]. Levels of stored matter now: [stored_matter]</span>"
-		qdel(S)
 		return
 
 	return ..()

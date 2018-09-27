@@ -64,7 +64,7 @@
 /obj/machinery/radiocarbon_spectrometer/attack_hand(var/mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/radiocarbon_spectrometer/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/machinery/radiocarbon_spectrometer/attackby(var/obj/I, var/mob/user)
 	if(scanning)
 		user << SPAN_WARNING("You can't do that while [src] is scanning!")
 	else
@@ -95,9 +95,9 @@
 		if(scanned_item)
 			user << "<span class=warning>\The [src] already has \a [scanned_item] inside!</span>"
 			return
-		user.drop_from_inventory(I, src)
-		scanned_item = I
-		user << "<span class=notice>You put \the [I] into \the [src].</span>"
+		if(user.unEquip(I, src))
+			scanned_item = I
+			user << "<span class=notice>You put \the [I] into \the [src].</span>"
 
 /obj/machinery/radiocarbon_spectrometer/proc/update_coolant()
 	var/total_purity = 0

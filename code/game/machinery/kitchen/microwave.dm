@@ -137,11 +137,11 @@
 			)
 			return
 		else
-			user.drop_from_inventory(I, src)
-			user.visible_message(
-				SPAN_NOTICE("\The [user] has added \the [I] to \the [src]."),
-				SPAN_NOTICE("You add \the [I] to \the [src].")
-			)
+			if(user.unEquip(I, src))
+				user.visible_message(
+					SPAN_NOTICE("\The [user] has added \the [I] to \the [src]."),
+					SPAN_NOTICE("You add \the [I] to \the [src].")
+				)
 			return
 	else if(istype(I,/obj/item/weapon/reagent_containers/glass) || \
 	        istype(I,/obj/item/weapon/reagent_containers/food/drinks) || \

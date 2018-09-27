@@ -404,7 +404,6 @@
 			return
 		user << SPAN_NOTICE("You put [I] into [src]'s load hatch.")
 		biomass += 50
-		user.drop_from_inventory(I)
 		qdel(I)
 
 	src.add_fingerprint(user)
