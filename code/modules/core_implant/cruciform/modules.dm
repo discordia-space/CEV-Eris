@@ -89,6 +89,10 @@
 		for(var/mob/living/carbon/human/christian in christians)
 			var/image/I = image('icons/mob/hud.dmi', christian, icon_state = "hudcyberchristian", layer = ABOVE_LIGHTING_LAYER)
 			implant.wearer.client.images += I
+		implant.use_power(1)
+		if(implant.power < 1)
+			implant.wearer << SPAN_WARNING("Your cruciform pings. The energy is low.")
+			implant.remove_module(src)
 
 ///////////
 

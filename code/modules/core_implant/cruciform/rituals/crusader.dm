@@ -12,10 +12,11 @@
 
 
 /datum/ritual/cruciform/crusader/brotherhood/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	if(!C.get_module(/datum/core_module/cruciform/christianhud))
-		C.add_module(new /datum/core_module/cruciform/christianhud)
+	var/datum/core_module/cruciform/christianhud/hud_module = C.get_module(/datum/core_module/cruciform/christianhud)
+	if(hud_module)
+		C.remove_module(hud_module)
 	else
-		C.remove_module(C.get_module(/datum/core_module/cruciform/christianhud))
+		C.add_module(new /datum/core_module/cruciform/christianhud)
 	return TRUE
 
 
