@@ -45,7 +45,7 @@
 	if(species && species.has_organ[O_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[O_BRAIN]
 		if(sponge)
-			sponge.damage = min(max(amount, 0),(maxHealth*2))
+			sponge.damage = min(max(amount, 0),(maxHealth))
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -59,7 +59,7 @@
 	if(species && species.has_organ[O_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[O_BRAIN]
 		if(sponge)
-			brainloss = min(sponge.damage,maxHealth*2)
+			brainloss = min(sponge.damage,maxHealth)
 		else
 			brainloss = 200
 	else

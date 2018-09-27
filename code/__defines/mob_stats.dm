@@ -5,3 +5,5 @@
 #define STAT_BIO						"Biology"
 #define STAT_ROB						"Robustness"
 #define STAT_TGH						"Toughness"
+
+#define TOUGHNESS_HEALTH_FACTOR			0.01 // 1%. How much each point of toughness increases your maximum health

@@ -91,6 +91,7 @@ var/global/list/robot_modules = list(
 	R.speed_factor = speed_factor
 	R.power_efficiency = power_efficiency
 
+	R.stats.zero()
 	for(var/name in stat_modifers)
 		R.stats.changeStat(name, stat_modifers[name])
 

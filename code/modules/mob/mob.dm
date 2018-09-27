@@ -1173,7 +1173,14 @@ mob/proc/yank_out_object()
 		qdel(src.client.CH)
 
 
-/mob/living/proc/Released()
+/mob/proc/Released()
 	//This is called when the mob is let out of a holder
 	//Override for mob-specific functionality
+	return
+
+
+//This should be called whenever something is changed on a mob that may affect its max health
+//Override it to add anything that could concievably affect that mob
+//Overrides in living.dm, robot.dm and human.dm
+/mob/proc/update_max_health()
 	return

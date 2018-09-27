@@ -1077,7 +1077,6 @@ var/list/rank_prefix = list(\
 		usr << SPAN_WARNING("You failed to check the pulse. Try again.")
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
-//	world << "set species"
 	if(!dna)
 		if(!new_species)
 			new_species = "Human"
@@ -1126,7 +1125,6 @@ var/list/rank_prefix = list(\
 	src.sync_organ_dna()
 	species.handle_post_spawn(src)
 
-	maxHealth = species.total_health
 
 	spawn(0)
 		regenerate_icons()
@@ -1149,6 +1147,7 @@ var/list/rank_prefix = list(\
 		hud_used = new /datum/hud(src)
 		update_hud()
 	*/
+	update_max_health() //This also handles setting our health to the species value, and calls updatehealth
 	if(species)
 		return 1
 	else
@@ -1488,3 +1487,10 @@ var/list/rank_prefix = list(\
 		src << SPAN_NOTICE("You can't do it right now.")
 	return
 
+
+
+/mob/living/carbon/human/update_max_health()
+	if (species) //This should never be false
+		maxHealth = species.total_health
+		maxHealth *= 1 + (getStat(STAT_TGH)*TOUGHNESS_HEALTH_FACTOR)
+	updatehealth()
