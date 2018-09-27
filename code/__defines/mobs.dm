@@ -67,6 +67,7 @@
 #define ROBOT_NOTIFICATION_NEW_NAME 2
 #define ROBOT_NOTIFICATION_NEW_MODULE 3
 #define ROBOT_NOTIFICATION_MODULE_RESET 4
+#define ROBOT_NOTIFICATION_SIGNAL_LOST 5
 
 // Appearance change flags
 #define APPEARANCE_UPDATE_DNA  0x1
@@ -134,6 +135,8 @@
 
 #define ANIMAL_SPAWN_DELAY 5 MINUTES
 #define DRONE_SPAWN_DELAY  10 MINUTES
+
+#define CRYOPOD_SPAWN_BONUS	20 MINUTES //Going to sleep in a cryopod takes this much off your respawn time
 
 
 // Incapacitation flags, used by the mob/proc/incapacitated() proc

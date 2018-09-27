@@ -71,6 +71,8 @@
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
+	var/death_notified = FALSE
+
 	var/list/req_access = list(access_robotics)
 	var/ident = 0
 	//var/list/laws = list()
@@ -379,6 +381,14 @@
 		"}
 
 	return dat
+
+/mob/living/silicon/robot/verb/toggle_panel_lock()
+	set name = "Toggle Panel Lock"
+	set category = "Silicon Commands"
+	to_chat(src, "You begin [locked ? "" : "un"]locking your panel.")
+	if(!opened && has_power && do_after(usr, 80) && !opened && has_power)
+		to_chat(src, "You [locked ? "un" : ""]locked your panel.")
+		locked = !locked
 
 /mob/living/silicon/robot/verb/toggle_lights()
 	set category = "Silicon Commands"
@@ -1077,6 +1087,8 @@
 	if(!connected_ai)
 		return
 	switch(notifytype)
+		if(ROBOT_NOTIFICATION_SIGNAL_LOST)
+			connected_ai << "<br><br><span class='notice'>NOTICE - Signal lost: [braintype] [name].</span><br>"
 		if(ROBOT_NOTIFICATION_NEW_UNIT) //New Robot
 			connected_ai << "<br><br><span class='notice'>NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br>"
 		if(ROBOT_NOTIFICATION_NEW_MODULE) //New Module

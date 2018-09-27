@@ -147,6 +147,15 @@ Works together with spawning an observer, noted above.
 		else
 			set_death_time(CREW, world.time)//Crew is the fallback
 
+		//Set the respawn bonus from ghosting while in cryosleep.
+		//This is duplicated in the cryopod code for robustness. The message will not display twice
+		if (istype(loc, /obj/machinery/cryopod) && in_perfect_health())
+			if (!get_respawn_bonus("CRYOSLEEP"))
+				src << SPAN_NOTICE("Because you ghosted from a cryopod in good health, your crew respawn time has been reduced by 20 minutes.")
+				src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
+			set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
+
+
 		ghost.ckey = ckey
 		ghost.client = client
 		ghost.initialise_postkey()
@@ -407,47 +416,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
 
 
-/*
-/mob/observer/ghost/verb/become_mouse()
-	set name = "Become mouse"
-	set category = "Ghost"
-
-	if(config.disable_player_mice)
-		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
-		return
-
-
-
-	if(isOnAdminLevel(src))
-		src << "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>"
-		return
-
-	var/response = alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?","Squeek!","Nope!")
-	if(response != "Squeek!") return  //Hit the wrong key...again.
-
-
-	//find a viable mouse candidate
-	var/mob/living/simple_animal/mouse/host
-	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
-	var/list/found_vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in SSmachines.machinery)
-		if(!v.welded && v.z == src.z)
-			found_vents.Add(v)
-	if(found_vents.len)
-		vent_found = pick(found_vents)
-		host = new /mob/living/simple_animal/mouse(vent_found.loc)
-	else
-		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
-
-	if(host)
-		if(config.uneducated_mice)
-			host.universal_understand = 0
-		announce_ghost_joinleave(src, 0, "They are now a mouse.")
-		host.ckey = src.ckey
-		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
-*/
 /mob/observer/verb/become_mouse()
-	set name = "Become mouse"
+	set name = "Respawn as mouse"
 	set category = "Ghost"
 
 
@@ -732,6 +702,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/respawn_time = 0
 	if (respawn_type == CREW)
 		respawn_time = config.respawn_delay MINUTES
+
+		//Here we factor in bonuses added from cryosleep and similar things
+		timedifference += get_respawn_bonus()
 	else if (respawn_type == ANIMAL)
 		respawn_time = ANIMAL_SPAWN_DELAY
 	else if (respawn_type == MINISYNTH)
@@ -776,6 +749,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		set_death_time(CREW, world.time)
 
 
+//Just a wrapper for abandon mob below, for ease of access.
+/mob/observer/ghost/verb/respawn()
+	set name = "Respawn as character"
+	set category = "Ghost"
+	abandon_mob()
+
 /mob/verb/abandon_mob()
 	set name = "Respawn"
 	set category = "OOC"
@@ -784,22 +763,26 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "<span class='notice'>Respawn is disabled.</span>"
 		return
 
-	if (!istype(src, /mob/new_player))
-		usr << "<span class='notice'><B>You are already at the menu select join to join the game!</B></span>"
+	if (istype(src, /mob/new_player))
+		usr << "<span class='notice'><B>You are already at the lobby!</B></span>"
 		return
 
 	if (stat != DEAD)
 		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
 		return
 	else if(!MayRespawn(1, CREW))
-		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
+		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you like to bypass it?","Warning", "No", "Ok") != "Ok")
 			return
+
+	//Wipe any bonuses gained in the previous (after)life
+	clear_respawn_bonus()
+
 
 	usr << "You can respawn now, enjoy your new life!"
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
+	usr << "<span class='notice'><B>If your character died, make sure to play a different character!</B></span>"
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")

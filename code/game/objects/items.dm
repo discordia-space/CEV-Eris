@@ -146,7 +146,11 @@
 	src.pickup(user)
 
 	src.throwing = FALSE
-	user.put_in_active_hand(src)
+	if(user.put_in_active_hand(src))
+		if (isturf(old_loc) || isturf(old_loc.loc))
+			var/obj/effect/temp_visual/obj_pickup_ghost/ghost = new(get_turf(old_loc), src)
+			ghost.animate_towards(user)
+
 	return
 
 /obj/item/attack_ai(mob/user as mob)
@@ -163,7 +167,6 @@
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
-
 
 //Called whenever an item is dropped on the floor, thrown, or placed into a container.
 //It is called after loc is set, so if placed in a container its loc will be that container.

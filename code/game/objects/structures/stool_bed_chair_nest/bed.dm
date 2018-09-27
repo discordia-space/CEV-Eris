@@ -144,6 +144,10 @@
 	else
 		..()
 
+/obj/structure/bed/attack_robot(var/mob/user)
+	if(Adjacent(user)) // Robots can buckle/unbuckle but not the AI.
+		attack_hand(user)
+
 /obj/structure/bed/proc/remove_padding()
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))

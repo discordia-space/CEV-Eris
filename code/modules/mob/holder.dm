@@ -219,11 +219,12 @@ var/list/holder_mob_icon_cache = list()
 
 	spawn(2)
 		var/obj/item/weapon/holder/H = new holder_type(loc)
-
+		var/old_loc = src.loc
+		var/obj/effect/temp_visual/obj_pickup_ghost/ghost = new(old_loc, src)
+		
 		src.forceMove(H)
 
 		H.contained = src
-
 		if (src.stat == DEAD)
 			H.held_death()//We've scooped up an animal that's already dead. use the proper dead icons
 		else
@@ -236,8 +237,9 @@ var/list/holder_mob_icon_cache = list()
 			H.attack_hand(grabber)//We put this last to prevent some race conditions
 			if (H.loc == grabber)
 				success = 1
-
 		if (success)
+			if (isturf(old_loc))
+				ghost.animate_towards(grabber)
 			if (user == src)
 				grabber << "<span class='notice'>[src.name] climbs up onto you.</span>"
 				src << "<span class='notice'>You climb up onto [grabber].</span>"

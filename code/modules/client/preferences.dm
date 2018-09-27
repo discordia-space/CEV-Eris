@@ -17,6 +17,13 @@ var/list/preferences_datums = list()
 
 	var/list/time_of_death = list()//This is a list of last times of death for various things with different respawn timers
 
+	var/list/crew_respawn_bonuses = list()
+	//This is a list of bonuses that are subtracted from your crew respawn time
+	//This is used to make certain ingame actions allow a dead player to respawn faster
+	//It uses an associative list to prevent exploits, so the same bonus cannot be gained repeatedly.
+	//It will just overwrite the value
+
+
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color

@@ -4,12 +4,11 @@
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
 
 	possible_objectives = list(
-	list(
-	/datum/objective/assasinate = 30,
-	/datum/objective/brig = 15,
-	/datum/objective/harm = 15,
-	/datum/objective/steal = 30,
-	))
+		/datum/objective/assasinate = 30,
+		/datum/objective/brig = 15,
+		/datum/objective/harm = 15,
+		/datum/objective/steal = 30,
+	)
 
 	survive_objective = /datum/objective/escape
 
@@ -65,7 +64,7 @@
 	survive_objective = /datum/objective/survive
 
 /datum/antagonist/traitor/synth/can_become_antag(var/datum/mind/player)
-	return issilicon(player) && ..(player)
+	return issilicon(player.current) && ..(player)
 
 /datum/antagonist/traitor/synth/equip()
 	add_law_zero()
