@@ -30,15 +30,21 @@
 
 /datum/slot/proc/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(req_item_in_slot && !owner.get_equipped_item(req_item_in_slot))
-		//owner << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
+		if(!disable_warning)
+			owner << SPAN_WARNING("You need something you can attach this [I] to.")
 		return FALSE
+
 	if(req_organ)
 		if(islist(req_organ))
 			for(var/organ in req_organ)
 				if(!owner.has_organ(organ, req_organ[organ]))
+					if(!disable_warning)
+						owner << SPAN_WARNING("You have nothing you can thear this [I] on.")
 					return FALSE
 		else
 			if(!owner.has_organ(req_organ))
+				if(!disable_warning)
+					owner << SPAN_WARNING("You have nothing you can thear this [I] on.")
 				return FALSE
 
 	if(req_type && istype(I, req_type))
@@ -48,6 +54,8 @@
 	else if(max_w_class && (I.w_class <= max_w_class))
 		return TRUE
 
+	if(!disable_warning)
+		owner << SPAN_WARNING("You can't wear [I] in your [name] slot")
 	return FALSE
 
 /datum/slot/proc/update_icon(mob/living/owner, redraw)
@@ -82,8 +90,15 @@
 	update_proc = /mob/proc/update_inv_legcuffed
 
 
-/datum/slot/hand/can_equip()
-	return TRUE
+/datum/slot/hand
+	req_type = /obj/item
+
+/datum/slot/hand/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	if(owner.lying)
+		if(!disable_warning)
+			owner << SPAN_WARNING("You can't hold items while lying")
+		return FALSE
+	return ..()
 
 /datum/slot/hand/left
 	name = "Left hand"
@@ -175,6 +190,8 @@
 
 /datum/slot/store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(I.slot_flags & SLOT_DENYPOCKET)
+		if(!disable_warning)
+			owner << SPAN_WARNING("[I] can't be holded by your [name].")
 		return FALSE
 	else
 		return ..()
@@ -199,19 +216,36 @@
 	var/obj/item/wear_suit = owner.get_equipped_item(slot_wear_suit)
 	if(!wear_suit.allowed)
 		if(!disable_warning)
-			usr << SPAN_WARNING("You can't attach anything to that [wear_suit].")
+			owner << SPAN_WARNING("You can't attach anything to that [wear_suit].")
 		return FALSE
 	return is_type_in_list(src, wear_suit.allowed + list(/obj/item/device/pda, /obj/item/weapon/pen))
 
+
+//Special virtual slots. Here for backcompability.
 /datum/slot/in_backpack
 	name = "Slot in backpack"
 	id = slot_in_backpack
+
+/datum/slot/in_backpack/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	var/obj/item/weapon/storage/back = owner.get_equipped_item(slot_back)
+	return istype(back) && back.can_be_inserted(src,1)
+
 
 /datum/slot/accessory
 	name = "Slot accessory"
 	id = slot_accessory_buffer
 
-
+/datum/slot/accessory/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	var/obj/item/clothing/under/uniform = owner.get_equipped_item(slot_w_uniform)
+	if(!uniform)
+		if(!disable_warning)
+			src << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
+		return FALSE
+	if(uniform.accessories.len && !uniform.can_attach_accessory(src))
+		if (!disable_warning)
+			src << SPAN_WARNING("You already have an accessory of this type attached to your [uniform].")
+		return FALSE
+	return TRUE
 /*
 slot_legs
 */

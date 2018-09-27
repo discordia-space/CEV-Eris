@@ -26,6 +26,7 @@ It calls:
 	- Mob.can_equip(Item, slot, disable_warning) and Item.can_be_equiped(mob, slot, disable_warning)
 	- If Item already equipped on someone other_mob.unEquip(Item) will be called.
 	- Item.pre_equip(src, slot)
+	- if Item.pre_equip(..) take some time Mob.can_equip(...) and Item.can_be_equiped(...) will be called again .
 	- Mob.equip_to_slot(Item, slot, redraw_mob)
 */
 
@@ -101,5 +102,70 @@ It calls:
 	- Mob.can_unequip(Item, disable_warning) and Item.can_be_unequiped(Mob, disable_warning)
 	- drop_from_inventory(Item, Target)
 */
+
+
+// HANDS //
+
+/*
+All procs in that category is safety to call for any mob type.
+You shouldn't do any special checks like is_robotmodule or ismob(item.loc)
+But procs returning value is important!
+*/
+
+/mob/proc/get_active_hand()
+/mob/proc/get_inactive_hand()
+/*
+Returns the thing in Mob active/inactive hand
+get_active_hand() can return actual value for humans, robots and mb any other mobs
+But get_inactive_hand() probably will return something only for humans
+Because it's not simple to find inactive hand in any other type of mob
+*/
+
+/mob/proc/put_in_active_hand(var/obj/item/Item)
+/mob/proc/put_in_inactive_hand(var/obj/item/Item)
+/*
+Puts the Item into Mob active/inactive hand if possible
+Returns TRUE on success.
+Again put_in_active_hand() will work for planty types of mob
+But put_in_inactive_hand() probably will be suitable only for humans
+Human ovveride calls:
+	- Mob.equip_to_slot_if_possible(Item, slot_r_hand|slot_l_hand)
+*/
+
+/mob/proc/put_in_hands(var/obj/item/Item)
+/*
+Puts the item Mob active hand if possible. Failing that it tries our inactive hand.
+Returns TRUE on success.
+If both fail it drops Item on the floor and returns FALSE
+If Item was equipped, it still will be dropped on the floor.
+calls:
+	- put_in_active_hand(Item)
+	- put_in_inactive_hand(Item)
+	- Item.is_equipped()
+	- Item.loc.unEquip(Item, Mob.loc) // if was equipped
+*/
+
+/mob/proc/drop_active_hand(var/atom/Target)
+/*
+Drops the item from Mob active hand into Target
+That proc previously called drop_item()
+It calls:
+	- Mob.get_active_hand()
+	- Mob.unEquip(Item, Target)
+*/
+
+/mob/proc/drop_all_hands(var/pick_one = FALSE)
+/*
+Drop items from all Mob hands or one random hand
+Pick_one - drop one random hand else drop all
+Write instead drop_inactive_hand() to make it suitable for each type of mob
+*/
+
+
+
+// HELPERS ///
+
+
+
 
 

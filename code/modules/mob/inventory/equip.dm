@@ -1,13 +1,11 @@
-/mob/proc/equip_to_slot(obj/item/W, slot, redraw_mob = TRUE)
+/mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE)
 
 /mob/proc/equip_to_slot_if_possible(obj/item/Item, slot, disable_warning, redraw_mob = TRUE)
 
 	if(!istype(Item))
 		return FALSE
 
-	if(!can_equip(Item, slot) || !Item.can_be_equipped(src, slot))
-		if(!disable_warning)
-			src << SPAN_WARNING("You are unable to equip that.")
+	if(!can_equip(Item, slot, disable_warning) || !Item.can_be_equipped(src, slot, disable_warning))
 		return FALSE
 
 	var/world_time = world.timeofday
@@ -18,9 +16,7 @@
 
 	//Pre-equip can take time
 	if(world_time != world.timeofday)
-		if(!can_equip(Item, slot) || !Item.can_be_equipped(src, slot))
-			if(!disable_warning)
-				src << SPAN_WARNING("You are unable to equip that.")
+		if(!can_equip(Item, slot, disable_warning) || !Item.can_be_equipped(src, slot, disable_warning))
 			return FALSE
 
 	if(Item.is_equipped())

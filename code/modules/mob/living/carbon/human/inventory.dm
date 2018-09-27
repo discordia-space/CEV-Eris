@@ -145,10 +145,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1)
-	if(ismob(W.loc))
-		var/mob/M = W.loc
-		if(M.get_inventory_slot(W) && !M.prepare_for_slotmove(W))
-			return
 	W.forceMove(src)
 	switch(slot)
 		if(slot_back)
@@ -266,10 +262,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
-	var/datum/slot/S = get_inventory_slot_datum(slot)
-	if(!S.can_equip(I, src, user))
-		return FALSE
-
 	var/obj/item/covering = null
 	var/check_flags = 0
 
@@ -280,13 +272,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_glasses)
 			covering = src.head
 			check_flags = EYES
-		if(slot_l_ear, slot_r_ear, )
+		if(slot_l_ear, slot_r_ear)
 			covering = src.head
 		if(slot_gloves, slot_w_uniform)
 			covering = src.wear_suit
-		if(slot_l_hand, slot_r_hand)
-			if(lying)
-				return FALSE
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
@@ -344,19 +333,3 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	return items
 
-
-//The parent does all the checks, this one is just for feedback messages
-/mob/living/carbon/human/can_pickup(var/obj/item/I, var/feedback = TRUE)
-	.=..()
-
-	if (!. && feedback)
-		//Feedback moved here from item attackhand
-		var/obj/item/organ/external/temp = organs_by_name[BP_R_ARM]
-		if (hand)
-			temp = organs_by_name[BP_L_ARM]
-		if(temp && !temp.is_usable())
-			src << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
-			return
-		if(!temp)
-			src << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
-			return

@@ -289,7 +289,7 @@
 /obj/item/weapon/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W)) return //Not an item
 
-	if(usr && usr.isEquipped(W) && !usr.canUnEquip(W))
+	if(usr && usr.get_inventory_slot(W) && !usr.canUnEquip(W))
 		return 0
 
 	if(src.loc == W)

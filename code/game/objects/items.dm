@@ -142,21 +142,10 @@
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user) return
-	if (!user.can_pickup(src))
-		return
 
 	src.pickup(user)
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
-		S.remove_from_storage(src)
 
-	src.throwing = 0
-	if (src.loc == user)
-		if(!user.prepare_for_slotmove(src))
-			return
-	else
-		if(isliving(src.loc))
-			return
+	src.throwing = FALSE
 	user.put_in_active_hand(src)
 	return
 
@@ -178,17 +167,9 @@
 
 //Called whenever an item is dropped on the floor, thrown, or placed into a container.
 //It is called after loc is set, so if placed in a container its loc will be that container.
-/obj/item/proc/dropped(mob/user as mob)
+/obj/item/proc/dropped(mob/user)
 	..()
 	if(zoom) zoom() //binoculars, scope, etc
-
-
-// Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere
-// Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
-// This exists so that dropped() could exclusively be called when an item is dropped.
-/obj/item/proc/on_slotmove(var/mob/user)
-	if (zoom)
-		zoom(user)
 
 
 // called just as an item is picked up (loc is not yet changed)
