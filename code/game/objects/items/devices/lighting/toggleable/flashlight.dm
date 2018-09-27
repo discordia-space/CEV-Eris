@@ -15,7 +15,7 @@
 	var/spot_locked = FALSE		//this flag needed for lightspot to stay in place when player clicked on turf, will reset when moved or turned
 
 	var/light_direction
-	
+
 /obj/item/device/lighting/toggleable/flashlight/New()
 	..()
 	if(!cell && suitable_cell)
@@ -29,7 +29,7 @@
 	if (istype(src.loc,/obj/item/weapon/storage) || istype(src.loc,/obj/structure/closet))
 		return
 	if (istype(src.loc,/mob/living))
-		var/mob/living/L = src.loc 
+		var/mob/living/L = src.loc
 		set_dir(L.dir)
 	else if (pulledby && old_loc)
 		var/x_diff = src.x - old_loc.x
@@ -71,7 +71,7 @@
 					if(T.is_space())
 						break
 					NT = T
-				else 
+				else
 					hitSomething = TRUE
 					break
 		if(EAST)
@@ -81,7 +81,7 @@
 					if(T.is_space())
 						break
 					NT = T
-				else 
+				else
 					hitSomething = TRUE
 					break
 		if(WEST)
@@ -91,7 +91,7 @@
 					if(T.is_space())
 						break
 					NT = T
-				else 
+				else
 					hitSomething = TRUE
 					break
 
@@ -140,10 +140,6 @@
 		if(istype(O, /obj/structure/window))
 			return FALSE
 	return TRUE
-
-/obj/item/device/lighting/toggleable/flashlight/moved(mob/user, old_loc)
-	spot_locked = FALSE
-	calculate_dir(old_loc)
 
 /obj/item/device/lighting/toggleable/flashlight/entered_with_container()
 	spot_locked = FALSE

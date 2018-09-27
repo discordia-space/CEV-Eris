@@ -1,4 +1,5 @@
 /obj/item/clothing/suit/storage
+	item_flags = DRAG_N_DROP_UNEQUIP|LOUDLY_EQUIPEMENT
 	var/obj/item/weapon/storage/internal/pockets
 
 /obj/item/clothing/suit/storage/New()

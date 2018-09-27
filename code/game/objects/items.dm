@@ -146,12 +146,11 @@
 	src.pickup(user)
 
 	src.throwing = FALSE
+	var/atom/old_loc = loc
 	if(user.put_in_active_hand(src))
 		if (isturf(old_loc) || isturf(old_loc.loc))
 			var/obj/effect/temp_visual/obj_pickup_ghost/ghost = new(get_turf(old_loc), src)
 			ghost.animate_towards(user)
-
-	return
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(src.loc, /obj/item/weapon/robot_module))
@@ -162,10 +161,7 @@
 		R.activate_module(src)
 //		R.hud_used.update_robot_modules_display()
 
-/obj/item/proc/talk_into(mob/M as mob, text)
-	return
-
-/obj/item/proc/moved(mob/user as mob, old_loc as turf)
+/obj/item/proc/talk_into(mob/M, text)
 	return
 
 //Called whenever an item is dropped on the floor, thrown, or placed into a container.
@@ -196,8 +192,13 @@
 //Use this to do any necessary preparations for equipping
 //Immediately after this, the equipping will be handled and then equipped will be called.
 //Returning a non-zero value will silently abort the equip operation
+//Can take few ticks if reqed
 /obj/item/proc/pre_equip(var/mob/user, var/slot)
-	return 0
+	//Some inventory sounds.
+	//occurs when you equip something
+	if(item_flags & LOUDLY_EQUIPEMENT)
+		var/picked_sound = pick(w_class > ITEM_SIZE_NORMAL ? long_equipement_sound : short_equipement_sound)
+		playsound(src, picked_sound, 100, 1, 1)
 
 
 // called after an item is placed in an equipment slot

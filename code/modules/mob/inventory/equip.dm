@@ -29,13 +29,6 @@
 
 	equip_to_slot(Item, slot, redraw_mob) //This proc should not ever fail.
 
-
-	if(!istype(Item, /obj/item/clothing/suit/storage) || !istype(Item, /obj/item/weapon/storage))
-		if(Item.w_class > ITEM_SIZE_NORMAL)
-			play_long()
-		else
-			play_short()
-
 	return TRUE
 
 
