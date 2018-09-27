@@ -24,8 +24,8 @@ meteor_act
 			P.on_hit(src, 2, def_zone)
 			return 2
 	//Checking abosrb for spawning shrapnel
-	.=..(P , def_zone) 
-	
+	.=..(P , def_zone)
+
 	var/check_absorb = .
 	//Shrapnel
 	if(P.can_embed() && (check_absorb < 2))
@@ -37,7 +37,6 @@ meteor_act
 			SP.loc = organ
 			organ.embed(SP)
 
-	return (..(P , def_zone))
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
