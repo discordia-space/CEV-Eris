@@ -5,7 +5,6 @@
 	return slot in inventory
 
 
-//This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
 	var/obj/item/W = get_active_hand()
 	var/obj/item/E = get_equipped_item(slot)
@@ -19,12 +18,11 @@
 
 
 
-//Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/proc/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
+/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user=null)
 	return TRUE
 
 
-/mob/proc/can_equip(obj/item/W, slot, disable_warning = FALSE)
+/mob/proc/can_equip(obj/item/Item, slot, disable_warning = FALSE)
 	return FALSE
 
 
@@ -53,14 +51,12 @@
 	return slot_is_accessible(slot, Item, disable_warning? null : src)
 
 
-/mob/proc/get_inventory_slot(obj/item/I)
-	return I && I.get_holding_mob() == src && I.get_equip_slot()
+/mob/proc/get_inventory_slot(obj/item/Item)
+	return Item && Item.get_holding_mob() == src && Item.get_equip_slot()
 
-//Returns the item equipped to the specified slot, if any.
 /mob/proc/get_equipped_item(var/slot)
 	return null
 
-//Outdated but still in use apparently. This should at least be a human proc.
 /mob/proc/get_equipped_items()
 	return list()
 

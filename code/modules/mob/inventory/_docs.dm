@@ -163,7 +163,57 @@ Write instead drop_inactive_hand() to make it suitable for each type of mob
 
 
 
-// HELPERS ///
+// HELPERS //
+
+/mob/proc/attack_ui(slot)
+/*
+This proc is called whenever someone clicks an inventory ui slot.
+If smth occupy slot, then reslolve_attack/attackhand will be called, else equip_to_slot_if_possible()
+It calls:
+	- Mob.get_active_hand()
+	- Mob.get_equipped_item(slot)
+	- Mob.equip_to_slot_if_possible(Item, slot)
+	- or Mob.attackhand(equippedItem)
+	- or equippedItem.resolve_attackby(Item, Mob)
+*/
+
+/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user=null)
+/*
+Checks if a given slot can be accessed at this time, either to equip or unequip Item
+*/
+
+
+/mob/proc/can_equip(obj/item/Item, slot, disable_warning = FALSE)
+/*
+Return TRUE if Mob can equip Item
+Don't confuse with Item.can_be_equipped(Mob, slot, disable_warning)
+*/
+
+/mob/proc/can_unequip(obj/item/Item, slot, disable_warning = FALSE)
+/*
+Return TRUE if Mob can unequip Item
+Don't confuse with Item.can_be_unequipped(Mob, slot, disable_warning)
+*/
+
+
+/mob/proc/get_inventory_slot(obj/item/Item)
+/*
+Return id of slot what occupied with Item
+It calls:
+	- Item.get_holding_mob()
+	- Item.get_equip_slot()
+*/
+
+/mob/proc/get_equipped_item(var/slot)
+/*
+Returns the item equipped to the specified slot, if any.
+*/
+
+/mob/proc/get_equipped_items()
+/*
+Return list of all items equipped by Mob or emply list if non items found
+*/
+
 
 
 
