@@ -48,6 +48,9 @@
 	..()
 	return
 
+/atom/movable/proc/entered_with_container(var/atom/old_loc)
+	return
+
 /atom/movable/proc/forceMove(atom/destination, var/special_event)
 	if(loc == destination)
 		return 0
