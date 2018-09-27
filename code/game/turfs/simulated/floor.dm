@@ -28,6 +28,12 @@
 	var/maxHealth = 100
 
 
+/turf/simulated/floor/Entered(atom/atom as mob|obj)
+	..(atom)
+	if (flooring)
+		world << "Floor calling flooring entered"
+		flooring.Entered(atom)
+
 /turf/simulated/floor/is_plating()
 	if (flooring)
 		return flooring.is_plating

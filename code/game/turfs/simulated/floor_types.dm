@@ -31,7 +31,6 @@ turf/simulated/floor/plating
 	icon = 'icons/turf/flooring/plating.dmi'
 	name = "plating"
 	icon_state = "plating"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	initial_flooring = /decl/flooring/reinforced/plating
 
 /turf/simulated/floor/plating/under
@@ -39,23 +38,7 @@ turf/simulated/floor/plating
 	icon_state = "under"
 	icon = 'icons/turf/flooring/plating.dmi'
 	initial_flooring = /decl/flooring/reinforced/plating/under
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 
-/turf/simulated/floor/plating/under/Entered(mob/living/M as mob)
-	..()
-	for(var/obj/structure/catwalk/C in get_turf(src))
-		return
-
-	//BSTs need this or they generate tons of soundspam while flying through the ship
-	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(src))
-		return
-	if(M.m_intent == "run")
-		if(prob(40))
-			M.adjustBruteLoss(5)
-			M.slip(null, 6)
-			playsound(src, 'sound/effects/bang.ogg', 50, 1)
-			M << SPAN_WARNING("You tripped over!")
-			return
 
 /turf/simulated/floor/grass
 	name = "grass patch"

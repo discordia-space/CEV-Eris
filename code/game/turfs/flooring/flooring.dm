@@ -48,12 +48,12 @@ var/list/flooring_types
 	var/plating_type = /decl/flooring/reinforced/plating
 
 	//Resistance is subtracted from all incoming damage
-	var/resistance = 0
+	var/resistance = 3
 
 	//Damage the floor can take before being destroyed
 	var/health = 50
 
-	var/removal_time = 30
+	var/removal_time = WORKTIME_FAST * 0.75
 
 
 //Flooring Procs
@@ -71,7 +71,8 @@ var/list/flooring_types
 	return FALSE
 
 
-
+/decl/flooring/proc/Entered(mob/living/M as mob)
+	return
 
 
 /decl/flooring/grass
@@ -151,7 +152,7 @@ var/list/flooring_types
 	is_plating = TRUE
 	removal_time = 250
 	health = 200
-	resistance = 10
+	resistance = 12
 	footstep_sound = "catwalk"
 
 //Underplating can only be upgraded to normal plating
@@ -191,6 +192,24 @@ var/list/flooring_types
 
 
 
+/decl/flooring/reinforced/plating/under/Entered(mob/living/M as mob)
+	world << "Underplating entered"
+	for(var/obj/structure/catwalk/C in get_turf(M))
+		world << "Catwalk found, no tripping"
+		return
+
+	//BSTs need this or they generate tons of soundspam while flying through the ship
+	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(get_turf(M)))
+		world << "Nothuman, or incorp, or nogravity"
+		return
+	if(M.m_intent == "run")
+		if(prob(40))
+			M.adjustBruteLoss(5)
+			M.slip(null, 6)
+			playsound(M, 'sound/effects/bang.ogg', 50, 1)
+			M << SPAN_WARNING("You tripped over!")
+			return
+
 
 
 
@@ -206,8 +225,8 @@ var/list/flooring_types
 	//try_update_icon = 0
 	plating_type = null
 	is_plating = TRUE
-	health = 300
-	resistance = 15
+	health = 350
+	resistance = 20
 	removal_time = 1 MINUTE //Cutting through the hull is very slow work
 	footstep_sound = "hull"
 
@@ -387,7 +406,7 @@ var/list/flooring_types
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
 	can_paint = 1
-	resistance = 7
+	resistance = 10
 	footstep_sound = "plating"
 
 /decl/flooring/reinforced/circuit

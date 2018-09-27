@@ -3,20 +3,12 @@
 	//set src in oview(1)
 	switch(severity)
 		if(1.0)
-			take_damage(rand(450, 700), BLAST) //Breaks through 3 - 4 layers
+			take_damage(rand(350, 600), BLAST) //Breaks through 3 - 4 layers
 		if(2.0)
-			take_damage(rand(150, 550), BLAST) //Breaks through 2 - 3 layers
+			take_damage(rand(125, 450), BLAST) //Breaks through 2 - 3 layers
 		if(3.0)
-			take_damage(rand(40, 170), BLAST) //Breaks 1-2 layers
+			take_damage(rand(30, 150), BLAST) //Breaks 1-2 layers
 
-	//Health values for balancing:
-	//Normal floor, 50 HP, total 50
-	//Plating, 100, total 150
-	//Underplating 200, total 350
-	//Hull 300, total 650
-
-	//EX act 1 can only rarely break through all four layers and cause a hull breach
-	//As a result, most bombs will not breach the hull unless they're near a window
 
 
 /turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

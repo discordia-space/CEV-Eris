@@ -40,7 +40,9 @@
 		return
 
 	if (is_plating())
+		world << "Plating attackby"
 		if(istype(I, /obj/item/stack))
+			world << "Is stack"
 			if(is_damaged())
 				user << SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage.")
 				return
@@ -51,10 +53,15 @@
 				if(!F.build_type)
 					continue
 				if((ispath(S.type, F.build_type) || ispath(S.build_type, F.build_type)) && ((S.type == F.build_type) || (S.build_type == F.build_type)))
+					world << "Found a match: [F]"
 					if (flooring && flooring.can_build_floor(F))
+						world << "We are allowed to build it"
 						use_flooring = F
 						break
+					else
+						world << "Not allowed to build it"
 			if(!use_flooring)
+				world << "Failed to find any compatible floors"
 				return
 			// Do we have enough?
 			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)
@@ -63,7 +70,7 @@
 			// Stay still and focus...
 			if(use_flooring.build_time && !do_after(user, use_flooring.build_time, src))
 				return
-			if(flooring || !S || !user || !use_flooring)
+			if(	!S || !user || !use_flooring)
 				return
 			if(S.use(use_flooring.build_cost))
 				set_flooring(use_flooring)
@@ -107,7 +114,7 @@
 
 			if(QUALITY_SCREW_DRIVING)
 				if((!(is_damaged()) && !is_plating()) || flooring.flags & TURF_REMOVE_SCREWDRIVER)
-					if(I.use_tool(user, src, flooring.removal_time*0.5, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, flooring.removal_time*1.5, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You unscrew and remove the [flooring.descriptor].")
 						make_plating(1)
 				return
@@ -147,7 +154,7 @@
 			if(ABORT_CHECK)
 				return
 
-		if(istype(I, /obj/item/stack/cable_coil) && flooring.flags & TURF_HIDES_THINGS)
+		if(istype(I, /obj/item/stack/cable_coil) && (flooring.flags & TURF_HIDES_THINGS))
 			user << SPAN_WARNING("You must remove the [flooring.descriptor] first.")
 			return
 		else if (istype(I, /obj/item/frame))
@@ -160,8 +167,8 @@
 
 
 /turf/simulated/floor/can_build_cable(var/mob/user)
-	if(!is_plating() || flooring)
-		user << SPAN_WARNING("Removing the tiling first.")
+	if(flooring && (flooring.flags & TURF_HIDES_THINGS))
+		user << SPAN_WARNING("You must remove the [flooring.descriptor] first.")
 		return 0
 	if(is_damaged())
 		user << SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage.")

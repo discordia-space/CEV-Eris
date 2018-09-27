@@ -33,6 +33,11 @@
 		//This turf is space or an open space, it can't break, burn or be damaged
 		broken = FALSE
 		burnt = FALSE
+
+		//But we could break lattices in this tile
+		for (var/obj/structure/lattice/L in src)
+			if (damage > 75)
+				L.ex_act(1)
 		return
 
 	damage -= flooring.resistance
