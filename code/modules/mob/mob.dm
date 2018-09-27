@@ -234,6 +234,9 @@
 		return 1
 
 	face_atom(A)
+	var/obj/item/device/lighting/toggleable/flashlight/FL = locate() in src
+	if (FL && FL.on && src.stat != DEAD && !incapacitated())
+		FL.afterattack(A,src)
 	A.examine(src)
 
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
