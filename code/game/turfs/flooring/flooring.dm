@@ -23,7 +23,6 @@ var/list/flooring_types
 	var/icon
 	var/icon_base
 
-	//TODO: Implement sounds
 	var/footstep_sound = "floor"
 	var/hit_sound = null
 
