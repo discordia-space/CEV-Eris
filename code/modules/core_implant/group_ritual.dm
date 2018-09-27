@@ -6,7 +6,7 @@ var/group_global_cooldown = 0
 	phrase = null
 	power = 0
 	category = "Group"
-	var/cooldown = TRUE
+	cooldown = TRUE
 	var/list/phrases = list()
 	var/effect_type = null
 
