@@ -213,12 +213,12 @@
 				if(d == 0)
 					. += P
 
-			else if(istype(AM,/obj/structure/cable))
-				var/obj/structure/cable/C = AM
+		else if(istype(AM,/obj/structure/cable))
+			var/obj/structure/cable/C = AM
 
-				if(!unmarked || !C.powernet)
-					if(C.d1 == d || C.d2 == d || C.d1 == reverse || C.d2 == reverse )
-						. += C
+			if(!unmarked || !C.powernet)
+				if(C.d1 == d || C.d2 == d || C.d1 == reverse || C.d2 == reverse )
+					. += C
 	return .
 
 //remove the old powernet and replace it with a new one throughout the network.
