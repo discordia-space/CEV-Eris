@@ -23,7 +23,7 @@
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
 	//Melee weapon embedded object code.
-	if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
+	if (I && I.damtype == BRUTE && !I.anchored)
 		var/damage = effective_force
 		if (blocked)
 			damage /= blocked+1
