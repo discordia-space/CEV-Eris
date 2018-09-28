@@ -61,8 +61,8 @@
 //This is mainly so that janiborg can put things on tables
 /obj/structure/table/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
 	if(istype(A.loc, /mob))
-		user.unEquip(A, loc)
-		set_pixel_click_offset(A, params)
+		if (user.unEquip(A, loc))
+			set_pixel_click_offset(A, params)
 		return
 
 	if (istype(A, /obj/item) && istype(A.loc, /turf) && (A.Adjacent(src) || user.Adjacent(src)))
@@ -135,7 +135,6 @@
 		user << SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first.")
 		return
 
-	set_pixel_click_offset(W, params)
-	user.unEquip(W, src.loc)
-
+	if (user.unEquip(W, loc))
+		set_pixel_click_offset(W, params)
 /obj/structure/table/attack_tk() // no telehulk sorry
