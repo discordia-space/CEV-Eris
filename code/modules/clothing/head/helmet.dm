@@ -125,5 +125,5 @@
 	else
 		icon_state = "light_riot_on"
 		set_light(2, 2, "#F3B922")
-	update_clothing_icon()
+	update_wear_icon()
 	..()

@@ -96,7 +96,7 @@
 		else
 			icon_state = "[initial(icon_state)][ratio]"
 	if(!ignore_inhands)
-		update_held_icon()
+		update_wear_icon()
 
 /obj/item/weapon/gun/energy/MouseDrop(over_object)
 	if(!self_recharge)

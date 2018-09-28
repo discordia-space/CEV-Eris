@@ -216,6 +216,9 @@ Return list of all items equipped by Mob or emply list if non items found
 
 
 
-
-
+// ITEM //
+/*
+Most procs from that categoy located in:
+ code/game/objects/items.dm
+*/
 

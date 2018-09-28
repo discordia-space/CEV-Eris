@@ -88,7 +88,7 @@
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
 
-/obj/item/weapon/gun/update_held_icon()
+/obj/item/weapon/gun/update_wear_icon()
 	if(requires_two_hands)
 		var/mob/living/M = loc
 		if(istype(M))

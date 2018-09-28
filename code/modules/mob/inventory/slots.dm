@@ -59,7 +59,8 @@
 	return FALSE
 
 /datum/slot/proc/update_icon(mob/living/owner, redraw)
-	call(owner, update_proc)(redraw)
+	if(update_proc)
+		call(owner, update_proc)(redraw)
 
 /datum/slot/back
 	name = "Back"
@@ -123,7 +124,7 @@
 	name = "ID card"
 	id = slot_wear_id
 	req_slot_flags = SLOT_ID
-	update_proc = /mob/proc/update_inv_belt
+	update_proc = /mob/proc/update_inv_wear_id
 
 
 /datum/slot/ear
@@ -153,40 +154,47 @@
 	id = slot_glasses
 	req_organ = BP_HEAD
 	req_slot_flags = SLOT_EYES
+	update_proc = /mob/proc/update_inv_glasses
 
 /datum/slot/gloves
 	name = "Gloves"
 	id = slot_gloves
 	req_organ = list(BP_L_ARM, BP_R_ARM)
 	req_slot_flags = SLOT_GLOVES
+	update_proc = /mob/proc/update_inv_gloves
 
 /datum/slot/head
 	name = "Head"
 	id = slot_head
 	req_organ = BP_HEAD
 	req_slot_flags = SLOT_HEAD
+	update_proc = /mob/proc/update_inv_head
 
 /datum/slot/shoes
 	name = "Shoes"
 	id = slot_shoes
 	req_organ = list(BP_L_LEG, BP_R_LEG)
 	req_slot_flags = SLOT_FEET
+	update_proc = /mob/proc/update_inv_shoes
 
 /datum/slot/wear_suit
 	name = "Wear suit"
 	id = slot_wear_suit
 	req_organ = BP_CHEST
 	req_slot_flags = SLOT_OCLOTHING
+	update_proc = /mob/proc/update_inv_wear_suit
 
 /datum/slot/uniform
 	name = "Uniform"
 	id = slot_w_uniform
 	req_organ = BP_CHEST
 	req_slot_flags = SLOT_ICLOTHING
+	update_proc = /mob/proc/update_inv_w_uniform
 
 /datum/slot/store
 	req_item_in_slot = slot_w_uniform
 	max_w_class = ITEM_SIZE_SMALL
+	update_proc = /mob/proc/update_inv_pockets
 
 /datum/slot/store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(I.slot_flags & SLOT_DENYPOCKET)
@@ -209,6 +217,7 @@
 	name = "Store"
 	id = slot_s_store
 	req_item_in_slot = slot_wear_suit
+	update_proc = /mob/proc/update_inv_s_store
 
 /datum/slot/special_store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(!..())

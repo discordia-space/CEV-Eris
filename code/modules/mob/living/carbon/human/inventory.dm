@@ -11,12 +11,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!I)
 		src << SPAN_NOTICE("You are not holding anything to equip.")
 		return
-	if(equip_to_appropriate_slot(I))
-		if(hand)
-			update_inv_l_hand(0)
-		else
-			update_inv_r_hand(0)
-	else
+	if(!equip_to_appropriate_slot(I))
 		src << SPAN_WARNING("You are unable to equip that.")
 
 //Find HUD position on screen
@@ -124,15 +119,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 		update_inv_legcuffed()
 	else if (W == r_hand)
 		r_hand = null
-		if(l_hand)
-			l_hand.update_held_icon()
-			update_inv_l_hand()
 		update_inv_r_hand()
 	else if (W == l_hand)
 		l_hand = null
-		if(r_hand)
-			r_hand.update_held_icon()
-			update_inv_l_hand()
 		update_inv_l_hand()
 	else
 		return 0
