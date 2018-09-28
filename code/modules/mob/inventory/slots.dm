@@ -76,8 +76,8 @@
 	req_slot_flags = SLOT_MASK
 	update_proc = /mob/proc/update_inv_wear_mask
 
-/datum/slot/handcuffes
-	name = "Handcuffes"
+/datum/slot/handcuffs
+	name = "Handcuffs"
 	id = slot_handcuffed
 	req_organ = list(BP_L_ARM, BP_R_ARM)
 	req_type = /obj/item/weapon/handcuffs
