@@ -83,8 +83,8 @@
 	req_type = /obj/item/weapon/handcuffs
 	update_proc = /mob/proc/update_inv_handcuffed
 
-/datum/slot/legcuffes
-	name = "Legcuffes"
+/datum/slot/legcuffs
+	name = "Legcuffs"
 	id = slot_legcuffed
 	req_organ = list(BP_L_LEG, BP_R_LEG)
 	req_type = /obj/item/weapon/legcuffs

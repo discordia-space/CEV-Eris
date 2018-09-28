@@ -23,5 +23,6 @@
 	if(!slot)
 		return FALSE
 	if(!can_unequip(Item, slot) || !Item.can_be_unequipped(src, slot))
+		src << SPAN_WARNING("You can't unequip [Item]!")
 		return FALSE
 	return drop_from_inventory(Item, Target)
