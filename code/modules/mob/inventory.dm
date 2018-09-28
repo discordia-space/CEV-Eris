@@ -170,7 +170,7 @@ var/list/slot_equipment_priority = list(
 			return TRUE // self destroying objects (tk, grabs)
 
 		if(W.loc != Target)
-			W.do_putdown_animation(Target)
+			W.do_putdown_animation(Target, src)
 			W.forceMove(Target, drop_flag)
 		update_icons()
 		return TRUE

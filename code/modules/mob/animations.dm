@@ -318,31 +318,30 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix() * 0, easing = CUBIC_EASING)
 	sleep(3)
 
-/atom/movable/proc/do_putdown_animation(atom/target)
-	set waitfor = FALSE
+/atom/movable/proc/do_putdown_animation(atom/target, mob/user)
+	spawn()
+		var/old_invisibility = invisibility // I don't know, it may be used.
+		invisibility = 100
+		var/turf/old_loc = get_turf(user)
+		var/image/I = image(icon = src, loc = old_loc, layer = layer + 0.1)
+		I.plane = GAME_PLANE
+		I.transform = matrix() * 0
+		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
-	var/old_invisibility = invisibility // I don't know, it may be used.
-	invisibility = 100
-	var/turf/old_loc = get_turf(src)
-	var/image/I = image(icon = src, loc = src.loc, layer = layer + 0.1)
-	I.plane = GAME_PLANE
-	I.transform = matrix() * 0
-	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		flick_overlay(I, clients, 4)
 
-	flick_overlay(I, clients, 4)
+		var/to_x = (target.x - old_loc.x) * 32 + pixel_x
+		var/to_y = (target.y - old_loc.y) * 32 + pixel_y
+		var/old_x = pixel_x
+		var/old_y = pixel_y
+		pixel_x = 0
+		pixel_y = 0
 
-	var/to_x = (target.x - old_loc.x) * 32 + pixel_x
-	var/to_y = (target.y - old_loc.y) * 32 + pixel_y
-	var/old_x = pixel_x
-	var/old_y = pixel_y
-	pixel_x = 0
-	pixel_y = 0
-
-	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
-	sleep(3)
-	invisibility = old_invisibility
-	pixel_x = old_x
-	pixel_y = old_y
+		animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
+		sleep(3)
+		invisibility = old_invisibility
+		pixel_x = old_x
+		pixel_y = old_y
 
 /atom/movable/proc/simple_move_animation(atom/target)
 	set waitfor = FALSE
