@@ -22,8 +22,8 @@
 		cell = new suitable_cell(src)
 
 /obj/item/device/lighting/toggleable/flashlight/Destroy()
-	..()
 	qdel(light_spot)
+	return ..()
 
 /obj/item/device/lighting/toggleable/flashlight/proc/calculate_dir(var/turf/old_loc)
 	if (istype(src.loc,/obj/item/weapon/storage) || istype(src.loc,/obj/structure/closet))

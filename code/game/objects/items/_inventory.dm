@@ -31,7 +31,9 @@
 	if(item_flags & LOUDLY_EQUIPEMENT)
 		var/picked_sound = pick(w_class > ITEM_SIZE_NORMAL ? long_equipement_sound : short_equipement_sound)
 		playsound(src, picked_sound, 100, 1, 1)
-
+	// Item is being picked up.
+	if(slot == slot_l_hand || slot == slot_r_hand)
+		do_pickup_animation(user)
 
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	if(!istype(user))

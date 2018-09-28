@@ -15,6 +15,7 @@
 		var/mob/Holder = Item.loc
 		Holder.unEquip(Item, src.loc)
 	else
+		Item.do_putdown_animation(src.loc, src)
 		Item.forceMove(src.loc)
 	return FALSE
 

@@ -117,16 +117,12 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user) return
-
+	if (!user)
+		return
 	src.pickup(user)
 
 	src.throwing = FALSE
-	var/atom/old_loc = loc
-	if(user.put_in_active_hand(src))
-		if (isturf(old_loc) || isturf(old_loc.loc))
-			var/obj/effect/temp_visual/obj_pickup_ghost/ghost = new(get_turf(old_loc), src)
-			ghost.animate_towards(user)
+	user.put_in_active_hand(src)
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(src.loc, /obj/item/weapon/robot_module))
