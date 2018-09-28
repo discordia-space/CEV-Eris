@@ -15,6 +15,7 @@
 	var/spot_locked = FALSE		//this flag needed for lightspot to stay in place when player clicked on turf, will reset when moved or turned
 
 	var/light_direction
+	var/lightspot_hitObstacle = FALSE
 	
 /obj/item/device/lighting/toggleable/flashlight/New()
 	..()
@@ -94,18 +95,25 @@
 				else 
 					hitSomething = TRUE
 					break
-
-	place_lightspot(NT, hitObstacle = hitSomething)
+	lightspot_hitObstacle = hitSomething
+	place_lightspot(NT)
 
 	if (!istype(src.loc,/mob/living))
 		dir = new_dir
 
-/obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(var/turf/T, var/angle = null, var/hitObstacle = FALSE)
+/obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(var/turf/T, var/angle = null)
 	if (light_spot && on && !T.is_space())
 		light_spot.forceMove(T)
 		light_spot.icon_state = "nothing"
 		light_spot.transform = initial(light_spot.transform)
-		if (lightSpotPlaceable(T) && !hitObstacle)
+		light_spot.set_light(light_spot_radius, light_spot_power)
+
+		if (cell && cell.percent() <= 25)
+			apply_power_deficiency()	//onhit brightness increased there
+		else if (lightspot_hitObstacle)
+			light_spot.set_light(light_spot_radius + 1, light_spot_power * 1.25)
+
+		if (lightSpotPlaceable(T) && !lightspot_hitObstacle)
 			var/distance = get_dist(get_turf(src),T)
 			switch(distance)
 				if (1)
@@ -116,7 +124,6 @@
 					light_spot.icon_state = "lightspot_medium"
 				if (4)
 					light_spot.icon_state = "lightspot_far"
-
 		if(angle)
 			light_spot.transform = turn(light_spot.transform, angle)
 		else
@@ -165,7 +172,9 @@
 /obj/item/device/lighting/toggleable/flashlight/afterattack(atom/A, mob/user)
 	var/turf/T = get_turf(A)
 	if(can_see(user,T) && light_spot_range >= get_dist(get_turf(src),T))
+		lightspot_hitObstacle = FALSE
 		if (!lightSpotPassable(T))
+			lightspot_hitObstacle = TRUE
 			T = get_step_towards(T,get_turf(src))
 			if(!lightSpotPassable(T))
 				return
@@ -185,7 +194,7 @@
 	light_spot.pixel_x = -16
 	light_spot.pixel_y = -16
 	light_spot.layer = ABOVE_OBJ_LAYER
-	if (cell.percent() <= 15)
+	if (cell.percent() <= 25)
 		apply_power_deficiency()
 	calculate_dir()
 	if(. && user)
@@ -201,15 +210,21 @@
 /obj/item/device/lighting/toggleable/flashlight/proc/apply_power_deficiency()
 	if (!cell || !light_spot)
 		return
+	var/hit_brightness_multiplier = 1
+	var/hit_radius_addition = 0
+	if(lightspot_hitObstacle)
+		hit_brightness_multiplier = 1.25
+		hit_radius_addition = 1
+
 	switch (cell.percent())
-		if(0 to 5)
-			light_spot.set_light(max(2, round(light_spot_radius/100 * 15)), light_spot_power/100 * 30)
+		if(0 to 10)
+			light_spot.set_light(max(2, round(light_spot_radius/100 * 15) + hit_radius_addition), light_spot_power/100 * 30 * hit_brightness_multiplier)
 			set_light(l_power = radiance_power/100 * 15)
 		if(10 to 15)
-			light_spot.set_light(max(2, round(light_spot_radius/100 * 40)), light_spot_power/100 * 50)
+			light_spot.set_light(max(2, round(light_spot_radius/100 * 40) + hit_radius_addition), light_spot_power/100 * 50 * hit_brightness_multiplier)
 			set_light(l_power = radiance_power/100 * 40)
 		if(15 to 25)
-			light_spot.set_light(max(2, round(light_spot_radius/100 * 70)), light_spot_power/100 * 70)
+			light_spot.set_light(max(2, round(light_spot_radius/100 * 70) + hit_radius_addition), light_spot_power/100 * 70 * hit_brightness_multiplier)
 			set_light(l_power = radiance_power/100 * 70)
 
 /obj/item/device/lighting/toggleable/flashlight/Process()
