@@ -5,8 +5,8 @@
 	icon_state = "rods"
 	flags = CONDUCT
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_WEAK
+	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 20
 	matter = list(MATERIAL_STEEL = 1)

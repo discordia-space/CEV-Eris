@@ -8,7 +8,7 @@ for reference:
 	access_brig = 2
 	access_armory = 3
 	access_forensics_lockers= 4
-	access_medical = 5
+	access_moebius = 5
 	access_morgue = 6
 	access_tox = 7
 	access_tox_storage = 8

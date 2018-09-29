@@ -755,6 +755,12 @@
 
 	// now handle what we see on our screen
 
+	var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform() //ugh, we need more flexible hud
+	if(C)
+		var/datum/core_module/cruciform/christianhud/christian_hud = C.get_module(/datum/core_module/cruciform/christianhud)
+		if(christian_hud)
+			christian_hud.update_crucihud()
+
 	if(!.)
 		return
 

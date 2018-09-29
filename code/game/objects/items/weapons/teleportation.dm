@@ -136,6 +136,9 @@ Frequency:
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 1)
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/small
+	var/portal_type = /obj/effect/portal
+	var/portal_fail_chance = null
+	var/cell_charge_per_attempt = 33
 
 /obj/item/weapon/hand_tele/New()
 	..()
@@ -143,7 +146,7 @@ Frequency:
 		cell = new suitable_cell(src)
 
 /obj/item/weapon/hand_tele/attack_self(mob/user)
-	if(!cell || !cell.checked_use(33))
+	if(!cell || !cell.checked_use( cell_charge_per_attempt ))
 		user << SPAN_WARNING("[src] battery is dead or missing.")
 		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
@@ -172,8 +175,10 @@ Frequency:
 		return
 	var/T = L[t1]
 	user << SPAN_NOTICE("Portal locked in.")
-	var/obj/effect/portal/P = new /obj/effect/portal( get_turf(src) )
+	var/obj/effect/portal/P = new portal_type( get_turf(src) )
 	P.target = T
+	if(portal_fail_chance)
+		P.failchance = portal_fail_chance
 	src.add_fingerprint(user)
 
 	return
@@ -185,3 +190,68 @@ Frequency:
 /obj/item/weapon/hand_tele/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
+
+
+///////////////////////////////////////
+////////////HANDMADE TELE-STUFF////////
+///////////////////////////////////////
+
+/obj/item/weapon/hand_tele/handmade
+	name = "Handmade hand-teleporter"
+	desc = "Handmade version of hand-tele. Woah, that's was they call an experimental science!"
+	icon_state = "hm_hand-tele"
+	portal_type = /obj/effect/portal/unstable
+	portal_fail_chance = 50
+	cell_charge_per_attempt = 50
+	var/calibration_required = TRUE
+
+/obj/item/weapon/hand_tele/handmade/attackby(obj/item/C, mob/living/user)
+	..()
+	if(istype(C, /obj/item/weapon/tool/screwdriver))
+		if(user.a_intent == I_HURT)
+			if(prob(5))
+				var/turf/teleport_location = pick( getcircle(user.loc, 3) )
+				user.drop_from_inventory(user.get_active_hand())
+				user.drop_from_inventory(user.get_inactive_hand())
+				if(teleport_location)
+					do_teleport(user, teleport_location, 1)
+					return
+			if(do_after(user, 30))
+				if(calibration_required)
+					user << SPAN_WARNING("You loosen [src]'s calibration, it'll probably fail when used now")
+					portal_fail_chance = 90
+					calibration_required = FALSE
+				else
+					calibration_required = TRUE
+					user << SPAN_NOTICE("You recalibrate [src]. It'll probably function now")
+					portal_fail_chance = 50
+		else
+			if(do_after(user, 30))
+				if(calibration_required)
+					var/user_intelligence = user.stats.getStat(STAT_COG)
+					portal_fail_chance -= user_intelligence
+					if(portal_fail_chance < 0)
+						portal_fail_chance = 0
+					calibration_required = FALSE
+					user << SPAN_NOTICE("You carefully place bluespace crystal into slot to the end, and tweak the circuit with your [C]. [src] now looks more reliable.")
+				else
+					user << SPAN_WARNING("[src] is calibrated already. You can decalibrate it with some harmful effort.")
+
+/obj/item/weapon/tele_spear
+	name = "Telespear"
+	desc = "This is just a stick with dodgy device at the end."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "telespear"
+	item_state = "telespear"
+	slot_flags = SLOT_BACK
+
+/obj/item/weapon/tele_spear/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+	playsound(src.loc, 'sound/effects/EMPulse.ogg', 65, 1)
+	var/turf/teleport_location = pick( getcircle(user.loc, 8) )
+	if(prob(5))
+		do_teleport(user, teleport_location, 1)
+	else
+		do_teleport(M, teleport_location, 1)
+	qdel(src)
+	var/obj/item/stack/rods/R = new(M.loc)
+	user.put_in_active_hand(R)
