@@ -14,6 +14,8 @@
 	if (!N)
 		return
 
+	var/turf/T = null
+
 	// This makes sure that turfs are not changed to space when one side is part of a zone
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
@@ -27,7 +29,6 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/list/old_lighting_corners = corners
 
-	//world << "Replacing [src.type] with [N]"
 
 	if(connections) connections.erase_all()
 
@@ -40,6 +41,7 @@
 
 	if(ispath(N, /turf/simulated/floor))
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
+		T = W
 		if(old_fire)
 			fire = old_fire
 
@@ -56,18 +58,18 @@
 
 	else
 
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
+		T = new N( locate(src.x, src.y, src.z) )
 
 		if(old_fire)
 			old_fire.RemoveFire()
 
 		if(tell_universe)
-			universe.OnTurfChange(W)
+			universe.OnTurfChange(T)
 
 		SSair.mark_for_update(src)
 
-		W.levelupdate()
-		. =  W
+		T.levelupdate()
+		. =  T
 
 	for(var/turf/space/SP in trange(1, src))
 		SP.update_starlight()
@@ -100,7 +102,7 @@
 		else
 			lighting_clear_overlay()
 
-	update_openspace()
+	T.update_openspace()
 
 /turf/proc/transport_properties_from(turf/other)
 	if(!istype(other, src.type))
