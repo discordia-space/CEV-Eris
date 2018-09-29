@@ -1182,3 +1182,13 @@
 				src << "Hack attempt detected."
 			return 1
 		return
+
+
+/mob/living/silicon/robot/update_max_health()
+	if (module)
+		maxHealth = module.health
+	else
+		maxHealth = initial(maxHealth)
+	maxHealth *= 1 + (getStat(STAT_TGH)*TOUGHNESS_HEALTH_FACTOR)
+
+	updatehealth()

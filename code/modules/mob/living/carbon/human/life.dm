@@ -334,7 +334,7 @@
 		failed_last_breath = 1
 		if(prob(20))
 			emote("gasp")
-		if(health > HEALTH_THRESHOLD_CRIT)
+		if(health > HEALTH_THRESHOLD_CRIT * maxHealth)
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
@@ -618,14 +618,14 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= HEALTH_THRESHOLD_DEAD || (species.has_organ[O_BRAIN] && !has_brain()))
+		if(health <= 0 || (species.has_organ[O_BRAIN] && !has_brain()))
 			death()
 			blinded = 1
 			silent = 0
 			return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_TGH))))
+		if((getOxyLoss() > (maxHealth*0.25)) || (health <= (HEALTH_THRESHOLD_CRIT*maxHealth)))
 			Paralyse(3)
 
 		if(hallucination)
@@ -644,11 +644,11 @@
 			for(var/atom/a in hallucinations)
 				qdel(a)
 
-			if(halloss >= species.total_health)
+			if(halloss >= maxHealth*0.5)
 				src << SPAN_WARNING("[species.halloss_message_self]")
 				src.visible_message("<B>[src]</B> [species.halloss_message].")
 				Paralyse(10)
-				setHalLoss(species.total_health-1)
+				setHalLoss(maxHealth*0.45)
 
 		if(paralysis || sleeping)
 			blinded = 1
@@ -807,12 +807,10 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(species && species.flags & NO_PAIN) return
 
-	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH)))// health 0 - stat makes you immediately collapse
-		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH))
+	else if(health < (HEALTH_THRESHOLD_SOFTCRIT*maxHealth))
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)
