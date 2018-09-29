@@ -665,3 +665,12 @@
 	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
 	max_storage_space = 21
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+
+/obj/item/weapon/storage/box/autolathe_blank
+	name = "Autolathe Diskette Box"
+	icon_state = "disk_kit"
+
+/obj/item/weapon/storage/box/autolathe_blank/New()
+	..()
+	for(var/i in 1 to 7)
+		new /obj/item/weapon/disk/autolathe_disk/blank(src)
