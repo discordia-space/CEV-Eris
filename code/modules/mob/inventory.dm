@@ -37,11 +37,7 @@
 	if (W.pre_equip(src, slot))
 		return FALSE
 
-	if(slot == slot_l_hand || slot == slot_r_hand) // Item is being picked up.
-		W.do_pickup_animation(src)
-
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
-
 
 	if( !istype(W, /obj/item/clothing/suit/storage) || \
 		!istype(W, /obj/item/weapon/storage)
