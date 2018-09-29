@@ -43,7 +43,7 @@
 	if(reinforced)
 		overlays += "[icon_state]-duct_tape"
 
-/obj/item/weapon/melee/toolbox_maul/proc/breaking(var/mob/living/user)
+/obj/item/weapon/melee/toolbox_maul/proc/break_apart(var/mob/living/user)
 	qdel(src)
 	var/obj/item/weapon/mop/mop = new(user.loc)
 	if(!user.get_active_hand())
@@ -61,7 +61,7 @@
 				reinforced = FALSE
 			else
 				user << SPAN_NOTICE("You carefully cut cables from [src].")
-				breaking(user)
+				break_apart(user)
 
 		if(istype(C, /obj/item/weapon/tape_roll))
 			user << SPAN_NOTICE("You begins to tie [src] with [C]...")
@@ -94,7 +94,7 @@
 /obj/item/weapon/melee/toolbox_maul/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
 	..()
 	if(!reinforced && prob(5))
-		breaking(user)
+		break_apart(user)
 		playsound(src.loc, 'sound/effects/bang.ogg', 45, 1)
 		user.visible_message(SPAN_WARNING("[src] breaks in hands of [user]!"))
 
@@ -104,23 +104,8 @@
 	desc = "Stick with some nails in it. Looks sharp enough."
 	icon_state = "hm_spikeclub"
 	item_state = "hm_spikeclub"
-	force = WEAPON_FORCE_NORMAL
-	throwforce = WEAPON_FORCE_NORMAL
+	force = WEAPON_FORCE_PAINFULL
+	throwforce = WEAPON_FORCE_PAINFULL
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten", "slammed", "smacked", "struck", "battered")
-
-/obj/item/weapon/melee/nailstick/proc/attack_type_change()
-	if(sharp)
-		sharp = FALSE
-		attack_verb = list("beaten", "slammed", "smacked", "struck", "battered")
-		force = WEAPON_FORCE_WEAK
-	else
-		sharp = TRUE
-		attack_verb = list("scratched", "sliced", "slashed")
-		force = WEAPON_FORCE_NORMAL
-
-/obj/item/weapon/melee/nailstick/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
-	if(prob(30))
-		attack_type_change()
-	..()

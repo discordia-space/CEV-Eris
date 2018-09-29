@@ -30,7 +30,7 @@
 	desc = "An armored vest of uncertain quality. Provides a good protection against physical damage, for piece of crap."
 	icon_state = "hm_armorvest"
 	item_state = "hm_armorvest"
-	armor = list(melee = 40, bullet = 10, laser = 15, energy = 5, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 15, laser = 15, energy = 5, bomb = 15, bio = 0, rad = 0)
 
 
 /obj/item/clothing/suit/armor/riot

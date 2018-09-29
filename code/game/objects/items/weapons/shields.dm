@@ -101,7 +101,7 @@
 	throw_speed = 2
 	throw_range = 6
 	matter = list(MATERIAL_STEEL = 6)
-	base_block_chance = 40
+	base_block_chance = 30
 
 
 /obj/item/weapon/shield/riot/handmade/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
@@ -113,6 +113,24 @@
 		on_bash(W, user)
 	else
 		..()
+
+/obj/item/weapon/shield/riot/handmade/tray
+	name = "tray shield"
+	desc = "This one is thin, but compensate it with a good size."
+	icon_state = "tray_shield"
+	flags = CONDUCT
+	throw_speed = 2
+	throw_range = 4
+	matter = list(MATERIAL_STEEL = 4)
+	base_block_chance = 45
+
+
+/obj/item/weapon/shield/riot/handmade/tray/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+	if(istype(damage_source, /obj/item))
+		var/obj/item/I = damage_source
+		if((is_sharp(I) && damage > 10) || istype(damage_source, /obj/item/projectile/beam))
+			return 0
+	return base_block_chance
 
 /*
  * Energy Shield

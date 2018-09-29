@@ -203,7 +203,7 @@ Frequency:
 	portal_type = /obj/effect/portal/unstable
 	portal_fail_chance = 50
 	cell_charge_per_attempt = 50
-	var/calibration_requered = TRUE
+	var/calibration_required = TRUE
 
 /obj/item/weapon/hand_tele/handmade/attackby(obj/item/C, mob/living/user)
 	..()
@@ -217,21 +217,22 @@ Frequency:
 					do_teleport(user, teleport_location, 1)
 					return
 			if(do_after(user, 30))
-				if(calibration_requered)
-					user << SPAN_WARNING("You roughly moving with screwdriver inside of [src], making it unreliable.")
+				if(calibration_required)
+					user << SPAN_WARNING("You loosen [src]'s calibration, it'll probably fail when used now")
 					portal_fail_chance = 90
+					calibration_required = FALSE
 				else
-					calibration_requered = TRUE
-					user << SPAN_NOTICE("You decalibrate [src] to initial condition.")
+					calibration_required = TRUE
+					user << SPAN_NOTICE("You recalibrate [src]. It'll probably function now")
 					portal_fail_chance = 50
 		else
 			if(do_after(user, 30))
-				if(calibration_requered)
+				if(calibration_required)
 					var/user_intelligence = user.stats.getStat(STAT_COG)
 					portal_fail_chance -= user_intelligence
 					if(portal_fail_chance < 0)
 						portal_fail_chance = 0
-					calibration_requered = FALSE
+					calibration_required = FALSE
 					user << SPAN_NOTICE("You carefully place bluespace crystal into slot to the end, and tweak the circuit with your [C]. [src] now looks more reliable.")
 				else
 					user << SPAN_WARNING("[src] is calibrated already. You can decalibrate it with some harmful effort.")
