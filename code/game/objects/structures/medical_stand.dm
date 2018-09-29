@@ -97,8 +97,7 @@
 		attack_hand(user)
 
 /obj/structure/medical_stand/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
-	if(!..())
-		return
+	..()
 	if(istype(target))
 		if(usr.stat == DEAD || !CanMouseDrop(src,target))
 			return
