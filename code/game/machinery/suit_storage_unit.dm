@@ -621,7 +621,7 @@
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
-	req_access = list(access_medical)
+	req_access = list(access_moebius)
 	departments = list("Medical")
 
 /obj/machinery/suit_cycler/syndicate

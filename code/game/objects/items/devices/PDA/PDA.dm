@@ -362,7 +362,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					"access_security" = cartridge.access_security,\
 					"access_engine" = cartridge.access_engine,\
 					"access_atmos" = cartridge.access_atmos,\
-					"access_medical" = cartridge.access_medical,\
+					"access_moebius" = cartridge.access_moebius,\
 					"access_clown" = cartridge.access_clown,\
 					"access_mime" = cartridge.access_mime,\
 					"access_janitor" = cartridge.access_janitor,\
@@ -619,7 +619,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if("Medical Scan")
 			if(scanmode == 1)
 				scanmode = 0
-			else if((!isnull(cartridge)) && (cartridge.access_medical))
+			else if((!isnull(cartridge)) && (cartridge.access_moebius))
 				scanmode = 1
 		if("Reagent Scan")
 			if(scanmode == 3)
@@ -778,7 +778,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 						var/difficulty = 2
 
 						if(P.cartridge)
-							difficulty += P.cartridge.access_medical
+							difficulty += P.cartridge.access_moebius
 							difficulty += P.cartridge.access_security
 							difficulty += P.cartridge.access_engine
 							difficulty += P.cartridge.access_clown

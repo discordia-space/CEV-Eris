@@ -808,7 +808,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 2500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Surgery crate"
-	access = access_medical
+	access = access_moebius
 	group = "Medical / Science"
 
 /datum/supply_pack/sterile
@@ -862,7 +862,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/machinery/suspension_gen)
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
 	crate_name = "Suspension Field Generetor Crate"
-	access = access_research
+	access = access_moebius
 	group = "Medical / Science"
 
 /datum/supply_pack/floodlight

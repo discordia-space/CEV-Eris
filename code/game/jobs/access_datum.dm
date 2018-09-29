@@ -34,11 +34,11 @@
 	desc = "Forensics"
 	region = ACCESS_REGION_SECURITY
 
-/var/const/access_medical = 5
-/datum/access/medical
-	id = access_medical
-	desc = "Medical"
-	region = ACCESS_REGION_MEDBAY
+/var/const/access_moebius = 5
+/datum/access/moebius
+	id = access_moebius
+	desc = "Moebius General"
+	region = ACCESS_REGION_RESEARCH
 
 /var/const/access_morgue = 6
 /datum/access/morgue
@@ -270,11 +270,7 @@
 
 // /var/const/free_access_id = 46
 
-/var/const/access_research = 47
-/datum/access/research
-	id = access_research
-	desc = "Science"
-	region = ACCESS_REGION_RESEARCH
+// /var/const/free_access_id = 47
 
 /var/const/access_mining = 48
 /datum/access/mining
