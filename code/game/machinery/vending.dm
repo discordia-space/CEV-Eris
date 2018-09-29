@@ -13,6 +13,7 @@
 	var/display_color = null   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
 	var/vending_machine        // The vending machine we belong to
+	var/list/instances = list()		   // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
 
 
 /datum/data/vending_product/New(var/vending_machine, var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
@@ -48,7 +49,11 @@
 /datum/data/vending_product/proc/get_product(var/product_location)
 	if(get_amount() <= 0 || !product_location)
 		return
-	var/atom/movable/product = new product_path
+	var/atom/movable/product
+	if (instances && instances.len)
+		product = instances[instances.len]
+	else
+		product = new product_path
 	amount -= 1
 	product.forceMove(product_location)
 	return product
@@ -201,7 +206,7 @@
 	product.amount = 1
 	product.price = 0
 	src.product_records.Add(product)
-	qdel(I)
+	product.instances.Add(I)
 	return product
 
 
@@ -309,7 +314,7 @@
 		return
 	else if (panel_open || always_open)
 		for(var/datum/data/vending_product/R in product_records)
-			if(istype(I, R.product_path))
+			if(istype(I, R.product_path) && (R.product_name == I.name))
 				stock(I, R, user)
 				return 1
 
