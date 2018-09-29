@@ -1,12 +1,12 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
-	damage = 60
+	damage = 40
 	damage_type = BRUTE
 	nodamage = 0
 	check_armour = "bullet"
 	embed = 1
-	sharp = 1
+	sharp = 0
 	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
 
@@ -67,7 +67,7 @@
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
 	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
-	damage = 20
+	damage = 15
 	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
 	var/pellets = 4			//number of pellets
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
