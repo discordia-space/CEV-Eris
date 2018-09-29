@@ -17,8 +17,8 @@
 	desc = "Toolbox tied to mop. A weapon of choice."
 	icon_state = "hm_hammer"
 	item_state = "hm_hammer"
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_NORMAL
+	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_LARGE
 	origin_tech = list(TECH_COMBAT = 3)
 	attack_verb = list("robusted", "slammed")
