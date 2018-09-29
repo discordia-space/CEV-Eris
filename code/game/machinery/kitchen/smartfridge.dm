@@ -167,7 +167,6 @@
 				var/D = S.dried_type
 				new D(src)
 				item_quants[S.name]--
-				qdel(S)
 	return
 
 /obj/machinery/smartfridge/Process()
@@ -219,11 +218,8 @@
 			return 1
 		else
 			user.remove_from_mob(O)
-			O.loc = src
-			if(item_quants[O.name])
-				item_quants[O.name]++
-			else
-				item_quants[O.name] = 1
+			O.forceMove = src
+			update_contents()
 			user.visible_message(SPAN_NOTICE("[user] has added \the [O] to \the [src]."), SPAN_NOTICE("You add \the [O] to \the [src]."))
 
 			SSnano.update_uis(src)
@@ -238,13 +234,9 @@
 					return 1
 				else
 					P.remove_from_storage(G,src)
-					if(item_quants[G.name])
-						item_quants[G.name]++
-					else
-						item_quants[G.name] = 1
 					plants_loaded++
 		if(plants_loaded)
-
+			update_contents()
 			user.visible_message(SPAN_NOTICE("[user] loads \the [src] with \the [P]."), SPAN_NOTICE("You load \the [src] with \the [P]."))
 			if(P.contents.len > 0)
 				user << SPAN_NOTICE("Some items are refused.")
@@ -271,6 +263,11 @@
 	wires.Interact(user)
 	ui_interact(user)
 
+
+/obj/machinery/smartfridge/update_contents()
+	item_quants.Cut()
+	for (var/obj/item/i in contents)
+		item_quants[i.name] = (item_quants[i.name] ? item_quants[i.name]+1 : 1)
 /*******************
 *   SmartFridge Menu
 ********************/
@@ -330,8 +327,10 @@
 					O.loc = loc
 					i--
 					if(i <= 0)
+						update_contents()
 						return 1
 
+		update_contents()
 		return 1
 	return 0
 
@@ -352,6 +351,7 @@
 				throw_item = T
 				break
 		break
+	update_contents()
 	if(!throw_item)
 		return 0
 	spawn(0)
