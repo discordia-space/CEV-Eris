@@ -37,6 +37,9 @@
 	if (W.pre_equip(src, slot))
 		return FALSE
 
+	if(slot == slot_l_hand || slot == slot_r_hand) // Item is being picked up.
+		W.do_pickup_animation(src)
+
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 
 
@@ -167,6 +170,7 @@ var/list/slot_equipment_priority = list(
 			return TRUE // self destroying objects (tk, grabs)
 
 		if(W.loc != Target)
+			W.do_putdown_animation(Target, src)
 			W.forceMove(Target, drop_flag)
 		update_icons()
 		return TRUE
