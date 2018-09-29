@@ -186,6 +186,10 @@ see multiz/movement.dm for some info.
 		else
 			user << SPAN_WARNING("The plating is going to need some support.")
 
+	if(istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.turf_place(src, user)
+		return
 
 //Some effect handling procs for openspaces
 

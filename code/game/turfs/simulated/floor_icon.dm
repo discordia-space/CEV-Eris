@@ -1,30 +1,5 @@
 var/list/flooring_cache = list()
 
-/turf/simulated/floor/verb/debug_update()
-	set src in view()
-	set name = "Debug update"
-	update_icon(1,1)
-
-/turf/simulated/floor/verb/debug_cut()
-	set src in view()
-	set name = "Debug Cutoverlays"
-	overlays.Cut()
-
-/turf/simulated/floor/verb/debug_grass()
-	set src in view()
-	set name = "Debug Grass"
-
-	var/d = input(usr, "Enter dir", "dir", NORTH)
-	var/xo = input(usr, "X offset", "X offset", 16)
-	var/yo = input(usr, "Y offset", "Y offset", 16)
-	var/image/I = image(icon = 'icons/turf/flooring/grass.dmi', icon_state = "grass_edges", dir = d)
-	I.layer = 4
-
-
-	I.pixel_x = xo
-	I.pixel_y = yo
-
-	overlays += I
 
 /turf/simulated/floor/update_icon(var/update_neighbors)
 
