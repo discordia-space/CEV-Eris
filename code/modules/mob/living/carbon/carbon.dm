@@ -419,5 +419,5 @@
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
 	return 0
 
-/mob/living/carbon/proc/has_limb(var/limb_check)
+/mob/living/carbon/proc/has_appendage(var/limb_check)
 	return 0

@@ -1500,16 +1500,16 @@ var/list/rank_prefix = list(\
 		return FALSE
 	return (species && species.has_organ[organ_check])
 
-/mob/living/carbon/human/has_limb(var/limb_check)	//returns TRUE if found, 2 if limb is robotic, FALSE if not found and null if its chest or groin (dont pass those)
+/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, 2 or 3 if limb is robotic, FALSE if not found
 
-	if (limb_check == BP_CHEST || limb_check == BP_GROIN)	//obviously doesnt work with them
-		return
+	if (appendage_check == BP_CHEST)
+		return TRUE
 
-	var/obj/item/organ/external/limb
-	limb = organs_by_name[limb_check]
+	var/obj/item/organ/external/appendage
+	appendage = organs_by_name[appendage_check]
 
-	if(limb && !limb.is_stump())
-		if(limb.robotic >= ORGAN_ROBOT)
-			return 2
+	if(appendage && !appendage.is_stump())
+		if(appendage.robotic >= ORGAN_ROBOT)
+			return appendage.robotic
 		else return TRUE
 	return FALSE

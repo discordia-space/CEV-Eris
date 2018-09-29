@@ -241,4 +241,4 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 
 //Percentage of maximum blood volume.
 /mob/living/carbon/human/proc/get_blood_volume()
-	return round((vessel.get_reagent_amount(/datum/reagent/blood)/species.blood_volume)*100)
+	return round((vessel.get_reagent_amount("blood")/species.blood_volume)*100)
