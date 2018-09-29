@@ -232,7 +232,8 @@ var/global/list/robot_modules = list(
 					"Default" = "robot_old",
 					"Sleek" = "sleekstandard",
 					"Drone" = "drone-standard",
-					"Spider" = "spider"
+					"Spider" = "spider",
+					"Quarterback" = "quarterback_stock"
 				  )
 
 	desc = "The baseline, jack of all trades. Can do a little of everything. Some DIY, some healing, some combat."
@@ -282,6 +283,7 @@ var/global/list/robot_modules = list(
 				"Basic" = "robotmedi",
 				"Classic" = "medbot",
 				"Heavy" = "heavymed",
+				"Quarterback" = "quarterback_medic",
 				"Needles" = "medicalrobot",
 				"Standard" = "surgeon",
 				"Advanced Droid - Medical" = "droid-medical",
@@ -381,7 +383,8 @@ var/global/list/robot_modules = list(
 			"Sleek" = "sleekrescue",
 			"Needles" = "medicalrobot",
 			"Drone" = "drone-medical",
-			"Heavy" = "heavymed"
+			"Heavy" = "heavymed",
+			"Quarterback" = "quarterback_medic"
 			)
 
 	//Rescue module has built in crew monitor
@@ -467,7 +470,8 @@ var/global/list/robot_modules = list(
 					"Sleek" = "sleekengineer",
 					"Spider" = "spidereng",
 					"Plated" = "ceborg",
-					"Heavy" = "heavyeng"
+					"Heavy" = "heavyeng",
+					"Quarterback" = "quarterback_engie"
 					)
 	supported_upgrades = list(/obj/item/borg/upgrade/jetpack)
 	health = 240 //Slightly above average
@@ -680,7 +684,8 @@ var/global/list/robot_modules = list(
 					"Drone" = "drone-sec",
 					"Classic" = "secborg",
 					"Spider" = "spidersec",
-					"Heavy" = "heavysec"
+					"Heavy" = "heavysec",
+					"Quarterback" = "quarterback_sec"
 				)
 
 /obj/item/weapon/robot_module/security/general/New(var/mob/living/silicon/robot/R)
@@ -903,7 +908,8 @@ var/global/list/robot_modules = list(
 					"Drone" = "drone-science",
 					"Classic" = "robotjani",
 					"Sleek" = "sleekscience",
-					"Heavy" = "heavysci"
+					"Heavy" = "heavysci",
+					"Quarterback" = "quarterback_sci"
 					)
 
 	health = 160 //Weak
@@ -971,7 +977,8 @@ var/global/list/robot_modules = list(
 					"Treadhound" = "syndie_treadhound",
 					"Precision" = "syndi-medi",
 					"Heavy" = "syndi-heavy",
-					"Artillery" = "spidersyndi"
+					"Artillery" = "spidersyndi",
+					"Quarterback" = "quarterback_syndie"
 					)
 
 /obj/item/weapon/robot_module/syndicate/New(var/mob/living/silicon/robot/R)
