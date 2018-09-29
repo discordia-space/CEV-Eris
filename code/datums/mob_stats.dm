@@ -12,6 +12,7 @@
 /datum/stat_holder/Destroy()
 	for (var/a in stat_list)
 		qdel(a)
+	..()
 
 //Sets all stats to zero cleanly
 /datum/stat_holder/proc/zero()
@@ -60,6 +61,8 @@
 
 
 
+
+
 //TODO: Throw away this half assed mod system once i port modifiers from aurora
 /datum/stat_mod
 	var/time = 0
@@ -72,12 +75,21 @@
 
 
 
+
+
+
+
 /datum/stat
 	var/name = "Character stat"
 	var/desc = "Basic characteristic, you are not supposed to see this. Report to admins."
 	var/value = STAT_VALUE_DEFAULT
 	var/datum/stat_holder/holder
 	var/list/mods
+
+/datum/stat/New(var/datum/stat_holder/H)
+	holder = H
+	..()
+
 
 /datum/stat/proc/addModif(delay, affect, id)
 	for(var/elem in mods)
