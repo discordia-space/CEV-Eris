@@ -8,7 +8,7 @@
 					prob(2);/obj/item/weapon/storage/box/autoinjectors,\
 					prob(2);/obj/item/weapon/storage/box/matches,\
 					prob(2);/obj/item/weapon/storage/box/donkpockets,\
-					prob(3);/obj/item/weapon/storage/box/disks,\
+					prob(3);/obj/item/weapon/storage/box/autolathe_blank,\
 					prob(1);/obj/item/weapon/storage/box/cups,\
 					prob(2);/obj/item/weapon/storage/box/drinkingglasses,\
 					prob(1);/obj/item/weapon/storage/box/fingerprints,\
