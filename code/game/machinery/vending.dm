@@ -43,7 +43,7 @@
 /datum/data/vending_product/proc/add_product(var/atom/movable/product)
 	if(product.type != product_path)
 		return 0
-	qdel(product)
+	product.forceMove(vending_machine)
 	amount += 1
 
 /datum/data/vending_product/proc/get_product(var/product_location)
