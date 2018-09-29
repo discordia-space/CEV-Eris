@@ -64,7 +64,7 @@
 	survive_objective = /datum/objective/survive
 
 /datum/antagonist/traitor/synth/can_become_antag(var/datum/mind/player)
-	return issilicon(player) && ..(player)
+	return issilicon(player.current) && ..(player)
 
 /datum/antagonist/traitor/synth/equip()
 	add_law_zero()

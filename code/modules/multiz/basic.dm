@@ -33,3 +33,11 @@ var/z_levels = 0 // Each bit represents a connection between adjacent levels.  S
 		. |= level-1
 	for(var/level = z, HasAbove(level), level++)
 		. |= level+1
+
+/proc/get_zstep(ref, dir)
+	if(dir == UP)
+		. = GetAbove(ref)
+	else if (dir == DOWN)
+		. = GetBelow(ref)
+	else
+		. = get_step(ref, dir)
