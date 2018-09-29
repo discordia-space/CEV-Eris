@@ -125,6 +125,7 @@
 	icon_state = "drying_rack"
 	icon_on = "drying_rack_on"
 	icon_off = "drying_rack"
+	var/drying_power = 0.004
 
 /obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/))
@@ -155,18 +156,18 @@
 /obj/machinery/smartfridge/drying_rack/proc/dry()
 	for(var/obj/item/weapon/reagent_containers/food/snacks/S in contents)
 		if(S.dry) continue
-		if(S.dried_type == S.type)
-			S.dry = 1
-			item_quants[S.name]--
-			S.name = "dried [S.name]"
-			S.color = "#AAAAAA"
-			S.loc = loc
-		else
-			var/D = S.dried_type
-			new D(loc)
-			item_quants[S.name]--
-			qdel(S)
-		return
+		S.dryness += drying_power
+		if (S.dryness >= 1 && S.dried_type)
+			if(S.dried_type == S.type)
+				S.dry = 1
+				item_quants[S.name]--
+				S.name = "dried [S.name]"
+				S.color = "#AAAAAA"
+			else
+				var/D = S.dried_type
+				new D(src)
+				item_quants[S.name]--
+				qdel(S)
 	return
 
 /obj/machinery/smartfridge/Process()
