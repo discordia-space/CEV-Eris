@@ -94,6 +94,14 @@
 		list(/obj/item/stack/material/steel, 2, time = 20)
 	)
 
+/datum/craft_recipe/weapon/tray_shield
+	name = "handmade tray shield"
+	result = /obj/item/weapon/shield/riot/handmade/tray
+	steps = list(
+		list(/obj/item/weapon/tray, 1),
+		list(/obj/item/weapon/storage/belt, 2, time = 10)
+	)
+
 /datum/craft_recipe/weapon/pistol
 	name = "handmade gun"
 	result = /obj/item/weapon/gun/projectile/handmade_pistol
