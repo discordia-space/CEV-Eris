@@ -372,7 +372,7 @@
 		//Items used on it will be placed on it like a surface
 
 	//Turn on harm intent to override this behaviour and instead attack/deconstruct the wall
-	if (!locate(/obj/structure/window in loc) && user.a_intent != I_HURT)
+	if (!(locate(/obj/structure/window) in loc) && user.a_intent != I_HURT)
 		if (user.unEquip(I, src.loc))
 			set_pixel_click_offset(I, params)
 			return
