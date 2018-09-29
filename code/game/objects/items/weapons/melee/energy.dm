@@ -41,14 +41,7 @@
 		deactivate(user)
 	else
 		activate(user)
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand()
-		H.update_inv_r_hand()
-
 	add_fingerprint(user)
-	return
 
 /*
  * Energy Axe
@@ -198,7 +191,9 @@
 
 /obj/item/weapon/melee/energy/blade/attack_self(mob/user as mob)
 	user.drop_from_inventory(src)
-	spawn(1) if(src) qdel(src)
+	spawn(1)
+		if(src)
+			qdel(src)
 
 /obj/item/weapon/melee/energy/blade/dropped()
 	spawn(1) if(src) qdel(src)
@@ -216,4 +211,6 @@
 			host.pinned -= src
 			host.embedded -= src
 			host.drop_from_inventory(src)
-		spawn(1) if(src) qdel(src)
+		spawn(1)
+			if(src)
+				qdel(src)

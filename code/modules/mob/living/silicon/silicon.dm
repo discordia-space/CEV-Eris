@@ -56,12 +56,6 @@
 /mob/living/silicon/proc/show_laws()
 	return
 
-/mob/living/silicon/drop_item()
-	if(isrobot(src))
-		var/mob/living/silicon/robot/R = src
-		R.update_robot_modules_display()
-	return
-
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)

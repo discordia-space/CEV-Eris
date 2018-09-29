@@ -55,9 +55,8 @@
 			dead_mob_list -= brainmob//Update dem lists
 			living_mob_list += brainmob
 
-			user.drop_item()
+			user.drop_from_inventory(brainobj, src)
 			brainobj = O
-			brainobj.loc = src
 
 			name = "Man-Machine Interface: [brainmob.real_name]"
 			icon_state = "mmi_full"

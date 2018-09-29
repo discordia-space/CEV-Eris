@@ -75,8 +75,7 @@
 	else if(istype(W, /obj/item/device/radio/electropack))
 		if(rigged)
 			user  << SPAN_NOTICE("You attach [W] to [src].")
-			user.drop_item()
-			W.forceMove(src)
+			user.drop_from_inventory(W, src)
 			return
 	else if(istype(W, /obj/item/weapon/tool/wirecutters))
 		if(rigged)

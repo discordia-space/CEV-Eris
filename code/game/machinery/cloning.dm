@@ -219,7 +219,7 @@
 	else if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		user << SPAN_NOTICE("\The [src] processes \the [I].")
 		biomass += 50
-		user.drop_from_inventory(I)
+		user.drop_from_inventory(I, src)
 		qdel(I)
 		return
 	else

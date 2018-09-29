@@ -126,10 +126,12 @@
 	add_fingerprint(user)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!beaker)
-			beaker = I
-			user.drop_item()
-			I.loc = src
-			user.visible_message(SPAN_NOTICE("\The [user] adds \a [I] to \the [src]."), SPAN_NOTICE("You add \a [I] to \the [src]."))
+			if(user.unEquip(I, src))
+				beaker = I
+				user.visible_message(
+					SPAN_NOTICE("\The [user] adds \a [I] to \the [src]."),
+					SPAN_NOTICE("You add \a [I] to \the [src].")
+				)
 		else
 			user << SPAN_WARNING("\The [src] has a beaker already.")
 		return

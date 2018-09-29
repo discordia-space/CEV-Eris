@@ -17,7 +17,6 @@
 		)
 
 /obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
-
 	if(istype(W, /obj/item/weapon/storage))
 		empty_bin(user, W)
 		return
@@ -27,11 +26,12 @@
 			if(istype(W, shred_type))
 				paper_result = shred_amounts[shred_type]
 		if(paper_result)
+			if(!user.unEquip(W, src))
+				return
 			if(paperamount == max_paper)
 				user << SPAN_WARNING("\The [src] is full; please empty it before you continue.")
 				return
 			paperamount += paper_result
-			user.drop_from_inventory(W)
 			qdel(W)
 			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
 			if(paperamount > max_paper)

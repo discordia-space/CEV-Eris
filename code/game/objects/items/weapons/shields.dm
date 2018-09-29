@@ -188,16 +188,12 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		user << SPAN_NOTICE("\The [src] can now be concealed.")
 
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand()
-		H.update_inv_r_hand()
-
 	add_fingerprint(user)
 	return
 
 /obj/item/weapon/shield/energy/update_icon()
 	icon_state = "eshield[active]"
+	update_wear_icon()
 	if(active)
 		set_light(1.5, 1.5, "#006AFF")
 	else

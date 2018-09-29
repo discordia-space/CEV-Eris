@@ -169,9 +169,8 @@
 				original = null
 			else
 				if(istype(D))
-					H.drop_item()
-					D.forceMove(src)
-					original = D
+					if(H && H.unEquip(D, src))
+						original = D
 		else
 			if(copy)
 				copy.forceMove(src.loc)
@@ -179,9 +178,7 @@
 					H.put_in_active_hand(copy)
 				copy = null
 			else
-				if(istype(D))
-					H.drop_item()
-					D.forceMove(src)
+				if(istype(D) && H.unEquip(D, src))
 					copy = D
 
 	SSnano.update_uis(src)

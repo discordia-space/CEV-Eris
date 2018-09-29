@@ -89,16 +89,14 @@
 			state = 3
 			return TRUE
 
-/obj/machinery/washing_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/washing_machine/attackby(obj/item/weapon/W, mob/user)
 	/*if(istype(W,/obj/item/weapon/tool/screwdriver))
 		panel = !panel
 		user << "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>"*/
 	if(istype(W,/obj/item/weapon/pen/crayon))
 		if( state in list(	1, 3, 6 ) )
-			if(!crayon)
-				user.drop_item()
+			if(!crayon && user.unEquip(W, src))
 				crayon = W
-				crayon.loc = src
 			else
 				..()
 		else
@@ -151,9 +149,7 @@
 			return
 
 		if(contents.len < 5)
-			if ( state in list(1, 3) )
-				user.drop_item()
-				W.loc = src
+			if (state in list(1, 3) && user.unEquip(W, src))
 				state = 3
 			else
 				user << SPAN_NOTICE("You can't put the item in right now.")

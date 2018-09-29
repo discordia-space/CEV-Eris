@@ -16,9 +16,7 @@
 	if(isrobot(user))
 		return
 	if(istype(O, /obj/item/weapon/extinguisher))
-		if(!has_extinguisher && opened)
-			user.remove_from_mob(O)
-			contents += O
+		if(!has_extinguisher && opened && user.unEquip(O, src))
 			has_extinguisher = O
 			user << SPAN_NOTICE("You place [O] in [src].")
 			playsound(src.loc, 'sound/machines/Custom_extin.ogg', 50, 0)

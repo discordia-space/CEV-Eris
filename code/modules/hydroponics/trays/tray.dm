@@ -485,7 +485,7 @@
 		if(!seed)
 
 			var/obj/item/seeds/S = I
-			user.remove_from_mob(I)
+			user.drop_from_inventory(I)
 
 			if(!S.seed)
 				user << "The packet seems to be empty. You throw it away."
@@ -521,7 +521,7 @@
 	else if ( istype(I, /obj/item/weapon/plantspray) )
 
 		var/obj/item/weapon/plantspray/spray = I
-		user.remove_from_mob(I)
+		user.drop_from_inventory(I)
 		toxins += spray.toxicity
 		pestlevel -= spray.pest_kill_str
 		weedlevel -= spray.weed_kill_str

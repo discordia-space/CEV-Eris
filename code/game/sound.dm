@@ -104,10 +104,18 @@ var/list/gunshot_sound = list('sound/weapons/Gunshot.ogg',
 	'sound/weapons/guns/fire/smg_fire.ogg',
 	'sound/weapons/guns/fire/sniper_fire.ogg'
 )
-/*var/list/gun_sound = list(
-	'sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg',
-	'sound/weapons/Gunshot4.ogg'
-)*/
+
+var/list/short_equipement_sound = list(
+	'sound/misc/inventory/short_1.ogg',
+	'sound/misc/inventory/short_2.ogg',
+	'sound/misc/inventory/short_3.ogg'
+)
+
+var/list/long_equipement_sound = list(
+	'sound/misc/inventory/long_1.ogg',
+	'sound/misc/inventory/long_2.ogg',
+	'sound/misc/inventory/long_3.ogg'
+)
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
 

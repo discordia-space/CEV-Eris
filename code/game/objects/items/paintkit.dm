@@ -14,8 +14,8 @@
 /obj/item/device/kit/proc/use(var/amt, var/mob/user)
 	uses -= amt
 	playsound(get_turf(user), 'sound/items/Screwdriver.ogg', 50, 1)
-	if(uses<1)
-		user.drop_item()
+	if(uses < 1)
+		user.drop_from_inventory(src)
 		qdel(src)
 
 // Root hardsuit kit defines.

@@ -338,12 +338,11 @@
 					return
 
 				usr << "You install the coil into the SMES unit!"
-				user.drop_item()
+				user.drop_active_hand(W, src)
 				component_parts += W
-				W.loc = src
 				RefreshParts()
 			else
-				usr << "\red You can't insert more coils to this SMES unit!"
+				user << SPAN_WARNING("You can't insert more coils to this SMES unit!")
 
 // Proc: toggle_input()
 // Parameters: None

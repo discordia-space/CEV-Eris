@@ -83,9 +83,8 @@
 		else if ((istype(W, /obj/item/weapon/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/weapon/cell/large) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!output_attempt && !input_attempt)
-					user.drop_item()
+					user.drop_active_hand(W, src)
 					component_parts += W
-					W.loc = src
 					RefreshParts()
 					user << SPAN_NOTICE("You upgrade the [src] with [W.name].")
 				else

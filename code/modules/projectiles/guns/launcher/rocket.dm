@@ -25,8 +25,7 @@
 /obj/item/weapon/gun/launcher/rocket/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		if(rockets.len < max_rockets)
-			user.drop_item()
-			I.loc = src
+			user.drop_from_inventory(I, src)
 			rockets += I
 			user << "\blue You put the rocket in [src]."
 			user << "\blue [rockets.len] / [max_rockets] rockets."

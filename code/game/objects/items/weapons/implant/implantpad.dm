@@ -39,12 +39,10 @@
 /obj/item/weapon/implantpad/attackby(obj/item/weapon/implantcase/C as obj, mob/user as mob)
 	..()
 	if(istype(C, /obj/item/weapon/implantcase))
-		if(!( src.case ))
-			user.drop_item()
-			C.loc = src
+		if(!src.case)
+			user.drop_from_inventory(C, src)
 			src.case = C
 				src.update()
-	return
 
 
 /obj/item/weapon/implantpad/attack_self(mob/user as mob)

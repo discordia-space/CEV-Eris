@@ -621,8 +621,7 @@ var/global/list/default_medbay_channels = list(
 			return
 
 		if(!keyslot)
-			user.drop_item()
-			W.loc = src
+			user.drop_from_inventory(W, src)
 			keyslot = W
 
 		recalculateChannels()

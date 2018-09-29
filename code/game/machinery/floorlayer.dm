@@ -44,9 +44,11 @@
 		return
 
 	if(istype(W, /obj/item/stack/tile))
+		var/obj/item/stack/tile/tile = W
+		if(!T)
+			T = new(src, 0)
+		tile.transfer_to(T)
 		user << SPAN_NOTICE("\The [W] successfully loaded.")
-		user.drop_item(T)
-		TakeTile(T)
 		return
 
 	if(istype(W, /obj/item/weapon/tool/crowbar))

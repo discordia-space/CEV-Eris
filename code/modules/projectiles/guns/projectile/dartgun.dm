@@ -111,12 +111,10 @@
 		if(beakers.len >= max_beakers)
 			user << "\blue [src] already has [max_beakers] beakers in it - another one isn't going to fit!"
 			return
-		var/obj/item/weapon/reagent_containers/glass/beaker/B = I
-		user.drop_item()
-		B.loc = src
-		beakers += B
-		user << "\blue You slot [B] into [src]."
-		src.updateUsrDialog()
+		if(user.unEquip(I, src))
+			beakers += I
+			user << "\blue You slot [I] into [src]."
+			src.updateUsrDialog()
 		return 1
 	..()
 

@@ -55,9 +55,8 @@
 				// insert cell
 				var/obj/item/weapon/cell/medium/C = usr.get_active_hand()
 				if(istype(C))
-					user.drop_item()
+					user.drop_from_inventory(C, src)
 					src.cell = C
-					C.loc = src
 					C.add_fingerprint(usr)
 
 					user.visible_message(SPAN_NOTICE("[user] inserts a power cell into [src]."), SPAN_NOTICE("You insert the power cell into [src]."))
@@ -138,12 +137,14 @@
 				if(panel_open && !cell)
 					var/obj/item/weapon/cell/medium/C = usr.get_active_hand()
 					if(istype(C))
-						usr.drop_item()
+						usr.drop_from_inventory(C, src)
 						src.cell = C
-						C.loc = src
 						C.add_fingerprint(usr)
 						power_change()
-						usr.visible_message(SPAN_NOTICE("[usr] inserts \the [C] into \the [src]."), SPAN_NOTICE("You insert \the [C] into \the [src]."))
+						usr.visible_message(
+							SPAN_NOTICE("[usr] inserts \the [C] into \the [src]."),
+							SPAN_NOTICE("You insert \the [C] into \the [src].")
+						)
 
 		updateDialog()
 	else

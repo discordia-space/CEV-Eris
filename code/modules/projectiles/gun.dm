@@ -88,7 +88,7 @@
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety//addint it to all guns
 
-/obj/item/weapon/gun/update_held_icon()
+/obj/item/weapon/gun/update_wear_icon()
 	if(requires_two_hands)
 		var/mob/living/M = loc
 		if(istype(M))
@@ -124,7 +124,7 @@
 					SPAN_DANGER("\The [user] shoots \himself in the foot with \the [src]!"),
 					SPAN_DANGER("You shoot yourself in the foot with \the [src]!")
 					)
-				M.drop_item()
+				M.drop_active_hand()
 		else
 			handle_click_empty(user)
 		return FALSE

@@ -134,7 +134,7 @@
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
 			if(bullets <= 4)
-				user.drop_item()
+				user.drop_from_inventory(I)
 				qdel(I)
 				bullets++
 				user << SPAN_NOTICE("You load the foam dart into the crossbow.")
@@ -259,10 +259,7 @@
 			src.item_state = "sword0"
 			src.w_class = ITEM_SIZE_SMALL
 
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.update_inv_l_hand()
-			H.update_inv_r_hand()
+		update_wear_icon()
 
 		src.add_fingerprint(user)
 		return

@@ -50,7 +50,7 @@
 	user.visible_message(SPAN_NOTICE("[user] installed [tool] to [target]'s [affected]."), \
 	SPAN_NOTICE("You installed [tool] to [target]'s [affected].") )
 
-	user.drop_item()
+	user.drop_from_inventory(implant)
 	implant.install(target, target_zone)
 	target.update_implants()
 

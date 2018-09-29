@@ -162,24 +162,13 @@
 
 	if(M == user && user.targeted_organ == "mouth")
 		// Find ourselves a cig. Note that we could be full of lighters.
-		var/obj/item/clothing/mask/smokable/cigarette/cig = null
-		for(var/obj/item/clothing/mask/smokable/cigarette/C in contents)
-			cig = C
-			break
+		var/obj/item/clothing/mask/smokable/cigarette/cig = locate() in src
 
-		if(cig == null)
+		if(!cig)
 			user << SPAN_NOTICE("Looks like the packet is out of cigarettes.")
 			return
 
-		// We check here first,
-		// to avoid dousing cig with reagents if we're not going to equip it
-		if(!cig.mob_can_equip(user, slot_wear_mask))
-			return
-
-		// We call remove_from_storage first to manage the reagent transfer and
-		// UI updates.
-		remove_from_storage(cig, null)
-		user.equip_to_slot_if_possible(cig, slot_wear_mask) //This check is redundant but it ensures pre_equip is called
+		user.equip_to_slot_if_possible(cig, slot_wear_mask)
 
 		reagents.maximum_volume = 15 * contents.len
 		user << SPAN_NOTICE("You take a cigarette out of the pack.")

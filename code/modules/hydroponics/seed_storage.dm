@@ -224,12 +224,11 @@
 /obj/machinery/seed_storage/proc/add(var/obj/item/seeds/O as obj)
 	if (ismob(O.loc))
 		var/mob/user = O.loc
-		user.remove_from_mob(O)
+		user.drop_from_inventory(O, src)
 	else if(istype(O.loc,/obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = O.loc
 		S.remove_from_storage(O, src)
 
-	O.loc = src
 	var/newID = 0
 
 	for (var/datum/seed_pile/N in piles)

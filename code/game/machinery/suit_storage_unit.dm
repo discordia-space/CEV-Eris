@@ -690,8 +690,7 @@
 			return
 
 		user << "You fit \the [I] into the suit cycler."
-		user.drop_item()
-		I.loc = src
+		user.drop_from_inventory(I, src)
 		helmet = I
 
 		update_icon()
@@ -713,8 +712,7 @@
 			return
 
 		user << "You fit \the [I] into the suit cycler."
-		user.drop_item()
-		I.loc = src
+		user.drop_from_inventory(I, src)
 		suit = I
 
 		update_icon()

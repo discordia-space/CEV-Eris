@@ -207,7 +207,7 @@
 	else if(href_list["common"])
 		switch(href_list["common"])
 			if("undress")
-				for(var/obj/item/W in current)
+				for(var/obj/item/W in current.get_equipped_items())
 					current.drop_from_inventory(W)
 			if("takeuplink")
 				take_uplink()

@@ -123,8 +123,7 @@
 				if(ammo_magazine)
 					user << SPAN_WARNING("[src] already has a magazine loaded.") //already a magazine here
 					return
-				user.remove_from_mob(AM)
-				AM.loc = src
+				user.drop_from_inventory(AM, src)
 				ammo_magazine = AM
 
 				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
@@ -173,8 +172,7 @@
 			inserted_casing.update_icon()
 			loaded.Insert(1, inserted_casing)
 		else
-			user.remove_from_mob(C)
-			C.loc = src
+			user.drop_from_inventory(C, src)
 			loaded.Insert(1, C) //add to the head of the list
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)

@@ -697,8 +697,7 @@ var/global/list/damage_icon_parts = list()
 
 		if( istype(wear_suit, /obj/item/clothing/suit/straight_jacket) )
 			drop_from_inventory(handcuffed)
-			drop_l_hand()
-			drop_r_hand()
+			drop_all_hands()
 
 		if(wear_suit.blood_DNA)
 			var/obj/item/clothing/suit/S = wear_suit

@@ -127,9 +127,7 @@
 		field_type = href_list["select_field"]
 	else if(href_list["insertcard"])
 		var/obj/item/I = usr.get_active_hand()
-		if (istype(I, /obj/item/weapon/card))
-			usr.drop_item()
-			I.loc = src
+		if (istype(I, /obj/item/weapon/card) && usr.unEquip(I, src))
 			auth_card = I
 			if(attempt_unlock(I, usr))
 				usr << "<span class='info'>You insert [I], the console flashes \'<i>Access granted.</i>\'</span>"
@@ -165,7 +163,7 @@
 		cell = null
 		user << "<span class='info'>You remove the power cell</span>"
 
-/obj/machinery/suspension_gen/attackby(obj/item/I, mob/user as mob)
+/obj/machinery/suspension_gen/attackby(obj/item/I, mob/user)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING))
 	switch(tool_type)
@@ -211,8 +209,7 @@
 			if(cell)
 				user << SPAN_WARNING("There is a power cell already installed.")
 			else
-				user.drop_item()
-				I.loc = src
+				user.drop_from_inventory(I, src)
 				cell = I
 				user << "<span class='info'>You insert the power cell.</span>"
 				icon_state = "suspension1"

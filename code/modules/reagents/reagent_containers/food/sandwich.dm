@@ -27,16 +27,14 @@
 		return
 	else if(istype(W,/obj/item/weapon/material/shard))
 		user << "\blue You hide [W] in \the [src]."
-		user.drop_item()
-		W.loc = src
+		user.drop_from_inventory(W, src)
 		update()
 		return
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks))
 		user << "\blue You layer [W] over \the [src]."
 		var/obj/item/weapon/reagent_containers/F = W
 		F.reagents.trans_to_obj(src, F.reagents.total_volume)
-		user.drop_item()
-		W.loc = src
+		user.drop_from_inventory(W, src)
 		ingredients += W
 		update()
 		return

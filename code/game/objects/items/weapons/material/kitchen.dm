@@ -86,10 +86,10 @@
 	force_divisor = 0.7 // 10 when wielded with weight 15 (wood)
 	thrown_force_divisor = 1 // as above
 
-/obj/item/weapon/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/weapon/material/kitchen/rollingpin/attack(mob/living/M, mob/living/user)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << SPAN_WARNING("\The [src] slips out of your hand and hits your head.")
-		user.drop_from_inventory(src)
+		user.unEquip(src)
 		user.take_organ_damage(10)
 		user.Paralyse(2)
 		return

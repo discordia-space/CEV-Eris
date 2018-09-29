@@ -133,8 +133,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else
 			user << SPAN_NOTICE("Machine cannot accept disks in that format.")
 			return
-		user.drop_item()
-		D.loc = src
+		user.drop_from_inventory(D, src)
 		user << SPAN_NOTICE("You add \the [D] to the machine.")
 	else
 		//The construction/deconstruction of the console code.

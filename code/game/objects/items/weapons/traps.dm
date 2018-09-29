@@ -29,7 +29,7 @@
 				SPAN_DANGER("\The [user] has deployed \the [src]."),
 				SPAN_DANGER("You have deployed \the [src]!"),
 				"You hear a latch click loudly."
-				)
+			)
 
 			deployed = 1
 			user.drop_from_inventory(src)

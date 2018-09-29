@@ -63,8 +63,8 @@
 		if(w_items + I.w_class > ITEM_SIZE_HUGE)
 			user << SPAN_NOTICE("The cistern is full.")
 			return
-		user.drop_item()
-		I.loc = src
+		if(!user.unEquip(I, src))
+			return
 		w_items += I.w_class
 		user << "You carefully place \the [I] into the cistern."
 		return

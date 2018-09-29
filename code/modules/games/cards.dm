@@ -141,7 +141,7 @@
 		for(var/datum/playingcard/P in cards)
 			H.cards += P
 		H.concealed = src.concealed
-		user.drop_from_inventory(src,user.loc)
+		user.drop_from_inventory(src)
 		qdel(src)
 		H.update_icon()
 		return
@@ -185,7 +185,7 @@
 
 	H.cards += cards
 	cards.Cut();
-	user.drop_item()
+	user.drop_from_inventory(src)
 	qdel(src)
 
 	H.update_icon()

@@ -33,11 +33,10 @@
 		if(installed_gun)
 			user << SPAN_WARNING("There's already a weapon installed.")
 			return
-		user.drop_from_inventory(gun)
-		installed_gun = gun
-		gun.forceMove(src)
-		user << SPAN_NOTICE("You slide \the [gun] into the firing mechanism.")
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+		if(user.unEquip(gun, src))
+			installed_gun = gun
+			user << SPAN_NOTICE("You slide \the [gun] into the firing mechanism.")
+			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 	else
 		..()
 

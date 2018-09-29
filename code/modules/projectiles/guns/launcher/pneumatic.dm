@@ -65,10 +65,13 @@
 
 /obj/item/weapon/gun/launcher/pneumatic/attackby(obj/item/W as obj, mob/user as mob)
 	if(!tank && istype(W,/obj/item/weapon/tank))
-		user.drop_from_inventory(W, src)
-		tank = W
-		user.visible_message("[user] jams [W] into [src]'s valve and twists it closed.","You jam [W] into [src]'s valve and twist it closed.")
-		update_icon()
+		if(user.unEquip(W, src))
+			tank = W
+			user.visible_message(
+				"[user] jams [W] into [src]'s valve and twists it closed.",
+				"You jam [W] into [src]'s valve and twist it closed."
+			)
+			update_icon()
 	else if(istype(W) && item_storage.can_be_inserted(W))
 		item_storage.handle_item_insertion(W)
 
@@ -131,10 +134,7 @@
 		icon_state = "pneumatic"
 		item_state = "pneumatic"
 
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_r_hand()
-		M.update_inv_l_hand()
+	update_wear_icon()
 
 //Constructable pneumatic cannon.
 

@@ -62,8 +62,7 @@
 		path = 1
 		user << SPAN_NOTICE("You add [W] to the metal casing.")
 		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
-		user.remove_from_mob(det)
-		det.loc = src
+		user.drop_from_inventory(det, src)
 		detonator = det
 		if(is_timer(detonator.left_assembly))
 			var/obj/item/device/assembly/timer/T = detonator.left_assembly
@@ -105,12 +104,11 @@
 			return
 		else
 			if(W.reagents.total_volume)
-				user << SPAN_NOTICE("You add \the [W] to the assembly.")
-				user.drop_item()
-				W.loc = src
-				beakers += W
-				stage = 1
-				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+				if(user.unEquip(W, src))
+					user << SPAN_NOTICE("You add \the [W] to the assembly.")
+					beakers += W
+					stage = 1
+					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 			else
 				user << SPAN_WARNING("\The [W] is empty.")
 
@@ -146,7 +144,9 @@
 
 	var/has_reagents = 0
 	for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
-		if(G.reagents.total_volume) has_reagents = 1
+		if(G.reagents.total_volume)
+			has_reagents = 1
+			break
 
 	active = 0
 	if(!has_reagents)
@@ -176,10 +176,9 @@
 			if( A == src ) continue
 			src.reagents.touch(A)
 
-	if(iscarbon(loc))		//drop dat grenade if it goes off in your hand
-		var/mob/living/carbon/C = loc
-		C.drop_from_inventory(src)
-		C.throw_mode_off()
+	if(ismob(loc))		//drop dat grenade if it goes off in your hand
+		var/mob/M = loc
+		M.drop_from_inventory(src)
 
 	invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?
 	spawn(50)		   //To make sure all reagents can work

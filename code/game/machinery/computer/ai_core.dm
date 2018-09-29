@@ -131,8 +131,7 @@
 				user << SPAN_NOTICE("You place the circuit board inside the frame.")
 				icon_state = "1"
 				circuit = I
-				user.drop_item()
-				I.loc = src
+				user.drop_from_inventory(I, src)
 		if(2)
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
@@ -199,8 +198,7 @@
 				if(M.brainmob.mind)
 					clear_antagonist(M.brainmob.mind)
 
-				user.drop_item()
-				I.loc = src
+				user.drop_from_inventory(I, src)
 				brain = I
 				usr << "Added [I]."
 				icon_state = "3b"

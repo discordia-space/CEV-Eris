@@ -658,28 +658,9 @@
 		return
 
 	if(sealed)
-		if(H.head)
-			var/obj/item/garbage = H.head
+		for(var/slot in list(slot_head, slot_gloves, slot_shoes, slot_wear_suit))
+			var/obj/item/garbage = H.get_equipped_item(slot)
 			H.drop_from_inventory(garbage)
-			H.head = null
-			qdel(garbage)
-
-		if(H.gloves)
-			var/obj/item/garbage = H.gloves
-			H.drop_from_inventory(garbage)
-			H.gloves = null
-			qdel(garbage)
-
-		if(H.shoes)
-			var/obj/item/garbage = H.shoes
-			H.drop_from_inventory(garbage)
-			H.shoes = null
-			qdel(garbage)
-
-		if(H.wear_suit)
-			var/obj/item/garbage = H.wear_suit
-			H.drop_from_inventory(garbage)
-			H.wear_suit = null
 			qdel(garbage)
 
 	for(var/piece in list("helmet","gauntlets","chest","boots"))

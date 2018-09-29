@@ -50,8 +50,7 @@
 	if(grenades.len >= max_grenades)
 		user << SPAN_WARNING("\The [src] is full.")
 		return
-	user.remove_from_mob(G)
-	G.forceMove(src)
+	user.drop_from_inventory(G, src)
 	grenades.Insert(1, G) //add to the head of the list, so that it is loaded on the next pump
 	user.visible_message("\The [user] inserts \a [G] into \the [src].", SPAN_NOTICE("You insert \a [G] into \the [src]."))
 	pump(user)
@@ -115,15 +114,20 @@
 	if(chambered)
 		user << SPAN_WARNING("\The [src] is already loaded.")
 		return
-	user.remove_from_mob(G)
-	G.forceMove(src)
+	user.drop_from_inventory(G, src)
 	chambered = G
-	user.visible_message("\The [user] load \a [G] into \the [src].", SPAN_NOTICE("You load \a [G] into \the [src]."))
+	user.visible_message(
+		"\The [user] load \a [G] into \the [src].",
+		SPAN_NOTICE("You load \a [G] into \the [src].")
+	)
 
 /obj/item/weapon/gun/launcher/grenade/underslung/unload(mob/user)
 	if(chambered)
 		user.put_in_hands(chambered)
-		user.visible_message("\The [user] removes \a [chambered] from \the[src].", SPAN_NOTICE("You remove \a [chambered] from \the [src]."))
+		user.visible_message(
+			"\The [user] removes \a [chambered] from \the[src].",
+			SPAN_NOTICE("You remove \a [chambered] from \the [src].")
+		)
 		chambered = null
 	else
 		user << SPAN_WARNING("\The [src] is empty.")

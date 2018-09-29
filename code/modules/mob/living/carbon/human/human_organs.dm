@@ -113,7 +113,7 @@
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
 				visible_message(SPAN_DANGER("Lacking a functioning left hand, \the [src] drops \the [l_hand]."))
-				drop_from_inventory(l_hand)
+				unEquip(l_hand)
 				break
 
 	if(r_hand)
@@ -121,7 +121,7 @@
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
 				visible_message(SPAN_DANGER("Lacking a functioning right hand, \the [src] drops \the [r_hand]."))
-				drop_from_inventory(r_hand)
+				unEquip(r_hand)
 				break
 
 	// Check again...
@@ -137,11 +137,11 @@
 				if(ARM_LEFT)
 					if(!l_hand)
 						continue
-					drop_from_inventory(l_hand)
+					unEquip(l_hand)
 				if(ARM_RIGHT)
 					if(!r_hand)
 						continue
-					drop_from_inventory(r_hand)
+					unEquip(r_hand)
 
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 			emote("me", 1, "[(species.flags & NO_PAIN) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
@@ -151,11 +151,11 @@
 				if(ARM_LEFT)
 					if(!l_hand)
 						continue
-					drop_from_inventory(l_hand)
+					unEquip(l_hand)
 				if(ARM_RIGHT)
 					if(!r_hand)
 						continue
-					drop_from_inventory(r_hand)
+					unEquip(r_hand)
 
 			emote("me", 1, "drops what they were holding, their [E.name] malfunctioning!")
 

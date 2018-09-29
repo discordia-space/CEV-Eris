@@ -294,7 +294,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		H.update_canmove()
 		H.invisibility = initial(invisibility)
 
-		for(var/obj/item/W in src)
+		// TODO: move that into species_select code and update
+		for(var/obj/item/W in H.get_equipped_items())
 			H.drop_from_inventory(W)
 
 		H.set_species(H.species.greater_form)
@@ -388,7 +389,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	sleep(48)
 	qdel(animation)
 
-	for(var/obj/item/W in src)
+	//TODO: bugs possible. Move that into species select code and update
+	for(var/obj/item/W in get_equipped_items())
 		C.drop_from_inventory(W)
 
 	var/mob/living/carbon/human/O = new /mob/living/carbon/human( src )

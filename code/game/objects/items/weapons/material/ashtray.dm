@@ -50,8 +50,7 @@ var/global/list/ashtray_cache = list()
 		if (contents.len >= max_butts)
 			user << "\The [src] is full."
 			return
-		user.remove_from_mob(W)
-		W.loc = src
+		user.drop_from_inventory(W, src)
 
 		if (istype(W,/obj/item/clothing/mask/smokable/cigarette))
 			var/obj/item/clothing/mask/smokable/cigarette/cig = W
@@ -68,8 +67,6 @@ var/global/list/ashtray_cache = list()
 				user << "You place [cig] in [src] without even smoking it. Why would you do that?"
 
 		src.visible_message("[user] places [W] in [src].")
-		user.update_inv_l_hand()
-		user.update_inv_r_hand()
 		add_fingerprint(user)
 		update_icon()
 	else

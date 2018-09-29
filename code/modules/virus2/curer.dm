@@ -12,13 +12,9 @@
 
 /obj/machinery/computer/curer/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I,/obj/item/weapon/reagent_containers))
-		var/mob/living/carbon/C = user
-		if(!container)
+		if(!container && user.unEquip(I, src))
 			container = I
-			C.drop_item()
-			I.loc = src
-		return
-	if(istype(I,/obj/item/weapon/virusdish))
+	else if(istype(I,/obj/item/weapon/virusdish))
 		if(virusing)
 			user << "<b>The pathogen materializer is still recharging..</b>"
 			return
@@ -32,9 +28,8 @@
 		spawn(1200) virusing = 0
 
 		state("The [src.name] Buzzes", "blue")
-		return
-	..()
-	return
+	else
+		..()
 
 /obj/machinery/computer/curer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)

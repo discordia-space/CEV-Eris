@@ -100,16 +100,15 @@
 	return
 
 /obj/item/weapon/tank/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-
 	if (istype(W, /obj/item/weapon/flamethrower))
 		var/obj/item/weapon/flamethrower/F = W
-		if ((!F.status)||(F.ptank))	return
-		src.master = F
-		F.ptank = src
-		user.remove_from_mob(src)
-		src.loc = F
-	return
+		if (!F.status || F.ptank)
+			return
+		if(user.unEquip(src, F))
+			src.master = F
+			F.ptank = src
+	else
+		..()
 
 /*
  * Emergency Oxygen

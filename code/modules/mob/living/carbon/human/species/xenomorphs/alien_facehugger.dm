@@ -132,17 +132,17 @@ var/const/MAX_ACTIVE_TIME = 400
 		var/mob/living/carbon/target = L
 
 		if(target.wear_mask)
-			if(prob(20))	return
+			if(prob(20))
+				return
 			var/obj/item/clothing/W = target.wear_mask
-			if(!W.canremove)	return
-			target.drop_from_inventory(W)
-
-			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
+			if(target.unEquip(W))
+				target.visible_message(SPAN_DANGER("[src] tears [W] off of [target]'s face!"))
+			else
+				return
 
 		target.equip_to_slot(src, slot_wear_mask)
-		target.contents += src // Monkey sanity check - Snapshot
-
-		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/6) //something like 25 ticks = 20 seconds with the default settings
+		if(!sterile)
+			L.Paralyse(MAX_IMPREGNATION_TIME/6) //something like 25 ticks = 20 seconds with the default settings
 	else if (iscorgi(M))
 		var/mob/living/simple_animal/corgi/corgi = M
 		src.loc = corgi

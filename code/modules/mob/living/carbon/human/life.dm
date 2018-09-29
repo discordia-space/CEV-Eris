@@ -183,7 +183,7 @@
 			make_jittery(1000)
 	if (disabilities & COUGHING)
 		if ((prob(5) && paralysis <= 1))
-			drop_item()
+			drop_active_hand()
 			spawn( 0 )
 				emote("cough")
 				return
@@ -216,7 +216,7 @@
 		if(getBrainLoss() >= 35)
 			if(7 <= rn && rn <= 9) if(get_active_hand())
 				src << SPAN_DANGER("Your hand won't respond properly, you drop what you're holding!")
-				drop_item()
+				drop_all_hands(TRUE)
 		if(getBrainLoss() >= 45)
 			if(10 <= rn && rn <= 12)
 				if(prob(50))

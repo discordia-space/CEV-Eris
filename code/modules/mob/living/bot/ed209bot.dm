@@ -122,7 +122,6 @@
 	switch(build_step)
 		if(0, 1)
 			if(istype(I, /obj/item/robot_parts/l_leg) || istype(I, /obj/item/robot_parts/r_leg))
-				user.drop_item()
 				qdel(I)
 				build_step++
 				user << SPAN_NOTICE("You add the robot leg to [src].")
@@ -137,7 +136,6 @@
 
 		if(2)
 			if(istype(I, /obj/item/clothing/suit/storage/vest))
-				user.drop_item()
 				qdel(I)
 				build_step++
 				user << SPAN_NOTICE("You add the armor to [src].")
@@ -148,7 +146,6 @@
 
 		if(4)
 			if(istype(I, /obj/item/clothing/head/helmet))
-				user.drop_item()
 				qdel(I)
 				build_step++
 				user << SPAN_NOTICE("You add the helmet to [src].")
@@ -159,7 +156,6 @@
 
 		if(5)
 			if(is_proximity_sensor(I))
-				user.drop_item()
 				qdel(I)
 				build_step++
 				user << SPAN_NOTICE("You add the prox sensor to [src].")
@@ -184,14 +180,13 @@
 				return
 
 		if(7)
-			if(istype(I, /obj/item/weapon/gun/energy/taser))
+			if(istype(I, /obj/item/weapon/gun/energy/taser) && user.unEquip(I, src))
 				name = "taser ED-209 assembly"
 				build_step++
 				user << SPAN_NOTICE("You add [I] to [src].")
 				playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 				item_state = "ed209_taser"
 				icon_state = "ed209_taser"
-				user.drop_item()
 				qdel(I)
 
 		if(9)
@@ -200,7 +195,6 @@
 				user << SPAN_NOTICE("You complete the ED-209.")
 				var/turf/T = get_turf(src)
 				new /mob/living/bot/secbot/ed209(T,created_name,lasercolor)
-				user.drop_item()
 				qdel(I)
 				user.drop_from_inventory(src)
 				qdel(src)

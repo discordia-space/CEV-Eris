@@ -29,7 +29,7 @@
 		return
 
 	if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/robot_parts) || istype(I,/obj/item/prosthesis))
-		user.remove_from_mob(I)
+		user.drop_from_inventory(I)
 		qdel(I)
 
 		working = TRUE

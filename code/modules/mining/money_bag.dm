@@ -46,18 +46,14 @@
 		dat += text("Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=uranium'>Remove one</A><br>")
 	user << browse("[dat]", "window=moneybag")
 
-/obj/item/weapon/moneybag/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/moneybag/attackby(obj/item/weapon/W, mob/user)
 	..()
-	if (istype(W, /obj/item/weapon/coin))
-		var/obj/item/weapon/coin/C = W
-		user << "\blue You add the [C.name] into the bag."
-		usr.drop_item()
-		contents += C
+	if (istype(W, /obj/item/weapon/coin) && user.unEquip(W, src))
+		user << "\blue You add the [W] into the bag."
 	if (istype(W, /obj/item/weapon/moneybag))
-		var/obj/item/weapon/moneybag/C = W
-		for (var/obj/O in C.contents)
-			contents += O;
-		user << "\blue You empty the [C.name] into the bag."
+		for (var/obj/O in W)
+			O.forceMove(src)
+		user << "\blue You empty the [W.name] into the bag."
 	return
 
 /obj/item/weapon/moneybag/Topic(href, href_list)

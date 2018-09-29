@@ -260,8 +260,7 @@
 	if(!istype(C))
 		return
 
-	H.drop_from_inventory(C)
-	C.forceMove(src)
+	H.drop_from_inventory(C, src)
 	src.cell = C
 	powercheck()
 	usr << SPAN_NOTICE("You install [C] in [src].")

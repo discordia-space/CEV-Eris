@@ -316,11 +316,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/GetID()
 	return id
 
-/obj/item/device/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
-	var/mob/M = usr
-	if((!istype(over_object, /obj/screen)) && can_use())
-		return attack_self(M)
-	return
+/obj/item/device/pda/MouseDrop(obj/over_object, src_location, over_location)
+	if(istype(over_object, /obj/screen) && can_use())
+		return attack_self(usr)
+	return ..()
 
 
 /obj/item/device/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -1149,8 +1148,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	..()
 	if(istype(C, /obj/item/weapon/cartridge) && !cartridge)
 		cartridge = C
-		user.drop_item()
-		cartridge.loc = src
+		user.drop_from_inventory(C, src)
 		user << SPAN_NOTICE("You insert [cartridge] into [src].")
 		SSnano.update_uis(src) // update all UIs attached to src
 		if(cartridge.radio)
@@ -1177,8 +1175,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			return	//Return in case of failed check or when successful.
 		updateSelfDialog()//For the non-input related code.
 	else if(istype(C, /obj/item/device/paicard) && !src.pai)
-		user.drop_item()
-		C.loc = src
+		user.drop_from_inventory(C, src)
 		pai = C
 		user << SPAN_NOTICE("You slot \the [C] into [src].")
 		SSnano.update_uis(src) // update all UIs attached to src
@@ -1186,12 +1183,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)
 			user << SPAN_NOTICE("There is already a pen in \the [src].")
-		else
-			user.drop_item()
-			C.loc = src
+		else if(user.unEquip(C, src))
 			user << SPAN_NOTICE("You slide \the [C] into \the [src].")
 			update_icon()
-	return
 
 /obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
 	if (iscarbon(C))

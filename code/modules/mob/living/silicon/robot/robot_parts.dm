@@ -117,7 +117,7 @@
 			B.forceMove(get_turf(src))
 			user << SPAN_NOTICE("You armed the robot frame.")
 			if (user.get_inactive_hand() == src)
-				user.remove_from_mob(src)
+				user.drop_from_inventory(src)
 				user.put_in_inactive_hand(B)
 			qdel(src)
 		else
@@ -319,9 +319,9 @@
 	if(src.flash1 && src.flash2)
 		user << SPAN_NOTICE("You have already inserted the eyes!")
 		return
-	else if(src.flash1)
-		src.flash2 = W
-	else
-		src.flash1 = W
-	user.drop_from_inventory(W, src)
-	user << SPAN_NOTICE("You insert the flash into the eye socket!")
+	if(user.unEquip(W, src))
+		if(src.flash1)
+			src.flash2 = W
+		else
+			src.flash1 = W
+		user << SPAN_NOTICE("You insert the flash into the eye socket!")

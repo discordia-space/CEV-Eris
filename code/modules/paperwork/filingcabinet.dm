@@ -37,8 +37,7 @@
 /obj/structure/filingcabinet/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo) || istype(I, /obj/item/weapon/paper_bundle))
 		user << SPAN_NOTICE("You put [I] in [src].")
-		user.drop_item()
-		I.loc = src
+		user.drop_active_hand(I, src)
 		icon_state = "[initial(icon_state)]-open"
 		sleep(5)
 		icon_state = initial(icon_state)

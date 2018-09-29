@@ -76,11 +76,7 @@
 
 
 /obj/item/weapon/paper_bin/attackby(obj/item/weapon/paper/i as obj, mob/user as mob)
-	if(!istype(i))
-		return
-
-	user.drop_item()
-	i.loc = src
+	user.drop_active_hand(i, src)
 	user << SPAN_NOTICE("You put [i] in [src].")
 	papers.Add(i)
 	update_icon()

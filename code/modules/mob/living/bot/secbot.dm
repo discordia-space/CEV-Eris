@@ -515,7 +515,6 @@
 			user << "You weld a hole in \the [src]."
 
 	else if(is_proximity_sensor(I) && (build_step == 1))
-		user.drop_item()
 		build_step = 2
 		user << "You add \the [I] to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
@@ -524,7 +523,6 @@
 		qdel(I)
 
 	else if((istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm)) && build_step == 2)
-		user.drop_item()
 		build_step = 3
 		user << "You add \the [I] to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
@@ -532,8 +530,7 @@
 		overlays += image('icons/obj/aibots.dmi', "hs_arm")
 		qdel(I)
 
-	else if(istype(I, /obj/item/weapon/melee/baton) && build_step == 3)
-		user.drop_item()
+	else if(istype(I, /obj/item/weapon/melee/baton) && build_step == 3 && user.unEquip(I, src))
 		user << "You complete the Securitron! Beep boop."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		var/mob/living/bot/secbot/S = new /mob/living/bot/secbot(get_turf(src))

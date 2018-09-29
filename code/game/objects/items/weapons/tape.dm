@@ -70,8 +70,8 @@
 /obj/item/weapon/tape_roll/proc/stick(var/obj/item/weapon/W, mob/user)
 	if(!istype(W, /obj/item/weapon/paper))
 		return
-	user.drop_from_inventory(W)
 	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
+	user.drop_from_inventory(W, tape)
 	tape.attach(W)
 	user.put_in_hands(tape)
 
@@ -128,8 +128,7 @@
 			user << "You cannot reach that from here."		// can only place stuck papers in cardinal directions, to
 			return											// reduce papers around corners issue.
 
-	user.drop_from_inventory(src)
-	forceMove(source_turf)
+	user.drop_from_inventory(src, source_turf)
 
 	if(params)
 		var/list/mouse_control = params2list(params)

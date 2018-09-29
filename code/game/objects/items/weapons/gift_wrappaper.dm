@@ -71,10 +71,11 @@
 		/obj/item/weapon/storage/belt/utility/full,
 		/obj/item/clothing/accessory/horrible)
 
-	if(!ispath(gift_type,/obj/item))	return
+	if(!ispath(gift_type,/obj/item))
+		return
 
 	var/obj/item/I = new gift_type(M)
-	M.remove_from_mob(src)
+	M.drop_from_inventory(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
 	qdel(src)
@@ -91,7 +92,7 @@
 	w_class = ITEM_SIZE_LARGE
 
 /obj/item/weapon/gift/attack_self(mob/user as mob)
-	user.drop_item()
+	user.drop_from_inventory(src)
 	if(src.gift)
 		user.put_in_active_hand(gift)
 		src.gift.add_fingerprint(user)
@@ -152,13 +153,12 @@
 					return
 
 				src.amount -= a_used
-				user.drop_item()
 				var/obj/item/weapon/gift/G = new /obj/item/weapon/gift( src.loc )
 				G.size = W.w_class
 				G.w_class = G.size + 1
 				G.icon_state = text("gift[]", G.size)
 				G.gift = W
-				W.loc = G
+				user.drop_from_inventory(W, G)
 				G.add_fingerprint(user)
 				W.add_fingerprint(user)
 				src.add_fingerprint(user)

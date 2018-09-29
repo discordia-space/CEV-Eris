@@ -334,34 +334,31 @@
 
 	user << "You add the robot arm to [src]."
 	playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
-	loc = A //Place the water tank into the assembly, it will be needed for the finished bot
+	forceMove(A) //Place the water tank into the assembly, it will be needed for the finished bot
 	user.drop_from_inventory(S)
 	qdel(S)
 
 /obj/item/weapon/farmbot_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if((istype(W, /obj/item/device/scanner/analyzer/plant_analyzer)) && (build_step == 0))
+	if((istype(W, /obj/item/device/scanner/analyzer/plant_analyzer)) && (build_step == 0) && user.unEquip(W, src))
 		build_step++
 		user << "You add the plant analyzer to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly"
-		user.remove_from_mob(W)
 		qdel(W)
 
-	else if((istype(W, /obj/item/weapon/reagent_containers/glass/bucket)) && (build_step == 1))
+	else if((istype(W, /obj/item/weapon/reagent_containers/glass/bucket)) && (build_step == 1) && user.unEquip(W, src))
 		build_step++
 		user << "You add a bucket to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly with bucket"
-		user.remove_from_mob(W)
 		qdel(W)
 
-	else if((istype(W, /obj/item/weapon/material/minihoe)) && (build_step == 2))
+	else if((istype(W, /obj/item/weapon/material/minihoe)) && (build_step == 2) && user.unEquip(W, src))
 		build_step++
 		user << "You add a minihoe to [src]."
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		name = "farmbot assembly with bucket and minihoe"
-		user.remove_from_mob(W)
 		qdel(W)
 
 	else if((is_proximity_sensor(W)) && (build_step == 3))
@@ -373,7 +370,7 @@
 			wTank.loc = S
 			S.tank = wTank
 		S.name = created_name
-		user.remove_from_mob(W)
+		user.drop_from_inventory(W, 0)
 		qdel(W)
 		qdel(src)
 

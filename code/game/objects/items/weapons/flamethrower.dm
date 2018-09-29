@@ -72,32 +72,30 @@
 /obj/item/weapon/flamethrower/attackby(obj/item/W as obj, mob/user as mob)
 	if(user.stat || user.restrained() || user.lying)	return
 
-	if(is_igniter(W))
+	if(is_igniter(W) && !igniter)
 		var/obj/item/device/assembly/igniter/I = W
-		if(I.secured)	return
-		if(igniter)		return
-		user.drop_item()
-		I.loc = src
+		if(I.secured)
+			return
+		if(!user.unEquip(I, src))
+			return
 		igniter = I
 		update_icon()
-		return
 
-	if(istype(W,/obj/item/weapon/tank/plasma))
+	else if(istype(W,/obj/item/weapon/tank/plasma))
 		if(ptank)
 			user << SPAN_NOTICE("There appears to already be a plasma tank loaded in [src]!")
 			return
-		user.drop_item()
+		if(!user.unEquip(W, src))
+			return
 		ptank = W
-		W.loc = src
 		update_icon()
-		return
 
-	if(istype(W, /obj/item/device/scanner/analyzer))
+	else if(istype(W, /obj/item/device/scanner/analyzer))
 		var/obj/item/device/scanner/analyzer/A = W
 		A.analyze_gases(src, user)
-		return
-	..()
-	return
+
+	else
+		..()
 
 
 /obj/item/weapon/flamethrower/attack_self(mob/user as mob)
