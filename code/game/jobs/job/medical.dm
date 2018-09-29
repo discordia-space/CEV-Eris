@@ -14,9 +14,12 @@
 	economic_modifier = 10
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
-		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks
+		access_rd, access_heads, access_tox, access_genetics, access_morgue,access_tox_storage, \
+		access_teleporter,access_sec_doors,access_medical, access_medical_equip, access_chemistry, \
+		access_virology, access_cmo, access_surgery, access_psychiatrist,access_research, \
+		access_robotics, access_xenobiology,access_ai_upload, access_tech_storage, access_eva, \
+		access_external_airlocks,access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, \
+		access_xenoarch, access_network
 	)
 
 	ideal_character_age = 50
@@ -63,7 +66,7 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
-		access_genetics
+		access_genetics, access_robotics, access_research
 	)
 	idtype = /obj/item/weapon/card/id/med
 
@@ -104,7 +107,7 @@
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology
+		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_research, access_tox, access_tox_storage,
 	)
 	idtype = /obj/item/weapon/card/id/chem
 
@@ -144,7 +147,8 @@
 	selection_color = "#ffeef0"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_psychiatrist
+		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
+		access_genetics, access_robotics, access_research
 	)
 
 	stat_modifers = list(
@@ -181,7 +185,7 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
 		access_medical, access_medical_equip, access_morgue, access_surgery,
-		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
+		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist, access_robotics, access_research
 	)
 
 	stat_modifers = list(
