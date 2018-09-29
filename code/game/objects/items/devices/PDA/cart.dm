@@ -10,7 +10,7 @@
 	var/access_security = 0
 	var/access_engine = 0
 	var/access_atmos = 0
-	var/access_medical = 0
+	var/access_moebius = 0
 	var/access_clown = 0
 	var/access_mime = 0
 	var/access_janitor = 0
@@ -46,7 +46,7 @@
 /obj/item/weapon/cartridge/medical
 	name = "\improper Med-U cartridge"
 	icon_state = "cart-m"
-	access_medical = 1
+	access_moebius = 1
 
 /obj/item/weapon/cartridge/chemistry
 	name = "\improper ChemWhiz cartridge"
@@ -66,7 +66,7 @@
 	name = "\improper D.E.T.E.C.T. cartridge"
 	icon_state = "cart-s"
 	access_security = 1
-	access_medical = 1
+	access_moebius = 1
 
 
 /obj/item/weapon/cartridge/janitor
@@ -167,7 +167,7 @@
 	icon_state = "cart-cmo"
 	access_status_display = 1
 	access_reagent_scanner = 1
-	access_medical = 1
+	access_moebius = 1
 
 /obj/item/weapon/cartridge/rd
 	name = "\improper Signal Ace DELUXE"
@@ -188,7 +188,7 @@
 	access_janitor = 1
 	access_engine = 1
 	access_security = 1
-	access_medical = 1
+	access_moebius = 1
 	access_reagent_scanner = 1
 	access_status_display = 1
 	access_atmos = 1
