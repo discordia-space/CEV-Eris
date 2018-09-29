@@ -44,10 +44,14 @@
 		return
 	if (istype(M, /atom/movable))
 		if(prob(failchance)) //oh dear a problem, put em in deep space
-			src.icon_state = "portal1"
-			do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
+			on_fail(M)
 		else
 			do_teleport(M, target, 1) ///You will appear adjacent to the beacon
+
+/obj/effect/portal/proc/on_fail(atom/movable/M as mob|obj)
+	src.icon_state = "portal1"
+	do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
+
 
 /obj/effect/portal/wormhole
 	icon = 'icons/obj/objects.dmi'
@@ -58,3 +62,13 @@
 /obj/effect/portal/wormhole/New(loc, exit, lifetime)
 	..(loc, lifetime)
 	target = exit
+
+
+/obj/effect/portal/unstable
+
+/obj/effect/portal/unstable/on_fail(atom/movable/M as mob|obj)
+	src.icon_state = "portal1"
+	if(istype(M, /mob/living))
+		var/mob/living/victim = M
+		victim.apply_damage(20+rand(60), BRUTE, pick(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG))
+	do_teleport(M, target, 1)
