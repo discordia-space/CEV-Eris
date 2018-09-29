@@ -105,4 +105,22 @@
 
 
 
+/datum/craft_recipe/bandage
+	name = "bandages"
+	result = /obj/item/stack/medical/bruise_pack/handmade
+	steps = list(
+		list(/obj/item/clothing, 1, time = 30)
+	)
 
+/datum/craft_recipe/handmade_handtele
+	name = "cheap hand-tele"
+	result = /obj/item/weapon/hand_tele/handmade
+	steps = list(
+		list(/obj/item/stack/material/plastic, 6, time = 30),
+		list(/obj/item/stack/material/glass, 2, time = 10),
+		list(/obj/item/weapon/circuitboard, 1, time = 20),
+		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
+		list(/obj/item/weapon/stock_parts/capacitor, 1),
+		list(/obj/item/weapon/cell/small, 1),
+		list(/obj/item/stack/cable_coil, 5, time = 20)
+	)
