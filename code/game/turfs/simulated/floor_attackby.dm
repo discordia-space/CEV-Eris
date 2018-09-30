@@ -54,6 +54,13 @@
 					if (flooring && flooring.can_build_floor(F))
 						use_flooring = F
 						break
+				else if (istype(S, /obj/item/stack/material))//Handling for material stacks
+					var/obj/item/stack/material/M = S
+					if (F.build_type == M.material.name)
+						if (flooring && flooring.can_build_floor(F))
+							use_flooring = F
+							break
+
 			if(!use_flooring)
 				return
 			// Do we have enough?
