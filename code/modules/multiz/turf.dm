@@ -169,8 +169,13 @@ see multiz/movement.dm for some info.
 			ReplaceWithLattice()
 		return
 
-	if (istype(C, /obj/item/stack/material/steel))
+	if (istype(C, /obj/item/stack/material))
+		var/obj/item/stack/material/M = C
+		if (!istype(M.material, /material/steel))
+			return
+
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+
 		if(L)
 			var/obj/item/stack/tile/floor/S = C
 			if (S.get_amount() < 4)
