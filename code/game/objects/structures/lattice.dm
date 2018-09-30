@@ -59,6 +59,7 @@
 		var/obj/item/stack/rods/R = I
 		if(R.amount <= 2)
 			return
+
 		else
 
 			user << SPAN_NOTICE("You start connecting [R.name] to [src.name] ...")
