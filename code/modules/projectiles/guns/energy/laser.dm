@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/laser
 	name = "NT LG \"Lightfall\""
-	desc = "NeoTheology brand laser carabin. Deadly and radiant, like ire of God it should represent."
+	desc = "NeoTheology brand laser carbine. Deadly and radiant, like ire of God it should represent."
 	icon_state = "laser"
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
@@ -17,7 +17,7 @@
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
-	desc = "A modified version of the NeoTheology brand laser carabin, this one fires less concentrated energy bolts designed for target practice."
+	desc = "A modified version of the NeoTheology brand laser carbine, this one fires less concentrated energy bolts designed for target practice."
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 2)
 	projectile_type = /obj/item/projectile/beam/practice
 
