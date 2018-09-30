@@ -43,7 +43,7 @@
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 
 	//slot 4 and 5 are our HANDS slots, so we do not want to play these sounds when pick something in our hands
-	if(slot != 4 && slot != 5)
+	if(slot != slot_l_hand && slot != slot_r_hand)
 		if( !istype(W, /obj/item/clothing/suit/storage) || \
 			!istype(W, /obj/item/weapon/storage)
 			)
