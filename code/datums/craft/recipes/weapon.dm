@@ -6,35 +6,35 @@
 	name = "baseball bat"
 	result = /obj/item/weapon/material/twohanded/baseballbat
 	steps = list(
-		list(/obj/item/stack/material/wood, 6, time = 20)
+		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD)
 	)
 
 /datum/craft_recipe/weapon/grenade_casing
 	name = "grenade casing"
 	result = /obj/item/weapon/grenade/chem_grenade
 	steps = list(
-		list(/obj/item/stack/material/steel, 2)
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL)
 	)
 
 /datum/craft_recipe/weapon/fork
-	name = "grenade casing"
+	name = "fork"
 	result = /obj/item/weapon/material/kitchen/utensil/fork
 	steps = list(
-		list(/obj/item/stack/material/steel, 1)
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
 /datum/craft_recipe/weapon/knife
 	name = "steel knife"
 	result = /obj/item/weapon/material/knife
 	steps = list(
-		list(/obj/item/stack/material/steel, 1)
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
 /datum/craft_recipe/weapon/spoon
 	name = "spoon"
 	result = /obj/item/weapon/material/kitchen/utensil/spoon
 	steps = list(
-		list(/obj/item/stack/material/steel, 1)
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
 
@@ -42,21 +42,21 @@
 	name = "knife blade"
 	result = /obj/item/weapon/material/butterflyblade
 	steps = list(
-		list(/obj/item/stack/material/steel, 6, time = 20)
+		list(CRAFT_MATERIAL, 6, MATERIAL_STEEL)
 	)
 
 /datum/craft_recipe/weapon/knife_grip
 	name = "knife grip"
 	result = /obj/item/weapon/material/butterflyhandle
 	steps = list(
-		list(/obj/item/stack/material/plasteel, 4, time = 20)
+		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL)
 	)
 
 /datum/craft_recipe/weapon/crossbow_frame
 	name = "crossbow frame"
 	result = /obj/item/weapon/crossbowframe
 	steps = list(
-		list(/obj/item/stack/material/wood, 5, time = 25)
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD)
 	)
 
 /datum/craft_recipe/weapon/teleportation_spear
@@ -81,7 +81,7 @@
 	name = "nailed bat"
 	result = /obj/item/weapon/melee/nailstick
 	steps = list(
-		list(/obj/item/stack/material/wood, 10, time = 30),
+		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD)
 		list(/obj/item/stack/rods, 3, time = 50)
 	)
 
@@ -89,9 +89,9 @@
 	name = "handmade shield"
 	result = /obj/item/weapon/shield/riot/handmade
 	steps = list(
-		list(/obj/item/stack/material/wood, 12, time = 40),
+		list(CRAFT_MATERIAL, 12, MATERIAL_WOOD),
 		list(/obj/item/stack/rods, 4, time = 10),
-		list(/obj/item/stack/material/steel, 2, time = 20)
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL)
 	)
 
 /datum/craft_recipe/weapon/tray_shield

@@ -1,7 +1,7 @@
 /datum/craft_recipe/floor
 	category = "Tiles"
 	steps = list(
-		list(/obj/item/stack/material/steel, 1),
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/floor/regular
@@ -20,7 +20,7 @@
 	name = "white floor tile"
 	result = /obj/item/stack/tile/floor/white
 	steps = list(
-		list(/obj/item/stack/material/plastic, 1)
+		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTIC)
 	)
 
 /datum/craft_recipe/floor/white/freezer
@@ -35,7 +35,7 @@
 	name = "wood floor tile"
 	result = /obj/item/stack/tile/wood
 	steps = list(
-		list(/obj/item/stack/material/wood, 1)
+		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD)
 	)
 
 

@@ -1,6 +1,7 @@
 /datum/craft_step
 	var/reqed_type
 	var/reqed_quality
+	var/reqed_material
 	var/req_amount = 0
 
 	var/time = 15
@@ -20,6 +21,8 @@
 		if(ispath(validator))
 			reqed_type = validator
 		else if(istext(validator))
+			if (validator == CRAFT_MATERIAL)
+				reqed_material = params[3]
 			reqed_quality = validator
 
 		if(isnum(params[2])) //amount
@@ -38,6 +41,10 @@
 
 	else if(reqed_quality)
 		tool_name = "tool with quality of [reqed_quality]"
+
+	else if (reqed_material)
+		var/material/M = get_material_by_name("[reqed_material]")
+		tool_name = M.display_name
 
 	switch(req_amount)
 		if(0)
@@ -67,7 +74,7 @@
 		if(!istype(I, reqed_type))
 			user << "Wrong item!"
 			return
-		if(req_amount && ispath(reqed_type, /obj/item/stack))
+		if(req_amount && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(S.amount < req_amount)
 				user << "Not enought items in [I]"
@@ -116,4 +123,12 @@
 			if(value > best_value)
 				value = best_value
 				. = I
+
+	else if (reqed_material)
+		for(var/obj/item/I in items)
+			if (istype(I, /obj/item/stack/material))
+				var/obj/item/stack/material/MA = I
+				if (MA.material && (MA.material.name == reqed_material))
+					.=I
+					break
 
