@@ -1,4 +1,4 @@
-	/obj/structure/lattice
+/obj/structure/lattice
 	name = "lattice"
 	desc = "A lightweight support lattice."
 	icon = 'icons/obj/structures.dmi'
