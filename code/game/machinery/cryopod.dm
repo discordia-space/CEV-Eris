@@ -276,7 +276,7 @@
 		qdel(I)
 	qdel(R.module)
 
-	return ..()
+	. = ..()
 
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
