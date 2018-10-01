@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/laser
 	name = "NT LG \"Lightfall\""
-	desc = "\"NeoTheology\" brand laser carbine. Deadly and radiant, like ire of God it should represent."
+	desc = "\"NeoTheology\" brand laser carbine. Deadly and radiant, like the ire of God it represents."
 	icon_state = "laser"
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
