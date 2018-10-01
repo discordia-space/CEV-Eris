@@ -17,7 +17,7 @@
 	)
 
 /datum/craft_recipe/weapon/fork
-	name = "grenade casing"
+	name = "fork"
 	result = /obj/item/weapon/material/kitchen/utensil/fork
 	steps = list(
 		list(/obj/item/stack/material/steel, 1)
