@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/giskard
 	name = "FS HG .32 \"Giskard\""
-	desc = "That's the 'Frozen Star' popular traumatic pistol. Can even fit into the pocket! Uses .32 rounds."
+	desc = "That's the \"Frozen Star\" popular traumatic pistol. You can even fit into your pocket! Uses .32 rounds."
 	icon_state = "giskardcivil"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = ".32"

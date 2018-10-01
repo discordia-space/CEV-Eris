@@ -1,6 +1,6 @@
 /obj/item/weapon/plastique
-	name = "plastic explosives"
-	desc = "Used to put holes in specific areas without too much extra hole."
+	name = "plastic explosive"
+	desc = "Used to make holes in specific areas without any."
 	gender = PLURAL
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "plastic-explosive0"
@@ -46,7 +46,7 @@
 		return
 	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/under))
 		return
-	user << "Planting explosives..."
+	user << "Planting the explosive charge..."
 	user.do_attack_animation(target)
 
 	if(do_after(user, 50, target) && in_range(user, target))
@@ -56,7 +56,7 @@
 
 		if (ismob(target))
 			add_logs(user, target, "planted [name] on")
-			user.visible_message(SPAN_DANGER("[user.name] finished planting an explosive on [target.name]!"))
+			user.visible_message(SPAN_DANGER("[user.name] finished planting the explosive on [target.name]!"))
 			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [key_name(target)](<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [key_name(target)] with [timer] second fuse")
 
@@ -65,7 +65,7 @@
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
 		target.overlays += image_overlay
-		user << "Bomb has been planted. Timer counting down from [timer]."
+		user << "Bomb has been planted. Timer is counting down from [timer]."
 		spawn(timer*10)
 			explode(get_turf(target))
 

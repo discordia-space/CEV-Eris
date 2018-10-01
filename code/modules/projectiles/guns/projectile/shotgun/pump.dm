@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "FS SG \"Kammerer\""
-	desc = "Old Remington design from modern materials, this shotgun is a favourite of militia forces on many worlds."
+	desc = "When an old Remington design meets modern materials, this shotgun is being made. A favourite weapon of militia forces throughout many worlds."
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4

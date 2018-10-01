@@ -55,7 +55,7 @@
  */
 /obj/item/weapon/melee/energy/axe
 	name = "energy axe"
-	desc = "An energised battle axe."
+	desc = "An energy battle axe."
 	icon_state = "axe0"
 	//active_force = 150 //holy...
 	active_force = 60
@@ -77,12 +77,12 @@
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
 	..()
 	icon_state = "axe1"
-	user << SPAN_NOTICE("\The [src] is now energised.")
+	user << SPAN_NOTICE("\The [src] is now energized.")
 
 /obj/item/weapon/melee/energy/axe/deactivate(mob/living/user)
 	..()
 	icon_state = initial(icon_state)
-	user << SPAN_NOTICE("\The [src] is de-energised. It's just a regular axe now.")
+	user << SPAN_NOTICE("\The [src] is de-energized. It's just a regular axe now.")
 
 /*
  * Energy Sword
@@ -90,7 +90,7 @@
 /obj/item/weapon/melee/energy/sword
 	color
 	name = "energy sword"
-	desc = "May the force be within you."
+	desc = "May the Force be with you."
 	icon_state = "sword0"
 	active_force = WEAPON_FORCE_LETHAL
 	active_throwforce = WEAPON_FORCE_LETHAL
@@ -127,7 +127,7 @@
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
-		user << SPAN_NOTICE("\The [src] is now energised.")
+		user << SPAN_NOTICE("\The [src] is now energized.")
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	tool_qualities = list(QUALITY_CUTTING = 30,  QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 20, QUALITY_WELDING = 10, QUALITY_CAUTERIZING = 10)
@@ -168,7 +168,7 @@
 //Can't be activated or deactivated, so no reason to be a subtype of energy
 /obj/item/weapon/melee/energy/blade
 	name = "energy blade"
-	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
+	desc = "A concentrated beam of energy which has a shape of a blade. Very stylishly... and lethal."
 	icon_state = "blade"
 	force = WEAPON_FORCE_LETHAL //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100

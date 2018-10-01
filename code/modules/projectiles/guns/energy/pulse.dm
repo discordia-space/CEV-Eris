@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/pulse_rifle
 	name = "NT PR \"Dominion\""
-	desc = "A weapon that uses advanced pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists."
+	desc = "A weapon that uses advanced pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use, except by specialists."
 	icon_state = "pulse"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -24,7 +24,7 @@
 
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 	name = "NT PR \"Purger\""
-	desc = "A heavy-duty, pulse-based energy weapon. Because of its complexity and cost, it is rarely seen in use except by specialists."
+	desc = "A heavy-duty, pulse-based energy weapon. Because of its complexity and cost, it is rarely seen in use, except by specialists."
 	fire_delay = 25
 	fire_sound='sound/weapons/pulse.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 5)

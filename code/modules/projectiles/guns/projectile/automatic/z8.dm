@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/z8
 	name = "FS AR 5.56x45mm \"Z8 Bulldog\""
-	desc = "The Z8 Bulldog is an older model bullpup carbine, made by Frozen Star. Uses armor piercing 5.56mm rounds. Makes you feel like a space marine when you hold it."
+	desc = "The Z8 Bulldog is an old model bullpup carbine, made by \"Frozen Star\". It uses armor piercing 5.56mm rounds. Makes you feel like a space marine when you hold it."
 	icon_state = "carbine"
 	item_state = "z8carbine"
 	w_class = ITEM_SIZE_LARGE

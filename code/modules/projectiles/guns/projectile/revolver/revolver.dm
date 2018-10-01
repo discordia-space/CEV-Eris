@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/revolver
 	name = "FS REV .357 \"Miller\""
-	desc = "The Frozen Star's Miller is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses old school .357 ammo."
+	desc = "The \"Miller\" of the \"Frozen Star\" is a revolver of choice when you absolutely, positively need to make a hole in someone. Uses old-school .357 ammo."
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = "357"

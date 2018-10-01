@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/olivaw
 	name = "FS HG .32 \"Olivaw\""
-	desc = "That's the 'Frozen Star' popular traumatic pistol. This one seems to have a two-round burst-fire mode. Uses .32 rounds."
+	desc = "That's a popular traumatic pistol of \"Frozen Star\". This one seems to have a two-round burst-fire mode. Uses .32 rounds."
 	icon_state = "olivawcivil"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = ".32"

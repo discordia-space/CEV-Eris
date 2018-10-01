@@ -22,7 +22,7 @@
 
 /obj/item/weapon/hatton
 	name = "Excelsior BD \"Hatton\""
-	desc = "More instrument than a weapon, this breaching device was designed for emergency situations."
+	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations."
 	icon = 'icons/obj/Hatton.dmi'
 	icon_state = "Hatton_Hammer_1"
 	item_state = "Hatton_Hammer_1"
@@ -175,7 +175,7 @@
 /obj/item/weapon/hatton/robot
 	var/power_cost = 200 KILOWATTS //This uses about 7.5% of the charge on a rescue robot
 	fire_cooldown = 150 //fifteen second cooldown between uses
-	desc = "More instrument than a weapon, this breaching device was designed for emergency situations. It uses a massive surge of power to break down obstacles."
+	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations. It uses a massive surge of power to break down obstacles."
 
 /obj/item/weapon/hatton/robot/use_charge()
 	var/mob/living/silicon/robot/R = loc

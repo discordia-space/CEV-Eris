@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/crossbow
 	name = "NT EC \"Nemesis\""
-	desc = "Mini energy crossbow, produced by old Nanotrasen, discontinued now. A weapon favored by many mercenary stealth specialists."
+	desc = "Mini energy crossbow, produced by the old Nanotrasen, discontinued now. A weapon favored by many mercenary stealth specialists."
 	icon_state = "crossbow"
 	w_class = ITEM_SIZE_SMALL
 	item_state = "crossbow"

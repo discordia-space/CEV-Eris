@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic //Hopefully someone will find a way to make these fire in bursts or something. --Superxpdude
 	name = "prototype SMG"
-	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
+	desc = "A prototype of a lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "generic_smg"
 	w_class = ITEM_SIZE_NORMAL
 	load_method = SPEEDLOADER //yup. until someone sprites a magazine for it.

@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/cassad
 	name = "FS PR \"Cassad\""
-	desc = "Frozen Star brand energy assault rifle, capable of prolonged combat. When surrender is not an option."
+	desc = "\"Frozen Star\" brand energy assault rifle, capable of prolonged combat. When surrender is not an option."
 	icon_state = "cassad"
 	item_state = "pulse"
 	slot_flags = SLOT_BELT|SLOT_BACK

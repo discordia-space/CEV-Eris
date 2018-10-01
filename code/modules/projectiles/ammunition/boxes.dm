@@ -1,7 +1,7 @@
 /*This code for boxes with ammo, you cant use them as magazines, but should be able to fill magazines with them.*/
 /obj/item/ammo_magazine/ammobox	//Should not be used bu its own
 	name = "ammunition box"
-	desc = "Gun ammunition puted in shiny new box. You can see caliber details on on the label."
+	desc = "Gun ammunition put in a shiny new box. You can see caliber information on the label."
 	mag_type = SPEEDLOADER	//To prevent load in magazine filled guns
 	multiple_sprites = 1
 	reload_delay = 30
