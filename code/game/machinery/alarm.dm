@@ -759,7 +759,8 @@
 		if(href_list["atmos_reset"])
 			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			if (alarm_area.atmosalert(0, src))
-				apply_danger_level(0)
+				for (var/obj/machinery/alarm/AA in alarm_area) // force all alarms in area to clear
+					AA.apply_danger_level(0)
 			update_icon()
 			return 1
 
