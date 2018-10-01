@@ -288,7 +288,7 @@ var/list/slot_equipment_priority = list(
 
 
 /mob/proc/can_pickup(var/obj/item/I, var/feedback = TRUE)
-	if(!canmove || stat || restrained() || !Adjacent(usr))
+	if(stat || restrained() || !Adjacent(usr))
 		return
 
 	var/slot = get_active_hand_slot()

@@ -358,7 +358,7 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(!(usr)) //BS12 EDIT
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+	if(usr.stat || usr.restrained() || !Adjacent(usr))
 		return
 	if(!iscarbon(usr) || isbrain(usr))//Is humanoid, and is not a brain
 		usr << SPAN_WARNING("You can't pick things up!")
