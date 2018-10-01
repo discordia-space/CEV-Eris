@@ -66,8 +66,9 @@
 			return
 	if (istype(C, /obj/item/stack/material))
 		var/obj/item/stack/material/M = C
-		if (!istype(M.material, /material/steel))
-			return // this creates underplating
+		var/material/mat = M.get_material()
+		if (!mat.name == MATERIAL_STEEL)
+			return
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			var/obj/item/stack/tile/S = C

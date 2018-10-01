@@ -171,7 +171,8 @@ see multiz/movement.dm for some info.
 
 	if (istype(C, /obj/item/stack/material))
 		var/obj/item/stack/material/M = C
-		if (!istype(M.material, /material/steel))
+		var/material/mat = M.get_material()
+		if (!mat.name == MATERIAL_STEEL)
 			return
 
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
