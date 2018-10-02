@@ -61,7 +61,6 @@ var/global/list/minor_air_alarms = list()
 		return 1
 
 	if(href_list["clear_alarm"])
-		playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 		var/datum/alarm/alarm = locate(href_list["clear_alarm"]) in atmosphere_alarm.alarms
 		if(alarm)
 			for(var/datum/alarm_source/alarm_source in alarm.sources)
