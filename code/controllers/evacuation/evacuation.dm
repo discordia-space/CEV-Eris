@@ -112,7 +112,7 @@ var/datum/evacuation_controller/evacuation_controller
 	if(emergency_evacuation)
 		evac_recalled.Announce(maps_data.emergency_shuttle_recall_message)
 		for(var/area/A in world)
-			if(istype(A, /area/hallway))
+			if(istype(A, /area/hallway) || istype(A, /area/eris/hallway))
 				A.readyreset()
 		emergency_evacuation = 0
 	else
