@@ -620,6 +620,12 @@
 
 	return min(..(), .)
 
+/obj/machinery/alarm/proc/forceClearAlarm()
+	if (alarm_area.atmosalert(0, src))
+		for (var/obj/machinery/alarm/AA in alarm_area) // also force all alarms in area to clear
+			AA.apply_danger_level(0)
+	update_icon()
+
 /obj/machinery/alarm/Topic(href, href_list, var/datum/topic_state/state)
 	if(..(href, href_list, state))
 		return 1
@@ -758,10 +764,7 @@
 
 		if(href_list["atmos_reset"])
 			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
-			if (alarm_area.atmosalert(0, src))
-				for (var/obj/machinery/alarm/AA in alarm_area) // force all alarms in area to clear
-					AA.apply_danger_level(0)
-			update_icon()
+			forceClearAlarm()
 			return 1
 
 		if(href_list["mode"])

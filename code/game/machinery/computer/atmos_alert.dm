@@ -61,21 +61,12 @@ var/global/list/minor_air_alarms = list()
 		return 1
 
 	if(href_list["clear_alarm"])
+		playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 		var/datum/alarm/alarm = locate(href_list["clear_alarm"]) in atmosphere_alarm.alarms
 		if(alarm)
 			for(var/datum/alarm_source/alarm_source in alarm.sources)
 				var/obj/machinery/alarm/air_alarm = alarm_source.source
 				if(istype(air_alarm))
-					var/list/new_ref = list("atmos_reset" = 1)
-					air_alarm.Topic(href, new_ref, state = air_alarm_topic)
+					air_alarm.forceClearAlarm()
+					return 1
 		return 1
-
-
-var/datum/topic_state/air_alarm_topic/air_alarm_topic = new()
-
-/datum/topic_state/air_alarm_topic/href_list(var/mob/user)
-	var/list/extra_href = list()
-	extra_href["remote_connection"] = 1
-	extra_href["remote_access"] = 1
-
-	return extra_href
