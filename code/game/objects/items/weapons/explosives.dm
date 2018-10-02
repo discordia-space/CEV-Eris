@@ -1,6 +1,6 @@
 /obj/item/weapon/plastique
 	name = "plastic explosive"
-	desc = "Used to make holes in specific areas without any."
+	desc = "Used to make holes in specific areas without too much extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "plastic-explosive0"

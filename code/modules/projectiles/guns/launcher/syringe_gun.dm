@@ -63,7 +63,7 @@
 
 /obj/item/weapon/gun/launcher/syringe
 	name = "syringe gun"
-	desc = "A spring-loaded rifle designed to fit syringes designed to incapacitate unruly patients from a distance."
+	desc = "A spring-loaded rifle designed to shoot syringes to incapacitate unruly patients from a distance."
 	icon_state = "syringegun"
 	item_state = "syringegun"
 	w_class = ITEM_SIZE_NORMAL

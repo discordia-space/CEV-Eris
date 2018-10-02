@@ -2,7 +2,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/dallas
 	name = "PAR 10mm x 24 \"Dallas\""
-	desc = "Dallas is a pulse-action air-cooled automatic assault rifle made by an unknown manufacturer. This is a very rare, but a deadly efficient one. \
+	desc = "Dallas is a pulse-action air-cooled automatic assault rifle made by unknown manufacturer. This weapon is very rare, but deadly efficient. \
 		It's used by elite mercenaries, assassins or bald marines."
 	icon_state = "dallas"
 	item_state = "dallas"

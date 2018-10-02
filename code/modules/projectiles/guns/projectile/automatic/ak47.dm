@@ -1,8 +1,8 @@
 /obj/item/weapon/gun/projectile/automatic/ak47
 	name = "Excelsior 7.62x39 AKMS"
-	desc = "Weapon of an oppressed, oppressors, and just crazy terrorists.\
-		 If one doesn't shoot, you can fix a jamming by hitting continuously. This is a really old-designed assault rifle, chambered in 7.62x39\
-		 It is known for its easy maintaining, and low price. This gun is not used by the military anymore, but it founds a wide spread among criminals and insurgents."
+	desc = "Weapon of an oppressed, oppressors, and extremists of all flavours.\
+		 This is an ancient automatic rifle, chambered in 7.62x39. If it won't fire, percussive maintenance should get it working again.\
+		 It is known for its easy maintaining, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents."
 	icon_state = "black-AK"
 	item_state = "black-AK"
 	w_class = ITEM_SIZE_LARGE
@@ -35,9 +35,9 @@
 
 /obj/item/weapon/gun/projectile/automatic/ak47/fs
 	name = "FS AR 7.62x39 \"Kalashnikov\""
-	desc = "Weapon of an oppressed, oppressors, and just crazy terrorists.\
-		 If one doesn't shoot, you can fix a jamming by hitting continuously. This is a really old-designed assault rifle, chambered in 7.62x39.\
-		 It is known for its easy maintaining, and low price. This gun is not used by the military anymore, but it founds a wide spread among criminals and insurgents."
+	desc = "Weapon of an oppressed, oppressors, and extremists of all flavours.\
+		 This is an ancient automatic rifle, chambered in 7.62x39. If it won't fire, percussive maintenance should get it working again.\
+		 It is known for its easy maintaining, and low price. This gun is not in active military service anymore, but has become ubiquitous among criminals and insurgents."
 	icon_state = "AK"
 	item_state = "AK"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)

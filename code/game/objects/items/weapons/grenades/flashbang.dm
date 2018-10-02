@@ -1,6 +1,6 @@
 /obj/item/weapon/grenade/flashbang
 	name = "FS FBG \"Serra\""
-	desc = "A \"Frozen Star\" flashbang grenade. If you are in any doubt - use it"
+	desc = "A \"Frozen Star\" flashbang grenade. If in any doubt - use it."
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)

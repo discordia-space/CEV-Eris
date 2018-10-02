@@ -55,7 +55,7 @@
  */
 /obj/item/weapon/melee/energy/axe
 	name = "energy axe"
-	desc = "An energy battle axe."
+	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
 	icon_state = "axe0"
 	//active_force = 150 //holy...
 	active_force = 60
@@ -168,7 +168,7 @@
 //Can't be activated or deactivated, so no reason to be a subtype of energy
 /obj/item/weapon/melee/energy/blade
 	name = "energy blade"
-	desc = "A concentrated beam of energy which has a shape of a blade. Very stylishly... and lethal."
+	desc = "A concentrated beam of energy which has a shape of a blade. Very stylish... and lethal."
 	icon_state = "blade"
 	force = WEAPON_FORCE_LETHAL //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100

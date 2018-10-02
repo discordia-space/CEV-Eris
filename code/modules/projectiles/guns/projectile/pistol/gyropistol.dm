@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/gyropistol
 	name = "NT GP \"Zeus\""
-	desc = "A bulky pistol, designed to fire self-propelled rounds"
+	desc = "A bulky pistol designed to fire self-propelled rounds"
 	icon_state = "gyropistol"
 	max_shells = 8
 	caliber = "75"

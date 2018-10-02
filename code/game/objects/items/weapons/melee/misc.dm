@@ -14,7 +14,7 @@
 
 /obj/item/weapon/melee/toolbox_maul
 	name = "toolmop the maul"
-	desc = "The toolbox tied to the mop. A weapon of choice."
+	desc = "Toolbox tied to mop. A weapon of choice."
 	icon_state = "hm_hammer"
 	item_state = "hm_hammer"
 	force = WEAPON_FORCE_PAINFULL
