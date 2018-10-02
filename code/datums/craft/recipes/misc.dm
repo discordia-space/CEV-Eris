@@ -1,6 +1,7 @@
 /datum/craft_recipe/wall_girders
 	name = "wall girders"
 	result = /obj/structure/girder
+	time = WORKTIME_NORMAL
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL)
 	)
@@ -9,6 +10,7 @@
 /datum/craft_recipe/wall_girders/low
 	name = "low girders"
 	result = /obj/structure/girder/low
+	time = WORKTIME_FAST
 	steps = list(
 		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL)
 	)
@@ -16,6 +18,7 @@
 /datum/craft_recipe/metal_rod
 	name = "metal rod"
 	result = /obj/item/stack/rods
+	time = 0
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
@@ -116,11 +119,11 @@
 	name = "cheap hand-tele"
 	result = /obj/item/weapon/hand_tele/handmade
 	steps = list(
-		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTIC),
-		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS),
-		list(/obj/item/weapon/circuitboard, 1, time = 20),
+		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTIC, "time" = 30),
+		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
+		list(/obj/item/weapon/circuitboard, 1, "time" = 20),
 		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
 		list(/obj/item/weapon/stock_parts/capacitor, 1),
 		list(/obj/item/weapon/cell/small, 1),
-		list(/obj/item/stack/cable_coil, 5, time = 20)
+		list(/obj/item/stack/cable_coil, 5, "time" = 20)
 	)

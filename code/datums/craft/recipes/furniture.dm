@@ -1,7 +1,7 @@
 /datum/craft_recipe/furniture
 	category = "Furniture"
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
-
+	time = 80
 
 
 /datum/craft_recipe/furniture/railing
@@ -91,6 +91,7 @@
 /datum/craft_recipe/furniture/stool
 	name = "stool"
 	result = /obj/item/weapon/stool
+	time = 30
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL),
 	)

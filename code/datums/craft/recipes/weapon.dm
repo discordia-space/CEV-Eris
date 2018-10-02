@@ -1,6 +1,6 @@
 /datum/craft_recipe/weapon
 	category = "Weapon"
-
+	time = 60
 
 /datum/craft_recipe/weapon/baseballbat
 	name = "baseball bat"
@@ -63,18 +63,18 @@
 	name = "telespear"
 	result = /obj/item/weapon/tele_spear
 	steps = list(
-		list(/obj/item/stack/rods, 2, time = 30),
+		list(/obj/item/stack/rods, 2, "time" = 30),
 		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
 		list(/obj/item/device/assembly/igniter, 1),
-		list(/obj/item/stack/cable_coil, 10, time = 10)
+		list(/obj/item/stack/cable_coil, 10, "time" = 10)
 	)
 
 /datum/craft_recipe/weapon/improvised_maul
 	name = "robust maul"
 	result = /obj/item/weapon/melee/toolbox_maul
 	steps = list(
-		list(/obj/item/weapon/mop, 1, time = 30),
-		list(/obj/item/stack/cable_coil, 10, time = 10)
+		list(/obj/item/weapon/mop, 1, "time" = 30),
+		list(/obj/item/stack/cable_coil, 10, "time" = 10)
 	)
 
 /datum/craft_recipe/weapon/nailed_bat
@@ -82,7 +82,7 @@
 	result = /obj/item/weapon/melee/nailstick
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
-		list(/obj/item/stack/rods, 3, time = 50)
+		list(/obj/item/stack/rods, 3, "time" = 50)
 	)
 
 /datum/craft_recipe/weapon/handmade_shield
@@ -90,7 +90,7 @@
 	result = /obj/item/weapon/shield/riot/handmade
 	steps = list(
 		list(CRAFT_MATERIAL, 12, MATERIAL_WOOD),
-		list(/obj/item/stack/rods, 4, time = 10),
+		list(/obj/item/stack/rods, 4, "time" = 10),
 		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL)
 	)
 
@@ -99,16 +99,16 @@
 	result = /obj/item/weapon/shield/riot/handmade/tray
 	steps = list(
 		list(/obj/item/weapon/tray, 1),
-		list(/obj/item/weapon/storage/belt, 2, time = 10)
+		list(/obj/item/weapon/storage/belt, 2, "time" = 10)
 	)
 
 /datum/craft_recipe/weapon/pistol
 	name = "handmade gun"
 	result = /obj/item/weapon/gun/projectile/handmade_pistol
 	steps = list(
-		list(/obj/item/pipe, 1, time = 60),
-		list(/obj/item/weapon/crossbowframe, 1, time = 20),
-		list(/obj/item/weapon/grenade/chem_grenade, 1, time = 20),
+		list(/obj/item/pipe, 1, "time" = 60),
+		list(/obj/item/weapon/crossbowframe, 1, "time" = 20),
+		list(/obj/item/weapon/grenade/chem_grenade, 1, "time" = 20),
 		list(/obj/item/device/assembly/igniter, 1),
-		list(/obj/item/stack/cable_coil, 2, time = 10)
+		list(/obj/item/stack/cable_coil, 2, "time" = 10)
 	)

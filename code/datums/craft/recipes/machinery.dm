@@ -1,6 +1,7 @@
 /datum/craft_recipe/machinery
 	category = "Machinery"
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	time = 120
 
 /datum/craft_recipe/machinery/machine_frame
 	name = "machine frame"
@@ -26,6 +27,7 @@
 /datum/craft_recipe/machinery/modularconsole
 	name = "modular console frame"
 	result = /obj/machinery/modular_computer/console/buildable
+	time = 200
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
@@ -34,6 +36,7 @@
 /datum/craft_recipe/machinery/modularlaptop
 	name = "modular laptop frame"
 	result = /obj/machinery/modular_computer/laptop/buildable
+	time = 200
 	steps = list(
 		list(CRAFT_MATERIAL, 7, MATERIAL_STEEL),
 	)
@@ -41,6 +44,7 @@
 /datum/craft_recipe/machinery/modulartablet
 	name = "modular tablet frame"
 	result = /obj/item/modular_computer/tablet
+	time = 200
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)

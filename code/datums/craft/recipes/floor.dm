@@ -3,6 +3,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL),
 	)
+	time = 1 //Crafting individual tiles is fast
 
 /datum/craft_recipe/floor/regular
 	name = "regular floor tile"

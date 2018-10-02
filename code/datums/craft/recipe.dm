@@ -6,12 +6,13 @@
 
 	var/list/steps
 	var/flags = CRAFT_ONE_PER_TURF
+	var/time = 30 //Used when no specific time is set
 
 /datum/craft_recipe/New()
 	var/step_definations = steps
 	steps = new
 	for(var/i in step_definations)
-		steps += new /datum/craft_step(i)
+		steps += new /datum/craft_step(i, src)
 
 
 /datum/craft_recipe/proc/is_compelete(step)
@@ -60,7 +61,6 @@
 		user << SPAN_WARNING("You can't find required item!")
 		return
 
-	world << "Found required item"
 	//Robots can craft things on the floor
 	if(ishuman(user) && !I.is_held() && !user.put_in_hands(I))
 		user << SPAN_WARNING("You should hold [I] in hands for doing that!")

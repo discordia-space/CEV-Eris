@@ -11,7 +11,8 @@
 	var/end_msg = ""
 
 
-/datum/craft_step/New(var/list/params)
+/datum/craft_step/New(var/list/params, var/datum/craft_recipe/parent)
+	var/max_params = 2
 	if(ispath(params))
 		reqed_type    = params
 	else if(istext(params))
@@ -23,6 +24,7 @@
 		else if(istext(validator))
 			if (validator == CRAFT_MATERIAL)
 				reqed_material = params[3]
+				max_params = 3
 			else
 				reqed_quality = validator
 
@@ -31,8 +33,10 @@
 
 		if("time" in params)
 			time = params["time"]
-		else if(params.len >= 3)
-			time = params[3]
+		else if(params.len > max_params)
+			time = params[max_params+1]
+		else if (parent)
+			time = parent.time
 
 	var/tool_name
 
@@ -89,26 +93,25 @@
 		if(target)
 			announce_action(start_msg, user, I, target)
 		if(!do_after(user, time, target || user))
-			world << "Doafter Failed"
 			return
 	else if(reqed_quality)
 		if(!I.get_tool_quality(reqed_quality))
-			user << "Wrong item!"
 			return
 		if(target)
 			announce_action(start_msg, user, I, target)
 		if(!I.use_tool(user, target || user, time, reqed_quality))
+			return
+	else
+		if(!do_after(user, time, target || user))
 			return
 
 	if(req_amount)
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(!S.use(req_amount))
-				world << "Using items from stack failed. "
-				world << "Stack has [S.get_amount()] units and we needed [req_amount]"
 				user << SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]")
 				return FALSE
-		else if (reqed_type)
+		else if (reqed_type) //No deleting tools
 			qdel(I)
 
 	if(target)
@@ -146,15 +149,12 @@
 				items += A
 
 	if(reqed_type)
-		world << "Trying to find required type [reqed_type]"
 		//Special handling for items that will be consumed
 		for(var/atom/movable/I in items)
 			//First we find the item
-			world << "Checking [I]"
 			if (!istype(I, reqed_type))
 				//not the right type
 				continue
-			world << "Found a match!"
 			//Okay, so we found something that matches
 			if (is_valid_to_consume(I, user))
 				return I
@@ -170,50 +170,38 @@
 				. = I
 
 	else if (reqed_material)
-		world << "Required material, checking items"
 		for(var/obj/item/I in items)
-			world << "Checking [I]"
 			if (istype(I, /obj/item/stack/material))
-				world << "Is material"
 				var/obj/item/stack/material/MA = I
 				if (MA.material && (MA.material.name == reqed_material))
-					world << "Correct material, we found a match"
 					return I
-				else
-					world << "[MA] is wrong material [reqed_material]"
 
 /datum/craft_step/proc/is_valid_to_consume(var/obj/item/I, var/mob/living/user)
 	var/holder = I.get_holding_mob()
 	//Next we must check if we're actually allowed to submit it
 	if (!holder)
 		//If the item is lying on a turf, it's fine
-		world << "Item is on turf, fine"
 		return I
 
 	if (holder != user)
 		//The item is held by someone else, can't use
-		world << "Item is held by another mob, cant use"
 		return FALSE
 
 	//If we get here, the item is held by our user
 	if (I.loc != user)
 		//The item must be inside a container on their person, it's fine
-		world << "Item is in held container, fine"
 		return I
 
 	//The item is on the user
 	if (user.canUnEquip(I))
 		//We test if they can remove it, this will return false for robot objects
-		world << "Item is removable, fine"
 		return I
 
 
 	if (istype(I, /obj/item/stack))
 		//Robots are allowed to use stacks, since those will only deplete the amount but not destroy the item
-		world << "Item is stack, fine"
 		return I
 
-	world << "===Item is a match but WAS NOT VALID==="
 	//If we get here, then we found the item but it wasn't valid to use, sorry!
 
 	return FALSE

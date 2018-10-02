@@ -1,6 +1,7 @@
 /datum/craft_recipe/airlock
 	category = "Airlocks"
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	time = 150
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)

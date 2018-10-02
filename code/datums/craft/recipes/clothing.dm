@@ -1,5 +1,6 @@
 /datum/craft_recipe/clothing
 	category = "Clothing"
+	time = 50
 
 /datum/craft_recipe/clothing/cardborg_suit
 	name = "cardborg suit"
@@ -26,7 +27,7 @@
 	name = "armor vest"
 	result = /obj/item/clothing/suit/armor/vest/handmade
 	steps = list(
-		list(/obj/item/clothing/suit/storage/hazardvest, 1, time = 30),
+		list(/obj/item/clothing/suit/storage/hazardvest, 1, "time" = 30),
 		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
 		list(/obj/item/stack/cable_coil, 4)
 	)
@@ -35,7 +36,7 @@
 	name = "combat helmet"
 	result = /obj/item/clothing/head/helmet/handmade
 	steps = list(
-		list(/obj/item/weapon/reagent_containers/glass/bucket, 1, time = 30),
+		list(/obj/item/weapon/reagent_containers/glass/bucket, 1, "time" = 30),
 		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
 		list(/obj/item/stack/cable_coil, 2)
 	)

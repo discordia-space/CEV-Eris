@@ -19,6 +19,7 @@
 				prob(5);/obj/item/weapon/tool/saw/advanced_circular,\
 				prob(5);/obj/item/weapon/tool/saw/chain,\
 				prob(5);/obj/item/weapon/tool/shovel,\
+				prob(5);/obj/item/weapon/tool/surgicaldrill,\
 				prob(3);/obj/item/weapon/tool/shovel/spade,\
 				prob(3);/obj/item/weapon/tool/pickaxe,\
 				prob(5);/obj/item/weapon/tool/pickaxe/jackhammer,\
