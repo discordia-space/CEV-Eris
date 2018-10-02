@@ -1,3 +1,10 @@
+//The threshold of points that we need before attempting to purchase things
+#define POOL_THRESHOLD_MUNDANE	20
+#define POOL_THRESHOLD_MODERATE	40
+#define POOL_THRESHOLD_MAJOR	80
+#define POOL_THRESHOLD_ROLESET	120
+
+
 var/global/list/current_antags = list()
 var/global/list/current_factions = list()
 
@@ -19,6 +26,9 @@ var/global/list/current_factions = list()
 	//Misc
 	var/force_spawn_now = FALSE
 	var/list/processing_events = list()
+	var/last_tick = 0
+	var/next_tick = 0
+	var/tick_interval = 60 SECONDS
 
 	var/crew = 11
 	var/heads = 2
@@ -29,6 +39,26 @@ var/global/list/current_factions = list()
 
 	var/event_spawn_timer = 0
 	var/event_spawn_stage = 0
+
+	var/points_mundane = 0
+	var/points_moderate = 0
+	var/points_major = 0
+	var/points_roleset = 110
+
+	//Lists of events. These are built dynamically at runtime
+	var/list/event_pool_mundane = list()
+	var/list/event_pool_moderate = list()
+	var/list/event_pool_major = list()
+	var/list/event_pool_roleset = list()
+
+	//Configuration:
+	//Things you can set to make a new storyteller
+	var/gain_mult_mundane = 1.0
+	var/gain_mult_moderate = 1.0
+	var/gain_mult_major = 1.0
+	var/gain_mult_roleset = 1.0
+
+	var/variance = 0.15 //15% How much point gains are allowed to vary up or down per tick. This helps to keep event triggering times unpredictable
 
 
 /datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
@@ -76,11 +106,16 @@ var/global/list/current_factions = list()
 /datum/storyteller/proc/set_up_events()
 	return
 
+/datum/storyteller/proc/can_tick()
+	if (world.time > next_tick)
+		return TRUE
+
 /datum/storyteller/proc/set_timer(var/time)
-	event_spawn_timer = world.time + time
+	last_tick = world.time
+	next_tick = last_tick + tick_interval
 
 /datum/storyteller/Process()
-	if(force_spawn_now || (event_spawn_timer && event_spawn_timer <= world.time))
+	if(can_tick())
 		update_crew_count()
 		update_event_weights()
 		trigger_event()
@@ -129,3 +164,54 @@ var/global/list/current_factions = list()
 		return "<s>\[STORY\]</s>"
 
 
+/*******************
+*  Points Handling
+********************/
+/datum/storyteller/proc/handle_points()
+	points_mundane += 1 * (gain_mult_mundane) * (rand(1-variance, 1+variance))
+	points_moderate += 1 * (gain_mult_moderate) * (rand(1-variance, 1+variance))
+	points_major += 1 * (gain_mult_major) * (rand(1-variance, 1+variance))
+	points_roleset += 1 * (gain_mult_roleset) * (rand(1-variance, 1+variance))
+	check_thresholds()
+
+/datum/storyteller/proc/check_thresholds()
+	if (points_mundane >= POOL_THRESHOLD_MUNDANE)
+		handle_event(EVENT_LEVEL_MUNDANE)
+	if (points_moderate >= POOL_THRESHOLD_MODERATE)
+		handle_event(EVENT_LEVEL_MODERATE)
+	if (points_major >= POOL_THRESHOLD_MAJOR)
+		handle_event(EVENT_LEVEL_MAJOR)
+	if (points_roleset >= POOL_THRESHOLD_ROLESET)
+		handle_event(EVENT_LEVEL_ROLESET)
+
+
+
+/*******************
+*  Event Handling
+********************/
+
+//First we figure out which pool we're going to take an event from
+/datum/storyteller/proc/handle_event(var/event_type)
+	//This is a buffer which will hold a copy of the list we choose.
+	//We will be modifying it and don't want those modifications to go back to the source
+	var/list/temp_pool
+	switch(event_type)
+		if (EVENT_LEVEL_MUNDANE)
+			temp_pool = event_pool_mundane.Copy()
+		if (EVENT_LEVEL_MODERATE)
+			temp_pool = event_pool_mundane.Copy()
+		if (EVENT_LEVEL_MAJOR)
+			temp_pool = event_pool_mundane.Copy()
+		if (EVENT_LEVEL_ROLESET)
+			temp_pool = event_pool_mundane.Copy()
+
+
+	//We pick an event from the pool at random, and check if it's allowed to run
+
+	//If its not, we'll remove it from the temp pool and then pick another
+	//Repeat until we find one which is allowed, or the pool is empty
+
+	//If it is allowed to run, we'll deduct its cost from our appropriate point score, and schedule it for triggering
+
+	//When its trigger time comes, the event will once again check if it can run
+	//If it can't it will cancel itself and refund the points it cost
