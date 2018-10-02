@@ -219,6 +219,9 @@ var/list/holder_mob_icon_cache = list()
 
 	spawn(2)
 		var/obj/item/weapon/holder/H = new holder_type(loc)
+
+		var/old_loc = src.loc
+
 		src.forceMove(H)
 
 		H.contained = src
@@ -235,6 +238,8 @@ var/list/holder_mob_icon_cache = list()
 			if (H.loc == grabber)
 				success = 1
 		if (success)
+			if (isturf(old_loc))
+				src.do_pickup_animation(grabber,old_loc)
 			if (user == src)
 				grabber << "<span class='notice'>[src.name] climbs up onto you.</span>"
 				src << "<span class='notice'>You climb up onto [grabber].</span>"

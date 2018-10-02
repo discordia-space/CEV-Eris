@@ -33,10 +33,16 @@ var/list/christians = list()
 /obj/item/weapon/implant/core_implant/cruciform/activate()
 	if(!wearer || active)
 		return
+
+	if(wearer.mind && wearer.mind.changeling)
+		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
+		wearer.gib()
+		return
 	..()
 	add_module(new CRUCIFORM_COMMON)
 	update_data()
 	christians |= wearer
+
 
 /obj/item/weapon/implant/core_implant/cruciform/deactivate()
 	if(!active || !wearer)

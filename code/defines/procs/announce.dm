@@ -56,7 +56,7 @@ datum/announcement/priority/Message(message as text, message_title as text)
 	global_announcer.autosay(utf8_to_cp1251("<span class='alert'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/priority/command/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(command_name())] [utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
+	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
 	global_announcer.autosay(utf8_to_cp1251("<font color='red'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
