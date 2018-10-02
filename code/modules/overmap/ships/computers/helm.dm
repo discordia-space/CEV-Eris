@@ -103,7 +103,8 @@
 		data["ETAnext"] = "N/A"
 
 	var/list/locations[0]
-	for (var/datum/data/record/R in known_sectors)
+	for (var/key in known_sectors)
+		var/datum/data/record/R = known_sectors[key]
 		var/list/rdata[0]
 		rdata["name"] = R.fields["name"]
 		rdata["x"] = R.fields["x"]
