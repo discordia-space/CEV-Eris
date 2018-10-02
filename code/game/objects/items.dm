@@ -144,6 +144,8 @@
 	if (!user || !user.can_pickup(src))
 		return
 
+	var/atom/old_loc = src.loc
+
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
@@ -156,7 +158,10 @@
 	else
 		if(isliving(src.loc))
 			return
-	user.put_in_active_hand(src)
+	
+	if(user.put_in_active_hand(src) && old_loc )
+		if (user != old_loc.get_holding_mob())
+			do_pickup_animation(user,old_loc)
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(src.loc, /obj/item/weapon/robot_module))
