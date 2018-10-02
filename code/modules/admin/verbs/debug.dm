@@ -420,13 +420,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 	if (isnull(dresscode))
 		return
 
-	for (var/obj/item/I in M)
-		if (istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/organ))
-			continue
-
-		if (!I.get_equip_slot())
-			continue
-
+	for (var/obj/item/I in M.get_equipped_items(TRUE))
 		if (M.unEquip(I))
 			qdel(I)
 	switch(dresscode)
