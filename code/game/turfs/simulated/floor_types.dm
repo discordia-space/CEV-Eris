@@ -8,6 +8,7 @@
 /turf/simulated/shuttle/floor
 	name = "floor"
 	icon_state = "floor"
+	plane = FLOOR_PLANE
 
 /turf/simulated/shuttle/floor/mining
 	icon_state = "6,19"
