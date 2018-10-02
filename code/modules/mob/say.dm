@@ -94,6 +94,9 @@
 		if(istype(other, src.type) || istype(src, other.type))
 			return TRUE
 		return FALSE
+	else	//AI and pAI check
+		if(isAI(src) || ispAI(src))
+			return TRUE
 
 	if(speaking.flags&INNATE)
 		return TRUE
@@ -102,6 +105,7 @@
 	for(var/datum/language/L in src.languages)
 		if(speaking.name == L.name)
 			return TRUE
+
 
 	return FALSE
 
