@@ -106,6 +106,7 @@
 #define EVENT_LEVEL_MODERATE 2
 #define EVENT_LEVEL_MAJOR    3
 #define EVENT_LEVEL_ECONOMY  4
+#define EVENT_LEVEL_ROLESET  5
 
 // Cargo-related stuff.
 #define MANIFEST_ERROR_CHANCE		5
