@@ -1,6 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
+	item_flags = DRAG_AND_DROP_UNEQUIP
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
 	var/list/species_restricted = null				// Only these species can wear this kit.
@@ -147,12 +148,14 @@
 
 
 /obj/item/clothing/ears/earmuffs/mp3/MouseDrop(over_object)
-    if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-        cell = null
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+	else
+		return ..()
 
 /obj/item/clothing/ears/earmuffs/mp3/attackby(obj/item/C, mob/living/user)
-    if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-        src.cell = C
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 ///////////////////////////////////////////////////////////////////////
 //Glasses
