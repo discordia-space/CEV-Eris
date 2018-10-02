@@ -81,7 +81,7 @@
 	name = "nailed bat"
 	result = /obj/item/weapon/melee/nailstick
 	steps = list(
-		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD)
+		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
 		list(/obj/item/stack/rods, 3, time = 50)
 	)
 
