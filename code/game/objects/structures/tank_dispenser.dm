@@ -6,6 +6,7 @@
 	density = 1
 	anchored = 1.0
 	w_class = ITEM_SIZE_HUGE
+	layer = BELOW_OBJ_LAYER
 	var/oxygentanks = 10
 	var/plasmatanks = 10
 	var/list/oxytanks = list()	//sorry for the similar var names
