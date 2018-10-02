@@ -33,7 +33,9 @@
 		over_OS_darkness.layer = MOB_LAYER
 		overlays += over_OS_darkness
 		spawn()
-			updateFallability()
+			//The openspace might very well not be here when this happens, and then runtime error. So safety checks
+			if (src && !QDELETED(src) && istype(src, /turf/simulated/open))
+				updateFallability()
 	else
 		ChangeTurf(/turf/space)
 
@@ -90,6 +92,10 @@
 	var/turf/T = GetAbove(src)
 	if(istype(T,/turf/simulated/open) || istype(T,/turf/space))
 		T.update_icon()
+
+/turf/simulated/open/update_openspace()
+	update_icon()
+	..()
 
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()

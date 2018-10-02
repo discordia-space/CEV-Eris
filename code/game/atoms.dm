@@ -19,7 +19,6 @@
 	var/allow_spin = TRUE
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
-	var/list/footstep_sounds = list() // Footsteps sound
 
 	///Chemistry.
 	var/datum/reagents/reagents = null

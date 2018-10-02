@@ -15,7 +15,6 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_range = 15
 	throw_speed = 3
-	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 

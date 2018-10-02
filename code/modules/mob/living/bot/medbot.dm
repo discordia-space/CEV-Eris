@@ -2,10 +2,10 @@
 	name = "Medbot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon_state = "medibot0"
-	req_one_access = list(access_medical, access_robotics)
+	req_one_access = list(access_moebius, access_robotics)
 
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
-	botcard_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
+	botcard_access = list(access_moebius, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 
 	//AI vars
 	var/frustration = 0

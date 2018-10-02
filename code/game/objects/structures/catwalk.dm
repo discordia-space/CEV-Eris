@@ -7,11 +7,6 @@
 	density = 0
 	anchored = 1.0
 
-	footstep_sounds = list("human" = list('sound/effects/footstep/catwalk1.ogg',
-						'sound/effects/footstep/catwalk2.ogg',
-						'sound/effects/footstep/catwalk3.ogg',
-						'sound/effects/footstep/catwalk4.ogg',
-						'sound/effects/footstep/catwalk5.ogg'))
 
 /obj/structure/catwalk/New()
 	..()
