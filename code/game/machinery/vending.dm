@@ -300,7 +300,7 @@
 		attack_hand(user)
 		return
 
-	else if(QUALITY_CUTTING in I.tool_qualities || QUALITY_WIRE_CUTTING in I.tool_qualities || QUALITY_PULSING in I.tool_qualities)
+	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities) || (QUALITY_PULSING in I.tool_qualities))
 		if(src.panel_open)
 			attack_hand(user)
 		return
