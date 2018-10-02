@@ -90,16 +90,6 @@
 /mob/living/simple_animal/Life()
 	..()
 
-	//Health
-	if(stat == DEAD)
-		if(health > 0)
-			icon_state = icon_living
-			dead_mob_list -= src
-			living_mob_list += src
-			stat = CONSCIOUS
-			density = 1
-		return 0
-
 
 	if(health <= 0)
 		death()
@@ -205,6 +195,12 @@
 	adjustBruteLoss(Proj.damage)
 	return 0
 
+/mob/living/simple_animal/rejuvenate()
+	..()
+	health = maxHealth
+	density = initial(density)
+	update_icons()
+
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
 	..()
 
@@ -238,6 +234,7 @@
 
 		if(I_HURT)
 			adjustBruteLoss(harm_intent_damage)
+			playsound(src, pick(punch_sound),60,1)
 			M.visible_message("\red [M] [response_harm] \the [src]")
 			M.do_attack_animation(src)
 
@@ -246,29 +243,13 @@
 /mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/weapon/gripper))
 		return ..(O, user)
-	if(istype(O, /obj/item/stack/medical))
-		if(stat != DEAD)
-			var/obj/item/stack/medical/MED = O
-			if(health < maxHealth)
-				if(MED.amount >= 1)
-					adjustBruteLoss(-MED.heal_brute)
-					MED.amount -= 1
-					if(MED.amount <= 0)
-						qdel(MED)
-					for(var/mob/M in viewers(src, null))
-						if ((M.client && !( M.blinded )))
-							M.show_message(SPAN_NOTICE("[user] applies the [MED] on [src]."))
-		else
-			user << SPAN_NOTICE("\The [src] is dead, medical items won't bring \him back to life.")
+
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(QUALITY_CUTTING in O.tool_qualities)
 			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_NORMAL, required_stat = STAT_BIO))
 				harvest(user)
 	else
-		if(!O.force)
-			visible_message(SPAN_NOTICE("[user] gently taps [src] with \the [O]."))
-		else
-			O.attack(src, user, user.targeted_organ)
+		O.attack(src, user, user.targeted_organ)
 
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
@@ -435,3 +416,7 @@
 //This is called when an animal 'speaks'. It does nothing here, but descendants should override it to add audio
 /mob/living/simple_animal/proc/speak_audio()
 	return
+
+//Animals are generally good at falling, small ones are immune
+/mob/living/simple_animal/get_fall_damage()
+	return mob_size - 1

@@ -24,6 +24,8 @@
 
 	var/list/decals
 
+	var/is_hole = FALSE
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
@@ -211,9 +213,6 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/Process()
-	return PROCESS_KILL
-
 /turf/proc/contains_dense_objects()
 	if(density)
 		return 1
@@ -245,8 +244,21 @@ var/const/enterloopsanity = 100
 
 	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
 	if(catwalk)
-		sound = safepick(catwalk.footstep_sounds[mobtype])
+		sound = footstep_sound("catwalk")
 	else
-		sound = safepick(footstep_sounds[mobtype])
+		sound =  footstep_sound("floor")
+
+	return sound
+
+
+/turf/simulated/floor/get_footstep_sound(var/mobtype)
+
+	var/sound
+
+	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
+	if(catwalk)
+		sound = footstep_sound("catwalk")
+	else
+		sound =  footstep_sound(flooring.footstep_sound)
 
 	return sound

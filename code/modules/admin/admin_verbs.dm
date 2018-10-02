@@ -25,7 +25,7 @@ var/list/admin_verbs = list("default" = list(), "hideable" = list())
 	if(holder)
 		verbs += admin_verbs["default"]
 		for(var/text_right in admin_verbs)
-			if(text2num(text_right)|holder.rights)
+			if(text2num(text_right) & holder.rights)
 				verbs += admin_verbs[text_right]
 
 /client/proc/remove_admin_verbs()
@@ -337,15 +337,12 @@ ADMIN_VERB_ADD(/client/proc/kill_air, R_DEBUG, FALSE)
 	set category = "Debug"
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
-	if(air_processing_killed)
-		air_processing_killed = 0
-		usr << "<b>Enabled air processing.</b>"
-	else
-		air_processing_killed = 1
-		usr << "<b>Disabled air processing.</b>"
 
-	log_admin("[key_name(usr)] used 'kill air'.")
-	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
+	SSair.can_fire = !SSair.can_fire
+
+	var/msg = "[SSair.can_fire ? "Enabled" : "Disabled"] SSair processing."
+	log_admin("[key_name(usr)] used 'kill air'. [msg]")
+	message_admins("\blue [key_name_admin(usr)] used 'kill air'. [msg]", 1)
 
 /client/proc/readmin_self()
 	set name = "Re-Admin self"
@@ -501,7 +498,7 @@ ADMIN_VERB_ADD(/client/proc/free_slot, R_ADMIN, FALSE)
 	set category = "Admin"
 	if(holder)
 		var/list/jobs = list()
-		for (var/datum/job/J in job_master.occupations)
+		for (var/datum/job/J in SSjob.occupations)
 			if (J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
 		if (!jobs.len)
@@ -509,7 +506,7 @@ ADMIN_VERB_ADD(/client/proc/free_slot, R_ADMIN, FALSE)
 			return
 		var/job = input("Please select job slot to free", "Free job slot")  as null|anything in jobs
 		if (job)
-			job_master.FreeRole(job)
+			SSjob.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
 			return
 

@@ -27,6 +27,16 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
 
+/obj/item/clothing/head/helmet/handmade
+	name = "handmade combat helmet"
+	desc = "This one maden from bucket and some steel. Uncomfortable and heavy but better then nothing."
+	icon_state = "hm_helmet"
+	armor = list(melee = 25, bullet = 15, laser = 20, energy = 5, bomb = 20, bio = 0, rad = 0)
+	flags_inv = HIDEEARS
+	cold_protection = HEAD
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.5
+
 /obj/item/clothing/head/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
 	desc = "<i>'Let the battle commence!'</i>"

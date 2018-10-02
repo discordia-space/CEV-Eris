@@ -56,7 +56,7 @@ datum/announcement/priority/Message(message as text, message_title as text)
 	global_announcer.autosay(utf8_to_cp1251("<span class='alert'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/priority/command/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(command_name())] [utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
+	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
 	global_announcer.autosay(utf8_to_cp1251("<font color='red'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
@@ -106,7 +106,7 @@ datum/announcement/proc/Log(message as text, message_title as text)
 	command_announcement.Announce("It has come to our attention that the ship passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 /proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message)
-	if (ticker.current_state == GAME_STATE_PLAYING)
+	if (SSticker.current_state == GAME_STATE_PLAYING)
 	/*	if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title*/
 		AnnounceArrivalSimple(character.real_name, rank, join_message)

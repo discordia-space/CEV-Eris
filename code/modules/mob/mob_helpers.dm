@@ -76,7 +76,7 @@ proc/getsensorlevel(A)
 
 //The base miss chance for the different defence zones
 var/list/global/base_miss_chance = list(
-	BP_HEAD = 40,
+	BP_HEAD = 45,
 	BP_CHEST = 10,
 	BP_GROIN = 20,
 	BP_L_LEG  = 20,
@@ -88,7 +88,7 @@ var/list/global/base_miss_chance = list(
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
-	BP_HEAD = 25,
+	BP_HEAD = 20,
 	BP_CHEST = 70,
 	BP_GROIN = 30,
 	BP_L_LEG  = 25,
@@ -275,31 +275,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return sanitize(t)
 
 
-/proc/shake_camera(mob/M, duration, strength=1)
-	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
-		return
-	M.shakecamera = 1
-	spawn(1)
-		if(isnull(M))
-			return
 
-		if(!M.client)
-			return
-
-		var/atom/oldeye=M.client.eye
-		var/aiEyeFlag = 0
-		if(istype(oldeye, /mob/observer/eye/aiEye))
-			aiEyeFlag = 1
-
-		var/x
-		for(x=0; x<duration, x++)
-			if(aiEyeFlag)
-				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
-			else
-				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
-			sleep(1)
-		M.client.eye=oldeye
-		M.shakecamera = 0
 
 
 /proc/findname(msg)
@@ -563,6 +539,9 @@ proc/is_blind(A)
 		threatcount += 4
 	return threatcount
 
+
+
+
 #undef SAFE_PERP
 
 /mob/proc/get_multitool(var/obj/item/weapon/tool/multitool/P)
@@ -580,3 +559,31 @@ proc/is_blind(A)
 
 /mob/living/silicon/ai/get_multitool()
 	return ..(aiMulti)
+
+
+//This proc returns true if the mob has no health problems. EG, no damaged organs, alive, not poisoned, etc
+//It is used by cryopods to allow people to quickly respawn during peaceful times
+/mob/proc/in_perfect_health()
+	return
+
+/mob/living/in_perfect_health()
+	if (stat == DEAD)
+		return FALSE
+
+	if (brainloss || bruteloss || cloneloss || fireloss || halloss || oxyloss || toxloss)
+		return FALSE
+
+
+	return TRUE
+
+/mob/living/carbon/human/in_perfect_health()
+	for (var/a in bad_external_organs)
+		return FALSE
+
+	for (var/obj/item/organ/o in internal_organs)
+		if (o.damage)
+			return FALSE
+
+	return ..()
+
+

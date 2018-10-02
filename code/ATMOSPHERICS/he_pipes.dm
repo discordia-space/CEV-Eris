@@ -111,7 +111,6 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 	level = 2
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_HE
 	minimum_temperature_difference = 300
-	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
 	// BubbleWrap
 obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/New()

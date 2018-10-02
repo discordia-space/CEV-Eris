@@ -65,9 +65,8 @@
 	cell.maxcharge = 2000
 
 	spawn(5)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
-			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+		SSradio.add_object(src, control_freq, filter = RADIO_MULEBOT)
+		SSradio.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
 
 		var/count = 0
 		for(var/obj/machinery/bot/mulebot/other in world)
@@ -80,9 +79,8 @@
 	unload(0)
 	qdel(wires)
 	wires = null
-	if(radio_controller)
-		radio_controller.remove_object(src,beacon_freq)
-		radio_controller.remove_object(src,control_freq)
+	SSradio.remove_object(src,beacon_freq)
+	SSradio.remove_object(src,control_freq)
 	return ..()
 
 // attack by item
@@ -823,7 +821,7 @@
 	if(freq == control_freq && !wires.RemoteTX())
 		return
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
 
 	if(!frequency) return
 

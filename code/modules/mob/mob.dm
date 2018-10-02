@@ -9,12 +9,18 @@
 		for(var/atom/movable/AM in client.screen)
 			qdel(AM)
 		client.screen = list()
+
 	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
 
-/mob/get_fall_damage()
-	return 15
+/mob/get_fall_damage(var/turf/from, var/turf/dest)
+	return 0
+
+/mob/fall_impact(var/turf/from, var/turf/dest)
+	return
+
+/mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
 
 /mob/proc/remove_screen_obj_references()//FIX THIS SHIT
 //	flash = null
@@ -228,6 +234,9 @@
 		return 1
 
 	face_atom(A)
+	var/obj/item/device/lighting/toggleable/flashlight/FL = locate() in src
+	if (FL && FL.on && src.stat != DEAD && !incapacitated())
+		FL.afterattack(A,src)
 	A.examine(src)
 
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
@@ -375,46 +384,7 @@
 	return
 */
 
-/mob/verb/abandon_mob()
-	set name = "Respawn"
-	set category = "OOC"
 
-	if (!( config.abandon_allowed ))
-		usr << "<span class='notice'>Respawn is disabled.</span>"
-		return
-	if ((stat != DEAD || !( ticker )))
-		usr << "<span class='notice'><B>You must be dead to use this!</B></span>"
-		return
-	else if(!MayRespawn(1, config.respawn_delay))
-		if(!check_rights(0, 0) || alert("Normal players must wait at least [config.respawn_delay] minutes to respawn! Would you?","Warning", "No", "Ok") != "Ok")
-			return
-
-	usr << "You can respawn now, enjoy your new life!"
-
-	log_game("[usr.name]/[usr.key] used abandon mob.")
-
-	usr << "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
-
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		return
-	client.screen.Cut()
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		return
-
-	announce_ghost_joinleave(client, 0)
-
-	var/mob/new_player/M = new /mob/new_player()
-	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
-		qdel(M)
-		return
-
-	M.key = key
-	if(M.mind)
-		M.mind.reset()
-	return
 
 /client/verb/changes()
 	set name = "Changelog"
@@ -684,16 +654,13 @@
 	. = (is_client_active(10 MINUTES))
 
 	if(.)
-		if(statpanel("Status") && ticker && ticker.current_state != GAME_STATE_PREGAME)
+		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))
 				stat("Location:", "([x], [y], [z]) [loc]")
-			if(statpanel("Processes"))
-				if(processScheduler)
-					processScheduler.statProcesses()
 			if(statpanel("MC"))
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
@@ -1187,6 +1154,24 @@ mob/proc/yank_out_object()
 
 /mob/proc/swap_hand()
 	return
+
+/mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
+	var/list/exarglist = list()
+
+	isnull(second_arg) ? exarglist.Add(src.client) : exarglist.Add(src.client,second_arg)
+
+	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
+		src.client.CH = PoolOrNew(CH_type,exarglist)
+		src << SPAN_WARNING("You prepare [CH_name].")
+	else
+		kill_CH()
+	return
+
+/mob/proc/kill_CH()
+	if (src.client.CH)
+		src << SPAN_NOTICE ("You unprepare [src.client.CH.handler_name].")
+		qdel(src.client.CH)
+
 
 /mob/living/proc/Released()
 	//This is called when the mob is let out of a holder

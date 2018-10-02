@@ -71,6 +71,8 @@
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
+	var/death_notified = FALSE
+
 	var/list/req_access = list(access_robotics)
 	var/ident = 0
 	//var/list/laws = list()
@@ -380,6 +382,14 @@
 
 	return dat
 
+/mob/living/silicon/robot/verb/toggle_panel_lock()
+	set name = "Toggle Panel Lock"
+	set category = "Silicon Commands"
+	to_chat(src, "You begin [locked ? "" : "un"]locking your panel.")
+	if(!opened && has_power && do_after(usr, 80) && !opened && has_power)
+		to_chat(src, "You [locked ? "un" : ""]locked your panel.")
+		locked = !locked
+
 /mob/living/silicon/robot/verb/toggle_lights()
 	set category = "Silicon Commands"
 	set name = "Toggle Lights"
@@ -571,12 +581,7 @@
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						user << SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi].")
 						user << SPAN_NOTICE("You damage some parts of the chassis, but eventually manage to rip out [mmi]!")
-						var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
-						C.l_leg = new/obj/item/robot_parts/l_leg(C)
-						C.r_leg = new/obj/item/robot_parts/r_leg(C)
-						C.l_arm = new/obj/item/robot_parts/l_arm(C)
-						C.r_arm = new/obj/item/robot_parts/r_arm(C)
-						C.updateicon()
+						new /obj/item/robot_parts/robot_suit/with_limbs (loc)
 						new/obj/item/robot_parts/chest(loc)
 						qdel(src)
 						return
@@ -1085,6 +1090,8 @@
 	if(!connected_ai)
 		return
 	switch(notifytype)
+		if(ROBOT_NOTIFICATION_SIGNAL_LOST)
+			connected_ai << "<br><br><span class='notice'>NOTICE - Signal lost: [braintype] [name].</span><br>"
 		if(ROBOT_NOTIFICATION_NEW_UNIT) //New Robot
 			connected_ai << "<br><br><span class='notice'>NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br>"
 		if(ROBOT_NOTIFICATION_NEW_MODULE) //New Module

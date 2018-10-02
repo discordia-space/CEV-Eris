@@ -102,7 +102,7 @@
 		if (evacuation_controller.waiting_to_leave())
 			data += "ETA: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
 			data += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
-	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
+	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
 
 	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
 
@@ -124,9 +124,9 @@
 		data += "<li>[S.id] - weight: [S.weight_cache] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
 		if(!calculate_weights)
 			data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
-		data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.spawnable?"SPAWN":"NO"]\]</a>"
+		data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.spawnable?"ALLOWED":"FORBIDDEN"]\]</a>"
 		data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
-		data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[SPAWN\]</a></b></li>"
+		data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[FORCE\]</a></b></li>"
 		data += "</li>"
 
 	data += "</ul></div>"
@@ -199,9 +199,9 @@
 
 	if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))
-			ticker.delay_end = !ticker.delay_end
-			log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-			message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+			SSticker.delay_end = !SSticker.delay_end
+			log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+			message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 
 	topic_extra(href,href_list)
 
@@ -216,10 +216,13 @@
 				update_event_weight(evt)
 			if(href_list["ev_toggle"])
 				evt.spawnable = !evt.spawnable
-				message_admins("[evt.id] was [evt.spawnable?"allowed":"restricted"] to spawn by [key_name(usr)]")
+				message_admins("Event \"[evt.id]\" was [evt.spawnable?"allowed":"restricted"] to spawn by [key_name(usr)]")
 			if(href_list["ev_spawn"])
-				evt.create()
-				message_admins("[evt.id] was force spawned by [key_name(usr)]")
+				var/result = evt.create()
+				if (result)
+					message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
+				else
+					message_admins("[key_name(usr)] failed to force spawn \"[evt.id]\".")
 			if(href_list["ev_debug"] && usr && usr.client)
 				usr.client.debug_variables(evt)
 			if(href_list["ev_set_weight"])

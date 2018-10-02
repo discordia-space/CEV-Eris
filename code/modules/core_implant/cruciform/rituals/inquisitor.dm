@@ -60,7 +60,7 @@
 	desc = "Bound believer to your will."
 
 /datum/ritual/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 
@@ -101,7 +101,7 @@
 	desc = "Heal loyal believers"
 
 /datum/ritual/inquisitor/healing_palm/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI || !CI.active || !CI.wearer)
 		fail("Cruciform not found.", user, C)
@@ -204,7 +204,7 @@
 	desc = "Grant the power of priest to one of believers."
 
 /datum/ritual/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 		fail("Cruciform not found",user,C)

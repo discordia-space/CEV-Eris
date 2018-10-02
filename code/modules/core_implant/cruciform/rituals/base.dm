@@ -3,7 +3,7 @@
 	phrase = null
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
-	fail_message = "Cruciform on your chest is getting cold and pricks your skin."
+	fail_message = "The Cruciform feels cold against your chest."
 	category = "Common"
 
 
@@ -17,7 +17,7 @@
 /datum/ritual/cruciform/base/relief
 	name = "Relief"
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
-	desc = "Short litany to relieve a pain of afflicted."
+	desc = "Short litany to relieve pain of the afflicted."
 	power = 50
 	chance = 33
 
@@ -68,9 +68,18 @@
 	if(prob(20)) //Aditional fail chance that hidded from user
 		H << SPAN_NOTICE("There is nothing there. You feel safe.")
 		return TRUE
-	if (locate(/mob/living/simple_animal/hostile) in range(14, H))
-		H << SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile.")
-		was_triggired = TRUE
+	for (var/mob/living/superior_animal/S in range(14, H))
+		if (S.stat != DEAD)
+			H << SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile.")
+			was_triggired = TRUE
+			break
+
+	if (!was_triggired)
+		for (var/mob/living/simple_animal/hostile/S in range(14, H))
+			if (S.stat != DEAD)
+				H << SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile.")
+				was_triggired = TRUE
+				break
 	if (prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
 		H << SPAN_WARNING("Something wrong with this area. Tread carefully.")
 		was_triggired = TRUE

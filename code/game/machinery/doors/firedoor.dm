@@ -220,7 +220,7 @@
 
 		if(QUALITY_PRYING)
 			if(blocked && hatch_open && !repairing)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message(SPAN_DANGER("[user] has removed the electronics from \the [src]."),
 										"You have removed the electronics from [src].")
 					if (stat & BROKEN)
@@ -404,8 +404,6 @@
 
 
 	update_nearby_tiles(need_rebuild)
-		if(!SSair) return 0
-
 		var/turf/simulated/source = loc
 		var/turf/simulated/destination = get_step(source,dir)
 

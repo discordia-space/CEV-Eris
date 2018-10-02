@@ -22,6 +22,7 @@
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
 /mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
+
 	if(!istype(W)) return FALSE
 
 	if(!W.mob_can_equip(src, slot))
@@ -37,6 +38,15 @@
 		return FALSE
 
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+
+	if( !istype(W, /obj/item/clothing/suit/storage) || \
+		!istype(W, /obj/item/weapon/storage)
+		)
+		if(W.w_class > ITEM_SIZE_NORMAL)
+			play_long()
+		else
+			play_short()
+
 	return TRUE
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
@@ -156,6 +166,7 @@ var/list/slot_equipment_priority = list(
 			return TRUE // self destroying objects (tk, grabs)
 
 		if(W.loc != Target)
+			W.do_putdown_animation(Target, src)
 			W.forceMove(Target, drop_flag)
 		update_icons()
 		return TRUE
@@ -241,8 +252,6 @@ var/list/slot_equipment_priority = list(
 //This function is an unsafe proc used to prepare an item for being moved to a slot, or from a mob to a container
 //It should be equipped to a new slot or forcemoved somewhere immediately after this is called
 /mob/proc/prepare_for_slotmove(obj/item/I)
-	if(!canUnEquip(I))
-		return 0
 	src.u_equip(I)
 	if (src.client)
 		src.client.screen -= I
@@ -265,3 +274,50 @@ var/list/slot_equipment_priority = list(
 //Outdated but still in use apparently. This should at least be a human proc.
 /mob/proc/get_equipped_items()
 	return list()
+
+
+//Returns the inventory slot for the current hand
+/mob/proc/get_active_hand_slot()
+	if (hand)
+		return slot_l_hand
+	return slot_r_hand
+
+
+/mob/proc/can_pickup(var/obj/item/I, var/feedback = TRUE)
+	if(!canmove || stat || restrained() || !Adjacent(usr))
+		return
+
+	var/slot = get_active_hand_slot()
+	if (!I || !I.mob_can_equip(src, slot, TRUE))
+		//Picking up is going to fail, maybe we can tell the user why
+
+		return
+
+	return TRUE
+
+
+//////
+//Some inventory sounds.
+//occurs when you click and put up or take off something from you (any UI slot acceptable)
+/////
+/mob/proc/play_short()
+	var/list/sounds = list(
+	'sound/misc/inventory/short_1.ogg',
+	'sound/misc/inventory/short_2.ogg',
+	'sound/misc/inventory/short_3.ogg'
+	)
+
+	var/picked_sound = pick(sounds)
+
+	playsound(src, picked_sound, 100, 1, 1)
+
+/mob/proc/play_long()
+	var/list/sounds = list(
+	'sound/misc/inventory/long_1.ogg',
+	'sound/misc/inventory/long_2.ogg',
+	'sound/misc/inventory/long_3.ogg'
+	)
+
+	var/picked_sound = pick(sounds)
+
+	playsound(src, picked_sound, 100, 1, 1)

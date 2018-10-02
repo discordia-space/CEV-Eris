@@ -630,14 +630,14 @@
 
 		if(hallucination)
 			if(hallucination >= 20)
-				if(prob(3))
+				if(prob(1))
 					fake_attack(src)
 				if(!handling_hal)
 					spawn handle_hallucinations() //The not boring kind!
-				if(client && prob(5))
+/*				if(client && prob(5))
 					client.dir = pick(2,4,8)
 					spawn(rand(20,50))
-						client.dir = 1
+						client.dir = 1*/
 
 			hallucination = max(0, hallucination - 2)
 		else
@@ -754,6 +754,12 @@
 		handle_hud_list()
 
 	// now handle what we see on our screen
+
+	var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform() //ugh, we need more flexible hud
+	if(C)
+		var/datum/core_module/cruciform/christianhud/christian_hud = C.get_module(/datum/core_module/cruciform/christianhud)
+		if(christian_hud)
+			christian_hud.update_crucihud()
 
 	if(!.)
 		return

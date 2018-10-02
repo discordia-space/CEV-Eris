@@ -9,6 +9,7 @@
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	is_hole = TRUE
 //	heat_capacity = 700000 No.
 
 /turf/space/New()
@@ -63,7 +64,11 @@
 		else
 			user << SPAN_WARNING("The plating is going to need some support.")
 			return
-	if (istype(C, /obj/item/stack/tile/floor/techgrey) || istype(C, /obj/item/stack/tile/floor/techgrid))// this creates underplating
+	if (istype(C, /obj/item/stack/material))
+		var/obj/item/stack/material/M = C
+		var/material/mat = M.get_material()
+		if (!mat.name == MATERIAL_STEEL)
+			return
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			var/obj/item/stack/tile/S = C
@@ -90,7 +95,7 @@
 
 	inertial_drift(A)
 
-	if(ticker && ticker.storyteller)
+	if(SSticker.storyteller)
 
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(ticker.mode.name == MODE_NUKE) return

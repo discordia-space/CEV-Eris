@@ -1,39 +1,19 @@
 /datum/antagonist/proc/create_objectives(var/survive = FALSE)
-	for(var/obj in possible_objectives)
-		var/chance = possible_objectives[obj]
-		if(!chance)
-			chance = 100
+	if(!possible_objectives || !possible_objectives.len)
+		return
 
-		if(!prob(chance))
-			continue
+	var/chosen_obj = pickweight(possible_objectives)
 
-		if(islist(obj))
-			var/list/L = obj
-			var/chosen
-			var/total = 0
-			for(var/O in L)
-				total += L[O]
+	if(!ispath(chosen_obj))
+		log_debug("Error! \[/datum/antagonist/proc/create_objectives] \"[role_text]\" role's objectives are broken!")
+		return
 
-			var/picked = rand(0,total)
-			total = 0
-
-			for(var/O in L)
-				total += L[O]
-				if(total > picked)
-					chosen = O
-					break
-
-			if(!chosen)
-				chosen = pick(L)
-
-			obj = chosen
-
-		if(ispath(obj))
-			new obj(src)
+	new chosen_obj(src)
 
 	if(survive)
 		create_survive_objective()
 
+// used only for factions antagonists
 /datum/antagonist/proc/set_objectives(var/list/new_objectives)
 	if(!owner || !owner.current)
 		return
@@ -48,4 +28,4 @@
 
 /datum/antagonist/proc/create_survive_objective()
 	if(ispath(survive_objective))
-		objectives.Add(new survive_objective(src))
+		new survive_objective(src)

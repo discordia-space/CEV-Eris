@@ -219,9 +219,24 @@ ADMIN_VERB_ADD(/client/proc/allow_character_respawn, R_ADMIN, FALSE)
 									   timeofdeath is used for bodies on autopsy but since we're messing with a ghost I'm pretty sure
 									   there won't be an autopsy.
 									*/
+
+	var/datum/preferences/P
+
+	if (G.client)
+		P = G.client.prefs
+	else if (G.ckey)
+		P = preferences_datums[G.ckey]
+	else
+		src << "Something went wrong, couldn't find the target's preferences datum"
+		return 0
+
+	for (var/entry in P.time_of_death)//Set all the prefs' times of death to a huge negative value so any respawn timers will be fine
+		P.time_of_death[entry] = -99999
+
+
 	G.has_enabled_antagHUD = 2
 	G.can_reenter_corpse = 1
-
+	G << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 	G:show_message(text("\blue <B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B>"), 1)
 	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the 30 minute respawn limit")
 	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the 30 minute respawn limit", 1)
@@ -378,8 +393,8 @@ ADMIN_VERB_ADD(/client/proc/respawn_character, R_FUN, FALSE)
 	var/player_key = G_found.key
 
 	//Now for special roles and equipment.
-	job_master.EquipRank(new_character, new_character.mind.assigned_role, 1)
-	job_master.LateSpawn(new_character.client, new_character.mind.assigned_role)
+	SSjob.EquipRank(new_character, new_character.mind.assigned_role, 1)
+	SSjob.LateSpawn(new_character.client, new_character.mind.assigned_role)
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
@@ -500,9 +515,8 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_list_open_jobs, R_DEBUG, FALSE)
 	if (!holder)
 		src << "Only administrators may use this command."
 		return
-	if(job_master)
-		for(var/datum/job/job in job_master.occupations)
-			src << "[job.title]: [job.total_positions]"
+	for(var/datum/job/job in SSjob.occupations)
+		src << "[job.title]: [job.total_positions]"
 
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in range(world.view))
@@ -719,7 +733,7 @@ ADMIN_VERB_ADD(/client/proc/admin_call_shuttle, R_ADMIN, FALSE)
 	set category = "Admin"
 	set name = "Call Evacuation"
 
-	if(!ticker || !evacuation_controller)
+	if(!evacuation_controller)
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -744,7 +758,7 @@ ADMIN_VERB_ADD(/client/proc/admin_cancel_shuttle, R_ADMIN, FALSE)
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
 
-	if(!ticker || !evacuation_controller)
+	if(!evacuation_controller)
 		return
 
 	evacuation_controller.cancel_evacuation()
@@ -758,7 +772,7 @@ ADMIN_VERB_ADD(/client/proc/admin_cancel_shuttle, R_ADMIN, FALSE)
 	set category = "Admin"
 	set name = "Toggle Deny Evac"
 
-	if (!ticker || !evacuation_controller)
+	if (!evacuation_controller)
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -785,12 +799,12 @@ ADMIN_VERB_ADD(/client/proc/everyone_random, R_FUN, FALSE)
 
 	if(!check_rights(R_FUN))	return
 
-	if (ticker.current_state != GAME_STATE_PREGAME)
+	if (SSticker.current_state != GAME_STATE_PREGAME)
 		usr << "Nope you can't do this, the game's already started. This only works before rounds!"
 		return
 
-	if(ticker.random_players)
-		ticker.random_players = 0
+	if(SSticker.random_players)
+		SSticker.random_players = 0
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
 		usr << "Disabled."
 		return
@@ -808,7 +822,7 @@ ADMIN_VERB_ADD(/client/proc/everyone_random, R_FUN, FALSE)
 
 	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
 
-	ticker.random_players = 1
+	SSticker.random_players = 1
 
 
 ADMIN_VERB_ADD(/client/proc/toggle_random_events, R_SERVER, FALSE)

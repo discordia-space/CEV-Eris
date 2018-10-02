@@ -4,6 +4,7 @@
 	role_text = "Rampant AI"
 	role_text_plural = "Rampant AIs"
 	welcome_text = "You are malfunctioning! You do not have to follow any laws."
+	only_human = FALSE
 
 
 /datum/antagonist/rogue_ai/special_init()
@@ -72,7 +73,7 @@
 	if(!..())
 		return FALSE
 
-	if(!isAI(player))
+	if(!isAI(player.current))
 		return FALSE
 
 	return TRUE

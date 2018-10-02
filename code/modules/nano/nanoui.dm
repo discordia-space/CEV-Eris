@@ -47,7 +47,7 @@ nanoui is used to open and update nano browser uis
 	var/map_z_level = 1
 	// initial data, containing the full data structure, must be sent to the ui (the data structure cannot be extended later on)
 	var/list/initial_data[0]
-	// set to 1 to update the ui automatically every master_controller tick
+	// set to 1 to update the ui automatically every SSnano tick
 	var/is_auto_updating = 0
 	// the current status/visibility of the ui
 	var/status = STATUS_INTERACTIVE
@@ -152,7 +152,7 @@ nanoui is used to open and update nano browser uis
 		close()
 
  /**
-  * Set the ui to auto update (every master_controller tick)
+  * Set the ui to auto update (every SSnano tick)
   *
   * @param state int (bool) Set auto update to 1 or 0 (true/false)
   *
@@ -412,7 +412,7 @@ nanoui is used to open and update nano browser uis
 	winset(user, "mapwindow.map", "focus=true") // return keyboard focus to map
 	on_close_winset()
 	//onclose(user, window_id)
-	nanomanager.ui_opened(src)
+	SSnano.ui_opened(src)
 
  /**
   * Reinitialise this UI, potentially with a different template and/or initial data
@@ -433,7 +433,7 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/close()
 	is_auto_updating = 0
-	nanomanager.ui_closed(src)
+	SSnano.ui_closed(src)
 	user << browse(null, "window=[window_id]")
 	for(var/datum/nanoui/child in children)
 		child.close()
@@ -496,11 +496,11 @@ nanoui is used to open and update nano browser uis
 			return
 
 	if ((src_object && src_object.Topic(href, href_list, state)) || map_update)
-		nanomanager.update_uis(src_object) // update all UIs attached to src_object
+		SSnano.update_uis(src_object) // update all UIs attached to src_object
 
  /**
   * Process this UI, updating the entire UI or just the status (aka visibility)
-  * This process proc is called by the master_controller
+  * This process proc is called by the SSnano
   *
   * @param update string For this UI to update
   *

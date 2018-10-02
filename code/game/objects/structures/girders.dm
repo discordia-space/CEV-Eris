@@ -16,10 +16,15 @@
 	health = 50
 	cover = 25
 
+//Low girders are used to build low walls
+/obj/structure/girder/low
+	health = 150
+	cover = 25 //how much cover the girder provides against projectiles.
+
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
 	if(!damage || !wallbreaker)
 		return 0
-	attack_animation(user)
+	user.do_attack_animation(src)
 	visible_message(SPAN_DANGER("[user] [attack_message] the [src]!"))
 	spawn(1) dismantle()
 	return 1
@@ -136,7 +141,7 @@
 		return ..()
 
 /obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
-	if(S.get_amount() < 2)
+	if(S.get_amount() < 3)
 		user << SPAN_NOTICE("There isn't enough material here to construct a wall.")
 		return 0
 
@@ -153,7 +158,7 @@
 
 	user << SPAN_NOTICE("You begin adding the plating...")
 
-	if(!do_after(user,40,src) || !S.use(2))
+	if(!do_after(user,WORKTIME_SLOW,src) || !S.use(3))
 		return 1 //once we've gotten this far don't call parent attackby()
 
 	if(anchored)
@@ -169,6 +174,32 @@
 	if(wall_fake)
 		T.can_open = 1
 	T.add_hiddenprint(usr)
+	qdel(src)
+	return 1
+
+/obj/structure/girder/low/construct_wall(obj/item/stack/material/S, mob/user)
+	if(S.get_amount() < 1)
+		user << SPAN_NOTICE("There isn't enough material here to construct a low wall.")
+		return 0
+
+	var/material/M = name_to_material[S.default_type]
+	if(!istype(M))
+		return 0
+
+	if (!istype(M, /material/steel))
+		user << SPAN_NOTICE("Low walls can only be made of steel.")
+		return 0
+	add_hiddenprint(usr)
+
+	user << SPAN_NOTICE("You begin adding the plating...")
+
+	if(!do_after(user,WORKTIME_NORMAL,src) || !S.use(1))
+		return 1 //once we've gotten this far don't call parent attackby()
+
+
+	var/obj/structure/low_wall/T = new(loc)
+	T.add_hiddenprint(usr)
+	T.Created()
 	qdel(src)
 	return 1
 

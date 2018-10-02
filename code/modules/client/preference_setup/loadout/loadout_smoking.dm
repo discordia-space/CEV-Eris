@@ -16,4 +16,4 @@
 
 /datum/gear/ashtray
 	display_name = "ashtray, plastic"
-	path = /obj/item/weapon/material/ashtray/plastic
+	path = /obj/item/weapon/material/ashtray

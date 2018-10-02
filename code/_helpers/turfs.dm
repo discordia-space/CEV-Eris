@@ -100,3 +100,83 @@
 		M.forceMove(new_turf)
 
 	return new_turf
+
+
+/proc/is_turf_near_space(var/turf/T)
+	var/area/A = get_area(T)
+	if (A.flags & AREA_FLAG_EXTERNAL)
+		return TRUE
+
+	for (var/a in trange(1, T))
+		var/turf/U = a //This is a speed hack.
+		//Manual casting when the type is known skips an istype check in the loop
+		if (A.flags & AREA_FLAG_EXTERNAL)
+			return TRUE
+
+		else if (istype(U, /turf/space) || istype(U, /turf/simulated/floor/hull))
+			return TRUE
+
+	return FALSE
+
+
+/proc/cardinal_turfs(var/atom/A)
+	var/list/turf/turfs = list()
+	var/turf/origin = get_turf(A)
+	for (var/a in cardinal)
+		var/turf/T = get_step(origin, a)
+		if (T)
+			turfs.Add(T)
+	return turfs
+
+
+//This fuzzy proc attempts to determine whether or not this tile is outside the ship
+/proc/turf_is_external(var/turf/T)
+	if (istype(T, /turf/space))
+		return TRUE
+
+	var/area/A = get_area(T)
+	if (A.flags & AREA_FLAG_EXTERNAL)
+		return TRUE
+
+	var/datum/gas_mixture/environment = T.return_air()
+	if (!environment || !environment.total_moles)
+		return TRUE
+
+	return FALSE
+
+
+//Returns true if this tile is an upper hull tile of the ship. IE, a roof
+/proc/turf_is_upper_hull(var/turf/T)
+	var/turf/B = GetBelow(T)
+	if (!B)
+		//Gotta be something below us if we're a roof
+		return FALSE
+
+	if (!turf_is_external(T))
+		//We must be outdoors. if there's something above us we're not the roof
+		return FALSE
+
+	if (turf_is_external(B))
+		//Got to be containing something underneath us
+		return FALSE
+
+	return TRUE
+
+//Returns true if this is a lower hull of the ship. IE,a floor that has space underneath
+/proc/turf_is_lower_hull(var/turf/T)
+	if (turf_is_external(T))
+		//We must be indoors
+		return FALSE
+
+	var/turf/B = GetBelow(T)
+	if (!B)
+		//If we're on the lowest zlevel, return true
+		return TRUE
+
+	if (turf_is_external(B))
+		//We must be outdoors. if there's something above us we're not the roof
+		return TRUE
+
+
+
+	return FALSE

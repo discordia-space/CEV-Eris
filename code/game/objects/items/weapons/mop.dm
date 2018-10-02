@@ -3,8 +3,8 @@
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
-	force = WEAPON_FORCE_NORMAL
-	throwforce = WEAPON_FORCE_NORMAL
+	force = WEAPON_FORCE_WEAK
+	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 10
 	w_class = ITEM_SIZE_NORMAL
@@ -33,6 +33,23 @@
 			if(T)
 				T.clean(src, user)
 			user << SPAN_NOTICE("You have finished mopping!")
+	else
+		makeWet(A, user)
+
+
+/obj/item/weapon/mop/proc/makeWet(atom/A, mob/user)
+	if(A.is_open_container())
+		if(A.reagents)
+			if(A.reagents.total_volume < 1)
+				user << SPAN_WARNING("\The [A] is out of water!")
+				return
+			A.reagents.trans_to_obj(src, reagents.maximum_volume)
+		else
+			reagents.add_reagent("water", reagents.maximum_volume)
+
+		user << SPAN_NOTICE("You wet \the [src] with \the [A].")
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+
 
 
 /obj/effect/attackby(obj/item/I, mob/user)

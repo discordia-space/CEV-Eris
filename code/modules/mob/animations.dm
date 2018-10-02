@@ -144,7 +144,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/do_attack_animation(atom/A)
+/atom/movable/proc/do_attack_animation(atom/A, var/use_item = TRUE)
 
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
@@ -173,16 +173,19 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
 
-/mob/do_attack_animation(atom/A)
+/mob/do_attack_animation(atom/A, var/use_item = TRUE)
 	..()
 	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
 
+	if (!use_item)
+		//The use item flag governs whether or not we'll add a little weapon image to the animation
+		return
+
 	// What icon do we use for the attack?
 	var/image/I
-	if(hand && l_hand) // Attacked with item in left hand.
-		I = image(l_hand.icon, A, l_hand.icon_state, A.layer + 1)
-	else if (!hand && r_hand) // Attacked with item in right hand.
-		I = image(r_hand.icon, A, r_hand.icon_state, A.layer + 1)
+	var/obj/item/T = get_active_hand()
+	if (T && T.icon)
+		I = image(T.icon, A, T.icon_state, A.layer + 1)
 	else // Attacked with a fist?
 		return
 
@@ -213,6 +216,66 @@ note dizziness decrements automatically in the mob's Life() proc.
 	// And animate the attack!
 	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
 
+
+
+
+/atom/proc/SpinAnimation(speed = 10, loops = -1)
+	var/matrix/m120 = matrix(transform)
+	m120.Turn(120)
+	var/matrix/m240 = matrix(transform)
+	m240.Turn(240)
+	var/matrix/m360 = matrix(transform)
+	speed /= 3      //Gives us 3 equal time segments for our three turns.
+	                //Why not one turn? Because byond will see that the start and finish are the same place and do nothing
+	                //Why not two turns? Because byond will do a flip instead of a turn
+	animate(src, transform = m120, time = speed, loops)
+	animate(transform = m240, time = speed)
+	animate(transform = m360, time = speed)
+
+
+
+//Shakes the mob's camera
+//Strength is not recommended to set higher than 4, and even then its a bit wierd
+/proc/shake_camera(mob/M, duration, strength=1, var/taper = 0.25)
+	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
+		return
+
+	M.shakecamera = 1
+	spawn(2)
+		if(!M.client)
+			return
+
+		var/atom/oldeye=M.client.eye
+		var/aiEyeFlag = 0
+		if(istype(oldeye, /mob/observer/eye/aiEye))
+			aiEyeFlag = 1
+
+		var/x
+		for(x=0; x<duration, x++)
+			if(aiEyeFlag)
+				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
+			else
+				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
+			sleep(1)
+
+		//Taper code added by nanako.
+		//Will make the strength falloff after the duration.
+		//This helps to reduce jarring effects of major screenshaking suddenly returning to stability
+		//Recommended taper values are 0.05-0.1
+		if (taper > 0)
+			while (strength > 0)
+				strength -= taper
+				if(aiEyeFlag)
+					M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
+				else
+					M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
+				sleep(1)
+
+		M.client.eye=oldeye
+		M.shakecamera = 0
+
+
+//Deprecated, use SpinAnimation when possible
 /mob/proc/spin(spintime, speed)
 	spawn()
 		var/D = dir
@@ -230,3 +293,83 @@ note dizziness decrements automatically in the mob's Life() proc.
 			set_dir(D)
 			spintime -= speed
 	return
+
+/atom/movable/proc/do_pickup_animation(atom/target, atom/old_loc)
+	set waitfor = FALSE
+
+	var/turf/old_turf = get_turf(old_loc)
+	var/image/I = image(icon = src, loc = old_turf)
+	I.plane = GAME_PLANE
+	I.layer = ABOVE_MOB_LAYER
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if (istype(target,/mob))
+		I.dir = target.dir
+
+	if (istype(old_loc,/obj/item/weapon/storage))
+		I.pixel_x += old_loc.pixel_x
+		I.pixel_y += old_loc.pixel_y
+
+	flick_overlay(I, clients, 7)
+
+	var/matrix/M = new
+	M.Turn(pick(30, -30))
+
+	animate(I, transform = M, time = 1)
+	sleep(1)
+	animate(I, transform = matrix(), time = 1)
+	sleep(1)
+
+	var/to_x = (target.x - old_turf.x) * 32
+	var/to_y = (target.y - old_turf.y) * 32
+
+	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix() * 0, easing = CUBIC_EASING)
+	sleep(3)
+
+/atom/movable/proc/do_putdown_animation(atom/target, mob/user)
+	spawn()
+		var/old_invisibility = invisibility // I don't know, it may be used.
+		invisibility = 100
+		var/turf/old_turf = get_turf(user)
+		var/image/I = image(icon = src, loc = old_turf, layer = layer + 0.1)
+		I.plane = GAME_PLANE
+		I.layer = ABOVE_MOB_LAYER
+		I.transform = matrix() * 0
+		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		I.pixel_x = 0
+		I.pixel_y = 0
+		if (istype(target,/mob))
+			I.dir = target.dir
+		flick_overlay(I, clients, 4)
+
+		var/to_x = (target.x - old_turf.x) * 32 + pixel_x
+		var/to_y = (target.y - old_turf.y) * 32 + pixel_y
+		var/old_x = pixel_x
+		var/old_y = pixel_y
+		pixel_x = 0
+		pixel_y = 0
+
+		animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
+		sleep(3)
+		invisibility = old_invisibility
+		pixel_x = old_x
+		pixel_y = old_y
+
+/atom/movable/proc/simple_move_animation(atom/target)
+	set waitfor = FALSE
+
+	var/old_invisibility = invisibility // I don't know, it may be used.
+	invisibility = 100
+	var/turf/old_turf = get_turf(src)
+	var/image/I = image(icon = src, loc = src.loc, layer = layer + 0.1)
+	I.plane = GAME_PLANE
+	I.layer = ABOVE_MOB_LAYER
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+	flick_overlay(I, clients, 4)
+
+	var/to_x = (target.x - old_turf.x) * 32 + pixel_x
+	var/to_y = (target.y - old_turf.y) * 32 + pixel_y
+
+	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, easing = CUBIC_EASING)
+	sleep(3)
+	invisibility = old_invisibility

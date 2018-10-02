@@ -3,12 +3,6 @@
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_state = "carpet"
 	initial_flooring = /decl/flooring/carpet
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/carpet1.ogg', \
-		'sound/effects/footstep/carpet2.ogg', \
-		'sound/effects/footstep/carpet3.ogg', \
-		'sound/effects/footstep/carpet4.ogg', \
-		'sound/effects/footstep/carpet5.ogg'))
 
 /turf/simulated/floor/carpet/bcarpet
 	name = "black carpet"
@@ -52,6 +46,7 @@
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
 	initial_flooring = /decl/flooring/reinforced/circuit
 
+
 /turf/simulated/floor/greengrid
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
@@ -63,52 +58,14 @@
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/wood1.ogg',\
-		'sound/effects/footstep/wood2.ogg',\
-		'sound/effects/footstep/wood3.ogg',\
-		'sound/effects/footstep/wood4.ogg',\
-		'sound/effects/footstep/wood5.ogg'))
 
-/turf/simulated/floor/grass
-	name = "grass patch"
-	icon = 'icons/turf/flooring/grass.dmi'
-	icon_state = "grass0"
-	initial_flooring = /decl/flooring/grass
 
-/turf/simulated/floor/dirt
-	name = "dirt"
-	icon = 'icons/turf/flooring/dirt.dmi'
-	icon_state = "dirt"
-
-/turf/simulated/floor/hull
-	name = "hull"
-	icon = 'icons/turf/flooring/hull.dmi'
-	icon_state = "hullcenter0"
-	initial_flooring = /decl/flooring/hull
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/hull1.ogg',\
-		'sound/effects/footstep/hull2.ogg',\
-		'sound/effects/footstep/hull3.ogg',\
-		'sound/effects/footstep/hull4.ogg',\
-		'sound/effects/footstep/hull5.ogg'))
-
-/turf/simulated/floor/hull/New()
-	if(icon_state != "hullcenter0")
-		overrided_icon_state = icon_state
-	..()
 
 /turf/simulated/floor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
 	initial_flooring = /decl/flooring/tiling
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/floor1.ogg',\
-		'sound/effects/footstep/floor2.ogg',\
-		'sound/effects/footstep/floor3.ogg',\
-		'sound/effects/footstep/floor4.ogg',\
-		'sound/effects/footstep/floor5.ogg'))
 
 /turf/simulated/floor/tiled/techmaint
 	name = "floor"
@@ -254,6 +211,12 @@
 	oxygen = 0
 	nitrogen = 0
 
+/turf/simulated/floor/reinforced/engine
+	oxygen = 825
+	nitrogen = 0
+	plasma = 2500
+	temperature = 374
+
 /turf/simulated/floor/reinforced/n20/New()
 	..()
 	sleep(-1)
@@ -324,18 +287,7 @@
 	nitrogen = 0
 	temperature = TCMB
 
-/turf/simulated/floor/plating
-	icon = 'icons/turf/floors.dmi'
-	name = "plating"
-	icon_state = "plating"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS
-	initial_flooring = /decl/flooring/reinforced/plating
-	footstep_sounds = list("human" = list(\
-		'sound/effects/footstep/plating1.ogg',\
-		'sound/effects/footstep/plating2.ogg',\
-		'sound/effects/footstep/plating3.ogg',\
-		'sound/effects/footstep/plating4.ogg',\
-		'sound/effects/footstep/plating5.ogg'))
+/
 
 // Placeholders
 /turf/simulated/floor/airless/lava

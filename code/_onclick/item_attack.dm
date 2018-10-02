@@ -42,7 +42,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /atom/movable/attackby(obj/item/I, mob/living/user)
 	if(!(I.flags & NOBLUDGEON))
+		user.do_attack_animation(src)
+		if (I.hitsound)
+			playsound(loc, I.hitsound, 50, 1, -1)
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 /obj/item/attackby(obj/item/I, mob/living/user, var/params)
 	return

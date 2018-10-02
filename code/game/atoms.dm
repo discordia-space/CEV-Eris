@@ -19,7 +19,6 @@
 	var/allow_spin = TRUE
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
-	var/list/footstep_sounds = list() // Footsteps sound
 
 	///Chemistry.
 	var/datum/reagents/reagents = null
@@ -273,9 +272,15 @@ its easier to just keep the beam vertical.
 	if(new_dir == old_dir)
 		return FALSE
 
+	for(var/i in src.contents)
+		var/atom/A = i
+		A.container_dir_changed(new_dir)
 	dir = new_dir
 	dir_set_event.raise_event(src, old_dir, new_dir)
 	return TRUE
+
+/atom/proc/container_dir_changed(new_dir)
+	return
 
 /atom/proc/ex_act()
 	return
@@ -513,8 +518,10 @@ its easier to just keep the beam vertical.
 	return !anchored
 
 //Execution by grand piano!
-/atom/movable/proc/get_fall_damage()
+/atom/movable/proc/get_fall_damage(var/turf/from, var/turf/dest)
 	return 42
+
+/atom/movable/proc/fall_impact(var/turf/from, var/turf/dest)
 
 //If atom stands under open space, it can prevent fall, or not
 /atom/proc/can_prevent_fall()
@@ -565,9 +572,13 @@ its easier to just keep the beam vertical.
 		O.show_message(message,2,deaf_message,1)
 
 /atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
-	if(loc && MOVED_DROP == special_event)
-		AM.forceMove(loc, MOVED_DROP)
-		return CANCEL_MOVE_EVENT
+	if(loc)
+		for(var/i in AM.contents)
+			var/atom/movable/A = i
+			A.entered_with_container(old_loc)
+		if(MOVED_DROP == special_event)
+			AM.forceMove(loc, MOVED_DROP)
+			return CANCEL_MOVE_EVENT
 	return ..()
 
 /turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)

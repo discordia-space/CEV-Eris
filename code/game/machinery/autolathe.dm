@@ -1,4 +1,4 @@
-s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
+// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 #define SANITIZE_LATHE_COST(n) max(1, n) // helps to fix prices where "* mat_efficiency" is used.
 
 #define ERR_OK 0
@@ -190,7 +190,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	data["queue_len"] = queue.len
 	data["queue_max"] = queue_max
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -299,7 +299,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		else
 			unfolded = href_list["unfold"]
 
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/insert_disk(var/mob/living/user)
 	if(!istype(user))
@@ -320,7 +320,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		user.unEquip(eating, src)
 		disk = eating
 		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 
 /obj/machinery/autolathe/proc/insert_beaker(var/mob/living/user)
@@ -339,7 +339,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 		user.unEquip(eating, src)
 		container = eating
 		user << SPAN_NOTICE("You put \the [eating] into the autolathe.")
-		nanomanager.update_uis(src)
+		SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/eat(var/mob/living/user)
 	if(!istype(user))
@@ -557,7 +557,7 @@ s// makes sure that discounted prices from upgraded lathe no less than 1 unit.
 	fix_queue()
 	special_process()
 	update_icon()
-	nanomanager.update_uis(src)
+	SSnano.update_uis(src)
 
 
 

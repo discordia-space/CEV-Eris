@@ -34,7 +34,7 @@
 		dat += "<b>Objectives</b><br>"
 		var/num = 1
 		for(var/datum/objective/O in objectives)
-			dat += "<b>Objective #[num]:</b> [O.explanation_text] "
+			dat += "<b>Objective #[num]:</b>"
 			if(O.completed)
 				dat += "(<font color='green'>complete</font>)"
 			else
@@ -59,7 +59,7 @@
 		if(!owner)
 			if(!outer)
 				var/list/MN = list()
-				for(var/datum/mind/M in ticker.minds)
+				for(var/datum/mind/M in SSticker.minds)
 					if(can_become_antag(M))
 						MN[M.name] = M
 				MN["CANCEL"] = null

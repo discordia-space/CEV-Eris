@@ -25,7 +25,7 @@
 
 /obj/effect/shuttle_landmark/New()
 	..()
-	tag = landmark_tag //since tags cannot be set at compile time
+	tag = copytext(landmark_tag, 1) //since tags cannot be set at compile time
 	if(autoset)
 		base_area = get_area(src)
 		var/turf/T = get_turf(src)
@@ -43,7 +43,7 @@
 			docking_controller = locate(docking_tag)
 			if(!istype(docking_controller))
 				admin_notice("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
-		shuttle_controller.register_landmark(tag, src)
+		SSshuttle.register_landmark(tag, src)
 
 /obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
 	if(shuttle.current_location == src)

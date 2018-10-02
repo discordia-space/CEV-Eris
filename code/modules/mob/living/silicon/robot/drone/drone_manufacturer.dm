@@ -39,7 +39,7 @@
 
 /obj/machinery/drone_fabricator/Process()
 
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
 	if(stat & NOPOWER || !produce_drones)
@@ -87,13 +87,13 @@
 
 /mob/observer/ghost/verb/join_as_drone()
 	set category = "Ghost"
-	set name = "Join As Drone"
+	set name = "Respawn as Drone"
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 	try_drone_spawn(src)
 
 /proc/try_drone_spawn(var/mob/user, var/obj/machinery/drone_fabricator/fabricator)
 
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		user << SPAN_DANGER("The game hasn't started yet!")
 		return
 
@@ -105,7 +105,7 @@
 		user << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
 		return
 
-	if(!user.MayRespawn(1, DRONE_SPAWN_DELAY))
+	if(!user.MayRespawn(1, MINISYNTH))
 		return
 
 	if(!fabricator)
@@ -120,7 +120,7 @@
 			user << SPAN_DANGER("There are no available drone spawn points, sorry.")
 			return
 
-		var/choice = input(user,"Which fabricator do you wish to use?") as null|anything in all_fabricators
+		var/choice = input(user,"Spawning as a drone will not affect your crew or mouse respawn timers. Which fabricator do you wish to use?") as null|anything in all_fabricators
 		if(!choice || !all_fabricators[choice])
 			return
 		fabricator = all_fabricators[choice]

@@ -7,6 +7,7 @@
  *			angle2dir
  *			angle2text
  *			worldtime2stationtime
+ *			key2mob
  */
 
 // Returns an integer given a hexadecimal number string as input.
@@ -69,7 +70,7 @@
 		if (4.0) return EAST
 		if (8.0) return WEST
 		else
-			world.log << "UNKNOWN DIRECTION: [direction]"
+			log_world("UNKNOWN DIRECTION: [direction]")
 
 // Turns a direction into text
 /proc/dir2text(direction)
@@ -213,3 +214,17 @@
 
 /proc/isLeap(y)
 	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
+
+
+//Takes a key and attempts to find the mob it currently belongs to
+/proc/key2mob(var/key)
+	var/client/C = directory[key]
+	if (C)
+		//This should work if the mob is currently logged in
+		return C.mob
+	else
+		//This is a fallback for if they're not logged in
+		for (var/mob/M in player_list)
+			if (M.key == key)
+				return M
+		return null

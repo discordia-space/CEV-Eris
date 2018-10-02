@@ -17,7 +17,7 @@
 	desc = "Cyberchristianity's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology corporation's  special altar."
 
 /datum/ritual/cruciform/priest/epiphany/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one.", user, C)
@@ -31,12 +31,12 @@
 		fail("This cruciform already has a soul inside.", user, C)
 		return FALSE
 
-	CI.activate()
-
 	CI.wearer << "<span class='info'>Your cruciform vibrates and warms up.</span>"
 
-	if(ticker && ticker.storyteller)	//Call objectives update to check inquisitor objective completion
-		ticker.storyteller.update_objectives()
+	CI.activate()
+
+	if(SSticker.storyteller)	//Call objectives update to check inquisitor objective completion
+		SSticker.storyteller.update_objectives()
 
 	return TRUE
 
@@ -77,7 +77,7 @@
 	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
 
 /datum/ritual/cruciform/priest/reincarnation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)
@@ -128,17 +128,8 @@
 	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
 
 /datum/ritual/cruciform/priest/install/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/grab/G = locate(/obj/item/weapon/grab) in user
-	var/obj/item/weapon/implant/core_implant/cruciform/CI
-
-	if(G && G.affecting && ishuman(G.affecting))
-		CI = G.affecting.get_cruciform()
-	else
-		fail("You must hold patient's hand.", user, C)
-		return FALSE
-
-	var/mob/living/H = G.affecting
-
+	var/mob/living/H = get_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 	if(CI)
 		fail("[H] already have a cruciform installed.", user, C)
 		return FALSE
@@ -178,7 +169,7 @@
 	if(ishuman(H))
 		var/mob/living/carbon/human/M = H
 		var/obj/item/organ/external/E = M.organs_by_name[BP_CHEST]
-		E.take_damage(25)
+		E.take_damage(25, sharp = FALSE)
 		M.custom_pain("You feel cruciform rips into your chest!",1)
 		M.update_implants()
 		M.updatehealth()
@@ -192,7 +183,7 @@
 	desc = "This litany will command cruciform to detach from bearer if one bearing it is dead. You will be able to attach this cruciform later, or use it in scaner for Resurrection."
 
 /datum/ritual/cruciform/priest/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one", user, C)
@@ -224,7 +215,7 @@
 	desc = "This litany will remove any upgrade from "
 
 /datum/ritual/cruciform/priest/unupgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_grabbed(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
 
 	if(!CI)
 		fail("There is no cruciform on this one.", user, C)
@@ -243,3 +234,90 @@
 
 	return TRUE
 
+
+///////////////////////////////////////
+///////////SHORT BOOST LITANIES////////
+///////////////////////////////////////
+
+/datum/ritual/cruciform/priest/short_boost
+	name = "Short boost ritual"
+	phrase = null
+	desc = "This litany boosts mechanical stats of everyone who's hear you on the short time. "
+	cooldown = TRUE
+	cooldown_time = 2 MINUTES
+	effect_time = 2 MINUTES
+	cooldown_category = "short_boost"
+	var/list/stats_to_boost = list()
+
+	New()
+		..()
+		desc = "This litany boosts [get_stats_to_text()] stats of everyone who's hear you on the short time."
+
+
+/datum/ritual/cruciform/priest/short_boost/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
+	var/list/people_around = list()
+	for(var/mob/living/carbon/human/H in view(user))
+		if(H != user && !isdeaf(H))
+			people_around.Add(H)
+
+	if(people_around.len > 0)
+		user << SPAN_NOTICE("Your cruciform emmits a special signal.")
+		playsound(user.loc, 'sound/machines/signal.ogg', 50, 1)
+		for(var/mob/living/carbon/human/participant in people_around)
+			participant << SPAN_NOTICE("You hear a silent signal...")
+			give_boost(participant)
+		set_global_cooldown()
+		return TRUE
+	else
+		fail("Not enough hearers.", user, C)
+		return FALSE
+
+
+/datum/ritual/cruciform/priest/short_boost/proc/give_boost(mob/living/carbon/human/participant)
+	for(var/stat in stats_to_boost)
+		var/amount = stats_to_boost[stat]
+		participant.stats.changeStat(stat, amount)
+		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
+	spawn(30)
+		participant << SPAN_NOTICE("You feel a little dizziness at the moment, but later you got an extraordinary understanding of [get_stats_to_text()].")
+
+
+/datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
+	participant.stats.changeStat(stat, -amount)
+	participant << SPAN_WARNING("The knoweledge of [get_stats_to_text()] has disappeared.")
+
+/datum/ritual/cruciform/priest/short_boost/proc/get_stats_to_text()
+	if(stats_to_boost.len == 1)
+		return lowertext(stats_to_boost[1])
+	var/stats_text = ""
+	for(var/i = 1 to stats_to_boost.len)
+		var/stat = stats_to_boost[i]
+		if(i == stats_to_boost.len)
+			stats_text += " and [stat]"
+			continue
+		if(i == 1)
+			stats_text += "[stat]"
+		else
+			stats_text += ", [stat]"
+	return lowertext(stats_text)
+
+
+/datum/ritual/cruciform/priest/short_boost/mechanical
+	name = "Pounding Whisper"
+	phrase = "Vocavitque nomen eius Noe dicens iste consolabitur nos ab operibus et laboribus manuum nostrarum in terra cui maledixit Dominus"
+	stats_to_boost = list(STAT_MEC = 10)
+
+/datum/ritual/cruciform/priest/short_boost/cognition
+	name = "Revelation of Secrets"
+	phrase = "Quia Dominus dat sapientiam et ex ore eius scientia et prudentia"
+	stats_to_boost = list(STAT_COG = 10)
+
+/datum/ritual/cruciform/priest/short_boost/biology
+	name = "Lisp of Vitae"
+	phrase = "Ecce ego obducam ei cicatricem et sanitatem et curabo eos et revelabo illis deprecationem pacis et veritatis"
+	stats_to_boost = list(STAT_BIO = 10)
+
+/datum/ritual/cruciform/priest/short_boost/courage
+	name = "Canto of Courage"
+	phrase = "Huic David ad te Domine clamabo Deus meus ne sileas a me nequando taceas a me et adsimilabor descendentibus in lacum"
+	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10)

@@ -141,18 +141,11 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user) return
-	if (hasorgans(user))
-		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
-		if (user.hand)
-			temp = H.organs_by_name[BP_L_ARM]
-		if(temp && !temp.is_usable())
-			user << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
-			return
-		if(!temp)
-			user << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
-			return
+	if (!user || !user.can_pickup(src))
+		return
+
+	var/atom/old_loc = src.loc
+
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
@@ -165,8 +158,10 @@
 	else
 		if(isliving(src.loc))
 			return
-	user.put_in_active_hand(src)
-	return
+	
+	if(user.put_in_active_hand(src) && old_loc )
+		if (user != old_loc.get_holding_mob())
+			do_pickup_animation(user,old_loc)
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(src.loc, /obj/item/weapon/robot_module))
@@ -182,7 +177,6 @@
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
-
 
 //Called whenever an item is dropped on the floor, thrown, or placed into a container.
 //It is called after loc is set, so if placed in a container its loc will be that container.
@@ -622,6 +616,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /* QUALITY AND TOOL SYSTEM */
 
+/obj/item/proc/has_quality(quality_id)
+	return quality_id in tool_qualities
+
 /obj/item/proc/get_tool_quality(quality_id)
 	return tool_qualities[quality_id]
 
@@ -744,24 +741,26 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					return
 
 			if(85 to 93)
-				user << SPAN_DANGER("Your [src] broke beyond repair!")
-				new /obj/item/weapon/material/shard/shrapnel(user.loc)
-				qdel(src)
-				return
+				if(ishuman(user))
+					user << SPAN_DANGER("Your [src] broke beyond repair!")
+					new /obj/item/weapon/material/shard/shrapnel(user.loc)
+					qdel(src)
+					return
 
 			if(94 to 100)
-				if(istype(src, /obj/item/weapon/tool))
-					var/obj/item/weapon/tool/T = src
-					if(T.use_fuel_cost)
-						user << SPAN_DANGER("You ignite the fuel of the [src]!")
-						explosion(src.loc,-1,1,2)
-						qdel(src)
-						return
-					if(T.use_power_cost)
-						user << SPAN_DANGER("You overload the cell in the [src]!")
-						explosion(src.loc,-1,1,2)
-						qdel(src)
-						return
+				if(ishuman(user))
+					if(istype(src, /obj/item/weapon/tool))
+						var/obj/item/weapon/tool/T = src
+						if(T.use_fuel_cost)
+							user << SPAN_DANGER("You ignite the fuel of the [src]!")
+							explosion(src.loc,-1,1,2)
+							qdel(src)
+							return
+						if(T.use_power_cost)
+							user << SPAN_DANGER("You overload the cell in the [src]!")
+							explosion(src.loc,-1,1,2)
+							qdel(src)
+							return
 
 
 /obj/item/device

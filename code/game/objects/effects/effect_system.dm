@@ -110,7 +110,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/sparks/Initialize()
 	. = ..()
-	schedule_task_in(10 SECONDS, /proc/qdel, list(src))
+	QDEL_IN(src, 10 SECONDS)
 
 /obj/effect/sparks/Destroy()
 	var/turf/T = src.loc
@@ -228,6 +228,26 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 // Illumination
 /////////////////////////////////////////////
+/obj/effect/effect/light
+	name = "light"
+	opacity = FALSE
+	mouse_opacity = FALSE
+	icon_state = "nothing"
+	var/radius = 3
+	var/brightness = 2
+
+/obj/effect/effect/light/New(var/newloc, var/radius, var/brightness)
+	..()
+
+	src.radius = radius
+	src.brightness = brightness
+
+	set_light(radius,brightness)
+
+/obj/effect/effect/light/set_light(l_range, l_power, l_color)
+	..()
+	radius = l_range
+	brightness = l_power
 
 /obj/effect/effect/smoke/illumination
 	name = "illumination"

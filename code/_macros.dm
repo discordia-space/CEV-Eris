@@ -61,7 +61,7 @@
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
-
+#define isHUDobj(A) istype(A, /obj/screen)
 
 #define islist(A) istype(A, /list)
 
@@ -71,7 +71,7 @@
 
 #define to_chat(target, message)                            target << message
 #define to_world(message)                                   world << message
-#define to_world_log(message)                               world.log << message
+#define to_world_log(message)                               log_world(message)
 
 #define any2ref(x) "\ref[x]"
 

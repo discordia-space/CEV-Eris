@@ -38,15 +38,21 @@
 		reinf_material = get_material_by_name(rmaterialtype)
 	update_material()
 	hitsound = material.hitsound
-	processing_turfs |= src
+
+/turf/simulated/wall/Initialize()
+	START_PROCESSING(SSturf, src) //Used for radiation.
+	. = ..()
 
 /turf/simulated/wall/Destroy()
-	processing_turfs -= src
+	STOP_PROCESSING(SSturf, src)
 	dismantle_wall(null,null,1)
 	. = ..()
 
-/turf/simulated/wall/Process()
+/turf/simulated/wall/Process(wait, times_fired)
 	// Calling parent will kill processing
+	var/how_often = max(round(2 SECONDS / wait), 1)
+	if(times_fired % how_often)
+		return //We only work about every 2 seconds
 	if(!radiate())
 		return PROCESS_KILL
 
@@ -255,7 +261,11 @@
 		cap = cap / 10
 
 	if(damage >= cap)
-		dismantle_wall()
+		var/leftover = damage - cap
+		if (leftover > 150)
+			dismantle_wall(no_product = TRUE)
+		else
+			dismantle_wall()
 	else
 		update_icon()
 
@@ -298,15 +308,11 @@
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(get_base_turf(src.z))
-			return
+			take_damage(rand(500, 800))
 		if(2.0)
-			if(prob(75))
-				take_damage(rand(150, 250))
-			else
-				dismantle_wall(1,1)
+			take_damage(rand(200, 500))
 		if(3.0)
-			take_damage(rand(0, 250))
+			take_damage(rand(90, 250))
 		else
 	return
 

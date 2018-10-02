@@ -220,20 +220,15 @@ var/list/holder_mob_icon_cache = list()
 	spawn(2)
 		var/obj/item/weapon/holder/H = new holder_type(loc)
 
+		var/old_loc = src.loc
+
 		src.forceMove(H)
 
-
 		H.contained = src
-
-
-
 		if (src.stat == DEAD)
 			H.held_death()//We've scooped up an animal that's already dead. use the proper dead icons
 		else
 			H.isalive = 1//We note that the mob is alive when picked up. If it dies later, we can know that its death happened while held, and play its deathmessage for it
-
-
-
 
 		var/success = 0
 		if (src == user)
@@ -242,8 +237,9 @@ var/list/holder_mob_icon_cache = list()
 			H.attack_hand(grabber)//We put this last to prevent some race conditions
 			if (H.loc == grabber)
 				success = 1
-
 		if (success)
+			if (isturf(old_loc))
+				src.do_pickup_animation(grabber,old_loc)
 			if (user == src)
 				grabber << "<span class='notice'>[src.name] climbs up onto you.</span>"
 				src << "<span class='notice'>You climb up onto [grabber].</span>"

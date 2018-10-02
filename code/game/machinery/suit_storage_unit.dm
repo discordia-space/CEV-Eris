@@ -1,3 +1,7 @@
+#define SLOT_HELMET "helmet"
+#define SLOT_SUIT "suit"
+#define SLOT_MASK "mask"
+
 //////////////////////////////////////
 // SUIT STORAGE UNIT /////////////////
 //////////////////////////////////////
@@ -496,7 +500,38 @@
 		update_icon()
 		return TRUE
 
-/obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/load(obj/item/I, mob/user, slot)
+	if(!isopen)
+		return
+	var/check = FALSE
+	switch(slot)
+		if(SLOT_MASK)
+			check = MASK
+		if(SLOT_HELMET)
+			check = HELMET
+		if(SLOT_SUIT)
+			check = SUIT
+
+	if(check)
+		user << "<font color='blue'>The unit already contains a [slot].</font>"
+		return
+
+	user << "You load the [I.name] into the storage compartment."
+	user.drop_from_inventory(I, src)
+
+	switch(slot)
+		if(SLOT_MASK)
+			MASK = I
+		if(SLOT_HELMET)
+			HELMET = I
+		if(SLOT_SUIT)
+			SUIT = I
+
+	update_icon()
+	updateUsrDialog()
+
+
+/obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user)
 	if(!ispowered)
 		return
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
@@ -505,50 +540,12 @@
 			user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(panelopen ? "open up" : "close"))
 			updateUsrDialog()
 			return
-	if(istype(I,/obj/item/clothing/suit/space))
-		if(!isopen)
-			return
-		var/obj/item/clothing/suit/space/S = I
-		if(SUIT)
-			user << "<font color='blue'>The unit already contains a suit.</font>"
-			return
-		user << "You load the [S.name] into the storage compartment."
-		user.drop_item()
-		S.loc = src
-		SUIT = S
-		update_icon()
-		updateUsrDialog()
-		return
-	if(istype(I,/obj/item/clothing/head/helmet))
-		if(!isopen)
-			return
-		var/obj/item/clothing/head/helmet/H = I
-		if(HELMET)
-			user << "<font color='blue'>The unit already contains a helmet.</font>"
-			return
-		user << "You load the [H.name] into the storage compartment."
-		user.drop_item()
-		H.loc = src
-		HELMET = H
-		update_icon()
-		updateUsrDialog()
-		return
-	if(istype(I,/obj/item/clothing/mask))
-		if(!isopen)
-			return
-		var/obj/item/clothing/mask/M = I
-		if(MASK)
-			user << "<font color='blue'>The unit already contains a mask.</font>"
-			return
-		user << "You load the [M.name] into the storage compartment."
-		user.drop_item()
-		M.loc = src
-		MASK = M
-		update_icon()
-		updateUsrDialog()
-		return
-	update_icon()
-	updateUsrDialog()
+	else if(istype(I,/obj/item/clothing/suit/space))
+		load(I, user, SLOT_SUIT)
+	else if(istype(I,/obj/item/clothing/head/helmet))
+		load(I, user, SLOT_HELMET)
+	else if(istype(I,/obj/item/clothing/mask))
+		load(I, user, SLOT_MASK)
 
 
 /obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
@@ -624,7 +621,7 @@
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
-	req_access = list(access_medical)
+	req_access = list(access_moebius)
 	departments = list("Medical")
 
 /obj/machinery/suit_cycler/syndicate
@@ -1005,3 +1002,8 @@
 
 	if(helmet) helmet.name = "refitted [helmet.name]"
 	if(suit) suit.name = "refitted [suit.name]"
+
+
+#undef SLOT_HELMET
+#undef SLOT_SUIT
+#undef SLOT_MASK

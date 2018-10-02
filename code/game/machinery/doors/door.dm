@@ -89,12 +89,12 @@
 			close_door_at = 0
 
 /obj/machinery/door/proc/can_open()
-	if(!density || operating || !ticker)
+	if(!density || operating)
 		return 0
 	return 1
 
 /obj/machinery/door/proc/can_close()
-	if(density || operating || !ticker)
+	if(density || operating)
 		return 0
 	return 1
 
@@ -451,9 +451,6 @@
 	return ..(M)
 
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
-	if(!SSair)
-		return 0
-
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
 		SSair.mark_for_update(turf)

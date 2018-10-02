@@ -229,7 +229,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(!slot) return
 	if(!istype(W)) return
-	if(!has_organ_for_slot(slot)) return
 	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
 	if(ismob(W.loc))
 		var/mob/M = W.loc
@@ -300,8 +299,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
-			if(istype(W,/obj/item/clothing/head/kitty))
-				W.update_icon(src)
 			W.equipped(src, slot)
 			update_inv_head(redraw_mob)
 		if(slot_shoes)
@@ -371,6 +368,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
 		return 0
+
+	if (!has_organ_for_slot(slot))
+		return FALSE
+
 	return 1
 
 /mob/living/carbon/human/get_equipped_item(var/slot)
@@ -422,3 +423,20 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_s_store)    items += s_store
 
 	return items
+
+
+//The parent does all the checks, this one is just for feedback messages
+/mob/living/carbon/human/can_pickup(var/obj/item/I, var/feedback = TRUE)
+	.=..()
+
+	if (!. && feedback)
+		//Feedback moved here from item attackhand
+		var/obj/item/organ/external/temp = organs_by_name[BP_R_ARM]
+		if (hand)
+			temp = organs_by_name[BP_L_ARM]
+		if(temp && !temp.is_usable())
+			src << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
+			return
+		if(!temp)
+			src << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
+			return

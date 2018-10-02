@@ -41,6 +41,7 @@ see multiz/movement.dm for some info.
 	var/turf/below
 	var/list/underlay_references
 	var/global/overlay_map = list()
+	is_hole = TRUE
 
 /turf/simulated/open/LateInitialize()
 	. = ..()
@@ -109,6 +110,7 @@ see multiz/movement.dm for some info.
 		playsound(src, 'sound/hallucinations/scream.ogg', 100)
 
 	if(!soft)
+
 		if(!isliving(mover))
 			if(istype(below, /turf/simulated/open))
 				mover.visible_message(
@@ -134,17 +136,12 @@ see multiz/movement.dm for some info.
 				)
 
 			// Handle people getting hurt, it's funny!
-			if (ishuman(mover))
-				var/mob/living/carbon/human/H = mover
-				var/damage = 5
-				for(var/organ in list(BP_CHEST, BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
-					H.apply_damage(rand(0, damage), BRUTE, organ)
+			mover.fall_impact(src, below)
 
-				H.Weaken(4)
-				H.updatehealth()
 
-		var/fall_damage = mover.get_fall_damage()
+
 		for(var/mob/living/M in below)
+			var/fall_damage = mover.get_fall_damage()
 			if(M == mover)
 				continue
 			M.Weaken(10)
@@ -172,20 +169,33 @@ see multiz/movement.dm for some info.
 			ReplaceWithLattice()
 		return
 
-	if (istype(C, /obj/item/stack/tile/floor))
+	if (istype(C, /obj/item/stack/material))
+		var/obj/item/stack/material/M = C
+		var/material/mat = M.get_material()
+		if (!mat.name == MATERIAL_STEEL)
+			return
+
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+
 		if(L)
 			var/obj/item/stack/tile/floor/S = C
-			if (S.get_amount() < 1)
+			if (S.get_amount() < 4)
 				return
-			qdel(L)
+
+			user << SPAN_NOTICE("You start constructing underplating on the lattice.")
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			S.use(1)
-			ChangeTurf(/turf/simulated/floor/airless)
+			if(do_after(user,80, src))
+				qdel(L)
+				S.use(4)
+				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
 			user << SPAN_WARNING("The plating is going to need some support.")
 
+	if(istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.turf_place(src, user)
+		return
 
 //Some effect handling procs for openspaces
 

@@ -7,7 +7,8 @@
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = 1.0
 	flags = ON_BORDER
-	var/maxhealth = 40
+	var/maxhealth = 20
+	var/resistance = 0	//Incoming damage is reduced by this flat amount before being subtracted from health
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2.0 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/health
@@ -18,7 +19,7 @@
 	var/shardtype = /obj/item/weapon/material/shard
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
-
+	var/no_color = FALSE //If true, don't apply a color to the base
 
 /obj/structure/window/can_prevent_fall()
 	return !is_fulltile()
@@ -46,16 +47,25 @@
 		else
 			user << SPAN_NOTICE("There is a thick layer of silicate covering it.")
 
-/obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1)
+
+//Subtracts resistance from damage then applies it
+//Returns the actual damage taken after resistance is accounted for. This is useful for audio volumes
+/obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1, var/ignore_resistance = FALSE)
 	var/initialhealth = health
 
-	if(silicate)
-		damage = damage * (1 - silicate / 200)
+	if (!ignore_resistance)
+		damage -= resistance
+	if (damage <= 0)
+		return 0
 
 	health = max(0, health - damage)
 
 	if(health <= 0)
-		shatter()
+		if (prob(damage*2))//Heavy hits are more likely to send shards flying
+			shatter(FALSE, TRUE)
+		else
+			//To break it safely, use a lighter hit to deal the finishing touch, or throw things from afar
+			shatter()
 	else
 		if(sound_effect)
 			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
@@ -65,7 +75,7 @@
 			visible_message("[src] looks seriously damaged!" )
 		else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
 			visible_message("Cracks begin to appear in [src]!" )
-	return
+	return damage
 
 /obj/structure/window/proc/apply_silicate(var/amount)
 	if(health < maxhealth) // Mend the damage
@@ -77,6 +87,8 @@
 		updateSilicate()
 
 /obj/structure/window/proc/updateSilicate()
+	if (is_full_window())
+		return
 	if (overlays)
 		overlays.Cut()
 
@@ -85,16 +97,31 @@
 	img.alpha = silicate * 255 / 100
 	overlays += img
 
-/obj/structure/window/proc/shatter(var/display_message = 1)
-	playsound(src, "shatter", 70, 1)
+//Setting the explode var makes the shattering louder and more violent, possibly injuring surrounding mobs
+/obj/structure/window/proc/shatter(var/display_message = 1, var/explode = FALSE)
+	alpha = 0
+	if (explode)
+		playsound(src, "shatter", 100, 1, 5,5)
+	else
+		playsound(src, "shatter", 70, 1)
+
+	//Cache a list of nearby turfs for throwing shards at
+	var/list/turf/nearby
+	if (explode)
+		nearby = (trange(2, src) - get_turf(src))
+
 	if(display_message)
 		visible_message("[src] shatters!")
-	if(dir == SOUTHWEST)
+	if(is_full_window())
 		var/index = null
 		index = 0
-		while(index < 2)
-			new shardtype(loc) //todo pooling?
-			if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+		if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+		while(index < rand(4,6))
+			var/obj/item/weapon/material/shard/S = new shardtype(loc)
+			if (explode && nearby.len > 0)
+				var/turf/target = pick(nearby)
+				spawn()
+					S.throw_at(target,40,3)
 			index++
 	else
 		new shardtype(loc) //todo pooling?
@@ -119,11 +146,11 @@
 			qdel(src)
 			return
 		if(2.0)
-			shatter(0)
+			shatter(0,TRUE)
 			return
 		if(3.0)
 			if(prob(50))
-				shatter(0)
+				shatter(0,TRUE)
 				return
 
 //TODO: Make full windows a separate type of window.
@@ -165,6 +192,7 @@
 		set_anchored(FALSE)
 		step(src, get_dir(AM, src))
 	hit(tforce)
+	mount_check()
 
 /obj/structure/window/attack_tk(mob/user as mob)
 	user.visible_message(SPAN_NOTICE("Something knocks on [src]."))
@@ -176,7 +204,7 @@
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		user.visible_message(SPAN_DANGER("[user] smashes through [src]!"))
 		user.do_attack_animation(src)
-		shatter()
+		shatter(TRUE,TRUE)
 
 	else if (usr.a_intent == I_HURT)
 
@@ -201,7 +229,7 @@
 	if(istype(user))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
-	if(damage >= 10)
+	if(damage >= resistance)
 		visible_message(SPAN_DANGER("[user] smashes into [src]!"))
 		hit(damage)
 	else
@@ -212,7 +240,8 @@
 
 /obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
 	world << "Smashing [target] against [src]"
-	target.do_attack_animation(src)
+	target.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
+	//So we pass false on the use_item flag so it doesn't look like they hit the window with something
 	switch(state)
 		if(GRAB_PASSIVE)
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
@@ -223,12 +252,12 @@
 			if(prob(50))
 				target.Weaken(1)
 			target.apply_damage(10)
-			hit(25)
+			hit(15)
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
 			target.Weaken(5)
 			target.apply_damage(20)
-			hit(50)
+			hit(20)
 	admin_attack_log(user, target,
 		"Smashed [key_name(target)] against \the [src]",
 		"Smashed against \the [src] by [key_name(user)]",
@@ -315,11 +344,10 @@
 		..()
 	return
 
-/obj/structure/window/proc/hit(var/damage, var/sound_effect = TRUE)
-	if(reinf) damage *= 0.5
-	take_damage(damage)
+/obj/structure/window/proc/hit(var/damage, var/sound_effect = TRUE, var/ignore_resistance = FALSE)
+	damage = take_damage(damage, TRUE, ignore_resistance)
 	if (sound_effect)
-		playsound(src.loc, 'sound/effects/glasshit.ogg', damage*4, 1, damage*0.5, damage*0.5) //The harder the hit, the louder and farther travelling the sound
+		playsound(src.loc, 'sound/effects/glasshit.ogg', damage*4.5, 1, damage*0.6, damage*0.6) //The harder the hit, the louder and farther travelling the sound
 	return
 
 
@@ -360,12 +388,10 @@
 	update_nearby_tiles(need_rebuild=1)
 	return
 
-/obj/structure/window/New(Loc, start_dir=null, constructed=0)
+/obj/structure/window/New(Loc, start_dir=null)
 	..()
 
 	//player-constructed windows
-	if (constructed)
-		set_anchored(FALSE)
 
 	if (start_dir)
 		set_dir(start_dir)
@@ -376,6 +402,9 @@
 
 	update_nearby_tiles(need_rebuild=1)
 	update_nearby_icons()
+
+/obj/structure/window/Created()
+	set_anchored(FALSE)
 
 
 /obj/structure/window/Destroy()
@@ -394,6 +423,7 @@
 	..()
 	set_dir(ini_dir)
 	update_nearby_tiles(need_rebuild=1)
+	mount_check()
 
 //checks if this window is full-tile one
 /obj/structure/window/proc/is_fulltile()
@@ -431,13 +461,26 @@
 	if(!is_fulltile())
 		icon_state = "[basestate]"
 		return
+	/*
 	var/list/dirs = list()
 	if(anchored)
 		for(var/obj/structure/window/W in orange(src,1))
 			if(W.anchored && W.density && W.type == src.type && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
 				dirs += get_dir(src, W)
 
-	var/list/connections = dirs_to_corner_states(dirs)
+	for(var/turf/simulated/wall/T in trange(1, src) - src)
+		var/T_dir = get_dir(src, T)
+		dirs |= T_dir
+		if(propagate)
+			spawn(0)
+				T.update_connections()
+				T.update_icon()
+	*/
+	//Since fulltile windows can't exist without an underlying wall, we will just copy connections from our wall
+	var/list/connections = list("0", "0", "0", "0")
+	var/obj/structure/low_wall/LW = (locate(/obj/structure/low_wall) in loc)
+	if (istype(LW))
+		connections = LW.connections
 
 	icon_state = ""
 	for(var/i = 1 to 4)
@@ -460,37 +503,50 @@
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 100
 	damage_per_fire_tick = 2.0
-	maxhealth = 60
+	maxhealth = 15
+	resistance = 0
 
 /obj/structure/window/basic/full
 	dir = SOUTH|EAST
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "fwindow"
+	alpha = 120
+	maxhealth = 40
+	resistance = 2
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
-	basestate = "plasmawindow"
+	basestate = "pwindow"
 	icon_state = "plasmawindow"
 	shardtype = /obj/item/weapon/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmaglass
 	maximal_heat = T0C + 2000
 	damage_per_fire_tick = 1.0
-	maxhealth = 300
+	maxhealth = 150
+	resistance = 8
 
 /obj/structure/window/plasmabasic/full
 	dir = SOUTH|EAST
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "plasmawindow_mask"
+	alpha = 150
+	maxhealth = 200
+	resistance = 10
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "rwindow"
 	basestate = "rwindow"
-	maxhealth = 200
+	maxhealth = 600
 	reinf = 1
 	maximal_heat = T0C + 750
 	damage_per_fire_tick = 2.0
 	glasstype = /obj/item/stack/material/glass/reinforced
+
+	maxhealth = 50
+	resistance = 4
 
 /obj/structure/window/New(Loc, constructed=0)
 	..()
@@ -501,7 +557,11 @@
 
 /obj/structure/window/reinforced/full
 	dir = SOUTH|EAST
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "fwindow"
+	alpha = 150
+	maxhealth = 80
+	resistance = 6
 
 /obj/structure/window/reinforced/plasma
 	name = "reinforced borosilicate window"
@@ -512,11 +572,15 @@
 	glasstype = /obj/item/stack/material/glass/plasmarglass
 	maximal_heat = T0C + 9000
 	damage_per_fire_tick = 1.0 // This should last for 80 fire ticks if the window is not damaged at all. The idea is that borosilicate windows have something like ablative layer that protects them for a while.
-	maxhealth = 600
+	maxhealth = 150
+	resistance = 8
 
 /obj/structure/window/reinforced/plasma/full
 	dir = SOUTH|EAST
 	icon_state = "plasmarwindow_mask"
+	alpha = 150
+	maxhealth = 200
+	resistance = 10
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -530,7 +594,6 @@
 	desc = "It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
 	icon_state = "fwindow"
 	basestate = "fwindow"
-	maxhealth = 250
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
@@ -538,23 +601,32 @@
 	icon = 'icons/obj/podwindows.dmi'
 	icon_state = "window"
 	basestate = "window"
-	maxhealth = 800
+	maxhealth = 300
+	resistance = 12
 	reinf = 1
 	basestate = "w"
 	dir = 5
 
 /obj/structure/window/reinforced/polarized
 	name = "electrochromic window"
+
 	desc = "Adjusts its tint with voltage. Might take a few good hits to shatter it."
 	var/id
+
+/obj/structure/window/reinforced/polarized/full
+	dir = SOUTH|EAST
+	icon = 'icons/obj/structures/windows.dmi'
+	icon_state = "fwindow"
 
 /obj/structure/window/reinforced/polarized/proc/toggle()
 	if(opacity)
 		animate(src, color="#FFFFFF", time=5)
 		set_opacity(0)
+		alpha = initial(alpha)
 	else
 		animate(src, color="#222222", time=5)
 		set_opacity(1)
+		alpha = 255
 
 /obj/structure/window/reinforced/crescent/attack_hand()
 	return
@@ -606,3 +678,42 @@
 
 /obj/machinery/button/windowtint/update_icon()
 	icon_state = "light[active]"
+
+
+//Fulltile windows can only exist ontop of a low wall
+//If they're ever not on a wall, they will drop to the floor and smash.
+/obj/structure/window/proc/mount_check()
+	if (!is_full_window())
+		return
+
+	//If there's a wall under us, we're safe, stop here.
+	if (locate(/obj/structure/low_wall) in loc)
+		return
+
+	//This is where the fun begins
+	//First of all, lets be sure we're on a tile that has a floor
+	var/turf/T = get_turf(src)
+
+	//Hole tiles are empty space and openspace. Can't fall here.
+	//But if its openspace we'll probably fall through and smash below. fall_impact will handle that
+	if (T.is_hole)
+		return
+
+	//Check for gravity
+	var/area/A = get_area(T)
+	if (!A.has_gravity)
+		//No gravity, cant fall here
+		return
+
+
+	//We're good, lets do this
+	shatterfall()
+
+
+//Used when the window finds itself no longer on a tile. For example if someone drags it out of the wall
+//The window will do a litle animation of falling to the floor, giving them a brief moment to regret their mistake
+/obj/structure/window/proc/shatterfall()
+	sleep(5)
+	animate(src, pixel_y = -12, time = 7, easing = QUAD_EASING)
+	spawn(8)
+		shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards

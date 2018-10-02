@@ -16,9 +16,30 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 
+/client/Click(var/atom/target, location, control, params)
+//	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
+//		return
+
+//	next_click = world.time + 1
+
+//	if(buildmode && !istype(target, /obj/screen))
+//		buildmode.build_click(src.mob, params, target)
+//		return
+	if(!isHUDobj(target) && CH)
+		if(CH.mob_check(mob))
+			if (CH.use_ability(mob,target) && CH.one_use_flag)
+				qdel(CH)// = null
+				return
+		else
+			src << "For some reason you can't use [CH.handler_name] ability"
+			qdel(CH)// = null
+			return
+
+	if(!target.Click(location, control, params))
+		usr.ClickOn(target, params)
+
 /atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	if(src)
-		usr.ClickOn(src, params)
+	return
 
 /atom/DblClick(var/location, var/control, var/params)
 	if(src)
@@ -171,11 +192,6 @@
 	return
 
 /mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
-
-	if(!ticker)
-		src << "You cannot attack people before the game has started."
-		return 0
-
 	if(stat)
 		return 0
 
