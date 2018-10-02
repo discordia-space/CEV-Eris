@@ -84,7 +84,7 @@ var/datum/evacuation_controller/evacuation_controller
 
 	if(emergency_evacuation)
 		for(var/area/A in world)
-			if(istype(A, /area/hallway))
+			if(istype(A, /area/hallway) || istype(A, /area/eris/hallway))
 				A.readyalert()
 		if(!skip_announce)
 			evacuation_controller.evac_called.Announce(replacetext(maps_data.emergency_shuttle_called_message, "%ETA%", "[round(evacuation_controller.get_eta()/60)] minute\s."))
