@@ -1488,3 +1488,28 @@ var/list/rank_prefix = list(\
 		src << SPAN_NOTICE("You can't do it right now.")
 	return
 
+/mob/living/carbon/human/should_have_organ(var/organ_check)
+
+	var/obj/item/organ/external/affecting
+	if(organ_check in list(O_HEART, O_LUNGS))
+		affecting = organs_by_name[BP_CHEST]
+	else if(organ_check in list(O_LIVER, O_KIDNEYS))
+		affecting = organs_by_name[BP_GROIN]
+
+	if(affecting && (affecting.robotic >= ORGAN_ROBOT))
+		return FALSE
+	return (species && species.has_organ[organ_check])
+
+/mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, 2 or 3 if limb is robotic, FALSE if not found
+
+	if (appendage_check == BP_CHEST)
+		return TRUE
+
+	var/obj/item/organ/external/appendage
+	appendage = organs_by_name[appendage_check]
+
+	if(appendage && !appendage.is_stump())
+		if(appendage.robotic >= ORGAN_ROBOT)
+			return appendage.robotic
+		else return TRUE
+	return FALSE

@@ -79,12 +79,58 @@
 
 /obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/melee/baton))
-		if(cooldown < world.time - 25)
-			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
-			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
-			cooldown = world.time
+		on_bash(W, user)
 	else
 		..()
+
+/obj/item/weapon/shield/riot/proc/on_bash(var/obj/item/weapon/W, var/mob/user)
+	if(cooldown < world.time - 25)
+		user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
+		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
+		cooldown = world.time
+
+/*
+ * Handmade shield
+ */
+
+/obj/item/weapon/shield/riot/handmade
+	name = "round handmade shield"
+	desc = "A handmade stout shield, but with a small size."
+	icon_state = "hm_shield"
+	flags = null
+	throw_speed = 2
+	throw_range = 6
+	matter = list(MATERIAL_STEEL = 6)
+	base_block_chance = 35
+
+
+/obj/item/weapon/shield/riot/handmade/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+	return base_block_chance
+
+
+/obj/item/weapon/shield/riot/handmade/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/extinguisher) || istype(W, /obj/item/weapon/storage/toolbox) || istype(W, /obj/item/weapon/melee))
+		on_bash(W, user)
+	else
+		..()
+
+/obj/item/weapon/shield/riot/handmade/tray
+	name = "tray shield"
+	desc = "This one is thin, but compensate it with a good size."
+	icon_state = "tray_shield"
+	flags = CONDUCT
+	throw_speed = 2
+	throw_range = 4
+	matter = list(MATERIAL_STEEL = 4)
+	base_block_chance = 35
+
+
+/obj/item/weapon/shield/riot/handmade/tray/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+	if(istype(damage_source, /obj/item))
+		var/obj/item/I = damage_source
+		if((is_sharp(I) && damage > 10) || istype(damage_source, /obj/item/projectile/beam))
+			return 20
+	return base_block_chance
 
 /*
  * Energy Shield

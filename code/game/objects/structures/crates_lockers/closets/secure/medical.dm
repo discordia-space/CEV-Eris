@@ -20,7 +20,7 @@
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
 	icon_state = "med"
-	req_access = list(access_medical)
+	req_access = list(access_moebius)
 
 /obj/structure/closet/secure_closet/anesthetics/populate_contents()
 	new /obj/item/weapon/tank/anesthetic(src)
@@ -29,6 +29,7 @@
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/clothing/mask/breath/medical(src)
 	new /obj/item/clothing/mask/breath/medical(src)
+	new /obj/item/weapon/tool/wrench(src)
 
 /obj/structure/closet/secure_closet/personal/doctor
 	name = "moebius doctor's locker"

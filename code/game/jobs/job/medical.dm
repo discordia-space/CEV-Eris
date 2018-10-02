@@ -14,7 +14,7 @@
 	economic_modifier = 10
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
+		access_moebius, access_medical_equip, access_morgue, access_genetics, access_heads,
 		access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
 		access_keycard_auth, access_sec_doors, access_psychiatrist, access_eva, access_external_airlocks
 	)
@@ -62,7 +62,7 @@
 	economic_modifier = 7
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
+		access_moebius, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
 		access_genetics
 	)
 	idtype = /obj/item/weapon/card/id/med
@@ -104,7 +104,7 @@
 	economic_modifier = 5
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology
+		access_moebius, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology
 	)
 	idtype = /obj/item/weapon/card/id/chem
 
@@ -144,7 +144,7 @@
 	selection_color = "#ffeef0"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_psychiatrist
+		access_moebius, access_medical_equip, access_morgue, access_psychiatrist
 	)
 
 	stat_modifers = list(
@@ -180,7 +180,7 @@
 	economic_modifier = 4
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20)
 	access = list(
-		access_medical, access_medical_equip, access_morgue, access_surgery,
+		access_moebius, access_medical_equip, access_morgue, access_surgery,
 		access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist
 	)
 

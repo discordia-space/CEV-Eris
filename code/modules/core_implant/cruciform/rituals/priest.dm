@@ -31,9 +31,9 @@
 		fail("This cruciform already has a soul inside.", user, C)
 		return FALSE
 
-	CI.activate()
-
 	CI.wearer << "<span class='info'>Your cruciform vibrates and warms up.</span>"
+
+	CI.activate()
 
 	if(SSticker.storyteller)	//Call objectives update to check inquisitor objective completion
 		SSticker.storyteller.update_objectives()
@@ -160,11 +160,6 @@
 		fail("[H] must be undressed.", user, C)
 		return FALSE
 
-	if(H.mind && H.mind.changeling)
-		playsound(H.loc, 'sound/hallucinations/wail.ogg', 55, 1)
-		H.gib()
-		return
-
 	CI.install(H)
 
 	if(CI.wearer != H)
@@ -174,7 +169,7 @@
 	if(ishuman(H))
 		var/mob/living/carbon/human/M = H
 		var/obj/item/organ/external/E = M.organs_by_name[BP_CHEST]
-		E.take_damage(25)
+		E.take_damage(25, sharp = FALSE)
 		M.custom_pain("You feel cruciform rips into your chest!",1)
 		M.update_implants()
 		M.updatehealth()

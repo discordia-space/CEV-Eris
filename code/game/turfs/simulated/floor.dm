@@ -16,7 +16,7 @@
 
 	// Flooring data.
 	var/flooring_override
-	var/initial_flooring
+	var/initial_flooring = /decl/flooring/reinforced/plating
 	var/decl/flooring/flooring
 	var/mineral = MATERIAL_STEEL
 	var/set_update_icon
@@ -24,9 +24,21 @@
 	heat_capacity = 10000
 	var/lava = 0
 	var/overrided_icon_state
+	var/health = 100
+	var/maxHealth = 100
+
+
+/turf/simulated/floor/Entered(atom/atom as mob|obj)
+	..(atom)
+	if (flooring)
+		flooring.Entered(atom)
 
 /turf/simulated/floor/is_plating()
-	return !flooring
+	if (flooring)
+		return flooring.is_plating
+	else
+		//TODO: FIND OUT WHY ANYTHING COULD HAVE NULL FLOORING
+		return TRUE
 
 /turf/simulated/floor/New(var/newloc, var/floortype)
 	..(newloc)
@@ -36,10 +48,26 @@
 		set_flooring(get_flooring_data(floortype))
 
 /turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
-	make_plating(defer_icon_update = 1)
 	flooring = newflooring
+	name = flooring.name
+	maxHealth = flooring.health
+	health = maxHealth
 	update_icon(1)
 	levelupdate()
+
+/turf/simulated/floor/examine(mob/user)
+	.=..()
+	if (health < maxHealth)
+		if (health < (0.25 * maxHealth))
+			user << SPAN_DANGER("It looks like it's about to collapse!")
+		else if (health < (0.5 * maxHealth))
+			user << SPAN_WARNING("It's heavily damaged!")
+		else if (health < (0.75 * maxHealth))
+			user << SPAN_WARNING("It's taken a bit of a beating!")
+		else
+			user << SPAN_WARNING("It has a few scuffs and scrapes")
+
+
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
@@ -54,21 +82,30 @@
 	desc = base_desc
 	icon = base_icon
 	icon_state = base_icon_state
-
-	if(flooring)
-		if(flooring.build_type && place_product)
-			new flooring.build_type(src)
-		flooring = null
-
 	set_light(0)
 	broken = null
 	burnt = null
 	flooring_override = null
-	levelupdate()
 
-	if(!defer_icon_update)
-		update_icon(1)
+	if(flooring)
+		if(flooring.build_type && place_product)
+			new flooring.build_type(src)
+
+	//We attempt to get whatever should be under this floor
+	var/temp = flooring.get_plating_type(src) //This will return null if there's nothing underneath
+	if (temp)
+		set_flooring(get_flooring_data(temp))
+	else
+		ReplaceWithLattice() //IF there's nothing underneath, turn ourselves into an openspace
+
 
 /turf/simulated/floor/levelupdate()
-	for(var/obj/O in src)
-		O.hide(O.hides_under_flooring() && src.flooring)
+	if (flooring)
+		for(var/obj/O in src)
+			O.hide(O.hides_under_flooring() && (flooring.flags & TURF_HIDES_THINGS))
+
+
+/turf/simulated/floor/proc/is_damaged()
+	if (broken || burnt || health < maxHealth)
+		return TRUE
+	return FALSE

@@ -169,20 +169,33 @@ see multiz/movement.dm for some info.
 			ReplaceWithLattice()
 		return
 
-	if (istype(C, /obj/item/stack/tile/floor))
+	if (istype(C, /obj/item/stack/material))
+		var/obj/item/stack/material/M = C
+		var/material/mat = M.get_material()
+		if (!mat.name == MATERIAL_STEEL)
+			return
+
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+
 		if(L)
 			var/obj/item/stack/tile/floor/S = C
-			if (S.get_amount() < 1)
+			if (S.get_amount() < 4)
 				return
-			qdel(L)
+
+			user << SPAN_NOTICE("You start constructing underplating on the lattice.")
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			S.use(1)
-			ChangeTurf(/turf/simulated/floor/airless)
+			if(do_after(user,80, src))
+				qdel(L)
+				S.use(4)
+				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
 			user << SPAN_WARNING("The plating is going to need some support.")
 
+	if(istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.turf_place(src, user)
+		return
 
 //Some effect handling procs for openspaces
 

@@ -9,11 +9,12 @@
 	var/product_name = "generic" // Display name for the product
 	var/product_path = null
 	var/amount = 0            // The original amount held in the vending machine
-	var/list/instances
 	var/price = 0              // Price to buy one
 	var/display_color = null   // Display color for vending machine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
 	var/vending_machine        // The vending machine we belong to
+	var/list/instances = list()		   // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
+
 
 /datum/data/vending_product/New(var/vending_machine, var/path, var/name = null, var/amount = 1, var/price = 0, var/color = null, var/category = CAT_NORMAL)
 	..()
@@ -34,39 +35,30 @@
 
 /datum/data/vending_product/Destroy()
 	vending_machine = null
-	if(instances)
-		for(var/product in instances)
-			qdel(product)
-		instances.Cut()
 	. = ..()
 
 /datum/data/vending_product/proc/get_amount()
-	return instances ? instances.len : amount
+	return amount
 
 /datum/data/vending_product/proc/add_product(var/atom/movable/product)
 	if(product.type != product_path)
 		return 0
-	init_products()
 	product.forceMove(vending_machine)
-	instances += product
+	amount += 1
 
 /datum/data/vending_product/proc/get_product(var/product_location)
-	if(!get_amount() || !product_location)
+	if(get_amount() <= 0 || !product_location)
 		return
-	init_products()
-
-	var/atom/movable/product = instances[instances.len]	// Remove the last added product
-	instances -= product
+	var/atom/movable/product
+	if (instances && instances.len)
+		product = instances[instances.len]
+	else
+		product = new product_path
+	amount -= 1
 	product.forceMove(product_location)
 	return product
 
-/datum/data/vending_product/proc/init_products()
-	if(instances)
-		return
-	instances = list()
-	for(var/i = 1 to amount)
-		var/new_product = new product_path(vending_machine)
-		instances += new_product
+
 
 /**
  *  A vending machine
@@ -133,24 +125,54 @@
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
 	var/datum/wires/vending/wires = null
+	var/always_open	=	FALSE  // If true, this machine allows products to be inserted without requirinf the maintenance hatch to be screwed open first
+	var/list/can_stock = list()	//A whitelist of objects which can be stocked into this vendor
+	//Note that a vendor can always accept restocks of things it has had in the past. This is in addition to that
 
 /obj/machinery/vending/New()
 	..()
 	wires = new(src)
-	spawn(4)
-		if(src.product_slogans)
-			src.slogan_list += splittext(src.product_slogans, ";")
 
-			// So not all machines speak at the exact same time.
-			// The first time this machine says something will be at slogantime + this random value,
-			// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
-			src.last_slogan = world.time + rand(0, slogan_delay)
 
-		if(src.product_ads)
-			src.ads_list += splittext(src.product_ads, ";")
+/obj/machinery/vending/Initialize()
+	return INITIALIZE_HINT_LATELOAD
 
-		src.build_inventory()
-		power_change()
+/obj/machinery/vending/LateInitialize()
+	if(src.product_slogans)
+		src.slogan_list += splittext(src.product_slogans, ";")
+
+		// So not all machines speak at the exact same time.
+		// The first time this machine says something will be at slogantime + this random value,
+		// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
+		src.last_slogan = world.time + rand(0, slogan_delay)
+
+	if(src.product_ads)
+		src.ads_list += splittext(src.product_ads, ";")
+
+	src.build_inventory()
+	power_change()
+
+
+/**
+ * Add item to the machine
+ *
+ * Checks if item is vendable in this machine should be performed before
+ * calling. W is the item being inserted, R is the associated vending_product entry.
+ 	R can be null, in which case the user is inserting something that wasnt previously here.
+ 	In that case we create a new inventory record for the item
+ */
+/obj/machinery/vending/proc/stock(obj/item/weapon/W, var/datum/data/vending_product/R, var/mob/user)
+	if(!user.unEquip(W))
+		return
+
+	user << SPAN_NOTICE("You insert \the [W] in the product receptor.")
+	if (R)
+		R.add_product(W)
+	else
+		new_inventory(W)
+
+	SSnano.update_uis(src)
+
 
 /**
  *  Build src.produdct_records from the products lists
@@ -176,6 +198,17 @@
 			product.category = category
 
 			src.product_records.Add(product)
+
+
+//This is used when a user inserts something during the round which wasn't previously a product
+/obj/machinery/vending/proc/new_inventory(var/obj/item/I)
+	var/datum/data/vending_product/product = new/datum/data/vending_product(src, I.type, I.name)
+	product.amount = 1
+	product.price = 0
+	src.product_records.Add(product)
+	product.instances.Add(I)
+	return product
+
 
 /obj/machinery/vending/Destroy()
 	qdel(wires)
@@ -263,11 +296,11 @@
 			SSnano.update_uis(src)
 			return // don't smack that machine with your 2 credits
 
-	if (I || istype(I, /obj/item/weapon/spacecash))
+	if (I && istype(I, /obj/item/weapon/spacecash))
 		attack_hand(user)
 		return
 
-	else if(QUALITY_CUTTING in I.tool_qualities || QUALITY_WIRE_CUTTING in I.tool_qualities || QUALITY_PULSING in I.tool_qualities)
+	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities) || (QUALITY_PULSING in I.tool_qualities))
 		if(src.panel_open)
 			attack_hand(user)
 		return
@@ -279,10 +312,15 @@
 		user << SPAN_NOTICE("You insert \the [I] into \the [src].")
 		SSnano.update_uis(src)
 		return
-
+	else if (panel_open || always_open)
 		for(var/datum/data/vending_product/R in product_records)
-			if(istype(I, R.product_path))
+			if(istype(I, R.product_path) && (R.product_name == I.name))
 				stock(I, R, user)
+				return 1
+
+		for (var/a in can_stock)
+			if (istype(I, a))
+				stock(I, null, user)
 				return 1
 		..()
 
@@ -545,28 +583,15 @@
 	if (src.icon_vend) //Show the vending animation if needed
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay)
-		R.get_product(get_turf(src))
-		playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
+		if (R.get_product(get_turf(src)))
+			playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
 		src.status_message = ""
 		src.status_error = 0
 		src.vend_ready = 1
 		currently_vending = null
 		SSnano.update_uis(src)
 
-/**
- * Add item to the machine
- *
- * Checks if item is vendable in this machine should be performed before
- * calling. W is the item being inserted, R is the associated vending_product entry.
- */
-/obj/machinery/vending/proc/stock(obj/item/weapon/W, var/datum/data/vending_product/R, var/mob/user)
-	if(!user.unEquip(W))
-		return
 
-	user << SPAN_NOTICE("You insert \the [W] in the product receptor.")
-	R.add_product(W)
-
-	SSnano.update_uis(src)
 
 /obj/machinery/vending/Process()
 	if(stat & (BROKEN|NOPOWER))
@@ -867,6 +892,8 @@
 	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
+	always_open = TRUE
+	can_stock = list(/obj/item/seeds)
 
 	products = list(/obj/item/seeds/bananaseed = 3,/obj/item/seeds/berryseed = 3,/obj/item/seeds/carrotseed = 3,/obj/item/seeds/chantermycelium = 3,/obj/item/seeds/chiliseed = 3,
 					/obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3, /obj/item/seeds/soyaseed = 3,
@@ -903,6 +930,7 @@
 			product.category = category
 
 			src.product_records.Add(product)
+			qdel(S)
 
 
 /obj/machinery/vending/dinnerware
