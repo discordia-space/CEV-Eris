@@ -2,6 +2,7 @@
 	name = "random building material"
 	icon_state = "material-grey"
 
+//This stuff can't be easily converted to pickweight because of these amount fields
 /obj/random/material/item_to_spawn()
 	return pick(/obj/item/stack/material/steel{amount = 20},\
 				/obj/item/stack/material/glass{amount = 20},\

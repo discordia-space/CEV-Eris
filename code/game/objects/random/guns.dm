@@ -3,12 +3,12 @@
 	icon_state = "gun-grey"
 
 /obj/random/gun_cheap/item_to_spawn()
-	return pick(prob(3);/obj/item/weapon/gun/projectile/mk58,\
-				prob(1);/obj/item/weapon/gun/projectile/mk58/wood,\
-				prob(1);/obj/item/weapon/gun/projectile/revolver/detective,\
-				prob(4);/obj/item/weapon/gun/projectile/giskard,\
-				prob(2);/obj/item/weapon/gun/projectile/shotgun/pump,\
-				prob(2);/obj/item/weapon/gun/projectile/olivaw)
+	return pickweight(list(/obj/item/weapon/gun/projectile/mk58 = 3,\
+				/obj/item/weapon/gun/projectile/mk58/wood = 1,\
+				/obj/item/weapon/gun/projectile/revolver/detective = 1,\
+				/obj/item/weapon/gun/projectile/giskard = 4,\
+				/obj/item/weapon/gun/projectile/shotgun/pump = 2,\
+				/obj/item/weapon/gun/projectile/olivaw = 2))
 
 /obj/random/gun_cheap/low_chance
 	name = "low chance random cheap gun"
@@ -20,13 +20,13 @@
 	icon_state = "gun-green"
 
 /obj/random/gun_normal/item_to_spawn()
-	return pick(prob(2);/obj/item/weapon/gun/projectile/lamia,\
-				prob(1);/obj/item/weapon/gun/projectile/automatic/idaho,\
-				prob(1);/obj/item/weapon/gun/projectile/automatic/atreides,\
-				prob(2);/obj/item/weapon/gun/projectile/deagle,\
-				prob(4);/obj/item/weapon/gun/projectile/colt,\
-				prob(4);/obj/item/weapon/gun/projectile/revolver/consul,\
-				prob(4);/obj/item/weapon/gun/projectile/revolver)
+	return pickweight(list(/obj/item/weapon/gun/projectile/lamia = 2,\
+				/obj/item/weapon/gun/projectile/automatic/idaho = 1,\
+				/obj/item/weapon/gun/projectile/automatic/atreides = 1,\
+				/obj/item/weapon/gun/projectile/deagle = 2,\
+				/obj/item/weapon/gun/projectile/colt = 4,\
+				/obj/item/weapon/gun/projectile/revolver/consul = 4,\
+				/obj/item/weapon/gun/projectile/revolver = 4))
 
 /obj/random/gun_normal/low_chance
 	name = "low chance random normal gun"
@@ -38,9 +38,9 @@
 	icon_state = "gun-blue"
 
 /obj/random/gun_energy_cheap/item_to_spawn()
-	return pick(prob(2);/obj/item/weapon/gun/energy/gun/martin,\
-				prob(2);/obj/item/weapon/gun/energy/gun,\
-				prob(1);/obj/item/weapon/gun/energy/retro)
+	return pickweight(list(/obj/item/weapon/gun/energy/gun/martin = 2,\
+				/obj/item/weapon/gun/energy/gun = 2,\
+				/obj/item/weapon/gun/energy/retro = 1))
 
 /obj/random/gun_energy_cheap/low_chance
 	name = "low chance random cheap energy weapon"
