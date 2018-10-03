@@ -42,7 +42,7 @@
 	name = "mining voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	item_state = "mining_voidsuit"
-armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 60)
+	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 60)
 
 //Medical Rig
 /obj/item/clothing/head/helmet/space/void/medical
