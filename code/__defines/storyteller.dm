@@ -23,9 +23,11 @@
 #define TAG_COMBAT "combat"
 
 
+
 //The event involves one or very few people.
 //Examples: Ion storm, viral infection
 #define TAG_TARGETED "targeted"
+
 
 
 //The event involves most or all of the crew, everyone has something to do
@@ -33,7 +35,21 @@
 #define TAG_COMMUNAL "communal"
 
 
+
 //The event has the potential to deal damage to the ship and its structures
 //Examples: Meteors, APC damage, camera failure
 //Destructive events usually create work for engineers
 #define TAG_DESTRUCTIVE "destructive"
+
+
+
+//The event is negative. It harms people, breaks things, and generally creates problems
+//This is pretty much every event and antag. Almost everything will be tagged with negative
+#define TAG_NEGATIVE "negative"
+
+
+
+//The event helps people, gives them stuff, heals them
+//There are a few "nice antags" which this can be applied to.
+//No current random events afaik
+#define TAG_NEGATIVE "positive"

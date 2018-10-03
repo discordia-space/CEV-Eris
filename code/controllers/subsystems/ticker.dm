@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(ticker)
 	var/first_start_trying = TRUE
 	var/story_vote_ended = FALSE
 
-	var/datum/storyteller/storyteller = null
+
 	var/event_time = null
 	var/event = 0
 
@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/setup()
 	//Create and announce mode
 
-	src.storyteller = config.pick_storyteller(master_storyteller)
+	storyteller = config.pick_storyteller(master_storyteller)
 
 	if(!src.storyteller)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."

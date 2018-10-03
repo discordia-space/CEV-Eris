@@ -32,7 +32,7 @@
 				continue
 			if(!(temp.role_type in candidate.current.client.prefs.be_special_role))
 				continue
-			if(SSticker.storyteller && SSticker.storyteller.one_role_per_player && candidate.antagonist.len)
+			if(storyteller && storyteller.one_role_per_player && candidate.antagonist.len)
 				continue
 			if(player_is_antag_id(candidate,antag))
 				continue

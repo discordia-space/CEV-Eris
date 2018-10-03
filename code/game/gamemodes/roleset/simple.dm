@@ -33,7 +33,6 @@
 /datum/storyevent/roleset/malf
 	id = "malf"
 	role_id = ROLE_MALFUNCTION
-
 	req_crew = 15
 
 
