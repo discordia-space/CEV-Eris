@@ -307,7 +307,7 @@
 		stat = 0
 		return 0
 
-	return 1
+	return tool_type || 1
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
