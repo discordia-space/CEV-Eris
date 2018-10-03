@@ -1,4 +1,4 @@
-
+var/global/datum/storyteller/storyteller = null
 
 
 var/global/list/current_antags = list()
@@ -102,6 +102,7 @@ var/global/list/current_factions = list()
 	world << "<b><font size=3>Storyteller is [src.name].</font> <br>[welcome]</b>"
 
 /datum/storyteller/proc/set_up()
+	storyteller = src
 	build_event_pools()
 	set_timer()
 	set_up_events()
@@ -160,7 +161,7 @@ var/global/list/current_factions = list()
 
 
 /proc/storyteller_button()
-	if(SSticker.storyteller)
+	if(storyteller)
 		return "<a href='?src=\ref[SSticker.storyteller];panel=1'>\[STORY\]</a>"
 	else
 		return "<s>\[STORY\]</s>"

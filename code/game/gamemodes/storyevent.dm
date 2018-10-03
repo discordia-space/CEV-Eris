@@ -46,14 +46,15 @@
 	var/max_stage_diff_higher = 10
 
 	var/ocurrences = 0 //How many times this round, this storyevent has happened
-	var/ocurrences_max = 1
+	var/ocurrences_max = -1
+	var/last_trigger_time = 0
 
 	var/has_priest = -1
 
 /datum/storyevent/proc/can_trigger()
 	if(processing && is_processing())
 		return FALSE
-	return spawnable
+	return TRUE
 
 /datum/storyevent/proc/get_special_weight(var/weight)
 	return weight
@@ -71,8 +72,8 @@
 
 /datum/storyevent/proc/cancel(var/type, var/completion = 0.0)
 	//This proc refunds the cost of this event
-	if (ticker.storyteller)
-		ticker.storyteller.modify_points(get_cost(type), type)
+	if (storyteller)
+		storyteller.modify_points(get_cost(type), type)
 
 /datum/storyevent/proc/trigger_event()
 	return FALSE
@@ -100,3 +101,11 @@
 /datum/storyevent/proc/announce()
 
 /datum/storyevent/proc/announce_end()
+
+/datum/storyevent/proc/weight_mult(var/val, var/req, var/min, var/max)
+	if(req < 0)
+		return 1
+	if(val < min || val > max)
+		return 0
+	var/mod = (min+max/2)**2
+	return max(mod-(abs(val-req)**2),0)/mod
