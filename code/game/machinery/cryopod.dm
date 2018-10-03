@@ -372,13 +372,14 @@
 
 			//Whoever inhabited this body is long gone, we need some black magic to find where and who they are now
 			var/mob/M = key2mob(occupant.mind.key)
-			if (!(M.get_respawn_bonus("CRYOSLEEP")))
-				//We send a message to the occupant's current mob - probably a ghost, but who knows.
-				M << SPAN_NOTICE("Because your body was put into cryostorage, your crew respawn time has been reduced by 20 minutes.")
-				M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
+			if (istype(M))
+				if (!(M.get_respawn_bonus("CRYOSLEEP")))
+					//We send a message to the occupant's current mob - probably a ghost, but who knows.
+					M << SPAN_NOTICE("Because your body was put into cryostorage, your crew respawn time has been reduced by 20 minutes.")
+					M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
-			//Going safely to cryo will allow the patient to respawn more quickly
-			M.set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
+				//Going safely to cryo will allow the patient to respawn more quickly
+				M.set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
 
 	//This should guarantee that ghosts don't spawn.
 	occupant.ckey = null
