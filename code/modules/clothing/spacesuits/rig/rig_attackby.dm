@@ -122,7 +122,7 @@
 					user << SPAN_NOTICE("You [open ? "open" : "close"] the access panel.")
 					return
 			else
-				user << "\The [src] access panel is closed."
+				user << SPAN_DANGER("\The [src] access panel is locked.")
 				return
 
 		if(QUALITY_BOLT_TURNING)
