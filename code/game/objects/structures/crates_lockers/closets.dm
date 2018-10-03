@@ -211,7 +211,8 @@
 		user << SPAN_NOTICE("Access Denied")
 
 /obj/structure/closet/AltClick(mob/user as mob)
-	src.togglelock(user)
+	if(Adjacent(user))
+		src.togglelock(user)
 
 /obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
 	return allowed(user) || (istype(id_card) && check_access_list(id_card.GetAccess()))
