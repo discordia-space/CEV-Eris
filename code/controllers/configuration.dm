@@ -560,39 +560,6 @@ var/list/storyteller_cache = list()
 				if("disable_welder_vision")
 					config.welder_vision = 0
 
-				if("allow_extra_antags")
-					config.allow_extra_antags = 1
-
-				if("event_custom_start_mundane")
-					var/values = text2numlist(value, ";")
-					config.event_first_run[EVENT_LEVEL_MUNDANE] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
-
-				if("event_custom_start_moderate")
-					var/values = text2numlist(value, ";")
-					config.event_first_run[EVENT_LEVEL_MODERATE] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
-
-				if("event_custom_start_major")
-					var/values = text2numlist(value, ";")
-					config.event_first_run[EVENT_LEVEL_MAJOR] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
-
-				if("event_custom_start_economy")
-					var/values = text2numlist(value, ";")
-					config.event_first_run[EVENT_LEVEL_ECONOMY] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
-
-				if("event_delay_lower")
-					var/values = text2numlist(value, ";")
-					config.event_delay_lower[EVENT_LEVEL_MUNDANE] = MinutesToTicks(values[1])
-					config.event_delay_lower[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
-					config.event_delay_lower[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
-					config.event_delay_lower[EVENT_LEVEL_ECONOMY] = MinutesToTicks(values[4])
-
-				if("event_delay_upper")
-					var/values = text2numlist(value, ";")
-					config.event_delay_upper[EVENT_LEVEL_MUNDANE] = MinutesToTicks(values[1])
-					config.event_delay_upper[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
-					config.event_delay_upper[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
-					config.event_delay_upper[EVENT_LEVEL_ECONOMY] = MinutesToTicks(values[4])
-
 				if("starlight")
 					config.starlight = value ? value : 0
 

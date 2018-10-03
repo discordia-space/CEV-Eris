@@ -1,7 +1,9 @@
 /datum/storyevent/roleset
 	id = "roleset"
-
+	pool_types = list(EVENT_LEVEL_ROLESET)
 	var/role_id = null
+	parallel = FALSE //Most roleset storyevents take time to choose antags. no multiqueueing
+	cost = POOL_THRESHOLD_ROLESET
 
 /datum/storyevent/roleset/proc/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
 	return TRUE
