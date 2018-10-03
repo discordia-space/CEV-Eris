@@ -504,7 +504,7 @@ var/list/name_to_material
 	composite_material = list(MATERIAL_STEEL = 2,MATERIAL_GLASS = 3)
 	window_options = list("One Direction" = 1, "Full Window" = 6, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
-	created_window_full = /obj/structure/window/reinforced
+	created_window_full = /obj/structure/window/reinforced/full
 	wire_product = null
 	rod_product = null
 
