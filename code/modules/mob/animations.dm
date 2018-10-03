@@ -327,9 +327,13 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /atom/movable/proc/do_putdown_animation(atom/target, mob/user)
 	spawn()
+		if (!istype(target))
+			return
 		var/old_invisibility = invisibility // I don't know, it may be used.
 		invisibility = 100
 		var/turf/old_turf = get_turf(user)
+		if (!istype(old_turf))
+			return
 		var/image/I = image(icon = src, loc = old_turf, layer = layer + 0.1)
 		I.plane = GAME_PLANE
 		I.layer = ABOVE_MOB_LAYER
