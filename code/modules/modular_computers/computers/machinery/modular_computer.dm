@@ -39,9 +39,12 @@
 	icon_state = icon_state_unpowered
 	overlays.Cut()
 
-	if(!cpu || !cpu.enabled)
-		if (!(stat & NOPOWER) || battery_powered)
-			overlays.Add(screen_icon_screensaver)
+	if(!cpu || (stat & NOPOWER) && !battery_powered)
+		return
+	if(!(cpu.processor_unit && ((cpu.battery_module && cpu.battery_module.battery.charge) || cpu.check_power_override()))) // Battery-run and charged or non-battery but powered by APC.
+		return
+	if(!cpu.enabled)
+		overlays.Add(screen_icon_screensaver)
 		return
 	if(cpu.active_program)
 		overlays.Add(cpu.active_program.program_icon_state ? cpu.active_program.program_icon_state : screen_icon_state_menu)
