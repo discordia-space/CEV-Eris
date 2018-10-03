@@ -10,6 +10,8 @@
 
 var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major", EVENT_LEVEL_ECONOMY = "Economy")
 
+//This file is being gutted, don't use anything in it
+
 /datum/event_container
 	var/severity = -1
 	var/delayed = 0
@@ -22,6 +24,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	var/last_world_time = 0
 
 /datum/event_container/Process()
+	/*
 	if(!next_event_time)
 		set_event_delay()
 
@@ -31,6 +34,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		start_event()
 
 	last_world_time = world.time
+	*/
 
 /datum/event_container/proc/start_event()
 	if(!next_event)	// If non-one has explicitly set an event, randomly pick one
@@ -55,7 +59,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 /datum/event_container/proc/acquire_event()
 	if(available_events.len == 0)
 		return
-	var/active_with_role = number_active_with_role()
+	var/active_with_role// = number_active_with_role()
 
 	var/list/possible_events = list()
 	for(var/datum/event_meta/EM in available_events)
@@ -86,14 +90,11 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 
 /datum/event_container/proc/set_event_delay()
 	// If the next event time has not yet been set and we have a custom first time start
-	if(next_event_time == 0 && config.event_first_run[severity])
-		var/lower = config.event_first_run[severity]["lower"]
-		var/upper = config.event_first_run[severity]["upper"]
-		var/event_delay = rand(lower, upper)
-		next_event_time = world.time + event_delay
+	if(next_event_time == 0)
+		//var/event_delay = rand(lower, upper)
+		//next_event_time = world.time + event_delay
 	// Otherwise, follow the standard setup process
 	else
-		var/playercount_modifier = 1
 		switch(player_list.len)
 			if(0 to 10)
 				playercount_modifier = 1.2
@@ -105,12 +106,9 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 				playercount_modifier = 0.9
 			if(36 to 100000)
 				playercount_modifier = 0.8
-		if(config.event_delay_lower[severity] == config.event_delay_upper[severity])
-			playercount_modifier = 1
-		playercount_modifier = playercount_modifier * delay_modifier
 
-		var/event_delay = rand(config.event_delay_lower[severity], config.event_delay_upper[severity]) * playercount_modifier
-		next_event_time = world.time + event_delay
+
+
 
 	log_debug("Next event of severity [severity_to_string[severity]] in [(next_event_time - world.time)/600] minutes.")
 
