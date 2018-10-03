@@ -24,7 +24,7 @@
 	suit_type = "industrial hardsuit"
 	desc = "A heavy, powerful rig used by construction crews and mining corporations."
 	icon_state = "engineering_rig"
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 50)
+	armor = list(melee = 60, bullet = 60, laser = 60,energy = 15, bomb = 30, bio = 100, rad = 50)
 	slowdown = 3
 	offline_slowdown = 10
 	offline_vision_restriction = 2
@@ -56,7 +56,7 @@
 	suit_type = "EVA hardsuit"
 	desc = "A light rig for repairs and maintenance to the outside of habitats and vessels."
 	icon_state = "eva_rig"
-	armor = list(melee = 30, bullet = 10, laser = 20,energy = 25, bomb = 20, bio = 100, rad = 100)
+	armor = list(melee = 50, bullet = 40, laser = 40,energy = 25, bomb = 20, bio = 100, rad = 100)
 	slowdown = 0
 	offline_slowdown = 1
 	offline_vision_restriction = 1
@@ -87,7 +87,7 @@
 	suit_type = "advanced voidsuit"
 	desc = "An advanced voidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
 	icon_state = "ce_rig"
-	armor = list(melee = 40, bullet = 10, laser = 30,energy = 25, bomb = 40, bio = 100, rad = 100)
+	armor = list(melee = 50, bullet = 40, laser = 40,energy = 25, bomb = 60, bio = 100, rad = 100)
 	slowdown = 0
 	offline_slowdown = 0
 	offline_vision_restriction = 0
@@ -132,7 +132,7 @@
 	suit_type = "hazmat hardsuit"
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
-	armor = list(melee = 45, bullet = 5, laser = 45, energy = 80, bomb = 60, bio = 100, rad = 100)
+	armor = list(melee = 45, bullet = 35, laser = 35, energy = 80, bomb = 60, bio = 100, rad = 100)
 	slowdown = 1
 	offline_vision_restriction = 1
 
@@ -166,7 +166,7 @@
 	suit_type = "rescue hardsuit"
 	desc = "A durable suit designed for medical rescue in high risk areas."
 	icon_state = "medical_rig"
-	armor = list(melee = 30, bullet = 15, laser = 20, energy = 60, bomb = 30, bio = 100, rad = 100)
+	armor = list(melee = 45, bullet = 45, laser = 45, energy = 60, bomb = 60, bio = 100, rad = 100)
 	slowdown = 1
 	offline_vision_restriction = 1
 
@@ -195,7 +195,7 @@
 	suit_type = "hazard hardsuit"
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
-	armor = list(melee = 60, bullet = 40, laser = 30, energy = 15, bomb = 60, bio = 100, rad = 30)
+	armor = list(melee = 60, bullet = 60, laser = 60, energy = 15, bomb = 60, bio = 100, rad = 30)
 	slowdown = 1
 	offline_slowdown = 3
 	offline_vision_restriction = 1
