@@ -22,13 +22,21 @@
 	var/list/charge_costs = null
 	var/list/datum/matter_synth/synths = null
 
-/obj/item/stack/New(var/loc, var/amount=null)
-	..()
+	//If either of these two are set to nonzero values, the stack will have randomised quantity on spawn
+	//Used for the /random subtypes of material stacks. any stack works
+	var/rand_min = 0
+	var/rand_max = 0
+
+/obj/item/stack/Initialize(var/loc, var/amount=null)
+	.=..()
 	if (!stacktype)
 		stacktype = type
 	if (amount)
 		src.amount = amount
-	return
+
+	if (rand_min || rand_max)
+		amount = rand(rand_min, rand_max)
+		amount = round(amount, 1) //Just in case
 
 /obj/item/stack/Destroy()
 	if (synths)

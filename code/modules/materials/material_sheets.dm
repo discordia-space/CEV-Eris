@@ -10,13 +10,11 @@
 	var/default_type = MATERIAL_STEEL
 	var/material/material
 	var/apply_colour //temp pending icon rewrite
-	var/rand_min = 0 //If set, this stack will have randomised quantity on spawn
-	var/rand_max = 0
 
 /obj/item/stack/material/Initialize()
 	. = ..()
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0,10)-5
+	pixel_y = rand(0,10)-5
 
 	if(!default_type)
 		default_type = MATERIAL_STEEL
