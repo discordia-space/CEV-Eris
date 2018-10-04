@@ -13,16 +13,14 @@
 	)
 	has_postspawn = TRUE
 /obj/random/voidsuit/item_to_spawn()
-	return pickweight(list(
-		/obj/item/clothing/suit/space/void = 2,
+	return pickweight(list(/obj/item/clothing/suit/space/void = 2,
 		/obj/item/clothing/suit/space/void/engineering = 2,
 		/obj/item/clothing/suit/space/void/mining = 2,
 		/obj/item/clothing/suit/space/void/medical = 2.3,
 		/obj/item/clothing/suit/space/void/security = 1,
 		/obj/item/clothing/suit/space/void/atmos = 1.5,
 		/obj/item/clothing/suit/space/void/merc = 0.5,
-		/obj/item/clothing/suit/space/void/wizard = 0.5
-	))
+		/obj/item/clothing/suit/space/void/wizard = 0.5))
 
 
 
@@ -34,8 +32,8 @@
 		else
 			log_debug("random_obj (voidsuit): Type [suit.type] was unable to spawn a matching helmet!")
 		new /obj/item/clothing/shoes/magboots(loc)
-		if (damaged && prob(60))
-			suit.create_breaches(pick(BRUTE, BURN), rand(1, 5))
+		if (damaged)
+			suit.create_breaches(pick(BRUTE, BURN), rand(10, 50))
 
 
 /obj/random/voidsuit/damaged

@@ -2,6 +2,7 @@
 //Mostly it includes the cream of the crop from other lists, and some unique things
 /obj/random/rare
 	name = "rare spawn"
+	icon_state = "ai-blue"
 
 /obj/random/rare/item_to_spawn()
 	return pickweight(list(
