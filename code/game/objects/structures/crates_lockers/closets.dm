@@ -46,7 +46,12 @@
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
 
-/obj/structure/closet/Initialize()
+/obj/structure/closet/Initialize(mapload)
+	..()
+	populate_contents()
+	return mapload ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
+
+/obj/structure/closet/LateInitialize()
 	. = ..()
 	populate_contents()
 	update_icon()
@@ -62,6 +67,8 @@
 			content_size += Ceiling(I.w_class/2)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
+
+
 
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)

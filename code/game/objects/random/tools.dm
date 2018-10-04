@@ -60,9 +60,9 @@
 	icon_state = "box-green"
 
 /obj/random/toolbox/item_to_spawn()
-	return pickweight(/obj/item/weapon/storage/toolbox/mechanical = 3,\
+	return pickweight(list(/obj/item/weapon/storage/toolbox/mechanical = 3,\
 				/obj/item/weapon/storage/toolbox/electrical = 2,\
-				/obj/item/weapon/storage/toolbox/emergency = 1)
+				/obj/item/weapon/storage/toolbox/emergency = 1))
 
 /obj/random/toolbox/low_chance
 	name = "low chance random toolbox"
