@@ -1090,8 +1090,8 @@ obj/screen/fire/DEADelize()
 		if (G.active && G.overlay)//check here need if someone want call this func directly
 			overlays |= G.overlay
 
-	if(istype(H.back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/O = H.back
+	if(istype(H.wearing_rig,/obj/item/weapon/rig))
+		var/obj/item/weapon/rig/O = H.wearing_rig
 		if(O.visor && O.visor.active && O.visor.vision && O.visor.vision.glasses && (!O.helmet || (H.head && O.helmet == H.head)))
 			if (O.visor.vision.glasses.overlay)
 				overlays |= O.visor.vision.glasses.overlay
