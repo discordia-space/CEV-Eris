@@ -364,6 +364,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 		animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
 		sleep(3)
+		if (!istype(src) || QDELETED(src))
+			return
 		invisibility = old_invisibility
 		pixel_x = old_x
 		pixel_y = old_y
@@ -386,4 +388,6 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, easing = CUBIC_EASING)
 	sleep(3)
+	if (!istype(src) || QDELETED(src))
+		return
 	invisibility = old_invisibility
