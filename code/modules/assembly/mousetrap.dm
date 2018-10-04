@@ -6,6 +6,9 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_STEEL = 1)
 	var/armed = 0
 
+/obj/item/device/assembly/mousetrap/Initialize()
+	.=..()
+	update_icon()
 
 /obj/item/device/assembly/mousetrap/examine(mob/user)
 	..(user)
