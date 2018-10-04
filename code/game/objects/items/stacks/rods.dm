@@ -13,6 +13,10 @@
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
+/obj/item/stack/rods/random
+	rand_min = 5
+	rand_max = 40
+
 /obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"
 	desc = "A device that makes metal rods."
