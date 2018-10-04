@@ -13,6 +13,7 @@
 	/obj/item/weapon/cell/small/moebius/nuclear = 2,\
 	/obj/item/weapon/cell/medium/moebius/hyper = 1,\
 	/obj/item/weapon/tank/emergency_oxygen/double = 2,\
-	/obj/random/rig = 2,\
+	/obj/random/rig = 1.5,\
+	/obj/random/rig/damaged = 1.5,\
 	/obj/random/voidsuit = 4
 	))
