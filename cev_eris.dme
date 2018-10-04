@@ -1425,6 +1425,7 @@
 #include "code\modules\mob\angel\logout.dm"
 #include "code\modules\mob\angel\say.dm"
 #include "code\modules\mob\angel\static.dm"
+#include "code\modules\mob\inventory\slots.dm"
 #include "code\modules\mob\language\generic.dm"
 #include "code\modules\mob\language\language.dm"
 #include "code\modules\mob\language\monkey.dm"
