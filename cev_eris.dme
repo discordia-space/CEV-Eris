@@ -633,6 +633,7 @@
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\spawners\loot.dm"
 #include "code\game\objects\effects\spawners\maintshroom.dm"
+#include "code\game\objects\items\_inventory.dm"
 #include "code\game\objects\items\apc_frame.dm"
 #include "code\game\objects\items\blueprints.dm"
 #include "code\game\objects\items\bodybag.dm"
