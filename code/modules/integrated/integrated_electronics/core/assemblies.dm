@@ -82,7 +82,7 @@
 	return implant
 
 /obj/item/device/electronic_assembly/interact(mob/user)
-	if(!CanInteract(user, physical_state))
+	if(!CanInteract(user,GLOB.physical_state))
 		return
 
 	var/total_parts = 0
@@ -139,11 +139,11 @@
 	set desc = "Rename your circuit, useful to stay organized."
 
 	var/mob/M = usr
-	if(!CanInteract(M, physical_state))
+	if(!CanInteract(M,GLOB.physical_state))
 		return
 
 	var/input = sanitizeSafe(input("What do you want to name this?", "Rename", src.name) as null|text, MAX_NAME_LEN)
-	if(src && input && CanInteract(M, physical_state))
+	if(src && input && CanInteract(M,GLOB.physical_state))
 		M << SPAN_NOTICE("The machine now has a label reading '[input]'.")
 		name = input
 
@@ -276,7 +276,7 @@
 		if(input.can_be_asked_input)
 			available_inputs.Add(input)
 	var/obj/item/integrated_circuit/input/choice = input(user, "What do you want to interact with?", "Interaction") as null|anything in available_inputs
-	if(choice && CanInteract(user, physical_state))
+	if(choice && CanInteract(user,GLOB.physical_state))
 		choice.ask_for_input(user)
 
 /obj/item/device/electronic_assembly/emp_act(severity)

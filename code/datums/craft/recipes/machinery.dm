@@ -22,7 +22,7 @@
 	steps = list(
 		list(/obj/item/stack/material/steel, 5),
 	)
-
+/*
 /datum/craft_recipe/machinery/modularconsole
 	name = "modular console frame"
 	result = /obj/machinery/modular_computer/console/buildable
@@ -37,7 +37,8 @@
 	steps = list(
 		list(/obj/item/stack/material/steel, 7),
 	)
-
+*/
+// TODO: modular craft
 /datum/craft_recipe/machinery/modulartablet
 	name = "modular tablet frame"
 	result = /obj/item/modular_computer/tablet

@@ -230,3 +230,13 @@ proc/sql_sanitize_text(var/text)
 	text = replacetext(text, "&", "")
 	return text
 
+proc/feedback_inc(var/variable,var/value)
+	if(!blackbox) return
+
+	variable = sql_sanitize_text(variable)
+
+	var/datum/feedback_variable/FV = blackbox.find_feedback_datum(variable)
+
+	if(!FV) return
+
+	FV.inc(value)

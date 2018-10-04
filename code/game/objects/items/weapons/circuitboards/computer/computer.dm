@@ -28,7 +28,7 @@
 
 /obj/item/weapon/circuitboard/communications
 	name = T_BOARD("command and communications console")
-	build_path = /obj/machinery/computer/communications
+	build_path = /obj/item/modular_computer/console/preset/command
 	origin_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
 
 /obj/item/weapon/circuitboard/teleporter

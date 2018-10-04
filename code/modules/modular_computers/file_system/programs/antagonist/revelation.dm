@@ -2,6 +2,8 @@
 	filename = "revelation"
 	filedesc = "Revelation"
 	program_icon_state = "hostile"
+	program_key_state = "security_key"
+	program_menu_icon = "home"
 	extended_desc = "This virus can destroy hard drive of system it is executed on. It may be obfuscated to look like another non-malicious program. Once armed, it will destroy the system upon next execution."
 	size = 13
 	requires_ntnet = 0
@@ -16,25 +18,24 @@
 		activate()
 
 /datum/computer_file/program/revelation/proc/activate()
-	if(computer)
-		computer.visible_message(SPAN_NOTICE("\The [computer]'s screen brightly flashes and loud electrical buzzing is heard."))
-		computer.enabled = 0
-		computer.update_icon()
+	if(!computer)
+		return
+
+	computer.visible_message("<span class='notice'>\The [computer]'s screen brightly flashes and loud electrical buzzing is heard.</span>")
+	computer.enabled = 0
+	computer.update_icon()
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(10, 1, computer.loc)
+	s.start()
+
+	if(computer.hard_drive)
 		qdel(computer.hard_drive)
-		if(computer.battery_module && prob(25))
-			qdel(computer.battery_module)
-			computer.visible_message(SPAN_NOTICE("\The [computer]'s battery explodes in rain of sparks."))
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-			s.set_up(10, 1, computer.loc)
-			s.start()
-		if(istype(computer, /obj/item/modular_computer/processor))
-			var/obj/item/modular_computer/processor/P = computer
-			if(P.machinery_computer.tesla_link && prob(50))
-				qdel(P.machinery_computer.tesla_link)
-				computer.visible_message(SPAN_NOTICE("\The [computer]'s tesla link explodes in rain of sparks."))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(10, 1, computer.loc)
-				s.start()
+
+	if(computer.battery_module && prob(25))
+		qdel(computer.battery_module)
+
+	if(computer.tesla_link && prob(50))
+		qdel(computer.tesla_link)
 
 /datum/computer_file/program/revelation/Topic(href, href_list)
 	if(..())
@@ -49,6 +50,10 @@
 		if(!newname)
 			return
 		filedesc = newname
+		for(var/datum/computer_file/program/P in ntnet_global.available_station_software)
+			if(filedesc == P.filedesc)
+				program_menu_icon = P.program_menu_icon
+				break
 	return 1
 
 /datum/computer_file/program/revelation/clone()
@@ -59,7 +64,7 @@
 /datum/nano_module/program/revelation
 	name = "Revelation Virus"
 
-/datum/nano_module/program/revelation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/program/revelation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
 	var/list/data = list()
 	var/datum/computer_file/program/revelation/PRG = program
 	if(!istype(PRG))

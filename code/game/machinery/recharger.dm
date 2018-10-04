@@ -12,8 +12,8 @@ obj/machinery/recharger
 	var/obj/item/charging = null
 	var/obj/item/weapon/cell/cell = null
 	var/list/allowed_devices = list(
-		/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/laptop,
-		/obj/item/weapon/cell, /obj/item/modular_computer
+		/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer/laptop,
+		/obj/item/weapon/cell, /obj/item/modular_computer,
 	)
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
@@ -69,13 +69,13 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 			cell = E.cell
 		else if(istype(G, /obj/item/weapon/cell))
 			cell = G
-		else if(istype(G, /obj/item/laptop))
-			var/obj/item/laptop/L = G
-			if(!L.stored_computer.cpu.battery_module)
+		else if(istype(G, /obj/item/modular_computer/laptop))
+			var/obj/item/modular_computer/laptop/L = G
+			if(!L.battery_module)
 				user << "There's no battery in it!"
 				return
 			else
-				cell = L.stored_computer.cpu.battery_module.battery
+				cell = L.battery_module.battery
 		if(istype(G, /obj/item/modular_computer))
 			var/obj/item/modular_computer/C = G
 			if(!C.battery_module)

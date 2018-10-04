@@ -375,3 +375,9 @@ Class Procs:
 	circuit.deconstruct(src)
 	qdel(src)
 	return 1
+
+/datum/proc/remove_visual(mob/M)
+	return
+
+/datum/proc/apply_visual(mob/M)
+	return

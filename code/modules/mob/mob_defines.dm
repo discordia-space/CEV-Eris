@@ -181,3 +181,5 @@
 
 
 	var/speed_factor = 1.0
+
+	var/datum/stat_holder/stats

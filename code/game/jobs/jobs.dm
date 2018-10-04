@@ -1,3 +1,18 @@
+//delete this after adaptation
+
+var/const/ENG               =(1<<0)
+var/const/SEC               =(1<<1)
+var/const/MED               =(1<<2)
+var/const/SCI               =(1<<3)
+var/const/CIV               =(1<<4)
+var/const/COM               =(1<<5)
+var/const/MSC               =(1<<6)
+var/const/SRV               =(1<<7)
+var/const/SUP               =(1<<8)
+var/const/SPT               =(1<<9)
+var/const/EXP               =(1<<10)
+
+//delete this end
 
 var/const/ENGSEC			=(1<<0)
 
@@ -64,6 +79,9 @@ var/list/security_positions = list(JOBS_SECURITY)
 
 
 var/list/nonhuman_positions = list(JOBS_NONHUMAN)
+
+
+var/list/all_positions = list (JOBS_COMMAND,JOBS_ENGINEERING,JOBS_MEDICAL,JOBS_SCIENCE,JOBS_CARGO,JOBS_CIVILIAN,JOBS_SECURITY,JOBS_NONHUMAN)
 
 
 /proc/guest_jobbans(var/job)

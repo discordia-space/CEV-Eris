@@ -1,5 +1,9 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
+/proc/get_z(O)
+	var/turf/loc = get_turf(O)
+	return loc ? loc.z : 0
+
 /proc/dopage(src, target)
 	var/href_list
 	var/href
@@ -542,3 +546,8 @@ datum/projectile_data
 
 	return P
 
+// Walks up the loc tree until it finds a holder of the given holder_type
+/proc/get_holder_of_type(atom/A, holder_type)
+	if(!istype(A)) return
+	for(A, A && !istype(A, holder_type), A=A.loc);
+	return A

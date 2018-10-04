@@ -129,3 +129,25 @@
 		var/datum/chunk/chunk = cameranet.getCameraChunk(x, y, z)
 		usr.client.debug_variables(chunk)
 */
+
+// Returns the chunk in the x, y, z.
+// If there is no chunk, it creates a new chunk and returns that.
+/datum/visualnet/proc/get_chunk(x, y, z)
+	x &= ~0xf
+	y &= ~0xf
+	var/key = "[x],[y],[z]"
+	if(!chunks[key])
+		chunks[key] = new chunk_type(src, x, y, z)
+
+	return chunks[key]
+
+/datum/visualnet/proc/is_turf_visible(var/turf/position)
+	if(!position)
+		return FALSE
+	var/datum/chunk/chunk = get_chunk(position.x, position.y, position.z)
+	if(chunk)
+		if(chunk.dirty)
+			chunk.update(TRUE) // Update now, no matter if it's visible or not.
+		if(position in chunk.visibleTurfs)
+			return TRUE
+	return FALSE

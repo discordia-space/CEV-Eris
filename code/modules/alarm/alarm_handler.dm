@@ -100,3 +100,12 @@
 /datum/alarm_handler/proc/notify_listeners(var/alarm, var/was_raised)
 	for(var/listener in listeners)
 		call(listener, listeners[listener])(src, alarm, was_raised)
+
+// Returns alarms in connected z levels to z_level. If none is given, returns all.
+/datum/alarm_handler/proc/alarms(var/z_level)
+	if(z_level)
+		. = list()
+		for(var/z in GetConnectedZlevels(z_level))
+			. += alarms_by_z["[z]"] || list()
+	else
+		return alarms

@@ -39,10 +39,12 @@
 	var/memory
 
 	var/assigned_role
+	var/role_alt_title
 //	var/special_role
 	var/list/antagonist = list()
 
 	var/datum/job/assigned_job
+
 
 	var/has_been_rev = FALSE	//Tracks if this mind has been a rev or not
 
@@ -58,6 +60,8 @@
 
 	var/list/known_connections //list of known (RNG) relations between people
 	var/gen_relations_info
+
+	var/list/initial_email_login = list("login" = "", "password" = "")
 
 /datum/mind/New(var/key)
 	src.key = key
@@ -157,7 +161,10 @@
 	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
 		if (!new_role) return
-		assigned_role = new_role
+		var/datum/job/job = SSjob.GetJob(new_role)
+		if(job)
+			assigned_role = job.title
+			role_alt_title = new_role
 
 	else if(href_list["memory_edit"])
 		var/new_memo = sanitize(input("Write new memory", "Memory", memory) as null|message)
@@ -272,6 +279,7 @@
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
 	changeling =      null
+	role_alt_title =  null
 	initial_account = null
 	has_been_rev =    0
 	rev_cooldown =    0

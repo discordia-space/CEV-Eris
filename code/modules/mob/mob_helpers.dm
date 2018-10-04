@@ -586,4 +586,13 @@ proc/is_blind(A)
 
 	return ..()
 
+/mob/proc/get_sex()
+	return gender
 
+//Tries to find the mob's email.
+/proc/find_email(real_name)
+	for(var/mob/mob in living_mob_list)
+		if(mob.real_name == real_name)
+			if(!mob.mind)
+				return
+			return mob.mind.initial_email_login["login"]

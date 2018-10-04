@@ -607,3 +607,6 @@ its easier to just keep the beam vertical.
 		//An item is delivered on the cargo shuttle
 		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
 
+/atom/proc/get_cell()
+	return
+

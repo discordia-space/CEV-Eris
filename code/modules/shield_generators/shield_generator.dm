@@ -38,6 +38,10 @@
 	var/list/mode_list = null			// A list of shield_mode datums.
 	var/emergency_shutdown = FALSE		// Whether the generator is currently recovering from an emergency shutdown
 	var/list/default_modes = list()
+
+	//TODO:Add hacking i guess...
+	var/hacked = 0						// Whether the generator has been hacked by cutting the safety wire.
+
 	// The shield mode flags which should be enabled on this generator by default
 
 

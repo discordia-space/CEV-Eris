@@ -14,10 +14,19 @@
 		return check_access(id)
 	return 0
 
-/obj/item/proc/GetAccess()
-	return list()
+/atom/movable/proc/GetAccess()
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	return id ? id.GetAccess() : list()
 
-/obj/proc/GetID()
+/proc/get_access_by_id(id)
+	var/list/AS = priv_all_access_datums_id || get_all_access_datums_by_id()
+	return AS[num2text(id)]
+
+/proc/get_access_region_by_id(id)
+	var/datum/access/AD = get_access_by_id(id)
+	return AD.region
+
+/atom/movable/proc/GetIdCard()
 	return null
 
 /obj/proc/check_access(obj/item/I)
@@ -188,10 +197,11 @@
 		"BlackOps Commander",
 		"Supreme Commander")
 
-/mob/proc/GetIdCard()
+/obj/proc/GetID()
 	return null
 
-
+/mob/GetIdCard()
+	return null
 
 var/obj/item/weapon/card/id/all_access/ghost_all_access
 /mob/observer/ghost/GetIdCard()
@@ -245,3 +255,11 @@ proc/get_all_job_icons() //For all existing HUD icons
 		return
 
 	return "Unknown" //Return unknown if none of the above apply
+
+//Checks if the access (constant or list) is contained in one of the entries of access_patterns, a list of lists.
+/proc/has_access_pattern(list/access_patterns, access)
+	if(!islist(access))
+		access = list(access)
+	for(var/access_pattern in access_patterns)
+		if(has_access(access_pattern, list(), access))
+			return 1

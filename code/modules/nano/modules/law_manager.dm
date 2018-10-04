@@ -134,20 +134,20 @@
 		return 1
 
 	if(href_list["notify_laws"])
-		owner << SPAN_DANGER("Law Notice")
+		to_chat(owner, "<span class='danger'>Law Notice</span>")
 		owner.laws.show_laws(owner)
 		if(isAI(owner))
 			var/mob/living/silicon/ai/AI = owner
 			for(var/mob/living/silicon/robot/R in AI.connected_robots)
-				R << SPAN_DANGER("Law Notice")
+				to_chat(R, "<span class='danger'>Law Notice</span>")
 				R.laws.show_laws(R)
 		if(usr != owner)
-			usr << SPAN_NOTICE("Laws displayed.")
+			to_chat(usr, "<span class='notice'>Laws displayed.</span>")
 		return 1
 
 	return 0
 
-/datum/nano_module/law_manager/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/law_manager/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
 	var/data[0]
 	owner.lawsync()
 
@@ -186,12 +186,7 @@
 /datum/nano_module/law_manager/proc/package_laws(var/list/data, var/field, var/list/datum/ai_law/laws)
 	var/packaged_laws[0]
 	for(var/datum/ai_law/AL in laws)
-		packaged_laws[++packaged_laws.len] = list(
-			"law" = cp1251_to_utf8(AL.law),
-			"index" = AL.get_index(),
-			"state" = owner.laws.get_state_law(AL),
-			"ref" = "\ref[AL]",
-		)
+		packaged_laws[++packaged_laws.len] = list("law" = AL.law, "index" = AL.get_index(), "state" = owner.laws.get_state_law(AL), "ref" = "\ref[AL]")
 	data[field] = packaged_laws
 	data["has_[field]"] = packaged_laws.len
 

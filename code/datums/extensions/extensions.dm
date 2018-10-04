@@ -26,7 +26,7 @@
 		return STATUS_CLOSE
 	if(!all_predicates_true(list(user), user_predicates))
 		return STATUS_CLOSE
-	if(holder.CanUseTopic(usr, default_state) != STATUS_INTERACTIVE)
+	if(holder.CanUseTopic(usr,GLOB.default_state) != STATUS_INTERACTIVE)
 		return STATUS_CLOSE
 
 	return STATUS_INTERACTIVE
@@ -74,3 +74,12 @@
 		expansion = new expansion_type(source, expansion[2], expansion[3], expansion[4])
 		source.extensions[base_type] = expansion
 	return expansion
+
+/proc/get_or_create_extension(var/datum/source, var/base_type, var/extension_type)
+	if(!has_extension(source, base_type))
+		set_extension(arglist(args))
+	return get_extension(source, base_type)
+
+//Fast way to check if it has an extension, also doesn't trigger instantiation of lazy loaded extensions
+/proc/has_extension(var/datum/source, var/base_type)
+	return (source.extensions && source.extensions[base_type])
