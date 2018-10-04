@@ -3,7 +3,8 @@
 	icon_state = "tool-grey"
 
 /obj/random/tool/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/tool/screwdriver = 10,\
+	return pickweight(list(/obj/random/rare = 1,\
+				/obj/item/weapon/tool/screwdriver = 10,\
 				/obj/item/weapon/tool/screwdriver/electric = 7,\
 				/obj/item/weapon/tool/screwdriver/combi_driver = 5,\
 				/obj/item/weapon/tool/wirecutters = 10,\

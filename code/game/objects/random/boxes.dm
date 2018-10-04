@@ -2,7 +2,8 @@
 	name = "random box"
 	icon_state = "box-blue"
 	item_to_spawn()
-		return pickweight(list(/obj/item/weapon/storage/box/botanydisk = 1,\
+		return pickweight(list(/obj/random/rare = 1,\
+					/obj/item/weapon/storage/box/botanydisk = 1,\
 					/obj/item/weapon/storage/box/beakers = 3,\
 					/obj/item/weapon/storage/box/bloodpacks = 2,\
 					/obj/item/weapon/storage/box/autoinjectors = 2,\

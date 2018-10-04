@@ -3,7 +3,8 @@
 	icon_state = "ammo-green"
 
 /obj/random/ammo/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/storage/box/shotgunammo/beanbags = 6,\
+	return pickweight(list(
+				/obj/item/weapon/storage/box/shotgunammo/beanbags = 6,\
 				/obj/item/weapon/storage/box/shotgunammo = 2,\
 				/obj/item/weapon/storage/box/shotgunammo/slug = 4,\
 				/obj/item/weapon/storage/box/shotgunammo/stunshells = 1,\

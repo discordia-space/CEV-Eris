@@ -3,7 +3,9 @@
 	icon_state = "box-red"
 
 /obj/random/contraband/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/storage/pill_bottle/tramadol = 3,\
+	return pickweight(list(
+				/obj/random/rare = 1,\
+				/obj/item/weapon/storage/pill_bottle/tramadol = 3,\
 				/obj/item/weapon/haircomb = 4,\
 				/obj/item/weapon/storage/pill_bottle/happy = 2,\
 				/obj/item/weapon/storage/pill_bottle/zoom = 2,\

@@ -3,7 +3,8 @@
 	icon_state = "junk-black"
 
 /obj/random/junk/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/material/shard = 5,\
+	return pickweight(list(/obj/random/rare = 1,\ //A diamond in the rough
+				/obj/item/weapon/material/shard = 5,\
 				/obj/item/weapon/material/shard/shrapnel = 5,\
 				/obj/item/stack/material/cardboard = 3,\
 				/obj/item/weapon/storage/box/lights/mixed = 3,\

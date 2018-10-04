@@ -3,7 +3,8 @@
 	icon_state = "radnomstuff-green"
 
 /obj/random/lowkeyrandom/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/storage/box/shotgunammo/beanbags = 1,\
+	return pickweight(list(/obj/random/rare = 1,\
+				/obj/item/weapon/storage/box/shotgunammo/beanbags = 1,\
 				/obj/item/ammo_magazine/mc9mmt/rubber = 1,\
 				/obj/item/weapon/storage/box/matches = 3,\
 				/obj/item/stack/material/cardboard = 2,\
