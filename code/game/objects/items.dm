@@ -12,7 +12,6 @@
 	var/hitsound = null
 	var/worksound = null
 	var/storage_cost = null
-	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
 //	causeerrorheresoifixthis
@@ -35,8 +34,6 @@
 	var/flags_inv = 0
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
-	var/item_flags = 0 //Miscellaneous flags pertaining to equippable objects.
-
 	var/list/tool_qualities = null// List of item qualities for tools system. See qualities.dm.
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
@@ -44,7 +41,6 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/canremove = 1 //Mostly for Ninja code at this point but basically will not allow the item to be removed if set to 0. /N
 	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
@@ -61,11 +57,6 @@
 	// If icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
-
-	var/equip_slot = 0 //The slot that this item was most recently equipped to.
-	//Note that this is, by design, not zeroed out when the item is removed from a mob
-		//In that case, it holds the number of the slot it was last in, which is potentially useful info
-	//For an accurate reading of the current slot, use item/get_equip_slot() which will return zero if not currently on a mob
 
 /obj/item/get_fall_damage()
 	return w_class * 2
@@ -144,6 +135,8 @@
 	if (!user || !user.can_pickup(src))
 		return
 
+	var/atom/old_loc = src.loc
+
 	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
@@ -156,7 +149,10 @@
 	else
 		if(isliving(src.loc))
 			return
-	user.put_in_active_hand(src)
+
+	if(user.put_in_active_hand(src) && old_loc )
+		if (user != old_loc.get_holding_mob())
+			do_pickup_animation(user,old_loc)
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(src.loc, /obj/item/weapon/robot_module))
@@ -172,13 +168,6 @@
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
-
-//Called whenever an item is dropped on the floor, thrown, or placed into a container.
-//It is called after loc is set, so if placed in a container its loc will be that container.
-/obj/item/proc/dropped(mob/user as mob)
-	..()
-	if(zoom) zoom() //binoculars, scope, etc
-
 
 // Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere
 // Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
@@ -203,153 +192,6 @@
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
 	return
-
-
-//Called just before an item is placed in an equipment slot.
-//Use this to do any necessary preparations for equipping
-//Immediately after this, the equipping will be handled and then equipped will be called.
-//Returning a non-zero value will silently abort the equip operation
-/obj/item/proc/pre_equip(var/mob/user, var/slot)
-	return 0
-
-
-// called after an item is placed in an equipment slot
-// user is mob that equipped it
-// slot uses the slot_X defines found in items_clothing.dm
-// for items that can be placed in multiple slots
-// note this isn't called during the initial dressing of a player
-/obj/item/proc/equipped(var/mob/user, var/slot)
-	if(!istype(user))
-		equip_slot = slot_none
-		return
-
-	equip_slot = slot
-	layer = 20
-	if(user.client)	user.client.screen |= src
-	if(user.pulling == src) user.stop_pulling()
-	if(user.l_hand)
-		user.l_hand.update_held_icon()
-	if(user.r_hand)
-		user.r_hand.update_held_icon()
-
-//Defines which slots correspond to which slot flags
-var/list/global/slot_flags_enumeration = list(
-	"[slot_wear_mask]" = SLOT_MASK,
-	"[slot_back]" = SLOT_BACK,
-	"[slot_wear_suit]" = SLOT_OCLOTHING,
-	"[slot_gloves]" = SLOT_GLOVES,
-	"[slot_shoes]" = SLOT_FEET,
-	"[slot_belt]" = SLOT_BELT,
-	"[slot_glasses]" = SLOT_EYES,
-	"[slot_head]" = SLOT_HEAD,
-	"[slot_l_ear]" = SLOT_EARS|SLOT_TWOEARS,
-	"[slot_r_ear]" = SLOT_EARS|SLOT_TWOEARS,
-	"[slot_w_uniform]" = SLOT_ICLOTHING,
-	"[slot_wear_id]" = SLOT_ID,
-	"[slot_accessory_buffer]" = SLOT_ACCESSORY_BUFFER,
-	)
-
-//the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
-//If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
-//Set disable_warning to 1 if you wish it to not give you outputs.
-//Should probably move the bulk of this into mob code some time, as most of it is related to the definition of slots and not item-specific
-/obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
-
-	if(!ishuman(M)) return 0
-
-	var/mob/living/carbon/human/H = M
-	var/list/mob_equip = list()
-	if(H.species.hud && H.species.hud.equip_slots)
-		mob_equip = H.species.hud.equip_slots
-
-	if(H.species && !(slot in mob_equip))
-		return 0
-
-	//First check if the item can be equipped to the desired slot.
-	if("[slot]" in slot_flags_enumeration)
-		var/req_flags = slot_flags_enumeration["[slot]"]
-		if(!(req_flags & slot_flags))
-			return 0
-
-	//Next check that the slot is free
-	if(H.get_equipped_item(slot))
-		return 0
-
-	//Next check if the slot is accessible.
-	var/mob/_user = disable_warning? null : H
-	if(!H.slot_is_accessible(slot, src, _user))
-		return 0
-
-	//Lastly, check special rules for the desired slot.
-	switch(slot)
-		if(slot_l_ear, slot_r_ear)
-			var/slot_other_ear = (slot == slot_l_ear)? slot_r_ear : slot_l_ear
-			if( (w_class > ITEM_SIZE_TINY) && !(slot_flags & SLOT_EARS) )
-				return 0
-			if( (slot_flags & SLOT_TWOEARS) && H.get_equipped_item(slot_other_ear) )
-				return 0
-		if(slot_wear_id)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
-					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
-				return 0
-		if(slot_l_store, slot_r_store)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
-					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
-				return 0
-			if(slot_flags & SLOT_DENYPOCKET)
-				return 0
-			if( w_class > ITEM_SIZE_SMALL && !(slot_flags & SLOT_POCKET) )
-				return 0
-		if(slot_s_store)
-			if(!H.wear_suit && (slot_wear_suit in mob_equip))
-				if(!disable_warning)
-					H << SPAN_WARNING("You need a suit before you can attach this [name].")
-				return 0
-			if(!H.wear_suit.allowed)
-				if(!disable_warning)
-					usr << SPAN_WARNING("You somehow have a suit with no defined allowed items for suit storage, stop that.")
-				return 0
-			if( !(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
-				return 0
-		if(slot_handcuffed)
-			if(!istype(src, /obj/item/weapon/handcuffs))
-				return 0
-		if(slot_legcuffed)
-			if(!istype(src, /obj/item/weapon/legcuffs))
-				return 0
-		if(slot_in_backpack) //used entirely for equipping spawned mobs or at round start
-			var/allow = 0
-			if(H.back && istype(H.back, /obj/item/weapon/storage/backpack))
-				var/obj/item/weapon/storage/backpack/B = H.back
-				if(B.can_be_inserted(src,1))
-					allow = 1
-			if(!allow)
-				return 0
-		if(slot_accessory_buffer)
-			if(!H.w_uniform && (slot_w_uniform in mob_equip))
-				if(!disable_warning)
-					H << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
-				return 0
-			var/obj/item/clothing/under/uniform = H.w_uniform
-			if(uniform.accessories.len && !uniform.can_attach_accessory(src))
-				if (!disable_warning)
-					H << SPAN_WARNING("You already have an accessory of this type attached to your [uniform].")
-				return 0
-	return 1
-
-/obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
-
-	if(!canremove)
-		return 0
-	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
-		return 0
-	return 1
 
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
@@ -760,37 +602,3 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
-
-//Returns true if the object is equipped to a mob, in any slot
-/obj/item/proc/is_equipped()
-	if (istype(loc, /mob))
-		if (equip_slot != slot_none)
-			return TRUE
-	return FALSE
-
-
-//Returns true if the object is worn on a mob's body.
-//Returns false if held in their hands, or if not on a mob at all
-/obj/item/proc/is_worn()
-	if (istype(loc, /mob))
-		if (equip_slot != slot_none && equip_slot != slot_l_hand && equip_slot != slot_r_hand)
-			return TRUE
-	return FALSE
-
-
-//Returns true if the object is held in a mob's hands
-//Returns false if worn on their body, or if not on a mob at all
-/obj/item/proc/is_held()
-	if (istype(loc, /mob))
-		if (equip_slot == slot_l_hand || equip_slot == slot_r_hand)
-			return TRUE
-	return FALSE
-
-//if any species is added with more than 2 arms, these will need updating
-
-//This is the correct way to get an object's equip slot. Will return zero if the object is not currently equipped to anyone
-/obj/item/proc/get_equip_slot()
-	if (istype(loc, /mob))
-		return equip_slot
-	else
-		return slot_none
