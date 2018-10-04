@@ -31,16 +31,9 @@
 		user << "You [locked ? "lock" : "unlock"] \the [src] access panel."
 		return
 
-	var/list/usable_qualities = list()
-	if(open)
-		usable_qualities.Add(QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_CUTTING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
-	if(!open && locked)
-		usable_qualities.Add(QUALITY_PRYING)
-
-
+	var/list/usable_qualities = list(QUALITY_PRYING,QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_CUTTING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
-
 		if(QUALITY_SCREW_DRIVING)
 			if(open)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -59,9 +52,7 @@
 							return
 
 					switch(to_remove)
-
 						if("cell")
-
 							if(cell)
 								user << "You detatch \the [cell] from \the [src]'s battery mount."
 								for(var/obj/item/rig_module/module in installed_modules)
@@ -75,7 +66,6 @@
 								user << "There is nothing loaded in that mount."
 
 						if("system module")
-
 							var/list/possible_removals = list()
 							for(var/obj/item/rig_module/module in installed_modules)
 								if(module.permanent)
@@ -97,33 +87,43 @@
 							installed_modules -= removed
 							update_icon()
 							return
+			else
+				user << "\The [src] access panel is closed."
 				return
 
 		if(QUALITY_WIRE_CUTTING)
 			if(open)
 				wires.Interact(user)
 				return
-			return
+			else
+				user << "\The [src] access panel is closed."
+				return
 
 		if(QUALITY_PULSING)
 			if(open)
 				wires.Interact(user)
 				return
-			return
+			else
+				user << "\The [src] access panel is closed."
+				return
 
 		if(QUALITY_CUTTING)
 			if(open)
 				wires.Interact(user)
 				return
-			return
+			else
+				user << "\The [src] access panel is closed."
+				return
 
 		if(QUALITY_PRYING)
-			if(!open && locked)
+			if(!locked)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					open = !open
 					user << SPAN_NOTICE("You [open ? "open" : "close"] the access panel.")
 					return
-			return
+			else
+				user << SPAN_DANGER("\The [src] access panel is locked.")
+				return
 
 		if(QUALITY_BOLT_TURNING)
 			if(open)
@@ -138,6 +138,8 @@
 					user << "You detach and remove \the [air_supply]."
 					air_supply = null
 					return
+			else
+				user << "\The [src] access panel is closed."
 				return
 
 		if(ABORT_CHECK)
@@ -146,12 +148,12 @@
 	if(open)
 		// Air tank.
 		if(istype(I,/obj/item/weapon/tank)) //Todo, some kind of check for suits without integrated air supplies.
-
 			if(air_supply)
 				user << "\The [src] already has a tank installed."
 				return
 
-			if(!user.unEquip(I)) return
+			if(!user.unEquip(I))
+				return
 			air_supply = I
 			I.forceMove(src)
 			user << "You slot [I] into [src] and tighten the connecting valve."
@@ -159,14 +161,14 @@
 
 		// Check if this is a hardsuit upgrade or a modification.
 		else if(istype(I,/obj/item/rig_module))
-
 			if(ishuman(src.loc))
 				var/mob/living/carbon/human/H = src.loc
 				if(H.back == src)
 					user << SPAN_DANGER("You can't install a hardsuit module while the suit is being worn.")
 					return 1
 
-			if(!installed_modules) installed_modules = list()
+			if(!installed_modules)
+				installed_modules = list()
 			if(installed_modules.len)
 				for(var/obj/item/rig_module/installed_mod in installed_modules)
 					if(!installed_mod.redundant && istype(installed_mod,I))
@@ -179,7 +181,8 @@
 				return
 			if(!user || !I)
 				return
-			if(!user.unEquip(mod)) return
+			if(!user.unEquip(mod))
+				return
 			user << "You install \the [mod] into \the [src]."
 			installed_modules |= mod
 			mod.forceMove(src)
@@ -188,8 +191,8 @@
 			return 1
 
 		else if(!cell && istype(I,/obj/item/weapon/cell/large))
-
-			if(!user.unEquip(I)) return
+			if(!user.unEquip(I))
+				return
 			user << "You jack \the [I] into \the [src]'s battery mount."
 			I.forceMove(src)
 			src.cell = I
