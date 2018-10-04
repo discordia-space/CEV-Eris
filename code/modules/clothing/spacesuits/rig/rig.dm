@@ -932,8 +932,6 @@
 
 
 //Fiddles with some wires to possibly make the suit malfunction a little
-//Had to use numeric literals here, the wire defines in rig_wiring.dm weren't working
-//Possibly due to being defined in a later file, or undef'd somewhere
 /obj/item/weapon/rig/proc/misconfigure(var/probability)
 	if (prob(probability))
 		wires.UpdatePulsed(RIG_SECURITY)//Fiddle with access
