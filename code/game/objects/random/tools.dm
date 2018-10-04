@@ -49,12 +49,30 @@
 				/obj/item/weapon/mop = 2,\
 				/obj/item/weapon/inflatable_dispenser = 3,\
 				/obj/item/weapon/grenade/chem_grenade/cleaner = 2,\
-				/obj/item/device/lighting/toggleable/flashlight = 10))
+				/obj/item/device/lighting/toggleable/flashlight = 10,\
+				/obj/random/voidsuit/damaged = 4,\
+				/obj/random/voidsuit = 0.5))
 
 /obj/random/tool/low_chance
 	name = "low chance random tool"
 	icon_state = "tool-grey-low"
 	spawn_nothing_percentage = 60
+
+
+/obj/random/tool/advanced
+	name = "random advanced tool"
+
+/obj/random/tool/advanced/item_to_spawn()
+	return pickweight(list(
+				/obj/item/weapon/tool/screwdriver/combi_driver = 3,\
+				/obj/item/weapon/tool/wirecutters/armature = 3,\
+				/obj/item/weapon/tool/omnitool = 2,\
+				/obj/item/weapon/tool/crowbar/pneumatic = 3,\
+				/obj/item/weapon/tool/wrench/big_wrench = 3,\
+				/obj/item/weapon/tool/saw/advanced_circular = 2,\
+				/obj/item/weapon/tool/saw/chain = 1,\
+				/obj/item/weapon/tool/pickaxe/diamonddrill = 2,\
+				))
 
 /obj/random/toolbox
 	name = "random toolbox"
