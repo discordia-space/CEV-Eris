@@ -6,6 +6,7 @@
 	var/min_amount = 1
 	var/max_amount = 1
 	var/spread_range = 0
+	var/has_postspawn = FALSE
 
 // creates a new object and deletes itself
 /obj/random/New()
@@ -20,6 +21,11 @@
 // this function should return a specific item to spawn
 /obj/random/proc/item_to_spawn()
 	return
+
+// this function should return a specific item to spawn
+/obj/random/proc/post_spawn(var/list/spawns)
+	return
+
 
 // creates the random item
 /obj/random/proc/spawn_item()
