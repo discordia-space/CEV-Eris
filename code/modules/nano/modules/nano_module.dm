@@ -20,6 +20,10 @@
 		return TRUE
 	return ..()
 
+/datum/nano_module/proc/get_host_z()
+	var/atom/host = nano_host()
+	return istype(host) ? get_z(host) : 0
+
 /datum/nano_module/nano_host()
 	return host ? host : src
 
