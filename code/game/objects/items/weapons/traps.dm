@@ -15,6 +15,10 @@
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
 
+/obj/item/weapon/beartrap/proc/initialize()
+	.=..()
+	update_icon() //So that the prearmed version has the correct sprite
+
 /obj/item/weapon/beartrap/attack_self(mob/user as mob)
 	..()
 	if(!deployed && can_use(user))
@@ -77,7 +81,7 @@
 	if(blocked >= 2)
 		return
 
-	if(!L.apply_damage(30, BRUTE, target_zone, blocked, used_weapon=src))
+	if(!L.apply_damage(40, BRUTE, target_zone, blocked, used_weapon=src))
 		return 0
 
 	//trap the victim in place
@@ -112,3 +116,8 @@
 		icon_state = "beartrap0"
 	else
 		icon_state = "beartrap1"
+
+
+//A version of the beartrap that spawns already-deployed and ready to hurt you
+/obj/item/weapon/beartrap/armed
+	deployed = TRUE
