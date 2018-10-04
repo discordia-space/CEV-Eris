@@ -9,13 +9,12 @@
 	var/has_postspawn = FALSE
 
 // creates a new object and deletes itself
-/obj/random/New()
-	..()
-	if(!prob(spawn_nothing_percentage))
-		spawn_item()
-
 /obj/random/Initialize()
 	..()
+	if(!prob(spawn_nothing_percentage))
+		var/list/spawns = spawn_item()
+		if (has_postspawn && spawns.len)
+			post_spawn(spawns)
 	return INITIALIZE_HINT_QDEL
 
 // this function should return a specific item to spawn
@@ -30,15 +29,21 @@
 // creates the random item
 /obj/random/proc/spawn_item()
 	var/list/points_for_spawn = list()
-	for(var/turf/T in view(spread_range, src.loc))
-		points_for_spawn += T
-	var/build_path = item_to_spawn()
+	var/list/spawns = list()
+	if (spread_range)
+		for(var/turf/T in trange(spread_range, src.loc))
+			points_for_spawn += T
+	else
+		points_for_spawn += get_turf(src)
 	for(var/i in 1 to rand(min_amount, max_amount))
+		var/build_path = item_to_spawn()
 		if(!points_for_spawn.len)
 			log_debug("Spawner \"[type]\" ([x],[y],[z]) try spawn without free space around!")
 			break
 		var/turf/T = pick(points_for_spawn)
-		new build_path(T)
+		var/atom/A = new build_path(T)
+		spawns.Add(A)
+	return spawns
 
 
 /obj/random/single
