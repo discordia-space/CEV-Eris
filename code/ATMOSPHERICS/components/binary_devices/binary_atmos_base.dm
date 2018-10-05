@@ -10,6 +10,11 @@ obj/machinery/atmospherics/binary
 	var/datum/pipe_network/network1
 	var/datum/pipe_network/network2
 
+	releaseNetworks()
+		..()
+		network1 = null
+		network2 = null
+
 	New()
 		..()
 		switch(dir)

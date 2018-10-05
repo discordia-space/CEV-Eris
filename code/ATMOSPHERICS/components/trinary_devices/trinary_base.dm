@@ -14,6 +14,12 @@ obj/machinery/atmospherics/trinary
 	var/datum/pipe_network/network2
 	var/datum/pipe_network/network3
 
+	releaseNetworks()
+		..()
+		network1 = null
+		network2 = null
+		network3 = null
+
 	New()
 		..()
 		switch(dir)

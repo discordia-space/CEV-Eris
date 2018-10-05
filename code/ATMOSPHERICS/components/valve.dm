@@ -12,9 +12,13 @@
 	var/open = 0
 	var/openDuringInit = 0
 
-
 	var/datum/pipe_network/network_node1
 	var/datum/pipe_network/network_node2
+
+/obj/machinery/atmospherics/valve/releaseNetworks()
+	..()
+	network_node1 = null
+	network_node2 = null
 
 /obj/machinery/atmospherics/valve/open
 	open = 1

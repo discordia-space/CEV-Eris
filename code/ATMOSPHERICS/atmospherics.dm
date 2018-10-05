@@ -45,6 +45,9 @@ Pipelines + Other Objects -> Pipe network
 		pipe_color = null
 	..()
 
+/obj/machinery/atmospherics/proc/releaseNetworks()
+	return
+
 /obj/machinery/atmospherics/proc/atmos_init()
 	return
 
