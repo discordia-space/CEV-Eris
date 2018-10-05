@@ -253,9 +253,16 @@
 
 		env.merge(removed)
 
-	for(var/mob/living/carbon/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(l.glasses, /obj/item/clothing/glasses/meson))
-			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
+	for(var/mob/living/carbon/human/H in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
+		var/blockHallucination = 0
+		if(istype(H.wearing_rig,/obj/item/weapon/rig))
+			var/obj/item/weapon/rig/O = H.wearing_rig
+			if(O.visor && O.visor.vision && O.visor.vision.glasses && istype(O.visor.vision.glasses, /obj/item/clothing/glasses/meson) && (!O.helmet || (H.head && O.helmet == H.head)))
+				blockHallucination = 1
+		if(istype(H.glasses, /obj/item/clothing/glasses/meson))
+			blockHallucination = 1
+		if (!blockHallucination)
+			H.hallucination = max(0, min(200, H.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(H, src)) ) ) )
 
 	//adjusted range so that a power of 170 (pretty high) results in 9 tiles, roughly the distance from the core to the engine monitoring room.
 	//note that the rads given at the maximum range is a constant 0.2 - as power increases the maximum range merely increases.
