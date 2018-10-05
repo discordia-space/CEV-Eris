@@ -15,7 +15,10 @@ var/total_runtimes_skipped = 0
 		return ..()
 	total_runtimes++
 	var/erroruid = "[e.file][e.line]"
-	var/last_seen = error_last_seen[erroruid]
+	if (isnum(erroruid) || isnull(erroruid))
+		return //TODO: Remove this, temporary/debug
+	world.log << "ERROR ID: [erroruid]"
+	var/last_seen = 0//error_last_seen[erroruid]
 	var/cooldown = error_cooldown[erroruid] || 0
 	if(last_seen == null) // A new error!
 		error_last_seen[erroruid] = world.time
