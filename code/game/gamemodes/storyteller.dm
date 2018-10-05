@@ -36,7 +36,7 @@ var/global/list/current_factions = list()
 	var/event_spawn_stage = 0
 
 	//Set values here for starting points
-	var/list/points = (
+	var/list/points = list(
 	0, //Mundane
 	0, //Moderate
 	0, //Major
@@ -162,7 +162,7 @@ var/global/list/current_factions = list()
 
 /proc/storyteller_button()
 	if(storyteller)
-		return "<a href='?src=\ref[SSticker.storyteller];panel=1'>\[STORY\]</a>"
+		return "<a href='?src=\ref[storyteller];panel=1'>\[STORY\]</a>"
 	else
 		return "<s>\[STORY\]</s>"
 
@@ -253,7 +253,7 @@ var/global/list/current_factions = list()
 	//When its trigger time comes, the event will once again check if it can run
 	//If it can't it will cancel itself and refund the points it cost
 
-/datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/type)
+/datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
 	var/handle = addtimer(CALLBACK(GLOBAL_PROC, .proc/fire_event, C, event_type), rand(1, event_schedule_delay), TIMER_STOPPABLE)
 	scheduled_events.Add(list(C), type, handle)
 

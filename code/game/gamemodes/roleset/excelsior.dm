@@ -2,8 +2,8 @@
 	id = "excelsior"
 	role_id = null
 
-	min_cost = 10
-	max_cost = 20
+	//min_cost = 10
+	//max_cost = 20
 
 	req_crew = 10
 	req_heads = 1

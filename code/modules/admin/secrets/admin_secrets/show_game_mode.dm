@@ -5,7 +5,7 @@
 	. = ..()
 	if(!.)
 		return
-	if (SSticker.storyteller)
-		alert("The storyteller is [SSticker.storyteller.name]")
+	if (storyteller)
+		alert("The storyteller is [storyteller.name]")
 	else
 		alert("For some reason there's a ticker, but not a game mode")

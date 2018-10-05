@@ -35,8 +35,8 @@
 
 	CI.activate()
 
-	if(SSticker.storyteller)	//Call objectives update to check inquisitor objective completion
-		SSticker.storyteller.update_objectives()
+	if(storyteller)	//Call objectives update to check inquisitor objective completion
+		storyteller.update_objectives()
 
 	return TRUE
 

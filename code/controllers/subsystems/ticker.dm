@@ -162,21 +162,21 @@ SUBSYSTEM_DEF(ticker)
 
 	storyteller = config.pick_storyteller(master_storyteller)
 
-	if(!src.storyteller)
+	if(storyteller)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return FALSE
 
 	SSjob.ResetOccupations()
 	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!src.storyteller.can_start(TRUE))
+	if(storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		storyteller = null
 		story_vote_ended = FALSE
 		SSjob.ResetOccupations()
 		return FALSE
 
-	src.storyteller.announce()
+	storyteller.announce()
 
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
