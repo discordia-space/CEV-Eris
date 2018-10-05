@@ -65,9 +65,9 @@
 		return 0
 
 /obj/machinery/optable/proc/check_victim()
-	if(locate(/mob/living/carbon/human, src.loc))
-		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
-		if(M.lying)
+	if (istype(buckled_mob,/mob/living/carbon/human))
+		var/mob/living/carbon/human/M = buckled_mob
+		if (buckled_mob.lying)
 			src.victim = M
 			icon_state = M.pulse() ? "optable-active" : "optable-idle"
 			return 1
