@@ -20,7 +20,7 @@
 	var/working = 0
 	var/mode = 1
 	var/list/modes = list("Floor & Walls","Airlock","Deconstruct")
-	var/canRwall = 0
+	var/canRwall = 1
 	var/disabled = 0
 
 /obj/item/weapon/rcd/attack()
@@ -106,8 +106,8 @@
 		build_turf =  /turf/simulated/floor/airless
 	else if(deconstruct && istype(T,/turf/simulated/wall))
 		var/turf/simulated/wall/W = T
-		build_delay = deconstruct ? 50 : 40
-		build_cost =  5
+		build_delay = deconstruct ? (W.reinf_material) ? 150 : 50 : 40
+		build_cost =  (W.reinf_material) ? 10 : 5
 		build_type =  (!canRwall && W.reinf_material) ? null : "wall"
 		build_turf =  /turf/simulated/floor
 	else if(istype(T,/turf/simulated/floor))
