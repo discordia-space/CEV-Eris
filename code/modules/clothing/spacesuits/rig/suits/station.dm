@@ -80,9 +80,7 @@
 		/obj/item/rig_module/vision/meson
 		)
 
-//Chief Engineer's rig. This is sort of a halfway point between the old hardsuits (voidsuits) and the rig class.
 /obj/item/weapon/rig/ce
-
 	name = "advanced voidsuit control module"
 	suit_type = "advanced voidsuit"
 	desc = "An advanced voidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
@@ -92,7 +90,10 @@
 	offline_slowdown = 0
 	offline_vision_restriction = 0
 
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
+	glove_type = /obj/item/clothing/gloves/rig/ce
 
 	allowed = list(
 		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
@@ -100,17 +101,10 @@
 		/obj/item/weapon/rcd
 	)
 
-
-	req_access = list()
+	req_access = list(access_ce)
 	req_one_access = list()
 
-	boot_type =  null
-	glove_type = null
-
 /obj/item/weapon/rig/ce/equipped
-
-	req_access = list(access_ce)
-
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/maneuvering_jets,
@@ -118,13 +112,9 @@
 		/obj/item/rig_module/vision/meson
 		)
 
-	chest_type = /obj/item/clothing/suit/space/rig/ce
-	boot_type =  null
-	glove_type = null
-
-/obj/item/clothing/suit/space/rig/ce
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+/obj/item/clothing/gloves/rig/ce
+	name = "insulated gloves"
+	siemens_coefficient = 0
 
 /obj/item/weapon/rig/hazmat
 
