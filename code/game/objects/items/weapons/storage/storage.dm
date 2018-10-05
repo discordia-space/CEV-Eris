@@ -44,7 +44,7 @@
 	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object)
-	if(ishuman(usr) && loc == usr == over_object && !usr.incapacitated())
+	if(ishuman(usr) && usr == over_object && !usr.incapacitated() && Adjacent(usr))
 		return src.open(usr)
 	return ..()
 
