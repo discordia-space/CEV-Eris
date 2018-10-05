@@ -19,9 +19,6 @@
 	level = 1
 	layer = GAS_FILTER_LAYER
 
-/obj/machinery/atmospherics/portables_connector/releaseNetworks()
-	..()
-	network = null
 
 /obj/machinery/atmospherics/portables_connector/New()
 	initialize_directions = dir

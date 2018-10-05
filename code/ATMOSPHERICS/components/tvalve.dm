@@ -18,12 +18,6 @@
 	var/datum/pipe_network/network_node2
 	var/datum/pipe_network/network_node3
 
-/obj/machinery/atmospherics/tvalve/releaseNetworks()
-	..()
-	network_node1 = null
-	network_node2 = null
-	network_node3 = null
-
 /obj/machinery/atmospherics/tvalve/bypass
 	icon_state = "map_tvalve1"
 	state = 1

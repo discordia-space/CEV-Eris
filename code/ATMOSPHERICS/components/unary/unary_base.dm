@@ -6,10 +6,6 @@
 
 	var/datum/pipe_network/network
 
-	releaseNetworks()
-		..()
-		network = null
-
 	New()
 		..()
 		initialize_directions = dir
