@@ -2,8 +2,8 @@
 	id = "secdoc_hunters"
 	role_id = null
 
-	min_cost = 8
-	max_cost = 16
+	//min_cost = 8
+	//max_cost = 16
 
 	req_crew = 6
 	req_heads = -1

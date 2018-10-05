@@ -1,6 +1,6 @@
 /datum/storyevent/roleset
 	id = "roleset"
-	pool_types = list(EVENT_LEVEL_ROLESET)
+	event_pools = list(EVENT_LEVEL_ROLESET)
 	var/role_id = null
 	parallel = FALSE //Most roleset storyevents take time to choose antags. no multiqueueing
 	cost = POOL_THRESHOLD_ROLESET
@@ -81,7 +81,7 @@
 	qdel(temp)
 	return shuffle(candidates)
 
-/datum/storyevent/roleset/spawn_event()
+/datum/storyevent/roleset/trigger_event()
 	var/antag = antag_types[role_id]
 	var/datum/antagonist/A = new antag
 

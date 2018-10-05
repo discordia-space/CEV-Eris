@@ -28,7 +28,7 @@
 
 
 /datum/storyteller/proc/calculate_event_weight(var/datum/storyevent/R)
-	var/new_weight = weight
+	var/new_weight = R.weight
 
 	new_weight *= weight_mult(crew,R.req_crew)
 	new_weight *= weight_mult(heads,R.req_heads)
