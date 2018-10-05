@@ -67,7 +67,7 @@
 /obj/machinery/optable/proc/check_victim()
 	if (istype(buckled_mob,/mob/living/carbon/human))
 		var/mob/living/carbon/human/M = buckled_mob
-		if (buckled_mob.lying)
+		if (M.lying)
 			src.victim = M
 			icon_state = M.pulse() ? "optable-active" : "optable-idle"
 			return 1
