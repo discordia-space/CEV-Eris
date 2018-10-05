@@ -6,7 +6,7 @@
 	desc = "A sleek and dangerous hardsuit for active combat."
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
-	armor = list(melee = 80, bullet = 65, laser = 50, energy = 15, bomb = 80, bio = 100, rad = 60)
+	armor = list(melee = 80, bullet = 65, laser = 55, energy = 15, bomb = 80, bio = 100, rad = 60)
 	slowdown = 1
 	offline_slowdown = 3
 	offline_vision_restriction = 1
@@ -43,7 +43,7 @@
 	corporation = /datum/corporation/ironhammer
 	icon_state = "ihs_rig"
 	suit_type = "ironhammer hardsuit"
-	armor = list(melee = 60, bullet = 30, laser = 30, energy = 15, bomb = 45, bio = 100, rad = 40)
+	armor = list(melee = 60, bullet = 55, laser = 55, energy = 55, bomb = 45, bio = 100, rad = 40)
 	slowdown = 1
 	offline_slowdown = 3
 	offline_vision_restriction = 0
