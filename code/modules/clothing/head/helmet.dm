@@ -8,7 +8,7 @@
 		)
 	item_flags = THICKMATERIAL
 	body_parts_covered = HEAD | EARS
-	armor = list(melee = 35, bullet = 15, laser = 25,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 40, laser = 40,energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -31,7 +31,7 @@
 	name = "handmade combat helmet"
 	desc = "This one maden from bucket and some steel. Uncomfortable and heavy but better then nothing."
 	icon_state = "hm_helmet"
-	armor = list(melee = 25, bullet = 15, laser = 20, energy = 5, bomb = 20, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 30, laser = 30,energy = 30, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -50,7 +50,7 @@
 	name = "gladiator helmet"
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
-	armor = list(melee = 35, bullet = 15, laser = 25,energy = 10, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 35, laser = 35,energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
@@ -80,7 +80,7 @@
 	desc = "Standart issue Ironhammer helmet. Basic hud and targeting system included."
 	icon_state = "light_riot"
 	body_parts_covered = HEAD|FACE|EARS
-	armor = list(melee = 60, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0)
+	armor = list(melee = 60, bullet = 35, laser = 35,energy = 5, bomb = 5, bio = 2, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	flags_inv = HIDEEARS
 	siemens_coefficient = 0.7
@@ -135,5 +135,5 @@
 	else
 		icon_state = "light_riot_on"
 		set_light(2, 2, "#F3B922")
-	update_clothing_icon()
+	update_wear_icon()
 	..()

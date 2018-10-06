@@ -1,6 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
+	item_flags = DRAG_AND_DROP_UNEQUIP
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
 	var/list/species_restricted = null				// Only these species can wear this kit.
@@ -10,10 +11,6 @@
 	var/list/accessories = list()
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
-
-//Updates the icons of the mob wearing the clothing item, if any.
-/obj/item/clothing/proc/update_clothing_icon()
-	return
 
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
@@ -61,11 +58,6 @@
 
 	if(istype(src,/obj/item/clothing/ears/offear))
 		qdel(src)
-
-/obj/item/clothing/ears/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_ears()
 
 /obj/item/clothing/ears/offear
 	name = "Other ear"
@@ -147,12 +139,14 @@
 
 
 /obj/item/clothing/ears/earmuffs/mp3/MouseDrop(over_object)
-    if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-        cell = null
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+	else
+		return ..()
 
 /obj/item/clothing/ears/earmuffs/mp3/attackby(obj/item/C, mob/living/user)
-    if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-        src.cell = C
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 ///////////////////////////////////////////////////////////////////////
 //Glasses
@@ -175,11 +169,6 @@ BLIND     // can't see anything
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
 
-/obj/item/clothing/glasses/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_glasses()
-
 ///////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
@@ -193,11 +182,6 @@ BLIND     // can't see anything
 	body_parts_covered = ARMS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-
-/obj/item/clothing/gloves/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_gloves()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
@@ -307,11 +291,6 @@ BLIND     // can't see anything
 	if(H)
 		H.update_inv_head()
 
-/obj/item/clothing/head/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_head()
-
 ///////////////////////////////////////////////////////////////////////
 //Mask
 /obj/item/clothing/mask
@@ -324,11 +303,6 @@ BLIND     // can't see anything
 	var/voicechange = 0
 	var/list/say_messages
 	var/list/say_verbs
-
-/obj/item/clothing/mask/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_wear_mask()
 
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return
@@ -410,11 +384,6 @@ BLIND     // can't see anything
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
 	return
 
-/obj/item/clothing/shoes/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_shoes()
-
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
@@ -428,11 +397,6 @@ BLIND     // can't see anything
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
-
-/obj/item/clothing/suit/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_wear_suit()
 
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
@@ -473,12 +437,6 @@ BLIND     // can't see anything
 /obj/item/clothing/under/New()
 	..()
 	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
-
-/obj/item/clothing/under/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_w_uniform()
-
 
 /obj/item/clothing/under/examine(mob/user)
 	..(user)
