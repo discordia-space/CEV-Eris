@@ -1090,6 +1090,11 @@ obj/screen/fire/DEADelize()
 		if (G.active && G.overlay)//check here need if someone want call this func directly
 			overlays |= G.overlay
 
+	if(istype(H.wearing_rig,/obj/item/weapon/rig))
+		var/obj/item/clothing/glasses/G = H.wearing_rig.getCurrentGlasses()
+		if (G && H.wearing_rig.visor.active)
+			overlays |= G.overlay
+
 
 /*	if(owner.gun_move_icon)
 		if(!(target_permissions & TARGET_CAN_MOVE))
