@@ -249,7 +249,7 @@ var/decl/asset_cache/asset_cache = new()
 	..()
 	cache = new
 
-/hook/roundstart/proc/send_assets()
+/proc/send_assets()
 	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
 		var/datum/asset/A = new type()
 		A.register()
