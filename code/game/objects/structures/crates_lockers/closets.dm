@@ -53,7 +53,6 @@
 
 /obj/structure/closet/LateInitialize()
 	. = ..()
-	populate_contents()
 	update_icon()
 	hack_require = rand(6,8)
 	if(!opened) // if closed, any item at the crate's loc is put in the contents
