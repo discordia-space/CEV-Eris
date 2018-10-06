@@ -147,6 +147,8 @@
 				user << SPAN_NOTICE("You start cutting through the access panel's cover lock. This is a delicate task.")
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
 					locked = FALSE
+					user << SPAN_NOTICE("Success! The tension in the panel loosens with a dull click")
+					playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 				return
 			else
 				user << "\The [src] access panel is not locked, there's no need to cut it."
