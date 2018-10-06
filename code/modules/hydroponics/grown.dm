@@ -11,6 +11,7 @@
 	var/datum/seed/seed
 	var/potency = -1
 
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc,planttype)
 
 	..()
