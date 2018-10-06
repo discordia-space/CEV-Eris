@@ -15,9 +15,11 @@ var/global/datum/global_init/init = new ()
 */
 
 /datum/global_init/New()
+	world.log << ("New global init")
 	generate_gameid()
-
+	world.log << ("About to do datumreflists")
 	makeDatumRefLists()
+	world.log << ("About to load config")
 	load_configuration()
 
 	initialize_chemical_reagents()

@@ -162,6 +162,33 @@ var/list/storyteller_cache = list()
 
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
+	// If the first delay has a custom start time
+	// No custom time, no custom time, between 80 to 100 minutes respectively.
+	var/list/event_first_run   = list(
+		EVENT_LEVEL_MUNDANE = null,
+		EVENT_LEVEL_MODERATE = null,
+		EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000),
+		EVENT_LEVEL_ROLESET = null,
+		EVENT_LEVEL_ECONOMY = list("lower" = 16000, "upper" = 20000),
+	)
+	// The lowest delay until next event
+	// 10, 30, 50 minutes respectively
+	var/list/event_delay_lower = list(
+		EVENT_LEVEL_MUNDANE = 6000,
+		EVENT_LEVEL_MODERATE = 18000,
+		EVENT_LEVEL_MAJOR = 30000,
+		EVENT_LEVEL_ROLESET = null,
+		EVENT_LEVEL_ECONOMY = 18000
+	)
+	// The upper delay until next event
+	// 15, 45, 70 minutes respectively
+	var/list/event_delay_upper = list(
+		EVENT_LEVEL_MUNDANE = 9000,
+		EVENT_LEVEL_MODERATE = 27000,
+		EVENT_LEVEL_MAJOR = 42000,
+		EVENT_LEVEL_ROLESET = null,
+		EVENT_LEVEL_ECONOMY = 18000
+	)
 
 	var/aliens_allowed = 0
 	var/abandon_allowed = 1
@@ -559,6 +586,39 @@ var/list/storyteller_cache = list()
 
 				if("disable_welder_vision")
 					config.welder_vision = 0
+
+				if("allow_extra_antags")
+					config.allow_extra_antags = 1
+
+				if("event_custom_start_mundane")
+					var/values = text2numlist(value, ";")
+					config.event_first_run[EVENT_LEVEL_MUNDANE] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
+
+				if("event_custom_start_moderate")
+					var/values = text2numlist(value, ";")
+					config.event_first_run[EVENT_LEVEL_MODERATE] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
+
+				if("event_custom_start_major")
+					var/values = text2numlist(value, ";")
+					config.event_first_run[EVENT_LEVEL_MAJOR] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
+
+				if("event_custom_start_economy")
+					var/values = text2numlist(value, ";")
+					config.event_first_run[EVENT_LEVEL_ECONOMY] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
+
+				if("event_delay_lower")
+					var/values = text2numlist(value, ";")
+					config.event_delay_lower[EVENT_LEVEL_MUNDANE] = MinutesToTicks(values[1])
+					config.event_delay_lower[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
+					config.event_delay_lower[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
+					config.event_delay_lower[EVENT_LEVEL_ECONOMY] = MinutesToTicks(values[4])
+
+				if("event_delay_upper")
+					var/values = text2numlist(value, ";")
+					config.event_delay_upper[EVENT_LEVEL_MUNDANE] = MinutesToTicks(values[1])
+					config.event_delay_upper[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
+					config.event_delay_upper[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
+					config.event_delay_upper[EVENT_LEVEL_ECONOMY] = MinutesToTicks(values[4])
 
 				if("starlight")
 					config.starlight = value ? value : 0

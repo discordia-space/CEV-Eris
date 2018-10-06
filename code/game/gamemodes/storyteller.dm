@@ -1,4 +1,4 @@
-var/global/datum/storyteller/storyteller = null
+var/datum/storyteller/storyteller = null
 
 
 var/global/list/current_antags = list()
