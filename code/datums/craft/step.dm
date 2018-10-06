@@ -192,15 +192,17 @@
 		//The item must be inside a container on their person, it's fine
 		return I
 
+	if (istype(I, /obj/item/stack))
+		//Robots are allowed to use stacks, since those will only deplete the amount but not destroy the item
+		return I
+
 	//The item is on the user
 	if (user.canUnEquip(I))
 		//We test if they can remove it, this will return false for robot objects
 		return I
 
 
-	if (istype(I, /obj/item/stack))
-		//Robots are allowed to use stacks, since those will only deplete the amount but not destroy the item
-		return I
+
 
 	//If we get here, then we found the item but it wasn't valid to use, sorry!
 
