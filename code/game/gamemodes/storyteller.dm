@@ -1,8 +1,7 @@
 var/datum/storyteller/storyteller = null
 
 
-var/global/list/current_antags = list()
-var/global/list/current_factions = list()
+
 
 /datum/storyteller
 	//Strings
