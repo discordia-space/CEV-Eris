@@ -27,7 +27,7 @@
 	var/base_name
 	var/unwielded_force_divisor = 0.25
 
-/obj/item/weapon/material/twohanded/update_held_icon()
+/obj/item/weapon/material/twohanded/update_wear_icon()
 	var/mob/living/M = loc
 	if(istype(M) && !issmall(M) && ((M.r_hand == src && !M.l_hand) || (M.l_hand == src && !M.r_hand)))
 		wielded = 1
