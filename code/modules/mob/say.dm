@@ -103,6 +103,7 @@
 		if(speaking.name == L.name)
 			return TRUE
 
+
 	return FALSE
 
 /*

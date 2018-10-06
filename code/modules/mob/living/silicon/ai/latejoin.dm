@@ -33,5 +33,6 @@ var/global/list/empty_playable_ai_cores = list()
 
 	clear_antagonist(mind)
 
-	daemonize()
+	//daemonize()
+	ghostize()
 	qdel(src)

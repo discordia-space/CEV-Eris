@@ -21,7 +21,7 @@
 		)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GLASS = 2)
 	var/up = 0
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 30, laser = 30,energy = 30, bomb = 0, bio = 0, rad = 0)
 	flags_inv = (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 	body_parts_covered = HEAD|FACE|EYES
 	action_button_name = "Flip Welding Mask"
@@ -59,7 +59,7 @@
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[base_state]up"
 			usr << "You push the [src] up out of your face."
-		update_clothing_icon()	//so our mob-overlays
+		update_wear_icon()	//so our mob-overlays
 		usr.update_action_buttons()
 
 

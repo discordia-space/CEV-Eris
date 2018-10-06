@@ -301,19 +301,9 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
-
-	if(hand)
-		var/obj/item/W = l_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_l_hand()
-	else
-		var/obj/item/W = r_hand
-		if (W)
-			W.attack_self(src)
-			update_inv_r_hand()
-	return
+	var/obj/item/W = get_active_hand()
+	if (W)
+		W.attack_self(src)
 
 /*
 /mob/verb/dump_source()

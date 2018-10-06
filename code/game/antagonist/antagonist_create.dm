@@ -35,8 +35,12 @@
 	if(doequip)
 		equip()
 
-	//if(announce)
+	//if(announce) //why this one is commented? It prevents ai from to be a malf
 	//	greet()
+
+	//i'm not sure, so i make here a special check for ai
+	if(istype(src, /datum/antagonist/rogue_ai) && announce)
+		greet()
 
 	return TRUE
 
