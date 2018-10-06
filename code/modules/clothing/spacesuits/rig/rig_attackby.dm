@@ -7,9 +7,7 @@
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
 
-	// Pass repair items on to the chestpiece.
-	if(chest && (istype(I,/obj/item/stack/material) || QUALITY_WELDING in I.tool_qualities))
-		return chest.attackby(I,user)
+
 
 	// Lock or unlock the access panel.
 	if(I.GetID())
@@ -31,7 +29,7 @@
 		user << "You [locked ? "lock" : "unlock"] \the [src] access panel."
 		return
 
-	var/list/usable_qualities = list(QUALITY_PRYING,QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_CUTTING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
+	var/list/usable_qualities = list(QUALITY_PRYING, QUALITY_WELDING,QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_CUTTING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
@@ -142,8 +140,24 @@
 				user << "\The [src] access panel is closed."
 				return
 
+		if(QUALITY_WELDING)
+			//Cutting through the cover lock. This allows access to the wires inside so you can disable access requirements
+			//Ridiculously difficult to do, hijacking a rig will take a long time if you don't have good mechanical training
+			if(locked)
+				user << SPAN_NOTICE("You start cutting through the access panel's cover lock. This is a delicate task.")
+				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
+					locked = FALSE
+				return
+			else
+				user << "\The [src] access panel is not locked, there's no need to cut it."
+				//No return here, incase they're trying to repair
+
 		if(ABORT_CHECK)
 			return
+
+	// Pass repair items on to the chestpiece.
+	if(chest && (istype(I,/obj/item/stack/material) || QUALITY_WELDING in I.tool_qualities))
+		return chest.attackby(I,user)
 
 	if(open)
 		// Air tank.
