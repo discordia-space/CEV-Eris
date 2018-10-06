@@ -83,6 +83,10 @@
 	var/datum/wires/rig/wires
 	var/datum/effect/effect/system/spark_spread/spark_system
 
+/obj/item/weapon/rig/proc/getCurrentGlasses()
+	if(wearer && visor && visor && visor.vision && visor.vision.glasses && (!helmet || (wearer.head && helmet == wearer.head)))
+		return visor.vision.glasses
+
 /obj/item/weapon/rig/examine()
 	usr << "This is \icon[src][src.name]."
 	usr << "[src.desc]"
