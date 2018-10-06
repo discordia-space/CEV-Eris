@@ -178,6 +178,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 /obj/machinery/hologram/holopad/hear_talk(mob/living/M, text, verb, datum/language/speaking)
 	if(M)
 		for(var/mob/living/silicon/ai/master in masters)
+			if(M == master)
+				return
 			if(!master.say_understands(M, speaking))//The AI will be able to understand most mobs talking through the holopad.
 				if(speaking)
 					text = speaking.scramble(text)
