@@ -32,7 +32,7 @@
 		icon_state = "powerglove_active"
 	else
 		icon_state = "powerglove"
-	update_clothing_icon()
+	update_wear_icon()
 
 /obj/item/clothing/gloves/stungloves/examine(mob/user)
 	if(!..(user, 1))

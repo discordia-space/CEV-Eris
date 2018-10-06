@@ -58,28 +58,15 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
-/obj/item/get_fall_damage()
-	return w_class * 2
-
-
-
 /obj/item/Destroy()
 	if(ismob(loc))
 		var/mob/m = loc
 		m.drop_from_inventory(src)
-		m.update_inv_r_hand()
-		m.update_inv_l_hand()
 		src.loc = null
 	return ..()
 
-//Checks if the item is being held by a mob, and if so, updates the held icons
-/obj/item/proc/update_held_icon()
-	if(ismob(src.loc))
-		var/mob/M = src.loc
-		if(M.l_hand == src)
-			M.update_inv_l_hand()
-		else if(M.r_hand == src)
-			M.update_inv_r_hand()
+/obj/item/get_fall_damage()
+	return w_class * 2
 
 /obj/item/ex_act(severity)
 	switch(severity)
@@ -94,8 +81,6 @@
 			if (prob(5))
 				qdel(src)
 				return
-		else
-	return
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
@@ -163,7 +148,7 @@
 		R.activate_module(src)
 //		R.hud_used.update_robot_modules_display()
 
-/obj/item/proc/talk_into(mob/M as mob, text)
+/obj/item/proc/talk_into(mob/M, text)
 	return
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
@@ -192,13 +177,12 @@
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
 	return
-
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Pick up"
 
-	if(!(usr)) //BS12 EDIT
+	if(!usr) //BS12 EDIT
 		return
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
@@ -222,7 +206,6 @@
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
-	return
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
@@ -296,11 +279,11 @@
 
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
-			if(M.stat != 2)
-				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
+			if(M.stat != DEAD)
+				if(eyes.robotic <= ORGAN_ASSISTED) //robot eyes bleeding might be a bit silly
 					M << SPAN_DANGER("Your eyes start to bleed profusely!")
 			if(prob(50))
-				if(M.stat != 2)
+				if(M.stat != DEAD)
 					M << SPAN_WARNING("You drop what you're holding and clutch at your eyes!")
 					M.drop_item()
 				M.eye_blurry += 10
@@ -549,9 +532,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 			if(0 to 29)
 				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
 					user << SPAN_DANGER("You drop [src] on the floor.")
-					H.drop_item()
+					user.drop_from_inventory(src)
 					return
 
 			if(30 to 49)
