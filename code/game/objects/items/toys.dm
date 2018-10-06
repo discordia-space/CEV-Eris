@@ -259,10 +259,7 @@
 			src.item_state = "sword0"
 			src.w_class = ITEM_SIZE_SMALL
 
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.update_inv_l_hand()
-			H.update_inv_r_hand()
+		update_wear_icon()
 
 		src.add_fingerprint(user)
 		return
