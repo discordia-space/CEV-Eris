@@ -3,23 +3,23 @@
 	icon_state = "cannister-red"
 
 /obj/random/booze/item_to_spawn()
-	return pick(prob(7);/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/gin,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla,\
-				prob(2);/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine)
+	return pickweight(list(/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 7,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/gin = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/rum = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 2,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/patron = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/wine = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine = 1))
 
 /obj/random/booze/low_chance
 	name = "low chance random booze"
