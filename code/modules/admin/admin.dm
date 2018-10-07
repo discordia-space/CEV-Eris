@@ -476,8 +476,8 @@ ADMIN_VERB_ADD(/datum/admins/proc/access_news_network, R_ADMIN, FALSE)
 		return
 
 	var/dat = "<center><B>Game Panel</B></center><hr>"
-	if(storyteller && (SSticker.current_state != GAME_STATE_PREGAME))
-		dat += "<A href='?src=\ref[storyteller]'>Storyteller Panel</A><br>"
+	if(get_storyteller() && (SSticker.current_state != GAME_STATE_PREGAME))
+		dat += "<A href='?src=\ref[get_storyteller()]'>Storyteller Panel</A><br>"
 	else
 		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"
 
@@ -913,11 +913,11 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_game_mode, R_ADMIN, FALSE)
 	set desc = "Show the current round storyteller."
 	set name = "Show Storyteller"
 
-	if(!storyteller)
+	if(!get_storyteller())
 		alert("Not before roundstart!", "Alert")
 		return
 
-	var/out = "<font size=3><b>Current storyteller: [storyteller.name] (<a href='?src=\ref[storyteller];debug_antag=self'>[storyteller.config_tag]</a>)</b></font><br/>"
+	var/out = "<font size=3><b>Current storyteller: [get_storyteller().name] (<a href='?src=\ref[get_storyteller()];debug_antag=self'>[get_storyteller().config_tag]</a>)</b></font><br/>"
 	out += "<hr>"
 
 	if(SSticker.mode.antag_tags && SSticker.mode.antag_tags.len)

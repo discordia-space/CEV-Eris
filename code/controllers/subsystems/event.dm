@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(event)
 
 		if (MC_TICK_CHECK)
 			return
-
+	/*
 	while (pos <= EVENT_LEVEL_ECONOMY)
 		var/list/datum/event_container/EC = event_containers[pos]
 		EC.Process()
@@ -68,6 +68,7 @@ SUBSYSTEM_DEF(event)
 
 		if (MC_TICK_CHECK)
 			return
+	*/
 
 /datum/controller/subsystem/event/proc/event_complete(datum/event/E)
 	active_events -= E

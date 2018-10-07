@@ -118,7 +118,9 @@ var/datum/storyteller/storyteller = null
 	next_tick = last_tick + tick_interval
 
 /datum/storyteller/Process()
+	world << "Storyteller processing"
 	if(can_tick())
+		world << "Storyteller TICKING"
 		update_crew_count()
 		update_event_weights()
 		trigger_event()
