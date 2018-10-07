@@ -99,6 +99,8 @@ Used In File(s): /code/modules/clothing/spacesuits/rig/rig.dm
 						{{if data.emagged || !data.securitycheck}}
 							<div class='orangeText boldText'>ERROR - MAINTENANCE LOCK CONTROL OFFLINE</div>
 						{{else}}
+							{{if data.coverlock == -1}}
+								<div class='redText boldText'>**ERROR**</div>
 							{{if data.coverlock}}
 								<div class='redText boldText'>LOCKED</div>
 							{{else}}
