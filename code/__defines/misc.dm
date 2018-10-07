@@ -101,11 +101,7 @@
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          26
 
-// Event defines.
-#define EVENT_LEVEL_MUNDANE  1
-#define EVENT_LEVEL_MODERATE 2
-#define EVENT_LEVEL_MAJOR    3
-#define EVENT_LEVEL_ECONOMY  4
+
 
 // Cargo-related stuff.
 #define MANIFEST_ERROR_CHANCE		5

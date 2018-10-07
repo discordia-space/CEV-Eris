@@ -1,3 +1,39 @@
+
+//Sets the storyteller to a new one, and does any heavy lifting for a handover
+/proc/set_storyteller(var/datum/storyteller/newST, var/announce = TRUE)
+	if (!newST)
+		//You can call this without passing anything, we'll go fetch it ourselves
+		newST = config.pick_storyteller(master_storyteller) //This function is in code/controllers/configuration.dm
+
+	if (!istype(newST))
+		//Welp that failed
+		return
+
+	if (get_storyteller() == newST)
+		return //Nothing happens if we try to set to the storyteller we already have
+
+	//If there's an existing storyteller, we'll make it do cleanup procedures before the handover
+	//we cache it now so we can do that soon
+	var/datum/storyteller/oldST = get_storyteller()
+
+	//Finally, we set the new one
+	storyteller = newST
+
+	if (oldST != null)
+		storyteller.points.Cut()
+		storyteller.points.Add(oldST.points.Copy())//Transfer over points
+		//TODO: Cleanup and handover
+
+	//Configure the new storyteller
+	storyteller.set_up()
+
+	if (announce)
+		storyteller.announce()
+
+
+/proc/get_storyteller()
+	return storyteller
+
 /datum/storyteller/proc/update_crew_count()
 	if(debug_mode)
 		return
@@ -25,30 +61,21 @@
 				if(job.department == "Science")
 					sci++
 
-/datum/storyteller/proc/update_event_weights()
-	if(!calculate_weights)
-		return
 
-	for(var/datum/storyevent/R in storyevents)
-		update_event_weight(R)
 
 /datum/storyteller/proc/calculate_event_weight(var/datum/storyevent/R)
-	var/weight = 1
+	var/new_weight = R.weight
 
-	weight *= weight_mult(crew,R.req_crew)
-	weight *= weight_mult(heads,R.req_heads)
-	weight *= weight_mult(sec,R.req_sec)
-	weight *= weight_mult(eng,R.req_eng)
-	weight *= weight_mult(med,R.req_med)
-	weight *= weight_mult(sci,R.req_sci)
+	new_weight *= weight_mult(crew,R.req_crew)
+	new_weight *= weight_mult(heads,R.req_heads)
+	new_weight *= weight_mult(sec,R.req_sec)
+	new_weight *= weight_mult(eng,R.req_eng)
+	new_weight *= weight_mult(med,R.req_med)
+	new_weight *= weight_mult(sci,R.req_sci)
 
-	weight *= weight_mult(event_spawn_stage,R.req_stage)
+	new_weight = R.get_special_weight(new_weight)
 
-	weight *= weight_mult(R.spawn_times,0)
-
-	weight = R.get_special_weight(weight)
-
-	return weight
+	return new_weight
 
 /datum/storyteller/proc/weight_mult(var/val, var/req)
 	if(req <= 0)
@@ -56,4 +83,5 @@
 	if(val <= 0)	//We need to spawn anything
 		return 0.75/req
 	return 1-((max(0,req-val)**3)/(req**3))
+
 

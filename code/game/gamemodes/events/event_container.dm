@@ -8,7 +8,8 @@
 #define ASSIGNMENT_SCIENTIST "Scientist"
 #define ASSIGNMENT_SECURITY "Security"
 
-var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major", EVENT_LEVEL_ECONOMY = "Economy")
+
+//This file is being gutted, don't use anything in it
 
 /datum/event_container
 	var/severity = -1
@@ -22,6 +23,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	var/last_world_time = 0
 
 /datum/event_container/Process()
+	/*
 	if(!next_event_time)
 		set_event_delay()
 
@@ -31,9 +33,10 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		start_event()
 
 	last_world_time = world.time
+	*/
 
 /datum/event_container/proc/start_event()
-	if(!next_event)	// If non-one has explicitly set an event, randomly pick one
+	/*if(!next_event)	// If non-one has explicitly set an event, randomly pick one
 		next_event = acquire_event()
 
 	// Has an event been acquired?
@@ -50,12 +53,13 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	else
 		// If not, wait for one minute, instead of one tick, before checking again.
 		next_event_time += (60 * 10)
-
+	*/
 
 /datum/event_container/proc/acquire_event()
+	/*
 	if(available_events.len == 0)
 		return
-	var/active_with_role = number_active_with_role()
+	var/active_with_role// = number_active_with_role()
 
 	var/list/possible_events = list()
 	for(var/datum/event_meta/EM in available_events)
@@ -70,8 +74,10 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	var/picked_event = pickweight(possible_events)
 	available_events -= picked_event
 	return picked_event
+	*/
 
 /datum/event_container/proc/get_weight(var/datum/event_meta/EM, var/list/active_with_role)
+	/*
 	if(!EM.enabled)
 		return 0
 
@@ -83,17 +89,16 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		weight = weight - weight_modifier
 
 	return weight
+	*/
 
 /datum/event_container/proc/set_event_delay()
+	/*
 	// If the next event time has not yet been set and we have a custom first time start
-	if(next_event_time == 0 && config.event_first_run[severity])
-		var/lower = config.event_first_run[severity]["lower"]
-		var/upper = config.event_first_run[severity]["upper"]
-		var/event_delay = rand(lower, upper)
-		next_event_time = world.time + event_delay
+	if(next_event_time == 0)
+		//var/event_delay = rand(lower, upper)
+		//next_event_time = world.time + event_delay
 	// Otherwise, follow the standard setup process
 	else
-		var/playercount_modifier = 1
 		switch(player_list.len)
 			if(0 to 10)
 				playercount_modifier = 1.2
@@ -105,16 +110,15 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 				playercount_modifier = 0.9
 			if(36 to 100000)
 				playercount_modifier = 0.8
-		if(config.event_delay_lower[severity] == config.event_delay_upper[severity])
-			playercount_modifier = 1
-		playercount_modifier = playercount_modifier * delay_modifier
 
-		var/event_delay = rand(config.event_delay_lower[severity], config.event_delay_upper[severity]) * playercount_modifier
-		next_event_time = world.time + event_delay
+
+
 
 	log_debug("Next event of severity [severity_to_string[severity]] in [(next_event_time - world.time)/600] minutes.")
+	*/
 
 /datum/event_container/proc/SelectEvent()
+	/*
 	var/datum/event_meta/EM = input("Select an event to queue up.", "Event Selection", null) as null|anything in available_events
 	if(!EM)
 		return
@@ -123,6 +127,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	available_events -= EM
 	next_event = EM
 	return EM
+	*/
 
 /datum/event_container/mundane
 	severity = EVENT_LEVEL_MUNDANE

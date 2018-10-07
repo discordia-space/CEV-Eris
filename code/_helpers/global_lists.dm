@@ -72,7 +72,7 @@ var/global/list/organ_tag_to_name = list(
 	head  = "Head", r_arm = "Right arm",
 	chest = "Body", r_leg = "Right Leg",
 	eyes  = "Eyes", l_arm = "Left arm",
-	groin = "Groin",l_leg = "Left Leg", 
+	groin = "Groin",l_leg = "Left Leg",
 	chest2= "Back", heart = "Heart",
 	lungs  = "Lungs", liver = "Liver"
 	)
@@ -111,6 +111,9 @@ var/global/list/string_slot_flags = list(
 	"uniform" = SLOT_ACCESSORY_BUFFER,
 	"holster" = SLOT_HOLSTER
 )
+
+var/global/list/current_antags = list()
+var/global/list/current_factions = list()
 
 //////////////////////////
 /////Initial Building/////

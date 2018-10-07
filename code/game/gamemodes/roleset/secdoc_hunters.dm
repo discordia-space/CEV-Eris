@@ -1,10 +1,9 @@
 /datum/storyevent/roleset/secdoc_hunters
 	id = "secdoc_hunters"
 	role_id = null
-	multispawn = TRUE
 
-	min_cost = 8
-	max_cost = 16
+	//min_cost = 8
+	//max_cost = 16
 
 	req_crew = 6
 	req_heads = -1
@@ -13,9 +12,8 @@
 	req_med = -1
 	req_sci = 3
 
-	spawn_times_max = 3
 
-/datum/storyevent/roleset/secdoc_hunters/spawn_event()
+/datum/storyevent/roleset/secdoc_hunters/trigger_event()
 	var/list/hunters = candidates_list(ROLE_TRAITOR)
 	if(hunters.len < 1)
 		return FALSE

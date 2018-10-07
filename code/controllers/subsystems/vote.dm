@@ -353,7 +353,7 @@ SUBSYSTEM_DEF(vote)
 /datum/poll/storyteller
 	name = "Storyteller"
 	question = "Choose storyteller"
-	time = 60
+	time = 120
 	choice_types = list()
 
 	only_admin = TRUE
@@ -386,18 +386,22 @@ SUBSYSTEM_DEF(vote)
 	round_progressing = FALSE
 	world << "<b>Game start has been delayed.</b>"
 
+//If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()
 	SSticker.story_vote_ended = TRUE
 	round_progressing = TRUE
-	world << "<b>The game will start soon.</b>"
+	set_storyteller() //This does the actual work //Even if master storyteller is null, this will pick the default
+	world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
 
 /datum/vote_choice/storyteller
 	text = "You shouldn't see this."
 	var/new_storyteller = STORYTELLER_BASE
 
+//Apparently on-win and on-end are mutually exclusive
 /datum/vote_choice/storyteller/on_win()
 	master_storyteller = new_storyteller
 	world.save_storyteller(master_storyteller)
+
 
 
 

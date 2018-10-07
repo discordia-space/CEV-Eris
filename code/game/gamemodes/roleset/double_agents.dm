@@ -1,11 +1,8 @@
 /datum/storyevent/roleset/double_agents
 	id = "double_agents"
 	role_id = null
-	multispawn = TRUE
 
-	min_cost = 14
-	max_cost = 22
-
+	/*
 	req_crew = 10
 	req_heads = -1
 	req_sec = 2
@@ -13,9 +10,10 @@
 	req_med = -1
 	req_sci = -1
 
-	spawn_times_max = 2
+	trigger_times_max = 2
+	*/
 
-/datum/storyevent/roleset/double_agents/spawn_event()
+/datum/storyevent/roleset/double_agents/trigger_event()
 	var/list/candidates = candidates_list(ROLE_TRAITOR)
 	if(candidates.len < 2)
 		return FALSE
