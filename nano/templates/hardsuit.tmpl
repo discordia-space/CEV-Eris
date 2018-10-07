@@ -101,10 +101,12 @@ Used In File(s): /code/modules/clothing/spacesuits/rig/rig.dm
 						{{else}}
 							{{if data.coverlock == -1}}
 								<div class='redText boldText'>**ERROR**</div>
-							{{if data.coverlock}}
-								<div class='redText boldText'>LOCKED</div>
 							{{else}}
-								<div class='greenText boldText'>UNLOCKED</div>
+								{{if data.coverlock}}
+									<div class='redText boldText'>LOCKED</div>
+								{{else}}
+									<div class='greenText boldText'>UNLOCKED</div>
+								{{/if}}
 							{{/if}}
 						{{/if}}
 					</div>
