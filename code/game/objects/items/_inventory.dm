@@ -29,14 +29,7 @@
 		playsound(src, picked_sound, 100, 1, 1)
 
 /obj/item/proc/equipped(var/mob/user, var/slot)
-	if(!istype(user))
-		equip_slot = slot_none
-		return
-
 	equip_slot = slot
-	layer = 20
-	if(user.client)
-		user.client.screen |= src
 	if(user.pulling == src)
 		user.stop_pulling()
 
