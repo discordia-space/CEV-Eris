@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(vote)
 		interface_client(C)
 
 /datum/controller/subsystem/vote/proc/interface_client(client/C)
-	C << browse(interface(C),"window=vote;can_close=0;can_resize=0;can_minimize=0")
+	C << browse(interface(C),"window=vote;size=400x750;can_close=0;can_resize=0;can_minimize=0")
 
 /datum/controller/subsystem/vote/fire()
 	if(active_vote)
@@ -350,6 +350,11 @@ SUBSYSTEM_DEF(vote)
 
 
 
+
+
+/*********************
+	Storyteller
+**********************/
 /datum/poll/storyteller
 	name = "Storyteller"
 	question = "Choose storyteller"
@@ -364,14 +369,27 @@ SUBSYSTEM_DEF(vote)
 
 	see_votes = TRUE
 
+//We will sort the storyteller choices carefully. Guide is always first, all the rest are in a random order
 /datum/poll/storyteller/init_choices()
+	var/datum/vote_choice/storyteller/base = null
 	for(var/ch in storyteller_cache)
 		var/datum/vote_choice/storyteller/CS = new
 		var/datum/storyteller/S = storyteller_cache[ch]
 		CS.text = S.name
 		CS.desc = S.description
 		CS.new_storyteller = ch
-		choices.Add(CS)
+
+		//The base storyteller, Guide, is put aside for a moment
+		if (S.config_tag == STORYTELLER_BASE)
+			base = CS
+			continue
+		//Storytellers are inserted at a random spot so they will be randomly sorted
+		var/index = rand(1, max(choices.len, 1))
+		choices.Insert(index, CS)
+
+	//After everything else is in, the guide is inserted at the top,
+	//so it will always be the first option in the poll
+	choices.Insert(1, base)
 
 /datum/poll/storyteller/Process()
 	if(SSticker.current_state != GAME_STATE_PREGAME)

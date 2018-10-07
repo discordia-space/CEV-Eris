@@ -113,7 +113,13 @@ var/datum/storyteller/storyteller = null
 	if (world.time > next_tick)
 		return TRUE
 
-/datum/storyteller/proc/set_timer(var/time)
+/datum/storyteller/proc/set_timer()
+	if (!(world.time > next_tick))
+		//We duplicate this check from can_tick, so that an admin forcing an immediate event won't
+		//Throw the timing out of sync for the rest of the game
+		return
+		//We won't set the next tick timer unless it's actually time to do so
+
 	last_tick = world.time
 	next_tick = last_tick + tick_interval
 
@@ -125,6 +131,7 @@ var/datum/storyteller/storyteller = null
 		update_event_weights()
 		trigger_event()
 		force_spawn_now = FALSE
+		set_timer()
 
 /datum/storyteller/proc/add_processing(var/datum/storyevent/S)
 	ASSERT(istype(S))
