@@ -31,16 +31,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return ..()
 
 /mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
-	if(!..())
-		return 0
 	W.add_fingerprint(src)
-	return 1
+	return equip_to_slot_if_possible(W, slot_l_hand)
 
 /mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
-	if(!..())
-		return 0
 	W.add_fingerprint(src)
-	return 1
+	return equip_to_slot_if_possible(W, slot_r_hand)
+
 
 
 //Find HUD position on screen
@@ -54,51 +51,16 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot], del_on_fail = 0))
+		if (equip_to_slot_if_possible(W, slots[slot]))
 			return slot
 	if (del_on_fail)
 		qdel(W)
 	return null
 
 
-/mob/living/carbon/human/proc/has_organ(name)
+/mob/living/carbon/human/proc/has_organ(name, check_usablility = FALSE)
 	var/obj/item/organ/external/O = organs_by_name[name]
-
-	return (O && !O.is_stump())
-
-/mob/living/carbon/human/proc/has_organ_for_slot(slot)
-	switch(slot)
-		if(slot_back)
-			return has_organ(BP_CHEST)
-		if(slot_wear_mask)
-			return has_organ(BP_HEAD)
-		if(slot_handcuffed)
-			return has_organ(BP_L_ARM) && has_organ(BP_R_ARM)
-		if(slot_legcuffed)
-			return has_organ(BP_L_LEG ) && has_organ(BP_R_LEG)
-		if(slot_l_hand)
-			return has_organ(BP_L_ARM)
-		if(slot_r_hand)
-			return has_organ(BP_R_ARM)
-		if(slot_belt)
-			return has_organ(BP_CHEST)
-		if(slot_wear_id)
-			// the only relevant check for this is the uniform check
-			return 1
-		if(slot_l_ear, slot_r_ear, slot_glasses)
-			return has_organ(BP_HEAD)
-		if(slot_gloves)
-			return has_organ(BP_L_ARM) || has_organ(BP_R_ARM)
-		if(slot_head)
-			return has_organ(BP_HEAD)
-		if(slot_shoes)
-			return has_organ(BP_R_LEG) || has_organ(BP_L_LEG)
-		if(slot_wear_suit, slot_w_uniform, slot_l_store, slot_r_store, slot_s_store)
-			return has_organ(BP_CHEST)
-		if(slot_in_backpack)
-			return 1
-		if(slot_accessory_buffer)
-			return 1
+	return (O && !O.is_stump() && (!check_usablility || O.is_usable()))
 
 /mob/living/carbon/human/u_equip(obj/item/W as obj)
 	if (W == wear_suit)
@@ -208,17 +170,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 
 
-//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
+//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
-
-	if(!slot) return
-	if(!istype(W)) return
-	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
-	if(ismob(W.loc))
-		var/mob/M = W.loc
-		if(M.get_inventory_slot(W) && !M.prepare_for_slotmove(W))
-			return
 	W.forceMove(src)
 	switch(slot)
 		if(slot_back)
@@ -352,9 +306,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
-		return 0
-
-	if (!has_organ_for_slot(slot))
 		return FALSE
 
 	return 1
@@ -408,20 +359,3 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_s_store)    items += s_store
 
 	return items
-
-
-//The parent does all the checks, this one is just for feedback messages
-/mob/living/carbon/human/can_pickup(var/obj/item/I, var/feedback = TRUE)
-	.=..()
-
-	if (!. && feedback)
-		//Feedback moved here from item attackhand
-		var/obj/item/organ/external/temp = organs_by_name[BP_R_ARM]
-		if (hand)
-			temp = organs_by_name[BP_L_ARM]
-		if(temp && !temp.is_usable())
-			src << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
-			return
-		if(!temp)
-			src << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
-			return

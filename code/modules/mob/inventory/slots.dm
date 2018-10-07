@@ -18,6 +18,37 @@
 	if(update_proc)
 		call(owner, update_proc)(redraw)
 
+/datum/inventory_slot/proc/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	if(req_item_in_slot && !owner.get_equipped_item(req_item_in_slot))
+		if(!disable_warning)
+			owner << SPAN_WARNING("You need something you can attach this [I] to.")
+		return FALSE
+
+	if(req_organ)
+		if(islist(req_organ))
+			for(var/organ in req_organ)
+				if(!owner.has_organ(organ, req_organ[organ]))
+					if(!disable_warning)
+						owner << SPAN_WARNING("You can' equip this [I]!")
+					return FALSE
+		else
+			if(!owner.has_organ(req_organ))
+				if(!disable_warning)
+					owner << SPAN_WARNING("You have nothing you can thear this [I] on.")
+				return FALSE
+
+	if(req_type && istype(I, req_type))
+		return TRUE
+	else if(req_slot_flags && (req_slot_flags & I.slot_flags))
+		return TRUE
+	else if(max_w_class && (I.w_class <= max_w_class))
+		return TRUE
+
+	if(!disable_warning)
+		owner << SPAN_WARNING("You can't wear [I] in your [name] slot")
+
+	return FALSE
+
 /datum/inventory_slot/back
 	name = "Back"
 	id = slot_back
@@ -50,6 +81,13 @@
 /datum/inventory_slot/hand
 	req_type = /obj/item
 
+/datum/inventory_slot/hand/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	if(owner.lying)
+		if(!disable_warning)
+			owner << SPAN_WARNING("You can't hold items while lying")
+		return FALSE
+	return ..()
+
 /datum/inventory_slot/hand/left
 	name = "Left hand"
 	id = slot_l_hand
@@ -80,6 +118,12 @@
 	req_organ = BP_HEAD
 	req_slot_flags = SLOT_EARS|SLOT_TWOEARS
 	update_proc = /mob/proc/update_inv_ears
+
+/datum/inventory_slot/ear/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	if(I.slot_flags & SLOT_TWOEARS)
+		var/slot_other_ear = (id == slot_l_ear)? slot_r_ear : slot_l_ear
+		return !owner.get_equipped_item(slot_other_ear)
+	return ..()
 
 /datum/inventory_slot/ear/left
 	name = "Left ear"
@@ -139,6 +183,14 @@
 	max_w_class = ITEM_SIZE_SMALL
 	update_proc = /mob/proc/update_inv_pockets
 
+/datum/inventory_slot/store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	if(I.slot_flags & SLOT_DENYPOCKET)
+		if(!disable_warning)
+			owner << SPAN_WARNING("[I] can't be holded by your [name].")
+		return FALSE
+	else
+		return ..()
+
 /datum/inventory_slot/store/left
 	name = "Left store"
 	id = slot_l_store
@@ -148,11 +200,21 @@
 	id = slot_r_store
 
 
-/datum/inventory_slot/special_store
+/datum/inventory_slot/suit_store
 	name = "Store"
 	id = slot_s_store
 	req_item_in_slot = slot_wear_suit
 	update_proc = /mob/proc/update_inv_s_store
+
+/datum/inventory_slot/special_store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	if(!..())
+		return FALSE
+	var/obj/item/wear_suit = owner.get_equipped_item(slot_wear_suit)
+	if(!wear_suit.allowed)
+		if(!disable_warning)
+			owner << SPAN_WARNING("You can't attach anything to that [wear_suit].")
+		return FALSE
+	return is_type_in_list(src, wear_suit.allowed + list(/obj/item/device/pda, /obj/item/weapon/pen))
 
 
 //Special virtual slots. Here for backcompability.
@@ -160,10 +222,26 @@
 	name = "Slot in backpack"
 	id = slot_in_backpack
 
+/datum/inventory_slot/in_backpack/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	var/obj/item/weapon/storage/back = owner.get_equipped_item(slot_back)
+	return istype(back) && back.can_be_inserted(src,1)
+
 
 /datum/inventory_slot/accessory
 	name = "Slot accessory"
 	id = slot_accessory_buffer
+
+/datum/inventory_slot/accessory/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	var/obj/item/clothing/under/uniform = owner.get_equipped_item(slot_w_uniform)
+	if(!uniform)
+		if(!disable_warning)
+			src << SPAN_WARNING("You need a jumpsuit before you can attach this [name].")
+		return FALSE
+	if(uniform.accessories.len && !uniform.can_attach_accessory(src))
+		if (!disable_warning)
+			src << SPAN_WARNING("You already have an accessory of this type attached to your [uniform].")
+		return FALSE
+	return TRUE
 
 /*
 slot_legs

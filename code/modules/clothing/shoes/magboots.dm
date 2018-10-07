@@ -37,7 +37,7 @@
 
 //We want to allow the user to equip magboots even if they're already wearing shoes
 //As long as those shoes are not themselves magboots or similar overshoe-shoes
-/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = 0)
+/obj/item/clothing/shoes/magboots/can_be_equipped(mob/user, slot, disable_warning = 0)
 	if (slot == slot_shoes)
 		var/mob/living/carbon/human/H = user
 

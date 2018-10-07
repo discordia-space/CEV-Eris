@@ -109,10 +109,17 @@ var/list/gunshot_sound = list('sound/weapons/Gunshot.ogg',
 	'sound/weapons/Gunshot4.ogg'
 )*/
 
+var/list/short_equipement_sound = list(
+	'sound/misc/inventory/short_1.ogg',
+	'sound/misc/inventory/short_2.ogg',
+	'sound/misc/inventory/short_3.ogg'
+)
 
-
-
-
+var/list/long_equipement_sound = list(
+	'sound/misc/inventory/long_1.ogg',
+	'sound/misc/inventory/long_2.ogg',
+	'sound/misc/inventory/long_3.ogg'
+)
 
 
 var/list/footstep_asteroid = list(\

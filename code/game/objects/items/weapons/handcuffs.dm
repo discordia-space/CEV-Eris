@@ -55,7 +55,7 @@
 	if(!istype(H))
 		return 0
 
-	if (!H.has_organ_for_slot(slot_handcuffed))
+	if (mob_can_equip(H, src, slot_handcuffed))
 		user << SPAN_DANGER("\The [H] needs at least two wrists before you can cuff them together!")
 		return 0
 

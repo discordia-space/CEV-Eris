@@ -78,6 +78,7 @@
 #define FLEXIBLEMATERIAL           0x20 // At the moment, masks with this flag will not prevent eating even if they are covering your face.
 #define COVER_PREVENT_MANIPULATION 0x40 // Only clothing with this flag will prevent manipulation under it. Its for space suits and such, unlike from usual Bay12 rules of clothing manipulation.
 #define DRAG_AND_DROP_UNEQUIP      0x80 // Allow you put intems in hands with drag and drop
+#define LOUDLY_EQUIPEMENT          0x100// Play sound when equipped/unequipped
 
 // Flags for pass_flags.
 #define PASSTABLE  0x1

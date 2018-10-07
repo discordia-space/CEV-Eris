@@ -1,3 +1,101 @@
+// EQUIP //
+
+
+/mob/proc/equip_to_slot(obj/item/Item, slot, redraw_mob = TRUE)
+/*
+This is an UNSAFE proc.
+It merely handles the actual job of equipping. Set vars, update icons. Also calls Item.equipped(mob, slot).
+All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
+In most cases you will want to use equip_to_slot_if_possible()
+*/
+
+
+/mob/proc/equip_to_slot_if_possible(
+	obj/item/Item,
+	slot,
+	disable_warning = FALSE,
+	redraw_mob = TRUE
+)
+/*
+This is a SAFE proc. Use this instead of equip_to_slot()!
+Set disable_warning to disable the 'you are unable to equip that' warning.
+Unset redraw_mob to prevent the mob from being redrawn at the end.
+It calls:
+	- Mob.can_equip(Item, slot, disable_warning) and Item.can_be_equiped(mob, slot, disable_warning)
+	- If Item already equipped on someone other_mob.unEquip(Item) will be called.
+	- Item.pre_equip(src, slot)
+	- if Item.pre_equip(..) take some time Mob.can_equip(...) and Item.can_be_equiped(...) will be called again .
+	- Mob.equip_to_slot(Item, slot, redraw_mob)
+*/
+
+
+/mob/proc/equip_to_slot_or_del(obj/item/Item, slot)
+/*
+Item will be deleted if it fails to equip with equip_to_slot_if_possible() proc
+used to equip people when the rounds tarts and when events happen and such.
+It calls:
+	- equip_to_slot_if_possible(Item, slot, disable_warning = TRUE, redraw_mob = FALSE)
+*/
+
+
+/mob/proc/equip_to_appropriate_slot(obj/item/Item)
+/*
+Puts the Item into an appropriate slot in a human's inventory
+returns FALSE if it cannot, TRUE if successful
+It calls:
+	- equip_to_slot_if_possible(Item, slot, disable_warning = TRUE)
+*/
+
+
+/mob/proc/equip_to_storage(obj/item/Item)
+/*
+Try find storage in mob inventory and put item in it.
+Return founded storage or null.
+Ovverided for human proc check "slot_back" first.
+*/
+
+
+
+// HELPERS //
+
+
+/mob/proc/attack_ui(slot)
+/*
+This proc is called whenever someone clicks an inventory ui slot.
+If smth occupy slot, then reslolve_attack/attackhand will be called, else equip_to_slot_if_possible()
+It calls:
+	- Mob.get_active_hand()
+	- Mob.get_equipped_item(slot)
+	- Mob.equip_to_slot_if_possible(Item, slot)
+	- or Mob.attackhand(equippedItem)
+	- or equippedItem.resolve_attackby(Item, Mob)
+*/
+
+
+/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user=null)
+/*
+Checks if a given slot can be accessed at this time, either to equip or unequip Item
+*/
+
+
+/mob/proc/can_equip(obj/item/Item, slot, disable_warning = FALSE)
+/*
+Return TRUE if Mob can equip Item
+Don't confuse with Item.can_be_equipped(Mob, slot, disable_warning)
+*/
+
+
+/proc/mob_can_equip(mob/living/L, obj/item/Item, slot, disable_warning = FALSE)
+/*
+Now we have two separated procs: Mob.can_equip(Item...) and Item.can_be_equipped(Mob...)
+That proc is simple way to call them both if you wanna check "Can that mob equip this item in some slot"
+It calls:
+	- Mob.can_equip(Item, slot, disable_warning)
+	- Item.can_be_equipped(Mob, slot, disable_warning)
+*/
+
+
+
 // ITEMS //
 /*
 Most procs from that categoy located in:
