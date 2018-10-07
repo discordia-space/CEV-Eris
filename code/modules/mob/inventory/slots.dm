@@ -1,6 +1,9 @@
+#define ORGAN_SHOULD_BE_FINE	1
+
 /datum/inventory_slot
 	var/name
 	var/id
+	var/flags
 
 	var/update_proc
 
@@ -26,11 +29,15 @@
 
 	if(req_organ)
 		if(islist(req_organ))
+			var/found_organ = FALSE
 			for(var/organ in req_organ)
-				if(!owner.has_organ(organ, req_organ[organ]))
-					if(!disable_warning)
-						owner << SPAN_WARNING("You can' equip this [I]!")
-					return FALSE
+				if(owner.has_organ(organ, req_organ[organ]))
+					found_organ = TRUE
+					break
+			if(!found_organ)
+				if(!disable_warning)
+					owner << SPAN_WARNING("You can' equip this [I]!")
+				return FALSE
 		else
 			if(!owner.has_organ(req_organ))
 				if(!disable_warning)
@@ -70,6 +77,14 @@
 	req_type = /obj/item/weapon/handcuffs
 	update_proc = /mob/proc/update_inv_handcuffed
 
+/datum/inventory_slot/handcuffs/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	if(..())
+		// We should check all organs here
+		for(var/organ in req_organ)
+			if(!owner.has_organ(organ))
+				return FALSE
+		return TRUE
+
 /datum/inventory_slot/legcuffs
 	name = "Legcuffs"
 	id = slot_legcuffed
@@ -91,13 +106,13 @@
 /datum/inventory_slot/hand/left
 	name = "Left hand"
 	id = slot_l_hand
-	req_organ = list(BP_L_ARM = 1)
+	req_organ = list(BP_L_ARM = ORGAN_SHOULD_BE_FINE)
 	update_proc = /mob/proc/update_inv_l_hand
 
 /datum/inventory_slot/hand/rigth
 	name = "Right hand"
 	id = slot_r_hand
-	req_organ = list(BP_R_ARM = 1)
+	req_organ = list(BP_R_ARM = ORGAN_SHOULD_BE_FINE)
 	update_proc = /mob/proc/update_inv_r_hand
 
 /datum/inventory_slot/belt
@@ -246,3 +261,5 @@
 /*
 slot_legs
 */
+
+#undef ORGAN_SHOULD_BE_FINE
