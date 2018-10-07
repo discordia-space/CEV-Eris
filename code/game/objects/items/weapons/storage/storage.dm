@@ -16,13 +16,11 @@
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = 8 //The sum of the storage costs of all the items in this storage item.
 	var/storage_slots = null //The number of storage slots in this container.
+	var/list/storedItemBackgrounds = new/list()
 	var/obj/screen/storage/boxes = null
 	var/obj/screen/storage/storage_start = null //storage UI
 	var/obj/screen/storage/storage_continue = null
 	var/obj/screen/storage/storage_end = null
-	var/obj/screen/storage/stored_start = null
-	var/obj/screen/storage/stored_continue = null
-	var/obj/screen/storage/stored_end = null
 	var/obj/screen/close/closer = null
 	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
 	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
@@ -31,15 +29,60 @@
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 
+/obj/item/weapon/storage/proc/UI_newStoredItemBackground(var/obj/master, var/obj/screen/storage/UI_parent, var/matrix/M_start, var/matrix/M_continue, var/matrix/M_end)
+	var/obj/screen/storage/stored_start = new /obj/screen/storage()
+	stored_start.icon_state = "stored_start"
+	stored_start.layer = HUD_LAYER
+	stored_start.plane = HUD_PLANE
+
+	var/obj/screen/storage/stored_continue = new /obj/screen/storage()
+	stored_continue.icon_state = "stored_continue"
+	stored_continue.layer = HUD_LAYER
+	stored_continue.plane = HUD_PLANE
+
+	var/obj/screen/storage/stored_end = new /obj/screen/storage()
+	stored_end.icon_state = "stored_end"
+	stored_end.layer = HUD_LAYER
+	stored_end.plane = HUD_PLANE
+
+	stored_start.master = master
+	stored_continue.master = master
+	stored_end.master = master
+
+	stored_start.transform = M_start
+	stored_continue.transform = M_continue
+	stored_end.transform = M_end
+
+	stored_start.screen_loc = UI_parent.screen_loc
+	stored_continue.screen_loc = UI_parent.screen_loc
+	stored_end.screen_loc = UI_parent.screen_loc
+
+	storedItemBackgrounds.Add(stored_start)
+	storedItemBackgrounds.Add(stored_continue)
+	storedItemBackgrounds.Add(stored_end)
+
+/obj/item/weapon/storage/proc/UI_clearStoredItemBackgrounds(mob/user as mob)
+	UI_hideStoredItemBackgrounds(user)
+	for(var/obj/screen/storage/B in storedItemBackgrounds)
+		B.master = null
+		qdel(B)
+	storedItemBackgrounds.Cut()
+
+/obj/item/weapon/storage/proc/UI_showStoredItemBackgrounds(mob/user as mob)
+	for(var/obj/screen/storage/B in storedItemBackgrounds)
+		user.client.screen += B
+
+/obj/item/weapon/storage/proc/UI_hideStoredItemBackgrounds(mob/user as mob)
+	for(var/obj/screen/storage/B in storedItemBackgrounds)
+		user.client.screen -= B
+
 /obj/item/weapon/storage/Destroy()
 	close_all()
 	qdel(boxes)
 	qdel(src.storage_start)
 	qdel(src.storage_continue)
 	qdel(src.storage_end)
-	qdel(src.stored_start)
-	qdel(src.stored_continue)
-	qdel(src.stored_end)
+	UI_clearStoredItemBackgrounds()
 	qdel(closer)
 	. = ..()
 
@@ -74,6 +117,7 @@
 	user.client.screen -= src.storage_start
 	user.client.screen -= src.storage_continue
 	user.client.screen -= src.storage_end
+	UI_hideStoredItemBackgrounds(user)
 	user.client.screen -= src.closer
 	user.client.screen -= src.contents
 	user.client.screen += src.closer
@@ -84,6 +128,7 @@
 		user.client.screen += src.storage_start
 		user.client.screen += src.storage_continue
 		user.client.screen += src.storage_end
+		UI_showStoredItemBackgrounds(user)
 	user.s_active = src
 	is_seeing |= user
 	return
@@ -96,6 +141,7 @@
 	user.client.screen -= src.storage_start
 	user.client.screen -= src.storage_continue
 	user.client.screen -= src.storage_end
+	UI_hideStoredItemBackgrounds(user)
 	user.client.screen -= src.closer
 	user.client.screen -= src.contents
 	if(user.s_active == src)
@@ -183,8 +229,6 @@
 	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
 	var/storage_width = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,284) //length of sprite for the box representing total storage space
 
-	storage_start.overlays.Cut()
-
 	var/matrix/M = matrix()
 	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
 	src.storage_continue.transform = M
@@ -207,12 +251,8 @@
 		M_continue.Scale((endpoint-startpoint-stored_cap_width*2)/32,1)
 		M_continue.Translate(startpoint+stored_cap_width+(endpoint-startpoint-stored_cap_width*2)/2 - 16,0)
 		M_end.Translate(endpoint-stored_cap_width,0)
-		src.stored_start.transform = M_start
-		src.stored_continue.transform = M_continue
-		src.stored_end.transform = M_end
-		storage_start.overlays += src.stored_start
-		storage_start.overlays += src.stored_continue
-		storage_start.overlays += src.stored_end
+
+		UI_newStoredItemBackground(O, storage_start, M_start, M_continue, M_end)
 
 		O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
 		O.maptext = ""
@@ -270,6 +310,7 @@
 				numbered_contents.Add( new/datum/numbered_display(I) )
 
 	if(storage_slots == null)
+		UI_clearStoredItemBackgrounds(user)
 		src.space_orient_objs(numbered_contents,Xcor,Ycor)
 	else
 		var/row_num = 0
@@ -557,19 +598,6 @@
 	src.storage_end.screen_loc = "7,7 to 10,8"
 	src.storage_end.layer = HUD_LAYER
 	src.storage_end.plane = HUD_PLANE
-
-	src.stored_start = new /obj //we just need these to hold the icon
-	src.stored_start.icon_state = "stored_start"
-	src.stored_start.layer = HUD_LAYER
-	src.stored_start.plane = HUD_PLANE
-	src.stored_continue = new /obj
-	src.stored_continue.icon_state = "stored_continue"
-	src.stored_continue.layer = HUD_LAYER
-	src.stored_continue.plane = HUD_PLANE
-	src.stored_end = new /obj
-	src.stored_end.icon_state = "stored_end"
-	src.stored_end.layer = HUD_LAYER
-	src.stored_end.plane = HUD_PLANE
 
 	src.closer = new /obj/screen/close(  )
 	src.closer.master = src
