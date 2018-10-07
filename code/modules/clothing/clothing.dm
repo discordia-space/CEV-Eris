@@ -14,7 +14,7 @@
 
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
-	..()
+	. = ..()
 	gunshot_residue = null
 
 ///////////////////////////////////////////////////////////////////////
