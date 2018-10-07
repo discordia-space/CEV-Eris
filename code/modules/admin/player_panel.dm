@@ -320,8 +320,8 @@
 
 
 /datum/admins/proc/storyteller_panel()
-	if(storyteller)
-		storyteller.storyteller_panel()
+	if(get_storyteller())
+		get_storyteller().storyteller_panel()
 	else
 		usr << SPAN_WARNING("There is no storyteller.")
 

@@ -734,6 +734,7 @@ var/list/storyteller_cache = list()
 				log_misc("Unknown setting in configuration: '[name]'")
 
 /datum/configuration/proc/pick_storyteller(story_name)
+	world << "Configuration calling pick storyteller"
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
 	if(story_name in storyteller_cache)
@@ -748,6 +749,8 @@ var/list/storyteller_cache = list()
 		if(S)
 			runnable_storytellers |= S
 	return runnable_storytellers
+
+
 
 /datum/configuration/proc/post_load()
 	//apply a default value to config.python_path, if needed

@@ -346,7 +346,7 @@ var/bomb_set
 	else
 		off_station = 2
 
-	if(storyteller)
+	if(get_storyteller())
 		SSticker.nuke_in_progress = FALSE
 		if(off_station == 1)
 			world << "<b>A nuclear device was set off, but the explosion was out of reach of the ship!</b>"

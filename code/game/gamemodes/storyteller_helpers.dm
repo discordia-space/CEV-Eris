@@ -1,3 +1,39 @@
+
+//Sets the storyteller to a new one, and does any heavy lifting for a handover
+/proc/set_storyteller(var/datum/storyteller/newST, var/announce = TRUE)
+	if (!newST)
+		//You can call this without passing anything, we'll go fetch it ourselves
+		newST = config.pick_storyteller(master_storyteller) //This function is in code/controllers/configuration.dm
+
+	if (!istype(newST))
+		//Welp that failed
+		return
+
+	if (get_storyteller() == newST)
+		return //Nothing happens if we try to set to the storyteller we already have
+
+	//If there's an existing storyteller, we'll make it do cleanup procedures before the handover
+	//we cache it now so we can do that soon
+	var/datum/storyteller/oldST = get_storyteller()
+
+	//Finally, we set the new one
+	storyteller = newST
+
+	if (oldST != null)
+		storyteller.points.Cut()
+		storyteller.points.Add(oldST.points.Copy())//Transfer over points
+		//TODO: Cleanup and handover
+
+	//Configure the new storyteller
+	storyteller.set_up()
+
+	if (announce)
+		storyteller.announce()
+
+
+/proc/get_storyteller()
+	return storyteller
+
 /datum/storyteller/proc/update_crew_count()
 	if(debug_mode)
 		return
@@ -47,4 +83,5 @@
 	if(val <= 0)	//We need to spawn anything
 		return 0.75/req
 	return 1-((max(0,req-val)**3)/(req**3))
+
 

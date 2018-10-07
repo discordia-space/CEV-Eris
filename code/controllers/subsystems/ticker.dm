@@ -160,16 +160,17 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/setup()
 	//Create and announce mode
 
-	storyteller = config.pick_storyteller(master_storyteller)
+	if(!storyteller)
+		set_storyteller()
 
-	if(storyteller)
+	if(!storyteller)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
 		return FALSE
 
 	SSjob.ResetOccupations()
 	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(storyteller.can_start(TRUE))
+	if(!storyteller.can_start(TRUE))
 		world << "<B>Unable to start game.</B> Reverting to pre-game lobby."
 		storyteller = null
 		story_vote_ended = FALSE

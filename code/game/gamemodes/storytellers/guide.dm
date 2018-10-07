@@ -1,3 +1,6 @@
+/*The Guide is the default storyteller
+It is set as storyteller base in __defines/gamemode.dm
+*/
 /datum/storyteller/guide
 	config_tag = "guide"
 	name = "The Guide"

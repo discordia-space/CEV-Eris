@@ -640,7 +640,7 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(storyteller)
+		if(get_storyteller())
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<B>What storyteller do you wish to install?</B><HR>"}
 		for(var/mode in config.storytellers)
@@ -651,12 +651,12 @@
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if (storyteller)
-			return alert(usr, "The game has already started.", null, null, null, null)
+		//if (get_storyteller())
+			//return alert(usr, "The game has already started.", null, null, null, null)
 		master_storyteller = href_list["c_mode2"]
+		set_storyteller(master_storyteller) //This does the actual work
 		log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
 		message_admins("\blue [key_name_admin(usr)] set the storyteller to [master_storyteller].", 1)
-		world << "\blue <b>The storyteller is now: [master_storyteller]</b>"
 		Game() // updates the main game menu
 		world.save_storyteller(master_storyteller)
 		.(href, list("c_mode"=1))
