@@ -4,18 +4,18 @@
 	alpha = 128
 
 /obj/random/closet/item_to_spawn()
-	return pick(prob(4);/obj/structure/closet,\
-				prob(8);/obj/structure/closet/firecloset,\
-				prob(6);/obj/structure/closet/emcloset,\
-				prob(1);/obj/structure/closet/wardrobe/black,\
-				prob(1);/obj/structure/closet/wardrobe/green,\
-				prob(1);/obj/structure/closet/wardrobe/orange,\
-				prob(1);/obj/structure/closet/wardrobe/yellow,\
-				prob(1);/obj/structure/closet/wardrobe/white,\
-				prob(1);/obj/structure/closet/wardrobe/mixed,\
-				prob(1);/obj/structure/closet/lasertag/red,\
-				prob(1);/obj/structure/closet/lasertag/blue,\
-				prob(8);/obj/structure/closet/toolcloset)
+	return pickweight(list(/obj/structure/closet = 4,\
+				/obj/structure/closet/firecloset = 8,\
+				/obj/structure/closet/emcloset = 6,\
+				/obj/structure/closet/wardrobe/black = 1,\
+				/obj/structure/closet/wardrobe/green = 1,\
+				/obj/structure/closet/wardrobe/orange = 1,\
+				/obj/structure/closet/wardrobe/yellow = 1,\
+				/obj/structure/closet/wardrobe/white = 1,\
+				/obj/structure/closet/wardrobe/mixed = 1,\
+				/obj/structure/closet/lasertag/red = 1,\
+				/obj/structure/closet/lasertag/blue = 1,\
+				/obj/structure/closet/toolcloset = 8))
 
 /obj/random/closet/low_chance
 	name = "low chance random closet"
@@ -27,9 +27,9 @@
 	icon_state = "closet-orange"
 
 /obj/random/closet_tech/item_to_spawn()
-	return pick(prob(4);/obj/structure/closet/firecloset,\
-				prob(2);/obj/structure/closet/emcloset,\
-				prob(4);/obj/structure/closet/toolcloset)
+	return pickweight(list(/obj/structure/closet/firecloset = 4,\
+				/obj/structure/closet/emcloset = 2,\
+				/obj/structure/closet/toolcloset = 4))
 
 /obj/random/closet_tech/low_chance
 	name = "low chance random technical closet"

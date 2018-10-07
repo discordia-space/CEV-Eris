@@ -13,8 +13,8 @@
 
 /obj/item/stack/material/Initialize()
 	. = ..()
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0,10)-5
+	pixel_y = rand(0,10)-5
 
 	if(!default_type)
 		default_type = MATERIAL_STEEL
@@ -87,6 +87,10 @@
 	default_type = MATERIAL_IRON
 	apply_colour = 1
 
+/obj/item/stack/material/iron/random
+	rand_min = 3
+	rand_max = 30
+
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
@@ -102,30 +106,54 @@
 	icon_state = "sheet-diamond"
 	default_type = MATERIAL_DIAMOND
 
+/obj/item/stack/material/diamond/random
+	rand_min = 1
+	rand_max = 8
+
 /obj/item/stack/material/uranium
 	name = MATERIAL_URANIUM
 	icon_state = "sheet-uranium"
 	default_type = MATERIAL_URANIUM
+
+/obj/item/stack/material/uranium/random
+	rand_min = 2
+	rand_max = 15
 
 /obj/item/stack/material/plasma
 	name = "solid plasma"
 	icon_state = "sheet-plasma"
 	default_type = MATERIAL_PLASMA
 
+/obj/item/stack/material/plasma/random
+	rand_min = 3
+	rand_max = 20
+
 /obj/item/stack/material/plastic
 	name = "plastic"
 	icon_state = "sheet-plastic"
 	default_type = MATERIAL_PLASTIC
+
+/obj/item/stack/material/plastic/random
+	rand_min = 3
+	rand_max = 30
 
 /obj/item/stack/material/gold
 	name = "gold"
 	icon_state = "sheet-gold"
 	default_type = MATERIAL_GOLD
 
+/obj/item/stack/material/gold/random
+	rand_min = 2
+	rand_max = 15
+
 /obj/item/stack/material/silver
 	name = MATERIAL_SILVER
 	icon_state = "sheet-silver"
 	default_type = MATERIAL_SILVER
+
+/obj/item/stack/material/silver/random
+	rand_min = 3
+	rand_max = 30
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -157,16 +185,28 @@
 	icon_state = "sheet-metal"
 	default_type = MATERIAL_STEEL
 
+/obj/item/stack/material/steel/random
+	rand_min = 3
+	rand_max = 30
+
 /obj/item/stack/material/plasteel
 	name = "plasteel"
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
 	default_type = MATERIAL_PLASTEEL
 
+/obj/item/stack/material/plasteel/random
+	rand_min = 3
+	rand_max = 20
+
 /obj/item/stack/material/wood
 	name = "wooden plank"
 	icon_state = "sheet-wood"
 	default_type = MATERIAL_WOOD
+
+/obj/item/stack/material/wood/random
+	rand_min = 3
+	rand_max = 30
 
 /obj/item/stack/material/cloth
 	name = "cloth"
@@ -177,6 +217,10 @@
 	name = "cardboard"
 	icon_state = "sheet-card"
 	default_type = MATERIAL_CARDBOARD
+
+/obj/item/stack/material/cardboard/random
+	rand_min = 5
+	rand_max = 50
 
 /obj/item/stack/material/leather
 	name = "leather"
@@ -189,6 +233,10 @@
 	icon_state = "sheet-glass"
 	default_type = MATERIAL_GLASS
 
+/obj/item/stack/material/glass/random
+	rand_min = 3
+	rand_max = 30
+
 /obj/item/stack/material/glass/reinforced
 	name = "reinforced glass"
 	icon_state = "sheet-rglass"
@@ -200,6 +248,10 @@
 	singular_name = "borosilicate glass sheet"
 	icon_state = "sheet-plasmaglass"
 	default_type = MATERIAL_PLASMAGLASS
+
+/obj/item/stack/material/glass/plasmaglass/random
+	rand_min = 3
+	rand_max = 30
 
 /obj/item/stack/material/glass/plasmarglass
 	name = "reinforced borosilicate glass"
