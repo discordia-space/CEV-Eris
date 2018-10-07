@@ -2,32 +2,32 @@
 	name = "random box"
 	icon_state = "box-blue"
 	item_to_spawn()
-		return pick(prob(1);/obj/item/weapon/storage/box/botanydisk,\
-					prob(3);/obj/item/weapon/storage/box/beakers,\
-					prob(2);/obj/item/weapon/storage/box/bloodpacks,\
-					prob(2);/obj/item/weapon/storage/box/autoinjectors,\
-					prob(2);/obj/item/weapon/storage/box/matches,\
-					prob(2);/obj/item/weapon/storage/box/donkpockets,\
-					prob(3);/obj/item/weapon/storage/box/autolathe_blank,\
-					prob(1);/obj/item/weapon/storage/box/cups,\
-					prob(2);/obj/item/weapon/storage/box/drinkingglasses,\
-					prob(1);/obj/item/weapon/storage/box/fingerprints,\
-					prob(2);/obj/item/weapon/storage/box/handcuffs,\
-					prob(1);/obj/item/weapon/storage/box/holobadge,\
-					prob(1);/obj/item/weapon/storage/box/ids,\
-					prob(1);/obj/item/weapon/storage/box/injectors,\
-					prob(1);/obj/item/weapon/storage/box/lights,\
-					prob(1);/obj/item/weapon/storage/box/monkeycubes,\
-					prob(1);/obj/item/weapon/storage/box/mousetraps,\
-					prob(1);/obj/item/weapon/storage/box/pillbottles,\
-					prob(1);/obj/item/weapon/storage/box/rxglasses,\
-					prob(1);/obj/item/weapon/storage/box/samplebags,\
-					prob(1);/obj/item/weapon/storage/box/smokes,\
-					prob(1);/obj/item/weapon/storage/box/sniperammo,\
-					prob(1);/obj/item/weapon/storage/box/solution_trays,\
-					prob(1);/obj/item/weapon/storage/box/survival,\
-					prob(1);/obj/item/weapon/storage/box/swabs,\
-					prob(1);/obj/item/weapon/storage/briefcase/crimekit)
+		return pickweight(list(/obj/item/weapon/storage/box/botanydisk = 1,\
+					/obj/item/weapon/storage/box/beakers = 3,\
+					/obj/item/weapon/storage/box/bloodpacks = 2,\
+					/obj/item/weapon/storage/box/autoinjectors = 2,\
+					/obj/item/weapon/storage/box/matches = 2,\
+					/obj/item/weapon/storage/box/donkpockets = 2,\
+					/obj/item/weapon/storage/box/autolathe_blank = 3,\
+					/obj/item/weapon/storage/box/cups = 1,\
+					/obj/item/weapon/storage/box/drinkingglasses = 2,\
+					/obj/item/weapon/storage/box/fingerprints = 1,\
+					/obj/item/weapon/storage/box/handcuffs = 2,\
+					/obj/item/weapon/storage/box/holobadge = 1,\
+					/obj/item/weapon/storage/box/ids = 1,\
+					/obj/item/weapon/storage/box/injectors = 1,\
+					/obj/item/weapon/storage/box/lights = 1,\
+					/obj/item/weapon/storage/box/monkeycubes = 1,\
+					/obj/item/weapon/storage/box/mousetraps = 1,\
+					/obj/item/weapon/storage/box/pillbottles = 1,\
+					/obj/item/weapon/storage/box/rxglasses = 1,\
+					/obj/item/weapon/storage/box/samplebags = 1,\
+					/obj/item/weapon/storage/box/smokes = 1,\
+					/obj/item/weapon/storage/box/sniperammo = 1,\
+					/obj/item/weapon/storage/box/solution_trays = 1,\
+					/obj/item/weapon/storage/box/survival = 1,\
+					/obj/item/weapon/storage/box/swabs = 1,\
+					/obj/item/weapon/storage/briefcase/crimekit = 1))
 
 /obj/random/boxes/low_chance
 	name = "low chance box"

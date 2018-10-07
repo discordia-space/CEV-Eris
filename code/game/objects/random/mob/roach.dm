@@ -4,11 +4,11 @@
 	alpha = 128
 
 /obj/random/mob/roaches/item_to_spawn()
-	return pick(prob(8);/mob/living/superior_animal/roach,\
-				prob(3);/mob/living/superior_animal/roach/tank,\
-				prob(3);/mob/living/superior_animal/roach/hunter,\
-				prob(2);/mob/living/superior_animal/roach/support,\
-				prob(1);/mob/living/superior_animal/roach/fuhrer)
+	return pickweight(list(/mob/living/superior_animal/roach = 8,
+				/mob/living/superior_animal/roach/tank = 3,
+				/mob/living/superior_animal/roach/hunter = 3,
+				/mob/living/superior_animal/roach/support = 2,
+				/mob/living/superior_animal/roach/fuhrer = 1))
 
 /obj/random/mob/roaches/low_chance
 	name = "low chance random roach"
