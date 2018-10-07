@@ -47,7 +47,7 @@
 
 /obj/item/weapon/grenade/frag/explosive
 	name = "FS HEG \"Zoe\""
-	desc = "A military High Explosive grenade, designed to wreak havoc in a certan radius."
+	desc = "A military High Explosive grenade, designed to wreak havoc in a certain radius."
 	icon_state = "explosive"
 
 	explosion_size = 2

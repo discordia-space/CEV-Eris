@@ -36,7 +36,7 @@ obj/item/weapon/gun/energy/retro
 	name = "NT LG \"Destiny\""
 	icon_state = "caplaser"
 	item_state = "caplaser"
-	desc = "This weapon is old, yet still robust and reliable. It's marked with old Nanotrasen brand, a distant reminder of what this corporation was, before the Church take control of everything."
+	desc = "This weapon is old, yet still robust and reliable. It's marked with old Nanotrasen brand, a distant reminder of what this corporation was, before the Church took control of everything."
 	force = WEAPON_FORCE_PAINFULL
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT
