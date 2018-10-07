@@ -3,31 +3,31 @@
 	icon_state = "ammo-green"
 
 /obj/random/ammo/item_to_spawn()
-	return pick(prob(6);/obj/item/weapon/storage/box/shotgunammo/beanbags,\
-				prob(2);/obj/item/weapon/storage/box/shotgunammo,\
-				prob(4);/obj/item/weapon/storage/box/shotgunammo/slug,\
-				prob(1);/obj/item/weapon/storage/box/shotgunammo/stunshells,\
-				prob(1);/obj/item/ammo_magazine/ammobox/c357,\
-				prob(1);/obj/item/ammo_magazine/ammobox/c65mm,\
-				prob(2);/obj/item/ammo_magazine/ammobox/c65mm/rubber,\
-				prob(1);/obj/item/ammo_magazine/ammobox/c38,\
-				prob(2);/obj/item/ammo_magazine/ammobox/c38/rubber,\
-				prob(1);/obj/item/ammo_magazine/ammobox/cl32,\
-				prob(2);/obj/item/ammo_magazine/ammobox/cl32/rubber,\
-				prob(1);/obj/item/ammo_magazine/ammobox/c9mm,\
-				prob(2);/obj/item/ammo_magazine/ammobox/c9mm/rubber,\
-				prob(1);/obj/item/ammo_magazine/c45smg,\
-				prob(1);/obj/item/ammo_magazine/c45smg/rubber,\
-				prob(1);/obj/item/ammo_magazine/smg9mm,\
-				prob(1);/obj/item/ammo_magazine/smg9mm/rubber,\
-				prob(2);/obj/item/ammo_magazine/c45m,\
-				prob(4);/obj/item/ammo_magazine/c45m/rubber,\
-				prob(4);/obj/item/ammo_magazine/c45m/flash,\
-				prob(2);/obj/item/ammo_magazine/sl357,\
-				prob(3);/obj/item/ammo_magazine/sl38,\
-				prob(4);/obj/item/ammo_magazine/sl38/rubber,\
-				prob(2);/obj/item/ammo_magazine/mc9mmt,\
-				prob(6);/obj/item/ammo_magazine/mc9mmt/rubber)
+	return pickweight(list(/obj/item/weapon/storage/box/shotgunammo/beanbags = 6,\
+				/obj/item/weapon/storage/box/shotgunammo = 2,\
+				/obj/item/weapon/storage/box/shotgunammo/slug = 4,\
+				/obj/item/weapon/storage/box/shotgunammo/stunshells = 1,\
+				/obj/item/ammo_magazine/ammobox/c357 = 1,\
+				/obj/item/ammo_magazine/ammobox/c65mm = 1,\
+				/obj/item/ammo_magazine/ammobox/c65mm/rubber = 2,\
+				/obj/item/ammo_magazine/ammobox/c38 = 1,\
+				/obj/item/ammo_magazine/ammobox/c38/rubber = 2,\
+				/obj/item/ammo_magazine/ammobox/cl32 = 1,\
+				/obj/item/ammo_magazine/ammobox/cl32/rubber = 2,\
+				/obj/item/ammo_magazine/ammobox/c9mm = 1,\
+				/obj/item/ammo_magazine/ammobox/c9mm/rubber = 2,\
+				/obj/item/ammo_magazine/c45smg = 1,\
+				/obj/item/ammo_magazine/c45smg/rubber = 1,\
+				/obj/item/ammo_magazine/smg9mm = 1,\
+				/obj/item/ammo_magazine/smg9mm/rubber = 1,\
+				/obj/item/ammo_magazine/c45m = 2,\
+				/obj/item/ammo_magazine/c45m/rubber = 4,\
+				/obj/item/ammo_magazine/c45m/flash = 4,\
+				/obj/item/ammo_magazine/sl357 = 2,\
+				/obj/item/ammo_magazine/sl38 = 3,\
+				/obj/item/ammo_magazine/sl38/rubber = 4,\
+				/obj/item/ammo_magazine/mc9mmt = 2,\
+				/obj/item/ammo_magazine/mc9mmt/rubber = 6))
 
 /obj/random/ammo/low_chance
 	name = "low chance random random ammunition"
@@ -59,17 +59,17 @@
 	icon_state = "ammo-grey"
 
 /obj/random/ammo_lowcost/item_to_spawn()
-	return pick(prob(4);/obj/item/weapon/storage/box/shotgunammo/beanbags,\
-				prob(2);/obj/item/weapon/storage/box/shotgunammo,\
-				prob(1);/obj/item/weapon/storage/box/shotgunammo/slug,\
-				prob(1);/obj/item/ammo_magazine/ammobox/c38,\
-				prob(2);/obj/item/ammo_magazine/ammobox/c38/rubber,\
-				prob(1);/obj/item/ammo_magazine/ammobox/cl32,\
-				prob(2);/obj/item/ammo_magazine/ammobox/cl32/rubber,\
-				prob(2);/obj/item/ammo_magazine/sl38/rubber,\
-				prob(1);/obj/item/weapon/cell/medium,\
-				prob(6);/obj/item/ammo_magazine/cl32/rubber,\
-				prob(1);/obj/item/ammo_magazine/cl32)
+	return pickweight(list(/obj/item/weapon/storage/box/shotgunammo/beanbags = 4,\
+				/obj/item/weapon/storage/box/shotgunammo = 2,\
+				/obj/item/weapon/storage/box/shotgunammo/slug = 1,\
+				/obj/item/ammo_magazine/ammobox/c38 = 1,\
+				/obj/item/ammo_magazine/ammobox/c38/rubber = 2,\
+				/obj/item/ammo_magazine/ammobox/cl32 = 1,\
+				/obj/item/ammo_magazine/ammobox/cl32/rubber = 2,\
+				/obj/item/ammo_magazine/sl38/rubber = 2,\
+				/obj/item/weapon/cell/medium = 1,\
+				/obj/item/ammo_magazine/cl32/rubber = 6,\
+				/obj/item/ammo_magazine/cl32 = 1))
 
 /obj/random/ammo_lowcost/low_chance
 	name = "low chance random low tier ammunition"

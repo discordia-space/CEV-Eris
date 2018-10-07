@@ -18,7 +18,6 @@
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
 
-	var/hibernate = 0 //Do we even process?
 	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing
 	var/list/scrubbing_gas = list("carbon_dioxide")
 
@@ -134,42 +133,38 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/Process()
 	..()
 
-	if (hibernate > world.time)
-		return 1
-
 	if (!node1)
 		use_power = 0
+		return
 	//broadcast_status()
-	if(!use_power || (stat & (NOPOWER|BROKEN)))
+	if(!use_power)
+		return 0
+
+	if(stat & (NOPOWER|BROKEN))
 		return 0
 
 	if(welded)
 		return 0
 
 	var/datum/gas_mixture/environment = loc.return_air()
+	if (!environment)
+		return 0
 
 	var/power_draw = -1
 	if(scrubbing)
 		//limit flow rate from turfs
 		var/transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SCRUBBER_FLOWRATE/environment.volume)	//group_multiplier gets divided out here
-
 		power_draw = scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, power_rating)
 	else //Just siphon all air
 		//limit flow rate from turfs
 		var/transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SIPHON_FLOWRATE/environment.volume)	//group_multiplier gets divided out here
-
 		power_draw = pump_gas(src, environment, air_contents, transfer_moles, power_rating)
-
-	if(scrubbing && power_draw <= 0)	//99% of all scrubbers
-		//Fucking hibernate because you ain't doing shit.
-		hibernate = world.time + (rand(100, 200))
 
 	if (power_draw >= 0)
 		last_power_draw = power_draw
 		use_power(power_draw)
-
-	if(network)
-		network.update = 1
+		if(network)
+			network.update = 1
 
 	return 1
 

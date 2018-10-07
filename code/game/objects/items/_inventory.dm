@@ -3,6 +3,7 @@
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit
 	var/canremove  = TRUE	//Will not allow the item to be removed
 	var/item_flags = 0		//Miscellaneous flags pertaining to equippable objects.
+
 	var/equip_slot = 0		//The slot that this item was most recently equipped to.
 		//Note that this is, by design, not zeroed out when the item is removed from a mob
 		//In that case, it holds the number of the slot it was last in, which is potentially useful info
@@ -10,8 +11,18 @@
 		//  use item/get_equip_slot() which will return zero if not currently on a mob
 
 
+/obj/item/proc/update_wear_icon(redraw_mob = TRUE)
+	if(!ishuman(loc))
+		return
+
+	var/slot = get_equip_slot()
+	if(!slot)
+		return
+
+	SSinventory.update_mob(loc, slot, redraw_mob)
+
 /obj/item/proc/pre_equip(var/mob/user, var/slot)
-	return 0
+	return FALSE
 
 
 /obj/item/proc/equipped(var/mob/user, var/slot)
@@ -21,18 +32,17 @@
 
 	equip_slot = slot
 	layer = 20
-	if(user.client)	user.client.screen |= src
-	if(user.pulling == src) user.stop_pulling()
-	if(user.l_hand)
-		user.l_hand.update_held_icon()
-	if(user.r_hand)
-		user.r_hand.update_held_icon()
+	if(user.client)
+		user.client.screen |= src
+	if(user.pulling == src)
+		user.stop_pulling()
 
 
-/obj/item/proc/dropped(mob/user as mob)
+
+/obj/item/proc/dropped(mob/user)
 	..()
-	if(zoom) zoom() //binoculars, scope, etc
-
+	if(zoom) //binoculars, scope, etc
+		zoom()
 
 //Defines which slots correspond to which slot flags
 var/list/global/slot_flags_enumeration = list(
@@ -165,7 +175,7 @@ var/list/global/slot_flags_enumeration = list(
 
 /obj/item/proc/is_worn()
 	if (istype(loc, /mob))
-		if (equip_slot != slot_none && equip_slot != slot_l_hand && equip_slot != slot_r_hand)
+		if (!(equip_slot in list(slot_none, slot_l_hand, slot_r_hand)))
 			return TRUE
 	return FALSE
 
@@ -201,6 +211,7 @@ var/list/global/slot_flags_enumeration = list(
 		//there's got to be a better way of doing this.
 		if(src.loc != H || H.incapacitated())
 			return
+
 		if (!H.unEquip(src))
 			return
 
