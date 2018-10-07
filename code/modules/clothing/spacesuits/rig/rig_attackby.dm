@@ -118,7 +118,7 @@
 				return
 
 		if(QUALITY_PRYING)
-			if(!(locked != TRUE))
+			if(locked != TRUE)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					open = !open
 					user << SPAN_NOTICE("You [open ? "open" : "close"] the access panel.")
