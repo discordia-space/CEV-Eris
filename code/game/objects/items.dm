@@ -129,7 +129,7 @@
 
 	src.throwing = 0
 	if (src.loc == user)
-		if(!user.unEquip(src))
+		if(!user.canUnEquip(src))
 			return
 	else
 		if(isliving(src.loc))
