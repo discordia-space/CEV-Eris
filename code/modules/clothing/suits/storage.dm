@@ -1,4 +1,5 @@
 /obj/item/clothing/suit/storage
+	item_flags = DRAG_AND_DROP_UNEQUIP
 	var/obj/item/weapon/storage/internal/pockets
 
 /obj/item/clothing/suit/storage/New()
@@ -13,15 +14,15 @@
 	pockets = null
 	. = ..()
 
-/obj/item/clothing/suit/storage/attack_hand(mob/user as mob)
+/obj/item/clothing/suit/storage/attack_hand(mob/user)
 	if (pockets.handle_attack_hand(user))
 		..(user)
 
-/obj/item/clothing/suit/storage/MouseDrop(obj/over_object as obj)
-	if (pockets.handle_mousedrop(usr, over_object))
+/obj/item/clothing/suit/storage/MouseDrop(obj/over_object)
+	if(!pockets.handle_mousedrop(usr, over_object))
 		..(over_object)
 
-/obj/item/clothing/suit/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/storage/attackby(obj/item/W, mob/user)
 	..()
 	pockets.attackby(W, user)
 
@@ -49,7 +50,7 @@
 		else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
 			usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."
 			return
-		update_clothing_icon()	//so our overlays update
+		update_wear_icon()	//so our overlays update
 
 
 /obj/item/clothing/suit/storage/vest/merc/New()

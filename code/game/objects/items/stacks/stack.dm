@@ -27,12 +27,15 @@
 	var/rand_min = 0
 	var/rand_max = 0
 
-/obj/item/stack/Initialize(var/loc, var/amount=null)
+/obj/item/stack/New(var/loc, var/amount=null)
+	.=..()
+	if (amount)
+		src.amount = amount
+
+/obj/item/stack/Initialize()
 	.=..()
 	if (!stacktype)
 		stacktype = type
-	if (amount)
-		src.amount = amount
 
 	if (rand_min || rand_max)
 		amount = rand(rand_min, rand_max)
