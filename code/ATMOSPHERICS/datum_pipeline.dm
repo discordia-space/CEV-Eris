@@ -9,13 +9,30 @@ datum/pipeline
 
 	var/alert_pressure = 0
 
-	Destroy()
-		if(network)
-			qdel(network)
+	New()
+		..()
+		air = new
 
-		if(air && air.volume)
-			temporarily_store_air()
-			qdel(air)
+	Destroy()
+		QDEL_NULL(network)
+
+		//Update individual gas_mixtures by volume ratio
+		if (air.volume)
+			for(var/obj/machinery/atmospherics/pipe/member in members)
+				var/datum/gas_mixture/G = new
+				G.copy_from(air)
+				G.volume = member.volume
+				G.multiply(member.volume / air.volume)
+				member.air_temporary = G
+				member.parent = null
+		else
+			for(var/obj/machinery/atmospherics/pipe/member in members)
+				member.air_temporary = null
+				member.parent = null
+		QDEL_NULL(air)
+
+		members.Cut()
+		edges.Cut()
 
 		. = ..()
 
@@ -28,18 +45,7 @@ datum/pipeline
 				if(!member.check_pressure(pressure))
 					break //Only delete 1 pipe per process
 
-	proc/temporarily_store_air()
-		//Update individual gas_mixtures by volume ratio
-
-		for(var/obj/machinery/atmospherics/pipe/member in members)
-			member.air_temporary = new
-			member.air_temporary.copy_from(air)
-			member.air_temporary.volume = member.volume
-			member.air_temporary.multiply(member.volume / air.volume)
-
 	proc/build_pipeline(obj/machinery/atmospherics/pipe/base)
-		air = new
-
 		var/list/possible_expansions = list(base)
 		members = list(base)
 		edges = list()
@@ -49,10 +55,10 @@ datum/pipeline
 		alert_pressure = base.alert_pressure
 
 		if(base.air_temporary)
+			qdel(air)
 			air = base.air_temporary
+			qdel(base.air_temporary)
 			base.air_temporary = null
-		else
-			air = new
 
 		while(possible_expansions.len>0)
 			for(var/obj/machinery/atmospherics/pipe/borderline in possible_expansions)
@@ -73,6 +79,8 @@ datum/pipeline
 
 							if(item.air_temporary)
 								air.merge(item.air_temporary)
+								qdel(item.air_temporary)
+								item.air_temporary = null
 
 						edge_check--
 
