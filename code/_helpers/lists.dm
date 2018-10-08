@@ -123,7 +123,7 @@ proc/listclearnulls(list/list)
 			L[item] = 1
 		total += L[item]
 
-	total = rand()*total
+	total = rand(0, total)
 
 	for (item in L)
 		total -= L[item]
