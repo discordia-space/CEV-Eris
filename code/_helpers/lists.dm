@@ -110,7 +110,11 @@ proc/listclearnulls(list/list)
 		result = first ^ second
 	return result
 
-//Pretends to pick an element based on its weight but really just seems to pick a random element.
+//Picks an element based on its weight
+//Must be given an associative list in the format
+/*
+	list(item = weight, item = weight) ..etc
+*/
 /proc/pickweight(list/L)
 	var/total = 0
 	var/item
@@ -119,9 +123,10 @@ proc/listclearnulls(list/list)
 			L[item] = 1
 		total += L[item]
 
-	total = rand(1, total)
+	total = rand(0, total)
+
 	for (item in L)
-		total -=L [item]
+		total -= L[item]
 		if (total <= 0)
 			return item
 

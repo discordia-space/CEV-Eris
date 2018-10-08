@@ -3,133 +3,133 @@
 	icon_state = "radnomstuff-green"
 
 /obj/random/lowkeyrandom/item_to_spawn()
-	return pick(prob(1);/obj/item/weapon/storage/box/shotgunammo/beanbags,\
-				prob(1);/obj/item/ammo_magazine/mc9mmt/rubber,\
-				prob(3);/obj/item/weapon/storage/box/matches,\
-				prob(2);/obj/item/stack/material/cardboard,\
-				prob(3);/obj/item/weapon/cell/large,\
-				prob(6);/obj/item/weapon/cell/medium,\
-				prob(7);/obj/item/weapon/cell/small,\
-				prob(3);/obj/item/stack/medical/bruise_pack,\
-				prob(2);/obj/item/bodybag/cryobag,\
-				prob(2);/obj/item/weapon/reagent_containers/syringe/inaprovaline,\
-				prob(4);/obj/item/weapon/cigbutt,\
-				prob(2);/obj/item/device/t_scanner,\
-				prob(2);/obj/item/device/scanner/analyzer,\
-				prob(2);/obj/item/device/scanner/healthanalyzer,\
-				prob(5);/obj/item/weapon/tool/screwdriver,\
-				prob(5);/obj/item/weapon/tool/wirecutters,\
-				prob(5);/obj/item/weapon/tool/weldingtool,\
-				prob(5);/obj/item/weapon/tool/crowbar,\
-				prob(5);/obj/item/weapon/tool/wrench,\
-				prob(5);/obj/item/weapon/storage/belt/utility/full,\
-				prob(4);/obj/item/weapon/storage/belt/medical,\
-				prob(4);/obj/item/weapon/storage/belt/security,\
-				prob(3);/obj/item/weapon/tool/pickaxe,\
-				prob(3);/obj/item/weapon/pen,\
-				prob(3);/obj/item/weapon/storage/box/donkpockets,\
-				prob(2);/obj/item/weapon/locator,\
-				prob(3);/obj/item/weapon/dice,\
-				prob(2);/obj/item/weapon/clipboard,\
-				prob(3);/obj/item/weapon/airlock_electronics,\
-				prob(3);/obj/item/weapon/weldpack,\
-				prob(2);/obj/item/weapon/soap,\
-				prob(4);/obj/item/weedkiller/triclopyr,\
-				prob(4);/obj/item/weedkiller,\
-				prob(4);/obj/item/weedkiller/lindane,\
-				prob(4);/obj/item/weedkiller/D24,\
-				prob(3);/obj/item/weapon/phone,\
-				prob(2);/obj/item/weapon/cane,\
-				prob(1);/obj/item/weapon/cane/concealed,\
-				prob(2);/obj/item/weapon/staff/broom,\
-				prob(1);/obj/item/weapon/circuitboard/apc,\
-				prob(1);/obj/item/weapon/tool/shovel,\
-				prob(2);/obj/item/weapon/folder,\
-				prob(2);/obj/item/weapon/folder/blue,\
-				prob(2);/obj/item/weapon/folder/red,\
-				prob(2);/obj/item/weapon/folder/yellow,\
-				prob(2);/obj/item/weapon/folder/white,\
-				prob(2);/obj/item/weapon/paper_bin,\
-				prob(2);/obj/item/device/flash,\
-				prob(4);/obj/item/device/camera_film,\
-				prob(3);/obj/item/device/radio,\
-				prob(1);/obj/item/device/debugger,\
-				prob(1);/obj/item/device/aicard,\
-				prob(2);/obj/item/weapon/storage/box/botanydisk,\
-				prob(2);/obj/item/weapon/storage/box/ids,\
-				prob(2);/obj/item/weapon/storage/briefcase/crimekit,\
-				prob(2);/obj/item/weapon/storage/box/drinkingglasses,\
-				prob(2);/obj/item/weapon/hatton_magazine,\
-				prob(2);/obj/item/weapon/hand_labeler,\
-				prob(2);/obj/item/weapon/tool/bonesetter,\
-				prob(2);/obj/item/weapon/tool/scalpel,\
-				prob(2);/obj/item/weapon/tool/surgicaldrill,\
-				prob(2);/obj/item/weapon/tool/cautery,\
-				prob(2);/obj/item/weapon/tool/retractor,\
-				prob(2);/obj/item/weapon/tool/saw/circular,\
-				prob(3);/obj/item/weapon/mop,\
-				prob(3);/obj/item/weapon/lipstick/random,\
-				prob(2);/obj/item/weapon/inflatable_dispenser,\
-				prob(2);/obj/item/weapon/grenade/chem_grenade/cleaner,\
-				prob(2);/obj/item/weapon/smes_coil,\
-				prob(2);/obj/item/weapon/tank/anesthetic,\
-				prob(2);/obj/item/weapon/tank/nitrogen,\
-				prob(3);/obj/item/clothing/mask/balaclava,\
-				prob(3);/obj/item/clothing/mask/gas,\
-				prob(2);/obj/item/clothing/head/ushanka,\
-				prob(1);/obj/item/clothing/head/welding,\
-				prob(3);/obj/item/clothing/gloves/insulated/cheap,\
-				prob(2);/obj/item/clothing/gloves/insulated,\
-				prob(2);/obj/item/clothing/head/soft/blue,\
-				prob(2);/obj/item/clothing/head/soft/green,\
-				prob(2);/obj/item/clothing/head/soft/grey,\
-				prob(2);/obj/item/device/taperecorder,\
-				prob(2);/obj/item/weapon/storage/briefcase,\
-				prob(2);/obj/item/weapon/storage/secure/briefcase,\
-				prob(2);/obj/item/device/binoculars,\
-				prob(1);/obj/item/taperoll,\
-				prob(1);/obj/item/toy/crossbow,\
-				prob(1);/obj/item/toy/cultsword,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,\
-				prob(1);/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,\
-				prob(1);/obj/item/weapon/circuitboard/communications,\
-				prob(2);/obj/item/weapon/circuitboard/broken,\
-				prob(1);/obj/item/weapon/airlock_electronics,\
-				prob(1);/obj/item/rig_module/maneuvering_jets,\
-				prob(1);/obj/item/rig_module/device/drill,\
-				prob(1);/obj/item/clothing/glasses/meson,\
-				prob(1);/obj/item/clothing/glasses/night,\
-				prob(2);/obj/item/weapon/computer_hardware/battery_module,\
-				prob(2);/obj/item/weapon/computer_hardware/card_slot,\
-				prob(2);/obj/item/weapon/computer_hardware/hard_drive,\
-				prob(2);/obj/item/weapon/computer_hardware/network_card,\
-				prob(2);/obj/item/weapon/computer_hardware/processor_unit,\
-				prob(2);/obj/item/weapon/computer_hardware/tesla_link,\
-				prob(2);/obj/item/weapon/stock_parts/console_screen,\
-				prob(2);/obj/item/weapon/stock_parts/capacitor,\
-				prob(2);/obj/item/weapon/stock_parts/manipulator,\
-				prob(2);/obj/item/weapon/stock_parts/matter_bin,\
-				prob(2);/obj/item/weapon/stock_parts/micro_laser,\
-				prob(2);/obj/item/weapon/stock_parts/scanning_module,\
-				prob(1);/obj/item/weapon/stock_parts/subspace/amplifier,\
-				prob(1);/obj/item/weapon/stock_parts/subspace/analyzer,\
-				prob(1);/obj/item/weapon/stock_parts/subspace/ansible,\
-				prob(1);/obj/item/weapon/stock_parts/subspace/crystal,\
-				prob(1);/obj/item/weapon/stock_parts/subspace/filter,\
-				prob(1);/obj/item/weapon/stock_parts/subspace/transmitter,\
-				prob(1);/obj/item/weapon/stock_parts/subspace/treatment,\
-				prob(1);/obj/item/weapon/aiModule/reset,\
-				prob(1);/obj/item/weapon/circuitboard/autolathe,\
-				prob(1);/obj/item/ammo_magazine/cl32/rubber,\
-				prob(1);/obj/item/ammo_magazine/cl32,\
-				prob(1);/obj/item/ammo_magazine/sl357,\
-				prob(1);/obj/item/ammo_magazine/sl38,\
-				prob(1);/obj/item/ammo_magazine/sl38/rubber,\
-				prob(1);/obj/item/weapon/flamethrower,\
-				prob(1);/obj/item/weapon/gun/projectile/mk58,\
-				prob(1);/obj/item/weapon/gun/projectile/giskard,\
-				prob(1);/obj/item/weapon/gun/projectile/revolver/deckard,\
-				prob(1);/obj/item/weapon/gun/projectile/revolver/detective)
+	return pickweight(list(/obj/item/weapon/storage/box/shotgunammo/beanbags = 1,\
+				/obj/item/ammo_magazine/mc9mmt/rubber = 1,\
+				/obj/item/weapon/storage/box/matches = 3,\
+				/obj/item/stack/material/cardboard = 2,\
+				/obj/item/weapon/cell/large = 3,\
+				/obj/item/weapon/cell/medium = 6,\
+				/obj/item/weapon/cell/small = 7,\
+				/obj/item/stack/medical/bruise_pack = 3,\
+				/obj/item/bodybag/cryobag = 2,\
+				/obj/item/weapon/reagent_containers/syringe/inaprovaline = 2,\
+				/obj/item/weapon/cigbutt = 4,\
+				/obj/item/device/t_scanner = 2,\
+				/obj/item/device/scanner/analyzer = 2,\
+				/obj/item/device/scanner/healthanalyzer = 2,\
+				/obj/item/weapon/tool/screwdriver = 5,\
+				/obj/item/weapon/tool/wirecutters = 5,\
+				/obj/item/weapon/tool/weldingtool = 5,\
+				/obj/item/weapon/tool/crowbar = 5,\
+				/obj/item/weapon/tool/wrench = 5,\
+				/obj/item/weapon/storage/belt/utility/full = 6,\
+				/obj/item/weapon/storage/belt/medical = 6,\
+				/obj/item/weapon/storage/belt/security = 6,\
+				/obj/item/weapon/tool/pickaxe = 3,\
+				/obj/item/weapon/pen = 3,\
+				/obj/item/weapon/storage/box/donkpockets = 3,\
+				/obj/item/weapon/locator = 2,\
+				/obj/item/weapon/dice = 3,\
+				/obj/item/weapon/clipboard = 2,\
+				/obj/item/weapon/airlock_electronics = 3,\
+				/obj/item/weapon/weldpack = 3,\
+				/obj/item/weapon/soap = 2,\
+				/obj/item/weedkiller/triclopyr = 4,\
+				/obj/item/weedkiller = 4,\
+				/obj/item/weedkiller/lindane = 4,\
+				/obj/item/weedkiller/D24 = 4,\
+				/obj/item/weapon/phone = 3,\
+				/obj/item/weapon/cane = 2,\
+				/obj/item/weapon/cane/concealed = 1,\
+				/obj/item/weapon/staff/broom = 2,\
+				/obj/item/weapon/circuitboard/apc = 1,\
+				/obj/item/weapon/tool/shovel = 1,\
+				/obj/item/weapon/folder = 2,\
+				/obj/item/weapon/folder/blue = 2,\
+				/obj/item/weapon/folder/red = 2,\
+				/obj/item/weapon/folder/yellow = 2,\
+				/obj/item/weapon/folder/white = 2,\
+				/obj/item/weapon/paper_bin = 2,\
+				/obj/item/device/flash = 2,\
+				/obj/item/device/camera_film = 4,\
+				/obj/item/device/radio = 3,\
+				/obj/item/device/debugger = 1,\
+				/obj/item/device/aicard = 1,\
+				/obj/item/weapon/storage/box/botanydisk = 2,\
+				/obj/item/weapon/storage/box/ids = 2,\
+				/obj/item/weapon/storage/briefcase/crimekit = 2,\
+				/obj/item/weapon/storage/box/drinkingglasses = 2,\
+				/obj/item/weapon/hatton_magazine = 2,\
+				/obj/item/weapon/hand_labeler = 2,\
+				/obj/item/weapon/tool/bonesetter = 2,\
+				/obj/item/weapon/tool/scalpel = 2,\
+				/obj/item/weapon/tool/surgicaldrill = 2,\
+				/obj/item/weapon/tool/cautery = 2,\
+				/obj/item/weapon/tool/retractor = 2,\
+				/obj/item/weapon/tool/saw/circular = 2,\
+				/obj/item/weapon/mop = 3,\
+				/obj/item/weapon/lipstick/random = 3,\
+				/obj/item/weapon/inflatable_dispenser = 2,\
+				/obj/item/weapon/grenade/chem_grenade/cleaner = 2,\
+				/obj/item/weapon/smes_coil = 2,\
+				/obj/item/weapon/tank/anesthetic = 2,\
+				/obj/item/weapon/tank/nitrogen = 2,\
+				/obj/item/clothing/mask/balaclava = 3,\
+				/obj/item/clothing/mask/gas = 3,\
+				/obj/item/clothing/head/ushanka = 2,\
+				/obj/item/clothing/head/welding = 1,\
+				/obj/item/clothing/gloves/insulated/cheap = 3,\
+				/obj/item/clothing/gloves/insulated = 2,\
+				/obj/item/clothing/head/soft/blue = 2,\
+				/obj/item/clothing/head/soft/green = 2,\
+				/obj/item/clothing/head/soft/grey = 2,\
+				/obj/item/device/taperecorder = 2,\
+				/obj/item/weapon/storage/briefcase = 2,\
+				/obj/item/weapon/storage/secure/briefcase = 2,\
+				/obj/item/device/binoculars = 2,\
+				/obj/item/taperoll = 1,\
+				/obj/item/toy/crossbow = 1,\
+				/obj/item/toy/cultsword = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 1,\
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 1,\
+				/obj/item/weapon/circuitboard/communications = 1,\
+				/obj/item/weapon/circuitboard/broken = 2,\
+				/obj/item/weapon/airlock_electronics = 1,\
+				/obj/item/rig_module/maneuvering_jets = 1,\
+				/obj/item/rig_module/device/drill = 1,\
+				/obj/item/clothing/glasses/meson = 1,\
+				/obj/item/clothing/glasses/night = 1,\
+				/obj/item/weapon/computer_hardware/battery_module = 2,\
+				/obj/item/weapon/computer_hardware/card_slot = 2,\
+				/obj/item/weapon/computer_hardware/hard_drive = 2,\
+				/obj/item/weapon/computer_hardware/network_card = 2,\
+				/obj/item/weapon/computer_hardware/processor_unit = 2,\
+				/obj/item/weapon/computer_hardware/tesla_link = 2,\
+				/obj/item/weapon/stock_parts/console_screen = 2,\
+				/obj/item/weapon/stock_parts/capacitor = 2,\
+				/obj/item/weapon/stock_parts/manipulator = 2,\
+				/obj/item/weapon/stock_parts/matter_bin = 2,\
+				/obj/item/weapon/stock_parts/micro_laser = 2,\
+				/obj/item/weapon/stock_parts/scanning_module = 2,\
+				/obj/item/weapon/stock_parts/subspace/amplifier = 1,\
+				/obj/item/weapon/stock_parts/subspace/analyzer = 1,\
+				/obj/item/weapon/stock_parts/subspace/ansible = 1,\
+				/obj/item/weapon/stock_parts/subspace/crystal = 1,\
+				/obj/item/weapon/stock_parts/subspace/filter = 1,\
+				/obj/item/weapon/stock_parts/subspace/transmitter = 1,\
+				/obj/item/weapon/stock_parts/subspace/treatment = 1,\
+				/obj/item/weapon/aiModule/reset = 1,\
+				/obj/item/weapon/circuitboard/autolathe = 1,\
+				/obj/item/ammo_magazine/cl32/rubber = 1,\
+				/obj/item/ammo_magazine/cl32 = 1,\
+				/obj/item/ammo_magazine/sl357 = 1,\
+				/obj/item/ammo_magazine/sl38 = 1,\
+				/obj/item/ammo_magazine/sl38/rubber = 1,\
+				/obj/item/weapon/flamethrower = 1,\
+				/obj/item/weapon/gun/projectile/mk58 = 1,\
+				/obj/item/weapon/gun/projectile/giskard = 1,\
+				/obj/item/weapon/gun/projectile/revolver/deckard = 1,\
+				/obj/item/weapon/gun/projectile/revolver/detective = 1))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

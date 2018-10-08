@@ -5,7 +5,7 @@
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
-	var/obj/item/weapon/cell/medium/cell
+	var/obj/item/weapon/cell/large/cell
 	var/on = 0
 	var/set_temperature = T0C + 50	//K
 	var/heating_power = 40000
@@ -13,7 +13,7 @@
 
 /obj/machinery/space_heater/New()
 	..()
-	cell = new(src)
+	cell = new /obj/item/weapon/cell/large/high(src)
 	update_icon()
 
 /obj/machinery/space_heater/update_icon()
@@ -167,7 +167,7 @@
 						heat_transfer = min( heat_transfer , heating_power ) //limit by the power rating of the heater
 
 						removed.add_thermal_energy(heat_transfer)
-						cell.use(heat_transfer*CELLRATE)
+						cell.use((heat_transfer*CELLRATE)/10)
 					else	//cooling air
 						heat_transfer = abs(heat_transfer)
 
@@ -178,7 +178,7 @@
 						heat_transfer = removed.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
 
 						var/power_used = abs(heat_transfer)/cop
-						cell.use(power_used*CELLRATE)
+						cell.use((power_used*CELLRATE)/10)
 
 				env.merge(removed)
 		else
