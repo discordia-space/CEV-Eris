@@ -418,7 +418,7 @@
 "ib" = (/obj/machinery/embedded_controller/radio/simple_docking_controller{frequency = 1380; id_tag = "escape_pod_1_recovery"; pixel_x = 25; pixel_y = 0; req_one_access = list(13); tag_door = "escape_pod_1_recovery_hatch"},/obj/effect/floor_decal/borderfloorblack{tag = "icon-borderfloor_black (NORTHEAST)"; icon_state = "borderfloor_black"; dir = 5},/turf/simulated/floor/tiled/dark,/area/centcom/evac)
 "ic" = (/obj/structure/window/reinforced/crescent{dir = 1},/obj/structure/medical_stand,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/syndicate_station/start)
 "id" = (/obj/structure/medical_stand,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/skipjack_station/start)
-"ie" = (/obj/item/modular_computer/console{tag = "icon-console (EAST)"; icon_state = "console"; dir = 4},/obj/effect/floor_decal/borderfloorblack{tag = "icon-borderfloor_black (WEST)"; icon_state = "borderfloor_black"; dir = 8},/turf/simulated/floor/tiled/dark,/area/centcom/evac)
+"ie" = (/obj/machinery/modular_computer/console/buildable{tag = "icon-console (EAST)"; icon_state = "console"; dir = 4},/obj/effect/floor_decal/borderfloorblack{tag = "icon-borderfloor_black (WEST)"; icon_state = "borderfloor_black"; dir = 8},/turf/simulated/floor/tiled/dark,/area/centcom/evac)
 "if" = (/obj/effect/floor_decal/chapel{tag = "icon-chapel (WEST)"; icon_state = "chapel"; dir = 8},/turf/simulated/floor/tiled/dark,/area/centcom/evac)
 "ig" = (/obj/effect/floor_decal/chapel,/turf/simulated/floor/tiled/dark,/area/centcom/evac)
 "ih" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/tiled/dark,/area/centcom/evac)
@@ -1051,3 +1051,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 qIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+

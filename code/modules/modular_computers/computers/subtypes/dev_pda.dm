@@ -112,3 +112,10 @@
 /obj/item/modular_computer/pda/roboticist
 	icon_state = "pda-robot"
 	icon_state_unpowered = "pda-robot"
+
+/obj/item/modular_computer/pda/Created()
+	qdel(processor_unit)
+	qdel(tesla_link)
+	qdel(hard_drive)
+	qdel(network_card)
+	qdel(scanner)

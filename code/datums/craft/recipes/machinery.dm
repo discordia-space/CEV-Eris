@@ -22,28 +22,46 @@
 	steps = list(
 		list(/obj/item/stack/material/steel, 5),
 	)
-/*
+
 /datum/craft_recipe/machinery/modularconsole
 	name = "modular console frame"
-	result = /obj/machinery/modular_computer/console/buildable
+	result = /obj/item/modular_computer/console
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
 		list(/obj/item/stack/material/steel, 10),
+		list(/obj/item/stack/material/glass, 4),
 	)
 
 /datum/craft_recipe/machinery/modularlaptop
 	name = "modular laptop frame"
-	result = /obj/machinery/modular_computer/laptop/buildable
+	result = /obj/item/modular_computer/laptop
 	steps = list(
-		list(/obj/item/stack/material/steel, 7),
+		list(/obj/item/stack/material/steel, 8),
+		list(/obj/item/stack/material/glass, 4),
 	)
-*/
-// TODO: modular craft
+
 /datum/craft_recipe/machinery/modulartablet
 	name = "modular tablet frame"
 	result = /obj/item/modular_computer/tablet
 	steps = list(
 		list(/obj/item/stack/material/steel, 5),
+		list(/obj/item/stack/material/glass, 2),
+	)
+
+/datum/craft_recipe/machinery/modularpda
+	name = "modular pda frame"
+	result = /obj/item/modular_computer/pda
+	steps = list(
+		list(/obj/item/stack/material/steel, 3),
+		list(/obj/item/stack/material/glass, 1),
+	)
+
+/datum/craft_recipe/machinery/modulartelescreen
+	name = "modular telescreen frame"
+	result = /obj/item/modular_computer/telescreen
+	steps = list(
+		list(/obj/item/stack/material/steel, 8),
+		list(/obj/item/stack/material/glass, 6),
 	)
 
 /datum/craft_recipe/machinery/turret_frame

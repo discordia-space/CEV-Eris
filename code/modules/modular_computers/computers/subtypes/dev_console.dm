@@ -24,3 +24,10 @@
 			playsound(src, "keyboard", 40)
 		else
 			playsound(src, "keystroke", 40)
+
+/obj/item/modular_computer/console/Created()
+	qdel(processor_unit)
+	qdel(tesla_link)
+	qdel(hard_drive)
+	qdel(network_card)
+	qdel(scanner)

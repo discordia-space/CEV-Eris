@@ -15,3 +15,10 @@
 	desc = "A small, portable microcomputer. This one has a gold and blue stripe, and a serial number stamped into the case."
 	icon_state = "tabletsol"
 	icon_state_unpowered = "tabletsol"
+
+/obj/item/modular_computer/tablet/Created()
+	qdel(processor_unit)
+	qdel(tesla_link)
+	qdel(hard_drive)
+	qdel(network_card)
+	qdel(scanner)

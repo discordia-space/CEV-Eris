@@ -37,3 +37,10 @@
 
 /obj/item/modular_computer/laptop/preset
 	anchored = FALSE
+
+/obj/item/modular_computer/laptop/Created()
+	qdel(processor_unit)
+	qdel(tesla_link)
+	qdel(hard_drive)
+	qdel(network_card)
+	qdel(scanner)
