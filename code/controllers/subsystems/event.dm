@@ -19,12 +19,11 @@ SUBSYSTEM_DEF(event)
 	var/list/datum/event/finished_events = list()
 
 	var/list/datum/event/all_events
-	var/list/datum/event_container/event_containers
 
-	var/datum/event_meta/new_event
-
+/*
 /datum/controller/subsystem/event/PreInit()
 	new_event = new
+*/
 
 //Subsystem procs
 /datum/controller/subsystem/event/Initialize(start_timeofday)
@@ -45,7 +44,6 @@ SUBSYSTEM_DEF(event)
 	active_events = SSevent.active_events
 	finished_events = SSevent.finished_events
 	all_events = SSevent.all_events
-	event_containers = SSevent.event_containers
 
 /datum/controller/subsystem/event/fire(resumed = FALSE)
 	if (!resumed)
@@ -73,23 +71,28 @@ SUBSYSTEM_DEF(event)
 /datum/controller/subsystem/event/proc/event_complete(datum/event/E)
 	active_events -= E
 
-	if(!E.event_meta || !E.severity)	// datum/event is used here and there for random reasons, maintaining "backwards compatibility"
+	if(!E.SE || !E.severity)	// datum/event is used here and there for random reasons, maintaining "backwards compatibility"
 		log_debug("Event of '[E.type]' with missing meta-data has completed.")
 		return
 
 	finished_events += E
 
-	// Add the event back to the list of available events
-	var/datum/event_container/EC = event_containers[E.severity]
-	var/datum/event_meta/EM = E.event_meta
-	if(EM.add_to_queue)
-		EC.available_events += EM
 
-	log_debug("Event '[EM.name]' has completed at [stationtime2text()].")
+	//TODO: Event cleanup here
+
+	// Add the event back to the list of available events
+	//var/datum/event_container/EC = event_containers[E.severity]
+	//var/datum/event_meta/EM = E.event_meta
+	//if(EM.add_to_queue)
+		//EC.available_events += EM
+
+	log_debug("Event '[name]' has completed at [stationtime2text()].")
 
 /datum/controller/subsystem/event/proc/delay_events(severity, delay)
-	var/list/datum/event_container/EC = event_containers[severity]
-	EC.next_event_time += delay
+	//TODO: Implement an equivilant for storyteller
+
+	/*var/list/datum/event_container/EC = event_containers[severity]
+	EC.next_event_time += delay*/
 
 /datum/controller/subsystem/event/proc/Interact(var/mob/living/user)
 	var/html = GetInteractWindow()
@@ -104,10 +107,10 @@ SUBSYSTEM_DEF(event)
 
 	world << "<br><br><br><font size=3><b>Random Events This Round:</b></font>"
 	for(var/datum/event/E in active_events|finished_events)
-		var/datum/event_meta/EM = E.event_meta
-		if(EM.name == "Nothing")
+		var/datum/storyevent/SE = E.SE
+		if(!SE || SE.name == "Nothing")
 			continue
-		var/message = "'[EM.name]' began at [worldtime2stationtime(E.startedAt)] "
+		var/message = "'[SE.name]' began at [worldtime2stationtime(E.startedAt)] "
 		if(E.isRunning)
 			message += "and is still running."
 		else
@@ -120,6 +123,7 @@ SUBSYSTEM_DEF(event)
 
 /datum/controller/subsystem/event/proc/GetInteractWindow()
 	var/html = "<A align='right' href='?src=\ref[src];refresh=1'>Refresh</A>"
+	/*
 	html += "<A align='right' href='?src=\ref[src];pause_all=[!config.allow_random_events]'>Pause All - [config.allow_random_events ? "Pause" : "Resume"]</A>"
 
 	if(selected_event_container)
@@ -212,25 +216,25 @@ SUBSYSTEM_DEF(event)
 		for(var/datum/event/E in active_events)
 			if(!E.event_meta)
 				continue
-			var/datum/event_meta/EM = E.event_meta
+			var/datum/storyevent/SE = E.SE
 			var/ends_at = E.startedAt + (E.lastProcessAt() * 20)	// A best estimate, based on how often the alarm manager processes
 			var/ends_in = max(0, round((ends_at - world.time) / 600, 0.1))
 			html += "<tr>"
-			html += "<td>[severity_to_string[EM.severity]]</td>"
-			html += "<td>[EM.name]</td>"
+			html += "<td>[severity_to_string[E.severity]]</td>"
+			html += "<td>[SE.name]</td>"
 			html += "<td>[worldtime2stationtime(ends_at)]</td>"
 			html += "<td>[ends_in]</td>"
 			html += "<td><A align='right' href='?src=\ref[src];stop=\ref[E]'>Stop</A></td>"
 			html += "</tr>"
 		html += "</table>"
 		html += "</div>"
-
+	*/
 	return html
 
 /datum/controller/subsystem/event/Topic(href, href_list)
 	if(..())
 		return
-
+	/*
 	if(href_list["toggle_report"])
 		report_at_round_end = !report_at_round_end
 		log_and_message_admins("has [report_at_round_end ? "enabled" : "disabled"] the round end event report.")
@@ -322,7 +326,9 @@ SUBSYSTEM_DEF(event)
 			EC.next_event = null
 
 	Interact(usr)
+	*/
 
+/* //TODO: Replace this
 /client/proc/forceEvent(var/type in SSevent.all_events)
 	set name = "Trigger Event (Debug Only)"
 	set category = "Debug"
@@ -333,14 +339,15 @@ SUBSYSTEM_DEF(event)
 	if(ispath(type))
 		new type(new /datum/event_meta(EVENT_LEVEL_MAJOR))
 		message_admins("[key_name_admin(usr)] has triggered an event. ([type])", 1)
-
+*/
+/*
 ADMIN_VERB_ADD(/client/proc/event_manager_panel, R_ADMIN, FALSE)
 /client/proc/event_manager_panel()
 	set name = "Event Manager Panel"
 	set category = "Admin"
 
 	if(SSevent)
-		SSevent.Interact(usr)
+		SSevent.Interact(usr*/
 
 /datum/controller/subsystem/event/stat_entry()
 	..("E:[active_events.len]")

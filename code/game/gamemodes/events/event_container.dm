@@ -10,7 +10,7 @@
 
 
 //This file is being gutted, don't use anything in it
-
+/*
 /datum/event_container
 	var/severity = -1
 	var/delayed = 0
@@ -188,7 +188,7 @@
 	available_events = list(
 		new /datum/event_meta(EVENT_LEVEL_ECONOMY, "Payday",				/datum/event/payday,			1000),
 	)
-
+*/
 #undef ASSIGNMENT_ANY
 #undef ASSIGNMENT_AI
 #undef ASSIGNMENT_CYBORG

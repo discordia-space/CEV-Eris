@@ -2,6 +2,7 @@
 
 /datum/storyevent
 	var/id = "event"
+	var/name = "event" //More publicly visible name
 	var/processing = FALSE
 
 

@@ -1,5 +1,6 @@
+/*
 /datum/event_meta
-	var/name 		= ""
+
 	var/enabled 	= 1	// Whether or not the event is available for random selection at all
 	var/weight 		= 0 // The base weight of this event. A zero means it may never fire, but see get_weight()
 	var/min_weight	= 0 // The minimum weight that this event will have. Only used if non-zero.
@@ -38,8 +39,9 @@
 	if(max_weight && total_weight > max_weight) total_weight = max_weight
 
 	return total_weight
-
+*/
 /datum/event	//NOTE: Times are measured in master controller ticks!
+	var/name = "unknown event"
 	var/startWhen		= 0	//When in the lifetime to call start().
 	var/announceWhen	= 0	//When in the lifetime to call announce().
 	var/endWhen			= 0	//When in the lifetime the event should end.
@@ -49,7 +51,7 @@
 	var/isRunning		= 1 //If this event is currently running. You should not change this.
 	var/startedAt		= 0 //When this event started.
 	var/endedAt			= 0 //When this event ended.
-	var/datum/event_meta/event_meta = null
+	var/datum/storyevent/SE = null
 
 /datum/event/nothing
 
@@ -126,14 +128,14 @@
 	SSevent.active_events -= src
 	SSevent.event_complete(src)
 
-/datum/event/New(var/datum/event_meta/EM)
+/datum/event/New(var/datum/storyevent/_SE, var/_severity)
 	// event needs to be responsible for this, as stuff like APLUs currently make their own events for curious reasons
 	SSevent.active_events += src
 
-	event_meta = EM
-	severity = event_meta.severity
-	if(severity < EVENT_LEVEL_MUNDANE) severity = EVENT_LEVEL_MUNDANE
-	if(severity > EVENT_LEVEL_ECONOMY) severity = EVENT_LEVEL_ECONOMY
+	SE = _SE
+	severity = _severity
+	//if(severity < EVENT_LEVEL_MUNDANE) severity = EVENT_LEVEL_MUNDANE
+	//if(severity > EVENT_LEVEL_ECONOMY) severity = EVENT_LEVEL_ECONOMY
 
 	startedAt = world.time
 
