@@ -3,19 +3,19 @@
 	icon_state = "machine-black"
 
 /obj/random/structures/item_to_spawn()
-	return pick(prob(10);/obj/structure/salvageable/machine,\
-				prob(10);/obj/structure/salvageable/autolathe,\
-				prob(1);/obj/structure/salvageable/implant_container,\
-				prob(5);/obj/structure/salvageable/data,\
-				prob(5);/obj/structure/salvageable/server,\
-				prob(5);/obj/structure/computerframe,\
-				prob(4);/obj/machinery/constructable_frame/machine_frame,\
-				prob(6);/obj/structure/reagent_dispensers/fueltank,\
-				prob(2);/obj/structure/reagent_dispensers/fueltank/huge,\
-				prob(6);/obj/structure/reagent_dispensers/watertank,\
-				prob(2);/obj/structure/largecrate,\
-				prob(2);/obj/structure/ore_box,\
-				prob(1);/obj/structure/dispenser/oxygen)
+	return pickweight(list(/obj/structure/salvageable/machine = 10,\
+				/obj/structure/salvageable/autolathe = 10,\
+				/obj/structure/salvageable/implant_container = 1,\
+				/obj/structure/salvageable/data = 5,\
+				/obj/structure/salvageable/server = 5,\
+				/obj/structure/computerframe = 5,\
+				/obj/machinery/constructable_frame/machine_frame = 4,\
+				/obj/structure/reagent_dispensers/fueltank = 6,\
+				/obj/structure/reagent_dispensers/fueltank/huge = 2,\
+				/obj/structure/reagent_dispensers/watertank = 6,\
+				/obj/structure/largecrate = 2,\
+				/obj/structure/ore_box = 2,\
+				/obj/structure/dispenser/oxygen = 1))
 
 /obj/random/structures/low_chance
 	name = "low chance random structures"
