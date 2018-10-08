@@ -104,7 +104,7 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(!shock(user, 100))
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					PoolOrNew(/obj/item/stack/rods, list(get_turf(src), destroyed ? 1 : 2))
+					new /obj/item/stack/rods(get_turf(src), destroyed ? 1 : 2)
 					qdel(src)
 					return
 			return
@@ -184,11 +184,11 @@
 			density = 0
 			destroyed = 1
 			update_icon()
-			PoolOrNew(/obj/item/stack/rods, get_turf(src))
+			new /obj/item/stack/rods(get_turf(src))
 
 		else
 			if(health <= -6)
-				PoolOrNew(/obj/item/stack/rods, get_turf(src))
+				new /obj/item/stack/rods(get_turf(src))
 				qdel(src)
 				return
 	return
@@ -246,7 +246,7 @@
 	health = max(0, health - tforce)
 	if(health <= 0)
 		destroyed=1
-		PoolOrNew(/obj/item/stack/rods, get_turf(src))
+		new /obj/item/stack/rods(get_turf(src))
 		density=0
 		update_icon()
 

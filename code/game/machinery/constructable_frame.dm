@@ -150,7 +150,7 @@
 						req_components[A] = circuit.req_components[A]
 					req_component_names = circuit.req_components.Copy()
 					for(var/A in req_components)
-						var/obj/ct = PoolOrNew(A, null) // have to quickly instantiate it get name
+						var/obj/ct = new A // have to quickly instantiate it get name
 						req_component_names[A] = ct.name
 					update_desc()
 					user << desc

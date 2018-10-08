@@ -107,7 +107,7 @@ obj/structure/windoor_assembly/Destroy()
 					user << SPAN_NOTICE("You dissasembled the windoor assembly!")
 					new /obj/item/stack/material/glass/reinforced(get_turf(src), 5)
 					if(secure)
-						PoolOrNew(/obj/item/stack/rods, list(get_turf(src), 4))
+						new /obj/item/stack/rods(get_turf(src), 4)
 					qdel(src)
 					return
 			return

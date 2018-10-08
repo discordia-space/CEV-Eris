@@ -65,7 +65,6 @@
 #include "code\_global_vars\lists\mapping.dm"
 #include "code\_helpers\areas.dm"
 #include "code\_helpers\atmospherics.dm"
-#include "code\_helpers\datum_pool.dm"
 #include "code\_helpers\files.dm"
 #include "code\_helpers\functional.dm"
 #include "code\_helpers\game.dm"

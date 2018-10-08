@@ -18,7 +18,7 @@ var/group_global_cooldown = 0
 	GR.implant_type = C.implant_type
 	GR.phrases = phrases
 	GR.cooldown = cooldown
-	GR.effect = PoolOrNew(effect_type)
+	GR.effect = new effect_type
 	GR.effect.succ_message = success_message
 	GR.effect.fail_message = fail_message
 
