@@ -53,3 +53,7 @@
 //There are a few "nice antags" which this can be applied to.
 //No current random events afaik
 #define TAG_NEGATIVE "positive"
+
+
+//The event helps to invoke a horror vibe
+#define TAG_SCARY

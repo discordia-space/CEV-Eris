@@ -4,14 +4,7 @@
 	var/id = "event"
 	var/processing = FALSE
 
-	//Which event pools this story event can appear in.
-	//Multiple options allowed, can be any combination of
-	//EVENT_LEVEL_MUNDANE
-	//EVENT_LEVEL_MODERATE
-	//EVENT_LEVEL_MAJOR
-	//EVENT_LEVEL_ROLESET
-	//EVENT_LEVEL_ECONOMY  (not implemented)
-	var/list/event_pools = list()
+
 
 
 	var/enabled = TRUE //Compile time switch to enable/disable the event completely
@@ -20,9 +13,7 @@
 	//When false, multiple copies of this event cannot be queued up at the same time.
 	//The storyteller will be forced to wait for the previously scheduled copy to resolve completely
 
-	var/cost = 20
 
-	var/weight = 1
 	var/weight_cache = 0
 
 	var/last_spawn_time = 0
@@ -48,6 +39,23 @@
 	var/last_trigger_time = 0
 
 	var/has_priest = -1
+
+	//Things to configure
+	var/event_type
+	var/cost = 20
+	var/weight = 1
+
+	//Which event pools this story event can appear in.
+	//Multiple options allowed, can be any combination of
+	//EVENT_LEVEL_MUNDANE
+	//EVENT_LEVEL_MODERATE
+	//EVENT_LEVEL_MAJOR
+	//EVENT_LEVEL_ROLESET
+	//EVENT_LEVEL_ECONOMY  (not implemented)
+	var/list/event_pools = list()
+
+	//Tags that describe what the event does. See __defines/storyteller.dm for a list
+	var/list/tags = list()
 
 /datum/storyevent/proc/can_trigger()
 	if(processing && is_processing())
