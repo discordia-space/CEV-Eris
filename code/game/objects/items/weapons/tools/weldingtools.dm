@@ -29,7 +29,7 @@
 	if (get_fuel() > 0)
 		..()
 		damtype = BURN
-		force = WEAPON_FORCE_PAINFULL
+		force = force_ignited
 		START_PROCESSING(SSobj, src)
 	else
 		user << SPAN_WARNING("[src] has no fuel!")
@@ -67,5 +67,5 @@
 	item_state = "adv_welder"
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
-	force_ignited = WEAPON_FORCE_PAINFULL+3 //Slightly more powerful, not much more so
+	force_ignited = WEAPON_FORCE_PAINFULL*1.15 //Slightly more powerful, not much more so
 	fuel_meter = FALSE
