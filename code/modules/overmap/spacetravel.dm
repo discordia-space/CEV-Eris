@@ -51,6 +51,9 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 	if (!T || !A)
 		return
 
+	if(istype(A, /mob/observer/eye/aiEye))
+		return
+
 	var/obj/effect/overmap/M = map_sectors["[T.z]"]
 	if (!M)
 		return

@@ -95,6 +95,9 @@
 
 #define LAZYADD(L, I) if(!L) { L = list(); } L += I;
 
+// Adds I to L, initalizing L if necessary, if I is not already in L
+#define LAZYDISTINCTADD(L, I) if(!L) { L = list(); } L |= I;
+
 #define to_chat(target, message)                            target << message
 #define to_world(message)                                   world << message
 #define to_world_log(message)                               log_world(message)
@@ -119,3 +122,6 @@
 //Currently used in SDQL2 stuff
 #define send_output(target, msg, control) target << output(msg, control)
 #define send_link(target, url) target << link(url)
+
+// Insert an object A into a sorted list using cmp_proc (/code/_helpers/cmp.dm) for comparison.
+#define ADD_SORTED(list, A, cmp_proc) if(!list.len) {list.Add(A)} else {list.Insert(FindElementIndex(A, list, cmp_proc), A)}

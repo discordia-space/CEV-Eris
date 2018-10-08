@@ -242,3 +242,28 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 //Percentage of maximum blood volume.
 /mob/living/carbon/human/proc/get_blood_volume()
 	return round((vessel.get_reagent_amount("blood")/species.blood_volume)*100)
+
+//Get fluffy numbers
+/mob/living/carbon/human/proc/get_blood_pressure()
+	if(status_flags & FAKEDEATH)
+		return "[Floor(120+rand(-5,5))*0.25]/[Floor(80+rand(-5,5)*0.25)]"
+	var/blood_result = get_blood_circulation()
+	return "[Floor((120+rand(-5,5))*(blood_result/100))]/[Floor((80+rand(-5,5))*(blood_result/100))]"
+
+//Percentage of maximum blood volume, affected by the condition of circulation organs
+/mob/living/carbon/human/proc/get_blood_circulation()
+	var/obj/item/organ/internal/heart/heart = internal_organs_by_name[O_HEART]
+	var/blood_volume = get_blood_volume()
+	if(!heart || (heart.pulse == PULSE_NONE && !(status_flags & FAKEDEATH) && !BP_IS_ROBOTIC(heart)))
+		blood_volume *= 0.25
+	else
+		var/pulse_mod = 1
+		switch(heart.pulse)
+			if(PULSE_SLOW)
+				pulse_mod *= 0.9
+			if(PULSE_FAST)
+				pulse_mod *= 1.1
+			if(PULSE_2FAST, PULSE_THREADY)
+				pulse_mod *= 1.25
+		blood_volume *= max(0.3, (1-(heart.damage / heart.max_damage))) * pulse_mod
+	return min(blood_volume, 100)

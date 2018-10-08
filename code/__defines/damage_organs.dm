@@ -89,3 +89,6 @@
 #define INFECTION_LEVEL_ONE   100
 #define INFECTION_LEVEL_TWO   500
 #define INFECTION_LEVEL_THREE 1000
+
+//plug before baymed
+#define BP_IS_ROBOTIC(org)  (org.status & ORGAN_ROBOT)

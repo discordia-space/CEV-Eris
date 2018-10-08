@@ -67,3 +67,11 @@
 
 /datum/proc/update_layout()
 	return FALSE
+
+//Allows computer programs to play sounds from the console
+/datum/nano_module/proc/playsound_host(soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
+	if (!host)
+		return
+
+	var/turf/T = get_turf(host)
+	playsound(T, soundin, vol, vary, extrarange, falloff, is_global,use_pressure)

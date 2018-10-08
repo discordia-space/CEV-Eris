@@ -69,7 +69,7 @@
 
 /datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
-	var/list/data = program.get_header_data()
+	var/list/data// = get_header_data()
 
 	if (istype(gen))
 		data["genloc"] = genloc

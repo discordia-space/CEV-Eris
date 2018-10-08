@@ -1,9 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-/proc/get_z(O)
-	var/turf/loc = get_turf(O)
-	return loc ? loc.z : 0
-
 /proc/dopage(src, target)
 	var/href_list
 	var/href
@@ -12,6 +8,10 @@
 	src:temphtml = null
 	src:Topic(href, href_list)
 	return null
+
+/proc/get_z(O)
+	var/turf/loc = get_turf(O)
+	return loc ? loc.z : 0
 
 /proc/get_area(O)
 	var/turf/loc = get_turf(O)

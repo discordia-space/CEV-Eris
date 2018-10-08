@@ -3,6 +3,9 @@
 	crew_data["true_pulse"] = -1
 	crew_data["pulse"] = "N/A"
 	crew_data["pulse_span"] = "neutral"
+
+	// TODO: enable after baymed
+	/*
 	if(!H.isSynthetic() && H.should_have_organ(BP_HEART))
 		var/obj/item/organ/internal/heart/O = H.internal_organs_by_name[BP_HEART]
 		if (!O || !BP_IS_ROBOTIC(O)) // Don't make medical freak out over prosthetic hearts
@@ -45,7 +48,47 @@
 			if(-(INFINITY) to BLOOD_VOLUME_BAD)
 				crew_data["oxygenation"] = "extremely low"
 				crew_data["oxygenation_span"] = "bad"
+	*/
+	if(!H.isSynthetic() && H.should_have_organ(O_HEART))
+		var/obj/item/organ/internal/heart/O = H.internal_organs_by_name[O_HEART]
+		if (!O || !BP_IS_ROBOTIC(O)) // Don't make medical freak out over prosthetic hearts
+			crew_data["true_pulse"] = H.pulse()
+			crew_data["pulse"] = H.get_pulse(1)
+			switch(crew_data["true_pulse"])
+				if(PULSE_NONE)
+					crew_data["pulse_span"] = "bad"
+				if(PULSE_SLOW)
+					crew_data["pulse_span"] = "average"
+				if(PULSE_NORM)
+					crew_data["pulse_span"] = "good"
+				if(PULSE_FAST)
+					crew_data["pulse_span"] = "highlight"
+				if(PULSE_2FAST)
+					crew_data["pulse_span"] = "average"
+				if(PULSE_THREADY)
+					crew_data["pulse_span"] = "bad"
 
+	crew_data["pressure"] = "N/A"
+	crew_data["true_oxygenation"] = -1
+	crew_data["oxygenation"] = ""
+	crew_data["oxygenation_span"] = ""
+	if(!H.isSynthetic() && H.should_have_organ(O_HEART))
+		crew_data["pressure"] = H.get_blood_pressure()
+		crew_data["true_oxygenation"] = H.getOxyLoss()
+		switch (crew_data["true_oxygenation"])
+			if(40 to INFINITY)
+				crew_data["oxygenation"] = "extremely low"
+				crew_data["oxygenation_span"] = "bad"
+			if(20 to 40)
+				crew_data["oxygenation"] = "very low"
+				crew_data["oxygenation_span"] = "bad"
+			if(10 to 20)
+				crew_data["oxygenation"] = "low"
+				crew_data["oxygenation_span"] = "average"
+			if(0 to 10)
+				crew_data["oxygenation"] = "normal"
+				crew_data["oxygenation_span"] = "good"
+				
 	crew_data["bodytemp"] = H.bodytemperature - T0C
 	return ..()
 
