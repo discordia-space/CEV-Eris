@@ -141,10 +141,10 @@
 				// place mask and add fingerprints
 				usr.visible_message("<span class='notice'>\The [usr] has placed \the mask on [target]'s mouth.</span>",
 									"<span class='notice'>You have placed \the mask on [target]'s mouth.</span>")
-				attach_mask(target)
-				src.add_fingerprint(usr)
-				update_icon()
-				START_PROCESSING(SSobj,src)
+				if(attach_mask(target))
+					src.add_fingerprint(usr)
+					update_icon()
+					START_PROCESSING(SSobj,src)
 				return
 			if("Drip needle")
 				if(attached)
@@ -250,13 +250,13 @@
 
 /obj/structure/medical_stand/proc/attach_mask(var/mob/living/carbon/C)
 	if(C && istype(C))
-		contained.forceMove(get_turf(C))
-		C.equip_to_slot(contained, slot_wear_mask)
-		if(tank)
-			tank.forceMove(C)
-		breather = C
-		if(breather.HUDneed.Find("internal"))
-			internalsHud = breather.HUDneed["internal"]
+		if(C.equip_to_slot_if_possible(contained, slot_wear_mask))
+			if(tank)
+				tank.forceMove(C)
+			breather = C
+			if(breather.HUDneed.Find("internal"))
+				internalsHud = breather.HUDneed["internal"]
+			return TRUE
 
 /obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, mob/user as mob)
 	if(!user)
