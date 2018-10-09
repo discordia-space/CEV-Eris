@@ -1,3 +1,10 @@
+GLOBAL_VAR_CONST(PREF_YES, "Yes")
+GLOBAL_VAR_CONST(PREF_NO, "No")
+GLOBAL_VAR_CONST(PREF_FANCY, "Fancy")
+GLOBAL_VAR_CONST(PREF_PLAIN, "Plain")
+GLOBAL_VAR_CONST(PREF_PRIMARY, "Primary")
+GLOBAL_VAR_CONST(PREF_ALL, "All")
+
 var/list/_client_preferences
 var/list/_client_preferences_by_key
 var/list/_client_preferences_by_type
@@ -33,12 +40,21 @@ var/list/_client_preferences_by_type
 	var/enabled_by_default = TRUE
 	var/enabled_description = "Yes"
 	var/disabled_description = "No"
+	var/list/options = list(GLOB.PREF_YES, GLOB.PREF_NO)
+	var/default_value
 
 /datum/client_preference/proc/may_toggle(var/mob/preference_mob)
 	return TRUE
 
 /datum/client_preference/proc/toggled(var/mob/preference_mob, var/enabled)
 	return
+
+/proc/get_client_preference(var/datum/client_preference/preference)
+	if(istype(preference))
+		return preference
+	if(ispath(preference))
+		return get_client_preference_by_type(preference)
+	return get_client_preference_by_key(preference)
 
 /*********************
 * Player Preferences *
@@ -169,3 +185,13 @@ var/list/_client_preferences_by_type
 	key = "SOUND_ADMINHELP"
 	enabled_description = "Hear"
 	disabled_description = "Silent"
+
+/datum/client_preference/tgui_style
+	description ="tgui Style"
+	key = "TGUI_FANCY"
+	options = list(GLOB.PREF_FANCY, GLOB.PREF_PLAIN)
+
+/datum/client_preference/tgui_monitor
+	description ="tgui Monitor"
+	key = "TGUI_MONITOR"
+	options = list(GLOB.PREF_PRIMARY, GLOB.PREF_ALL)

@@ -1,42 +1,10 @@
-SUBSYSTEM_DEF(nano)
+PROCESSING_SUBSYSTEM_DEF(nano)
 	name = "NanoUI"
 	priority = SS_PRIORITY_NANO
 	wait = 2 SECONDS
-	flags = SS_BACKGROUND | SS_POST_FIRE_TIMING | SS_NO_INIT
 
-	var/list/open_uis = list()       // A list of current open /nanoui UIs, grouped by src_object and ui_key.
-	var/list/processing_uis = list() // A list of current open /nanoui UIs, not grouped, for use in processing.
-
-	var/tmp/list/current_run = list()
-
-/datum/controller/subsystem/nano/fire(resumed = 0)
-	if (!resumed)
-		src.current_run = processing_uis.Copy()
-
-	var/list/current_run = src.current_run
-
-	while(current_run.len)
-		var/datum/nanoui/ui = current_run[current_run.len]
-		current_run.len--
-
-		if(QDELETED(ui) || QDELETED(ui.user) || QDELETED(ui.src_object))
-			processing_uis -= ui
-			if (MC_TICK_CHECK)
-				return
-			continue
-
-		ui.Process()
-		if (MC_TICK_CHECK)
-			return
-
-/datum/controller/subsystem/nano/stat_entry()
-	..("UI:[open_uis.len], P:[processing_uis.len]")
-
- /**
-  * nanoui subsystem
-  *
-  * Contains all nanoui state and process code.
- **/
+	// a list of current open /nanoui UIs, grouped by src_object and ui_key
+	var/list/open_uis = list()
 
  /**
   * Get an open /nanoui ui for the current user, src_object and ui_key and try to update it with data
@@ -50,21 +18,14 @@ SUBSYSTEM_DEF(nano)
   *
   * @return /nanoui Returns the found ui, for null if none exists
   */
-/datum/controller/subsystem/nano/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, data, force_open = FALSE)
-	if (isnull(ui)) // no ui has been passed, so we'll search for one
-	{
+/datum/controller/subsystem/processing/nano/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, data, force_open = 0)
+	if (!ui) // no ui has been passed, so we'll search for one
 		ui = get_open_ui(user, src_object, ui_key)
-	}
-	if (!isnull(ui))
-		// The UI is already open
-		if (!force_open)
-			ui.push_data(data)
-			return ui
-		else
-			ui.reinitialise(new_initial_data=data)
-			return ui
-
-	return null
+	if (!ui)
+		return
+	// The UI is already open
+	force_open ? ui.reinitialise(new_initial_data=data) : ui.push_data(data)
+	return ui
 
  /**
   * Get an open /nanoui ui for the current user, src_object and ui_key
@@ -75,21 +36,14 @@ SUBSYSTEM_DEF(nano)
   *
   * @return /nanoui Returns the found ui, or null if none exists
   */
-/datum/controller/subsystem/nano/proc/get_open_ui(mob/user, src_object, ui_key)
+/datum/controller/subsystem/processing/nano/proc/get_open_ui(mob/user, src_object, ui_key)
 	var/src_object_key = "\ref[src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
-		//testing("nano/get_open_ui mob [user.name] [src_object:name] [ui_key] - there are no uis open")
-		return null
-	else if (isnull(open_uis[src_object_key][ui_key]) || !istype(open_uis[src_object_key][ui_key], /list))
-		//testing("nano/get_open_ui mob [user.name] [src_object:name] [ui_key] - there are no uis open for this object")
-		return null
+	if (!open_uis[src_object_key] || !open_uis[src_object_key][ui_key])
+		return
 
 	for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
 		if (ui.user == user)
 			return ui
-
-	//testing("nano/get_open_ui mob [user.name] [src_object:name] [ui_key] - ui not found")
-	return null
 
  /**
   * Update all /nanoui uis attached to src_object
@@ -98,18 +52,19 @@ SUBSYSTEM_DEF(nano)
   *
   * @return int The number of uis updated
   */
-/datum/controller/subsystem/nano/proc/update_uis(src_object)
+/datum/controller/subsystem/processing/nano/proc/update_uis(src_object)
+	. = 0
 	var/src_object_key = "\ref[src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
-		return 0
+	if (!open_uis[src_object_key])
+		return
 
-	var/update_count = 0
 	for (var/ui_key in open_uis[src_object_key])
 		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
-			if(ui && ui.src_object && ui.user && ui.src_object.nano_host())
-				ui.Process(1)
-				update_count++
-	return update_count
+			if(ui.src_object && ui.user && ui.src_object.nano_host())
+				ui.try_update(1)
+				.++
+			else
+				ui.close()
 
  /**
   * Close all /nanoui uis attached to src_object
@@ -118,18 +73,16 @@ SUBSYSTEM_DEF(nano)
   *
   * @return int The number of uis close
   */
-/datum/controller/subsystem/nano/proc/close_uis(src_object)
+/datum/controller/subsystem/processing/nano/proc/close_uis(src_object)
+	. = 0
 	var/src_object_key = "\ref[src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
-		return 0
+	if (!open_uis[src_object_key])
+		return
 
-	var/close_count = 0
 	for (var/ui_key in open_uis[src_object_key])
 		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
-			if(ui && ui.src_object && ui.user && ui.src_object.nano_host())
-				ui.close()
-				close_count++
-	return close_count
+			ui.close() // If it's missing src_object or user, we want to close it even more.
+			.++
 
  /**
   * Update /nanoui uis belonging to user
@@ -140,17 +93,15 @@ SUBSYSTEM_DEF(nano)
   *
   * @return int The number of uis updated
   */
-/datum/controller/subsystem/nano/proc/update_user_uis(mob/user, src_object = null, ui_key = null)
-	if (isnull(user.open_uis) || !istype(user.open_uis, /list) || open_uis.len == 0)
-		return 0 // has no open uis
+/datum/controller/subsystem/processing/nano/proc/update_user_uis(mob/user, src_object, ui_key)
+	. = 0
+	if (!length(user.open_uis))
+		return // has no open uis
 
-	var/update_count = 0
 	for (var/datum/nanoui/ui in user.open_uis)
-		if ((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
-			ui.Process(1)
-			update_count++
-
-	return update_count
+		if ((isnull(src_object) || ui.src_object == src_object) && (isnull(ui_key) || ui.ui_key == ui_key))
+			ui.try_update(1)
+			.++
 
  /**
   * Close /nanoui uis belonging to user
@@ -161,20 +112,15 @@ SUBSYSTEM_DEF(nano)
   *
   * @return int The number of uis closed
   */
-/datum/controller/subsystem/nano/proc/close_user_uis(mob/user, src_object = null, ui_key = null)
-	if (isnull(user.open_uis) || !istype(user.open_uis, /list) || open_uis.len == 0)
-		//testing("nano/close_user_uis mob [user.name] has no open uis")
-		return 0 // has no open uis
+/datum/controller/subsystem/processing/nano/proc/close_user_uis(mob/user, src_object, ui_key)
+	. = 0
+	if (!length(user.open_uis))
+		return // has no open uis
 
-	var/close_count = 0
 	for (var/datum/nanoui/ui in user.open_uis)
-		if ((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
+		if ((isnull(src_object) || ui.src_object == src_object) && (isnull(ui_key) || ui.ui_key == ui_key))
 			ui.close()
-			close_count++
-
-	//testing("nano/close_user_uis mob [user.name] closed [open_uis.len] of [close_count] uis")
-
-	return close_count
+			.++
 
  /**
   * Add a /nanoui ui to the list of open uis
@@ -184,18 +130,12 @@ SUBSYSTEM_DEF(nano)
   *
   * @return nothing
   */
-/datum/controller/subsystem/nano/proc/ui_opened(datum/nanoui/ui)
+/datum/controller/subsystem/processing/nano/proc/ui_opened(datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
-		open_uis[src_object_key] = list(ui.ui_key = list())
-	else if (isnull(open_uis[src_object_key][ui.ui_key]) || !istype(open_uis[src_object_key][ui.ui_key], /list))
-		open_uis[src_object_key][ui.ui_key] = list();
-
-	ui.user.open_uis |= ui
-	var/list/uis = open_uis[src_object_key][ui.ui_key]
-	uis |= ui
-	processing_uis |= ui
-	//testing("nano/ui_opened mob [ui.user.name] [ui.src_object:name] [ui.ui_key] - user.open_uis [ui.user.open_uis.len] | uis [uis.len] | processing_uis [processing_uis.len]")
+	LAZYINITLIST(open_uis[src_object_key])
+	LAZYDISTINCTADD(open_uis[src_object_key][ui.ui_key], ui)
+	LAZYDISTINCTADD(ui.user.open_uis, ui)
+	START_PROCESSING(SSnano, ui)
 
  /**
   * Remove a /nanoui ui from the list of open uis
@@ -205,22 +145,20 @@ SUBSYSTEM_DEF(nano)
   *
   * @return int 0 if no ui was removed, 1 if removed successfully
   */
-/datum/controller/subsystem/nano/proc/ui_closed(datum/nanoui/ui)
+/datum/controller/subsystem/processing/nano/proc/ui_closed(var/datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
-		return FALSE // wasn't open
-	else if (isnull(open_uis[src_object_key][ui.ui_key]) || !istype(open_uis[src_object_key][ui.ui_key], /list))
-		return FALSE // wasn't open
+	if (!open_uis[src_object_key] || !open_uis[src_object_key][ui.ui_key])
+		return 0 // wasn't open
 
-	processing_uis.Remove(ui)
+	STOP_PROCESSING(SSnano, ui)
 	if(ui.user)	// Sanity check in case a user has been deleted (say a blown up borg watching the alarm interface)
-		ui.user.open_uis.Remove(ui)
-	var/list/uis = open_uis[src_object_key][ui.ui_key]
-	uis.Remove(ui)
-
-	//testing("nano/ui_closed mob [ui.user.name] [ui.src_object:name] [ui.ui_key] - user.open_uis [ui.user.open_uis.len] | uis [uis.len] | processing_uis [processing_uis.len]")
-
-	return TRUE
+		LAZYREMOVE(ui.user.open_uis, ui)
+	open_uis[src_object_key][ui.ui_key] -= ui
+	if(!length(open_uis[src_object_key][ui.ui_key]))
+		open_uis[src_object_key] -= ui.ui_key
+		if(!length(open_uis[src_object_key]))
+			open_uis -= src_object_key
+	return 1
 
  /**
   * This is called on user logout
@@ -230,10 +168,7 @@ SUBSYSTEM_DEF(nano)
   *
   * @return nothing
   */
-
-//
-/datum/controller/subsystem/nano/proc/user_logout(mob/user)
-	//testing("nano/user_logout user [user.name]")
+/datum/controller/subsystem/processing/nano/proc/user_logout(mob/user)
 	return close_user_uis(user)
 
  /**
@@ -245,19 +180,13 @@ SUBSYSTEM_DEF(nano)
   *
   * @return nothing
   */
-/datum/controller/subsystem/nano/proc/user_transferred(mob/oldMob, mob/newMob)
-	//testing("nano/user_transferred from mob [oldMob.name] to mob [newMob.name]")
-	if (!oldMob || isnull(oldMob.open_uis) || !istype(oldMob.open_uis, /list) || open_uis.len == 0)
-		//testing("nano/user_transferred mob [oldMob.name] has no open uis")
-		return FALSE // has no open uis
+/datum/controller/subsystem/processing/nano/proc/user_transferred(mob/oldMob, mob/newMob)
+	if (!oldMob || !oldMob.open_uis)
+		return 0 // has no open uis
 
-	if (isnull(newMob.open_uis) || !istype(newMob.open_uis, /list))
-		newMob.open_uis = list()
-
+	LAZYINITLIST(newMob.open_uis)
 	for (var/datum/nanoui/ui in oldMob.open_uis)
 		ui.user = newMob
-		newMob.open_uis.Add(ui)
-
-	oldMob.open_uis.Cut()
-
-	return TRUE // success
+		newMob.open_uis += ui
+	oldMob.open_uis = null
+	return 1 // success
