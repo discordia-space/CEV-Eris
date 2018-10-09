@@ -14,7 +14,7 @@
 	var/suitable_cell = null	//Dont forget to edit this for a tool, if you want in to consume cells
 
 	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
-	var/passive_fuel_cost = 0.02 //Fuel consumed per process tick while active
+	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
 	var/max_fuel = 0
 
 	var/toggleable = FALSE	//Determinze if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
@@ -41,9 +41,9 @@
 /obj/item/weapon/tool/attack_self(mob/user)
 	if(toggleable)
 		if (switched_on)
-			turn_off()
+			turn_off(user)
 		else
-			turn_on()
+			turn_on(user)
 
 
 	..()
@@ -53,8 +53,9 @@
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	if(glow_color)
-		set_light(l_range = 1.4, l_power = 1, l_color = glow_color)
+		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
 	update_icon()
+	update_wear_icon()
 
 /obj/item/weapon/tool/proc/turn_off(mob/user)
 	switched_on = FALSE
@@ -63,6 +64,7 @@
 	if(glow_color)
 		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
+	update_wear_icon()
 
 //Fuel and cell spawn
 /obj/item/weapon/tool/New()
@@ -264,6 +266,7 @@
 			ratio = get_fuel() / max_fuel
 			ratio = max(round(ratio, 0.25) * 100, 25)
 			overlays += "[icon_state]-[ratio]"
+
 
 /obj/item/weapon/tool/admin_debug
 	name = "Electric Boogaloo 3000"
