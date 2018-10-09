@@ -2,6 +2,12 @@
 #define ONLY_RETRACT 2
 #define SEAL_DELAY 30
 
+
+#define RIG_SECURITY 1
+#define RIG_AI_OVERRIDE 2
+#define RIG_SYSTEM_CONTROL 4
+#define RIG_INTERFACE_LOCK 8
+#define RIG_INTERFACE_SHOCK 16
 /*
  * Defines the behavior of hardsuits/rigs/power armour.
  */
@@ -56,7 +62,7 @@
 
 	// Rig status vars.
 	var/open = 0                                              // Access panel status.
-	var/locked = 1                                            // Lock status.
+	var/locked = 1 // Lock status. 0 = unlocked, 1 = locked with ID, -1 = broken lock, permanantly unlocked
 	var/subverted = 0
 	var/interface_locked = 0
 	var/control_overridden = 0
@@ -552,7 +558,8 @@
 		ai_override_enabled = !ai_override_enabled
 		notify_ai("Synthetic suit control has been [ai_override_enabled ? "enabled" : "disabled"].")
 	else if(href_list["toggle_suit_lock"])
-		locked = !locked
+		if (locked != -1)
+			locked = !locked
 
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
@@ -641,7 +648,7 @@
 				return
 
 			use_obj.forceMove(wearer)
-			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, 0, 1))
+			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
 					initiator << "<span class='danger'>You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way.</span>"
@@ -722,6 +729,9 @@
 	take_hit((100/severity_class), "electrical pulse", 1)
 
 /obj/item/weapon/rig/proc/shock(mob/user)
+	if (!user)
+		return 0
+
 	if (electrocute_mob(user, cell, src)) //electrocute_mob() handles removing charge from the cell, no need to do that here.
 		spark_system.start()
 		if(user.stunned)
@@ -916,6 +926,52 @@
 
 /mob/living/carbon/human/get_rig()
 	return back
+
+
+//Used in random rig spawning for cargo
+//Randomly deletes modules
+/obj/item/weapon/rig/proc/lose_modules(var/probability)
+	for(var/obj/item/rig_module/module in installed_modules)
+		if (probability)
+			qdel(module)
+
+
+//Fiddles with some wires to possibly make the suit malfunction a little
+/obj/item/weapon/rig/proc/misconfigure(var/probability)
+	if (prob(probability))
+		wires.UpdatePulsed(RIG_SECURITY)//Fiddle with access
+	if (prob(probability))
+		wires.UpdatePulsed(RIG_AI_OVERRIDE)//frustrate the AI
+	if (prob(probability))
+		wires.UpdateCut(RIG_SYSTEM_CONTROL)//break the suit
+	if (prob(probability))
+		wires.UpdatePulsed(RIG_INTERFACE_LOCK)
+	if (prob(probability))
+		wires.UpdateCut(RIG_INTERFACE_SHOCK)
+	if (prob(probability))
+		subverted = 1
+
+//Drains, rigs or removes the cell
+/obj/item/weapon/rig/proc/sabotage_cell()
+	if (!cell)
+		return
+
+	if (prob(50))
+		cell.charge = rand(0, cell.charge*0.5)
+	else if (prob(15))
+		cell.rigged = 1
+	else
+		cell = null
+
+//Depletes or removes the airtank
+/obj/item/weapon/rig/proc/sabotage_tank()
+	if (!air_supply)
+		return
+
+	if (prob(70))
+		air_supply.remove_air(air_supply.air_contents.total_moles)
+	else
+		QDEL_NULL(air_supply)
 
 #undef ONLY_DEPLOY
 #undef ONLY_RETRACT

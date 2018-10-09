@@ -1040,8 +1040,8 @@ var/global/list/robot_modules = list(
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(25000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)
-	var/datum/matter_synth/wood = new /datum/matter_synth/wood(4000)
-	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(2000)
+	var/datum/matter_synth/wood = new /datum/matter_synth/wood(10000)
+	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(10000)
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire(15)
 	synths += metal
 	synths += glass

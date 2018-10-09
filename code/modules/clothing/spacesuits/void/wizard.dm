@@ -14,7 +14,7 @@
 /obj/item/clothing/suit/space/void/wizard
 	icon_state = "rig-wiz"
 	name = "gem-encrusted voidsuit"
-	desc = "A bizarre gem-encrusted suit that radiates magical energies."
+	desc = "A bizarre gem-encrusted suit that radiates strange energy readings."
 	item_state = "wiz_voidsuit"
 	slowdown = 1
 	w_class = ITEM_SIZE_NORMAL
