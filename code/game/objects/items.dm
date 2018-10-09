@@ -461,7 +461,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 //Editionaly, handle_failure proc will be called for a critical failure roll.
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5)
 	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
 	switch(result)
 		if(TOOL_USE_CANCEL)
@@ -473,7 +473,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			return TRUE
 
 //Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
-/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
+/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5)
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
 		return TOOL_USE_CANCEL
@@ -490,18 +490,37 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			fail_chance += round(H.shock_stage/120 * 40)
 			base_time += round(H.shock_stage/120 * 40)
 
-	if(forced_sound != NO_WORKSOUND)
-		if(forced_sound)
-			playsound(src.loc, forced_sound, 100, 1)
-		else
-			playsound(src.loc, src.worksound, 100, 1)
+	//Precalculate worktime here
+	var/time_to_finish = 0
+	if (base_time)
+		time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 
-	if(base_time && (instant_finish_tier >= get_tool_quality(required_quality)))
+	if((instant_finish_tier < get_tool_quality(required_quality)))
+		time_to_finish = 0
+
+
+	var/datum/repeating_sound/toolsound = null
+	if(forced_sound != NO_WORKSOUND)
+
+		var/soundfile
+		if(forced_sound)
+			soundfile = forced_sound
+		else
+			soundfile = worksound
+
+		if (sound_repeat && time_to_finish)
+			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, 80, 1)
+		else
+			playsound(src.loc, soundfile, 100, 1)
+
+	if(time_to_finish)
 		target.used_now = TRUE
-		var/time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
+
 		if(!do_after(user, time_to_finish, user))
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
+			if (toolsound)
+				toolsound.stop()
 			return TOOL_USE_CANCEL
 		else
 			target.used_now = FALSE

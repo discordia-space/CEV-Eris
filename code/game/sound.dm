@@ -358,6 +358,16 @@ var/const/FALLOFF_SOUNDS = 0.5
 //Repeating sound support
 //This datum is intended to play a sound repeatedly at a given interval over a given duration
 //It is not intended for looping audio seamlessly
+
+/*
+	Usage:
+	To start and immediately play
+	var/datum/repeating_sound/mysound = new(30,100,0.15, src, soundfile, 80, 1)
+
+	to stop
+	mysound.stop()
+	mysound = null (It will qdel itself)
+*/
 /datum/repeating_sound
 	//The atom we play the sound from, but we'll use a weak reference instead of holding it in memory
 	//To prevent GC issues
@@ -382,35 +392,57 @@ var/const/FALLOFF_SOUNDS = 0.5
 	//Used to stop it early
 	var/timer_handle
 
-/datum/repeating_sound/New(var/interval, var/duration, var/interval_variance = 0, var/atom/_source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
+/datum/repeating_sound/New(var/_interval, var/duration, var/interval_variance = 0, var/atom/_source, var/_soundin, var/_vol, var/_vary, var/_extrarange, var/_falloff, var/_is_global, var/_use_pressure = TRUE)
+	world << "Repeating sound created. Interval duration [_interval], [duration]"
 	end_time = world.time += duration
 	source = "\ref[source]"
+	interval = _interval
+	variance = interval_variance
+	soundin = _soundin
+	vol = _vol
+	vary = _vary
+	extrarange = _extrarange
+	falloff = _falloff
+	is_global = _is_global
+	use_pressure = _use_pressure
+
+	//When created we do our first sound immediately
+	//If you want the first sound delayed, wrap it in a spawn call or something
+	do_sound()
 
 
 /datum/repeating_sound/proc/do_sound()
+	world << "Repeating sound calling dosound"
 	timer_handle = null //This has been successfully called, that handle is no use now
 
 	var/atom/playfrom = locate(source)
 	if (QDELETED(playfrom))
+		world << "Repeating sound atom deleted"
 		//Our source atom is gone, no more sounds
 		stop()
 		return
 
 	//We're past the end time, no more sounds
 	if (world.time > end_time)
+		world << "Repeating end time"
 		stop()
 		return
 
 	//Actually play the sound
+	world << "Repeatingsound PLAYING NOW"
 	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure)
 
 	//Setup the next sound
 	var/nextinterval = interval
 	if (variance)
 		nextinterval *= rand(1-variance, 1+variance)
-	addtimer(CALLBACK(src, .proc/do_sound, TRUE), nextinterval, TIMER_STOPPABLE)
+
+	//Set the next timer handle
+	timer_handle = addtimer(CALLBACK(src, .proc/do_sound, TRUE), nextinterval, TIMER_STOPPABLE)
 
 
 
 /datum/repeating_sound/proc/stop()
+	if (timer_handle)
+		deltimer(timer_handle)
 	qdel(src)
