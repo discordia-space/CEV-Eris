@@ -55,8 +55,7 @@
 	if(glow_color)
 		set_light(l_range = 1.4, l_power = 1, l_color = glow_color)
 	update_icon()
-	if (user)
-		user.update_hands()
+	update_wear_icon()
 
 /obj/item/weapon/tool/proc/turn_off(mob/user)
 	switched_on = FALSE
@@ -65,8 +64,7 @@
 	if(glow_color)
 		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
-	if (user)
-		user.update_hands()
+	update_wear_icon()
 
 //Fuel and cell spawn
 /obj/item/weapon/tool/New()
@@ -268,6 +266,7 @@
 			ratio = get_fuel() / max_fuel
 			ratio = max(round(ratio, 0.25) * 100, 25)
 			overlays += "[icon_state]-[ratio]"
+
 
 /obj/item/weapon/tool/admin_debug
 	name = "Electric Boogaloo 3000"

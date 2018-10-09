@@ -433,12 +433,6 @@ var/global/list/damage_icon_parts = list()
 	UpdateDamageIcon()
 	update_icons()
 
-/mob/living/carbon/human/update_hands()
-	update_inv_r_hand(0)
-	update_inv_l_hand(0)
-	update_inv_handcuffed(0)
-	update_icons()
-
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
