@@ -127,3 +127,11 @@
 		list(/obj/item/weapon/cell/small, 1),
 		list(/obj/item/stack/cable_coil, 5, "time" = 20)
 	)
+
+/datum/craft_recipe/tray
+	name = "dinner tray"
+	result = /obj/item/weapon/tray
+	steps = list(
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL, "time" = 40),
+		list(QUALITY_WIRE_CUTTING, 10, 120)
+	)

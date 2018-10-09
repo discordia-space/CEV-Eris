@@ -18,7 +18,7 @@
 /datum/craft_step/New(var/list/params, var/datum/craft_recipe/parent)
 	var/max_params = 2
 	if(ispath(params))
-		reqed_type    = params
+		reqed_type = params
 		req_amount = 1
 	else if(istext(params))
 		reqed_quality = params
@@ -26,6 +26,7 @@
 		var/validator = params[1]
 		if(ispath(validator))
 			reqed_type = validator
+			req_amount = 1
 		else if(istext(validator))
 			if (validator == CRAFT_MATERIAL)
 				reqed_material = params[3]
