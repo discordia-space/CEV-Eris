@@ -44,7 +44,7 @@
 			SM.time = world.time + delay
 			SM.value = affect
 			return
-	mods += PoolOrNew(/datum/stat_mod, delay, affect)
+	mods += new /datum/stat_mod(delay, affect)
 
 /datum/stat/proc/changeValue(affect)
 	value = value + affect

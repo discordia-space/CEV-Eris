@@ -167,7 +167,7 @@
 	var/was_on = on
 	stat |= EMPED
 
-	PoolOrNew(/obj/effect/overlay/pulse, src.loc)
+	new /obj/effect/overlay/pulse(loc)
 
 	if(on)
 		turn_off()
@@ -213,8 +213,9 @@
 	src.visible_message(SPAN_DANGER("\The [src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
-	PoolOrNew(/obj/item/stack/rods, Tsec)
-	PoolOrNew(/obj/item/stack/rods, Tsec)
+	for (var/i in 1 to 2)
+		new /obj/item/stack/rods(Tsec)
+
 	new /obj/item/stack/cable_coil/cut(Tsec)
 
 	if(cell)

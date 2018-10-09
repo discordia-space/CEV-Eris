@@ -45,6 +45,6 @@
 				pick_turfs -= exit
 				if( !exit || !istype(exit) )	continue	//sanity
 
-				PoolOrNew(/obj/effect/portal/wormhole, list(enter, exit, rand(300, 600)))
+				new /obj/effect/portal/wormhole(enter, exit, rand(300, 600))
 
 				sleep(sleep_duration)						//have a well deserved nap!

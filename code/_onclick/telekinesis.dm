@@ -161,7 +161,7 @@ var/const/tk_maxrange = 15
 /obj/item/tk_grab/proc/apply_focus_overlay()
 	if(!focus)
 		return
-	PoolOrNew(/obj/effect/overlay/pulse, list(get_turf(focus), 5))
+	new /obj/effect/overlay/pulse(get_turf(focus), 5)
 
 /obj/item/tk_grab/update_icon()
 	overlays.Cut()

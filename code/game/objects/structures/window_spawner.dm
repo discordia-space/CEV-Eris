@@ -37,12 +37,12 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/effect/window_lwall_spawn/proc/handle_window_spawn(var/obj/structure/window/W)
-	PoolOrNew(win_path, src.loc)
+	new win_path(loc)
 
 	return
 
 /obj/effect/window_lwall_spawn/proc/activate()
-	PoolOrNew(wall_path, src.loc)
+	new wall_path(loc)
 	handle_window_spawn(src)
 	activated = TRUE
 	return
@@ -58,16 +58,16 @@
 
 /obj/effect/window_lwall_spawn/smartspawn/handle_window_spawn(var/obj/structure/window/W)
 	if (is_turf_near_space(loc))
-		PoolOrNew(/obj/structure/window/reinforced/full, src.loc)
+		new /obj/structure/window/reinforced/full(loc)
 	else
 		for (var/a in cardinal_turfs(loc))
 			var/turf/T = a
 			if (is_turf_near_space(T))
 				if ((locate(/obj/structure/window) in T) || (locate(/obj/effect/window_lwall_spawn) in T))
-					PoolOrNew(/obj/structure/window/reinforced/full, src.loc)
+					new /obj/structure/window/reinforced/full(loc)
 					return
 
-		PoolOrNew(/obj/structure/window/basic/full, src.loc)
+		new /obj/structure/window/basic/full(loc)
 		return
 
 /obj/effect/window_lwall_spawn/plasma

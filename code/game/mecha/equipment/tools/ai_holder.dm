@@ -57,7 +57,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/attach()
 	..()
-	Cam = PoolOrNew(/obj/machinery/camera)
+	Cam = new
 	Cam.c_tag = chassis.name
 
 /obj/item/mecha_parts/mecha_equipment/tool/ai_holder/detach()

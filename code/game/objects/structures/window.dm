@@ -115,7 +115,8 @@
 	if(is_full_window())
 		var/index = null
 		index = 0
-		if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+		if(reinf)
+			new /obj/item/stack/rods(loc)
 		while(index < rand(4,6))
 			var/obj/item/weapon/material/shard/S = new shardtype(loc)
 			if (explode && nearby.len > 0)
@@ -125,7 +126,8 @@
 			index++
 	else
 		new shardtype(loc) //todo pooling?
-		if(reinf) PoolOrNew(/obj/item/stack/rods, loc)
+		if(reinf)
+			new /obj/item/stack/rods(loc)
 	qdel(src)
 	return
 

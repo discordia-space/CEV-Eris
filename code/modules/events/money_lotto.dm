@@ -8,10 +8,7 @@
 	if(all_money_accounts.len)
 		var/datum/money_account/D = pick(all_money_accounts)
 		winner_name = D.owner_name
-		var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-			winner_sum, "Nyx Daily Grand Slam -Stellar- Lottery",
-			"Winner!", "Biesel TCD Terminal #[rand(111,333)]"
-		))
+		var/datum/transaction/T = new(winner_sum, "Nyx Daily Grand Slam -Stellar- Lottery", "Winner!", "Biesel TCD Terminal #[rand(111,333)]")
 		if(T.apply_to(D))
 			deposit_success = 1
 

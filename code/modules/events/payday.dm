@@ -2,7 +2,7 @@
 	var/total_money_ship = 0
 
 /datum/event/payday/start()
-	var/datum/transaction/T = PoolOrNew(/datum/transaction, list(0, "Central Payment Account", "Payday", "NTGalaxyNet Terminal #[rand(111,1111)]"))
+	var/datum/transaction/T = new(0, "Central Payment Account", "Payday", "NTGalaxyNet Terminal #[rand(111,1111)]")
 
 	for(var/record in data_core.general)
 		var/datum/data/record/R = record
