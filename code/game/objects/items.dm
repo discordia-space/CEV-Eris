@@ -117,23 +117,11 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user || !user.can_pickup(src))
-		return
-
 	var/atom/old_loc = src.loc
 
 	src.pickup(user)
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
-		S.remove_from_storage(src)
 
 	src.throwing = 0
-	if (src.loc == user)
-		if(!user.prepare_for_slotmove(src))
-			return
-	else
-		if(isliving(src.loc))
-			return
 
 	if(user.put_in_active_hand(src) && old_loc )
 		if (user != old_loc.get_holding_mob())

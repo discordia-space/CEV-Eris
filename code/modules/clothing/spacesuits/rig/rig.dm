@@ -62,7 +62,7 @@
 
 	// Rig status vars.
 	var/open = 0                                              // Access panel status.
-	var/locked = 1                                            // Lock status.
+	var/locked = 1 // Lock status. 0 = unlocked, 1 = locked with ID, -1 = broken lock, permanantly unlocked
 	var/subverted = 0
 	var/interface_locked = 0
 	var/control_overridden = 0
@@ -558,7 +558,8 @@
 		ai_override_enabled = !ai_override_enabled
 		notify_ai("Synthetic suit control has been [ai_override_enabled ? "enabled" : "disabled"].")
 	else if(href_list["toggle_suit_lock"])
-		locked = !locked
+		if (locked != -1)
+			locked = !locked
 
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
@@ -647,7 +648,7 @@
 				return
 
 			use_obj.forceMove(wearer)
-			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, 0, 1))
+			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
 					initiator << "<span class='danger'>You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way.</span>"
