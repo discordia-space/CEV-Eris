@@ -76,7 +76,7 @@
 		admin_attack_log(user, src, "Attempted to remove \a [target_slot]", "Target of an attempt to remove \a [target_slot].", "attempted to remove \a [target_slot] from")
 		unEquip(target_slot)
 	else if(user.unEquip(held))
-		equip_to_slot_if_possible(held, text2num(slot_to_strip), 0, 1, 1)
+		equip_to_slot_if_possible(held, text2num(slot_to_strip), TRUE) // Disable warning
 		if(held.loc != src)
 			user.put_in_hands(held)
 

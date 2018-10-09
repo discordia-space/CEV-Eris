@@ -1430,6 +1430,8 @@
 #include "code\modules\mob\angel\logout.dm"
 #include "code\modules\mob\angel\say.dm"
 #include "code\modules\mob\angel\static.dm"
+#include "code\modules\mob\inventory\equip.dm"
+#include "code\modules\mob\inventory\helpers.dm"
 #include "code\modules\mob\inventory\slots.dm"
 #include "code\modules\mob\language\generic.dm"
 #include "code\modules\mob\language\language.dm"

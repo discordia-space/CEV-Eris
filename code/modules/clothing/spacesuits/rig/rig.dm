@@ -647,7 +647,7 @@
 				return
 
 			use_obj.forceMove(wearer)
-			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, 0, 1))
+			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
 					initiator << "<span class='danger'>You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way.</span>"
