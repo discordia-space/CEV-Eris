@@ -24,7 +24,7 @@
 /obj/item/proc/pre_equip(var/mob/user, var/slot)
 	//Some inventory sounds.
 	//occurs when you equip something
-	if(item_flags & LOUDLY_EQUIPEMENT)
+	if(item_flags & EQUIP_SOUNDS)
 		var/picked_sound = pick(w_class > ITEM_SIZE_NORMAL ? long_equipement_sound : short_equipement_sound)
 		playsound(src, picked_sound, 100, 1, 1)
 
