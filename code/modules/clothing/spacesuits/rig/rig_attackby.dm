@@ -118,7 +118,7 @@
 				return
 
 		if(QUALITY_PRYING)
-			if(locked != TRUE)
+			if(locked != 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					open = !open
 					user << SPAN_NOTICE("You [open ? "open" : "close"] the access panel.")
@@ -147,7 +147,7 @@
 		if(QUALITY_WELDING)
 			//Cutting through the cover lock. This allows access to the wires inside so you can disable access requirements
 			//Ridiculously difficult to do, hijacking a rig will take a long time if you don't have good mechanical training
-			if(locked == TRUE)
+			if(locked == 1)
 				user << SPAN_NOTICE("You start cutting through the access panel's cover lock. This is a delicate task.")
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
 					locked = -1 //Broken, it can never be locked again
