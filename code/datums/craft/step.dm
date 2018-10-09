@@ -1,8 +1,12 @@
 /datum/craft_step
 	var/reqed_type
 	var/reqed_quality
+	var/reqed_quality_level = 0//For tools, minimum threshold of a quality
+
 	var/reqed_material
 	var/req_amount = 0
+
+
 
 	var/time = 15
 
@@ -15,6 +19,7 @@
 	var/max_params = 2
 	if(ispath(params))
 		reqed_type    = params
+		req_amount = 1
 	else if(istext(params))
 		reqed_quality = params
 	else if(islist(params))
@@ -29,7 +34,10 @@
 				reqed_quality = validator
 
 		if(isnum(params[2])) //amount
-			req_amount = params[2]
+			if (reqed_material)
+				req_amount = params[2]
+			else if (reqed_quality)
+				reqed_quality_level = params[2]
 
 		if("time" in params)
 			time = params["time"]
@@ -45,11 +53,11 @@
 		tool_name = initial(I.name)
 
 	else if(reqed_quality)
-		tool_name = "tool with quality of [reqed_quality]"
+		tool_name = "tool with [reqed_quality] quality of [reqed_quality_level]"
 
 	else if (reqed_material)
 		var/material/M = get_material_by_name("[reqed_material]")
-		tool_name = M.display_name
+		tool_name = "units of [M.display_name]"
 
 	switch(req_amount)
 		if(0)
@@ -58,6 +66,8 @@
 			end_msg = "%USER% applied %ITEM% to %TARGET%"
 		if(1)
 			desc = "Attach [tool_name]"
+			if (reqed_material)
+				desc = "Attach [req_amount] [tool_name]"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 		else
@@ -95,11 +105,18 @@
 		if(!do_after(user, time, target || user))
 			return
 	else if(reqed_quality)
-		if(!I.get_tool_quality(reqed_quality))
+		var/q = I.get_tool_quality(reqed_quality)
+		if(!q)
+			user << SPAN_WARNING("Wrong type of tool. You need a tool with [reqed_quality] quality")
 			return
 		if(target)
 			announce_action(start_msg, user, I, target)
 		if(!I.use_tool(user, target || user, time, reqed_quality))
+			user << SPAN_WARNING("Work aborted")
+			return
+
+		if(q < reqed_quality_level)
+			user << SPAN_WARNING("That tool is too crude for the task. You need a tool with [reqed_quality_level] [reqed_quality] quality. This tool only has [q] [reqed_quality]")
 			return
 	else
 		if(!do_after(user, time, target || user))

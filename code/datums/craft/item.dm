@@ -18,6 +18,9 @@
 
 
 /obj/item/craft/proc/continue_crafting(obj/item/I, mob/living/user)
+	if (user && istype(loc, /turf))
+		user.face_atom(src) //Look at what you're doing please
+
 	if(recipe.try_step(step+1, I, user, src)) //First step is
 		++step
 		if(recipe.is_compelete(step+1))
