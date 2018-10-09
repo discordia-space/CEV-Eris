@@ -138,19 +138,11 @@ Advanced Voidsuit: Technomancer Exultant
 /obj/item/clothing/gloves/rig/ce
 	name = "insulated gloves"
 	siemens_coefficient = 0
-	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	armor = list(melee = 50, bullet = 40, laser = 40,energy = 25, bomb = 60, bio = 100, rad = 100)
 
 /obj/item/clothing/shoes/magboots/rig/ce
 	name = "Advanced Magboots"
 	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
 	mag_slow = 2
-	icon_state = "advmag0"
-	icon_base = "advmag"
-	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	armor = list(melee = 50, bullet = 40, laser = 40,energy = 25, bomb = 60, bio = 100, rad = 100)
-
-
 
 /***************************************
 	Hazmat: Moebius Overseer

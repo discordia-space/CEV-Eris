@@ -2,6 +2,31 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
+/obj/item/weapon/cell //Basic type of the cells, should't be used by itself
+	name = "power cell"
+	desc = "A rechargable electrochemical power cell."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "b_st"
+	item_state = "cell"
+	origin_tech = list(TECH_POWER = 1)
+	force = WEAPON_FORCE_WEAK
+	throwforce = WEAPON_FORCE_WEAK
+	throw_speed = 3
+	throw_range = 5
+	w_class = ITEM_SIZE_NORMAL
+	var/charge = 0	// note %age conveted to actual charge in New
+	var/maxcharge = 100
+	var/max_chargerate = 0.08 //Power cells are limited in how much power they can intake per charge tick, to prevent small cells from charging almost instantly
+	//Default 8% of maximum
+	//A tick is roughly 2 seconds, so this means a cell will take a minimum of 25 seconds to charge
+	var/rigged = 0		// true if rigged to explode
+	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
+	var/autorecharging = FALSE //For nucclear cells
+	var/recharge_time = 4 //How often nuclear cells will recharge
+	var/charge_tick = 0
+	var/charge_status = -1
+	var/last_charge_status = -1
+
 /obj/item/weapon/cell/New()
 	..()
 	charge = maxcharge
@@ -9,7 +34,15 @@
 
 /obj/item/weapon/cell/Initialize()
 	. = ..()
-	update_icon()
+	if(autorecharging)
+		START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/cell/Process()
+	charge_tick++
+	if(charge_tick < recharge_time) return 0
+	charge_tick = 0
+	give(maxcharge * 0.03)
+	return 1
 
 //Newly manufactured cells start off empty. You can't create energy
 /obj/item/weapon/cell/Created()
@@ -28,20 +61,28 @@
 	return use(cell_amt) / CELLRATE
 
 /obj/item/weapon/cell/update_icon()
-	overlays.Cut()
+	var/c = charge/maxcharge
+	if (c >=0.95)
+		charge_status = 100
+	else if (c >=0.75)
+		charge_status = 75
+	else if (c >=0.50)
+		charge_status = 50
+	else if (c >=0.25)
+		charge_status = 25
+	else if (c >=0.01)
+		charge_status = 0
+	else
+		charge_status = null
 
-	if(charge < 0.01)
+	if (charge_status == last_charge_status)
 		return
-	else if(charge/maxcharge >=0.995)
-		overlays += image('icons/obj/power.dmi', "[icon_state]_100")
-	else if(charge/maxcharge >=0.75)
-		overlays += image('icons/obj/power.dmi', "[icon_state]_75")
-	else if(charge/maxcharge >=0.50)
-		overlays += image('icons/obj/power.dmi', "[icon_state]_50")
-	else if(charge/maxcharge >=0.25)
-		overlays += image('icons/obj/power.dmi', "[icon_state]_25")
-	else if(charge/maxcharge >=0.01)
-		overlays += image('icons/obj/power.dmi', "[icon_state]_0")
+
+	overlays.Cut()
+	if (charge_status != null)
+		overlays += image('icons/obj/power.dmi', "[icon_state]_[charge_status]")
+
+	last_charge_status = charge_status
 
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
