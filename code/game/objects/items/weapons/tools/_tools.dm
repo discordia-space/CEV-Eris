@@ -53,7 +53,7 @@
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	if(glow_color)
-		set_light(l_range = 1.4, l_power = 1, l_color = glow_color)
+		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
 	update_icon()
 	update_wear_icon()
 
