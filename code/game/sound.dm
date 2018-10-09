@@ -351,3 +351,66 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("hitobject") soundin = pick(bullet_hit_object_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
+
+
+
+
+//Repeating sound support
+//This datum is intended to play a sound repeatedly at a given interval over a given duration
+//It is not intended for looping audio seamlessly
+/datum/repeating_sound
+	//The atom we play the sound from, but we'll use a weak reference instead of holding it in memory
+	//To prevent GC issues
+	var/source
+
+	//Past this time we will no longer loop and delete ourselves
+	var/end_time
+
+	//How often to play
+	var/interval
+
+	//Should be in the range 0..1. 0 disables the feature, 1 allows interval to be anywhere from 0-2x the norm
+	var/variance
+
+	var/soundin
+	var/vol
+	var/vary
+	var/extrarange
+	var/falloff
+	var/is_global
+	var/use_pressure
+	//Used to stop it early
+	var/timer_handle
+
+/datum/repeating_sound/New(var/interval, var/duration, var/interval_variance = 0, var/atom/_source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
+	end_time = world.time += duration
+	source = "\ref[source]"
+
+
+/datum/repeating_sound/proc/do_sound()
+	timer_handle = null //This has been successfully called, that handle is no use now
+
+	var/atom/playfrom = locate(source)
+	if (QDELETED(playfrom))
+		//Our source atom is gone, no more sounds
+		stop()
+		return
+
+	//We're past the end time, no more sounds
+	if (world.time > end_time)
+		stop()
+		return
+
+	//Actually play the sound
+	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure)
+
+	//Setup the next sound
+	var/nextinterval = interval
+	if (variance)
+		nextinterval *= rand(1-variance, 1+variance)
+	addtimer(CALLBACK(src, .proc/do_sound, TRUE), nextinterval, TIMER_STOPPABLE)
+
+
+
+/datum/repeating_sound/proc/stop()
+	qdel(src)
