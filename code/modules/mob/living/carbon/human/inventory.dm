@@ -31,16 +31,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return ..()
 
 /mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
-	if(!..())
-		return 0
 	W.add_fingerprint(src)
-	return 1
+	return equip_to_slot_if_possible(W, slot_l_hand)
 
 /mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
-	if(!..())
-		return 0
 	W.add_fingerprint(src)
-	return 1
+	return equip_to_slot_if_possible(W, slot_r_hand)
+
 
 
 //Find HUD position on screen
@@ -54,51 +51,16 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot], del_on_fail = 0))
+		if (equip_to_slot_if_possible(W, slots[slot]))
 			return slot
 	if (del_on_fail)
 		qdel(W)
 	return null
 
 
-/mob/living/carbon/human/proc/has_organ(name)
+/mob/living/carbon/human/proc/has_organ(name, check_usablility = FALSE)
 	var/obj/item/organ/external/O = organs_by_name[name]
-
-	return (O && !O.is_stump())
-
-/mob/living/carbon/human/proc/has_organ_for_slot(slot)
-	switch(slot)
-		if(slot_back)
-			return has_organ(BP_CHEST)
-		if(slot_wear_mask)
-			return has_organ(BP_HEAD)
-		if(slot_handcuffed)
-			return has_organ(BP_L_ARM) && has_organ(BP_R_ARM)
-		if(slot_legcuffed)
-			return has_organ(BP_L_LEG ) && has_organ(BP_R_LEG)
-		if(slot_l_hand)
-			return has_organ(BP_L_ARM)
-		if(slot_r_hand)
-			return has_organ(BP_R_ARM)
-		if(slot_belt)
-			return has_organ(BP_CHEST)
-		if(slot_wear_id)
-			// the only relevant check for this is the uniform check
-			return 1
-		if(slot_l_ear, slot_r_ear, slot_glasses)
-			return has_organ(BP_HEAD)
-		if(slot_gloves)
-			return has_organ(BP_L_ARM) || has_organ(BP_R_ARM)
-		if(slot_head)
-			return has_organ(BP_HEAD)
-		if(slot_shoes)
-			return has_organ(BP_R_LEG) || has_organ(BP_L_LEG)
-		if(slot_wear_suit, slot_w_uniform, slot_l_store, slot_r_store, slot_s_store)
-			return has_organ(BP_CHEST)
-		if(slot_in_backpack)
-			return 1
-		if(slot_accessory_buffer)
-			return 1
+	return (O && !O.is_stump() && (!check_usablility || O.is_usable()))
 
 /mob/living/carbon/human/u_equip(obj/item/W as obj)
 	if (W == wear_suit)
@@ -207,129 +169,96 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return BP_R_ARM
 
 
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1)
+	switch(slot)
+		if(slot_in_backpack)
+			if(src.get_active_hand() == W)
+				src.remove_from_mob(W)
+			W.forceMove(src.back)
 
-//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
+		if(slot_accessory_buffer)
+			var/obj/item/clothing/under/uniform = src.w_uniform
+			uniform.attackby(W,src)
+
+		else
+			legacy_equip_to_slot(W, slot, redraw_mob)
+
+			W.forceMove(src)
+			W.equipped(src, slot)
+			W.update_wear_icon(redraw_mob)
+			W.screen_loc = find_inv_position(slot)
+			W.layer = ABOVE_HUD_LAYER
+			W.plane = ABOVE_HUD_PLANE
+
+			// That's really reqed. At least for now
+			if(client)
+				client.screen |= W
+
+			if(W.action_button_name)
+				update_action_buttons()
+
+
+//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
-
-	if(!slot) return
-	if(!istype(W)) return
-	if(!species || !species.hud || !(slot in species.hud.equip_slots)) return
-	if(ismob(W.loc))
-		var/mob/M = W.loc
-		if(M.get_inventory_slot(W) && !M.prepare_for_slotmove(W))
-			return
-	W.forceMove(src)
+/mob/living/carbon/human/proc/legacy_equip_to_slot(obj/item/W, slot, redraw_mob = 1)
 	switch(slot)
 		if(slot_back)
 			src.back = W
-			W.equipped(src, slot)
-			update_inv_back(redraw_mob)
 		if(slot_wear_mask)
 			src.wear_mask = W
 			if(wear_mask.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
-			W.equipped(src, slot)
-			update_inv_wear_mask(redraw_mob)
 		if(slot_handcuffed)
 			src.handcuffed = W
-			update_inv_handcuffed(redraw_mob)
 		if(slot_legcuffed)
 			src.legcuffed = W
-			W.equipped(src, slot)
-			update_inv_legcuffed(redraw_mob)
 		if(slot_l_hand)
 			src.l_hand = W
-			W.equipped(src, slot)
-			update_inv_l_hand(redraw_mob)
 		if(slot_r_hand)
 			src.r_hand = W
-			W.equipped(src, slot)
-			update_inv_r_hand(redraw_mob)
 		if(slot_belt)
 			src.belt = W
-			W.equipped(src, slot)
-			update_inv_belt(redraw_mob)
 		if(slot_wear_id)
 			src.wear_id = W
-			W.equipped(src, slot)
-			update_inv_wear_id(redraw_mob)
 		if(slot_l_ear)
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
 				equip_to_slot_if_possible(O, slot_r_ear, TRUE, FALSE, FALSE)
-			W.equipped(src, slot)
-			update_inv_ears(redraw_mob)
 
 		if(slot_r_ear)
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
 				equip_to_slot_if_possible(O, slot_l_ear, TRUE, FALSE, FALSE)
-			W.equipped(src, slot)
-			update_inv_ears(redraw_mob)
 		if(slot_glasses)
 			src.glasses = W
-			W.equipped(src, slot)
-			update_inv_glasses(redraw_mob)
 		if(slot_gloves)
 			src.gloves = W
-			W.equipped(src, slot)
-			update_inv_gloves(redraw_mob)
 		if(slot_head)
 			src.head = W
 			if(head.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|HIDEMASK))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
-			W.equipped(src, slot)
-			update_inv_head(redraw_mob)
 		if(slot_shoes)
 			src.shoes = W
-			W.equipped(src, slot)
-			update_inv_shoes(redraw_mob)
 		if(slot_wear_suit)
 			src.wear_suit = W
 			if(wear_suit.flags_inv & HIDESHOES)
 				update_inv_shoes(0)
-			W.equipped(src, slot)
-			update_inv_wear_suit(redraw_mob)
 		if(slot_w_uniform)
 			src.w_uniform = W
-			W.equipped(src, slot)
-			update_inv_w_uniform(redraw_mob)
 		if(slot_l_store)
 			src.l_store = W
-			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
 		if(slot_r_store)
 			src.r_store = W
-			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
 		if(slot_s_store)
 			src.s_store = W
-			W.equipped(src, slot)
-			update_inv_s_store(redraw_mob)
-		if(slot_in_backpack)
-			if(src.get_active_hand() == W)
-				src.remove_from_mob(W)
-			W.forceMove(src.back)
-		if(slot_accessory_buffer)
-			var/obj/item/clothing/under/uniform = src.w_uniform
-			uniform.attackby(W,src)
 		else
 			src << SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]")
 			return
-
-	if(!(slot in list(slot_in_backpack, slot_accessory_buffer)))
-		W.screen_loc = find_inv_position(slot)
-	W.layer = ABOVE_HUD_LAYER
-	W.plane = ABOVE_HUD_PLANE
-
-	if(W.action_button_name)
-		update_action_buttons()
 
 	return 1
 
@@ -352,9 +281,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
 		user << SPAN_WARNING("\The [covering] is in the way.")
-		return 0
-
-	if (!has_organ_for_slot(slot))
 		return FALSE
 
 	return 1
@@ -408,20 +334,3 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_s_store)    items += s_store
 
 	return items
-
-
-//The parent does all the checks, this one is just for feedback messages
-/mob/living/carbon/human/can_pickup(var/obj/item/I, var/feedback = TRUE)
-	.=..()
-
-	if (!. && feedback)
-		//Feedback moved here from item attackhand
-		var/obj/item/organ/external/temp = organs_by_name[BP_R_ARM]
-		if (hand)
-			temp = organs_by_name[BP_L_ARM]
-		if(temp && !temp.is_usable())
-			src << SPAN_NOTICE("You try to move your [temp.name], but cannot!")
-			return
-		if(!temp)
-			src << SPAN_NOTICE("You try to use your hand, but realize it is no longer attached!")
-			return

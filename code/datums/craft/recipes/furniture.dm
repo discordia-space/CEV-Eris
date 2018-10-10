@@ -1,98 +1,99 @@
 /datum/craft_recipe/furniture
 	category = "Furniture"
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
-
+	time = 80
 
 
 /datum/craft_recipe/furniture/railing
 	name = "railing"
 	result = /obj/structure/railing
 	steps = list(
-		list(/obj/item/stack/material/steel, 4),
+		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/table
 	name = "table frame"
 	result = /obj/structure/table
 	steps = list(
-		list(/obj/item/stack/material/steel, 2),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/rack
 	name = "rack"
 	result = /obj/structure/table/rack
 	steps = list(
-		list(/obj/item/stack/material/steel, 2),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/shelf
 	name = "shelf"
 	result = /obj/structure/table/rack/shelf
 	steps = list(
-		list(/obj/item/stack/material/steel, 3),
+		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/closet
 	name = "closet"
 	result = /obj/structure/closet
 	steps = list(
-		list(/obj/item/stack/material/steel, 3),
+		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/closet
 	name = "closet"
 	result = /obj/structure/closet
 	steps = list(
-		list(/obj/item/stack/material/steel, 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/crate/plasteel
 	name = "Metal crate"
 	result = /obj/structure/closet/crate
 	steps = list(
-		list(/obj/item/stack/material/plasteel, 10, time = 50),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
 	)
 
 /datum/craft_recipe/furniture/crate/plastic
 	name = "plastic crate"
 	result = /obj/structure/closet/crate/plastic
 	steps = list(
-		list(/obj/item/stack/material/plastic, 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
 	)
 
 /datum/craft_recipe/furniture/bookshelf
 	name = "book shelf"
 	result = /obj/structure/bookcase
 	steps = list(
-		list(/obj/item/stack/material/wood, 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
 	)
 
 /datum/craft_recipe/furniture/barricade
 	name = "barricade"
 	result = /obj/structure/barricade
 	steps = list(
-		list(/obj/item/stack/material/wood, 5, time = 50),
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
 	)
 
 /datum/craft_recipe/furniture/coffin
 	name = "coffin"
 	result = /obj/structure/closet/coffin
 	steps = list(
-		list(/obj/item/stack/material/wood, 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
 	)
 
 /datum/craft_recipe/furniture/bed
 	name = "bed"
 	result = /obj/structure/bed
 	steps = list(
-		list(/obj/item/stack/material/steel, 5),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/stool
 	name = "stool"
 	result = /obj/item/weapon/stool
+	time = 30
 	steps = list(
-		list(/obj/item/stack/material/steel, 1),
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL),
 	)
 	flags = null
 
@@ -102,14 +103,14 @@
 	name = "chair"
 	result = /obj/structure/bed/chair
 	steps = list(
-		list(/obj/item/stack/material/steel, 5),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/wooden_chair
 	name = "wooden chair"
 	result = /obj/structure/bed/chair/wood
 	steps = list(
-		list(/obj/item/stack/material/wood, 6, time = 10),
+		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
 	)
 
 // Office chairs
@@ -117,7 +118,7 @@
 	name = "dark office chair"
 	result = /obj/structure/bed/chair/office/dark
 	steps = list(
-		list(/obj/item/stack/material/steel, 5),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/office_chair/light
@@ -129,7 +130,7 @@
 	name = "beige comfy chair"
 	result = /obj/structure/bed/chair/comfy/beige
 	steps = list(
-		list(/obj/item/stack/material/steel, 5),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/comfy_chair/black

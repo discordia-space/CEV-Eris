@@ -62,7 +62,7 @@
 
 	// Rig status vars.
 	var/open = 0                                              // Access panel status.
-	var/locked = 1                                            // Lock status.
+	var/locked = 1 // Lock status. 0 = unlocked, 1 = locked with ID, -1 = broken lock, permanantly unlocked
 	var/subverted = 0
 	var/interface_locked = 0
 	var/control_overridden = 0
@@ -558,7 +558,8 @@
 		ai_override_enabled = !ai_override_enabled
 		notify_ai("Synthetic suit control has been [ai_override_enabled ? "enabled" : "disabled"].")
 	else if(href_list["toggle_suit_lock"])
-		locked = !locked
+		if (locked != -1)
+			locked = !locked
 
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
@@ -574,19 +575,21 @@
 /obj/item/weapon/rig/pre_equip(var/mob/user, var/slot)
 	if (slot == rig_wear_slot)
 		if(seal_delay > 0)
-			user.visible_message("<font color='blue'>[user] starts putting on \the [src]...</font>", "<font color='blue'>You start putting on \the [src]...</font>")
+			user.visible_message(
+				SPAN_NOTICE("[user] starts putting on \the [src]..."),
+				SPAN_NOTICE("You start putting on \the [src]...")
+			)
 			if(!do_after(user,seal_delay,src))
-				return 1 //A nonzero return value will cause the equipping operation to fail
+				return TRUE //A nonzero return value will cause the equipping operation to fail
 
 
 /obj/item/weapon/rig/equipped(var/mob/user, var/slot)
 	..()
-	if (is_held())
-		remove()
-		return
-
 	if (slot == rig_wear_slot)
-		user.visible_message("<font color='blue'><b>[user] struggles into \the [src].</b></font>", "<font color='blue'><b>You struggle into \the [src].</b></font>")
+		user.visible_message(
+			SPAN_NOTICE("<b>[user] struggles into \the [src].</b>"),
+			SPAN_NOTICE("<b>You struggle into \the [src].</b>")
+		)
 		wearer = user
 		wearer.wearing_rig = src
 		update_icon()
@@ -647,7 +650,7 @@
 				return
 
 			use_obj.forceMove(wearer)
-			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, 0, 1))
+			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
 					initiator << "<span class='danger'>You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way.</span>"

@@ -224,7 +224,7 @@
 
 			for(var/a = 1 to 5)
 				spawn(0)
-					var/obj/effect/effect/water/W = PoolOrNew(/obj/effect/effect/water, get_turf(chassis))
+					var/obj/effect/effect/water/W = new(get_turf(chassis))
 					var/turf/my_target
 					if(a == 1)
 						my_target = T
@@ -409,7 +409,7 @@
 			return
 		chassis.use_power(energy_drain)
 		set_ready_state(0)
-		PoolOrNew(/obj/effect/portal/wormhole, list(get_turf(target), target_turf, rand(150, 300)))
+		new /obj/effect/portal/wormhole(get_turf(target), target_turf, rand(150, 300))
 		do_after_cooldown()
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult

@@ -53,7 +53,7 @@
 	if(I.get_tool_type(user, list(QUALITY_WELDING)))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user << SPAN_NOTICE("Slicing lattice joints ...")
-			PoolOrNew(/obj/item/stack/rods, src.loc)
+			new /obj/item/stack/rods(loc)
 			qdel(src)
 	if (istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I

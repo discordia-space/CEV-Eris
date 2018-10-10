@@ -45,7 +45,7 @@
 		src.time = stationtime2text()
 
 /datum/transaction/proc/Copy()
-	var/datum/transaction/T = PoolOrNew(/datum/transaction)
+	var/datum/transaction/T = new
 	T.target_name = src.target_name
 	T.purpose = src.purpose
 	T.amount = src.amount

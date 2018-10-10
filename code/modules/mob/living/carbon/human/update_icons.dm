@@ -433,7 +433,6 @@ var/global/list/damage_icon_parts = list()
 	UpdateDamageIcon()
 	update_icons()
 
-
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
