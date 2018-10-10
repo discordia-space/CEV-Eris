@@ -21,7 +21,8 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 	report_progress("[global_vars] global variables")
 	report_progress("[global_procs] global init procs")
-
+	error(global_vars)
+	error(global_procs)
 	try
 		if(global_vars == global_procs)
 			Initialize()

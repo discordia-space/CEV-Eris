@@ -67,13 +67,13 @@
 
 // Should always be used to change the opacity of an atom.
 // It notifies (potentially) affected light sources so they can update (if needed).
-/atom/proc/set_opacity(new_opacity)
+/*/atom/proc/set_opacity(new_opacity)
 	var/old_opacity = opacity
 	opacity = new_opacity
 	var/turf/T = loc
 	if(old_opacity != new_opacity && istype(T))
 		T.reconsider_lights()
-
+*/
 // This code makes the light be queued for update when it is moved.
 // Entered() should handle it, however Exited() can do it if it is being moved to nullspace (as there would be no Entered() call in that situation).
 /atom/Entered(atom/movable/Obj, atom/OldLoc) //Implemented here because forceMove() doesn't call Move()
