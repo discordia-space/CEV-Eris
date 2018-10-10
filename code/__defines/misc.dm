@@ -214,11 +214,6 @@
 //Filters
 #define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")
 
-// secure gun authorization settings
-#define UNAUTHORIZED      0
-#define AUTHORIZED        1
-#define ALWAYS_AUTHORIZED 2
-
 //Built-in email accounts
 #define EMAIL_DOCUMENTS "document.server@internal-services.net"
 #define EMAIL_SYSADMIN  "admin@internal-services.net"

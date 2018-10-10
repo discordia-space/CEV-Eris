@@ -88,9 +88,18 @@
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor())
 	hard_drive.store_file(new/datum/computer_file/program/digitalwarrant())
-	hard_drive.store_file(new/datum/computer_file/program/forceauthorization())
+//	hard_drive.store_file(new/datum/computer_file/program/forceauthorization())
 	hard_drive.store_file(new/datum/computer_file/program/records())
 	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
+
+/obj/item/modular_computer/console/preset/security/camera/install_default_programs()
+	..()
+	hard_drive.store_file(new/datum/computer_file/program/camera_monitor())
+	hard_drive.store_file(new/datum/computer_file/program/digitalwarrant())
+//	hard_drive.store_file(new/datum/computer_file/program/forceauthorization())
+	hard_drive.store_file(new/datum/computer_file/program/records())
+	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
+	set_autorun("cammon")
 
 // Civilian
 /obj/item/modular_computer/console/preset/civilian/install_default_programs()
@@ -179,4 +188,3 @@
 	hard_drive.store_file(new/datum/computer_file/program/email_client())
 	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
 	hard_drive.store_file(new/datum/computer_file/program/library())
-
