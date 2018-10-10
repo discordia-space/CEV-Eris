@@ -68,6 +68,7 @@
 
 /datum/craft_recipe/canister
 	name = "canister"
+	result = /obj/machinery/portable_atmospherics/canister/empty
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL)

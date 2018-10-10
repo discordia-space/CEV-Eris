@@ -13,7 +13,7 @@
 
 	//Pre-equip can take time
 	if(world_time != world.timeofday)
-		if(mob_can_equip(src, Item, slot, disable_warning))
+		if(!mob_can_equip(src, Item, slot, disable_warning))
 			return FALSE
 
 	if(Item.is_equipped())
@@ -65,7 +65,7 @@ var/list/slot_equipment_priority = list(
 		return FALSE
 	for(var/slot in slot_equipment_priority)
 		if(equip_to_slot_if_possible(Item, slot, disable_warning = TRUE))
-			return TRUE
+			return slot
 	return FALSE
 
 
