@@ -50,7 +50,7 @@
 		SPAN_WARNING("Your [tool] slips, failing to unscrew [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/open_hatch
-	requedQuality = QUALITY_RETRACTING
+	requedQuality = QUALITY_PRYING
 
 	min_duration = 30
 	max_duration = 40
@@ -78,7 +78,7 @@
 		SPAN_WARNING("Your [tool] slips, failing to open the hatch on [target]'s [affected.name]."))
 
 /datum/surgery_step/robotics/close_hatch
-	requedQuality = QUALITY_RETRACTING
+	requedQuality = QUALITY_PRYING
 
 	min_duration = 70
 	max_duration = 100
@@ -115,9 +115,9 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if(..())
 			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			if(istype(tool,/obj/item/weapon/tool/weldingtool))
+			if(!istype(tool,/obj/item/weapon/tool/weldingtool))
 				return 0
-			return affected && affected.open == 2 && affected.brute_dam > 0 && target_zone != "mouth"
+			return affected && affected.brute_dam > 0 && target_zone != "mouth"
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
