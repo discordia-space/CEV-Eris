@@ -575,19 +575,21 @@
 /obj/item/weapon/rig/pre_equip(var/mob/user, var/slot)
 	if (slot == rig_wear_slot)
 		if(seal_delay > 0)
-			user.visible_message("<font color='blue'>[user] starts putting on \the [src]...</font>", "<font color='blue'>You start putting on \the [src]...</font>")
+			user.visible_message(
+				SPAN_NOTICE("[user] starts putting on \the [src]..."),
+				SPAN_NOTICE("You start putting on \the [src]...")
+			)
 			if(!do_after(user,seal_delay,src))
-				return 1 //A nonzero return value will cause the equipping operation to fail
+				return TRUE //A nonzero return value will cause the equipping operation to fail
 
 
 /obj/item/weapon/rig/equipped(var/mob/user, var/slot)
 	..()
-	if (is_held())
-		remove()
-		return
-
 	if (slot == rig_wear_slot)
-		user.visible_message("<font color='blue'><b>[user] struggles into \the [src].</b></font>", "<font color='blue'><b>You struggle into \the [src].</b></font>")
+		user.visible_message(
+			SPAN_NOTICE("<b>[user] struggles into \the [src].</b>"),
+			SPAN_NOTICE("<b>You struggle into \the [src].</b>")
+		)
 		wearer = user
 		wearer.wearing_rig = src
 		update_icon()
