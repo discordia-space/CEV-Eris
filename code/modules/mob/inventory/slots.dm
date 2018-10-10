@@ -221,15 +221,21 @@
 	req_item_in_slot = slot_wear_suit
 	update_proc = /mob/proc/update_inv_s_store
 
-/datum/inventory_slot/special_store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
-	if(!..())
-		return FALSE
+/datum/inventory_slot/suit_store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	var/obj/item/wear_suit = owner.get_equipped_item(slot_wear_suit)
+	if(!wear_suit)
+		if(!disable_warning)
+			owner << SPAN_WARNING("You need some suit to wear items in [name].")
+		return FALSE
 	if(!wear_suit.allowed)
 		if(!disable_warning)
 			owner << SPAN_WARNING("You can't attach anything to that [wear_suit].")
 		return FALSE
-	return is_type_in_list(src, wear_suit.allowed + list(/obj/item/device/pda, /obj/item/weapon/pen))
+	if( !is_type_in_list(I, wear_suit.allowed + list(/obj/item/device/pda, /obj/item/weapon/pen)) )
+		if(!disable_warning)
+			owner << SPAN_WARNING("You can't attach [I] to that [wear_suit].")
+		return FALSE
+	return TRUE
 
 
 //Special virtual slots. Here for backcompability.
@@ -245,8 +251,11 @@
 /datum/inventory_slot/accessory
 	name = "Slot accessory"
 	id = slot_accessory_buffer
+	req_type = /obj/item/clothing/accessory
 
 /datum/inventory_slot/accessory/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+	if(!istype(I, req_type))
+		return FALSE
 	var/obj/item/clothing/under/uniform = owner.get_equipped_item(slot_w_uniform)
 	if(!uniform)
 		if(!disable_warning)
