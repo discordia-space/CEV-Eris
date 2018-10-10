@@ -227,7 +227,7 @@
 			try_install_component(user, C)
 		else
 			to_chat(user, "This component is too large for \the [src].")
-	if(isWrench(W))
+	if(QUALITY_BOLT_TURNING in W.tool_qualities)
 		var/list/components = get_all_components()
 		if(components.len)
 			to_chat(user, "Remove all components from \the [src] before disassembling it.")
