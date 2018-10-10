@@ -19,9 +19,9 @@
 	var/max_params = 2
 	if(ispath(params))
 		reqed_type = params
-		req_amount = 1
 	else if(istext(params))
 		reqed_quality = params
+		reqed_quality_level = 1 //A minimum value, will be set higher in a second
 	else if(islist(params))
 		var/validator = params[1]
 		if(ispath(validator))
@@ -35,10 +35,10 @@
 				reqed_quality = validator
 
 		if(isnum(params[2])) //amount
-			if (reqed_material)
-				req_amount = params[2]
-			else if (reqed_quality)
+			if (reqed_quality)
 				reqed_quality_level = params[2]
+			else
+				req_amount = params[2]
 
 		if("time" in params)
 			time = params["time"]
@@ -52,6 +52,9 @@
 	if(reqed_type)
 		var/obj/item/I = reqed_type
 		tool_name = initial(I.name)
+		if (!ispath(reqed_type,/obj/item/stack/))
+			world << "[reqed_type] is not stack"
+			req_amount = 1
 
 	else if(reqed_quality)
 		tool_name = "tool with [reqed_quality] quality of [reqed_quality_level]"
