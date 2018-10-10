@@ -53,7 +53,6 @@
 		var/obj/item/I = reqed_type
 		tool_name = initial(I.name)
 		if (!ispath(reqed_type,/obj/item/stack/))
-			world << "[reqed_type] is not stack"
 			req_amount = 1
 
 	else if(reqed_quality)
