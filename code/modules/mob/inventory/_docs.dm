@@ -41,7 +41,8 @@ It calls:
 /mob/proc/equip_to_appropriate_slot(obj/item/Item)
 /*
 Puts the Item into an appropriate slot in a human's inventory
-returns FALSE if it cannot, TRUE if successful
+Checks all slots present in slot_equipment_priority list one by one
+Returns found id of slot in which item was equipped or FALSE
 It calls:
 	- equip_to_slot_if_possible(Item, slot, disable_warning = TRUE)
 */
