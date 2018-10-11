@@ -649,7 +649,6 @@
 			if(check_slot && check_slot == use_obj)
 				return
 
-			use_obj.forceMove(wearer)
 			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
