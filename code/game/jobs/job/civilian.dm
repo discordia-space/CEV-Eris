@@ -166,8 +166,8 @@
 	department = "Civilian"
 	department_flag = CIVILIAN
 	faction = "CEV Eris"
-	total_positions = 6
-	spawn_positions = 6
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15)

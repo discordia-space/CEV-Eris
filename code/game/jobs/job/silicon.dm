@@ -34,8 +34,8 @@
 	flag = CYBORG
 	department_flag = ENGSEC
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "your laws and the AI"
 	selection_color = "#ddffdd"
 	account_allowed = 0

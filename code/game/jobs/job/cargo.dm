@@ -74,8 +74,8 @@
 	department = "Cargo"
 	department_flag = CIVILIAN
 	faction = "CEV Eris"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "the Guild Merchant"
 	selection_color = "#dddddd"
 	economic_modifier = 5
