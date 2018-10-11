@@ -96,7 +96,7 @@
 	// We shouldn't have spawned if the controller doesn't exist.
 	check_health()
 	if(neighbors.len || health != max_health)
-		plant_controller.add_plant(src)
+		SSplants.add_plant(src)
 
 	if (seed.get_trait(TRAIT_CHEM_SPRAYER) && !spray_cooldown)
 		var/turf/mainloc = get_turf(src)
@@ -124,7 +124,7 @@
 			continue
 		for(var/obj/effect/plant/neighbor in check_turf.contents)
 			neighbor.neighbors |= check_turf
-			plant_controller.add_plant(neighbor)
+			SSplants.add_plant(neighbor)
 	spawn(1) if(src) qdel(src)
 
 #undef NEIGHBOR_REFRESH_TIME

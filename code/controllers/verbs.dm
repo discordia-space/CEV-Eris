@@ -41,9 +41,6 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 		if("Gas Data")
 			debug_variables(gas_data)
 
-		if("Plants")
-			debug_variables(plant_controller)
-
 		if("Observation")
 			debug_variables(all_observable_events)
 

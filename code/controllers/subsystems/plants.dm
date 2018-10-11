@@ -1,31 +1,11 @@
-// Attempts to offload processing for the spreading plants from the MC.
-// Processes vines/spreading plants.
+SUBSYSTEM_DEF(plants)
+	name = "Plants"
+	init_order = INIT_ORDER_PLANTS // keep this above SSatoms, seeds initialization depends on it
+	wait = 75
+	flags = SS_BACKGROUND | SS_POST_FIRE_TIMING
 
-#define PLANTS_PER_TICK 500 // Cap on number of plant segments processed.
-#define PLANT_TICK_TIME 75  // Number of ticks between the plant processor cycling.
+	var/list/current_run = list()
 
-ADMIN_VERB_ADD(/client/proc/show_plant_genes, R_DEBUG, FALSE)
-// Debug for testing seed genes.
-/client/proc/show_plant_genes()
-	set category = "Debug"
-	set name = "Show Plant Genes"
-	set desc = "Prints the round's plant gene masks."
-
-	if(!holder)	return
-
-	if(!plant_controller || !plant_controller.gene_tag_masks)
-		usr << "Gene masks not set."
-		return
-
-	for(var/mask in plant_controller.gene_tag_masks)
-		usr << "[mask]: [plant_controller.gene_tag_masks[mask]]"
-
-var/global/datum/controller/plants/plant_controller // Set in New().
-
-/datum/controller/plants
-
-	var/plants_per_tick = PLANTS_PER_TICK
-	var/plant_tick_time = PLANT_TICK_TIME
 	var/list/product_descs = list()         // Stores generated fruit descs.
 	var/list/plant_queue = list()           // All queued plants.
 	var/list/seeds = list()                 // All seed data stored here.
@@ -33,22 +13,12 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 	var/list/plant_icon_cache = list()      // Stores images of growth, fruits and seeds.
 	var/list/plant_sprites = list()         // List of all harvested product sprites.
 	var/list/plant_product_sprites = list() // List of all growth sprites plus number of growth stages.
-	var/processing = 0                      // Off/on.
-
-/datum/controller/plants/New()
-	if(plant_controller && plant_controller != src)
-		log_debug("Rebuilding plant controller.")
-		qdel(plant_controller)
-	plant_controller = src
-	setup()
-	Process()
 
 // Predefined/roundstart varieties use a string key to make it
 // easier to grab the new variety when mutating. Post-roundstart
 // and mutant varieties use their uid converted to a string instead.
 // Looks like shit but it's sort of necessary.
-/datum/controller/plants/proc/setup()
-
+/datum/controller/subsystem/plants/Initialize(start_timeofday)
 	// Build the icon lists.
 	for(var/icostate in icon_states('icons/obj/hydroponics_growing.dmi'))
 		var/split = findtext(icostate,"-")
@@ -78,11 +48,6 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 		S.uid = "[seeds.len]"
 		S.roundstart = 1
 
-	// Make sure any seed packets that were mapped in are updated
-	// correctly (since the seed datums did not exist a tick ago).
-	for(var/obj/item/seeds/S in world)
-		S.update_seed()
-
 	//Might as well mask the gene types while we're at it.
 	var/list/used_masks = list()
 	var/list/plant_traits = ALL_GENES
@@ -96,12 +61,33 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 		used_masks += gene_mask
 		plant_traits -= gene_tag
 		gene_tag_masks[gene_tag] = gene_mask
+	return ..()
+
+/datum/controller/subsystem/plants/fire(resumed = 0)
+	if (!resumed)
+		src.current_run = plant_queue.Copy()
+
+	var/list/current_run = src.current_run
+
+	while(current_run.len)
+		var/obj/effect/plant/plant = current_run[current_run.len]
+		current_run.len--
+		plant_queue -= plant
+
+		if(!QDELETED(plant))
+			plant.Process()
+
+		if (MC_TICK_CHECK)
+			return
+
+/datum/controller/subsystem/plants/stat_entry()
+	..("P:[plant_queue.len]")
 
 // Proc for creating a random seed type.
-/datum/controller/plants/proc/create_random_seed(var/survive_on_station)
+/datum/controller/subsystem/plants/proc/create_random_seed(survive_on_station)
 	var/datum/seed/seed = new()
 	seed.randomize()
-	seed.uid = plant_controller.seeds.len + 1
+	seed.uid = SSplants.seeds.len + 1
 	seed.name = "[seed.uid]"
 	seeds[seed.name] = seed
 
@@ -120,32 +106,35 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 		seed.set_trait(TRAIT_HIGHKPA_TOLERANCE,200)
 	return seed
 
-/datum/controller/plants/Process()
-	processing = 1
-	spawn(0)
-		set background = 1
-		var/processed = 0
-		while(1)
-			if(!processing)
-				sleep(plant_tick_time)
-			else
-				processed = 0
-				if(plant_queue.len)
-					var/target_to_process = min(plant_queue.len,plants_per_tick)
-					for(var/x=0;x<target_to_process;x++)
-						if(!plant_queue.len)
-							break
-						var/obj/effect/plant/plant = pick(plant_queue)
-						plant_queue -= plant
-						if(!istype(plant))
-							continue
-						plant.Process()
-						processed++
-						sleep(1) // Stagger processing out so previous tick can resolve (overlapping plant segments etc)
-				sleep(max(1,(plant_tick_time-processed)))
-
-/datum/controller/plants/proc/add_plant(var/obj/effect/plant/plant)
+/datum/controller/subsystem/plants/proc/add_plant(obj/effect/plant/plant)
 	plant_queue |= plant
 
-/datum/controller/plants/proc/remove_plant(var/obj/effect/plant/plant)
+/datum/controller/subsystem/plants/proc/remove_plant(obj/effect/plant/plant)
 	plant_queue -= plant
+
+/datum/controller/subsystem/plants/Recover()
+	flags |= SS_NO_INIT
+	product_descs = SSplants.product_descs
+	plant_queue = SSplants.plant_queue
+	seeds = SSplants.seeds
+	gene_tag_masks = SSplants.gene_tag_masks
+	plant_icon_cache = SSplants.plant_icon_cache
+	plant_sprites = SSplants.plant_sprites
+	plant_product_sprites = SSplants.plant_product_sprites
+
+ADMIN_VERB_ADD(/client/proc/show_plant_genes, R_DEBUG, FALSE)
+// Debug for testing seed genes.
+/client/proc/show_plant_genes()
+	set category = "Debug"
+	set name = "Show Plant Genes"
+	set desc = "Prints the round's plant gene masks."
+
+	if(!holder)
+		return
+
+	if(!SSplants.gene_tag_masks)
+		usr << "Gene masks not set."
+		return
+
+	for(var/mask in SSplants.gene_tag_masks)
+		usr << "[mask]: [SSplants.gene_tag_masks[mask]]"

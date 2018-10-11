@@ -777,7 +777,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/immreboot, R_SERVER, FALSE)
 	return FALSE
 
 ADMIN_VERB_ADD(/datum/admins/proc/spawn_fruit, R_DEBUG, FALSE)
-/datum/admins/proc/spawn_fruit(seedtype in plant_controller.seeds)
+/datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
 	set category = "Debug"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
@@ -785,9 +785,9 @@ ADMIN_VERB_ADD(/datum/admins/proc/spawn_fruit, R_DEBUG, FALSE)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(!seedtype || !plant_controller.seeds[seedtype])
+	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	var/datum/seed/S = plant_controller.seeds[seedtype]
+	var/datum/seed/S = SSplants.seeds[seedtype]
 	S.harvest(usr,0,0,1)
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
 
@@ -837,7 +837,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/check_custom_items, R_DEBUG, FALSE)
 
 
 ADMIN_VERB_ADD(/datum/admins/proc/spawn_plant, R_DEBUG, FALSE)
-/datum/admins/proc/spawn_plant(seedtype in plant_controller.seeds)
+/datum/admins/proc/spawn_plant(seedtype in SSplants.seeds)
 	set category = "Debug"
 	set desc = "Spawn a spreading plant effect."
 	set name = "Spawn Plant"
@@ -845,9 +845,9 @@ ADMIN_VERB_ADD(/datum/admins/proc/spawn_plant, R_DEBUG, FALSE)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(!seedtype || !plant_controller.seeds[seedtype])
+	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	new /obj/effect/plant(get_turf(usr), plant_controller.seeds[seedtype])
+	new /obj/effect/plant(get_turf(usr), SSplants.seeds[seedtype])
 	log_admin("[key_name(usr)] spawned [seedtype] vines at ([usr.x],[usr.y],[usr.z])")
 
 
