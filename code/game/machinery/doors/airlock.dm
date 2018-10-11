@@ -70,6 +70,7 @@
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorsec.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
+	resistance = 20
 
 /obj/machinery/door/airlock/engineering
 	name = "Airlock"
@@ -100,6 +101,7 @@
 
 	maxhealth = 300
 	explosion_resistance = 5
+	resistance = 8
 	opacity = 0
 	glass = 1
 
@@ -112,6 +114,7 @@
 	name = "Vault"
 	icon = 'icons/obj/doors/vault.dmi'
 	explosion_resistance = 20
+	resistance = 30
 	opacity = 1
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
@@ -130,6 +133,7 @@
 	name = "Airtight Hatch"
 	icon = 'icons/obj/doors/Doorhatchele.dmi'
 	explosion_resistance = 20
+	resistance = 20
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 
@@ -137,6 +141,7 @@
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorhatchmaint2.dmi'
 	explosion_resistance = 20
+	resistance = 20
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
 
@@ -284,6 +289,7 @@
 	name = "Diamond Airlock"
 	icon = 'icons/obj/doors/Doordiamond.dmi'
 	mineral = MATERIAL_DIAMOND
+	resistance = 100
 
 /obj/machinery/door/airlock/uranium
 	name = "Uranium Airlock"
@@ -363,6 +369,7 @@
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
 	explosion_resistance = 20
+	resistance = 20
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 
@@ -868,6 +875,11 @@ There are 9 wires.
 		return
 	src.add_fingerprint(user)
 
+	//Harm intent overrides other actions
+	if(src.density && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
+		hit(user, I)
+		return
+
 	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING))
 	switch(tool_type)
 
@@ -958,8 +970,15 @@ There are 9 wires.
 /obj/machinery/door/airlock/set_broken()
 	src.p_open = 1
 	stat |= BROKEN
-	if (secured_wires)
+
+	//If the door has been violently smashed open
+	if (health <= 0)
+		visible_message("<span class = 'warning'>\The [src.name] breaks open!</span>")
+		unlock() //Then it is open
+		open(TRUE)
+	else if (secured_wires)
 		lock()
+
 	for (var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
 			O.show_message("[src.name]'s control panel bursts open, sparks spewing out!")
@@ -1213,4 +1232,29 @@ There are 9 wires.
 		src.open()
 		src.lock()
 	return
+
+
+//Override to check locked var
+/obj/machinery/door/airlock/hit(var/mob/user, var/obj/item/I)
+	var/obj/item/weapon/W = I
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
+	var/calc_damage = W.force*W.structure_damage_factor
+	if (locked)
+		calc_damage *= 0.66
+	calc_damage -= resistance
+	user.do_attack_animation(src)
+	if(calc_damage <= 0)
+		user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
+		playsound(src.loc, hitsound, 20, 1)
+	else
+		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
+		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
+		take_damage(W.force)
+
+
+/obj/machinery/door/airlock/take_damage(var/damage)
+	if (isnum(damage) && locked)
+		damage *= 0.66 //The bolts reinforce the door, reducing damage taken
+
+	return ..(damage)
 
