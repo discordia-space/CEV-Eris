@@ -185,6 +185,10 @@ SUBSYSTEM_DEF(ticker)
 	create_characters() //Create player characters and transfer them
 	collect_minds()
 	equip_characters()
+	for(var/mob/living/carbon/human/H in player_list)
+		if(!H.mind || player_is_antag(H.mind, only_offstation_roles = 1) || !SSjob.ShouldCreateRecords(H.mind.assigned_role))
+			continue
+		CreateModularRecord(H)
 	data_core.manifest()
 
 	callHook("roundstart")

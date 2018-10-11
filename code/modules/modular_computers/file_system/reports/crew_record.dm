@@ -46,12 +46,15 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 					formal_name = "[culture.get_formal_name_prefix()][formal_name][culture.get_formal_name_suffix()]"
 	*/
 	// Generic record
-	//set_name(formal_name)
+	set_name(H ? H.real_name : "")
 	set_job(H ? GetAssignment(H) : "Unset")
 	set_sex(H ? gender2text(H.get_sex()) : "Unset")
 	set_age(H ? H.age : 30)
 	set_status(GLOB.default_physical_status)
+	// TODO: enable after baymed
 	//set_species(H ? H.get_species() : SPECIES_HUMAN)
+
+	set_species("Human")
 	//set_branch(H ? (H.char_branch && H.char_branch.name) : "None")
 	//set_rank(H ? (H.char_rank && H.char_rank.name) : "None")
 
@@ -89,9 +92,9 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	if(H)
 		var/stats = list()
 		for(var/statName in ALL_STATS)
-			var/points = H.stats.getStat(statName)
+			var/points = H.stats.getStat(statName,Pure = TRUE)
 			if(points > STAT_LEVEL_NONE)
-				stats += "[statName], [statPointsToLevel(points)]"
+				stats += "[statName]: [points] ([statPointsToLevel(points)])"
 
 		set_skillset(jointext(stats,"\n"))
 
@@ -172,8 +175,6 @@ FIELD_NUM("Age", age, null, access_change_ids)
 FIELD_LIST_EDIT("Status", status, GLOB.physical_statuses, null, access_moebius)
 
 FIELD_SHORT("Species",species, null, access_change_ids)
-FIELD_LIST("Branch", branch, record_branches(), null, access_change_ids)
-FIELD_LIST("Rank", rank, record_ranks(), null, access_change_ids)
 
 // MEDICAL RECORDS
 FIELD_LIST("Blood Type", bloodtype, GLOB.blood_types, access_moebius, access_moebius)

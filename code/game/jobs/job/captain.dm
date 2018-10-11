@@ -25,7 +25,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 	uniform = /obj/item/clothing/under/rank/captain
 	shoes = /obj/item/clothing/shoes/color/brown
-	pda = /obj/item/device/pda/captain
+	pda = /obj/item/modular_computer/pda/captain
 	hat = /obj/item/clothing/head/caphat
 	ear = /obj/item/device/radio/headset/heads/captain
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -82,7 +82,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/armor/vest
 	gloves = /obj/item/clothing/gloves/thick
-	pda = /obj/item/device/pda/heads/hop
+	pda = /obj/item/modular_computer/pda/heads/hop
 	ear = /obj/item/device/radio/headset/heads/hop
 
 	put_in_backpack = list(

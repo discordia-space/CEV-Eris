@@ -67,9 +67,9 @@
 		playsound_host('sound/machines/buzz-two.ogg', 50)
 		genloc = ""
 
-/datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
 
-	var/list/data// = get_header_data()
+	var/list/data = host.initial_data()
 
 	if (istype(gen))
 		data["genloc"] = genloc

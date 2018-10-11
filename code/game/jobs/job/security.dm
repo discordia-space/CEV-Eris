@@ -29,7 +29,7 @@
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
 	hat = /obj/item/clothing/head/HoS
-	pda = /obj/item/device/pda/heads/hos
+	pda = /obj/item/modular_computer/pda/heads/hos
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -85,7 +85,7 @@
 	uniform = /obj/item/clothing/under/rank/warden
 	suit = /obj/item/clothing/suit/armor/vest/security
 	hat = /obj/item/clothing/head/beret/sec/navy/warden
-	pda = /obj/item/device/pda/warden
+	pda = /obj/item/modular_computer/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -140,7 +140,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/inspector
-	pda = /obj/item/device/pda/detective
+	pda = /obj/item/modular_computer/pda/forensics
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -188,7 +188,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/medspec
-	pda = /obj/item/device/pda/detective
+	pda = /obj/item/modular_computer/pda/forensics
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
@@ -236,7 +236,7 @@
 	hat = /obj/item/clothing/head/helmet
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	mask = /obj/item/clothing/mask/balaclava/tactical
-	pda = /obj/item/device/pda/security
+	pda = /obj/item/modular_computer/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves

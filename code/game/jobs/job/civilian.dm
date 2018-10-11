@@ -17,7 +17,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/bartender
-	pda = /obj/item/device/pda/bar
+	pda = /obj/item/modular_computer/pda
 	ear = /obj/item/device/radio/headset/headset_service
 
 	equip(var/mob/living/carbon/human/H)
@@ -65,7 +65,7 @@
 
 	uniform = /obj/item/clothing/under/rank/chef
 	shoes = /obj/item/clothing/shoes/black
-	pda = /obj/item/device/pda/chef
+	pda = /obj/item/modular_computer/pda
 	hat = /obj/item/clothing/head/chefhat
 	suit = /obj/item/clothing/suit/chef
 	ear = /obj/item/device/radio/headset/headset_service
@@ -96,7 +96,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/hydroponics
-	pda = /obj/item/device/pda/botanist
+	pda = /obj/item/modular_computer/pda
 	suit = /obj/item/clothing/suit/apron
 	gloves = /obj/item/clothing/gloves/botanic_leather
 	ear = /obj/item/device/radio/headset/headset_service
@@ -130,7 +130,7 @@
 
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
-	pda = /obj/item/device/pda/clown
+	pda = /obj/item/modular_computer/pda
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	ear = /obj/item/device/radio/headset/headset_service
 
@@ -178,7 +178,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/janitor
-	pda = /obj/item/device/pda/janitor
+	pda = /obj/item/modular_computer/pda
 	ear = /obj/item/device/radio/headset/headset_service
 
 /obj/landmark/join/start/janitor

@@ -21,7 +21,7 @@
 	suit = /obj/item/clothing/suit/chaplain_hoodie
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
-	pda = /obj/item/device/pda/chaplain
+	pda = /obj/item/modular_computer/pda
 
 /obj/landmark/join/start/chaplain
 	name = "Cyberchristian Preacher"

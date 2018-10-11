@@ -1,24 +1,23 @@
 // Generates a simple HTML crew manifest for use in various places
 /proc/html_crew_manifest(var/monochrome, var/OOC)
 	var/list/dept_data = list(
-		list("names" = list(), "header" = "Heads of Staff", "flag" = COM),
+		list("names" = list(), "header" = "Heads of staff", "flag" = COM),
 		list("names" = list(), "header" = "Command Support", "flag" = SPT),
-		list("names" = list(), "header" = "Research", "flag" = SCI),
-		list("names" = list(), "header" = "Security", "flag" = SEC),
-		list("names" = list(), "header" = "Medical", "flag" = MED),
+		list("names" = list(), "header" = "Moebius", "flag" = SCI),
+		list("names" = list(), "header" = "Ironhammer", "flag" = SEC),
+		list("names" = list(), "header" = "Moebius", "flag" = MED),
 		list("names" = list(), "header" = "Engineering", "flag" = ENG),
-		list("names" = list(), "header" = "Supply", "flag" = SUP),
-		list("names" = list(), "header" = "Exploration", "flag" = EXP),
+		list("names" = list(), "header" = "Cargo", "flag" = SUP),
 		list("names" = list(), "header" = "Service", "flag" = SRV),
 		list("names" = list(), "header" = "Civilian", "flag" = CIV),
 		list("names" = list(), "header" = "Miscellaneous", "flag" = MSC),
 		list("names" = list(), "header" = "Silicon")
 	)
-	//var/list/misc //Special departments for easier access
+	var/list/misc //Special departments for easier access
 	var/list/bot
 	for(var/list/department in dept_data)
-		//if(department["flag"] == MSC)
-		//	misc = department["names"]
+		if(department["flag"] == MSC)
+			misc = department["names"]
 		if(isnull(department["flag"]))
 			bot = department["names"]
 
@@ -39,17 +38,8 @@
 	// sort mobs
 	for(var/datum/computer_file/report/crew_record/CR in GLOB.all_crew_records)
 		var/name = CR.get_name()
-		//var/rank = CR.get_job()
-		//mil_ranks[name] = ""
+		var/rank = CR.get_job()
 
-		/*
-		if(maps_data.flags & MAP_HAS_RANK)
-			var/datum/mil_branch/branch_obj = mil_branches.get_branch(CR.get_branch())
-			var/datum/mil_rank/rank_obj = mil_branches.get_rank(CR.get_branch(), CR.get_rank())
-
-			if(branch_obj && rank_obj)
-				mil_ranks[name] = "<abbr title=\"[rank_obj.name], [branch_obj.name]\">[rank_obj.name_short]</abbr> "
-		*/
 		if(OOC)
 			var/active = 0
 			for(var/mob/M in player_list)
@@ -60,7 +50,7 @@
 		else
 			isactive[name] = CR.get_status()
 
-		/*var/datum/job/job = job_master.occupations_by_title[rank]
+		var/datum/job/job = SSjob.occupations_by_name[rank]
 		var/found_place = 0
 		if(job)
 			for(var/list/department in dept_data)
@@ -70,7 +60,7 @@
 					found_place = 1
 		if(!found_place)
 			misc[name] = rank
-	*/
+	
 	// Synthetics don't have actual records, so we will pull them from here.
 	for(var/mob/living/silicon/ai/ai in SSmobs.mob_list)
 		bot[ai.name] = "Artificial Intelligence"
@@ -119,9 +109,7 @@
 		filtered_entries.Add(list(list(
 			"name" = CR.get_name(),
 			"rank" = CR.get_job(),
-			"status" = CR.get_status(),
-			"branch" = CR.get_branch(),
-			"milrank" = CR.get_rank()
+			"status" = CR.get_status()
 		)))
 	return filtered_entries
 

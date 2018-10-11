@@ -23,7 +23,7 @@
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/qm_coat
 	shoes = /obj/item/clothing/shoes/color/brown
-	pda = /obj/item/device/pda/quartermaster
+	pda = /obj/item/modular_computer/pda/cargo
 	gloves = /obj/item/clothing/gloves/thick
 	ear = /obj/item/device/radio/headset/heads/merchant
 	hand = /obj/item/weapon/clipboard
@@ -60,7 +60,7 @@
 
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
-	pda = /obj/item/device/pda/cargo
+	pda = /obj/item/modular_computer/pda/cargo
 	ear = /obj/item/device/radio/headset/headset_cargo
 
 /obj/landmark/join/start/cargo_tech
@@ -92,7 +92,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/miner
-	pda = /obj/item/device/pda/shaftminer
+	pda = /obj/item/modular_computer/pda/science
 	ear = /obj/item/device/radio/headset/headset_cargo
 	survival_gear = /obj/item/weapon/storage/box/engineer
 

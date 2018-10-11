@@ -16,7 +16,6 @@
 	desc = "Does card things."
 	icon = 'icons/obj/card.dmi'
 	w_class = ITEM_SIZE_TINY
-	var/associated_account_number = 0
 
 	var/list/files = list(  )
 
@@ -100,6 +99,7 @@ var/const/NO_EMAG_ACT = -50
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
 	var/list/associated_email_login = list("login" = "", "password" = "")
+	var/associated_account_number = 0
 
 	var/age = "\[UNSET\]"
 	var/blood_type = "\[UNSET\]"

@@ -7,7 +7,7 @@
 			<div class=item>{{:helper.link('Change alert level', null, {'action' : 'sw_menu', 'target' : 5}, data.isAI || !data.net_syscont || !data.net_comms ? 'disabled' : null)}} </div>
 			<div class=item>{{:helper.link('Set status display', null, {'action' : 'sw_menu', 'target' : 4}, !data.net_syscont ? 'disabled' : null)}} </div>
 		</div>
-
+		<!-- 
 		<h4>Communications</h4>
 		<div class=itemGroup>
 			<div class=item>{{:helper.link('Message list', null, {'action' : 'sw_menu', 'target' : 2}, !data.net_comms ? 'disabled' : null)}} </div>
@@ -17,7 +17,7 @@
 				{{:helper.link('Send an emergency message to ' + data.boss_short, null, {'action' : 'message', 'target' : 'regular'}, data.isAI || !data.net_comms ? 'disabled' : null)}}
 			{{/if}} </div>
 		</div>
-
+		 -->
 		<h4>Additional</h4>
 		<div class=itemGroup>
 			{{for data.evac_options}}

@@ -72,7 +72,7 @@
 	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
 
-/obj/item/modular_computer/laptop/preset/debug/qqqqq/install_default_programs()
+/obj/item/modular_computer/laptop/preset/debug/install_default_programs()
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/ntnetmonitor())
 	hard_drive.store_file(new/datum/computer_file/program/nttransfer())
@@ -99,7 +99,6 @@
 	hard_drive.store_file(new/datum/computer_file/program/uplink())
 	hard_drive.store_file(new/datum/computer_file/program/card_mod())
 	hard_drive.store_file(new/datum/computer_file/program/shield_control())
-	hard_drive.store_file(new/datum/computer_file/program/shields_monitor())
 	hard_drive.store_file(new/datum/computer_file/program/newsbrowser())
 	hard_drive.store_file(new/datum/computer_file/program/crew_manifest())
 	hard_drive.store_file(new/datum/computer_file/program/game())

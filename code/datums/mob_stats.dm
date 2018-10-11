@@ -91,13 +91,13 @@
 
 /proc/statPointsToLevel(var/points)
 	switch(points)
-		if (0)
-			return "None"
-		if (15 to 25)
+		if (STAT_LEVEL_NONE to STAT_LEVEL_BASIC)
+			return "Untrained"
+		if (STAT_LEVEL_BASIC to STAT_LEVEL_ADEPT)
 			return "Basic"
-		if (25 to 40)
+		if (STAT_LEVEL_ADEPT to STAT_LEVEL_EXPERT)
 			return "Adept"
-		if (40 to 60)
+		if (STAT_LEVEL_EXPERT to STAT_LEVEL_PROF)
 			return "Expert"
-		if (60 to INFINITY)
+		if (STAT_LEVEL_PROF to INFINITY)
 			return "Professional"

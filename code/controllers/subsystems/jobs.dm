@@ -356,6 +356,14 @@ SUBSYSTEM_DEF(job)
 					custom_equip_slots.Add(G.slot)
 				else
 					spawn_in_storage += thing
+		// EMAIL GENERATION
+		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
+			var/domain
+			var/desired_name
+			domain = pick(maps_data.usable_email_tlds)
+			desired_name = H.real_name
+			ntnet_global.create_email(H, desired_name, domain)
+		// END EMAIL GENERATION
 	else
 		H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
 
@@ -481,6 +489,9 @@ SUBSYSTEM_DEF(job)
 		if(H.mind && H.mind.initial_account)
 			C.associated_account_number = H.mind.initial_account.account_number
 
+		if(H.mind.initial_email_login)
+			C.associated_email_login = H.mind.initial_email_login.Copy()
+
 		H.equip_to_slot_or_del(C, slot_wear_id)
 
 	H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
@@ -587,3 +598,9 @@ SUBSYSTEM_DEF(job)
 			if(H)
 				H.forceMove(pickSpawnLocation())
 			return "has arrived on the station"
+
+/datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
+	if(!title) return 0
+	var/datum/job/job = GetJob(title)
+	if(!job) return 0
+	return job.create_record

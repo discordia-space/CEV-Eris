@@ -78,14 +78,14 @@
 		security_setup["ref"] = any2ref(security_level)
 		security_levels[++security_levels.len] = security_setup
 	data["security_levels"] = security_levels
-
+/*
 	var/datum/comm_message_listener/l = obtain_message_listener()
 	data["messages"] = l.messages
 	data["message_deletion_allowed"] = l != global_message_listener
 	data["message_current_id"] = current_viewing_message_id
 	if(current_viewing_message)
 		data["message_current"] = current_viewing_message
-
+*/
 	var/list/processed_evac_options = list()
 	if(!isnull(evacuation_controller))
 		for (var/datum/evacuation_option/EO in evacuation_controller.available_evac_options())
@@ -148,6 +148,8 @@
 				announcment_cooldown = 1
 				spawn(600)//One minute cooldown
 					announcment_cooldown = 0
+
+		/*
 		if("message")
 			. = 1
 			if(href_list["target"] == "emagged")
@@ -175,8 +177,8 @@
 					if(!is_relay_online())//Contact Centcom has a check, Syndie doesn't to allow for Traitor funs.
 						to_chat(usr, "<span class='warning'>No Emergency Bluespace Relay detected. Unable to transmit message.</span>")
 						return 1
-					//TODO: THIS
-					/*var/input = sanitize(input("Please choose a message to transmit to [maps_data.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
+					
+					var/input = sanitize(input("Please choose a message to transmit to [maps_data.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 					if(!input || !can_still_topic())
 						return 1
 					Centcomm_announce(input, usr) 
@@ -185,6 +187,7 @@
 					centcomm_message_cooldown = 1
 					spawn(300) //30 second cooldown
 						centcomm_message_cooldown = 0
+						
 						*/
 		if("evac")
 			. = 1

@@ -24,10 +24,8 @@
 		message.attachment = owner.clone()
 	server.send_mail(recipient, message)
 
-/datum/report_field/people/proc/format_output(name, rank, milrank)
+/datum/report_field/people/proc/format_output(name, rank)
 	. = list()
-	if(milrank)
-		. += milrank
 	. += name
 	if(rank)
 		. += "([rank])"
@@ -38,7 +36,7 @@
 	value = list()
 
 /datum/report_field/people/from_manifest/get_value()
-	return format_output(value["name"], value["rank"], value["milrank"])
+	return format_output(value["name"], value["rank"])
 
 /datum/report_field/people/from_manifest/set_value(given_value)
 	if(!given_value)
@@ -51,7 +49,7 @@
 	var/list/full_manifest = flat_nano_crew_manifest()
 	var/list/formatted_manifest = list()
 	for(var/entry in full_manifest)
-		formatted_manifest[format_output(entry["name"], entry["rank"], entry["milrank"])] = entry
+		formatted_manifest[format_output(entry["name"], entry["rank"])] = entry
 	var/input = input(user, "[display_name()]:", "Form Input", get_value()) as null|anything in formatted_manifest
 	set_value(formatted_manifest[input])
 
@@ -92,12 +90,12 @@
 			var/list/full_manifest = flat_nano_crew_manifest()
 			for(var/entry in full_manifest)
 				if(!in_as_list(entry, value)) //Only look at those not already selected.
-					formatted_manifest[format_output(entry["name"], entry["rank"], entry["milrank"])] = entry
+					formatted_manifest[format_output(entry["name"], entry["rank"])] = entry
 			var/input = input(user, "Add to [display_name()]:", "Form Input", null) as null|anything in formatted_manifest
 			set_value(value + list(formatted_manifest[input]))
 		if("Remove")
 			for(var/entry in value)
-				formatted_manifest[format_output(entry["name"], entry["rank"], entry["milrank"])] = entry
+				formatted_manifest[format_output(entry["name"], entry["rank"])] = entry
 			var/input = input(user, "Remove from [display_name()]:", "Form Input", null) as null|anything in formatted_manifest
 			set_value(value - list(formatted_manifest[input]))
 

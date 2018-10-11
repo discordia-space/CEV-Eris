@@ -84,3 +84,8 @@
 
 /obj/item/weapon/computer_hardware/battery_module/get_cell()
 	return battery
+
+/obj/item/weapon/computer_hardware/battery_module/check_functionality()
+	if(!battery)
+		return FALSE
+	..()
