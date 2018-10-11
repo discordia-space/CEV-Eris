@@ -357,19 +357,24 @@ BLIND     // can't see anything
 		..()
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
-	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
-	 istype(I, /obj/item/weapon/material/butterfly) || \
-	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
-	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
+	var/global/knifes
+	if(!knifes)
+		knifes = list(
+			/obj/item/weapon/material/knife,
+			/obj/item/weapon/material/shard,
+			/obj/item/weapon/material/butterfly,
+			/obj/item/weapon/material/kitchen/utensil,
+			/obj/item/weapon/material/hatchet/tacknife,
+		)
+	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
 			user << SPAN_WARNING("\The [src] is already holding \a [holding].")
 			return
-		user.unEquip(I)
-		I.forceMove(src)
-		holding = I
-		user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
-		verbs |= /obj/item/clothing/shoes/proc/draw_knife
-		update_icon()
+		if(user.unEquip(I, src))
+			holding = I
+			user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
+			verbs |= /obj/item/clothing/shoes/proc/draw_knife
+			update_icon()
 	else
 		return ..()
 
