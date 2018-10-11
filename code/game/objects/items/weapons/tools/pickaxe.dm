@@ -13,6 +13,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1
+	structure_damage_factor = 2.5
 
 /obj/item/weapon/tool/pickaxe/jackhammer
 	name = "jackhammer"

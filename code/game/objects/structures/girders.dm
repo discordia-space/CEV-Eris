@@ -5,10 +5,11 @@
 	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_HUGE
 	var/state = 0
-	var/health = 200
+	var/health = 150
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
+	var/resistance = 15
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
@@ -18,7 +19,7 @@
 
 //Low girders are used to build low walls
 /obj/structure/girder/low
-	health = 150
+	health = 120
 	cover = 25 //how much cover the girder provides against projectiles.
 
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
@@ -41,10 +42,7 @@
 	if(!istype(Proj, /obj/item/projectile/beam))
 		damage *= 0.4 //non beams do reduced damage
 
-	health -= damage
-	..()
-	if(health <= 0)
-		dismantle()
+	take_damage(damage)
 
 	return
 
@@ -59,6 +57,25 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/I, mob/user)
+
+	//Attempting to damage girders
+	//This supercedes all construction, deconstruction and similar actions. So change your intent out of harm if you don't want to smack it
+	if (usr.a_intent == I_HURT && user.Adjacent(src))
+		if(!(I.flags & NOBLUDGEON))
+			user.do_attack_animation(src)
+			var/calc_damage = (I.force*I.structure_damage_factor) - resistance
+			var/volume = (calc_damage)*3.5
+			volume = min(volume, 15)
+			if (I.hitsound)
+				playsound(src, I.hitsound, volume, 1, -1)
+
+			if (calc_damage > 0)
+				visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+				take_damage(I.force*I.structure_damage_factor, I.damtype)
+			else
+				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.75)
+			return TRUE
 
 	var/list/usable_qualities = list()
 	if(state == 0 && ((anchored && !reinf_material) || !anchored))
@@ -244,27 +261,25 @@
 		return
 	return ..()
 
+/obj/structure/girder/proc/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+	if (!ignore_resistance)
+		damage -= resistance
+	if (!damage || damage <= 0)
+		return
+
+	health -= damage
+	if (health <= 0)
+		dismantle()
+
 
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			qdel(src)
-			return
+			take_damage(rand(500))
 		if(2.0)
-			if (prob(30))
-				dismantle()
-				return
-			else
-				health -= rand(60,180)
+			take_damage(rand(120,300))
 
 		if(3.0)
-			if (prob(5))
-				dismantle()
-				return
-			else
-				health -= rand(40,80)
-		else
+			take_damage(rand(60,180))
 
-	if(health <= 0)
-		dismantle()
-	return
+

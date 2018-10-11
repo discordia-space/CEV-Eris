@@ -24,7 +24,7 @@
 	attack_verb = list("robusted", "slammed")
 	var/reinforced = FALSE
 	var/obj/item/weapon/storage/toolbox/toolbox = null
-
+	structure_damage_factor = 1.7
 	New()
 		..()
 		if(!toolbox)
@@ -109,3 +109,4 @@
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten", "slammed", "smacked", "struck", "battered")
+	structure_damage_factor = 1.4

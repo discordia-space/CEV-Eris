@@ -18,6 +18,7 @@
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
+	structure_damage_factor = 1.3
 
 /obj/item/weapon/melee/baton/New()
 	..()
@@ -163,3 +164,4 @@
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
+	structure_damage_factor = 1

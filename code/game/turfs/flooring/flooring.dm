@@ -151,7 +151,7 @@ var/list/flooring_types
 	is_plating = TRUE
 	removal_time = 250
 	health = 200
-	resistance = 12
+	resistance = 15
 	footstep_sound = "catwalk"
 
 //Underplating can only be upgraded to normal plating
@@ -222,7 +222,7 @@ var/list/flooring_types
 	plating_type = null
 	is_plating = TRUE
 	health = 350
-	resistance = 20
+	resistance = 25
 	removal_time = 1 MINUTE //Cutting through the hull is very slow work
 	footstep_sound = "hull"
 
@@ -402,7 +402,7 @@ var/list/flooring_types
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
 	can_paint = 1
-	resistance = 10
+	resistance = 12
 	footstep_sound = "plating"
 
 /decl/flooring/reinforced/circuit

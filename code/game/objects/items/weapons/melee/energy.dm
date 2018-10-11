@@ -7,6 +7,7 @@
 	edge = 0
 	armor_penetration = 50
 	flags = NOBLOODY
+	structure_damage_factor = 1.5
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	anchored = 1

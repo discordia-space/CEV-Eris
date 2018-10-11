@@ -15,6 +15,7 @@
 	item_state = "classic_baton"
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_PAINFULL
+	structure_damage_factor = 1.3
 
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -39,6 +40,7 @@
 	w_class = ITEM_SIZE_SMALL
 	force = 3
 	var/on = 0
+	structure_damage_factor = 1.3
 
 
 /obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
