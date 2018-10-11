@@ -1,3 +1,18 @@
+/datum/gear/bible
+	display_name = "Cyberchristian prayer book"
+	path = /obj/item/weapon/book/ritual/cruciform
+	cost = 2
+
+/datum/gear/flashlight
+	display_name = "Flashlight"
+	path = /obj/item/device/lighting/toggleable/flashlight
+	cost = 1
+
+/datum/gear/crowbar
+	display_name = "Crowbar"
+	path = /obj/item/weapon/tool/crowbar
+	cost = 1
+
 /datum/gear/cane
 	display_name = "cane"
 	path = /obj/item/weapon/cane
@@ -41,7 +56,7 @@
 /datum/gear/boot_knife
 	display_name = "boot knife"
 	path = /obj/item/weapon/material/knife/boot
-	cost = 3
+	cost = 2
 
 /datum/gear/mirror
 	display_name = "handheld mirror"
