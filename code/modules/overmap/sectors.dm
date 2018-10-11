@@ -21,10 +21,7 @@
 	. = ..()
 
 	if(!config.use_overmap)
-		return 1
-
-	if(!maps_data.overmap_z)
-		build_overmap()
+		return
 
 	map_z = GetConnectedZlevels(z)
 	for(var/zlevel in map_z)
@@ -47,7 +44,7 @@
 
 
 	//handle automatic waypoints that spawned before us
-	for(var/obj/effect/shuttle_landmark/automatic/L in world)
+	for(var/obj/effect/shuttle_landmark/automatic/L in shuttle_landmarks_list)
 		if(L.z in map_z)
 			L.add_to_sector(src, 1)
 
@@ -93,27 +90,3 @@
 		plane = -1
 		for(var/obj/machinery/computer/helm/H in SSmachines.machinery)
 			H.get_known_sectors()
-
-/proc/build_overmap()
-	if(!config.use_overmap)
-		return 1
-
-	testing("Building overmap...")
-	world.maxz++
-	maps_data.overmap_z = world.maxz
-	var/list/turfs = list()
-	for (var/square in block(locate(1,1,maps_data.overmap_z), locate(maps_data.overmap_size, maps_data.overmap_size, maps_data.overmap_z)))
-		var/turf/T = square
-		if(T.x == maps_data.overmap_size || T.y == maps_data.overmap_size)
-			T = T.ChangeTurf(/turf/unsimulated/map/edge)
-		else
-			T = T.ChangeTurf(/turf/unsimulated/map/)
-		turfs += T
-
-	var/area/overmap/A = new
-	A.contents.Add(turfs)
-
-	maps_data.sealed_levels |= maps_data.overmap_z
-
-	testing("Overmap build complete.")
-	return 1
