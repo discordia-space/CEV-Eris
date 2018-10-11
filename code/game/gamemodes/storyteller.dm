@@ -277,7 +277,9 @@ var/datum/storyteller/storyteller = null
 	event_pool_major.Cut()
 	event_pool_roleset.Cut()
 	for (var/datum/storyevent/a in storyevents)
+		world << "Loading event [a]"
 		if (!a.enabled)
+			world << "[a] is not enabled"
 			continue
 
 		var/new_weight = calculate_event_weight(a)
@@ -288,12 +290,16 @@ var/datum/storyteller/storyteller = null
 
 		//We setup the event pools as an associative list in preparation for a pickweight call
 		if (EVENT_LEVEL_MUNDANE in a.event_pools)
+			world << "Adding [a] to mundane pool [new_weight]"
 			event_pool_mundane[a] = new_weight
 		if (EVENT_LEVEL_MODERATE in a.event_pools)
+			world << "Adding [a] to moderate pool [new_weight]"
 			event_pool_moderate[a] = new_weight
 		if (EVENT_LEVEL_MAJOR in a.event_pools)
+			world << "Adding [a] to major pool [new_weight]"
 			event_pool_major[a] = new_weight
 		if (EVENT_LEVEL_ROLESET in a.event_pools)
+			world << "Adding [a] to roleset pool [new_weight]"
 			event_pool_roleset[a] = new_weight
 
 
