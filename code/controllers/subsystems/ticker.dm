@@ -72,13 +72,8 @@ SUBSYSTEM_DEF(ticker)
 	return ..()
 
 /datum/controller/subsystem/ticker/proc/setup_objects()
-	// Do these first since character setup will rely on them
-	if(config.use_overmap)
-		admin_notice(SPAN_DANGER("Initializing overmap events."), R_DEBUG)
-		overmap_event_handler.create_events(maps_data.overmap_z, maps_data.overmap_size, maps_data.overmap_event_areas)
-
 	populate_lathe_recipes()
-	populate_antag_type_list() // Set up antagonists.
+	populate_antag_type_list() // Set up antagonists. Do these first since character setup will rely on them
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)

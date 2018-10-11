@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(mapping)
 	A.contents.Add(turfs)
 
 	maps_data.sealed_levels |= maps_data.overmap_z
-
+	overmap_event_handler.create_events(maps_data.overmap_z, maps_data.overmap_size, maps_data.overmap_event_areas)
 	testing("Overmap build complete.")
 
 /datum/controller/subsystem/mapping/Recover()
