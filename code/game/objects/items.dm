@@ -566,6 +566,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 							T.consume_fuel(fuel)
 							user.adjust_fire_stacks(fuel/10)
 							user.IgniteMob()
+							T.update_icon()
 							return
 						if(T.use_power_cost && T.cell)
 							user << SPAN_DANGER("You overload the cell in the [src]!")
@@ -575,6 +576,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 								explosion(src.loc,-1,0,1)
 							qdel(T.cell)
 							T.cell = null
+							T.update_icon()
 							return
 
 
