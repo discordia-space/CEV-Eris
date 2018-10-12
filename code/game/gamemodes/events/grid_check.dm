@@ -1,14 +1,20 @@
+/*
+Grid check disables all power on the station for a while, notably including lights
+It helps to create a feeeling of crisis and community, encouraging people to team up, gather flashlights
+and help others. On eris, it also creates a feeling of terror. With no idea how long it'll last, you
+become keenly aware of the limited battery supply in your flashlight
+*/
 /datum/storyevent/grid_check
-	cost = 20
+	id = "gridcheck"
+	name = "Grid Check"
 
 
 	event_type = /datum/event/grid_check
-	event_pools = list(EVENT_LEVEL_MUNDANE,EVENT_LEVEL_MODERATE)
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE,
+	EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+
 	tags = list(TAG_SCARY, TAG_COMMUNAL, TAG_NEGATIVE)
 
-
-/datum/storyevent/grid_check/get_cost(var/severity)
-	return cost*severity
 
 ///////////////////////////////////////////////////////////////////////
 

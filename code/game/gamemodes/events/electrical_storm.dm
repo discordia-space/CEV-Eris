@@ -1,3 +1,16 @@
+/datum/storyevent/electrical_storm
+	id = "elec_storm"
+	name = "Electrical Storm"
+
+
+	event_type = /datum/event/electrical_storm
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE,
+	EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+
+	tags = list(TAG_SCARY, TAG_TARGETED, TAG_NEGATIVE)
+
+////////////////////////////////////////////////
+
 /datum/event/electrical_storm
 	var/lightsoutAmount	= 1
 	var/lightsoutRange	= 25
@@ -8,6 +21,11 @@
 
 
 /datum/event/electrical_storm/start()
+	switch(severity)
+		if (EVENT_LEVEL_MUNDANE)
+			lightsoutAmount = 2
+		if (EVENT_LEVEL_MODERATE)
+			lightsoutAmount = 5
 	var/list/epicentreList = list()
 
 	var/list/possibleEpicentres = list()

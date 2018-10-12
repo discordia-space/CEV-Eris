@@ -55,6 +55,13 @@
 
 /datum/event/nothing
 
+
+
+//Checks if the event can fire now.
+//This should always be called before paying for the event
+/datum/event/proc/can_trigger()
+	return TRUE
+
 //Called first before processing.
 //Allows you to setup your event, such as randomly
 //setting the startWhen and or announceWhen variables.
@@ -62,11 +69,13 @@
 /datum/event/proc/setup()
 	return
 
+
 //Called when the tick is equal to the startWhen variable.
 //Allows you to start before announcing or vice versa.
 //Only called once.
 /datum/event/proc/start()
 	return
+
 
 //Called when the tick is equal to the announceWhen variable.
 //Allows you to announce before starting or vice versa.
@@ -74,12 +83,14 @@
 /datum/event/proc/announce()
 	return
 
+
 //Called on or after the tick counter is equal to startWhen.
 //You can include code related to your event or add your own
 //time stamped events.
 //Called more than once.
 /datum/event/proc/tick()
 	return
+
 
 //Called on or after the tick is equal or more than endWhen
 //You can include code related to the event ending.
@@ -90,9 +101,11 @@
 /datum/event/proc/end()
 	return
 
+
 //Returns the latest point of event processing.
 /datum/event/proc/lastProcessAt()
 	return max(startWhen, max(announceWhen, endWhen))
+
 
 //Do not override this proc, instead use the appropiate procs.
 //This proc will handle the calls to the appropiate procs.
@@ -129,13 +142,12 @@
 	SSevent.event_complete(src)
 
 /datum/event/New(var/datum/storyevent/_SE, var/_severity)
-	// event needs to be responsible for this, as stuff like APLUs currently make their own events for curious reasons
-	SSevent.active_events += src
-
 	SE = _SE
 	severity = _severity
-	//if(severity < EVENT_LEVEL_MUNDANE) severity = EVENT_LEVEL_MUNDANE
-	//if(severity > EVENT_LEVEL_ECONOMY) severity = EVENT_LEVEL_ECONOMY
+
+/datum/event/proc/Initialize()
+	// event needs to be responsible for this, as stuff like APLUs currently make their own events for curious reasons
+	SSevent.active_events += src
 
 	startedAt = world.time
 

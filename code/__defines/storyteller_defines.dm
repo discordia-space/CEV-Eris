@@ -1,9 +1,9 @@
 // Event defines.
-#define EVENT_LEVEL_MUNDANE  1
-#define EVENT_LEVEL_MODERATE 2
-#define EVENT_LEVEL_MAJOR    3
-#define EVENT_LEVEL_ROLESET  4
-#define EVENT_LEVEL_ECONOMY  5
+#define EVENT_LEVEL_MUNDANE  "mundane"
+#define EVENT_LEVEL_MODERATE "moderate"
+#define EVENT_LEVEL_MAJOR    "major"
+#define EVENT_LEVEL_ROLESET  "roleset"
+#define EVENT_LEVEL_ECONOMY  "economy"
 
 
 //The threshold of points that we need before attempting to purchase things
@@ -24,13 +24,13 @@
 
 
 
-//The event involves one or very few people.
+//The event involves one or very few people. The people who are unaffected often won't care
 //Examples: Ion storm, viral infection
 #define TAG_TARGETED "targeted"
 
 
 
-//The event involves most or all of the crew, everyone has something to do
+//The event involves most or all of the crew, everyone has something to do, everyone is involved
 //Examples: Radiation storm, lights out, comms blackout
 #define TAG_COMMUNAL "communal"
 
@@ -52,8 +52,8 @@
 //The event helps people, gives them stuff, heals them
 //There are a few "nice antags" which this can be applied to.
 //No current random events afaik
-#define TAG_NEGATIVE "positive"
+#define TAG_POSITIVE "positive"
 
 
-//The event helps to invoke a horror vibe
-#define TAG_SCARY
+//The event helps to invoke a horror vibe. Plunges players into darkness, makes terrifying creatures, etc
+#define TAG_SCARY "scary"

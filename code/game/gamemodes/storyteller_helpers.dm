@@ -16,6 +16,7 @@
 	//we cache it now so we can do that soon
 	var/datum/storyteller/oldST = get_storyteller()
 
+	world << "SETTING STORYTELLER"
 	//Finally, we set the new one
 	storyteller = newST
 

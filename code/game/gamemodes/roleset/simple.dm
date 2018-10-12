@@ -1,5 +1,6 @@
 /datum/storyevent/roleset/borer
 	id = "borer"
+	name = "cortical borers"
 	role_id = ROLE_BORER
 
 	weight = 0.5
@@ -9,12 +10,14 @@
 
 /datum/storyevent/roleset/traitor
 	id = "traitor"
+	name = "traitor"
 	role_id = ROLE_TRAITOR
 
 	weight = 1
 
 /datum/storyevent/roleset/inquisitor
 	id = "inquisitor"
+	name = "inquisitor"
 	role_id = ROLE_INQUISITOR
 	weight = 0.2
 	req_crew = 7
@@ -32,12 +35,14 @@
 
 /datum/storyevent/roleset/malf
 	id = "malf"
+	name = "malfunctioning AI"
 	role_id = ROLE_MALFUNCTION
 	req_crew = 15
 
 
 /datum/storyevent/roleset/marshal
 	id = "marshal"
+	name = "marshal"
 	role_id = ROLE_MARSHAL
 	req_crew = 20
 
@@ -54,6 +59,7 @@
 
 /datum/storyevent/roleset/changeling
 	id = "changeling"
+	name = "changeling"
 	role_id = ROLE_CHANGELING
 
 	req_crew = 7

@@ -1,5 +1,6 @@
 /datum/storyevent/roleset/excelsior
 	id = "excelsior"
+	id = "excelsior"
 	role_id = null
 
 	//min_cost = 10

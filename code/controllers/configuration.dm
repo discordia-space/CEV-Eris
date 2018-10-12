@@ -210,6 +210,8 @@ var/list/storyteller_cache = list()
 	var/ghosts_can_possess_animals = 0
 
 /datum/configuration/New()
+	fill_storyevents_list()
+
 	var/list/L = typesof(/datum/storyteller)-/datum/storyteller
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up

@@ -1,5 +1,6 @@
 /datum/storyevent/roleset/secdoc_hunters
 	id = "secdoc_hunters"
+	name = "secret document hunters"
 	role_id = null
 
 	//min_cost = 8

@@ -121,23 +121,24 @@
 
 	data += "</ul></div><hr>"
 	data += "<br>Calculate weight: <b><a href='?src=\ref[src];toggle_weight_calc=1'>[calculate_weights?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
-	data += "<br><b>Events: <a href='?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style=\"border:1px solid black;\"><ul>"
+	data += "<br><b>Events: <a href='?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style=\"border:1px solid black;\">"
 
 	for(var/list/L in list(event_pool_mundane, event_pool_moderate, event_pool_major, event_pool_roleset))
-		data += "<li>"
-			for (var/datum/storyevent/S in L)
-				data += "<li>[S.id] - weight: [L[S]] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
-				if(!calculate_weights)
-					data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
-				data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.enabled?"ALLOWED":"FORBIDDEN"]\]</a>"
-				data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
-				data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[FORCE\]</a></b></li>"
-				data += "</li>"
-		data += "</li>"
+		data += "<ul>"
+		for (var/datum/storyevent/S in L)
+			data += "<li>[S.id] - weight: [L[S]] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
+			if(!calculate_weights)
+				data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
+			data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.enabled?"ALLOWED":"FORBIDDEN"]\]</a>"
+			data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
+			data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[FORCE\]</a></b></li>"
+			data += "</li>"
+		data += "</ul>"
+		data += "-------------------------"
 
-	data += "</ul></div>"
+	data += "</div>"
 
-	usr << browse(data,"window=story")
+	usr << browse(data,"window=story;size=600x600")
 
 /datum/storyteller/proc/storyteller_panel_extra()
 	return ""

@@ -1,5 +1,6 @@
 /datum/storyevent/roleset/double_agents
 	id = "double_agents"
+	name = "double agents"
 	role_id = null
 
 	/*

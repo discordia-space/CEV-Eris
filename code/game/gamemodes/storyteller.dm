@@ -101,7 +101,7 @@ var/datum/storyteller/storyteller = null
 	world << "<b><font size=3>Storyteller is [src.name].</font> <br>[welcome]</b>"
 
 /datum/storyteller/proc/set_up()
-	storyteller = src
+	world << "Calling storyteller setup"
 	build_event_pools()
 	set_timer()
 	set_up_events()
@@ -124,7 +124,6 @@ var/datum/storyteller/storyteller = null
 	next_tick = last_tick + tick_interval
 
 /datum/storyteller/Process()
-	world << "Storyteller processing"
 	if(can_tick())
 		world << "Storyteller TICKING"
 		update_crew_count()
@@ -272,12 +271,30 @@ var/datum/storyteller/storyteller = null
 //Builds up this storyteller's local event pools.
 //This should be called only once for each new storyteller
 /datum/storyteller/proc/build_event_pools()
+	var/test4 = "this is a test four"
+	var/list/at = list("test1" = 1, "test3" = 17, "test2" = "gazebo", test4 = EVENT_LEVEL_MODERATE)
+	if ("test1" in at)
+		world << "List contains test1"
+
+	if (17 in at)
+		world << "List contains 17 num"
+
+	if ("gazebo" in at)
+		world << "List contains gazebo"
+
+	if (test4 in at)
+		world << "List contains test4 var"
+
+	if (EVENT_LEVEL_MODERATE in at)
+		world << "List contains EVENT_LEVEL_MODERATE var"
+
 	event_pool_mundane.Cut()
 	event_pool_moderate.Cut()
 	event_pool_major.Cut()
 	event_pool_roleset.Cut()
+	world << "Calling build event pools. Number of possible events is [storyevents.len]"
 	for (var/datum/storyevent/a in storyevents)
-		world << "Loading event [a]"
+		world << "Loading event [a.name]. [a.id], [a.type]"
 		if (!a.enabled)
 			world << "[a] is not enabled"
 			continue
@@ -310,6 +327,7 @@ var/datum/storyteller/storyteller = null
 	event_pool_roleset = update_pool_weights(event_pool_roleset)
 
 /datum/storyteller/proc/update_pool_weights(var/list/pool)
+	world << "Updating weights with pool of size [pool.len]"
 	for(var/datum/storyevent/a in pool)
 		var/new_weight = calculate_event_weight(a)
 		if (a.ocurrences >= 1)

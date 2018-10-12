@@ -1,3 +1,13 @@
+/datum/storyevent/blob
+	id = "blob"
+	name = "Blob"
+
+
+	event_type = /datum/event/blob
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_NEGATIVE)
+//============================================
+
 /datum/event/blob
 	announceWhen	= 12
 

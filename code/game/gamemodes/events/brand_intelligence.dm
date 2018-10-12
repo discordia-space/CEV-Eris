@@ -1,3 +1,14 @@
+/datum/storyevent/brand_intelligence
+	id = "crazy_vendors"
+	name = "brand intelligence"
+
+	event_type =/datum/event/brand_intelligence
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE)
+	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE, TAG_NEGATIVE)
+
+//////////////////////////////////////////////////////////
+
+
 /datum/event/brand_intelligence
 	announceWhen	= 21
 	endWhen			= 1000	//Ends when all vending machines are subverted anyway.
