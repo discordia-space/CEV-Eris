@@ -1,8 +1,11 @@
 //Storyevent is the new event_meta, a holder for events, which holds meta information about their weighting, requirements, etc
 
 /datum/storyevent
-	var/id = "event"
-	var/name = "event" //More publicly visible name
+	var/id = "event" //An id for internal use. No spaces or punctuation, 12 letter max length
+		//Only admins/devs will see it
+
+	var/name = "event" //More publicly visible name. Use proper spacing, capitalize proper nouns
+		//Players may see the name
 	var/processing = FALSE
 
 
@@ -43,7 +46,6 @@
 
 	//Things to configure
 	var/event_type
-	var/cost = 20
 	var/weight = 1
 
 	//Which event pools this story event can appear in.
@@ -53,21 +55,35 @@
 	//EVENT_LEVEL_MAJOR
 	//EVENT_LEVEL_ROLESET
 	//EVENT_LEVEL_ECONOMY  (not implemented)
+
+	//It should be an associative list with the data being the cost of the event at that level
 	var/list/event_pools = list()
 
 	//Tags that describe what the event does. See __defines/storyteller.dm for a list
 	var/list/tags = list()
 
-/datum/storyevent/proc/can_trigger()
+
+//Check if we can trigger
+/datum/storyevent/proc/can_trigger(var/severity)
+	.=TRUE
 	if(processing && is_processing())
 		return FALSE
-	return TRUE
+
+	//IF this is a wrapper for a random event, we'll check if that event can trigger
+	if (event_type)
+		//We have to create a new one, but New doesn't really do anything for events
+		var/datum/event/E = new event_type(src, severity)
+		if (!E.can_trigger())
+			.=FALSE
+		//Clean it up after we're done
+		qdel(E)
+	return
 
 /datum/storyevent/proc/get_special_weight(var/weight)
 	return weight
 
 
-/datum/storyevent/proc/create()
+/datum/storyevent/proc/create(var/severity)
 	if(trigger_event())
 		ocurrences++
 		last_trigger_time = world.time
@@ -82,7 +98,18 @@
 	if (storyteller)
 		storyteller.modify_points(get_cost(type), type)
 
-/datum/storyevent/proc/trigger_event()
+/datum/storyevent/proc/trigger_event(var/severity = EVENT_LEVEL_MUNDANE)
+	if (event_type)
+		var/datum/event/E = new event_type(src, severity)
+		if (!E.can_trigger())
+			return FALSE
+		//If we get here, the event is fine to fire!
+
+		//And away it goes.
+		E.Initialize()
+		return TRUE
+		//From here everything is automated, the event manager subsystem will handle ticking
+
 	return FALSE
 
 
@@ -118,4 +145,4 @@
 	return max(mod-(abs(val-req)**2),0)/mod
 
 /datum/storyevent/proc/get_cost(var/event_type)
-	return cost
+	return event_pools[event_type]
