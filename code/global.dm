@@ -6,6 +6,8 @@
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
 var/global/list/all_areas                = list()
+var/global/list/ship_areas                = list()
+
 //var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed
 //var/global/list/processing_power_items   = list()		//Removed

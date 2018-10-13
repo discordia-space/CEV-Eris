@@ -10,12 +10,14 @@
 	//Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
 	plane = BLACKNESS_PLANE
 	layer = AREA_LAYER
+	var/ship_area = FALSE
 
 /area/New()
 	icon_state = ""
 	layer = AREA_LAYER
 	uid = ++global_uid
 	all_areas += src
+	ship_areas |= TRUE //Adds ourselves to the list of all ship areas
 
 	if(!requires_power)
 		power_light = 0

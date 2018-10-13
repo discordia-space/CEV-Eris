@@ -80,7 +80,7 @@
 
 /datum/event/infestation/proc/choose_area()
 	for (var/i = 1; i <= num_areas; i++)
-		chosen_areas += random_station_area(TRUE)
+		chosen_areas += random_ship_area(TRUE)
 
 /datum/event/infestation/proc/choose_mobs()
 
