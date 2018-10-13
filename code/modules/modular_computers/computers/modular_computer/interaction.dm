@@ -49,6 +49,7 @@
 		to_chat(usr, "<span class='warning'>You can't reach it.</span>")
 		return
 
+	playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 	proc_eject_id(usr)
 
 // Eject ID card from computer, if it has ID slot with card inside.
@@ -192,6 +193,7 @@
 		card_slot.stored_card = I
 		update_uis()
 		update_verbs()
+		playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
 		to_chat(user, "You insert [I] into [src].")
 
 		return

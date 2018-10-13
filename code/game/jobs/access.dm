@@ -8,10 +8,9 @@
 	//check if it doesn't require any access at all
 	if(src.check_access(null))
 		return 1
-
-	var/id = M.GetIdCard()
-	if(id)
-		return check_access(id)
+	if(!istype(M))
+		return 0
+	return check_access_list(M.GetAccess())
 	return 0
 
 /atom/movable/proc/GetAccess()

@@ -182,10 +182,9 @@
 		interact(user)
 
 	// OTHER
-	else if (can_use() && (istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/device/pda)) && isliving(user))
+	else if (can_use() && (istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/modular_computer)) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/weapon/paper/X = null
-		var/obj/item/device/pda/P = null
 
 		var/itemname = ""
 		var/info = ""
@@ -193,10 +192,6 @@
 			X = I
 			itemname = X.name
 			info = X.info
-		else
-			P = I
-			itemname = P.name
-			info = P.notehtml
 		U << "You hold \a [itemname] up to the camera ..."
 		for(var/mob/living/silicon/ai/O in living_mob_list)
 			if(!O.client) continue

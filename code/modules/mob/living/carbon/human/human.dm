@@ -230,14 +230,11 @@
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/pda/pda = wear_id
-	if (istype(pda))
-		if (pda.id)
-			return pda.id.rank
-		else
-			return pda.ownrank
-	else
-		var/obj/item/weapon/card/id/id = get_idcard()
+	var/obj/item/weapon/card/id/id
+	if (istype(wear_id, /obj/item/modular_computer/pda))
+		id = wear_id.GetIdCard()
+	if(!id)
+		id = get_idcard()
 		if(id)
 			return id.rank ? id.rank : if_no_job
 		else
@@ -246,14 +243,10 @@
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/device/pda/pda = wear_id
-	if (istype(pda))
-		if (pda.id)
-			return pda.id.assignment
-		else
-			return pda.ownjob
-	else
-		var/obj/item/weapon/card/id/id = get_idcard()
+	var/obj/item/weapon/card/id/id
+	if (istype(wear_id, /obj/item/modular_computer/pda))
+		id = wear_id.GetIdCard()
+	if(!id)
 		if(id)
 			return id.assignment ? id.assignment : if_no_job
 		else
@@ -262,14 +255,11 @@
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
-	var/obj/item/device/pda/pda = wear_id
-	if (istype(pda))
-		if (pda.id)
-			return pda.id.registered_name
-		else
-			return pda.owner
-	else
-		var/obj/item/weapon/card/id/id = get_idcard()
+	var/obj/item/weapon/card/id/id
+	if (istype(wear_id, /obj/item/modular_computer/pda))
+		id = wear_id.GetIdCard()
+	if(!id)
+		id = get_idcard()
 		if(id)
 			return id.registered_name
 		else
@@ -316,24 +306,24 @@ var/list/rank_prefix = list(\
 //gets name from ID or PDA itself, ID inside PDA doesn't matter
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
-	. = if_no_id
-	if(istype(wear_id,/obj/item/device/pda))
-		var/obj/item/device/pda/P = wear_id
-		return P.owner
-	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
-		if(I)
-			return I.registered_name
-	return
+	var/obj/item/weapon/card/id/id
+	if (istype(wear_id, /obj/item/modular_computer/pda))
+		id = wear_id.GetIdCard()
+	if(!id)
+		id = get_idcard()
+		if(id)
+			return id.registered_name
+	return if_no_id
 
 /mob/living/carbon/human/proc/get_id_rank()
 	var/rank
-	if(istype(wear_id,/obj/item/device/pda))
-		var/obj/item/device/pda/P = wear_id
-		rank = P.ownjob
-	else if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
-		rank = I.rank
+	var/obj/item/weapon/card/id/id
+	if (istype(wear_id, /obj/item/modular_computer/pda))
+		id = wear_id.GetIdCard()
+	if(!id)
+		id = get_idcard()
+		if(id)
+			rank = id.rank
 	if(rank_prefix[rank])
 		return rank_prefix[rank]
 	return ""
@@ -416,11 +406,13 @@ var/list/rank_prefix = list(\
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -446,11 +438,13 @@ var/list/rank_prefix = list(\
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -474,11 +468,13 @@ var/list/rank_prefix = list(\
 		if(hasHUD(usr,"security"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -505,11 +501,13 @@ var/list/rank_prefix = list(\
 			var/modified = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 
@@ -544,11 +542,13 @@ var/list/rank_prefix = list(\
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -575,11 +575,13 @@ var/list/rank_prefix = list(\
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)
@@ -603,11 +605,13 @@ var/list/rank_prefix = list(\
 		if(hasHUD(usr,"medical"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
-					var/obj/item/device/pda/tempPda = wear_id
-					perpname = tempPda.owner
+				var/obj/item/weapon/card/id/id
+				if (istype(wear_id, /obj/item/modular_computer/pda))
+					id = wear_id.GetIdCard()
+				if(!id)
+					id = get_idcard()
+					if(id)
+						perpname = id.registered_name
 			else
 				perpname = src.name
 			for (var/datum/data/record/E in data_core.general)

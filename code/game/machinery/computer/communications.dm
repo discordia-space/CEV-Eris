@@ -61,9 +61,8 @@
 		if("login")
 			var/mob/M = usr
 			var/obj/item/weapon/card/id/I = M.get_active_hand()
-			if (istype(I, /obj/item/device/pda))
-				var/obj/item/device/pda/pda = I
-				I = pda.id
+			if (istype(I, /obj/item/modular_computer))
+				I = I.GetIdCard()
 			if (I && istype(I))
 				if(src.check_access(I))
 					authenticated = 1

@@ -1,5 +1,5 @@
 /obj/item/modular_computer/laptop
-	anchored = TRUE
+	anchored = FALSE
 	name = "laptop computer"
 	desc = "A portable clamshell computer."
 	hardware_flag = PROGRAM_LAPTOP
