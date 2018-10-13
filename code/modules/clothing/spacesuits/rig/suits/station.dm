@@ -19,6 +19,13 @@
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_SECURITY)
 
+
+
+
+
+/***************************************
+	Industrial Suit: For Mining
+****************************************/
 /obj/item/weapon/rig/industrial
 	name = "industrial suit control module"
 	suit_type = "industrial hardsuit"
@@ -51,6 +58,13 @@
 		/obj/item/rig_module/vision/meson
 		)
 
+
+
+
+
+/***************************************
+	EVA Suit
+****************************************/
 /obj/item/weapon/rig/eva
 	name = "EVA suit control module"
 	suit_type = "EVA hardsuit"
@@ -80,6 +94,14 @@
 		/obj/item/rig_module/vision/meson
 		)
 
+
+
+
+
+/***************************************
+Advanced Voidsuit: Technomancer Exultant
+****************************************/
+
 /obj/item/weapon/rig/ce
 	name = "advanced voidsuit control module"
 	suit_type = "advanced voidsuit"
@@ -94,6 +116,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
 	glove_type = /obj/item/clothing/gloves/rig/ce
+	boot_type = /obj/item/clothing/shoes/magboots/rig/ce
 
 	allowed = list(
 		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,
@@ -116,6 +139,14 @@
 	name = "insulated gloves"
 	siemens_coefficient = 0
 
+/obj/item/clothing/shoes/magboots/rig/ce
+	name = "Advanced Magboots"
+	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
+	mag_slow = 2
+
+/***************************************
+	Hazmat: Moebius Overseer
+****************************************/
 /obj/item/weapon/rig/hazmat
 
 	name = "AMI control module"
@@ -150,6 +181,11 @@
 		/obj/item/rig_module/device/anomaly_scanner
 		)
 
+
+
+/***************************************
+	Medical
+****************************************/
 /obj/item/weapon/rig/medical
 
 	name = "rescue suit control module"
@@ -180,6 +216,10 @@
 		/obj/item/rig_module/vision/medhud
 		)
 
+
+/***************************************
+	Hazard Suit
+****************************************/
 /obj/item/weapon/rig/hazard
 	name = "hazard hardsuit control module"
 	suit_type = "hazard hardsuit"

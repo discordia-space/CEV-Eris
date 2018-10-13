@@ -66,6 +66,12 @@
 		found = 1
 		scanner = H
 		scanner.do_after_install(user, src)
+	else if(istype(H, /obj/item/weapon/computer_hardware/gps_sensor))
+		if(gps_sensor)
+			to_chat(user, "This computer's gps slot is already occupied by \the [gps_sensor].")
+			return
+		found = 1
+		gps_sensor = H
 	if(found && user.unEquip(H, src))
 		to_chat(user, "You install \the [H] into \the [src]")
 		H.holder2 = src
@@ -105,6 +111,9 @@
 	if(scanner == H)
 		scanner.do_before_uninstall()
 		scanner = null
+		found = 1
+	if(gps_sensor == H)
+		gps_sensor = null
 		found = 1
 	if(found)
 		if(user)

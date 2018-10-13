@@ -24,4 +24,5 @@
 /obj/item/weapon/gun/projectile/automatic/sts35/update_icon(var/ignore_inhands)
 	..()
 	icon_state = (ammo_magazine)? "arifle" : "arifle-empty"
-	if(!ignore_inhands) update_held_icon()
+	if(!ignore_inhands)
+		update_wear_icon()

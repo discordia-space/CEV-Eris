@@ -119,6 +119,7 @@ var/global/list/map_count = list()
 				map[current_cell] = WALL_CHAR
 			else
 				map[current_cell] = FLOOR_CHAR
+			CHECK_TICK
 
 /datum/random_map/proc/clear_map()
 	for(var/x = 1, x <= limit_x, x++)
@@ -156,6 +157,7 @@ var/global/list/map_count = list()
 		for(var/y = 1, y <= limit_y, y++)
 			if(!priority_process) sleep(-1)
 			apply_to_turf(x,y)
+			CHECK_TICK
 
 /datum/random_map/proc/apply_to_turf(var/x,var/y)
 	var/current_cell = get_map_cell(x,y)

@@ -54,6 +54,11 @@
 		return 1
 
 /obj/machinery/computer/helm/check_eye(var/mob/user as mob)
+	if (isAI(user))
+		user.unset_machine()
+		if (!manual_control)
+			user.reset_view(user.eyeobj)
+		return 0
 	if (!manual_control)
 		return -1
 	if (!get_dist(user, src) > 1 || user.blinded || !linked )
@@ -68,8 +73,8 @@
 
 	if(!isAI(user))
 		user.set_machine(src)
-		if(linked)
-			user.reset_view(linked)
+	if(linked && manual_control)
+		user.reset_view(linked)
 
 	ui_interact(user)
 
@@ -199,6 +204,11 @@
 
 	if (href_list["manual"])
 		manual_control = !manual_control
+		if(manual_control)
+			usr.reset_view(linked)
+		else
+			if (isAI(usr))
+				usr.reset_view(usr.eyeobj)
 
 	add_fingerprint(usr)
 	updateUsrDialog()
@@ -244,6 +254,11 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/computer/navigation/check_eye(var/mob/user as mob)
+	if (isAI(user))
+		user.unset_machine()
+		if (!viewing)
+			user.reset_view(user.eyeobj)
+		return 0
 	if (!viewing)
 		return -1
 	if (!get_dist(user, src) > 1 || user.blinded || !linked )
@@ -257,8 +272,9 @@
 		viewing = 0
 		return
 
-	if(viewing && linked &&!isAI(user))
-		user.set_machine(src)
+	if(viewing && linked)
+		if (!isAI(user))
+			user.set_machine(src)
 		user.reset_view(linked)
 
 	ui_interact(user)
@@ -272,7 +288,9 @@
 
 	if (href_list["viewing"])
 		viewing = !viewing
-		if(viewing && !isAI(usr))
-			var/mob/user = usr
-			user.reset_view(linked)
+		if(viewing)
+			usr.reset_view(linked)
+		else
+			if (isAI(usr))
+				usr.reset_view(usr.eyeobj)
 		return 1

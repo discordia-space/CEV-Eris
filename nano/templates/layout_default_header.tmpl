@@ -29,13 +29,13 @@
 				<td>{{:helper.link('Shutdown', null, {'PC_shutdown' : 1})}}
 			</table>
 		</div>
-		{{if data.gps}}
-		<div style="clear: both;border-top:3px double #7B7B7B;padding: 0px">
-			<table><tr>
-				<td><img src='{{:data.gps_icon}}'>
-				<td>{{:data.gps}}
-			</table>
-		</div>
+		{{if data.has_gps}}
+			<div style="clear: both;border-top:3px double #7B7B7B;padding: 0px">
+				<table><tr>
+					<td><img src='{{:data.gps_icon}}'>
+					<td>{{:data.gps_data}}
+				</table>
+			</div>
 		{{/if}}
 	</div>
 {{/if}}

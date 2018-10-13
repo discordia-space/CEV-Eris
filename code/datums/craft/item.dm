@@ -17,7 +17,10 @@
 	desc = recipe.get_description(step)
 
 
-/obj/item/craft/attackby(obj/item/I, mob/living/user)
+/obj/item/craft/proc/continue_crafting(obj/item/I, mob/living/user)
+	if (user && istype(loc, /turf))
+		user.face_atom(src) //Look at what you're doing please
+
 	if(recipe.try_step(step+1, I, user, src)) //First step is
 		++step
 		if(recipe.is_compelete(step+1))
@@ -25,3 +28,8 @@
 		else
 			update()
 
+/obj/item/craft/attackby(obj/item/I, mob/living/user)
+	continue_crafting(I, user)
+
+/obj/item/craft/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
+	continue_crafting(A, user)

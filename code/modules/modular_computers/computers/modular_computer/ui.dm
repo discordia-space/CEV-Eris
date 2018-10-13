@@ -138,12 +138,14 @@
 				data["PC_ntneticon"] = "sig_high.gif"
 			if(3)
 				data["PC_ntneticon"] = "sig_lan.gif"
+	data["has_gps"] = FALSE
 	if (gps_sensor)
+		data["has_gps"] = TRUE
 		if (gps_sensor.check_functionality())
 			data["gps_icon"] = "satelite_on.gif"
 		else 
 			data["gps_icon"] = "satelite_off.gif"
-		data["gps"] = gps_sensor.get_position_text()
+		data["gps_data"] = gps_sensor.get_position_text()
 
 	var/list/program_headers = list()
 	for(var/datum/computer_file/program/P in idle_threads)

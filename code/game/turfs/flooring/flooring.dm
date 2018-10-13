@@ -115,7 +115,7 @@ var/list/flooring_types
 	descriptor = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
-	build_type = /obj/item/stack/material/steel
+	build_type = MATERIAL_STEEL
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
@@ -144,7 +144,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/plating.dmi'
 	descriptor = "support beams"
 	icon_base = "under"
-	build_type = /obj/item/stack/material/steel //Same type as the normal plating, we'll use can_build_floor to control it
+	build_type = MATERIAL_STEEL //Same type as the normal plating, we'll use can_build_floor to control it
 	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
@@ -216,7 +216,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_base = "hullcenter"
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
-	build_type = /obj/item/stack/material/plasteel
+	build_type = MATERIAL_PLASTEEL
 	has_base_range = 35
 	//try_update_icon = 0
 	plating_type = null

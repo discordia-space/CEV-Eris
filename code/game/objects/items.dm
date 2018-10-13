@@ -59,28 +59,15 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
-/obj/item/get_fall_damage()
-	return w_class * 2
-
-
-
 /obj/item/Destroy()
 	if(ismob(loc))
 		var/mob/m = loc
 		m.drop_from_inventory(src)
-		m.update_inv_r_hand()
-		m.update_inv_l_hand()
 		src.loc = null
 	return ..()
 
-//Checks if the item is being held by a mob, and if so, updates the held icons
-/obj/item/proc/update_held_icon()
-	if(ismob(src.loc))
-		var/mob/M = src.loc
-		if(M.l_hand == src)
-			M.update_inv_l_hand()
-		else if(M.r_hand == src)
-			M.update_inv_r_hand()
+/obj/item/get_fall_damage()
+	return w_class * 2
 
 /obj/item/ex_act(severity)
 	switch(severity)
@@ -95,8 +82,6 @@
 			if (prob(5))
 				qdel(src)
 				return
-		else
-	return
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
@@ -133,23 +118,11 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user || !user.can_pickup(src))
-		return
-
 	var/atom/old_loc = src.loc
 
 	src.pickup(user)
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
-		S.remove_from_storage(src)
 
 	src.throwing = 0
-	if (src.loc == user)
-		if(!user.prepare_for_slotmove(src))
-			return
-	else
-		if(isliving(src.loc))
-			return
 
 	if(user.put_in_active_hand(src) && old_loc )
 		if (user != old_loc.get_holding_mob())
@@ -164,7 +137,7 @@
 		R.activate_module(src)
 //		R.hud_used.update_robot_modules_display()
 
-/obj/item/proc/talk_into(mob/M as mob, text)
+/obj/item/proc/talk_into(mob/M, text)
 	return
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
@@ -193,13 +166,12 @@
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
 	return
-
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Pick up"
 
-	if(!(usr)) //BS12 EDIT
+	if(!usr) //BS12 EDIT
 		return
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
@@ -223,7 +195,6 @@
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
-	return
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
@@ -297,11 +268,11 @@
 
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
-			if(M.stat != 2)
-				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
+			if(M.stat != DEAD)
+				if(eyes.robotic <= ORGAN_ASSISTED) //robot eyes bleeding might be a bit silly
 					M << SPAN_DANGER("Your eyes start to bleed profusely!")
 			if(prob(50))
-				if(M.stat != 2)
+				if(M.stat != DEAD)
 					M << SPAN_WARNING("You drop what you're holding and clutch at your eyes!")
 					M.drop_item()
 				M.eye_blurry += 10
@@ -458,7 +429,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return quality_id in tool_qualities
 
 /obj/item/proc/get_tool_quality(quality_id)
-	return tool_qualities[quality_id]
+	if (tool_qualities && tool_qualities.len)
+		return tool_qualities[quality_id]
+	return null
 
 //We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
 /obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
@@ -550,9 +523,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 			if(0 to 29)
 				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
 					user << SPAN_DANGER("You drop [src] on the floor.")
-					H.drop_item()
+					user.drop_from_inventory(src)
 					return
 
 			if(30 to 49)
@@ -578,26 +550,34 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					H.get_organ(H.get_holding_hand(src)).embed(src)
 					return
 
-			if(85 to 93)
+			if(85 to 94)
 				if(ishuman(user))
 					user << SPAN_DANGER("Your [src] broke beyond repair!")
 					new /obj/item/weapon/material/shard/shrapnel(user.loc)
 					qdel(src)
 					return
 
-			if(94 to 100)
+			if(95 to 100)
 				if(ishuman(user))
 					if(istype(src, /obj/item/weapon/tool))
 						var/obj/item/weapon/tool/T = src
 						if(T.use_fuel_cost)
 							user << SPAN_DANGER("You ignite the fuel of the [src]!")
-							explosion(src.loc,-1,1,2)
-							qdel(src)
+							var/fuel = T.get_fuel()
+							T.consume_fuel(fuel)
+							user.adjust_fire_stacks(fuel/10)
+							user.IgniteMob()
+							T.update_icon()
 							return
-						if(T.use_power_cost)
+						if(T.use_power_cost && T.cell)
 							user << SPAN_DANGER("You overload the cell in the [src]!")
-							explosion(src.loc,-1,1,2)
-							qdel(src)
+							if (T.cell.charge >= 400)
+								explosion(src.loc,-1,0,2)
+							else
+								explosion(src.loc,-1,0,1)
+							qdel(T.cell)
+							T.cell = null
+							T.update_icon()
 							return
 
 

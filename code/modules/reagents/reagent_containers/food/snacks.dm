@@ -11,10 +11,12 @@
 	var/slices_num
 	var/dried_type = null
 	var/dry = 0
+	var/dryness = 0 //Used by drying rack. Represents progress towards Dry state
 	var/nutriment_amt = 0
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
+
 
 /obj/item/weapon/reagent_containers/food/snacks/New()
 	..()

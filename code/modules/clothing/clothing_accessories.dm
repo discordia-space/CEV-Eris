@@ -16,15 +16,11 @@
 			return
 
 		var/obj/item/clothing/accessory/A = I
-		if(can_attach_accessory(A))
-			user.drop_item()
+		if(can_attach_accessory(A) && user.unEquip(A, src))
 			accessories += A
 			A.on_attached(src, user)
 			src.verbs |= /obj/item/clothing/proc/removetie_verb
-			if(ishuman(loc))
-				var/mob/living/carbon/human/H = loc
-				H.update_inv_w_uniform()
-			return
+			src.update_wear_icon()
 		else
 			user << SPAN_WARNING("You cannot attach more accessories of this type to [src].")
 		return
@@ -56,7 +52,7 @@
 
 	A.on_removed(user)
 	accessories -= A
-	update_clothing_icon()
+	update_wear_icon()
 
 /obj/item/clothing/proc/removetie_verb()
 	set name = "Remove Accessory"

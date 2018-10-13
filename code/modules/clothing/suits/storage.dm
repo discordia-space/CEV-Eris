@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/storage
-	item_flags = DRAG_AND_DROP_UNEQUIP
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	var/obj/item/weapon/storage/internal/pockets
 
 /obj/item/clothing/suit/storage/New()
@@ -50,7 +50,7 @@
 		else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
 			usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."
 			return
-		update_clothing_icon()	//so our overlays update
+		update_wear_icon()	//so our overlays update
 
 
 /obj/item/clothing/suit/storage/vest/merc/New()

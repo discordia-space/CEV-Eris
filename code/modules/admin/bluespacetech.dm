@@ -193,6 +193,15 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	status_flags ^= GODMODE
 	src << span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
 
+/mob/living/carbon/human/bst/verb/allow_unequip()
+	set name = "Allow Unequip"
+	set desc = "Allows you to unequip your unique items. Don't let them fall into the wrong hands."
+	set category = "BST"
+
+	for (var/obj/item/I in src)
+		I.canremove = TRUE
+	src << SPAN_NOTICE("You can now remove your equipment")
+
 //Equipment. All should have canremove set to 0
 //All items with a /bst need the attack_hand() proc overrided to stop people getting overpowered items.
 

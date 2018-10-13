@@ -405,10 +405,7 @@
 		// Okay to move the money at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-			-currently_vending.price, "[vendor_account.owner_name] (via [src.name])",
-			"Purchase of [currently_vending.product_name]", name
-		))
+		var/datum/transaction/T = new(-currently_vending.price, "[vendor_account.owner_name] (via [src.name])", "Purchase of [currently_vending.product_name]", name)
 		T.apply_to(customer_account)
 
 		// Give the vendor the money. We use the account owner name, which means
@@ -423,10 +420,7 @@
  *  Called after the money has already been taken from the customer.
  */
 /obj/machinery/vending/proc/credit_purchase(var/target as text)
-	var/datum/transaction/T = PoolOrNew(/datum/transaction, list(
-		currently_vending.price, target,
-		"Purchase of [currently_vending.product_name]", src.name
-	))
+	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", name)
 	T.apply_to(vendor_account)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)

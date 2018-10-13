@@ -49,4 +49,5 @@
 		else
 			map[check_cell] = EMPTY_CHAR // Rare mineral block.
 		ore_count--
+		CHECK_TICK
 	return 1

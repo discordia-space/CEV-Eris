@@ -47,4 +47,4 @@
 	else
 		icon_state = initial(icon_state)
 		set_light(0)
-	update_held_icon()
+	update_wear_icon()

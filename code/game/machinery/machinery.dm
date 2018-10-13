@@ -146,7 +146,7 @@ Class Procs:
 	if(use_power && !stat)
 		use_power(7500/severity)
 
-		PoolOrNew(/obj/effect/overlay/pulse, src.loc)
+		new /obj/effect/overlay/pulse(loc)
 	..()
 
 /obj/machinery/ex_act(severity)
@@ -243,7 +243,7 @@ Class Procs:
 		return
 
 	if(ispath(circuit))
-		circuit = PoolOrNew(circuit, null)
+		circuit = new circuit
 
 	component_parts = list()
 	if(circuit)
@@ -251,10 +251,10 @@ Class Procs:
 
 	for(var/item in circuit.req_components)
 		if(item == /obj/item/stack/cable_coil)
-			component_parts += PoolOrNew(item, list(null, circuit.req_components[item]))
+			component_parts += new item(null, circuit.req_components[item])
 		else
 			for(var/j = 1 to circuit.req_components[item])
-				component_parts += PoolOrNew(item, null)
+				component_parts += new item
 
 	RefreshParts()
 
@@ -357,9 +357,9 @@ Class Procs:
 
 /obj/machinery/proc/create_frame(var/type)
 	if(type == FRAME_DEFAULT)
-		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame, loc)
+		return new /obj/machinery/constructable_frame/machine_frame(loc)
 	if(type == FRAME_VERTICAL)
-		return PoolOrNew(/obj/machinery/constructable_frame/machine_frame/vertical, loc)
+		return new /obj/machinery/constructable_frame/machine_frame/vertical(loc)
 
 
 /obj/machinery/proc/dismantle()

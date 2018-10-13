@@ -53,11 +53,6 @@
 		extensions.Cut()
 	return ..()
 
-/datum/ResetVars(var/list/exclude = list())
-	exclude += "extensions"
-	..(exclude)
-	//extensions = list()
-
 /proc/set_extension(var/datum/source, var/base_type, var/expansion_type, var/host_predicates, var/user_predicates, var/list/additional_argments)
 	if(!source.extensions)
 		source.extensions = list()
