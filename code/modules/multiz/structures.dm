@@ -107,10 +107,18 @@
 		return
 
 	var/turf/T = target.loc
+	var/mob/tempMob
 	for(var/atom/A in T)
-		if(A.density)
+		if(!A.CanPass(M))
 			M << SPAN_NOTICE("\A [A] is blocking \the [src].")
 			return
+		else if (A.density && istype(A, /mob))
+			tempMob = A
+			continue
+
+	if (tempMob)
+		M << SPAN_NOTICE("\A [tempMob] is blocking \the [src], making it harder to climb.")
+		delay = delay * 1.5
 
 	//Robots are a quarter ton of steel and most of them lack legs or arms of any appreciable sorts.
 	//Even being able to climb ladders at all is a violation of newton'slaws. It shall at least be slow and communicated as such
