@@ -68,6 +68,7 @@
 
 /datum/craft_recipe/canister
 	name = "canister"
+	result = /obj/machinery/portable_atmospherics/canister/empty
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL)
@@ -126,4 +127,12 @@
 		list(/obj/item/weapon/stock_parts/capacitor, 1),
 		list(/obj/item/weapon/cell/small, 1),
 		list(/obj/item/stack/cable_coil, 5, "time" = 20)
+	)
+
+/datum/craft_recipe/tray
+	name = "dinner tray"
+	result = /obj/item/weapon/tray
+	steps = list(
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL, "time" = 40),
+		list(QUALITY_WIRE_CUTTING, 10, 120)
 	)

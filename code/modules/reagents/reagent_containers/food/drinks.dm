@@ -10,6 +10,11 @@
 	amount_per_transfer_from_this = 5
 	volume = 50
 
+/obj/item/weapon/reagent_containers/food/drinks/Initialize()
+	. = ..()
+	if(is_open_container())
+		verbs += /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
+
 /obj/item/weapon/reagent_containers/food/drinks/on_reagent_change()
 	return
 
@@ -21,6 +26,7 @@
 	playsound(loc,'sound/effects/canopen.ogg', rand(10,50), 1)
 	user << SPAN_NOTICE("You open [src] with an audible pop!")
 	flags |= OPENCONTAINER
+	verbs += /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
 
 /obj/item/weapon/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
@@ -78,6 +84,37 @@
 	else
 		user << SPAN_NOTICE("\The [src] is full!")
 
+/obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole()
+	set category = "Object"
+	set name = "Gulp Down"
+	set src in view(1)
+
+	if(is_open_container())
+		if(ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			if(!H.check_has_mouth())
+				H << "Where do you intend to put \the [src]? You don't have a mouth!"
+				return
+			var/obj/item/blocked = H.check_mouth_coverage()
+			if(blocked)
+				H << SPAN_WARNING("\The [blocked] is in the way!")
+				return
+
+		if(reagents.total_volume > 30) // 30 equates to 3 SECONDS.
+			usr.visible_message(SPAN_NOTICE("[usr] prepares to gulp down [src]."), SPAN_NOTICE("You prepare to gulp down [src]."))
+		if(!do_after(usr, reagents.total_volume))
+			if(!Adjacent(usr))
+				return
+			standard_splash_mob(src, src)
+
+		if(!Adjacent(usr))
+			return
+
+		usr.visible_message(SPAN_NOTICE("[usr] gulped down the whole [src]!"),SPAN_NOTICE("You gulped down the whole [src]!"))
+		reagents.trans_to_mob(usr, reagents.total_volume, CHEM_INGEST)
+		feed_sound(usr)
+	else
+		usr << SPAN_NOTICE("You need to open [src]!")
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Drinks. END

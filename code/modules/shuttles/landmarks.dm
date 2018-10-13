@@ -25,6 +25,7 @@
 
 /obj/effect/shuttle_landmark/New()
 	..()
+	shuttle_landmarks_list += src
 	tag = copytext(landmark_tag, 1) //since tags cannot be set at compile time
 	if(autoset)
 		base_area = get_area(src)
@@ -53,6 +54,10 @@
 		if(check_collision(translation))
 			return FALSE
 	return TRUE
+
+/obj/effect/shuttle_landmark/Destroy()
+	shuttle_landmarks_list -= src
+	return ..()
 
 /obj/effect/shuttle_landmark/proc/check_collision(var/list/turf_translation)
 	for(var/source in turf_translation)
