@@ -20,6 +20,12 @@
 	idtype = /obj/item/weapon/card/id/car
 	ideal_character_age = 40
 
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/scanner,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/qm_coat
 	shoes = /obj/item/clothing/shoes/color/brown
@@ -58,6 +64,12 @@
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/scanner,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
 	pda = /obj/item/modular_computer/pda/cargo
@@ -90,6 +102,11 @@
 		STAT_ROB = 20,
 		STAT_TGH = 20,
 	)
+
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
 
 	uniform = /obj/item/clothing/under/rank/miner
 	pda = /obj/item/modular_computer/pda/science

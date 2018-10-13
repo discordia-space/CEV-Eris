@@ -26,6 +26,11 @@
 		STAT_TGH = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
 	hat = /obj/item/clothing/head/HoS
@@ -81,6 +86,9 @@
 		STAT_ROB = 20,
 		STAT_TGH = 20,
 	)
+
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
 
 	uniform = /obj/item/clothing/under/rank/warden
 	suit = /obj/item/clothing/suit/armor/vest/security
@@ -139,6 +147,9 @@
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/inspector
 	pda = /obj/item/modular_computer/pda/forensics
 	ear = /obj/item/device/radio/headset/headset_sec
@@ -187,6 +198,10 @@
 		STAT_BIO = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/medspec
 	pda = /obj/item/modular_computer/pda/forensics
 	ear = /obj/item/device/radio/headset/headset_sec
@@ -230,6 +245,9 @@
 		STAT_ROB = 10,
 		STAT_TGH = 20,
 	)
+
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
 
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest/security

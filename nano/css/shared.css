@@ -11,9 +11,10 @@ body {
 .uiModularHeader {
     width: 100%;
     padding: 0px;
-    background: #272727 url(uiHeaderPattern.png) 40% 0;
+    background: #272727 url(uiHeaderPattern.png) 0 5% repeat;
     box-shadow: 0px 6px 6px #232323;
     margin-bottom: 6px;
+    min-height: 15px;
 }
 
 #uiNoScript {

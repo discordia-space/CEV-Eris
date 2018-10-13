@@ -32,7 +32,7 @@
 	// Setup the highest standard security level
 	if(highest_standard_security_level || isnull(highest_standard_security_level))
 		if(!(highest_standard_security_level in all_security_levels))
-			highest_standard_security_level = all_security_levels[all_security_levels.len - 1]
+			highest_standard_security_level = all_security_levels[all_security_levels.len]
 		highest_standard_security_level = decls_repository.get_decl(highest_standard_security_level)
 	else
 		highest_standard_security_level = null

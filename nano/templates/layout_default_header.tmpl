@@ -24,18 +24,20 @@
 				</table>
 			</div>
 		</div>
-		<div style="float: right">
+		<div style="float: right;padding-left: 5px">
 			<table><tr>
 				<td>{{:helper.link('Shutdown', null, {'PC_shutdown' : 1})}}
 			</table>
 		</div>
+		<div style="clear: both"></div>
 		{{if data.has_gps}}
-			<div style="clear: both;border-top:3px double #7B7B7B;padding: 0px">
+			<div style="border-top:3px double #7B7B7B;padding: 0px">
 				<table><tr>
 					<td><img src='{{:data.gps_icon}}'>
 					<td>{{:data.gps_data}}
 				</table>
 			</div>
 		{{/if}}
+		
 	</div>
 {{/if}}

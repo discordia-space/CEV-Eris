@@ -23,6 +23,11 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/card_mod,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/captain
 	shoes = /obj/item/clothing/shoes/color/brown
 	pda = /obj/item/modular_computer/pda/captain
@@ -77,6 +82,11 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	stat_modifers = list(
 		STAT_TGH = 10,
 	)
+
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/card_mod,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
 
 	uniform = /obj/item/clothing/under/rank/first_officer
 	shoes = /obj/item/clothing/shoes/reinforced

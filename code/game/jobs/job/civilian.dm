@@ -177,6 +177,9 @@
 		STAT_ROB = 10,
 	)
 
+	software_on_spawn = list(
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/janitor
 	pda = /obj/item/modular_computer/pda
 	ear = /obj/item/device/radio/headset/headset_service

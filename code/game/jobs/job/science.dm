@@ -28,6 +28,12 @@
 		STAT_BIO = 30,
 	)
 
+	// TODO: enable after baymed
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 ///datum/computer_file/program/aidiag,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
 	pda = /obj/item/modular_computer/pda/heads/rd
 	ear = /obj/item/device/radio/headset/heads/rd

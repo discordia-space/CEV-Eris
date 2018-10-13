@@ -17,6 +17,9 @@
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/records,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/chaplain
 	suit = /obj/item/clothing/suit/chaplain_hoodie
 	shoes = /obj/item/clothing/shoes/reinforced
