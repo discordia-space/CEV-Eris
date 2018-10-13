@@ -54,6 +54,7 @@
 	var/obj/item/weapon/computer_hardware/ai_slot/ai_slot							// AI slot, an intellicard housing that allows modifications of AIs.
 	var/obj/item/weapon/computer_hardware/tesla_link/tesla_link						// Tesla Link, Allows remote charging from nearest APC.
 	var/obj/item/weapon/computer_hardware/scanner/scanner							// One of several optional scanner attachments.
+	var/obj/item/weapon/computer_hardware/gps_sensor/gps_sensor						// GPS sensor used to track device
 
 	var/modifiable = TRUE	// can't be modified or damaged if false
 

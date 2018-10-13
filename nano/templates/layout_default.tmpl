@@ -1,7 +1,23 @@
 <div id='uiHeaderContent' unselectable="on">
 	<!-- Add a template with the key "headerContent" to have it rendered here -->
 </div>
-<div id='uiTitleWrapper' unselectable="on"><div id='uiStatusIcon' class='icon24 uiStatusGood' unselectable="on"></div><div id='uiTitleText' unselectable="on">{{:config.title}}</div><div id='uiTitleFluff' unselectable="on"></div></div>
+<div id='uiTitleWrapper' unselectable="on">
+    <div id='uiStatusIcon' class='icon24 uiStatusGood' unselectable="on">
+    </div>
+    <div id='uiTitleText' unselectable="on">
+        {{:config.title}}
+    </div>
+    {{if data.PC_showexitprogram}}
+        <div id='uiTitleButtons'>
+            <table><tr>
+                <td>{{:helper.link('Exit Program', null, {'PC_exit' : 1})}}
+                <td>{{:helper.link('Minimize Program', null, {'PC_minimize' : 1})}}
+            </table>
+        </div>
+    {{else}}
+        <div id='uiTitleFluff' unselectable="on"></div>
+    {{/if}}
+</div>
 <div id='uiMapWrapper' class="hidden" unselectable="on">
     <div id='uiMapHeader' unselectable="on">
         {{:helper.link('Hide Map', 'close', {'showMap' : 0})}}

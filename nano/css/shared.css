@@ -8,6 +8,14 @@ body {
     background: #272727;
 }
 
+.uiModularHeader {
+    width: 100%;
+    padding: 0px;
+    background: #272727 url(uiHeaderPattern.png) 40% 0;
+    box-shadow: 0px 6px 6px #232323;
+    margin-bottom: 6px;
+}
+
 #uiNoScript {
     position: fixed;
     top: 50%;

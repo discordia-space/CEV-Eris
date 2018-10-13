@@ -61,16 +61,16 @@
 /obj/item/weapon/computer_hardware/proc/check_functionality()
 	// Turned off
 	if(!enabled)
-		return 0
+		return FALSE
 	// Too damaged to work at all.
 	if(damage >= damage_failure)
-		return 0
+		return FALSE
 	// Still working. Well, sometimes...
 	if(damage >= damage_malfunction)
 		if(prob(malfunction_probability))
-			return 0
+			return FALSE
 	// Good to go.
-	return 1
+	return TRUE
 
 /obj/item/weapon/computer_hardware/examine(var/mob/user)
 	. = ..()

@@ -7,7 +7,7 @@
 	card_slot = new /obj/item/weapon/computer_hardware/card_slot/broadcaster(src)
 	battery_module = new /obj/item/weapon/computer_hardware/battery_module(src)
 	battery_module.charge_to_full()
-
+	gps_sensor	= new /obj/item/weapon/computer_hardware/gps_sensor(src)
 	tesla_link = new /obj/item/weapon/computer_hardware/tesla_link(src)
 
 /obj/item/modular_computer/pda/install_default_programs()

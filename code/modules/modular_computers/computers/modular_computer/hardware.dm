@@ -141,6 +141,8 @@
 		return tesla_link
 	if(scanner && (scanner.name == name))
 		return scanner
+	if(gps_sensor && (gps_sensor.name == name))
+		return gps_sensor	
 	return null
 
 // Returns list of all components
@@ -166,4 +168,6 @@
 		all_components.Add(tesla_link)
 	if(scanner)
 		all_components.Add(scanner)
+	if(gps_sensor)
+		all_components.Add(gps_sensor)	
 	return all_components
