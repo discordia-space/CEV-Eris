@@ -827,7 +827,7 @@
 
 	switch(buildstage)
 		if(2)
-			if (istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))// trying to unlock the interface with an ID card
+			if (istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))// trying to unlock the interface with an ID card
 				if(stat & (NOPOWER|BROKEN))
 					user << "It does nothing"
 					return
