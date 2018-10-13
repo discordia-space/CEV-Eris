@@ -203,6 +203,8 @@
 		if(!disable_warning)
 			owner << SPAN_WARNING("[I] can't be holded by your [name].")
 		return FALSE
+	if(istype(I, /obj/item/weapon/storage/pouch)) // Pouches are basically equipped over the suit, they just take up pockets.
+		return TRUE
 	else
 		return ..()
 
