@@ -4,6 +4,100 @@
 // Do not remove this functionality without good reason, cough reagent_containers cough.
 // -Sayu
 
+/atom/HUD_element
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+	var/list/_elements = new
+	var/atom/HUD_element/_parent
+	var/client/_observer
+
+	var/icon/_icon
+
+	//mouse_opacity = 2
+
+/atom/HUD_element/setDimensions(width,height)
+	bound_width =
+
+/atom/HUD_element/proc/getObserver()
+	return _observer
+
+/atom/HUD_element/proc/_setObserver(var/client/C)
+	_observer = C
+
+/atom/HUD_element/proc/show(var/client/C)
+	var/client/observer = getObserver()
+	if (observer)
+		if (observer != C)
+			log_to_dd("Error: HUD element already shown to client '[observer]'")
+			return
+		return 1
+
+	_setObserver(C)
+	C.screen += src
+
+	var/list/elements = getElements()
+	for(var/atom/HUD_element/E in elements)
+		E.show(C)
+
+	return 1
+
+/atom/HUD_element/proc/hide()
+	var/client/observer = getObserver()
+	if (!observer)
+		return 1
+
+	observer.screen -= src
+	_setObserver()
+
+	var/list/elements = getElements()
+	for(var/atom/HUD_element/E in elements)
+		E.hide()
+
+	return 1
+
+/atom/HUD_element/proc/getElements()
+	return _elements
+
+/atom/HUD_element/proc/_connectElement(var/atom/HUD_element/E)
+	if (!E)
+		log_to_dd("Error: Invalid HUD element '[E]'")
+		return
+
+	var/list/elements = getElements()
+	if (elements.Find(E))
+		log_to_dd("Error: HUD element '[E]' already connected")
+		return
+
+	var/atom/HUD_element/parent = E.getParent()
+	if (parent)
+		parent.getElements().Remove(E)
+
+	E._setParent(src)
+	elements.Add(E)
+
+	return 1
+
+/atom/HUD_element/proc/getParent()
+	return _parent
+
+/atom/HUD_element/proc/_setParent(var/atom/HUD_element/E)
+	_parent = E
+
+/atom/HUD_element/Destroy()
+	hide()
+
+	var/list/elements = getElements()
+	for(var/atom/HUD_element/E in elements)
+		qdel(E)
+	elements.Cut()
+
+	var/atom/HUD_element/parent = getParent()
+	if (parent)
+		parent.getElements().Remove(src)
+		_setParent()
+
+	return QDEL_HINT_QUEUE
+
 
 /obj/item/weapon/storage
 	name = "storage"
