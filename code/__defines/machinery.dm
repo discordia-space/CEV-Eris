@@ -20,10 +20,6 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define MAINT    0x8  // Under maintenance.
 #define EMPED    0x10 // Temporary broken by EMP pulse.
 
-// Used by firelocks
-#define FIREDOOR_OPEN 1
-#define FIREDOOR_CLOSED 2
-
 #define AI_CAMERA_LUMINOSITY 6
 
 //Frame types
