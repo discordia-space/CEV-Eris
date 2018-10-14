@@ -40,7 +40,7 @@
 	icon_state = "small_generic"
 	item_state = "small_generic"
 
-	max_storage_space = ITEM_SIZE_TINY * 2
+	max_storage_space = ITEM_SIZE_TINY * 3
 	max_w_class = ITEM_SIZE_SMALL
 
 /obj/item/weapon/storage/pouch/medium_generic
@@ -49,7 +49,7 @@
 	icon_state = "medium_generic"
 	item_state = "medium_generic"
 
-	max_storage_space = ITEM_SIZE_TINY * 4
+	max_storage_space = ITEM_SIZE_TINY * 5
 	max_w_class = ITEM_SIZE_SMALL
 
 /obj/item/weapon/storage/pouch/medical_supply
@@ -142,14 +142,26 @@
 
 /obj/item/weapon/storage/pouch/flare
 	name = "flares pouch"
-	desc = "Can hold about five flares in."
+	desc = "Can hold about five flares in. In fact, anything cylindrical and small... Makes you think."
 	icon_state = "flare"
 	item_state = "flare"
 
 	storage_slots = 5
 	w_class = ITEM_SIZE_SMALL
 
-	can_hold = list(/obj/item/device/lighting/glowstick/flare)
+	can_hold = list(
+		/obj/item/device/lighting/glowstick,
+		/obj/item/weapon/reagent_containers/syringe,
+		/obj/item/weapon/reagent_containers/glass/beaker/vial,
+		/obj/item/weapon/pen/crayon,
+		/obj/item/weapon/reagent_containers/hypospray,
+		/obj/item/weapon/pen,
+		/obj/item/weapon/storage/box/pillbottles
+		)
+
+/obj/item/weapon/storage/pouch/flare/vial
+	name = "vial pouch"
+	desc = "Can hold about five vials. Rebranding!"
 
 /obj/item/weapon/storage/pouch/flare/update_icon()
 	..()

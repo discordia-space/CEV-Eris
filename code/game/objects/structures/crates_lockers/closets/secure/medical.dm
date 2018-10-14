@@ -127,3 +127,4 @@
 /obj/structure/closet/secure_closet/chemical/populate_contents()
 	new /obj/item/weapon/storage/box/pillbottles(src)
 	new /obj/item/weapon/storage/box/pillbottles(src)
+	new /obj/item/weapon/storage/pouch/flare/vial(src)
