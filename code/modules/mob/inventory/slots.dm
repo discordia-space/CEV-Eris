@@ -195,6 +195,7 @@
 
 /datum/inventory_slot/store
 	req_item_in_slot = slot_w_uniform
+	req_slot_flags = SLOT_POCKET
 	max_w_class = ITEM_SIZE_SMALL
 	update_proc = /mob/proc/update_inv_pockets
 
