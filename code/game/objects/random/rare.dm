@@ -16,5 +16,6 @@
 	/obj/item/weapon/tank/emergency_oxygen/double = 2,\
 	/obj/random/rig = 1.5,\
 	/obj/random/rig/damaged = 1.5,\
-	/obj/random/voidsuit = 4
+	/obj/random/voidsuit = 4,
+	/obj/random/pouch = 6
 	))

@@ -104,6 +104,7 @@
 	new /obj/item/device/radio/headset/heads/cmo(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/weapon/reagent_containers/hypospray(src)
+	new /obj/item/weapon/storage/pouch/medical_supply(src)
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control closet"

@@ -177,7 +177,8 @@
 		/obj/item/weapon/gun/projectile/lamia,
 		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/weapon/gun/projectile/olivaw,
-		/obj/item/weapon/gun/projectile/silenced)
+		/obj/item/weapon/gun/projectile/silenced,
+		/obj/item/weapon/gun/projectile/revolver)
 
 	sliding_behavior = TRUE
 

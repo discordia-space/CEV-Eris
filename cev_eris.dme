@@ -871,6 +871,7 @@
 #include "code\game\objects\random\junk.dm"
 #include "code\game\objects\random\materials.dm"
 #include "code\game\objects\random\medicine.dm"
+#include "code\game\objects\random\pouches.dm"
 #include "code\game\objects\random\powercells.dm"
 #include "code\game\objects\random\purerandom.dm"
 #include "code\game\objects\random\random.dm"
