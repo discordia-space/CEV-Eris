@@ -164,10 +164,10 @@
 	for(var/obj/item/integrated_circuit/part in contents)
 		. |= part.GetAccess()
 
-/obj/item/device/electronic_assembly/GetID()
+/obj/item/device/electronic_assembly/GetIdCard()
 	. = list()
 	for(var/obj/item/integrated_circuit/part in contents)
-		var/id_card = part.GetID()
+		var/id_card = part.GetIdCard()
 		if(id_card)
 			return id_card
 

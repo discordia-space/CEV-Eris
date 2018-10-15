@@ -11,7 +11,6 @@
 	if(!istype(M))
 		return 0
 	return check_access_list(M.GetAccess())
-	return 0
 
 /atom/movable/proc/GetAccess()
 	var/obj/item/weapon/card/id/id = GetIdCard()
@@ -196,9 +195,6 @@
 		"BlackOps Commander",
 		"Supreme Commander")
 
-/obj/proc/GetID()
-	return null
-
 /mob/GetIdCard()
 	return null
 
@@ -214,14 +210,21 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 /mob/living/bot/GetIdCard()
 	return botcard
 
+#define HUMAN_ID_CARDS list(get_active_hand(), wear_id, get_inactive_hand())
 /mob/living/carbon/human/GetIdCard()
-	var/obj/item/I = get_active_hand()
-	if(I)
-		var/id = I.GetID()
+	for(var/item_slot in HUMAN_ID_CARDS)
+		var/obj/item/I = item_slot
+		var/obj/item/weapon/card/id = I ? I.GetIdCard() : null
 		if(id)
 			return id
-	if(wear_id)
-		return wear_id.GetID()
+
+/mob/living/carbon/human/GetAccess()
+	. = list()
+	for(var/item_slot in HUMAN_ID_CARDS)
+		var/obj/item/I = item_slot
+		if(I)
+			. |= I.GetAccess()
+#undef HUMAN_ID_CARDS
 
 /mob/living/silicon/GetIdCard()
 	return idcard
@@ -236,7 +239,7 @@ proc/get_all_job_icons() //For all existing HUD icons
 	return joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
-	var/obj/item/weapon/card/id/I = GetID()
+	var/obj/item/weapon/card/id/I = GetIdCard()
 
 	if(I)
 		var/job_icons = get_all_job_icons()

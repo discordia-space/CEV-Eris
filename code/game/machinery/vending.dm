@@ -269,7 +269,7 @@
 		if(ABORT_CHECK)
 			return
 
-	var/obj/item/weapon/card/id/ID = I.GetID()
+	var/obj/item/weapon/card/id/ID = I.GetIdCard()
 
 	if (currently_vending && vendor_account && !vendor_account.suspended)
 		var/paid = 0

@@ -28,11 +28,12 @@
 			return
 		stored_card = W
 		update_power_usage()
-	if(isScrewdriver(W))
-		to_chat(user, "You manually remove \the [stored_card] from \the [src].")
-		stored_card.forceMove(get_turf(src))
-		stored_card = null
-		update_power_usage()
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
+		if(W.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+			to_chat(user, "You manually remove \the [stored_card] from \the [src].")
+			stored_card.forceMove(get_turf(src))
+			stored_card = null
+			update_power_usage()
 
 /obj/item/weapon/computer_hardware/ai_slot/Destroy()
 	if(holder2 && (holder2.ai_slot == src))

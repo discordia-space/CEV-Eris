@@ -21,6 +21,7 @@
 	var/list/downloads_queue[0]
 	var/file_info //For logging, can be faked by antags.
 	var/server
+	var/download_paused = FALSE
 	usage_flags = PROGRAM_ALL
 
 /datum/computer_file/program/ntnetdownload/kill_program()
@@ -80,6 +81,7 @@
 	generate_network_log("Aborted download of file [file_info].")
 	downloaded_file = null
 	download_completion = 0
+	download_netspeed = 0
 	ui_header = "downloader_finished.gif"
 
 /datum/computer_file/program/ntnetdownload/proc/complete_file_download()
@@ -94,7 +96,7 @@
 	ui_header = "downloader_finished.gif"
 
 /datum/computer_file/program/ntnetdownload/process_tick()
-	if(!downloaded_file)
+	if(!downloaded_file || download_paused)
 		return
 	if(download_completion >= downloaded_file.size)
 		complete_file_download()
@@ -133,6 +135,18 @@
 			downloaded_file = null
 			downloaderror = ""
 		return 1
+	if(href_list["download_pause"])
+		download_paused = !download_paused
+		if (download_paused)
+			ui_header = "downloader_paused.gif"
+		else
+			ui_header = "downloader_running.gif"
+		return 1
+
+	if(href_list["download_stop"])
+		if(downloaded_file)
+			abort_file_download()
+		return 1
 	return 0
 
 /datum/nano_module/program/computer_ntnetdownload
@@ -164,10 +178,35 @@
 		data["downloadspeed"] = prog.download_netspeed
 		data["downloadcompletion"] = round(prog.download_completion, 0.1)
 
+	data["download_paused"] = prog.download_paused
 	data["disk_size"] = my_computer.hard_drive.max_capacity
 	data["disk_used"] = my_computer.hard_drive.used_capacity
-	var/list/all_entries[0]
+
+	var/obj/item/weapon/computer_hardware/hard_drive/HDD = program.computer.hard_drive
+	if(!HDD)
+		return 1
+	var/list/datum/computer_file/program/installed_programs = list()
+	for(var/datum/computer_file/program/P in HDD.stored_files)
+		installed_programs.Add(P)
+
+	var/list/datum/computer_file/program/downloadable_programs = list()
 	for(var/datum/computer_file/program/P in ntnet_global.available_station_software)
+		downloadable_programs.Add(P)
+
+	for(var/datum/computer_file/program/P in downloadable_programs) //Removeing programs from list that are already present on HDD
+		for(var/datum/computer_file/program/I in installed_programs)
+			if(P.filename == I.filename)
+				downloadable_programs -= P
+				break
+
+	var/list/queue = list() // Nanoui can't iterate through assotiative lists, so we have to do this
+	if(prog.downloads_queue.len > 0)
+		for(var/item in prog.downloads_queue)
+			queue += item
+		data["downloads_queue"] = queue
+
+	var/list/all_entries[0]
+	for(var/datum/computer_file/program/P in downloadable_programs)
 		// Only those programs our user can run will show in the list
 		if(!P.can_run(user) && P.requires_access_to_download)
 			continue
@@ -178,7 +217,8 @@
 		"filedesc" = P.filedesc,
 		"fileinfo" = P.extended_desc,
 		"size" = P.size,
-		"icon" = P.program_menu_icon
+		"icon" = P.program_menu_icon,
+		"in_queue" = (P.filename in queue) ? 1 : 0
 		)))
 	data["hackedavailable"] = 0
 	if(prog.computer_emagged) // If we are running on emagged computer we have access to some "bonus" software
@@ -196,11 +236,7 @@
 
 	data["downloadable_programs"] = all_entries
 
-	if(prog.downloads_queue.len > 0)
-		var/list/queue = list() // Nanoui can't iterate through assotiative lists, so we have to do this
-		for(var/item in prog.downloads_queue)
-			queue += item
-		data["downloads_queue"] = queue
+	
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

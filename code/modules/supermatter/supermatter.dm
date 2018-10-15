@@ -89,6 +89,7 @@
 /obj/machinery/power/supermatter/New()
 	. = ..()
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
+	assign_uid()
 
 
 /obj/machinery/power/supermatter/Destroy()

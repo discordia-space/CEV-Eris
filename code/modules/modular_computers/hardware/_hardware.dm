@@ -16,11 +16,12 @@
 
 /obj/item/weapon/computer_hardware/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
 	// Multitool. Runs diagnostics
-	if(isMultitool(W))
-		to_chat(user, "***** DIAGNOSTICS REPORT *****")
-		diagnostics(user)
-		to_chat(user, "******************************")
-		return 1
+	if(QUALITY_PULSING in W.tool_qualities)
+		if(W.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_COG))
+			to_chat(user, "***** DIAGNOSTICS REPORT *****")
+			diagnostics(user)
+			to_chat(user, "******************************")
+			return 1
 	// Nanopaste. Repair all damage if present for a single unit.
 	var/obj/item/stack/S = W
 	if(istype(S, /obj/item/stack/nanopaste))

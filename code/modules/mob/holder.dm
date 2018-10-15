@@ -572,7 +572,12 @@ var/list/holder_mob_icon_cache = list()
 	icon_state_dead = "mouse_brown_dead"
 
 
-
+/obj/item/weapon/holder/GetIdCard()
+	for(var/mob/M in contents)
+		var/obj/item/I = M.GetIdCard()
+		if(I)
+			return I
+	return null
 
 /*
 //Lizards

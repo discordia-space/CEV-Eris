@@ -185,9 +185,9 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/GetAccess()
 	return access
 
-/obj/item/weapon/card/id/GetID()
+/obj/item/weapon/card/id/GetIdCard()
 	return src
-
+	
 /obj/item/weapon/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"

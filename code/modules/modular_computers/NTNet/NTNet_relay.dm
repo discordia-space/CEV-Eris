@@ -116,21 +116,23 @@
 	..()
 
 /obj/machinery/ntnet_relay/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(isScrewdriver(W))
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		panel_open = !panel_open
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance hatch")
-		return
-	if(isCrowbar(W))
-		if(!panel_open)
-			to_chat(user, "Open the maintenance panel first.")
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_RETRACTING)
+	var/tool_type = W.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+		if(QUALITY_SCREW_DRIVING)
+			if(W.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+				panel_open = !panel_open
+				to_chat(user, "You [panel_open ? "open" : "close"] the maintenance hatch")
 			return
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-		to_chat(user, "You disassemble \the [src]!")
-
-		for(var/atom/movable/A in component_parts)
-			A.forceMove(src.loc)
-		new/obj/machinery/constructable_frame/machine_frame(src.loc)
-		qdel(src)
-		return
+		if(QUALITY_RETRACTING)
+			if(!panel_open)
+				to_chat(user, "Open the maintenance panel first.")
+				return
+			if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_RETRACTING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+				to_chat(user, "You disassemble \the [src]!")
+				for(var/atom/movable/A in component_parts)
+					A.forceMove(src.loc)
+				new/obj/machinery/constructable_frame/machine_frame(src.loc)
+				qdel(src)
+				return
 	..()

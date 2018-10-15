@@ -23,38 +23,43 @@
 	name = "telescreen"
 
 /obj/item/modular_computer/telescreen/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(isCrowbar(W))
-		if(anchored)
-			shutdown_computer()
-			anchored = FALSE
-			screen_on = FALSE
-			pixel_x = 0
-			pixel_y = 0
-			to_chat(user, "You unsecure \the [src].")
-		else
-			var/choice = input(user, "Where do you want to place \the [src]?", "Offset selection") in list("North", "South", "West", "East", "This tile", "Cancel")
-			var/valid = FALSE
-			switch(choice)
-				if("North")
-					valid = TRUE
-					pixel_y = 32
-				if("South")
-					valid = TRUE
-					pixel_y = -32
-				if("West")
-					valid = TRUE
-					pixel_x = -32
-				if("East")
-					valid = TRUE
-					pixel_x = 32
-				if("This tile")
-					valid = TRUE
+	if(QUALITY_RETRACTING in W.tool_qualities)
+		var/choice
+		if(!anchored)
+			choice = input(user, "Where do you want to place \the [src]?", "Offset selection") in list("North", "South", "West", "East", "This tile", "Cancel")
+			if(choice == "Cancel")
+				return
+		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_RETRACTING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+			if(anchored)
+				shutdown_computer()
+				anchored = FALSE
+				screen_on = FALSE
+				pixel_x = 0
+				pixel_y = 0
+				to_chat(user, "You unsecure \the [src].")
+			else
+				var/valid = FALSE
+				switch(choice)
+					if("North")
+						valid = TRUE
+						pixel_y = 32
+					if("South")
+						valid = TRUE
+						pixel_y = -32
+					if("West")
+						valid = TRUE
+						pixel_x = -32
+					if("East")
+						valid = TRUE
+						pixel_x = 32
+					if("This tile")
+						valid = TRUE
 
-			if(valid)
-				anchored = 1
-				screen_on = TRUE
-				to_chat(user, "You secure \the [src].")
-			return
+				if(valid)
+					anchored = 1
+					screen_on = TRUE
+					to_chat(user, "You secure \the [src].")
+				return
 	..()
 
 /obj/item/modular_computer/telescreen/Created()

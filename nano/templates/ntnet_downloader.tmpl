@@ -48,6 +48,10 @@
 		</div>
 		<div class="itemContent">
 			{{:helper.displayBar(data.downloadcompletion, 0, data.downloadname ? data.downloadsize : 0, 'good')}}
+			{{if data.downloadname}}
+			{{:helper.link('', (data.download_paused ? 'play' : 'pause'), {'download_pause' : 1})}}	
+			{{:helper.link('', 'stop', {'download_stop' : 1})}}	
+		{{/if}}
 		</div>
 	</div>
 
@@ -79,10 +83,10 @@
 	</div>
 	<table>
 	{{for data.downloadable_programs}}
-		<tr><td>{{:helper.link('', value.icon, {'PRG_downloadfile' : value.filename})}}	
+		<tr><td>{{:helper.link('', value.icon, {'PRG_downloadfile' : value.filename}, ((value.in_queue || value.filename == data.downloadname) ? 'disabled' : null))}}	
 			<td><span class='white'>{{:value.filedesc}}</span>
 			<td>{{:value.fileinfo}}
-			<td>{{:value.size}} GQ
+			<td><div style="white-space: nowrap;">{{:value.size}} GQ
 		</div>
 	{{/for}}
 	</table>

@@ -13,6 +13,7 @@
 	light_strength = 3
 	max_damage = 200
 	broken_damage = 100
+	screen_on = FALSE
 	w_class = ITEM_SIZE_NORMAL
 	var/icon_state_closed = "laptop-closed"
 
@@ -34,9 +35,6 @@
 	else
 		overlays.Cut()
 		icon_state = icon_state_closed
-
-/obj/item/modular_computer/laptop/preset
-	anchored = FALSE
 
 /obj/item/modular_computer/laptop/Created()
 	qdel(processor_unit)

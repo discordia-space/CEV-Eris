@@ -92,7 +92,7 @@
 			msg += "<b>Attachment:</b> [received_message.attachment.filename].[received_message.attachment.filetype] ([received_message.attachment.size]GQ)\n"
 		msg += "<a href='?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>\n"
 		msg += "*--*"
-		to_chat(L, jointext(msg, null))
+		to_chat(L, unicode_to_cyrillic(jointext(msg, null)))
 
 /datum/nano_module/email_client/Destroy()
 	log_out()
@@ -351,7 +351,7 @@
 		return 1
 
 	if(href_list["edit_title"])
-		var/newtitle = sanitize(input(user,"Enter title for your message:", "Message title", msg_title), 100)
+		var/newtitle = sanitize(cyrillic_to_unicode(input(user,"Enter title for your message:", "Message title", msg_title)), 100)
 		if(newtitle)
 			msg_title = newtitle
 		return 1
@@ -361,7 +361,7 @@
 		var/oldtext = html_decode(msg_body)
 		oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-		var/newtext = sanitize(replacetext(input(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext) as message|null, "\n", "\[br\]"), 20000)
+		var/newtext = sanitize(replacetext(cyrillic_to_unicode(input(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext) as message|null), "\n", "\[br\]"), 20000)
 		if(newtext)
 			msg_body = newtext
 		return 1

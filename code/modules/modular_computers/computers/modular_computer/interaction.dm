@@ -229,57 +229,50 @@
 			try_install_component(user, C)
 		else
 			to_chat(user, "This component is too large for \the [src].")
-	if(QUALITY_BOLT_TURNING in W.tool_qualities)
-		var/list/components = get_all_components()
-		if(components.len)
-			to_chat(user, "Remove all components from \the [src] before disassembling it.")
-			return
-		new /obj/item/stack/material/steel( get_turf(src.loc), steel_sheet_cost )
-		src.visible_message("\The [src] has been disassembled by [user].")
-		qdel(src)
-		return
-	if(isWelder(W))
-		var/obj/item/weapon/tool/weldingtool/WT = W
-		if(!WT.switched_on)
-			to_chat(user, "\The [W] is off.")
-			return
 
-		if(!damage)
-			to_chat(user, "\The [src] does not require repairs.")
-			return
+	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING, QUALITY_BOLT_TURNING)
 
-		to_chat(user, "You begin repairing damage to \the [src]...")
-		if(WT.consume_fuel(round(damage/75)) && do_after(usr, damage/10))
-			damage = 0
-			to_chat(user, "You repair \the [src].")
-		return
+	var/tool_type = W.get_tool_type(user, usable_qualities)
+	switch(tool_type)
+		if(QUALITY_BOLT_TURNING)
+			var/list/components = get_all_components()
+			if(components.len)
+				to_chat(user, "Remove all components from \the [src] before disassembling it.")
+				return
+			if(W.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+				new /obj/item/stack/material/steel( get_turf(src.loc), steel_sheet_cost )
+				src.visible_message("\The [src] has been disassembled by [user].")
+				qdel(src)
+				return
 
-	if(isScrewdriver(W))
-		var/list/all_components = get_all_components()
-		if(!all_components.len)
-			to_chat(user, "This device doesn't have any components installed.")
-			return
-		var/list/component_names = list()
-		for(var/obj/item/weapon/computer_hardware/H in all_components)
-			component_names.Add(H.name)
+		if(QUALITY_WELDING)
+			if(!damage)
+				to_chat(user, "\The [src] does not require repairs.")
+				return
+			if(W.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_HARD, required_stat = STAT_COG))
+				damage = 0
+				to_chat(user, "You repair \the [src].")
+				return
 
-		var/choice = input(usr, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
-
-		if(!choice)
-			return
-
-		if(!Adjacent(usr))
-			return
-
-		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(choice)
-
-		if(!H)
-			return
-
-		uninstall_component(user, H)
-
-		return
-
+		if(QUALITY_SCREW_DRIVING)
+			var/list/all_components = get_all_components()
+			if(!all_components.len)
+				to_chat(user, "This device doesn't have any components installed.")
+				return
+			var/list/component_names = list()
+			for(var/obj/item/weapon/computer_hardware/H in all_components)
+				component_names.Add(H.name)
+			var/choice = input(usr, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
+			if(!choice)
+				return
+			if(!Adjacent(usr))
+				return
+			if(W.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+				var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(choice)
+				if(!H)
+					return
+				uninstall_component(user, H)
+				return
 	..()
 
 /obj/item/modular_computer/examine(var/mob/user)

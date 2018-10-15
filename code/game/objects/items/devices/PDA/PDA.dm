@@ -313,9 +313,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	else
 		return ..()
 
-/obj/item/device/pda/GetID()
-	return id
-
 /obj/item/device/pda/MouseDrop(obj/over_object, src_location, over_location)
 	if((!istype(over_object, /obj/screen)) && can_use())
 		return attack_self(usr)

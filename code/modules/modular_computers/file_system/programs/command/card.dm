@@ -52,13 +52,13 @@
 	data["science_jobs"] = format_jobs(science_positions)
 	data["security_jobs"] = format_jobs(security_positions)
 	//data["exploration_jobs"] = format_jobs(exploration_positions)
-	//data["service_jobs"] = format_jobs(service_positions)
+	data["service_jobs"] = format_jobs(civilian_positions)
 	data["supply_jobs"] = format_jobs(cargo_positions)
-	data["civilian_jobs"] = format_jobs(civilian_positions)
+	//data["civilian_jobs"] = format_jobs(civilian_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 
-	data["all_centcom_access"] = is_centcom ? get_accesses(1) : null
-	data["regions"] = get_accesses()
+	data["all_centcom_access"] = is_centcom
+	data["regions"] = list()
 
 	if(program.computer.card_slot && program.computer.card_slot.stored_card)
 		var/obj/item/weapon/card/id/id_card = program.computer.card_slot.stored_card
@@ -72,7 +72,7 @@
 			data["all_centcom_access"] = all_centcom_access
 		else
 			var/list/regions = list()
-			for(var/i = 1; i <= 8; i++)
+			for(var/i = 1; i <= 7; i++)
 				var/list/accesses = list()
 				for(var/access in get_region_accesses(i))
 					if (get_access_desc(access))

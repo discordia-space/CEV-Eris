@@ -10,7 +10,7 @@
 	nanomodule_path = /datum/nano_module/program/computer_wordprocessor/
 	var/browsing
 	var/open_file
-	var/loaded_data
+	var/loaded_data = ""
 	var/error
 	var/is_edited
 	usage_flags = PROGRAM_ALL

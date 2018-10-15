@@ -109,15 +109,7 @@
 				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
 			  {{/for}}
 			</td>
-		  </tr>
-		  <tr>
-			<th style="color: '#800080';">Support</th>
-			<td>
-			  {{for data.support_jobs}}
-				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
-			  {{/for}}
-			</td>
-		  </tr>	  
+		  </tr>  
 		  <tr>
 			<th style="color: '#FFA500';">Engineering</th>
 			<td>
@@ -160,7 +152,7 @@
 		  </tr>
 			<th style="color: '#808080';">Service</th>
 			<td>
-			  {{for data.civilian_jobs}}
+			  {{for data.service_jobs}}
 				{{if index && index % 6 === 0}}
 				{{/if}}
 				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
@@ -201,10 +193,11 @@
 	  <div class='item'>
 		<h2>{{:data.station_name}}</h2>
 	  </div>
+
 	  <div class='item' style='width: 100%'>
-		{{for data.regions}}
+	  	{{for data.regions}}
 		  <div style='float: left; width: 175px; min-height: 250px'>
-			<div class='average'><b>{{:value.name}}</b></div>
+		  	<div class='average'><b>{{:value.name}}</b></div>
 			{{for value.accesses :accessValue:accessKey}}
 			  <div class='itemContentWide'>
 				{{:helper.link(accessValue.desc, '', {'action' : 'access', 'access_target' : accessValue.ref, 'allowed' : accessValue.allowed}, null, accessValue.allowed ? 'selected' : null)}}
