@@ -182,7 +182,6 @@
 		/datum/autolathe/recipe/circuit/med_data,
 		/datum/autolathe/recipe/circuit/secure_data,
 		/datum/autolathe/recipe/circuit/teleporter,
-		/datum/autolathe/recipe/circuit/crew,
 		/datum/autolathe/recipe/circuit/operating,
 		/datum/autolathe/recipe/circuit/helm,
 		/datum/autolathe/recipe/circuit/nav,

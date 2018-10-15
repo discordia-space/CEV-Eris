@@ -79,6 +79,21 @@
 	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
 	//hard_drive.store_file(new/datum/computer_file/program/docking())
 
+//First Officer
+/obj/item/modular_computer/console/preset/access/install_default_hardware()
+	..()
+	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
+	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
+
+/obj/item/modular_computer/console/preset/access/install_default_programs()
+	..()
+	hard_drive.store_file(new/datum/computer_file/program/card_mod())
+	hard_drive.store_file(new/datum/computer_file/program/chatclient())
+	hard_drive.store_file(new/datum/computer_file/program/email_client())
+	hard_drive.store_file(new/datum/computer_file/program/records())
+	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
+	hard_drive.store_file(new/datum/computer_file/program/reports())
+
 // Security
 /obj/item/modular_computer/console/preset/security/install_default_hardware()
 	..()
@@ -107,7 +122,7 @@
 	hard_drive.store_file(new/datum/computer_file/program/chatclient())
 	hard_drive.store_file(new/datum/computer_file/program/nttransfer())
 	hard_drive.store_file(new/datum/computer_file/program/newsbrowser())
-	hard_drive.store_file(new/datum/computer_file/program/camera_monitor())
+	hard_drive.store_file(new/datum/computer_file/program/crew_manifest())
 	hard_drive.store_file(new/datum/computer_file/program/email_client())
 	//hard_drive.store_file(new/datum/computer_file/program/supply())
 	hard_drive.store_file(new/datum/computer_file/program/records())

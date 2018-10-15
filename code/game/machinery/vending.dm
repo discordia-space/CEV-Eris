@@ -773,9 +773,10 @@
 	product_slogans = "PDAs to everyone!"
 	icon_state = "cart"
 	icon_deny = "cart-deny"
-	products = list(/obj/item/weapon/cartridge/medical = 10,/obj/item/weapon/cartridge/engineering = 10,/obj/item/weapon/cartridge/security = 10,
-					/obj/item/weapon/cartridge/janitor = 10,/obj/item/weapon/cartridge/signal/science = 10,/obj/item/device/pda/heads = 10,
-					/obj/item/weapon/cartridge/captain = 3,/obj/item/weapon/cartridge/quartermaster = 10)
+	products = list(/obj/item/modular_computer/pda = 10,/obj/item/weapon/computer_hardware/scanner/medical = 6,
+					/obj/item/weapon/computer_hardware/scanner/reagent = 6,/obj/item/weapon/computer_hardware/scanner/atmos = 6,
+					/obj/item/weapon/computer_hardware/scanner/paper = 10,/obj/item/weapon/computer_hardware/nano_printer = 10,
+					/obj/item/weapon/computer_hardware/card_slot = 3,/obj/item/weapon/computer_hardware/ai_slot = 4)
 
 
 /obj/machinery/vending/cola

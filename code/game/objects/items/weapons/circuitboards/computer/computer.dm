@@ -105,11 +105,6 @@
 	name = T_BOARD("R&D server control console")
 	build_path = /obj/machinery/computer/rdservercontrol
 
-/obj/item/weapon/circuitboard/crew
-	name = T_BOARD("crew monitoring console")
-	build_path = /obj/machinery/computer/crew
-	origin_tech = list(TECH_DATA = 3, TECH_BIO = 2, TECH_MAGNET = 2)
-
 /obj/item/weapon/circuitboard/operating
 	name = T_BOARD("patient monitoring console")
 	build_path = /obj/machinery/computer/operating
@@ -165,8 +160,3 @@
 	name = T_BOARD("prison shuttle control console")
 	build_path = /obj/machinery/computer/prison_shuttle
 	origin_tech = list(TECH_DATA = 2)
-
-/obj/item/weapon/circuitboard/rcon_console
-	name = T_BOARD("RCON remote control console")
-	build_path = /obj/machinery/computer/rcon
-	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_POWER = 5)
