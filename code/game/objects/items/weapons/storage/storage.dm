@@ -1,64 +1,152 @@
-// To clarify:
-// For use_to_pickup and allow_quick_gather functionality,
-// see item/attackby() (/game/objects/items.dm)
-// Do not remove this functionality without good reason, cough reagent_containers cough.
-// -Sayu
+/client
+	var/list/HUD_elements
 
-/atom/HUD_element
+/mob/proc/testingShit()
+	var/atom/movable/HUD_element/main = new("storage")
+
+	main.setIcon(icon("icons/mob/screen1.dmi","block"))
+	main.setPosition(100,100)
+
+	main.show(client)
+
+/atom/movable/HUD_element
 	layer = HUD_LAYER
 	plane = HUD_PLANE
-	var/list/_elements = new
-	var/atom/HUD_element/_parent
-	var/client/_observer
-
-	var/icon/_icon
-
 	//mouse_opacity = 2
 
-/atom/HUD_element/setDimensions(width,height)
-	bound_width =
+	var/list/_elements
+	var/atom/movable/HUD_element/_parent
+	var/client/_observer
+	var/_identifier
 
-/atom/HUD_element/proc/getObserver()
+	var/_screenBottomLeftX = 1 //in tiles
+	var/_screenBottomLeftY = 0
+	var/_positionX = 0 //in pixels
+	var/_positionY = 0
+
+	var/_iconWidth = 0 //in pixels
+	var/_iconHeight = 0
+
+/atom/movable/HUD_element/New(var/identifier)
+	_elements = new
+	_identifier = identifier
+	setPosition(0,0)
+
+/atom/movable/HUD_element/proc/getIconWidth()
+	return _iconWidth
+
+/atom/movable/HUD_element/proc/getIconHeight()
+	return _iconHeight
+
+/atom/movable/HUD_element/proc/setIcon(var/icon/I)
+	_iconWidth = I.Width()
+	_iconHeight = I.Height()
+	icon = I
+
+/atom/movable/HUD_element/proc/add()
+	var/atom/movable/HUD_element/newElement = new
+	_connectElement(newElement)
+	return newElement
+
+/atom/movable/HUD_element/proc/setPosition(var/x,var/y) //in pixels
+	var/dx = x - _positionX
+	var/dy = y - _positionY
+	_positionX = x
+	_positionY = y
+
+	screen_loc = "[_screenBottomLeftX]:[x],[_screenBottomLeftY]:[y]"
+
+	var/list/elements = getElements()
+	for(var/atom/movable/HUD_element/E in elements)
+		var/list/E_position = E.getPosition()
+		E.setPosition(E_position[1]+dx,E_position[2]+dy)
+
+	return src
+
+/atom/movable/HUD_element/proc/getPosition()
+	return list(_positionX,_positionY)
+
+/atom/movable/HUD_element/proc/getIdentifier()
+	return _identifier
+
+/atom/movable/HUD_element/proc/_getObserverHUD()
+	var/client/observer = getObserver()
+	if (!observer)
+		var/identifier = getIdentifier()
+		log_to_dd("Error: HUD element with identifier '[identifier]' has no observer")
+		return
+
+	if (!observer.HUD_elements)
+		observer.HUD_elements = new
+
+	return observer.HUD_elements
+
+/atom/movable/HUD_element/proc/getObserver()
 	return _observer
 
-/atom/HUD_element/proc/_setObserver(var/client/C)
+/atom/movable/HUD_element/proc/_setObserver(var/client/C)
 	_observer = C
 
-/atom/HUD_element/proc/show(var/client/C)
+/atom/movable/HUD_element/proc/show(var/client/C)
 	var/client/observer = getObserver()
 	if (observer)
 		if (observer != C)
 			log_to_dd("Error: HUD element already shown to client '[observer]'")
 			return
-		return 1
+
+		return src
 
 	_setObserver(C)
+
+	var/identifier = getIdentifier()
+	if (identifier)
+		var/list/observerHUD = _getObserverHUD()
+		var/atom/movable/HUD_element/currentClientElement = observerHUD[identifier]
+		if (currentClientElement)
+			if (currentClientElement == src)
+				return src
+
+			qdel(currentClientElement)
+
+		observerHUD[identifier] = src
+
 	C.screen += src
 
 	var/list/elements = getElements()
-	for(var/atom/HUD_element/E in elements)
+	for(var/atom/movable/HUD_element/E in elements)
 		E.show(C)
 
-	return 1
+	return src
 
-/atom/HUD_element/proc/hide()
+/atom/movable/HUD_element/proc/hide()
 	var/client/observer = getObserver()
 	if (!observer)
-		return 1
+		return src
+
+	var/identifier = getIdentifier()
+	if (identifier)
+		var/list/observerHUD = _getObserverHUD()
+		var/atom/movable/HUD_element/currentClientElement = observerHUD[identifier]
+		if (currentClientElement)
+			if (currentClientElement == src)
+				observerHUD[identifier] = null
+			else
+				log_to_dd("Error: HUD element identifier '[identifier]' was occupied by another element during hide()")
+				return
 
 	observer.screen -= src
 	_setObserver()
 
 	var/list/elements = getElements()
-	for(var/atom/HUD_element/E in elements)
+	for(var/atom/movable/HUD_element/E in elements)
 		E.hide()
 
-	return 1
+	return src
 
-/atom/HUD_element/proc/getElements()
+/atom/movable/HUD_element/proc/getElements()
 	return _elements
 
-/atom/HUD_element/proc/_connectElement(var/atom/HUD_element/E)
+/atom/movable/HUD_element/proc/_connectElement(var/atom/movable/HUD_element/E)
 	if (!E)
 		log_to_dd("Error: Invalid HUD element '[E]'")
 		return
@@ -68,30 +156,30 @@
 		log_to_dd("Error: HUD element '[E]' already connected")
 		return
 
-	var/atom/HUD_element/parent = E.getParent()
+	var/atom/movable/HUD_element/parent = E.getParent()
 	if (parent)
 		parent.getElements().Remove(E)
 
 	E._setParent(src)
 	elements.Add(E)
 
-	return 1
+	return src
 
-/atom/HUD_element/proc/getParent()
+/atom/movable/HUD_element/proc/getParent()
 	return _parent
 
-/atom/HUD_element/proc/_setParent(var/atom/HUD_element/E)
+/atom/movable/HUD_element/proc/_setParent(var/atom/movable/HUD_element/E)
 	_parent = E
 
-/atom/HUD_element/Destroy()
+/atom/movable/HUD_element/Destroy()
 	hide()
 
 	var/list/elements = getElements()
-	for(var/atom/HUD_element/E in elements)
+	for(var/atom/movable/HUD_element/E in elements)
 		qdel(E)
 	elements.Cut()
 
-	var/atom/HUD_element/parent = getParent()
+	var/atom/movable/HUD_element/parent = getParent()
 	if (parent)
 		parent.getElements().Remove(src)
 		_setParent()
@@ -122,6 +210,12 @@
 	var/allow_quick_gather	//Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
+
+/obj/item/weapon/storage/proc/generateHUD(var/datum/hud)
+	var/atom/movable/HUD_element/main = new("storage")
+
+
+	return main
 
 /obj/item/weapon/storage/proc/UI_newStoredItemBackground(var/obj/master, var/obj/screen/storage/UI_parent, var/matrix/M_start, var/matrix/M_continue, var/matrix/M_end)
 	var/obj/screen/storage/stored_start = new /obj/screen/storage()
