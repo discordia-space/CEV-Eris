@@ -34,6 +34,7 @@
 	var/on_open_network = 0
 
 	var/affected_by_emp_until = 0
+	var/last_shown_time = 0
 
 /obj/machinery/camera/New()
 	..()
@@ -181,23 +182,40 @@
 		interact(user)
 
 	// OTHER
-	else if (can_use() && (istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/modular_computer)) && isliving(user))
+	else if (can_use() && isliving(user))
 		var/mob/living/U = user
-		var/obj/item/weapon/paper/X = null
+		var/list/mob/viewers = list()
+		if(last_shown_time < world.time)
+			U << "You hold \a [I.name] up to the camera ..."
+			for(var/mob/O in living_mob_list)
+				if(!O.client) 
+					continue
+				if (istype(O, /mob/living/silicon/ai))
+					viewers += O
+				else if (istype(O.machine, /obj/item/modular_computer))
+					var/obj/item/modular_computer/S = O.machine
+					if (S.active_program && S.active_program.NM && istype(S.active_program.NM, /datum/nano_module/camera_monitor))
+						var/datum/nano_module/camera_monitor/CM = S.active_program.NM
+						if (CM.current_camera == src)
+							viewers += O
+			for(var/mob/O in viewers)
+				if(!O.client) 
+					continue
+				if(istype(O, /mob/living/silicon/ai))
+					if(U.name == "Unknown")
+						O << "<b>[U]</b> holds \a [I.name] up to one of your cameras ..."
+					else 
+						O << "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [I.name] up to one of your cameras ..."
+				else
+					O << "<b>[U]</b> holds \a [I.name] up to the camera ..."
 
-		var/itemname = ""
-		var/info = ""
-		if(istype(I, /obj/item/weapon/paper))
-			X = I
-			itemname = X.name
-			info = X.info
-		U << "You hold \a [itemname] up to the camera ..."
-		for(var/mob/living/silicon/ai/O in living_mob_list)
-			if(!O.client) continue
-			if(U.name == "Unknown") O << "<b>[U]</b> holds \a [itemname] up to one of your cameras ..."
-			else O << "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [itemname] up to one of your cameras ..."
-			O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
-			
+				if(istype(I, /obj/item/weapon/paper))
+					var/obj/item/weapon/paper/X = I
+					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", X.name, X.info), text("window=[]", X.name))
+				else
+					I.examine(O)
+			last_shown_time = world.time + 2 SECONDS
+
 	else if (istype(I, /obj/item/weapon/camera_bug))
 		if (!src.can_use())
 			user << SPAN_WARNING("Camera non-functional.")

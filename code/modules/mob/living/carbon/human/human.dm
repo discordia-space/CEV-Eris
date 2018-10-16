@@ -230,27 +230,20 @@
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/weapon/card/id/id
-	if (istype(wear_id, /obj/item/modular_computer/pda))
-		id = wear_id.GetIdCard()
-	if(!id)
-		id = get_idcard()
-		if(id)
-			return id.rank ? id.rank : if_no_job
-		else
-			return if_no_id
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	if(istype(id))
+		return id.rank ? id.rank : if_no_job
+	else
+		return if_no_id
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
-	var/obj/item/weapon/card/id/id
-	if (istype(wear_id, /obj/item/modular_computer/pda))
-		id = wear_id.GetIdCard()
-	if(!id)
-		if(id)
-			return id.assignment ? id.assignment : if_no_job
-		else
-			return if_no_id
+	var/obj/item/weapon/card/id/id = GetIdCard()
+	if(istype(id))
+		return id.assignment ? id.assignment : if_no_job
+	else
+		return if_no_id
 
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
@@ -306,14 +299,10 @@ var/list/rank_prefix = list(\
 //gets name from ID or PDA itself, ID inside PDA doesn't matter
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
-	var/obj/item/weapon/card/id/id
-	if (istype(wear_id, /obj/item/modular_computer/pda))
-		id = wear_id.GetIdCard()
-	if(!id)
-		id = get_idcard()
-		if(id)
-			return id.registered_name
-	return if_no_id
+	. = if_no_id
+	var/obj/item/weapon/card/id/I = GetIdCard()
+	if(istype(I))
+		return I.registered_name
 
 /mob/living/carbon/human/proc/get_id_rank()
 	var/rank
@@ -322,10 +311,10 @@ var/list/rank_prefix = list(\
 		id = wear_id.GetIdCard()
 	if(!id)
 		id = get_idcard()
-		if(id)
-			rank = id.rank
-	if(rank_prefix[rank])
-		return rank_prefix[rank]
+	if(id)
+		rank = id.rank
+		if(rank_prefix[rank])
+			return rank_prefix[rank]
 	return ""
 
 //gets ID card object from special clothes slot or null.
@@ -405,16 +394,12 @@ var/list/rank_prefix = list(\
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				var/obj/item/weapon/card/id/id
-				if (istype(wear_id, /obj/item/modular_computer/pda))
-					id = wear_id.GetIdCard()
-				if(!id)
-					id = get_idcard()
-					if(id)
-						perpname = id.registered_name
+			var/obj/item/weapon/card/id/id = GetIdCard()
+			if(istype(id))
+				perpname = id.registered_name
 			else
 				perpname = src.name
+
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.security)
@@ -437,16 +422,12 @@ var/list/rank_prefix = list(\
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				var/obj/item/weapon/card/id/id
-				if (istype(wear_id, /obj/item/modular_computer/pda))
-					id = wear_id.GetIdCard()
-				if(!id)
-					id = get_idcard()
-					if(id)
-						perpname = id.registered_name
+			var/obj/item/weapon/card/id/id = GetIdCard()
+			if(istype(id))
+				perpname = id.registered_name
 			else
 				perpname = src.name
+				
 			for (var/datum/data/record/E in data_core.general)
 				if (E.fields["name"] == perpname)
 					for (var/datum/data/record/R in data_core.security)
@@ -500,14 +481,9 @@ var/list/rank_prefix = list(\
 			var/perpname = "wot"
 			var/modified = 0
 
-			if(wear_id)
-				var/obj/item/weapon/card/id/id
-				if (istype(wear_id, /obj/item/modular_computer/pda))
-					id = wear_id.GetIdCard()
-				if(!id)
-					id = get_idcard()
-					if(id)
-						perpname = id.registered_name
+			var/obj/item/weapon/card/id/id = GetIdCard()
+			if(istype(id))
+				perpname = id.registered_name
 			else
 				perpname = src.name
 

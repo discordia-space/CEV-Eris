@@ -12,6 +12,7 @@
 	network_destination = "crew lifesigns monitoring system"
 	size = 11
 	var/has_alert = FALSE
+	usage_flags = PROGRAM_ALL & ~PROGRAM_PDA
 
 /datum/computer_file/program/suit_sensors/process_tick()
 	..()

@@ -100,4 +100,4 @@
 		if (STAT_LEVEL_EXPERT to STAT_LEVEL_PROF)
 			return "Expert"
 		if (STAT_LEVEL_PROF to INFINITY)
-			return "Professional"
+			return "Master"

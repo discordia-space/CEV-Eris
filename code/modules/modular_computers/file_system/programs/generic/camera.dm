@@ -34,6 +34,7 @@
 	size = 12
 	available_on_ntnet = 1
 	requires_ntnet = 1
+	usage_flags = PROGRAM_ALL & ~PROGRAM_PDA
 
 /datum/nano_module/camera_monitor
 	name = "Camera Monitoring program"
