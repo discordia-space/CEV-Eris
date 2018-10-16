@@ -177,17 +177,17 @@
 					if(!is_relay_online())//Contact Centcom has a check, Syndie doesn't to allow for Traitor funs.
 						to_chat(usr, "<span class='warning'>No Emergency Bluespace Relay detected. Unable to transmit message.</span>")
 						return 1
-					
+
 					var/input = sanitize(input("Please choose a message to transmit to [maps_data.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 					if(!input || !can_still_topic())
 						return 1
-					Centcomm_announce(input, usr) 
+					Centcomm_announce(input, usr)
 					to_chat(usr, "<span class='notice'>Message transmitted.</span>")
 					log_say("[key_name(usr)] has made an IA [maps_data.boss_short] announcement: [input]")
 					centcomm_message_cooldown = 1
 					spawn(300) //30 second cooldown
 						centcomm_message_cooldown = 0
-						
+
 						*/
 		if("evac")
 			. = 1
@@ -298,7 +298,7 @@ var/last_message_id = 0
 
 /proc/post_status(var/command, var/data1, var/data2)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 
 	if(!frequency) return
 

@@ -36,6 +36,10 @@
 #define LUMG 0.7152
 #define LUMB 0.0722
 
+#if LUMR + LUMG + LUMB != 1
+#error Luma coefficients summ should give 1
+#endif
+
 //Still need color matrix addition, negation, and multiplication.
 
 //Returns an identity color matrix which does nothing
