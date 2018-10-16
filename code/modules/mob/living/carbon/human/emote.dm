@@ -18,6 +18,9 @@
 
 	if(src.stat == 2.0 && (act != "deathgasp"))
 		return
+
+	var/cloud_emote = ""
+
 	switch(act)
 		if ("airguitar")
 			if (!src.restrained())
@@ -81,6 +84,17 @@
 			if(!(message))
 				return
 			return custom_emote(m_type, message)
+
+		if("pain")
+			if(!message)
+				if(miming)
+					message = "appears to be in pain!"
+					m_type = 1 // Can't we get defines for these?
+				else
+					message = "twists in pain."
+					m_type = 1
+
+			cloud_emote = "cloud-pain"
 
 		if ("salute")
 			if (!src.buckled)
@@ -205,6 +219,7 @@
 				else
 					message = "makes a weak noise."
 					m_type = 2
+			cloud_emote = "cloud-gasp"
 
 		if ("deathgasp")
 			message = "[species.death_message]"
@@ -540,6 +555,8 @@
 				else
 					message = "makes a very loud noise."
 					m_type = 2
+			cloud_emote = "cloud-scream"
+			world.log << cloud_emote
 
 		if ("help")
 			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
@@ -558,6 +575,11 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"}
 	if (message)
 		log_emote("[name]/[key] : [message]")
 		custom_emote(m_type, message)
+
+	if(cloud_emote)
+		var/image/emote_bubble = image('icons/mob/emote.dmi', src, cloud_emote, ABOVE_MOB_LAYER)
+		flick_overlay(emote_bubble, clients, 30)
+		QDEL_IN(emote_bubble, 3 SECONDS)
 
 
 /mob/living/carbon/human/verb/pose()

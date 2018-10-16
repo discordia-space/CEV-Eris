@@ -24,6 +24,7 @@
 	new /obj/item/weapon/melee/telebaton(src)
 	new /obj/item/clothing/head/caphat/formal(src)
 	new /obj/item/clothing/under/captainformal(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/reinforced/hop
 	name = "First Officer's locker"
@@ -46,6 +47,7 @@
 	new /obj/item/ammo_magazine/a50/rubber(src)
 	new /obj/item/ammo_magazine/a50/rubber(src)
 	new /obj/item/device/flash(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
@@ -80,6 +82,8 @@
 	new /obj/item/weapon/melee/telebaton(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/accessory/badge/hos(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
+	new /obj/item/weapon/storage/pouch/baton_holster(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
@@ -111,6 +115,8 @@
 	new /obj/item/weapon/gun/energy/gun/martin(src)
 	new /obj/item/weapon/storage/box/holobadge(src)
 	new /obj/item/clothing/accessory/badge/warden(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
+	new /obj/item/weapon/storage/pouch/baton_holster(src)
 
 /obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
@@ -140,6 +146,8 @@
 	new /obj/item/ammo_magazine/sol65/rubber(src)
 	new /obj/item/ammo_magazine/sol65/rubber(src)
 	new /obj/item/ammo_magazine/sol65/rubber(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
+	new /obj/item/weapon/storage/pouch/baton_holster(src)
 
 /obj/structure/closet/secure_closet/medspec
 	name = "Ironhammer Medical Specialist locker"
@@ -188,6 +196,7 @@
 	new /obj/item/ammo_magazine/sl44/rubber(src)
 	new /obj/item/ammo_magazine/sl44/rubber(src)
 	new /obj/item/ammo_magazine/sl44/rubber(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"

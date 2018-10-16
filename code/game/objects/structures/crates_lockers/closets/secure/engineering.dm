@@ -26,6 +26,7 @@
 	new /obj/item/weapon/hatton_magazine(src)
 	new /obj/item/weapon/hatton_magazine(src)
 	new /obj/item/weapon/hatton_magazine(src)
+	new /obj/item/weapon/storage/pouch/engineering_supply(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"

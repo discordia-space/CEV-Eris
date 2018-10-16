@@ -4,7 +4,7 @@
 	name = "\improper APC frame"
 	desc = "Used for repairing or building APCs"
 	icon = 'icons/obj/apc_repair.dmi'
-	icon_state = "apc_frame"
+	icon_state = "frame"
 	flags = CONDUCT
 
 /obj/item/frame/apc/attackby(obj/item/weapon/W as obj, mob/user as mob)
