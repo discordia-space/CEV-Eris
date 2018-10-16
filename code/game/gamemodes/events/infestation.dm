@@ -19,11 +19,11 @@
 
 #define INFESTATION_MICE "mice"
 #define INFESTATION_LIZARDS "lizards"
-#define INFESTATION_SPACE_BATS "space bats"
+#define INFESTATION_SPACE_BATS "bats"
 #define INFESTATION_SPIDERLINGS "spiderlings"
-#define INFESTATION_SPIDERS "spiderlings"
-#define INFESTATION_ROACHES "giant insects"
-#define INFESTATION_HIVEBOTS "hivebots"
+#define INFESTATION_SPIDERS "spider"
+#define INFESTATION_ROACHES "large insects"
+#define INFESTATION_HIVEBOTS "ancient synthetics"
 #define INFESTATION_SLIMES "slimes"
 #define INFESTATION_YITHIAN "yithian"
 #define INFESTATION_TINDALOS "tindalos"
@@ -36,37 +36,37 @@
 	endWhen = 11
 	var/num_areas = 1
 	var/num_spawns_per_area
-	var/list/area/chosen_areas
+	var/list/area/chosen_areas = list()
 	var/event_name = "Slime Leak"
 	var/chosen_mob = INFESTATION_SLIMES
 	var/chosen_verb = "have leaked into"
 	var/list/chosen_mob_types = list()
-	var/list/possible_mobs = list(
+	var/list/possible_mobs_mundane = list(
 		INFESTATION_MICE = 20,
 		INFESTATION_LIZARDS = 12,
-		INFESTATION_SPIDERLINGS = 6,
+		INFESTATION_SPIDERLINGS = 8,
 		INFESTATION_YITHIAN = 6,
 		INFESTATION_TINDALOS = 6,
 		INFESTATION_DIYAAB = 6,
-		INFESTATION_SPACE_BATS = 5
+		INFESTATION_SPACE_BATS = 8
 	)
 
-/datum/event/infestation/moderate
-	possible_mobs = list(
-		INFESTATION_SPACE_BATS = 12,
-		INFESTATION_SAMAK = 10,
-		INFESTATION_SHANTAK = 10,
+	var/possible_mobs_moderate = list(
+		INFESTATION_SPACE_BATS = 14,
+		INFESTATION_SAMAK = 12,
+		INFESTATION_SHANTAK = 12,
 		INFESTATION_SPIDERS = 10,//This is a combination of spiderlings and adult spiders
 		INFESTATION_ROACHES = 10
 	)
-/datum/event/infestation/major
-	possible_mobs = list(
-		INFESTATION_SPIDERS = 3,
-		INFESTATION_HIVEBOTS = 1,
-		INFESTATION_SLIMES = 4
+
+	var/possible_mobs_major = list(
+		INFESTATION_SPIDERS = 10,
+		INFESTATION_HIVEBOTS = 8,
+		INFESTATION_SLIMES = 6
 	)
 
 /datum/event/infestation/setup()
+	//announceWhen = rand(10,80) //Very large random window for announcement,
 	switch(severity)
 		if (EVENT_LEVEL_MODERATE)
 			num_areas = 2
@@ -80,14 +80,33 @@
 
 /datum/event/infestation/proc/choose_area()
 	for (var/i = 1; i <= num_areas; i++)
-		chosen_areas += random_ship_area(TRUE)
+		var/area/A = random_ship_area(TRUE)
+		var/turf/T = A.random_space() //Lets make sure the selected area is valid
+		if (!T)
+			//We failed to find a clear turf, can't spawn in that area
+			i-- //Decrement i so that we'll get another try
+			continue
+		chosen_areas += A
+
 
 /datum/event/infestation/proc/choose_mobs()
 
 	var/unidentified = FALSE
-	chosen_mob = pick(possible_mobs)
-	num_spawns_per_area = possible_mobs[chosen_mob]
-	num_spawns_per_area *= rand(0.75, 1.5)
+	switch (severity)
+		if (EVENT_LEVEL_MUNDANE)
+			chosen_mob = pick(possible_mobs_mundane)
+			num_spawns_per_area = possible_mobs_mundane[chosen_mob]
+		if (EVENT_LEVEL_MODERATE)
+			chosen_mob = pick(possible_mobs_moderate)
+			num_spawns_per_area = possible_mobs_moderate[chosen_mob]
+		if (EVENT_LEVEL_MAJOR)
+			chosen_mob = pick(possible_mobs_major)
+			num_spawns_per_area = possible_mobs_major[chosen_mob]
+	//world << "Prerandom num [num_spawns_per_area]. Rand is [rand(0.75, 1.5)]"
+	num_spawns_per_area *= rand_between(0.75, 1.5)
+	//world << "Prerounding num [num_spawns_per_area]"
+	num_spawns_per_area = round(num_spawns_per_area, 1)
+	//world << "We are going to spawn [num_spawns_per_area] [chosen_mob]"
 
 	switch(chosen_mob)
 		if(INFESTATION_HIVEBOTS)
@@ -96,8 +115,8 @@
 			chosen_mob_types += /mob/living/simple_animal/hostile/hivebot
 			chosen_mob_types += /mob/living/simple_animal/hostile/hivebot/range
 		if(INFESTATION_SPACE_BATS)
-			event_name = "Space Bat Nest"
-			chosen_verb = "have been breeding in"
+			event_name = "Bat Roost"
+			chosen_verb = "have been roosting in"
 			chosen_mob_types += /mob/living/simple_animal/hostile/scarybat
 		if(INFESTATION_LIZARDS)
 			event_name = "Lizard Nest"
@@ -110,7 +129,7 @@
 		if(INFESTATION_SLIMES)
 			event_name = "Slime Leak"
 			chosen_verb = "have leaked into"
-			chosen_mob_types += /mob/living/carbon/slime/
+			chosen_mob_types += /obj/random/slime/rainbow
 		if(INFESTATION_SPIDERLINGS)
 			event_name = "Spiderling Infestation"
 			chosen_verb = "have burrowed into"
@@ -155,13 +174,14 @@
 	for (var/area/A in chosen_areas)
 		for(var/i = 1, i <= num_spawns_per_area,i++)
 			var/spawned_mob = pickweight(chosen_mob_types)
-			new spawned_mob(A.random_space())
+			var/turf/T = A.random_space()
+			new spawned_mob(T)
 
 /datum/event/infestation/announce()
 	switch(severity)
 		if (EVENT_LEVEL_MUNDANE)
-			command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [chosen_areas[1]]. Clear them out before this starts to affect productivity.", event_name, new_sound = 'sound/AI/vermin.ogg')
+			command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)]. Clear them out before this starts to affect productivity.", event_name, new_sound = 'sound/AI/vermin.ogg')
 		if (EVENT_LEVEL_MODERATE)
-			command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [chosen_areas[1]] and [chosen_areas[2]]. Ironhammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
+			command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)] and [strip_improper(chosen_areas[2].name)]. Ironhammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
 		if (EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [chosen_areas[1]],[chosen_areas[2]] and [chosen_areas[3]]. Crew are advised to evacuate those areas immediately.", event_name, new_sound = 'sound/AI/vermin.ogg')
+			command_announcement.Announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)],[strip_improper(chosen_areas[2].name)] and [strip_improper(chosen_areas[3].name)]. Crew are advised to evacuate those areas immediately.", event_name, new_sound = 'sound/AI/vermin.ogg')

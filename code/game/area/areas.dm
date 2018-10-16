@@ -17,7 +17,8 @@
 	layer = AREA_LAYER
 	uid = ++global_uid
 	all_areas += src
-	ship_areas |= TRUE //Adds ourselves to the list of all ship areas
+	if (ship_area)
+		ship_areas |= TRUE //Adds ourselves to the list of all ship areas
 
 	if(!requires_power)
 		power_light = 0
@@ -321,3 +322,9 @@ var/list/mob/living/forced_ambiance_list = new
 	if(A && A.has_gravity())
 		return 1
 	return 0
+
+
+/area/proc/set_ship_area()
+	if (!ship_area)
+		ship_area = TRUE
+		ship_areas[src] = TRUE

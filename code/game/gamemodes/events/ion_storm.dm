@@ -1,4 +1,18 @@
 //This file was auto-corrected by findeclaration.exe on 29/05/2012 15:03:04
+/*
+	Ion storm adds new laws to AI and cyborg players. It is pretty darned fun
+*/
+/datum/storyevent/ionstorm
+	id = "ionstorm"
+	name = "ion storm"
+
+
+	event_type = /datum/event/ionstorm
+	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+
+	tags = list(TAG_SCARY, TAG_COMMUNAL)
+/////////////////////
+
 
 /datum/event/ionstorm
 	var/botEmagChance = 0.5

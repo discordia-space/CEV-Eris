@@ -1,3 +1,20 @@
+/*
+	Radiation storm is a really severe event that forces everyone to flee into maintenance or a similar
+	shielded area. Anyone caught outside a shielded area will recieve lethal doses of radiation,
+	and will die without medical attention
+*/
+/datum/storyevent/radiation_storm
+	id = "radiation_storm"
+	name = "radiation_storm"
+
+
+	event_type = /datum/event/radiation_storm
+	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+
+	tags = list(TAG_SCARY, TAG_COMMUNAL)
+
+
+
 /datum/event/radiation_storm
 	var/const/enterBelt		= 55
 	var/const/radIntervall 	= 5

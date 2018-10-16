@@ -75,6 +75,15 @@
 	regenerate_icons()
 	..(location)
 
+/mob/living/carbon/slime/proc/set_mutation(var/colour="grey")
+	src.colour = colour
+	name = "[colour] [is_adult ? "adult" : "baby"] slime ([number])"
+	slime_mutation = mutation_table(colour)
+	mutation_chance = rand(25, 35)
+	var/sanitizedcolour = replacetext(colour, " ", "")
+	coretype = text2path("/obj/item/slime_extract/[sanitizedcolour]")
+	regenerate_icons()
+
 /mob/living/carbon/slime/movement_delay()
 	if (bodytemperature >= 330.23) // 135 F
 		return -1	// slimes become supercharged at high temperatures

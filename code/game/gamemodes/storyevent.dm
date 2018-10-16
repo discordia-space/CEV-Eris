@@ -84,7 +84,7 @@
 
 
 /datum/storyevent/proc/create(var/severity)
-	if(trigger_event())
+	if(trigger_event(severity))
 		ocurrences++
 		last_trigger_time = world.time
 		if(processing)

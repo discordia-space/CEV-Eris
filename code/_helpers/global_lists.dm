@@ -234,3 +234,6 @@ var/global/list/admin_permissions = list(
 	"admin" = 0x40,
 	"host" = 0x80
 	)
+
+
+var/global/list/severity_to_string = list("[EVENT_LEVEL_MUNDANE]" = "Mundane", "[EVENT_LEVEL_MODERATE]" = "Moderate", "[EVENT_LEVEL_MAJOR]" = "Major", "[EVENT_LEVEL_ROLESET]" = "Roleset","[EVENT_LEVEL_ECONOMY]" = "Economy")

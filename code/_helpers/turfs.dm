@@ -180,3 +180,11 @@
 
 
 	return FALSE
+
+
+
+/proc/isOnShipLevel(var/atom/A)
+	if (A && istype(A))
+		if (A.z in maps_data.station_levels)
+			return TRUE
+	return FALSE

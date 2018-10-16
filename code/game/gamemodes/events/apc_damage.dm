@@ -18,29 +18,22 @@
 /datum/event/apc_damage/start()
 	var/obj/machinery/power/apc/A = acquire_random_apc()
 
-	var/severity_range = 9
-
+	var/severity_range = 15
+	log_and_message_admins("APC damage triggered at [jumplink(A)],")
 	for(var/obj/machinery/power/apc/apc in range(severity_range,A))
 		if(is_valid_apc(apc))
 			apc.emagged = 1
 			apc.update_icon()
 
 /datum/event/apc_damage/proc/acquire_random_apc()
-	var/list/possibleEpicentres = list()
 	var/list/apcs = list()
 
-	for(var/obj/landmark/event/lightsout/newEpicentre in landmarks_list)
-		possibleEpicentres += newEpicentre
 
-	if(!possibleEpicentres.len)
-		return
-
-	var/epicentre = pick(possibleEpicentres)
-	for(var/obj/machinery/power/apc/apc in range(epicentre,apcSelectionRange))
+	for(var/obj/machinery/power/apc/apc in SSmachines.machinery)
 		if(is_valid_apc(apc))
 			// Greatly reduce the chance for APCs in maintenance areas to be selected
 			var/area/A = get_area(apc)
-			if(!istype(A,/area/maintenance) || prob(50))
+			if(!istype(A,/area/eris/maintenance) || prob(25))
 				apcs += apc
 
 	if(!apcs.len)
@@ -48,5 +41,5 @@
 
 	return pick(apcs)
 
-/datum/event/apc_damage/proc/is_valid_apc(var/obj/machinery/power/apc/apc)
-	return !apc.is_critical && !apc.emagged && isOnPlayerLevel(apc)
+/proc/is_valid_apc(var/obj/machinery/power/apc/apc)
+	return !apc.is_critical && !apc.emagged && isOnShipLevel(apc)

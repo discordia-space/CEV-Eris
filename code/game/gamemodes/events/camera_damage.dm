@@ -1,24 +1,32 @@
+/*
+	Cameras in a radius will break. This provides plausible deniability to traitors and saboteurs, as
+	as well as possibly raising a false alarm and the AI mobilising ironhammer to investigate nothing.
+
+	Mainly it hurts the AI, and provides work for engineers
+*/
+/datum/storyevent/camera_damage
+	id = "camera_damage"
+	name = "camera damage"
+
+	event_type = /datum/event/camera_damage
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE)
+	tags = list(TAG_TARGETED, TAG_DESTRUCTIVE, TAG_NEGATIVE)
+
+/////////.//////////////////////////////////////
 /datum/event/camera_damage/start()
 	var/obj/machinery/camera/C = acquire_random_camera()
 	if(!C)
 		return
 
-	var/severity_range = 0
-	switch(severity)
-		if(EVENT_LEVEL_MUNDANE)
-			severity_range = 0
-		if(EVENT_LEVEL_MODERATE)
-			severity_range = 7
-		if(EVENT_LEVEL_MAJOR)
-			severity_range = 15
-
+	var/severity_range = 15
+	log_and_message_admins("Camera damage event triggered at [jumplink(C)],")
 	for(var/obj/machinery/camera/cam in range(severity_range,C))
 		if(is_valid_camera(cam))
-			if(prob(2*severity))
+			if(prob(2))
 				cam.destroy()
 			else
 				cam.wires.UpdateCut(CAMERA_WIRE_POWER, 0)
-				if(prob(5*severity))
+				if(prob(5))
 					cam.wires.UpdateCut(CAMERA_WIRE_ALARM, 0)
 
 /datum/event/camera_damage/proc/acquire_random_camera(var/remaining_attempts = 5)

@@ -191,8 +191,8 @@
 		for(var/dir in cardinal) // North, South, East, West
 			for(var/obj/structure/window/obstacle in get_step(src, dir))
 				if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
-					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+					obstacle.attack_generic(src,rand(melee_damage_lower*3,melee_damage_upper*3),attacktext)
 					return
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))
 			if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
-				obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+				obstacle.attack_generic(src,rand(melee_damage_lower*3,melee_damage_upper*3),attacktext)

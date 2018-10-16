@@ -123,7 +123,11 @@
 	data += "<br>Calculate weight: <b><a href='?src=\ref[src];toggle_weight_calc=1'>[calculate_weights?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
 	data += "<br><b>Events: <a href='?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style=\"border:1px solid black;\">"
 
+
+	//This complex block will print out all the events with various info
+	var/severity = EVENT_LEVEL_MUNDANE
 	for(var/list/L in list(event_pool_mundane, event_pool_moderate, event_pool_major, event_pool_roleset))
+		data += "|[severity_to_string[severity]] events:"
 		data += "<ul>"
 		for (var/datum/storyevent/S in L)
 			data += "<li>[S.id] - weight: [L[S]] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
@@ -131,10 +135,11 @@
 				data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
 			data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.enabled?"ALLOWED":"FORBIDDEN"]\]</a>"
 			data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
-			data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1'>\[FORCE\]</a></b></li>"
+			data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1;severity=[severity]'>\[FORCE\]</a></b></li>"
 			data += "</li>"
 		data += "</ul>"
-		data += "-------------------------"
+		data += "-------------------------<BR>"
+		severity = get_next_severity(severity)
 
 	data += "</div>"
 
@@ -213,6 +218,7 @@
 	topic_extra(href,href_list)
 
 	if(href_list["event"])
+
 		var/datum/storyevent/evt = null
 		for(var/datum/storyevent/S in storyevents)
 			if(S.id == href_list["event"])
@@ -225,7 +231,8 @@
 				evt.enabled = !evt.enabled
 				message_admins("Event \"[evt.id]\" was [evt.enabled?"allowed":"restricted"] to spawn by [key_name(usr)]")
 			if(href_list["ev_spawn"])
-				var/result = evt.create()
+				world << "Planning to spawn an event of severity [href_list["severity"]]"
+				var/result = evt.create(href_list["severity"])
 				if (result)
 					message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
 				else

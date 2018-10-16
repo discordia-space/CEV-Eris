@@ -1,10 +1,42 @@
+/*
+	A vast number of space carp spawn around the ship. Will heavily stress the shields
+	They eventually go away
+*/
+/datum/storyevent/carp_migration
+	id = "carp_migration"
+	name = "carp migration"
+
+	event_type =/datum/event/carp_migration
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_SCARY)
+
+//////////////////////////////////////////////////////////
+
 /datum/event/carp_migration
 	announceWhen	= 50
 	endWhen 		= 900
-
+	var/list/viable_turfs = list()
 	var/list/spawned_carp = list()
 
 /datum/event/carp_migration/setup()
+	//We'll pick space tiles which have windows nearby
+	//This means that carp will only be spawned in places where someone could see them
+	var/area/spess = locate(/area/space) in world
+	for (var/turf/T in spess)
+		if (!T.z in maps_data.station_levels)
+			continue
+
+		//The number of windows near each tile is recorded
+		var/numwin
+		for (var/obj/structure/window/W in view(3, T))
+			numwin++
+
+		//And the square of it is entered into the list as a weight
+		if (numwin)
+			viable_turfs[T] = numwin*numwin
+
+	//We will then use pickweight and this will be more likely to choose tiles with many windows, for maximum exposure
+
 	announceWhen = rand(40, 60)
 	endWhen = rand(600,1200)
 
@@ -18,29 +50,18 @@
 
 /datum/event/carp_migration/start()
 	if(severity == EVENT_LEVEL_MAJOR)
-		spawn_fish(landmarks_list.len)
+		spawn_fish(260)
 	else if(severity == EVENT_LEVEL_MODERATE)
-		spawn_fish(rand(4, 6)) 			//12 to 30 carp, in small groups
-	else
-		spawn_fish(rand(1, 3), 1, 2)	//1 to 6 carp, alone or in pairs
+		spawn_fish(50)
 
-/datum/event/carp_migration/proc/spawn_fish(var/num_groups, var/group_size_min=3, var/group_size_max=5)
-	var/list/spawn_locations = list()
+/datum/event/carp_migration/proc/spawn_fish(var/number)
+	var/list/spawn_locations = pickweight_mult(viable_turfs, number)
 
-	for(var/obj/landmark/mob/carpspawn/C in landmarks_list)
-		spawn_locations.Add(C.loc)
-	spawn_locations = shuffle(spawn_locations)
-	num_groups = min(num_groups, spawn_locations.len)
-
-	var/i = 1
-	while (i <= num_groups)
-		var/group_size = rand(group_size_min, group_size_max)
-		for (var/j = 1, j <= group_size, j++)
-			if(prob(95)) //5% chance of SHERK
-				spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(spawn_locations[i]))
-			else
-				spawned_carp.Add(new /mob/living/simple_animal/hostile/carp/pike(spawn_locations[i]))
-		i++
+	for(var/turf/T in spawn_locations)
+		if(prob(98)) //2% chance of SHERK
+			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(T))
+		else
+			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp/pike(T))
 
 /datum/event/carp_migration/end()
 	for(var/mob/living/simple_animal/hostile/C in spawned_carp)

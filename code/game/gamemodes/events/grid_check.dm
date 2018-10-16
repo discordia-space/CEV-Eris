@@ -3,6 +3,9 @@ Grid check disables all power on the station for a while, notably including ligh
 It helps to create a feeeling of crisis and community, encouraging people to team up, gather flashlights
 and help others. On eris, it also creates a feeling of terror. With no idea how long it'll last, you
 become keenly aware of the limited battery supply in your flashlight
+
+All the doors being depowered means that people can crowbar their way into restricted places easily.
+So sometimes this event can result in people finding new and interesting things
 */
 /datum/storyevent/grid_check
 	id = "gridcheck"
@@ -13,7 +16,7 @@ become keenly aware of the limited battery supply in your flashlight
 	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE,
 	EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
 
-	tags = list(TAG_SCARY, TAG_COMMUNAL, TAG_NEGATIVE)
+	tags = list(TAG_SCARY, TAG_COMMUNAL)
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -22,7 +25,10 @@ become keenly aware of the limited battery supply in your flashlight
 	announceWhen		= 5
 
 /datum/event/grid_check/start()
-	power_failure(0, severity, maps_data.contact_levels)
+	var/strength = 1
+	if (severity == EVENT_LEVEL_MODERATE)
+		strength = 2
+	power_failure(0, strength, maps_data.contact_levels)
 
 /datum/event/grid_check/announce()
 	command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Automated Grid Check", new_sound = 'sound/AI/poweroff.ogg')
