@@ -63,9 +63,7 @@
 	hidden_uplink = null
 	if(ismob(loc))
 		var/mob/m = loc
-		m.drop_from_inventory(src)
-		m.update_inv_r_hand()
-		m.update_inv_l_hand()
+		m.u_equip(src)
 		src.loc = null
 	return ..()
 

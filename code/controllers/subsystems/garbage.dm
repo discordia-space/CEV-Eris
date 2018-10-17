@@ -165,9 +165,10 @@ SUBSYSTEM_DEF(garbage)
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
 				if(!I.failures)
-					log_to_dd("GC: -- \ref[D] | [type] was unable to be GC'd --")
+					var/msg = "GC: -- \ref[D] | [type] was unable to be GC'd --"
 					if(I.coords)
-						log_to_dd("GC: -- \ref[D] | location is X=[I.coords.x_pos], Y=[I.coords.y_pos], Z=[I.coords.z_pos] --")
+						msg += "GC: -- \ref[D] | location is X=[I.coords.x_pos], Y=[I.coords.y_pos], Z=[I.coords.z_pos] --"
+					log_to_dd(msg)
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
