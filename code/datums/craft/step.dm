@@ -87,7 +87,13 @@
 		msg
 	)
 
-/datum/craft_step/proc/apply(obj/item/I, mob/living/user, atom/target = null)
+/datum/craft_step/proc/apply(obj/item/I, mob/living/user, atom/target = null, var/datum/craft_recipe/recipe)
+	if(req_amount && istype(I, /obj/item/stack))
+		var/obj/item/stack/S = I
+		if(!S.can_use(req_amount))
+			user << "Not enough items in [I]"
+			return
+
 	if(reqed_type)
 		if(!istype(I, reqed_type))
 			user << "Wrong item!"
@@ -95,18 +101,11 @@
 		if (!is_valid_to_consume(I, user))
 			user << "That item can't be used for crafting!"
 			return
-
-		if(req_amount && istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			if(S.get_amount() < req_amount)
-				user << "Not enough items in [I]"
-				return
-
-
 		if(target)
 			announce_action(start_msg, user, I, target)
 		if(!do_after(user, time, target || user))
 			return
+
 	else if(reqed_quality)
 		var/q = I.get_tool_quality(reqed_quality)
 		if(!q)
@@ -123,6 +122,13 @@
 			return
 	else
 		if(!do_after(user, time, target || user))
+			return
+
+	if (target)
+		if(!recipe.can_build(user, get_turf(target)))
+			return
+	else
+		if(!recipe.can_build(user, get_turf(user)))
 			return
 
 	if(req_amount)
