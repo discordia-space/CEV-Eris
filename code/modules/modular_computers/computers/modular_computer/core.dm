@@ -1,11 +1,11 @@
 /obj/item/modular_computer/Process()
 	if(!enabled) // The computer is turned off
 		last_power_usage = 0
-		return 0
+		return FALSE
 
 	if(damage > broken_damage)
 		shutdown_computer()
-		return 0
+		return FALSE
 
 	if(active_program && active_program.requires_ntnet && !get_ntnet_status(active_program.requires_ntnet_feature)) // Active program requires NTNet to run but we've just lost connection. Crash.
 		active_program.event_networkfailure(0)
@@ -40,11 +40,11 @@
 
 // Used to perform preset-specific hardware changes.
 /obj/item/modular_computer/proc/install_default_hardware()
-	return 1
+	return TRUE
 
 // Used to install preset-specific programs
 /obj/item/modular_computer/proc/install_default_programs()
-	return 1
+	return TRUE
 
 /obj/item/modular_computer/proc/install_default_programs_by_job(var/mob/living/carbon/human/H)
 	var/datum/job/jb = SSjob.GetJob(H.job)
@@ -89,11 +89,9 @@
 	else
 		computer_emagged = 1
 		to_chat(user, "You emag \the [src]. It's screen briefly shows a \"OVERRIDE ACCEPTED: New software downloads available.\" message.")
-		return 1
+		return TRUE
 
 /obj/item/modular_computer/update_icon()
-	icon_state = icon_state_unpowered
-
 	overlays.Cut()
 	if(bsod)
 		overlays.Add("bsod")
@@ -151,11 +149,11 @@
 	if(network_card)
 		return network_card.get_signal(specific_action)
 	else
-		return 0
+		return FALSE
 
 /obj/item/modular_computer/proc/add_log(var/text)
 	if(!get_ntnet_status())
-		return 0
+		return FALSE
 	return ntnet_global.add_log(text, network_card)
 
 /obj/item/modular_computer/proc/shutdown_computer(var/loud = 1)
@@ -228,7 +226,7 @@
 	if(P.run_program(user))
 		active_program = P
 		update_icon()
-	return 1
+	return TRUE
 
 /obj/item/modular_computer/proc/update_uis()
 	if(active_program) //Should we update program ui or computer ui?

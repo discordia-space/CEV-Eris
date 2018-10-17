@@ -57,7 +57,7 @@
 /proc/cp1251_to_utf8(msg)
 	return replacetext(msg, "&#255;", "&#1103;")
 
-//Prepare text for edit. Replace "y" with "\?" for edition. Don't forget to call post_edit().
+//Prepare text for edit. Replace "ÿ" with "\ß" for edition. Don't forget to call post_edit().
 /proc/edit_cp1251(msg)
 	return replacetext(msg, "&#255;", "\\ß")
 

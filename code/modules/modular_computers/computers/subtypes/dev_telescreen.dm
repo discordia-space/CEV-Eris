@@ -3,7 +3,6 @@
 	desc = "A wall-mounted touchscreen computer."
 	icon = 'icons/obj/modular_telescreen.dmi'
 	icon_state = "telescreen"
-	icon_state_unpowered = "telescreen"
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_TELESCREEN
 	anchored = TRUE
@@ -20,7 +19,7 @@
 /obj/item/modular_computer/telescreen/New()
 	..()
 	// Allows us to create "north bump" "south bump" etc. named objects, for more comfortable mapping.
-	name = "telescreen"
+	name = initial(name)
 
 /obj/item/modular_computer/telescreen/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(QUALITY_RETRACTING in W.tool_qualities)

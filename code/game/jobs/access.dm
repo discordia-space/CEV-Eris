@@ -212,18 +212,16 @@ var/obj/item/weapon/card/id/all_access/ghost_all_access
 
 #define HUMAN_ID_CARDS list(get_active_hand(), wear_id, get_inactive_hand())
 /mob/living/carbon/human/GetIdCard()
-	for(var/item_slot in HUMAN_ID_CARDS)
-		var/obj/item/I = item_slot
-		var/obj/item/weapon/card/id = I ? I.GetIdCard() : null
+	for(var/obj/item/I in HUMAN_ID_CARDS)
+		var/obj/item/weapon/card/id = I.GetIdCard()
 		if(id)
 			return id
 
 /mob/living/carbon/human/GetAccess()
 	. = list()
-	for(var/item_slot in HUMAN_ID_CARDS)
-		var/obj/item/I = item_slot
-		if(I)
-			. |= I.GetAccess()
+	for(var/obj/item/I in HUMAN_ID_CARDS)
+		. |= I.GetAccess()
+
 #undef HUMAN_ID_CARDS
 
 /mob/living/silicon/GetIdCard()

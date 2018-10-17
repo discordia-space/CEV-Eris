@@ -11,18 +11,25 @@
 
 	verbs |= /obj/item/modular_computer/verb/emergency_shutdown
 
+/obj/item/modular_computer/proc/can_interact(var/mob/user)
+	if(usr.incapacitated())
+		to_chat(user, "<span class='warning'>You can't do that.</span>")
+		return FALSE
+
+	if(!Adjacent(usr))
+		to_chat(user, "<span class='warning'>You can't reach it.</span>")
+		return FALSE
+
+	return TRUE
+
+
 // Forcibly shut down the device. To be used when something bugs out and the UI is nonfunctional.
 /obj/item/modular_computer/verb/emergency_shutdown()
 	set name = "Forced Shutdown"
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
-		to_chat(usr, "<span class='warning'>You can't do that.</span>")
-		return
-
-	if(!Adjacent(usr))
-		to_chat(usr, "<span class='warning'>You can't reach it.</span>")
+	if(!can_interact(usr))
 		return
 
 	if(enabled)
@@ -41,12 +48,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
-		to_chat(usr, "<span class='warning'>You can't do that.</span>")
-		return
-
-	if(!Adjacent(usr))
-		to_chat(usr, "<span class='warning'>You can't reach it.</span>")
+	if(!can_interact(usr))
 		return
 
 	playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
@@ -58,12 +60,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
-		to_chat(usr, "<span class='warning'>You can't do that.</span>")
-		return
-
-	if(!Adjacent(usr))
-		to_chat(usr, "<span class='warning'>You can't reach it.</span>")
+	if(!can_interact(usr))
 		return
 
 	proc_eject_usb(usr)
@@ -73,12 +70,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
-		to_chat(usr, "<span class='warning'>You can't do that.</span>")
-		return
-
-	if(!Adjacent(usr))
-		to_chat(usr, "<span class='warning'>You can't reach it.</span>")
+	if(!can_interact(usr))
 		return
 
 	proc_eject_ai(usr)
@@ -88,12 +80,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
-		to_chat(usr, "<span class='warning'>You can't do that.</span>")
-		return
-
-	if(!Adjacent(usr))
-		to_chat(usr, "<span class='warning'>You can't reach it.</span>")
+	if(!can_interact(usr))
 		return
 
 	if(istype(stored_pen))
@@ -108,12 +95,7 @@
 	if(!user)
 		user = usr
 
-	if(!card_slot)
-		to_chat(user, "\The [src] does not have an ID card slot")
-		return
-
-	if(!card_slot.stored_card)
-		to_chat(user, "There is no card in \the [src]")
+	if(!can_interact(usr))
 		return
 
 	if(active_program)
@@ -286,7 +268,7 @@
 
 /obj/item/modular_computer/MouseDrop(var/atom/over_object)
 	var/mob/M = usr
-	if(!istype(over_object, /obj/screen) && CanMouseDrop(M))
+	if(!istype(over_object, /obj/screen) && can_interact(M))
 		return attack_self(M)
 
 /obj/item/modular_computer/afterattack(atom/target, mob/user, proximity)

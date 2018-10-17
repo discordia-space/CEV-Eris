@@ -67,7 +67,7 @@
 				src.last_configurator = usr.name
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/modular_computer))
+				if(I)
 					I = I.GetIdCard()
 				if (I && src.check_access(I))
 					src.locked = 0

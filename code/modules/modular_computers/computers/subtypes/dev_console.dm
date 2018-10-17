@@ -3,7 +3,6 @@
 	desc = "A stationary computer."
 	icon = 'icons/obj/modular_console.dmi'
 	icon_state = "console"
-	icon_state_unpowered = "console"
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_CONSOLE
 	anchored = TRUE

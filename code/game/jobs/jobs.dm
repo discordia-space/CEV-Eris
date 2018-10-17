@@ -80,8 +80,5 @@ var/list/security_positions = list(JOBS_SECURITY)
 var/list/nonhuman_positions = list(JOBS_NONHUMAN)
 
 
-var/list/all_positions = list (JOBS_COMMAND,JOBS_ENGINEERING,JOBS_MEDICAL,JOBS_SCIENCE,JOBS_CARGO,JOBS_CIVILIAN,JOBS_SECURITY,JOBS_NONHUMAN)
-
-
 /proc/guest_jobbans(var/job)
 	return ((job in command_positions) || (job in nonhuman_positions) || (job in security_positions))

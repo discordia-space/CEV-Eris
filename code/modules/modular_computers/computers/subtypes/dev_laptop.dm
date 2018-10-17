@@ -3,7 +3,6 @@
 	name = "laptop computer"
 	desc = "A portable clamshell computer."
 	hardware_flag = PROGRAM_LAPTOP
-	icon_state_unpowered = "laptop-open"
 	icon = 'icons/obj/modular_laptop.dmi'
 	icon_state = "laptop-open"
 	w_class = ITEM_SIZE_NORMAL

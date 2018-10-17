@@ -276,7 +276,6 @@ its easier to just keep the beam vertical.
 		var/atom/A = i
 		A.container_dir_changed(new_dir)
 	dir = new_dir
-	GLOB.dir_set_event.raise_event(src, old_dir, new_dir)
 	return TRUE
 
 /atom/proc/container_dir_changed(new_dir)
