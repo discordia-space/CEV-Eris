@@ -499,6 +499,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		time_to_finish = 0
 
 
+	//Repeating sound code!
+	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
 	var/datum/repeating_sound/toolsound = null
 	if(forced_sound != NO_WORKSOUND)
 
@@ -509,21 +511,32 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			soundfile = worksound
 
 		if (sound_repeat && time_to_finish)
+			//It will repeat roughly every 2.5 seconds until our tool finishes
 			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, 80, 1)
 		else
 			playsound(src.loc, soundfile, 100, 1)
 
+	//The we handle the doafter for the tool usage
 	if(time_to_finish)
 		target.used_now = TRUE
 
 		if(!do_after(user, time_to_finish, user))
+			//If the doafter fails
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
 			if (toolsound)
+				//We abort the repeating sound.
+				//Stop function will delete itself too
 				toolsound.stop()
+				toolsound = null
 			return TOOL_USE_CANCEL
 		else
 			target.used_now = FALSE
+
+	//Safe cleanup
+	if (toolsound)
+		toolsound.stop()
+	toolsound = null
 
 	var/stat_modifer = 0
 	if(required_stat)

@@ -407,7 +407,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	falloff = _falloff
 	is_global = _is_global
 	use_pressure = _use_pressure
-	self_id = "\ref[_src]"
+	self_id = "\ref[src]"
 
 	//When created we do our first sound immediately
 	//If you want the first sound delayed, wrap it in a spawn call or something
@@ -415,33 +415,29 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 
 /datum/repeating_sound/proc/do_sound()
-	world << "Repeating sound [self_id] calling dosound"
-	//timer_handle = null //This has been successfully called, that handle is no use now
+	timer_handle = null //This has been successfully called, that handle is no use now
 
 	var/atom/playfrom = locate(source)
 	if (QDELETED(playfrom))
-		world << "Repeating sound atom deleted"
 		//Our source atom is gone, no more sounds
 		stop()
 		return
 
 	//We're past the end time, no more sounds
 	if (world.time > end_time)
-		world << "Repeating end time"
 		stop()
 		return
 
 	//Actually play the sound
-	world << "Repeatingsound PLAYING NOW"
 	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure)
 
 	//Setup the next sound
 	var/nextinterval = interval
 	if (variance)
-		nextinterval *= rand(1-variance, 1+variance)
+		nextinterval *= rand_between(1-variance, 1+variance)
 
 	//Set the next timer handle
-	//timer_handle = addtimer(CALLBACK(src, .proc/do_sound, TRUE), nextinterval, TIMER_STOPPABLE)
+	timer_handle = addtimer(CALLBACK(src, .proc/do_sound, TRUE), nextinterval, TIMER_STOPPABLE)
 
 
 
