@@ -78,7 +78,7 @@
 		if("message")
 			msg = input(user, message, title, edit_cp1251(default)) as null|message
 		if("text")
-			msg = input(user, message, title, default) as as null|text
+			msg = input(user, message, title, default) as null|text
 	msg = russian_to_cp1251(msg, prepare_to_browser)
 	return post_edit_cp1251(msg)
 
@@ -88,7 +88,7 @@
 		if("message")
 			msg = input(user, message, title, edit_utf8(default)) as null|message
 		if("text")
-			msg = input(user, message, title, default) as as null|text
+			msg = input(user, message, title, default) as null|text
 	msg = russian_to_utf8(msg, prepare_to_browser)
 	return post_edit_utf8(msg)
 
