@@ -20,7 +20,8 @@
 	result = /obj/structure/kitchenspike
 	time = WORKTIME_NORMAL
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL)
+		list(/obj/item/stack/rods, 3),
+		list(QUALITY_WELDING, 20, 50)
 	)
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 
