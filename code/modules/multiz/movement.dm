@@ -71,19 +71,12 @@ var/list/z_movement_methods = list(
 					M << "Your [thrust] doesn't have enough gas to go [dir2text(direction)]!"
 
 			if (. && !check_only)
-				var/target_Yif (. && !check_only)
-				M.face_atom(W)
-				animate(M, alpha = 0, pixel_y = 64, time = time, easing = SINE_EASING)
+				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = SINE_EASING)
 				if (do_after(M, time))
 					M.Move(destination)
 					M.alpha = 255
 					M.pixel_y = 0
-			returnY
-				animate(M, alpha = 0, pixel_y = 64, time = time, easing = SINE_EASING)
-				if (do_after(M, time))
-					M.Move(destination)
-				M.alpha = 255
-				M.pixel_y = 0
+					return
 			return
 
 //================================
@@ -97,7 +90,7 @@ var/list/z_movement_methods = list(
 			var/cost = JETPACK_MOVE_COST*20
 			if (direction == UP)
 				time = 75
-				cost *= 2 //Overcoming gravity is harder
+				cost *= 2.5 //Overcoming gravity is harder
 				world << "Doubling cost because up"
 
 			if (thrust.allow_thrust(cost, M))
@@ -113,7 +106,7 @@ var/list/z_movement_methods = list(
 					M << "Your [thrust] doesn't have enough gas to go [dir2text(direction)]!"
 
 			if (. && !check_only)
-				animate(M, alpha = 0, pixel_y = 64, time = time, easing = SINE_EASING)
+				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = SINE_EASING)
 				if (do_after(M, time))
 					M.Move(destination)
 				M.alpha = 255
@@ -145,7 +138,7 @@ var/list/z_movement_methods = list(
 
 			if (. && !check_only)
 				M.face_atom(W)
-				animate(M, alpha = 0, pixel_y = 64, time = time, easing = LINEAR_EASING)
+				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING)
 				if (do_after(M, time))
 					M.Move(destination)
 				M.alpha = 255
@@ -183,9 +176,12 @@ var/list/z_movement_methods = list(
 			else if (feedback)
 				M << "There are no suitable walls to climb!"
 
+			//TODO:
+				//Angle the sprite when walking up
+				//Add repeating catwalk footstep sound
 			if (. && !check_only)
 				M.face_atom(W)
-				animate(M, alpha = 0, pixel_y = 64, time = time, easing = LINEAR_EASING)
+				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING)
 				if (do_after(M, time))
 					M.Move(destination)
 				M.alpha = 255
@@ -204,7 +200,7 @@ var/list/z_movement_methods = list(
 
 			.=TRUE
 			if (. && !check_only)
-				animate(M, alpha = 0, pixel_y = 64, time = time, easing = BACK_EASING)
+				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = BACK_EASING)
 				if (do_after(M, time))
 					M.Move(destination)
 				M.alpha = 255
