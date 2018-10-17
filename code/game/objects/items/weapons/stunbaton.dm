@@ -18,7 +18,7 @@
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
-	structure_damage_factor = 1.3
+	structure_damage_factor = STRUCTURE_DAMAGE_blunt
 
 /obj/item/weapon/melee/baton/New()
 	..()

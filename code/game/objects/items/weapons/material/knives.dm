@@ -9,7 +9,7 @@
 	attack_verb = list("patted", "tapped")
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
-	structure_damage_factor = 0.5
+	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
@@ -66,7 +66,7 @@
 	unbreakable = 1
 	slot_flags = SLOT_BELT
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10)
-	structure_damage_factor = 0.5
+	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 
 /obj/item/weapon/material/knife/boot
 	name = "boot knife"

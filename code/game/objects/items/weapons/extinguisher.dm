@@ -20,7 +20,7 @@
 	var/last_use = 1.0
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
-	structure_damage_factor = 1.3
+	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 
 /obj/item/weapon/extinguisher/mini
 	name = "fire extinguisher"

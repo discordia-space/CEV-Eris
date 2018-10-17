@@ -35,7 +35,6 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
 	var/datum/wires/airlock/wires = null
-
 	var/open_sound_powered = 'sound/machines/airlock_open.ogg'
 	var/close_sound = 'sound/machines/airlock_close.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
@@ -70,7 +69,7 @@
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorsec.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
-	resistance = 20
+	resistance = RESISTANCE_ARMOURED
 
 /obj/machinery/door/airlock/engineering
 	name = "Airlock"
@@ -101,7 +100,7 @@
 
 	maxhealth = 300
 	explosion_resistance = 5
-	resistance = 8
+	resistance = RESISTANCE_AVERAGE
 	opacity = 0
 	glass = 1
 
@@ -113,8 +112,8 @@
 /obj/machinery/door/airlock/vault
 	name = "Vault"
 	icon = 'icons/obj/doors/vault.dmi'
-	explosion_resistance = 20
-	resistance = 30
+	explosion_resistance = RESISTANCE_ARMOURED
+	resistance = RESISTANCE_VAULT
 	opacity = 1
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
@@ -132,16 +131,16 @@
 /obj/machinery/door/airlock/hatch
 	name = "Airtight Hatch"
 	icon = 'icons/obj/doors/Doorhatchele.dmi'
-	explosion_resistance = 20
-	resistance = 20
+	explosion_resistance = RESISTANCE_ARMOURED
+	resistance = RESISTANCE_ARMOURED
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorhatchmaint2.dmi'
-	explosion_resistance = 20
-	resistance = 20
+	explosion_resistance = RESISTANCE_ARMOURED
+	resistance = RESISTANCE_ARMOURED
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
 
@@ -289,7 +288,7 @@
 	name = "Diamond Airlock"
 	icon = 'icons/obj/doors/Doordiamond.dmi'
 	mineral = MATERIAL_DIAMOND
-	resistance = 100
+	resistance = RESISTANCE_UNBREAKABLE
 
 /obj/machinery/door/airlock/uranium
 	name = "Uranium Airlock"
@@ -369,7 +368,7 @@
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
 	explosion_resistance = 20
-	resistance = 20
+	resistance = RESISTANCE_ARMOURED
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 
