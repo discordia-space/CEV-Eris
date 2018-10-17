@@ -395,7 +395,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 	var/self_id
 
 /datum/repeating_sound/New(var/_interval, var/duration, var/interval_variance = 0, var/atom/_source, var/_soundin, var/_vol, var/_vary, var/_extrarange, var/_falloff, var/_is_global, var/_use_pressure = TRUE)
-	world << "Repeating sound created. Interval duration [_interval], [duration]"
 	end_time = world.time + duration
 	source = "\ref[_source]"
 	interval = _interval
