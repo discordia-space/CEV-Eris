@@ -15,6 +15,15 @@
 		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL)
 	)
 
+/datum/craft_recipe/kitchen_spike
+	name = "Meat spike"
+	result = /obj/structure/kitchenspike
+	time = WORKTIME_NORMAL
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL)
+	)
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+
 /datum/craft_recipe/metal_rod
 	name = "metal rod"
 	result = /obj/item/stack/rods
