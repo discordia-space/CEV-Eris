@@ -216,14 +216,15 @@
 		else
 			locked = 0
 			user << "System unlocked."
-	else if(I.type in BIOMASS_TYPES)
-		user << SPAN_NOTICE("\The [src] processes \the [I].")
-		biomass += BIOMASS_TYPES[I.type]
-		user.drop_from_inventory(I)
-		qdel(I)
-		return
-	else
-		..()
+	else 
+		for(var/type in BIOMASS_TYPES)
+			if(istype(I,type))
+				user << SPAN_NOTICE("\The [src] processes \the [I].")
+				biomass += BIOMASS_TYPES[type]
+				user.drop_from_inventory(I)
+				qdel(I)
+				return
+	..()
 
 /obj/machinery/clonepod/emag_act(var/remaining_charges, var/mob/user)
 	if(isnull(occupant))
