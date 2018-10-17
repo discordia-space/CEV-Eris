@@ -62,7 +62,7 @@
 	//Damage vars
 	var/force = 0	//How much damage the weapon deals
 
-	var/structure_damage_factor = 1.0	//Multiplier applied to the damage when attacking structures and machinery
+	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
 
 /obj/item/Destroy()

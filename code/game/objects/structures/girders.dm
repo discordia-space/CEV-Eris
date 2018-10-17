@@ -9,7 +9,7 @@
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
-	var/resistance = 15
+	var/resistance = RESISTANCE_TOUGH
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"

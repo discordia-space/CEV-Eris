@@ -47,7 +47,7 @@ var/list/flooring_types
 	var/plating_type = /decl/flooring/reinforced/plating
 
 	//Resistance is subtracted from all incoming damage
-	var/resistance = 3
+	var/resistance = RESISTANCE_FRAGILE
 
 	//Damage the floor can take before being destroyed
 	var/health = 50
@@ -151,7 +151,7 @@ var/list/flooring_types
 	is_plating = TRUE
 	removal_time = 250
 	health = 200
-	resistance = 15
+	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
 
 //Underplating can only be upgraded to normal plating
@@ -222,7 +222,7 @@ var/list/flooring_types
 	plating_type = null
 	is_plating = TRUE
 	health = 350
-	resistance = 25
+	resistance = RESISTANCE_HEAVILY_ARMOURED
 	removal_time = 1 MINUTE //Cutting through the hull is very slow work
 	footstep_sound = "hull"
 
@@ -295,7 +295,7 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
-	resistance = 4
+	resistance = RESISTANCE_FRAGILE
 
 /decl/flooring/tiling/tech
 //	name = "techfloor"
@@ -402,7 +402,7 @@ var/list/flooring_types
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
 	can_paint = 1
-	resistance = 12
+	resistance = RESISTANCE_TOUGH
 	footstep_sound = "plating"
 
 /decl/flooring/reinforced/circuit
