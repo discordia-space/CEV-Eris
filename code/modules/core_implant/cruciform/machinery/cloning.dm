@@ -398,12 +398,12 @@
 	if(default_part_replacement(I, user))
 		return
 
-	if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
+	if(I.type in BIOMASS_TYPES)
 		if(biomass >= biomass_max)
 			user << SPAN_NOTICE("\The [src] is full.")
 			return
 		user << SPAN_NOTICE("You put [I] into [src]'s load hatch.")
-		biomass += 50
+		biomass += BIOMASS_TYPES[I.type]
 		user.drop_item()
 		qdel(I)
 

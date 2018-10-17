@@ -216,11 +216,12 @@
 		else
 			locked = 0
 			user << "System unlocked."
-	else if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
-		user << SPAN_NOTICE("\The [src] processes \the [I].")
-		biomass += 50
-		user.drop_from_inventory(I)
-		qdel(I)
+	else if(istype(I, /obj/item/weapon/reagent_containers/food))
+		if(I.type in BIOMASS_TYPES)
+			user << SPAN_NOTICE("\The [src] processes \the [I].")
+			biomass += BIOMASS_TYPES[I.type]
+			user.drop_from_inventory(I)
+			qdel(I)
 		return
 	else
 		..()

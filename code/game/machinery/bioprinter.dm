@@ -73,12 +73,13 @@
 			user << "<span class='info'>You inject the blood sample into the bioprinter.</span>"
 		return
 	// Meat for biomass.
-	if(!prints_prosthetics && istype(W, /obj/item/weapon/reagent_containers/food/snacks/meat))
-		stored_matter += 50
-		user.drop_item()
-		user << "<span class='info'>\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]</span>"
-		qdel(W)
-		return
+	if(!prints_prosthetics)
+		if(W.type in BIOMASS_TYPES)
+			stored_matter += BIOMASS_TYPES[W.type]
+			user.drop_item()
+			user << "<span class='info'>\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]</span>"
+			qdel(W)
+			return
 	// Steel for matter.
 	if(prints_prosthetics && istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL)
 		var/obj/item/stack/S = W
