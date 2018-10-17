@@ -59,9 +59,13 @@
 	var/list/item_icons = list()
 
 /obj/item/Destroy()
+	qdel(hidden_uplink)
+	hidden_uplink = null
 	if(ismob(loc))
 		var/mob/m = loc
 		m.drop_from_inventory(src)
+		m.update_inv_r_hand()
+		m.update_inv_l_hand()
 		src.loc = null
 	return ..()
 

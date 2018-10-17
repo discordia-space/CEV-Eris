@@ -166,6 +166,8 @@ SUBSYSTEM_DEF(garbage)
 				var/datum/qdel_item/I = items[type]
 				if(!I.failures)
 					log_to_dd("GC: -- \ref[D] | [type] was unable to be GC'd --")
+					if(I.coords)
+						log_to_dd("GC: -- \ref[D] | location is X=[I.coords.x_pos], Y=[I.coords.y_pos], Z=[I.coords.z_pos] --")
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
@@ -257,6 +259,7 @@ SUBSYSTEM_DEF(garbage)
 	var/no_respect_force = 0//Number of times it's not respected force=TRUE
 	var/no_hint = 0			//Number of times it's not even bother to give a qdel hint
 	var/slept_destroy = 0	//Number of times it's slept in its destroy
+	var/datum/coords/coords //Coordinates of item (if its an atom)
 
 /datum/qdel_item/New(mytype)
 	name = "[mytype]"
@@ -276,6 +279,9 @@ SUBSYSTEM_DEF(garbage)
 		I = SSgarbage.items[D.type] = new /datum/qdel_item(D.type)
 	I.qdels++
 
+	if(istype(D,/atom))
+		var/atom/A = D
+		I.coords = A.get_coords()
 
 	if(isnull(D.gc_destroyed))
 		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
