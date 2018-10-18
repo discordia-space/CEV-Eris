@@ -1,3 +1,5 @@
+//Disabled due to pending computer rework
+
 /datum/event/pda_spam
 	endWhen = 36000
 	var/last_spam_time = 0

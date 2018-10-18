@@ -1,3 +1,18 @@
+/*
+	Payday pays everyone on the ship their wages. But apparently each player only gets paid once per round?
+	Not very well designed, basically here as a placeholder
+*/
+/datum/storyevent/payday
+	id = "payday"
+	name = "payday"
+
+	weight = 0.6
+
+	event_type = /datum/event/payday
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE*0.2)
+
+	tags = list(TAG_POSITIVE)
+
 /datum/event/payday
 	var/total_money_ship = 0
 

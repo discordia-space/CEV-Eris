@@ -14,14 +14,15 @@
 //===========================================
 
 /datum/event/meteor_wave
-	startWhen		= 90
+	startWhen		= 0//90
 	endWhen 		= 120
 	var/strength = 1
 	var/next_meteor = 6
 	var/waves = 1
 	var/start_side
-	var/next_meteor_lower = 10
-	var/next_meteor_upper = 15
+	var/next_meteor_lower = 3
+	var/next_meteor_upper = 10
+	var/duration = 10
 
 /datum/event/meteor_wave/setup()
 	switch (severity)
@@ -29,11 +30,12 @@
 			strength = 1
 		if (EVENT_LEVEL_MODERATE)
 			strength = 2
+			duration = 40
 		if (EVENT_LEVEL_MAJOR)
 			strength = 3
-	waves = strength * rand(1,3)
+			duration = 130
 	start_side = pick(cardinal)
-	endWhen = worst_case_end()
+	endWhen = startWhen + duration
 
 /datum/event/meteor_wave/announce()
 	switch(severity)
@@ -47,16 +49,12 @@
 
 
 /datum/event/meteor_wave/tick()
-	if(waves && activeFor >= next_meteor)
-		var/pick_side = prob(80) ? start_side : (prob(50) ? turn(start_side, 90) : turn(start_side, -90))
+	if(activeFor >= next_meteor)
+		var/pick_side = prob(60) ? start_side : (prob(50) ? turn(start_side, 90) : turn(start_side, -90))
 
-		spawn() spawn_meteors(strength * rand(1,2), get_meteors(), pick_side)
-		next_meteor += rand(next_meteor_lower, next_meteor_upper) / strength
-		waves--
-		endWhen = worst_case_end()
-
-/datum/event/meteor_wave/proc/worst_case_end()
-	return activeFor + ((30 / strength) * waves) + 10
+		spawn()
+			spawn_meteors(rand(0, strength), get_meteors(), pick_side)
+		next_meteor += rand(next_meteor_lower, next_meteor_upper)
 
 /datum/event/meteor_wave/end()
 	switch(severity)
@@ -68,7 +66,7 @@
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			return meteors_cataclysym
+			return meteors_cataclysm
 		if(EVENT_LEVEL_MODERATE)
 			return meteors_catastrophic
 		else
@@ -102,8 +100,8 @@
 /datum/event/meteor_wave/overmap/tick()
 	if(victim && !victim.is_still()) //Meteors mostly fly in your face
 		start_side = prob(90) ? victim.fore_dir : pick(cardinal)
-	else //Unless you're standing
-		start_side = pick(cardinal)
+	else if (prob(90))
+		return //If you're not moving you wont get hit muc
 	..()
 
 
@@ -180,7 +178,7 @@
 //Meteor spawning global procs
 ///////////////////////////////
 
-/proc/spawn_meteors(var/number = 10, var/list/meteortypes, var/startSide, var/zlevel)
+/proc/spawn_meteors(var/number = 1, var/list/meteortypes, var/startSide, var/zlevel)
 	world << "Going to spawn [number] meteors"
 	for(var/i = 0; i < number; i++)
 		//If no target zlevel is specified, then we'll throw each meteor at an individually randomly selected ship zlevel

@@ -1,3 +1,10 @@
+/*
+	Disabled for now.
+	These events are meaningless unless there's someone inside those areas to set free.
+
+	In order to work properly, we will need map markers or seperate areas set on brig cells, virology rooms, etc
+	These will allow a can_trigger proc to intelligently decide if the event is viable
+*/
 /datum/event/prison_break
 	startWhen		= 5
 	announceWhen	= 75
@@ -33,6 +40,7 @@
 	releaseWhen = rand(60, 90)
 
 	src.endWhen = src.releaseWhen+2
+
 
 
 /datum/event/prison_break/announce()
