@@ -37,7 +37,32 @@
 /atom/movable/HUD_element/New(var/identifier)
 	_elements = new
 	_identifier = identifier
-	setPosition(0,0)
+	updateIconInformation()
+
+/atom/movable/HUD_element/proc/add()
+	var/atom/movable/HUD_element/newElement = new
+	_connectElement(newElement)
+	return newElement
+
+/atom/movable/HUD_element/proc/updateIconInformation()
+	if (!icon)
+		if (_iconWidth || _iconHeight)
+			_iconWidth = 0
+			_iconHeight = 0
+			_updatePosition()
+		return
+
+	var/icon/I = new(fcopy_rsc(icon),icon_state,dir)
+	var/newIconWidth = I.Width()
+	var/newIconHeight = I.Height()
+	if ((newIconWidth == _iconWidth) && (newIconHeight == _iconHeight))
+		return
+
+	_iconWidth = newIconWidth
+	_iconHeight = newIconHeight
+	_updatePosition()
+
+	return src
 
 /atom/movable/HUD_element/proc/resize(width,height) //in pixels
 	var/matrix/M = matrix()
@@ -53,6 +78,14 @@
 
 	transform = M
 
+	return src
+
+/atom/movable/HUD_element/proc/getWidth()
+	return getIconWidth()
+
+/atom/movable/HUD_element/proc/getHeight()
+	return getIconHeight()
+
 /atom/movable/HUD_element/proc/getIconWidth()
 	return _iconWidth*_scaleWidth
 
@@ -61,15 +94,9 @@
 
 /atom/movable/HUD_element/proc/setIcon(var/icon/I)
 	icon = I
-	if (!I)
-		return
-	_iconWidth = I.Width()
-	_iconHeight = I.Height()
+	updateIconInformation()
 
-/atom/movable/HUD_element/proc/add()
-	var/atom/movable/HUD_element/newElement = new
-	_connectElement(newElement)
-	return newElement
+	return src
 
 /atom/movable/HUD_element/proc/_updatePosition()
 	var/realX = _relativePositionX
@@ -89,6 +116,8 @@
 	for(var/atom/movable/HUD_element/E in elements)
 		E._updatePosition()
 
+	return src
+
 /atom/movable/HUD_element/proc/setPosition(var/x,var/y) //in pixels
 	_relativePositionX = round(x)
 	_relativePositionY = round(y)
@@ -96,14 +125,29 @@
 
 	return src
 
+/atom/movable/HUD_element/proc/getPositionX()
+	return _relativePositionX
+
+/atom/movable/HUD_element/proc/getPositionY()
+	return _relativePositionY
+
 /atom/movable/HUD_element/proc/getPosition()
 	return list(_relativePositionX,_relativePositionY)
+
+/atom/movable/HUD_element/proc/getAbsolutePositionX()
+	return _absolutePositionX
+
+/atom/movable/HUD_element/proc/getAbsolutePositionY()
+	return _absolutePositionY
 
 /atom/movable/HUD_element/proc/getAbsolutePosition()
 	return list(_absolutePositionX,_absolutePositionY)
 
 /atom/movable/HUD_element/proc/getIdentifier()
 	return _identifier
+
+/atom/movable/HUD_element/proc/getObserver()
+	return _observer
 
 /atom/movable/HUD_element/proc/_getObserverHUD()
 	var/client/observer = getObserver()
@@ -117,11 +161,10 @@
 
 	return observer.HUD_elements
 
-/atom/movable/HUD_element/proc/getObserver()
-	return _observer
-
 /atom/movable/HUD_element/proc/_setObserver(var/client/C)
 	_observer = C
+
+	return src
 
 /atom/movable/HUD_element/proc/show(var/client/C)
 	var/client/observer = getObserver()
@@ -207,6 +250,8 @@
 /atom/movable/HUD_element/proc/_setParent(var/atom/movable/HUD_element/E)
 	_parent = E
 
+	return src
+
 /atom/movable/HUD_element/Destroy()
 	hide()
 
@@ -222,6 +267,17 @@
 
 	return QDEL_HINT_QUEUE
 
+
+/atom/movable/HUD_element/threePartBox
+	var/_start_icon = icon("icons/HUD/storage_start.png")
+	var/_middle_icon = icon("icons/HUD/storage_middle.png")
+	var/_end_icon = icon("icons/HUD/storage_end.png")
+
+/atom/movable/HUD_element/threePartBox/New()
+	..()
+	add().setIcon(_start_icon)
+	add().setIcon(_middle_icon)
+	add().setIcon(_end_icon)
 
 /obj/item/weapon/storage
 	name = "storage"
@@ -247,7 +303,7 @@
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 
-/obj/item/weapon/storage/proc/generateHUD(var/datum/data)
+/obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
 	var/atom/movable/HUD_element/e_main = new("storage")
 
 	var/atom/movable/HUD_element/e_background = e_main.add()
