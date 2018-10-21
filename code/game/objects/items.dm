@@ -66,9 +66,11 @@
 	//Does not affect damage dealt to mobs
 
 /obj/item/Destroy()
+	qdel(hidden_uplink)
+	hidden_uplink = null
 	if(ismob(loc))
 		var/mob/m = loc
-		m.drop_from_inventory(src)
+		m.u_equip(src)
 		src.loc = null
 	return ..()
 
