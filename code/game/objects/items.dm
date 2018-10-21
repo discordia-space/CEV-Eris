@@ -18,7 +18,7 @@
 	var/obj/item/master = null
 	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
-	var/force = 0
+
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
@@ -57,6 +57,13 @@
 	// If icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
+
+
+	//Damage vars
+	var/force = 0	//How much damage the weapon deals
+
+	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
+	//Does not affect damage dealt to mobs
 
 /obj/item/Destroy()
 	qdel(hidden_uplink)
