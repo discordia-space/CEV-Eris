@@ -157,7 +157,7 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			emote("me", 1, "drops what they were holding, their [E.name] malfunctioning!")
+			emote("pain", 1, "drops what they were holding, their [E.name] malfunctioning!")
 
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src)

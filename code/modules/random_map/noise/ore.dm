@@ -79,6 +79,7 @@
 				T.resources["iron"] =     0
 				T.resources[MATERIAL_GOLD] =     0
 				T.resources[MATERIAL_SILVER] =   0
+			CHECK_TICK
 	return
 
 /datum/random_map/noise/ore/get_map_char(var/value)

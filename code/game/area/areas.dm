@@ -72,24 +72,16 @@
 /area/proc/air_doors_close()
 	if(!air_doors_activated)
 		air_doors_activated = 1
-		for(var/obj/machinery/door/firedoor/E in all_doors)
-			if(!E.blocked)
-				if(E.operating)
-					E.nextstate = FIREDOOR_CLOSED
-				else if(!E.density)
-					spawn(0)
-						E.close()
+		for(var/obj/machinery/door/firedoor/D in all_doors)
+			spawn()
+				D.close()
 
 /area/proc/air_doors_open()
 	if(air_doors_activated)
 		air_doors_activated = 0
-		for(var/obj/machinery/door/firedoor/E in all_doors)
-			if(!E.blocked)
-				if(E.operating)
-					E.nextstate = FIREDOOR_OPEN
-				else if(E.density)
-					spawn(0)
-						E.open()
+		for(var/obj/machinery/door/firedoor/D in all_doors)
+			spawn()
+				D.open()
 
 
 /area/proc/fire_alert()
@@ -98,12 +90,8 @@
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_CLOSED
-				else if(!D.density)
-					spawn()
-						D.close()
+			spawn()
+				D.close()
 
 /area/proc/fire_reset()
 	if (fire)
@@ -111,12 +99,8 @@
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
+			spawn()
+				D.open()
 
 /area/proc/readyalert()
 	if(!eject)
@@ -143,12 +127,7 @@
 		mouse_opacity = 0
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in src)
-			if(!D.blocked)
-				if(D.operating)
-					D.nextstate = FIREDOOR_OPEN
-				else if(D.density)
-					spawn(0)
-					D.open()
+			D.open()
 	return
 
 /area/proc/updateicon()
