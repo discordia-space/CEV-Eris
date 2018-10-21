@@ -53,6 +53,7 @@
 #include "code\__defines\tick.dm"
 #include "code\__defines\tools_and_qualities.dm"
 #include "code\__defines\turfs.dm"
+#include "code\__defines\weapons.dm"
 #include "code\__defines\ZAS.dm"
 #include "code\__marcos\admin.dm"
 #include "code\__marcos\misc.dm"

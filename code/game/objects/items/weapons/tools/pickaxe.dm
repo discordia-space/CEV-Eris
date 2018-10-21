@@ -4,7 +4,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_DANGEROUS
-	throwforce = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_NORMAL
 	icon_state = "pickaxe"
 	item_state = "pickaxe"
 	w_class = ITEM_SIZE_LARGE
@@ -13,6 +13,8 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1
+	structure_damage_factor = 3 //Drills and picks are made for getting through hard materials
+	//They are the best anti-structure melee weapons
 
 /obj/item/weapon/tool/pickaxe/jackhammer
 	name = "jackhammer"
@@ -42,6 +44,7 @@
 	name = "diamond-point mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
+	force = WEAPON_FORCE_DANGEROUS*1.15
 	tool_qualities = list(QUALITY_DIGGING = 50, QUALITY_DRILLING = 20)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
@@ -54,6 +57,7 @@
 	name = "hand pickaxe"
 	icon_state = "pick_hand"
 	item_state = "syringe_0"
+	throwforce = WEAPON_FORCE_NORMAL //It's smaller
 	desc = "A smaller, more precise version of the pickaxe, used for archeology excavation."
 	tool_qualities = list(QUALITY_DIGGING = 10, QUALITY_EXCAVATION = 30)
 	w_class = ITEM_SIZE_NORMAL

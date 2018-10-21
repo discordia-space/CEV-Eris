@@ -7,6 +7,7 @@
 	edge = 0
 	armor_penetration = 50
 	flags = NOBLOODY
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	anchored = 1
@@ -87,8 +88,8 @@
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "sword0"
-	active_force = WEAPON_FORCE_LETHAL
-	active_throwforce = WEAPON_FORCE_LETHAL
+	active_force = WEAPON_FORCE_ROBUST
+	active_throwforce = WEAPON_FORCE_ROBUST
 	active_w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
@@ -165,7 +166,7 @@
 	name = "energy blade"
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon_state = "blade"
-	force = WEAPON_FORCE_LETHAL //Normal attacks deal very high damage - about the same as wielded fire axe
+	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100
 	sharp = 1
 	edge = 1
