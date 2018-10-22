@@ -368,7 +368,7 @@ proc/listclearnulls(list/list)
 
 //returns an unsorted list of nearest map objects to sourceLocation using get_dist, acceptableDistance sets tolerance for distance
 //result is intended to be used with pick()
-/proc/nearestObjectsToSource(var/list/L, var/sourceLocation, var/acceptableDistance = 0)
+/proc/nearestObjectsInList(var/list/L, var/sourceLocation, var/acceptableDistance = 0)
 	var/list/nearestObjects = new
 	if (L.len == 1)
 		nearestObjects += L[1]

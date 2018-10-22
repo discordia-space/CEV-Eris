@@ -1,4 +1,4 @@
-/superior_animal/roach
+/mob/living/superior_animal/roach
 	name = "Kampfer Roach"
 	desc = "A monstrous, dog-sized cockroach. These huge mutants can be everywhere where humans are, on ships, planets and stations."
 
@@ -33,19 +33,19 @@
 	melee_damage_upper = 4
 
 
-/superior_animal/roach/Login()
+/mob/living/superior_animal/roach/Login()
 	if(src && src.client)
 		src.client.screen = null
 	..()
 
 
-/superior_animal/roach/Stat()
+/mob/living/superior_animal/roach/Stat()
 	..()
 	if(statpanel("Status"))
 		stat(null, "Health: [round((health / maxHealth) * 100)]%")
 
 
-/superior_animal/roach/movement_delay()
+/mob/living/superior_animal/roach/movement_delay()
 	var/tally = 0 //Incase I need to add stuff other than "speed" later
 
 	tally = speed
@@ -57,10 +57,10 @@
 	return tally+config.animal_delay
 
 
-/superior_animal/roach/get_speech_ending(verb, var/ending)
+/mob/living/superior_animal/roach/get_speech_ending(verb, var/ending)
 	return verb
 
 
-/superior_animal/roach/put_in_hands(var/obj/item/W) // No hands.
+/mob/living/superior_animal/roach/put_in_hands(var/obj/item/W) // No hands.
 	W.loc = get_turf(src)
 	return 1

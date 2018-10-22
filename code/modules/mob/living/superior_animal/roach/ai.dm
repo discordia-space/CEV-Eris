@@ -1,17 +1,17 @@
-/superior_animal/roach
+/mob/living/superior_animal/roach
 	faction = "roach"
 
-/superior_animal/roach/Life()
+/mob/living/superior_animal/roach/Life()
 	. = ..()
 
-/superior_animal/roach/findTarget()
+/mob/living/superior_animal/roach/findTarget()
 	. = ..()
 	if(.)
 		visible_emote("charges at [.]!")
 		playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 
 
-/superior_animal/roach/prepareAttackOnTarget()
+/mob/living/superior_animal/roach/prepareAttackOnTarget()
 	. = ..()
 
 	var/mob/living/M = .
@@ -22,7 +22,7 @@
 
 	return .
 
-/superior_animal/roach/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/superior_animal/roach/UnarmedAttack(var/atom/A, var/proximity)
 	if(!..())
 		return
 

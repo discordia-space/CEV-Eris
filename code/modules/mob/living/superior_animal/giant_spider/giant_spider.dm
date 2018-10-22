@@ -1,11 +1,10 @@
-
 #define SPINNING_WEB 1
 #define LAYING_EGGS 2
 #define MOVING_TO_TARGET 3
 #define SPINNING_COCOON 4
 
 //basic spider mob, these generally guard nests
-/superior_animal/giant_spider
+/mob/living/superior_animal/giant_spider
 	name = "giant spider"
 	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
 	icon_state = "guard"
@@ -31,7 +30,7 @@
 	speed = 3
 
 //nursemaids - these create webs and eggs
-/superior_animal/giant_spider/nurse
+/mob/living/superior_animal/giant_spider/nurse
 	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes."
 	icon_state = "nurse"
 	maxHealth = 40
@@ -44,7 +43,7 @@
 	var/fed = 0
 
 //hunters have the most poison and move the fastest, so they can find prey
-/superior_animal/giant_spider/hunter
+/mob/living/superior_animal/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	icon_state = "hunter"
 	maxHealth = 120
@@ -54,11 +53,11 @@
 	poison_per_bite = 5
 	move_to_delay = 4
 
-/superior_animal/giant_spider/New(var/location, var/atom/parent)
+/mob/living/superior_animal/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)
 	..()
 
-/superior_animal/giant_spider/attemptAttackOnTarget()
+/mob/living/superior_animal/giant_spider/attemptAttackOnTarget()
 	var/target = ..()
 	if (target)
 		playsound(src, 'sound/weapons/spiderlunge.ogg', 30, 1, -3)
@@ -67,7 +66,7 @@
 		if(L && L.reagents)
 			L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
+/mob/living/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
 	var/target = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -77,7 +76,7 @@
 				var/eggs = new /obj/effect/spider/eggcluster(O, src)
 				O.implants += eggs
 
-/superior_animal/giant_spider/Life()
+/mob/living/superior_animal/giant_spider/Life()
 	..()
 	if(!stat)
 		if(stance == HOSTILE_STANCE_IDLE)
@@ -92,7 +91,7 @@
 					stop_automated_movement = 0
 					walk(src,0)
 
-/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
+/mob/living/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
 	spawn(100)
 		if(busy == MOVING_TO_TARGET)
 			if(cocoon_target == C && get_dist(src,cocoon_target) > 1)
@@ -100,7 +99,7 @@
 				busy = 0
 				stop_automated_movement = 0
 
-/superior_animal/giant_spider/nurse/Life()
+/mob/living/superior_animal/giant_spider/nurse/Life()
 	..()
 	if(!stat)
 		if(stance == HOSTILE_STANCE_IDLE)
@@ -112,7 +111,7 @@
 					if(C.stat != CONSCIOUS)
 						cocoonTargets += C
 
-				cocoon_target = safepick(nearestObjectsToSource(cocoonTargets,src,1))
+				cocoon_target = safepick(nearestObjectsInList(cocoonTargets,src,1))
 				if (cocoon_target)
 					busy = MOVING_TO_TARGET
 					walk_to(src, cocoon_target, 1, move_to_delay)
@@ -145,7 +144,7 @@
 								stop_automated_movement = 0
 					else
 						//fourthly, cocoon any nearby items so those pesky pinkskins can't use them
-						var/list/nearestObjects = nearestObjectsToSource(getObjectsInView(),src,1)
+						var/list/nearestObjects = nearestObjectsInList(getObjectsInView(),src,1)
 						for(var/obj/O in nearestObjects)
 							if(O.anchored)
 								continue
@@ -185,7 +184,7 @@
 									O.loc = C
 
 								for(var/mob/living/M in targetTurf)
-									if((M.stat == CONSCIOUS) || istype(M, /superior_animal/giant_spider))
+									if((M.stat == CONSCIOUS) || istype(M, /mob/living/superior_animal/giant_spider))
 										continue
 									large_cocoon = 1
 

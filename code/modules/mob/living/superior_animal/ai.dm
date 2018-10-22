@@ -1,4 +1,4 @@
-/superior_animal/Life()
+/mob/living/superior_animal/Life()
 	. = ..()
 
 	objectsInView = null
@@ -34,14 +34,14 @@
 	else
 		walk(src, 0)
 
-/superior_animal/proc/getObjectsInView()
+/mob/living/superior_animal/proc/getObjectsInView()
 	objectsInView = objectsInView || view(src, viewRange)
 	return objectsInView
 
-/superior_animal/proc/getPotentialTargets()
+/mob/living/superior_animal/proc/getPotentialTargets()
 	return hearers(src, viewRange)
 
-/superior_animal/proc/findTarget()
+/mob/living/superior_animal/proc/findTarget()
 	var/list/filteredTargets = new
 
 	for(var/atom/O in getPotentialTargets())
@@ -52,9 +52,9 @@
 		if ((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
 			filteredTargets += M
 
-	return safepick(nearestObjectsToSource(filteredTargets,src,1))
+	return safepick(nearestObjectsInList(filteredTargets,src,1))
 
-/superior_animal/proc/attemptAttackOnTarget()
+/mob/living/superior_animal/proc/attemptAttackOnTarget()
 	if(!Adjacent(target_mob))
 		return
 
@@ -68,7 +68,7 @@
 		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return M
 
-/superior_animal/proc/prepareAttackOnTarget()
+/mob/living/superior_animal/proc/prepareAttackOnTarget()
 	stop_automated_movement = 1
 
 	if(!target_mob || !isValidAttackTarget(target_mob))
@@ -81,19 +81,19 @@
 
 	attemptAttackOnTarget()
 
-/superior_animal/proc/lostTarget()
+/mob/living/superior_animal/proc/lostTarget()
 	stance = HOSTILE_STANCE_IDLE
 	walk(src, 0)
 
-/superior_animal/proc/loseTarget()
+/mob/living/superior_animal/proc/loseTarget()
 	target_mob = null
 	lostTarget()
 
-/superior_animal/death()
+/mob/living/superior_animal/death()
 	. = ..()
 	walk(src, 0)
 
-/superior_animal/proc/isValidAttackTarget(var/atom/O)
+/mob/living/superior_animal/proc/isValidAttackTarget(var/atom/O)
 	if (isliving(O))
 		var/mob/living/L = O
 		if((L.stat != CONSCIOUS) || (L.health <= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0)) || (!attack_same && (L.faction == src.faction)) || (L in friends))
@@ -104,7 +104,7 @@
 		var/obj/mecha/M = O
 		return isValidAttackTarget(M.occupant)
 
-/superior_animal/proc/destroySurroundings()
+/mob/living/superior_animal/proc/destroySurroundings()
 	if(prob(break_stuff_probability))
 		for(var/dir in cardinal) // North, South, East, West
 			for(var/obj/structure/window/obstacle in get_step(src, dir))

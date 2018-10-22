@@ -1,7 +1,4 @@
-/superior_animal
-	parent_type = /mob/living
-
-/superior_animal
+/mob/living/superior_animal
 	name = "superior animal"
 	desc = "You should not see this."
 
@@ -87,7 +84,7 @@
 
 	a_intent = I_HURT
 
-/superior_animal/New()
+/mob/living/superior_animal/New()
 	..()
 	if(!icon_living)
 		icon_living = icon_state
@@ -98,18 +95,18 @@
 
 	verbs -= /mob/verb/observe
 
-/superior_animal/Destroy()
+/mob/living/superior_animal/Destroy()
 	. = ..()
 	objectsInView = null
 
-/superior_animal/proc/visible_emote(message)
+/mob/living/superior_animal/proc/visible_emote(message)
 	if(islist(message))
 		message = safepick(message)
 	if(message)
 		visible_message("<span class='name'>[src]</span> [message]")
 
 
-/superior_animal/proc/harvest(var/mob/user)
+/mob/living/superior_animal/proc/harvest(var/mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		for(var/i=0;i<actual_meat_amount;i++)
