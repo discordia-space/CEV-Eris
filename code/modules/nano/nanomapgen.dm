@@ -54,7 +54,7 @@
 		sleep(3)
 		return NANOMAP_TERMINALERR
 
-	world.log << "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>"
+	log_world("NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>")
 	to_chat(usr, "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>")
 
 	var/count = 0;
@@ -76,11 +76,11 @@
 
 	var/mapFilename = "new_[map_image_file_name(currentZ)]"
 
-	world.log << "NanoMapGen: <B>sending [mapFilename] to client</B>"
+	log_world("NanoMapGen: <B>sending [mapFilename] to client</B>")
 
 	usr << browse(Tile, "window=picture;file=[mapFilename];display=0")
 
-	world.log << "NanoMapGen: <B>Done.</B>"
+	log_world("NanoMapGen: <B>Done.</B>")
 
 	to_chat(usr, "NanoMapGen: <B>Done. File [mapFilename] uploaded to your cache.</B>")
 

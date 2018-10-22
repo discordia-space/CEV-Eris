@@ -143,7 +143,7 @@
 		var/oldtext = html_decode(loaded_data)
 		oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-		var/newtext = sanitize(replacetext(input(usr, "Editing file '[open_file]'. You may use most tags used in paper formatting:", "Text Editor", oldtext) as message|null, "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+		var/newtext = sanitize(replacetext(russian_to_utf8(input(usr, "Editing file '[open_file]'. You may use most tags used in paper formatting:", "Text Editor", oldtext) as message|null), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
 		if(!newtext)
 			return
 		loaded_data = newtext
@@ -198,10 +198,10 @@
 						)))
 				data["usbfiles"] = usbfiles
 	else if(PRG.open_file)
-		data["filedata"] = pencode2html(PRG.loaded_data)
-		data["filename"] = PRG.is_edited ? "[PRG.open_file]*" : PRG.open_file
+		data["filedata"] = pencode2html(cyrillic_to_unicode(PRG.loaded_data))
+		data["filename"] = PRG.is_edited ? "[cyrillic_to_unicode(PRG.open_file)]*" : PRG.open_file
 	else
-		data["filedata"] = pencode2html(PRG.loaded_data)
+		data["filedata"] = pencode2html(cyrillic_to_unicode(PRG.loaded_data))
 		data["filename"] = "UNNAMED"
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)

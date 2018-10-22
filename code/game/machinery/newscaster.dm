@@ -538,7 +538,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 				src.screen=6
 			else
 				var/image = photo_data ? photo_data.photo : null
-				feedback_inc("newscaster_stories",1)
 				news_network.SubmitArticle(src.msg, src.scanned_user, src.channel_name, image, 0)
 				if(photo_data)
 					photo_data.photo.forceMove(get_turf(src))

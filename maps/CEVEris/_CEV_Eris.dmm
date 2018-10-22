@@ -10583,7 +10583,7 @@
 "dVA" = (/obj/effect/floor_decal/corner/blue{tag = "icon-corner_white (NORTH)"; icon_state = "corner_white"; dir = 1},/turf/simulated/floor/tiled/dark,/area/bridge)
 "dVB" = (/obj/structure/bed/chair/comfy/black{dir = 1},/turf/simulated/floor/tiled/dark,/area/bridge)
 "dVC" = (/obj/effect/floor_decal/corner/blue{tag = "icon-corner_white (EAST)"; icon_state = "corner_white"; dir = 4},/turf/simulated/floor/tiled/dark,/area/bridge)
-"dVD" = (/obj/effect/floor_decal/corner/green{dir = 6},/obj/effect/floor_decal/corner/green{dir = 9},/turf/simulated/floor/tiled/dark,/area/bridge)
+"dVD" = (/obj/effect/floor_decal/corner/green{dir = 6},/obj/effect/floor_decal/corner/green{dir = 9},/obj/item/modular_computer/console/preset/medical,/turf/simulated/floor/tiled/dark,/area/bridge)
 "dVE" = (/obj/effect/floor_decal/corner/beige{tag = "icon-corner_white (NORTHWEST)"; icon_state = "corner_white"; dir = 9},/obj/effect/floor_decal/corner/beige{tag = "icon-corner_white (SOUTHEAST)"; icon_state = "corner_white"; dir = 6},/obj/machinery/computer/supplycomp,/turf/simulated/floor/tiled/dark,/area/bridge)
 "dVF" = (/obj/item/modular_computer/console/preset/research{tag = "icon-console (WEST)"; icon_state = "console"; dir = 8},/obj/effect/floor_decal/corner/mauve{tag = "icon-corner_white (SOUTHEAST)"; icon_state = "corner_white"; dir = 6},/obj/effect/floor_decal/corner/mauve{tag = "icon-corner_white (NORTHWEST)"; icon_state = "corner_white"; dir = 9},/turf/simulated/floor/tiled/dark,/area/bridge)
 "dVG" = (/obj/structure/multiz/ladder,/turf/simulated/floor/tiled/techfloor/grid,/area/eris/maintenance/fore1)
