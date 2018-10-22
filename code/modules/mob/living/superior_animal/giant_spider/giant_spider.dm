@@ -60,21 +60,19 @@
 
 /mob/living/superior_animal/giant_spider/AttackingTarget()
 	var/target = ..()
+	playsound(src, 'sound/weapons/spiderlunge.ogg', 50, 1)
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.reagents)
-			L.reagents.add_reagent("toxin", poison_per_bite)
-			if(prob(poison_per_bite))
-				L << "\red You feel a tiny prick."
-				L.reagents.add_reagent(poison_type, 5)
+		if(L && L.reagents)
+			L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/superior_animal/giant_spider/nurse/AttackingTarget()
 	var/target = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(prob(poison_per_bite))
-			var/obj/item/organ/external/O = pick(H.organs)
-			if(!(O.robotic >= ORGAN_ROBOT))
+			var/obj/item/organ/external/O = safepick(H.organs)
+			if(O && !(O.robotic >= ORGAN_ROBOT))
 				var/eggs = new /obj/effect/spider/eggcluster(O, src)
 				O.implants += eggs
 
@@ -98,8 +96,8 @@
 		if(busy == MOVING_TO_TARGET)
 			if(cocoon_target == C && get_dist(src,cocoon_target) > 1)
 				cocoon_target = null
-			busy = 0
-			stop_automated_movement = 0
+				busy = 0
+				stop_automated_movement = 0
 
 /mob/living/superior_animal/giant_spider/nurse/Life()
 	..()
@@ -109,55 +107,57 @@
 			//30% chance to stop wandering and do something
 			if(!busy && prob(30))
 				//first, check for potential food nearby to cocoon
+				var/list/cocoonTargets = new
 				for(var/mob/living/C in can_see)
 					if(C.stat)
-						cocoon_target = C
-						busy = MOVING_TO_TARGET
-						walk_to(src, C, 1, move_to_delay)
-						//give up if we can't reach them after 10 seconds
-						GiveUp(C)
-						return
+						cocoonTargets += C
+
+				cocoon_target = safepick(nearestObjectsToSource(cocoonTargets,src,1))
+				if (cocoon_target)
+					busy = MOVING_TO_TARGET
+					walk_to(src, cocoon_target, 1, move_to_delay)
+					GiveUp(cocoon_target) //give up if we can't reach target
+					return
 
 				//second, spin a sticky spiderweb on this tile
-				var/obj/effect/spider/stickyweb/W = locate() in get_turf(src)
-				if(!W)
+				if(!(locate(/obj/effect/spider/stickyweb) in get_turf(src)))
 					busy = SPINNING_WEB
 					src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance."))
 					stop_automated_movement = 1
 					spawn(40)
 						if(busy == SPINNING_WEB)
-							new /obj/effect/spider/stickyweb(src.loc)
+							if(!(locate(/obj/effect/spider/stickyweb) in get_turf(src)))
+								new /obj/effect/spider/stickyweb(src.loc)
 							busy = 0
 							stop_automated_movement = 0
 				else
 					//third, lay an egg cluster there
-					var/obj/effect/spider/eggcluster/E = locate() in get_turf(src)
-					if(!E && fed > 0)
+					if((fed > 0) && !(locate(/obj/effect/spider/eggcluster) in get_turf(src)))
 						busy = LAYING_EGGS
 						src.visible_message(SPAN_NOTICE("\The [src] begins to lay a cluster of eggs."))
 						stop_automated_movement = 1
 						spawn(50)
 							if(busy == LAYING_EGGS)
-								E = locate() in get_turf(src)
-								if(!E)
+								if(!(locate(/obj/effect/spider/eggcluster) in get_turf(src)))
 									new /obj/effect/spider/eggcluster(loc, src)
 									fed--
 								busy = 0
 								stop_automated_movement = 0
 					else
 						//fourthly, cocoon any nearby items so those pesky pinkskins can't use them
-						for(var/obj/O in can_see)
-
+						var/list/nearestObjects = nearestObjectsToSource(can_see,src,1)
+						for(var/obj/O in nearestObjects)
 							if(O.anchored)
 								continue
-
 							if(istype(O, /obj/item) || istype(O, /obj/structure) || istype(O, /obj/machinery))
-								cocoon_target = O
-								busy = MOVING_TO_TARGET
-								stop_automated_movement = 1
-								walk_to(src, O, 1, move_to_delay)
-								//give up if we can't reach them after 10 seconds
-								GiveUp(O)
+								cocoonTargets += O
+
+						cocoon_target = safepick(cocoonTargets)
+						if (cocoon_target)
+							busy = MOVING_TO_TARGET
+							stop_automated_movement = 1
+							walk_to(src, cocoon_target, 1, move_to_delay)
+							GiveUp(cocoon_target) //give up if we can't reach target
 
 			else if(busy == MOVING_TO_TARGET && cocoon_target)
 				if(get_dist(src, cocoon_target) <= 1)
@@ -168,32 +168,40 @@
 					spawn(50)
 						if(busy == SPINNING_COCOON)
 							if(cocoon_target && istype(cocoon_target.loc, /turf) && get_dist(src,cocoon_target) <= 1)
-								var/obj/effect/spider/cocoon/C = new(cocoon_target.loc)
-								var/large_cocoon = 0
-								C.pixel_x = cocoon_target.pixel_x
-								C.pixel_y = cocoon_target.pixel_y
-								for(var/mob/living/M in C.loc)
-									if(istype(M, /mob/living/superior_animal/giant_spider))
+								var/obj/effect/spider/cocoon/C = locate() in cocoon_target.loc
+								var/large_cocoon
+								var/turf/targetTurf = cocoon_target.loc
+
+								for(var/obj/O in targetTurf)
+									if (O.anchored)
+										continue
+									if (istype(O, /obj/item))
+									else if (istype(O, /obj/structure) || istype(O, /obj/machinery))
+										large_cocoon = 1
+									else
+										continue
+
+									C = C || new(targetTurf)
+									O.loc = C
+
+								for(var/mob/living/M in targetTurf)
+									if((M.stat == CONSCIOUS) || istype(M, /mob/living/superior_animal/giant_spider))
 										continue
 									large_cocoon = 1
-									fed++
-									src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
+
+									if ((M.getBruteLoss() < 150) && istype(M, /mob/living/carbon))
+										src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
+										M.adjustBruteLoss(100)
+										fed++
+
+									C = C || new(targetTurf)
 									M.loc = C
-									C.pixel_x = M.pixel_x
-									C.pixel_y = M.pixel_y
 									break
-								for(var/obj/item/I in C.loc)
-									I.loc = C
-								for(var/obj/structure/S in C.loc)
-									if(!S.anchored)
-										S.loc = C
-										large_cocoon = 1
-								for(var/obj/machinery/M in C.loc)
-									if(!M.anchored)
-										M.loc = C
-										large_cocoon = 1
-								if(large_cocoon)
-									C.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
+
+								if(C && (large_cocoon || C.is_large_cocoon))
+									C.becomeLarge()
+								cocoon_target = null
+
 							busy = 0
 							stop_automated_movement = 0
 
