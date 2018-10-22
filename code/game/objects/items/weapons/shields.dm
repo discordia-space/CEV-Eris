@@ -96,7 +96,7 @@
 /obj/item/weapon/shield/riot/handmade
 	name = "round handmade shield"
 	desc = "A handmade stout shield, but with a small size."
-	icon_state = "hm_shield"
+	icon_state = "buckler"
 	flags = null
 	throw_speed = 2
 	throw_range = 6

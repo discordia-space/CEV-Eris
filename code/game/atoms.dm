@@ -609,3 +609,11 @@ its easier to just keep the beam vertical.
 /atom/proc/get_cell()
 	return
 
+/atom/proc/get_coords()
+	var/turf/T = get_turf(src)
+	if (T)
+		var/datum/coords/C = new
+		C.x_pos = T.x
+		C.y_pos = T.y
+		C.z_pos = T.z
+		return C

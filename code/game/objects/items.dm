@@ -19,7 +19,7 @@
 	var/obj/item/master = null
 	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
-	var/force = 0
+
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
@@ -59,10 +59,19 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
+
+	//Damage vars
+	var/force = 0	//How much damage the weapon deals
+
+	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
+	//Does not affect damage dealt to mobs
+
 /obj/item/Destroy()
+	qdel(hidden_uplink)
+	hidden_uplink = null
 	if(ismob(loc))
 		var/mob/m = loc
-		m.drop_from_inventory(src)
+		m.u_equip(src)
 		src.loc = null
 	return ..()
 
@@ -452,7 +461,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 //Editionaly, handle_failure proc will be called for a critical failure roll.
-/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
+/obj/item/proc/use_tool(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5)
 	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
 	switch(result)
 		if(TOOL_USE_CANCEL)
@@ -464,7 +473,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			return TRUE
 
 //Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
-/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null)
+/obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5 SECONDS)
+	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		if (isliving(target))
+			var/mob/living/L = target
+			L.IgniteMob()
+
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
 		return TOOL_USE_CANCEL
@@ -481,21 +495,53 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			fail_chance += round(H.shock_stage/120 * 40)
 			base_time += round(H.shock_stage/120 * 40)
 
-	if(forced_sound != NO_WORKSOUND)
-		if(forced_sound)
-			playsound(src.loc, forced_sound, 100, 1)
-		else
-			playsound(src.loc, src.worksound, 100, 1)
+	//Precalculate worktime here
+	var/time_to_finish = 0
+	if (base_time)
+		time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 
-	if(base_time && (instant_finish_tier >= get_tool_quality(required_quality)))
+	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
+		time_to_finish = 0
+
+
+	//Repeating sound code!
+	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
+	var/datum/repeating_sound/toolsound = null
+	if(forced_sound != NO_WORKSOUND)
+
+		var/soundfile
+		if(forced_sound)
+			soundfile = forced_sound
+		else
+			soundfile = worksound
+
+		if (sound_repeat && time_to_finish)
+			//It will repeat roughly every 2.5 seconds until our tool finishes
+			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, 80, 1)
+		else
+			playsound(src.loc, soundfile, 100, 1)
+
+	//The we handle the doafter for the tool usage
+	if(time_to_finish)
 		target.used_now = TRUE
-		var/time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
+
 		if(!do_after(user, time_to_finish, user))
+			//If the doafter fails
 			user << SPAN_WARNING("You need to stand still to finish the task properly!")
 			target.used_now = FALSE
+			if (toolsound)
+				//We abort the repeating sound.
+				//Stop function will delete itself too
+				toolsound.stop()
+				toolsound = null
 			return TOOL_USE_CANCEL
 		else
 			target.used_now = FALSE
+
+	//Safe cleanup
+	if (toolsound)
+		toolsound.stop()
+		toolsound = null
 
 	var/stat_modifer = 0
 	if(required_stat)

@@ -15,6 +15,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //For anything that can light stuff on fire
 /obj/item/weapon/flame
 	var/lit = 0
+	heat = 1670
+
+/obj/item/weapon/flame/is_hot()
+	if (lit)
+		return heat
 
 /proc/isflamesource(A)
 	if(istype(A, /obj/item))
@@ -23,10 +28,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			return TRUE
 		if(QUALITY_CAUTERIZING in I.tool_qualities)
 			return TRUE
-	else if(istype(A, /obj/item/weapon/flame))
+		if (I.is_hot())
+			return TRUE
+	if(istype(A, /obj/item/weapon/flame))
 		var/obj/item/weapon/flame/F = A
 		return (F.lit)
-	else if(istype(A, /obj/item/device/assembly/igniter))
+	if(istype(A, /obj/item/device/assembly/igniter))
 		return TRUE
 	return FALSE
 

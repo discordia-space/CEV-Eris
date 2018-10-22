@@ -282,8 +282,6 @@
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
 /datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
-	touch(target) //First, handle mere touch effects
-
 	if(ismob(target))
 		return splash_mob(target, amount, copy)
 	if(isturf(target))
@@ -371,6 +369,7 @@
 	if(isliving(target)) //will we ever even need to tranfer reagents to non-living mobs?
 		var/mob/living/L = target
 		perm = L.reagent_permeability()
+	touch_mob(target)
 	return trans_to_mob(target, amount, CHEM_TOUCH, perm, copy)
 
 /datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0) // Transfer after checking into which holder...
