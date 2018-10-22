@@ -126,7 +126,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	add_language(LANGUAGE_CHANGELING)
 
 	return
-/
+
 //Absorbs the victim's DNA making them uncloneable. Requires a strong grip on the victim.
 //Doesn't cost anything as it's the most basic ability.
 /mob/proc/changeling_absorb_dna()
