@@ -1,9 +1,3 @@
-/mob/living/superior_animal/roach
-	faction = "roach"
-
-/mob/living/superior_animal/roach/Life()
-	. = ..()
-
 /mob/living/superior_animal/roach/findTarget()
 	. = ..()
 	if(.)
