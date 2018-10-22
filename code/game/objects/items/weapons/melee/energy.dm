@@ -7,6 +7,7 @@
 	edge = 0
 	armor_penetration = 50
 	flags = NOBLOODY
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	anchored = 1
@@ -19,6 +20,7 @@
 	edge = 1
 	w_class = active_w_class
 	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+	update_wear_icon()
 
 /obj/item/weapon/melee/energy/proc/deactivate(mob/living/user)
 	anchored = 0
@@ -31,6 +33,7 @@
 	sharp = initial(sharp)
 	edge = initial(edge)
 	w_class = initial(w_class)
+	update_wear_icon()
 
 /obj/item/weapon/melee/energy/attack_self(mob/living/user as mob)
 	if (active)
@@ -68,13 +71,13 @@
 	edge = 1
 
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
-	..()
 	icon_state = "axe1"
+	..()
 	user << SPAN_NOTICE("\The [src] is now energised.")
 
 /obj/item/weapon/melee/energy/axe/deactivate(mob/living/user)
-	..()
 	icon_state = initial(icon_state)
+	..()
 	user << SPAN_NOTICE("\The [src] is de-energised. It's just a regular axe now.")
 
 /*
@@ -85,8 +88,8 @@
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "sword0"
-	active_force = WEAPON_FORCE_LETHAL
-	active_throwforce = WEAPON_FORCE_LETHAL
+	active_force = WEAPON_FORCE_ROBUST
+	active_throwforce = WEAPON_FORCE_ROBUST
 	active_w_class = ITEM_SIZE_LARGE
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
@@ -121,18 +124,18 @@
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
 		user << SPAN_NOTICE("\The [src] is now energised.")
+	icon_state = "sword[blade_color]"
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	tool_qualities = list(QUALITY_CUTTING = 30,  QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 20, QUALITY_WELDING = 10, QUALITY_CAUTERIZING = 10)
-	icon_state = "sword[blade_color]"
 
 /obj/item/weapon/melee/energy/sword/deactivate(mob/living/user)
 	if(active)
 		user << SPAN_NOTICE("\The [src] deactivates!")
+	icon_state = initial(icon_state)
 	..()
 	attack_verb = list()
 	tool_qualities = initial(tool_qualities)
-	icon_state = initial(icon_state)
 
 /obj/item/weapon/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
@@ -151,8 +154,8 @@
 	icon_state = "cutlass0"
 
 /obj/item/weapon/melee/energy/sword/pirate/activate(mob/living/user)
-	..()
 	icon_state = "cutlass1"
+	..()
 
 /*
  *Energy Blade
@@ -163,7 +166,7 @@
 	name = "energy blade"
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon_state = "blade"
-	force = WEAPON_FORCE_LETHAL //Normal attacks deal very high damage - about the same as wielded fire axe
+	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100
 	sharp = 1
 	edge = 1

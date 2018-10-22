@@ -12,6 +12,12 @@
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
 
+/obj/item/clothing/Destroy()
+	for(var/obj/item/clothing/accessory/A in accessories)
+		qdel(A)
+	accessories = null
+	return ..()
+
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
 	. = ..()

@@ -337,7 +337,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			user.do_attack_animation(src)
-			hit(I.force)
+			hit(I.force*I.structure_damage_factor)
 			if(health <= 7)
 				set_anchored(FALSE)
 				step(src, get_dir(user, src))

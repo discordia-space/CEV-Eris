@@ -36,9 +36,10 @@ var/list/ghost_traps
 	..()
 
 // Check for bans, proper atom types, etc.
-/datum/ghosttrap/proc/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target)
-	if(!candidate.MayRespawn(1, minutes_since_death))
-		return 0
+/datum/ghosttrap/proc/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer=TRUE)
+	if(check_respawn_timer)
+		if(!candidate.MayRespawn(1, respawn_type=CREW))
+			return 0
 	if(islist(ban_checks))
 		for(var/bantype in ban_checks)
 			if(jobban_isbanned(candidate, "[bantype]"))
@@ -91,8 +92,8 @@ var/list/ghost_traps
 		return 1
 
 // Shunts the ckey/mind into the target mob.
-/datum/ghosttrap/proc/transfer_personality(var/mob/candidate, var/mob/target)
-	if(!assess_candidate(candidate))
+/datum/ghosttrap/proc/transfer_personality(var/mob/candidate, var/mob/target, check_respawn_timer=TRUE)
+	if(!assess_candidate(candidate, check_respawn_timer=check_respawn_timer))
 		return 0
 	target.ckey = candidate.ckey
 	if(target.mind)
