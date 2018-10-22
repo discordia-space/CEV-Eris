@@ -65,11 +65,7 @@
 #define MAX_DESC_LEN          128
 #define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
-// Event defines.
-#define EVENT_LEVEL_MUNDANE  1
-#define EVENT_LEVEL_MODERATE 2
-#define EVENT_LEVEL_MAJOR    3
-#define EVENT_LEVEL_ECONOMY  4
+
 
 // Cargo-related stuff.
 #define MANIFEST_ERROR_CHANCE		5
@@ -87,6 +83,7 @@
 #define AREA_FLAG_RAD_SHIELDED 1 // shielded from radiation, clearly
 #define AREA_FLAG_EXTERNAL     2 // External as in exposed to space, not outside in a nice, green, forest
 #define AREA_FLAG_ION_SHIELDED 4 // shielded from ionospheric anomalies as an FBP / IPC
+#define AREA_FLAG_CRITICAL		8 //Area should not be targeted by very destructive events
 
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.
@@ -128,15 +125,6 @@
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
 #define BOMBCAP_LIGHT_RADIUS max_explosion_range
 #define BOMBCAP_FLASH_RADIUS (max_explosion_range*1.5)
-
-#define WEAPON_FORCE_HARMLESS    3
-#define WEAPON_FORCE_WEAK        7
-#define WEAPON_FORCE_NORMAL      10
-#define WEAPON_FORCE_PAINFULL    15
-#define WEAPON_FORCE_DANGEROUS   20
-#define WEAPON_FORCE_ROBUST      26
-#define WEAPON_FORCE_LETHAL      51
-
 									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
 #define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
 #define NTNET_PEERTOPEER 2			// P2P transfers of files between devices

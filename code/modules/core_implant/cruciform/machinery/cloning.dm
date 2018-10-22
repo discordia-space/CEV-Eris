@@ -398,16 +398,16 @@
 	if(default_part_replacement(I, user))
 		return
 
-	if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/meat))
-		if(biomass >= biomass_max)
-			user << SPAN_NOTICE("\The [src] is full.")
-			return
-		user << SPAN_NOTICE("You put [I] into [src]'s load hatch.")
-		biomass += 50
-		user.drop_item()
-		qdel(I)
-
-	src.add_fingerprint(user)
+	for(var/type in BIOMASS_TYPES)
+		if(istype(I,type))
+			if(biomass >= biomass_max)
+				user << SPAN_NOTICE("\The [src] is full.")
+				return
+			user << SPAN_NOTICE("You put [I] into [src]'s load hatch.")
+			biomass += BIOMASS_TYPES[type]
+			user.drop_item()
+			qdel(I)
+	
 
 /obj/machinery/neotheology/biomass_container/update_icon()
 	overlays.Cut()

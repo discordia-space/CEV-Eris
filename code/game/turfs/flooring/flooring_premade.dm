@@ -287,7 +287,6 @@
 	nitrogen = 0
 	temperature = TCMB
 
-/
 
 // Placeholders
 /turf/simulated/floor/airless/lava

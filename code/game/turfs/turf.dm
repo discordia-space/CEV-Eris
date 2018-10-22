@@ -38,6 +38,11 @@
 
 /turf/Initialize()
 	turfs += src
+	var/area/A = loc
+	if (!A.ship_area)
+		if (z in maps_data.station_levels)
+			A.set_ship_area()
+
 	. = ..()
 
 /turf/Destroy()

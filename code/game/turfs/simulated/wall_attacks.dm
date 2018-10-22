@@ -232,11 +232,14 @@
 	else if(!istype(I,/obj/item/weapon/rcd) && !istype(I, /obj/item/weapon/reagent_containers))
 		if(!I.force)
 			return attack_hand(user)
+		var/attackforce = I.force*I.structure_damage_factor
 		var/dam_threshhold = material.integrity
 		if(reinf_material)
 			dam_threshhold = ceil(max(dam_threshhold,reinf_material.integrity)/2)
 		var/dam_prob = min(100,material.hardness*1.5)
-		if(dam_prob < 100 && I.force > (dam_threshhold/10))
+		if (locate(/obj/effect/overlay/wallrot) in src)
+			dam_prob *= 0.5 //Rot makes reinforced walls breakable
+		if(dam_prob < 100 && attackforce > (dam_threshhold/10))
 			playsound(src, hitsound, 80, 1)
 			if(!prob(dam_prob))
 				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I] and it [material.destruction_desc]!"))

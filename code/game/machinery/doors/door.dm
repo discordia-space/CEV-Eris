@@ -12,7 +12,6 @@
 	layer = OPEN_DOOR_LAYER
 	var/open_layer = OPEN_DOOR_LAYER
 	var/closed_layer = CLOSED_DOOR_LAYER
-
 	var/visible = 1
 	var/p_open = 0
 	var/operating = 0
@@ -21,10 +20,10 @@
 	var/normalspeed = 1
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
-	var/maxhealth = 300
+	var/maxhealth = 250
 	var/health
 	var/destroy_hits = 10 //How many strong hits it takes to destroy the door
-	var/min_force = 10 //minimum amount of force needed to damage the door with a melee weapon
+	var/resistance = RESISTANCE_TOUGH //minimum amount of force needed to damage the door with a melee weapon
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
 	var/obj/item/stack/material/repairing
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
@@ -185,14 +184,14 @@
 /obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
 
 	..()
-	visible_message(SPAN_DANGER("[src.name] was hit by [AM]."))
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 15 * (speed/5)
-	else
-		tforce = AM:throwforce * (speed/5)
-	playsound(src.loc, hitsound, 100, 1)
-	take_damage(tforce)
+	var/damage = 5
+	if (istype(AM, /obj/item))
+		var/obj/item/O = AM
+		damage = O.throwforce
+	else if (istype(AM, /mob/living))
+		var/mob/living/M = AM
+		damage = M.mob_size
+	take_damage(damage)
 	return
 
 /obj/machinery/door/attack_ai(mob/user as mob)
@@ -213,6 +212,11 @@
 
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user)
+
+	//Harm intent overrides other actions
+	if(src.density && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
+		hit(user, I)
+		return
 
 	if(repairing)
 		var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_WELDING))
@@ -271,19 +275,7 @@
 
 		return
 
-	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
-	if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
-		var/obj/item/weapon/W = I
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(W.damtype == BRUTE || W.damtype == BURN)
-			user.do_attack_animation(src)
-			if(W.force < min_force)
-				user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
-			else
-				user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
-				playsound(src.loc, hitsound, 100, 1)
-				take_damage(W.force)
-		return
+
 
 	if(src.operating > 0 || isrobot(user))	return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
 
@@ -301,7 +293,32 @@
 		operating = -1
 		return 1
 
+
+
+/obj/machinery/door/proc/hit(var/mob/user, var/obj/item/I, var/thrown = FALSE)
+	var/obj/item/weapon/W = I
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
+	var/calc_damage
+	if (thrown)
+		calc_damage= W.throwforce*W.structure_damage_factor
+	else
+		calc_damage= W.force*W.structure_damage_factor
+		if (user)user.do_attack_animation(src)
+
+	calc_damage -= resistance
+
+	if(calc_damage <= 0)
+		if (user)user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
+		playsound(src.loc, hitsound, 20, 1)
+	else
+		if (user)user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
+		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
+		take_damage(W.force)
+
 /obj/machinery/door/proc/take_damage(var/damage)
+	if (!isnum(damage))
+		return
+
 	var/initialhealth = src.health
 	src.health = max(0, src.health - damage)
 	if(src.health <= 0 && initialhealth > 0)
@@ -328,7 +345,12 @@
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN
-	visible_message("<span class = 'warning'>\The [src.name] breaks!</span>")
+
+	if (health <= 0)
+		visible_message("<span class = 'warning'>\The [src.name] breaks open!</span>")
+		open(TRUE)
+	else
+		visible_message("<span class = 'warning'>\The [src.name] breaks!</span>")
 	update_icon()
 
 
@@ -479,3 +501,5 @@
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
+
+

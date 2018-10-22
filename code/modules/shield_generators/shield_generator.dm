@@ -14,7 +14,7 @@
 	var/datum/wires/shield_generator/wires
 	var/list/field_segments = list()	// List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()	// List of shield segments that have failed and are currently regenerating.
-	var/list/event_log() = list()				// List of relevant events for this shield
+	var/list/event_log = list()			// List of relevant events for this shield
 	var/max_log_entries = 200			// A safety to prevent players generating endless logs and maybe endangering server memory
 
 	var/shield_modes = 0				// Enabled shield mode flags
@@ -684,7 +684,6 @@
 
 		//If we're over the limit, cut the oldest entry
 		if (event_log.len > max_log_entries)
-			world << "Too many logs, pruning"
 			event_log.Cut(1,2)
 
 

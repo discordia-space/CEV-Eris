@@ -241,7 +241,6 @@
 	return 1
 
 /obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
-	world << "Smashing [target] against [src]"
 	target.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
 	//So we pass false on the use_item flag so it doesn't look like they hit the window with something
 	switch(state)
@@ -291,11 +290,10 @@
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
-						if(dir == SOUTHWEST)
-							var/obj/item/stack/material/mats = new glasstype(loc)
-							mats.amount = is_fulltile() ? 4 : 2
+						if(is_fulltile())
+							new glasstype(loc, 6)
 						else
-							new glasstype(loc)
+							new glasstype(loc, 1)
 						qdel(src)
 						return
 				return 1 //No whacking the window with tools unless harm intent
@@ -337,7 +335,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			user.do_attack_animation(src)
-			hit(I.force)
+			hit(I.force*I.structure_damage_factor)
 			if(health <= 7)
 				set_anchored(FALSE)
 				step(src, get_dir(user, src))

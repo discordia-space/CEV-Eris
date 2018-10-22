@@ -431,6 +431,7 @@
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
 		new /obj/structure/girder/low(loc)
+		new /obj/item/stack/material/steel(loc, 1)
 
 	clear_plants()
 	update_connections(1)

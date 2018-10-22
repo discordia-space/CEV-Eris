@@ -2,6 +2,12 @@
 #define RAND_F(LOW, HIGH) (rand()*(HIGH-LOW) + LOW)
 #define ceil(x) (-round(-(x)))
 
+// Returns true if val is from min to max, inclusive.
+#define ISINRANGE(val, min, max) (min <= val && val <= max)
+
+// Same as above, exclusive.
+#define ISINRANGE_EX(val, min, max) (min < val && val > max)
+
 // min is inclusive, max is exclusive
 /proc/Wrap(val, min, max)
 	var/d = max - min
@@ -129,3 +135,6 @@
 
 /proc/RoundUpToPowerOfTwo(var/val)
     return 2 ** -round(-log(2, val))
+
+/proc/rand_between(var/lower, var/upper)
+	return (rand() * (upper - lower)) + lower

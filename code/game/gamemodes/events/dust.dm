@@ -7,23 +7,59 @@ No command report on the common version of this event.
 The "dust" will damage the hull of the station causin minor hull breaches.
 */
 
+
+/datum/storyevent/dust
+	id = "space_dust"
+	name = "belt of space dust"
+
+	event_type =/datum/event/dust
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
+
+
+//////////////////////////////////////////////////////////
+/datum/event/dust
+	startWhen	= 10
+	endWhen		= 30
+
+/datum/event/dust/announce()
+	command_announcement.Announce("The ship is now passing through a belt of space dust.", "Dust Alert")
+
+/datum/event/dust/start()
+	log_and_message_admins("Space dust event triggered,")
+	dust_swarm(get_severity())
+
+/datum/event/dust/end()
+	command_announcement.Announce("The ship has now passed through the belt of space dust.", "Dust Notice")
+
+/datum/event/dust/proc/get_severity()
+	switch(severity)
+		if(EVENT_LEVEL_MUNDANE)
+			return "weak"
+		if(EVENT_LEVEL_MODERATE)
+			return prob(80) ? "norm" : "strong"
+		if(EVENT_LEVEL_MAJOR)
+			return "super"
+	return "weak"
+
+
 /proc/dust_swarm(var/strength = "weak")
 	var/numbers = 1
 	switch(strength)
 		if("weak")
-		 numbers = rand(2,4)
+		 numbers = rand(8,15)
 		 for(var/i = 0 to numbers)
 		 	new/obj/effect/space_dust/weak()
 		if("norm")
-		 numbers = rand(5,10)
+		 numbers = rand(20,40)
 		 for(var/i = 0 to numbers)
 		 	new/obj/effect/space_dust()
 		if("strong")
-		 numbers = rand(10,15)
+		 numbers = rand(40,60)
 		 for(var/i = 0 to numbers)
 		 	new/obj/effect/space_dust/strong()
 		if("super")
-		 numbers = rand(15,25)
+		 numbers = rand(60,100)
 		 for(var/i = 0 to numbers)
 		 	new/obj/effect/space_dust/super()
 	return
@@ -126,3 +162,6 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	ex_act(severity)
 		qdel(src)
 		return
+
+
+

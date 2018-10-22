@@ -135,9 +135,11 @@
 
 
 /obj/machinery/vending/Initialize()
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/vending/LateInitialize()
+	..()
 	if(src.product_slogans)
 		src.slogan_list += splittext(src.product_slogans, ";")
 
