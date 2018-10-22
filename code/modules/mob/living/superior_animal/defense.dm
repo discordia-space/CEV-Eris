@@ -1,4 +1,4 @@
-/mob/living/superior_animal/bullet_act(var/obj/item/projectile/Proj)
+/superior_animal/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj || Proj.nodamage)
 		return
 
@@ -6,7 +6,7 @@
 	return 0
 
 
-/mob/living/superior_animal/attack_hand(mob/living/carbon/human/M as mob)
+/superior_animal/attack_hand(mob/living/carbon/human/M as mob)
 	..()
 
 	switch(M.a_intent)
@@ -45,7 +45,7 @@
 	return
 
 
-/mob/living/superior_animal/attackby(var/obj/item/O, var/mob/user)
+/superior_animal/attackby(var/obj/item/O, var/mob/user)
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(QUALITY_CUTTING in O.tool_qualities)
 			if(O.use_tool(user, src, WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_NORMAL, required_stat = STAT_BIO))
@@ -54,7 +54,7 @@
 		O.attack(src, user, user.targeted_organ)
 
 
-/mob/living/superior_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/superior_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
 	visible_message(SPAN_DANGER("\The [src] has been attacked with \the [O] by [user]."))
 
@@ -70,7 +70,7 @@
 	return 0
 
 
-/mob/living/superior_animal/ex_act(severity)
+/superior_animal/ex_act(severity)
 	if(!blinded)
 		if(HUDtech.Find("flash"))
 			flick("flash", HUDtech["flash"])
@@ -84,15 +84,15 @@
 			adjustBruteLoss(30)
 
 
-/mob/living/superior_animal/adjustBruteLoss(damage)
+/superior_animal/adjustBruteLoss(damage)
 	health = Clamp(health - damage, 0, maxHealth)
 
 
-/mob/living/superior_animal/handle_fire()
+/superior_animal/handle_fire()
 	return
-/mob/living/superior_animal/update_fire()
+/superior_animal/update_fire()
 	return
-/mob/living/superior_animal/IgniteMob()
+/superior_animal/IgniteMob()
 	return
-/mob/living/superior_animal/ExtinguishMob()
+/superior_animal/ExtinguishMob()
 	return

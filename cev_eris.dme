@@ -1643,7 +1643,6 @@
 #include "code\modules\mob\living\superior_animal\giant_spider\giant_spider.dm"
 #include "code\modules\mob\living\superior_animal\roach\ai.dm"
 #include "code\modules\mob\living\superior_animal\roach\blattedin.dm"
-#include "code\modules\mob\living\superior_animal\roach\life.dm"
 #include "code\modules\mob\living\superior_animal\roach\meat.dm"
 #include "code\modules\mob\living\superior_animal\roach\roach.dm"
 #include "code\modules\mob\living\superior_animal\roach\types\fuhrer.dm"

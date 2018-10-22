@@ -1,13 +1,13 @@
-/mob/living/superior_animal/updatehealth()
+/superior_animal/updatehealth()
 	return
 
 
-/mob/living/superior_animal/proc/handle_supernatural()
+/superior_animal/proc/handle_supernatural()
 	if(purge)
 		purge -= 1
 
 
-/mob/living/superior_animal/Life()
+/superior_animal/Life()
 	..()
 
 	//Health
@@ -107,11 +107,11 @@
 	return 1
 
 
-/mob/living/superior_animal/gib()
+/superior_animal/gib()
 	..(icon_gib,1)
 
 
-/mob/living/superior_animal/death(gibbed, deathmessage = "dies!")
+/superior_animal/death(gibbed, deathmessage = "dies!")
 	icon_state = icon_dead
 	density = 0
 	walk(src, 0)
