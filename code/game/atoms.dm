@@ -607,3 +607,23 @@ its easier to just keep the beam vertical.
 		//An item is delivered on the cargo shuttle
 		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
 
+/atom/proc/get_coords()
+	var/datum/coords/C = new
+	var/atom/A = src
+	if ((x + y + z) != 0)
+		C.x_pos = x
+		C.y_pos = y
+		C.z_pos = z
+		return C
+	else
+		while (A.loc && istype(A.loc,/atom))
+			A = A.loc
+			if ((A.x + A.y + A.z) != 0)
+				C.x_pos = A.x
+				C.y_pos = A.y
+				C.z_pos = A.z
+				return C
+	log_debug("Debug: Could not find coordinates of atom - [A.name]")
+	qdel(C)
+	return null
+	

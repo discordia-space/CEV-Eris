@@ -110,6 +110,11 @@
 /obj/machinery/door/unpowered/simple/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
+	//Harm intent overrides other actions
+	if(src.density && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
+		hit(user, I)
+		return
+
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
 			user << SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now.")
@@ -131,19 +136,6 @@
 			health = between(health, health + used*DOOR_REPAIR_AMOUNT, maxhealth)
 		return
 
-	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
-	if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
-		var/obj/item/weapon/W = I
-		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(W.damtype == BRUTE || W.damtype == BURN)
-			user.do_attack_animation(src)
-			if(W.force < min_force)
-				user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
-			else
-				user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
-				playsound(src.loc, hitsound, 100, 1)
-				take_damage(W.force)
-		return
 
 	if(src.operating) return
 
