@@ -20,8 +20,30 @@
 			if(!isnull(seed.chems["pacid"]))
 				spawn(rand(5,25)) floor.ex_act(3)
 			continue
-		if(!Adjacent(floor) || !floor.Enter(src))
+		if(!Adjacent(floor))
 			continue
+
+		//Space vines can occasionally grow through airlocks by forcing their way into tiny gaps
+		if (!floor.Enter(src))
+			var/obj/machinery/door/D = (locate(/obj/machinery/door) in floor)
+			if (!D || !istype(D) || !D.density)
+				continue
+			world << "Attempting to grow through airlock at [jumplink(floor)]"
+
+			//We have to make sure that nothing ELSE aside from the door is blocking us
+			var/blocked = FALSE
+			for (var/obj/O in floor)
+				if (O == D)
+					continue
+
+				if (!O.CanPass(src, floor))
+					blocked = TRUE
+					break
+
+			//90% chance to fail
+			if (!blocked && prob(1))
+				continue
+
 		neighbors |= floor
 	// Update all of our friends.
 	var/turf/T = get_turf(src)
@@ -45,7 +67,12 @@
 	if(istype(T))
 		health -= seed.handle_environment(T,T.return_air(),null,1)
 	if(health < max_health)
-		health += rand(3,5)
+		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
+		var/obj/machinery/door/D = (locate(/obj/machinery/door) in floor)
+		if (D && D.density)
+			health += rand(1,2)
+		else
+			health += rand(3,5)
 		refresh_icon()
 		if(health > max_health)
 			health = max_health

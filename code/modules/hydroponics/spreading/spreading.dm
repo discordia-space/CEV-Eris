@@ -83,6 +83,7 @@
 	name = seed.display_name
 	max_health = round(seed.get_trait(TRAIT_ENDURANCE)/2)
 	if(seed.get_trait(TRAIT_SPREAD)==2)
+		layer = LOW_OBJ_LAYER
 		max_growth = VINE_GROWTH_STAGES
 		growth_threshold = max_health/VINE_GROWTH_STAGES
 		icon = 'icons/obj/hydroponics_vines.dmi'
@@ -97,6 +98,13 @@
 				growth_type = 3 // Biomass
 			else
 				growth_type = 4 // Mold
+
+		//Random rotation for vines
+		//0 is in here several times to weight it a bit more towards normal
+		var/rot = pick(list(0,0,0, 90, 180, -90))
+		var/matrix/M = matrix()
+		M.Turn(rot)
+		transform = M
 	else
 		max_growth = seed.growth_stages
 		growth_threshold = max_health/seed.growth_stages
