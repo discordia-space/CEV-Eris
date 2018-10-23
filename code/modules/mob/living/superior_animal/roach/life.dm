@@ -1,2 +1,2 @@
-/mob/living/superior_animal/roach/Life()
+/mob/living/carbon/superior_animal/roach/Life()
 	. = ..()

@@ -1,5 +1,5 @@
 //hunters have the most poison and move the fastest, so they can find prey
-/mob/living/superior_animal/giant_spider/hunter
+/mob/living/carbon/superior_animal/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	icon_state = "hunter"
 	maxHealth = 120

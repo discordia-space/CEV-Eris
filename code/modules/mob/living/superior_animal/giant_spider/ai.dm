@@ -1,4 +1,4 @@
-/mob/living/superior_animal/giant_spider/attemptAttackOnTarget()
+/mob/living/carbon/superior_animal/giant_spider/attemptAttackOnTarget()
 	var/target = ..()
 	if (target && prob(25))
 		playsound(src, 'sound/weapons/spiderlunge.ogg', 30, 1, -3)

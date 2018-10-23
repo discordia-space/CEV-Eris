@@ -1,90 +1,59 @@
-/mob/living/superior_animal
+/mob/living/carbon/superior_animal
 	name = "superior animal"
 	desc = "You should not see this."
 
-	// ----------------- MOVEMENT ----------------- //
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
-	var/speed = 1
 	mob_size = MOB_SMALL
+	a_intent = I_HURT
 
-	// --------------- ICONS THINGS --------------- //
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "tomato"
+
 	var/icon_living = ""
 	var/icon_dead = ""
-	var/icon_gib = null	//We only try to show a gibbing animation if this exists.
+	var/icon_gib = null //We only try to show a gibbing animation if this exists.
 
-	// ------------------ EMOTES ------------------ //
-	var/emote_see = list()
-	var/speak_chance = 5
-	var/turns_per_move = 3
-	var/turns_since_move = 0
+	var/emote_see = list() //chat emotes
+	var/speak_chance = 2 //percentage chance of speaking a line from 'emote_see'
 
-	var/response_help  = "pets"
+	var/turns_per_move = 3 //number of life ticks per random movement
+	var/turns_since_move = 0 //number of life ticks since last random movement
+	var/wander = 1 //perform automated random movement when idle
+	var/stop_automated_movement = 0 //use this to temporarely stop random movement
+	var/stop_automated_movement_when_pulled = 0
+
+	var/response_help = "pets"
 	var/response_disarm = "gently pushes aside"
-	var/response_harm   = "pokes"
-
-	var/harm_intent_damage = 3
+	var/response_harm = "pokes"
+	var/deathmessage = "dies."
+	var/attacktext = "bitten"
+	var/attack_sound = 'sound/voice/insect_battle_bite.ogg'
+	var/friendly = "nuzzles"
 
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
 	var/meat_amount = 3
 
-	// ------------------ DAMAGE ------------------ //
 	var/melee_damage_lower = 0
 	var/melee_damage_upper = 10
-	var/attacktext = "bitten"
-	var/attack_sound = 'sound/voice/insect_battle_bite.ogg'
 
-	var/friendly = "nuzzles"
 	var/environment_smash = 1
-	var/resistance		  = 0	// Damage reduction
 
-	// -------------- SURVIVABILITY --------------- //
-	//Temperature effect
-	var/minbodytemp = 250
-	var/maxbodytemp = 350
-	var/heat_damage_per_tick = 3	//amount of damage applied if animal's body temperature is higher than maxbodytemp
-	var/cold_damage_per_tick = 2	//same as heat_damage_per_tick, only if the bodytemperature it's lower than minbodytemp
-	var/fire_alert = 0
-
-	//Atmos effect - Yes, you can make creatures that require plasma or co2 to survive.
-	//N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
-	var/min_oxy = 5
-	var/max_oxy = 0					//Leaving something at 0 means it's off - has no maximum
-	var/min_tox = 0
-	var/max_tox = 1
-	var/min_co2 = 0
-	var/max_co2 = 5
-	var/min_n2 = 0
-	var/max_n2 = 0
-	var/unsuitable_atoms_damage = 2	//This damage is taken when atmos doesn't fit all the requirements above
-
-	// -------------- NULL ROD THINGS ------------- //
-	var/supernatural = 0
-	var/purge = 0
-
-	var/list/objectsInView
+	var/list/objectsInView //memoization for getObjectsInView()
 	var/viewRange = 7
+	var/acceptableTargetDistance = 1 //consider all targets within this range equally
 
-	var/stance = HOSTILE_STANCE_IDLE	//Used to determine behavior
-	var/mob/living/target_mob
-	var/attack_same = 0
-	var/move_to_delay = 4 //delay for the automated movement.
+	var/stance = HOSTILE_STANCE_IDLE //Used to determine behavior
+	var/atom/target_mob
+	var/attack_same = 0 //whether AI should target own faction members for attacks
 	var/list/friends = list()
+	var/move_to_delay = 4 //delay for walk() movement
 
 	var/destroy_surroundings = 1
 	var/break_stuff_probability = 10
 
-	var/stop_automated_movement = 0 //Use this to temporarely stop random movement or to if you write special movement code for animals.
-	var/wander = 1
-	var/stop_automated_movement_when_pulled = 0
-
-
-	a_intent = I_HURT
-
-/mob/living/superior_animal/New()
+/mob/living/carbon/superior_animal/New()
 	..()
 	if(!icon_living)
 		icon_living = icon_state
@@ -95,27 +64,14 @@
 
 	verbs -= /mob/verb/observe
 
-/mob/living/superior_animal/Destroy()
+/mob/living/carbon/superior_animal/Destroy()
 	. = ..()
-	objectsInView = null
 
-/mob/living/superior_animal/proc/visible_emote(message)
+/mob/living/carbon/superior_animal/u_equip(obj/item/W as obj)
+	return
+
+/mob/living/carbon/superior_animal/proc/visible_emote(message)
 	if(islist(message))
 		message = safepick(message)
 	if(message)
 		visible_message("<span class='name'>[src]</span> [message]")
-
-
-/mob/living/superior_animal/proc/harvest(var/mob/user)
-	var/actual_meat_amount = max(1,(meat_amount/2))
-	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
-		for(var/i=0;i<actual_meat_amount;i++)
-			var/obj/item/meat = new meat_type(get_turf(src))
-			meat.name = "[src.name] [meat.name]"
-		if(issmall(src))
-			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
-			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
-			qdel(src)
-		else
-			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
-			gib()

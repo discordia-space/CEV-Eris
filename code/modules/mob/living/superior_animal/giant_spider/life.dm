@@ -1,6 +1,6 @@
-/mob/living/superior_animal/giant_spider/Life()
+/mob/living/carbon/superior_animal/giant_spider/Life()
 	. = ..()
-	if(!stat)
+	if(stat == CONSCIOUS)
 		if(stance == HOSTILE_STANCE_IDLE)
 			//1% chance to skitter madly away
 			if(!busy && prob(1))

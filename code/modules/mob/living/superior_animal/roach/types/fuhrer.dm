@@ -1,7 +1,8 @@
-/mob/living/superior_animal/roach/fuhrer
+/mob/living/carbon/superior_animal/roach/fuhrer
 	name = "Fuhrer Roach"
 	desc = "A glorious leader of cockroaches. Literally Hitler."
 	icon_state = "fuhrer"
+
 	meat_amount = 5
 	turns_per_move = 4
 	maxHealth = 60
