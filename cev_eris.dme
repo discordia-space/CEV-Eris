@@ -110,6 +110,8 @@
 #include "code\_onclick\hud\parallax.dm"
 #include "code\_onclick\hud\plane_master.dm"
 #include "code\_onclick\hud\robot.dm"
+#include "code\_onclick\hud\HUD_element\HUD_element.dm"
+#include "code\_onclick\hud\HUD_element\threePartBox.dm"
 #include "code\_onclick\hud\screen_objects\base_screen_objects.dm"
 #include "code\_onclick\hud\screen_objects\robot_screen_objects.dm"
 #include "code\ATMOSPHERICS\_atmos_setup.dm"

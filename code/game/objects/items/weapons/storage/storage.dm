@@ -1,283 +1,16 @@
-/client
-	var/list/HUD_elements
-
 /mob/proc/testingShit()
-	var/atom/movable/HUD_element/main = new("storage")
+	/*
+	var/HUD_element/main = new("storage")
 
 	main.setIcon(icon("icons/mob/screen1.dmi","block"))
 	main.setPosition(0,128)
 
 	main.show(client)
-
-/atom/movable/HUD_element
-	layer = HUD_LAYER
-	plane = HUD_PLANE
-	//mouse_opacity = 2
-
-	var/list/atom/movable/HUD_element/_elements
-	var/atom/movable/HUD_element/_parent
-	var/client/_observer
-	var/_identifier
-
-	var/_screenBottomLeftX = 1 //in tiles
-	var/_screenBottomLeftY = 1
-
-	var/_scaleWidth = 1 //mutliplier
-	var/_scaleHeight = 1
-
-	var/_relativePositionX = 0 //in pixels
-	var/_relativePositionY = 0
-
-	var/_absolutePositionX = 0 //in pixels
-	var/_absolutePositionY = 0
-
-	var/_iconWidth = 0 //in pixels
-	var/_iconHeight = 0
-
-/atom/movable/HUD_element/New(var/identifier)
-	_elements = new
-	_identifier = identifier
-	updateIconInformation()
-
-/atom/movable/HUD_element/proc/add()
-	var/atom/movable/HUD_element/newElement = new
-	_connectElement(newElement)
-	return newElement
-
-/atom/movable/HUD_element/proc/updateIconInformation()
-	if (!icon)
-		if (_iconWidth || _iconHeight)
-			_iconWidth = 0
-			_iconHeight = 0
-			_updatePosition()
-		return
-
-	var/icon/I = new(fcopy_rsc(icon),icon_state,dir)
-	var/newIconWidth = I.Width()
-	var/newIconHeight = I.Height()
-	if ((newIconWidth == _iconWidth) && (newIconHeight == _iconHeight))
-		return
-
-	_iconWidth = newIconWidth
-	_iconHeight = newIconHeight
-	_updatePosition()
-
-	return src
-
-/atom/movable/HUD_element/proc/resize(width,height) //in pixels
-	var/matrix/M = matrix()
-	if (width)
-		_scaleWidth = width/_iconWidth
-		M.Scale(_scaleWidth,1)
-		M.Translate((_scaleWidth-1)*_iconWidth/2,0)
-
-	if (height)
-		_scaleHeight = height/_iconHeight
-		M.Scale(1,_scaleHeight)
-		M.Translate(0,(_scaleHeight-1)*_iconHeight/2)
-
-	transform = M
-
-	return src
-
-/atom/movable/HUD_element/proc/getWidth()
-	return getIconWidth()
-
-/atom/movable/HUD_element/proc/getHeight()
-	return getIconHeight()
-
-/atom/movable/HUD_element/proc/getIconWidth()
-	return _iconWidth*_scaleWidth
-
-/atom/movable/HUD_element/proc/getIconHeight()
-	return _iconHeight*_scaleHeight
-
-/atom/movable/HUD_element/proc/setIcon(var/icon/I)
-	icon = I
-	updateIconInformation()
-
-	return src
-
-/atom/movable/HUD_element/proc/_updatePosition()
-	var/realX = _relativePositionX
-	var/realY = _relativePositionY
-
-	var/atom/movable/HUD_element/parent = getParent()
-	if (parent)
-		realX += parent._absolutePositionX
-		realY += parent._absolutePositionY
-
-	_absolutePositionX = realX
-	_absolutePositionY = realY
-
-	screen_loc = "[_screenBottomLeftX]:[realX],[_screenBottomLeftY]:[realY]"
-
-	var/list/atom/movable/HUD_element/elements = getElements()
-	for(var/atom/movable/HUD_element/E in elements)
-		E._updatePosition()
-
-	return src
-
-/atom/movable/HUD_element/proc/setPosition(var/x,var/y) //in pixels
-	_relativePositionX = round(x)
-	_relativePositionY = round(y)
-	_updatePosition()
-
-	return src
-
-/atom/movable/HUD_element/proc/getPositionX()
-	return _relativePositionX
-
-/atom/movable/HUD_element/proc/getPositionY()
-	return _relativePositionY
-
-/atom/movable/HUD_element/proc/getPosition()
-	return list(_relativePositionX,_relativePositionY)
-
-/atom/movable/HUD_element/proc/getAbsolutePositionX()
-	return _absolutePositionX
-
-/atom/movable/HUD_element/proc/getAbsolutePositionY()
-	return _absolutePositionY
-
-/atom/movable/HUD_element/proc/getAbsolutePosition()
-	return list(_absolutePositionX,_absolutePositionY)
-
-/atom/movable/HUD_element/proc/getIdentifier()
-	return _identifier
-
-/atom/movable/HUD_element/proc/getObserver()
-	return _observer
-
-/atom/movable/HUD_element/proc/_getObserverHUD()
-	var/client/observer = getObserver()
-	if (!observer)
-		var/identifier = getIdentifier()
-		log_to_dd("Error: HUD element with identifier '[identifier]' has no observer")
-		return
-
-	if (!observer.HUD_elements)
-		observer.HUD_elements = new
-
-	return observer.HUD_elements
-
-/atom/movable/HUD_element/proc/_setObserver(var/client/C)
-	_observer = C
-
-	return src
-
-/atom/movable/HUD_element/proc/show(var/client/C)
-	var/client/observer = getObserver()
-	if (observer)
-		if (observer != C)
-			log_to_dd("Error: HUD element already shown to client '[observer]'")
-			return
-
-		return src
-
-	_setObserver(C)
-
-	var/identifier = getIdentifier()
-	if (identifier)
-		var/list/observerHUD = _getObserverHUD()
-		var/atom/movable/HUD_element/currentClientElement = observerHUD[identifier]
-		if (currentClientElement)
-			if (currentClientElement == src)
-				return src
-
-			qdel(currentClientElement)
-
-		observerHUD[identifier] = src
-
-	C.screen += src
-
-	var/list/atom/movable/HUD_element/elements = getElements()
-	for(var/atom/movable/HUD_element/E in elements)
-		E.show(C)
-
-	return src
-
-/atom/movable/HUD_element/proc/hide()
-	var/client/observer = getObserver()
-	if (!observer)
-		return src
-
-	var/identifier = getIdentifier()
-	if (identifier)
-		var/list/observerHUD = _getObserverHUD()
-		var/atom/movable/HUD_element/currentClientElement = observerHUD[identifier]
-		if (currentClientElement)
-			if (currentClientElement == src)
-				observerHUD[identifier] = null
-			else
-				log_to_dd("Error: HUD element identifier '[identifier]' was occupied by another element during hide()")
-				return
-
-	observer.screen -= src
-	_setObserver()
-
-	var/list/atom/movable/HUD_element/elements = getElements()
-	for(var/atom/movable/HUD_element/E in elements)
-		E.hide()
-
-	return src
-
-/atom/movable/HUD_element/proc/getElements()
-	return _elements
-
-/atom/movable/HUD_element/proc/_connectElement(var/atom/movable/HUD_element/E)
-	if (!E)
-		log_to_dd("Error: Invalid HUD element '[E]'")
-		return
-
-	var/list/atom/movable/HUD_element/elements = getElements()
-	if (elements.Find(E))
-		log_to_dd("Error: HUD element '[E]' already connected")
-		return
-
-	var/atom/movable/HUD_element/parent = E.getParent()
-	if (parent)
-		parent.getElements().Remove(E)
-
-	E._setParent(src)
-	elements.Add(E)
-
-	return src
-
-/atom/movable/HUD_element/proc/getParent()
-	return _parent
-
-/atom/movable/HUD_element/proc/_setParent(var/atom/movable/HUD_element/E)
-	_parent = E
-
-	return src
-
-/atom/movable/HUD_element/Destroy()
-	hide()
-
-	var/list/atom/movable/HUD_element/elements = getElements()
-	for(var/atom/movable/HUD_element/E in elements)
-		qdel(E)
-	elements.Cut()
-
-	var/atom/movable/HUD_element/parent = getParent()
-	if (parent)
-		parent.getElements().Remove(src)
-		_setParent()
-
-	return QDEL_HINT_QUEUE
-
-
-/atom/movable/HUD_element/threePartBox
-	var/_start_icon = icon("icons/HUD/storage_start.png")
-	var/_middle_icon = icon("icons/HUD/storage_middle.png")
-	var/_end_icon = icon("icons/HUD/storage_end.png")
-
-/atom/movable/HUD_element/threePartBox/New()
-	..()
-	add().setIcon(_start_icon)
-	add().setIcon(_middle_icon)
-	add().setIcon(_end_icon)
+	*/
+
+	var/HUD_element/threePartBox/special = new
+	special.setPosition(0,128)
+	special.show(client)
 
 /obj/item/weapon/storage
 	name = "storage"
@@ -303,22 +36,29 @@
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 
-/obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
-	var/atom/movable/HUD_element/e_main = new("storage")
+/HUD_element/threePartBox/storageBackground
+	_start_icon = icon("icons/HUD/storage_start.png")
+	_middle_icon = icon("icons/HUD/storage_middle.png")
+	_end_icon = icon("icons/HUD/storage_end.png")
 
-	var/atom/movable/HUD_element/e_background = e_main.add()
-	var/atom/movable/HUD_element/e_background_start = e_background.add().setIcon(icon("icons/mob/screen1.dmi","storage_start"))
-	var/atom/movable/HUD_element/e_background_middle = e_background.add().setIcon(icon("icons/mob/screen1.dmi","storage_continue"))
-	var/atom/movable/HUD_element/e_background_end = e_background.add().setIcon(icon("icons/mob/screen1.dmi","storage_end"))
+/HUD_element/threePartBox/storedItemBackground
+	_start_icon = icon("icons/HUD/stored_start.png")
+	_middle_icon = icon("icons/HUD/stored_middle.png")
+	_end_icon = icon("icons/HUD/stored_end.png")
+
+/obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
+	var/HUD_element/main = new("storage")
+
+	var/HUD_element/threePartBox/background = main.add(new/HUD_element/threePartBox/storageBackground())
+
+	var/backgroundWidth
 
 	if(storage_slots == null)
-		e_main.setPosition(data.ConteinerData["Xspace"]*32,data.ConteinerData["Yspace"]*32)
-
-		var/icon/boxStart = new("icons/mob/screen1.dmi","stored_start")
-		var/icon/boxMiddle = new("icons/mob/screen1.dmi","stored_continue")
-		var/icon/boxEnd = new("icons/mob/screen1.dmi","stored_end")
+		main.setPosition(data.ConteinerData["Xspace"]*32,data.ConteinerData["Yspace"]*32)
 
 		for(var/obj/item/O in contents)
+			var/HUD_element/threePartBox/itemBackground = background.add(new/HUD_element/threePartBox/storedItemBackground())
+
 			var/storage_cost = O.get_storage_cost()
 
 			//O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
@@ -328,7 +68,7 @@
 
 		//src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 
-	return e_main
+	return main
 
 /obj/item/weapon/storage/proc/UI_newStoredItemBackground(var/obj/master, var/obj/screen/storage/UI_parent, var/matrix/M_start, var/matrix/M_continue, var/matrix/M_end)
 	var/obj/screen/storage/stored_start = new /obj/screen/storage()
