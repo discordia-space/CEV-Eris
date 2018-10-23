@@ -1,3 +1,4 @@
+
 /obj/effect/plant/HasProximity(var/atom/movable/AM)
 
 	if(seed.get_trait(TRAIT_CHEM_SPRAYER))
@@ -25,12 +26,99 @@
 		spawn(1)
 			entangle(M)
 
+
+/*************************
+	Attack procs
+**************************/
 /obj/effect/plant/attack_hand(var/mob/user)
 	manual_unbuckle(user)
 
 /obj/effect/plant/attack_generic(var/mob/user)
 	if(istype(user))
 		manual_unbuckle(user)
+
+/obj/effect/plant/attackby(var/obj/item/weapon/W, var/mob/user)
+
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
+	plant_controller.add_plant(src)
+	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
+		return
+
+
+	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
+		if(sampled)
+			user << SPAN_WARNING("\The [src] has already been sampled recently.")
+			return
+		if(!is_mature())
+			user << SPAN_WARNING("\The [src] is not mature enough to yield a sample yet.")
+			return
+		if(!seed)
+			user << SPAN_WARNING("There is nothing to take a sample from.")
+			return
+		if(sampled)
+			user << SPAN_DANGER("You cannot take another sample from \the [src].")
+			return
+		if(prob(70))
+			sampled = 1
+		seed.harvest(user,0,1)
+		health -= (rand(3,5)*5)
+		sampled = 1
+		return
+	else
+		//Gardening tools can cut down vines quickly
+		var/tool_type = W.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING))
+		switch(tool_type)
+			if(QUALITY_SHOVELING)
+				if(W.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+					user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
+					die_off()
+					return
+				return
+
+			if(QUALITY_CUTTING)
+				if(W.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+					user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
+					die_off()
+					return
+				return
+
+
+		..()
+		if(W.force && ! (W.flags & NOBLUDGEON))
+			var/damage = W.force
+			//Swords and axes are good here
+			if (W.edge)
+				damage *= 1.5
+			health -= damage
+	check_health()
+
+
+
+/*************
+	ACT PROCS
+**************/
+/obj/effect/plant/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			die_off()
+			return
+		if(2.0)
+			if (prob(95))
+				die_off()
+				return
+		if(3.0)
+			if (prob(75))
+				die_off()
+				return
+		else
+	return
+
+//Fire is instakill. Deploy flamethrowers
+/obj/effect/plant/fire_act()
+	world << "Plant fire act called at [x], [y]"
+	health -= max_health * rand_between(0.5, 1.2)
+	check_health()
+
 
 /obj/effect/plant/proc/trodden_on(var/mob/living/victim)
 	if(!is_mature())

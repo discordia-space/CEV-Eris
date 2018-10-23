@@ -4,7 +4,7 @@
 	icon = 'icons/obj/flamethrower.dmi'
 	icon_state = "flamethrowerbase"
 	item_state = "flamethrower_0"
-	flags = CONDUCT
+	flags = CONDUCT | NOBLUDGEON
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
@@ -144,7 +144,8 @@
 
 
 //Called from turf.dm turf/dblclick
-/obj/item/weapon/flamethrower/proc/flame_turf(turflist)
+/obj/item/weapon/flamethrower/proc/flame_turf(var/list/turflist)
+	world << "Calling flame_turf on [turflist.len] turfs"
 	if(!lit || operating)	return
 	operating = 1
 	for(var/turf/T in turflist)
@@ -166,6 +167,7 @@
 
 
 /obj/item/weapon/flamethrower/proc/ignite_turf(turf/target)
+	world << "Igniting turf [target.x] [target.y]"
 	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(0.02*(throw_amount/100))
@@ -177,11 +179,15 @@
 	//target.hotspot_expose(part4.air_contents.temperature*2,300)
 	target.hotspot_expose((ptank.air_contents.temperature*2) + 380,500) // -- More of my "how do I shot fire?" dickery. -- TLE
 	//location.hotspot_expose(1000,500,1)
+
+
+
 	return
 
 /obj/item/weapon/flamethrower/full/New(var/loc)
 	..()
 	igniter = new /obj/item/device/assembly/igniter(src)
+	ptank = new /obj/item/weapon/tank/plasma/(src)
 	igniter.secured = 0
 	status = 1
 	update_icon()

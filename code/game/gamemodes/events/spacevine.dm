@@ -14,8 +14,13 @@
 	announceWhen	= 60
 
 /datum/event/spacevine/start()
+
+	//This is located in hydroponics/spreading/spacevine.dm because it uses defines in _hydro_setup.dm which are later undefined
 	spacevine_infestation()
+
 	spacevines_spawned = 1
 
 /datum/event/spacevine/announce()
 	level_seven_announcement()
+
+

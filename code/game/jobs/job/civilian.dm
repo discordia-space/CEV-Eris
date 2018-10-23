@@ -93,6 +93,8 @@
 
 	stat_modifers = list(
 		STAT_BIO = 10,
+		STAT_TGH = 10,
+		STAT_ROB = 20,
 	)
 
 	uniform = /obj/item/clothing/under/rank/hydroponics

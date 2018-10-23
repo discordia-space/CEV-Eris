@@ -94,7 +94,7 @@
 					neighbor.neighbors -= target_turf
 
 	// We shouldn't have spawned if the controller doesn't exist.
-	check_health()
+	check_health(FALSE)//Dont want to update the icon every process
 	if(neighbors.len || health != max_health)
 		plant_controller.add_plant(src)
 

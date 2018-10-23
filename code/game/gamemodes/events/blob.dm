@@ -57,7 +57,7 @@
 	var/maxHealth = 30
 	var/health
 	var/brute_resist = 4
-	var/fire_resist = 1
+	var/fire_resist = 0.75
 	var/expandType = /obj/effect/blob
 
 /obj/effect/blob/New(loc)
@@ -79,6 +79,10 @@
 		if(3)
 			take_damage(rand(20, 60) / brute_resist)
 
+
+/obj/effect/blob/fire_act()
+	take_damage(rand(20, 60) / fire_resist)
+
 /obj/effect/blob/update_icon()
 	if(health > maxHealth / 2)
 		icon_state = "blob"
@@ -86,12 +90,14 @@
 		icon_state = "blob_damaged"
 
 /obj/effect/blob/proc/take_damage(var/damage)
-	health -= damage
-	if(health < 0)
-		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
-		qdel(src)
-	else
-		update_icon()
+	if (damage > 0)
+		health -= damage
+		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+		if(health < 0)
+			playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+			qdel(src)
+		else
+			update_icon()
 
 /obj/effect/blob/proc/regen()
 	health = min(health + 1, maxHealth)
@@ -184,26 +190,27 @@
 
 /obj/effect/blob/attackby(var/obj/item/weapon/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
-	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
-	var/damage = 0
-	switch(W.damtype)
-		if("fire")
-			damage = (W.force / fire_resist)
-			if(istype(W, /obj/item/weapon/tool/weldingtool))
-				playsound(loc, 'sound/items/Welder.ogg', 100, 1)
-		if("brute")
-			damage = (W.force / brute_resist)
+	if(W.force && ! (W.flags & NOBLUDGEON))
+		visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+		var/damage = 0
+		switch(W.damtype)
+			if("fire")
+				damage = (W.force / fire_resist)
+				if(istype(W, /obj/item/weapon/tool/weldingtool))
+					playsound(loc, 'sound/items/Welder.ogg', 100, 1)
+			if("brute")
+				damage = (W.force / brute_resist)
 
-	take_damage(damage)
-	return
+		take_damage(damage)
+		return 1
+	return ..()
 
 /obj/effect/blob/core
 	name = "blob core"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_core"
 	maxHealth = 200
-	brute_resist = 2
+	brute_resist = 4
 	fire_resist = 2
 
 	expandType = /obj/effect/blob/shield
@@ -238,8 +245,8 @@
 	icon_state = "blob_idle"
 	desc = "Some blob creature thingy"
 	maxHealth = 60
-	brute_resist = 1
-	fire_resist = 2
+	brute_resist = 2
+	fire_resist = 1
 
 /obj/effect/blob/shield/New()
 	..()

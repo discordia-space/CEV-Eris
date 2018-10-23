@@ -196,6 +196,12 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	firelevel = fl
 	SSair.active_hotspots.Add(src)
 
+	//When a fire is created, immediately call fire_act on things in the tile.
+	//This is needed for flamethrowers
+	for (var/a in loc)
+		var/atom/A = a
+		A.fire_act()
+
 /obj/fire/proc/fire_color(var/env_temperature)
 	var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
 	return heat2color(temperature)
