@@ -32,6 +32,8 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 4
 
+	faction = "roach"
+
 
 /mob/living/superior_animal/roach/Login()
 	if(src && src.client)
