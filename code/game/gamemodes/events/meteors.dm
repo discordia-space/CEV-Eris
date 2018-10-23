@@ -10,7 +10,7 @@
 	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE,
 	EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
 
-	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
+	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE, TAG_EXTERNAL)
 //===========================================
 
 /datum/event/meteor_wave

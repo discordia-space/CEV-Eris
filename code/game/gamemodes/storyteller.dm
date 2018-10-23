@@ -22,7 +22,8 @@ var/datum/storyteller/storyteller = null
 	var/list/processing_events = list()
 	var/last_tick = 0
 	var/next_tick = 0
-	var/tick_interval = 60 SECONDS
+	var/tick_interval = 1 SECONDS //60 SECONDS //1 second is a debugging value only
+	//TODO: Set this back to 60 seconds
 
 	var/crew = 11
 	var/heads = 2
@@ -55,6 +56,9 @@ var/datum/storyteller/storyteller = null
 	var/gain_mult_major = 1.0
 	var/gain_mult_roleset = 1.0
 
+	var/list/tag_weight_mults = list()
+	var/list/tag_cost_mults = list()
+
 	var/variance = 0.15 //15% How much point gains are allowed to vary up or down per tick. This helps to keep event triggering times unpredictable
 	var/repetition_multiplier = 0.85 //Weights of events are multiplied by this value after they happen, to reduce the chance of multiple instances in short time
 
@@ -64,6 +68,11 @@ var/datum/storyteller/storyteller = null
 	//The maximum time between scheduling and firing an event
 	//Time is random between 1 decisecond to this
 
+
+
+/********************************
+	ROUNDSTART AND SETUP
+*********************************/
 /datum/storyteller/proc/can_start(var/announce = FALSE)	//when TRUE, proc should output reason, by which it can't start, to world
 	if(debug_mode)
 		return TRUE
@@ -109,6 +118,32 @@ var/datum/storyteller/storyteller = null
 /datum/storyteller/proc/set_up_events()
 	return
 
+
+
+
+
+/********************************
+	MAIN PROCESS
+*********************************/
+/datum/storyteller/Process()
+	if(can_tick())
+
+		//Update these things so we can accurately select events
+		update_crew_count()
+		update_event_weights()
+
+		/*
+			Handle points calls a large stack that increments all the point totals, and then attempts to
+			trigger as many events as our totals can afford to
+		*/
+		handle_points()
+
+		force_spawn_now = FALSE
+
+		//Set the time for the next tick
+		set_timer()
+
+
 /datum/storyteller/proc/can_tick()
 	if (world.time > next_tick)
 		return TRUE
@@ -123,15 +158,11 @@ var/datum/storyteller/storyteller = null
 	last_tick = world.time
 	next_tick = last_tick + tick_interval
 
-/datum/storyteller/Process()
-	if(can_tick())
-		world << "Storyteller TICKING"
-		update_crew_count()
-		update_event_weights()
-		trigger_event()
-		force_spawn_now = FALSE
-		set_timer()
 
+
+/****************************
+	SUB PROCESSING: For individual storyevents
+*****************************/
 /datum/storyteller/proc/add_processing(var/datum/storyevent/S)
 	ASSERT(istype(S))
 	processing_events.Add(S)
@@ -146,6 +177,11 @@ var/datum/storyteller/storyteller = null
 			if(S.is_ended())
 				S.stop_processing(TRUE)
 
+
+
+/********************************
+	ANTAGONIST HANDLING
+*********************************/
 /datum/storyteller/proc/update_objectives()
 	for(var/datum/antagonist/A in current_antags)
 		if(!A.faction)
@@ -191,10 +227,10 @@ var/datum/storyteller/storyteller = null
 			points[a] += delta
 
 /datum/storyteller/proc/handle_points()
-	points[EVENT_LEVEL_MUNDANE] += 1 * (gain_mult_mundane) * (rand(1-variance, 1+variance))
-	points[EVENT_LEVEL_MODERATE] += 1 * (gain_mult_moderate) * (rand(1-variance, 1+variance))
-	points[EVENT_LEVEL_MAJOR] += 1 * (gain_mult_major) * (rand(1-variance, 1+variance))
-	points[EVENT_LEVEL_ROLESET] += 1 * (gain_mult_roleset) * (rand(1-variance, 1+variance))
+	points[EVENT_LEVEL_MUNDANE] += 1 * (gain_mult_mundane) * (rand_between(1-variance, 1+variance))
+	points[EVENT_LEVEL_MODERATE] += 1 * (gain_mult_moderate) * (rand_between(1-variance, 1+variance))
+	points[EVENT_LEVEL_MAJOR] += 1 * (gain_mult_major) * (rand_between(1-variance, 1+variance))
+	points[EVENT_LEVEL_ROLESET] += 1 * (gain_mult_roleset) * (rand_between(1-variance, 1+variance))
 	check_thresholds()
 
 /datum/storyteller/proc/check_thresholds()
@@ -209,12 +245,16 @@ var/datum/storyteller/storyteller = null
 
 
 
+
+
+
 /*******************
 *  Event Handling
 ********************/
 
 //First we figure out which pool we're going to take an event from
 /datum/storyteller/proc/handle_event(var/event_type)
+	world << "Calling handle event for severity [event_type]"
 	//This is a buffer which will hold a copy of the list we choose.
 	//We will be modifying it and don't want those modifications to go back to the source
 	var/list/temp_pool
@@ -254,12 +294,19 @@ var/datum/storyteller/storyteller = null
 
 
 	//If it is allowed to run, we'll deduct its cost from our appropriate point score, and schedule it for triggering
-	points[event_type] -= choice.get_cost(event_type)
+	var/cost = calculate_event_cost(choice, event_type)
+	world << "Successfully found a [event_type] event, [choice.name] [choice.type]"
+	world << "It will cost [cost] points out of our [points[event_type]]"
+	points[event_type] -= cost
 	schedule_event(choice, event_type)
 
 	//When its trigger time comes, the event will once again check if it can run
 	//If it can't it will cancel itself and refund the points it cost
 
+
+
+/*Sets up an event to be fired in the near future. This keeps things unpredictable
+The actual fire event proc is located in storyteller_meta*/
 /datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
 	var/handle = addtimer(CALLBACK(GLOBAL_PROC, .proc/fire_event, C, event_type), rand(1, event_schedule_delay), TIMER_STOPPABLE)
 	scheduled_events.Add(list(C), type, handle)
@@ -271,32 +318,12 @@ var/datum/storyteller/storyteller = null
 //Builds up this storyteller's local event pools.
 //This should be called only once for each new storyteller
 /datum/storyteller/proc/build_event_pools()
-	var/test4 = "this is a test four"
-	var/list/at = list("test1" = 1, "test3" = 17, "test2" = "gazebo", test4 = EVENT_LEVEL_MODERATE)
-	if ("test1" in at)
-		world << "List contains test1"
-
-	if (17 in at)
-		world << "List contains 17 num"
-
-	if ("gazebo" in at)
-		world << "List contains gazebo"
-
-	if (test4 in at)
-		world << "List contains test4 var"
-
-	if (EVENT_LEVEL_MODERATE in at)
-		world << "List contains EVENT_LEVEL_MODERATE var"
-
 	event_pool_mundane.Cut()
 	event_pool_moderate.Cut()
 	event_pool_major.Cut()
 	event_pool_roleset.Cut()
-	world << "Calling build event pools. Number of possible events is [storyevents.len]"
 	for (var/datum/storyevent/a in storyevents)
-		world << "Loading event [a.name]. [a.id], [a.type]"
 		if (!a.enabled)
-			world << "[a] is not enabled"
 			continue
 
 		var/new_weight = calculate_event_weight(a)
@@ -307,16 +334,12 @@ var/datum/storyteller/storyteller = null
 
 		//We setup the event pools as an associative list in preparation for a pickweight call
 		if (EVENT_LEVEL_MUNDANE in a.event_pools)
-			world << "Adding [a] to mundane pool [new_weight]"
 			event_pool_mundane[a] = new_weight
 		if (EVENT_LEVEL_MODERATE in a.event_pools)
-			world << "Adding [a] to moderate pool [new_weight]"
 			event_pool_moderate[a] = new_weight
 		if (EVENT_LEVEL_MAJOR in a.event_pools)
-			world << "Adding [a] to major pool [new_weight]"
 			event_pool_major[a] = new_weight
 		if (EVENT_LEVEL_ROLESET in a.event_pools)
-			world << "Adding [a] to roleset pool [new_weight]"
 			event_pool_roleset[a] = new_weight
 
 
@@ -327,7 +350,6 @@ var/datum/storyteller/storyteller = null
 	event_pool_roleset = update_pool_weights(event_pool_roleset)
 
 /datum/storyteller/proc/update_pool_weights(var/list/pool)
-	world << "Updating weights with pool of size [pool.len]"
 	for(var/datum/storyevent/a in pool)
 		var/new_weight = calculate_event_weight(a)
 		if (a.ocurrences >= 1)

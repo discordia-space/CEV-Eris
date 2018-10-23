@@ -371,7 +371,7 @@ proc/TextPreview(var/string, var/len=40)
 		return ""
 	var/turf/T = get_turf(target)
 	var/area/A = get_area(target)
-	var/where = "[A? A.name : "Unknown Location"] | [T.x], [T.y]"
+	var/where = "[A? A.name : "Unknown Location"] | [T.x], [T.y], [T.z]"
 	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[where]</a>"
 	return whereLink
 #define gender2text(gender) capitalize(gender)

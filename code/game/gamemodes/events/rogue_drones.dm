@@ -1,34 +1,74 @@
+
+
+/datum/storyevent/rogue_drone
+	id = "rogue_drone"
+	name = "rogue drone"
+
+	event_type =/datum/event/rogue_drone
+	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_SCARY, TAG_EXTERNAL)
+
+//////////////////////////////////////////////////////////
+
 /datum/event/rogue_drone
 	endWhen = 1000
 	var/list/drones_list = list()
+	var/list/viable_turfs = list()
+	var/drones_to_spawn = 40
 
-/datum/event/rogue_drone/start()
-	//spawn them at the same place as carp
-	var/list/possible_spawns = list()
-	for(var/obj/landmark/mob/carpspawn/C in landmarks_list)
-		possible_spawns.Add(C)
 
-	//25% chance for this to be a false alarm
-	var/num
-	if(prob(25))
-		num = 0
-	else
-		num = rand(2,6)
-	for(var/i=0, i<num, i++)
-		var/mob/living/simple_animal/hostile/retaliate/malf_drone/D = new(get_turf(pick(possible_spawns)))
-		drones_list.Add(D)
-		if(prob(25))
-			D.disabled = rand(15, 60)
+
+
+/datum/event/rogue_drone/setup()
+	//We'll pick space tiles which have windows nearby
+	//This means that drones will only be spawned in places where someone could see them
+		//And thusly, places where they might fire into the ship
+	var/area/spess = locate(/area/space) in world
+	for (var/turf/T in spess)
+		if (!(T.z in maps_data.station_levels))
+			continue
+
+		//The number of windows near each tile is recorded
+		var/numwin
+		for (var/obj/structure/window/W in view(3, T))
+			numwin++
+
+		//And the square of it is entered into the list as a weight
+		if (numwin)
+			viable_turfs[T] = numwin*numwin
+
+	//We will then use pickweight and this will be more likely to choose tiles with many windows, for maximum exposure
+
+
+	announceWhen = rand(40, 60)
+	endWhen = rand(600,1200)
 
 /datum/event/rogue_drone/announce()
 	var/msg
 	if(prob(33))
-		msg = "A combat drone wing operating out of the NDV Icarus has failed to return from a sweep of this sector, if any are sighted approach with caution."
+		msg = "A combat drone wing operating out of the IHS Atomos has failed to return from a sweep of this sector, if any are sighted approach with caution."
 	else if(prob(50))
-		msg = "Contact has been lost with a combat drone wing operating out of the NDV Icarus. If any are sighted in the area, approach with caution."
+		msg = "Contact has been lost with a combat drone wing operating out of the IHS Atomos. If any are sighted in the area, approach with caution."
 	else
-		msg = "Unidentified hackers have targetted a combat drone wing deployed from the NDV Icarus. If any are sighted in the area, approach with caution."
+		msg = "Unidentified hackers have targetted a combat drone wing deployed from the IHS Atomos. If any are sighted in the area, approach with caution."
 	command_announcement.Announce(msg, "Rogue drone alert")
+	for (var/a in maps_data.station_levels)
+		world << "Station level: [a]"
+
+/datum/event/rogue_drone/start()
+	//Pick a list of spawn locatioons
+	var/list/spawn_locations = pickweight_mult(viable_turfs, drones_to_spawn)
+
+	log_and_message_admins("Spawning [drones_to_spawn]")
+	for(var/turf/T in spawn_locations)
+		var/mob/living/simple_animal/hostile/retaliate/malf_drone/D = new /mob/living/simple_animal/hostile/retaliate/malf_drone(T)
+		drones_list.Add(D)
+		if (prob(25))
+			D.disabled = rand(15, 60)
+		if (prob(95))
+			D.hostile_drone = TRUE //There's a small chance that each one wont attack
+		if (prob(5))
+			log_and_message_admins("Drone spawned at [jumplink(T)],")
 
 /datum/event/rogue_drone/end()
 	var/num_recovered = 0

@@ -8,7 +8,7 @@
 
 	event_type =/datum/event/carp_migration
 	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
-	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_SCARY)
+	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_SCARY, TAG_EXTERNAL)
 
 //////////////////////////////////////////////////////////
 
@@ -23,7 +23,7 @@
 	//This means that carp will only be spawned in places where someone could see them
 	var/area/spess = locate(/area/space) in world
 	for (var/turf/T in spess)
-		if (!T.z in maps_data.station_levels)
+		if (!(T.z in maps_data.station_levels))
 			continue
 
 		//The number of windows near each tile is recorded
@@ -58,7 +58,7 @@
 	var/list/spawn_locations = pickweight_mult(viable_turfs, number)
 
 	for(var/turf/T in spawn_locations)
-		if(prob(98)) //2% chance of SHERK
+		if(prob(97.5)) //2.5% chance of SHERK
 			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(T))
 		else
 			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp/pike(T))

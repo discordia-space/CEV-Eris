@@ -65,8 +65,6 @@
 	data += "<table><tr><td>"
 	data += "[src.name] ([src.config_tag])"
 	data += "<br>Round duration: <b>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</b>"
-	data += "<br>Time to next event: <b><a href='?src=\ref[src];edit_timer=1'>[(event_spawn_timer-world.time)/10]</a></b> s"
-	data += "<br>Last spawn stage: <b>[event_spawn_stage]</b>"
 	data += "<br>Debug mode: <b><a href='?src=\ref[src];toggle_debug=1'>\[[debug_mode?"ON":"OFF"]\]</a></b>"
 	data += "<br>One role per player: <b><a href='?src=\ref[src];toggle_orpp=1'>\[[one_role_per_player?"YES":"NO"]\]</a></b>"
 	data += "</td><td style=\"padding-left: 40px\">"
@@ -89,6 +87,14 @@
 	data += "<br><b>Total: [crew]</b> "
 	if(debug_mode)
 		data += "<a href='?src=\ref[src];edit_crew=1'>\[EDIT\]</a>"
+
+	data += "</td><td style=\"padding-left: 40px\">"
+
+	data += "<b>Event Pool Points:</b>"
+	data += "<br>Mundane: [points[EVENT_LEVEL_MUNDANE]] / [POOL_THRESHOLD_MUNDANE] "
+	data += "<br>Moderate: [points[EVENT_LEVEL_MODERATE]] / [POOL_THRESHOLD_MODERATE] "
+	data += "<br>Major: [points[EVENT_LEVEL_MAJOR]] / [POOL_THRESHOLD_MAJOR] "
+	data += "<br>Roleset: [points[EVENT_LEVEL_ROLESET]] / [POOL_THRESHOLD_ROLESET] "
 
 	data += "</td></tr></table>"
 	data += "<hr>"
@@ -128,6 +134,7 @@
 	var/severity = EVENT_LEVEL_MUNDANE
 	for(var/list/L in list(event_pool_mundane, event_pool_moderate, event_pool_major, event_pool_roleset))
 		data += "|[severity_to_string[severity]] events:"
+		data += "|Points: [points[severity]]"
 		data += "<ul>"
 		for (var/datum/storyevent/S in L)
 			data += "<li>[S.id] - weight: [L[S]] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"

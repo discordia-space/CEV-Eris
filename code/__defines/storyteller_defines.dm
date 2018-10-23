@@ -57,3 +57,9 @@
 
 //The event helps to invoke a horror vibe. Plunges players into darkness, makes terrifying creatures, etc
 #define TAG_SCARY "scary"
+
+
+//The event comes from outside the ship. Maybe you have to go EVA to deal with it, or fight off boarders
+//Examples: Meteors, carp, rogue drones, mercenaries, raiders
+#define TAG_EXTERNAL "external"
+

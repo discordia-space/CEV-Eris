@@ -56,7 +56,7 @@
 			return
 
 		for(var/epicentre in epicentreList)
-			log_and_message_admins("Ekectrical overload triggered at [jumplink(epicentre)],")
+			log_and_message_admins("Electrical overload triggered at [jumplink(epicentre)],")
 			for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
 				apc.overload_lighting()
 

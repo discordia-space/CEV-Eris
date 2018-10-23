@@ -76,7 +76,25 @@
 
 	new_weight = R.get_special_weight(new_weight)
 
+	//Factoring in tag-based weight modifiers
+	//Each storyteller has different tag weights
+	for (var/etag in tag_weight_mults)
+		if (etag in R.tags)
+			new_weight *= tag_weight_mults[etag]
+
 	return new_weight
+
+
+/datum/storyteller/proc/calculate_event_cost(var/datum/storyevent/R, var/severity)
+	var/new_cost = R.get_cost(severity)
+
+	//Factoring in tag-based cost modifiers
+	//Each storyteller has different tag weights
+	for (var/etag in tag_cost_mults)
+		if (etag in R.tags)
+			new_cost *= tag_cost_mults[etag]
+
+	return new_cost
 
 /datum/storyteller/proc/weight_mult(var/val, var/req)
 	if(req <= 0)
