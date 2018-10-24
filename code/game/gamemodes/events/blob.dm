@@ -38,37 +38,211 @@
 		Blob.Process()
 
 
+//===============================================
 
-
-//Code for how the blob functions
-
-//I will need to recode parts of this but I am way too tired atm
+/*
+	Code for how the blob functions
+	Nanako fixed this mess in October 2018
+*/
 /obj/effect/blob
 	name = "blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob"
+	var/icon_scale = 1.0
 	light_range = 3
 	desc = "Some blob creature thingy"
-	density = 1
+	density = FALSE //Normal blobs can be walked over, but it's not a good idea
+
 	opacity = 0
 	anchored = 1
 	mouse_opacity = 2
 
 	var/maxHealth = 30
-	var/health
-	var/brute_resist = 4
+	var/health = 1
+	var/brute_resist = 1.5
 	var/fire_resist = 0.75
 	var/expandType = /obj/effect/blob
 
-/obj/effect/blob/New(loc)
-	health = maxHealth
+	//We will periodically update and track neighbors in two lists:
+	//One which contains all blobs in cardinal directions, and one which contains all cardinal turfs that dont have blobs
+	var/list/blob_neighbors = list()
+	var/list/non_blob_neighbors = list()
+	var/obj/effect/blob/core/core
+
+	var/obj/effect/blob/parent
+	var/active = FALSE
+
+	//World time when we're allowed to expand next.
+	//Expansion gets slower as the blob gets farther away from the origin core
+	var/next_expansion = 0
+	var/coredist = 1
+	var/dist_time_scaling = 1.5
+
+/obj/effect/blob/New(loc, var/obj/effect/blob/_parent)
+	if (_parent)
+		parent = _parent
+		core = parent.core
+		coredist = max(1,get_dist(src, core))
+
+		//Accounting for zlevel distance
+		if (src.z != core.z)
+			coredist += (abs(z - core.z)*3)
+
+		health += (maxHealth*0.5) - coredist
 	update_icon()
+	set_awake()
+
+
+	//Random rotation for blobs, as well as larger sizing for some
+	var/rot = pick(list(0, 90, 180, -90))
+	var/matrix/M = matrix()
+	M.Turn(rot)
+	M.Scale(icon_scale)
+	transform = M
 	return ..(loc)
 
-/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target, var/height = 0, var/air_group = 0)
-	if(air_group || height == 0)
-		return 1
-	return 0
+/obj/effect/blob/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	wake_neighbors()
+	return ..()
+
+/obj/effect/blob/CanPass(var/atom/mover)
+	//No letting projectiles through
+	if (istype(mover, /obj/item/projectile))
+		return FALSE
+
+	//But mobs can walk over the nondense ones.
+	return ..()
+
+/obj/effect/blob/proc/update_neighbors()
+	blob_neighbors = list()
+	non_blob_neighbors = list()
+	var/list/turfs = cardinal_turfs(src)
+	for (var/t in turfs)
+
+		var/turf/T = t
+		var/turf/U = get_connecting_turf(T)//This handles Zlevel stuff
+		//If the target turf connects to another across Zlevels, U will hold the destination
+		var/obj/effect/blob/B = (locate(/obj/effect/blob/) in U)
+		//We check for existing blobs in the destination
+		if (B)
+			blob_neighbors.Add(B)
+		else
+			//But we add the origin to our neighbors if there isnt a blob
+			//Blob spawning code will handle making a new blob transition the zlevel
+			non_blob_neighbors.Add(T)
+
+
+
+/*************************************************
+	Basic blob processing. Every tick we will update our neighbors, try to expand, etc
+**************************************************/
+/obj/effect/blob/Process()
+
+	//Shouldn't happen, but maybe a process tick was still queued up when we stopped
+	if (!active)
+		return PROCESS_KILL
+
+	//Heal ourselves
+	regen()
+
+
+	if (world.time >= next_expansion)
+		//Update our neighbors. This may cause us to stop processing
+		update_neighbors()
+
+
+
+		//Okay if we're still active then we maybe have some expanding to do
+		if (health >= maxHealth && non_blob_neighbors.len)
+			//We will attempt to expand into only one of the possible nearby tiles
+			expand(pick(non_blob_neighbors))
+
+
+		//Maybe there are mobs in our tile we still need to melt
+		if (!attack_mobs())
+			//If not, try to go to sleep
+			set_idle()
+
+		//Another active check here
+		if (!active)
+			return PROCESS_KILL
+
+		set_expand_time()
+
+
+/obj/effect/blob/proc/regen()
+	if (core && !(QDELETED(core)))
+		health = min(health + 2, maxHealth)
+	else
+		core = null
+		//When the core is gone, the blob starts dying
+		//The closer it was to the core, the faster it dies. So death spreads out radially
+		take_damage((1.0 / coredist))
+	update_icon()
+
+/*
+	The blob is allowed to grow forever, there is no upper limit to its size
+	However, the farther away each segment is from the core, the longer it must rest between expansions
+*/
+/obj/effect/blob/proc/set_expand_time()
+	if (core && !(QDELETED(core)))
+		next_expansion = world.time + ((1 SECONDS) * (dist_time_scaling ** coredist))
+	else
+		//If the core is gone, no more expansion
+		next_expansion = INFINITY
+
+
+
+
+/*
+	TO minimise performance costs at massive sizes, blobs will go to sleep once they're no longer at the
+	edge or relevant.
+	If a blob finds itself surrounded on all sides by other blobs, and it is at full health, it has nothing to do
+*/
+/obj/effect/blob/proc/set_idle()
+	if (!active)
+		return
+
+	if (blob_neighbors.len == 4) //We must have a full list of blobneighbors
+		if (health >= maxHealth) //We must be at full health
+			if (core && !(QDELETED(core)))//We must have a living core
+				if (!attackable_mobs_in_turf())
+					STOP_PROCESSING(SSobj, src)
+					active = FALSE
+
+
+/obj/effect/blob/proc/attackable_mobs_in_turf()
+	for (var/mob/living/L in loc)
+		if (L.stat != DEAD)
+			return TRUE
+
+	for (var/obj/mecha/M in loc)
+		return TRUE
+
+	return FALSE
+
+/*
+	Wake up the blob and make it start processing again.
+	This will happen when any neighboring blob is killed
+*/
+/obj/effect/blob/proc/set_awake()
+	if (active)
+		return
+
+	START_PROCESSING(SSobj, src)
+	active = TRUE
+	set_expand_time()
+
+
+/obj/effect/blob/proc/wake_neighbors()
+	update_neighbors()
+
+	//Spawn it off so this part will trigger after we're qdeleted
+	spawn()
+		for (var/obj/effect/blob/B in blob_neighbors)
+			B.set_awake()
+
 
 /obj/effect/blob/ex_act(var/severity)
 	switch(severity)
@@ -84,45 +258,55 @@
 	take_damage(rand(20, 60) / fire_resist)
 
 /obj/effect/blob/update_icon()
-	if(health > maxHealth / 2)
+	var/healthpercent = health / maxHealth
+	if(healthpercent > 0.5)
 		icon_state = "blob"
 	else
 		icon_state = "blob_damaged"
 
+	//Blob gradually fades out as it's damaged.
+	alpha = 255 * healthpercent
+
 /obj/effect/blob/proc/take_damage(var/damage)
 	if (damage > 0)
 		health -= damage
-		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+
+		if (damage >= 5)
+			//Threshold reduces sound spam
+			playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		if(health < 0)
 			playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 			qdel(src)
 		else
 			update_icon()
-
-/obj/effect/blob/proc/regen()
-	health = min(health + 1, maxHealth)
-	update_icon()
+			wake_neighbors()
 
 
+
+
+
+
+
+/*********************************
+	EXPANDING!
+**********************************/
 //Changes by Nanako, 14th october 2018
 //Blob now deals vastly reduced damage to walls and windows, but vastly increased damage to doors
-//Also travels a much farther distance
 /obj/effect/blob/proc/expand(var/turf/T)
 	if(istype(T, /turf/unsimulated/) || istype(T, /turf/space) || (istype(T, /turf/simulated/mineral) && T.density))
 		return
 	if(istype(T, /turf/simulated/wall))
 		var/turf/simulated/wall/SW = T
-		SW.take_damage(rand(5,10))
+		SW.take_damage(rand(0,3))
 		return
-	/* TODO: Uncomment this once Pull request #2229 is merged
 	var/obj/structure/girder/G = locate() in T
 	if(G)
-		G.take_damage(5)
-	*/
+		G.take_damage(100)
+
 		//No return here because a girder is porous, we can expand past it
 	var/obj/structure/window/W = locate() in T
 	if(W)
-		W.take_damage(3, TRUE)
+		W.take_damage(rand(0,7)) //Reinforced windows have 6 resistance so this will rarely damage them
 		return
 	var/obj/structure/grille/GR = locate() in T
 	if(GR)
@@ -156,27 +340,77 @@
 		M.take_damage(40)
 		return
 
+	T.Enter(src) //This should make them travel down stairs
+
 	// Above things, we destroy completely and thus can use locate. Mobs are different.
 	for(var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
 		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
-		L.take_organ_damage(rand(30, 40))
+		L.take_organ_damage(burn = rand(15, 25))
 		return
-	new expandType(T, min(health, 30))
 
-/obj/effect/blob/proc/pulse(var/forceLeft, var/list/dirs)
-	regen()
-	sleep(2)
-	for (var/pushDir in dirs)
-		var/turf/T = get_step(src, pushDir)
-		var/obj/effect/blob/B = (locate() in T)
-		if(!B)
-			expand(T)
-		else if(forceLeft)
-			B.pulse(forceLeft - 1, dirs)
+	//We'll occasionally spawn shield tiles instead of normal blobs
+	var/obj/effect/blob/child
+	if (prob(5))
+		child = new /obj/effect/blob/shield(loc, src)
+	else
+		child = new expandType(loc, src)
+	//Spawn the child blob and move it into the new tile
+	spawn(1)
+		if (child && !(QDELETED(child)))
+			child.anchored = FALSE
+			child.forceMove(T)
+			child.anchored = TRUE
+			//Often, two blobs will attempt to move into the same tile at about the same time
+			for (var/obj/effect/blob/Bl in child.loc)
+				if (Bl != child)
+					qdel(B) //Lets make sure we don't get doubleblobs
 
+/*******************
+	BLOB ATTACKING
+********************/
+//Blobs will do horrible things to any mobs they share a tile with
+//Returns true if any mob was damaged, false if not
+/obj/effect/blob/proc/attack_mobs()
+	for (var/mob/living/L in loc)
+		if(L.stat == DEAD)
+			continue
+		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
+		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+		L.take_organ_damage(burn = rand_between(0.5, 2.5))
+
+		//In addition to the flat damage above, we will also splash a small amount of acid on the target
+		//This allows them to wear acidproof gear to resist it
+		if (iscarbon(L))
+			var/datum/reagents/R = new /datum/reagents(4, null)
+			R.add_reagent("sacid", rand_between(0.8,4))
+			R.trans_to(L, R.total_volume)
+			qdel(R)
+
+		return TRUE
+
+	var/obj/mecha/M = (locate(/obj/mecha) in loc)
+	if(M)
+		M.visible_message(SPAN_DANGER("The blob attacks \the [M]!"))
+		M.take_damage(5)
+		return TRUE
+
+	//If we get here, nobody was harmed
+	return FALSE
+
+
+//Stepping on a blob is bad for your health.
+//When walked over, the blob will wake up and attack whoever stepped on it
+//Since it's awake, it will keep attacking them every process call until they leave or die
+/obj/effect/blob/Crossed()
+	set_awake()
+	attack_mobs()
+
+/*******************
+	BLOB DEFENSE
+********************/
 /obj/effect/blob/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)
 		return
@@ -190,7 +424,7 @@
 
 /obj/effect/blob/attackby(var/obj/item/weapon/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(W.force && ! (W.flags & NOBLUDGEON))
+	if(W.force && !(W.flags & NOBLUDGEON))
 		visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 		var/damage = 0
 		switch(W.damtype)
@@ -210,60 +444,61 @@
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_core"
 	maxHealth = 200
+	health = 200
 	brute_resist = 4
 	fire_resist = 2
+	density = TRUE
+	icon_scale = 1.2
 
 	expandType = /obj/effect/blob/shield
-	var/blob_may_process = 1
+
+/obj/effect/blob/core/Process()
+	world << "Blobcore processing"
+	..()
+
+/obj/effect/blob/core/New()
+	core = src //It is its own core
+	..()
 
 /obj/effect/blob/core/update_icon()
 	return
 
-/obj/effect/blob/core/New(loc)
-	START_PROCESSING(SSobj, src)
-	return ..(loc)
-
+//When the core dies, wake up all our sub-blobs so they can slowly die too
 /obj/effect/blob/core/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	for (var/obj/effect/blob/B in world)
+		if (B == src)
+			continue
+		if (B.core == src)
+			B.core = null
+			B.set_awake()
 	return ..()
 
-/obj/effect/blob/core/Process()
-	set waitfor = 0
-	if(!blob_may_process)
-		return
-	blob_may_process = 0
-	sleep(0)
-	pulse(100, list(NORTH, EAST))
-	pulse(100, list(NORTH, WEST))
-	pulse(100, list(SOUTH, EAST))
-	pulse(100, list(SOUTH, WEST))
-	blob_may_process = 1
+
 
 /obj/effect/blob/shield
 	name = "strong blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_idle"
 	desc = "Some blob creature thingy"
-	maxHealth = 60
+	maxHealth = 180
+	health = 180
 	brute_resist = 2
 	fire_resist = 1
-
-/obj/effect/blob/shield/New()
-	..()
-	update_nearby_tiles()
-
-/obj/effect/blob/shield/Destroy()
-	density = 0
-	update_nearby_tiles()
-	. = ..()
+	density = TRUE
+	icon_scale = 1.2
 
 /obj/effect/blob/shield/update_icon()
-	if(health > maxHealth * 2 / 3)
+	var/healthpercent = health / maxHealth
+	if(healthpercent > 0.6)
 		icon_state = "blob_idle"
-	else if(health > maxHealth / 3)
+	else if(healthpercent > 0.3)
 		icon_state = "blob"
 	else
 		icon_state = "blob_damaged"
 
-/obj/effect/blob/shield/CanPass(var/atom/movable/mover, var/turf/target, var/height = 0, var/air_group = 0)
-	return !density
+
+
+	//Blob gradually fades out as it's damaged.
+	alpha = 255 * healthpercent
+
+

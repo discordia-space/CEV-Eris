@@ -237,3 +237,40 @@ var/global/list/admin_permissions = list(
 
 
 var/global/list/severity_to_string = list("[EVENT_LEVEL_MUNDANE]" = "Mundane", "[EVENT_LEVEL_MODERATE]" = "Moderate", "[EVENT_LEVEL_MAJOR]" = "Major", "[EVENT_LEVEL_ROLESET]" = "Roleset","[EVENT_LEVEL_ECONOMY]" = "Economy")
+
+/*
+Using defines here causes some fuckery, so ill just use the direct values.
+And we can't use numbers as list keys, so ill just insert the results at appropriate list elements
+Some of these elements are impossible directions, ill just insert
+*/
+/var/global/list/opposite_directions = list(
+2, //North = South
+1, //South = North
+0, //This entry would be Northsouth, an impossible direction
+8, //East = West
+10, //Northeast = Southwest
+9, //Southeast = Northwest
+0, //Northsoutheast (impossible)
+4, //West = East
+6, //Northwest = Southeast
+5)
+
+/*
+	For Reference
+1 = North
+2 = South
+3 = Northsouth (impossible)
+4 = East
+5 = Northeast
+6 = Southeast
+7 = Northsoutheast (impossible)
+8 = West
+9 = Northwest
+10 = Southwest
+
+//Also just for fun
+11 = Northsouthwest
+12 = Eastwest
+13 = Northeastwest
+14 = Northsoutheastwest. AKA Going nowhere
+*/

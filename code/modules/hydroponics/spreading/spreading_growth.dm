@@ -12,9 +12,12 @@
 	// Update our list of valid neighboring turfs.
 	neighbors = list()
 	for(var/turf/simulated/floor in get_cardinal_neighbors())
+		var/turf/zdest = get_connecting_turf(floor)//Handling zlevels
 		if(get_dist(parent, floor) > spread_distance)
 			continue
-		if((locate(/obj/effect/plant) in floor.contents) || (locate(/obj/effect/dead_plant) in floor.contents) )
+
+		//We check zdest, not floor, for existing plants
+		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents) )
 			continue
 		if(floor.density)
 			if(!isnull(seed.chems["pacid"]))
