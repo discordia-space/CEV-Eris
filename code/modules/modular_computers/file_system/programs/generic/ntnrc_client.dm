@@ -31,7 +31,7 @@
 		if(!channel)
 			return 1
 		var/mob/living/user = usr
-		var/message = sanitize(input(user, "Enter message or leave blank to cancel: "), 512)
+		var/message = sanitize(input_utf8(user, "Enter message or leave blank to cancel: "), 512)
 		if(!message || !channel)
 			return
 		channel.add_message(message, username)
@@ -53,7 +53,7 @@
 
 		if(C.password)
 			var/mob/living/user = usr
-			var/password = sanitize(input(user,"Access Denied. Enter password:"))
+			var/password = sanitize(input_utf8(user,"Access Denied. Enter password:"))
 			if(C && (password == C.password))
 				C.add_client(src)
 				channel = C
@@ -68,7 +68,7 @@
 	if(href_list["PRG_newchannel"])
 		. = 1
 		var/mob/living/user = usr
-		var/channel_title = sanitizeSafe(input(user,"Enter channel name or leave blank to cancel:"), 64)
+		var/channel_title = sanitizeSafe(input_utf8(user,"Enter channel name or leave blank to cancel:"), 64)
 		if(!channel_title)
 			return
 		var/datum/ntnet_conversation/C = new/datum/ntnet_conversation(computer.z)
@@ -98,7 +98,7 @@
 	if(href_list["PRG_changename"])
 		. = 1
 		var/mob/living/user = usr
-		var/newname = sanitize(input(user,"Enter new nickname or leave blank to cancel:"), 20)
+		var/newname = sanitize(input_utf8(user,"Enter new nickname or leave blank to cancel:"), 20)
 		if(!newname)
 			return 1
 		if(channel)
@@ -110,7 +110,7 @@
 		if(!channel)
 			return
 		var/mob/living/user = usr
-		var/logname = input(user,"Enter desired logfile name (.log) or leave blank to cancel:")
+		var/logname = sanitize(input_utf8(user,"Enter desired logfile name (.log) or leave blank to cancel:"))
 		if(!logname || !channel)
 			return 1
 		var/datum/computer_file/data/logfile = new/datum/computer_file/data/logfile()
@@ -128,14 +128,16 @@
 				return 1
 			if(!computer.hard_drive)
 				computer.visible_message("\The [computer] shows an \"I/O Error - Hard drive connection error\" warning.")
-			else	// In 99.9% cases this will mean our HDD is full
+			else if (computer.hard_drive.used_capacity + logfile.size == computer.hard_drive.max_capacity)	// In 99.9% cases this will mean our HDD is full
 				computer.visible_message("\The [computer] shows an \"I/O Error - Hard drive may be full. Please free some space and try again. Required space: [logfile.size]GQ\" warning.")
+			else
+				computer.visible_message("\The [computer] shows an \"I/O Error - Unable to store log. Invalid name")	
 	if(href_list["PRG_renamechannel"])
 		. = 1
 		if(!operator_mode || !channel)
 			return 1
 		var/mob/living/user = usr
-		var/newname = sanitize(input(user, "Enter new channel name or leave blank to cancel:"), 64)
+		var/newname = sanitize(input_utf8(user, "Enter new channel name or leave blank to cancel:"), 64)
 		if(!newname || !channel)
 			return
 		channel.add_status_message("Channel renamed from [channel.title] to [newname] by operator.")
@@ -151,7 +153,7 @@
 			return 1
 
 		var/mob/living/user = usr
-		var/newpassword = sanitize(input(user, "Enter new password for this channel. Leave blank to cancel, enter 'nopassword' to remove password completely:"))
+		var/newpassword = sanitize(input_utf8(user, "Enter new password for this channel. Leave blank to cancel, enter 'nopassword' to remove password completely:"))
 		if(!channel || !newpassword || ((channel.operator != src) && !netadmin_mode))
 			return 1
 
@@ -205,11 +207,11 @@
 
 	data["adminmode"] = C.netadmin_mode
 	if(C.channel)
-		data["title"] = C.channel.title
+		data["title"] = cyrillic_to_unicode(C.channel.title)
 		var/list/messages[0]
 		for(var/M in C.channel.messages)
 			messages.Add(list(list(
-				"msg" = M
+				"msg" = cyrillic_to_unicode(M)
 			)))
 		data["messages"] = messages
 		var/list/clients[0]

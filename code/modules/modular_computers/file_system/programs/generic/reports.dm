@@ -110,7 +110,7 @@
 	var/mob/user = usr
 
 	if(text2num(href_list["warning"])) //Gives the user a chance to avoid losing unsaved reports.
-		if(alert(user, "Are you sure you want to leave this page? Unsubmitted data will be lost.",, "Yes.", "No.") == "No.")
+		if(alert(user, "Are you sure you want to leave this page? Unsubmitted data will be lost.",, "Yes", "No") == "No")
 			return 1 //If yes, proceed to the actual action instead.
 
 	if(href_list["load"])
@@ -132,7 +132,7 @@
 			return 1
 		if(selected_report.submit(user))
 			to_chat(user, "The [src] has been submitted.")
-			if(alert(user, "Would you like to save a copy?","Save Report", "Yes.", "No.") == "Yes.")
+			if(alert(user, "Would you like to save a copy?","Save Report", "Yes", "No") == "Yes")
 				save_report(user)
 		return 1
 	if(href_list["discard"])
