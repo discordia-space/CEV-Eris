@@ -556,7 +556,6 @@
 					message = "makes a very loud noise."
 					m_type = 2
 			cloud_emote = "cloud-scream"
-			world.log << cloud_emote
 
 		if ("help")
 			src << {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
