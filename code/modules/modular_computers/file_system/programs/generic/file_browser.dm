@@ -172,7 +172,7 @@
 				data["error"] = "I/O ERROR: Unable to open file."
 			else
 				data["filedata"] = pencode2html(file.stored_data)
-				data["filename"] = "[file.filename].[file.filetype]"
+				data["filename"] = cyrillic_to_unicode("[file.filename].[file.filetype]")
 	else
 		if(!PRG.computer || !PRG.computer.hard_drive)
 			data["error"] = "I/O ERROR: Unable to access hard drive."
@@ -182,8 +182,8 @@
 			var/list/files[0]
 			for(var/datum/computer_file/F in HDD.stored_files)
 				files.Add(list(list(
-					"name" = F.filename,
-					"type" = F.filetype,
+					"name" = cyrillic_to_unicode(F.filename),
+					"type" = cyrillic_to_unicode(F.filetype),
 					"size" = F.size,
 					"undeletable" = F.undeletable
 				)))
@@ -193,8 +193,8 @@
 				var/list/usbfiles[0]
 				for(var/datum/computer_file/F in RHDD.stored_files)
 					usbfiles.Add(list(list(
-						"name" = F.filename,
-						"type" = F.filetype,
+						"name" = cyrillic_to_unicode(F.filename),
+						"type" = cyrillic_to_unicode(F.filetype),
 						"size" = F.size,
 						"undeletable" = F.undeletable
 					)))
