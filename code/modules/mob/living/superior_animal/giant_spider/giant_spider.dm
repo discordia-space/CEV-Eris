@@ -8,6 +8,7 @@
 	maxHealth = 200
 	health = 200
 
+	attack_sound = 'sound/weapons/spiderlunge.ogg'
 	speak_emote = list("chitters")
 	emote_see = list("chitters", "rubs its legs")
 	speak_chance = 5

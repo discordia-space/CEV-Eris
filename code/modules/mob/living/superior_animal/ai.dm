@@ -22,15 +22,8 @@
 	if (!Adjacent(target_mob))
 		return
 
-	if (isliving(target_mob))
-		var/mob/living/M = target_mob
-		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		return M
-
-	if (istype(target_mob, /obj/mecha))
-		var/obj/mecha/M = target_mob
-		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		return M
+	UnarmedAttack(target_mob,1)
+	return target_mob
 
 /mob/living/carbon/superior_animal/proc/prepareAttackOnTarget()
 	stop_automated_movement = 1

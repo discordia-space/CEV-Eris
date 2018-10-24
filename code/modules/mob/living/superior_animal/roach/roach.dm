@@ -6,13 +6,10 @@
 
 	density = 0 //Swarming roaches! They also more robust that way.
 
+	attack_sound = 'sound/voice/insect_battle_bite.ogg'
 	emote_see = list("chirps loudly.", "cleans its whiskers with forelegs.")
 	turns_per_move = 3
 	turns_since_move = 0
-
-	response_help = "pets the"
-	response_disarm = "pushes aside"
-	response_harm = "stamps on"
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
 	meat_amount = 3

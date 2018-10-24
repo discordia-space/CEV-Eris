@@ -9,7 +9,6 @@
 	. = ..()
 
 	var/mob/living/M = .
-	if(istype(M))
-		if(prob(5))
-			M.Weaken(3)
-			M.visible_message(SPAN_DANGER("\the [src] knocks down \the [M]!"))
+	if(istype(M) && !M.weakened && prob(5))
+		M.Weaken(3)
+		M.visible_message(SPAN_DANGER("\the [src] knocks down \the [M]!"))

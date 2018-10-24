@@ -11,9 +11,12 @@
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "tomato"
 
-	var/icon_living = ""
-	var/icon_dead = ""
-	var/icon_gib = null //We only try to show a gibbing animation if this exists.
+	var/icon_living
+	var/icon_dead
+	var/icon_rest //resting/unconscious animation
+	var/icon_gib //gibbing animation
+	var/icon_dust //dusting animation
+	var/dust_remains = /obj/effect/decal/cleanable/ash
 
 	var/emote_see = list() //chat emotes
 	var/speak_chance = 2 //percentage chance of speaking a line from 'emote_see'
@@ -24,12 +27,11 @@
 	var/stop_automated_movement = 0 //use this to temporarely stop random movement
 	var/stop_automated_movement_when_pulled = 0
 
-	var/response_help = "pets"
-	var/response_disarm = "gently pushes aside"
-	var/response_harm = "pokes"
 	var/deathmessage = "dies."
 	var/attacktext = "bitten"
-	var/attack_sound = 'sound/voice/insect_battle_bite.ogg'
+	var/attack_sound = 'sound/weapons/spiderlunge.ogg'
+	var/attack_sound_chance = 25
+	var/attack_sound_volume = 30
 	var/friendly = "nuzzles"
 
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/roachmeat
