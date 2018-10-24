@@ -5,6 +5,8 @@
 	icon_state = "guard"
 	pass_flags = PASSTABLE
 
+	mob_size = MOB_MEDIUM
+
 	maxHealth = 200
 	health = 200
 

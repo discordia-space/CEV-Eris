@@ -6,6 +6,8 @@
 		return
 
 	var/damage = rand(melee_damage_lower, melee_damage_upper)
-	if(A.attack_generic(src, damage, attacktext, environment_smash) && loc && attack_sound)
-		if (attack_sound && prob(attack_sound_chance))
+
+	. = A.attack_generic(src, damage, attacktext, environment_smash)
+	if(.)
+		if (attack_sound && loc && prob(attack_sound_chance))
 			playsound(loc, attack_sound, attack_sound_volume, 1)

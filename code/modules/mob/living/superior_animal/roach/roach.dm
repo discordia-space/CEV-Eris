@@ -4,6 +4,8 @@
 
 	icon_state = "roach"
 
+	mob_size = MOB_SMALL
+
 	density = 0 //Swarming roaches! They also more robust that way.
 
 	attack_sound = 'sound/voice/insect_battle_bite.ogg'

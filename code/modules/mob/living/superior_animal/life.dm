@@ -52,16 +52,3 @@
 	//Speaking
 	if(speak_chance && prob(speak_chance))
 		visible_emote(emote_see)
-
-
-/mob/living/carbon/superior_animal/handle_environment(var/datum/gas_mixture/environment)
-	if(!environment)
-		return
-
-	if(environment.temperature > (T0C+66))
-		adjustFireLoss((environment.temperature - (T0C+66))/5)
-
-/mob/living/carbon/superior_animal/handle_fire()
-	if(..())
-		return
-	bodytemperature += BODYTEMP_HEATING_MAX

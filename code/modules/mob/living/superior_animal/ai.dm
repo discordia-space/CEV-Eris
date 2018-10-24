@@ -22,8 +22,7 @@
 	if (!Adjacent(target_mob))
 		return
 
-	UnarmedAttack(target_mob,1)
-	return target_mob
+	return UnarmedAttack(target_mob,1)
 
 /mob/living/carbon/superior_animal/proc/prepareAttackOnTarget()
 	stop_automated_movement = 1
