@@ -37,6 +37,8 @@
 	var/breath_poison_type = "plasma" //0 to disable, toxloss if present in sufficient quantity
 	var/min_breath_required_type = 16 //minimum portion of gas in a single breath
 	var/min_breath_poison_type = 0.2 //minimum portion of gas in a single breath
+	var/light_dam = 0 //0 to disable, minimum amount of lums to cause damage, otherwise heals in darkness
+	var/hunger_factor = 0 //0 to disable, how much nutrition is consumed per life tick
 
 	var/min_air_pressure = 50 //below this, brute damage is dealt
 	var/max_air_pressure = 300 //above this, brute damage is dealt
