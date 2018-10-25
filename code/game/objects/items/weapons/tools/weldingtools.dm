@@ -31,6 +31,7 @@
 		..()
 		damtype = BURN
 		force = force_ignited
+		ignites_with_touch = 1
 		START_PROCESSING(SSobj, src)
 	else
 		item_state = initial(item_state)
@@ -46,6 +47,7 @@
 	..()
 	damtype = initial(damtype)
 	force = initial(force)
+	ignites_with_touch = initial(ignites_with_touch)
 
 
 /obj/item/weapon/tool/weldingtool/advanced

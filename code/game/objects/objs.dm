@@ -12,6 +12,7 @@
 	var/damtype = "brute"
 	var/armor_penetration = 0
 	var/corporation = null
+	var/ignites_with_touch //if 1, ignites things when it hits them, does not add fire stacks by itself
 
 
 
