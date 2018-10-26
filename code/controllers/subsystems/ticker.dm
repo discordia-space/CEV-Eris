@@ -94,10 +94,6 @@ SUBSYSTEM_DEF(ticker)
 			if(start_immediately)
 				pregame_timeleft = 0
 
-			//countdown
-			if(pregame_timeleft < 0)
-				return
-
 			if(round_progressing)
 				pregame_timeleft--
 
@@ -158,7 +154,7 @@ SUBSYSTEM_DEF(ticker)
 	//Create and announce mode
 
 	if(!storyteller)
-		set_storyteller()
+		set_storyteller(announce = FALSE)
 
 	if(!storyteller)
 		world << "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby."
@@ -317,7 +313,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/collect_minds()
 	for(var/mob/living/player in player_list)
 		if(player.mind)
-			SSticker.minds.Add(player.mind)
+			SSticker.minds |= player.mind
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()

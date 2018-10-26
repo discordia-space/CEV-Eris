@@ -115,8 +115,7 @@
 
 //Fire is instakill. Deploy flamethrowers
 /obj/effect/plant/fire_act()
-	world << "Plant fire act called at [x], [y]"
-	health -= max_health * rand_between(0.5, 1.2)
+	health -= max_health * rand_between(0.5, 1.5)
 	check_health()
 
 

@@ -1,5 +1,6 @@
 /*
-	Some of the vendors on the ship will go a bit nuts, firing their contents, shouting abuse, and allowing contraband
+	Some of the vendors on the ship will go a bit nuts, firing their contents, shouting abuse, and
+	allowing contraband.
 	It will affect a limited quantity of vendors, but affected ones will last forever until fixed
 */
 /datum/storyevent/brand_intelligence
@@ -29,7 +30,8 @@
 
 /datum/event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in SSmachines.machinery)
-		if(isNotStationLevel(V.z))	continue
+		if(!(V.z in maps_data.station_levels))
+			continue
 		vendingMachines.Add(V)
 
 	if(!vendingMachines.len)
@@ -52,18 +54,18 @@
 		return
 
 	if(IsMultiple(activeFor, 5))
-		if(prob(15))
-			var/obj/machinery/vending/infectedMachine = pick(vendingMachines)
-			vendingMachines.Remove(infectedMachine)
-			infectedVendingMachines.Add(infectedMachine)
-			infectedMachine.shut_up = 0
-			infectedMachine.shoot_inventory = 1
-			infectedMachine.categories = 7 //This unlocks coin/contraband content
-			if(IsMultiple(activeFor, 12))
-				originMachine.speak(pick("Try our aggressive new marketing strategies!", \
-										 "You should buy products to feed your lifestyle obsession!", \
-										 "Consume!", \
-										 "Your money can buy happiness!", \
-										 "Engage direct marketing!", \
-										 "Advertising is legalized lying! But don't let that put you off our great deals!", \
-										 "You don't want to buy anything? Yeah, well I didn't want to buy your mom either."))
+		var/obj/machinery/vending/infectedMachine = pick(vendingMachines)
+		vendingMachines.Remove(infectedMachine)
+		infectedVendingMachines.Add(infectedMachine)
+		infectedMachine.shut_up = 0
+		infectedMachine.shoot_inventory = 1
+		infectedMachine.categories = 7 //This unlocks coin/contraband content
+		if(IsMultiple(activeFor, 12))
+			originMachine.speak(pick("Try our aggressive new marketing strategies!", \
+									 "You should buy products to feed your lifestyle obsession!", \
+									 "Consume!", \
+									 "Your money can buy happiness!", \
+									 "Engage direct marketing!", \
+									 "Advertising is legalized lying! But don't let that put you off our great deals!", \
+									 "You don't want to buy anything? Yeah, well I didn't want to buy your mom either.",
+									 "Come and buy our products ~nya"))

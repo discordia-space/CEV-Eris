@@ -91,10 +91,10 @@
 	data += "</td><td style=\"padding-left: 40px\">"
 
 	data += "<b>Event Pool Points:</b>"
-	data += "<br>Mundane: [points[EVENT_LEVEL_MUNDANE]] / [POOL_THRESHOLD_MUNDANE] "
-	data += "<br>Moderate: [points[EVENT_LEVEL_MODERATE]] / [POOL_THRESHOLD_MODERATE] "
-	data += "<br>Major: [points[EVENT_LEVEL_MAJOR]] / [POOL_THRESHOLD_MAJOR] "
-	data += "<br>Roleset: [points[EVENT_LEVEL_ROLESET]] / [POOL_THRESHOLD_ROLESET] "
+	data += "<br>Mundane: [round(points[EVENT_LEVEL_MUNDANE], 0.1)] / [POOL_THRESHOLD_MUNDANE]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MUNDANE]'>\[ADD\]</a>"
+	data += "<br>Moderate: [round(points[EVENT_LEVEL_MODERATE], 0.1)] / [POOL_THRESHOLD_MODERATE]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MODERATE]'>\[ADD\]</a>"
+	data += "<br>Major: [round(points[EVENT_LEVEL_MAJOR], 0.1)] / [POOL_THRESHOLD_MAJOR]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MAJOR]'>\[ADD\]</a>"
+	data += "<br>Roleset: [round(points[EVENT_LEVEL_ROLESET], 0.1)] / [POOL_THRESHOLD_ROLESET]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_ROLESET]'>\[ADD\]</a>"
 
 	data += "</td></tr></table>"
 	data += "<hr>"
@@ -115,15 +115,20 @@
 
 	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
 
-	for(var/datum/antagonist/A in current_antags)
-		var/act = "<font color=red>DEAD</font>"
-		if(!A.is_dead())
-			if(!A.is_active())
-				act = "<font color=silver>AFK</font>"
-			else
-				act = "OK"
+	if (current_antags.len)
+		for(var/datum/antagonist/A in current_antags)
+			var/act = "<font color=red>DEAD</font>"
+			if(!A.is_dead())
+				if(!A.is_active())
+					act = "<font color=silver>AFK</font>"
+				else
+					act = "OK"
 
-		data += "<li>[A.role_text] - [A.owner?(A.owner.name):"no owner"] ([act])<a href='?src=\ref[A];panel=1'>\[EDIT\]</a></li>"
+
+
+			data += "<li>[A.role_text] - [A.owner?(A.owner.name):"no owner"] ([act])<a href='?src=\ref[A];panel=1'>\[EDIT\]</a></li>"
+	else
+		data += "<b>There are no antagonists</b>"
 
 	data += "</ul></div><hr>"
 	data += "<br>Calculate weight: <b><a href='?src=\ref[src];toggle_weight_calc=1'>[calculate_weights?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
@@ -239,6 +244,11 @@
 				message_admins("Event \"[evt.id]\" was [evt.enabled?"allowed":"restricted"] to spawn by [key_name(usr)]")
 			if(href_list["ev_spawn"])
 				world << "Planning to spawn an event of severity [href_list["severity"]]"
+				if (!evt.can_trigger())
+					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger. Would you like to force it anyway?.", "Force Event? ", "yes", "no")
+					if (answer == "no")
+						return
+
 				var/result = evt.create(href_list["severity"])
 				if (result)
 					message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
@@ -249,7 +259,10 @@
 			if(href_list["ev_set_weight"])
 				evt.weight_cache = input("Enter new weight.","Weight",evt.weight_cache) as num
 
-
+	if(href_list["modify_points"])
+		var/pooltype = href_list["modify_points"]
+		var/add_points = input("Pool [pooltype] currently has [round(points[pooltype], 0.01)]. How many do you wish to add? Enter a negative value to subtract points","Altering Points",eng) as num
+		modify_points(add_points, pooltype)
 	storyteller_panel()
 
 /datum/storyteller/proc/topic_extra(href,href_list)

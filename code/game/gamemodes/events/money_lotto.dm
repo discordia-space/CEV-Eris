@@ -1,6 +1,7 @@
 /*
 	Grants a large sum of money to one player
 	//TODO: APPROPRIATE lore factions for things mentioned here
+	//Clock give me some factions, don't merge it til we fix this
 */
 /datum/storyevent/money_lotto
 	id = "money_lotto"

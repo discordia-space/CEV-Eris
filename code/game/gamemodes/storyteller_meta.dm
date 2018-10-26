@@ -23,7 +23,6 @@ var/global/list/scheduled_events = list()
 		//Something has changed, it was valid before but not now
 		//This shouldnt happen often
 		//We will refund its cost and abort
-		//TODO: Refund cost here
-		C.cancel(0.0)
+		C.cancel(event_type, 0.0)
 		return
-	C.create()
+	C.create(event_type)

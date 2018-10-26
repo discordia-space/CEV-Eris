@@ -1,4 +1,7 @@
-
+/*
+	This event spawns a ton of spaceborne fighter drones which crowd around the hull and fire lasers in
+	through windows. They can be quite lethal if you stand around infront of them, but closing firelocks works
+*/
 
 /datum/storyevent/rogue_drone
 	id = "rogue_drone"

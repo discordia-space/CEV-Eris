@@ -1,3 +1,20 @@
+/*
+	Some of the vendors on the ship will go a bit nuts, firing their contents, shouting abuse, and
+	allowing contraband.
+	It will affect a limited quantity of vendors, but affected ones will last forever until fixed
+*/
+/datum/storyevent/viral_infection
+	id = "viral_infection"
+	name = "viral infection"
+
+	event_type =/datum/event/viral_infection
+	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE,
+	EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	tags = list(TAG_TARGETED, TAG_NEGATIVE)
+
+//////////////////////////////////////////////////////////
+
+
 /var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
 
 datum/event/viral_infection
@@ -13,7 +30,7 @@ datum/event/viral_infection/setup()
 		var/datum/disease2/disease/D = new /datum/disease2/disease
 
 		var/strength = 1 //whether the disease is of the greater or lesser variety
-		if (severity >= EVENT_LEVEL_MAJOR && prob(75))
+		if (severity == EVENT_LEVEL_MAJOR && prob(75))
 			strength = 2
 		D.makerandom(strength)
 		viruses += D
@@ -44,8 +61,7 @@ datum/event/viral_infection/start()
 
 	var/list/used_viruses = list()
 	var/list/used_candidates = list()
-	severity = max(EVENT_LEVEL_MUNDANE, severity - 1)
-	var/actual_severity = severity * rand(1, 3)
+	var/actual_severity = rand(2, 6)
 	while(actual_severity > 0 && candidates.len)
 		var/datum/disease2/disease/D = pick(viruses)
 		infect_mob(candidates[1], D.getcopy())

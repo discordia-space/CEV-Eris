@@ -1,10 +1,21 @@
+/*
+	The blob is a horrible acidic slime creature that eats through airlocks and expands infinitely.
+	The rate of expansion slows down as it grows, so it is ultimately soft-capped
+
+	Its attacks deal light burn damage, but spam many hits. They deal a lot of damage by splashing acid
+	onto victims, allowing acidproof gear to provide some good protection
+
+	Blobs are very vulnerable to fire and lasers. Flamethrower is the recommended weapon, and
+	In an emergency, a plasma canister and a lighter will bring a quick end to a blob
+*/
+
 /datum/storyevent/blob
 	id = "blob"
 	name = "Blob"
 
 
 	event_type = /datum/event/blob
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.2)
 	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_NEGATIVE)
 //============================================
 
@@ -452,9 +463,6 @@
 
 	expandType = /obj/effect/blob/shield
 
-/obj/effect/blob/core/Process()
-	world << "Blobcore processing"
-	..()
 
 /obj/effect/blob/core/New()
 	core = src //It is its own core

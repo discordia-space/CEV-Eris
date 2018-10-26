@@ -1,11 +1,12 @@
 /datum/antagonist/revolutionary/excelsior
 	id = ROLE_EXCELSIOR_REV
-	role_text = "Infiltrator"
+	role_text = "Excelsior Infiltrator"
 	role_text_plural = "Infiltrators"
 	role_type = "Excelsior Infiltrator"
 	welcome_text = "Viva la revolution!"
 
 	faction_id = FACTION_EXCELSIOR
+	allow_neotheology = FALSE //Implant causes head asplode
 
 /datum/faction/revolutionary/excelsior
 	id = FACTION_EXCELSIOR

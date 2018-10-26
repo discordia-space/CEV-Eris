@@ -8,6 +8,8 @@
 	var/failchance = 5
 	var/obj/item/target = null
 	anchored = TRUE
+	var/lifetime = 0
+	var/birthtime = 0
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
 	spawn(0)
@@ -27,10 +29,14 @@
 		return
 	return
 
-/obj/effect/portal/New(loc, lifetime = 300)
+/obj/effect/portal/New(loc, _lifetime = 300)
 	..(loc)
-	spawn(lifetime)
-		qdel(src)
+	birthtime = world.time
+	lifetime = _lifetime
+	addtimer(CALLBACK(src, .proc/close,), lifetime)
+
+
+/obj/effect/portal/proc/close()
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if(istype(M, /obj/effect)) //sparks don't teleport
@@ -47,21 +53,77 @@
 			on_fail(M)
 		else
 			do_teleport(M, target, 1) ///You will appear adjacent to the beacon
+			return TRUE
 
 /obj/effect/portal/proc/on_fail(atom/movable/M as mob|obj)
 	src.icon_state = "portal1"
 	do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
 
 
+
+
+/*
+	Wormholes come in linked pairs and can be traversed freely from either end.
+	They gain some instability after being used, and should be left to settle or risk mishaps
+*/
 /obj/effect/portal/wormhole
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "anom"
+	icon_state = "wormhole"
 	name = "wormhole"
 	failchance = 0
+	var/obj/effect/portal/wormhole/partner
+	var/processing = FALSE
 
-/obj/effect/portal/wormhole/New(loc, exit, lifetime)
+/obj/effect/portal/wormhole/New(loc, lifetime, exit)
+	message_admins("Wormhole with lifetime [time2text(lifetime, "hh hours, mm minutes and ss seconds")] created at ([jumplink(src)])", 0, 1)
 	..(loc, lifetime)
 	target = exit
+	pair()
+
+/obj/effect/portal/wormhole/teleport(atom/movable/M as mob|obj)
+	.=..(M)
+
+	//Parent returns true if someone was successfully teleported
+	if (.)
+		//In that case, we'll gain some instability
+		failchance += 3.5
+		if (!processing)
+			START_PROCESSING(SSobj, src)
+			processing = TRUE
+		update_icon()
+
+/obj/effect/portal/wormhole/Process()
+	//We will gradually stabilize
+	failchance -= 0.1
+	update_icon()
+
+	//If we become fully stable, we stop processing
+	if (failchance <= 0)
+		failchance = 0
+		STOP_PROCESSING(SSobj, src)
+		processing = FALSE
+
+/obj/effect/portal/wormhole/update_icon()
+	if (failchance > 0)
+		icon_state = "wormhole_unstable"
+		desc = "It is whirling violently. Going into this thing might be a bad idea."
+	else
+		icon_state = "wormhole"
+		desc = "It spins gently and calmly. It's probably safe, right?"
+
+//Links this wormhole up with its target destination, creating another if necessary
+/obj/effect/portal/wormhole/proc/pair()
+	partner = null
+	if (!target)
+		return
+
+	var/turf/T = get_turf(target)
+	partner = (locate(/obj/effect/portal/wormhole) in T)
+
+	//There's no wormhole in the target tile yet. We shall make one
+	if (!partner)
+		partner = new /obj/effect/portal/wormhole(T, lifetime, loc)
+
 
 
 /obj/effect/portal/unstable

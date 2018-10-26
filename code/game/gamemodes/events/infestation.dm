@@ -102,11 +102,8 @@
 		if (EVENT_LEVEL_MAJOR)
 			chosen_mob = pick(possible_mobs_major)
 			num_spawns_per_area = possible_mobs_major[chosen_mob]
-	//world << "Prerandom num [num_spawns_per_area]. Rand is [rand(0.75, 1.5)]"
 	num_spawns_per_area *= rand_between(0.75, 1.5)
-	//world << "Prerounding num [num_spawns_per_area]"
 	num_spawns_per_area = round(num_spawns_per_area, 1)
-	//world << "We are going to spawn [num_spawns_per_area] [chosen_mob]"
 
 	switch(chosen_mob)
 		if(INFESTATION_HIVEBOTS)
@@ -178,10 +175,16 @@
 			new spawned_mob(T)
 
 /datum/event/infestation/announce()
-	switch(severity)
-		if (EVENT_LEVEL_MUNDANE)
-			command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)]. Clear them out before this starts to affect productivity.", event_name, new_sound = 'sound/AI/vermin.ogg')
-		if (EVENT_LEVEL_MODERATE)
-			command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)] and [strip_improper(chosen_areas[2].name)]. Ironhammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
-		if (EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)],[strip_improper(chosen_areas[2].name)] and [strip_improper(chosen_areas[3].name)]. Crew are advised to evacuate those areas immediately.", event_name, new_sound = 'sound/AI/vermin.ogg')
+
+	//Occasional chance to play the same generic announcement as spiders and carp
+	//Just to screw with the metagamers even more
+	if (prob(8))
+		command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
+	else
+		switch(severity)
+			if (EVENT_LEVEL_MUNDANE)
+				command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)]. Clear them out before this starts to affect productivity.", event_name, new_sound = 'sound/AI/vermin.ogg')
+			if (EVENT_LEVEL_MODERATE)
+				command_announcement.Announce("Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)] and [strip_improper(chosen_areas[2].name)]. Ironhammer are advised to approach with caution.", event_name, new_sound = 'sound/AI/vermin.ogg')
+			if (EVENT_LEVEL_MAJOR)
+				command_announcement.Announce("Shipwide Alert: Bioscans indicate that [chosen_mob] [chosen_verb] [strip_improper(chosen_areas[1].name)],[strip_improper(chosen_areas[2].name)] and [strip_improper(chosen_areas[3].name)]. Crew are advised to evacuate those areas immediately.", event_name, new_sound = 'sound/AI/vermin.ogg')

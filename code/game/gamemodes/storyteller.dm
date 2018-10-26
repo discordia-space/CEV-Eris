@@ -22,25 +22,24 @@ var/datum/storyteller/storyteller = null
 	var/list/processing_events = list()
 	var/last_tick = 0
 	var/next_tick = 0
-	var/tick_interval = 1 SECONDS //60 SECONDS //1 second is a debugging value only
-	//TODO: Set this back to 60 seconds
+	var/tick_interval = 60 SECONDS //Ticks once per second
 
-	var/crew = 11
-	var/heads = 2
-	var/sec = 4
-	var/eng = 3
-	var/med = 4
-	var/sci = 5
+	var/crew = 0
+	var/heads = 0
+	var/sec = 0
+	var/eng = 0
+	var/med = 0
+	var/sci = 0
 
 	var/event_spawn_timer = 0
 	var/event_spawn_stage = 0
 
 	//Set values here for starting points
 	var/list/points = list(
-	0, //Mundane
-	0, //Moderate
-	0, //Major
-	110 //Roleset
+	EVENT_LEVEL_MUNDANE = 0, //Mundane
+	EVENT_LEVEL_MODERATE = 0, //Moderate
+	EVENT_LEVEL_MAJOR = 0, //Major
+	EVENT_LEVEL_ROLESET = 110 //Roleset
 	)
 
 	//Lists of events. These are built dynamically at runtime
@@ -110,16 +109,12 @@ var/datum/storyteller/storyteller = null
 	world << "<b><font size=3>Storyteller is [src.name].</font> <br>[welcome]</b>"
 
 /datum/storyteller/proc/set_up()
-	world << "Calling storyteller setup"
 	build_event_pools()
 	set_timer()
 	set_up_events()
 
 /datum/storyteller/proc/set_up_events()
 	return
-
-
-
 
 
 /********************************
@@ -199,8 +194,8 @@ var/datum/storyteller/storyteller = null
 	//R.weight_cache *= 1-rand()*weight_randomizer
 	return R.weight_cache
 
-/datum/storyteller/proc/trigger_event()
-	story_debug("Called trigger_event() of base type. Fix this shit!")
+///datum/storyteller/proc/trigger_event()
+//	story_debug("Called trigger_event() of base type. Fix this shit!")
 
 
 /proc/storyteller_button()
@@ -214,7 +209,7 @@ var/datum/storyteller/storyteller = null
 *  Points Handling
 ********************/
 
-/datum/storyteller/proc/modify_points(var/delta, var/type = 0)
+/datum/storyteller/proc/modify_points(var/delta, var/type = EVENT_LEVEL_ROLESET)
 	if (!delta || !isnum(delta))
 		return
 	//Adds delta points to the specified pool.
@@ -235,14 +230,21 @@ var/datum/storyteller/storyteller = null
 
 /datum/storyteller/proc/check_thresholds()
 	while (points[EVENT_LEVEL_MUNDANE] >= POOL_THRESHOLD_MUNDANE)
-		handle_event(EVENT_LEVEL_MUNDANE)
-	while (points[EVENT_LEVEL_MODERATE] >= POOL_THRESHOLD_MODERATE)
-		handle_event(EVENT_LEVEL_MODERATE)
-	while (points[EVENT_LEVEL_MAJOR] >= POOL_THRESHOLD_MAJOR)
-		handle_event(EVENT_LEVEL_MAJOR)
-	while (points[EVENT_LEVEL_ROLESET] >= POOL_THRESHOLD_ROLESET)
-		handle_event(EVENT_LEVEL_ROLESET)
+		if (!handle_event(EVENT_LEVEL_MUNDANE))
+			//This returns false if no viable events
+			break
 
+	while (points[EVENT_LEVEL_MODERATE] >= POOL_THRESHOLD_MODERATE)
+		if (!handle_event(EVENT_LEVEL_MODERATE))
+			break
+
+	while (points[EVENT_LEVEL_MAJOR] >= POOL_THRESHOLD_MAJOR)
+		if (!handle_event(EVENT_LEVEL_MAJOR))
+			break
+
+	//No loop for roleset events to prevent possible wierdness like the same player being picked twice
+	if(points[EVENT_LEVEL_ROLESET] >= POOL_THRESHOLD_ROLESET)
+		handle_event(EVENT_LEVEL_ROLESET)
 
 
 
@@ -254,7 +256,6 @@ var/datum/storyteller/storyteller = null
 
 //First we figure out which pool we're going to take an event from
 /datum/storyteller/proc/handle_event(var/event_type)
-	world << "Calling handle event for severity [event_type]"
 	//This is a buffer which will hold a copy of the list we choose.
 	//We will be modifying it and don't want those modifications to go back to the source
 	var/list/temp_pool
@@ -269,8 +270,7 @@ var/datum/storyteller/storyteller = null
 			temp_pool = event_pool_roleset.Copy()
 
 	if (!temp_pool || !temp_pool.len)
-		world << "ERROR: No events in pool [event_type]"
-		return
+		return FALSE
 
 	var/datum/storyevent/choice = null
 	//We pick an event from the pool at random, and check if it's allowed to run
@@ -282,24 +282,21 @@ var/datum/storyteller/storyteller = null
 			choice = null
 
 		if (!temp_pool.len)
-			world << "ERROR: No useable events in pool [event_type]"
-			return
+			return FALSE
 			//Repeat until we find one which is allowed, or the pool is empty
 
 	if (!choice)
-		world << "ERROR: Somehow failed to find an event [event_type]"
-		return
+		return FALSE
 
 	//Once we get here, we've found an event which can run!
 
 
 	//If it is allowed to run, we'll deduct its cost from our appropriate point score, and schedule it for triggering
 	var/cost = calculate_event_cost(choice, event_type)
-	world << "Successfully found a [event_type] event, [choice.name] [choice.type]"
-	world << "It will cost [cost] points out of our [points[event_type]]"
 	points[event_type] -= cost
 	schedule_event(choice, event_type)
 
+	return TRUE
 	//When its trigger time comes, the event will once again check if it can run
 	//If it can't it will cancel itself and refund the points it cost
 

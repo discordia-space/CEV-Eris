@@ -3,7 +3,7 @@
 /proc/set_storyteller(var/datum/storyteller/newST, var/announce = TRUE)
 	if (!newST)
 		//You can call this without passing anything, we'll go fetch it ourselves
-		newST = config.pick_storyteller(master_storyteller) //This function is in code/controllers/configuration.dm
+		newST = config.pick_storyteller(STORYTELLER_BASE) //This function is in code/controllers/configuration.dm
 
 	if (!istype(newST))
 		//Welp that failed
@@ -16,7 +16,6 @@
 	//we cache it now so we can do that soon
 	var/datum/storyteller/oldST = get_storyteller()
 
-	world << "SETTING STORYTELLER"
 	//Finally, we set the new one
 	storyteller = newST
 

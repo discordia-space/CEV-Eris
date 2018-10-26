@@ -13,8 +13,8 @@
 
 	//Jester generates lots of random events, but not so many antags
 	points = list(
-	15, //Mundane
-	35, //Moderate
-	75, //Major
-	100 //Roleset
+	EVENT_LEVEL_MUNDANE = 15, //Mundane
+	EVENT_LEVEL_MODERATE = 35, //Moderate
+	EVENT_LEVEL_MAJOR = 75, //Major
+	EVENT_LEVEL_ROLESET = 100 //Roleset
 	)

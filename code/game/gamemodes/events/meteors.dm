@@ -179,7 +179,6 @@
 ///////////////////////////////
 
 /proc/spawn_meteors(var/number = 1, var/list/meteortypes, var/startSide, var/zlevel)
-	world << "Going to spawn [number] meteors"
 	for(var/i = 0; i < number; i++)
 		//If no target zlevel is specified, then we'll throw each meteor at an individually randomly selected ship zlevel
 		var/target_level
@@ -192,7 +191,6 @@
 /proc/spawn_meteor(var/list/meteortypes, var/startSide, var/zlevel)
 	var/turf/pickedstart = spaceDebrisStartLoc(startSide, zlevel)
 	var/turf/pickedgoal = spaceDebrisFinishLoc(startSide, zlevel)
-	world << "Meteor spawned at [pickedstart]"
 	var/Me = pickweight(meteortypes)
 	var/obj/effect/meteor/M = new Me(pickedstart)
 	M.dest = pickedgoal

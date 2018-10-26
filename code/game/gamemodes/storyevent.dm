@@ -63,6 +63,7 @@
 	var/list/tags = list()
 
 
+
 //Check if we can trigger
 /datum/storyevent/proc/can_trigger(var/severity)
 	.=TRUE
@@ -96,7 +97,7 @@
 /datum/storyevent/proc/cancel(var/type, var/completion = 0.0)
 	//This proc refunds the cost of this event
 	if (storyteller)
-		storyteller.modify_points(get_cost(type), type)
+		storyteller.modify_points(get_cost(type)*(1 - completion), type)
 
 /datum/storyevent/proc/trigger_event(var/severity = EVENT_LEVEL_MUNDANE)
 	if (event_type)

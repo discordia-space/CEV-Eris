@@ -237,6 +237,8 @@
 		if(reinf_material)
 			dam_threshhold = ceil(max(dam_threshhold,reinf_material.integrity)/2)
 		var/dam_prob = min(100,material.hardness*1.5)
+		if (locate(/obj/effect/overlay/wallrot) in src)
+			dam_prob *= 0.5 //Rot makes reinforced walls breakable
 		if(dam_prob < 100 && attackforce > (dam_threshhold/10))
 			playsound(src, hitsound, 80, 1)
 			if(!prob(dam_prob))

@@ -50,12 +50,10 @@
 
 /datum/event/radiation_storm/proc/radiate()
 	for(var/mob/living/carbon/C in living_mob_list)
-		world << "Checking [C]"
 		var/area/A = get_area(C)
 		if(!A)
 			continue
 		if(!(A.z in maps_data.station_levels))
-			world << "A.z [A.z] isnt in station levels "
 			continue
 		if(A.flags & AREA_FLAG_RAD_SHIELDED)
 			continue
@@ -63,7 +61,6 @@
 
 		if(istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = C
-			world << "Applying to human [H]"
 			H.apply_effect((rand(15,30)),IRRADIATE,blocked = H.getarmor(null, "rad"))
 			if(prob(4))
 				H.apply_effect((rand(20,60)),IRRADIATE,blocked = H.getarmor(null, "rad"))

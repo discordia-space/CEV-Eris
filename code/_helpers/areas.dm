@@ -39,15 +39,17 @@
 //This returns a random area of the station which is meaningful. Ie, a room somewhere
 //If filter_players is true, it will only pick an area that has no human players in it
 	//This is useful for spawning, you dont want people to see things pop into existence
-/proc/random_ship_area(var/filter_players = FALSE)
+/proc/random_ship_area(var/filter_players = FALSE, var/filter_maintenance = TRUE)
 	var/list/possible = list()
 	for(var/Y in ship_areas)
-		if(!Y)
+		if(!Y || !isarea(Y))
+			world << "ship areas contains [Y] which does not seem to be an area"
 			continue
 		var/area/A = Y
 		if (istype(A, /area/shuttle))
 			continue
-		if (istype(A, /area/eris/maintenance))
+
+		if (filter_maintenance && istype(A, /area/eris/maintenance))
 			continue
 
 		//Although hostile mobs instadying to turrets is fun

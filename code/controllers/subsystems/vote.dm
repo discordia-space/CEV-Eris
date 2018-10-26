@@ -371,6 +371,7 @@ SUBSYSTEM_DEF(vote)
 
 //We will sort the storyteller choices carefully. Guide is always first, all the rest are in a random order
 /datum/poll/storyteller/init_choices()
+	master_storyteller = null
 	var/datum/vote_choice/storyteller/base = null
 	for(var/ch in storyteller_cache)
 		var/datum/vote_choice/storyteller/CS = new
@@ -406,19 +407,27 @@ SUBSYSTEM_DEF(vote)
 
 //If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()
+	//This happens if the vote was skipped with force start
+	if (!master_storyteller)
+		master_storyteller = STORYTELLER_BASE
+		world.save_storyteller(master_storyteller)
+
 	SSticker.story_vote_ended = TRUE
 	round_progressing = TRUE
-	set_storyteller() //This does the actual work //Even if master storyteller is null, this will pick the default
+	world << "Setting storyteller from vote, with no announce"
+	set_storyteller(config.pick_storyteller(master_storyteller), announce = FALSE) //This does the actual work //Even if master storyteller is null, this will pick the default
 	world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
 
 /datum/vote_choice/storyteller
 	text = "You shouldn't see this."
 	var/new_storyteller = STORYTELLER_BASE
 
-//Apparently on-win and on-end are mutually exclusive
+//on_end will be called after this, so that's where we actually call set_storyteller
 /datum/vote_choice/storyteller/on_win()
+	world << "Vote win, setting master storyteller [new_storyteller]"
 	master_storyteller = new_storyteller
 	world.save_storyteller(master_storyteller)
+
 
 
 

@@ -17,8 +17,8 @@
 
 	//Very large starting roleset. Will spawn an antag immediately, and another very soon
 	points = list(
-	0, //Mundane
-	0, //Moderate
-	0, //Major
-	220 //Roleset
+	EVENT_LEVEL_MUNDANE = 0, //Mundane
+	EVENT_LEVEL_MODERATE = 0, //Moderate
+	EVENT_LEVEL_MAJOR = 0, //Major
+	EVENT_LEVEL_ROLESET = 220 //Roleset
 	)

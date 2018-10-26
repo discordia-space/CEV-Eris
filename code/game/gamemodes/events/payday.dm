@@ -1,6 +1,7 @@
 /*
 	Payday pays everyone on the ship their wages. But apparently each player only gets paid once per round?
 	Not very well designed, basically here as a placeholder
+	I'm not really sure this should even be an event. It doesn't seem at all suitable for the event system
 */
 /datum/storyevent/payday
 	id = "payday"

@@ -2,18 +2,20 @@
 	id = "borer"
 	name = "cortical borers"
 	role_id = ROLE_BORER
-
 	weight = 0.5
 
 	req_crew = 15
+
+	base_quantity = 2
+	scaling_threshold = 15
 
 
 /datum/storyevent/roleset/traitor
 	id = "traitor"
 	name = "traitor"
 	role_id = ROLE_TRAITOR
-
 	weight = 1
+	scaling_threshold = 10
 
 /datum/storyevent/roleset/inquisitor
 	id = "inquisitor"
@@ -23,7 +25,7 @@
 	req_crew = 7
 
 /datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
-	/*var/c_count = 0
+	var/c_count = 0
 	for(var/mob/M in christians)
 		if(M.client &&  M.stat != DEAD && ishuman(M))
 			c_count++
@@ -31,7 +33,7 @@
 	var/maxc = (c_count > 7) ? c_count : 7
 	new_weight *= weight_mult(weight,maxc,0,maxc)
 
-	return new_weight*/
+	return new_weight
 
 /datum/storyevent/roleset/malf
 	id = "malf"
@@ -63,4 +65,5 @@
 	role_id = ROLE_CHANGELING
 
 	req_crew = 7
-
+	base_quantity = 2
+	scaling_threshold = 15

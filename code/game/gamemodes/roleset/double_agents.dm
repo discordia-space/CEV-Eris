@@ -2,7 +2,8 @@
 	id = "double_agents"
 	name = "double agents"
 	role_id = null
-
+	base_quantity = 2
+	scaling_threshold = 0
 	/*
 	req_crew = 10
 	req_heads = -1

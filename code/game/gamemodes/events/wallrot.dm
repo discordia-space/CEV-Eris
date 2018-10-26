@@ -1,11 +1,29 @@
-datum/event/wallrot/setup()
+/*
+	Wall rot causes a corrosive fungus to grow on walls,wearing them down until they eventually become
+	weak enough to break with bare hands. This can be useful to people trying to get more access around
+	the ship, or to break into sensitive areas. Or even to escape maintenance pits
+
+	It is not marked negative due to this possible advantage
+*/
+/datum/storyevent/wallrot
+	id = "wallrot"
+	name = "wallrot"
+
+
+	event_type = /datum/event/wallrot
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE *0.8)
+	tags = list(TAG_DESTRUCTIVE)
+
+//----------------------------------------
+
+/datum/event/wallrot/setup()
 	announceWhen = rand(0, 300)
 	endWhen = announceWhen + 1
 
-datum/event/wallrot/announce()
+/datum/event/wallrot/announce()
 	command_announcement.Announce("Harmful fungi detected on station. Station structures may be contaminated.", "Biohazard Alert", new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg'))
 
-datum/event/wallrot/start()
+/datum/event/wallrot/start()
 	set waitfor = FALSE
 
 	var/turf/simulated/wall/center = null
@@ -26,7 +44,7 @@ datum/event/wallrot/start()
 
 		// Have a chance to rot lots of other walls.
 		var/rotcount = 0
-		var/actual_severity = severity * rand(15, 30)
+		var/actual_severity = rand(30, 60)
 		for(var/turf/simulated/wall/W in trange(14, center))
 			if(prob(25))
 				W.rot()
@@ -36,11 +54,33 @@ datum/event/wallrot/start()
 				if(rotcount >= actual_severity)
 					break
 
-		var/area/A = get_area(center)
-		var/where = "[A? A.name : "Unknown Location"] | [center.x], [center.y]"
-		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[center.x];Y=[center.y];Z=[center.z]'>[where]</a>"
-		message_admins("Wallrot has spread from ([whereLink])", 0, 1)
+		message_admins("Wallrot has spread from ([jumplink(center)])", 0, 1)
 
 
 	else
 		message_admins("Wallrot failed to find a starting point", 0, 1)
+
+
+
+// Wall-rot effect, a nasty fungus that destroys walls.
+/turf/simulated/wall/proc/rot()
+	if(locate(/obj/effect/overlay/wallrot) in src)
+		return
+	var/number_rots = rand(2,3)
+	for(var/i=0, i<number_rots, i++)
+		new/obj/effect/overlay/wallrot(src)
+
+
+/obj/effect/overlay/wallrot
+	name = "wallrot"
+	desc = "Ick..."
+	icon = 'icons/effects/wallrot.dmi'
+	anchored = 1
+	density = 1
+	layer = 5
+	mouse_opacity = 0
+
+/obj/effect/overlay/wallrot/New()
+	..()
+	pixel_x += rand(-10, 10)
+	pixel_y += rand(-10, 10)

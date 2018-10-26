@@ -14,8 +14,8 @@
 
 	//Healer gives you half an hour to setup before any antags
 	points = list(
-	0, //Mundane
-	0, //Moderate
-	0, //Major
-	90 //Roleset
+	EVENT_LEVEL_MUNDANE = 0, //Mundane
+	EVENT_LEVEL_MODERATE = 0, //Moderate
+	EVENT_LEVEL_MAJOR = 0, //Major
+	EVENT_LEVEL_ROLESET = 90 //Roleset
 	)

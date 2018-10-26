@@ -31,7 +31,6 @@
 			var/obj/machinery/door/D = (locate(/obj/machinery/door) in floor)
 			if (!D || !istype(D) || !D.density)
 				continue
-			world << "Attempting to grow through airlock at [jumplink(floor)]"
 
 			//We have to make sure that nothing ELSE aside from the door is blocking us
 			var/blocked = FALSE

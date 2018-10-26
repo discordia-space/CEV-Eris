@@ -1,3 +1,9 @@
+/*
+	Disabled for now, baymed is coming.
+
+	Possible future todo: Add a random (not-viral) disease event for stuff like this with a bigger content pool
+*/
+
 /datum/event/spontaneous_appendicitis/start()
 	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
 		if(H.client && H.stat != DEAD)
