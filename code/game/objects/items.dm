@@ -495,7 +495,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if (base_time)
 		time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
 
-	if((instant_finish_tier < get_tool_quality(required_quality)))
+	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
 
 
@@ -536,7 +536,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//Safe cleanup
 	if (toolsound)
 		toolsound.stop()
-	toolsound = null
+		toolsound = null
 
 	var/stat_modifer = 0
 	if(required_stat)
