@@ -1682,7 +1682,7 @@ area/space/atmosalert()
 	icon_state = "storage"
 
 //Eris
-/area/eris/
+/area/eris
 	ship_area = TRUE
 
 

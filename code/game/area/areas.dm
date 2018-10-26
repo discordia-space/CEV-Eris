@@ -18,7 +18,7 @@
 	uid = ++global_uid
 	all_areas += src
 	if (ship_area)
-		ship_areas[src] |= TRUE //Adds ourselves to the list of all ship areas
+		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
 
 	if(!requires_power)
 		power_light = 0

@@ -243,7 +243,6 @@
 				evt.enabled = !evt.enabled
 				message_admins("Event \"[evt.id]\" was [evt.enabled?"allowed":"restricted"] to spawn by [key_name(usr)]")
 			if(href_list["ev_spawn"])
-				world << "Planning to spawn an event of severity [href_list["severity"]]"
 				if (!evt.can_trigger())
 					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger. Would you like to force it anyway?.", "Force Event? ", "yes", "no")
 					if (answer == "no")

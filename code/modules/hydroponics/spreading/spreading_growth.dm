@@ -8,16 +8,18 @@
 			cardinal_neighbors |= T
 	return cardinal_neighbors
 
-/obj/effect/plant/proc/update_neighbors()
+/obj/effect/plant/proc/update_neighbors(var/debug = FALSE)
 	// Update our list of valid neighboring turfs.
 	neighbors = list()
-	for(var/turf/simulated/floor in get_cardinal_neighbors())
+	var/list/tocheck = get_cardinal_neighbors()
+	for(var/turf/simulated/floor in tocheck)
 		var/turf/zdest = get_connecting_turf(floor)//Handling zlevels
 		if(get_dist(parent, floor) > spread_distance)
 			continue
 
 		//We check zdest, not floor, for existing plants
 		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents) )
+
 			continue
 		if(floor.density)
 			if(!isnull(seed.chems["pacid"]))
@@ -26,25 +28,33 @@
 		if(!Adjacent(floor))
 			continue
 
-		//Space vines can occasionally grow through airlocks by forcing their way into tiny gaps
+		//Space vines can grow through airlocks by forcing their way into tiny gaps
 		if (!floor.Enter(src))
-			var/obj/machinery/door/D = (locate(/obj/machinery/door) in floor)
-			if (!D || !istype(D) || !D.density)
+
+			var/obj/machinery/door/found_door = null
+			for (var/obj/machinery/door/D in floor)
+				if (!D || !istype(D) || !D.density)
+					continue
+
+				found_door = D
+
+			if (!found_door)
 				continue
+
 
 			//We have to make sure that nothing ELSE aside from the door is blocking us
 			var/blocked = FALSE
 			for (var/obj/O in floor)
-				if (O == D)
+				if (O == found_door)
 					continue
 
 				if (!O.CanPass(src, floor))
 					blocked = TRUE
 					break
 
-			//90% chance to fail
-			if (!blocked && prob(1))
+			if (blocked)
 				continue
+			else
 
 		neighbors |= floor
 	// Update all of our friends.
@@ -70,7 +80,7 @@
 		health -= seed.handle_environment(T,T.return_air(),null,1)
 	if(health < max_health)
 		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
-		var/obj/machinery/door/D = (locate(/obj/machinery/door) in floor)
+		var/obj/machinery/door/D = (locate(/obj/machinery/door) in loc)
 		if (D && D.density)
 			health += rand(1,2)
 		else
@@ -113,7 +123,7 @@
 				sleep(rand(3,5))
 				if(!neighbors.len)
 					break
-				var/turf/target_turf = pick(neighbors)
+				var/turf/target_turf = get_connecting_turf(pick(neighbors))
 				var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 				spawn(1) // This should do a little bit of animation.
 					child.loc = target_turf

@@ -5,7 +5,7 @@
 	spawn() //to stop the secrets panel hanging
 
 		var/turf/T = null
-		if (prob(40))//Sometimes spawn in hallway
+		if (prob(20))//Sometimes spawn in hallway
 			T = pick_area_turf(/area/eris/hallway, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
 		else
 			//Otherwise spawn in a random area

@@ -70,7 +70,7 @@
 
 	var/maxHealth = 30
 	var/health = 1
-	var/brute_resist = 1.5
+	var/brute_resist = 1.3
 	var/fire_resist = 0.75
 	var/expandType = /obj/effect/blob
 
