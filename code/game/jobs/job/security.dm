@@ -214,8 +214,8 @@
 	department = "Security"
 	department_flag = ENGSEC
 	faction = "CEV Eris"
-	total_positions = 8
-	spawn_positions = 8
+	total_positions = 6
+	spawn_positions = 6
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#ffeeee"
 	economic_modifier = 4
