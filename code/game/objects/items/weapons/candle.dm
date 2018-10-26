@@ -43,6 +43,7 @@
 /obj/item/weapon/flame/candle/proc/light(var/flavor_text = SPAN_NOTICE("\The [usr] lights the [name]."))
 	if(!src.lit)
 		src.lit = 1
+		ignites_with_touch = TRUE
 		//src.damtype = "fire"
 		for(var/mob/O in viewers(usr, null))
 			O.show_message(flavor_text, 1)
@@ -67,5 +68,6 @@
 /obj/item/weapon/flame/candle/attack_self(mob/user as mob)
 	if(lit)
 		lit = 0
+		ignites_with_touch = FALSE
 		update_icon()
 		set_light(0)

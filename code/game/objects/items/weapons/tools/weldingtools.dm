@@ -31,7 +31,7 @@
 		..()
 		damtype = BURN
 		force = force_ignited
-		ignites_with_touch = 1
+		ignites_with_touch = TRUE
 		START_PROCESSING(SSobj, src)
 	else
 		item_state = initial(item_state)

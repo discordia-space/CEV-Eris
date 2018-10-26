@@ -14,6 +14,7 @@
 	if(active)
 		return
 	active = 1
+	ignites_with_touch = TRUE
 	force = active_force
 	throwforce = active_throwforce
 	sharp = 1
@@ -28,6 +29,7 @@
 		return
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 	active = 0
+	ignites_with_touch = FALSE
 	force = initial(force)
 	throwforce = initial(throwforce)
 	sharp = initial(sharp)

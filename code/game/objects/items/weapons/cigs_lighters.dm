@@ -73,7 +73,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/weapon/flame/match/proc/burn_out()
 	lit = 0
-	ignites_with_touch = 0
+	ignites_with_touch = FALSE
 	burnt = 1
 	tool_qualities = null
 	damtype = "brute"
@@ -126,7 +126,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/proc/light(var/flavor_text = "[usr] lights the [name].")
 	if(!src.lit)
 		src.lit = 1
-		src.ignites_with_touch = 1
+		src.ignites_with_touch = TRUE
 		damtype = "fire"
 		if(reagents.get_reagent_amount("plasma")) // the plasma explodes when exposed to fire
 			var/datum/effect/effect/system/reagents_explosion/e = new()
@@ -173,7 +173,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if (!nomessage)
 				M << SPAN_NOTICE("Your [name] goes out, and you empty the ash.")
 			lit = 0
-			ignites_with_touch = 0
+			ignites_with_touch = FALSE
 			icon_state = icon_off
 			item_state = icon_off
 			update_wear_icon()
@@ -342,7 +342,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/pipe/light(var/flavor_text = "[usr] lights the [name].")
 	if(!src.lit && src.smoketime)
 		src.lit = 1
-		ignites_with_touch = 1
+		ignites_with_touch = TRUE
 		damtype = "fire"
 		icon_state = icon_on
 		item_state = icon_on
@@ -355,7 +355,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(lit == 1)
 		user.visible_message(SPAN_NOTICE("[user] puts out [src]."), SPAN_NOTICE("You put out [src]."))
 		lit = 0
-		ignites_with_touch = 0
+		ignites_with_touch = FALSE
 		icon_state = icon_off
 		item_state = icon_off
 		STOP_PROCESSING(SSobj, src)
@@ -443,7 +443,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(user.r_hand == src || user.l_hand == src)
 		if(!lit)
 			lit = 1
-			ignites_with_touch = 1
+			ignites_with_touch = TRUE
 			icon_state = "[base_state]on"
 			item_state = "[base_state]on"
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
@@ -465,7 +465,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			START_PROCESSING(SSobj, src)
 		else
 			lit = 0
-			ignites_with_touch = 0
+			ignites_with_touch = FALSE
 			icon_state = "[base_state]"
 			item_state = "[base_state]"
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
