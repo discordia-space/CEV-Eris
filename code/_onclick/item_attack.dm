@@ -92,7 +92,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
 
-	if (is_hot())
+	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		target.IgniteMob()
 
 	var/power = force

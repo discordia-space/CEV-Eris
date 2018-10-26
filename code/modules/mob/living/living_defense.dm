@@ -50,6 +50,8 @@
 
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
+	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		IgniteMob()
 
 	//Being hit while using a deadman switch
 	if(istype(get_active_hand(),/obj/item/device/assembly/signaler))
@@ -156,7 +158,7 @@
 			playsound(src, "miss_sound", 50, 1, -6)
 			return
 
-		if (O.is_hot())
+		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 			IgniteMob()
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
