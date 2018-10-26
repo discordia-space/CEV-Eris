@@ -54,7 +54,6 @@
 
 			if (blocked)
 				continue
-			else
 
 		neighbors |= floor
 	// Update all of our friends.
@@ -81,8 +80,8 @@
 	if(health < max_health)
 		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
 		var/obj/machinery/door/D = (locate(/obj/machinery/door) in loc)
-		if (D && D.density)
-			health += rand(1,2)
+		if (D)
+			health += rand(0,2)
 		else
 			health += rand(3,5)
 		refresh_icon()
