@@ -8,10 +8,11 @@
 	armor_penetration = 50
 	flags = NOBLOODY
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+	heat = 3800
 
-/obj/item/weapon/melee/energy/ignites_with_touch()
+/obj/item/weapon/melee/energy/is_hot()
 	if (active)
-		return TRUE
+		return heat
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	anchored = 1

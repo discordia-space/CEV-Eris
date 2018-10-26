@@ -156,7 +156,7 @@
 			playsound(src, "miss_sound", 50, 1, -6)
 			return
 
-		if (O.ignites_with_touch())
+		if (O.is_hot())
 			IgniteMob()
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))

@@ -12,9 +12,10 @@
 	var/damtype = "brute"
 	var/armor_penetration = 0
 	var/corporation = null
+	var/heat = 0
 
-/obj/proc/ignites_with_touch()
-	return
+/obj/proc/is_hot()
+	return heat
 
 /obj/get_fall_damage()
 	return w_class * 2

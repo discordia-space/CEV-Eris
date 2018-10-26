@@ -10,6 +10,7 @@
 	var/on_damage = 7
 	var/produce_heat = 1500
 	turn_on_sound = 'sound/effects/Custom_flare.ogg'
+	heat = 1000
 
 /obj/item/device/lighting/glowstick/flare/Process()
 	..()
@@ -49,6 +50,6 @@
 		set_light(0)
 	update_wear_icon()
 
-/obj/item/device/lighting/glowstick/flare/ignites_with_touch()
+/obj/item/device/lighting/glowstick/flare/is_hot()
 	if (on)
-		return TRUE
+		return heat
