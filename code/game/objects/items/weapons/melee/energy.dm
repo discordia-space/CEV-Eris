@@ -9,12 +9,15 @@
 	flags = NOBLOODY
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 
+/obj/item/weapon/melee/energy/ignites_with_touch()
+	if (active)
+		return TRUE
+
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	anchored = 1
 	if(active)
 		return
 	active = 1
-	ignites_with_touch = TRUE
 	force = active_force
 	throwforce = active_throwforce
 	sharp = 1
@@ -29,7 +32,6 @@
 		return
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 	active = 0
-	ignites_with_touch = FALSE
 	force = initial(force)
 	throwforce = initial(throwforce)
 	sharp = initial(sharp)

@@ -22,7 +22,6 @@
 	..()
 	damtype = initial(damtype)
 	force = initial(force)
-	ignites_with_touch = FALSE
 
 /obj/item/device/lighting/glowstick/flare/attack_self(mob/user)
 	if(turn_on(user))
@@ -36,7 +35,6 @@
 	if(.)
 		force = on_damage
 		damtype = "fire"
-		ignites_with_touch = TRUE
 
 /obj/item/device/lighting/glowstick/flare/update_icon()
 	overlays.Cut()
@@ -50,3 +48,7 @@
 		icon_state = initial(icon_state)
 		set_light(0)
 	update_wear_icon()
+
+/obj/item/device/lighting/glowstick/flare/ignites_with_touch()
+	if (on)
+		return TRUE

@@ -31,7 +31,6 @@
 		..()
 		damtype = BURN
 		force = force_ignited
-		ignites_with_touch = TRUE
 		START_PROCESSING(SSobj, src)
 	else
 		item_state = initial(item_state)
@@ -47,7 +46,6 @@
 	..()
 	damtype = initial(damtype)
 	force = initial(force)
-	ignites_with_touch = initial(ignites_with_touch)
 
 
 /obj/item/weapon/tool/weldingtool/advanced
@@ -57,3 +55,7 @@
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
 	force_ignited = WEAPON_FORCE_PAINFULL*1.15 //Slightly more powerful, not much more so
+
+/obj/item/weapon/tool/weldingtool/ignites_with_touch()
+	if (damtype == BURN)
+		return TRUE

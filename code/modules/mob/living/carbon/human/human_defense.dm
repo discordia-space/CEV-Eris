@@ -290,7 +290,7 @@ meteor_act
 		var/obj/item/organ/external/affecting = get_organ(zone)
 		var/hit_area = affecting.name
 
-		if (O.ignites_with_touch)
+		if (O.ignites_with_touch())
 			IgniteMob()
 
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")

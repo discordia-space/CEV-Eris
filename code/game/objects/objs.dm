@@ -12,9 +12,9 @@
 	var/damtype = "brute"
 	var/armor_penetration = 0
 	var/corporation = null
-	var/ignites_with_touch = FALSE //ignites things when it hits them, does not add fire stacks by itself
 
-
+/obj/proc/ignites_with_touch()
+	return
 
 /obj/get_fall_damage()
 	return w_class * 2
