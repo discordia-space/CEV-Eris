@@ -4,16 +4,16 @@
 	objectsInView = null
 
 	if(client)
-		return .
+		return
 
 	switch (stat)
 		if (DEAD)
 			walk(src, 0)
-			return .
+			return
 
 		if (UNCONSCIOUS)
 			walk(src, 0)
-			return .
+			return
 
 		//if (CONSCIOUS)
 

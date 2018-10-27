@@ -24,6 +24,9 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 
+	min_breath_required_type = 3
+	min_air_pressure = 15 //below this, brute damage is dealt
+
 	var/poison_per_bite = 5
 	var/poison_type = "toxin"
 

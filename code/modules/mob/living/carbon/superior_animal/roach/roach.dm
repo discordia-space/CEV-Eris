@@ -24,6 +24,9 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 4
 
+	min_breath_required_type = 3
+	min_air_pressure = 15 //below this, brute damage is dealt
+
 	faction = "roach"
 
 	acceptableTargetDistance = 3 //consider all targets within this range equally
