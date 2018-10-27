@@ -10,7 +10,7 @@
 	var/on_damage = 7
 	var/produce_heat = 1500
 	turn_on_sound = 'sound/effects/Custom_flare.ogg'
-	heat = 1000
+	heat = 1873
 
 /obj/item/device/lighting/glowstick/flare/Process()
 	..()

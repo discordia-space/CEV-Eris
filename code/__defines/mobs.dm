@@ -175,4 +175,4 @@
 #define WOUND_BLEED_MULTIPLIER 0.02 //Bleeding wounds drip damage*this units of blood per process tick
 #define OPEN_ORGAN_BLEED_AMOUNT 1.5 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
 
-#define HEAT_MOBIGNITE_THRESHOLD 400 //minimum amount of heat an object needs to ignite a mob when it hits the mob
+#define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob
