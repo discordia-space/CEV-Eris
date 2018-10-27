@@ -31,9 +31,12 @@
 		if (!(T.z in maps_data.station_levels))
 			continue
 
+		if (locate(/obj/effect/shield) in T)
+			continue
+
 		//The number of windows near each tile is recorded
 		var/numwin
-		for (var/obj/structure/window/W in view(3, T))
+		for (var/obj/structure/window/W in view(4, T))
 			numwin++
 
 		//And the square of it is entered into the list as a weight
@@ -55,8 +58,6 @@
 	else
 		msg = "Unidentified hackers have targetted a combat drone wing deployed from the IHS Atomos. If any are sighted in the area, approach with caution."
 	command_announcement.Announce(msg, "Rogue drone alert")
-	for (var/a in maps_data.station_levels)
-		world << "Station level: [a]"
 
 /datum/event/rogue_drone/start()
 	//Pick a list of spawn locatioons

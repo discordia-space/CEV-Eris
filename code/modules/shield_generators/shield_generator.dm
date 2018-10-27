@@ -684,7 +684,6 @@
 
 		//If we're over the limit, cut the oldest entry
 		if (event_log.len > max_log_entries)
-			world << "Too many logs, pruning"
 			event_log.Cut(1,2)
 
 

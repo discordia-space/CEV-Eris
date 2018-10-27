@@ -26,9 +26,12 @@
 		if (!(T.z in maps_data.station_levels))
 			continue
 
+		if (locate(/obj/effect/shield) in T)
+			continue
+
 		//The number of windows near each tile is recorded
 		var/numwin
-		for (var/obj/structure/window/W in view(3, T))
+		for (var/obj/structure/window/W in view(4, T))
 			numwin++
 
 		//And the square of it is entered into the list as a weight

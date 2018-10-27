@@ -16,8 +16,8 @@
 	health = 25
 
 	harm_intent_damage = 8
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_lower = 8
+	melee_damage_upper = 12
 	attacktext = "bitten"
 	attack_sound = 'sound/weapons/bite.ogg'
 
@@ -32,7 +32,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-	break_stuff_probability = 30
+	break_stuff_probability = 4
 
 	faction = "carp"
 
