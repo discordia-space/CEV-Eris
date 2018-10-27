@@ -1,16 +1,16 @@
 //This has to be here because it uses defines in _hydro_setup.dm which are later undefined
 //It is used for the spacevine event
 
-/proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
+/proc/spacevine_infestation(var/turf/T = null, var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
 	spawn() //to stop the secrets panel hanging
 
-		var/turf/T = null
-		if (prob(20))//Sometimes spawn in hallway
-			T = pick_area_turf(/area/eris/hallway, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
-		else
-			//Otherwise spawn in a random area
-			var/area/A = random_ship_area(TRUE)
-			T = A.random_space()
+		if (!T)
+			if (prob(20))//Sometimes spawn in hallway
+				T = pick_area_turf(/area/eris/hallway, list(/proc/is_station_turf, /proc/not_turf_contains_dense_objects))
+			else
+				//Otherwise spawn in a random area
+				var/area/A = random_ship_area(TRUE)
+				T = A.random_space()
 
 		if(T)
 			var/datum/seed/seed = plant_controller.create_random_seed(1)

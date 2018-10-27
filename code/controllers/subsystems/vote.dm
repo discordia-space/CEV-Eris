@@ -414,7 +414,6 @@ SUBSYSTEM_DEF(vote)
 
 	SSticker.story_vote_ended = TRUE
 	round_progressing = TRUE
-	world << "Setting storyteller from vote, with no announce"
 	set_storyteller(config.pick_storyteller(master_storyteller), announce = FALSE) //This does the actual work //Even if master storyteller is null, this will pick the default
 	world << "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>"
 
@@ -424,7 +423,6 @@ SUBSYSTEM_DEF(vote)
 
 //on_end will be called after this, so that's where we actually call set_storyteller
 /datum/vote_choice/storyteller/on_win()
-	world << "Vote win, setting master storyteller [new_storyteller]"
 	master_storyteller = new_storyteller
 	world.save_storyteller(master_storyteller)
 

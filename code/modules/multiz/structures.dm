@@ -178,6 +178,7 @@
 	target = locate(/obj/structure/multiz/stairs/enter) in targetTurf
 
 /obj/structure/multiz/stairs/active/Bumped(var/atom/movable/AM)
+	world << "Stairs bumped by [AM]"
 	if(isnull(AM))
 		return
 

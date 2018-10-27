@@ -26,7 +26,7 @@
 	var/list/wormhole_tiles = list()
 
 /datum/event/wormholes/setup()
-	number_of_wormholes = rand(3,9)
+	number_of_wormholes = rand(2,8)
 	for (var/i = 1; i <= number_of_wormholes*2; i++)
 		var/area/A
 		if (prob(15))

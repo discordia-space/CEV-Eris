@@ -110,6 +110,7 @@
 	M.Turn(rot)
 	M.Scale(icon_scale)
 	transform = M
+	name += "[rand(0,999)]"
 	return ..(loc)
 
 /obj/effect/blob/Destroy()
@@ -132,7 +133,7 @@
 	for (var/t in turfs)
 
 		var/turf/T = t
-		var/turf/U = get_connecting_turf(T)//This handles Zlevel stuff
+		var/turf/U = get_connecting_turf(T, loc)//This handles Zlevel stuff
 		//If the target turf connects to another across Zlevels, U will hold the destination
 		var/obj/effect/blob/B = (locate(/obj/effect/blob/) in U)
 		//We check for existing blobs in the destination
@@ -180,6 +181,12 @@
 			return PROCESS_KILL
 
 		set_expand_time()
+
+/obj/effect/blob/verb/expandverb()
+	set src in view()
+	set name = "Expand"
+
+	expand(pick(non_blob_neighbors))
 
 
 /obj/effect/blob/proc/regen()
@@ -368,16 +375,67 @@
 		child = new /obj/effect/blob/shield(loc, src)
 	else
 		child = new expandType(loc, src)
+
 	//Spawn the child blob and move it into the new tile
 	spawn(1)
-		if (child && !(QDELETED(child)))
-			child.anchored = FALSE
-			child.forceMove(T)
-			child.anchored = TRUE
-			//Often, two blobs will attempt to move into the same tile at about the same time
-			for (var/obj/effect/blob/Bl in child.loc)
-				if (Bl != child)
-					qdel(B) //Lets make sure we don't get doubleblobs
+		child.handle_move(loc, T)
+
+
+//This silly special case override is needed to make blobs work with portals.
+//Code is copied from /atoms_movable.dm, but a spawn call is removed, making it completely synchronous
+/obj/effect/blob/Bump(var/atom/A, yes)
+	if (A && yes)
+		A.last_bumped = world.time
+		A.Bumped(src)
+
+
+//Once created, the new blob moves to its destination turf
+/obj/effect/blob/proc/handle_move(var/turf/origin, var/turf/destination)
+	//First of all lets ensure we still exist.
+	//We may have been deleted by another blob doing postmove cleanup
+	if (QDELETED(src))
+		return
+
+	//And lets make sure we haven't already moved
+	if (loc != origin)
+		return
+
+	//We un-anchor ourselves, so that we're exposed to effects like gravity and teleporting
+	anchored = FALSE
+
+	//Now we will attempt a normal movement, obeying all the normal rules
+	//This allows us to bump into portals and get teleported
+	Move(destination)
+
+	/*Now we check if we went anywhere. We don't care about the return value of move, we do our own check
+	In the case of a portal, or falling through an openspace, or moving along stairs, Move may return false
+	but we've still gone somewhere. We will only consider it a failure if we're still where we started
+	*/
+	if (loc == origin)
+		//That failed, okay this time we're not asking
+		forceMove(destination)
+		//forceMove won't work properly with portals, so we only do it as a backup option
+
+
+	//Ok now we should definitely be somewhere
+	if (loc == origin)
+		//Welp, we give up.
+		//This shouldn't be possible, but if it somehow happens then this blob is toast
+		qdel(src)
+		return
+
+	//Ok we got somewhere, hooray
+	//Now we settle down
+	anchored = TRUE
+
+	//And do this
+	handle_postmove()
+
+//Now we clean up our arrival tile
+/obj/effect/blob/proc/handle_postmove()
+	for (var/obj/effect/blob/Bl in loc)
+		if (Bl != src)
+			qdel(Bl) //Lets make sure we don't get doubleblobs
 
 /*******************
 	BLOB ATTACKING

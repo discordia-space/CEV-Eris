@@ -6,28 +6,29 @@
 	density = 1
 	unacidable = 1//Can't destroy energy portals.
 	var/failchance = 5
-	var/obj/item/target = null
+	var/atom/target = null
 	anchored = TRUE
 	var/lifetime = 0
 	var/birthtime = 0
+	var/next_teleport
+	var/origin_turf //The last mob thing that attempted to enter this portal came from thus turf
 
-/obj/effect/portal/Bumped(mob/M as mob|obj)
-	spawn(0)
-		src.teleport(M)
-		return
-	return
+/obj/effect/portal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(istype(mover)) // if mover is not null, e.g. mob
+		return FALSE
+	return TRUE // if mover is null (air movement)
 
-/obj/effect/portal/Crossed(AM as mob|obj)
-	spawn(0)
-		src.teleport(AM)
-		return
-	return
+/obj/effect/portal/Bumped(var/atom/movable/M)
+	origin_turf = get_turf(M)
+	src.teleport(M)
+
+/obj/effect/portal/Crossed(var/atom/movable/AM)
+	origin_turf = get_turf(AM)
+	src.teleport(AM)
 
 /obj/effect/portal/attack_hand(mob/user as mob)
-	spawn(0)
-		src.teleport(user)
-		return
-	return
+	origin_turf = get_turf(user)
+	src.teleport(user)
 
 /obj/effect/portal/New(loc, _lifetime = 300)
 	..(loc)
@@ -36,14 +37,28 @@
 	addtimer(CALLBACK(src, .proc/close,), lifetime)
 
 
+//Given an adjacent origin tile, finds a destination which is the opposite side of the target
+/obj/effect/portal/proc/get_destination(var/turf/origin)
+	if (!target)
+		return null
+		//Major error!
+	var/turf/T = get_turf(target)
+	. = T
+
+	if (origin && Adjacent(origin))
+		var/dir = get_dir(origin, loc)
+		return get_step(T, dir)
+
 /obj/effect/portal/proc/close()
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
-	if(istype(M, /obj/effect)) //sparks don't teleport
+	if (world.time < next_teleport)
 		return
-	if (M.anchored&&istype(M, /obj/mecha))
+	if (M == src)
 		return
-	if (icon_state == "portal1")
+	if (istype(M, /obj/effect/sparks)) //sparks don't teleport
+		return
+	if (M.anchored && !istype(M, /obj/mecha))
 		return
 	if (!( target ))
 		qdel(src)
@@ -52,7 +67,8 @@
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			on_fail(M)
 		else
-			do_teleport(M, target, 1) ///You will appear adjacent to the beacon
+			do_teleport(M, get_destination(origin_turf), 0) ///You will appear adjacent to the beacon
+			next_teleport = world.time + 3 //Tiny cooldown to prevent doubleporting
 			return TRUE
 
 /obj/effect/portal/proc/on_fail(atom/movable/M as mob|obj)
@@ -133,4 +149,4 @@
 	if(istype(M, /mob/living))
 		var/mob/living/victim = M
 		victim.apply_damage(20+rand(60), BRUTE, pick(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG))
-	do_teleport(M, target, 1)
+	do_teleport(M, get_destination(get_turf(M)), 1)

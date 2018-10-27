@@ -192,12 +192,15 @@
 
 //This is used when you want to check a turf which is a Z transition. For example, an openspace or stairs
 //If this turf conencts to another in that manner, it will return the destination. If not, it will return the input
-/proc/get_connecting_turf(var/turf/T)
+/proc/get_connecting_turf(var/turf/T, var/turf/from = null)
 	if (T.is_hole)
 		var/turf/U = GetBelow(T)
 		if (U)
 			return U
 
+	var/obj/effect/portal/P = (locate(/obj/effect/portal) in T)
+	if (P && P.target)
+		return P.get_destination(from)
 
 	var/obj/structure/multiz/stairs/active/SA = (locate(/obj/structure/multiz/stairs/active) in T)
 	if (SA && SA.target)

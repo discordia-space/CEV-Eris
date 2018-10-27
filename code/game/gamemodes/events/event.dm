@@ -9,7 +9,7 @@
 	var/isRunning		= 1 //If this event is currently running. You should not change this.
 	var/startedAt		= 0 //When this event started.
 	var/endedAt			= 0 //When this event ended.
-	var/datum/storyevent/SE = null
+	var/datum/storyevent/storyevent = null
 
 /datum/event/nothing
 
@@ -100,7 +100,7 @@
 	SSevent.event_complete(src)
 
 /datum/event/New(var/datum/storyevent/_SE, var/_severity)
-	SE = _SE
+	storyevent = _SE
 	severity = _severity
 
 /datum/event/proc/Initialize()
