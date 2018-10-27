@@ -35,3 +35,9 @@
 
 	_start_element.resize(null,height)
 	_end_element.resize(null,height)
+
+/HUD_element/threePartBox/getWidth()
+	return _start_element.getWidth() + _middle_element.getWidth() + _end_element.getWidth()
+
+/HUD_element/threePartBox/getHeight()
+	return max(_start_element.getHeight(),_middle_element.getHeight(),_end_element.getHeight())

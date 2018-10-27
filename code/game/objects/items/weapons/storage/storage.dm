@@ -49,22 +49,31 @@
 /obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
 	var/HUD_element/main = new("storage")
 
-	var/HUD_element/threePartBox/background = main.add(new/HUD_element/threePartBox/storageBackground())
+	var/HUD_element/threePartBox/storageBackground = main.add(new/HUD_element/threePartBox/storageBackground())
 
-	var/backgroundWidth
+	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
+	var/maxBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,284)
 
 	if(storage_slots == null)
-		main.setPosition(data.ConteinerData["Xspace"]*32,data.ConteinerData["Yspace"]*32)
+		//main.setPosition(data.ConteinerData["Xspace"]*32,data.ConteinerData["Yspace"]*32)
+		main.setPosition(100,100)
 
+		var/totalWidth = 0
 		for(var/obj/item/O in contents)
-			var/HUD_element/threePartBox/itemBackground = background.add(new/HUD_element/threePartBox/storedItemBackground())
+			var/HUD_element/threePartBox/itemBackground = main.add(new/HUD_element/threePartBox/storedItemBackground())
+			var/itemBackgroundWidth = maxBackgroundWidth * O.get_storage_cost()/max_storage_space
+			var/centerOffset = (storageBackground.getHeight() - itemBackground.getHeight())/2 //todo: make automatic element alignment relative to parent
 
-			var/storage_cost = O.get_storage_cost()
+			itemBackground.resize(itemBackgroundWidth)
+			itemBackground.setPosition(totalWidth,centerOffset)
+			totalWidth += itemBackground.getWidth()
 
 			//O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
-			O.maptext = ""
-			O.layer = ABOVE_HUD_LAYER
-			O.plane = ABOVE_HUD_PLANE
+			//O.maptext = ""
+			//O.layer = ABOVE_HUD_LAYER
+			//O.plane = ABOVE_HUD_PLANE
+
+		storageBackground.resize(totalWidth)
 
 		//src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 
@@ -154,6 +163,9 @@
 				return
 	if(user.s_active)
 		user.s_active.hide_from(user)
+
+	generateHUD().show(user.client)
+
 	user.client.screen -= src.boxes
 	user.client.screen -= src.storage_start
 	user.client.screen -= src.storage_continue
