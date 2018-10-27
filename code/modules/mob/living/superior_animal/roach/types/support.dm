@@ -35,7 +35,7 @@
 	if(prob(7))
 		gas_attack()
 
-/mob/living/superior_animal/roach/support/FindTarget()
+/mob/living/superior_animal/roach/support/findTarget()
 	. = ..()
 	if(. && gas_attack())
 		visible_emote("charges at [.] in clouds of poison!")

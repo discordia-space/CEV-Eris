@@ -18,7 +18,7 @@
 	var/obj/item/master = null
 	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
-	var/force = 0
+
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
@@ -58,10 +58,19 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
+
+	//Damage vars
+	var/force = 0	//How much damage the weapon deals
+
+	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
+	//Does not affect damage dealt to mobs
+
 /obj/item/Destroy()
+	qdel(hidden_uplink)
+	hidden_uplink = null
 	if(ismob(loc))
 		var/mob/m = loc
-		m.drop_from_inventory(src)
+		m.u_equip(src)
 		src.loc = null
 	return ..()
 
@@ -117,23 +126,11 @@
 	return ..(user, distance, "", message)
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user || !user.can_pickup(src))
-		return
-
 	var/atom/old_loc = src.loc
 
 	src.pickup(user)
-	if (istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
-		S.remove_from_storage(src)
 
 	src.throwing = 0
-	if (src.loc == user)
-		if(!user.canUnEquip(src))
-			return
-	else
-		if(isliving(src.loc))
-			return
 
 	if(user.put_in_active_hand(src) && old_loc )
 		if ((user != old_loc) && (user != old_loc.get_holding_mob()))
@@ -440,7 +437,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return quality_id in tool_qualities
 
 /obj/item/proc/get_tool_quality(quality_id)
-	return tool_qualities[quality_id]
+	if (tool_qualities && tool_qualities.len)
+		return tool_qualities[quality_id]
+	return null
 
 //We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
 /obj/item/proc/get_tool_type(var/mob/living/user, var/list/required_qualities)
@@ -591,26 +590,34 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					H.get_organ(H.get_holding_hand(src)).embed(src)
 					return
 
-			if(85 to 93)
+			if(85 to 94)
 				if(ishuman(user))
 					user << SPAN_DANGER("Your [src] broke beyond repair!")
 					new /obj/item/weapon/material/shard/shrapnel(user.loc)
 					qdel(src)
 					return
 
-			if(94 to 100)
+			if(95 to 100)
 				if(ishuman(user))
 					if(istype(src, /obj/item/weapon/tool))
 						var/obj/item/weapon/tool/T = src
 						if(T.use_fuel_cost)
 							user << SPAN_DANGER("You ignite the fuel of the [src]!")
-							explosion(src.loc,-1,1,2)
-							qdel(src)
+							var/fuel = T.get_fuel()
+							T.consume_fuel(fuel)
+							user.adjust_fire_stacks(fuel/10)
+							user.IgniteMob()
+							T.update_icon()
 							return
-						if(T.use_power_cost)
+						if(T.use_power_cost && T.cell)
 							user << SPAN_DANGER("You overload the cell in the [src]!")
-							explosion(src.loc,-1,1,2)
-							qdel(src)
+							if (T.cell.charge >= 400)
+								explosion(src.loc,-1,0,2)
+							else
+								explosion(src.loc,-1,0,1)
+							qdel(T.cell)
+							T.cell = null
+							T.update_icon()
 							return
 
 

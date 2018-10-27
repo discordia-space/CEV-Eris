@@ -20,6 +20,7 @@
 	var/last_use = 1.0
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
+	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 
 /obj/item/weapon/extinguisher/mini
 	name = "fire extinguisher"
@@ -107,7 +108,7 @@
 			spawn(0)
 				if(!src || !reagents.total_volume) return
 
-				var/obj/effect/effect/water/W = PoolOrNew(/obj/effect/effect/water, get_turf(src))
+				var/obj/effect/effect/water/W = new(get_turf(src))
 				var/turf/my_target
 				if(a <= the_targets.len)
 					my_target = the_targets[a]

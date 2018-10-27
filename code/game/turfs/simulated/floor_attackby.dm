@@ -14,16 +14,17 @@
 	if (usr.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
-			var/volume = (I.force - flooring.resistance)*3.5
+			var/calc_damage = (I.force*I.structure_damage_factor) - flooring.resistance
+			var/volume = (calc_damage)*3.5
 			volume = min(volume, 15)
 			if (flooring.hit_sound)
 				playsound(src, flooring.hit_sound, volume, 1, -1)
 			else if (I.hitsound)
 				playsound(src, I.hitsound, volume, 1, -1)
 
-			if (I.force && I.force > flooring.resistance)
+			if (calc_damage > 0)
 				visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
-				take_damage(I.force, I.damtype)
+				take_damage(I.force*I.structure_damage_factor, I.damtype)
 			else
 				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.75) //This longer cooldown helps promote skill in melee combat by punishing misclicks a bit
@@ -54,6 +55,13 @@
 					if (flooring && flooring.can_build_floor(F))
 						use_flooring = F
 						break
+				else if (istype(S, /obj/item/stack/material))//Handling for material stacks
+					var/obj/item/stack/material/M = S
+					if (F.build_type == M.material.name)
+						if (flooring && flooring.can_build_floor(F))
+							use_flooring = F
+							break
+
 			if(!use_flooring)
 				return
 			// Do we have enough?

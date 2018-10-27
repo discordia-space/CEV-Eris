@@ -10,105 +10,6 @@
 	else
 		equip_to_slot_if_possible(W, slot)
 
-/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
-	if(equip_to_slot_if_possible(W, slot_l_hand, del_on_fail, disable_warning, redraw_mob))
-		return TRUE
-	else if(equip_to_slot_if_possible(W, slot_r_hand, del_on_fail, disable_warning, redraw_mob))
-		return TRUE
-	return FALSE
-
-//This is a SAFE proc. Use this instead of equip_to_slot()!
-//set del_on_fail to have it delete W if it fails to equip
-//set disable_warning to disable the 'you are unable to equip that' warning.
-//unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
-
-	if(!istype(W)) return FALSE
-
-	if(!W.mob_can_equip(src, slot))
-		if(del_on_fail)
-			qdel(W)
-		else
-			if(!disable_warning)
-				src << "\red You are unable to equip that." //Only print if del_on_fail is false
-		return FALSE
-
-	//Pre-equip intercepts here to let the item know it's about to be equipped
-	if (W.pre_equip(src, slot))
-		return FALSE
-
-	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
-
-	if( !istype(W, /obj/item/clothing/suit/storage) || \
-		!istype(W, /obj/item/weapon/storage)
-		)
-		if(W.w_class > ITEM_SIZE_NORMAL)
-			play_long()
-		else
-			play_short()
-
-	return TRUE
-
-//This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
-//In most cases you will want to use equip_to_slot_if_possible()
-/mob/proc/equip_to_slot(obj/item/W as obj, slot)
-	return
-
-//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
-	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
-
-//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
-var/list/slot_equipment_priority = list(
-	slot_back,
-	slot_wear_id,
-	slot_w_uniform,
-	slot_wear_suit,
-	slot_wear_mask,
-	slot_head,
-	slot_shoes,
-	slot_gloves,
-	slot_l_ear,
-	slot_r_ear,
-	slot_glasses,
-	slot_belt,
-	slot_s_store,
-	slot_accessory_buffer,
-	slot_l_store,
-	slot_r_store
-)
-
-//Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/proc/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
-	return TRUE
-
-//puts the item "W" into an appropriate slot in a human's inventory
-//returns 0 if it cannot, 1 if successful
-/mob/proc/equip_to_appropriate_slot(obj/item/W)
-	if(!istype(W))
-		return FALSE
-
-	for(var/slot in slot_equipment_priority)
-		if(equip_to_slot_if_possible(W, slot, del_on_fail=0, disable_warning=1, redraw_mob=1))
-			return TRUE
-
-	return FALSE
-
-/mob/proc/equip_to_storage(obj/item/newitem)
-	// Try put it in their backpack
-	if(istype(src.back,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/backpack = src.back
-		if(backpack.can_be_inserted(newitem, 1))
-			newitem.forceMove(src.back)
-			return TRUE
-
-	// Try to place it in any item that can store stuff, on the mob.
-	for(var/obj/item/weapon/storage/S in src.contents)
-		if(S.can_be_inserted(newitem, 1))
-			newitem.forceMove(S)
-			return TRUE
-	return FALSE
-
 //These procs handle putting s tuff in your hand. It's probably best to use these rather than setting l_hand = ...etc
 //as they handle all relevant stuff like adding it to the player's screen and updating their overlays.
 
@@ -122,17 +23,10 @@ var/list/slot_equipment_priority = list(
 	if(hand)	return r_hand
 	else		return l_hand
 
-//Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_l_hand(var/obj/item/W)
-	if(lying || !istype(W))
-		return FALSE
-	return equip_to_slot_if_possible(W, slot_l_hand)
-
-//Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_r_hand(var/obj/item/W)
-	if(lying || !istype(W))
-		return FALSE
-	return equip_to_slot_if_possible(W, slot_r_hand)
+//Declarations. Overrided in human/robots subtypes
+//Puts the Item into your l_hand/r_hand if possible and calls all necessary triggers/updates. returns TRUE on success.
+/mob/proc/put_in_l_hand(var/obj/item/Item)
+/mob/proc/put_in_r_hand(var/obj/item/Item)
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/proc/put_in_active_hand(var/obj/item/W)
@@ -281,43 +175,3 @@ var/list/slot_equipment_priority = list(
 	if (hand)
 		return slot_l_hand
 	return slot_r_hand
-
-
-/mob/proc/can_pickup(var/obj/item/I, var/feedback = TRUE)
-	if(!canmove || stat || restrained() || !Adjacent(usr))
-		return
-
-	var/slot = get_active_hand_slot()
-	if (!I || !I.mob_can_equip(src, slot, TRUE))
-		//Picking up is going to fail, maybe we can tell the user why
-
-		return
-
-	return TRUE
-
-
-//////
-//Some inventory sounds.
-//occurs when you click and put up or take off something from you (any UI slot acceptable)
-/////
-/mob/proc/play_short()
-	var/list/sounds = list(
-	'sound/misc/inventory/short_1.ogg',
-	'sound/misc/inventory/short_2.ogg',
-	'sound/misc/inventory/short_3.ogg'
-	)
-
-	var/picked_sound = pick(sounds)
-
-	playsound(src, picked_sound, 100, 1, 1)
-
-/mob/proc/play_long()
-	var/list/sounds = list(
-	'sound/misc/inventory/long_1.ogg',
-	'sound/misc/inventory/long_2.ogg',
-	'sound/misc/inventory/long_3.ogg'
-	)
-
-	var/picked_sound = pick(sounds)
-
-	playsound(src, picked_sound, 100, 1, 1)

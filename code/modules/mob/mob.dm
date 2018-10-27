@@ -254,9 +254,9 @@
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
-	spawn (20)
-		if(P)
-			qdel(P)	// qdel
+	P.pixel_x = A.pixel_x
+	P.pixel_y = A.pixel_y
+	QDEL_IN(P, 2 SECONDS)
 
 	face_atom(A)
 	return 1
@@ -1146,12 +1146,8 @@ mob/proc/yank_out_object()
 	return
 
 /mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
-	var/list/exarglist = list()
-
-	isnull(second_arg) ? exarglist.Add(src.client) : exarglist.Add(src.client,second_arg)
-
 	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
-		src.client.CH = PoolOrNew(CH_type,exarglist)
+		src.client.CH = new CH_type(client, second_arg)
 		src << SPAN_WARNING("You prepare [CH_name].")
 	else
 		kill_CH()

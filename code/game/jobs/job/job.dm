@@ -117,7 +117,7 @@
 			if( !slots.len ) break
 			var/obj/item/I = new path(H)
 			for( var/slot in slots )
-				if( H.equip_to_slot_if_possible(I, slot, 0, 1, 0) )
+				if( H.equip_to_slot_if_possible(I, slot, TRUE, FALSE) ) //Disable warning and not RedrawMob
 					slots -= slot
 					break
 			if(istype(H.r_hand,/obj/item/weapon/storage))

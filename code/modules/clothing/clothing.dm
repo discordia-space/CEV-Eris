@@ -12,6 +12,12 @@
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
 
+/obj/item/clothing/Destroy()
+	for(var/obj/item/clothing/accessory/A in accessories)
+		qdel(A)
+	accessories = null
+	return ..()
+
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
 	. = ..()
@@ -75,9 +81,7 @@
 	set_dir(O.dir)
 	master_item = O
 
-/obj/item/clothing/ears/offear/mob_can_equip(mob/living/user, slot, disable_warning)
-	if(!slot || !user)
-		return
+/obj/item/clothing/ears/offear/can_be_equipped(mob/living/user, slot, disable_warning)
 	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
 	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
 		return FALSE
@@ -359,19 +363,24 @@ BLIND     // can't see anything
 		..()
 
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
-	if(can_hold_knife && istype(I, /obj/item/weapon/material/shard) || \
-	 istype(I, /obj/item/weapon/material/butterfly) || \
-	 istype(I, /obj/item/weapon/material/kitchen/utensil) || \
-	 istype(I, /obj/item/weapon/material/hatchet/tacknife))
+	var/global/knifes
+	if(!knifes)
+		knifes = list(
+			/obj/item/weapon/material/knife,
+			/obj/item/weapon/material/shard,
+			/obj/item/weapon/material/butterfly,
+			/obj/item/weapon/material/kitchen/utensil,
+			/obj/item/weapon/material/hatchet/tacknife,
+		)
+	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
 			user << SPAN_WARNING("\The [src] is already holding \a [holding].")
 			return
-		user.unEquip(I)
-		I.forceMove(src)
-		holding = I
-		user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
-		verbs |= /obj/item/clothing/shoes/proc/draw_knife
-		update_icon()
+		if(user.unEquip(I, src))
+			holding = I
+			user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
+			verbs |= /obj/item/clothing/shoes/proc/draw_knife
+			update_icon()
 	else
 		return ..()
 

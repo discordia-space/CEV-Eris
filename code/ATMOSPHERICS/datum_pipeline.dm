@@ -55,8 +55,7 @@ datum/pipeline
 		alert_pressure = base.alert_pressure
 
 		if(base.air_temporary)
-			qdel(air)
-			air = base.air_temporary
+			air.copy_from(base.air_temporary)
 			qdel(base.air_temporary)
 			base.air_temporary = null
 

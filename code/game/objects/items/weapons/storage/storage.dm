@@ -9,7 +9,7 @@
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
 	w_class = ITEM_SIZE_NORMAL
-	item_flags = DRAG_AND_DROP_UNEQUIP
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
@@ -437,7 +437,8 @@
 	return
 
 /obj/item/weapon/storage/attack_hand(mob/user as mob)
-	if(ishuman(user))
+	// v Why does that exist? ~Luduk
+	/*if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
@@ -446,7 +447,7 @@
 		if(H.r_store == src && !H.get_active_hand())
 			H.put_in_hands(src)
 			H.r_store = null
-			return
+			return*/
 
 	if (src.loc == user)
 		src.open(user)

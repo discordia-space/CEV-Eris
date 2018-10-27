@@ -24,8 +24,7 @@
 	var/autorecharging = FALSE //For nucclear cells
 	var/recharge_time = 4 //How often nuclear cells will recharge
 	var/charge_tick = 0
-	var/charge_status = -1
-	var/last_charge_status = -1
+	var/last_charge_status = -1 //used in update_icon optimization
 
 /obj/item/weapon/cell/New()
 	..()
@@ -61,6 +60,7 @@
 	return use(cell_amt) / CELLRATE
 
 /obj/item/weapon/cell/update_icon()
+	var/charge_status
 	var/c = charge/maxcharge
 	if (c >=0.95)
 		charge_status = 100
@@ -72,8 +72,6 @@
 		charge_status = 25
 	else if (c >=0.01)
 		charge_status = 0
-	else
-		charge_status = null
 
 	if (charge_status == last_charge_status)
 		return

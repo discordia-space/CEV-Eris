@@ -102,13 +102,17 @@
 		rag = R
 		rag.forceMove(src)
 		flags &= ~OPENCONTAINER
+		verbs -= /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
 		update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/remove_rag(mob/user)
 	if(!rag) return
 	user.put_in_hands(rag)
 	rag = null
-	flags |= (initial(flags) & OPENCONTAINER)
+	var/is_open_container = initial(flags) & OPENCONTAINER
+	if(is_open_container)
+		flags |= OPENCONTAINER
+		verbs += /obj/item/weapon/reagent_containers/food/drinks/proc/gulp_whole
 	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/open(mob/user)

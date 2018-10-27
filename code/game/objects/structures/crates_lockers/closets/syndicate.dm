@@ -19,6 +19,8 @@
 	new /obj/item/weapon/tool/multitool(src)
 	new /obj/item/weapon/shield/energy(src)
 	new /obj/item/clothing/shoes/magboots(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src) // Perhaps this may encourage actually buying pistols.
+	new /obj/item/weapon/storage/pouch/ammo(src)
 
 
 /obj/structure/closet/syndicate/suit
