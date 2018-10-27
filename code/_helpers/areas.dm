@@ -41,7 +41,7 @@
 	//This is useful for spawning, you dont want people to see things pop into existence
 //If filter_maintenance is true, maintenance areas won't be chosen
 	//Since eris maintenance is a labyrinth and people dont hang around there, this defaults true
-/proc/random_ship_area(var/filter_players = FALSE, var/filter_maintenance = TRUE)
+/proc/random_ship_area(var/filter_players = FALSE, var/filter_maintenance = TRUE, var/filter_critical = FALSE)
 	var/list/possible = list()
 	for(var/Y in ship_areas)
 		var/area/A = Y
@@ -49,6 +49,9 @@
 			continue
 
 		if (filter_maintenance && istype(A, /area/eris/maintenance))
+			continue
+
+		if (filter_critical && (A.flags & AREA_FLAG_CRITICAL))
 			continue
 
 		//Although hostile mobs instadying to turrets is fun

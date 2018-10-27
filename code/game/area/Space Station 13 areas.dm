@@ -992,6 +992,7 @@ area/space/atmosalert()
 /area/crew_quarters/sleep/cryo
 	name = "\improper Cryogenic Storage"
 	icon_state = "Sleep"
+	flags = AREA_FLAG_CRITICAL
 
 /area/crew_quarters/sleep_male
 	name = "\improper Male Dorm"
@@ -1140,6 +1141,7 @@ area/space/atmosalert()
 /area/engineering/gravity_generator
 	name = "Gravity Generator Room"
 	icon_state = "blue"
+	flags = AREA_FLAG_CRITICAL
 
 /area/engineering/shield_generator
 	name = "Shield Generator Room"
@@ -1174,18 +1176,22 @@ area/space/atmosalert()
 	name = "\improper Engine Room"
 	icon_state = "engine"
 	sound_env = LARGE_ENCLOSED
+	flags = AREA_FLAG_CRITICAL
 
 /area/engineering/engine_airlock
 	name = "\improper Engine Room Airlock"
 	icon_state = "engine"
 
+
 /area/engineering/engine_monitoring
 	name = "\improper Engine Monitoring Room"
 	icon_state = "engine_monitoring"
+	flags = AREA_FLAG_CRITICAL
 
 /area/engineering/engine_waste
 	name = "\improper Engine Waste Handling"
 	icon_state = "engine_waste"
+	flags = AREA_FLAG_CRITICAL
 
 /area/engineering/engineering_monitoring
 	name = "\improper Engineering Monitoring Room"
@@ -2305,6 +2311,7 @@ area/space/atmosalert()
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
 	ambience = list('sound/ambience/ambimalf.ogg')
+	flags = AREA_FLAG_CRITICAL
 
 /area/turret_protected/ai_upload_foyer
 	name = "AI Upload Access"
@@ -2316,11 +2323,13 @@ area/space/atmosalert()
 	name = "Messaging Server Room"
 	icon_state = "ai_server"
 	sound_env = SMALL_ENCLOSED
+	flags = AREA_FLAG_CRITICAL
 
 /area/turret_protected/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
 	ambience = list('sound/ambience/ambimalf.ogg')
+	flags = AREA_FLAG_CRITICAL
 
 /area/turret_protected/ai_cyborg_station
 	name = "\improper Cyborg Station"
@@ -2394,6 +2403,7 @@ area/space/atmosalert()
 // Telecommunications Satellite
 /area/tcommsat/
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	flags = AREA_FLAG_CRITICAL
 
 /area/tcommsat/entrance
 	name = "\improper Telecoms Teleporter"

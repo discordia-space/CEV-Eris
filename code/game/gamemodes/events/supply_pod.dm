@@ -40,7 +40,7 @@
 	var/done = FALSE
 	var/turf/T
 	while(!done)
-		var/area/A = random_ship_area(TRUE)
+		var/area/A = random_ship_area(TRUE, TRUE, TRUE)
 		T = A.random_space()
 		if (!T)
 			continue
