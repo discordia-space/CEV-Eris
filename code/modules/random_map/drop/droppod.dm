@@ -21,7 +21,7 @@
 	var/placement_explosion_dev =   1
 	var/placement_explosion_heavy = 2
 	var/placement_explosion_light = 3
-	var/placement_explosion_flash = 4
+	var/placement_explosion_flash = 3
 
 	var/list/floor_tiles = list()
 	var/turf/origin = null

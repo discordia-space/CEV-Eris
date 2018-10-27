@@ -36,11 +36,21 @@
 		auto_open = TRUE
 
 /datum/event/supply_pod/proc/find_dropsite()
+	var/attempts = 100
 	//Lets find a place to drop our pod
 	var/done = FALSE
 	var/turf/T
 	while(!done)
+		attempts--
+		if (attempts <= 0)
+			done = TRUE
+
 		var/area/A = random_ship_area(TRUE, TRUE, TRUE)
+		if (!A)
+			//Something is horribly wrong
+			kill()
+			break
+
 		T = A.random_space()
 		if (!T)
 			continue
@@ -58,7 +68,11 @@
 		if (!nearspace)
 			done = TRUE
 
-	epicentre = T
+	if (T)
+		epicentre = T
+	else
+		//Something is horribly wrong
+		kill()
 
 
 //Next, what will be in it?
