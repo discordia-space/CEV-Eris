@@ -135,3 +135,6 @@
 
 /proc/RoundUpToPowerOfTwo(var/val)
     return 2 ** -round(-log(2, val))
+
+/proc/rand_between(var/lower, var/upper)
+	return (rand() * (upper - lower)) + lower
