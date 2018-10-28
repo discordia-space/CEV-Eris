@@ -4,7 +4,7 @@
 #define SPINNING_COCOON 4
 
 //nursemaids - these create webs and eggs
-/mob/living/superior_animal/giant_spider/nurse
+/mob/living/carbon/superior_animal/giant_spider/nurse
 	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes."
 	icon_state = "nurse"
 	maxHealth = 40
@@ -16,7 +16,7 @@
 	poison_type = "stoxin"
 	var/fed = 0
 
-/mob/living/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
+/mob/living/carbon/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
 	var/target = ..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -26,7 +26,7 @@
 				var/eggs = new /obj/effect/spider/eggcluster(O, src)
 				O.implants += eggs
 
-/mob/living/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
+/mob/living/carbon/superior_animal/giant_spider/nurse/proc/GiveUp(var/C)
 	spawn(100)
 		if(busy == MOVING_TO_TARGET)
 			if(cocoon_target == C && get_dist(src,cocoon_target) > 1)
@@ -34,7 +34,7 @@
 				busy = 0
 				stop_automated_movement = 0
 
-/mob/living/superior_animal/giant_spider/nurse/Life()
+/mob/living/carbon/superior_animal/giant_spider/nurse/Life()
 	..()
 	if(!stat)
 		if(stance == HOSTILE_STANCE_IDLE)
@@ -119,7 +119,7 @@
 									O.loc = C
 
 								for(var/mob/living/M in targetTurf)
-									if((M.stat == CONSCIOUS) || istype(M, /mob/living/superior_animal/giant_spider))
+									if((M.stat == CONSCIOUS) || istype(M, /mob/living/carbon/superior_animal/giant_spider))
 										continue
 									large_cocoon = 1
 
