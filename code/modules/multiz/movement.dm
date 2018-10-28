@@ -7,6 +7,57 @@
 #define Z_MOVE_JUMP_GRAVITY		7	//Attempting to leap up to another floor. Requires superhuman abilities
 #define Z_MOVE_JUMP_NOGRAV		8	//A graceful leap in zero G. Fast but very unreliable, you will slip around.
 
+#define RESET_VARS \
+M.pixel_x = prev_x;\
+M.pixel_y = prev_y;\
+M.transform = prev_matrix;\
+M.alpha = prev_alpha;\
+M.layer = prev_layer;\
+M.plane = prev_plane;\
+
+
+#define JETPACK_ANIMATION \
+if (direction == DOWN)\
+{\
+	var/matrix/mat = matrix();\
+	mat.Scale(0.85);\
+	M.plane = FLOOR_PLANE;\
+	M.layer = 1;\
+	animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = time, easing = SINE_EASING);\
+}\
+else\
+{\
+	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = SINE_EASING);\
+}
+
+#define CLIMB_ANIMATION \
+M.face_atom(W);\
+if (direction == DOWN)\
+{\
+	var/matrix/mat = matrix();\
+	mat.Scale(0.85);\
+	M.plane = FLOOR_PLANE;\
+	M.layer = 1;\
+	animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = time, easing = LINEAR_EASING);\
+}\
+else\
+{\
+	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING);\
+}
+
+#define JUMP_ANIMATION \
+if (direction == DOWN)\
+{\
+	var/matrix/mat = matrix();\
+	mat.Scale(0.85);\
+	M.plane = FLOOR_PLANE;\
+	M.layer = 1;\
+	animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = time, easing = BACK_EASING);\
+}\
+else\
+{\
+	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = BACK_EASING);\
+}
 
 var/list/z_movement_methods = list(
 1 = list()
@@ -28,6 +79,15 @@ var/list/z_movement_methods = list(
 	if (direction == DOWN)
 		dirmult = -1
 
+
+	//Before we start, let's cache a few values that we might be changing
+	var/prev_x = M.pixel_x
+	var/prev_y = M.pixel_y
+	var/matrix/prev_matrix = M.transform
+	var/prev_alpha = M.alpha
+	var/prev_layer = M.layer
+	var/prev_plane = M.plane
+
 	var/time = 30 //The time it takes to transition.
 	//When going against gravity it takes longer
 	//In zero G, time is the same in either direction
@@ -44,6 +104,7 @@ var/list/z_movement_methods = list(
 			if (. && !check_only)
 				if (do_after(M, time))
 					M.Move(destination)
+
 			return
 //================================
 		if (Z_MOVE_JETPACK_NOGRAV)
@@ -70,13 +131,12 @@ var/list/z_movement_methods = list(
 				if (thrust.get_total_moles() < JETPACK_MOVE_COST*5)
 					M << "Your [thrust] doesn't have enough gas to go [dir2text(direction)]!"
 
+
 			if (. && !check_only)
-				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = SINE_EASING)
+				JETPACK_ANIMATION
 				if (do_after(M, time))
 					M.Move(destination)
-					M.alpha = 255
-					M.pixel_y = 0
-					return
+				RESET_VARS
 			return
 
 //================================
@@ -106,11 +166,10 @@ var/list/z_movement_methods = list(
 					M << "Your [thrust] doesn't have enough gas to go [dir2text(direction)]!"
 
 			if (. && !check_only)
-				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = SINE_EASING)
+				JETPACK_ANIMATION
 				if (do_after(M, time))
 					M.Move(destination)
-				M.alpha = 255
-				M.pixel_y = 0
+				RESET_VARS
 			return
 //================================
 		if (Z_MOVE_CLIMB_NOGRAV)
@@ -137,12 +196,10 @@ var/list/z_movement_methods = list(
 				M << "There are no suitable walls to climb!"
 
 			if (. && !check_only)
-				M.face_atom(W)
-				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING)
+				CLIMB_ANIMATION
 				if (do_after(M, time))
 					M.Move(destination)
-				M.alpha = 255
-				M.pixel_y = 0
+				RESET_VARS
 			return
 //================================
 		if (Z_MOVE_CLIMB_GRAVITY)
@@ -180,12 +237,10 @@ var/list/z_movement_methods = list(
 				//Angle the sprite when walking up
 				//Add repeating catwalk footstep sound
 			if (. && !check_only)
-				M.face_atom(W)
-				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING)
+				CLIMB_ANIMATION
 				if (do_after(M, time))
 					M.Move(destination)
-				M.alpha = 255
-				M.pixel_y = 0
+				RESET_VARS
 			return
 
 //================================
@@ -200,11 +255,10 @@ var/list/z_movement_methods = list(
 
 			.=TRUE
 			if (. && !check_only)
-				animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = BACK_EASING)
+				JUMP_ANIMATION
 				if (do_after(M, time))
 					M.Move(destination)
-				M.alpha = 255
-				M.pixel_y = 0
+				RESET_VARS
 			return
 //================================
 		if (Z_MOVE_JUMP_GRAVITY)
