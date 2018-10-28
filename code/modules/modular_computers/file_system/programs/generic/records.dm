@@ -117,11 +117,13 @@
 		var/photo = get_photo(usr)
 		if(photo && active_record)
 			active_record.photo_front = photo
+			ui_interact(usr)
 		return 1
 	if(href_list["edit_photo_side"])
 		var/photo = get_photo(usr)
 		if(photo && active_record)
 			active_record.photo_side = photo
+			ui_interact(usr)
 		return 1
 	if(href_list["edit_field"])
 		edit_field(usr, text2num(href_list["edit_field"]))

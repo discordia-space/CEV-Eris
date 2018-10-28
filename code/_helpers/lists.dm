@@ -804,3 +804,11 @@ Checks if a list has the same entries and values as an element of big.
 		return (call(cmp)(L[i],A) > 0) ? i : i+1
 	else
 		return i
+
+//Checks if list is associative (example '["temperature"] = 90')
+/proc/is_associative(list/L)
+	for(var/key in L)
+		// if the key is a list that means it's actually an array of lists (stupid Byond...)
+		if(isnum(key) && isnull(L[key]) && istype(key, /list))
+			return FALSE
+	return TRUE
