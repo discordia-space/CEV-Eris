@@ -1,6 +1,6 @@
 /obj/item/modular_computer/Process()
 	if(!enabled) // The computer is turned off
-		last_power_usage = 0
+		last_power_usage = FALSE
 		return FALSE
 
 	if(damage > broken_damage)
@@ -87,7 +87,7 @@
 		to_chat(user, "\The [src] was already emagged.")
 		return NO_EMAG_ACT
 	else
-		computer_emagged = 1
+		computer_emagged = TRUE
 		to_chat(user, "You emag \the [src]. It's screen briefly shows a \"OVERRIDE ACCEPTED: New software downloads available.\" message.")
 		return TRUE
 
@@ -113,7 +113,7 @@
 	if(bsod)
 		return
 	if(tesla_link)
-		tesla_link.enabled = 1
+		tesla_link.enabled = TRUE
 	var/issynth = issilicon(user) // Robots and AIs get different activation messages.
 	if(damage > broken_damage)
 		if(issynth)
@@ -135,7 +135,7 @@
 			to_chat(user, "You press the power button but \the [src] does not respond")
 
 // Relays kill program request to currently active program. Use this to quit current program.
-/obj/item/modular_computer/proc/kill_program(var/forced = 0)
+/obj/item/modular_computer/proc/kill_program(var/forced = FALSE)
 	if(active_program)
 		active_program.kill_program(forced)
 		active_program = null
@@ -145,7 +145,7 @@
 	update_icon()
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
-/obj/item/modular_computer/proc/get_ntnet_status(var/specific_action = 0)
+/obj/item/modular_computer/proc/get_ntnet_status(var/specific_action = FALSE)
 	if(network_card)
 		return network_card.get_signal(specific_action)
 	else
@@ -156,19 +156,19 @@
 		return FALSE
 	return ntnet_global.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(var/loud = 1)
+/obj/item/modular_computer/proc/shutdown_computer(var/loud = TRUE)
 	kill_program(1)
 	QDEL_NULL_LIST(terminals)
 	for(var/datum/computer_file/program/P in idle_threads)
 		P.kill_program(1)
 		idle_threads.Remove(P)
 	if(loud)
-		visible_message("\The [src] shuts down.", range = 1)
-	enabled = 0
+		visible_message("\The [src] shuts down.", range = TRUE)
+	enabled = FALSE
 	update_icon()
 
 /obj/item/modular_computer/proc/enable_computer(var/mob/user = null)
-	enabled = 1
+	enabled = TRUE
 	update_icon()
 
 	// Autorun feature
@@ -237,16 +237,16 @@
 		SSnano.update_uis(src)
 
 /obj/item/modular_computer/proc/check_update_ui_need()
-	var/ui_update_needed = 0
+	var/ui_update_needed = FALSE
 	if(battery_module)
 		var/batery_percent = battery_module.battery.percent()
 		if(last_battery_percent != batery_percent) //Let's update UI on percent change
-			ui_update_needed = 1
+			ui_update_needed = TRUE
 			last_battery_percent = batery_percent
 
 	if(stationtime2text() != last_world_time)
 		last_world_time = stationtime2text()
-		ui_update_needed = 1
+		ui_update_needed = TRUE
 
 	if(idle_threads.len)
 		var/list/current_header_icons = list()
@@ -259,12 +259,12 @@
 
 		else if(!listequal(last_header_icons, current_header_icons))
 			last_header_icons = current_header_icons
-			ui_update_needed = 1
+			ui_update_needed = TRUE
 		else
 			for(var/x in last_header_icons|current_header_icons)
 				if(last_header_icons[x]!=current_header_icons[x])
 					last_header_icons = current_header_icons
-					ui_update_needed = 1
+					ui_update_needed = TRUE
 					break
 
 	if(ui_update_needed)

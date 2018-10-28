@@ -224,7 +224,7 @@
 			data["cur_uid"] = current_message.uid
 			if(istype(current_message.attachment))
 				data["cur_hasattachment"] = 1
-				data["cur_attachment_filename"] = "[current_message.attachment.filename].[current_message.attachment.filetype]"
+				data["cur_attachment_filename"] = cyrillic_to_unicode("[current_message.attachment.filename].[current_message.attachment.filetype]")
 				data["cur_attachment_size"] = current_message.attachment.size
 		else
 			data["label_inbox"] = "Inbox ([current_account.inbox.len])"
@@ -542,7 +542,7 @@
 			error = "Error uploading attachment: File exceeds maximal permitted file size of 32GQ."
 			msg_attachment = null
 		else
-			error = "File [msg_attachment.filename].[msg_attachment.filetype] has been successfully uploaded."
+			error = cyrillic_to_unicode("File [msg_attachment.filename].[msg_attachment.filetype] has been successfully uploaded.")
 		return 1
 
 	if(href_list["downloadattachment"])

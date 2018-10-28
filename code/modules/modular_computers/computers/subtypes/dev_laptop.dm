@@ -30,6 +30,7 @@
 
 /obj/item/modular_computer/laptop/update_icon()
 	if(anchored)
+		icon_state = initial(icon_state)
 		..()
 	else
 		overlays.Cut()
