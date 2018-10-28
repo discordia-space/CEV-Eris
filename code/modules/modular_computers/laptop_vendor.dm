@@ -270,8 +270,8 @@
 
 
 obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(user.incapacitated())
-		user << SPAN_WARNING("You can't do that right now!")
+	if(inoperable())
+		user << SPAN_WARNING("[src] is not responding.")
 		return
 	var/obj/item/weapon/card/id/I = W.GetIdCard()
 	// Awaiting payment state

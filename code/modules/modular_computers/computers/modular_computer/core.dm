@@ -1,6 +1,6 @@
 /obj/item/modular_computer/Process()
 	if(!enabled) // The computer is turned off
-		last_power_usage = FALSE
+		last_power_usage = 0
 		return FALSE
 
 	if(damage > broken_damage)
