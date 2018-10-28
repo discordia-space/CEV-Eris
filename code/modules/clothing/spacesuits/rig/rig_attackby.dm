@@ -37,6 +37,10 @@
 	var/tool_type = I.get_tool_type(user, usable_qualities)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
+			if (is_worn())
+				user << "You can't remove an installed device while the hardsuit is being worn."
+				return 1
+
 			if(open)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					var/list/current_mounts = list()
@@ -47,11 +51,6 @@
 					if(!to_remove)
 						return
 
-					if(ishuman(src.loc) && to_remove != "cell")
-						var/mob/living/carbon/human/H = src.loc
-						if(H.back == src)
-							user << "You can't remove an installed device while the hardsuit is being worn."
-							return
 
 					switch(to_remove)
 						if("cell")
@@ -82,13 +81,8 @@
 							if(!removal_choice)
 								return
 
-							var/obj/item/rig_module/removed = possible_removals[removal_choice]
-							user << "You detatch \the [removed] from \the [src]."
-							removed.forceMove(get_turf(src))
-							removed.removed()
-							installed_modules -= removed
-							update_icon()
-							return
+							uninstall(possible_removals[removal_choice], user)
+							return TRUE
 			else
 				user << "\The [src] access panel is closed."
 				return
@@ -181,35 +175,9 @@
 
 		// Check if this is a hardsuit upgrade or a modification.
 		else if(istype(I,/obj/item/rig_module))
-			if(ishuman(src.loc))
-				var/mob/living/carbon/human/H = src.loc
-				if(H.back == src)
-					user << SPAN_DANGER("You can't install a hardsuit module while the suit is being worn.")
-					return 1
-
-			if(!installed_modules)
-				installed_modules = list()
-			if(installed_modules.len)
-				for(var/obj/item/rig_module/installed_mod in installed_modules)
-					if(!installed_mod.redundant && istype(installed_mod,I))
-						user << "The hardsuit already has a module of that class installed."
-						return 1
-
-			var/obj/item/rig_module/mod = I
-			user << "You begin installing \the [mod] into \the [src]."
-			if(!do_after(user,40,src))
-				return
-			if(!user || !I)
-				return
-			if(!user.unEquip(mod))
-				return
-			user << "You install \the [mod] into \the [src]."
-			installed_modules |= mod
-			mod.forceMove(src)
-			mod.installed(src)
-			update_icon()
-			return 1
-
+			if (can_install(I, user, TRUE))
+				install(I, user)
+			return TRUE
 		else if(!cell && istype(I,/obj/item/weapon/cell/large))
 			if(!user.unEquip(I))
 				return

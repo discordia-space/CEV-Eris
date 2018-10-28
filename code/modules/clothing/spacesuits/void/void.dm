@@ -17,7 +17,22 @@
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	slowdown = 1
 	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 90)
-	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
+	allowed = list(
+	/obj/item/weapon/storage/pouch/,
+	/obj/item/weapon/gun,
+	/obj/item/weapon/melee/baton,
+	/obj/item/weapon/melee/energy/sword,
+	/obj/item/ammo_magazine,
+	/obj/item/ammo_casing,
+	/obj/item/weapon/melee/baton,
+	/obj/item/weapon/handcuffs,
+	/obj/item/weapon/tank,
+	/obj/item/device/suit_cooling_unit,
+	/obj/item/weapon/cell,
+	/obj/item/weapon/handcuffs)
+
+
+
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -39,6 +54,9 @@
 	user << "\The [src] has [english_list(part_list)] installed."
 	if(tank && in_range(src,user))
 		user << SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
+
+
+
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()

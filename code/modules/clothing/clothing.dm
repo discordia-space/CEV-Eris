@@ -406,7 +406,11 @@ BLIND     // can't see anything
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
+	var/list/extra_allowed = list()
 
+/obj/item/clothing/suit/New()
+	allowed |= extra_allowed
+	.=..()
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
 /obj/item/clothing/under

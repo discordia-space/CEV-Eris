@@ -68,8 +68,11 @@
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(
-		/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank/emergency_oxygen,
-		/obj/item/device/suit_cooling_unit, /obj/item/weapon/tank/oxygen
+		/obj/item/weapon/storage/pouch/,
+		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/tank/oxygen
 	)
 	slowdown = 3
 	armor = list(melee = 15, bullet = 15, laser = 15,energy = 0, bomb = 0, bio = 100, rad = 50)
@@ -78,8 +81,28 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude")
-
+	var/equip_delay = 6 SECONDS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
+
+//Delayed equipping of suits
+/obj/item/clothing/suit/space/pre_equip(var/mob/user, var/slot)
+	if (slot == slot_wear_suit)
+		if(equip_delay > 0)
+			user.visible_message(
+				SPAN_NOTICE("[user] starts putting on \the [src]..."),
+				SPAN_NOTICE("You start putting on \the [src]...")
+			)
+			if(!do_after(user,equip_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
+	//Delayed unequipping too
+	else if (is_worn())
+		if(equip_delay > 0)
+			user.visible_message(
+				SPAN_NOTICE("[user] starts taking off \the [src]..."),
+				SPAN_NOTICE("You start taking off \the [src]...")
+			)
+			if(!do_after(user,equip_delay,src))
+				return TRUE //A nonzero return value will cause the equipping operation to fail
 
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support()

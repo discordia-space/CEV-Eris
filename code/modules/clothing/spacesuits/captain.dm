@@ -22,6 +22,7 @@
 	item_flags = STOPPRESSUREDAMAGE
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(
+		/obj/item/weapon/storage/pouch/,
 		/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/weapon/gun/energy, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine,
 		/obj/item/ammo_casing, /obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs
