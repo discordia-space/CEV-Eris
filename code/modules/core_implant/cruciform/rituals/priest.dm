@@ -31,6 +31,10 @@
 		fail("This cruciform already has a soul inside.", user, C)
 		return FALSE
 
+	if (CI.wearer.stat == DEAD)
+		fail("It is too late for this one, the soul has already left the vessel", user, C)
+		return FALSE
+
 	CI.wearer << "<span class='info'>Your cruciform vibrates and warms up.</span>"
 
 	CI.activate()
@@ -142,6 +146,10 @@
 		fail("There is no cruciform on this one", user, C)
 		return FALSE
 
+	if (H.stat == DEAD)
+		fail("It is too late for this one, the soul has already left the vessel", user, C)
+		return FALSE
+
 	if(!(H in L))
 		fail("Cruciform is too far from [H].", user, C)
 		return FALSE
@@ -180,7 +188,7 @@
 /datum/ritual/cruciform/priest/ejection
 	name = "Deprivation"
 	phrase = "Et revertatur pulvis in terram suam unde erat et spiritus redeat ad Deum qui dedit illum"
-	desc = "This litany will command cruciform to detach from bearer if one bearing it is dead. You will be able to attach this cruciform later, or use it in scaner for Resurrection."
+	desc = "This litany will command cruciform to detach from bearer. If the one bearing it is dead. You will be able to  use it in scanner for Resurrection."
 
 /datum/ritual/cruciform/priest/ejection/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
@@ -195,10 +203,6 @@
 
 	var/mob/M = CI.wearer
 
-	if(CI.active && M.stat != DEAD)
-		fail("You cannot eject active cruciform from alive christian.", user, C)
-		return FALSE
-
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/E = H.organs_by_name[BP_CHEST]
@@ -212,7 +216,7 @@
 /datum/ritual/cruciform/priest/unupgrade
 	name = "Asacris"
 	phrase = "A caelo usque ad centrum"
-	desc = "This litany will remove any upgrade from "
+	desc = "This litany will remove any upgrade from the target's Cruciform implant"
 
 /datum/ritual/cruciform/priest/unupgrade/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
 	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
@@ -245,13 +249,13 @@
 	desc = "This litany boosts mechanical stats of everyone who's hear you on the short time. "
 	cooldown = TRUE
 	cooldown_time = 2 MINUTES
-	effect_time = 2 MINUTES
+	effect_time = 10 MINUTES
 	cooldown_category = "short_boost"
 	var/list/stats_to_boost = list()
 
 	New()
 		..()
-		desc = "This litany boosts [get_stats_to_text()] stats of everyone who's hear you on the short time."
+		desc = "This litany boosts [get_stats_to_text()] stats of everyone who hears you, lasts about ten minutes."
 
 
 /datum/ritual/cruciform/priest/short_boost/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
@@ -261,7 +265,7 @@
 			people_around.Add(H)
 
 	if(people_around.len > 0)
-		user << SPAN_NOTICE("Your cruciform emmits a special signal.")
+		user << SPAN_NOTICE("Your feel the air thrum with an inaudible vibration.")
 		playsound(user.loc, 'sound/machines/signal.ogg', 50, 1)
 		for(var/mob/living/carbon/human/participant in people_around)
 			participant << SPAN_NOTICE("You hear a silent signal...")
@@ -269,7 +273,7 @@
 		set_global_cooldown()
 		return TRUE
 	else
-		fail("Not enough hearers.", user, C)
+		fail("Your cruciform sings, alone, unto the void.", user, C)
 		return FALSE
 
 
@@ -279,12 +283,12 @@
 		participant.stats.changeStat(stat, amount)
 		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
 	spawn(30)
-		participant << SPAN_NOTICE("You feel a little dizziness at the moment, but later you got an extraordinary understanding of [get_stats_to_text()].")
+		participant << SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()].")
 
 
 /datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	participant.stats.changeStat(stat, -amount)
-	participant << SPAN_WARNING("The knoweledge of [get_stats_to_text()] has disappeared.")
+	participant << SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened.")
 
 /datum/ritual/cruciform/priest/short_boost/proc/get_stats_to_text()
 	if(stats_to_boost.len == 1)

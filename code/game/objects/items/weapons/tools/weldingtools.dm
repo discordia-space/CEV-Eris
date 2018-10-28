@@ -23,6 +23,8 @@
 	create_hot_spot = TRUE
 	glow_color = COLOR_ORANGE
 
+	heat = 2250
+
 
 /obj/item/weapon/tool/weldingtool/turn_on(mob/user)
 
@@ -55,3 +57,8 @@
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
 	force_ignited = WEAPON_FORCE_PAINFULL*1.15 //Slightly more powerful, not much more so
+	heat = 3773
+
+/obj/item/weapon/tool/weldingtool/is_hot()
+	if (damtype == BURN)
+		return heat
