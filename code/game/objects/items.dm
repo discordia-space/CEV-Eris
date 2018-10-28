@@ -473,6 +473,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
 /obj/item/proc/use_tool_extended(var/mob/living/user, var/atom/target, base_time, required_quality, fail_chance, required_stat = null, instant_finish_tier = 110, forced_sound = null, var/sound_repeat = 2.5 SECONDS)
+	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		if (isliving(target))
+			var/mob/living/L = target
+			L.IgniteMob()
+
 	if(target.used_now)
 		user << SPAN_WARNING("[target.name] is used by someone. Wait for them to finish.")
 		return TOOL_USE_CANCEL

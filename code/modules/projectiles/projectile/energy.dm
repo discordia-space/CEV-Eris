@@ -5,6 +5,8 @@
 	damage_type = BURN
 	check_armour = "energy"
 
+	heat = 100
+
 
 //releases a burst of light on impact or after travelling a distance
 /obj/item/projectile/energy/flash

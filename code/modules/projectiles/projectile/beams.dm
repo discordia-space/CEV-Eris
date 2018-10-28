@@ -14,6 +14,8 @@
 	tracer_type = /obj/effect/projectile/laser/tracer
 	impact_type = /obj/effect/projectile/laser/impact
 
+	heat = 100
+
 /obj/item/projectile/beam/practice
 	name = "laser"
 	icon_state = "laser"
