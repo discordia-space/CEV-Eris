@@ -46,7 +46,7 @@
 		user << SPAN_NOTICE("You begin dismantling \the [src].")
 		if(do_after(user,25,src))
 			user << SPAN_NOTICE("You dismantle \the [src].")
-			new /obj/item/stack/material/wood(get_turf(src), amount = 3)
+			new /obj/item/stack/material/wood(get_turf(src), 10)
 			for(var/obj/item/weapon/book/b in contents)
 				b.loc = (get_turf(src))
 			qdel(src)
