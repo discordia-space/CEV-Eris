@@ -43,6 +43,8 @@
 	var/store_items = 1
 	var/store_mobs = 1
 
+	var/dismantle_material = /obj/item/stack/material/steel
+
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
 
@@ -334,7 +336,7 @@
 			return 0
 		if(QUALITY_WELDING in I.tool_qualities)
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				new /obj/item/stack/material/steel(src.loc)
+				new dismantle_material(src.loc, 10)
 				src.visible_message(
 					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
 					"You hear welding."

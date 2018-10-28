@@ -291,11 +291,10 @@
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
-						if(dir == SOUTHWEST)
-							var/obj/item/stack/material/mats = new glasstype(loc)
-							mats.amount = is_fulltile() ? 4 : 2
+						if(is_fulltile())
+							new glasstype(loc, 6)
 						else
-							new glasstype(loc)
+							new glasstype(loc, 1)
 						qdel(src)
 						return
 				return 1 //No whacking the window with tools unless harm intent
