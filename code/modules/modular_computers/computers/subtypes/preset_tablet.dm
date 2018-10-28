@@ -30,7 +30,7 @@
 
 /obj/item/modular_computer/tablet/preset/custom_loadout/install_default_programs()
 	..()
-	var/mob/living/carbon/human/H = get_holder_of_type(src, /mob)
+	var/mob/living/carbon/human/H = get(src, /mob)
 	if(!istype(H)) return
 	install_default_programs_by_job(H)
 	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
