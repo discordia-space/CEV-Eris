@@ -217,31 +217,29 @@
 				spawn(100)
 					H.disabilities &= ~NEARSIGHTED
 
-//Prosthetic repair
-/obj/item/weapon/tool/attack(var/mob/living/carbon/human/H, var/mob/living/user)
 
-	if(get_tool_type(user, list(QUALITY_WELDING)))
-		if(ishuman(H))
-			var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
+/obj/item/weapon/tool/attack(mob/living/M, mob/living/user, var/target_zone)
+	if ((user.a_intent == I_HELP) && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
 
-			if(!S)
-				return
-			if(S.robotic < ORGAN_ROBOT || user.a_intent != I_HELP)
-				return ..()
+		if (!istype(S) || S.robotic < ORGAN_ROBOT)
+			return ..()
 
-			if(S.brute_dam)
-				if(S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
-					if(use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+		if (get_tool_type(user, list(QUALITY_WELDING))) //Prosthetic repair
+			if (S.brute_dam)
+				if (S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
+					if (use_tool(user, H, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						S.heal_damage(15,0,0,1)
 						user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-						user.visible_message(
-							SPAN_NOTICE("\The [user] patches some dents on \the [H]'s [S.name] with \the [src].")
-						)
-				else if(S.open != 2)
+						user.visible_message(SPAN_NOTICE("\The [user] patches some dents on \the [H]'s [S.name] with \the [src]."))
+						return 1
+				else if (S.open != 2)
 					user << SPAN_DANGER("The damage is far too severe to patch over externally.")
-			else if(S.open != 2) // For surgery.
+					return 1
+			else if (S.open != 2) // For surgery.
 				user << SPAN_NOTICE("Nothing to fix!")
-			return
+				return 1
 
 	return ..()
 
