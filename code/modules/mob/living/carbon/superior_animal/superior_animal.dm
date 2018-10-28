@@ -95,10 +95,19 @@
 		visible_message("<span class='name'>[src]</span> [message]")
 
 /mob/living/carbon/superior_animal/update_icons()
+	transform = null
 	if (stat == DEAD)
 		icon_state = icon_dead
-	else if ((stat == UNCONSCIOUS || resting) && icon_rest)
-		icon_state = icon_rest
+	else if ((stat == UNCONSCIOUS) || resting || lying)
+		if (icon_rest)
+			icon_state = icon_rest
+		else
+			if (icon_living)
+				icon_state = icon_living
+			var/matrix/M = matrix()
+			M.Turn(180)
+			//M.Translate(1,-6)
+			transform = M
 	else if (icon_living)
 		icon_state = icon_living
 

@@ -1,3 +1,12 @@
+/mob/living/carbon/superior_animal/proc/check_AI_act()
+	if ((stat != CONSCIOUS) || !canmove || resting || lying)
+		stance = HOSTILE_STANCE_IDLE
+		target_mob = null
+		walk(src, 0)
+		return
+
+	return 1
+
 /mob/living/carbon/superior_animal/Life()
 	. = ..()
 
@@ -6,16 +15,10 @@
 	if(client)
 		return
 
-	switch (stat)
-		if (DEAD)
-			walk(src, 0)
-			return
+	//CONSCIOUS UNCONSCIOUS DEAD
 
-		if (UNCONSCIOUS)
-			walk(src, 0)
-			return
-
-		//if (CONSCIOUS)
+	if (!check_AI_act())
+		return
 
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)

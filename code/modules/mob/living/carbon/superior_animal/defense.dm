@@ -12,6 +12,11 @@
 			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
 			gib()
 
+/mob/living/carbon/superior_animal/update_canmove()
+	..()
+
+	check_AI_act()
+
 /mob/living/carbon/superior_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	. = ..()
 
@@ -62,7 +67,16 @@
 			return 1
 
 		if (I_DISARM)
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			if (!weakened && prob(30))
+				M.visible_message("\red [M] has shoved \the [src]")
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				Weaken(3)
+
+				return 1
+			else
+				M.visible_message("\red [M] failed to shove \the [src]")
+				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+
 			M.do_attack_animation(src)
 
 		if (I_HURT)
@@ -82,6 +96,8 @@
 				adjustBruteLoss(damage)
 				updatehealth()
 				M.do_attack_animation(src)
+
+				return 1
 
 /mob/living/carbon/superior_animal/ex_act(severity)
 	..()
@@ -122,6 +138,38 @@
 	if(stat == DEAD)
 		blinded = 1
 		silent = 0
+	else
+		updatehealth()
+		handle_stunned()
+		handle_weakened()
+		if(health <= 0)
+			death()
+			blinded = 1
+			silent = 0
+			return 1
+
+		if(paralysis && paralysis > 0)
+			handle_paralysed()
+			blinded = 1
+			stat = UNCONSCIOUS
+			if(halloss > 0)
+				adjustHalLoss(-3)
+
+		if(sleeping)
+			adjustHalLoss(-3)
+			sleeping = max(sleeping-1, 0)
+			blinded = 1
+			stat = UNCONSCIOUS
+		else if(resting)
+			if(halloss > 0)
+				adjustHalLoss(-3)
+
+		else
+			stat = CONSCIOUS
+			if(halloss > 0)
+				adjustHalLoss(-1)
+
+		update_icons()
 
 	return 1
 
