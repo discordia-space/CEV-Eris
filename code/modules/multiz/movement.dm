@@ -19,43 +19,51 @@ M.plane = prev_plane;\
 #define JETPACK_ANIMATION \
 if (direction == DOWN)\
 {\
+	M.visible_message(SPAN_NOTICE("[M] starts a controlled descent with the [thrust]"), SPAN_NOTICE("You start a controlled descent with the [thrust]"));\
+	M.pixel_y += 8;\
 	var/matrix/mat = matrix();\
-	mat.Scale(0.85);\
+	mat.Scale(0.9);\
 	M.plane = FLOOR_PLANE;\
 	M.layer = 1;\
 	animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = time, easing = SINE_EASING);\
 }\
 else\
 {\
+	M.visible_message(SPAN_NOTICE("[M] starts ascending with the [thrust]"), SPAN_NOTICE("You start ascending with the [thrust]"));\
 	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = SINE_EASING);\
 }
 
 #define CLIMB_ANIMATION \
 M.face_atom(W);\
+M.offset_to(W, 8);\
 if (direction == DOWN)\
 {\
+	M.visible_message(SPAN_NOTICE("[M] starts climbing down the [W]"), SPAN_NOTICE("You start climbing down the [W]"));\
 	var/matrix/mat = matrix();\
-	mat.Scale(0.85);\
+	mat.Scale(0.9);\
 	M.plane = FLOOR_PLANE;\
 	M.layer = 1;\
 	animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = time, easing = LINEAR_EASING);\
 }\
 else\
 {\
+	M.visible_message(SPAN_NOTICE("[M] starts climbing up the [W]"), SPAN_NOTICE("You start climbing up the [W]"));\
 	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING);\
 }
 
 #define JUMP_ANIMATION \
 if (direction == DOWN)\
 {\
+	M.visible_message(SPAN_NOTICE("[M] pushes off down to the floor below"), SPAN_NOTICE("You push off down to the floor below"));\
 	var/matrix/mat = matrix();\
-	mat.Scale(0.85);\
+	mat.Scale(0.9);\
 	M.plane = FLOOR_PLANE;\
 	M.layer = 1;\
 	animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = time, easing = BACK_EASING);\
 }\
 else\
 {\
+	M.visible_message(SPAN_NOTICE("[M] leaps up to the floor above"), SPAN_NOTICE("You leap up to the floor above"));\
 	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = BACK_EASING);\
 }
 
@@ -335,6 +343,10 @@ var/list/z_movement_methods = list(
 		to_chat(src, "<span class='warning'>\The [start] under you is in the way.</span>")
 		return FALSE
 
+	if(!destination.CanZPass(src, direction))
+		to_chat(src, "<span class='warning'>\The [destination] above you is in the way.</span>")
+		return FALSE
+
 	// Check for blocking atoms at the destination.
 	for (var/atom/A in destination)
 		if (!A.CanPass(src, start, 1.5, 0))
@@ -372,12 +384,6 @@ var/list/z_movement_methods = list(
 	else
 		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 
-/mob/living/carbon/human/bst/zMove(direction)
-	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-	if(destination)
-		forceMove(destination)
-	else
-		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 
 /**
  * An initial check for Z-level travel. Called relatively early in mob/proc/zMove.
@@ -392,7 +398,7 @@ var/list/z_movement_methods = list(
 
 /mob/observer/can_ztravel(var/direction)
 	return TRUE
-abstra
+
 /mob/living/carbon/human/can_ztravel(var/direction)
 	if(incapacitated())
 		return FALSE

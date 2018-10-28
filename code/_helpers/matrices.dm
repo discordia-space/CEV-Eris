@@ -2,6 +2,17 @@
 	. = new_angle - old_angle
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
+//Changes our pixel offset by offset pixels towards the target atom
+/atom/proc/offset_to(var/atom/target_atom, var/offset = 1)
+	if (target.x < x)
+		pixel_x -= offset
+	else if (target.x > x)
+		pixel_x += offset
+
+	if (target.y < y)
+		pixel_y -= offset
+	else if (target.y > y)
+		pixel_y += offset
 
 /atom/proc/SpinAnimation(speed = 10, loops = -1)
 	var/matrix/m120 = matrix(transform)
