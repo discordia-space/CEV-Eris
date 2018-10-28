@@ -125,7 +125,7 @@
 	if(!stored_files)
 		return 0
 
-	var/list/badchars = list("/","\\",":","*","?","\"","<",">","|","#", ".")
+	var/list/badchars = list("/",":","*","?","<",">","|", ".")
 	for(var/char in badchars)
 		if(findtext(F.filename, char))
 			return 0

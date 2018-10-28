@@ -23,7 +23,7 @@
 		open_file = href_list["PRG_openfile"]
 	if(href_list["PRG_newtextfile"])
 		. = 1
-		var/newname = sanitize(input(usr, "Enter file name or leave blank to cancel:", "File rename"))
+		var/newname = sanitize(input_utf8(usr, "Enter file name or leave blank to cancel:", "File rename"))
 		if(!newname)
 			return 1
 		var/obj/item/weapon/computer_hardware/hard_drive/HDD = computer.hard_drive
@@ -73,7 +73,7 @@
 		var/datum/computer_file/file = HDD.find_file_by_name(href_list["PRG_rename"])
 		if(!file || !istype(file))
 			return 1
-		var/newname = sanitize(input(usr, "Enter new file name:", "File rename", file.filename))
+		var/newname = sanitize(input_utf8(usr, "Enter new file name:", "File rename", file.filename))
 		if(file && newname)
 			file.filename = newname
 	if(href_list["PRG_edit"])
@@ -92,7 +92,7 @@
 		var/oldtext = html_decode(F.stored_data)
 		oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-		var/newtext = sanitize(replacetext(input(usr, "Editing file [open_file]. You may use most tags used in paper formatting:", "Text Editor", oldtext) as message|null, "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+		var/newtext = sanitize(replacetext(input_utf8(usr, "Editing file [open_file]. You may use most tags used in paper formatting:", "Text Editor", oldtext), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
 		if(!newtext)
 			return
 
@@ -183,7 +183,7 @@
 			for(var/datum/computer_file/F in HDD.stored_files)
 				files.Add(list(list(
 					"name" = cyrillic_to_unicode(F.filename),
-					"type" = cyrillic_to_unicode(F.filetype),
+					"type" = F.filetype,
 					"size" = F.size,
 					"undeletable" = F.undeletable
 				)))
@@ -194,7 +194,7 @@
 				for(var/datum/computer_file/F in RHDD.stored_files)
 					usbfiles.Add(list(list(
 						"name" = cyrillic_to_unicode(F.filename),
-						"type" = cyrillic_to_unicode(F.filetype),
+						"type" = F.filetype,
 						"size" = F.size,
 						"undeletable" = F.undeletable
 					)))

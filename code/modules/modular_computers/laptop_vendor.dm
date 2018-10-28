@@ -177,7 +177,7 @@
 			if(fabricate)
 				fabricated_tablet.ai_slot = new/obj/item/weapon/computer_hardware/ai_slot(fabricated_tablet)
 		return total_price
-	return 0
+	return FALSE
 
 
 
@@ -185,57 +185,57 @@
 
 /obj/machinery/lapvend/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	if(href_list["pick_device"])
 		if(state) // We've already picked a device type
-			return 0
+			return FALSE
 		devtype = text2num(href_list["pick_device"])
 		state = 1
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["clean_order"])
 		reset_order()
-		return 1
+		return TRUE
 	if((state != 1) && devtype) // Following IFs should only be usable when in the Select Loadout mode
-		return 0
+		return FALSE
 	if(href_list["confirm_order"])
 		state = 2 // Wait for ID swipe for payment processing
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["hw_cpu"])
 		dev_cpu = text2num(href_list["hw_cpu"])
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["hw_battery"])
 		dev_battery = text2num(href_list["hw_battery"])
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["hw_disk"])
 		dev_disk = text2num(href_list["hw_disk"])
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["hw_netcard"])
 		dev_netcard = text2num(href_list["hw_netcard"])
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["hw_tesla"])
 		dev_tesla = text2num(href_list["hw_tesla"])
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["hw_nanoprint"])
 		dev_nanoprint = text2num(href_list["hw_nanoprint"])
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["hw_card"])
 		dev_card = text2num(href_list["hw_card"])
 		fabricate_and_recalc_price(0)
-		return 1
+		return TRUE
 	if(href_list["hw_aislot"])
 		dev_aislot = text2num(href_list["hw_aislot"])
 		fabricate_and_recalc_price(0)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/lapvend/attack_hand(var/mob/user)
 	ui_interact(user)
@@ -244,7 +244,7 @@
 	if(stat & (BROKEN | NOPOWER | MAINT))
 		if(ui)
 			ui.close()
-		return 0
+		return FALSE
 
 	var/list/data[0]
 	data["state"] = state
@@ -270,6 +270,9 @@
 
 
 obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(user.incapacitated())
+		user << SPAN_WARNING("You can't do that right now!")
+		return
 	var/obj/item/weapon/card/id/I = W.GetIdCard()
 	// Awaiting payment state
 	if(state == 2)
@@ -292,8 +295,8 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 				fabricated_tablet = null
 			ping("Enjoy your new product!")
 			state = 3
-			return 1
-		return 0
+			return TRUE
+		return FALSE
 	return ..()
 
 
@@ -306,7 +309,7 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if (!customer_account || customer_account.suspended)
 		ping("Connection error. Unable to connect to account.")
-		return 0
+		return FALSE
 
 	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
 		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
@@ -314,12 +317,12 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 		if(!customer_account)
 			ping("Unable to access account: incorrect credentials.")
-			return 0
+			return FALSE
 
 	if(total_price > customer_account.money)
 		ping("Insufficient funds in account.")
-		return 0
+		return FALSE
 	else
 		transaction_template.set_amount(-total_price)
 		transaction_template.purpose = "Purchase of [(devtype == 1) ? "laptop computer" : "tablet microcomputer"]."
-		return 1
+		return transaction_template.apply_to(customer_account)

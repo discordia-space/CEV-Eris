@@ -11,6 +11,7 @@
 	var/datum/gps_data/gps
 
 /obj/item/weapon/computer_hardware/gps_sensor/New()
+	..()
 	gps = new (src)
 
 /obj/item/weapon/computer_hardware/gps_sensor/Destroy()
