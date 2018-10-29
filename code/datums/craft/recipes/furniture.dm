@@ -29,7 +29,7 @@
 	name = "shelf"
 	result = /obj/structure/table/rack/shelf
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/closet

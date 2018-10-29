@@ -423,25 +423,31 @@ proc/listclearnulls(list/list)
 		return (result + L.Copy(Li, 0))
 	return (result + R.Copy(Ri, 0))
 
-//returns an unsorted list of nearest map objects to sourceLocation using get_dist, acceptableDistance sets tolerance for distance
+//returns an unsorted list of nearest map objects from a given list to sourceLocation using get_dist, acceptableDistance sets tolerance for distance
 //result is intended to be used with pick()
 /proc/nearestObjectsInList(var/list/L, var/sourceLocation, var/acceptableDistance = 0)
-	var/list/nearestObjects = new
 	if (L.len == 1)
-		nearestObjects += L[1]
-		return nearestObjects
+		return L.Copy()
 
+	var/list/nearestObjects = new
 	var/shortestDistance = INFINITY
 	for (var/object in L)
 		var/distance = get_dist(sourceLocation,object)
 
-		if (distance < shortestDistance)
-			shortestDistance = distance
-			nearestObjects.Cut()
+		if (distance <= acceptableDistance)
+			if (shortestDistance > acceptableDistance)
+				shortestDistance = acceptableDistance
+				nearestObjects.Cut()
 			nearestObjects += object
 
-		else if((distance == shortestDistance) || (distance <= acceptableDistance))
-			nearestObjects += object
+		else if (shortestDistance > acceptableDistance)
+			if (distance < shortestDistance)
+				shortestDistance = distance
+				nearestObjects.Cut()
+				nearestObjects += object
+
+			else if (distance == shortestDistance)
+				nearestObjects += object
 
 	return nearestObjects
 

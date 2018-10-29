@@ -10,6 +10,7 @@
 	var/material/reinf_material
 	var/reinforcing = 0
 	var/resistance = RESISTANCE_TOUGH
+	var/dismantle_materials_count = 5
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
@@ -21,6 +22,7 @@
 /obj/structure/girder/low
 	health = 120
 	cover = 25 //how much cover the girder provides against projectiles.
+	dismantle_materials_count = 3
 
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
 	if(!damage || !wallbreaker)
@@ -251,7 +253,7 @@
 	reinforcing = 0
 
 /obj/structure/girder/proc/dismantle()
-	new /obj/item/stack/material/steel(src.loc, 5)
+	new /obj/item/stack/material/steel(src.loc, dismantle_materials_count)
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)

@@ -72,6 +72,10 @@
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+/obj/item/projectile/is_hot()
+	if (damage_type == BURN)
+		return damage*heat
+
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(blocked >= 2)		return 0//Full block
 	if(!isliving(target))	return 0
