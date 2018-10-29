@@ -54,6 +54,18 @@ var/list/flooring_types
 
 	var/removal_time = WORKTIME_FAST * 0.75
 
+	//Flooring Icon vars
+	var/smooth_nothing = FALSE //Optimisation
+
+	//How we smooth with other flooring
+	var/floor_smooth = SMOOTH_ALL
+
+	//How we smooth with walls
+	var/wall_smooth = SMOOTH_NONE
+
+	//How we smooth with space and openspace tiles
+	var/space_smooth = SMOOTH_ALL
+
 
 //Flooring Procs
 /decl/flooring/proc/get_plating_type(var/turf/location)
@@ -81,26 +93,29 @@ var/list/flooring_types
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
-	flags = TURF_REMOVE_SHOVEL | SMOOTH_ONLY_WITH_ITSELF | TURF_HAS_EDGES | TURF_EDGES_EXTERNAL
+	flags = TURF_REMOVE_SHOVEL | TURF_EDGES_EXTERNAL
 	build_type = /obj/item/stack/tile/grass
 	plating_type = /decl/flooring/dirt
 	footstep_sound = "grass"
+	floor_smooth = SMOOTH_NONE
+	space_smooth = SMOOTH_NONE
 
 /decl/flooring/dirt
 	name = "dirt"
 	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
 	icon = 'icons/turf/flooring/dirt.dmi'
 	icon_base = "dirt"
-	flags = TURF_REMOVE_SHOVEL | SMOOTH_ONLY_WITH_ITSELF
+	flags = TURF_REMOVE_SHOVEL
 	build_type = null //Todo: add bags of fertilised soil or something to create dirt floors
 	footstep_sound = "gravel"
+
 
 /decl/flooring/asteroid
 	name = "coarse sand"
 	desc = "Gritty and unpleasant."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_SHOVEL | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = null
 	footstep_sound = "asteroid"
 
@@ -116,13 +131,16 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
 	build_type = MATERIAL_STEEL
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_WELDER | TURF_HAS_CORNERS | TURF_CAN_BURN | TURF_CAN_BREAK //Doesnt have corners?
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/under
 	is_plating = TRUE
 	footstep_sound = "plating"
+	space_smooth = FALSE
 	removal_time = 150
 	health = 100
+	has_base_range = 4
+
 
 //Normal plating allows anything, except other types of plating
 /decl/flooring/reinforced/plating/can_build_floor(var/decl/flooring/newfloor)
@@ -153,6 +171,8 @@ var/list/flooring_types
 	health = 200
 	resistance = RESISTANCE_ARMOURED
 	footstep_sound = "catwalk"
+	smooth_nothing = TRUE
+
 
 //Underplating can only be upgraded to normal plating
 /decl/flooring/reinforced/plating/under/can_build_floor(var/decl/flooring/newfloor)
@@ -215,7 +235,7 @@ var/list/flooring_types
 	descriptor = "outer hull"
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_base = "hullcenter"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_USE0ICON | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_HAS_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = MATERIAL_PLASTEEL
 	has_base_range = 35
 	//try_update_icon = 0
@@ -225,6 +245,8 @@ var/list/flooring_types
 	resistance = RESISTANCE_HEAVILY_ARMOURED
 	removal_time = 1 MINUTE //Cutting through the hull is very slow work
 	footstep_sound = "hull"
+	wall_smooth = SMOOTH_ALL
+	space_smooth = SMOOTH_NONE
 
 
 //Hull can upgrade to underplating
@@ -248,7 +270,9 @@ var/list/flooring_types
 	footstep_sound = "carpet"
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | SMOOTH_ONLY_WITH_ITSELF | TURF_HIDES_THINGS
+	flags = TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN | TURF_HIDES_THINGS
+	floor_smooth = SMOOTH_NONE
+	wall_smooth = SMOOTH_NONE
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
@@ -388,6 +412,7 @@ var/list/flooring_types
 	damage_temperature = T0C+200
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
+	smooth_nothing = TRUE
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER | TURF_HIDES_THINGS
 
 /decl/flooring/reinforced
@@ -410,7 +435,8 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
 	build_type = null
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_EDGES | TURF_HAS_CORNERS | SMOOTH_ONLY_WITH_ITSELF | TURF_HIDES_THINGS
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HAS_CORNERS |TURF_HIDES_THINGS
+	floor_smooth = SMOOTH_NONE
 	can_paint = 1
 
 /decl/flooring/reinforced/circuit/green

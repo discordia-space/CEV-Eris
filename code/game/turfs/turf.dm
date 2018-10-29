@@ -25,6 +25,7 @@
 	var/list/decals
 
 	var/is_hole = FALSE
+	var/is_wall = FALSE 	//True for wall turfs, but also true if they contain a low wall object
 
 /turf/New()
 	..()
