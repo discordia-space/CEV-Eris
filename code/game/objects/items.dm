@@ -133,7 +133,7 @@
 	src.throwing = 0
 
 	if(user.put_in_active_hand(src) && old_loc )
-		if (user != old_loc.get_holding_mob())
+		if ((user != old_loc) && (user != old_loc.get_holding_mob()))
 			do_pickup_animation(user,old_loc)
 
 /obj/item/attack_ai(mob/user as mob)

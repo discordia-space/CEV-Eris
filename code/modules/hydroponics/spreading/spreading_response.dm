@@ -55,9 +55,6 @@
 		if(!seed)
 			user << SPAN_WARNING("There is nothing to take a sample from.")
 			return
-		if(sampled)
-			user << SPAN_DANGER("You cannot take another sample from \the [src].")
-			return
 		if(prob(70))
 			sampled = 1
 		seed.harvest(user,0,1)

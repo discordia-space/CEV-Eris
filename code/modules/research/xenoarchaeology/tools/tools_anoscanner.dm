@@ -16,7 +16,7 @@
 	. = ..()
 	scan()
 
-/obj/item/device/ano_scanner/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+/obj/item/device/ano_scanner/afterattack(var/atom/target, mob/user as mob)
 	if (istype(target, /obj/effect/portal))
 		var/obj/effect/portal/P = target
 		if (P.failchance)
@@ -27,6 +27,7 @@
 		var/time_existed = world.time - P.birthtime
 		var/time_remaining = P.lifetime - time_existed
 		user << SPAN_NOTICE("It should remain open for approximately another [time2text(time_remaining, "hh hours and mm minutes")]")
+
 /obj/item/device/ano_scanner/attack_self(var/mob/user as mob)
 	return src.interact(user)
 
