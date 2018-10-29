@@ -63,21 +63,20 @@
 		return
 	else
 		//Gardening tools can cut down vines quickly
-		var/tool_type = W.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING))
-		switch(tool_type)
-			if(QUALITY_SHOVELING)
-				if(W.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-					user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
-					die_off()
-					return
-				return
+		var/tool_type = null
+		if (W.has_quality(QUALITY_SHOVELING))
+			tool_type = QUALITY_SHOVELING
+		else if (W.has_quality(QUALITY_CUTTING))
+			tool_type = QUALITY_CUTTING
+		else if (W.has_quality(QUALITY_WELDING))
+			tool_type = QUALITY_WELDING
 
-			if(QUALITY_CUTTING)
-				if(W.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-					user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
-					die_off()
-					return
+		if(tool_type)
+			if(W.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+				user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
+				die_off()
 				return
+			return
 
 
 		..()
