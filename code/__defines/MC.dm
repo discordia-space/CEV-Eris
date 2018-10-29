@@ -32,6 +32,7 @@ if (Datum.is_processing) {\
 
 #define STOP_PROCESSING(Processor, Datum) \
 if(Datum.is_processing) {\
+	Processor.stopProcessingWrapper(Datum);\
 	if(Processor.processing.Remove(Datum)) {\
 		Datum.is_processing = null;\
 	} else {\

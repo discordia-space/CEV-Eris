@@ -7,32 +7,47 @@ SUBSYSTEM_DEF(processing)
 	wait = 1 SECOND
 
 	var/list/processing = list()
-	var/list/current_run = list()
 	var/process_proc = /datum/proc/Process
 
 	var/debug_last_thing
 	var/debug_original_process_proc // initial() does not work with procs
+	var/nextProcessingListPosition = 0
+
+/datum/controller/subsystem/processing/stopProcessingWrapper(var/D) //called before a thing stops being processed
+	if (!nextProcessingListPosition) //0 position means subsystem is not paused
+		return
+	var/position = processing.Find(D)
+	if (position)
+		if (position < nextProcessingListPosition) //queue moved, position moves with it
+			nextProcessingListPosition -= 1
 
 /datum/controller/subsystem/processing/stat_entry()
 	..(processing.len)
 
 /datum/controller/subsystem/processing/fire(resumed = 0)
 	if (!resumed)
-		src.current_run = processing.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/current_run = src.current_run
-	var/wait = src.wait
-	var/times_fired = src.times_fired
+		nextProcessingListPosition = 1
 
-	while(current_run.len)
-		var/datum/thing = current_run[current_run.len]
-		current_run.len--
+	var/times_fired = src.times_fired
+	var/list/local_list = processing
+	var/datum/thing
+	var/wait = src.wait
+	var/tickCheckPeriod = round(local_list.len/16+1)
+	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len))
+		thing = local_list[nextProcessingListPosition]
+		nextProcessingListPosition++
+
 		if(QDELETED(thing) || (call(thing, process_proc)(wait, times_fired, src) == PROCESS_KILL))
 			if(thing)
 				thing.is_processing = null
 			processing -= thing
-		if (MC_TICK_CHECK)
-			return
+			nextProcessingListPosition--
+
+		if(!(nextProcessingListPosition%tickCheckPeriod))
+			if (MC_TICK_CHECK)
+				return
+			else
+				pause()
 
 /datum/controller/subsystem/processing/proc/toggle_debug()
 	if(!check_rights(R_DEBUG))

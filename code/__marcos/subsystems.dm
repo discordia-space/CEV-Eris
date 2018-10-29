@@ -15,6 +15,7 @@ if (Datum.is_processing) {\
 
 #define STOP_PROCESSING_IN_LIST(Datum, List) \
 if(Datum.is_processing) {\
+	SSmachines.stopProcessingWrapper(Datum, SSmachines.List);\
 	if(SSmachines.List.Remove(Datum)) {\
 		Datum.is_processing = null;\
 	} else {\
