@@ -3,7 +3,7 @@
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
 //Changes our pixel offset by offset pixels towards the target atom
-/atom/proc/offset_to(var/atom/target_atom, var/offset = 1)
+/atom/proc/offset_to(var/atom/target, var/offset = 1)
 	if (target.x < x)
 		pixel_x -= offset
 	else if (target.x > x)

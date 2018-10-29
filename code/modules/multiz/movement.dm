@@ -14,6 +14,8 @@ M.transform = prev_matrix;\
 M.alpha = prev_alpha;\
 M.layer = prev_layer;\
 M.plane = prev_plane;\
+if (travelsound)\
+{travelsound.stop();}
 
 
 #define JETPACK_ANIMATION \
@@ -36,6 +38,7 @@ else\
 #define CLIMB_ANIMATION \
 M.face_atom(W);\
 M.offset_to(W, 8);\
+travelsound = new /datum/repeating_sound(8,time,0.25, M, "climb", 80, 1);\
 if (direction == DOWN)\
 {\
 	M.visible_message(SPAN_NOTICE("[M] starts climbing down the [W]"), SPAN_NOTICE("You start climbing down the [W]"));\
@@ -48,6 +51,30 @@ if (direction == DOWN)\
 else\
 {\
 	M.visible_message(SPAN_NOTICE("[M] starts climbing up the [W]"), SPAN_NOTICE("You start climbing up the [W]"));\
+	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING);\
+}
+
+#define MAG_CLIMB_ANIMATION \
+M.face_atom(W);\
+M.offset_to(W, 8);\
+travelsound = new /datum/repeating_sound(12,time,0.15, M, "catwalk", 100, 1);\
+var/matrix/mat = matrix();\
+if (W.x > M.x)\
+{mat.Turn(-30);}\
+if (W.x < M.x)\
+{mat.Turn(30);}\
+M.transform = mat;\
+if (direction == DOWN)\
+{\
+	M.visible_message(SPAN_NOTICE("[M] starts walking down the [W]"), SPAN_NOTICE("You brace your magboots and start walking down the [W]"));\
+	mat.Scale(0.9);\
+	M.plane = FLOOR_PLANE;\
+	M.layer = 1;\
+	animate(M, alpha = 100, pixel_y = -16, transform = mat,  time = time, easing = LINEAR_EASING);\
+}\
+else\
+{\
+	M.visible_message(SPAN_NOTICE("[M] starts walking up the [W]"), SPAN_NOTICE("You brace your magboots and start walking up the [W]"));\
 	animate(M, alpha = 0, pixel_y = 64*dirmult, time = time, easing = LINEAR_EASING);\
 }
 
@@ -95,6 +122,8 @@ var/list/z_movement_methods = list(
 	var/prev_alpha = M.alpha
 	var/prev_layer = M.layer
 	var/prev_plane = M.plane
+	var/datum/repeating_sound/travelsound
+
 
 	var/time = 30 //The time it takes to transition.
 	//When going against gravity it takes longer
@@ -180,6 +209,44 @@ var/list/z_movement_methods = list(
 				RESET_VARS
 			return
 //================================
+		if (Z_MOVE_CLIMB_MAG) //Climbing with magboots has all the same checks as nograv climbing, plus the boots themselves
+			//It is faster and safer though
+			if (area.has_gravity())
+				return FALSE
+
+			//This checks for magboots
+			if (!M.Check_Shoegrip())
+				return FALSE
+
+			//Climbing in 0G requires a continuous wall to ascend or descend
+			var/turf/simulated/wall/W = null
+
+			//Lets examine the walls around us
+			for (var/d in cardinal)
+				var/turf/simulated/wall/WA = get_step(start, d)
+				if (istype(WA))
+					//We've found a wall, now lets look at the destination floor
+					var/turf/simulated/wall/WB = get_step(destination, d)
+					if (istype(WB))
+						//We've successfully located a smooth wall that spans both floors, we can climb it
+						W = WA
+						break
+			if (W)
+				.=TRUE
+			else if (feedback)
+				M << "There are no suitable walls to climb!"
+
+			//TODO:
+				//Angle the sprite when walking up
+				//Add repeating catwalk footstep sound
+			if (. && !check_only)
+				MAG_CLIMB_ANIMATION
+				if (do_after(M, time))
+					M.Move(destination)
+				RESET_VARS
+			return
+
+//================================
 		if (Z_MOVE_CLIMB_NOGRAV)
 			time = 80
 			if (area.has_gravity())
@@ -213,43 +280,6 @@ var/list/z_movement_methods = list(
 		if (Z_MOVE_CLIMB_GRAVITY)
 			return FALSE //This isn't possible for now, but methods will be added in future
 
-//================================
-		if (Z_MOVE_CLIMB_MAG) //Climbing with magboots has all the same checks as nograv climbing, plus the boots themselves
-			//It is faster and safer though
-			if (area.has_gravity())
-				return FALSE
-
-			//This checks for magboots
-			if (!M.Check_Shoegrip())
-				return FALSE
-
-			//Climbing in 0G requires a continuous wall to ascend or descend
-			var/turf/simulated/wall/W = null
-
-			//Lets examine the walls around us
-			for (var/d in cardinal)
-				var/turf/simulated/wall/WA = get_step(start, d)
-				if (istype(WA))
-					//We've found a wall, now lets look at the destination floor
-					var/turf/simulated/wall/WB = get_step(destination, d)
-					if (istype(WB))
-						//We've successfully located a smooth wall that spans both floors, we can climb it
-						W = WA
-						break
-			if (W)
-				.=TRUE
-			else if (feedback)
-				M << "There are no suitable walls to climb!"
-
-			//TODO:
-				//Angle the sprite when walking up
-				//Add repeating catwalk footstep sound
-			if (. && !check_only)
-				CLIMB_ANIMATION
-				if (do_after(M, time))
-					M.Move(destination)
-				RESET_VARS
-			return
 
 //================================
 		if (Z_MOVE_JUMP_NOGRAV)
@@ -333,8 +363,8 @@ var/list/z_movement_methods = list(
 	Z_MOVE_JETPACK_NOGRAV,
 	Z_MOVE_JETPACK_GRAVITY,
 	//Z_MOVE_CLIMB_GRAVITY,	//Not yet implemented
-	Z_MOVE_CLIMB_NOGRAV,
 	Z_MOVE_CLIMB_MAG,
+	Z_MOVE_CLIMB_NOGRAV,
 	//Z_MOVE_JUMP_GRAVITY,	//Not yet implemented
 	Z_MOVE_JUMP_NOGRAV
 	)

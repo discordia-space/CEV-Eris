@@ -214,6 +214,7 @@ var/list/footstep_wood = list(\
 		if ("wood")
 			toplay = pick(footstep_wood)
 
+
 	return toplay
 
 /proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
@@ -356,6 +357,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("ric_sound") soundin = pick(ric_sound)
 			if ("casing_sound") soundin = pick(casing_sound)
 			if ("hitobject") soundin = pick(bullet_hit_object_sound)
+			if ("climb")soundin = pick(climb_sound)
+			if ("catwalk")soundin = pick(footstep_catwalk)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
 
@@ -402,6 +405,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	var/self_id
 
 /datum/repeating_sound/New(var/_interval, var/duration, var/interval_variance = 0, var/atom/_source, var/_soundin, var/_vol, var/_vary, var/_extrarange, var/_falloff, var/_is_global, var/_use_pressure = TRUE)
+	world << "Repeating sound created with duration [duration]"
 	end_time = world.time + duration
 	source = "\ref[_source]"
 	interval = _interval
@@ -435,6 +439,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 		return
 
 	//Actually play the sound
+	world << "Repeated sound about to play [soundin] from [playfrom]"
 	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure)
 
 	//Setup the next sound
