@@ -68,7 +68,7 @@
 			src << SPAN_DANGER("Deadchat is globally muted.")
 			return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
 		usr << SPAN_DANGER("You have deadchat muted.")
 		return
 

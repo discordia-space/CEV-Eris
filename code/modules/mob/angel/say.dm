@@ -23,7 +23,7 @@
 			src << SPAN_DANGER("Deadchat and ANGEL chat are globally muted.")
 			return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
 		usr << SPAN_DANGER("You have deadchat and ANGEL chat muted.")
 		return
 
@@ -53,7 +53,7 @@
 		src << SPAN_DANGER("You cannot send deadchat and ANGEL emotes (muted).")
 		return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
+	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
 		src << SPAN_DANGER("You have deadchat and ANGEL chat muted.")
 		return
 

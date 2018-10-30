@@ -164,7 +164,7 @@
 
 	for(var/m in player_list)
 		var/mob/M = m
-		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.is_preference_enabled(/datum/client_preference/ghost_ears)))
+		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH))
 			if (!mobs[M])
 				mobs[M] = TRUE
 			continue

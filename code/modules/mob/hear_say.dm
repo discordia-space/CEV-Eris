@@ -14,7 +14,7 @@
 
 	var/track = null
 	if(isghost(src))
-		if(italics && is_preference_enabled(/datum/client_preference/ghost_radio))
+		if(italics && get_preference_value(/datum/client_preference/ghost_radio) != GLOB.PREF_ALL_CHATTER)
 			return
 		if(check_rights(0, 0, src))
 			if(speaker_name != speaker.real_name && speaker.real_name)
@@ -22,7 +22,7 @@
 			else
 				speaker_name = "[speaker_name]"
 		track = "([ghost_follow_link(speaker, src)]) "
-		if(is_preference_enabled(/datum/client_preference/ghost_ears) && (speaker in view(src)))
+		if(get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
 	if(language)

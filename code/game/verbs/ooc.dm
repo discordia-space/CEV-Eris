@@ -15,7 +15,7 @@
 	msg = sanitize(msg)
 	if(!msg)	return
 
-	if(!is_preference_enabled(/datum/client_preference/show_ooc))
+	if(src.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
 		src << SPAN_WARNING("You have OOC muted.")
 		return
 
@@ -78,7 +78,7 @@
 	if(!msg)
 		return
 
-	if(!is_preference_enabled(/datum/client_preference/show_looc))
+	if(src.get_preference_value(/datum/client_preference/show_looc) == GLOB.PREF_HIDE)
 		src << SPAN_DANGER("You have LOOC muted.")
 		return
 
