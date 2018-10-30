@@ -788,3 +788,55 @@ proc/dd_sortedTextList(list/incoming)
 #define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= L.len ? L[I] : null) : L[I]) : null)
 #define LAZYLEN(L) length(L)
 #define LAZYCLEARLIST(L) if(L) L.Cut()
+
+/*
+Two lists may be different (A!=B) even if they have the same elements.
+This actually tests if they have the same entries and values.
+*/
+/proc/same_entries(var/list/first, var/list/second)
+	if(!islist(first) || !islist(second))
+		return 0
+	if(length(first) != length(second))
+		return 0
+	for(var/entry in first)
+		if(!(entry in second) || (first[entry] != second[entry]))
+			return 0
+	return 1
+	
+/*
+Checks if a list has the same entries and values as an element of big.
+*/
+/proc/in_as_list(var/list/little, var/list/big)
+	if(!islist(big))
+		return 0
+	for(var/element in big)
+		if(same_entries(little, element))
+			return 1
+	return 0
+
+// Return the index using dichotomic search
+/proc/FindElementIndex(atom/A, list/L, cmp)
+	var/i = 1
+	var/j = L.len
+	var/mid
+
+	while(i < j)
+		mid = round((i+j)/2)
+
+		if(call(cmp)(L[mid],A) < 0)
+			i = mid + 1
+		else
+			j = mid
+
+	if(i == 1 || i ==  L.len) // Edge cases
+		return (call(cmp)(L[i],A) > 0) ? i : i+1
+	else
+		return i
+
+//Checks if list is associative (example '["temperature"] = 90')
+/proc/is_associative(list/L)
+	for(var/key in L)
+		// if the key is a list that means it's actually an array of lists (stupid Byond...)
+		if(isnum(key) && isnull(L[key]) && istype(key, /list))
+			return FALSE
+	return TRUE

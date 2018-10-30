@@ -83,3 +83,21 @@
 /datum/stat/robustness
 	name = STAT_TGH
 	desc = "You’re a tough guy, but I’m a nightmare wrapped in the apocalypse. Enhances your resistance to poisons and also raises your speed in uncomfortable clothes."
+
+// Use to perform stat checks
+/mob/proc/stat_check(stat_path, needed)
+	var/points = src.stats.getStat(stat_path)
+	return points >= needed
+
+/proc/statPointsToLevel(var/points)
+	switch(points)
+		if (STAT_LEVEL_NONE to STAT_LEVEL_BASIC)
+			return "Untrained"
+		if (STAT_LEVEL_BASIC to STAT_LEVEL_ADEPT)
+			return "Basic"
+		if (STAT_LEVEL_ADEPT to STAT_LEVEL_EXPERT)
+			return "Adept"
+		if (STAT_LEVEL_EXPERT to STAT_LEVEL_PROF)
+			return "Expert"
+		if (STAT_LEVEL_PROF to INFINITY)
+			return "Master"

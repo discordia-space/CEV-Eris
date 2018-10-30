@@ -121,7 +121,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 				updateicon()
 
-		else if(I.GetID())
+		else if(I.GetIdCard())
 			if(open)
 				if (src.allowed(user))
 					src.locked = !src.locked

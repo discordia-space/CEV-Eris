@@ -371,7 +371,14 @@ Class Procs:
 	for(var/obj/I in component_parts)
 		I.forceMove(loc)
 		component_parts -= I
-	circuit.forceMove(loc)
-	circuit.deconstruct(src)
+	if(circuit)
+		circuit.forceMove(loc)
+		circuit.deconstruct(src)
 	qdel(src)
 	return 1
+
+/datum/proc/remove_visual(mob/M)
+	return
+
+/datum/proc/apply_visual(mob/M)
+	return

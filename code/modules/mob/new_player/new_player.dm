@@ -239,6 +239,7 @@
 
 	SSjob.AssignRole(src, rank, 1)
 
+	var/datum/job/job = src.mind.assigned_job
 	var/mob/living/character = create_character()	//creates the human and transfers vars and mind
 	character = SSjob.EquipRank(character, rank, 1)					//equips the human
 	equip_custom_items(character)
@@ -268,17 +269,18 @@
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
+	if(SSjob.ShouldCreateRecords(job.title))
+		if(character.mind.assigned_role != "Cyborg")
+			CreateModularRecord(character)
+			data_core.manifest_inject(character)
+			matchmaker.do_matchmaking()
+			SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
-	if(character.mind.assigned_role != "Cyborg")
-		data_core.manifest_inject(character)
-		matchmaker.do_matchmaking()
-		SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+			//Grab some data from the character prefs for use in random news procs.
 
-		//Grab some data from the character prefs for use in random news procs.
-
-		AnnounceArrival(character, rank, join_message)
-	else
-		AnnounceCyborg(character, rank, join_message)
+			AnnounceArrival(character, rank, join_message)
+		else
+			AnnounceCyborg(character, rank, join_message)
 
 	qdel(src)
 

@@ -38,8 +38,8 @@
 	var/list/mode_list = null			// A list of shield_mode datums.
 	var/emergency_shutdown = FALSE		// Whether the generator is currently recovering from an emergency shutdown
 	var/list/default_modes = list()
-	// The shield mode flags which should be enabled on this generator by default
 
+	// The shield mode flags which should be enabled on this generator by default
 
 	var/list/allowed_modes = list(MODEFLAG_HYPERKINETIC,
 									MODEFLAG_PHOTONIC,

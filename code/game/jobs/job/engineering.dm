@@ -29,10 +29,21 @@
 		STAT_COG = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/ntnetmonitor,
+							 /datum/computer_file/program/power_monitor,
+							 /datum/computer_file/program/supermatter_monitor,
+							 /datum/computer_file/program/alarm_monitor,
+							 /datum/computer_file/program/atmos_control,
+							 /datum/computer_file/program/rcon_console,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/shield_control,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/exultant
 	suit = /obj/item/clothing/suit/storage/hazardvest
 	shoes = /obj/item/clothing/shoes/jackboots
-	pda = /obj/item/device/pda/heads/ce
+	pda = /obj/item/modular_computer/pda/heads/ce
 	hat = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/thick
 	belt = /obj/item/weapon/storage/belt/utility/full
@@ -79,10 +90,18 @@
 		STAT_COG = 15,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/power_monitor,
+							 /datum/computer_file/program/supermatter_monitor,
+							 /datum/computer_file/program/alarm_monitor,
+							 /datum/computer_file/program/atmos_control,
+							 /datum/computer_file/program/rcon_console,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/shield_control)
+
 	uniform = /obj/item/clothing/under/rank/engineer
 	suit = /obj/item/clothing/suit/storage/hazardvest
 	shoes = /obj/item/clothing/shoes/jackboots
-	pda = /obj/item/device/pda/engineering
+	pda = /obj/item/modular_computer/pda/engineering
 	gloves = /obj/item/clothing/gloves/thick
 	hat = /obj/item/clothing/head/hardhat
 	belt = /obj/item/weapon/storage/belt/utility/full

@@ -28,8 +28,14 @@
 		STAT_BIO = 30,
 	)
 
+	// TODO: enable after baymed
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 ///datum/computer_file/program/aidiag,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/expedition_overseer
-	pda = /obj/item/device/pda/heads/rd
+	pda = /obj/item/modular_computer/pda/heads/rd
 	ear = /obj/item/device/radio/headset/heads/rd
 	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
@@ -73,7 +79,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/scientist
-	pda = /obj/item/device/pda/science
+	pda = /obj/item/modular_computer/pda/science
 	ear = /obj/item/device/radio/headset/headset_sci
 	shoes = /obj/item/clothing/shoes/jackboots
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
@@ -114,7 +120,7 @@
 	)
 
 	uniform = /obj/item/clothing/under/rank/roboticist
-	pda = /obj/item/device/pda/roboticist
+	pda = /obj/item/modular_computer/pda/roboticist
 	gloves = /obj/item/clothing/gloves/thick
 	ear = /obj/item/device/radio/headset/headset_sci
 	suit = /obj/item/clothing/suit/storage/robotech_jacket

@@ -771,3 +771,8 @@ var/list/ai_verbs_default = list(
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO
+
+// Handles all necessary power checks: Area power, inteliCard and Malf AI APU power and manual override.
+//just a plug for now untill baymed arrives
+/mob/living/silicon/ai/proc/has_power(var/respect_override = 1)
+	return 1

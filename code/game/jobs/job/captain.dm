@@ -23,9 +23,14 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/card_mod,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/captain
 	shoes = /obj/item/clothing/shoes/color/brown
-	pda = /obj/item/device/pda/captain
+	pda = /obj/item/modular_computer/pda/captain
 	hat = /obj/item/clothing/head/caphat
 	ear = /obj/item/device/radio/headset/heads/captain
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -78,11 +83,16 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/card_mod,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/first_officer
 	shoes = /obj/item/clothing/shoes/reinforced
 	suit = /obj/item/clothing/suit/armor/vest
 	gloves = /obj/item/clothing/gloves/thick
-	pda = /obj/item/device/pda/heads/hop
+	pda = /obj/item/modular_computer/pda/heads/hop
 	ear = /obj/item/device/radio/headset/heads/hop
 
 	put_in_backpack = list(

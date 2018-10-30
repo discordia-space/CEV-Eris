@@ -26,10 +26,15 @@
 		STAT_TGH = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/comm,
+							 /datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor,
+							 /datum/computer_file/program/reports)
+
 	uniform = /obj/item/clothing/under/rank/ih_commander
 	suit = /obj/item/clothing/suit/armor/hos
 	hat = /obj/item/clothing/head/HoS
-	pda = /obj/item/device/pda/heads/hos
+	pda = /obj/item/modular_computer/pda/heads/hos
 	ear = /obj/item/device/radio/headset/heads/hos
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -82,10 +87,13 @@
 		STAT_TGH = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/warden
 	suit = /obj/item/clothing/suit/armor/vest/security
 	hat = /obj/item/clothing/head/beret/sec/navy/warden
-	pda = /obj/item/device/pda/warden
+	pda = /obj/item/modular_computer/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -139,8 +147,11 @@
 		STAT_TGH = 10,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/inspector
-	pda = /obj/item/device/pda/detective
+	pda = /obj/item/modular_computer/pda/forensics
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/stungloves
@@ -187,8 +198,12 @@
 		STAT_BIO = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/medspec
-	pda = /obj/item/device/pda/detective
+	pda = /obj/item/modular_computer/pda/forensics
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
@@ -231,12 +246,15 @@
 		STAT_TGH = 20,
 	)
 
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
 	uniform = /obj/item/clothing/under/rank/security
 	suit = /obj/item/clothing/suit/armor/vest/security
 	hat = /obj/item/clothing/head/helmet
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	mask = /obj/item/clothing/mask/balaclava/tactical
-	pda = /obj/item/device/pda/security
+	pda = /obj/item/modular_computer/pda/security
 	ear = /obj/item/device/radio/headset/headset_sec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/stungloves

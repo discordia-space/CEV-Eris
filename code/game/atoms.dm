@@ -276,7 +276,6 @@ its easier to just keep the beam vertical.
 		var/atom/A = i
 		A.container_dir_changed(new_dir)
 	dir = new_dir
-	dir_set_event.raise_event(src, old_dir, new_dir)
 	return TRUE
 
 /atom/proc/container_dir_changed(new_dir)
@@ -606,6 +605,9 @@ its easier to just keep the beam vertical.
 		//An item is spawned by events
 		//An item is delivered on the cargo shuttle
 		//An item is purchased or dispensed from a vendor (Those things contain premade items and just release them)
+
+/atom/proc/get_cell()
+	return
 
 /atom/proc/get_coords()
 	var/datum/coords/C = new
