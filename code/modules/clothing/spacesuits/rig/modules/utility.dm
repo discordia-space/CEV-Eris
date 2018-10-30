@@ -362,11 +362,11 @@
 /obj/item/rig_module/maneuvering_jets/installed()
 	..()
 	jets.holder = holder
-	jets.ion_trail.set_up(holder)
+	jets.trail.set_up(holder)
 
 /obj/item/rig_module/maneuvering_jets/uninstalled()
 	..()
 	jets.holder = null
-	jets.ion_trail.set_up(jets)
+	jets.trail.set_up(jets)
 
 /obj/item/rig_module/foam_sprayer

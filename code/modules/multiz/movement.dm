@@ -23,6 +23,7 @@ if (direction == DOWN)\
 {\
 	M.visible_message(SPAN_NOTICE("[M] starts a controlled descent with the [thrust]"), SPAN_NOTICE("You start a controlled descent with the [thrust]"));\
 	M.pixel_y += 8;\
+	travelsound = new /datum/repeating_sound(25,time,0.25, M, "sound/effects/smoke.ogg", 80, 1);\
 	var/matrix/mat = matrix();\
 	mat.Scale(0.9);\
 	M.plane = FLOOR_PLANE;\

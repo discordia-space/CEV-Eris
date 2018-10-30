@@ -57,7 +57,7 @@ steam.start() -- spawns the effect
 /obj/effect/effect/steam
 	name = "steam"
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "extinguish"
+	icon_state = "jet"
 	density = 0
 
 /datum/effect/effect/system/steam_spread
@@ -375,6 +375,30 @@ steam.start() -- spawns the effect
 	smoke_type = /obj/effect/effect/smoke/mustard
 
 
+
+/*********************************
+	Trail systems
+**********************************
+
+Used for jetpacks, these systems register an Observation proc on their target atom, and generate a
+particle whenever the target moves
+*****************/
+
+
+/datum/effect/effect/system/trail
+
+/datum/effect/effect/system/trail/start()
+	//We can't start unless we're attached to an atom
+	if (!holder)
+		return
+
+	//Moved event is a global datum of type /decl/observ/moved
+	//It will fire a proc whenever the holder atom moves from one turf to another
+	moved_event.register(holder, src, /datum/effect/effect/system/trail/proc/do_effect)
+
+/datum/effect/effect/system/trail/proc/do_effect(var/atom/A, var/atom/old_loc)
+
+/datum/effect/effect/system/trail/proc/stop()
 /////////////////////////////////////////////
 //////// Attach an Ion trail to any object, that spawns when it moves (like for the jetpack)
 /// just pass in the object to attach it to in set_up
@@ -387,7 +411,7 @@ steam.start() -- spawns the effect
 	icon_state = "ion_trails"
 	anchored = 1.0
 
-/datum/effect/effect/system/ion_trail_follow
+/datum/effect/effect/system/trail/ion_trail_follow
 	var/turf/oldposition
 	var/processing = 1
 	var/on = 1
@@ -423,7 +447,7 @@ steam.start() -- spawns the effect
 							src.processing = 1
 							src.start()
 
-	proc/stop()
+	stop()
 		src.processing = 0
 		src.on = 0
 
@@ -435,7 +459,7 @@ steam.start() -- spawns the effect
 // even if it's carried of thrown.
 /////////////////////////////////////////////
 
-/datum/effect/effect/system/steam_trail_follow
+/datum/effect/effect/system/trail/steam_trail_follow
 	var/turf/oldposition
 	var/processing = 1
 	var/on = 1
@@ -469,7 +493,7 @@ steam.start() -- spawns the effect
 							src.processing = 1
 							src.start()
 
-	proc/stop()
+	stop()
 		src.processing = 0
 		src.on = 0
 

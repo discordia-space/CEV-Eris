@@ -9,7 +9,7 @@
 	item_state = "jetpack"
 	force = WEAPON_FORCE_PAINFULL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect/effect/system/trail/trail
 	var/on = 0.0
 	var/stabilization_on = 0
 	var/volume_rate = 500              //Needed for borg jetpack transfer
@@ -17,11 +17,11 @@
 
 /obj/item/weapon/tank/jetpack/New()
 	..()
-	src.ion_trail = new /datum/effect/effect/system/ion_trail_follow()
-	src.ion_trail.set_up(src)
+	src.trail = new /datum/effect/effect/system/trail/steam_trail_follow()//new /datum/effect/effect/system/ion_trail_follow()
+	src.trail.set_up(src)
 
 /obj/item/weapon/tank/jetpack/Destroy()
-	qdel(ion_trail)
+	qdel(trail)
 	. = ..()
 
 /obj/item/weapon/tank/jetpack/examine(mob/user)
@@ -43,10 +43,10 @@
 	on = !on
 	if(on)
 		icon_state = "[icon_state]-on"
-		ion_trail.start()
+		trail.start()
 	else
 		icon_state = initial(icon_state)
-		ion_trail.stop()
+		trail.stop()
 
 	if (ismob(usr))
 		var/mob/M = usr
@@ -59,7 +59,7 @@
 	if(!(src.on))
 		return 0
 	if((num < 0.005 || src.air_contents.total_moles < num))
-		src.ion_trail.stop()
+		src.trail.stop()
 		return 0
 
 	var/datum/gas_mixture/G = src.air_contents.remove(num)
@@ -138,7 +138,7 @@
 	var/obj/item/weapon/tank/pressure_vessel = holder.air_supply
 
 	if((num < 0.005 || pressure_vessel.air_contents.total_moles < num))
-		src.ion_trail.stop()
+		src.trail.stop()
 		return 0
 
 	var/datum/gas_mixture/G = pressure_vessel.air_contents.remove(num)
