@@ -6,7 +6,7 @@
 	item_state = "pouch"
 
 	w_class = ITEM_SIZE_SMALL
-
+	slot_flags = SLOT_BELT //Pouches can be worn on belt
 	storage_slots = 1
 	max_w_class = ITEM_SIZE_SMALL
 	max_storage_space = base_storage_capacity(ITEM_SIZE_NORMAL)
@@ -50,6 +50,17 @@
 	item_state = "medium_generic"
 	storage_slots = null //Uses generic capacity
 	max_storage_space = ITEM_SIZE_TINY * 5
+	max_w_class = ITEM_SIZE_NORMAL
+
+/obj/item/weapon/storage/pouch/large_generic
+	name = "large generic pouch"
+	desc = "A mini satchel. Can hold a fair bit, but it won't fit in your pocket"
+	icon_state = "large_generic"
+	item_state = "large_generic"
+	w_class = ITEM_SIZE_NORMAL
+	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
+	storage_slots = null //Uses generic capacity
+	max_storage_space = ITEM_SIZE_TINY * 10
 	max_w_class = ITEM_SIZE_NORMAL
 
 /obj/item/weapon/storage/pouch/medical_supply

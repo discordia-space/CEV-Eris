@@ -57,7 +57,8 @@
 		/obj/effect/decal/cleanable/molten_item = 1,
 		/obj/effect/decal/cleanable/spiderling_remains = 1,
 		/obj/effect/decal/cleanable/vomit = 1,
-		/obj/effect/decal/cleanable/blood/splatter = 1
+		/obj/effect/decal/cleanable/blood/splatter = 1,
+		/obj/random/pouch = 1
 	))
 
 /obj/random/junk/low_chance
