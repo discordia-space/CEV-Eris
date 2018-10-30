@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(machines)
 	var/list/power_objects = list()
 
 	var/list/processing
-	var/nextProcessingListPosition = 0
+	var/nextProcessingListPosition = 0 //position of next thing to be processed, inside of currently processed list
 
 /datum/controller/subsystem/machines/PreInit()
 	 processing = machinery
@@ -35,12 +35,12 @@ SUBSYSTEM_DEF(machines)
 	..()
 
 /datum/controller/subsystem/machines/stopProcessingWrapper(var/D, var/list/L = processing) //called before a thing stops being processed
-	if (!nextProcessingListPosition) //0 position means subsystem is not paused
+	if (!nextProcessingListPosition) //0 position means currently processed list is not paused or running, no point in adjusting last position due to removals from list
 		return
-	var/position = L.Find(D)
+	var/position = L.Find(D) //find exact position in list
 	if (position)
-		if (position < nextProcessingListPosition) //queue moved, position moves with it
-			nextProcessingListPosition -= 1
+		if (position < nextProcessingListPosition) //removals from list are only relevant to currently processed position if they are on the left side of it, otherwise they do not alter order of processing
+			nextProcessingListPosition-- //adjust current position to compensate for removed thing
 
 #define INTERNAL_PROCESS_STEP(this_step, check_resumed, proc_to_call, cost_var, next_step)\
 if(current_step == this_step || (check_resumed && !resumed)) {\
@@ -118,13 +118,15 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 /datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1
+		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
 
+	//localizations
 	var/list/local_list = pipenets
 	var/datum/pipe_network/thing
 	var/wait = src.wait
-	var/tickCheckPeriod = round(local_list.len/16+1)
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len))
+
+	var/tickCheckPeriod = round(local_list.len/16+1) //pause process every 1/16th length of list
+	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
 
@@ -133,23 +135,25 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		else
 			local_list.Remove(thing)
 			thing.is_processing = null
-			nextProcessingListPosition--
+			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
 
-		if(!(nextProcessingListPosition%tickCheckPeriod))
-			if (MC_TICK_CHECK)
-				return
-			else
-				pause()
+		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses every tickCheckPeriod-th processed thing
+			pause()
+			return
+
+	nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1
+		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
 
+	//localizations
 	var/list/local_list = machinery
 	var/obj/machinery/thing
 	var/wait = src.wait
-	var/tickCheckPeriod = round(local_list.len/16+1)
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len))
+
+	var/tickCheckPeriod = round(local_list.len/16+1) //pause process every 1/16th length of list
+	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
 
@@ -159,25 +163,25 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		else
 			local_list.Remove(thing)
 			thing.is_processing = null
-			nextProcessingListPosition--
+			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
 
-		if(!(nextProcessingListPosition%tickCheckPeriod))
-			if (MC_TICK_CHECK)
-				return
-			else
-				pause()
+		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses every tickCheckPeriod-th processed thing
+			pause()
+			return
 
-	nextProcessingListPosition = 0
+	nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/machines/proc/process_powernets(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1
+		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
 
+	//localizations
 	var/list/local_list = powernets
 	var/datum/powernet/thing
 	var/wait = src.wait
-	var/tickCheckPeriod = round(local_list.len/16+1)
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len))
+
+	var/tickCheckPeriod = round(local_list.len/16+1) //pause process every 1/16th length of list
+	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
 
@@ -186,36 +190,38 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		else
 			local_list.Remove(thing)
 			thing.is_processing = null
-			nextProcessingListPosition--
+			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
 
-		if(!(nextProcessingListPosition%tickCheckPeriod))
-			if (MC_TICK_CHECK)
-				return
-			else
-				pause()
+		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses every tickCheckPeriod-th processed thing
+			pause()
+			return
+
+	nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/machines/proc/process_power_objects(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1
+		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
 
+	//localizations
 	var/list/local_list = power_objects
 	var/obj/item/thing
 	var/wait = src.wait
-	var/tickCheckPeriod = round(local_list.len/16+1)
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len))
+
+	var/tickCheckPeriod = round(local_list.len/16+1) //pause process every 1/16th length of list
+	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
 
 		if(!thing.pwr_drain(wait)) // 0 = Process Kill, remove from processing list.
 			local_list.Remove(thing)
 			thing.is_processing = null
-			nextProcessingListPosition--
+			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
 
-		if(!(nextProcessingListPosition%tickCheckPeriod))
-			if (MC_TICK_CHECK)
-				return
-			else
-				pause()
+		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses every tickCheckPeriod-th processed thing
+			pause()
+			return
+
+	nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/machines/Recover()
 	if (istype(SSmachines.pipenets))

@@ -11,29 +11,31 @@ SUBSYSTEM_DEF(processing)
 
 	var/debug_last_thing
 	var/debug_original_process_proc // initial() does not work with procs
-	var/nextProcessingListPosition = 0
+	var/nextProcessingListPosition = 0 //position of next thing to be processed, inside of currently processed list
 
 /datum/controller/subsystem/processing/stopProcessingWrapper(var/D) //called before a thing stops being processed
-	if (!nextProcessingListPosition) //0 position means subsystem is not paused
+	if (!nextProcessingListPosition) //0 position means currently processed list is not paused or running, no point in adjusting last position due to removals from list
 		return
-	var/position = processing.Find(D)
+	var/position = processing.Find(D) //find exact position in list
 	if (position)
-		if (position < nextProcessingListPosition) //queue moved, position moves with it
-			nextProcessingListPosition -= 1
+		if (position < nextProcessingListPosition) //removals from list are only relevant to currently processed position if they are on the left side of it, otherwise they do not alter order of processing
+			nextProcessingListPosition-- //adjust current position to compensate for removed thing
 
 /datum/controller/subsystem/processing/stat_entry()
 	..(processing.len)
 
 /datum/controller/subsystem/processing/fire(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1
+		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
 
+	//localizations
 	var/times_fired = src.times_fired
 	var/list/local_list = processing
 	var/datum/thing
 	var/wait = src.wait
-	var/tickCheckPeriod = round(local_list.len/16+1)
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len))
+
+	var/tickCheckPeriod = round(local_list.len/16+1) //pause process every 1/16th length of list
+	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
 
@@ -41,13 +43,13 @@ SUBSYSTEM_DEF(processing)
 			if(thing)
 				thing.is_processing = null
 			processing -= thing
-			nextProcessingListPosition--
+			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
 
-		if(!(nextProcessingListPosition%tickCheckPeriod))
-			if (MC_TICK_CHECK)
-				return
-			else
-				pause()
+		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses every tickCheckPeriod-th processed thing
+			pause()
+			return
+
+	nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/processing/proc/toggle_debug()
 	if(!check_rights(R_DEBUG))
