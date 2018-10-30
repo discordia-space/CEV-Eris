@@ -341,13 +341,17 @@ BLIND     // can't see anything
 	if(usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
+	if(!holding)
+		usr << SPAN_WARNING("\The [src] has no knife.")
+		return
+
 	holding.forceMove(get_turf(usr))
 
 	if(usr.put_in_hands(holding))
 		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
 		holding = null
 	else
-		usr << SPAN_WARNING("Your need an empty, unbroken hand to do that.")
+		usr << SPAN_WARNING("You need an empty, unbroken hand to do that.")
 		holding.forceMove(src)
 
 	if(!holding)
@@ -357,7 +361,13 @@ BLIND     // can't see anything
 	return
 
 /obj/item/clothing/shoes/AltClick()
-	if(src in usr)
+	if((src in usr) && holding)
+		draw_knife()
+	else
+		..()
+
+/obj/item/clothing/shoes/attack_hand()
+	if((src in usr) && holding)
 		draw_knife()
 	else
 		..()

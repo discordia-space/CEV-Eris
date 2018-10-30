@@ -36,7 +36,7 @@
 		data["range"] = sensors.range
 		data["health"] = sensors.health
 		data["max_health"] = sensors.max_health
-		data["heat"] = sensors.heat
+		data["heat"] = sensors.current_heat
 		data["critical_heat"] = sensors.critical_heat
 		if(sensors.health == 0)
 			data["status"] = "DESTROYED"
@@ -125,7 +125,7 @@
 	var/health = 200
 	var/critical_heat = 50 // sparks and takes damage when active & above this heat
 	var/heat_reduction = 1.5 // mitigates this much heat per tick
-	var/heat = 0
+	var/current_heat = 0
 	var/range = 1
 	idle_power_usage = 5000
 
@@ -183,7 +183,7 @@
 	if(use_power) //can't run in non-vacuum
 		if(!in_vacuum())
 			toggle()
-		if(heat > critical_heat)
+		if(current_heat > critical_heat)
 			src.visible_message("<span class='danger'>\The [src] violently spews out sparks!</span>")
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
@@ -191,10 +191,10 @@
 
 			take_damage(rand(10,50))
 			toggle()
-		heat += idle_power_usage/15000
+		current_heat += idle_power_usage/15000
 
-	if (heat > 0)
-		heat = max(0, heat - heat_reduction)
+	if (current_heat > 0)
+		current_heat = max(0, current_heat - heat_reduction)
 
 /obj/machinery/shipsensors/power_change()
 	if(use_power && !powered())

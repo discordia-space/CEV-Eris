@@ -103,6 +103,8 @@
 	return 1
 
 /mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
+	if (Proj.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
+		IgniteMob()
 
 	if(!Proj.nodamage)
 		switch(Proj.damage_type)

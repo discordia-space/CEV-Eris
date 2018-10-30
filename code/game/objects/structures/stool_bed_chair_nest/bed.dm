@@ -159,7 +159,7 @@
 	update_icon()
 
 /obj/structure/bed/proc/dismantle()
-	material.place_sheet(get_turf(src))
+	new material(loc, 5)
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 
