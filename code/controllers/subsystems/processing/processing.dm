@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(processing)
 	var/datum/thing
 	var/wait = src.wait
 
-	var/tickCheckPeriod = round(local_list.len/16+1) //pause process every 1/16th length of list
+	var/tickCheckPeriod = round(local_list.len/16+1) //pause process at most every 1/16th length of list
 	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
 		thing = local_list[nextProcessingListPosition]
 		nextProcessingListPosition++
@@ -45,9 +45,9 @@ SUBSYSTEM_DEF(processing)
 			processing -= thing
 			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
 
-		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses every tickCheckPeriod-th processed thing
-			pause()
-			return
+		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses only every tickCheckPeriod-th processed thing
+			if (MC_TICK_CHECK)
+				return
 
 	nextProcessingListPosition = 0 //entire list was processed
 
