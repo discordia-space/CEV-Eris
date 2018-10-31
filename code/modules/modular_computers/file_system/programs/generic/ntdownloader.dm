@@ -120,6 +120,7 @@
 		if(3)
 			download_netspeed = NTNETSPEED_ETHERNET
 	download_netspeed *= rand_between(1-netspeed_variance, 1+netspeed_variance)
+	download_netspeed = round(download_netspeed, 0.001)
 	download_completion += download_netspeed
 
 /datum/computer_file/program/ntnetdownload/Topic(href, href_list)
@@ -182,7 +183,7 @@
 		data["downloaddesc"] = prog.downloaded_file.filedesc
 		data["downloadsize"] = prog.downloaded_file.size
 		data["downloadspeed"] = prog.download_netspeed
-		data["downloadcompletion"] = round(prog.download_completion, 0.1)
+		data["downloadcompletion"] = round(prog.download_completion, 0.01)
 
 	data["download_paused"] = prog.download_paused
 	data["disk_size"] = my_computer.hard_drive.max_capacity

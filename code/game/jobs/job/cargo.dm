@@ -4,7 +4,7 @@
 	flag = MERCHANT
 	department = "Cargo"
 	head_position = 1
-	department_flag = CIVILIAN
+	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -46,7 +46,7 @@
 	title = "Guild Technician"
 	flag = GUILDTECH
 	department = "Cargo"
-	department_flag = CIVILIAN
+	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -84,7 +84,7 @@
 	title = "Guild Miner"
 	flag = MINER
 	department = "Cargo"
-	department_flag = CIVILIAN
+	department_flag = GUILD
 	faction = "CEV Eris"
 	total_positions = 3
 	spawn_positions = 3

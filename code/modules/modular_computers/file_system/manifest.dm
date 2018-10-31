@@ -1,22 +1,23 @@
 // Generates a simple HTML crew manifest for use in various places
 /proc/html_crew_manifest(var/monochrome, var/OOC)
 	var/list/dept_data = list(
-		list("names" = list(), "header" = "Heads of staff", "flag" = COM),
-		list("names" = list(), "header" = "Command Support", "flag" = SPT),
-		list("names" = list(), "header" = "Moebius", "flag" = SCI),
-		list("names" = list(), "header" = "Ironhammer", "flag" = SEC),
-		list("names" = list(), "header" = "Moebius", "flag" = MED),
-		list("names" = list(), "header" = "Engineering", "flag" = ENG),
-		list("names" = list(), "header" = "Cargo", "flag" = SUP),
-		list("names" = list(), "header" = "Service", "flag" = SRV),
-		list("names" = list(), "header" = "Civilian", "flag" = CIV),
-		list("names" = list(), "header" = "Miscellaneous", "flag" = MSC),
+
+		list("names" = list(), "header" = "Church of Neotheology", "flag" = CHURCH),
+		list("names" = list(), "header" = "Ironhammer", "flag" = IRONHAMMER),
+		list("names" = list(), "header" = "Moebius Medical", "flag" = MEDICAL),
+		list("names" = list(), "header" = "Moebius Research", "flag" = SCIENCE),
+		list("names" = list(), "header" = "Command Staff", "flag" = COMMAND),
+		list("names" = list(), "header" = "Civilian", "flag" = CIVILIAN),
+		list("names" = list(), "header" = "Guild", "flag" = GUILD),
+		list("names" = list(), "header" = "Service", "flag" = SERVICE),
+		list("names" = list(), "header" = "Engineering", "flag" = ENGINEERING),
+		list("names" = list(), "header" = "Miscellaneous", "flag" = MISC),
 		list("names" = list(), "header" = "Silicon")
 	)
 	var/list/misc //Special departments for easier access
 	var/list/bot
 	for(var/list/department in dept_data)
-		if(department["flag"] == MSC)
+		if(department["flag"] == MISC)
 			misc = department["names"]
 		if(isnull(department["flag"]))
 			bot = department["names"]
@@ -60,7 +61,7 @@
 					found_place = 1
 		if(!found_place)
 			misc[name] = rank
-	
+
 	// Synthetics don't have actual records, so we will pull them from here.
 	for(var/mob/living/silicon/ai/ai in SSmobs.mob_list)
 		bot[ai.name] = "Artificial Intelligence"
