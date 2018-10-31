@@ -3,7 +3,7 @@
 	title = "Bartender"
 	flag = BARTENDER
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -53,7 +53,7 @@
 	title = "Chef"
 	flag = CHEF
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -81,7 +81,7 @@
 	title = "Gardener"
 	flag = BOTANIST
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 1
@@ -116,7 +116,7 @@
 	title = "Actor"
 	flag = ACTOR
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -166,7 +166,7 @@
 	title = "Janitor"
 	flag = JANITOR
 	department = "Civilian"
-	department_flag = CIVILIAN
+	department_flag = SERVICE
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1

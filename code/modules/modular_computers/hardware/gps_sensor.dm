@@ -15,7 +15,7 @@
 	gps = new (src)
 
 /obj/item/weapon/computer_hardware/gps_sensor/Destroy()
-	qdel(gps)
+	QDEL_NULL(gps)
 	return ..()
 
 /obj/item/weapon/computer_hardware/gps_sensor/examine(mob/user)

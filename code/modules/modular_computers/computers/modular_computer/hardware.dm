@@ -78,7 +78,7 @@
 		update_verbs()
 
 // Uninstalls component. Found and Critical vars may be passed by parent types, if they have additional hardware.
-/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0, var/critical = 0)
+/obj/item/modular_computer/proc/uninstall_component(var/mob/living/user, var/obj/item/weapon/computer_hardware/H, var/found = 0, var/critical = 0, var/delete = FALSE)
 	if(portable_drive == H)
 		portable_drive = null
 		found = 1
@@ -115,6 +115,13 @@
 	if(gps_sensor == H)
 		gps_sensor = null
 		found = 1
+
+	//Delete var means this computer is being deleted. Skip extra processing and messages below. Delete the component and return
+	if (delete)
+		H.holder2 = null
+		qdel(H)
+		return
+
 	if(found)
 		if(user)
 			to_chat(user, "You remove \the [H] from \the [src].")
@@ -151,7 +158,7 @@
 	if(scanner && (scanner.name == name))
 		return scanner
 	if(gps_sensor && (gps_sensor.name == name))
-		return gps_sensor	
+		return gps_sensor
 	return null
 
 // Returns list of all components
@@ -178,5 +185,5 @@
 	if(scanner)
 		all_components.Add(scanner)
 	if(gps_sensor)
-		all_components.Add(gps_sensor)	
+		all_components.Add(gps_sensor)
 	return all_components

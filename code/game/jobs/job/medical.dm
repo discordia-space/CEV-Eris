@@ -3,7 +3,7 @@
 	flag = MBO
 	head_position = 1
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -58,7 +58,7 @@
 	title = "Moebius Doctor"
 	flag = DOCTOR
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 5
 	spawn_positions = 3
@@ -103,7 +103,7 @@
 	title = "Moebius Chemist"
 	flag = CHEMIST
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -145,7 +145,7 @@
 	title = "Moebius Psychiatrist"
 	flag = PSYCHIATRIST
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 1
 	spawn_positions = 1
@@ -184,7 +184,7 @@
 	title = "Moebius Paramedic"
 	flag = PARAMEDIC
 	department = "Medical"
-	department_flag = MEDSCI
+	department_flag = MEDICAL
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2

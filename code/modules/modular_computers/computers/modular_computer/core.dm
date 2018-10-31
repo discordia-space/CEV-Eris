@@ -77,8 +77,7 @@
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(stored_pen)
 	for(var/obj/item/weapon/computer_hardware/CH in src.get_all_components())
-		uninstall_component(null, CH)
-		qdel(CH)
+		uninstall_component(null, CH, delete = TRUE)
 	return ..()
 
 /obj/item/modular_computer/emag_act(var/remaining_charges, var/mob/user)
