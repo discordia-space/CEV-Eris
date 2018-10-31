@@ -8,6 +8,8 @@
 
 	var/datum/mind/owner = null
 
+	var/flags = 0                           // Various runtime options.
+
 	var/list/restricted_jobs =     list()   // Jobs that technically cannot be this antagonist (like AI-changeling)
 	var/list/protected_jobs =      list()   // As above, but this jobs are rewstricted ideologically (like Security Officer-traitor)
 
@@ -24,6 +26,7 @@
 	// Faction data.
 	var/datum/faction/faction = null
 	var/faction_id = null
+
 
 	// Misc.
 	var/bantype               // Ban to check when spawning this antag.

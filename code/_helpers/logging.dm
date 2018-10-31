@@ -36,7 +36,7 @@
 		game_log("DEBUG", text)
 
 	for(var/client/C in admins)
-		if(C.get_preference_value(/datum/client_preference/admin/show_debug_logs) == GLOB.PREF_SHOW)
+		if(C.get_preference_value(/datum/client_preference/staff/show_debug_logs) == GLOB.PREF_SHOW)
 			C << "DEBUG: [text]"
 
 /proc/log_game(text)

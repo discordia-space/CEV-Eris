@@ -1163,3 +1163,6 @@ mob/proc/yank_out_object()
 	//This is called when the mob is let out of a holder
 	//Override for mob-specific functionality
 	return
+
+/mob/proc/has_admin_rights()
+	return check_rights(R_ADMIN, 0, src)

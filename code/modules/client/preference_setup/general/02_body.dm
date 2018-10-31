@@ -226,7 +226,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ_name = "lower body"
 			if(BP_HEAD)
 				organ_name = "head"
-
+		/*
 		if(status == "cyborg")
 			++ind
 			if(ind > 1)
@@ -265,6 +265,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					. += "\tMachine-interface [organ_name]"
 				else
 					. += "\tMechanically assisted [organ_name]"
+		*/
 	if(!ind)
 		. += "\[...\]<br><br>"
 	else
@@ -386,7 +387,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
 			pref.body_markings.Cut() // Basically same as above.
 
-			prune_occupation_prefs()
+			//prune_occupation_prefs()
 			pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)
 
 			pref.cultural_info = mob_species.default_cultural_info.Copy()
@@ -528,16 +529,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		switch(organ_tag)
 			if("Left Leg")
 				limb = BP_L_LEG
-				second_limb = BP_L_FOOT
+				//second_limb = BP_L_FOOT
 			if("Right Leg")
 				limb = BP_R_LEG
-				second_limb = BP_R_FOOT
+				//second_limb = BP_R_FOOT
 			if("Left Arm")
 				limb = BP_L_ARM
-				second_limb = BP_L_HAND
+				//second_limb = BP_L_HAND
 			if("Right Arm")
 				limb = BP_R_ARM
-				second_limb = BP_R_HAND
+				//second_limb = BP_R_HAND
 				/*// TODO: enable after baymed
 			if("Left Foot")
 				limb = BP_L_FOOT
@@ -561,9 +562,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in choice_options
 		if(!new_state || !CanUseTopic(user)) return TOPIC_NOACTION
-
+		/*
 		switch(new_state)
+
 			if("Normal")
+
 				if(limb == BP_CHEST)
 					for(var/other_limb in (BP_ALL_LIMBS - BP_CHEST))
 						pref.organ_data[other_limb] = null
@@ -618,6 +621,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 						pref.organ_data[O_BRAIN] = "assisted"
 					for(var/internal_organ in list(O_HEART,O_EYES,O_LUNGS,O_LIVER,O_KIDNEYS))
 						pref.organ_data[internal_organ] = "mechanical"
+						*/
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 

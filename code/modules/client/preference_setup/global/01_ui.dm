@@ -1,10 +1,12 @@
 /datum/preferences
 	var/clientfps = 0
-	var/ooccolor = "#010000" //Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
-
-	var/UI_style = "Midnight"
+		//game-preferences
+	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
+	var/UI_style = "ErisStyle"
+	var/UI_useborder = 0
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
+	var/UI_compact_style = 0
 
 /datum/category_item/player_setup_item/player_global/ui
 	name = "UI"

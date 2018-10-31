@@ -1,61 +1,66 @@
-
+// Shoelocker
 /datum/gear/shoes
-	sort_category = "Shoes and Footwear"
+	display_name = "jackboots"
+	path = /obj/item/clothing/shoes/jackboots
 	slot = slot_shoes
-	category = /datum/gear/shoes
+	sort_category = "Shoes and Footwear"
 
-/datum/gear/shoes/athletic
-	display_name = "athletic shoes, colour select"
-	path = /obj/item/clothing/shoes/athletic
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/shoes/workboots
+	display_name = "workboots"
+	path = /obj/item/clothing/shoes/workboots
 
-/datum/gear/shoes/boots
-	display_name = "boot selection"
-	path = /obj/item/clothing/shoes
-	cost = 2
-
-/datum/gear/shoes/boots/New()
-	..()
-	var/boots = list()
-	boots += /obj/item/clothing/shoes/jackboots
-	boots += /obj/item/clothing/shoes/workboots
-	boots += /obj/item/clothing/shoes/dutyboots
-	boots += /obj/item/clothing/shoes/jungleboots
-	boots += /obj/item/clothing/shoes/desertboots
-	gear_tweaks += new/datum/gear_tweak/path/specified_types_list(boots)
-
-/datum/gear/shoes/color
-	display_name = "shoe selection"
-	path = /obj/item/clothing/shoes
-
-/datum/gear/shoes/color/New()
-	..()
-	var/shoes = list()
-	shoes += /obj/item/clothing/shoes/black
-	shoes += /obj/item/clothing/shoes/blue
-	shoes += /obj/item/clothing/shoes/brown
-	shoes += /obj/item/clothing/shoes/laceup
-	shoes += /obj/item/clothing/shoes/dress/white
-	shoes += /obj/item/clothing/shoes/green
-	shoes += /obj/item/clothing/shoes/leather
-	shoes += /obj/item/clothing/shoes/orange
-	shoes += /obj/item/clothing/shoes/purple
-	shoes += /obj/item/clothing/shoes/rainbow
-	shoes += /obj/item/clothing/shoes/red
-	shoes += /obj/item/clothing/shoes/white
-	shoes += /obj/item/clothing/shoes/yellow
-	gear_tweaks += new/datum/gear_tweak/path/specified_types_list(shoes)
-
-/datum/gear/shoes/flats
-	display_name = "flats, colour select"
-	path = /obj/item/clothing/shoes/flats
-	flags = GEAR_HAS_COLOR_SELECTION
-
-/datum/gear/shoes/high
-	display_name = "high tops selection"
-	path = /obj/item/clothing/shoes/hightops
-	flags = GEAR_HAS_TYPE_SELECTION
-
-/datum/gear/shoes/sandal
-	display_name = "wooden sandals"
+/datum/gear/shoes/sandals
+	display_name = "sandals"
 	path = /obj/item/clothing/shoes/sandal
+
+/datum/gear/shoes/black
+	display_name = "shoes, black"
+	path = /obj/item/clothing/shoes/black
+
+/datum/gear/shoes/blue
+	display_name = "shoes, blue"
+	path = /obj/item/clothing/shoes/color/blue
+
+/datum/gear/shoes/brown
+	display_name = "shoes, brown"
+	path = /obj/item/clothing/shoes/color/brown
+
+/datum/gear/shoes/lacey
+	display_name = "shoes, classy"
+	path = /obj/item/clothing/shoes/reinforced
+
+/datum/gear/shoes/dress
+	display_name = "shoes, dress"
+	path = /obj/item/clothing/shoes/reinforced
+
+/datum/gear/shoes/green
+	display_name = "shoes, green"
+	path = /obj/item/clothing/shoes/color/green
+
+/datum/gear/shoes/leather
+	display_name = "shoes, leather"
+	path = /obj/item/clothing/shoes/leather
+
+/datum/gear/shoes/orange
+	display_name = "shoes, orange"
+	path = /obj/item/clothing/shoes/color/orange
+
+/datum/gear/shoes/purple
+	display_name = "shoes, purple"
+	path = /obj/item/clothing/shoes/color/purple
+
+/datum/gear/shoes/rainbow
+	display_name = "shoes, rainbow"
+	path = /obj/item/clothing/shoes/color/rainbow
+
+/datum/gear/shoes/red
+	display_name = "shoes, red"
+	path = /obj/item/clothing/shoes/color/red
+
+/datum/gear/shoes/white
+	display_name = "shoes, white"
+	path = /obj/item/clothing/shoes/color/white
+
+/datum/gear/shoes/yellow
+	display_name = "shoes, yellow"
+	path = /obj/item/clothing/shoes/color/yellow

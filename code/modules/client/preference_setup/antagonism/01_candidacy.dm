@@ -38,7 +38,7 @@
 	for(var/antag_type in all_antag_types)
 		var/datum/antagonist/antag = all_antag_types[antag_type]
 		. += "<tr><td>[antag.role_text]: </td><td>"
-		if(jobban_isbanned(preference_mob(), antag.id) || (antag.id == MODE_MALFUNCTION && jobban_isbanned(preference_mob(), "AI")))
+		if(jobban_isbanned(preference_mob(), antag.id) || (antag.id == ROLE_MALFUNCTION && jobban_isbanned(preference_mob(), "AI")))
 			. += "<span class='danger'>\[BANNED\]</span><br>"
 		else if(antag.id in pref.be_special_role)
 			. += "<span class='linkOn'>High</span> <a href='?src=\ref[src];del_special=[antag.id]'>Low</a> <a href='?src=\ref[src];add_never=[antag.id]'>Never</a></br>"
@@ -120,7 +120,7 @@
 		if(!include_bans)
 			if(jobban_isbanned(preference_mob(), antag_type))
 				continue
-			if(((antag_type  == MODE_MALFUNCTION) && jobban_isbanned(preference_mob(), "AI")))
+			if(((antag_type  == ROLE_MALFUNCTION) && jobban_isbanned(preference_mob(), "AI")))
 				continue
 		private_valid_special_roles += antag_type
 

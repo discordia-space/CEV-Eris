@@ -62,7 +62,7 @@
 
 	if(!user)
 		return
-
+	/*
 	for(var/thing in pref.cultural_info)
 		var/decl/cultural_info/culture = SSculture.get_culture(pref.cultural_info[thing])
 		if(istype(culture))
@@ -74,7 +74,7 @@
 			if(LAZYLEN(culture.secondary_langs))
 				for(var/checklang in culture.secondary_langs)
 					allowed_languages[checklang] = TRUE
-
+	*/
 	for(var/thing in all_languages)
 		var/datum/language/lang = all_languages[thing]
 		if(user.has_admin_rights() || (!(lang.flags & RESTRICTED) && (lang.flags & WHITELISTED) && is_alien_whitelisted(user, lang)))

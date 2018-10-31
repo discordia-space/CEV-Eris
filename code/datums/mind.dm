@@ -40,7 +40,7 @@
 
 	var/assigned_role
 	var/role_alt_title
-//	var/special_role
+	var/special_role
 	var/list/antagonist = list()
 
 	var/datum/job/assigned_job
@@ -269,7 +269,7 @@
 
 /datum/mind/proc/reset()
 	assigned_role =   null
-	//special_role =    null
+	special_role =    null
 	//role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
@@ -283,8 +283,12 @@
 //Antagonist role check
 /mob/living/proc/check_special_role(role)
 	if(mind)
-		return player_is_antag_id(mind,role)
-	return FALSE
+		if(!role)
+			return mind.special_role
+		else
+			return player_is_antag_id(mind,role)
+	else
+		return FALSE
 
 //Initialisation procs
 /mob/living/proc/mind_initialize()

@@ -2,19 +2,11 @@
 	delete_me = TRUE
 	var/join_tag = "latejoin"
 
-/obj/landmark/join/New()
-	if(join_tag)
-		var/datum/spawnpoint/SP = getSpawnPoint(join_tag)
-		SP.turfs += src.loc
-		spawnpoints[join_tag] = SP
-		//join_tag = null? do i need to nullify this?
-	..()
-
 /obj/landmark/join/late
-	name = "late_cryo"
+	name = "late"
 	icon_state = "player-blue-cluster"
-	join_tag = "Cryogenic Storage"
-	var/message = "has completed cryogenic revival"
+	join_tag = ""
+	var/message = ""
 	var/restrict_job = null
 	var/disallow_job = null
 
@@ -25,20 +17,25 @@
 		SP.display_name = join_tag
 		SP.restrict_job = restrict_job
 		SP.disallow_job = disallow_job
-		SP.message = message
-		spawnpoints_late[join_tag] = SP
-		join_tag = null
+		SP.msg = message
+		GLOB.spawnpoints_late[join_tag] = SP
 	..()
 
+/obj/landmark/join/late/cryo
+	name = "Cryogenic Storage"
+	icon_state = "player-blue-cluster"
+	join_tag = "late_cryo"
+	message = "has completed cryogenic revival"
+
 /obj/landmark/join/late/cyborg
-	name = "late_cybor"
+	name = "Cyborg Storage"
 	icon_state = "synth-cyan"
-	join_tag = "Cyborg Storage"
+	join_tag = "late_cyborg"
 	message = "has been activated from storage"
 	restrict_job = list("Cyborg")
 
 /obj/landmark/join/observer
-	name = "observer-spawn"
+	name = "Observer spawn"
 	icon_state = "player-grey-cluster"
 	join_tag = /mob/observer
 

@@ -1,0 +1,6 @@
+//Spawnpoints.
+//REVIEWERS REMIND ME DELETE THIS IF STILL COMMENTED
+/*
+GLOBAL_LIST_EMPTY(latejoin_cryo)
+GLOBAL_LIST_EMPTY(latejoin_cyborg)
+*/

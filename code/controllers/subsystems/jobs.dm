@@ -569,8 +569,8 @@ SUBSYSTEM_DEF(job)
 	if(C.prefs.spawnpoint)
 		spawnpos = getSpawnPoint(C.prefs.spawnpoint, FALSE)
 	if(!spawnpos || !spawnpos.check_job_spawning(rank))
-		for(var/name in spawnpoints_late)
-			var/datum/spawnpoint/SP = spawnpoints_late[name]
+		for(var/name in GLOB.spawnpoints_late)
+			var/datum/spawnpoint/SP = GLOB.spawnpoints_late[name]
 			if(SP.check_job_spawning(rank))
 				spawnpos = SP
 				break

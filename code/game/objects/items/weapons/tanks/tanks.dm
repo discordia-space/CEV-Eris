@@ -165,34 +165,33 @@ var/list/global/tank_gauge_cache = list()
 			src.distribute_pressure += cp
 		src.distribute_pressure = min(max(round(src.distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
 	if (href_list["stat"])
-		if(iscarbon(loc))
-			var/mob/living/carbon/location = loc
-			if(location.internal == src)
-				location.internal = null
-				usr << SPAN_NOTICE("You close the tank release valve.")
-			else
-
-				var/can_open_valve
-				if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
-					can_open_valve = 1
-				else if(ishuman(location))
-					var/mob/living/carbon/human/H = location
-					if(H.head && (H.head.item_flags & AIRTIGHT))
-						can_open_valve = 1
-
-				if(can_open_valve)
-					location.internal = src
-					usr << SPAN_NOTICE("You open \the [src] valve.")
-					playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
-				else
-					usr << SPAN_WARNING("You need something to connect to \the [src].")
-				if(location.HUDneed.Find("internal"))
-					var/obj/screen/HUDelm = location.HUDneed["internal"]
-					HUDelm.update_icon()
-
-	src.add_fingerprint(usr)
+		toggle_valve(loc)
 	return 1
 
+/obj/item/weapon/tank/proc/toggle_valve(var/mob/user)
+	if(iscarbon(loc))
+		var/mob/living/carbon/location = loc
+		if(location.internal == src)
+			location.internal = null
+			usr << SPAN_NOTICE("You close the tank release valve.")
+		else
+			var/can_open_valve
+			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
+				can_open_valve = 1
+			else if(ishuman(location))
+				var/mob/living/carbon/human/H = location
+				if(H.head && (H.head.item_flags & AIRTIGHT))
+					can_open_valve = 1
+			if(can_open_valve)
+				location.internal = src
+				usr << SPAN_NOTICE("You open \the [src] valve.")
+				playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
+			else
+				usr << SPAN_WARNING("You need something to connect to \the [src].")
+			if(location.HUDneed.Find("internal"))
+				var/obj/screen/HUDelm = location.HUDneed["internal"]
+				HUDelm.update_icon()
+		src.add_fingerprint(usr)
 
 /obj/item/weapon/tank/remove_air(amount)
 	return air_contents.remove(amount)

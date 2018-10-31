@@ -225,7 +225,7 @@ ADMIN_VERB_ADD(/client/proc/allow_character_respawn, R_ADMIN, FALSE)
 	if (G.client)
 		P = G.client.prefs
 	else if (G.ckey)
-		P = preferences_datums[G.ckey]
+		P = SScharacter_setup.preferences_datums[G.ckey]
 	else
 		src << "Something went wrong, couldn't find the target's preferences datum"
 		return 0

@@ -63,10 +63,12 @@ var/list/gear_datums = list()
 		var/okay = 1
 		if(G.whitelisted && preference_mob)
 			okay = 0
-			for(var/species in G.whitelisted)
+			// TODO: enable after baymed
+			/*for(var/species in G.whitelisted)
 				if(is_species_whitelisted(preference_mob, species))
 					okay = 1
 					break
+					*/
 		if(!okay)
 			continue
 		if(max_cost && G.cost > max_cost)
@@ -156,9 +158,9 @@ var/list/gear_datums = list()
 	. += "<tr><td colspan=3><b><center>[LC.category]</center></b></td></tr>"
 	. += "<tr><td colspan=3><hr></td></tr>"
 	var/jobs = list()
-	if(job_master)
+	if(SSjob)
 		for(var/job_title in (pref.job_medium|pref.job_low|pref.job_high))
-			var/datum/job/J = job_master.occupations_by_title[job_title]
+			var/datum/job/J = SSjob.GetJob(job_title)
 			if(J)
 				dd_insertObjectList(jobs, J)
 	for(var/gear_name in LC.gear)
@@ -171,14 +173,6 @@ var/list/gear_datums = list()
 		entry += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		entry += "<td><font size=2>[G.get_description(get_gear_metadata(G,1))]</font>"
 		var/allowed = 1
-		if(length(G.allowed_branches))
-			var/datum/mil_branch/player_branch = mil_branches.get_branch(pref.char_branch)
-			if(!player_branch)
-				entry += "<br><i><font color=cc5555>Needs branch selected</font></i>"
-				allowed = 0
-			else if(!(player_branch.type in G.allowed_branches))
-				entry += "<br><i><font color=cc5555>[player_branch.name]</font></i>"
-				allowed = 0
 		if(allowed && G.allowed_roles)
 			var/good_job = 0
 			var/bad_job = 0

@@ -202,6 +202,10 @@ var/list/_client_preferences_by_type
 	description ="Play instruments"
 	key = "SOUND_INSTRUMENTS"
 
+/datum/client_preference/ambient_occlusion
+	description = "Ambient occlusion"
+	key = "AMBIENT_OCCLUSION"
+
 /********************
 * General Staff Preferences *
 ********************/

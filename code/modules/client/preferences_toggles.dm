@@ -1,134 +1,62 @@
-//toggles
-/client/verb/toggle_ghost_ears()
-	set name = "Show/Hide GhostEars"
-	set category = "Preferences"
-	set desc = ".Toggle Between seeing all mob speech, and only speech of nearby mobs"
-	prefs.toggles ^= CHAT_GHOSTEARS
-	src << "As a ghost, you will now [(prefs.toggles & CHAT_GHOSTEARS) ? "see all speech in the world" : "only see speech from nearby mobs"]."
-	prefs.save_preferences()
+var/list/client_preference_stats_
 
-/client/verb/toggle_ghost_sight()
-	set name = "Show/Hide GhostSight"
-	set category = "Preferences"
-	set desc = ".Toggle Between seeing all mob emotes, and only emotes of nearby mobs"
-	prefs.toggles ^= CHAT_GHOSTSIGHT
-	src << "As a ghost, you will now [(prefs.toggles & CHAT_GHOSTSIGHT) ? "see all emotes in the world" : "only see emotes from nearby mobs"]."
-	prefs.save_preferences()
+/proc/client_preference_stats_for_usr(var/mob/user = usr)
+	. = list()
+	if(!user)
+		return
+	if(!client_preference_stats_)
+		client_preference_stats_ = list()
+		for(var/datum/client_preference/client_pref in get_client_preferences())
+			client_preference_stats_[client_pref.description] = new /stat_client_preference(null, client_pref)
 
-/client/verb/toggle_ghost_radio()
-	set name = "Enable/Disable GhostRadio"
-	set category = "Preferences"
-	set desc = ".Toggle between hearing all radio chatter, or only from nearby speakers"
-	prefs.toggles ^= CHAT_GHOSTRADIO
-	src << "As a ghost, you will now [(prefs.toggles & CHAT_GHOSTRADIO) ? "hear all radio chat in the world" : "only hear from nearby speakers"]."
-	prefs.save_preferences()
+	for(var/client_pref_description in client_preference_stats_)
+		var/stat_client_preference/scp = client_preference_stats_[client_pref_description]
+		if(scp.client_preference.may_set(user))
+			scp.update_name(user)
+			.[client_pref_description] = scp
 
-/client/proc/toggle_hear_radio()
-	set name = "Show/Hide RadioChatter"
-	set category = "Preferences"
-	set desc = "Toggle seeing radiochatter from radios and speakers"
-	if(!holder) return
-	prefs.toggles ^= CHAT_RADIO
-	prefs.save_preferences()
-	usr << "You will [(prefs.toggles & CHAT_RADIO) ? "now" : "no longer"] see radio chatter from radios or speakers"
+/client/verb/toggle_preference_verb(var/client_pref_name in client_preference_stats_for_usr())
+	set name = "Toggle Preference"
+	set desc = "Toggles the selected preference."
+	set category = "OOC"
 
-/client/proc/toggleadminhelpsound()
-	set name = "Hear/Silence Adminhelps"
-	set category = "Preferences"
-	set desc = "Toggle hearing a notification when admin PMs are recieved"
-	if(!holder)	return
-	prefs.toggles ^= SOUND_ADMINHELP
-	prefs.save_preferences()
-	usr << "You will [(prefs.toggles & SOUND_ADMINHELP) ? "now" : "no longer"] hear a sound when adminhelps arrive."
+	var/list/client_stats = client_preference_stats_for_usr()
+	var/stat_client_preference/scp = client_stats[client_pref_name]
+	if(istype(scp))
+		scp.Click()
 
-/client/verb/deadchat() // Deadchat toggle is usable by anyone.
-	set name = "Show/Hide Deadchat"
-	set category = "Preferences"
-	set desc ="Toggles seeing deadchat"
-	prefs.toggles ^= CHAT_DEAD
-	prefs.save_preferences()
+/mob/Stat()
+	. = ..()
+	if(!client || !statpanel("Preferences"))
+		return
+	var/list/preferences = client_preference_stats_for_usr(src)
+	for(var/client_preference_description in preferences)
+		var/stat_client_preference/scp = client_preference_stats_[client_preference_description]
+		stat(scp.client_preference.description, scp)
 
-	if(src.holder)
-		src << "You will [(prefs.toggles & CHAT_DEAD) ? "now" : "no longer"] see deadchat."
-	else
-		src << "As a ghost, you will [(prefs.toggles & CHAT_DEAD) ? "now" : "no longer"] see deadchat."
+/stat_client_preference
+	parent_type = /atom/movable
+	simulated = 0
+	var/datum/client_preference/client_preference
 
+/stat_client_preference/New(var/loc, var/preference)
+	client_preference = preference
+	update_name(usr)
+	..()
 
-/client/proc/toggleprayers()
-	set name = "Show/Hide Prayers"
-	set category = "Preferences"
-	set desc = "Toggles seeing prayers"
-	prefs.toggles ^= CHAT_PRAYER
-	prefs.save_preferences()
-	src << "You will [(prefs.toggles & CHAT_PRAYER) ? "now" : "no longer"] see prayerchat."
+/stat_client_preference/Destroy()
+	client_preference = null
+	. = ..()
 
-/client/verb/toggletitlemusic()
-	set name = "Hear/Silence LobbyMusic"
-	set category = "Preferences"
-	set desc = "Toggles hearing the GameLobby music"
-	prefs.toggles ^= SOUND_LOBBY
-	prefs.save_preferences()
-	if(prefs.toggles & SOUND_LOBBY)
-		src << "You will now hear music in the game lobby."
-		if(isnewplayer(mob))
-			playtitlemusic()
-	else
-		src << "You will no longer hear music in the game lobby."
-		if(isnewplayer(mob))
-			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jamsz
+/stat_client_preference/Click()
+	if(!usr.client)
+		return
 
-/client/verb/togglemidis()
-	set name = "Hear/Silence Midis"
-	set category = "Preferences"
-	set desc = "Toggles hearing sounds uploaded by admins"
-	prefs.toggles ^= SOUND_MIDI
-	prefs.save_preferences()
-	if(prefs.toggles & SOUND_MIDI)
-		src << "You will now hear any sounds uploaded by admins."
-		var/sound/break_sound = sound(null, repeat = 0, wait = 0, channel = 777)
-		break_sound.priority = 250
-		src << break_sound	//breaks the client's sound output on channel 777
-	else
-		src << "You will no longer hear sounds uploaded by admins; any currently playing midis have been disabled."
+	if(!usr.cycle_preference(client_preference))
+		return
 
-/client/verb/listen_ooc()
-	set name = "Show/Hide OOC"
-	set category = "Preferences"
-	set desc = "Toggles seeing OutOfCharacter chat"
-	prefs.toggles ^= CHAT_OOC
-	prefs.save_preferences()
-	src << "You will [(prefs.toggles & CHAT_OOC) ? "now" : "no longer"] see messages on the OOC channel."
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "[client_preference.description]: [usr.get_preference_value(client_preference)]")
 
-
-/client/verb/listen_looc()
-	set name = "Show/Hide LOOC"
-	set category = "Preferences"
-	set desc = "Toggles seeing Local OutOfCharacter chat"
-	prefs.toggles ^= CHAT_LOOC
-	prefs.save_preferences()
-
-	src << "You will [(prefs.toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel."
-
-
-/client/verb/toggle_chattags()
-	set name = "Show/Hide Chat Tags"
-	set category = "Preferences"
-	set desc = "Toggles seeing chat tags/icons"
-	prefs.toggles ^= CHAT_NOICONS
-	prefs.save_preferences()
-
-	src << "You will [!(prefs.toggles & CHAT_NOICONS) ? "now" : "no longer"] see chat tag icons."
-
-
-/client/verb/Toggle_Soundscape() //All new ambience should be added here so it works with this verb until someone better at things comes up with a fix that isn't awful
-	set name = "Hear/Silence Ambience"
-	set category = "Preferences"
-	set desc = "Toggles hearing ambient sound effects"
-	prefs.toggles ^= SOUND_AMBIENCE
-	prefs.save_preferences()
-	if(prefs.toggles & SOUND_AMBIENCE)
-		src << "You will now hear ambient sounds."
-	else
-		src << "You will no longer hear ambient sounds."
-		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 1)
-		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 2)
+/stat_client_preference/proc/update_name(var/mob/user)
+	name = user.get_preference_value(client_preference)

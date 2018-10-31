@@ -1,207 +1,124 @@
+// Uniform slot
 /datum/gear/uniform
-	sort_category = "Uniforms and Casual Dress"
+	display_name = "blazer, blue"
+	path = /obj/item/clothing/under/blazer
 	slot = slot_w_uniform
-	category = /datum/gear/uniform
+	sort_category = "Uniforms and Casual Dress"
+
+/datum/gear/uniform/kilt
+	display_name = "kilt"
+	path = /obj/item/clothing/under/kilt
 
 /datum/gear/uniform/jumpsuit
-	display_name = "jumpsuit, colour select"
-	path = /obj/item/clothing/under/color
-	flags = GEAR_HAS_COLOR_SELECTION
+	display_name = "jumpsuit, rainbow"
+	path = /obj/item/clothing/under/rainbow
 
-/datum/gear/uniform/jumpsuit_f
-	display_name = "feminine jumpsuit, colour select"
-	path = /obj/item/clothing/under/fcolor
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/black
+	display_name = "jumpsuit, black"
+	path = /obj/item/clothing/under/color/black
 
-/datum/gear/uniform/shortjumpskirt
-	display_name = "short jumpskirt, colour select"
-	path = /obj/item/clothing/under/shortjumpskirt
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/blue
+	display_name = "jumpsuit, blue"
+	path = /obj/item/clothing/under/color/blue
 
-/datum/gear/uniform/blackjumpshorts
-	display_name = "black jumpsuit shorts"
-	path = /obj/item/clothing/under/color/blackjumpshorts
+/datum/gear/uniform/jumpsuit/green
+	display_name = "jumpsuit, green"
+	path = /obj/item/clothing/under/color/green
 
-/datum/gear/uniform/roboticist_skirt
-	display_name = "skirt, roboticist"
-	path = /obj/item/clothing/under/rank/roboticist/skirt
+/datum/gear/uniform/jumpsuit/grey
+	display_name = "jumpsuit, grey"
+	path = /obj/item/clothing/under/color/grey
 
-/datum/gear/uniform/suit
-	display_name = "clothes selection"
-	path = /obj/item/clothing/under
+/datum/gear/uniform/jumpsuit/pink
+	display_name = "jumpsuit, pink"
+	path = /obj/item/clothing/under/color/pink
 
-/datum/gear/uniform/suit/New()
-	..()
-	var/suits = list()
-	suits += /obj/item/clothing/under/sl_suit
-	suits += /obj/item/clothing/under/suit_jacket
-	suits += /obj/item/clothing/under/lawyer/blue
-	suits += /obj/item/clothing/under/suit_jacket/burgundy
-	suits += /obj/item/clothing/under/suit_jacket/charcoal
-	suits += /obj/item/clothing/under/suit_jacket/checkered
-	suits += /obj/item/clothing/under/suit_jacket/really_black
-	suits += /obj/item/clothing/under/suit_jacket/female
-	suits += /obj/item/clothing/under/gentlesuit
-	suits += /obj/item/clothing/under/suit_jacket/navy
-	suits += /obj/item/clothing/under/lawyer/oldman
-	suits += /obj/item/clothing/under/lawyer/purpsuit
-	suits += /obj/item/clothing/under/suit_jacket/red
-	suits += /obj/item/clothing/under/lawyer/red
-	suits += /obj/item/clothing/under/lawyer/black
-	suits += /obj/item/clothing/under/suit_jacket/tan
-	suits += /obj/item/clothing/under/scratch
-	suits += /obj/item/clothing/under/lawyer/bluesuit
-	suits += /obj/item/clothing/under/rank/internalaffairs/plain
-	suits += /obj/item/clothing/under/blazer
-	suits += /obj/item/clothing/under/blackjumpskirt
-	suits += /obj/item/clothing/under/kilt
-	suits += /obj/item/clothing/under/dress/dress_hr
-	suits += /obj/item/clothing/under/det
-	suits += /obj/item/clothing/under/det/black
-	suits += /obj/item/clothing/under/det/grey
-	gear_tweaks += new/datum/gear_tweak/path/specified_types_list(suits)
+/datum/gear/uniform/jumpsuit/white
+	display_name = "jumpsuit, white"
+	path = /obj/item/clothing/under/color/white
 
-/datum/gear/uniform/scrubs
-	display_name = "standard medical scrubs"
-	path = /obj/item/clothing/under/rank/medical/scrubs
-	flags = GEAR_HAS_TYPE_SELECTION
+/datum/gear/uniform/jumpsuit/yellow
+	display_name = "jumpsuit, yellow"
+	path = /obj/item/clothing/under/color/yellow
 
-/datum/gear/uniform/scrubs/custom
-	display_name = "scrubs, colour select"
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/lightblue
+	display_name = "jumpsuit, lightblue"
+	path = /obj/item/clothing/under/lightblue
 
-/datum/gear/uniform/dress
-	display_name = "dress selection"
-	path = /obj/item/clothing/under
+/datum/gear/uniform/jumpsuit/red
+	display_name = "jumpsuit, red"
+	path = /obj/item/clothing/under/color/red
 
-/datum/gear/uniform/dress/New()
-	..()
-	var/dresses = list()
-	dresses += /obj/item/clothing/under/sundress_white
-	dresses += /obj/item/clothing/under/dress/dress_fire
-	dresses += /obj/item/clothing/under/dress/dress_green
-	dresses += /obj/item/clothing/under/dress/dress_orange
-	dresses += /obj/item/clothing/under/dress/dress_pink
-	dresses += /obj/item/clothing/under/dress/dress_purple
-	dresses += /obj/item/clothing/under/sundress
-	gear_tweaks += new/datum/gear_tweak/path/specified_types_list(dresses)
+/datum/gear/uniform/jumpsuit/aqua
+	display_name = "jumpsuit, aqua"
+	path = /obj/item/clothing/under/aqua
 
-/datum/gear/uniform/cheongsam
-	display_name = "cheongsam, colour select"
-	path = /obj/item/clothing/under/cheongsam
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/purple
+	display_name = "jumpsuit, purple"
+	path = /obj/item/clothing/under/purple
 
-/datum/gear/uniform/abaya
-	display_name = "abaya, colour select"
-	path = /obj/item/clothing/under/abaya
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/lightpurple
+	display_name = "jumpsuit, lightpurple"
+	path = /obj/item/clothing/under/lightpurple
 
-/datum/gear/uniform/skirt
-	display_name = "skirt selection"
-	path = /obj/item/clothing/under/skirt
-	flags = GEAR_HAS_TYPE_SELECTION
+/datum/gear/uniform/jumpsuit/lightgreen
+	display_name = "jumpsuit, lightgreen"
+	path = /obj/item/clothing/under/lightgreen
 
-/datum/gear/uniform/skirt_c
-	display_name = "short skirt, colour select"
-	path = /obj/item/clothing/under/skirt_c
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/lightbrown
+	display_name = "jumpsuit, lightbrown"
+	path = /obj/item/clothing/under/lightbrown
 
-/datum/gear/uniform/skirt_c/dress
-	display_name = "simple dress, colour select"
-	path = /obj/item/clothing/under/skirt_c/dress
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/brown
+	display_name = "jumpsuit, brown"
+	path = /obj/item/clothing/under/brown
 
-/datum/gear/uniform/casual_pants
-	display_name = "casual pants selection"
-	path = /obj/item/clothing/under/casual_pants
-	flags = GEAR_HAS_TYPE_SELECTION
+/datum/gear/uniform/jumpsuit/yellowgreen
+	display_name = "jumpsuit, yellowgreen"
+	path = /obj/item/clothing/under/yellowgreen
 
-/datum/gear/uniform/formal_pants
-	display_name = "formal pants selection"
-	path = /obj/item/clothing/under/formal_pants
-	flags = GEAR_HAS_TYPE_SELECTION
+/datum/gear/uniform/jumpsuit/darkblue
+	display_name = "jumpsuit, darkblue"
+	path = /obj/item/clothing/under/darkblue
 
-/datum/gear/uniform/formal_pants/custom
-	display_name = "suit pants, colour select"
-	path = /obj/item/clothing/under/formal_pants
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/lightred
+	display_name = "jumpsuit, lightred"
+	path = /obj/item/clothing/under/lightred
 
-/datum/gear/uniform/formal_pants/baggycustom
-	display_name = "baggy suit pants, colour select"
-	path = /obj/item/clothing/under/formal_pants/baggy
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/jumpsuit/darkred
+	display_name = "jumpsuit, darkred"
+	path = /obj/item/clothing/under/darkred
 
-/datum/gear/uniform/shorts
-	display_name = "shorts selection"
-	path = /obj/item/clothing/under/shorts/jeans
-	flags = GEAR_HAS_TYPE_SELECTION
+/*/datum/gear/uniform/skirt
+	display_name = "plaid skirt, blue"
+	path = /obj/item/clothing/under/dress/plaid_blue
 
-/datum/gear/uniform/shorts/custom
-	display_name = "athletic shorts, colour select"
-	path = /obj/item/clothing/under/shorts/
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/skirt/purple
+	display_name = "plaid skirt, purple"
+	path = /obj/item/clothing/under/dress/plaid_purple
 
-/datum/gear/uniform/turtleneck
-	display_name = "sweater, colour select"
-	path = /obj/item/clothing/under/rank/psych/turtleneck/sweater
-	flags = GEAR_HAS_COLOR_SELECTION
+/datum/gear/uniform/skirt/red
+	display_name = "plaid skirt, red"
+	path = /obj/item/clothing/under/dress/plaid_red*/
 
-/datum/gear/uniform/kimono
-	display_name = "kimono, colour select"
-	path = /obj/item/clothing/under/kimono
-	flags = GEAR_HAS_COLOR_SELECTION
+///datum/gear/uniform/suit  //amish
+	//display_name = "suit, amish"
+	//path = /obj/item/clothing/under/sl_suit
 
-/datum/gear/uniform/corporate
-	display_name = "corporate uniform selection"
-	path = /obj/item/clothing/under
 
-/datum/gear/uniform/corporate/New()
-	..()
-	var/corps = list()
-	corps += /obj/item/clothing/under/rank/scientist/nanotrasen
-	corps += /obj/item/clothing/under/mbill
-	corps += /obj/item/clothing/under/saare
-	corps += /obj/item/clothing/under/aether
-	corps += /obj/item/clothing/under/hephaestus
-	corps += /obj/item/clothing/under/pcrc
-	corps += /obj/item/clothing/under/pcrcsuit
-	corps += /obj/item/clothing/under/wardt
-	corps += /obj/item/clothing/under/grayson
-	corps += /obj/item/clothing/under/focal
-	corps += /obj/item/clothing/under/rank/ntwork
-	corps += /obj/item/clothing/under/morpheus
-	corps += /obj/item/clothing/under/skinner
-	corps += /obj/item/clothing/under/dais
-	gear_tweaks += new/datum/gear_tweak/path/specified_types_list(corps)
+/datum/gear/uniform/scrubs/blue
+	display_name = "scrubs, blue"
+	path = /obj/item/clothing/under/rank/medical/blue
 
-/datum/gear/uniform/nanotrasen_guard
-	display_name = "NanoTrasen colours, guard"
-	path = /obj/item/clothing/under/rank/guard/nanotrasen
+/datum/gear/uniform/scrubs/purple
+	display_name = "scrubs, purple"
+	path = /obj/item/clothing/under/rank/medical/purple
 
-/datum/gear/uniform/nanotrasen_executive
-	display_name = "NanoTrasen colours, senior researcher"
-	path = /obj/item/clothing/under/rank/scientist/executive/nanotrasen
+/datum/gear/uniform/scrubs/green
+	display_name = "scrubs, green"
+	path = /obj/item/clothing/under/rank/medical/green
 
-/datum/gear/uniform/nanotrasen_coveralls
-	display_name = "NanoTrasen colours, coveralls"
-	path = /obj/item/clothing/under/rank/ntwork/nanotrasen
-
-/datum/gear/uniform/nanotrasen_flightsuit
-	display_name = "NanoTrasen colours, flight suit"
-	path = /obj/item/clothing/under/rank/ntpilot/nanotrasen
-
-/datum/gear/uniform/nanotrasen_executive
-	display_name = "NanoTrasen colours, liason suit"
-	path = /obj/item/clothing/under/suit_jacket/corp/nanotrasen
-
-/datum/gear/uniform/sterile
-	display_name = "sterile jumpsuit"
-	path = /obj/item/clothing/under/sterile
-
-/datum/gear/uniform/hazard
-	display_name = "hazard jumpsuit"
-	path = /obj/item/clothing/under/hazard
-
-/datum/gear/uniform/frontier
-	display_name = "frontier clothes"
-	path = /obj/item/clothing/under/frontier
+/*/datum/gear/uniform/uniform_hop
+	display_name = "uniform, HoP's dress"
+	path = /obj/item/clothing/under/dress/dress_hop
+	allowed_roles = list("First Officer")*/

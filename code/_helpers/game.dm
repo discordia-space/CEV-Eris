@@ -540,8 +540,8 @@ datum/projectile_data
 	if (target.client)
 		P = target.client.prefs
 	else if (target.ckey)
-		P = preferences_datums[target.ckey]
+		P = SScharacter_setup.preferences_datums[target.ckey]
 	else if (target.mind && target.mind.key)
-		P = preferences_datums[target.mind.key]
+		P = SScharacter_setup.preferences_datums[target.mind.key]
 
 	return P

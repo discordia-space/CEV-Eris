@@ -29,6 +29,8 @@ var/global/list/HUDdatums = list()
 
 var/global/list/turfs = list()						//list of all turfs
 
+var/list/mannequins_
+
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
@@ -231,3 +233,11 @@ var/global/list/admin_permissions = list(
 	"admin" = 0x40,
 	"host" = 0x80
 	)
+
+/proc/get_mannequin(var/ckey)
+	if(!mannequins_)
+		mannequins_ = new()
+	. = mannequins_[ckey]
+	if(!.)
+		. = new/mob/living/carbon/human/dummy/mannequin()
+		mannequins_[ckey] = .

@@ -2,23 +2,9 @@
 	display_name = "cane"
 	path = /obj/item/weapon/cane
 
-/datum/gear/union_card
-	display_name = "union membership"
-	path = /obj/item/weapon/card/union
-
-/datum/gear/union_card/spawn_on_mob(var/mob/living/carbon/human/H, var/metadata)
-	. = ..()
-	if(.)
-		var/obj/item/weapon/card/union/card = .
-		card.signed_by = H.real_name
-
 /datum/gear/dice
 	display_name = "dice pack"
 	path = /obj/item/weapon/storage/pill_bottle/dice
-
-/datum/gear/dice/nerd
-	display_name = "dice pack (gaming)"
-	path = /obj/item/weapon/storage/pill_bottle/dice_nerd
 
 /datum/gear/cards
 	display_name = "deck of cards"
@@ -44,28 +30,23 @@
 	display_name = "flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/barflask
 
+// TODO: enable after reagents
+/*
 /datum/gear/flask/New()
 	..()
 	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_ethanol_reagents())
-
+*/
 /datum/gear/vacflask
 	display_name = "vacuum-flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask
-
+// TODO: enable after reagents
+/*
 /datum/gear/vacflask/New()
 	..()
 	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_drink_reagents())
-
-/datum/gear/coffeecup
-	display_name = "coffee cup"
-	path = /obj/item/weapon/reagent_containers/food/drinks/coffeecup
-	flags = GEAR_HAS_TYPE_SELECTION
-
-/datum/gear/boot_knife
-	display_name = "boot knife"
-	path = /obj/item/weapon/material/kitchen/utensil/knife/boot
-	cost = 3
-
+*/
+// TODO: enable after reagents
+/*
 /datum/gear/lunchbox
 	display_name = "lunchbox"
 	description = "A little lunchbox."
@@ -81,11 +62,7 @@
 			lunchboxes[initial(lunchbox.name)] = lunchbox_type
 	gear_tweaks += new/datum/gear_tweak/path(lunchboxes)
 	gear_tweaks += new/datum/gear_tweak/contents(lunchables_lunches(), lunchables_snacks(), lunchables_drinks())
-
-/datum/gear/towel
-	display_name = "towel"
-	path = /obj/item/weapon/towel
-	flags = GEAR_HAS_COLOR_SELECTION
+*/
 
 /datum/gear/plush_toy
 	display_name = "plush toy"
@@ -95,18 +72,12 @@
 /datum/gear/plush_toy/New()
 	..()
 	var/plushes = list()
-	plushes["diona nymph plush"] = /obj/item/toy/plushie/nymph
 	plushes["mouse plush"] = /obj/item/toy/plushie/mouse
 	plushes["kitten plush"] = /obj/item/toy/plushie/kitten
 	plushes["lizard plush"] = /obj/item/toy/plushie/lizard
 	plushes["spider plush"] = /obj/item/toy/plushie/spider
 	plushes["farwa plush"] = /obj/item/toy/plushie/farwa
 	gear_tweaks += new /datum/gear_tweak/path(plushes)
-
-/datum/gear/workvisa
-	display_name = "work visa"
-	description = "A work visa issued by the Sol Central Government for the purpose of work."
-	path = /obj/item/weapon/paper/workvisa
 
 /datum/gear/mirror/
 	display_name = "handheld mirror"
@@ -148,10 +119,6 @@
 	display_name = "zippo"
 	path = /obj/item/weapon/flame/lighter/zippo
 
-/datum/gear/ashtray
-	display_name = "ashtray, plastic"
-	path = /obj/item/weapon/material/ashtray/plastic
-
 /datum/gear/cigars
 	display_name = "fancy cigar case"
 	path = /obj/item/weapon/storage/fancy/cigar
@@ -167,17 +134,3 @@
 	cigar_type["premium"] = /obj/item/clothing/mask/smokable/cigarette/cigar
 	cigar_type["Cohiba Robusto"] = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	gear_tweaks += new/datum/gear_tweak/path(cigar_type)
-
-/datum/gear/ecig
-	display_name = "electronic cigarette"
-	path = /obj/item/clothing/mask/smokable/ecig/util
-
-/datum/gear/ecig/deluxe
-	display_name = "electronic cigarette, deluxe"
-	path = /obj/item/clothing/mask/smokable/ecig/deluxe
-	cost = 2
-
-/datum/gear/bible
-	display_name = "bible"
-	path = /obj/item/weapon/storage/bible
-	cost = 2

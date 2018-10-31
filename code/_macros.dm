@@ -105,8 +105,13 @@
 #define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
 #define to_file(file_entry, source_var)                     file_entry << source_var
 #define from_file(file_entry, target_var)                   file_entry >> target_var
+#define send_rsc(target, rsc_content, rsc_name)             target << browse_rsc(rsc_content, rsc_name)
+#define open_link(target, url)             					target << link(url)
+
 
 #define any2ref(x) "\ref[x]"
+
+#define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
 #define MAP_IMAGE_PATH "nano/images/[maps_data.path]/"
 
@@ -130,3 +135,5 @@
 
 // Insert an object A into a sorted list using cmp_proc (/code/_helpers/cmp.dm) for comparison.
 #define ADD_SORTED(list, A, cmp_proc) if(!list.len) {list.Add(A)} else {list.Insert(FindElementIndex(A, list, cmp_proc), A)}
+
+#define FLAGS_EQUALS(flag, flags) ((flag & (flags)) == (flags))

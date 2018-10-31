@@ -1,7 +1,7 @@
 datum/preferences
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
-	var/spawnpoint = "Default" 			//where this character will spawn (0-2).
+	var/spawnpoint = "Cryogenic Storage" 			//where this character will spawn (0-2).
 	var/metadata = ""
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
@@ -35,13 +35,14 @@ datum/preferences
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 	// This is a bit noodly. If pref.cultural_info[TAG_CULTURE] is null, then we haven't finished loading/sanitizing, which means we might purge
 	// numbers or w/e from someone's name by comparing them to the map default. So we just don't bother sanitizing at this point otherwise.
+	/*
 	if(pref.cultural_info[TAG_CULTURE])
 		var/decl/cultural_info/check = SSculture.get_culture(pref.cultural_info[TAG_CULTURE])
 		if(check)
 			pref.real_name = check.sanitize_name(pref.real_name, pref.species)
 			if(!pref.real_name)
 				pref.real_name = random_name(pref.gender, pref.species)
-
+	*/
 /datum/category_item/player_setup_item/physical/basic/content()
 	. = list()
 	. += "<b>Name:</b> "
@@ -62,15 +63,19 @@ datum/preferences
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
-
+			/*
 			var/decl/cultural_info/check = SSculture.get_culture(pref.cultural_info[TAG_CULTURE])
 			var/new_name = check.sanitize_name(raw_name, pref.species)
+
 			if(new_name)
 				pref.real_name = new_name
 				return TOPIC_REFRESH
 			else
+
 				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
 				return TOPIC_NOACTION
+			*/
+			pref.real_name = raw_name
 
 	else if(href_list["random_name"])
 		pref.real_name = random_name(pref.gender, pref.species)

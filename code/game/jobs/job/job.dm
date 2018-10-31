@@ -12,6 +12,7 @@
 	var/current_positions = 0             // How many players have this job
 	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
+	var/list/alt_titles
 	var/idtype = /obj/item/weapon/card/id // The type of the ID the player will have
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/department = null                 // Does this position have a department tag?
@@ -23,6 +24,9 @@
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
+
+	var/outfit_type                       // The outfit the employee will be dressed in, if any
+
 
 	var/survival_gear = /obj/item/weapon/storage/box/survival// Custom box for spawn in backpack
 //job equipment
@@ -77,64 +81,17 @@
 		)
 	*/
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
+	var/decl/hierarchy/outfit/outfit = get_outfit()
+	if(!outfit)
+		return FALSE
+	. = outfit.equip(H, title, alt_title)
 
-	//Put items in hands
-	if(hand) H.equip_to_slot_or_del(new hand (H), slot_l_hand)
-
-	//Put items in backpack
-	if( H.backbag != 1 )
-		var/backpack = backpacks[H.backbag-1]
-		var/obj/item/weapon/storage/backpack/BPK = new backpack(H)
-		if(H.equip_to_slot_or_del(BPK, slot_back,1))
-			new survival_gear(BPK)
-			for( var/path in put_in_backpack )
-				new path(BPK)
-
-	//Survival equipment
-
-
-	//No-check items (suits, gloves, etc)
-	if(ear)			H.equip_to_slot_or_del(new ear (H), slot_l_ear)
-	if(shoes)		H.equip_to_slot_or_del(new shoes (H), slot_shoes)
-	if(uniform)		H.equip_to_slot_or_del(new uniform (H), slot_w_uniform)
-	if(suit)		H.equip_to_slot_or_del(new suit (H), slot_wear_suit)
-	if(suit_store)	H.equip_to_slot_or_del(new suit_store (H), slot_s_store)
-	if(mask)		H.equip_to_slot_or_del(new mask (H), slot_wear_mask)
-	if(hat)			H.equip_to_slot_or_del(new hat (H), slot_head)
-	if(gloves)		H.equip_to_slot_or_del(new gloves (H), slot_gloves)
-	if(glasses)		H.equip_to_slot_or_del(new glasses (H), slot_glasses)
-
-	//Belt and PDA
-	if(belt)
-		H.equip_to_slot_or_del(new belt (H), slot_belt)
-		H.equip_to_slot_or_del(new pda (H), slot_l_store)
-	else
-		H.equip_to_slot_or_del(new pda (H), slot_belt)
-
-	if(!H.back || !istype(H.back, /obj/item/weapon/storage/backpack))
-		var/list/slots = list( slot_belt, slot_r_store, slot_l_store, slot_r_hand, slot_l_hand, slot_s_store )
-		for( var/path in put_in_backpack )
-			if( !slots.len ) break
-			var/obj/item/I = new path(H)
-			for( var/slot in slots )
-				if( H.equip_to_slot_if_possible(I, slot, TRUE, FALSE) ) //Disable warning and not RedrawMob
-					slots -= slot
-					break
-			if(istype(H.r_hand,/obj/item/weapon/storage))
-				new path(H.r_hand)
-			else if(istype(H.l_hand, /obj/item/weapon/storage))
-				new path(H.l_hand)
-
-
-	if(H.religion == "Christianity" && !locate(/obj/item/weapon/implant/core_implant/cruciform, H))
-		var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
-
-		C.install(H)
-		C.activate()
-
-	return TRUE
+/datum/job/proc/get_outfit(var/alt_title)
+	if(alt_title && alt_titles)
+		. = alt_titles[alt_title]
+	. = . || outfit_type
+	. = outfit_by_type(.)
 
 /datum/job/proc/add_stats(var/mob/living/carbon/human/target)
 	if(!ishuman(target))
@@ -189,6 +146,13 @@
 
 /datum/job/proc/one_time_payment(var/custom_factor = 1)
 	return (rand(5,50) + rand(5, 50)) * economic_modifier * custom_factor
+
+// overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
+/datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title, var/datum/mil_branch/branch, var/additional_skips)
+	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
+	if(!outfit)
+		return FALSE
+	. = outfit.equip(H, title, alt_title, OUTFIT_ADJUSTMENT_SKIP_POST_EQUIP|OUTFIT_ADJUSTMENT_SKIP_ID_PDA|additional_skips)
 
 /datum/job/proc/get_access()
 	return src.access.Copy()

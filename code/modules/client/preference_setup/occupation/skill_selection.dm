@@ -176,7 +176,7 @@
 	panel = new(user, "Skill Selection: [job.title]", "Skill Selection: [job.title]", 770, 850, src)
 	panel.set_content(generate_skill_content(job))
 	panel.open()
-
+/*
 /datum/category_item/player_setup_item/proc/skill_to_button(decl/hierarchy/skill/skill, datum/job/job, current_level, selection_level, min, max)
 	var/level_name = skill.levels[selection_level]
 	var/cost = skill.get_cost(selection_level)
@@ -191,3 +191,4 @@
 		return "<th><a class='Selectable' href='?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
 	else
 		return "<th><span class='Toohigh'>[button_label]</span></th>"
+*/

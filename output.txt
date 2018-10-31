@@ -1,753 +1,97 @@
 DM compiler version 512.1454
 loading cev_eris.dme
 loading interface\skin.dmf
-code\game\sound.dm:334:error: is_preference_enabled: undefined proc
-code\modules\admin\verbs\adminpm.dm:105:error: /datum/client_preference/holder/play_adminhelp_ping: undefined type path
-code\modules\admin\verbs\deadsay.dm:16:error: is_preference_enabled: undefined proc
-code\modules\client\preference_setup\global\05_settings.dm:108:error: log_error: undefined proc
-code\game\verbs\ooc.dm:18:error: is_preference_enabled: undefined proc
-code\game\verbs\ooc.dm:81:error: is_preference_enabled: undefined proc
-code\modules\admin\verbs\adminhelp.dm:44:error: /datum/client_preference/holder/play_adminhelp_ping: undefined type path
-code\modules\admin\verbs\pray.dm:24:error: /datum/client_preference/admin/show_chat_prayers: undefined type path
-code\modules\admin\verbs\pray.dm:24:error: C.is_preference_enabled: undefined proc
-code\modules\mob\emote.dm:34:error: is_preference_enabled: undefined proc
-code\modules\mob\hear_say.dm:17:error: is_preference_enabled: undefined proc
-code\modules\mob\hear_say.dm:25:error: is_preference_enabled: undefined proc
-code\modules\mob\say.dm:71:error: is_preference_enabled: undefined proc
-code\modules\mob\typing_indicator.dm:19:error: is_preference_enabled: undefined proc
-code\modules\mob\typing_indicator.dm:33:error: is_preference_enabled: undefined proc
-code\modules\mob\observer\ghost\say.dm:24:error: is_preference_enabled: undefined proc
-code\modules\mob\angel\say.dm:26:error: is_preference_enabled: undefined proc
-code\modules\mob\angel\say.dm:56:error: is_preference_enabled: undefined proc
-code\_helpers\game.dm:167:error: M.is_preference_enabled: undefined proc
-code\_helpers\logging.dm:39:error: /datum/client_preference/admin/show_debug_logs: undefined type path
-code\_helpers\logging.dm:39:error: C.is_preference_enabled: undefined proc
-code\_helpers\text.dm:317:error: C.is_preference_enabled: undefined proc
-code\game\machinery\telecomms\broadcaster.dm:296:error: R.is_preference_enabled: undefined proc
-code\modules\admin\admin.dm:19:error: /datum/client_preference/admin/show_attack_logs: undefined type path
-code\modules\admin\admin.dm:19:error: C.is_preference_enabled: undefined proc
-code\modules\mob\mob_helpers.dm:410:error: M.is_preference_enabled: undefined proc
-code\modules\mob\angel\say.dm:93:error: M.is_preference_enabled: undefined proc
-code\modules\client\preference_setup\preference_setup.dm:272:error: SPECIES_HUMAN: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:438:error: MAP_HAS_BRANCH: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:439:error: mil_branches.is_spawn_branch: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:442:error: MAP_HAS_RANK: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:443:error: mil_branches.is_spawn_rank: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:181:error: skill.levels: undefined type: skill.levels
-code\modules\client\preference_setup\occupation\skill_selection.dm:182:error: skill.get_cost: undefined type: skill.get_cost
-code\modules\client\preference_setup\occupation\skill_selection.dm:187:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:191:error: skill: undefined type: skill
-code\modules\client\preference_setup\antagonism\01_candidacy.dm:41:error: MODE_MALFUNCTION: undefined var
-code\modules\client\preference_setup\antagonism\01_candidacy.dm:123:error: MODE_MALFUNCTION: undefined var
-code\modules\client\preference_setup\antagonism\02_setup.dm:13:error: /decl/uplink_source: undefined type path
-code\modules\client\preference_setup\antagonism\02_setup.dm:31:error: UL.name: undefined type: UL.name
-code\modules\client\preference_setup\antagonism\02_setup.dm:47:error: US.name: undefined type: US.name
-code\modules\client\preference_setup\antagonism\02_setup.dm:47:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:47:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:47:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:48:error: US.desc: undefined type: US.desc
-code\modules\client\preference_setup\antagonism\02_setup.dm:49:error: US.desc: undefined type: US.desc
-code\modules\client\preference_setup\antagonism\02_setup.dm:61:error: list_values: undefined proc
-code\modules\client\preference_setup\background\01_culture.dm:21:error: ALL_CULTURAL_TAGS: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:21:error: =: expected a constant expression
-code\modules\client\preference_setup\background\01_culture.dm:55:error: SSculture.get_culture: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:74:error: SSculture.get_all_entries_tagged_with: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:84:error: SSculture.get_all_entries_tagged_with: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:89:error: SSculture.get_culture: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:91:error: culture.get_description: undefined type: culture.get_description
-code\modules\client\preference_setup\background\02_language.dm:67:error: SSculture.get_culture: undefined var
-code\modules\client\preference_setup\background\02_language.dm:80:error: user.has_admin_rights: undefined proc
-code\modules\client\preference_setup\general\01_basic.dm:30:error: SPECIES_HUMAN: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:31:error: SPECIES_HUMAN: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:34:error: spawntypes: undefined proc
-code\modules\client\preference_setup\general\01_basic.dm:38:error: TAG_CULTURE: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:39:error: TAG_CULTURE: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:39:error: SSculture.get_culture: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:66:error: TAG_CULTURE: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:66:error: SSculture.get_culture: undefined var
-code\modules\client\preference_setup\general\01_basic.dm:101:error: spawntypes: undefined proc
-code\modules\client\preference_setup\general\01_basic.dm:104:error: spawntypes: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:113:error: sanitize_bool: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:116:error: SPECIES_HUMAN: undefined var
-code\modules\client\preference_setup\general\02_body.dm:119:error: SPECIES_NO_LACE: undefined var
-code\modules\client\preference_setup\general\02_body.dm:170:error: SPECIES_NO_LACE: undefined var
-code\modules\client\preference_setup\general\02_body.dm:178:error: HAS_BASE_SKIN_COLOURS: undefined var
-code\modules\client\preference_setup\general\02_body.dm:181:error: HAS_A_SKIN_TONE: undefined var
-code\modules\client\preference_setup\general\02_body.dm:202:error: BP_L_FOOT: undefined var
-code\modules\client\preference_setup\general\02_body.dm:204:error: BP_R_FOOT: undefined var
-code\modules\client\preference_setup\general\02_body.dm:206:error: BP_L_HAND: undefined var
-code\modules\client\preference_setup\general\02_body.dm:208:error: BP_R_HAND: undefined var
-code\modules\client\preference_setup\general\02_body.dm:234:error: all_robolimbs: undefined var
-code\modules\client\preference_setup\general\02_body.dm:235:error: R: undefined type: R
-code\modules\client\preference_setup\general\02_body.dm:235:error: all_robolimbs: undefined var
-code\modules\client\preference_setup\general\02_body.dm:237:error: R: undefined type: R
-code\modules\client\preference_setup\general\02_body.dm:237:error: basic_robolimb: undefined var
-code\modules\client\preference_setup\general\02_body.dm:238:error: R.company: undefined type: R.company
-code\modules\client\preference_setup\general\02_body.dm:359:error: SPECIES_CAN_JOIN: undefined var
-code\modules\client\preference_setup\general\02_body.dm:361:error: SPECIES_IS_WHITELISTED: undefined var
-code\modules\client\preference_setup\general\02_body.dm:435:error: HAS_BASE_SKIN_COLOURS: undefined var
-code\modules\client\preference_setup\general\02_body.dm:443:error: HAS_A_SKIN_TONE: undefined var
-code\modules\client\preference_setup\general\02_body.dm:447:error: HAS_A_SKIN_TONE: undefined var
-code\modules\client\preference_setup\general\02_body.dm:507:error: SPECIES_NO_FBP_CHARGEN: undefined var
-code\modules\client\preference_setup\general\02_body.dm:530:error: BP_L_FOOT: undefined var
-code\modules\client\preference_setup\general\02_body.dm:533:error: BP_R_FOOT: undefined var
-code\modules\client\preference_setup\general\02_body.dm:536:error: BP_L_HAND: undefined var
-code\modules\client\preference_setup\general\02_body.dm:539:error: BP_R_HAND: undefined var
-code\modules\client\preference_setup\general\02_body.dm:541:error: BP_L_FOOT: undefined var
-code\modules\client\preference_setup\general\02_body.dm:544:error: BP_R_FOOT: undefined var
-code\modules\client\preference_setup\general\02_body.dm:547:error: BP_L_HAND: undefined var
-code\modules\client\preference_setup\general\02_body.dm:550:error: BP_R_HAND: undefined var
-code\modules\client\preference_setup\general\02_body.dm:566:error: BP_ALL_LIMBS: undefined var
-code\modules\client\preference_setup\general\02_body.dm:586:error: SPECIES_HUMAN: undefined var
-code\modules\client\preference_setup\general\02_body.dm:588:error: chargen_robolimbs: undefined var
-code\modules\client\preference_setup\general\02_body.dm:589:error: chargen_robolimbs: undefined var
-code\modules\client\preference_setup\general\02_body.dm:590:error: M.species_cannot_use: undefined type: M.species_cannot_use
-code\modules\client\preference_setup\general\02_body.dm:592:error: M.restricted_to.len: undefined type: M.restricted_to.len
-code\modules\client\preference_setup\general\02_body.dm:592:error: M.restricted_to: undefined type: M.restricted_to
-code\modules\client\preference_setup\general\02_body.dm:594:error: M.applies_to_part.len: undefined type: M.applies_to_part.len
-code\modules\client\preference_setup\general\02_body.dm:594:error: M.applies_to_part: undefined type: M.applies_to_part
-code\modules\client\preference_setup\general\02_body.dm:596:error: M: undefined type: M
-code\modules\client\preference_setup\general\02_body.dm:611:error: BP_ALL_LIMBS: undefined var
-code\modules\client\preference_setup\general\03_equipment.dm:18:error: /decl/backpack_outfit: undefined type path
-code\modules\client\preference_setup\general\03_equipment.dm:31:error: get_default_outfit_backpack: undefined proc
-code\modules\client\preference_setup\general\03_equipment.dm:66:error: get_default_outfit_backpack: undefined proc
-code\modules\client\preference_setup\general\03_equipment.dm:77:error: backpack: undefined type: backpack
-code\modules\client\preference_setup\general\03_equipment.dm:79:error: backpack.tweaks: undefined type: backpack.tweaks
-code\modules\client\preference_setup\general\03_equipment.dm:81:error: tweak: undefined type: tweak
-code\modules\client\preference_setup\general\03_equipment.dm:82:error: tweak: undefined type: tweak
-code\modules\client\preference_setup\general\03_equipment.dm:82:error: tweak.validate_metadata: undefined type: tweak.validate_metadata
-code\modules\client\preference_setup\general\03_equipment.dm:99:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:100:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:100:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:100:error: bt.get_ui_content: undefined type: bt.get_ui_content
-code\modules\client\preference_setup\general\03_equipment.dm:117:error: backpack_outfit.name: undefined type: backpack_outfit.name
-code\modules\client\preference_setup\general\03_equipment.dm:120:error: backpack_outfit.name: undefined type: backpack_outfit.name
-code\modules\client\preference_setup\general\03_equipment.dm:122:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:124:error: bt.get_default_metadata: undefined type: bt.get_default_metadata
-code\modules\client\preference_setup\general\03_equipment.dm:125:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:133:error: backpack_outfit.name: undefined type: backpack_outfit.name
-code\modules\client\preference_setup\general\03_equipment.dm:134:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:166:error: bo.tweaks: undefined type: bo.tweaks
-code\modules\client\preference_setup\general\03_equipment.dm:167:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:169:error: bo: undefined type: bo
-code\modules\client\preference_setup\general\03_equipment.dm:169:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:169:error: bt.get_metadata: undefined type: bt.get_metadata
-code\modules\client\preference_setup\general\03_equipment.dm:171:error: bo: undefined type: bo
-code\modules\client\preference_setup\general\03_equipment.dm:171:error: bt: undefined type: bt
-code\modules\client\preference_setup\general\03_equipment.dm:179:error: /decl/backpack_outfit/nothing: undefined type path
-code\modules\client\preference_setup\general\03_equipment.dm:180:error: /decl/backpack_outfit/backpack: undefined type path
-code\modules\client\preference_setup\general\03_equipment.dm:181:error: /decl/backpack_outfit/satchel: undefined type path
-code\modules\client\preference_setup\general\03_equipment.dm:182:error: /decl/backpack_outfit/messenger_bag: undefined type path
-code\modules\client\preference_setup\general\03_equipment.dm:183:error: /decl/backpack_outfit/satchel: undefined type path
-code\modules\client\preference_setup\general\03_equipment.dm:184:error: /decl/backpack_outfit/satchel: undefined type path
-code\modules\client\preference_setup\general\03_equipment.dm:185:error: /decl/backpack_outfit/pocketbook: undefined type path
-code\modules\client\preference_setup\general\03_equipment.dm:194:error: get_default_outfit_backpack: undefined proc
-code\modules\client\preference_setup\global\01_ui.dm:32:error: CLIENT_MIN_FPS: undefined var
-code\modules\client\preference_setup\global\01_ui.dm:32:error: CLIENT_MAX_FPS: undefined var
-code\modules\client\preference_setup\global\01_ui.dm:81:error: CLIENT_MIN_FPS: undefined var
-code\modules\client\preference_setup\global\01_ui.dm:81:error: CLIENT_MIN_FPS: undefined var
-code\modules\client\preference_setup\global\01_ui.dm:81:error: CLIENT_MAX_FPS: undefined var
-code\modules\client\preference_setup\global\01_ui.dm:81:error: CLIENT_MAX_FPS: undefined var
-code\modules\client\preference_setup\global\01_ui.dm:85:error: target_mob.client.apply_fps: undefined proc
-code\modules\client\preference_setup\global\02_prefixes.dm:130:error: group_by: undefined proc
-code\modules\client\preference_setup\laws\laws_pref.dm:31:error: BP_POSIBRAIN: undefined var
-code\modules\client\preference_setup\laws\laws_pref.dm:34:error: sanitize_bool: undefined proc
-code\modules\client\preference_setup\laws\laws_pref.dm:40:error: BP_POSIBRAIN: undefined var
-code\modules\client\preference_setup\laws\laws_pref.dm:79:error: ai_laws.shackles: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:67:error: is_species_whitelisted: undefined proc
-code\modules\client\preference_setup\loadout\loadout.dm:159:error: job_master: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:161:error: job_master.occupations_by_title: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:175:error: mil_branches.get_branch: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:81:error: job_master: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:93:error: MAP_HAS_BRANCH: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:95:error: player_branch: undefined type: player_branch
-code\modules\client\preference_setup\occupation\occupation.dm:95:error: mil_branches.get_branch: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:98:error: MAP_HAS_RANK: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:99:error: player_rank: undefined type: player_rank
-code\modules\client\preference_setup\occupation\occupation.dm:99:error: mil_branches.get_rank: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:107:error: job_master.occupations.len: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:111:error: job_master.occupations: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:151:error: player_branch: undefined type: player_branch
-code\modules\client\preference_setup\occupation\occupation.dm:153:error: player_branch: undefined type: player_branch
-code\modules\client\preference_setup\occupation\occupation.dm:154:error: player_branch.name_short: undefined type: player_branch.name_short
-code\modules\client\preference_setup\occupation\occupation.dm:157:error: player_rank: undefined type: player_rank
-code\modules\client\preference_setup\occupation\occupation.dm:159:error: player_rank: undefined type: player_rank
-code\modules\client\preference_setup\occupation\occupation.dm:160:error: player_rank.name_short: undefined type: player_rank.name_short
-code\modules\client\preference_setup\occupation\occupation.dm:160:error: player_rank.name: undefined type: player_rank.name
-code\modules\client\preference_setup\occupation\occupation.dm:234:error: mil_branches.spawn_branches: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:235:error: mil_branches.is_spawn_branch: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:244:error: mil_branches.get_branch: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:247:error: mil_branches.spawn_ranks: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:249:error: mil_branches.is_spawn_rank: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:255:error: job_master.GetJob: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:260:error: job_master.GetJob: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:265:error: job_master.GetJob: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:274:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\occupation.dm:277:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\occupation.dm:285:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\occupation.dm:288:error: S.name: undefined type: S.name
-code\modules\client\preference_setup\occupation\occupation.dm:289:error: S.desc: undefined type: S.desc
-code\modules\client\preference_setup\occupation\occupation.dm:291:error: SKILL_MIN: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:291:error: SKILL_MAX: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:292:error: S.levels: undefined type: S.levels
-code\modules\client\preference_setup\occupation\occupation.dm:293:error: S.levels: undefined type: S.levels
-code\modules\client\preference_setup\occupation\occupation.dm:298:error: job_master.GetJob: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:304:error: send_rsc: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:316:error: mil_branches.get_branch_by_type: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:317:error: B.name: undefined type: B.name
-code\modules\client\preference_setup\occupation\occupation.dm:317:error: B.name: undefined type: B.name
-code\modules\client\preference_setup\occupation\occupation.dm:323:error: SSculture.education_tiers_to_strings: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:332:error: open_link: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:344:error: job_master.GetJob: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:57:error: /decl/hierarchy/skill: undefined type path
-code\modules\client\preference_setup\occupation\skill_selection.dm:66:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:67:error: skill.type: undefined type: skill.type
-code\modules\client\preference_setup\occupation\skill_selection.dm:68:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:68:error: skill.type: undefined type: skill.type
-code\modules\client\preference_setup\occupation\skill_selection.dm:77:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:78:error: skill.type: undefined type: skill.type
-code\modules\client\preference_setup\occupation\skill_selection.dm:78:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:118:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:119:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:123:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:123:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:125:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:133:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:133:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:134:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:140:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:159:error: /decl/hierarchy/skill: undefined type path
-code\modules\client\preference_setup\occupation\skill_selection.dm:160:error: cat: undefined type: cat
-code\modules\client\preference_setup\occupation\skill_selection.dm:161:error: cat.name: undefined type: cat.name
-code\modules\client\preference_setup\occupation\skill_selection.dm:163:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:163:error: cat.children: undefined type: cat.children
-code\modules\client\preference_setup\occupation\skill_selection.dm:164:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:165:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:166:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:168:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:168:error: S.name: undefined type: S.name
-code\modules\client\preference_setup\occupation\skill_selection.dm:168:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:169:error: SKILL_MIN: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:169:error: SKILL_MAX: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:170:error: S: undefined type: S
-code\datums\progressbar.dm:48:error: user.is_preference_enabled: undefined proc
-code\modules\client\preferences.dm:29:error: ooccolor: duplicate definition
-code\modules\client\preference_setup\global\01_ui.dm:3:error: ooccolor: previous definition
-code\modules\client\preferences.dm:30:error: be_special_role: duplicate definition
-code\modules\client\preference_setup\antagonism\01_candidacy.dm:3:error: be_special_role: previous definition
-code\modules\client\preferences.dm:31:error: UI_style: duplicate definition
-code\modules\client\preference_setup\global\01_ui.dm:5:error: UI_style: previous definition
-code\modules\client\preferences.dm:33:error: UI_style_color: duplicate definition
-code\modules\client\preference_setup\global\01_ui.dm:6:error: UI_style_color: previous definition
-code\modules\client\preferences.dm:34:error: UI_style_alpha: duplicate definition
-code\modules\client\preference_setup\global\01_ui.dm:7:error: UI_style_alpha: previous definition
-code\modules\client\preferences.dm:38:error: real_name: duplicate definition
-code\modules\client\preference_setup\general\01_basic.dm:6:error: real_name: previous definition
-code\modules\client\preferences.dm:39:error: be_random_name: duplicate definition
-code\modules\client\preference_setup\general\01_basic.dm:7:error: be_random_name: previous definition
-code\modules\client\preferences.dm:40:error: gender: duplicate definition
-code\modules\client\preference_setup\general\01_basic.dm:2:error: gender: previous definition
-code\modules\client\preferences.dm:42:error: age: duplicate definition
-code\modules\client\preference_setup\general\01_basic.dm:3:error: age: previous definition
-code\modules\client\preferences.dm:43:error: spawnpoint: duplicate definition
-code\modules\client\preference_setup\general\01_basic.dm:4:error: spawnpoint: previous definition
-code\modules\client\preferences.dm:44:error: b_type: duplicate definition
-code\modules\client\preference_setup\general\02_body.dm:5:error: b_type: previous definition
-code\modules\client\preferences.dm:46:error: h_style: duplicate definition
-code\modules\client\preference_setup\general\02_body.dm:6:error: h_style: previous definition
-code\modules\client\preferences.dm:48:error: f_style: duplicate definition
-code\modules\client\preference_setup\general\02_body.dm:10:error: f_style: previous definition
-code\modules\client\preferences.dm:50:error: s_tone: duplicate definition
-code\modules\client\preference_setup\general\02_body.dm:14:error: s_tone: previous definition
-code\modules\client\preferences.dm:53:error: species: duplicate definition
-code\modules\client\preference_setup\general\02_body.dm:4:error: species: previous definition
-code\modules\client\preferences.dm:55:error: alternate_languages: duplicate definition
-code\modules\client\preference_setup\background\02_language.dm:4:error: alternate_languages: previous definition
-code\modules\client\preferences.dm:83:error: alternate_option: duplicate definition
-code\modules\client\preference_setup\occupation\occupation.dm:21:error: alternate_option: previous definition
-code\modules\client\preferences.dm:87:error: organ_data: duplicate definition
-code\modules\client\preference_setup\general\02_body.dm:27:error: organ_data: previous definition
-code\modules\client\preferences.dm:88:error: rlimb_data: duplicate definition
-code\modules\client\preference_setup\general\02_body.dm:28:error: rlimb_data: previous definition
-code\modules\client\preferences.dm:91:error: flavour_texts_robot: duplicate definition
-code\modules\client\preference_setup\general\04_flavor.dm:3:error: flavour_texts_robot: previous definition
-code\modules\client\preferences.dm:93:error: med_record: duplicate definition
-code\modules\client\preference_setup\background\03_records.dm:2:error: med_record: previous definition
-code\modules\client\preferences.dm:94:error: sec_record: duplicate definition
-code\modules\client\preference_setup\background\03_records.dm:3:error: sec_record: previous definition
-code\modules\client\preferences.dm:95:error: gen_record: duplicate definition
-code\modules\client\preference_setup\background\03_records.dm:4:error: gen_record: previous definition
-code\modules\client\preferences.dm:96:error: exploit_record: duplicate definition
-code\modules\client\preference_setup\antagonism\02_setup.dm:3:error: exploit_record: previous definition
-code\modules\client\preferences.dm:97:error: disabilities: duplicate definition
-code\modules\client\preference_setup\general\02_body.dm:29:error: disabilities: previous definition
-code\modules\client\preferences.dm:102:error: metadata: duplicate definition
-code\modules\client\preference_setup\general\01_basic.dm:5:error: metadata: previous definition
-code\modules\client\preference_setup\occupation\skill_selection.dm:7:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:8:error: job.max_skill: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:9:error: S.type: undefined type: S.type
-code\modules\client\preference_setup\occupation\skill_selection.dm:9:error: job.max_skill: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:11:error: S.default_max: undefined type: S.default_max
-code\modules\client\preference_setup\occupation\skill_selection.dm:13:error: SKILL_MAX: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:17:error: job.min_skill: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:18:error: S.type: undefined type: S.type
-code\modules\client\preference_setup\occupation\skill_selection.dm:18:error: job.min_skill: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:20:error: mil_branches.get_branch: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:22:error: S.type: undefined type: S.type
-code\modules\client\preference_setup\occupation\skill_selection.dm:24:error: SKILL_MIN: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:30:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:32:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:33:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:33:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:36:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:39:error: S.get_cost: undefined type: S.get_cost
-code\modules\client\preference_setup\occupation\skill_selection.dm:42:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:44:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:45:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:46:error: S: undefined type: S
-code\modules\client\preference_setup\occupation\skill_selection.dm:50:error: S.get_cost: undefined type: S.get_cost
-code\modules\client\preference_setup\occupation\skill_selection.dm:52:error: S.get_cost: undefined type: S.get_cost
-code\modules\client\preference_setup\occupation\skill_selection.dm:96:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:97:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:98:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:99:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:100:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:101:error: skill: undefined type: skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:103:error: skill: undefined type: skill
-code\modules\client\preference_setup\general\02_body.dm:4:error: SPECIES_HUMAN: undefined var
-code\modules\client\preference_setup\general\02_body.dm:4:error: =: expected a constant expression
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:56:error: duplicates: undefined proc
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:59:error: list_values: undefined proc
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:59:error: duplicates: undefined proc
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:71:error: atomtype2nameassoclist: undefined proc
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:74:error: atomtypes2nameassoclist: undefined proc
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:77:error: atomtypes2nameassoclist: undefined proc
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:80:error: atomtypes2nameassoclist: undefined proc
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:306:error: TWEAKABLE_COMPUTER_PART_SLOTS: undefined var
-code\modules\client\preference_setup\loadout\gear_tweaks.dm:310:error: TWEAKABLE_COMPUTER_PART_SLOTS: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:314:error: FLAGS_EQUALS: undefined proc
-code\modules\client\preference_setup\loadout\loadout.dm:320:error: gear_tweak_free_color_choice: undefined proc
-code\modules\client\preference_setup\loadout\lists\accessories.dm:5:error: slot_tie: undefined var
-code\modules\client\preference_setup\loadout\lists\accessories.dm:16:error: /obj/item/clothing/accessory/blue_clip: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:17:error: /obj/item/clothing/accessory/red_long: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:18:error: /obj/item/clothing/accessory/black: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:19:error: /obj/item/clothing/accessory/yellow: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:20:error: /obj/item/clothing/accessory/navy: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:22:error: /obj/item/clothing/accessory/brown: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:34:error: /obj/item/clothing/accessory/long: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:43:error: /obj/item/clothing/accessory/necklace: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:48:error: /obj/item/clothing/accessory/bowtie/ugly: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:52:error: /obj/item/clothing/accessory/bowtie/color: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:64:error: /obj/item/clothing/accessory/medal/bronze/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:65:error: /obj/item/clothing/accessory/medal/silver/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:66:error: /obj/item/clothing/accessory/medal/gold/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:98:error: /obj/item/clothing/accessory/armband/whitered: undefined type path
-code\modules\client\preference_setup\loadout\lists\accessories.dm:102:error: /obj/item/clothing/accessory/ftupin: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:78:error: /obj/item/weapon/storage/wallet/poly: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:5:error: slot_tie: undefined var
-code\modules\client\preference_setup\loadout\lists\clothing.dm:9:error: /obj/item/clothing/accessory/toggleable/flannel: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:10:error: slot_tie: undefined var
-code\modules\client\preference_setup\loadout\lists\clothing.dm:15:error: /obj/item/clothing/accessory/scarf: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:20:error: /obj/item/clothing/accessory/toggleable/hawaii: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:25:error: /obj/item/clothing/accessory/toggleable/hawaii: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:26:error: /obj/item/clothing/accessory/toggleable/hawaii/red: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:27:error: /obj/item/clothing/accessory/toggleable/hawaii/random: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:32:error: /obj/item/clothing/accessory/toggleable/vest: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:36:error: /obj/item/clothing/accessory/suspenders: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:40:error: /obj/item/clothing/accessory/wcoat: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:44:error: /obj/item/clothing/accessory/toggleable/zhongshan: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:49:error: /obj/item/clothing/accessory/dashiki: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:54:error: /obj/item/clothing/accessory/thawb: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:58:error: /obj/item/clothing/accessory/sherwani: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:63:error: /obj/item/clothing/accessory/qipao: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:68:error: /obj/item/clothing/accessory/sweater: undefined type path
-code\modules\client\preference_setup\loadout\lists\clothing.dm:73:error: /obj/item/clothing/accessory/tangzhuang: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:40:error: SPECIES_SKRELL: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:44:error: /obj/item/clothing/ears/skrell/chain: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:49:error: /obj/item/clothing/ears/skrell/colored/chain: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:60:error: /obj/item/clothing/ears/skrell/colored/band: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:55:error: /obj/item/clothing/ears/skrell/band: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:66:error: /obj/item/clothing/ears/skrell/cloth_male: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:72:error: /obj/item/clothing/ears/skrell/cloth_female: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:10:error: /obj/item/clothing/ears/earmuffs/headphones: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:15:error: /obj/item/clothing/ears/earring: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:21:error: /obj/item/clothing/ears/earring/stud: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:22:error: /obj/item/clothing/ears/earring/stud/glass: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:23:error: /obj/item/clothing/ears/earring/stud/wood: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:24:error: /obj/item/clothing/ears/earring/stud/iron: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:25:error: /obj/item/clothing/ears/earring/stud/steel: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:26:error: /obj/item/clothing/ears/earring/stud/silver: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:27:error: /obj/item/clothing/ears/earring/stud/gold: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:28:error: /obj/item/clothing/ears/earring/stud/platinum: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:29:error: /obj/item/clothing/ears/earring/stud/diamond: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:30:error: /obj/item/clothing/ears/earring/dangle/glass: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:31:error: /obj/item/clothing/ears/earring/dangle/wood: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:32:error: /obj/item/clothing/ears/earring/dangle/iron: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:33:error: /obj/item/clothing/ears/earring/dangle/steel: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:34:error: /obj/item/clothing/ears/earring/dangle/silver: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:35:error: /obj/item/clothing/ears/earring/dangle/gold: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:36:error: /obj/item/clothing/ears/earring/dangle/platinum: undefined type path
-code\modules\client\preference_setup\loadout\lists\earwear.dm:37:error: /obj/item/clothing/ears/earring/dangle/diamond: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:33:error: /obj/item/clothing/glasses/science/prescription: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:40:error: /obj/item/clothing/glasses/hud/security/prescription: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:48:error: /obj/item/clothing/glasses/sunglasses/sechud/toggle: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:52:error: /obj/item/clothing/glasses/eyepatch/hud/security: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:61:error: /obj/item/clothing/glasses/hud/health/prescription: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:65:error: /obj/item/clothing/glasses/hud/health/visor: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:70:error: /obj/item/clothing/glasses/eyepatch/hud/medical: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:76:error: /datum/job/engineer: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:80:error: /obj/item/clothing/glasses/meson/prescription: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:84:error: /obj/item/clothing/glasses/eyepatch/hud/meson: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:89:error: /obj/item/clothing/glasses/material: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:90:error: /datum/job/engineer: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:109:error: /obj/item/clothing/glasses/eyepatch/hud: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:118:error: /obj/item/clothing/glasses/hud/janitor: undefined type path
-code\modules\client\preference_setup\loadout\lists\eyegear.dm:124:error: /obj/item/clothing/glasses/hud/janitor/prescription: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:9:error: /obj/item/clothing/shoes/athletic: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:22:error: /obj/item/clothing/shoes/dutyboots: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:23:error: /obj/item/clothing/shoes/jungleboots: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:24:error: /obj/item/clothing/shoes/desertboots: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:35:error: /obj/item/clothing/shoes/blue: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:36:error: /obj/item/clothing/shoes/brown: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:37:error: /obj/item/clothing/shoes/laceup: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:38:error: /obj/item/clothing/shoes/dress/white: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:39:error: /obj/item/clothing/shoes/green: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:41:error: /obj/item/clothing/shoes/orange: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:42:error: /obj/item/clothing/shoes/purple: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:43:error: /obj/item/clothing/shoes/rainbow: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:44:error: /obj/item/clothing/shoes/red: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:45:error: /obj/item/clothing/shoes/white: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:46:error: /obj/item/clothing/shoes/yellow: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:51:error: /obj/item/clothing/shoes/flats: undefined type path
-code\modules\client\preference_setup\loadout\lists\footwear.dm:56:error: /obj/item/clothing/shoes/hightops: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:99:error: /obj/item/clothing/shoes/jackboots/unathi: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:104:error: /obj/item/clothing/shoes/workboots/toeless: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:111:error: /obj/item/clothing/gloves/color/modified: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:113:error: SPECIES_UNATHI: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:113:error: SPECIES_YEOSA: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:117:error: /obj/item/clothing/gloves/latex/modified: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:119:error: SPECIES_UNATHI: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:119:error: SPECIES_YEOSA: undefined var
-code\modules\client\preference_setup\loadout\lists\gloves.dm:19:error: /obj/item/clothing/gloves/latex/nitrile: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:123:error: /obj/item/clothing/gloves/latex/nitrile/modified: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:125:error: SPECIES_UNATHI: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:125:error: SPECIES_YEOSA: undefined var
-code\modules\client\preference_setup\loadout\lists\gloves.dm:24:error: /obj/item/clothing/gloves/rainbow: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:129:error: /obj/item/clothing/gloves/rainbow/modified: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:131:error: SPECIES_UNATHI: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:131:error: SPECIES_YEOSA: undefined var
-code\modules\client\preference_setup\loadout\lists\gloves.dm:28:error: /obj/item/clothing/gloves/color/evening: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:135:error: /obj/item/clothing/gloves/color/evening/modified: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:137:error: SPECIES_UNATHI: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:137:error: SPECIES_YEOSA: undefined var
-code\modules\client\preference_setup\loadout\lists\gloves.dm:56:error: /obj/item/clothing/gloves/thick/botany: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:141:error: /obj/item/clothing/gloves/thick/botany/modified: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:143:error: SPECIES_UNATHI: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:143:error: SPECIES_YEOSA: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:147:error: /obj/item/clothing/gloves/thick/modified: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:149:error: SPECIES_UNATHI: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:149:error: SPECIES_YEOSA: undefined var
-code\modules\client\preference_setup\loadout\lists\gloves.dm:33:error: /obj/item/clothing/ring: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:39:error: /obj/item/clothing/ring/cti: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:40:error: /obj/item/clothing/ring/mariner: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:41:error: /obj/item/clothing/ring/engagement: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:42:error: /obj/item/clothing/ring/seal/signet: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:43:error: /obj/item/clothing/ring/seal/mason: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:44:error: /obj/item/clothing/ring/material/steel: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:45:error: /obj/item/clothing/ring/material/bronze: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:46:error: /obj/item/clothing/ring/material/silver: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:47:error: /obj/item/clothing/ring/material/gold: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:48:error: /obj/item/clothing/ring/material/platinum: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:49:error: /obj/item/clothing/ring/material/glass: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:50:error: /obj/item/clothing/ring/material/wood: undefined type path
-code\modules\client\preference_setup\loadout\lists\gloves.dm:51:error: /obj/item/clothing/ring/material/plastic: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:8:error: /obj/item/clothing/head/beret/plaincolor: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:14:error: /obj/item/clothing/head/beret/guard: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:22:error: /obj/item/clothing/mask/bandana: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:26:error: /obj/item/clothing/head/hairflower/bow: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:36:error: /obj/item/clothing/head/soft/black: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:48:error: /obj/item/clothing/head/soft/mbill: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:58:error: /obj/item/clothing/head/hairflower/blue: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:59:error: /obj/item/clothing/head/hairflower/pink: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:61:error: /obj/item/clothing/head/hairflower/yellow: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:102:error: /obj/item/clothing/head/cowboy_hat: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:104:error: /obj/item/clothing/head/ushanka/tcc: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:109:error: /obj/item/clothing/head/hijab: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:114:error: /obj/item/clothing/head/kippa: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:119:error: /obj/item/clothing/head/turban: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:124:error: /obj/item/clothing/head/taqiyah: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:143:error: /obj/item/clothing/head/welding/demon: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:144:error: /obj/item/clothing/head/welding/engie: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:145:error: /obj/item/clothing/head/welding/fancy: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:146:error: /obj/item/clothing/head/welding/knight: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:147:error: /obj/item/clothing/head/welding/carp: undefined type path
-code\modules\client\preference_setup\loadout\lists\headwear.dm:152:error: /obj/item/clothing/head/tank: undefined type path
-code\modules\client\preference_setup\loadout\lists\tactical.dm:4:error: slot_tie: undefined var
-code\modules\client\preference_setup\loadout\lists\tactical.dm:8:error: /obj/item/clothing/accessory/armor/tag: undefined type path
-code\modules\client\preference_setup\loadout\lists\tactical.dm:13:error: /obj/item/clothing/accessory/armor/helmcover: undefined type path
-code\modules\client\preference_setup\loadout\lists\tactical.dm:18:error: /obj/item/clothing/accessory/kneepads: undefined type path
-code\modules\client\preference_setup\loadout\lists\tactical.dm:22:error: /obj/item/clothing/accessory/storage/holster: undefined type path
-code\modules\client\preference_setup\loadout\lists\tactical.dm:28:error: /obj/item/clothing/under/syndicate/tacticool: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:7:error: /obj/item/weapon/card/union: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:13:error: card.signed_by: undefined type: card.signed_by
-code\modules\client\preference_setup\loadout\lists\misc.dm:21:error: /obj/item/weapon/storage/pill_bottle/dice_nerd: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:49:error: lunchables_ethanol_reagents: undefined proc
-code\modules\client\preference_setup\loadout\lists\misc.dm:57:error: lunchables_drink_reagents: undefined proc
-code\modules\client\preference_setup\loadout\lists\misc.dm:61:error: /obj/item/weapon/reagent_containers/food/drinks/coffeecup: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:66:error: /obj/item/weapon/material/kitchen/utensil/knife/boot: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:83:error: lunchables_lunches: undefined proc
-code\modules\client\preference_setup\loadout\lists\misc.dm:83:error: lunchables_snacks: undefined proc
-code\modules\client\preference_setup\loadout\lists\misc.dm:83:error: lunchables_drinks: undefined proc
-code\modules\client\preference_setup\loadout\lists\misc.dm:87:error: /obj/item/weapon/towel: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:98:error: /obj/item/toy/plushie/nymph: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:109:error: /obj/item/weapon/paper/workvisa: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:78:error: /obj/item/clothing/mask/monitor: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:80:error: SPECIES_IPC: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:154:error: /obj/item/clothing/mask/gas/vox: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:156:error: SPECIES_VOX: undefined var
-code\modules\client\preference_setup\loadout\lists\misc.dm:153:error: /obj/item/weapon/material/ashtray/plastic: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:173:error: /obj/item/clothing/mask/smokable/ecig/util: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:177:error: /obj/item/clothing/mask/smokable/ecig/deluxe: undefined type path
-code\modules\client\preference_setup\loadout\lists\misc.dm:182:error: /obj/item/weapon/storage/bible: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:4:error: slot_tie: undefined var
-code\modules\client\preference_setup\loadout\lists\storage.dm:8:error: /obj/item/clothing/accessory/storage/brown_vest: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:10:error: /datum/job/engineer: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:10:error: /datum/job/qm: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:15:error: /obj/item/clothing/accessory/storage/black_vest: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:17:error: /datum/job/hos: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:17:error: /datum/job/warden: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:17:error: /datum/job/detective: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:17:error: /datum/job/officer: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:21:error: /obj/item/clothing/accessory/storage/white_vest: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:27:error: /obj/item/clothing/accessory/storage/drop_pouches/brown: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:29:error: /datum/job/engineer: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:29:error: /datum/job/qm: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:34:error: /obj/item/clothing/accessory/storage/drop_pouches/black: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:36:error: /datum/job/hos: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:36:error: /datum/job/warden: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:36:error: /datum/job/detective: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:36:error: /datum/job/officer: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:40:error: /obj/item/clothing/accessory/storage/drop_pouches/white: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:46:error: /obj/item/clothing/accessory/storage/webbing: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:51:error: /obj/item/clothing/accessory/storage/webbing_large: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:56:error: /obj/item/clothing/accessory/storage/bandolier: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:61:error: /obj/item/weapon/storage/belt/waistpack: undefined type path
-code\modules\client\preference_setup\loadout\lists\storage.dm:68:error: /obj/item/weapon/storage/belt/waistpack/big: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:8:error: /obj/item/clothing/suit/poncho/colored: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:14:error: /obj/item/clothing/suit/poncho/roles/security: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:18:error: /obj/item/clothing/suit/poncho/roles/medical: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:22:error: /obj/item/clothing/suit/poncho/roles/engineering: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:26:error: /obj/item/clothing/suit/poncho/roles/science: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:30:error: /obj/item/clothing/suit/poncho/roles/science/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:34:error: /obj/item/clothing/suit/poncho/roles/cargo: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:38:error: /obj/item/clothing/suit/storage/toggle/suit: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:43:error: /obj/item/clothing/suit/storage/toggle/suit/black: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:44:error: /obj/item/clothing/suit/storage/toggle/suit/blue: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:45:error: /obj/item/clothing/suit/storage/toggle/suit/purple: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:50:error: /obj/item/clothing/suit/storage/toggle/suit: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:60:error: /obj/item/clothing/suit/storage/hooded/hoodie: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:70:error: /obj/item/clothing/suit/storage/toggle/hoodie/cti: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:71:error: /obj/item/clothing/suit/storage/toggle/hoodie/mu: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:72:error: /obj/item/clothing/suit/storage/toggle/hoodie/nt: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:73:error: /obj/item/clothing/suit/storage/toggle/hoodie/smw: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:83:error: /obj/item/clothing/suit/storage/toggle/labcoat/science/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:87:error: /obj/item/clothing/suit/storage/toggle/labcoat/dais: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:91:error: /obj/item/clothing/suit/storage/toggle/labcoat/rd/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:95:error: /obj/item/clothing/suit/storage/toggle/labcoat/coat: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:106:error: /obj/item/clothing/suit/storage/leather_jacket/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:107:error: /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:108:error: /obj/item/clothing/suit/storage/leather_jacket: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:109:error: /obj/item/clothing/suit/storage/toggle/brown_jacket: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:110:error: /obj/item/clothing/suit/storage/mbill: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:115:error: /obj/item/clothing/suit/storage/hooded/wintercoat: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:119:error: /obj/item/clothing/suit/storage/hooded/wintercoat/dais: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:123:error: /obj/item/clothing/suit/storage/toggle/track: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:133:error: /obj/item/clothing/suit/apron/overalls: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:142:error: /obj/item/clothing/suit/storage/toggle/fr_jacket: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:142:error: /obj/item/clothing/suit/storage/toggle/fr_jacket/ems: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:142:error: /obj/item/clothing/suit/storage/toggle/labcoat/blue: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:142:error: /obj/item/clothing/suit/surgicalapron: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:153:error: /obj/item/clothing/suit/storage/det_trench/grey: undefined type path
-code\modules\client\preference_setup\loadout\lists\suits.dm:154:error: /obj/item/clothing/suit/leathercoat: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:7:error: SPECIES_UNATHI: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:7:error: SPECIES_YEOSA: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:11:error: /obj/item/clothing/suit/unathi/mantle: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:16:error: /obj/item/clothing/suit/unathi/robe: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:21:error: /obj/item/clothing/accessory/storage/knifeharness: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:26:error: /obj/item/clothing/under/savage_hunter: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:32:error: /obj/item/clothing/under/savage_hunter/female: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:85:error: /obj/item/clothing/suit/storage/toggle/labcoat/xyn_machine: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:88:error: SPECIES_IPC: undefined var
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:13:error: /obj/item/clothing/under/fcolor: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:18:error: /obj/item/clothing/under/shortjumpskirt: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:23:error: /obj/item/clothing/under/color/blackjumpshorts: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:27:error: /obj/item/clothing/under/rank/roboticist/skirt: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:36:error: /obj/item/clothing/under/sl_suit: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:38:error: /obj/item/clothing/under/lawyer/blue: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:39:error: /obj/item/clothing/under/suit_jacket/burgundy: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:40:error: /obj/item/clothing/under/suit_jacket/charcoal: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:41:error: /obj/item/clothing/under/suit_jacket/checkered: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:42:error: /obj/item/clothing/under/suit_jacket/really_black: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:43:error: /obj/item/clothing/under/suit_jacket/female: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:44:error: /obj/item/clothing/under/gentlesuit: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:45:error: /obj/item/clothing/under/suit_jacket/navy: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:46:error: /obj/item/clothing/under/lawyer/oldman: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:47:error: /obj/item/clothing/under/lawyer/purpsuit: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:49:error: /obj/item/clothing/under/lawyer/red: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:50:error: /obj/item/clothing/under/lawyer/black: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:51:error: /obj/item/clothing/under/suit_jacket/tan: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:52:error: /obj/item/clothing/under/scratch: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:53:error: /obj/item/clothing/under/lawyer/bluesuit: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:54:error: /obj/item/clothing/under/rank/internalaffairs/plain: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:56:error: /obj/item/clothing/under/blackjumpskirt: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:58:error: /obj/item/clothing/under/dress/dress_hr: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:59:error: /obj/item/clothing/under/det: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:60:error: /obj/item/clothing/under/det/black: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:61:error: /obj/item/clothing/under/det/grey: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:66:error: /obj/item/clothing/under/rank/medical/scrubs: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:80:error: /obj/item/clothing/under/sundress_white: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:81:error: /obj/item/clothing/under/dress/dress_fire: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:82:error: /obj/item/clothing/under/dress/dress_green: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:83:error: /obj/item/clothing/under/dress/dress_orange: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:84:error: /obj/item/clothing/under/dress/dress_pink: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:85:error: /obj/item/clothing/under/dress/dress_purple: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:86:error: /obj/item/clothing/under/sundress: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:91:error: /obj/item/clothing/under/cheongsam: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:96:error: /obj/item/clothing/under/abaya: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:101:error: /obj/item/clothing/under/skirt: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:106:error: /obj/item/clothing/under/skirt_c: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:111:error: /obj/item/clothing/under/skirt_c/dress: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:116:error: /obj/item/clothing/under/casual_pants: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:121:error: /obj/item/clothing/under/formal_pants: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:126:error: /obj/item/clothing/under/formal_pants: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:131:error: /obj/item/clothing/under/formal_pants/baggy: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:136:error: /obj/item/clothing/under/shorts/jeans: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:146:error: /obj/item/clothing/under/rank/psych/turtleneck/sweater: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:151:error: /obj/item/clothing/under/kimono: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:161:error: /obj/item/clothing/under/rank/scientist/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:162:error: /obj/item/clothing/under/mbill: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:163:error: /obj/item/clothing/under/saare: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:164:error: /obj/item/clothing/under/aether: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:165:error: /obj/item/clothing/under/hephaestus: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:166:error: /obj/item/clothing/under/pcrc: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:167:error: /obj/item/clothing/under/pcrcsuit: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:168:error: /obj/item/clothing/under/wardt: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:169:error: /obj/item/clothing/under/grayson: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:170:error: /obj/item/clothing/under/focal: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:171:error: /obj/item/clothing/under/rank/ntwork: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:172:error: /obj/item/clothing/under/morpheus: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:173:error: /obj/item/clothing/under/skinner: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:174:error: /obj/item/clothing/under/dais: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:179:error: /obj/item/clothing/under/rank/guard/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:183:error: /obj/item/clothing/under/rank/scientist/executive/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:195:error: /obj/item/clothing/under/suit_jacket/corp/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:187:error: /obj/item/clothing/under/rank/ntwork/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:191:error: /obj/item/clothing/under/rank/ntpilot/nanotrasen: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:199:error: /obj/item/clothing/under/sterile: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:203:error: /obj/item/clothing/under/hazard: undefined type path
-code\modules\client\preference_setup\loadout\lists\uniforms.dm:207:error: /obj/item/clothing/under/frontier: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:93:error: /obj/item/clothing/under/harness: undefined type path
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:95:error: SPECIES_IPC: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:95:error: SPECIES_DIONA: undefined var
-code\modules\client\preference_setup\loadout\lists\xenowear.dm:95:error: SPECIES_NABBER: undefined var
-code\modules\client\preference_setup\matchmaking\matchmaking.dm:72:error: M.special_role: undefined var
-code\modules\client\preference_setup\matchmaking\matchmaking.dm:72:error: get_antag_data: undefined proc
-code\modules\client\preference_setup\matchmaking\matchmaking.dm:73:error: special_role_data.flags: undefined var
-code\modules\client\preference_setup\matchmaking\matchmaking.dm:129:error: job_master.GetJob: undefined var
-code\modules\client\preference_setup\matchmaking\relations_types.dm:28:error: TAG_HOMEWORLD: undefined var
-code\modules\client\preference_setup\matchmaking\relations_types.dm:29:error: TAG_HOMEWORLD: undefined var
-code\modules\client\preference_setup\matchmaking\relations_types.dm:29:error: holdermob.get_cultural_value: undefined proc
-code\modules\client\preference_setup\matchmaking\relations_types.dm:97:error: MAP_HAS_BRANCH: undefined var
-code\modules\client\preference_setup\matchmaking\relations_types.dm:102:error: holdermob.char_branch: undefined var
 code\modules\organs\body_modifications.dm:59:error: P.get_modification: undefined proc
-code\modules\research\xenoarchaeology\finds\finds_talkingitem.dm:124:error: M.is_preference_enabled: undefined proc
-code\game\objects\items\devices\PDA\PDA.dm:964:error: M.is_preference_enabled: undefined proc
-code\_onclick\hud\plane_master.dm:33:error: /datum/client_preference/ambient_occlusion: undefined type path
-code\_onclick\hud\plane_master.dm:33:error: mymob.client.is_preference_enabled: undefined proc
-code\game\area\areas.dm:240:error: L.is_preference_enabled: undefined proc
-code\modules\admin\verbs\adminpm.dm:105:error: C.is_preference_enabled: undefined proc
+code\modules\organs\body_modifications.dm:119:error: P.religion: undefined var
+code\modules\clothing\underwear\base.dm:39:error: H.get_covering_equipped_items: undefined proc
+code\modules\clothing\underwear\base.dm:97:error: dropInto: undefined proc
+code\game\objects\structures\under_wardrobe.dm:18:error: H.all_underwear: undefined var
+code\game\objects\structures\under_wardrobe.dm:41:error: H.all_underwear: undefined var
+code\game\objects\structures\under_wardrobe.dm:42:error: H.all_underwear: undefined var
+code\game\objects\structures\under_wardrobe.dm:48:error: H.all_underwear: undefined var
+code\game\objects\structures\under_wardrobe.dm:50:error: H.all_underwear: undefined var
+code\datums\outfits\outfit.dm:189:error: H.species.equip_survival_gear: undefined proc
+code\datums\outfits\equipment\backpacks.dm:22:error: /obj/item/weapon/storage/backpack/rucksack: undefined type path
+code\datums\outfits\equipment\backpacks.dm:31:error: /obj/item/weapon/storage/backpack/satchel/leather: undefined type path
+code\datums\outfits\equipment\backpacks.dm:31:error: /obj/item/weapon/storage/backpack/satchel/grey: undefined type path
+code\datums\outfits\equipment\backpacks.dm:35:error: /obj/item/weapon/storage/backpack/messenger: undefined type path
+code\datums\outfits\equipment\backpacks.dm:39:error: /obj/item/weapon/storage/backpack/satchel/pocketbook: undefined type path
+code\datums\uplink\uplink_sources.dm:114:error: AM.dropInto: undefined proc
+code\datums\uplink\uplink_sources.dm:26:error: GLOB.greek_letters: undefined var
+code\datums\uplink\uplink_sources.dm:75:error: IMPLANT_TELECRYSTAL_AMOUNT: undefined proc
+code\datums\uplink\uplink_sources.dm:76:error: U.imp_in: undefined var
+code\datums\uplink\uplink_sources.dm:81:error: U.implanted: undefined proc
+code\game\sound.dm:339:error: GLOB.using_map.lobby_track.play_to: undefined var
+code\modules\admin\bluespacetech.dm:46:error: bst.backbag: undefined var
 code\modules\admin\verbs\playsound.dm:21:error: M.is_preference_enabled: undefined proc
+code\modules\admin\verbs\randomverbs.dm:233:error: P.time_of_death: undefined var
+code\modules\admin\verbs\randomverbs.dm:234:error: P.time_of_death: undefined var
+code\modules\admin\verbs\randomverbs.dm:353:error: A.randomize_appearance_for: undefined proc
 code\game\verbs\ooc.dm:48:error: target.is_preference_enabled: undefined proc
 code\game\verbs\ooc.dm:133:error: M.is_preference_enabled: undefined proc
-code\modules\admin\verbs\adminhelp.dm:44:error: X.is_preference_enabled: undefined proc
+code\modules\mob\death.dm:123:error: P.time_of_death: undefined var
+code\modules\mob\death.dm:129:error: P.time_of_death: undefined var
+code\modules\mob\death.dm:142:error: P.crew_respawn_bonuses: undefined var
+code\modules\mob\death.dm:147:error: P.crew_respawn_bonuses: undefined var
+code\modules\mob\death.dm:148:error: P.crew_respawn_bonuses: undefined var
+code\modules\mob\death.dm:155:error: P.crew_respawn_bonuses: undefined var
+code\modules\mob\death.dm:163:error: P.crew_respawn_bonuses.Cut: undefined var
 code\modules\mob\emote.dm:72:error: M.is_preference_enabled: undefined proc
+code\modules\mob\inventory\equip.dm:32:error: equip_to_slot_or_del: duplicate definition
+code\modules\mob\inventory.dm:185:error: equip_to_slot_or_del: previous definition
+code\modules\mob\language\language.dm:162:error: client.prefs.language_prefixes: undefined var
+code\modules\mob\language\language.dm:162:error: client.prefs.language_prefixes.len: undefined var
+code\modules\mob\language\language.dm:163:error: client.prefs.language_prefixes: undefined var
+code\modules\mob\language\language.dm:168:error: client.prefs.language_prefixes: undefined var
+code\modules\mob\language\language.dm:168:error: client.prefs.language_prefixes.len: undefined var
+code\modules\mob\language\language.dm:169:error: client.prefs.language_prefixes: undefined var
 code\modules\mob\living\carbon\human\human.dm:1171:error: Pref.get_modification: undefined proc
 code\modules\mob\living\carbon\human\human.dm:1173:error: Pref.get_modification: undefined proc
 code\modules\mob\living\carbon\human\human.dm:1177:error: Pref.modifications_colors: undefined var
 code\modules\mob\living\carbon\human\human.dm:1182:error: Pref.get_modification: undefined proc
 code\modules\mob\living\carbon\human\human.dm:1184:error: Pref.modifications_colors: undefined var
 code\modules\mob\living\carbon\human\whisper.dm:119:error: M.is_preference_enabled: undefined proc
+code\modules\mob\living\carbon\human\human_species.dm:14:error: GLOB.human_mob_list: undefined var
 code\modules\mob\living\silicon\say.dm:93:error: M.is_preference_enabled: undefined proc
 code\modules\mob\living\silicon\robot\drone\drone_say.dm:37:error: M.is_preference_enabled: undefined proc
 code\modules\mob\living\simple_animal\borer\say.dm:41:error: M.is_preference_enabled: undefined proc
 code\modules\mob\living\say.dm:220:error: M.is_preference_enabled: undefined proc
 code\modules\mob\living\simple_animal\borer\borer_captive.dm:31:error: M.is_preference_enabled: undefined proc
-code\modules\mob\new_player\new_player.dm:128:error: client.prefs.update_preview_icon: undefined proc
-code\modules\mob\new_player\new_player.dm:129:error: client.prefs.preview_icon: undefined var
+code\modules\mob\new_player\new_player.dm:354:error: client.prefs.randomize_appearance_for: undefined proc
+code\modules\mob\new_player\new_player.dm:405:error: has_admin_rights: duplicate definition
+code\modules\mob\mob.dm:1167:error: has_admin_rights: previous definition
 code\_helpers\game.dm:214:error: M.is_preference_enabled: undefined proc
+code\modules\client\preferences_spawnpoints.dm:11:error: GLOB.using_map.allowed_spawns: undefined var
+code\modules\client\preferences_spawnpoints.dm:59:error: SP.getFreeTurfs: undefined proc
 code\controllers\subsystems\jobs.dm:90:error: player.client.prefs.GetJobDepartment: undefined proc
 code\controllers\subsystems\jobs.dm:261:error: player.client.prefs.GetJobDepartment: undefined proc
+code\controllers\subsystems\jobs.dm:307:error: H.client.prefs.gear: undefined var
+code\controllers\subsystems\jobs.dm:307:error: H.client.prefs.gear.len: undefined var
+code\controllers\subsystems\jobs.dm:308:error: H.client.prefs.gear: undefined var
+code\controllers\subsystems\jobs.dm:329:error: H.client.prefs.gear: undefined var
+code\controllers\subsystems\jobs.dm:353:error: H.client.prefs.gear: undefined var
+code\controllers\subsystems\jobs.dm:422:error: H.client.prefs.gear: undefined var
 code\controllers\subsystems\jobs.dm:550:error: player.client.prefs.GetJobDepartment: undefined proc
 code\controllers\subsystems\jobs.dm:552:error: player.client.prefs.GetJobDepartment: undefined proc
 code\controllers\subsystems\jobs.dm:554:error: player.client.prefs.GetJobDepartment: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:680:error: mob_species.get_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:686:error: GLOB.hair_styles_list: undefined var
-code\modules\client\preference_setup\general\02_body.dm:679:warning: mob_species: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:690:error: mob_species.get_facial_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:696:error: GLOB.facial_hair_styles_list: undefined var
-code\modules\client\preference_setup\general\02_body.dm:689:warning: mob_species: variable defined but not used
-code\modules\client\preference_setup\occupation\occupation.dm:408:error: GLOB.using_map.allowed_jobs: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:414:error: job.is_restricted: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:418:error: job.is_restricted: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:422:error: job.is_restricted: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:438:error: GLOB.using_map.flags: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:442:error: GLOB.using_map.flags: undefined var
-code\modules\client\preference_setup\preference_setup.dm:251:error: pref_mob.client.prefs.preview_icon: undefined var
+code\controllers\subsystems\jobs.dm:579:error: spawnpos.getFreeTurfs: undefined proc
+code\controllers\subsystems\jobs.dm:585:error: returnspawnpos.message: undefined var
+code\modules\client\preference_setup\general\02_body.dm:687:error: mob_species.get_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:693:error: GLOB.hair_styles_list: undefined var
+code\modules\client\preference_setup\general\02_body.dm:686:warning: mob_species: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:697:error: mob_species.get_facial_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:703:error: GLOB.facial_hair_styles_list: undefined var
+code\modules\client\preference_setup\general\02_body.dm:696:warning: mob_species: variable defined but not used
+code\modules\client\preference_setup\occupation\occupation.dm:339:error: GLOB.using_map.allowed_jobs: undefined var
+code\modules\client\preference_setup\occupation\occupation.dm:345:error: job.is_restricted: undefined proc
+code\modules\client\preference_setup\occupation\occupation.dm:349:error: job.is_restricted: undefined proc
+code\modules\client\preference_setup\occupation\occupation.dm:353:error: job.is_restricted: undefined proc
 code\modules\client\preference_setup\antagonism\01_candidacy.dm:37:error: GLOB.all_antag_types_: undefined var
 code\modules\client\preference_setup\antagonism\01_candidacy.dm:119:error: GLOB.all_antag_types_: undefined var
-code\modules\client\preference_setup\antagonism\02_setup.dm:13:error: decl_instance.name: undefined type: decl_instance.name
-code\modules\client\preference_setup\antagonism\02_setup.dm:13:error: decl_instance.name: undefined type: decl_instance.name
-code\modules\client\preference_setup\antagonism\02_setup.dm:13:error: decl_instance.name: undefined type: decl_instance.name
-code\modules\client\preference_setup\antagonism\02_setup.dm:13:error: decl_instance.name: undefined type: decl_instance.name
-code\modules\client\preference_setup\antagonism\02_setup.dm:13:error: decl_instance: undefined type: decl_instance
-code\modules\client\preference_setup\antagonism\02_setup.dm:13:warning: decl_instance: variable defined but not used
-code\modules\client\preference_setup\antagonism\02_setup.dm:30:warning: UL: variable defined but not used
-code\modules\client\preference_setup\antagonism\02_setup.dm:39:error: GLOB.default_uplink_source_priority: undefined var
-code\modules\client\preference_setup\antagonism\02_setup.dm:46:warning: US: variable defined but not used
-code\modules\client\preference_setup\antagonism\02_setup.dm:68:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:68:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:73:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:75:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:83:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:85:error: US: undefined type: US
-code\modules\client\preference_setup\antagonism\02_setup.dm:67:warning: US: variable defined but not used
-code\modules\client\preference_setup\antagonism\02_setup.dm:72:warning: US: variable defined but not used
-code\modules\client\preference_setup\antagonism\02_setup.dm:82:warning: US: variable defined but not used
-code\modules\client\preference_setup\background\01_culture.dm:34:error: S.force_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:34:error: S.force_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:34:error: S.available_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:36:error: GLOB.using_map.default_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:58:error: culture.get_description: undefined type: culture.get_description
-code\modules\client\preference_setup\background\01_culture.dm:55:warning: culture: variable defined but not used
-code\modules\client\preference_setup\background\01_culture.dm:76:error: S.force_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:76:error: S.force_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:76:error: S.available_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:86:error: S.force_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:86:error: S.force_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:86:error: S.available_cultural_info: undefined var
-code\modules\client\preference_setup\background\01_culture.dm:89:warning: culture: variable defined but not used
-code\modules\client\preference_setup\background\02_language.dm:68:error: culture: undefined type: culture
-code\modules\client\preference_setup\background\02_language.dm:69:error: culture.get_spoken_languages: undefined type: culture.get_spoken_languages
-code\modules\client\preference_setup\background\02_language.dm:74:error: culture.secondary_langs: undefined type: culture.secondary_langs
-code\modules\client\preference_setup\background\02_language.dm:75:error: culture.secondary_langs: undefined type: culture.secondary_langs
-code\modules\client\preference_setup\background\02_language.dm:67:warning: culture: variable defined but not used
-code\modules\client\preference_setup\general\01_basic.dm:40:error: check: undefined type: check
-code\modules\client\preference_setup\general\01_basic.dm:41:error: check.sanitize_name: undefined type: check.sanitize_name
-code\modules\client\preference_setup\general\01_basic.dm:39:warning: check: variable defined but not used
-code\modules\client\preference_setup\general\01_basic.dm:67:error: check.sanitize_name: undefined type: check.sanitize_name
-code\modules\client\preference_setup\general\01_basic.dm:88:error: S.get_facial_hair_styles: undefined proc
-code\modules\client\preference_setup\general\01_basic.dm:66:warning: check: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:67:error: pref.preview_icon: undefined var
+code\modules\client\preference_setup\general\01_basic.dm:93:error: S.get_facial_hair_styles: undefined proc
+code\modules\client\preference_setup\general\01_basic.dm:101:error: pref.skills_allocated: undefined var
+code\modules\client\preference_setup\general\01_basic.dm:101:error: pref.skills_allocated: undefined var
+code\modules\client\preference_setup\general\01_basic.dm:101:error: pref.sanitize_skills: undefined proc
 code\modules\client\preference_setup\general\02_body.dm:107:error: GLOB.hair_styles_list: undefined var
 code\modules\client\preference_setup\general\02_body.dm:108:error: GLOB.facial_hair_styles_list: undefined var
 code\modules\client\preference_setup\general\02_body.dm:122:error: mob_species.max_skin_tone: undefined proc
@@ -761,153 +105,118 @@ code\modules\client\preference_setup\general\02_body.dm:144:error: descriptor: u
 code\modules\client\preference_setup\general\02_body.dm:146:error: descriptor.default_value: undefined type: descriptor.default_value
 code\modules\client\preference_setup\general\02_body.dm:148:error: descriptor.standalone_value_descriptors: undefined type: descriptor.standalone_value_descriptors
 code\modules\client\preference_setup\general\02_body.dm:148:error: descriptor.standalone_value_descriptors: undefined type: descriptor.standalone_value_descriptors
-code\modules\client\preference_setup\general\02_body.dm:155:error: pref.preview_icon: undefined var
-code\modules\client\preference_setup\general\02_body.dm:156:error: pref.update_preview_icon: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:157:error: pref.preview_icon: undefined var
 code\modules\client\preference_setup\general\02_body.dm:163:error: mob_species.get_description: undefined proc
 code\modules\client\preference_setup\general\02_body.dm:168:error: config.use_cortical_stacks: undefined var
 code\modules\client\preference_setup\general\02_body.dm:182:error: mob_species.max_skin_tone: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:275:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:276:error: descriptor.chargen_label: undefined type: descriptor.chargen_label
-code\modules\client\preference_setup\general\02_body.dm:276:error: descriptor.get_standalone_value_descriptor: undefined type: descriptor.get_standalone_value_descriptor
-code\modules\client\preference_setup\general\02_body.dm:280:error: pref.preview_icon.Width: undefined var
-code\modules\client\preference_setup\general\02_body.dm:280:error: pref.preview_icon.Height: undefined var
-code\modules\client\preference_setup\general\02_body.dm:233:warning: R: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:275:warning: descriptor: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:323:error: pref.randomize_appearance_and_body_for: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:327:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:330:error: mob_species.descriptors: undefined var
-code\modules\client\preference_setup\general\02_body.dm:331:error: descriptor.chargen_value_descriptors: undefined type: descriptor.chargen_value_descriptors
+code\modules\client\preference_setup\general\02_body.dm:277:error: mob_species.descriptors: undefined var
+code\modules\client\preference_setup\general\02_body.dm:278:error: descriptor.chargen_label: undefined type: descriptor.chargen_label
+code\modules\client\preference_setup\general\02_body.dm:278:error: descriptor.get_standalone_value_descriptor: undefined type: descriptor.get_standalone_value_descriptor
+code\modules\client\preference_setup\general\02_body.dm:329:error: mob_species.descriptors: undefined var
 code\modules\client\preference_setup\general\02_body.dm:332:error: mob_species.descriptors: undefined var
 code\modules\client\preference_setup\general\02_body.dm:333:error: descriptor.chargen_value_descriptors: undefined type: descriptor.chargen_value_descriptors
-code\modules\client\preference_setup\general\02_body.dm:350:error: current_species.get_description: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:357:error: config.usealienwhitelist: undefined var
-code\modules\client\preference_setup\general\02_body.dm:391:error: mob_species.default_cultural_info.Copy: undefined var
-code\modules\client\preference_setup\general\02_body.dm:406:error: mob_species.get_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:410:error: mob_species.get_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:437:error: mob_species.base_skin_colours: undefined var
-code\modules\client\preference_setup\general\02_body.dm:445:error: mob_species.max_skin_tone: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:448:error: mob_species.max_skin_tone: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:462:error: mob_species.get_facial_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:467:error: mob_species.get_facial_hair_styles: undefined proc
-code\modules\client\preference_setup\general\02_body.dm:472:error: GLOB.body_marking_styles_list.Copy: undefined var
-code\modules\client\preference_setup\general\03_equipment.dm:21:error: backpack_outfit.name: undefined type: backpack_outfit.name
-code\modules\client\preference_setup\general\03_equipment.dm:21:error: backpack_outfit: undefined type: backpack_outfit
-code\modules\client\preference_setup\general\03_equipment.dm:20:warning: backpack_outfit: variable defined but not used
-code\modules\client\preference_setup\general\03_equipment.dm:31:error: pref.backpack: undefined type: pref.backpack
-code\modules\client\preference_setup\general\03_equipment.dm:36:error: pref.backpack.name: undefined type: pref.backpack.name
+code\modules\client\preference_setup\general\02_body.dm:334:error: mob_species.descriptors: undefined var
+code\modules\client\preference_setup\general\02_body.dm:335:error: descriptor.chargen_value_descriptors: undefined type: descriptor.chargen_value_descriptors
+code\modules\client\preference_setup\general\02_body.dm:352:error: current_species.get_description: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:359:error: config.usealienwhitelist: undefined var
+code\modules\client\preference_setup\general\02_body.dm:391:error: pref.skills_allocated: undefined var
+code\modules\client\preference_setup\general\02_body.dm:391:error: pref.skills_allocated: undefined var
+code\modules\client\preference_setup\general\02_body.dm:391:error: pref.sanitize_skills: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:393:error: pref.cultural_info: undefined var
+code\modules\client\preference_setup\general\02_body.dm:393:error: mob_species.default_cultural_info.Copy: undefined var
+code\modules\client\preference_setup\general\02_body.dm:408:error: mob_species.get_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:412:error: mob_species.get_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:439:error: mob_species.base_skin_colours: undefined var
+code\modules\client\preference_setup\general\02_body.dm:447:error: mob_species.max_skin_tone: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:450:error: mob_species.max_skin_tone: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:464:error: mob_species.get_facial_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:469:error: mob_species.get_facial_hair_styles: undefined proc
+code\modules\client\preference_setup\general\02_body.dm:474:error: GLOB.body_marking_styles_list.Copy: undefined var
 code\modules\client\preference_setup\general\03_equipment.dm:43:error: GLOB.underwear.categories: undefined var
 code\modules\client\preference_setup\general\03_equipment.dm:53:error: GLOB.underwear.categories_by_name: undefined var
-code\modules\client\preference_setup\general\03_equipment.dm:65:error: pref.backpack: undefined type: pref.backpack
-code\modules\client\preference_setup\general\03_equipment.dm:65:error: pref.backpack.name: undefined type: pref.backpack.name
-code\modules\client\preference_setup\general\03_equipment.dm:66:error: pref.backpack: undefined type: pref.backpack
-code\modules\client\preference_setup\general\03_equipment.dm:76:warning: backpack: variable defined but not used
-code\modules\client\preference_setup\general\03_equipment.dm:80:warning: tweak: variable defined but not used
 code\modules\client\preference_setup\general\03_equipment.dm:88:error: GLOB.underwear.categories: undefined var
 code\modules\client\preference_setup\general\03_equipment.dm:94:error: UWI.tweaks: undefined var
-code\modules\client\preference_setup\general\03_equipment.dm:98:error: pref.backpack.name: undefined type: pref.backpack.name
-code\modules\client\preference_setup\general\03_equipment.dm:99:error: pref.backpack.tweaks: undefined type: pref.backpack.tweaks
-code\modules\client\preference_setup\general\03_equipment.dm:100:error: pref.backpack.name: undefined type: pref.backpack.name
-code\modules\client\preference_setup\general\03_equipment.dm:100:error: pref.backpack: undefined type: pref.backpack
-code\modules\client\preference_setup\general\03_equipment.dm:99:warning: bt: variable defined but not used
 code\modules\client\preference_setup\general\03_equipment.dm:138:error: GLOB.underwear.categories_by_name: undefined var
-code\modules\client\preference_setup\general\03_equipment.dm:157:error: pref.backpack: undefined type: pref.backpack
-code\modules\client\preference_setup\general\03_equipment.dm:159:error: pref.backpack: undefined type: pref.backpack
-code\modules\client\preference_setup\general\03_equipment.dm:165:warning: bo: variable defined but not used
-code\modules\client\preference_setup\general\03_equipment.dm:166:warning: bt: variable defined but not used
-code\modules\client\preference_setup\general\03_equipment.dm:192:error: pref.backpack: undefined type: pref.backpack
-code\modules\client\preference_setup\general\03_equipment.dm:194:error: pref.backpack: undefined type: pref.backpack
-code\modules\client\preference_setup\general\03_equipment.dm:196:error: pref.backpack.name: undefined type: pref.backpack.name
 code\modules\client\preference_setup\general\04_flavor.dm:22:error: GLOB.robot_module_types: undefined var
 code\modules\client\preference_setup\general\04_flavor.dm:37:error: GLOB.robot_module_types: undefined var
 code\modules\client\preference_setup\general\04_flavor.dm:125:error: GLOB.robot_module_types: undefined var
-code\modules\client\preference_setup\laws\laws_pref.dm:79:error: initial: bad variable
-code\modules\client\preference_setup\loadout\loadout.dm:77:error: config.loadout_slots: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:80:error: config.loadout_slots: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:81:error: config.loadout_slots: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:79:error: config.loadout_slots: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:82:error: config.loadout_slots: undefined var
 code\modules\client\preference_setup\loadout\loadout.dm:83:error: config.loadout_slots: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:99:error: config.max_gear_cost: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:116:error: config.max_gear_cost: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:122:error: config.max_gear_cost: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:123:error: config.max_gear_cost: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:176:error: player_branch: undefined type: player_branch
-code\modules\client\preference_setup\loadout\loadout.dm:179:error: player_branch.type: undefined type: player_branch.type
-code\modules\client\preference_setup\loadout\loadout.dm:180:error: player_branch.name: undefined type: player_branch.name
-code\modules\client\preference_setup\loadout\loadout.dm:175:warning: player_branch: variable defined but not used
-code\modules\client\preference_setup\loadout\loadout.dm:241:error: config.max_gear_cost: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:85:error: config.loadout_slots: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:101:error: config.max_gear_cost: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:118:error: config.max_gear_cost: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:124:error: config.max_gear_cost: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:125:error: config.max_gear_cost: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:235:error: config.max_gear_cost: undefined var
+code\modules\client\preference_setup\loadout\loadout.dm:250:error: config.loadout_slots: undefined var
 code\modules\client\preference_setup\loadout\loadout.dm:256:error: config.loadout_slots: undefined var
-code\modules\client\preference_setup\loadout\loadout.dm:262:error: config.loadout_slots: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:73:error: GLOB.using_map.allowed_jobs: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:77:error: job.alt_titles: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:93:error: GLOB.using_map.flags: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:98:error: GLOB.using_map.flags: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:140:error: job.player_old_enough: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:141:error: job.available_in_days: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:145:error: job.is_species_allowed: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:147:error: S.check_background: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:150:error: job.allowed_branches: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:153:error: job.allowed_branches: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:156:error: job.allowed_ranks: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:159:error: job.allowed_ranks: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:170:error: GLOB.command_positions: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:190:error: job.alt_titles: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:85:warning: player_branch: variable defined but not used
-code\modules\client\preference_setup\occupation\occupation.dm:86:warning: player_rank: variable defined but not used
-code\modules\client\preference_setup\occupation\occupation.dm:224:error: job.alt_titles: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:246:error: current_branch: undefined type: current_branch
-code\modules\client\preference_setup\occupation\occupation.dm:257:error: job.get_branches: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:262:error: job.get_ranks: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:302:error: job.alt_titles: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:303:error: job.alt_titles: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:304:error: job.get_job_icon: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:313:error: job.allowed_branches: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:315:error: job.allowed_branches: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:317:error: job.get_ranks: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:321:error: job.get_description_blurb: undefined proc
-code\modules\client\preference_setup\occupation\occupation.dm:322:error: job.required_education: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:323:error: job.required_education: undefined var
-code\modules\client\preference_setup\occupation\occupation.dm:244:warning: current_branch: variable defined but not used
-code\modules\client\preference_setup\occupation\occupation.dm:272:warning: S: variable defined but not used
-code\modules\client\preference_setup\occupation\occupation.dm:284:warning: S: variable defined but not used
-code\modules\client\preference_setup\occupation\occupation.dm:316:warning: B: variable defined but not used
-code\modules\client\preference_setup\occupation\skill_selection.dm:56:error: GLOB.skills: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:60:error: GLOB.using_map.allowed_jobs: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:66:error: GLOB.skills: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:66:warning: skill: variable defined but not used
-code\modules\client\preference_setup\occupation\skill_selection.dm:77:warning: skill: variable defined but not used
-code\modules\client\preference_setup\occupation\skill_selection.dm:160:error: skill.children: undefined type: skill.children
-code\modules\client\preference_setup\occupation\skill_selection.dm:159:warning: skill: variable defined but not used
-code\modules\client\preference_setup\occupation\skill_selection.dm:160:warning: cat: variable defined but not used
-code\modules\client\preference_setup\occupation\skill_selection.dm:163:warning: S: variable defined but not used
-code\modules\client\preference_setup\occupation\skill_selection.dm:21:error: branch: undefined type: branch
-code\modules\client\preference_setup\occupation\skill_selection.dm:21:error: branch.min_skill: undefined type: branch.min_skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:22:error: branch.min_skill: undefined type: branch.min_skill
-code\modules\client\preference_setup\occupation\skill_selection.dm:20:warning: branch: variable defined but not used
-code\modules\client\preference_setup\occupation\skill_selection.dm:86:error: GLOB.using_map.allowed_jobs: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:96:error: GLOB.skills: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:106:error: job.skill_points: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:107:error: job.no_skill_buffs: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:108:error: S.skills_from_age: undefined proc
-code\modules\client\preference_setup\occupation\skill_selection.dm:109:error: S.job_skill_buffs: undefined var
-code\modules\client\preference_setup\occupation\skill_selection.dm:85:warning: S: variable defined but not used
-code\modules\client\preference_setup\occupation\skill_selection.dm:96:warning: skill: variable defined but not used
+code\modules\client\preference_setup\occupation\occupation.dm:53:error: pref.skills_saved: undefined var
+code\modules\client\preference_setup\occupation\occupation.dm:53:error: pref.skills_saved: undefined var
+code\modules\client\preference_setup\occupation\occupation.dm:69:error: pref.skills_allocated: undefined var
+code\modules\client\preference_setup\occupation\occupation.dm:69:error: pref.skills_allocated: undefined var
+code\modules\client\preference_setup\occupation\occupation.dm:69:error: pref.sanitize_skills: undefined proc
+code\modules\client\preference_setup\occupation\occupation.dm:71:error: GLOB.using_map.allowed_jobs: undefined var
+code\modules\client\preference_setup\occupation\occupation.dm:95:error: pref.points_by_job: undefined var
+code\modules\client\preference_setup\occupation\occupation.dm:123:error: job.player_old_enough: undefined proc
+code\modules\client\preference_setup\occupation\occupation.dm:124:error: job.available_in_days: undefined proc
+code\modules\client\preference_setup\occupation\occupation.dm:136:error: GLOB.command_positions: undefined var
+code\modules\client\preference_setup\occupation\occupation.dm:240:error: job.get_job_icon: undefined proc
+code\modules\client\preference_setup\occupation\occupation.dm:252:error: job.get_description_blurb: undefined proc
+code\modules\client\preference_setup\occupation\occupation.dm:253:error: job.required_education: undefined var
+code\game\antagonist\antagonist_equip.dm:64:error: traitor_mob.client.prefs.uplinklocation: undefined var
+code\game\antagonist\antagonist_equip.dm:71:error: traitor_mob.client.prefs.uplinklocation: undefined var
+code\game\antagonist\antagonist_equip.dm:78:error: traitor_mob.client.prefs.uplinklocation: undefined var
+code\modules\client\preferences.dm:34:error: SScharacter_setup.initialized: undefined var
+code\modules\client\preferences.dm:64:error: SScharacter_setup.initialized: undefined var
+code\modules\client\preferences.dm:152:error: GLOB.last_names: undefined var
+code\modules\client\preferences.dm:154:error: GLOB.last_names: undefined var
+code\modules\client\preferences.dm:180:error: GLOB.underwear.categories_by_name: undefined var
+code\modules\client\preferences.dm:185:error: UWD.create_underwear: undefined proc
+code\modules\client\preferences.dm:195:error: O.markings.Cut: undefined var
+code\modules\client\preferences.dm:198:error: GLOB.body_marking_styles_list: undefined var
+code\modules\client\preferences.dm:201:error: mark_datum.body_parts: undefined type: mark_datum.body_parts
+code\modules\client\preferences.dm:204:error: O.markings: undefined var
+code\modules\client\preferences.dm:204:error: mark_datum: undefined type: mark_datum
+code\modules\client\preferences.dm:183:warning: UWD: variable defined but not used
+code\modules\client\preferences.dm:194:warning: O: variable defined but not used
+code\modules\client\preferences.dm:198:warning: mark_datum: variable defined but not used
+code\modules\client\preferences.dm:252:error: GLOB.using_map.character_load_path: undefined var
+code\modules\client\preferences_savefile.dm:49:error: GLOB.using_map.character_load_path: undefined var
+code\modules\client\preferences_savefile.dm:53:error: GLOB.using_map.character_load_path: undefined var
+code\modules\client\preferences_savefile.dm:63:error: GLOB.using_map.character_save_path: undefined var
+code\modules\mob\new_player\preferences_setup.dm:14:error: current_species.get_random_skin_tone: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:16:error: current_species.get_random_eye_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:16:error: current_species.get_random_eye_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:16:error: current_species.get_random_eye_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:16:error: current_species.get_random_eye_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:18:error: current_species.get_random_skin_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:18:error: current_species.get_random_skin_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:18:error: current_species.get_random_skin_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:18:error: current_species.get_random_skin_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:20:error: current_species.get_random_hair_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:29:error: current_species.get_random_facial_hair_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:29:error: current_species.get_random_facial_hair_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:29:error: current_species.get_random_facial_hair_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:29:error: current_species.get_random_facial_hair_color: undefined proc
+code\modules\mob\new_player\preferences_setup.dm:33:error: GLOB.underwear.categories: undefined var
+code\modules\mob\new_player\preferences_setup.dm:69:warning: loadout_taken_slots: variable defined but not used
 code\modules\client\preference_setup\global\preferences.dm:95:error: GLOB.using_map.lobby_track.play_to: undefined var
 code\modules\client\preference_setup\global\preferences.dm:97:error: GLOB.lobby_sound_channel: undefined var
 code\modules\client\preference_setup\global\preferences.dm:105:error: GLOB.lobby_sound_channel: undefined var
 code\modules\client\preference_setup\global\preferences.dm:106:error: GLOB.ambience_sound_channel: undefined var
-code\modules\client\preference_setup\loadout\lists\misc.dm:12:warning: card: variable defined but not used
-code\modules\client\preference_setup\loadout\lists\misc.dm:80:error: lunchbox.filled: undefined var
-code\modules\client\preference_setup\loadout\lists\misc.dm:80:error: initial: bad variable
 code\modules\client\preference_setup\matchmaking\matchmaking.dm:122:error: GLOB.player_list: undefined var
-code\modules\client\preference_setup\matchmaking\relations_types.dm:28:error: kidmob.get_cultural_value: undefined proc
-code\modules\client\preference_setup\matchmaking\relations_types.dm:97:error: GLOB.using_map: undefined var
-code\modules\client\preference_setup\matchmaking\relations_types.dm:97:error: GLOB.using_map.flags: undefined var
-code\modules\client\preference_setup\matchmaking\relations_types.dm:102:error: buddymob.char_branch: undefined var
 code\modules\client\preference_setup\loadout\loadout.dm:26:error: GLOB.using_map.loadout_blacklist: undefined var
 code\modules\client\preference_setup\loadout\loadout.dm:26:error: GLOB.using_map.loadout_blacklist: undefined var
+code\modules\admin\verbs\randomverbs.dm:223:warning: P: variable defined but not used
+code\modules\admin\verbs\randomverbs.dm:352:warning: A: variable defined but not used
 code\modules\client\preference_setup\general\02_body.dm:143:warning: descriptor: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:330:warning: descriptor: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:349:warning: current_species: variable defined but not used
-code\modules\client\preference_setup\general\02_body.dm:589:warning: M: variable defined but not used
-cev_eris.dmb - 100 errors, 41 warnings (10/30/18 6:29 pm) (max count reached)
+code\modules\client\preference_setup\general\02_body.dm:191:warning: status: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:192:warning: organ_name: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:277:warning: descriptor: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:332:warning: descriptor: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:351:warning: current_species: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:518:warning: limb: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:519:warning: second_limb: variable defined but not used
+code\modules\client\preference_setup\general\02_body.dm:520:warning: third_limb: variable defined but not used
+cev_eris.dmb - 100 errors, 17 warnings (11/13/18 9:30 am) (max count reached)
 Total time: 0:24

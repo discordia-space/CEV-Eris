@@ -175,3 +175,24 @@
 	if (hand)
 		return slot_l_hand
 	return slot_r_hand
+
+/mob/proc/delete_inventory(var/include_carried = FALSE)
+	for(var/entry in get_equipped_items(include_carried))
+		drop_from_inventory(entry)
+		qdel(entry)
+
+//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
+/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
+	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
+
+/mob/proc/equip_to_slot_or_store_or_drop(obj/item/W as obj, slot)
+	var/store = equip_to_slot_if_possible(W, slot, 0, 1, 0)
+	if(!store)
+		return equip_to_storage_or_drop(W)
+	return store
+
+/mob/proc/equip_to_storage_or_drop(obj/item/newitem)
+	var/stored = equip_to_storage(newitem)
+	if(!stored && newitem)
+		newitem.forceMove(loc)
+	return stored

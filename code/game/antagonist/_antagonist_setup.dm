@@ -41,6 +41,10 @@ var/global/list/antag_bantypes = list()
 var/global/list/faction_types = list()
 
 // Global procs.
+/proc/get_antag_data(var/a_id)
+	if(antag_types[a_id])
+		return antag_types[a_id]
+
 /proc/clear_antagonist(var/datum/mind/player)
 	for(var/datum/antagonist/A in player.antagonist)
 		A.remove_antagonist()

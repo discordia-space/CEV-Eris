@@ -2,8 +2,8 @@
 /datum/gear/accessory
 	sort_category = "Accessories"
 	category = /datum/gear/accessory
-	slot = slot_tie
-
+	slot = slot_accessory_buffer
+/*
 /datum/gear/accessory/tie
 	display_name = "tie selection"
 	path = /obj/item/clothing/accessory
@@ -33,71 +33,58 @@
 	ties["tie"] = /obj/item/clothing/accessory
 	ties["striped tie"] = /obj/item/clothing/accessory/long
 	gear_tweaks += new/datum/gear_tweak/path(ties)
-
-/datum/gear/accessory/locket
-	display_name = "locket"
-	path = /obj/item/clothing/accessory/locket
-
-/datum/gear/accessory/necklace
-	display_name = "necklace, colour select"
-	path = /obj/item/clothing/accessory/necklace
-	flags = GEAR_HAS_COLOR_SELECTION
-
-/datum/gear/accessory/bowtie
-	display_name = "bowtie, horrible"
-	path = /obj/item/clothing/accessory/bowtie/ugly
-
-/datum/gear/accessory/bowtie/color
-	display_name = "bowtie, colour select"
-	path = /obj/item/clothing/accessory/bowtie/color
-	flags = GEAR_HAS_COLOR_SELECTION
-
-/datum/gear/accessory/ntaward
-	display_name = "corporate award selection"
-	description = "A medal or ribbon awarded to corporate personnel for significant accomplishments."
-	path = /obj/item/clothing/accessory/medal
-	cost = 8
-
-/datum/gear/accessory/ntaward/New()
-	..()
-	var/ntawards = list()
-	ntawards["sciences medal"] = /obj/item/clothing/accessory/medal/bronze/nanotrasen
-	ntawards["distinguished service"] = /obj/item/clothing/accessory/medal/silver/nanotrasen
-	ntawards["command medal"] = /obj/item/clothing/accessory/medal/gold/nanotrasen
-	gear_tweaks += new/datum/gear_tweak/path(ntawards)
-
-//have to break up armbands to restrict access
-/datum/gear/accessory/armband_security
-	display_name = "security armband"
+*/
+/datum/gear/accessory
+	display_name = "armband, red"
 	path = /obj/item/clothing/accessory/armband
+	slot = slot_accessory_buffer
+	sort_category = "Accessories"
 
-/datum/gear/accessory/armband_cargo
-	display_name = "cargo armband"
+/datum/gear/accessory/cargo
+	display_name = "armband, cargo"
 	path = /obj/item/clothing/accessory/armband/cargo
 
-/datum/gear/accessory/armband_medical
-	display_name = "medical armband"
-	path = /obj/item/clothing/accessory/armband/med
-
-/datum/gear/accessory/armband_emt
-	display_name = "EMT armband"
+/datum/gear/accessory/emt
+	display_name = "armband, EMT"
 	path = /obj/item/clothing/accessory/armband/medgreen
-	allowed_roles = list(/datum/job/doctor)
 
-/datum/gear/accessory/armband_engineering
-	display_name = "engineering armband"
+/datum/gear/accessory/engineering
+	display_name = "armband, engineering"
 	path = /obj/item/clothing/accessory/armband/engine
 
-/datum/gear/accessory/armband_hydro
-	display_name = "hydroponics armband"
+/datum/gear/accessory/hydroponics
+	display_name = "armband, hydroponics"
 	path = /obj/item/clothing/accessory/armband/hydro
-	allowed_roles = list(/datum/job/rd, /datum/job/scientist, /datum/job/assistant)
 
-/datum/gear/accessory/armband_nt
-	display_name = "corporate armband"
-	path = /obj/item/clothing/accessory/armband/whitered
+/datum/gear/accessory/medical
+	display_name = "armband, medical"
+	path = /obj/item/clothing/accessory/armband/med
 
-/datum/gear/accessory/ftupin
-	display_name = "Free Trade Union pin"
-	path = /obj/item/clothing/accessory/ftupin
+/datum/gear/accessory/science
+	display_name = "armband, science"
+	path = /obj/item/clothing/accessory/armband/science
 
+/datum/gear/accessory/holster
+	display_name = "holster, armpit"
+	path = /obj/item/clothing/accessory/holster/armpit
+	allowed_roles = list("Captain", "First Officer", "Ironhammer Operative", "Ironhammer Gunnery Sergeant", "Ironhammer Commander","Ironhammer Inspector")
+
+/datum/gear/accessory/holster/hip
+	display_name = "holster, hip"
+	path = /obj/item/clothing/accessory/holster/hip
+
+/datum/gear/accessory/holster/waist
+	display_name = "holster, waist"
+	path = /obj/item/clothing/accessory/holster/waist
+
+/datum/gear/accessory/tie/blue
+	display_name = "tie, blue"
+	path = /obj/item/clothing/accessory/blue
+
+/datum/gear/accessory/tie/red
+	display_name = "tie, red"
+	path = /obj/item/clothing/accessory/red
+
+/datum/gear/accessory/tie/horrible
+	display_name = "tie, socially disgraceful"
+	path = /obj/item/clothing/accessory/horrible

@@ -211,3 +211,8 @@
 #define EMAIL_BROADCAST "broadcast@internal-services.net"
 
 #define LEGACY_RECORD_STRUCTURE(X, Y) GLOBAL_LIST_EMPTY(##X);/datum/computer_file/data/##Y/var/list/fields[0];/datum/computer_file/data/##Y/New(){..();GLOB.##X.Add(src);}/datum/computer_file/data/##Y/Destroy(){. = ..();GLOB.##X.Remove(src);}
+
+#define DEFAULT_SPAWNPOINT_ID "Cryogenic Storage"
+
+//Number of slots a modular computer has which can be tweaked via gear tweaks.
+#define TWEAKABLE_COMPUTER_PART_SLOTS 8
