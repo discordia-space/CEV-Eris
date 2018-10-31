@@ -217,7 +217,7 @@
 		var/list/clients[0]
 		for(var/datum/computer_file/program/chatclient/cl in C.channel.clients)
 			clients.Add(list(list(
-				"name" = cl.username
+				"name" = cyrillic_to_unicode(cl.username)
 			)))
 		data["clients"] = clients
 		C.operator_mode = (C.channel.operator == C) ? 1 : 0
