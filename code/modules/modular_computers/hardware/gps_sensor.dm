@@ -10,7 +10,7 @@
 	usage_flags = PROGRAM_ALL
 	var/datum/gps_data/gps
 
-/obj/item/weapon/computer_hardware/gps_sensor/New()
+/obj/item/weapon/computer_hardware/gps_sensor/Initialize()
 	..()
 	gps = new (src)
 
