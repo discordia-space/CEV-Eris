@@ -1,101 +1,97 @@
-/turf/simulated/open/update_icon()
-	if(SSticker.current_state != GAME_STATE_PLAYING)
+/turf/proc/getDarknessOverlay()
+	var/static/image/over_OS_darkness
+	if (over_OS_darkness)
+		return over_OS_darkness
+
+	over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
+	over_OS_darkness.plane = OVER_OPENSPACE_PLANE
+	over_OS_darkness.layer = MOB_LAYER
+
+	return over_OS_darkness
+
+/turf/proc/assumeVisualContentsFromTurf(var/turf/T) //tries to imitate the target turf in visual appearance
+	icon = T.icon
+	icon_state = T.icon_state
+	dir = T.dir
+	color = T.color
+	overlays += T.overlays
+
+	var/image/I
+	for (var/obj/O in T)
+		if (!O.invisibility) // ignore objects that have any form of invisibility
+			I = new(O, dir = O.dir, layer = O.layer)
+			I.color = O.color
+			I.alpha = O.alpha
+			I.blend_mode = O.blend_mode
+			I.overlays = O.overlays
+			I.underlays = O.underlays
+			I.pixel_x = O.pixel_x
+			I.pixel_y = O.pixel_y
+			I.pixel_w = O.pixel_w
+			I.pixel_z = O.pixel_z
+			I.transform = O.transform
+
+			I.plane = plane
+			overlays += I
+
+/turf/simulated/open/update_icon(var/updateAboveTurf = TRUE)
+	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
-	if(below)
-		if(below.is_space())
+	if (below)
+		if (below.is_space())
 			plane = PLANE_SPACE
 		else
 			plane = OPENSPACE_PLANE
-		icon = below.icon
-		icon_state = below.icon_state
-		dir = below.dir
-		color = below.color//rgb(127,127,127)
-		overlays += below.overlays
 
-		if(!istype(below,/turf/simulated/open))
-			// get objects
-			var/image/o_img = list()
-			for(var/obj/o in below)
-				// ingore objects that have any form of invisibility
-				if(o.invisibility) continue
-				var/image/temp2 = image(o, dir=o.dir, layer = o.layer)
-				temp2.plane = plane
-				temp2.color = o.color//rgb(127,127,127)
-				temp2.overlays += o.overlays
-				o_img += temp2
-			overlays += o_img
+		assumeVisualContentsFromTurf(below)
 
-		var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
-		over_OS_darkness.plane = OVER_OPENSPACE_PLANE
-		over_OS_darkness.layer = MOB_LAYER
-		overlays += over_OS_darkness
-		spawn()
-			//The openspace might very well not be here when this happens, and then runtime error. So safety checks
-			if (src && !QDELETED(src) && istype(src, /turf/simulated/open))
-				updateFallability()
+		overlays += getDarknessOverlay()
+
+		updateFallability()
 	else
 		ChangeTurf(/turf/space)
 
-/turf/space/update_icon()
-	if(SSticker.current_state < GAME_STATE_PLAYING)
+	if (updateAboveTurf)
+		update_openspace()
+
+/turf/space/update_icon(var/updateAboveTurf = TRUE)
+	if (SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
-	if(below)
-		if(below.icon == 'icons/turf/space.dmi')
+	if (below)
+		if (below.is_space())
 			plane = PLANE_SPACE
 		else
 			plane = OPENSPACE_PLANE
-			var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
-			over_OS_darkness.plane = OVER_OPENSPACE_PLANE
-			over_OS_darkness.layer = MOB_LAYER
-			overlays += over_OS_darkness
-		icon = below.icon
-		icon_state = below.icon_state
-		dir = below.dir
-		color = below.color//rgb(127,127,127)
-		overlays += below.overlays
+			overlays += getDarknessOverlay()
 
-		if(!istype(below,/turf/simulated/open))
-			// get objects
-			var/image/o_img = list()
-			for(var/obj/o in below)
-				// ingore objects that have any form of invisibility
-				if(o.invisibility) continue
-				var/image/temp2 = image(o, dir=o.dir, layer = o.layer)
-				temp2.plane = plane
-				temp2.color = o.color//rgb(127,127,127)
-				temp2.overlays += o.overlays
-				o_img += temp2
-			overlays += o_img
+		assumeVisualContentsFromTurf(below)
 	else
 		icon = initial(icon)
 		plane = initial(plane)
-		if(!istype(src, /turf/space/transit))
+		if (!istype(src, /turf/space/transit))
 			icon_state = "white"
 
+	if (updateAboveTurf)
+		update_openspace()
 
 /hook/roundstart/proc/init_openspace()
 	var/turf/T
-	for(var/elem in turfs)
-		if(istype(elem, /turf/simulated/open) || istype(elem, /turf/space))
+	for (var/elem in turfs)
+		if (istype(elem, /turf/simulated/open) || istype(elem, /turf/space))
 			T = elem
-			T.update_icon()
+			T.update_icon(FALSE)
 	return TRUE
-
 
 /atom/proc/update_openspace()
 	var/turf/T = GetAbove(src)
-	if(istype(T,/turf/simulated/open) || istype(T,/turf/space))
+	if (istype(T, /turf/simulated/open) || istype(T, /turf/space))
 		T.update_icon()
-
-/turf/simulated/open/update_openspace()
-	update_icon()
-	..()
 
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()
