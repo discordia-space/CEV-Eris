@@ -152,10 +152,10 @@
 	owner.lawsync()
 
 	data["ion_law_nr"] = ionnum()
-	data["ion_law"] = ion_law
-	data["zeroth_law"] = zeroth_law
-	data["inherent_law"] = inherent_law
-	data["supplied_law"] = supplied_law
+	data["ion_law"] = cyrillic_to_unicode(ion_law)
+	data["zeroth_law"] = cyrillic_to_unicode(zeroth_law)
+	data["inherent_law"] = cyrillic_to_unicode(inherent_law)
+	data["supplied_law"] = cyrillic_to_unicode(supplied_law)
 	data["supplied_law_position"] = supplied_law_position
 
 	package_laws(data, "zeroth_laws", list(owner.laws.zeroth_law))
