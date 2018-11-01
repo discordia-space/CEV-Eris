@@ -28,6 +28,12 @@
 	var/_iconWidth = 0 //in pixels
 	var/_iconHeight = 0
 
+	var/_currentAlignmentVertical = 0 //alignment within parent element
+	var/_currentAlignmentHorizontal = 0
+
+	var/_alignmentOffsetX = 0 //in pixels
+	var/_alignmentOffsetY = 0
+
 /HUD_element/New(var/identifier)
 	_elements = new
 	_identifier = identifier
@@ -60,16 +66,17 @@
 			_iconWidth = 0
 			_iconHeight = 0
 			_updatePosition()
-		return
+		return src
 
 	var/icon/I = new(fcopy_rsc(icon),icon_state,dir)
 	var/newIconWidth = I.Width()
 	var/newIconHeight = I.Height()
 	if ((newIconWidth == _iconWidth) && (newIconHeight == _iconHeight))
-		return
+		return src
 
 	_iconWidth = newIconWidth
 	_iconHeight = newIconHeight
+
 	_updatePosition()
 
 	return src
@@ -87,6 +94,8 @@
 		M.Translate(0,(_scaleHeight-1)*_iconHeight/2)
 
 	transform = M
+
+	_updatePosition()
 
 	return src
 
@@ -138,6 +147,74 @@
 
 	return src
 
+/HUD_element/proc/setAlignment(var/horizontal, var/vertical)
+	if (horizontal != null)
+		_currentAlignmentHorizontal = horizontal
+
+	if (vertical != null)
+		_currentAlignmentVertical = vertical
+
+	_updatePosition()
+
+	return src
+
+/HUD_element/proc/getAlignmentVertical()
+	return _currentAlignmentVertical
+
+/HUD_element/proc/getAlignmentHorizontal()
+	return _currentAlignmentHorizontal
+
+/HUD_element/proc/_recalculateAlignmentOffset()
+	/*
+	horizontal/vertical alignment values:
+	0 == no alignment
+	1 == bordering west/south side of parent from outside
+	2 == bordering west/south side of parent from inside
+	3 == center of parent
+	4 == bordering east/north side of parent from inside
+	5 == bordering east/north side of parent from outside
+	*/
+
+	//todo: no parent means align relative to screen/view
+	var/HUD_element/parent = getParent()
+	switch (_currentAlignmentHorizontal)
+		if (0)
+			_alignmentOffsetX = 0
+		if (1)
+			_alignmentOffsetX = -getWidth()
+		if (2)
+			_alignmentOffsetX = 0
+		if (3)
+			if (parent)
+				_alignmentOffsetX = parent.getWidth()/2 - getWidth()/2
+		if (4)
+			if (parent)
+				_alignmentOffsetX = parent.getWidth() - getWidth()
+		if (5)
+			if (parent)
+				_alignmentOffsetX = parent.getWidth()
+		else
+			_alignmentOffsetX = 0
+
+	switch (_currentAlignmentVertical)
+		if (0)
+			_alignmentOffsetY = 0
+		if (1)
+			_alignmentOffsetY = -getHeight()
+		if (2)
+			_alignmentOffsetY = 0
+		if (3)
+			if (parent)
+				_alignmentOffsetY = parent.getHeight()/2 - getHeight()/2
+		if (4)
+			if (parent)
+				_alignmentOffsetY = parent.getHeight() - getHeight()
+		if (5)
+			if (parent)
+				_alignmentOffsetY = parent.getHeight()
+		else
+			_alignmentOffsetY = 0
+
 /HUD_element/proc/_updatePosition()
 	var/realX = _relativePositionX
 	var/realY = _relativePositionY
@@ -147,10 +224,14 @@
 		realX += parent._absolutePositionX
 		realY += parent._absolutePositionY
 
+	_recalculateAlignmentOffset()
+	realX += _alignmentOffsetX
+	realY += _alignmentOffsetY
+
 	_absolutePositionX = realX
 	_absolutePositionY = realY
 
-	screen_loc = "[_screenBottomLeftX]:[realX],[_screenBottomLeftY]:[realY]"
+	screen_loc = "[_screenBottomLeftX]:[round(realX)],[_screenBottomLeftY]:[round(realY)]"
 
 	var/list/HUD_element/elements = getElements()
 	for(var/HUD_element/E in elements)
@@ -292,4 +373,22 @@
 
 	return src
 
+/HUD_element/proc/mimicAtomIcon(var/atom/A)
+	icon = A.icon
+	icon_state = A.icon_state
+	dir = A.dir
+	color = A.color
+	alpha = A.alpha
+	overlays = A.overlays
+	underlays = A.underlays
 
+	updateIconInformation()
+
+	return src
+
+/HUD_element/proc/setName(var/new_name, var/nameAllElements = FALSE)
+	name = new_name
+	if (nameAllElements)
+		var/list/HUD_element/elements = getElements()
+		for(var/HUD_element/E in elements)
+			E.setName(new_name, TRUE)

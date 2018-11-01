@@ -49,31 +49,67 @@
 /obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
 	var/HUD_element/main = new("storage")
 
-	var/HUD_element/threePartBox/storageBackground = main.add(new/HUD_element/threePartBox/storageBackground())
-
 	var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
-	var/maxBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,284)
+	var/minBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,284) //in pixels
+
+	var/paddingSides = 2 //in pixels
+	var/paddingBetweenSlots = 1 //in pixels
+
+	var/totalStorageCost = 0
+
+	main.setPosition(data.ConteinerData["Xspace"]*32,100)
 
 	if(storage_slots == null)
 		//main.setPosition(data.ConteinerData["Xspace"]*32,data.ConteinerData["Yspace"]*32)
-		main.setPosition(100,100)
+		var/HUD_element/threePartBox/storageBackground = main.add(new/HUD_element/threePartBox/storageBackground())
+		storageBackground.setName("HUD Storage Background")
 
-		var/totalWidth = 0
+		var/totalWidth = 0 + paddingSides //in pixels
+
 		for(var/obj/item/O in contents)
-			var/HUD_element/threePartBox/itemBackground = main.add(new/HUD_element/threePartBox/storedItemBackground())
-			var/itemBackgroundWidth = maxBackgroundWidth * O.get_storage_cost()/max_storage_space
-			var/centerOffset = (storageBackground.getHeight() - itemBackground.getHeight())/2 //todo: make automatic element alignment relative to parent
+			var/itemStorageCost = O.get_storage_cost()
+			totalStorageCost += itemStorageCost
 
+			var/HUD_element/threePartBox/itemBackground = storageBackground.add(new/HUD_element/threePartBox/storedItemBackground())
+
+			var/itemBackgroundWidth = round(minBackgroundWidth * itemStorageCost/max_storage_space)
 			itemBackground.resize(itemBackgroundWidth)
-			itemBackground.setPosition(totalWidth,centerOffset)
-			totalWidth += itemBackground.getWidth()
+			itemBackground.setAlignment(0,3) //vertical center
+			itemBackground.setPosition(totalWidth,0)
 
-			//O.screen_loc = "[Xcord]:[round((startpoint+endpoint)/2)+2],[Ycord]:16"
-			//O.maptext = ""
-			//O.layer = ABOVE_HUD_LAYER
-			//O.plane = ABOVE_HUD_PLANE
+			var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
+			itemIcon.mimicAtomIcon(O)
+			itemIcon.setAlignment(3,3) //center
+			//itemIcon.resize(itemBackground.getWidth(),storageBackground.getHeight())
 
-		storageBackground.resize(totalWidth)
+			itemIcon.mouse_opacity = 0
+
+			totalWidth += itemBackground.getWidth() + paddingBetweenSlots
+
+			itemBackground.setName(O.name, TRUE)
+
+		if (contents.len)
+			totalWidth -= paddingBetweenSlots
+
+		var/remainingStorage = max_storage_space - totalStorageCost
+		if (remainingStorage)
+			remainingStorage += 2 //in pixels, creates a small area where items can be put
+
+		storageBackground.resize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
+	else
+		var/HUD_element/threePartBox/storageBackground = main.add(new/HUD_element/threePartBox/storageBackground())
+		storageBackground.setName("HUD Storage Background")
+
+		var/maxColumnCount = data.ConteinerData["ColCount"]
+
+		var/itemCount = 0
+		var/rowCount = 1
+		for(var/obj/item/O in contents)
+
+			itemCount++
+			if (itemCount > maxColumnCount)
+				itemCount = 0
+				rowCount++
 
 		//src.closer.screen_loc = "[Xcord]:[storage_width+19],[Ycord]:16"
 
@@ -164,7 +200,7 @@
 	if(user.s_active)
 		user.s_active.hide_from(user)
 
-	generateHUD().show(user.client)
+	generateHUD(global.HUDdatums[user.defaultHUD]).show(user.client)
 
 	user.client.screen -= src.boxes
 	user.client.screen -= src.storage_start

@@ -22,7 +22,7 @@
 	_start_element = null
 	_middle_element = null
 	_end_element = null
-	..()
+	. = ..()
 
 /HUD_element/threePartBox/proc/getMinWidth()
 	return max(_minTotalWidth, _start_element.getIconWidth() + _end_element.getIconWidth())
@@ -36,8 +36,16 @@
 	_start_element.resize(null,height)
 	_end_element.resize(null,height)
 
+	return src
+
 /HUD_element/threePartBox/getWidth()
 	return _start_element.getWidth() + _middle_element.getWidth() + _end_element.getWidth()
 
 /HUD_element/threePartBox/getHeight()
 	return max(_start_element.getHeight(),_middle_element.getHeight(),_end_element.getHeight())
+
+/HUD_element/threePartBox/setName(var/new_name, var/nameAllElements = FALSE)
+	_start_element.setName(new_name, nameAllElements)
+	_middle_element.setName(new_name, nameAllElements)
+	_end_element.setName(new_name, nameAllElements)
+	. = ..()
