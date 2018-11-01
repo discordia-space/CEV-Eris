@@ -368,8 +368,4 @@ var/last_message_id = 0
 		return
 
 	. = evacuation_controller.call_evacuation(null, _emergency_evac = FALSE, autotransfer = TRUE)
-	if(.)
-		//delay events in case of an autotransfer
-		var/delay = evacuation_controller.evac_arrival_time - world.time + (2 MINUTES)
-		SSevent.delay_events(EVENT_LEVEL_MODERATE, delay)
-		SSevent.delay_events(EVENT_LEVEL_MAJOR, delay)
+
