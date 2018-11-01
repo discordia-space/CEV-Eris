@@ -65,11 +65,13 @@
 	if (below)
 		if (below.is_hole)
 			plane = PLANE_SPACE
+
+			overlays += below.overlays
+			mimicTurf(below, OPENSPACE_PLANE, TRUE)
 		else
 			plane = OPENSPACE_PLANE
 
-		overlays += below.overlays
-		mimicTurf(below, OPENSPACE_PLANE, below.is_hole)
+			mimicTurf(below, OPENSPACE_PLANE)
 
 		overlays += getDarknessOverlay()
 
@@ -96,11 +98,13 @@
 	if (below)
 		if (below.is_hole)
 			plane = PLANE_SPACE
+
+			overlays += below.overlays
+			mimicTurf(below, OPENSPACE_PLANE, TRUE)
 		else
 			plane = OPENSPACE_PLANE
 
-		overlays += below.overlays
-		mimicTurf(below, OPENSPACE_PLANE, below.is_hole)
+			mimicTurf(below, OPENSPACE_PLANE)
 
 		overlays += getDarknessOverlay()
 
