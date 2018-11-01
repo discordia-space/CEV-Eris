@@ -11,8 +11,8 @@
 	var/datum/gps_data/gps
 
 /obj/item/weapon/computer_hardware/gps_sensor/Initialize()
-	..()
-	gps = new (src)
+	.=..()
+	gps = new /datum/gps_data(src)
 
 /obj/item/weapon/computer_hardware/gps_sensor/Destroy()
 	QDEL_NULL(gps)
