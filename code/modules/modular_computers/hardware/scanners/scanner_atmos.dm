@@ -11,13 +11,16 @@
 	return 1
 
 /obj/item/weapon/computer_hardware/scanner/atmos/run_scan(mob/user, datum/computer_file/program/scanner/program)
-	program.data_buffer = html2pencode(scan_data(user, user.loc)) || program.data_buffer
+	if(..())
+		program.data_buffer = html2pencode(scan_data(user, user.loc)) || program.data_buffer
 
 /obj/item/weapon/computer_hardware/scanner/atmos/do_on_afterattack(mob/user, atom/target, proximity)
 	if(!isobj(target))
 		return
 	var/data = scan_data(user, target, proximity)
 	if(!data)
+		return
+	if (!scan_power_use())
 		return
 	if(driver && driver.using_scanner)
 		driver.data_buffer = html2pencode(data)

@@ -12,6 +12,8 @@
 /obj/item/weapon/computer_hardware/scanner/reagent/do_on_afterattack(mob/user, obj/target, proximity)
 	if(!can_use_scanner(user, target, proximity))
 		return
+	if (!scan_power_use())
+		return
 	/*var/dat = reagent_scan_results(target)	// TODO: fix after baymed
 	if(driver && driver.using_scanner)
 		driver.data_buffer = jointext(dat, "\[br\]")
